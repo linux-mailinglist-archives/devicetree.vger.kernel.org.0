@@ -2,109 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC98530778E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 15:00:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 173013077B0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 15:10:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231218AbhA1N7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 08:59:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231204AbhA1N7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 08:59:01 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EED3C061574
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 05:58:21 -0800 (PST)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l57oR-0006i7-4l; Thu, 28 Jan 2021 14:58:19 +0100
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l57oG-0006AS-9M; Thu, 28 Jan 2021 14:58:08 +0100
-Date:   Thu, 28 Jan 2021 14:58:08 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH v4 2/2] counter: add IRQ or GPIO based pulse counter
-Message-ID: <20210128135808.ttvd2xxjkmsqanr7@pengutronix.de>
-References: <20210126131239.8335-1-o.rempel@pengutronix.de>
- <20210126131239.8335-3-o.rempel@pengutronix.de>
- <CACRpkdYSdtwSZxicJ1Rxp_XkK1BstpnzMcV0JqXg+cac_+gSSw@mail.gmail.com>
+        id S229652AbhA1OJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 09:09:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43112 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231349AbhA1OJA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Jan 2021 09:09:00 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4579264D92;
+        Thu, 28 Jan 2021 14:08:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611842899;
+        bh=QSDli4q81ZPENBHiSIxqH32K2P7ZjDli7F2BOv1/r9U=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WqWHV57+phzaVBv77u51NcPbqZi/YOFjBMwRd2KxldHHJ7XFNYT5ed5VJkH4PPvAu
+         l9bQ5NNu6pbrc+vgPpVUmfD5xWv3HnprgGCuk4swf/sZCj9BQYsgcFFe7gs/Vv6Ea6
+         jrB2s9UsnUn6uH48aXrsLo5gTlhAaNBDyy7ksKGuNcJ3Z2/TkQ2OP0OHWBrohpozPc
+         zK5VAZcNOuKY+UtFusmh1kn+3fjsJppXYfMmz4zHluuxmlfy9DAKjtLvjloeHWSCeY
+         a5DfcrGiY9VyeNBi1Yei06EntAoq/olgB7Aewv6rj45FWZDqvR9vK1ixP/Jx//xx/F
+         SVHp9W7+JhSmA==
+Received: by mail-oi1-f182.google.com with SMTP id n7so6078635oic.11;
+        Thu, 28 Jan 2021 06:08:19 -0800 (PST)
+X-Gm-Message-State: AOAM53110fbfkeFxRtDUkdWHta/K7VWXxKu3PpsBFFM4AH0+7yWEcVb+
+        3utAZcmhVLJdN94djG/CDRBvAkQ1pg0JOWZjaBA=
+X-Google-Smtp-Source: ABdhPJzwEQxEnGH8Kd9EW4py7Vh8j/97czrumYSoCX4f5UnRR+EOHFO9iBqtwIJx05MPulf7muWpeVXN8Y1iYCWgGHI=
+X-Received: by 2002:aca:d908:: with SMTP id q8mr84273oig.67.1611842898482;
+ Thu, 28 Jan 2021 06:08:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CACRpkdYSdtwSZxicJ1Rxp_XkK1BstpnzMcV0JqXg+cac_+gSSw@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:57:01 up 57 days,  4:03, 33 users,  load average: 0.08, 0.05,
- 0.00
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20201208124641.1787-1-thunder.leizhen@huawei.com>
+ <20201208124641.1787-3-thunder.leizhen@huawei.com> <CAK8P3a3xie1-rLzKY+Y3Z2VKEJkDqAco6b75Af6FgyhsnzorsA@mail.gmail.com>
+ <6010B6DE.4060202@hisilicon.com>
+In-Reply-To: <6010B6DE.4060202@hisilicon.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Thu, 28 Jan 2021 15:08:01 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a31po51NtRhuMsruy2nbqhjguyGP8ZcXwPAwwEiGtLBkg@mail.gmail.com>
+Message-ID: <CAK8P3a31po51NtRhuMsruy2nbqhjguyGP8ZcXwPAwwEiGtLBkg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] arm64: dts: correct vendor prefix hisi to hisilicon
+To:     Wei Xu <xuwei5@hisilicon.com>
+Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Zhangfei Gao <zhangfei.gao@linaro.org>,
+        Chen Feng <puck.chen@hisilicon.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 09:24:08AM +0100, Linus Walleij wrote:
-> Hi Oleksij,
-> 
-> thanks for your patch!
-> 
-> On Tue, Jan 26, 2021 at 2:15 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> 
-> > +       priv->irq = platform_get_irq(pdev,  0);
-> > +       if (priv->irq < 0) {
-> > +               dev_err(dev, "failed to map GPIO to IRQ: %d\n", priv->irq);
-> > +               return priv->irq;
-> > +       }
-> > +
-> > +       priv->gpio = devm_gpiod_get_optional(dev, NULL, GPIOD_IN);
-> > +       if (IS_ERR(priv->gpio))
-> > +               return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get gpio\n");
-> 
-> I would attempt to get the IRQ from the GPIO if not defined explicitly
-> in the device tree.
-> 
-> priv->gpio = devm_gpiod_get_optional(...)
-> if (priv->gpio) {
->     /* Attempt to look up IRQ */
->     irq = gpiod_to_irq(priv->irq);
-> }
-> priv->irq = platfform_get_irq(...)
-> if (priv->irq < 0 && irq > 0) {
->     /* Use the GPIO-related IRQ */
->     priv->irq = irq;
-> } else if (priv->irq < 0) {
->    /* Error */
-> }
-> 
-> This way the example in the device tree binding which only defines
-> a GPIO and no interrupt will work if the GPIO chip provides an
-> IRQ mapping.
-> 
+On Wed, Jan 27, 2021 at 1:42 AM Wei Xu <xuwei5@hisilicon.com> wrote:
+> On 2021/1/27 6:23, Arnd Bergmann wrote:
+> > On Tue, Dec 8, 2020 at 1:46 PM Zhen Lei <thunder.leizhen@huawei.com> wrote:
+> >>
+> >> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
+> >> stated in "vendor-prefixes.yaml".
+> >>
+> >> Fixes: 35ca8168133c ("arm64: dts: Add dts files for Hisilicon Hi3660 SoC")
+> >> Fixes: dd8c7b78c11b ("arm64: dts: Add devicetree for Hisilicon Hi3670 SoC")
+> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> >> Cc: Chen Feng <puck.chen@hisilicon.com>
+> >> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >
+> > I see this change in the pull request I got, but I'm a bit worried about the
+> > incompatible binding change. Wouldn't the correct path forward be to
+> > list both the correct and the incorrect properties, both in the dts file
+> > and in the driver that interprets the properties?
+>
+> Thanks for the comment!
+> The reset driver will look for "hisilicon" firstly and fall back to "hisi".
+> And the DTS is shipped with the driver together.
+> So I think there is no compatible issue here.
+> Please let me know if missed anything. Thanks!
 
-Ok, thx!
-I'll send updated version after dt-binding discussion
+There are three things that can go wrong here, and this is only addressing
+one of them:
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+1. Updating the kernel on a machine with a dtb provided by the firmware
+  is a problem if the new driver can not handle the old properties. This
+  is correctly handled by the driver's fallback as soon as both trees
+  are merged.
+
+2. Updating the dtb while running an older kernel is now broken since
+  the driver can no longer read the property. This is less critical, but
+  it does seem easy enough to work around here by leaving both
+  properties in place.
+
+3. Bisecting through the git history across an incompatible change
+  means you can run into broken commits. We try hard to avoid that
+  if we are aware of a problem in advance. In this case it could be
+  avoided by only merging the incompatible DT change in a following
+  merge window after the driver change, or (better) by making it
+  a backward-compatible change the same way as addressing 2.
+
+         Arnd
