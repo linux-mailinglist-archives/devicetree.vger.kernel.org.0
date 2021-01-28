@@ -2,107 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 336483068C8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 01:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94EC2306A62
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 02:31:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231274AbhA1Aoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 19:44:44 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:59264 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231401AbhA1Aod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 19:44:33 -0500
-X-UUID: 2d3e5f84166047e1b8b9b7547dc167c8-20210128
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=Moaf8HVdiYJmhrqmKzTtI0+ZWpCyJb1HWG+7EkTaLdo=;
-        b=HXsg1wxo8L7aaUznhnxvxnOB+9X7Uql7uKcD1DvlllDWtVXvrBd9akVsOAf99b6w/zxAofDCQGf+5w/07H67Tmb/QAgIkx/eJWPUNM+mhB+5x90Jp04X3v1NT/uDBf6aZubV8SpBeYIOcH9VNRRVZkmYYepCNYoHSudS9xnvwKE=;
-X-UUID: 2d3e5f84166047e1b8b9b7547dc167c8-20210128
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 996953265; Thu, 28 Jan 2021 08:43:42 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs05n1.mediatek.inc
- (172.21.101.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 28 Jan
- 2021 08:43:41 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Jan 2021 08:43:39 +0800
-Message-ID: <1611794619.1947.0.camel@mhfsdcap03>
-Subject: Re: [PATCH v3, 07/15] drm/mediatek: enable OVL_LAYER_SMI_ID_EN for
- multi-layer usecase
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 28 Jan 2021 08:43:39 +0800
-In-Reply-To: <CAAOTY_9_LN8nYSmg42gpR5dLqTe+ABt61WzM8S5cp2D6-rWKyw@mail.gmail.com>
-References: <1610351031-21133-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1610351031-21133-8-git-send-email-yongqiang.niu@mediatek.com>
-         <CAAOTY_9_LN8nYSmg42gpR5dLqTe+ABt61WzM8S5cp2D6-rWKyw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S231283AbhA1BbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 20:31:18 -0500
+Received: from szxga05-in.huawei.com ([45.249.212.191]:11520 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229757AbhA1BbO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 20:31:14 -0500
+Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.58])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4DR2tz28RSzjFLZ;
+        Thu, 28 Jan 2021 09:29:15 +0800 (CST)
+Received: from [127.0.0.1] (10.174.176.220) by DGGEMS412-HUB.china.huawei.com
+ (10.3.19.212) with Microsoft SMTP Server id 14.3.498.0; Thu, 28 Jan 2021
+ 09:30:18 +0800
+Subject: Re: [PATCH v5 0/4] ARM: Add support for Hisilicon Kunpeng L3 cache
+ controller
+To:     Russell King <rmk+kernel@arm.linux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will.deacon@arm.com>,
+        "Haojian Zhuang" <haojian.zhuang@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210116032740.873-1-thunder.leizhen@huawei.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <036c026a-f6ec-e029-95b4-e715c93f2c21@huawei.com>
+Date:   Thu, 28 Jan 2021 09:30:17 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20210116032740.873-1-thunder.leizhen@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.176.220]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTAxLTEyIGF0IDA3OjU5ICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
-PiBIaSwgWW9uZ3FpYW5nOg0KPiANCj4gWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRp
-YXRlay5jb20+IOaWvCAyMDIx5bm0MeaciDEx5pelIOmAseS4gCDkuIvljYgzOjQ05a+r6YGT77ya
-DQo+ID4NCj4gPiBlbmFibGUgT1ZMX0xBWUVSX1NNSV9JRF9FTiBmb3IgbXVsdGktbGF5ZXIgdXNl
-Y2FzZQ0KPiANCj4gQ291bGQgeW91IGRlc2NyaWJlIG1vcmUgaW5mb3JtYXRpb24/IFdpdGhvdXQg
-dGhpcyBwYXRjaCwgd2hhdCB3b3VsZCBoYXBwZW4/DQo+IA0KDQp3aXRob3V0IHRoaXMgcGF0Y2gs
-IG92bCB3aWxsIGhhbmcgdXAgd2hlbiBtb3JlIHRoYW4gMSBsYXllciBlbmFibGVkDQoNCj4gPg0K
-PiA+IFNpZ25lZC1vZmYtYnk6IFlvbmdxaWFuZyBOaXUgPHlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsu
-Y29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3Bfb3Zs
-LmMgfCAxMiArKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMo
-KykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rp
-c3Bfb3ZsLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3Bfb3ZsLmMNCj4gPiBp
-bmRleCBiNDdjMjM4Li40OTM0YmVlIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9t
-ZWRpYXRlay9tdGtfZGlzcF9vdmwuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRl
-ay9tdGtfZGlzcF9vdmwuYw0KPiA+IEBAIC0yMyw2ICsyMyw3IEBADQo+ID4gICNkZWZpbmUgRElT
-UF9SRUdfT1ZMX1JTVCAgICAgICAgICAgICAgICAgICAgICAgMHgwMDE0DQo+ID4gICNkZWZpbmUg
-RElTUF9SRUdfT1ZMX1JPSV9TSVpFICAgICAgICAgICAgICAgICAgMHgwMDIwDQo+ID4gICNkZWZp
-bmUgRElTUF9SRUdfT1ZMX0RBVEFQQVRIX0NPTiAgICAgICAgICAgICAgMHgwMDI0DQo+ID4gKyNk
-ZWZpbmUgT1ZMX0xBWUVSX1NNSV9JRF9FTiAgICAgICAgICAgICAgICAgICAgICAgICAgICBCSVQo
-MCkNCj4gPiAgI2RlZmluZSBPVkxfQkdDTFJfU0VMX0lOICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIEJJVCgyKQ0KPiA+ICAjZGVmaW5lIERJU1BfUkVHX09WTF9ST0lfQkdDTFIgICAgICAg
-ICAgICAgICAgIDB4MDAyOA0KPiA+ICAjZGVmaW5lIERJU1BfUkVHX09WTF9TUkNfQ09OICAgICAg
-ICAgICAgICAgICAgIDB4MDAyYw0KPiA+IEBAIC02MSw2ICs2Miw3IEBAIHN0cnVjdCBtdGtfZGlz
-cF9vdmxfZGF0YSB7DQo+ID4gICAgICAgICB1bnNpZ25lZCBpbnQgZ21jX2JpdHM7DQo+ID4gICAg
-ICAgICB1bnNpZ25lZCBpbnQgbGF5ZXJfbnI7DQo+ID4gICAgICAgICBib29sIGZtdF9yZ2I1NjVf
-aXNfMDsNCj4gPiArICAgICAgIGJvb2wgc21pX2lkX2VuOw0KPiA+ICB9Ow0KPiA+DQo+ID4gIC8q
-Kg0KPiA+IEBAIC0xMTYsNyArMTE4LDE3IEBAIHN0YXRpYyB2b2lkIG10a19vdmxfZGlzYWJsZV92
-Ymxhbmsoc3RydWN0IG10a19kZHBfY29tcCAqY29tcCkNCj4gPg0KPiA+ICBzdGF0aWMgdm9pZCBt
-dGtfb3ZsX3N0YXJ0KHN0cnVjdCBtdGtfZGRwX2NvbXAgKmNvbXApDQo+ID4gIHsNCj4gPiArICAg
-ICAgIHN0cnVjdCBtdGtfZGlzcF9vdmwgKm92bCA9IGNvbXBfdG9fb3ZsKGNvbXApOw0KPiA+ICsN
-Cj4gPiAgICAgICAgIHdyaXRlbF9yZWxheGVkKDB4MSwgY29tcC0+cmVncyArIERJU1BfUkVHX09W
-TF9FTik7DQo+ID4gKw0KPiA+ICsgICAgICAgaWYob3ZsLT5kYXRhLT5zbWlfaWRfZW4pIHsNCj4g
-PiArICAgICAgICAgICAgICAgdW5zaWduZWQgaW50IHJlZzsNCj4gPiArDQo+ID4gKyAgICAgICAg
-ICAgICAgIHJlZyA9IHJlYWRsKGNvbXAtPnJlZ3MgKyBESVNQX1JFR19PVkxfREFUQVBBVEhfQ09O
-KTsNCj4gPiArICAgICAgICAgICAgICAgcmVnID0gcmVnIHwgT1ZMX0xBWUVSX1NNSV9JRF9FTjsN
-Cj4gPiArICAgICAgICAgICAgICAgd3JpdGVsX3JlbGF4ZWQocmVnLCBjb21wLT5yZWdzICsgRElT
-UF9SRUdfT1ZMX0RBVEFQQVRIX0NPTik7DQo+IA0KPiBJIHRoaW5rIHRoaXMgc2V0dGluZyBzaG91
-bGQgYmVmb3JlIHdyaXRlIDEgdG8gRElTUF9SRUdfT1ZMX0VOLg0KPiANCj4gPiArICAgICAgIH0N
-Cj4gPiAgfQ0KPiA+DQo+ID4gIHN0YXRpYyB2b2lkIG10a19vdmxfc3RvcChzdHJ1Y3QgbXRrX2Rk
-cF9jb21wICpjb21wKQ0KPiANCj4gU2hvdWxkIGNsZWFyIERJU1BfUkVHX09WTF9EQVRBUEFUSF9D
-T04gd2hlbiBzdG9wPw0KPiANCj4gUmVnYXJkcywNCj4gQ2h1bi1LdWFuZy4NCj4gDQo+ID4gLS0N
-Cj4gPiAxLjguMS4xLmRpcnR5DQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18NCj4gPiBMaW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gPiBMaW51
-eC1tZWRpYXRla0BsaXN0cy5pbmZyYWRlYWQub3JnDQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1tZWRpYXRlaw0KDQo=
+Hi Russell and Arnd:
+  Do you have time to review it?
+
+
+On 2021/1/16 11:27, Zhen Lei wrote:
+> v4 --> v5:
+> 1. Add SoC macro ARCH_KUNPENG50X, and the Kunpeng L3 cache controller only enabled
+>    on that platform.
+> 2. Require the compatible string of the Kunpeng L3 cache controller must have a
+>    relevant name on a specific SoC. For example:
+>    compatible = "hisilicon,kunpeng509-l3cache", "hisilicon,kunpeng-l3cache";
+> 
+> v3 --> v4:
+> Rename the compatible string from "hisilicon,l3cache" to "hisilicon,kunpeng-l3cache".
+> Then adjust the file name, configuration option name, and description accordingly.
+> 
+> v2 --> v3:
+> Add Hisilicon L3 cache controller driver and its document. That's: patch 2-3.
+> 
+> v1 --> v2:
+> Discard the middle-tier functions and do silent narrowing cast in the outcache
+> hook functions. For example:
+> -static void l2c220_inv_range(unsigned long start, unsigned long end)
+> +static void l2c220_inv_range(phys_addr_t pa_start, phys_addr_t pa_end)
+>  {
+> +	unsigned long start = pa_start;
+> +	unsigned long end = pa_end;
+> 
+> 
+> v1:
+> Do cast phys_addr_t to unsigned long by adding a middle-tier function.
+> For example:
+> -static void l2c220_inv_range(unsigned long start, unsigned long end)
+> +static void __l2c220_inv_range(unsigned long start, unsigned long end)
+>  {
+>  	...
+>  }
+> +static void l2c220_inv_range(phys_addr_t start, phys_addr_t end)
+> +{
+> +  __l2c220_inv_range(start, end);
+> +}
+> 
+> 
+> Zhen Lei (4):
+>   ARM: LPAE: Use phys_addr_t instead of unsigned long in outercache
+>     hooks
+>   ARM: hisi: add support for Kunpeng50x SoC
+>   dt-bindings: arm: hisilicon: Add binding for Kunpeng L3 cache
+>     controller
+>   ARM: Add support for Hisilicon Kunpeng L3 cache controller
+> 
+>  .../arm/hisilicon/kunpeng-l3cache.yaml        |  40 +++++
+>  arch/arm/include/asm/outercache.h             |   6 +-
+>  arch/arm/mach-hisi/Kconfig                    |   8 +
+>  arch/arm/mm/Kconfig                           |  10 ++
+>  arch/arm/mm/Makefile                          |   1 +
+>  arch/arm/mm/cache-feroceon-l2.c               |  15 +-
+>  arch/arm/mm/cache-kunpeng-l3.c                | 153 ++++++++++++++++++
+>  arch/arm/mm/cache-kunpeng-l3.h                |  30 ++++
+>  arch/arm/mm/cache-l2x0.c                      |  50 ++++--
+>  arch/arm/mm/cache-tauros2.c                   |  15 +-
+>  arch/arm/mm/cache-uniphier.c                  |   6 +-
+>  arch/arm/mm/cache-xsc3l2.c                    |  12 +-
+>  12 files changed, 317 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/kunpeng-l3cache.yaml
+>  create mode 100644 arch/arm/mm/cache-kunpeng-l3.c
+>  create mode 100644 arch/arm/mm/cache-kunpeng-l3.h
+> 
 
