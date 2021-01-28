@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 915D9307D16
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 18:56:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9672D307D18
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 18:56:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbhA1Rxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 12:53:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58612 "EHLO
+        id S231262AbhA1Rxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 12:53:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231189AbhA1Rxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 12:53:43 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70442C061351
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 09:52:38 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id v15so4412723ljk.13
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 09:52:38 -0800 (PST)
+        with ESMTP id S231194AbhA1Rxt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 12:53:49 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71125C061353
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 09:52:40 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id b2so8792739lfq.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 09:52:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=+h4iY3X8KWYJxdBXqwutJPnHSSsLNjVIGMbK8ENRaO4=;
-        b=Xth5HkEyru+I/oRftl/ZDJ9BqQGqc9PFbpXVMzQIqiTTVRZ+jKPaJfu0eeutGCPqFq
-         Ux551LITZ4RfdT8b7yhUdO//5/rBe2o/7XpMvPbBCon1yCMjsEK8pgn0yrWo+Fv1CIJ0
-         9O1rjM4pky3dsuyVhSzEXGJIuPFNRDJMnSVV2Zh6XFXfaGNbgmkCAe6W/mQElPh/SMzd
-         f52zcd2PK0kuChVNe4fmk/K/xGJmGWrX5479qcGUZ3ZDBAXWZ6dl16+Dc/L/ePNygrLC
-         +bt67kayzncAC9A3x2kRVfNKB+uOVSetpWWq5VptLZ3NBuG10+jNYmnnJ0Dh4aCn6esd
-         FM6Q==
+        bh=YhHWk0hpFtEKwreT9I82hjXdPuDIowSRXuqfI7wusBw=;
+        b=R9YeBg0DyiIE6kJi5OD9vsC7mHNBKj6kk1eTAc5k+ISlrHTzWAW7L+3rGlBeSJ0wX+
+         aLIU2JTcNa7f/gU1Z94ZetMvrp1C5f+WiaP7yjejfeMwdg86tjMc8go0VwR7UnIl7mvl
+         hCK860uG9MqhEI/MOj1Hy58cWxTE2DelBPtkH0QEHV2qfuLrAIQi/Q+B7cHXc0ctqYuK
+         yzruaO5j7WuAIqxJo8kfGNupvaV6G7N4sebSgIbH5Tdb1E8xWsCVcDvdimdzqx84hNwv
+         +F/6oW36Y6CJ+rjkZkCICnJwRvn+ATN+WgjQN3cZ6DD/dGNhsTT/zelpkldhbNGw2zUP
+         PU6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=+h4iY3X8KWYJxdBXqwutJPnHSSsLNjVIGMbK8ENRaO4=;
-        b=EnU3SnXx3GYCqdCENM4h8ukqpdmL8WzBYsfW8/Jw071Dz79VlpMghIDGRVsPvz/0AI
-         u4n52ZcyPHwpz3/YH9hPqICYafjFeK4jsYz0OYNyqB1J6KCwLI6435nwF8+FJFG1iP8v
-         wK09R9B/hZIrSpTMe867Vc4hfEEJFBBhACaz7Hhe3KcKSE3uLnQY3JE1wnF8qr1kgNoU
-         EBhzEVguqH0QwYMVlbbaXVYt0lcFEyiR276Y/HtZy/SrC1O1Z+0Y+Lv1bKFobOoBgQnO
-         wDrHTTcyYodns3BHyHwKLAnA4vK4g7uWZ0hSFKUHEJUN4QrLASrhD3sAykQ1qM/adfjq
-         GkUQ==
-X-Gm-Message-State: AOAM531htchDqjzvk+yl/DGwGAEZttZTXZkQcsb6gh1Kn18jcilKyWgS
-        z4H6ZYY3zAKAF+nFih1viPFFqA==
-X-Google-Smtp-Source: ABdhPJwaaiMy0PndRhrLl8JkAsSnUorqd4IdFfg4mBRAi9QArmC3uK+gQIstRLDRTFKyKTlp7frTkQ==
-X-Received: by 2002:a2e:9ed1:: with SMTP id h17mr240397ljk.160.1611856356937;
-        Thu, 28 Jan 2021 09:52:36 -0800 (PST)
+        bh=YhHWk0hpFtEKwreT9I82hjXdPuDIowSRXuqfI7wusBw=;
+        b=ss3PiseSVj1p8DJET4vK4X2nc81pHAaDeyfTetunSN56gHyYRaemUhbqteSt+xL2b6
+         05FSlZb3/wlo+zafuewgTdPi0znZefDAyjh7HJtdPhKHFZfzjTowLX2aphsn7UgGbYqT
+         sancnVeJqEujuw2OJi5MXnSIv3a9JvihXYYuoy3fSZn+IsJd9m1fpVU3GQT9yhUA8iz/
+         Pi0BJBBPQ9mNYLpHVesqWiaah6id58sQENlFKElLlxqmIWKGj1Rv7QIUN/OUNHSMzbAM
+         vcuBW60n5j01adcZi+mrX4et6UucKNngHhRyPVSegscD+7iYX1wExmq2GwrKFirRN+81
+         HWfg==
+X-Gm-Message-State: AOAM533n2Z4L9lAyAZH/lP5xwtNDyl7813Xw6Y6fPmrNL4WCMzj8v+AA
+        zE8XtNKhQV938SVodhhEDO6T5Q==
+X-Google-Smtp-Source: ABdhPJxXq6Enj6CntWrJrW6xnC0/gzPkKOVwIt8Y/oZlEjb+wXCD0OMGAazEx9jh8prgW3NhgdSEuA==
+X-Received: by 2002:ac2:44db:: with SMTP id d27mr118897lfm.248.1611856358975;
+        Thu, 28 Jan 2021 09:52:38 -0800 (PST)
 Received: from eriador.lan ([94.25.229.83])
-        by smtp.gmail.com with ESMTPSA id w10sm2216119ljj.37.2021.01.28.09.52.34
+        by smtp.gmail.com with ESMTPSA id w10sm2216119ljj.37.2021.01.28.09.52.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jan 2021 09:52:36 -0800 (PST)
+        Thu, 28 Jan 2021 09:52:38 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -60,9 +60,9 @@ Cc:     linux-arm-msm@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-pci@vger.kernel.org
-Subject: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip on RB5 platform
-Date:   Thu, 28 Jan 2021 20:52:23 +0300
-Message-Id: <20210128175225.3102958-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 4/5] arm64: dtb: qcom: qrb5165-rb5: add bridge@0,0 to power up qca6391 chip
+Date:   Thu, 28 Jan 2021 20:52:24 +0300
+Message-Id: <20210128175225.3102958-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210128175225.3102958-1-dmitry.baryshkov@linaro.org>
 References: <20210128175225.3102958-1-dmitry.baryshkov@linaro.org>
@@ -72,56 +72,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some Qualcomm platforms require to power up an external device before
-probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
-to be powered up before PCIe0 bus is probed. Add a quirk to the
-respective PCIe root bridge to attach to the power domain if one is
-required, so that the QCA chip is started before scanning the PCIe bus.
+If QCA6391 chip (connected to PCIe0) is not powered at the PCIe probe
+time, PCIe0 bus probe will timeout and the device will not be detected.
+So use qca6391 as pcie0's bridge power-domain.  This allows us to make
+sure that QCA6391 chip is powered on before PCIe0 probe happens.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/pci/controller/dwc/pcie-qcom.c | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index ab21aa01c95d..eb73c8540d4d 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -20,6 +20,7 @@
- #include <linux/of_device.h>
- #include <linux/of_gpio.h>
- #include <linux/pci.h>
-+#include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
- #include <linux/platform_device.h>
- #include <linux/phy/phy.h>
-@@ -1568,6 +1569,26 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x0302, qcom_fixup_class);
- DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x1000, qcom_fixup_class);
- DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x1001, qcom_fixup_class);
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index 2b0c1cc9333b..b39a9729395f 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -581,6 +581,18 @@ &pcie0 {
+ 	wake-gpio = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pcie0_default_state>;
++
++	bridge@0,0 {
++		compatible = "pci17cb,010b";
++                reg = <0 0 0 0 0>;
++
++                #address-cells = <3>;
++                #size-cells = <2>;
++                #interrupt-cells = <1>;
++
++		/* Power on QCA639x chip sitting behind this bridge. */
++		power-domains = <&qca6391>;
++	};
+ };
  
-+static void qcom_fixup_power(struct pci_dev *dev)
-+{
-+	int ret;
-+	struct pcie_port *pp = dev->bus->sysdata;
-+	struct dw_pcie *pci;
-+
-+	if (!pci_is_root_bus(dev->bus))
-+		return;
-+
-+	ret = dev_pm_domain_attach(&dev->dev, true);
-+	if (ret < 0 || !dev->dev.pm_domain)
-+		return;
-+
-+	pci = to_dw_pcie_from_pp(pp);
-+	dev_info(&dev->dev, "Bus powered up, waiting for link to come up\n");
-+
-+	dw_pcie_wait_for_link(pci);
-+}
-+DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x010b, qcom_fixup_power);
-+
- static struct platform_driver qcom_pcie_driver = {
- 	.probe = qcom_pcie_probe,
- 	.driver = {
+ &pcie0_phy {
 -- 
 2.29.2
 
