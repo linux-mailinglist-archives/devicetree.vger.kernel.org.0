@@ -2,92 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32FCF306FF4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:47:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB175307036
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:54:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231470AbhA1HoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 02:44:17 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35342 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232034AbhA1HmK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Jan 2021 02:42:10 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D815064DD1;
-        Thu, 28 Jan 2021 07:41:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1611819689;
-        bh=UIZAl1ypNxIx0VC4863WBaN/fRN2pw975WDiM1ldZGk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bXuKnZrNYpxXInKGae/o3bmzevQexIN83M+3UnxY8xgDrBJRnYGrfEMs2pKdOLMke
-         1A/LQeDq0t99Hwa1TuLGNrAPTD355YKPfzazqeg85TyoVXyVxu++UCgN2Uco9EBDR+
-         STnAyFRkCoI9UMSiMGJfm6xrrYEC1pqVuooxeT8k=
-Date:   Thu, 28 Jan 2021 08:41:25 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Mathias Nyman <mathias.nyman@linux.intel.com>
-Cc:     Howard Yen <howardyen@google.com>,
-        Mathias Nyman <mathias.nyman@intel.com>, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] add xhci hooks for USB offload
-Message-ID: <YBJqpbspmXZknX4n@kroah.com>
-References: <20210119101044.1637023-1-howardyen@google.com>
- <af91bbf1-6731-3e87-4086-de0dbba22c22@intel.com>
- <CAJDAHvbTY3Z_bRg+++uLefWSvCWo_nGq+3OOQX3QHJ2w3X1SQw@mail.gmail.com>
- <ca442ca7-a434-2527-9945-861dafa685cc@linux.intel.com>
- <YBAk795ccXBPgJWp@kroah.com>
- <CAJDAHvZ2CCm9tT+C=hNc_U1CaYJg3ZjifsYLik3UqfXwUm++Lg@mail.gmail.com>
- <f77d1149-7bd1-3914-8841-439cb67397fd@linux.intel.com>
+        id S232018AbhA1HrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 02:47:02 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:43553 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231953AbhA1Ho5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 02:44:57 -0500
+X-UUID: f6042306bb49404a8f74f8844c73edd6-20210128
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=5vHOnzu1Slh2QZItzOh3bY2TFXG15jjC2a9A0egvloA=;
+        b=KNoxHWZV+416mP3el6eosNWasj2VwUlFuxfHhHQXv+TQXaeS89oxzN8D5lxmGIBzsAHy8Lu1zWn1gofzW3zFpY+20MqMwbBK61OLHq7HAYCwsnTbnybQ9EAtl4JQ4rPaq4K52U2+54ZnEmO8w9PbF+egE3VYJlfSh1d/w5iNzq4=;
+X-UUID: f6042306bb49404a8f74f8844c73edd6-20210128
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 732297563; Thu, 28 Jan 2021 15:42:52 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 28 Jan 2021 15:42:46 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Jan 2021 15:42:46 +0800
+Message-ID: <1611819766.16091.4.camel@mtksdaap41>
+Subject: Re: [PATCH v11 7/9] drm/mediatek: enable dither function
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Date:   Thu, 28 Jan 2021 15:42:46 +0800
+In-Reply-To: <20210128072802.830971-8-hsinyi@chromium.org>
+References: <20210128072802.830971-1-hsinyi@chromium.org>
+         <20210128072802.830971-8-hsinyi@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f77d1149-7bd1-3914-8841-439cb67397fd@linux.intel.com>
+X-TM-SNTS-SMTP: 8A70314F22D8F0A6B6BFCADD8C97819AA697AC672BFA54AF2FF1F0D0FF62D6932000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 08:31:14AM +0200, Mathias Nyman wrote:
-> On 28.1.2021 5.38, Howard Yen wrote:
-> > On Tue, Jan 26, 2021 at 10:19 PM Greg KH <gregkh@linuxfoundation.org> wrote:
-> >>
-> >> On Fri, Jan 22, 2021 at 05:32:58PM +0200, Mathias Nyman wrote:
-> >>>
-> >>> Ok, before adding hooks like this I think we need to see how they are used.
-> >>> Do you have the rest of the patches that go on top of this series?
-> >>>
-> >>> Maybe it could make sense to use overrides for the functions in struct hc_driver
-> >>> instead in some cases? There is support for that already.
-> >>
-> >> What overrides could be done for these changes?  At first glance that
-> >> would seem to require a lot of duplicated code in whatever override
-> >> happens to be needed.
-> >>
-> >> thanks,
-> >>
-> >> greg k-h
-> > 
-> > This patch series is all the changes for the offload hooks currently.
-> > 
-> > I thought about this, but if I tried to override the functions in
-> > struct hc_driver, that'll need to
-> > copy many code to the override function, and it won't follow the
-> > latest change in the core
-> > xhci driver.
-> > 
-> > 
-> > - Howard
-> 
-> Ok, I see. 
-> 
-> The point I'm trying to make is that there is no way for me to know if
-> these hooks are the right solution before I see any code using them.
-> 
-> Is the offloading code ready and public somewhere?
+SGksIEhzaW4tWWk6DQoNCk9uIFRodSwgMjAyMS0wMS0yOCBhdCAxNToyOCArMDgwMCwgSHNpbi1Z
+aSBXYW5nIHdyb3RlOg0KPiBGcm9tOiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlh
+dGVrLmNvbT4NCj4gDQo+IGZvciA1IG9yIDYgYnBjIHBhbmVsLCB3ZSBuZWVkIGVuYWJsZSBkaXRo
+ZXIgZnVuY3Rpb24NCj4gdG8gaW1wcm92ZSB0aGUgZGlzcGxheSBxdWFsaXR5DQo+IA0KPiBTaWdu
+ZWQtb2ZmLWJ5OiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVrLmNvbT4NCj4g
+U2lnbmVkLW9mZi1ieTogSHNpbi1ZaSBXYW5nIDxoc2lueWlAY2hyb21pdW0ub3JnPg0KPiAtLS0N
+Cj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMgfCA0NCArKysr
+KysrKysrKysrKysrKysrKy0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA0MyBpbnNlcnRpb25zKCspLCAx
+IGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVr
+L210a19kcm1fZGRwX2NvbXAuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2Rk
+cF9jb21wLmMNCj4gaW5kZXggODE3M2Y3MDkyNzJiZS4uZTg1NjI1NzA0ZDYxMSAxMDA2NDQNCj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZGRwX2NvbXAuYw0KPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jDQo+IEBAIC01Myw3
+ICs1Myw5IEBADQo+ICAjZGVmaW5lIERJVEhFUl9FTgkJCQlCSVQoMCkNCj4gICNkZWZpbmUgRElT
+UF9ESVRIRVJfQ0ZHCQkJCTB4MDAyMA0KPiAgI2RlZmluZSBESVRIRVJfUkVMQVlfTU9ERQkJCUJJ
+VCgwKQ0KPiArI2RlZmluZSBESVRIRVJfRU5HSU5FX0VOCQkJQklUKDEpDQo+ICAjZGVmaW5lIERJ
+U1BfRElUSEVSX1NJWkUJCQkweDAwMzANCj4gKyNkZWZpbmUgRElUSEVSX1JFRyhpZHgpCQkJCSgw
+eDEwMCArIChpZHgpICogNCkNCj4gIA0KPiAgI2RlZmluZSBMVVRfMTBCSVRfTUFTSwkJCQkweDAz
+ZmYNCj4gIA0KPiBAQCAtMzEzLDggKzMxNSw0OCBAQCBzdGF0aWMgdm9pZCBtdGtfZGl0aGVyX2Nv
+bmZpZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCB3LA0KPiAgew0KPiAgCXN0cnVj
+dCBtdGtfZGRwX2NvbXBfZGV2ICpwcml2ID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ICANCj4g
+Kwlib29sIGVuYWJsZSA9IGZhbHNlOw0KPiArDQo+ICsJLyogZGVmYXVsdCB2YWx1ZSBmb3IgZGl0
+aGVyIHJlZyA1IHRvIDE0ICovDQo+ICsJY29uc3QgdTMyIGRpdGhlcl9zZXR0aW5nW10gPSB7DQo+
+ICsJCTB4MDAwMDAwMDAsIC8qIDUgKi8NCj4gKwkJMHgwMDAwMzAwMiwgLyogNiAqLw0KPiArCQkw
+eDAwMDAwMDAwLCAvKiA3ICovDQo+ICsJCTB4MDAwMDAwMDAsIC8qIDggKi8NCj4gKwkJMHgwMDAw
+MDAwMCwgLyogOSAqLw0KPiArCQkweDAwMDAwMDAwLCAvKiAxMCAqLw0KPiArCQkweDAwMDAwMDAw
+LCAvKiAxMSAqLw0KPiArCQkweDAwMDAwMDExLCAvKiAxMiAqLw0KPiArCQkweDAwMDAwMDAwLCAv
+KiAxMyAqLw0KPiArCQkweDAwMDAwMDAwLCAvKiAxNCAqLw0KDQpDb3VsZCB5b3UgZXhwbGFpbiB3
+aGF0IGlzIHRoaXM/DQoNCj4gKwl9Ow0KPiArDQo+ICsJaWYgKGJwYyA9PSA1IHx8IGJwYyA9PSA2
+KSB7DQo+ICsJCWVuYWJsZSA9IHRydWU7DQo+ICsJCW10a19kZHBfd3JpdGUoY21kcV9wa3QsDQo+
+ICsJCQkgICAgICBESVRIRVJfTFNCX0VSUl9TSElGVF9SKE1US19NQVhfQlBDIC0gYnBjKSB8DQo+
+ICsJCQkgICAgICBESVRIRVJfQUREX0xTSElGVF9SKE1US19NQVhfQlBDIC0gYnBjKSB8DQo+ICsJ
+CQkgICAgICBESVRIRVJfTkVXX0JJVF9NT0RFLA0KPiArCQkJICAgICAgJnByaXYtPmNtZHFfcmVn
+LCBwcml2LT5yZWdzLCBESVRIRVJfUkVHKDE1KSk7DQo+ICsJCW10a19kZHBfd3JpdGUoY21kcV9w
+a3QsDQo+ICsJCQkgICAgICBESVRIRVJfTFNCX0VSUl9TSElGVF9CKE1US19NQVhfQlBDIC0gYnBj
+KSB8DQo+ICsJCQkgICAgICBESVRIRVJfQUREX0xTSElGVF9CKE1US19NQVhfQlBDIC0gYnBjKSB8
+DQo+ICsJCQkgICAgICBESVRIRVJfTFNCX0VSUl9TSElGVF9HKE1US19NQVhfQlBDIC0gYnBjKSB8
+DQo+ICsJCQkgICAgICBESVRIRVJfQUREX0xTSElGVF9HKE1US19NQVhfQlBDIC0gYnBjKSwNCg0K
+VGhpcyByZXN1bHQgaW4gMHg1MDUwNTA1MCwgYnV0IHByZXZpb3VzIHZlcnNpb24gaXMgMHg1MDUw
+NDA0MCwgc28gdGhpcw0KdmVyc2lvbiBpcyBjb3JyZWN0IGFuZCBwcmV2aW91cyB2ZXJzaW9uIGlz
+IGluY29ycmVjdD8NCg0KUmVnYXJkcywNCkNLDQoNCj4gKwkJCSAgICAgICZwcml2LT5jbWRxX3Jl
+ZywgcHJpdi0+cmVncywgRElUSEVSX1JFRygxNikpOw0KPiArCX0NCj4gKw0KPiArDQo+ICsJaWYg
+KGVuYWJsZSkgew0KPiArCQl1MzIgaWR4Ow0KPiArDQo+ICsJCWZvciAoaWR4ID0gMDsgaWR4IDwg
+QVJSQVlfU0laRShkaXRoZXJfc2V0dGluZyk7IGlkeCsrKQ0KPiArCQkJbXRrX2RkcF93cml0ZShj
+bWRxX3BrdCwgZGl0aGVyX3NldHRpbmdbaWR4XSwgJnByaXYtPmNtZHFfcmVnLCBwcml2LT5yZWdz
+LA0KPiArCQkJCSAgICAgIERJVEhFUl9SRUcoaWR4ICsgNSkpOw0KPiArCX0NCj4gKw0KPiAgCW10
+a19kZHBfd3JpdGUoY21kcV9wa3QsIGggPDwgMTYgfCB3LCAmcHJpdi0+Y21kcV9yZWcsIHByaXYt
+PnJlZ3MsIERJU1BfRElUSEVSX1NJWkUpOw0KPiAtCW10a19kZHBfd3JpdGUoY21kcV9wa3QsIERJ
+VEhFUl9SRUxBWV9NT0RFLCAmcHJpdi0+Y21kcV9yZWcsIHByaXYtPnJlZ3MsIERJU1BfRElUSEVS
+X0NGRyk7DQo+ICsgICAgICAgIG10a19kZHBfd3JpdGUoY21kcV9wa3QsIGVuYWJsZSA/IERJVEhF
+Ul9FTkdJTkVfRU4gOiBESVRIRVJfUkVMQVlfTU9ERSwgJnByaXYtPmNtZHFfcmVnLCBwcml2LT5y
+ZWdzLCBESVNQX0RJVEhFUl9DRkcpOw0KPiAgfQ0KPiAgDQo+ICBzdGF0aWMgdm9pZCBtdGtfZGl0
+aGVyX3N0YXJ0KHN0cnVjdCBkZXZpY2UgKmRldikNCg0K
 
-There is offload code published in the last few Samsung phone kernels, I
-want to get that ported to these hooks to see if that works properly.
-
-Give me a few days and I'll see if I can get it working, I had a
-half-finished port around here somewhere...
-
-thanks,
-
-greg k-h
