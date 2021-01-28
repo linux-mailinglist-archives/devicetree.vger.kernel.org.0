@@ -2,223 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4544306B2E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 03:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF2C7306B66
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 04:10:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbhA1CpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 21:45:06 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:59865 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229494AbhA1CpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 21:45:04 -0500
-X-UUID: 35c448ea7c614bcba3317a4cc8782bb6-20210128
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Hrx/nCYJR5WH3Pl6k+3Q+wORPFTkAO5RTq4P99NgrxA=;
-        b=lbvhmfrrFtQKFmlept3aAnauUE4S4gw7dCapQBDBkvUU6dl95Ki/2T2oUvCC+YA2q8TrTRkjSEV3qSHLO1EtK8jQq8qJ3w6kiYiTW1iBQlxv0DWYpZ/P5d5Iwv0hRD+Lh9JeJOWXuQeq3LZiHF/+2jgXoFeE4IBbdULCsAO2w/I=;
-X-UUID: 35c448ea7c614bcba3317a4cc8782bb6-20210128
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <nick.fan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1148803710; Thu, 28 Jan 2021 10:44:16 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 28 Jan 2021 10:44:15 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Jan 2021 10:44:15 +0800
-Message-ID: <1611801855.30880.2.camel@mtksdaap41>
-Subject: Re: [PATCH v4 1/2] dt-bindings: Add DT schema for Arm Mali Valhall
- GPU
-From:   Nick Fan <nick.fan@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Date:   Thu, 28 Jan 2021 10:44:15 +0800
-In-Reply-To: <20210114201441.GA3509434@robh.at.kernel.org>
-References: <20210112064933.12951-1-Nick.Fan@mediatek.com>
-         <20210114201441.GA3509434@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S229913AbhA1DJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 22:09:33 -0500
+Received: from mail-eopbgr770101.outbound.protection.outlook.com ([40.107.77.101]:57991
+        "EHLO NAM02-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231178AbhA1DJ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 22:09:28 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AMiTqY/u5Nn9/qXG1NLQX36ILgU3m5qWTXeKsomaee/PH6bHau5B9OpCKwIQNASnVI2tPjA5HBtdeOPqyLRJ+Iad+4536kkQyJGEyC6AwZdk564o6TB4sjv2gUw4mYj5Yj+seHIOwM7L8HG/i8mjurSITlWELUMknFtaETs70nQF3BNmx4YOZjuoXe4EvX9WOD674zLBKn+Q7eLomAOxxCqDaiPeqgIFDfDBoo5boxBaVvfq0FiXnxT6c9sva/lyFWUdVPEeW4jwnoBU1NQYXBzYheN98JdtpnHHPDLe0ByO9uAKo3xwpHA6lx6NNhBMZ2wNcdOq9Ra0ukfCGweQIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zMzjw8mGhLiz/yr/QZuSzHoccfMOaO9JAwQ4G+ezjxc=;
+ b=FzXZc/qjr7Gbj5CD8FnpCMD2rF7ngsaP89YP58jTvzDFnF7fuXHgML5o1yRXjYJHyiBJaR/S9mNAG3rS3rH6semNVVF3gnpP1N2fx5daSrpASohS5d0PmBuYOxXd0PWSYm/Wov/qjjrLECNfqIsodPBz4XnDgVAkypj9F/9uDGp9LMJdkqo8STFssLq3tWw/LpZ77WhqxrNiOGJ4V7bVy0AkX+YA8KaWpC0hiWocmjAYX2beZf5W6LJ4Hfc/wrgoI4HncLGt2Bcyhxz1tbp/Ej5HQhUMM5+sURbwqn+s0GKRiL1R0es8PylLAs4k1kcM3HSSF/h/ngLkIjTnQCwD4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zMzjw8mGhLiz/yr/QZuSzHoccfMOaO9JAwQ4G+ezjxc=;
+ b=0WzqwGCQ1wPqsH3/PuI03H72XqOhnbAdDAFyHGArPsW7cuem+haYIg0bWWd4LgmOVrEJm2/4xYr13DLd0mQMQD87SQMiLjc+kTyxYqEGz6QYmn2AoJffNUYjezRu8IwATj30Z4xHREJbObtuoeUzBAKkm4CxiUY/uH3Je632kZg=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by SJ0PR04MB7504.namprd04.prod.outlook.com (2603:10b6:a03:32e::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.19; Thu, 28 Jan
+ 2021 03:09:03 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::5813:96a7:b2d6:132]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::5813:96a7:b2d6:132%6]) with mapi id 15.20.3763.019; Thu, 28 Jan 2021
+ 03:09:03 +0000
+Date:   Thu, 28 Jan 2021 11:08:26 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/3] dt-bindings:drm/bridge:anx7625:add vendor define flags
+Message-ID: <246b8bd6e51ed5c8cb3618f4259adf8aba319511.1611802321.git.xji@analogixsemi.com>
+References: <cover.1611802321.git.xji@analogixsemi.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1611802321.git.xji@analogixsemi.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Originating-IP: [61.148.116.10]
+X-ClientProxiedBy: HK2PR04CA0052.apcprd04.prod.outlook.com
+ (2603:1096:202:14::20) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from zhaomy-pc (61.148.116.10) by HK2PR04CA0052.apcprd04.prod.outlook.com (2603:1096:202:14::20) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3805.16 via Frontend Transport; Thu, 28 Jan 2021 03:09:02 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e7c6806f-0ed5-4873-cf25-08d8c33a10c0
+X-MS-TrafficTypeDiagnostic: SJ0PR04MB7504:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SJ0PR04MB7504F5E802D7A7353154A1A2C7BA9@SJ0PR04MB7504.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: T/l4LIOybi802UkOAfDjmdHDQiivsLgE6lsPDu8rJapPHoaoMxHpQshu1cWjEDgmklxEN4jtcUdbJLjgPywr5TGsw2ZG5SRqaG+lekkjj3sCJSp3mf30PCCZTDhuomCLeoVMhmbXBh8hNjw0hJ97nw3MjD8NIJb4bBO6v94ceyDckrozHwUkiWecGLNxPKSdPtcRMYUjJ/OQ2H6roZYel0F+Yjdp/VBO+2cRs/sXqiI4jvK/sCbUdL6c1rZ0sUZXV7lFr5s09fLKgIMOEbcuvk11UKGYDzdxBXW390pOxTbHOdfMX+9RscA+eSmXsEZ8x3KDlnBBtHQxEipfvy3bM5t+cmlRqRyP8dUUVtIU1EGIiyzmqfSr3Sm/D3n9eXjEhXKngXPaRLAP+c/oJC1+XkPCdlLHQIqs+aC/BleS/uv7G5CjiR+94WOyOjs9IQw5
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(376002)(39840400004)(396003)(136003)(366004)(478600001)(7416002)(956004)(8936002)(6666004)(6486002)(5660300002)(186003)(36756003)(8676002)(6496006)(110136005)(316002)(52116002)(4326008)(83380400001)(66476007)(16526019)(86362001)(66946007)(26005)(2906002)(54906003)(66556008)(2616005)(16060500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?R/KqUZacRslJOwa9Z/qv1f+9ZPLDf1ZQslhHAmy3gIBmnp0E6cFb6l+MqLOe?=
+ =?us-ascii?Q?7OTk/ONSZ5QypX5OZWcc4NbxKty9wV9AaYmnWdrqoEMuNoApfrX2xP+Y/Wcn?=
+ =?us-ascii?Q?nIAqFQmoJbK8OzhyNXbGG+oPhjePB/vh2ZItH1Wd4yr/PueyU+xNPO3hbrW5?=
+ =?us-ascii?Q?hlV500eSC5Xik4vYlpMNwZmxVZAKiMDDdRrEV+Uy7Y7R+MDFUjcN6gj1d/vF?=
+ =?us-ascii?Q?DFaXVHQeyQYmBO5Fhx8R9pwB80hNes0Sdl7FSu4ZokeHLz+1AMbkUiQBA5Ad?=
+ =?us-ascii?Q?SYZcX8BM4hs4l0FCIchydKSddMlXRThK/nxRH5YWnZAElu1VftllBVhv9sDR?=
+ =?us-ascii?Q?j09+CMLFQ94cK11bTSt8Mvg3VeeV3mJN0ALoo1IrsWIeaw4IaNt58J5M+LMd?=
+ =?us-ascii?Q?iNUV35u0EbIAD+Ps+6fldulwig33QO2xVAeuGTMs6f/lUFYhgb8AGSlLRsS/?=
+ =?us-ascii?Q?VDbWhFXUELqV/IHo1ZjxNxwAgtNqy6iQnW08aQsrHZH7vVumUOomWIoiypiX?=
+ =?us-ascii?Q?q57IsfPnYWAi65WoCCOfNhxTK9cacu4z3dV4zrOLATXkoZDC8knG/kOgt80K?=
+ =?us-ascii?Q?mCo6S5TLW4ZiA4dFaHvDSOW7xEkSZzZJZt+jJJak4wCAbfejEwC4WiWXXIAP?=
+ =?us-ascii?Q?W7Uge5K1nwry5lm1x61a3vkyBf3mFTiqsm66x3YwO+EcXy2qltPjhuA7w5fj?=
+ =?us-ascii?Q?duchHCW1LvoQLFDZnE2i5tlcm1z0+PAUwGl1iJQwvHuK3TAlgL23C5wvbIC5?=
+ =?us-ascii?Q?xMu3eMMqzUvzLdlM2+RkS74WZay0+kUbEtH4H88+CEHF2sOcQmRTeabBWEEx?=
+ =?us-ascii?Q?riNcLv+KK/LcCYDTi2fKlpH1IVFdO/8hXkKwNboHeqtEnd7g6xBpGis34sAd?=
+ =?us-ascii?Q?nBy6LJFq7rG7KAwnYOBFr/VHfPjweijJIel3FbZQTESt5ED96oND5vcpwvGY?=
+ =?us-ascii?Q?Yy6k12vM0/diuDf9CepPi9u2DsaTB5sk3zbr+cGg9HrhZfwfZqgFP6mADvxx?=
+ =?us-ascii?Q?hAJSH3u0N0OJd8alNm30l5W7GJkDod6HbJLe7pyMdAoaDiK1Txz6uIcmi5Qh?=
+ =?us-ascii?Q?8MUgwWXm?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7c6806f-0ed5-4873-cf25-08d8c33a10c0
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2021 03:09:03.3309
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iaAf0rYM0fiWcjwkuP72l5SHvq/Oxln8I7z8IFF9epRgCnP0IcUL8d052p4qfu49aWLhekYRDo0+DTAy9uPyrA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB7504
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhhbmtzIGZvciB5b3VyIHJldmlldy4NClRoZXNlIGFyZSBmaXhlZCBpbiB2NSBhcyBmb2xsb3dp
-bmcgbGluay4NCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3BhdGNod29yay9wYXRjaC8xMzcyMjcx
-Lw0KDQpOaWNrIEZhbg0KDQpPbiBUaHUsIDIwMjEtMDEtMTQgYXQgMTQ6MTQgLTA2MDAsIFJvYiBI
-ZXJyaW5nIHdyb3RlOg0KPiBPbiBUdWUsIEphbiAxMiwgMjAyMSBhdCAwMjo0OTozMlBNICswODAw
-LCBOaWNrIEZhbiB3cm90ZToNCj4gPiBBZGQgZGV2aWNldHJlZSBzY2hlbWEgZm9yIEFybSBNYWxp
-IFZhbGhhbGwgR1BVDQo+ID4gDQo+ID4gRGVmaW5lIGEgY29tcGF0aWJsZSBzdHJpbmcgZm9yIHRo
-ZSBNYWxpIFZhbGhhbGwgR1BVDQo+ID4gZm9yIE1lZGlhdGVrJ3MgU29DIHBsYXRmb3JtLg0KPiA+
-IA0KPiA+IFNpZ25lZC1vZmYtYnk6IE5pY2sgRmFuIDxOaWNrLkZhbkBtZWRpYXRlay5jb20+DQo+
-ID4gLS0tDQo+ID4gIC4uLi9iaW5kaW5ncy9ncHUvYXJtLG1hbGktdmFsaGFsbC55YW1sICAgICAg
-ICB8IDI1MiArKysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDI1MiBpbnNl
-cnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvZ3B1L2FybSxtYWxpLXZhbGhhbGwueWFtbA0KPiA+IA0KPiA+IGRpZmYgLS1n
-aXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3B1L2FybSxtYWxpLXZhbGhh
-bGwueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncHUvYXJtLG1hbGkt
-dmFsaGFsbC55YW1sDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAw
-MDAwMDAuLmVjZjI0OWE1ODQzNQ0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3B1L2FybSxtYWxpLXZhbGhhbGwueWFtbA0KPiA+
-IEBAIC0wLDAgKzEsMjUyIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwt
-Mi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPiA+ICsjIENvcHlyaWdodCAoYykgMjAyMCBNZWRp
-YVRlayBJbmMuDQo+ID4gKyVZQU1MIDEuMg0KPiA+ICstLS0NCj4gPiArJGlkOiBodHRwOi8vZGV2
-aWNldHJlZS5vcmcvc2NoZW1hcy9ncHUvYXJtLG1hbGktdmFsaGFsbC55YW1sIw0KPiA+ICskc2No
-ZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gPiAr
-DQo+ID4gK3RpdGxlOiBBUk0gTWFsaSBWYWxoYWxsIEdQVQ0KPiA+ICsNCj4gPiArbWFpbnRhaW5l
-cnM6DQo+ID4gKyAgLSBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0KPiA+ICsNCj4gPiAr
-cHJvcGVydGllczoNCj4gPiArICAkbm9kZW5hbWU6DQo+ID4gKyAgICBwYXR0ZXJuOiAnXmdwdUBb
-YS1mMC05XSskJw0KPiA+ICsNCj4gPiArICBjb21wYXRpYmxlOg0KPiA+ICsgICAgaXRlbXM6DQo+
-ID4gKyAgICAgIC0gZW51bToNCj4gPiArICAgICAgICAgIC0gbWVkaWF0ZWssbXQ4MTkyLW1hbGkN
-Cj4gPiArICAgICAgLSBjb25zdDogYXJtLG1hbGktdmFsaGFsbA0KPiA+ICsNCj4gPiArICByZWc6
-DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gPiArICBpbnRlcnJ1cHRzOg0KPiA+ICsg
-ICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IEdQVSBpbnRlcnJ1cHQNCj4gPiAr
-ICAgICAgLSBkZXNjcmlwdGlvbjogTU1VIGludGVycnVwdA0KPiA+ICsgICAgICAtIGRlc2NyaXB0
-aW9uOiBKb2IgaW50ZXJydXB0DQo+ID4gKw0KPiA+ICsgIGludGVycnVwdC1uYW1lczoNCj4gPiAr
-ICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGNvbnN0OiBncHUNCj4gPiArICAgICAgLSBjb25zdDog
-bW11DQo+ID4gKyAgICAgIC0gY29uc3Q6IGpvYg0KPiA+ICsNCj4gPiArICBjbG9ja3M6DQo+ID4g
-KyAgICBtaW5JdGVtczogMQ0KPiA+ICsNCj4gPiArICBwb3dlci1kb21haW5zOg0KPiA+ICsgICAg
-bWluSXRlbXM6IDENCj4gPiArICAgIG1heEl0ZW1zOiA1DQo+ID4gKw0KPiA+ICsgIG1hbGktc3Vw
-cGx5OiB0cnVlDQo+ID4gKyAgc3JhbS1zdXBwbHk6IHRydWUNCj4gPiArDQo+ID4gKyAgb3BlcmF0
-aW5nLXBvaW50cy12MjogdHJ1ZQ0KPiA+ICsNCj4gPiArICAiI2Nvb2xpbmctY2VsbHMiOg0KPiA+
-ICsgICAgY29uc3Q6IDINCj4gPiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0aWJs
-ZQ0KPiA+ICsgIC0gcmVnDQo+ID4gKyAgLSBpbnRlcnJ1cHRzDQo+ID4gKyAgLSBpbnRlcnJ1cHQt
-bmFtZXMNCj4gPiArICAtIGNsb2Nrcw0KPiA+ICsNCj4gPiArYWRkaXRpb25hbFByb3BlcnRpZXM6
-IGZhbHNlDQo+ID4gKw0KPiA+ICthbGxPZjoNCj4gPiArICAtIGlmOg0KPiA+ICsgICAgICBwcm9w
-ZXJ0aWVzOg0KPiA+ICsgICAgICAgIGNvbXBhdGlibGU6DQo+ID4gKyAgICAgICAgICBjb250YWlu
-czoNCj4gPiArICAgICAgICAgICAgY29uc3Q6IG1lZGlhdGVrLG10ODE5Mi1tYWxpDQo+ID4gKyAg
-ICB0aGVuOg0KPiA+ICsgICAgICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgICAgIHNyYW0tc3VwcGx5
-OiB0cnVlDQo+ID4gKyAgICAgICAgcG93ZXItZG9tYWluczoNCj4gPiArICAgICAgICAgIGRlc2Ny
-aXB0aW9uOg0KPiA+ICsgICAgICAgICAgICBMaXN0IG9mIHBoYW5kbGUgYW5kIFBNIGRvbWFpbiBz
-cGVjaWZpZXIgYXMgZG9jdW1lbnRlZCBpbg0KPiA+ICsgICAgICAgICAgICBEb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvcG93ZXIvcG93ZXJfZG9tYWluLnR4dA0KPiA+ICsgICAgICAg
-ICAgbWluSXRlbXM6IDUNCj4gPiArICAgICAgICAgIG1heEl0ZW1zOiA1DQo+ID4gKyAgICAgICAg
-cG93ZXItZG9tYWluLW5hbWVzOg0KPiA+ICsgICAgICAgICAgaXRlbXM6DQo+ID4gKyAgICAgICAg
-ICAgIC0gY29uc3Q6IGNvcmUwDQo+ID4gKyAgICAgICAgICAgIC0gY29uc3Q6IGNvcmUxDQo+ID4g
-KyAgICAgICAgICAgIC0gY29uc3Q6IGNvcmUyDQo+ID4gKyAgICAgICAgICAgIC0gY29uc3Q6IGNv
-cmUzDQo+ID4gKyAgICAgICAgICAgIC0gY29uc3Q6IGNvcmU0DQo+ID4gKw0KPiA+ICsgICAgICBy
-ZXF1aXJlZDoNCj4gPiArICAgICAgICAtIHNyYW0tc3VwcGx5DQo+ID4gKyAgICAgICAgLSBwb3dl
-ci1kb21haW5zDQo+ID4gKw0KPiA+ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgICNp
-bmNsdWRlIDxkdC1iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9pcnEuaD4NCj4gPiArICAg
-ICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9hcm0tZ2ljLmg+DQo+
-ID4gKw0KPiA+ICsgICAgZ3B1QDEzMDAwMDAwIHsNCj4gPiArICAgICAgICAgICBjb21wYXRpYmxl
-ID0gIm1lZGlhdGVrLG10ODE5Mi1tYWxpIiwgImFybSxtYWxpLXZhbGhhbGwiOw0KPiA+ICsgICAg
-ICAgICAgIHJlZyA9IDwweDEzMDAwMDAwIDB4NDAwMD47DQo+ID4gKyAgICAgICAgICAgaW50ZXJy
-dXB0cyA9DQo+ID4gKyAgICAgICAgICAgICAgICAgICA8R0lDX1NQSSAzNjMgSVJRX1RZUEVfTEVW
-RUxfSElHSCAwPiwNCj4gPiArICAgICAgICAgICAgICAgICAgIDxHSUNfU1BJIDM2NCBJUlFfVFlQ
-RV9MRVZFTF9ISUdIIDA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgPEdJQ19TUEkgMzY1IElS
-UV9UWVBFX0xFVkVMX0hJR0ggMD47DQo+ID4gKyAgICAgICAgICAgaW50ZXJydXB0LW5hbWVzID0N
-Cj4gPiArICAgICAgICAgICAgICAgICAgICJncHUiLA0KPiA+ICsgICAgICAgICAgICAgICAgICAg
-Im1tdSIsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAiam9iIjsNCj4gPiArDQo+ID4gKyAgICAg
-ICAgICAgY2xvY2tzID0gPCZtZmdjZmcgMD47DQo+ID4gKw0KPiA+ICsgICAgICAgICAgIHBvd2Vy
-LWRvbWFpbnMgPQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgPCZzcG0gND4sDQo+ID4gKyAgICAg
-ICAgICAgICAgICAgICA8JnNwbSA1PiwNCj4gPiArICAgICAgICAgICAgICAgICAgIDwmc3BtIDY+
-LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgPCZzcG0gNz4sDQo+ID4gKyAgICAgICAgICAgICAg
-ICAgICA8JnNwbSA4PjsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgb3BlcmF0aW5nLXBvaW50cy12
-MiA9IDwmZ3B1X29wcF90YWJsZT47DQo+ID4gKyAgICAgICAgICAgbWFsaS1zdXBwbHkgPSA8Jm10
-NjMxNV83X3ZidWNrMT47DQo+ID4gKyAgICAgICAgICAgc3JhbS1zdXBwbHkgPSA8Jm10NjM1OV92
-c3JhbV9vdGhlcnNfbGRvX3JlZz47DQo+ID4gKyAgICB9Ow0KPiA+ICsNCj4gPiArICAgIGdwdV9v
-cHBfdGFibGU6IG9wcF90YWJsZTAgew0KPiANCj4gTWFrZSB0aGlzIGEgY2hpbGQgbm9kZSBvZiB0
-aGUgZ3B1IG5vZGUuDQo+IA0KPiA+ICsgICAgICBjb21wYXRpYmxlID0gIm9wZXJhdGluZy1wb2lu
-dHMtdjIiOw0KPiA+ICsgICAgICBvcHAtc2hhcmVkOw0KPiA+ICsNCj4gPiArICAgICAgb3BwLTM1
-ODAwMDAwMCB7DQo+ID4gKyAgICAgICAgICAgICAgb3BwLWh6ID0gL2JpdHMvIDY0IDwzNTgwMDAw
-MDA+Ow0KPiA+ICsgICAgICAgICAgICAgIG9wcC1oei1yZWFsID0gL2JpdHMvIDY0IDwzNTgwMDAw
-MDA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgL2JpdHMvIDY0IDwzNTgwMDAw
-MDA+Ow0KPiANCj4gVGhpcyBpcyBub3QgcGFydCBvZiB0aGUgT1BQIGJpbmRpbmcuIEl0J3Mgbm90
-IGNsZWFyIHdoYXQgaXQncyBwdXJwb3NlIA0KPiB3b3VsZCBiZSBnaXZlbiB0aGUgdmFsdWVzIGFy
-ZSBhbHdheXMgdGhlIHNhbWUgYXMgb3BwLWh6Lg0KPiANCj4gDQo+ID4gKyAgICAgICAgICAgICAg
-b3BwLW1pY3Jvdm9sdCA9IDw2MDYyNTA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICA8NzUwMDAwPjsNCj4gPiArICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgIG9wcC0zOTkw
-MDAwMDAgew0KPiA+ICsgICAgICAgICAgICAgIG9wcC1oeiA9IC9iaXRzLyA2NCA8Mzk5MDAwMDAw
-PjsNCj4gPiArICAgICAgICAgICAgICBvcHAtaHotcmVhbCA9IC9iaXRzLyA2NCA8Mzk5MDAwMDAw
-PiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgIC9iaXRzLyA2NCA8Mzk5MDAwMDAw
-PjsNCj4gPiArICAgICAgICAgICAgICBvcHAtbWljcm92b2x0ID0gPDYxODc1MD4sDQo+ID4gKyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw3NTAwMDA+Ow0KPiA+ICsgICAgICB9Ow0KPiA+
-ICsNCj4gPiArICAgICAgb3BwLTQ0MDAwMDAwMCB7DQo+ID4gKyAgICAgICAgICAgICAgb3BwLWh6
-ID0gL2JpdHMvIDY0IDw0NDAwMDAwMDA+Ow0KPiA+ICsgICAgICAgICAgICAgIG9wcC1oei1yZWFs
-ID0gL2JpdHMvIDY0IDw0NDAwMDAwMDA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgL2JpdHMvIDY0IDw0NDAwMDAwMDA+Ow0KPiA+ICsgICAgICAgICAgICAgIG9wcC1taWNyb3Zv
-bHQgPSA8NjMxMjUwPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPDc1MDAw
-MD47DQo+ID4gKyAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICBvcHAtNDgyMDAwMDAwIHsNCj4g
-PiArICAgICAgICAgICAgICBvcHAtaHogPSAvYml0cy8gNjQgPDQ4MjAwMDAwMD47DQo+ID4gKyAg
-ICAgICAgICAgICAgb3BwLWh6LXJlYWwgPSAvYml0cy8gNjQgPDQ4MjAwMDAwMD4sDQo+ID4gKyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAvYml0cy8gNjQgPDQ4MjAwMDAwMD47DQo+ID4gKyAg
-ICAgICAgICAgICAgb3BwLW1pY3Jvdm9sdCA9IDw2NDM3NTA+LA0KPiA+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICA8NzUwMDAwPjsNCj4gPiArICAgICAgfTsNCj4gPiArDQo+ID4gKyAg
-ICAgIG9wcC01MjMwMDAwMDAgew0KPiA+ICsgICAgICAgICAgICAgIG9wcC1oeiA9IC9iaXRzLyA2
-NCA8NTIzMDAwMDAwPjsNCj4gPiArICAgICAgICAgICAgICBvcHAtaHotcmVhbCA9IC9iaXRzLyA2
-NCA8NTIzMDAwMDAwPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgIC9iaXRzLyA2
-NCA8NTIzMDAwMDAwPjsNCj4gPiArICAgICAgICAgICAgICBvcHAtbWljcm92b2x0ID0gPDY1NjI1
-MD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw3NTAwMDA+Ow0KPiA+ICsg
-ICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgb3BwLTU2NDAwMDAwMCB7DQo+ID4gKyAgICAgICAg
-ICAgICAgb3BwLWh6ID0gL2JpdHMvIDY0IDw1NjQwMDAwMDA+Ow0KPiA+ICsgICAgICAgICAgICAg
-IG9wcC1oei1yZWFsID0gL2JpdHMvIDY0IDw1NjQwMDAwMDA+LA0KPiA+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgL2JpdHMvIDY0IDw1NjQwMDAwMDA+Ow0KPiA+ICsgICAgICAgICAgICAg
-IG9wcC1taWNyb3ZvbHQgPSA8NjY4NzUwPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgPDc1MDAwMD47DQo+ID4gKyAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICBvcHAtNjA1
-MDAwMDAwIHsNCj4gPiArICAgICAgICAgICAgICBvcHAtaHogPSAvYml0cy8gNjQgPDYwNTAwMDAw
-MD47DQo+ID4gKyAgICAgICAgICAgICAgb3BwLWh6LXJlYWwgPSAvYml0cy8gNjQgPDYwNTAwMDAw
-MD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAvYml0cy8gNjQgPDYwNTAwMDAw
-MD47DQo+ID4gKyAgICAgICAgICAgICAgb3BwLW1pY3Jvdm9sdCA9IDw2ODEyNTA+LA0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8NzUwMDAwPjsNCj4gPiArICAgICAgfTsNCj4g
-PiArDQo+ID4gKyAgICAgIG9wcC02NDcwMDAwMDAgew0KPiA+ICsgICAgICAgICAgICAgIG9wcC1o
-eiA9IC9iaXRzLyA2NCA8NjQ3MDAwMDAwPjsNCj4gPiArICAgICAgICAgICAgICBvcHAtaHotcmVh
-bCA9IC9iaXRzLyA2NCA8NjQ3MDAwMDAwPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIC9iaXRzLyA2NCA8NjQ3MDAwMDAwPjsNCj4gPiArICAgICAgICAgICAgICBvcHAtbWljcm92
-b2x0ID0gPDY5Mzc1MD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw3NTAw
-MDA+Ow0KPiA+ICsgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgb3BwLTY4ODAwMDAwMCB7DQo+
-ID4gKyAgICAgICAgICAgICAgb3BwLWh6ID0gL2JpdHMvIDY0IDw2ODgwMDAwMDA+Ow0KPiA+ICsg
-ICAgICAgICAgICAgIG9wcC1oei1yZWFsID0gL2JpdHMvIDY0IDw2ODgwMDAwMDA+LA0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgL2JpdHMvIDY0IDw2ODgwMDAwMDA+Ow0KPiA+ICsg
-ICAgICAgICAgICAgIG9wcC1taWNyb3ZvbHQgPSA8NzA2MjUwPiwNCj4gPiArICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgPDc1MDAwMD47DQo+ID4gKyAgICAgIH07DQo+ID4gKw0KPiA+ICsg
-ICAgICBvcHAtNzI0MDAwMDAwIHsNCj4gPiArICAgICAgICAgICAgICBvcHAtaHogPSAvYml0cy8g
-NjQgPDcyNDAwMDAwMD47DQo+ID4gKyAgICAgICAgICAgICAgb3BwLWh6LXJlYWwgPSAvYml0cy8g
-NjQgPDcyNDAwMDAwMD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAvYml0cy8g
-NjQgPDcyNDAwMDAwMD47DQo+ID4gKyAgICAgICAgICAgICAgb3BwLW1pY3Jvdm9sdCA9IDw3MjUw
-MDA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8NzUwMDAwPjsNCj4gPiAr
-ICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgIG9wcC03NjAwMDAwMDAgew0KPiA+ICsgICAgICAg
-ICAgICAgIG9wcC1oeiA9IC9iaXRzLyA2NCA8NzYwMDAwMDAwPjsNCj4gPiArICAgICAgICAgICAg
-ICBvcHAtaHotcmVhbCA9IC9iaXRzLyA2NCA8NzYwMDAwMDAwPiwNCj4gPiArICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIC9iaXRzLyA2NCA8NzYwMDAwMDAwPjsNCj4gPiArICAgICAgICAgICAg
-ICBvcHAtbWljcm92b2x0ID0gPDc0Mzc1MD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIDw3NTAwMDA+Ow0KPiA+ICsgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgb3BwLTc5
-NTAwMDAwMCB7DQo+ID4gKyAgICAgICAgICAgICAgb3BwLWh6ID0gL2JpdHMvIDY0IDw3OTUwMDAw
-MDA+Ow0KPiA+ICsgICAgICAgICAgICAgIG9wcC1oei1yZWFsID0gL2JpdHMvIDY0IDw3OTUwMDAw
-MDA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgL2JpdHMvIDY0IDw3OTUwMDAw
-MDA+Ow0KPiA+ICsgICAgICAgICAgICAgIG9wcC1taWNyb3ZvbHQgPSA8NzYyNTAwPiwNCj4gPiAr
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPDc2MjUwMD47DQo+ID4gKyAgICAgIH07DQo+
-ID4gKw0KPiA+ICsgICAgICBvcHAtODMxMDAwMDAwIHsNCj4gPiArICAgICAgICAgICAgICBvcHAt
-aHogPSAvYml0cy8gNjQgPDgzMTAwMDAwMD47DQo+ID4gKyAgICAgICAgICAgICAgb3BwLWh6LXJl
-YWwgPSAvYml0cy8gNjQgPDgzMTAwMDAwMD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAvYml0cy8gNjQgPDgzMTAwMDAwMD47DQo+ID4gKyAgICAgICAgICAgICAgb3BwLW1pY3Jv
-dm9sdCA9IDw3ODEyNTA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8Nzgx
-MjUwPjsNCj4gPiArICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgIG9wcC04NTUwMDAwMDAgew0K
-PiA+ICsgICAgICAgICAgICAgIG9wcC1oeiA9IC9iaXRzLyA2NCA8ODU1MDAwMDAwPjsNCj4gPiAr
-ICAgICAgICAgICAgICBvcHAtaHotcmVhbCA9IC9iaXRzLyA2NCA8ODU1MDAwMDAwPiwNCj4gPiAr
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIC9iaXRzLyA2NCA8ODU1MDAwMDAwPjsNCj4gPiAr
-ICAgICAgICAgICAgICBvcHAtbWljcm92b2x0ID0gPDc5Mzc1MD4sDQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIDw3OTM3NTA+Ow0KPiA+ICsgICAgICB9Ow0KPiA+ICsNCj4gPiAr
-ICAgICAgb3BwLTkwMjAwMDAwMCB7DQo+ID4gKyAgICAgICAgICAgICAgb3BwLWh6ID0gL2JpdHMv
-IDY0IDw5MDIwMDAwMDA+Ow0KPiA+ICsgICAgICAgICAgICAgIG9wcC1oei1yZWFsID0gL2JpdHMv
-IDY0IDw5MDIwMDAwMDA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgL2JpdHMv
-IDY0IDw5MDIwMDAwMDA+Ow0KPiA+ICsgICAgICAgICAgICAgIG9wcC1taWNyb3ZvbHQgPSA8ODE4
-NzUwPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPDgxODc1MD47DQo+ID4g
-KyAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICBvcHAtOTUwMDAwMDAwIHsNCj4gPiArICAgICAg
-ICAgICAgICBvcHAtaHogPSAvYml0cy8gNjQgPDk1MDAwMDAwMD47DQo+ID4gKyAgICAgICAgICAg
-ICAgb3BwLWh6LXJlYWwgPSAvYml0cy8gNjQgPDk1MDAwMDAwMD4sDQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAvYml0cy8gNjQgPDk1MDAwMDAwMD47DQo+ID4gKyAgICAgICAgICAg
-ICAgb3BwLW1pY3Jvdm9sdCA9IDw4NDM3NTA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICA8ODQzNzUwPjsNCj4gPiArICAgICAgfTsNCj4gPiArICAgIH07DQo+ID4gKy4uLg0K
-PiA+IC0tIA0KPiA+IDIuMTguMA0KPiA+IA0KDQo=
+Add 'bus-type' and 'data-lanes' define for port0, add HDCP support
+flag and DP tx lane0 and lane1 swing register array define.
+
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
+---
+ .../bindings/display/bridge/analogix,anx7625.yaml  | 54 +++++++++++++++++++++-
+ 1 file changed, 53 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+index c789784..048deec 100644
+--- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+@@ -34,6 +34,24 @@ properties:
+     description: used for reset chip control, RESET_N pin B7.
+     maxItems: 1
+ 
++  analogix,lane0-swing:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    maxItems: 20
++    description:
++      an array of swing register setting for DP tx lane0 PHY, please don't
++      add this property, or contact vendor.
++
++  analogix,lane1-swing:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    maxItems: 20
++    description:
++      an array of swing register setting for DP tx lane1 PHY, please don't
++      add this property, or contact vendor.
++
++  analogix,hdcp-support:
++    type: boolean
++    description: indicate the DP tx HDCP support or not.
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+@@ -41,13 +59,45 @@ properties:
+       port@0:
+         $ref: /schemas/graph.yaml#/properties/port
+         description:
+-          Video port for MIPI DSI input.
++          Video port for MIPI input.
++
++        properties:
++          endpoint:
++            type: object
++            additionalProperties: false
++
++            # Properties described in
++            # Documentation/devicetree/bindings/media/video-interfaces.txt
++            properties:
++              remote-endpoint: true
++              bus-type: true
++              data-lanes: true
++
++            required:
++              - remote-endpoint
++
++        required:
++          - endpoint
++
+ 
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description:
+           Video port for panel or connector.
+ 
++        properties:
++          endpoint:
++            type: object
++            additionalProperties: false
++
++            # Properties described in
++            # Documentation/devicetree/bindings/media/video-interfaces.txt
++            properties:
++              remote-endpoint: true
++
++            required:
++              - remote-endpoint
++
+     required:
+       - port@0
+       - port@1
+@@ -81,6 +131,8 @@ examples:
+                     reg = <0>;
+                     anx7625_in: endpoint {
+                         remote-endpoint = <&mipi_dsi>;
++                        bus-type = <5>;
++                        data-lanes = <0 1 2 3>;
+                     };
+                 };
+ 
+-- 
+2.7.4
 
