@@ -2,83 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BEEE307489
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 12:15:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2025B307497
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 12:19:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229661AbhA1LOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 06:14:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57586 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbhA1LO1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 06:14:27 -0500
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1D2EC061756
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 03:13:46 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by laurent.telenet-ops.be with bizsmtp
-        id NBDl2400D4C55Sk01BDlUz; Thu, 28 Jan 2021 12:13:45 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l55FA-001L6Q-RJ; Thu, 28 Jan 2021 12:13:44 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l55FA-009dHD-6N; Thu, 28 Jan 2021 12:13:44 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: eeprom: at24: Document ROHM BR24G01
-Date:   Thu, 28 Jan 2021 12:13:43 +0100
-Message-Id: <20210128111343.2295888-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S229831AbhA1LTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 06:19:25 -0500
+Received: from relay2.uni-heidelberg.de ([129.206.119.212]:58996 "EHLO
+        relay2.uni-heidelberg.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229774AbhA1LTY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 06:19:24 -0500
+X-IPAS-Result: =?us-ascii?q?A2D1AwCNnBJg/1BqzoFiHAEBAQEBAQcBARIBAQQEAQFAg?=
+ =?us-ascii?q?U+DDGtlg3pGriMBAQEBAQEBAQEJLAECBAEBhEqBegIlOBMCAwEBAQMCAwEBA?=
+ =?us-ascii?q?QEGAQEBAQEGBIZfhXQGI1YQJQImAgIUKDSGLbUTgTKJIoEtgQ4qixuCSYIbh?=
+ =?us-ascii?q?GiEBVYwgkw0giwEgkeBDoEDgh2PKgkXpmGCBgeeXwINIpMdj2eRX4Vlnm6Bb?=
+ =?us-ascii?q?YF6Mz6DOFAZDZxrQzA3AgYKAQEDCVkBAYh0gkYBAQ?=
+X-IronPort-Anti-Spam-Filtered: true
+Received: from lemon.iwr.uni-heidelberg.de ([129.206.106.80])
+  by relay2.uni-heidelberg.de with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Jan 2021 12:18:43 +0100
+Received: from hlauer by lemon.iwr.uni-heidelberg.de with local (Exim 4.92)
+        (envelope-from <hlauer@lemon.iwr.uni-heidelberg.de>)
+        id 1l55Jy-00037W-KT; Thu, 28 Jan 2021 12:18:42 +0100
+Date:   Thu, 28 Jan 2021 12:18:42 +0100
+From:   Hermann.Lauer@uni-heidelberg.de
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4] ARM: dts: sun7i: a20: bananapro: Fix ethernet phy-mode
+Message-ID: <20210128111842.GA11919@lemon.iwr.uni-heidelberg.de>
+References: <20210121170836.GA4948@lemon.iwr.uni-heidelberg.de>
+ <20210128094040.GD11559@lemon.iwr.uni-heidelberg.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210128094040.GD11559@lemon.iwr.uni-heidelberg.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the compatible value for the ROHM Semiconductor BR24G01 I2C bus
-EEPROM.
+BPi Pro needs TX and RX delay for Gbit to work reliable and avoid high
+packet loss rates. The realtek phy driver overrides the settings of the
+pull ups for the delays, so fix this for BananaPro.
+    
+Fix the phy-mode description to correctly reflect this so that the
+implementation doesn't reconfigure the delays incorrectly. This
+happened with commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e
+rx/tx delay config").
 
-While at it, sort the entries alphabetically.
-
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Fixes: 10662a33dcd9 ("ARM: dts: sun7i: Add dts file for Bananapro board")
+Signed-off-by: Hermann Lauer <Hermann.Lauer@uni-heidelberg.de>
 ---
- Documentation/devicetree/bindings/eeprom/at24.yaml | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/sun7i-a20-bananapro.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
-index d5117c638b75c76c..021d8ae42da318e4 100644
---- a/Documentation/devicetree/bindings/eeprom/at24.yaml
-+++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
-@@ -95,9 +95,6 @@ properties:
-                   pattern: spd$
-       # These are special cases that don't conform to the above pattern.
-       # Each requires a standard at24 model as fallback.
--      - items:
--          - const: rohm,br24t01
--          - const: atmel,24c01
-       - items:
-           - const: nxp,se97b
-           - const: atmel,24c02
-@@ -113,6 +110,12 @@ properties:
-       - items:
-           - const: renesas,r1ex24128
-           - const: atmel,24c128
-+      - items:
-+          - const: rohm,br24g01
-+          - const: atmel,24c01
-+      - items:
-+          - const: rohm,br24t01
-+          - const: atmel,24c01
- 
-   label:
-     description: Descriptive name of the EEPROM.
--- 
-2.25.1
-
+diff --git a/arch/arm/boot/dts/sun7i-a20-bananapro.dts b/arch/arm/boot/dts/sun7i-a20-bananapro.dts
+--- a/arch/arm/boot/dts/sun7i-a20-bananapro.dts
++++ b/arch/arm/boot/dts/sun7i-a20-bananapro.dts
+@@ -110,7 +110,7 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	phy-supply = <&reg_gmac_3v3>;
+ 	status = "okay";
+ };
