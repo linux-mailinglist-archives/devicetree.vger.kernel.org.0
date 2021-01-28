@@ -2,100 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC8AB307E0A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 19:34:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69840307E7F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 19:54:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231678AbhA1Sc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 13:32:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38412 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232168AbhA1Sa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 13:30:27 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA37C061574;
-        Thu, 28 Jan 2021 10:29:46 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id u14so5352867wmq.4;
-        Thu, 28 Jan 2021 10:29:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=New2v2T3Uy5ybbNiA0IfE0qGrUAXUx9CUscR4MiRx4g=;
-        b=negjh9Y0yWRG+F8PtiY7LtzqzO8MgXwRiT2wJeq/+PY8wei8/Eu1rcOubDi34QeCxK
-         G2hBmRESsB8OTwvVF1gwjfPHHJr78ZBcBk9vmnnqCO5DUFxOHdhmq2yXqjhV0FOE1/hx
-         l+/BT56aDY6rNpMxVPrE7sMbxArAKcuUrBp9puGYe3CYQFtX5zNfOLo7EGXKQ8Vrj949
-         nu+pldclWd0QswZdh4YUcBixu5fE/6GheG2E8yKlDd+8owwy0DspmPl2JfBbMPElzr81
-         TVwGVc/xrPU78wxrYQrdzxD75fPXyZdIn+EGrWruzS7DUmPu75PFMkjXAi4i6J5PhmUp
-         e8MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=New2v2T3Uy5ybbNiA0IfE0qGrUAXUx9CUscR4MiRx4g=;
-        b=gPOiTA11bcY0+/Ksc9OeADhDr+yA5Gl2daoejmvTYejEAyPV1v0CBkmLbGoX6e4SAk
-         Cmni0bwuWu1+rwuBD32omAGHPjXIIhr11axwDgITt+56mq5V1BJntINYIG09rN2jXzii
-         MGu/z1RqDTesBSySZ1txBTT+cFTnk6gJ23dxW8zouT8ReXeYpM81ZR8ogyb3CsXJVkx/
-         NchqZ2bMIYQQftO7pAYWUpHxmkLpDzXvAB4KjI91r4kw1gD2BGq7xH6YVxY8mi3HKDCC
-         th661jwf+su0IUJQ8ARh/5SbGA/VQSrpkb9y91cZpw6TL1OMTDC0gt4hqYMiRMbmmVUu
-         LXoQ==
-X-Gm-Message-State: AOAM533tkVXIwja/QFT7dynRSrTm7x4+gA0wzl0hgErKsdDbSZvYeAJt
-        tHil02CEW+sy3n5kTL+JGGo=
-X-Google-Smtp-Source: ABdhPJwZibqCZKaj7K/3nQ4liF9/wo4NQ9rg4TBgRonsnAJEDzFD9xtzlBImh6C7jPIbjHU4pKdMtA==
-X-Received: by 2002:a1c:e2d7:: with SMTP id z206mr540274wmg.168.1611858585368;
-        Thu, 28 Jan 2021 10:29:45 -0800 (PST)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id a16sm7549538wrr.89.2021.01.28.10.29.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jan 2021 10:29:44 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: tegra: Document Jetson Xavier NX eMMC SKU
-Date:   Thu, 28 Jan 2021 19:29:40 +0100
-Message-Id: <20210128182940.11845-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.30.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S231874AbhA1SyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 13:54:17 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:40403 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231283AbhA1SwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 13:52:19 -0500
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 28 Jan 2021 10:48:57 -0800
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 28 Jan 2021 10:48:55 -0800
+X-QCInternal: smtphost
+Received: from gokulsri-linux.qualcomm.com ([10.201.2.207])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 29 Jan 2021 00:18:17 +0530
+Received: by gokulsri-linux.qualcomm.com (Postfix, from userid 432570)
+        id 714E321A02; Fri, 29 Jan 2021 00:18:16 +0530 (IST)
+From:   Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
+To:     sboyd@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        david.brown@linaro.org, devicetree@vger.kernel.org,
+        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, mark.rutland@arm.com,
+        mturquette@baylibre.com, ohad@wizery.com, robh+dt@kernel.org,
+        sricharan@codeaurora.org, nprakash@codeaurora.org,
+        gokulsri@codeaurora.org
+Subject: [PATCH v9 4/4] remoteproc: qcom: wcss: explicitly request exclusive reset control
+Date:   Fri, 29 Jan 2021 00:18:15 +0530
+Message-Id: <1611859695-11824-5-git-send-email-gokulsri@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1611859695-11824-1-git-send-email-gokulsri@codeaurora.org>
+References: <1611859695-11824-1-git-send-email-gokulsri@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+From: Govind Singh <govinds@codeaurora.org>
 
-Two different SKUs exist for the Jetson Xavier NX module, so document
-the compatible strings for both, as well as the developer kits that come
-with each of the SKUs.
+Use request exclusive reset control for wcss reset controls.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Govind Singh <govinds@codeaurora.org>
+Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
 ---
- Documentation/devicetree/bindings/arm/tegra.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/remoteproc/qcom_q6v5_wcss.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
-index c5fbf869aa93..b9f75e20fef5 100644
---- a/Documentation/devicetree/bindings/arm/tegra.yaml
-+++ b/Documentation/devicetree/bindings/arm/tegra.yaml
-@@ -120,10 +120,18 @@ properties:
-         items:
-           - const: nvidia,p3668-0000
-           - const: nvidia,tegra194
-+      - description: Jetson Xavier NX (eMMC)
-+        items:
-+          - const: nvidia,p3668-0001
-+          - const: nvidia,tegra194
-       - description: Jetson Xavier NX Developer Kit
-         items:
-           - const: nvidia,p3509-0000+p3668-0000
-           - const: nvidia,tegra194
-+      - description: Jetson Xavier NX Developer Kit (eMMC)
-+        items:
-+          - const: nvidia,p3509-0000+p3668-0001
-+          - const: nvidia,tegra194
-       - items:
-           - enum:
-               - nvidia,tegra234-vdk
+diff --git a/drivers/remoteproc/qcom_q6v5_wcss.c b/drivers/remoteproc/qcom_q6v5_wcss.c
+index 7a6cadc..7628259 100644
+--- a/drivers/remoteproc/qcom_q6v5_wcss.c
++++ b/drivers/remoteproc/qcom_q6v5_wcss.c
+@@ -788,21 +788,21 @@ static int q6v5_wcss_init_reset(struct q6v5_wcss *wcss,
+ 	struct device *dev = wcss->dev;
+ 
+ 	if (desc->aon_reset_required) {
+-		wcss->wcss_aon_reset = devm_reset_control_get(dev, "wcss_aon_reset");
++		wcss->wcss_aon_reset = devm_reset_control_get_exclusive(dev, "wcss_aon_reset");
+ 		if (IS_ERR(wcss->wcss_aon_reset)) {
+ 			dev_err(wcss->dev, "fail to acquire wcss_aon_reset\n");
+ 			return PTR_ERR(wcss->wcss_aon_reset);
+ 		}
+ 	}
+ 
+-	wcss->wcss_reset = devm_reset_control_get(dev, "wcss_reset");
++	wcss->wcss_reset = devm_reset_control_get_exclusive(dev, "wcss_reset");
+ 	if (IS_ERR(wcss->wcss_reset)) {
+ 		dev_err(wcss->dev, "unable to acquire wcss_reset\n");
+ 		return PTR_ERR(wcss->wcss_reset);
+ 	}
+ 
+ 	if (desc->wcss_q6_reset_required) {
+-		wcss->wcss_q6_reset = devm_reset_control_get(dev, "wcss_q6_reset");
++		wcss->wcss_q6_reset = devm_reset_control_get_exclusive(dev, "wcss_q6_reset");
+ 		if (IS_ERR(wcss->wcss_q6_reset)) {
+ 			dev_err(wcss->dev, "unable to acquire wcss_q6_reset\n");
+ 			return PTR_ERR(wcss->wcss_q6_reset);
 -- 
-2.30.0
+2.7.4
 
