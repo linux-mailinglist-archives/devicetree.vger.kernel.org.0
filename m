@@ -2,82 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70D14307D61
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 19:06:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC8AB307E0A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 19:34:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231305AbhA1SGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 13:06:14 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:36810 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231348AbhA1SEA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Jan 2021 13:04:00 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1l5BdN-0034Q1-If; Thu, 28 Jan 2021 19:03:09 +0100
-Date:   Thu, 28 Jan 2021 19:03:09 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     olteanv@gmail.com, netdev@vger.kernel.org, robh+dt@kernel.org,
-        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, UNGLinuxDriver@microchip.com,
-        Woojung.Huh@microchip.com, linux-kernel@vger.kernel.org,
+        id S231678AbhA1Sc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 13:32:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38412 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232168AbhA1Sa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 13:30:27 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA37C061574;
+        Thu, 28 Jan 2021 10:29:46 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id u14so5352867wmq.4;
+        Thu, 28 Jan 2021 10:29:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=New2v2T3Uy5ybbNiA0IfE0qGrUAXUx9CUscR4MiRx4g=;
+        b=negjh9Y0yWRG+F8PtiY7LtzqzO8MgXwRiT2wJeq/+PY8wei8/Eu1rcOubDi34QeCxK
+         G2hBmRESsB8OTwvVF1gwjfPHHJr78ZBcBk9vmnnqCO5DUFxOHdhmq2yXqjhV0FOE1/hx
+         l+/BT56aDY6rNpMxVPrE7sMbxArAKcuUrBp9puGYe3CYQFtX5zNfOLo7EGXKQ8Vrj949
+         nu+pldclWd0QswZdh4YUcBixu5fE/6GheG2E8yKlDd+8owwy0DspmPl2JfBbMPElzr81
+         TVwGVc/xrPU78wxrYQrdzxD75fPXyZdIn+EGrWruzS7DUmPu75PFMkjXAi4i6J5PhmUp
+         e8MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=New2v2T3Uy5ybbNiA0IfE0qGrUAXUx9CUscR4MiRx4g=;
+        b=gPOiTA11bcY0+/Ksc9OeADhDr+yA5Gl2daoejmvTYejEAyPV1v0CBkmLbGoX6e4SAk
+         Cmni0bwuWu1+rwuBD32omAGHPjXIIhr11axwDgITt+56mq5V1BJntINYIG09rN2jXzii
+         MGu/z1RqDTesBSySZ1txBTT+cFTnk6gJ23dxW8zouT8ReXeYpM81ZR8ogyb3CsXJVkx/
+         NchqZ2bMIYQQftO7pAYWUpHxmkLpDzXvAB4KjI91r4kw1gD2BGq7xH6YVxY8mi3HKDCC
+         th661jwf+su0IUJQ8ARh/5SbGA/VQSrpkb9y91cZpw6TL1OMTDC0gt4hqYMiRMbmmVUu
+         LXoQ==
+X-Gm-Message-State: AOAM533tkVXIwja/QFT7dynRSrTm7x4+gA0wzl0hgErKsdDbSZvYeAJt
+        tHil02CEW+sy3n5kTL+JGGo=
+X-Google-Smtp-Source: ABdhPJwZibqCZKaj7K/3nQ4liF9/wo4NQ9rg4TBgRonsnAJEDzFD9xtzlBImh6C7jPIbjHU4pKdMtA==
+X-Received: by 2002:a1c:e2d7:: with SMTP id z206mr540274wmg.168.1611858585368;
+        Thu, 28 Jan 2021 10:29:45 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id a16sm7549538wrr.89.2021.01.28.10.29.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jan 2021 10:29:44 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/8] net: dsa: tag_ksz: add tag handling for
- Microchip LAN937x
-Message-ID: <YBL8XaZlVQRVg+qA@lunn.ch>
-References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
- <20210128064112.372883-3-prasanna.vengateshan@microchip.com>
+Subject: [PATCH] dt-bindings: arm: tegra: Document Jetson Xavier NX eMMC SKU
+Date:   Thu, 28 Jan 2021 19:29:40 +0100
+Message-Id: <20210128182940.11845-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210128064112.372883-3-prasanna.vengateshan@microchip.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 12:11:06PM +0530, Prasanna Vengateshan wrote:
-> The Microchip LAN937X switches have a tagging protocol which is
-> very similar to KSZ tagging. So that the implementation is added to
-> tag_ksz.c and reused common APIs
-> 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> ---
->  include/net/dsa.h |  2 ++
->  net/dsa/Kconfig   |  4 +--
->  net/dsa/tag_ksz.c | 74 +++++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 78 insertions(+), 2 deletions(-)
-> 
-> diff --git a/include/net/dsa.h b/include/net/dsa.h
-> index 2f5435d3d1db..b9bc7a9a8c15 100644
-> --- a/include/net/dsa.h
-> +++ b/include/net/dsa.h
-> @@ -47,6 +47,7 @@ struct phylink_link_state;
->  #define DSA_TAG_PROTO_RTL4_A_VALUE		17
->  #define DSA_TAG_PROTO_HELLCREEK_VALUE		18
->  #define DSA_TAG_PROTO_XRS700X_VALUE		19
-> +#define DSA_TAG_PROTO_LAN937X_VALUE		20
->  
->  enum dsa_tag_protocol {
->  	DSA_TAG_PROTO_NONE		= DSA_TAG_PROTO_NONE_VALUE,
-> @@ -69,6 +70,7 @@ enum dsa_tag_protocol {
->  	DSA_TAG_PROTO_RTL4_A		= DSA_TAG_PROTO_RTL4_A_VALUE,
->  	DSA_TAG_PROTO_HELLCREEK		= DSA_TAG_PROTO_HELLCREEK_VALUE,
->  	DSA_TAG_PROTO_XRS700X		= DSA_TAG_PROTO_XRS700X_VALUE,
-> +	DSA_TAG_PROTO_LAN937X		= DSA_TAG_PROTO_LAN937X_VALUE,
->  };
->  
->  struct packet_type;
-> diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
-> index 2d226a5c085f..217fa0f8d13e 100644
-> --- a/net/dsa/Kconfig
-> +++ b/net/dsa/Kconfig
-> @@ -92,10 +92,10 @@ config NET_DSA_TAG_MTK
->  	  Mediatek switches.
->  
->  config NET_DSA_TAG_KSZ
-> -	tristate "Tag driver for Microchip 8795/9477/9893 families of switches"
-> +	tristate "Tag driver for Microchip 8795/9477/9893/937x families of switches"
+From: Thierry Reding <treding@nvidia.com>
 
-You might want to keep these in numerical order.
+Two different SKUs exist for the Jetson Xavier NX module, so document
+the compatible strings for both, as well as the developer kits that come
+with each of the SKUs.
 
-    Andrew
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ Documentation/devicetree/bindings/arm/tegra.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
+index c5fbf869aa93..b9f75e20fef5 100644
+--- a/Documentation/devicetree/bindings/arm/tegra.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+@@ -120,10 +120,18 @@ properties:
+         items:
+           - const: nvidia,p3668-0000
+           - const: nvidia,tegra194
++      - description: Jetson Xavier NX (eMMC)
++        items:
++          - const: nvidia,p3668-0001
++          - const: nvidia,tegra194
+       - description: Jetson Xavier NX Developer Kit
+         items:
+           - const: nvidia,p3509-0000+p3668-0000
+           - const: nvidia,tegra194
++      - description: Jetson Xavier NX Developer Kit (eMMC)
++        items:
++          - const: nvidia,p3509-0000+p3668-0001
++          - const: nvidia,tegra194
+       - items:
+           - enum:
+               - nvidia,tegra234-vdk
+-- 
+2.30.0
+
