@@ -2,111 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F96C306AF9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 03:18:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9707306B14
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 03:25:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbhA1CSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 21:18:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55812 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbhA1CSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 21:18:42 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50655C061574
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 18:18:02 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id i7so3270597pgc.8
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 18:18:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=M6xZQukm+CkMsW6GYQx3SquyaTLPH3j72H16IX2xsEM=;
-        b=lGq5IhuzZfmx24uYWHzwbXwNkG0Knk79MCA+h6lkKcG9uLIBw7iHHlLcadtEXEcSNb
-         ixl19ilEJTT+3kYs7bn1T3WUAKej01gtRif9Y3RV72ncmyqB/v9HXjko07yRRjLm1aK/
-         p9SfPtVvp8i2ZHd7Hr575p1/Uy+rhPB9UzXKs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=M6xZQukm+CkMsW6GYQx3SquyaTLPH3j72H16IX2xsEM=;
-        b=l7GwiJLU+iqTsPEzaMPkFzfNEMzZJNWFc0B0O95m8D5SmA+ySvo0WmWFPSRvs1IQwp
-         Ccj0kVthW8Euu+w47+Xk2XpqZiy0uXxUB9M0nEeq6l138iMjxgBJDkhBEptsU92L5H5T
-         TxkUs68S8A8mDn4Wmw5oUXNCmcG/AAO0/2v/1JUQPLTQX93K+FwDwxvtYRp6QiBkh6OD
-         FQPK+CG7zY8ZyxxnUryfkw6xbGflVc1JQs34aliTjLLln4FGZ4cNEhUYQheTdH+pySVk
-         PFHljhWwCGzeXLofsfqiYVZoK/8Fo4HNzO+CXbcDEue603C6ZhIB4/YfiV1defnn6GVh
-         DpKw==
-X-Gm-Message-State: AOAM532wPrDfao4QfitrnZpemIqPOBfYArXFuE/Jk3eVyVaf3E7oHGK6
-        BsE/FZ9WRRwwvN6WGzrMuMqpsA==
-X-Google-Smtp-Source: ABdhPJxWGqd7Knme1438Y32UV4uKZqCrSWv7RwnfynJSMW2KE+AWz0H1QgoM3o5FL+QOw+6l/d/ukQ==
-X-Received: by 2002:a05:6a00:15d2:b029:1b7:30c1:8495 with SMTP id o18-20020a056a0015d2b02901b730c18495mr13462477pfu.32.1611800281804;
-        Wed, 27 Jan 2021 18:18:01 -0800 (PST)
-Received: from judyhsiao-p920.tpe.corp.google.com ([2401:fa00:1:10:a53b:f71a:ed56:92d8])
-        by smtp.gmail.com with ESMTPSA id 101sm3162508pjo.38.2021.01.27.18.17.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 18:18:00 -0800 (PST)
-From:   Judy Hsiao <judyhsiao@chromium.org>
-X-Google-Original-From: Judy Hsiao <judyhsiao@google.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
-        dgreid@chromium.org, cychiang@google.com, tzungbi@chromium.org,
-        swboyd@chromium.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, Judy Hsiao <judyhsiao@google.com>,
-        Judy Hsiao <judyhsiao@chromium.org>
-Subject: [PATCH] drm/msm/dp: trigger unplug event in msm_dp_display_disable
-Date:   Thu, 28 Jan 2021 10:17:53 +0800
-Message-Id: <20210128021753.2560931-1-judyhsiao@google.com>
-X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
+        id S229757AbhA1CYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 21:24:55 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:44530 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229616AbhA1CYs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 21:24:48 -0500
+X-UUID: 55f984654950460f9f4b861eb7b30c97-20210128
+X-UUID: 55f984654950460f9f4b861eb7b30c97-20210128
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
+        (envelope-from <nick.fan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 348982530; Thu, 28 Jan 2021 10:23:58 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 28 Jan 2021 10:23:56 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Jan 2021 10:23:56 +0800
+From:   Nick Fan <Nick.Fan@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <nick.fan@mediatek.com>,
+        Nick Fan <Nick.Fan@mediatek.com>
+Subject: [PATCH v5 1/2] dt-bindings: Add DT schema for Arm Mali Valhall GPU
+Date:   Thu, 28 Jan 2021 10:23:41 +0800
+Message-ID: <20210128022342.6445-1-Nick.Fan@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1. Trigger the unplug event in msm_dp_display_disable() to shutdown
-   audio properly.
-2. Reset the completion before signal the disconnect event.
+Add devicetree schema for Arm Mali Valhall GPU
 
-Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+Define a compatible string for the Mali Valhall GPU
+for Mediatek's SoC platform.
+
+Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
 ---
- drivers/gpu/drm/msm/dp/dp_display.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../bindings/gpu/arm,mali-valhall.yaml        | 217 ++++++++++++++++++
+ 1 file changed, 217 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index 3bc7ed21de286..81f6794a25100 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -651,8 +651,8 @@ static int dp_hpd_unplug_handle(struct dp_display_private *dp, u32 data)
- 	dp_add_event(dp, EV_DISCONNECT_PENDING_TIMEOUT, 0, DP_TIMEOUT_5_SECOND);
- 
- 	/* signal the disconnect event early to ensure proper teardown */
--	dp_display_handle_plugged_change(g_dp_display, false);
- 	reinit_completion(&dp->audio_comp);
-+	dp_display_handle_plugged_change(g_dp_display, false);
- 
- 	dp_catalog_hpd_config_intr(dp->catalog, DP_DP_HPD_PLUG_INT_MASK |
- 					DP_DP_IRQ_HPD_INT_MASK, true);
-@@ -890,6 +890,9 @@ static int dp_display_disable(struct dp_display_private *dp, u32 data)
- 
- 	/* wait only if audio was enabled */
- 	if (dp_display->audio_enabled) {
-+		/* signal the disconnect event */
-+		reinit_completion(&dp->audio_comp);
-+		dp_display_handle_plugged_change(dp_display, false);
- 		if (!wait_for_completion_timeout(&dp->audio_comp,
- 				HZ * 5))
- 			DRM_ERROR("audio comp timeout\n");
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml
+new file mode 100644
+index 000000000000..275c14ad173a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall.yaml
+@@ -0,0 +1,217 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2020 MediaTek Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpu/arm,mali-valhall.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM Mali Valhall GPU
++
++maintainers:
++  - Rob Herring <robh@kernel.org>
++
++properties:
++  $nodename:
++    pattern: '^gpu@[a-f0-9]+$'
++
++  compatible:
++    items:
++      - enum:
++          - mediatek,mt8192-mali
++      - const: arm,mali-valhall
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: GPU interrupt
++      - description: MMU interrupt
++      - description: Job interrupt
++
++  interrupt-names:
++    items:
++      - const: gpu
++      - const: mmu
++      - const: job
++
++  clocks:
++    minItems: 1
++
++  power-domains:
++    minItems: 1
++    maxItems: 5
++
++  mali-supply: true
++  sram-supply: true
++
++  operating-points-v2: true
++  opp_table: true
++
++  "#cooling-cells":
++    const: 2
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - clocks
++
++additionalProperties: false
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt8192-mali
++    then:
++      properties:
++        power-domains:
++          minItems: 5
++          maxItems: 5
++
++        power-domain-names:
++          items:
++            - const: core0
++            - const: core1
++            - const: core2
++            - const: core3
++            - const: core4
++
++      required:
++        - sram-supply
++        - power-domains
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    gpu@13000000 {
++           compatible = "mediatek,mt8192-mali", "arm,mali-valhall";
++           reg = <0x13000000 0x4000>;
++           interrupts =
++                   <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH 0>,
++                   <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH 0>,
++                   <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH 0>;
++           interrupt-names =
++                   "gpu",
++                   "mmu",
++                   "job";
++
++           clocks = <&mfgcfg 0>;
++
++           power-domains =
++                   <&spm 4>,
++                   <&spm 5>,
++                   <&spm 6>,
++                   <&spm 7>,
++                   <&spm 8>;
++
++           operating-points-v2 = <&gpu_opp_table>;
++           mali-supply = <&mt6315_7_vbuck1>;
++           sram-supply = <&mt6359_vsram_others_ldo_reg>;
++           gpu_opp_table: opp_table {
++             compatible = "operating-points-v2";
++             opp-shared;
++
++             opp-358000000 {
++                   opp-hz = /bits/ 64 <358000000>;
++                   opp-microvolt = <606250>,
++                                   <750000>;
++             };
++
++             opp-399000000 {
++                   opp-hz = /bits/ 64 <399000000>;
++                   opp-microvolt = <618750>,
++                                   <750000>;
++             };
++
++             opp-440000000 {
++                   opp-hz = /bits/ 64 <440000000>;
++                   opp-microvolt = <631250>,
++                                   <750000>;
++             };
++
++             opp-482000000 {
++                   opp-hz = /bits/ 64 <482000000>;
++                   opp-microvolt = <643750>,
++                                   <750000>;
++             };
++
++             opp-523000000 {
++                   opp-hz = /bits/ 64 <523000000>;
++                   opp-microvolt = <656250>,
++                                   <750000>;
++             };
++
++             opp-564000000 {
++                   opp-hz = /bits/ 64 <564000000>;
++                   opp-microvolt = <668750>,
++                                   <750000>;
++             };
++
++             opp-605000000 {
++                   opp-hz = /bits/ 64 <605000000>;
++                   opp-microvolt = <681250>,
++                                   <750000>;
++             };
++
++             opp-647000000 {
++                   opp-hz = /bits/ 64 <647000000>;
++                   opp-microvolt = <693750>,
++                                   <750000>;
++             };
++
++             opp-688000000 {
++                   opp-hz = /bits/ 64 <688000000>;
++                   opp-microvolt = <706250>,
++                                   <750000>;
++             };
++
++             opp-724000000 {
++                   opp-hz = /bits/ 64 <724000000>;
++                   opp-microvolt = <725000>,
++                                   <750000>;
++             };
++
++             opp-760000000 {
++                   opp-hz = /bits/ 64 <760000000>;
++                   opp-microvolt = <743750>,
++                                   <750000>;
++             };
++
++             opp-795000000 {
++                   opp-hz = /bits/ 64 <795000000>;
++                   opp-microvolt = <762500>,
++                                   <762500>;
++             };
++
++             opp-831000000 {
++                   opp-hz = /bits/ 64 <831000000>;
++                   opp-microvolt = <781250>,
++                                   <781250>;
++             };
++
++             opp-855000000 {
++                   opp-hz = /bits/ 64 <855000000>;
++                   opp-microvolt = <793750>,
++                                   <793750>;
++             };
++
++             opp-902000000 {
++                   opp-hz = /bits/ 64 <902000000>;
++                   opp-microvolt = <818750>,
++                                   <818750>;
++             };
++
++             opp-950000000 {
++                   opp-hz = /bits/ 64 <950000000>;
++                   opp-microvolt = <843750>,
++                                   <843750>;
++             };
++          };
++    };
++...
 -- 
-2.29.2
+2.18.0
 
