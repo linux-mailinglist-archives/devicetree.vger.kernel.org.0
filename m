@@ -2,113 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B13730739A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 11:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61A883073AD
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 11:27:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231896AbhA1KWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 05:22:20 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:32853 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232377AbhA1KWB (ORCPT
+        id S232517AbhA1K0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 05:26:14 -0500
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:38763 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232520AbhA1KYW (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Jan 2021 05:22:01 -0500
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 1BB0558062E;
-        Thu, 28 Jan 2021 05:21:14 -0500 (EST)
+        Thu, 28 Jan 2021 05:24:22 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 7D3875C0114;
+        Thu, 28 Jan 2021 05:23:34 -0500 (EST)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Thu, 28 Jan 2021 05:21:14 -0500
+  by compute6.internal (MEProxy); Thu, 28 Jan 2021 05:23:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=o1F01j7WydKewpoMAwmV7IhtgkX
-        HLvbfzpJz5nwwo1g=; b=ehpkDrc4nuGXLRLG+D7bdmY+GvK4lSeyvP/kI69Tctu
-        iU3UgQNrLjIRp0n6USDLaqUr6QJ0vZXuDTWrr+K7tcCOYMMwasga4vdXTrBFG7Ok
-        DtU6t1MVceqtRqinx1X5W/fJ3f3aVguA9IpLSGBOEi3J2EcBNa6pAuzIbdAa6IVb
-        vfMfhCEGlge0qwjnEzDjjYcAl+7TyU1NVOYNZRl48vktarkLuaY9R6Lz6nGF2cCx
-        +HU4S1AFvB6h+1DRamFrqJzbez08nCfjDGg3tI+HbKI5JTJPmg440emYALVViwOo
-        HtLO0yXcrUynyhq/GX319wsz3SGtmvs8xabuEyBH9LA==
+        :content-type:in-reply-to; s=fm1; bh=XZ6rY75cmqr7UvehnpYsJbl4pPV
+        fDKYpP2TSgwIX+LY=; b=ClCkU64xRlU8R3kM85z8BKWePs6ZggbQct3wkKZdZwI
+        hUUTn7Dx8uNRMOhtTslPXqX2jv/rUa0Y7hp6R+ubVjoNu4qtFMcwqWaAlOiWz2hi
+        DyppgtMyY6X+O2Z9Ju3/ayh6rMVLWOu780Cd75e0FgYnoAshCwVtouYJuyfxnh+G
+        JU/nIjJBA30dc6Q7S1ABSj4A7g6FRKjwh2xtzo4suwC64Vz2K9H2WqhHKlOGYppA
+        hO5dB6PZjlFrrNWl4DStQuf88vPGqi9GEDX5f1fOsREyylflqMSp+xDZ1eXUmf3E
+        vkcPgxKg1ZyPoQvD0/7Wf/Z9YqFFmFZOb+i5WG13UCA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=o1F01j
-        7WydKewpoMAwmV7IhtgkXHLvbfzpJz5nwwo1g=; b=ixjPOtYWl2rIM7tYso/Izc
-        f25RPBT8eHiKyS6aCDuqTmqoemGZ5K901CnyWYCTqUKlKl6HFcoz7AsJkXaseEoW
-        +yXjG2htet9H4J2JHBc/Ok29j6ot931P5LYpXatKACQfAQsQeWzhi8kOBRsQy26B
-        FK5FnirMFey1Ws5gIcgXJRVPAwdCqPWYXT0ALh0PGeATCuOnWXn82KauKtx8owht
-        I2VLd7WV8S7ZZVBKhtr3xi1SPiwLsJGV0pNttu98UABlghy3viU7aE9JFm7M05ud
-        uF4rzBFdxXk2zhY91gbWAwoj7PBzHvDbPqoFaNb/736ECZbx+DmPF01BhBFSiKWw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=XZ6rY7
+        5cmqr7UvehnpYsJbl4pPVfDKYpP2TSgwIX+LY=; b=SKW29gsGlS7zuSEEQSN0vT
+        7R2BswVCqK1z+PpISL1rG70UmrWVCkQK1O0UCvN69wrAaVL46+L7kj5QzXhyA4pd
+        9pDeL25L9BL/wxUtCANmBdNP7X6sc39wbgFxbIMZEYRvucWTL3E9y2XwFq9OMt8B
+        mJjn+EyJMUgFcpIPRq7ZV88j6NzFlrQumMz/qZIY7O9NQ5yyQTK8XbevQqD+YZ8H
+        rA96IjRRmtcPOTye0eTcA4q5jLHtU7sHR5qA1VoRsFrT8Zn3pa81oDOlm5q2L4IM
+        neb+cljK4rTHUgR2s7xQOKWd7GeCMsFXV4j0Hb8sr1Ix2dpVmETk0sRlX8+cR4rA
         ==
-X-ME-Sender: <xms:GZASYK-uPPnTMNcZG657e3sXcmmpmWgOvxkHMNN_ZxFv-RzXNFOAqg>
-    <xme:GZASYIioO0iw7qlAfBF6zxwFJc50BzqwbTC2jFUhUD8XmFfTxEzOTyNy_dalEXdlY
-    ucxsqYMfbi54aaA4Ks>
+X-ME-Sender: <xms:pZASYMZGmRk5yGru3TOH3XSI0SpCEPqgY9C0ERUy5VhAWQqxO7NxIw>
+    <xme:pZASYHYiV9acXy63_9508wTKzeeMBd68p3sJqBQHXoQ3leMZ2DFtmwdwgGG_sUiTj
+    aV8bEisnqVmGXlJk1Y>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedtgddufecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
     ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
     gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurf
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:GpASYKcnclUfG3-tthu6vSO6nNA80lw5TgQxExX8K5Ne2K26yW8rPQ>
-    <xmx:GpASYPo5xZ-HYhM8KKWaQJzUeiV3kHV_uZZdTViSAfupGGM7qcaBxQ>
-    <xmx:GpASYPBec_9R12B_yNcpK6g1AJWReS8k1mah3uRp4jfN6DSPQfRkOw>
-    <xmx:GpASYO_FjOXizhl5M6MofYbfkY_mIwtaTZPpf-wWaNYhhSyums3j7Q>
+X-ME-Proxy: <xmx:pZASYG8IOJxow-aZkvw-Aq2URMo226ilMutQFz_3_BVQjgtNnxvEgg>
+    <xmx:pZASYGq9pihJMMntc2BTT9Nbrke3T2QrHSXxEnB9fEmRaBMCu6KELg>
+    <xmx:pZASYHqmJ-PekSyJwXLOWq_5zGU3NqWctmxB2JPf6sHaes3ifBsXEg>
+    <xmx:ppASYDI2RuqD8QuO72L8iKAkE5wj0paJHdt5MybCIuOfoMn3Fu6kAw>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id C513024005B;
-        Thu, 28 Jan 2021 05:21:13 -0500 (EST)
-Date:   Thu, 28 Jan 2021 11:21:12 +0100
+        by mail.messagingengine.com (Postfix) with ESMTPA id 9F5D3240057;
+        Thu, 28 Jan 2021 05:23:33 -0500 (EST)
+Date:   Thu, 28 Jan 2021 11:23:32 +0100
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
-        Samuel Holland <samuel@sholland.org>,
-        Icenowy Zheng <icenowy@aosc.io>, Rob Herring <robh@kernel.org>,
-        =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 15/20] dt-bindings: net: sun8i-emac: Add H616
- compatible string
-Message-ID: <20210128102112.vm56eh3s3rh7lkgv@gilmour>
-References: <20210127172500.13356-1-andre.przywara@arm.com>
- <20210127172500.13356-16-andre.przywara@arm.com>
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/2] soc: sunxi: mbus: Remove DE2 display engine
+ compatibles
+Message-ID: <20210128102332.3e6i63epnu4pyceg@gilmour>
+References: <20210115175831.1184260-1-paul.kocialkowski@bootlin.com>
+ <20210115175831.1184260-2-paul.kocialkowski@bootlin.com>
+ <YBFkh/faoPnTRZtl@aptenodytes>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="cux2x6cmcw4jyobt"
+        protocol="application/pgp-signature"; boundary="dhm3aq36fwshxmlu"
 Content-Disposition: inline
-In-Reply-To: <20210127172500.13356-16-andre.przywara@arm.com>
+In-Reply-To: <YBFkh/faoPnTRZtl@aptenodytes>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---cux2x6cmcw4jyobt
+--dhm3aq36fwshxmlu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 27, 2021 at 05:24:55PM +0000, Andre Przywara wrote:
-> Add the obvious compatible name to the existing EMAC binding, and pair
-> it with the existing A64 fallback compatible string, as the devices are
-> compatible.
+On Wed, Jan 27, 2021 at 02:03:03PM +0100, Paul Kocialkowski wrote:
+> Hi,
 >=20
-> On the way use enums to group the compatible devices together.
+> On Fri 15 Jan 21, 18:58, Paul Kocialkowski wrote:
+> > The DE2 display engine hardware takes physical addresses that do not
+> > need PHYS_BASE subtracted. As a result, they should not be present
+> > on the mbus driver match list. Remove them.
+> >=20
+> > This was tested on the A83T, along with the patch allowing the DMA
+> > range map to be non-NULL and restores a working display.
 >=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Could we get this merged ASAP (in this RC cycle), hopefully with the patch
+> that superseded 1/2 from this series so that we don't end up with either
+> CSI or DE2 broken in the next release?
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+I just applied it
 
 Maxime
 
---cux2x6cmcw4jyobt
+--dhm3aq36fwshxmlu
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBKQGAAKCRDj7w1vZxhR
-xZ92AP0ROVkOZpa9Z71Kb4jYY0e9OS84wrIIbSGmVuEi0cFALAEAwCLkw8DhekGs
-kZ+xN9CL8RIYRqxBjkjfZTS4ohFOewM=
-=ZjAD
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBKQpAAKCRDj7w1vZxhR
+xXU2AQDNobRB5Qb8nVgu+X90jUJ+LUMOvjrOxUHztFlhy3Sd1QD/fkTRAOhfzVVh
+IhTj0/Ka77jsmN6JEUQQLqmSiOcdoQQ=
+=YOWo
 -----END PGP SIGNATURE-----
 
---cux2x6cmcw4jyobt--
+--dhm3aq36fwshxmlu--
