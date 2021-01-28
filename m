@@ -2,120 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF0C1306AD4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 02:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F96C306AF9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 03:18:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229808AbhA1B6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 20:58:55 -0500
-Received: from mail-lf1-f50.google.com ([209.85.167.50]:40744 "EHLO
-        mail-lf1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbhA1B6r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 20:58:47 -0500
-Received: by mail-lf1-f50.google.com with SMTP id v24so5489224lfr.7;
-        Wed, 27 Jan 2021 17:58:30 -0800 (PST)
+        id S229528AbhA1CSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 21:18:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229545AbhA1CSm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 21:18:42 -0500
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50655C061574
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 18:18:02 -0800 (PST)
+Received: by mail-pg1-x542.google.com with SMTP id i7so3270597pgc.8
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 18:18:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M6xZQukm+CkMsW6GYQx3SquyaTLPH3j72H16IX2xsEM=;
+        b=lGq5IhuzZfmx24uYWHzwbXwNkG0Knk79MCA+h6lkKcG9uLIBw7iHHlLcadtEXEcSNb
+         ixl19ilEJTT+3kYs7bn1T3WUAKej01gtRif9Y3RV72ncmyqB/v9HXjko07yRRjLm1aK/
+         p9SfPtVvp8i2ZHd7Hr575p1/Uy+rhPB9UzXKs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wkjX79VSu7ANi8U/i08AlnqB5Gw1OOSgD3fDEXSZ3Ps=;
-        b=Z0rd5QLWYMvmqUed/IeuPfED3zZmkY3JLM+Myb7JweDyP/81GAdiQLyzr6gmFDfyQR
-         Gdoi3yGVXQYTkMFuc6BDD9QYBhAsATLDFP1NwqjwbsqNp+H2124isBwcL7l7DvbO2sc3
-         6x1wUlaop2NIyen7qZ3/ICgeiH9SfRpLeK6UcC7sPmtWioHHygjNIMZ1ZxUvE96Pslzl
-         bnD8xhiiIQAIlWdENbBP6A3dnI0BMFUEG0UAt9lZ8Zxw7zJHpZs+caDNDwQKC0dJ3kRd
-         A2XNMfHq2LwPynE6sgFJqSNIJrvhzmftA5kZEm74wp8ys2mh7N4EL4UZzCSJuGc6mZPA
-         BXoA==
-X-Gm-Message-State: AOAM531u8FbEq7kU6466Zn3P3VhRLCEd80xYnFieuwa6hWGNT2OamiYl
-        +U7R74gl5vrhnd93V4imyQb4BVk3Kd5Bow==
-X-Google-Smtp-Source: ABdhPJzyYAs5oeq3ncblGZrKKonoYXGoMGPKhdJ2O2Mghhjm1R0gDoy2xphXaMKN3ApyKoH+QRoQoA==
-X-Received: by 2002:ac2:5f05:: with SMTP id 5mr6614235lfq.127.1611799084324;
-        Wed, 27 Jan 2021 17:58:04 -0800 (PST)
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com. [209.85.167.45])
-        by smtp.gmail.com with ESMTPSA id z5sm1043966lfe.64.2021.01.27.17.58.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jan 2021 17:58:04 -0800 (PST)
-Received: by mail-lf1-f45.google.com with SMTP id f1so5522363lfu.3;
-        Wed, 27 Jan 2021 17:58:04 -0800 (PST)
-X-Received: by 2002:ac2:5293:: with SMTP id q19mr6209580lfm.303.1611799083861;
- Wed, 27 Jan 2021 17:58:03 -0800 (PST)
-MIME-Version: 1.0
-References: <20210118055040.21910-1-samuel@sholland.org> <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
- <08e9bc97-c18d-9b8f-28be-3892d77730bf@sholland.org> <20210122104705.bo2x22ef56hdj26q@gilmour>
- <52b9c9bb-ff75-d1e6-e198-0d388d1c6d73@sholland.org> <20210125105626.fz75dxhi6f7jtcqm@gilmour>
-In-Reply-To: <20210125105626.fz75dxhi6f7jtcqm@gilmour>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Thu, 28 Jan 2021 09:57:52 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66ksNb+hvqMd6-9_TNoffgZ=-NgfX+gpFvT9kDnSrp0bw@mail.gmail.com>
-Message-ID: <CAGb2v66ksNb+hvqMd6-9_TNoffgZ=-NgfX+gpFvT9kDnSrp0bw@mail.gmail.com>
-Subject: Re: [PATCH v5 00/10] sunxi: Support IRQ wakeup from deep sleep
-To:     Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <maxime@cerno.tech>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M6xZQukm+CkMsW6GYQx3SquyaTLPH3j72H16IX2xsEM=;
+        b=l7GwiJLU+iqTsPEzaMPkFzfNEMzZJNWFc0B0O95m8D5SmA+ySvo0WmWFPSRvs1IQwp
+         Ccj0kVthW8Euu+w47+Xk2XpqZiy0uXxUB9M0nEeq6l138iMjxgBJDkhBEptsU92L5H5T
+         TxkUs68S8A8mDn4Wmw5oUXNCmcG/AAO0/2v/1JUQPLTQX93K+FwDwxvtYRp6QiBkh6OD
+         FQPK+CG7zY8ZyxxnUryfkw6xbGflVc1JQs34aliTjLLln4FGZ4cNEhUYQheTdH+pySVk
+         PFHljhWwCGzeXLofsfqiYVZoK/8Fo4HNzO+CXbcDEue603C6ZhIB4/YfiV1defnn6GVh
+         DpKw==
+X-Gm-Message-State: AOAM532wPrDfao4QfitrnZpemIqPOBfYArXFuE/Jk3eVyVaf3E7oHGK6
+        BsE/FZ9WRRwwvN6WGzrMuMqpsA==
+X-Google-Smtp-Source: ABdhPJxWGqd7Knme1438Y32UV4uKZqCrSWv7RwnfynJSMW2KE+AWz0H1QgoM3o5FL+QOw+6l/d/ukQ==
+X-Received: by 2002:a05:6a00:15d2:b029:1b7:30c1:8495 with SMTP id o18-20020a056a0015d2b02901b730c18495mr13462477pfu.32.1611800281804;
+        Wed, 27 Jan 2021 18:18:01 -0800 (PST)
+Received: from judyhsiao-p920.tpe.corp.google.com ([2401:fa00:1:10:a53b:f71a:ed56:92d8])
+        by smtp.gmail.com with ESMTPSA id 101sm3162508pjo.38.2021.01.27.18.17.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Jan 2021 18:18:00 -0800 (PST)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+X-Google-Original-From: Judy Hsiao <judyhsiao@google.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Ondrej Jirman <megous@megous.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
+        dgreid@chromium.org, cychiang@google.com, tzungbi@chromium.org,
+        swboyd@chromium.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, Judy Hsiao <judyhsiao@google.com>,
+        Judy Hsiao <judyhsiao@chromium.org>
+Subject: [PATCH] drm/msm/dp: trigger unplug event in msm_dp_display_disable
+Date:   Thu, 28 Jan 2021 10:17:53 +0800
+Message-Id: <20210128021753.2560931-1-judyhsiao@google.com>
+X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 6:56 PM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> On Sat, Jan 23, 2021 at 12:26:26AM -0600, Samuel Holland wrote:
-> > On 1/22/21 4:47 AM, Maxime Ripard wrote:
-> > > On Thu, Jan 21, 2021 at 07:33:54PM -0600, Samuel Holland wrote:
-> > >> On 1/21/21 2:35 PM, Marc Zyngier wrote:
-> > >>> On Sun, 17 Jan 2021 23:50:30 -0600, Samuel Holland wrote:
-> > >>>> Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
-> > >>>> controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC handles
-> > >>>> the external NMI pin, and provides 32+ IRQs to the ARISC. The first 16
-> > >>>> of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
-> > >>>> The last 13-16 multiplex the first (up to) 128 GIC SPIs.
-> > >>>>
-> > >>>> This series replaces the existing chained irqchip driver that could only
-> > >>>> control the NMI, with a stacked irqchip driver that also provides wakeup
-> > >>>> capability for those multiplexed SPI IRQs. The idea is to preconfigure
-> > >>>> the ARISC's IRQ controller, and then the ARISC firmware knows to wake up
-> > >>>> as soon as it receives an IRQ. It can also decide how deep it can
-> > >>>> suspend based on the enabled wakeup IRQs.
-> > >>>>
-> > >>>> [...]
-> > >>>
-> > >>> Applied to irq/irqchip-5.12, thanks!
-> > >>>
-> > >>> [01/10] dt-bindings: irq: sun6i-r: Split the binding from sun7i-nmi
-> > >>>         commit: ad6b47cdef760410311f41876b21eb0c6fda4717
-> > >>> [02/10] dt-bindings: irq: sun6i-r: Add a compatible for the H3
-> > >>>         commit: 6436eb4417094ea3308b33d8392fc02a1068dc78
-> > >>> [03/10] irqchip/sun6i-r: Use a stacked irqchip driver
-> > >>>         commit: 4e34614636b31747b190488240a95647c227021f
-> > >>> [04/10] irqchip/sun6i-r: Add wakeup support
-> > >>>         commit: 7ab365f6cd6de1e2b0cb1e1e3873dbf68e6f1003
-> > >>>
-> > >>> Please route the dts patches via the soc tree. Also, I had to
-> > >>> manually fix the first patch as it wouldn't apply on top of
-> > >>> 5.11-rc4 (which tree has it been diffed against?). Please
-> > >>> check that the resolution is correct.
-> > >>
-> > >> This series was based on sunxi/for-next, which contains commit
-> > >> 752b0aac99c7 ("dt-bindings: irq: sun7i-nmi: Add binding documentation
-> > >> for the V3s NMI")[1].
-> > >
-> > > I assume merging the DT bits alone would break things? If so, I guess we
-> > > can wait for 5.12 to be released before merging it
-> >
-> > Patch 5 does not depend on the new driver, so it could be merged at any
-> > time. Yes, the remaining patches would break things if merged without
-> > the driver.
->
-> I've applied patch 5 then, could you send the rest of the DT patches
-> when 5.13-rc1 is out?
+1. Trigger the unplug event in msm_dp_display_disable() to shutdown
+   audio properly.
+2. Reset the completion before signal the disconnect event.
 
-I've put them in a for-5.13-late branch and merged them into for-next.
-This should get a bit of boot testing via KernelCI. Maybe we'll get to
-sending a late pull request for 5.13, maybe not.
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+---
+ drivers/gpu/drm/msm/dp/dp_display.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-ChenYu
+diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+index 3bc7ed21de286..81f6794a25100 100644
+--- a/drivers/gpu/drm/msm/dp/dp_display.c
++++ b/drivers/gpu/drm/msm/dp/dp_display.c
+@@ -651,8 +651,8 @@ static int dp_hpd_unplug_handle(struct dp_display_private *dp, u32 data)
+ 	dp_add_event(dp, EV_DISCONNECT_PENDING_TIMEOUT, 0, DP_TIMEOUT_5_SECOND);
+ 
+ 	/* signal the disconnect event early to ensure proper teardown */
+-	dp_display_handle_plugged_change(g_dp_display, false);
+ 	reinit_completion(&dp->audio_comp);
++	dp_display_handle_plugged_change(g_dp_display, false);
+ 
+ 	dp_catalog_hpd_config_intr(dp->catalog, DP_DP_HPD_PLUG_INT_MASK |
+ 					DP_DP_IRQ_HPD_INT_MASK, true);
+@@ -890,6 +890,9 @@ static int dp_display_disable(struct dp_display_private *dp, u32 data)
+ 
+ 	/* wait only if audio was enabled */
+ 	if (dp_display->audio_enabled) {
++		/* signal the disconnect event */
++		reinit_completion(&dp->audio_comp);
++		dp_display_handle_plugged_change(dp_display, false);
+ 		if (!wait_for_completion_timeout(&dp->audio_comp,
+ 				HZ * 5))
+ 			DRM_ERROR("audio comp timeout\n");
+-- 
+2.29.2
+
