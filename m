@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65F243071CC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 09:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D383071D0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 09:43:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231733AbhA1Ik6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 03:40:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52936 "EHLO
+        id S232009AbhA1IlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 03:41:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbhA1Ikz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 03:40:55 -0500
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C259C06174A
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:40:14 -0800 (PST)
-Received: by mail-pg1-x536.google.com with SMTP id o16so3834320pgg.5
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:40:14 -0800 (PST)
+        with ESMTP id S231759AbhA1IlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 03:41:01 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99126C061786
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:40:16 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id m6so3553144pfk.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:40:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=cJIAwStqssO4qlrJsU+DZexmUlk16AIgSgJEzjOLeeM=;
-        b=dhqfKN/9w8VsgNPrc1AXQXAmZwOdSjzVEaYFJ8O1aFkPq3+yVdEn2hzOaOmaJWa4AB
-         dykJLKZqrjHP9erkYh5RmFmxjAWrNe9ED1y1n8OH+8/iLZJkzURf4IEbru3xADFMN+2n
-         cq8CbP6KSQSRCAgLl4qZkcOhE0F75C8nHEBXU=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ObnRw+UwieoHw5e283GbHz774WubLDbRFDgtC/jAPyM=;
+        b=ZbwKx9ek06554ZjIa76NgqqDZ6YawaI0v367sDg45ccv7tchvKEciOKr07GuZeEVXm
+         cYi2B4+LabGQcNTWYVeR/jtx2ZMHCQP+53mpTC1XfhbPKXa4noOUrYZs9ziNlm94KaYN
+         9wsMF/Eqoz7WH+4nUYaGM94IjdsgZJMy7nGt4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=cJIAwStqssO4qlrJsU+DZexmUlk16AIgSgJEzjOLeeM=;
-        b=RkscmKQRuVYrGFcME1zHGStm1Qcpntfc/CC+LStVYXQgbCACyaTf9Vn6lnYvUvSajD
-         1ejnS1m/DYw2zLVsyntjDvgDhxD4ck1fsrq45CEMC4lwWyEYCt9swAJENR6zJdiivS6v
-         3b5uYWB4tAR5o0O3TyfbEvAjak7L3X1xQ07oqyiizmWkrhMT9e6rxQ8F5jhnpdbXh52W
-         xTsZfMbX2HT7g7IgH5NcfMbmLKsSWSSCR/GGVEbSRbIyh9AjStmvam3sdJaZQL2KUnOG
-         zEE4LVxDGLcHSsTIuFb9HbGE17vlXDIP1sK0mWgV0oLmVcv7jTuOFV353HMX+iZ0RHOw
-         JkCQ==
-X-Gm-Message-State: AOAM532D8w3uMb1uEqbTl5K/wjWi8T7UC+/9T6Z3GTG08uL26iYh7Zs6
-        LbACZGZ0YCA5yCpQrWAWYTrGsw==
-X-Google-Smtp-Source: ABdhPJwdTxInMeMQs7wJ0rshDGS+Vl3qWenVzQEcjNEcW2sCGquJ2dqyyBLsunFSKhTq0+2R1e+D2w==
-X-Received: by 2002:a63:7051:: with SMTP id a17mr15299011pgn.26.1611823213816;
-        Thu, 28 Jan 2021 00:40:13 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ObnRw+UwieoHw5e283GbHz774WubLDbRFDgtC/jAPyM=;
+        b=ET8JWvj0pcMuFnRIGyyM+r2nsAMy6xc35+vomibALLy9vVedwC+qg+7M6IAENF3j+c
+         QP4H88CVhJHPgZ5LkC5EYcz2J8fW+qNK8B4FPwCVgLxjzhAUAPw0zZkp81D9oWZ6EXqY
+         iv1L6K4gGCSM0GYp+Cdgx1y7/p9diVQMGPrVKAqe7J431Be6w8havgYF4t6N2AX2F/SH
+         l2V0byMJO3nR+WsNUDaCK8I75gIMzx88X5w79u5NWtZA5Z5SpnPHHwjXhPatyIobLhyi
+         AOGGUs/+yl19fvqzf9jalKPFEo7wlr3VmKt4rd7N4vOfPa4MZSH8a8CR2RESD+3ZNSPz
+         n9aw==
+X-Gm-Message-State: AOAM531ywcFyHEj7L2hV5fYe+rd5ms5rSnG+mS22AmYghneVo2bVmc2n
+        /pkH+mDay5/U3p+Bxl5pSAJSzA==
+X-Google-Smtp-Source: ABdhPJxcS1SEeMZhYeszPxfpDT7lIOhORsQWrdlWcS7FnoBFUApULusKLFQQw7C2YUA/uoec7asrCw==
+X-Received: by 2002:a63:2214:: with SMTP id i20mr15168549pgi.189.1611823216259;
+        Thu, 28 Jan 2021 00:40:16 -0800 (PST)
 Received: from smtp.gmail.com ([2620:15c:202:201:304c:5453:303a:8268])
-        by smtp.gmail.com with ESMTPSA id y22sm4951757pfr.163.2021.01.28.00.40.12
+        by smtp.gmail.com with ESMTPSA id y22sm4951757pfr.163.2021.01.28.00.40.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jan 2021 00:40:13 -0800 (PST)
+        Thu, 28 Jan 2021 00:40:15 -0800 (PST)
 From:   Stephen Boyd <swboyd@chromium.org>
 To:     Jonathan Cameron <jic23@kernel.org>
 Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
@@ -53,39 +53,22 @@ Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
         Gwendal Grignou <gwendal@chromium.org>,
         devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCHv3 0/3] iio: Add a ChromeOS EC MKBP proximity driver
-Date:   Thu, 28 Jan 2021 00:40:08 -0800
-Message-Id: <20210128084011.3270281-1-swboyd@chromium.org>
+Subject: [PATCH v3 2/3] dt-bindings: iio: Add cros ec proximity yaml doc
+Date:   Thu, 28 Jan 2021 00:40:10 -0800
+Message-Id: <20210128084011.3270281-3-swboyd@chromium.org>
 X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
+In-Reply-To: <20210128084011.3270281-1-swboyd@chromium.org>
+References: <20210128084011.3270281-1-swboyd@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a different approach to [1] where I tried to add this proximity
-sensor logic to the input subsystem. Instead, we'll take the approach of
-making a small IIO proximity driver that parses the EC switch bitmap to
-find out if the front proximity sensor is detecting something or not.
-This allows us to treat proximity sensors as IIO devices all the time in
-userspace instead of handling this switch on the EC via the input
-subsystem and then other proximity sensors via IIO.
-
-I propose this is all merged through IIO subsystem. Please ack
-the first patch so it can be merged that way.
-
-Changes from v2:
- * Check iio clock and use IIO time if not boottime
-
-Changes from v1:
- * Driver moved location
- * Put mkbp everywhere
- * Fixed up DT binding to not fail and make sure is a child of cros-ec
- * Simplified logic for sending a message
- * Dropped CONFIG_OF usage
- * Sorted includes
-
-[1] https://lore.kernel.org/r/20201205004709.3126266-1-swboyd@chromium.org
+Some cros ECs support a front proximity MKBP event via
+'EC_MKBP_FRONT_PROXIMITY'. Add a DT binding to document this feature via
+a node that is a child of the main cros_ec device node. Devices that
+have this ability will describe this in firmware.
 
 Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 Cc: Benson Leung <bleung@chromium.org>
@@ -94,24 +77,79 @@ Cc: Douglas Anderson <dianders@chromium.org>
 Cc: Gwendal Grignou <gwendal@chromium.org>
 Cc: <devicetree@vger.kernel.org>
 Cc: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
 
-Stephen Boyd (3):
-  platform/chrome: cros_ec: Add SW_FRONT_PROXIMITY MKBP define
-  dt-bindings: iio: Add cros ec proximity yaml doc
-  iio: proximity: Add a ChromeOS EC MKBP proximity driver
+Changes from v2:
+ * None
 
- .../google,cros-ec-mkbp-proximity.yaml        |  38 +++
- .../bindings/mfd/google,cros-ec.yaml          |   3 +
- drivers/iio/proximity/Kconfig                 |  11 +
- drivers/iio/proximity/Makefile                |   1 +
- .../iio/proximity/cros_ec_mkbp_proximity.c    | 245 ++++++++++++++++++
- .../linux/platform_data/cros_ec_commands.h    |   1 +
- 6 files changed, 299 insertions(+)
+Changes from v1:
+ * Added additionalProperties
+ * Included proximity in cros-ec yaml
+
+ .../google,cros-ec-mkbp-proximity.yaml        | 38 +++++++++++++++++++
+ .../bindings/mfd/google,cros-ec.yaml          |  3 ++
+ 2 files changed, 41 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
- create mode 100644 drivers/iio/proximity/cros_ec_mkbp_proximity.c
 
-
-base-commit: 19c329f6808995b142b3966301f217c831e7cf31
+diff --git a/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+new file mode 100644
+index 000000000000..c3141c2be286
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/iio/proximity/google,cros-ec-mkbp-proximity.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ChromeOS EC MKBP Proximity Sensor
++
++maintainers:
++  - Stephen Boyd <swboyd@chromium.org>
++  - Benson Leung <bleung@chromium.org>
++  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
++
++description: |
++  Google's ChromeOS EC sometimes has the ability to detect user proximity.
++  This is implemented on the EC as near/far logic and exposed to the OS
++  via an MKBP switch bit.
++
++properties:
++  compatible:
++    const: google,cros-ec-mkbp-proximity
++
++  label:
++    description: Name for proximity sensor
++
++required:
++  - compatible
++
++unevaluatedProperties: false
++additionalProperties: false
++
++examples:
++  - |
++    proximity {
++        compatible = "google,cros-ec-mkbp-proximity";
++        label = "proximity-wifi-lte";
++    };
+diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+index 76bf16ee27ec..479a9f15de32 100644
+--- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
++++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+@@ -94,6 +94,9 @@ properties:
+   keyboard-controller:
+     $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
+ 
++  proximity:
++    $ref: "/schemas/iio/proximity/google,cros-ec-mkbp-proximity.yaml#"
++
+   codecs:
+     type: object
+     additionalProperties: false
 -- 
 https://chromeos.dev
 
