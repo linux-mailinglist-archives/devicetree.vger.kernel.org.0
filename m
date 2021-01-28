@@ -2,100 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DD04307146
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 09:20:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96B8330714D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 09:20:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231992AbhA1ISX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 03:18:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48072 "EHLO
+        id S231433AbhA1ITz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 03:19:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231915AbhA1ISQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 03:18:16 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5925EC061574
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:17:36 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id q8so6433539lfm.10
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:17:36 -0800 (PST)
+        with ESMTP id S231351AbhA1ITt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 03:19:49 -0500
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B7F1C061574
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:19:09 -0800 (PST)
+Received: by mail-io1-xd34.google.com with SMTP id e22so4695150iog.6
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:19:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=6UUPO56zRHIcd1GGmE9q6C6hc7jbcbMJSOt0JbCE1PY=;
-        b=tNYn5HjEhmrxYsyOI6paQCtk4XutacdpJb6s45x4bcruVIEvtNaxmpI9bJvYDCKQQB
-         Maob1jxRcCHcmkx8Lu1JMQJ6pPdzo2f1ULgSzSnWIRBIkSAqGevrWQP4HtHitu/3xcgd
-         CQE+RPWdOI0LSfqkfdmsVPVeUHV2k+RmxLX+s/m3EIncRDg70Rh9mXZzOwzw6yYORuXu
-         XTHj7vmhuM+MGb8f6Znn1vjAfpaElwdmvyoMwjG8+Kx5RdEkLzHHKoVQKVFUGr1qJ/3D
-         lQbY9P3QTQ9whmaremBq+ZaqzIoI80BKYXLlfJsceuKvi+n4GVTu5qztMwFudfAFkfBq
-         7XGQ==
+        bh=D7f6UU2qkF6tlfnpAtMyZPF2/NarOHZ3GCaIjhXM6L0=;
+        b=fjajd1fs13FXI1cwZk2oFUi5FQfh8MPatCfNKVQX6Cxj3tweQcGm5mhSnSW+p1zxGb
+         oct6v7dmwRo82UfRdmMir/41Y5VGMNzFmlUpt8CXj/JY1M3tre7vlqU4kwz3wxP3WmJn
+         bg1D+LQEK+KbPe6LYSC4IDGZ8dYPmZu3m+v20=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=6UUPO56zRHIcd1GGmE9q6C6hc7jbcbMJSOt0JbCE1PY=;
-        b=Rf/PSIqQzEUs5vI6qCOB/8kfGkYbqIbYvecI7dJDvGdbjQwetzTR/15cSXc2YbjyIR
-         kuXBVapDGBvpWtGB3e3tV3E9rA63HdzMLap0c+oKe1JxiFr2tLACut3ZvZNvXqk/8ktU
-         VPtOp5ayXtNZPwbWO1SqpJyeGJjgSnUGlQaIHgjOPIL8WcQs+55M9L/gXk+mDlGXxzo7
-         h20CgPexx2D0+AyjN9GEoQj7cOH+c9WXB6cut0/CTRioueOTyGLHFbR+STOhlLwh5QAL
-         m9NiMvLaSqSmr9lHBU878xoZlyIdnVHIEeJXwk47WY5LYE5e0fyKxBb/HdkIWF+ZctcU
-         U2zA==
-X-Gm-Message-State: AOAM530U8nmwfDY5SSxweEMeEzWscN40lpeta2Ae4/gaBTRhFntKrpLr
-        Mu6fiDFmwQXfJtjSVV9bQPcTK5l1m1Pb1cwrHJbpHA==
-X-Google-Smtp-Source: ABdhPJyFkTnYADY3GMqkCQcxbWIGND0JGm60R62dLMZIsQBHeSNbgkO3acjUCd+bes6A0vp2FBcf6/8Zf58N3zwRMfk=
-X-Received: by 2002:a19:b8e:: with SMTP id 136mr7276317lfl.29.1611821854852;
- Thu, 28 Jan 2021 00:17:34 -0800 (PST)
+        bh=D7f6UU2qkF6tlfnpAtMyZPF2/NarOHZ3GCaIjhXM6L0=;
+        b=j81m++nsXc6lKXcQ1yKpG3jdHhOYgKiOAYurot1xNS2/41qp2PhP1l5Haq+PeMvNN4
+         azaoO0uec2u8hSPzj9Flw/H649HcteVyNlYGM4V55SiNzCJiVa0uJTkeGsPRV2SDVzIj
+         4Ysg3FUJUts9O55jLSKZqblAjIAnV87PZzCPxdErlutCoNsPVcPreEaQmspX5+magUcV
+         lD/Bpy8BD+/j1bNANw4zBatemsjLJ5De3weliIYE0GhNATsvwVtuOXubJjmfF24ndew8
+         tjvy4BBn/qwFXt314oogIzLmOgL5qosZHWcQChMKFMbaMUf60hdQACYrJue3W8oDiCW8
+         PaIA==
+X-Gm-Message-State: AOAM531tLjdLbqWb3XGjaZlFh+5RPuFoFW/1vAUnSgt1fe5CK6fM5v0S
+        n1YKUjvrwmbyiwhfy8JNWkpZjF97H2IL4DS/sEFE+A==
+X-Google-Smtp-Source: ABdhPJy8CohiK7DuY6bT4ie39DRCyEWXlmXddonmwi5vsWuH4gheLsdx40UweC8SKCWBOA6AM66CZddl24p81cDx0hM=
+X-Received: by 2002:a05:6638:b12:: with SMTP id a18mr12268624jab.114.1611821948718;
+ Thu, 28 Jan 2021 00:19:08 -0800 (PST)
 MIME-Version: 1.0
-References: <20210126131239.8335-1-o.rempel@pengutronix.de> <20210126131239.8335-2-o.rempel@pengutronix.de>
-In-Reply-To: <20210126131239.8335-2-o.rempel@pengutronix.de>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 28 Jan 2021 09:17:23 +0100
-Message-ID: <CACRpkdY2XYi2jqYiXaBUfRO1+UEK3QCC8JQ0duENVGoOfYTmBA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: counter: add pulse-counter binding
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio <linux-iio@vger.kernel.org>
+References: <20210128072802.830971-1-hsinyi@chromium.org> <20210128072802.830971-8-hsinyi@chromium.org>
+ <1611819766.16091.4.camel@mtksdaap41> <1611820770.1947.8.camel@mhfsdcap03>
+ <1611821233.18369.4.camel@mtksdaap41> <1611821396.1947.10.camel@mhfsdcap03>
+In-Reply-To: <1611821396.1947.10.camel@mhfsdcap03>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Thu, 28 Jan 2021 16:18:42 +0800
+Message-ID: <CAJMQK-h1_d1+SpxMC8LGPJK=X9HHoJ_ueFzV2Sq44buCiaXFUA@mail.gmail.com>
+Subject: Re: [PATCH v11 7/9] drm/mediatek: enable dither function
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Oleksij,
-
-thanks for your patch!
-
-On Tue, Jan 26, 2021 at 2:15 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-
-> Add binding for the pulse counter node
+On Thu, Jan 28, 2021 at 4:10 PM Yongqiang Niu
+<yongqiang.niu@mediatek.com> wrote:
 >
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-(...)
+> On Thu, 2021-01-28 at 16:07 +0800, CK Hu wrote:
+> > On Thu, 2021-01-28 at 15:59 +0800, Yongqiang Niu wrote:
+> > > On Thu, 2021-01-28 at 15:42 +0800, CK Hu wrote:
+> > > > Hi, Hsin-Yi:
+> > > >
+> > > > On Thu, 2021-01-28 at 15:28 +0800, Hsin-Yi Wang wrote:
+> > > > > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > > > >
+> > > > > for 5 or 6 bpc panel, we need enable dither function
+> > > > > to improve the display quality
+> > > > >
+> > > > > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > > > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > > > > ---
+> > > > >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 44 ++++++++++++++++++++-
+> > > > >  1 file changed, 43 insertions(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > > index 8173f709272be..e85625704d611 100644
+> > > > > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > > @@ -53,7 +53,9 @@
+> > > > >  #define DITHER_EN                              BIT(0)
+> > > > >  #define DISP_DITHER_CFG                                0x0020
+> > > > >  #define DITHER_RELAY_MODE                      BIT(0)
+> > > > > +#define DITHER_ENGINE_EN                       BIT(1)
+> > > > >  #define DISP_DITHER_SIZE                       0x0030
+> > > > > +#define DITHER_REG(idx)                                (0x100 + (idx) * 4)
+> > > > >
+> > > > >  #define LUT_10BIT_MASK                         0x03ff
+> > > > >
+> > > > > @@ -313,8 +315,48 @@ static void mtk_dither_config(struct device *dev, unsigned int w,
+> > > > >  {
+> > > > >         struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
+> > > > >
+> > > > > +       bool enable = false;
+> > > > > +
+> > > > > +       /* default value for dither reg 5 to 14 */
+> > > > > +       const u32 dither_setting[] = {
+> > > > > +               0x00000000, /* 5 */
+> > > > > +               0x00003002, /* 6 */
+> > > > > +               0x00000000, /* 7 */
+> > > > > +               0x00000000, /* 8 */
+> > > > > +               0x00000000, /* 9 */
+> > > > > +               0x00000000, /* 10 */
+> > > > > +               0x00000000, /* 11 */
+> > > > > +               0x00000011, /* 12 */
+> > > > > +               0x00000000, /* 13 */
+> > > > > +               0x00000000, /* 14 */
+> > > >
+> > > > Could you explain what is this?
+> > >
+> > > this is dither 5 to dither 14 setting
+> > > this will be useless, we just need set dither 5 and dither 7 like
+> > > mtk_ddp_write(cmdq_pkt, 0, comp, DISP_DITHER_5);
+> > > mtk_ddp_write(cmdq_pkt, 0, comp, DISP_DITHER_7);
+> > > other value is same with hardware default value.
+> > >
+> > >
+> > > >
+> > > > > +       };
+> > > > > +
+> > > > > +       if (bpc == 5 || bpc == 6) {
+> > > > > +               enable = true;
+> > > > > +               mtk_ddp_write(cmdq_pkt,
+> > > > > +                             DITHER_LSB_ERR_SHIFT_R(MTK_MAX_BPC - bpc) |
+> > > > > +                             DITHER_ADD_LSHIFT_R(MTK_MAX_BPC - bpc) |
+> > > > > +                             DITHER_NEW_BIT_MODE,
+> > > > > +                             &priv->cmdq_reg, priv->regs, DITHER_REG(15));
+> > > > > +               mtk_ddp_write(cmdq_pkt,
+> > > > > +                             DITHER_LSB_ERR_SHIFT_B(MTK_MAX_BPC - bpc) |
+> > > > > +                             DITHER_ADD_LSHIFT_B(MTK_MAX_BPC - bpc) |
+> > > > > +                             DITHER_LSB_ERR_SHIFT_G(MTK_MAX_BPC - bpc) |
+> > > > > +                             DITHER_ADD_LSHIFT_G(MTK_MAX_BPC - bpc),
+> > > >
+> > > > This result in 0x50505050, but previous version is 0x50504040, so this
+> > > > version is correct and previous version is incorrect?
+> > >
+> > > the new version set r g b 3 channel same, seams more reasonable
+> > >
+> > >
+> >
+> > So all the setting of DISP_DITHER_5, DISP_DITHER_7, DISP_DITHER_15,
+> > DISP_DITHER_16 is identical to mtk_dither_set(), so call
+> > mtk_dither_set() instead of duplication here.
+> >
+>
+> dither enable set in mtk_dither_set is
+> mtk_ddp_write(cmdq_pkt, DISP_DITHERING, comp, CFG);
+>
+> that is different 8183 and mt8192.
+> mt8173 dither enable in gamma is bit2
+> mt8183 and mt8192 dither engine enable is bit 1
+>
+>
 
-> +properties:
-> +  compatible:
-> +    const: virtual,pulse-counter
+We can still call mtk_dither_set() for bpc is 5 or 6 here, though it
+will be set to bit2,
+but later in mtk_ddp_write(cmdq_pkt, enable ? DITHER_ENGINE_EN :
+DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs, DISP_DITHER_CFG); it
+will be correct back to bit 1.
 
-What is so virtual about this? The device seems very real.
-However it is certainly a GPIO counter.
+Is this reasonable?
 
-I would call it "gpio-counter" simply.
-
-Define:
-  $nodename:
-     pattern: "^counter(@.*)?$"
-
-> +    counter-0 {
-
-counter@0 {
-
-> +    counter-1 {
-
-counter@1 {
-
-Thanks!
-Linus Walleij
+> > Regards,
+> > CK
+> > > >
+> > > > Regards,
+> > > > CK
+> > > >
+> > > > > +                             &priv->cmdq_reg, priv->regs, DITHER_REG(16));
+> > > > > +       }
+> > > > > +
+> > > > > +
+> > > > > +       if (enable) {
+> > > > > +               u32 idx;
+> > > > > +
+> > > > > +               for (idx = 0; idx < ARRAY_SIZE(dither_setting); idx++)
+> > > > > +                       mtk_ddp_write(cmdq_pkt, dither_setting[idx], &priv->cmdq_reg, priv->regs,
+> > > > > +                                     DITHER_REG(idx + 5));
+> > > > > +       }
+> > > > > +
+> > > > >         mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs, DISP_DITHER_SIZE);
+> > > > > -       mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs, DISP_DITHER_CFG);
+> > > > > +        mtk_ddp_write(cmdq_pkt, enable ? DITHER_ENGINE_EN : DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs, DISP_DITHER_CFG);
+> > > > >  }
+> > > > >
+> > > > >  static void mtk_dither_start(struct device *dev)
+> > > >
+> > > >
+> > >
+> > >
+> >
+> >
+>
