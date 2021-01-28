@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00BCC307570
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 13:05:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA15E307574
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 13:05:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231462AbhA1MCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 07:02:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39486 "EHLO
+        id S231193AbhA1MDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 07:03:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231557AbhA1MBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 07:01:53 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 765BEC061574
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 04:01:12 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id u4so4459188ljh.6
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 04:01:12 -0800 (PST)
+        with ESMTP id S231265AbhA1MCp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 07:02:45 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB85CC061573
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 04:02:04 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id f1so7257871lfu.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 04:02:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=n9EOKkeTY2+d1Fa4iHB/4cHa37Z0fzFo4OzOK4oM6Q4=;
-        b=F/CmSMOuSr5zNpyIz8oDpfs0uxO2NhcU5b2INzxjrItESHLsnvvNX/yf1410eKA9ve
-         VQpoXLUK241FEkj9ofwBDSWNFjyOlJ1/B0w503sD1RjI/Sv8Mpy9AuKTl4v9unPAbVpt
-         o2NhCHR1kO8BzF2uLKVtJlY/eb6hmEA6dxkoKIZIDA//svyJxEpWliH0+/KoPRpX6yuQ
-         xOaOhiqgJROQ4qzL4Ai4Vu8QEK7vHTmjcR+D0QSzio07rhzy0JmaMHDNZNHoYvUzzBdq
-         PIk0qSMqBACkwRrT1oeqoueNhsZKSRQyiROFe5pXaQq2lZ0IVc3HI0/lPCj4ym1EPKe0
-         BuLg==
+        bh=usfc03r7bo+9iWnGhn3YJY+bfRfQpQsiPPvtGVZjTJo=;
+        b=npthAUeo3rWK36iMclfXUXlzdH0VQDifjmso0bBCFVXOyQtra7DzyHgEmzJCt30dt/
+         SJ9fMz6E+ZXbymrWtxziw9opC0BGbilGWBJXbYZg/g+BYXgWz07+qrex1EOMXMqIpzpE
+         6jYfIeX/eLZOEM3VQR+NV2YEMCt5h3yT2zkYs2fBjC+YshcbiveecNrV2CoAJtG6ZVel
+         ii8PNYw1BYp2K+WyqndwkTLNHTfxmpxwnUysv03/L8DCd9xBIWL+Ex04T8ZFQN2SR4Jv
+         XJrieSOBP7Hg+fXfNeCpqIezF0N6+ilCD2nUbDQYYsRnM51XurcjK/Q5y7e31SHMaiG8
+         0S7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=n9EOKkeTY2+d1Fa4iHB/4cHa37Z0fzFo4OzOK4oM6Q4=;
-        b=Up0llQdQSN1pR4WFfxDBG/Loj8HfEjWy98bYWd2aMhT+ihatgmPvBG2JGZQInpILdP
-         q/MldAqDoY2NI1UmeP1cwWXhMvYoh/d7e2lzFvaI6candC0w1NFwwgC/xUr2r7SeRc7D
-         fUI8KnBTkx3wSjw1/LGY5Fjr/qxvE1gB6UlsnIrnbo9rMq0MRQTDSDuc5OVJurysNgaF
-         kigS3QJMixsN1Qq41MeuUUtX5MRmHEsV/erNDF8ET49BDxxZrrdqY8onHf9Y78zVE3VQ
-         zi99Bk5iljijbon4vWMBSpJbPu6kxGr2mxFIKKldBoS82jJEjW3qLhXB/RJsAzpESAWh
-         aqqQ==
-X-Gm-Message-State: AOAM5312SVe9ruGWRwWPr0mTv+7wgha9UK4q4W3Hh7hWfFcjZWYaDdCq
-        uqsnpFAY95dFDW4MFGbuF1BPiICtJPzCCPb7Vk2rEg==
-X-Google-Smtp-Source: ABdhPJypbRkZO7oNmfkvuCEOFNhZkoDt3uSClsJKrU2bBbdo1JdlUWBieGzbeMl4eG6ef0bI+oE4Ri5xIQqzgGc6PuE=
-X-Received: by 2002:a2e:8ec3:: with SMTP id e3mr7938969ljl.467.1611835271030;
- Thu, 28 Jan 2021 04:01:11 -0800 (PST)
+        bh=usfc03r7bo+9iWnGhn3YJY+bfRfQpQsiPPvtGVZjTJo=;
+        b=scWzZpR7itDxjQ9sJn55QOrjjpq4DNQ477VL0IAdbmkC0YVZu5pXWVzFv1dNVTp4ym
+         Ivs78y6wpPHkRBiYR4D8BCZ8DcZ7kcJeFeeJfCH9lFx6jmn2aYEAGfzpMojp2ebI448C
+         pz+f1KBiC6EDaLhN1VozemOLqYVu1ZXKNOd7WWVqrH4iR3Vw6lV0dgAbVSUZ/P5Ladai
+         Uj2KbmoiHcfxSvtcBUSuUiRf8LULDetiLtfEXpIISQLEqoU4OoFPJd7DVNng2IiF5QPY
+         3LKnspdasdxl0RWziTiHY7o7iBuOjzpA/VF1X0RCT23tzC1v/7zTd93Bg10EitB1/adv
+         9RLg==
+X-Gm-Message-State: AOAM533b1XQW6CfHzbBtnoQR/x3Nybif81QLjXFyKhg1JUsdcPMm3kd2
+        kB7YSgTlZleuREqO9C6jlVapEvpVa8F8e3Ra8BhP8g==
+X-Google-Smtp-Source: ABdhPJza5WEqdY64nMdJh4p+Ysom/A+I1BzOUDl9O6I2P4XzvnsQTS6dm+guTw4PUOLC3FEaVrkSaMBAp3FtmqHRCno=
+X-Received: by 2002:a19:b8e:: with SMTP id 136mr7679656lfl.29.1611835321876;
+ Thu, 28 Jan 2021 04:02:01 -0800 (PST)
 MIME-Version: 1.0
-References: <20210127000303.436595-1-drew@beagleboard.org>
-In-Reply-To: <20210127000303.436595-1-drew@beagleboard.org>
+References: <20210127000303.436595-1-drew@beagleboard.org> <20210127000303.436595-2-drew@beagleboard.org>
+In-Reply-To: <20210127000303.436595-2-drew@beagleboard.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 28 Jan 2021 13:01:00 +0100
-Message-ID: <CACRpkdam4gY3iU1DBtczgdnxQ-t0OkrRMZ-Y9e1W0FQOrYnndw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: am335x-pocketbeagle: unique gpio-line-names
+Date:   Thu, 28 Jan 2021 13:01:51 +0100
+Message-ID: <CACRpkdYkyxXmxhikvnpxc07MmWPweFAphRPCMd02Ye4EyuOVNQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: am335x-boneblack.dts: unique gpio-line-names
 To:     Drew Fustini <drew@beagleboard.org>
 Cc:     =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
         Tony Lindgren <tony@atomide.com>,
@@ -68,7 +68,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 1:04 AM Drew Fustini <drew@beagleboard.org> wrote:
+On Wed, Jan 27, 2021 at 1:05 AM Drew Fustini <drew@beagleboard.org> wrote:
 
 > Based on linux-gpio discussion [1], it is best practice to make the
 > gpio-line-names unique. Generic names like "[ethernet]" are replaced
@@ -80,7 +80,6 @@ On Wed, Jan 27, 2021 at 1:04 AM Drew Fustini <drew@beagleboard.org> wrote:
 >
 > Signed-off-by: Drew Fustini <drew@beagleboard.org>
 
-This certainly looks better!
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
