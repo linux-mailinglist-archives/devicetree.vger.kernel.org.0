@@ -2,260 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B760306DD5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 07:49:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34BFB306E03
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:01:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231433AbhA1GqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 01:46:16 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:10607 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231347AbhA1GqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 01:46:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1611816368; x=1643352368;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=k/LpW9ZLWg6XuYfZ2wxuCNVHoLBJD/igf9dgOMJ1fHM=;
-  b=AQfJl7poN8HWJK13AgkzzZmAD34zTQRkUwkoi1AVWDXO5V1AZBPodlCR
-   TMWcZQ3JSwx7+iWASK2SzPwXbch9UhI0JC6ayd2Uq6mC5JF115bNl8ubn
-   TKj+wuiZiUj99trlv29d/KKzeHd3hcC8LCJI0Aj1kmDt/OyF/ERY26OfK
-   8dcjvXWuGd5jzOoAcKC5xxCbmmIOuGZ8dzkBKEDYmjX7AhIlInS6HDBUV
-   RPuNPRllAEzLD8GTKOt9BYGSRnuCny8tsD9ubeBdIDAFrEjrYX91NLIiG
-   4j+lBM0cdxk8N74YNKtuEY+NEl38sKhGgb9FPeq2IZGlcX8d8V2x7mD12
-   A==;
-IronPort-SDR: fdaOdcRNa4P0dD+3hQEaBqJLSlvtMZG2atrmqu3nFduFI/X4/lZHvdFDccslbAACoqk8LTdbfr
- w9teYlCaqDvhdjfCBxdHn6FnDvDSVsDTT4qooKvgdSYhEQ6Xzg0DVIE14ciaee0C61IhYpf1tA
- Bvpxk0HWeRq8zwhHoN/vM0sx1ESc3i0MAsJjQsV1wjZBOG2DTLb6abmyYClHum5qRVY4pbVCyE
- bBLws9EMg4aYgJTppGPEy4rIbgJQhLOY6sB7VAAnKmFdhItVWjcm4XNQRzRBKguZAqLzIQ+ypU
- PmQ=
-X-IronPort-AV: E=Sophos;i="5.79,381,1602572400"; 
-   d="scan'208";a="42047643"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jan 2021 23:44:52 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 27 Jan 2021 23:44:51 -0700
-Received: from CHE-LT-I21427U.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Wed, 27 Jan 2021 23:44:47 -0700
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     <andrew@lunn.ch>, <olteanv@gmail.com>, <netdev@vger.kernel.org>,
-        <robh+dt@kernel.org>
-CC:     <kuba@kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <davem@davemloft.net>,
-        <UNGLinuxDriver@microchip.com>, <Woojung.Huh@microchip.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH net-next 8/8] net: dsa: microchip: add support for vlan operations
-Date:   Thu, 28 Jan 2021 12:11:12 +0530
-Message-ID: <20210128064112.372883-9-prasanna.vengateshan@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
-References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
+        id S231299AbhA1HBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 02:01:17 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:45603 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229652AbhA1HBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 02:01:05 -0500
+X-UUID: 53c6337884164a9c8e76455b57b23b75-20210128
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=iLD0cfC7OI5fd6re8bU20Diab017K7ENUU4aiw1sTXE=;
+        b=Cf/lO6wX9eBaBUz9PiqMHChc/toAHxwkQh4DE5aS7NNfYoK4F/lmvQnJN3sFWSTyuNK+YVQ33Tlj5sKhneO+CIIKKyCCsKK+2uVMIGMRorh+iuLpFTv/YAW3qk3hfdAqmZXol22+bz1QqbQ0ECPmpkK8VJ2OhpyfjfPQVGdf2Xw=;
+X-UUID: 53c6337884164a9c8e76455b57b23b75-20210128
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1797207214; Thu, 28 Jan 2021 15:00:14 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 28 Jan 2021 15:00:11 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Jan 2021 15:00:11 +0800
+Message-ID: <1611817211.8417.0.camel@mtksdaap41>
+Subject: Re: [PATCH v10 8/9] drm/mediatek: add DDP support for MT8183
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Date:   Thu, 28 Jan 2021 15:00:11 +0800
+In-Reply-To: <CAJMQK-gHjmm-BaG83EXMOkT6KeCyJJN4ZqRDdT75BcED53bREw@mail.gmail.com>
+References: <20210127045422.2418917-1-hsinyi@chromium.org>
+         <20210127045422.2418917-9-hsinyi@chromium.org>
+         <1611814421.28312.9.camel@mtksdaap41>
+         <CAJMQK-gHjmm-BaG83EXMOkT6KeCyJJN4ZqRDdT75BcED53bREw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-TM-SNTS-SMTP: 1028BAB7B3EECBBFEEF43CD5A0BE256A2A8A797E056769F2B56E920121122C782000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support for VLAN add, del, prepare and filtering operations.
-
-It aligns with latest update of removing switchdev
-transactional logic from VLAN objects
-
-Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
----
- drivers/net/dsa/microchip/lan937x_main.c | 161 +++++++++++++++++++++++
- 1 file changed, 161 insertions(+)
-
-diff --git a/drivers/net/dsa/microchip/lan937x_main.c b/drivers/net/dsa/microchip/lan937x_main.c
-index cd902addce3f..b4c68baf9281 100644
---- a/drivers/net/dsa/microchip/lan937x_main.c
-+++ b/drivers/net/dsa/microchip/lan937x_main.c
-@@ -14,6 +14,73 @@
- #include "ksz_common.h"
- #include "lan937x_dev.h"
- 
-+static int lan937x_wait_vlan_ctrl_ready(struct ksz_device *dev)
-+{
-+	unsigned int val;
-+
-+	return regmap_read_poll_timeout(dev->regmap[0], REG_SW_VLAN_CTRL,
-+					val, !(val & VLAN_START), 10, 1000);
-+}
-+
-+static int lan937x_get_vlan_table(struct ksz_device *dev, u16 vid,
-+				  u32 *vlan_table)
-+{
-+	int ret;
-+
-+	mutex_lock(&dev->vlan_mutex);
-+
-+	ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-+	ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_READ | VLAN_START);
-+
-+	/* wait to be cleared */
-+	ret = lan937x_wait_vlan_ctrl_ready(dev);
-+	if (ret)
-+		goto exit;
-+
-+	ksz_read32(dev, REG_SW_VLAN_ENTRY__4, &vlan_table[0]);
-+	ksz_read32(dev, REG_SW_VLAN_ENTRY_UNTAG__4, &vlan_table[1]);
-+	ksz_read32(dev, REG_SW_VLAN_ENTRY_PORTS__4, &vlan_table[2]);
-+
-+	ksz_write8(dev, REG_SW_VLAN_CTRL, 0);
-+
-+exit:
-+	mutex_unlock(&dev->vlan_mutex);
-+
-+	return ret;
-+}
-+
-+static int lan937x_set_vlan_table(struct ksz_device *dev, u16 vid,
-+				  u32 *vlan_table)
-+{
-+	int ret;
-+
-+	mutex_lock(&dev->vlan_mutex);
-+
-+	ksz_write32(dev, REG_SW_VLAN_ENTRY__4, vlan_table[0]);
-+	ksz_write32(dev, REG_SW_VLAN_ENTRY_UNTAG__4, vlan_table[1]);
-+	ksz_write32(dev, REG_SW_VLAN_ENTRY_PORTS__4, vlan_table[2]);
-+
-+	ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-+	ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_START | VLAN_WRITE);
-+
-+	/* wait to be cleared */
-+	ret = lan937x_wait_vlan_ctrl_ready(dev);
-+	if (ret)
-+		goto exit;
-+
-+	ksz_write8(dev, REG_SW_VLAN_CTRL, 0);
-+
-+	/* update vlan cache table */
-+	dev->vlan_cache[vid].table[0] = vlan_table[0];
-+	dev->vlan_cache[vid].table[1] = vlan_table[1];
-+	dev->vlan_cache[vid].table[2] = vlan_table[2];
-+
-+exit:
-+	mutex_unlock(&dev->vlan_mutex);
-+
-+	return ret;
-+}
-+
- static void lan937x_read_table(struct ksz_device *dev, u32 *table)
- {
- 	/* read alu table */
-@@ -198,6 +265,97 @@ static void lan937x_port_stp_state_set(struct dsa_switch *ds, int port,
- 	mutex_unlock(&dev->dev_mutex);
- }
- 
-+static int lan937x_port_vlan_filtering(struct dsa_switch *ds, int port,
-+				       bool flag)
-+{
-+	struct ksz_device *dev = ds->priv;
-+
-+	if (flag) {
-+		lan937x_port_cfg(dev, port, REG_PORT_LUE_CTRL,
-+				 PORT_VLAN_LOOKUP_VID_0, true);
-+		lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE, true);
-+	} else {
-+		lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE, false);
-+		lan937x_port_cfg(dev, port, REG_PORT_LUE_CTRL,
-+				 PORT_VLAN_LOOKUP_VID_0, false);
-+	}
-+
-+	return 0;
-+}
-+
-+static int lan937x_port_vlan_add(struct dsa_switch *ds, int port,
-+				 const struct switchdev_obj_port_vlan *vlan)
-+{
-+	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
-+	struct ksz_device *dev = ds->priv;
-+	u32 vlan_table[3];
-+	int err;
-+
-+	err = lan937x_get_vlan_table(dev, vlan->vid, vlan_table);
-+	if (err) {
-+		dev_err(dev->dev, "Failed to get vlan table\n");
-+		return err;
-+	}
-+
-+	vlan_table[0] = VLAN_VALID | (vlan->vid & VLAN_FID_M);
-+
-+	/* set/clear switch port when updating vlan table registers */
-+	if (untagged)
-+		vlan_table[1] |= BIT(port);
-+	else
-+		vlan_table[1] &= ~BIT(port);
-+	vlan_table[1] &= ~(BIT(dev->cpu_port));
-+
-+	vlan_table[2] |= BIT(port) |
-+					BIT(dev->cpu_port);
-+
-+	err = lan937x_set_vlan_table(dev, vlan->vid, vlan_table);
-+	if (err) {
-+		dev_err(dev->dev, "Failed to set vlan table\n");
-+		return err;
-+	}
-+
-+	/* change PVID */
-+	if (vlan->flags & BRIDGE_VLAN_INFO_PVID)
-+		lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID, vlan->vid);
-+
-+	return 0;
-+}
-+
-+static int lan937x_port_vlan_del(struct dsa_switch *ds, int port,
-+				 const struct switchdev_obj_port_vlan *vlan)
-+{
-+	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
-+	struct ksz_device *dev = ds->priv;
-+	u32 vlan_table[3];
-+	u16 pvid;
-+
-+	lan937x_pread16(dev, port, REG_PORT_DEFAULT_VID, &pvid);
-+	pvid = pvid & 0xFFF;
-+
-+	if (lan937x_get_vlan_table(dev, vlan->vid, vlan_table)) {
-+		dev_err(dev->dev, "Failed to get vlan table\n");
-+		return -ETIMEDOUT;
-+	}
-+	/* clear switch port number */
-+	vlan_table[2] &= ~BIT(port);
-+
-+	if (pvid == vlan->vid)
-+		pvid = 1;
-+
-+	if (untagged)
-+		vlan_table[1] &= ~BIT(port);
-+
-+	if (lan937x_set_vlan_table(dev, vlan->vid, vlan_table)) {
-+		dev_err(dev->dev, "Failed to set vlan table\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID, pvid);
-+
-+	return 0;
-+}
-+
- static u8 lan937x_get_fid(u16 vid)
- {
- 	if (vid > ALU_FID_SIZE)
-@@ -852,6 +1010,9 @@ const struct dsa_switch_ops lan937x_switch_ops = {
- 	.port_bridge_leave	= ksz_port_bridge_leave,
- 	.port_stp_state_set	= lan937x_port_stp_state_set,
- 	.port_fast_age		= ksz_port_fast_age,
-+	.port_vlan_filtering	= lan937x_port_vlan_filtering,
-+	.port_vlan_add		= lan937x_port_vlan_add,
-+	.port_vlan_del		= lan937x_port_vlan_del,
- 	.port_fdb_dump		= lan937x_port_fdb_dump,
- 	.port_fdb_add		= lan937x_port_fdb_add,
- 	.port_fdb_del		= lan937x_port_fdb_del,
--- 
-2.25.1
+T24gVGh1LCAyMDIxLTAxLTI4IGF0IDE0OjE1ICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+
+IE9uIFRodSwgSmFuIDI4LCAyMDIxIGF0IDI6MTMgUE0gQ0sgSHUgPGNrLmh1QG1lZGlhdGVrLmNv
+bT4gd3JvdGU6DQo+ID4NCj4gPiBIaSwgSHNpbi1ZaToNCj4gPg0KPiA+IE1vZGlmeSB0aGUgdGl0
+bGUncyBwcmVmaXggdG8gJ3NvYzogbWVkaWF0ZWs6Jw0KPiA+DQo+ID4gT24gV2VkLCAyMDIxLTAx
+LTI3IGF0IDEyOjU0ICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+ID4gPiBGcm9tOiBZb25n
+cWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVrLmNvbT4NCj4gPiA+DQo+ID4gPiBBZGQg
+RERQIHN1cHBvcnQgZm9yIE1UODE4MyBTb0MuDQo+ID4gPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTog
+WW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20+DQo+ID4gPiBTaWduZWQt
+b2ZmLWJ5OiBIc2luLVlpIFdhbmcgPGhzaW55aUBjaHJvbWl1bS5vcmc+DQo+ID4gPiAtLS0NCj4g
+PiA+ICBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstbXV0ZXguYyB8IDUwICsrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrDQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDUwIGluc2VydGlvbnMo
+KykNCj4gPiA+DQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLW11
+dGV4LmMgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstbXV0ZXguYw0KPiA+ID4gaW5kZXggZjUz
+MWIxMTlkYTdhOS4uZjY0ZTljMzNlODVhZCAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMvc29j
+L21lZGlhdGVrL210ay1tdXRleC5jDQo+ID4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9t
+dGstbXV0ZXguYw0KPiA+ID4gQEAgLTE0LDYgKzE0LDggQEANCj4gPiA+DQo+ID4gPiAgI2RlZmlu
+ZSBNVDI3MDFfTVVURVgwX01PRDAgICAgICAgICAgICAgICAgICAgMHgyYw0KPiA+ID4gICNkZWZp
+bmUgTVQyNzAxX01VVEVYMF9TT0YwICAgICAgICAgICAgICAgICAgIDB4MzANCj4gPiA+ICsjZGVm
+aW5lIE1UODE4M19ESVNQX01VVEVYMF9NT0QwICAgICAgICAgICAgICAgICAgICAgIDB4MzANCj4g
+PiA+ICsjZGVmaW5lIE1UODE4M19ESVNQX01VVEVYMF9TT0YwICAgICAgICAgICAgICAgICAgICAg
+IDB4MmMNCj4gPg0KPiA+IE1vZGlmeSAnRElTUF9NVVRFWCcgdG8gJ01VVEVYJw0KPiA+DQo+ID4g
+Pg0KPiA+ID4gICNkZWZpbmUgRElTUF9SRUdfTVVURVhfRU4obikgICAgICAgICAgICAgICAgICgw
+eDIwICsgMHgyMCAqIChuKSkNCj4gPiA+ICAjZGVmaW5lIERJU1BfUkVHX01VVEVYKG4pICAgICAg
+ICAgICAgICAgICAgICAoMHgyNCArIDB4MjAgKiAobikpDQo+ID4gPiBAQCAtMzcsNiArMzksMTgg
+QEANCj4gPiA+ICAjZGVmaW5lIE1UODE2N19NVVRFWF9NT0RfRElTUF9ESVRIRVIgICAgICAgICAx
+NQ0KPiA+ID4gICNkZWZpbmUgTVQ4MTY3X01VVEVYX01PRF9ESVNQX1VGT0UgICAgICAgICAgIDE2
+DQo+ID4gPg0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX1JETUEwICAgICAg
+ICAgIDANCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9NT0RfRElTUF9SRE1BMSAgICAgICAg
+ICAxDQo+ID4gPiArI2RlZmluZSBNVDgxODNfTVVURVhfTU9EX0RJU1BfT1ZMMCAgICAgICAgICAg
+OQ0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX09WTDBfMkwgICAgICAgICAg
+ICAgICAgMTANCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9NT0RfRElTUF9PVkwxXzJMICAg
+ICAgICAgICAgICAgIDExDQo+ID4gPiArI2RlZmluZSBNVDgxODNfTVVURVhfTU9EX0RJU1BfV0RN
+QTAgICAgICAgICAgMTINCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9NT0RfRElTUF9DT0xP
+UjAgICAgICAgICAxMw0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX0NDT1JS
+MCAgICAgICAgIDE0DQo+ID4gPiArI2RlZmluZSBNVDgxODNfTVVURVhfTU9EX0RJU1BfQUFMMCAg
+ICAgICAgICAgMTUNCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9NT0RfRElTUF9HQU1NQTAg
+ICAgICAgICAxNg0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX0RJVEhFUjAg
+ICAgICAgICAgICAgICAgMTcNCj4gPiA+ICsNCj4gPiA+ICAjZGVmaW5lIE1UODE3M19NVVRFWF9N
+T0RfRElTUF9PVkwwICAgICAgICAgICAxMQ0KPiA+ID4gICNkZWZpbmUgTVQ4MTczX01VVEVYX01P
+RF9ESVNQX09WTDEgICAgICAgICAgIDEyDQo+ID4gPiAgI2RlZmluZSBNVDgxNzNfTVVURVhfTU9E
+X0RJU1BfUkRNQTAgICAgICAgICAgMTMNCj4gPiA+IEBAIC04Nyw2ICsxMDEsMTIgQEANCj4gPiA+
+ICAjZGVmaW5lIE1UMjcxMl9NVVRFWF9TT0ZfRFNJMyAgICAgICAgICAgICAgICAgICAgICAgIDYN
+Cj4gPiA+ICAjZGVmaW5lIE1UODE2N19NVVRFWF9TT0ZfRFBJMCAgICAgICAgICAgICAgICAgICAg
+ICAgIDINCj4gPiA+ICAjZGVmaW5lIE1UODE2N19NVVRFWF9TT0ZfRFBJMSAgICAgICAgICAgICAg
+ICAgICAgICAgIDMNCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9TT0ZfRFNJMCAgICAgICAg
+ICAgICAgICAgICAgICAgIDENCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9TT0ZfRFBJMCAg
+ICAgICAgICAgICAgICAgICAgICAgIDINCj4gPiA+ICsNCj4gPiA+ICsvKiBBZGQgRU9GIHNldHRp
+bmcgc28gb3ZlcmxheSBoYXJkd2FyZSBjYW4gcmVjZWl2ZSBmcmFtZSBkb25lIGlycSAqLw0KPiA+
+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX0VPRl9EU0kwICAgICAgICAgICAgICAgICAgICAgICAg
+KE1UODE4M19NVVRFWF9TT0ZfRFNJMCA8PCA2KQ0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVY
+X0VPRl9EUEkwICAgICAgICAgICAgICAgICAgICAgICAgKE1UODE4M19NVVRFWF9TT0ZfRFBJMCA8
+PCA2KQ0KPiA+ID4NCj4gDQo+IEhpIENLLCBjb21tZW50IGlzIGFkZGVkIGhlcmUuIEkgY2FuIG1v
+dmUgdG8gbXQ4MTgzX211dGV4X3NvZiBpZiBwcmVmZXJyZWQuDQoNCkkgcHJlZmVyIHRvIG1vdmUg
+Y29tbWVudCB0byBtdDgxODNfbXV0ZXhfc29mLg0KDQo+IA0KPiA+ID4gIHN0cnVjdCBtdGtfbXV0
+ZXggew0KPiA+ID4gICAgICAgaW50IGlkOw0KPiA+ID4gQEAgLTE4MSw2ICsyMDEsMjAgQEAgc3Rh
+dGljIGNvbnN0IHVuc2lnbmVkIGludCBtdDgxNzNfbXV0ZXhfbW9kW0REUF9DT01QT05FTlRfSURf
+TUFYXSA9IHsNCj4gPiA+ICAgICAgIFtERFBfQ09NUE9ORU5UX1dETUExXSA9IE1UODE3M19NVVRF
+WF9NT0RfRElTUF9XRE1BMSwNCj4gPiA+ICB9Ow0KPiA+ID4NCj4gPiA+ICtzdGF0aWMgY29uc3Qg
+dW5zaWduZWQgaW50IG10ODE4M19tdXRleF9tb2RbRERQX0NPTVBPTkVOVF9JRF9NQVhdID0gew0K
+PiA+ID4gKyAgICAgW0REUF9DT01QT05FTlRfQUFMMF0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1Bf
+QUFMMCwNCj4gPiA+ICsgICAgIFtERFBfQ09NUE9ORU5UX0NDT1JSXSA9IE1UODE4M19NVVRFWF9N
+T0RfRElTUF9DQ09SUjAsDQo+ID4gPiArICAgICBbRERQX0NPTVBPTkVOVF9DT0xPUjBdID0gTVQ4
+MTgzX01VVEVYX01PRF9ESVNQX0NPTE9SMCwNCj4gPiA+ICsgICAgIFtERFBfQ09NUE9ORU5UX0RJ
+VEhFUl0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfRElUSEVSMCwNCj4gPiA+ICsgICAgIFtERFBf
+Q09NUE9ORU5UX0dBTU1BXSA9IE1UODE4M19NVVRFWF9NT0RfRElTUF9HQU1NQTAsDQo+ID4gPiAr
+ICAgICBbRERQX0NPTVBPTkVOVF9PVkwwXSA9IE1UODE4M19NVVRFWF9NT0RfRElTUF9PVkwwLA0K
+PiA+ID4gKyAgICAgW0REUF9DT01QT05FTlRfT1ZMXzJMMF0gPSBNVDgxODNfTVVURVhfTU9EX0RJ
+U1BfT1ZMMF8yTCwNCj4gPiA+ICsgICAgIFtERFBfQ09NUE9ORU5UX09WTF8yTDFdID0gTVQ4MTgz
+X01VVEVYX01PRF9ESVNQX09WTDFfMkwsDQo+ID4gPiArICAgICBbRERQX0NPTVBPTkVOVF9SRE1B
+MF0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfUkRNQTAsDQo+ID4gPiArICAgICBbRERQX0NPTVBP
+TkVOVF9SRE1BMV0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfUkRNQTEsDQo+ID4gPiArICAgICBb
+RERQX0NPTVBPTkVOVF9XRE1BMF0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfV0RNQTAsDQo+ID4g
+PiArfTsNCj4gPiA+ICsNCj4gPiA+ICBzdGF0aWMgY29uc3QgdW5zaWduZWQgaW50IG10MjcxMl9t
+dXRleF9zb2ZbTVVURVhfU09GX0RTSTMgKyAxXSA9IHsNCj4gPiA+ICAgICAgIFtNVVRFWF9TT0Zf
+U0lOR0xFX01PREVdID0gTVVURVhfU09GX1NJTkdMRV9NT0RFLA0KPiA+ID4gICAgICAgW01VVEVY
+X1NPRl9EU0kwXSA9IE1VVEVYX1NPRl9EU0kwLA0KPiA+ID4gQEAgLTE5OCw2ICsyMzIsMTIgQEAg
+c3RhdGljIGNvbnN0IHVuc2lnbmVkIGludCBtdDgxNjdfbXV0ZXhfc29mW01VVEVYX1NPRl9EU0kz
+ICsgMV0gPSB7DQo+ID4gPiAgICAgICBbTVVURVhfU09GX0RQSTFdID0gTVQ4MTY3X01VVEVYX1NP
+Rl9EUEkxLA0KPiA+ID4gIH07DQo+ID4gPg0KPiA+ID4gK3N0YXRpYyBjb25zdCB1bnNpZ25lZCBp
+bnQgbXQ4MTgzX211dGV4X3NvZltNVVRFWF9TT0ZfRFNJMyArIDFdID0gew0KPiA+ID4gKyAgICAg
+W01VVEVYX1NPRl9TSU5HTEVfTU9ERV0gPSBNVVRFWF9TT0ZfU0lOR0xFX01PREUsDQo+ID4gPiAr
+ICAgICBbTVVURVhfU09GX0RTSTBdID0gTVVURVhfU09GX0RTSTAgfCBNVDgxODNfTVVURVhfRU9G
+X0RTSTAsDQo+ID4gPiArICAgICBbTVVURVhfU09GX0RQSTBdID0gTVQ4MTgzX01VVEVYX1NPRl9E
+UEkwIHwgTVQ4MTgzX01VVEVYX0VPRl9EUEkwLA0KPiA+DQo+ID4gQWNjb3JkaW5nIHRvIGRpc2N1
+c3Npb24gaW4gWzFdLCBhZGQgY29tbWVudCBmb3IgdGhlIG9kZCBFT0Ygc2V0dGluZy4NCj4gPg0K
+PiA+IFsxXQ0KPiA+IGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1t
+ZWRpYXRlay9wYXRjaC8xNTk1NDY5Nzk4LTM4MjQtOC1naXQtc2VuZC1lbWFpbC15b25ncWlhbmcu
+bml1QG1lZGlhdGVrLmNvbS8NCj4gPg0KPiA+IFJlZ2FyZHMsDQo+ID4gQ0suDQo+ID4NCj4gPg0K
+PiA+ID4gK307DQo+ID4gPiArDQo+ID4gPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtfbXV0ZXhf
+ZGF0YSBtdDI3MDFfbXV0ZXhfZHJpdmVyX2RhdGEgPSB7DQo+ID4gPiAgICAgICAubXV0ZXhfbW9k
+ID0gbXQyNzAxX211dGV4X21vZCwNCj4gPiA+ICAgICAgIC5tdXRleF9zb2YgPSBtdDI3MTJfbXV0
+ZXhfc29mLA0KPiA+ID4gQEAgLTIyNyw2ICsyNjcsMTQgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBt
+dGtfbXV0ZXhfZGF0YSBtdDgxNzNfbXV0ZXhfZHJpdmVyX2RhdGEgPSB7DQo+ID4gPiAgICAgICAu
+bXV0ZXhfc29mX3JlZyA9IE1UMjcwMV9NVVRFWDBfU09GMCwNCj4gPiA+ICB9Ow0KPiA+ID4NCj4g
+PiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG10a19tdXRleF9kYXRhIG10ODE4M19tdXRleF9kcml2
+ZXJfZGF0YSA9IHsNCj4gPiA+ICsgICAgIC5tdXRleF9tb2QgPSBtdDgxODNfbXV0ZXhfbW9kLA0K
+PiA+ID4gKyAgICAgLm11dGV4X3NvZiA9IG10ODE4M19tdXRleF9zb2YsDQo+ID4gPiArICAgICAu
+bXV0ZXhfbW9kX3JlZyA9IE1UODE4M19ESVNQX01VVEVYMF9NT0QwLA0KPiA+ID4gKyAgICAgLm11
+dGV4X3NvZl9yZWcgPSBNVDgxODNfRElTUF9NVVRFWDBfU09GMCwNCj4gPiA+ICsgICAgIC5ub19j
+bGsgPSB0cnVlLA0KPiA+ID4gK307DQo+ID4gPiArDQo+ID4gPiAgc3RydWN0IG10a19tdXRleCAq
+bXRrX211dGV4X2dldChzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ID4gPiAgew0KPiA+ID4gICAgICAg
+c3RydWN0IG10a19tdXRleF9jdHggKm10eCA9IGRldl9nZXRfZHJ2ZGF0YShkZXYpOw0KPiA+ID4g
+QEAgLTQ1Nyw2ICs1MDUsOCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBtdXRl
+eF9kcml2ZXJfZHRfbWF0Y2hbXSA9IHsNCj4gPiA+ICAgICAgICAgLmRhdGEgPSAmbXQ4MTY3X211
+dGV4X2RyaXZlcl9kYXRhfSwNCj4gPiA+ICAgICAgIHsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWss
+bXQ4MTczLWRpc3AtbXV0ZXgiLA0KPiA+ID4gICAgICAgICAuZGF0YSA9ICZtdDgxNzNfbXV0ZXhf
+ZHJpdmVyX2RhdGF9LA0KPiA+ID4gKyAgICAgeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgx
+ODMtZGlzcC1tdXRleCIsDQo+ID4gPiArICAgICAgIC5kYXRhID0gJm10ODE4M19tdXRleF9kcml2
+ZXJfZGF0YX0sDQo+ID4gPiAgICAgICB7fSwNCj4gPiA+ICB9Ow0KPiA+ID4gIE1PRFVMRV9ERVZJ
+Q0VfVEFCTEUob2YsIG11dGV4X2RyaXZlcl9kdF9tYXRjaCk7DQo+ID4NCg0K
 
