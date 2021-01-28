@@ -2,58 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4FA8306863
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 01:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D2B130688B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 01:22:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbhA1AIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 19:08:44 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50486 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231305AbhA1AIU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 19:08:20 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C3BD164DD1;
-        Thu, 28 Jan 2021 00:07:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611792457;
-        bh=NA1TfdNYUjjvv1456ylV+kfOD0RvaGd5uF+u315BJ8Q=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=BSt+otgbLkZGTeop7xro0XZqeq5lHBYry0Vv8kWRgh1SG8+OFyPI7Fpf2YZzN16MR
-         0gbdbCS8XxUTpdiK67TYEz0lnz/7+kr1dx35ktSRIqTTU3xBf+gzB/hj2y5DGwIqSF
-         Ryf+RRRkaxZe3uMDWGmtBtowJ+lpkjL7JKDbJ+xq8cZvDLWPQJAKepBzvRjom1Sbdj
-         aPiIPEUB8oG3ExXkScVH/BK9X2SGu5UelCG11VumC7BiBepaJNb3Xlee98RpVkggUM
-         dRpKDZennfOoNLLm+CIM9y/B2xx96EtIYq4aUCXRxXFkgBj7hWemQ+nowDZ4kn/JPy
-         suwKlESSMkj7w==
-Date:   Wed, 27 Jan 2021 16:07:35 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     =?UTF-8?B?xYF1a2Fzeg==?= Stelmach <l.stelmach@samsung.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v11 0/3] AX88796C SPI Ethernet Adapter
-Message-ID: <20210127160735.59b08224@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20210125165406.9692-1-l.stelmach@samsung.com>
-References: <CGME20210125165421eucas1p21049ed87217b177c3711c7b5726bd085@eucas1p2.samsung.com>
-        <20210125165406.9692-1-l.stelmach@samsung.com>
+        id S231132AbhA1AUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 19:20:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58620 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231199AbhA1AT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 19:19:56 -0500
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3EC9C061573
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 16:19:09 -0800 (PST)
+Received: by mail-vs1-xe2f.google.com with SMTP id 187so2134211vsg.4
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 16:19:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=u/NBHzGj6RokVMEH71m80tmfbt8SHqB96rb6JwsurCk=;
+        b=T/WXzvosHH5zwOZyRYu2qakrrk+itFzF4Wls6TyBLH/P5QqLfYaiAfFyjfg3ZEqXff
+         wC9Y5Okq5Jmd29IAWb/tflaOJ9fqF/4lbVUdn1qFLL7jJeTtHqA3PlDi21HgTuquz/yK
+         QF646m1gMkWvYbLO1YB3IF7BDYN7PHx3T16wg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=u/NBHzGj6RokVMEH71m80tmfbt8SHqB96rb6JwsurCk=;
+        b=k5yCXhEWXjY4LZf+bLRA/MmVfic52D4Zl9ZMh8+6UE6gfpopsl6+0foa4vIFaWHnTu
+         Ijeo/AeL6Pu++wmItNSI1g+c9DLSV4xQtd35yb0ZBENyXqzi7VLnpGKXvSNjiPG2iAiv
+         zM3ETJ/zM4F6TY8j1RlsVEJTpoqRu+FV+xdXvk40XQpNBLa7M2Bwnk6Ugq4kuJ/BBhJR
+         vAerprPcllA5WFsS7jX4phJpD5YjMyr1aqeQJzRAaMYpvOnAtS7FKFycVS3Teqr0o4Y1
+         OWvGcBR2yVStpcKZqOysyy0T9DY5j/i9qrHKk5hf+zZNpp58mgDpdACSiUOkCufPPVx5
+         cbbA==
+X-Gm-Message-State: AOAM533StcR8Wiw2/kkGkK2/rsGOPmPqgP/GUXZk+OdGqHwYAvs9IZp7
+        uc9hSD/cLviLQY98kyeXUgB7Kli4m+s+wKdRTLApCA==
+X-Google-Smtp-Source: ABdhPJy/H0ngURD41PlYIJ7XMA7FJ+OWK5Oxyz6Jo3NZy9LGRsOIOKdJvEB+XWo1PMjlj+fxLTli5mMGDmUwNPLC5co=
+X-Received: by 2002:a05:6102:34f:: with SMTP id e15mr10058573vsa.21.1611793148398;
+ Wed, 27 Jan 2021 16:19:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+References: <20210127144930.2158242-1-robert.foss@linaro.org> <20210127144930.2158242-6-robert.foss@linaro.org>
+In-Reply-To: <20210127144930.2158242-6-robert.foss@linaro.org>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Thu, 28 Jan 2021 08:18:57 +0800
+Message-ID: <CANMq1KCUUg3rozY3=snz7YCNwPbbxZtJftCj-a=QPLp2XFSXwA@mail.gmail.com>
+Subject: Re: [PATCH v3 05/22] media: camss: Refactor VFE HW version support
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, shawnguo@kernel.org,
+        leoyang.li@nxp.com, Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>, Anson.Huang@nxp.com,
+        michael@walle.cc, agx@sigxcpu.org, max.oss.09@gmail.com,
+        angelogioacchino.delregno@somainline.org,
+        linux-arm-msm@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Steven Rostedt <rostedt@goodmis.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Jan 2021 17:54:03 +0100 =C5=81ukasz Stelmach wrote:
-> This is a driver for AX88796C Ethernet Adapter connected in SPI mode as
-> found on ARTIK5 evaluation board. The driver has been ported from a
-> v3.10.9 vendor kernel for ARTIK5 board.
+On Wed, Jan 27, 2021 at 10:56 PM Robert Foss <robert.foss@linaro.org> wrote:
+>
+> In order to support Qualcomm ISP hardware architectures that diverge
+> from older architectures, the VFE subdevice driver needs to be refactored
+> to better abstract the different ISP architectures.
+>
+> Gen1 represents the CAMSS ISP architecture. The ISP architecture developed
+> after CAMSS, Titan, will be referred to as Gen2.
+>
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> ---
+> [snip]
+> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-4-8.c b/drivers/media/platform/qcom/camss/camss-vfe-4-8.c
+> new file mode 100644
+> index 000000000000..153e0e20664e
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/camss/camss-vfe-4-8.c
+> [snip]
+> +/*
+> + * vfe_isr - VFE module interrupt handler
+> + * @irq: Interrupt line
+> + * @dev: VFE device
+> + *
+> + * Return IRQ_HANDLED on success
+> + */
+> +static irqreturn_t vfe_isr(int irq, void *dev)
+> +{
+> +       struct vfe_device *vfe = dev;
+> +       u32 value0, value1;
+> +       int i, j;
+> +
+> +       vfe->ops->isr_read(vfe, &value0, &value1);
+> +
+> +       trace_printk("VFE: status0 = 0x%08x, status1 = 0x%08x\n",
+> +                    value0, value1);
 
-This one doesn't apply to net-next cleanly, please rebase + repost.
+Please do not use trace_printk in production code [1,2], it is only
+meant for debug use. Consider using trace events, or dev_dbg.
+
+[1] https://elixir.bootlin.com/linux/v5.8/source/kernel/trace/trace.c#L3158
+[2] https://elixir.bootlin.com/linux/v5.8/source/include/linux/kernel.h#L766
+
+> [snip]
