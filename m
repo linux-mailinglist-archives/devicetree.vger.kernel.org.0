@@ -2,159 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1A783081B0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 00:09:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 350583081CB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 00:23:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231610AbhA1XJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 18:09:34 -0500
-Received: from a1.mail.mailgun.net ([198.61.254.60]:55600 "EHLO
-        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231513AbhA1XJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 18:09:33 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1611875347; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=O8kFXrZt93Vjk8mo2c8C6NAXhyoA4VuHGdA2XbbyiBY=; b=VjcCUqxTR2ArucaZN3o0MWaGVK3UooNSkiApa+jh8vzTJG3cwspYq08YsXc7sz4ncVPQtpmb
- oRoVejscORIXZ1cuDIRVV17I/3vVFLaCYNTLuKgSXkRAT3oyHWiVVKb9pp6pmCPNhztwBbbF
- JeXXlai3EVMDh31rMPlc4HxqgEk=
-X-Mailgun-Sending-Ip: 198.61.254.60
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 601343f8bcde412162da6a37 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 28 Jan 2021 23:08:40
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 97D82C43461; Thu, 28 Jan 2021 23:08:39 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.110.127.29] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2A11AC433C6;
-        Thu, 28 Jan 2021 23:08:38 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2A11AC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-Subject: Re: [PATCH v6 3/4] usb: dwc3: Resize TX FIFOs to meet EP bursting
- requirements
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, peter.chen@nxp.com,
-        jackp@codeaurora.org
-References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
- <1611288100-31118-4-git-send-email-wcheng@codeaurora.org>
- <YAsHbj/mITeiY5Cq@builder.lan>
- <724cb274-36ce-fb48-a156-4eaf9e686fdf@codeaurora.org>
- <20210126015543.GB1241218@yoga>
- <99dd9419-a8fd-9eb2-9582-d24f865ecf70@codeaurora.org>
- <YA+lVFWlBDvN4MTF@builder.lan>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <dec42f26-6b67-56ec-74a5-feae5e5c5df5@codeaurora.org>
-Date:   Thu, 28 Jan 2021 15:08:37 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S229774AbhA1XW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 18:22:57 -0500
+Received: from mail-oo1-f53.google.com ([209.85.161.53]:42689 "EHLO
+        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231703AbhA1XW4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 18:22:56 -0500
+Received: by mail-oo1-f53.google.com with SMTP id g46so1859244ooi.9;
+        Thu, 28 Jan 2021 15:22:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ydH4nhxewK7vs+CzByTZsj+twADBwFlu+n9oaryGu3g=;
+        b=IJlJC3Qs0gVk7M/YqtVq22LZ8sjoohEOaF5AP3U4pIiKC3PYqtFyvYjqnEuZJHm/UC
+         O4IJp0lOA8DtpDy+AAcIRyE5/yV55T/FMrz1zHjRu1OnDT/AiMZiF+avbx6gCDtun5/D
+         2uojSCNJVhN1Md78PLMqs52zfZ9gQv+3alRtQZpQWI0wQf94fQ0+AYtwm602XQr5UhUx
+         nP4oZgfMFLoILsZsfe3zBgjtZawV4nW1hq9euuc2adX6faztP9IfX2Ok8/8a3wqqVwGx
+         OqWpvxw3MsC/pa5NvPF+74nmcNkUF9400sZb0WR+Q+9bJ9XlG+GgiICfSRZ8hQsgaCg4
+         m09Q==
+X-Gm-Message-State: AOAM5302vT+HO7BZNItQE/vbeFEF4ZJxbk1vHNIUKVwZl7o4ZOV+jYoF
+        8gxmhsa0VmfAA2PsRukQUnhf30z4das=
+X-Google-Smtp-Source: ABdhPJzFUzfv7gbRcuengnXOY5sHTHQQk8G+pTaTghZ5FijpRS07urmHAGpgzlyrL+/VeXxxP58SjQ==
+X-Received: by 2002:a4a:a22a:: with SMTP id m42mr1356247ool.22.1611876134785;
+        Thu, 28 Jan 2021 15:22:14 -0800 (PST)
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com. [209.85.167.177])
+        by smtp.gmail.com with ESMTPSA id t65sm1537692oie.25.2021.01.28.15.22.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jan 2021 15:22:14 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id w8so7963523oie.2;
+        Thu, 28 Jan 2021 15:22:13 -0800 (PST)
+X-Received: by 2002:aca:f382:: with SMTP id r124mr1069457oih.175.1611876133354;
+ Thu, 28 Jan 2021 15:22:13 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <YA+lVFWlBDvN4MTF@builder.lan>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210108093610.28595-1-Zhiqiang.Hou@nxp.com> <20210108093610.28595-2-Zhiqiang.Hou@nxp.com>
+In-Reply-To: <20210108093610.28595-2-Zhiqiang.Hou@nxp.com>
+From:   Li Yang <leoyang.li@nxp.com>
+Date:   Thu, 28 Jan 2021 17:22:02 -0600
+X-Gmail-Original-Message-ID: <CADRPPNQr4xGH0On94rxr69VYeZAQEYQgt=CosVqEDi91cfO_tw@mail.gmail.com>
+Message-ID: <CADRPPNQr4xGH0On94rxr69VYeZAQEYQgt=CosVqEDi91cfO_tw@mail.gmail.com>
+Subject: Re: [PATCHv3 1/7] PCI: dwc: Fix a bug of the case dw_pci->ops is NULL
+To:     Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     linux-pci@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, gustavo.pimentel@synopsys.com,
+        Minghuan Lian <minghuan.Lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 8, 2021 at 3:29 AM Zhiqiang Hou <Zhiqiang.Hou@nxp.com> wrote:
+>
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+>
+> The dw_pci->ops may be a NULL, and fix it by adding one more check.
+>
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
 
-
-On 1/25/2021 9:15 PM, Bjorn Andersson wrote:
-> On Mon 25 Jan 22:32 CST 2021, Wesley Cheng wrote:
->> On 1/25/2021 5:55 PM, Bjorn Andersson wrote:
->>> On Mon 25 Jan 19:14 CST 2021, Wesley Cheng wrote:
->>>
->>>>
->>>>
->>>> On 1/22/2021 9:12 AM, Bjorn Andersson wrote:
->>>>> On Thu 21 Jan 22:01 CST 2021, Wesley Cheng wrote:
->>>>>
->>>>
->>>> Hi Bjorn,
->>>>>
->>>>> Under what circumstances should we specify this? And in particular are
->>>>> there scenarios (in the Qualcomm platforms) where this must not be set?
->>>>> The TXFIFO dynamic allocation is actually a feature within the DWC3
->>>> controller, and isn't specifically for QCOM based platforms.  It won't
->>>> do any harm functionally if this flag is not set, as this is meant for
->>>> enhancing performance/bandwidth.
->>>>
->>>>> In particular, the composition can be changed in runtime, so should we
->>>>> set this for all Qualcomm platforms?
->>>>>
->>>> Ideally yes, if we want to increase bandwith for situations where SS
->>>> endpoint bursting is set to a higher value.
->>>>
->>>>> And if that's the case, can we not just set it from the qcom driver?
->>>>>
->>>> Since this is a common DWC3 core feature, I think it would make more
->>>> sense to have it in DWC3 core instead of a vendor's DWC3 glue driver.
->>>>
->>>
->>> I don't have any objections to implementing it in the core driver, but
->>> my question is can we just skip the DT binding and just enable it from
->>> the vendor driver?
->>>
->>> Regards,
->>> Bjorn
->>>
->>
->> Hi Bjorn,
->>
->> I see.  I think there are some designs which don't have a DWC3 glue
->> driver, so assuming there may be other platforms using this, there may
->> not always be a vendor driver to set this.
->>
-> 
-> You mean that there are implementations of dwc3 without an associated
-> glue driver that haven't yet realized that they need this feature?
-> 
-> I would suggest then that we implement the core code necessary, we
-> enable it from the Qualcomm glue layer and when someone realize that
-> they need this without a glue driver it's going to be trivial to add the
-> DT binding.
->>
-> The alternative is that we're lugging around a requirement to specify
-> this property in all past, present and future Qualcomm dts files - and
-> then we'll need to hard code it for ACPI anyways.
-> 
 Hi Bjorn,
 
-Can we utilize the of_add_property() call to add the "tx-fifo-resize"
-property from the dwc3_qcom_register_core() API?  That way at least the
-above concern would be addressed.
+This is causing many layerscape platforms to fail to boot.  Can you
+help to pick up this patch?  Or are you actually preferring other
+solutions like creating dummy ops when it is not needed?
 
-I'm not too familiar with the ACPI design, but I do see that the
-dwc3-qcom does have an array carrying some DWC3 core properties.  Looks
-like we can add the tx-fifo-resize property here too.
+Regards,
+Leo
 
-static const struct property_entry dwc3_qcom_acpi_properties[] = {
-	PROPERTY_ENTRY_STRING("dr_mode", "host"),
-	{}
-};
-
-
-Thanks
-Wesley Cheng
-
-> Regards,
-> Bjorn
-> 
-
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+> ---
+> V3:
+>  - Rebased against the latest code base
+>
+>  drivers/pci/controller/dwc/pcie-designware-host.c |  2 +-
+>  drivers/pci/controller/dwc/pcie-designware.c      | 14 +++++++-------
+>  2 files changed, 8 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 516b151e0ef3..0413284fdd93 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -429,7 +429,7 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>         dw_pcie_setup_rc(pp);
+>         dw_pcie_msi_init(pp);
+>
+> -       if (!dw_pcie_link_up(pci) && pci->ops->start_link) {
+> +       if (!dw_pcie_link_up(pci) && pci->ops && pci->ops->start_link) {
+>                 ret = pci->ops->start_link(pci);
+>                 if (ret)
+>                         goto err_free_msi;
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index 645fa1892375..cf895c12f71f 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -141,7 +141,7 @@ u32 dw_pcie_read_dbi(struct dw_pcie *pci, u32 reg, size_t size)
+>         int ret;
+>         u32 val;
+>
+> -       if (pci->ops->read_dbi)
+> +       if (pci->ops && pci->ops->read_dbi)
+>                 return pci->ops->read_dbi(pci, pci->dbi_base, reg, size);
+>
+>         ret = dw_pcie_read(pci->dbi_base + reg, size, &val);
+> @@ -156,7 +156,7 @@ void dw_pcie_write_dbi(struct dw_pcie *pci, u32 reg, size_t size, u32 val)
+>  {
+>         int ret;
+>
+> -       if (pci->ops->write_dbi) {
+> +       if (pci->ops && pci->ops->write_dbi) {
+>                 pci->ops->write_dbi(pci, pci->dbi_base, reg, size, val);
+>                 return;
+>         }
+> @@ -171,7 +171,7 @@ void dw_pcie_write_dbi2(struct dw_pcie *pci, u32 reg, size_t size, u32 val)
+>  {
+>         int ret;
+>
+> -       if (pci->ops->write_dbi2) {
+> +       if (pci->ops && pci->ops->write_dbi2) {
+>                 pci->ops->write_dbi2(pci, pci->dbi_base2, reg, size, val);
+>                 return;
+>         }
+> @@ -186,7 +186,7 @@ static u32 dw_pcie_readl_atu(struct dw_pcie *pci, u32 reg)
+>         int ret;
+>         u32 val;
+>
+> -       if (pci->ops->read_dbi)
+> +       if (pci->ops && pci->ops->read_dbi)
+>                 return pci->ops->read_dbi(pci, pci->atu_base, reg, 4);
+>
+>         ret = dw_pcie_read(pci->atu_base + reg, 4, &val);
+> @@ -200,7 +200,7 @@ static void dw_pcie_writel_atu(struct dw_pcie *pci, u32 reg, u32 val)
+>  {
+>         int ret;
+>
+> -       if (pci->ops->write_dbi) {
+> +       if (pci->ops && pci->ops->write_dbi) {
+>                 pci->ops->write_dbi(pci, pci->atu_base, reg, 4, val);
+>                 return;
+>         }
+> @@ -273,7 +273,7 @@ static void __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
+>  {
+>         u32 retries, val;
+>
+> -       if (pci->ops->cpu_addr_fixup)
+> +       if (pci->ops && pci->ops->cpu_addr_fixup)
+>                 cpu_addr = pci->ops->cpu_addr_fixup(pci, cpu_addr);
+>
+>         if (pci->iatu_unroll_enabled) {
+> @@ -481,7 +481,7 @@ int dw_pcie_link_up(struct dw_pcie *pci)
+>  {
+>         u32 val;
+>
+> -       if (pci->ops->link_up)
+> +       if (pci->ops && pci->ops->link_up)
+>                 return pci->ops->link_up(pci);
+>
+>         val = readl(pci->dbi_base + PCIE_PORT_DEBUG1);
+> --
+> 2.17.1
+>
