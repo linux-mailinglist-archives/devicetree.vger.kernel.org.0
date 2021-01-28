@@ -2,100 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97EE7307AA1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 17:25:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93D7B307B00
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 17:33:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232550AbhA1QXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 11:23:10 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:48954 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232541AbhA1QXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 11:23:05 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10SGLQPf096821;
-        Thu, 28 Jan 2021 10:21:26 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611850886;
-        bh=WNPd19A6ZtEmXx99rm146phP+kamA89IVTD2nlMa+3o=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=a6F0mkCyCRv177V5XkYGbbl4T94yEqk903KIxBy0cQX4TVpLdgIeL/cvX96SD+0xb
-         yCXSiucblmvM742ScDIaaKH3Z3CfKGjq1QFcmrt5C5lJT3ee+yKLhRNLd4TXTLxIC1
-         invW25XhtJRPgKvrkdbqK8HLapXlB4E486Yz94yA=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10SGLQRE028573
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 28 Jan 2021 10:21:26 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 28
- Jan 2021 10:21:26 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 28 Jan 2021 10:21:26 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10SGLL8S064659;
-        Thu, 28 Jan 2021 10:21:22 -0600
-Subject: Re: [PATCH v3 1/2] dts: ti: k3-j7200-main: Add support for zeroth
- instance of GPIO subsystem
-To:     Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210127150815.16991-1-a-govindraju@ti.com>
- <20210127150815.16991-2-a-govindraju@ti.com>
- <20210127151256.tgbhpngy6fi43edj@create>
- <9308ad5d-48bd-ebd2-2ea3-9775b8c11163@ti.com>
- <20210127155441.e2oho7m4aeovkafw@absinthe>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <9959fc6b-1f3f-53b4-91fd-a8dc46a871b6@ti.com>
-Date:   Thu, 28 Jan 2021 21:51:21 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S232493AbhA1Qcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 11:32:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41152 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232457AbhA1Qce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 11:32:34 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3FDAC061756;
+        Thu, 28 Jan 2021 08:31:53 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id p15so6017589wrq.8;
+        Thu, 28 Jan 2021 08:31:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=aB7zuQWcrPzPmAQrvOloCgHrIKsDNj/0Gfzl4leTLYE=;
+        b=e5uIsa58hkgWWmUhwaKnmmHmMUqxBkDVk7uZLLwbgjSz2lN4sTUnVWwF1moV9j/Zfm
+         9SoMLVIaxYNZCG9mfg/6Frbu3C2JGaXQqMN6L+v+3zyCD+pk6JpVlVSYBhu5O4Xe9OUa
+         0ieB3VbXfC/pLsnVtkmY26Vq5jDJkM3FNHnQN9Lz0ywTWglPxoQPT2+TKvizMPwOmUAT
+         f0ouhlrpI7UphqCMOrtQTF3xmHtt4oqHX/eBzNg59KoIpx/PI1k1TPNVlnBNpYFCb2jb
+         hppBiESlyfW1zUk11ucEBIlEnNnprnXvBmPYkuSsedCk07W0f4bXH25nu+Xdf7/jplag
+         bT7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=aB7zuQWcrPzPmAQrvOloCgHrIKsDNj/0Gfzl4leTLYE=;
+        b=gMZNtv9QYoCYu6h/RkY7BWnjVQUm2V3wQdpYj4rDpEZEZ4NsKMvoMGWTnV36oTEW9+
+         BHy3sllj7sYqNq9QpYaF3kIk9kMKi6V29MZhiNbAgTo/8AfPDM/+bMfEWAH902KKVVJt
+         bs12e8JOYi3w4vgL+pT1xMExXJTe/oOwohGkGOTXCf523hTQl38jYAxIYmqJl7AamGo8
+         Nxy84pHsbKPWIR6p6DR9IUhSI7hiRfAw4ibCMYSoi6/VnA5xdQKFzsioqHhGhOoBqIta
+         bdCc22PPdphb88wceScolinIOz2mbCzz84OuXFhhpXNXgQpS0V1/ZwcopAu9B56Dz2Jc
+         i/Yw==
+X-Gm-Message-State: AOAM531wnsuRHKeURjNRhDpzqohhrRqcA9IW5qHaC0hSFBKk3ZHnY2wy
+        jt+u4LY4XLX1xuTBhDpIadg=
+X-Google-Smtp-Source: ABdhPJwYip4jGo3j1j/kpGaNQKnhSrNc2zFSNPByK826616JOYqRX00Y68OHdP666t5omBXVRS5RQQ==
+X-Received: by 2002:adf:e511:: with SMTP id j17mr14390620wrm.17.1611851512379;
+        Thu, 28 Jan 2021 08:31:52 -0800 (PST)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id b3sm7439842wme.32.2021.01.28.08.31.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jan 2021 08:31:51 -0800 (PST)
+Subject: Re: [PATCH v12 1/8] arm64: dts: mt8183: rename rdma fifo size
+To:     Hsin-Yi Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+References: <20210128112314.1304160-1-hsinyi@chromium.org>
+ <20210128112314.1304160-2-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <5eec39ff-de13-a749-d8c2-f2426e9565ed@gmail.com>
+Date:   Thu, 28 Jan 2021 17:31:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <20210127155441.e2oho7m4aeovkafw@absinthe>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20210128112314.1304160-2-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
 
-On 27/01/21 9:24 pm, Nishanth Menon wrote:
-> On 20:56-20210127, Aswath Govindraju wrote:
->> Hi Nishanth,
->>
->> On 27/01/21 8:42 pm, Nishanth Menon wrote:
->>> On 20:38-20210127, Aswath Govindraju wrote:
->>>> Add support for the zeroth instance of GPIO subsystem in the main domain.
->>>>
->>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>>
->>>
->>> I really dont want to pick up one patch per node instance. It is hard
->>> to scale and just creates a lot of noise.
->>>
->>
->> As the main goal of the patch series was to add support for higher speed
->> modes in MMC, I added only the required ones. If required I will send a
->> follow up patch to add the remaining GPIO nodes.
-> 
-> 
-> I dont plan on picking this patch up in it's current form. please send a
-> patch with all the gpio nodes added in as it makes no sense to split
-> these out.
-> 
 
-I have sent a respin for this patch series(v4) which adds all the GPIO
-nodes in the device tree files.
+On 28/01/2021 12:23, Hsin-Yi Wang wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> 
+> property name must include only lowercase and '-'
+> 
+> Fixes: 91f9c963ce79 ("arm64: dts: mt8183: Add display nodes for MT8183")
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-Thanks,
-Aswath
+Applied to v5.11-next/dts64
+
+Thanks
+
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 5b782a4769e7e..6c84ccb709af6 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1011,7 +1011,7 @@ rdma0: rdma@1400b000 {
+>  			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
+>  			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
+>  			mediatek,larb = <&larb0>;
+> -			mediatek,rdma_fifo_size = <5120>;
+> +			mediatek,rdma-fifo-size = <5120>;
+>  			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xb000 0x1000>;
+>  		};
+>  
+> @@ -1023,7 +1023,7 @@ rdma1: rdma@1400c000 {
+>  			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
+>  			iommus = <&iommu M4U_PORT_DISP_RDMA1>;
+>  			mediatek,larb = <&larb0>;
+> -			mediatek,rdma_fifo_size = <2048>;
+> +			mediatek,rdma-fifo-size = <2048>;
+>  			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
+>  		};
+>  
+> 
