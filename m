@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E1BE306FA3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:36:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3124F306FB0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:42:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232040AbhA1Hfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 02:35:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38100 "EHLO
+        id S231972AbhA1HhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 02:37:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232016AbhA1Hd1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 02:33:27 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87BC4C0617AB
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 23:28:26 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id e9so2854795plh.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 23:28:26 -0800 (PST)
+        with ESMTP id S232067AbhA1Hdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 02:33:55 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEE6C061351
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 23:28:29 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id c132so3722985pga.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 23:28:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=n5JC3J9fiTLPDmuPJJpjxxF1Ga0nTHhfcPY/QtRnZ3w=;
-        b=bKFUwTGyazHAINlNEy3tvekxCHGN20xbiU+MzmgJZ7r4ZJVV/IA51MJGx9CG0zzp/e
-         WOg7TjLBWG8JaMfFhGBTHeFbRFBQ8eG5TY4G4VlVotheStiSLtGarvwpkxOC+xGF0qdT
-         aHEkKWliZwTiqzGLhyutrShUsBuaJwlCTaPH8=
+        bh=fne+vhWkm1Z1Aqcwns1m/8EIUHXNQn4A+aQoJ3scn6c=;
+        b=JR2mytdDYyZTlKBy0TO/0LfCu+l8Qy8jLpRyEnDzR9OLN8n/wqraoIViKpWO/gQKb9
+         +1+yUfi6CFUwZfR3AKsSJ08yhitKEX+7fbG82Wr7bUOCOkQk13OxXhXphD/Tr1qHfP0U
+         L45FyMiaera7CCXFagCxyz4HUWh8SnJg5HMDM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=n5JC3J9fiTLPDmuPJJpjxxF1Ga0nTHhfcPY/QtRnZ3w=;
-        b=pIgKpw3Mez3oap7sthADozlCO4yYOsS3IHELsw9tiQH2LfXufMF8ULfZ3ePNeRLLo5
-         7mGFga/dkJmmz+MVEsjzqE4PJ8u8PEeNQSLPgej8v6zpU9MJDk6guRtlhLkwn2aJa4S0
-         mqjxujuSbLnIyfEa3VBsG2/LkDz0frIWNLxzDkUmPXTAmAMTSPDxKkEei3sfQ4BbqebM
-         W0XoqDH6M7P6fwqq9wpsfDDRBNCpTPzvAkIU3aP3y/zW37vlHLM6htnm93zx4kMULMo+
-         69MCaII9GgeuWwseyGqj8vEpesdzizXM74Pd8GUhLMSjF5YV277m+RMWba5HrZSiS716
-         EO1Q==
-X-Gm-Message-State: AOAM530c+rUhQaD3AF9uWSSAlUwOzW+RLOY23U61zPIilT7KIAZfdBjb
-        ssb14Q+NRIFD0uTFmlH6wYtd3g==
-X-Google-Smtp-Source: ABdhPJzyocAU6LTq7WYj6JtsVxXfqP8goZhEPftbrsaGKzBZHQ0g/EnX2JCxYKHF5CFlM98QNs2s4Q==
-X-Received: by 2002:a17:90a:8e82:: with SMTP id f2mr9845390pjo.234.1611818906090;
-        Wed, 27 Jan 2021 23:28:26 -0800 (PST)
+        bh=fne+vhWkm1Z1Aqcwns1m/8EIUHXNQn4A+aQoJ3scn6c=;
+        b=f2Ll2RfRG+J7SSxjq/hM18WDgkkpWoarIrwrYGhunelNXzkGOwWSFCG2N7I1TLJ9mt
+         2jx+pEBMdqWXi/X7+osVl2K9sG/0q4G0Me8cYJrxUStE+FNSf4Fnq0wyQd7W2ugykCL2
+         zDWy0/ddrVuW0zgCoOa2iSYb5mh+DZ5QaZPpSAbzIeGUN9brS8vF2hfh67ZWF8bUNSxo
+         1HbrcI3An3ROwP+FpElCRya23yCjYIrU6qQu05M72qUzc2nhLKy9Jacl7P2jXw3cdawm
+         XS7nj40DwdWZSE7auY99cVhAonBj95p90SviSzL0MEqmIrb029lWrkoeOF5+fvWONuy0
+         a1LA==
+X-Gm-Message-State: AOAM5312U9UFUWcofeV1N+kFGptV0JvgPb7hOA04ZlyTKCx5/HqP1e7g
+        Di0jgsuon/OAxC5KY7v7HF0UBoCFqPbEZA==
+X-Google-Smtp-Source: ABdhPJzyTMG7Btac7TH5DXBrPhgpAXQ+Sjkf0xFq2Jr5myqxPMyVT2/nWmLn4j5qXYiXNB52rSQWNA==
+X-Received: by 2002:a05:6a00:2281:b029:1bb:15d2:3b9f with SMTP id f1-20020a056a002281b02901bb15d23b9fmr14394166pfe.25.1611818909201;
+        Wed, 27 Jan 2021 23:28:29 -0800 (PST)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:e0a5:d2fc:aaad:1e4a])
-        by smtp.gmail.com with ESMTPSA id h2sm4800304pfk.4.2021.01.27.23.28.23
+        by smtp.gmail.com with ESMTPSA id h2sm4800304pfk.4.2021.01.27.23.28.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 23:28:25 -0800 (PST)
+        Wed, 27 Jan 2021 23:28:28 -0800 (PST)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Matthias Brugger <matthias.bgg@gmail.com>
@@ -53,9 +53,9 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v11 6/9] drm/mediatek: add has_dither private data for gamma
-Date:   Thu, 28 Jan 2021 15:27:59 +0800
-Message-Id: <20210128072802.830971-7-hsinyi@chromium.org>
+Subject: [PATCH v11 7/9] drm/mediatek: enable dither function
+Date:   Thu, 28 Jan 2021 15:28:00 +0800
+Message-Id: <20210128072802.830971-8-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
 In-Reply-To: <20210128072802.830971-1-hsinyi@chromium.org>
 References: <20210128072802.830971-1-hsinyi@chromium.org>
@@ -67,54 +67,79 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-Not all SoC has dither function in gamma module.
-Add private data to control this function setting.
+for 5 or 6 bpc panel, we need enable dither function
+to improve the display quality
 
 Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
 ---
- drivers/gpu/drm/mediatek/mtk_disp_gamma.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 44 ++++++++++++++++++++-
+ 1 file changed, 43 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-index a7e2e326b2183..22199ef11f65d 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-@@ -26,7 +26,7 @@
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+index 8173f709272be..e85625704d611 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+@@ -53,7 +53,9 @@
+ #define DITHER_EN				BIT(0)
+ #define DISP_DITHER_CFG				0x0020
+ #define DITHER_RELAY_MODE			BIT(0)
++#define DITHER_ENGINE_EN			BIT(1)
+ #define DISP_DITHER_SIZE			0x0030
++#define DITHER_REG(idx)				(0x100 + (idx) * 4)
+ 
  #define LUT_10BIT_MASK				0x03ff
  
- struct mtk_disp_gamma_data {
--	u32 reserved;
-+	bool has_dither;
- };
+@@ -313,8 +315,48 @@ static void mtk_dither_config(struct device *dev, unsigned int w,
+ {
+ 	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
  
- /**
-@@ -92,7 +92,8 @@ void mtk_gamma_config(struct device *dev, unsigned int w,
- 
- 	mtk_ddp_write(cmdq_pkt, h << 16 | w, &gamma->cmdq_reg, gamma->regs,
- 		      DISP_GAMMA_SIZE);
--	mtk_dither_set_common(gamma->regs, &gamma->cmdq_reg, bpc, DISP_GAMMA_CFG, cmdq_pkt);
-+	if (gamma->data && gamma->data->has_dither)
-+		mtk_dither_set_common(gamma->regs, &gamma->cmdq_reg, bpc, DISP_GAMMA_CFG, cmdq_pkt);
- }
- 
- void mtk_gamma_start(struct device *dev)
-@@ -172,8 +173,13 @@ static int mtk_disp_gamma_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static const struct mtk_disp_gamma_data mt8173_gamma_driver_data = {
-+	.has_dither = true,
-+};
++	bool enable = false;
 +
- static const struct of_device_id mtk_disp_gamma_driver_dt_match[] = {
--	{ .compatible = "mediatek,mt8173-disp-gamma"},
-+	{ .compatible = "mediatek,mt8173-disp-gamma",
-+	  .data = &mt8173_gamma_driver_data},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_disp_gamma_driver_dt_match);
++	/* default value for dither reg 5 to 14 */
++	const u32 dither_setting[] = {
++		0x00000000, /* 5 */
++		0x00003002, /* 6 */
++		0x00000000, /* 7 */
++		0x00000000, /* 8 */
++		0x00000000, /* 9 */
++		0x00000000, /* 10 */
++		0x00000000, /* 11 */
++		0x00000011, /* 12 */
++		0x00000000, /* 13 */
++		0x00000000, /* 14 */
++	};
++
++	if (bpc == 5 || bpc == 6) {
++		enable = true;
++		mtk_ddp_write(cmdq_pkt,
++			      DITHER_LSB_ERR_SHIFT_R(MTK_MAX_BPC - bpc) |
++			      DITHER_ADD_LSHIFT_R(MTK_MAX_BPC - bpc) |
++			      DITHER_NEW_BIT_MODE,
++			      &priv->cmdq_reg, priv->regs, DITHER_REG(15));
++		mtk_ddp_write(cmdq_pkt,
++			      DITHER_LSB_ERR_SHIFT_B(MTK_MAX_BPC - bpc) |
++			      DITHER_ADD_LSHIFT_B(MTK_MAX_BPC - bpc) |
++			      DITHER_LSB_ERR_SHIFT_G(MTK_MAX_BPC - bpc) |
++			      DITHER_ADD_LSHIFT_G(MTK_MAX_BPC - bpc),
++			      &priv->cmdq_reg, priv->regs, DITHER_REG(16));
++	}
++
++
++	if (enable) {
++		u32 idx;
++
++		for (idx = 0; idx < ARRAY_SIZE(dither_setting); idx++)
++			mtk_ddp_write(cmdq_pkt, dither_setting[idx], &priv->cmdq_reg, priv->regs,
++				      DITHER_REG(idx + 5));
++	}
++
+ 	mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs, DISP_DITHER_SIZE);
+-	mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs, DISP_DITHER_CFG);
++        mtk_ddp_write(cmdq_pkt, enable ? DITHER_ENGINE_EN : DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs, DISP_DITHER_CFG);
+ }
+ 
+ static void mtk_dither_start(struct device *dev)
 -- 
 2.30.0.280.ga3ce27912f-goog
 
