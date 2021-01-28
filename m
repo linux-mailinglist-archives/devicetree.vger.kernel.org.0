@@ -2,75 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA1BC307569
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 13:05:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00BCC307570
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 13:05:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231181AbhA1MBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 07:01:02 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:45283 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231419AbhA1MAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 07:00:07 -0500
-Received: by mail-oi1-f180.google.com with SMTP id g69so5685338oib.12;
-        Thu, 28 Jan 2021 03:59:51 -0800 (PST)
+        id S231462AbhA1MCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 07:02:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39486 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231557AbhA1MBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 07:01:53 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 765BEC061574
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 04:01:12 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id u4so4459188ljh.6
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 04:01:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=n9EOKkeTY2+d1Fa4iHB/4cHa37Z0fzFo4OzOK4oM6Q4=;
+        b=F/CmSMOuSr5zNpyIz8oDpfs0uxO2NhcU5b2INzxjrItESHLsnvvNX/yf1410eKA9ve
+         VQpoXLUK241FEkj9ofwBDSWNFjyOlJ1/B0w503sD1RjI/Sv8Mpy9AuKTl4v9unPAbVpt
+         o2NhCHR1kO8BzF2uLKVtJlY/eb6hmEA6dxkoKIZIDA//svyJxEpWliH0+/KoPRpX6yuQ
+         xOaOhiqgJROQ4qzL4Ai4Vu8QEK7vHTmjcR+D0QSzio07rhzy0JmaMHDNZNHoYvUzzBdq
+         PIk0qSMqBACkwRrT1oeqoueNhsZKSRQyiROFe5pXaQq2lZ0IVc3HI0/lPCj4ym1EPKe0
+         BuLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=kAP4N1JvamS8Mu0q+wzDG5MIcLJh8DB6Gbuwj+1o0xk=;
-        b=Gfr0N2ENJt5YKMtVKAA0iAP3BwXgJ904EohZVfBzR88ha3zdm3BaMYvJVmwEiatQkX
-         VZBqAYqpH0LNMrpKsaTQcRrn7As/QgBSy1gSbRjYQvLizCGuyN8CsASm2i9sLHslvEZh
-         vduZy/OzvxrkhZTDUCHt5Px9QDB2CiPXdzEi2nEHigrjp/C22Wu2mol3qLtaO0KTFaVL
-         yFcZU6sP95Ukz8J/JvCyDCcnCPd5aSBC1rhqA4eMo7gm+eYAj5UzhHODp1kLNIBZrWB0
-         dmHwRMaY1iIEfHtUddjG4YrlvOlQlgxlxkj1QBNuWZz0Snpb4+ruibYEzesbqV0lzklD
-         1r7A==
-X-Gm-Message-State: AOAM530DPIwZd8jSPr9oXIf62TJXf8LbWVtOZplgfbK0m9DcwBuIs0RE
-        Xi4N3ODOT0U3d8Iw50xumlrTWYHaJPcSycqkX0aksWsDs0E=
-X-Google-Smtp-Source: ABdhPJzrT+Kg8nyfyKS3C+Z0key3XnUxUjStwPy5R868F5Smv4QzgDQQfF0cXgHDjhCU+QdrsluppxYf9QBXRKwmEz4=
-X-Received: by 2002:a54:4e88:: with SMTP id c8mr6196722oiy.148.1611835166537;
- Thu, 28 Jan 2021 03:59:26 -0800 (PST)
+        bh=n9EOKkeTY2+d1Fa4iHB/4cHa37Z0fzFo4OzOK4oM6Q4=;
+        b=Up0llQdQSN1pR4WFfxDBG/Loj8HfEjWy98bYWd2aMhT+ihatgmPvBG2JGZQInpILdP
+         q/MldAqDoY2NI1UmeP1cwWXhMvYoh/d7e2lzFvaI6candC0w1NFwwgC/xUr2r7SeRc7D
+         fUI8KnBTkx3wSjw1/LGY5Fjr/qxvE1gB6UlsnIrnbo9rMq0MRQTDSDuc5OVJurysNgaF
+         kigS3QJMixsN1Qq41MeuUUtX5MRmHEsV/erNDF8ET49BDxxZrrdqY8onHf9Y78zVE3VQ
+         zi99Bk5iljijbon4vWMBSpJbPu6kxGr2mxFIKKldBoS82jJEjW3qLhXB/RJsAzpESAWh
+         aqqQ==
+X-Gm-Message-State: AOAM5312SVe9ruGWRwWPr0mTv+7wgha9UK4q4W3Hh7hWfFcjZWYaDdCq
+        uqsnpFAY95dFDW4MFGbuF1BPiICtJPzCCPb7Vk2rEg==
+X-Google-Smtp-Source: ABdhPJypbRkZO7oNmfkvuCEOFNhZkoDt3uSClsJKrU2bBbdo1JdlUWBieGzbeMl4eG6ef0bI+oE4Ri5xIQqzgGc6PuE=
+X-Received: by 2002:a2e:8ec3:: with SMTP id e3mr7938969ljl.467.1611835271030;
+ Thu, 28 Jan 2021 04:01:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20210128111343.2295888-1-geert+renesas@glider.be> <20210128113353.GN963@ninjato>
-In-Reply-To: <20210128113353.GN963@ninjato>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 28 Jan 2021 12:59:15 +0100
-Message-ID: <CAMuHMdW--A2bwe==+A35_sLAS2OkXzi2hY0Ky_dwL0n8irHMZw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: eeprom: at24: Document ROHM BR24G01
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+References: <20210127000303.436595-1-drew@beagleboard.org>
+In-Reply-To: <20210127000303.436595-1-drew@beagleboard.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 28 Jan 2021 13:01:00 +0100
+Message-ID: <CACRpkdam4gY3iU1DBtczgdnxQ-t0OkrRMZ-Y9e1W0FQOrYnndw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: am335x-pocketbeagle: unique gpio-line-names
+To:     Drew Fustini <drew@beagleboard.org>
+Cc:     =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+On Wed, Jan 27, 2021 at 1:04 AM Drew Fustini <drew@beagleboard.org> wrote:
 
-On Thu, Jan 28, 2021 at 12:33 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> On Thu, Jan 28, 2021 at 12:13:43PM +0100, Geert Uytterhoeven wrote:
-> > Document the compatible value for the ROHM Semiconductor BR24G01 I2C bus
-> > EEPROM.
+> Based on linux-gpio discussion [1], it is best practice to make the
+> gpio-line-names unique. Generic names like "[ethernet]" are replaced
+> with the name of the unique signal on the AM3358 SoC ball corresponding
+> to the gpio line. "[NC]" is also renamed to the standard "NC" name to
+> represent "not connected".
 >
-> What is the difference between those two? Could one also be the fallback
-> of the other (just in the highly unlikely case we need "generic" Rohm
-> handling somewhen)?
+> [1] https://lore.kernel.org/linux-gpio/20201216195357.GA2583366@x1/
+>
+> Signed-off-by: Drew Fustini <drew@beagleboard.org>
 
-Good question.  The datasheets look similar.
-Parametric search on rohm.com says the G-series differs in using
-"Cu wire bonding".
+This certainly looks better!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yours,
+Linus Walleij
