@@ -2,98 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8202230704D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:55:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69B6B3070B8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 09:09:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232196AbhA1Hy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 02:54:29 -0500
-Received: from mx2.suse.de ([195.135.220.15]:49972 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232173AbhA1HyN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Jan 2021 02:54:13 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-        t=1611820406; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=xSK7HTq3+bwPr5/ZmeHgDam4Owbrz6XJGaTagKZ9+Sc=;
-        b=JBFgrFCavxvgBNIvYnVReaCc/L1j5MxrQZNythF4AUSJ25X5TtF5VN1jumotZkagat0tSo
-        pwk7RC9SU5eAz9zppnc8tAmzpbNjvBDAksxhBTmbk1WJs10RbLoc8ga6FwjNo1cFuEFnEU
-        8lDAPhWlIxmT0d8GZB5YZZwLPPAeHoc=
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id AD9F3AC45;
-        Thu, 28 Jan 2021 07:53:26 +0000 (UTC)
-Date:   Thu, 28 Jan 2021 08:53:25 +0100
-From:   Michal Hocko <mhocko@suse.com>
-To:     Minchan Kim <minchan@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        linux-mm <linux-mm@kvack.org>,
-        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
-        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
-        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
-        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
-        linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v4 2/4] mm: failfast mode with __GFP_NORETRY in
- alloc_contig_range
-Message-ID: <YBJtdT5Tf5mRsE9U@dhcp22.suse.cz>
-References: <20210121175502.274391-1-minchan@kernel.org>
- <20210121175502.274391-3-minchan@kernel.org>
- <20210125131200.GG827@dhcp22.suse.cz>
- <YA8dEFSrHBb9muFr@google.com>
- <20210126074449.GA827@dhcp22.suse.cz>
- <YBHQRY8kw8/wjFK8@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YBHQRY8kw8/wjFK8@google.com>
+        id S231354AbhA1IIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 03:08:51 -0500
+Received: from st43p00im-ztbu10073701.me.com ([17.58.63.183]:49621 "EHLO
+        st43p00im-ztbu10073701.me.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231684AbhA1IIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Jan 2021 03:08:34 -0500
+X-Greylist: delayed 519 seconds by postgrey-1.27 at vger.kernel.org; Thu, 28 Jan 2021 03:08:26 EST
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1611820691; bh=LIfpvi/CeAZsNwLDcOcpd47eJbyY1m6zbqe5JJoe9sU=;
+        h=From:To:Subject:Date:Message-Id;
+        b=z4xoQzQmFfGosBgPnU500zNFp04pgs2MRBqSp392pK3Mh7eOMXSUyMKge7Zg3wAUu
+         CcBSTGTR2HdL37kn7WQfocE4zTaPKkMDuojeOVFUebRuAC8wr3LNODbE2GK08xLt2R
+         Auy2T09DIXINGBmcORvY/39RkwsFt5FJo5sZJNuVJi77Mh+XromKE2YvAq/Yam5zhM
+         oF0y5BGP6UAKFZYjNtL4nnvMghCpcJrsUAaCKrQU5xMJea9QZWby+5tOUIPcYxAF0z
+         BWCL5SmjZXvrUjHhz507pu1f5NQXYNd+ljFE3DQA7Od/gS7mq99YXXXzEvhznfzqFl
+         Vh+CRO7tLuRFw==
+Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
+        by st43p00im-ztbu10073701.me.com (Postfix) with ESMTPSA id 8477F4C040A;
+        Thu, 28 Jan 2021 07:58:09 +0000 (UTC)
+From:   Alain Volmat <avolmat@me.com>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     avolmat@me.com
+Subject: [PATCH 1/2] ARM: dts: sti: add the spinor controller node within stih407-family
+Date:   Thu, 28 Jan 2021 08:58:06 +0100
+Message-Id: <20210128075806.10318-1-avolmat@me.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-28_02:2021-01-27,2021-01-28 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 clxscore=1011 mlxscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-2006250000 definitions=main-2101280039
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 27-01-21 12:42:45, Minchan Kim wrote:
-> On Tue, Jan 26, 2021 at 08:44:49AM +0100, Michal Hocko wrote:
-> > On Mon 25-01-21 11:33:36, Minchan Kim wrote:
-> > > On Mon, Jan 25, 2021 at 02:12:00PM +0100, Michal Hocko wrote:
-> > > > On Thu 21-01-21 09:55:00, Minchan Kim wrote:
-> > > > > Contiguous memory allocation can be stalled due to waiting
-> > > > > on page writeback and/or page lock which causes unpredictable
-> > > > > delay. It's a unavoidable cost for the requestor to get *big*
-> > > > > contiguous memory but it's expensive for *small* contiguous
-> > > > > memory(e.g., order-4) because caller could retry the request
-> > > > > in different range where would have easy migratable pages
-> > > > > without stalling.
-> > > > > 
-> > > > > This patch introduce __GFP_NORETRY as compaction gfp_mask in
-> > > > > alloc_contig_range so it will fail fast without blocking
-> > > > > when it encounters pages needed waiting.
-> > > > 
-> > > > I am not against controling how hard this allocator tries with gfp mask
-> > > > but this changelog is rather void on any data and any user.
-> > > > 
-> > > > It is also rather dubious to have retries when then caller says to not
-> > > > retry.
-> > > 
-> > > Since max_tries is 1 with ++tries, it shouldn't retry.
-> > 
-> > OK, I have missed that. This is a tricky code. ASYNC mode should be
-> > completely orthogonal to the retries count. Those are different things.
-> > Page allocator does an explicit bail out based on __GFP_NORETRY. You
-> > should be doing the same.
-> 
-> Before sending next revision, let me check this part again.
-> 
-> I want to use __GFP_NORETRY to indicate "opportunistic-easy-to-fail attempt"
-> and I want to use ASYNC migrate_mode to help the goal.
-> 
-> Do you see the problem?
+add the spinor controller node within stih407-family.
 
-No, as I've said. This is a normal NORETRY policy. And ASYNC migration
-is a mere implementation detail you do not have bother your users about.
-This is the semantic view. From the implementation POV it should be the
-gfp mask to drive decisions rather than a random (ASYNC) flag to control
-retries as you did here.
+Signed-off-by: Alain Volmat <avolmat@me.com>
+---
+ arch/arm/boot/dts/stih407-family.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
+diff --git a/arch/arm/boot/dts/stih407-family.dtsi b/arch/arm/boot/dts/stih407-family.dtsi
+index 23a1746f3baa..21f3347a91d6 100644
+--- a/arch/arm/boot/dts/stih407-family.dtsi
++++ b/arch/arm/boot/dts/stih407-family.dtsi
+@@ -616,6 +616,21 @@
+ 			st,lpc-mode = <ST_LPC_MODE_CLKSRC>;
+ 		};
+ 
++		spifsm: spifsm@9022000{
++			compatible = "st,spi-fsm";
++			reg = <0x9022000 0x1000>;
++			reg-names = "spi-fsm";
++			clocks = <&clk_s_c0_flexgen CLK_FLASH_PROMIP>;
++			clock-names = "emi_clk";
++			pinctrl-names = "default";
++			pinctrl-0 = <&pinctrl_fsm>;
++			st,syscfg = <&syscfg_core>;
++			st,boot-device-reg = <0x8c4>;
++			st,boot-device-spi = <0x68>;
++
++			status = "disabled";
++		};
++
+ 		sata0: sata@9b20000 {
+ 			compatible = "st,ahci";
+ 			reg = <0x9b20000 0x1000>;
 -- 
-Michal Hocko
-SUSE Labs
+2.17.1
+
