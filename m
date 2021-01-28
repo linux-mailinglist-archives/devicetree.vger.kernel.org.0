@@ -2,72 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1348307450
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 12:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F921307487
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 12:15:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbhA1LC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 06:02:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54974 "EHLO
+        id S231278AbhA1LNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 06:13:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbhA1LCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 06:02:25 -0500
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1102C0613D6
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 03:01:39 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by andre.telenet-ops.be with bizsmtp
-        id NB1e240014C55Sk01B1eVm; Thu, 28 Jan 2021 12:01:38 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l553R-001Kyc-K0; Thu, 28 Jan 2021 12:01:37 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l553R-009ceX-0f; Thu, 28 Jan 2021 12:01:37 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>, Adam Ford <aford173@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] arm64: dts: renesas: beacon: Fix EEPROM compatible value
-Date:   Thu, 28 Jan 2021 12:01:36 +0100
-Message-Id: <20210128110136.2293490-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231128AbhA1LN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 06:13:27 -0500
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA99C061573
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 03:12:46 -0800 (PST)
+Received: by mail-il1-x12c.google.com with SMTP id a1so4843745ilr.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 03:12:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/WJw1aJ983EEKpRj5gZ4zFlUrwFHoMadbviHbndDVT8=;
+        b=dfDCHTrz8XskJkazSFR/d269ImWmkT6WKjpQ1j4AVPkVQ0H4j5zdogEiMZAuBs2Nuq
+         PLm6Pn+zV760awkBSwTDMSe/TivqPc3s/134zz9sRbBQABFJfAnM4SjROF9bDhhkPFXx
+         dFFpptCksPnvkPoUioIRniNKaaMkEX+xcGyNg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/WJw1aJ983EEKpRj5gZ4zFlUrwFHoMadbviHbndDVT8=;
+        b=XuhKOhG8BWedpaEZ/sc/W2wQPigckSqHCpdMNCvLIHsjwy2IQLY19szZmBbRit9C/q
+         tM1UqCj2+jD8r4QC4853e8eqiss42ig2+Svvk6ZJBCx9P0Xu4nmQ9v5FC23vKTcTYADe
+         uZlF4/6U3DG3k9ZYym+RhxMldBuT9IlB2PFTeYBA6aG3a4/KU1r+dmn856mxfdPLsw6W
+         hvJYPwE+mRZw9q+n161tWSMiS3lYrj21+T2RjNZmXVL8tmbQIUE94ByDUNimfEwqkgqa
+         +YdUjCeUJNoCz11cnkbk0aS5iTShfVzaC2wrca5Ut5DqA24jpjDEr4689/9v/1EAn1QH
+         3nWA==
+X-Gm-Message-State: AOAM532HG2aylW9+Fn6Hmt0qqSlp8F7s5Dpw7S8L74M2R1oaPajP4OAt
+        FpBSpWA2L885bjPmQpe7YwcJG+sqJHMMQWbl9Lo/jg==
+X-Google-Smtp-Source: ABdhPJxpvtqvyRoNVw2J32fCidzTHWv4s/97L1l2P7XY3BFLhw9LEXqsuGOgsssZ07Bdcb7TGzMR023+FxP+UJYso4w=
+X-Received: by 2002:a05:6e02:509:: with SMTP id d9mr12671592ils.150.1611832366253;
+ Thu, 28 Jan 2021 03:12:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210128072802.830971-1-hsinyi@chromium.org> <20210128072802.830971-4-hsinyi@chromium.org>
+ <1611820251.16091.7.camel@mtksdaap41>
+In-Reply-To: <1611820251.16091.7.camel@mtksdaap41>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Thu, 28 Jan 2021 19:12:20 +0800
+Message-ID: <CAJMQK-igcZXrnTb6pA3S6X_uTF6aGhKFLAHtdet62od9vVx4rg@mail.gmail.com>
+Subject: Re: [PATCH v11 3/9] drm/mediatek: add RDMA fifo size error handle
+To:     CK Hu <ck.hu@mediatek.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"make dtbs_check" fails with:
+On Thu, Jan 28, 2021 at 3:52 PM CK Hu <ck.hu@mediatek.com> wrote:
+>
+> Hi, Hsin-Yi:
+>
+> On Thu, 2021-01-28 at 15:27 +0800, Hsin-Yi Wang wrote:
+> > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> >
+> > This patch add RDMA fifo size error handle
+> > rdma fifo size will not always bigger than the calculated threshold
+> > if that case happened, we need set fifo size as the threshold
+> >
+> > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > ---
+> >  drivers/gpu/drm/mediatek/mtk_disp_rdma.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> > index b84004394970f..04b9542010b00 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> > @@ -168,6 +168,10 @@ void mtk_rdma_config(struct device *dev, unsigned int width,
+> >        * account for blanking, and with a pixel depth of 4 bytes:
+> >        */
+> >       threshold = width * height * vrefresh * 4 * 7 / 1000000;
+> > +
+> > +     if (threshold > rdma_fifo_size)
+> > +             threshold = rdma_fifo_size;
+> > +
+>
+> Please see the discussion in [1].
+>
+> [1]
+> https://patchwork.kernel.org/project/linux-mediatek/patch/1607591262-21736-6-git-send-email-yongqiang.niu@mediatek.com/
+>
+> Regards,
+> CK
+>
 
-    arch/arm64/boot/dts/renesas/r8a774b1-beacon-rzg2n-kit.dt.yaml: eeprom@50: compatible: 'oneOf' conditional failed, one must be fixed:
-	    'microchip,at24c64' does not match '^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|lc|mac)[0-9]+|spd)$'
+Hi CK,
 
-Fix this by dropping the bogus "at" prefix.
+Even if we set threshold to
+threshold = RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) * width * height *
+vrefresh / 2 / MAX_WIDTH / MAX_HEIGHT / MAX_VREFRESH;
 
-Fixes: a1d8a344f1ca0709 ("arm64: dts: renesas: Introduce r8a774a1-beacon-rzg2m-kit")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-To be queued in renesas-devel for v5.12.
----
- arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I'm not sure what value MAX_WIDTH, MAX_HEIGHT, and MAX_VREFRESH should
+set to for each SoC.
+Since there's no conclusion yet, I'll drop this patch in the series,
+as this seems not an mt8183 specific fix.
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-index 7c811bc9be3d3ffd..678e83f5cc27e50e 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-@@ -135,7 +135,7 @@ pca9654_lte: gpio@21 {
- 	};
- 
- 	eeprom@50 {
--		compatible = "microchip,at24c64", "atmel,24c64";
-+		compatible = "microchip,24c64", "atmel,24c64";
- 		pagesize = <32>;
- 		read-only;	/* Manufacturing EEPROM programmed at factory */
- 		reg = <0x50>;
--- 
-2.25.1
 
+> >       reg = RDMA_FIFO_UNDERFLOW_EN |
+> >             RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) |
+> >             RDMA_OUTPUT_VALID_FIFO_THRESHOLD(threshold);
+>
