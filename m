@@ -2,134 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B68B7306DA0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 07:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1AED306DCC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 07:48:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbhA1Gbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 01:31:34 -0500
-Received: from mga11.intel.com ([192.55.52.93]:30344 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229513AbhA1Gbd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Jan 2021 01:31:33 -0500
-IronPort-SDR: 9/glW3f/fxfRDs4J9Bo1JyGKXd3asTpamti0TfCIr8yRp+oUk+z5xJMNUF2kIE/bc/XlYUzg38
- CH72QDVqoo0g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="176679077"
+        id S231310AbhA1GpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 01:45:25 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:29386 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231163AbhA1GpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 01:45:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1611816323; x=1643352323;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=wbquCW1Jq03k67nXuZYtUVGGl7OP8Xn59g/GHZwYmIo=;
+  b=mT21FZ5/nRR2HbiuoZAFhWF1T0MCLD+j3w38fjQjLGdRvQouBjKYyWbq
+   g94lScJG9Tssuq4nrywHYQnJpEv6OVLnCasFRqIVF1B02V1PgGpwKWq3S
+   O7alcJ/BGpTGSd5MVSc5K4cUym0QozkMFMubUDis115NO2QObGm10F7l9
+   by7X0iYrsaywrgVkx6KEUYwWxszm2KX6SEV1hzhWfTQJNoLE9uMiGhr1q
+   KgRoKwRBf//5lLX2a7x2HoUzo3Mu5I7dZqA6NGYk1HL1Xs5kTq1kFLvS6
+   FEumXK1sg2zOviPGk1++jtRNMxuEA2dqphJFoSMd66BjA6hnqidr1MdnY
+   w==;
+IronPort-SDR: 0oUQu2ZK4/CNGl4u1Wd0ix9ZpibLAAeTYfWy1DplIhAk4Z3MafWlYLLzpNiGTtdvdYzT1RDBKG
+ xvJTeMxPIMgoPbcd+QJb51YIpx4njhNxYtY97Bu13jLsCgqkDz/X0PRfCDLdtdHmMzu4WyTMXC
+ LFab82ZhDmooemeSlFWYqJKrYJ1+6pWnFDbHbyE8/dNdUMnHdEG0JHxoPurCHif+nzDumIwBf4
+ nfdfHDv+U5swzRw86lcWJKJHcW/kpePB193PHPzke9CoMp1I1ZPAlHxtQaW1lOSt1JdCvyN+Yx
+ 0eo=
 X-IronPort-AV: E=Sophos;i="5.79,381,1602572400"; 
-   d="scan'208";a="176679077"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2021 22:29:47 -0800
-IronPort-SDR: 2sHmcAycUWwl+qp8hg4k182E79KDApQRadpEl8N0fhTPpdZ9a70d9vMLTOoCaTPbA7pJElsNyo
- Tc3bD3LszZNw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,381,1602572400"; 
-   d="scan'208";a="574628257"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.170]) ([10.237.72.170])
-  by fmsmga006.fm.intel.com with ESMTP; 27 Jan 2021 22:29:45 -0800
-Subject: Re: [PATCH 0/4] add xhci hooks for USB offload
-To:     Howard Yen <howardyen@google.com>,
-        Greg KH <gregkh@linuxfoundation.org>
-Cc:     Mathias Nyman <mathias.nyman@intel.com>, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210119101044.1637023-1-howardyen@google.com>
- <af91bbf1-6731-3e87-4086-de0dbba22c22@intel.com>
- <CAJDAHvbTY3Z_bRg+++uLefWSvCWo_nGq+3OOQX3QHJ2w3X1SQw@mail.gmail.com>
- <ca442ca7-a434-2527-9945-861dafa685cc@linux.intel.com>
- <YBAk795ccXBPgJWp@kroah.com>
- <CAJDAHvZ2CCm9tT+C=hNc_U1CaYJg3ZjifsYLik3UqfXwUm++Lg@mail.gmail.com>
-From:   Mathias Nyman <mathias.nyman@linux.intel.com>
-Autocrypt: addr=mathias.nyman@linux.intel.com; prefer-encrypt=mutual; keydata=
- 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 fiD/
-Message-ID: <f77d1149-7bd1-3914-8841-439cb67397fd@linux.intel.com>
-Date:   Thu, 28 Jan 2021 08:31:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+   d="scan'208";a="104520472"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jan 2021 23:44:07 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 27 Jan 2021 23:44:06 -0700
+Received: from CHE-LT-I21427U.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Wed, 27 Jan 2021 23:44:01 -0700
+From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+To:     <andrew@lunn.ch>, <olteanv@gmail.com>, <netdev@vger.kernel.org>,
+        <robh+dt@kernel.org>
+CC:     <kuba@kernel.org>, <vivien.didelot@gmail.com>,
+        <f.fainelli@gmail.com>, <davem@davemloft.net>,
+        <UNGLinuxDriver@microchip.com>, <Woojung.Huh@microchip.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH net-next 0/8] net: dsa: microchip: DSA driver support for LAN937x switch
+Date:   Thu, 28 Jan 2021 12:11:04 +0530
+Message-ID: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <CAJDAHvZ2CCm9tT+C=hNc_U1CaYJg3ZjifsYLik3UqfXwUm++Lg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.1.2021 5.38, Howard Yen wrote:
-> On Tue, Jan 26, 2021 at 10:19 PM Greg KH <gregkh@linuxfoundation.org> wrote:
->>
->> On Fri, Jan 22, 2021 at 05:32:58PM +0200, Mathias Nyman wrote:
->>>
->>> Ok, before adding hooks like this I think we need to see how they are used.
->>> Do you have the rest of the patches that go on top of this series?
->>>
->>> Maybe it could make sense to use overrides for the functions in struct hc_driver
->>> instead in some cases? There is support for that already.
->>
->> What overrides could be done for these changes?  At first glance that
->> would seem to require a lot of duplicated code in whatever override
->> happens to be needed.
->>
->> thanks,
->>
->> greg k-h
-> 
-> This patch series is all the changes for the offload hooks currently.
-> 
-> I thought about this, but if I tried to override the functions in
-> struct hc_driver, that'll need to
-> copy many code to the override function, and it won't follow the
-> latest change in the core
-> xhci driver.
-> 
-> 
-> - Howard
+LAN937x is a Multi-Port 100BASE-T1 Ethernet Physical Layer switch 
+compliant with the IEEE 802.3bw-2015 specification. The device 
+provides 100 Mbit/s transmit and receive capability over a single
+Unshielded Twisted Pair (UTP) cable. LAN937x is successive revision
+of KSZ series switch. This series of patches provide the DSA driver 
+support for Microchip LAN937X switch and it configures through 
+SPI interface.
 
-Ok, I see. 
+This driver shares some of the functions from KSZ common
+layer.
 
-The point I'm trying to make is that there is no way for me to know if
-these hooks are the right solution before I see any code using them.
+The LAN937x switch series family consists of following SKUs:
+LAN9370:
+  - 4 T1 Phys
+  - 1 RGMII port
+LAN9371:
+  - 3 T1 Phys & 1 TX Phy
+  - 2 RGMII ports
+LAN9372:
+  - 5 T1 Phys & 1 TX Phy
+  - 2 RGMII ports
+LAN9373:
+  - 5 T1 Phys
+  - 2 RGMII & 1 SGMII port
+LAN9374:
+  - 6 T1 Phys
+  - 2 RGMII ports
 
-Is the offloading code ready and public somewhere?
+More support will be added at a later stage.
 
-Thanks
--Mathias 
+Prasanna Vengateshan (8):
+  dt-bindings: net: dsa: dt bindings for microchip lan937x
+  net: dsa: microchip: add tag handling for Microchip LAN937x
+  net: dsa: microchip: add DSA support for microchip lan937x
+  net: dsa: microchip: add support for phylink management
+  net: dsa: microchip: add support for ethtool port counters
+  net: dsa: microchip: add support for port mirror operations
+  net: dsa: microchip: add support for fdb and mdb management
+  net: dsa: microchip: add support for vlan operations
+
+ .../bindings/net/dsa/microchip,lan937x.yaml   |  115 ++
+ MAINTAINERS                                   |    1 +
+ drivers/net/dsa/microchip/Kconfig             |   12 +
+ drivers/net/dsa/microchip/Makefile            |    5 +
+ drivers/net/dsa/microchip/ksz_common.h        |    1 +
+ drivers/net/dsa/microchip/lan937x_dev.c       |  895 ++++++++++++++
+ drivers/net/dsa/microchip/lan937x_dev.h       |   79 ++
+ drivers/net/dsa/microchip/lan937x_main.c      | 1037 +++++++++++++++++
+ drivers/net/dsa/microchip/lan937x_reg.h       |  955 +++++++++++++++
+ drivers/net/dsa/microchip/lan937x_spi.c       |  104 ++
+ include/net/dsa.h                             |    2 +
+ net/dsa/Kconfig                               |    4 +-
+ net/dsa/tag_ksz.c                             |   74 ++
+ 13 files changed, 3282 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+ create mode 100644 drivers/net/dsa/microchip/lan937x_dev.c
+ create mode 100644 drivers/net/dsa/microchip/lan937x_dev.h
+ create mode 100644 drivers/net/dsa/microchip/lan937x_main.c
+ create mode 100644 drivers/net/dsa/microchip/lan937x_reg.h
+ create mode 100644 drivers/net/dsa/microchip/lan937x_spi.c
+
+-- 
+2.25.1
 
