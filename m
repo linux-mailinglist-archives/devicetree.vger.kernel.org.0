@@ -2,111 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E362306BC1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 05:00:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD944306BC6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 05:04:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbhA1D6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 22:58:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44714 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231261AbhA1DjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 22:39:02 -0500
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3792DC0613D6
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 19:38:21 -0800 (PST)
-Received: by mail-io1-xd33.google.com with SMTP id d13so4211605ioy.4
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 19:38:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jr6oZPut6R5xADAqmuwrtlULXRHD5ex1ji/nfSHLdjI=;
-        b=VwegR629zsG5eWgMolbdrVoWKF5kPCL2ZDQZ81vzE4H7W4ea+7lL1d1NEA5CTFJy2e
-         lhByZQy/GPod8TIk7DU2hSBCD74OchArhHoaxO4pIXI04rWcfGDHuQy4aMgXC3IRHtiy
-         S/AbetCzzXy/XMJg5uHlir5dxTgjxFoSsi8C6eMDBFfEPPkjQ5VTR3eU5END04lAgcXy
-         SUNWO/yDDhOcByiHH2T3FTjkXqZRypiab+XbQ5yORXTO7kBeDQqlYkjd4uVH0aNbl40z
-         a3CoCweDW/7S3EgVjIgQLDySV6uufuzaATnOdTgXQvoRmKvXIJGpunFKOgaamYwPb/7U
-         Llmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jr6oZPut6R5xADAqmuwrtlULXRHD5ex1ji/nfSHLdjI=;
-        b=lwqgjIR1Xdz6gg8yrNfJtS87JjakYriZQ6iqWTVqAYxZcd018zrtPFYOrxoGsjzaBJ
-         x4DznuxVIc47ybE9Rki+S5Par7+4RPPPKiveXPN2KvA/a1Tn7G8iquj/slkjGZ8X9kRH
-         VOHeXTMdHZgUHI0WUQjjWa2uWpS5LGQr8cRfnlfpZ4awOzayznWtRm/+B8fL3kdqv5jz
-         aKJ/H0/6hGFh5QDT8ToeRiBc7uuqCS3zdYBNLV4m7H1WKak9scghDbrHZAUDR8T23KUw
-         dty0uu+qZd3w99zDIvo/F8KuxJcAr0aXMI+fyMjbguKYuZNvwSyMsSSnmTPEKeknHzCu
-         Yffg==
-X-Gm-Message-State: AOAM531mMsxqEWGoSydeDmSPaMXptmP1jabOHm2Z3k70Sn76f8KBDGAe
-        Z8oPY2UV47mPdKLkivZwLsN33Om4/6YHE+v4boV0Rw==
-X-Google-Smtp-Source: ABdhPJw7IsVFdtYI2WAojkBUPfX6pfS0VhA6v3+fiPYaEPumQIbqvS7kGPBha0bAGSmg93kPegsmbxZc9a845c2LZLU=
-X-Received: by 2002:a02:6a50:: with SMTP id m16mr11376167jaf.129.1611805100433;
- Wed, 27 Jan 2021 19:38:20 -0800 (PST)
+        id S231173AbhA1EBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 23:01:51 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:40218 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229728AbhA1EBc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 23:01:32 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 68AA620B7192;
+        Wed, 27 Jan 2021 20:00:35 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 68AA620B7192
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1611806436;
+        bh=j2ytaqRDLSxdVnbORmC1VmYaP/7+dbpAQywJI7b00gU=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=XjFkrXhHnyR53rne7WHNJDhhws91IZ+fiKsrlIcQYw4OfuqWziuNTJejFWJTYWfsT
+         ReANiquNaEdr2UmAt9OkF/LasShgVDZT0lsMWLATFdmIKswUBTiXWvyfHyzINMiQoG
+         QWAg7xvg2QTc/vkCRwtttTKCyBKFBTiHrO28Yypo=
+Subject: Re: [PATCH v15 09/10] arm64: Call kmalloc() to allocate DTB buffer
+To:     Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
+        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+        mpe@ellerman.id.au, james.morse@arm.com, sashal@kernel.org,
+        benh@kernel.crashing.org, paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+References: <20210115173017.30617-1-nramas@linux.microsoft.com>
+ <20210115173017.30617-10-nramas@linux.microsoft.com>
+ <20210127165208.GA358@willie-the-truck>
+ <d3330793-6054-6e59-b727-44bf8e5653cd@linux.microsoft.com>
+ <20210127184319.GA676@willie-the-truck>
+ <871re5soof.fsf@manicouagan.localdomain>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <58d3ffbf-4d80-c893-34d6-366ebfac55bd@linux.microsoft.com>
+Date:   Wed, 27 Jan 2021 20:00:34 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210119101044.1637023-1-howardyen@google.com>
- <af91bbf1-6731-3e87-4086-de0dbba22c22@intel.com> <CAJDAHvbTY3Z_bRg+++uLefWSvCWo_nGq+3OOQX3QHJ2w3X1SQw@mail.gmail.com>
- <ca442ca7-a434-2527-9945-861dafa685cc@linux.intel.com> <YBAk795ccXBPgJWp@kroah.com>
-In-Reply-To: <YBAk795ccXBPgJWp@kroah.com>
-From:   Howard Yen <howardyen@google.com>
-Date:   Thu, 28 Jan 2021 11:38:09 +0800
-Message-ID: <CAJDAHvZ2CCm9tT+C=hNc_U1CaYJg3ZjifsYLik3UqfXwUm++Lg@mail.gmail.com>
-Subject: Re: [PATCH 0/4] add xhci hooks for USB offload
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Mathias Nyman <mathias.nyman@intel.com>, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <871re5soof.fsf@manicouagan.localdomain>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 26, 2021 at 10:19 PM Greg KH <gregkh@linuxfoundation.org> wrote:
->
-> On Fri, Jan 22, 2021 at 05:32:58PM +0200, Mathias Nyman wrote:
-> > On 20.1.2021 12.04, Howard Yen wrote:
-> > > On Tue, Jan 19, 2021 at 8:47 PM Mathias Nyman <mathias.nyman@intel.com> wrote:
-> > >>
-> > >> On 19.1.2021 12.10, Howard Yen wrote:
-> > >>> To let the xhci driver support USB offload, add hooks for vendor to have
-> > >>> customized behavior for the initialization, memory allocation, irq work, and
-> > >>> device context synchronization. Detail is in each patch commit message.
-> > >>
-> > >> Is this related to the usb audio sideband capability that was added to the xHCI specification?
-> > >> If yes, then we should probably implement the generic parts first, and then add
-> > >> the vendor specific hooks.
-> > >>
-> > >> -Mathias
-> > >>
-> > >>
-> > >
-> > > This is for offloading, no matter what type of offloading.
-> > > I made the hooks generically and can be used for usb audio on the xhci
-> > > which is not including the usb audio sideband capability.
-> > >
-> >
-> > Ok, before adding hooks like this I think we need to see how they are used.
-> > Do you have the rest of the patches that go on top of this series?
-> >
-> > Maybe it could make sense to use overrides for the functions in struct hc_driver
-> > instead in some cases? There is support for that already.
->
-> What overrides could be done for these changes?  At first glance that
-> would seem to require a lot of duplicated code in whatever override
-> happens to be needed.
->
-> thanks,
->
-> greg k-h
+On 1/27/21 7:52 PM, Thiago Jung Bauermann wrote:
+> 
+> Will Deacon <will@kernel.org> writes:
+> 
+>> On Wed, Jan 27, 2021 at 09:59:38AM -0800, Lakshmi Ramasubramanian wrote:
+>>> On 1/27/21 8:52 AM, Will Deacon wrote:
+>>>
+>>> Hi Will,
+>>>
+>>>> On Fri, Jan 15, 2021 at 09:30:16AM -0800, Lakshmi Ramasubramanian wrote:
+>>>>> create_dtb() function allocates kernel virtual memory for
+>>>>> the device tree blob (DTB).  This is not consistent with other
+>>>>> architectures, such as powerpc, which calls kmalloc() for allocating
+>>>>> memory for the DTB.
+>>>>>
+>>>>> Call kmalloc() to allocate memory for the DTB, and kfree() to free
+>>>>> the allocated memory.
+>>>>>
+>>>>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>>>>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>>>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>>>>> ---
+>>>>>    arch/arm64/kernel/machine_kexec_file.c | 12 +++++++-----
+>>>>>    1 file changed, 7 insertions(+), 5 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
+>>>>> index 7de9c47dee7c..51c40143d6fa 100644
+>>>>> --- a/arch/arm64/kernel/machine_kexec_file.c
+>>>>> +++ b/arch/arm64/kernel/machine_kexec_file.c
+>>>>> @@ -29,7 +29,7 @@ const struct kexec_file_ops * const kexec_file_loaders[] = {
+>>>>>    int arch_kimage_file_post_load_cleanup(struct kimage *image)
+>>>>>    {
+>>>>> -	vfree(image->arch.dtb);
+>>>>> +	kfree(image->arch.dtb);
+>>>>>    	image->arch.dtb = NULL;
+>>>>>    	vfree(image->arch.elf_headers);
+>>>>> @@ -59,19 +59,21 @@ static int create_dtb(struct kimage *image,
+>>>>>    			+ cmdline_len + DTB_EXTRA_SPACE;
+>>>>>    	for (;;) {
+>>>>> -		buf = vmalloc(buf_size);
+>>>>> +		buf = kmalloc(buf_size, GFP_KERNEL);
+>>>>
+>>>> Is there a functional need for this patch? I build the 'dtbs' target just
+>>>> now and sdm845-db845c.dtb is approaching 100K, which feels quite large
+>>>> for kmalloc().
+>>>
+>>> Changing the allocation from vmalloc() to kmalloc() would help us further
+>>> consolidate the DTB setup code for powerpc and arm64.
+>>
+>> Ok, but at the risk of allocation failure. Can powerpc use vmalloc()
+>> instead?
+> 
+> I believe this patch stems from this suggestion by Rob Herring:
+> 
+>> This could be taken a step further and do the allocation of the new
+>> FDT. The difference is arm64 uses vmalloc and powerpc uses kmalloc. The
+>> arm64 version also retries with a bigger allocation. That seems
+>> unnecessary.
+> 
+> in https://lore.kernel.org/linux-integrity/20201211221006.1052453-3-robh@kernel.org/
+> 
+> The problem is that this patch implements only part of the suggestion,
+> which isn't useful in itself. So the patch series should either drop
+> this patch or consolidate the FDT allocation between the arches.
+> 
+> I just tested on powernv and pseries platforms and powerpc can use
+> vmalloc for the FDT buffer.
+> 
 
-This patch series is all the changes for the offload hooks currently.
+Thanks for verifying on powerpc platform Thiago.
 
-I thought about this, but if I tried to override the functions in
-struct hc_driver, that'll need to
-copy many code to the override function, and it won't follow the
-latest change in the core
-xhci driver.
+I'll update the patch to do the following:
 
+=> Use vmalloc for FDT buffer allocation on powerpc
+=> Keep vmalloc for arm64, but remove the retry on allocation.
+=> Also, there was a memory leak of FDT buffer in the error code path on 
+arm64, which I'll fix as well.
 
-- Howard
+Did I miss anything?
+
+thanks,
+  -lakshmi
