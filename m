@@ -2,114 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC49E3088F1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 13:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BD29308948
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 14:19:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232308AbhA2MOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 07:14:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39650 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232831AbhA2MME (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 07:12:04 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA87C08ECAB;
-        Fri, 29 Jan 2021 02:33:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=YFmf9BN+skUEyMw7b9mve+y8RvKINlPUjAkMO4cHHOg=; b=pWkZru0FYhgHwQd1+Rg+II9rl
-        j5tucLHDGxxWB/Vp8pn9UiySSZgiGKVB5ywfLSv5jlad7stPzD0Jl+1+Qp1HsMkBuPBmC/r03fw3A
-        awf4qTcQIQ+Z4rAwqgmVeWPOD8ndIzdDBS9GRCS/iDrl5Kqy5VvGjFBQK+pAEvZv2pMf7OvZuQpr/
-        Ol9M0JHSHyIiVRjLQ0B/SWwXsNRpsXfFoSEGGjJLN2TYtpWwJ+u9Xjd40+30T9CeH54NwmWOXP3qx
-        swNuM/TYGEuv3T0gLlvwvao2fgN517drTUSkbf/V+gFy1MrFJDO/fsXM56rlbZgEeH3jLoQpV+9Ui
-        tBxDtrbbg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54182)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1l5R5z-0000uJ-AX; Fri, 29 Jan 2021 10:33:43 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1l5R5w-0006on-Rd; Fri, 29 Jan 2021 10:33:40 +0000
-Date:   Fri, 29 Jan 2021 10:33:40 +0000
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Haojian Zhuang <haojian.zhuang@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+        id S232170AbhA2MLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 07:11:43 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:41986 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232719AbhA2MJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 07:09:11 -0500
+X-UUID: a167416d63e24cdcbe82235c4eddb1b9-20210129
+X-UUID: a167416d63e24cdcbe82235c4eddb1b9-20210129
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <michael.kao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 82846894; Fri, 29 Jan 2021 18:10:14 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 29 Jan 2021 18:10:13 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 29 Jan 2021 18:10:13 +0800
+From:   Michael Kao <michael.kao@mediatek.com>
+To:     <michael.kao@mediatek.com>, <fan.chen@mediatek.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>
+CC:     Eduardo Valentin <edubezval@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 4/4] ARM: Add support for Hisilicon Kunpeng L3 cache
- controller
-Message-ID: <20210129103340.GW1551@shell.armlinux.org.uk>
-References: <20210116032740.873-1-thunder.leizhen@huawei.com>
- <20210116032740.873-5-thunder.leizhen@huawei.com>
- <CAK8P3a1OqUn5A4F4hT4K=bzQwJuifVFZkvFoK6NMg+m9FjoKzw@mail.gmail.com>
- <20dac713-25b7-cddf-cc42-69a834487c71@huawei.com>
- <CAK8P3a3Hj0Hyc8mVdGYhB7AEuHCYbhGxHnhNk1xWonEmxZOxRw@mail.gmail.com>
- <CAK8P3a1j+mr3bCp2uCuuYzW0ygjTmGv9vELuNy7v-iQ=WoDMOw@mail.gmail.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <hsinyi@chromium.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [v6,0/3] mt8183: Add Mediatek thermal driver and dtsi
+Date:   Fri, 29 Jan 2021 18:10:09 +0800
+Message-ID: <20210129101012.25180-1-michael.kao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK8P3a1j+mr3bCp2uCuuYzW0ygjTmGv9vELuNy7v-iQ=WoDMOw@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 29, 2021 at 11:26:38AM +0100, Arnd Bergmann wrote:
-> Another clarification, as there are actually two independent
-> points here:
-> 
-> * if you can completely remove the readl() above and just write a
->   hardcoded value into the register, or perhaps read the original
->   value once at boot time, that is probably a win because it
->   avoids one of the barriers in the beginning. The datasheet should
->   tell you if there are any bits in the register that have to be
->   preserved
-> 
-> * Regarding the _relaxed() accessors, it's a lot harder to know
->   whether that is safe, as you first have to show, in particular in case
->   any of the accesses stop being guarded by the spinlock in that
->   case, and whether there may be a case where you have to
->   serialize the memory access against accesses that are still in the
->   store queue or prefetched.
-> 
-> Whether this matters at all depends mostly on the type of devices
-> you are driving on your SoC. If you have any high-speed network
-> interfaces that are unable to do cache coherent DMA, any extra
-> instruction here may impact the number of packets you can transfer,
-> but if all your high-speed devices are connected to a coherent
-> interconnect, I would just go with the obvious approach and use
-> the safe MMIO accessors everywhere.
+This patchset supports for MT8183 chip to mtk_thermal.c.
+Add thermal zone of all the thermal sensor in SoC for
+another get temperatrue. They don't need to thermal throttle.
+And we bind coolers for thermal zone nodes of cpu_thermal.
 
-For L2 cache code, I would say the opposite, actually, because it is
-all too easy to get into a deadlock otherwise.
+Changes in v6:
+    - Rebase to kernel-5.11-rc1.
+    - [1/3]
+	- add interrupts property.
+    - [2/3]
+	- add the Tested-by in the commit message.
+    - [3/3]
+	- use the mt->conf->msr[id] instead of conf->msr[id] in the
+	  _get_sensor_temp and mtk_thermal_bank_temperature.
+	- remove the redundant space in _get_sensor_temp and
+	  mtk_read_sensor_temp.
+	- change kmalloc to dev_kmalloc in mtk_thermal_probe.
 
-If you implement the sync callback, that will be called from every
-non-relaxed accessor, which means if you need to take some kind of
-lock in the sync callback and elsewhere in the L2 cache code, you will
-definitely deadlock.
+Changes in v5:
+    - Rebase to kernel-5.9-rc1.
+    - Revise the title of cover letter.
+    - Drop "[v4,7/7] thermal: mediatek: use spinlock to protect PTPCORESEL"
+    - [2/2]
+        -  Add the judgement to the version of raw_to_mcelsius.
 
-It is safer to put explicit barriers where it is necessary.
+Changes in v4:
+    - Rebase to kernel-5.6-rc1.
+    - [1/7]
+        - Squash thermal zone settings in the dtsi from [v3,5/8]
+          arm64: dts: mt8183: Increase polling frequency for CPU thermal zone.
+        - Remove the property of interrupts and mediatek,hw-reset-temp.
+    - [2/7]
+        - Correct commit message.
+    - [4/7]
+        - Change the target temperature to the 80C and change the commit message.
+    - [6/7]
+        - Adjust newline alignment.
+        - Fix the judgement on the return value of registering thermal zone.
 
-Also remember that the barrier in readl() etc is _after_ the read, not
-before, and the barrier in writel() is _before_ the write, not after.
-The point is to ensure that DMA memory accesses are properly ordered
-with the IO-accessing instructions.
+Changes in v3:
+    - Rebase to kernel-5.5-rc1.
+    - [1/8]
+        - Update sustainable power of cpu, tzts1~5 and tztsABB.
+    - [7/8]
+        - Bypass the failure that non cpu_thermal sensor is not find in thermal-zones
+          in dts, which is normal for mt8173, so prompt a warning here instead of
+          failing.
 
-So, using readl_relaxed() with a read-modify-write is entirely sensible
-provided you do not access DMA memory inbetween.
+        Return -EAGAIN instead of -EACCESS on the first read of sensor that
+        often are bogus values. This can avoid following warning on boot:
+
+          thermal thermal_zone6: failed to read out thermal zone (-13)
+
+Changes in v2:
+    - [1/8]
+        - Add the sustainable-power,trips,cooling-maps to the tzts1~tztsABB.
+    - [4/8]
+        - Add the min opp of cpu throttle.
+
+Matthias Kaehlcke (1):
+  arm64: dts: mt8183: Configure CPU cooling
+
+Michael Kao (2):
+  thermal: mediatek: add another get_temp ops for thermal sensors
+  arm64: dts: mt8183: add thermal zone node
+
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 140 +++++++++++++++++++++++
+ drivers/thermal/mtk_thermal.c            | 100 ++++++++++++----
+ 2 files changed, 215 insertions(+), 25 deletions(-)
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.18.0
+
