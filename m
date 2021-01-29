@@ -2,67 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A117B308F2C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 22:20:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1F85308F87
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 22:40:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233351AbhA2VTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 16:19:01 -0500
-Received: from mail-wr1-f53.google.com ([209.85.221.53]:33441 "EHLO
-        mail-wr1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233327AbhA2VS6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 16:18:58 -0500
-Received: by mail-wr1-f53.google.com with SMTP id 7so10232880wrz.0;
-        Fri, 29 Jan 2021 13:18:42 -0800 (PST)
+        id S233420AbhA2ViT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 16:38:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48200 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233378AbhA2ViS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 16:38:18 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9459DC061574
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 13:37:38 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id s24so6454208pjp.5
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 13:37:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SrywxkhnsrhfDSQfSh3vuiKPpzrqoaLpb/9iy65ia3c=;
+        b=t1Z3aKCcMZfhCcEf09Qx+Y/J6iJoNKP+w6T/5m6ysuRjjHASq3d0AcB2I1uuoExw3v
+         fuNQdN+Zqpjz+RiGBmqOA5CqMSmHpt4VCz8M95GUF+wadsTZzi6K5VIGh2ojL0ilfd5Z
+         kduHcrJv4iTnYOouh/p8tvRTQng2ccogSM+Hi4ccSRWOLumZv3lqO01dsvY1s21wHqwL
+         EDOnClmFWstgVE7/EwUwL2uoHz5TNU1jcgzRQfetXjjUa+jXmt2a6Tad1/A8Erq1qM7Z
+         YtzJeWOW9pV9DkkpRcazF6LkpBxeLj0hpszCgFtp2kcUcZgDA5NCFFE8RXwc1X3GNcoj
+         vrNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=cspA5TgSavfsCop930QLayxfXE5mnY6tKbYm05EnDsE=;
-        b=Qqq+lVcnhSKyuaZmDugYgYEvetbjuSHansPT0P3oV6LSvHIP46hSYG4JQk/FXpfVT4
-         AtsjMyQcG9Hp1A/WtPrx+6dwZs0hC7Sy8DD52BDURwVSPG1mtl7m7Oj4MPbLd+thzSzV
-         J1O4WB1soBeFsaVfZ7BDFKcz7kuOcvcKL2p8n+UFUp6iW78Y4VxsglqPP+l9FvGufmdW
-         9yUE7Ta249crM66zTrLvAQJJ6hySZsB5+MsrQAr5bIkfxQCpyJwOip92ZrlMCGcopD0u
-         zlvxmCE4mUWqAxVtqrJPDXBWTTpPAlDiGvbaZQy1OyT/IKXt1t76YCLKriBvizGLSepq
-         D3wQ==
-X-Gm-Message-State: AOAM531+Y4MTu3wwN6C7Pou3JnLeWGxQXP0QTXgcEeb9qYJKbZ3eTvgk
-        jW1povtgoS5LRHNdkovyxug=
-X-Google-Smtp-Source: ABdhPJzEkFZsFQABpY4coeNBrEb+TLQoIhC7aumXidAzUn1PNs+lk13FEBL/pTCJc33wlZXe5yyqCA==
-X-Received: by 2002:adf:e511:: with SMTP id j17mr6620390wrm.17.1611955096398;
-        Fri, 29 Jan 2021 13:18:16 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id m22sm12099984wrh.66.2021.01.29.13.18.15
+        bh=SrywxkhnsrhfDSQfSh3vuiKPpzrqoaLpb/9iy65ia3c=;
+        b=SF6Z8j2fZQ8WQXhZZyLWU4dxmDb9SgKzN9+4EgWgDlpIWfN2iH39JUEn9svkyc4Zl/
+         lMxk2T85tTvJAo0HUvqXOFYxqrEZoBb4OpxYyb5vnTDJYTWqAB8XuUx51b/gDa2U9nVL
+         2DrqrXPSezR+4i7lNEHERj+2FaOWfH85mgHXQ/xUmiAHW/E7ZGJLXTTsBIWvVdW8xCMm
+         jUbMXQR0Zk1AEgj+Nh7jJ9gNZ/AKmi4Lf+700WXoe3Rg80wuvnvADTX8soxcc7Nw+tSG
+         aH2dg7iPbTNzOcM2CXPpmH3ge1hTBVENy295gxkSPxzUPoTKGUBBL8iim7maM9VHIl2i
+         VKXA==
+X-Gm-Message-State: AOAM531SPq9apAb6m4Y3RWXd7YPbQFB9Zz0pblhO6FHCvlBtkjUVMl6L
+        BZpURDgzoESxOPhd5gtMoUWKaSOtcYwclA==
+X-Google-Smtp-Source: ABdhPJyg0qjOgkEMEtcWc76txMLsgL45EqaXl5uGsCPJID91XIu/+lLf9GJL9DbW5r85gXEMFOvizA==
+X-Received: by 2002:a17:90a:7c45:: with SMTP id e5mr1056044pjl.170.1611956258055;
+        Fri, 29 Jan 2021 13:37:38 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id p68sm94258pfb.60.2021.01.29.13.37.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jan 2021 13:18:15 -0800 (PST)
-Date:   Fri, 29 Jan 2021 22:18:13 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     m.felsch@pengutronix.de, shawnguo@kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com,
-        will@kernel.org
-Subject: Re: [PATCH v6 3/3] arm64: defconfig: Enable PF8x00 as builtin
-Message-ID: <20210129211813.ooizzkyypu4c2ekl@kozik-lap>
-References: <20210128193554.2496095-1-adrien.grassein@gmail.com>
- <20210128193554.2496095-4-adrien.grassein@gmail.com>
+        Fri, 29 Jan 2021 13:37:37 -0800 (PST)
+Date:   Fri, 29 Jan 2021 14:37:35 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+Cc:     "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 05/17] remoteproc: Add new get_loaded_rsc_table()
+ remoteproc operation
+Message-ID: <20210129213735.GA1319650@xps15>
+References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
+ <20201218173228.2277032-6-mathieu.poirier@linaro.org>
+ <47edac31-2f5f-efa9-2699-9fbec7f0d263@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210128193554.2496095-4-adrien.grassein@gmail.com>
+In-Reply-To: <47edac31-2f5f-efa9-2699-9fbec7f0d263@st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 08:35:54PM +0100, Adrien Grassein wrote:
-> This driver is mandatory for the nitrogen8m mini board
-> when booting from the sdcard slot.
+On Wed, Jan 27, 2021 at 09:44:28AM +0100, Arnaud POULIQUEN wrote:
+> Hi Mathieu,
 > 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
+> Come back on you series...
+> 
+> On 12/18/20 6:32 PM, Mathieu Poirier wrote:
+> > Add an new get_loaded_rsc_table() operation in order to support
+> > scenarios where the remoteproc core has booted a remote processor
+> > and detaches from it.  When re-attaching to the remote processor,
+> > the core needs to know where the resource table has been placed
+> > in memory.
+> > 
+> > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > ---
+> >  drivers/remoteproc/remoteproc_core.c     | 6 ++++++
+> >  drivers/remoteproc/remoteproc_internal.h | 8 ++++++++
+> >  include/linux/remoteproc.h               | 5 ++++-
+> >  3 files changed, 18 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+> > index d0f6b39b56f9..3d87c910aca7 100644
+> > --- a/drivers/remoteproc/remoteproc_core.c
+> > +++ b/drivers/remoteproc/remoteproc_core.c
+> > @@ -1556,6 +1556,12 @@ static int rproc_attach(struct rproc *rproc)
+> >  		return ret;
+> >  	}
+> >  
+> > +	ret = rproc_get_loaded_rsc_table(rproc);
+> > +	if (ret) {
+> > +		dev_err(dev, "can't load resource table: %d\n", ret);
+> > +		goto disable_iommu;
+> > +	}
+> > +
+> 
+> This function is rather ambiguous. Without the example of stm32, it is not
+> obvious what the platform driver has to do in this ops. And the update of rproc
+> in the in the core instead of in platform driver seems to me more reliable.
+> 
+> Here is a suggestion considering that ->cached_table is always NULL:
+> 
+> 
+> struct resource_table *rproc_get_loaded_rsc_table(struct rproc *rproc,
+>                                                   size_t* size)
+> {
+> 
+> 	if (rproc->ops->get_loaded_rsc_table) {
+> 		return rproc->ops->get_loaded_rsc_table(rproc, size);
+> 
+> 	*size = 0;
+> 	return NULL;
+> }
+> 
+> then in rproc_attach:
+> 
+> 	table_ptr = rproc_get_loaded_rsc_table(rproc, &tab_size);
+> 	if (PTR_ERR(table_ptr) {
+> 		dev_err(dev, "can't load resource table: %d\n", ret);
+> 		goto disable_iommu;
+> 	}
+>  	rproc->cached_table = NULL;
+>  	rproc->table_ptr = table_ptr;
+>  	rproc->table_sz = table_sz;
+>
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
+Much better yes, thanks for the suggestion.
+ 
+> 
+> Thanks,
+> Arnaud
+> 
+> >  	/* reset max_notifyid */
+> >  	rproc->max_notifyid = -1;
+> >  
+> > diff --git a/drivers/remoteproc/remoteproc_internal.h b/drivers/remoteproc/remoteproc_internal.h
+> > index c34002888d2c..c48b301d6ad1 100644
+> > --- a/drivers/remoteproc/remoteproc_internal.h
+> > +++ b/drivers/remoteproc/remoteproc_internal.h
+> > @@ -177,6 +177,14 @@ struct resource_table *rproc_find_loaded_rsc_table(struct rproc *rproc,
+> >  	return NULL;
+> >  }
+> >  
+> > +static inline int rproc_get_loaded_rsc_table(struct rproc *rproc)
+> > +{
+> > +	if (rproc->ops->get_loaded_rsc_table)
+> > +		return rproc->ops->get_loaded_rsc_table(rproc);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  static inline
+> >  bool rproc_u64_fit_in_size_t(u64 val)
+> >  {
+> > diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+> > index 3fa3ba6498e8..571615e77e6f 100644
+> > --- a/include/linux/remoteproc.h
+> > +++ b/include/linux/remoteproc.h
+> > @@ -368,7 +368,9 @@ enum rsc_handling_status {
+> >   * RSC_HANDLED if resource was handled, RSC_IGNORED if not handled and a
+> >   * negative value on error
+> >   * @load_rsc_table:	load resource table from firmware image
+> > - * @find_loaded_rsc_table: find the loaded resouce table
+> > + * @find_loaded_rsc_table: find the loaded resource table from firmware image
+> > + * @get_loaded_rsc_table: get resource table installed in memory
+> > + *			  by external entity
+> >   * @load:		load firmware to memory, where the remote processor
+> >   *			expects to find it
+> >   * @sanity_check:	sanity check the fw image
+> > @@ -389,6 +391,7 @@ struct rproc_ops {
+> >  			  int offset, int avail);
+> >  	struct resource_table *(*find_loaded_rsc_table)(
+> >  				struct rproc *rproc, const struct firmware *fw);
+> > +	int (*get_loaded_rsc_table)(struct rproc *rproc);
+> >  	int (*load)(struct rproc *rproc, const struct firmware *fw);
+> >  	int (*sanity_check)(struct rproc *rproc, const struct firmware *fw);
+> >  	u64 (*get_boot_addr)(struct rproc *rproc, const struct firmware *fw);
+> > 
