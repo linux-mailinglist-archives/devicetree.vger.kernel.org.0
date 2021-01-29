@@ -2,135 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 180B4308371
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 02:56:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35E8E308453
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 04:46:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229866AbhA2B4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 20:56:06 -0500
-Received: from szxga06-in.huawei.com ([45.249.212.32]:11471 "EHLO
-        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229819AbhA2B4F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 20:56:05 -0500
-Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.60])
-        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4DRgPT6BHQzjDFw;
-        Fri, 29 Jan 2021 09:54:21 +0800 (CST)
-Received: from [10.40.166.221] (10.40.166.221) by
- DGGEMS404-HUB.china.huawei.com (10.3.19.204) with Microsoft SMTP Server id
- 14.3.498.0; Fri, 29 Jan 2021 09:55:11 +0800
-Message-ID: <60136AFF.5080204@hisilicon.com>
-Date:   Fri, 29 Jan 2021 09:55:11 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
-MIME-Version: 1.0
-To:     Arnd Bergmann <arnd@kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
+        id S231818AbhA2DqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 22:46:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44556 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231607AbhA2DqF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 22:46:05 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DAF3C061573
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 19:45:25 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id f11so8938627ljm.8
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 19:45:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=QYx6/uSUyh2hqwQYt//2VWudlIbI5/06ASiZSy/mLyo=;
+        b=MQpAIdc1jbYRb4uE1UMqpIpEiIdRlXP9v/3iG9ReMEVTIsKFUlysLHvaIEd7HNqYVa
+         QCxw+7t3130iWoa1TG2q9hjKAIbYwnz49quuEwrCfBqLcwbsk6ANb535I/GRxb8uMpIH
+         RHAmEilRZcRxEH9rV/o5hIzRTjOnJX033PWiUUBYjh/sZRHrNdx/+A+J7KfFgJtKuoyH
+         i2uPd9MS354efk26N08RzHGAtL7iusyieL11tcRR1dpNIPHjoVl1X53P9ZjC5TmI7Xzn
+         Rm8prgJGAUAxsQbHTfhGlK1+qIICAXJKhqPD6VaCrPs0xVJxOqh3zo+K/1AV74EDU5b/
+         OXCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=QYx6/uSUyh2hqwQYt//2VWudlIbI5/06ASiZSy/mLyo=;
+        b=OCJYLNn3rnu/oQVlEC/6micjQHu2z3REcPpdozusI1TFGcV6XK8hO+8v2xC5bve7mr
+         v02cXBi9wKdf+zT+1L9UnfmmFibKBfYSURNBmouRWKolWEYgVfsF21GJsS3jomjDFMcJ
+         8aWShfnRj2Ct5UmzrBYWeGh2Xg3xukP0IiiG4smBvjU/CB4YkwADCgOJVhUCtUR7OXay
+         XtdW6buqozHOkBa/AjD+07v4JYg+AHZgA9kMyCWgYaqJZ4aHRx9lPOxzGBs7lXT5OwIO
+         avZ2l1TWbADRSEOjCT19FYtdoLmcfRDHm5dE2cdT09TK388mIqgaikYrLZ4WZG/yWLAX
+         zXhg==
+X-Gm-Message-State: AOAM5331iFmjhRoAGdY0ZpxkaGMOmJXdVOJO3rzgjJN5ndgjRBQQqhtA
+        8gwuCzqzfwehgo2/L15S34Actg==
+X-Google-Smtp-Source: ABdhPJyFOTD0X8ECLTsqb/tuQIyGfQ96Bn2nBwZMbpwL3vuLlc5XCnWGi+2l0v/x8onFfQokSxOHzw==
+X-Received: by 2002:a05:651c:1a3:: with SMTP id c3mr1298160ljn.498.1611891923583;
+        Thu, 28 Jan 2021 19:45:23 -0800 (PST)
+Received: from [192.168.1.211] ([94.25.229.83])
+        by smtp.gmail.com with ESMTPSA id a30sm2358345ljq.96.2021.01.28.19.45.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jan 2021 19:45:23 -0800 (PST)
+Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
+ on RB5 platform
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "Mauro Carvalho Chehab" <mchehab+huawei@kernel.org>
-Subject: Re: [PATCH v3 2/4] arm64: dts: correct vendor prefix hisi to hisilicon
-References: <20201208124641.1787-1-thunder.leizhen@huawei.com> <20201208124641.1787-3-thunder.leizhen@huawei.com> <CAK8P3a3xie1-rLzKY+Y3Z2VKEJkDqAco6b75Af6FgyhsnzorsA@mail.gmail.com> <6010B6DE.4060202@hisilicon.com> <CAK8P3a31po51NtRhuMsruy2nbqhjguyGP8ZcXwPAwwEiGtLBkg@mail.gmail.com> <60135EBA.5040803@hisilicon.com>
-In-Reply-To: <60135EBA.5040803@hisilicon.com>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>
+References: <20210128175225.3102958-1-dmitry.baryshkov@linaro.org>
+ <20210128175225.3102958-4-dmitry.baryshkov@linaro.org>
+ <CAL_JsqLRn40h0K-Fze5m1LS2+raLp94LariMkUh7XtekTBT5+Q@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org>
+Date:   Fri, 29 Jan 2021 06:45:21 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqLRn40h0K-Fze5m1LS2+raLp94LariMkUh7XtekTBT5+Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.40.166.221]
-X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
-
-On 2021/1/29 9:02, Wei Xu wrote:
-> Hi Arnd,
-> 
-> On 2021/1/28 22:08, Arnd Bergmann wrote:
->> On Wed, Jan 27, 2021 at 1:42 AM Wei Xu <xuwei5@hisilicon.com> wrote:
->>> On 2021/1/27 6:23, Arnd Bergmann wrote:
->>>> On Tue, Dec 8, 2020 at 1:46 PM Zhen Lei <thunder.leizhen@huawei.com> wrote:
->>>>>
->>>>> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
->>>>> stated in "vendor-prefixes.yaml".
->>>>>
->>>>> Fixes: 35ca8168133c ("arm64: dts: Add dts files for Hisilicon Hi3660 SoC")
->>>>> Fixes: dd8c7b78c11b ("arm64: dts: Add devicetree for Hisilicon Hi3670 SoC")
->>>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->>>>> Cc: Chen Feng <puck.chen@hisilicon.com>
->>>>> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>>>
->>>> I see this change in the pull request I got, but I'm a bit worried about the
->>>> incompatible binding change. Wouldn't the correct path forward be to
->>>> list both the correct and the incorrect properties, both in the dts file
->>>> and in the driver that interprets the properties?
->>>
->>> Thanks for the comment!
->>> The reset driver will look for "hisilicon" firstly and fall back to "hisi".
->>> And the DTS is shipped with the driver together.
->>> So I think there is no compatible issue here.
->>> Please let me know if missed anything. Thanks!
+On 28/01/2021 22:26, Rob Herring wrote:
+> On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
 >>
->> There are three things that can go wrong here, and this is only addressing
->> one of them:
+>> Some Qualcomm platforms require to power up an external device before
+>> probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
+>> to be powered up before PCIe0 bus is probed. Add a quirk to the
+>> respective PCIe root bridge to attach to the power domain if one is
+>> required, so that the QCA chip is started before scanning the PCIe bus.
 > 
-> Thanks for the detailed explanation! 
+> This is solving a generic problem in a specific driver. It needs to be
+> solved for any PCI host and any device.
+
+Ack. I see your point here.
+
+As this would require porting code from powerpc/spark of-pci code and 
+changing pcie port driver to apply power supply before bus probing 
+happens, I'd also ask for the comments from PCI maintainers. Will that 
+solution be acceptable to you?
+
+
 > 
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-qcom.c | 21 +++++++++++++++++++++
+>>   1 file changed, 21 insertions(+)
 >>
->> 1. Updating the kernel on a machine with a dtb provided by the firmware
->>   is a problem if the new driver can not handle the old properties. This
->>   is correctly handled by the driver's fallback as soon as both trees
->>   are merged.
-> 
-> Agreed and the driver has been merged into the v5.11-rc1.
-
-Sorry, I made a mistake. It has been merged into linux-next *not* the v5.11-rc1.
-
-> 
+>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>> index ab21aa01c95d..eb73c8540d4d 100644
+>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> @@ -20,6 +20,7 @@
+>>   #include <linux/of_device.h>
+>>   #include <linux/of_gpio.h>
+>>   #include <linux/pci.h>
+>> +#include <linux/pm_domain.h>
+>>   #include <linux/pm_runtime.h>
+>>   #include <linux/platform_device.h>
+>>   #include <linux/phy/phy.h>
+>> @@ -1568,6 +1569,26 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x0302, qcom_fixup_class);
+>>   DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x1000, qcom_fixup_class);
+>>   DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x1001, qcom_fixup_class);
 >>
->> 2. Updating the dtb while running an older kernel is now broken since
->>   the driver can no longer read the property. This is less critical, but
->>   it does seem easy enough to work around here by leaving both
->>   properties in place.
-> 
-> Yes, it is.
-> But if leaving both in place, the dtbs_check will report following warning again:
-> 	'hisi,rst-syscon' does not match any of the regexes
-> 
-> That is why leizhen changed the dtb.
-> Do you think it is OK to assume no one will use the new dtb with an older kernel?
-> 
+>> +static void qcom_fixup_power(struct pci_dev *dev)
+>> +{
+>> +       int ret;
+>> +       struct pcie_port *pp = dev->bus->sysdata;
+>> +       struct dw_pcie *pci;
+>> +
+>> +       if (!pci_is_root_bus(dev->bus))
+>> +               return;
+>> +
+>> +       ret = dev_pm_domain_attach(&dev->dev, true);
+>> +       if (ret < 0 || !dev->dev.pm_domain)
+>> +               return;
+>> +
+>> +       pci = to_dw_pcie_from_pp(pp);
+>> +       dev_info(&dev->dev, "Bus powered up, waiting for link to come up\n");
+>> +
+>> +       dw_pcie_wait_for_link(pci);
+>> +}
+>> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x010b, qcom_fixup_power);
+>> +
+>>   static struct platform_driver qcom_pcie_driver = {
+>>          .probe = qcom_pcie_probe,
+>>          .driver = {
+>> --
+>> 2.29.2
 >>
->> 3. Bisecting through the git history across an incompatible change
->>   means you can run into broken commits. We try hard to avoid that
->>   if we are aware of a problem in advance. In this case it could be
->>   avoided by only merging the incompatible DT change in a following
->>   merge window after the driver change, or (better) by making it
->>   a backward-compatible change the same way as addressing 2.
-> 
-> Yes, agreed.
-> And The DT change pull request is sent after the driver has been merged into v5.11-rc1.
 
-I can drop this patch and revert what I have changed in Mauro's following patch:
-	"arm64: dts: hisilicon: hi3670.dtsi: add iomcu_rst"
 
-Then resend the pull request. And pick up this patch after the next merge window.
-Do you think is it OK?
-Thanks!
-
-Best Regards,
-Wei
-
-> 
-> Really appreciate the detail you went to!
-> 
-> Best Regards,
-> Wei
-> 
->>
->>          Arnd
->> .
->>
+-- 
+With best wishes
+Dmitry
