@@ -2,115 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2EB5308234
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 01:05:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E46443082DE
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 02:06:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229840AbhA2AEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 19:04:51 -0500
-Received: from foss.arm.com ([217.140.110.172]:40882 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229627AbhA2AEv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Jan 2021 19:04:51 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 26F6413D5;
-        Thu, 28 Jan 2021 16:04:02 -0800 (PST)
-Received: from [10.57.35.163] (unknown [10.57.35.163])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 686373F66E;
-        Thu, 28 Jan 2021 16:03:59 -0800 (PST)
-Subject: Re: [PATCH v6 07/33] iommu: Avoid reallocate default domain for a
- group
-To:     Will Deacon <will@kernel.org>, Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com
-References: <20210111111914.22211-1-yong.wu@mediatek.com>
- <20210111111914.22211-8-yong.wu@mediatek.com>
- <20210126222305.GB30460@willie-the-truck>
- <1611740356.5302.14.camel@mhfsdcap03>
- <20210128211020.GA3531@willie-the-truck>
- <20210128211442.GB3531@willie-the-truck>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <654abe35-bc60-741b-1238-d9c585a45c06@arm.com>
-Date:   Fri, 29 Jan 2021 00:03:57 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S231259AbhA2BF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 20:05:26 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:11216 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229757AbhA2BDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 20:03:52 -0500
+Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4DRfDR6lLSzlCJB;
+        Fri, 29 Jan 2021 09:01:27 +0800 (CST)
+Received: from [10.40.166.221] (10.40.166.221) by
+ DGGEMS403-HUB.china.huawei.com (10.3.19.203) with Microsoft SMTP Server id
+ 14.3.498.0; Fri, 29 Jan 2021 09:02:50 +0800
+Message-ID: <60135EBA.5040803@hisilicon.com>
+Date:   Fri, 29 Jan 2021 09:02:50 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-In-Reply-To: <20210128211442.GB3531@willie-the-truck>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+To:     Arnd Bergmann <arnd@kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Zhangfei Gao <zhangfei.gao@linaro.org>,
+        Chen Feng <puck.chen@hisilicon.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH v3 2/4] arm64: dts: correct vendor prefix hisi to hisilicon
+References: <20201208124641.1787-1-thunder.leizhen@huawei.com> <20201208124641.1787-3-thunder.leizhen@huawei.com> <CAK8P3a3xie1-rLzKY+Y3Z2VKEJkDqAco6b75Af6FgyhsnzorsA@mail.gmail.com> <6010B6DE.4060202@hisilicon.com> <CAK8P3a31po51NtRhuMsruy2nbqhjguyGP8ZcXwPAwwEiGtLBkg@mail.gmail.com>
+In-Reply-To: <CAK8P3a31po51NtRhuMsruy2nbqhjguyGP8ZcXwPAwwEiGtLBkg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.40.166.221]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-28 21:14, Will Deacon wrote:
-> On Thu, Jan 28, 2021 at 09:10:20PM +0000, Will Deacon wrote:
->> On Wed, Jan 27, 2021 at 05:39:16PM +0800, Yong Wu wrote:
->>> On Tue, 2021-01-26 at 22:23 +0000, Will Deacon wrote:
->>>> On Mon, Jan 11, 2021 at 07:18:48PM +0800, Yong Wu wrote:
->>>>> If group->default_domain exists, avoid reallocate it.
->>>>>
->>>>> In some iommu drivers, there may be several devices share a group. Avoid
->>>>> realloc the default domain for this case.
->>>>>
->>>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>>>> ---
->>>>>   drivers/iommu/iommu.c | 3 ++-
->>>>>   1 file changed, 2 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
->>>>> index 3d099a31ddca..f4b87e6abe80 100644
->>>>> --- a/drivers/iommu/iommu.c
->>>>> +++ b/drivers/iommu/iommu.c
->>>>> @@ -266,7 +266,8 @@ int iommu_probe_device(struct device *dev)
->>>>>   	 * support default domains, so the return value is not yet
->>>>>   	 * checked.
->>>>>   	 */
->>>>> -	iommu_alloc_default_domain(group, dev);
->>>>> +	if (!group->default_domain)
->>>>> +		iommu_alloc_default_domain(group, dev);
+Hi Arnd,
+
+On 2021/1/28 22:08, Arnd Bergmann wrote:
+> On Wed, Jan 27, 2021 at 1:42 AM Wei Xu <xuwei5@hisilicon.com> wrote:
+>> On 2021/1/27 6:23, Arnd Bergmann wrote:
+>>> On Tue, Dec 8, 2020 at 1:46 PM Zhen Lei <thunder.leizhen@huawei.com> wrote:
 >>>>
->>>> I don't really get what this achieves, since iommu_alloc_default_domain()
->>>> looks like this:
+>>>> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
+>>>> stated in "vendor-prefixes.yaml".
 >>>>
->>>> static int iommu_alloc_default_domain(struct iommu_group *group,
->>>> 				      struct device *dev)
->>>> {
->>>> 	unsigned int type;
->>>>
->>>> 	if (group->default_domain)
->>>> 		return 0;
->>>>
->>>> 	...
->>>>
->>>> in which case, it should be fine?
+>>>> Fixes: 35ca8168133c ("arm64: dts: Add dts files for Hisilicon Hi3660 SoC")
+>>>> Fixes: dd8c7b78c11b ("arm64: dts: Add devicetree for Hisilicon Hi3670 SoC")
+>>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>>>> Cc: Chen Feng <puck.chen@hisilicon.com>
+>>>> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 >>>
->>> oh. sorry, I overlooked this. the current code is enough.
->>> I will remove this patch. and send the next version in this week.
->>> Thanks very much.
+>>> I see this change in the pull request I got, but I'm a bit worried about the
+>>> incompatible binding change. Wouldn't the correct path forward be to
+>>> list both the correct and the incorrect properties, both in the dts file
+>>> and in the driver that interprets the properties?
 >>
->> Actually, looking at this again, if we're dropping this patch and patch 6
->> just needs the kfree() moving about, then there's no need to repost. The
->> issue that Robin and Paul are discussing can be handled separately.
-
-FWIW patch #6 gets dropped as well now, since Rob has applied the 
-standalone fix (89c7cb1608ac).
-
-Robin.
-
-> Argh, except that this version of the patches doesn't apply :)
+>> Thanks for the comment!
+>> The reset driver will look for "hisilicon" firstly and fall back to "hisi".
+>> And the DTS is shipped with the driver together.
+>> So I think there is no compatible issue here.
+>> Please let me know if missed anything. Thanks!
 > 
-> So after all that, please go ahead and post a v7 ASAP based on this branch:
+> There are three things that can go wrong here, and this is only addressing
+> one of them:
+
+Thanks for the detailed explanation! 
+
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-joerg/mtk
+> 1. Updating the kernel on a machine with a dtb provided by the firmware
+>   is a problem if the new driver can not handle the old properties. This
+>   is correctly handled by the driver's fallback as soon as both trees
+>   are merged.
+
+Agreed and the driver has been merged into the v5.11-rc1.
+
 > 
-> Will
+> 2. Updating the dtb while running an older kernel is now broken since
+>   the driver can no longer read the property. This is less critical, but
+>   it does seem easy enough to work around here by leaving both
+>   properties in place.
+
+Yes, it is.
+But if leaving both in place, the dtbs_check will report following warning again:
+	'hisi,rst-syscon' does not match any of the regexes
+
+That is why leizhen changed the dtb.
+Do you think it is OK to assume no one will use the new dtb with an older kernel?
+
+> 
+> 3. Bisecting through the git history across an incompatible change
+>   means you can run into broken commits. We try hard to avoid that
+>   if we are aware of a problem in advance. In this case it could be
+>   avoided by only merging the incompatible DT change in a following
+>   merge window after the driver change, or (better) by making it
+>   a backward-compatible change the same way as addressing 2.
+
+Yes, agreed.
+And The DT change pull request is sent after the driver has been merged into v5.11-rc1.
+
+Really appreciate the detail you went to!
+
+Best Regards,
+Wei
+
+> 
+>          Arnd
+> .
 > 
