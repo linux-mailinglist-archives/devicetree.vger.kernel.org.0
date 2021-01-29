@@ -2,127 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA11F308FFB
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 23:23:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C325309022
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 23:34:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233648AbhA2WUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 17:20:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57146 "EHLO
+        id S233529AbhA2WcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 17:32:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231246AbhA2WUC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 17:20:02 -0500
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C781BC061574
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:19:21 -0800 (PST)
-Received: by mail-qk1-x736.google.com with SMTP id v126so10312500qkd.11
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:19:21 -0800 (PST)
+        with ESMTP id S232535AbhA2WcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 17:32:20 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB0FAC061756
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:31:38 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id e9so7121391pjj.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:31:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eVJSk/hfc058Boi6CmUOZdn8/0GbF4wuD5mw1Do2viE=;
-        b=oTErFdI6eKFeNDH6YSzbE8/JPhkaRdqklITZ3wzhls1A9TGe6bkovNVrzcK3HkTyHf
-         FpMi+Mqrxha9yVMuQWY1pM3WvHDY78L33bJNkVlP5sb2Sps9DfZFpXHCAT4ilYi79GJe
-         mC28xZonf8wDFb8+rSsXbSPlzGKvcQlhesMJNWNnDHq6M0BL2PcYgSHHPEvq6cHZalTs
-         xr6w5xmW/R2yADVc987TG72LaxWeU3YtZIgyUnDnAvjgrij9Iwh2Z/t6U/gusi+DSfom
-         dhA9/aGUN5n4+f8zEMlBJu0IeX066d5KZU9oEsohSYEMJCaSXIUNEO+t+ENBP9RmiK+q
-         2iPg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=44aPK+qfNhVHStfDRIRpD5EW6awmzw8NVPyHtW87QUk=;
+        b=I/mJtt2raReIV2iEoMHX1xil1KU9AFUZgaa0Ine2hW8R/Sm9D+KJHnuhhMJzAr1zWs
+         uu7PPSZfHcva/KAgOPnjxasA3P5JvRlqkG15EUz7v5T79mFtIuGbx8z25GX9aKedCohD
+         mqD2pDgj/PKw3abvd5xTIJSx/7Jov1wde8WLIMPcp9ECKvWs2oXt804Yts591zXvrQtK
+         6zw42Bfee+w60zonnl4dR3kSdQV6kwsNu4yMYpbYIrgiBnDVd97zMll8dpfH3mol8feD
+         LfVPIbI0e8xz6XMHG8/7f1ecO4I6nHcXOD6yLEZ3ojd1k7e4oQgjyeeS7Y+b+Y5jRIM1
+         bKNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eVJSk/hfc058Boi6CmUOZdn8/0GbF4wuD5mw1Do2viE=;
-        b=REFMug6t2wMv5oeQd0z5sA44OrPdl0HaDdwGyenH3FTA7YHRXYDN1dNHiBPZnp6kyZ
-         Hx/S60bIWpK5x4wI7kNB9e48filkF8GGKARdstYVudUwdPfrMVxRglDi1gXSx6LnaT2f
-         cL+2ysldVZkmC2pc8zgNII3fOcfJquxlEc4HhGq9RuzjuVmTk+SSjH3jANOFhNXsUx6l
-         MjLhndwUiCAwF32Y3keyjpV8xjVptlXYITPH/nIgbfdX4+uXgIcEfTj0YnWcbsNbd0rB
-         tNhYAIHa1M0ddpCvYWRTiPf5KUEB4Dj+d9cWE1sxMF3fYqAz+4NQX8w+mH7F1OcSrRG9
-         idng==
-X-Gm-Message-State: AOAM530EJDV7tWd6vLzK0foYguZx3qu6A5RNE1k6ISDuhGpwfU1PUq3n
-        MBuyu0aC/1ymjwcUpufOQU356VbVESek/dlZEqCU2Q==
-X-Google-Smtp-Source: ABdhPJxVZbeVYLBgr5uE1mvuI7LDXkWcITnDA7F9lO03rYYyA2YIuAYn0Yi6zcFHI1hjVidvboapNw5pXEemk1yF9/M=
-X-Received: by 2002:a37:a9d6:: with SMTP id s205mr6321887qke.162.1611958761060;
- Fri, 29 Jan 2021 14:19:21 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=44aPK+qfNhVHStfDRIRpD5EW6awmzw8NVPyHtW87QUk=;
+        b=lQt5Z03xk5Veg/FebBazJlnR/2iqCqsk/3znhmzTSW7vwOBd2uXZpRjPe5penJgC59
+         quWkr2hjFlw/x08/LEdGvqZGjuD62cTxuRsmkeKtuVCZm8MyvG0k97E40cOEcJAL1fVt
+         pdofEd3ez658nvgBqBLxHdH3uzedYXvU8K141C3E3V/x2F11mHd6r/AEZ07oGVg6KcQk
+         htLFPtXbB/Zv1qRr/lZ/SFeMRlaN0wbZ+ogzJTwyk1SuPEI1x8oJ1CcMVNYYvrnIdADE
+         sf0YsPUZf4xC4hZ0vFcFcx0UhUN18KtGVxyd4qETkNO2fc7xWWAnqtAydd6af/aJu2rS
+         eSIg==
+X-Gm-Message-State: AOAM533G04bjbmkN3Ciiu/dNEekeOtv0iQC7O8CdvmDK+c0uACbfbkrc
+        5tj9GHbD8XjdzyiSvCY/VakPPw==
+X-Google-Smtp-Source: ABdhPJyQgV/v73KQ9zgZ2nRJvw59hBZ/pWV5hCqHwOyxLJDf+0Q14wR+lhkPz8KLyQs3j03N8ePt5A==
+X-Received: by 2002:a17:902:70c5:b029:e0:5b2:50f2 with SMTP id l5-20020a17090270c5b02900e005b250f2mr6464751plt.20.1611959498270;
+        Fri, 29 Jan 2021 14:31:38 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id q15sm7896588pfk.181.2021.01.29.14.31.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Jan 2021 14:31:37 -0800 (PST)
+Date:   Fri, 29 Jan 2021 15:31:35 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+Cc:     "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 12/17] remoteproc: Introduce function rproc_detach()
+Message-ID: <20210129223135.GC1319650@xps15>
+References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
+ <20201218173228.2277032-13-mathieu.poirier@linaro.org>
+ <406cd7ad-060e-a611-be20-5c1869f17e73@st.com>
 MIME-Version: 1.0
-References: <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org> <20210129215024.GA113900@bjorn-Precision-5520>
-In-Reply-To: <20210129215024.GA113900@bjorn-Precision-5520>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 30 Jan 2021 01:19:10 +0300
-Message-ID: <CAA8EJpoPsv5tfsaiJq4UnBYt3o+gJanWzy8aaZRK=V8yOk3mJQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
- on RB5 platform
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <406cd7ad-060e-a611-be20-5c1869f17e73@st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 30 Jan 2021 at 00:50, Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Fri, Jan 29, 2021 at 06:45:21AM +0300, Dmitry Baryshkov wrote:
-> > On 28/01/2021 22:26, Rob Herring wrote:
-> > > On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
-> > > <dmitry.baryshkov@linaro.org> wrote:
-> > > >
-> > > > Some Qualcomm platforms require to power up an external device before
-> > > > probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
-> > > > to be powered up before PCIe0 bus is probed. Add a quirk to the
-> > > > respective PCIe root bridge to attach to the power domain if one is
-> > > > required, so that the QCA chip is started before scanning the PCIe bus.
-> > >
-> > > This is solving a generic problem in a specific driver. It needs to be
-> > > solved for any PCI host and any device.
-> >
-> > Ack. I see your point here.
-> >
-> > As this would require porting code from powerpc/spark of-pci code and
-> > changing pcie port driver to apply power supply before bus probing happens,
-> > I'd also ask for the comments from PCI maintainers. Will that solution be
-> > acceptable to you?
->
-> I can't say without seeing the code.  I don't know enough about this
-> scenario to envision how it might look.
->
-> I guess the QCA6390 is a PCIe device?  Why does it need to be powered
-> up before probing?  Shouldn't we get a link-up interrupt when it is
-> powered up so we could probe it then?
+On Wed, Jan 27, 2021 at 09:50:31AM +0100, Arnaud POULIQUEN wrote:
+> 
+> 
+> On 12/18/20 6:32 PM, Mathieu Poirier wrote:
+> > Introduce function rproc_detach() to enable the remoteproc
+> > core to release the resources associated with a remote processor
+> > without stopping its operation.
+> > 
+> > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  drivers/remoteproc/remoteproc_core.c | 71 +++++++++++++++++++++++++++-
+> >  include/linux/remoteproc.h           |  2 +
+> >  2 files changed, 72 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+> > index e665ed4776c3..ece3f15070b9 100644
+> > --- a/drivers/remoteproc/remoteproc_core.c
+> > +++ b/drivers/remoteproc/remoteproc_core.c
+> > @@ -1673,7 +1673,7 @@ static int rproc_stop(struct rproc *rproc, bool crashed)
+> >  /*
+> >   * __rproc_detach(): Does the opposite of rproc_attach()
+> >   */
+> > -static int __maybe_unused __rproc_detach(struct rproc *rproc)
+> > +static int __rproc_detach(struct rproc *rproc)
+> >  {
+> >  	struct device *dev = &rproc->dev;
+> >  	int ret;
+> > @@ -1927,6 +1927,75 @@ void rproc_shutdown(struct rproc *rproc)
+> >  }
+> >  EXPORT_SYMBOL(rproc_shutdown);
+> >  
+> > +/**
+> > + * rproc_detach() - Detach the remote processor from the
+> > + * remoteproc core
+> > + *
+> > + * @rproc: the remote processor
+> > + *
+> > + * Detach a remote processor (previously attached to with rproc_actuate()).
+> 
+> You rename the function to rproc_attach in you patch 04/17.
+> 
 
-Not quite. QCA6390 is a multifunction device, with PCIe and serial
-parts. It has internal power regulators which once enabled will
-powerup the PCIe, serial and radio parts. There is no need to manage
-regulators. Once enabled they will automatically handle device
-suspend/resume, etc.
+Yes, good catch.
 
-I'm not sure about link-up interrupt. I've just lightly tested using
-PCIe HP on this port, getting no interrupts from it.
-If I manually rescan the bus after enabling the qca6390 device (e.g.
-via sysfs), it gets enabled, but then I see PCIe link errors (most
-probably because the PCIe link was not retrained after the device
-comes up).
-
-> Nit: when changing any file, please take a look at the commit history
-> and make yours match, e.g.,
->
->   pcie-qcom: provide a way to power up qca6390 chip on RB5 platform
->
-> does not look like:
-
-Ack.
-
-
--- 
-With best wishes
-Dmitry
+> Then Reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
+> 
+> Thanks,
+> Arnaud
+> 
+> > + *
+> > + * In case @rproc is still being used by an additional user(s), then
+> > + * this function will just decrement the power refcount and exit,
+> > + * without disconnecting the device.
+> > + *
+> > + * Function rproc_detach() calls __rproc_detach() in order to let a remote
+> > + * processor know that services provided by the application processor are
+> > + * no longer available.  From there it should be possible to remove the
+> > + * platform driver and even power cycle the application processor (if the HW
+> > + * supports it) without needing to switch off the remote processor.
+> > + */
+> > +int rproc_detach(struct rproc *rproc)
+> > +{
+> > +	struct device *dev = &rproc->dev;
+> > +	int ret;
+> > +
+> > +	ret = mutex_lock_interruptible(&rproc->lock);
+> > +	if (ret) {
+> > +		dev_err(dev, "can't lock rproc %s: %d\n", rproc->name, ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	if (rproc->state != RPROC_RUNNING && rproc->state != RPROC_ATTACHED) {
+> > +		ret = -EPERM;
+> > +		goto out;
+> > +	}
+> > +
+> > +	/* if the remote proc is still needed, bail out */
+> > +	if (!atomic_dec_and_test(&rproc->power)) {
+> > +		ret = -EBUSY;
+> > +		goto out;
+> > +	}
+> > +
+> > +	ret = __rproc_detach(rproc);
+> > +	if (ret) {
+> > +		atomic_inc(&rproc->power);
+> > +		goto out;
+> > +	}
+> > +
+> > +	/* clean up all acquired resources */
+> > +	rproc_resource_cleanup(rproc);
+> > +
+> > +	rproc_disable_iommu(rproc);
+> > +
+> > +	/*
+> > +	 * If the remote processor was booted by the core the cached table needs
+> > +	 * to be freed and ->table_ptr set to NULL because it will be
+> > +	 * invalidated by rproc_resource_cleanup().  If the remote processor was
+> > +	 * attached to ->cached_table is NULL and kfree() returns right away.
+> > +	 *
+> > +	 * In either case ->table_ptr has to be set to NULL.  It will be set
+> > +	 * again when the remote processor is re-attached to.
+> > +	 */
+> > +	kfree(rproc->cached_table);
+> > +	rproc->cached_table = NULL;
+> > +	rproc->table_ptr = NULL;
+> > +out:
+> > +	mutex_unlock(&rproc->lock);
+> > +	return ret;
+> > +}
+> > +EXPORT_SYMBOL(rproc_detach);
+> > +
+> >  /**
+> >   * rproc_get_by_phandle() - find a remote processor by phandle
+> >   * @phandle: phandle to the rproc
+> > diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+> > index 9bb34c3eb847..65ece6f177b7 100644
+> > --- a/include/linux/remoteproc.h
+> > +++ b/include/linux/remoteproc.h
+> > @@ -659,6 +659,8 @@ rproc_of_resm_mem_entry_init(struct device *dev, u32 of_resm_idx, size_t len,
+> >  
+> >  int rproc_boot(struct rproc *rproc);
+> >  void rproc_shutdown(struct rproc *rproc);
+> > +int rproc_detach(struct rproc *rproc);
+> > +int rproc_set_firmware(struct rproc *rproc, const char *fw_name);
+> >  void rproc_report_crash(struct rproc *rproc, enum rproc_crash_type type);
+> >  int rproc_coredump_add_segment(struct rproc *rproc, dma_addr_t da, size_t size);
+> >  int rproc_coredump_add_custom_segment(struct rproc *rproc,
+> > 
