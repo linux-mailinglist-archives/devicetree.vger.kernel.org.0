@@ -2,134 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1999309065
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 00:04:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 496773090A9
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 00:37:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232810AbhA2XAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 18:00:00 -0500
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:45314 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232747AbhA2W77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 17:59:59 -0500
-Received: by mail-oi1-f177.google.com with SMTP id g69so11667608oib.12;
-        Fri, 29 Jan 2021 14:59:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=4I4cmOEDH9UFoIk1hHOuNx2NOGNnRRaA80O3qHTznLE=;
-        b=Gpnetv9e2FIcdKCfciE50i/dwKyDeMjuEPMNmzB4I5MvgFkwmrCTbM6fL7+PevwxHB
-         kcVSSb+EOCy7S7gsPkYlQj+PLqAOINXfotLZrHmfhOpMhDJpb+S2JpUKpzFi7rvqwqYt
-         SU+nh+REaOhCD1Bvb7/uWBEfCdJrMmsBa/5Bqv+ddL/MQDlyOGbwP5W7iPoZ8j2l6K59
-         M0kFRUQw8OxD8/YKN6wYe4yPqLwm5AmrPmjOSff5/fc4Oy6891Hvi1BEGyEao4etOOPG
-         nvQJAMaNp9uTwKc+x4aVDhVIYuqhbVGjvofGqtWQs3Y4uKdXbD7ph0ABWG/K+xilN4hl
-         +w6g==
-X-Gm-Message-State: AOAM532dZwHSTaUr+M1r1G7KAQOHA72wfY9m0nEGKKZxmrWYu9ZXl8lb
-        aIRfs4XZVZYTeWe7H1JnLQ==
-X-Google-Smtp-Source: ABdhPJz+oVuqlk6ihtgLH0TGVJON/Ivg9BnpdFMfc+JyzcJHBU2sPwxbZWyAwtJzMh2GtTCv4BKCiQ==
-X-Received: by 2002:aca:3606:: with SMTP id d6mr3959592oia.59.1611961158240;
-        Fri, 29 Jan 2021 14:59:18 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o98sm2489687ota.0.2021.01.29.14.59.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jan 2021 14:59:17 -0800 (PST)
-Received: (nullmailer pid 3879724 invoked by uid 1000);
-        Fri, 29 Jan 2021 22:59:15 -0000
-Date:   Fri, 29 Jan 2021 16:59:15 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [GIT PULL] Devicetree fixes for 5.11, take 2
-Message-ID: <20210129225915.GA3859663@robh.at.kernel.org>
+        id S231791AbhA2XdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 18:33:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36506 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231614AbhA2XdW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Jan 2021 18:33:22 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4983C64DDB;
+        Fri, 29 Jan 2021 23:32:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611963161;
+        bh=AaRKlEXVYJOSc3OjKg08GiblXJKkQ7/R0lWN+prSR0M=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=pd+lIYP5Hefz6v4Bmzbwfh7zXftmVNY4sjyw3yQcZUL3TyBKGcJzIC25+g6FrE+ge
+         OBHxVoe+wTH7s/dff9dB8Gx058uxVBS8klW4aoZATiQUoyVNhzcSJ7hQVHwTeWGd/f
+         GbpK/WQ1ESIEFCqgGMRvS//5646ylcn1oTHYa4yRuyd+VeMyUWO7KMvR1fRhedzQVS
+         t5BZkJ8dEjN3U+zeXWzSJpU2Y9Jkgqar8H5qgWFAps65mW4MsBlXqJZiHaH2QLACR2
+         jPytiBzvx/3kHb2EyjPHj5c9K9iuU2cChlFSPLLTznnAHbeDcELIMm+wI3gZEdBEu5
+         sv/F+J9lsYrvg==
+Received: by mail-ed1-f42.google.com with SMTP id f1so12463049edr.12;
+        Fri, 29 Jan 2021 15:32:41 -0800 (PST)
+X-Gm-Message-State: AOAM531y2FwFJIPGXF1Vs9yvimv7l1HYjsRbKUuiYA+MIVaVfqIp1vUm
+        ufREwjOfN78V0EVVulZvFoUV/TQZqX5jUogrLw==
+X-Google-Smtp-Source: ABdhPJwms2Nw1KYvxqUDL7F1dx844PWxsMYrYaBpi11kZepY8Tmd3rHJ4SJ47icemQHPplkh09UM2I4Ka0OFA29N7Iw=
+X-Received: by 2002:aa7:d987:: with SMTP id u7mr7871023eds.62.1611963159943;
+ Fri, 29 Jan 2021 15:32:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20210129173057.30288c9d@coco.lan>
+In-Reply-To: <20210129173057.30288c9d@coco.lan>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 29 Jan 2021 17:32:28 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLN2XESoCW5=uhbzd4EP+dO0xVMmS7W4f6EgMv_j_xTpg@mail.gmail.com>
+Message-ID: <CAL_JsqLN2XESoCW5=uhbzd4EP+dO0xVMmS7W4f6EgMv_j_xTpg@mail.gmail.com>
+Subject: Re: Enabling PCIe support on Hikey 970
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Joey.Gouly@arm.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+On Fri, Jan 29, 2021 at 10:31 AM Mauro Carvalho Chehab
+<mchehab+huawei@kernel.org> wrote:
+>
+> Hi Bjorn/Rob,
+>
+> I've been trying to make a Hikey 970 board to work properly upstream.
+>
+> This specific hardware is similar to a previous model (Hikey 960),
+> and it uses the same PCIe driver, with a few additions
+> (drivers/pci/controller/dwc/pcie-kirin.c).
+>
+> The major difference between those two models is that, on Hikey 960,
+> the PCIe is mapped as [1]:
+>
+>         +---------+      +--------+
+>         |Kirin 960|----> |PCIe M.2|
+>         |  SoC    |      |        |
+>         +---------+      +--------+
+>
+> While, on Hikey 970, the connection is more complex[2]:
+>
+>         +---------+      +--------+
+>         |         |      |        |     +--------+
+>         |         |      |        |---->|PCIe M.2|-->M.2 slot
+>         |         |      |        |     +--------+
+>         |         |      |        |
+>         |         |      |        |     +--------+
+>         |Kirin 970|----> |Switch  |---->|Mini 1x |-->mini PCIe slot
+>         |         |      |PEX 8606|     +--------+
+>         |  SoC    |      |        |
+>         |         |      |        |     +-------+
+>         |         |      |        |---->|RTL8169|---> Ethernet
+>         |         |      |        |     +-------+
+>         +---------+      +--------+
+>
+>
+>
+> [1] see https://www.96boards.org/documentation/consumer/hikey/hikey960/hardware-docs/hardware-user-manual.md.html
+> [2] see https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
+>
+> When the driver is properly loaded, this is what can be seen there:
+>
+>         $ lspci
+>         00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3670 (rev 01)
+>         01:00.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>         02:01.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>         02:04.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>         02:05.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>         02:07.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>         02:09.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>         06:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 07)
+>
+> (without anything connected to M.2 or mini 1x slots)
+>
+> All devices after the SoC require a regulator line to be
+> enabled (LDO33). Starting the PCIe bus before turning them on
+> causes PCIe probe to fail.
+>
+> There are also separate PERST lines for the switch (Broadcom PEX 8606),
+> PCIe M.2, Mini 1x and for the Ethernet hardware (RTL 8169).
+>
+> To make it a little more fun, the M.2, the Mini 1x and the
+> RTL 8169 also requires a clockreq in order to work.
 
-Please pull some more DT fixes for 5.11.
+Nice. Yet another case of a 'probeable' bus with non-probeable
+additions. Second one recently for PCI[1][2].
+
+> Both the 4 PERST reset lines and the 3 CLOCKREQ lines are initialized
+> during the PCIe power on logic, at probing time.
+>
+> I'm currently thinking about the best way to report this via
+> device tree.
+>
+> It sounds to me that the best would be to add those 4 data at the DTS file:
+>
+>         reset-gpios = <&gpio7 0 0 >, <&gpio25 2 0 >,
+>                       <&gpio3 1 0 >, <&gpio27 4 0 >;
+>         reset-names = "pcie_switch_reset", "pcie_eth_reset",
+>                       "pcie_m_2_reset",    "pcie_mini1_reset";
+
+'reset-names' is paired with 'resets', so this doesn't work. The name
+of the gpio is in the property name.
+
+>         clkreq-gpios = <&gpio20 6 0 >, <&gpio27 3 0 >,
+>                        <&gpio17 0 0 >;
+>         clkreq-names = "pcie_eth_clkreq", "pcie_m_2_clkreq",
+>                        "pcie_mini1_clkreq";
+
+The larger problem here is this will work for exactly one board. Soon
+as you have a different topology, you'll have to change all this. If
+it's just assert/deassert all the GPIOs at once, then it could kind of
+work. If you need to know the mapping (which adding the names seems to
+imply), then it definitely doesn't work.
+
+You are going to need DT nodes representing the hierarchy you drew
+above with GPIO properties added to the appropriate child nodes.
+
+Controlling the regulator should be specific to the device.
+Controlling the GPIOs could be done by the PCI core given those are
+standard signals for PCI.
 
 Rob
 
-
-The following changes since commit 5c8fe583cce542aa0b84adc939ce85293de36e5e:
-
-  Linux 5.11-rc1 (2020-12-27 15:30:22 -0800)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.11-2
-
-for you to fetch changes up to 32ada6b0980d86133d080d62371a5787ea2ec5ed:
-
-  dt-bindings: Cleanup standard unit properties (2021-01-29 16:36:06 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.11, take 2:
-
-- Cleanups on properties with standard unit suffixes
-
-- Fix overwriting dma_range_map if there's no 'dma-ranges' property
-
-- Fix a bug when creating a /chosen node from ARM ATAGs
-
-- Add missing properties for TI j721e USB binding
-
-- Several doc reference updates due to DT schema conversions
-
-----------------------------------------------------------------
-Grygorii Strashko (1):
-      dt-bindings: usb: j721e: add ranges and dma-coherent props
-
-Mauro Carvalho Chehab (4):
-      ASoC: audio-graph-card: update audio-graph-card.yaml reference
-      dt-bindings: display: mediatek: update mediatek,dpi.yaml reference
-      dt-bindings: memory: mediatek: update mediatek,smi-larb.yaml references
-      dt-bindings:iio:adc: update adc.yaml reference
-
-Rob Herring (2):
-      ARM: zImage: atags_to_fdt: Fix node names on added root nodes
-      dt-bindings: Cleanup standard unit properties
-
-Yong Wu (1):
-      of/device: Update dma_range_map only when dev has valid dma-ranges
-
- Documentation/devicetree/bindings/arm/cpus.yaml    |  1 -
- .../devicetree/bindings/display/bridge/sii902x.txt |  2 +-
- .../bindings/display/mediatek/mediatek,disp.txt    |  4 +--
- .../devicetree/bindings/extcon/wlf,arizona.yaml    |  1 -
- .../devicetree/bindings/hwmon/adi,ltc2947.yaml     |  1 -
- .../devicetree/bindings/hwmon/baikal,bt1-pvt.yaml  |  8 ++---
- .../devicetree/bindings/hwmon/ti,tmp513.yaml       |  1 -
- .../devicetree/bindings/i2c/i2c-gpio.yaml          |  2 --
- .../bindings/i2c/snps,designware-i2c.yaml          |  3 --
- .../devicetree/bindings/iio/adc/adi,ad7192.yaml    |  2 +-
- .../devicetree/bindings/iio/adc/maxim,max9611.yaml |  1 -
- .../devicetree/bindings/iio/adc/st,stm32-adc.yaml  |  1 -
- .../bindings/iio/adc/ti,palmas-gpadc.yaml          |  2 --
- .../devicetree/bindings/iio/dac/adi,ad5758.yaml    | 41 ++++++++++++++--------
- .../bindings/iio/health/maxim,max30100.yaml        |  1 -
- .../bindings/input/touchscreen/touchscreen.yaml    |  2 --
- .../bindings/media/mediatek-jpeg-decoder.txt       |  2 +-
- .../bindings/media/mediatek-jpeg-encoder.txt       |  2 +-
- .../devicetree/bindings/media/mediatek-mdp.txt     |  2 +-
- .../devicetree/bindings/mmc/mmc-controller.yaml    |  1 -
- .../devicetree/bindings/mmc/mmc-pwrseq-simple.yaml |  2 --
- .../bindings/net/ethernet-controller.yaml          |  2 --
- .../devicetree/bindings/net/snps,dwmac.yaml        |  1 -
- .../devicetree/bindings/power/supply/battery.yaml  |  3 --
- .../devicetree/bindings/power/supply/bq2515x.yaml  |  1 -
- .../devicetree/bindings/regulator/dlg,da9121.yaml  |  1 -
- .../bindings/regulator/fixed-regulator.yaml        |  2 --
- Documentation/devicetree/bindings/rtc/rtc.yaml     |  2 --
- .../devicetree/bindings/serial/pl011.yaml          |  2 --
- .../devicetree/bindings/sound/sgtl5000.yaml        |  2 --
- .../devicetree/bindings/usb/ti,j721e-usb.yaml      |  4 +++
- .../devicetree/bindings/watchdog/watchdog.yaml     |  1 -
- arch/arm/boot/compressed/atags_to_fdt.c            |  3 +-
- drivers/of/device.c                                | 10 ++++--
- 34 files changed, 49 insertions(+), 67 deletions(-)
+[1] https://lore.kernel.org/linux-devicetree/20210128175225.3102958-1-dmitry.baryshkov@linaro.org/
+[2] https://lore.kernel.org/linux-devicetree/CAA8EJpqPONJfQLFQhB3_AEdFYcZ8rKWJw7=wd7KzJRhOEr+w_A@mail.gmail.com/
