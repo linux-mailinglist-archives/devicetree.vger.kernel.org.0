@@ -2,54 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB97B30856A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 07:01:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E09F8308574
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 07:08:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230411AbhA2GAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 01:00:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44922 "EHLO
+        id S231855AbhA2GEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 01:04:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbhA2GAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 01:00:35 -0500
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C56C061573;
-        Thu, 28 Jan 2021 21:59:54 -0800 (PST)
-Received: by mail-qv1-xf36.google.com with SMTP id u16so4008270qvo.9;
-        Thu, 28 Jan 2021 21:59:54 -0800 (PST)
+        with ESMTP id S229656AbhA2GEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 01:04:06 -0500
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7912C061573;
+        Thu, 28 Jan 2021 22:03:25 -0800 (PST)
+Received: by mail-qt1-x831.google.com with SMTP id d15so5931119qtw.12;
+        Thu, 28 Jan 2021 22:03:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=QUeH3EobdhlwWiIHKkInYCjoa2uGooqIYSSFgluMm3c=;
-        b=GIitH5mpBu0U2vHntzB1uENdz9z7eYAcAOGOY276XwzQJK8/lFACDDjO1qqubA5jf/
-         kGVqOnbununpJ3l/IwCEQMF2QQbsH1NsrJnNmGPYekyUr1SCgpm85WeJpJxcq1faVV5x
-         zNrFPUgQas6IzC7LYUw/R0Gc0wTr6/elCAqsBQUeDIt+3xlSMEbWfuRrqKnU0F3SWR1w
-         6MpbozQxZjQNLESpTcWnu1bmqyA19HZxBE+idUAcs4PI+zFE+rHq9khwNbT6WIatPxxJ
-         UxAAkELh0jd7/ynk8e28V5g/kDMnL8Id17l92o1hbggyXp3kJQNZiR/lvaJQd1kkwJ2b
-         V41A==
+        bh=DIdLn4LpSYK2hrD9Gw5z2fpkmte7sT90Jw8a/2a6yn4=;
+        b=qkjyKi6ps0zkbxxxuMxD1N1iSJw5nHSolpBHyAR8XQ06DZ6Uim7EFuLRUNNdV+fCKW
+         z+sWfnF7Mgr7dhGYAvJTtHBjy6dsrDOR7BA2//Lz2KCes549qmkZHQ36lc30ATshM2AO
+         O/hDB1QkykNanr06mxGkzCokbkA1pN+1wRn6ovY8QT8/wc2LT+sZWVj7Wk7xPTWlRAop
+         8bICmiVx+xffOEd9ce5JqYghBOShW5RbC5MFnkT/giTj0SMbBbpZU5kYt65xGvwKwFfI
+         JJkDQsE7wYK+9M1MtfvPT+UQ0Nwjb1VObTa0YIbVIu9Wwm4tR4MP7cyyLUGFK/E7jrsX
+         D7xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=QUeH3EobdhlwWiIHKkInYCjoa2uGooqIYSSFgluMm3c=;
-        b=HIVpiPaugU3AN40qVpT5ZwPhFb3DUxbdP2rlWkwLYBCR01cVZADDwxwHS9mf8/9qAm
-         UpZ4iiTTsEslyqJOOY76WCK7aTU3RRrLn/ZL3+ncIiTPNyDyNDcCiJ8knQbo4v2/FgnM
-         Kp34+TUJP4hsEjiEfd6P9KdTSGO4wQ0YdchGGbtEHPMLmINBRPSuZmKcieujsHP/8ygN
-         lsQ933dsLB8etvhzQjjtlPhXu/wteRfyxu8G8PxTixMyXMQqKDVWiwfNRqCnnGdBdi9w
-         10RQBZ3E12Rs5eS6Lsqyk+M/mWEUGqk1vrISD2qfTR2pBFDnM2Lemn6cbCI2KrA71gLv
-         8bvA==
-X-Gm-Message-State: AOAM530VvLoPvqHbMowk2vatqIl5ek1QlOfwhaTmIA/8kALvuFniH7RA
-        sDvQ3DbRuI7tT0ELmsw7oAmpmK9a6iM0yA==
-X-Google-Smtp-Source: ABdhPJwSN517cb/JmY48RE9OlGouu0YrTJ4xJJohOV5W+VRBNe+54U1bJTr8tzGabTzzXeT6OurzTA==
-X-Received: by 2002:ad4:4431:: with SMTP id e17mr2702498qvt.45.1611899994068;
-        Thu, 28 Jan 2021 21:59:54 -0800 (PST)
+        bh=DIdLn4LpSYK2hrD9Gw5z2fpkmte7sT90Jw8a/2a6yn4=;
+        b=PFCkT3FgDp6HCjUdH/Jeycsbh+DeRt6HlU6/kYukDNCFALCuwC7icLVqPRUNosKS72
+         ZSEQ9Ui6MXpXzEPIwUEKpzNIE6L0L7OAydnW1G5mbjt2viIpOmT/pOjtOY6lxscVgUPR
+         3YYq/TDl7YPG4duTdGHI+qu1nMii1HMROn6J3HW0leZnoFjJdIoCBDwd8ufT2Qc7NWqD
+         zvllATbhQduBn/xtD2vwI2jFJJJ1w173qcIYkGQASzk7PFWBusmt6cOZ/pIwmXzQGFYI
+         EYasC93JaQjictErWqzJmkjd2KF2NHp1e4+r+XnffwegRrzlmpkw/WsEyYEOLLgHG3IC
+         BfHg==
+X-Gm-Message-State: AOAM533Y/p2GLrc6wipU/+JZziBsB97Au4saPhwhTByPKuPcu1msAykK
+        hQy7Hx9dztE1mXvkkzO1xUI=
+X-Google-Smtp-Source: ABdhPJzb9dBR3oFY+cUI1Dcx8jFyCRRwpacL22QgCiQwalHgYdNpDx+osw/ta/qIZo5cMEAkrTPNlA==
+X-Received: by 2002:ac8:4d93:: with SMTP id a19mr2924481qtw.28.1611900205090;
+        Thu, 28 Jan 2021 22:03:25 -0800 (PST)
 Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id q25sm5229305qkq.32.2021.01.28.21.59.53
+        by smtp.gmail.com with ESMTPSA id q4sm5289491qkj.5.2021.01.28.22.03.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jan 2021 21:59:53 -0800 (PST)
-Subject: Re: [PATCH V6 5/6] of: unittest: Create overlay_common.dtsi and
- testcases_common.dtsi
+        Thu, 28 Jan 2021 22:03:24 -0800 (PST)
+Subject: Re: [PATCH V6 2/6] scripts: dtc: Build fdtoverlay tool
 To:     Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
@@ -60,15 +59,14 @@ Cc:     Vincent Guittot <vincent.guittot@linaro.org>,
         David Gibson <david@gibson.dropbear.id.au>,
         devicetree@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>
 References: <cover.1611312122.git.viresh.kumar@linaro.org>
- <94180731aa4a17e4834458a979de7de782dc73d4.1611312122.git.viresh.kumar@linaro.org>
- <20210127055652.vmkx5sczef2mjwey@vireshk-i7>
+ <2dfec4acb1bfbab08b431908ace0a77cc3279434.1611312122.git.viresh.kumar@linaro.org>
 From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <543de786-4f08-d1f6-8034-252662a39786@gmail.com>
-Date:   Thu, 28 Jan 2021 23:59:52 -0600
+Message-ID: <1f6408aa-9900-fe4a-d885-028ff8329707@gmail.com>
+Date:   Fri, 29 Jan 2021 00:03:23 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210127055652.vmkx5sczef2mjwey@vireshk-i7>
+In-Reply-To: <2dfec4acb1bfbab08b431908ace0a77cc3279434.1611312122.git.viresh.kumar@linaro.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -76,91 +74,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh,
-
-On 1/26/21 11:56 PM, Viresh Kumar wrote:
-> On 22-01-21, 16:20, Viresh Kumar wrote:
->> In order to build-test the same unit-test files using fdtoverlay tool,
->> move the device nodes from the existing overlay_base.dts and
->> testcases_common.dts files to .dtsi files. The .dts files now include
->> the new .dtsi files, resulting in exactly the same behavior as earlier.
->>
->> The .dtsi files can now be reused for compile time tests using
->> fdtoverlay (will be done in a later patch).
->>
->> This is required because the base files passed to fdtoverlay tool
->> shouldn't be overlays themselves (i.e. shouldn't have the /plugin/;
->> tag).
->>
->> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
->> ---
->>  drivers/of/unittest-data/overlay_base.dts     | 90 +-----------------
->>  drivers/of/unittest-data/overlay_common.dtsi  | 91 +++++++++++++++++++
->>  drivers/of/unittest-data/testcases.dts        | 17 +---
->>  .../of/unittest-data/testcases_common.dtsi    | 18 ++++
->>  4 files changed, 111 insertions(+), 105 deletions(-)
->>  create mode 100644 drivers/of/unittest-data/overlay_common.dtsi
->>  create mode 100644 drivers/of/unittest-data/testcases_common.dtsi
+On 1/22/21 4:50 AM, Viresh Kumar wrote:
+> We will start building overlays for platforms soon in the kernel and
+> would need fdtoverlay going forward. Lets start building it.
 > 
-> Frank,
+> The fdtoverlay program applies (or merges) one or more overlay dtb
+> blobs to a base dtb blob. The kernel build system would later use
+> fdtoverlay to generate the overlaid blobs based on platform specific
+> configurations.
 > 
-> As I mentioned in the cover-letter, I get a build warning right now:
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> ---
+>  scripts/dtc/Makefile | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
 > 
-> drivers/of/unittest-data/tests-interrupts.dtsi:20.5-28: Warning (interrupts_property): /testcase-data/testcase-device2:#interrupt-cells: size is (4), expected multiple of 8
-
-Thanks for catching that.
-
-> 
-> I think I need to add below diff to this patch to fix this warning, will that
-> be okay ?
-
-Nope, the change below won't work because it removes the node testcase-device2 from the tests
-that unittest.c does (if I am thinking correctly).  I will double check my thinking, but I
-know you are spinning the patch, so I didn't want to delay this reply.
-
-Note that this node has a deliberate error in it "/* invalid specifier - too short */".
-
-I'm not sure why the dtc warning triggers on line 20 instead of line 68.  I'll have to go
-look at the dtc source to better understand the warning.
-
--Frank
-
-> 
-> diff --git a/drivers/of/unittest-data/testcases.dts b/drivers/of/unittest-data/testcases.dts
-> index 185125085784..04b9e7bb30d9 100644
-> --- a/drivers/of/unittest-data/testcases.dts
-> +++ b/drivers/of/unittest-data/testcases.dts
-> @@ -3,3 +3,14 @@
->  /plugin/;
+> diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
+> index 4852bf44e913..5f19386a49eb 100644
+> --- a/scripts/dtc/Makefile
+> +++ b/scripts/dtc/Makefile
+> @@ -1,13 +1,17 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  # scripts/dtc makefile
 >  
->  #include "testcases_common.dtsi"
+> -hostprogs-always-$(CONFIG_DTC)		+= dtc
+> +hostprogs-always-$(CONFIG_DTC)		+= dtc fdtoverlay
+>  hostprogs-always-$(CHECK_DT_BINDING)	+= dtc
+>  
+>  dtc-objs	:= dtc.o flattree.o fstree.o data.o livetree.o treesource.o \
+>  		   srcpos.o checks.o util.o
+>  dtc-objs	+= dtc-lexer.lex.o dtc-parser.tab.o
+> 
+
+Please add this comment:
+
+# The upstream project builds libfdt as a separate library.  We are choosing to
+# instead directly link the libfdt object files into fdtoverly
+
+> +libfdt-objs	:= fdt.o fdt_ro.o fdt_wip.o fdt_sw.o fdt_rw.o fdt_strerror.o fdt_empty_tree.o fdt_addresses.o fdt_overlay.o
+> +libfdt		= $(addprefix libfdt/,$(libfdt-objs))
+> +fdtoverlay-objs	:= $(libfdt) fdtoverlay.o util.o
 > +
-> +/ {
-> +       testcase-data {
-> +               testcase-device2 {
-> +                       compatible = "testcase-device";
-> +                       interrupt-parent = <&test_intc2>;
-> +                       interrupts = <1>; /* invalid specifier - too short */
-> +               };
-> +       };
-> +
-> +};
-> diff --git a/drivers/of/unittest-data/tests-interrupts.dtsi b/drivers/of/unittest-data/tests-interrupts.dtsi
-> index ec175e800725..0e5914611107 100644
-> --- a/drivers/of/unittest-data/tests-interrupts.dtsi
-> +++ b/drivers/of/unittest-data/tests-interrupts.dtsi
-> @@ -61,12 +61,5 @@ testcase-device1 {
->                         interrupt-parent = <&test_intc0>;
->                         interrupts = <1>;
->                 };
-> -
-> -               testcase-device2 {
-> -                       compatible = "testcase-device";
-> -                       interrupt-parent = <&test_intc2>;
-> -                       interrupts = <1>; /* invalid specifier - too short */
-> -               };
->         };
-> -
->  };
+>  # Source files need to get at the userspace version of libfdt_env.h to compile
+>  HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
+>  
 > 
 
