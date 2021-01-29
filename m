@@ -2,64 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79700308678
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 08:34:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CB3130867D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 08:36:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232170AbhA2Haw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 02:30:52 -0500
-Received: from st43p00im-zteg10063501.me.com ([17.58.63.176]:47605 "EHLO
-        st43p00im-zteg10063501.me.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231139AbhA2Hat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 02:30:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1611905366; bh=kXZkvWxB6eL6VKEAArF5bwSzPHyvmX4qrkAq3pvRG+s=;
-        h=From:To:Subject:Date:Message-Id;
-        b=f9gAceX74CFMQs7HcEBTje9IJhSA4WrVTQcEjNlBWuGE7TdfuOf8EjUmacKQyZugX
-         uM9Pbk9P6Xn42jrC7c03RHW2sTTtsIz9QZBQSv33b/My8CijqqXmEm5IZsrbm1Da1d
-         lHev/GzbHtkGrDc0sO627IDLzy5VIXTlFJve8XZkXumHnKR2toWB8oKp0jd0v0zcle
-         ByRUwzrUtcHXxDapgJgEC9SMHG1VMRRwaZtOIrfXbF4JPHhV+560t8kUNqC2X2D4C8
-         LFC7uNt0uXncywiDS1VEW+ZZ3l3YSa7LYm8VyKwdAbyFeNmINQK/13jmTbjbjT9dyn
-         y/bmKXEewfkkA==
-Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
-        by st43p00im-zteg10063501.me.com (Postfix) with ESMTPSA id 89700C80A91;
-        Fri, 29 Jan 2021 07:29:03 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Patrice Chotard <patrice.chotard@st.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, avolmat@me.com
-Subject: [PATCH v2 0/3] Introduction of STiH418 based 4KOpen board
-Date:   Fri, 29 Jan 2021 08:27:43 +0100
-Message-Id: <20210129072746.18474-1-avolmat@me.com>
-X-Mailer: git-send-email 2.17.1
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-29_03:2021-01-28,2021-01-29 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxscore=0
- mlxlogscore=769 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-2006250000 definitions=main-2101290038
+        id S232091AbhA2Hf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 02:35:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36988 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232019AbhA2HfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 02:35:22 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA2BC061573
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 23:34:42 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id t29so5685732pfg.11
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 23:34:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2+JP5pdQIMiJpdb9A5szcfBUiP1gg4B51D5kz0l1qAg=;
+        b=E09IVCDKJaw1pM4q9Xnmre77m650iwDkHBLJ3i/9bSNUoekaS/8ot9t6W56VmjAKwa
+         QjiDOqS16pIL5sVYk5KttRbM8MdUaKpIQ541ryhlPLJo44VwPoArxWoB+MH/B7/QUGjU
+         5V3VMnLqlD7cvK4kj/n/txS4UXBazFby9qp6Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2+JP5pdQIMiJpdb9A5szcfBUiP1gg4B51D5kz0l1qAg=;
+        b=SgdfpNYjmCm4YLL/uawVx6HnPxB8W6ezPMgNpd17aJ4eeTDMT9csRINXXadJR/w8f8
+         gIVR9UWSToKM/1ubeEZPqJNdJJs5Im54bi4Mle405f8G6xxvKvFLyghUXa9GiMayv2He
+         eNEY2VztTrf1lZ13R/k5yZSzhlvLMIOtb7EtF6pY788C6Isz0aFrr0lhD7p1o61j7jyB
+         n+6QCU01Ed1yny+hHuNOwU8ngWj1unqak0pCrelcvGtYQLN9PIEoI0w0zN9DUTflY2z9
+         0+XZRuelZYhG1qqhOYKuFI6ejIgDEioLucGqBa0EaAI8R7IwExJkB/1uOR6LSQ2kCdvB
+         /3Cg==
+X-Gm-Message-State: AOAM530DImXLq8NV+uVJA0nbarieCy8Ozcx49+4UgHvBsyjYreuTNuOv
+        vNycUvLDxUltFsRQtZ1VFJcEzQ==
+X-Google-Smtp-Source: ABdhPJyTJmer89hnTyIzUeFUMxU3MW8yNhou7rK4sLjU8tB7m00M0/MUS/wOTfNcVHzJo8qqSaZxiA==
+X-Received: by 2002:a05:6a00:14c8:b029:1bb:8436:497c with SMTP id w8-20020a056a0014c8b02901bb8436497cmr3190934pfu.68.1611905681713;
+        Thu, 28 Jan 2021 23:34:41 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:51f1:c468:a70b:7c09])
+        by smtp.gmail.com with ESMTPSA id p1sm7689980pfn.21.2021.01.28.23.34.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jan 2021 23:34:41 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH v4 0/8] drm/mediatek: add support for mediatek SOC MT8192
+Date:   Fri, 29 Jan 2021 15:34:28 +0800
+Message-Id: <20210129073436.2429834-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This serie introduces the 4KOpen (stih418-b2264) board based
-on a stih418 soc. Since it is the first board to use the spi-fsm
-SPI NOR controller available since stih407, the controller is
-also added within the stih407-family DT.
-It also contains a fix within the stih418 DT since the rng11 is not
-available on this platform and is thus disabled.
+This series are based on kernel/git/chunkuang.hu/linux.git mediatek-drm-next
+This series also depends on component support in mmsys[1]:
+- [v4,06/10] soc: mediatek: mmsys: add component OVL_2L2
+- [v4,07/10] soc: mediatek: mmsys: add component POSTMASK
+- [v4,08/10] soc: mediatek: mmsys: add component RDMA4
 
-Alain Volmat (3):
-  ARM: dts: sti: add the spinor controller node within stih407-family
-  ARM: dts: sti: disable rng11 on the stih418 platform
-  ARM: dts: sti: Introduce 4KOpen (stih418-b2264) board
+[1] https://patchwork.kernel.org/project/linux-mediatek/patch/1609815993-22744-7-git-send-email-yongqiang.niu@mediatek.com/
 
- arch/arm/boot/dts/Makefile            |   3 +-
- arch/arm/boot/dts/stih407-family.dtsi |  15 ++++
- arch/arm/boot/dts/stih418-b2264.dts   | 123 ++++++++++++++++++++++++++
- arch/arm/boot/dts/stih418.dtsi        |   4 +
- 4 files changed, 144 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/stih418-b2264.dts
+
+Change since v3:
+- change several function to rebase to mediatek-drm-next
+- drop pm runtime patches due to it's not related to mt8192 support
+- fix review comments in v3
+
+Changes since v2:
+- fix review comment in v2
+- add pm runtime for gamma and color 
+- move ddp path select patch to mmsys series
+- remove some useless patch
+
+Yongqiang Niu (8):
+  drm/mediatek: add component OVL_2L2
+  drm/mediatek: add component POSTMASK
+  drm/mediatek: add component RDMA4
+  drm/mediatek: enable OVL_LAYER_SMI_ID_EN for multi-layer usecase
+  drm/mediatek: separate ccorr module
+  drm/mediatek: add matrix bits private data for ccorr
+  soc: mediatek: add mtk mutex support for MT8192
+  drm/mediatek: add support for mediatek SOC MT8192
+
+ drivers/gpu/drm/mediatek/Makefile            |   4 +-
+ drivers/gpu/drm/mediatek/mtk_disp_ccorr.c    | 244 +++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h      |  17 ++
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c      |  37 +++
+ drivers/gpu/drm/mediatek/mtk_disp_postmask.c | 162 ++++++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c     |   6 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c  | 108 ++------
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h  |   1 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c       |  52 +++-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h       |   2 +
+ drivers/soc/mediatek/mtk-mutex.c             |  35 +++
+ 11 files changed, 572 insertions(+), 96 deletions(-)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_postmask.c
+
+-- 
+2.30.0.365.g02bc693789-goog
 
