@@ -2,243 +2,299 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 477CE30881D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 12:12:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 525A93088A4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 12:55:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232488AbhA2LIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 06:08:23 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:33629 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232105AbhA2K0U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 05:26:20 -0500
-X-UUID: 17d99157e3b94d30ac7bacf66bd25686-20210129
-X-UUID: 17d99157e3b94d30ac7bacf66bd25686-20210129
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2030637293; Fri, 29 Jan 2021 17:50:30 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 29 Jan 2021 17:50:29 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 29 Jan 2021 17:50:29 +0800
-From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>
-CC:     Eddie Huang <eddie.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        Ran Bi <ran.bi@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH RESEND v5 4/8] dt-bindings: regulator: Add document for MT6359 regulator
-Date:   Fri, 29 Jan 2021 17:49:37 +0800
-Message-ID: <1611913781-23460-5-git-send-email-hsin-hsiung.wang@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1611913781-23460-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1611913781-23460-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+        id S232244AbhA2Ly1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 06:54:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44994 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232173AbhA2K0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 05:26:17 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 016F0C08ECA9
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 02:24:30 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1l5PzP-00010R-L4; Fri, 29 Jan 2021 10:22:51 +0100
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1l5PzO-0004CB-NP; Fri, 29 Jan 2021 10:22:50 +0100
+Date:   Fri, 29 Jan 2021 10:22:50 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/3] arm64: dts: imx: Add i.mx8mm nitrogen8mm basic
+ dts support
+Message-ID: <20210129092250.4cet62bqkju3i3vp@pengutronix.de>
+References: <20210118111531.903154-1-adrien.grassein@gmail.com>
+ <20210118111531.903154-3-adrien.grassein@gmail.com>
+ <20210128161845.lvex3vh6xfa64b3h@pengutronix.de>
+ <CABkfQAHDoFpJQSE3Ls5V_jyiq5N-VO=LvZbb+pvdCRZpm+PjwA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABkfQAHDoFpJQSE3Ls5V_jyiq5N-VO=LvZbb+pvdCRZpm+PjwA@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:09:26 up 57 days, 23:15, 34 users,  load average: 0.06, 0.14,
+ 0.09
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add dt-binding document for MediaTek MT6359 PMIC
+Hi Adrien,
 
-Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
----
-changes since v4: fix yamllint errors in dt-binding document.
----
- .../bindings/regulator/mt6359-regulator.yaml  | 169 ++++++++++++++++++
- 1 file changed, 169 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
+On 21-01-28 18:23, Adrien Grassein wrote:
 
-diff --git a/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
-new file mode 100644
-index 000000000000..62ff93eefd39
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
-@@ -0,0 +1,169 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/mt6359-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MT6359 Regulator from MediaTek Integrated
-+
-+maintainers:
-+  - Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-+
-+description: |
-+  List of regulators provided by this controller. It is named
-+  according to its regulator type, buck_<name> and ldo_<name>.
-+  MT6359 regulators node should be sub node of the MT6397 MFD node.
-+
-+properties:
-+  $nodename:
-+    pattern: "^pmic$"
-+
-+  mt6359regulator:
-+    type: object
-+    description:
-+      list of regulators provided by this controller.
-+
-+    patternProperties:
-+      "^buck_v(s1|gpu11|modem|pu|core|s2|pa|proc2|proc1|core_sshub)$":
-+        type: object
-+        $ref: "regulator.yaml#"
-+
-+        properties:
-+          regulator-name:
-+            pattern: "^v(s1|gpu11|modem|pu|core|s2|pa|proc2|proc1|core_sshub)$"
-+
-+        unevaluatedProperties: false
-+
-+      "^ldo_v(ibr|rf12|usb|camio|efuse|xo22)$":
-+        type: object
-+        $ref: "regulator.yaml#"
-+
-+        properties:
-+          regulator-name:
-+            pattern: "^v(ibr|rf12|usb|camio|efuse|xo22)$"
-+
-+        unevaluatedProperties: false
-+
-+      "^ldo_v(rfck|emc|a12|a09|ufs|bbck)$":
-+        type: object
-+        $ref: "regulator.yaml#"
-+
-+        properties:
-+          regulator-name:
-+            pattern: "^v(rfck|emc|a12|a09|ufs|bbck)$"
-+
-+        unevaluatedProperties: false
-+
-+      "^ldo_vcn(18|13|33_1_bt|13_1_wifi|33_2_bt|33_2_wifi)$":
-+        type: object
-+        $ref: "regulator.yaml#"
-+
-+        properties:
-+          regulator-name:
-+            pattern: "^vcn(18|13|33_1_bt|13_1_wifi|33_2_bt|33_2_wifi)$"
-+
-+        unevaluatedProperties: false
-+
-+      "^ldo_vsram_(proc2|others|md|proc1|others_sshub)$":
-+        type: object
-+        $ref: "regulator.yaml#"
-+
-+        properties:
-+          regulator-name:
-+            pattern: "^vsram_(proc2|others|md|proc1|others_sshub)$"
-+
-+        unevaluatedProperties: false
-+
-+      "^ldo_v(fe|bif|io)28$":
-+        type: object
-+        $ref: "regulator.yaml#"
-+
-+        properties:
-+          regulator-name:
-+            pattern: "^v(fe|bif|io)28$"
-+
-+        unevaluatedProperties: false
-+
-+      "^ldo_v(aud|io|aux|rf|m)18$":
-+        type: object
-+        $ref: "regulator.yaml#"
-+
-+        properties:
-+          regulator-name:
-+            pattern: "^v(aud|io|aux|rf|m)18$"
-+
-+        unevaluatedProperties: false
-+
-+      "^ldo_vsim[12]$":
-+        type: object
-+        $ref: "regulator.yaml#"
-+
-+        properties:
-+          regulator-name:
-+            pattern: "^vsim[12]$"
-+
-+        required:
-+          - regulator-name
-+
-+        unevaluatedProperties: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pmic {
-+      mt6359regulator {
-+        mt6359_vgpu11_buck_reg: buck_vgpu11 {
-+          regulator-name = "vgpu11";
-+          regulator-min-microvolt = <400000>;
-+          regulator-max-microvolt = <1193750>;
-+          regulator-enable-ramp-delay = <200>;
-+          regulator-always-on;
-+          regulator-allowed-modes = <0 1 2>;
-+        };
-+
-+        mt6359_vcamio_ldo_reg: ldo_vcamio {
-+          regulator-name = "vcamio";
-+          regulator-min-microvolt = <1700000>;
-+          regulator-max-microvolt = <1900000>;
-+        };
-+
-+        mt6359_vcn18_ldo_reg: ldo_vcn18 {
-+          regulator-name = "vcn18";
-+          regulator-min-microvolt = <1800000>;
-+          regulator-max-microvolt = <1800000>;
-+          regulator-enable-ramp-delay = <240>;
-+        };
-+
-+        mt6359_vsram_proc2_ldo_reg: ldo_vsram_proc2 {
-+          regulator-name = "vsram_proc2";
-+          regulator-min-microvolt = <500000>;
-+          regulator-max-microvolt = <1293750>;
-+          regulator-ramp-delay = <7500>;
-+          regulator-enable-ramp-delay = <240>;
-+          regulator-always-on;
-+        };
-+
-+        mt6359_vfe28_ldo_reg: ldo_vfe28 {
-+          regulator-name = "vfe28";
-+          regulator-min-microvolt = <2800000>;
-+          regulator-max-microvolt = <2800000>;
-+          regulator-enable-ramp-delay = <120>;
-+        };
-+
-+        mt6359_vaud18_ldo_reg: ldo_vaud18 {
-+          regulator-name = "vaud18";
-+          regulator-min-microvolt = <1800000>;
-+          regulator-max-microvolt = <1800000>;
-+          regulator-enable-ramp-delay = <240>;
-+        };
-+
-+        mt6359_vsim1_ldo_reg: ldo_vsim1 {
-+          regulator-name = "vsim1";
-+          regulator-min-microvolt = <1700000>;
-+          regulator-max-microvolt = <3100000>;
-+          regulator-enable-ramp-delay = <480>;
-+        };
-+      };
-+    };
-+...
--- 
-2.18.0
+> > > +&i2c1 {
+> > > +     clock-frequency = <400000>;
+> >                             ^
+> >                 Is the i2c errata fixed on the imx8?
+> 
+> I don't know. What is this errata?
+> Should I set a lower speed for the particular i2c?
 
+The max. clock on iMX6 is 375kHz due to errate ERR007805
+https://www.nxp.com/docs/en/errata/IMX6DQCE.pdf
+
+> >
+> > > +     pinctrl-names = "default", "gpio";
+> >                                      ^
+> >                         no pinctrl for gpio.
+> 
+> Yes, it's a bug, thanks
+> 
+> > > +     pinctrl-0 = <&pinctrl_i2c1>;
+> > > +     status = "okay";
+> > > +
+> > > +     pmic@8 {
+> > > +             compatible = "nxp,pf8121a";
+> > > +             reg = <0x8>;
+> > > +
+> > > +             regulators {
+> > > +                 reg_ldo1: ldo1 {
+> >                         ^
+> >                    alignment
+> 
+> OK
+> 
+> > > +                             regulator-min-microvolt = <1500000>;
+> > > +                             regulator-max-microvolt = <5000000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_ldo2: ldo2 {
+> > > +                             regulator-min-microvolt = <1500000>;
+> > > +                             regulator-max-microvolt = <5000000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_ldo3: ldo3 {
+> > > +                             regulator-min-microvolt = <1500000>;
+> > > +                             regulator-max-microvolt = <5000000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_ldo4: ldo4 {
+> > > +                             regulator-min-microvolt = <1500000>;
+> > > +                             regulator-max-microvolt = <5000000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_buck1: buck1 {
+> > > +                             regulator-min-microvolt = <400000>;
+> > > +                             regulator-max-microvolt = <1800000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_buck2: buck2 {
+> > > +                             regulator-min-microvolt = <400000>;
+> > > +                             regulator-max-microvolt = <1800000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_sw3: buck3 {
+> > > +                             regulator-min-microvolt = <400000>;
+> > > +                             regulator-max-microvolt = <1800000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_buck4: buck4 {
+> > > +                             regulator-min-microvolt = <400000>;
+> > > +                             regulator-max-microvolt = <1800000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_buck5: buck5 {
+> > > +                             regulator-min-microvolt = <400000>;
+> > > +                             regulator-max-microvolt = <1800000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_buck6: buck6 {
+> > > +                             regulator-min-microvolt = <400000>;
+> > > +                             regulator-max-microvolt = <1800000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_buck7: buck7 {
+> > > +                             regulator-min-microvolt = <3300000>;
+> > > +                             regulator-max-microvolt = <3300000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_vsnvs: vsnvs {
+> > > +                             regulator-min-microvolt = <1800000>;
+> > > +                             regulator-max-microvolt = <3300000>;
+> > > +                             regulator-boot-on;
+> > > +                             regulator-always-on;
+> > > +                     };
+> >
+> > Do we really need to have all regulators marked as always-on?
+> >
+> I used the definition present on the example.
+> I will remove this (for the one I don't use).
+
+Can you test to remove all always-on except for those really needed e.g.
+the vddr-ref. Regulators are obtained on demand by the devices. This
+allows us to save power e.g. in suspend-to-ram case.
+
+> > > +             };
+> > > +     };
+> > > +};
+> > > +
+> > > +&i2c3 {
+> > > +     clock-frequency = <100000>;
+> > > +     pinctrl-names = "default", "gpio";
+> > > +     pinctrl-0 = <&pinctrl_i2c3>;
+> > > +     status = "okay";
+> > > +
+> > > +     i2cmux@70 {
+> > > +             compatible = "nxp,pca9540";
+> > > +             reg = <0x70>;
+> > > +             #address-cells = <1>;
+> > > +             #size-cells = <0>;
+> > > +
+> > > +             i2c3 {
+> > > +                     reg = <0>;
+> > > +                     #address-cells = <1>;
+> > > +                     #size-cells = <0>;
+> > > +
+> > > +                     rtc@68 {
+> > > +                             compatible = "microcrystal,rv4162";
+> > > +                             pinctrl-names = "default";
+> > > +                             pinctrl-0 = <&pinctrl_i2c3a_rv4162>;
+> > > +                             reg = <0x68>;
+> >
+> > reg should be the 2nd property, after the compatible.
+> >
+> OK.
+> 
+> > > +                             interrupts-extended = <&gpio4 22 IRQ_TYPE_LEVEL_LOW>;
+> > > +                             wakeup-source;
+> > > +                     };
+> > > +             };
+> > > +     };
+> > > +};
+> > > +
+> > > +/* console */
+> > > +&uart2 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&pinctrl_uart2>;
+> > > +     assigned-clocks = <&clk IMX8MM_CLK_UART2>;
+> > > +     assigned-clock-parents = <&clk IMX8MM_CLK_24M>;
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +/* eMMC */
+> > > +&usdhc1 {
+> > > +     bus-width = <8>;
+> > > +     sdhci-caps-mask = <0x80000000 0x0>;
+> >                 ^
+> > This is a SD host controller property according the doc.
+> >
+> Yes, I don't understand the point, sorry.
+> This property is read by the host driver, but should be present here
+> (like in some other dts).
+
+I've never seen this property. I said "This is a SD host controller"
+because your comment says that this usdhc controller is used for eMMC
+which is not an SD controller.
+
+> > > +     non-removable;
+> > > +     pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> > > +     pinctrl-0 = <&pinctrl_usdhc1>;
+> > > +     pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+> > > +     pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +/* sdcard */
+> > > +&usdhc2 {
+> > > +     bus-width = <4>;
+> > > +     cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+> > > +     pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> > > +     pinctrl-0 = <&pinctrl_usdhc2>;
+> > > +     pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
+> > > +     pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
+> > > +     vqmmc-supply = <&reg_ldo2>;
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&wdog1 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&pinctrl_wdog>;
+> > > +     fsl,ext-reset-output;
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&iomuxc {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&pinctrl_hog>;
+> >
+> > It would be nice to avoid such hog's. Instead those gpios should get
+> > configured by the device(s) using those.
+> >
+> Once again (sorry), I don't understand the point.
+> I did this like any other imx8 board (imx8mq-nitrogem for example).
+
+Question is where are those pins used and for what purpose. It is common
+to specify the muxing within the device nodes like you did for the wdog1
+device. This mechanism here is something like: "Oh I don't wanna setup
+the muxing on the correct places, so let's mux it here in glob". Your
+hog group isn't really large but it would be nice to avoid it since day
+one.
+
+Regards,
+  Marco
