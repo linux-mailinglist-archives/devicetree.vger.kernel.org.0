@@ -2,75 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B12D2308C6B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 19:31:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D77B308C72
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 19:31:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232672AbhA2SXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 13:23:32 -0500
-Received: from mail.v3.sk ([167.172.186.51]:56366 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232618AbhA2SXG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 13:23:06 -0500
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 85EBAE070D;
-        Fri, 29 Jan 2021 18:18:14 +0000 (UTC)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id 8KncK9UMIgCb; Fri, 29 Jan 2021 18:18:13 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id B144EE0B3F;
-        Fri, 29 Jan 2021 18:18:13 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 3xU-cvvDS_i2; Fri, 29 Jan 2021 18:18:13 +0000 (UTC)
-Received: from localhost (unknown [109.183.109.54])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id 47A41E0B3E;
-        Fri, 29 Jan 2021 18:18:13 +0000 (UTC)
-Date:   Fri, 29 Jan 2021 19:22:19 +0100
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
-Cc:     kostap@marvell.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
-        andrew@lunn.ch, robh+dt@kernel.org, vkoul@kernel.org,
-        kishon@ti.com, miquel.raynal@bootlin.com, mw@semihalf.com,
-        jaz@semihalf.com, nadavh@marvell.com, stefanc@marvell.com,
-        bpeled@marvell.com
-Subject: Re: [PATCH 1/4] drivers: phy: add support for Armada CP110 UTMI PHY
-Message-ID: <20210129182219.GA74013@demiurge.local>
-References: <20210127112719.30632-1-kostap@marvell.com>
- <20210127112719.30632-2-kostap@marvell.com>
- <20210129092849.GA68955@demiurge.local>
- <20210129100713.GU1551@shell.armlinux.org.uk>
+        id S231940AbhA2S3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 13:29:18 -0500
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:14375 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231169AbhA2S2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 13:28:37 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B601453a90000>; Fri, 29 Jan 2021 10:27:53 -0800
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 29 Jan
+ 2021 18:27:52 +0000
+Received: from audio.nvidia.com (172.20.145.6) by mail.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Fri, 29 Jan 2021 18:27:50 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <thierry.reding@gmail.com>, <broonie@kernel.org>,
+        <robh+dt@kernel.org>, <lgirdwood@gmail.com>
+CC:     <kuninori.morimoto.gx@renesas.com>, <jonathanh@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <sharadg@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v2 0/9] Tegra186 and Tegra194 audio graph card
+Date:   Fri, 29 Jan 2021 23:57:37 +0530
+Message-ID: <1611944866-29373-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210129100713.GU1551@shell.armlinux.org.uk>
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1611944873; bh=f4tK4+ew7zaDkDHNwy88ploHD6DplKjmbpxcrClEycw=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+         Content-Type;
+        b=bR9x5MXS7UvtD8+w4C0gNV+kikZdgW0dorzwJzboCJyZ16VuXFa2otoM4FgdIcu2N
+         XPx5kFhF2JTh576h/+zLeXtgtxi4f3tt7Ui55bFHFKHkO0NLvrJbvJs8flEOd8VIwY
+         WF3lG7itI6seSuiYSJZhbiysc8btxYYtLA90WsRhVcgdHSwR1r6JSGhSj2Pe6QNNqo
+         bOVxshqsoC/gOFbIoDDURWepC6tWqx5SJ17EBiH/mrikpPixU7k3FSVn5WuGsyMSQB
+         HZ+DOseikPaej3cBuavueP4At6QkUCuGaVOX+6gkMagy/uhU964RwuJ1PuTGEB4p9s
+         /RMCn3NUNi9NA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 29, 2021 at 10:07:13AM +0000, Russell King - ARM Linux admin wrote:
-> On Fri, Jan 29, 2021 at 10:28:49AM +0100, Lubomir Rintel wrote:
-> > > +	/*
-> > > +	 * Setup PLL. 40MHz clock used to be the default, being 25MHz now.
-> > > +	 * See the functional specification for details.
-> > 
-> > I tried to, couldn't find it. Perhaps you could elaborate more here, or
-> > include a link in the header.
-> 
-> Marvell documents are generally not publically available. This is the
-> case here.
+This series adds support for audio graph based solution on Tegra186 and
+Tegra194. This enables audio paths for I2S, DMIC and DSPK modules.
 
-In that case the "elaborate more" part applies, otherwise the comment
-remains rather meaningless. Perhaps it wouldn't be too difficult to
-clarify things with an extra sentence or two without revealing any
-secrets.
+Depending on the platform Jetson TX2 or Jetson AGX Xavier, required I/O
+module instances are enabled. Since the latter board has on board audio
+codec, DT support for the same is enabled and external audio playback and
+capture can be used.
 
-> -- 
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Changelog
+=========
 
-Take care
-Lubo
+v1 --> v2:
+----------
+  - Dropped patch "ASoC: tegra: Select SND_SOC_RT5659" as per suggestion
+    from Mark.
+  - Add new patch "ASoC: rt5659: Add Kconfig prompt"
+  - Add new patch "arm64: defconfig: Enable RT5659"
+  - No changes in other patches from earlier series.
+
+
+Sameer Pujar (9):
+  ASoC: dt-bindings: rt5659: Update binding doc
+  ASoC: dt-bindings: tegra: Add iommus property to Tegra graph card
+  ASoC: audio-graph-card: Add clocks property to endpoint node
+  ASoC: rt5659: Add Kconfig prompt
+  arm64: defconfig: Enable RT5659
+  arm64: tegra: Add RT5658 device entry
+  Revert "arm64: tegra: Disable the ACONNECT for Jetson TX2"
+  arm64: tegra: Audio graph sound card for Jetson TX2
+  arm64: tegra: Audio graph sound card for Jetson AGX Xavier
+
+ .../bindings/sound/audio-graph-port.yaml           |   3 +
+ .../sound/nvidia,tegra-audio-graph-card.yaml       |   3 +
+ Documentation/devicetree/bindings/sound/rt5659.txt |  11 +
+ arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 609 +++++++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi           |  22 +
+ arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts | 468 ++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi           |  20 +
+ arch/arm64/configs/defconfig                       |   1 +
+ sound/soc/codecs/Kconfig                           |   2 +-
+ 9 files changed, 1138 insertions(+), 1 deletion(-)
+
+-- 
+2.7.4
+
