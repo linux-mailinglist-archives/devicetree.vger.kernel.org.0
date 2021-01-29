@@ -2,195 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15AC0308616
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 07:55:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93139308627
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 08:07:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232270AbhA2GxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 01:53:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56104 "EHLO
+        id S232039AbhA2HDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 02:03:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232263AbhA2Gwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 01:52:55 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43D4CC061786;
-        Thu, 28 Jan 2021 22:51:55 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id z16so3686827wml.2;
-        Thu, 28 Jan 2021 22:51:55 -0800 (PST)
+        with ESMTP id S232020AbhA2HDN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 02:03:13 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643AFC061573;
+        Thu, 28 Jan 2021 23:02:33 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id o10so6425236wmc.1;
+        Thu, 28 Jan 2021 23:02:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=VP2CCHQBNXtKJCFkUJhVL9cJo4wDQJQBLx9guRyCYbE=;
-        b=lAFERyn16t6IKH/B04xnGPDSjZabYoJgG5eo0coz6k9LcA6YQuuwyLlv44vRC5dC4Y
-         gnAKe/btYtvAxPXbxbEy5J/xiknphQ+9cUmw0NFtRLg/mVMOX/sMqoI99ybA7lzPavbI
-         iwN5TgWc94kMh/g2x/PthN/bbRtc+59JvaWRVbsyhRNooH8eACo+KzueUt+6r0zJqzbB
-         AeZq1/kqPf2nbRniehVZMAfH6/W6vPA6xrsiLeVI2uNNCkzkKB3eJJX++DmDdtX5k1Xw
-         HqcdNDhSr1+4hp9rlwtdkTrRsADxh0Zz45wqfLd6prnb+N8/Fmf1WuesakekYNSzRXgs
-         oN2A==
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=eJkj1V1MkLzif7cX7fwiDSMfGoJ2Oh2DLNZ/fCE/Z3o=;
+        b=lPQHzs2oYkC3CFAEdZuyjl14P5w+IWZ1HGPJCGdN1ZqGxq//dyTY7g3BhrkShLae/c
+         cJFflHbNBGsfWzzFZPVg1KGDNSxIggg3gJFyBVRhJy/6u3ROj1/FDOJV5g9jEEFY3M9u
+         t0RQSCKmsOX25UvuWyHZCEKx8xb+rfhbkp4NGg3TCPdqlcily4QjD9Jrpa5rB12lELY2
+         Cpv9sOJG6UjQjmzBoFSu+1lfXuW/2B5t4xXcFS28RPGQw0+yOXJnk/r/MM+hLwVABkXM
+         +xGsFbPFQYC1Zi+4iB7quLZDL9NCZXflJmPgSg975sSGWFseVWvtklVJyLKjDaweMO7d
+         d2WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=VP2CCHQBNXtKJCFkUJhVL9cJo4wDQJQBLx9guRyCYbE=;
-        b=WyDFC7urIaZhJ9vXB9x9PJnVzIoSJJ+CmjX9HHSSWL3o7lC9mh+v550a0dlKC/GPZC
-         X6Vvd1Bhgl6pbkCcVuwxeLZfU6EFF3MSNEX7gnvSOIjjv+34rzEB86GoSQ6RSwQlO6kq
-         RbVICAd8Ksr9lDKE6kqpIrKyul+4P9hIcxw3uOfaSjhGahIEtqD13i3QtA6e9+LjMSgC
-         FDLXW6SMnLpHfX3W/kOYCti9BATjZouQYLkRwIjxZChm1DHDH8ZVE/wV4aHTqzMUL5Eo
-         WDSq80Y4ODG+57Rf/MkwV600MRyyhGtytXSA1vhP0SeCLnfBmrj3F/WnYPGw0l7E8fx2
-         89iw==
-X-Gm-Message-State: AOAM531QRFjXC/eJn0dtl8DCHiRthJ6ZlBm8ojQA5LEBdcwmT3cNGAxM
-        OouYWWyC9c2cEE+mG3z7q+k=
-X-Google-Smtp-Source: ABdhPJzewy07pHgft5spDvtWcpL0Z0Jzf7htu4T7gYqWUbTeHW/zs2BxZAinDBd9hp04xwerCswt+g==
-X-Received: by 2002:a7b:c94e:: with SMTP id i14mr2382899wml.26.1611903114076;
-        Thu, 28 Jan 2021 22:51:54 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id b7sm11501236wrs.50.2021.01.28.22.51.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jan 2021 22:51:53 -0800 (PST)
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=eJkj1V1MkLzif7cX7fwiDSMfGoJ2Oh2DLNZ/fCE/Z3o=;
+        b=XC09qLFin4Idw2lzhQdambhaeU9dekMWf7UZRfru0x5uXKN1eNcxoyp6CUs34iYeZ1
+         nUFqjzRqoMoa3rDMaQLWzsNDGlhTE+O2mERojxh4+k4RcAW0NnvPYEV4AcU8K/2XzoPZ
+         Yovpw8lBZDIqiJQZZ4vzchUtcrZdSwLrF7woQ9vMW88kjAwTVW3R6QpYQc2Qdr808sKu
+         n996vb2JEOpqZVy5Xqe2nCDf3FcvFhqkJVi22aPq0Lgt1xFQdCS8GYQQ9THd1pECw8/T
+         jxgg8hmpFGV1v0qZHprH2zLgpioNtWZ+oUuiAgxxYpfhAmYuKxUIr0l/AjrHMBbUxcBB
+         d8Tg==
+X-Gm-Message-State: AOAM532emeftcsXuCI80G/X0BXxminS0swY56g0RQT/lz9uW53lHR6GN
+        bF3H5RAGgoEWIP0LvOX+Rw8=
+X-Google-Smtp-Source: ABdhPJxWE4Ozi699IpCCBMsLQSWXjJHZiDIf9lvepp7VIDJb3CSXA6F/5VIsb7x7Y3TnGi+jjySCmQ==
+X-Received: by 2002:a05:600c:3591:: with SMTP id p17mr2408906wmq.153.1611903752141;
+        Thu, 28 Jan 2021 23:02:32 -0800 (PST)
+Received: from [172.16.20.20] ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id b13sm10151655wrt.31.2021.01.28.23.02.29
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 28 Jan 2021 23:02:31 -0800 (PST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.17\))
+Subject: Re: [PATCH 5/5] arm64: dts: meson: add initial device-tree for
+ ODROID-HC4
 From:   Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20210129065137.5473-6-christianshewitt@gmail.com>
+Date:   Fri, 29 Jan 2021 11:02:28 +0400
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Dongjin Kim <tobetter@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <1508520A-3693-46C9-A48A-2C3502DB8390@gmail.com>
+References: <20210129065137.5473-1-christianshewitt@gmail.com>
+ <20210129065137.5473-6-christianshewitt@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Dongjin Kim <tobetter@gmail.com>
-Subject: [PATCH 5/5] arm64: dts: meson: add initial device-tree for ODROID-HC4
-Date:   Fri, 29 Jan 2021 06:51:37 +0000
-Message-Id: <20210129065137.5473-6-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210129065137.5473-1-christianshewitt@gmail.com>
-References: <20210129065137.5473-1-christianshewitt@gmail.com>
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org,
+        LKML <linux-kernel@vger.kernel.org>
+X-Mailer: Apple Mail (2.3445.104.17)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ODROID-HC4 is a derivative of the C4 with minor differences:
 
-- 128MB SPI-NOR flash
-- 2x SATA ports via ASM1061 PCIe to SATA controller
-- 7-pin header with SPI and I2C for 1-inch OLED display and RTC
-- 1x USB 2.0 host port
+> On 29 Jan 2021, at 10:51 am, Christian Hewitt =
+<christianshewitt@gmail.com> wrote:
+>=20
+> ODROID-HC4 is a derivative of the C4 with minor differences:
+>=20
+> - 128MB SPI-NOR flash
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 96 +++++++++++++++++++
- 2 files changed, 97 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+^ should be 16MB, I forgot to amend. I can send a v2 series if needed.
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index f3c8a85fe987..78a569d7fa20 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -47,5 +47,6 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-new file mode 100644
-index 000000000000..bf15700c4b15
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-@@ -0,0 +1,96 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Dongjin Kim <tobetter@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-sm1-odroid.dtsi"
-+
-+/ {
-+	compatible = "hardkernel,odroid-hc4", "amlogic,sm1";
-+	model = "Hardkernel ODROID-HC4";
-+
-+	aliases {
-+		rtc0 = &rtc;
-+		rtc1 = &vrtc;
-+	};
-+
-+	fan0: pwm-fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		cooling-min-state = <0>;
-+		cooling-max-state = <3>;
-+		cooling-levels = <0 120 170 220>;
-+		pwms = <&pwm_cd 1 40000 0>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-blue {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			panic-indicator;
-+		};
-+
-+		led-red {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&gpio_ao GPIOAO_7 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	sound {
-+		model = "ODROID-HC4";
-+	};
-+};
-+
-+&cpu_thermal {
-+	cooling-maps {
-+		map {
-+			trip = <&cpu_passive>;
-+			cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+		};
-+	};
-+};
-+
-+&ir {
-+	linux,rc-map-name = "rc-odroid";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c2_sda_x_pins>, <&i2c2_sck_x_pins>;
-+	pinctrl-names = "default";
-+
-+	rtc: rtc@51 {
-+		status = "okay";
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+		wakeup-source;
-+	};
-+};
-+
-+&pcie {
-+	status = "okay";
-+	reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-+};
-+
-+&pwm_cd {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm_d_x6_pins>;
-+};
-+
-+&sd_emmc_c {
-+	status = "disabled";
-+};
-+
-+&usb {
-+	phys = <&usb2_phy0>, <&usb2_phy1>;
-+	phy-names = "usb2-phy0", "usb2-phy1";
-+};
--- 
-2.17.1
+HC4:~ # dmesg | grep spi
+[    0.453235] spi-nor spi0.0: xt25f128b (16384 Kbytes)
+
+Christian
 
