@@ -2,91 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E3F3309030
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 23:41:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1999309065
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 00:04:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231246AbhA2WkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 17:40:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59968 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229722AbhA2WkD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 17:40:03 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id ACFE564DE2;
-        Fri, 29 Jan 2021 22:39:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611959962;
-        bh=gtCH5GZfQI8MluIOyF7uQerflv2m5cA28eg7Y4tpMqc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=H52nN0Lx35wvxyic37gQ6tDCZni9I59sR/0qRVv/tZxHwN4saXI9D7zpenw/booif
-         Fxs+nMFJ8ld3c9CcBe/TYanpmu4mbx8LosV4RI6RXZlvDu8nqHQlsRJR6NBK45qJWF
-         wzAlFK0fQ51GBYvgOg5PfL/7/NXkQgrWX5jPzczO70WfRDYD9VrbbFVhI3Vwhi/Zae
-         snzmlOxiyuZia+bOQ6EQQOHepypBIEiqs8578zipjZFbPR/iRauJdbeh+gATUMvpbP
-         XBomInTx1qMPjlm1i8MPDzU7ufYeYjT7zjB759D+qNqQvQkdbKfPlDMBfIvgxXhhoT
-         EYKjHBHvxZHlA==
-Date:   Fri, 29 Jan 2021 16:39:19 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
- on RB5 platform
-Message-ID: <20210129223919.GA119695@bjorn-Precision-5520>
+        id S232810AbhA2XAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 18:00:00 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:45314 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232747AbhA2W77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 17:59:59 -0500
+Received: by mail-oi1-f177.google.com with SMTP id g69so11667608oib.12;
+        Fri, 29 Jan 2021 14:59:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=4I4cmOEDH9UFoIk1hHOuNx2NOGNnRRaA80O3qHTznLE=;
+        b=Gpnetv9e2FIcdKCfciE50i/dwKyDeMjuEPMNmzB4I5MvgFkwmrCTbM6fL7+PevwxHB
+         kcVSSb+EOCy7S7gsPkYlQj+PLqAOINXfotLZrHmfhOpMhDJpb+S2JpUKpzFi7rvqwqYt
+         SU+nh+REaOhCD1Bvb7/uWBEfCdJrMmsBa/5Bqv+ddL/MQDlyOGbwP5W7iPoZ8j2l6K59
+         M0kFRUQw8OxD8/YKN6wYe4yPqLwm5AmrPmjOSff5/fc4Oy6891Hvi1BEGyEao4etOOPG
+         nvQJAMaNp9uTwKc+x4aVDhVIYuqhbVGjvofGqtWQs3Y4uKdXbD7ph0ABWG/K+xilN4hl
+         +w6g==
+X-Gm-Message-State: AOAM532dZwHSTaUr+M1r1G7KAQOHA72wfY9m0nEGKKZxmrWYu9ZXl8lb
+        aIRfs4XZVZYTeWe7H1JnLQ==
+X-Google-Smtp-Source: ABdhPJz+oVuqlk6ihtgLH0TGVJON/Ivg9BnpdFMfc+JyzcJHBU2sPwxbZWyAwtJzMh2GtTCv4BKCiQ==
+X-Received: by 2002:aca:3606:: with SMTP id d6mr3959592oia.59.1611961158240;
+        Fri, 29 Jan 2021 14:59:18 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o98sm2489687ota.0.2021.01.29.14.59.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Jan 2021 14:59:17 -0800 (PST)
+Received: (nullmailer pid 3879724 invoked by uid 1000);
+        Fri, 29 Jan 2021 22:59:15 -0000
+Date:   Fri, 29 Jan 2021 16:59:15 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [GIT PULL] Devicetree fixes for 5.11, take 2
+Message-ID: <20210129225915.GA3859663@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA8EJpoPsv5tfsaiJq4UnBYt3o+gJanWzy8aaZRK=V8yOk3mJQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 30, 2021 at 01:19:10AM +0300, Dmitry Baryshkov wrote:
-> On Sat, 30 Jan 2021 at 00:50, Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > On Fri, Jan 29, 2021 at 06:45:21AM +0300, Dmitry Baryshkov wrote:
-> > > On 28/01/2021 22:26, Rob Herring wrote:
-> > > > On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
-> > > > <dmitry.baryshkov@linaro.org> wrote:
-> > > > >
-> > > > > Some Qualcomm platforms require to power up an external device before
-> > > > > probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
-> > > > > to be powered up before PCIe0 bus is probed. Add a quirk to the
-> > > > > respective PCIe root bridge to attach to the power domain if one is
-> > > > > required, so that the QCA chip is started before scanning the PCIe bus.
-> > > >
-> > > > This is solving a generic problem in a specific driver. It needs to be
-> > > > solved for any PCI host and any device.
-> > >
-> > > Ack. I see your point here.
-> > >
-> > > As this would require porting code from powerpc/spark of-pci code and
-> > > changing pcie port driver to apply power supply before bus probing happens,
-> > > I'd also ask for the comments from PCI maintainers. Will that solution be
-> > > acceptable to you?
-> >
-> > I can't say without seeing the code.  I don't know enough about this
-> > scenario to envision how it might look.
-> >
-> > I guess the QCA6390 is a PCIe device?  Why does it need to be powered
-> > up before probing?  Shouldn't we get a link-up interrupt when it is
-> > powered up so we could probe it then?
-> 
-> Not quite. QCA6390 is a multifunction device, with PCIe and serial
-> parts. It has internal power regulators which once enabled will
-> powerup the PCIe, serial and radio parts. There is no need to manage
-> regulators. Once enabled they will automatically handle device
-> suspend/resume, etc.
+Linus,
 
-OK, just elaborate on this a bit in the commit log so the topology
-makes sense to someone with no prior knowledge of QCA6390.
+Please pull some more DT fixes for 5.11.
 
-Bjorn
+Rob
+
+
+The following changes since commit 5c8fe583cce542aa0b84adc939ce85293de36e5e:
+
+  Linux 5.11-rc1 (2020-12-27 15:30:22 -0800)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.11-2
+
+for you to fetch changes up to 32ada6b0980d86133d080d62371a5787ea2ec5ed:
+
+  dt-bindings: Cleanup standard unit properties (2021-01-29 16:36:06 -0600)
+
+----------------------------------------------------------------
+Devicetree fixes for v5.11, take 2:
+
+- Cleanups on properties with standard unit suffixes
+
+- Fix overwriting dma_range_map if there's no 'dma-ranges' property
+
+- Fix a bug when creating a /chosen node from ARM ATAGs
+
+- Add missing properties for TI j721e USB binding
+
+- Several doc reference updates due to DT schema conversions
+
+----------------------------------------------------------------
+Grygorii Strashko (1):
+      dt-bindings: usb: j721e: add ranges and dma-coherent props
+
+Mauro Carvalho Chehab (4):
+      ASoC: audio-graph-card: update audio-graph-card.yaml reference
+      dt-bindings: display: mediatek: update mediatek,dpi.yaml reference
+      dt-bindings: memory: mediatek: update mediatek,smi-larb.yaml references
+      dt-bindings:iio:adc: update adc.yaml reference
+
+Rob Herring (2):
+      ARM: zImage: atags_to_fdt: Fix node names on added root nodes
+      dt-bindings: Cleanup standard unit properties
+
+Yong Wu (1):
+      of/device: Update dma_range_map only when dev has valid dma-ranges
+
+ Documentation/devicetree/bindings/arm/cpus.yaml    |  1 -
+ .../devicetree/bindings/display/bridge/sii902x.txt |  2 +-
+ .../bindings/display/mediatek/mediatek,disp.txt    |  4 +--
+ .../devicetree/bindings/extcon/wlf,arizona.yaml    |  1 -
+ .../devicetree/bindings/hwmon/adi,ltc2947.yaml     |  1 -
+ .../devicetree/bindings/hwmon/baikal,bt1-pvt.yaml  |  8 ++---
+ .../devicetree/bindings/hwmon/ti,tmp513.yaml       |  1 -
+ .../devicetree/bindings/i2c/i2c-gpio.yaml          |  2 --
+ .../bindings/i2c/snps,designware-i2c.yaml          |  3 --
+ .../devicetree/bindings/iio/adc/adi,ad7192.yaml    |  2 +-
+ .../devicetree/bindings/iio/adc/maxim,max9611.yaml |  1 -
+ .../devicetree/bindings/iio/adc/st,stm32-adc.yaml  |  1 -
+ .../bindings/iio/adc/ti,palmas-gpadc.yaml          |  2 --
+ .../devicetree/bindings/iio/dac/adi,ad5758.yaml    | 41 ++++++++++++++--------
+ .../bindings/iio/health/maxim,max30100.yaml        |  1 -
+ .../bindings/input/touchscreen/touchscreen.yaml    |  2 --
+ .../bindings/media/mediatek-jpeg-decoder.txt       |  2 +-
+ .../bindings/media/mediatek-jpeg-encoder.txt       |  2 +-
+ .../devicetree/bindings/media/mediatek-mdp.txt     |  2 +-
+ .../devicetree/bindings/mmc/mmc-controller.yaml    |  1 -
+ .../devicetree/bindings/mmc/mmc-pwrseq-simple.yaml |  2 --
+ .../bindings/net/ethernet-controller.yaml          |  2 --
+ .../devicetree/bindings/net/snps,dwmac.yaml        |  1 -
+ .../devicetree/bindings/power/supply/battery.yaml  |  3 --
+ .../devicetree/bindings/power/supply/bq2515x.yaml  |  1 -
+ .../devicetree/bindings/regulator/dlg,da9121.yaml  |  1 -
+ .../bindings/regulator/fixed-regulator.yaml        |  2 --
+ Documentation/devicetree/bindings/rtc/rtc.yaml     |  2 --
+ .../devicetree/bindings/serial/pl011.yaml          |  2 --
+ .../devicetree/bindings/sound/sgtl5000.yaml        |  2 --
+ .../devicetree/bindings/usb/ti,j721e-usb.yaml      |  4 +++
+ .../devicetree/bindings/watchdog/watchdog.yaml     |  1 -
+ arch/arm/boot/compressed/atags_to_fdt.c            |  3 +-
+ drivers/of/device.c                                | 10 ++++--
+ 34 files changed, 49 insertions(+), 67 deletions(-)
