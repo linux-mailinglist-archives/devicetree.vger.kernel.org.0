@@ -2,158 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 458CC308662
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 08:28:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49005308666
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 08:28:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232167AbhA2HYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 02:24:31 -0500
-Received: from szxga07-in.huawei.com ([45.249.212.35]:12348 "EHLO
-        szxga07-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232134AbhA2HY3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 02:24:29 -0500
-Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.58])
-        by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4DRph05WCwz7cjq;
-        Fri, 29 Jan 2021 15:22:24 +0800 (CST)
-Received: from [127.0.0.1] (10.174.176.220) by DGGEMS413-HUB.china.huawei.com
- (10.3.19.213) with Microsoft SMTP Server id 14.3.498.0; Fri, 29 Jan 2021
- 15:23:28 +0800
-Subject: Re: [PATCH v5 4/4] ARM: Add support for Hisilicon Kunpeng L3 cache
- controller
-To:     Arnd Bergmann <arnd@kernel.org>
-CC:     Russell King <rmk+kernel@arm.linux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will.deacon@arm.com>,
-        "Haojian Zhuang" <haojian.zhuang@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+        id S232091AbhA2H2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 02:28:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232019AbhA2H2N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 02:28:13 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DCDC061574
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 23:27:33 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id my11so6037124pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 23:27:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XoPaMVURm5bRi8Ttr7dF9SUUqibbHGdovvNFGhRlDUo=;
+        b=cpWA9C59QBUyKAMI1fRhLyF+pmGzsfi7Lqq+UcJ1wiW+DN78Ij91odl5ALsMoIEQBN
+         hfVInKG9FSoCSU7kEYoaz8clgP7TPkHzxxla5l4hH9EjdbS2IpqAgHiD1BiACIU7uOsu
+         EXnfYY76OsR405imsMbuKyi6wCszHklV73Eh59xzpHvq0HHOqU+ulLs4DUqSbj1VCI6u
+         J3AV6cyG2haHBCFjx8cDTwiD6wAoo1sPFQCmnm+TYlvHoo5h8NHwo1ezdIFnKhn5O50Y
+         JLSLhwD19LJ1zG50IWjRbDfjWFU6u2dgNG2gtOSG9FYGXodVOPAGdeB8lfOAgXdNJV4z
+         b2dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XoPaMVURm5bRi8Ttr7dF9SUUqibbHGdovvNFGhRlDUo=;
+        b=ujPo7KjBfgZbczXFbS21E44lojXW73aJaK629nA7QNhHKTJ3DJM5Tv2V3w94F5fdRA
+         CoEtO7u3bkTsRhe2ugcX74tpzoomM6EcVPOuCQt7GNmcbzzjbEeQHmHvzjb+kQ4JLEKv
+         uXljkLR9o1P40YLCMuGEeriyD7lUCMHhcqLc6EUiefZLX5cOYb8i4JjzSzF4tUQrjCfc
+         EvoYo1LA5dFPE4EEx6jUlT72jrvfHt52b65C9a4n1NTve8E+ZrvYXcBGieDytfNIEwnk
+         6tsRd8uSfA5vvOhJHXO231M05e6dbHqSligG9laAEvCJILCj+4r1Z7ToCtYjOPNjQIQB
+         xyZQ==
+X-Gm-Message-State: AOAM531U9FK83lLcV5oA10nW5USeCThRPZcCQyoFH/fataKFjBGODwmV
+        g8GqBayfml4yHoU3e+1PxHwCDw==
+X-Google-Smtp-Source: ABdhPJxQVczYesYyyM7xmUDHF+3eyNOatnNn3eWNoo/ReP2UIPnQ2bgnUxdxZMFMuLQof/NZpGs8zg==
+X-Received: by 2002:a17:902:b40c:b029:df:e75a:711b with SMTP id x12-20020a170902b40cb02900dfe75a711bmr2944772plr.75.1611905252639;
+        Thu, 28 Jan 2021 23:27:32 -0800 (PST)
+Received: from localhost ([122.172.59.240])
+        by smtp.gmail.com with ESMTPSA id v16sm7559737pfu.76.2021.01.28.23.27.30
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 28 Jan 2021 23:27:31 -0800 (PST)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Frank Rowand <frowand.list@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20210116032740.873-1-thunder.leizhen@huawei.com>
- <20210116032740.873-5-thunder.leizhen@huawei.com>
- <CAK8P3a1OqUn5A4F4hT4K=bzQwJuifVFZkvFoK6NMg+m9FjoKzw@mail.gmail.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <20dac713-25b7-cddf-cc42-69a834487c71@huawei.com>
-Date:   Fri, 29 Jan 2021 15:23:27 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-kernel@vger.kernel.org, anmar.oueja@linaro.org,
+        Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org
+Subject: [PATCH V7 0/6] dt: build overlays
+Date:   Fri, 29 Jan 2021 12:54:04 +0530
+Message-Id: <cover.1611904394.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a1OqUn5A4F4hT4K=bzQwJuifVFZkvFoK6NMg+m9FjoKzw@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.176.220]
-X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+This patchset makes necessary changes to the kernel to add support for
+building overlays (%.dtbo) and the required fdtoverlay tool. This also
+builds static_test.dtb using most of the existing overlay tests present
+in drivers/of/unittest-data/ for better test coverage.
+
+Note that in order for anyone to test this stuff, you need to manually
+run the ./update-dtc-source.sh script once to fetch the necessary
+changes from the external DTC project (i.e. fdtoverlay.c and this[1]
+patch).
+
+I have tested this patchset for static and runtime testing (on Hikey
+board) and no issues were reported.
+
+V7:
+- Add a comment in scripts/dtc/Makefile
+- Add Ack from Masahiro for patch 4/6.
+- Drop word "merge" from commit log of 2/6.
+- Split apply_static_overlay, static_test.dtb, and static_base.dts into
+  two parts to handle overlay_base.dts and testcases.dts separately.
+
+V6:
+- Create separate rules for dtbo-s and separate entries in .gitignore in
+  4/6 (Masahiro).
+- A new file layout for handling all overlays for existing and new tests
+  5/6 (Frank).
+- Include overlay.dts as well now in 6/6 (Frank).
+
+V5:
+
+- Don't reuse DTC_SOURCE for fdtoverlay.c in patch 1/5 (Frank).
+
+- Update .gitignore and scripts/Makefile.dtbinst, drop dtbo-y syntax and
+  DTC_FLAGS += -@ in patch 4/5 (Masahiro).
+
+- Remove the intermediate dtb, rename output to static_test.dtb, don't
+  use overlay.dtb and overlay_base.dtb for static builds, improved
+  layout/comments in Makefile for patch 5/5 (Frank).
+
+--
+Viresh
+
+[1] https://github.com/dgibson/dtc/commit/163f0469bf2ed8b2fe5aa15bc796b93c70243ddc
+[2] https://lore.kernel.org/lkml/74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com/
+
+Viresh Kumar (6):
+  scripts: dtc: Fetch fdtoverlay.c from external DTC project
+  scripts: dtc: Build fdtoverlay tool
+  scripts: dtc: Remove the unused fdtdump.c file
+  kbuild: Add support to build overlays (%.dtbo)
+  of: unittest: Create overlay_common.dtsi and testcases_common.dtsi
+  of: unittest: Statically apply overlays using fdtoverlay
+
+ .gitignore                                    |   1 +
+ Makefile                                      |   5 +-
+ drivers/of/unittest-data/Makefile             |  56 ++++++
+ drivers/of/unittest-data/overlay_base.dts     |  90 +---------
+ drivers/of/unittest-data/overlay_common.dtsi  |  91 ++++++++++
+ drivers/of/unittest-data/static_base_1.dts    |   4 +
+ drivers/of/unittest-data/static_base_2.dts    |   4 +
+ drivers/of/unittest-data/testcases.dts        |  18 +-
+ .../of/unittest-data/testcases_common.dtsi    |  19 ++
+ .../of/unittest-data/tests-interrupts.dtsi    |   7 -
+ scripts/Makefile.dtbinst                      |   3 +
+ scripts/Makefile.lib                          |   5 +
+ scripts/dtc/Makefile                          |   8 +-
+ scripts/dtc/fdtdump.c                         | 163 ------------------
+ scripts/dtc/update-dtc-source.sh              |   3 +-
+ 15 files changed, 204 insertions(+), 273 deletions(-)
+ create mode 100644 drivers/of/unittest-data/overlay_common.dtsi
+ create mode 100644 drivers/of/unittest-data/static_base_1.dts
+ create mode 100644 drivers/of/unittest-data/static_base_2.dts
+ create mode 100644 drivers/of/unittest-data/testcases_common.dtsi
+ delete mode 100644 scripts/dtc/fdtdump.c
 
 
-On 2021/1/28 22:24, Arnd Bergmann wrote:
-> On Sat, Jan 16, 2021 at 4:27 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
->> diff --git a/arch/arm/mm/Makefile b/arch/arm/mm/Makefile
->> +
->> +static void l3cache_maint_common(u32 range, u32 op_type)
->> +{
->> +       u32 reg;
->> +
->> +       reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
->> +       reg &= ~(L3_MAINT_RANGE_MASK | L3_MAINT_TYPE_MASK);
->> +       reg |= range | op_type;
->> +       reg |= L3_MAINT_STATUS_START;
->> +       writel(reg, l3_ctrl_base + L3_MAINT_CTRL);
-> 
-> Are there contents of L3_MAINT_CTRL that need to be preserved
-> across calls and can not be inferred? A 'readl()' is often expensive,
-> so it might be more efficient if you can avoid that.
-
-Right, this readl() can be replaced with readl_relaxed(). Thanks.
-
-I'll check and correct the readl() and writel() in other places.
-
-> 
->> +static inline void l3cache_flush_all_nolock(void)
->> +{
->> +       l3cache_maint_common(L3_MAINT_RANGE_ALL, L3_MAINT_TYPE_FLUSH);
->> +}
->> +
->> +static void l3cache_flush_all(void)
->> +{
->> +       unsigned long flags;
->> +
->> +       spin_lock_irqsave(&l3cache_lock, flags);
->> +       l3cache_flush_all_nolock();
->> +       spin_unlock_irqrestore(&l3cache_lock, flags);
->> +}
-> 
-> I see that cache-l2x0 uses raw_spin_lock_irqsave() instead of
-> spin_lock_irqsave(), to avoid preemption in the middle of a cache
-> operation. This is probably a good idea here as well.
-
-I don't think there's any essential difference between the two! I don't know
-if the compiler or tool will do anything extra. I checked the git log of the
-l2x0 driver and it used raw_spin_lock_irqsave() at the beginning. Maybe
-there's a description in 2.6. Since you mentioned this potential risk, I'll
-change it to raw_spin_lock_irqsave.
-
-include/linux/spinlock.h：
-static __always_inline raw_spinlock_t *spinlock_check(spinlock_t *lock)
-{
-        return &lock->rlock;
-}
-
-#define spin_lock_irqsave(lock, flags)                          \
-do {                                                            \
-        raw_spin_lock_irqsave(spinlock_check(lock), flags);     \
-} while (0)
-
-> 
-> I also see that l2x0 uses readl_relaxed(), to avoid a deadlock
-> in l2x0_cache_sync(). This may also be beneficial for performance
-> reasons, so it might be helpful to compare performance
-> overhead. On the other hand, readl()/writel() are usually the
-> safe choice, as those avoid the need to argue over whether
-> the relaxed versions are safe in all corner cases.
-> 
->> +static int __init l3cache_init(void)
->> +{
->> +       u32 reg;
->> +       struct device_node *node;
->> +
->> +       node = of_find_matching_node(NULL, l3cache_ids);
->> +       if (!node)
->> +               return -ENODEV;
-> 
-> I think the initcall should return '0' to indicate success when running
-> a kernel with this driver built-in on a platform that does not have
-> this device.
-
-I have added "depends on ARCH_KUNPENG50X" for this driver. But it's OK to
-return 0.
-
-> 
->> diff --git a/arch/arm/mm/cache-kunpeng-l3.h b/arch/arm/mm/cache-kunpeng-l3.h
->> new file mode 100644
->> index 000000000000000..9ef6a53e7d4db49
->> --- /dev/null
->> +++ b/arch/arm/mm/cache-kunpeng-l3.h
->> @@ -0,0 +1,30 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +#ifndef __CACHE_KUNPENG_L3_H
->> +#define __CACHE_KUNPENG_L3_H
->> +
->> +#define L3_CACHE_LINE_SHITF            6
-> 
-> I would suggest moving the contents of the header file into the .c file,
-> since there is only a single user of these macros.
-
-Okay, I'll move it.
-
-> 
->           Arnd
-> 
-> .
-> 
+base-commit: 6ee1d745b7c9fd573fba142a2efdad76a9f1cb04
+-- 
+2.25.0.rc1.19.g042ed3e048af
 
