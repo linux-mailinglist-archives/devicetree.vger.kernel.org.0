@@ -2,162 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 231AD308FF4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 23:23:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA11F308FFB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 23:23:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232808AbhA2WTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 17:19:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56716 "EHLO
+        id S233648AbhA2WUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 17:20:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232756AbhA2WSD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 17:18:03 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65A6C06174A
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:17:22 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id gx1so7104608pjb.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:17:22 -0800 (PST)
+        with ESMTP id S231246AbhA2WUC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 17:20:02 -0500
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C781BC061574
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:19:21 -0800 (PST)
+Received: by mail-qk1-x736.google.com with SMTP id v126so10312500qkd.11
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:19:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BTULVrI/vxDASF/UyJoisyXUkjtnllNUgx9xtaYIUVo=;
-        b=ySDexUx/Hsosx3dg1UW8GAS7157vCLcXZAn7a0VBVzC7zQz5JmtpkwE8VswIMEWYaQ
-         VWSMSXswxkReEOVKf95qjaeWWmW+vAK18Lj3xQSyrHa4nEzoTFu81qnxiLdoGVU5+E8E
-         AIbTvYo27DP0yjtLjmnbRpYp/UnuM0X+jTpub+yF4geHvQpe0ufIV+3kVatRfY1KycLx
-         hD1EDLt/sVCyoxNcSU/FwvySRhASTN+mJoW/nu+BoLgiMx8IxU3RsAhrZBbe4KdX9ac+
-         iCmwSYrg8fpzSlmOohfXuNKZnFkNC5uetGGb0/KebgGvNX3ykEIQDgmMljenQ7XJHDm7
-         rMJQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eVJSk/hfc058Boi6CmUOZdn8/0GbF4wuD5mw1Do2viE=;
+        b=oTErFdI6eKFeNDH6YSzbE8/JPhkaRdqklITZ3wzhls1A9TGe6bkovNVrzcK3HkTyHf
+         FpMi+Mqrxha9yVMuQWY1pM3WvHDY78L33bJNkVlP5sb2Sps9DfZFpXHCAT4ilYi79GJe
+         mC28xZonf8wDFb8+rSsXbSPlzGKvcQlhesMJNWNnDHq6M0BL2PcYgSHHPEvq6cHZalTs
+         xr6w5xmW/R2yADVc987TG72LaxWeU3YtZIgyUnDnAvjgrij9Iwh2Z/t6U/gusi+DSfom
+         dhA9/aGUN5n4+f8zEMlBJu0IeX066d5KZU9oEsohSYEMJCaSXIUNEO+t+ENBP9RmiK+q
+         2iPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BTULVrI/vxDASF/UyJoisyXUkjtnllNUgx9xtaYIUVo=;
-        b=M7I2ZWdRn9K6X1pV3qHbjKB0xfYF3t4IGq9lMUYxA6TP87N9fyje2tpFIp595zxmOE
-         cLbekoq5cH6PG1KRBzlSCFvShXU6SurUq/ZP6CWH38g/vOosZCbBWlPhJCl6hkVYXUtl
-         7ZIqu+au8X+tgrIa/3ZN3PZlTqNreM3F3BgeDo+XQ1Y9w6yvGmG5xdU+fgF3n9NBUqOo
-         D+v131ZVl9I1Ix8uVrluaXCoYQmqSjT6FCQl+8AqbDAHwV8B/DE30NJg/dbyjgi6iH2d
-         BWo9+NYo7yNRa+rgycby0jhd6XkgMB8yxuULdMlYWv2BF1nn1ou81QR3Uf5ymAHq8E9s
-         q9Ow==
-X-Gm-Message-State: AOAM533tgsWPJDpjmtfZ0gMVxhGBMdyYPtaziI+K4v7GIp274eWUvIwU
-        1PcUgG0uNCXb8XE8OBqspfXdetlYyxsUCA==
-X-Google-Smtp-Source: ABdhPJzQ/UkcuFzFyZMyTOTk/lAv72+1e6hw8bh6a+BwgObW12jqfjoBlF/mAykIeVsgOHBEVrdZ8w==
-X-Received: by 2002:a17:90a:f988:: with SMTP id cq8mr6533303pjb.71.1611958642328;
-        Fri, 29 Jan 2021 14:17:22 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id q2sm9642114pfg.190.2021.01.29.14.17.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jan 2021 14:17:21 -0800 (PST)
-Date:   Fri, 29 Jan 2021 15:17:19 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Cc:     "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 11/17] remoteproc: Introduce function __rproc_detach()
-Message-ID: <20210129221719.GB1319650@xps15>
-References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
- <20201218173228.2277032-12-mathieu.poirier@linaro.org>
- <5419749d-5e81-8b0c-616f-e0d5e237ac9a@st.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eVJSk/hfc058Boi6CmUOZdn8/0GbF4wuD5mw1Do2viE=;
+        b=REFMug6t2wMv5oeQd0z5sA44OrPdl0HaDdwGyenH3FTA7YHRXYDN1dNHiBPZnp6kyZ
+         Hx/S60bIWpK5x4wI7kNB9e48filkF8GGKARdstYVudUwdPfrMVxRglDi1gXSx6LnaT2f
+         cL+2ysldVZkmC2pc8zgNII3fOcfJquxlEc4HhGq9RuzjuVmTk+SSjH3jANOFhNXsUx6l
+         MjLhndwUiCAwF32Y3keyjpV8xjVptlXYITPH/nIgbfdX4+uXgIcEfTj0YnWcbsNbd0rB
+         tNhYAIHa1M0ddpCvYWRTiPf5KUEB4Dj+d9cWE1sxMF3fYqAz+4NQX8w+mH7F1OcSrRG9
+         idng==
+X-Gm-Message-State: AOAM530EJDV7tWd6vLzK0foYguZx3qu6A5RNE1k6ISDuhGpwfU1PUq3n
+        MBuyu0aC/1ymjwcUpufOQU356VbVESek/dlZEqCU2Q==
+X-Google-Smtp-Source: ABdhPJxVZbeVYLBgr5uE1mvuI7LDXkWcITnDA7F9lO03rYYyA2YIuAYn0Yi6zcFHI1hjVidvboapNw5pXEemk1yF9/M=
+X-Received: by 2002:a37:a9d6:: with SMTP id s205mr6321887qke.162.1611958761060;
+ Fri, 29 Jan 2021 14:19:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5419749d-5e81-8b0c-616f-e0d5e237ac9a@st.com>
+References: <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org> <20210129215024.GA113900@bjorn-Precision-5520>
+In-Reply-To: <20210129215024.GA113900@bjorn-Precision-5520>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sat, 30 Jan 2021 01:19:10 +0300
+Message-ID: <CAA8EJpoPsv5tfsaiJq4UnBYt3o+gJanWzy8aaZRK=V8yOk3mJQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
+ on RB5 platform
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 09:46:58AM +0100, Arnaud POULIQUEN wrote:
-> 
-> 
-> On 12/18/20 6:32 PM, Mathieu Poirier wrote:
-> > Introduce function __rproc_detach() to perform the same kind of
-> > operation as rproc_stop(), but instead of switching off the
-> > remote processor using rproc->ops->stop(), it uses
-> > rproc->ops->detach().  That way it is possible for the core
-> > to release the resources associated with a remote processor while
-> > the latter is kept operating.
-> > 
-> > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >  drivers/remoteproc/remoteproc_core.c | 42 ++++++++++++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> > 
-> > diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> > index fc28053c7f89..e665ed4776c3 100644
-> > --- a/drivers/remoteproc/remoteproc_core.c
-> > +++ b/drivers/remoteproc/remoteproc_core.c
-> > @@ -1670,6 +1670,48 @@ static int rproc_stop(struct rproc *rproc, bool crashed)
-> >  	return 0;
-> >  }
-> >  
-> > +/*
-> > + * __rproc_detach(): Does the opposite of rproc_attach()
-> > + */
-> > +static int __maybe_unused __rproc_detach(struct rproc *rproc)
-> > +{
-> > +	struct device *dev = &rproc->dev;
-> > +	int ret;
-> > +
-> > +	/* No need to continue if a detach() operation has not been provided */
-> > +	if (!rproc->ops->detach)
-> > +		return -EINVAL;
-> 
-> I wonder if this ops should be optional.
+On Sat, 30 Jan 2021 at 00:50, Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> On Fri, Jan 29, 2021 at 06:45:21AM +0300, Dmitry Baryshkov wrote:
+> > On 28/01/2021 22:26, Rob Herring wrote:
+> > > On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
+> > > <dmitry.baryshkov@linaro.org> wrote:
+> > > >
+> > > > Some Qualcomm platforms require to power up an external device before
+> > > > probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
+> > > > to be powered up before PCIe0 bus is probed. Add a quirk to the
+> > > > respective PCIe root bridge to attach to the power domain if one is
+> > > > required, so that the QCA chip is started before scanning the PCIe bus.
+> > >
+> > > This is solving a generic problem in a specific driver. It needs to be
+> > > solved for any PCI host and any device.
+> >
+> > Ack. I see your point here.
+> >
+> > As this would require porting code from powerpc/spark of-pci code and
+> > changing pcie port driver to apply power supply before bus probing happens,
+> > I'd also ask for the comments from PCI maintainers. Will that solution be
+> > acceptable to you?
+>
+> I can't say without seeing the code.  I don't know enough about this
+> scenario to envision how it might look.
+>
+> I guess the QCA6390 is a PCIe device?  Why does it need to be powered
+> up before probing?  Shouldn't we get a link-up interrupt when it is
+> powered up so we could probe it then?
 
-Function rproc_validate() doesn't check for it so it is optional.  Returning an
-error is to indicate to sysfs the operation is not supported if someone tries to
-do a "detach" when rproc::ops doesn't provide it.
+Not quite. QCA6390 is a multifunction device, with PCIe and serial
+parts. It has internal power regulators which once enabled will
+powerup the PCIe, serial and radio parts. There is no need to manage
+regulators. Once enabled they will automatically handle device
+suspend/resume, etc.
 
-> 
-> > +
-> > +	/* Stop any subdevices for the remote processor */
-> > +	rproc_stop_subdevices(rproc, false);
-> > +
-> > +	/*
-> > +	 * If the remote processors was started by the core then a cached_table
-> > +	 * is present and we must follow the same cleanup sequence as we would
-> > +	 * for a shutdown().  As it is in rproc_stop(), use the cached resource
-> > +	 * table for the rest of the detach process since ->table_ptr will
-> > +	 * become invalid as soon as carveouts are released in
-> > +	 * rproc_resource_cleanup().
-> > +	 */
-> > +	if (rproc->cached_table)
-> > +		rproc->table_ptr = rproc->cached_table;
-> > +
-> > +	/* Tell the remote processor the core isn't available anymore */
-> > +	ret = rproc->ops->detach(rproc);
-> > +	if (ret) {
-> > +		dev_err(dev, "can't detach from rproc: %d\n", ret);
-> > +		rproc_start_subdevices(rproc);
-> 
-> Not sure that this would be possible in all cases, without a unprepare and
-> prepare. What about having the same behavior as the rproc_stop failure?
+I'm not sure about link-up interrupt. I've just lightly tested using
+PCIe HP on this port, getting no interrupts from it.
+If I manually rescan the bus after enabling the qca6390 device (e.g.
+via sysfs), it gets enabled, but then I see PCIe link errors (most
+probably because the PCIe link was not retrained after the device
+comes up).
 
-I thought rproc_stop()'s failure path was buggy and could be improved but as you
-say, there might be other ramifications to take into account.  I agree that it
-is more prudent to follow the current behavior from rproc_stop() and leave
-enhancements for another patchset.
+> Nit: when changing any file, please take a look at the commit history
+> and make yours match, e.g.,
+>
+>   pcie-qcom: provide a way to power up qca6390 chip on RB5 platform
+>
+> does not look like:
 
-> 
-> Thanks
-> Arnaud.
-> 
-> > +		return ret;
-> > +	}
-> > +
-> > +	rproc_unprepare_subdevices(rproc);
-> > +
-> > +	rproc->state = RPROC_DETACHED;
-> > +
-> > +	dev_info(dev, "detached remote processor %s\n", rproc->name);
-> > +
-> > +	return 0;
-> > +}
-> >  
-> >  /**
-> >   * rproc_trigger_recovery() - recover a remoteproc
-> > 
+Ack.
+
+
+-- 
+With best wishes
+Dmitry
