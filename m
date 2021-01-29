@@ -2,187 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1F85308F87
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 22:40:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C8D7308FA1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 22:52:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233420AbhA2ViT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 16:38:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48200 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233378AbhA2ViS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 16:38:18 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9459DC061574
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 13:37:38 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id s24so6454208pjp.5
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 13:37:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SrywxkhnsrhfDSQfSh3vuiKPpzrqoaLpb/9iy65ia3c=;
-        b=t1Z3aKCcMZfhCcEf09Qx+Y/J6iJoNKP+w6T/5m6ysuRjjHASq3d0AcB2I1uuoExw3v
-         fuNQdN+Zqpjz+RiGBmqOA5CqMSmHpt4VCz8M95GUF+wadsTZzi6K5VIGh2ojL0ilfd5Z
-         kduHcrJv4iTnYOouh/p8tvRTQng2ccogSM+Hi4ccSRWOLumZv3lqO01dsvY1s21wHqwL
-         EDOnClmFWstgVE7/EwUwL2uoHz5TNU1jcgzRQfetXjjUa+jXmt2a6Tad1/A8Erq1qM7Z
-         YtzJeWOW9pV9DkkpRcazF6LkpBxeLj0hpszCgFtp2kcUcZgDA5NCFFE8RXwc1X3GNcoj
-         vrNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SrywxkhnsrhfDSQfSh3vuiKPpzrqoaLpb/9iy65ia3c=;
-        b=SF6Z8j2fZQ8WQXhZZyLWU4dxmDb9SgKzN9+4EgWgDlpIWfN2iH39JUEn9svkyc4Zl/
-         lMxk2T85tTvJAo0HUvqXOFYxqrEZoBb4OpxYyb5vnTDJYTWqAB8XuUx51b/gDa2U9nVL
-         2DrqrXPSezR+4i7lNEHERj+2FaOWfH85mgHXQ/xUmiAHW/E7ZGJLXTTsBIWvVdW8xCMm
-         jUbMXQR0Zk1AEgj+Nh7jJ9gNZ/AKmi4Lf+700WXoe3Rg80wuvnvADTX8soxcc7Nw+tSG
-         aH2dg7iPbTNzOcM2CXPpmH3ge1hTBVENy295gxkSPxzUPoTKGUBBL8iim7maM9VHIl2i
-         VKXA==
-X-Gm-Message-State: AOAM531SPq9apAb6m4Y3RWXd7YPbQFB9Zz0pblhO6FHCvlBtkjUVMl6L
-        BZpURDgzoESxOPhd5gtMoUWKaSOtcYwclA==
-X-Google-Smtp-Source: ABdhPJyg0qjOgkEMEtcWc76txMLsgL45EqaXl5uGsCPJID91XIu/+lLf9GJL9DbW5r85gXEMFOvizA==
-X-Received: by 2002:a17:90a:7c45:: with SMTP id e5mr1056044pjl.170.1611956258055;
-        Fri, 29 Jan 2021 13:37:38 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id p68sm94258pfb.60.2021.01.29.13.37.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jan 2021 13:37:37 -0800 (PST)
-Date:   Fri, 29 Jan 2021 14:37:35 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Cc:     "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 05/17] remoteproc: Add new get_loaded_rsc_table()
- remoteproc operation
-Message-ID: <20210129213735.GA1319650@xps15>
-References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
- <20201218173228.2277032-6-mathieu.poirier@linaro.org>
- <47edac31-2f5f-efa9-2699-9fbec7f0d263@st.com>
+        id S233302AbhA2Vv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 16:51:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55200 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231169AbhA2VvH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Jan 2021 16:51:07 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E617064D7F;
+        Fri, 29 Jan 2021 21:50:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611957026;
+        bh=vQA5KzxHuphY6TPIp7lU22R5TOoyWqbkWLYbeBGkZ14=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=UoNG+jLwHxo8QHqOKgSc3rRnkDlQ48CKxbj5S472I3pSBMHB+pYY6LbtgVf2RR/dQ
+         BH843idb7uW5lm9u2xOM+0jkB6Wu0da5NE1Xkf33zENWqdyuvJ7Cfpo6deSIqjYReI
+         EsdxLraGuWnG4DAsxHUeOKoMlLZbPeFakfAg5UBIkSPLGSwlRmwHkbYw4JNLpcw27y
+         ngYygTweOJDXyPOe3+CO2/lLnSTEpQmZshSc2Z9DiVq+zZy/YAS4D026oQmZizVksS
+         mxlXPZaqHJpJyl2uk4Mr3eLA5JPLgE/W5O/Z5U9v57QIJjEgFrN/YQWAxcQXMYKsu4
+         S+s7lnurqdnqQ==
+Date:   Fri, 29 Jan 2021 15:50:24 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>
+Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
+ on RB5 platform
+Message-ID: <20210129215024.GA113900@bjorn-Precision-5520>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <47edac31-2f5f-efa9-2699-9fbec7f0d263@st.com>
+In-Reply-To: <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 09:44:28AM +0100, Arnaud POULIQUEN wrote:
-> Hi Mathieu,
-> 
-> Come back on you series...
-> 
-> On 12/18/20 6:32 PM, Mathieu Poirier wrote:
-> > Add an new get_loaded_rsc_table() operation in order to support
-> > scenarios where the remoteproc core has booted a remote processor
-> > and detaches from it.  When re-attaching to the remote processor,
-> > the core needs to know where the resource table has been placed
-> > in memory.
+On Fri, Jan 29, 2021 at 06:45:21AM +0300, Dmitry Baryshkov wrote:
+> On 28/01/2021 22:26, Rob Herring wrote:
+> > On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > > 
+> > > Some Qualcomm platforms require to power up an external device before
+> > > probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
+> > > to be powered up before PCIe0 bus is probed. Add a quirk to the
+> > > respective PCIe root bridge to attach to the power domain if one is
+> > > required, so that the QCA chip is started before scanning the PCIe bus.
 > > 
-> > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > ---
-> >  drivers/remoteproc/remoteproc_core.c     | 6 ++++++
-> >  drivers/remoteproc/remoteproc_internal.h | 8 ++++++++
-> >  include/linux/remoteproc.h               | 5 ++++-
-> >  3 files changed, 18 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> > index d0f6b39b56f9..3d87c910aca7 100644
-> > --- a/drivers/remoteproc/remoteproc_core.c
-> > +++ b/drivers/remoteproc/remoteproc_core.c
-> > @@ -1556,6 +1556,12 @@ static int rproc_attach(struct rproc *rproc)
-> >  		return ret;
-> >  	}
-> >  
-> > +	ret = rproc_get_loaded_rsc_table(rproc);
-> > +	if (ret) {
-> > +		dev_err(dev, "can't load resource table: %d\n", ret);
-> > +		goto disable_iommu;
-> > +	}
-> > +
+> > This is solving a generic problem in a specific driver. It needs to be
+> > solved for any PCI host and any device.
 > 
-> This function is rather ambiguous. Without the example of stm32, it is not
-> obvious what the platform driver has to do in this ops. And the update of rproc
-> in the in the core instead of in platform driver seems to me more reliable.
+> Ack. I see your point here.
 > 
-> Here is a suggestion considering that ->cached_table is always NULL:
-> 
-> 
-> struct resource_table *rproc_get_loaded_rsc_table(struct rproc *rproc,
->                                                   size_t* size)
-> {
-> 
-> 	if (rproc->ops->get_loaded_rsc_table) {
-> 		return rproc->ops->get_loaded_rsc_table(rproc, size);
-> 
-> 	*size = 0;
-> 	return NULL;
-> }
-> 
-> then in rproc_attach:
-> 
-> 	table_ptr = rproc_get_loaded_rsc_table(rproc, &tab_size);
-> 	if (PTR_ERR(table_ptr) {
-> 		dev_err(dev, "can't load resource table: %d\n", ret);
-> 		goto disable_iommu;
-> 	}
->  	rproc->cached_table = NULL;
->  	rproc->table_ptr = table_ptr;
->  	rproc->table_sz = table_sz;
->
+> As this would require porting code from powerpc/spark of-pci code and
+> changing pcie port driver to apply power supply before bus probing happens,
+> I'd also ask for the comments from PCI maintainers. Will that solution be
+> acceptable to you?
 
-Much better yes, thanks for the suggestion.
- 
+I can't say without seeing the code.  I don't know enough about this
+scenario to envision how it might look.
+
+I guess the QCA6390 is a PCIe device?  Why does it need to be powered
+up before probing?  Shouldn't we get a link-up interrupt when it is
+powered up so we could probe it then?
+
+Nit: when changing any file, please take a look at the commit history
+and make yours match, e.g.,
+
+  pcie-qcom: provide a way to power up qca6390 chip on RB5 platform
+
+does not look like:
+
+  PCI: qcom: Add support for configuring BDF to SID mapping for SM8250
+  PCI: qcom: Add SM8250 SoC support
+  PCI: qcom: Make sure PCIe is reset before init for rev 2.1.0
+  PCI: qcom: Replace define with standard value
+  PCI: qcom: Support pci speed set for ipq806x
+  PCI: qcom: Add ipq8064 rev2 variant
+
+Also, if you capitalize it as "QCA6390" in the commit log, do it the
+same in the subject.
+
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > ---
+> > >   drivers/pci/controller/dwc/pcie-qcom.c | 21 +++++++++++++++++++++
+> > >   1 file changed, 21 insertions(+)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > index ab21aa01c95d..eb73c8540d4d 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > @@ -20,6 +20,7 @@
+> > >   #include <linux/of_device.h>
+> > >   #include <linux/of_gpio.h>
+> > >   #include <linux/pci.h>
+> > > +#include <linux/pm_domain.h>
+> > >   #include <linux/pm_runtime.h>
+> > >   #include <linux/platform_device.h>
+> > >   #include <linux/phy/phy.h>
+> > > @@ -1568,6 +1569,26 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x0302, qcom_fixup_class);
+> > >   DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x1000, qcom_fixup_class);
+> > >   DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x1001, qcom_fixup_class);
+> > > 
+> > > +static void qcom_fixup_power(struct pci_dev *dev)
+> > > +{
+> > > +       int ret;
+> > > +       struct pcie_port *pp = dev->bus->sysdata;
+> > > +       struct dw_pcie *pci;
+> > > +
+> > > +       if (!pci_is_root_bus(dev->bus))
+> > > +               return;
+> > > +
+> > > +       ret = dev_pm_domain_attach(&dev->dev, true);
+> > > +       if (ret < 0 || !dev->dev.pm_domain)
+> > > +               return;
+> > > +
+> > > +       pci = to_dw_pcie_from_pp(pp);
+> > > +       dev_info(&dev->dev, "Bus powered up, waiting for link to come up\n");
+> > > +
+> > > +       dw_pcie_wait_for_link(pci);
+> > > +}
+> > > +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_QCOM, 0x010b, qcom_fixup_power);
+> > > +
+> > >   static struct platform_driver qcom_pcie_driver = {
+> > >          .probe = qcom_pcie_probe,
+> > >          .driver = {
+> > > --
+> > > 2.29.2
+> > > 
 > 
-> Thanks,
-> Arnaud
 > 
-> >  	/* reset max_notifyid */
-> >  	rproc->max_notifyid = -1;
-> >  
-> > diff --git a/drivers/remoteproc/remoteproc_internal.h b/drivers/remoteproc/remoteproc_internal.h
-> > index c34002888d2c..c48b301d6ad1 100644
-> > --- a/drivers/remoteproc/remoteproc_internal.h
-> > +++ b/drivers/remoteproc/remoteproc_internal.h
-> > @@ -177,6 +177,14 @@ struct resource_table *rproc_find_loaded_rsc_table(struct rproc *rproc,
-> >  	return NULL;
-> >  }
-> >  
-> > +static inline int rproc_get_loaded_rsc_table(struct rproc *rproc)
-> > +{
-> > +	if (rproc->ops->get_loaded_rsc_table)
-> > +		return rproc->ops->get_loaded_rsc_table(rproc);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static inline
-> >  bool rproc_u64_fit_in_size_t(u64 val)
-> >  {
-> > diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-> > index 3fa3ba6498e8..571615e77e6f 100644
-> > --- a/include/linux/remoteproc.h
-> > +++ b/include/linux/remoteproc.h
-> > @@ -368,7 +368,9 @@ enum rsc_handling_status {
-> >   * RSC_HANDLED if resource was handled, RSC_IGNORED if not handled and a
-> >   * negative value on error
-> >   * @load_rsc_table:	load resource table from firmware image
-> > - * @find_loaded_rsc_table: find the loaded resouce table
-> > + * @find_loaded_rsc_table: find the loaded resource table from firmware image
-> > + * @get_loaded_rsc_table: get resource table installed in memory
-> > + *			  by external entity
-> >   * @load:		load firmware to memory, where the remote processor
-> >   *			expects to find it
-> >   * @sanity_check:	sanity check the fw image
-> > @@ -389,6 +391,7 @@ struct rproc_ops {
-> >  			  int offset, int avail);
-> >  	struct resource_table *(*find_loaded_rsc_table)(
-> >  				struct rproc *rproc, const struct firmware *fw);
-> > +	int (*get_loaded_rsc_table)(struct rproc *rproc);
-> >  	int (*load)(struct rproc *rproc, const struct firmware *fw);
-> >  	int (*sanity_check)(struct rproc *rproc, const struct firmware *fw);
-> >  	u64 (*get_boot_addr)(struct rproc *rproc, const struct firmware *fw);
-> > 
+> -- 
+> With best wishes
+> Dmitry
