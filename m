@@ -2,77 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 001D9308FDF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 23:15:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 231AD308FF4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 23:23:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233534AbhA2WNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 17:13:01 -0500
-Received: from mail.v3.sk ([167.172.186.51]:59538 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233537AbhA2WMw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 17:12:52 -0500
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 6FADEE0B4F;
-        Fri, 29 Jan 2021 22:08:03 +0000 (UTC)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id WVW95jXP8lLx; Fri, 29 Jan 2021 22:08:02 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 90B8DE0B4C;
-        Fri, 29 Jan 2021 22:08:02 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id SBoZVgSkdasp; Fri, 29 Jan 2021 22:08:01 +0000 (UTC)
-Received: from localhost (unknown [109.183.109.54])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id 3BAA3DF932;
-        Fri, 29 Jan 2021 22:08:01 +0000 (UTC)
-Date:   Fri, 29 Jan 2021 23:12:07 +0100
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
+        id S232808AbhA2WTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 17:19:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56716 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232756AbhA2WSD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 17:18:03 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65A6C06174A
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:17:22 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id gx1so7104608pjb.1
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 14:17:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=BTULVrI/vxDASF/UyJoisyXUkjtnllNUgx9xtaYIUVo=;
+        b=ySDexUx/Hsosx3dg1UW8GAS7157vCLcXZAn7a0VBVzC7zQz5JmtpkwE8VswIMEWYaQ
+         VWSMSXswxkReEOVKf95qjaeWWmW+vAK18Lj3xQSyrHa4nEzoTFu81qnxiLdoGVU5+E8E
+         AIbTvYo27DP0yjtLjmnbRpYp/UnuM0X+jTpub+yF4geHvQpe0ufIV+3kVatRfY1KycLx
+         hD1EDLt/sVCyoxNcSU/FwvySRhASTN+mJoW/nu+BoLgiMx8IxU3RsAhrZBbe4KdX9ac+
+         iCmwSYrg8fpzSlmOohfXuNKZnFkNC5uetGGb0/KebgGvNX3ykEIQDgmMljenQ7XJHDm7
+         rMJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BTULVrI/vxDASF/UyJoisyXUkjtnllNUgx9xtaYIUVo=;
+        b=M7I2ZWdRn9K6X1pV3qHbjKB0xfYF3t4IGq9lMUYxA6TP87N9fyje2tpFIp595zxmOE
+         cLbekoq5cH6PG1KRBzlSCFvShXU6SurUq/ZP6CWH38g/vOosZCbBWlPhJCl6hkVYXUtl
+         7ZIqu+au8X+tgrIa/3ZN3PZlTqNreM3F3BgeDo+XQ1Y9w6yvGmG5xdU+fgF3n9NBUqOo
+         D+v131ZVl9I1Ix8uVrluaXCoYQmqSjT6FCQl+8AqbDAHwV8B/DE30NJg/dbyjgi6iH2d
+         BWo9+NYo7yNRa+rgycby0jhd6XkgMB8yxuULdMlYWv2BF1nn1ou81QR3Uf5ymAHq8E9s
+         q9Ow==
+X-Gm-Message-State: AOAM533tgsWPJDpjmtfZ0gMVxhGBMdyYPtaziI+K4v7GIp274eWUvIwU
+        1PcUgG0uNCXb8XE8OBqspfXdetlYyxsUCA==
+X-Google-Smtp-Source: ABdhPJzQ/UkcuFzFyZMyTOTk/lAv72+1e6hw8bh6a+BwgObW12jqfjoBlF/mAykIeVsgOHBEVrdZ8w==
+X-Received: by 2002:a17:90a:f988:: with SMTP id cq8mr6533303pjb.71.1611958642328;
+        Fri, 29 Jan 2021 14:17:22 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id q2sm9642114pfg.190.2021.01.29.14.17.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Jan 2021 14:17:21 -0800 (PST)
+Date:   Fri, 29 Jan 2021 15:17:19 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+Cc:     "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: ARM: dts: mmp devicetree updates
-Message-ID: <20210129221207.GA77366@demiurge.local>
-References: <20210121034130.1381872-1-lkundrak@v3.sk>
- <CAK8P3a2DYX3c-AMX9URSyrcQckY2UaRRTmnOwe=4q3P4cJ-t5A@mail.gmail.com>
+Subject: Re: [PATCH v4 11/17] remoteproc: Introduce function __rproc_detach()
+Message-ID: <20210129221719.GB1319650@xps15>
+References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
+ <20201218173228.2277032-12-mathieu.poirier@linaro.org>
+ <5419749d-5e81-8b0c-616f-e0d5e237ac9a@st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAK8P3a2DYX3c-AMX9URSyrcQckY2UaRRTmnOwe=4q3P4cJ-t5A@mail.gmail.com>
+In-Reply-To: <5419749d-5e81-8b0c-616f-e0d5e237ac9a@st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 22, 2021 at 03:09:14PM +0100, Arnd Bergmann wrote:
-> On Thu, Jan 21, 2021 at 4:41 AM Lubomir Rintel <lkundrak@v3.sk> wrote:
-> >
-> > Hi,
-> >
-> > chained to this message is a handful of patches related to MMP device
-> > trees and bindings. Please take a look and consider queueing them for
-> > for 5.12.
+On Wed, Jan 27, 2021 at 09:46:58AM +0100, Arnaud POULIQUEN wrote:
 > 
-> These all look good to me, but I notice that a lot of them seem to be
-> bugfixes, so please have another look and decide if any of them should
-> go into v5.11 and perhaps backported to stable kernels as well.
+> 
+> On 12/18/20 6:32 PM, Mathieu Poirier wrote:
+> > Introduce function __rproc_detach() to perform the same kind of
+> > operation as rproc_stop(), but instead of switching off the
+> > remote processor using rproc->ops->stop(), it uses
+> > rproc->ops->detach().  That way it is possible for the core
+> > to release the resources associated with a remote processor while
+> > the latter is kept operating.
+> > 
+> > Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  drivers/remoteproc/remoteproc_core.c | 42 ++++++++++++++++++++++++++++
+> >  1 file changed, 42 insertions(+)
+> > 
+> > diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+> > index fc28053c7f89..e665ed4776c3 100644
+> > --- a/drivers/remoteproc/remoteproc_core.c
+> > +++ b/drivers/remoteproc/remoteproc_core.c
+> > @@ -1670,6 +1670,48 @@ static int rproc_stop(struct rproc *rproc, bool crashed)
+> >  	return 0;
+> >  }
+> >  
+> > +/*
+> > + * __rproc_detach(): Does the opposite of rproc_attach()
+> > + */
+> > +static int __maybe_unused __rproc_detach(struct rproc *rproc)
+> > +{
+> > +	struct device *dev = &rproc->dev;
+> > +	int ret;
+> > +
+> > +	/* No need to continue if a detach() operation has not been provided */
+> > +	if (!rproc->ops->detach)
+> > +		return -EINVAL;
+> 
+> I wonder if this ops should be optional.
 
-I'm not sure any of these are worth backporting to stable. I believe
-actually only these two are bugfixes:
-
-  [PATCH 06/12] ARM: dts: mmp3: Extend the MPMU reg range
-  [PATCH 12/12] ARM: dts: mmp3: Fix the CCIC interrupts
-
-The first one only affects the audio, but the MMP I2S driver doesn't
-work on MMP3 yet. The second one affects the camera, but the only board
-DTS shipped at this point doesn't have one. Therefore both are somewhat
-inconequential for older kernels.
+Function rproc_validate() doesn't check for it so it is optional.  Returning an
+error is to indicate to sysfs the operation is not supported if someone tries to
+do a "detach" when rproc::ops doesn't provide it.
 
 > 
->        Arnd
+> > +
+> > +	/* Stop any subdevices for the remote processor */
+> > +	rproc_stop_subdevices(rproc, false);
+> > +
+> > +	/*
+> > +	 * If the remote processors was started by the core then a cached_table
+> > +	 * is present and we must follow the same cleanup sequence as we would
+> > +	 * for a shutdown().  As it is in rproc_stop(), use the cached resource
+> > +	 * table for the rest of the detach process since ->table_ptr will
+> > +	 * become invalid as soon as carveouts are released in
+> > +	 * rproc_resource_cleanup().
+> > +	 */
+> > +	if (rproc->cached_table)
+> > +		rproc->table_ptr = rproc->cached_table;
+> > +
+> > +	/* Tell the remote processor the core isn't available anymore */
+> > +	ret = rproc->ops->detach(rproc);
+> > +	if (ret) {
+> > +		dev_err(dev, "can't detach from rproc: %d\n", ret);
+> > +		rproc_start_subdevices(rproc);
+> 
+> Not sure that this would be possible in all cases, without a unprepare and
+> prepare. What about having the same behavior as the rproc_stop failure?
 
-Thanks
-Lubo
+I thought rproc_stop()'s failure path was buggy and could be improved but as you
+say, there might be other ramifications to take into account.  I agree that it
+is more prudent to follow the current behavior from rproc_stop() and leave
+enhancements for another patchset.
+
+> 
+> Thanks
+> Arnaud.
+> 
+> > +		return ret;
+> > +	}
+> > +
+> > +	rproc_unprepare_subdevices(rproc);
+> > +
+> > +	rproc->state = RPROC_DETACHED;
+> > +
+> > +	dev_info(dev, "detached remote processor %s\n", rproc->name);
+> > +
+> > +	return 0;
+> > +}
+> >  
+> >  /**
+> >   * rproc_trigger_recovery() - recover a remoteproc
+> > 
