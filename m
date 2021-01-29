@@ -2,36 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7508E3086A8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 08:44:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC64308713
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 09:36:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232253AbhA2Hmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 02:42:53 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:48324 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232091AbhA2Hmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 02:42:52 -0500
-X-UUID: c14208d890b944bdb74621ccfa7c8392-20210129
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=r2EgZakFk2zVv4JxdHuJL0gzurAODYWI+bsdmfCnS4k=;
-        b=EE574tJw0UjHDfz8TOAMVXEPXmmHUw0yzBU2OjVizLoUE/GLpcnDVscKO5/JuLNk2uGyYK2BOGzOC2Qbj+2eh2l1VKtzGy3oxiH+nXIPoo2Az0kbteq9aJb9CB1IfjhovM0ugeadqjmsfR4WTmiWDasXuYBuPbLL99jlU2o6rDs=;
-X-UUID: c14208d890b944bdb74621ccfa7c8392-20210129
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1703676423; Fri, 29 Jan 2021 15:42:07 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs05n1.mediatek.inc
- (172.21.101.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 29 Jan
- 2021 15:42:05 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 29 Jan 2021 15:42:04 +0800
-Message-ID: <1611906124.1947.22.camel@mhfsdcap03>
+        id S230249AbhA2I17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 03:27:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42320 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232290AbhA2H7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 02:59:04 -0500
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C5C9C0613D6
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 23:59:50 -0800 (PST)
+Received: by mail-io1-xd2d.google.com with SMTP id h11so8359679ioh.11
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 23:59:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ltHSqOjLUAE8DJaRHWwj9Y5DtRXKvkieuWzd/b6Tr24=;
+        b=c47Loy48fu4nC3KT2p3Q2Cueqn27dSpOJn4lfmoj9FajdI4k84S8UtxtFBzL5JTu1v
+         xxEkPWUlNx5O8d1FG1H/wke7dYV4gcG4xRvl77Qb8GY2eQk8tEz9gCLLRa2wRKHKMCoE
+         W1WAyJ18vULA7zutJwn9Hwkmj+EVmRLY6MMNY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ltHSqOjLUAE8DJaRHWwj9Y5DtRXKvkieuWzd/b6Tr24=;
+        b=hx6JyHqX37zoZ9wLNqTFjxBX7GaEK+ZyIAguiKVk+fTeDmnuDsWfgQUxlKpVq7SwFD
+         cm/u6VINaFme+MoJP6OjsjWY2PmGjLkWzX9ly8n4Bvr1tn/J77NJA04fE/zXkN/yQUPK
+         vuwTbN+Ub6pMP3oL/WsgzOUAW/ETgJKjE7ggVaPVwFLToPOQwKi/45zyCg7vyXEN4ec8
+         36s7zMM5HXaz/4kRjHz8VYKdRrdp4jmKAYDNfse1BMGSXNu4ckq3L11cWPWWzWQVDL/i
+         Q6FsABWQUQ9lsengXvqZPhk4rLMgobe4QMKGcfg6QIyCpDWYIX7YxnpIQ9LBWL8mJiCt
+         CqCQ==
+X-Gm-Message-State: AOAM531nQXfbb49H1UNC9N52uJu1u4ZukL6W8LrDlEKTfY4niTNV4Qx0
+        /V+EHWGtxy8K2Fojq0GRl5eWk9Tuqbv65seF3+QdHg==
+X-Google-Smtp-Source: ABdhPJyOCEXPQU61Tit3pKM+NoR4kp11lwpBLzpH2Si5KRV8JRgeJuQhKhO1ZeT72S4QnSsN3uDFU1kNnSNoOnnw2gE=
+X-Received: by 2002:a02:aa9a:: with SMTP id u26mr2600581jai.4.1611907189606;
+ Thu, 28 Jan 2021 23:59:49 -0800 (PST)
+MIME-Version: 1.0
+References: <20210128112314.1304160-1-hsinyi@chromium.org> <20210128112314.1304160-7-hsinyi@chromium.org>
+ <1611883982.5226.12.camel@mtksdaap41> <CAJMQK-gKKjLJ5xOAKOx5BM5dL2MxgFq72FVCfGTfzK4ZXzRJfA@mail.gmail.com>
+ <1611901808.1947.16.camel@mhfsdcap03> <CAJMQK-hLf6f0mofWMF6eEKtTRTmK4Pm-mkYjAAGzD80uTpZLug@mail.gmail.com>
+ <1611906124.1947.22.camel@mhfsdcap03>
+In-Reply-To: <1611906124.1947.22.camel@mhfsdcap03>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Fri, 29 Jan 2021 15:59:23 +0800
+Message-ID: <CAJMQK-hqkcY05QmNT5Kk3MiaV5Lg3uGnDZFt2-_4rhf5tQ54gg@mail.gmail.com>
 Subject: Re: [PATCH v12 6/8] drm/mediatek: enable dither function
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
@@ -43,155 +63,203 @@ CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         <linux-arm-kernel@lists.infradead.org>,
         "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>
-Date:   Fri, 29 Jan 2021 15:42:04 +0800
-In-Reply-To: <CAJMQK-hLf6f0mofWMF6eEKtTRTmK4Pm-mkYjAAGzD80uTpZLug@mail.gmail.com>
-References: <20210128112314.1304160-1-hsinyi@chromium.org>
-         <20210128112314.1304160-7-hsinyi@chromium.org>
-         <1611883982.5226.12.camel@mtksdaap41>
-         <CAJMQK-gKKjLJ5xOAKOx5BM5dL2MxgFq72FVCfGTfzK4ZXzRJfA@mail.gmail.com>
-         <1611901808.1947.16.camel@mhfsdcap03>
-         <CAJMQK-hLf6f0mofWMF6eEKtTRTmK4Pm-mkYjAAGzD80uTpZLug@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIxLTAxLTI5IGF0IDE0OjQ2ICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+
-IE9uIEZyaSwgSmFuIDI5LCAyMDIxIGF0IDI6MzAgUE0gWW9uZ3FpYW5nIE5pdQ0KPiA8eW9uZ3Fp
-YW5nLm5pdUBtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gT24gRnJpLCAyMDIxLTAxLTI5
-IGF0IDE0OjI0ICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+ID4gPiBPbiBGcmksIEphbiAy
-OSwgMjAyMSBhdCA5OjMzIEFNIENLIEh1IDxjay5odUBtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+
-ID4gPg0KPiA+ID4gPiBIaSwgSHNpbi1ZaToNCj4gPiA+ID4NCj4gPiA+ID4gT24gVGh1LCAyMDIx
-LTAxLTI4IGF0IDE5OjIzICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+ID4gPiA+ID4gRnJv
-bTogWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20+DQo+ID4gPiA+ID4N
-Cj4gPiA+ID4gPiBmb3IgNSBvciA2IGJwYyBwYW5lbCwgd2UgbmVlZCBlbmFibGUgZGl0aGVyIGZ1
-bmN0aW9uDQo+ID4gPiA+ID4gdG8gaW1wcm92ZSB0aGUgZGlzcGxheSBxdWFsaXR5DQo+ID4gPiA+
-ID4NCj4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1
-QG1lZGlhdGVrLmNvbT4NCj4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBIc2luLVlpIFdhbmcgPGhz
-aW55aUBjaHJvbWl1bS5vcmc+DQo+ID4gPiA+ID4gLS0tDQo+ID4gPiA+ID4gIGRyaXZlcnMvZ3B1
-L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMgfCAxNSArKysrKysrKysrKysrLS0NCj4g
-PiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0p
-DQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlh
-dGVrL210a19kcm1fZGRwX2NvbXAuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJt
-X2RkcF9jb21wLmMNCj4gPiA+ID4gPiBpbmRleCBhYzJjYjI1NjIwMzU3Li42YzhmMjQ2MzgwYTc0
-IDEwMDY0NA0KPiA+ID4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJt
-X2RkcF9jb21wLmMNCj4gPiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
-X2RybV9kZHBfY29tcC5jDQo+ID4gPiA+ID4gQEAgLTUzLDYgKzUzLDcgQEANCj4gPiA+ID4gPiAg
-I2RlZmluZSBESVRIRVJfRU4gICAgICAgICAgICAgICAgICAgICAgICAgICAgQklUKDApDQo+ID4g
-PiA+ID4gICNkZWZpbmUgRElTUF9ESVRIRVJfQ0ZHICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgMHgwMDIwDQo+ID4gPiA+ID4gICNkZWZpbmUgRElUSEVSX1JFTEFZX01PREUgICAgICAgICAg
-ICAgICAgICAgIEJJVCgwKQ0KPiA+ID4gPiA+ICsjZGVmaW5lIERJVEhFUl9FTkdJTkVfRU4gICAg
-ICAgICAgICAgICAgICAgICBCSVQoMSkNCj4gPiA+ID4gPiAgI2RlZmluZSBESVNQX0RJVEhFUl9T
-SVpFICAgICAgICAgICAgICAgICAgICAgMHgwMDMwDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiAgI2Rl
-ZmluZSBMVVRfMTBCSVRfTUFTSyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAzZmYN
-Cj4gPiA+ID4gPiBAQCAtMzE0LDkgKzMxNSwxOSBAQCBzdGF0aWMgdm9pZCBtdGtfZGl0aGVyX2Nv
-bmZpZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCB3LA0KPiA+ID4gPiA+ICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBpbnQgYnBjLCBzdHJ1Y3QgY21kcV9wa3Qg
-KmNtZHFfcGt0KQ0KPiA+ID4gPiA+ICB7DQo+ID4gPiA+ID4gICAgICAgc3RydWN0IG10a19kZHBf
-Y29tcF9kZXYgKnByaXYgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsNCj4gPiA+ID4gPiArICAgICBi
-b29sIGVuYWJsZSA9IChicGMgPT0gNSB8fCBicGMgPT0gNik7DQo+ID4gPiA+DQo+ID4gPiA+IEkg
-c3Ryb25nbHkgYmVsaWV2ZSB0aGF0IGRpdGhlciBmdW5jdGlvbiBpbiBkaXRoZXIgaXMgaWRlbnRp
-Y2FsIHRvIHRoZQ0KPiA+ID4gPiBvbmUgaW4gZ2FtbWEgYW5kIG9kLCBhbmQgaW4gbXRrX2RpdGhl
-cl9zZXRfY29tbW9uKCksICdicGMgPj0NCj4gPiA+ID4gTVRLX01JTl9CUEMnIGlzIHZhbGlkLCBz
-byBJIGJlbGlldmUgd2UgbmVlZCBub3QgdG8gbGltaXQgYnBjIHRvIDUgb3IgNi4NCj4gPiA+ID4g
-QnV0IHdlIHNob3VsZCBjb25zaWRlciB0aGUgY2FzZSB0aGF0IGJwYyBpcyBpbnZhbGlkIGluDQo+
-ID4gPiA+IG10a19kaXRoZXJfc2V0X2NvbW1vbigpLiBJbnZhbGlkIGNhc2UgaW4gZ2FtbWEgYW5k
-IG9kIHVzZSBkaWZmZXJlbnQgd2F5DQo+ID4gPiA+IHRvIHByb2Nlc3MuIEZvciBnYW1tYSwgZGl0
-aGVyIGlzIGRlZmF1bHQgcmVsYXkgbW9kZSwgc28gaW52YWxpZCBicGMNCj4gPiA+ID4gd291bGQg
-ZG8gbm90aGluZyBpbiBtdGtfZGl0aGVyX3NldF9jb21tb24oKSBhbmQgcmVzdWx0IGluIHJlbGF5
-IG1vZGUuDQo+ID4gPiA+IEZvciBvZCwgaXQgc2V0IHRvIHJlbGF5IG1vZGUgZmlyc3QsIHRoZW0g
-aW52YWxpZCBicGMgd291bGQgZG8gbm90aGluZyBpbg0KPiA+ID4gPiBtdGtfZGl0aGVyX3NldF9j
-b21tb24oKSBhbmQgcmVzdWx0IGluIHJlbGF5IG1vZGUuIEkgd291bGQgbGlrZSBkaXRoZXIsDQo+
-ID4gPiA+IGdhbW1hIGFuZCBvZCB0byBwcm9jZXNzIGludmFsaWQgYnBjIGluIHRoZSBzYW1lIHdh
-eS4gT25lIHNvbHV0aW9uIGlzIHRvDQo+ID4gPiA+IHNldCByZWxheSBtb2RlIGluIG10a19kaXRo
-ZXJfc2V0X2NvbW1vbigpIGZvciBpbnZhbGlkIGJwYy4NCj4gPiA+ID4NCj4gPiA+ID4gUmVnYXJk
-cywNCj4gPiA+ID4gQ0sNCj4gPiA+ID4NCj4gPiA+DQo+ID4gPiBJIG1vZGlmeSB0aGUgbXRrX2Rp
-dGhlcl9jb25maWcoKSB0byBmb2xsb3c6DQo+ID4gPg0KPiA+ID4NCj4gPiA+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jDQo+ID4gPiBiL2Ry
-aXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMNCj4gPiA+IGluZGV4IGFj
-MmNiMjU2MjAzNTcuLjViN2ZjZWRiOWY5YTggMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jDQo+ID4gPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jDQo+ID4gPiBAQCAtNTMsNiArNTMsNyBA
-QA0KPiA+ID4gICNkZWZpbmUgRElUSEVSX0VOICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-QklUKDApDQo+ID4gPiAgI2RlZmluZSBESVNQX0RJVEhFUl9DRkcgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIDB4MDAyMA0KPiA+ID4gICNkZWZpbmUgRElUSEVSX1JFTEFZX01PREUgICAg
-ICAgICAgICAgICAgICAgICAgQklUKDApDQo+ID4gPiArI2RlZmluZSBESVRIRVJfRU5HSU5FX0VO
-ICAgICAgICAgICAgICAgICAgICAgICBCSVQoMSkNCj4gPiA+ICAjZGVmaW5lIERJU1BfRElUSEVS
-X1NJWkUgICAgICAgICAgICAgICAgICAgICAgIDB4MDAzMA0KPiA+ID4NCj4gPiA+ICAjZGVmaW5l
-IExVVF8xMEJJVF9NQVNLICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDNmZg0KPiA+ID4gQEAg
-LTE2Niw2ICsxNjcsOCBAQCB2b2lkIG10a19kaXRoZXJfc2V0X2NvbW1vbih2b2lkIF9faW9tZW0g
-KnJlZ3MsDQo+ID4gPiBzdHJ1Y3QgY21kcV9jbGllbnRfcmVnICpjbWRxX3JlZywNCj4gPiA+ICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIERJVEhFUl9BRERfTFNISUZUX0coTVRLX01BWF9C
-UEMgLSBicGMpLA0KPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY21kcV9yZWcs
-IHJlZ3MsIERJU1BfRElUSEVSXzE2KTsNCj4gPiA+ICAgICAgICAgICAgICAgICBtdGtfZGRwX3dy
-aXRlKGNtZHFfcGt0LCBkaXRoZXJfZW4sIGNtZHFfcmVnLCByZWdzLCBjZmcpOw0KPiA+ID4gKyAg
-ICAgICB9IGVsc2Ugew0KPiA+ID4gKyAgICAgICAgICAgICAgIG10a19kZHBfd3JpdGUoY21kcV9w
-a3QsIERJVEhFUl9SRUxBWV9NT0RFLCBjbWRxX3JlZywgcmVncywgY2ZnKTsNCj4gPiA+ICAgICAg
-ICAgfQ0KPiA+ID4gIH0NCj4gPiA+DQo+ID4gPiBAQCAtMzE1LDggKzMxOCwxMiBAQCBzdGF0aWMg
-dm9pZCBtdGtfZGl0aGVyX2NvbmZpZyhzdHJ1Y3QgZGV2aWNlICpkZXYsDQo+ID4gPiB1bnNpZ25l
-ZCBpbnQgdywNCj4gPiA+ICB7DQo+ID4gPiAgICAgICAgIHN0cnVjdCBtdGtfZGRwX2NvbXBfZGV2
-ICpwcml2ID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ID4gPg0KPiA+ID4gLSAgICAgICBtdGtf
-ZGRwX3dyaXRlKGNtZHFfcGt0LCBoIDw8IDE2IHwgdywgJnByaXYtPmNtZHFfcmVnLA0KPiA+ID4g
-cHJpdi0+cmVncywgRElTUF9ESVRIRVJfU0laRSk7DQo+ID4gPiAtICAgICAgIG10a19kZHBfd3Jp
-dGUoY21kcV9wa3QsIERJVEhFUl9SRUxBWV9NT0RFLCAmcHJpdi0+Y21kcV9yZWcsDQo+ID4gPiBw
-cml2LT5yZWdzLCBESVNQX0RJVEhFUl9DRkcpOw0KPiA+ID4gKyAgICAgICBtdGtfZGRwX3dyaXRl
-KGNtZHFfcGt0LCBoIDw8IDE2IHwgdywgJnByaXYtPmNtZHFfcmVnLCBwcml2LT5yZWdzLA0KPiA+
-ID4gKyAgICAgICAgICAgICAgICAgICAgIERJU1BfRElUSEVSX1NJWkUpOw0KPiA+ID4gKyAgICAg
-ICBtdGtfZGRwX3dyaXRlKGNtZHFfcGt0LCBESVRIRVJfUkVMQVlfTU9ERSwgJnByaXYtPmNtZHFf
-cmVnLCBwcml2LT5yZWdzLA0KPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgIERJU1BfRElUSEVS
-X0NGRyk7DQo+ID4gPiArICAgICAgIG10a19kaXRoZXJfc2V0X2NvbW1vbihwcml2LT5yZWdzLCAm
-cHJpdi0+Y21kcV9yZWcsIGJwYywgRElTUF9ESVRIRVJfQ0ZHLA0KPiA+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIERJVEhFUl9FTkdJTkVfRU4sIGNtZHFfcGt0KTsNCj4gPiA+ICB9
-DQo+ID4gPg0KPiA+ID4gU28gbm93LCBub3Qgb25seSBicGM9PTUgb3IgNiwgYnV0IGFsbCB2YWxp
-ZCBicGMsIGRpdGhlciBjb25maWcgd2lsbA0KPiA+ID4gY2FsbCBtdGtfZGl0aGVyX3NldF9jb21t
-b24oKSB3aXRoIHRoZSBmbGFnIERJVEhFUl9FTkdJTkVfRU4oQklUKDEpKS4NCj4gPiA+IG9kIGNv
-bmZpZyB3aWxsIGNhbGwgbXRrX2RpdGhlcl9zZXRfY29tbW9uKCkgd2l0aCB0aGUgZmxhZw0KPiA+
-ID4gRElTUF9ESVRIRVJJTkcoQklUKDIpKS4NCj4gPiA+IEFkZGl0aW9uYWxseSBmb3IgODE3Mywg
-Z2FtbWEgY29uZmlnIHdpbGwgY2FsbCBtdGtfZGl0aGVyX3NldF9jb21tb24oKQ0KPiA+ID4gd2l0
-aCB0aGUgZmxhZyBESVNQX0RJVEhFUklORyAoQklUKDIpKQ0KPiA+ID4NCj4gPiA+IEZvciBpbnZh
-bGlkIG1vZGUgYWxsIG9mIHRoZW0gd2lsbCBiZSBESVRIRVJfUkVMQVlfTU9ERS4NCj4gPiA+DQo+
-ID4gPiBKdXN0IHRvIG1ha2Ugc3VyZSB0aGF0IHRoaXMgZm9sbG93cyB0aGUgc3BlYz8gdGhhbmtz
-DQo+ID4gPg0KPiA+DQo+ID4gZm9yIG10ODE3MyBnYW1tYSwgdGhlcmUgaXMgbm8gcmVsYXkgbW9k
-ZSwgb25seSBkaXRoZXIgZW5hYmxlIG9yIG5vdChiaXQNCj4gPiAyKS4NCj4gPiBmb3IgbXQ4MTgz
-IGRpdGhlciwgdGhlcmUgaXMgZGl0aGVyIGVuYWJsZSBiaXQgMSwgYW5kIHJlbGF5IG1vZGUgYml0
-IDANCj4gPg0KPiBDSyBzdWdnZXN0ZWQgdG8gc2V0IHJlbGF5IG1vZGUgZm9yIGludmFsaWQgY2Fz
-ZXMuIE9yIHNob3VsZCBJIGp1c3Qgc2V0DQo+IGludmFsaWQgY2FzZSBpbiBtdGtfZGl0aGVyX2Nv
-bmZpZygpPyBTbyB0aGF0IGludmFsaWQgY2FzZSBmb3IgZ2FtbWENCj4gYW5kIG9kIHdvdWxkIHJl
-bWFpbiBpdHMgZGVmYXVsdCBtb2RlPw0KPiANCm9kIGFuZCBnYW1tYSBoYXMgbm8gcmVsYXkgbW9k
-ZQ0Kc2V0IHJlbGF5IG1vZGUgaW4gIG10a19kaXRoZXJfY29uZmlnIGlzIGJldHRlcg0KDQoNCj4g
-QmVzaWRlcyB0aGF0LCB0aGUgbWFqb3IgZGlmZmVyZW5jZSBvZiB0aGlzIHBhdGNoIGFuZCBvcmln
-aW5hbCB2ZXJzaW9uDQo+IGlzIHRoYXQgbm90IG9ubHkgYnBjID09NSBvciA2IHdpbGwgc2V0IGRp
-dGhlciBlbmFibGUgYml0IDEuIERvZXMgdGhpcw0KPiBsb29rcyBnb29kIHRvIHlvdT8NCg0KZGl0
-aGVyIG9ubHkgc3VwcG9ydCAgYnBjIDQgNiA4ICwgdGhlcmUgaXMgbm8gYnBjIDUgdXNlIGNhc2Us
-DQpwbGVhc2UgbW9kaWZ5IHRoaXMgZXJyb3IuDQoNCmFuZCBkcm0gb25seSBoYXMgdGhlc2UgYnBj
-DQpzd2l0Y2ggKGVkaWQtPmlucHV0ICYgRFJNX0VESURfRElHSVRBTF9ERVBUSF9NQVNLKSB7DQoJ
-Y2FzZSBEUk1fRURJRF9ESUdJVEFMX0RFUFRIXzY6DQoJCWluZm8tPmJwYyA9IDY7DQoJCWJyZWFr
-Ow0KCWNhc2UgRFJNX0VESURfRElHSVRBTF9ERVBUSF84Og0KCQlpbmZvLT5icGMgPSA4Ow0KCQli
-cmVhazsNCgljYXNlIERSTV9FRElEX0RJR0lUQUxfREVQVEhfMTA6DQoJCWluZm8tPmJwYyA9IDEw
-Ow0KCQlicmVhazsNCgljYXNlIERSTV9FRElEX0RJR0lUQUxfREVQVEhfMTI6DQoJCWluZm8tPmJw
-YyA9IDEyOw0KCQlicmVhazsNCgljYXNlIERSTV9FRElEX0RJR0lUQUxfREVQVEhfMTQ6DQoJCWlu
-Zm8tPmJwYyA9IDE0Ow0KCQlicmVhazsNCgljYXNlIERSTV9FRElEX0RJR0lUQUxfREVQVEhfMTY6
-DQoJCWluZm8tPmJwYyA9IDE2Ow0KCQlicmVhazsNCgljYXNlIERSTV9FRElEX0RJR0lUQUxfREVQ
-VEhfVU5ERUY6DQoJZGVmYXVsdDoNCgkJaW5mby0+YnBjID0gMDsNCgkJYnJlYWs7DQoJfQ0KDQo+
-ID4NCj4gPiA+ID4gPg0KPiA+ID4gPiA+IC0gICAgIG10a19kZHBfd3JpdGUoY21kcV9wa3QsIGgg
-PDwgMTYgfCB3LCAmcHJpdi0+Y21kcV9yZWcsIHByaXYtPnJlZ3MsIERJU1BfRElUSEVSX1NJWkUp
-Ow0KPiA+ID4gPiA+IC0gICAgIG10a19kZHBfd3JpdGUoY21kcV9wa3QsIERJVEhFUl9SRUxBWV9N
-T0RFLCAmcHJpdi0+Y21kcV9yZWcsIHByaXYtPnJlZ3MsIERJU1BfRElUSEVSX0NGRyk7DQo+ID4g
-PiA+ID4gKyAgICAgaWYgKGVuYWJsZSkgew0KPiA+ID4gPiA+ICsgICAgICAgICAgICAgbXRrX2Rp
-dGhlcl9zZXRfY29tbW9uKHByaXYtPnJlZ3MsICZwcml2LT5jbWRxX3JlZywgYnBjLA0KPiA+ID4g
-PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIERJU1BfRElUSEVSX0NGRywg
-RElUSEVSX0VOR0lORV9FTiwNCj4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBjbWRxX3BrdCk7DQo+ID4gPiA+ID4gKyAgICAgfSBlbHNlIHsNCj4gPiA+ID4gPiAr
-ICAgICAgICAgICAgIG10a19kZHBfd3JpdGUoY21kcV9wa3QsIERJVEhFUl9SRUxBWV9NT0RFLCAm
-cHJpdi0+Y21kcV9yZWcsDQo+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgIHBy
-aXYtPnJlZ3MsIERJU1BfRElUSEVSX0NGRyk7DQo+ID4gPiA+ID4gKyAgICAgfQ0KPiA+ID4gPiA+
-ICsNCj4gPiA+ID4gPiArICAgICBtdGtfZGRwX3dyaXRlKGNtZHFfcGt0LCBoIDw8IDE2IHwgdywg
-JnByaXYtPmNtZHFfcmVnLCBwcml2LT5yZWdzLA0KPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAg
-ICAgRElTUF9ESVRIRVJfU0laRSk7DQo+ID4gPiA+ID4gIH0NCj4gPiA+ID4gPg0KPiA+ID4gPiA+
-ICBzdGF0aWMgdm9pZCBtdGtfZGl0aGVyX3N0YXJ0KHN0cnVjdCBkZXZpY2UgKmRldikNCj4gPiA+
-ID4NCj4gPg0KDQo=
+On Fri, Jan 29, 2021 at 3:42 PM Yongqiang Niu
+<yongqiang.niu@mediatek.com> wrote:
+>
+> On Fri, 2021-01-29 at 14:46 +0800, Hsin-Yi Wang wrote:
+> > On Fri, Jan 29, 2021 at 2:30 PM Yongqiang Niu
+> > <yongqiang.niu@mediatek.com> wrote:
+> > >
+> > > On Fri, 2021-01-29 at 14:24 +0800, Hsin-Yi Wang wrote:
+> > > > On Fri, Jan 29, 2021 at 9:33 AM CK Hu <ck.hu@mediatek.com> wrote:
+> > > > >
+> > > > > Hi, Hsin-Yi:
+> > > > >
+> > > > > On Thu, 2021-01-28 at 19:23 +0800, Hsin-Yi Wang wrote:
+> > > > > > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > > > > >
+> > > > > > for 5 or 6 bpc panel, we need enable dither function
+> > > > > > to improve the display quality
+> > > > > >
+> > > > > > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > > > > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 15 +++++++++++++--
+> > > > > >  1 file changed, 13 insertions(+), 2 deletions(-)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > > > index ac2cb25620357..6c8f246380a74 100644
+> > > > > > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > > > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > > > @@ -53,6 +53,7 @@
+> > > > > >  #define DITHER_EN                            BIT(0)
+> > > > > >  #define DISP_DITHER_CFG                              0x0020
+> > > > > >  #define DITHER_RELAY_MODE                    BIT(0)
+> > > > > > +#define DITHER_ENGINE_EN                     BIT(1)
+> > > > > >  #define DISP_DITHER_SIZE                     0x0030
+> > > > > >
+> > > > > >  #define LUT_10BIT_MASK                               0x03ff
+> > > > > > @@ -314,9 +315,19 @@ static void mtk_dither_config(struct device *dev, unsigned int w,
+> > > > > >                             unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
+> > > > > >  {
+> > > > > >       struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
+> > > > > > +     bool enable = (bpc == 5 || bpc == 6);
+> > > > >
+> > > > > I strongly believe that dither function in dither is identical to the
+> > > > > one in gamma and od, and in mtk_dither_set_common(), 'bpc >=
+> > > > > MTK_MIN_BPC' is valid, so I believe we need not to limit bpc to 5 or 6.
+> > > > > But we should consider the case that bpc is invalid in
+> > > > > mtk_dither_set_common(). Invalid case in gamma and od use different way
+> > > > > to process. For gamma, dither is default relay mode, so invalid bpc
+> > > > > would do nothing in mtk_dither_set_common() and result in relay mode.
+> > > > > For od, it set to relay mode first, them invalid bpc would do nothing in
+> > > > > mtk_dither_set_common() and result in relay mode. I would like dither,
+> > > > > gamma and od to process invalid bpc in the same way. One solution is to
+> > > > > set relay mode in mtk_dither_set_common() for invalid bpc.
+> > > > >
+> > > > > Regards,
+> > > > > CK
+> > > > >
+> > > >
+> > > > I modify the mtk_dither_config() to follow:
+> > > >
+> > > >
+> > > > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > index ac2cb25620357..5b7fcedb9f9a8 100644
+> > > > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > > > @@ -53,6 +53,7 @@
+> > > >  #define DITHER_EN                              BIT(0)
+> > > >  #define DISP_DITHER_CFG                                0x0020
+> > > >  #define DITHER_RELAY_MODE                      BIT(0)
+> > > > +#define DITHER_ENGINE_EN                       BIT(1)
+> > > >  #define DISP_DITHER_SIZE                       0x0030
+> > > >
+> > > >  #define LUT_10BIT_MASK                         0x03ff
+> > > > @@ -166,6 +167,8 @@ void mtk_dither_set_common(void __iomem *regs,
+> > > > struct cmdq_client_reg *cmdq_reg,
+> > > >                               DITHER_ADD_LSHIFT_G(MTK_MAX_BPC - bpc),
+> > > >                               cmdq_reg, regs, DISP_DITHER_16);
+> > > >                 mtk_ddp_write(cmdq_pkt, dither_en, cmdq_reg, regs, cfg);
+> > > > +       } else {
+> > > > +               mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, cmdq_reg, regs, cfg);
+> > > >         }
+> > > >  }
+> > > >
+> > > > @@ -315,8 +318,12 @@ static void mtk_dither_config(struct device *dev,
+> > > > unsigned int w,
+> > > >  {
+> > > >         struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
+> > > >
+> > > > -       mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg,
+> > > > priv->regs, DISP_DITHER_SIZE);
+> > > > -       mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg,
+> > > > priv->regs, DISP_DITHER_CFG);
+> > > > +       mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs,
+> > > > +                     DISP_DITHER_SIZE);
+> > > > +       mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs,
+> > > > +                     DISP_DITHER_CFG);
+> > > > +       mtk_dither_set_common(priv->regs, &priv->cmdq_reg, bpc, DISP_DITHER_CFG,
+> > > > +                              DITHER_ENGINE_EN, cmdq_pkt);
+> > > >  }
+> > > >
+> > > > So now, not only bpc==5 or 6, but all valid bpc, dither config will
+> > > > call mtk_dither_set_common() with the flag DITHER_ENGINE_EN(BIT(1)).
+> > > > od config will call mtk_dither_set_common() with the flag
+> > > > DISP_DITHERING(BIT(2)).
+> > > > Additionally for 8173, gamma config will call mtk_dither_set_common()
+> > > > with the flag DISP_DITHERING (BIT(2))
+> > > >
+> > > > For invalid mode all of them will be DITHER_RELAY_MODE.
+> > > >
+> > > > Just to make sure that this follows the spec? thanks
+> > > >
+> > >
+> > > for mt8173 gamma, there is no relay mode, only dither enable or not(bit
+> > > 2).
+> > > for mt8183 dither, there is dither enable bit 1, and relay mode bit 0
+> > >
+> > CK suggested to set relay mode for invalid cases. Or should I just set
+> > invalid case in mtk_dither_config()? So that invalid case for gamma
+> > and od would remain its default mode?
+> >
+> od and gamma has no relay mode
+> set relay mode in  mtk_dither_config is better
+>
+>
+> > Besides that, the major difference of this patch and original version
+> > is that not only bpc ==5 or 6 will set dither enable bit 1. Does this
+> > looks good to you?
+>
+> dither only support  bpc 4 6 8 , there is no bpc 5 use case,
+> please modify this error.
+>
 
+Only bpc 4, 6, 8 case will call mtk_dither_set_common, other bpc will
+be considered invalid and stays in relay mode.
+
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+index ac2cb25620357..5761dd15eedf2 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+@@ -53,6 +53,7 @@
+ #define DITHER_EN                              BIT(0)
+ #define DISP_DITHER_CFG                                0x0020
+ #define DITHER_RELAY_MODE                      BIT(0)
++#define DITHER_ENGINE_EN                       BIT(1)
+ #define DISP_DITHER_SIZE                       0x0030
+
+ #define LUT_10BIT_MASK                         0x03ff
+@@ -314,9 +315,17 @@ static void mtk_dither_config(struct device *dev,
+unsigned int w,
+                              unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
+ {
+        struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
+-
+-       mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg,
+priv->regs, DISP_DITHER_SIZE);
+-       mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg,
+priv->regs, DISP_DITHER_CFG);
++       bool valid_bpc = (bpc == 4 || bpc == 6 || bpc == 8);
++
++       mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs,
++                     DISP_DITHER_SIZE);
++       if (valid_bpc)
+
++               mtk_dither_set_common(priv->regs, &priv->cmdq_reg, bpc,
++                                     DISP_DITHER_CFG, DITHER_ENGINE_EN,
++                                     cmdq_pkt);
++       else
++               mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg,
++                             priv->regs, DISP_DITHER_CFG);
+ }
+
+
+> > >
+> > > > > >
+> > > > > > -     mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs, DISP_DITHER_SIZE);
+> > > > > > -     mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs, DISP_DITHER_CFG);
+> > > > > > +     if (enable) {
+> > > > > > +             mtk_dither_set_common(priv->regs, &priv->cmdq_reg, bpc,
+> > > > > > +                                   DISP_DITHER_CFG, DITHER_ENGINE_EN,
+> > > > > > +                                   cmdq_pkt);
+> > > > > > +     } else {
+> > > > > > +             mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg,
+> > > > > > +                           priv->regs, DISP_DITHER_CFG);
+> > > > > > +     }
+> > > > > > +
+> > > > > > +     mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs,
+> > > > > > +                   DISP_DITHER_SIZE);
+> > > > > >  }
+> > > > > >
+> > > > > >  static void mtk_dither_start(struct device *dev)
+> > > > >
+> > >
+>
