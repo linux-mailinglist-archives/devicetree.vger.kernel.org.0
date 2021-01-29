@@ -2,107 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 051DC308B8D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 18:33:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B12D2308C6B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 19:31:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232537AbhA2Rbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 12:31:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51230 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232429AbhA2R3Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 12:29:24 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 249B0C061573;
-        Fri, 29 Jan 2021 09:28:44 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id b8so5575431plh.12;
-        Fri, 29 Jan 2021 09:28:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=i4YXa9+oUVNsluWZqNeovQVGehxzdePq9D0BS8DMKkI=;
-        b=E5Eq5LjEJ+KIvRT+gUvCHdCqXHtL+2IBSs2+2T3BN1qup9kTDA7YByXqA0IL8aQCA/
-         x+qK5yuFPe/j7VNGh/QciE3y4YK9+JTq2zA/52IfvaA57pBXYpLG9pIlJOL+F582OtUt
-         20ueM+D5WkPieuuGVSmqiY4PacI3HgmgXys73AnadyATMeI+VHwG3X2GuMCLu0SS7jzZ
-         CZTTKAPH2VNFMRlxapHzPj8c6nE4qPns+rxkJjZGRng1F2/FeP93J2MU7snAR1TgkMv9
-         7c1y15pcyyISmV2BiGhVPS9pOzjyT3SH9uvK9Rr9hMfI0X2gM8eIeIlIkzyBcMc+Ul3w
-         pB/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=i4YXa9+oUVNsluWZqNeovQVGehxzdePq9D0BS8DMKkI=;
-        b=TGqtz9qUv6d2hdqw3EboI4ZeAshaYrJMGmPPs/HE3patAQ6asJSm6ogU+d8cuHkUhK
-         k/ZieNUEbdkQ/YlsR4Zx9pEZgXpIyOpZKB+/QdClHYJOH8oqawE0muwmSd526oZkcuKP
-         n+EwM+zRGcqejXAUUfb3xFN+3+I/PwX47TwNi6yaBQcRs4ZMUhP7mbTbjjwCzayHTg+c
-         LQx8Bv/mUe5h/lsjyb1tn47QLL252OxEfX9eSxccRrKgrpYkoDTavhaTFpaSJ2aQFS9e
-         0xFo+kVRDq2VW96zrmdVNdIJjsZvZ5QPSZeQe4AaUofPuZ42VTZ5bF0wJKOt5O0R2W3z
-         +FKg==
-X-Gm-Message-State: AOAM531ntyD4pZ+Tz87jXGhEa86UfQTqXvQQlFk9D7lzMdLUMQLzOa6R
-        Ak8bgUVPbtAlg5ot8bMlkecY6eMJQ1vgBg==
-X-Google-Smtp-Source: ABdhPJwpob9XLa+enm1Bvj+AMTD2zpUuszy1UGCflSG1OYghuF+vKjPh09cWTnrk+73gxOglOxlNWg==
-X-Received: by 2002:a17:90a:4bc7:: with SMTP id u7mr5447970pjl.51.1611941323248;
-        Fri, 29 Jan 2021 09:28:43 -0800 (PST)
-Received: from [10.25.100.162] ([202.164.25.5])
-        by smtp.gmail.com with ESMTPSA id w186sm9110790pfc.182.2021.01.29.09.28.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Jan 2021 09:28:42 -0800 (PST)
-Subject: Re: [PATCH 4/8] ASoC: tegra: Select SND_SOC_RT5659
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Sameer Pujar <spujar@nvidia.com>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, kuninori.morimoto.gx@renesas.com,
-        lgirdwood@gmail.com, robh+dt@kernel.org, jonathanh@nvidia.com,
-        sharadg@nvidia.com, thierry.reding@gmail.com,
-        linux-tegra@vger.kernel.org
-References: <1611920470-24225-1-git-send-email-spujar@nvidia.com>
- <1611920470-24225-5-git-send-email-spujar@nvidia.com>
- <20210129124454.GB4560@sirena.org.uk>
- <d6cb9252-246e-d6c7-7500-5f1d1823325c@nvidia.com>
- <20210129154858.GE4560@sirena.org.uk>
- <a5a8df4b-21d1-0a12-df7d-9e94c353e2b5@gmail.com>
- <20210129171954.GF4560@sirena.org.uk>
-From:   Sameer Pujar <dev.spujar@gmail.com>
-Message-ID: <2f7e3949-e6b9-6940-94a4-6c1cea3b8db0@gmail.com>
-Date:   Fri, 29 Jan 2021 22:58:37 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S232672AbhA2SXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 13:23:32 -0500
+Received: from mail.v3.sk ([167.172.186.51]:56366 "EHLO shell.v3.sk"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232618AbhA2SXG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Jan 2021 13:23:06 -0500
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 85EBAE070D;
+        Fri, 29 Jan 2021 18:18:14 +0000 (UTC)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id 8KncK9UMIgCb; Fri, 29 Jan 2021 18:18:13 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id B144EE0B3F;
+        Fri, 29 Jan 2021 18:18:13 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 3xU-cvvDS_i2; Fri, 29 Jan 2021 18:18:13 +0000 (UTC)
+Received: from localhost (unknown [109.183.109.54])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 47A41E0B3E;
+        Fri, 29 Jan 2021 18:18:13 +0000 (UTC)
+Date:   Fri, 29 Jan 2021 19:22:19 +0100
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     kostap@marvell.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
+        andrew@lunn.ch, robh+dt@kernel.org, vkoul@kernel.org,
+        kishon@ti.com, miquel.raynal@bootlin.com, mw@semihalf.com,
+        jaz@semihalf.com, nadavh@marvell.com, stefanc@marvell.com,
+        bpeled@marvell.com
+Subject: Re: [PATCH 1/4] drivers: phy: add support for Armada CP110 UTMI PHY
+Message-ID: <20210129182219.GA74013@demiurge.local>
+References: <20210127112719.30632-1-kostap@marvell.com>
+ <20210127112719.30632-2-kostap@marvell.com>
+ <20210129092849.GA68955@demiurge.local>
+ <20210129100713.GU1551@shell.armlinux.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <20210129171954.GF4560@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210129100713.GU1551@shell.armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 29, 2021 at 10:07:13AM +0000, Russell King - ARM Linux admin wrote:
+> On Fri, Jan 29, 2021 at 10:28:49AM +0100, Lubomir Rintel wrote:
+> > > +	/*
+> > > +	 * Setup PLL. 40MHz clock used to be the default, being 25MHz now.
+> > > +	 * See the functional specification for details.
+> > 
+> > I tried to, couldn't find it. Perhaps you could elaborate more here, or
+> > include a link in the header.
+> 
+> Marvell documents are generally not publically available. This is the
+> case here.
 
+In that case the "elaborate more" part applies, otherwise the comment
+remains rather meaningless. Perhaps it wouldn't be too difficult to
+clarify things with an extra sentence or two without revealing any
+secrets.
 
-On 1/29/2021 10:49 PM, Mark Brown wrote:
-> On Fri, Jan 29, 2021 at 10:15:51PM +0530, Sameer Pujar wrote:
->> On 1/29/2021 9:18 PM, Mark Brown wrote:
->>> If the user wants a given CODEC driver then they should enable that
->>> driver.
->> Above card driver is intended to be used on multiple platforms. DT has
->> already a way for user to describe the CODEC connection required for
->> specific platform. So idea is enable these CODECs from driver point of view
->> for this card driver and platform DT can use what is required. Also the
->> CODEC driver will be a loadable module here.
-> No, you're missing the point of a generic driver here.  This will mean
-> that if someone wants to build the driver into the kernel for their
-> embedded board they will be forced to build in every CODEC driver
-> someone has decided might be used with this generic driver, and even if
-> they're building things modular someone trying to cut down the size of
-> their kernel images is going to at least have to spend time building
-> CODEC drivers they don't want to use.  Distributions should just select
-> all the CODEC drivers that are available in Kconfig, people configuring
-> for a particular target audience should be able to build only the
-> drivers they know they need.
+> -- 
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
 
-OK, will drop this in v2. Thank you for details.
-
->
->> If above does not seem fine, alternatively can I just enable CODEC config
->> independently from defconfig?
-> Yes.
-
+Take care
+Lubo
