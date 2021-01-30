@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 394523093B3
+	by mail.lfdr.de (Postfix) with ESMTP id AA4F43093B4
 	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:51:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231503AbhA3Jsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 04:48:41 -0500
-Received: from mga04.intel.com ([192.55.52.120]:31692 "EHLO mga04.intel.com"
+        id S231854AbhA3Jsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 04:48:45 -0500
+Received: from mga06.intel.com ([134.134.136.31]:41434 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233340AbhA3DIA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 22:08:00 -0500
-IronPort-SDR: WvPhQ51rAjZTcLbWswwe4kqwOJeg3AGh6h0tFp2cJ/19QuG0s+xc1X4WLaiHLRwrIYPBZZ/h+H
- To1z+EX4OGQg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="177945214"
+        id S233311AbhA3DCb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Jan 2021 22:02:31 -0500
+IronPort-SDR: /QOu6WX5O5hTXpYV1vYPrRN1W5bFyRkFCLgiocGrrbTDm/2gpd+GlVZSU5KaQ/7JMWF67Guu8O
+ ZNh07loPhsMA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="242028070"
 X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="177945214"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:30 -0800
-IronPort-SDR: Ge9oFHLn9nJSooMetfVsyNL7OGr2x8NmwNMLLL5vXJA9VAEn1sMsbWLzosLtYg9SG3Q2Afki7G
- s8HuhYUnFQuA==
+   d="scan'208";a="242028070"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:31 -0800
+IronPort-SDR: fliegbaFHBKbnNCLVqnXTZa80DvkqvpG3P4S9q2vmltREH1rEDei/Z0q0eIUPyjgRuigGjQxQs
+ x3zr9Baz5Mpg==
 X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="475674100"
+   d="scan'208";a="365585733"
 Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:30 -0800
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:31 -0800
 Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id 2F9156365;
+        by smtp.ostc.intel.com (Postfix) with ESMTP id DAAAB6371;
         Fri, 29 Jan 2021 18:21:30 -0800 (PST)
 Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
-        id 2387436368D; Fri, 29 Jan 2021 18:21:30 -0800 (PST)
+        id CE48C3636AB; Fri, 29 Jan 2021 18:21:30 -0800 (PST)
 From:   mgross@linux.intel.com
 To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
         bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
@@ -37,11 +37,11 @@ To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
         peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
         jassisinghbrar@gmail.com
 Cc:     linux-kernel@vger.kernel.org,
-        Seamus Kelly <seamus.kelly@intel.com>,
+        "C, Udhayakumar" <udhayakumar.c@intel.com>,
         devicetree@vger.kernel.org
-Subject: [PATCH v4 17/34] xlink-ipc: Add xlink ipc device tree bindings
-Date:   Fri, 29 Jan 2021 18:21:07 -0800
-Message-Id: <20210130022124.65083-53-mgross@linux.intel.com>
+Subject: [PATCH v4 32/34] dt-bindings: misc: hddl_dev: Add hddl device management documentation
+Date:   Fri, 29 Jan 2021 18:21:22 -0800
+Message-Id: <20210130022124.65083-68-mgross@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210130022124.65083-1-mgross@linux.intel.com>
 References: <20210130022124.65083-1-mgross@linux.intel.com>
@@ -49,78 +49,145 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Seamus Kelly <seamus.kelly@intel.com>
+From: "C, Udhayakumar" <udhayakumar.c@intel.com>
 
-Add device tree bindings for the xLink IPC driver which enables xLink to
-control and communicate with the VPU IP present on the Intel Keem Bay
-SoC.
+Add hddl device management documentation
+
+The HDDL client driver acts as an software RTC to sync with network time.
+It abstracts xlink protocol to communicate with remote IA host.
+This driver exports the details about sensors available in the platform
+to remote IA host as xlink packets.
+This driver also handles device connect/disconnect events and identifies
+board id and soc id using gpio's based on platform configuration.
 
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
-Reviewed-by: Mark Gross <mgross@linux.intel.com>
+Signed-off-by: C Udhayakumar <udhayakumar.c@intel.com>
 Signed-off-by: Mark Gross <mgross@linux.intel.com>
-Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
 ---
- .../misc/intel,keembay-xlink-ipc.yaml         | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
+ .../bindings/misc/intel,hddl-client.yaml      | 114 ++++++++++++++++++
+ 1 file changed, 114 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
 
-diff --git a/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml b/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
+diff --git a/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml b/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
 new file mode 100644
-index 000000000000..70a3061d024d
+index 000000000000..c1d121c35fc5
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/intel,keembay-xlink-ipc.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (c) Intel Corporation. All rights reserved.
++++ b/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
+@@ -0,0 +1,114 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: "http://devicetree.org/schemas/misc/intel,keembay-xlink-ipc.yaml#"
++$id: "http://devicetree.org/schemas/misc/intel,hddl-client.yaml#"
 +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: Intel Keem Bay xlink IPC
++title: Intel hddl client device to handle platform management in Bay series
 +
 +maintainers:
-+  - Kelly Seamus <seamus.kelly@intel.com>
++  - Udhayakumar C <udhayakumar.c@intel.com>
 +
 +description: |
-+  The Keem Bay xlink IPC driver enables the communication/control sub-system
-+  for internal IPC communications within the Intel Keem Bay SoC.
++  The HDDL client driver acts as an software RTC to sync with network time.
++  It abstracts xlink protocol to communicate with remote host. This driver
++  exports the details about sensors available in the platform to remote
++  host as xlink packets.
++  This driver also handles device connect/disconnect events and identifies
++  board id and soc id using gpio's based on platform configuration.
++
++select: false
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - items:
-+          - const: intel,keembay-xlink-ipc
-+
-+  memory-region:
 +    items:
-+      - description: reference to the CSS xlink IPC reserved memory region.
-+      - description: reference to the MSS xlink IPC reserved memory region.
++      - const: intel,hddl-client
 +
-+  intel,keembay-vpu-ipc-id:
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    description: The numeric ID identifying the VPU within the xLink stack.
++  reg:
++    minItems: 4
++    maxItems: 4
 +
-+  intel,keembay-vpu-ipc-name:
-+    $ref: "/schemas/types.yaml#/definitions/string"
-+    description: User-friendly name for the VPU within the xLink stack.
++  xlink_chan:
++    minItems: 1
++    maxItems: 1
++    description: xlink channel number used for communication
++                 with remote host for time sync and sharing sensor
++                 details available in platform.
 +
-+  intel,keembay-vpu-ipc:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: reference to the corresponding intel,keembay-vpu-ipc node.
++  i2c_xlink_chan:
++    minItems: 1
++    maxItems: 1
++    description: xlink channel number used for communication
++                 with remote host for xlink i2c smbus.
 +
-+additionalProperties: False
++  sensor_name:
++    type: object
++    description:
++      Details about sensors and its configuration on local host and remote
++      host.
++
++    properties:
++      compatible:
++        items:
++          - const: intel_tsens
++
++      reg:
++        description: i2c slave address for sensor.
++
++      local-host:
++        minItems: 1
++        maxItems: 1
++        description: enable bit 0 to register sensor as i2c slave
++                     in local host (normal i2c client)
++                     enable bit 1 to mimic sensor as i2c slave
++                     in local host (onchip sensors as i2c slave)
++                     enable bit 2 to register i2c slave as xlink smbus slave
++                     in local host.
++      remote-host:
++        minItems: 1
++        maxItems: 1
++        description: enable bit 0 to register sensor as i2c slave
++                     in remote host (normal i2c client)
++                     enable bit 1 to mimic sensor as i2c slave
++                     in remote host (onchip sensors as i2c slave)
++                     enable bit 2 to register i2c slave as xlink smbus slave
++                     in remote host.
++
++      bus:
++        minItems: 1
++        maxItems: 1
++        description: i2c bus number for the i2c client device.
++
++    required:
++      - compatible
++      - reg
++      - local-host
++      - remote-host
++      - bus
++
++required:
++  - compatible
++  - reg
++  - xlink_chan
++  - i2c_xlink_chan
++
++additionalProperties: false
 +
 +examples:
 +  - |
-+    xlink-ipc {
-+        compatible = "intel,keembay-xlink-ipc";
-+        memory-region = <&css_xlink_reserved>,
-+                        <&mss_xlink_reserved>;
-+        intel,keembay-vpu-ipc-id = <0x0>;
-+        intel,keembay-vpu-ipc-name = "vpu-slice-0";
-+        intel,keembay-vpu-ipc = <&vpuipc>;
++    hddl_dev: hddl@20320000 {
++       compatible = "intel,hddl-client";
++       #address-cells = <2>;
++       #size-cells = <2>;
++       status = "disabled";
++       reg = <0x0 0x20320000 0x0 0x800>;
++       xlink_chan = <1080>;
++       i2c_xlink_chan = <1081>;
++       kmb_xlink_tj {
++         status = "okay";
++         compatible = "intel_tsens";
++         local-host = <0x3>;
++         remote-host = <0x3>;
++         bus = <0x1>;
++      };
 +    };
 -- 
 2.17.1
