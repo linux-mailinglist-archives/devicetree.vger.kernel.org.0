@@ -2,97 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44ACB30917C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 03:14:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8A143091AE
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 04:31:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232683AbhA3CNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 21:13:25 -0500
-Received: from mga02.intel.com ([134.134.136.20]:12827 "EHLO mga02.intel.com"
+        id S233543AbhA3DbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 22:31:03 -0500
+Received: from mga04.intel.com ([192.55.52.120]:41011 "EHLO mga04.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232821AbhA3CJZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 21:09:25 -0500
-IronPort-SDR: /cF0H4Z0MlrNtwdv2I+aa0+jpWA1i5Eoq6qnDKT7BCQx7/SUqwsBo+TK1saInZNbmbXrYkrudV
- 9XIsET9DEnpw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="167605832"
+        id S233504AbhA3D3D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Jan 2021 22:29:03 -0500
+IronPort-SDR: sVpeTQFMsJJ4g5o/BtTXH0E6gNuNg/67j5MuOhMln0bO9RucuGxeBAlVwr7T+9dfaB+J0iNU2l
+ wyJCS9jmlCfQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="177945186"
 X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="167605832"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:02:46 -0800
-IronPort-SDR: m/mcp0N18j5yhMSa+q+nLGaZ/bnCFViXiFmTxASqO5WF15v/IwH9bV5BEq3NzLSlO+Ve85RJuy
- c7txI1PY8vmQ==
+   d="scan'208";a="177945186"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:29 -0800
+IronPort-SDR: w02rHUjSU/I9EXW9LFJhTdUmtpYHjBjQDk0CQHNym5ba2NQr4H0kKh95GOxsvXQ6it3FtHq76z
+ 0vOK/RSKbYwg==
 X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="365581015"
+   d="scan'208";a="410955351"
 Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:02:45 -0800
-Received: from localhost (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id 20F016365;
-        Fri, 29 Jan 2021 18:02:45 -0800 (PST)
-Date:   Fri, 29 Jan 2021 18:02:45 -0800
-From:   mark gross <mgross@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     mgross@linux.intel.com, jassisinghbrar@gmail.com,
-        palmerdabbelt@google.com, dragan.cvetic@xilinx.com,
-        devicetree@vger.kernel.org, arnd@arndb.de,
-        paul.walmsley@sifive.com, robh+dt@kernel.org,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        gregkh@linuxfoundation.org, markgross@kernel.org, corbet@lwn.net,
-        damien.lemoal@wdc.com, Paul Murphy <paul.j.murphy@intel.com>,
-        bp@suse.de, peng.fan@nxp.com, shawnguo@kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 06/34] dt-bindings: Add bindings for Keem Bay VPU IPC
- driver
-Message-ID: <20210130020245.GA63583@linux.intel.com>
-Reply-To: mgross@linux.intel.com
-References: <20210126054036.61587-1-mgross@linux.intel.com>
- <20210126054036.61587-7-mgross@linux.intel.com>
- <1611756011.180359.1429680.nullmailer@robh.at.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1611756011.180359.1429680.nullmailer@robh.at.kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:28 -0800
+Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
+        by smtp.ostc.intel.com (Postfix) with ESMTP id 81C9D636B;
+        Fri, 29 Jan 2021 18:21:28 -0800 (PST)
+Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
+        id 75E043633FB; Fri, 29 Jan 2021 18:21:28 -0800 (PST)
+From:   mgross@linux.intel.com
+To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
+        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
+        gregkh@linuxfoundation.org, corbet@lwn.net,
+        palmerdabbelt@google.com, paul.walmsley@sifive.com,
+        peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        jassisinghbrar@gmail.com
+Cc:     linux-kernel@vger.kernel.org,
+        Seamus Kelly <seamus.kelly@intel.com>,
+        devicetree@vger.kernel.org,
+        Ryan Carnaghi <ryan.r.carnaghi@intel.com>
+Subject: [PATCH v3 19/34] xlink-core: Add xlink core device tree bindings
+Date:   Fri, 29 Jan 2021 18:20:34 -0800
+Message-Id: <20210130022124.65083-20-mgross@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210130022124.65083-1-mgross@linux.intel.com>
+References: <20210130022124.65083-1-mgross@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 08:00:11AM -0600, Rob Herring wrote:
-> On Mon, 25 Jan 2021 21:40:08 -0800, mgross@linux.intel.com wrote:
-> > From: Paul Murphy <paul.j.murphy@intel.com>
-> > 
-> > Add DT bindings documentation for the Keem Bay VPU IPC driver.
-> > 
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > Reviewed-by: Mark Gross <mgross@linux.intel.com>
-> > Signed-off-by: Paul Murphy <paul.j.murphy@intel.com>
-> > Co-developed-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > ---
-> >  .../soc/intel/intel,keembay-vpu-ipc.yaml      | 153 ++++++++++++++++++
-> >  1 file changed, 153 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml:21:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-> 
-> dtschema/dtc warnings/errors:
-fixed.
+From: Seamus Kelly <seamus.kelly@intel.com>
 
+Add device tree bindings for keembay-xlink.
 
-> 
-> See https://patchwork.ozlabs.org/patch/1432168
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Mark Gross <mgross@linux.intel.com>
+Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
+Signed-off-by: Ryan Carnaghi <ryan.r.carnaghi@intel.com>
+---
+ .../bindings/misc/intel,keembay-xlink.yaml    | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
+
+diff --git a/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
+new file mode 100644
+index 000000000000..89c34018fa04
+--- /dev/null
++++ b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
+@@ -0,0 +1,27 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (c) Intel Corporation. All rights reserved.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/misc/intel,keembay-xlink.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Intel Keem Bay xlink
++
++maintainers:
++  - Seamus Kelly <seamus.kelly@intel.com>
++
++description: |
++  The Keem Bay xlink driver enables the communication/control sub-system
++  for internal and external communications to the Intel Keem Bay SoC.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++        - const: intel,keembay-xlink
++
++examples:
++  - |
++    xlink {
++        compatible = "intel,keembay-xlink";
++    };
+-- 
+2.17.1
+
