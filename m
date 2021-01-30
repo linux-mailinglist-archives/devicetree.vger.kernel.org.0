@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E2143093F9
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 11:06:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5870A3093DF
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 11:01:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231954AbhA3KFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 05:05:48 -0500
-Received: from mga02.intel.com ([134.134.136.20]:10159 "EHLO mga02.intel.com"
+        id S231899AbhA3KAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 05:00:15 -0500
+Received: from mga14.intel.com ([192.55.52.115]:44020 "EHLO mga14.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233220AbhA3Crl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 21:47:41 -0500
-IronPort-SDR: mcvJ2TYxVmB3Lj+2c/bgMUMQz6Kl89T19tYR4xZMKm3f9mpwMuRIUWurU0IKqVXubgWYAReDHP
- +7VpZjCdARlw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="167606773"
+        id S233199AbhA3Crm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Jan 2021 21:47:42 -0500
+IronPort-SDR: Vevev0fi7ZEPM0yRY9JFccASA8/7i1YOd2HjkCXfoQ5dne9HTXd+2M5tEdKaNMY6GCvqttgtDL
+ +1ZV4c+ItEJA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="179729138"
 X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="167606773"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:31 -0800
-IronPort-SDR: 7idafQ9mPdCiJA2XHayokdrNq9f6QPjQHIbJh/Y3R5L2jPYJ7I0EwbcD4fJDPukSEtJEPUHJtx
- lPLTlK5bWC/w==
+   d="scan'208";a="179729138"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:30 -0800
+IronPort-SDR: rBRZ00SiIBRVs5hCP1SfckRWOc/9DHE7pD91SpC/g/l4DYMkQtryGgFR4MxjkrjmasXcIIyGKJ
+ qpwrzf2mzreA==
 X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="404733832"
+   d="scan'208";a="389569480"
 Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:30 -0800
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:30 -0800
 Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id 493706368;
+        by smtp.ostc.intel.com (Postfix) with ESMTP id 7CCB4636B;
         Fri, 29 Jan 2021 18:21:30 -0800 (PST)
 Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
-        id 3D0C436368C; Fri, 29 Jan 2021 18:21:30 -0800 (PST)
+        id 6CF04363696; Fri, 29 Jan 2021 18:21:30 -0800 (PST)
 From:   mgross@linux.intel.com
 To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
         bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
@@ -37,11 +37,10 @@ To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
         peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
         jassisinghbrar@gmail.com
 Cc:     linux-kernel@vger.kernel.org,
-        Seamus Kelly <seamus.kelly@intel.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 19/34] xlink-core: Add xlink core device tree bindings
-Date:   Fri, 29 Jan 2021 18:21:09 -0800
-Message-Id: <20210130022124.65083-55-mgross@linux.intel.com>
+        "Li, Tingqian" <tingqian.li@intel.com>, devicetree@vger.kernel.org
+Subject: [PATCH v4 24/34] dt-bindings: misc: Add Keem Bay vpumgr
+Date:   Fri, 29 Jan 2021 18:21:14 -0800
+Message-Id: <20210130022124.65083-60-mgross@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210130022124.65083-1-mgross@linux.intel.com>
 References: <20210130022124.65083-1-mgross@linux.intel.com>
@@ -49,54 +48,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Seamus Kelly <seamus.kelly@intel.com>
+From: "Li, Tingqian" <tingqian.li@intel.com>
 
-Add device tree bindings for keembay-xlink.
+  Add DT binding schema for VPU on Keem Bay ASoC platform
 
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
-Reviewed-by: Mark Gross <mgross@linux.intel.com>
+Signed-off-by: Li Tingqian <tingqian.li@intel.com>
 Signed-off-by: Mark Gross <mgross@linux.intel.com>
-Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
 ---
- .../bindings/misc/intel,keembay-xlink.yaml    | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
+ .../bindings/misc/intel,keembay-vpu-mgr.yaml  | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-vpu-mgr.yaml
 
-diff --git a/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
+diff --git a/Documentation/devicetree/bindings/misc/intel,keembay-vpu-mgr.yaml b/Documentation/devicetree/bindings/misc/intel,keembay-vpu-mgr.yaml
 new file mode 100644
-index 000000000000..5ac2e7fa5b5e
+index 000000000000..a44f492277ab
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
-@@ -0,0 +1,29 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (c) Intel Corporation. All rights reserved.
++++ b/Documentation/devicetree/bindings/misc/intel,keembay-vpu-mgr.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++# Copyright (C) 2020 Intel
 +%YAML 1.2
 +---
-+$id: "http://devicetree.org/schemas/misc/intel,keembay-xlink.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/misc/intel,keembay-vpu-mgr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Intel Keem Bay xlink
++title: Intel VPU manager bindings
 +
 +maintainers:
-+  - Seamus Kelly <seamus.kelly@intel.com>
++  - Li, Tingqian <tingqian.li@intel.com>
++  - Zhou, Luwei <luwei.zhou@intel.com>
 +
 +description: |
-+  The Keem Bay xlink driver enables the communication/control sub-system
-+  for internal and external communications to the Intel Keem Bay SoC.
++  The Intel VPU manager provides shared memory and process
++  depedent context management for Intel VPU hardware IP.
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - items:
-+          - const: intel,keembay-xlink
++    items:
++      - enum:
++          - intel,keembay-vpu-mgr
++          - intel,keembay-vpusmm
 +
-+additionalProperties: False
++  memory-region:
++    description:
++      phandle to a node describing reserved memory (System RAM memory)
++      used by VPU (see bindings/reserved-memory/reserved-memory.txt)
++    maxItems: 1
++
++  intel,keembay-vpu-ipc-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      the index of the VPU slice to be managed. Default is 0.
++
++required:
++  - compatible
++  - memory-region
++
++additionalProperties: false
 +
 +examples:
 +  - |
-+    xlink {
-+        compatible = "intel,keembay-xlink";
++    vpumgr0 {
++        compatible = "intel,keembay-vpu-mgr";
++        memory-region = <&vpu_reserved>;
++        intel,keembay-vpu-ipc-id = <0x0>;
 +    };
 -- 
 2.17.1
