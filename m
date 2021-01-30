@@ -2,193 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA4F43093B4
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:51:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EDEA3093B7
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:51:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231854AbhA3Jsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 04:48:45 -0500
-Received: from mga06.intel.com ([134.134.136.31]:41434 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233311AbhA3DCb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 22:02:31 -0500
-IronPort-SDR: /QOu6WX5O5hTXpYV1vYPrRN1W5bFyRkFCLgiocGrrbTDm/2gpd+GlVZSU5KaQ/7JMWF67Guu8O
- ZNh07loPhsMA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="242028070"
-X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="242028070"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:31 -0800
-IronPort-SDR: fliegbaFHBKbnNCLVqnXTZa80DvkqvpG3P4S9q2vmltREH1rEDei/Z0q0eIUPyjgRuigGjQxQs
- x3zr9Baz5Mpg==
-X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="365585733"
-Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:31 -0800
-Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id DAAAB6371;
-        Fri, 29 Jan 2021 18:21:30 -0800 (PST)
-Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
-        id CE48C3636AB; Fri, 29 Jan 2021 18:21:30 -0800 (PST)
-From:   mgross@linux.intel.com
-To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
-        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
-        gregkh@linuxfoundation.org, corbet@lwn.net,
-        palmerdabbelt@google.com, paul.walmsley@sifive.com,
-        peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
-        jassisinghbrar@gmail.com
-Cc:     linux-kernel@vger.kernel.org,
-        "C, Udhayakumar" <udhayakumar.c@intel.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 32/34] dt-bindings: misc: hddl_dev: Add hddl device management documentation
-Date:   Fri, 29 Jan 2021 18:21:22 -0800
-Message-Id: <20210130022124.65083-68-mgross@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210130022124.65083-1-mgross@linux.intel.com>
-References: <20210130022124.65083-1-mgross@linux.intel.com>
+        id S229932AbhA3Jub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 04:50:31 -0500
+Received: from szxga06-in.huawei.com ([45.249.212.32]:11915 "EHLO
+        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233262AbhA3DCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 22:02:08 -0500
+Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4DSJnq6wzSzjDkH;
+        Sat, 30 Jan 2021 10:59:11 +0800 (CST)
+Received: from [127.0.0.1] (10.174.176.220) by DGGEMS401-HUB.china.huawei.com
+ (10.3.19.201) with Microsoft SMTP Server id 14.3.498.0; Sat, 30 Jan 2021
+ 11:00:03 +0800
+Subject: Re: [PATCH v5 4/4] ARM: Add support for Hisilicon Kunpeng L3 cache
+ controller
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+To:     Arnd Bergmann <arnd@kernel.org>
+CC:     devicetree <devicetree@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "Haojian Zhuang" <haojian.zhuang@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20210116032740.873-1-thunder.leizhen@huawei.com>
+ <20210116032740.873-5-thunder.leizhen@huawei.com>
+ <CAK8P3a1OqUn5A4F4hT4K=bzQwJuifVFZkvFoK6NMg+m9FjoKzw@mail.gmail.com>
+ <20dac713-25b7-cddf-cc42-69a834487c71@huawei.com>
+ <CAK8P3a3Hj0Hyc8mVdGYhB7AEuHCYbhGxHnhNk1xWonEmxZOxRw@mail.gmail.com>
+ <CAK8P3a1j+mr3bCp2uCuuYzW0ygjTmGv9vELuNy7v-iQ=WoDMOw@mail.gmail.com>
+ <6c4d3650-0040-06d4-4342-79392738877b@huawei.com>
+Message-ID: <cfec45df-b14e-3768-e22e-3585c8c8bab0@huawei.com>
+Date:   Sat, 30 Jan 2021 11:00:02 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <6c4d3650-0040-06d4-4342-79392738877b@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.176.220]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "C, Udhayakumar" <udhayakumar.c@intel.com>
 
-Add hddl device management documentation
 
-The HDDL client driver acts as an software RTC to sync with network time.
-It abstracts xlink protocol to communicate with remote IA host.
-This driver exports the details about sensors available in the platform
-to remote IA host as xlink packets.
-This driver also handles device connect/disconnect events and identifies
-board id and soc id using gpio's based on platform configuration.
+On 2021/1/29 21:54, Leizhen (ThunderTown) wrote:
+> 
+> 
+> On 2021/1/29 18:26, Arnd Bergmann wrote:
+>> On Fri, Jan 29, 2021 at 9:16 AM Arnd Bergmann <arnd@kernel.org> wrote:
+>>> On Fri, Jan 29, 2021 at 8:23 AM Leizhen (ThunderTown)
+>>> <thunder.leizhen@huawei.com> wrote:
+>>>> On 2021/1/28 22:24, Arnd Bergmann wrote:
+>>>>> On Sat, Jan 16, 2021 at 4:27 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
+>>>>>> diff --git a/arch/arm/mm/Makefile b/arch/arm/mm/Makefile
+>>>>>> +
+>>>>>> +static void l3cache_maint_common(u32 range, u32 op_type)
+>>>>>> +{
+>>>>>> +       u32 reg;
+>>>>>> +
+>>>>>> +       reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
+>>>>>> +       reg &= ~(L3_MAINT_RANGE_MASK | L3_MAINT_TYPE_MASK);
+>>>>>> +       reg |= range | op_type;
+>>>>>> +       reg |= L3_MAINT_STATUS_START;
+>>>>>> +       writel(reg, l3_ctrl_base + L3_MAINT_CTRL);
+>>>>>
+>>>>> Are there contents of L3_MAINT_CTRL that need to be preserved
+>>>>> across calls and can not be inferred? A 'readl()' is often expensive,
+>>>>> so it might be more efficient if you can avoid that.
+>>>>
+>>>> Right, this readl() can be replaced with readl_relaxed(). Thanks.
+>>>>
+>>>> I'll check and correct the readl() and writel() in other places.
+>>>
+>>> What I meant is that if you want to replace them, you should provide
+>>> performance numbers that show how much difference this makes
+>>> and add comments in the source code explaining how you proved that
+>>> the _relaxed() version is actually correct.
+>>
+>> Another clarification, as there are actually two independent
+>> points here:
+>>
+>> * if you can completely remove the readl() above and just write a
+>>   hardcoded value into the register, or perhaps read the original
+>>   value once at boot time, that is probably a win because it
+>>   avoids one of the barriers in the beginning. The datasheet should
+>>   tell you if there are any bits in the register that have to be
+>>   preserved
+> 
+> Code coupling will become very strong.
+> 
+>>
+>> * Regarding the _relaxed() accessors, it's a lot harder to know
+>>   whether that is safe, as you first have to show, in particular in case
+>>   any of the accesses stop being guarded by the spinlock in that
+>>   case, and whether there may be a case where you have to
+>>   serialize the memory access against accesses that are still in the
+>>   store queue or prefetched.
+>>
+>> Whether this matters at all depends mostly on the type of devices
+>> you are driving on your SoC. If you have any high-speed network
+>> interfaces that are unable to do cache coherent DMA, any extra
+>> instruction here may impact the number of packets you can transfer,
+>> but if all your high-speed devices are connected to a coherent
+>> interconnect, I would just go with the obvious approach and use
+>> the safe MMIO accessors everywhere.
+> 
+> In fact, this driver has been running on an earlier version for several years
+> and has not received any feedback about the performance issue. So I didn't
+> try to optimize it when I first sent these patches. I had to reconsider it
+> until you noticed it.
+> 
+> How about keeping it unchanged for the moment? It'll take a lot of time and
+> energy to retest.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: C Udhayakumar <udhayakumar.c@intel.com>
-Signed-off-by: Mark Gross <mgross@linux.intel.com>
----
- .../bindings/misc/intel,hddl-client.yaml      | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
+In the spirit of code excellence, it's still necessary to optimize it.
+Yesterday, my family urged me to go back, I wrote it in a hurry.
 
-diff --git a/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml b/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
-new file mode 100644
-index 000000000000..c1d121c35fc5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/misc/intel,hddl-client.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel hddl client device to handle platform management in Bay series
-+
-+maintainers:
-+  - Udhayakumar C <udhayakumar.c@intel.com>
-+
-+description: |
-+  The HDDL client driver acts as an software RTC to sync with network time.
-+  It abstracts xlink protocol to communicate with remote host. This driver
-+  exports the details about sensors available in the platform to remote
-+  host as xlink packets.
-+  This driver also handles device connect/disconnect events and identifies
-+  board id and soc id using gpio's based on platform configuration.
-+
-+select: false
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: intel,hddl-client
-+
-+  reg:
-+    minItems: 4
-+    maxItems: 4
-+
-+  xlink_chan:
-+    minItems: 1
-+    maxItems: 1
-+    description: xlink channel number used for communication
-+                 with remote host for time sync and sharing sensor
-+                 details available in platform.
-+
-+  i2c_xlink_chan:
-+    minItems: 1
-+    maxItems: 1
-+    description: xlink channel number used for communication
-+                 with remote host for xlink i2c smbus.
-+
-+  sensor_name:
-+    type: object
-+    description:
-+      Details about sensors and its configuration on local host and remote
-+      host.
-+
-+    properties:
-+      compatible:
-+        items:
-+          - const: intel_tsens
-+
-+      reg:
-+        description: i2c slave address for sensor.
-+
-+      local-host:
-+        minItems: 1
-+        maxItems: 1
-+        description: enable bit 0 to register sensor as i2c slave
-+                     in local host (normal i2c client)
-+                     enable bit 1 to mimic sensor as i2c slave
-+                     in local host (onchip sensors as i2c slave)
-+                     enable bit 2 to register i2c slave as xlink smbus slave
-+                     in local host.
-+      remote-host:
-+        minItems: 1
-+        maxItems: 1
-+        description: enable bit 0 to register sensor as i2c slave
-+                     in remote host (normal i2c client)
-+                     enable bit 1 to mimic sensor as i2c slave
-+                     in remote host (onchip sensors as i2c slave)
-+                     enable bit 2 to register i2c slave as xlink smbus slave
-+                     in remote host.
-+
-+      bus:
-+        minItems: 1
-+        maxItems: 1
-+        description: i2c bus number for the i2c client device.
-+
-+    required:
-+      - compatible
-+      - reg
-+      - local-host
-+      - remote-host
-+      - bus
-+
-+required:
-+  - compatible
-+  - reg
-+  - xlink_chan
-+  - i2c_xlink_chan
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    hddl_dev: hddl@20320000 {
-+       compatible = "intel,hddl-client";
-+       #address-cells = <2>;
-+       #size-cells = <2>;
-+       status = "disabled";
-+       reg = <0x0 0x20320000 0x0 0x800>;
-+       xlink_chan = <1080>;
-+       i2c_xlink_chan = <1081>;
-+       kmb_xlink_tj {
-+         status = "okay";
-+         compatible = "intel_tsens";
-+         local-host = <0x3>;
-+         remote-host = <0x3>;
-+         bus = <0x1>;
-+      };
-+    };
--- 
-2.17.1
+> 
+>>
+>>        Arnd
+>>
+>> _______________________________________________
+>> linux-arm-kernel mailing list
+>> linux-arm-kernel@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>>
+>>
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+> .
+> 
 
