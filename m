@@ -2,148 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C80013092F6
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1076309326
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:19:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233634AbhA3EQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 23:16:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43688 "EHLO
+        id S230484AbhA3JSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 04:18:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233656AbhA3DyL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 22:54:11 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B8CC061786
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 19:53:15 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id m13so12245192oig.8
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 19:53:15 -0800 (PST)
+        with ESMTP id S233690AbhA3ELp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 23:11:45 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B12C0613D6
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 19:59:46 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id j11so3895277plt.11
+        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 19:59:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+1Tr4rpoXF+/sZZ5I0T9ItoAjN7uH4k91FkmXDfmqTI=;
-        b=YaVkxLhL9Og3Yb8W+oDoOXxN13APSECdFqxwrv3HjAvWe2YN2Z3PiYnTHBzJh2kkUP
-         p0AX6fbNVDG48OH4OBAADYquGku6kRDm1IRKF+4DCLmF313OKGU9FYdvbejVmBACZx9l
-         dIg3Hv5WnPqMh1TuoKOMf5Qc7P65zgjKNGL1BOEzjWvC7zWfSylQyygWobhMK6i+ElO3
-         uElPPoje+Q4ULXoqisyvFaZOLHg1vIhvMK1fC+joP3V+A0+hUU7VAQd/DymaxWVDMcBp
-         KCfJ1/hrvLbKhRLFvHKL4dP0u2yRBOdBm0E5HCGmNda0G8iYag+5Pokhb693FE2HzfSk
-         MmcQ==
+         :content-disposition:in-reply-to:user-agent;
+        bh=zmqbQDHWa5qE1qWqd3ap0DMM/Xtz2uCqxKtJyp2MZuU=;
+        b=KAksbMwVTssgr21laJJdDhf5lwzT2DY647zB1AjU1aOV+t3J5fgUyVAn+rWv3UCPzu
+         5YZmAeZksWraf/xL8xmBBRx1xwWYfHyM2lBOkJoXQ57PoZr49xG95ozfnI8UG5qP9YG6
+         yH7mGpIOdPzFUYXNXA+PN1CHjtRA8jc2IGpc5akrwO4A9n+/x3ubiBH2IDTe8XqDyHt9
+         GupovsE3FRxezJ2BzrWCdNdy6cWGSr6jInIZSqXDomVb7JrDO1imVmttNOB6CUpNYZsp
+         heXhOmDj3rithtjMxOkOPLUUcrPhpCxc1UCQHRBwv1bEVR3MKQgxj5mzqYvyQ2C7+wte
+         kX8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+1Tr4rpoXF+/sZZ5I0T9ItoAjN7uH4k91FkmXDfmqTI=;
-        b=elj/JNaALqvcR86r5PkHASNvrs2Eyvu95Az/E8iaXc0FVUKgqEvlnkaBmo4lzCqil5
-         sgGHS7GkOOIJsh5WBBkbyqojbadyfRxU7dccMzX96D/lXkq5bIxdBZjkoPuTNbFdp8s6
-         Mau+2YVwIIkbCEf7MKWiLG3UUmvcbo6xHQlh61r15Uy1bg/Oo8HEXE69UHI7ar3GRQSZ
-         gdcv7In+QV0tI6AoLBA4GOWfGXfU+K7+pL7NouzoyF7S95EzZzRaahMjiqX5vdhQzb7c
-         A7oXD6ZpR4/Bglyo0q55czrp/uBFAxNfo7uxD7FCm84gcg0EDyWICGHEU+0LprZyHTrS
-         ishA==
-X-Gm-Message-State: AOAM5304JhRcQp5qIp8VgSYvD9xObRHWxZxdvOEMc4N8TyFqSEjhIlQJ
-        Jgg1AbqjAZcbcLcnZrHTrjpXjQ==
-X-Google-Smtp-Source: ABdhPJyp8AUBdeEWbdmaLLvG3bP+gJFmEw0C4fEYwy/ThnxsTpe/Zz3E/Pq16ARiR2JpAZT2ER2lYw==
-X-Received: by 2002:aca:d486:: with SMTP id l128mr4518873oig.70.1611978795094;
-        Fri, 29 Jan 2021 19:53:15 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id d11sm2810650oon.21.2021.01.29.19.53.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jan 2021 19:53:14 -0800 (PST)
-Date:   Fri, 29 Jan 2021 21:53:12 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>,
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=zmqbQDHWa5qE1qWqd3ap0DMM/Xtz2uCqxKtJyp2MZuU=;
+        b=Q8S615LjdldY3tmN9nT4NrQyY45nQUP2RJrzFM+/WnJ0UBTFpeQVIslwHP3YIEzQSp
+         J3VjSvyklWoiFUckcR8eVGNnMMqbXSNyURdj6OscXqHIDQ8mNnIKLbf3aY/z8IB5awqR
+         OY/P31dOLFVEZB6Z5KUFF0XLAOH/vaZlehgPV5fNlYUU/fuiYsBJul4O35zLQE3Rp8vy
+         vd79obZ1KDafJ9ybALhzNG3x/z/vLnLq1LVBGGA6CzRB++XTPNpQ6ZoiK5D4Hg2W3EjP
+         1DSKc4YIimJHNkbYGdUyz4SsnOabKiJ772en2NNRbTSAUUEMZ01QwQ6Xd4LnuMIpzIyO
+         F6lw==
+X-Gm-Message-State: AOAM531gekzzExsCXhyD0bLOsew+f+TWzWRz2mZF3hqOGB7zyIFT60f4
+        ohyvYJKbXIG6xEC4EWUFsETa
+X-Google-Smtp-Source: ABdhPJwvDyFGZs5+MrSQPiVrSF/8sOJDIsVyypz6GzMuyCULbQkLL3UmYWmA9QgzB161u8XpOgD99w==
+X-Received: by 2002:a17:902:b94b:b029:e0:1e:da58 with SMTP id h11-20020a170902b94bb02900e0001eda58mr7695366pls.55.1611979185636;
+        Fri, 29 Jan 2021 19:59:45 -0800 (PST)
+Received: from work ([103.77.37.140])
+        by smtp.gmail.com with ESMTPSA id a2sm9061524pjm.51.2021.01.29.19.59.41
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 29 Jan 2021 19:59:45 -0800 (PST)
+Date:   Sat, 30 Jan 2021 09:29:39 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Arnd Bergmann <arnd@arndb.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Stanimir Varbanov <svarbanov@mm-sol.com>,
         Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
- on RB5 platform
-Message-ID: <YBTYKLi81Cf65yUB@builder.lan>
-References: <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org>
- <20210129215024.GA113900@bjorn-Precision-5520>
- <CAA8EJpoPsv5tfsaiJq4UnBYt3o+gJanWzy8aaZRK=V8yOk3mJQ@mail.gmail.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] arm64: qcom: dts: qrb5165-rb5: add qca6391 power
+ device
+Message-ID: <20210130035939.GA3544@work>
+References: <20210128175225.3102958-1-dmitry.baryshkov@linaro.org>
+ <20210128175225.3102958-3-dmitry.baryshkov@linaro.org>
+ <YBTW2et0IVCUGmdg@builder.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA8EJpoPsv5tfsaiJq4UnBYt3o+gJanWzy8aaZRK=V8yOk3mJQ@mail.gmail.com>
+In-Reply-To: <YBTW2et0IVCUGmdg@builder.lan>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 29 Jan 16:19 CST 2021, Dmitry Baryshkov wrote:
-
-> On Sat, 30 Jan 2021 at 00:50, Bjorn Helgaas <helgaas@kernel.org> wrote:
-> >
-> > On Fri, Jan 29, 2021 at 06:45:21AM +0300, Dmitry Baryshkov wrote:
-> > > On 28/01/2021 22:26, Rob Herring wrote:
-> > > > On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
-> > > > <dmitry.baryshkov@linaro.org> wrote:
-> > > > >
-> > > > > Some Qualcomm platforms require to power up an external device before
-> > > > > probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
-> > > > > to be powered up before PCIe0 bus is probed. Add a quirk to the
-> > > > > respective PCIe root bridge to attach to the power domain if one is
-> > > > > required, so that the QCA chip is started before scanning the PCIe bus.
-> > > >
-> > > > This is solving a generic problem in a specific driver. It needs to be
-> > > > solved for any PCI host and any device.
-> > >
-> > > Ack. I see your point here.
-> > >
-> > > As this would require porting code from powerpc/spark of-pci code and
-> > > changing pcie port driver to apply power supply before bus probing happens,
-> > > I'd also ask for the comments from PCI maintainers. Will that solution be
-> > > acceptable to you?
-> >
-> > I can't say without seeing the code.  I don't know enough about this
-> > scenario to envision how it might look.
-> >
-> > I guess the QCA6390 is a PCIe device?  Why does it need to be powered
-> > up before probing?  Shouldn't we get a link-up interrupt when it is
-> > powered up so we could probe it then?
+On Fri, Jan 29, 2021 at 09:47:37PM -0600, Bjorn Andersson wrote:
+> On Thu 28 Jan 11:52 CST 2021, Dmitry Baryshkov wrote:
 > 
-> Not quite. QCA6390 is a multifunction device, with PCIe and serial
-> parts. It has internal power regulators which once enabled will
-> powerup the PCIe, serial and radio parts. There is no need to manage
-> regulators. Once enabled they will automatically handle device
-> suspend/resume, etc.
+> > Add qca6391 to device tree as a way to provide power domain to WiFi and
+> > BT parts of the chip.
+> > 
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 61 ++++++++++++++++++++++++
+> >  1 file changed, 61 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> > index 8aebc3660b11..2b0c1cc9333b 100644
+> > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> > @@ -151,6 +151,23 @@ vreg_s4a_1p8: vreg-s4a-1p8 {
+> >  		regulator-max-microvolt = <1800000>;
+> >  		regulator-always-on;
+> >  	};
+> > +
+> > +	qca6391: qca6391 {
+> > +		compatible = "qcom,qca6390";
+> > +		#power-domain-cells = <0>;
+> > +
+> > +		vddaon-supply = <&vreg_s6a_0p95>;
+> > +		vddpmu-supply = <&vreg_s2f_0p95>;
+> > +		vddrfa1-supply = <&vreg_s2f_0p95>;
+> > +		vddrfa2-supply = <&vreg_s8c_1p3>;
+> > +		vddrfa3-supply = <&vreg_s5a_1p9>;
+> > +		vddpcie1-supply = <&vreg_s8c_1p3>;
+> > +		vddpcie2-supply = <&vreg_s5a_1p9>;
+> > +		vddio-supply = <&vreg_s4a_1p8>;
+> > +		pinctrl-names = "default", "active";
+> > +		pinctrl-0 = <&wlan_default_state &bt_default_state>;
+> > +		pinctrl-1 = <&wlan_active_state &bt_active_state>;
+> 
+> I dislike the use of pinctrl states for toggling the level of the gpio
+> and would prefer that you use the gpio binding and api for this instead.
+> 
+> > +	};
+> >  };
+> >  
+> >  &adsp {
+> > @@ -1013,6 +1030,28 @@ &tlmm {
+> >  		"HST_WLAN_UART_TX",
+> >  		"HST_WLAN_UART_RX";
+> >  
+> > +	bt_default_state: bt-default-state {
+> 
+> Are you sure you need to drive the BT_EN pin in order to have WiFi
+> working? On QCA6174 I believe the "WL_EN" was actually RESET_N and BT_EN
+> was actually "blueooth enable" - so we wired that in the bluetooth node
+> instead.
 > 
 
-So what you're saying is that if either the PCI controller or bluetooth
-driver probes these regulators will be turned on, indefinitely?
+IIRC, that's the case. We need both BT_EN and WL_EN for proper bringup of the
+chip.
 
-If so, why do we need a driver to turn them on, rather than just mark
-them as always-on?
-
-What's the timing requirement wrt regulators vs WL_EN/BT_EN?
-
-Regards,
-Bjorn A
-
-> I'm not sure about link-up interrupt. I've just lightly tested using
-> PCIe HP on this port, getting no interrupts from it.
-> If I manually rescan the bus after enabling the qca6390 device (e.g.
-> via sysfs), it gets enabled, but then I see PCIe link errors (most
-> probably because the PCIe link was not retrained after the device
-> comes up).
-> 
-> > Nit: when changing any file, please take a look at the commit history
-> > and make yours match, e.g.,
-> >
-> >   pcie-qcom: provide a way to power up qca6390 chip on RB5 platform
-> >
-> > does not look like:
-> 
-> Ack.
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+Thanks,
+Mani
