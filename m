@@ -2,136 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1076309326
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A52B13093C5
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:55:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbhA3JSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 04:18:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47480 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233690AbhA3ELp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 23:11:45 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B12C0613D6
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 19:59:46 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id j11so3895277plt.11
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 19:59:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=zmqbQDHWa5qE1qWqd3ap0DMM/Xtz2uCqxKtJyp2MZuU=;
-        b=KAksbMwVTssgr21laJJdDhf5lwzT2DY647zB1AjU1aOV+t3J5fgUyVAn+rWv3UCPzu
-         5YZmAeZksWraf/xL8xmBBRx1xwWYfHyM2lBOkJoXQ57PoZr49xG95ozfnI8UG5qP9YG6
-         yH7mGpIOdPzFUYXNXA+PN1CHjtRA8jc2IGpc5akrwO4A9n+/x3ubiBH2IDTe8XqDyHt9
-         GupovsE3FRxezJ2BzrWCdNdy6cWGSr6jInIZSqXDomVb7JrDO1imVmttNOB6CUpNYZsp
-         heXhOmDj3rithtjMxOkOPLUUcrPhpCxc1UCQHRBwv1bEVR3MKQgxj5mzqYvyQ2C7+wte
-         kX8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zmqbQDHWa5qE1qWqd3ap0DMM/Xtz2uCqxKtJyp2MZuU=;
-        b=Q8S615LjdldY3tmN9nT4NrQyY45nQUP2RJrzFM+/WnJ0UBTFpeQVIslwHP3YIEzQSp
-         J3VjSvyklWoiFUckcR8eVGNnMMqbXSNyURdj6OscXqHIDQ8mNnIKLbf3aY/z8IB5awqR
-         OY/P31dOLFVEZB6Z5KUFF0XLAOH/vaZlehgPV5fNlYUU/fuiYsBJul4O35zLQE3Rp8vy
-         vd79obZ1KDafJ9ybALhzNG3x/z/vLnLq1LVBGGA6CzRB++XTPNpQ6ZoiK5D4Hg2W3EjP
-         1DSKc4YIimJHNkbYGdUyz4SsnOabKiJ772en2NNRbTSAUUEMZ01QwQ6Xd4LnuMIpzIyO
-         F6lw==
-X-Gm-Message-State: AOAM531gekzzExsCXhyD0bLOsew+f+TWzWRz2mZF3hqOGB7zyIFT60f4
-        ohyvYJKbXIG6xEC4EWUFsETa
-X-Google-Smtp-Source: ABdhPJwvDyFGZs5+MrSQPiVrSF/8sOJDIsVyypz6GzMuyCULbQkLL3UmYWmA9QgzB161u8XpOgD99w==
-X-Received: by 2002:a17:902:b94b:b029:e0:1e:da58 with SMTP id h11-20020a170902b94bb02900e0001eda58mr7695366pls.55.1611979185636;
-        Fri, 29 Jan 2021 19:59:45 -0800 (PST)
-Received: from work ([103.77.37.140])
-        by smtp.gmail.com with ESMTPSA id a2sm9061524pjm.51.2021.01.29.19.59.41
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 29 Jan 2021 19:59:45 -0800 (PST)
-Date:   Sat, 30 Jan 2021 09:29:39 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] arm64: qcom: dts: qrb5165-rb5: add qca6391 power
- device
-Message-ID: <20210130035939.GA3544@work>
-References: <20210128175225.3102958-1-dmitry.baryshkov@linaro.org>
- <20210128175225.3102958-3-dmitry.baryshkov@linaro.org>
- <YBTW2et0IVCUGmdg@builder.lan>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YBTW2et0IVCUGmdg@builder.lan>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S229786AbhA3Jy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 04:54:57 -0500
+Received: from mga02.intel.com ([134.134.136.20]:10262 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233251AbhA3DAv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Jan 2021 22:00:51 -0500
+IronPort-SDR: x5HiimzjVaAkSR2TZkPdKrIVR9c3BKES0ZhWPTLDD0Eq9zXIh0Z71EmVfNkfOA22lGK8TENaR8
+ wMXFA4JtWGcw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="167606740"
+X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
+   d="scan'208";a="167606740"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:29 -0800
+IronPort-SDR: 43bHuH5UXskUjL2Xh5Q84a1+DcVgjqvG9cf4HDfsvLXwK+suTnWCbIDNMMalh8PtNisy4JUW1E
+ 2kqqN6xivq0Q==
+X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
+   d="scan'208";a="352488065"
+Received: from smtp.ostc.intel.com ([10.54.29.231])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:28 -0800
+Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
+        by smtp.ostc.intel.com (Postfix) with ESMTP id DE68B636D;
+        Fri, 29 Jan 2021 18:21:27 -0800 (PST)
+Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
+        id D2E19362E90; Fri, 29 Jan 2021 18:21:27 -0800 (PST)
+From:   mgross@linux.intel.com
+To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
+        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
+        gregkh@linuxfoundation.org, corbet@lwn.net,
+        palmerdabbelt@google.com, paul.walmsley@sifive.com,
+        peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        jassisinghbrar@gmail.com
+Cc:     linux-kernel@vger.kernel.org,
+        Paul Murphy <paul.j.murphy@intel.com>,
+        devicetree@vger.kernel.org,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Subject: [PATCH v3 06/34] dt-bindings: Add bindings for Keem Bay VPU IPC driver
+Date:   Fri, 29 Jan 2021 18:20:21 -0800
+Message-Id: <20210130022124.65083-7-mgross@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210130022124.65083-1-mgross@linux.intel.com>
+References: <20210130022124.65083-1-mgross@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 29, 2021 at 09:47:37PM -0600, Bjorn Andersson wrote:
-> On Thu 28 Jan 11:52 CST 2021, Dmitry Baryshkov wrote:
-> 
-> > Add qca6391 to device tree as a way to provide power domain to WiFi and
-> > BT parts of the chip.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 61 ++++++++++++++++++++++++
-> >  1 file changed, 61 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > index 8aebc3660b11..2b0c1cc9333b 100644
-> > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > @@ -151,6 +151,23 @@ vreg_s4a_1p8: vreg-s4a-1p8 {
-> >  		regulator-max-microvolt = <1800000>;
-> >  		regulator-always-on;
-> >  	};
-> > +
-> > +	qca6391: qca6391 {
-> > +		compatible = "qcom,qca6390";
-> > +		#power-domain-cells = <0>;
-> > +
-> > +		vddaon-supply = <&vreg_s6a_0p95>;
-> > +		vddpmu-supply = <&vreg_s2f_0p95>;
-> > +		vddrfa1-supply = <&vreg_s2f_0p95>;
-> > +		vddrfa2-supply = <&vreg_s8c_1p3>;
-> > +		vddrfa3-supply = <&vreg_s5a_1p9>;
-> > +		vddpcie1-supply = <&vreg_s8c_1p3>;
-> > +		vddpcie2-supply = <&vreg_s5a_1p9>;
-> > +		vddio-supply = <&vreg_s4a_1p8>;
-> > +		pinctrl-names = "default", "active";
-> > +		pinctrl-0 = <&wlan_default_state &bt_default_state>;
-> > +		pinctrl-1 = <&wlan_active_state &bt_active_state>;
-> 
-> I dislike the use of pinctrl states for toggling the level of the gpio
-> and would prefer that you use the gpio binding and api for this instead.
-> 
-> > +	};
-> >  };
-> >  
-> >  &adsp {
-> > @@ -1013,6 +1030,28 @@ &tlmm {
-> >  		"HST_WLAN_UART_TX",
-> >  		"HST_WLAN_UART_RX";
-> >  
-> > +	bt_default_state: bt-default-state {
-> 
-> Are you sure you need to drive the BT_EN pin in order to have WiFi
-> working? On QCA6174 I believe the "WL_EN" was actually RESET_N and BT_EN
-> was actually "blueooth enable" - so we wired that in the bluetooth node
-> instead.
-> 
+From: Paul Murphy <paul.j.murphy@intel.com>
 
-IIRC, that's the case. We need both BT_EN and WL_EN for proper bringup of the
-chip.
+Add DT bindings documentation for the Keem Bay VPU IPC driver.
 
-Thanks,
-Mani
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Mark Gross <mgross@linux.intel.com>
+Signed-off-by: Paul Murphy <paul.j.murphy@intel.com>
+Co-developed-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+---
+ .../soc/intel/intel,keembay-vpu-ipc.yaml      | 153 ++++++++++++++++++
+ 1 file changed, 153 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+
+diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+new file mode 100644
+index 000000000000..cd1c4abe8bc9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+@@ -0,0 +1,153 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (c) Intel Corporation. All rights reserved.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/soc/intel/intel,keembay-vpu-ipc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Intel Keem Bay VPU IPC
++
++maintainers:
++  - Paul Murphy <paul.j.murphy@intel.com>
++
++description:
++  The VPU IPC driver facilitates loading of firmware, control, and communication
++  with the VPU over the IPC FIFO in the Intel Keem Bay SoC.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++        - const: intel,keembay-vpu-ipc
++
++  reg:
++    items:
++      - description: NCE WDT registers
++      - description: NCE TIM_GEN_CONFIG registers
++      - description: MSS WDT registers
++      - description: MSS TIM_GEN_CONFIG registers
++
++  reg-names:
++    items:
++      - const: nce_wdt
++      - const: nce_tim_cfg
++      - const: mss_wdt
++      - const: mss_tim_cfg
++
++  memory-region:
++    items:
++      - description: reference to the VPU reserved memory region
++      - description: reference to the X509 reserved memory region
++      - description: reference to the MSS IPC area
++
++  clocks:
++    items:
++      - description: cpu clock
++      - description: pll 0 out 0 rate
++      - description: pll 0 out 1 rate
++      - description: pll 0 out 2 rate
++      - description: pll 0 out 3 rate
++      - description: pll 1 out 0 rate
++      - description: pll 1 out 1 rate
++      - description: pll 1 out 2 rate
++      - description: pll 1 out 3 rate
++      - description: pll 2 out 0 rate
++      - description: pll 2 out 1 rate
++      - description: pll 2 out 2 rate
++      - description: pll 2 out 3 rate
++
++  clock-names:
++    items:
++      - const: cpu_clock
++      - const: pll_0_out_0
++      - const: pll_0_out_1
++      - const: pll_0_out_2
++      - const: pll_0_out_3
++      - const: pll_1_out_0
++      - const: pll_1_out_1
++      - const: pll_1_out_2
++      - const: pll_1_out_3
++      - const: pll_2_out_0
++      - const: pll_2_out_1
++      - const: pll_2_out_2
++      - const: pll_2_out_3
++
++  interrupts:
++    items:
++      - description: number of NCE sub-system WDT timeout IRQ
++      - description: number of MSS sub-system WDT timeout IRQ
++
++  interrupt-names:
++    items:
++      - const: nce_wdt
++      - const: mss_wdt
++
++  intel,keembay-vpu-ipc-nce-wdt-redirect:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description:
++      Number to which we will request that the NCE sub-system
++      re-directs it's WDT timeout IRQ
++
++  intel,keembay-vpu-ipc-mss-wdt-redirect:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description:
++      Number to which we will request that the MSS sub-system
++      re-directs it's WDT timeout IRQ
++
++  intel,keembay-vpu-ipc-imr:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description:
++      IMR (isolated memory region) number which we will request
++      the runtime service uses to protect the VPU memory region
++      before authentication
++
++  intel,keembay-vpu-ipc-id:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description: The VPU ID to be passed to the VPU firmware.
++
++additionalProperties: False
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    vpu-ipc@3f00209c {
++        compatible = "intel,keembay-vpu-ipc";
++        reg = <0x3f00209c 0x10>,
++              <0x3f003008 0x4>,
++              <0x2082009c 0x10>,
++              <0x20821008 0x4>;
++        reg-names = "nce_wdt",
++                    "nce_tim_cfg",
++                    "mss_wdt",
++                    "mss_tim_cfg";
++        memory-region = <&vpu_reserved>,
++                        <&vpu_x509_reserved>,
++                        <&mss_ipc_reserved>;
++        clocks = <&scmi_clk 0>,
++                 <&scmi_clk 0>,
++                 <&scmi_clk 1>,
++                 <&scmi_clk 2>,
++                 <&scmi_clk 3>,
++                 <&scmi_clk 4>,
++                 <&scmi_clk 5>,
++                 <&scmi_clk 6>,
++                 <&scmi_clk 7>,
++                 <&scmi_clk 8>,
++                 <&scmi_clk 9>,
++                 <&scmi_clk 10>,
++                 <&scmi_clk 11>;
++        clock-names = "cpu_clock",
++                      "pll_0_out_0", "pll_0_out_1",
++                      "pll_0_out_2", "pll_0_out_3",
++                      "pll_1_out_0", "pll_1_out_1",
++                      "pll_1_out_2", "pll_1_out_3",
++                      "pll_2_out_0", "pll_2_out_1",
++                      "pll_2_out_2", "pll_2_out_3";
++        interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "nce_wdt", "mss_wdt";
++        intel,keembay-vpu-ipc-nce-wdt-redirect = <63>;
++        intel,keembay-vpu-ipc-mss-wdt-redirect = <47>;
++        intel,keembay-vpu-ipc-imr = <9>;
++        intel,keembay-vpu-ipc-id = <0>;
++    };
+-- 
+2.17.1
+
