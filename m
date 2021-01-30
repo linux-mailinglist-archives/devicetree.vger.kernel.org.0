@@ -2,198 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F2AA3092B9
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 09:59:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E52A3092CB
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:02:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbhA3I56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 03:57:58 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:16935 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230518AbhA3FYn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 00:24:43 -0500
-Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 29 Jan 2021 21:20:28 -0800
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 29 Jan 2021 21:20:25 -0800
-X-QCInternal: smtphost
-Received: from gokulsri-linux.qualcomm.com ([10.201.2.207])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 30 Jan 2021 10:50:14 +0530
-Received: by gokulsri-linux.qualcomm.com (Postfix, from userid 432570)
-        id AFD9A219E7; Sat, 30 Jan 2021 10:50:14 +0530 (IST)
-From:   Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
-To:     sboyd@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
-        david.brown@linaro.org, devicetree@vger.kernel.org,
-        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, mark.rutland@arm.com,
-        mturquette@baylibre.com, ohad@wizery.com, robh+dt@kernel.org,
-        sricharan@codeaurora.org, gokulsri@codeaurora.org
-Subject: [PATCH v8 9/9] arm64: dts: qcom: Enable Q6v5 WCSS for ipq8074 SoC
-Date:   Sat, 30 Jan 2021 10:50:13 +0530
-Message-Id: <1611984013-10201-10-git-send-email-gokulsri@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1611984013-10201-1-git-send-email-gokulsri@codeaurora.org>
-References: <1611984013-10201-1-git-send-email-gokulsri@codeaurora.org>
+        id S230110AbhA3JBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 04:01:00 -0500
+Received: from mga05.intel.com ([192.55.52.43]:10161 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230211AbhA3FHE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 30 Jan 2021 00:07:04 -0500
+IronPort-SDR: 8jjQKoEkz/vM7Oclm7ZUh8LFRMb+bvzUVw/YxVag8IxQd362jBfYQ2QG6wRCuCJBtKrMy7vRT4
+ 2Z8XMxYRVrwg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="265339355"
+X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
+   d="scan'208";a="265339355"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:28 -0800
+IronPort-SDR: TR4jCj3T9zEeNL6WrJYlPbpV64L0u7FPGzIR7L929+LVTVnNQEfZL/STuEyX5WkyYv20heFKkZ
+ tpkP0AEAJIyQ==
+X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
+   d="scan'208";a="370626909"
+Received: from smtp.ostc.intel.com ([10.54.29.231])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:27 -0800
+Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
+        by smtp.ostc.intel.com (Postfix) with ESMTP id C5E456368;
+        Fri, 29 Jan 2021 18:21:27 -0800 (PST)
+Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
+        id BA634362DDA; Fri, 29 Jan 2021 18:21:27 -0800 (PST)
+From:   mgross@linux.intel.com
+To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
+        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
+        gregkh@linuxfoundation.org, corbet@lwn.net,
+        palmerdabbelt@google.com, paul.walmsley@sifive.com,
+        peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        jassisinghbrar@gmail.com
+Cc:     linux-kernel@vger.kernel.org,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 04/34] dt-bindings: Add bindings for Keem Bay IPC driver
+Date:   Fri, 29 Jan 2021 18:20:19 -0800
+Message-Id: <20210130022124.65083-5-mgross@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210130022124.65083-1-mgross@linux.intel.com>
+References: <20210130022124.65083-1-mgross@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable remoteproc WCSS PIL driver with glink
-and ssr subdevices. Also configures shared memory
-and enables smp2p and mailboxes required for IPC.
+From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 
-Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
-Signed-off-by: Sricharan R <sricharan@codeaurora.org>
-Signed-off-by: Nikhil Prakash V <nprakash@codeaurora.org>
+Add DT binding documentation for the Intel Keem Bay IPC driver, which
+enables communication between the Computing Sub-System (CSS) and the
+Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
+Bay.
+
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Mark Gross <mgross@linux.intel.com>
+Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 ---
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 121 ++++++++++++++++++++++++++++++++++
- 1 file changed, 121 insertions(+)
+ .../bindings/soc/intel/intel,keembay-ipc.yaml | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 6e719b4..9bde3f9c 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -76,12 +76,66 @@
- 		method = "smc";
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
+diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
+new file mode 100644
+index 000000000000..586fe73f4cd4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 Intel Corporation
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/soc/intel/intel,keembay-ipc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+		smem_region: memory@4ab00000 {
-+			no-map;
-+			reg = <0x0 0x4ab00000 0x0 0x00100000>;
-+		};
++title: Keem Bay IPC
 +
-+		q6_region: memory@4b000000 {
-+			no-map;
-+			reg = <0x0 0x4b000000 0x0 0x05f00000>;
-+		};
-+	};
++maintainers:
++  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 +
- 	firmware {
- 		scm {
- 			compatible = "qcom,scm-ipq8074", "qcom,scm";
- 		};
- 	};
- 
-+	tcsr_mutex: hwlock@193d000 {
-+		compatible = "qcom,tcsr-mutex";
-+		syscon = <&tcsr_mutex_regs 0 0x80>;
-+		#hwlock-cells = <1>;
-+	};
++description:
++  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
++  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
++  Keem Bay.
 +
-+	smem {
-+		compatible = "qcom,smem";
-+		memory-region = <&smem_region>;
-+		hwlocks = <&tcsr_mutex 0>;
-+	};
++properties:
++  compatible:
++    const: intel,keembay-ipc
 +
-+	wcss: smp2p-wcss {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <435>, <428>;
++  memory-region:
++    items:
++      - description:
++          Reserved memory region used by the CPU to allocate IPC packets.
++      - description:
++          Reserved memory region used by the VPU to allocate IPC packets.
 +
-+		interrupt-parent = <&intc>;
-+		interrupts = <0 322 1>;
++  mboxes:
++    description: VPU IPC Mailbox.
 +
-+		mboxes = <&apcs_glb 9>;
++required:
++  - compatible
++  - memory-region
++  - mboxes
 +
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <1>;
++additionalProperties: false
 +
-+		wcss_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			qcom,smp2p-feature-ssr-ack;
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		wcss_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
- 	soc: soc {
- 		#address-cells = <0x1>;
- 		#size-cells = <0x1>;
-@@ -695,5 +749,72 @@
- 				      "axi_m_sticky";
- 			status = "disabled";
- 		};
-+
-+		tcsr_q6: syscon@1945000 {
-+			compatible = "syscon";
-+			reg = <0x01945000 0xe000>;
-+		};
-+
-+		tcsr_mutex_regs: syscon@193d000 {
-+			compatible = "syscon";
-+			reg = <0x01905000 0x8000>;
-+		};
-+
-+		apcs_glb: mailbox@b111000 {
-+			compatible = "qcom,ipq8074-apcs-apps-global";
-+			reg = <0x0b111000 0x1000>;
-+
-+			#mbox-cells = <1>;
-+		};
-+
-+		q6v5_wcss: q6v5_wcss@cd00000 {
-+			compatible = "qcom,ipq8074-wcss-pil";
-+			reg = <0x0cd00000 0x4040>,
-+			      <0x004ab000 0x20>;
-+			reg-names = "qdsp6",
-+				    "rmb";
-+			qca,auto-restart;
-+			qca,extended-intc;
-+			interrupts-extended = <&intc 0 325 1>,
-+					      <&wcss_smp2p_in 0 0>,
-+					      <&wcss_smp2p_in 1 0>,
-+					      <&wcss_smp2p_in 2 0>,
-+					      <&wcss_smp2p_in 3 0>;
-+			interrupt-names = "wdog",
-+					  "fatal",
-+					  "ready",
-+					  "handover",
-+					  "stop-ack";
-+
-+			resets = <&gcc GCC_WCSSAON_RESET>,
-+				 <&gcc GCC_WCSS_BCR>,
-+				 <&gcc GCC_WCSS_Q6_BCR>;
-+
-+			reset-names = "wcss_aon_reset",
-+				      "wcss_reset",
-+				      "wcss_q6_reset";
-+
-+			clocks = <&gcc GCC_PRNG_AHB_CLK>;
-+			clock-names = "prng";
-+
-+			qcom,halt-regs = <&tcsr_q6 0xa000 0xd000 0x0>;
-+
-+			qcom,smem-states = <&wcss_smp2p_out 0>,
-+					   <&wcss_smp2p_out 1>;
-+			qcom,smem-state-names = "shutdown",
-+						"stop";
-+
-+			memory-region = <&q6_region>;
-+
-+			glink-edge {
-+				interrupts = <GIC_SPI 321 IRQ_TYPE_EDGE_RISING>;
-+				qcom,remote-pid = <1>;
-+				mboxes = <&apcs_glb 8>;
-+
-+				rpm_requests {
-+					qcom,glink-channels = "IPCRTR";
-+				};
-+			};
-+		};
- 	};
- };
++examples:
++  - |
++    ipc {
++          compatible = "intel,keembay-ipc";
++          memory-region = <&ipc_cpu_reserved>, <&ipc_vpu_reserved>;
++          mboxes = <&vpu_ipc_mbox 0>;
++    };
 -- 
-2.7.4
+2.17.1
 
