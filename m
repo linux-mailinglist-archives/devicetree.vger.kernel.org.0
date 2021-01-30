@@ -2,53 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E576B3095A4
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 14:59:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 643C130964F
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 16:42:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbhA3N4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 08:56:38 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39578 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229851AbhA3N4S (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 30 Jan 2021 08:56:18 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1D78E64E0E;
-        Sat, 30 Jan 2021 13:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612014938;
-        bh=oHZDK3HrfH9b4klXb6eqnCwXjsYkccsA91q12ll2xE8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cYcrMfoLFd2+DoFZzOnbsGojirDzEpCQW71vMl5hzw2JkVb3ogUrECl8vdq1ObTKb
-         jeJO/B0DfatkHfe74VgvGbBc4Dy6wnqLMEEyZWWQF70p5HPjjGvGRPcl3MsmO+he+C
-         2YlILUSKIAagSni3zW0y7QSx8inERGQSEs7Be/5Eey1Te18ajHPwvH23oc61IgYdZt
-         o9phHQ6rzULedzyS7vplzpB9arUwPxKFGSHlxbvs73L7JnUOLYcPElbOL3oy1doYkP
-         HP85t+IxkDBwpLfEdSdLOvhdR3Gm0hWyb/kxmota32c5jsbielgJLJszxzb+0ml8zK
-         drjutZGXi/wSw==
-Date:   Sat, 30 Jan 2021 21:55:33 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        patchwork-lst@pengutronix.de
-Subject: Re: [PATCH 01/10] ARM: dts: imx6: rdu2: enable WDOG1
-Message-ID: <20210130135532.GK907@dragon>
-References: <20210125184736.1226435-1-l.stach@pengutronix.de>
+        id S230085AbhA3Pld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 10:41:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232181AbhA3PlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 10:41:10 -0500
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCB29C061788
+        for <devicetree@vger.kernel.org>; Sat, 30 Jan 2021 07:40:29 -0800 (PST)
+Received: from [192.168.1.101] (abaf219.neoplus.adsl.tpnet.pl [83.6.169.219])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 70A783EBBD;
+        Sat, 30 Jan 2021 16:40:23 +0100 (CET)
+Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: Disable MDSS by default for
+ 8916/8016 devices
+To:     Vincent Knecht <vincent.knecht@mailoo.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Max Merchel <Max.Merchel@tq-group.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        allen <allen.chen@ite.com.tw>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20210130105717.2628781-1-vincent.knecht@mailoo.org>
+ <20210130105717.2628781-4-vincent.knecht@mailoo.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <9eeeb463-0437-8989-373f-721575e74e4f@somainline.org>
+Date:   Sat, 30 Jan 2021 16:40:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210125184736.1226435-1-l.stach@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210130105717.2628781-4-vincent.knecht@mailoo.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 07:47:27PM +0100, Lucas Stach wrote:
-> From: Philipp Zabel <p.zabel@pengutronix.de>
-> 
-> Enable the i.MX6 WDOG1 internal watchdog for warm reboots. This allows
-> to issue emergency restarts without clearing the RAM, so collecting oops
-> logs from ramoops pstore in barebox becomes feasible.
-> 
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 
-Applied all, thanks.
+On 30.01.2021 11:57, Vincent Knecht wrote:
+> Disable MDSS (Mobile Display Subsystem) by default in msm8916.dtsi
+> and only explicitly enable it in devices' DT which actually use it.
+>
+> This leads to faster boot and cleaner logs for other devices,
+> which also won't have to explicitly disable MDSS to use framebuffer.
+>
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi                  | 4 ++++
+>  arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi | 4 ++++
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi                      | 1 +
+>  3 files changed, 9 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> index 3a9538e1ec97..6aef0c2e4f0a 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> @@ -301,6 +301,10 @@ &lpass {
+>  	status = "okay";
+>  };
+>  
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+>  &pm8916_resin {
+>  	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> index f1af798abd74..230ba3ce3277 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> @@ -132,6 +132,10 @@ &dsi0 {
+>  	pinctrl-1 = <&mdss_sleep>;
+>  };
+>  
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+>  &pm8916_resin {
+>  	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> index 402e891a84ab..8f9a651d3827 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> @@ -913,6 +913,7 @@ tcsr: syscon@1937000 {
+>  		};
+>  
+>  		mdss: mdss@1a00000 {
+> +			status = "disabled";
+>  			compatible = "qcom,mdss";
+>  			reg = <0x01a00000 0x1000>,
+>  			      <0x01ac8000 0x3000>;
+>
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+
+Konrad
+
