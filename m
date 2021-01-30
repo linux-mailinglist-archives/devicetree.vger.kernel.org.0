@@ -2,91 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3923090B2
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 00:40:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4035309182
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 03:25:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231314AbhA2XkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 18:40:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37572 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231296AbhA2XkM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 18:40:12 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DC77A64DFB;
-        Fri, 29 Jan 2021 23:39:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611963571;
-        bh=ERrJYHFh8Jj6TX3rWZ8jzW16SHBX6admnR8+Rc0W3iA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IhHNVERl3GvC0h6SOMOD/atc+1VsIPS/6gySIr4qlDWRXNI2Gtx91MT0UeXUFVN8i
-         pbAS+FIPkCzaTpf3vZyuMROZgTOaUpu3Vc73G5EYk0jurTdZyX5dsXHba34rvgogvp
-         d7m6bHm/nB4stDF1g8dO3WzoJisodcVOpZQ2+u1oYTaaRK1/N/BuosOjOktII6JBTB
-         tedI5aoh5Hz2EGCwzyEvqwNMFbhSu++SKG46dGiLk4xL/FiYULXGe4a8SwbyXinXem
-         Y2d7UEvSKHFBYOGs4yMdiGvxHHaOUx2GQub5hDTrne9+dXEn3yIKLVaUXv+Kz8Hi//
-         iMNIRbCvPXODQ==
-Received: by mail-ed1-f51.google.com with SMTP id s11so12526061edd.5;
-        Fri, 29 Jan 2021 15:39:30 -0800 (PST)
-X-Gm-Message-State: AOAM530Cpz1KAMEel8DPJcyIdevJ3QxbZf4woGUlZHftxvOtfnKl3H4O
-        3lnpy08menNckY5NodI5WarIB97iDmSsjZPbBA==
-X-Google-Smtp-Source: ABdhPJwj8wUk4PoqlM3tcYKPzYCPGNO0F0zImcCS2wvT5z3jofsqBR0sdYUgKNDBI+L9oGNn3ZsyveDUbiuFp1F4y+o=
-X-Received: by 2002:aa7:d987:: with SMTP id u7mr7891493eds.62.1611963569366;
- Fri, 29 Jan 2021 15:39:29 -0800 (PST)
+        id S233193AbhA3CRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jan 2021 21:17:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232836AbhA3CRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 21:17:00 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55F63C061756;
+        Fri, 29 Jan 2021 18:02:31 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id w1so15602650ejf.11;
+        Fri, 29 Jan 2021 18:02:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=lWOW7Am2jw5lybt8Sbf6Grdt5LyyZ81zyiJX1cf+NHM=;
+        b=LnUDAChPDt9mSpaSfBx0iTbzwCCR2nqzECbqcY4XtvOOiwZkNcPP2cuxyP8o05XZ3X
+         fy4KmV04FDAM1G+l2nzOVrW/RHyno/FIdvKw5sAdjqyC2xac6K6FOLacOK4bb1Q3sRR8
+         mmVQgqY6sgpBKqxBROse3ZSBOGG5rYDD5SED+JbszNHSJvM8UzXD0OZO+vnMUex+6HeK
+         PORuWS3cBxSbeI8ULzT0i1eyikb2dqIzFVmeNTD0kQBKGUvggcqY6BodpJqMHlLxqPF7
+         T5t1d/RSLDXsIzkZyLxRaeNYGxypY+tcvy/hTjNvp/E93bFmKHcu4v4HxuHJfwK7VsyI
+         4coQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lWOW7Am2jw5lybt8Sbf6Grdt5LyyZ81zyiJX1cf+NHM=;
+        b=UGQKW++IQxuhpFea0R0FJtV9vL8A0yWX5CKRLy0J2ttIPFP2O8YTNIJVtWxpW/6VKY
+         hGzMPM9lKehmTrKI2lihXCQoKfB4CU0fSZvraCxluuqXyjjfcqKW9JWFfu1VLbRjt34W
+         mzhyiqPCYpZkEj1hGjeeXcu3q866mQEuITCgOqao8MLy5+brCxQJKmyb63MW/H6zUPru
+         Bxe4OK9Lip5kle7/j+4X08xoLYo4eBxb5c/Idhvtp2NZIUVNTFagWo9fWXdoC/ymKxwC
+         17N+pVHrmDAAvb0pVMNBef/iU9SwqDgzY3K18Am9+JPCzGgt7h685XhLyMsGuS2O36IT
+         HhpA==
+X-Gm-Message-State: AOAM530mFvQe4lMP81LmE8hIH5uCYwfcNZzSgH/lWm43SK4cr045F2hD
+        abSRa7hOpcQourcH77mysJ8=
+X-Google-Smtp-Source: ABdhPJzhn1Ok/ZrdJEVffsdAfcTDBUaiBkfIVk0nB5XKD2dRHM07QWNjji0MA9JaNpYm586EXE9QXg==
+X-Received: by 2002:a17:906:eb95:: with SMTP id mh21mr7306422ejb.175.1611972149962;
+        Fri, 29 Jan 2021 18:02:29 -0800 (PST)
+Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
+        by smtp.gmail.com with ESMTPSA id s13sm5556926edi.92.2021.01.29.18.02.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Jan 2021 18:02:29 -0800 (PST)
+Date:   Sat, 30 Jan 2021 04:02:27 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
+        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        davem@davemloft.net, UNGLinuxDriver@microchip.com,
+        Woojung.Huh@microchip.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/8] dt-bindings: net: dsa: dt bindings for
+ microchip lan937x
+Message-ID: <20210130020227.ahiee4goetpp2hb7@skbuf>
+References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
+ <20210128064112.372883-2-prasanna.vengateshan@microchip.com>
 MIME-Version: 1.0
-References: <20210128175225.3102958-1-dmitry.baryshkov@linaro.org>
- <20210128175225.3102958-4-dmitry.baryshkov@linaro.org> <CAL_JsqLRn40h0K-Fze5m1LS2+raLp94LariMkUh7XtekTBT5+Q@mail.gmail.com>
- <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org>
-In-Reply-To: <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 29 Jan 2021 17:39:18 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJcBDfa6s7sG0Zho41T7zbVg15GH2WDh+inKNtTs+CcZw@mail.gmail.com>
-Message-ID: <CAL_JsqJcBDfa6s7sG0Zho41T7zbVg15GH2WDh+inKNtTs+CcZw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
- on RB5 platform
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210128064112.372883-2-prasanna.vengateshan@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 9:45 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On 28/01/2021 22:26, Rob Herring wrote:
-> > On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> >>
-> >> Some Qualcomm platforms require to power up an external device before
-> >> probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
-> >> to be powered up before PCIe0 bus is probed. Add a quirk to the
-> >> respective PCIe root bridge to attach to the power domain if one is
-> >> required, so that the QCA chip is started before scanning the PCIe bus.
-> >
-> > This is solving a generic problem in a specific driver. It needs to be
-> > solved for any PCI host and any device.
->
-> Ack. I see your point here.
->
-> As this would require porting code from powerpc/spark of-pci code and
-> changing pcie port driver to apply power supply before bus probing
-> happens, I'd also ask for the comments from PCI maintainers. Will that
-> solution be acceptable to you?
+On Thu, Jan 28, 2021 at 12:11:05PM +0530, Prasanna Vengateshan wrote:
+> +  spi-max-frequency:
+> +    maximum: 50000000
 
-Oh good, something exists. :)
+And it actually works at 50 MHz? Cool.
 
-FYI, there's another similar case needing this that just popped up[1].
+> +
+> +  reset-gpios:
+> +    description: Optional gpio specifier for a reset line
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    //Ethernet switch connected via spi to the host, CPU port wired to eth1
+> +    eth1 {
 
-Rob
+So if you do bother to add the DSA master in the example, can this be
+&eth1 so that we could associate with the phandle below?
 
-[1] https://lore.kernel.org/linux-pci/20210129173057.30288c9d@coco.lan/
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      fixed-link {
+> +        speed = <1000>;
+> +        full-duplex;
+> +      };
+> +    };
+> +
+> +    spi1 {
+
+Is this a label or a node name? spi1 or spi@1?
+
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      pinctrl-0 = <&pinctrl_spi_ksz>;
+> +      cs-gpios = <0>, <0>, <0>, <&pioC 28 0>;
+> +      id = <1>;
+
+I know this is the SPI controller and thus mostly irrelevant, but what
+is "id = <1>"?
+
+> +
+> +      lan9374: switch@0 {
+> +        compatible = "microchip,lan9374";
+> +        reg = <0>;
+> +
+> +        spi-max-frequency = <44000000>;
+> +
+> +        ethernet-ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +          port@0 {
+> +            reg = <0>;
+> +            label = "lan1";
+> +          };
+> +          port@1 {
+> +            reg = <1>;
+> +            label = "lan2";
+> +          };
+> +          port@2 {
+> +            reg = <7>;
+
+reg should match node index (port@2), here and everywhere below. As for
+the net device labels, I'm not sure if the mismatch is deliberate there.
+
+> +            label = "lan3";
+> +          };
+> +          port@3 {
+> +            reg = <2>;
+> +            label = "lan4";
+> +          };
+> +          port@4 {
+> +            reg = <6>;
+> +            label = "lan5";
+> +          };
+> +          port@5 {
+> +            reg = <3>;
+> +            label = "lan6";
+> +          };
+> +          port@6 {
+> +            reg = <4>;
+> +            label = "cpu";
+
+label for CPU port is not needed/used.
+
+> +            ethernet = <&eth1>;
+> +            fixed-link {
+> +              speed = <1000>;
+> +              full-duplex;
+> +            };
+> +          };
+> +          port@7 {
+> +            reg = <5>;
+> +            label = "lan7";
+> +            fixed-link {
+> +              speed = <1000>;
+> +              full-duplex;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
