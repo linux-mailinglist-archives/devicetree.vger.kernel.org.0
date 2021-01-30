@@ -2,60 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C194309550
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 14:25:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E08DE30955D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 14:32:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229832AbhA3NZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 08:25:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36748 "EHLO mail.kernel.org"
+        id S229468AbhA3Nbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 08:31:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37286 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229620AbhA3NZD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 30 Jan 2021 08:25:03 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DADB764E05;
-        Sat, 30 Jan 2021 13:24:21 +0000 (UTC)
+        id S229498AbhA3Nbx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 30 Jan 2021 08:31:53 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5915764E0C;
+        Sat, 30 Jan 2021 13:31:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612013062;
-        bh=rcVz3odlRQxvQVQDt+9gbC1th3nxcGUpxsJgHDut048=;
+        s=k20201202; t=1612013471;
+        bh=BFAHtHR5IFSLTOfNrxRmKhi6iRXq1wz2DrzkLLluFxs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KDdugzK9W9KR/fcOS7nXjpQfhSXzs0405o+HkgarDWKnAY0+zIt6ozo0ya/EE/pvr
-         JnfIhI98VXNwViOQAdyofluqJ0EhU/N4uefEUd8ITSIUAU2DqpQZjqzdqQBcJqt81e
-         epbKlsYm1V3DuB/6zm97AWDuNgxfWcowycBZLt5gXOsWePItrXcUcLm6oRq/gRraqQ
-         rMYE6cCaVMtz7w1z0HjKh5LrOZvF4mpq0lVAHf3fVbjt1jGS/SPdIddXsulPEFthPG
-         wMMlaZ2Ua7CX5iPkoIyegTUzLKOVZHUKBBQRwEJM9sdnALpP3K0WygloLTAbCV0MPr
-         P4q0h5U5rdkkA==
-Date:   Sat, 30 Jan 2021 21:24:18 +0800
+        b=HgwQyuW7yTnQCp4+WQ87tIBxNotWkHLmm2DqdvgDrMEn9d5fRoGcgHPElh+ycik64
+         vCpwab319PeBFwQVAjBK1zxJPW9brnMMOtZFOXJei763bBsHKqEC0q4O7CAtHBfxho
+         DRtiPA98ZNP/AbdkS4jwogGDdMzIvDwVVVl8VYRkzQluPk9kMMbreqgylZ3I/bFfdY
+         6kiGlK9eHWW7adDaoMWIkbIF2OvVagWbQKFCIzMl3qEuGFmZeT19jj9SWUxm2wYPZy
+         ujbMW1x5fs0JWqMNgU61pVzHZgScl44xG6Zams91PFj0h8hstHpwpFzO9CVaTr5zdZ
+         WFYghVAWZ0ASw==
+Date:   Sat, 30 Jan 2021 21:31:06 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Kuldeep Singh <kuldeep.singh@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Li Yang <leoyang.li@nxp.com>
-Subject: Re: [Patch v2 0/3] Enable flexcan support in LS1028A/LX2160A
-Message-ID: <20210130132417.GH907@dragon>
-References: <1611226659-30129-1-git-send-email-kuldeep.singh@nxp.com>
+To:     Zyta Szpak <zr@semihalf.com>
+Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: freescale: fix dcfg address range
+Message-ID: <20210130133106.GI907@dragon>
+References: <20210121155237.15517-1-zr@semihalf.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1611226659-30129-1-git-send-email-kuldeep.singh@nxp.com>
+In-Reply-To: <20210121155237.15517-1-zr@semihalf.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 04:27:36PM +0530, Kuldeep Singh wrote:
-> This patch set adds device-tree support for LX2160A-RDB/QDS.
+On Thu, Jan 21, 2021 at 04:52:37PM +0100, Zyta Szpak wrote:
+> Dcfg was overlapping with clockgen address space which resulted
+> in failure in memory allocation for dcfg. According regs description
+> dcfg size should not be bigger than 4KB.
 > 
-> Also, update flexcan entry for LS1028A and enable support further for 
-> LS1028A-RDB/QDS.
-> 
-> Patch1: Add dtsi and dts properties for LX2160A
-> Patch2: Update dtsi properties for LS1028A
-> Patch3: Add dts properties for LS1028A.
-> 
-> Changes since v1:
-> -Use clockgen constants instead of numeric numbers
-> 
-> Kuldeep Singh (3):
->   arm64: dts: lx2160a: Add flexcan support
->   arm64: dtsi: ls1028a: Update flexcan properties
->   arm64: dts: ls1028a: Enable flexcan support for LS1028A-RDB/QDS
+> Signed-off-by: Zyta Szpak <zr@semihalf.com>
 
-Applied all, thanks.
+I changed subject prefix to 'arm64: dts: ls1046a: ...', and applied the
+patch with Fixes tag below.
+
+Fixes: 8126d88162a5 ("arm64: dts: add QorIQ LS1046A SoC support")
+
+Shawn
+
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> index 025e1f587662..565934cbfa28 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> @@ -385,7 +385,7 @@
+>  
+>  		dcfg: dcfg@1ee0000 {
+>  			compatible = "fsl,ls1046a-dcfg", "syscon";
+> -			reg = <0x0 0x1ee0000 0x0 0x10000>;
+> +			reg = <0x0 0x1ee0000 0x0 0x1000>;
+>  			big-endian;
+>  		};
+>  
+> -- 
+> 2.17.1
+> 
