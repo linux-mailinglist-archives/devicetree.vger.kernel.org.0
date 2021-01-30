@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A52B13093C5
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:55:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D7BB3093CD
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:57:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229786AbhA3Jy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 04:54:57 -0500
-Received: from mga02.intel.com ([134.134.136.20]:10262 "EHLO mga02.intel.com"
+        id S230211AbhA3J5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 04:57:18 -0500
+Received: from mga12.intel.com ([192.55.52.136]:24253 "EHLO mga12.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233251AbhA3DAv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 22:00:51 -0500
-IronPort-SDR: x5HiimzjVaAkSR2TZkPdKrIVR9c3BKES0ZhWPTLDD0Eq9zXIh0Z71EmVfNkfOA22lGK8TENaR8
- wMXFA4JtWGcw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="167606740"
+        id S232683AbhA3DAb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Jan 2021 22:00:31 -0500
+IronPort-SDR: rUMr80GEYNWdBdgKZQRWrVoh2G+jo7YUP5I9QkATxm0moDNnya3VdqXRpmrzb27gppWOm+45am
+ VNDZUFWh/T6A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="159675267"
 X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="167606740"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:29 -0800
-IronPort-SDR: 43bHuH5UXskUjL2Xh5Q84a1+DcVgjqvG9cf4HDfsvLXwK+suTnWCbIDNMMalh8PtNisy4JUW1E
- 2kqqN6xivq0Q==
+   d="scan'208";a="159675267"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:29 -0800
+IronPort-SDR: rMK9oS01LngBYi77Q3Ky5ty3MxIj74cIa8nhW1+pNBpc6PLOJ7fSo55A/b7uAFtUKDzZnc23PP
+ GP6U+HbmnmlA==
 X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="352488065"
+   d="scan'208";a="431263326"
 Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:28 -0800
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:29 -0800
 Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id DE68B636D;
-        Fri, 29 Jan 2021 18:21:27 -0800 (PST)
+        by smtp.ostc.intel.com (Postfix) with ESMTP id 9C54E6371;
+        Fri, 29 Jan 2021 18:21:29 -0800 (PST)
 Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
-        id D2E19362E90; Fri, 29 Jan 2021 18:21:27 -0800 (PST)
+        id 905A3363674; Fri, 29 Jan 2021 18:21:29 -0800 (PST)
 From:   mgross@linux.intel.com
 To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
         bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
@@ -40,9 +40,9 @@ Cc:     linux-kernel@vger.kernel.org,
         Paul Murphy <paul.j.murphy@intel.com>,
         devicetree@vger.kernel.org,
         Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-Subject: [PATCH v3 06/34] dt-bindings: Add bindings for Keem Bay VPU IPC driver
-Date:   Fri, 29 Jan 2021 18:20:21 -0800
-Message-Id: <20210130022124.65083-7-mgross@linux.intel.com>
+Subject: [PATCH v4 06/34] dt-bindings: Add bindings for Keem Bay VPU IPC driver
+Date:   Fri, 29 Jan 2021 18:20:56 -0800
+Message-Id: <20210130022124.65083-42-mgross@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210130022124.65083-1-mgross@linux.intel.com>
 References: <20210130022124.65083-1-mgross@linux.intel.com>
@@ -57,20 +57,21 @@ Add DT bindings documentation for the Keem Bay VPU IPC driver.
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
 Reviewed-by: Mark Gross <mgross@linux.intel.com>
-Signed-off-by: Paul Murphy <paul.j.murphy@intel.com>
 Co-developed-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Signed-off-by: Paul Murphy <paul.j.murphy@intel.com>
 Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Signed-off-by: Mark Gross <mgross@linux.intel.com>
 ---
- .../soc/intel/intel,keembay-vpu-ipc.yaml      | 153 ++++++++++++++++++
- 1 file changed, 153 insertions(+)
+ .../soc/intel/intel,keembay-vpu-ipc.yaml      | 143 ++++++++++++++++++
+ 1 file changed, 143 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
 
 diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
 new file mode 100644
-index 000000000000..cd1c4abe8bc9
+index 000000000000..9dae8ab4c723
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
-@@ -0,0 +1,153 @@
+@@ -0,0 +1,143 @@
 +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +# Copyright (c) Intel Corporation. All rights reserved.
 +%YAML 1.2
@@ -82,16 +83,21 @@ index 000000000000..cd1c4abe8bc9
 +
 +maintainers:
 +  - Paul Murphy <paul.j.murphy@intel.com>
++  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 +
 +description:
-+  The VPU IPC driver facilitates loading of firmware, control, and communication
-+  with the VPU over the IPC FIFO in the Intel Keem Bay SoC.
++  This binding provides support for the Vision Processing Unit (VPU) found on
++  the Intel Keem Bay SoC.
++
++  The VPU is started and controlled by SoC CPU, which is in charge of loading
++  the VPU firmware. The SoC CPU can communicate with the VPU firmware using an
++  Inter-Processor Communication (IPC) mechanism.
 +
 +properties:
 +  compatible:
 +    oneOf:
 +      - items:
-+        - const: intel,keembay-vpu-ipc
++          - const: intel,keembay-vpu-ipc
 +
 +  reg:
 +    items:
@@ -155,24 +161,11 @@ index 000000000000..cd1c4abe8bc9
 +      - const: nce_wdt
 +      - const: mss_wdt
 +
-+  intel,keembay-vpu-ipc-nce-wdt-redirect:
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    description:
-+      Number to which we will request that the NCE sub-system
-+      re-directs it's WDT timeout IRQ
-+
-+  intel,keembay-vpu-ipc-mss-wdt-redirect:
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    description:
-+      Number to which we will request that the MSS sub-system
-+      re-directs it's WDT timeout IRQ
-+
 +  intel,keembay-vpu-ipc-imr:
 +    $ref: "/schemas/types.yaml#/definitions/uint32"
 +    description:
-+      IMR (isolated memory region) number which we will request
-+      the runtime service uses to protect the VPU memory region
-+      before authentication
++      Isolated Memory Region (IMR) number that the runtime service must use to
++      protect the VPU memory region before authentication.
 +
 +  intel,keembay-vpu-ipc-id:
 +    $ref: "/schemas/types.yaml#/definitions/uint32"
@@ -219,8 +212,6 @@ index 000000000000..cd1c4abe8bc9
 +        interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>,
 +                     <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
 +        interrupt-names = "nce_wdt", "mss_wdt";
-+        intel,keembay-vpu-ipc-nce-wdt-redirect = <63>;
-+        intel,keembay-vpu-ipc-mss-wdt-redirect = <47>;
 +        intel,keembay-vpu-ipc-imr = <9>;
 +        intel,keembay-vpu-ipc-id = <0>;
 +    };
