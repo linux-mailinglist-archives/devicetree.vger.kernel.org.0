@@ -2,52 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72F773096C0
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 17:29:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 097023096AD
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 17:24:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230360AbhA3Q21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 11:28:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42648 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231996AbhA3Oes (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 30 Jan 2021 09:34:48 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8B3AC64D9D;
-        Sat, 30 Jan 2021 14:33:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612017212;
-        bh=2FJck57w/Ap9lWDCQ4s/1f+rEKej3z1hwhEfv9bDlng=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h7EARsaKYLCbQ62o/+7eyiMH+x1sH/xvf+BRFOVwt09Mj3sTPK4DalwA5kO8akq9s
-         0a10mlLT0Rq3AVOqcYv1HGXAepiqvTAX1MfiZEqZuCHX0wfZhexQ+PK3yUY2YD/ina
-         vLCJknDgXbF91sdsNxoDACyAZyOnfAT1l2UNZGRxIClZYSFeW7X+IGMfoC638HJsM3
-         hbSAkWva3jz0EH0VQdwzjBxxPUx+ggMlGcYuKYyVJ51fJN4LIkhD4p0cyPyEBcGM3V
-         95zCvw7xWxk3FssLMzwnRycfhR5Ufuztr1HOcNN6h7e18m64+cwISGP/c2oOtDvha+
-         by9aOkG/piJ0g==
-Date:   Sat, 30 Jan 2021 22:33:27 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     m.felsch@pengutronix.de, krzk@kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com,
-        will@kernel.org
-Subject: Re: [PATCH v6 1/3] dt-bindings: arm: imx: add imx8mm nitrogen support
-Message-ID: <20210130143326.GO907@dragon>
-References: <20210128193554.2496095-1-adrien.grassein@gmail.com>
- <20210128193554.2496095-2-adrien.grassein@gmail.com>
+        id S232072AbhA3Out (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 09:50:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41886 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232023AbhA3Oss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 09:48:48 -0500
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C01E4C061574;
+        Sat, 30 Jan 2021 06:48:07 -0800 (PST)
+Received: by mail-qv1-xf31.google.com with SMTP id a1so5930920qvd.13;
+        Sat, 30 Jan 2021 06:48:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=b0102XPIBtHmkqk//PEwHujbabWX9vQEJVN3acCy3Bg=;
+        b=C4xiYY1/KwPSgtvAoSNYQZtskqWzVtQIU5wHQCyILHtiTZCFJc2WwOpkbkeUkC9LwQ
+         t1QLmLalao9nUownX0xNS3iR3PxgwfDXYhOWRp42cYihMG5aPNgmuOaiD/SWVK4ZLa4i
+         0V7mmMQHOhjljhjlJ8DVFC9KE6C58BeQADiiK5mB90AGp7TyN9baq0XGzaMF/tFkXVZF
+         U2ws0rH/AWBHOJUMtzrL2jmd5vr4k4rH8KoJk4FPD88qwg6knGUTQSTfKt8SlzUAruZ8
+         ojZMbv+LZDr+E47mt2OJyvU59Vi2OfG9CXrg+6viK+nrO7FuDUfs1W8fhM9MgJk1wwCu
+         sDQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=b0102XPIBtHmkqk//PEwHujbabWX9vQEJVN3acCy3Bg=;
+        b=fFB6U0cZtqSkEOI08vCRL0xDQgXtyC60q57My/xqn3XGBF8SFQ8Y9qP6i+/OY6ljHz
+         YVCqNy5CSVzlXbRcXIVt4bycZd8RsTOlYhS+LAINbYc8ndw+XUEJlu4ZKmKCCLeO2/gA
+         SyzmbkEQpFKsnkbz6xNMh8bKBOZHciGWp9v1S5CkagO2Ps10x2wv9m7nEJbXzIDpECbT
+         VpUhmZt5lbp9U/OuADKY9b7DZqMF0q10cx/0U5udiuDn0r9h29F55LM2U90INUz2ZxYK
+         AkRQcpIxVs5VfZqlpvBo4cEe7KROUhMl9kpnZiwucxlIqkhPYj+9cd6x7cdc6E+c8Dk8
+         WryQ==
+X-Gm-Message-State: AOAM531E5N5pxqES85dGcV4RyI+y9DRWFN0U2GTORkjzT3smf6gD9+PN
+        qiHQoxu1sL+ouQszeUwkLD8=
+X-Google-Smtp-Source: ABdhPJza6GzYPfzdBkqIrTaVyFw8hpdEhhRKKUNYH41Trrei11W65ijDLgHa6Wnm6WtNcYoqQkSYLg==
+X-Received: by 2002:ad4:56ef:: with SMTP id cr15mr8407666qvb.45.1612018086979;
+        Sat, 30 Jan 2021 06:48:06 -0800 (PST)
+Received: from localhost.localdomain ([2804:431:d77e:d35b:c52:e75f:e3d0:6528])
+        by smtp.gmail.com with ESMTPSA id h5sm5212129qti.22.2021.01.30.06.48.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Jan 2021 06:48:06 -0800 (PST)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     robh+dt@kernel.org
+Cc:     gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH] dt-bindings: serial: imx: Switch to my personal address
+Date:   Sat, 30 Jan 2021 11:47:51 -0300
+Message-Id: <20210130144751.133641-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210128193554.2496095-2-adrien.grassein@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 08:35:52PM +0100, Adrien Grassein wrote:
-> The Nitrogen8M Mini is an ARM based single board computer (SBC).
-> 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+My nxp account will expire soon, so switch to my personal e-mail
+address.
 
-Applied all 3, thanks.
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml  | 2 +-
+ Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+index 9702c07a6b6c..2b06c6ce4a75 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Freescale i.MX Universal Asynchronous Receiver/Transmitter (UART)
+ 
+ maintainers:
+-  - Fabio Estevam <fabio.estevam@nxp.com>
++  - Fabio Estevam <festevam@gmail.com>
+ 
+ allOf:
+   - $ref: "serial.yaml"
+diff --git a/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml b/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
+index ce1d89496342..14c7594c88c6 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Freescale MXS Application UART (AUART)
+ 
+ maintainers:
+-  - Fabio Estevam <fabio.estevam@nxp.com>
++  - Fabio Estevam <festevam@gmail.com>
+ 
+ allOf:
+   - $ref: "serial.yaml"
+-- 
+2.25.1
+
