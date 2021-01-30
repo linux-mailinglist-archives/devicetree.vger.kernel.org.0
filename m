@@ -2,102 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E616030974D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 18:31:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B8A630977C
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 19:12:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231308AbhA3RbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 12:31:08 -0500
-Received: from mail1.protonmail.ch ([185.70.40.18]:45541 "EHLO
-        mail1.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231565AbhA3RbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 12:31:06 -0500
-Date:   Sat, 30 Jan 2021 17:30:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1612027817;
-        bh=oQy4RevNDWFClH37MnwytBl8YcA2kgCeFHUG6CufrzE=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=RyCG1sqmI4l0wPx1P5Qgj3Zu5LJqGikvt9h7HNMPTiRdk0Zg91K07J8dwktAtCZMR
-         yQtNtj+aBRVs1md5Kd28/+p11tIJym2pbHhA5BvG2NJyA3qWSpFLLJmJrxVUSZjlwr
-         JVRahuP3RPLPKTs3fsLeIHG/D87jly/ZQbQzbYW0=
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>
-From:   Timon Baetz <timon.baetz@protonmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        Timon Baetz <timon.baetz@protonmail.com>
-Reply-To: Timon Baetz <timon.baetz@protonmail.com>
-Subject: [PATCH 3/3] power: supply: max8997_charger: Switch to new binding
-Message-ID: <20210130172747.2022977-4-timon.baetz@protonmail.com>
-In-Reply-To: <20210130172747.2022977-1-timon.baetz@protonmail.com>
-References: <20210130172747.2022977-1-timon.baetz@protonmail.com>
+        id S230085AbhA3SLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 13:11:31 -0500
+Received: from mail-out.m-online.net ([212.18.0.9]:59922 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229468AbhA3SLa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 13:11:30 -0500
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4DSj1B237sz1qrg9;
+        Sat, 30 Jan 2021 19:10:22 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4DSj1B18STz1tYTW;
+        Sat, 30 Jan 2021 19:10:22 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id AyVOjtfBXXVS; Sat, 30 Jan 2021 19:10:20 +0100 (CET)
+X-Auth-Info: l9tz3IwHnR7ol2YSdAVe1iHdlvPABt/QJq2F4Cka6hU=
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Sat, 30 Jan 2021 19:10:20 +0100 (CET)
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Douglas Anderson <dianders@chromium.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add TI SN65DSI83 bindings
+Date:   Sat, 30 Jan 2021 19:10:13 +0100
+Message-Id: <20210130181014.161457-1-marex@denx.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Get regulator from parent device's node and extcon by name.
+Add DT binding document for TI SN65DSI83 DSI to LVDS bridge.
 
-Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Douglas Anderson <dianders@chromium.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Stephen Boyd <swboyd@chromium.org>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
 ---
- drivers/power/supply/max8997_charger.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ .../bindings/display/bridge/ti,sn65dsi83.yaml | 128 ++++++++++++++++++
+ 1 file changed, 128 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
 
-diff --git a/drivers/power/supply/max8997_charger.c b/drivers/power/supply/=
-max8997_charger.c
-index 321bd6b8ee41..625d8cc4312a 100644
---- a/drivers/power/supply/max8997_charger.c
-+++ b/drivers/power/supply/max8997_charger.c
-@@ -168,6 +168,7 @@ static int max8997_battery_probe(struct platform_device=
- *pdev)
- =09int ret =3D 0;
- =09struct charger_data *charger;
- =09struct max8997_dev *iodev =3D dev_get_drvdata(pdev->dev.parent);
-+=09struct device_node *np =3D pdev->dev.of_node;
- =09struct i2c_client *i2c =3D iodev->i2c;
- =09struct max8997_platform_data *pdata =3D iodev->pdata;
- =09struct power_supply_config psy_cfg =3D {};
-@@ -237,20 +238,23 @@ static int max8997_battery_probe(struct platform_devi=
-ce *pdev)
- =09=09return PTR_ERR(charger->battery);
- =09}
-=20
-+=09// grab regulator from parent device's node
-+=09pdev->dev.of_node =3D iodev->dev->of_node;
- =09charger->reg =3D devm_regulator_get_optional(&pdev->dev, "charger");
-+=09pdev->dev.of_node =3D np;
- =09if (IS_ERR(charger->reg)) {
- =09=09if (PTR_ERR(charger->reg) =3D=3D -EPROBE_DEFER)
- =09=09=09return -EPROBE_DEFER;
- =09=09dev_info(&pdev->dev, "couldn't get charger regulator\n");
- =09}
--=09charger->edev =3D extcon_get_edev_by_phandle(&pdev->dev, 0);
--=09if (IS_ERR(charger->edev)) {
--=09=09if (PTR_ERR(charger->edev) =3D=3D -EPROBE_DEFER)
-+=09charger->edev =3D extcon_get_extcon_dev("max8997-muic");
-+=09if (IS_ERR_OR_NULL(charger->edev)) {
-+=09=09if (!charger->edev)
- =09=09=09return -EPROBE_DEFER;
- =09=09dev_info(charger->dev, "couldn't get extcon device\n");
- =09}
-=20
--=09if (!IS_ERR(charger->reg) && !IS_ERR(charger->edev)) {
-+=09if (!IS_ERR(charger->reg) && !IS_ERR_OR_NULL(charger->edev)) {
- =09=09INIT_WORK(&charger->extcon_work, max8997_battery_extcon_evt_worker);
- =09=09ret =3D devm_add_action(&pdev->dev, max8997_battery_extcon_evt_stop_=
-work, charger);
- =09=09if (ret) {
---=20
-2.25.1
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+new file mode 100644
+index 000000000000..77e1bafd8cd8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+@@ -0,0 +1,128 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SN65DSI83 DSI to LVDS bridge chip
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++description: |
++  The Texas Instruments SN65DSI83 bridge takes MIPI DSI in and outputs LVDS.
++  https://www.ti.com/general/docs/lit/getliterature.tsp?genericPartNumber=sn65dsi83&fileType=pdf
++
++properties:
++  compatible:
++    const: ti,sn65dsi83
++
++  reg:
++    const: 0x2d
++
++  enable-gpios:
++    maxItems: 1
++    description: GPIO specifier for bridge_en pin (active high).
++
++  ports:
++    type: object
++    additionalProperties: false
++
++    properties:
++      "#address-cells":
++        const: 1
++
++      "#size-cells":
++        const: 0
++
++      port@0:
++        type: object
++        additionalProperties: false
++
++        description:
++          Video port for MIPI DSI input
++
++        properties:
++          reg:
++            const: 0
++
++          endpoint:
++            type: object
++            additionalProperties: false
++            properties:
++              remote-endpoint: true
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++
++        required:
++          - reg
++
++      port@1:
++        type: object
++        additionalProperties: false
++
++        description:
++          Video port for LVDS output (panel or bridge).
++
++        properties:
++          reg:
++            const: 1
++
++          endpoint:
++            type: object
++            additionalProperties: false
++            properties:
++              remote-endpoint: true
++
++        required:
++          - reg
++
++    required:
++      - "#address-cells"
++      - "#size-cells"
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - enable-gpios
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      bridge@2d {
++        compatible = "ti,sn65dsi83";
++        reg = <0x2d>;
++
++        enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          port@0 {
++            reg = <0>;
++            endpoint {
++              remote-endpoint = <&dsi0_out>;
++              data-lanes = <1 2 3 4>;
++            };
++          };
++
++          port@1 {
++            reg = <1>;
++            endpoint {
++              remote-endpoint = <&panel_in_lvds>;
++            };
++          };
++        };
++      };
++    };
+-- 
+2.29.2
 
