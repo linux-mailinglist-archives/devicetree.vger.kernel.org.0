@@ -2,100 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 097023096AD
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 17:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D655A3096A1
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 17:21:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232072AbhA3Out (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 09:50:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41886 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232023AbhA3Oss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 09:48:48 -0500
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C01E4C061574;
-        Sat, 30 Jan 2021 06:48:07 -0800 (PST)
-Received: by mail-qv1-xf31.google.com with SMTP id a1so5930920qvd.13;
-        Sat, 30 Jan 2021 06:48:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=b0102XPIBtHmkqk//PEwHujbabWX9vQEJVN3acCy3Bg=;
-        b=C4xiYY1/KwPSgtvAoSNYQZtskqWzVtQIU5wHQCyILHtiTZCFJc2WwOpkbkeUkC9LwQ
-         t1QLmLalao9nUownX0xNS3iR3PxgwfDXYhOWRp42cYihMG5aPNgmuOaiD/SWVK4ZLa4i
-         0V7mmMQHOhjljhjlJ8DVFC9KE6C58BeQADiiK5mB90AGp7TyN9baq0XGzaMF/tFkXVZF
-         U2ws0rH/AWBHOJUMtzrL2jmd5vr4k4rH8KoJk4FPD88qwg6knGUTQSTfKt8SlzUAruZ8
-         ojZMbv+LZDr+E47mt2OJyvU59Vi2OfG9CXrg+6viK+nrO7FuDUfs1W8fhM9MgJk1wwCu
-         sDQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=b0102XPIBtHmkqk//PEwHujbabWX9vQEJVN3acCy3Bg=;
-        b=fFB6U0cZtqSkEOI08vCRL0xDQgXtyC60q57My/xqn3XGBF8SFQ8Y9qP6i+/OY6ljHz
-         YVCqNy5CSVzlXbRcXIVt4bycZd8RsTOlYhS+LAINbYc8ndw+XUEJlu4ZKmKCCLeO2/gA
-         SyzmbkEQpFKsnkbz6xNMh8bKBOZHciGWp9v1S5CkagO2Ps10x2wv9m7nEJbXzIDpECbT
-         VpUhmZt5lbp9U/OuADKY9b7DZqMF0q10cx/0U5udiuDn0r9h29F55LM2U90INUz2ZxYK
-         AkRQcpIxVs5VfZqlpvBo4cEe7KROUhMl9kpnZiwucxlIqkhPYj+9cd6x7cdc6E+c8Dk8
-         WryQ==
-X-Gm-Message-State: AOAM531E5N5pxqES85dGcV4RyI+y9DRWFN0U2GTORkjzT3smf6gD9+PN
-        qiHQoxu1sL+ouQszeUwkLD8=
-X-Google-Smtp-Source: ABdhPJza6GzYPfzdBkqIrTaVyFw8hpdEhhRKKUNYH41Trrei11W65ijDLgHa6Wnm6WtNcYoqQkSYLg==
-X-Received: by 2002:ad4:56ef:: with SMTP id cr15mr8407666qvb.45.1612018086979;
-        Sat, 30 Jan 2021 06:48:06 -0800 (PST)
-Received: from localhost.localdomain ([2804:431:d77e:d35b:c52:e75f:e3d0:6528])
-        by smtp.gmail.com with ESMTPSA id h5sm5212129qti.22.2021.01.30.06.48.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Jan 2021 06:48:06 -0800 (PST)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     robh+dt@kernel.org
-Cc:     gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH] dt-bindings: serial: imx: Switch to my personal address
-Date:   Sat, 30 Jan 2021 11:47:51 -0300
-Message-Id: <20210130144751.133641-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S229990AbhA3QUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 11:20:37 -0500
+Received: from relay06.th.seeweb.it ([5.144.164.167]:49247 "EHLO
+        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232259AbhA3Pot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 10:44:49 -0500
+Received: from [192.168.1.101] (abaf219.neoplus.adsl.tpnet.pl [83.6.169.219])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 542643EBA4;
+        Sat, 30 Jan 2021 16:42:38 +0100 (CET)
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: msm8916-alcatel-idol347: Add
+ framebuffer support
+To:     Vincent Knecht <vincent.knecht@mailoo.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        allen <allen.chen@ite.com.tw>,
+        Max Merchel <Max.Merchel@tq-group.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20210130105717.2628781-1-vincent.knecht@mailoo.org>
+ <20210130105717.2628781-5-vincent.knecht@mailoo.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <8edef364-e60e-2bc1-ffef-1f30dd2fffaf@somainline.org>
+Date:   Sat, 30 Jan 2021 16:42:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210130105717.2628781-5-vincent.knecht@mailoo.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-My nxp account will expire soon, so switch to my personal e-mail
-address.
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml  | 2 +-
- Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+On 30.01.2021 11:57, Vincent Knecht wrote:
+> Add simple-framebuffer support and related reserved-memory block.
+>
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+>  .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 31 +++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+> index 540b1fa4b260..e4d22cec8ff0 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+> @@ -3,6 +3,7 @@
+>  /dts-v1/;
+>  
+>  #include "msm8916-pm8916.dtsi"
+> +#include <dt-bindings/clock/qcom,gcc-msm8916.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/input.h>
+>  
+> @@ -16,6 +17,36 @@ aliases {
+>  
+>  	chosen {
+>  		stdout-path = "serial0";
+> +
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		framebuffer0: framebuffer@83200000 {
+> +			status = "okay";
+> +			compatible = "simple-framebuffer";
+> +			reg = <0x0 0x83200000 0x0 (720 * 1280 * 3)>;
+> +			width = <720>;
+> +			height = <1280>;
+> +			stride = <(720 * 3)>;
+> +			format = "r8g8b8";
+> +			power-domains = <&gcc MDSS_GDSC>;
+> +			clocks = <&gcc GCC_MDSS_AHB_CLK>,
+> +				 <&gcc GCC_MDSS_VSYNC_CLK>,
+> +				 <&gcc GCC_MDSS_AXI_CLK>,
+> +				 <&gcc GCC_MDSS_MDP_CLK>,
+> +				 <&gcc GCC_MDSS_BYTE0_CLK>,
+> +				 <&gcc GCC_MDSS_PCLK0_CLK>,
 
-diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-index 9702c07a6b6c..2b06c6ce4a75 100644
---- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Freescale i.MX Universal Asynchronous Receiver/Transmitter (UART)
- 
- maintainers:
--  - Fabio Estevam <fabio.estevam@nxp.com>
-+  - Fabio Estevam <festevam@gmail.com>
- 
- allOf:
-   - $ref: "serial.yaml"
-diff --git a/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml b/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
-index ce1d89496342..14c7594c88c6 100644
---- a/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
-+++ b/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Freescale MXS Application UART (AUART)
- 
- maintainers:
--  - Fabio Estevam <fabio.estevam@nxp.com>
-+  - Fabio Estevam <festevam@gmail.com>
- 
- allOf:
-   - $ref: "serial.yaml"
--- 
-2.25.1
+I'm not sure about BYTE/PCLK, it used to cause issues at least on my boards, but if it works for you, I guess it's only good.
+
+
+> +				 <&gcc GCC_MDSS_ESC0_CLK>,
+> +				 <&xo_board>;
+
+Fake XO seems redundant here.
+
+
+> +		};
+> +	};
+> +
+> +	reserved-memory {
+> +		continuous_splash: framebuffer@83000000 {
+> +			reg = <0x0 0x83000000 0x0 0x1400000>;
+> +			no-map;
+> +		};
+>  	};
+>  
+>  	gpio-keys {
+>
+
+Konrad
 
