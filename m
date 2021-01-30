@@ -2,190 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5482A3091D1
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 05:18:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C93730922E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 06:26:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233475AbhA3EQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jan 2021 23:16:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42500 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233634AbhA3Dsa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 22:48:30 -0500
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51A7BC061351
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 19:47:41 -0800 (PST)
-Received: by mail-oo1-xc33.google.com with SMTP id c6so874042oou.12
-        for <devicetree@vger.kernel.org>; Fri, 29 Jan 2021 19:47:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nP75y4ZlajL2hHjYKNjPgV2d6UjbR2QsqHFCSmA9Tug=;
-        b=EbQKlDL9Q0AC1ekv2k9jaEdwiQfys+GTv+HpiGBoUBXFl6HnnvlQBPa9kJi2i5Yw4Y
-         SJlzsDH05ojH0EgVxnYvv1s6aUYWhTa91DWPSBXyc5zEegD3GLmvGl1oLjMqcG1WCDM/
-         7bRYPVzupz0DROkGMhxCgQuOWTEKZdtYFpvrgmiwH+QLDdz81O9dH+wil0N1N6VbIh4K
-         3WVvNwZUlsWro7rdwnwORgqP/UzYdF1a0RXwTAcfAqgqQ9ZCRq+S5hboT8qeViUFZrJt
-         CdOK3i6PYFcXFlZrIk3l0OHxzgmRnc03E9vxToFQQU5pIolnSB71Mc/XxHBqsnUCZ6O/
-         R9SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nP75y4ZlajL2hHjYKNjPgV2d6UjbR2QsqHFCSmA9Tug=;
-        b=pbd8mOMRC4HYwugCRrI1quVomX5b6LFVSdfy3wHGPdVGNHDe9AyJTcej3asC0VjL2Z
-         cAP86BHchu2Mm1ifbg47z0Bzkv2ZU47d/rxcXxPSgFo2dl1yv2Iyi7WaURcjF8ZolGHn
-         kRWr3U25/Dq5fEGwcIkCHCKnNU0XgZE0AcVaRS/nJTus8KHpZXRGCnc8hhiinH4rzBxc
-         xso/dJ2f2AsaxdFC6F0UrG7EcnBFeRWcpLcvySpElCnjppTiddq/dwP7qf7lwRPyVkYg
-         2D0pAmbZ4aErrhYgtOCXjmpmVHMLsktwktpVRkEErXcutNY7xHKdHgiHZIUqom1tltqz
-         WE8A==
-X-Gm-Message-State: AOAM530nVJh6e34b8I3bnFmq7bqNSyM+LhNVwlyvYmw1OsqUGSFvcz0k
-        /VVOGwx2brKL/PPE+ryX9q5usg==
-X-Google-Smtp-Source: ABdhPJw+PYNPlKnGi2851SXcXGelsjzqO7Dy2YZ7mqAmciNAXHFBsBqoMoKN3XL5tGQg53QSAP/jew==
-X-Received: by 2002:a4a:a5cc:: with SMTP id k12mr5164268oom.33.1611978460467;
-        Fri, 29 Jan 2021 19:47:40 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t62sm2526969oif.2.2021.01.29.19.47.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jan 2021 19:47:39 -0800 (PST)
-Date:   Fri, 29 Jan 2021 21:47:37 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] arm64: qcom: dts: qrb5165-rb5: add qca6391 power
- device
-Message-ID: <YBTW2et0IVCUGmdg@builder.lan>
-References: <20210128175225.3102958-1-dmitry.baryshkov@linaro.org>
- <20210128175225.3102958-3-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210128175225.3102958-3-dmitry.baryshkov@linaro.org>
+        id S230035AbhA3F0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 00:26:10 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:20533 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230321AbhA3FYD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 00:24:03 -0500
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 29 Jan 2021 21:20:26 -0800
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 29 Jan 2021 21:20:23 -0800
+X-QCInternal: smtphost
+Received: from gokulsri-linux.qualcomm.com ([10.201.2.207])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 30 Jan 2021 10:50:13 +0530
+Received: by gokulsri-linux.qualcomm.com (Postfix, from userid 432570)
+        id ACA0521A02; Sat, 30 Jan 2021 10:50:13 +0530 (IST)
+From:   Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
+To:     sboyd@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        david.brown@linaro.org, devicetree@vger.kernel.org,
+        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, mark.rutland@arm.com,
+        mturquette@baylibre.com, ohad@wizery.com, robh+dt@kernel.org,
+        sricharan@codeaurora.org, gokulsri@codeaurora.org
+Subject: [PATCH v8 2/9] remoteproc: qcom: Add secure PIL support
+Date:   Sat, 30 Jan 2021 10:50:06 +0530
+Message-Id: <1611984013-10201-3-git-send-email-gokulsri@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1611984013-10201-1-git-send-email-gokulsri@codeaurora.org>
+References: <1611984013-10201-1-git-send-email-gokulsri@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 28 Jan 11:52 CST 2021, Dmitry Baryshkov wrote:
+IPQ8074 uses secure PIL. Hence, adding the support for the same.
 
-> Add qca6391 to device tree as a way to provide power domain to WiFi and
-> BT parts of the chip.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 61 ++++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index 8aebc3660b11..2b0c1cc9333b 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -151,6 +151,23 @@ vreg_s4a_1p8: vreg-s4a-1p8 {
->  		regulator-max-microvolt = <1800000>;
->  		regulator-always-on;
->  	};
-> +
-> +	qca6391: qca6391 {
-> +		compatible = "qcom,qca6390";
-> +		#power-domain-cells = <0>;
-> +
-> +		vddaon-supply = <&vreg_s6a_0p95>;
-> +		vddpmu-supply = <&vreg_s2f_0p95>;
-> +		vddrfa1-supply = <&vreg_s2f_0p95>;
-> +		vddrfa2-supply = <&vreg_s8c_1p3>;
-> +		vddrfa3-supply = <&vreg_s5a_1p9>;
-> +		vddpcie1-supply = <&vreg_s8c_1p3>;
-> +		vddpcie2-supply = <&vreg_s5a_1p9>;
-> +		vddio-supply = <&vreg_s4a_1p8>;
-> +		pinctrl-names = "default", "active";
-> +		pinctrl-0 = <&wlan_default_state &bt_default_state>;
-> +		pinctrl-1 = <&wlan_active_state &bt_active_state>;
+Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
+Signed-off-by: Sricharan R <sricharan@codeaurora.org>
+Signed-off-by: Nikhil Prakash V <nprakash@codeaurora.org>
+---
+ drivers/remoteproc/qcom_q6v5_wcss.c | 43 ++++++++++++++++++++++++++++++++++---
+ 1 file changed, 40 insertions(+), 3 deletions(-)
 
-I dislike the use of pinctrl states for toggling the level of the gpio
-and would prefer that you use the gpio binding and api for this instead.
+diff --git a/drivers/remoteproc/qcom_q6v5_wcss.c b/drivers/remoteproc/qcom_q6v5_wcss.c
+index c0368bb..4e35e5c 100644
+--- a/drivers/remoteproc/qcom_q6v5_wcss.c
++++ b/drivers/remoteproc/qcom_q6v5_wcss.c
+@@ -18,6 +18,7 @@
+ #include <linux/regulator/consumer.h>
+ #include <linux/reset.h>
+ #include <linux/soc/qcom/mdt_loader.h>
++#include <linux/qcom_scm.h>
+ #include "qcom_common.h"
+ #include "qcom_pil_info.h"
+ #include "qcom_q6v5.h"
+@@ -86,6 +87,9 @@
+ #define TCSR_WCSS_CLK_ENABLE	0x14
+ 
+ #define MAX_HALT_REG		3
++
++#define WCNSS_PAS_ID		6
++
+ enum {
+ 	WCSS_IPQ8074,
+ 	WCSS_QCS404,
+@@ -134,6 +138,7 @@ struct q6v5_wcss {
+ 	unsigned int crash_reason_smem;
+ 	u32 version;
+ 	bool requires_force_stop;
++	bool need_mem_protection;
+ 
+ 	struct qcom_rproc_glink glink_subdev;
+ 	struct qcom_rproc_ssr ssr_subdev;
+@@ -152,6 +157,7 @@ struct wcss_data {
+ 	int ssctl_id;
+ 	const struct rproc_ops *ops;
+ 	bool requires_force_stop;
++	bool need_mem_protection;
+ };
+ 
+ static int q6v5_wcss_reset(struct q6v5_wcss *wcss)
+@@ -251,6 +257,15 @@ static int q6v5_wcss_start(struct rproc *rproc)
+ 
+ 	qcom_q6v5_prepare(&wcss->q6v5);
+ 
++	if (wcss->need_mem_protection) {
++		ret = qcom_scm_pas_auth_and_reset(WCNSS_PAS_ID);
++		if (ret) {
++			dev_err(wcss->dev, "wcss_reset failed\n");
++			return ret;
++		}
++		goto wait_for_reset;
++	}
++
+ 	/* Release Q6 and WCSS reset */
+ 	ret = reset_control_deassert(wcss->wcss_reset);
+ 	if (ret) {
+@@ -285,6 +300,7 @@ static int q6v5_wcss_start(struct rproc *rproc)
+ 	if (ret)
+ 		goto wcss_q6_reset;
+ 
++wait_for_reset:
+ 	ret = qcom_q6v5_wait_for_start(&wcss->q6v5, 5 * HZ);
+ 	if (ret == -ETIMEDOUT)
+ 		dev_err(wcss->dev, "start timed out\n");
+@@ -717,6 +733,15 @@ static int q6v5_wcss_stop(struct rproc *rproc)
+ 	struct q6v5_wcss *wcss = rproc->priv;
+ 	int ret;
+ 
++	if (wcss->need_mem_protection) {
++		ret = qcom_scm_pas_shutdown(WCNSS_PAS_ID);
++		if (ret) {
++			dev_err(wcss->dev, "not able to shutdown\n");
++			return ret;
++		}
++		goto pas_done;
++	}
++
+ 	/* WCSS powerdown */
+ 	if (wcss->requires_force_stop) {
+ 		ret = qcom_q6v5_request_stop(&wcss->q6v5, NULL);
+@@ -741,6 +766,7 @@ static int q6v5_wcss_stop(struct rproc *rproc)
+ 			return ret;
+ 	}
+ 
++pas_done:
+ 	clk_disable_unprepare(wcss->prng_clk);
+ 	qcom_q6v5_unprepare(&wcss->q6v5);
+ 
+@@ -764,9 +790,15 @@ static int q6v5_wcss_load(struct rproc *rproc, const struct firmware *fw)
+ 	struct q6v5_wcss *wcss = rproc->priv;
+ 	int ret;
+ 
+-	ret = qcom_mdt_load_no_init(wcss->dev, fw, rproc->firmware,
+-				    0, wcss->mem_region, wcss->mem_phys,
+-				    wcss->mem_size, &wcss->mem_reloc);
++	if (wcss->need_mem_protection)
++		ret = qcom_mdt_load(wcss->dev, fw, rproc->firmware,
++				    WCNSS_PAS_ID, wcss->mem_region,
++				    wcss->mem_phys, wcss->mem_size,
++				    &wcss->mem_reloc);
++	else
++		ret = qcom_mdt_load_no_init(wcss->dev, fw, rproc->firmware,
++					    0, wcss->mem_region, wcss->mem_phys,
++					    wcss->mem_size, &wcss->mem_reloc);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1032,6 +1064,9 @@ static int q6v5_wcss_probe(struct platform_device *pdev)
+ 	if (!desc)
+ 		return -EINVAL;
+ 
++	if (desc->need_mem_protection && !qcom_scm_is_available())
++		return -EPROBE_DEFER;
++
+ 	rproc = rproc_alloc(&pdev->dev, pdev->name, desc->ops,
+ 			    desc->firmware_name, sizeof(*wcss));
+ 	if (!rproc) {
+@@ -1045,6 +1080,7 @@ static int q6v5_wcss_probe(struct platform_device *pdev)
+ 
+ 	wcss->version = desc->version;
+ 	wcss->requires_force_stop = desc->requires_force_stop;
++	wcss->need_mem_protection = desc->need_mem_protection;
+ 
+ 	ret = q6v5_wcss_init_mmio(wcss, pdev);
+ 	if (ret)
+@@ -1115,6 +1151,7 @@ static const struct wcss_data wcss_ipq8074_res_init = {
+ 	.wcss_q6_reset_required = true,
+ 	.ops = &q6v5_wcss_ipq8074_ops,
+ 	.requires_force_stop = true,
++	.need_mem_protection = true,
+ };
+ 
+ static const struct wcss_data wcss_qcs404_res_init = {
+-- 
+2.7.4
 
-> +	};
->  };
->  
->  &adsp {
-> @@ -1013,6 +1030,28 @@ &tlmm {
->  		"HST_WLAN_UART_TX",
->  		"HST_WLAN_UART_RX";
->  
-> +	bt_default_state: bt-default-state {
-
-Are you sure you need to drive the BT_EN pin in order to have WiFi
-working? On QCA6174 I believe the "WL_EN" was actually RESET_N and BT_EN
-was actually "blueooth enable" - so we wired that in the bluetooth node
-instead.
-
-> +		bt-en {
-> +			pins = "gpio21";
-> +			function = "gpio";
-> +
-> +			drive-strength = <16>;
-> +			output-low;
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-> +	bt_active_state: bt-active-state {
-> +		bt-en {
-> +			pins = "gpio21";
-> +			function = "gpio";
-> +
-> +			drive-strength = <16>;
-> +			output-high;
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
->  	lt9611_irq_pin: lt9611-irq {
->  		pins = "gpio63";
->  		function = "gpio";
-> @@ -1119,6 +1158,28 @@ sdc2_card_det_n: sd-card-det-n {
->  		function = "gpio";
->  		bias-pull-up;
->  	};
-> +
-> +	wlan_default_state: wlan-default-state {
-
-JFYI. You don't need this "dummy" subnode, you can put the properties
-directly in the state node.
-
-Regards,
-Bjorn
-
-> +		wlan-en {
-> +			pins = "gpio20";
-> +			function = "gpio";
-> +
-> +			drive-strength = <16>;
-> +			output-low;
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-> +	wlan_active_state: wlan-active-state {
-> +		wlan-en {
-> +			pins = "gpio20";
-> +			function = "gpio";
-> +
-> +			drive-strength = <16>;
-> +			output-high;
-> +			bias-pull-up;
-> +		};
-> +	};
->  };
->  
->  &uart12 {
-> -- 
-> 2.29.2
-> 
