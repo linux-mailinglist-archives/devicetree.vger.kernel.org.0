@@ -2,173 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE01A309328
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:19:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95284309366
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 10:30:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229953AbhA3JTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 04:19:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47476 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233678AbhA3ELp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 23:11:45 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE812C0613ED;
-        Fri, 29 Jan 2021 18:27:12 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id rv9so15646219ejb.13;
-        Fri, 29 Jan 2021 18:27:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/zIlzJA6cZVoXgDPgMj1ake5C1AcGVFYjCYwFPPevRk=;
-        b=mB//xN3arK4JzxactXvQ67BPCjlsQxiJECW6Nq42SKr58btLUU80Zw9H5Bmx7iNdi5
-         ijDC6N6t+755D2HZQmMs5FUcwjsVD0rb5OcI7j2K+YQSI3lxXzgGp1w1trhdCwMHB2zV
-         1eFL06P8EDSqGnh04CObGf9nAv+F2odVmHftMikvRvDpBY/9xm656g7Rn65bMKnyfm7+
-         p9rtu6Ga35jM6Gyj++JB3npdMkRT584ER7jrRg7wt5q+0N2H0lZua2Lqg5bF2CvVz4kG
-         KhM/81UymDZ+KcqufWOi/GxNh7r7HlSyA4QIK31kXebjDj1MPLjjiKm8UybXA+HwuuKu
-         crag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/zIlzJA6cZVoXgDPgMj1ake5C1AcGVFYjCYwFPPevRk=;
-        b=ldLk1OSm2mNgvqHYWMmrnzjlzclnkgE+VQQvs447UJwtfM3z9NkVQT8kpkZJA8LO7I
-         q9MUvT28ZI8IeQAzEVbtsMHywwYUmEJeYVFHhZe5y51NhzoyCl4+CcgruUfLIq8CkO0E
-         XpAg8vwQlX6oaKqbMipUKjvqdtaim/5UuT4QgTh76tl58SJgl4vIEJaq3jPhXg6+P2pD
-         atBrl+koXcctUD9Y+figx2OisjY+tSICcSvHSHDTBidDun6gjPNIMHwcoofrdGSq/tQU
-         KLCo7HBZpuVrRraSyJUtyrpzpet2eapCg6xcVuxgsfTTZv+orqeBmUfyrMWvWzHmZcHf
-         njDw==
-X-Gm-Message-State: AOAM532Lz/doOVhA+R4pgVQNTiQq/awc7FGX4a+oCgjkix1QM/lBz62K
-        gAATs/qbVX706PB/r+0ofIY=
-X-Google-Smtp-Source: ABdhPJyh9xBOCEhQHB8o3q/clHpYAgl0ckSoG3nSQ7HKv/wTd/QvPiOjK4f2/0w/P1re4Bn0P6Mo1A==
-X-Received: by 2002:a17:906:4e47:: with SMTP id g7mr7342227ejw.480.1611973631377;
-        Fri, 29 Jan 2021 18:27:11 -0800 (PST)
-Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
-        by smtp.gmail.com with ESMTPSA id j18sm4525508ejv.18.2021.01.29.18.27.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jan 2021 18:27:10 -0800 (PST)
-Date:   Sat, 30 Jan 2021 04:27:09 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
-        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, UNGLinuxDriver@microchip.com,
-        Woojung.Huh@microchip.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/8] net: dsa: tag_ksz: add tag handling for
- Microchip LAN937x
-Message-ID: <20210130022709.ai5kq7w52gpqrb4n@skbuf>
-References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
- <20210128064112.372883-3-prasanna.vengateshan@microchip.com>
+        id S231252AbhA3JaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 04:30:06 -0500
+Received: from szxga06-in.huawei.com ([45.249.212.32]:11917 "EHLO
+        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233600AbhA3DnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jan 2021 22:43:03 -0500
+Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.58])
+        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4DSJbc0hn6zjFBn;
+        Sat, 30 Jan 2021 10:50:20 +0800 (CST)
+Received: from [127.0.0.1] (10.174.176.220) by DGGEMS408-HUB.china.huawei.com
+ (10.3.19.208) with Microsoft SMTP Server id 14.3.498.0; Sat, 30 Jan 2021
+ 10:51:14 +0800
+Subject: Re: [PATCH v5 4/4] ARM: Add support for Hisilicon Kunpeng L3 cache
+ controller
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        "Arnd Bergmann" <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210116032740.873-1-thunder.leizhen@huawei.com>
+ <20210116032740.873-5-thunder.leizhen@huawei.com>
+ <CAK8P3a1OqUn5A4F4hT4K=bzQwJuifVFZkvFoK6NMg+m9FjoKzw@mail.gmail.com>
+ <20dac713-25b7-cddf-cc42-69a834487c71@huawei.com>
+ <CAK8P3a3Hj0Hyc8mVdGYhB7AEuHCYbhGxHnhNk1xWonEmxZOxRw@mail.gmail.com>
+ <CAK8P3a1j+mr3bCp2uCuuYzW0ygjTmGv9vELuNy7v-iQ=WoDMOw@mail.gmail.com>
+ <20210129103340.GW1551@shell.armlinux.org.uk>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <b236bcbc-8610-dfc4-50f2-a4b71162735d@huawei.com>
+Date:   Sat, 30 Jan 2021 10:51:12 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210128064112.372883-3-prasanna.vengateshan@microchip.com>
+In-Reply-To: <20210129103340.GW1551@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.176.220]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 12:11:06PM +0530, Prasanna Vengateshan wrote:
-> diff --git a/net/dsa/tag_ksz.c b/net/dsa/tag_ksz.c
-> index 4820dbcedfa2..6fac39c2b7d5 100644
-> --- a/net/dsa/tag_ksz.c
-> +++ b/net/dsa/tag_ksz.c
-> @@ -190,10 +190,84 @@ static const struct dsa_device_ops ksz9893_netdev_ops = {
->  DSA_TAG_DRIVER(ksz9893_netdev_ops);
->  MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_KSZ9893);
->  
-> +/* For Ingress (Host -> LAN937x), 2 bytes are added before FCS.
-> + * ---------------------------------------------------------------------------
-> + * DA(6bytes)|SA(6bytes)|....|Data(nbytes)|tag0(1byte)|tag1(1byte)|FCS(4bytes)
-> + * ---------------------------------------------------------------------------
-> + * tag0 : represents tag override, lookup and valid
-> + * tag1 : each bit represents port (eg, 0x01=port1, 0x02=port2, 0x80=port8)
-> + *
-> + * For Egress (LAN937x -> Host), 1 byte is added before FCS.
-> + * ---------------------------------------------------------------------------
-> + * DA(6bytes)|SA(6bytes)|....|Data(nbytes)|tag0(1byte)|FCS(4bytes)
-> + * ---------------------------------------------------------------------------
-> + * tag0 : zero-based value represents port
-> + *	  (eg, 0x00=port1, 0x02=port3, 0x07=port8)
-> + */
 
-You messed up the comment, right now it's as good as not having it.
-The one-hot port encoding is for xmit. The zero-based encoding is for
-rcv, not the other way around.
 
-> +#define LAN937X_INGRESS_TAG_LEN		2
-> +
-> +#define LAN937X_TAIL_TAG_OVERRIDE	BIT(11)
-> +#define LAN937X_TAIL_TAG_LOOKUP		BIT(12)
-> +#define LAN937X_TAIL_TAG_VALID		BIT(13)
-> +#define LAN937X_TAIL_TAG_PORT_MASK	7
-> +
-> +static struct sk_buff *lan937x_xmit(struct sk_buff *skb,
-> +				    struct net_device *dev)
-> +{
-> +	struct dsa_port *dp = dsa_slave_to_port(dev);
-> +	__be16 *tag;
-> +	u8 *addr;
-> +	u16 val;
-> +
-> +	/* Tag encoding */
-
-Do we really need this comment and the one with "Tag decoding" from rcv?
-
-> +	tag = skb_put(skb, LAN937X_INGRESS_TAG_LEN);
-> +	addr = skb_mac_header(skb);
-> +
-> +	val = BIT(dp->index);
-> +
-> +	if (is_link_local_ether_addr(addr))
-> +		val |= LAN937X_TAIL_TAG_OVERRIDE;
-> +
-> +	/* Tail tag valid bit - This bit should always be set by the CPU*/
-> +	val |= LAN937X_TAIL_TAG_VALID;
-> +
-> +	*tag = cpu_to_be16(val);
-> +
-> +	return skb;
-> +}
-> +
-> +static struct sk_buff *lan937x_rcv(struct sk_buff *skb, struct net_device *dev,
-> +				   struct packet_type *pt)
-
-You can reuse ksz9477_rcv.
-
-> +{
-> +	/* Tag decoding */
-> +	u8 *tag = skb_tail_pointer(skb) - KSZ_EGRESS_TAG_LEN;
-> +	unsigned int port = tag[0] & LAN937X_TAIL_TAG_PORT_MASK;
-> +	unsigned int len = KSZ_EGRESS_TAG_LEN;
-> +
-> +	/* Extra 4-bytes PTP timestamp */
-> +	if (tag[0] & KSZ9477_PTP_TAG_INDICATION)
-> +		len += KSZ9477_PTP_TAG_LEN;
-> +
-> +	return ksz_common_rcv(skb, dev, port, len);
-> +}
-> +
-> +static const struct dsa_device_ops lan937x_netdev_ops = {
-> +	.name	= "lan937x",
-> +	.proto	= DSA_TAG_PROTO_LAN937X,
-> +	.xmit	= lan937x_xmit,
-> +	.rcv	= lan937x_rcv,
-> +	.overhead = LAN937X_INGRESS_TAG_LEN,
-> +	.tail_tag = true,
-> +};
-> +
-> +DSA_TAG_DRIVER(lan937x_netdev_ops);
-> +MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_LAN937X);
-> +
->  static struct dsa_tag_driver *dsa_tag_driver_array[] = {
->  	&DSA_TAG_DRIVER_NAME(ksz8795_netdev_ops),
->  	&DSA_TAG_DRIVER_NAME(ksz9477_netdev_ops),
->  	&DSA_TAG_DRIVER_NAME(ksz9893_netdev_ops),
-> +	&DSA_TAG_DRIVER_NAME(lan937x_netdev_ops),
->  };
->  
->  module_dsa_tag_drivers(dsa_tag_driver_array);
-> -- 
-> 2.25.1
+On 2021/1/29 18:33, Russell King - ARM Linux admin wrote:
+> On Fri, Jan 29, 2021 at 11:26:38AM +0100, Arnd Bergmann wrote:
+>> Another clarification, as there are actually two independent
+>> points here:
+>>
+>> * if you can completely remove the readl() above and just write a
+>>   hardcoded value into the register, or perhaps read the original
+>>   value once at boot time, that is probably a win because it
+>>   avoids one of the barriers in the beginning. The datasheet should
+>>   tell you if there are any bits in the register that have to be
+>>   preserved
+>>
+>> * Regarding the _relaxed() accessors, it's a lot harder to know
+>>   whether that is safe, as you first have to show, in particular in case
+>>   any of the accesses stop being guarded by the spinlock in that
+>>   case, and whether there may be a case where you have to
+>>   serialize the memory access against accesses that are still in the
+>>   store queue or prefetched.
+>>
+>> Whether this matters at all depends mostly on the type of devices
+>> you are driving on your SoC. If you have any high-speed network
+>> interfaces that are unable to do cache coherent DMA, any extra
+>> instruction here may impact the number of packets you can transfer,
+>> but if all your high-speed devices are connected to a coherent
+>> interconnect, I would just go with the obvious approach and use
+>> the safe MMIO accessors everywhere.
 > 
+> For L2 cache code, I would say the opposite, actually, because it is
+> all too easy to get into a deadlock otherwise.
+> 
+> If you implement the sync callback, that will be called from every
+> non-relaxed accessor, which means if you need to take some kind of
+> lock in the sync callback and elsewhere in the L2 cache code, you will
+> definitely deadlock.
+> 
+> It is safer to put explicit barriers where it is necessary.
+> 
+> Also remember that the barrier in readl() etc is _after_ the read, not
+> before, and the barrier in writel() is _before_ the write, not after.
+> The point is to ensure that DMA memory accesses are properly ordered
+> with the IO-accessing instructions.
+
+Yes, I known it. writel() must be used for the write operations that control
+"start/stop" or "enable/disable" function, to ensure that the data of previous
+write operations reaches the target. I've met this kind of problem before.
+
+> 
+> So, using readl_relaxed() with a read-modify-write is entirely sensible
+> provided you do not access DMA memory inbetween.
+
+Actually, I don't think this register is that complicated. I copied the code
+back below. All the bits of L3_MAINT_CTRL are not affected by DMA access operations.
+The software change the "range | op_type" to specify the operation type and scope,
+the set the bit "L3_MAINT_STATUS_START" to start the operation. Then wait for that
+bit to change from 1 to 0 by hardware.
+
++	reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
++	reg &= ~(L3_MAINT_RANGE_MASK | L3_MAINT_TYPE_MASK);
++	reg |= range | op_type;
++	reg |= L3_MAINT_STATUS_START;
++	writel(reg, l3_ctrl_base + L3_MAINT_CTRL);
++
++	/* Wait until the hardware maintenance operation is complete. */
++	do {
++		cpu_relax();
++		reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
++	} while ((reg & L3_MAINT_STATUS_MASK) != L3_MAINT_STATUS_END);
+
+> 
+
