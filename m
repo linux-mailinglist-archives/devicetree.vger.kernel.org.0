@@ -2,41 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60AB730977D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 19:12:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCD6630977E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 19:12:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231899AbhA3SMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 13:12:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57060 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231820AbhA3SMW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 13:12:22 -0500
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A4CCC061573
-        for <devicetree@vger.kernel.org>; Sat, 30 Jan 2021 10:11:27 -0800 (PST)
+        id S231903AbhA3SMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 13:12:33 -0500
+Received: from mail-out.m-online.net ([212.18.0.9]:50176 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231820AbhA3SMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 13:12:33 -0500
 Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4DSj2N5kYfz1rwvQ;
-        Sat, 30 Jan 2021 19:11:24 +0100 (CET)
+        by mail-out.m-online.net (Postfix) with ESMTP id 4DSj2P69GRz1qs38;
+        Sat, 30 Jan 2021 19:11:25 +0100 (CET)
 Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4DSj2N51k8z1tYTX;
-        Sat, 30 Jan 2021 19:11:24 +0100 (CET)
+        by mail.m-online.net (Postfix) with ESMTP id 4DSj2P5w3Tz1tYTW;
+        Sat, 30 Jan 2021 19:11:25 +0100 (CET)
 X-Virus-Scanned: amavisd-new at mnet-online.de
 Received: from mail.mnet-online.de ([192.168.8.182])
         by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id sUOYUuGMZfK3; Sat, 30 Jan 2021 19:11:23 +0100 (CET)
-X-Auth-Info: LF3ZcnJfo/XE34mVwL3j+qVuemhQJiadJ8PKoFJANn0=
+        with ESMTP id QbQfprgeWiUm; Sat, 30 Jan 2021 19:11:24 +0100 (CET)
+X-Auth-Info: 75/lHBaT8xbCLaC9OrnnjV35XGPS4ICpUqxE9NR3rdM=
 Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Sat, 30 Jan 2021 19:11:23 +0100 (CET)
+        Sat, 30 Jan 2021 19:11:24 +0100 (CET)
 From:   Marek Vasut <marex@denx.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
         Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: [PATCH 2/3] dt-bindings: Add DT bindings for Displaytech DT050TFT-PTS
-Date:   Sat, 30 Jan 2021 19:11:13 +0100
-Message-Id: <20210130181114.161515-2-marex@denx.de>
+Subject: [PATCH 3/3] drm/panel: simple: Add Displaytech DT050TFT-PTS panel
+Date:   Sat, 30 Jan 2021 19:11:14 +0100
+Message-Id: <20210130181114.161515-3-marex@denx.de>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210130181114.161515-1-marex@denx.de>
 References: <20210130181114.161515-1-marex@denx.de>
@@ -46,31 +43,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT bindings for Displaytech DT050TFT-PTS 5.0" (800x480)
+Add support for the Displaytech DT050TFT-PTS 5.0" (800x480)
 color TFT LCD panel, connected over DPI.
 
+Timings are taken from the datasheet Rev 0.0.
+
 Signed-off-by: Marek Vasut <marex@denx.de>
-To: dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Sam Ravnborg <sam@ravnborg.org>
 Cc: devicetree@vger.kernel.org
 ---
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/panel/panel-simple.c | 33 ++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index edb53ab0d9eb..a341a30952f9 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -101,6 +101,8 @@ properties:
-       - chunghwa,claa101wb03
-         # DataImage, Inc. 7" WVGA (800x480) TFT LCD panel with 24-bit parallel interface.
-       - dataimage,scf0700c48ggu18
-+        # Displaytech Ltd. DT050TFT-PTS 5.0" 800 RGB x 480 TFT LCD panel
-+      - displaytech,dt050tft-pts
-         # DLC Display Co. DLC1010GIG 10.1" WXGA TFT LCD Panel
-       - dlc,dlc1010gig
-         # Emerging Display Technology Corp. 3.5" QVGA TFT LCD panel
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 204674fccd64..4e31fe04fe49 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -1625,6 +1625,36 @@ static const struct panel_desc dataimage_scf0700c48ggu18 = {
+ 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
+ };
+ 
++static const struct display_timing displaytech_dt050tft_pts_timing = {
++	.pixelclock = { 30000000, 40000000, 50000000 },
++	.hactive = { 800, 800, 800 },
++	.hfront_porch = { 1, 40, 255 },
++	.hback_porch = { 88, 88, 88 },
++	.hsync_len = { 1, 48, 255 },
++	.vactive = { 480, 480, 480 },
++	.vfront_porch = { 1, 13, 255 },
++	.vback_porch = { 32, 32, 32 },
++	.vsync_len = { 3, 3, 255 },
++	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
++		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
++		 DISPLAY_FLAGS_SYNC_POSEDGE,
++};
++
++static const struct panel_desc displaytech_dt050tft_pts = {
++	.timings = &displaytech_dt050tft_pts_timing,
++	.num_timings = 1,
++	.bpc = 8,
++	.size = {
++		.width = 121,
++		.height = 76,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
++	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
++		     DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
++		     DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
++	.connector_type = DRM_MODE_CONNECTOR_DPI,
++};
++
+ static const struct display_timing dlc_dlc0700yzg_1_timing = {
+ 	.pixelclock = { 45000000, 51200000, 57000000 },
+ 	.hactive = { 1024, 1024, 1024 },
+@@ -4015,6 +4045,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "dataimage,scf0700c48ggu18",
+ 		.data = &dataimage_scf0700c48ggu18,
++	}, {
++		.compatible = "displaytech,dt050tft-pts",
++		.data = &displaytech_dt050tft_pts,
+ 	}, {
+ 		.compatible = "dlc,dlc0700yzg-1",
+ 		.data = &dlc_dlc0700yzg_1,
 -- 
 2.29.2
 
