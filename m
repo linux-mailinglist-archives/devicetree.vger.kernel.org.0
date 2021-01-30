@@ -2,204 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BB8D3093F1
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 11:05:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 853573093EF
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jan 2021 11:04:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231996AbhA3KEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 05:04:50 -0500
-Received: from mga06.intel.com ([134.134.136.31]:41434 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233228AbhA3Crl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Jan 2021 21:47:41 -0500
-IronPort-SDR: TBl9DU/dPLY6pKA7U670KyLSN6hjr47x0vZEO7lhZsTQyZ6ggpRrdswOUKCtR7VtPLfkZLdQFE
- QJLkkmLcp9+w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="242028051"
-X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="242028051"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:30 -0800
-IronPort-SDR: 9I4CbpaOfDBF2Z3lbsA/E3ju+8ahAn5nNAEKQcaz2wZsRFe57p/kHM1CLvjoegUSBoyNAtCLjQ
- /xXFLn1uC4tg==
-X-IronPort-AV: E=Sophos;i="5.79,387,1602572400"; 
-   d="scan'208";a="354867503"
-Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2021 18:21:29 -0800
-Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id 917E0636B;
-        Fri, 29 Jan 2021 18:21:30 -0800 (PST)
-Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
-        id 8140E36369F; Fri, 29 Jan 2021 18:21:30 -0800 (PST)
-From:   mgross@linux.intel.com
-To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
-        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
-        gregkh@linuxfoundation.org, corbet@lwn.net,
-        palmerdabbelt@google.com, paul.walmsley@sifive.com,
-        peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
-        jassisinghbrar@gmail.com
-Cc:     linux-kernel@vger.kernel.org,
-        "C, Udhayakumar" <udhayakumar.c@intel.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 26/34] dt-bindings: misc: intel_tsens: Add tsens thermal bindings documentation
-Date:   Fri, 29 Jan 2021 18:21:16 -0800
-Message-Id: <20210130022124.65083-62-mgross@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210130022124.65083-1-mgross@linux.intel.com>
-References: <20210130022124.65083-1-mgross@linux.intel.com>
+        id S229832AbhA3KCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 05:02:49 -0500
+Received: from mail-41103.protonmail.ch ([185.70.41.103]:37235 "EHLO
+        mail-41103.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232010AbhA3KC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 05:02:26 -0500
+X-Greylist: delayed 3501 seconds by postgrey-1.27 at vger.kernel.org; Sat, 30 Jan 2021 05:02:25 EST
+Received: from mail-03.mail-europe.com (mail-03.mail-europe.com [91.134.188.129])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        by mail-41103.protonmail.ch (Postfix) with ESMTPS id 8A5B823B5A50;
+        Sat, 30 Jan 2021 08:16:47 +0000 (UTC)
+Authentication-Results: mail-41103.protonmail.ch;
+        dkim=pass (1024-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="G0E1cUEu"
+Date:   Sat, 30 Jan 2021 08:04:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1611993895;
+        bh=lw9NipPj9ZmUjA+q3t5yaTgBtEXb/vo2lGVSIlDNbZM=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=G0E1cUEuBoW0hJR0QCxXhwslQ8+PR8nwqlnc4it/NA+ZDJskvRAuDn/dwmrNCnflW
+         P9fJvy+gibXgA1lN8InTC/O4c2+CL5UIlJfvDP1qAXDzJqdNg/9v8dx/J/7FejK70E
+         f8YZiVMoMdCi+1KUY4F6fR3W2SCxs1xz0DyOjCj0=
+To:     "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     "agross@kernel.org" <agross@kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "svarbanov@mm-sol.com" <svarbanov@mm-sol.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip on RB5 platform
+Message-ID: <Y6qqfCwC-O5b_bSR-8HY9-0aCeREaoAPsyOw5EVhv6YkZgPkzafs28dd5ldWZvT1Pkln-XfkB0t2gLFOClvJNDuny7zFAfYxbQzt0UMNjrE=@protonmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "C, Udhayakumar" <udhayakumar.c@intel.com>
+On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> Some Qualcomm platforms require to power up an external device before
+> probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
+> to be powered up before PCIe0 bus is probed. Add a quirk to the
+> respective PCIe root bridge to attach to the power domain if one is
+> required, so that the QCA chip is started before scanning the PCIe bus.
 
-Add device tree bindings for local host thermal sensors
-Intel Edge.AI Computer Vision platforms.
-
-The tsens module enables reading of on chip sensors present
-in the Intel Bay series SoC. In the tsens module various junction
-temperature and SoC temperature are reported using thermal subsystem
-and i2c subsystem.
-
-Temperature data reported using thermal subsystem will be used for
-various cooling agents such as DVFS, fan control and shutdown the
-system in case of critical temperature.
-
-Temperature data reported using i2c subsytem will be used by
-platform manageability software running in remote host.
-
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Acked-by: mark gross <mgross@linux.intel.com>
-Signed-off-by: C Udhayakumar <udhayakumar.c@intel.com>
-Signed-off-by: Mark Gross <mgross@linux.intel.com>
----
- .../bindings/misc/intel,intel-tsens.yaml      | 118 ++++++++++++++++++
- 1 file changed, 118 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/intel,intel-tsens.yaml
-
-diff --git a/Documentation/devicetree/bindings/misc/intel,intel-tsens.yaml b/Documentation/devicetree/bindings/misc/intel,intel-tsens.yaml
-new file mode 100644
-index 000000000000..2418355d9c47
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/intel,intel-tsens.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/misc/intel,intel-tsens.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel Temperature sensors in Bay series
-+
-+maintainers:
-+  - Udhayakumar C <udhayakumar.c@intel.com>
-+
-+description: |
-+  The tsens driver enables reading of onchip sensors present
-+  in the Intel Bay SoC.
-+  Each subnode of the tsens represents sensors available
-+  on the soc.
-+
-+select: false
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: intel,intel-tsens
-+
-+  plat_name:
-+    contains:
-+      enum:
-+        - intel,keembay_thermal
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    items:
-+      - description: thermal sensor clock
-+
-+  clk-rate:
-+    additionalItems: false
-+    items:
-+      - description: thermal sensor clock freq
-+
-+  sensor_name:
-+    type: object
-+    description:
-+      Details to configure sensor trip points and its types.
-+
-+    properties:
-+      passive_delay:
-+        minItems: 1
-+        maxItems: 1
-+        description: number of milliseconds to wait between polls when
-+                     performing passive cooling
-+
-+      polling_delay:
-+        minItems: 1
-+        maxItems: 1
-+        description: number of milliseconds to wait between polls when checking
-+                     whether trip points have been crossed (0 for interrupt
-+                     driven systems)
-+
-+      trip_temp:
-+        minItems: 1
-+        description: temperature for trip points
-+
-+      trip_type:
-+        minItems: 1
-+        description: trip type list for trip points
-+
-+    required:
-+      - passive_delay
-+      - polling_delay
-+      - trip_temp
-+      - trip_type
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    tsens: tsens@20260000 {
-+        compatible = "intel,intel-tsens";
-+        status = "disabled";
-+        plat_name = "intel,keembay_thermal";
-+        reg = <0x0 0x20260000 0x0 0x100>;
-+        clocks = <&scmi_clk>;
-+        clk-rate = <1250000>;
-+
-+        mss {
-+                passive_delay = <1000>;
-+                polling_delay = <2000>;
-+                trip_temp = <40000 80000 1000000>;
-+                trip_type = "passive", "passive", "critical";
-+        };
-+
-+        css {
-+                passive_delay = <1000>;
-+                polling_delay = <2000>;
-+                trip_temp = <40000 80000 1000000>;
-+                trip_type = "passive", "passive", "critical";
-+        };
-+
-+        nce {
-+                passive_delay = <1000>;
-+                polling_delay = <2000>;
-+                trip_temp = <40000 80000 1000000>;
-+                trip_type = "passive", "passive", "critical";
-+        };
-+
-+        soc {
-+                passive_delay = <1000>;
-+                polling_delay = <2000>;
-+                trip_temp = <40000 80000 1000000>;
-+                trip_type = "passive", "passive", "critical";
-+        };
-+     };
--- 
-2.17.1
-
+I'm lead to believe that this is also needed for QCA6174. I tried taking
+the driver you wrote and changing regulators to match the ones used by QCA6=
+174,
+but I found that it gets probed after PCIe, which makes it get -EPROBE_DEFE=
+R
+when it tries to attach to the power domain, which it doesn't handle it and
+just proceeds to scan the bus and not find the chip as usual.
