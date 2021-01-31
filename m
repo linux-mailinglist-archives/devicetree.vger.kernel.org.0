@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C03A3099E1
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 02:45:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE80F3099E3
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 02:45:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232691AbhAaBob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 20:44:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39684 "EHLO
+        id S232636AbhAaBoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jan 2021 20:44:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232628AbhAaBkj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 20:40:39 -0500
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C01BDC0617A7
-        for <devicetree@vger.kernel.org>; Sat, 30 Jan 2021 17:39:53 -0800 (PST)
+        with ESMTP id S232613AbhAaBki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jan 2021 20:40:38 -0500
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B7FDC06174A
+        for <devicetree@vger.kernel.org>; Sat, 30 Jan 2021 17:40:11 -0800 (PST)
 Received: from localhost.localdomain (abaf219.neoplus.adsl.tpnet.pl [83.6.169.219])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 4683D1F740;
-        Sun, 31 Jan 2021 02:39:51 +0100 (CET)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id C08091F87F;
+        Sun, 31 Jan 2021 02:39:55 +0100 (CET)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     phone-devel@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
@@ -27,9 +27,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Gustave Monce <gustave.monce@outlook.com>
-Subject: [PATCH 10/18] arm64: dts: qcom: msm8994-octagon: Configure HD3SS460 Type-C mux pins
-Date:   Sun, 31 Jan 2021 02:38:41 +0100
-Message-Id: <20210131013853.55810-11-konrad.dybcio@somainline.org>
+Subject: [PATCH 11/18] arm64: dts: qcom: msm8994-octagon: Add uSD card and disable HS400 on eMMC
+Date:   Sun, 31 Jan 2021 02:38:42 +0100
+Message-Id: <20210131013853.55810-12-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210131013853.55810-1-konrad.dybcio@somainline.org>
 References: <20210131013853.55810-1-konrad.dybcio@somainline.org>
@@ -41,56 +41,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Gustave Monce <gustave.monce@outlook.com>
 
-The driver is not available yet, so hardcode the pins.
+Lumia 950/XL, like other phones, ship with different storage chips.
+Some of them are not capable of stable operation at HS400. Disable it.
 
 Signed-off-by: Gustave Monce <gustave.monce@outlook.com>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- .../dts/qcom/msm8994-msft-lumia-octagon.dtsi  | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ .../dts/qcom/msm8994-msft-lumia-octagon.dtsi  | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
-index 78443f5a3881..bf6e63a23600 100644
+index bf6e63a23600..004a42261cef 100644
 --- a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
 +++ b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
-@@ -337,6 +337,37 @@ pinconf {
- 	};
- };
+@@ -684,6 +684,27 @@ vph_pwr_bbyp: boost-bypass {
  
-+&pmi8994_gpios {
-+	pinctrl-0 = <&hd3ss460_pol &hd3ss460_amsel &hd3ss460_en>;
-+	pinctrl-names = "default";
+ &sdhc1 {
+ 	status = "okay";
 +
 +	/*
-+	* This device uses a TI HD3SS460 Type-C MUX
-+	* As this device has no driver currently,
-+	* the configuration for USB Face Up is set-up here.
-+	*
-+	* TODO: remove once a driver is available
-+	* TODO: add VBUS GPIO 5
-+	*/
-+	hd3ss460_pol: pol_low {
-+		pins = "gpio8";
-+		drive-strength = <3>;
-+		bias-pull-down;
-+	};
-+
-+	hd3ss460_amsel: amsel_high {
-+		pins = "gpio9";
-+		drive-strength = <1>;
-+		bias-pull-up;
-+	};
-+	
-+	hd3ss460_en: en_high {
-+		pins = "gpio10";
-+		drive-strength = <1>;
-+		bias-pull-up;
-+	};
++	 * This device is shipped with HS400 capabable eMMCs
++	 * However various brands have been used in various product batches,
++	 * including a Samsung eMMC (BGND3R) which features a quirk with HS400.
++	 * Set the speed to HS200 as a safety measure.
++	 */
++	mmc-hs200-1_8v;
 +};
 +
- &pmi8994_spmi_regulators {
- 	vdd_gfx: s2@1700 {
- 		reg = <0x1700 0x100>;
++&sdhc2 {
++	status = "okay";
++
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on>;
++	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off>;
++
++	vmmc-supply = <&vreg_l21a_2p95>;
++	vqmmc-supply = <&vreg_l13a_2p95>;
++
++	cd-gpios = <&pm8994_gpios 8 GPIO_ACTIVE_LOW>;
+ };
+ 
+ &tlmm {
 -- 
 2.30.0
 
