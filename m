@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B587309BFF
+	by mail.lfdr.de (Postfix) with ESMTP id AD635309C00
 	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 13:37:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229474AbhAaKe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 05:34:27 -0500
-Received: from aruko.org ([45.79.249.221]:45612 "EHLO aruko.org"
+        id S231169AbhAaKee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 05:34:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44682 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230439AbhAaKI2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 31 Jan 2021 05:08:28 -0500
-X-Greylist: delayed 621 seconds by postgrey-1.27 at vger.kernel.org; Sun, 31 Jan 2021 05:08:26 EST
-Received: from localhost.localdomain (unknown [213.111.80.72])
-        by aruko.org (Postfix) with ESMTPSA id 14C9B7F496;
-        Sun, 31 Jan 2021 09:57:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruko.org; s=mail;
-        t=1612087039; bh=WaYjN6LulNhQAZc5zhwsQAkXNQ91yI459HM4uMk/86Y=;
-        h=From:To:Cc:Subject:Date;
-        b=CRGZWkrihQ1uFYO2Y0oYzbvDecHao0u9aMQKSt76J5dxQ6FtdbgYTONUdxYRw/Gy6
-         eNAEK+hcPKWHOW5rwNQ3av+Thd6fMuOvPNi8vcFvfY8+5ZAy2FQp1LPIc4mwAa8pd9
-         FyfUvgVNBEKBRjUd9oJmdV/tiGMxqJtHP25JK7N0=
-From:   Mykyta Poturai <ddone@aruko.org>
-Cc:     Mykyta Poturai <ddone@aruko.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: display: Add "disable-hpd" binding
-Date:   Sun, 31 Jan 2021 11:57:01 +0200
-Message-Id: <20210131095701.965147-1-ddone@aruko.org>
+        id S230518AbhAaKSQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 31 Jan 2021 05:18:16 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AE49564DF5;
+        Sun, 31 Jan 2021 10:17:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612088254;
+        bh=4eczZv+hpT+gqQnuIVlGGfa+0AV2WlG4wGhPmrPZXmY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=DjerGTVwdB1KFlHn0MpRDEMtdgNudre95AhlTUg7ElpG1b9k5Zuy0ZDkeyVDFqVeg
+         gQObOmTyCbZchBg7ljrawiPcj8WvA0VnTh0xe72s8imTALZ+GUUl262zOsSCuvePC3
+         7dlKBrwtlGCyHBkVCR/3DD1yCRdAsRCUVmkrNnUr/LnvfmSTjcrRBBa+vNQrXQXw7c
+         DjXciwucETfrbddRiwnLKIybWjFpyL9cs0Zo6711vbrmRYNo4AejuaQM7C+S8+3RV1
+         Ndg2QLd30GsM7a5LI+lxy3Ct20Nd9fUoRkJ23ikXXumjjx39scY5ON7odjxL9uAGGw
+         XvhYJITJPMlfA==
+From:   matthias.bgg@kernel.org
+To:     matthias.bgg@gmail.com, CK Hu <ck.hu@mediatek.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <mbrugger@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: mt8183: Fix GCE include path
+Date:   Sun, 31 Jan 2021 11:17:26 +0100
+Message-Id: <20210131101726.804-1-matthias.bgg@kernel.org>
 X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the "disable-hpd" binding, used to disable hotplug detected
-functionality in the driver. When it's enabled the driver assumes that
-the connector is always connected and disables the hotplug detect
-related IRQ.
+From: Matthias Brugger <mbrugger@suse.com>
 
-Signed-off-by: Mykyta Poturai <ddone@aruko.org>
+The header file of GCE should be for MT8183 SoC instead of MT8173.
+
+Fixes: 91f9c963ce79 ("arm64: dts: mt8183: Add display nodes for MT8183")
+Reported-by: CK Hu <ck.hu@mediatek.com>
+Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+
 ---
- .../devicetree/bindings/display/bridge/renesas,dw-hdmi.txt       | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt b/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
-index 3f6072651182..b2b899f46b86 100644
---- a/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
-+++ b/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
-@@ -39,6 +39,7 @@ Optional properties:
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 5b782a4769e7..80e466ce99f1 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -6,7 +6,7 @@
+  */
  
- - power-domains: Shall reference the power domain that contains the DWC HDMI,
-   if any.
-+- disable-hpd: Disables the hotplug detect feature
- 
- 
- Example:
+ #include <dt-bindings/clock/mt8183-clk.h>
+-#include <dt-bindings/gce/mt8173-gce.h>
++#include <dt-bindings/gce/mt8183-gce.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/memory/mt8183-larb-port.h>
 -- 
 2.30.0
 
