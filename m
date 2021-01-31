@@ -2,102 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73B09309D6B
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 16:24:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC68309DAF
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 16:38:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231598AbhAaPUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 10:20:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44626 "EHLO
+        id S232199AbhAaM5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 07:57:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232740AbhAaPU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 10:20:29 -0500
-Received: from mail-qk1-x749.google.com (mail-qk1-x749.google.com [IPv6:2607:f8b0:4864:20::749])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80CC4C06178C
-        for <devicetree@vger.kernel.org>; Sun, 31 Jan 2021 07:19:07 -0800 (PST)
-Received: by mail-qk1-x749.google.com with SMTP id u66so11373508qkd.13
-        for <devicetree@vger.kernel.org>; Sun, 31 Jan 2021 07:19:07 -0800 (PST)
+        with ESMTP id S230249AbhAaKfQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 05:35:16 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B6F4C061573;
+        Sun, 31 Jan 2021 02:34:31 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id u14so10149261wml.4;
+        Sun, 31 Jan 2021 02:34:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=FRzaEhvDPo4h4QFnnXdsfoodxN30fydIjOqX0xUgHaA=;
-        b=tUGY1emCCr3kTH3BPSrJyXjd0HfNm6m/oZWbXkNxMlSgLYhkmo5Gd0ss84pV2g0Cc+
-         bO0sWEXymTVZZ0UC4AYb3BLvWUjpuxGFnuaqq0XpqpxSF1S40UMb+sB9RP9PcU8+G3hT
-         BZ3bfhkqscQaHgvvs8h2eDB2jfLE6YgoDiHoPL/v+Sh0tWFMziINtCqUWUWzClGMs2w6
-         +9IhcfmeLuKo1/L63JRv+rQHW6y+/fAPEUdl+N71Ehp4OiSR9hf5IhDtalwYnIK/GTiV
-         OQa3diqA2Np8ZOp5zQGrGhzH5os9qdIGek9WglCiB2W8WQOh9GlzXTgH+olyDTFZ3PVI
-         XgXw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=W9CKV72LQw4/n8DHvLlfFWWqWP3t9mTNcTVq9zgFDBI=;
+        b=ml8PKnnmBVwUtJhYLrAps2xa09WZPf+AXeAAXBnX2G3emw7Vy1EEUdoJaQrdVgaG1r
+         9mezcZR0R+t+DnxSH8YPChK16hDbrqz1tr0GfLDx2lGbNbfAHV7cjlTWV2UG4b/kVHzL
+         i7/HURt8gH3+WkwoP5l//hg4TjAzrZSWrbmAUG0KyVaDrK8OKr+GKvChOykALEPlgLUZ
+         dVZLalDzCfDlP1Fiisl28ZP8dH4XVahGOMF0epO+eCMkiBrw0QySknwCco2CpRkGObdD
+         yfk9dIbJUVsfqd9cZgOTxHalWseyCADX9lZouQpB+CSFS4DTZXJzxsTPZXrb/MCVV9Me
+         0SrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=FRzaEhvDPo4h4QFnnXdsfoodxN30fydIjOqX0xUgHaA=;
-        b=WjuiElJkKcLm3R1LoRQQD/fVJtkV8zZ3VMGver8haqnuM8n9E0GHXFPGh9gfwPixY4
-         rCRS2xIUriPck6TSxGA2cSjx1P7yP6kFh00n28fiavuF2j+vTeTDh+sAZY7Vb7Q8GotG
-         mTlnYM52kZfVigGynj1NixRxTB4JHLncOX0QeTXlnSFImcrAJu3xKzbjheYJWmh+BdWs
-         kapvnPiM3j3nzylutZviPFuWtc1F6KoIMk/t7OLww6iAC94AXdyA0wmO8X3Yo1ztJdlu
-         q1r+d4WVRUcu0vcBag/DCigPx8yadlnH8YL7jnqPTzZTas6X/bEIA16x7/kRJmhFYFnh
-         w9PQ==
-X-Gm-Message-State: AOAM532nD2xzYh3T7vh26aWRo/ARZkrW5YSDbrmibKJ7moOwzitK5kDS
-        cj72b7JfpESPZVVtoVMwShK/qgxA2sof
-X-Google-Smtp-Source: ABdhPJyB3wtOX9xa281yjX0idXO53Tyh6XK5JoI5qT6Zab+ZrxbjcpWzhxQjvGoXzDrg5s3l92IejlfUQFhd
-Sender: "kyletso via sendgmr" <kyletso@kyletso.ntc.corp.google.com>
-X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:5d70:9e45:7deb:72a7])
- (user=kyletso job=sendgmr) by 2002:a0c:eb4c:: with SMTP id
- c12mr11582424qvq.62.1612106346714; Sun, 31 Jan 2021 07:19:06 -0800 (PST)
-Date:   Sun, 31 Jan 2021 23:18:32 +0800
-In-Reply-To: <20210131151832.215931-1-kyletso@google.com>
-Message-Id: <20210131151832.215931-4-kyletso@google.com>
-Mime-Version: 1.0
-References: <20210131151832.215931-1-kyletso@google.com>
-X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
-Subject: [PATCH v2 3/3] usb: typec: tcpm: Get Sink VDO from fwnode
-From:   Kyle Tso <kyletso@google.com>
-To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, hdegoede@redhat.com, robh+dt@kernel.org
-Cc:     badhri@google.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Kyle Tso <kyletso@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=W9CKV72LQw4/n8DHvLlfFWWqWP3t9mTNcTVq9zgFDBI=;
+        b=Jgp8DUo1EhEGOrw2E1y/dyYlbLvynAYwHoZewCg9zRhcmxIdK55mVgvb+XysYiCxpU
+         nQ/YFNXFzem7E6toWl768HHFCQCMlci7sFB9J3BmWkYb+qOynVxA0BTJHXShuVLwZXc5
+         Yi3I8TS6pgwjbT6T3muLkPhrdMXpvkZzUDvGlAALNRRV+n2wOEkhO8EaUvzZOaOBI7Fl
+         hRT6VWU3Uhg+MVAhOcksKKSZEJ7PuYP5MkrD6Gt9895qd3wf5KX1BGfj2igV9AqdbZ6G
+         r9Tj3coJOWhH+y4mh76JDQli4smOZXJ6Plqmrx2gEU4VDzFSYl/ohh0xbyt7LLqVYFH5
+         +h4Q==
+X-Gm-Message-State: AOAM530q7zapT+QwwH58DvqfVa4/7WGTqZLWq5Iv2i7A/dqsPeyJjW91
+        cDCxv9vyUP+ChfZEfKlUUsM=
+X-Google-Smtp-Source: ABdhPJwPTJI1CsqFftboMFqkzFWZVTHNIT+DTDdAe3T0tcfqcLxYyFtEaR4/kluCLCarlg8Hk4ZwdQ==
+X-Received: by 2002:a1c:6289:: with SMTP id w131mr2504113wmb.0.1612089269557;
+        Sun, 31 Jan 2021 02:34:29 -0800 (PST)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id d17sm13134357wma.2.2021.01.31.02.34.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 Jan 2021 02:34:28 -0800 (PST)
+Subject: Re: [PATCH v10] cpufreq: mediatek-hw: Add support for Mediatek
+ cpufreq HW driver
+To:     Hector Yuan <hector.yuan@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     wsd_upstream@mediatek.com
+References: <1609222629-2979-1-git-send-email-hector.yuan@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <49f4400f-c803-f044-4974-f4e8703876e7@gmail.com>
+Date:   Sun, 31 Jan 2021 11:34:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
+MIME-Version: 1.0
+In-Reply-To: <1609222629-2979-1-git-send-email-hector.yuan@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit a079973f462a ("usb: typec: tcpm: Remove tcpc_config
-configuration mechanism") removed the tcpc_config which includes the
-Sink VDO and it is not yet added back with fwnode. Add it now.
 
-Signed-off-by: Kyle Tso <kyletso@google.com>
----
-Changes since v1:
-- updated the commit message
 
- drivers/usb/typec/tcpm/tcpm.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On 29/12/2020 07:17, Hector Yuan wrote:
+> The CPUfreq HW present in some Mediatek chipsets offloads the steps necessary for changing the frequency of CPUs. 
+> The driver implements the cpufreq driver interface for this hardware engine. 
+> This patch depends on MT6779 DTS patchset[1] submitted by Hanks Chen.
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 403a483645dd..84c8a52f8af1 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -5677,6 +5677,18 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 			port->new_source_frs_current = frs_current;
- 	}
- 
-+	ret = fwnode_property_read_u32_array(fwnode, "sink-vdos", NULL, 0);
-+	if (ret <= 0 && ret != -EINVAL) {
-+		return -EINVAL;
-+	} else if (ret > 0) {
-+		port->nr_snk_vdo = min(ret, VDO_MAX_OBJECTS);
-+		ret = fwnode_property_read_u32_array(fwnode, "sink-vdos",
-+						     port->snk_vdo,
-+						     port->nr_snk_vdo);
-+		if (ret < 0)
-+			return -EINVAL;
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.30.0.365.g02bc693789-goog
+This dependency got resolved, the patch is mainline since v5.11. Please delete
+it in further revisions of the patch set to minimize confusion.
 
+Thanks!
+
+> 
+> From v8 to v9, there are three more modifications.
+> 1. Based on patchset[2], align binding with scmi for performance domain.
+> 2. Add the CPUFREQ fast switch function support and define DVFS latency.
+> 3. Based on patchser[3], add energy model API parameter for mW.
+> 
+> From v7 to v8, there are three more patches based on patchset v8[4].
+> This patchset is about to register power table to Energy model for EAS and thermal usage.
+> 1. EM CPU power table
+> - Register energy model table for EAS and thermal cooling device usage.
+> - Read the coresponding LUT for power table.
+> 2. SVS initialization
+> - The SVS(Smart Voltage Scaling) engine is a hardware which is
+>   used to calculate optimized voltage values for CPU power domain.
+>   DVFS driver could apply those optimized voltage values to reduce power consumption.
+> - Driver will polling if HW engine is done for SVS initialization.
+>   After that, driver will read power table and register it to EAS.
+> - CPUs must be in power on state when doing SVS. Use pm_qos to block cpu-idle state for SVS initializing.
+> 3. Cooling device flag
+> - Add cooling device flag for thermal
+> 
+> [1]  https://lkml.org/lkml/2020/8/4/1094
+> [2]  https://lore.kernel.org/lkml/20201116181356.804590-1-sudeep.holla@arm.com/
+> [3]  https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/commit/?h=linux-next&id=c250d50fe2ce627ca9805d9c8ac11cbbf922a4a6
+> [4]  https://lkml.org/lkml/2020/9/23/384
+> 
+> 
+> Hector.Yuan (2):
+>   cpufreq: mediatek-hw: Add support for CPUFREQ HW
+>   dt-bindings: cpufreq: add bindings for MediaTek cpufreq HW
+> 
+>  .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |  116 ++++++
+>  drivers/cpufreq/Kconfig.arm                        |   12 +
+>  drivers/cpufreq/Makefile                           |    1 +
+>  drivers/cpufreq/mediatek-cpufreq-hw.c              |  370 ++++++++++++++++++++
+>  4 files changed, 499 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+>  create mode 100644 drivers/cpufreq/mediatek-cpufreq-hw.c
+> 
