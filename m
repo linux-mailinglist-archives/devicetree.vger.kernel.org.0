@@ -2,131 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C292309DB6
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 16:40:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 531E4309D83
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 16:32:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231951AbhAaPjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 10:39:53 -0500
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:24611 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232164AbhAaMwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 07:52:39 -0500
-X-UUID: 9765db983f804114851955871cb8298a-20210131
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=H0bML+eNBmZSuR/PM/yGe8x+G6itpVoj329ds+BexWE=;
-        b=lxRj3uYFtqeOGrghW0NWqi4Po5cxmbgZWSOkp1ZoPdWITBzeLRiSmFBkwlQVGuoc/uFf7cgeaJxhs3KGpMf1Ozg52L/67JG51BPkn0aZynHT9GIgHaKCVxG4/J1gyA0IcAtkYs3sU+UpwxJuC3Zr6qwJQYR6dbLglaZ3EPc1sag=;
-X-UUID: 9765db983f804114851955871cb8298a-20210131
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <hanks.chen@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 623195478; Sun, 31 Jan 2021 20:51:20 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS32N2.mediatek.inc (172.27.4.72) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 31 Jan 2021 20:51:06 +0800
-Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 31 Jan 2021 20:50:59 +0800
-Message-ID: <1612097459.484.5.camel@mtkswgap22>
-Subject: Re: [PATCH v1 1/1] arm64: dts: mt6779: add spi host dts nodes
-From:   Hanks Chen <hanks.chen@mediatek.com>
-To:     Mason Zhang <mason.zhang@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Sun, 31 Jan 2021 20:50:59 +0800
-In-Reply-To: <20210126131839.2168-2-mason.zhang@mediatek.com>
-References: <20210126131839.2168-1-mason.zhang@mediatek.com>
-         <20210126131839.2168-2-mason.zhang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+        id S231580AbhAaOOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 09:14:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48080 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231878AbhAaN3I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 08:29:08 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB94BC061786;
+        Sun, 31 Jan 2021 05:23:35 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id c127so10866244wmf.5;
+        Sun, 31 Jan 2021 05:23:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5E3Apls6csqets4H7DMOXx41lFaOtmaam4e5XL6M4iw=;
+        b=hKM5x/yzzHesMc2ZpkKhTKSmDwsFbaDW8pXz3naNKGR7dtpBt7kB6KqE1u9C2awrce
+         E2mJt7sayawkHsBlBqnZR0sZ98qHFlge6DlwXFBY10lWYoYsxg2SEV9rpQl2avlPySYG
+         /+Xe75o0nfa2ORqJyGplwR9nVJi35CQnx62GFAQ/zTGA6CtDIOZKqOY3RtsEpbrr3+/S
+         vkoNMDDwShhXaBiI27aXHZEhRwyD9wULZfxAmffWqh97FDbjjRfUZ2Ln+b3BH+zTtHQ2
+         fjoTRb2o5IC4lnLDG+4tjFLpE0cj4Pu/b5OOU+jcq/g7hnNqrjUWFc6TG16DNTFkp+2t
+         +otQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5E3Apls6csqets4H7DMOXx41lFaOtmaam4e5XL6M4iw=;
+        b=Srruj55V9lLozkbOo0w0o8Qym6UW+xGCokcp//lqeju+2hr98HqBwSixXU1rOYOOwj
+         IrRkNKZl11QqYTamVJAOD0wvqcZwhoCNFdYQidrkZ9rYJnJ2MzOOVJ/avfQnGpZXbul1
+         aIwcGn70bthcg+T+QRi+q1X+PNS8nJH1cG4kV1mdws6PiFjIIlVHnTPgJ6CWu8Np4OHf
+         t65CkHdijbKfL5LcMDb6QxYLlFE1bZgsFae0AGCJBxGu7iE4aD9SGoIrLtVdmlznk1kG
+         mR0FuNlt30sqhMpgPgSvwtBdYPYP+0VkB4rEL0s7BeJPZu1nKn/um7mbrggTBum0+Ej6
+         TxQw==
+X-Gm-Message-State: AOAM531DnNX7+eL0a7nHrHDgB2nuuuuCw2IID0mIJ50xgUWwWfpImBrS
+        KSIQIXTFOnW/W97+LF8Hf5Y=
+X-Google-Smtp-Source: ABdhPJzHqd0I71FRkOquB11nCB3oZaqjsEewergd0ffPGMIBxyOJhBoy0IcAW6hOaIBgt9VG0/TodQ==
+X-Received: by 2002:a1c:2b05:: with SMTP id r5mr11020512wmr.179.1612099414528;
+        Sun, 31 Jan 2021 05:23:34 -0800 (PST)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id d17sm13518011wma.2.2021.01.31.05.23.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 Jan 2021 05:23:33 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: mt8192: Add cpu-idle-states
+To:     James Liao <jamesjj.liao@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com
+References: <20201222045820.26355-1-jamesjj.liao@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <4b702785-9c30-fa24-e5bc-ad3aa9457a5c@gmail.com>
+Date:   Sun, 31 Jan 2021 14:23:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 6C9DE66BB309684B4BAD733E784C59101D56845D7754F36C8535B840862203462000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20201222045820.26355-1-jamesjj.liao@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTAxLTI2IGF0IDIxOjE4ICswODAwLCBNYXNvbiBaaGFuZyB3cm90ZToNCj4g
-RnJvbTogbXRrMjI3ODYgPE1hc29uLlpoYW5nQG1lZGlhdGVrLmNvbT4NCj4gDQo+IHRoaXMgcGF0
-Y2ggYWRkIHNwaSBob3N0IGR0cyBub2RlcyBmb3IgbXQ2Nzc5IElDLg0KPiANCj4gQ2hhbmdlLUlk
-OiBJZjRhM2NiYjA5ODQzZjQ3MjIxMGIzOTAzNTJkYjRiOTg4NmY1YzAwYw0KPiBTaWduZWQtb2Zm
-LWJ5OiBNYXNvbiBaaGFuZyA8bWFzb24uemhhbmdAbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gIGFy
-Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LmR0c2kgfCA5NiArKysrKysrKysrKysr
-KysrKysrKysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCA5NiBpbnNlcnRpb25zKCspDQo+IA0KPiBk
-aWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSBiL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LmR0c2kNCj4gaW5kZXggMzcwZjMwOWQz
-MmRlLi4yNzJmNDM0NmQzNWUgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVk
-aWF0ZWsvbXQ2Nzc5LmR0c2kNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9t
-dDY3NzkuZHRzaQ0KPiBAQCAtMjE5LDYgKzIxOSwxMDIgQEANCj4gIAkJCXN0YXR1cyA9ICJkaXNh
-YmxlZCI7DQo+ICAJCX07DQo+ICANCj4gKwkJc3BpMDogc3BpMEAxMTAwYTAwMCB7DQo+ICsJCQlj
-b21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVr
-LG10Njc2NS1zcGkiOw0KDQphZGQgdGhlIGNvbXBhdGlibGUgc3RyaW5nIGludG8gdGhlIFNQSSBi
-aW5kaW5nIA0KDQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KPiArCQkJcmVnID0g
-PDAgMHgxMTAwYTAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQz
-IElSUV9UWVBFX0xFVkVMX0xPVz47DQoNCmFkZCA0dGggdmFsdWUgaW50byBpbnRlcnJ1cHRzIHBy
-b3BlcnR5IHRvIHN1cHBvcnQgUFBJIHBhcnRpdGlvbiANCigwIGZvciBTUEkpDQppbnRlcnJ1cHRz
-ID0gPEdJQ19TUEkgMTQzIElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCg0KUmVnYXJkcywNCkhhbmtz
-IENoZW4NCj4gKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwN
-Cj4gKwkJCQk8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gKwkJCQk8JmluZnJhY2ZnX2FvIENM
-S19JTkZSQV9TUEkwPjsNCj4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNs
-ayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4gKw0KPiArCQlzcGkxOiBzcGkxQDExMDEwMDAwIHsN
-Cj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAgICAi
-bWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0K
-PiArCQkJcmVnID0gPDAgMHgxMTAxMDAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0g
-PEdJQ19TUEkgMTQ3IElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQljbG9ja3MgPSA8JnRvcGNr
-Z2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ICsJCQkJPCZ0b3Bja2dlbiBDTEtfVE9QX1NQ
-ST4sDQo+ICsJCQkJPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJMT47DQo+ICsJCQljbG9jay1u
-YW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQo+ICsJCX07DQo+ICsN
-Cj4gKwkJc3BpMjogc3BpMkAxMTAxMjAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVr
-LG10Njc3OS1zcGkiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0KPiArCQkJ
-bWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCj4gKwkJCXJlZyA9IDwwIDB4MTEwMTIwMDAgMCAw
-eDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1MiBJUlFfVFlQRV9MRVZFTF9M
-T1c+Ow0KPiArCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0K
-PiArCQkJCSA8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gKwkJCQk8JmluZnJhY2ZnX2FvIENM
-S19JTkZSQV9TUEkyPjsNCj4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNs
-ayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4gKw0KPiArCQlzcGkzOiBzcGkzQDExMDEzMDAwIHsN
-Cj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAgICAi
-bWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0K
-PiArCQkJcmVnID0gPDAgMHgxMTAxMzAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0g
-PEdJQ19TUEkgMTUzIElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQljbG9ja3MgPSA8JnRvcGNr
-Z2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ICsJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9T
-UEk+LA0KPiArCQkJCSA8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9TUEkzPjsNCj4gKwkJCWNsb2Nr
-LW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4g
-Kw0KPiArCQlzcGk0OiBzcGk0QDExMDE4MDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0
-ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJ
-CQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KPiArCQkJcmVnID0gPDAgMHgxMTAxODAwMCAw
-IDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTU2IElSUV9UWVBFX0xFVkVM
-X0xPVz47DQo+ICsJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4s
-DQo+ICsJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KPiArCQkJCSA8JmluZnJhY2ZnX2Fv
-IENMS19JTkZSQV9TUEk0PjsNCj4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2Vs
-LWNsayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4gKw0KPiArCQlzcGk1OiBzcGk1QDExMDE5MDAw
-IHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAg
-ICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+
-Ow0KPiArCQkJcmVnID0gPDAgMHgxMTAxOTAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRz
-ID0gPEdJQ19TUEkgMTU3IElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQljbG9ja3MgPSA8JnRv
-cGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ICsJCQkJPCZ0b3Bja2dlbiBDTEtfVE9Q
-X1NQST4sDQo+ICsJCQkJPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJNT47DQo+ICsJCQljbG9j
-ay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQo+ICsJCX07DQo+
-ICsNCj4gKwkJc3BpNjogc3BpNkAxMTAxZDAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlh
-dGVrLG10Njc3OS1zcGkiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0KPiAr
-CQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCj4gKwkJCXJlZyA9IDwwIDB4MTEwMWQwMDAg
-MCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE0NCBJUlFfVFlQRV9MRVZF
-TF9MT1c+Ow0KPiArCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+
-LA0KPiArCQkJCSA8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gKwkJCQkgPCZpbmZyYWNmZ19h
-byBDTEtfSU5GUkFfU1BJNj47DQo+ICsJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNl
-bC1jbGsiLCAic3BpLWNsayI7DQo+ICsJCX07DQo+ICsNCj4gKwkJc3BpNzogc3BpN0AxMTAxZTAw
-MCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KPiArCQkJCSAg
-ICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0KPiArCQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDww
-PjsNCj4gKwkJCXJlZyA9IDwwIDB4MTEwMWUwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0
-cyA9IDxHSUNfU1BJIDE0NSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJY2xvY2tzID0gPCZ0
-b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KPiArCQkJCSA8JnRvcGNrZ2VuIENMS19U
-T1BfU1BJPiwNCj4gKwkJCQkgPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJNz47DQo+ICsJCQlj
-bG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQo+ICsJCX07
-DQo+ICsNCj4gIAkJYXVkaW86IGNsb2NrLWNvbnRyb2xsZXJAMTEyMTAwMDAgew0KPiAgCQkJY29t
-cGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktYXVkaW8iLCAic3lzY29uIjsNCj4gIAkJCXJlZyA9
-IDwwIDB4MTEyMTAwMDAgMCAweDEwMDA+Ow0KDQo=
 
+
+On 22/12/2020 05:58, James Liao wrote:
+> Add idle states for cpu-off and cluster-off.
+> 
+> Signed-off-by: James Liao <jamesjj.liao@mediatek.com>
+> ---
+
+Applied to v5.11-next/dts64
+
+Thanks!
+
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 44 ++++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+> 
+> This patch bases on v5.10 and [1], adds idle-states for MT8192 CPUs.
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20201030092207.26488-2-seiya.wang@mediatek.com/
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index e12e024de122..c7f2ec9ea4f1 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -39,6 +39,7 @@
+>  			reg = <0x000>;
+>  			enable-method = "psci";
+>  			clock-frequency = <1701000000>;
+> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
+>  			next-level-cache = <&l2_0>;
+>  			capacity-dmips-mhz = <530>;
+>  		};
+> @@ -49,6 +50,7 @@
+>  			reg = <0x100>;
+>  			enable-method = "psci";
+>  			clock-frequency = <1701000000>;
+> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
+>  			next-level-cache = <&l2_0>;
+>  			capacity-dmips-mhz = <530>;
+>  		};
+> @@ -59,6 +61,7 @@
+>  			reg = <0x200>;
+>  			enable-method = "psci";
+>  			clock-frequency = <1701000000>;
+> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
+>  			next-level-cache = <&l2_0>;
+>  			capacity-dmips-mhz = <530>;
+>  		};
+> @@ -69,6 +72,7 @@
+>  			reg = <0x300>;
+>  			enable-method = "psci";
+>  			clock-frequency = <1701000000>;
+> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
+>  			next-level-cache = <&l2_0>;
+>  			capacity-dmips-mhz = <530>;
+>  		};
+> @@ -79,6 +83,7 @@
+>  			reg = <0x400>;
+>  			enable-method = "psci";
+>  			clock-frequency = <2171000000>;
+> +			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
+>  			next-level-cache = <&l2_1>;
+>  			capacity-dmips-mhz = <1024>;
+>  		};
+> @@ -89,6 +94,7 @@
+>  			reg = <0x500>;
+>  			enable-method = "psci";
+>  			clock-frequency = <2171000000>;
+> +			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
+>  			next-level-cache = <&l2_1>;
+>  			capacity-dmips-mhz = <1024>;
+>  		};
+> @@ -99,6 +105,7 @@
+>  			reg = <0x600>;
+>  			enable-method = "psci";
+>  			clock-frequency = <2171000000>;
+> +			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
+>  			next-level-cache = <&l2_1>;
+>  			capacity-dmips-mhz = <1024>;
+>  		};
+> @@ -109,6 +116,7 @@
+>  			reg = <0x700>;
+>  			enable-method = "psci";
+>  			clock-frequency = <2171000000>;
+> +			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
+>  			next-level-cache = <&l2_1>;
+>  			capacity-dmips-mhz = <1024>;
+>  		};
+> @@ -158,6 +166,42 @@
+>  		l3_0: l3-cache {
+>  			compatible = "cache";
+>  		};
+> +
+> +		idle-states {
+> +			entry-method = "arm,psci";
+> +			cpuoff_l: cpuoff_l {
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x00010001>;
+> +				local-timer-stop;
+> +				entry-latency-us = <55>;
+> +				exit-latency-us = <140>;
+> +				min-residency-us = <780>;
+> +			};
+> +			cpuoff_b: cpuoff_b {
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x00010001>;
+> +				local-timer-stop;
+> +				entry-latency-us = <35>;
+> +				exit-latency-us = <145>;
+> +				min-residency-us = <720>;
+> +			};
+> +			clusteroff_l: clusteroff_l {
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x01010002>;
+> +				local-timer-stop;
+> +				entry-latency-us = <60>;
+> +				exit-latency-us = <155>;
+> +				min-residency-us = <860>;
+> +			};
+> +			clusteroff_b: clusteroff_b {
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x01010002>;
+> +				local-timer-stop;
+> +				entry-latency-us = <40>;
+> +				exit-latency-us = <155>;
+> +				min-residency-us = <780>;
+> +			};
+> +		};
+>  	};
+>  
+>  	pmu-a55 {
+> 
