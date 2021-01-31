@@ -2,129 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 988B8309C37
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 14:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16386309C32
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 13:58:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231210AbhAaM6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 07:58:13 -0500
-Received: from fallback22.m.smailru.net ([94.100.176.132]:50388 "EHLO
-        fallback22.mail.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231975AbhAaMiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 07:38:23 -0500
-X-Greylist: delayed 2600 seconds by postgrey-1.27 at vger.kernel.org; Sun, 31 Jan 2021 07:38:20 EST
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail3;
-        h=Message-Id:Date:Subject:Cc:To:From; bh=LQKaOz3GM1yz/eUqKljiD5r6FYniubYhj+U3zBFESls=;
-        b=SUt8xqEmqOovQUnRmHhNvhIkdXPiwzVdi2bPpZErUlhN8wTbQ54FDph9vaPv5cgDocB3kI2nvYoaX+wfJClajxyFEKfGF7c4gK/3m2hkk/MAr4jreCdy/WpHMtwodSJFtyDhtw09BlTKssclAyXP76jBx5FsXTtb/c6+WuegEFQ=;
-Received: from [10.161.16.37] (port=55238 helo=smtp63.i.mail.ru)
-        by fallback22.m.smailru.net with esmtp (envelope-from <azdmg@inbox.ru>)
-        id 1l6BIG-0004Cw-Bt; Sun, 31 Jan 2021 14:53:28 +0300
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail3;
-        h=Message-Id:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=LQKaOz3GM1yz/eUqKljiD5r6FYniubYhj+U3zBFESls=;
-        b=W+V0Fw9pIuH9kVeCRdT73Fr17ttZKY5wXxAAJ4if9Y8BBzWeFEcKvHNLiqNNVOiU5SOI+vs5XsaiE5CKupm3tUEoJum9vIsxwscmKUg/DyRO1373wnD9bqWoFjFQIsV4u63N7Iui/CJVAKIhOwIHurmxcurnGVrp8bRRtNd5g7k=;
-Received: by smtp63.i.mail.ru with esmtpa (envelope-from <azdmg@inbox.ru>)
-        id 1l6BGa-0001pu-R3; Sun, 31 Jan 2021 14:51:45 +0300
-From:   Dima Azarkin <azdmg@inbox.ru>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Dima Azarkin <azdmg@inbox.ru>
-Subject: [PATCH] ARM: dts: imx6qdl-wandboard: add scl/sda gpios definitions for i2c bus recovery
-Date:   Sun, 31 Jan 2021 14:49:44 +0300
-Message-Id: <20210131114944.2094-1-azdmg@inbox.ru>
-X-Mailer: git-send-email 2.17.1
-X-7564579A: 646B95376F6C166E
-X-77F55803: 4F1203BC0FB41BD953AC099BC0052A9C4647521586BE7E6324520D2A088600D8182A05F538085040301C78E64EAD1EF4C0A68F370F7379FF7DBBD334F2668BCAC20B38BAF2E57F5C
-X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE721810386143EB795EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F79006378F36A1B9BEFA0A0C8638F802B75D45FF5571747095F342E8C7A0BC55FA0FE5FC35DFE528C83F5B652546A7DFE454D6D1D5DEE2D6651A6BC6389733CBF5DBD5E913377AFFFEAFD269176DF2183F8FC7C0F75B7380DB97F9D88941B15DA834481FCF19DD082D7633A0EF3E4896CB9E6436389733CBF5DBD5E9D5E8D9A59859A8B62610E1DCEBCBDF8FCC7F00164DA146DA6F5DAA56C3B73B237318B6A418E8EAB8D32BA5DBAC0009BE9E8FC8737B5C22492F6CDC8FDE09B81876E601842F6C81A12EF20D2F80756B5F7E9C4E3C761E06A776E601842F6C81A127C277FBC8AE2E8B8B090140527B2FF33AA81AA40904B5D9DBF02ECDB25306B2B25CBF701D1BE8734AD6D5ED66289B5278DA827A17800CE76585D17B8B4F84DD67F23339F89546C5A8DF7F3B2552694A6FED454B719173D6725E5C173C3A84C3FC06EC4CDF47133435872C767BF85DA2F004C906525384306FED454B719173D6462275124DF8B9C9DE2850DD75B2526BE5BFE6E7EFDEDCD789D4C264860C145E
-X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8183A4AFAF3EA6BDC44C234C8B12C006B7A35DFE528C83F5B652546A7DFE454D6D1B6577F9137C64104B1881A6453793CE9C32612AADDFBE061933755F29123B4109510FB958DCE06DB6ED91DBE5ABE359A3485EE9140A7D39D5E4DBAB5AF249FA793EDB24507CE13387DFF0A840B692CF8
-X-C8649E89: 4E36BF7865823D7055A7F0CF078B5EC49A30900B95165D348B409C2D257583DF6794FAE8B865554F0E1BF8BE2D596231BC797C62E588A355F14BF7E69B906B8E1D7E09C32AA3244CFDF1351F3C0E0FF818B6775967756F866C24832127668422C2E5D8217768D59A
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojBjC2XHTqRV28UV8CZLLq7Q==
-X-Mailru-Sender: 573A2FD82894F0C026E658EFD987AED2290D0449CF08686AC0A68F370F7379FFF7F5837242FA16B226B68C7F86AFC33D9314192DE98EED7F344BC0670A57513BA956D050E05F1CF736D1CE18B8CA5127DC9A6A14530ACBDEDE58F5C545520818B4A721A3011E896F
-X-Mras: Ok
-X-7564579A: 646B95376F6C166E
-X-77F55803: 6242723A09DB00B429696F2DCEDD653A3882F69B6077407E947905E7168E6759049FFFDB7839CE9E186C0D0944DC462BC4723F95BEF20407443F25F44F3BCBB7596E0714EB521457
-X-7FA49CB5: 0D63561A33F958A5038071287CE75EFD483E6E9FAF404008791CB1E529957BE48941B15DA834481FA18204E546F3947C9ECE72BF5266115FF6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F7900637D364C8B9A17AC2FF389733CBF5DBD5E9B5C8C57E37DE458BD9DD9810294C998ED8FC6C240DEA76428AA50765F7900637E0EE97BC066B8636D81D268191BDAD3DBD4B6F7A4D31EC0BEA7A3FFF5B025636A7F4EDE966BC389F9E8FC8737B5C2249CB83D7B00AC1CE3D089D37D7C0E48F6CCF19DD082D7633A0E7DDDDC251EA7DABAAAE862A0553A3920E30A4C9C8E338DA65374E87253EB3AA43847C11F186F3C5E7DDDDC251EA7DABCC89B49CDF41148FA8EF81845B15A4842623479134186CDE6BA297DBC24807EABDAD6C7F3747799A
-X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8183A4AFAF3EA6BDC44C234C8B12C006B7A35DFE528C83F5B65C2FC3383B5011E2D57014794D544FB70B1881A6453793CE9C32612AADDFBE061933755F29123B410DC48ACC2A39D04F89CDFB48F4795C241BDAD6C7F3747799A
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojBjC2XHTqRV3gkR/vbiKUOA==
-X-Mailru-MI: 800
-X-Mailru-Sender: A5480F10D64C90059D04A353E0DED3E62462BD71879121815874E129D9422FF54AF810104A35EE5E26B68C7F86AFC33D9314192DE98EED7F344BC0670A57513BA956D050E05F1CF736D1CE18B8CA5127DC9A6A14530ACBDEDE58F5C545520818B4A721A3011E896F
-X-Mras: Ok
+        id S231549AbhAaM57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 07:57:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33752 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229471AbhAaMQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 07:16:58 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC24DC0613ED;
+        Sun, 31 Jan 2021 04:04:39 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id j18so10257562wmi.3;
+        Sun, 31 Jan 2021 04:04:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Ja60oVtMBQPXNGaZwq/ZCDxnj/PFg82fF1SA2lvvHG0=;
+        b=Q+KSMbj8Ll7Y1J1WBPSao0L9jVQaSMZi+iBNkyxfi8Sar/qwqcl6BUuJZuxvFs9EDJ
+         M2NGcpAfVEz2Bfw2F63/47P7chzjlCD/TYvzLQ4BdhZs1EvpD2dqieil3IleoU6wn1IF
+         kqRJyxdoJMPGgP0kivdW2VKCySkbKRE15pCuGyVAu/ApswPPdE45zOu5qQfFNnQXjR7j
+         uFv63xRs5YvDVrbYRuLFE87Wg9IaJ+vMSQnltsEXsNLNPiiaKSI/MoLB1soYBVfHQ/27
+         2hAB3vxvwCnLCkoHmuf9nEimeatff5guIrAfrKAV0RJ9N/vRYxkHRI/VoFhlMyV9u1Qn
+         KNtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Ja60oVtMBQPXNGaZwq/ZCDxnj/PFg82fF1SA2lvvHG0=;
+        b=L+vw6ESLS/98Un8UDRPlg5UpzI1+SsQnX0cRqpsQke72yWT4EyUbC9wtAJuiG0e8ID
+         OpWWZWrsEROHfkzvnqnvC5EThTpd5rgCR0Xmy/E7Qsqu1OqpSJvDwKmyPZui2gRvzVkY
+         00Doz8JIcHoIa6sJXAOZLzC73V8dCm37OMTuf9ZAhE04cleiFmrvzl6xQyR4/yhbQfXe
+         JPsRq8rCWWHWHrCkboSIkhV3tSDqU/GDZj+n065nX6yThdqnmEhf6vbOqrDAD5UNZUSf
+         PKkwN+4ArZL9Fvr2CwqclcJZ2+F+5EmBw6CkUkJlNkxJ3H6ikyxY+EFnoRyqJ5nP4G3U
+         J64w==
+X-Gm-Message-State: AOAM532FEn60UhNYpqLdUWr4PjUQAooXktJShvYIScq7qb2hAPC6Tg0t
+        PeUhHuBQEpSASCKHWdqTDL8=
+X-Google-Smtp-Source: ABdhPJzlhERwDG3Ce1iWqB+vncCmORjbDBr85usncQIR5myjv5+PcJ6aSO6zB4lad9aZdWIrSNQz8Q==
+X-Received: by 2002:a05:600c:35d6:: with SMTP id r22mr10901735wmq.44.1612094678726;
+        Sun, 31 Jan 2021 04:04:38 -0800 (PST)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id u206sm7405206wme.12.2021.01.31.04.04.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 Jan 2021 04:04:37 -0800 (PST)
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: Add domain regulator supply
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Mark Brown <broonie@kernel.org>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20210129101208.2625249-1-hsinyi@chromium.org>
+ <20210129101208.2625249-2-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <44920b1f-1232-9bdc-f69b-40f10a2f0b5d@gmail.com>
+Date:   Sun, 31 Jan 2021 13:04:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
+MIME-Version: 1.0
+In-Reply-To: <20210129101208.2625249-2-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i2c bus on imx6qdl-wandboard has intermittent issues where SDA can freeze
-on low level at the end of transaction so the bus can no longer work. This
-impacts reading of EDID data leading to incorrect TV resolution and no audio.
 
-This scenario is improved by adding scl/sda gpios definitions to implement the
-i2c bus recovery mechanism.
 
-Signed-off-by: Dima Azarkin <azdmg@inbox.ru>
----
- arch/arm/boot/dts/imx6qdl-wandboard.dtsi | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+On 29/01/2021 11:12, Hsin-Yi Wang wrote:
+> Some power domains (eg. mfg) needs to turn on power supply before power
+> on.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-diff --git a/arch/arm/boot/dts/imx6qdl-wandboard.dtsi b/arch/arm/boot/dts/imx6qdl-wandboard.dtsi
-index c070893c509e..b62a0dbb033f 100644
---- a/arch/arm/boot/dts/imx6qdl-wandboard.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-wandboard.dtsi
-@@ -97,15 +97,21 @@
- 
- &i2c1 {
- 	clock-frequency = <100000>;
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c1>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	scl-gpios = <&gpio3 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio3 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
- };
- 
- &i2c2 {
- 	clock-frequency = <100000>;
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+	scl-gpios = <&gpio4 12 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio4 13 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
- 
- 	codec: sgtl5000@a {
-@@ -185,6 +191,13 @@
- 			>;
- 		};
- 
-+		pinctrl_i2c1_gpio: i2c1gpiogrp {
-+			fsl,pins = <
-+				MX6QDL_PAD_EIM_D21__GPIO3_IO21		0x4001b8b0
-+				MX6QDL_PAD_EIM_D28__GPIO3_IO28		0x4001b8b0
-+			>;
-+		};
-+
- 		pinctrl_i2c2: i2c2grp {
- 			fsl,pins = <
- 				MX6QDL_PAD_KEY_COL3__I2C2_SCL		0x4001b8b1
-@@ -192,6 +205,13 @@
- 			>;
- 		};
- 
-+		pinctrl_i2c2_gpio: i2c2gpiogrp {
-+			fsl,pins = <
-+				MX6QDL_PAD_KEY_COL3__GPIO4_IO12		0x4001b8b0
-+				MX6QDL_PAD_KEY_ROW3__GPIO4_IO13		0x4001b8b0
-+			>;
-+		};
-+
- 		pinctrl_mclk: mclkgrp {
- 			fsl,pins = <
- 				MX6QDL_PAD_GPIO_0__CCM_CLKO1		0x130b0
--- 
-2.17.1
+Applied to v5.11-next/soc
 
+Thanks
+
+> ---
+>  .../bindings/power/mediatek,power-controller.yaml        | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> index d14cb9bac8497..e529586af5a12 100644
+> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> @@ -82,6 +82,9 @@ patternProperties:
+>            be specified by order, adding first the BASIC clocks followed by the
+>            SUSBSYS clocks.
+>  
+> +      domain-supply:
+> +        description: domain regulator supply.
+> +
+>        mediatek,infracfg:
+>          $ref: /schemas/types.yaml#/definitions/phandle
+>          description: phandle to the device containing the INFRACFG register range.
+> @@ -130,6 +133,9 @@ patternProperties:
+>                be specified by order, adding first the BASIC clocks followed by the
+>                SUSBSYS clocks.
+>  
+> +          domain-supply:
+> +            description: domain regulator supply.
+> +
+>            mediatek,infracfg:
+>              $ref: /schemas/types.yaml#/definitions/phandle
+>              description: phandle to the device containing the INFRACFG register range.
+> @@ -178,6 +184,9 @@ patternProperties:
+>                    be specified by order, adding first the BASIC clocks followed by the
+>                    SUSBSYS clocks.
+>  
+> +              domain-supply:
+> +                description: domain regulator supply.
+> +
+>                mediatek,infracfg:
+>                  $ref: /schemas/types.yaml#/definitions/phandle
+>                  description: phandle to the device containing the INFRACFG register range.
+> 
