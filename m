@@ -2,416 +2,657 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18BC6309ED3
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 21:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E8A2309EEE
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 21:33:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231390AbhAaUYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 15:24:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39254 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbhAaTcB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 14:32:01 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C114C0611C2;
-        Sun, 31 Jan 2021 11:14:15 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id c4so11592747wru.9;
-        Sun, 31 Jan 2021 11:14:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U8nxXe5xQj88timd/Lo9joFBv5MwWgjwhtJrqP+H1LA=;
-        b=PpZG9Um3B5zQzzVBP4tZXzoaRyIDdUka0v1dnX5DpkSQFrDs6d0FOyIp63qoKhEAVi
-         wDUhd6XzZYPXASFCzgigMWar3dMPFW+3n3KoewTD9OB2Twu/vnjlt0y73KpgITh5gAmd
-         rDW3BotZae1IbyhjdkqL7whfRnJlcNPOuITFAV0Yhz++toJyabMQLTG03vhIaYOhrCY8
-         1gLZFnWo4HINzKRRT9Lxo+3T+5RVip8t86ghb+sNf+dq6QCrW7a3joLNGVc1v9yzJXN7
-         gKvxRoB2t6tjHJosmpXFqkzhm845f6ey6+2MAWXyDBQT5CpqpMiqNR86jm/b+8X1N+tB
-         N80w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U8nxXe5xQj88timd/Lo9joFBv5MwWgjwhtJrqP+H1LA=;
-        b=PsPSvMLMIeJZRjIUG59M7lbNQXqoa3dpqtIByImwucYJXYiFCYGSMMfZMbpsntrU5s
-         Yr17rkVSf5Z3s3gEJ59NDi3FctG4r1N/qXe+ry2BWekBC2ppzqY3KJLN5gmxKp22v22B
-         ggPPOfYCpHTBlQULGh3tjCnqznSsRMt4xfuiMEL2DFuQ+hlyacPwcRpkaGbmAn/Js6tg
-         6ijvuE+5JkIvBRLhdF4uB2DdMobJvr+wtL2RBOpFKJOzvvuLDZTpuGJILbrw0cWocO1c
-         vELvZfUxO7Zn3I2q1EYOiLw6jtvR8PnHxzPhwOhJy4xpVMewIUBpEF0r/cGuRwUaIqyZ
-         5ktw==
-X-Gm-Message-State: AOAM531uwwP1WyNl0Y691f7GWg9WNOU1X4Klkl2iPDtHGg0jIYeKhB8J
-        yp+uSeKV2lqau9h4xzP8UOTaqyy1jmNvnL289UQ=
-X-Google-Smtp-Source: ABdhPJx7aikstHF7jYM5WihovsVBq8rhOwGcSN53yHKapUYVbJGwnm8IdsCa8NPnjjJW8tiTbHYX3O0vEIMmNF27qfw=
-X-Received: by 2002:adf:9148:: with SMTP id j66mr15325996wrj.28.1612120453708;
- Sun, 31 Jan 2021 11:14:13 -0800 (PST)
+        id S229586AbhAaUco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 15:32:44 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:25144 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229981AbhAaUbs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 31 Jan 2021 15:31:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1612125019;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=J/aN+VcFd0A+/O8Uby1eLbErmC7NfLDfVH8RGF6p+XM=;
+        b=jMTAuFZvKDYz7mcces9Y0B7RiPCSzy00aTSH8ZYZhWFg81YPGO9Hb2vx6YsRmU5ru0ob+T
+        QjNbqMvuduzflgVhw29oMAm7SwyRmApZJC2b6/FVAndte+JjoLo3/atk/zsde1kySatRno
+        HX+yymisHZW8bSz733qfylaDEZUK7nA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-153-AVhH2fj7OHmqo_Cz2tMkDA-1; Sun, 31 Jan 2021 13:29:23 -0500
+X-MC-Unique: AVhH2fj7OHmqo_Cz2tMkDA-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com [10.5.11.13])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 25356801817;
+        Sun, 31 Jan 2021 18:29:20 +0000 (UTC)
+Received: from [10.36.114.62] (ovpn-114-62.ams2.redhat.com [10.36.114.62])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 41D046E405;
+        Sun, 31 Jan 2021 18:29:12 +0000 (UTC)
+Subject: Re: [PATCH v12 10/10] iommu/arm-smmu-v3: Add stall support for
+ platform devices
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
+        will@kernel.org
+Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com
+References: <20210127154322.3959196-1-jean-philippe@linaro.org>
+ <20210127154322.3959196-11-jean-philippe@linaro.org>
+From:   Auger Eric <eric.auger@redhat.com>
+Message-ID: <0c609eeb-00b0-7573-fed7-5bc1e6c0b0d1@redhat.com>
+Date:   Sun, 31 Jan 2021 19:29:09 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-References: <1608287227-17685-1-git-send-email-kalyan_t@codeaurora.org>
-In-Reply-To: <1608287227-17685-1-git-send-email-kalyan_t@codeaurora.org>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Sun, 31 Jan 2021 11:16:48 -0800
-Message-ID: <CAF6AEGvvtDq7FK4NcKCc2FG2sbArBU-YboEA4u73oPR9o3coag@mail.gmail.com>
-Subject: Re: [v2] drm/msm/disp/dpu1: turn off vblank irqs aggressively in dpu driver
-To:     Kalyan Thota <kalyan_t@codeaurora.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Drew Davenport <ddavenport@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210127154322.3959196-11-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 2:27 AM Kalyan Thota <kalyan_t@codeaurora.org> wrote:
->
-> Set the flag vblank_disable_immediate = true to turn off vblank irqs
-> immediately as soon as drm_vblank_put is requested so that there are
-> no irqs triggered during idle state. This will reduce cpu wakeups
-> and help in power saving.
->
-> To enable vblank_disable_immediate flag the underlying KMS driver
-> needs to support high precision vblank timestamping and also a
-> reliable way of providing vblank counter which is incrementing
-> at the leading edge of vblank.
->
-> This patch also brings in changes to support vblank_disable_immediate
-> requirement in dpu driver.
->
-> Changes in v1:
->  - Specify reason to add vblank timestamp support. (Rob)
->  - Add changes to provide vblank counter from dpu driver.
->
-> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+Hi Jean,
 
-This seems to be triggering:
+Some rather minor comments§questions below that may not justify a respin.
 
-[  +0.032668] ------------[ cut here ]------------
-[  +0.004759] msm ae00000.mdss: drm_WARN_ON_ONCE(cur_vblank != vblank->last)
-[  +0.000024] WARNING: CPU: 0 PID: 362 at
-drivers/gpu/drm/drm_vblank.c:354 drm_update_vblank_count+0x1e4/0x258
-[  +0.017154] Modules linked in: joydev
-[  +0.003784] CPU: 0 PID: 362 Comm: frecon Not tainted
-5.11.0-rc5-00037-g33d3504871dd #2
-[  +0.008135] Hardware name: Google Lazor (rev1 - 2) with LTE (DT)
-[  +0.006167] pstate: 60400089 (nZCv daIf +PAN -UAO -TCO BTYPE=--)
-[  +0.006169] pc : drm_update_vblank_count+0x1e4/0x258
-[  +0.005105] lr : drm_update_vblank_count+0x1e4/0x258
-[  +0.005106] sp : ffffffc010003b70
-[  +0.003409] x29: ffffffc010003b70 x28: ffffff80855d9d98
-[  +0.005466] x27: 0000000000000000 x26: 0000000000fe502a
-[  +0.005458] x25: 0000000000000001 x24: 0000000000000001
-[  +0.005466] x23: 0000000000000001 x22: ffffff808561ce80
-[  +0.005465] x21: 0000000000000000 x20: 0000000000000000
-[  +0.005468] x19: ffffff80850d6800 x18: 0000000000000000
-[  +0.005466] x17: 0000000000000000 x16: 0000000000000000
-[  +0.005465] x15: 000000000000000a x14: 000000000000263b
-[  +0.005466] x13: 0000000000000006 x12: ffffffffffffffff
-[  +0.005465] x11: 0000000000000010 x10: ffffffc090003797
-[  +0.005466] x9 : ffffffed200e2a8c x8 : 0000000000000000
-[  +0.005466] x7 : 00000000ffffffff x6 : ffffffed213b2b51
-[  +0.005465] x5 : c0000000ffffdfff x4 : ffffffed21218048
-[  +0.005465] x3 : 0000000000000000 x2 : 0000000000000000
-[  +0.005465] x1 : 0000000000000000 x0 : 0000000000000000
-[  +0.005466] Call trace:
-[  +0.002520]  drm_update_vblank_count+0x1e4/0x258
-[  +0.004748]  drm_handle_vblank+0xd0/0x35c
-[  +0.004130]  drm_crtc_handle_vblank+0x24/0x30
-[  +0.004487]  dpu_crtc_vblank_callback+0x3c/0xc4
-[  +0.004662]  dpu_encoder_vblank_callback+0x70/0xc4
-[  +0.004931]  dpu_encoder_phys_vid_vblank_irq+0x50/0x12c
-[  +0.005378]  dpu_core_irq_callback_handler+0xf4/0xfc
-[  +0.005107]  dpu_hw_intr_dispatch_irq+0x100/0x120
-[  +0.004834]  dpu_core_irq+0x44/0x5c
-[  +0.003597]  dpu_irq+0x1c/0x28
-[  +0.003141]  msm_irq+0x34/0x40
-[  +0.003153]  __handle_irq_event_percpu+0xfc/0x254
-[  +0.004838]  handle_irq_event_percpu+0x3c/0x94
-[  +0.004574]  handle_irq_event+0x54/0x98
-[  +0.003944]  handle_level_irq+0xa0/0xd0
-[  +0.003943]  generic_handle_irq+0x30/0x48
-[  +0.004131]  dpu_mdss_irq+0xe4/0x118
-[  +0.003684]  generic_handle_irq+0x30/0x48
-[  +0.004127]  __handle_domain_irq+0xa8/0xac
-[  +0.004215]  gic_handle_irq+0xdc/0x150
-[  +0.003856]  el1_irq+0xb4/0x180
-[  +0.003237]  dpu_encoder_vsync_time+0x78/0x230
-[  +0.004574]  dpu_encoder_kickoff+0x190/0x354
-[  +0.004386]  dpu_crtc_commit_kickoff+0x194/0x1a0
-[  +0.004748]  dpu_kms_flush_commit+0xf4/0x108
-[  +0.004390]  msm_atomic_commit_tail+0x2e8/0x384
-[  +0.004661]  commit_tail+0x80/0x108
-[  +0.003588]  drm_atomic_helper_commit+0x118/0x11c
-[  +0.004834]  drm_atomic_commit+0x58/0x68
-[  +0.004033]  drm_atomic_helper_set_config+0x70/0x9c
-[  +0.005018]  drm_mode_setcrtc+0x390/0x584
-[  +0.004131]  drm_ioctl_kernel+0xc8/0x11c
-[  +0.004035]  drm_ioctl+0x2f8/0x34c
-[  +0.003500]  drm_compat_ioctl+0x48/0xe8
-[  +0.003945]  __arm64_compat_sys_ioctl+0xe8/0x104
-[  +0.004750]  el0_svc_common.constprop.0+0x114/0x188
-[  +0.005019]  do_el0_svc_compat+0x28/0x38
-[  +0.004031]  el0_svc_compat+0x20/0x30
-[  +0.003772]  el0_sync_compat_handler+0x104/0x18c
-[  +0.004749]  el0_sync_compat+0x178/0x180
-[  +0.004034] ---[ end trace 2959d178e74f2555 ]---
-
-
-BR,
--R
-
+On 1/27/21 4:43 PM, Jean-Philippe Brucker wrote:
+> The SMMU provides a Stall model for handling page faults in platform
+> devices. It is similar to PCIe PRI, but doesn't require devices to have
+> their own translation cache. Instead, faulting transactions are parked
+> and the OS is given a chance to fix the page tables and retry the
+> transaction.
+> 
+> Enable stall for devices that support it (opt-in by firmware). When an
+> event corresponds to a translation error, call the IOMMU fault handler.
+> If the fault is recoverable, it will call us back to terminate or
+> continue the stall.
+> 
+> To use stall device drivers need to enable IOMMU_DEV_FEAT_IOPF, which
+> initializes the fault queue for the device.
+> 
+> Tested-by: Zhangfei Gao <zhangfei.gao@linaro.org>
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 > ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c           | 80 ++++++++++++++++++++++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        | 30 ++++++++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h        | 11 +++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h   |  1 +
->  .../gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c   | 17 +++++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |  5 ++
->  6 files changed, 144 insertions(+)
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> index d4662e8..9a80981 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> @@ -65,6 +65,83 @@ static void dpu_crtc_destroy(struct drm_crtc *crtc)
->         kfree(dpu_crtc);
->  }
->
-> +static struct drm_encoder *get_encoder_from_crtc(struct drm_crtc *crtc)
-> +{
-> +       struct drm_device *dev = crtc->dev;
-> +       struct drm_encoder *encoder;
+>  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  43 ++++
+>  .../iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c   |  59 +++++-
+>  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   | 189 +++++++++++++++++-
+>  3 files changed, 276 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
+> index 7b15b7580c6e..59af0bbd2f7b 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
+> @@ -354,6 +354,13 @@
+>  #define CMDQ_PRI_1_GRPID		GENMASK_ULL(8, 0)
+>  #define CMDQ_PRI_1_RESP			GENMASK_ULL(13, 12)
+>  
+> +#define CMDQ_RESUME_0_RESP_TERM		0UL
+> +#define CMDQ_RESUME_0_RESP_RETRY	1UL
+> +#define CMDQ_RESUME_0_RESP_ABORT	2UL
+> +#define CMDQ_RESUME_0_RESP		GENMASK_ULL(13, 12)
+> +#define CMDQ_RESUME_0_SID		GENMASK_ULL(63, 32)
+> +#define CMDQ_RESUME_1_STAG		GENMASK_ULL(15, 0)
 > +
-> +       drm_for_each_encoder(encoder, dev)
-> +               if (encoder->crtc == crtc)
-> +                       return encoder;
+>  #define CMDQ_SYNC_0_CS			GENMASK_ULL(13, 12)
+>  #define CMDQ_SYNC_0_CS_NONE		0
+>  #define CMDQ_SYNC_0_CS_IRQ		1
+> @@ -370,6 +377,25 @@
+>  
+>  #define EVTQ_0_ID			GENMASK_ULL(7, 0)
+>  
+> +#define EVT_ID_TRANSLATION_FAULT	0x10
+> +#define EVT_ID_ADDR_SIZE_FAULT		0x11
+> +#define EVT_ID_ACCESS_FAULT		0x12
+> +#define EVT_ID_PERMISSION_FAULT		0x13
 > +
-> +       return NULL;
-> +}
+> +#define EVTQ_0_SSV			(1UL << 11)
+> +#define EVTQ_0_SSID			GENMASK_ULL(31, 12)
+> +#define EVTQ_0_SID			GENMASK_ULL(63, 32)
+> +#define EVTQ_1_STAG			GENMASK_ULL(15, 0)
+> +#define EVTQ_1_STALL			(1UL << 31)
+> +#define EVTQ_1_PnU			(1UL << 33)
+> +#define EVTQ_1_InD			(1UL << 34)
+> +#define EVTQ_1_RnW			(1UL << 35)
+> +#define EVTQ_1_S2			(1UL << 39)
+> +#define EVTQ_1_CLASS			GENMASK_ULL(41, 40)
+> +#define EVTQ_1_TT_READ			(1UL << 44)
+> +#define EVTQ_2_ADDR			GENMASK_ULL(63, 0)
+> +#define EVTQ_3_IPA			GENMASK_ULL(51, 12)
 > +
-> +static u32 dpu_crtc_get_vblank_counter(struct drm_crtc *crtc)
-> +{
-> +       struct drm_encoder *encoder;
+>  /* PRI queue */
+>  #define PRIQ_ENT_SZ_SHIFT		4
+>  #define PRIQ_ENT_DWORDS			((1 << PRIQ_ENT_SZ_SHIFT) >> 3)
+> @@ -464,6 +490,13 @@ struct arm_smmu_cmdq_ent {
+>  			enum pri_resp		resp;
+>  		} pri;
+>  
+> +		#define CMDQ_OP_RESUME		0x44
+> +		struct {
+> +			u32			sid;
+> +			u16			stag;
+> +			u8			resp;
+> +		} resume;
 > +
-> +       encoder = get_encoder_from_crtc(crtc);
-> +       if (!encoder) {
-> +               DRM_ERROR("no encoder found for crtc %d\n", crtc->index);
-> +               return false;
-> +       }
-> +
-> +       return dpu_encoder_get_frame_count(encoder);
-> +}
-> +
-> +static bool dpu_crtc_get_scanout_position(struct drm_crtc *crtc,
-> +                                          bool in_vblank_irq,
-> +                                          int *vpos, int *hpos,
-> +                                          ktime_t *stime, ktime_t *etime,
-> +                                          const struct drm_display_mode *mode)
-> +{
-> +       unsigned int pipe = crtc->index;
-> +       struct drm_encoder *encoder;
-> +       int line, vsw, vbp, vactive_start, vactive_end, vfp_end;
-> +
-> +       encoder = get_encoder_from_crtc(crtc);
-> +       if (!encoder) {
-> +               DRM_ERROR("no encoder found for crtc %d\n", pipe);
-> +               return false;
-> +       }
-> +
-> +       vsw = mode->crtc_vsync_end - mode->crtc_vsync_start;
-> +       vbp = mode->crtc_vtotal - mode->crtc_vsync_end;
-> +
-> +       /*
-> +        * the line counter is 1 at the start of the VSYNC pulse and VTOTAL at
-> +        * the end of VFP. Translate the porch values relative to the line
-> +        * counter positions.
-> +        */
-> +
-> +       vactive_start = vsw + vbp + 1;
-> +       vactive_end = vactive_start + mode->crtc_vdisplay;
-> +
-> +       /* last scan line before VSYNC */
-> +       vfp_end = mode->crtc_vtotal;
-> +
-> +       if (stime)
-> +               *stime = ktime_get();
-> +
-> +       line = dpu_encoder_get_linecount(encoder);
-> +
-> +       if (line < vactive_start)
-> +               line -= vactive_start;
-> +       else if (line > vactive_end)
-> +               line = line - vfp_end - vactive_start;
-> +       else
-> +               line -= vactive_start;
-> +
-> +       *vpos = line;
-> +       *hpos = 0;
-> +
-> +       if (etime)
-> +               *etime = ktime_get();
-> +
-> +       return true;
-> +}
-> +
->  static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
->                 struct dpu_plane_state *pstate, struct dpu_format *format)
->  {
-> @@ -1243,6 +1320,8 @@ static const struct drm_crtc_funcs dpu_crtc_funcs = {
->         .early_unregister = dpu_crtc_early_unregister,
->         .enable_vblank  = msm_crtc_enable_vblank,
->         .disable_vblank = msm_crtc_disable_vblank,
-> +       .get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
-> +       .get_vblank_counter = dpu_crtc_get_vblank_counter,
+>  		#define CMDQ_OP_CMD_SYNC	0x46
+>  		struct {
+>  			u64			msiaddr;
+> @@ -522,6 +555,7 @@ struct arm_smmu_cmdq_batch {
+>  
+>  struct arm_smmu_evtq {
+>  	struct arm_smmu_queue		q;
+> +	struct iopf_queue		*iopf;
+>  	u32				max_stalls;
 >  };
->
->  static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
-> @@ -1251,6 +1330,7 @@ static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
->         .atomic_check = dpu_crtc_atomic_check,
->         .atomic_begin = dpu_crtc_atomic_begin,
->         .atomic_flush = dpu_crtc_atomic_flush,
-> +       .get_scanout_position = dpu_crtc_get_scanout_position,
+>  
+> @@ -659,7 +693,9 @@ struct arm_smmu_master {
+>  	struct arm_smmu_stream		*streams;
+>  	unsigned int			num_streams;
+>  	bool				ats_enabled;
+> +	bool				stall_enabled;
+>  	bool				sva_enabled;
+> +	bool				iopf_enabled;
+>  	struct list_head		bonds;
+>  	unsigned int			ssid_bits;
 >  };
->
->  /* initialize crtc */
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> index f7f5c25..5cd3f31 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> @@ -425,6 +425,36 @@ int dpu_encoder_helper_unregister_irq(struct dpu_encoder_phys *phys_enc,
->         return 0;
+> @@ -678,6 +714,7 @@ struct arm_smmu_domain {
+>  
+>  	struct io_pgtable_ops		*pgtbl_ops;
+>  	bool				non_strict;
+> +	bool				stall_enabled;
+>  	atomic_t			nr_ats_masters;
+>  
+>  	enum arm_smmu_domain_stage	stage;
+> @@ -719,6 +756,7 @@ bool arm_smmu_master_sva_supported(struct arm_smmu_master *master);
+>  bool arm_smmu_master_sva_enabled(struct arm_smmu_master *master);
+>  int arm_smmu_master_enable_sva(struct arm_smmu_master *master);
+>  int arm_smmu_master_disable_sva(struct arm_smmu_master *master);
+> +bool arm_smmu_master_iopf_supported(struct arm_smmu_master *master);
+>  struct iommu_sva *arm_smmu_sva_bind(struct device *dev, struct mm_struct *mm,
+>  				    void *drvdata);
+>  void arm_smmu_sva_unbind(struct iommu_sva *handle);
+> @@ -750,6 +788,11 @@ static inline int arm_smmu_master_disable_sva(struct arm_smmu_master *master)
+>  	return -ENODEV;
 >  }
->
-> +int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc)
+>  
+> +static inline bool arm_smmu_master_iopf_supported(struct arm_smmu_master *master)
 > +{
-> +       struct dpu_encoder_virt *dpu_enc;
-> +       struct dpu_encoder_phys *phys;
-> +       int framecount = 0;
-> +
-> +       dpu_enc = to_dpu_encoder_virt(drm_enc);
-> +       phys = dpu_enc ? dpu_enc->cur_master : NULL;
-> +
-> +       if (phys && phys->ops.get_frame_count)
-> +               framecount = phys->ops.get_frame_count(phys);
-> +
-> +       return framecount;
+> +	return false;
 > +}
 > +
-> +int dpu_encoder_get_linecount(struct drm_encoder *drm_enc)
-> +{
-> +       struct dpu_encoder_virt *dpu_enc;
-> +       struct dpu_encoder_phys *phys;
-> +       int linecount = 0;
-> +
-> +       dpu_enc = to_dpu_encoder_virt(drm_enc);
-> +       phys = dpu_enc ? dpu_enc->cur_master : NULL;
-> +
-> +       if (phys && phys->ops.get_line_count)
-> +               linecount = phys->ops.get_line_count(phys);
-> +
-> +       return linecount;
-> +}
-> +
->  void dpu_encoder_get_hw_resources(struct drm_encoder *drm_enc,
->                                   struct dpu_encoder_hw_resources *hw_res)
+>  static inline struct iommu_sva *
+>  arm_smmu_sva_bind(struct device *dev, struct mm_struct *mm, void *drvdata)
 >  {
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-> index b491346..99a5d73 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-> @@ -156,5 +156,16 @@ void dpu_encoder_prepare_commit(struct drm_encoder *drm_enc);
->   */
->  void dpu_encoder_set_idle_timeout(struct drm_encoder *drm_enc,
->                                                         u32 idle_timeout);
-> +/**
-> + * dpu_encoder_get_linecount - get interface line count for the encoder.
-> + * @drm_enc:    Pointer to previously created drm encoder structure
-> + */
-> +int dpu_encoder_get_linecount(struct drm_encoder *drm_enc);
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+> index bb251cab61f3..ee66d1f4cb81 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+> @@ -435,9 +435,13 @@ bool arm_smmu_sva_supported(struct arm_smmu_device *smmu)
+>  	return true;
+>  }
+>  
+> -static bool arm_smmu_iopf_supported(struct arm_smmu_master *master)
+> +bool arm_smmu_master_iopf_supported(struct arm_smmu_master *master)
+>  {
+> -	return false;
+> +	/* We're not keeping track of SIDs in fault events */
+shall we? [*] below
+> +	if (master->num_streams != 1)
+> +		return false;
 > +
-> +/**
-> + * dpu_encoder_get_frame_count - get interface frame count for the encoder.
-> + * @drm_enc:    Pointer to previously created drm encoder structure
-> + */
-> +int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc);
->
->  #endif /* __DPU_ENCODER_H__ */
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h
-> index f8f2515..ecbc4be 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys.h
-> @@ -143,6 +143,7 @@ struct dpu_encoder_phys_ops {
->         void (*prepare_idle_pc)(struct dpu_encoder_phys *phys_enc);
->         void (*restore)(struct dpu_encoder_phys *phys);
->         int (*get_line_count)(struct dpu_encoder_phys *phys);
-> +       int (*get_frame_count)(struct dpu_encoder_phys *phys);
+> +	return master->stall_enabled;
+>  }
+>  
+>  bool arm_smmu_master_sva_supported(struct arm_smmu_master *master)
+> @@ -445,8 +449,8 @@ bool arm_smmu_master_sva_supported(struct arm_smmu_master *master)
+>  	if (!(master->smmu->features & ARM_SMMU_FEAT_SVA))
+>  		return false;
+>  
+> -	/* SSID and IOPF support are mandatory for the moment */
+> -	return master->ssid_bits && arm_smmu_iopf_supported(master);
+> +	/* SSID support is mandatory for the moment */
+> +	return master->ssid_bits;
+>  }
+>  
+>  bool arm_smmu_master_sva_enabled(struct arm_smmu_master *master)
+> @@ -459,13 +463,55 @@ bool arm_smmu_master_sva_enabled(struct arm_smmu_master *master)
+>  	return enabled;
+>  }
+>  
+> +static int arm_smmu_master_sva_enable_iopf(struct arm_smmu_master *master)
+> +{
+> +	int ret;
+> +	struct device *dev = master->dev;
+> +
+> +	/*
+> +	 * Drivers for devices supporting PRI or stall should enable IOPF first.
+> +	 * Others have device-specific fault handlers and don't need IOPF.
+> +	 */
+> +	if (!arm_smmu_master_iopf_supported(master))
+> +		return 0;
+> +
+> +	if (!master->iopf_enabled)
+> +		return -EINVAL;
+> +
+> +	ret = iopf_queue_add_device(master->smmu->evtq.iopf, dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = iommu_register_device_fault_handler(dev, iommu_queue_iopf, dev);
+> +	if (ret) {
+> +		iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
+> +		return ret;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static void arm_smmu_master_sva_disable_iopf(struct arm_smmu_master *master)
+> +{
+> +	struct device *dev = master->dev;
+> +
+> +	if (!master->iopf_enabled)
+> +		return;
+> +
+> +	iommu_unregister_device_fault_handler(dev);
+> +	iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
+> +}
+> +
+>  int arm_smmu_master_enable_sva(struct arm_smmu_master *master)
+>  {
+> +	int ret;
+> +
+>  	mutex_lock(&sva_lock);
+> -	master->sva_enabled = true;
+> +	ret = arm_smmu_master_sva_enable_iopf(master);
+> +	if (!ret)
+> +		master->sva_enabled = true;
+>  	mutex_unlock(&sva_lock);
+>  
+> -	return 0;
+> +	return ret;
+>  }
+>  
+>  int arm_smmu_master_disable_sva(struct arm_smmu_master *master)
+> @@ -476,6 +522,7 @@ int arm_smmu_master_disable_sva(struct arm_smmu_master *master)
+>  		mutex_unlock(&sva_lock);
+>  		return -EBUSY;
+>  	}
+> +	arm_smmu_master_sva_disable_iopf(master);
+>  	master->sva_enabled = false;
+>  	mutex_unlock(&sva_lock);
+>  
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> index 3afec6ed8075..76b2306ddff6 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> @@ -32,6 +32,7 @@
+>  #include <linux/amba/bus.h>
+>  
+>  #include "arm-smmu-v3.h"
+> +#include "../../iommu-sva-lib.h"
+>  
+>  static bool disable_bypass = true;
+>  module_param(disable_bypass, bool, 0444);
+> @@ -315,6 +316,11 @@ static int arm_smmu_cmdq_build_cmd(u64 *cmd, struct arm_smmu_cmdq_ent *ent)
+>  		}
+>  		cmd[1] |= FIELD_PREP(CMDQ_PRI_1_RESP, ent->pri.resp);
+>  		break;
+> +	case CMDQ_OP_RESUME:
+> +		cmd[0] |= FIELD_PREP(CMDQ_RESUME_0_SID, ent->resume.sid);
+> +		cmd[0] |= FIELD_PREP(CMDQ_RESUME_0_RESP, ent->resume.resp);
+> +		cmd[1] |= FIELD_PREP(CMDQ_RESUME_1_STAG, ent->resume.stag);
+> +		break;
+>  	case CMDQ_OP_CMD_SYNC:
+>  		if (ent->sync.msiaddr) {
+>  			cmd[0] |= FIELD_PREP(CMDQ_SYNC_0_CS, CMDQ_SYNC_0_CS_IRQ);
+> @@ -878,6 +884,44 @@ static int arm_smmu_cmdq_batch_submit(struct arm_smmu_device *smmu,
+>  	return arm_smmu_cmdq_issue_cmdlist(smmu, cmds->cmds, cmds->num, true);
+>  }
+>  
+> +static int arm_smmu_page_response(struct device *dev,
+> +				  struct iommu_fault_event *unused,
+> +				  struct iommu_page_response *resp)
+> +{
+> +	struct arm_smmu_cmdq_ent cmd = {0};
+> +	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
+> +	int sid = master->streams[0].id;
+[*]
+> +
+> +	if (master->stall_enabled) {
+> +		cmd.opcode		= CMDQ_OP_RESUME;
+> +		cmd.resume.sid		= sid;
+> +		cmd.resume.stag		= resp->grpid;
+> +		switch (resp->code) {
+> +		case IOMMU_PAGE_RESP_INVALID:
+add fallthrough?
+> +		case IOMMU_PAGE_RESP_FAILURE:
+> +			cmd.resume.resp = CMDQ_RESUME_0_RESP_ABORT;
+> +			break;
+> +		case IOMMU_PAGE_RESP_SUCCESS:
+> +			cmd.resume.resp = CMDQ_RESUME_0_RESP_RETRY;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	} else {
+> +		return -ENODEV;
+> +	}
+> +
+> +	arm_smmu_cmdq_issue_cmd(master->smmu, &cmd);
+> +	/*
+> +	 * Don't send a SYNC, it doesn't do anything for RESUME or PRI_RESP.
+> +	 * RESUME consumption guarantees that the stalled transaction will be
+> +	 * terminated... at some point in the future. PRI_RESP is fire and
+> +	 * forget.
+> +	 */
+> +
+> +	return 0;
+> +}
+> +
+>  /* Context descriptor manipulation functions */
+>  void arm_smmu_tlb_inv_asid(struct arm_smmu_device *smmu, u16 asid)
+>  {
+> @@ -988,7 +1032,6 @@ int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain, int ssid,
+>  	u64 val;
+>  	bool cd_live;
+>  	__le64 *cdptr;
+> -	struct arm_smmu_device *smmu = smmu_domain->smmu;
+>  
+>  	if (WARN_ON(ssid >= (1 << smmu_domain->s1_cfg.s1cdmax)))
+>  		return -E2BIG;
+> @@ -1033,8 +1076,7 @@ int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain, int ssid,
+>  			FIELD_PREP(CTXDESC_CD_0_ASID, cd->asid) |
+>  			CTXDESC_CD_0_V;
+>  
+> -		/* STALL_MODEL==0b10 && CD.S==0 is ILLEGAL */
+> -		if (smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
+> +		if (smmu_domain->stall_enabled)
+>  			val |= CTXDESC_CD_0_S;
+>  	}
+>  
+> @@ -1278,7 +1320,7 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
+>  			 FIELD_PREP(STRTAB_STE_1_STRW, strw));
+>  
+>  		if (smmu->features & ARM_SMMU_FEAT_STALLS &&
+> -		   !(smmu->features & ARM_SMMU_FEAT_STALL_FORCE))
+> +		    !master->stall_enabled)
+>  			dst[1] |= cpu_to_le64(STRTAB_STE_1_S1STALLD);
+>  
+>  		val |= (s1_cfg->cdcfg.cdtab_dma & STRTAB_STE_0_S1CTXPTR_MASK) |
+> @@ -1355,7 +1397,6 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
+>  	return 0;
+>  }
+>  
+> -__maybe_unused
+>  static struct arm_smmu_master *
+>  arm_smmu_find_master(struct arm_smmu_device *smmu, u32 sid)
+>  {
+> @@ -1382,9 +1423,96 @@ arm_smmu_find_master(struct arm_smmu_device *smmu, u32 sid)
+>  }
+>  
+>  /* IRQ and event handlers */
+> +static int arm_smmu_handle_evt(struct arm_smmu_device *smmu, u64 *evt)
+> +{
+> +	int ret;
+> +	u32 reason;
+> +	u32 perm = 0;
+> +	struct arm_smmu_master *master;
+> +	bool ssid_valid = evt[0] & EVTQ_0_SSV;
+> +	u32 sid = FIELD_GET(EVTQ_0_SID, evt[0]);
+> +	struct iommu_fault_event fault_evt = { };
+> +	struct iommu_fault *flt = &fault_evt.fault;
+> +
+> +	/* Stage-2 is always pinned at the moment */
+> +	if (evt[1] & EVTQ_1_S2)
+> +		return -EFAULT;
+> +
+> +	master = arm_smmu_find_master(smmu, sid);
+> +	if (!master)
+> +		return -EINVAL;
+> +
+> +	if (evt[1] & EVTQ_1_RnW)
+> +		perm |= IOMMU_FAULT_PERM_READ;
+> +	else
+> +		perm |= IOMMU_FAULT_PERM_WRITE;
+> +
+> +	if (evt[1] & EVTQ_1_InD)
+> +		perm |= IOMMU_FAULT_PERM_EXEC;
+> +
+> +	if (evt[1] & EVTQ_1_PnU)
+> +		perm |= IOMMU_FAULT_PERM_PRIV;
+> +
+> +	switch (FIELD_GET(EVTQ_0_ID, evt[0])) {
+> +	case EVT_ID_TRANSLATION_FAULT:
+> +	case EVT_ID_ADDR_SIZE_FAULT:
+> +	case EVT_ID_ACCESS_FAULT:
+> +		reason = IOMMU_FAULT_REASON_PTE_FETCH;
+Doesn't it rather map to IOMMU_FAULT_REASON_ACCESS?
+/* access flag check failed */"
+> +		break;
+> +	case EVT_ID_PERMISSION_FAULT:
+> +		reason = IOMMU_FAULT_REASON_PERMISSION;
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	if (evt[1] & EVTQ_1_STALL) {
+> +		flt->type = IOMMU_FAULT_PAGE_REQ;
+> +		flt->prm = (struct iommu_fault_page_request) {
+> +			.flags = IOMMU_FAULT_PAGE_REQUEST_LAST_PAGE,
+> +			.grpid = FIELD_GET(EVTQ_1_STAG, evt[1]),
+> +			.perm = perm,
+> +			.addr = FIELD_GET(EVTQ_2_ADDR, evt[2]),
+> +		};
+> +
+> +		if (ssid_valid) {
+> +			flt->prm.flags |= IOMMU_FAULT_PAGE_REQUEST_PASID_VALID;
+> +			flt->prm.pasid = FIELD_GET(EVTQ_0_SSID, evt[0]);
+> +		}
+> +	} else {
+> +		flt->type = IOMMU_FAULT_DMA_UNRECOV;
+> +		flt->event = (struct iommu_fault_unrecoverable) {
+> +			.reason = reason,
+> +			.flags = IOMMU_FAULT_UNRECOV_ADDR_VALID |
+> +				 IOMMU_FAULT_UNRECOV_FETCH_ADDR_VALID,
+nit: shall IOMMU_FAULT_UNRECOV_FETCH_ADDR_VALID be set here? Supported
+unrecoverable faults feature the IPA field which is UNKNOWN for S1
+translations. fetch_addr rather was
+corresponding to WALK_EABT.Fetch_addr to me.
+
+> +			.perm = perm,
+> +			.addr = FIELD_GET(EVTQ_2_ADDR, evt[2]),
+> +			.fetch_addr = FIELD_GET(EVTQ_3_IPA, evt[3]),
+> +		};
+> +
+> +		if (ssid_valid) {
+> +			flt->event.flags |= IOMMU_FAULT_UNRECOV_PASID_VALID;
+> +			flt->event.pasid = FIELD_GET(EVTQ_0_SSID, evt[0]);
+> +		}
+> +	}
+> +
+> +	ret = iommu_report_device_fault(master->dev, &fault_evt);
+> +	if (ret && flt->type == IOMMU_FAULT_PAGE_REQ) {
+> +		/* Nobody cared, abort the access */
+> +		struct iommu_page_response resp = {
+> +			.pasid		= flt->prm.pasid,
+> +			.grpid		= flt->prm.grpid,
+> +			.code		= IOMMU_PAGE_RESP_FAILURE,
+> +		};
+> +		arm_smmu_page_response(master->dev, &fault_evt, &resp);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>  static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+>  {
+> -	int i;
+> +	int i, ret;
+>  	struct arm_smmu_device *smmu = dev;
+>  	struct arm_smmu_queue *q = &smmu->evtq.q;
+>  	struct arm_smmu_ll_queue *llq = &q->llq;
+> @@ -1394,6 +1522,10 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+>  		while (!queue_remove_raw(q, evt)) {
+>  			u8 id = FIELD_GET(EVTQ_0_ID, evt[0]);
+>  
+> +			ret = arm_smmu_handle_evt(smmu, evt);
+> +			if (!ret)
+> +				continue;
+> +
+>  			dev_info(smmu->dev, "event 0x%02x received:\n", id);
+>  			for (i = 0; i < ARRAY_SIZE(evt); ++i)
+>  				dev_info(smmu->dev, "\t0x%016llx\n",
+> @@ -1928,6 +2060,8 @@ static int arm_smmu_domain_finalise_s1(struct arm_smmu_domain *smmu_domain,
+>  
+>  	cfg->s1cdmax = master->ssid_bits;
+>  
+> +	smmu_domain->stall_enabled = master->stall_enabled;
+> +
+>  	ret = arm_smmu_alloc_cd_tables(smmu_domain);
+>  	if (ret)
+>  		goto out_free_asid;
+> @@ -2275,6 +2409,12 @@ static int arm_smmu_attach_dev(struct iommu_domain *domain, struct device *dev)
+>  			smmu_domain->s1_cfg.s1cdmax, master->ssid_bits);
+>  		ret = -EINVAL;
+>  		goto out_unlock;
+> +	} else if (smmu_domain->stage == ARM_SMMU_DOMAIN_S1 &&
+> +		   smmu_domain->stall_enabled != master->stall_enabled) {
+> +		dev_err(dev, "cannot attach to stall-%s domain\n",
+> +			smmu_domain->stall_enabled ? "enabled" : "disabled");
+> +		ret = -EINVAL;
+> +		goto out_unlock;
+>  	}
+>  
+>  	master->domain = smmu_domain;
+> @@ -2510,6 +2650,11 @@ static struct iommu_device *arm_smmu_probe_device(struct device *dev)
+>  		master->ssid_bits = min_t(u8, master->ssid_bits,
+>  					  CTXDESC_LINEAR_CDMAX);
+>  
+> +	if ((smmu->features & ARM_SMMU_FEAT_STALLS &&
+> +	     device_property_read_bool(dev, "dma-can-stall")) ||
+> +	    smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
+> +		master->stall_enabled = true;
+> +
+>  	return &smmu->iommu;
+>  
+>  err_free_master:
+> @@ -2527,7 +2672,8 @@ static void arm_smmu_release_device(struct device *dev)
+>  		return;
+>  
+>  	master = dev_iommu_priv_get(dev);
+> -	WARN_ON(arm_smmu_master_sva_enabled(master));
+> +	if (WARN_ON(arm_smmu_master_sva_enabled(master)))
+> +		iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
+>  	arm_smmu_detach_dev(master);
+>  	arm_smmu_disable_pasid(master);
+>  	arm_smmu_remove_master(master);
+> @@ -2655,6 +2801,8 @@ static bool arm_smmu_dev_has_feature(struct device *dev,
+>  		return false;
+>  
+>  	switch (feat) {
+> +	case IOMMU_DEV_FEAT_IOPF:
+> +		return arm_smmu_master_iopf_supported(master);
+>  	case IOMMU_DEV_FEAT_SVA:
+>  		return arm_smmu_master_sva_supported(master);
+>  	default:
+> @@ -2671,6 +2819,8 @@ static bool arm_smmu_dev_feature_enabled(struct device *dev,
+>  		return false;
+>  
+>  	switch (feat) {
+> +	case IOMMU_DEV_FEAT_IOPF:
+> +		return master->iopf_enabled;
+>  	case IOMMU_DEV_FEAT_SVA:
+>  		return arm_smmu_master_sva_enabled(master);
+>  	default:
+> @@ -2681,6 +2831,8 @@ static bool arm_smmu_dev_feature_enabled(struct device *dev,
+>  static int arm_smmu_dev_enable_feature(struct device *dev,
+>  				       enum iommu_dev_features feat)
+>  {
+> +	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
+> +
+>  	if (!arm_smmu_dev_has_feature(dev, feat))
+>  		return -ENODEV;
+>  
+> @@ -2688,8 +2840,11 @@ static int arm_smmu_dev_enable_feature(struct device *dev,
+>  		return -EBUSY;
+>  
+>  	switch (feat) {
+> +	case IOMMU_DEV_FEAT_IOPF:
+> +		master->iopf_enabled = true;
+> +		return 0;
+>  	case IOMMU_DEV_FEAT_SVA:
+> -		return arm_smmu_master_enable_sva(dev_iommu_priv_get(dev));
+> +		return arm_smmu_master_enable_sva(master);
+>  	default:
+>  		return -EINVAL;
+>  	}
+> @@ -2698,12 +2853,19 @@ static int arm_smmu_dev_enable_feature(struct device *dev,
+>  static int arm_smmu_dev_disable_feature(struct device *dev,
+>  					enum iommu_dev_features feat)
+>  {
+> +	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
+> +
+>  	if (!arm_smmu_dev_feature_enabled(dev, feat))
+>  		return -EINVAL;
+>  
+>  	switch (feat) {
+> +	case IOMMU_DEV_FEAT_IOPF:
+> +		if (master->sva_enabled)
+> +			return -EBUSY;
+> +		master->iopf_enabled = false;
+> +		return 0;
+>  	case IOMMU_DEV_FEAT_SVA:
+> -		return arm_smmu_master_disable_sva(dev_iommu_priv_get(dev));
+> +		return arm_smmu_master_disable_sva(master);
+>  	default:
+>  		return -EINVAL;
+>  	}
+> @@ -2734,6 +2896,7 @@ static struct iommu_ops arm_smmu_ops = {
+>  	.sva_bind		= arm_smmu_sva_bind,
+>  	.sva_unbind		= arm_smmu_sva_unbind,
+>  	.sva_get_pasid		= arm_smmu_sva_get_pasid,
+> +	.page_response		= arm_smmu_page_response,
+>  	.pgsize_bitmap		= -1UL, /* Restricted during device attach */
 >  };
->
->  /**
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
-> index 9a69fad..f983595 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
-> @@ -658,6 +658,22 @@ static int dpu_encoder_phys_vid_get_line_count(
->         return phys_enc->hw_intf->ops.get_line_count(phys_enc->hw_intf);
+>  
+> @@ -2831,6 +2994,13 @@ static int arm_smmu_init_queues(struct arm_smmu_device *smmu)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if ((smmu->features & ARM_SMMU_FEAT_SVA) &&
+> +	    (smmu->features & ARM_SMMU_FEAT_STALLS)) {
+> +		smmu->evtq.iopf = iopf_queue_alloc(dev_name(smmu->dev));
+> +		if (!smmu->evtq.iopf)
+> +			return -ENOMEM;
+> +	}
+> +
+>  	/* priq */
+>  	if (!(smmu->features & ARM_SMMU_FEAT_PRI))
+>  		return 0;
+> @@ -3746,6 +3916,7 @@ static int arm_smmu_device_remove(struct platform_device *pdev)
+>  	iommu_device_unregister(&smmu->iommu);
+>  	iommu_device_sysfs_remove(&smmu->iommu);
+>  	arm_smmu_device_disable(smmu);
+> +	iopf_queue_free(smmu->evtq.iopf);
+>  
+>  	return 0;
 >  }
->
-> +static int dpu_encoder_phys_vid_get_frame_count(
-> +               struct dpu_encoder_phys *phys_enc)
-> +{
-> +       struct intf_status s = {0};
-> +
-> +       if (!dpu_encoder_phys_vid_is_master(phys_enc))
-> +               return -EINVAL;
-> +
-> +       if (!phys_enc->hw_intf || !phys_enc->hw_intf->ops.get_status)
-> +               return -EINVAL;
-> +
-> +       phys_enc->hw_intf->ops.get_status(phys_enc->hw_intf, &s);
-> +
-> +       return s.frame_count;
-> +}
-> +
->  static void dpu_encoder_phys_vid_init_ops(struct dpu_encoder_phys_ops *ops)
->  {
->         ops->is_master = dpu_encoder_phys_vid_is_master;
-> @@ -676,6 +692,7 @@ static void dpu_encoder_phys_vid_init_ops(struct dpu_encoder_phys_ops *ops)
->         ops->handle_post_kickoff = dpu_encoder_phys_vid_handle_post_kickoff;
->         ops->needs_single_flush = dpu_encoder_phys_vid_needs_single_flush;
->         ops->get_line_count = dpu_encoder_phys_vid_get_line_count;
-> +       ops->get_frame_count = dpu_encoder_phys_vid_get_frame_count;
->  }
->
->  struct dpu_encoder_phys *dpu_encoder_phys_vid_init(
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index 374b0e8..764a773 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -14,6 +14,7 @@
->
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_file.h>
-> +#include <drm/drm_vblank.h>
->
->  #include "msm_drv.h"
->  #include "msm_mmu.h"
-> @@ -1020,6 +1021,10 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
->          */
->         dev->mode_config.allow_fb_modifiers = true;
->
-> +       dev->max_vblank_count = 0;
-> +       /* Disable vblank irqs aggressively for power-saving */
-> +       dev->vblank_disable_immediate = true;
-> +
->         /*
->          * _dpu_kms_drm_obj_init should create the DRM related objects
->          * i.e. CRTCs, planes, encoders, connectors and so forth
-> --
-> 2.7.4
->
+> 
+Thanks
+
+Eric
+
