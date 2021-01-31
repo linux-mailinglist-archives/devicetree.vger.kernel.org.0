@@ -2,116 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16935309CFF
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 15:36:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D7B309D34
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 15:51:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbhAaOdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 09:33:36 -0500
-Received: from so15.mailgun.net ([198.61.254.15]:52934 "EHLO so15.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232425AbhAaOTQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 31 Jan 2021 09:19:16 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1612102730; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=is+Y0S6VYuSq/a22S7AdpwgFKHNWJy9S/ugml5uNJWU=; b=G0TTPRUbJusi7Hxmiw6IH80yele7CAwEc+RbZP3Y1tOTjYbpH4443SJk86WWCHL+hmhXFbN0
- 3EyuwHk7kYEcstkWOwD2SnOSgn/1LiZTNvyCZXwszwdAlB0Mo4bSg8maHkYr+C8aOvNq4htj
- +neOEenw0sqeq/AsihIVUvg43JA=
-X-Mailgun-Sending-Ip: 198.61.254.15
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 6016bc2f7a21b36a9deb2f5c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sun, 31 Jan 2021 14:18:23
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D7BDAC433CA; Sun, 31 Jan 2021 14:18:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from tynnyri.adurom.net (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E7039C433C6;
-        Sun, 31 Jan 2021 14:18:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E7039C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S231587AbhAaOu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 09:50:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36418 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231784AbhAaOmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 09:42:01 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1716C061573;
+        Sun, 31 Jan 2021 06:41:16 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id f16so10456805wmq.5;
+        Sun, 31 Jan 2021 06:41:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uB1B85GVXF4hm57kJsML6NgUscm6tKCDkB6BQ+xO/Pg=;
+        b=Gqo20ysB9Zki3cvJZoSV5RBT1g253IMdRYeuPUNejxtSpCsPa3Qpke59jxVc/U55nF
+         ZqWeHTMmxZC6qnPrw+f4G7JLo/x7GYsJNrk2MqZwr7+1fWBTMZ29lzvTx5CnDFq63Eyx
+         X1RseJJkUsdU6SvpZ5Oe5p6uYNB5AMF9HybdWxf4UjM84HAOn23On3XtH0L66KRj2djV
+         G0+f7ibydEm2OFXufKz7HE0DnqgssBckxhYmyonwauRE6ZeLuagnss1StvI1RlWCcXE0
+         dMQUuuJw7T1CHKSQ12V9JHx4V4gh2SlUcwV9sLxuBLO6ugGTZgJS24vjGfIhprhSTAO/
+         PWAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uB1B85GVXF4hm57kJsML6NgUscm6tKCDkB6BQ+xO/Pg=;
+        b=G/WB+9ECwWs0zLatNkcxoMDV9/KxtfE3tvLIRk2RrzXsNMRB3T8DOoO76SLZIYHOip
+         kuQIiu/iTMVI5WCOcFzW+G9RLaPOUcYvNZUxqVxk43J5kkym2x+y7zmkKAbRVY0sfuaa
+         xZ3ou5PdxwnWgOeoYaUvqaShEkJ/V8WF2A3MmI8KlfIou7zivGVU6k8JUi2fLV3uCtQY
+         QKpkLUiNHsDdHUlqaYTbfZCLDFHe9PbFALD4MQtFZ/tETqqAEO+BBcoYt0Tk6vWlxL9I
+         Ak501w62OdgGA9QsOE6ZZ7PdEo2JiugZl89sU3u4x902kS2U2L0tzpbqtgWsG7xF1jUV
+         y0mg==
+X-Gm-Message-State: AOAM531MH7f2bCXzaTOb+5YVlogRSC9cWThLXd5xuGqwA2MeGC5aO0AA
+        wj7nEH2RkKY3+WS2KWI5cOA=
+X-Google-Smtp-Source: ABdhPJyYfZp1SsKgSvo0+XE6ZvuyYfrwa9+hf5ijoRltuEV4edorWnJtXeZSTmgporFpKAL9FrOCNQ==
+X-Received: by 2002:a1c:5608:: with SMTP id k8mr11126765wmb.91.1612104075759;
+        Sun, 31 Jan 2021 06:41:15 -0800 (PST)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id 17sm17539884wmk.48.2021.01.31.06.41.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 Jan 2021 06:41:15 -0800 (PST)
+Subject: Re: [PATCH v2] soc: mediatek: cmdq: add address shift in jump
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] misc: qca639x: add support for QCA639x powerup sequence
-References: <20210128175225.3102958-1-dmitry.baryshkov@linaro.org>
-        <20210128175225.3102958-2-dmitry.baryshkov@linaro.org>
-Date:   Sun, 31 Jan 2021 16:18:16 +0200
-In-Reply-To: <20210128175225.3102958-2-dmitry.baryshkov@linaro.org> (Dmitry
-        Baryshkov's message of "Thu, 28 Jan 2021 20:52:21 +0300")
-Message-ID: <875z3dmbpz.fsf@tynnyri.adurom.net>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        damon.chu@mediatek.com, dennis-yc.hsieh@mediatek.com
+References: <1608712499-24956-1-git-send-email-yongqiang.niu@mediatek.com>
+ <1608712499-24956-2-git-send-email-yongqiang.niu@mediatek.com>
+ <1610070485.1574.10.camel@mhfsdcap03>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <1fa82248-9a7d-2808-0ad2-4f1ed1347192@gmail.com>
+Date:   Sun, 31 Jan 2021 15:41:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <1610070485.1574.10.camel@mhfsdcap03>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
 
-> Qualcomm QCA639x is a family of WiFi + Bluetooth SoCs, with BT part
-> being controlled through the UART and WiFi being present on PCIe
-> bus. Both blocks share common power sources. Add device driver handling
-> power sequencing of QCA6390/1.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/misc/Kconfig        |  12 +++
->  drivers/misc/Makefile       |   1 +
->  drivers/misc/qcom-qca639x.c | 164 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 177 insertions(+)
->  create mode 100644 drivers/misc/qcom-qca639x.c
->
-> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index e90c2524e46c..a14f67ab476c 100644
-> --- a/drivers/misc/Kconfig
-> +++ b/drivers/misc/Kconfig
-> @@ -255,6 +255,18 @@ config QCOM_FASTRPC
->  	  applications DSP processor. Say M if you want to enable this
->  	  module.
->  
-> +config QCOM_QCA639X
-> +	tristate "Qualcomm QCA639x WiFi/Bluetooth module support"
-> +	depends on REGULATOR && PM_GENERIC_DOMAINS
-> +	help
-> +	  If you say yes to this option, support will be included for Qualcomm
-> +	  QCA639x family of WiFi and Bluetooth SoCs. Note, this driver supports
-> +	  only power control for this SoC, you still have to enable individual
-> +	  Bluetooth and WiFi drivers.
-> +
-> +	  Say M here if you want to include support for QCA639x chips as a
-> +	  module. This will build a module called "qcom-qca639x".
 
-Is this is something you need on ARM platforms? As on x86 this is
-definitely not needed, for example it's enough to load ath11k_pci to get
-QCA6390 Wi-Fi working. I think the documentation should be clarified
-where this QCOM_QCA639X is needed (and it's not needed on normal PCI
-devices).
+On 08/01/2021 02:48, Yongqiang Niu wrote:
+> On Wed, 2020-12-23 at 16:34 +0800, Yongqiang Niu wrote:
+>> Add address shift when compose jump instruction
+>> to compatible with 35bit format.
+>>
+>> Fixes: 0858fde496f8 ("mailbox: cmdq: variablize address shift in platform")
+>>
+>> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+>> Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
+>> ---
+>>  drivers/mailbox/mtk-cmdq-mailbox.c | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
+>> index 5665b6e..75378e3 100644
+>> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
+>> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+>> @@ -168,7 +168,8 @@ static void cmdq_task_insert_into_thread(struct cmdq_task *task)
+>>  	dma_sync_single_for_cpu(dev, prev_task->pa_base,
+>>  				prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
+>>  	prev_task_base[CMDQ_NUM_CMD(prev_task->pkt) - 1] =
+>> -		(u64)CMDQ_JUMP_BY_PA << 32 | task->pa_base;
+>> +		(u64)CMDQ_JUMP_BY_PA << 32 |
+>> +		(task->pa_base >> task->cmdq->shift_pa);
+>>  	dma_sync_single_for_device(dev, prev_task->pa_base,
+>>  				   prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
+>>  
+> 
+> hi jassi
+> 
+> please confirm is there any question about this patch.
+> if not, please apply this into next version, tks
+> 
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Please fix the subject line of your patch. It does not apply to
+drivers/soc/mediatek and should be something like
+mailbox: mediatek: cmdq: add address shift in jump
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Thanks,
+Matthias
