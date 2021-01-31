@@ -2,70 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD635309C00
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 13:37:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC2C2309C2F
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 13:58:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231169AbhAaKee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 05:34:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44682 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230518AbhAaKSQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 31 Jan 2021 05:18:16 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AE49564DF5;
-        Sun, 31 Jan 2021 10:17:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612088254;
-        bh=4eczZv+hpT+gqQnuIVlGGfa+0AV2WlG4wGhPmrPZXmY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=DjerGTVwdB1KFlHn0MpRDEMtdgNudre95AhlTUg7ElpG1b9k5Zuy0ZDkeyVDFqVeg
-         gQObOmTyCbZchBg7ljrawiPcj8WvA0VnTh0xe72s8imTALZ+GUUl262zOsSCuvePC3
-         7dlKBrwtlGCyHBkVCR/3DD1yCRdAsRCUVmkrNnUr/LnvfmSTjcrRBBa+vNQrXQXw7c
-         DjXciwucETfrbddRiwnLKIybWjFpyL9cs0Zo6711vbrmRYNo4AejuaQM7C+S8+3RV1
-         Ndg2QLd30GsM7a5LI+lxy3Ct20Nd9fUoRkJ23ikXXumjjx39scY5ON7odjxL9uAGGw
-         XvhYJITJPMlfA==
-From:   matthias.bgg@kernel.org
-To:     matthias.bgg@gmail.com, CK Hu <ck.hu@mediatek.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <mbrugger@suse.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: mt8183: Fix GCE include path
-Date:   Sun, 31 Jan 2021 11:17:26 +0100
-Message-Id: <20210131101726.804-1-matthias.bgg@kernel.org>
-X-Mailer: git-send-email 2.30.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S232206AbhAaM5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 07:57:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52326 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231501AbhAaLc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 06:32:26 -0500
+X-Greylist: delayed 740 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 31 Jan 2021 03:07:21 PST
+Received: from forward101j.mail.yandex.net (forward101j.mail.yandex.net [IPv6:2a02:6b8:0:801:2::101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9103C06174A;
+        Sun, 31 Jan 2021 03:07:21 -0800 (PST)
+Received: from forward100q.mail.yandex.net (forward100q.mail.yandex.net [IPv6:2a02:6b8:c0e:4b:0:640:4012:bb97])
+        by forward101j.mail.yandex.net (Yandex) with ESMTP id DA8811BE10DC;
+        Sun, 31 Jan 2021 13:54:56 +0300 (MSK)
+Received: from vla3-eea282d0d1fe.qloud-c.yandex.net (vla3-eea282d0d1fe.qloud-c.yandex.net [IPv6:2a02:6b8:c15:2583:0:640:eea2:82d0])
+        by forward100q.mail.yandex.net (Yandex) with ESMTP id D0DA17080004;
+        Sun, 31 Jan 2021 13:54:56 +0300 (MSK)
+Received: from vla1-1bc5b51c612f.qloud-c.yandex.net (vla1-1bc5b51c612f.qloud-c.yandex.net [2a02:6b8:c0d:89c:0:640:1bc5:b51c])
+        by vla3-eea282d0d1fe.qloud-c.yandex.net (mxback/Yandex) with ESMTP id 9aQN5COtRa-suHSJsSu;
+        Sun, 31 Jan 2021 13:54:56 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail; t=1612090496;
+        bh=x54Eh5zKLxajbavx3Y26WB3HuzuneTq+axTaFN0C58s=;
+        h=Subject:To:From:Message-Id:Cc:Date;
+        b=h8hHCEsxZQ6yIUiQPMNNIJQEpWbIRMvf1dRlwp6gq/J1TIuCK41Wdw4JDSpcM9uPI
+         w0Op5qeal8DBnADiYY9+321UJjiuYFSfgElPYjxp/2ZagpBioHzjKzNgSS/8AoJgp8
+         yoCvFfZTQ7BrOLRGU6Xystp4chyQdjFzpwbijX3g=
+Authentication-Results: vla3-eea282d0d1fe.qloud-c.yandex.net; dkim=pass header.i=@yandex.ru
+Received: by vla1-1bc5b51c612f.qloud-c.yandex.net (smtp/Yandex) with ESMTPSA id 3hzVEppz0N-stKqwEpU;
+        Sun, 31 Jan 2021 13:54:55 +0300
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client certificate not present)
+From:   Dima Azarkin <azdmg@yandex.ru>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Dima Azarkin <azdmg@yandex.ru>
+Subject: [PATCH] ARM: dts: imx6qdl-wandboard: add scl/sda gpios definitions for i2c bus recovery
+Date:   Sun, 31 Jan 2021 13:54:25 +0300
+Message-Id: <20210131105425.21459-1-azdmg@yandex.ru>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthias Brugger <mbrugger@suse.com>
+The i2c bus on imx6qdl-wandboard has intermittent issues where SDA can freeze
+on low level at the end of transaction so the bus can no longer work. This
+impacts reading of EDID data leading to incorrect TV resolution and no audio.
 
-The header file of GCE should be for MT8183 SoC instead of MT8173.
+This scenario is improved by adding scl/sda gpios definitions to implement the
+i2c bus recovery mechanism.
 
-Fixes: 91f9c963ce79 ("arm64: dts: mt8183: Add display nodes for MT8183")
-Reported-by: CK Hu <ck.hu@mediatek.com>
-Signed-off-by: Matthias Brugger <mbrugger@suse.com>
-
+Signed-off-by: Dima Azarkin <azdmg@yandex.ru>
 ---
+ arch/arm/boot/dts/imx6qdl-wandboard.dtsi | 24 ++++++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
 
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 5b782a4769e7..80e466ce99f1 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -6,7 +6,7 @@
-  */
+diff --git a/arch/arm/boot/dts/imx6qdl-wandboard.dtsi b/arch/arm/boot/dts/imx6qdl-wandboard.dtsi
+index c070893c509e..b62a0dbb033f 100644
+--- a/arch/arm/boot/dts/imx6qdl-wandboard.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-wandboard.dtsi
+@@ -97,15 +97,21 @@
  
- #include <dt-bindings/clock/mt8183-clk.h>
--#include <dt-bindings/gce/mt8173-gce.h>
-+#include <dt-bindings/gce/mt8183-gce.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/memory/mt8183-larb-port.h>
+ &i2c1 {
+ 	clock-frequency = <100000>;
+-	pinctrl-names = "default";
++	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1>;
++	pinctrl-1 = <&pinctrl_i2c1_gpio>;
++	scl-gpios = <&gpio3 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio3 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
+ };
+ 
+ &i2c2 {
+ 	clock-frequency = <100000>;
+-	pinctrl-names = "default";
++	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c2>;
++	pinctrl-1 = <&pinctrl_i2c2_gpio>;
++	scl-gpios = <&gpio4 12 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio4 13 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
+ 
+ 	codec: sgtl5000@a {
+@@ -185,6 +191,13 @@
+ 			>;
+ 		};
+ 
++		pinctrl_i2c1_gpio: i2c1gpiogrp {
++			fsl,pins = <
++				MX6QDL_PAD_EIM_D21__GPIO3_IO21		0x4001b8b0
++				MX6QDL_PAD_EIM_D28__GPIO3_IO28		0x4001b8b0
++			>;
++		};
++
+ 		pinctrl_i2c2: i2c2grp {
+ 			fsl,pins = <
+ 				MX6QDL_PAD_KEY_COL3__I2C2_SCL		0x4001b8b1
+@@ -192,6 +205,13 @@
+ 			>;
+ 		};
+ 
++		pinctrl_i2c2_gpio: i2c2gpiogrp {
++			fsl,pins = <
++				MX6QDL_PAD_KEY_COL3__GPIO4_IO12		0x4001b8b0
++				MX6QDL_PAD_KEY_ROW3__GPIO4_IO13		0x4001b8b0
++			>;
++		};
++
+ 		pinctrl_mclk: mclkgrp {
+ 			fsl,pins = <
+ 				MX6QDL_PAD_GPIO_0__CCM_CLKO1		0x130b0
 -- 
-2.30.0
+2.17.1
 
