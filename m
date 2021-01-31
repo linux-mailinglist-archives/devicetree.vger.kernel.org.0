@@ -2,147 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F2A8309F12
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 22:28:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B084F309F2A
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 23:04:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229962AbhAaVUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 16:20:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33506 "EHLO
+        id S229593AbhAaWBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 17:01:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbhAaVQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 16:16:59 -0500
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61674C0613D6
-        for <devicetree@vger.kernel.org>; Sun, 31 Jan 2021 13:06:07 -0800 (PST)
-Received: by mail-yb1-xb2e.google.com with SMTP id i6so8537412ybq.5
-        for <devicetree@vger.kernel.org>; Sun, 31 Jan 2021 13:06:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=F6xePmZZnH6hMvD4xD8ZTxXMbXTwQCIaaXwZCqOR73o=;
-        b=pomyqoIFXX8blUy7SRM25Ywc+1yks3dkornd4bjxNZ7tJyPbuAIYMU6om7s9K38vJu
-         VzCVf4EXMfvoHPrmVlkUDpTvmmsfMex17X44y5ilguI1PX/cW5hb+FhSGH5NoZntkpy7
-         k/yS+ANLmiMBiwh7xRB1VsICl/7gFFT7+VGTJp+TMlW9FkAxzhR1ldV6byEN+YrJzyw+
-         EkMkKyE6kbmp0WsE5wmuqL00jQ59V9C2c6XSLdiwhzz2ubHYQrLe0jE+KLU4ZfV3ec7y
-         mV77qYWFGvW3v4jkAVc91iU0NyniIvM0UCzR40x/EIzC91ahpbFjqayO6t/RhkBNeRqT
-         FcnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=F6xePmZZnH6hMvD4xD8ZTxXMbXTwQCIaaXwZCqOR73o=;
-        b=EzUINSwsSYEryIRAftL1XwkWXTUOo5V/JESUzFiUW+UljE6KHBHZ+obau9NIAYJbTb
-         c5+7ZB6RnGTPNRcgtzBu+RcZ57Lb6LWMepQ2G2pRl3Pko1ky+IcQ3C4JCxWKHvTsYkLt
-         n5egCDQVMCaYNIo8JZPDTW2mIwQT5cdFKe+qABbB94rnIM4FaW8eZgmu7OGss8leEc3u
-         DNzmAvFvwx2VPlMS/9jW7e+xg3lWu/cDJ2ilzZKI1YbqDwxEP9sRQNca4+QfW+vvmxq/
-         LkKtOKbT9etZWyl5tco22gR82QFiBSL4nZ3hmnW9zGGL6C7kgyAVJS0P5xzIjZ/X/ADN
-         i+Fg==
-X-Gm-Message-State: AOAM532cnCAsmSYXBjh7LGafMaAfgF0crYyvlaETRdRDSEoyUm3Fbnq5
-        ZxWAxmQgfX4BWt+MMKqSDPnPjBx/NoCX6LE1Z8sC/g==
-X-Google-Smtp-Source: ABdhPJzjU3zj0wbXZG0f03S/hFagW8JbVXaVdT9fwLER5q6Jo0XbHcUOUssMJB/AbhXUdfaJz5NEzNBpvaWWh15ZEzc=
-X-Received: by 2002:a25:b74c:: with SMTP id e12mr11231618ybm.20.1612127166455;
- Sun, 31 Jan 2021 13:06:06 -0800 (PST)
+        with ESMTP id S229513AbhAaV72 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 16:59:28 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA2AC061573;
+        Sun, 31 Jan 2021 13:58:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=inPeTh18wjb0l+HhRSID9H7hT121FY9CPy5oZ+1jTps=; b=Ifrrjxp/+X61a1oz8ELWA3upBq
+        /vmoRpUsbiCcUkKq9mIhR0/0KcKVbAvVPHzLc/DsOFn/Yrunq/OZ1Oeroa85JM+1Czd3sVcjfyFYt
+        sMyJwi60QFryIwkdGcBlgKwlTMJEFA0R80cq7sYWYvPMcMov1b7Hs2Jp9Ul4xZkWLWJI=;
+Received: from p200300ccff48ca001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff48:ca00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1l6KjG-0003SU-Mc; Sun, 31 Jan 2021 22:57:58 +0100
+Received: from andi by aktux with local (Exim 4.92)
+        (envelope-from <andreas@kemnade.info>)
+        id 1l6KjG-0001Dn-AE; Sun, 31 Jan 2021 22:57:58 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     lee.jones@linaro.org, robh+dt@kernel.org, andreas@kemnade.info,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        b.galvani@gmail.com, stefan@agner.ch
+Cc:     Rob Herring <robh@kernel.org>
+Subject: [PATCH RESEND v2] dt-bindings: mfd: Convert rn5t618 to json-schema
+Date:   Sun, 31 Jan 2021 22:57:30 +0100
+Message-Id: <20210131215730.4647-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210121225712.1118239-1-saravanak@google.com> <20210131163823.c4zb47pl4tukcl7c@viti.kaiser.cx>
-In-Reply-To: <20210131163823.c4zb47pl4tukcl7c@viti.kaiser.cx>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Sun, 31 Jan 2021 13:05:30 -0800
-Message-ID: <CAGETcx8A_+Y0sCLPdyeeT+rHOsAPsmg4LVn_ahF0NaD6hfRiZw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] of: property: Add fw_devlink support for more props
-To:     Martin Kaiser <martin@kaiser.cx>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 31, 2021 at 8:38 AM Martin Kaiser <martin@kaiser.cx> wrote:
->
-> Dear all,
->
-> Thus wrote Saravana Kannan (saravanak@google.com):
->
-> > Sending again because I messed up the To/Cc for the coverletter.
->
-> > This series combines two patches [1] [2] that'd conflict.
->
-> > Greg,
->
-> > Can you please pull this into driver-core-next?
->
-> > -Saravana
->
-> > [1] - https://lore.kernel.org/lkml/20210115210159.3090203-1-saravanak@google.com/
-> > [2] - https://lore.kernel.org/lkml/20201218210750.3455872-1-saravanak@google.com/
->
-> I'm running linux-next on my hardware which is based on the imx258
-> chipset by Freescale/NXP.
->
-> When those two patches appeared in linux-next, my system would not boot
-> any more. It was stuck right after
->
-> Uncompressing Linux... done, booting the kernel.
->
-> Reverting the irq-patch made the system boot again. Still, a number of
-> devices like usb or nand flash controller are not found any more.
-> If I revert the gpio patch as well, all devices are available again.
->
-> My system's device tree is based on arch/arm/boot/dts/imx25.dtsi with
-> very few adaptations for my board.
->
-> I tried to play around with the new parse_interrupts() function to
-> figure out which device causes the boot failure. If I skip the following
-> device, I can boot again:
->
-> -       return of_irq_find_parent(np);
-> +       np_ret = of_irq_find_parent(np);
-> +       if (!strcmp(np->full_name, "serial@50008000")) {
-> +           printk(KERN_ERR "skip serial@50008000\n");
-> +           return NULL;
-> +       }
-> +      return np_ret;
->
-> This is uart4 of the imx258 chip, which I use as my serial console. The
-> imx25.dtsi device tree seems ok, we find an interrupt parent. The
-> problem must be in the code that processes the result of
-> parse_interrupts().
->
-> I tried to boot the unmodified code with qemu, simulating the imx25-pdk
-> device. This wouldn't boot either.
->
-> Does this ring any bells with anyone?
+Convert the RN5T618 binding to DT schema format. Also
+clearly state which regulators are available.
 
-This series [1] has a high chance of fixing it for you if
-CONFIG_MODULES is disabled in your set up. Can you give it a shot?
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+https://lore.kernel.org/lkml/CAL_JsqJWt91+aZwAWEUVjOBQgsYw6GBHqmoHwU_T5qZabxX+Aw@mail.gmail.com/
 
-The real problem is that arch/arm/mach-imx/avic.c doesn't set the
-OF_POPULATED flag for the "fsl,avic" node. fw_devlink uses this
-information to know that this device node will never have a struct
-device created for it. The proper way to do this for root IRQCHIP
-nodes is to use IRQCHIP_DECLARE(). I Cc'ed you on a clean up patch for
-IMX [2], can you please give [2] a shot *without* [1] and with
-CONFIG_MODULES enabled? Things should boot properly with this
-combination too.
+Changes in v2:
+- drop irq description
 
-Btw, for future reference, you can try enabling the logs in
-device_links_check_suppliers() to see what devices are being blocked
-on what supplier nodes.
+Due to its .txt-format history BSD license was not added.
+ .../bindings/mfd/ricoh,rn5t618.yaml           | 111 ++++++++++++++++++
+ .../devicetree/bindings/mfd/rn5t618.txt       |  52 --------
+ 2 files changed, 111 insertions(+), 52 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/rn5t618.txt
 
-[1] - https://lore.kernel.org/lkml/20210130040344.2807439-1-saravanak@google.com/
-[2] - https://lore.kernel.org/lkml/20210131205654.3379661-1-saravanak@google.com/T/#u
+diff --git a/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
+new file mode 100644
+index 000000000000..d70e85a09c84
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
+@@ -0,0 +1,111 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/ricoh,rn5t618.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Ricoh RN5T567/RN5T618/RC5T619 PMIC
++
++maintainers:
++  - Andreas Kemnade <andreas@kemnade.info>
++
++description: |
++  Ricoh RN5T567/RN5T618/RC5T619 is a power management IC family which
++  integrates 3 to 5 step-down DCDC converters, 7 to 10 low-dropout regulators,
++  GPIOs, and a watchdog timer. It can be controlled through an I2C interface.
++  The RN5T618/RC5T619 provides additionally a Li-ion battery charger,
++  fuel gauge, and an ADC.
++  The RC5T619 additionnally includes USB charger detection and an RTC.
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ricoh,rn5t567
++    then:
++      properties:
++        regulators:
++          patternProperties:
++            "^(DCDC[1-4]|LDO[1-5]|LDORTC[12])$":
++              $ref: ../regulator/regulator.yaml
++          additionalProperties: false
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ricoh,rn5t618
++    then:
++      properties:
++        regulators:
++          patternProperties:
++            "^(DCDC[1-3]|LDO[1-5]|LDORTC[12])$":
++              $ref: ../regulator/regulator.yaml
++          additionalProperties: false
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ricoh,rc5t619
++    then:
++      properties:
++        regulators:
++          patternProperties:
++            "^(DCDC[1-5]|LDO[1-9]|LDO10|LDORTC[12])$":
++              $ref: ../regulator/regulator.yaml
++          additionalProperties: false
++
++properties:
++  compatible:
++    enum:
++      - ricoh,rn5t567
++      - ricoh,rn5t618
++      - ricoh,rc5t619
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  system-power-controller:
++    type: boolean
++    description: |
++      See Documentation/devicetree/bindings/power/power-controller.txt
++
++  regulators:
++    type: object
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      pmic@32 {
++        compatible = "ricoh,rn5t618";
++        reg = <0x32>;
++        interrupt-parent = <&gpio5>;
++        interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
++        system-power-controller;
++
++        regulators {
++          DCDC1 {
++            regulator-min-microvolt = <1050000>;
++            regulator-max-microvolt = <1050000>;
++          };
++
++          DCDC2 {
++            regulator-min-microvolt = <1175000>;
++            regulator-max-microvolt = <1175000>;
++          };
++        };
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/mfd/rn5t618.txt b/Documentation/devicetree/bindings/mfd/rn5t618.txt
+deleted file mode 100644
+index 16778ea00dbc..000000000000
+--- a/Documentation/devicetree/bindings/mfd/rn5t618.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-* Ricoh RN5T567/RN5T618 PMIC
+-
+-Ricoh RN5T567/RN5T618/RC5T619 is a power management IC family which
+-integrates 3 to 5 step-down DCDC converters, 7 to 10 low-dropout regulators,
+-GPIOs, and a watchdog timer. It can be controlled through an I2C interface.
+-The RN5T618/RC5T619 provides additionally a Li-ion battery charger,
+-fuel gauge, and an ADC.
+-The RC5T619 additionnally includes USB charger detection and an RTC.
+-
+-Required properties:
+- - compatible: must be one of
+-		"ricoh,rn5t567"
+-		"ricoh,rn5t618"
+-		"ricoh,rc5t619"
+- - reg: the I2C slave address of the device
+-
+-Optional properties:
+- - interrupts: interrupt mapping for IRQ
+-   See Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+- - system-power-controller:
+-   See Documentation/devicetree/bindings/power/power-controller.txt
+-
+-Sub-nodes:
+- - regulators: the node is required if the regulator functionality is
+-   needed. The valid regulator names are: DCDC1, DCDC2, DCDC3, DCDC4
+-   (RN5T567/RC5T619), LDO1, LDO2, LDO3, LDO4, LDO5, LDO6, LDO7, LDO8,
+-   LDO9, LDO10, LDORTC1 and LDORTC2.
+-   LDO7-10 are specific to RC5T619.
+-   The common bindings for each individual regulator can be found in:
+-   Documentation/devicetree/bindings/regulator/regulator.txt
+-
+-Example:
+-
+-	pmic@32 {
+-		compatible = "ricoh,rn5t618";
+-		reg = <0x32>;
+-		interrupt-parent = <&gpio5>;
+-		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+-		system-power-controller;
+-
+-		regulators {
+-			DCDC1 {
+-				regulator-min-microvolt = <1050000>;
+-				regulator-max-microvolt = <1050000>;
+-			};
+-
+-			DCDC2 {
+-				regulator-min-microvolt = <1175000>;
+-				regulator-max-microvolt = <1175000>;
+-			};
+-		};
+-	};
+-- 
+2.20.1
 
-Thanks,
-Saravana
