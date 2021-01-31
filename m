@@ -2,115 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C0C2309A29
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 05:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 430AF309A52
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 06:13:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbhAaEIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jan 2021 23:08:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35490 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229468AbhAaEIl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 30 Jan 2021 23:08:41 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9ECA464DE1;
-        Sun, 31 Jan 2021 04:08:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612066080;
-        bh=lKzleoYse1WWmJcEChAlbjscN0Xf+sfihtZYkKKf85s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RWQf8SYdSv6eW75bS6nIagPxR+FCSnmORl3bIgEGJ3vBtaqpCzaTrbdxvbVY+6Qo5
-         2oyQr9/j5bAionYHmI5M/+bQpNcEntjzcy0pD9ipwyG2r4H/DEsHmhnXc0YC62+DP4
-         aCUnNSHp+VTDWNdgzcvZROMdEFz/h6DkuNd+cRBRJ4Bc8pImCQropngMe6XXKPeCO5
-         C2sK9omvgOlQwrrmDwPf1gZyxwGi4ozlCCzEQSOuQimsyfaR+4I+sH3XC0l4pkxfCR
-         KuHs/1Dh0HXNOnTBZY1ixUy6WM0RBD0CICaqm6MsJ3ueg63cygUFBRocCI/ER9ElRk
-         rZY4Bkzp+70SQ==
-Received: by mail-ej1-f41.google.com with SMTP id r12so18970384ejb.9;
-        Sat, 30 Jan 2021 20:08:00 -0800 (PST)
-X-Gm-Message-State: AOAM531NnuzWJkxoy/N/Yj70f7w3KbfrQ5rZJDg9uNVqHMKXyYMTNanw
-        XJ74gX/F2j3HlHXy6xkdQH2J89K73yCGR2yNJw==
-X-Google-Smtp-Source: ABdhPJxQHiYJAWIUOtxU2P4rTwKUPjdQjw180RpM2UyZdDEwwxkcERAsh+oIHZQM95GqTQnSkSevj61XorkLzNvhgoY=
-X-Received: by 2002:a17:906:a106:: with SMTP id t6mr11678160ejy.63.1612066079184;
- Sat, 30 Jan 2021 20:07:59 -0800 (PST)
-MIME-Version: 1.0
-References: <20210129073436.2429834-1-hsinyi@chromium.org> <20210129073436.2429834-6-hsinyi@chromium.org>
-In-Reply-To: <20210129073436.2429834-6-hsinyi@chromium.org>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sun, 31 Jan 2021 12:07:47 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-e4CGXVfUdYBBx6ewEopZrfmuf2d6y77i=-hZ4P13N1g@mail.gmail.com>
-Message-ID: <CAAOTY_-e4CGXVfUdYBBx6ewEopZrfmuf2d6y77i=-hZ4P13N1g@mail.gmail.com>
-Subject: Re: [PATCH v4 5/8] drm/mediatek: separate ccorr module
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        id S229514AbhAaFLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 00:11:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56496 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229506AbhAaFLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 00:11:48 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570D2C061574
+        for <devicetree@vger.kernel.org>; Sat, 30 Jan 2021 21:11:05 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id x9so2202241plb.5
+        for <devicetree@vger.kernel.org>; Sat, 30 Jan 2021 21:11:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j678qJx/JPZkac4bEG/8rI07bilrUpTVTBhhwHGCLyE=;
+        b=HVch7Qv7dq+iRZl0F7OTOFc01KRsOkitFn7szOaZ9AduniQxvk4XBoFLuthP8Kv6+0
+         Plhwxk/rCbQwhF4rXRcgnKJqGrjCIonm0eYQsveQ2gVikK3JsdbZbzJnH6djhj1w6gIn
+         +KOVbeHocLUgCb2ZDLZ7kmf5WqLdirwI4T2OY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j678qJx/JPZkac4bEG/8rI07bilrUpTVTBhhwHGCLyE=;
+        b=D7TOShN62kj/1F44di1Nchn7zgcjuVSi1deUajR8+diOFic2qeBqxEur6BlKX1yqLo
+         8cF2SC2ua51FihL9rEHJa4B+cD0fx5oa7ECjiMBnNcXNWutMWwSearHwtGJQuouIbOM0
+         8QbCVuATYKu2uus1pdbKPlJrFSjvu4oqgix1e5fTpI3sL5p++4lQqXJLoLE4sLbOW1Ca
+         BCc5wGppluKWII4lwoIf30OGn7uuIWfPGhaCqVbXLtHOgwQfi17OaokavkuZhWwIeVTa
+         qleIB3A5exGVhYV2uF7CW4xdTy6oJ1ovRLTyxWWW0klvkumLi9iknfKZM9J1PWJaK653
+         aEhw==
+X-Gm-Message-State: AOAM531gvTveLTWiyFn6pB8DiygUfdLPFQAbfPkEk7Y2PS8OdNxH/kJO
+        e0fP5R2tuv9GJsPnIMmV16yLTA==
+X-Google-Smtp-Source: ABdhPJw5rGGPEQ8dqERgZpeHNpM1Tn38J69RC4BmBr0NM6uPyiS94+8Vq5WTIlas3qzw4/OIei1tzw==
+X-Received: by 2002:a17:90b:60c:: with SMTP id gb12mr11373176pjb.125.1612069865252;
+        Sat, 30 Jan 2021 21:11:05 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:35ef:a870:bb74:2590])
+        by smtp.gmail.com with ESMTPSA id d22sm11470680pjv.11.2021.01.30.21.11.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Jan 2021 21:11:04 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH] drm/mediatek: enable dither function
+Date:   Sun, 31 Jan 2021 13:10:58 +0800
+Message-Id: <20210131051058.3407985-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Hsin-Yi:
+From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-Hsin-Yi Wang <hsinyi@chromium.org> =E6=96=BC 2021=E5=B9=B41=E6=9C=8829=E6=
-=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=883:35=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
->
-> ccorr ctm matrix bits will be different in mt8192
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
->  drivers/gpu/drm/mediatek/Makefile           |   3 +-
->  drivers/gpu/drm/mediatek/mtk_disp_ccorr.c   | 222 ++++++++++++++++++++
->  drivers/gpu/drm/mediatek/mtk_disp_drv.h     |   9 +
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |  95 +--------
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   8 +-
->  drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
->  6 files changed, 242 insertions(+), 96 deletions(-)
->  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
->
+Enable dither function to improve the display quality.
 
-[snip]
+Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+Previous version:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210129092209.2584718-7-hsinyi@chromium.org/
+---
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-> +
-> +void mtk_ccorr_config(struct device *dev, unsigned int w,
-> +                            unsigned int h, unsigned int vrefresh,
-> +                            unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
-> +{
-> +       struct mtk_disp_ccorr *ccorr =3D dev_get_drvdata(dev);
-> +
-> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, &ccorr->cmdq_reg, ccorr->reg=
-s,
-> +                     DISP_CCORR_SIZE);
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+index c730029ac8fc7..0444b429daf00 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+@@ -53,6 +53,7 @@
+ #define DITHER_EN				BIT(0)
+ #define DISP_DITHER_CFG				0x0020
+ #define DITHER_RELAY_MODE			BIT(0)
++#define DITHER_ENGINE_EN			BIT(1)
+ #define DISP_DITHER_SIZE			0x0030
+ 
+ #define LUT_10BIT_MASK				0x03ff
+@@ -315,8 +316,12 @@ static void mtk_dither_config(struct device *dev, unsigned int w,
+ {
+ 	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
+ 
+-	mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs, DISP_DITHER_SIZE);
+-	mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs, DISP_DITHER_CFG);
++	mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs,
++		      DISP_DITHER_SIZE);
++	mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs,
++		      DISP_DITHER_CFG);
++	mtk_dither_set_common(priv->regs, &priv->cmdq_reg, bpc, DISP_DITHER_CFG,
++			      DITHER_ENGINE_EN, cmdq_pkt);
+ }
+ 
+ static void mtk_dither_start(struct device *dev)
+-- 
+2.30.0.365.g02bc693789-goog
 
-You change w, h position here. Separate this modification to another patch.
-
-> +       mtk_ddp_write(cmdq_pkt, CCORR_ENGINE_EN, &ccorr->cmdq_reg, ccorr-=
->regs,
-> +                     DISP_CCORR_CFG);
-> +}
-> +
-
-[snip]
-
-> -static void mtk_ccorr_config(struct device *dev, unsigned int w,
-> -                            unsigned int h, unsigned int vrefresh,
-> -                            unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
-> -{
-> -       struct mtk_ddp_comp_dev *priv =3D dev_get_drvdata(dev);
-> -
-> -       mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs,=
- DISP_CCORR_SIZE);
-> -       mtk_ddp_write(cmdq_pkt, CCORR_ENGINE_EN, &priv->cmdq_reg, priv->r=
-egs, DISP_CCORR_CFG);
-> -}
-> -
