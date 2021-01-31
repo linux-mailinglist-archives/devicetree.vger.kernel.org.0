@@ -2,421 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A70309DA1
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 16:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C292309DB6
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 16:40:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231639AbhAaM5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 07:57:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54690 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231866AbhAaMH3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 31 Jan 2021 07:07:29 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CD7EB64E1F;
-        Sun, 31 Jan 2021 12:06:45 +0000 (UTC)
-Date:   Sun, 31 Jan 2021 12:06:42 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Robin van der Gracht <robin@protonic.nl>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH v3 2/2] counter: add GPIO based pulse counters
-Message-ID: <20210131120642.58bd62e5@archlinux>
-In-Reply-To: <20210126080756.xi637l6ne3g4vgb7@pengutronix.de>
-References: <20210122112434.27886-1-o.rempel@pengutronix.de>
-        <20210122112434.27886-3-o.rempel@pengutronix.de>
-        <20210124144737.7978d3c8@archlinux>
-        <20210126080756.xi637l6ne3g4vgb7@pengutronix.de>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S231951AbhAaPjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 10:39:53 -0500
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:24611 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232164AbhAaMwj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 07:52:39 -0500
+X-UUID: 9765db983f804114851955871cb8298a-20210131
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=H0bML+eNBmZSuR/PM/yGe8x+G6itpVoj329ds+BexWE=;
+        b=lxRj3uYFtqeOGrghW0NWqi4Po5cxmbgZWSOkp1ZoPdWITBzeLRiSmFBkwlQVGuoc/uFf7cgeaJxhs3KGpMf1Ozg52L/67JG51BPkn0aZynHT9GIgHaKCVxG4/J1gyA0IcAtkYs3sU+UpwxJuC3Zr6qwJQYR6dbLglaZ3EPc1sag=;
+X-UUID: 9765db983f804114851955871cb8298a-20210131
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <hanks.chen@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 623195478; Sun, 31 Jan 2021 20:51:20 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ MTKMBS32N2.mediatek.inc (172.27.4.72) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sun, 31 Jan 2021 20:51:06 +0800
+Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 31 Jan 2021 20:50:59 +0800
+Message-ID: <1612097459.484.5.camel@mtkswgap22>
+Subject: Re: [PATCH v1 1/1] arm64: dts: mt6779: add spi host dts nodes
+From:   Hanks Chen <hanks.chen@mediatek.com>
+To:     Mason Zhang <mason.zhang@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Sun, 31 Jan 2021 20:50:59 +0800
+In-Reply-To: <20210126131839.2168-2-mason.zhang@mediatek.com>
+References: <20210126131839.2168-1-mason.zhang@mediatek.com>
+         <20210126131839.2168-2-mason.zhang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 6C9DE66BB309684B4BAD733E784C59101D56845D7754F36C8535B840862203462000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Jan 2021 09:07:57 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-
-> Hi Jonathan,
-> 
-> On Sun, Jan 24, 2021 at 02:47:37PM +0000, Jonathan Cameron wrote:
-> > On Fri, 22 Jan 2021 12:24:34 +0100
-> > Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> >   
-> > > Add simple GPIO base pulse counter. This device is used to measure
-> > > rotation speed of some agricultural devices, so no high frequency on the
-> > > counter pin is expected.
-> > > 
-> > > The maximal measurement frequency depends on the CPU and system load. On
-> > > the idle iMX6S I was able to measure up to 20kHz without count drops.
-> > > 
-> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>  
-> > 
-> > Hi Oleksij,
-> > 
-> > A few comments inline.
-> > 
-> > Thanks,
-> > 
-> > Jonathan
-> >   
-> > > ---
-> > >  drivers/counter/Kconfig          |   9 ++
-> > >  drivers/counter/Makefile         |   1 +
-> > >  drivers/counter/gpio-pulse-cnt.c | 244 +++++++++++++++++++++++++++++++
-> > >  3 files changed, 254 insertions(+)
-> > >  create mode 100644 drivers/counter/gpio-pulse-cnt.c
-> > > 
-> > > diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
-> > > index 2de53ab0dd25..9ad1d9d49dd1 100644
-> > > --- a/drivers/counter/Kconfig
-> > > +++ b/drivers/counter/Kconfig
-> > > @@ -29,6 +29,15 @@ config 104_QUAD_8
-> > >  	  The base port addresses for the devices may be configured via the base
-> > >  	  array module parameter.
-> > >  
-> > > +config GPIO_PULSE_CNT
-> > > +	tristate "GPIO pulse counter driver"
-> > > +	depends on GPIOLIB
-> > > +	help
-> > > +	  Select this option to enable GPIO pulse counter driver.
-> > > +
-> > > +	  To compile this driver as a module, choose M here: the
-> > > +	  module will be called gpio-pulse-cnt.
-> > > +
-> > >  config STM32_TIMER_CNT
-> > >  	tristate "STM32 Timer encoder counter driver"
-> > >  	depends on MFD_STM32_TIMERS || COMPILE_TEST
-> > > diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
-> > > index 0a393f71e481..6a5c3fc6f2a0 100644
-> > > --- a/drivers/counter/Makefile
-> > > +++ b/drivers/counter/Makefile
-> > > @@ -6,6 +6,7 @@
-> > >  obj-$(CONFIG_COUNTER) += counter.o
-> > >  
-> > >  obj-$(CONFIG_104_QUAD_8)	+= 104-quad-8.o
-> > > +obj-$(CONFIG_GPIO_PULSE_CNT)	+= gpio-pulse-cnt.o
-> > >  obj-$(CONFIG_STM32_TIMER_CNT)	+= stm32-timer-cnt.o
-> > >  obj-$(CONFIG_STM32_LPTIMER_CNT)	+= stm32-lptimer-cnt.o
-> > >  obj-$(CONFIG_TI_EQEP)		+= ti-eqep.o
-> > > diff --git a/drivers/counter/gpio-pulse-cnt.c b/drivers/counter/gpio-pulse-cnt.c
-> > > new file mode 100644
-> > > index 000000000000..9454345c77ad
-> > > --- /dev/null
-> > > +++ b/drivers/counter/gpio-pulse-cnt.c
-> > > @@ -0,0 +1,244 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Copyright (c) 2021 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-> > > + */
-> > > +
-> > > +#include <linux/counter.h>
-> > > +#include <linux/gpio/consumer.h>
-> > > +#include <linux/interrupt.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of_device.h>  
-> > 
-> > why of_device.h?  Probably want mod_devicetable.h instead.  
-> 
-> done
-> 
-> > > +#include <linux/platform_device.h>
-> > > +
-> > > +#define GPIO_PULSE_NAME		"gpio-pulse-counter"
-> > > +
-> > > +struct gpio_pulse_priv {
-> > > +	struct counter_device counter;
-> > > +	struct gpio_desc *gpio;
-> > > +	int irq;
-> > > +	bool enabled;
-> > > +	atomic_t count;
-> > > +};
-> > > +
-> > > +static irqreturn_t gpio_pulse_irq_isr(int irq, void *dev_id)
-> > > +{
-> > > +	struct gpio_pulse_priv *priv = dev_id;
-> > > +
-> > > +	if (!priv->enabled)
-> > > +		return IRQ_NONE;
-> > > +
-> > > +	atomic_inc(&priv->count);
-> > > +
-> > > +	return IRQ_HANDLED;
-> > > +}
-> > > +
-> > > +static ssize_t gpio_pulse_count_enable_read(struct counter_device *counter,
-> > > +					    struct counter_count *count,
-> > > +					    void *private, char *buf)
-> > > +{
-> > > +	struct gpio_pulse_priv *priv = counter->priv;
-> > > +
-> > > +	return sysfs_emit(buf, "%d\n", priv->enabled);
-> > > +}
-> > > +
-> > > +static ssize_t gpio_pulse_count_enable_write(struct counter_device *counter,
-> > > +					     struct counter_count *count,
-> > > +					     void *private,
-> > > +					     const char *buf, size_t len)
-> > > +{
-> > > +	struct gpio_pulse_priv *priv = counter->priv;
-> > > +	bool enable;
-> > > +	ssize_t ret;
-> > > +
-> > > +	ret = kstrtobool(buf, &enable);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	if (priv->enabled == enable)
-> > > +		return len;
-> > > +
-> > > +	priv->enabled = enable;
-> > > +
-> > > +	if (enable)
-> > > +		enable_irq(priv->irq);
-> > > +	else
-> > > +		disable_irq(priv->irq);  
-> > 
-> > As pointed out by Ahmad, this is all racy.
-> > Personally I'd just let the race happen, and don't
-> > bother with the priv->enabled at all.  
-> 
-> yes, i forgot about existence of IRQ_NOAUTOEN
-> 
-> > We aren't going to be dealing with shared interrupts
-> > here so if we get a race, it's between userspace write
-> > getting through to enable / disable the interrupt and
-> > a pulse coming in.  The userspace part is so unpredictable on
-> > timing etc the race isn't pretty meaningless (you might count
-> > one extra, but then if userspace took a bit longer you might
-> > do that anyway).
-> > 
-> >   
-> > > +
-> > > +	return len;
-> > > +}
-> > > +
-> > > +static const struct counter_count_ext gpio_pulse_count_ext[] = {
-> > > +	{
-> > > +		.name = "enable",
-> > > +		.read = gpio_pulse_count_enable_read,
-> > > +		.write = gpio_pulse_count_enable_write,
-> > > +	},
-> > > +};
-> > > +
-> > > +static enum counter_synapse_action gpio_pulse_synapse_actions[] = {
-> > > +	COUNTER_SYNAPSE_ACTION_RISING_EDGE,
-> > > +};
-> > > +
-> > > +static int gpio_pulse_action_get(struct counter_device *counter,
-> > > +			    struct counter_count *count,
-> > > +			    struct counter_synapse *synapse,
-> > > +			    size_t *action)
-> > > +{
-> > > +	*action = COUNTER_SYNAPSE_ACTION_RISING_EDGE;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int gpio_pulse_count_read(struct counter_device *counter,
-> > > +				 struct counter_count *count,
-> > > +				 unsigned long *val)
-> > > +{
-> > > +	struct gpio_pulse_priv *priv = counter->priv;
-> > > +
-> > > +	*val = atomic_read(&priv->count);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int gpio_pulse_count_write(struct counter_device *counter,
-> > > +				  struct counter_count *count,
-> > > +				  const unsigned long val)
-> > > +{
-> > > +	struct gpio_pulse_priv *priv = counter->priv;
-> > > +
-> > > +	atomic_set(&priv->count, val);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int gpio_pulse_count_function_get(struct counter_device *counter,
-> > > +					 struct counter_count *count,
-> > > +					 size_t *function)
-> > > +{
-> > > +	*function = COUNTER_COUNT_FUNCTION_INCREASE;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int gpio_pulse_count_signal_read(struct counter_device *counter,
-> > > +					struct counter_signal *signal,
-> > > +					enum counter_signal_value *val)
-> > > +{
-> > > +	struct gpio_pulse_priv *priv = counter->priv;
-> > > +	int ret;
-> > > +
-> > > +	ret = gpiod_get_value(priv->gpio);
-> > > +	if (ret < 0)
-> > > +		return ret;
-> > > +
-> > > +	*val = ret ? COUNTER_SIGNAL_HIGH : COUNTER_SIGNAL_LOW;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct counter_ops gpio_pulse_cnt_ops = {
-> > > +	.action_get = gpio_pulse_action_get,
-> > > +	.count_read = gpio_pulse_count_read,
-> > > +	.count_write = gpio_pulse_count_write,
-> > > +	.function_get = gpio_pulse_count_function_get,
-> > > +	.signal_read  = gpio_pulse_count_signal_read,
-> > > +};
-> > > +
-> > > +static struct counter_signal gpio_pulse_signals[] = {
-> > > +	{
-> > > +		.id = 0,
-> > > +		.name = "Channel 0 signal",
-> > > +	},
-> > > +};
-> > > +
-> > > +static struct counter_synapse gpio_pulse_count_synapses[] = {
-> > > +	{
-> > > +		.actions_list = gpio_pulse_synapse_actions,
-> > > +		.num_actions = ARRAY_SIZE(gpio_pulse_synapse_actions),
-> > > +		.signal = &gpio_pulse_signals[0]
-> > > +	},
-> > > +};
-> > > +
-> > > +static enum counter_count_function gpio_pulse_count_functions[] = {
-> > > +	COUNTER_COUNT_FUNCTION_INCREASE,
-> > > +};
-> > > +
-> > > +static struct counter_count gpio_pulse_counts[] = {
-> > > +	{
-> > > +		.id = 0,
-> > > +		.name = "Channel 1 Count",
-> > > +		.functions_list = gpio_pulse_count_functions,
-> > > +		.num_functions = ARRAY_SIZE(gpio_pulse_count_functions),
-> > > +		.synapses = gpio_pulse_count_synapses,
-> > > +		.num_synapses = ARRAY_SIZE(gpio_pulse_count_synapses),
-> > > +		.ext = gpio_pulse_count_ext,
-> > > +		.num_ext = ARRAY_SIZE(gpio_pulse_count_ext),
-> > > +	},
-> > > +};
-> > > +
-> > > +static int gpio_pulse_cnt_probe(struct platform_device *pdev)
-> > > +{
-> > > +	struct device *dev = &pdev->dev;
-> > > +	struct gpio_pulse_priv *priv;
-> > > +	int ret;
-> > > +
-> > > +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > > +	if (!priv)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	if (gpiod_count(dev, NULL) != 1) {
-> > > +		dev_err(dev, "Error, need exactly 1 gpio for device\n");
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	priv->gpio = devm_gpiod_get(dev, NULL, GPIOD_IN);
-> > > +	if (IS_ERR(priv->gpio))
-> > > +		return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get gpio\n");  
-> > 
-> > My gut feeling here is that it probably makes sense to drop
-> > the direct read of the signal level, and hence allow the driver
-> > to be provided with an interrupt instead of a gpio.
-> > 
-> > Afterall, not all gpio lines are interrupt capable.  
-> 
-> Hm, .. I need to be able to sense GPIO level for diagnostic interface.
-> So, in this case i'll need to get irq and gpio separately 
-
-Perhaps support an either / or situation. If you get given an
-irq by the firmware, then just don't provide the diagnostic interface.
-If it's a gpio, then do it as you do here.
-
-Jonathan
-
-> 
-> > > +
-> > > +	priv->irq = gpiod_to_irq(priv->gpio);
-> > > +	if (priv->irq < 0) {
-> > > +		dev_err(dev, "failed to map GPIO to IRQ: %d\n", priv->irq);
-> > > +		return priv->irq;
-> > > +	}
-> > > +
-> > > +	priv->counter.name = dev_name(dev);
-> > > +	priv->counter.parent = dev;
-> > > +	priv->counter.ops = &gpio_pulse_cnt_ops;
-> > > +	priv->counter.counts = gpio_pulse_counts;
-> > > +	priv->counter.num_counts = ARRAY_SIZE(gpio_pulse_counts);
-> > > +	priv->counter.signals = gpio_pulse_signals;
-> > > +	priv->counter.num_signals = ARRAY_SIZE(gpio_pulse_signals);
-> > > +	priv->counter.priv = priv;
-> > > +
-> > > +	ret = devm_request_irq(dev, priv->irq, gpio_pulse_irq_isr,
-> > > +			       IRQF_TRIGGER_RISING | IRQF_NO_THREAD,
-> > > +			       GPIO_PULSE_NAME, priv);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	disable_irq(priv->irq);  
-> > 
-> > Race condition here (messy at least) that we can close down.  
-> 
-> ACK
-> 
-> > Note there is ongoing work to try and do this in a nice generic
-> > fashion, but in the meantime call
-> >
-> > irq_set_status_flags(priv->irq, IRQ_NOAUTOEN);  
-> 
-> ^^ yes! this is what i was seeking! Thx.
-> 
-> > before the devm_request_irq()
-> > 
-> > https://lore.kernel.org/lkml/20210107223926.35284-2-song.bao.hua@hisilicon.com/  
-> 
-> Nice!
-> 
-> > There are a lot of cases that series will tidy up, but let us do the best
-> > we can in the meantime!
-> >    
-> > > +
-> > > +	platform_set_drvdata(pdev, priv);
-> > > +
-> > > +	return devm_counter_register(dev, &priv->counter);
-> > > +}
-> > > +
-> > > +static const struct of_device_id gpio_pulse_cnt_of_match[] = {
-> > > +	{ .compatible = "virtual,gpio-pulse-counter", },
-> > > +	{}
-> > > +};
-> > > +MODULE_DEVICE_TABLE(of, gpio_pulse_cnt_of_match);
-> > > +
-> > > +static struct platform_driver gpio_pulse_cnt_driver = {
-> > > +	.probe = gpio_pulse_cnt_probe,
-> > > +	.driver = {
-> > > +		.name = GPIO_PULSE_NAME,
-> > > +		.of_match_table = gpio_pulse_cnt_of_match,
-> > > +	},
-> > > +};
-> > > +module_platform_driver(gpio_pulse_cnt_driver);
-> > > +
-> > > +MODULE_ALIAS("platform:gpio-pulse-counter");
-> > > +MODULE_AUTHOR("Oleksij Rempel <o.rempel@pengutronix.de>");
-> > > +MODULE_DESCRIPTION("GPIO pulse counter driver");
-> > > +MODULE_LICENSE("GPL v2");  
-> 
-> Thank you.
-> 
-> Regards,
-> Oleksij
+T24gVHVlLCAyMDIxLTAxLTI2IGF0IDIxOjE4ICswODAwLCBNYXNvbiBaaGFuZyB3cm90ZToNCj4g
+RnJvbTogbXRrMjI3ODYgPE1hc29uLlpoYW5nQG1lZGlhdGVrLmNvbT4NCj4gDQo+IHRoaXMgcGF0
+Y2ggYWRkIHNwaSBob3N0IGR0cyBub2RlcyBmb3IgbXQ2Nzc5IElDLg0KPiANCj4gQ2hhbmdlLUlk
+OiBJZjRhM2NiYjA5ODQzZjQ3MjIxMGIzOTAzNTJkYjRiOTg4NmY1YzAwYw0KPiBTaWduZWQtb2Zm
+LWJ5OiBNYXNvbiBaaGFuZyA8bWFzb24uemhhbmdAbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gIGFy
+Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LmR0c2kgfCA5NiArKysrKysrKysrKysr
+KysrKysrKysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCA5NiBpbnNlcnRpb25zKCspDQo+IA0KPiBk
+aWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSBiL2Fy
+Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LmR0c2kNCj4gaW5kZXggMzcwZjMwOWQz
+MmRlLi4yNzJmNDM0NmQzNWUgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVk
+aWF0ZWsvbXQ2Nzc5LmR0c2kNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9t
+dDY3NzkuZHRzaQ0KPiBAQCAtMjE5LDYgKzIxOSwxMDIgQEANCj4gIAkJCXN0YXR1cyA9ICJkaXNh
+YmxlZCI7DQo+ICAJCX07DQo+ICANCj4gKwkJc3BpMDogc3BpMEAxMTAwYTAwMCB7DQo+ICsJCQlj
+b21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVr
+LG10Njc2NS1zcGkiOw0KDQphZGQgdGhlIGNvbXBhdGlibGUgc3RyaW5nIGludG8gdGhlIFNQSSBi
+aW5kaW5nIA0KDQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KPiArCQkJcmVnID0g
+PDAgMHgxMTAwYTAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQz
+IElSUV9UWVBFX0xFVkVMX0xPVz47DQoNCmFkZCA0dGggdmFsdWUgaW50byBpbnRlcnJ1cHRzIHBy
+b3BlcnR5IHRvIHN1cHBvcnQgUFBJIHBhcnRpdGlvbiANCigwIGZvciBTUEkpDQppbnRlcnJ1cHRz
+ID0gPEdJQ19TUEkgMTQzIElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCg0KUmVnYXJkcywNCkhhbmtz
+IENoZW4NCj4gKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwN
+Cj4gKwkJCQk8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gKwkJCQk8JmluZnJhY2ZnX2FvIENM
+S19JTkZSQV9TUEkwPjsNCj4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNs
+ayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4gKw0KPiArCQlzcGkxOiBzcGkxQDExMDEwMDAwIHsN
+Cj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAgICAi
+bWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0K
+PiArCQkJcmVnID0gPDAgMHgxMTAxMDAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0g
+PEdJQ19TUEkgMTQ3IElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQljbG9ja3MgPSA8JnRvcGNr
+Z2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ICsJCQkJPCZ0b3Bja2dlbiBDTEtfVE9QX1NQ
+ST4sDQo+ICsJCQkJPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJMT47DQo+ICsJCQljbG9jay1u
+YW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQo+ICsJCX07DQo+ICsN
+Cj4gKwkJc3BpMjogc3BpMkAxMTAxMjAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVr
+LG10Njc3OS1zcGkiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0KPiArCQkJ
+bWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCj4gKwkJCXJlZyA9IDwwIDB4MTEwMTIwMDAgMCAw
+eDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1MiBJUlFfVFlQRV9MRVZFTF9M
+T1c+Ow0KPiArCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0K
+PiArCQkJCSA8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gKwkJCQk8JmluZnJhY2ZnX2FvIENM
+S19JTkZSQV9TUEkyPjsNCj4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNs
+ayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4gKw0KPiArCQlzcGkzOiBzcGkzQDExMDEzMDAwIHsN
+Cj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAgICAi
+bWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0K
+PiArCQkJcmVnID0gPDAgMHgxMTAxMzAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0g
+PEdJQ19TUEkgMTUzIElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQljbG9ja3MgPSA8JnRvcGNr
+Z2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ICsJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9T
+UEk+LA0KPiArCQkJCSA8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9TUEkzPjsNCj4gKwkJCWNsb2Nr
+LW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4g
+Kw0KPiArCQlzcGk0OiBzcGk0QDExMDE4MDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0
+ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJ
+CQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KPiArCQkJcmVnID0gPDAgMHgxMTAxODAwMCAw
+IDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTU2IElSUV9UWVBFX0xFVkVM
+X0xPVz47DQo+ICsJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4s
+DQo+ICsJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KPiArCQkJCSA8JmluZnJhY2ZnX2Fv
+IENMS19JTkZSQV9TUEk0PjsNCj4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2Vs
+LWNsayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4gKw0KPiArCQlzcGk1OiBzcGk1QDExMDE5MDAw
+IHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAg
+ICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+
+Ow0KPiArCQkJcmVnID0gPDAgMHgxMTAxOTAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRz
+ID0gPEdJQ19TUEkgMTU3IElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQljbG9ja3MgPSA8JnRv
+cGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ICsJCQkJPCZ0b3Bja2dlbiBDTEtfVE9Q
+X1NQST4sDQo+ICsJCQkJPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJNT47DQo+ICsJCQljbG9j
+ay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQo+ICsJCX07DQo+
+ICsNCj4gKwkJc3BpNjogc3BpNkAxMTAxZDAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlh
+dGVrLG10Njc3OS1zcGkiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0KPiAr
+CQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCj4gKwkJCXJlZyA9IDwwIDB4MTEwMWQwMDAg
+MCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE0NCBJUlFfVFlQRV9MRVZF
+TF9MT1c+Ow0KPiArCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+
+LA0KPiArCQkJCSA8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gKwkJCQkgPCZpbmZyYWNmZ19h
+byBDTEtfSU5GUkFfU1BJNj47DQo+ICsJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNl
+bC1jbGsiLCAic3BpLWNsayI7DQo+ICsJCX07DQo+ICsNCj4gKwkJc3BpNzogc3BpN0AxMTAxZTAw
+MCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KPiArCQkJCSAg
+ICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0KPiArCQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDww
+PjsNCj4gKwkJCXJlZyA9IDwwIDB4MTEwMWUwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0
+cyA9IDxHSUNfU1BJIDE0NSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiArCQkJY2xvY2tzID0gPCZ0
+b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KPiArCQkJCSA8JnRvcGNrZ2VuIENMS19U
+T1BfU1BJPiwNCj4gKwkJCQkgPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJNz47DQo+ICsJCQlj
+bG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQo+ICsJCX07
+DQo+ICsNCj4gIAkJYXVkaW86IGNsb2NrLWNvbnRyb2xsZXJAMTEyMTAwMDAgew0KPiAgCQkJY29t
+cGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktYXVkaW8iLCAic3lzY29uIjsNCj4gIAkJCXJlZyA9
+IDwwIDB4MTEyMTAwMDAgMCAweDEwMDA+Ow0KDQo=
 
