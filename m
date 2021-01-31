@@ -2,77 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA723309D72
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 16:24:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89AD6309D41
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 16:02:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231168AbhAaPWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 10:22:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34548 "EHLO
+        id S231921AbhAaO47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 09:56:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232345AbhAaOdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 09:33:17 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CB7C061574;
-        Sun, 31 Jan 2021 06:32:29 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id o10so9821078wmc.1;
-        Sun, 31 Jan 2021 06:32:29 -0800 (PST)
+        with ESMTP id S231408AbhAaOzM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 09:55:12 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBD23C061573;
+        Sun, 31 Jan 2021 06:54:31 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id p15so13775001wrq.8;
+        Sun, 31 Jan 2021 06:54:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=FWkhcoloomIf/wCpYLZRmkASt8JrJgJ4CUQou1kVpi0=;
-        b=Dai/PVKLRrTBU1URL0yU/x4P2QwlU3Cmsqf2VGfLIoBnH9A/PjbEkEqv+SLpitCBkS
-         PcbdA+H90MKBbQITo/nD2onuWVXsb8fh2QTMM9PR/en+4qNM3eVMaTBhTOTHIuA/a/ZE
-         9kfWztDsVNAIsZPBWa+X51gNcZWg4HP2JhCNv3o9bgJ/MadOuWac6dc50peTFa0fWcMu
-         2+zU4u0EmDdtGe3o9KUCxIqw4YxhH1eqktqwtJXe7FQFL51+k47+Wq2klP4dCHeE0j4J
-         wFOO/nFeN+h+7WEVeQXwzQC1IKiQCD4aGWRiy+efxyIHTA4Yfl7XrUoLozPljVePdHKF
-         JvJA==
+        bh=WkJeFPw2kQQYHxR9X8QVdj9OOIogYHSGaWROQp6d23w=;
+        b=qAwxHB4OJZlkt7/CPjTCYo6CtGO7S/7mZXEp2zMkfCcGo6xRAAB+laUFvPRmVamoJ3
+         0IPPFq0o6NNSlu96vVQh6i1Nkjj3I06oTrz0OlBjCsMkn2tCdv9OTmlL+iYtyyd7zYm0
+         syjj1KcONDNeS6HJWFbqh56V+UpM1ygGP9yd2v5bIhuA0FDwbCWUXNs5/RQ4EPKyyWeN
+         IoFQfBJsWE3psQkQZBgVkwGP5jTSyGGNbR6EVfK1gsjMiZ/rJx3WxK2ViAGL7Znrg2OU
+         rIbQmrGFwxHUn5qOXt0IZIA46U/AfHeLwIZVCOTMKNloO4XzMlk5EmjHnaB/d08ynQkt
+         3D9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=FWkhcoloomIf/wCpYLZRmkASt8JrJgJ4CUQou1kVpi0=;
-        b=C09/lSnH+tGufqJ35OJwPRPZsFUuAZVrKE0GQ7tSVUReONL1ZgH/hRWT5g8qLElE5s
-         /+qXGHjdGswz/0BbdUSqTIDeKwSYSWwSEbkpjQc7D+5PSJmentT9iGjg3j4WGvWR8LuE
-         cOsb7TjmivBbURtIuif0ZHGURDbsAC4DQNxwg9E64PJeNy0S+Qu7N7Ot1s1AUC5k2shv
-         v3DFJZltbvRSZcxic/D8YWRUROpQOPuOyOYqUMYsprcbT4l3+JeK2N/Y13JHIMPPd/ky
-         k6/VJIZRxhRSab+036tckzNEizRYq/LObmo5R18p8XqXwpMc7ocgQ4GYogbXCMrSf6Xv
-         wa5Q==
-X-Gm-Message-State: AOAM530MXeXG1uQyGU304wF/ArWXriSh7PWYCaDD95+JKmvV/ImPdLBd
-        p1USJtqrOE4kKGXPBT7iwJY=
-X-Google-Smtp-Source: ABdhPJyj7wgFtetm6z3qEvEw8kAksVNfpgYl9/gaF3CnnwgE1h/kpUTnWQ8oEbScQTavtrccspYEdw==
-X-Received: by 2002:a1c:a406:: with SMTP id n6mr11363169wme.53.1612103548450;
-        Sun, 31 Jan 2021 06:32:28 -0800 (PST)
+        bh=WkJeFPw2kQQYHxR9X8QVdj9OOIogYHSGaWROQp6d23w=;
+        b=MrFgARmmZpm78mupGd+kGEVgA9TPAwTkoyPpjqFovFBZ1WMiuoqPVvMbVBVzYY97Ks
+         Ss6ATFNmn9XY4nFlHI5Ce7zwOdkqeB1khdAo/U3JHFwh6knB8Y5Iv7MpepZRnW7F+Sx0
+         rnxPKU4UjGu+MdVIbLa4gXkcuVf6PZRpy0sdHAKxdGavsFSl4UiIiQYI6VXuPHGMP60B
+         g9xH67xtBO6tQr3Low41zgC4uyUMW5xSiPPuA9fXf3CAAXC+hsGrAItUrASYhoDHL/7J
+         O/4Y51EtLgwUDqx2tCGFSRly05xch81P41zumgIPMri1bj53qROFKgg40LOlyb5TgGQB
+         +BBw==
+X-Gm-Message-State: AOAM531SlGNhmJqmqXR9CBLspmus6veF8aYqpYoQJvn88HZT/+UgkWIG
+        eNcptTbrG24+Bi0tJqiw4CxBc1TFO1QvEhNp
+X-Google-Smtp-Source: ABdhPJyPJoHnFnU9o8NjgJCD2yBaBGx2MRUsaYHuoUq3BmTa4p8Vbt9wj2k3kE4ie+qGvWgXRchg2A==
+X-Received: by 2002:adf:fc8a:: with SMTP id g10mr14323248wrr.189.1612104870716;
+        Sun, 31 Jan 2021 06:54:30 -0800 (PST)
 Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id b83sm5000058wmc.44.2021.01.31.06.32.26
+        by smtp.gmail.com with ESMTPSA id s25sm17872026wmj.24.2021.01.31.06.54.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 31 Jan 2021 06:32:27 -0800 (PST)
-Subject: Re: [PATCH 2/2] arm64: configs: Support pwrap on Mediatek MT6779
- platform
-To:     Argus Lin <argus.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Michael Walle <michael@walle.cc>, agx@sigxcpu.org,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        wsd_upstream@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <1609747703-27207-1-git-send-email-argus.lin@mediatek.com>
- <1609747703-27207-3-git-send-email-argus.lin@mediatek.com>
+        Sun, 31 Jan 2021 06:54:30 -0800 (PST)
+Subject: Re: [PATCH v4 1/3] arm64: dts: mt8183: config dsi node
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20210113110400.616319-1-hsinyi@chromium.org>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <5d5a67a5-ac2d-9ef9-b20c-66cbd55ebb8f@gmail.com>
-Date:   Sun, 31 Jan 2021 15:32:26 +0100
+Message-ID: <5c30dc00-2d0e-8538-fe55-c57e70d46b70@gmail.com>
+Date:   Sun, 31 Jan 2021 15:54:29 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <1609747703-27207-3-git-send-email-argus.lin@mediatek.com>
+In-Reply-To: <20210113110400.616319-1-hsinyi@chromium.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -82,29 +73,106 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 04/01/2021 09:08, Argus Lin wrote:
-> Support pwrap on Mediatek MT6779 platform by enabling CONFIG_MTK_PMIC_WRAP.
+On 13/01/2021 12:03, Hsin-Yi Wang wrote:
+> Config dsi node for mt8183 kukui. Set panel and ports.
 > 
-> Signed-off-by: Argus Lin <argus.lin@mediatek.com>
+> Several kukui boards share the same panel property and only compatible
+> is different. So compatible will be set in board dts for comparison
+> convenience.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
 > ---
 
-Applied to v5.11-next/defconfig
+Whole series applied to v5.11-next/dts64
 
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
+Thanks!
+
+> change:
+> v4: add backlight and enable mipi_tx0
+> ---
+>  .../mediatek/mt8183-kukui-krane-sku176.dts    |  5 +++
+>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 42 +++++++++++++++++++
+>  2 files changed, 47 insertions(+)
 > 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 8383016..a2c926f 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -479,6 +479,7 @@ CONFIG_SPI_S3C64XX=y
->  CONFIG_SPI_SH_MSIOF=m
->  CONFIG_SPI_SUN6I=y
->  CONFIG_SPI_SPIDEV=m
-> +CONFIG_MTK_PMIC_WRAP=m
->  CONFIG_SPMI=y
->  CONFIG_PINCTRL_SINGLE=y
->  CONFIG_PINCTRL_MAX77620=y
-> --
-> 1.8.1.1.dirty
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+> index 47113e275cb52..721d16f9c3b4f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+> @@ -16,3 +16,8 @@ / {
+>  	model = "MediaTek krane sku176 board";
+>  	compatible = "google,krane-sku176", "google,krane", "mediatek,mt8183";
+>  };
+> +
+> +&panel {
+> +        status = "okay";
+> +        compatible = "boe,tv101wum-nl6";
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index bf2ad1294dd30..da1e947587074 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -249,6 +249,36 @@ &cpu7 {
+>  	proc-supply = <&mt6358_vproc11_reg>;
+>  };
+>  
+> +&dsi0 {
+> +	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	panel: panel@0 {
+> +		/* compatible will be set in board dts */
+> +		reg = <0>;
+> +		enable-gpios = <&pio 45 0>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&panel_pins_default>;
+> +		avdd-supply = <&ppvarn_lcd>;
+> +		avee-supply = <&ppvarp_lcd>;
+> +		pp1800-supply = <&pp1800_lcd>;
+> +		backlight = <&backlight_lcd0>;
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&dsi_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	ports {
+> +		port {
+> +			dsi_out: endpoint {
+> +				remote-endpoint = <&panel_in>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+>  &i2c0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&i2c0_pins>;
+> @@ -290,6 +320,10 @@ &i2c6 {
+>  	clock-frequency = <100000>;
+>  };
+>  
+> +&mipi_tx0 {
+> +	status = "okay";
+> +};
+> +
+>  &mmc0 {
+>  	status = "okay";
+>  	pinctrl-names = "default", "state_uhs";
+> @@ -547,6 +581,14 @@ pins_clk {
+>  		};
+>  	};
+>  
+> +	panel_pins_default: panel_pins_default {
+> +		panel_reset {
+> +			pinmux = <PINMUX_GPIO45__FUNC_GPIO45>;
+> +			output-low;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+>  	pwm0_pin_default: pwm0_pin_default {
+>  		pins1 {
+>  			pinmux = <PINMUX_GPIO176__FUNC_GPIO176>;
 > 
