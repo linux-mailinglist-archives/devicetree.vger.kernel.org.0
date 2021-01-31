@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFD30309CB2
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 15:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56BE7309CB3
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 15:26:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231805AbhAaOPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 09:15:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53776 "EHLO
+        id S231809AbhAaOPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 09:15:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231483AbhAaNur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 08:50:47 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE04C061573;
-        Sun, 31 Jan 2021 05:50:05 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id 190so10399208wmz.0;
-        Sun, 31 Jan 2021 05:50:05 -0800 (PST)
+        with ESMTP id S229706AbhAaN5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 08:57:51 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B55C061573;
+        Sun, 31 Jan 2021 05:57:04 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 190so10407495wmz.0;
+        Sun, 31 Jan 2021 05:57:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=rGnXaB9q6WJ9V1fKp+nQy/pq+xBbMaol02qjjKkh5p8=;
-        b=aFn0Y/4GR1NwpLZIe6AxAA8KnuAF/eu79Pw9Xn+iZaAhPhUgeVWVv4+pAFoYMrLiB4
-         BF6vX0Lu4md/f0E+xZ5Zw7ddvsIxXUiPavaQ6Gg4BxrJfA0g831gza4x1tt8EhR4GMNL
-         x1lQ8RVMc/wW41dWEt5yqnFvH1I7Kt02hD9d/ySA/ul+uXJ3SoCQe6/niBQf5msDmxqV
-         VZ9WL3qlc9H2EYxOBPiMkMYPjf6/vdHRTjPGMXB75YyIMLkV2qYqPHrkl7out4y+ee5i
-         O4YhsTwMmmCbo53yhg6QMkYBW71V2hJvb7ijRAwYCw9VoOQhApApzFJN/02dg7RUC9MY
-         srpQ==
+        bh=nHeARcn/Q6aiQfyYVeKjmAIHsqSRMrKsrSXo9hw+vQU=;
+        b=Lzepv2tqN9yeWPHSfKs0R2te5ybUjX4CT6Gn4aEGExGi6FFISvmKVWg+7cuxXWf5M6
+         yBG7PUDfrXL/MWCXDvl5b3v+1wPKUsc47ov3iN/matIiHcPeX4KS8UqghZcSXiz1J9gs
+         hl5J4WmDx5lxJ/gni+4IQfEGbbl5lmO/NQx7F7/lIOTD2ramJ28G3Qm246Qpsq4d36Wh
+         L5eqOF20G3Y9qphuI16i2CWoJoQYrN6uR6cvWJUhgAy8xiLHGEqlg0IGbU2NtXUVeJ2A
+         ZdCh2XxmTAXQt0tFiSAQoSJ5TiV+y80NJmlT2gubbDrDEU0IiKe3Uuache74+pz2TpY0
+         UscA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=rGnXaB9q6WJ9V1fKp+nQy/pq+xBbMaol02qjjKkh5p8=;
-        b=HfwszeNyWNtgWsIJG+7kcjY0RqKW9zK+e3Zj/uZ/PzbIaSJ0gA1SJEzxGgyd2lAeaN
-         4uEQLqH+sOVNBHIrxJQVctQhq3a4/LFTge0Sj6V8t1suEnufTy96aiUBsgJiGRfZA1gp
-         QzhIbe713gQPRdLDX6nG01omp8LJpWqsEOsXXnNz/2rPhMSdN66Dm0oHRKx/mI+iBcuM
-         Srn+sIrIYe0UixyNoGn2fj5Ep+tIlkkOMFhVXFkPUXf5+TB/gt8eUz2uliJl6x7ycqjN
-         FOvA/scmuhRCSQ4yp1zkCMl9YNUrJUlrBR4aUED+wp83x0t2PnCsxz5DjLfU4hqTupP/
-         nXuw==
-X-Gm-Message-State: AOAM532jAWiyX1klbN5VI4BvH5XtT8DenQAunay/XMN99KPTehKbWqvw
-        +WktH/F5eoFoBGoCCG0ppAY=
-X-Google-Smtp-Source: ABdhPJwjPQ7vvr8+1fczHwbzSPJgKZoYtadqG79wBrsqeoQCVxfmGfYgoAvtD7xKuGw3ayAEy2DC4w==
-X-Received: by 2002:a05:600c:35d6:: with SMTP id r22mr11174364wmq.44.1612101004666;
-        Sun, 31 Jan 2021 05:50:04 -0800 (PST)
+        bh=nHeARcn/Q6aiQfyYVeKjmAIHsqSRMrKsrSXo9hw+vQU=;
+        b=MIZ0YLQBjUaKp9eRClruBZbRO0OQ9+Ad/v1UP2pWWskWPUNC8TEB1Bm2WnnPEC+GxS
+         wU2eCKkIVvnSpxCWkY3Q+SI9HJl0R5jXnUEIDVPsu/gXw8vN/nYDWnmTP9WMpxa9sKhJ
+         pj04KfwciWmGu8TtxBO3g7BJdpxN+OO8hH7l/zPIYC7uAoTu5Me2ggUkXXSXRJTHWF1X
+         s5VgFnT5WNgEU7tABzTbv87DcFWE/juNKfybKoV77rRYmf+cY11DFdCXvYYbU3Ox1+7W
+         vC0hNO2YUFUx3CzXBY2j3eCiPdlR87DIQdAGjaQ0AdBuy2Nfm4fryJqTn+oK+dNEsVGH
+         x8fQ==
+X-Gm-Message-State: AOAM532+HuDk4xuTBpgFVdUkUhN91oo03TwHWw26bOOhlsdnaP4a4qRX
+        IuhzoIDTUnTlDs3HzzWwX+o=
+X-Google-Smtp-Source: ABdhPJwOXcBnG47rwt7FD9rXIgrGkvfK3gWjKr883xToeOLwqpyEflVWKOPI3xczregH0vw2xfFHBQ==
+X-Received: by 2002:a1c:5454:: with SMTP id p20mr11057149wmi.128.1612101423496;
+        Sun, 31 Jan 2021 05:57:03 -0800 (PST)
 Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id t15sm2204703wmi.48.2021.01.31.05.50.03
+        by smtp.gmail.com with ESMTPSA id 62sm18433568wmd.34.2021.01.31.05.57.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 31 Jan 2021 05:50:04 -0800 (PST)
-Subject: Re: [PATCH v1 2/2] arm64: dts: mt6779: Support ufshci and ufsphy
-To:     Stanley Chu <stanley.chu@mediatek.com>, linux-scsi@vger.kernel.org,
-        martin.petersen@oracle.com, avri.altman@wdc.com,
-        alim.akhtar@samsung.com, jejb@linux.ibm.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kuohong.wang@mediatek.com, peter.wang@mediatek.com,
-        chun-hung.wu@mediatek.com, andy.teng@mediatek.com,
-        chaotian.jing@mediatek.com, cc.chou@mediatek.com,
-        jiajie.hao@mediatek.com, alice.chao@mediatek.com,
-        hanks.chen@mediatek.com
-References: <20201223041345.24864-1-stanley.chu@mediatek.com>
- <20201223041345.24864-3-stanley.chu@mediatek.com>
+        Sun, 31 Jan 2021 05:57:02 -0800 (PST)
+Subject: Re: [PATCH v3 1/2] dt-bindings: nvmem: mediatek: add support for
+ MediaTek mt8192 SoC
+To:     mtk23264 <Yz.Wu@mediatek.com>, Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20201221061018.18503-1-Yz.Wu@mediatek.com>
+ <20201221061018.18503-2-Yz.Wu@mediatek.com>
+ <20210103162540.GA3983563@robh.at.kernel.org>
+ <1611296911.30262.5.camel@mtksdccf07>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <db2e6d9c-a20c-f9a2-e43d-607fb5a5bde4@gmail.com>
-Date:   Sun, 31 Jan 2021 14:50:02 +0100
+Message-ID: <8a6f9493-a17a-e679-bada-1dd355c9ce8d@gmail.com>
+Date:   Sun, 31 Jan 2021 14:57:01 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <20201223041345.24864-3-stanley.chu@mediatek.com>
+In-Reply-To: <1611296911.30262.5.camel@mtksdccf07>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -78,81 +77,53 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 23/12/2020 05:13, Stanley Chu wrote:
-> Support UFS on MT6779 platforms by adding ufshci and ufsphy
-> nodes in dts file.
+On 22/01/2021 07:28, mtk23264 wrote:
+> On Sun, 2021-01-03 at 09:25 -0700, Rob Herring wrote:
+>> On Mon, Dec 21, 2020 at 02:10:19PM +0800, Yz.Wu@mediatek.com wrote:
+>>> From: Ryan Wu <Yz.Wu@mediatek.com>
+>>>
+>>> This updates dt-binding documentation for MediaTek mt8192
+>>>
+>>> Signed-off-by: Ryan Wu <Yz.Wu@mediatek.com>
+>>> ---
+>>> This patch is based on v5.10-rc7.
+>>> ---
+>>>  Documentation/devicetree/bindings/nvmem/mtk-efuse.txt | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+>>> index 0668c45a156d..e2f0c0f34d10 100644
+>>> --- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+>>> +++ b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+>>> @@ -7,6 +7,7 @@ Required properties:
+>>>  	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
+>>>  	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
+>>>  	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
+>>> +	      "mediatek,mt8192-efuse" or "mediatek,efuse": for MT8192
+>>
+>> No, "mediatek,efuse" by itself is only for MT8173.
+> Is it should be modify from "mediatek,mt8192-efuse" or "mediatek,efuse"
+> to "mediatek,mt8192-efuse", "mediatek,efuse" ?
 > 
-> Reviewed-by: Hanks Chen <hanks.chen@mediatek.com>
-> Signed-off-by: Stanley Chu <stanley.chu@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt6779.dtsi | 36 +++++++++++++++++++++++-
->  1 file changed, 35 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> index 370f309d32de..a8584b00cc9d 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> @@ -225,6 +225,41 @@
->  			#clock-cells = <1>;
->  		};
->  
-> +		ufshci: ufshci@11270000 {
-> +			compatible = "mediatek,mt8183-ufshci";
-> +			reg = <0 0x11270000 0 0x2300>;
-> +			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_LOW 0>;
-> +			phys = <&ufsphy>;
-> +
-> +			clocks = <&infracfg_ao CLK_INFRA_UFS>,
-> +				 <&infracfg_ao CLK_INFRA_UFS_TICK>,
-> +				 <&infracfg_ao CLK_INFRA_UFS_AXI>,
-> +				 <&infracfg_ao CLK_INFRA_UNIPRO_TICK>,
-> +				 <&infracfg_ao CLK_INFRA_UNIPRO_MBIST>,
-> +				 <&topckgen CLK_TOP_FAES_UFSFDE>,
-> +				 <&infracfg_ao CLK_INFRA_AES_UFSFDE>,
-> +				 <&infracfg_ao CLK_INFRA_AES_BCLK>;
-> +			clock-names = "ufs", "ufs_tick", "ufs_axi",
-> +				      "unipro_tick", "unipro_mbist",
-> +				      "aes_top", "aes_infra", "aes_bclk";
-> +			freq-table-hz = <0 0>, <0 0>, <0 0>,
-> +					<0 0>, <0 0>, <0 0>,
-> +					<0 0>, <0 0>;
 
-We are missing required property: vcc-supply
-
-> +
-> +			mediatek,ufs-disable-ah8;
-> +			mediatek,ufs-support-va09;
-
-Although supported in the driver, these are not defined in the binding document
-(ufs-mediatek.txt). Before adding them, it would be good if you could update the
-description to use yaml syntax instead.
-
-Please also add "mediatek,ufs-boost-crypt" which is not defined in the binding
-neither.
+Yes, as you can see "mediatek,mt8192-efuse" is not defined in the driver (and
+should not as long as the HW has no difference from the already implemented driver).
 
 Regards,
 Matthias
 
-> +		};
-> +
-> +		ufsphy: phy@11fa0000 {
-> +			compatible = "mediatek,mt8183-ufsphy";
-> +			reg = <0 0x11fa0000 0 0xc000>;
-> +			#phy-cells = <0>;
-> +
-> +			clocks = <&infracfg_ao CLK_INFRA_UNIPRO_SCK>,
-> +				 <&infracfg_ao CLK_INFRA_UFS_MP_SAP_BCLK>;
-> +			clock-names = "unipro", "mp";
-> +		};
-> +
->  		mfgcfg: clock-controller@13fbf000 {
->  			compatible = "mediatek,mt6779-mfgcfg", "syscon";
->  			reg = <0 0x13fbf000 0 0x1000>;
-> @@ -266,6 +301,5 @@
->  			reg = <0 0x1b000000 0 0x1000>;
->  			#clock-cells = <1>;
->  		};
-> -
->  	};
->  };
+> Regards,
+> Yz
+>>
+>>>  - reg: Should contain registers location and length
+>>>  
+>>>  = Data cells =
+>>> -- 
+>>> 2.18.0
+>>>
+>>
+>> _______________________________________________
+>> Linux-mediatek mailing list
+>> Linux-mediatek@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-mediatek
 > 
