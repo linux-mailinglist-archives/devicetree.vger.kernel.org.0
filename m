@@ -2,244 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B084F309F2A
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jan 2021 23:04:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B28330DBBD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 14:50:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229593AbhAaWBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 17:01:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42374 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbhAaV72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 16:59:28 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA2AC061573;
-        Sun, 31 Jan 2021 13:58:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=inPeTh18wjb0l+HhRSID9H7hT121FY9CPy5oZ+1jTps=; b=Ifrrjxp/+X61a1oz8ELWA3upBq
-        /vmoRpUsbiCcUkKq9mIhR0/0KcKVbAvVPHzLc/DsOFn/Yrunq/OZ1Oeroa85JM+1Czd3sVcjfyFYt
-        sMyJwi60QFryIwkdGcBlgKwlTMJEFA0R80cq7sYWYvPMcMov1b7Hs2Jp9Ul4xZkWLWJI=;
-Received: from p200300ccff48ca001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff48:ca00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1l6KjG-0003SU-Mc; Sun, 31 Jan 2021 22:57:58 +0100
-Received: from andi by aktux with local (Exim 4.92)
-        (envelope-from <andreas@kemnade.info>)
-        id 1l6KjG-0001Dn-AE; Sun, 31 Jan 2021 22:57:58 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     lee.jones@linaro.org, robh+dt@kernel.org, andreas@kemnade.info,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        b.galvani@gmail.com, stefan@agner.ch
-Cc:     Rob Herring <robh@kernel.org>
-Subject: [PATCH RESEND v2] dt-bindings: mfd: Convert rn5t618 to json-schema
-Date:   Sun, 31 Jan 2021 22:57:30 +0100
-Message-Id: <20210131215730.4647-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.29.2
+        id S231744AbhBCNtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 08:49:02 -0500
+Received: from [20.39.40.203] ([20.39.40.203]:63183 "EHLO optinix.in"
+        rhost-flags-FAIL-FAIL-OK-OK) by vger.kernel.org with ESMTP
+        id S232143AbhBCNsC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Feb 2021 08:48:02 -0500
+dkim-signature: v=1; a=rsa-sha256; d=digitalsol.in; s=dkim;
+        c=relaxed/relaxed; q=dns/txt; h=From:Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding;
+        bh=wK2neTcOXNiSQ+RBxrnFed+mRrGUU/ndLGEgvo8IMCc=;
+        b=FS21EClFcr+A3vpYRlQQTMCvaya3puBKhF0t/hIIPvbHnwR+rgtC79jCNgOd5Ep+3tI3PC3XGw+gg8yd/GX54LmqQdKAMluAD+K+bzTI4zahRqPbm7KtfaMxxLjP1zy5bc8VXCd+pYJSaA44sqh+vttDlJ9joLFmVmdqNZ/U1Ii0YQuvu1e5+80FTLXannYWfDV+yNG+fM0atW47XipaPh3qYaJ9qQyVsnTbadcB2bQu1a4YZ7LLVooH7O
+        Vzah+xwYyqNFKO89GsubeImYj63yeirGylE2RvHO8q8chaXbYgGsxfBd5U+r4EZ0xxSiQVUltIwj9F/ZkNYp8D9drF7w==
+Received: from User (Unknown [52.231.31.5])
+        by optinix.in with ESMTP
+        ; Sun, 31 Jan 2021 19:46:16 +0000
+Message-ID: <5379DADF-1901-47E6-8429-247F25ECBABA@optinix.in>
+Reply-To: <ms.reem@yandex.com>
+From:   "Ms. Reem" <support@digitalsol.in>
+Subject: Re:read
+Date:   Sun, 31 Jan 2021 19:46:14 -0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
+Content-Type: text/plain;
+        charset="Windows-1251"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2600.0000
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the RN5T618 binding to DT schema format. Also
-clearly state which regulators are available.
+Hello,
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-https://lore.kernel.org/lkml/CAL_JsqJWt91+aZwAWEUVjOBQgsYw6GBHqmoHwU_T5qZabxX+Aw@mail.gmail.com/
+My name is Ms. Reem Ebrahim Al-Hashimi, I am the "Minister of state
+and Petroleum" also "Minister of State for International Cooperation"
+in UAE. I write to you on behalf of my other "three (3) colleagues"
+who has approved me to solicit for your "partnership in claiming of
+{us$47=Million}" from a Financial Home in Cambodia on their behalf and
+for our "Mutual Benefits".
 
-Changes in v2:
-- drop irq description
+The Fund {us$47=Million} is our share from the (over-invoiced) Oil/Gas
+deal with Cambodian/Vietnam Government within 2013/2014, however, we
+don't want our government to know about the fund. If this proposal
+interests you, let me know, by sending me an email and I will send to
+you detailed information on how this business would be successfully
+transacted. Be informed that nobody knows about the secret of this
+fund except us, and we know how to carry out the entire transaction.
+So I am compelled to ask, that you will stand on our behalf and
+receive this fund into any account that is solely controlled by you.
 
-Due to its .txt-format history BSD license was not added.
- .../bindings/mfd/ricoh,rn5t618.yaml           | 111 ++++++++++++++++++
- .../devicetree/bindings/mfd/rn5t618.txt       |  52 --------
- 2 files changed, 111 insertions(+), 52 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
- delete mode 100644 Documentation/devicetree/bindings/mfd/rn5t618.txt
+We will compensate you with 15% of the total amount involved as
+gratification for being our partner in this transaction. Reply to:
+ms.reem@yandex.com
 
-diff --git a/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-new file mode 100644
-index 000000000000..d70e85a09c84
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/ricoh,rn5t618.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ricoh RN5T567/RN5T618/RC5T619 PMIC
-+
-+maintainers:
-+  - Andreas Kemnade <andreas@kemnade.info>
-+
-+description: |
-+  Ricoh RN5T567/RN5T618/RC5T619 is a power management IC family which
-+  integrates 3 to 5 step-down DCDC converters, 7 to 10 low-dropout regulators,
-+  GPIOs, and a watchdog timer. It can be controlled through an I2C interface.
-+  The RN5T618/RC5T619 provides additionally a Li-ion battery charger,
-+  fuel gauge, and an ADC.
-+  The RC5T619 additionnally includes USB charger detection and an RTC.
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ricoh,rn5t567
-+    then:
-+      properties:
-+        regulators:
-+          patternProperties:
-+            "^(DCDC[1-4]|LDO[1-5]|LDORTC[12])$":
-+              $ref: ../regulator/regulator.yaml
-+          additionalProperties: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ricoh,rn5t618
-+    then:
-+      properties:
-+        regulators:
-+          patternProperties:
-+            "^(DCDC[1-3]|LDO[1-5]|LDORTC[12])$":
-+              $ref: ../regulator/regulator.yaml
-+          additionalProperties: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ricoh,rc5t619
-+    then:
-+      properties:
-+        regulators:
-+          patternProperties:
-+            "^(DCDC[1-5]|LDO[1-9]|LDO10|LDORTC[12])$":
-+              $ref: ../regulator/regulator.yaml
-+          additionalProperties: false
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ricoh,rn5t567
-+      - ricoh,rn5t618
-+      - ricoh,rc5t619
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  system-power-controller:
-+    type: boolean
-+    description: |
-+      See Documentation/devicetree/bindings/power/power-controller.txt
-+
-+  regulators:
-+    type: object
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      pmic@32 {
-+        compatible = "ricoh,rn5t618";
-+        reg = <0x32>;
-+        interrupt-parent = <&gpio5>;
-+        interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+        system-power-controller;
-+
-+        regulators {
-+          DCDC1 {
-+            regulator-min-microvolt = <1050000>;
-+            regulator-max-microvolt = <1050000>;
-+          };
-+
-+          DCDC2 {
-+            regulator-min-microvolt = <1175000>;
-+            regulator-max-microvolt = <1175000>;
-+          };
-+        };
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/mfd/rn5t618.txt b/Documentation/devicetree/bindings/mfd/rn5t618.txt
-deleted file mode 100644
-index 16778ea00dbc..000000000000
---- a/Documentation/devicetree/bindings/mfd/rn5t618.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--* Ricoh RN5T567/RN5T618 PMIC
--
--Ricoh RN5T567/RN5T618/RC5T619 is a power management IC family which
--integrates 3 to 5 step-down DCDC converters, 7 to 10 low-dropout regulators,
--GPIOs, and a watchdog timer. It can be controlled through an I2C interface.
--The RN5T618/RC5T619 provides additionally a Li-ion battery charger,
--fuel gauge, and an ADC.
--The RC5T619 additionnally includes USB charger detection and an RTC.
--
--Required properties:
-- - compatible: must be one of
--		"ricoh,rn5t567"
--		"ricoh,rn5t618"
--		"ricoh,rc5t619"
-- - reg: the I2C slave address of the device
--
--Optional properties:
-- - interrupts: interrupt mapping for IRQ
--   See Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-- - system-power-controller:
--   See Documentation/devicetree/bindings/power/power-controller.txt
--
--Sub-nodes:
-- - regulators: the node is required if the regulator functionality is
--   needed. The valid regulator names are: DCDC1, DCDC2, DCDC3, DCDC4
--   (RN5T567/RC5T619), LDO1, LDO2, LDO3, LDO4, LDO5, LDO6, LDO7, LDO8,
--   LDO9, LDO10, LDORTC1 and LDORTC2.
--   LDO7-10 are specific to RC5T619.
--   The common bindings for each individual regulator can be found in:
--   Documentation/devicetree/bindings/regulator/regulator.txt
--
--Example:
--
--	pmic@32 {
--		compatible = "ricoh,rn5t618";
--		reg = <0x32>;
--		interrupt-parent = <&gpio5>;
--		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
--		system-power-controller;
--
--		regulators {
--			DCDC1 {
--				regulator-min-microvolt = <1050000>;
--				regulator-max-microvolt = <1050000>;
--			};
--
--			DCDC2 {
--				regulator-min-microvolt = <1175000>;
--				regulator-max-microvolt = <1175000>;
--			};
--		};
--	};
--- 
-2.20.1
+Regards,
+Ms. Reem.
 
