@@ -2,75 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E89330AE56
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 18:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CA7F30AEB3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 19:05:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232514AbhBARrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 12:47:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51228 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232384AbhBARrZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Feb 2021 12:47:25 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 01F2964E2A;
-        Mon,  1 Feb 2021 17:46:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612201604;
-        bh=+LG8JJC83lkhV2mXkT0DrcP7GWmpNTMsT8hay1pPWhg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Lq8FUTr3dPjyr2lA53+NzwaAZ6xMno3oS9wye3cjVCTF7C0RP9XfAL0ZeQUECfH6M
-         yRg6/JVHBih3p+LNNdST5NXyG4iQ/m3iyVYdnjDiSO3Htunc2NRf6NayMm4Ol9IiRT
-         ekz7ClGHRYPHXBi4zcf1xXUfMDmlMylwk4YCUjYDSV8h7/XcHphODxoH2SIdJNwmeL
-         DheBNhjve/Xx7i6XU7JPzDHuxojj9NNodM0vbjzqojXInQtfyv+n4V8r3ohBgXPcgr
-         6gUZXJI2uceTQtnS1hVDRephIznxUrwSgYfo/QgtvaC2eRZzQ/5IqhCdCDxDCYEF0T
-         zFQ+KiVsfmtNw==
-Date:   Mon, 1 Feb 2021 17:46:38 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        id S230214AbhBASEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 13:04:23 -0500
+Received: from mail-wr1-f54.google.com ([209.85.221.54]:36674 "EHLO
+        mail-wr1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230110AbhBASEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 13:04:21 -0500
+Received: by mail-wr1-f54.google.com with SMTP id 6so17627825wri.3;
+        Mon, 01 Feb 2021 10:04:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=fKxZfOhT/DW7ng3x2hQg+/AugT9c3F61tbpfJY+S9fg=;
+        b=o0ja68jjfo0vxAZuQK1dJm18nv709vSsKmLfIwnUOxB/tO4pA0T7vf1atU+1tlx0zO
+         3EZaev+FtG0p32/dhSFuWVfF8ySvs6dz+gOsNZ4IuH514agCQHDWwbYv1gV3v33Ca7pV
+         khvqZPcr+1qAE4opjFbHmue3U9DIPV4X3eAmymoM5E7DTB03Ul5Qs0tCWpGbjhwrFgFa
+         ooWhIlZdTHQsmn4mIv7o/sWQeMuDQwFcaxQY5V3aWabb6UCmcGV/OiRGBP4MV35S78ZA
+         MDLMNiQFwhQ3BUSJ0PJKxu7/e1YNTwD7K6S+irIBhpFt9ESL+ldeX00M/eRkCt/Bjyfv
+         xEOw==
+X-Gm-Message-State: AOAM530b6sfj7V5vBEToDA36W8IPbwp1yh0B83praLVcMg9VX3/RT7o4
+        I2IHukhV52dUTmPKv7PxW74=
+X-Google-Smtp-Source: ABdhPJwL6YHDCvYoDuQCnzLFd63X1o28rVOo0eX5DFDlJKIewDByM/euMbQI7hRpkiGev2a9nEBpbg==
+X-Received: by 2002:adf:d4ce:: with SMTP id w14mr18936280wrk.89.1612202619004;
+        Mon, 01 Feb 2021 10:03:39 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id t17sm42062wmi.46.2021.02.01.10.03.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Feb 2021 10:03:37 -0800 (PST)
+Date:   Mon, 1 Feb 2021 19:03:35 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 05/26] KVM: arm64: Avoid free_page() in page-table
- allocator
-Message-ID: <20210201174638.GC15632@willie-the-truck>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-6-qperret@google.com>
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 3/3] power: supply: max8997_charger: Switch to new binding
+Message-ID: <20210201180335.rrsqfvbcmxvx64gf@kozik-lap>
+References: <20210130172747.2022977-1-timon.baetz@protonmail.com>
+ <20210130172747.2022977-4-timon.baetz@protonmail.com>
+ <20210131172840.fxaadhhsafa4aeex@kozik-lap>
+ <20210201083128.18499ffd.timon.baetz@protonmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210108121524.656872-6-qperret@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210201083128.18499ffd.timon.baetz@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 08, 2021 at 12:15:03PM +0000, Quentin Perret wrote:
-> Currently, the KVM page-table allocator uses a mix of put_page() and
-> free_page() calls depending on the context even though page-allocation
-> is always achieved using variants of __get_free_page().
+On Mon, Feb 01, 2021 at 09:26:42AM +0000, Timon Baetz wrote:
+> On Sun, 31 Jan 2021 18:28:40 +0100, Krzysztof Kozlowski wrote:
+> > On Sat, Jan 30, 2021 at 05:30:14PM +0000, Timon Baetz wrote:
+> > > Get regulator from parent device's node and extcon by name.
+> > >
+> > > Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+> > > ---
+> > >  drivers/power/supply/max8997_charger.c | 12 ++++++++----
+> > >  1 file changed, 8 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/drivers/power/supply/max8997_charger.c b/drivers/power/supply/max8997_charger.c
+> > > index 321bd6b8ee41..625d8cc4312a 100644
+> > > --- a/drivers/power/supply/max8997_charger.c
+> > > +++ b/drivers/power/supply/max8997_charger.c
+> > > @@ -168,6 +168,7 @@ static int max8997_battery_probe(struct platform_device *pdev)
+> > >  	int ret = 0;
+> > >  	struct charger_data *charger;
+> > >  	struct max8997_dev *iodev = dev_get_drvdata(pdev->dev.parent);
+> > > +	struct device_node *np = pdev->dev.of_node;
+> > >  	struct i2c_client *i2c = iodev->i2c;
+> > >  	struct max8997_platform_data *pdata = iodev->pdata;
+> > >  	struct power_supply_config psy_cfg = {};
+> > > @@ -237,20 +238,23 @@ static int max8997_battery_probe(struct platform_device *pdev)
+> > >  		return PTR_ERR(charger->battery);
+> > >  	}
+> > >
+> > > +	// grab regulator from parent device's node
+> > > +	pdev->dev.of_node = iodev->dev->of_node;
+> > >  	charger->reg = devm_regulator_get_optional(&pdev->dev, "charger");
+> > > +	pdev->dev.of_node = np;  
+> > 
+> > I think the device does not have its own node anymore. Or did I miss
+> > something?
 > 
-> Make the code consitent by using put_page() throughout, and reduce the
+> The idea is to reset of_node to whatever it was before (NULL) and basically 
+> leave the device unchanged. Probe might run again because of deferral.
 
-typo: consistent
+Good point.
 
-> memory management API surface used by the page-table code. This will
-> ease factoring out page-alloction from pgtable.c, which is a
-> pre-requisite to creating page-tables at EL2.
 > 
-> Signed-off-by: Quentin Perret <qperret@google.com>
-> ---
->  arch/arm64/kvm/hyp/pgtable.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+> > >  	if (IS_ERR(charger->reg)) {
+> > >  		if (PTR_ERR(charger->reg) == -EPROBE_DEFER)
+> > >  			return -EPROBE_DEFER;
+> > >  		dev_info(&pdev->dev, "couldn't get charger regulator\n");
+> > >  	}
+> > > -	charger->edev = extcon_get_edev_by_phandle(&pdev->dev, 0);
+> > > -	if (IS_ERR(charger->edev)) {
+> > > -		if (PTR_ERR(charger->edev) == -EPROBE_DEFER)
+> > > +	charger->edev = extcon_get_extcon_dev("max8997-muic");
+> > > +	if (IS_ERR_OR_NULL(charger->edev)) {
+> > > +		if (!charger->edev)  
+> > 
+> > Isn't NULL returned when there is simply no extcon? It's different than
+> > deferred probe. Returning here EPROBE_DEFER might lead to infinite probe
+> > tries (on every new device probe) instead of just failing it.
+> 
+> extcon_get_extcon_dev() just loops through all registered extcon devices
+> and compared names. It will return NULL when "max8997-muic" isn't
+> registered yet. extcon_get_extcon_dev() never returns EPROBE_DEFER so
+> checking for NULL seems to be the only way. Other drivers using that
+> function also do NULL check and return EPROBE_DEFER.
 
-Acked-by: Will Deacon <will@kernel.org>
+Indeed, thanks for clarification. Looks good:
 
-Will
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+Best regards,
+Krzysztof
+
