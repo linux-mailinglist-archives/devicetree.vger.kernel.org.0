@@ -2,126 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC86C30AA77
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 16:08:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 546B230AAA2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 16:11:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231405AbhBAPH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 10:07:58 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:38797 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231289AbhBAPHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 10:07:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1612191951;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=eX0gXpFl1l7y74u4JDLx1FBGVKaeL4IiU69Igj0W6ks=;
-        b=F5iB/qDqmNtxhzvMsVCUcmrAvmh+Ci/WS0/BhuO+T3TrzuheTps1nu+GtUPrPc7JmH/imY
-        mintmdIkWUG0Ro1xJfB+x3pxOAnEHOWf22oh1eRR7ojIAOkf/mHgHLQaQ77Ee6CPc8QbH6
-        acGnXyNw+TyxNuokjJpcRQbwelUaha8=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-170-5It6SlIwN-WG3iR6bzbKMQ-1; Mon, 01 Feb 2021 10:05:49 -0500
-X-MC-Unique: 5It6SlIwN-WG3iR6bzbKMQ-1
-Received: by mail-ed1-f69.google.com with SMTP id f4so8035251eds.5
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 07:05:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=eX0gXpFl1l7y74u4JDLx1FBGVKaeL4IiU69Igj0W6ks=;
-        b=UGAY48m9bRRzXSp8WVedheGjcWYw0O7jEqQ68o4oz7SXllhyLERT0x1cnwOXx3X15d
-         0wibi8eM4MkVq5w0GfVnKRu0O6YKuGxSP0Noe+tRARA59Zy/y0JzcWA/UBszzlb2vwRb
-         Hr71RfmqZbnnDH80oHEzTy5+o2VJfMO/sY2p0vDeBXht6ROSQUmuz+yJaYaC+1F+Z9Uz
-         +rYzjpe0ucJZTDDvF+n+v6fnZl0lxwNvKdzNYZcRC+wsyys04mEuCGtLc8sUxlbzO3kN
-         CiyFxMv3GgfQemUlxfRCIlloB56hzVjENJNK9SOOynXKavGU3w+vu6DsHNUMJwjb5W4q
-         Ezfw==
-X-Gm-Message-State: AOAM531hVSm7UUTkF+BJvH3PvKkBVV/VvYT7ZBBHt5/ycsqk4D0CSUMX
-        LSvby1OVZqKk2JYCclneIjlDLDsDKK4FFqQLuDAVi9fH6iuQEGN3r4WqOswlKgvf0v7tErvqnQ1
-        Sv0iyG0VLlJ+t8RTRavMqJ8vn5aDuf/17Chi1vlMb4d5u2MQftIt7ek7eSI6zDf4ZlW/UFvnDrw
-        ==
-X-Received: by 2002:a17:907:f81:: with SMTP id kb1mr11875725ejc.466.1612191948331;
-        Mon, 01 Feb 2021 07:05:48 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzK0jclynZ+MrcrVdO9SPTLfEAUH3rSPQUqH1OjcPu4PcBednTnIh0NLUi+4F/vqxS1P/HaPQ==
-X-Received: by 2002:a17:907:f81:: with SMTP id kb1mr11875699ejc.466.1612191948164;
-        Mon, 01 Feb 2021 07:05:48 -0800 (PST)
-Received: from x1.localdomain (2001-1c00-0c1e-bf00-37a3-353b-be90-1238.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:37a3:353b:be90:1238])
-        by smtp.gmail.com with ESMTPSA id y1sm3026899edq.26.2021.02.01.07.05.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Feb 2021 07:05:47 -0800 (PST)
-Subject: Re: [PATCH v3 0/3] common SVDM version and VDO from dt
-To:     Kyle Tso <kyletso@google.com>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org
-Cc:     badhri@google.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210201133421.408508-1-kyletso@google.com>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <a2f8cdd1-7180-a0af-fadf-b0eae2e117ae@redhat.com>
-Date:   Mon, 1 Feb 2021 16:05:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S231356AbhBAPLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 10:11:05 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:43862 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229864AbhBAPK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 10:10:57 -0500
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 111F994T000757;
+        Mon, 1 Feb 2021 10:10:01 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 36dbucusdr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 01 Feb 2021 10:10:01 -0500
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 111FA0ZN061902
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 1 Feb 2021 10:10:00 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.721.2;
+ Mon, 1 Feb 2021 10:09:59 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.721.2;
+ Mon, 1 Feb 2021 10:09:59 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.721.2 via Frontend Transport;
+ Mon, 1 Feb 2021 10:09:59 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 111F9uRY028808;
+        Mon, 1 Feb 2021 10:09:57 -0500
+From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
+To:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <lars@metafoo.de>,
+        <linux-fpga@vger.kernel.org>, <mdf@kernel.org>,
+        <ardeleanalex@gmail.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: [PATCH v3 0/4] clk: clk-axiclgen: add support for ZynqMP
+Date:   Mon, 1 Feb 2021 17:12:41 +0200
+Message-ID: <20210201151245.21845-1-alexandru.ardelean@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210201133421.408508-1-kyletso@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-01_06:2021-01-29,2021-02-01 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 clxscore=1011 suspectscore=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=987 spamscore=0 phishscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2102010082
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+https://lore.kernel.org/linux-clk/20210126110826.24221-1-alexandru.ardelean@analog.com/
 
-On 2/1/21 2:34 PM, Kyle Tso wrote:
-> patch v2:
-> https://lore.kernel.org/linux-devicetree/20210131151832.215931-1-kyletso@google.com/
-> 
-> Changes since v2:
-> =================
-> usb: typec: Determine common SVDM Versions
-> - rename the variable and the functions (remove the text "common")
-> - remove the macro
-> 
-> dt-bindings: connector: Add SVDM VDO properties
-> - no change
-> 
-> usb: typec: tcpm: Get Sink VDO from fwnode
-> - use fwnode_property_count_u32 instead to get the count
-> - revise the error handling
-> 
-> Kyle Tso (3):
->   usb: typec: Determine common SVDM Versions
->   dt-bindings: connector: Add SVDM VDO properties
->   usb: typec: tcpm: Get Sink VDO from fwnode
+Changelog v2 -> v3:
+* added HAS_IOMEM || COMPILE_TEST and OF dependencies to driver in
+  Kconfig
+* added patch 'clk: axi-clkgen: use devm_platform_ioremap_resource() short-hand'
 
-I wanted to point out that I have a somewhat related series "pending".
+Alexandru Ardelean (4):
+  clk: axi-clkgen: replace ARCH dependencies with driver deps
+  clk: clk-axiclkgen: add ZynqMP PFD and VCO limits
+  dt-bindings: clock: adi,axi-clkgen: add compatible string for ZynqMP
+    support
+  clk: axi-clkgen: use devm_platform_ioremap_resource() short-hand
 
-I put quotes around pending because it has been reviewed quite a while
-ago and have not managed to make the time to post a new version since then.
+ .../devicetree/bindings/clock/adi,axi-clkgen.yaml |  1 +
+ drivers/clk/Kconfig                               |  3 ++-
+ drivers/clk/clk-axi-clkgen.c                      | 15 ++++++++++++---
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
-My series is somewhat/mostly orthogonal, but I think it is good
-to keep it in mind since it also is about specifying VDOs, but then
-for alternate-modes, see:
-
-https://lore.kernel.org/linux-usb/20200714113617.10470-1-hdegoede@redhat.com/
-
-And I think there might be some overlap with the last patch in this series,
-although that does not call typec_port_register_altmode(). 
-
-Regards,
-
-Hans
-
-
-
-
-p.s.
-
-I was actually planning on replying to an earlier version of
-this series, *after* I posted a new version of my own series,
-but I'm swamped so it looks like I will not get around to posting
-a new version of my own series anytime soon.
+-- 
+2.17.1
 
