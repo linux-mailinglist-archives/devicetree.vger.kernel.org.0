@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81BDC30A0B7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 04:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB2B730A0BD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 05:01:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231302AbhBADxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 22:53:42 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:42595 "EHLO
+        id S231126AbhBAEAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 23:00:47 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:48147 "EHLO
         mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231268AbhBADxl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 22:53:41 -0500
-X-UUID: 14ba998c3fd447cea435064f79533fea-20210201
-X-UUID: 14ba998c3fd447cea435064f79533fea-20210201
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        with ESMTP id S229842AbhBAEAq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 23:00:46 -0500
+X-UUID: 2a98a505a9844201bb6a41b0e3dfeccb-20210201
+X-UUID: 2a98a505a9844201bb6a41b0e3dfeccb-20210201
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
         (envelope-from <yz.wu@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 275207347; Mon, 01 Feb 2021 11:52:57 +0800
+        with ESMTP id 1541827738; Mon, 01 Feb 2021 12:00:03 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 1 Feb 2021 11:52:56 +0800
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 1 Feb 2021 12:00:01 +0800
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 1 Feb 2021 11:52:56 +0800
+ Transport; Mon, 1 Feb 2021 12:00:01 +0800
 From:   <Yz.Wu@mediatek.com>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -33,12 +33,13 @@ CC:     Seiya Wang <seiya.wang@mediatek.com>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
         Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
         Ryan Wu <Yz.Wu@mediatek.com>
-Subject: [PATCH 0/2] Add Mediatek Efuse Device Node for MT8192 SoC
-Date:   Mon, 1 Feb 2021 11:51:48 +0800
-Message-ID: <1612151510-19696-1-git-send-email-Yz.Wu@mediatek.com>
+Subject: [PATCH v4 0/2] Add Mediatek Efuse Device Node for MT8192 SoC
+Date:   Mon, 1 Feb 2021 11:59:44 +0800
+Message-ID: <1612151986-19820-1-git-send-email-Yz.Wu@mediatek.com>
 X-Mailer: git-send-email 2.6.4
 MIME-Version: 1.0
 Content-Type: text/plain
+X-TM-SNTS-SMTP: 084DA98BB6B544664E08C458F3B2B16396053EB59EA7AFD532E10E59CD4C693E2000:8
 X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
