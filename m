@@ -2,133 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C43630ADE6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 18:32:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7E1330AE29
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 18:42:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231683AbhBARcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 12:32:16 -0500
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:34875 "EHLO
-        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231929AbhBARad (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 12:30:33 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 45B775C01A3;
-        Mon,  1 Feb 2021 12:29:25 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 01 Feb 2021 12:29:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=1IUuUKCPAXxczZPng3dD+OMdufW
-        kUYU8yPZFDLY8qxA=; b=nk9xxsmaDDQfr2BHNj30Wqc/Amyb2hDdxvLQgY865L5
-        WRWEwHYgTr4Gxq3zqoqdwUjKL/D5Q5Y37rGUAa+kCUog+zVAl+t6bOGsapwKb8dG
-        372/dP4yh/zlSn1wyOI1O5GjhWUFppnzBxc3rGrmBEbF9sZE1iSavrljtfQuVEvD
-        5GxQcbIz1N2ljxmlqeOMjq7RL7udQ8QE8RjmMRNY3D1KVNIqdWW7e8kCPsv/Fg/y
-        RSyAbCBvqfZ8QyK+2mj2XUNPbQNb1CeSw57lVsTXSnu1V52bt8B+AhknogFRFV7j
-        1DFgIlj2O3reYO2kVsgSyDqRxm3ORqeOTfCQDiW06Cg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=1IUuUK
-        CPAXxczZPng3dD+OMdufWkUYU8yPZFDLY8qxA=; b=M4Mf14ytHT8ThgDN2aJX8A
-        qSqW27PP3IwZnIILo/mow7LmJd2t3VqifdcMxAr10iMZblyunuTVvta/KftcFYAv
-        AnL6lOzOWNgOMeLeEILnN310W7vvNM+xrdPC3neFBAmHO2lFWz9xJgq6BoDpBAQp
-        yjwViCqQ7RmiXVCAQRKJ/bJ9BuIIagTveeDx+Dq6uXXY6WT5sVqlc7GvOYp2NziM
-        oBitYTalshMQ1oM9R8kAy6BS+6E19LvrAz+tSID/4Cc12dHnxgI+zszC2AOMIe6F
-        P5LrijJuTU1D7W1pi4s2n8wXFF9wd5vNWisaQIVXbCVQ0CpAwaFuikrI+SulmoMg
-        ==
-X-ME-Sender: <xms:dDoYYO0ZW3mshuPH-ikglEG5BXmcLBcnM-zsDwgS2orsydsHpnAfbg>
-    <xme:dDoYYBEUhznVJzvLXjRGXYWVJofB-uCGgqPFIqQuoZPKWUYcZLjF_5gmknFznTYrq
-    W6lOvVBZqe1Dje4Zmo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeekgddutdduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:dDoYYG4plw8Rc88J1_bHVJJHZUW4TVVBPswDDj4WzVQcbA1TVE1l5g>
-    <xmx:dDoYYP3j4EzVpbrgSqXiklES4XffZj8CpWqCH79pzhe-cb5bNhmpag>
-    <xmx:dDoYYBElFpi8Cz-aXSN9oU-ZxW2vaflQ91RwLFR9Eh90m_ojCIismQ>
-    <xmx:dToYYFi9qsXdX-9DAv0QuJQTXAdoUBhRzt8e9n1bB-THOjK4PTnGmw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id CD45024005A;
-        Mon,  1 Feb 2021 12:29:23 -0500 (EST)
-Date:   Mon, 1 Feb 2021 18:29:22 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Hermann Lauer <Hermann.Lauer@iwr.uni-heidelberg.de>
-Cc:     linux-arm-kernel@lists.infradead.org, wens@csie.org,
-        jernej.skrabec@siol.net, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] ARM: dts: sun7i: a20: bananapro: Fix ethernet phy-mode
-Message-ID: <20210201172922.vnelblciqun46szk@gilmour>
-References: <20210121170836.GA4948@lemon.iwr.uni-heidelberg.de>
- <20210128094040.GD11559@lemon.iwr.uni-heidelberg.de>
- <20210128111842.GA11919@lemon.iwr.uni-heidelberg.de>
- <20210128145937.vtdi4e2aih7milmt@gilmour>
- <20210201120803.GF15207@lemon.iwr.uni-heidelberg.de>
+        id S232194AbhBARlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 12:41:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41910 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230064AbhBARll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 12:41:41 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23BD1C06174A
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 09:41:01 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id l12so17564067wry.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 09:41:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=NecD4Lj2Pit6+zWdziXlW+Wn9lKyelFLyjZNsi277Ko=;
+        b=saZ8e5FdXuzKn/wEQOBBdHmpMeHPCpDbAv/xRAxSPOf23fsZYMdk8Yk22lsNT8n+FL
+         svRxqoOqTKJjnuSSRyZ+qRx+Efu4w8zHaWLl+bSl/ojmyvBk5bvUIkcHW+jPkaRxjPKN
+         AuYSYNzxd18rPUOdsf6Txex3i+Vh3AtUKjJGo1Ow2zHCOx3wA+tdweA4Y3kmSV52XQ2a
+         F1I0mbphY6MnUwjZH6PqH8XWbY3tOU4tPce17NCIV/4I7dwNeuNs39OD0g/CRKmBMrJI
+         gGZ/tUgRP+6B/DdP59LjGHj87qRLEduw7FMO7hwxvY088FTQz9Qdt46slGB/Tx6BSOG9
+         YIDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NecD4Lj2Pit6+zWdziXlW+Wn9lKyelFLyjZNsi277Ko=;
+        b=V5Qq0X8r6n/47wX7bIX/+ZfSSq0B6J0fyJcyRYz6JECHY5ruO7u0FmPuFZiFPfgKY5
+         ++ElBxbldnaQ22ne7xzfMP9991gqN6OP+1FTSq6y/D7hlhKQTGF4dAVsScFJ7syk/Ify
+         OOPRVQEwhGDRCLhjQgFtWx4qdtGi9/7OHsiEpnLOjA1GVvbFW0ZwcbXmWnm9Bicvor4Y
+         eIKrpuKNky8nC/CiDC7zAHEUOeU+q82WcLUNFC8z5xn1UX1pyc4y61xtKukEsnWSqRvF
+         Sh2/uTZKM2V7G/WerqavnFTnVgT10KC6DJ4eWnfGOWRIruZM9HguBurRadopTxeX0L57
+         maXA==
+X-Gm-Message-State: AOAM533BMU5pmDlduE/7jDOHCbN9afU4SL8Djj18ZEsT6T6qcTVlhNZ+
+        mjJKQJwvVvUq/QvqzRzNd1Sx7A==
+X-Google-Smtp-Source: ABdhPJyVjTMobOwpzGXZWG3t6ZHVDL2R31hio+NCbOHokYHgLSzOJpH3gDsceNyauEudNIluLfZ9+g==
+X-Received: by 2002:a5d:458a:: with SMTP id p10mr19485759wrq.168.1612201259731;
+        Mon, 01 Feb 2021 09:40:59 -0800 (PST)
+Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
+        by smtp.gmail.com with ESMTPSA id r25sm29850479wrr.64.2021.02.01.09.40.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Feb 2021 09:40:59 -0800 (PST)
+Date:   Mon, 1 Feb 2021 17:40:56 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Will Deacon <will@kernel.org>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, android-kvm@google.com,
+        linux-kernel@vger.kernel.org, kernel-team@android.com,
+        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
+        Fuad Tabba <tabba@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Brazdil <dbrazdil@google.com>
+Subject: Re: [RFC PATCH v2 03/26] arm64: kvm: Add standalone ticket spinlock
+ implementation for use at hyp
+Message-ID: <YBg9KPnKfJzraTBO@google.com>
+References: <20210108121524.656872-1-qperret@google.com>
+ <20210108121524.656872-4-qperret@google.com>
+ <20210201172833.GA15632@willie-the-truck>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zp4sfxddimiu2ffh"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210201120803.GF15207@lemon.iwr.uni-heidelberg.de>
+In-Reply-To: <20210201172833.GA15632@willie-the-truck>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Monday 01 Feb 2021 at 17:28:34 (+0000), Will Deacon wrote:
+> On Fri, Jan 08, 2021 at 12:15:01PM +0000, Quentin Perret wrote:
+> > From: Will Deacon <will@kernel.org>
+> > 
+> > We will soon need to synchronise multiple CPUs in the hyp text at EL2.
+> > The qspinlock-based locking used by the host is overkill for this purpose
+> > and relies on the kernel's "percpu" implementation for the MCS nodes.
+> > 
+> > Implement a simple ticket locking scheme based heavily on the code removed
+> > by commit c11090474d70 ("arm64: locking: Replace ticket lock implementation
+> > with qspinlock").
+> > 
+> > Signed-off-by: Will Deacon <will@kernel.org>
+> > Signed-off-by: Quentin Perret <qperret@google.com>
+> > ---
+> >  arch/arm64/kvm/hyp/include/nvhe/spinlock.h | 92 ++++++++++++++++++++++
+> >  1 file changed, 92 insertions(+)
+> >  create mode 100644 arch/arm64/kvm/hyp/include/nvhe/spinlock.h
+> > 
+> > diff --git a/arch/arm64/kvm/hyp/include/nvhe/spinlock.h b/arch/arm64/kvm/hyp/include/nvhe/spinlock.h
+> > new file mode 100644
+> > index 000000000000..7584c397bbac
+> > --- /dev/null
+> > +++ b/arch/arm64/kvm/hyp/include/nvhe/spinlock.h
+> > @@ -0,0 +1,92 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > +/*
+> > + * A stand-alone ticket spinlock implementation for use by the non-VHE
+> > + * KVM hypervisor code running at EL2.
+> > + *
+> > + * Copyright (C) 2020 Google LLC
+> > + * Author: Will Deacon <will@kernel.org>
+> > + *
+> > + * Heavily based on the implementation removed by c11090474d70 which was:
+> > + * Copyright (C) 2012 ARM Ltd.
+> > + */
+> > +
+> > +#ifndef __ARM64_KVM_NVHE_SPINLOCK_H__
+> > +#define __ARM64_KVM_NVHE_SPINLOCK_H__
+> > +
+> > +#include <asm/alternative.h>
+> > +#include <asm/lse.h>
+> > +
+> > +typedef union hyp_spinlock {
+> > +	u32	__val;
+> > +	struct {
+> > +#ifdef __AARCH64EB__
+> > +		u16 next, owner;
+> > +#else
+> > +		u16 owner, next;
+> > +	};
+> > +#endif
+> 
+> Looks like I put this #endif in the wrong place; probably needs to be a line
+> higher.
 
---zp4sfxddimiu2ffh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Uh oh, missed that too. Fix now merged locally, thanks.
 
-On Mon, Feb 01, 2021 at 01:08:03PM +0100, Hermann Lauer wrote:
-> On Thu, Jan 28, 2021 at 03:59:37PM +0100, Maxime Ripard wrote:
-> > On Thu, Jan 28, 2021 at 12:18:42PM +0100, Hermann.Lauer@uni-heidelberg.=
-de wrote:
-> > > BPi Pro needs TX and RX delay for Gbit to work reliable and avoid high
-> > > packet loss rates. The realtek phy driver overrides the settings of t=
-he
-> > > pull ups for the delays, so fix this for BananaPro.
-> > >    =20
-> > > Fix the phy-mode description to correctly reflect this so that the
-> > > implementation doesn't reconfigure the delays incorrectly. This
-> > > happened with commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e
-> > > rx/tx delay config").
-> > >=20
-> > > Fixes: 10662a33dcd9 ("ARM: dts: sun7i: Add dts file for Bananapro boa=
-rd")
-> > > Signed-off-by: Hermann Lauer <Hermann.Lauer@uni-heidelberg.de>
-> >=20
-> > Applied since it's a fix simple enough, but please provide a changelog
-> > between versions.
->=20
-> v3 added the correct fixes tag, where the problem originated (initial com=
-mit
-> of banana pro device tree). That worked in the past until a change in
-> the phy device driver for realtek phy on banana pro overrode the
-> phyical configuration of the hardware pull-ups.
->=20
-> v4 added the commit which implemented that driver change (shamelessly sto=
-len
-> from the commit of the fix of the identical problem on the banana pi)
-
-Thanks :)
-
-For future patches make sure to have that description either in a cover
-letter or below the --- after your commit log
-
-Maxime
-
---zp4sfxddimiu2ffh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBg6cgAKCRDj7w1vZxhR
-xZh1AQCq36tZ5n4FdroUZgnTNa601zD0ugKC3008GoIsUQUJBAD/TFa/YIFAgisI
-zGDcarCcGZBBkXx/HEiCI1i0+wIGDQA=
-=gu8h
------END PGP SIGNATURE-----
-
---zp4sfxddimiu2ffh--
+Quentin
