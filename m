@@ -2,120 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A4A30AD9E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 18:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2809A30ADCC
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 18:28:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231243AbhBARTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 12:19:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36950 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbhBARTH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 12:19:07 -0500
-Received: from srv1.deutnet.info (srv1.deutnet.info [IPv6:2a01:4f8:c2c:6846::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8382AC06174A;
-        Mon,  1 Feb 2021 09:18:27 -0800 (PST)
-Received: from [2a01:cb14:a98:4900:be5f:f4ff:fe8b:2fc1] (helo=sonata)
-        by srv1.deutnet.info with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <agriveaux@deutnet.info>)
-        id 1l6cqA-0005fW-TW; Mon, 01 Feb 2021 18:18:18 +0100
-Received: from agriveaux by sonata with local (Exim 4.92)
-        (envelope-from <agriveaux@localhost.localdomain>)
-        id 1l6cqA-0002FD-JO; Mon, 01 Feb 2021 18:18:18 +0100
-Date:   Mon, 1 Feb 2021 18:18:18 +0100
-From:   agriveaux <agriveaux@deutnet.info>
-To:     Maxime Ripard <maxime@cerno.tech>, robh+dt@kernel.org,
-        mark.rutland@arm.com, wens@csie.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        agriveaux@deutnet.info
-Subject: Re: [PATCH v2] ARM: dts: sun5i: Add dts for inet86v_rev2
-Message-ID: <20210201171236.GA7024@localhost.localdomain>
-References: <20210124193903.21401-1-agriveaux@deutnet.info>
- <20210128172329.ncuda3xlgpmefpqk@gilmour>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210128172329.ncuda3xlgpmefpqk@gilmour>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S231209AbhBAR1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 12:27:12 -0500
+Received: from mga05.intel.com ([192.55.52.43]:30392 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231417AbhBAR0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Feb 2021 12:26:36 -0500
+IronPort-SDR: ckb1o7kTFJUa8wBrvEdB5nn8t27vZt/OCijad38rWGOxG+e0uVt9Dj2e+GyoS9GJ1g2NDWVvoW
+ DBXCtAohw12Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="265552653"
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; 
+   d="scan'208";a="265552653"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2021 09:24:51 -0800
+IronPort-SDR: Wmcj+LS7ydY41SRV0tgwXKw/KY4Mf34WnVd+y3CDKXK2xuxtgtnXG+/UAu56b9FoqK8gwZRCTf
+ cdPGRTZUMGkw==
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; 
+   d="scan'208";a="391007220"
+Received: from mkrastex-mobl.ger.corp.intel.com ([10.104.80.35])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2021 09:24:48 -0800
+From:   Martina Krasteva <martinax.krasteva@linux.intel.com>
+To:     linux-media@vger.kernel.org
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        sakari.ailus@linux.intel.com,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com,
+        gjorgjix.rosikopulos@linux.intel.com,
+        martinax.krasteva@linux.intel.com
+Subject: [PATCH v5 0/2] IMX334 Camera Sensor Driver
+Date:   Mon,  1 Feb 2021 17:24:43 +0000
+Message-Id: <20210201172445.164-1-martinax.krasteva@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 06:23:29PM +0100, Maxime Ripard wrote:
-> Hi,
-Hi,
-> 
-> On Sun, Jan 24, 2021 at 08:39:03PM +0100, Alexandre GRIVEAUX wrote:
-> > Add Inet 86V Rev 2 support, based upon Inet 86VS.
-> > 
-> > The Inet 86V use SL1536 touchpanel controller, the Inet 86VS a GSL1680,
-> > which make them both incompatible.
-> > 
-> > Missing things:
-> > - Accelerometer (MXC6225X)
-> > - Touchpanel (Sitronix SL1536)
-> > - Nand (29F32G08CBACA)
-> > - Camera (HCWY0308)
-> > 
-> > Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
-> > ---
-> >  arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts | 17 +++++++++++++++++
-> 
-> You have to add it to the Makefile
-> 
-Ok.
-> >  1 file changed, 17 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts b/arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts
-> > new file mode 100644
-> > index 000000000000..581083e932d8
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts
-> > @@ -0,0 +1,17 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Copyright 2021 Alexandre Griveaux <agriveaux@deutnet.info>
-> > + *
-> > + * Minimal dts file for the iNet 86V
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sun5i-a13.dtsi"
-> > +#include "sun5i-reference-design-tablet.dtsi"
-> > +
-> > +/ {
-> > +	model = "iNET 86V Rev 02";
-> > +	compatible = "inet,86v-rev2", "allwinner,sun5i-a13";
-> 
-> inet should be documented in the vendor prefixes, and that compatible
-> should be documented in Documentation/devicetree/bindings/arm/sunxi.yaml
-> 
+From: Martina Krasteva <mkrasteva@mm-sol.com>
 
-I forgot, but should be:
+Hello,
 
-      - description: iNet-86V Rev 02
-        items:
-          - const: primux,inet86v-rev2
-          - const: allwinner,sun5i-a13
+This patch series contains Sony imx334 sensor driver and device tree binding document.
 
-> Having the first rev compatible would be good too
+A v4l2 sub-device driver for the Sony imx334 image sensor is added.
+This is a camera sensor using the i2c bus for control and the
+csi-2 bus for data.
 
-Unfortunatly, I didn't find inet86v rev1 on FCC website and on
-linux-sunxi. 
+The following features are supported:
+- manual exposure and analog gain control support
+- vblank/hblank/pixel rate control support
+- supported resolution:
+    - 3840x2160 @ 60fps
+- supported bayer order output:
+    - SRGGB12
 
-> 
-> > +
-> > +};
-> 
-> But I'm wondering. If there's nothing here to add, why would we need
-> that DT in the first place?
-> 
-I prefer to add often instead of bulk adding, and to show there are some
-board to add missing things like those above.
+v1: https://patchwork.kernel.org/project/linux-media/list/?series=388393
 
-> Maxime
+v1->v2:
+- dt-bindings doc fixes
+- minor cosmetic changes
+- improvement in write_reg()
+- set all media bus format fields to pass v4l2-compliance test
+- remove link_validate from source entity
 
-Thanks,
-Alexandre.
+v2: https://patchwork.kernel.org/project/linux-media/list/?series=396393
+
+v2->v3:
+- small cosmetic changes
+
+v3: https://patchwork.kernel.org/project/linux-media/list/?series=397689
+
+v3->v4:
+- fix read/write_reg() functions
+
+v4: https://patchwork.kernel.org/project/linux-media/list/?series=400459
+
+v4->v5:
+- add link-frequencies in dt-bindings doc
+- edit required properties in db-bindings doc
+- fix data_buf overrun in read_reg()
+- add function to parse dt configuration
+- allow cahnging vblank in power off state
+- change lpfr and ppln with vblank and hblank in mode description
+
+Best Regards,
+Martina
+
+
+Martina Krasteva (2):
+  dt-bindings: media: Add bindings for imx334
+  media: i2c: Add imx334 camera sensor driver
+
+ .../devicetree/bindings/media/i2c/sony,imx334.yaml |   77 ++
+ MAINTAINERS                                        |    9 +
+ drivers/media/i2c/Kconfig                          |   14 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/imx334.c                         | 1097 ++++++++++++++++++++
+ 5 files changed, 1198 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+ create mode 100644 drivers/media/i2c/imx334.c
+
+
+base-commit: fd821bf0ed9a7db09d2e007df697f4d9ecfda99a
+-- 
+2.11.0
+
