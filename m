@@ -2,91 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8293830A25D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 08:03:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AF0730A2AE
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 08:31:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232144AbhBAHD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 02:03:26 -0500
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:10832 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231706AbhBAHBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 02:01:24 -0500
-X-UUID: cf933741037642a7a127f10ab98cc019-20210201
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=pgZiE9+1LJKLEDXqXETz5cOU5JWgX24bYc4IhfX8Z8Y=;
-        b=I+X35vWBGmaB+19kTWbnbYzMok1wVQgPrmGjGVWoHWdQ8vcePh7yzmFK6X5eTOYrpQY+PVBnJ1oN0Wb/+BJOWaK64GlSKx2nld5UIKl3UeqMznHC9MtrQFmOJuEb7JSGRoR9Ssq40CcKJGFKkEBlxgRD2qJrC30pGwedUQ8CcO0=;
-X-UUID: cf933741037642a7a127f10ab98cc019-20210201
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 459197925; Mon, 01 Feb 2021 15:00:34 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 1 Feb 2021 15:00:31 +0800
-Received: from mtkslt301.mediatek.inc (10.21.14.114) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 1 Feb 2021 15:00:31 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Min Guo <min.guo@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-Subject: [PATCH next v3 16/16] arm: dts: mt2701: harmonize node names and compatibles
-Date:   Mon, 1 Feb 2021 15:00:16 +0800
-Message-ID: <20210201070016.41721-16-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210201070016.41721-1-chunfeng.yun@mediatek.com>
-References: <20210201070016.41721-1-chunfeng.yun@mediatek.com>
+        id S231597AbhBAH3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 02:29:51 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:21629 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229557AbhBAH3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 02:29:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1612164503;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=M16LXgfjhsKGuOXkKg0aEAVFa0oEYsjjqhuBQeuiHVY=;
+        b=BD8aa01R73/6eDaFVKXM1pNCA7CIJG9KW+VbOfGH1dCEOLD7E4TuphoelOP9hJg1+IxCk3
+        Y/0lKF5nA2bbzF1bwvF+XRS6TE0EX9+D/0F3hXycQ7E2SFoeSxSyOwj33yxIx3Dv4Gg521
+        7IipFcvYAe2raEMZBFWu+8Rb4FCLNl8=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-226-_I4TR1CRN0C5u37sUiyijw-1; Mon, 01 Feb 2021 02:28:19 -0500
+X-MC-Unique: _I4TR1CRN0C5u37sUiyijw-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com [10.5.11.11])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 67551801817;
+        Mon,  1 Feb 2021 07:28:16 +0000 (UTC)
+Received: from [10.36.113.43] (ovpn-113-43.ams2.redhat.com [10.36.113.43])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id CA69B70485;
+        Mon,  1 Feb 2021 07:28:09 +0000 (UTC)
+Subject: Re: [PATCH v12 08/10] dt-bindings: document stall property for IOMMU
+ masters
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
+        will@kernel.org
+Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
+        Rob Herring <robh@kernel.org>
+References: <20210127154322.3959196-1-jean-philippe@linaro.org>
+ <20210127154322.3959196-9-jean-philippe@linaro.org>
+From:   Auger Eric <eric.auger@redhat.com>
+Message-ID: <fa61a670-e11d-0493-a38f-132482b54e35@redhat.com>
+Date:   Mon, 1 Feb 2021 08:28:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: A173D46B569DFA7EA8FA8ACCEBACDF558BD2FD648ABFF54378E075D0DEF16A5E2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20210127154322.3959196-9-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhpcyBpcyB1c2VkIHRvIGZpeCBkdGJzX2NoZWNrIHdhcm5pbmcNCg0KU2lnbmVkLW9mZi1ieTog
-Q2h1bmZlbmcgWXVuIDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsuY29tPg0KLS0tDQp2Mn52Mzogbm8g
-Y2hhbmdlcw0KLS0tDQogYXJjaC9hcm0vYm9vdC9kdHMvbXQyNzAxLmR0c2kgfCAxOSArKysrKysr
-KysrKy0tLS0tLS0tDQogMSBmaWxlIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDggZGVsZXRp
-b25zKC0pDQoNCmRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9tdDI3MDEuZHRzaSBiL2Fy
-Y2gvYXJtL2Jvb3QvZHRzL210MjcwMS5kdHNpDQppbmRleCBmYWRlMTQyODQwMTcuLjQ3NzZmODVk
-NmQ1YiAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL210MjcwMS5kdHNpDQorKysgYi9h
-cmNoL2FybS9ib290L2R0cy9tdDI3MDEuZHRzaQ0KQEAgLTYwNyw3ICs2MDcsNyBAQA0KIAl9Ow0K
-IA0KIAl1c2IwOiB1c2JAMWExYzAwMDAgew0KLQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgx
-NzMteGhjaSI7DQorCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10MjcwMS14aGNpIiwgIm1lZGlh
-dGVrLG10ay14aGNpIjsNCiAJCXJlZyA9IDwwIDB4MWExYzAwMDAgMCAweDEwMDA+LA0KIAkJICAg
-ICAgPDAgMHgxYTFjNDcwMCAwIDB4MDEwMD47DQogCQlyZWctbmFtZXMgPSAibWFjIiwgImlwcGMi
-Ow0KQEAgLTYyMCw4ICs2MjAsOSBAQA0KIAkJc3RhdHVzID0gImRpc2FibGVkIjsNCiAJfTsNCiAN
-Ci0JdTNwaHkwOiB1c2ItcGh5QDFhMWM0MDAwIHsNCi0JCWNvbXBhdGlibGUgPSAibWVkaWF0ZWss
-bXQyNzAxLXUzcGh5IjsNCisJdTNwaHkwOiB0LXBoeUAxYTFjNDAwMCB7DQorCQljb21wYXRpYmxl
-ID0gIm1lZGlhdGVrLG10MjcwMS10cGh5IiwNCisJCQkgICAgICJtZWRpYXRlayxnZW5lcmljLXRw
-aHktdjEiOw0KIAkJcmVnID0gPDAgMHgxYTFjNDAwMCAwIDB4MDcwMD47DQogCQkjYWRkcmVzcy1j
-ZWxscyA9IDwyPjsNCiAJCSNzaXplLWNlbGxzID0gPDI+Ow0KQEAgLTY0Niw3ICs2NDcsNyBAQA0K
-IAl9Ow0KIA0KIAl1c2IxOiB1c2JAMWEyNDAwMDAgew0KLQkJY29tcGF0aWJsZSA9ICJtZWRpYXRl
-ayxtdDgxNzMteGhjaSI7DQorCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10MjcwMS14aGNpIiwg
-Im1lZGlhdGVrLG10ay14aGNpIjsNCiAJCXJlZyA9IDwwIDB4MWEyNDAwMDAgMCAweDEwMDA+LA0K
-IAkJICAgICAgPDAgMHgxYTI0NDcwMCAwIDB4MDEwMD47DQogCQlyZWctbmFtZXMgPSAibWFjIiwg
-ImlwcGMiOw0KQEAgLTY1OSw4ICs2NjAsOSBAQA0KIAkJc3RhdHVzID0gImRpc2FibGVkIjsNCiAJ
-fTsNCiANCi0JdTNwaHkxOiB1c2ItcGh5QDFhMjQ0MDAwIHsNCi0JCWNvbXBhdGlibGUgPSAibWVk
-aWF0ZWssbXQyNzAxLXUzcGh5IjsNCisJdTNwaHkxOiB0LXBoeUAxYTI0NDAwMCB7DQorCQljb21w
-YXRpYmxlID0gIm1lZGlhdGVrLG10MjcwMS10cGh5IiwNCisJCQkgICAgICJtZWRpYXRlayxnZW5l
-cmljLXRwaHktdjEiOw0KIAkJcmVnID0gPDAgMHgxYTI0NDAwMCAwIDB4MDcwMD47DQogCQkjYWRk
-cmVzcy1jZWxscyA9IDwyPjsNCiAJCSNzaXplLWNlbGxzID0gPDI+Ow0KQEAgLTcwMCw4ICs3MDIs
-OSBAQA0KIAkJc3RhdHVzID0gImRpc2FibGVkIjsNCiAJfTsNCiANCi0JdTJwaHkwOiB1c2ItcGh5
-QDExMjEwMDAwIHsNCi0JCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssZ2VuZXJpYy10cGh5LXYxIjsN
-CisJdTJwaHkwOiB0LXBoeUAxMTIxMDAwMCB7DQorCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10
-MjcwMS10cGh5IiwNCisJCQkgICAgICJtZWRpYXRlayxnZW5lcmljLXRwaHktdjEiOw0KIAkJcmVn
-ID0gPDAgMHgxMTIxMDAwMCAwIDB4MDgwMD47DQogCQkjYWRkcmVzcy1jZWxscyA9IDwyPjsNCiAJ
-CSNzaXplLWNlbGxzID0gPDI+Ow0KLS0gDQoyLjE4LjANCg==
+Hi Jean-Philippe,
+
+On 1/27/21 4:43 PM, Jean-Philippe Brucker wrote:
+> On ARM systems, some platform devices behind an IOMMU may support stall,
+> which is the ability to recover from page faults. Let the firmware tell us
+> when a device supports stall.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Reviewed-by: Eric Auger <eric.auger@redhat.com>
+
+Eric
+> ---
+>  .../devicetree/bindings/iommu/iommu.txt        | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/iommu.txt b/Documentation/devicetree/bindings/iommu/iommu.txt
+> index 3c36334e4f94..26ba9e530f13 100644
+> --- a/Documentation/devicetree/bindings/iommu/iommu.txt
+> +++ b/Documentation/devicetree/bindings/iommu/iommu.txt
+> @@ -92,6 +92,24 @@ Optional properties:
+>    tagging DMA transactions with an address space identifier. By default,
+>    this is 0, which means that the device only has one address space.
+>  
+> +- dma-can-stall: When present, the master can wait for a transaction to
+> +  complete for an indefinite amount of time. Upon translation fault some
+> +  IOMMUs, instead of aborting the translation immediately, may first
+> +  notify the driver and keep the transaction in flight. This allows the OS
+> +  to inspect the fault and, for example, make physical pages resident
+> +  before updating the mappings and completing the transaction. Such IOMMU
+> +  accepts a limited number of simultaneous stalled transactions before
+> +  having to either put back-pressure on the master, or abort new faulting
+> +  transactions.
+> +
+> +  Firmware has to opt-in stalling, because most buses and masters don't
+> +  support it. In particular it isn't compatible with PCI, where
+> +  transactions have to complete before a time limit. More generally it
+> +  won't work in systems and masters that haven't been designed for
+> +  stalling. For example the OS, in order to handle a stalled transaction,
+> +  may attempt to retrieve pages from secondary storage in a stalled
+> +  domain, leading to a deadlock.
+> +
+>  
+>  Notes:
+>  ======
+> 
 
