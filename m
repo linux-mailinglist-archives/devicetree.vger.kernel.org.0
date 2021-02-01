@@ -2,298 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F258B30B1B1
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 21:47:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EA9030B1DD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 22:07:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbhBAUrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 15:47:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53640 "EHLO
+        id S229663AbhBAVF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 16:05:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbhBAUrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 15:47:23 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA62C061573;
-        Mon,  1 Feb 2021 12:46:43 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id sa23so10212270ejb.0;
-        Mon, 01 Feb 2021 12:46:43 -0800 (PST)
+        with ESMTP id S229525AbhBAVFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 16:05:54 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4EF3C061573;
+        Mon,  1 Feb 2021 13:05:13 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id u14so472303wmq.4;
+        Mon, 01 Feb 2021 13:05:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=pP/xlyaFfhU7VAU9LJe/twSNpHKPeDTnHiJhO+n/tGc=;
-        b=uHkwrZNLRgI/FfghXScZyVQ/h8nuG61VMD0H17yVtkIM9Z872yIK9HR6ysYFnEqj4J
-         wk4Lfm6aqME5XDirG3c9WKI+1oHhiItk4NiXpXb29/eIjBoEtEVguALG5NzQUQJkosgT
-         LDvxucaQxzqg47XNNroxL9HQBtQiemU/DAK6sLvsz7AmhHwYnsOYu9PwpPuIVMm1XrOx
-         111grl2FttGBKOXJuw+O7eSC4m6C+tEkrVefT9hq56DFhVs+g8TX4EdiD7q2tJs0PA9s
-         h5HrQd+Yp+WNU2hhTMPKc9iAKt9Mu5PK4rXh+zXnffIlqbtsIxRG9DIHnN4oatbTl70R
-         Lm8A==
+        h=from:to:cc:subject:date:message-id;
+        bh=P8dkQkjqD2gwV3MQiGBWsFTjvZddS+bmBUxb8YDs2tA=;
+        b=hao2QtTHy0KUml3yXdS+FKt3bB4FKeUb0iu0dmgI8xWYkLYXSye7IPpjrrAJ8n6WsM
+         DV5xyBE/AvLHgwvCLS1tSf6iLDaOzDYNt3e8wwHebCYGYcJ5YVrXJIUQ0z5ShVcd1lkm
+         1UIZFmjaOmMinduJJey9b6P9vo07HmZ7z8Cf3Cp3V8Ixuk5So5azU8hkB5LvfvMz4PjL
+         3JXChqkqDnIY/WDyR23DWJTsUVl8aUgm8cEBru9ea1XIy8Du9bKwOZJ21Q5tH7zYCpmu
+         PCD65r86ipmCfQyZyD2YOoY4crNM/YVE9wUbzdcvnAPTqxrNXzzX+4AEItO3U/I6NKDy
+         ZFHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=pP/xlyaFfhU7VAU9LJe/twSNpHKPeDTnHiJhO+n/tGc=;
-        b=X+c2uP+dw0tETQLtp5vnxXm9Bq/3RJAxybgF70vTkPM5uysfa3B8EndGS/T+d6H/ZA
-         yNdwIlvv3fhV91fgPvzRjTLYsc5ykNNnWmT5N67gf07YmRLaTLjEgclA8NG1FTTKkZMV
-         qgyTvI2o9NAWMgEtHp3fXAER/RctUqUg5NV19yWyHvE3kaaA5FRs3WPK5XqPLeHb9kCD
-         dEmaYuWBeg3fk0CgMUUQ0fhuO7/zLgJosqs3rbH0sgsxo+gX2sw0JRR85humHgFnqPF8
-         NBmJmLaphF3/5ltHRSlOPqSKoz5rYmMyY+ZcRcvGSfb2PLdRxSayv++MMmMKlWNGHOo7
-         rPaw==
-X-Gm-Message-State: AOAM532j7zPQBlftM8xD9RCDlJH/RqXppadPjIHA5dcv7JrCvU41UcTr
-        O6hBmExXAmdqqFhs71dQXBASXgT4NmM=
-X-Google-Smtp-Source: ABdhPJxXQFUNBuLpbWI1bCNA9eG+xTIpQXswiL8BOiqOvKQRv1bn8mkrDsRr82LdknNFY0/Krs3lPQ==
-X-Received: by 2002:a17:906:3c41:: with SMTP id i1mr19807655ejg.443.1612212401935;
-        Mon, 01 Feb 2021 12:46:41 -0800 (PST)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id ec18sm8268285ejb.24.2021.02.01.12.46.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Feb 2021 12:46:41 -0800 (PST)
-Subject: Re: [PATCH v1 1/5] dt-bindings: usb: convert rockchip,dwc3.txt to
- yaml
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org, balbi@kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210201194105.32673-1-jbx6244@gmail.com>
-Message-ID: <d4626d79-06ae-6abc-6ab4-6425fc344180@gmail.com>
-Date:   Mon, 1 Feb 2021 21:46:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210201194105.32673-1-jbx6244@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=P8dkQkjqD2gwV3MQiGBWsFTjvZddS+bmBUxb8YDs2tA=;
+        b=LXPI2QdyqRbZH/G5gOjbpjXjDEZKoB7GTbni0eHUQa4X3B955yRQaMXD69AolbCTMP
+         dkk/qtzUrLg4HvlwrOYCDdLo6wqxjtg1Wwh00YfX5WUt9xxW1Mvk5CjNC4UsSn1B6hKQ
+         RkHsGw+qRMiCJXp8OrUzzNtv+RfQ/EUtvrjv3p9NPazZbXnT01wV71zsfwdcJKToQuel
+         VJCsaUrSQciUJ3FnVvVsCQHS5VmlMApQOQQ6QME236ze5WCJUbMwLcJ2GbLrHpikp9bA
+         TVe5BVcOAKLh64LzB9NbFREAQb4oIkbM4MeP+/q/q0uadclvFeypMT5yDbRZ0cXx40gd
+         b7MQ==
+X-Gm-Message-State: AOAM531al9nr0XhwtZDouilV+4qXHDzD6bHLc4NhWNKkCuDdfMpe3S5l
+        n9b3EZEmM4WjkK/sv2kd9j4=
+X-Google-Smtp-Source: ABdhPJxI5EXxpQ9UEKN4I5pXxUfvewg+JcTERZciIrohkJ/ovxK4Vdhx2DL16F2e46pYcc8D6Tq7Cw==
+X-Received: by 2002:a7b:cc16:: with SMTP id f22mr606263wmh.131.1612213512518;
+        Mon, 01 Feb 2021 13:05:12 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id 36sm29769846wrj.97.2021.02.01.13.05.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Feb 2021 13:05:11 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: arm: amlogic: add support for the Minix NEO U9-H
+Date:   Mon,  1 Feb 2021 21:05:07 +0000
+Message-Id: <20210201210508.1528-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The Minix NEO U9-H is a small form-factor Android STB based on the
+Amlogic Q200 reference board with an S912-H chip.
 
-See questions below.
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Kind regards,
-
-Johan Jonker
-
-On 2/1/21 8:41 PM, Johan Jonker wrote:
-> In the past Rockchip dwc3 usb nodes were manually checked.
-> With the conversion of snps,dwc3.yaml as common document
-> we now can convert rockchip,dwc3.txt to yaml as well.
-> 
-> Added properties for rk3399 are:
->   resets
->   reset-names
-> 
-> Generic properties that are now also filtered:
->   "#address-cells"
->   "#size-cells"
->   ranges
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  .../devicetree/bindings/usb/rockchip,dwc3.txt      |  56 -----------
->  .../devicetree/bindings/usb/rockchip,dwc3.yaml     | 107 +++++++++++++++++++++
->  2 files changed, 107 insertions(+), 56 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
->  create mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt b/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
-> deleted file mode 100644
-> index 945204932..000000000
-> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
-> +++ /dev/null
-> @@ -1,56 +0,0 @@
-> -Rockchip SuperSpeed DWC3 USB SoC controller
-> -
-> -Required properties:
-> -- compatible:	should contain "rockchip,rk3399-dwc3" for rk3399 SoC
-> -- clocks:	A list of phandle + clock-specifier pairs for the
-> -		clocks listed in clock-names
-> -- clock-names:	Should contain the following:
-> -  "ref_clk"	Controller reference clk, have to be 24 MHz
-> -  "suspend_clk"	Controller suspend clk, have to be 24 MHz or 32 KHz
-> -  "bus_clk"	Master/Core clock, have to be >= 62.5 MHz for SS
-> -		operation and >= 30MHz for HS operation
-> -  "grf_clk"	Controller grf clk
-> -
-> -Required child node:
-> -A child node must exist to represent the core DWC3 IP block. The name of
-> -the node is not important. The content of the node is defined in dwc3.txt.
-> -
-> -Phy documentation is provided in the following places:
-> -Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml - USB2.0 PHY
-> -Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt     - Type-C PHY
-> -
-> -Example device nodes:
-> -
-> -	usbdrd3_0: usb@fe800000 {
-> -		compatible = "rockchip,rk3399-dwc3";
-> -		clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
-> -			 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_GRF>;
-> -		clock-names = "ref_clk", "suspend_clk",
-> -			      "bus_clk", "grf_clk";
-> -		#address-cells = <2>;
-> -		#size-cells = <2>;
-> -		ranges;
-> -		usbdrd_dwc3_0: dwc3@fe800000 {
-> -			compatible = "snps,dwc3";
-> -			reg = <0x0 0xfe800000 0x0 0x100000>;
-> -			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
-> -			dr_mode = "otg";
-> -		};
-> -	};
-> -
-> -	usbdrd3_1: usb@fe900000 {
-> -		compatible = "rockchip,rk3399-dwc3";
-> -		clocks = <&cru SCLK_USB3OTG1_REF>, <&cru SCLK_USB3OTG1_SUSPEND>,
-> -			 <&cru ACLK_USB3OTG1>, <&cru ACLK_USB3_GRF>;
-> -		clock-names = "ref_clk", "suspend_clk",
-> -			      "bus_clk", "grf_clk";
-> -		#address-cells = <2>;
-> -		#size-cells = <2>;
-> -		ranges;
-> -		usbdrd_dwc3_1: dwc3@fe900000 {
-> -			compatible = "snps,dwc3";
-> -			reg = <0x0 0xfe900000 0x0 0x100000>;
-> -			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
-> -			dr_mode = "otg";
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> new file mode 100644
-> index 000000000..681086fa6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/rockchip,dwc3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip SuperSpeed DWC3 USB SoC controller
-> +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3399-dwc3
-> +
-> +  clocks:
-> +    items:
-> +      - description:
-> +          Controller reference clock, must to be 24 MHz
-> +      - description:
-> +          Controller suspend clock, must to be 24 MHz or 32 KHz
-> +      - description:
-> +          Master/Core clock, must to be >= 62.5 MHz for SS
-> +          operation and >= 30MHz for HS operation
-> +      - description:
-> +          Controller aclk_usb3_rksoc_axi_perf clock
-> +      - description:
-> +          Controller aclk_usb3 clock
-> +      - description:
-> +          Controller grf clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref_clk
-> +      - const: suspend_clk
-> +      - const: bus_clk
-
-> +      - const: aclk_usb3_rksoc_axi_perf
-> +      - const: aclk_usb3
-
-This was not in the original document, but is needed to compile.
-
-> +      - const: grf_clk
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: usb3-otg
-> +
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 2
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^usb@[a-f0-9]+$":
-> +    type: object
-> +
-> +    $ref: "snps,dwc3.yaml"
-> +
-> +    description:
-> +      A child node must exist to represent the core DWC3 IP block.
-> +      The content of the node is defined in snps,dwc3.yaml.
-> +
-> +      Phy documentation is provided in the following places.
-> +
-> +      USB2.0 PHY
-> +      Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> +
-> +      Type-C PHY
-> +      Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
-> +
-> +    unevaluatedProperties: false
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rk3399-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-
-> +    usbdrd3_0: usb@fe800000 {
-
-The rk3399 has 2 dwc3 usb nodes. When we remove @fe800000 and @fe900000
-in the rk3399.dtsi it complains about 2 identical usb root nodenames.
-For this example to pass change to:
-
-usbdrd3_0: usb ??
-
-What to do with it in the dtsi??
-
-
-> +      compatible = "rockchip,rk3399-dwc3";
-> +      clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
-> +               <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_RKSOC_AXI_PERF>,
-> +               <&cru ACLK_USB3>, <&cru ACLK_USB3_GRF>;
-> +      clock-names = "ref_clk", "suspend_clk",
-> +                    "bus_clk", "aclk_usb3_rksoc_axi_perf",
-> +                    "aclk_usb3", "grf_clk";
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-
-> +      ranges;
-
-Ranges generates notifications. Could you advise if that is needed in
-this dwc3 usb context and rk3399.dtsi or should it be removed?
-
-> +      usbdrd_dwc3_0: usb@fe800000 {
-> +        compatible = "snps,dwc3";
-> +        reg = <0x0 0xfe800000 0x0 0x100000>;
-> +        interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
-> +        dr_mode = "otg";
-> +      };
-> +    };
-> 
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 6bef60ddda64..dccfc048fb1c 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -120,6 +120,7 @@ properties:
+               - khadas,vim2
+               - kingnovel,r-box-pro
+               - libretech,aml-s912-pc
++              - minix,neo-u9h
+               - nexbox,a1
+               - tronsmart,vega-s96
+               - wetek,core2
+-- 
+2.17.1
 
