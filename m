@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6BF630A485
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 10:41:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B3430A48A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 10:42:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232658AbhBAJk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 04:40:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
+        id S232917AbhBAJln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 04:41:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232392AbhBAJkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 04:40:25 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E61AC061573
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 01:39:45 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id i8so6830146ejc.7
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 01:39:45 -0800 (PST)
+        with ESMTP id S232921AbhBAJlg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 04:41:36 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91F3C061573
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 01:40:55 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id df22so2101852edb.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 01:40:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Ml9CmCDCZ1A5+J5cabQlM6Ecws0N9gFakvuKWo4Lb00=;
-        b=IKl/edvjf2zb+DRSP798cSaBU6+K2ELIcQnGaw1eH+EGM+ajUyX53X+JZq0Dsty674
-         09oDixqXZW/vyTTn1KyDU9nMwOyCXsBKc3ZQd+Cbcdldp4ZDN1CqSxYmedRIUu5nFNsh
-         qZzAwP5XuPnlPK6qnXJrOLPvYAzkLIFIjf7wy4pzF9c3tVL6QFDEknybCQQ5lEpH7Y/+
-         2QHkRF1WJeP/GCwRKxmcIEj6ldtRL1eTpCM8DnUEuMBaedJEbIrI5ZT4GFpdTvA4OVr9
-         gXNo8l67ZXNXnnJg0iCeHOgxW2opwBkD8t1RmK0XRuHQRb6Gfc+Wy8AI0gl/+VZfnsXk
-         areg==
+        bh=hIUPWGL9LOU/zPCO63a7e5ubCBpwA6j8jBe7AJ0YMCY=;
+        b=rLHbgqVkEul68rFEzQezpbE34F6ih6YVsgGrPQ43VjQa2hNVraIyB1ZVpKXt+sey5l
+         vH76AX1VAfKJw2g6GjzRfz5ijYZD3kZn+q9P8mbjLuzNRnlSIEnOWJC3Q+lIjgJxDuWV
+         KmcIL8Y9TVDOR0VBYdZdBsG1QCxmJKAZ3jMlRLziYarBEHORK6ksk9mO31xgnpyOXdNQ
+         PYDtwY6LtFqpm6zc//jORlupXq2sEeWeLLDOZ9poqzvpQdqKSRk8BS7T1wXa/J82rTIa
+         h4FtDI450iUoSD9lV1ZCsKLhybboUCizgCFcNJM0VOPQwBPWgUyJYdvUZ30/y78UhlSM
+         HSKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Ml9CmCDCZ1A5+J5cabQlM6Ecws0N9gFakvuKWo4Lb00=;
-        b=C1KrsUJRk3gyhHUhmMCAP2sf+yXjMulNR1/8KxKBXYtpg/FYGiURx84D8K3vlJw2cd
-         4i3hx4X7InI1+Uj9Q+t2xyN9t/6Dgkt9aBmu9HqP4wG9ZnSk7r2GqI0k2j2fwz+wN5j7
-         bT7CZhBzkK1zc01DXygt0q1GcDzDXTGVRh/UJRswZpP+UzGilVvVz/+CP2/OKY12QVeE
-         ZnJCJYc5R16WWNcG/0BRjcK2uyhwbPBCu0TqwzkSFtYb5ZQj2ibx1opGGObzOsQZqp8r
-         DFV0seSTDIKQd5UFd1+w4JRQn6kQQ9eyy+jXkKnlPpeRz+AeduNQ2ndfMT8E2XyHy4CG
-         EQuA==
-X-Gm-Message-State: AOAM533AcnV4yqY0J/Hs6I62JnSMdvMpNUpn8mGLcEAYxUYsoOYuKk3Z
-        EGpdYLwTTOvDktW9DdOpwKIZQg==
-X-Google-Smtp-Source: ABdhPJytXHJHx14eIbmDgU7+Vf7pdCKDBOXecwQpgq5mCOZRz0eeiXBpGmuEvQkr0cgtFb71W1CAAg==
-X-Received: by 2002:a17:906:a082:: with SMTP id q2mr16935292ejy.483.1612172384255;
-        Mon, 01 Feb 2021 01:39:44 -0800 (PST)
+        bh=hIUPWGL9LOU/zPCO63a7e5ubCBpwA6j8jBe7AJ0YMCY=;
+        b=iX8CQWU/Gc2V1AqT1JMMAuAlhdPjh9KmCYDum6CrqyY+WtOMYfQ4xAkOtmSt8i3/J+
+         S8pEqUmVfzJkBXUoJmP6ipP/wrt400/CrNeN3svYQQEIiGxvcDR8xqtlCBi1OKdYFF09
+         Z+/gQBZ6e+LZJ28U7RkOb3XvB1RFPhP+t/BSIlHgwUkOYv7II+BH0YzUNXX8x5n/2kAl
+         jWLO6VNPACcSwJdDiHcAmty1JU6ab3EEwh6vj9wiKmdfi0Mw+w7MJWpPhApraMzH+6yo
+         Wk7BqCCjPxUgjeGkjZoDdRWsXyFDgAJbyn5FflhuqqE1Di62TpOJ6NEFZ7xccjN/w3jt
+         8olQ==
+X-Gm-Message-State: AOAM531sIFkCebiglNDOFcFUXQ1EnEaF0mpXFCuHzoqxl1ZzENDfRxTs
+        xCgXIsp9GyHcW3gmX6najDc3JQ==
+X-Google-Smtp-Source: ABdhPJxWu2QunWYUgAcW1ur5IvAp69p7d1VmB/yHSW0iPnJqIW1cuI7d5j1graYwBbWO7IuD7EbPUw==
+X-Received: by 2002:aa7:ca55:: with SMTP id j21mr17489370edt.172.1612172454672;
+        Mon, 01 Feb 2021 01:40:54 -0800 (PST)
 Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id z13sm8391563edc.73.2021.02.01.01.39.43
+        by smtp.gmail.com with ESMTPSA id q4sm7788556ejx.8.2021.02.01.01.40.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Feb 2021 01:39:43 -0800 (PST)
-Subject: Re: [PATCH] dt-bindings: arm: Fix typo in zcu111 board
+        Mon, 01 Feb 2021 01:40:53 -0800 (PST)
+Subject: Re: [PATCH 0/3] arm64: dts: zynqmp: Enable and Wire DP
 To:     Michal Simek <michal.simek@xilinx.com>,
         linux-kernel@vger.kernel.org, git@xilinx.com
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <13d064fc4850f96904a04e330cea5295d3751e46.1611226560.git.michal.simek@xilinx.com>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <cover.1611232558.git.michal.simek@xilinx.com>
 From:   Michal Simek <monstr@monstr.eu>
-Message-ID: <135ea840-6b7c-ac34-4c99-3b946c87171f@monstr.eu>
-Date:   Mon, 1 Feb 2021 10:39:43 +0100
+Message-ID: <06015f0f-dece-a3e5-66d4-814069af4449@monstr.eu>
+Date:   Mon, 1 Feb 2021 10:40:53 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.0
 MIME-Version: 1.0
-In-Reply-To: <13d064fc4850f96904a04e330cea5295d3751e46.1611226560.git.michal.simek@xilinx.com>
+In-Reply-To: <cover.1611232558.git.michal.simek@xilinx.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -71,34 +71,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On 1/21/21 1:36 PM, Michal Simek wrote:
+> Hi,
+> 
+> I am updating DT patches which were there part of DP v11 series sent by
+> Laurent in past [1]. Patches have been removed in v12 [2].
+> The series is rebased on the top of [3] which wired si5341 clock chip.
+> 
+> [1] http://lore.kernel.org/r/20200318153728.25843-1-laurent.pinchart@ideasonboard.com
+> [2] http://lore.kernel.org/r/20200718001347.25451-1-laurent.pinchart@ideasonboard.com
+> [3] http://lore.kernel.org/r/cover.1611224800.git.michal.simek@xilinx.com
+> 
+> Thanks,
+> Michal
+> 
+> 
+> Laurent Pinchart (2):
+>   arm64: dts: zynqmp: Add DPDMA node
+>   arm64: dts: zynqmp: Wire up the DisplayPort subsystem
+> 
+> Michal Simek (1):
+>   arm64: dts: zynqmp: Add DisplayPort subsystem
+> 
+>  .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 10 ++++++
+>  .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 31 ++++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 10 ++++++
+>  .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 11 +++++++
+>  .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 11 +++++++
+>  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 11 +++++++
+>  .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 11 +++++++
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 32 +++++++++++++++++++
+>  8 files changed, 127 insertions(+)
+> 
 
-On 1/21/21 11:56 AM, Michal Simek wrote:
-> Trivial fix.
-> 
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-> ---
-> 
->  Documentation/devicetree/bindings/arm/xilinx.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/xilinx.yaml b/Documentation/devicetree/bindings/arm/xilinx.yaml
-> index ae0ef1bf7965..97e77b4e077c 100644
-> --- a/Documentation/devicetree/bindings/arm/xilinx.yaml
-> +++ b/Documentation/devicetree/bindings/arm/xilinx.yaml
-> @@ -108,7 +108,7 @@ properties:
->          items:
->            - enum:
->                - xlnx,zynqmp-zcu111-revA
-> -              - xlnx,zynqmp-zcu11-rev1.0
-> +              - xlnx,zynqmp-zcu111-rev1.0
->            - const: xlnx,zynqmp-zcu111
->            - const: xlnx,zynqmp
->  
-> 
+Applied all.
 
-Applied.
-M
+Thanks,
+Michal
 
 -- 
 Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
