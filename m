@@ -2,83 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BAC630A0C1
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 05:02:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34D2430A0E7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 05:42:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231378AbhBAEBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 23:01:10 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:48449 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229842AbhBAEBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 23:01:08 -0500
-X-UUID: 6fb78aae7f54460d9220e4470c3ad4a1-20210201
-X-UUID: 6fb78aae7f54460d9220e4470c3ad4a1-20210201
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <yz.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 687227818; Mon, 01 Feb 2021 12:00:23 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 1 Feb 2021 12:00:18 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 1 Feb 2021 12:00:18 +0800
-From:   <Yz.Wu@mediatek.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Seiya Wang <seiya.wang@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Ryan Wu <Yz.Wu@mediatek.com>
-Subject: [PATCH v4 2/2] arm64: dts: mt8192: add eFuse support for MT8192 SoC
-Date:   Mon, 1 Feb 2021 11:59:46 +0800
-Message-ID: <1612151986-19820-3-git-send-email-Yz.Wu@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1612151986-19820-1-git-send-email-Yz.Wu@mediatek.com>
-References: <1612151986-19820-1-git-send-email-Yz.Wu@mediatek.com>
+        id S229842AbhBAElz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 23:41:55 -0500
+Received: from ozlabs.org ([203.11.71.1]:39671 "EHLO ozlabs.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231513AbhBAEkX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 31 Jan 2021 23:40:23 -0500
+Received: by ozlabs.org (Postfix, from userid 1007)
+        id 4DTZwr0V83z9tjw; Mon,  1 Feb 2021 15:39:39 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=gibson.dropbear.id.au; s=201602; t=1612154380;
+        bh=N9e+OrU9v4wZN+aFyI2cap/zl5yJU+k4iunRxe0pTGg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N3m2aUY8qrBsG/HZaaVqqfPAuWBXu6xEv9sm6KWRGrykyZVy1oBQluzXxpFdbCHPH
+         Wu5A8tQutFVAGTCD0LAyMbBXU7N7Xur9oUZgLiLsHOedT97sxUFhAy1mzQ1F0WbMA/
+         3Fv1LLCQeQpE9EYALyNaTfKb3JSelE62/gwsNtNw=
+Date:   Mon, 1 Feb 2021 15:07:48 +1100
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH V4 0/3] scripts: dtc: Build fdtoverlay
+Message-ID: <20210201040748.GB2251@yekko.fritz.box>
+References: <cover.1610431620.git.viresh.kumar@linaro.org>
+ <74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com>
+ <20210120051740.yph4v7zldvs7szdz@vireshk-i7>
+ <20210122063455.GE4400@yekko.fritz.box>
+ <83242f56-19a5-6d32-c050-8d9f63ac1e47@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: D9CD2D45EC8FAB4537609052FAC0466141216DD3643AE3B27CF4D06AC34ADF4D2000:8
-X-MTK:  N
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="tsOsTdHNUZQcU9Ye"
+Content-Disposition: inline
+In-Reply-To: <83242f56-19a5-6d32-c050-8d9f63ac1e47@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Wu <Yz.Wu@mediatek.com>
 
-Add eFuse node to read Mediatek eFuse
+--tsOsTdHNUZQcU9Ye
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ryan Wu <Yz.Wu@mediatek.com>
+On Mon, Jan 25, 2021 at 09:42:21PM -0600, Frank Rowand wrote:
+> Hi David,
+>=20
+> On 1/22/21 12:34 AM, David Gibson wrote:
+> > On Wed, Jan 20, 2021 at 10:47:40AM +0530, Viresh Kumar wrote:
+> >> +David.
+> >>
+> >> On 19-01-21, 11:12, Frank Rowand wrote:
+> >>> On 1/12/21 2:28 AM, Viresh Kumar wrote:
+> >>>> We will start building overlays for platforms soon in the kernel and
+> >>>> would need fdtoverlay tool going forward. Lets start fetching and
+> >>>> building it.
+> >>>>
+> >>>> While at it, also remove fdtdump.c file, which isn't used by the ker=
+nel.
+> >>>>
+> >>>> V4:
+> >>>> - Don't fetch and build fdtdump.c
+> >>>> - Remove fdtdump.c
+> >>>>
+> >>>> Viresh Kumar (3):
+> >>>>   scripts: dtc: Add fdtoverlay.c to DTC_SOURCE
+> >>>>   scripts: dtc: Build fdtoverlay tool
+> >>>>   scripts: dtc: Remove the unused fdtdump.c file
+> >>>>
+> >>>>  scripts/dtc/Makefile             |   6 +-
+> >>>>  scripts/dtc/fdtdump.c            | 163 ----------------------------=
 ---
-This patch dependents on "arm64: dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile"[1]
+> >>>>  scripts/dtc/update-dtc-source.sh |   6 +-
+> >>>>  3 files changed, 8 insertions(+), 167 deletions(-)
+> >>>>  delete mode 100644 scripts/dtc/fdtdump.c
+> >>>>
+> >>>
+> >>> My first inclination was to accept fdtoverlay, as is, from the upstre=
+am
+> >>> project.
+> >>>
+> >>> But my experiences debugging use of fdtoverlay against the existing
+> >>> unittest overlay files has me very wary of accepting fdtoverlay in
+> >>> it's current form.
+> >>>
+> >>> As an exmple, adding an overlay that fails to reply results in the
+> >>> following build messages:
+> >>>
+> >>>    linux--5.11-rc> make zImage
+> >>>    make[1]: Entering directory '/local/frowand_nobackup/src/git_linus=
+/build/dragon_linus_5.11-rc'
+> >>>      GEN     Makefile
+> >>>      CALL    /local/frowand_nobackup/src/git_linus/linux--5.11-rc/scr=
+ipts/checksyscalls.sh
+> >>>      CALL    /local/frowand_nobackup/src/git_linus/linux--5.11-rc/scr=
+ipts/atomic/check-atomics.sh
+> >>>      CHK     include/generated/compile.h
+> >>>      FDTOVERLAY drivers/of/unittest-data/static_test.dtb
+> >>>
+> >>>    Failed to apply 'drivers/of/unittest-data/overlay.dtb': FDT_ERR_NO=
+TFOUND
+> >>>    make[4]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc=
+/drivers/of/unittest-data/Makefile:96: drivers/of/unittest-data/static_test=
+=2Edtb] Error 1
+> >>>    make[3]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc=
+/scripts/Makefile.build:496: drivers/of/unittest-data] Error 2
+> >>>    make[2]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc=
+/scripts/Makefile.build:496: drivers/of] Error 2
+> >>>    make[1]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc=
+/Makefile:1805: drivers] Error 2
+> >>>    make[1]: Leaving directory '/local/frowand_nobackup/src/git_linus/=
+build/dragon_linus_5.11-rc'
+> >>>    make: *** [Makefile:185: __sub-make] Error 2
+> >>>
+> >>>
+> >>> The specific error message (copied from above) is:
+> >>>
+> >>>    Failed to apply 'drivers/of/unittest-data/overlay.dtb': FDT_ERR_NO=
+TFOUND
+> >>>
+> >>> which is cryptic and does not even point to the location in the overl=
+ay that
+> >>> is problematic.  If you look at the source of fdtoverlay / libfdt, yo=
+u will
+> >>> find that FDT_ERR_NOTFOUND may be generated in one of many places.
+> >>>
+> >>> I do _not_ want to do a full review of fdtoverlay, but I think that i=
+t is
+> >>> reasonable to request enhancing fdtoverlay in the parent project to g=
+enerate
+> >>> usable error messages before enabling fdtoverlay in the Linux kernel =
+tree.
+> >=20
+>=20
+> > That's... actually much harder than it sounds.  fdtoverlay is
+> > basically a trivial wrapper around the fdt_overlay_apply() function in
+> > libfdt.  Matching the conventions of the rest of the library, really
+> > it's only way to report errors is a single error code.
+> >=20
+> > Returning richer errors is not an easy problem in a C library,
+> > especially one designed to be usable in embedded systems, without an
+> > allocator or much else available.
+> >=20
+> > Of course it would be possible to write a friendly command line tool
+> > specifically for applying overlays, which could give better errors.
+> > fdtoverlay as it stands isn't really that - it was pretty much written
+> > just to invoke fdt_overlay_apply() in testcases.
+>=20
+> Thank you for providing that context.
+>=20
+> I do not know if there is a way to enable the code that is currently in l=
+ibfdt
+> to both be useful as an embedded library (for example, U-boot seems to of=
+ten
+> have a need to keep memory usage very small) and also be part of a tool w=
+ith
+> effective warning and error messages.
 
-mt8192.dtsi file is needed for this patch.
-Please also accept this patch together with [1].
+Yeah, I don't know either.
 
-[1]http://lists.infradead.org/pipermail/linux-mediatek/2020-November/019378.html
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+> Before having looked at libfdt only at a cursory level while debugging th=
+e proposed
+> use of fdtoverlay in Linux, my first thought was that maybe it would be p=
+ossible
+> to add warning and error messages within "#ifdef" blocks, or other ways t=
+hat
+> cause the error code to _not_ be compiled as part of library version of l=
+ibfdt,
+> but only be compiled as part of fdtoverlay _when built in the Linux kerne=
+l_
+> (noting that the proposed Linux patch builds the libfdt files as part of
+> the fdtoverlay compile instead of as a discrete library).  After looking =
+at
+> the libfdt source a tiny bit more carefully, I would probably shoot down =
+this
+> suggestion, as it makes the source code uglier and harder to understand a=
+nd
+> maintain for the primary purpose of being an embedded library.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 69d45c7..4a0d941 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -422,6 +422,11 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		efuse: efuse@11c10000 {
-+			compatible = "mediatek,mt8192-efuse",
-+				     "mediatek,efuse";
-+		};
-+
- 		i2c3: i2c3@11cb0000 {
- 			compatible = "mediatek,mt8192-i2c";
- 			reg = <0 0x11cb0000 0 0x1000>,
--- 
-2.6.4
+Oof.  That sounds really ugly, but maybe it could be pulled off.
 
+> Do you have any thoughts on how warning and error messages could be added,
+> or if it is even possible?  Or maybe your suggestion of writing a "friend=
+ly
+> command line tool specifically for applying overlays" is the path that
+> Viresh should pursue?
+
+I think at this stage it's a matter of trying a few approaches and
+seeing what works out.
+
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
+
+--tsOsTdHNUZQcU9Ye
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmAXfpQACgkQbDjKyiDZ
+s5IlrA//QP622vcV5CrkqDQgErKmVnGmjFnzD+SyqYLngYikvQY1GmhafNPCMNip
+dBEN6e2LnTE8B96xQVxJVpAAoGcRp+X8A3IsLRU380npclYPnoY4vc9998Af8lSD
+aXHDQT5OmrnbMYhwkm8VKcdwXwf4btblq/I1hRpoAYGmIXBe7Kgcr3ieK0QOD9h0
+oiv0oaxpwebndI/d8O46HKkqCrBuz1uKFGHlFy75Xh/xRtMhbsPxzRY7WiPOfi6w
+GLhhKI0E4mdpPzidVE5HeY7Wq1fL91eMHDsVzttY/SXHeiHq31ZOG0cKhv/Mhiw9
+eiNJv+/l9mQzB5BWo+gz0dlIf4QqqCZ8CjsCpovXtDibtb7OlLts3NVjwjGDPOe6
+P3+e2T4uX+2rSdW9jkucKpPtN8nBEyuqFwjro5ezz5512QSocW7szWTWVdyamFN9
+RDszvtTGRVIzKvfspxvScLNYLBw3hm1edcjmIMuOh/YtTSUSDvhajWDjZbC9zGsD
+YleCuPRYhAyn7j1WKhGS3AliqdIduZY8dD1No6jLGqFRrVVrKGBpfN87hEXWOzj4
+M6ULUTA4MgT4+tN0F9ms34dC1689V7Rl7TGwaEtPNZ8QaMkBjBoRCnIKPiA51VgB
+Pcy/08xHwbUfgfLx71IsIT1CgdqtsTsa4iN2OwWt6aWnoIZvLGc=
+=nEYc
+-----END PGP SIGNATURE-----
+
+--tsOsTdHNUZQcU9Ye--
