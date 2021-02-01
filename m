@@ -2,108 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E99330A624
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 12:07:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26A8B30A645
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 12:13:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233439AbhBALFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 06:05:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41274 "EHLO
+        id S233221AbhBALNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 06:13:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233411AbhBALFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 06:05:33 -0500
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9053C061574
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 03:04:52 -0800 (PST)
-Received: by mail-pf1-x430.google.com with SMTP id w18so11325806pfu.9
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 03:04:52 -0800 (PST)
+        with ESMTP id S233267AbhBALNh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 06:13:37 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90CA5C061573
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 03:12:56 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id c127so12785069wmf.5
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 03:12:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=b0TEYyZ6Jpm1D9Hrf4Uirq5wkSl8rc4Igbimt+j818M=;
-        b=Q8vAROO3LiDQh2TyKpVQclnSdULEDybL7T1GUumLWZKu/e3kssUpjvftmatn8c86nV
-         /lT3PQx2ktWIMnigAuQKW3sYlbZSwjyf6UwEHtjqBBLsyh2vYwWqoUHsJ+o5c1ZLfhLh
-         YcC9aNTeRnIDbbeSL/YuA53nOe9IYNcF25SGw=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=AdJJsztSa/PfLkxaK9hi3wgOAf3rWJfVmETfVbPhDQM=;
+        b=BJZkUaVlvArotMj35gc4Ryn1jzYpJODmz4BeBqXzrXY8uWYM5d/12aV/f7BgcY6I96
+         Sz6IrQvhl4kgb1SpJ5/bNviOzCPmpquY54HzywVEmd6hLl0TdDy/tpVkg5EphHmkgaBh
+         t8P55uFMT3rvXvz8DVI44pagXmLgXNXbAq1DIZBYF8TG2YbVC+COX6RmQ2GL3woWeq57
+         FpWICNVRpruje4QN6AUBZyTEq7ciqt+XUhg00r4CJGPi1Gp4cHMcGh4Tx6or9Jwc0OMV
+         75G38yLv2UNNalUAfk/h+NfjYgTJo8EO6E1Lr9T4EysKvQ+2BDYaBsJqXEDGw5WaJUn/
+         u4cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=b0TEYyZ6Jpm1D9Hrf4Uirq5wkSl8rc4Igbimt+j818M=;
-        b=F/ai31dRfMzZ+tCToL3wF21saiMjITI8CkR3Pc02f1x5Tih6OUQl8BA67QrGMk27d0
-         KmKMUBeoCBCuMwZPA5McS3do3k04S5d37XnsLqD/fj4WEA36aZ0h43HFybX+lF1ZyGbJ
-         JMHOOmGcpY3LsaFSBABvx1QwkFmkWUEu+Wipt0e8F5zOeZFqHx68VC1T48wG5U0P9OaJ
-         oPJtuKInP5UxHdGTaQgJbn9DLK5Vqs9Tg+ae3ynlUBCwctAV5Ti6yXGjaKc0pmH26cbZ
-         RIaDe/F6XuaNf20e3I4ec58MEPkfC4LzJLJC2eNatMdX6KPa1HxRkyxlF3KWWSHMUoMK
-         hlPQ==
-X-Gm-Message-State: AOAM530XiplpfIZFaQ5te12e06mBl5HKK8EO7ncbPK7NhO7R2rgehsLn
-        HJGAILyW0q1H6Mndv0OmmM/msr3nXNybDg==
-X-Google-Smtp-Source: ABdhPJw9Te6d20sslYeqPQX+ekmR/N9YluTXGvvWRjDjCRO5dsDJOKwTHO2iICQGBysLzgpFTvmQIg==
-X-Received: by 2002:a63:f95b:: with SMTP id q27mr16897164pgk.82.1612177492234;
-        Mon, 01 Feb 2021 03:04:52 -0800 (PST)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:a0cd:1b84:6d56:68e1])
-        by smtp.gmail.com with ESMTPSA id i6sm18041057pgc.58.2021.02.01.03.04.50
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=AdJJsztSa/PfLkxaK9hi3wgOAf3rWJfVmETfVbPhDQM=;
+        b=XEDpcMTRYgMNRey9bREwelcOYHiX6XbE7I/sDBKO5+rIok3TrDavWxILLnqr8ZTYLL
+         I81/Kb/HCTz93SJxOe7o9OoA1Yo6smI0nxPXO38fzXoQOmKusp8hQGviN3r7Cg3JE/mN
+         J1TSnwi60fBqXnd7eE89hpgQjZ9MgpCCcWRSCubyv+rvpkVSl151/amlU9QDFql+iRX3
+         QtVYNPJy6CFAejyjKK0KBYoCjgQIhkBhxDnU0z6E6UusNv99HczECKUY48bYUq55FctO
+         ZMgO/zmnzfgvPHOqMfsikGwmNWmFI7ppkSWeQdB1Ey7+4ElHtkh40qnCsBKpgKJVgbwl
+         LVwA==
+X-Gm-Message-State: AOAM533wph3FOiORuMgWzAUC8synZtxtoryeq4R/X1rDBi5yd6hrlMiW
+        vanLXchaACy+GcQl1DEbuUG5AA==
+X-Google-Smtp-Source: ABdhPJzbSmxDnOHXTAtKhAr3owNj0X97Hbyhk6zyvU9cBi4RZpPy0aY0Qw5qlS8+s51rHeesopHFbA==
+X-Received: by 2002:a05:600c:228c:: with SMTP id 12mr14691553wmf.101.1612177975252;
+        Mon, 01 Feb 2021 03:12:55 -0800 (PST)
+Received: from myrica ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
+        by smtp.gmail.com with ESMTPSA id v25sm21276665wmh.4.2021.02.01.03.12.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Feb 2021 03:04:51 -0800 (PST)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: mediatek: Add gce client reg for display subcomponents
-Date:   Mon,  1 Feb 2021 19:04:47 +0800
-Message-Id: <20210201110447.383473-1-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
+        Mon, 01 Feb 2021 03:12:54 -0800 (PST)
+Date:   Mon, 1 Feb 2021 12:12:35 +0100
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     Auger Eric <eric.auger@redhat.com>
+Cc:     joro@8bytes.org, will@kernel.org, lorenzo.pieralisi@arm.com,
+        robh+dt@kernel.org, guohanjun@huawei.com, sudeep.holla@arm.com,
+        rjw@rjwysocki.net, lenb@kernel.org, robin.murphy@arm.com,
+        Jonathan.Cameron@huawei.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com
+Subject: Re: [PATCH v12 10/10] iommu/arm-smmu-v3: Add stall support for
+ platform devices
+Message-ID: <YBfiIwdVP1dXg7Yt@myrica>
+References: <20210127154322.3959196-1-jean-philippe@linaro.org>
+ <20210127154322.3959196-11-jean-philippe@linaro.org>
+ <0c609eeb-00b0-7573-fed7-5bc1e6c0b0d1@redhat.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <0c609eeb-00b0-7573-fed7-5bc1e6c0b0d1@redhat.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mediatek,gce-client-reg for ccorr, aal, gamma, dither.
+On Sun, Jan 31, 2021 at 07:29:09PM +0100, Auger Eric wrote:
+> Hi Jean,
+> 
+> Some rather minor comments§questions below that may not justify a respin.
+> 
+> On 1/27/21 4:43 PM, Jean-Philippe Brucker wrote:
+> > -static bool arm_smmu_iopf_supported(struct arm_smmu_master *master)
+> > +bool arm_smmu_master_iopf_supported(struct arm_smmu_master *master)
+> >  {
+> > -	return false;
+> > +	/* We're not keeping track of SIDs in fault events */
+> shall we? [*] below
 
-Fixes: 91f9c963ce79 ("arm64: dts: mt8183: Add display nodes for MT8183")
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+That would require storing the incoming SID into the iommu_fault_event
+struct, and retrieve it in arm_smmu_page_response(). Easy enough, but I
+don't think it's needed for existing devices.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index b3b8afec5ab9a..0ed37dd9d80b4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1058,6 +1058,7 @@ ccorr0: ccorr@1400f000 {
- 			interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_LOW>;
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
- 			clocks = <&mmsys CLK_MM_DISP_CCORR0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
- 		};
- 
- 		aal0: aal@14010000 {
-@@ -1067,6 +1068,7 @@ aal0: aal@14010000 {
- 			interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_LOW>;
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
- 			clocks = <&mmsys CLK_MM_DISP_AAL0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0 0x1000>;
- 		};
- 
- 		gamma0: gamma@14011000 {
-@@ -1075,6 +1077,7 @@ gamma0: gamma@14011000 {
- 			interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_LOW>;
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
- 			clocks = <&mmsys CLK_MM_DISP_GAMMA0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
- 		};
- 
- 		dither0: dither@14012000 {
-@@ -1083,6 +1086,7 @@ dither0: dither@14012000 {
- 			interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_LOW>;
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
- 			clocks = <&mmsys CLK_MM_DISP_DITHER0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x2000 0x1000>;
- 		};
- 
- 		dsi0: dsi@14014000 {
--- 
-2.30.0.365.g02bc693789-goog
+> > +	if (master->num_streams != 1)
+> > +		return false;
+[...]
+> > +static int arm_smmu_page_response(struct device *dev,
+> > +				  struct iommu_fault_event *unused,
+> > +				  struct iommu_page_response *resp)
+> > +{
+> > +	struct arm_smmu_cmdq_ent cmd = {0};
+> > +	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
+> > +	int sid = master->streams[0].id;
+> [*]
+> > +
+> > +	if (master->stall_enabled) {
+> > +		cmd.opcode		= CMDQ_OP_RESUME;
+> > +		cmd.resume.sid		= sid;
+> > +		cmd.resume.stag		= resp->grpid;
+> > +		switch (resp->code) {
+> > +		case IOMMU_PAGE_RESP_INVALID:
+> add fallthrough?
+
+I think fallthrough is mainly useful to tell reader and compiler that a
+break was omitted on purpose. When two cases are stuck together the intent
+to merge the flow is clear enough in my opinion. GCC's
+-Wimplicit-fallthrough doesn't warn in this case.
+
+> > +		case IOMMU_PAGE_RESP_FAILURE:
+> > +			cmd.resume.resp = CMDQ_RESUME_0_RESP_ABORT;
+> > +			break;
+[...]
+> > +static int arm_smmu_handle_evt(struct arm_smmu_device *smmu, u64 *evt)
+> > +{
+> > +	int ret;
+> > +	u32 reason;
+> > +	u32 perm = 0;
+> > +	struct arm_smmu_master *master;
+> > +	bool ssid_valid = evt[0] & EVTQ_0_SSV;
+> > +	u32 sid = FIELD_GET(EVTQ_0_SID, evt[0]);
+> > +	struct iommu_fault_event fault_evt = { };
+> > +	struct iommu_fault *flt = &fault_evt.fault;
+> > +
+> > +	/* Stage-2 is always pinned at the moment */
+> > +	if (evt[1] & EVTQ_1_S2)
+> > +		return -EFAULT;
+> > +
+> > +	master = arm_smmu_find_master(smmu, sid);
+> > +	if (!master)
+> > +		return -EINVAL;
+> > +
+> > +	if (evt[1] & EVTQ_1_RnW)
+> > +		perm |= IOMMU_FAULT_PERM_READ;
+> > +	else
+> > +		perm |= IOMMU_FAULT_PERM_WRITE;
+> > +
+> > +	if (evt[1] & EVTQ_1_InD)
+> > +		perm |= IOMMU_FAULT_PERM_EXEC;
+> > +
+> > +	if (evt[1] & EVTQ_1_PnU)
+> > +		perm |= IOMMU_FAULT_PERM_PRIV;
+> > +
+> > +	switch (FIELD_GET(EVTQ_0_ID, evt[0])) {
+> > +	case EVT_ID_TRANSLATION_FAULT:
+> > +	case EVT_ID_ADDR_SIZE_FAULT:
+> > +	case EVT_ID_ACCESS_FAULT:
+> > +		reason = IOMMU_FAULT_REASON_PTE_FETCH;
+> Doesn't it rather map to IOMMU_FAULT_REASON_ACCESS?
+> /* access flag check failed */"
+
+Good point, I guess it didn't exist when I wrote this. And ADDR_SIZE_FAULT
+corresponds to IOMMU_FAULT_REASON_OOR_ADDRESS now, right?
+
+By the way the wording on those two fault reasons, "access flag" and
+"stage", seems arch-specific - x86 names are "accessed flag" and "level".
+
+> > +		break;
+> > +	case EVT_ID_PERMISSION_FAULT:
+> > +		reason = IOMMU_FAULT_REASON_PERMISSION;
+> > +		break;
+> > +	default:
+> > +		return -EOPNOTSUPP;
+> > +	}
+> > +
+> > +	if (evt[1] & EVTQ_1_STALL) {
+> > +		flt->type = IOMMU_FAULT_PAGE_REQ;
+> > +		flt->prm = (struct iommu_fault_page_request) {
+> > +			.flags = IOMMU_FAULT_PAGE_REQUEST_LAST_PAGE,
+> > +			.grpid = FIELD_GET(EVTQ_1_STAG, evt[1]),
+> > +			.perm = perm,
+> > +			.addr = FIELD_GET(EVTQ_2_ADDR, evt[2]),
+> > +		};
+> > +
+> > +		if (ssid_valid) {
+> > +			flt->prm.flags |= IOMMU_FAULT_PAGE_REQUEST_PASID_VALID;
+> > +			flt->prm.pasid = FIELD_GET(EVTQ_0_SSID, evt[0]);
+> > +		}
+> > +	} else {
+> > +		flt->type = IOMMU_FAULT_DMA_UNRECOV;
+> > +		flt->event = (struct iommu_fault_unrecoverable) {
+> > +			.reason = reason,
+> > +			.flags = IOMMU_FAULT_UNRECOV_ADDR_VALID |
+> > +				 IOMMU_FAULT_UNRECOV_FETCH_ADDR_VALID,
+> nit: shall IOMMU_FAULT_UNRECOV_FETCH_ADDR_VALID be set here? Supported
+> unrecoverable faults feature the IPA field which is UNKNOWN for S1
+> translations. fetch_addr rather was
+> corresponding to WALK_EABT.Fetch_addr to me.
+
+Right I should drop the IPA part entirely, since we don't report S2 faults
+in this patch.
+
+Thanks,
+Jean
+
+> > +			.perm = perm,
+> > +			.addr = FIELD_GET(EVTQ_2_ADDR, evt[2]),
+> > +			.fetch_addr = FIELD_GET(EVTQ_3_IPA, evt[3]),
+> > +		};
 
