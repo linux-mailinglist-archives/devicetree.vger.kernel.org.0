@@ -2,98 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6A7030B14E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 21:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F258B30B1B1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 21:47:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232708AbhBAUF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 15:05:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44676 "EHLO
+        id S230224AbhBAUrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 15:47:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233042AbhBAUF3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 15:05:29 -0500
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89745C0613D6
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 12:04:49 -0800 (PST)
-Received: by mail-yb1-xb2e.google.com with SMTP id c3so7705823ybi.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 12:04:49 -0800 (PST)
+        with ESMTP id S229959AbhBAUrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 15:47:23 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA62C061573;
+        Mon,  1 Feb 2021 12:46:43 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id sa23so10212270ejb.0;
+        Mon, 01 Feb 2021 12:46:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L9sw9hSS8Z/uEqXF5ukYAI1b9wH2rffWPop3oA1u9N8=;
-        b=OaqXg573LwGDOY7qNJNrh0QcBeqsUIIqangIggwrbBQxOBAtBk3cpdcdqa2WsrVSS2
-         laGL44tiLg1XML8BpM1iubpZljC7ujabB9YqWWAdNvvTZgQzuTE9+OO8/JkhCszWCvNv
-         LrxCQeksu44w3KXdZXVK1HUeoBD/nP1TJub5dyxoB6NOkN4sBiBXm26tmGqhhOKPK7C8
-         kUo91KC2IK7GUrmmCz1/CGH7H1GK/IzjMDzoTMhzf0Ac4nl7COJGy6l0plw/GiPX/H5B
-         mfD9sO3BVpSlv61DGdi+uXE1iG5Ct92fELaimdzlNifeFGUB2wl92f1tL4+b4IvWDjk0
-         zyAQ==
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=pP/xlyaFfhU7VAU9LJe/twSNpHKPeDTnHiJhO+n/tGc=;
+        b=uHkwrZNLRgI/FfghXScZyVQ/h8nuG61VMD0H17yVtkIM9Z872yIK9HR6ysYFnEqj4J
+         wk4Lfm6aqME5XDirG3c9WKI+1oHhiItk4NiXpXb29/eIjBoEtEVguALG5NzQUQJkosgT
+         LDvxucaQxzqg47XNNroxL9HQBtQiemU/DAK6sLvsz7AmhHwYnsOYu9PwpPuIVMm1XrOx
+         111grl2FttGBKOXJuw+O7eSC4m6C+tEkrVefT9hq56DFhVs+g8TX4EdiD7q2tJs0PA9s
+         h5HrQd+Yp+WNU2hhTMPKc9iAKt9Mu5PK4rXh+zXnffIlqbtsIxRG9DIHnN4oatbTl70R
+         Lm8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L9sw9hSS8Z/uEqXF5ukYAI1b9wH2rffWPop3oA1u9N8=;
-        b=TEB+g8qbkPAkwOljVOiSVDqX6ldGA96F7ySOJfN7mb+C1VfijD1i276LCIhF4aFwsS
-         hgMmb1wXoEx1jc60YptvCspv33HCWP7mT2QhFu4GMq7QLSN/9hXpC2UuxB7Qy9RmzbYQ
-         NQxof6P1rQec8vnSomM0qnLJuWMyMV+Pc+GE63RlfOsUGua2eRVkPiat87BPjkK+/cWZ
-         x3IUTgI1gT6ADrtbc6+j9TpI+gibS5DJN9L+OpEVH1ApKbNwPLGjLTnxXTLwFAUxHlUC
-         bDBHtQueHqJUrj1wMAiXioKuzHQB1XF3u7rILMJuas88yl7uxeV26ltiGFiZfhHVpch1
-         j8qQ==
-X-Gm-Message-State: AOAM533cZcMNOg8gIPfNbks1/EAGuUZy335A01yuJLa23+REBZanC2Va
-        J3mODs1Dpue3+yDltlsbgnZgv0oaT+NDhEt+096gXQ==
-X-Google-Smtp-Source: ABdhPJw4RFUaM2c3Knj9a5xMEVR7SKifxohoJtjamohf1LlW3VtIH11Ase4ZEm/ickH5qdpZf1yRO+hhRtckErqk53A=
-X-Received: by 2002:a25:c683:: with SMTP id k125mr29048716ybf.32.1612209888649;
- Mon, 01 Feb 2021 12:04:48 -0800 (PST)
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pP/xlyaFfhU7VAU9LJe/twSNpHKPeDTnHiJhO+n/tGc=;
+        b=X+c2uP+dw0tETQLtp5vnxXm9Bq/3RJAxybgF70vTkPM5uysfa3B8EndGS/T+d6H/ZA
+         yNdwIlvv3fhV91fgPvzRjTLYsc5ykNNnWmT5N67gf07YmRLaTLjEgclA8NG1FTTKkZMV
+         qgyTvI2o9NAWMgEtHp3fXAER/RctUqUg5NV19yWyHvE3kaaA5FRs3WPK5XqPLeHb9kCD
+         dEmaYuWBeg3fk0CgMUUQ0fhuO7/zLgJosqs3rbH0sgsxo+gX2sw0JRR85humHgFnqPF8
+         NBmJmLaphF3/5ltHRSlOPqSKoz5rYmMyY+ZcRcvGSfb2PLdRxSayv++MMmMKlWNGHOo7
+         rPaw==
+X-Gm-Message-State: AOAM532j7zPQBlftM8xD9RCDlJH/RqXppadPjIHA5dcv7JrCvU41UcTr
+        O6hBmExXAmdqqFhs71dQXBASXgT4NmM=
+X-Google-Smtp-Source: ABdhPJxXQFUNBuLpbWI1bCNA9eG+xTIpQXswiL8BOiqOvKQRv1bn8mkrDsRr82LdknNFY0/Krs3lPQ==
+X-Received: by 2002:a17:906:3c41:: with SMTP id i1mr19807655ejg.443.1612212401935;
+        Mon, 01 Feb 2021 12:46:41 -0800 (PST)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id ec18sm8268285ejb.24.2021.02.01.12.46.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Feb 2021 12:46:41 -0800 (PST)
+Subject: Re: [PATCH v1 1/5] dt-bindings: usb: convert rockchip,dwc3.txt to
+ yaml
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org, balbi@kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210201194105.32673-1-jbx6244@gmail.com>
+Message-ID: <d4626d79-06ae-6abc-6ab4-6425fc344180@gmail.com>
+Date:   Mon, 1 Feb 2021 21:46:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <20210121225712.1118239-1-saravanak@google.com>
- <20210131163823.c4zb47pl4tukcl7c@viti.kaiser.cx> <CAGETcx8A_+Y0sCLPdyeeT+rHOsAPsmg4LVn_ahF0NaD6hfRiZw@mail.gmail.com>
- <20210201105204.GA1467@martin-debian-1.paytec.ch>
-In-Reply-To: <20210201105204.GA1467@martin-debian-1.paytec.ch>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 1 Feb 2021 12:04:11 -0800
-Message-ID: <CAGETcx91CdvqYpSr6Eg45jrToEFLPBSgzMxTjHh=1rBqi8V3pg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] of: property: Add fw_devlink support for more props
-To:     Martin Kaiser <martin@kaiser.cx>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210201194105.32673-1-jbx6244@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 1, 2021 at 2:52 AM Martin Kaiser <martin@kaiser.cx> wrote:
->
-> Hi Saravana,
->
-> Thus wrote Saravana Kannan (saravanak@google.com):
->
-> > This series [1] has a high chance of fixing it for you if
-> > CONFIG_MODULES is disabled in your set up. Can you give it a shot?
->
-> sure. This fixes things for me if CONFIG_MODULES is disabled. Booting is
-> still stuck if modules are enabled.
->
-> > The real problem is that arch/arm/mach-imx/avic.c doesn't set the
-> > OF_POPULATED flag for the "fsl,avic" node. fw_devlink uses this
-> > information to know that this device node will never have a struct
-> > device created for it. The proper way to do this for root IRQCHIP
-> > nodes is to use IRQCHIP_DECLARE(). I Cc'ed you on a clean up patch for
-> > IMX [2], can you please give [2] a shot *without* [1] and with
-> > CONFIG_MODULES enabled? Things should boot properly with this
-> > combination too.
->
-> This works as well.
+Hi Rob,
 
-Thanks for testing both. Mind giving Tested-by for [1] too?
+See questions below.
 
--Saravana
+Kind regards,
+
+Johan Jonker
+
+On 2/1/21 8:41 PM, Johan Jonker wrote:
+> In the past Rockchip dwc3 usb nodes were manually checked.
+> With the conversion of snps,dwc3.yaml as common document
+> we now can convert rockchip,dwc3.txt to yaml as well.
+> 
+> Added properties for rk3399 are:
+>   resets
+>   reset-names
+> 
+> Generic properties that are now also filtered:
+>   "#address-cells"
+>   "#size-cells"
+>   ranges
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>  .../devicetree/bindings/usb/rockchip,dwc3.txt      |  56 -----------
+>  .../devicetree/bindings/usb/rockchip,dwc3.yaml     | 107 +++++++++++++++++++++
+>  2 files changed, 107 insertions(+), 56 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+>  create mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt b/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+> deleted file mode 100644
+> index 945204932..000000000
+> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+> +++ /dev/null
+> @@ -1,56 +0,0 @@
+> -Rockchip SuperSpeed DWC3 USB SoC controller
+> -
+> -Required properties:
+> -- compatible:	should contain "rockchip,rk3399-dwc3" for rk3399 SoC
+> -- clocks:	A list of phandle + clock-specifier pairs for the
+> -		clocks listed in clock-names
+> -- clock-names:	Should contain the following:
+> -  "ref_clk"	Controller reference clk, have to be 24 MHz
+> -  "suspend_clk"	Controller suspend clk, have to be 24 MHz or 32 KHz
+> -  "bus_clk"	Master/Core clock, have to be >= 62.5 MHz for SS
+> -		operation and >= 30MHz for HS operation
+> -  "grf_clk"	Controller grf clk
+> -
+> -Required child node:
+> -A child node must exist to represent the core DWC3 IP block. The name of
+> -the node is not important. The content of the node is defined in dwc3.txt.
+> -
+> -Phy documentation is provided in the following places:
+> -Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml - USB2.0 PHY
+> -Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt     - Type-C PHY
+> -
+> -Example device nodes:
+> -
+> -	usbdrd3_0: usb@fe800000 {
+> -		compatible = "rockchip,rk3399-dwc3";
+> -		clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
+> -			 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_GRF>;
+> -		clock-names = "ref_clk", "suspend_clk",
+> -			      "bus_clk", "grf_clk";
+> -		#address-cells = <2>;
+> -		#size-cells = <2>;
+> -		ranges;
+> -		usbdrd_dwc3_0: dwc3@fe800000 {
+> -			compatible = "snps,dwc3";
+> -			reg = <0x0 0xfe800000 0x0 0x100000>;
+> -			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> -			dr_mode = "otg";
+> -		};
+> -	};
+> -
+> -	usbdrd3_1: usb@fe900000 {
+> -		compatible = "rockchip,rk3399-dwc3";
+> -		clocks = <&cru SCLK_USB3OTG1_REF>, <&cru SCLK_USB3OTG1_SUSPEND>,
+> -			 <&cru ACLK_USB3OTG1>, <&cru ACLK_USB3_GRF>;
+> -		clock-names = "ref_clk", "suspend_clk",
+> -			      "bus_clk", "grf_clk";
+> -		#address-cells = <2>;
+> -		#size-cells = <2>;
+> -		ranges;
+> -		usbdrd_dwc3_1: dwc3@fe900000 {
+> -			compatible = "snps,dwc3";
+> -			reg = <0x0 0xfe900000 0x0 0x100000>;
+> -			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+> -			dr_mode = "otg";
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> new file mode 100644
+> index 000000000..681086fa6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/rockchip,dwc3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip SuperSpeed DWC3 USB SoC controller
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3399-dwc3
+> +
+> +  clocks:
+> +    items:
+> +      - description:
+> +          Controller reference clock, must to be 24 MHz
+> +      - description:
+> +          Controller suspend clock, must to be 24 MHz or 32 KHz
+> +      - description:
+> +          Master/Core clock, must to be >= 62.5 MHz for SS
+> +          operation and >= 30MHz for HS operation
+> +      - description:
+> +          Controller aclk_usb3_rksoc_axi_perf clock
+> +      - description:
+> +          Controller aclk_usb3 clock
+> +      - description:
+> +          Controller grf clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref_clk
+> +      - const: suspend_clk
+> +      - const: bus_clk
+
+> +      - const: aclk_usb3_rksoc_axi_perf
+> +      - const: aclk_usb3
+
+This was not in the original document, but is needed to compile.
+
+> +      - const: grf_clk
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: usb3-otg
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 2
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^usb@[a-f0-9]+$":
+> +    type: object
+> +
+> +    $ref: "snps,dwc3.yaml"
+> +
+> +    description:
+> +      A child node must exist to represent the core DWC3 IP block.
+> +      The content of the node is defined in snps,dwc3.yaml.
+> +
+> +      Phy documentation is provided in the following places.
+> +
+> +      USB2.0 PHY
+> +      Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+> +
+> +      Type-C PHY
+> +      Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
+> +
+> +    unevaluatedProperties: false
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3399-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+
+> +    usbdrd3_0: usb@fe800000 {
+
+The rk3399 has 2 dwc3 usb nodes. When we remove @fe800000 and @fe900000
+in the rk3399.dtsi it complains about 2 identical usb root nodenames.
+For this example to pass change to:
+
+usbdrd3_0: usb ??
+
+What to do with it in the dtsi??
+
+
+> +      compatible = "rockchip,rk3399-dwc3";
+> +      clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
+> +               <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_RKSOC_AXI_PERF>,
+> +               <&cru ACLK_USB3>, <&cru ACLK_USB3_GRF>;
+> +      clock-names = "ref_clk", "suspend_clk",
+> +                    "bus_clk", "aclk_usb3_rksoc_axi_perf",
+> +                    "aclk_usb3", "grf_clk";
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+
+> +      ranges;
+
+Ranges generates notifications. Could you advise if that is needed in
+this dwc3 usb context and rk3399.dtsi or should it be removed?
+
+> +      usbdrd_dwc3_0: usb@fe800000 {
+> +        compatible = "snps,dwc3";
+> +        reg = <0x0 0xfe800000 0x0 0x100000>;
+> +        interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> +        dr_mode = "otg";
+> +      };
+> +    };
+> 
+
