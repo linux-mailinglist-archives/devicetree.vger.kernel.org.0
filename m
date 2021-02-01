@@ -2,100 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD3E430AD49
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 18:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A4A30AD9E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 18:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231294AbhBARAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 12:00:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32806 "EHLO
+        id S231243AbhBARTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 12:19:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230055AbhBARAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 12:00:13 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF9FCC061573;
-        Mon,  1 Feb 2021 08:59:32 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id d16so17343856wro.11;
-        Mon, 01 Feb 2021 08:59:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lfvjglo2iWimqrT++GTgmO35jZY6+DY5kg/Ywj5v+9o=;
-        b=MfctAOutPixsTtOSVI72g22GtuHABCVIbpzu1Oui8G1sQJo36pM0l0X373Nnuf1u97
-         jNjbDQHN+oMxTCFQthc0+ppO8DC02kio1JTLQgzHQ2WeoIxkqQ+yX8TWdtvwUZaeS1FT
-         ltuCaso3j2Qp/oAiUJBPhzvNjbhrumNDzhw223d7dYQujNFQhrYQAP0sTQwppq7vZRhr
-         mv7aZPRPEQz7x1w3AuWGTtTrXqFUhJm50cKX4UJtB0Allppm4tHt6q0u1xKb/4GR2XBX
-         ySZWPko4AvfvRMsTXyc0GgGGU8W9Kl9zJOYGvyeV390cFzqJhJQLVBnDgeswmoCLyL0/
-         DtSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lfvjglo2iWimqrT++GTgmO35jZY6+DY5kg/Ywj5v+9o=;
-        b=hoB+lIUCPMXvfXx46jzHMJLbDnTBp7unx/4LZRsxkjIn5p1ve1W6bUysDibg+kKa/B
-         OiqXwv+mOU9G+cSKrjHaYhN6ZpUEOlEO9V28yPMGs55EHUanbCIPgRdoft5yfmF7C3yk
-         Xei7OVCFLxF+WOdW+VmM4MUMtACqIU6VSzPWmzOdNcWYDIuK3tgwmyFfiKFWHRus3+F7
-         ByeLn2A+BHWj6/T96a/7SyJ6ZkOq7Rmw53+Or8BIlGxVZpWf8ya3JJUInOIs7rNSupTr
-         5yo7ZczFuCj+UPdf5UBkachBzYhj3sh8HWeQuoj7RFD9TvW/zjuFq9h295HCJjLvBZLC
-         1GOw==
-X-Gm-Message-State: AOAM533JqdZ0XBVj9qMug3/s20QgMDw29w6mXz5q2gPzWlgn5692/AoX
-        UWxazx6Mvvxpw1ayaQ3mHrs=
-X-Google-Smtp-Source: ABdhPJws59KzzULQEh1KFT0w85G3rFB0Q0RRUDMvlD/iC9yvmrWp9gIruLJ5IU6UfOjFvFgKuWVuKQ==
-X-Received: by 2002:a05:6000:192:: with SMTP id p18mr18958779wrx.69.1612198771621;
-        Mon, 01 Feb 2021 08:59:31 -0800 (PST)
-Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
-        by smtp.gmail.com with ESMTPSA id l10sm27890759wro.4.2021.02.01.08.59.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Feb 2021 08:59:30 -0800 (PST)
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Iskren Chernev <iskren.chernev@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Andrei Ziureaev <andrei.ziureaev@arm.com>,
-        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: Use portable sort for version cmp
-Date:   Mon,  1 Feb 2021 18:58:28 +0200
-Message-Id: <20210201165829.58656-1-iskren.chernev@gmail.com>
-X-Mailer: git-send-email 2.30.0
+        with ESMTP id S230267AbhBARTH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 12:19:07 -0500
+Received: from srv1.deutnet.info (srv1.deutnet.info [IPv6:2a01:4f8:c2c:6846::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8382AC06174A;
+        Mon,  1 Feb 2021 09:18:27 -0800 (PST)
+Received: from [2a01:cb14:a98:4900:be5f:f4ff:fe8b:2fc1] (helo=sonata)
+        by srv1.deutnet.info with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <agriveaux@deutnet.info>)
+        id 1l6cqA-0005fW-TW; Mon, 01 Feb 2021 18:18:18 +0100
+Received: from agriveaux by sonata with local (Exim 4.92)
+        (envelope-from <agriveaux@localhost.localdomain>)
+        id 1l6cqA-0002FD-JO; Mon, 01 Feb 2021 18:18:18 +0100
+Date:   Mon, 1 Feb 2021 18:18:18 +0100
+From:   agriveaux <agriveaux@deutnet.info>
+To:     Maxime Ripard <maxime@cerno.tech>, robh+dt@kernel.org,
+        mark.rutland@arm.com, wens@csie.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        agriveaux@deutnet.info
+Subject: Re: [PATCH v2] ARM: dts: sun5i: Add dts for inet86v_rev2
+Message-ID: <20210201171236.GA7024@localhost.localdomain>
+References: <20210124193903.21401-1-agriveaux@deutnet.info>
+ <20210128172329.ncuda3xlgpmefpqk@gilmour>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210128172329.ncuda3xlgpmefpqk@gilmour>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sort -C is like sort -c >/dev/null but less portable. It fails on
-busybox sort (i.e alpine linux).
+On Thu, Jan 28, 2021 at 06:23:29PM +0100, Maxime Ripard wrote:
+> Hi,
+Hi,
+> 
+> On Sun, Jan 24, 2021 at 08:39:03PM +0100, Alexandre GRIVEAUX wrote:
+> > Add Inet 86V Rev 2 support, based upon Inet 86VS.
+> > 
+> > The Inet 86V use SL1536 touchpanel controller, the Inet 86VS a GSL1680,
+> > which make them both incompatible.
+> > 
+> > Missing things:
+> > - Accelerometer (MXC6225X)
+> > - Touchpanel (Sitronix SL1536)
+> > - Nand (29F32G08CBACA)
+> > - Camera (HCWY0308)
+> > 
+> > Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
+> > ---
+> >  arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts | 17 +++++++++++++++++
+> 
+> You have to add it to the Makefile
+> 
+Ok.
+> >  1 file changed, 17 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts
+> > 
+> > diff --git a/arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts b/arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts
+> > new file mode 100644
+> > index 000000000000..581083e932d8
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts
+> > @@ -0,0 +1,17 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * Copyright 2021 Alexandre Griveaux <agriveaux@deutnet.info>
+> > + *
+> > + * Minimal dts file for the iNet 86V
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "sun5i-a13.dtsi"
+> > +#include "sun5i-reference-design-tablet.dtsi"
+> > +
+> > +/ {
+> > +	model = "iNET 86V Rev 02";
+> > +	compatible = "inet,86v-rev2", "allwinner,sun5i-a13";
+> 
+> inet should be documented in the vendor prefixes, and that compatible
+> should be documented in Documentation/devicetree/bindings/arm/sunxi.yaml
+> 
 
-Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-Fixes: ea5b8b5eb004 ("dt-bindings: Add a minimum version check for dtschema")
----
- Documentation/devicetree/bindings/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I forgot, but should be:
 
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index 90fcad98984d..780e5618ec0a 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -10,7 +10,7 @@ DT_SCHEMA_MIN_VERSION = 2020.8.1
- PHONY += check_dtschema_version
- check_dtschema_version:
- 	@{ echo $(DT_SCHEMA_MIN_VERSION); \
--	$(DT_DOC_CHECKER) --version 2>/dev/null || echo 0; } | sort -VC || \
-+	$(DT_DOC_CHECKER) --version 2>/dev/null || echo 0; } | sort -Vc >/dev/null || \
- 	{ echo "ERROR: dtschema minimum version is v$(DT_SCHEMA_MIN_VERSION)" >&2; false; }
- 
- quiet_cmd_extract_ex = DTEX    $@
+      - description: iNet-86V Rev 02
+        items:
+          - const: primux,inet86v-rev2
+          - const: allwinner,sun5i-a13
 
-base-commit: fd821bf0ed9a7db09d2e007df697f4d9ecfda99a
-prerequisite-patch-id: c90e3d48df0672dab84da1b294374598bfc45db8
-prerequisite-patch-id: f0b48cda55170cf82855daa6f7b4edfdba83d90c
-prerequisite-patch-id: 48482c0c3e2797459e311f73db1828f2531bd11c
-prerequisite-patch-id: 5512fd0c8367c8c8a2ace8003b533057422e1437
-prerequisite-patch-id: 1635c0e78c99506fd2710f54be4e5fc5980712a6
-prerequisite-patch-id: e80dacf2da55197be027f297617868832ddabfc9
-prerequisite-patch-id: bd3efb4ced6ceb2c6a50dcd8527ea4d6d19baf5d
--- 
-2.30.0
+> Having the first rev compatible would be good too
 
+Unfortunatly, I didn't find inet86v rev1 on FCC website and on
+linux-sunxi. 
+
+> 
+> > +
+> > +};
+> 
+> But I'm wondering. If there's nothing here to add, why would we need
+> that DT in the first place?
+> 
+I prefer to add often instead of bulk adding, and to show there are some
+board to add missing things like those above.
+
+> Maxime
+
+Thanks,
+Alexandre.
