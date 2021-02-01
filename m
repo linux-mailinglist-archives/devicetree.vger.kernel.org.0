@@ -2,209 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 760C130A9C2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 15:30:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 117FB30AAF3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 16:20:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbhBAO33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 09:29:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56836 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbhBAO3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 09:29:25 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E30C06174A
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 06:28:41 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id s5so6195233edw.8
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 06:28:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mkMbMPOi+ltFdpiZMqswj7TMh1dG3VuQkTp2WqciDQ4=;
-        b=e/biWOrDZ33cuquCTcj+8OhbvSWehxdbX0Xudvwy+HE5TINIEGlG5mF61KCN5+I3NN
-         Mm8S9XzztbeNVi2QUrF7LikD3ID26QHGEydtIwoPoub1inETsvDyxDLqix6nxsNzY9g7
-         PtMmSweSM5MU3n9UaEpoh4/4nHWcOlje0AJphUxVNfRhEBaJo25lr/DUuWtPaxu/1CLd
-         430d8zsR7i66BhxEiPEd1foFyk8cQoJdxmGEKB9H36pD+3cvJ7OBWli6fZrQ/rmubnwG
-         JCP2ZdCGUdclTomaJKTwAeVad/3SF+wULaBY9Mta5y7j/3XBLIzd+P4EliiG2Jg/oPPB
-         BSNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=mkMbMPOi+ltFdpiZMqswj7TMh1dG3VuQkTp2WqciDQ4=;
-        b=KBIhCeV0YqXC5hl5WUERyfILlwd+tPsYUwC7aVSsw/6cvrR8jmcgeDesRgNGrcf7HQ
-         WdL0gPcIDWbD96C+FCQeRHSQ+ArsqBuAraIJ8RH4GLYEQBP67Gh464MNlemRpEK0XnS9
-         I2k3MUJ+6sR0VeTZm+gn6tEHnlGh6ygz6Lngp6oxFrIy6v2AqBdYcDBl8Ai0lZrhA5gx
-         qhESeKLziqHIRsVhhmslAPRpIvpm6wKHuPaDYeS0ZOl6fXLj9UUfjUGZ3Tt3aXy/H0Yo
-         9Io66+pvsDJgwWPzpnYlfxJ4MuGXgk2OF+9zSBK98G5/zjJp5mXiL5A+PmVchghb1+5f
-         8hPg==
-X-Gm-Message-State: AOAM531fS53vHpytICfVjwaxBXZS+2p0z5QUULtCUVIWEOP79p/55OO4
-        yPakJzNGFZhUbF53gtA9qnJlYg==
-X-Google-Smtp-Source: ABdhPJz6wAMliiJASdppMl+jk0+nDN6Tu1XmgKaqPu/wcQGjz0Exa0CYsekW6aavvaMfgfM3VJI6Pg==
-X-Received: by 2002:aa7:d5c5:: with SMTP id d5mr5886626eds.139.1612189720637;
-        Mon, 01 Feb 2021 06:28:40 -0800 (PST)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id t19sm7994408ejc.62.2021.02.01.06.28.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 01 Feb 2021 06:28:40 -0800 (PST)
-Sender: Michal Simek <monstr@monstr.eu>
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: zynq: Update Copyright date in DTS
-Date:   Mon,  1 Feb 2021 15:28:38 +0100
-Message-Id: <ac55738da7710848ef4824d45bdac18fa1d11392.1612189714.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.30.0
+        id S229763AbhBAPTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 10:19:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36114 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230091AbhBAOzT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Feb 2021 09:55:19 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 80B7F64E08;
+        Mon,  1 Feb 2021 14:54:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612191269;
+        bh=UfY3ArU2Ba52g7BMgBfvsVQ2y0huUNSig9ApYXP8TIU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ulg+rsdevXRtCjtTFGOizv2sb4y2ls4EABbPyo9gn2WsK0n6vSp6Na2wilJ5T5C0m
+         hK8/LsVRjMUQ+Aa+l+vRce00wC3jqhrVTXlZUgaMHnxcgp/kH+mC0fj/JXC+InheOY
+         y7UjHKCM553yfX5RjpOE6MnP8Gz/jLjFS8YLb4RkzK8r4RQv+/6W0uJiBsZB4BaOjz
+         BFJDSELZCG/g5ezyx7N4LFcjaaXXvRHoLCyO4SKbB67p1jOrG7dvwUBmGGuhT9NwiT
+         +pvv1lmrEIC2y1CrJsa7PUN3NzkH77p+147UW3/uy5+jPO4ZHz2gkWwxlXCxRWDio1
+         AwGMEZD4oK6Mg==
+Date:   Mon, 1 Feb 2021 14:54:23 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com
+Subject: Re: [PATCH v6 00/33] MT8192 IOMMU support
+Message-ID: <20210201145422.GA15263@willie-the-truck>
+References: <20210111111914.22211-1-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210111111914.22211-1-yong.wu@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update years in header to be up2date.
+On Mon, Jan 11, 2021 at 07:18:41PM +0800, Yong Wu wrote:
+> This patch mainly adds support for mt8192 Multimedia IOMMU and SMI.
+> 
+> mt8192 also is MTK IOMMU gen2 which uses ARM Short-Descriptor translation
+> table format. The M4U-SMI HW diagram is as below:
+> 
+>                           EMI
+>                            |
+>                           M4U
+>                            |
+>                       ------------
+>                        SMI Common
+>                       ------------
+>                            |
+>   +-------+------+------+----------------------+-------+
+>   |       |      |      |       ......         |       |
+>   |       |      |      |                      |       |
+> larb0   larb1  larb2  larb4     ......      larb19   larb20
+> disp0   disp1   mdp    vdec                   IPE      IPE
+> 
+> All the connections are HW fixed, SW can NOT adjust it.
+> 
+> Comparing with the preview SoC, this patchset mainly adds two new functions:
+> a) add iova 34 bits support.
+> b) add multi domains support since several HW has the special iova
+> region requirement.
+> 
+> change note:
+> v6:a) base on v5.11-rc1. and tlb v4:
+>       https://lore.kernel.org/linux-mediatek/20210107122909.16317-1-yong.wu@mediatek.com/T/#t 
 
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
----
+I've queued this up apart from patches 6 and 7.
 
- arch/arm/boot/dts/zynq-7000.dtsi       | 2 +-
- arch/arm/boot/dts/zynq-cc108.dts       | 2 +-
- arch/arm/boot/dts/zynq-zc702.dts       | 2 +-
- arch/arm/boot/dts/zynq-zc706.dts       | 2 +-
- arch/arm/boot/dts/zynq-zc770-xm010.dts | 2 +-
- arch/arm/boot/dts/zynq-zc770-xm011.dts | 2 +-
- arch/arm/boot/dts/zynq-zc770-xm012.dts | 2 +-
- arch/arm/boot/dts/zynq-zc770-xm013.dts | 2 +-
- arch/arm/boot/dts/zynq-zed.dts         | 2 +-
- arch/arm/boot/dts/zynq-zybo.dts        | 2 +-
- 10 files changed, 10 insertions(+), 10 deletions(-)
+Thanks,
 
-diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
-index c4810d58540b..d46c1e2652e7 100644
---- a/arch/arm/boot/dts/zynq-7000.dtsi
-+++ b/arch/arm/boot/dts/zynq-7000.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Copyright (C) 2011 - 2014 Xilinx
-+ * Copyright (C) 2011 - 2021 Xilinx
-  */
- 
- / {
-diff --git a/arch/arm/boot/dts/zynq-cc108.dts b/arch/arm/boot/dts/zynq-cc108.dts
-index 8b9ab9bba23b..33546e13bb46 100644
---- a/arch/arm/boot/dts/zynq-cc108.dts
-+++ b/arch/arm/boot/dts/zynq-cc108.dts
-@@ -2,7 +2,7 @@
- /*
-  * Xilinx CC108 board DTS
-  *
-- * (C) Copyright 2007-2018 Xilinx, Inc.
-+ * (C) Copyright 2007-2021 Xilinx, Inc.
-  * (C) Copyright 2007-2013 Michal Simek
-  * (C) Copyright 2007-2012 PetaLogix Qld Pty Ltd
-  *
-diff --git a/arch/arm/boot/dts/zynq-zc702.dts b/arch/arm/boot/dts/zynq-zc702.dts
-index cf70aff26c66..a226498364af 100644
---- a/arch/arm/boot/dts/zynq-zc702.dts
-+++ b/arch/arm/boot/dts/zynq-zc702.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- *  Copyright (C) 2011 - 2014 Xilinx
-+ *  Copyright (C) 2011 - 2021 Xilinx
-  *  Copyright (C) 2012 National Instruments Corp.
-  */
- /dts-v1/;
-diff --git a/arch/arm/boot/dts/zynq-zc706.dts b/arch/arm/boot/dts/zynq-zc706.dts
-index 77943c16d33f..73d8b7a78415 100644
---- a/arch/arm/boot/dts/zynq-zc706.dts
-+++ b/arch/arm/boot/dts/zynq-zc706.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- *  Copyright (C) 2011 - 2014 Xilinx
-+ *  Copyright (C) 2011 - 2021 Xilinx
-  *  Copyright (C) 2012 National Instruments Corp.
-  */
- /dts-v1/;
-diff --git a/arch/arm/boot/dts/zynq-zc770-xm010.dts b/arch/arm/boot/dts/zynq-zc770-xm010.dts
-index 0dd352289a45..e54a229b1f78 100644
---- a/arch/arm/boot/dts/zynq-zc770-xm010.dts
-+++ b/arch/arm/boot/dts/zynq-zc770-xm010.dts
-@@ -2,7 +2,7 @@
- /*
-  * Xilinx ZC770 XM010 board DTS
-  *
-- * Copyright (C) 2013-2018 Xilinx, Inc.
-+ * Copyright (C) 2013-2021 Xilinx, Inc.
-  */
- /dts-v1/;
- #include "zynq-7000.dtsi"
-diff --git a/arch/arm/boot/dts/zynq-zc770-xm011.dts b/arch/arm/boot/dts/zynq-zc770-xm011.dts
-index 56732e8f6ca1..a4ce58e1e648 100644
---- a/arch/arm/boot/dts/zynq-zc770-xm011.dts
-+++ b/arch/arm/boot/dts/zynq-zc770-xm011.dts
-@@ -2,7 +2,7 @@
- /*
-  * Xilinx ZC770 XM011 board DTS
-  *
-- * Copyright (C) 2013-2018 Xilinx, Inc.
-+ * Copyright (C) 2013-2021 Xilinx, Inc.
-  */
- /dts-v1/;
- #include "zynq-7000.dtsi"
-diff --git a/arch/arm/boot/dts/zynq-zc770-xm012.dts b/arch/arm/boot/dts/zynq-zc770-xm012.dts
-index d2359b789eb8..f842e7ad4f9d 100644
---- a/arch/arm/boot/dts/zynq-zc770-xm012.dts
-+++ b/arch/arm/boot/dts/zynq-zc770-xm012.dts
-@@ -2,7 +2,7 @@
- /*
-  * Xilinx ZC770 XM012 board DTS
-  *
-- * Copyright (C) 2013-2018 Xilinx, Inc.
-+ * Copyright (C) 2013-2021 Xilinx, Inc.
-  */
- /dts-v1/;
- #include "zynq-7000.dtsi"
-diff --git a/arch/arm/boot/dts/zynq-zc770-xm013.dts b/arch/arm/boot/dts/zynq-zc770-xm013.dts
-index 38d96adc870c..fe4cd75bc9db 100644
---- a/arch/arm/boot/dts/zynq-zc770-xm013.dts
-+++ b/arch/arm/boot/dts/zynq-zc770-xm013.dts
-@@ -2,7 +2,7 @@
- /*
-  * Xilinx ZC770 XM013 board DTS
-  *
-- * Copyright (C) 2013 Xilinx, Inc.
-+ * Copyright (C) 2013-2021 Xilinx, Inc.
-  */
- /dts-v1/;
- #include "zynq-7000.dtsi"
-diff --git a/arch/arm/boot/dts/zynq-zed.dts b/arch/arm/boot/dts/zynq-zed.dts
-index 6a5a93aa6552..fd2b562d374d 100644
---- a/arch/arm/boot/dts/zynq-zed.dts
-+++ b/arch/arm/boot/dts/zynq-zed.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- *  Copyright (C) 2011 - 2014 Xilinx
-+ *  Copyright (C) 2011 - 2021 Xilinx
-  *  Copyright (C) 2012 National Instruments Corp.
-  */
- /dts-v1/;
-diff --git a/arch/arm/boot/dts/zynq-zybo.dts b/arch/arm/boot/dts/zynq-zybo.dts
-index 755f6f109d5a..f163f9d69f80 100644
---- a/arch/arm/boot/dts/zynq-zybo.dts
-+++ b/arch/arm/boot/dts/zynq-zybo.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- *  Copyright (C) 2011 - 2014 Xilinx
-+ *  Copyright (C) 2011 - 2021 Xilinx
-  *  Copyright (C) 2012 National Instruments Corp.
-  */
- /dts-v1/;
--- 
-2.30.0
-
+Will
