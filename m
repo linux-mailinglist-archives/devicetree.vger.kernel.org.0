@@ -2,73 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 712FE30A466
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 10:33:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99FCB30A478
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 10:38:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232711AbhBAJca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 04:32:30 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:55919 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232681AbhBAJca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 04:32:30 -0500
-X-UUID: a51b790571e247b398cbd7511727f889-20210201
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ZnxN1pLV+rvX9LVEaJLLgeSX4bC8JWZBZLANyFfuHzk=;
-        b=SKsiD2//CU/rGytsU5i0AcICFbv1DBp1mzm42/qoE8Ll4QJVXn/3NkzJKq9vYNDKITfV9HZIMhyhNvsId0m4hyqtM6myxDsjvUD0IrkJxd1T+03QQB1IcCRlaA29ufa5RCp5kt6beFrD378IcAMA/qiL9l+YghA08uQeqEeIpoc=;
-X-UUID: a51b790571e247b398cbd7511727f889-20210201
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <weiyi.lu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1460415211; Mon, 01 Feb 2021 17:31:45 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 1 Feb 2021 17:31:43 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 1 Feb 2021 17:31:43 +0800
-Message-ID: <1612171903.18201.6.camel@mtksdaap41>
-Subject: Re: [PATCH 0/2] Add MediaTek MT8192 clock provider device nodes
-From:   Weiyi Lu <weiyi.lu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Rob Herring <robh@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 1 Feb 2021 17:31:43 +0800
-In-Reply-To: <4536e0a3-8e64-d2b0-df83-33705d10359a@gmail.com>
-References: <1608644414-17793-1-git-send-email-weiyi.lu@mediatek.com>
-         <4536e0a3-8e64-d2b0-df83-33705d10359a@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S229613AbhBAJhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 04:37:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50640 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232509AbhBAJhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 04:37:41 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B0FC061574
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 01:37:01 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id kg20so23296314ejc.4
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 01:37:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=YT9JKAAuOKGWEIOCiHYE2IzA63LGraoXCVqgI67QUBc=;
+        b=F5ZO0PwaadZtH/DBe8bqjzWSZZlehKEdKil0gvQBYTUE4fQLoMCTOvlS5yS1/OLMTQ
+         PHFZP8IS7Xu2bD0Bd3UCQWGon4LjzUKihYbZ8SGdUFijZ5ChxfpU3BFzSwOurGuZxKTS
+         OsLfw7fZ7tyiNGLwVFaygFVASXC3+Z5BCCQBtY9zE9IQWqAoJjWgC20i+HhVGlAwJ5Sn
+         nW6TMYRpgTVx2Co6iD5sP/KLstrmKzq+QLpauGpmj5UWLCG4dyIoVjUfufV0StjwWr11
+         IgRDuYXipeLX7PinFClOlr8p02QmnUAGzdoCybkxvFSZDKYvBDcX3qIh2DOmeF7C4u0r
+         5i4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YT9JKAAuOKGWEIOCiHYE2IzA63LGraoXCVqgI67QUBc=;
+        b=g2lWCldPGPrSVgJhNYl//IXnKTt5L9iAGXloFTNRKe8zeUn/4oMkbGn469UY5peFyS
+         0j6M8Gj5i7HehqiGCt+uRLyVYA+gncHux3k6XGbzYE/lAOt+Sx02CnC2+fZU+dTX4WoG
+         6l9e4v18+hihHoIa3bAstlQ6zztam12zFzEgYw6sKW340di4cnb1aUsHEKtn8/c2GDcw
+         bW+d2ThsNqHlBYYH98sFT0BQq1xvjhERoIDY4GoAfbg/AoJhBcPJJL9on1f6BJqP20c9
+         jFfDOzPgDuMG8KAGE3K8HitP8ciUjvTMqD0wY6sM5euDm86XGT/MeluYZbvIxADBUv7v
+         cbYA==
+X-Gm-Message-State: AOAM531opDytHrdZ/nFJNobF8Yn7XLacky+CdUhnLUXVHOM0RTQEOmV1
+        zSlM0upV5JIHPXSpguMJUzw4NQ==
+X-Google-Smtp-Source: ABdhPJxc0Q0oudsWY8kJ5VVa7d0cqEeqY+pUycva3H9CPTYUGYu2f8LQbUnPclmgkKHMqKU2RsYxAg==
+X-Received: by 2002:a17:906:2755:: with SMTP id a21mr16994478ejd.374.1612172219963;
+        Mon, 01 Feb 2021 01:36:59 -0800 (PST)
+Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id g2sm7646132ejk.108.2021.02.01.01.36.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Feb 2021 01:36:59 -0800 (PST)
+Subject: Re: [PATCH v2 00/12] arm64: dts: zynqmp: DT updates to match latest
+ drivers
+To:     Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org, git@xilinx.com
+Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <cover.1611224800.git.michal.simek@xilinx.com>
+From:   Michal Simek <monstr@monstr.eu>
+Message-ID: <adfb1adc-26c8-3d35-10ea-87da25674d36@monstr.eu>
+Date:   Mon, 1 Feb 2021 10:36:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <cover.1611224800.git.michal.simek@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gU3VuLCAyMDIxLTAxLTMxIGF0IDE0OjI3ICswMTAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3Rl
-Og0KPiANCj4gT24gMjIvMTIvMjAyMCAxNDo0MCwgV2VpeWkgTHUgd3JvdGU6DQo+ID4gVGhpcyBz
-ZXJpZXMgaXMgYmFzZWQgb24gdjUuMTAtcmMxLCBNVDgxOTIgZHRzIHY2WzFdIGFuZA0KPiA+IE1U
-ODE5MiBjbG9jayB2NiBzZXJpZXNbMl0uDQo+ID4gDQo+ID4gWzFdIGh0dHBzOi8vcGF0Y2h3b3Jr
-Lmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1tZWRpYXRlay9saXN0Lz9zZXJpZXM9MzczODk5DQo+
-ID4gWzJdIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1tZWRpYXRl
-ay9saXN0Lz9zZXJpZXM9NDA1Mjk1DQo+ID4gDQo+IA0KPiBbMV0gaXMgYWxyZWFkeSBtYWlubGlu
-ZS4gWW91IGNvdWxkIGFkZCB0aGlzIHBhdGNoIGFzIGEgbmV3IG9uZSB0byBbMl0uIEJ1dA0KPiBw
-bGVhc2UgdHJ5IHRvIGltcHJvdmUgdGhlIHNlcmllcywgYmVmb3JlIHNlbmRpbmcganVzdCBhIG5l
-dyB2ZXJzaW9uIHdpdGggdGhpcw0KPiBwYXRjaCBhZGRlZC4NCj4gDQo+IFJlZ2FyZHMsDQo+IE1h
-dHRoaWFzDQo+IA0KSGkgTWF0dGhpYXMsDQoNCkFjdHVhbGx5IEknbSBhIGxpdHRsZSBjb25mdXNl
-ZCBub3cuIFN0ZXBoZW4gc3VnZ2VzdGVkIG1lIHRvIHNlbmQgY2xvY2sNCmR0cyBzZXBhcmF0ZWx5
-IGJlY2F1c2UgZHRzIG1heSBub3QgZ28gdGhyb3VnaCBoaXMgdHJlZS4NClNvIEkgc2VwYXJhdGVk
-IGl0IGZyb20gdGhlIE1UODE5MiBjbG9jayBzZXJpZXMgc2luY2UgY2xvY2sgdjYuDQpXaGF0IGRv
-IHlvdSBzdWdnZXN0IG1lIHRvIGRvIG5leHQgdGltZT8NCg0KPiA+IFdlaXlpIEx1ICgyKToNCj4g
-PiAgIGFybTY0OiBkdHM6IG1lZGlhdGVrOiBBZGQgbXQ4MTkyIGNsb2NrIGNvbnRyb2xsZXJzDQo+
-ID4gICBhcm02NDogZHRzOiBtZWRpYXRlazogQ29ycmVjdCBVQVJUMCBidXMgY2xvY2sgb2YgTVQ4
-MTkyDQo+ID4gDQo+ID4gIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTkyLmR0c2kg
-fCAxNjUgKysrKysrKysrKysrKysrKysrKysrKy0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDE2NCBp
-bnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+ID4gDQoNCg==
+
+
+On 1/21/21 11:26 AM, Michal Simek wrote:
+> Hi,
+> 
+> I am sending this series to reflect the latest drivers which have been
+> merged to mainline kernel. I have boot it on zcu102-rev1.0 and also
+> zcu104-rev1.0. That's why I have also added DT for this newer revision.
+> 
+> The series is based on https://github.com/Xilinx/linux-xlnx/tree/zynqmp/dt.
+> And mio-bank patch requires update in dt-binding which has been posted here
+> https://lore.kernel.org/r/5fa17dfe4b42abefd84b4cbb7b8bcd4d31398f40.1606914986.git.michal.simek@xilinx.com
+> 
+> Thanks,
+> Michal
+> 
+> Changes in v2:
+> - Remove reset description for IPs from this patch. IPs will be enabled
+>   separately with DT binding update.
+> - Change patch subject
+> 
+> Michal Simek (12):
+>   arm64: dts: zynqmp: Fix u48 si5382 chip on zcu111
+>   arm64: dts: zynqmp: Add DT description for si5328 for zcu102/zcu106
+>   arm64: dts: zynqmp: Enable si5341 driver for zcu102/106/111
+>   arm64: dts: zynqmp: Enable reset controller driver
+>   arm64: dts: zynqmp: Enable phy driver for Sata on zcu102/zcu104/zcu106
+>   arm64: dts: zynqmp: Add label for zynqmp_ipi
+>   arm64: dts: zynqmp: Add missing mio-bank properties to sdhcis
+>   arm64: dts: zynqmp: Wire arasan nand controller
+>   arm64: dts: zynqmp: Wire zynqmp qspi controller
+>   arm64: dts: zynqmp: Add missing lpd watchdog node
+>   arm64: dts: zynqmp: Add missing iommu IDs
+>   arm64: dts: zynqmp: Add description for zcu104 revC
+> 
+>  arch/arm64/boot/dts/xilinx/Makefile           |   1 +
+>  .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  12 +
+>  .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    |   2 +
+>  .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    |  84 +++++-
+>  .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    |  29 ++
+>  .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 282 ++++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    |  78 +++++
+>  .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    |  59 +++-
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  94 +++++-
+>  9 files changed, 637 insertions(+), 4 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> 
+
+Applied all.
+
+Thanks,
+Michal
+
+-- 
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
 
