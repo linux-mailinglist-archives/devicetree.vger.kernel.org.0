@@ -2,119 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B3430A48A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 10:42:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 624EC30A494
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 10:45:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232917AbhBAJln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 04:41:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51482 "EHLO
+        id S232772AbhBAJph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 04:45:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232921AbhBAJlg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 04:41:36 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91F3C061573
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 01:40:55 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id df22so2101852edb.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 01:40:55 -0800 (PST)
+        with ESMTP id S232706AbhBAJpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 04:45:36 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1286C06174A
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 01:44:55 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id d2so18095512edz.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 01:44:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=hIUPWGL9LOU/zPCO63a7e5ubCBpwA6j8jBe7AJ0YMCY=;
-        b=rLHbgqVkEul68rFEzQezpbE34F6ih6YVsgGrPQ43VjQa2hNVraIyB1ZVpKXt+sey5l
-         vH76AX1VAfKJw2g6GjzRfz5ijYZD3kZn+q9P8mbjLuzNRnlSIEnOWJC3Q+lIjgJxDuWV
-         KmcIL8Y9TVDOR0VBYdZdBsG1QCxmJKAZ3jMlRLziYarBEHORK6ksk9mO31xgnpyOXdNQ
-         PYDtwY6LtFqpm6zc//jORlupXq2sEeWeLLDOZ9poqzvpQdqKSRk8BS7T1wXa/J82rTIa
-         h4FtDI450iUoSD9lV1ZCsKLhybboUCizgCFcNJM0VOPQwBPWgUyJYdvUZ30/y78UhlSM
-         HSKw==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=x5sHWC9y/Hj/k3MjCweTDVJloPdNZBgsHShhsKDRTSM=;
+        b=R8ksIxKy5SfvjU41UH/PxeyxXtcr4TiVkAZxtCsyaU7KuPxitA78UfQHfgMzb+qX9q
+         pL1vHh7wOuipUUTmogr53O3lMNtd60IXHOqLfumDJ5qmME5MV3F2fOCOncE1Q1oa/qDz
+         FEyAVRvi+fuvfoj2B7XcD/bBcKfSaLjLeuq1D5eNkh2k1+jjjAWiqQhd7wtaqQOHoexh
+         RGpCL2k7dhyYYENh8p9Zmv5wW3fOpqNNBKEwRSlJsCX704YkbwsrGNkOFYsIkF25zK6Q
+         A6H0jOZq3ikXZSr35HZnOqqu7QoHbJijhp9NjN1DZU3RolZHOY8Agt7FhOjVoO+ifzNO
+         yTQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=hIUPWGL9LOU/zPCO63a7e5ubCBpwA6j8jBe7AJ0YMCY=;
-        b=iX8CQWU/Gc2V1AqT1JMMAuAlhdPjh9KmCYDum6CrqyY+WtOMYfQ4xAkOtmSt8i3/J+
-         S8pEqUmVfzJkBXUoJmP6ipP/wrt400/CrNeN3svYQQEIiGxvcDR8xqtlCBi1OKdYFF09
-         Z+/gQBZ6e+LZJ28U7RkOb3XvB1RFPhP+t/BSIlHgwUkOYv7II+BH0YzUNXX8x5n/2kAl
-         jWLO6VNPACcSwJdDiHcAmty1JU6ab3EEwh6vj9wiKmdfi0Mw+w7MJWpPhApraMzH+6yo
-         Wk7BqCCjPxUgjeGkjZoDdRWsXyFDgAJbyn5FflhuqqE1Di62TpOJ6NEFZ7xccjN/w3jt
-         8olQ==
-X-Gm-Message-State: AOAM531sIFkCebiglNDOFcFUXQ1EnEaF0mpXFCuHzoqxl1ZzENDfRxTs
-        xCgXIsp9GyHcW3gmX6najDc3JQ==
-X-Google-Smtp-Source: ABdhPJxWu2QunWYUgAcW1ur5IvAp69p7d1VmB/yHSW0iPnJqIW1cuI7d5j1graYwBbWO7IuD7EbPUw==
-X-Received: by 2002:aa7:ca55:: with SMTP id j21mr17489370edt.172.1612172454672;
-        Mon, 01 Feb 2021 01:40:54 -0800 (PST)
-Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id q4sm7788556ejx.8.2021.02.01.01.40.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Feb 2021 01:40:53 -0800 (PST)
-Subject: Re: [PATCH 0/3] arm64: dts: zynqmp: Enable and Wire DP
-To:     Michal Simek <michal.simek@xilinx.com>,
-        linux-kernel@vger.kernel.org, git@xilinx.com
-Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1611232558.git.michal.simek@xilinx.com>
-From:   Michal Simek <monstr@monstr.eu>
-Message-ID: <06015f0f-dece-a3e5-66d4-814069af4449@monstr.eu>
-Date:   Mon, 1 Feb 2021 10:40:53 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=x5sHWC9y/Hj/k3MjCweTDVJloPdNZBgsHShhsKDRTSM=;
+        b=B7iyCRZsHs4cw2U5XuIDN/6JTlewIr1E2pYzQ8/mo+eC0xy5+vSEnn4aXYIdrIczRY
+         3F6OpxvrC4Op+AqhyuYaEJjNabAXDXjekmIFjTte6VqwXOF5Ru8RZkrNAwBRGjTCSaTo
+         yK6565diiOkKhRgHw/Zl3M9y9XJTkuoH0hiE1JXoesaydz25gOzuNrZOZRsjFY6n4/aX
+         vkDKVusspOmytVzaoQDou1/Ua3a0fMECmU0YZxO/JdRg0a5tLdpLVm99jYYqjUZtCkFT
+         t32oOTtFiYUxDw1mw1KitCa4P60jq4zLcsPBBde0i8bH5s2FpHWA2R7ct38dDvqeSu6u
+         MzkQ==
+X-Gm-Message-State: AOAM533DBXh3aYpVdlBIGOtNRXDYfOqYO8iNozgKv06OUGFkmPTi0EpQ
+        KvYPW6uAreG3Ox47tlu71sLhwK1RPnwYLW09sgx3KA==
+X-Google-Smtp-Source: ABdhPJxS2V+wmAKY/bIXVLBw6Tmt56CjvJHtjUWVkFY0SZrhceTrae2S21BcutZkTmqoTuqaccPqzSNqjCC+JSy0oLk=
+X-Received: by 2002:a05:6402:3508:: with SMTP id b8mr17994271edd.341.1612172694552;
+ Mon, 01 Feb 2021 01:44:54 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <cover.1611232558.git.michal.simek@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210127000303.436595-1-drew@beagleboard.org>
+In-Reply-To: <20210127000303.436595-1-drew@beagleboard.org>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Mon, 1 Feb 2021 10:44:43 +0100
+Message-ID: <CAMpxmJUqAMKHsc6_HRhps6KgmcqDtQK=fDKiyAEaNMbZMM1CBg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: am335x-pocketbeagle: unique gpio-line-names
+To:     Drew Fustini <drew@beagleboard.org>
+Cc:     Benoit Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Jan 27, 2021 at 1:04 AM Drew Fustini <drew@beagleboard.org> wrote:
+>
+> Based on linux-gpio discussion [1], it is best practice to make the
+> gpio-line-names unique. Generic names like "[ethernet]" are replaced
+> with the name of the unique signal on the AM3358 SoC ball corresponding
+> to the gpio line. "[NC]" is also renamed to the standard "NC" name to
+> represent "not connected".
+>
+> [1] https://lore.kernel.org/linux-gpio/20201216195357.GA2583366@x1/
+>
+> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> ---
 
-On 1/21/21 1:36 PM, Michal Simek wrote:
-> Hi,
-> 
-> I am updating DT patches which were there part of DP v11 series sent by
-> Laurent in past [1]. Patches have been removed in v12 [2].
-> The series is rebased on the top of [3] which wired si5341 clock chip.
-> 
-> [1] http://lore.kernel.org/r/20200318153728.25843-1-laurent.pinchart@ideasonboard.com
-> [2] http://lore.kernel.org/r/20200718001347.25451-1-laurent.pinchart@ideasonboard.com
-> [3] http://lore.kernel.org/r/cover.1611224800.git.michal.simek@xilinx.com
-> 
-> Thanks,
-> Michal
-> 
-> 
-> Laurent Pinchart (2):
->   arm64: dts: zynqmp: Add DPDMA node
->   arm64: dts: zynqmp: Wire up the DisplayPort subsystem
-> 
-> Michal Simek (1):
->   arm64: dts: zynqmp: Add DisplayPort subsystem
-> 
->  .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 10 ++++++
->  .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 31 ++++++++++++++++++
->  .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 10 ++++++
->  .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 11 +++++++
->  .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 11 +++++++
->  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 11 +++++++
->  .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 11 +++++++
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 32 +++++++++++++++++++
->  8 files changed, 127 insertions(+)
-> 
-
-Applied all.
-
-Thanks,
-Michal
-
--- 
-Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
-w: www.monstr.eu p: +42-0-721842854
-Maintainer of Linux kernel - Xilinx Microblaze
-Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
-U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
-
+Reviewed-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
