@@ -2,86 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B59830A4E0
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 11:03:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F41F30A52D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 11:15:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233014AbhBAKDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 05:03:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56216 "EHLO
+        id S233085AbhBAKPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 05:15:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233009AbhBAKDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 05:03:36 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45F0C061797;
-        Mon,  1 Feb 2021 02:02:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
-        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-        Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=fdKIVx24GymoqMQrx5hQK9PTn9IKYCcOrSnM24L/ylo=; b=oJglRTJAPZuHahZ2zawS2mq2V8
-        8Px+KYMt4viAX6nWB/pEfxbEbIR0nIqDCMpTNUkHBgQP52sPoM8M+gTxZgwpbcJA+eM18bYNhs6jT
-        DNUGu/wTGcbOtCUDEIValj6phRiDjAmbB3ZxUb/4dI4Z4BOp3wY0AS96+NIyJDtbmnKnTi6FRoIpg
-        OddARo6C2K61gv3/uilnccjwpnYiD0oeQYkGFg/dQYnmvRuKrY2uDkKEesAo2ApYtLCmjHLSZMuqq
-        ZBCYqoLC36W+QZy63N5L9JLuiboEhuB9Tfj9p70AfVnjnfn6/b3Wqp3pKP+f/PdVLQDuYD41NZAjZ
-        0luMwijQ==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:41434 helo=rmk-PC.armlinux.org.uk)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1l6W2G-00039W-6o; Mon, 01 Feb 2021 10:02:20 +0000
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1l6W2G-0002Ga-0O; Mon, 01 Feb 2021 10:02:20 +0000
-From:   Russell King <rmk+kernel@armlinux.org.uk>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH RESEND] dt-bindings: ethernet-controller: fix fixed-link
- specification
+        with ESMTP id S232994AbhBAKPn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 05:15:43 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DECBBC061574;
+        Mon,  1 Feb 2021 02:15:02 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id d16so15878391wro.11;
+        Mon, 01 Feb 2021 02:15:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ANsARq6fL07NGibn8cbk7oUpbzEAXo/i2Ol65lcGXGk=;
+        b=auV2FdGYh4MkV590dDE95x07nWp+vQjkQhprR0m03LfdKoR6gqTNf/rdCs03rgO3P3
+         5dRPyI0yeutlaDLKS+KOUEIvTHP3j/fAC3lGmwbM4DXDC6wk7B/36RhA6PJNgy0WpdcC
+         DS1DQWajtK4tl5W1oCYLX1sV/N6YtnKgXeiVyczFQuRyYs0l7PD7UEeVb/BHZ53i5xfi
+         YRSCkQcuvj6/rPuA1cK4h+n0/TUgW8HNG/7w6Rw3tX0Iq1cqs/VcmZAuXEnrl5kQgtVZ
+         rtmfkTYNN0qq3BjqP81vzpTeu56W1Wdsd/84ThscRZulmNU6swRBslleHxnSOKRzdLi1
+         HLkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ANsARq6fL07NGibn8cbk7oUpbzEAXo/i2Ol65lcGXGk=;
+        b=md9KixQTPUuoOZgESFRZloPY7Fv9QBPMRnWp/b1rHxloYZelD0PXse1Bw0dPxLMm/q
+         wEsqaYVYeIWJaXHnOVM6kQi5zn6XXMX0Nmk9LC1dw6arxXG8LiyOTLwMexUBrQtQzdjq
+         Js4OWRAONtJme3rr3SWnvcSsU4V6vxxzUkr4ma1nbuS/XA6MRuzI1JQ9h61F2877kJGi
+         j/uwTkZMALlpF7jCtwbRVCOb5mqQ3QFphkPKzB6xDkUavdcQNMD76gk7x5m8ChHA+8Dz
+         DXA9Gl93VXamei3vTYjooPNVnKNDZFEOuEr+BBYSxaNUfdWwne8o/JRwL7zWsrHiabG2
+         UJRw==
+X-Gm-Message-State: AOAM532iTp4LEE/LJbkjIEEvxhKZKg7RgDNVoTXVP10xI+4KfTJpYLYn
+        EPSs/wrMfOsiVfhCUZHrhn0=
+X-Google-Smtp-Source: ABdhPJw2bUOgz+nMZFzakj6FRbaxaWpLQcIPs4OFTUfWc/C3daSngW+6ZM4wCuPndF5BEXIGMZjVag==
+X-Received: by 2002:a05:6000:192:: with SMTP id p18mr17067580wrx.69.1612174501673;
+        Mon, 01 Feb 2021 02:15:01 -0800 (PST)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id e12sm25284137wrs.67.2021.02.01.02.15.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Feb 2021 02:15:01 -0800 (PST)
+Subject: Re: [PATCH 0/2] Add MediaTek MT8192 clock provider device nodes
+To:     Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-clk@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <1608644414-17793-1-git-send-email-weiyi.lu@mediatek.com>
+ <4536e0a3-8e64-d2b0-df83-33705d10359a@gmail.com>
+ <1612171903.18201.6.camel@mtksdaap41>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <61667c50-edee-d9ef-0731-ce59e6c19995@gmail.com>
+Date:   Mon, 1 Feb 2021 11:15:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1l6W2G-0002Ga-0O@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date:   Mon, 01 Feb 2021 10:02:20 +0000
+In-Reply-To: <1612171903.18201.6.camel@mtksdaap41>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The original fixed-link.txt allowed a pause property for fixed link.
-This has been missed in the conversion to yaml format.
+Hi Weiyi,
 
-Fixes: 9d3de3c58347 ("dt-bindings: net: Add YAML schemas for the generic Ethernet options")
-Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
----
+On 01/02/2021 10:31, Weiyi Lu wrote:
+> On Sun, 2021-01-31 at 14:27 +0100, Matthias Brugger wrote:
+>>
+>> On 22/12/2020 14:40, Weiyi Lu wrote:
+>>> This series is based on v5.10-rc1, MT8192 dts v6[1] and
+>>> MT8192 clock v6 series[2].
+>>>
+>>> [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=373899
+>>> [2] https://patchwork.kernel.org/project/linux-mediatek/list/?series=405295
+>>>
+>>
+>> [1] is already mainline. You could add this patch as a new one to [2]. But
+>> please try to improve the series, before sending just a new version with this
+>> patch added.
+>>
+>> Regards,
+>> Matthias
+>>
+> Hi Matthias,
+> 
+> Actually I'm a little confused now. Stephen suggested me to send clock
+> dts separately because dts may not go through his tree.
+> So I separated it from the MT8192 clock series since clock v6.
+> What do you suggest me to do next time?
+> 
 
-Resending now that kernel.org is fixed.
+Yes, now that you mention that, I remember...
+OK, then I'd propose to resend the DTS patches once the clock patches are accepted.
 
- .../devicetree/bindings/net/ethernet-controller.yaml         | 5 +++++
- 1 file changed, 5 insertions(+)
+Regards,
+Matthias
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index fdf709817218..39147d33e8c7 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -206,6 +206,11 @@ title: Ethernet Controller Generic Binding
-                 Indicates that full-duplex is used. When absent, half
-                 duplex is assumed.
- 
-+            pause:
-+              $ref: /schemas/types.yaml#definitions/flag
-+              description:
-+                Indicates that pause should be enabled.
-+
-             asym-pause:
-               $ref: /schemas/types.yaml#definitions/flag
-               description:
--- 
-2.20.1
-
+>>> Weiyi Lu (2):
+>>>   arm64: dts: mediatek: Add mt8192 clock controllers
+>>>   arm64: dts: mediatek: Correct UART0 bus clock of MT8192
+>>>
+>>>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 165 ++++++++++++++++++++++-
+>>>  1 file changed, 164 insertions(+), 1 deletion(-)
+>>>
+> 
