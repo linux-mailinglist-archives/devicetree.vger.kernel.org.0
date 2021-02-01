@@ -2,80 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA2A9309FE3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 02:17:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FC06309FF1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 02:22:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229883AbhBABQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jan 2021 20:16:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbhBABQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 20:16:38 -0500
-Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD51C061573;
-        Sun, 31 Jan 2021 17:15:58 -0800 (PST)
-Received: by mail-vk1-xa2a.google.com with SMTP id a6so3577647vkb.8;
-        Sun, 31 Jan 2021 17:15:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MXqi7RWg583NTT5f0rgbVSyToBhnJlq1eY84ZndpFyI=;
-        b=T6KNUKebxfvEccYgPBK9Dpz6YVvEpYfR4gb4ZCRjrZiPUgX5VdF58tvsv1vu6rOK/S
-         /X4OtoFXV22ZscnfCtX1ZFv4u0Q4zWGFuw/9h2B1W2CUxh1E7rsyMkjGsU6VYTFkmg/Z
-         u/XTfYVADLpb6GSHSEnmqPg2jTfkVzAKDc607YC0mRZJXLCNUrMWClbV3B49FmmvihGy
-         0jW913aDUScV3KVUlpX+NGefBaqwKdIKNr1I4kbLApPyYt2jSM1/bnR+9n5ksUfvwCTq
-         KOPiEDbbNte05M147qBj+J0UoPh34EPRNl94Ak+KYU54p37MLWtll4kAjfeRbr+bIVYz
-         Y8RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MXqi7RWg583NTT5f0rgbVSyToBhnJlq1eY84ZndpFyI=;
-        b=lXigYoCoyaMp0E5doOFn1ATQkdhqSY5wAY8fvhj6haTmDYWSwPEm28Z4JBt3I5jISZ
-         6JXUCpz3EzDQ+ZnftZmM5eNKDNq1BUtkqfmF+hLGkPo5Wt9LzKhqMPyHfMkBpx/jUEHB
-         1fKRFoKhKcHL6RLSkOW1RQYgVGsTlWMWRARFYZb5o6iD7psf0ebamxklTENajBDETvs4
-         FANsvrpt1neQO8S9rQ3GpwmY+70mT2B3U2FS92m29NBrCbI0Cp+7zwKrUcCNpErCM01M
-         +P8P2L7qnR8TbmHGPqtHbkn619MVg0cqR+595KtTPtRMj1DRSsJyuB0gFhw91ELn/H8E
-         uOkA==
-X-Gm-Message-State: AOAM530xzq7hf0cjd6nVd5kE0Z7NZ7/F2cgj/VJOtgVOayPkKYgQ+foG
-        Gxh1w8QRfW8gCm7rVDaAW7CpjMZTTV0Csvg6JQhYABZH174=
-X-Google-Smtp-Source: ABdhPJz3w+HvZ2eDyNiWJZbsiVXIGRoNKk73QgL8EwWZHNoSD1Y5HLjPGXAFDCt2xYnTtl+4PMFc7yZek8rOfZwBDag=
-X-Received: by 2002:a1f:2651:: with SMTP id m78mr8157594vkm.18.1612142157635;
- Sun, 31 Jan 2021 17:15:57 -0800 (PST)
+        id S231168AbhBABV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jan 2021 20:21:27 -0500
+Received: from szxga07-in.huawei.com ([45.249.212.35]:12370 "EHLO
+        szxga07-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231149AbhBABTr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jan 2021 20:19:47 -0500
+Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4DTVRt2HX5z7dlT;
+        Mon,  1 Feb 2021 09:17:46 +0800 (CST)
+Received: from [127.0.0.1] (10.40.188.87) by DGGEMS407-HUB.china.huawei.com
+ (10.3.19.207) with Microsoft SMTP Server id 14.3.498.0; Mon, 1 Feb 2021
+ 09:18:52 +0800
+Subject: Re: [PATCH v12 10/10] iommu/arm-smmu-v3: Add stall support for
+ platform devices
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        <joro@8bytes.org>, <will@kernel.org>
+References: <20210127154322.3959196-1-jean-philippe@linaro.org>
+ <20210127154322.3959196-11-jean-philippe@linaro.org>
+CC:     <vivek.gautam@arm.com>, <guohanjun@huawei.com>,
+        <linux-acpi@vger.kernel.org>, <zhangfei.gao@linaro.org>,
+        <lenb@kernel.org>, <devicetree@vger.kernel.org>,
+        <kevin.tian@intel.com>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <rjw@rjwysocki.net>,
+        <iommu@lists.linux-foundation.org>, <sudeep.holla@arm.com>,
+        <robin.murphy@arm.com>, <linux-accelerators@lists.ozlabs.org>
+From:   Zhou Wang <wangzhou1@hisilicon.com>
+Message-ID: <8adc79cc-7afb-dfe8-4f7b-07fa6dc5b905@hisilicon.com>
+Date:   Mon, 1 Feb 2021 09:18:42 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.7.1
 MIME-Version: 1.0
-References: <AM5PR0802MB2498F95537E1FF0E5DEB36BEA9B79@AM5PR0802MB2498.eurprd08.prod.outlook.com>
-In-Reply-To: <AM5PR0802MB2498F95537E1FF0E5DEB36BEA9B79@AM5PR0802MB2498.eurprd08.prod.outlook.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sun, 31 Jan 2021 22:15:46 -0300
-Message-ID: <CAOMZO5D59FvmSuHVM0Xq092eF+D0jYK477ZFecA2apnT5zLj3Q@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx6qdl-wandboard: add scl/sda gpios
- definitions for i2c bus recovery
-To:     Dima Azarkin <azdmg@outlook.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Christian Hewitt <christianshewitt@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210127154322.3959196-11-jean-philippe@linaro.org>
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.40.188.87]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 31, 2021 at 12:55 PM Dima Azarkin <azdmg@outlook.com> wrote:
->
-> The i2c bus on imx6qdl-wandboard has intermittent issues where SDA can freeze
-> on low level at the end of transaction so the bus can no longer work. This
-> impacts reading of EDID data leading to incorrect TV resolution and no audio.
->
-> This scenario is improved by adding scl/sda gpios definitions to implement the
-> i2c bus recovery mechanism.
->
-> Signed-off-by: Dima Azarkin <azdmg@outlook.com>
+On 2021/1/27 23:43, Jean-Philippe Brucker wrote:
+> The SMMU provides a Stall model for handling page faults in platform
+> devices. It is similar to PCIe PRI, but doesn't require devices to have
+> their own translation cache. Instead, faulting transactions are parked
+> and the OS is given a chance to fix the page tables and retry the
+> transaction.
+> 
+> Enable stall for devices that support it (opt-in by firmware). When an
+> event corresponds to a translation error, call the IOMMU fault handler.
+> If the fault is recoverable, it will call us back to terminate or
+> continue the stall.
+> 
+> To use stall device drivers need to enable IOMMU_DEV_FEAT_IOPF, which
+> initializes the fault queue for the device.
+> 
+> Tested-by: Zhangfei Gao <zhangfei.gao@linaro.org>
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> ---
+>  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  43 ++++
+>  .../iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c   |  59 +++++-
+>  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   | 189 +++++++++++++++++-
+>  3 files changed, 276 insertions(+), 15 deletions(-)
+> 
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+[...]
+
+> @@ -1033,8 +1076,7 @@ int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain, int ssid,
+>  			FIELD_PREP(CTXDESC_CD_0_ASID, cd->asid) |
+>  			CTXDESC_CD_0_V;
+>  
+> -		/* STALL_MODEL==0b10 && CD.S==0 is ILLEGAL */
+> -		if (smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
+> +		if (smmu_domain->stall_enabled)
+
+Could we add ssid checking here? like: if (smmu_domain->stall_enabled && ssid).
+The reason is if not CD.S will also be set when ssid is 0, which is not needed.
+
+Best,
+Zhou
+
+>  			val |= CTXDESC_CD_0_S;
+>  	}
+>  
+> @@ -1278,7 +1320,7 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
+>  			 FIELD_PREP(STRTAB_STE_1_STRW, strw));
+>  
+>  		if (smmu->features & ARM_SMMU_FEAT_STALLS &&
+> -		   !(smmu->features & ARM_SMMU_FEAT_STALL_FORCE))
+> +		    !master->stall_enabled)
+>  			dst[1] |= cpu_to_le64(STRTAB_STE_1_S1STALLD);
+>  
+>  		val |= (s1_cfg->cdcfg.cdtab_dma & STRTAB_STE_0_S1CTXPTR_MASK) |
+
+[...]
+
