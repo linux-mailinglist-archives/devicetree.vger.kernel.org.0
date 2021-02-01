@@ -2,130 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E25730A2C0
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 08:37:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FD9830A351
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 09:33:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232209AbhBAHhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 02:37:02 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:33297 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229558AbhBAHhB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 02:37:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1612164934;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xIIyMdYX4ss9YyVUqtXNFUPDM8yR2OxXJHbAJpn06hc=;
-        b=efZjtEizggs2z14M4Xk9lvTNpy5aNQnzVTuWdVpWf1hHKvn/332BY6iUOkwW2+BaAJ3djt
-        ogDbTLvinIYVmziT4xelbr5ceP3eoqns66HlCpva3XmzE2m619Qnis9LaK71Dv45YdG0Mm
-        /Ejv62C4TJx4hO5xPJMvk5gh2KVge1w=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-412-O7QH08jgPK6rXsyzh-FQIw-1; Mon, 01 Feb 2021 02:35:30 -0500
-X-MC-Unique: O7QH08jgPK6rXsyzh-FQIw-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E113E10054FF;
-        Mon,  1 Feb 2021 07:35:26 +0000 (UTC)
-Received: from [10.36.113.43] (ovpn-113-43.ams2.redhat.com [10.36.113.43])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id C16335F705;
-        Mon,  1 Feb 2021 07:35:20 +0000 (UTC)
-Subject: Re: [PATCH v12 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from
- IOMMU_DEV_FEAT_SVA
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
-        will@kernel.org
-Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
-        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
-        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
-        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
-        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
-        Arnd Bergmann <arnd@arndb.de>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Zhou Wang <wangzhou1@hisilicon.com>
-References: <20210127154322.3959196-1-jean-philippe@linaro.org>
- <20210127154322.3959196-4-jean-philippe@linaro.org>
-From:   Auger Eric <eric.auger@redhat.com>
-Message-ID: <f706b2f8-fcd8-4b49-0f1b-5ee7ed996256@redhat.com>
-Date:   Mon, 1 Feb 2021 08:35:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S232440AbhBAIcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 03:32:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45360 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232285AbhBAIcX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Feb 2021 03:32:23 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 614CB64E34;
+        Mon,  1 Feb 2021 08:31:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612168302;
+        bh=J1P1joLDR0nqRCk/zFl2Cn6sO+3Nciht4h/kZRq/Wys=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=E/YY4r9v2WgviDwUNuAXIgg+TT+BcJ9BDjWOyw7aDgiF3W4uNjzgFv55WcfGM1km1
+         lMG/xTDB50GuvvCVL98jmcdAO4eAGLIHm8l1AymLDK9tNinm1ELTtlY4LQtPjLphjV
+         yY2jK7VCLMIZmr6J+K3fRcGNzVm/4ggOPTCJloZpiYc1Bc4Iq2Vw9CxyxxaMl80hJ2
+         /MuSyUr165gf99tPInWAnvQtQ06gk1tkuo+jGs6d57+bisYL2PbnMOv5mdN10w4iuF
+         hbYkiT+MFWBT7ls9rALWHkKFtmihawPkHTnyK5W91UtK1F1C7J1FFRSbdydI6kceHm
+         pLJCDTZ6/KK9A==
+Received: by mail-ot1-f46.google.com with SMTP id f6so15446702ots.9;
+        Mon, 01 Feb 2021 00:31:42 -0800 (PST)
+X-Gm-Message-State: AOAM533DxbqNPeWBOL7ku3Ru2Bn54E/TY7eziBILaW0zoiHAbN8g+tV8
+        mIpvyY1MY2Csdct+9eccFAfBxQ4GWDBj0yC5mHs=
+X-Google-Smtp-Source: ABdhPJz50h3GDHMu07uDYuvXiTFDDTml8zpx3oYtdZFPj3MP5bRTMMhCZRCDQlO05lqBYoDZe2WyGcDvWxa0qMukpPk=
+X-Received: by 2002:a9d:3bb7:: with SMTP id k52mr11523053otc.251.1612168301459;
+ Mon, 01 Feb 2021 00:31:41 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210127154322.3959196-4-jean-philippe@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+References: <20210201033601.1642-1-thunder.leizhen@huawei.com> <20210201033601.1642-5-thunder.leizhen@huawei.com>
+In-Reply-To: <20210201033601.1642-5-thunder.leizhen@huawei.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 1 Feb 2021 09:31:25 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0=Aj0Ss3xbgh1ELyB+4d94ybugbza_xUqW_=yVsMwEqg@mail.gmail.com>
+Message-ID: <CAK8P3a0=Aj0Ss3xbgh1ELyB+4d94ybugbza_xUqW_=yVsMwEqg@mail.gmail.com>
+Subject: Re: [PATCH v6 4/4] ARM: Add support for Hisilicon Kunpeng L3 cache controller
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Russell King <rmk+kernel@arm.linux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean,
+On Mon, Feb 1, 2021 at 4:36 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
+>
+> Add support for the Hisilicon Kunpeng L3 cache controller as used with
+> Kunpeng506 and Kunpeng509 SoCs.
+>
+> These Hisilicon SoCs support LPAE, so the physical addresses is wider than
+> 32-bits, but the actual bit width does not exceed 36 bits. When the cache
+> operation is performed based on the address range, the upper 30 bits of
+> the physical address are recorded in registers L3_MAINT_START and
+> L3_MAINT_END, and ignore the lower 6 bits cacheline offset.
+>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 
-On 1/27/21 4:43 PM, Jean-Philippe Brucker wrote:
-> Some devices manage I/O Page Faults (IOPF) themselves instead of relying
-> on PCIe PRI or Arm SMMU stall. Allow their drivers to enable SVA without
-> mandating IOMMU-managed IOPF. The other device drivers now need to first
-> enable IOMMU_DEV_FEAT_IOPF before enabling IOMMU_DEV_FEAT_SVA. Enabling
-> IOMMU_DEV_FEAT_IOPF on its own doesn't have any effect visible to the
-> device driver, it is used in combination with other features.
-> 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
 
-Eric
+If you add one more thing:
 
-> ---
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: David Woodhouse <dwmw2@infradead.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Lu Baolu <baolu.lu@linux.intel.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
-> Cc: Zhou Wang <wangzhou1@hisilicon.com>
-> ---
->  include/linux/iommu.h | 20 +++++++++++++++++---
->  1 file changed, 17 insertions(+), 3 deletions(-)
-> 
-> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-> index b7ea11fc1a93..00348e4c3c26 100644
-> --- a/include/linux/iommu.h
-> +++ b/include/linux/iommu.h
-> @@ -156,10 +156,24 @@ struct iommu_resv_region {
->  	enum iommu_resv_type	type;
->  };
->  
-> -/* Per device IOMMU features */
-> +/**
-> + * enum iommu_dev_features - Per device IOMMU features
-> + * @IOMMU_DEV_FEAT_AUX: Auxiliary domain feature
-> + * @IOMMU_DEV_FEAT_SVA: Shared Virtual Addresses
-> + * @IOMMU_DEV_FEAT_IOPF: I/O Page Faults such as PRI or Stall. Generally
-> + *			 enabling %IOMMU_DEV_FEAT_SVA requires
-> + *			 %IOMMU_DEV_FEAT_IOPF, but some devices manage I/O Page
-> + *			 Faults themselves instead of relying on the IOMMU. When
-> + *			 supported, this feature must be enabled before and
-> + *			 disabled after %IOMMU_DEV_FEAT_SVA.
-> + *
-> + * Device drivers query whether a feature is supported using
-> + * iommu_dev_has_feature(), and enable it using iommu_dev_enable_feature().
-> + */
->  enum iommu_dev_features {
-> -	IOMMU_DEV_FEAT_AUX,	/* Aux-domain feature */
-> -	IOMMU_DEV_FEAT_SVA,	/* Shared Virtual Addresses */
-> +	IOMMU_DEV_FEAT_AUX,
-> +	IOMMU_DEV_FEAT_SVA,
-> +	IOMMU_DEV_FEAT_IOPF,
->  };
->  
->  #define IOMMU_PASID_INVALID	(-1U)
-> 
+> +static void l3cache_maint_common(u32 range, u32 op_type)
+> +{
+> +       u32 reg;
+> +
+> +       reg = readl_relaxed(l3_ctrl_base + L3_MAINT_CTRL);
+> +       reg &= ~(L3_MAINT_RANGE_MASK | L3_MAINT_TYPE_MASK);
+> +       reg |= range | op_type;
+> +       reg |= L3_MAINT_STATUS_START;
+> +       writel(reg, l3_ctrl_base + L3_MAINT_CTRL);
+> +
+> +       /* Wait until the hardware maintenance operation is complete. */
+> +       do {
+> +               cpu_relax();
+> +               reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
+> +       } while ((reg & L3_MAINT_STATUS_MASK) != L3_MAINT_STATUS_END);
+> +}
+> +
+> +static void l3cache_maint_range(phys_addr_t start, phys_addr_t end, u32 op_type)
+> +{
+> +       start = start >> L3_CACHE_LINE_SHITF;
+> +       end = ((end - 1) >> L3_CACHE_LINE_SHITF) + 1;
+> +
+> +       writel_relaxed(start, l3_ctrl_base + L3_MAINT_START);
+> +       writel_relaxed(end, l3_ctrl_base + L3_MAINT_END);
+> +
+> +       l3cache_maint_common(L3_MAINT_RANGE_ADDR, op_type);
+> +}
 
+As mentioned, I'd like to see a code comment that explains the use
+the of relaxed() vs non-relaxed MMIO accessors, as it will be impossible
+for a reader to later understand why you picked a mix of the two,
+and it also ensures that you have considered which one is the best
+option to use here and that your explanation matches what you do.
+
+Based on Russell's comments, I had expected that you would use
+only relaxed accessors, plus explicit barriers if you change it, matching
+what l2x0 does (l2x0 has to do it because of __l2c210_cache_sync(),
+while you don't have a sync callback and don't need to).
+
+      Arnd
