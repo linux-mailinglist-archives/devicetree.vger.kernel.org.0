@@ -2,67 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB88530A481
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 10:40:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6BF630A485
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 10:41:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232902AbhBAJjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 04:39:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51024 "EHLO
+        id S232658AbhBAJk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 04:40:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232855AbhBAJj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 04:39:28 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69EB6C061574
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 01:38:48 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id n6so18015636edt.10
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 01:38:48 -0800 (PST)
+        with ESMTP id S232392AbhBAJkZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 04:40:25 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E61AC061573
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 01:39:45 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id i8so6830146ejc.7
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 01:39:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Epj4AQG4WvwGi2xLXahHcUHICDObw7tCg8AgI8t3VgI=;
-        b=p8zwQV4ATTD7GNVFEBmk6Ma2pwsa+1whTuc+Ft0TSFhvpWwFvjQL8KuWG4rBrNhDbx
-         F1NLBR+rX8EZls2SxgP7Mx+se9uhFlXLB/8z4Y+QY0bflLTpQtj1KV1MS1HJSQs/wdhY
-         CCPZklDYdkpJ2kyI8dtTTfxQEiFXErWDkHi1M6F6BlJvBAE1CIhNwf//DovFSC/bmtj4
-         2HS6+0LftvJ2ZdbhKg3+ifcHOjyJP/v2+nWq+/ar92q0602RmkRFS3aycVzKtb7EL7X+
-         umA4TjXPJ5r/UjdBNCnoIj3jbzlfn6R4JoVcd9x2S0YWJkblT9FSTfKDPZh5tXZFg25a
-         RK5g==
+        bh=Ml9CmCDCZ1A5+J5cabQlM6Ecws0N9gFakvuKWo4Lb00=;
+        b=IKl/edvjf2zb+DRSP798cSaBU6+K2ELIcQnGaw1eH+EGM+ajUyX53X+JZq0Dsty674
+         09oDixqXZW/vyTTn1KyDU9nMwOyCXsBKc3ZQd+Cbcdldp4ZDN1CqSxYmedRIUu5nFNsh
+         qZzAwP5XuPnlPK6qnXJrOLPvYAzkLIFIjf7wy4pzF9c3tVL6QFDEknybCQQ5lEpH7Y/+
+         2QHkRF1WJeP/GCwRKxmcIEj6ldtRL1eTpCM8DnUEuMBaedJEbIrI5ZT4GFpdTvA4OVr9
+         gXNo8l67ZXNXnnJg0iCeHOgxW2opwBkD8t1RmK0XRuHQRb6Gfc+Wy8AI0gl/+VZfnsXk
+         areg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Epj4AQG4WvwGi2xLXahHcUHICDObw7tCg8AgI8t3VgI=;
-        b=LDwV69B8KcDbW75LP7shhk9O3YPlQiXMxTXMF9ck/8563TToaEJJA/GQDtEkl/cr2i
-         lCMfsmrBs3PKHP1DqxLu6SKV95jUuYM6K3/nGIqjO0fKf7BOXUuzuAvJRav7jAjmVMIl
-         G1j4mNfzPie441cuhkGOG7S6tXquUrJDMxBT1rAQzr3Cng22Rg7ckr2gaBsH5nBPlI3X
-         /29+oI2ofVE1PooISQaTRTj0rLTlB5gBElFTXA1WtjQDdtFw+GSXWrD04XZilt+40HOL
-         LvdshzM8EUhFy432MSvKtTqu7qGi1Ybt4NDxL5+35fH+7qdGoTaNJz71tdYH45OYilck
-         ErvQ==
-X-Gm-Message-State: AOAM530/60xgKjEAW5qJrzBn3FWxipJJ7GzEgZvSYmE7JcX8C+rgHRGJ
-        htQWEELOIqRB5Qfbw/UFwvE2ZA==
-X-Google-Smtp-Source: ABdhPJyuibrqgzBQU+AH4VM6Ttmr6ntQpC1enNHnjngJuemocFI4Uwoc5ktXKM0lICIginEzgOgfOg==
-X-Received: by 2002:aa7:cc98:: with SMTP id p24mr18470125edt.126.1612172327084;
-        Mon, 01 Feb 2021 01:38:47 -0800 (PST)
+        bh=Ml9CmCDCZ1A5+J5cabQlM6Ecws0N9gFakvuKWo4Lb00=;
+        b=C1KrsUJRk3gyhHUhmMCAP2sf+yXjMulNR1/8KxKBXYtpg/FYGiURx84D8K3vlJw2cd
+         4i3hx4X7InI1+Uj9Q+t2xyN9t/6Dgkt9aBmu9HqP4wG9ZnSk7r2GqI0k2j2fwz+wN5j7
+         bT7CZhBzkK1zc01DXygt0q1GcDzDXTGVRh/UJRswZpP+UzGilVvVz/+CP2/OKY12QVeE
+         ZnJCJYc5R16WWNcG/0BRjcK2uyhwbPBCu0TqwzkSFtYb5ZQj2ibx1opGGObzOsQZqp8r
+         DFV0seSTDIKQd5UFd1+w4JRQn6kQQ9eyy+jXkKnlPpeRz+AeduNQ2ndfMT8E2XyHy4CG
+         EQuA==
+X-Gm-Message-State: AOAM533AcnV4yqY0J/Hs6I62JnSMdvMpNUpn8mGLcEAYxUYsoOYuKk3Z
+        EGpdYLwTTOvDktW9DdOpwKIZQg==
+X-Google-Smtp-Source: ABdhPJytXHJHx14eIbmDgU7+Vf7pdCKDBOXecwQpgq5mCOZRz0eeiXBpGmuEvQkr0cgtFb71W1CAAg==
+X-Received: by 2002:a17:906:a082:: with SMTP id q2mr16935292ejy.483.1612172384255;
+        Mon, 01 Feb 2021 01:39:44 -0800 (PST)
 Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id p2sm1864160ejg.45.2021.02.01.01.38.46
+        by smtp.gmail.com with ESMTPSA id z13sm8391563edc.73.2021.02.01.01.39.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Feb 2021 01:38:46 -0800 (PST)
-Subject: Re: [PATCH v2 12/12] arm64: dts: zynqmp: Add description for zcu104
- revC
+        Mon, 01 Feb 2021 01:39:43 -0800 (PST)
+Subject: Re: [PATCH] dt-bindings: arm: Fix typo in zcu111 board
 To:     Michal Simek <michal.simek@xilinx.com>,
         linux-kernel@vger.kernel.org, git@xilinx.com
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1611224800.git.michal.simek@xilinx.com>
- <17f68c235ea1ce96c3293ca0cf3178951d6663f7.1611224800.git.michal.simek@xilinx.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <13d064fc4850f96904a04e330cea5295d3751e46.1611226560.git.michal.simek@xilinx.com>
 From:   Michal Simek <monstr@monstr.eu>
-Message-ID: <221f2d98-c171-78e2-ca45-948fd5128db1@monstr.eu>
-Date:   Mon, 1 Feb 2021 10:38:45 +0100
+Message-ID: <135ea840-6b7c-ac34-4c99-3b946c87171f@monstr.eu>
+Date:   Mon, 1 Feb 2021 10:39:43 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.0
 MIME-Version: 1.0
-In-Reply-To: <17f68c235ea1ce96c3293ca0cf3178951d6663f7.1611224800.git.michal.simek@xilinx.com>
+In-Reply-To: <13d064fc4850f96904a04e330cea5295d3751e46.1611226560.git.michal.simek@xilinx.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,328 +73,32 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 1/21/21 11:27 AM, Michal Simek wrote:
-> Xilinx ZynqMP zcu104 revC and newer board revisions have different i2c
-> structure compare to revA. The rest of the board is the same from software
-> perspective.
-> Also enable DMAs and QSPI.
+On 1/21/21 11:56 AM, Michal Simek wrote:
+> Trivial fix.
 > 
 > Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
 > 
-> Changes in v2: None
+>  Documentation/devicetree/bindings/arm/xilinx.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->  arch/arm64/boot/dts/xilinx/Makefile           |   1 +
->  .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 282 ++++++++++++++++++
->  2 files changed, 283 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-> 
-> diff --git a/arch/arm64/boot/dts/xilinx/Makefile b/arch/arm64/boot/dts/xilinx/Makefile
-> index 60f5443f3ef4..11fb4fd3ebd4 100644
-> --- a/arch/arm64/boot/dts/xilinx/Makefile
-> +++ b/arch/arm64/boot/dts/xilinx/Makefile
-> @@ -13,5 +13,6 @@ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-revA.dtb
->  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-revB.dtb
->  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-rev1.0.dtb
->  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revA.dtb
-> +dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revC.dtb
->  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu106-revA.dtb
->  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu111-revA.dtb
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-> new file mode 100644
-> index 000000000000..414f98f1831e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-> @@ -0,0 +1,282 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * dts file for Xilinx ZynqMP ZCU104
-> + *
-> + * (C) Copyright 2017 - 2020, Xilinx, Inc.
-> + *
-> + * Michal Simek <michal.simek@xilinx.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "zynqmp.dtsi"
-> +#include "zynqmp-clk-ccf.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/phy/phy.h>
-> +
-> +/ {
-> +	model = "ZynqMP ZCU104 RevC";
-> +	compatible = "xlnx,zynqmp-zcu104-revC", "xlnx,zynqmp-zcu104", "xlnx,zynqmp";
-> +
-> +	aliases {
-> +		ethernet0 = &gem3;
-> +		i2c0 = &i2c1;
-> +		mmc0 = &sdhci1;
-> +		rtc0 = &rtc;
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +		serial2 = &dcc;
-> +	};
-> +
-> +	chosen {
-> +		bootargs = "earlycon";
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x80000000>;
-> +	};
-> +
-> +	ina226 {
-> +		compatible = "iio-hwmon";
-> +		io-channels = <&u183 0>, <&u183 1>, <&u183 2>, <&u183 3>;
-> +	};
-> +
-> +	clock_8t49n287_5: clk125 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <125000000>;
-> +	};
-> +
-> +	clock_8t49n287_2: clk26 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <26000000>;
-> +	};
-> +
-> +	clock_8t49n287_3: clk27 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <27000000>;
-> +	};
-> +};
-> +
-> +&can1 {
-> +	status = "okay";
-> +};
-> +
-> +&dcc {
-> +	status = "okay";
-> +};
-> +
-> +&fpd_dma_chan1 {
-> +	status = "okay";
-> +};
-> +
-> +&fpd_dma_chan2 {
-> +	status = "okay";
-> +};
-> +
-> +&fpd_dma_chan3 {
-> +	status = "okay";
-> +};
-> +
-> +&fpd_dma_chan4 {
-> +	status = "okay";
-> +};
-> +
-> +&fpd_dma_chan5 {
-> +	status = "okay";
-> +};
-> +
-> +&fpd_dma_chan6 {
-> +	status = "okay";
-> +};
-> +
-> +&fpd_dma_chan7 {
-> +	status = "okay";
-> +};
-> +
-> +&fpd_dma_chan8 {
-> +	status = "okay";
-> +};
-> +
-> +&gem3 {
-> +	status = "okay";
-> +	phy-handle = <&phy0>;
-> +	phy-mode = "rgmii-id";
-> +	phy0: ethernet-phy@c {
-> +		reg = <0xc>;
-> +		ti,rx-internal-delay = <0x8>;
-> +		ti,tx-internal-delay = <0xa>;
-> +		ti,fifo-depth = <0x1>;
-> +		ti,dp83867-rxctrl-strap-quirk;
-> +	};
-> +};
-> +
-> +&gpio {
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-> +
-> +	tca6416_u97: gpio@20 {
-> +		compatible = "ti,tca6416";
-> +		reg = <0x20>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		/*
-> +		 * IRQ not connected
-> +		 * Lines:
-> +		 * 0 - IRPS5401_ALERT_B
-> +		 * 1 - HDMI_8T49N241_INT_ALM
-> +		 * 2 - MAX6643_OT_B
-> +		 * 3 - MAX6643_FANFAIL_B
-> +		 * 5 - IIC_MUX_RESET_B
-> +		 * 6 - GEM3_EXP_RESET_B
-> +		 * 7 - FMC_LPC_PRSNT_M2C_B
-> +		 * 4, 10 - 17 - not connected
-> +		 */
-> +	};
-> +
-> +	/* Another connection to this bus via PL i2c via PCA9306 - u45 */
-> +	i2c-mux@74 { /* u34 */
-> +		compatible = "nxp,pca9548";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		reg = <0x74>;
-> +		i2c@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0>;
-> +			/*
-> +			 * IIC_EEPROM 1kB memory which uses 256B blocks
-> +			 * where every block has different address.
-> +			 *    0 - 256B address 0x54
-> +			 * 256B - 512B address 0x55
-> +			 * 512B - 768B address 0x56
-> +			 * 768B - 1024B address 0x57
-> +			 */
-> +			eeprom: eeprom@54 { /* u23 */
-> +				compatible = "atmel,24c08";
-> +				reg = <0x54>;
-> +				#address-cells = <1>;
-> +				#size-cells = <1>;
-> +			};
-> +		};
-> +
-> +		i2c@1 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <1>;
-> +			clock_8t49n287: clock-generator@6c { /* 8T49N287 - u182 */
-> +				reg = <0x6c>;
-> +			};
-> +		};
-> +
-> +		i2c@2 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <2>;
-> +			irps5401_43: irps5401@43 { /* IRPS5401 - u175 */
-> +				compatible = "infineon,irps5401";
-> +				reg = <0x43>; /* pmbus / i2c 0x13 */
-> +			};
-> +			irps5401_44: irps5401@44 { /* IRPS5401 - u180 */
-> +				compatible = "infineon,irps5401";
-> +				reg = <0x44>; /* pmbus / i2c 0x14 */
-> +			};
-> +		};
-> +
-> +		i2c@3 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <3>;
-> +			u183: ina226@40 { /* u183 */
-> +				compatible = "ti,ina226";
-> +				#io-channel-cells = <1>;
-> +				reg = <0x40>;
-> +				shunt-resistor = <5000>;
-> +			};
-> +		};
-> +
-> +		i2c@5 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <5>;
-> +		};
-> +
-> +		i2c@7 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <7>;
-> +		};
-> +
-> +		/* 4, 6 not connected */
-> +	};
-> +};
-> +
-> +&qspi {
-> +	status = "okay";
-> +	flash@0 {
-> +		compatible = "m25p80", "jedec,spi-nor"; /* n25q512a 128MiB */
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		reg = <0x0>;
-> +	};
-> +};
-> +
-> +&rtc {
-> +	status = "okay";
-> +};
-> +
-> +&psgtr {
-> +	status = "okay";
-> +	/* nc, sata, usb3, dp */
-> +	clocks = <&clock_8t49n287_5>, <&clock_8t49n287_2>, <&clock_8t49n287_3>;
-> +	clock-names = "ref1", "ref2", "ref3";
-> +};
-> +
-> +&sata {
-> +	status = "okay";
-> +	/* SATA OOB timing settings */
-> +	ceva,p0-cominit-params = /bits/ 8 <0x18 0x40 0x18 0x28>;
-> +	ceva,p0-comwake-params = /bits/ 8 <0x06 0x14 0x08 0x0E>;
-> +	ceva,p0-burst-params = /bits/ 8 <0x13 0x08 0x4A 0x06>;
-> +	ceva,p0-retry-params = /bits/ 16 <0x96A4 0x3FFC>;
-> +	ceva,p1-cominit-params = /bits/ 8 <0x18 0x40 0x18 0x28>;
-> +	ceva,p1-comwake-params = /bits/ 8 <0x06 0x14 0x08 0x0E>;
-> +	ceva,p1-burst-params = /bits/ 8 <0x13 0x08 0x4A 0x06>;
-> +	ceva,p1-retry-params = /bits/ 16 <0x96A4 0x3FFC>;
-> +	phy-names = "sata-phy";
-> +	phys = <&psgtr 3 PHY_TYPE_SATA 1 1>;
-> +};
-> +
-> +/* SD1 with level shifter */
-> +&sdhci1 {
-> +	status = "okay";
-> +	no-1-8-v;
-> +	xlnx,mio-bank = <1>;
-> +	disable-wp;
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +};
-> +
-> +/* ULPI SMSC USB3320 */
-> +&usb0 {
-> +	status = "okay";
-> +	dr_mode = "host";
-> +};
-> +
-> +&watchdog0 {
-> +	status = "okay";
-> +};
+> diff --git a/Documentation/devicetree/bindings/arm/xilinx.yaml b/Documentation/devicetree/bindings/arm/xilinx.yaml
+> index ae0ef1bf7965..97e77b4e077c 100644
+> --- a/Documentation/devicetree/bindings/arm/xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/arm/xilinx.yaml
+> @@ -108,7 +108,7 @@ properties:
+>          items:
+>            - enum:
+>                - xlnx,zynqmp-zcu111-revA
+> -              - xlnx,zynqmp-zcu11-rev1.0
+> +              - xlnx,zynqmp-zcu111-rev1.0
+>            - const: xlnx,zynqmp-zcu111
+>            - const: xlnx,zynqmp
+>  
 > 
 
-As I said I applied this but also added revC to
-Documentation/devicetree/bindings/arm/xilinx.yaml to be listed.
-
-Thanks,
-Michal
+Applied.
+M
 
 -- 
 Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
@@ -401,7 +106,4 @@ w: www.monstr.eu p: +42-0-721842854
 Maintainer of Linux kernel - Xilinx Microblaze
 Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
 U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
-
-
-
 
