@@ -2,135 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2364C30A8E0
-	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 14:38:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A467E30A8F4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Feb 2021 14:41:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbhBANhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 08:37:51 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45848 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231405AbhBANhs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Feb 2021 08:37:48 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B026A64EA3;
-        Mon,  1 Feb 2021 13:37:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612186627;
-        bh=Ca6sILXG4fwyLv608fCB+3JeQwCE0JDKDmcvJPplyMU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kr3EddrrKwSTCkaYxO9jNkuvl767WrHxraPzTgsh4dCinF9nC9h87lejDgnzya/Ur
-         4pYiK/WYT3DZcpGcUEaxv16ICA8WV8K/zFA8ClVI+n1eGnkAah+rFP+77cYjpjG8hc
-         dS0I46/hqxrB6Lcq+If/Flrv0P6GQHEh2sls7pR/61KY5h0fY8QJzcfzXrNz6XuiwC
-         Dd4pQBy5IX78RJWVC+3aWfUqm4eYd3XvtftJ4rKGlDGcmXGJUihWXC/8xOm676x+Gz
-         t21RHf9rTVE+ADr+WAL42yx3ANpCerxEj2DOF5rfF9ZvzpEOHuEosMIR0VTVmT9vat
-         Roj3n/x8TXrDw==
-Received: by mail-wr1-f48.google.com with SMTP id c4so13887695wru.9;
-        Mon, 01 Feb 2021 05:37:06 -0800 (PST)
-X-Gm-Message-State: AOAM530XIFIykRBKZY+aH3HUKEVj1KTbJD8w9ix7bLiqtnCcfuHHn80H
-        P8VPqLG3KA1SXpP9VZERiAwPvp5UoT6d19OUFw==
-X-Google-Smtp-Source: ABdhPJwGbLbPXA9ztMTVXLGo0SWhr8NHgerLg6mdo4pyBi7dlYyviEPBb6aW4ApZKN9NnopTRVp50+8iSm8fx35JTCw=
-X-Received: by 2002:a5d:524a:: with SMTP id k10mr18325193wrc.394.1612186625106;
- Mon, 01 Feb 2021 05:37:05 -0800 (PST)
+        id S231587AbhBANk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 08:40:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46450 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231284AbhBANk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 08:40:56 -0500
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B65EDC061573;
+        Mon,  1 Feb 2021 05:40:15 -0800 (PST)
+Received: from hillosipuli.retiisi.eu (dbd4xkyj7wcfw2k22jcct-3.rev.dnainternet.fi [IPv6:2001:14ba:8f1:3400:fb90:892b:22d6:3885])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id DB8BD1B0039A;
+        Mon,  1 Feb 2021 15:40:10 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+        t=1612186811;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=OkI1JNtw0Xal9WHkoR/QpG6O9dg+7qJWczM5eRfGy7g=;
+        b=NONgVykmpdi7vvXK2PO4MjqG0OKypiZPV+ty4N01GBLCG4iy2h4fQjbZ9BE8WfCgcyFtqc
+        2n9T28JJGegO2qLTvcQADL4bILhyiPKp9TeGtnf6V7+BhERZRNGftimewd1l3gxW3PSQ/K
+        v3y0+5tgpE90Y1zZCJAEciscT+E5GKdXQRwF5ezIRqBH8ajYyjUTuDOj/2osenI/uC00k4
+        KVfbxGrK5iltbFX+P8+44Kbj1c70XBPVRVC0fsxPH4Fm8p3hfH+aW8BlZMm45SaXnpoZQp
+        6wINeSuaQMOLuOU52LUX5Y3adSes/T/+XmV8BOjIcSIW2NxN8mjsZ/Y+IDjfWA==
+Received: from valkosipuli.localdomain (valkosipuli.localdomain [IPv6:fd35:1bc8:1a6:d3d5::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id B63A6634C92;
+        Mon,  1 Feb 2021 15:39:55 +0200 (EET)
+Received: from localhost ([127.0.0.1] helo=valkosipuli.retiisi.org.uk)
+        by valkosipuli.localdomain with esmtp (Exim 4.92)
+        (envelope-from <sakari.ailus@iki.fi>)
+        id 1l6ZR1-0000hG-Tn; Mon, 01 Feb 2021 15:40:07 +0200
+Date:   Mon, 1 Feb 2021 15:40:07 +0200
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, todor.too@gmail.com,
+        mchehab@kernel.org, robh+dt@kernel.org, catalin.marinas@arm.com,
+        will@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com,
+        geert+renesas@glider.be, arnd@arndb.de, Anson.Huang@nxp.com,
+        michael@walle.cc, agx@sigxcpu.org, max.oss.09@gmail.com,
+        angelogioacchino.delregno@somainline.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+Subject: Re: [PATCH v3 10/22] media: camss: Add support for CSIPHY hardware
+ version Titan 170
+Message-ID: <20210201134007.GE3@valkosipuli.retiisi.org.uk>
+References: <20210127144930.2158242-1-robert.foss@linaro.org>
+ <20210127144930.2158242-11-robert.foss@linaro.org>
 MIME-Version: 1.0
-References: <20210131051058.3407985-1-hsinyi@chromium.org> <CAAOTY_9kOnYDs=_22qBV7kOM74zcfKaobN0wBZaXzx31KsrG5Q@mail.gmail.com>
-In-Reply-To: <CAAOTY_9kOnYDs=_22qBV7kOM74zcfKaobN0wBZaXzx31KsrG5Q@mail.gmail.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 1 Feb 2021 21:36:51 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__VKeP0Z-Up5gpaB9SwcCbwQdB5cHXfssQB77s_G1U63w@mail.gmail.com>
-Message-ID: <CAAOTY__VKeP0Z-Up5gpaB9SwcCbwQdB5cHXfssQB77s_G1U63w@mail.gmail.com>
-Subject: Re: [PATCH] drm/mediatek: enable dither function
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210127144930.2158242-11-robert.foss@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1612186811; a=rsa-sha256;
+        cv=none;
+        b=RyJQBLcGrJOWPEu11MLWf1AV/oztOT08Kz2Dlya9hefcHpvFLZo5b8SDGG7YjfPZO87eT1
+        QEnEzauOPfXiiTijuivyMbE3jG3OYHblOngw27Xj4Vf6h24Rpvf7QgBhq5rYng5iO+Cmhu
+        0VQE87Z7Seks7IUJq6frZSSg3A0uBMwVpzRmV59QNjjQmO3pp4s1YwVROkagoi0+Kx1xB7
+        2s10C0J+qYa2c0nYmKekWMGOxlTzYNJqnmJUP9pWAosS6+VRC8VxOcZhnPm2LfwxIGOq+s
+        /L4lk5poUEJqsHs6YEtl8gvYSQL3zH/TE9LEPHUqXIqWr7+tbGUxEPyYqPTMTQ==
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=lahtoruutu; t=1612186811;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=OkI1JNtw0Xal9WHkoR/QpG6O9dg+7qJWczM5eRfGy7g=;
+        b=LlPD+zgot2cSVqfLenc/LZaVyiQN7fGYOOhE+DChsJgMr6iMrj/DMIl8VZrVmRjjBmfRyz
+        QoAPyBpC8Bq0CyfbxJva+HU+O92v0kk78GdQZFnpPvu5YUEyAL1vt+ejSUABB1/5xCFE/q
+        sc/7yEifKWGje9LrBjPa+RsTpRP59a2W9xovihjctQWdR85DVvaP9kEEw6U58TkOXX8Lhc
+        Ee/tZdJzsIB2DWYgSZnG0NVqIebJ4WBk2wrko5b0bFJTHizKdoFe5c8JbaZJFGaMQOYmd5
+        ciSN7Ccg4utoXlCsFXrIDCfLW3CM7k43NR9f3gQiAgJZxf7qz5pV/jLOY/y1/g==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Hsin-Yi:
+Hi Robert,
 
-Chun-Kuang Hu <chunkuang.hu@kernel.org> =E6=96=BC 2021=E5=B9=B42=E6=9C=881=
-=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8812:20=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Hi, Hsin-Yi:
->
-> Hsin-Yi Wang <hsinyi@chromium.org> =E6=96=BC 2021=E5=B9=B41=E6=9C=8831=E6=
-=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=881:11=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> >
-> > Enable dither function to improve the display quality.
->
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
->
+On Wed, Jan 27, 2021 at 03:49:18PM +0100, Robert Foss wrote:
+> Add register definitions for version 170 of the Titan architecture
+> and implement support for the CSIPHY subdevice.
+> 
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> ---
+>  .../qcom/camss/camss-csiphy-3ph-1-0.c         | 182 ++++++++++++++++--
+>  .../media/platform/qcom/camss/camss-csiphy.c  |  66 +++++--
+>  drivers/media/platform/qcom/camss/camss.c     |  74 +++++++
+>  3 files changed, 290 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> index 97cb9de85031..8cf1440b7d70 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> @@ -47,6 +47,105 @@
+>  #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL6_SHOW_REV_ID	BIT(1)
+>  #define CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(n)	(0x8b0 + 0x4 * (n))
+>  
+> +#define CSIPHY_DEFAULT_PARAMS            0
+> +#define CSIPHY_LANE_ENABLE               1
+> +#define CSIPHY_SETTLE_CNT_LOWER_BYTE     2
+> +#define CSIPHY_SETTLE_CNT_HIGHER_BYTE    3
+> +#define CSIPHY_DNP_PARAMS                4
+> +#define CSIPHY_2PH_REGS                  5
+> +#define CSIPHY_3PH_REGS                  6
+> +
+> +struct csiphy_reg_t {
+> +	int32_t  reg_addr;
+> +	int32_t  reg_data;
+> +	int32_t  delay;
+> +	uint32_t csiphy_param_type;
+> +};
+> +
+> +static struct
 
-Applied to mediatek-drm-next [1], thanks.
+This should be const.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
+> +csiphy_reg_t lane_regs_sdm845[5][14] = {
+> +	{
+> +		{0x0004, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x002C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0034, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x001C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0014, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0028, 0x00, 0x00, CSIPHY_DNP_PARAMS},
+> +		{0x003C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0000, 0x91, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0008, 0x00, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+> +		{0x000c, 0x00, 0x00, CSIPHY_DNP_PARAMS},
+> +		{0x0010, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0038, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0060, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0064, 0x7F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +	},
+> +	{
+> +		{0x0704, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x072C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0734, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x071C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0714, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0728, 0x04, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x073C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0700, 0x80, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0708, 0x14, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+> +		{0x070C, 0xA5, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0710, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0738, 0x1F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0760, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0764, 0x7F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +	},
+> +	{
+> +		{0x0204, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x022C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0234, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x021C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0214, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0228, 0x00, 0x00, CSIPHY_DNP_PARAMS},
+> +		{0x023C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0200, 0x91, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0208, 0x00, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+> +		{0x020C, 0x00, 0x00, CSIPHY_DNP_PARAMS},
+> +		{0x0210, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0238, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0260, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0264, 0x7F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +	},
+> +	{
+> +		{0x0404, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x042C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0434, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x041C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0414, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0428, 0x00, 0x00, CSIPHY_DNP_PARAMS},
+> +		{0x043C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0400, 0x91, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0408, 0x00, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+> +		{0x040C, 0x00, 0x00, CSIPHY_DNP_PARAMS},
+> +		{0x0410, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0438, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0460, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0464, 0x7F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +	},
+> +	{
+> +		{0x0604, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x062C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0634, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x061C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0614, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0628, 0x00, 0x00, CSIPHY_DNP_PARAMS},
+> +		{0x063C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0600, 0x91, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0608, 0x00, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+> +		{0x060C, 0x00, 0x00, CSIPHY_DNP_PARAMS},
+> +		{0x0610, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0638, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0660, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +		{0x0664, 0x7F, 0x00, CSIPHY_DEFAULT_PARAMS},
+> +	},
+> +};
 
-> >
-> > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > ---
-> > Previous version:
-> > https://patchwork.kernel.org/project/linux-mediatek/patch/2021012909220=
-9.2584718-7-hsinyi@chromium.org/
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 9 +++++++--
-> >  1 file changed, 7 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/=
-drm/mediatek/mtk_drm_ddp_comp.c
-> > index c730029ac8fc7..0444b429daf00 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> > @@ -53,6 +53,7 @@
-> >  #define DITHER_EN                              BIT(0)
-> >  #define DISP_DITHER_CFG                                0x0020
-> >  #define DITHER_RELAY_MODE                      BIT(0)
-> > +#define DITHER_ENGINE_EN                       BIT(1)
-> >  #define DISP_DITHER_SIZE                       0x0030
-> >
-> >  #define LUT_10BIT_MASK                         0x03ff
-> > @@ -315,8 +316,12 @@ static void mtk_dither_config(struct device *dev, =
-unsigned int w,
-> >  {
-> >         struct mtk_ddp_comp_dev *priv =3D dev_get_drvdata(dev);
-> >
-> > -       mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->reg=
-s, DISP_DITHER_SIZE);
-> > -       mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, pri=
-v->regs, DISP_DITHER_CFG);
-> > +       mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->reg=
-s,
-> > +                     DISP_DITHER_SIZE);
-> > +       mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, pri=
-v->regs,
-> > +                     DISP_DITHER_CFG);
-> > +       mtk_dither_set_common(priv->regs, &priv->cmdq_reg, bpc, DISP_DI=
-THER_CFG,
-> > +                             DITHER_ENGINE_EN, cmdq_pkt);
-> >  }
-> >
-> >  static void mtk_dither_start(struct device *dev)
-> > --
-> > 2.30.0.365.g02bc693789-goog
-> >
-> >
-> > _______________________________________________
-> > Linux-mediatek mailing list
-> > Linux-mediatek@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
+-- 
+Sakari Ailus
