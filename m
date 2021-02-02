@@ -2,171 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3382130CE36
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 22:53:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D604630CE42
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 22:57:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233652AbhBBVvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 16:51:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38238 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233542AbhBBVvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 16:51:37 -0500
-Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1596EC0613D6
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 13:50:57 -0800 (PST)
-Received: by mail-oo1-xc32.google.com with SMTP id g46so5508770ooi.9
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 13:50:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0kAvPlYbK2MoK6J2M4VB8aAoYja4iRJVl217ecqHS/M=;
-        b=TdhEHCPKXXE10yUfrZQXXXYlAcYAm892Ap8QZ9AzljcQu07SHGtPQNNYh4Q/v8UYYk
-         PiG4j2T7NHoMqPB+c49sk0YENnztQlT9XqeQ2395hb6rY5IEs1hQT8325ZkpwjtnD0LD
-         Vwb8iIlhG8/SLn9tvFCsFcrmRKVpLkn2YwrhXeF78OkNw+se5xSHQHvNU3CsfgKG9FaV
-         YTj35hwZuOWUyAJZ5e+Wy5z+o3F8CMc15IB60Zzzt6x8lLw1w1pKyKKhuu8IZkoQbFq+
-         kbiLZzLsWUDfraAPh5zgKYN28vNYG5WxwNeNf7ab6//sWGlal65rbmmLgoKH++R2kUTK
-         8D2Q==
+        id S233739AbhBBVzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 16:55:49 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:38386 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232865AbhBBVzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 16:55:47 -0500
+Received: by mail-ot1-f53.google.com with SMTP id t25so11301000otc.5;
+        Tue, 02 Feb 2021 13:55:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0kAvPlYbK2MoK6J2M4VB8aAoYja4iRJVl217ecqHS/M=;
-        b=AMqdPkA67gq9uo0Rjp96INo+iTl1YTG91aJt/z5XklBoqM1Uzwhj0+g7E+8NB57DrY
-         xYbWr5KVAayEr8CLzngwMXJluOg6NYDGmN88PZ3pK/ZsA3ToeuFzUUWKL5uiokz5dSx9
-         GfBzXlNqPj+NmUT/POZMXjm7DkYSQZ5069b4U7i7psSCmttjzGBBBTlUcNDFDs41871o
-         1fuyTzyXwSlX1/NUDZDrxxBVMuyoJMrGMeM3iBHUDMiVaYSCWSNshKt7pYxCWZPhbRB7
-         mHjXOyJrXVQ7tiOcKVwW/CA/Y2XNM848U5vex3IF8xhFaLC/97ufrOX0gpkb8bVSxe/O
-         j5sA==
-X-Gm-Message-State: AOAM530il6AAuxOAPkmrGGFmSXB8SCf4rJR+pbQ+TptEOrJ++85C8bLi
-        ooMGV5oDOU9lYn3jjXaogURoJA==
-X-Google-Smtp-Source: ABdhPJyPMNl9tGCICri+o+7UQ3JI+A7lU6DMaekFZimyL5l1Ie99Gh7PA6f5Luaja14ryJABk3D06g==
-X-Received: by 2002:a4a:970b:: with SMTP id u11mr17039184ooi.79.1612302656147;
-        Tue, 02 Feb 2021 13:50:56 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c2sm19995ooo.17.2021.02.02.13.50.55
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4HUucybA4QgzC5/hQDmSLfk+25J4e0ac8M/zN4EUHzk=;
+        b=hL7e1bX4UAcD6CpfQNBeSNJa5Hjs8MdEnKhzCivKoSd6diufDcePpDe4D9wd6DzFnY
+         N6c2wSWtBmfcvMqXl4btKJsusOEPl49IKi6THFfzmTnHUP/9oUQDmbcIqj43/w3ZpN22
+         4dOXVjVXdq4TLhbl16qRLPnXNTGNzuPt9ANn8/HijGielvuZhPjXmbD0aIHmI79eYajh
+         0LesQeJLKhPJgWXUVn+qd7Ax4qYgBW13hSOT8a5PfisneDTfEmpcIM8mJKvQaKVa8+m+
+         8wnOdIjyBwlGkqxaFxVZXahMSaUN1KlR6Q2AkWkdcGPt0bLW2jnLKSjYYJNcgSy6wDw7
+         V3AQ==
+X-Gm-Message-State: AOAM532/eGcvbcoA+yiT6qL4hgWRxPt+zqat0nrpjxvRQEoe3CRsPTO3
+        pOCssh4CUy48nvbxH2xu3Jlzm+BINw==
+X-Google-Smtp-Source: ABdhPJxeNHgTDt4Xzc3tlv8hFa6zMHkBlTbBBvjyFGbC9FmxtJ3JsBwEuzWcZxEux+aDJfmcRl5r8Q==
+X-Received: by 2002:a05:6830:18c4:: with SMTP id v4mr16462695ote.358.1612302905513;
+        Tue, 02 Feb 2021 13:55:05 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id s33sm17621ooi.39.2021.02.02.13.55.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 13:50:55 -0800 (PST)
-Date:   Tue, 2 Feb 2021 15:50:53 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        Andy Gross <agross@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
- on RB5 platform
-Message-ID: <YBnJPWWQyRV4HtLa@builder.lan>
-References: <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org>
- <20210129215024.GA113900@bjorn-Precision-5520>
- <CAA8EJpoPsv5tfsaiJq4UnBYt3o+gJanWzy8aaZRK=V8yOk3mJQ@mail.gmail.com>
- <YBTYKLi81Cf65yUB@builder.lan>
- <CAA8EJprwBKbGrh-BjrzkQTxoboUi470wYcn-gTBHdNQ1Af7DKA@mail.gmail.com>
- <YBmsjDiKnpQjYeQh@builder.lan>
- <CAL_JsqJoKEVUs0f7rP87M3Wh6yVvB-bYi7vBprti8hoim3-e-A@mail.gmail.com>
+        Tue, 02 Feb 2021 13:55:04 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Michael Auchter <michael.auchter@ni.com>,
+        linux-iio@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: iio: dac: Fix AD5686 references
+Date:   Tue,  2 Feb 2021 15:55:03 -0600
+Message-Id: <20210202215503.114113-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJoKEVUs0f7rP87M3Wh6yVvB-bYi7vBprti8hoim3-e-A@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 02 Feb 15:37 CST 2021, Rob Herring wrote:
+The example and filename use 'adi,ad5686', but the schema doesn't
+document it. The AD5686 is also a SPI interface variant while all the
+documented variants have an I2C interface. So let's update all the
+references to AD5686 to AD5696.
 
-> On Tue, Feb 2, 2021 at 1:48 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > On Sat 30 Jan 10:14 CST 2021, Dmitry Baryshkov wrote:
-> >
-> > > On Sat, 30 Jan 2021 at 06:53, Bjorn Andersson
-> > > <bjorn.andersson@linaro.org> wrote:
-> > > >
-> > > > On Fri 29 Jan 16:19 CST 2021, Dmitry Baryshkov wrote:
-> > > >
-> > > > > On Sat, 30 Jan 2021 at 00:50, Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > > > >
-> > > > > > On Fri, Jan 29, 2021 at 06:45:21AM +0300, Dmitry Baryshkov wrote:
-> > > > > > > On 28/01/2021 22:26, Rob Herring wrote:
-> > > > > > > > On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
-> > > > > > > > <dmitry.baryshkov@linaro.org> wrote:
-> > > > > > > > >
-> > > > > > > > > Some Qualcomm platforms require to power up an external device before
-> > > > > > > > > probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
-> > > > > > > > > to be powered up before PCIe0 bus is probed. Add a quirk to the
-> > > > > > > > > respective PCIe root bridge to attach to the power domain if one is
-> > > > > > > > > required, so that the QCA chip is started before scanning the PCIe bus.
-> > > > > > > >
-> > > > > > > > This is solving a generic problem in a specific driver. It needs to be
-> > > > > > > > solved for any PCI host and any device.
-> > > > > > >
-> > > > > > > Ack. I see your point here.
-> > > > > > >
-> > > > > > > As this would require porting code from powerpc/spark of-pci code and
-> > > > > > > changing pcie port driver to apply power supply before bus probing happens,
-> > > > > > > I'd also ask for the comments from PCI maintainers. Will that solution be
-> > > > > > > acceptable to you?
-> > > > > >
-> > > > > > I can't say without seeing the code.  I don't know enough about this
-> > > > > > scenario to envision how it might look.
-> > > > > >
-> > > > > > I guess the QCA6390 is a PCIe device?  Why does it need to be powered
-> > > > > > up before probing?  Shouldn't we get a link-up interrupt when it is
-> > > > > > powered up so we could probe it then?
-> > > > >
-> > > > > Not quite. QCA6390 is a multifunction device, with PCIe and serial
-> > > > > parts. It has internal power regulators which once enabled will
-> > > > > powerup the PCIe, serial and radio parts. There is no need to manage
-> > > > > regulators. Once enabled they will automatically handle device
-> > > > > suspend/resume, etc.
-> > > > >
-> > > >
-> > > > So what you're saying is that if either the PCI controller or bluetooth
-> > > > driver probes these regulators will be turned on, indefinitely?
-> > > >
-> > > > If so, why do we need a driver to turn them on, rather than just mark
-> > > > them as always-on?
-> > > >
-> > > > What's the timing requirement wrt regulators vs WL_EN/BT_EN?
-> > >
-> > > According to the documentation I have, they must be enabled right
-> > > after enabling powering the chip and they must stay enabled all the
-> > > time.
-> > >
-> >
-> > So presumably just marking these things always-on and flipping the GPIO
-> > statically won't be good enough due to the lack of control over the
-> > timing.
-> >
-> > This really do look like a simplified case of what we see with the
-> > PCIe attached modems, where similar requirements are provided, but also
-> > the ability to perform a device specific reset sequence in case the
-> > hardware has locked up. I'm slightly worried about the ability of
-> > extending your power-domain model to handle the restart operation
-> > though.
-> 
-> I think this is an abuse of 'power-domains'. Just define the
-> regulators in both WiFi and BT nodes and have each driver enable them.
-> They're refcounted. If that's still not enough control over the power
-> sequencing, then create a 3rd entity to do it, but that doesn't need
-> to leak into DT. You already have all the information you need.
-> 
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc: Michael Auchter <michael.auchter@ni.com>
+Cc: linux-iio@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v2:
+- Rename instead of adding AD5686
 
-As Dmitry explained he still need to pull the two GPIOs high after
-enabling the regulators, but before scanning the PCI or serdev buses.
+ .../iio/dac/{adi,ad5686.yaml => adi,ad5696.yaml}       | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+ rename Documentation/devicetree/bindings/iio/dac/{adi,ad5686.yaml => adi,ad5696.yaml} (77%)
 
-I was thinking something along the lines you suggest, but I've not been
-able to come up with something that will guarantee the ordering of the
-events.
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
+similarity index 77%
+rename from Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+rename to Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
+index 8065228e5df8..56b0cda0f30a 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
+@@ -1,16 +1,16 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/iio/dac/adi,ad5686.yaml#
++$id: http://devicetree.org/schemas/iio/dac/adi,ad5696.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Analog Devices AD5686 and similar multi-channel DACs
++title: Analog Devices AD5696 and similar multi-channel DACs
+ 
+ maintainers:
+   - Michael Auchter <michael.auchter@ni.com>
+ 
+ description: |
+-  Binding for Analog Devices AD5686 and similar multi-channel DACs
++  Binding for Analog Devices AD5696 and similar multi-channel DACs
+ 
+ properties:
+   compatible:
+@@ -48,8 +48,8 @@ examples:
+       #address-cells = <1>;
+       #size-cells = <0>;
+ 
+-      ad5686: dac@0 {
+-        compatible = "adi,ad5686";
++      ad5696: dac@0 {
++        compatible = "adi,ad5696";
+         reg = <0>;
+         vcc-supply = <&dac_vref>;
+       };
+-- 
+2.27.0
 
-Regards,
-Bjorn
