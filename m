@@ -2,101 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5CCA30B66D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 05:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A206A30B687
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 05:34:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231726AbhBBEXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 23:23:11 -0500
-Received: from mail-pj1-f43.google.com ([209.85.216.43]:52970 "EHLO
-        mail-pj1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231301AbhBBEXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 23:23:01 -0500
-Received: by mail-pj1-f43.google.com with SMTP id q72so58208pjq.2;
-        Mon, 01 Feb 2021 20:22:46 -0800 (PST)
+        id S231630AbhBBEed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 23:34:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231301AbhBBEe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 23:34:29 -0500
+Received: from mail-qk1-x749.google.com (mail-qk1-x749.google.com [IPv6:2607:f8b0:4864:20::749])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2368FC061756
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 20:33:49 -0800 (PST)
+Received: by mail-qk1-x749.google.com with SMTP id y79so14512908qka.23
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 20:33:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=tOYAEf4gylyNqcFyFHPYOstSUX7x6x4Pk46wd4Wq7MY=;
+        b=cJRowJDPEh1zpt14Aur7j/uzBRdycqBeX8NMGh2Z1sBJOEtDJWxCAw0U4/dErXnxv8
+         DOOiEmDX9+GevZyR608ZsYoms0h6Mqo7yAb2C5JPKMsT5w7/hCsxue7BS6NcFXqaAQDr
+         yGiY4yOk+Sc9fuTMihToCaWo2q/W91QjIGVezxLHXaeAsUmVCsDqSdIXkfCxnsQ9WLUl
+         3UGKXkweaXJAsrY5FUoaehKhBR7ql8br+65ddJYL/eSdpWlDqgVCpNhu2KT+9nyVHZ+P
+         aB2JY6WJiH/84WJPMqlT7Q5U1ESmTxTu/NDADk1DM2MBa88D1omHZbH//S1tKANFffiP
+         ESmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qLUs6dprwk/r88yCau/IIGgMC7gpUHG2dSzSEIv5pXs=;
-        b=Ox2m3MzXu8u2namMxdMIgiKvv4hHvWTkEE8HXOLXj3Y8d4ahX51jnkCqpUEygo2ydu
-         Gf0ch/KVJI4bDZoVGY3ezggGqTN4HMQna6ctZ0MUyc5vDG+hGMf7+DIoWkm/oKwgvuGi
-         FNXH1ApjPJ1L7uKZxHzMTnWbQ1OZVOzPU8ncd1idcGKPi7au9rkD1kPKCMslhwV61TOh
-         echoTW+7Jh/tJ+4rXCuYG28nhDVt6ARNG4il55r24LRd7HYlq4im/OhQL/UCQCrPJcFb
-         II30WdzMBZ+S3BFl/I02vXaVQAV25MgcqGTuIidvaiZVbe7muNhxeAGdTv9wC4WuyM4V
-         NPQw==
-X-Gm-Message-State: AOAM531ezwlI5rIY+EkzQjHdJLDMHrxD6D8AYjkL/sJRsBfWQirw94SM
-        CmSjwqVPy0l4xLirYrTHXcs=
-X-Google-Smtp-Source: ABdhPJyoXB5vW1gOzmDFQ+nd9wk6Si/5vEg13RyfxPxS5OlEQc76b7P7cnLwSPEe1Sp1S8I57RTLsQ==
-X-Received: by 2002:a17:90a:a083:: with SMTP id r3mr2195143pjp.55.1612239740667;
-        Mon, 01 Feb 2021 20:22:20 -0800 (PST)
-Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
-        by smtp.gmail.com with ESMTPSA id c77sm10210424pfc.214.2021.02.01.20.22.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Feb 2021 20:22:19 -0800 (PST)
-Date:   Mon, 1 Feb 2021 20:22:19 -0800
-From:   Moritz Fischer <mdf@kernel.org>
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org, lars@metafoo.de,
-        linux-fpga@vger.kernel.org, mdf@kernel.org, ardeleanalex@gmail.com,
-        Dragos Bogdan <dragos.bogdan@analog.com>,
-        Mathias Tausen <mta@gomspace.com>
-Subject: Re: [PATCH v3 2/4] clk: clk-axiclkgen: add ZynqMP PFD and VCO limits
-Message-ID: <YBjTe8ioCb5DK+tt@epycbox.lan>
-References: <20210201151245.21845-1-alexandru.ardelean@analog.com>
- <20210201151245.21845-3-alexandru.ardelean@analog.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210201151245.21845-3-alexandru.ardelean@analog.com>
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=tOYAEf4gylyNqcFyFHPYOstSUX7x6x4Pk46wd4Wq7MY=;
+        b=lGxXmtygWY2zb6e210ZqxD0fRWe6hBUXHgyP+/RqZTxDzWJ2I/9NYBvRDDmhvXrd16
+         JCY5wgT0eANtKzG6olP9k8RaJ6POho3iqvUyVJNvuY5ET6HRY1CUWp10MAVDrxKK3KYc
+         EekwDtcP37qL3LX7tcslnKY/ntRaKzXCRKOC3DzW2kFBT651dJr4fCyhF6da/d7T1WMd
+         6kv7Ljo39OWqHyO0g7E6hOlJXsROgeypna4z+N/17Fo5TZo8p9xB7I0P6ZYZdCnSrDOG
+         eZEYp2t9zvJlwubuXDi62IqUN9/SoHgO5XIq13kM5nv/9Q0dUCZm/kPYQXdl1lhmbQBh
+         EJog==
+X-Gm-Message-State: AOAM532i4zW8B+LGNbA9Fci5Puj3fg4ZAKsaGZLxrcS7kxLTtzKQcGsy
+        3/sepoC1QTBruMipS/oluvaztyrEOJSWfbM=
+X-Google-Smtp-Source: ABdhPJy2LOQmHXIPtgM0yQzz8CguovvD9V0s5CEoUoEgjJjFKOuZbXrCgaR98OU20BdvteGPXIR5L+TeGYv4fKI=
+Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
+ (user=saravanak job=sendgmr) by 2002:a0c:ef87:: with SMTP id
+ w7mr18229527qvr.44.1612240428256; Mon, 01 Feb 2021 20:33:48 -0800 (PST)
+Date:   Mon,  1 Feb 2021 20:33:41 -0800
+Message-Id: <20210202043345.3778765-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
+Subject: [PATCH v2 0/3] Make fw_devlink=on more forgiving
+From:   Saravana Kannan <saravanak@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Martin Kaiser <martin@kaiser.cx>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 01, 2021 at 05:12:43PM +0200, Alexandru Ardelean wrote:
-> For ZynqMP (Ultrascale) the PFD and VCO limits are different. In order to
-> support these, this change adds a compatible string (i.e.
-> 'adi,zynqmp-axi-clkgen-2.00.a')  which will take into account for these
-> limits and apply them.
-> 
-> Signed-off-by: Dragos Bogdan <dragos.bogdan@analog.com>
-> Signed-off-by: Mathias Tausen <mta@gomspace.com>
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-Acked-by: Moritz Fischer <mdf@kernel.org>
-> ---
->  drivers/clk/clk-axi-clkgen.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/clk/clk-axi-clkgen.c b/drivers/clk/clk-axi-clkgen.c
-> index ad86e031ba3e..9d1b0fc56c73 100644
-> --- a/drivers/clk/clk-axi-clkgen.c
-> +++ b/drivers/clk/clk-axi-clkgen.c
-> @@ -108,6 +108,13 @@ static uint32_t axi_clkgen_lookup_lock(unsigned int m)
->  	return 0x1f1f00fa;
->  }
->  
-> +static const struct axi_clkgen_limits axi_clkgen_zynqmp_default_limits = {
-> +	.fpfd_min = 10000,
-> +	.fpfd_max = 450000,
-> +	.fvco_min = 800000,
-> +	.fvco_max = 1600000,
-> +};
-> +
->  static const struct axi_clkgen_limits axi_clkgen_zynq_default_limits = {
->  	.fpfd_min = 10000,
->  	.fpfd_max = 300000,
-> @@ -560,6 +567,10 @@ static int axi_clkgen_remove(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id axi_clkgen_ids[] = {
-> +	{
-> +		.compatible = "adi,zynqmp-axi-clkgen-2.00.a",
-> +		.data = &axi_clkgen_zynqmp_default_limits,
-> +	},
->  	{
->  		.compatible = "adi,axi-clkgen-2.00.a",
->  		.data = &axi_clkgen_zynq_default_limits,
-> -- 
-> 2.17.1
-> 
+This patch series solves two general issues with fw_devlink=on
+
+Patch 1/3 and 3/3 addresses the issue of firmware nodes that look like
+they'll have struct devices created for them, but will never actually
+have struct devices added for them. For example, DT nodes with a
+compatible property that don't have devices added for them.
+
+Patch 2/2 address (for static kernels) the issue of optional suppliers
+that'll never have a driver registered for them. So, if the device could
+have probed with fw_devlink=permissive with a static kernel, this patch
+should allow those devices to probe with a fw_devlink=on. This doesn't
+solve it for the case where modules are enabled because there's no way
+to tell if a driver will never be registered or it's just about to be
+registered. I have some other ideas for that, but it'll have to come
+later thinking about it a bit.
+
+Marek, Geert,
+
+I don't expect v2 to do any better for your cases.
+
+This series not making any difference for Marek is still a mystery to
+me. I guess one of the consumers doesn't take too well to its probe (and
+it's consumers' probe) being delayed till late_initcall(). I'll continue
+looking into it.
+
+Marc,
+
+This v2 should do better than v1 with gpiolib stub driver reverted. I
+forgot to take care of the case where more suppliers could link after I
+went and deleted some of the links. v2 handles that now.
+
+Tudor,
+
+You should still make the clock driver fix (because it's a bug), but I
+think this series will fix your issue too (even without the clock driver
+fix). Can you please give this a shot?
+
+Martin,
+
+If you tested this series, can you please give a Tested-by?
+
+Thanks,
+Saravana
+
+v1 -> v2:
+Patch 1: Added a flag to fwnodes that aren't devices.
+Patch 3: New patch to ise the flag set in patch 1 to not create bad links.
+
+Saravana Kannan (3):
+  driver core: fw_devlink: Detect supplier devices that will never be
+    added
+  driver core: fw_devlink: Handle missing drivers for optional suppliers
+  of: property: Don't add links to absent suppliers
+
+ drivers/base/base.h    |   2 +
+ drivers/base/core.c    | 135 +++++++++++++++++++++++++++++++++++------
+ drivers/base/dd.c      |   5 ++
+ drivers/of/property.c  |   4 +-
+ include/linux/fwnode.h |   2 +
+ 5 files changed, 127 insertions(+), 21 deletions(-)
+
+-- 
+2.30.0.365.g02bc693789-goog
+
