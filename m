@@ -2,67 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC51E30B65C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 05:19:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5F2330B664
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 05:22:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231156AbhBBETj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 23:19:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37668 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231649AbhBBETg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 23:19:36 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 153A4C06174A
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 20:18:56 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id e15so1117330wme.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 20:18:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=message-id:sender:from:mime-version:content-transfer-encoding
-         :content-description:subject:to:date:reply-to;
-        bh=PrILWatQiBB/YexVPvDZsH566iBzGTKnf23zrhwD0wk=;
-        b=iOKv5Sc1inl312FBxqy4hce/k/mxY/41yHUcB6BF1S2H50op20QGRNHsqcUKVT8KLG
-         mvWI2/iAAzh4WjvdbAk9N8Ympyy5ZXat9nSkfi63cV59F9w7CpFsEmwf5bx8iukHzZP1
-         ZJ1opzy94O6baSFZXSAUb9JMsbB3RQv75+C8IC91O0xmboNKA3pC0L0NJa8Lyp6LaT95
-         rt3ld8yqxbHKLjzGM3AOguAXgTx0Us32eStvvUVbdnmvA0dYPxqIzWsKGbe+HIziAzlf
-         L60rdROELrobxVJmjG+3LDJ+t/pN7yWEwvzklJOCzCTtnD4RRQVGBP0T83Dj2f+eJal0
-         K1Qg==
+        id S231545AbhBBEWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 23:22:19 -0500
+Received: from mail-pl1-f172.google.com ([209.85.214.172]:44708 "EHLO
+        mail-pl1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231488AbhBBEWS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 23:22:18 -0500
+Received: by mail-pl1-f172.google.com with SMTP id j11so9126470plt.11;
+        Mon, 01 Feb 2021 20:22:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:sender:from:mime-version
-         :content-transfer-encoding:content-description:subject:to:date
-         :reply-to;
-        bh=PrILWatQiBB/YexVPvDZsH566iBzGTKnf23zrhwD0wk=;
-        b=EVkJdzC+i2eO0Bq+kBDbPh+0qh91U4jCozkBCOweZ6oSzCNCrM732AyYMvCrUtRSQP
-         q/0TUuw0p9NQGLm3CXgXFHWxI1qlQdg5k5MoW3/e0mgt/nbf3PG88NGJIgpVNL0rOoW4
-         mIod4OkD2Xk8/oe2A/cDLIHRVpoiKZiRd1GM/1lf9MAN68wBVixuY2V0s52seGGCJ5Yq
-         KrY1hUhTq9bPQ+X7L/Vr7NVRojpn+fmMkvnm6q+oiv+eRiv96sOh0f+XDmKlrqMvf6RG
-         aTcwChsG993DfOacEofHOokd5nj+3NkPDZEcnhpHiwkfNOmzCToEwOIim5F2y+ZSVZbt
-         5Vhg==
-X-Gm-Message-State: AOAM53263HnaMGb12bOfC3QhdljJvR4QyNbwi7adcwPINIP4mEBij8wK
-        KAMy2JC1l621qWpCRVzjRg==
-X-Google-Smtp-Source: ABdhPJy/NoZ342bm3JKxqhAoXB4gLXaywqJi4V0LbjY5pzz9c9Ebp/nJLecIpR5roIP8Ee5dhFNB6A==
-X-Received: by 2002:a1c:1d8b:: with SMTP id d133mr1709819wmd.172.1612239534900;
-        Mon, 01 Feb 2021 20:18:54 -0800 (PST)
-Received: from [192.168.1.8] ([41.83.208.55])
-        by smtp.gmail.com with ESMTPSA id n193sm1306436wmb.0.2021.02.01.20.18.51
-        (version=TLS1 cipher=AES128-SHA bits=128/128);
-        Mon, 01 Feb 2021 20:18:54 -0800 (PST)
-Message-ID: <6018d2ae.1c69fb81.ccb08.54c6@mx.google.com>
-Sender: skylar anderson <courandoy37@gmail.com>
-From:   Skylar Anderson <sgt.skylaranderson200@gmail.com>
-X-Google-Original-From: Skylar Anderson
-Content-Type: text/plain; charset="iso-8859-1"
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SIwjUPSErfATOEPFPNdwWAOmlNousZElCyKYrK3KGNk=;
+        b=qFzZWN184E4OEg0gv/InX0dwzX7cdDBHe7XBVq2WkmXiTKR2Fl+lpK3XIjrS1C6cqH
+         IzLHl7FH2ON0JCk6hfWHdK+B3FJiIKent8fF3Qz4DVbKtVheeJEcQRd78HNMZyw0LXY5
+         uiWe1E5pYIS4XQvwe2mTE0PGNvIIrWxsR5g8q7l6mabv7RiUQ6uxppe82Ga859u41YJP
+         Wk7EbHj3mfqgSUG0WsRiV2HyQMf/dE3+/ACkCoewVjnUVD8XUkNDNbWFIS0InBV9Kzu4
+         FFE/EbDLUARk/zQZzJ22tBVWSaIzMcmAPTlbPHuT0IoSj4lf/XXZaSPyCJ9w8TeINswZ
+         6BHQ==
+X-Gm-Message-State: AOAM533o1zi1FToFhLPeB/WYjTkmus9o2kb0AypQNQ4a6573zNMBV9x5
+        oOFn539GI4JZi11HQyiGeCM=
+X-Google-Smtp-Source: ABdhPJw30pd+73XF9MrM9PnfYr5STVqRuH8wgVy84YQ4KZE1lBmvdRSlOWvy4U+KgeAPvX6L4w23xg==
+X-Received: by 2002:a17:90b:33ca:: with SMTP id lk10mr2227093pjb.186.1612239697173;
+        Mon, 01 Feb 2021 20:21:37 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
+        by smtp.gmail.com with ESMTPSA id bk18sm1036440pjb.41.2021.02.01.20.21.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Feb 2021 20:21:36 -0800 (PST)
+Date:   Mon, 1 Feb 2021 20:21:35 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org, lars@metafoo.de,
+        linux-fpga@vger.kernel.org, mdf@kernel.org, ardeleanalex@gmail.com,
+        Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: Re: [PATCH v3 1/4] clk: axi-clkgen: replace ARCH dependencies with
+ driver deps
+Message-ID: <YBjTT7pRUMxnuM9s@epycbox.lan>
+References: <20210201151245.21845-1-alexandru.ardelean@analog.com>
+ <20210201151245.21845-2-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: si
-To:     Recipients <Skylar@vger.kernel.org>
-Date:   Tue, 02 Feb 2021 04:18:48 +0000
-Reply-To: sgt.skylaranderson200@gmail.com
-X-Mailer: cdcaafe51be8cdb99a1c85906066cad3d0e60e273541515a58395093a7c4e1f0eefb01d7fc4e6278706e9fb8c4dad093c3263345202970888b6b4d817f9e998c032e7d59
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210201151245.21845-2-alexandru.ardelean@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-esto es urgente / can we talk this
+On Mon, Feb 01, 2021 at 05:12:42PM +0200, Alexandru Ardelean wrote:
+> The intent is to be able to run this driver to access the IP core in setups
+> where FPGA board is also connected via a PCIe bus. In such cases the number
+> of combinations explodes, where the host system can be an x86 with Xilinx
+> Zynq/ZynqMP/Microblaze board connected via PCIe.
+> Or even a ZynqMP board with a ZynqMP/Zynq/Microblaze connected via PCIe.
+> 
+> To accommodate for these cases, this change removes the limitation for this
+> driver to be compilable only on Zynq/Microblaze architectures.
+> And adds dependencies on the mechanisms required by the driver to work (OF
+> and HAS_IOMEM).
+> 
+> Signed-off-by: Dragos Bogdan <dragos.bogdan@analog.com>
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+Reviewed-by: Moritz Fischer <mdf@kernel.org>
+> ---
+>  drivers/clk/Kconfig | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 85856cff506c..cee1d4e657bc 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -247,7 +247,8 @@ config CLK_TWL6040
+>  
+>  config COMMON_CLK_AXI_CLKGEN
+>  	tristate "AXI clkgen driver"
+> -	depends on ARCH_ZYNQ || MICROBLAZE || COMPILE_TEST
+> +	depends on HAS_IOMEM || COMPILE_TEST
+> +	depends on OF
+>  	help
+>  	  Support for the Analog Devices axi-clkgen pcore clock generator for Xilinx
+>  	  FPGAs. It is commonly used in Analog Devices' reference designs.
+> -- 
+> 2.17.1
+> 
+
+Thanks,
+Moritz
