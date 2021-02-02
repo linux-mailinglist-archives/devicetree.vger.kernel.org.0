@@ -2,144 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F76430C8D5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 19:03:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7C2A30C8EF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 19:06:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237958AbhBBSBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 13:01:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43770 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238031AbhBBR4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 12:56:07 -0500
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B5DC061573
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 09:55:27 -0800 (PST)
-Received: by mail-io1-xd2f.google.com with SMTP id u17so22326969iow.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 09:55:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zAwwh+o0gGboolgQvMDHmCpsBwrqp4KIQmH6QKSvEDA=;
-        b=HRu4N2bONjad5pcAUw5hnjGJYNGH6MyOSIVsgEi+ZTAZtoBHOwefxCM+Nzr/0zdqbN
-         YKDK3CuFadGYjzkbKsXvyOF+yXJS7Inp7qqJuAQ1mE8wrJxCQ+SHlTH4sTHaM/WG/ikm
-         d1n7nsRi96wadeFiEqxZROC/Iry5gdXhFnQjg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zAwwh+o0gGboolgQvMDHmCpsBwrqp4KIQmH6QKSvEDA=;
-        b=TV3ho9WRQ70ivI9g+qGTLeeM1b5ysfR9IoWigkEKwFBJZ3G02whbSOEZQUrJ3pFt7L
-         48557z5H4xdA/VzVFasqRjWgvMeqJX/Wf+jnKuxRBuT0QE+KPxnNqQmX8RuhpCZln/+e
-         jD99quoKecNqyxHvBwTDXf0/Y4gVE2E5dOVAAjLCEaUBV03q85ZT0+ncq+Biz4nqJo7O
-         NOqYSuHGkiH/hCnPN5P89ihpYMR/7ZHOT4b2BSWQL1mNQUZLBlxhoFmGkzYRhKQj4RgM
-         h+Vvs/TuGXVBUHLnUdCUITiGU5dgubFDTxmA+vPVTxVW1yht9mRYmDTQ5SKBv1MOmQyM
-         lCaA==
-X-Gm-Message-State: AOAM531KXNIptMMIR25q24Vjbryae0ZESYRwxNbbR5BAMwGfppRwlsPj
-        +26XMhvgxmnMgOGKxym6kqqfR0nAOvcywPZ4sA7i
-X-Google-Smtp-Source: ABdhPJzLA3bGFttKBMX6Qt78WekVW5Pb5XFdYuYwpSZd/7Efhvn7Gwhipfk2lesixDKZc9FRHJFAkIlGHo3ZDNmJDpw=
-X-Received: by 2002:a05:6602:2d4d:: with SMTP id d13mr9367082iow.0.1612288527189;
- Tue, 02 Feb 2021 09:55:27 -0800 (PST)
+        id S233932AbhBBSFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 13:05:14 -0500
+Received: from foss.arm.com ([217.140.110.172]:54812 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233934AbhBBSDK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 13:03:10 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F2F92ED1;
+        Tue,  2 Feb 2021 10:02:22 -0800 (PST)
+Received: from [10.57.49.26] (unknown [10.57.49.26])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5CCAC3F73B;
+        Tue,  2 Feb 2021 10:02:21 -0800 (PST)
+Subject: Re: [PATCH 2/2] iommu: add Unisoc iommu basic driver
+To:     Joerg Roedel <joro@8bytes.org>
+Cc:     Chunyan Zhang <zhang.lyra@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>
+References: <20210202073258.559443-3-zhang.lyra@gmail.com>
+ <20210202104257.736836-1-zhang.lyra@gmail.com>
+ <20210202140101.GA32671@8bytes.org>
+ <992fad43-c457-d809-3bd7-7fd5b6e8fa22@arm.com>
+ <20210202144126.GC32671@8bytes.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <5e766b74-ab51-8c47-66c1-ca65bc5743cd@arm.com>
+Date:   Tue, 2 Feb 2021 18:02:15 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <20210202103623.200809-1-damien.lemoal@wdc.com> <20210202103623.200809-3-damien.lemoal@wdc.com>
-In-Reply-To: <20210202103623.200809-3-damien.lemoal@wdc.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Tue, 2 Feb 2021 09:55:15 -0800
-Message-ID: <CAOnJCUKzEivmEHCdB-8XQ3Vm_tWv_auD_5VciGDagwKz_PJ4ZQ@mail.gmail.com>
-Subject: Re: [PATCH v14 02/16] dt-bindings: add Canaan boards compatible strings
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
-        Sean Anderson <seanga2@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210202144126.GC32671@8bytes.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 2, 2021 at 2:37 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
->
-> Introduce the file riscv/canaan.yaml to document compatible strings
-> related to the Canaan Kendryte K210 SoC. The compatible string
-> "canaan,kendryte-k210" used to indicate the use of this SoC to the
-> early SoC init code is added. This new file also defines the compatible
-> strings of all supported boards based on this SoC.
->
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  .../devicetree/bindings/riscv/canaan.yaml     | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/canaan.yaml
->
-> diff --git a/Documentation/devicetree/bindings/riscv/canaan.yaml b/Documentation/devicetree/bindings/riscv/canaan.yaml
-> new file mode 100644
-> index 000000000000..f8f3f286bd55
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/riscv/canaan.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/riscv/canaan.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Canaan SoC-based boards
-> +
-> +maintainers:
-> +  - Damien Le Moal <damien.lemoal@wdc.com>
-> +
-> +description:
-> +  Canaan Kendryte K210 SoC-based boards
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: sipeed,maix-bit
-> +          - const: sipeed,maix-bitm
-> +          - const: canaan,kendryte-k210
-> +
-> +      - items:
-> +          - const: sipeed,maix-go
-> +          - const: canaan,kendryte-k210
-> +
-> +      - items:
-> +          - const: sipeed,maix-dock-m1
-> +          - const: sipeed,maix-dock-m1w
-> +          - const: canaan,kendryte-k210
-> +
-> +      - items:
-> +          - const: sipeed,maixduino
-> +          - const: canaan,kendryte-k210
-> +
-> +      - items:
-> +          - const: canaan,kendryte-kd233
-> +          - const: canaan,kendryte-k210
-> +
-> +      - items:
-> +          - const: canaan,kendryte-k210
-> +
-> +additionalProperties: true
-> +
-> +...
-> --
-> 2.29.2
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+On 2021-02-02 14:41, Joerg Roedel wrote:
+> On Tue, Feb 02, 2021 at 02:34:34PM +0000, Robin Murphy wrote:
+>> Nope, I believe if Arm Ltd. had any involvement in this I'd know about it :)
+> 
+> Okay, got confused by thinking of ARM as the CPU architecture, not the
+> company :)
+> But given the intel/ and amd/ subdirectories refer to company names as
+> well, the same is true for arm/.
 
+Right, trying to group IOMMU drivers by supposed CPU architecture is 
+already a demonstrable non-starter; does intel-iommu count as x86, or 
+IA-64, or do you want two copies? :P
 
-Reviewed-by: Atish Patra <atish.patra@wdc.com>
+I somehow doubt anyone would license one of Arm's SMMUs to go in a 
+RISC-V/MIPS/etc. based SoC, but in principle, they *could*. In fact it's 
+precisely cases like this one - where silicon vendors come up with their 
+own little scatter-gather unit to go with their own display controller 
+etc. - that I imagine are most likely to get reused if the vendor 
+decides to experiment with different CPUs to reach new market segments.
 
--- 
-Regards,
-Atish
+Robin.
