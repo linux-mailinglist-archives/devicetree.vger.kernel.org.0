@@ -2,161 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0860730B7BD
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 07:19:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 976C330B7D3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 07:31:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231927AbhBBGRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 01:17:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34698 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231909AbhBBGRJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 01:17:09 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E57FFC061756
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 22:16:28 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id m12so1609663pjs.4
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 22:16:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=1NqKt1tkYjXYw5uT6W0gag7j6UD0Pw2ioTo6s17oNpE=;
-        b=LIQE6iXhoVslxswTP0KgBiXobDim0ju5ZYkrmyKvYra9JaoER+znAmc9qT9xTPVIt9
-         jtJp4IGHblx4gB7wk3KL0g+Hb00CnXsMXEYUJcWHtjBB8foOwO+AUaKNeRXK9ZgkhRKx
-         unkdwcCqhuoaaet8S05RadBgyTo9LLCg4RKzfWTfjpFw0H97MwDGbtL4K8TPiIrR+CLV
-         DwRwQ/IGJ8gY6RwwC4QvP+2Eo9r3HN+B83VS/PZdcxWUj5ka7LREzljL9mQeerH3xM4Z
-         9xY7VqEODF93PjT/9QkROmbj3BKowCGvzX+TVEKvk4DRJaXjYZyncefY2/3uwm/Blrhc
-         kU9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1NqKt1tkYjXYw5uT6W0gag7j6UD0Pw2ioTo6s17oNpE=;
-        b=Md+A1ed+umrjgFXP5wUA//gHPJaWW595orz9E6a9dKUu+0my5SL4e3Q7ZOq01ZmdHO
-         aK/52J2ZpVXgRqEAppI0pT6IxD6oCYCigKXNPzgOZLg7lWpu4EgqiKiP3C8HkaWmLWUt
-         i6m6ktNVk+Y66VcI43tZ+8yfkFiYJBVDQm1V0RscJwivT/cf8sMRpB31eZXpXN+sXoST
-         3wvlycEoTz5kVzDzmdupNxp4J6vcuIK0cS34lLyn7zECQsHaubzATh5d7BO0MazlW65P
-         Nxjb1J1LNzVOOUj98SVjPgkqSR0IN+Nl8EumP3yQYo83V8ZV+eyq3Kr3qfAQ0DsbLKsV
-         YLDg==
-X-Gm-Message-State: AOAM531uUteDQVpJAwZpnRrn4oKbkDYAc8oykRJZ+KSRKdfyqmzguCRh
-        sBQhFe3HiAZWWVP4CLFw6GR3
-X-Google-Smtp-Source: ABdhPJx0A/UAcWiA3V+ISiM2k6qA5tPlnvHP9HVWN/SYdIrEkyV65T+v0hqfxGwDjC/6oH+Cyvts7w==
-X-Received: by 2002:a17:903:1cc:b029:de:98bb:d46d with SMTP id e12-20020a17090301ccb02900de98bbd46dmr21069426plh.54.1612246588193;
-        Mon, 01 Feb 2021 22:16:28 -0800 (PST)
-Received: from thinkpad ([2409:4072:6d83:1efe:9823:4cab:2941:306])
-        by smtp.gmail.com with ESMTPSA id l2sm1447547pju.25.2021.02.01.22.16.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Feb 2021 22:16:27 -0800 (PST)
-Date:   Tue, 2 Feb 2021 11:46:19 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: Add Bluetooth support on RB5
-Message-ID: <20210202061619.GA13607@thinkpad>
-References: <20210128175225.3102958-1-dmitry.baryshkov@linaro.org>
- <20210128175225.3102958-6-dmitry.baryshkov@linaro.org>
- <CAL_Jsq+nNRv3KceHthgktHR1oRMs+eKWC4O7n0k78izs1aTPfA@mail.gmail.com>
+        id S229719AbhBBG3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 01:29:30 -0500
+Received: from so15.mailgun.net ([198.61.254.15]:28285 "EHLO so15.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231987AbhBBG30 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 01:29:26 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1612247346; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=t4d4srjb9O8cuvbHKvxP3tMfBWF01KKcSjaLhMt8Gww=; b=mO5NIDmbXcGclRvMXmIiCaC4Pwve6zo2F7hlC1fGa4oTQpvnJSXTXR7zQH3POY0wpak2eXVs
+ 73N0oD2+wKGWDEM+0YzqWs51vCsE03Go3PvQEc6R+R3CsdLa6CM/NZwnN8b7PyFPKP5i4iqX
+ tl+qcy4em32oB6VlhNxBSBFdu1Q=
+X-Mailgun-Sending-Ip: 198.61.254.15
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 6018f0e27a21b36a9d335c95 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Feb 2021 06:27:46
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5B7B8C433CA; Tue,  2 Feb 2021 06:27:45 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 157F0C433C6;
+        Tue,  2 Feb 2021 06:27:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 157F0C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH] ASoC: qcom: Fix typo error in HDMI regmap config callbacks
+Date:   Tue,  2 Feb 2021 11:57:27 +0530
+Message-Id: <20210202062727.22469-1-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+nNRv3KceHthgktHR1oRMs+eKWC4O7n0k78izs1aTPfA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 01:15:22PM -0600, Rob Herring wrote:
-> On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> >
-> > Add Bluetooth support on RB5 using the onboard QCA6391 WLAN+BT chipset.
-> >
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > [DB: added qca6391 power domain, removed s2f regulator]
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 29 ++++++++++++++++++++++++
-> >  1 file changed, 29 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > index b39a9729395f..c65c13994a86 100644
-> > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > @@ -19,6 +19,7 @@ / {
-> >         compatible = "qcom,qrb5165-rb5", "qcom,sm8250";
-> >
-> >         aliases {
-> > +               hsuart0 = &uart6;
-> 
-> Serial devices should be 'serialN'. Don't add custom aliases.
-> 
+Had a typo in lpass platform driver that resulted in crash
+during suspend/resume with an HDMI dongle connected.
 
-Sorry, this is needed by the serial driver:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/serial/qcom_geni_serial.c#n1364
+The regmap read/write/volatile regesters validation callbacks in lpass-cpu
+were using MI2S rdma_channels count instead of hdmi_rdma_channels.
 
-Thanks,
-Mani
+This typo error causing to read registers from the regmap beyond the length
+of the mapping created by ioremap().
 
-> >                 serial0 = &uart12;
-> >                 sdhc2 = &sdhc_2;
-> 
-> BTW, this should be dropped too.
-> 
-> >         };
-> > @@ -689,6 +690,26 @@ &pm8150_rtc {
-> >         status = "okay";
-> >  };
-> >
-> > +&qup_uart6_default {
-> > +       ctsrx {
-> > +               pins = "gpio16", "gpio19";
-> > +               drive-strength = <2>;
-> > +               bias-disable;
-> > +       };
-> > +
-> > +       rts {
-> > +               pins = "gpio17";
-> > +               drive-strength = <2>;
-> > +               bias-disable;
-> > +       };
-> > +
-> > +       tx {
-> > +               pins = "gpio18";
-> > +               drive-strength = <2>;
-> > +               bias-pull-up;
-> > +       };
-> > +};
-> > +
-> >  &qupv3_id_0 {
-> >         status = "okay";
-> >  };
-> > @@ -1194,6 +1215,14 @@ wlan-en {
-> >         };
-> >  };
-> >
-> > +&uart6 {
-> > +       status = "okay";
-> > +       bluetooth {
-> > +               compatible = "qcom,qca6390-bt";
-> > +               power-domains = <&qca6391>;
-> > +       };
-> > +};
-> > +
-> >  &uart12 {
-> >         status = "okay";
-> >  };
-> > --
-> > 2.29.2
-> >
+This fix avoids the need for reducing number hdmi_rdma_channels,
+which is done in
+commit 7dfe20ee92f6 ("ASoC: qcom: Fix number of HDMI RDMA channels on sc7180").
+So reverting the same.
+
+Fixes: 7cb37b7bd0d3c ("ASoC: qcom: Add support for lpass hdmi driver")
+
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+ sound/soc/qcom/lpass-cpu.c    | 8 ++++----
+ sound/soc/qcom/lpass-sc7180.c | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index a669202e0001..c642e5f8f28c 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -595,7 +595,7 @@ static bool lpass_hdmi_regmap_writeable(struct device *dev, unsigned int reg)
+ 			return true;
+ 	}
+ 
+-	for (i = 0; i < v->rdma_channels; ++i) {
++	for (i = 0; i < v->hdmi_rdma_channels; ++i) {
+ 		if (reg == LPAIF_HDMI_RDMACTL_REG(v, i))
+ 			return true;
+ 		if (reg == LPAIF_HDMI_RDMABASE_REG(v, i))
+@@ -641,7 +641,7 @@ static bool lpass_hdmi_regmap_readable(struct device *dev, unsigned int reg)
+ 	if (reg == LPASS_HDMITX_APP_IRQSTAT_REG(v))
+ 		return true;
+ 
+-	for (i = 0; i < v->rdma_channels; ++i) {
++	for (i = 0; i < v->hdmi_rdma_channels; ++i) {
+ 		if (reg == LPAIF_HDMI_RDMACTL_REG(v, i))
+ 			return true;
+ 		if (reg == LPAIF_HDMI_RDMABASE_REG(v, i))
+@@ -668,7 +668,7 @@ static bool lpass_hdmi_regmap_volatile(struct device *dev, unsigned int reg)
+ 	if (reg == LPASS_HDMI_TX_LEGACY_ADDR(v))
+ 		return true;
+ 
+-	for (i = 0; i < v->rdma_channels; ++i) {
++	for (i = 0; i < v->hdmi_rdma_channels; ++i) {
+ 		if (reg == LPAIF_HDMI_RDMACURR_REG(v, i))
+ 			return true;
+ 	}
+@@ -812,7 +812,7 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
+ 			return PTR_ERR(drvdata->hdmiif);
+ 
+ 		lpass_hdmi_regmap_config.max_register = LPAIF_HDMI_RDMAPER_REG(variant,
+-					variant->hdmi_rdma_channels);
++					variant->hdmi_rdma_channels - 1);
+ 		drvdata->hdmiif_map = devm_regmap_init_mmio(dev, drvdata->hdmiif,
+ 					&lpass_hdmi_regmap_config);
+ 		if (IS_ERR(drvdata->hdmiif_map)) {
+diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
+index 735c9dac28f2..8c168d3c589e 100644
+--- a/sound/soc/qcom/lpass-sc7180.c
++++ b/sound/soc/qcom/lpass-sc7180.c
+@@ -171,7 +171,7 @@ static struct lpass_variant sc7180_data = {
+ 	.rdma_channels		= 5,
+ 	.hdmi_rdma_reg_base		= 0x64000,
+ 	.hdmi_rdma_reg_stride	= 0x1000,
+-	.hdmi_rdma_channels		= 3,
++	.hdmi_rdma_channels		= 4,
+ 	.dmactl_audif_start	= 1,
+ 	.wrdma_reg_base		= 0x18000,
+ 	.wrdma_reg_stride	= 0x1000,
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
