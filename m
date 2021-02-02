@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DB3330B94F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 09:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9219E30B94E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 09:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231499AbhBBINh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 03:13:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59486 "EHLO
+        id S229462AbhBBINg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 03:13:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231201AbhBBINX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 03:13:23 -0500
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1CEC061756
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 00:12:43 -0800 (PST)
-Received: by mail-pf1-x434.google.com with SMTP id b145so7023260pfb.4
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 00:12:43 -0800 (PST)
+        with ESMTP id S231324AbhBBINZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 03:13:25 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99213C0613D6
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 00:12:45 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id q131so13799632pfq.10
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 00:12:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=y+cMOXMiJhmN+BhMWGOCZ1mGQnNvZ1HLYwA10LUk+qs=;
-        b=BE7+LLk41j5m1eELGRoOKzZpOyZhdKiTFcK4TJIWMv79mn6AOaVvhj5IrKMgLIoNO2
-         Yo/GV8+n5rFxI6xgYlyjq1XC3z5pn/8bj3GSO8hFplB6ElygbiKiT5A0Efb6BbLVfHgQ
-         XNxFBpDG5Xpv/852PpyOFg8QXk4fymYm7pA0o=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=CrTdRFcnWQzuRTgnluBbuBsSEw406Rl06q57E8Rqlko=;
+        b=cXgC+/ID7uN0KeiEPRB8ZyCAqF/n44TWLPfMud8lHdekuNyRfsiUfhrv8rqsQONdqL
+         j53Zj4C6D1B3jspMgWZw3MrYY0ar31fWmOjdBrCFcQIsBJT1/PjFjZ79tsFNMH8G9Rnc
+         xJfNxJUQ13Oj+7H4l3/YlPd6dvClk/Abu3gOE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=y+cMOXMiJhmN+BhMWGOCZ1mGQnNvZ1HLYwA10LUk+qs=;
-        b=l8fnq/X+jA5vpRL5O+Z66YH7JsB9afECmE7pkX5BEGpYgIW8fYRfPhEJnPfsx6qtXx
-         VnhmGjsW+tI/t3sGGFaiw1qRMcwtMz/HcRyVoG3EeXNn3jouZpF4h18lYEBfpcMXZt+x
-         OMfNIJ1wTaJkkagYEi9hTI3WMqzcyPAl9Q9ONTuVh+e6FVtbzapkCOR6aI9Tixtm9LkA
-         zgF1kGrs2r/gkLaaG2/K3CNIFUp8RjI6k5G8bMdxapYy9zT6N7KwakxRi3b0gftIOi35
-         Rmkn+W9XjoOdhJMieOMctSWIHu9yhqbCZbtg3E2/oMQXUblUs3Q2AyRdTjz4d0L30L8F
-         v2pw==
-X-Gm-Message-State: AOAM5304CpMc4CAkfu/7qQCZkXlw4z4EgVNNy4NaNcPjDF24i3kc1l99
-        F4fqytHsH0P7uk3LrZ0gcJhzMZnau83/ag==
-X-Google-Smtp-Source: ABdhPJw76yjiccRfuMor3XXLd3rnpk4IlwGPyv9gDv0sKW+2j5Rjt4voUr1UMcCID3auXrXGcyIIpg==
-X-Received: by 2002:a63:c743:: with SMTP id v3mr20558822pgg.316.1612253562732;
-        Tue, 02 Feb 2021 00:12:42 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=CrTdRFcnWQzuRTgnluBbuBsSEw406Rl06q57E8Rqlko=;
+        b=FkwGCwWEVc8b4kiae/Ul3uiYljw/cGE3yacTAdkbuJWCmSOdB/vFTKqqa9+jmyze8D
+         dTU3vqCqPvkCdlAX3vVgwF1ARXQjRmspFF/M68is8d2HRUgeZBL2SRqKurqlfHcDyR1B
+         tGoDVGAXSnrIQMTPvovSlu7nSTr0ZtvTCoECVauvGW2Nl0cO1EovxFyHPpeo0jbePHHO
+         fo+bQJ0xJQ/lURxteRxFGPxMnhmOlbglW7UACcmgeig2CWf6d60ipbjkPJmeY2pFWwcJ
+         Qqh+anQupN87k9dCCnmXwuE4+plEQBBbxUUDJeofOOCdBNtgKZFXfzsxH98r3tsKEbx/
+         jr+g==
+X-Gm-Message-State: AOAM530PDkBHG32DLvI8YD68vQeFO/ClILZOXPXaW9T+6aE8Bz4YyHzG
+        WLrqlZF9WEixGtXQWLxc1KPYGA==
+X-Google-Smtp-Source: ABdhPJzwA6TM5xlw4fGkgp1hD5x1e44JtTKG1EamjsOqepbXH/0fOeChNqzkXLXr2SIlSCiPFNYE0g==
+X-Received: by 2002:a63:ec09:: with SMTP id j9mr11561675pgh.179.1612253565186;
+        Tue, 02 Feb 2021 00:12:45 -0800 (PST)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:743e:7944:50c8:ff72])
-        by smtp.gmail.com with ESMTPSA id c8sm21343325pfo.148.2021.02.02.00.12.40
+        by smtp.gmail.com with ESMTPSA id c8sm21343325pfo.148.2021.02.02.00.12.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 00:12:42 -0800 (PST)
+        Tue, 02 Feb 2021 00:12:44 -0800 (PST)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Matthias Brugger <matthias.bgg@gmail.com>
@@ -53,69 +53,41 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v6 0/8] drm/mediatek: add support for mediatek SOC MT8192
-Date:   Tue,  2 Feb 2021 16:12:29 +0800
-Message-Id: <20210202081237.774442-1-hsinyi@chromium.org>
+Subject: [PATCH v6 1/8] drm/mediatek: add component OVL_2L2
+Date:   Tue,  2 Feb 2021 16:12:30 +0800
+Message-Id: <20210202081237.774442-2-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
+In-Reply-To: <20210202081237.774442-1-hsinyi@chromium.org>
+References: <20210202081237.774442-1-hsinyi@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series are based on kernel/git/chunkuang.hu/linux.git mediatek-drm-next
-and following patch:
-("soc: mediatek: add mtk mutex support for MT8183")
-https://patchwork.kernel.org/project/linux-mediatek/patch/20210129092209.2584718-8-hsinyi@chromium.org/
+From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-This series also depends on component support in mmsys[1]:
-- [v4,06/10] soc: mediatek: mmsys: add component OVL_2L2
-- [v4,07/10] soc: mediatek: mmsys: add component POSTMASK
-- [v4,08/10] soc: mediatek: mmsys: add component RDMA4
+This patch add component OVL_2L2
 
-[1] https://patchwork.kernel.org/project/linux-mediatek/patch/1609815993-22744-7-git-send-email-yongqiang.niu@mediatek.com/
+Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Change since v5:
-- move postmask driver into mtk_drm_ddp_comp
-- fix review comments
-
-Change since v4:
-- fix review comments
-
-Change since v3:
-- change several function to rebase to mediatek-drm-next
-- drop pm runtime patches due to it's not related to mt8192 support
-- fix review comments in v3
-
-Changes since v2:
-- fix review comment in v2
-- add pm runtime for gamma and color
-- move ddp path select patch to mmsys series
-- remove some useless patch
-
-Yongqiang Niu (8):
-  drm/mediatek: add component OVL_2L2
-  drm/mediatek: add component POSTMASK
-  drm/mediatek: add component RDMA4
-  drm/mediatek: separate ccorr module
-  drm/mediatek: Fix ccorr size config
-  drm/mediatek: add matrix_bits private data for ccorr
-  soc: mediatek: add mtk mutex support for MT8192
-  drm/mediatek: add support for mediatek SOC MT8192
-
- drivers/gpu/drm/mediatek/Makefile           |   3 +-
- drivers/gpu/drm/mediatek/mtk_disp_ccorr.c   | 229 ++++++++++++++++++++
- drivers/gpu/drm/mediatek/mtk_disp_drv.h     |   9 +
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c     |  20 ++
- drivers/gpu/drm/mediatek/mtk_disp_rdma.c    |   6 +
- drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 187 ++++++----------
- drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
- drivers/gpu/drm/mediatek/mtk_drm_drv.c      |  50 ++++-
- drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
- drivers/soc/mediatek/mtk-mutex.c            |  35 +++
- 10 files changed, 421 insertions(+), 120 deletions(-)
- create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
-
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+index 0444b429daf00..b6c4e73031ca6 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+@@ -477,6 +477,7 @@ static const struct mtk_ddp_comp_match mtk_ddp_matches[DDP_COMPONENT_ID_MAX] = {
+ 	[DDP_COMPONENT_OVL1]	= { MTK_DISP_OVL,	1, &ddp_ovl },
+ 	[DDP_COMPONENT_OVL_2L0]	= { MTK_DISP_OVL_2L,	0, &ddp_ovl },
+ 	[DDP_COMPONENT_OVL_2L1]	= { MTK_DISP_OVL_2L,	1, &ddp_ovl },
++	[DDP_COMPONENT_OVL_2L2] = { MTK_DISP_OVL_2L,    2, &ddp_ovl },
+ 	[DDP_COMPONENT_PWM0]	= { MTK_DISP_PWM,	0, NULL },
+ 	[DDP_COMPONENT_PWM1]	= { MTK_DISP_PWM,	1, NULL },
+ 	[DDP_COMPONENT_PWM2]	= { MTK_DISP_PWM,	2, NULL },
 -- 
 2.30.0.365.g02bc693789-goog
 
