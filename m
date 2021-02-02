@@ -2,103 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0857530C84E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 18:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F7EA30C890
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 18:57:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237597AbhBBRrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 12:47:55 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:35386 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237739AbhBBRpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 12:45:38 -0500
-Received: by mail-ot1-f42.google.com with SMTP id 36so20644024otp.2;
-        Tue, 02 Feb 2021 09:45:22 -0800 (PST)
+        id S237826AbhBBRyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 12:54:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43094 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238001AbhBBRxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 12:53:00 -0500
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE99BC061573
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 09:52:20 -0800 (PST)
+Received: by mail-io1-xd2e.google.com with SMTP id f8so1768330ion.4
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 09:52:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qOrAsI9ECEqjrlv+6wp2oH4vgydFA4E3CWu3kSvwGsU=;
+        b=SdvqO3yzA54cMvkZn4hPoBJNO5CbXtUVneJfkrzmkX6g9piC8e6AyTMmCvIzesAFus
+         3G9IUnbbWB7MqS47imMQNzrTYdYa3EI5wfFYcTQaXdaCnr4UAuUfyckXozbuH95sPJFv
+         VFpIaXKI07u4wOSlPg4PIo+G7Ms3sGAq5dtIE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=JTlXOdBngJ1YJUbwfAUG7x6kg6XjEmBq9/mlkFXBIug=;
-        b=Kz+SAOpPDF1xLgseQ8HrofURsQGu8MLyoq3Ore5Xrv9EXb1zS6bIF8O+74pWzHckoQ
-         rhiFFNzHJgJo1BrUA0oaRJkV5c4NaORRevwI/Lpv1+RDfW+E+QCuCqyaWTC4OHRnhbXG
-         qDG9uGLlKsxQVpWXvTbdTOjamALKMxZ9PIuOJftvltEJFh0e6K+AH7qg1bgsko278DrP
-         b5hUqsG5crFQ+e8fD6D+ffFhLvYyQ8I6C0mVnvdhmEa8lv0Ryt5WX2lh+yzFRqumPF6c
-         UhfdMN1FPCs1kg0RS1XCzM8E3+xHR3ZxOagbnEx68CQpAw6LKjIZxoIH6of9RApwnGro
-         uITQ==
-X-Gm-Message-State: AOAM5330Wm8y2R6cLuuBk0980h/UZFNa8Uq5rr2nuMW3WqQrzsaq7Riz
-        HkBGXkrw72a9FgOxOVV77g==
-X-Google-Smtp-Source: ABdhPJxG354Fp569hTYJNvqu/3BDjRzPg3XgNq8Y/835+LrvwJGubs6mr2k1CNdj094klpMzHCN7CQ==
-X-Received: by 2002:a05:6830:185:: with SMTP id q5mr16809793ota.359.1612287897139;
-        Tue, 02 Feb 2021 09:44:57 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y24sm4824050oos.44.2021.02.02.09.44.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 09:44:56 -0800 (PST)
-Received: (nullmailer pid 3887345 invoked by uid 1000);
-        Tue, 02 Feb 2021 17:44:54 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     heiko@sntech.de, linux-usb@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, balbi@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, gregkh@linuxfoundation.org
-In-Reply-To: <20210201194105.32673-1-jbx6244@gmail.com>
-References: <20210201194105.32673-1-jbx6244@gmail.com>
-Subject: Re: [PATCH v1 1/5] dt-bindings: usb: convert rockchip,dwc3.txt to yaml
-Date:   Tue, 02 Feb 2021 11:44:54 -0600
-Message-Id: <1612287894.993003.3887344.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qOrAsI9ECEqjrlv+6wp2oH4vgydFA4E3CWu3kSvwGsU=;
+        b=O2OWHT7pYMHiK4CHyFK2OgAymBL7D27cQjIQOHsmIHO4jFnamCYUNcibzv5PULVFOK
+         BDOUXJ1GnBqEKWhS8sHIWfqu8wpuz3hVkJ7HBNYF/ekQdUhHtAIHBkuTTkRxd0O7Wi9Q
+         Qk4mtKvAio/3wfVzeCZNxOMjvazWs2GROOIfxpTU11mR4TYyJHXzND+ZJPC5JG5/nIcE
+         yAb8dWOBIDUJXCVcSXrAgK5uhC1s+lyubFg0cEue4CryPdiFxSgNHduqoeXPzDnnN8Ja
+         WCXGnv3fVcAXfy/rV8cHNMjkg4c+uT5mLsNmcoEOywy1N/RWNRDw5qTDkqD8UeLz7Oi/
+         rrqQ==
+X-Gm-Message-State: AOAM532WKYMtfJSu57r9IUcc+anLJFQ+hSSjRlqOpn8rXktNdyHKo0GB
+        ZDVjh4u15huYuNzs4cGvae+crMRIhsxF/dmyYo2q
+X-Google-Smtp-Source: ABdhPJytO9BOGj16U07hR7rNXcptz2orHWOipnJZfVmYJ+EXZYgWy6DRm9GzFvXClpYmVVkjjgn+386TDSOkeQqeWzY=
+X-Received: by 2002:a05:6602:2d0d:: with SMTP id c13mr6284271iow.51.1612288340110;
+ Tue, 02 Feb 2021 09:52:20 -0800 (PST)
+MIME-Version: 1.0
+References: <20210202103623.200809-1-damien.lemoal@wdc.com> <20210202103623.200809-6-damien.lemoal@wdc.com>
+In-Reply-To: <20210202103623.200809-6-damien.lemoal@wdc.com>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Tue, 2 Feb 2021 09:52:08 -0800
+Message-ID: <CAOnJCUJh6iFEFR0_S1OrmyHLHCY_mjovg8mdc4gd5Cwk4QWkew@mail.gmail.com>
+Subject: Re: [PATCH v14 05/16] dt-bindings: update sifive clint compatible string
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
+        Sean Anderson <seanga2@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 Feb 2021 20:41:01 +0100, Johan Jonker wrote:
-> In the past Rockchip dwc3 usb nodes were manually checked.
-> With the conversion of snps,dwc3.yaml as common document
-> we now can convert rockchip,dwc3.txt to yaml as well.
-> 
-> Added properties for rk3399 are:
->   resets
->   reset-names
-> 
-> Generic properties that are now also filtered:
->   "#address-cells"
->   "#size-cells"
->   ranges
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+On Tue, Feb 2, 2021 at 2:37 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
+>
+> Add the "canaan,k210-clint" compatible string to the Sifive clint
+> bindings to indicate the use of the "sifive,clint0" IP block in the
+> Canaan Kendryte K210 SoC. The description of the compatible string
+> property is also updated to reflect this addition.
+>
+> Cc: Anup Patel <anup.patel@wdc.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
 > ---
->  .../devicetree/bindings/usb/rockchip,dwc3.txt      |  56 -----------
->  .../devicetree/bindings/usb/rockchip,dwc3.yaml     | 107 +++++++++++++++++++++
->  2 files changed, 107 insertions(+), 56 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
->  create mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> 
+>  .../bindings/timer/sifive,clint.yaml          | 19 +++++++++++++------
+>  1 file changed, 13 insertions(+), 6 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> index 2a0e9cd9fbcf..1a7d582a208f 100644
+> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> @@ -22,16 +22,23 @@ description:
+>
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: sifive,fu540-c000-clint
+> -      - const: sifive,clint0
+> +    oneOf:
+> +      - items:
+> +          - const: sifive,fu540-c000-clint
+> +          - const: sifive,clint0
+> +
+> +      - items:
+> +          - const: canaan,k210-clint
+> +          - const: sifive,clint0
+>
+>      description:
+> -      Should be "sifive,<chip>-clint" and "sifive,clint<version>".
+> +      Should be "<vendor>,<chip>-clint" and "sifive,clint<version>".
+>        Supported compatible strings are -
+>        "sifive,fu540-c000-clint" for the SiFive CLINT v0 as integrated
+> -      onto the SiFive FU540 chip, and "sifive,clint0" for the SiFive
+> -      CLINT v0 IP block with no chip integration tweaks.
+> +      onto the SiFive FU540 chip, "canaan,k210-clint" for the SiFive
+> +      CLINT v0 as integrated onto the Canaan Kendryte K210 chip, and
+> +      "sifive,clint0" for the SiFive CLINT v0 IP block with no chip
+> +      integration tweaks.
+>        Please refer to sifive-blocks-ip-versioning.txt for details
+>
+>    reg:
+> --
+> 2.29.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-My bot found errors running 'make dt_binding_check' on your patch:
 
-yamllint warnings/errors:
+Reviewed-by: Atish Patra <atish.patra@wdc.com>
 
-dtschema/dtc warnings/errors:
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/usb/snps,dwc3.yaml'
-xargs: dt-doc-validate: exited with status 255; aborting
-Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dts:31.11-18: Warning (ranges_format): /example-0/usb@fe800000:ranges: empty "ranges" property but its #address-cells (2) differs from /example-0 (1)
-Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dts:31.11-18: Warning (ranges_format): /example-0/usb@fe800000:ranges: empty "ranges" property but its #size-cells (2) differs from /example-0 (1)
-Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dts:21.33-38.11: Warning (unit_address_vs_reg): /example-0/usb@fe800000: node has a unit name, but no reg or ranges property
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dt.yaml'
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/usb/snps,dwc3.yaml'
-make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/usb/rockchip,dwc3.example.dt.yaml] Error 255
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1370: dt_binding_check] Error 2
-
-See https://patchwork.ozlabs.org/patch/1434297
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+Regards,
+Atish
