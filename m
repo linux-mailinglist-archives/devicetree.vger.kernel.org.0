@@ -2,101 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FCE430BD1D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 12:32:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A60530BE13
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 13:19:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231391AbhBBLat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 06:30:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45076 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbhBBL2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 06:28:37 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B53C061786
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 03:27:56 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id d2so22498821edz.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 03:27:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iWOA32QhLi/aaIbw7/tQiFcnwtGUsf/zeYi+0G0XjnQ=;
-        b=gcLtq7RCac83zOJpeiOm5/H5ASWi3bsod5EFUn8KibxB5xHfa0VAilfjK+Qctqogth
-         j7QaKzYhbO6ue2Iaak22Iczf4jP1j+gZyu6XpVZIruSZfLfkRrEFIFb3G1YvINN+WnK8
-         RO+RrK9fV+pag2KDPsmniKxHTdF/E/f4Ibx5gAOckF2ZuD8zEbptHkr3FMIE+FpqIlxl
-         H4ZHPTSn7FGxSJeHRnHCtuXBOnoOPpS5jTPvOIb3PVx/yANCl60P8plvpBTuCy2vw8+8
-         mvvqkEfF7HIoN3q+Y6xMRCFbpzfu+wUb8N8OOGFAnoUzHbPOZKE3WH9W+MIQuRAiixHK
-         COGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iWOA32QhLi/aaIbw7/tQiFcnwtGUsf/zeYi+0G0XjnQ=;
-        b=DqXga/KqURbPZA3i8Hcbc0F314rfUqxj15FBUdPDqwBn9yt4yptSPF6SDCF/e/Ujpk
-         2L3dtsjiRq9qCD9Uwp11wBWwaFqBXRx+QGY0Xtb8QODTT3cFtFyIp1KeyCs0zl1V6HbI
-         rne7TfLDUQmkd4UNfAyJYwlPUkJEvbPce+AYAxXcnfDB9p7teNvlzleQYOMpOazmAMSJ
-         NTwFm0dFBvxEEPWJvs6oJldf2ojOn4tqi95IrycMisw/stuWvW9eHUeQnNyhxVQZbD8k
-         3u6rbbOR9bu1+dfDKLxcqCFxp4dFnhDAOb/LbvUypVhbt4TxkS/QPF7MkTr4+UGp6oFL
-         p1zg==
-X-Gm-Message-State: AOAM5323hWPHJs5RUXxHyl/tZ++PVcgrzd3Md+h4h6NMDENlNhMjugux
-        RNB4Ape4dRWiooBsf1hnOmfSZFf8aO/ko6Sh72753g==
-X-Google-Smtp-Source: ABdhPJyEpBs2USy/Md7AF1xZtNppphNWkRvrACm4JRAHRBdyqh2Ms3Qc+QWjkYeV73NKLZeb84954QIUZzP9icOaTbk=
-X-Received: by 2002:a05:6402:306f:: with SMTP id bs15mr882872edb.232.1612265275509;
- Tue, 02 Feb 2021 03:27:55 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1610364681.git.baruch@tkos.co.il> <75637257694de0d4a9e432e1d8270019a4e6328b.1610364681.git.baruch@tkos.co.il>
- <CAMpxmJWjSyWkM6B-A7_eMZ38RmE4trvJ3oLaJdbkpr9Z00Ne0w@mail.gmail.com> <87tuqzspnu.fsf@BL-laptop>
-In-Reply-To: <87tuqzspnu.fsf@BL-laptop>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Tue, 2 Feb 2021 12:27:44 +0100
-Message-ID: <CAMpxmJUjTcVJq_q+Aiv0Lg5Z4Nxe1XRgTLnLtKErgpRSyB2kwQ@mail.gmail.com>
-Subject: Re: [PATCH v7 2/3] arm64: dts: armada: add pwm offsets for ap/cp gpios
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        id S229470AbhBBMTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 07:19:52 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:11674 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229441AbhBBMTl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 07:19:41 -0500
+Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4DVP2R6VTVzlDtZ;
+        Tue,  2 Feb 2021 20:17:19 +0800 (CST)
+Received: from [127.0.0.1] (10.174.176.220) by DGGEMS403-HUB.china.huawei.com
+ (10.3.19.203) with Microsoft SMTP Server id 14.3.498.0; Tue, 2 Feb 2021
+ 20:18:51 +0800
+Subject: Re: [PATCH v7 4/4] ARM: Add support for Hisilicon Kunpeng L3 cache
+ controller
+To:     Arnd Bergmann <arnd@kernel.org>
+CC:     Russell King <rmk+kernel@arm.linux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will.deacon@arm.com>,
+        "Haojian Zhuang" <haojian.zhuang@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        linux-pwm@vger.kernel.org, linux-gpio <linux-gpio@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Baruch Siach <baruch@tkos.co.il>
-Content-Type: text/plain; charset="UTF-8"
+        Wei Xu <xuwei5@hisilicon.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210202071648.1776-1-thunder.leizhen@huawei.com>
+ <20210202071648.1776-5-thunder.leizhen@huawei.com>
+ <CAK8P3a1HuXx7qpOPAdcGadtWCkNOp75bgO8cLSpXnobULHU6ZQ@mail.gmail.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <99b8672c-467c-9698-40e7-aed7dc5d2ee2@huawei.com>
+Date:   Tue, 2 Feb 2021 20:18:50 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <CAK8P3a1HuXx7qpOPAdcGadtWCkNOp75bgO8cLSpXnobULHU6ZQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.176.220]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 29, 2021 at 4:56 PM Gregory CLEMENT
-<gregory.clement@bootlin.com> wrote:
->
-> Hello Bartosz,
->
-> > On Mon, Jan 11, 2021 at 12:47 PM Baruch Siach <baruch@tkos.co.il> wrote:
-> >>
-> >> The 'marvell,pwm-offset' property of both GPIO blocks (per CP component)
-> >> point to the same counter registers offset. The driver will decide how
-> >> to use counters A/B.
-> >>
-> >> This is different from the convention of pwm on earlier Armada series
-> >> (370/38x). On those systems the assignment of A/B counters to GPIO
-> >> blocks is coded in both DT and the driver. The actual behaviour of the
-> >> current driver on Armada 8K/7K is the same as earlier systems.
-> >>
-> >> Add also clock properties for base pwm frequency reference.
-> >>
-> >> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-> >> ---
-> >
-> > Andrew, Gregory, Sebastian,
-> >
-> > Can we get your Acks on this patch? Are you fine with it going through
-> > the GPIO tree?
->
-> I prefer applying it on our tree to avoid merge conflicts.
->
-> Gregory
 
-Ok, I applied the remaining patches from this series.
 
-Bartosz
+On 2021/2/2 16:44, Arnd Bergmann wrote:
+> On Tue, Feb 2, 2021 at 8:16 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
+>> +
+>> +/*
+>> + * All read and write operations on L3 cache registers are protected by the
+>> + * spinlock, except for l3cache_init(). Each time the L3 cache operation is
+>> + * performed, all related information is filled into its registers. Therefore,
+>> + * there is no memory order problem when only _relaxed() functions are used.
+> 
+> Thank you for including the text.
+> 
+> I don't think the explanation with the spin_lock() explains why this
+> can be considered safe though, as spin_lock() only contains serialization
+> against other CPUs (smp_mb()) rather than the stronger DMA barriers
+> implied by readl and writel. As Russell previously explained, these
+> barriers are the L1 cache operations (e.g. v7_dma_inv_range) do
+> include stronger barriers, so it would be better to come up with a
+> justification based on those.
+
+Okay, I'll correct the description.
+
+> 
+>> + * This can help us achieve some performance improvement:
+>> + * 1) The readl_relaxed() is about 20ns faster than readl().
+>> + * 2) The writel_relaxed() is about 123ns faster than writel().
+> 
+> These are not really the performance numbers I asked for, as a
+> low-level benchmark comparing the instructions is rather meaningless.
+> The time spent waiting for the barrier depends on what else is going
+> on around the barrier. Also, most of the time would likely be
+> spent spinning in the loop around readl() while the cache operations
+> are in progress, so the latency of a single readl() is not necessarily
+> significant.
+> 
+> To have a more useful performance number, try mentioning the
+> most performance sensitive non-coherent DMA master on one
+> of the chips that has this cache controller, and a high-level
+> performance number such as "1.2% more network packets per
+> second" if that is something you can measure easily.
+
+It's not easy. My board only have debugging NIC, only the downstream
+products have high-speed service NIC. Software needs to be packaged
+layer by layer.
+
+> 
+> Of course, if all high-speed DMA masters on this chip are
+> cache coherent, there is no need for performance numbers, just
+> mention that we don't care about speed in that case.
+
+It's not cache coherent, otherwise, the L3 cache does not need to be
+operated.
+
+> 
+>         Arnd
+> 
+> .
+> 
+
