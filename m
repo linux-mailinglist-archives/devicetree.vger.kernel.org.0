@@ -2,117 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54F0D30C722
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 18:12:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2C330C74C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 18:17:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237292AbhBBRLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 12:11:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33670 "EHLO
+        id S237385AbhBBRQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 12:16:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236997AbhBBRJu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 12:09:50 -0500
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [IPv6:2001:67c:2050::465:202])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE50C061786
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 09:09:10 -0800 (PST)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4DVWW861WczQjyS;
-        Tue,  2 Feb 2021 18:09:08 +0100 (CET)
-Authentication-Results: spamfilter05.heinlein-hosting.de (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mailbox.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1612285746;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=rKefVOHIgH3RRUJVkiub1hkbfVxHTICw9ywDriRKYC4=;
-        b=m4TgnXqEhVKkxYVCnKJiQbeHyHxbC7TKoIR7NikZ2heyjnbgJXhfV8HXypN3tY85klZA9m
-        bZ2L62mYmV4781k33uVWELdPfYKNbucnvX6enDLDVoQjMHTrrh45d6wC/KGkqJ3Pc7Z2K/
-        cPIUL9Ynk1kGmkHt+JAaqUDIXpQL+w2RZbb43Fv+mAKORI4TSugE1tQoRhHIzBas9Tf9Vn
-        m5bBJLpCay+suHdsWhHxb31r4VJdouJzdUmr32d13mbCnHkLRfWzpQLKcpgCjAI3DOJ/MW
-        tCkqQKCqj76uxBXAofglj9G5m0Q5gv0bE7Ir8t5Qd75AMc1IgceiYYowVHiAgQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
-        content-transfer-encoding:mime-version:message-id:date:date
-        :subject:subject:from:from:received; s=mail20150812; t=
-        1612285745; bh=aTQLSZ7C/O5xdekCHLTA25N5p4fllJpG7xKztu/Tv9E=; b=W
-        yorkOIri6NhxHckdqVr613MUcQ+XlWHNKGR+bfkHkj74uEhzfWdugtM3O1WBws1+
-        qk5sA9tQbWrRIKra4+xKbHrEKCWHnWFduZyI9Yb+ijuo7JnFYQc0tz7+wmqgUP2d
-        GpKyMAfMdJx4gkHt17Q/inFYhhOyW1qCd7QDabZnOKzlU/XPSx+cFwleZjYwp+l1
-        oFAw4mJWM94ZreSit/gW/3TowZg+duOlPfAF7Bn/Joo/3067yGnLvG7a80UmsHvB
-        +C8eELHm5pyI6SIRGoA6gdhqxV0ob7WgON5flzWRS4qM06tUZc10Atr7AnYdNp6Y
-        bxbwTFOwLl87iIffVbfrw==
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp2.mailbox.org ([80.241.60.241])
-        by spamfilter05.heinlein-hosting.de (spamfilter05.heinlein-hosting.de [80.241.56.123]) (amavisd-new, port 10030)
-        with ESMTP id sAlSN3_dNllc; Tue,  2 Feb 2021 18:09:05 +0100 (CET)
-From:   Alexander Stein <alexander.stein@mailbox.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Alexander Stein <alexander.stein@mailbox.org>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: meson: g12b: odroid-n2: Add I2C RTC device node
-Date:   Tue,  2 Feb 2021 18:08:46 +0100
-Message-Id: <20210202170846.81685-1-alexander.stein@mailbox.org>
+        with ESMTP id S236901AbhBBRO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 12:14:29 -0500
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCC99C06178B
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 09:13:49 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id 8so7508373plc.10
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 09:13:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=R9+VZ08mb33ZsTxVzQHNgGkTJo5Su5clNDxSbYpH3ag=;
+        b=diRSFPRygD49Poc/JZ4AusskfpBz3SaZRrJbDOY2fzcR5LXqQZkKd93tiH5mFnVm+c
+         l1os581Ds05eO63iyR7OnzGQMv2TCaYRXhmgGXRHMgUlySvwd30gJYp/5SmK4zxMQ/r3
+         vIwgooy/K8jXDGjVec6xdrGb/eVPIVdbTEm8A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=R9+VZ08mb33ZsTxVzQHNgGkTJo5Su5clNDxSbYpH3ag=;
+        b=RbKl2QmQ3/jcvyR+9G7yUD0kg0thmC2lFSsMj0JQ4N1tqEal1wWqrBqBKhYAI5yE5s
+         HMmGqnEhVOpzlZSEkjNmhrqnU2tAx60ZgulSd5KVol7KhGbu8Sb//8OyvhBngt2AmmGl
+         oxeU1QfXk+5yqHjBj0lpp29gsgf0FaAUUmeConOS18tVGnmdWvUgE9TCLHLCJgSVaom5
+         WfBQljWu1VJdaaNjrfA0f/2ywrCZNIIR1UEF2/vsTNEzsx+TyKd5Lntd1yTX4aE/FERe
+         URLsxwEk9ngUdkoPZeZ81eggbGZvqOX+/OzK58iRxkr/Ha00Jf/ozsYIWSjl4sh2uIbS
+         FuaQ==
+X-Gm-Message-State: AOAM530Frfp3pLOs0MdFAChUNMEO+S5CfqqHNjNGBJulUgxo1S+CqAou
+        Dy0HZkgobDoIexL7tKKdZ4HNQA==
+X-Google-Smtp-Source: ABdhPJxEYEQvyqydvkJ+XYVfnYzEhjQ5pqGLkN0GNmAahlnaTN7GjhaapXRizG0V3QW8Ky6mrCbAVQ==
+X-Received: by 2002:a17:902:d4d0:b029:df:d246:ca81 with SMTP id o16-20020a170902d4d0b02900dfd246ca81mr23826450plg.58.1612286029370;
+        Tue, 02 Feb 2021 09:13:49 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:3571:bd6e:ee19:b59f])
+        by smtp.gmail.com with ESMTPSA id c17sm21839493pfi.88.2021.02.02.09.13.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Feb 2021 09:13:48 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-SPAM-Probability: ***
-X-Rspamd-Score: 3.19 / 15.00 / 15.00
-X-Rspamd-Queue-Id: 9C9CF17DE
-X-Rspamd-UID: d27b0d
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210202062727.22469-1-srivasam@codeaurora.org>
+References: <20210202062727.22469-1-srivasam@codeaurora.org>
+Subject: Re: [PATCH] ASoC: qcom: Fix typo error in HDMI regmap config callbacks
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
+        robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+Date:   Tue, 02 Feb 2021 09:13:47 -0800
+Message-ID: <161228602729.76967.7642340787963440028@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is taken from the downstream kernel and works out of the box.
-Similar to other boards, this RTC should be the primary one, rather than
-the internal one.
+Quoting Srinivasa Rao Mandadapu (2021-02-01 22:27:27)
+> Had a typo in lpass platform driver that resulted in crash
+> during suspend/resume with an HDMI dongle connected.
+>=20
+> The regmap read/write/volatile regesters validation callbacks in lpass-cpu
+> were using MI2S rdma_channels count instead of hdmi_rdma_channels.
+>=20
+> This typo error causing to read registers from the regmap beyond the leng=
+th
+> of the mapping created by ioremap().
+>=20
+> This fix avoids the need for reducing number hdmi_rdma_channels,
+> which is done in
+> commit 7dfe20ee92f6 ("ASoC: qcom: Fix number of HDMI RDMA channels on sc7=
+180").
+> So reverting the same.
+>=20
+> Fixes: 7cb37b7bd0d3c ("ASoC: qcom: Add support for lpass hdmi driver")
+>=20
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
 
-A wakeup alarm by writing to /sys/class/rtc/rtc0/wakealarm works as well.
-
-Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
----
- .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 050862cd0996..10edc7ce5e84 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -13,6 +13,8 @@ / {
- 	aliases {
- 		serial0 = &uart_AO;
- 		ethernet0 = &ethmac;
-+		rtc0 = &rtc;
-+		rtc1 = &vrtc;
- 	};
- 
- 	dioo2133: audio-amplifier-0 {
-@@ -471,6 +473,18 @@ hdmi_tx_tmds_out: endpoint {
- 	};
- };
- 
-+&i2c3 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-+	pinctrl-names = "default";
-+
-+	rtc: rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+		wakeup-source;
-+	};
-+};
-+
- &ir {
- 	status = "okay";
- 	pinctrl-0 = <&remote_input_ao_pins>;
--- 
-2.30.0
-
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Tested-by: Stephen Boyd <swboyd@chromium.org>
