@@ -2,100 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3398130C971
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 19:19:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3625B30C9D2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 19:30:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238459AbhBBSSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 13:18:30 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:34431 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238352AbhBBSQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 13:16:22 -0500
-Received: by mail-ot1-f45.google.com with SMTP id d5so5320464otc.1;
-        Tue, 02 Feb 2021 10:16:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8dDjqTPK+llWIRGrZH/KSVCS5Q0oIZSoyMWb9i78HpA=;
-        b=lUtDETH6QjFhezNga/K6oBhtwpVty5rKUslxX1qXgBDeiN+HufW+N5HA+IVT8POXCw
-         /XU483YGhcdgj+3VwyBId8CvrWqhgwvxziwA0t2xizWGph+RtKEt6dtkgciZ9ucG1viz
-         7jGDLhGgG5m++fteiAVH0q+0M1ID8TpBhWk3GeXnF2RsaTLUVyfriLVko/yBnjPu2GAX
-         S3FiVAXtbBkfbWaHhphPv6K4XVRY7S4ocruFL0ubU/Y0wmtN56APaoNVj5pDjWdX9lEg
-         xbl/rDqI8ETavzL1eWUFRc4Jb9RyDzIdslpD06XdgFmQnMdcup0Z/1VDWV0zb+/6z92e
-         hIAA==
-X-Gm-Message-State: AOAM531b6MtsGbHaM/QTtRpXQz3RvWU8HUdPH491qkMrjJyiGDpMJEVN
-        Kkd5DIYbgy2EeV4o1cOKuS2Xes2Usw==
-X-Google-Smtp-Source: ABdhPJwDzdTeGq37aNKpjJFMzbUg64rp+M/CU437C9KhLoxSHuWdlKLLpwcNiDt7lcCsYenGpWxp0A==
-X-Received: by 2002:a9d:4a8e:: with SMTP id i14mr16786937otf.37.1612289740973;
-        Tue, 02 Feb 2021 10:15:40 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id v16sm4805020otq.20.2021.02.02.10.15.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 10:15:40 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-pm@vger.kernel.org
-Subject: [PATCH] dt-bindings: thermal: sun8i: Fix misplaced schema keyword in compatible strings
-Date:   Tue,  2 Feb 2021 12:15:38 -0600
-Message-Id: <20210202181538.3936235-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
+        id S238259AbhBBSaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 13:30:23 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59724 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238501AbhBBSZJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 13:25:09 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D6ED064F5E;
+        Tue,  2 Feb 2021 18:24:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612290268;
+        bh=W1IuyyCVtN9nb9HYjJ7+xdSm5mp9t0pkfUAf4II4elY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CCAib0qBVSZ78VMBIzFz/4NCH8++z5N6UdDRJkDlw37aocpi0MBKKJ+WH45WxIl8x
+         XityNuus+I6AnlCsqL35HXBZjYgqGnGGIZOX9wzgnZybZwQWJqRY1dkysF2zA4KvMw
+         LaXlTTwHrxlMOGQU3Hcn+MVjiSclDb7u1o4dtOQPahlEKqEwP4sN4OpUavXF810Qsi
+         rv3HG+zAablMOyxAmLPWtAEC3+DelKN6XEsjcZWdl5J/B8txVfqYh3zBAULgMG5tL2
+         3DaOY7PUObl8/TzMrMCykQzmmkM9Z4jNf25kTcyuJo6WYkutPqyo25m+yERPVL1Ogq
+         15JGQc/HdLr8w==
+Date:   Tue, 2 Feb 2021 18:24:22 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Quentin Perret <qperret@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, android-kvm@google.com,
+        linux-kernel@vger.kernel.org, kernel-team@android.com,
+        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
+        Fuad Tabba <tabba@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Brazdil <dbrazdil@google.com>
+Subject: Re: [RFC PATCH v2 14/26] KVM: arm64: Factor out vector address
+ calculation
+Message-ID: <20210202182422.GB17311@willie-the-truck>
+References: <20210108121524.656872-1-qperret@google.com>
+ <20210108121524.656872-15-qperret@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210108121524.656872-15-qperret@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A compatible string 'enum' mistakenly has 'const: ' in the compatible
-strings. Remove these.
+On Fri, Jan 08, 2021 at 12:15:12PM +0000, Quentin Perret wrote:
+> In order to re-map the guest vectors at EL2 when pKVM is enabled,
+> refactor __kvm_vector_slot2idx() and kvm_init_vector_slot() to move all
+> the address calculation logic in a static inline function.
+> 
+> Signed-off-by: Quentin Perret <qperret@google.com>
+> ---
+>  arch/arm64/include/asm/kvm_mmu.h | 8 ++++++++
+>  arch/arm64/kvm/arm.c             | 9 +--------
+>  2 files changed, 9 insertions(+), 8 deletions(-)
 
-Fixes: 0b28594d67a8 ("dt-bindings: thermal: Add YAML schema for sun8i-thermal driver bindings")
-Cc: Vasily Khoruzhick <anarsoul@gmail.com>
-Cc: Yangtao Li <tiny.windzz@gmail.com>
-Cc: Zhang Rui <rui.zhang@intel.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Amit Kucheria <amitk@kernel.org>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: Jernej Skrabec <jernej.skrabec@siol.net>
-Cc: linux-pm@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/thermal/allwinner,sun8i-a83t-ths.yaml   | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Acked-by: Will Deacon <will@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
-index 31edd051295a..bf97d1fb33e7 100644
---- a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
-+++ b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
-@@ -103,12 +103,12 @@ allOf:
-         compatible:
-           contains:
-             enum:
--              - const: allwinner,sun8i-h3-ths
--              - const: allwinner,sun8i-r40-ths
--              - const: allwinner,sun50i-a64-ths
--              - const: allwinner,sun50i-a100-ths
--              - const: allwinner,sun50i-h5-ths
--              - const: allwinner,sun50i-h6-ths
-+              - allwinner,sun8i-h3-ths
-+              - allwinner,sun8i-r40-ths
-+              - allwinner,sun50i-a64-ths
-+              - allwinner,sun50i-a100-ths
-+              - allwinner,sun50i-h5-ths
-+              - allwinner,sun50i-h6-ths
- 
-     then:
-       required:
--- 
-2.27.0
-
+Will
