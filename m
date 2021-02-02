@@ -2,124 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC8B630B448
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 01:47:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F03930B44F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 01:50:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231169AbhBBAqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 19:46:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48478 "EHLO
+        id S231363AbhBBAuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 19:50:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbhBBAqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 19:46:15 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2BCAC06174A
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 16:45:34 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id g10so18599532wrx.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 16:45:34 -0800 (PST)
+        with ESMTP id S231317AbhBBAuj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 19:50:39 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68993C061756
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 16:49:59 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id 8so6110367plc.10
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 16:49:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=R+DY3ptemdPsgpSAemZqrrEiiEasrjy6FBc1qDbbWrQ=;
-        b=ri3TxrY3TBgB5Os1sHmq9qfzzay/vdaPhoxzTjM++5ZA523vrpHMBJrtpD5enoS90v
-         CGSfiEkmRgAfhDB4PgVGuENBVoRkwcp4qTrIv1p/4g5e5IW+k0j4NI23/onnkSW7Ua0u
-         0sftY/scP6W4XDUs9YzbybR9eD/fS8yCvg1kO7a/T3MJYBiNWSgDYxNdZnuvBFuILfc4
-         hvsZd2F10BTIKe+hW6hDLXO2d99UsNAFEjOg+fZnvpgsIYqe8bKW4+x11HOCubGHpIXg
-         1aiDfYNrwm7y58ObjSv1gZ7D+GSknx39XPYEHXtgWM8eerR8AATNS1IbF7U1ohefdJXt
-         HyeQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=lyDxKpFLYEIFhDSFlv90rmUQ9DjyIRRYYsBTc2zYzus=;
+        b=IvcIauqBfcWEPcZYFfbPffPEqNA8Ff1bKTED6KA+tVDv3qnuE1XwllYSiowEpMKHX4
+         zlSA7BQAJxBCKN/AqGkPd+VBywOt8wx+V0HAhee0ozWa/tPu39B9rXzDXC2IgYA8HaGN
+         Qs4ub/Tyu5qhBl6uOlj52KuNFUar6SVZ2N5NVFc+GV2IJ3eK6r9bA7/Z25Wut6x4fd6X
+         RIxAZ56Zwz3yzPuxCD5ExHKAxLT/RMV9tGccCMTke3mzzw0+KxW3s1L1JSw0Bsj+BfUl
+         ipEDTSVWWz584+OoyCyM14EvAmbLNL0WIj1z6Tb1m4v0Ai5wzj+mOQn5w654BFTZ/7yN
+         0Gtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=R+DY3ptemdPsgpSAemZqrrEiiEasrjy6FBc1qDbbWrQ=;
-        b=EZ2t+z8XkCVupcpWw7OVrXg5cndFImHrzQrrF8xPoQli7IfzP6OFbmoU2BQ3OVko3+
-         EJSns3yimvU8qNUMPpCW3IzcPOCD+QhnS2TSanT8zobTt1ONGJa8a5eYVNILuGKHcIl/
-         hdgdFzwPbpXWia4nvT6ZdnhoclxCotOwAhTumHI1da0bfTI82DxeXDcS0gplZ/BQmuxJ
-         DmcW8DBlZKNLxULm6Lda/fZybhSEI+Ir4sdALSTi5Q4x4VGYJaM6OBcCuTITLSAOeLis
-         0mqTdePTQMwKoBCXchnj1JDZGsyR9EOg6MAxNS6j2Ohnpsb5qpw5ETlovtSqh1770ld2
-         IqAg==
-X-Gm-Message-State: AOAM531xTctyzH2DBpy4/Y4KvA/8lhWvJNp8BoXEGHpBG73oSIKazO6p
-        w1mqZQQ4NvSXwPGSJM7oz7utvQ==
-X-Google-Smtp-Source: ABdhPJwxNXQTy/QE3Lo/F9xQFQNUvYrAvLBunGofChogGrJTK4i3z2o53P/m+m42LWzy7JdbSThXzg==
-X-Received: by 2002:a5d:60c2:: with SMTP id x2mr21605432wrt.248.1612226733431;
-        Mon, 01 Feb 2021 16:45:33 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id s23sm849562wmc.35.2021.02.01.16.45.32
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lyDxKpFLYEIFhDSFlv90rmUQ9DjyIRRYYsBTc2zYzus=;
+        b=X8w6a6wOhYVw3oEakya05fqD9rgzreauyKzM5qg+TBqdh7KLUjyNeEIR4F5vlGBlAI
+         CPlLTNLRZlu9X2TPq72+b3F8jxZOUmvrfpuRI8+Jm+qN/sO7osb/DCwn7L1bjrdGiU8W
+         5Y5s4H3PdHdFze4TZa2aqr9zUNL5k6b8qcGRCiOlWV0MkXrvqikVJ18kGBeZIsfodPE7
+         GSl4LvB9REVxjXzggfI/ypL4v+tx2BKp7v7F0pQ7oowbXyO8aQ96pgrJGK/KIhLGTOK4
+         T31aVmsniyzl9+8w//VeqYMCBWtf7vrB4ClRrYpZLOoBms4QdJz6c639PWWgi69BpHfe
+         JDTA==
+X-Gm-Message-State: AOAM53026tJMpPxHrK3NGoK7mPy6UxhnenBBBjKSPn5vyZIokp1tkAbj
+        qnBefuA9cNvzehxeSwfflSxW+w==
+X-Google-Smtp-Source: ABdhPJzeoaVLeZnCQPwLpf9+abzuUoEMVRiGmc7vWQMfD1tXuLinXkvOswPMl9BrtBLKprfIn9u35A==
+X-Received: by 2002:a17:90a:a516:: with SMTP id a22mr1530763pjq.192.1612226998952;
+        Mon, 01 Feb 2021 16:49:58 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id v26sm18276373pff.195.2021.02.01.16.49.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Feb 2021 16:45:32 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Artem Lapkin <email2tema@gmail.com>, narmstrong@baylibre.com
-Cc:     robh+dt@kernel.org, jbrunet@baylibre.com,
-        christianshewitt@gmail.com, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        art@khadas.com, nick@khadas.com, gouwa@khadas.com
-Subject: Re: [PATCH] arm64: dts: meson-gx: remove wrong reserved BL31 memory
-In-Reply-To: <20210130054022.2020338-1-art@khadas.com>
-References: <20210130054022.2020338-1-art@khadas.com>
-Date:   Mon, 01 Feb 2021 16:45:30 -0800
-Message-ID: <7hy2g7guvp.fsf@baylibre.com>
+        Mon, 01 Feb 2021 16:49:57 -0800 (PST)
+Date:   Mon, 1 Feb 2021 17:49:56 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+Cc:     "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 00/17] remoteproc: Add support for detaching a rproc
+Message-ID: <20210202004956.GD1319650@xps15>
+References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
+ <64b559dc-9e89-c351-ddee-f9cebd155ed7@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <64b559dc-9e89-c351-ddee-f9cebd155ed7@st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Artem Lapkin <email2tema@gmail.com> writes:
-
-> Kernel boot fail on Khadas VIM1 VIM2 (meson GX) boards
-> SOLUTION: just remove wrong mem reservation for 0x10000000 0x200000
-
-You don't explain why it's wrong.
-
-This region was added becasue there there are definitely GX devices which
-have secure memory in this area, and this patch will break those devices.
-
->  ## Booting kernel from Legacy Image at 08080000 ...
->    Image Name:   kernel
->    Image Type:   AArch64 Linux Kernel Image (lzma compressed)
->    Data Size:    4657736 Bytes = 4.4 MiB
->    Load Address: 0f080000
->    Entry Point:  0f080000
->    Verifying Checksum ... OK
->  ## Flattened Device Tree blob at 08008000
->    Booting using the fdt blob at 0x8008000
->    Uncompressing Kernel Image
->  ERROR: reserving fdt memory region failed (addr=10000000 size=200000)
->    Loading Device Tree to 000000007bf23000, end 000000007bf2d3ce ... OK
-
-I suspect if you change the load addresses used by u-boot to avoid this
-region, you'll be able to boot just fine.
-
-Kevin
-
->  Starting kernel ...
+On Wed, Jan 27, 2021 at 10:21:24AM +0100, Arnaud POULIQUEN wrote:
+> Hi Mathieu
+> 
+> On 12/18/20 6:32 PM, Mathieu Poirier wrote:
+> > Following the work done here [1], this set provides support for the
+> > remoteproc core to release resources associated with a remote processor
+> > without having to switch it off. That way a platform driver can be removed
+> > or the application processor power cycled while the remote processor is
+> > still operating.
+> > 
+> > Of special interest in this series are patches 5 and 6 where getting the
+> > address of the resource table installed by an eternal entity if moved to
+> > the core.  This is to support scenarios where a remote process has been
+> > booted by the core but is being detached.  To re-attach the remote
+> > processor, the address of the resource table needs to be known at a later
+> > time than the platform driver's probe() function.
+> > 
+> > Applies cleanly on v5.10
+> > 
+> > Thanks,
+> > Mathieu
+> > 
+> > [1]. https://lkml.org/lkml/2020/7/14/1600
+> > 
+> > ----
+> > New for v4:
+> > - Made binding description OS agnostic (Rob)
+> > - Added functionality to set the external resource table in the core
+> > - Fixed a crash when detaching (Arnaud)
+> > - Fixed error code propagation in rproc_cdev_relase() and rproc_del() (Arnaud)
+> > - Added RB tags
+> 
+> 
+> I tested you series, attach and  detach is working well.
+> 
+> Then I faced issue when tried to re-attach after a detach.
 >
->  bl31 reboot reason: 0xd
->  bl31 reboot reason: 0x0
->  system cmd  1.
->
-> Signed-off-by: Artem Lapkin <art@khadas.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 ------
->  1 file changed, 6 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index 726b91d3a..71083b89d 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -32,12 +32,6 @@ hwrom_reserved: hwrom@0 {
->  			no-map;
->  		};
->  
-> -		/* 2 MiB reserved for ARM Trusted Firmware (BL31) */
-> -		secmon_reserved: secmon@10000000 {
-> -			reg = <0x0 0x10000000 0x0 0x200000>;
-> -			no-map;
-> -		};
-> -
->  		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
->  		secmon_reserved_alt: secmon@5000000 {
->  			reg = <0x0 0x05000000 0x0 0x300000>;
-> -- 
-> 2.25.1
+
+Right, in this case don't expect the re-attach to work properly because function
+stm32_rproc_detach() does not exist.  As such the M4 doesn't put itself back
+in "wait-for-attach" mode as it does when booted by the boot loader.  If I
+remember correctly we talked about that during an earlier conversation and we
+agreed FW support would be needed to properly test the re-attach.
+ 
+> But I don't know if this feature has to be supported in this step.
+> 
+> The 2 issues I found are:
+> 
+> 1) memory carveouts are released on detach so need to be reinitialized.
+> The use of prepare/unprepare for the attach and detach would solve the issue but
+> probably need to add parameter to differentiate a start/stop from a attach/detach.
+> 
+> 2) The vrings in the loaded resource table (so no cached) has to be properly
+> reinitialized. In rproc_free_vring  the vring da is set to 0 that is then
+> considered as a fixed address.
+> 
+> Here is a fix which works on the stm32 platform
+> 
+> @@ -425,7 +425,7 @@ void rproc_free_vring(struct rproc_vring *rvring)
+>  	 */
+>  	if (rproc->table_ptr) {
+>  		rsc = (void *)rproc->table_ptr + rvring->rvdev->rsc_offset;
+> -		rsc->vring[idx].da = 0;
+> +		rsc->vring[idx].da = FW_RSC_ADDR_ANY;
+>  		rsc->vring[idx].notifyid = -1;
+>  	}
+>  }
+
+In light of the above let me know if these two issues are still relevant.  If
+so I'll investigate further.
+
+Thanks,
+Mathieu
+
+> 
+> Here, perhaps a better alternative would be to make a cached copy on attach
+> before updating it. On the next attach, the cached copy would be copied as it is
+> done in rproc_start.
+> 
+> Thanks,
+> Arnaud
+> 
+> 
+> > 
+> > Mathieu Poirier (17):
+> >   dt-bindings: remoteproc: Add bindind to support autonomous processors
+> >   remoteproc: Re-check state in rproc_shutdown()
+> >   remoteproc: Remove useless check in rproc_del()
+> >   remoteproc: Rename function rproc_actuate()
+> >   remoteproc: Add new get_loaded_rsc_table() remoteproc operation
+> >   remoteproc: stm32: Move resource table setup to rproc_ops
+> >   remoteproc: Add new RPROC_ATTACHED state
+> >   remoteproc: Properly represent the attached state
+> >   remoteproc: Properly deal with a kernel panic when attached
+> >   remoteproc: Add new detach() remoteproc operation
+> >   remoteproc: Introduce function __rproc_detach()
+> >   remoteproc: Introduce function rproc_detach()
+> >   remoteproc: Add return value to function rproc_shutdown()
+> >   remoteproc: Properly deal with a stop request when attached
+> >   remoteproc: Properly deal with a start request when attached
+> >   remoteproc: Properly deal with detach request
+> >   remoteproc: Refactor rproc delete and cdev release path
+> > 
+> >  .../bindings/remoteproc/remoteproc-core.yaml  |  27 +++
+> >  drivers/remoteproc/remoteproc_cdev.c          |  32 ++-
+> >  drivers/remoteproc/remoteproc_core.c          | 211 +++++++++++++++---
+> >  drivers/remoteproc/remoteproc_internal.h      |   8 +
+> >  drivers/remoteproc/remoteproc_sysfs.c         |  20 +-
+> >  drivers/remoteproc/stm32_rproc.c              | 147 ++++++------
+> >  include/linux/remoteproc.h                    |  24 +-
+> >  7 files changed, 344 insertions(+), 125 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
+> > 
