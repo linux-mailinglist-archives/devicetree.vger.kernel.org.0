@@ -2,124 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD3AF30C82C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 18:45:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A34230C84C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 18:49:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237722AbhBBRno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 12:43:44 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48984 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237750AbhBBRmF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 12:42:05 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3559864F5F;
-        Tue,  2 Feb 2021 17:41:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612287683;
-        bh=XrqQUpQjK2B6Gy7MUmqLIy6ph4nA8RzfeE8HGNIUfNc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dknAJxgPhZ8OA5JCBRRCYStwLbZYN7Dm8Kyj4lWnbR+mNZkDbjGO3g2QEkTg/8hrt
-         h/aZm0FtNwnF4EjexKOs3cDon7oWnaXvDwMDMqevnnme+IcuHmn0lNNzZAzUe+u2Qo
-         MWc2d+/fH72UOZozQ/+wNyr0XkjxKncMMVmg00BQIx6NSGL5tynfaEOD6G2ddV9+JD
-         SEAOVDboLbpuPsRJZUCIVWKwSVUsMcA8yFg+cE6JAd3izAMjkSByrqK/+hDwdgmaoK
-         l6Me7J1kOdOF59yKRtqXe6IaAepk/yARBLZF5nXF9bDYxmTHP1GPXexD1/3gpkRljD
-         8QnmVGbJFNDcQ==
-Received: by mail-ej1-f45.google.com with SMTP id a9so12890158ejr.2;
-        Tue, 02 Feb 2021 09:41:23 -0800 (PST)
-X-Gm-Message-State: AOAM530ka2qXaOPzqNxZhGe4I8NIydeLyWi5eAMV+bCgQRn/3qDVfKrQ
-        yqMbAgikNMn6GJrlMGaqfrfSRYmfIHvwQMYZRw==
-X-Google-Smtp-Source: ABdhPJy7qlQzOEBJFERevS2s5A+17Y7LWXKTGTcLN/aIJ+lDn4tB+n0QfADEErfdMqiE4vPYS8qSp9wXnwGuOy+rUg0=
-X-Received: by 2002:a17:907:16a2:: with SMTP id hc34mr4934241ejc.108.1612287681717;
- Tue, 02 Feb 2021 09:41:21 -0800 (PST)
-MIME-Version: 1.0
-References: <20210202043345.3778765-1-saravanak@google.com> <cb6edbd0-346b-0674-5b5c-7ce3a437736d@microchip.com>
-In-Reply-To: <cb6edbd0-346b-0674-5b5c-7ce3a437736d@microchip.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 2 Feb 2021 11:41:09 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKa5tHsKpOzkTjoiyQSJ+Q7_JOhkZ1m5tnOHK8dDGP7uA@mail.gmail.com>
-Message-ID: <CAL_JsqKa5tHsKpOzkTjoiyQSJ+Q7_JOhkZ1m5tnOHK8dDGP7uA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Make fw_devlink=on more forgiving
-To:     Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Martin Kaiser <martin@kaiser.cx>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        id S237840AbhBBRry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 12:47:54 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:45119 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237849AbhBBRpm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 12:45:42 -0500
+Received: by mail-ot1-f45.google.com with SMTP id n42so20625703ota.12;
+        Tue, 02 Feb 2021 09:45:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=dXcV2lusAKjpXaSjnWl/fIkigGZVjdMH0wGYu3s5F9U=;
+        b=rEWf50QU9nJKa9FiBZqL558aMY84huNuzE7Xo4Mh1cOQi6tKdzXwPOuBF/gVNBsTzu
+         Fv6y7eKK93cJ6KQe7xzgLP3sIbBWZXifO5xHFtSiO0hIRLkZY32bU5244isZdzQWLHJn
+         GoqIWzfJBSjY4do1ryn05Xj+oLK9wpIYiU6lFDXUZHCEEcPx3G9uQBEaONlgU1UNCG9Q
+         ZmH6XNrE2ptnpihGu8UZMpBsmoOiAOd0UTyn6lWmRuqHSou3jGNgnU5XTTkWCm7eZdk0
+         2FODmQ3MWgq/Slhqk3jNEBpmwf1SKWqOSIjB+ZxoB8z5U/Tb6e8+IZbcnNdM58bku7i3
+         St/A==
+X-Gm-Message-State: AOAM531I5qDEF8RrqSpSpuyrQH6ZlqFKFap8qtgEktvnIzvYDqSbFH3E
+        rU22CIVvuM4Jholl0+MhPg==
+X-Google-Smtp-Source: ABdhPJwFA1zAuUMqn+6HziXpCsNLVDtNJm8XRkxO4ss2xfBlEqm8gKWEdsb6buTK11ZNUr94TWTkaQ==
+X-Received: by 2002:a9d:6c9a:: with SMTP id c26mr15987302otr.96.1612287900437;
+        Tue, 02 Feb 2021 09:45:00 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a71sm4919072oob.48.2021.02.02.09.44.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Feb 2021 09:44:59 -0800 (PST)
+Received: (nullmailer pid 3887348 invoked by uid 1000);
+        Tue, 02 Feb 2021 17:44:55 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Andy Gross <agross@kernel.org>,
+        Jesper Nilsson <jesper.nilsson@axis.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-samsung-soc@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
         devicetree@vger.kernel.org,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-arm-kernel@axis.com, Richard Zhu <hongxing.zhu@nxp.com>,
+        linux-arm-msm@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-pci@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-omap@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
+        linux-tegra@vger.kernel.org, Jonathan Chocron <jonnyc@amazon.com>,
+        Zhou Wang <wangzhou1@hisilicon.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <706e684f571e142362d7be74eb1dcee2c8558052.1612271903.git.mchehab+huawei@kernel.org>
+References: <cover.1612271903.git.mchehab+huawei@kernel.org> <706e684f571e142362d7be74eb1dcee2c8558052.1612271903.git.mchehab+huawei@kernel.org>
+Subject: Re: [PATCH 01/13] doc: bindings: pci: designware-pcie.txt: convert it to yaml
+Date:   Tue, 02 Feb 2021 11:44:54 -0600
+Message-Id: <1612287895.001149.3887347.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 2, 2021 at 10:52 AM <Tudor.Ambarus@microchip.com> wrote:
->
-> Hi, Saravana,
->
-> On 2/2/21 6:33 AM, Saravana Kannan wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >
-> > This patch series solves two general issues with fw_devlink=on
-> >
-> > Patch 1/3 and 3/3 addresses the issue of firmware nodes that look like
-> > they'll have struct devices created for them, but will never actually
-> > have struct devices added for them. For example, DT nodes with a
-> > compatible property that don't have devices added for them.
-> >
-> > Patch 2/2 address (for static kernels) the issue of optional suppliers
-> > that'll never have a driver registered for them. So, if the device could
-> > have probed with fw_devlink=permissive with a static kernel, this patch
-> > should allow those devices to probe with a fw_devlink=on. This doesn't
-> > solve it for the case where modules are enabled because there's no way
-> > to tell if a driver will never be registered or it's just about to be
-> > registered. I have some other ideas for that, but it'll have to come
-> > later thinking about it a bit.
-> >
-> > Marek, Geert,
-> >
-> > I don't expect v2 to do any better for your cases.
-> >
-> > This series not making any difference for Marek is still a mystery to
-> > me. I guess one of the consumers doesn't take too well to its probe (and
-> > it's consumers' probe) being delayed till late_initcall(). I'll continue
-> > looking into it.
-> >
-> > Marc,
-> >
-> > This v2 should do better than v1 with gpiolib stub driver reverted. I
-> > forgot to take care of the case where more suppliers could link after I
-> > went and deleted some of the links. v2 handles that now.
-> >
-> > Tudor,
-> >
-> > You should still make the clock driver fix (because it's a bug), but I
-> > think this series will fix your issue too (even without the clock driver
-> > fix). Can you please give this a shot?
-> >
->
-> Did the following tests (using sama5_defconfig and at91-sama5d2_xplained.dts):
-> 1/ modular kernel with your v2 on top of next-20210202, and without the clock
-> driver fix: the problem persists.
->
-> 2/ static kernel with your v2 on top of next-20210202, and without the clock
-> driver fix: the problem persists. Comparing to the previous test, I see that
-> the links to pmc are dropped. I can see the following only with early printk
-> enabled:
-> platform fc008000.serial: Dropping the link to f0014000.pmc
-> But later on, the serial still gets deferred waiting for the dma controller
-> this time:
-> platform f8020000.serial: probe deferral - supplier f0010000.dma-controller not ready
-> I'll check what happens in the dma-controller.
+On Tue, 02 Feb 2021 14:29:46 +0100, Mauro Carvalho Chehab wrote:
+> Convert the file into a DT schema.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../bindings/pci/amlogic,meson-pcie.txt       |   4 +-
+>  .../bindings/pci/axis,artpec6-pcie.txt        |   2 +-
+>  .../bindings/pci/designware-pcie.txt          |  77 ----------
+>  .../bindings/pci/fsl,imx6q-pcie.txt           |   2 +-
+>  .../bindings/pci/hisilicon-histb-pcie.txt     |   2 +-
+>  .../bindings/pci/hisilicon-pcie.txt           |   2 +-
+>  .../devicetree/bindings/pci/kirin-pcie.txt    |   2 +-
+>  .../bindings/pci/layerscape-pci.txt           |   2 +-
+>  .../bindings/pci/nvidia,tegra194-pcie.txt     |   4 +-
+>  .../devicetree/bindings/pci/pci-armada8k.txt  |   2 +-
+>  .../devicetree/bindings/pci/pci-keystone.txt  |  10 +-
+>  .../devicetree/bindings/pci/pcie-al.txt       |   2 +-
+>  .../devicetree/bindings/pci/qcom,pcie.txt     |  14 +-
+>  .../bindings/pci/samsung,exynos-pcie.yaml     |   2 +-
+>  .../devicetree/bindings/pci/snps,pcie.yaml    | 139 ++++++++++++++++++
+>  .../pci/socionext,uniphier-pcie-ep.yaml       |   2 +-
+>  .../devicetree/bindings/pci/ti-pci.txt        |   4 +-
+>  .../devicetree/bindings/pci/uniphier-pcie.txt |   2 +-
+>  MAINTAINERS                                   |   2 +-
+>  19 files changed, 169 insertions(+), 107 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/designware-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/snps,pcie.yaml
+> 
 
-Not sure if it's the case here, but some serial drivers use DMA only
-when available and decide that on open() rather than probe. How is
-devlinks going to deal with that?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Rob
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+	Additional properties are not allowed ('$ref' was unexpected)
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+	'/schemas/types.yaml#definitions/flag' does not match 'types.yaml#/definitions/'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: ignoring, error in schema: properties: snps,enable-cdm-check
+warning: no schema found in file: ./Documentation/devicetree/bindings/pci/snps,pcie.yaml
+
+See https://patchwork.ozlabs.org/patch/1434686
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
