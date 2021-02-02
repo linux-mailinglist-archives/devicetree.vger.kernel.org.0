@@ -2,118 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 734D530BF78
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 14:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06C4230BF9B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 14:36:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232404AbhBBNby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 08:31:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59582 "EHLO mail.kernel.org"
+        id S232613AbhBBNgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 08:36:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33008 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232353AbhBBNb1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 08:31:27 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D88DF64F61;
-        Tue,  2 Feb 2021 13:30:01 +0000 (UTC)
+        id S232420AbhBBNeu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 08:34:50 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 521FC64F51;
+        Tue,  2 Feb 2021 13:34:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612272602;
-        bh=Tmpg5G8Q5WWZwkwEzV2K4ehCcH+3UNaSq0kO2M0KaCw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=YUkXaIK68CSCM4Vaqzz+PupuMY7Sx73apJkS8Xl4sbkCGrzk8MrdEzhZE6j+RdKe9
-         +izykXTBqxMbvIJiuJZFJ4bk6rsKfrIqVE3mINm2G5XA2BdaD5xENhF2Pw66Zz+iKe
-         eWG7PDVyR51IWYcV9BWvGOqM4e++q49pG3jQFfCPOmxT8wf2MgHQt6LHKk/Yhzt6cc
-         p/eXYzxcfCN4Qeas+X4jSHM69+9Tn9cnrjHeg+oled73uFHHa+9K6k4kv010HteMkq
-         mrbZJSUNjLc+IMrNjNivP3karOUuCWU26EnB4r0G8V1Ib6B9Bs5BhWiv782OSctKVU
-         1LjICCl9cFN1g==
-Received: by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1l6vkl-0011zH-Tr; Tue, 02 Feb 2021 14:29:59 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        s=k20201202; t=1612272845;
+        bh=Qc82Rs1BO/kqAuHM5fqbYivehM9Zpe/q/Rk+nnanzSg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Rq0QnvC6dVMTqTSjlBcM3j0Fae/zpps7YBL8rDHFtXiYCHsNkpgUTppGN6K4hqIrb
+         edDS1gAiPwbetu6tWSl9Vta07jbjBtsbXymdYJVMz0BAFERuwrWqOoE8JEWlITWUym
+         kSBu1Hvj7++Q3KhFAOn7GYFAJRobhWTnQzDhPpgPkDJBb2+vmwtgNEI1rTZfcDLk34
+         uH8V0g7QGutVlEEhLHM96YbjM0IeXlx42/IDhP1pbBV96U0TPX8TeQz8BzqVldtr7O
+         8bOnNEZUbb1tqrf/yES4UgRiBbNfflqqdQt3ypOMeBlaUFdtPWOuacG/CjCSQXYwjZ
+         s0ZTqM/4rso+w==
+Date:   Tue, 2 Feb 2021 13:33:58 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 13/13] arm64: dts: hisilicon: cleanup Hikey 970 PCI schema
-Date:   Tue,  2 Feb 2021 14:29:58 +0100
-Message-Id: <c966e7788af64dbd384d2e9def204533d73e8a97.1612271903.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1612271903.git.mchehab+huawei@kernel.org>
-References: <cover.1612271903.git.mchehab+huawei@kernel.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com
+Subject: Re: [PATCH v6 00/33] MT8192 IOMMU support
+Message-ID: <20210202133358.GA17070@willie-the-truck>
+References: <20210111111914.22211-1-yong.wu@mediatek.com>
+ <20210201145422.GA15263@willie-the-truck>
+ <1612231425.2524.12.camel@mhfsdcap03>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1612231425.2524.12.camel@mhfsdcap03>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The original schema was not generic enough and not
-properly documented. Those got updated via some driver
-changes.
+On Tue, Feb 02, 2021 at 10:03:45AM +0800, Yong Wu wrote:
+> On Mon, 2021-02-01 at 14:54 +0000, Will Deacon wrote:
+> > On Mon, Jan 11, 2021 at 07:18:41PM +0800, Yong Wu wrote:
+> > > This patch mainly adds support for mt8192 Multimedia IOMMU and SMI.
+> > > 
+> > > mt8192 also is MTK IOMMU gen2 which uses ARM Short-Descriptor translation
+> > > table format. The M4U-SMI HW diagram is as below:
+> > > 
+> > >                           EMI
+> > >                            |
+> > >                           M4U
+> > >                            |
+> > >                       ------------
+> > >                        SMI Common
+> > >                       ------------
+> > >                            |
+> > >   +-------+------+------+----------------------+-------+
+> > >   |       |      |      |       ......         |       |
+> > >   |       |      |      |                      |       |
+> > > larb0   larb1  larb2  larb4     ......      larb19   larb20
+> > > disp0   disp1   mdp    vdec                   IPE      IPE
+> > > 
+> > > All the connections are HW fixed, SW can NOT adjust it.
+> > > 
+> > > Comparing with the preview SoC, this patchset mainly adds two new functions:
+> > > a) add iova 34 bits support.
+> > > b) add multi domains support since several HW has the special iova
+> > > region requirement.
+> > > 
+> > > change note:
+> > > v6:a) base on v5.11-rc1. and tlb v4:
+> > >       https://lore.kernel.org/linux-mediatek/20210107122909.16317-1-yong.wu@mediatek.com/T/#t 
+> > 
+> > I've queued this up apart from patches 6 and 7.
+> 
+> Thanks very much for the applying. I'd like to show there is a little
+> conflict with a smi change[1] in /include/soc/mediatek/smi.h.
+> 
+> This is the detailed conflict:
+> 
+> --- a/include/soc/mediatek/smi.h
+> +++ b/include/soc/mediatek/smi.h
+> @@ -9,7 +9,7 @@
+>  #include <linux/bitops.h>
+>  #include <linux/device.h>
+>  
+> -#ifdef CONFIG_MTK_SMI
+> +#if IS_ENABLED(CONFIG_MTK_SMI)   <---The smi patch change here.
+>  
+>  #define MTK_LARB_NR_MAX   16  <---This iommu patchset delete this line.
+> 
+> 
+> This code is simple. Please feel free to tell me how to do this if this
+> is not convenient to merge.
 
-Apply those changes also to Hikey 970 schema.
+Thanks, but this should be trivial to resolve, so I don't think we need to
+worry about it.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi      | 18 +++++++++---------
- .../boot/dts/hisilicon/hikey970-pmic.dtsi      |  1 -
- 2 files changed, 9 insertions(+), 10 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index c0a0336a8ea4..7e96d5eda13a 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -673,11 +673,12 @@ its_pcie: interrupt-controller@f4000000 {
- 		};
- 
- 		pcie@f4000000 {
--			compatible = "hisilicon,kirin970-pcie", "hisilicon,kirin960-pcie";
-+			compatible = "hisilicon,kirin970-pcie";
- 			reg = <0x0 0xf4000000 0x0 0x1000000>,
- 			      <0x0 0xfc180000 0x0 0x1000>,
- 			      <0x0 0xfc000000 0x0 0x80000>,
- 			      <0x0 0xf5000000 0x0 0x2000>;
-+			pci-supply = <&ldo33>;
- 			reg-names = "dbi", "apb", "phy", "config";
- 			bus-range = <0x0  0x1>;
- 			msi-parent = <&its_pcie>;
-@@ -705,19 +706,18 @@ &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
- 				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_PHY>,
- 				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_SYS>,
- 				 <&crg_ctrl HI3670_ACLK_GATE_PCIE>;
-+
- 			clock-names = "pcie_phy_ref", "pcie_aux",
- 				      "pcie_apb_phy", "pcie_apb_sys",
- 				      "pcie_aclk";
--			switch,reset-gpios = <&gpio7 0 0 >;
--			eth,reset-gpios = <&gpio25 2 0 >;
--			m_2,reset-gpios = <&gpio3 1 0 >;
--			mini1,reset-gpios = <&gpio27 4 0 >;
- 
--			eth,clkreq-gpios = <&gpio20 6 0 >;
--			m_2,clkreq-gpios = <&gpio27 3 0 >;
--			mini1,clkreq-gpios = <&gpio17 0 0 >;
-+			reset-gpios = <&gpio7 0 0 >, <&gpio25 2 0 >,
-+				      <&gpio3 1 0 >, <&gpio27 4 0 >;
- 
--			/*vboost iboost pre post main*/
-+			clkreq-gpios = <&gpio20 6 0 >, <&gpio27 3 0 >,
-+				       <&gpio17 0 0 >;
-+
-+			/* vboost iboost pre post main */
- 			eye_param = <0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF>;
- 
- 			pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-index 8cf45b962fea..49afcd7c00ce 100644
---- a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-@@ -73,7 +73,6 @@ ldo33: LDO33 { /* PEX8606 */
- 					regulator-name = "ldo33";
- 					regulator-min-microvolt = <2500000>;
- 					regulator-max-microvolt = <3300000>;
--					regulator-boot-on;
- 				};
- 
- 				ldo34: LDO34 { /* GPS AUX IN VDD */
--- 
-2.29.2
-
+Will
