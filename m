@@ -2,309 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C12130B876
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 08:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E46A30B892
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 08:24:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231488AbhBBHOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 02:14:31 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:60070 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231532AbhBBHOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 02:14:30 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1127Cj1Y032082;
-        Tue, 2 Feb 2021 01:12:45 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1612249965;
-        bh=fI3v7V/6roxWqrmKFMoiR5wcJfYMksqrg0LAHvjq1tE=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=gQYx0er59N96BKtFWGMHAa3PZEa7shX/GLalfPfyGaPZ8dPPPlL9VsxtG/F5I4Mb7
-         l1FK7w4Cbugt5Z58n3qpyRUo/jzCrKjbfV/ed3MTOo2QLegV6UadPOhM4bhwdRw+BU
-         gO/FTSRPHEVLGRzYbva8d327XpIk0kSG+ENsrFkM=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1127CjTq047865
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 2 Feb 2021 01:12:45 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 2 Feb
- 2021 01:12:45 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 2 Feb 2021 01:12:45 -0600
-Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1127CgDV062802;
-        Tue, 2 Feb 2021 01:12:42 -0600
-Subject: Re: [PATCH 2/2] arm64: dts: ti: Add support for AM642 SK
-To:     Suman Anna <s-anna@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Dave Gerlach <d-gerlach@ti.com>
-References: <20210121143924.26213-1-lokeshvutla@ti.com>
- <20210121143924.26213-3-lokeshvutla@ti.com>
- <20210121153622.bqgvaxnrqaibu2ka@curve>
- <e7097efe-6e9c-3bf9-0b1c-e34c6c14cbf1@ti.com>
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <86cd9194-de2b-7bd5-24bb-aadabe7d0ec9@ti.com>
-Date:   Tue, 2 Feb 2021 12:42:41 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231560AbhBBHWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 02:22:08 -0500
+Received: from szxga05-in.huawei.com ([45.249.212.191]:12003 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231685AbhBBHWH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 02:22:07 -0500
+Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.58])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4DVGRW1LtdzjHTR;
+        Tue,  2 Feb 2021 15:20:07 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.176.220) by
+ DGGEMS408-HUB.china.huawei.com (10.3.19.208) with Microsoft SMTP Server id
+ 14.3.498.0; Tue, 2 Feb 2021 15:21:17 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Russell King <rmk+kernel@arm.linux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will.deacon@arm.com>,
+        "Haojian Zhuang" <haojian.zhuang@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Rob Herring" <robh+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH v7 0/4] ARM: Add support for Hisilicon Kunpeng L3 cache controller
+Date:   Tue, 2 Feb 2021 15:16:44 +0800
+Message-ID: <20210202071648.1776-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-In-Reply-To: <e7097efe-6e9c-3bf9-0b1c-e34c6c14cbf1@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.176.220]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v6 --> v7:
+1. Change all readl()/writel() to _relaxed(), add the corresponding description to the code.
+2. Delete the unnecessary spinlock protection in l3cache_init().
+
+v5 --> v6:
+1. Use raw_spin_lock_irqsave() instead of spin_lock_irqsave()
+2. Move the macros defined in cache-kunpeng-l3.h into cache-kunpeng-l3.c, and delete that header file.
+3. In some places, replace readl()/writel() with readl_relaxed()/writel_relaxed() to improve performance without affecting functions.
+4. Returns 0 instead of an error code when Kunpeng L3 Cache matching failed.
+
+Thank you for Arnd's review comments and Russell's help.
+
+v4 --> v5:
+1. Add SoC macro ARCH_KUNPENG50X, and the Kunpeng L3 cache controller only enabled
+   on that platform.
+2. Require the compatible string of the Kunpeng L3 cache controller must have a
+   relevant name on a specific SoC. For example:
+   compatible = "hisilicon,kunpeng509-l3cache", "hisilicon,kunpeng-l3cache";
+
+v3 --> v4:
+Rename the compatible string from "hisilicon,l3cache" to "hisilicon,kunpeng-l3cache".
+Then adjust the file name, configuration option name, and description accordingly.
+
+v2 --> v3:
+Add Hisilicon L3 cache controller driver and its document. That's: patch 2-3.
+
+v1 --> v2:
+Discard the middle-tier functions and do silent narrowing cast in the outcache
+hook functions. For example:
+-static void l2c220_inv_range(unsigned long start, unsigned long end)
++static void l2c220_inv_range(phys_addr_t pa_start, phys_addr_t pa_end)
+ {
++	unsigned long start = pa_start;
++	unsigned long end = pa_end;
 
 
-On 26/01/21 10:20 pm, Suman Anna wrote:
-> Hi Lokesh,
-> 
-> On 1/21/21 9:36 AM, Nishanth Menon wrote:
->> On 20:09-20210121, Lokesh Vutla wrote:
->>> AM642 StarterKit (SK) board is a low cost, small form factor board
->>> designed for TI’s AM642 SoC. It supports the following interfaces:
->>> * 2 GB LPDDR4 RAM
->>> * x2 Gigabit Ethernet interfaces capable of working in switch and MAC mode
->>> * x1 USB 3.0 Type-A port
->>> * x1 UHS-1 capable µSD card slot
->>> * 2.4/5 GHz WLAN + Bluetooth 4.2 through WL1837
->>> * 512 Mbit OSPI flash
->>> * x2 UART through UART-USB bridge
->>> * XDS110 for onboard JTAG debug using USB
->>> * Temperature sensors, user push buttons and LEDs
->>> * 40-pin Raspberry Pi compatible GPIO header
->>> * 24-pin header for peripherals in MCU island (I2C, UART, SPI, IO)
->>> * 54-pin header for Programmable Realtime Unit (PRU) IO pins
->>> * Interface for remote automation (power and reset, boot mode change)
->>
->> might be nice to state "power measurement and reset control"
+v1:
+Do cast phys_addr_t to unsigned long by adding a middle-tier function.
+For example:
+-static void l2c220_inv_range(unsigned long start, unsigned long end)
++static void __l2c220_inv_range(unsigned long start, unsigned long end)
+ {
+ 	...
+ }
++static void l2c220_inv_range(phys_addr_t start, phys_addr_t end)
++{
++  __l2c220_inv_range(start, end);
++}
 
-Sure will fix in v2.
+Zhen Lei (4):
+  ARM: LPAE: Use phys_addr_t instead of unsigned long in outercache
+    hooks
+  ARM: hisi: add support for Kunpeng50x SoC
+  dt-bindings: arm: hisilicon: Add binding for Kunpeng L3 cache
+    controller
+  ARM: Add support for Hisilicon Kunpeng L3 cache controller
 
->>
->>>
->>> Add basic support for AM642 SK.
->>>
->>> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
->>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->>> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
->>> ---
->>>  arch/arm64/boot/dts/ti/Makefile        |   3 +-
->>>  arch/arm64/boot/dts/ti/k3-am642-sk.dts | 145 +++++++++++++++++++++++++
->>>  2 files changed, 147 insertions(+), 1 deletion(-)
->>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-sk.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->>> index c687739e2bca..6aa642eb56d4 100644
->>> --- a/arch/arm64/boot/dts/ti/Makefile
->>> +++ b/arch/arm64/boot/dts/ti/Makefile
->>> @@ -12,4 +12,5 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
->>>  
->>>  dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
->>>  
->>> -dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb \
->>> +			 k3-am642-sk.dtb
->>
->> no please. Just:
->> +dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+ .../arm/hisilicon/kunpeng-l3cache.yaml        |  40 ++++
+ arch/arm/include/asm/outercache.h             |   6 +-
+ arch/arm/mach-hisi/Kconfig                    |   6 +
+ arch/arm/mm/Kconfig                           |  10 +
+ arch/arm/mm/Makefile                          |   1 +
+ arch/arm/mm/cache-feroceon-l2.c               |  15 +-
+ arch/arm/mm/cache-kunpeng-l3.c                | 178 ++++++++++++++++++
+ arch/arm/mm/cache-l2x0.c                      |  50 +++--
+ arch/arm/mm/cache-tauros2.c                   |  15 +-
+ arch/arm/mm/cache-uniphier.c                  |   6 +-
+ arch/arm/mm/cache-xsc3l2.c                    |  12 +-
+ 11 files changed, 310 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/kunpeng-l3cache.yaml
+ create mode 100644 arch/arm/mm/cache-kunpeng-l3.c
 
-Okay.
+-- 
+2.26.0.106.g9fadedd
 
->>
->> See arch/arm64/boot/dts/nvidia/Makefile for example.
->>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
->>> new file mode 100644
->>> index 000000000000..5b473aaa225d
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
->>> @@ -0,0 +1,145 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include "k3-am642.dtsi"
->>> +
->>> +/ {
->>> +	compatible =  "ti,am642-evm", "ti,am642";
-> 
-> Looks like a copy-paste error. As per patch 1, you should be using ti,am642-sk
-> and not ti,am642-evm.
 
-Oops. Good catch, will fix in v2.
-
-> 
->>> +	model = "Texas Instruments AM642 SK";
->>> +
->>> +	chosen {
->>> +		stdout-path = "serial2:115200n8";
->>> +		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
->>> +	};
->>> +
->>> +	memory@80000000 {
->>> +		device_type = "memory";
->>> +		/* 2G RAM */
->>> +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
->>> +
->>> +	};
->>> +
->>> +	reserved-memory {
->>> +		#address-cells = <2>;
->>> +		#size-cells = <2>;
->>> +		ranges;
->>> +
->>> +		secure_ddr: optee@9e800000 {
->>> +			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
->>> +			alignment = <0x1000>;
->>> +			no-map;
->>> +		};
->>> +	};
->>> +
->>> +	vusb_main: fixed-regulator-vusb-main5v0 {
->>> +		/* USB MAIN INPUT 5V DC */
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "vusb_main5v0";
->>> +		regulator-min-microvolt = <5000000>;
->>> +		regulator-max-microvolt = <5000000>;
->>> +		regulator-always-on;
->>> +		regulator-boot-on;
->>> +	};
->>> +
->>> +	vcc_3v3_sys: fixedregulator-vcc-3v3-sys {
->>> +		/* output of LP8733xx */
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "vcc_3v3_sys";
->>> +		regulator-min-microvolt = <3300000>;
->>> +		regulator-max-microvolt = <3300000>;
->>> +		vin-supply = <&vusb_main>;
->>> +		regulator-always-on;
->>> +		regulator-boot-on;
->>> +	};
->>> +
->>> +	vdd_mmc1: fixed-regulator-sd {
->>> +		/* TPS2051BD */
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "vdd_mmc1";
->>> +		regulator-min-microvolt = <3300000>;
->>> +		regulator-max-microvolt = <3300000>;
->>> +		regulator-boot-on;
->>> +		enable-active-high;
->>> +		vin-supply = <&vcc_3v3_sys>;
->>> +		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
->>> +	};
->>> +};
->>> +
->>> +&main_pmx0 {
->>> +	main_mmc1_pins_default: main-mmc1-pins-default {
->>> +		pinctrl-single,pins = <
->>> +			AM64X_IOPAD(0x0294, PIN_INPUT, 0) /* (J19) MMC1_CMD */
->>> +			AM64X_IOPAD(0x0290, PIN_INPUT, 0) /* (#N/A) MMC1_CLKLB */
->>> +			AM64X_IOPAD(0x028c, PIN_INPUT, 0) /* (L20) MMC1_CLK */
->>> +			AM64X_IOPAD(0x0288, PIN_INPUT, 0) /* (K21) MMC1_DAT0 */
->>> +			AM64X_IOPAD(0x0284, PIN_INPUT, 0) /* (L21) MMC1_DAT1 */
->>> +			AM64X_IOPAD(0x0280, PIN_INPUT, 0) /* (K19) MMC1_DAT2 */
->>> +			AM64X_IOPAD(0x027c, PIN_INPUT, 0) /* (K18) MMC1_DAT3 */
->>> +			AM64X_IOPAD(0x0298, PIN_INPUT, 0) /* (D19) MMC1_SDCD */
->>> +		>;
->>> +	};
->>> +
->>> +	main_i2c1_pins_default: main-i2c1-pins-default {
->>> +		pinctrl-single,pins = <
->>> +			AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
->>> +			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
->>> +		>;
->>> +	};
->>> +};
->>> +
->>> +&main_uart1 {
->>> +	/* main_uart1 is reserved for firmware usage */
->>> +	status = "reserved";
->>> +};
->>> +
->>> +&main_uart2 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&main_uart3 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&main_uart4 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&main_uart5 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&main_uart6 {
->>> +	status = "disabled";
->>> +};
->>
->> I think disabling &mcu_uart0 and &mcu_uart1 might also be a good idea?
-
-Agreed. Will fix in v2.
-
->>> +
->>> +&main_i2c1 {
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&main_i2c1_pins_default>;
->>> +	clock-frequency = <400000>;
->>> +
->>> +	exp1: gpio@70 {
->>> +		compatible = "nxp,pca9538";
->>> +		reg = <0x70>;
->>> +		gpio-controller;
->>> +		#gpio-cells = <2>;
->>> +		gpio-line-names = "GPIO_CPSW2_RST", "GPIO_CPSW1_RST",
->>> +				  "PRU_DETECT", "MMC1_SD_EN",
->>> +				  "VPP_LDO_EN", "RPI_PS_3V3_En",
->>> +				  "RPI_PS_5V0_En", "RPI_HAT_DETECT";
->>> +	};
->>> +};
->>
->> Disable main_i2c0, spi nodes, sdhci0 or are those nodes being used for
->> something else that will be fixedup in a follow on series?
-
-main_i2c0 has eeprom, shdci0 is used for wlan. Will mark other nodes as disabled.
-
-Thanks and regards,
-Lokesh
-
-> 
-> +1
-> 
-> regards
-> Suman
-> 
->>
->>> +
->>> +&sdhci1 {
->>> +	/* SD/MMC */
->>> +	vmmc-supply = <&vdd_mmc1>;
->>> +	pinctrl-names = "default";
->>> +	bus-width = <4>;
->>> +	pinctrl-0 = <&main_mmc1_pins_default>;
->>> +	ti,driver-strength-ohm = <50>;
->>> +	disable-wp;
->>> +};
->>> -- 
->>> 2.30.0
->>>
->>
-> 
