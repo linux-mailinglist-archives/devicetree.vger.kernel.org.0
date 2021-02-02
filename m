@@ -2,160 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B8F130C49A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 16:58:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1BE030C49F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 16:58:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235808AbhBBP4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 10:56:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45726 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235795AbhBBPyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 10:54:51 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D6AFC06174A;
-        Tue,  2 Feb 2021 07:54:10 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id m22so17100023ljj.4;
-        Tue, 02 Feb 2021 07:54:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=8enBlEOKm9It/cKHLJMBWzbNRlOst59aHzd+yoHUl1g=;
-        b=iULnQ2RFjb9qH8isdKYaNhZLY+tfsIUPGJL7ERo/5cHGdhSvGFRrLujvZlcYvaj+Yv
-         wYrSQGYxiqDJVGGro4J/DiVfelriL3AzGpQYJn4tQZ1xCFRAO5EAc98/w7XRBaESJDdp
-         jSuAkCJCnRsGFQ9cdoBvvN1o86ciiTXcAEehuumro4KFC6C/A9JxbiE20UOqwDGVJwZr
-         Ipcn1yYXG3HmdP60XczQ6aDM8f3W6x/zTmjkJGnWBzb3QEvJMC9uEHzqVVfF3hz9BTWz
-         A5FxlEOYDdu0CVt7zN9sYfQyToQLo7JQe9AamJoIPD6GVNPnyRUz4LIyJPVYvezOeVf+
-         36ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8enBlEOKm9It/cKHLJMBWzbNRlOst59aHzd+yoHUl1g=;
-        b=UID8WkXKzD+uDx4UVmnJMUR9uIc41lrOpcEJz643JQJGVaxUAvrU/Bj2lVY6LBmpXq
-         nB66BnAhuXqY8FciGi6ML8iW9bq6QYDQyrJA25f9LmfhyU48jsaqynrg0kmfs3C+Oy/d
-         3BuRBq6l0ZgXxLMOMSGHGekNUQ8sDLWaimaNgULn0nww2QtGDkmlLyM1CNPObKGmle/V
-         Rw4y8OVxPeexCOe0Dq/zXyAB0nzOsUHKCNAD0wx8tHQdGSDK6Q7q5il4lUrepowVM6ts
-         NIp0ifYg8lxELqEtEGvxkJpNgXqI2szl6DS42tr1rDn7q4XRVpapibRyJeY/FxJ4pQjD
-         GlKw==
-X-Gm-Message-State: AOAM533u34zkj4diRY0lGgyI3iGkze/0drVSppGgpyuNVSgs4azysH9I
-        iJ2mOyjW9k9qRo3mwyRCRwn5nfwaIvE=
-X-Google-Smtp-Source: ABdhPJyu2R9ua7UAwzHH793ECSpeoTE0qAJCKeo7jAGHit4l626oPtuP30Wcm13/wg7vHyy4b4JvEw==
-X-Received: by 2002:a2e:9115:: with SMTP id m21mr13877035ljg.62.1612281246415;
-        Tue, 02 Feb 2021 07:54:06 -0800 (PST)
-Received: from ?IPv6:2a00:1370:814d:ea25:a10:76ff:fe69:21b6? ([2a00:1370:814d:ea25:a10:76ff:fe69:21b6])
-        by smtp.googlemail.com with ESMTPSA id y21sm3347792lfg.282.2021.02.02.07.54.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Feb 2021 07:54:05 -0800 (PST)
-Subject: Re: [PATCH v1 2/2] ASoC: tegra: Add RT5631 machine driver
-To:     Ion Agorria <AG0RRIA@yahoo.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Stephen Warren <swarren@nvidia.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Ion Agorria <ion@agorria.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210131184101.651486-1-AG0RRIA@yahoo.com>
- <20210131184101.651486-3-AG0RRIA@yahoo.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <5ee67a6b-ebe0-8565-5315-bc823ece32f2@gmail.com>
-Date:   Tue, 2 Feb 2021 18:54:03 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        id S235780AbhBBP5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 10:57:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49034 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235889AbhBBPzY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 10:55:24 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CA59C64E9C;
+        Tue,  2 Feb 2021 15:54:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612281282;
+        bh=InUcpyv9LzxfCng6N9RmMwMFNFkinqM1iArVPnn5MFI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=pzo6vtcGFu0iTLJhtnw/GC9gfLhd/iSrx0pnWN5zZWqTqeROcs72U6JXyDF0CRuJT
+         dVadJGDie8yR32MPoayZRRM3e/YWZCXyaGBqwbWWahx+tHm3smadSR5UFIkvXdsoRF
+         gI4v4q8XPWRwuLDTq4oU40m6jusVHiAtg/gLRAC8K7Qcoh9utVCrvIw8LYHAzdKt75
+         bAp/d3EEqKyoYZ2sjQk5c2aJdz0/h6VPuAcfVNSinMbpYMavzJVvPbWkO9TWvbXHP0
+         p45iL79adOQ7viO3pQFRX5r3ECiIDS8L0SBgiXDMThzZGF7hK4TsVRwETqkx8ErqXq
+         DNu4GLhEbTmCg==
+Received: by mail-oi1-f180.google.com with SMTP id w124so23218603oia.6;
+        Tue, 02 Feb 2021 07:54:42 -0800 (PST)
+X-Gm-Message-State: AOAM532eP+b7OOw5iPbTpcQJbT0HYn7uPQg1voiUc6NRO5iUK1GmPs1k
+        yMLCEX+y9KErBg7UVDi4XJUfVvRW7KXc9n5UmYo=
+X-Google-Smtp-Source: ABdhPJwS3LkYij3FBY6AdP3IZVmOxavIQah+JyozDz34zcdjBEuLK7+tqgdUE55rvCDzAXiCPw3xmD7gmdArNWBoeH8=
+X-Received: by 2002:aca:e103:: with SMTP id y3mr3095862oig.11.1612281282086;
+ Tue, 02 Feb 2021 07:54:42 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210131184101.651486-3-AG0RRIA@yahoo.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210202071648.1776-1-thunder.leizhen@huawei.com>
+ <20210202071648.1776-5-thunder.leizhen@huawei.com> <CAK8P3a1HuXx7qpOPAdcGadtWCkNOp75bgO8cLSpXnobULHU6ZQ@mail.gmail.com>
+ <99b8672c-467c-9698-40e7-aed7dc5d2ee2@huawei.com>
+In-Reply-To: <99b8672c-467c-9698-40e7-aed7dc5d2ee2@huawei.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Tue, 2 Feb 2021 16:54:25 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1NoKbRxU8xg4OT-N+hn-0MrSsxno5vH-8RGj7r9a1PJA@mail.gmail.com>
+Message-ID: <CAK8P3a1NoKbRxU8xg4OT-N+hn-0MrSsxno5vH-8RGj7r9a1PJA@mail.gmail.com>
+Subject: Re: [PATCH v7 4/4] ARM: Add support for Hisilicon Kunpeng L3 cache controller
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Russell King <rmk+kernel@arm.linux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-31.01.2021 21:41, Ion Agorria пишет:
-> +	np_codec = of_parse_phandle(pdev->dev.of_node, "nvidia,audio-codec", 0);
-> +	if (!np_codec) {
-> +		dev_err(&pdev->dev,
-> +			"Property 'nvidia,audio-codec' missing or invalid\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	np_i2s = of_parse_phandle(pdev->dev.of_node, "nvidia,i2s-controller", 0);
-> +	if (!np_i2s) {
-> +		dev_err(&pdev->dev,
-> +			"Property 'nvidia,i2s-controller' missing or invalid\n");
-> +		return -EINVAL;
-> +	}
+On Tue, Feb 2, 2021 at 1:18 PM Leizhen (ThunderTown)
+<thunder.leizhen@huawei.com> wrote:
+> On 2021/2/2 16:44, Arnd Bergmann wrote:
+> >
+> > To have a more useful performance number, try mentioning the
+> > most performance sensitive non-coherent DMA master on one
+> > of the chips that has this cache controller, and a high-level
+> > performance number such as "1.2% more network packets per
+> > second" if that is something you can measure easily.
+>
+> It's not easy. My board only have debugging NIC, only the downstream
+> products have high-speed service NIC. Software needs to be packaged
+> layer by layer.
+>
+> >
+> > Of course, if all high-speed DMA masters on this chip are
+> > cache coherent, there is no need for performance numbers, just
+> > mention that we don't care about speed in that case.
+>
+> It's not cache coherent, otherwise, the L3 cache does not need to be
+> operated.
 
-We missed that the np_codec and np_i2s should be put when driver is released.
+Ok, I see. In this case, just explain that the high-speed NIC is not
+cache-coherent, so this is expected to make a difference, even if you
+can't quantify it exactly.
 
-https://elixir.bootlin.com/linux/v5.11-rc6/source/drivers/of/base.c#L1429
-
-We could fix it with a devm helper in v2.
-
-diff --git a/sound/soc/tegra/tegra_rt5631.c b/sound/soc/tegra/tegra_rt5631.c
-index 9034f48bcb26..84f23915bd95 100644
---- a/sound/soc/tegra/tegra_rt5631.c
-+++ b/sound/soc/tegra/tegra_rt5631.c
-@@ -172,6 +172,30 @@ static struct snd_soc_card snd_soc_tegra_rt5631 = {
- 	.fully_routed = true,
- };
- 
-+static void tegra_rt5631_node_release(void *of_node)
-+{
-+	of_node_put(of_node);
-+}
-+
-+static struct device_node *
-+tegra_rt5631_parse_phandle(struct device *dev, const char *name)
-+{
-+	struct device_node *np;
-+	int err;
-+
-+	np = of_parse_phandle(dev->of_node, name, 0);
-+	if (!np) {
-+		dev_err(dev, "Property '%s' missing or invalid\n", name);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	err = devm_add_action_or_reset(dev, tegra_rt5631_node_release, np);
-+	if (err)
-+		return ERR_PTR(err);
-+
-+	return np;
-+}
-+
- static int tegra_rt5631_probe(struct platform_device *pdev)
- {
- 	struct snd_soc_card *card = &snd_soc_tegra_rt5631;
-@@ -209,19 +233,13 @@ static int tegra_rt5631_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	np_codec = of_parse_phandle(pdev->dev.of_node, "nvidia,audio-codec", 0);
--	if (!np_codec) {
--		dev_err(&pdev->dev,
--			"Property 'nvidia,audio-codec' missing or invalid\n");
--		return -EINVAL;
--	}
-+	np_codec = tegra_rt5631_parse_phandle(&pdev->dev, "nvidia,audio-codec");
-+	if (IS_ERR(np_codec))
-+		return PTR_ERR(np_codec);
- 
--	np_i2s = of_parse_phandle(pdev->dev.of_node, "nvidia,i2s-controller", 0);
--	if (!np_i2s) {
--		dev_err(&pdev->dev,
--			"Property 'nvidia,i2s-controller' missing or invalid\n");
--		return -EINVAL;
--	}
-+	np_i2s = tegra_rt5631_parse_phandle(&pdev->dev, "nvidia,i2s-controller");
-+	if (!np_i2s)
-+		return PTR_ERR(np_i2s);
- 
- 	tegra_rt5631_dai.cpus->of_node = np_i2s;
- 	tegra_rt5631_dai.codecs->of_node = np_codec;
+       Arnd
