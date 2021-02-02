@@ -2,110 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA29730C290
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 15:56:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28AAD30C2B1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 15:59:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234532AbhBBOx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 09:53:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60744 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234626AbhBBOxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 09:53:18 -0500
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777E4C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 06:52:38 -0800 (PST)
-Received: by mail-qv1-xf2b.google.com with SMTP id u20so5939058qvx.7
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 06:52:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gHYghtKgrrWF03mk9TitT4grGLLx+SPuNZIfRbTgwjs=;
-        b=EDkwE2MIBgfcCVyclcD1ro/CbUNsnvbLiSvMmF6GYFKIdZ+tHW80JZzcPprPQfu/56
-         Gap6aPwG6at8Wuxk+GOFrjhPbQOJvV4s4eATU0XLHv2u925tjQeEHpyesey3aK94nOh5
-         Q3zExIAYjogRb0HB+fitmbovUkJjB8CDbtFUx/QXDdulecqqiaEvM3FgRuRWJ/XvUXvW
-         t4Kq6yhXP6MII+Zsoy/Ehz1BMfBzMnRM4GMQU8ZhUFnL7HITwhB25tZwpo/rm2ElkwWk
-         ClwbEsGdBeKBMgKuZT7dPJ9h/JzdQjTtqKbNsEfC1rzhCG58lSbfi5JRHlATmYiwVBcC
-         Vpbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gHYghtKgrrWF03mk9TitT4grGLLx+SPuNZIfRbTgwjs=;
-        b=noINAG65qshaHhtgWTLgiVDitrMBcpwtXIgL2A3c3iwO4/MdTRUReehWG69dkeTMLT
-         0OHynF0rN8sYI42TnPkLEXs1Io7WZEX7IjN8cSGiNGN/smjgCvYucWN3W6B/9nrSvW2V
-         j93SqsngZMOyW+RS5GxgsR1sIeR1IzJk6TXx54DDB5dVS8ltArbawOXHzlxd8fat/pLt
-         mZfjRS5JQQ1Ur2+KtsMRKXzBhgzw6LXJTbYsa8PMEZ2Qhbyir67GNvZdYx47slf90P0t
-         jCEDjVoR18YpWnI8ntjXW/UZjNcgtXKHW1Z6kMiQph0oN37lUhJ7VjM+jMzSN400dToy
-         3DYw==
-X-Gm-Message-State: AOAM530Pu9oUoGNfbj5cK0F5v0mfO9T+5rV4B/LodBqChLR0WCaF88cV
-        sYfNqlpfJydHc378RI49ZyfCGlkl9gBBfLLZJlnFDg==
-X-Google-Smtp-Source: ABdhPJza+1g64XyZy4xiMZ4LGVCInev5SV0wGZG03qN07O7bnY8bhuW1nAPtgxWkJ9AeouksqQ0K33Fc+O0DI5WxDe4=
-X-Received: by 2002:a05:6214:11ab:: with SMTP id u11mr20540119qvv.17.1612277557310;
- Tue, 02 Feb 2021 06:52:37 -0800 (PST)
+        id S234903AbhBBO56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 09:57:58 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:48846 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234877AbhBBO5p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 09:57:45 -0500
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1l6x6l-00020V-KD; Tue, 02 Feb 2021 15:56:47 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        hjc@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org,
+        sebastian.fricke@posteo.net, linux-media@vger.kernel.org,
+        dafna.hirschfeld@collabora.com, helen.koike@collabora.com,
+        ezequiel@collabora.com, cmuellner@linux.com
+Subject: [PATCH 0/6] Support second Image Signal Processor on rk3399
+Date:   Tue,  2 Feb 2021 15:56:26 +0100
+Message-Id: <20210202145632.1263136-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210202093342.738691-1-kyletso@google.com> <20210202093342.738691-4-kyletso@google.com>
- <029f8d48-8932-8a2c-4edf-df73d66b21b5@roeck-us.net>
-In-Reply-To: <029f8d48-8932-8a2c-4edf-df73d66b21b5@roeck-us.net>
-From:   Kyle Tso <kyletso@google.com>
-Date:   Tue, 2 Feb 2021 22:52:21 +0800
-Message-ID: <CAGZ6i=1dQrT89GpC=zxRnUae1ee40djiqYRWwQu9irheJuCcsQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/8] usb: pd: Make SVDM Version configurable in VDM header
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        USB <linux-usb@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 2, 2021 at 10:50 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 2/2/21 1:33 AM, Kyle Tso wrote:
-> > PD Rev 3.0 introduces SVDM Version 2.0. This patch makes the field
-> > configuable in the header in order to be able to be compatible with
-> > older SVDM version.
-> >
-> > Signed-off-by: Kyle Tso <kyletso@google.com>
-> > ---
-> >  include/linux/usb/pd_vdo.h | 7 +++++--
-> >  1 file changed, 5 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/include/linux/usb/pd_vdo.h b/include/linux/usb/pd_vdo.h
-> > index e9b6822c54c2..69ed6929ce6e 100644
-> > --- a/include/linux/usb/pd_vdo.h
-> > +++ b/include/linux/usb/pd_vdo.h
-> > @@ -21,22 +21,24 @@
-> >   * ----------
-> >   * <31:16>  :: SVID
-> >   * <15>     :: VDM type ( 1b == structured, 0b == unstructured )
-> > - * <14:13>  :: Structured VDM version (can only be 00 == 1.0 currently)
-> > + * <14:13>  :: Structured VDM version
-> >   * <12:11>  :: reserved
-> >   * <10:8>   :: object position (1-7 valid ... used for enter/exit mode only)
-> >   * <7:6>    :: command type (SVDM only?)
-> >   * <5>      :: reserved (SVDM), command type (UVDM)
-> >   * <4:0>    :: command
-> >   */
-> > -#define VDO(vid, type, custom)                               \
-> > +#define VDO(vid, type, ver, custom)                  \
-> >       (((vid) << 16) |                                \
-> >        ((type) << 15) |                               \
-> > +      ((ver) << 13) |                                \
-> >        ((custom) & 0x7FFF))
-> >
->
-> Yu have to fix all users of VDO() as well, or the code will
-> no longer compile after this patch.
->
-> Guenter
->
-That's right!
-Fix incoming...
+The rk3399 has two ISPs and right now only the first one is usable.
+The second ISP is connected to the TXRX dphy on the soc.
 
-thanks,
-Kyle
+The phy of ISP1 is only accessible through the DSI controller's
+io-memory, so this series adds support for simply using the dsi
+controller is a phy if needed.
+
+That solution is needed at least on rk3399 and rk3288 but no-one
+has looked at camera support on rk3288 at all, so right now
+only implement the rk3399 specifics.
+
+
+Heiko Stuebner (6):
+  drm/rockchip: dsi: add own additional pclk handling
+  dt-bindings: display: rockchip-dsi: add optional #phy-cells property
+  drm/rockchip: dsi: add ability to work as a phy instead of full dsi
+  arm64: dts: rockchip: add #phy-cells to mipi-dsi1
+  arm64: dts: rockchip: add cif clk-control pinctrl for rk3399
+  arm64: dts: rockchip: add isp1 node on rk3399
+
+ .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  39 ++
+ drivers/gpu/drm/rockchip/Kconfig              |   2 +
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 342 ++++++++++++++++++
+ 4 files changed, 384 insertions(+)
+
+-- 
+2.29.2
+
