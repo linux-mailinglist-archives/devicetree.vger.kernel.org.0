@@ -2,112 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E127230CB65
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 20:24:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79FD630CBD3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 20:41:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239529AbhBBTWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 14:22:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33996 "EHLO
+        id S239678AbhBBTgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 14:36:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239601AbhBBTU6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 14:20:58 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B0B3C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 11:20:18 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id s15so13047151plr.9
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 11:20:18 -0800 (PST)
+        with ESMTP id S233223AbhBBTgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 14:36:50 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D49C5C06174A
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 11:36:09 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id j84so8385170ybg.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 11:36:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=e+o+UPWpwuQFchtTrrp1JQI9+CBVVq/LhzPVdVc1GWg=;
-        b=Fo1uLKa8TGSxAVjitKCWihEfFzuubLqrYHqw/h3YjGnPCzUWe8vEE7T/Re5UQqAf1b
-         ZHlN1/yMwj7ltvrkM4Uky+LfcTv61BzZNMI2LU6KW4TepwThtGuCaEljJPs0y6hgdfHt
-         qRDhv1liTKeTBlTOVwTJm2DpWA4ZUFKJqZ1qY=
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mJRuYCsACyjbu2bTi4zs+lKukZqRlpJel5M3D22wH5U=;
+        b=Lq/9seBMFnU+4UyAjSWVG5UnuBUR0c7wil7/tBHsR5KVpgBTzegsn9UhWvcNzqmhvl
+         mZmw83KQeTXehx95rDkE5GLviFdWg5hzPfuAIszoAXqpBa/vji0I4q5K/HBbd3HG62xn
+         m+dFt5t3SkP0bWztk9w76PPzwBngR5E1MUiTvazUEVECMn+dw2O0MSyV/DIAlnS0HggO
+         rdzFtHZE53R0prr13ZZAYjp7vEKcW+Ex+nF3AmHu2pLwDoS+CuyGIWdykgl+EqM1ybHO
+         NLALbQnKQkb8mvMtEFB5+QWYm+dVfG9kJ2SrbmR8nyFvY9ELN54VdcoYOSPCoeMYMZtK
+         jobw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=e+o+UPWpwuQFchtTrrp1JQI9+CBVVq/LhzPVdVc1GWg=;
-        b=SWrNdGmky1gJ0KX713BR1WBx5Fgo6Y6ge14IsmbJvPZvuBOa92+CHxJrDS3naNhpeN
-         xMnbS1UyYppP7/Zoc1Nkn8e0CjeOVro7wdUUXsFZAUhkyL3Hq3t12IZuLg3vgJFGD/dl
-         j+uoYXY27ZkDfXjQbBpHaIpdKkzTxYu7RPvFbdY3hu93HjUuyCmxLjqy8iDMyV7MSO5z
-         LuGYwKhLW/j0U5mVo4lSHjbqKhDGdM5V4EJxKdQLKrax+HATZnD3TpG92fhOXGPQsRpc
-         qQb91Uz+JM2g9OGh5nW7g7yjUF/nk/JkU03XZV1MnR2yhnVCXMzqqR9l46if38QLI+jY
-         w68A==
-X-Gm-Message-State: AOAM533mGcerFXYjYRSHDcEexzRvKwrS7vFusQgsVegQMmLGruwWip5Y
-        RF4IZ+4ZNhG7CvhraaQEl6E99gXqv86gGg==
-X-Google-Smtp-Source: ABdhPJwYbFUIfvuxMuXkupVzK2EaOdtzLPGXYdKLXO/1XSCSp6d0rN+Sp43BtE5oXH7uLwxbMR/HWA==
-X-Received: by 2002:a17:90b:4d07:: with SMTP id mw7mr5902885pjb.172.1612293617890;
-        Tue, 02 Feb 2021 11:20:17 -0800 (PST)
-Received: from smtp.gmail.com ([2620:15c:202:201:3571:bd6e:ee19:b59f])
-        by smtp.gmail.com with ESMTPSA id r5sm22095076pfl.165.2021.02.02.11.20.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 11:20:17 -0800 (PST)
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel test robot <lkp@intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>
-Subject: [PATCH v2] ASoC: da7218: Drop CONFIG_OF ifdef
-Date:   Tue,  2 Feb 2021 11:20:16 -0800
-Message-Id: <20210202192016.49028-1-swboyd@chromium.org>
-X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mJRuYCsACyjbu2bTi4zs+lKukZqRlpJel5M3D22wH5U=;
+        b=nwri5ds7IxS6vrKOvp/hZU/3Q+xeDc7xf/egnLWjgTxQ8Y/OAVu+DGsBjWGEocModw
+         srN1ho+FX2pBVt0XR8L+kFK7WVBmRYEOhdLHCpOqEkj481up54JgQrxrsQAaKJ7GRhFc
+         ntsWB2CrIcydipslIstuE0jvUxpDCCJe4zrmCWsovCti2HoPF6jCTgwyzEnfp8zllg7M
+         pRrlICY+ZAxDmxcw9089F9xfP10XwQuLnbCwhiUgbyR9UQdX+G41Yyny9FpM1rI3texv
+         3X/ArU2mut1c+uTUyxelUHw4iCc2pr+f+bHr9WEObfWBP8rITeyDVc10VTJ/JnABYwaB
+         hlmg==
+X-Gm-Message-State: AOAM5301Ud4n8mOdiwN/CKr/HXA7DSZ/cByW7FvAyQxeqetNDnyipGaD
+        spNsJAekUMNRupL/jsE/9rbpyaih+ensxqjVVf8qxQ==
+X-Google-Smtp-Source: ABdhPJz8gu3KaqjHBuCbAj6P0BapdPRW9atnTP1aMeUs9VOBOz5Lkid8nxWj9FHgeK6gAH6eDP3ClYOcs7/r5JQJcGc=
+X-Received: by 2002:a05:6902:1025:: with SMTP id x5mr34361582ybt.96.1612294568994;
+ Tue, 02 Feb 2021 11:36:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210202043345.3778765-1-saravanak@google.com>
+ <20210202043345.3778765-2-saravanak@google.com> <CAJZ5v0j=ib_0tziOrEtafuezhgihNxh-Tv4-jT57z0b34uUHPw@mail.gmail.com>
+In-Reply-To: <CAJZ5v0j=ib_0tziOrEtafuezhgihNxh-Tv4-jT57z0b34uUHPw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 2 Feb 2021 11:35:33 -0800
+Message-ID: <CAGETcx_UF8H_Fo-goSgMg8iKjV_+LQvSyxsYXa+q5vmDAAOB8Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] driver core: fw_devlink: Detect supplier devices
+ that will never be added
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Martin Kaiser <martin@kaiser.cx>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        "Cc: Android Kernel" <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit a06cd8cf97a3 ("ASoC: da7218: skip of_device_id table
-when !CONFIG_OF") because we want to make of_match_device() stop using
-of_match_ptr() internally, confusing compilers and causing ifdef
-pollution.
+On Tue, Feb 2, 2021 at 6:12 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
+>
+> On Tue, Feb 2, 2021 at 5:33 AM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > During the initial parsing of firmware by fw_devlink, fw_devlink might
+> > infer that some supplier firmware nodes would get populated as devices.
+> > But the inference is not always correct. This patch tries to logically
+> > detect and fix such mistakes as boot progresses or more devices probe.
+> >
+> > fw_devlink makes a fundamental assumption that once a device binds to a
+> > driver, it will populate (i.e: add as struct devices) all the child
+> > firmware nodes that could be populated as devices (if they aren't
+> > populated already).
+> >
+> > So, whenever a device probes, we check all its child firmware nodes. If
+> > a child firmware node has a corresponding device populated, we don't
+> > modify the child node or its descendants. However, if a child firmware
+> > node has not been populated as a device, we delete all the fwnode links
+> > where the child node or its descendants are suppliers. This ensures that
+> > no other device is blocked on a firmware node that will never be
+> > populated as a device. We also mark such fwnodes as NOT_DEVICE, so that
+> > no new fwnode links are created with these nodes as suppliers.
+> >
+> > Fixes: e590474768f1 ("driver core: Set fw_devlink=on by default")
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+>
+> Still ACKed.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Arnd Bergmann <arnd@arndb.de>
-Cc: Mark Brown <broonie@kernel.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
----
+Thanks. I didn't want to add your Ack when I made changes since your Ack.
 
-Changes from v1:
- * Dropped of_match_ptr() in driver too
-
- sound/soc/codecs/da7218.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/sound/soc/codecs/da7218.c b/sound/soc/codecs/da7218.c
-index 2bfafbe9e3dc..83cace9d0139 100644
---- a/sound/soc/codecs/da7218.c
-+++ b/sound/soc/codecs/da7218.c
-@@ -2278,14 +2278,12 @@ static irqreturn_t da7218_irq_thread(int irq, void *data)
-  * DT
-  */
- 
--#ifdef CONFIG_OF
- static const struct of_device_id da7218_of_match[] = {
- 	{ .compatible = "dlg,da7217", .data = (void *) DA7217_DEV_ID },
- 	{ .compatible = "dlg,da7218", .data = (void *) DA7218_DEV_ID },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, da7218_of_match);
--#endif
- 
- static inline int da7218_of_get_id(struct device *dev)
- {
-@@ -3311,7 +3309,7 @@ MODULE_DEVICE_TABLE(i2c, da7218_i2c_id);
- static struct i2c_driver da7218_i2c_driver = {
- 	.driver = {
- 		.name = "da7218",
--		.of_match_table = of_match_ptr(da7218_of_match),
-+		.of_match_table = da7218_of_match,
- 	},
- 	.probe		= da7218_i2c_probe,
- 	.id_table	= da7218_i2c_id,
-
-base-commit: 19c329f6808995b142b3966301f217c831e7cf31
--- 
-https://chromeos.dev
-
+-Saravana
