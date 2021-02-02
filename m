@@ -2,110 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D2D230C6F1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 18:06:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C80830C702
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 18:09:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237172AbhBBREe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 12:04:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38608 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237143AbhBBRCR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 12:02:17 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 920B464E08;
-        Tue,  2 Feb 2021 17:01:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612285297;
-        bh=2fSQyZ1WwQMOhHMDn+OXb0hQdFVNjom2QI2jlsjZH+c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hBnSneqPCbcn4MDYUjXnlwCTeaC/3qf7ky/i9cIkSa2sLWIm9llZQeOlDCOjtvew1
-         uz+qMMCmkOpFnamO0juf94Lm4quU+vhWHoOJ4r6CN3z0A9RrRFcovtAzWXWLjOPqh0
-         /s7VHQmP61+1iinWR+nN07sVuP4nyxEq3daoUQ7POdgIfTUx4CSspCN2l5Y6NGBK2V
-         UrCOLGGlKA/HXW4Uetqk4wuZ1jB/jDisIp4trWiXLXzK+RjF4SLQt2SZ+9kIW11J6C
-         GV1moa9zw0lW5M1oI0yfkzkQTJjPNP+yQbkt8H/OcdFjZt0Mg1eChqehOsqmnvetYf
-         n4bVXEPOsApRg==
-Date:   Tue, 2 Feb 2021 17:00:49 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Ion Agorria <AG0RRIA@yahoo.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Stephen Warren <swarren@nvidia.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Ion Agorria <ion@agorria.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] ASoC: tegra: Add RT5631 machine driver
-Message-ID: <20210202170049.GE5154@sirena.org.uk>
-References: <20210131184101.651486-1-AG0RRIA@yahoo.com>
- <20210131184101.651486-3-AG0RRIA@yahoo.com>
- <7f4eb8f7-215e-ab3d-fcef-9243037cf246@nvidia.com>
- <8d0bc6f3-45ce-565d-d80f-b50fb75e7c55@gmail.com>
- <51571ec9-780b-ba71-c81d-dd01ebcefbb8@nvidia.com>
+        id S237133AbhBBRHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 12:07:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237183AbhBBRFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 12:05:05 -0500
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [IPv6:2001:67c:2050::465:102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A83C06174A
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 09:04:25 -0800 (PST)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:105:465:1:2:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4DVWP86jGZzQlYn;
+        Tue,  2 Feb 2021 18:03:56 +0100 (CET)
+Authentication-Results: gerste.heinlein-support.de (amavisd-new);
+        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
+        header.d=mailbox.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+        t=1612285434;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=6D5/NNgCOTVetoQPE6SDovy8rpNB2QtHZU3Hsq8VDHE=;
+        b=hh4BVGXRp1CQ4OFi425hR6Hxys4090Xi41kbyTUKAI86yI0c0bvdLCd+m681l5dRkRNjiQ
+        rI1Ddo+QuFnpgVQ8FFzblnEqE85Sztx1T1hjrVKWQgVzAwxGnIhwy2dkl5qcmc83a1Rn38
+        bIpnDHQ/6Eiqi35BzB5Kv0W2+0fIJ4mtGaClSJuPg14ly2jfjhriaMTF2UHardHlTRc6a4
+        wYuLsyB92fVHaHOImyObYhxxHGNtWjv9cQ3fo2yNsaJi/3894wRoMKch68+20V7HHcgM/h
+        GS1TwFdToAncYwSwI9wSbkFEE0zCqMZL5wZg9WnKC1FSm0bMXL009voeJne/OQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
+        content-transfer-encoding:mime-version:references:in-reply-to
+        :message-id:date:date:subject:subject:from:from:received; s=
+        mail20150812; t=1612285431; bh=e7qcr6OCcuyOQBdhBmyous0iSl1Vj0YCN
+        GzJUD20OpQ=; b=JjK9wtgg3aAdrgZAcqZCAE2pvOSENcYRPTDeJ3MpI+EXOvQHr
+        q5jCkRZRZphjbsv2lekf1zq+Opq/ojX2kaJvkL0IyDYNhM3Ql/9JH32YW74Ne8tv
+        7/OKWoOTrG/Knn32+MWYDRXwu/rfj3BOe8qcmCEiuJE/1h4TOChSns4VA/BmT6T2
+        2fa5eTxdUuhQ4uFM+Bu6oqMGWTBZmM32XYZU2xEXx/aSmRWzYrsLc0bpvdcxQ39R
+        hZvXcVsWZCz4DvvHfDtSZuQ2xU14rPBSmO3iOUucxLx6+srIbet8g0xNYN+kS47n
+        h1mUYDtNkK7dzvj3GMTzGJpIr0w0J4JqMnD7w==
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp2.mailbox.org ([80.241.60.241])
+        by gerste.heinlein-support.de (gerste.heinlein-support.de [91.198.250.173]) (amavisd-new, port 10030)
+        with ESMTP id 0Xk8E5yPk1RJ; Tue,  2 Feb 2021 18:03:51 +0100 (CET)
+From:   Alexander Stein <alexander.stein@mailbox.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Alexander Stein <alexander.stein@mailbox.org>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 1/1] arm64: dts: amlogic: Assign a fixed index to mmc devices
+Date:   Tue,  2 Feb 2021 18:03:28 +0100
+Message-Id: <20210202170328.79929-1-alexander.stein@mailbox.org>
+In-Reply-To: <20210127230852.66686-1-alexander.stein@mailbox.org>
+References: <20210127230852.66686-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="GxcwvYAGnODwn7V8"
-Content-Disposition: inline
-In-Reply-To: <51571ec9-780b-ba71-c81d-dd01ebcefbb8@nvidia.com>
-X-Cookie: Only God can make random selections.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+X-MBO-SPAM-Probability: ***
+X-Rspamd-Score: 3.19 / 15.00 / 15.00
+X-Rspamd-Queue-Id: 82D7C17B5
+X-Rspamd-UID: 94bdd6
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Recently introduced async probe on mmc devices can shuffle block IDs.
+Pin them to fixed values to ease booting in environments where UUIDs
+are not practical. Use newly introduced aliases for mmcblk devices from [1].
+[1]
+https://patchwork.kernel.org/patch/11747669/
 
---GxcwvYAGnODwn7V8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Commit message taken from commit 0011c6d18277 ("arm64: dts: rockchip: Assign a fixed index to mmc devices on rk3399 boards.")
 
-On Tue, Feb 02, 2021 at 04:24:31PM +0000, Jon Hunter wrote:
-> On 02/02/2021 15:25, Dmitry Osipenko wrote:
+The unconventional order (B, C, A) is due to the fact that sd_emmc_a is
+(according to the comments) only used for SDIO.
 
-> > These codecs require individual configurations and those
-> > "../codecs/rt5631.h" and  "../codecs/rt5677.h" aren't compatible at a
-> > quick glance.
+AFAICS all boards either have both sd_emmc_b and sd_emmc_c or only one of
+them enabled. So the alias order should match the previous non-async order
+for all of them.
 
-> Right but not all of that is needed. What is actually needed from the
-> header files?
+Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+---
+Just for the records, I only tested this on my ODROID-N2 (G12 based) board.
 
-Right, and if it's just a case of having a different hw_params() or
-something then the majority of the driver could be shared with just a
-few bits being handled differently.
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 6 ++++++
+ 2 files changed, 12 insertions(+)
 
-> > The tegra_rt5677 also uses outdated GPIO API and etc. Hence the new
-> > driver should be a better base anyways.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 9c90d562ada1..15525f3aa4a6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -17,6 +17,12 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	aliases {
++		mmc0 = &sd_emmc_b;
++		mmc1 = &sd_emmc_c;
++		mmc2 = &sd_emmc_a;
++	};
++
+ 	chosen {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 726b91d3a905..769d7e8fda13 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -21,6 +21,12 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	aliases {
++		mmc0 = &sd_emmc_b;
++		mmc1 = &sd_emmc_c;
++		mmc2 = &sd_emmc_a;
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-- 
+2.30.0
 
-> Sounds like a good time to update it :-)
-
-Yeah.
-
-> > Overall it shouldn't worth time and effort trying to squeeze these
-> > drivers into a single one, IMO.
-
-> Not sure I agree when these drivers appear to be 90% the same.
-
-It's certainly worth considering - given that it's the same silicon
-vendor working with the same SoC vendor's reference designs it seems
-likely that things will look pretty similar at the system integration
-level.  It's possible that it's more trouble than it's worth but it'd be
-good to have a more concrete understanding of why.
-
---GxcwvYAGnODwn7V8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAZhUAACgkQJNaLcl1U
-h9Br/AgAhxDJhXD92Ou/rbXrbVCd+giU1RLOL08mfRERugF5Ne5z4JmWhbHxgh17
-iNAtHsuofQ+vFiHBD+gyGdKDpcJPI1PBoVFmU480078igsYqvZnPaZ6zwdhoRKOf
-D9Sp1czdSfnNiIR+Ug8y5yjnsTUt/c4qCfjZWa/vvGuw8VQ6hALooYvAnkrZoFZi
-VEKHvYgNgUOqRnIOqdPg5NVqX0dEndIpIQcN+3kV5Yu0xwdi9EFv2dSXp29kye8w
-PPdeIP3YTwr9g/AuTKRuSABzvWjVIacsMBfN1osWjX4PflCz96f0lBtqvhJi4qEV
-4OE3cy3Aen4lJJXG13rcFEESBokpzA==
-=6RSX
------END PGP SIGNATURE-----
-
---GxcwvYAGnODwn7V8--
