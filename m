@@ -2,113 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED9D30CB49
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 20:21:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E127230CB65
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 20:24:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234354AbhBBTTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 14:19:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33322 "EHLO
+        id S239529AbhBBTWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 14:22:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239499AbhBBTRv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 14:17:51 -0500
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [IPv6:2001:67c:2050::465:102])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24027C0617A7
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 11:17:11 -0800 (PST)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4DVZLL5V8LzQlZD;
-        Tue,  2 Feb 2021 20:16:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
-        content-type:content-type:content-transfer-encoding:mime-version
-        :references:in-reply-to:message-id:date:date:subject:subject
-        :from:from:received; s=mail20150812; t=1612293397; bh=j5o4g5IgR5
-        bogQDxz/xO2FW94e0Zmzci3W+4QYAWG/4=; b=ntne0RMxxcleZPvRv+JNWBQmHP
-        mI8zHFl+/nvUJlj7Ro7OBqo+cOyttbLogkg6gU7M7Uop1/U/D+Yg+1Mg5SlEoCEC
-        p+ze7eOrahHUGFnrDwX7+DDbMSkltVgSlrusF9eHVFw9a41nW9ZGLGdyrlq6SWq1
-        aujmnFEx3BFh+eB3ka2T/rAngXVmx9FTIrqsax7x6i2KraJH1IZC7+nwRxIn/Ljx
-        yU+AsEzHZz44wNw+5G0UXBybLmS73J3DMVII06Im+lXaf0WF/oSxZguX5yosF+u0
-        0/magbd7vqEYwN53JvQlmNUS+8nwru+uTDDGAfGG0wM2LI0khjp3Jl47xIRQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1612293398;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=mLMdFWiF13BPV8bIu9fLvw1Ac9+BtdWUE1eYsk4p6j4=;
-        b=Zl75wn5XbfiJAI4qSGgbKu1GDE8HaQ5HA+JjalyRSWi3rLqOZ9cuS8aR7CNc3+UglbozPX
-        po6qTF+GNM4JZ+9BZEji0gVIF1wyB8EWfZ+nFNn9OFQc33BguzogZxDEX1z1lKuwoNhACg
-        Tz2OhzfHReibd/dLOffAxwwBrGFbWHXPvA7CSq1AjULiYQ3axR+OzvPlaFhwRSv4PjANHj
-        DdY0ruKaFAH15t1ZKDhiG2e4NNTzKkpKmqTbwQaHePxWnlfoxmLQWW2350PRYF29sYe7dr
-        JVzzTTnidYRXt424cF36qoAwAPPijM8psXgaqzg4Rhh5w7UbioijVmYB4iCg6g==
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp2.mailbox.org ([80.241.60.241])
-        by spamfilter01.heinlein-hosting.de (spamfilter01.heinlein-hosting.de [80.241.56.115]) (amavisd-new, port 10030)
-        with ESMTP id K_NZxzID2G8p; Tue,  2 Feb 2021 20:16:37 +0100 (CET)
-From:   Alexander Stein <alexander.stein@mailbox.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] arm64: dts: meson: g12b: odroid-n2: Add I2C RTC device node
-Date:   Tue, 02 Feb 2021 20:16:35 +0100
-Message-ID: <5974424.6LiauEnjn7@kongar>
-In-Reply-To: <c63a4da5-b598-2484-24bf-d7b4697e28e1@baylibre.com>
-References: <20210202170846.81685-1-alexander.stein@mailbox.org> <c63a4da5-b598-2484-24bf-d7b4697e28e1@baylibre.com>
+        with ESMTP id S239601AbhBBTU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 14:20:58 -0500
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B0B3C0613D6
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 11:20:18 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id s15so13047151plr.9
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 11:20:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e+o+UPWpwuQFchtTrrp1JQI9+CBVVq/LhzPVdVc1GWg=;
+        b=Fo1uLKa8TGSxAVjitKCWihEfFzuubLqrYHqw/h3YjGnPCzUWe8vEE7T/Re5UQqAf1b
+         ZHlN1/yMwj7ltvrkM4Uky+LfcTv61BzZNMI2LU6KW4TepwThtGuCaEljJPs0y6hgdfHt
+         qRDhv1liTKeTBlTOVwTJm2DpWA4ZUFKJqZ1qY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e+o+UPWpwuQFchtTrrp1JQI9+CBVVq/LhzPVdVc1GWg=;
+        b=SWrNdGmky1gJ0KX713BR1WBx5Fgo6Y6ge14IsmbJvPZvuBOa92+CHxJrDS3naNhpeN
+         xMnbS1UyYppP7/Zoc1Nkn8e0CjeOVro7wdUUXsFZAUhkyL3Hq3t12IZuLg3vgJFGD/dl
+         j+uoYXY27ZkDfXjQbBpHaIpdKkzTxYu7RPvFbdY3hu93HjUuyCmxLjqy8iDMyV7MSO5z
+         LuGYwKhLW/j0U5mVo4lSHjbqKhDGdM5V4EJxKdQLKrax+HATZnD3TpG92fhOXGPQsRpc
+         qQb91Uz+JM2g9OGh5nW7g7yjUF/nk/JkU03XZV1MnR2yhnVCXMzqqR9l46if38QLI+jY
+         w68A==
+X-Gm-Message-State: AOAM533mGcerFXYjYRSHDcEexzRvKwrS7vFusQgsVegQMmLGruwWip5Y
+        RF4IZ+4ZNhG7CvhraaQEl6E99gXqv86gGg==
+X-Google-Smtp-Source: ABdhPJwYbFUIfvuxMuXkupVzK2EaOdtzLPGXYdKLXO/1XSCSp6d0rN+Sp43BtE5oXH7uLwxbMR/HWA==
+X-Received: by 2002:a17:90b:4d07:: with SMTP id mw7mr5902885pjb.172.1612293617890;
+        Tue, 02 Feb 2021 11:20:17 -0800 (PST)
+Received: from smtp.gmail.com ([2620:15c:202:201:3571:bd6e:ee19:b59f])
+        by smtp.gmail.com with ESMTPSA id r5sm22095076pfl.165.2021.02.02.11.20.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Feb 2021 11:20:17 -0800 (PST)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel test robot <lkp@intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>
+Subject: [PATCH v2] ASoC: da7218: Drop CONFIG_OF ifdef
+Date:   Tue,  2 Feb 2021 11:20:16 -0800
+Message-Id: <20210202192016.49028-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-MBO-SPAM-Probability: 
-X-Rspamd-Score: -6.14 / 15.00 / 15.00
-X-Rspamd-Queue-Id: 7BFB917E6
-X-Rspamd-UID: 2bbc93
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This reverts commit a06cd8cf97a3 ("ASoC: da7218: skip of_device_id table
+when !CONFIG_OF") because we want to make of_match_device() stop using
+of_match_ptr() internally, confusing compilers and causing ifdef
+pollution.
 
- On Tuesday, February 2, 2021, 6:29:48 PM CET Neil Armstrong wrote:
-> Hi,
->=20
-> On 02/02/2021 18:08, Alexander Stein wrote:
-> > This is taken from the downstream kernel and works out of the box.
->=20
-> Please keep authorship of the downstream commit.
+Reported-by: kernel test robot <lkp@intel.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Arnd Bergmann <arnd@arndb.de>
+Cc: Mark Brown <broonie@kernel.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
 
-Sure, will do.
+Changes from v1:
+ * Dropped of_match_ptr() in driver too
 
-> > +&i2c3 {
-> > +	status =3D "okay";
-> > +	pinctrl-0 =3D <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> > +	pinctrl-names =3D "default";
-> > +
-> > +	rtc: rtc@51 {
-> > +		compatible =3D "nxp,pcf8563";
-> > +		reg =3D <0x51>;
->=20
-> Interrupt line is missing, Anand added:
-> +=BB       =BB       /*=B7RTC=B7INT=B7*/
-> +=BB       =BB       interrupts=B7=3D=B7<GPIOAO_7=B7IRQ_TYPE_LEVEL_LOW>;
-> +=BB       =BB       interrupt-parent=B7=3D=B7<&gpio_intc>;
->=20
-> > +		wakeup-source;
-> > +	};
-> > +};
+ sound/soc/codecs/da7218.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Eh, where did you get that? I'm talking about this commit https://github.co=
-m/
-hardkernel/linux/commit/b2e22de15e55bb070a2fd45150a6d3e0179ed0e6
+diff --git a/sound/soc/codecs/da7218.c b/sound/soc/codecs/da7218.c
+index 2bfafbe9e3dc..83cace9d0139 100644
+--- a/sound/soc/codecs/da7218.c
++++ b/sound/soc/codecs/da7218.c
+@@ -2278,14 +2278,12 @@ static irqreturn_t da7218_irq_thread(int irq, void *data)
+  * DT
+  */
+ 
+-#ifdef CONFIG_OF
+ static const struct of_device_id da7218_of_match[] = {
+ 	{ .compatible = "dlg,da7217", .data = (void *) DA7217_DEV_ID },
+ 	{ .compatible = "dlg,da7218", .data = (void *) DA7218_DEV_ID },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, da7218_of_match);
+-#endif
+ 
+ static inline int da7218_of_get_id(struct device *dev)
+ {
+@@ -3311,7 +3309,7 @@ MODULE_DEVICE_TABLE(i2c, da7218_i2c_id);
+ static struct i2c_driver da7218_i2c_driver = {
+ 	.driver = {
+ 		.name = "da7218",
+-		.of_match_table = of_match_ptr(da7218_of_match),
++		.of_match_table = da7218_of_match,
+ 	},
+ 	.probe		= da7218_i2c_probe,
+ 	.id_table	= da7218_i2c_id,
 
-There is no interrupt line, although I understand it's missing.
-
-Best regards,
-Alexander
-
-
-
+base-commit: 19c329f6808995b142b3966301f217c831e7cf31
+-- 
+https://chromeos.dev
 
