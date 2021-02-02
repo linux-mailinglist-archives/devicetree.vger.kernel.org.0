@@ -2,112 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FCEC30CD4F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 21:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3539930CD7D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 21:57:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233357AbhBBUvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 15:51:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41784 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231290AbhBBUvH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 15:51:07 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B044764F64;
-        Tue,  2 Feb 2021 20:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612299026;
-        bh=0mTNXSXJiLDfS2Ig0qegLjDSnuECgIT1sNYyTLI0WSA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=oKpTcT85/YoHIkA0z8EauB0cDmt7GBua6KtcUtNsjN7AlkcBnVPy93cGTzaWXQqgh
-         oTyK59AcV5Cv3694avWxK2F7xIznRjC+cQqXe+DS1NGCrbslgnSjtO9z45j5sFHdzV
-         LVQxYEQayjrLTXSFkZvM5qRxVNV+I5mPOg3M0/TgjLZ55Un4btnd17h4MloROroMg0
-         Fcf+A1qQy1fykJyAKnaMCL4zuLHzipM75yDC9HOghC2raYWtwZfMA8rI8y4bb7koIX
-         nw8dxH4uvPe2daZskoRfO71Wg1tFVG8XSSzJphw2094btee1hde0xHvnS3mjXqG0NP
-         tcU6cdD+hhpWw==
-Received: by mail-oi1-f172.google.com with SMTP id k142so9853724oib.7;
-        Tue, 02 Feb 2021 12:50:26 -0800 (PST)
-X-Gm-Message-State: AOAM531oX4G38B5IE6lsWSiX9l2xlatqTKgIPRHETXyaQ+EnZ3efV+IN
-        WC6wzmsixAjgJKXA60BRYxRDaq2Or9O8C0mvOj4=
-X-Google-Smtp-Source: ABdhPJzCHpxLziqT6fPidBpSp/W6SWFO7qjP3F8LCIXtgxAGenNX7XFHLMKMiPHTx8W4C2SJa3Iodpm8Z+MimyXOqJ0=
-X-Received: by 2002:aca:d908:: with SMTP id q8mr3920842oig.67.1612299026079;
- Tue, 02 Feb 2021 12:50:26 -0800 (PST)
+        id S233616AbhBBU4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 15:56:32 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:43278 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230002AbhBBU4a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 15:56:30 -0500
+Received: by mail-ot1-f46.google.com with SMTP id v1so21244231ott.10;
+        Tue, 02 Feb 2021 12:56:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YcDLZh3Cqrzft9rIs/Kq27AfKEBZ9vkw9dbEJP0DrjM=;
+        b=Y7rMbq9cJm7XnPC0pZuVKewonHDiuxEz/xL/aouk8lRqfkX2SdJJQ6viO7MQnE8l8S
+         HfeiwAZQtKDQmdDWj4PFsEKIvR/hg8w+Ayly1z+r1TEhOaWTGE3aWzogxG8nUf+QMUJh
+         MLv7v5hxjf+33ZS3YEDu4l25BimQ/Vw8u3Zk/tgzxOWXRe66kMSa7rIyxVvfUeqt0o3K
+         QaNBoWOeDoYdHdIiAdqBheULxZfOLpONCKkXcfaSFT3qARhoict0s8dVz6soWYtgqZwv
+         km8VwhlZs84TYGZ2sytM4/IiodccmBJzKRzE7Q7+ibGNUOCHAAdzmBptsAl7Ieyoi1y0
+         5hlA==
+X-Gm-Message-State: AOAM530VLVPgyzAudXUZ7/n06w8cEpnk7NkMj4ihz/E762XVDpG8jT9z
+        3xdZ34q2fNC7q6IrVjvZyadZkciSPQ==
+X-Google-Smtp-Source: ABdhPJz+bxVqZHcA6WQ+rYUVLbRdjFrxDoLmtrg5Q88bRT0/dSLxHv+dlmm7nH5rNIdmYX/wLxVRrA==
+X-Received: by 2002:a05:6830:1041:: with SMTP id b1mr16514781otp.335.1612299347994;
+        Tue, 02 Feb 2021 12:55:47 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id k15sm4206otp.10.2021.02.02.12.55.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Feb 2021 12:55:46 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Daniel Palmer <daniel@thingy.jp>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Vincent Cheng <vincent.cheng.xh@renesas.com>,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-watchdog@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: Fix undocumented compatible strings in examples
+Date:   Tue,  2 Feb 2021 14:55:42 -0600
+Message-Id: <20210202205544.24812-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20210202192016.49028-1-swboyd@chromium.org> <CAMuHMdWKr5q1OrwJ5DEnFvqYYXJqXhH_isKQnJozf5tu=ZVViA@mail.gmail.com>
-In-Reply-To: <CAMuHMdWKr5q1OrwJ5DEnFvqYYXJqXhH_isKQnJozf5tu=ZVViA@mail.gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 2 Feb 2021 21:50:10 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0AETMRBJ3=kFi1zJUR3tywGz5aOx_uBYOVuJ7=d_peog@mail.gmail.com>
-Message-ID: <CAK8P3a0AETMRBJ3=kFi1zJUR3tywGz5aOx_uBYOVuJ7=d_peog@mail.gmail.com>
-Subject: Re: [PATCH v2] ASoC: da7218: Drop CONFIG_OF ifdef
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, kernel test robot <lkp@intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 2, 2021 at 9:06 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Tue, Feb 2, 2021 at 8:20 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > This reverts commit a06cd8cf97a3 ("ASoC: da7218: skip of_device_id table
-> > when !CONFIG_OF") because we want to make of_match_device() stop using
-> > of_match_ptr() internally, confusing compilers and causing ifdef
-a> > pollution.
-> >
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Acked-by: Arnd Bergmann <arnd@arndb.de>
-> > Cc: Mark Brown <broonie@kernel.org>
-> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
->
-> Thanks for your patch!
->
-> > ---
-> >
-> > Changes from v1:
-> >  * Dropped of_match_ptr() in driver too
-> >
-> >  sound/soc/codecs/da7218.c | 4 +---
-> >  1 file changed, 1 insertion(+), 3 deletions(-)
-> >
-> > diff --git a/sound/soc/codecs/da7218.c b/sound/soc/codecs/da7218.c
-> > index 2bfafbe9e3dc..83cace9d0139 100644
-> > --- a/sound/soc/codecs/da7218.c
-> > +++ b/sound/soc/codecs/da7218.c
-> > @@ -2278,14 +2278,12 @@ static irqreturn_t da7218_irq_thread(int irq, void *data)
-> >   * DT
-> >   */
-> >
-> > -#ifdef CONFIG_OF
-> >  static const struct of_device_id da7218_of_match[] = {
-> >         { .compatible = "dlg,da7217", .data = (void *) DA7217_DEV_ID },
-> >         { .compatible = "dlg,da7218", .data = (void *) DA7218_DEV_ID },
-> >         { }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, da7218_of_match);
-> > -#endif
-> >
-> >  static inline int da7218_of_get_id(struct device *dev)
-> >  {
-> > @@ -3311,7 +3309,7 @@ MODULE_DEVICE_TABLE(i2c, da7218_i2c_id);
-> >  static struct i2c_driver da7218_i2c_driver = {
-> >         .driver = {
-> >                 .name = "da7218",
-> > -               .of_match_table = of_match_ptr(da7218_of_match),
-> > +               .of_match_table = da7218_of_match,
->
-> This does mean the compiler can no longer optimize the table away
-> in the CONFIG_OF=n case. Is that intentional?
+Running 'dt-validate -m' will flag any compatible strings missing a schema.
+Fix all the errors found in DT binding examples. Most of these are just
+typos.
 
-It already couldn't do that because of the other reference.
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Daniel Palmer <daniel@thingy.jp>
+Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc: Avi Fishman <avifishman70@gmail.com>
+Cc: Tomer Maimon <tmaimon77@gmail.com>
+Cc: Tali Perry <tali.perry1@gmail.com>
+Cc: Joerg Roedel <joro@8bytes.org>
+Cc: Will Deacon <will@kernel.org>
+Cc: Andrew Jeffery <andrew@aj.id.au>
+Cc: Joel Stanley <joel@jms.id.au>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: Vincent Cheng <vincent.cheng.xh@renesas.com>
+Cc: linux-clk@vger.kernel.org
+Cc: linux-crypto@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org
+Cc: iommu@lists.linux-foundation.org
+Cc: linux-watchdog@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/clock/allwinner,sun9i-a80-usb-clocks.yaml        | 2 +-
+ Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml  | 4 ++--
+ Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml        | 2 +-
+ Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml | 2 +-
+ .../devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml          | 2 +-
+ .../devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml         | 2 +-
+ .../devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml   | 2 +-
+ .../devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml   | 2 +-
+ .../devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml   | 2 +-
+ Documentation/devicetree/bindings/ptp/ptp-idtcm.yaml          | 4 +---
+ Documentation/devicetree/bindings/watchdog/ti,rti-wdt.yaml    | 4 ++--
+ 11 files changed, 13 insertions(+), 15 deletions(-)
 
-In general, I don't see much value in optimizing the match table
-away regardless, since most drivers that have one do not work
-without a devicetree anyway. It seems that this could in theory
-work using a locally defined platform device, but I don't see any
-such users in the mainline kernel.
+diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun9i-a80-usb-clocks.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun9i-a80-usb-clocks.yaml
+index fa0ee03a527f..53cc6df0df96 100644
+--- a/Documentation/devicetree/bindings/clock/allwinner,sun9i-a80-usb-clocks.yaml
++++ b/Documentation/devicetree/bindings/clock/allwinner,sun9i-a80-usb-clocks.yaml
+@@ -18,7 +18,7 @@ properties:
+     const: 1
+ 
+   compatible:
+-    const: allwinner,sun9i-a80-usb-clocks
++    const: allwinner,sun9i-a80-usb-clks
+ 
+   reg:
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml b/Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml
+index eb241587efd1..118c5543e037 100644
+--- a/Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml
++++ b/Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml
+@@ -66,8 +66,8 @@ properties:
+       - arm,syscon-icst525-integratorcp-cm-mem
+       - arm,integrator-cm-auxosc
+       - arm,versatile-cm-auxosc
+-      - arm,impd-vco1
+-      - arm,impd-vco2
++      - arm,impd1-vco1
++      - arm,impd1-vco2
+ 
+   clocks:
+     description: Parent clock for the ICST VCO
+diff --git a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+index 1465c9ebaf93..1d48ac712b23 100644
+--- a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
++++ b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+@@ -66,7 +66,7 @@ examples:
+     #include <dt-bindings/soc/ti,sci_pm_domain.h>
+ 
+     main_crypto: crypto@4e00000 {
+-        compatible = "ti,j721-sa2ul";
++        compatible = "ti,j721e-sa2ul";
+         reg = <0x4e00000 0x1200>;
+         power-domains = <&k3_pds 264 TI_SCI_PD_EXCLUSIVE>;
+         dmas = <&main_udmap 0xc000>, <&main_udmap 0x4000>,
+diff --git a/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+index 1f2ef408bb43..fe1e1c63ffe3 100644
+--- a/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+@@ -46,7 +46,7 @@ examples:
+     #include <dt-bindings/gpio/msc313-gpio.h>
+ 
+     gpio: gpio@207800 {
+-      compatible = "mstar,msc313e-gpio";
++      compatible = "mstar,msc313-gpio";
+       #gpio-cells = <2>;
+       reg = <0x207800 0x200>;
+       gpio-controller;
+diff --git a/Documentation/devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml b/Documentation/devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml
+index e3ef2d36f372..128444942aec 100644
+--- a/Documentation/devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml
+@@ -17,7 +17,7 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: nuvoton,npcm7xx-i2c
++    const: nuvoton,npcm750-i2c
+ 
+   reg:
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+index cde1afa8dfd6..349633108bbd 100644
+--- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
++++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+@@ -93,7 +93,7 @@ examples:
+     #include <dt-bindings/power/r8a7791-sysc.h>
+ 
+     ipmmu_mx: iommu@fe951000 {
+-        compatible = "renasas,ipmmu-r8a7791", "renasas,ipmmu-vmsa";
++        compatible = "renesas,ipmmu-r8a7791", "renesas,ipmmu-vmsa";
+         reg = <0xfe951000 0x1000>;
+         interrupts = <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
+index 54631dc1adb0..5dbb84049ff6 100644
+--- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
+@@ -63,7 +63,7 @@ examples:
+         reg = <0x1e6e2000 0x1a8>;
+ 
+         pinctrl: pinctrl {
+-            compatible = "aspeed,g4-pinctrl";
++            compatible = "aspeed,ast2400-pinctrl";
+ 
+             pinctrl_i2c3_default: i2c3_default {
+                 function = "I2C3";
+diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
+index a90c0fe0495f..ad1c33364b38 100644
+--- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
+@@ -81,7 +81,7 @@ examples:
+             reg = <0x1e6e2000 0x1a8>;
+ 
+             pinctrl: pinctrl {
+-                compatible = "aspeed,g5-pinctrl";
++                compatible = "aspeed,ast2500-pinctrl";
+                 aspeed,external-nodes = <&gfx>, <&lhc>;
+ 
+                 pinctrl_i2c3_default: i2c3_default {
+diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
+index c78ab7e2eee7..ad91c0bc54da 100644
+--- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
+@@ -95,7 +95,7 @@ examples:
+         reg = <0x1e6e2000 0xf6c>;
+ 
+         pinctrl: pinctrl {
+-            compatible = "aspeed,g6-pinctrl";
++            compatible = "aspeed,ast2600-pinctrl";
+ 
+             pinctrl_pwm10g1_default: pwm10g1_default {
+                 function = "PWM10";
+diff --git a/Documentation/devicetree/bindings/ptp/ptp-idtcm.yaml b/Documentation/devicetree/bindings/ptp/ptp-idtcm.yaml
+index 239b49fad805..658cec67743e 100644
+--- a/Documentation/devicetree/bindings/ptp/ptp-idtcm.yaml
++++ b/Documentation/devicetree/bindings/ptp/ptp-idtcm.yaml
+@@ -59,9 +59,7 @@ additionalProperties: false
+ 
+ examples:
+   - |
+-    i2c@1 {
+-        compatible = "abc,acme-1234";
+-        reg = <0x01 0x400>;
++    i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+         phc@5b {
+diff --git a/Documentation/devicetree/bindings/watchdog/ti,rti-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ti,rti-wdt.yaml
+index c1348db59374..054584d7543a 100644
+--- a/Documentation/devicetree/bindings/watchdog/ti,rti-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/ti,rti-wdt.yaml
+@@ -57,8 +57,8 @@ examples:
+      */
+     #include <dt-bindings/soc/ti,sci_pm_domain.h>
+ 
+-    watchdog0: rti@2200000 {
+-        compatible = "ti,rti-wdt";
++    watchdog@2200000 {
++        compatible = "ti,j7-rti-wdt";
+         reg = <0x2200000 0x100>;
+         clocks = <&k3_clks 252 1>;
+         power-domains = <&k3_pds 252 TI_SCI_PD_EXCLUSIVE>;
+-- 
+2.27.0
 
-       Arnd
