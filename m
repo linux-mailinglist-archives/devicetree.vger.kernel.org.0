@@ -2,150 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8797D30CC4C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 20:51:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0991030CCC1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 21:07:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240083AbhBBTuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 14:50:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40108 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240139AbhBBTtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 14:49:12 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F50EC061793
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 11:48:31 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id x71so24048789oia.9
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 11:48:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZSXnsXOh3hBwQ0FBMh5iVZ9JTSULSvhbn6nE2ip4xGU=;
-        b=ZUrCz+B1eGiuxlVYw+vA2x/efphepCu8o71osANOPPpf4+fFruvqtUjr4CEaJTPofL
-         Qr7/U7HE6MO6wYuDZcFbYFAYUbgwLwhA00TTDWsR3PMSyOBwgD0k6PQOc1Z1j7YzME+/
-         vXmE3O6flEaUv2HFMrjnMnowunrZfdOP1tynDGMCOOZsd0KZBQXtvELYQNAQpUJoWMYj
-         9WhjCKFI1TiwFuJC8YwppSM9T9xouL/jAyhb9dU709pvBMcIfwsXVIzYVBgkDePnBbk/
-         5lEysnoAz5Y+TnA59cZa+CFrcdYHFHo6YriuEzM8pcF9tI2+WgcTOI1EI+kCBY9VcDLA
-         Yhsg==
+        id S240328AbhBBUHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 15:07:33 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:41772 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240415AbhBBUHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 15:07:07 -0500
+Received: by mail-oi1-f169.google.com with SMTP id m13so24101150oig.8;
+        Tue, 02 Feb 2021 12:06:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZSXnsXOh3hBwQ0FBMh5iVZ9JTSULSvhbn6nE2ip4xGU=;
-        b=bxbl6Q07uqKjYFjkOtd1i3xjl++IIvnoLTqMJhbNaEJXgmUqp/jpdjKLmtoUhvT6DY
-         4R1JzRcEr9T6Hw4Wy0fPjlUV5u7PfInT/xlGT+6RrWP10SrFV0jIfzTRvIENl2szFnL+
-         bBIgxj6gAcbilqAclRu+tJk82y4GyF9/WxFZRFtcTSlM/1SQzUSFjdvQ1fwWu0anx+I2
-         02+Jp4JSc5nvBo97wBB0fenZ9zaxWYn1L0KfCm9Soey+xtTZN8tA58aWa6Yh87QW356D
-         pvjfri0FLx5zBGVLNAc5i5r3nIcU+wKJRDLt32Zs+nbn8Gm8AvgNC00WfjZUBc7YTM9C
-         lPZA==
-X-Gm-Message-State: AOAM533sfzfV4DbZDUOmedKmquXRBLyChmnl/LlOfAl2QOidwNPL4xJ6
-        JlnxKldFfa5yxVdaRQ/qM53uLg==
-X-Google-Smtp-Source: ABdhPJxMbOKdnb0NsWQpRqJsWqS2ZPHN8kvdgzsSEVMxwE9+RCz70zlYR/Iv9MWqZYfjLu5EhXTMdg==
-X-Received: by 2002:aca:a905:: with SMTP id s5mr3717098oie.5.1612295310681;
-        Tue, 02 Feb 2021 11:48:30 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r7sm2468593oih.31.2021.02.02.11.48.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 11:48:30 -0800 (PST)
-Date:   Tue, 2 Feb 2021 13:48:28 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
- on RB5 platform
-Message-ID: <YBmsjDiKnpQjYeQh@builder.lan>
-References: <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org>
- <20210129215024.GA113900@bjorn-Precision-5520>
- <CAA8EJpoPsv5tfsaiJq4UnBYt3o+gJanWzy8aaZRK=V8yOk3mJQ@mail.gmail.com>
- <YBTYKLi81Cf65yUB@builder.lan>
- <CAA8EJprwBKbGrh-BjrzkQTxoboUi470wYcn-gTBHdNQ1Af7DKA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kGSgR7HX5MpWtk9Gx4pMHLjGwCDbovTLjejcIrh3eUA=;
+        b=FddIxRwR+FLLLbKKMOWZZ/bramvab63BxkWRLjinemRj7CnzNpDcWiupO83LhVPN7k
+         H2WRP12T484W7ZLx/4V7DyUvBBMjB78xFnLIqOguVo9w77S+cFuosu0NXKUkOnCkDy5V
+         fzDXCCi7m1EwIIh82IgxiwwLK1CH79I0bknrnVgAJXR137UlN4fmB974s2sm/7e91Rid
+         OxomzXh6Zjjqfp8X+BNMhpg+kRFbV+qbJT3vEq6us3uFOcat12s/52cmO2Ahpcc6tE9H
+         Kfm3dlskl56mq7LfQvbx6IeKmcNR6PKJGZ4frVQGXBntkBAqX5An/7ey/KrRZF/MxOYZ
+         zUMg==
+X-Gm-Message-State: AOAM531T3iqkSoB2UY8ZvW0DVXSD2awO/qVJ3RFuEPY1s8ZVfEwqaeJ1
+        zWxk5o7NnDTWUPqbjPgfjckDNlnAoJAJ8X0aptc=
+X-Google-Smtp-Source: ABdhPJwuTZ8MY7pmmtLJaXmDINL+fqP4hRrBNjxv/PFnAoHLtDWRWcS9L6f7quZ/44lBXHdLnmVMs35SMq6Yfe1Xr+g=
+X-Received: by 2002:a54:4e88:: with SMTP id c8mr3877007oiy.148.1612296386531;
+ Tue, 02 Feb 2021 12:06:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJprwBKbGrh-BjrzkQTxoboUi470wYcn-gTBHdNQ1Af7DKA@mail.gmail.com>
+References: <20210202192016.49028-1-swboyd@chromium.org>
+In-Reply-To: <20210202192016.49028-1-swboyd@chromium.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 2 Feb 2021 21:06:15 +0100
+Message-ID: <CAMuHMdWKr5q1OrwJ5DEnFvqYYXJqXhH_isKQnJozf5tu=ZVViA@mail.gmail.com>
+Subject: Re: [PATCH v2] ASoC: da7218: Drop CONFIG_OF ifdef
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, kernel test robot <lkp@intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 30 Jan 10:14 CST 2021, Dmitry Baryshkov wrote:
+Hi Stephen,
 
-> On Sat, 30 Jan 2021 at 06:53, Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > On Fri 29 Jan 16:19 CST 2021, Dmitry Baryshkov wrote:
-> >
-> > > On Sat, 30 Jan 2021 at 00:50, Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > >
-> > > > On Fri, Jan 29, 2021 at 06:45:21AM +0300, Dmitry Baryshkov wrote:
-> > > > > On 28/01/2021 22:26, Rob Herring wrote:
-> > > > > > On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
-> > > > > > <dmitry.baryshkov@linaro.org> wrote:
-> > > > > > >
-> > > > > > > Some Qualcomm platforms require to power up an external device before
-> > > > > > > probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
-> > > > > > > to be powered up before PCIe0 bus is probed. Add a quirk to the
-> > > > > > > respective PCIe root bridge to attach to the power domain if one is
-> > > > > > > required, so that the QCA chip is started before scanning the PCIe bus.
-> > > > > >
-> > > > > > This is solving a generic problem in a specific driver. It needs to be
-> > > > > > solved for any PCI host and any device.
-> > > > >
-> > > > > Ack. I see your point here.
-> > > > >
-> > > > > As this would require porting code from powerpc/spark of-pci code and
-> > > > > changing pcie port driver to apply power supply before bus probing happens,
-> > > > > I'd also ask for the comments from PCI maintainers. Will that solution be
-> > > > > acceptable to you?
-> > > >
-> > > > I can't say without seeing the code.  I don't know enough about this
-> > > > scenario to envision how it might look.
-> > > >
-> > > > I guess the QCA6390 is a PCIe device?  Why does it need to be powered
-> > > > up before probing?  Shouldn't we get a link-up interrupt when it is
-> > > > powered up so we could probe it then?
-> > >
-> > > Not quite. QCA6390 is a multifunction device, with PCIe and serial
-> > > parts. It has internal power regulators which once enabled will
-> > > powerup the PCIe, serial and radio parts. There is no need to manage
-> > > regulators. Once enabled they will automatically handle device
-> > > suspend/resume, etc.
-> > >
-> >
-> > So what you're saying is that if either the PCI controller or bluetooth
-> > driver probes these regulators will be turned on, indefinitely?
-> >
-> > If so, why do we need a driver to turn them on, rather than just mark
-> > them as always-on?
-> >
-> > What's the timing requirement wrt regulators vs WL_EN/BT_EN?
-> 
-> According to the documentation I have, they must be enabled right
-> after enabling powering the chip and they must stay enabled all the
-> time.
-> 
+On Tue, Feb 2, 2021 at 8:20 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> This reverts commit a06cd8cf97a3 ("ASoC: da7218: skip of_device_id table
+> when !CONFIG_OF") because we want to make of_match_device() stop using
+> of_match_ptr() internally, confusing compilers and causing ifdef
+> pollution.
+>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Acked-by: Arnd Bergmann <arnd@arndb.de>
+> Cc: Mark Brown <broonie@kernel.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 
-So presumably just marking these things always-on and flipping the GPIO
-statically won't be good enough due to the lack of control over the
-timing.
+Thanks for your patch!
 
-This really do look like a simplified case of what we see with the
-PCIe attached modems, where similar requirements are provided, but also
-the ability to perform a device specific reset sequence in case the
-hardware has locked up. I'm slightly worried about the ability of
-extending your power-domain model to handle the restart operation
-though.
+> ---
+>
+> Changes from v1:
+>  * Dropped of_match_ptr() in driver too
+>
+>  sound/soc/codecs/da7218.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+>
+> diff --git a/sound/soc/codecs/da7218.c b/sound/soc/codecs/da7218.c
+> index 2bfafbe9e3dc..83cace9d0139 100644
+> --- a/sound/soc/codecs/da7218.c
+> +++ b/sound/soc/codecs/da7218.c
+> @@ -2278,14 +2278,12 @@ static irqreturn_t da7218_irq_thread(int irq, void *data)
+>   * DT
+>   */
+>
+> -#ifdef CONFIG_OF
+>  static const struct of_device_id da7218_of_match[] = {
+>         { .compatible = "dlg,da7217", .data = (void *) DA7217_DEV_ID },
+>         { .compatible = "dlg,da7218", .data = (void *) DA7218_DEV_ID },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, da7218_of_match);
+> -#endif
+>
+>  static inline int da7218_of_get_id(struct device *dev)
+>  {
+> @@ -3311,7 +3309,7 @@ MODULE_DEVICE_TABLE(i2c, da7218_i2c_id);
+>  static struct i2c_driver da7218_i2c_driver = {
+>         .driver = {
+>                 .name = "da7218",
+> -               .of_match_table = of_match_ptr(da7218_of_match),
+> +               .of_match_table = da7218_of_match,
 
-Regards,
-Bjorn
+This does mean the compiler can no longer optimize the table away
+in the CONFIG_OF=n case. Is that intentional?
+
+>         },
+>         .probe          = da7218_i2c_probe,
+>         .id_table       = da7218_i2c_id,
+>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
