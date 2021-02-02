@@ -2,91 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9CE430C3C1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 16:28:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C19730C3F4
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 16:37:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235580AbhBBP2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 10:28:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39618 "EHLO
+        id S235158AbhBBPg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 10:36:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235485AbhBBP0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 10:26:19 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD7E5C06174A;
-        Tue,  2 Feb 2021 07:25:38 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id f2so24396194ljp.11;
-        Tue, 02 Feb 2021 07:25:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1BFhguJtknsgKZxynMp8586vauMG7FnrvbgtjYyZdro=;
-        b=Vv94kslTjxOHCof/KEF/LoLKR4nL5ltWMvPcoQIXsSRavJWqtYBiP4QkJfugy6ZSHw
-         QF/4EXVfa3lenAfwmQje7P49RcR1YghY0PCAU//9kv0OcVTFjTz+s6MTZsuDvoxeNQBg
-         VhJHmLc35E4FARCFj1km/HlUqEq5qSdKlViFF05bIHJYnduqZRrIF/W9XUC7LvaYe2wg
-         H1qPnPgPgF1ij8aDO/c1c+3R7ZGttCyFlLtxcYJiYN+c2/hWbqX0cqLcTFyW4c+9bQO4
-         8eoNEKdfAyzCfqpFKMhgFKZr15lZL86pIdGoUv/Neqjn/opYp+dRlJF99YQ2/8WOcbaG
-         28Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1BFhguJtknsgKZxynMp8586vauMG7FnrvbgtjYyZdro=;
-        b=MX491ZNuDqCJiwhs4ej73LOSS70us4LxE7dV3l0lP+v/rNS9Kq9rCeMxv9/lbL+Di9
-         JBo/myvnZX71wz98MDaeFO0wILBty29wsEI+SnJ0FUOFbkikQkMCpVq9Yn/+Fe34NBZJ
-         vFWbvzj0NutK84HA1lwE4wqzN3N0iO/IuRn6uDPxjFbd12VETLSM3XbFIShhcRiSzkTr
-         s36Cnrn50rtZxS3Va31vplsJphqCiwXp9KmJvsl+FFLytYwdVOiIalcLKEAnGjyEeauX
-         UD2hYva12yiZ1FImZ/XlGeMnF1VCLSuFSLFB/zweY0Ngdp7aLASKFYAvgc452Jidldq/
-         xxdA==
-X-Gm-Message-State: AOAM531qBClaNqm/5jKQ/5jpsSk7LFToPk8GnSV86zOjLhxSxuzaT9LH
-        X2R3YVTMCsZva6DtPi/8QEpqq+ekjUg=
-X-Google-Smtp-Source: ABdhPJy9CrYxZnEFUlb+AY6IJgJ2nx7yfz9iiAllAC8BTXE/k9hwCGANIk8LURd2z3PsTK23pF1mFg==
-X-Received: by 2002:a2e:7c16:: with SMTP id x22mr13561352ljc.46.1612279536183;
-        Tue, 02 Feb 2021 07:25:36 -0800 (PST)
-Received: from ?IPv6:2a00:1370:814d:ea25:a10:76ff:fe69:21b6? ([2a00:1370:814d:ea25:a10:76ff:fe69:21b6])
-        by smtp.googlemail.com with ESMTPSA id s19sm2604205ljg.43.2021.02.02.07.25.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Feb 2021 07:25:35 -0800 (PST)
-Subject: Re: [PATCH v1 2/2] ASoC: tegra: Add RT5631 machine driver
-To:     Jon Hunter <jonathanh@nvidia.com>, Ion Agorria <AG0RRIA@yahoo.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Stephen Warren <swarren@nvidia.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
+        with ESMTP id S235595AbhBBPex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 10:34:53 -0500
+Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E37C061573;
+        Tue,  2 Feb 2021 07:33:57 -0800 (PST)
+Received: from [2a04:4540:1400:7bac::c66]
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <john@phrozen.org>)
+        id 1l6xgg-0002VE-45; Tue, 02 Feb 2021 16:33:54 +0100
+Subject: Re: [PATCH v2 2/2] irqchip: Add support for Realtek RTL838x/RTL839x
+ IRQ controller
+To:     Bert Vermeulen <bert@biot.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Ion Agorria <ion@agorria.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210131184101.651486-1-AG0RRIA@yahoo.com>
- <20210131184101.651486-3-AG0RRIA@yahoo.com>
- <7f4eb8f7-215e-ab3d-fcef-9243037cf246@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <8d0bc6f3-45ce-565d-d80f-b50fb75e7c55@gmail.com>
-Date:   Tue, 2 Feb 2021 18:25:34 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        Birger Koblitz <mail@birger-koblitz.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210104131755.2979203-1-bert@biot.com>
+ <20210104131755.2979203-3-bert@biot.com>
+From:   John Crispin <john@phrozen.org>
+Message-ID: <44d6de52-5422-1138-cb00-21320668eb29@phrozen.org>
+Date:   Tue, 2 Feb 2021 16:33:53 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <7f4eb8f7-215e-ab3d-fcef-9243037cf246@nvidia.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210104131755.2979203-3-bert@biot.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-02.02.2021 16:22, Jon Hunter пишет:
-> So this is very similar to tegra_rt5677, is it not possible to support
-> both codecs with the same machine driver?
 
-These codecs require individual configurations and those
-"../codecs/rt5631.h" and  "../codecs/rt5677.h" aren't compatible at a
-quick glance.
-
-The tegra_rt5677 also uses outdated GPIO API and etc. Hence the new
-driver should be a better base anyways.
-
-Overall it shouldn't worth time and effort trying to squeeze these
-drivers into a single one, IMO.
+On 04.01.21 14:17, Bert Vermeulen wrote:
+> This is a standard IRQ driver with only status and mask registers.
+>
+> The mapping from SoC interrupts (18-31) to MIPS core interrupts is
+> done via an interrupt-map in device tree.
+>
+> Signed-off-by: Bert Vermeulen <bert@biot.com>
+Signed-off-by: John Crispin <john@phrozen.org>
+> ---
+>   drivers/irqchip/Makefile          |   1 +
+>   drivers/irqchip/irq-realtek-rtl.c | 180 ++++++++++++++++++++++++++++++
+>   2 files changed, 181 insertions(+)
+>   create mode 100644 drivers/irqchip/irq-realtek-rtl.c
+>
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index 0ac93bfaec61..4fc1086bed7e 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -113,3 +113,4 @@ obj-$(CONFIG_LOONGSON_PCH_PIC)		+= irq-loongson-pch-pic.o
+>   obj-$(CONFIG_LOONGSON_PCH_MSI)		+= irq-loongson-pch-msi.o
+>   obj-$(CONFIG_MST_IRQ)			+= irq-mst-intc.o
+>   obj-$(CONFIG_SL28CPLD_INTC)		+= irq-sl28cpld.o
+> +obj-$(CONFIG_MACH_REALTEK_RTL)		+= irq-realtek-rtl.o
+> diff --git a/drivers/irqchip/irq-realtek-rtl.c b/drivers/irqchip/irq-realtek-rtl.c
+> new file mode 100644
+> index 000000000000..bafe9ee4a85a
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-realtek-rtl.c
+> @@ -0,0 +1,180 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2006-2012 Tony Wu <tonywu@realtek.com>
+> + * Copyright (C) 2020 Birger Koblitz <mail@birger-koblitz.de>
+> + * Copyright (C) 2020 Bert Vermeulen <bert@biot.com>
+> + * Copyright (C) 2020 John Crispin <john@phrozen.org>
+> + */
+> +
+> +#include <linux/of_irq.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/of_address.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +
+> +/* Global Interrupt Mask Register */
+> +#define RTL_ICTL_GIMR		0x00
+> +/* Global Interrupt Status Register */
+> +#define RTL_ICTL_GISR		0x04
+> +/* Interrupt Routing Registers */
+> +#define RTL_ICTL_IRR0		0x08
+> +#define RTL_ICTL_IRR1		0x0c
+> +#define RTL_ICTL_IRR2		0x10
+> +#define RTL_ICTL_IRR3		0x14
+> +
+> +#define REG(x)		(realtek_ictl_base + x)
+> +
+> +static DEFINE_RAW_SPINLOCK(irq_lock);
+> +static void __iomem *realtek_ictl_base;
+> +
+> +static void realtek_ictl_unmask_irq(struct irq_data *i)
+> +{
+> +	unsigned long flags;
+> +	u32 value;
+> +
+> +	raw_spin_lock_irqsave(&irq_lock, flags);
+> +
+> +	value = readl(REG(RTL_ICTL_GIMR));
+> +	value |= BIT(i->hwirq);
+> +	writel(value, REG(RTL_ICTL_GIMR));
+> +
+> +	raw_spin_unlock_irqrestore(&irq_lock, flags);
+> +}
+> +
+> +static void realtek_ictl_mask_irq(struct irq_data *i)
+> +{
+> +	unsigned long flags;
+> +	u32 value;
+> +
+> +	raw_spin_lock_irqsave(&irq_lock, flags);
+> +
+> +	value = readl(REG(RTL_ICTL_GIMR));
+> +	value &= ~BIT(i->hwirq);
+> +	writel(value, REG(RTL_ICTL_GIMR));
+> +
+> +	raw_spin_unlock_irqrestore(&irq_lock, flags);
+> +}
+> +
+> +static struct irq_chip realtek_ictl_irq = {
+> +	.name = "realtek-rtl-intc",
+> +	.irq_mask = realtek_ictl_mask_irq,
+> +	.irq_unmask = realtek_ictl_unmask_irq,
+> +};
+> +
+> +static int intc_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hw)
+> +{
+> +	irq_set_chip_and_handler(hw, &realtek_ictl_irq, handle_level_irq);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops irq_domain_ops = {
+> +	.map = intc_map,
+> +	.xlate = irq_domain_xlate_onecell,
+> +};
+> +
+> +static void realtek_irq_dispatch(struct irq_desc *desc)
+> +{
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	struct irq_domain *domain;
+> +	unsigned int pending;
+> +
+> +	chained_irq_enter(chip, desc);
+> +	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR));
+> +	if (unlikely(!pending)) {
+> +		spurious_interrupt();
+> +		goto out;
+> +	}
+> +	domain = irq_desc_get_handler_data(desc);
+> +	generic_handle_irq(irq_find_mapping(domain, __ffs(pending)));
+> +
+> +out:
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +/*
+> + * SoC interrupts are cascaded to MIPS CPU interrupts according to the
+> + * interrupt-map in the device tree. Each SoC interrupt gets 4 bits for
+> + * the CPU interrupt in an Interrupt Routing Register. Max 32 SoC interrupts
+> + * thus go into 4 IRRs.
+> + */
+> +static int __init map_interrupts(struct device_node *node)
+> +{
+> +	struct device_node *cpu_ictl;
+> +	const __be32 *imap;
+> +	u32 imaplen, soc_int, cpu_int, tmp, regs[4];
+> +	int ret, i, irr_regs[] = {
+> +		RTL_ICTL_IRR3,
+> +		RTL_ICTL_IRR2,
+> +		RTL_ICTL_IRR1,
+> +		RTL_ICTL_IRR0,
+> +	};
+> +
+> +	ret = of_property_read_u32(node, "#address-cells", &tmp);
+> +	if (ret || tmp)
+> +		return -EINVAL;
+> +
+> +	imap = of_get_property(node, "interrupt-map", &imaplen);
+> +	if (!imap || imaplen % 3)
+> +		return -EINVAL;
+> +
+> +	memset(regs, 0, sizeof(regs));
+> +	for (i = 0; i < imaplen; i += 3 * sizeof(u32)) {
+> +		soc_int = be32_to_cpup(imap);
+> +		if (soc_int > 31)
+> +			return -EINVAL;
+> +
+> +		cpu_ictl = of_find_node_by_phandle(be32_to_cpup(imap + 1));
+> +		if (!cpu_ictl)
+> +			return -EINVAL;
+> +		ret = of_property_read_u32(cpu_ictl, "#interrupt-cells", &tmp);
+> +		if (ret || tmp != 1)
+> +			return -EINVAL;
+> +		of_node_put(cpu_ictl);
+> +
+> +		cpu_int = be32_to_cpup(imap + 2);
+> +		if (cpu_int > 7)
+> +			return -EINVAL;
+> +
+> +		regs[(soc_int * 4) / 32] |= cpu_int << (soc_int * 4) % 32;
+> +		imap += 3;
+> +	}
+> +
+> +	for (i = 0; i < 4; i++)
+> +		writel(regs[i], REG(irr_regs[i]));
+> +
+> +	return 0;
+> +}
+> +
+> +static int __init realtek_rtl_of_init(struct device_node *node, struct device_node *parent)
+> +{
+> +	struct irq_domain *domain;
+> +	int ret;
+> +
+> +	domain = irq_domain_add_simple(node, 32, 0,
+> +				       &irq_domain_ops, NULL);
+> +	irq_set_chained_handler_and_data(2, realtek_irq_dispatch, domain);
+> +	irq_set_chained_handler_and_data(3, realtek_irq_dispatch, domain);
+> +	irq_set_chained_handler_and_data(4, realtek_irq_dispatch, domain);
+> +	irq_set_chained_handler_and_data(5, realtek_irq_dispatch, domain);
+> +
+> +	realtek_ictl_base = of_iomap(node, 0);
+> +	if (!realtek_ictl_base)
+> +		return -ENXIO;
+> +
+> +	/* Disable all cascaded interrupts */
+> +	writel(0, REG(RTL_ICTL_GIMR));
+> +
+> +	ret = map_interrupts(node);
+> +	if (ret) {
+> +		pr_err("invalid interrupt map\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Clear timer interrupt */
+> +	write_c0_compare(0);
+> +
+> +	return 0;
+> +}
+> +
+> +IRQCHIP_DECLARE(realtek_rtl_intc, "realtek,rtl-intc", realtek_rtl_of_init);
