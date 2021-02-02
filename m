@@ -2,139 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F3D430C9CC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 19:30:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6453A30C9CA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 19:30:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238410AbhBBSaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 13:30:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50066 "EHLO
+        id S231578AbhBBS3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 13:29:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238573AbhBBSZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 13:25:17 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4FE9C061788;
-        Tue,  2 Feb 2021 10:24:35 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id f19so25115709ljn.5;
-        Tue, 02 Feb 2021 10:24:35 -0800 (PST)
+        with ESMTP id S238461AbhBBS1h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 13:27:37 -0500
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C5BC061573
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 10:26:56 -0800 (PST)
+Received: by mail-io1-xd35.google.com with SMTP id n14so8562369iog.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 10:26:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Q0T5IJwaSHOziIxSRhbmo9/NktrkYw4HnAHaQWP4KHQ=;
-        b=btzlH3Vxt+/koq/pSPXEBf4bkrneg6wWxrTbVGxN1JyckKHRZZi9ax6r8i/bl6Ir1s
-         IbmB+P0Zd8ho4CqrpMNkanmVY5FxKnQW6K1SN2D2tDtoT+XN5ihVWeOhdrRIoKSLUos/
-         VWI8LvV5oqS+2GdcBAyxW8i1dSqHHpQCGijGWw3lFWeHmiYW+gR5+/zYzD4T/bzbT7RF
-         TXddshv1tZ3k7C26ZQ2GjagnlW47lhBZ89LWTRkVX0Wko3oCH/j+w3oPkv3buMGeYmAF
-         OeSJisuIoobveQfD6+2xaQmDlKqtiFCm11drAtW4GuFCRIbdZph2ushLX3hx9ws0oCzw
-         ygeA==
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lmzOT4IsDLV3fXyPYr4zxnFCLhCQEvRE3p9inRWF1PE=;
+        b=HIJKflfrQ+uGL3yQoKDtRdNobK5gwelcUlTfCyyMqBeeehEpooqJdfXs2z4qZV9NpJ
+         sLzmSRd8AAdWoHrb2v9DUHd8H+47iZVmvOPz8uSNF4K0xl8eU6TC4PzgF6ah8KGj8Yww
+         Kcy7QueBzC2ayDWhuVOZulLwm7bgp9Yc69bug=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Q0T5IJwaSHOziIxSRhbmo9/NktrkYw4HnAHaQWP4KHQ=;
-        b=O2w8VXbbsNn6/7SZbG9DTrQFrEgBnu1WAyK60V8cxuES30DGNvySgrRAsJZZd3OjFT
-         tcAh0ptGAZdmkqWBSNA3ZMGgp8TRU6+L7SeSQqkm/gjzv2PRYOkah6XhljxjowiSXlrl
-         mgMOn9c+V96eMTNewy0dKFQor4WCnUVuAHlcny52YR1BmOxh4KXY6dGLCCUoQNiLCpUo
-         bIYkzFtSAhH38yZ+lAtgWKIpX5kWngjKqJFehX5olso/hMmXWGwb1dtYX76e/UZGhMGj
-         6iyayLAvx2fb9Fsp9DXFvuoSwwsI1T6o+IcvUP/YP8RdLmTZ4Car66vc7iUkFNLscntg
-         XrtQ==
-X-Gm-Message-State: AOAM532nVclP/LRJAGLGl2FhHHW5NweH8zrwjhcMKdmcNosSDSG3C1pn
-        2WOamOkeg4dyBmVQfPBgXAQd4qegMGK8uA==
-X-Google-Smtp-Source: ABdhPJxXOkVdvYP3ZgEOCJO6jAENS8rLkK5ge4Pewg6qilVVcGWtdonj61DXmSgCFQE8f1Yhya2/tg==
-X-Received: by 2002:a2e:9a52:: with SMTP id k18mr13748061ljj.249.1612290273551;
-        Tue, 02 Feb 2021 10:24:33 -0800 (PST)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id 19sm4414607ljw.19.2021.02.02.10.24.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Feb 2021 10:24:32 -0800 (PST)
-Subject: Re: [PATCH v1] leds: lp50xx: add setting of default intensity from DT
-To:     Sven Schuchmann <schuchmann@schleissheimer.de>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210119105312.2636-1-schuchmann@schleissheimer.de>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <8029565b-9b45-8c2c-cb6a-c639af5780fb@gmail.com>
-Date:   Tue, 2 Feb 2021 19:24:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lmzOT4IsDLV3fXyPYr4zxnFCLhCQEvRE3p9inRWF1PE=;
+        b=Z9ojD9tmKIQvziz8+iQU4XUL1KwhEFIOel82XZvmvF463n1A192Lg8bl/bsH080rvI
+         ETFM7XIyP1L1EyD9bSwHCE0g9q9rEB5dUhEi3r1Soa1iMZ3l/qEsQD5dffy02fl/oQy+
+         iAH2312TdcfzR5rv1LF4rxp8HvT+AbDJeYSKNCw326z85XR8Nw8vvLCKA3hC+WqnXqUK
+         +NlCxAya+jo+s0G93A8NsVCqjrv9FISSEl4jDcc3A3Y7KTS7xLEQgI9Qq/L9A8CPYTEg
+         qW2Ds5fbViOuKu45w0Qa5RPDrozosrzjgDITZEkOFarWGcSz9HBYaEYw+z94Q7+6XD7U
+         q0YA==
+X-Gm-Message-State: AOAM5324oAjwFquaMFr9Gu95PblRKS5QMPnGogjrMn6H/mI9H5NqEJwl
+        59kudaXu1fXShmQPo6c7LCos5KaKEhlSNmEK7jrG
+X-Google-Smtp-Source: ABdhPJynZBXpnTgaTGJ6pK5pVPFtUKnD+OjqllGoMMAGsAqSXlzGfyeDRyHGa4wFfCBupzvetmDpdhE4jdjqfRdtxw8=
+X-Received: by 2002:a05:6602:2d0d:: with SMTP id c13mr6403881iow.51.1612290416119;
+ Tue, 02 Feb 2021 10:26:56 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210119105312.2636-1-schuchmann@schleissheimer.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210202103623.200809-1-damien.lemoal@wdc.com> <20210202103623.200809-5-damien.lemoal@wdc.com>
+In-Reply-To: <20210202103623.200809-5-damien.lemoal@wdc.com>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Tue, 2 Feb 2021 10:26:45 -0800
+Message-ID: <CAOnJCUKZ82o_BihhJ-1WmUhjiiUDrUc7Wps7JRLMrDeWA012uw@mail.gmail.com>
+Subject: Re: [PATCH v14 04/16] dt-bindings: update sifive plic compatible string
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>, Anup Patel <anup.patel@wdc.com>,
+        Sean Anderson <seanga2@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sven,
-
-On 1/19/21 11:53 AM, Sven Schuchmann wrote:
-> In order to use a multicolor-led together with a trigger
-> from DT the led needs to have an intensity set to see something.
-> The trigger changes the brightness of the led but if there
-> is no intensity we actually see nothing.
-> 
-> This patch adds the ability to set the default intensity
-> of each led so that it is turned on from DT.
-> 
-> Signed-off-by: Sven Schuchmann <schuchmann@schleissheimer.de>
+On Tue, Feb 2, 2021 at 2:37 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
+>
+> Add the compatible string "canaan,k210-plic" to the Sifive plic bindings
+> to indicate the use of the "sifive,plic-1.0.0" IP block in the Canaan
+> Kendryte K210 SoC. The description is also updated to reflect this
+> change, that is, that SoCs from other vendors may also use this plic
+> implementation.
+>
+> Cc: Paul Walmsley <paul.walmsley@sifive.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
 > ---
->   Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 8 +++++++-
->   drivers/leds/leds-lp50xx.c                              | 4 ++++
->   2 files changed, 11 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-> index c192b5feadc7..5ad2a0c3c052 100644
-> --- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-> +++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-> @@ -69,7 +69,12 @@ patternProperties:
->       patternProperties:
->         "(^led-[0-9a-f]$|led)":
->           type: object
-> -        $ref: common.yaml#
-> +        allOf:
-> +          - $ref: common.yaml#
-> +        properties:
-> +          default-intensity:
-> +            maxItems: 1
-> +            description: The intensity the LED gets initialised with.
->   
->   required:
->     - compatible
-> @@ -102,6 +107,7 @@ examples:
->   
->                  led-0 {
->                      color = <LED_COLOR_ID_RED>;
-> +                   default-intensity = <100>;
->                  };
->   
->                  led-1 {
+>  .../sifive,plic-1.0.0.yaml                    | 20 ++++++++++++-------
+>  1 file changed, 13 insertions(+), 7 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> index b9a61c9f7530..3db86d329e1e 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> @@ -8,10 +8,11 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: SiFive Platform-Level Interrupt Controller (PLIC)
+>
+>  description:
+> -  SiFive SOCs include an implementation of the Platform-Level Interrupt Controller
+> -  (PLIC) high-level specification in the RISC-V Privileged Architecture
+> -  specification. The PLIC connects all external interrupts in the system to all
+> -  hart contexts in the system, via the external interrupt source in each hart.
+> +  SiFive other RISC-V and other SoCs include an implementation of the
+> +  Platform-Level Interrupt Controller (PLIC) high-level specification in
+> +  the RISC-V Privileged Architecture specification. The PLIC connects all
 
-Please split this into a separate patch, preceding this one in the series.
+The latest privilege spec doesn't specify PLIC anymore.
 
-> diff --git a/drivers/leds/leds-lp50xx.c b/drivers/leds/leds-lp50xx.c
-> index f13117eed976..ba760fa33bdc 100644
-> --- a/drivers/leds/leds-lp50xx.c
-> +++ b/drivers/leds/leds-lp50xx.c
-> @@ -501,6 +501,10 @@ static int lp50xx_probe_dt(struct lp50xx *priv)
->   			}
->   
->   			mc_led_info[num_colors].color_index = color_id;
+> +  external interrupts in the system to all hart contexts in the system, via
+> +  the external interrupt source in each hart.
+>
+>    A hart context is a privilege mode in a hardware execution thread. For example,
+>    in an 4 core system with 2-way SMT, you have 8 harts and probably at least two
+> @@ -41,9 +42,14 @@ maintainers:
+>
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: sifive,fu540-c000-plic
+> -      - const: sifive,plic-1.0.0
+> +    oneOf:
+> +      - items:
+> +          - const: sifive,fu540-c000-plic
+> +          - const: sifive,plic-1.0.0
 > +
-> +			fwnode_property_read_u32(led_node, "default-intensity",
-> +						 &mc_led_info[num_colors].intensity);
-> +
->   			num_colors++;
->   		}
->   
-> 
+> +      - items:
+> +          - const: canaan,k210-plic
+> +          - const: sifive,plic-1.0.0
+>
+>    reg:
+>      maxItems: 1
+> --
+> 2.29.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-For this part:
+other than that,
 
-Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Reviewed-by: Atish Patra <atish.patra@wdc.com>
 
 -- 
-Best regards,
-Jacek Anaszewski
+Regards,
+Atish
