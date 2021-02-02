@@ -2,99 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA88130B441
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 01:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC8B630B448
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 01:47:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231380AbhBBAmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 19:42:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47712 "EHLO
+        id S231169AbhBBAqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 19:46:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbhBBAmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 19:42:42 -0500
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AC15C06174A
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 16:42:02 -0800 (PST)
-Received: by mail-pj1-x102e.google.com with SMTP id z9so1223486pjl.5
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 16:42:02 -0800 (PST)
+        with ESMTP id S229556AbhBBAqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 19:46:15 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2BCAC06174A
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 16:45:34 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id g10so18599532wrx.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 16:45:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:in-reply-to:references:date:message-id
          :mime-version;
-        bh=r9Kg/gf6E4HWfjM0umPzsi5Eq8z2VKtkBzcF9+Dc93w=;
-        b=X7hzWRxLsDVvI9aTtpXS3+RoX3xXcmt8pX+BQUFi0OwKFeWKrsuuKstUzc6WzJUqez
-         PH8ltZKUVYRfGmg533ddSsLLx6WYWe3LR/xr6yNcP6urOWMKMWn0fRYjzyenxqPVPa8C
-         9bxJvh8KZ/ciGjakxcAdPLwrT6JXA4X/8tHRfTt+hWBXaPEHrW50WijvCh2z931B662P
-         XcIalQmKW90qt0Ro6b3M/FYYdiGjo35Guv7Qer5i6Q0nZil1htc59xG2tZtAxgBeOEsS
-         jsq1oIB4wnChyWFvw9m/R2dD8GR/EX+8Rz23LCrIcZyE0yKD8uvqQToWX8tc69+C3RfT
-         VCVg==
+        bh=R+DY3ptemdPsgpSAemZqrrEiiEasrjy6FBc1qDbbWrQ=;
+        b=ri3TxrY3TBgB5Os1sHmq9qfzzay/vdaPhoxzTjM++5ZA523vrpHMBJrtpD5enoS90v
+         CGSfiEkmRgAfhDB4PgVGuENBVoRkwcp4qTrIv1p/4g5e5IW+k0j4NI23/onnkSW7Ua0u
+         0sftY/scP6W4XDUs9YzbybR9eD/fS8yCvg1kO7a/T3MJYBiNWSgDYxNdZnuvBFuILfc4
+         hvsZd2F10BTIKe+hW6hDLXO2d99UsNAFEjOg+fZnvpgsIYqe8bKW4+x11HOCubGHpIXg
+         1aiDfYNrwm7y58ObjSv1gZ7D+GSknx39XPYEHXtgWM8eerR8AATNS1IbF7U1ohefdJXt
+         HyeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
          :message-id:mime-version;
-        bh=r9Kg/gf6E4HWfjM0umPzsi5Eq8z2VKtkBzcF9+Dc93w=;
-        b=EAiLFnR5bFFsok8L+JUy17Neyedm/LCSDm1eunLzclCs0U90SD8xMqJYdWRffIYUPp
-         SxbZfRVraDADkzEEW3Gx+aIS1ybRYyW5yPH5zzLGol8pU+6lx7bRnAFb2GjLyv6RUb6l
-         N9B3rrJIOsm9gFwQgOPhLXdgWz76Ay1b3yiaqAbMzd5BYLPn7DJKGGZ70gSnvywI1zHJ
-         fjItphQQeuNwbvI+KxiOR9QfiH+rT4xuxqsd7srKcbWDQS0xY1FnLDCbi9CVF34BVjlX
-         UKMrmR4XGjvT7tZ8F4nbNh5u7kZCzzybA3vS1ACoDzwRSQRNxSfZadk6Kgr9Injabf25
-         +9og==
-X-Gm-Message-State: AOAM531yVAUh+8V9D+9ouz0PpxQhGq72D7Bsm/43Z2mJ5wkjzLTL8j6g
-        5PBxtZL32e7H+1fp2gO241E8zQ==
-X-Google-Smtp-Source: ABdhPJzD0q+nzsD62zpnYipUPZDwrw468Av/Fbt+gUMrc5zo9WnDW65ogFssHkKfRnLSmaRxv3Jq5g==
-X-Received: by 2002:a17:902:b716:b029:e1:575a:139d with SMTP id d22-20020a170902b716b02900e1575a139dmr7890707pls.78.1612226521938;
-        Mon, 01 Feb 2021 16:42:01 -0800 (PST)
+        bh=R+DY3ptemdPsgpSAemZqrrEiiEasrjy6FBc1qDbbWrQ=;
+        b=EZ2t+z8XkCVupcpWw7OVrXg5cndFImHrzQrrF8xPoQli7IfzP6OFbmoU2BQ3OVko3+
+         EJSns3yimvU8qNUMPpCW3IzcPOCD+QhnS2TSanT8zobTt1ONGJa8a5eYVNILuGKHcIl/
+         hdgdFzwPbpXWia4nvT6ZdnhoclxCotOwAhTumHI1da0bfTI82DxeXDcS0gplZ/BQmuxJ
+         DmcW8DBlZKNLxULm6Lda/fZybhSEI+Ir4sdALSTi5Q4x4VGYJaM6OBcCuTITLSAOeLis
+         0mqTdePTQMwKoBCXchnj1JDZGsyR9EOg6MAxNS6j2Ohnpsb5qpw5ETlovtSqh1770ld2
+         IqAg==
+X-Gm-Message-State: AOAM531xTctyzH2DBpy4/Y4KvA/8lhWvJNp8BoXEGHpBG73oSIKazO6p
+        w1mqZQQ4NvSXwPGSJM7oz7utvQ==
+X-Google-Smtp-Source: ABdhPJwxNXQTy/QE3Lo/F9xQFQNUvYrAvLBunGofChogGrJTK4i3z2o53P/m+m42LWzy7JdbSThXzg==
+X-Received: by 2002:a5d:60c2:: with SMTP id x2mr21605432wrt.248.1612226733431;
+        Mon, 01 Feb 2021 16:45:33 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id t129sm20509673pfc.16.2021.02.01.16.42.01
+        by smtp.gmail.com with ESMTPSA id s23sm849562wmc.35.2021.02.01.16.45.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Feb 2021 16:42:01 -0800 (PST)
+        Mon, 01 Feb 2021 16:45:32 -0800 (PST)
 From:   Kevin Hilman <khilman@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+To:     Artem Lapkin <email2tema@gmail.com>, narmstrong@baylibre.com
+Cc:     robh+dt@kernel.org, jbrunet@baylibre.com,
+        christianshewitt@gmail.com, martin.blumenstingl@googlemail.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Dongjin Kim <tobetter@gmail.com>
-Subject: Re: [PATCH v2 0/5] arm64: dts: meson: add support for ODROID-HC4
-In-Reply-To: <20210131055358.21293-1-christianshewitt@gmail.com>
-References: <20210131055358.21293-1-christianshewitt@gmail.com>
-Date:   Mon, 01 Feb 2021 16:42:00 -0800
-Message-ID: <7h5z3bi9lz.fsf@baylibre.com>
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        art@khadas.com, nick@khadas.com, gouwa@khadas.com
+Subject: Re: [PATCH] arm64: dts: meson-gx: remove wrong reserved BL31 memory
+In-Reply-To: <20210130054022.2020338-1-art@khadas.com>
+References: <20210130054022.2020338-1-art@khadas.com>
+Date:   Mon, 01 Feb 2021 16:45:30 -0800
+Message-ID: <7hy2g7guvp.fsf@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christian,
+Artem Lapkin <email2tema@gmail.com> writes:
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
+> Kernel boot fail on Khadas VIM1 VIM2 (meson GX) boards
+> SOLUTION: just remove wrong mem reservation for 0x10000000 0x200000
 
-> This series fixes minor sort-order issues in the Amlogic bindings yaml and
-> dtb Makefile, then converts the existing ODROID-C2 dts into dtsi so we can
-> support its new sister product the ODROID-HC4.
->
-> I've also given the devices different audio card names. This is partly
-> cosmetic, but also because HC4 is HDMI-only while C4 can be used with
-> other i2c audio devices via an expansion connector so users may want to
-> use different alsa configs.
->
-> Patches to support the spifc chip are still being upstreamed [0] so this
-> will be addressed in a follow up. A WIP patch for the dts change can be
-> found in my amlogic-5.11.y dev branch [1].
->
-> For reference, here's dmesg from LibreELEC on 5.11-rc5 [2].
->
-> Changes since v1:
-> - fix ODRIOD typo in patch 3
-> - fix SPI-NOT size in patch 5
-> - add Neil's Acks/Reviews
+You don't explain why it's wrong.
 
-Could you please rebase this on top of my v5.12/dt64 branch[1]?  This
-has conflicts with some stuff already queued up there.
+This region was added becasue there there are definitely GX devices which
+have secure memory in this area, and this patch will break those devices.
 
-Thanks,
+>  ## Booting kernel from Legacy Image at 08080000 ...
+>    Image Name:   kernel
+>    Image Type:   AArch64 Linux Kernel Image (lzma compressed)
+>    Data Size:    4657736 Bytes = 4.4 MiB
+>    Load Address: 0f080000
+>    Entry Point:  0f080000
+>    Verifying Checksum ... OK
+>  ## Flattened Device Tree blob at 08008000
+>    Booting using the fdt blob at 0x8008000
+>    Uncompressing Kernel Image
+>  ERROR: reserving fdt memory region failed (addr=10000000 size=200000)
+>    Loading Device Tree to 000000007bf23000, end 000000007bf2d3ce ... OK
+
+I suspect if you change the load addresses used by u-boot to avoid this
+region, you'll be able to boot just fine.
 
 Kevin
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git/log/?h=v5.12/dt64
+>  Starting kernel ...
+>
+>  bl31 reboot reason: 0xd
+>  bl31 reboot reason: 0x0
+>  system cmd  1.
+>
+> Signed-off-by: Artem Lapkin <art@khadas.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 ------
+>  1 file changed, 6 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 726b91d3a..71083b89d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -32,12 +32,6 @@ hwrom_reserved: hwrom@0 {
+>  			no-map;
+>  		};
+>  
+> -		/* 2 MiB reserved for ARM Trusted Firmware (BL31) */
+> -		secmon_reserved: secmon@10000000 {
+> -			reg = <0x0 0x10000000 0x0 0x200000>;
+> -			no-map;
+> -		};
+> -
+>  		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
+>  		secmon_reserved_alt: secmon@5000000 {
+>  			reg = <0x0 0x05000000 0x0 0x300000>;
+> -- 
+> 2.25.1
