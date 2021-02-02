@@ -2,118 +2,392 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9293930BA48
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 09:50:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FE0B30BA63
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 09:55:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232749AbhBBIuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 03:50:21 -0500
-Received: from mail-eopbgr40129.outbound.protection.outlook.com ([40.107.4.129]:13956
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229466AbhBBIuJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 03:50:09 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EjC25kUnRf/3YKXhpDD/lA9OyLw3p4RFGqg1bHVD/LlAiuRbd25+/RF+MTKniSkDOiPMu79hLgt6KeSBBT8LeXDYws/d141+JMgHQ+DAA0HPHDaM/P7RZ1rFRizrbQeRmKB6nDABRsjgmIC8Xhe5gQZ/Wru8taoIUaAZzFQkYwKfeyWxzBITnI3Kp6xlWJ/3UdZvj97O+2VMa8Yfjf7rqy2ulpOZcomvF4b32/yMtzg0OYNUP+84r0ZyK2/bp1P8D7cRvq5RHL36pOUwgfV7FncpUYTAPqjzicoarHDivK+sqkYvyK9jvsHrZIjRYqyUy4Mg9Gf2BObUZAMfRqaD7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cqNGi5jQXd9nHwbz43sbBaLKwN5DMxi6XaPTmIGHHxY=;
- b=TioJ2/jXeZ56TjVBlwpmyC0v3xOL5RTcKDlrfuYWJlGEn8CLacI5czgGOaYPG+Qs0wFM6bERy980Ml7sOIsyHc0OC9RbxGCOB5ehwkCPFhv6/2PLZZxQhfCJIx20P1+BjcRuiXxf+atTEzxUn+lmjyWKUil3AeoMmdxSanjsWYbzmHrzz5NfMxB59wn6j3ofD29aoDeCS/edTIjBiQ2sdM1r0ZJLmohP9yC9UD9e1RrTUkC1kBN9XYVp0UjmmgeuK0hRnDvPp6psr1DTHB4LdkXrWSBF3Q011IRMnslARqXoCJuaFAZw+VNVfHwcdrBOYHk12GfFI3D+tOZ3MN4C5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 193.8.40.99) smtp.rcpttodomain=kernel.org
- smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass (p=quarantine sp=quarantine
- pct=100) action=none header.from=leica-geosystems.com.cn; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=leica-geosystems.com.cn; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cqNGi5jQXd9nHwbz43sbBaLKwN5DMxi6XaPTmIGHHxY=;
- b=RmgIhB70R2/EEgU0rH4x4YW/dDetHfkY7MAvSqYhue543YhERhWYBISRv/sspP/aCiuRL13FBhZganzCIm3XxyvqvYsvascl3o8SsZljHTOzkrsP2rnTwmX4eXuqIlYfhOov68g7QQ7Z78RfMjShL3l8FfqwZnTvF9Unm607sQk=
-Received: from AM5PR0601CA0037.eurprd06.prod.outlook.com
- (2603:10a6:203:68::23) by VI1PR0601MB2384.eurprd06.prod.outlook.com
- (2603:10a6:801:c::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.16; Tue, 2 Feb
- 2021 08:49:19 +0000
-Received: from HE1EUR02FT042.eop-EUR02.prod.protection.outlook.com
- (2603:10a6:203:68:cafe::4f) by AM5PR0601CA0037.outlook.office365.com
- (2603:10a6:203:68::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17 via Frontend
- Transport; Tue, 2 Feb 2021 08:49:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.99)
- smtp.mailfrom=leica-geosystems.com.cn; kernel.org; dkim=none (message not
- signed) header.d=none;kernel.org; dmarc=pass action=none
- header.from=leica-geosystems.com.cn;
-Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com.cn
- designates 193.8.40.99 as permitted sender) receiver=protection.outlook.com;
- client-ip=193.8.40.99; helo=aherlnxbspsrv01.lgs-net.com;
-Received: from aherlnxbspsrv01.lgs-net.com (193.8.40.99) by
- HE1EUR02FT042.mail.protection.outlook.com (10.152.11.159) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3784.11 via Frontend Transport; Tue, 2 Feb 2021 08:49:18 +0000
-From:   LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-To:     sre@kernel.org, robh+dt@kernel.org, dmurphy@ti.com,
-        pali@kernel.org, krzk@kernel.org, afd@ti.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     grygorii.tertychnyi@leica-geosystems.com,
-        andrey.zhizhikin@leica-geosystems.com,
-        LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Subject: [PATCH V2 2/2] dt-bindings: power: bq27xxx: add bq78z10
-Date:   Tue,  2 Feb 2021 08:48:58 +0000
-Message-Id: <20210202084858.2944-3-Qing-wu.Li@leica-geosystems.com.cn>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210202084858.2944-1-Qing-wu.Li@leica-geosystems.com.cn>
-References: <20210202084858.2944-1-Qing-wu.Li@leica-geosystems.com.cn>
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
+        id S229975AbhBBIzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 03:55:06 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:55004 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229462AbhBBIzD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 03:55:03 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1128qnpX027670;
+        Tue, 2 Feb 2021 09:54:15 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=9uvc32id+Y3rGDjxBbMHT+s5N4kVEvv+kcqNmXeamo4=;
+ b=8ezaUq3lNwECqAy2/DnGXcM0APSz1yqcak45/LPTDVwC/onlggcDPjEiCvtcOjCDLsAy
+ sBkt9yE4O4sx8JBIgPMME/VRQNMWDTVHjSxJbNTQGeLhfcjW1foTSTuwtwcHWyOnWTTg
+ fWAOkzqXoxoJ0mt20GngcKh3vpX2fs67rwLrgi9zZfrOEIucZvCGCUPzx8QUm2BR2GHF
+ 2vIT5oPYyQQVCLIl169ufVPBS0P41pl7Q8XlEKjWVY9CNWycdOYDKZtywE9pTNjaQra9
+ JkHLV3H/EtYzllEzY1enL92v8IJHjiYahvurl8ur6iGftJx9oXSVi3WR8f5fESaRHmJx gQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 36e7x0rcd7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 02 Feb 2021 09:54:15 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AC27010002A;
+        Tue,  2 Feb 2021 09:54:14 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 93854211F33;
+        Tue,  2 Feb 2021 09:54:14 +0100 (CET)
+Received: from lmecxl0889.lme.st.com (10.75.127.45) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 2 Feb
+ 2021 09:54:13 +0100
+Subject: Re: [PATCH v4 00/17] remoteproc: Add support for detaching a rproc
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+CC:     "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
+ <64b559dc-9e89-c351-ddee-f9cebd155ed7@st.com>
+ <20210202004956.GD1319650@xps15>
+From:   Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Message-ID: <200a464a-f6dd-480c-d7cd-d8165828fabc@foss.st.com>
+Date:   Tue, 2 Feb 2021 09:54:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 40dcb66e-7071-4646-03ac-08d8c7576da2
-X-MS-TrafficTypeDiagnostic: VI1PR0601MB2384:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0601MB2384C7D9176F7511B5F08502D7B59@VI1PR0601MB2384.eurprd06.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SCwLqso34WZl+TN/6zkkm3rSKe6Tsz9pV7Jc3NhqKM8hWTom3T2CtwcnYkT0iVIZjnkGoEPCJlaDD64j8Y1YO2TrQ8+VmPBPToKsGlyVI3VXlByDIT21iryIu5oleg3SDv1TYIqRVUsNJrV4Akl452/8MC7kp6NAF3RO7ZSrGmOcI4TmsAne1Q4KFtBhTWUEW/CgmW9dytxFu1xMmi649sDX5gpAUE4AgcwTKQUZ8etA/+YsDwAqNjLwAHURkQg+JRVEI1QLCfss2RNbYO7CRB9xochMbR7pxmpNxSSPZEYqM3dWUVl7XiNAWEU+zyqdFCFAx7NMvrPqZcKmnR/d699QfW3YL0Yan9kDw+a/APyeQjwXVfp5rzMNa5TkUDFqtqKAJmH/lTria88MqgD28K6NlwiyFl/UhXHMXtFtvpZvcwXNALsqSHvDqhEXq/ngYM7ahGSIpwkOPqe4v4QYVP3gMrf4HP66YyzwnYLtrx0WZ6tXxoPfekCZZJnX9Ka/RpQ6x5BLhVKLJ49DluOPD44lZM3INz+Eru/94Xk7ZRThY0gLOgKPW3JLPKuPTfoL5rSVEES2+iAWgrBgxjKSmtXJsmf324MChEa6HWoAI9l3QH9VSsICT4rNB9ZPD9vnx+4yOYImZ1+Q9CkXxaTDWKhWSL4X3SDzYZinoQ1JJbOjG24I/CIBC14jXnPbSFKqNhsKlRe5bwlKmS2kxn6l3g==
-X-Forefront-Antispam-Report: CIP:193.8.40.99;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:aherlnxbspsrv01.lgs-net.com;PTR:ahersrvdom51.leica-geosystems.com;CAT:NONE;SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(46966006)(36840700001)(36736006)(107886003)(316002)(478600001)(8936002)(86362001)(2616005)(5660300002)(34020700004)(36756003)(82310400003)(956004)(47076005)(4326008)(118246002)(186003)(8676002)(6486002)(2906002)(70586007)(6512007)(1076003)(356005)(82740400003)(336012)(81166007)(4744005)(70206006)(6666004)(26005)(6506007)(36860700001)(138113003);DIR:OUT;SFP:1102;
-X-OriginatorOrg: leica-geosystems.com.cn
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2021 08:49:18.3623
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40dcb66e-7071-4646-03ac-08d8c7576da2
-X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.99];Helo=[aherlnxbspsrv01.lgs-net.com]
-X-MS-Exchange-CrossTenant-AuthSource: HE1EUR02FT042.eop-EUR02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0601MB2384
+In-Reply-To: <20210202004956.GD1319650@xps15>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-02_04:2021-01-29,2021-02-02 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for TI BQ78Z100. An I2C interface gas gauge.
-It provides a fully integrated safety protection,
-and authentication for 1 to 2-series cell Li-Ion and
-Li-Polymer battery packs.
 
-Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+
+On 2/2/21 1:49 AM, Mathieu Poirier wrote:
+> On Wed, Jan 27, 2021 at 10:21:24AM +0100, Arnaud POULIQUEN wrote:
+>> Hi Mathieu
+>>
+>> On 12/18/20 6:32 PM, Mathieu Poirier wrote:
+>>> Following the work done here [1], this set provides support for the
+>>> remoteproc core to release resources associated with a remote processor
+>>> without having to switch it off. That way a platform driver can be removed
+>>> or the application processor power cycled while the remote processor is
+>>> still operating.
+>>>
+>>> Of special interest in this series are patches 5 and 6 where getting the
+>>> address of the resource table installed by an eternal entity if moved to
+>>> the core.  This is to support scenarios where a remote process has been
+>>> booted by the core but is being detached.  To re-attach the remote
+>>> processor, the address of the resource table needs to be known at a later
+>>> time than the platform driver's probe() function.
+>>>
+>>> Applies cleanly on v5.10
+>>>
+>>> Thanks,
+>>> Mathieu
+>>>
+>>> [1]. https://lkml.org/lkml/2020/7/14/1600
+>>>
+>>> ----
+>>> New for v4:
+>>> - Made binding description OS agnostic (Rob)
+>>> - Added functionality to set the external resource table in the core
+>>> - Fixed a crash when detaching (Arnaud)
+>>> - Fixed error code propagation in rproc_cdev_relase() and rproc_del() (Arnaud)
+>>> - Added RB tags
+>>
+>>
+>> I tested you series, attach and  detach is working well.
+>>
+>> Then I faced issue when tried to re-attach after a detach.
+>>
+> 
+> Right, in this case don't expect the re-attach to work properly because function
+> stm32_rproc_detach() does not exist.  As such the M4 doesn't put itself back
+> in "wait-for-attach" mode as it does when booted by the boot loader.  If I
+> remember correctly we talked about that during an earlier conversation and we
+> agreed FW support would be needed to properly test the re-attach.
+
+Yes you are right the remote firmware needs to be inform about the detach, and
+this is the purpose of the detach ops.
+But also some actions are missing on local side as some resources have also to
+be reinitialized as described in my previous mail.
+For instance the resource table is handled by the remoteproc framework. The
+remote firmware should only have a read access to this table.
+
+>  
+>> But I don't know if this feature has to be supported in this step.
+>>
+>> The 2 issues I found are:
+>>
+>> 1) memory carveouts are released on detach so need to be reinitialized.
+>> The use of prepare/unprepare for the attach and detach would solve the issue but
+>> probably need to add parameter to differentiate a start/stop from a attach/detach.
+>>
+>> 2) The vrings in the loaded resource table (so no cached) has to be properly
+>> reinitialized. In rproc_free_vring  the vring da is set to 0 that is then
+>> considered as a fixed address.
+>>
+>> Here is a fix which works on the stm32 platform
+>>
+>> @@ -425,7 +425,7 @@ void rproc_free_vring(struct rproc_vring *rvring)
+>>  	 */
+>>  	if (rproc->table_ptr) {
+>>  		rsc = (void *)rproc->table_ptr + rvring->rvdev->rsc_offset;
+>> -		rsc->vring[idx].da = 0;
+>> +		rsc->vring[idx].da = FW_RSC_ADDR_ANY;
+>>  		rsc->vring[idx].notifyid = -1;
+>>  	}
+>>  }
+> 
+> In light of the above let me know if these two issues are still relevant.  If
+> so I'll investigate further.
+
+To highlight the issue just test attach/detach/attch  with a firmware that
+implements a RPMsg communication. On the second attach the virtio framework is
+not properly restarted.
+
+Then please find at the end of the mail 3 patches for test I added on top of
+your series,that allow me to reattach. Of course the RPMsg channels are not
+re-created as i don't implement the remote FW part, but the Linux virtio and
+RPmsg frameworks are restarted.
+
+- [PATCH 1/3] remoteproc: stm32: add capability to detach from the remoteproc
+  => Add a dummy function in stm32_rproc for test.
+- [PATCH 2/3] remoteproc: Add prepare/unprepare for attach detach
+  => Add prepare/unprepare on attach/detach + implement attach in stm32mp1 to
+     reinitialize the memory region that as been cleaned on detach.
+- [PATCH 3/3] remoteproc: virtio: set to vring address to FW_RSC_ADDR_ANY on free
+  => Reinitialize the vring addresses on detach. For this one a better
+     implementation would be to use a cached resource table to fully
+     reinitialize it on re-attach.
+
+Thanks,
+Arnaud
+
+> 
+> Thanks,
+> Mathieu
+> 
+>>
+>> Here, perhaps a better alternative would be to make a cached copy on attach
+>> before updating it. On the next attach, the cached copy would be copied as it is
+>> done in rproc_start.
+>>
+>> Thanks,
+>> Arnaud
+>>
+>>
+>>>
+>>> Mathieu Poirier (17):
+>>>   dt-bindings: remoteproc: Add bindind to support autonomous processors
+>>>   remoteproc: Re-check state in rproc_shutdown()
+>>>   remoteproc: Remove useless check in rproc_del()
+>>>   remoteproc: Rename function rproc_actuate()
+>>>   remoteproc: Add new get_loaded_rsc_table() remoteproc operation
+>>>   remoteproc: stm32: Move resource table setup to rproc_ops
+>>>   remoteproc: Add new RPROC_ATTACHED state
+>>>   remoteproc: Properly represent the attached state
+>>>   remoteproc: Properly deal with a kernel panic when attached
+>>>   remoteproc: Add new detach() remoteproc operation
+>>>   remoteproc: Introduce function __rproc_detach()
+>>>   remoteproc: Introduce function rproc_detach()
+>>>   remoteproc: Add return value to function rproc_shutdown()
+>>>   remoteproc: Properly deal with a stop request when attached
+>>>   remoteproc: Properly deal with a start request when attached
+>>>   remoteproc: Properly deal with detach request
+>>>   remoteproc: Refactor rproc delete and cdev release path
+>>>
+>>>  .../bindings/remoteproc/remoteproc-core.yaml  |  27 +++
+>>>  drivers/remoteproc/remoteproc_cdev.c          |  32 ++-
+>>>  drivers/remoteproc/remoteproc_core.c          | 211 +++++++++++++++---
+>>>  drivers/remoteproc/remoteproc_internal.h      |   8 +
+>>>  drivers/remoteproc/remoteproc_sysfs.c         |  20 +-
+>>>  drivers/remoteproc/stm32_rproc.c              | 147 ++++++------
+>>>  include/linux/remoteproc.h                    |  24 +-
+>>>  7 files changed, 344 insertions(+), 125 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
+>>>
+
+Subject: [PATCH 1/3] remoteproc: stm32: add capability to detach from the
+ remoteproc
+
+Add a dummy function to allow to detach. No specific action is needed
+
+Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
 ---
- Documentation/devicetree/bindings/power/supply/bq27xxx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/remoteproc/stm32_rproc.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml b/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
-index 45beefccf31a..712e974b28b6 100644
---- a/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/bq27xxx.yaml
-@@ -52,6 +52,7 @@ properties:
-       - ti,bq27z561
-       - ti,bq28z610
-       - ti,bq34z100
-+      - ti,bq78z100
- 
-   reg:
-     maxItems: 1
+diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
+index 2c949725b91e..b325d28f627c 100644
+--- a/drivers/remoteproc/stm32_rproc.c
++++ b/drivers/remoteproc/stm32_rproc.c
+@@ -590,6 +590,12 @@ static int stm32_rproc_attach(struct rproc *rproc)
+ 	return reset_control_assert(ddata->hold_boot);
+ }
+
++static int stm32_rproc_detach(struct rproc *rproc)
++{
++	/* Nothing to do but ops mandatory to support the detach feature */
++	return 0;
++}
++
+ static int stm32_rproc_stop(struct rproc *rproc)
+ {
+ 	struct stm32_rproc *ddata = rproc->priv;
+@@ -712,6 +718,7 @@ static struct rproc_ops st_rproc_ops = {
+ 	.start		= stm32_rproc_start,
+ 	.stop		= stm32_rproc_stop,
+ 	.attach		= stm32_rproc_attach,
++	.detach		= stm32_rproc_detach,
+ 	.kick		= stm32_rproc_kick,
+ 	.load		= rproc_elf_load_segments,
+ 	.parse_fw	= stm32_rproc_parse_fw,
 -- 
 2.17.1
+
+
+------------------------------------------------------------------------
+
+
+Subject: [PATCH 2/3] remoteproc: Add prepare/unprepare for attach detach
+
+Some actions such as memory resources reallocation are needed when try
+to reattach. Use the prepare ops for these actions.
+
+Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+---
+ drivers/remoteproc/remoteproc_core.c | 14 ++++++++++++++
+ drivers/remoteproc/stm32_rproc.c     | 14 +++++++-------
+ 2 files changed, 21 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/remoteproc/remoteproc_core.c
+b/drivers/remoteproc/remoteproc_core.c
+index f1f51ad1a1d6..f177561b8863 100644
+--- a/drivers/remoteproc/remoteproc_core.c
++++ b/drivers/remoteproc/remoteproc_core.c
+@@ -1557,6 +1557,13 @@ static int rproc_attach(struct rproc *rproc)
+ 		return ret;
+ 	}
+
++	/* Prepare rproc for firmware loading if needed */
++	ret = rproc_prepare_device(rproc);
++	if (ret) {
++		dev_err(dev, "can't prepare rproc %s: %d\n", rproc->name, ret);
++		goto disable_iommu;
++	}
++
+ 	ret = rproc_get_loaded_rsc_table(rproc);
+ 	if (ret) {
+ 		dev_err(dev, "can't load resource table: %d\n", ret);
+@@ -1990,6 +1997,13 @@ int rproc_detach(struct rproc *rproc)
+ 	/* clean up all acquired resources */
+ 	rproc_resource_cleanup(rproc);
+
++	/* Release HW resources if needed */
++	ret = rproc_unprepare_device(rproc);
++	if (ret) {
++		atomic_inc(&rproc->power);
++		goto out;
++	}
++
+ 	rproc_disable_iommu(rproc);
+
+ 	/*
+diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
+index b325d28f627c..bf50d79b1f09 100644
+--- a/drivers/remoteproc/stm32_rproc.c
++++ b/drivers/remoteproc/stm32_rproc.c
+@@ -413,9 +413,6 @@ static int stm32_rproc_parse_fw(struct rproc *rproc, const
+struct firmware *fw)
+ 	struct stm32_rproc *ddata = rproc->priv;
+ 	int ret;
+
+-	ret  = stm32_rproc_parse_memory_regions(rproc);
+-	if (ret)
+-		return ret;
+
+ 	if (ddata->trproc)
+ 		ret = rproc_tee_get_rsc_table(ddata->trproc);
+@@ -580,6 +577,12 @@ static int stm32_rproc_start(struct rproc *rproc)
+
+ 	return reset_control_assert(ddata->hold_boot);
+ }
++static int stm32_rproc_prepare(struct rproc *rproc)
++{
++	dev_err(&rproc->dev, "%s: %d\n", __func__, __LINE__);
++
++	return stm32_rproc_parse_memory_regions(rproc);
++}
+
+ static int stm32_rproc_attach(struct rproc *rproc)
+ {
+@@ -717,6 +720,7 @@ static int stm32_rproc_get_loaded_rsc_table(struct rproc *rproc)
+ static struct rproc_ops st_rproc_ops = {
+ 	.start		= stm32_rproc_start,
+ 	.stop		= stm32_rproc_stop,
++	.prepare	= stm32_rproc_prepare,
+ 	.attach		= stm32_rproc_attach,
+ 	.detach		= stm32_rproc_detach,
+ 	.kick		= stm32_rproc_kick,
+@@ -921,10 +925,6 @@ static int stm32_rproc_probe(struct platform_device *pdev)
+
+ 	if (state == M4_STATE_CRUN) {
+ 		rproc->state = RPROC_DETACHED;
+-
+-		ret = stm32_rproc_parse_memory_regions(rproc);
+-		if (ret)
+-			goto free_resources;
+ 	}
+
+ 	rproc->has_iommu = false;
+-- 
+2.17.1
+
+
+------------------------------------------------------------------------
+
+Subject: [PATCH 3/3] remoteproc: virtio: set to vring address to
+ FW_RSC_ADDR_ANY on free
+
+The resource table vring structure is cleaned on free. But value is set
+to 0. This value is considered as a valid address. Set the value
+to  FW_RSC_ADDR_ANY instead.
+This is needed to allow to reattach to an autonomous firmware.
+An alternative would be to save the resource table before updating it.
+On free the value would be reset to initial value.
+
+Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+---
+ drivers/remoteproc/remoteproc_core.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/remoteproc/remoteproc_core.c
+b/drivers/remoteproc/remoteproc_core.c
+index f177561b8863..5b5de4db3981 100644
+--- a/drivers/remoteproc/remoteproc_core.c
++++ b/drivers/remoteproc/remoteproc_core.c
+@@ -425,7 +425,7 @@ void rproc_free_vring(struct rproc_vring *rvring)
+ 	 */
+ 	if (rproc->table_ptr) {
+ 		rsc = (void *)rproc->table_ptr + rvring->rvdev->rsc_offset;
+-		rsc->vring[idx].da = 0;
++		rsc->vring[idx].da = FW_RSC_ADDR_ANY;
+ 		rsc->vring[idx].notifyid = -1;
+ 	}
+ }
+-- 
+2.17.1
+
+
+
+
+
 
