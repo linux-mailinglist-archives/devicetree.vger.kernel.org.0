@@ -2,121 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4B8230BBA9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 11:02:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 092C530BBD6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 11:13:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbhBBKBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 05:01:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44800 "EHLO mail.kernel.org"
+        id S229572AbhBBKMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 05:12:47 -0500
+Received: from foss.arm.com ([217.140.110.172]:47320 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229783AbhBBKBR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 05:01:17 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C1CEC64F54;
-        Tue,  2 Feb 2021 10:00:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612260035;
-        bh=FlSTotWz42+gia9j+sJICekd1gyv1IJqZmvamYJck+c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M4MRl2Fi14WHHw2ovlV9QboPmvGe7h/re/h1fHBgHg23WLpqgBYQFtcW46Lg7pQR6
-         zW+kMvwuwNpkTUHkcxwqP0SFlMTHYHbAycQutZysd/xkLniNG/WXGoldAz9joTLIAJ
-         f4mjI4iBWkulQk6pS7MWkVcuWCwD9M8WOlw9ZGFdRe2RpAizneHX10b6wC3F5vdBjc
-         IETUrFYSuZEX71YV32Xg/ETMZ8Ng4GRoiRkHoezSOXLCsm39Cv+xLrfr6wT92R7+6A
-         whuwyH5VF2ojdn4ZmGr2RtG0U6vxc1JHMZWq7kKwIOd+JVys3lD/csIREXjKTvfI5h
-         LM0nsp9CgoXpg==
-Date:   Tue, 2 Feb 2021 10:00:29 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 11/26] KVM: arm64: Stub CONFIG_DEBUG_LIST at Hyp
-Message-ID: <20210202100028.GA16657@willie-the-truck>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-12-qperret@google.com>
- <20210201190620.GJ15632@willie-the-truck>
- <YBkiEPOYBGqfncwH@google.com>
+        id S229614AbhBBKMm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 05:12:42 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 74B4A1396;
+        Tue,  2 Feb 2021 02:11:56 -0800 (PST)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5317C3F7D7;
+        Tue,  2 Feb 2021 02:11:54 -0800 (PST)
+Date:   Tue, 2 Feb 2021 10:11:05 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Samuel Holland <samuel@sholland.org>,
+        Icenowy Zheng <icenowy@aosc.io>, Rob Herring <robh@kernel.org>,
+        =?UTF-8?B?Q2w=?= =?UTF-8?B?w6ltZW50IFDDqXJvbg==?= 
+        <peron.clem@gmail.com>,
+        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [linux-sunxi] [PATCH v5 04/20] dt-bindings: mfd: axp20x: Add
+ AXP305 compatible (plus optional IRQ)
+Message-ID: <20210202101105.3396862f@slackpad.fritz.box>
+In-Reply-To: <CAGb2v674jBtROBXZ7HLj9Uqa_BZxW04z9VQ1R6Cn901+ES0k6g@mail.gmail.com>
+References: <20210127172500.13356-1-andre.przywara@arm.com>
+        <20210127172500.13356-5-andre.przywara@arm.com>
+        <CAGb2v674jBtROBXZ7HLj9Uqa_BZxW04z9VQ1R6Cn901+ES0k6g@mail.gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YBkiEPOYBGqfncwH@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 02, 2021 at 09:57:36AM +0000, Quentin Perret wrote:
-> On Monday 01 Feb 2021 at 19:06:20 (+0000), Will Deacon wrote:
-> > On Fri, Jan 08, 2021 at 12:15:09PM +0000, Quentin Perret wrote:
-> > > In order to use the kernel list library at EL2, introduce stubs for the
-> > > CONFIG_DEBUG_LIST out-of-lines calls.
-> > > 
-> > > Signed-off-by: Quentin Perret <qperret@google.com>
-> > > ---
-> > >  arch/arm64/kvm/hyp/nvhe/Makefile |  2 +-
-> > >  arch/arm64/kvm/hyp/nvhe/stub.c   | 22 ++++++++++++++++++++++
-> > >  2 files changed, 23 insertions(+), 1 deletion(-)
-> > >  create mode 100644 arch/arm64/kvm/hyp/nvhe/stub.c
-> > > 
-> > > diff --git a/arch/arm64/kvm/hyp/nvhe/Makefile b/arch/arm64/kvm/hyp/nvhe/Makefile
-> > > index 1fc0684a7678..33bd381d8f73 100644
-> > > --- a/arch/arm64/kvm/hyp/nvhe/Makefile
-> > > +++ b/arch/arm64/kvm/hyp/nvhe/Makefile
-> > > @@ -10,7 +10,7 @@ lib-objs := clear_page.o copy_page.o memcpy.o memset.o
-> > >  lib-objs := $(addprefix ../../../lib/, $(lib-objs))
-> > >  
-> > >  obj-y := timer-sr.o sysreg-sr.o debug-sr.o switch.o tlb.o hyp-init.o host.o \
-> > > -	 hyp-main.o hyp-smp.o psci-relay.o early_alloc.o
-> > > +	 hyp-main.o hyp-smp.o psci-relay.o early_alloc.o stub.o
-> > >  obj-y += ../vgic-v3-sr.o ../aarch32.o ../vgic-v2-cpuif-proxy.o ../entry.o \
-> > >  	 ../fpsimd.o ../hyp-entry.o ../exception.o
-> > >  obj-y += $(lib-objs)
-> > > diff --git a/arch/arm64/kvm/hyp/nvhe/stub.c b/arch/arm64/kvm/hyp/nvhe/stub.c
-> > > new file mode 100644
-> > > index 000000000000..c0aa6bbfd79d
-> > > --- /dev/null
-> > > +++ b/arch/arm64/kvm/hyp/nvhe/stub.c
-> > > @@ -0,0 +1,22 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Stubs for out-of-line function calls caused by re-using kernel
-> > > + * infrastructure at EL2.
-> > > + *
-> > > + * Copyright (C) 2020 - Google LLC
-> > > + */
-> > > +
-> > > +#include <linux/list.h>
-> > > +
-> > > +#ifdef CONFIG_DEBUG_LIST
-> > > +bool __list_add_valid(struct list_head *new, struct list_head *prev,
-> > > +		      struct list_head *next)
-> > > +{
-> > > +		return true;
-> > > +}
-> > > +
-> > > +bool __list_del_entry_valid(struct list_head *entry)
-> > > +{
-> > > +		return true;
-> > > +}
-> > > +#endif
-> > 
-> > Can we get away with defining our own CHECK_DATA_CORRUPTION macro instead?
+On Tue, 2 Feb 2021 15:55:50 +0800
+Chen-Yu Tsai <wens@csie.org> wrote:
+
+Hi,
+
+> On Thu, Jan 28, 2021 at 1:26 AM Andre Przywara <andre.przywara@arm.com> wrote:
+> >
+> > The AXP305 PMIC used in AXP805 seems to be fully compatible to the  
+>                           ^
+> This statement doesn't quite make sense. I assume you wanted to mention
+> a board or the H616 SoC here?
+
+Argh, indeed!
+
+> > AXP805 PMIC, so add the proper chain of compatible strings.
+> >
+> > Also at least on one board (Orangepi Zero2) there is no interrupt line
+> > connected to the CPU, so make the "interrupts" property optional.
+> >
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  Documentation/devicetree/bindings/mfd/axp20x.txt | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mfd/axp20x.txt b/Documentation/devicetree/bindings/mfd/axp20x.txt
+> > index 4991a6415796..4fd748101e3c 100644
+> > --- a/Documentation/devicetree/bindings/mfd/axp20x.txt
+> > +++ b/Documentation/devicetree/bindings/mfd/axp20x.txt
+> > @@ -26,10 +26,10 @@ Required properties:
+> >      * "x-powers,axp803"
+> >      * "x-powers,axp806"
+> >      * "x-powers,axp805", "x-powers,axp806"
+> > +    * "x-powers,axp803", "x-powers,axp805", "x-powers,axp806"  
 > 
-> Yes I think eventually it'd be nice to get there, but that has other
-> implications (e.g. how do you report something in dmesg from EL2?) so
-> perhaps we can keep that a separate series?
+> axp305? axp803 is used with A64 IIRC.
 
-We wouldn't necessarily have to report anything, but having the return value
-of these functions be based off the generic checks would be great if we can
-do it (i.e. we'd avoid corrupting the list).
+Oh, well spotted. This AXP naming already confused me when they were
+all called 80x, now using 30x gave me the rest ;-)
 
-Will
+Sorry for the blunder!
+
+Cheers,
+Andre
+
+> 
+> ChenYu
+> 
+> >      * "x-powers,axp809"
+> >      * "x-powers,axp813"
+> >  - reg: The I2C slave address or RSB hardware address for the AXP chip
+> > -- interrupts: SoC NMI / GPIO interrupt connected to the PMIC's IRQ pin
+> >  - interrupt-controller: The PMIC has its own internal IRQs
+> >  - #interrupt-cells: Should be set to 1
+> >
+> > @@ -43,6 +43,7 @@ more information:
+> >                         AXP20x/LDO3: software-based implementation
+> >
+> >  Optional properties:
+> > +- interrupts: SoC NMI / GPIO interrupt connected to the PMIC's IRQ pin
+> >  - x-powers,dcdc-freq: defines the work frequency of DC-DC in KHz
+> >                       AXP152/20X: range:  750-1875, Default: 1.5 MHz
+> >                       AXP22X/8XX: range: 1800-4050, Default: 3   MHz
+> > --
+> > 2.17.5
+> >
+> > --
+> > You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
+> > To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
+> > To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20210127172500.13356-5-andre.przywara%40arm.com.  
+
