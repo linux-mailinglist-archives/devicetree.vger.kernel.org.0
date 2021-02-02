@@ -2,99 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B64DD30B509
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 03:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E09D30B512
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 03:11:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231225AbhBBCFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 21:05:38 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:40647 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230009AbhBBCFg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 21:05:36 -0500
-X-UUID: 649bbc6614d34717b1edc781f242e4f0-20210202
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ON8bHtwiT/h540EaCUWfU1QVeXktvhFd1tW5kcxrM6c=;
-        b=IfmRYCe4Sb3L1iJaQuyByI78qz2m5MFaagoI5t4exjyBk5IGyqPKg3pu4ctua5zbKgyGgJ8oJc87teJXysMslSDAc2nn0AE1ja0BLveZq2cxpjkKXDLLxz7AX+INLvL9E8iiNnxBl1/KQeJ4v8tpQui72s3w0gTmYlLxxStGLOg=;
-X-UUID: 649bbc6614d34717b1edc781f242e4f0-20210202
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1991786025; Tue, 02 Feb 2021 10:04:19 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 2 Feb
- 2021 10:03:46 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 2 Feb 2021 10:03:45 +0800
-Message-ID: <1612231425.2524.12.camel@mhfsdcap03>
-Subject: Re: [PATCH v6 00/33] MT8192 IOMMU support
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        "Tomasz Figa" <tfiga@google.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>
-Date:   Tue, 2 Feb 2021 10:03:45 +0800
-In-Reply-To: <20210201145422.GA15263@willie-the-truck>
-References: <20210111111914.22211-1-yong.wu@mediatek.com>
-         <20210201145422.GA15263@willie-the-truck>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-TM-SNTS-SMTP: A18C1C8918DEE0A0D7B50AFE8695F7167F4D310B1A3B5790C079BBD49E7336992000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S229810AbhBBCLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 21:11:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229537AbhBBCLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 21:11:07 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07AB7C061573;
+        Mon,  1 Feb 2021 18:10:27 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id f16so975372wmq.5;
+        Mon, 01 Feb 2021 18:10:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=f6cfnJUj3ixleZugMsurt3GK+ClAIDiuD3TFRsp/gNU=;
+        b=Q9OC1V7F6GU8kJh9uHNzuxKQqYMM1FZeo+XTauphZ+SKM7lhrU7J9Bd4oY7DUbK2hV
+         qpt9ok+hSk+WQANPFlZ4p4NERncSIT3IxqHTc45Eb6eFNMI1qKhuaOrD9c0AbeDG1xWo
+         LX93WAeEKBH4NPQhyl93p9dS6GPqXQJjVMvOLL4YSGUCvuR6WwXOqlbhJPQfwshLAV5I
+         ZYBbaR9rPmrlYqNHjhLaYkhUrVzRugJBOzqkz1RTYg9zBG4isZYT9+VL4LZYO4IX8zK5
+         Dvy2lsH1yXg9DiXKrxRE2/vMwHLGHHd06Yzcs1r8bRdmUihDy421KB+/BxmXSKZXpl9+
+         qtGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=f6cfnJUj3ixleZugMsurt3GK+ClAIDiuD3TFRsp/gNU=;
+        b=XCfbcUQr9rc/TTcsZ29E03tgyb+VGjowB/Zi5d3PobwX7eJ8ET1mrQI2GMl5bOXb94
+         G88pcED0dhIkmrg1oIeActXg5ns+PvsCFaBU7qrRkWVWrIn4p+5WGdoarISzig2GqGSw
+         6HbB4/u1eFGXRgbzneZukYBjiD2JHott0iYVUB3O5BLdE8VaT9baTrZ+6NAZXWv1AG6v
+         YNZBoSsJscypxSGAanyK2ew+Po7TUSIJlc0td9nvkFuXtgaI/nOgSSmWWikQYV2dBCrZ
+         5RpeoXDlKKcZpT4/ALMcVVopDVOlqneIo9dKzcky1TO/leDOE+trjNawlBzV1v5sS+IC
+         y/6Q==
+X-Gm-Message-State: AOAM5315Etwnu+kDnlNx+E3jR6jHxbw3BYOQYkQjLgD4nGNXrkAGuATF
+        bAK4r4ANqq5/dFRHL2QZ7No=
+X-Google-Smtp-Source: ABdhPJz4VUGoRhko+s6ShlvQwvw4Gmm/ELgj+i1+EG9swV576yp4d79mLLd+eAuI2kulUScKk9uwUQ==
+X-Received: by 2002:a1c:678a:: with SMTP id b132mr1350553wmc.35.1612231825785;
+        Mon, 01 Feb 2021 18:10:25 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id u14sm990570wmq.45.2021.02.01.18.10.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Feb 2021 18:10:25 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Dongjin Kim <tobetter@gmail.com>
+Subject: [PATCH v3 0/5] arm64: dts: meson: add support for ODROID-HC4
+Date:   Tue,  2 Feb 2021 02:10:16 +0000
+Message-Id: <20210202021021.11068-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTAyLTAxIGF0IDE0OjU0ICswMDAwLCBXaWxsIERlYWNvbiB3cm90ZToNCj4g
-T24gTW9uLCBKYW4gMTEsIDIwMjEgYXQgMDc6MTg6NDFQTSArMDgwMCwgWW9uZyBXdSB3cm90ZToN
-Cj4gPiBUaGlzIHBhdGNoIG1haW5seSBhZGRzIHN1cHBvcnQgZm9yIG10ODE5MiBNdWx0aW1lZGlh
-IElPTU1VIGFuZCBTTUkuDQo+ID4gDQo+ID4gbXQ4MTkyIGFsc28gaXMgTVRLIElPTU1VIGdlbjIg
-d2hpY2ggdXNlcyBBUk0gU2hvcnQtRGVzY3JpcHRvciB0cmFuc2xhdGlvbg0KPiA+IHRhYmxlIGZv
-cm1hdC4gVGhlIE00VS1TTUkgSFcgZGlhZ3JhbSBpcyBhcyBiZWxvdzoNCj4gPiANCj4gPiAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIEVNSQ0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IHwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgIE00VQ0KPiA+ICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgLS0tLS0tLS0tLS0tDQo+
-ID4gICAgICAgICAgICAgICAgICAgICAgICBTTUkgQ29tbW9uDQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgIC0tLS0tLS0tLS0tLQ0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwNCj4g
-PiAgICstLS0tLS0tKy0tLS0tLSstLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0t
-Kw0KPiA+ICAgfCAgICAgICB8ICAgICAgfCAgICAgIHwgICAgICAgLi4uLi4uICAgICAgICAgfCAg
-ICAgICB8DQo+ID4gICB8ICAgICAgIHwgICAgICB8ICAgICAgfCAgICAgICAgICAgICAgICAgICAg
-ICB8ICAgICAgIHwNCj4gPiBsYXJiMCAgIGxhcmIxICBsYXJiMiAgbGFyYjQgICAgIC4uLi4uLiAg
-ICAgIGxhcmIxOSAgIGxhcmIyMA0KPiA+IGRpc3AwICAgZGlzcDEgICBtZHAgICAgdmRlYyAgICAg
-ICAgICAgICAgICAgICBJUEUgICAgICBJUEUNCj4gPiANCj4gPiBBbGwgdGhlIGNvbm5lY3Rpb25z
-IGFyZSBIVyBmaXhlZCwgU1cgY2FuIE5PVCBhZGp1c3QgaXQuDQo+ID4gDQo+ID4gQ29tcGFyaW5n
-IHdpdGggdGhlIHByZXZpZXcgU29DLCB0aGlzIHBhdGNoc2V0IG1haW5seSBhZGRzIHR3byBuZXcg
-ZnVuY3Rpb25zOg0KPiA+IGEpIGFkZCBpb3ZhIDM0IGJpdHMgc3VwcG9ydC4NCj4gPiBiKSBhZGQg
-bXVsdGkgZG9tYWlucyBzdXBwb3J0IHNpbmNlIHNldmVyYWwgSFcgaGFzIHRoZSBzcGVjaWFsIGlv
-dmENCj4gPiByZWdpb24gcmVxdWlyZW1lbnQuDQo+ID4gDQo+ID4gY2hhbmdlIG5vdGU6DQo+ID4g
-djY6YSkgYmFzZSBvbiB2NS4xMS1yYzEuIGFuZCB0bGIgdjQ6DQo+ID4gICAgICAgaHR0cHM6Ly9s
-b3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWF0ZWsvMjAyMTAxMDcxMjI5MDkuMTYzMTctMS15b25n
-Lnd1QG1lZGlhdGVrLmNvbS9ULyN0IA0KPiANCj4gSSd2ZSBxdWV1ZWQgdGhpcyB1cCBhcGFydCBm
-cm9tIHBhdGNoZXMgNiBhbmQgNy4NCg0KVGhhbmtzIHZlcnkgbXVjaCBmb3IgdGhlIGFwcGx5aW5n
-LiBJJ2QgbGlrZSB0byBzaG93IHRoZXJlIGlzIGEgbGl0dGxlDQpjb25mbGljdCB3aXRoIGEgc21p
-IGNoYW5nZVsxXSBpbiAvaW5jbHVkZS9zb2MvbWVkaWF0ZWsvc21pLmguDQoNClRoaXMgaXMgdGhl
-IGRldGFpbGVkIGNvbmZsaWN0Og0KDQotLS0gYS9pbmNsdWRlL3NvYy9tZWRpYXRlay9zbWkuaA0K
-KysrIGIvaW5jbHVkZS9zb2MvbWVkaWF0ZWsvc21pLmgNCkBAIC05LDcgKzksNyBAQA0KICNpbmNs
-dWRlIDxsaW51eC9iaXRvcHMuaD4NCiAjaW5jbHVkZSA8bGludXgvZGV2aWNlLmg+DQogDQotI2lm
-ZGVmIENPTkZJR19NVEtfU01JDQorI2lmIElTX0VOQUJMRUQoQ09ORklHX01US19TTUkpICAgPC0t
-LVRoZSBzbWkgcGF0Y2ggY2hhbmdlIGhlcmUuDQogDQogI2RlZmluZSBNVEtfTEFSQl9OUl9NQVgg
-ICAxNiAgPC0tLVRoaXMgaW9tbXUgcGF0Y2hzZXQgZGVsZXRlIHRoaXMgbGluZS4NCg0KDQpUaGlz
-IGNvZGUgaXMgc2ltcGxlLiBQbGVhc2UgZmVlbCBmcmVlIHRvIHRlbGwgbWUgaG93IHRvIGRvIHRo
-aXMgaWYgdGhpcw0KaXMgbm90IGNvbnZlbmllbnQgdG8gbWVyZ2UuDQoNClsxXQ0KaHR0cHM6Ly9n
-aXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQva3J6ay9saW51eC1tZW0tY3Ry
-bC5naXQvY29tbWl0Lz9oPWZvci1uZXh0JmlkPTUwZmM4ZDkyMzJjZGM2NGI5ZTlkMWI5NDg4NDUy
-ZjE1M2RlNTJiNjkNCg0KPiANCj4gVGhhbmtzLA0KPiANCj4gV2lsbA0KDQo=
+This series fixes minor sort-order issues in the Amlogic bindings yaml and
+dtb Makefile, then converts the existing ODROID-C4 dts into dtsi so we can
+support its new sister product the ODROID-HC4.
+
+I've also given the devices different audio card names. This is partly
+cosmetic, but also because HC4 is HDMI-only while C4 can be used with
+other i2c audio devices via an expansion connector so users may want to
+use different alsa configs.
+
+Patches to support the spifc chip are still being upstreamed [0] so this
+will be addressed in a follow up. A WIP patch for the dts change can be
+found in my amlogic-5.11.y dev branch [1].
+
+For reference, here's dmesg from LibreELEC on 5.11-rc5 [2].
+
+Changes since v2:
+- rebase on khilman v5.12/dt64 branch
+
+Changes since v1:
+- fix ODRIOD typo in patch 3
+- fix SPI-NOT size in patch 5
+- add Neil's Acks/Reviews
+
+[0] https://patchwork.ozlabs.org/project/linux-mtd/patch/20201220224314.2659-1-andreas@rammhold.de/
+[1] https://github.com/chewitt/linux/commits/amlogic-5.11.y
+[2] http://ix.io/2NCi
+
+Christian Hewitt (5):
+  dt-bindings: arm: amlogic: sort SM1 bindings
+  arm64: dts: meson: sort Amlogic dtb Makefile
+  arm64: dts: meson: convert meson-sm1-odroid-c4 to dtsi
+  dt-bindings: arm: amlogic: add ODROID-HC4 bindings
+  arm64: dts: meson: add initial device-tree for ODROID-HC4
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   5 +-
+ arch/arm64/boot/dts/amlogic/Makefile          |   3 +-
+ .../boot/dts/amlogic/meson-sm1-odroid-c4.dts  | 427 +----------------
+ .../boot/dts/amlogic/meson-sm1-odroid-hc4.dts |  96 ++++
+ .../boot/dts/amlogic/meson-sm1-odroid.dtsi    | 442 ++++++++++++++++++
+ 5 files changed, 544 insertions(+), 429 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+
+-- 
+2.17.1
 
