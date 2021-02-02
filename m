@@ -2,721 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EC8430BC4A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 11:45:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E354530BC59
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 11:50:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbhBBKoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 05:44:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35616 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229753AbhBBKof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 05:44:35 -0500
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A4EC06174A;
-        Tue,  2 Feb 2021 02:43:54 -0800 (PST)
-Received: by mail-pg1-x534.google.com with SMTP id o7so14653529pgl.1;
-        Tue, 02 Feb 2021 02:43:54 -0800 (PST)
+        id S229554AbhBBKtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 05:49:33 -0500
+Received: from mail-eopbgr20096.outbound.protection.outlook.com ([40.107.2.96]:31214
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229462AbhBBKta (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 05:49:30 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gje6fgEcqqnS/VO8705ivE8CgccJWrA6piUZijD2TjHLEyi0R4rOE6LtFT719q0HZAFQRCKE3DFBI2gYDXKDN/5+Qe94xCgJxVKQyqXVuBFoqJHxQEw0BjF/W+6UomitDiJYTlma3e68j6iOExHP6WDKvZvH6h9fMzN/oNjmL8W/Zcepa2SP390gb0kAFRaLbcaOIBhjsgv5crlUCP5ORb0DkndLRuf8QWUqG9Y8YqkqUl/KnF322NVilgY7KMBKofZ6hAxI/6RR2eo3+dKL/kOoH8vErwwZXvMFeqeVI0NUcRa8V8sWRjK9yvI1TjcPWSAWJV7dgosAaDuz6yTNng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OdIuLAmOUOMgy7dDZm8XJo5U+qyhJtC3mfd/O12KG/k=;
+ b=L9kJ/oAsTLsKYw1Xjw2LlWLUXS0vmlC65GZ/d3ei3DLr9MhzA1IEJOIhWnviF8TuZCmlGnFIXKVZMHn4CSUeQoiyk/Uh4H8IL6kiqS0T4z1l/qGJJuC5wqpar7Hr0cVOwvuqjV4AI27ry5UiiNTGcpHBlQEeVzYNEvSN9MGMF0SY8v5k/tm48j2a+lVvxlHFlJv7cL0ey3hWvH6M26Bmz0MhcSYy13V1CNXG/ro03ahfKAnLZIANs/ESp4XD/uC3GIO1brH18hnLUtpm2M7N7z3qrbNhYBsbPi7rQgMsoqGEIernTA35dkKOblCVbbiFajAXzro0FmoNSTtzMUSkJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=schleissheimer.de; dmarc=pass action=none
+ header.from=schleissheimer.de; dkim=pass header.d=schleissheimer.de; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=W951UBgqRd5hPyEU/PKID4ZKLjTII7dZSoZzZw1XE+A=;
-        b=lMqpidRGaxlkHzfptx8es3z8ieG3EM20+zo+UazA5uitIlDZCpcM0MXzCG6aHu8SJo
-         VkN+RfcdzQPB4nyWpboeHBAdP6uOe6cbMp4XZF/0pcLn6ef51FkYvnhxERopVljK+l6d
-         SD2W2q4piUxLpQ95ftGtE+yOJ2JsX/VngeLtE9g5okSuS0QPmdujMsK17P4IE502c4ZP
-         AF1dyRQowYGJiFGCcS54GGQHyLLK8qWrCD1/UsRiQrtmQr0SYtPLxWBg5vI1IeIzPyxS
-         kPRHIvVx/U5S5ZbXvjhXatG4aQg5qs74VOg1tGR4dkpxNvRwOogHgzyxOTZxTBvWl6TW
-         Uedw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=W951UBgqRd5hPyEU/PKID4ZKLjTII7dZSoZzZw1XE+A=;
-        b=iRVg6CG1f9hksWdXElr0TTHG0exzU6b41OelDBGFTAQOZz0GEpX84iiO4qWKXZ1IXD
-         /CCWpYawPShXvqZU5heJ/02okE+Pvfd63dUKWBRtz8sxEvq0SEUa3CwembmxkFsHn1As
-         qPOuLOnVbLETq41sd1m1xtMZm6eHJo/NzrX5dy/A4YHKc+rWNK31AST35r4wkVF7pdkU
-         JMbHpV3holyueKtpoQF/7lMwfqzT3HWOvkz0GMNpSxskm5uTREX5M/yxo51mHkNSyUB0
-         1YyZcw7bRF1ycGM3c4eNtTnukQufZTawpjN+AoIy5M8yMAplOLDzKouNkPnRvIofVuNR
-         AyzQ==
-X-Gm-Message-State: AOAM531807O/cXi85Fuz2KDZyN0dpe3PQJBJ12PpKmwTGB8klKPc9fvf
-        pOTHNYGDCWRv826egS5LS1A=
-X-Google-Smtp-Source: ABdhPJxUHgOJX3EI2tCC+2aKXoQPCcvFoniLmJupskHW+GhfSzNT/V8tNBtK1H1aMCB7jh9bqCdn0A==
-X-Received: by 2002:a62:144c:0:b029:1c0:d62d:e16e with SMTP id 73-20020a62144c0000b02901c0d62de16emr20270738pfu.25.1612262634260;
-        Tue, 02 Feb 2021 02:43:54 -0800 (PST)
-Received: from ubt.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id s24sm20785828pfd.118.2021.02.02.02.43.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 02:43:53 -0800 (PST)
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-To:     Robin Murphy <robin.murphy@arm.com>,
+ d=schleissheimer.onmicrosoft.com; s=selector1-schleissheimer-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OdIuLAmOUOMgy7dDZm8XJo5U+qyhJtC3mfd/O12KG/k=;
+ b=klao5RfFU36l+t3C7TsOhlz8tpHoAz5nHwpfB/MmTFezIE0gVvdGmd96p2+Whbr2xoBcmDExm8D/2Qh8RIMn/gBy+qxEZ7vgetm1vR8X9+gqb4flgEsi+63IA6P8yJqKi8PVLzQ7iwpvT9J0Fg9QRDZFy7xmzSEQuYHy0pYjNU0=
+Received: from DB8P190MB0634.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:12d::21)
+ by DB6P190MB0151.EURP190.PROD.OUTLOOK.COM (2603:10a6:4:88::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3805.16; Tue, 2 Feb 2021 10:48:38 +0000
+Received: from DB8P190MB0634.EURP190.PROD.OUTLOOK.COM
+ ([fe80::fc76:b821:1966:db40]) by DB8P190MB0634.EURP190.PROD.OUTLOOK.COM
+ ([fe80::fc76:b821:1966:db40%9]) with mapi id 15.20.3805.027; Tue, 2 Feb 2021
+ 10:48:38 +0000
+From:   Sven Schuchmann <schuchmann@schleissheimer.de>
+To:     Sven Schuchmann <schuchmann@schleissheimer.de>
+CC:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Sheng Xu <sheng.xu@unisoc.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>
-Subject: [PATCH 2/2] iommu: add Unisoc iommu basic driver
-Date:   Tue,  2 Feb 2021 18:42:57 +0800
-Message-Id: <20210202104257.736836-1-zhang.lyra@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210202073258.559443-3-zhang.lyra@gmail.com>
-References: <20210202073258.559443-3-zhang.lyra@gmail.com>
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: AW: [PATCH v1] leds: lp50xx: add setting of default intensity from DT
+Thread-Topic: [PATCH v1] leds: lp50xx: add setting of default intensity from
+ DT
+Thread-Index: AQHW7lFOn/1Jlt56EkOy+ZVk/3cx2qpExM+Q
+Date:   Tue, 2 Feb 2021 10:48:38 +0000
+Message-ID: <DB8P190MB063495B7F6E0D2749A009561D9B59@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
+References: <20210119105312.2636-1-schuchmann@schleissheimer.de>
+In-Reply-To: <20210119105312.2636-1-schuchmann@schleissheimer.de>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: schleissheimer.de; dkim=none (message not signed)
+ header.d=none;schleissheimer.de; dmarc=none action=none
+ header.from=schleissheimer.de;
+x-originating-ip: [62.153.209.162]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d563ef37-030d-490f-4b4b-08d8c7681926
+x-ms-traffictypediagnostic: DB6P190MB0151:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB6P190MB0151572BC83CA8E66A080FB6D9B59@DB6P190MB0151.EURP190.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: QaIVdGdUSzRICHLIMJFsRAH6bNG8Pb1vKyP6IdlQWufFYR+aNfDD7NMrtXYH4DdN7wm1w9ymE7VBKp/XYX8RmYAhhmJD9r8/qBVFTcdW5D/oCBY/sUeFimZawgxnG+0HvC4D7mUL6yHe3FPIWNDaVZN8i9+hcXkKiOPzK7wsrzBUCoU302BZNzW7XcZQn1y6wugnwBJDfKR2YeQ1A2FjgBBEQGP12xHA1Eb+hLIml24KqkYkqjoknKX0kkQoGCFNVhf/c74887w9NWTHHXdQViNQoxRaxRKc1QzoAD8O93h+j0j1vrFtxJCngonYFmB4m06tEQGbrmH/HI9PclPjgFINweaGBLiGkElWNrl0t6j56GIEupWlvGPLPHpVGhpCQJmX6TU/yGnq6cejpye6IpW33yChlpmY37bMWY74wYdwQ+7SdrfBd1m7wJ/da8INTLoYxhRL5MMOYrY+5ovxCBD+4/dBmryZIlxxnGWu4Ip9W/9iMPV9vSwa1xB9+LLZxjDSIYkURay+LEZFS8uEjw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8P190MB0634.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(366004)(39830400003)(346002)(376002)(136003)(396003)(8676002)(6200100001)(9686003)(54906003)(66476007)(66574015)(33656002)(66556008)(66446008)(7696005)(64756008)(86362001)(83380400001)(6506007)(52536014)(5660300002)(76116006)(2906002)(4326008)(316002)(26005)(478600001)(66946007)(6862004)(71200400001)(55016002)(8936002)(186003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?+8uyxhenb9d4bY7SPQd5/KQV3+jx0Z/zKbp/qE96F7OV1SH8vl9M1My3GT?=
+ =?iso-8859-1?Q?Fs54M1cv9Uq99g1sedLZJHDvyrza6FtUk0rQ3NXOMoGCtqBAJwkV/VjbT5?=
+ =?iso-8859-1?Q?BgBd6KRaLfAXyV+g+D9Lo3ZmLRqc5SJjiVnzG6q91EuSfH6jfD3Gbva1Q1?=
+ =?iso-8859-1?Q?cNLRCJffh3uHCMbSuH50W03hpM+eCZwb8uKqSuvxPq6cgUVLXFYI2C11jn?=
+ =?iso-8859-1?Q?jI6QpeGQb92UJOduKNLpe5TNl4JAa1PooM+hHFb8r5u3K8mcGKaiO0AztP?=
+ =?iso-8859-1?Q?NxG18wA+s6IwI5BG2X4pz3Z/VnzQqWEjic9IIUW1al9dbSGmBQsva5Zh5Y?=
+ =?iso-8859-1?Q?SVtAlPHLd8Q5E4FjbQlw4Ap+bTf9RDAh2nQ1D/4mDFzNvNiP8ew3oESWf5?=
+ =?iso-8859-1?Q?Ir0S/LrCn7hXOb14YbaTZEvDK7YiaHZNjtDSxyWdLx6jjRExkDTzW/wXUg?=
+ =?iso-8859-1?Q?ThWIHoWJO82fGCFU/+g9uDktyp1SwrpyX7t4HPizb/chqqk9zinNGTEFUj?=
+ =?iso-8859-1?Q?/G0ek34M5i499S3HXdyiDQzcTbAnZ2zIwCP0znWe1mWd5SkG7dMrJ1NZqB?=
+ =?iso-8859-1?Q?BQfVp2QoBOIofy6yBB0uv56+Qh0P39R7xuwb4ZicnA1ZxLy8EkJuzFRO+W?=
+ =?iso-8859-1?Q?u+RdSOTSIxdAET+p0sAQfF0DXYxPKmNwzorY0OX+RPly44c7x8yAB47mMi?=
+ =?iso-8859-1?Q?gpqkp1RkF1ZqzDul1g7eWCSlpEJX2TevR0BMq8fb2KsmsIeq8eGwEYhB+G?=
+ =?iso-8859-1?Q?h+1j1PnaFAQYWXRDv6yKnRSBPPAz3BiCT1WfFMM5P57xs08VQajlPHvvsh?=
+ =?iso-8859-1?Q?v/Hfn4J3qb58mU/DpIPnGkh29MguTST3dhi8wVwvAVy4OofptlEFHbkOBj?=
+ =?iso-8859-1?Q?kkxAYMRmp3YI6o7EmZ4bjYeSeiW9OpdNbkyf65dbIwJ6oYp+REcX8kyylb?=
+ =?iso-8859-1?Q?rPZyTntqr323jrDSljp150vdmfD9lEoJTVz6mDl5iase3DpLPFRUDOctqC?=
+ =?iso-8859-1?Q?HLfPIsoW84wtfr82zDuaJWGR3QPPhwkhle2aFknw0EtNBNWQG1h8wpihPq?=
+ =?iso-8859-1?Q?zbS4Hi/LQh2DFovWYAQhBHLamZU3hiyZJbANbk28QI5i?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: schleissheimer.de
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB8P190MB0634.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: d563ef37-030d-490f-4b4b-08d8c7681926
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2021 10:48:38.4465
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ba05321a-a007-44df-8805-c7e62d5887b5
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6e0r8IF/UgkvH3u1Nwm1rrqQcRDnJujvvZkINinJMAO4L6u8x7EvETcHPvOFSJ0k8+PAQ8qgfKbpdMyDONVeC2AoxiDO3EwhqlfSOoQiWF0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6P190MB0151
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+Hi,
+sorry to ask but was someone able to look at this? Any thoughts?
 
-This iommu module can be used by Unisoc's multimedia devices, such as
-display, Image codec(jpeg) and a few signal processors, including
-VSP(video), GSP(graphic), ISP(image), and CPP(camera pixel processor), etc.
+Best Regards,
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
----
- drivers/iommu/Kconfig      |  12 +
- drivers/iommu/Makefile     |   1 +
- drivers/iommu/sprd-iommu.c | 598 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 611 insertions(+)
- create mode 100644 drivers/iommu/sprd-iommu.c
+   Sven
 
-diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-index 192ef8f61310..79af62c519ae 100644
---- a/drivers/iommu/Kconfig
-+++ b/drivers/iommu/Kconfig
-@@ -408,4 +408,16 @@ config VIRTIO_IOMMU
- 
- 	  Say Y here if you intend to run this kernel as a guest.
- 
-+config SPRD_IOMMU
-+	tristate "Unisoc IOMMU Support"
-+	depends on ARCH_SPRD || COMPILE_TEST
-+	select IOMMU_API
-+	help
-+	  Support for IOMMU on Unisoc's SoCs on which multi-media subsystems
-+	  need IOMMU, such as DPU, Image codec(jpeg) processor, and a few
-+	  signal processors, including VSP(video), GSP(graphic), ISP(image), and
-+	  CPP, etc.
-+
-+	  Say Y here if you want multi-media functions.
-+
- endif # IOMMU_SUPPORT
-diff --git a/drivers/iommu/Makefile b/drivers/iommu/Makefile
-index 61bd30cd8369..5925b6af2123 100644
---- a/drivers/iommu/Makefile
-+++ b/drivers/iommu/Makefile
-@@ -28,3 +28,4 @@ obj-$(CONFIG_S390_IOMMU) += s390-iommu.o
- obj-$(CONFIG_HYPERV_IOMMU) += hyperv-iommu.o
- obj-$(CONFIG_VIRTIO_IOMMU) += virtio-iommu.o
- obj-$(CONFIG_IOMMU_SVA_LIB) += iommu-sva-lib.o
-+obj-$(CONFIG_SPRD_IOMMU) += sprd-iommu.o
-diff --git a/drivers/iommu/sprd-iommu.c b/drivers/iommu/sprd-iommu.c
-new file mode 100644
-index 000000000000..e560b02733ed
---- /dev/null
-+++ b/drivers/iommu/sprd-iommu.c
-@@ -0,0 +1,598 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Unisoc IOMMU driver
-+ *
-+ * Copyright (C) 2020 Unisoc, Inc.
-+ * Author: Chunyan Zhang <chunyan.zhang@unisoc.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/dma-iommu.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/errno.h>
-+#include <linux/iommu.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+
-+/* SPRD IOMMU page is 4K size alignment */
-+#define SPRD_IOMMU_PAGE_SHIFT	12
-+#define SPRD_IOMMU_PAGE_SIZE	SZ_4K
-+
-+#define SPRD_EX_CFG		0x0
-+#define SPRD_IOMMU_VAOR_BYPASS	BIT(4)
-+#define SPRD_IOMMU_GATE_EN	BIT(1)
-+#define SPRD_IOMMU_EN		BIT(0)
-+#define SPRD_EX_UPDATE		0x4
-+#define SPRD_EX_FIRST_VPN	0x8
-+#define SPRD_EX_VPN_RANGE	0xc
-+#define SPRD_EX_FIRST_PPN	0x10
-+#define SPRD_EX_DEFAULT_PPN	0x14
-+
-+#define SPRD_IOMMU_VERSION	0x0
-+#define SPRD_VERSION_MASK	GENMASK(15, 8)
-+#define SPRD_VERSION_SHIFT	0x8
-+#define SPRD_VAU_CFG		0x4
-+#define SPRD_VAU_UPDATE		0x8
-+#define SPRD_VAU_AUTH_CFG	0xc
-+#define SPRD_VAU_FIRST_PPN	0x10
-+#define SPRD_VAU_DEFAULT_PPN_RD	0x14
-+#define SPRD_VAU_DEFAULT_PPN_WR	0x18
-+#define SPRD_VAU_FIRST_VPN	0x1c
-+#define SPRD_VAU_VPN_RANGE	0x20
-+
-+enum sprd_iommu_version {
-+	SPRD_IOMMU_EX,
-+	SPRD_IOMMU_VAU,
-+};
-+
-+/*
-+ * struct sprd_iommu_device - high-level sprd iommu device representation,
-+ * including hardware information and configuration, also driver data, etc
-+ *
-+ * @mdata:	hardware configuration and information
-+ * @ver:	sprd iommu device version
-+ * @prot_page:	protect page base address, data would be written to here
-+ *		while translation fault
-+ * @base:	mapped base address for accessing registers
-+ * @dev:	pointer to basic device structure
-+ * @iommu:	IOMMU core representation
-+ * @group:	IOMMU group
-+ */
-+struct sprd_iommu_device {
-+	enum sprd_iommu_version	ver;
-+	u32			*prot_page_va;
-+	dma_addr_t		prot_page_pa;
-+	struct regmap		*base;
-+	unsigned int		reg_offset;
-+	struct device		*dev;
-+	struct iommu_device	iommu;
-+	struct iommu_group	*group;
-+	struct clk		*eb;
-+};
-+
-+struct sprd_iommu_domain {
-+	spinlock_t		pgtlock; /* lock for page table */
-+	struct iommu_domain	domain;
-+	u32			*pgt_va; /* page table virtual address base */
-+	dma_addr_t		pgt_pa; /* page table physical address base */
-+	struct sprd_iommu_device	*sdev;
-+};
-+
-+static const struct iommu_ops sprd_iommu_ops;
-+
-+static struct sprd_iommu_domain *to_sprd_domain(struct iommu_domain *dom)
-+{
-+	return container_of(dom, struct sprd_iommu_domain, domain);
-+}
-+
-+static inline void
-+sprd_iommu_writel(struct sprd_iommu_device *sdev, unsigned int reg, u32 val)
-+{
-+	regmap_write(sdev->base, sdev->reg_offset + reg, val);
-+}
-+
-+static inline u32
-+sprd_iommu_readl(struct sprd_iommu_device *sdev, unsigned int reg)
-+{
-+	u32 val;
-+
-+	regmap_read(sdev->base, sdev->reg_offset + reg, &val);
-+	return val;
-+}
-+
-+static inline void
-+sprd_iommu_update_bits(struct sprd_iommu_device *sdev, unsigned int reg,
-+		  u32 mask, u32 shift, u32 val)
-+{
-+	u32 t = sprd_iommu_readl(sdev, reg);
-+
-+	t = (t & (~(mask << shift))) | ((val & mask) << shift);
-+	sprd_iommu_writel(sdev, reg, t);
-+}
-+
-+static inline int
-+sprd_iommu_get_version(struct sprd_iommu_device *sdev)
-+{
-+	int ver = (sprd_iommu_readl(sdev, SPRD_IOMMU_VERSION) &
-+		   SPRD_VERSION_MASK) >> SPRD_VERSION_SHIFT;
-+
-+	switch (ver) {
-+	case SPRD_IOMMU_EX:
-+	case SPRD_IOMMU_VAU:
-+		return ver;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static size_t
-+sprd_iommu_pgt_size(struct iommu_domain *domain)
-+{
-+	return ((domain->geometry.aperture_end -
-+		 domain->geometry.aperture_start + 1) >>
-+		SPRD_IOMMU_PAGE_SHIFT) * sizeof(u32);
-+}
-+
-+static struct iommu_domain *sprd_iommu_domain_alloc(unsigned int domain_type)
-+{
-+	struct sprd_iommu_domain *dom;
-+
-+	if (domain_type != IOMMU_DOMAIN_DMA && domain_type != IOMMU_DOMAIN_UNMANAGED)
-+		return NULL;
-+
-+	dom = kzalloc(sizeof(*dom), GFP_KERNEL);
-+	if (!dom)
-+		return NULL;
-+
-+	if (iommu_get_dma_cookie(&dom->domain)) {
-+		kfree(dom);
-+		return NULL;
-+	}
-+
-+	spin_lock_init(&dom->pgtlock);
-+
-+	dom->domain.geometry.aperture_start = 0;
-+	dom->domain.geometry.aperture_end = SZ_256M - 1;
-+
-+	return &dom->domain;
-+}
-+
-+static void sprd_iommu_domain_free(struct iommu_domain *domain)
-+{
-+	struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-+
-+	iommu_put_dma_cookie(domain);
-+	kfree(dom);
-+}
-+
-+static void sprd_iommu_first_vpn(struct sprd_iommu_domain *dom)
-+{
-+	struct sprd_iommu_device *sdev = dom->sdev;
-+	u32 val;
-+	unsigned int reg;
-+
-+	if (sdev->ver == SPRD_IOMMU_EX)
-+		reg = SPRD_EX_FIRST_VPN;
-+	else
-+		reg = SPRD_VAU_FIRST_VPN;
-+
-+	val = dom->domain.geometry.aperture_start >> SPRD_IOMMU_PAGE_SHIFT;
-+	sprd_iommu_writel(sdev, reg, val);
-+}
-+
-+static void sprd_iommu_vpn_range(struct sprd_iommu_domain *dom)
-+{
-+	struct sprd_iommu_device *sdev = dom->sdev;
-+	u32 val;
-+	unsigned int reg;
-+
-+	if (sdev->ver == SPRD_IOMMU_EX)
-+		reg = SPRD_EX_VPN_RANGE;
-+	else
-+		reg = SPRD_VAU_VPN_RANGE;
-+
-+	val = (dom->domain.geometry.aperture_end -
-+	       dom->domain.geometry.aperture_start) >> SPRD_IOMMU_PAGE_SHIFT;
-+	sprd_iommu_writel(sdev, reg, val);
-+}
-+
-+static void sprd_iommu_first_ppn(struct sprd_iommu_domain *dom)
-+{
-+	u32 val = dom->pgt_pa >> SPRD_IOMMU_PAGE_SHIFT;
-+	struct sprd_iommu_device *sdev = dom->sdev;
-+	unsigned int reg;
-+
-+	if (sdev->ver == SPRD_IOMMU_EX)
-+		reg = SPRD_EX_FIRST_PPN;
-+	else
-+		reg = SPRD_VAU_FIRST_PPN;
-+
-+	sprd_iommu_writel(sdev, reg, val);
-+}
-+
-+static void sprd_iommu_default_ppn(struct sprd_iommu_device *sdev)
-+{
-+	u32 val = sdev->prot_page_pa >> SPRD_IOMMU_PAGE_SHIFT;
-+
-+	if (sdev->ver == SPRD_IOMMU_EX) {
-+		sprd_iommu_writel(sdev, SPRD_EX_DEFAULT_PPN, val);
-+	} else if (sdev->ver == SPRD_IOMMU_VAU) {
-+		sprd_iommu_writel(sdev, SPRD_VAU_DEFAULT_PPN_RD, val);
-+		sprd_iommu_writel(sdev, SPRD_VAU_DEFAULT_PPN_WR, val);
-+	}
-+}
-+
-+static void sprd_iommu_hw_en(struct sprd_iommu_device *sdev, bool en)
-+{
-+	unsigned int reg_cfg;
-+	u32 mask, val;
-+
-+	if (sdev->ver == SPRD_IOMMU_EX)
-+		reg_cfg = SPRD_EX_CFG;
-+	else
-+		reg_cfg = SPRD_VAU_CFG;
-+
-+	/* enable mmu, clk gate */
-+	mask = SPRD_IOMMU_EN | SPRD_IOMMU_GATE_EN;
-+	val = en ? mask : 0;
-+	sprd_iommu_update_bits(sdev, reg_cfg, mask, 0, val);
-+}
-+
-+static int sprd_iommu_attach_device(struct iommu_domain *domain,
-+				    struct device *dev)
-+{
-+	struct sprd_iommu_device *sdev = dev_iommu_priv_get(dev);
-+	struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-+	size_t pgt_size = sprd_iommu_pgt_size(domain);
-+
-+	if (dom->sdev) {
-+		pr_err("There's already a device attached to this domain.\n");
-+		return -EINVAL;
-+	}
-+
-+	dom->pgt_va = dma_alloc_coherent(sdev->dev, pgt_size, &dom->pgt_pa, GFP_KERNEL);
-+	if (!dom->pgt_va)
-+		return -ENOMEM;
-+
-+	dom->sdev = sdev;
-+
-+	sprd_iommu_first_ppn(dom);
-+	sprd_iommu_first_vpn(dom);
-+	sprd_iommu_vpn_range(dom);
-+	sprd_iommu_default_ppn(sdev);
-+	sprd_iommu_hw_en(sdev, true);
-+
-+	return 0;
-+}
-+
-+static void sprd_iommu_detach_device(struct iommu_domain *domain,
-+					     struct device *dev)
-+{
-+	struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-+	struct sprd_iommu_device *sdev = dom->sdev;
-+	size_t pgt_size = sprd_iommu_pgt_size(domain);
-+
-+	if (!sdev)
-+		return;
-+
-+	dma_free_coherent(sdev->dev, pgt_size, dom->pgt_va, dom->pgt_pa);
-+	sprd_iommu_hw_en(sdev, false);
-+	dom->sdev = NULL;
-+}
-+
-+static int sprd_iommu_map(struct iommu_domain *domain, unsigned long iova,
-+			  phys_addr_t paddr, size_t size, int prot, gfp_t gfp)
-+{
-+	struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-+	unsigned int page_num = size >> SPRD_IOMMU_PAGE_SHIFT;
-+	unsigned long flags;
-+	unsigned int i;
-+	u32 *pgt_base_iova;
-+	u32 pabase = (u32)paddr;
-+	unsigned long start = domain->geometry.aperture_start;
-+	unsigned long end = domain->geometry.aperture_end;
-+
-+	if (!dom->sdev) {
-+		pr_err("No sprd_iommu_device attached to the domain\n");
-+		return -EINVAL;
-+	}
-+
-+	if (iova < start || (iova + size) > (end + 1)) {
-+		dev_err(dom->sdev->dev, "(iova(0x%lx) + sixe(%zx)) are not in the range!\n",
-+			iova, size);
-+		return -EINVAL;
-+	}
-+
-+	pgt_base_iova = dom->pgt_va + ((iova - start) >> SPRD_IOMMU_PAGE_SHIFT);
-+
-+	spin_lock_irqsave(&dom->pgtlock, flags);
-+	for (i = 0; i < page_num; i++) {
-+		pgt_base_iova[i] = pabase >> SPRD_IOMMU_PAGE_SHIFT;
-+		pabase += SPRD_IOMMU_PAGE_SIZE;
-+	}
-+	spin_unlock_irqrestore(&dom->pgtlock, flags);
-+
-+	return 0;
-+}
-+
-+static size_t sprd_iommu_unmap(struct iommu_domain *domain, unsigned long iova,
-+			size_t size, struct iommu_iotlb_gather *iotlb_gather)
-+{
-+	struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-+	unsigned long flags;
-+	u32 *pgt_base_iova;
-+	unsigned int page_num = size >> SPRD_IOMMU_PAGE_SHIFT;
-+	unsigned long start = domain->geometry.aperture_start;
-+	unsigned long end = domain->geometry.aperture_end;
-+
-+	if (iova < start || (iova + size) > (end + 1))
-+		return -EINVAL;
-+
-+	pgt_base_iova = dom->pgt_va + ((iova - start) >> SPRD_IOMMU_PAGE_SHIFT);
-+
-+	spin_lock_irqsave(&dom->pgtlock, flags);
-+	memset(pgt_base_iova, 0, page_num * sizeof(u32));
-+	spin_unlock_irqrestore(&dom->pgtlock, flags);
-+
-+	return 0;
-+}
-+
-+static void sprd_iommu_sync_map(struct iommu_domain *domain)
-+{
-+	struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-+	unsigned int reg;
-+
-+	if (dom->sdev->ver == SPRD_IOMMU_EX)
-+		reg = SPRD_EX_UPDATE;
-+	else
-+		reg = SPRD_VAU_UPDATE;
-+
-+	/* clear iommu TLB buffer after page table updated */
-+	sprd_iommu_writel(dom->sdev, reg, 0xffffffff);
-+}
-+
-+static void sprd_iommu_sync(struct iommu_domain *domain,
-+				 struct iommu_iotlb_gather *iotlb_gather)
-+{
-+	sprd_iommu_sync_map(domain);
-+}
-+
-+static phys_addr_t sprd_iommu_iova_to_phys(struct iommu_domain *domain,
-+					   dma_addr_t iova)
-+{
-+	struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-+	unsigned long flags;
-+	phys_addr_t pa;
-+	unsigned long start = domain->geometry.aperture_start;
-+	unsigned long end = domain->geometry.aperture_end;
-+
-+	if (iova < start || iova > end)
-+		pr_err("iova (0x%llx) exceed the vpn range[0x%lx-0x%lx]!\n",
-+		       iova, start, end);
-+
-+	spin_lock_irqsave(&dom->pgtlock, flags);
-+	pa = *(dom->pgt_va + ((iova - start) >> SPRD_IOMMU_PAGE_SHIFT));
-+	pa = (pa << SPRD_IOMMU_PAGE_SHIFT) + ((iova - start) & (SPRD_IOMMU_PAGE_SIZE - 1));
-+	spin_unlock_irqrestore(&dom->pgtlock, flags);
-+
-+	return pa;
-+}
-+
-+static struct iommu_device *sprd_iommu_probe_device(struct device *dev)
-+{
-+	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-+	struct sprd_iommu_device *sdev;
-+
-+	if (!fwspec || fwspec->ops != &sprd_iommu_ops)
-+		return ERR_PTR(-ENODEV);
-+
-+	sdev = dev_iommu_priv_get(dev);
-+
-+	return &sdev->iommu;
-+}
-+
-+static void sprd_iommu_release_device(struct device *dev)
-+{
-+	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-+
-+	if (!fwspec || fwspec->ops != &sprd_iommu_ops)
-+		return;
-+
-+	iommu_fwspec_free(dev);
-+}
-+
-+static struct iommu_group *sprd_iommu_device_group(struct device *dev)
-+{
-+	struct sprd_iommu_device *sdev = dev_iommu_priv_get(dev);
-+
-+	return iommu_group_ref_get(sdev->group);
-+}
-+
-+static int sprd_iommu_of_xlate(struct device *dev, struct of_phandle_args *args)
-+{
-+	struct platform_device *pdev;
-+
-+	if (!dev_iommu_priv_get(dev)) {
-+		pdev = of_find_device_by_node(args->np);
-+		dev_iommu_priv_set(dev, platform_get_drvdata(pdev));
-+		platform_device_put(pdev);
-+	}
-+
-+	return 0;
-+}
-+
-+
-+static const struct iommu_ops sprd_iommu_ops = {
-+	.domain_alloc	= sprd_iommu_domain_alloc,
-+	.domain_free	= sprd_iommu_domain_free,
-+	.attach_dev	= sprd_iommu_attach_device,
-+	.detach_dev	= sprd_iommu_detach_device,
-+	.map		= sprd_iommu_map,
-+	.unmap		= sprd_iommu_unmap,
-+	.iotlb_sync_map	= sprd_iommu_sync_map,
-+	.iotlb_sync	= sprd_iommu_sync,
-+	.iova_to_phys	= sprd_iommu_iova_to_phys,
-+	.probe_device	= sprd_iommu_probe_device,
-+	.release_device	= sprd_iommu_release_device,
-+	.device_group	= sprd_iommu_device_group,
-+	.of_xlate	= sprd_iommu_of_xlate,
-+	.pgsize_bitmap	= ~0UL << SPRD_IOMMU_PAGE_SHIFT,
-+};
-+
-+static const struct of_device_id sprd_iommu_of_match[] = {
-+	{ .compatible = "sprd,iommu-v1" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, sprd_iommu_of_match);
-+
-+/*
-+ * Clock is optional, access to some of IOMMUs are controlled by gate
-+ * clk, enabled clocks for that kind of IOMMUs before accessing.
-+ * Return 0 for success or no clocks found.
-+ */
-+static int sprd_iommu_clk_enable(struct sprd_iommu_device *sdev)
-+{
-+	struct clk *eb;
-+
-+	eb = clk_get_optional(sdev->dev, 0);
-+	if (!eb)
-+		return 0;
-+
-+	if (IS_ERR(eb))
-+		return PTR_ERR(eb);
-+
-+	sdev->eb = eb;
-+	return clk_prepare_enable(eb);
-+}
-+
-+static void sprd_iommu_clk_disable(struct sprd_iommu_device *sdev)
-+{
-+	if (sdev->eb)
-+		clk_disable_unprepare(sdev->eb);
-+}
-+
-+static struct regmap_config reg_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
-+
-+static int sprd_iommu_probe(struct platform_device *pdev)
-+{
-+	struct sprd_iommu_device *sdev;
-+	struct device *dev = &pdev->dev;
-+	void __iomem *base;
-+	int ret;
-+
-+	sdev = devm_kzalloc(dev, sizeof(*sdev), GFP_KERNEL);
-+	if (!sdev)
-+		return -ENOMEM;
-+
-+	sdev->base = syscon_regmap_lookup_by_phandle_args(dev->of_node,
-+				"sprd,iommu-regs", 1, &sdev->reg_offset);
-+	if (IS_ERR(sdev->base)) {
-+		base = devm_platform_ioremap_resource(pdev, 0);
-+		sdev->reg_offset = 0;
-+		if (IS_ERR(base)) {
-+			dev_err(dev, "Failed to get ioremap resource.\n");
-+			return PTR_ERR(base);
-+		}
-+
-+		sdev->base = regmap_init_mmio(NULL, base, &reg_config);
-+		if (IS_ERR(sdev->base)) {
-+			dev_err(dev, "Failed to init regmap.\n");
-+			return PTR_ERR(sdev->base);
-+		}
-+	}
-+
-+	sdev->prot_page_va = dma_alloc_coherent(dev, SPRD_IOMMU_PAGE_SIZE,
-+						&sdev->prot_page_pa, GFP_KERNEL);
-+	if (!sdev->prot_page_va)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, sdev);
-+	sdev->dev = dev;
-+
-+	/* All the client devices are in the same iommu-group */
-+	sdev->group = iommu_group_alloc();
-+	if (IS_ERR(sdev->group)) {
-+		ret = PTR_ERR(sdev->group);
-+		goto free_page;
-+	}
-+
-+	ret = iommu_device_sysfs_add(&sdev->iommu, dev, NULL, dev_name(dev));
-+	if (ret)
-+		goto put_group;
-+
-+	iommu_device_set_ops(&sdev->iommu, &sprd_iommu_ops);
-+	iommu_device_set_fwnode(&sdev->iommu, &dev->of_node->fwnode);
-+
-+	ret = iommu_device_register(&sdev->iommu);
-+	if (ret)
-+		goto remove_sysfs;
-+
-+	if (!iommu_present(&platform_bus_type))
-+		bus_set_iommu(&platform_bus_type, &sprd_iommu_ops);
-+
-+	ret = sprd_iommu_clk_enable(sdev);
-+	if (ret)
-+		goto unregister_iommu;
-+
-+	ret = sprd_iommu_get_version(sdev);
-+	if (ret < 0) {
-+		dev_err(dev, "iommu version(%d) is invalid.\n", ret);
-+		goto disable_clk;
-+	}
-+	sdev->ver = ret;
-+
-+	return 0;
-+
-+disable_clk:
-+	sprd_iommu_clk_disable(sdev);
-+unregister_iommu:
-+	iommu_device_unregister(&sdev->iommu);
-+remove_sysfs:
-+	iommu_device_sysfs_remove(&sdev->iommu);
-+put_group:
-+	iommu_group_put(sdev->group);
-+free_page:
-+	dma_free_coherent(sdev->dev, SPRD_IOMMU_PAGE_SIZE, sdev->prot_page_va, sdev->prot_page_pa);
-+	return ret;
-+}
-+
-+static int sprd_iommu_remove(struct platform_device *pdev)
-+{
-+	struct sprd_iommu_device *sdev = platform_get_drvdata(pdev);
-+
-+	dma_free_coherent(sdev->dev, SPRD_IOMMU_PAGE_SIZE, sdev->prot_page_va, sdev->prot_page_pa);
-+
-+	iommu_group_put(sdev->group);
-+	sdev->group = NULL;
-+
-+	bus_set_iommu(&platform_bus_type, NULL);
-+
-+	platform_set_drvdata(pdev, NULL);
-+	iommu_device_sysfs_remove(&sdev->iommu);
-+	iommu_device_unregister(&sdev->iommu);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver sprd_iommu_driver = {
-+	.driver	= {
-+		.name		= "sprd-iommu",
-+		.of_match_table	= sprd_iommu_of_match,
-+		.suppress_bind_attrs = true,
-+	},
-+	.probe	= sprd_iommu_probe,
-+	.remove	= sprd_iommu_remove,
-+};
-+module_platform_driver(sprd_iommu_driver);
-+
-+MODULE_DESCRIPTION("IOMMU driver for Unisoc SoCs");
-+MODULE_ALIAS("platform:sprd-iommu");
-+MODULE_LICENSE("GPL v2");
--- 
-2.25.1
+> -----Urspr=FCngliche Nachricht-----
+> Von: Sven Schuchmann <schuchmann@schleissheimer.de>
+> Gesendet: Dienstag, 19. Januar 2021 11:53
+> An: Sven Schuchmann <schuchmann@schleissheimer.de>
+> Cc: Pavel Machek <pavel@ucw.cz>; Dan Murphy <dmurphy@ti.com>; Rob Herring=
+ <robh+dt@kernel.org>; linux-
+> leds@vger.kernel.org; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
+l.org
+> Betreff: [PATCH v1] leds: lp50xx: add setting of default intensity from D=
+T
+>=20
+> In order to use a multicolor-led together with a trigger
+> from DT the led needs to have an intensity set to see something.
+> The trigger changes the brightness of the led but if there
+> is no intensity we actually see nothing.
+>=20
+> This patch adds the ability to set the default intensity
+> of each led so that it is turned on from DT.
+>=20
+> Signed-off-by: Sven Schuchmann <schuchmann@schleissheimer.de>
+> ---
+>  Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 8 +++++++-
+>  drivers/leds/leds-lp50xx.c                              | 4 ++++
+>  2 files changed, 11 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Do=
+cumentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> index c192b5feadc7..5ad2a0c3c052 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> @@ -69,7 +69,12 @@ patternProperties:
+>      patternProperties:
+>        "(^led-[0-9a-f]$|led)":
+>          type: object
+> -        $ref: common.yaml#
+> +        allOf:
+> +          - $ref: common.yaml#
+> +        properties:
+> +          default-intensity:
+> +            maxItems: 1
+> +            description: The intensity the LED gets initialised with.
+>=20
+>  required:
+>    - compatible
+> @@ -102,6 +107,7 @@ examples:
+>=20
+>                 led-0 {
+>                     color =3D <LED_COLOR_ID_RED>;
+> +                   default-intensity =3D <100>;
+>                 };
+>=20
+>                 led-1 {
+> diff --git a/drivers/leds/leds-lp50xx.c b/drivers/leds/leds-lp50xx.c
+> index f13117eed976..ba760fa33bdc 100644
+> --- a/drivers/leds/leds-lp50xx.c
+> +++ b/drivers/leds/leds-lp50xx.c
+> @@ -501,6 +501,10 @@ static int lp50xx_probe_dt(struct lp50xx *priv)
+>  			}
+>=20
+>  			mc_led_info[num_colors].color_index =3D color_id;
+> +
+> +			fwnode_property_read_u32(led_node, "default-intensity",
+> +						 &mc_led_info[num_colors].intensity);
+> +
+>  			num_colors++;
+>  		}
+>=20
+> --
+> 2.17.1
 
