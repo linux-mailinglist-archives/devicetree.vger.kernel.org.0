@@ -2,133 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 903C130C596
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 17:29:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E06F330C73D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 18:17:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236067AbhBBQ1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 11:27:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51272 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236208AbhBBQY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 11:24:59 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B614C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 08:23:09 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id m13so23288873oig.8
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 08:23:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nmtKOztRPU1FHLWkkh8andN7amnZAPXC6AXlDwUJfkM=;
-        b=xNfXP/GMRfWtyYmR9X6j3Nh5jpiQWgvYPDyLx6wo9BR1leBdbgF/GRp292X0xCbDLo
-         B8cDJzU8sTUW6RmBsm847N2mLoDOnrdopQyxp1b4Jr7gDGa+jXrvkQxO7rcu6inHKgdL
-         tavjCt2VYeCDmdZL59OfjHZ9FxvBYU7rjqgTHt+M+kAn0EvcsDV1w2wOtQUkpD7Lu5wr
-         mjW/+i2cCdzKU47Ya9YSlwSiVtGWlf1C3AsZSAili3iYsHJrRDhRG4k8I3jaXVG+SqGX
-         +2Tal4E0nSdNaANLcxedEHeXD6p4qCN4crrT8EMJqzkaijuMhmTkN5FRbkzg4muxKKDt
-         achw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nmtKOztRPU1FHLWkkh8andN7amnZAPXC6AXlDwUJfkM=;
-        b=FgmaJEAotOOoUb6BQTxrYGJEKMtGEx3L08EIao7jEDku97DixWTB7g2GbIlLwh8Sdm
-         w6bPWKvORQCy40H/KewrGBaeI7h+Ott8uM/S5t+BIMx5r4YQx+jGxdvoIPaHYhtMnPuS
-         ilrl940MxHjEiIY6PCUCZ5Gzc4EWr2Pk9Ot6geXOMmOApJMVLUjBsXI3yHn4p14OM3ds
-         oaIQPZie9bF+cBgWHwtcHJixvWyB5CxWxngVuBeJpqZ0aQYi46q2Vi9Fi0BGAgZDImfA
-         cFAWkkVQLyUjvVsh8Gr8DnuaXP5tpCiFcxIU8A2G09ZMctNiuXB+qYCJ34WX2VXkyJQJ
-         92bw==
-X-Gm-Message-State: AOAM533NeFMunrw0UFILwxeLNzc5sxckf79u10U7lksgBymz6ZtZoFyT
-        2Fw3yfI7nDHBriyn9Ffi3e8VHw==
-X-Google-Smtp-Source: ABdhPJztV5fpvulQl1IAaifHUQhhM0mV4tu9adu6SEVgj9qRz3WaVUCEDUhOOYl0wj0Dwz1yPDqKSA==
-X-Received: by 2002:aca:308a:: with SMTP id w132mr3114257oiw.69.1612282988874;
-        Tue, 02 Feb 2021 08:23:08 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id q3sm4239695oih.35.2021.02.02.08.23.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 08:23:08 -0800 (PST)
-Date:   Tue, 2 Feb 2021 10:23:06 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     agross@kernel.org, balbi@kernel.org, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v7 4/5] usb: dwc3: dwc3-qcom: Enable tx-fifo-resize
- property by default
-Message-ID: <YBl8aszdk1xgbg1i@builder.lan>
-References: <1611895604-4496-1-git-send-email-wcheng@codeaurora.org>
- <1611895604-4496-5-git-send-email-wcheng@codeaurora.org>
+        id S236369AbhBBROJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 12:14:09 -0500
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:10007 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235140AbhBBQZS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 11:25:18 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B60197cc40008>; Tue, 02 Feb 2021 08:24:36 -0800
+Received: from [10.26.73.224] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 2 Feb
+ 2021 16:24:33 +0000
+Subject: Re: [PATCH v1 2/2] ASoC: tegra: Add RT5631 machine driver
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Ion Agorria <AG0RRIA@yahoo.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Stephen Warren <swarren@nvidia.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Ion Agorria <ion@agorria.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210131184101.651486-1-AG0RRIA@yahoo.com>
+ <20210131184101.651486-3-AG0RRIA@yahoo.com>
+ <7f4eb8f7-215e-ab3d-fcef-9243037cf246@nvidia.com>
+ <8d0bc6f3-45ce-565d-d80f-b50fb75e7c55@gmail.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <51571ec9-780b-ba71-c81d-dd01ebcefbb8@nvidia.com>
+Date:   Tue, 2 Feb 2021 16:24:31 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1611895604-4496-5-git-send-email-wcheng@codeaurora.org>
+In-Reply-To: <8d0bc6f3-45ce-565d-d80f-b50fb75e7c55@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1612283076; bh=CEvP7Tc+GVpLUt9/g/q0cu5A7O0MJxg4tJPKJVFK2TQ=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=OLaOgypbOgXoCBypRvB4lzmBlljAml6HE+jwwCRJX3TpY3GR038XVJWyZrS0ATVF5
+         SkXKFACbfjJw1DeMcyOjyEi2wK8K48xdoZcCu5wZqINh9SVuZJyk0VZC/M7oHGaPpH
+         2kYNT4GjZD+dSOQqkOyYtHFFK4MFE0KuiwrJYN78TQqB7EEDhoxiSzho56n3wg/ldP
+         c6bSbihD/jQxTDQOVmya28qE0323C5va6znTIpCA5TDljVwqRKCRjed2QqPex1XgH8
+         aPKF/xhBdIal6CcqwRXndKmr+7nHf9FJami2Su/w7oCbn6xv5CGoPL7e7AbMHTWzgv
+         4Tt0L3l4OGhbw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 28 Jan 22:46 CST 2021, Wesley Cheng wrote:
 
-> In order to take advantage of the TX fifo resizing logic, manually add
-> these properties to the DWC3 child node by default.  This will allow
-> the DWC3 gadget to resize the TX fifos for the IN endpoints, which
-> help with performance.
-> 
-> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index d803ee9..4ea6be3 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -564,6 +564,7 @@ static int dwc3_qcom_clk_init(struct dwc3_qcom *qcom, int count)
->  
->  static const struct property_entry dwc3_qcom_acpi_properties[] = {
->  	PROPERTY_ENTRY_STRING("dr_mode", "host"),
-> +	PROPERTY_ENTRY_BOOL("tx-fifo-resize"),
+On 02/02/2021 15:25, Dmitry Osipenko wrote:
+> 02.02.2021 16:22, Jon Hunter =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> So this is very similar to tegra_rt5677, is it not possible to support
+>> both codecs with the same machine driver?
+>=20
+> These codecs require individual configurations and those
+> "../codecs/rt5631.h" and  "../codecs/rt5677.h" aren't compatible at a
+> quick glance.
 
-I checked the ACPI tables for Lenovo Miix 630, Yoga C630 and Flex 5G and
-neither one has this property specified. So while we could just add this
-here, it would have to be done in collaboration with the people who
-actually define these. And as said before, I believe we want this to
-always be enabled.
+Right but not all of that is needed. What is actually needed from the
+header files?
 
->  	{}
->  };
->  
-> @@ -634,6 +635,7 @@ static int dwc3_qcom_of_register_core(struct platform_device *pdev)
->  	struct dwc3_qcom	*qcom = platform_get_drvdata(pdev);
->  	struct device_node	*np = pdev->dev.of_node, *dwc3_np;
->  	struct device		*dev = &pdev->dev;
-> +	struct property		*prop;
->  	int			ret;
->  
->  	dwc3_np = of_get_child_by_name(np, "dwc3");
-> @@ -642,6 +644,14 @@ static int dwc3_qcom_of_register_core(struct platform_device *pdev)
->  		return -ENODEV;
->  	}
->  
-> +	prop = kzalloc(sizeof(*prop), GFP_KERNEL);
-> +	if (prop) {
-> +		prop->name = "tx-fifo-resize";
-> +		ret = of_add_property(dwc3_np, prop);
+> The tegra_rt5677 also uses outdated GPIO API and etc. Hence the new
+> driver should be a better base anyways.
 
-Can't we come up with a way where the platform driver enables this on
-the core driver without modifying DT?
+Sounds like a good time to update it :-)
 
-Regards,
-Bjorn
+> Overall it shouldn't worth time and effort trying to squeeze these
+> drivers into a single one, IMO.
 
-> +		if (ret < 0)
-> +			dev_info(dev, "unable to add tx-fifo-resize prop\n");
-> +	}
-> +
->  	ret = of_platform_populate(np, NULL, NULL, dev);
->  	if (ret) {
->  		dev_err(dev, "failed to register dwc3 core - %d\n", ret);
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+Not sure I agree when these drivers appear to be 90% the same.
+
+Jon
+
+--=20
+nvpublic
