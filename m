@@ -2,98 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0369630B614
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 04:53:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC51E30B65C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 05:19:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231528AbhBBDwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 22:52:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60000 "EHLO
+        id S231156AbhBBETj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 23:19:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231520AbhBBDwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 22:52:04 -0500
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1199C0613D6
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 19:51:23 -0800 (PST)
-Received: by mail-il1-x12b.google.com with SMTP id p8so17821743ilg.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 19:51:23 -0800 (PST)
+        with ESMTP id S231649AbhBBETg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 23:19:36 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 153A4C06174A
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 20:18:56 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id e15so1117330wme.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 20:18:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DUbVLJ+6EapSl5sVNLf8sgof9k3YF74Apn4NRNuZrBI=;
-        b=G139zDlnZdSnzIKH7yG75Inkorodk6X7AjLca6dTCwnjSMyL1PTsMAWZbIzfthY3R/
-         l8oxeWNBoH7WS3B3ILFRsEFRguGNqVruEpnIW/oJuq9kukOrYVIY2fSXSvBptglZ0eM9
-         bb2hgs2LbjxiECmNi0TNOMF+lqm5YVN30AvK20Y18+IAq4YKOET0Vli6u3q9SXw68Mhj
-         6xYne4B8ydAADwTKwuzAnO6mKZ9F40RtN1M4C4i6N9Asa8uh/R9oJd5EL+sq5mg/hVpP
-         iTohNwVMbv2/+j6wVhOL99ZY/Ng+qkog64cUg44UbFyz2AaHNfIDKKcZyE8pbPQV6gtM
-         0HVA==
+        d=gmail.com; s=20161025;
+        h=message-id:sender:from:mime-version:content-transfer-encoding
+         :content-description:subject:to:date:reply-to;
+        bh=PrILWatQiBB/YexVPvDZsH566iBzGTKnf23zrhwD0wk=;
+        b=iOKv5Sc1inl312FBxqy4hce/k/mxY/41yHUcB6BF1S2H50op20QGRNHsqcUKVT8KLG
+         mvWI2/iAAzh4WjvdbAk9N8Ympyy5ZXat9nSkfi63cV59F9w7CpFsEmwf5bx8iukHzZP1
+         ZJ1opzy94O6baSFZXSAUb9JMsbB3RQv75+C8IC91O0xmboNKA3pC0L0NJa8Lyp6LaT95
+         rt3ld8yqxbHKLjzGM3AOguAXgTx0Us32eStvvUVbdnmvA0dYPxqIzWsKGbe+HIziAzlf
+         L60rdROELrobxVJmjG+3LDJ+t/pN7yWEwvzklJOCzCTtnD4RRQVGBP0T83Dj2f+eJal0
+         K1Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DUbVLJ+6EapSl5sVNLf8sgof9k3YF74Apn4NRNuZrBI=;
-        b=CaBdYFME1+ydhQ4gNrRgOtUofqdn2z5s98hO9eHhurStNf2jhQQYMctNJ0Fb8fPdNu
-         lk321W4L0ACg+mU6vmpZnn8dWcWIfa456AMr5gS73nXAPGk6pDm0ZTtxbcnP05WMCLw0
-         C1oP89wDmEMm2P6tMj0mTtAoVOw1Cn62+yfqHuSMKLyL65pX+3h3a/2D4jX12pnLmq2K
-         V/S9879PKblpa//Tlewg0GdBiwr3J4vxm9PwjWQwAAWyTor0XZ5HOgzWxbyri1+EcDTo
-         yP6rtC8joNL3hLIn/DkalvOLXk/B70lpD5bdpEMOlE4ieztobbqDeqQUcprKHFaNKZBW
-         F62w==
-X-Gm-Message-State: AOAM531946QzCqB9QIUuMFlSqRmQUTNX3a3eLlC8qTO1u5IJUIdn+KEY
-        WtPtSdz0OMgmpoo57FR2A4yPuq6+zlFRAFwW1PMkgA==
-X-Google-Smtp-Source: ABdhPJxc3qlV1vDkvr6AKiJA6v8PIzxjnHjrC8AiVb4RHEO7WgoEnWmUihcs05hGWpDlchzD4tCKWKvEQhihhe0Ou5s=
-X-Received: by 2002:a05:6e02:d42:: with SMTP id h2mr17203540ilj.204.1612237882649;
- Mon, 01 Feb 2021 19:51:22 -0800 (PST)
+        h=x-gm-message-state:message-id:sender:from:mime-version
+         :content-transfer-encoding:content-description:subject:to:date
+         :reply-to;
+        bh=PrILWatQiBB/YexVPvDZsH566iBzGTKnf23zrhwD0wk=;
+        b=EVkJdzC+i2eO0Bq+kBDbPh+0qh91U4jCozkBCOweZ6oSzCNCrM732AyYMvCrUtRSQP
+         q/0TUuw0p9NQGLm3CXgXFHWxI1qlQdg5k5MoW3/e0mgt/nbf3PG88NGJIgpVNL0rOoW4
+         mIod4OkD2Xk8/oe2A/cDLIHRVpoiKZiRd1GM/1lf9MAN68wBVixuY2V0s52seGGCJ5Yq
+         KrY1hUhTq9bPQ+X7L/Vr7NVRojpn+fmMkvnm6q+oiv+eRiv96sOh0f+XDmKlrqMvf6RG
+         aTcwChsG993DfOacEofHOokd5nj+3NkPDZEcnhpHiwkfNOmzCToEwOIim5F2y+ZSVZbt
+         5Vhg==
+X-Gm-Message-State: AOAM53263HnaMGb12bOfC3QhdljJvR4QyNbwi7adcwPINIP4mEBij8wK
+        KAMy2JC1l621qWpCRVzjRg==
+X-Google-Smtp-Source: ABdhPJy/NoZ342bm3JKxqhAoXB4gLXaywqJi4V0LbjY5pzz9c9Ebp/nJLecIpR5roIP8Ee5dhFNB6A==
+X-Received: by 2002:a1c:1d8b:: with SMTP id d133mr1709819wmd.172.1612239534900;
+        Mon, 01 Feb 2021 20:18:54 -0800 (PST)
+Received: from [192.168.1.8] ([41.83.208.55])
+        by smtp.gmail.com with ESMTPSA id n193sm1306436wmb.0.2021.02.01.20.18.51
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Mon, 01 Feb 2021 20:18:54 -0800 (PST)
+Message-ID: <6018d2ae.1c69fb81.ccb08.54c6@mx.google.com>
+Sender: skylar anderson <courandoy37@gmail.com>
+From:   Skylar Anderson <sgt.skylaranderson200@gmail.com>
+X-Google-Original-From: Skylar Anderson
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-References: <1611913781-23460-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1611913781-23460-9-git-send-email-hsin-hsiung.wang@mediatek.com> <1cbf58f1-376c-fa93-98a2-53a41fa24273@gmail.com>
-In-Reply-To: <1cbf58f1-376c-fa93-98a2-53a41fa24273@gmail.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Tue, 2 Feb 2021 11:51:11 +0800
-Message-ID: <CA+Px+wXP2vrFbou+SCRZuXYr4XPPxYHZfk+oSM7_GPXZSD24UQ@mail.gmail.com>
-Subject: Re: [PATCH RESEND v5 8/8] arm64: dts: mt6359: add PMIC MT6359 related nodes
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        Ran Bi <ran.bi@mediatek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Wen Su <wen.su@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Description: Mail message body
+Subject: si
+To:     Recipients <Skylar@vger.kernel.org>
+Date:   Tue, 02 Feb 2021 04:18:48 +0000
+Reply-To: sgt.skylaranderson200@gmail.com
+X-Mailer: cdcaafe51be8cdb99a1c85906066cad3d0e60e273541515a58395093a7c4e1f0eefb01d7fc4e6278706e9fb8c4dad093c3263345202970888b6b4d817f9e998c032e7d59
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 31, 2021 at 7:06 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
-> On 29/01/2021 10:49, Hsin-Hsiung Wang wrote:
-> > +             mt6359codec: mt6359codec {
-> > +             };
->
-> I understand that the dmic-mode and mic-type-X depends on the actual board on
-> which it is used. In that case I think we should add mt6359codec node in the dts
-> instead of dtsi file. I'd advise to set these properties as well as otherwise we
-> get a (slightly misleading) warning in the driver.
-
-I feel it is better to include the node in dtsi to represent the whole
-MT6359 PMIC.
-
-We could either:
-- Set default values of these properties in the dtsi to avoid the
-warning message.
-- Or https://patchwork.kernel.org/project/alsa-devel/patch/20210202033557.1621029-1-tzungbi@google.com/
+esto es urgente / can we talk this
