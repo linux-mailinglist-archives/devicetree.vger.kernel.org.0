@@ -2,89 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D795630C2F9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 16:08:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9CE430C3C1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 16:28:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235062AbhBBPFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 10:05:45 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:48868 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234891AbhBBO5o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 09:57:44 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1l6x6o-00020V-MV; Tue, 02 Feb 2021 15:56:50 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        hjc@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org,
-        sebastian.fricke@posteo.net, linux-media@vger.kernel.org,
-        dafna.hirschfeld@collabora.com, helen.koike@collabora.com,
-        ezequiel@collabora.com, cmuellner@linux.com,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Subject: [PATCH 6/6] arm64: dts: rockchip: add isp1 node on rk3399
-Date:   Tue,  2 Feb 2021 15:56:32 +0100
-Message-Id: <20210202145632.1263136-7-heiko@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210202145632.1263136-1-heiko@sntech.de>
-References: <20210202145632.1263136-1-heiko@sntech.de>
+        id S235580AbhBBP2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 10:28:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39618 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235485AbhBBP0T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 10:26:19 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD7E5C06174A;
+        Tue,  2 Feb 2021 07:25:38 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id f2so24396194ljp.11;
+        Tue, 02 Feb 2021 07:25:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1BFhguJtknsgKZxynMp8586vauMG7FnrvbgtjYyZdro=;
+        b=Vv94kslTjxOHCof/KEF/LoLKR4nL5ltWMvPcoQIXsSRavJWqtYBiP4QkJfugy6ZSHw
+         QF/4EXVfa3lenAfwmQje7P49RcR1YghY0PCAU//9kv0OcVTFjTz+s6MTZsuDvoxeNQBg
+         VhJHmLc35E4FARCFj1km/HlUqEq5qSdKlViFF05bIHJYnduqZRrIF/W9XUC7LvaYe2wg
+         H1qPnPgPgF1ij8aDO/c1c+3R7ZGttCyFlLtxcYJiYN+c2/hWbqX0cqLcTFyW4c+9bQO4
+         8eoNEKdfAyzCfqpFKMhgFKZr15lZL86pIdGoUv/Neqjn/opYp+dRlJF99YQ2/8WOcbaG
+         28Sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1BFhguJtknsgKZxynMp8586vauMG7FnrvbgtjYyZdro=;
+        b=MX491ZNuDqCJiwhs4ej73LOSS70us4LxE7dV3l0lP+v/rNS9Kq9rCeMxv9/lbL+Di9
+         JBo/myvnZX71wz98MDaeFO0wILBty29wsEI+SnJ0FUOFbkikQkMCpVq9Yn/+Fe34NBZJ
+         vFWbvzj0NutK84HA1lwE4wqzN3N0iO/IuRn6uDPxjFbd12VETLSM3XbFIShhcRiSzkTr
+         s36Cnrn50rtZxS3Va31vplsJphqCiwXp9KmJvsl+FFLytYwdVOiIalcLKEAnGjyEeauX
+         UD2hYva12yiZ1FImZ/XlGeMnF1VCLSuFSLFB/zweY0Ngdp7aLASKFYAvgc452Jidldq/
+         xxdA==
+X-Gm-Message-State: AOAM531qBClaNqm/5jKQ/5jpsSk7LFToPk8GnSV86zOjLhxSxuzaT9LH
+        X2R3YVTMCsZva6DtPi/8QEpqq+ekjUg=
+X-Google-Smtp-Source: ABdhPJy9CrYxZnEFUlb+AY6IJgJ2nx7yfz9iiAllAC8BTXE/k9hwCGANIk8LURd2z3PsTK23pF1mFg==
+X-Received: by 2002:a2e:7c16:: with SMTP id x22mr13561352ljc.46.1612279536183;
+        Tue, 02 Feb 2021 07:25:36 -0800 (PST)
+Received: from ?IPv6:2a00:1370:814d:ea25:a10:76ff:fe69:21b6? ([2a00:1370:814d:ea25:a10:76ff:fe69:21b6])
+        by smtp.googlemail.com with ESMTPSA id s19sm2604205ljg.43.2021.02.02.07.25.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Feb 2021 07:25:35 -0800 (PST)
+Subject: Re: [PATCH v1 2/2] ASoC: tegra: Add RT5631 machine driver
+To:     Jon Hunter <jonathanh@nvidia.com>, Ion Agorria <AG0RRIA@yahoo.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Stephen Warren <swarren@nvidia.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Ion Agorria <ion@agorria.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210131184101.651486-1-AG0RRIA@yahoo.com>
+ <20210131184101.651486-3-AG0RRIA@yahoo.com>
+ <7f4eb8f7-215e-ab3d-fcef-9243037cf246@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <8d0bc6f3-45ce-565d-d80f-b50fb75e7c55@gmail.com>
+Date:   Tue, 2 Feb 2021 18:25:34 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
+In-Reply-To: <7f4eb8f7-215e-ab3d-fcef-9243037cf246@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+02.02.2021 16:22, Jon Hunter пишет:
+> So this is very similar to tegra_rt5677, is it not possible to support
+> both codecs with the same machine driver?
 
-ISP1 is supplied by the tx1rx1 dphy, that is controlled from
-inside the dsi1 controller, so include the necessary phy-link
-for it.
+These codecs require individual configurations and those
+"../codecs/rt5631.h" and  "../codecs/rt5677.h" aren't compatible at a
+quick glance.
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
----
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 26 ++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+The tegra_rt5677 also uses outdated GPIO API and etc. Hence the new
+driver should be a better base anyways.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 7c661d84df25..98cec9387300 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1756,6 +1756,32 @@ isp0_mmu: iommu@ff914000 {
- 		rockchip,disable-mmu-reset;
- 	};
- 
-+	isp1: isp1@ff920000 {
-+		compatible = "rockchip,rk3399-cif-isp";
-+		reg = <0x0 0xff920000 0x0 0x4000>;
-+		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru SCLK_ISP1>,
-+			 <&cru ACLK_ISP1_WRAPPER>,
-+			 <&cru HCLK_ISP1_WRAPPER>;
-+		clock-names = "isp", "aclk", "hclk";
-+		iommus = <&isp1_mmu>;
-+		phys = <&mipi_dsi1>;
-+		phy-names = "dphy";
-+		power-domains = <&power RK3399_PD_ISP1>;
-+		status = "disabled";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+	};
-+
- 	isp1_mmu: iommu@ff924000 {
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff924000 0x0 0x100>, <0x0 0xff925000 0x0 0x100>;
--- 
-2.29.2
-
+Overall it shouldn't worth time and effort trying to squeeze these
+drivers into a single one, IMO.
