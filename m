@@ -2,281 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3160330B968
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 09:18:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B1D130B998
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 09:25:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229975AbhBBIQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 03:16:49 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:48908 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232442AbhBBIQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 03:16:36 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1128Fg4B057338;
-        Tue, 2 Feb 2021 02:15:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1612253742;
-        bh=3ATrH2yF4LdI1XwEwa//vwEqen5c3AZFwgYryVpgjco=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=AmrfOIZUMQxv8KzZgPkHpmEEzXRGLlOck0NtK8td3ancG7S6hY995I9kby9IeaW9e
-         i7939CVEhXMZYXrdqadwZZoJBHvKKP/tU4wKvsOQsTzqYycoMHKGEVi0/jwxcA6Pz9
-         UsNjLrKartwrOrEYeGfce0ugKSK6r/oEp3ZgVP+s=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1128FgW7060714
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 2 Feb 2021 02:15:42 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 2 Feb
- 2021 02:15:41 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 2 Feb 2021 02:15:41 -0600
-Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1128FVZ6051822;
-        Tue, 2 Feb 2021 02:15:39 -0600
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
-CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: Add support for AM642 SK
-Date:   Tue, 2 Feb 2021 13:45:30 +0530
-Message-ID: <20210202081530.14984-3-lokeshvutla@ti.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210202081530.14984-1-lokeshvutla@ti.com>
-References: <20210202081530.14984-1-lokeshvutla@ti.com>
+        id S231420AbhBBIZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 03:25:02 -0500
+Received: from mga04.intel.com ([192.55.52.120]:51121 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232523AbhBBIYl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 03:24:41 -0500
+IronPort-SDR: 1QlUrpF0fd4A/GWXDjMR1Bz8RVSrnG4C2JTUWUA7MuEaHqRx318GLby5J/UD6SO0s5PlEOJnPV
+ pCFyDuSnP0pQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="178257683"
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; 
+   d="scan'208";a="178257683"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2021 00:22:52 -0800
+IronPort-SDR: gwp8W19RtNF1YXGS7OUro+/XLRGEhfV2dOwxMUDfgV8wvVwqvM/74C9TBxYgTHBFDBGXRQ3uht
+ 9qRkaWLFcB4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; 
+   d="scan'208";a="479481915"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 02 Feb 2021 00:22:48 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 02 Feb 2021 10:22:48 +0200
+Date:   Tue, 2 Feb 2021 10:22:48 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Kyle Tso <kyletso@google.com>
+Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org,
+        hdegoede@redhat.com, robh+dt@kernel.org, badhri@google.com,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] usb: typec: tcpm: Get Sink VDO from fwnode
+Message-ID: <20210202082248.GC1433721@kuha.fi.intel.com>
+References: <20210201133421.408508-1-kyletso@google.com>
+ <20210201133421.408508-4-kyletso@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210201133421.408508-4-kyletso@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM642 StarterKit (SK) board is a low cost, small form factor board
-designed for TI’s AM642 SoC. It supports the following interfaces:
-* 2 GB LPDDR4 RAM
-* x2 Gigabit Ethernet interfaces capable of working in switch and MAC mode
-* x1 USB 3.0 Type-A port
-* x1 UHS-1 capable µSD card slot
-* 2.4/5 GHz WLAN + Bluetooth 4.2 through WL1837
-* 512 Mbit OSPI flash
-* x2 UART through UART-USB bridge
-* XDS110 for onboard JTAG debug using USB
-* Temperature sensors, user push buttons and LEDs
-* 40-pin Raspberry Pi compatible GPIO header
-* 24-pin header for peripherals in MCU island (I2C, UART, SPI, IO)
-* 54-pin header for Programmable Realtime Unit (PRU) IO pins
-* Interface for remote automation. Includes:
-	* power measurement and reset control
-	* boot mode change
+On Mon, Feb 01, 2021 at 09:34:21PM +0800, Kyle Tso wrote:
+> Commit a079973f462a ("usb: typec: tcpm: Remove tcpc_config
+> configuration mechanism") removed the tcpc_config which includes the
+> Sink VDO and it is not yet added back with fwnode. Add it now.
+> 
+> Signed-off-by: Kyle Tso <kyletso@google.com>
 
-Add basic support for AM642 SK.
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile        |   2 +
- arch/arm64/boot/dts/ti/k3-am642-sk.dts | 173 +++++++++++++++++++++++++
- 2 files changed, 175 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> ---
+> Changes since v2:
+> - use fwnode_property_count_u32 instead to get the count
+> - revise the error handling
+> 
+>  drivers/usb/typec/tcpm/tcpm.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> index 979b7ee6473c..9b13e19118f0 100644
+> --- a/drivers/usb/typec/tcpm/tcpm.c
+> +++ b/drivers/usb/typec/tcpm/tcpm.c
+> @@ -5677,6 +5677,20 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+>  			port->new_source_frs_current = frs_current;
+>  	}
+>  
+> +	/* sink-vdos is optional */
+> +	ret = fwnode_property_count_u32(fwnode, "sink-vdos");
+> +	if (ret < 0)
+> +		ret = 0;
+> +
+> +	port->nr_snk_vdo = min(ret, VDO_MAX_OBJECTS);
+> +	if (port->nr_snk_vdo) {
+> +		ret = fwnode_property_read_u32_array(fwnode, "sink-vdos",
+> +						     port->snk_vdo,
+> +						     port->nr_snk_vdo);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.30.0.365.g02bc693789-goog
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index c687739e2bca..f9661630ba3f 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -13,3 +13,5 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-+
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-new file mode 100644
-index 000000000000..aa6ca4c49153
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -0,0 +1,173 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-am642.dtsi"
-+
-+/ {
-+	compatible =  "ti,am642-sk", "ti,am642";
-+	model = "Texas Instruments AM642 SK";
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 2G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-+
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
-+
-+	vusb_main: fixed-regulator-vusb-main5v0 {
-+		/* USB MAIN INPUT 5V DC */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vusb_main5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_3v3_sys: fixedregulator-vcc-3v3-sys {
-+		/* output of LP8733xx */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_sys";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vusb_main>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: fixed-regulator-sd {
-+		/* TPS2051BD */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vcc_3v3_sys>;
-+		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0294, PIN_INPUT, 0) /* (J19) MMC1_CMD */
-+			AM64X_IOPAD(0x0290, PIN_INPUT, 0) /* (#N/A) MMC1_CLKLB */
-+			AM64X_IOPAD(0x028c, PIN_INPUT, 0) /* (L20) MMC1_CLK */
-+			AM64X_IOPAD(0x0288, PIN_INPUT, 0) /* (K21) MMC1_DAT0 */
-+			AM64X_IOPAD(0x0284, PIN_INPUT, 0) /* (L21) MMC1_DAT1 */
-+			AM64X_IOPAD(0x0280, PIN_INPUT, 0) /* (K19) MMC1_DAT2 */
-+			AM64X_IOPAD(0x027c, PIN_INPUT, 0) /* (K18) MMC1_DAT3 */
-+			AM64X_IOPAD(0x0298, PIN_INPUT, 0) /* (D19) MMC1_SDCD */
-+		>;
-+	};
-+
-+	main_i2c1_pins_default: main-i2c1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
-+			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
-+		>;
-+	};
-+};
-+
-+&mcu_uart0 {
-+	status = "disabled";
-+};
-+
-+&mcu_uart1 {
-+	status = "disabled";
-+};
-+
-+&main_uart1 {
-+	/* main_uart1 is reserved for firmware usage */
-+	status = "reserved";
-+};
-+
-+&main_uart2 {
-+	status = "disabled";
-+};
-+
-+&main_uart3 {
-+	status = "disabled";
-+};
-+
-+&main_uart4 {
-+	status = "disabled";
-+};
-+
-+&main_uart5 {
-+	status = "disabled";
-+};
-+
-+&main_uart6 {
-+	status = "disabled";
-+};
-+
-+&mcu_i2c0 {
-+	status = "disabled";
-+};
-+
-+&mcu_i2c1 {
-+	status = "disabled";
-+};
-+
-+&main_i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c1_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp1: gpio@70 {
-+		compatible = "nxp,pca9538";
-+		reg = <0x70>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "GPIO_CPSW2_RST", "GPIO_CPSW1_RST",
-+				  "PRU_DETECT", "MMC1_SD_EN",
-+				  "VPP_LDO_EN", "RPI_PS_3V3_En",
-+				  "RPI_PS_5V0_En", "RPI_HAT_DETECT";
-+	};
-+};
-+
-+&main_i2c3 {
-+	status = "disabled";
-+};
-+
-+&mcu_spi0 {
-+	status = "disabled";
-+};
-+
-+&mcu_spi1 {
-+	status = "disabled";
-+};
-+
-+&sdhci1 {
-+	/* SD/MMC */
-+	vmmc-supply = <&vdd_mmc1>;
-+	pinctrl-names = "default";
-+	bus-width = <4>;
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
+thanks,
+
 -- 
-2.30.0
-
+heikki
