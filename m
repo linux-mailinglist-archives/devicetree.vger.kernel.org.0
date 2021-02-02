@@ -2,72 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A44A030B906
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 08:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DB3330B94F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 09:14:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231201AbhBBH5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 02:57:55 -0500
-Received: from mail-vs1-f49.google.com ([209.85.217.49]:43336 "EHLO
-        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbhBBH5y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 02:57:54 -0500
-Received: by mail-vs1-f49.google.com with SMTP id h11so10637260vsa.10;
-        Mon, 01 Feb 2021 23:57:38 -0800 (PST)
+        id S231499AbhBBINh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 03:13:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59486 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231201AbhBBINX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 03:13:23 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1CEC061756
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 00:12:43 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id b145so7023260pfb.4
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 00:12:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=y+cMOXMiJhmN+BhMWGOCZ1mGQnNvZ1HLYwA10LUk+qs=;
+        b=BE7+LLk41j5m1eELGRoOKzZpOyZhdKiTFcK4TJIWMv79mn6AOaVvhj5IrKMgLIoNO2
+         Yo/GV8+n5rFxI6xgYlyjq1XC3z5pn/8bj3GSO8hFplB6ElygbiKiT5A0Efb6BbLVfHgQ
+         XNxFBpDG5Xpv/852PpyOFg8QXk4fymYm7pA0o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=E0lZHuXu7pWNvv2BjdvH63uklWmKRl14BRUiRfYGOh0=;
-        b=BjWc7UBX9cAhfhJg04y/rStYLn4DYHx3uo+fnTq5cS2zVYCj/mewE4apdBLrBYqm3p
-         h5iFKkpeEYYwXaUIxmosnPiDPpi9G8l9wRJFyogArBHd8qSRBg1kYVqoPtNQlyxv56t9
-         cXRabRGQgbz9WGiny4M1s9H0uREmjbcCUXy+rP5BsErXdX6Y5wjxStJs6ylPxQqy9LWg
-         E7c9Lsv5DpMUmp9NtQlmO78UBkf/Hp3VoNI8SJy4pD/T0OlUnoUBnyZMbilK1hZil6bM
-         ApP7xmWzv6QJqmG3xQ0tsqD63f9ZpIPdqNE8tsszcBR8caqco0TaAusMYdcmrsFGrqMK
-         OyLg==
-X-Gm-Message-State: AOAM531mvPk3NHoc36LE1+vhf6n9jswRDE4yNJppxtxSXt/m85mtn1Ws
-        CuGireedhK/p5uf7gmrZzAjoD7AVll1wWg==
-X-Google-Smtp-Source: ABdhPJz2alyk3kIW6tVwzoFxztK3sjDN82aEkf5YNJVr9GpkqT+fq5DcMpY+F2ReKoumCznpk96euA==
-X-Received: by 2002:a67:f9c8:: with SMTP id c8mr11412770vsq.47.1612252633013;
-        Mon, 01 Feb 2021 23:57:13 -0800 (PST)
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
-        by smtp.gmail.com with ESMTPSA id d200sm2429541vkd.54.2021.02.01.23.57.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Feb 2021 23:57:12 -0800 (PST)
-Received: by mail-ua1-f46.google.com with SMTP id g5so6821840uak.10;
-        Mon, 01 Feb 2021 23:57:11 -0800 (PST)
-X-Received: by 2002:ab0:6496:: with SMTP id p22mr492388uam.23.1612252631684;
- Mon, 01 Feb 2021 23:57:11 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=y+cMOXMiJhmN+BhMWGOCZ1mGQnNvZ1HLYwA10LUk+qs=;
+        b=l8fnq/X+jA5vpRL5O+Z66YH7JsB9afECmE7pkX5BEGpYgIW8fYRfPhEJnPfsx6qtXx
+         VnhmGjsW+tI/t3sGGFaiw1qRMcwtMz/HcRyVoG3EeXNn3jouZpF4h18lYEBfpcMXZt+x
+         OMfNIJ1wTaJkkagYEi9hTI3WMqzcyPAl9Q9ONTuVh+e6FVtbzapkCOR6aI9Tixtm9LkA
+         zgF1kGrs2r/gkLaaG2/K3CNIFUp8RjI6k5G8bMdxapYy9zT6N7KwakxRi3b0gftIOi35
+         Rmkn+W9XjoOdhJMieOMctSWIHu9yhqbCZbtg3E2/oMQXUblUs3Q2AyRdTjz4d0L30L8F
+         v2pw==
+X-Gm-Message-State: AOAM5304CpMc4CAkfu/7qQCZkXlw4z4EgVNNy4NaNcPjDF24i3kc1l99
+        F4fqytHsH0P7uk3LrZ0gcJhzMZnau83/ag==
+X-Google-Smtp-Source: ABdhPJw76yjiccRfuMor3XXLd3rnpk4IlwGPyv9gDv0sKW+2j5Rjt4voUr1UMcCID3auXrXGcyIIpg==
+X-Received: by 2002:a63:c743:: with SMTP id v3mr20558822pgg.316.1612253562732;
+        Tue, 02 Feb 2021 00:12:42 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:743e:7944:50c8:ff72])
+        by smtp.gmail.com with ESMTPSA id c8sm21343325pfo.148.2021.02.02.00.12.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Feb 2021 00:12:42 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH v6 0/8] drm/mediatek: add support for mediatek SOC MT8192
+Date:   Tue,  2 Feb 2021 16:12:29 +0800
+Message-Id: <20210202081237.774442-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
 MIME-Version: 1.0
-References: <20210127172500.13356-1-andre.przywara@arm.com> <20210127172500.13356-15-andre.przywara@arm.com>
-In-Reply-To: <20210127172500.13356-15-andre.przywara@arm.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Tue, 2 Feb 2021 15:57:00 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64p_NBVOBE1dsFXR3OOxZv21zaV5MUMRSJ35JQS9DFFqA@mail.gmail.com>
-Message-ID: <CAGb2v64p_NBVOBE1dsFXR3OOxZv21zaV5MUMRSJ35JQS9DFFqA@mail.gmail.com>
-Subject: Re: [PATCH v5 14/20] dt-bindings: bus: rsb: Add H616 compatible string
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Samuel Holland <samuel@sholland.org>,
-        Icenowy Zheng <icenowy@aosc.io>, Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 1:26 AM Andre Przywara <andre.przywara@arm.com> wrote:
->
-> Add the obvious compatible name to the existing RSB binding, and pair
-> it with the existing A23 fallback compatible string, as the devices are
-> compatible.
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+This series are based on kernel/git/chunkuang.hu/linux.git mediatek-drm-next
+and following patch:
+("soc: mediatek: add mtk mutex support for MT8183")
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210129092209.2584718-8-hsinyi@chromium.org/
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+This series also depends on component support in mmsys[1]:
+- [v4,06/10] soc: mediatek: mmsys: add component OVL_2L2
+- [v4,07/10] soc: mediatek: mmsys: add component POSTMASK
+- [v4,08/10] soc: mediatek: mmsys: add component RDMA4
+
+[1] https://patchwork.kernel.org/project/linux-mediatek/patch/1609815993-22744-7-git-send-email-yongqiang.niu@mediatek.com/
+
+Change since v5:
+- move postmask driver into mtk_drm_ddp_comp
+- fix review comments
+
+Change since v4:
+- fix review comments
+
+Change since v3:
+- change several function to rebase to mediatek-drm-next
+- drop pm runtime patches due to it's not related to mt8192 support
+- fix review comments in v3
+
+Changes since v2:
+- fix review comment in v2
+- add pm runtime for gamma and color
+- move ddp path select patch to mmsys series
+- remove some useless patch
+
+Yongqiang Niu (8):
+  drm/mediatek: add component OVL_2L2
+  drm/mediatek: add component POSTMASK
+  drm/mediatek: add component RDMA4
+  drm/mediatek: separate ccorr module
+  drm/mediatek: Fix ccorr size config
+  drm/mediatek: add matrix_bits private data for ccorr
+  soc: mediatek: add mtk mutex support for MT8192
+  drm/mediatek: add support for mediatek SOC MT8192
+
+ drivers/gpu/drm/mediatek/Makefile           |   3 +-
+ drivers/gpu/drm/mediatek/mtk_disp_ccorr.c   | 229 ++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h     |   9 +
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c     |  20 ++
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c    |   6 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 187 ++++++----------
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c      |  50 ++++-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
+ drivers/soc/mediatek/mtk-mutex.c            |  35 +++
+ 10 files changed, 421 insertions(+), 120 deletions(-)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
+
+-- 
+2.30.0.365.g02bc693789-goog
+
