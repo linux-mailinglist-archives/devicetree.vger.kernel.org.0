@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 061A830B957
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 09:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8CB630B95B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 09:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231806AbhBBIOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 03:14:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59676 "EHLO
+        id S232295AbhBBIOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 03:14:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231825AbhBBIOG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 03:14:06 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9F7DC061794
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 00:12:55 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id j11so9426973plt.11
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 00:12:55 -0800 (PST)
+        with ESMTP id S231851AbhBBIOH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 03:14:07 -0500
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38D8AC0617A7
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 00:12:58 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id 8so6694994plc.10
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 00:12:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=3bXT4E5Sy6uZLs7wQdo5bJTu5WRYHheEqLaM47OwgPQ=;
-        b=N9CZId4S7hNYbNn/EmNWWSAr8wF37aSzNhCtlBao3KDWLCsBnQnmZwcwgNMVJ+Qgwo
-         aEvbUuzL0mg9ObRvaxRKPwBfDVNBc/IjdMlgNHMZ3Imd5TFB8ytiv7YYtsf12SVSmqA6
-         D0RYUGNidfFwif5NovKfJrFGa4Yw/81TQFZvI=
+        bh=DZdphxYwQpNgHOFUOUaWm9uwAnlzsS+AdxWYfgDd9hA=;
+        b=nyz2ipv8gR61iZC6SDEU3wS2dS5Fsq7B8cB5SdScOyLbk4RWn/orif0TrbbnOuimXP
+         rOuZMPHgjm3LHUVOF1Pf07US1Dcky4JW3fryFcnj9+9+Ftw60OEv/6OPpg0Cp5hliapK
+         gtUc64F3DmnzUxFYTaSI+3f3F74jTKBqr3PD8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=3bXT4E5Sy6uZLs7wQdo5bJTu5WRYHheEqLaM47OwgPQ=;
-        b=XHnVrvWBWf0A2gIBI7jK/Oh8GOiGgaed57ZdDX4kdkSYaYQ0Veye/74RhP9jQh+YsR
-         vF2HpWhSvweTRj+LSXgX0/ggYQX2F20UoKQDOkG5uFA05ZhyzQc2SAZ4UVhhg62yz+w6
-         yGMC/EvdywiSfYFs9n8Pge8B8Lq4rLjzGuEvOkrps2WLUHm6YWIAkerOhKmGvdBINK/h
-         FRl6RoluC8XJNJjmGAOnp5IsllT927A6Ce8H9d3TefioNPeACryrGEMwK6lH2Gz1rdpQ
-         JCr/s44PfnVmG57uItvpuCs9gP4B1IFxq0el8Jr46G4MVCJOGyZ10TfFNry2vkw1DItv
-         8tNw==
-X-Gm-Message-State: AOAM531L5BWSX+8FouuI8PlKdjoRBa2FKP+ys5fda8bosZNxPlwQOEtg
-        kSmp29Wi7KggsrLy58rq7xNv3A==
-X-Google-Smtp-Source: ABdhPJyLF2wHpV/D+HMLvMmxWe3iY+vP7l2QjMeBApFcWHo4WmvFIsbrCNchQ+/N5KYiGO8dwC/Qbg==
-X-Received: by 2002:a17:90b:512:: with SMTP id r18mr3195381pjz.124.1612253575220;
-        Tue, 02 Feb 2021 00:12:55 -0800 (PST)
+        bh=DZdphxYwQpNgHOFUOUaWm9uwAnlzsS+AdxWYfgDd9hA=;
+        b=dWQTyM7T6izmtBBxY1p8G++//Tyh5CCJfxwRCEpjQ6QzXSFoFRbRX5aA0fhKuEYFPV
+         d0zW8a9ij0O1bD/KHkinCZJ6Mb5ZSs16PbHr/3aPLNzuzPwfNf5dbCa5DZupfMX7yVJh
+         05EESwERzhTwZjjLhJETrhUs0qIlb/CFWZmB33GBySYUKDfLsfc8UlFu6+eG2MbCh+FJ
+         81g7GshjVQYXVp+ZA1FuMDbvIcxKmYXAYPeN495ZybkKkhiMSYC163ftvKt68+M2A9aH
+         HhbxQAg6T1cnVhbxK/CsEMER02Hf0EM0BMPFc8/xeyJ701WIkf9lFeSjlNNdxRHDBkdP
+         hWhg==
+X-Gm-Message-State: AOAM532DsQNW7CmXkbZTWm2XOtf9Hql+0hQKwnB55NjW92fnpx11vAjv
+        wZMP13UE2ZIYiY5sc1sJzZNUZg==
+X-Google-Smtp-Source: ABdhPJyF8bc5pdb1FJPBhQ+/6UsN7ak+pFPIp5SpdezQiD7juh3TAHxaPLhUkY/18ZfpcAMIdFReNw==
+X-Received: by 2002:a17:90a:6549:: with SMTP id f9mr3147931pjs.17.1612253577756;
+        Tue, 02 Feb 2021 00:12:57 -0800 (PST)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:743e:7944:50c8:ff72])
-        by smtp.gmail.com with ESMTPSA id c8sm21343325pfo.148.2021.02.02.00.12.52
+        by smtp.gmail.com with ESMTPSA id c8sm21343325pfo.148.2021.02.02.00.12.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 00:12:54 -0800 (PST)
+        Tue, 02 Feb 2021 00:12:57 -0800 (PST)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Matthias Brugger <matthias.bgg@gmail.com>
@@ -53,9 +53,9 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v6 5/8] drm/mediatek: Fix ccorr size config
-Date:   Tue,  2 Feb 2021 16:12:34 +0800
-Message-Id: <20210202081237.774442-6-hsinyi@chromium.org>
+Subject: [PATCH v6 6/8] drm/mediatek: add matrix_bits private data for ccorr
+Date:   Tue,  2 Feb 2021 16:12:35 +0800
+Message-Id: <20210202081237.774442-7-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
 In-Reply-To: <20210202081237.774442-1-hsinyi@chromium.org>
 References: <20210202081237.774442-1-hsinyi@chromium.org>
@@ -67,29 +67,91 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-Fix setting to follow hardware datasheet. The original error setting
-affects mt8192 display.
+Add matrix_bits and coeffs_precision to ccorr private data:
+- matrix bits of mt8183 is 10
+- matrix bits of mt8192 is 11
 
 Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
 ---
- drivers/gpu/drm/mediatek/mtk_disp_ccorr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/mediatek/mtk_disp_ccorr.c | 27 ++++++++++++++---------
+ 1 file changed, 17 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c b/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
-index 6ee2431e6b843..6c86673a835c3 100644
+index 6c86673a835c3..141cb36b9c07b 100644
 --- a/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
 +++ b/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
-@@ -65,7 +65,7 @@ void mtk_ccorr_config(struct device *dev, unsigned int w,
- {
- 	struct mtk_disp_ccorr *ccorr = dev_get_drvdata(dev);
+@@ -30,7 +30,7 @@
+ #define DISP_CCORR_COEF_4			0x0090
  
--	mtk_ddp_write(cmdq_pkt, h << 16 | w, &ccorr->cmdq_reg, ccorr->regs,
-+	mtk_ddp_write(cmdq_pkt, w << 16 | h, &ccorr->cmdq_reg, ccorr->regs,
- 		      DISP_CCORR_SIZE);
- 	mtk_ddp_write(cmdq_pkt, CCORR_ENGINE_EN, &ccorr->cmdq_reg, ccorr->regs,
- 		      DISP_CCORR_CFG);
+ struct mtk_disp_ccorr_data {
+-	u32 reserved;
++	u32 matrix_bits;
+ };
+ 
+ /**
+@@ -85,21 +85,22 @@ void mtk_ccorr_stop(struct device *dev)
+ 	writel_relaxed(0x0, ccorr->regs + DISP_CCORR_EN);
+ }
+ 
+-/* Converts a DRM S31.32 value to the HW S1.10 format. */
+-static u16 mtk_ctm_s31_32_to_s1_10(u64 in)
++/* Converts a DRM S31.32 value to the HW S1.n format. */
++static u16 mtk_ctm_s31_32_to_s1_n(u64 in, u32 n)
+ {
+ 	u16 r;
+ 
+ 	/* Sign bit. */
+-	r = in & BIT_ULL(63) ? BIT(11) : 0;
++	r = in & BIT_ULL(63) ? BIT(n + 1) : 0;
+ 
+ 	if ((in & GENMASK_ULL(62, 33)) > 0) {
+-		/* identity value 0x100000000 -> 0x400, */
++		/* identity value 0x100000000 -> 0x400(mt8183), */
++		/* identity value 0x100000000 -> 0x800(mt8192), */
+ 		/* if bigger this, set it to max 0x7ff. */
+-		r |= GENMASK(10, 0);
++		r |= GENMASK(n, 0);
+ 	} else {
+-		/* take the 11 most important bits. */
+-		r |= (in >> 22) & GENMASK(10, 0);
++		/* take the n+1 most important bits. */
++		r |= (in >> (32 - n)) & GENMASK(n, 0);
+ 	}
+ 
+ 	return r;
+@@ -114,6 +115,7 @@ void mtk_ccorr_ctm_set(struct device *dev, struct drm_crtc_state *state)
+ 	uint16_t coeffs[9] = { 0 };
+ 	int i;
+ 	struct cmdq_pkt *cmdq_pkt = NULL;
++	u32 matrix_bits = ccorr->data->matrix_bits;
+ 
+ 	if (!blob)
+ 		return;
+@@ -122,7 +124,7 @@ void mtk_ccorr_ctm_set(struct device *dev, struct drm_crtc_state *state)
+ 	input = ctm->matrix;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(coeffs); i++)
+-		coeffs[i] = mtk_ctm_s31_32_to_s1_10(input[i]);
++		coeffs[i] = mtk_ctm_s31_32_to_s1_n(input[i], matrix_bits);
+ 
+ 	mtk_ddp_write(cmdq_pkt, coeffs[0] << 16 | coeffs[1],
+ 		      &ccorr->cmdq_reg, ccorr->regs, DISP_CCORR_COEF_0);
+@@ -199,8 +201,13 @@ static int mtk_disp_ccorr_remove(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
++static const struct mtk_disp_ccorr_data mt8183_ccorr_driver_data = {
++	.matrix_bits = 10,
++};
++
+ static const struct of_device_id mtk_disp_ccorr_driver_dt_match[] = {
+-	{ .compatible = "mediatek,mt8183-disp-ccorr"},
++	{ .compatible = "mediatek,mt8183-disp-ccorr",
++	  .data = &mt8183_ccorr_driver_data},
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, mtk_disp_ccorr_driver_dt_match);
 -- 
 2.30.0.365.g02bc693789-goog
 
