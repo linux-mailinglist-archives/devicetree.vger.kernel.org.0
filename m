@@ -2,182 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F03930B44F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 01:50:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB7BB30B452
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 01:52:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231363AbhBBAuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Feb 2021 19:50:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49420 "EHLO
+        id S230197AbhBBAvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Feb 2021 19:51:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231317AbhBBAuj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 19:50:39 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68993C061756
-        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 16:49:59 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id 8so6110367plc.10
-        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 16:49:59 -0800 (PST)
+        with ESMTP id S229527AbhBBAvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Feb 2021 19:51:17 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B28D7C061573
+        for <devicetree@vger.kernel.org>; Mon,  1 Feb 2021 16:50:37 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id o20so13204866pfu.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Feb 2021 16:50:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=lyDxKpFLYEIFhDSFlv90rmUQ9DjyIRRYYsBTc2zYzus=;
-        b=IvcIauqBfcWEPcZYFfbPffPEqNA8Ff1bKTED6KA+tVDv3qnuE1XwllYSiowEpMKHX4
-         zlSA7BQAJxBCKN/AqGkPd+VBywOt8wx+V0HAhee0ozWa/tPu39B9rXzDXC2IgYA8HaGN
-         Qs4ub/Tyu5qhBl6uOlj52KuNFUar6SVZ2N5NVFc+GV2IJ3eK6r9bA7/Z25Wut6x4fd6X
-         RIxAZ56Zwz3yzPuxCD5ExHKAxLT/RMV9tGccCMTke3mzzw0+KxW3s1L1JSw0Bsj+BfUl
-         ipEDTSVWWz584+OoyCyM14EvAmbLNL0WIj1z6Tb1m4v0Ai5wzj+mOQn5w654BFTZ/7yN
-         0Gtw==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=27tKhSPFIqMlc7ipauT/Jyzv2QmoBByq5yY9O8csaB0=;
+        b=FGsXTgnbWdL/VfLwzPmHXFsdESL4PYfRb3bu9bkTk5A+FSJtSvsRI8iVTfhw/+7tzR
+         XO6932S5OtqRqOHKwk5Ytm9iqkR2iZX1aTTolJRNWvnf/CDU4I3p53Y0NtRQ9MMzE3KP
+         lIF8TDVxuxzKmyW/416vsts5j+b1IYj4k9kbT6aB7F/ejeDR2WPCxvVl1gptxoOJ9PD5
+         cFEzVUPe2njXRgt8TRuo/w6amKL4KVWxf/2/PTqTcn8TMgWJ3La7F99SAQtBH4MoTXPw
+         cscIobbem362gSuMW1Tezctu5n7MJMjQIcKu83J8OPMBUuinosJgI0rwGQkIDGGHaWDC
+         mqNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lyDxKpFLYEIFhDSFlv90rmUQ9DjyIRRYYsBTc2zYzus=;
-        b=X8w6a6wOhYVw3oEakya05fqD9rgzreauyKzM5qg+TBqdh7KLUjyNeEIR4F5vlGBlAI
-         CPlLTNLRZlu9X2TPq72+b3F8jxZOUmvrfpuRI8+Jm+qN/sO7osb/DCwn7L1bjrdGiU8W
-         5Y5s4H3PdHdFze4TZa2aqr9zUNL5k6b8qcGRCiOlWV0MkXrvqikVJ18kGBeZIsfodPE7
-         GSl4LvB9REVxjXzggfI/ypL4v+tx2BKp7v7F0pQ7oowbXyO8aQ96pgrJGK/KIhLGTOK4
-         T31aVmsniyzl9+8w//VeqYMCBWtf7vrB4ClRrYpZLOoBms4QdJz6c639PWWgi69BpHfe
-         JDTA==
-X-Gm-Message-State: AOAM53026tJMpPxHrK3NGoK7mPy6UxhnenBBBjKSPn5vyZIokp1tkAbj
-        qnBefuA9cNvzehxeSwfflSxW+w==
-X-Google-Smtp-Source: ABdhPJzeoaVLeZnCQPwLpf9+abzuUoEMVRiGmc7vWQMfD1tXuLinXkvOswPMl9BrtBLKprfIn9u35A==
-X-Received: by 2002:a17:90a:a516:: with SMTP id a22mr1530763pjq.192.1612226998952;
-        Mon, 01 Feb 2021 16:49:58 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id v26sm18276373pff.195.2021.02.01.16.49.57
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=27tKhSPFIqMlc7ipauT/Jyzv2QmoBByq5yY9O8csaB0=;
+        b=CZViOgmPmjb3J4Cv9l++vDTgoTGG1ZmrSWfg1MLwyywllOIzkfcUE5hx19rsU/7KHW
+         L/pSS26kjrPNr4GZDn7qZKv5Ug29CEKDM4I7PIOWA3H9sWivlGFPfVw2L7NaeygxrFXm
+         p5SolFejoW2qpGb50IOW5C2L/mq9CpdGeGBbGXIDiNOkSXo+fu1xphgt7PkRizLDrs8a
+         n+jfoEcsp1/bzX57MLMzOAmoNwQNsWAq38uvOB3+p4VCj5wRT9em8kVIXhstH7/B+P53
+         VWHcWTexDyue0KlnKFlZmOQM6BuNYcmA1meRxD/utF3T8pO+E/gJAWaXmVnzIpixNmGR
+         rRWw==
+X-Gm-Message-State: AOAM530iZzo2vmi/DBeRTZBF2qThoFFRNcdWhi2ojXewUnBWtDTahP8N
+        JWwhHRBBgb4DlJ3W83CVBCD9wQ==
+X-Google-Smtp-Source: ABdhPJxkIhp3kWe0EgoOtzHX/utXf4RXQ3p3onEWFdayXG6hNlmdJuwme8HwjvDmSsXhXoBpnbLVsg==
+X-Received: by 2002:a65:590d:: with SMTP id f13mr19575154pgu.38.1612227037223;
+        Mon, 01 Feb 2021 16:50:37 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id cq2sm595324pjb.55.2021.02.01.16.50.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Feb 2021 16:49:57 -0800 (PST)
-Date:   Mon, 1 Feb 2021 17:49:56 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Cc:     "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 00/17] remoteproc: Add support for detaching a rproc
-Message-ID: <20210202004956.GD1319650@xps15>
-References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
- <64b559dc-9e89-c351-ddee-f9cebd155ed7@st.com>
+        Mon, 01 Feb 2021 16:50:36 -0800 (PST)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Alexander Stein <alexander.stein@mailbox.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] arm64: dts: meson: g12b: odroid-n2: Assign a fixed
+ index to mmc devices
+In-Reply-To: <1975982.ltkoRUPMKj@kongar>
+References: <20210127230852.66686-1-alexander.stein@mailbox.org>
+ <8de4d82e-b9a5-f809-ea67-5527f9fdde5f@baylibre.com>
+ <1975982.ltkoRUPMKj@kongar>
+Date:   Mon, 01 Feb 2021 16:50:35 -0800
+Message-ID: <7hv9bbgun8.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <64b559dc-9e89-c351-ddee-f9cebd155ed7@st.com>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 10:21:24AM +0100, Arnaud POULIQUEN wrote:
-> Hi Mathieu
-> 
-> On 12/18/20 6:32 PM, Mathieu Poirier wrote:
-> > Following the work done here [1], this set provides support for the
-> > remoteproc core to release resources associated with a remote processor
-> > without having to switch it off. That way a platform driver can be removed
-> > or the application processor power cycled while the remote processor is
-> > still operating.
-> > 
-> > Of special interest in this series are patches 5 and 6 where getting the
-> > address of the resource table installed by an eternal entity if moved to
-> > the core.  This is to support scenarios where a remote process has been
-> > booted by the core but is being detached.  To re-attach the remote
-> > processor, the address of the resource table needs to be known at a later
-> > time than the platform driver's probe() function.
-> > 
-> > Applies cleanly on v5.10
-> > 
-> > Thanks,
-> > Mathieu
-> > 
-> > [1]. https://lkml.org/lkml/2020/7/14/1600
-> > 
-> > ----
-> > New for v4:
-> > - Made binding description OS agnostic (Rob)
-> > - Added functionality to set the external resource table in the core
-> > - Fixed a crash when detaching (Arnaud)
-> > - Fixed error code propagation in rproc_cdev_relase() and rproc_del() (Arnaud)
-> > - Added RB tags
-> 
-> 
-> I tested you series, attach and  detach is working well.
-> 
-> Then I faced issue when tried to re-attach after a detach.
+Alexander Stein <alexander.stein@mailbox.org> writes:
+
+> Hi,
 >
+> Am Freitag, 29. Januar 2021, 09:07:45 CET schrieb Neil Armstrong:
+>> On 28/01/2021 00:08, Alexander Stein wrote:
+>> > Recently introduced async probe on mmc devices can shuffle block IDs.
+>> > Pin them to fixed values to ease booting in environments where UUIDs
+>> > are not practical. Use newly introduced aliases for mmcblk devices from 
+> [1].
+>> > [1]
+>> > https://patchwork.kernel.org/patch/11747669/
+>> 
+>> I understand the goal, and this should be done for _all_ boards, not only 
+> the Odroid-N2.
+>
+> I see. So there are 2 options:
+> 1.
+> Set the mapping for all 3 sd_emmc_* in the top-most .dtsi
+> Upside: very easy patch
+> Downside: When sd_emmc_a is not enabled "mmc0" will never be available.
+> Might be confusing.
 
-Right, in this case don't expect the re-attach to work properly because function
-stm32_rproc_detach() does not exist.  As such the M4 doesn't put itself back
-in "wait-for-attach" mode as it does when booted by the boot loader.  If I
-remember correctly we talked about that during an earlier conversation and we
-agreed FW support would be needed to properly test the re-attach.
- 
-> But I don't know if this feature has to be supported in this step.
-> 
-> The 2 issues I found are:
-> 
-> 1) memory carveouts are released on detach so need to be reinitialized.
-> The use of prepare/unprepare for the attach and detach would solve the issue but
-> probably need to add parameter to differentiate a start/stop from a attach/detach.
-> 
-> 2) The vrings in the loaded resource table (so no cached) has to be properly
-> reinitialized. In rproc_free_vring  the vring da is set to 0 that is then
-> considered as a fixed address.
-> 
-> Here is a fix which works on the stm32 platform
-> 
-> @@ -425,7 +425,7 @@ void rproc_free_vring(struct rproc_vring *rvring)
->  	 */
->  	if (rproc->table_ptr) {
->  		rsc = (void *)rproc->table_ptr + rvring->rvdev->rsc_offset;
-> -		rsc->vring[idx].da = 0;
-> +		rsc->vring[idx].da = FW_RSC_ADDR_ANY;
->  		rsc->vring[idx].notifyid = -1;
->  	}
->  }
+sd_emmc_a is (almost?) always the iface used for SDIO devices, which are
+not always present.
 
-In light of the above let me know if these two issues are still relevant.  If
-so I'll investigate further.
+I would recommend we go with a single mapping in the top-level .dtsi
 
-Thanks,
-Mathieu
+  SD card -> mmc0  (sd_emmc_b)
+  eMMC    -> mmc1  (sd_emmc_c)
+  SDIO    -> mmc2  (sd_emmc_a)
 
-> 
-> Here, perhaps a better alternative would be to make a cached copy on attach
-> before updating it. On the next attach, the cached copy would be copied as it is
-> done in rproc_start.
-> 
-> Thanks,
-> Arnaud
-> 
-> 
-> > 
-> > Mathieu Poirier (17):
-> >   dt-bindings: remoteproc: Add bindind to support autonomous processors
-> >   remoteproc: Re-check state in rproc_shutdown()
-> >   remoteproc: Remove useless check in rproc_del()
-> >   remoteproc: Rename function rproc_actuate()
-> >   remoteproc: Add new get_loaded_rsc_table() remoteproc operation
-> >   remoteproc: stm32: Move resource table setup to rproc_ops
-> >   remoteproc: Add new RPROC_ATTACHED state
-> >   remoteproc: Properly represent the attached state
-> >   remoteproc: Properly deal with a kernel panic when attached
-> >   remoteproc: Add new detach() remoteproc operation
-> >   remoteproc: Introduce function __rproc_detach()
-> >   remoteproc: Introduce function rproc_detach()
-> >   remoteproc: Add return value to function rproc_shutdown()
-> >   remoteproc: Properly deal with a stop request when attached
-> >   remoteproc: Properly deal with a start request when attached
-> >   remoteproc: Properly deal with detach request
-> >   remoteproc: Refactor rproc delete and cdev release path
-> > 
-> >  .../bindings/remoteproc/remoteproc-core.yaml  |  27 +++
-> >  drivers/remoteproc/remoteproc_cdev.c          |  32 ++-
-> >  drivers/remoteproc/remoteproc_core.c          | 211 +++++++++++++++---
-> >  drivers/remoteproc/remoteproc_internal.h      |   8 +
-> >  drivers/remoteproc/remoteproc_sysfs.c         |  20 +-
-> >  drivers/remoteproc/stm32_rproc.c              | 147 ++++++------
-> >  include/linux/remoteproc.h                    |  24 +-
-> >  7 files changed, 344 insertions(+), 125 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
-> > 
+it's not exactly obvious why we don't go 0,1,2 == A,B,C but just
+document it in the top-level .dtsi.
+
+This approach also has the benefit of having the devices show up how
+many/most boards showed up before the async probe changes.
+
+Kevin
