@@ -2,141 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 976C330B7D3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 07:31:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C12130B876
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 08:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229719AbhBBG3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 01:29:30 -0500
-Received: from so15.mailgun.net ([198.61.254.15]:28285 "EHLO so15.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231987AbhBBG30 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 01:29:26 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1612247346; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=t4d4srjb9O8cuvbHKvxP3tMfBWF01KKcSjaLhMt8Gww=; b=mO5NIDmbXcGclRvMXmIiCaC4Pwve6zo2F7hlC1fGa4oTQpvnJSXTXR7zQH3POY0wpak2eXVs
- 73N0oD2+wKGWDEM+0YzqWs51vCsE03Go3PvQEc6R+R3CsdLa6CM/NZwnN8b7PyFPKP5i4iqX
- tl+qcy4em32oB6VlhNxBSBFdu1Q=
-X-Mailgun-Sending-Ip: 198.61.254.15
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 6018f0e27a21b36a9d335c95 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Feb 2021 06:27:46
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 5B7B8C433CA; Tue,  2 Feb 2021 06:27:45 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 157F0C433C6;
-        Tue,  2 Feb 2021 06:27:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 157F0C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH] ASoC: qcom: Fix typo error in HDMI regmap config callbacks
-Date:   Tue,  2 Feb 2021 11:57:27 +0530
-Message-Id: <20210202062727.22469-1-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
+        id S231488AbhBBHOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 02:14:31 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:60070 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231532AbhBBHOa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 02:14:30 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1127Cj1Y032082;
+        Tue, 2 Feb 2021 01:12:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1612249965;
+        bh=fI3v7V/6roxWqrmKFMoiR5wcJfYMksqrg0LAHvjq1tE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=gQYx0er59N96BKtFWGMHAa3PZEa7shX/GLalfPfyGaPZ8dPPPlL9VsxtG/F5I4Mb7
+         l1FK7w4Cbugt5Z58n3qpyRUo/jzCrKjbfV/ed3MTOo2QLegV6UadPOhM4bhwdRw+BU
+         gO/FTSRPHEVLGRzYbva8d327XpIk0kSG+ENsrFkM=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1127CjTq047865
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 2 Feb 2021 01:12:45 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 2 Feb
+ 2021 01:12:45 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 2 Feb 2021 01:12:45 -0600
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1127CgDV062802;
+        Tue, 2 Feb 2021 01:12:42 -0600
+Subject: Re: [PATCH 2/2] arm64: dts: ti: Add support for AM642 SK
+To:     Suman Anna <s-anna@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Dave Gerlach <d-gerlach@ti.com>
+References: <20210121143924.26213-1-lokeshvutla@ti.com>
+ <20210121143924.26213-3-lokeshvutla@ti.com>
+ <20210121153622.bqgvaxnrqaibu2ka@curve>
+ <e7097efe-6e9c-3bf9-0b1c-e34c6c14cbf1@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <86cd9194-de2b-7bd5-24bb-aadabe7d0ec9@ti.com>
+Date:   Tue, 2 Feb 2021 12:42:41 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <e7097efe-6e9c-3bf9-0b1c-e34c6c14cbf1@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Had a typo in lpass platform driver that resulted in crash
-during suspend/resume with an HDMI dongle connected.
 
-The regmap read/write/volatile regesters validation callbacks in lpass-cpu
-were using MI2S rdma_channels count instead of hdmi_rdma_channels.
 
-This typo error causing to read registers from the regmap beyond the length
-of the mapping created by ioremap().
+On 26/01/21 10:20 pm, Suman Anna wrote:
+> Hi Lokesh,
+> 
+> On 1/21/21 9:36 AM, Nishanth Menon wrote:
+>> On 20:09-20210121, Lokesh Vutla wrote:
+>>> AM642 StarterKit (SK) board is a low cost, small form factor board
+>>> designed for TI’s AM642 SoC. It supports the following interfaces:
+>>> * 2 GB LPDDR4 RAM
+>>> * x2 Gigabit Ethernet interfaces capable of working in switch and MAC mode
+>>> * x1 USB 3.0 Type-A port
+>>> * x1 UHS-1 capable µSD card slot
+>>> * 2.4/5 GHz WLAN + Bluetooth 4.2 through WL1837
+>>> * 512 Mbit OSPI flash
+>>> * x2 UART through UART-USB bridge
+>>> * XDS110 for onboard JTAG debug using USB
+>>> * Temperature sensors, user push buttons and LEDs
+>>> * 40-pin Raspberry Pi compatible GPIO header
+>>> * 24-pin header for peripherals in MCU island (I2C, UART, SPI, IO)
+>>> * 54-pin header for Programmable Realtime Unit (PRU) IO pins
+>>> * Interface for remote automation (power and reset, boot mode change)
+>>
+>> might be nice to state "power measurement and reset control"
 
-This fix avoids the need for reducing number hdmi_rdma_channels,
-which is done in
-commit 7dfe20ee92f6 ("ASoC: qcom: Fix number of HDMI RDMA channels on sc7180").
-So reverting the same.
+Sure will fix in v2.
 
-Fixes: 7cb37b7bd0d3c ("ASoC: qcom: Add support for lpass hdmi driver")
+>>
+>>>
+>>> Add basic support for AM642 SK.
+>>>
+>>> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>>> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+>>> ---
+>>>  arch/arm64/boot/dts/ti/Makefile        |   3 +-
+>>>  arch/arm64/boot/dts/ti/k3-am642-sk.dts | 145 +++++++++++++++++++++++++
+>>>  2 files changed, 147 insertions(+), 1 deletion(-)
+>>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-sk.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>>> index c687739e2bca..6aa642eb56d4 100644
+>>> --- a/arch/arm64/boot/dts/ti/Makefile
+>>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>>> @@ -12,4 +12,5 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
+>>>  
+>>>  dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+>>>  
+>>> -dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+>>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb \
+>>> +			 k3-am642-sk.dtb
+>>
+>> no please. Just:
+>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- sound/soc/qcom/lpass-cpu.c    | 8 ++++----
- sound/soc/qcom/lpass-sc7180.c | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
+Okay.
 
-diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-index a669202e0001..c642e5f8f28c 100644
---- a/sound/soc/qcom/lpass-cpu.c
-+++ b/sound/soc/qcom/lpass-cpu.c
-@@ -595,7 +595,7 @@ static bool lpass_hdmi_regmap_writeable(struct device *dev, unsigned int reg)
- 			return true;
- 	}
- 
--	for (i = 0; i < v->rdma_channels; ++i) {
-+	for (i = 0; i < v->hdmi_rdma_channels; ++i) {
- 		if (reg == LPAIF_HDMI_RDMACTL_REG(v, i))
- 			return true;
- 		if (reg == LPAIF_HDMI_RDMABASE_REG(v, i))
-@@ -641,7 +641,7 @@ static bool lpass_hdmi_regmap_readable(struct device *dev, unsigned int reg)
- 	if (reg == LPASS_HDMITX_APP_IRQSTAT_REG(v))
- 		return true;
- 
--	for (i = 0; i < v->rdma_channels; ++i) {
-+	for (i = 0; i < v->hdmi_rdma_channels; ++i) {
- 		if (reg == LPAIF_HDMI_RDMACTL_REG(v, i))
- 			return true;
- 		if (reg == LPAIF_HDMI_RDMABASE_REG(v, i))
-@@ -668,7 +668,7 @@ static bool lpass_hdmi_regmap_volatile(struct device *dev, unsigned int reg)
- 	if (reg == LPASS_HDMI_TX_LEGACY_ADDR(v))
- 		return true;
- 
--	for (i = 0; i < v->rdma_channels; ++i) {
-+	for (i = 0; i < v->hdmi_rdma_channels; ++i) {
- 		if (reg == LPAIF_HDMI_RDMACURR_REG(v, i))
- 			return true;
- 	}
-@@ -812,7 +812,7 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
- 			return PTR_ERR(drvdata->hdmiif);
- 
- 		lpass_hdmi_regmap_config.max_register = LPAIF_HDMI_RDMAPER_REG(variant,
--					variant->hdmi_rdma_channels);
-+					variant->hdmi_rdma_channels - 1);
- 		drvdata->hdmiif_map = devm_regmap_init_mmio(dev, drvdata->hdmiif,
- 					&lpass_hdmi_regmap_config);
- 		if (IS_ERR(drvdata->hdmiif_map)) {
-diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-index 735c9dac28f2..8c168d3c589e 100644
---- a/sound/soc/qcom/lpass-sc7180.c
-+++ b/sound/soc/qcom/lpass-sc7180.c
-@@ -171,7 +171,7 @@ static struct lpass_variant sc7180_data = {
- 	.rdma_channels		= 5,
- 	.hdmi_rdma_reg_base		= 0x64000,
- 	.hdmi_rdma_reg_stride	= 0x1000,
--	.hdmi_rdma_channels		= 3,
-+	.hdmi_rdma_channels		= 4,
- 	.dmactl_audif_start	= 1,
- 	.wrdma_reg_base		= 0x18000,
- 	.wrdma_reg_stride	= 0x1000,
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+>>
+>> See arch/arm64/boot/dts/nvidia/Makefile for example.
+>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+>>> new file mode 100644
+>>> index 000000000000..5b473aaa225d
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+>>> @@ -0,0 +1,145 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include "k3-am642.dtsi"
+>>> +
+>>> +/ {
+>>> +	compatible =  "ti,am642-evm", "ti,am642";
+> 
+> Looks like a copy-paste error. As per patch 1, you should be using ti,am642-sk
+> and not ti,am642-evm.
 
+Oops. Good catch, will fix in v2.
+
+> 
+>>> +	model = "Texas Instruments AM642 SK";
+>>> +
+>>> +	chosen {
+>>> +		stdout-path = "serial2:115200n8";
+>>> +		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
+>>> +	};
+>>> +
+>>> +	memory@80000000 {
+>>> +		device_type = "memory";
+>>> +		/* 2G RAM */
+>>> +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
+>>> +
+>>> +	};
+>>> +
+>>> +	reserved-memory {
+>>> +		#address-cells = <2>;
+>>> +		#size-cells = <2>;
+>>> +		ranges;
+>>> +
+>>> +		secure_ddr: optee@9e800000 {
+>>> +			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
+>>> +			alignment = <0x1000>;
+>>> +			no-map;
+>>> +		};
+>>> +	};
+>>> +
+>>> +	vusb_main: fixed-regulator-vusb-main5v0 {
+>>> +		/* USB MAIN INPUT 5V DC */
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "vusb_main5v0";
+>>> +		regulator-min-microvolt = <5000000>;
+>>> +		regulator-max-microvolt = <5000000>;
+>>> +		regulator-always-on;
+>>> +		regulator-boot-on;
+>>> +	};
+>>> +
+>>> +	vcc_3v3_sys: fixedregulator-vcc-3v3-sys {
+>>> +		/* output of LP8733xx */
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "vcc_3v3_sys";
+>>> +		regulator-min-microvolt = <3300000>;
+>>> +		regulator-max-microvolt = <3300000>;
+>>> +		vin-supply = <&vusb_main>;
+>>> +		regulator-always-on;
+>>> +		regulator-boot-on;
+>>> +	};
+>>> +
+>>> +	vdd_mmc1: fixed-regulator-sd {
+>>> +		/* TPS2051BD */
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "vdd_mmc1";
+>>> +		regulator-min-microvolt = <3300000>;
+>>> +		regulator-max-microvolt = <3300000>;
+>>> +		regulator-boot-on;
+>>> +		enable-active-high;
+>>> +		vin-supply = <&vcc_3v3_sys>;
+>>> +		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&main_pmx0 {
+>>> +	main_mmc1_pins_default: main-mmc1-pins-default {
+>>> +		pinctrl-single,pins = <
+>>> +			AM64X_IOPAD(0x0294, PIN_INPUT, 0) /* (J19) MMC1_CMD */
+>>> +			AM64X_IOPAD(0x0290, PIN_INPUT, 0) /* (#N/A) MMC1_CLKLB */
+>>> +			AM64X_IOPAD(0x028c, PIN_INPUT, 0) /* (L20) MMC1_CLK */
+>>> +			AM64X_IOPAD(0x0288, PIN_INPUT, 0) /* (K21) MMC1_DAT0 */
+>>> +			AM64X_IOPAD(0x0284, PIN_INPUT, 0) /* (L21) MMC1_DAT1 */
+>>> +			AM64X_IOPAD(0x0280, PIN_INPUT, 0) /* (K19) MMC1_DAT2 */
+>>> +			AM64X_IOPAD(0x027c, PIN_INPUT, 0) /* (K18) MMC1_DAT3 */
+>>> +			AM64X_IOPAD(0x0298, PIN_INPUT, 0) /* (D19) MMC1_SDCD */
+>>> +		>;
+>>> +	};
+>>> +
+>>> +	main_i2c1_pins_default: main-i2c1-pins-default {
+>>> +		pinctrl-single,pins = <
+>>> +			AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
+>>> +			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
+>>> +		>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&main_uart1 {
+>>> +	/* main_uart1 is reserved for firmware usage */
+>>> +	status = "reserved";
+>>> +};
+>>> +
+>>> +&main_uart2 {
+>>> +	status = "disabled";
+>>> +};
+>>> +
+>>> +&main_uart3 {
+>>> +	status = "disabled";
+>>> +};
+>>> +
+>>> +&main_uart4 {
+>>> +	status = "disabled";
+>>> +};
+>>> +
+>>> +&main_uart5 {
+>>> +	status = "disabled";
+>>> +};
+>>> +
+>>> +&main_uart6 {
+>>> +	status = "disabled";
+>>> +};
+>>
+>> I think disabling &mcu_uart0 and &mcu_uart1 might also be a good idea?
+
+Agreed. Will fix in v2.
+
+>>> +
+>>> +&main_i2c1 {
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&main_i2c1_pins_default>;
+>>> +	clock-frequency = <400000>;
+>>> +
+>>> +	exp1: gpio@70 {
+>>> +		compatible = "nxp,pca9538";
+>>> +		reg = <0x70>;
+>>> +		gpio-controller;
+>>> +		#gpio-cells = <2>;
+>>> +		gpio-line-names = "GPIO_CPSW2_RST", "GPIO_CPSW1_RST",
+>>> +				  "PRU_DETECT", "MMC1_SD_EN",
+>>> +				  "VPP_LDO_EN", "RPI_PS_3V3_En",
+>>> +				  "RPI_PS_5V0_En", "RPI_HAT_DETECT";
+>>> +	};
+>>> +};
+>>
+>> Disable main_i2c0, spi nodes, sdhci0 or are those nodes being used for
+>> something else that will be fixedup in a follow on series?
+
+main_i2c0 has eeprom, shdci0 is used for wlan. Will mark other nodes as disabled.
+
+Thanks and regards,
+Lokesh
+
+> 
+> +1
+> 
+> regards
+> Suman
+> 
+>>
+>>> +
+>>> +&sdhci1 {
+>>> +	/* SD/MMC */
+>>> +	vmmc-supply = <&vdd_mmc1>;
+>>> +	pinctrl-names = "default";
+>>> +	bus-width = <4>;
+>>> +	pinctrl-0 = <&main_mmc1_pins_default>;
+>>> +	ti,driver-strength-ohm = <50>;
+>>> +	disable-wp;
+>>> +};
+>>> -- 
+>>> 2.30.0
+>>>
+>>
+> 
