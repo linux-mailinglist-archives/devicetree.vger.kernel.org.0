@@ -2,84 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1BE030C49F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 16:58:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 523AC30C55C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 17:22:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235780AbhBBP5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 10:57:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49034 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235889AbhBBPzY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 10:55:24 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CA59C64E9C;
-        Tue,  2 Feb 2021 15:54:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612281282;
-        bh=InUcpyv9LzxfCng6N9RmMwMFNFkinqM1iArVPnn5MFI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pzo6vtcGFu0iTLJhtnw/GC9gfLhd/iSrx0pnWN5zZWqTqeROcs72U6JXyDF0CRuJT
-         dVadJGDie8yR32MPoayZRRM3e/YWZCXyaGBqwbWWahx+tHm3smadSR5UFIkvXdsoRF
-         gI4v4q8XPWRwuLDTq4oU40m6jusVHiAtg/gLRAC8K7Qcoh9utVCrvIw8LYHAzdKt75
-         bAp/d3EEqKyoYZ2sjQk5c2aJdz0/h6VPuAcfVNSinMbpYMavzJVvPbWkO9TWvbXHP0
-         p45iL79adOQ7viO3pQFRX5r3ECiIDS8L0SBgiXDMThzZGF7hK4TsVRwETqkx8ErqXq
-         DNu4GLhEbTmCg==
-Received: by mail-oi1-f180.google.com with SMTP id w124so23218603oia.6;
-        Tue, 02 Feb 2021 07:54:42 -0800 (PST)
-X-Gm-Message-State: AOAM532eP+b7OOw5iPbTpcQJbT0HYn7uPQg1voiUc6NRO5iUK1GmPs1k
-        yMLCEX+y9KErBg7UVDi4XJUfVvRW7KXc9n5UmYo=
-X-Google-Smtp-Source: ABdhPJwS3LkYij3FBY6AdP3IZVmOxavIQah+JyozDz34zcdjBEuLK7+tqgdUE55rvCDzAXiCPw3xmD7gmdArNWBoeH8=
-X-Received: by 2002:aca:e103:: with SMTP id y3mr3095862oig.11.1612281282086;
- Tue, 02 Feb 2021 07:54:42 -0800 (PST)
-MIME-Version: 1.0
-References: <20210202071648.1776-1-thunder.leizhen@huawei.com>
- <20210202071648.1776-5-thunder.leizhen@huawei.com> <CAK8P3a1HuXx7qpOPAdcGadtWCkNOp75bgO8cLSpXnobULHU6ZQ@mail.gmail.com>
- <99b8672c-467c-9698-40e7-aed7dc5d2ee2@huawei.com>
-In-Reply-To: <99b8672c-467c-9698-40e7-aed7dc5d2ee2@huawei.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 2 Feb 2021 16:54:25 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1NoKbRxU8xg4OT-N+hn-0MrSsxno5vH-8RGj7r9a1PJA@mail.gmail.com>
-Message-ID: <CAK8P3a1NoKbRxU8xg4OT-N+hn-0MrSsxno5vH-8RGj7r9a1PJA@mail.gmail.com>
-Subject: Re: [PATCH v7 4/4] ARM: Add support for Hisilicon Kunpeng L3 cache controller
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Russell King <rmk+kernel@arm.linux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Haojian Zhuang <haojian.zhuang@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        id S236136AbhBBQU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 11:20:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50770 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236133AbhBBQSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 11:18:25 -0500
+Received: from mail-pg1-x549.google.com (mail-pg1-x549.google.com [IPv6:2607:f8b0:4864:20::549])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669DCC06178B
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 08:17:39 -0800 (PST)
+Received: by mail-pg1-x549.google.com with SMTP id v16so14422667pgl.23
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 08:17:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=iwkSPDu8+GCJtZMCgGxCvy6RYjdYTFAwWafltAfL22E=;
+        b=j+OrsPqfI2I28/iLg0WIy4Rb9Ckar70srGuUc4Zfskq71ped2Ij4JaNsEthFBNR4+U
+         1QwMrVSz3FuYPFkp1xfG1qz+P6bm/GYAOTZ01sud30A3wimTYlHjDu5ALg/2tKCH4La3
+         7OtKqdqrkgkSDlZZPhcM76stoIGT5zfRnonQ4bw0TYdYgoiVkNRJbgUTG95Eoi7WSzT/
+         U/bFD25Gvk5twsbvMh/fMOF21dIgOIxmWtCoq3fRsNZTask9OZ1XCZT5LKhFT1fajTNa
+         7OFpXPfvBBXa/BCE7Jzo0mAAH00KfbveVFo+BsolCw1YcIqXtYvdd4j4fWZSfX447tUF
+         sNHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=iwkSPDu8+GCJtZMCgGxCvy6RYjdYTFAwWafltAfL22E=;
+        b=HIaV3y/cK7OAyDdO0O8EPdHgcLTJQTR1peDUXIv9tgdXA7hdc+mPkmQpFbN5ZUA7Ck
+         7nhFDoEoZYTl+ceotZ8Ys2ZG/Lb2aHepdalsYK6n9GHEJZ/9NqBbu3zcEPKcELqnN3gE
+         mCKs6OajcTHUE7RJbVO/FHEFlhhe5GhpCgp7nbnfuXcQbLxPkN/V+nSGThLcjZhjZoEb
+         Bl3cQwS6//piA61Dll6oMi0WmOqIUCxYd4cP+c8F0zfm/dSAwuaNsi+ftl1L9JcOjWWD
+         6tkXKjiWKtWZyhZntwXnAhECFEKPcmGX3lXYCIiIBpkP1wwP4TFR6wPVZzINrZGs6I0c
+         JoNQ==
+X-Gm-Message-State: AOAM5316c7naRcgu7T6yT3/fmttiagpbRTY757rxvvmNCiAf69osgAT3
+        Ah7IWOJG078nEs2npcoznkhh3l5Ub+S2
+X-Google-Smtp-Source: ABdhPJzyFdCQAvJN3cdQcHtYsB1Ey3cwtyGZMbsMNsjUiAZ4K6I8OxfTNzeaKP5quIUEzuh5JRLH6YYzt5XB
+Sender: "kyletso via sendgmr" <kyletso@kyletso.ntc.corp.google.com>
+X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:dd94:c753:a81d:c855])
+ (user=kyletso job=sendgmr) by 2002:a62:75c1:0:b029:1b6:b71a:a369 with SMTP id
+ q184-20020a6275c10000b02901b6b71aa369mr22323886pfc.27.1612282658846; Tue, 02
+ Feb 2021 08:17:38 -0800 (PST)
+Date:   Wed,  3 Feb 2021 00:17:25 +0800
+Message-Id: <20210202161733.932215-1-kyletso@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
+Subject: [PATCH v5 0/8] common SVDM version and VDO from dt
+From:   Kyle Tso <kyletso@google.com>
+To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, hdegoede@redhat.com, robh+dt@kernel.org
+Cc:     badhri@google.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kyle Tso <kyletso@google.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 2, 2021 at 1:18 PM Leizhen (ThunderTown)
-<thunder.leizhen@huawei.com> wrote:
-> On 2021/2/2 16:44, Arnd Bergmann wrote:
-> >
-> > To have a more useful performance number, try mentioning the
-> > most performance sensitive non-coherent DMA master on one
-> > of the chips that has this cache controller, and a high-level
-> > performance number such as "1.2% more network packets per
-> > second" if that is something you can measure easily.
->
-> It's not easy. My board only have debugging NIC, only the downstream
-> products have high-speed service NIC. Software needs to be packaged
-> layer by layer.
->
-> >
-> > Of course, if all high-speed DMA masters on this chip are
-> > cache coherent, there is no need for performance numbers, just
-> > mention that we don't care about speed in that case.
->
-> It's not cache coherent, otherwise, the L3 cache does not need to be
-> operated.
+v4 is here:
+https://patchwork.kernel.org/project/linux-usb/cover/20210202093342.738691-1-kyletso@google.com/
 
-Ok, I see. In this case, just explain that the high-speed NIC is not
-cache-coherent, so this is expected to make a difference, even if you
-can't quantify it exactly.
+Changes since v4:
+=================
+usb: pd: Make SVDM Version configurable in VDM header
+- modified the code who uses VDO(), set the ver field to SVDM_VER_1_0
 
-       Arnd
+Kyle Tso (8):
+  usb: typec: Manage SVDM version
+  usb: pd: Update VDO definitions
+  usb: pd: Make SVDM Version configurable in VDM header
+  usb: typec: tcpm: Detemine common SVDM Version
+  usb: typec: ucsi: Detemine common SVDM Version
+  usb: typec: displayport: Fill the negotiated SVDM Version in the header
+  dt-bindings: connector: Add SVDM VDO properties
+  usb: typec: tcpm: Get Sink VDO from fwnode
+
+ .../bindings/connector/usb-connector.yaml     |  11 +
+ drivers/usb/typec/altmodes/displayport.c      |   8 +-
+ drivers/usb/typec/class.c                     |  21 +-
+ drivers/usb/typec/tcpm/tcpm.c                 |  61 +++-
+ drivers/usb/typec/ucsi/displayport.c          |  12 +-
+ drivers/usb/typec/ucsi/ucsi.c                 |   2 +
+ include/dt-bindings/usb/pd.h                  | 311 ++++++++++++++++-
+ include/linux/usb/pd_vdo.h                    | 315 ++++++++++++++----
+ include/linux/usb/typec.h                     |  10 +
+ 9 files changed, 661 insertions(+), 90 deletions(-)
+
+-- 
+2.30.0.365.g02bc693789-goog
+
