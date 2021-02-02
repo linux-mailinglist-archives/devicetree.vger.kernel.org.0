@@ -2,73 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 870A430CA9F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 19:56:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0895430CACF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 20:03:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233689AbhBBSzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 13:55:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39724 "EHLO mail.kernel.org"
+        id S239110AbhBBTBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 14:01:06 -0500
+Received: from mga14.intel.com ([192.55.52.115]:53347 "EHLO mga14.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237855AbhBBSxt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Feb 2021 13:53:49 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4B15864FB9;
-        Tue,  2 Feb 2021 18:49:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612291796;
-        bh=/jlLMBZXRd8m1tO1wSDH3NcKAWYdUQXy4pcJQyZAW60=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=m5xROZ705ZL8kpgLS5SQTDHRTtzTNTjdEh7tC3z0ICfer/WLdvFbh3nCkKi48JG3Q
-         D5AKxvFowcJlMX/LJiCKhiCLduh0LUzO6hMVSDlxf3pS/wontZVSgr4jHMPyegPMnY
-         M9E/RPZU0mZF1QbrJS3LuXA4vlhJQF8s523PvRIig0JHM4pZyN4HnRaUaIYjEvzZFG
-         1p/PZE86TQa1zOsj2P2jDxVWC8/NRLfxHR37uLzojOzyNTt82MzDkukm30bPXjQkXu
-         rp/TYrbiLyXKi8XXVDqhUuu63UlYOmi77a8QPAvMMOx0qifSTPiBOY8Gbvp401ZSlm
-         TWY389jwaQGRA==
-Received: by mail-oi1-f182.google.com with SMTP id k142so9444844oib.7;
-        Tue, 02 Feb 2021 10:49:56 -0800 (PST)
-X-Gm-Message-State: AOAM533Ep3kiVjkVd7dZsWdW6uLXeQFWlS+xkgd1VUVbzFGzQ3fjn1Ug
-        GgRY0zQxThj4Q53+4Y3UCgdfB0e/84DeSNc5trs=
-X-Google-Smtp-Source: ABdhPJwE1G9y4a4AlnQQUqGh+dqS7G6yOotjmIlhtR3aeCDZ792hv3N/TN9WB2aSEO/vsqO3+lvv01H8LHKJlxQxSFY=
-X-Received: by 2002:aca:d908:: with SMTP id q8mr3611775oig.67.1612291795690;
- Tue, 02 Feb 2021 10:49:55 -0800 (PST)
+        id S239256AbhBBS7V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 13:59:21 -0500
+IronPort-SDR: vi4TedBFuGfF3yIRJeLP1923tuBfhvrjQ2ftaflYnSY4bV6a8v1aQbIrSF31uOwpuf1EM+U0Tz
+ d9nWhJmI4/fQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="180135121"
+X-IronPort-AV: E=Sophos;i="5.79,396,1602572400"; 
+   d="scan'208";a="180135121"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2021 10:57:36 -0800
+IronPort-SDR: yOgzWzLCLv+wAc0iRkn8cxRNxFoXd90I1lYEz8Y90NXu1b5HEwBF2EZcgRC0Nhn19+ivqqB/IA
+ 6gg/ckLQ4EnQ==
+X-IronPort-AV: E=Sophos;i="5.79,396,1602572400"; 
+   d="scan'208";a="370831913"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2021 10:57:34 -0800
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 005E5208F7; Tue,  2 Feb 2021 20:57:31 +0200 (EET)
+Date:   Tue, 2 Feb 2021 20:57:31 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com, gjorgjix.rosikopulos@linux.intel.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: media: Add bindings for imx334
+Message-ID: <20210202185731.GW32460@paasikivi.fi.intel.com>
+References: <20210201172445.164-1-martinax.krasteva@linux.intel.com>
+ <20210201172445.164-2-martinax.krasteva@linux.intel.com>
 MIME-Version: 1.0
-References: <20210202183646.38602-1-swboyd@chromium.org>
-In-Reply-To: <20210202183646.38602-1-swboyd@chromium.org>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 2 Feb 2021 19:49:39 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a3VOh+gjMHEbX8GGxEnN2eZmyNgHTOFDVP5sGxmHW40kw@mail.gmail.com>
-Message-ID: <CAK8P3a3VOh+gjMHEbX8GGxEnN2eZmyNgHTOFDVP5sGxmHW40kw@mail.gmail.com>
-Subject: Re: [PATCH for-next] ASoC: da7218: Drop CONFIG_OF ifdef
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210201172445.164-2-martinax.krasteva@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 2, 2021 at 7:36 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> This reverts commit a06cd8cf97a3 ("ASoC: da7218: skip of_device_id table
-> when !CONFIG_OF") because we want to make of_match_device() stop using
-> of_match_ptr() internally, confusing compilers and causing ifdef
-> pollution.
->
-> Reported-by: kernel test robot <lkp@intel.com>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Mark Brown <broonie@kernel.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+Hi Martina,
+
+On Mon, Feb 01, 2021 at 05:24:44PM +0000, Martina Krasteva wrote:
+> From: Martina Krasteva <martinax.krasteva@intel.com>
+> 
+> - Add dt-bindings documentation for Sony imx334 sensor driver.
+> - Add MAINTAINERS entry for Sony imx334 binding documentation.
+> 
+> Signed-off-by: Martina Krasteva <martinax.krasteva@intel.com>
+> Reviewed-by: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
+> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Acked-by: Paul J. Murphy <paul.j.murphy@intel.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->
-> Please ack so Rob can take through DT tree.
+>  .../devicetree/bindings/media/i2c/sony,imx334.yaml | 77 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  8 +++
+>  2 files changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> new file mode 100644
+> index 000000000000..e6b4f41f3232
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2021 Intel Corporation
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/sony,imx334.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony IMX334 Sensor
+> +
+> +maintainers:
+> +  - Paul J. Murphy <paul.j.murphy@intel.com>
+> +  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> +
+> +description:
+> +  IMX334 sensor is a Sony CMOS active pixel digital image sensor with an active
+> +  array size of 3864H x 2202V. It is programmable through I2C interface. The
+> +  I2C client address is fixed to 0x1a as per sensor data sheet. Image data is
+> +  sent through MIPI CSI-2.
+> +
+> +properties:
+> +  compatible:
+> +    const: sony,imx334
+> +  reg:
+> +    description: I2C address
+> +    maxItems: 1
 
-Looks reasonable as a compile-time fix, though I'd remove the of_match_ptr()
-usage as well in this case and just always reference the device id table.
+Could you also add the clock properties such as in here:
 
-Either way:
+<URL:https://git.linuxtv.org/sailus/media_tree.git/tree/Documentation/devicetree/bindings/media/i2c/imx258.yaml>
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+> +
+> +  port:
+> +    type: object
+> +    additionalProperties: false
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +
+> +    properties:
+> +      endpoint:
+> +        type: object
+> +        properties:
+> +          data-lanes:
+> +            $ref: ../video-interfaces.yaml#/properties/data-lanes
+> +          link-frequencies:
+> +            $ref: ../video-interfaces.yaml#/properties/link-frequencies
+> +            description:
+> +              Allowed data bus frequencies are 891000000, 594000000 and
+> +              455500000 Hz.
+
+These frequencies are those supported by the driver, aren't they, not those
+supported by the sensor (of which many support virtually almost the entire
+range from some 100 MHz to 1 GHz, depending on the external clock
+frequency)?
+
+If so, please drop the description from link-frequencies, or adjust it to
+what the sensor actually supports.
+
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +    required:
+> +      - endpoint
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        camera@1a {
+> +            compatible = "sony,imx334";
+> +            reg = <0x1a>;
+> +
+> +            port {
+> +                imx334: endpoint {
+> +                    remote-endpoint = <&cam>;
+> +                    data-lanes = <1 2 3 4>;
+> +                    link-frequencies = /bits/ 64 <891000000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3353de0c4bc8..2ab75519938a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16589,6 +16589,14 @@ S:	Maintained
+>  T:	git git://linuxtv.org/media_tree.git
+>  F:	drivers/media/i2c/imx319.c
+>  
+> +SONY IMX334 SENSOR DRIVER
+> +M:	Paul J. Murphy <paul.j.murphy@intel.com>
+> +M:	Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +T:	git git://linuxtv.org/media_tree.git
+> +F:	Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> +
+>  SONY IMX355 SENSOR DRIVER
+>  M:	Tianshu Qiu <tian.shu.qiu@intel.com>
+>  L:	linux-media@vger.kernel.org
+
+-- 
+Kind regards,
+
+Sakari Ailus
