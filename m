@@ -2,111 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E360330CF44
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 23:45:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A43E30CF6D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 23:54:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235798AbhBBWpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 17:45:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49698 "EHLO
+        id S236146AbhBBWxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 17:53:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232672AbhBBWop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 17:44:45 -0500
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F3FC061573
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 14:44:04 -0800 (PST)
-Received: by mail-oo1-xc2a.google.com with SMTP id y21so2228234oot.12
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 14:44:04 -0800 (PST)
+        with ESMTP id S236148AbhBBWxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 17:53:18 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B6CC0613D6
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 14:52:37 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id d20so8882620oiw.10
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 14:52:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=0vZ3YcfNTrEDHTub1a0I5in6++E8pUyLjuHipyelgv0=;
-        b=TlroDxZALA7adkHZsaLn1EdLYcWFwjy/3DgjeuOlax5HyLXb2Cp95fHSAlmqX21Ysb
-         0mRW1xup6B6Tn6VR8We5RAs/VXNQQvk9sBYcWAtYWa6y58h0R7pfEsKfhtA2V0ksS62D
-         pb6fvoYVyg5Cg8MWqgxGN+glnTC0aUG8Xnu+6AT/Tc3INbxegw0vwtwiH7k1C9lCCX3L
-         9W4f1CZdzXP12/zH5ccXgZiRcmedOSaG1ZmCZ5s51ItZHvH+JjmwEb2pmxkTRcasuzzp
-         DwPIC1OCcbEIUzW3iZTX/8XpVla4lVJYMS4nyZ7atVnZq7sDWkhE68YA9pBFiTwNwTrz
-         Oc/A==
+        bh=pNHGdQEaVulKLdur3mjFN7uexHDN43kmskAHi1/+zFQ=;
+        b=vx3xy7M7W49bwfASPWL/L07EpcKrPO21vevHAK6m2umHBS0ZyUTODZpSpBmtT0fPTt
+         4Lj/9sxxi+FfzYtjRg12f9Oq6J8cWTFNjgZTY5sYrI6zibG7seKEOmgPrH/9aQqzBFtx
+         aklLmA3rqnMRNAb1wm0IZVIuNpvW+0ZcfyjHXHDUpAAkpNXWTBe7Ozsln2Ks5Spen5ok
+         cWJpa4o0G6c+mwrs/OjssBUvIdQJi1jFp8d7TjLZfUug0eHmoM6SFqXphJ2/mZis5TAy
+         kI4Ys8mEC9MfUFxc/cPKtbyGYePwuvox9ibIT9u6GPHbfq0hqZEefJimipRToC6xdhpb
+         CYMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0vZ3YcfNTrEDHTub1a0I5in6++E8pUyLjuHipyelgv0=;
-        b=CiKolTzLK6nVvEENXaHANxuAomcyOblmOJ25pj5Q8U4vD7DbYhj4WO4I9NnnFo6Tr4
-         TgFP8yLyzTnRImSG3NWY5UvM02kHFehW3JWiZ7BtuUlxE/VXJw5Om2mrdz9LNlqgleEa
-         z0IbLXQ1VQDACI0xqAqzUaM/YQk5gY++2RuKPJeEjhw1deJzNxolQTSbpfl46TJD1h8O
-         ov06hmLUZkGKobX+w0t1h0fRgbrIVRpIqCZg7Y/YGV5JFJHcswSa4Eec+B38zKumaDO0
-         kU9uX98t9KDJ2xfGCC5HyEe9Uefg0RSaW99jZKgs9SlJ0pcky9E1YQJDz3AN/sPlkkOG
-         joPw==
-X-Gm-Message-State: AOAM532umJkM6HM3sDVSbrTi1bsbtumhmNJZNh7TjZT3szaSxcZD63qn
-        RTltZvt0sKPVJaiB7CWm5zDCXw==
-X-Google-Smtp-Source: ABdhPJyQxK7ApxN5cN8J+Y8i+q7EZN3p5maNtMDesuW24WwOPyUgHgXZbgEd5Gzl2zG7lxSemAT0Gg==
-X-Received: by 2002:a4a:8c6b:: with SMTP id v40mr28142ooj.23.1612305844299;
-        Tue, 02 Feb 2021 14:44:04 -0800 (PST)
+        bh=pNHGdQEaVulKLdur3mjFN7uexHDN43kmskAHi1/+zFQ=;
+        b=Wqhd9+volChhP7CdmCW0C6Jq65FKWcmvNbevKbW4jy9zdVcHGsA3jmVtm3ixLVcM6h
+         d+x+R+sDCuJV5EDkFQXm/15oW8LVa20cLpdrjeCxh8K8bz1N7WM4semvK5PCKP3wqWQe
+         2TQ7ag3L4OSeGzUY1r9kpBV+azbUBQQjw4KQ6iscJsBaTtm0oACXs8bKKmtxPtFJQ9Ud
+         FJ3+NWSvYgcvY7Fm7TYcx0pDzv3XlRZ2rYqZXmFCguIUMuu9quQXFqtJFu9l/cJVpvuD
+         mF9ZDkr1ROMTU8dZBqE7cGjikJ+j+I0JUyEUZXYsSEIZRFtEmy6EfeO8pu9U83dYEij3
+         dPKg==
+X-Gm-Message-State: AOAM532Mk9H8+FFTZnXO3dvBWl10hZjnoi8r+82NmVk5g+9Gz2cLX2ma
+        KVTtZDLrXr0EyuW5mdHvlRHoWQ==
+X-Google-Smtp-Source: ABdhPJzOuTSR3c8QMeugNJGnaTsE04C3G6eyUc0ji1QK8vTBm3Acse8JcdjUyPcvpuGXlwSnU6Nq5Q==
+X-Received: by 2002:aca:4454:: with SMTP id r81mr57784oia.129.1612306357220;
+        Tue, 02 Feb 2021 14:52:37 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 7sm72819oiz.43.2021.02.02.14.44.02
+        by smtp.gmail.com with ESMTPSA id b7sm75747oib.53.2021.02.02.14.52.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Feb 2021 14:44:03 -0800 (PST)
-Date:   Tue, 2 Feb 2021 16:44:01 -0600
+        Tue, 02 Feb 2021 14:52:36 -0800 (PST)
+Date:   Tue, 2 Feb 2021 16:52:34 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     agross@kernel.org, todor.too@gmail.com, mchehab@kernel.org,
-        robh+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
-        shawnguo@kernel.org, leoyang.li@nxp.com, geert+renesas@glider.be,
-        arnd@arndb.de, Anson.Huang@nxp.com, michael@walle.cc,
-        agx@sigxcpu.org, max.oss.09@gmail.com,
-        angelogioacchino.delregno@somainline.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonathan Marek <jonathan@marek.ca>
-Subject: Re: [PATCH v3 19/22] arm64: defconfig: Build Qcom CAMSS as module
-Message-ID: <YBnVsUTapsiosHtF@builder.lan>
-References: <20210127144930.2158242-1-robert.foss@linaro.org>
- <20210127144930.2158242-20-robert.foss@linaro.org>
+To:     Akhil P Oommen <akhilpo@codeaurora.org>
+Cc:     freedreno@lists.freedesktop.org, dri-devel@freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, jcrouse@codeaurora.org,
+        robdclark@gmail.com, mka@chromium.org
+Subject: Re: [PATCH v4 2/2] arm: dts: sc7180: Add support for gpu fuse
+Message-ID: <YBnXshYzJmNpmuEW@builder.lan>
+References: <1610129731-4875-1-git-send-email-akhilpo@codeaurora.org>
+ <1610129731-4875-2-git-send-email-akhilpo@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210127144930.2158242-20-robert.foss@linaro.org>
+In-Reply-To: <1610129731-4875-2-git-send-email-akhilpo@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 27 Jan 08:49 CST 2021, Robert Foss wrote:
+On Fri 08 Jan 12:15 CST 2021, Akhil P Oommen wrote:
 
-> Build camera ISP driver as a module.
-> 
-
-Isn't this enabled since b47c5fc15d88 ("arm64: defconfig: Enable
-Qualcomm CAMCC, CAMSS and CCI drivers")?
+Please align the $subject prefix with other changes in the same file.
+I fixed it up while picking up the patch this time.
 
 Regards,
 Bjorn
 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
+> Add support for gpu fuse to help identify the supported opps.
 > 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 838301650a79..cb224d2af6a0 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -640,6 +640,7 @@ CONFIG_VIDEO_RENESAS_FDP1=m
->  CONFIG_VIDEO_RENESAS_FCP=m
->  CONFIG_VIDEO_RENESAS_VSP1=m
->  CONFIG_SDR_PLATFORM_DRIVERS=y
-> +CONFIG_VIDEO_QCOM_CAMSS=m
->  CONFIG_VIDEO_RCAR_DRIF=m
->  CONFIG_VIDEO_IMX219=m
->  CONFIG_VIDEO_OV5645=m
+> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 6678f1e..8cae3eb 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -675,6 +675,11 @@
+>  				reg = <0x25b 0x1>;
+>  				bits = <1 3>;
+>  			};
+> +
+> +			gpu_speed_bin: gpu_speed_bin@1d2 {
+> +				reg = <0x1d2 0x2>;
+> +				bits = <5 8>;
+> +			};
+>  		};
+>  
+>  		sdhc_1: sdhci@7c4000 {
+> @@ -1907,52 +1912,69 @@
+>  			operating-points-v2 = <&gpu_opp_table>;
+>  			qcom,gmu = <&gmu>;
+>  
+> +			nvmem-cells = <&gpu_speed_bin>;
+> +			nvmem-cell-names = "speed_bin";
+> +
+>  			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
+>  			interconnect-names = "gfx-mem";
+>  
+>  			gpu_opp_table: opp-table {
+>  				compatible = "operating-points-v2";
+>  
+> +				opp-825000000 {
+> +					opp-hz = /bits/ 64 <825000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
+> +					opp-peak-kBps = <8532000>;
+> +					opp-supported-hw = <0x04>;
+> +				};
+> +
+>  				opp-800000000 {
+>  					opp-hz = /bits/ 64 <800000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
+>  					opp-peak-kBps = <8532000>;
+> +					opp-supported-hw = <0x07>;
+>  				};
+>  
+>  				opp-650000000 {
+>  					opp-hz = /bits/ 64 <650000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
+>  					opp-peak-kBps = <7216000>;
+> +					opp-supported-hw = <0x07>;
+>  				};
+>  
+>  				opp-565000000 {
+>  					opp-hz = /bits/ 64 <565000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
+>  					opp-peak-kBps = <5412000>;
+> +					opp-supported-hw = <0x07>;
+>  				};
+>  
+>  				opp-430000000 {
+>  					opp-hz = /bits/ 64 <430000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+>  					opp-peak-kBps = <5412000>;
+> +					opp-supported-hw = <0x07>;
+>  				};
+>  
+>  				opp-355000000 {
+>  					opp-hz = /bits/ 64 <355000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
+>  					opp-peak-kBps = <3072000>;
+> +					opp-supported-hw = <0x07>;
+>  				};
+>  
+>  				opp-267000000 {
+>  					opp-hz = /bits/ 64 <267000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+>  					opp-peak-kBps = <3072000>;
+> +					opp-supported-hw = <0x07>;
+>  				};
+>  
+>  				opp-180000000 {
+>  					opp-hz = /bits/ 64 <180000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+>  					opp-peak-kBps = <1804000>;
+> +					opp-supported-hw = <0x07>;
+>  				};
+>  			};
+>  		};
 > -- 
-> 2.27.0
+> 2.7.4
 > 
