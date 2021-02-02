@@ -2,117 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D96FE30CF4B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 23:47:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E360330CF44
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 23:45:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233076AbhBBWpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 17:45:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49734 "EHLO
+        id S235798AbhBBWpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 17:45:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235776AbhBBWoy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 17:44:54 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D95A6C061788
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 14:44:13 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id r2so4527737ybk.11
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 14:44:13 -0800 (PST)
+        with ESMTP id S232672AbhBBWop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 17:44:45 -0500
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F3FC061573
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 14:44:04 -0800 (PST)
+Received: by mail-oo1-xc2a.google.com with SMTP id y21so2228234oot.12
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 14:44:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SEYLnC3u7WyEhbD/FKNwftU+z2oHAmMTCcdaokM12wo=;
-        b=Kl5ucGfgQsN2LtKbePCNETb96lKRFopLBGQF/DpYpWRc1FQNPBOCK2ZS8XoXGW3eMG
-         PoRcqg6PSR+bQ6iCMnzll+P2o3Tmq1vQXQZgyQozkJqlDCB6tUvycOoYABEtGqFEK5SC
-         HrqDPwICnSLuiQp4oI1z4KLxG31cR6216VEIostl/TOGCST99UPhylE5HmUbMQF03AGF
-         yiJ5BvkdQacJoCJanX7mLtRmBQ652vEu5jMBbymsb1G4F86Zfdt2Gr7X1bq5cLHQVKbk
-         qloXBwtJs+ezMa7VceE3cJo1Ae6+2PwtNxRF0Xgv85DrYWf3OXNY1uEMwFSAmV/k2iy/
-         1B1A==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=0vZ3YcfNTrEDHTub1a0I5in6++E8pUyLjuHipyelgv0=;
+        b=TlroDxZALA7adkHZsaLn1EdLYcWFwjy/3DgjeuOlax5HyLXb2Cp95fHSAlmqX21Ysb
+         0mRW1xup6B6Tn6VR8We5RAs/VXNQQvk9sBYcWAtYWa6y58h0R7pfEsKfhtA2V0ksS62D
+         pb6fvoYVyg5Cg8MWqgxGN+glnTC0aUG8Xnu+6AT/Tc3INbxegw0vwtwiH7k1C9lCCX3L
+         9W4f1CZdzXP12/zH5ccXgZiRcmedOSaG1ZmCZ5s51ItZHvH+JjmwEb2pmxkTRcasuzzp
+         DwPIC1OCcbEIUzW3iZTX/8XpVla4lVJYMS4nyZ7atVnZq7sDWkhE68YA9pBFiTwNwTrz
+         Oc/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SEYLnC3u7WyEhbD/FKNwftU+z2oHAmMTCcdaokM12wo=;
-        b=KdFf669GdkYBUcOvCYvJo0a1YxsBPLepCN9BlZf8/EAtq9P+XjOeoboh7+l5J23Y83
-         fqVxskEre6mi6sKa+OumeJqS5TNdDvZyJ30brEgW1VzwdXfC9IPOxcvVglBAgO4ONgdF
-         DLQNCmYO2HDbJBfmAetaSzDRWVwNhHMktcjRLR71U3tWwtXE8tNogWqh9d2rJEbr9QYe
-         JbtSZ5I1eQGxH+t0vq3NcmN9v3OrY5fpQQfxERyoVeVCKOWrWccXmYwQx6tRO9RANXaV
-         ayIDnvYo1vqEvyRMihYGkm1jyCGXTrQfP67aiz3Uka2uZvZJxzNaxLFTFp9vNJZcYm6X
-         fNmg==
-X-Gm-Message-State: AOAM531prbL/IW+2qImNwIr559+A/uqmwLX7DFSCt2VC8YFJyZV+lB9O
-        RmsUB6hYE0sUoLMz8h4jWTB0IUAbT+7svjNFBtMAbQ==
-X-Google-Smtp-Source: ABdhPJz8f9CiV9IMsKLsA2iuWlYWcAr9M2cWu28/QsYlV3ZoZT6Fj2KEfPn1+6Zo6tZqIADWuFbhS2Xm5mcrdRgOWAY=
-X-Received: by 2002:a25:c683:: with SMTP id k125mr287913ybf.32.1612305853065;
- Tue, 02 Feb 2021 14:44:13 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0vZ3YcfNTrEDHTub1a0I5in6++E8pUyLjuHipyelgv0=;
+        b=CiKolTzLK6nVvEENXaHANxuAomcyOblmOJ25pj5Q8U4vD7DbYhj4WO4I9NnnFo6Tr4
+         TgFP8yLyzTnRImSG3NWY5UvM02kHFehW3JWiZ7BtuUlxE/VXJw5Om2mrdz9LNlqgleEa
+         z0IbLXQ1VQDACI0xqAqzUaM/YQk5gY++2RuKPJeEjhw1deJzNxolQTSbpfl46TJD1h8O
+         ov06hmLUZkGKobX+w0t1h0fRgbrIVRpIqCZg7Y/YGV5JFJHcswSa4Eec+B38zKumaDO0
+         kU9uX98t9KDJ2xfGCC5HyEe9Uefg0RSaW99jZKgs9SlJ0pcky9E1YQJDz3AN/sPlkkOG
+         joPw==
+X-Gm-Message-State: AOAM532umJkM6HM3sDVSbrTi1bsbtumhmNJZNh7TjZT3szaSxcZD63qn
+        RTltZvt0sKPVJaiB7CWm5zDCXw==
+X-Google-Smtp-Source: ABdhPJyQxK7ApxN5cN8J+Y8i+q7EZN3p5maNtMDesuW24WwOPyUgHgXZbgEd5Gzl2zG7lxSemAT0Gg==
+X-Received: by 2002:a4a:8c6b:: with SMTP id v40mr28142ooj.23.1612305844299;
+        Tue, 02 Feb 2021 14:44:04 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 7sm72819oiz.43.2021.02.02.14.44.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Feb 2021 14:44:03 -0800 (PST)
+Date:   Tue, 2 Feb 2021 16:44:01 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     agross@kernel.org, todor.too@gmail.com, mchehab@kernel.org,
+        robh+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+        shawnguo@kernel.org, leoyang.li@nxp.com, geert+renesas@glider.be,
+        arnd@arndb.de, Anson.Huang@nxp.com, michael@walle.cc,
+        agx@sigxcpu.org, max.oss.09@gmail.com,
+        angelogioacchino.delregno@somainline.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+Subject: Re: [PATCH v3 19/22] arm64: defconfig: Build Qcom CAMSS as module
+Message-ID: <YBnVsUTapsiosHtF@builder.lan>
+References: <20210127144930.2158242-1-robert.foss@linaro.org>
+ <20210127144930.2158242-20-robert.foss@linaro.org>
 MIME-Version: 1.0
-References: <20210202043345.3778765-1-saravanak@google.com> <20210202212231.g5tj3f7tv74gagm6@viti.kaiser.cx>
-In-Reply-To: <20210202212231.g5tj3f7tv74gagm6@viti.kaiser.cx>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 2 Feb 2021 14:43:37 -0800
-Message-ID: <CAGETcx_cS_Y-1Bw3tNhZRckEQO=yB8UDzNRr+Khs_X2ym7tnwA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Make fw_devlink=on more forgiving
-To:     Martin Kaiser <martin@kaiser.cx>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210127144930.2158242-20-robert.foss@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 2, 2021 at 1:22 PM Martin Kaiser <martin@kaiser.cx> wrote:
->
-> Hi Saravana,
->
-> Thus wrote Saravana Kannan (saravanak@google.com):
->
-> > Martin,
->
-> > If you tested this series, can you please give a Tested-by?
->
-> I tested this v2 series on top of next-20210202 (without the fsl,avic
-> patch).
->
-> If modules are enabled, the kernel doesn't boot on my imx25 board. This
-> is expected, I guess.
->
-> With modules disabled, the kernel boots but probe fails for some
-> (non-mainline) drivers in my tree.
+On Wed 27 Jan 08:49 CST 2021, Robert Foss wrote:
 
-Thanks Martin!
+> Build camera ISP driver as a module.
+> 
 
-> All of those drivers have a gpio in
-> their device-tree node, such as
->
-> my_driver {
->    gpio_test1 = <&gpio1 0 0>;
->    ...
-> };
->
-> with gpio1 from arch/arm/boot/dts/imx25.dtsi.
->
-> The probe function calls
->
-> of_get_named_gpio(np, "gpio_test1", 0);
->
-> to get the gpio. This fails with -EINVAL.
+Isn't this enabled since b47c5fc15d88 ("arm64: defconfig: Enable
+Qualcomm CAMCC, CAMSS and CCI drivers")?
 
-And you didn't see this issue with the fsl,avic patch?
+Regards,
+Bjorn
 
-The property you are using is not a standard GPIO binding (-gpios,
-gpio, gpios) and I'm not surprised it's not working. The gpio1 is
-probably getting probe deferred and ends up running after "my_driver".
-
--Saravana
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> ---
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 838301650a79..cb224d2af6a0 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -640,6 +640,7 @@ CONFIG_VIDEO_RENESAS_FDP1=m
+>  CONFIG_VIDEO_RENESAS_FCP=m
+>  CONFIG_VIDEO_RENESAS_VSP1=m
+>  CONFIG_SDR_PLATFORM_DRIVERS=y
+> +CONFIG_VIDEO_QCOM_CAMSS=m
+>  CONFIG_VIDEO_RCAR_DRIF=m
+>  CONFIG_VIDEO_IMX219=m
+>  CONFIG_VIDEO_OV5645=m
+> -- 
+> 2.27.0
+> 
