@@ -2,142 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD7030C9DC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 19:34:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F327230CA16
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 19:38:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238692AbhBBSbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 13:31:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50978 "EHLO
+        id S238708AbhBBSi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 13:38:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238697AbhBBS33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 13:29:29 -0500
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E012EC0617A7
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 10:28:48 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id e132so1569708ybh.8
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 10:28:48 -0800 (PST)
+        with ESMTP id S238822AbhBBSh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 13:37:29 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 699A9C0613D6
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 10:36:48 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id c132so15473072pga.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 10:36:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lNJbMXdW5NhHjyCId8HTqd13CNsq/Z1nn+1X4OrWEfw=;
-        b=G4bS+HtEVOYuA7OOzdnpQ/V32sCFCZ18daV1mH17GoydeQwgUsittgg63qpXUrVy6R
-         UjBz9ydicELIrB/h49LrQyds0I3p3jK6779AjQrjh55dbRDCBxI+XUhlCVgloKrHxTq3
-         t2Ihd6qUZPG4w2Z5bjscgkKILXQBfwRRfXToiliDvOrAzZdBIPeALDn765Ui8i9Aomrh
-         gmGyjY9aNLQJ3XrPqYGLaa1LXgSuFULtt/udI3V8dbSP9g5tvQSQIiZmFZ/9BG3oIulj
-         PTWEZQkNqaB/Kz3joOqRb+7NVGjMbl1oGXGvalX8sxCNiCP484H72xGwxVOcDsXYRklI
-         2jjQ==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=93B1hwUGpTMtS5SZqP8BFl4z4pGXcZ5Af5eOCl6zLTI=;
+        b=nWFea0wTnaFq+z7Lcc4SZugVgpWGvP+yAdzXf/Ibm6IoU38mc/3LLoXHjvutxpyK6H
+         LVeQVZEUGpnhfKSbWnwMDOlQX8OGK2XrKLmHMv2goN7/r+PAeEn2BKjFwTl9kxM5m/ce
+         UnC0t6u8xQSds8Cwo6WbXzpAGgXmt9QtFjv6o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lNJbMXdW5NhHjyCId8HTqd13CNsq/Z1nn+1X4OrWEfw=;
-        b=k3yq+kIPynvm6vliKTfNTrnI8eq3nkRgPcULDhvOwWRTNC+uJNYQ5BCGjsNNKMc74J
-         LTAQp56z+By4Jmf22COGWFniNZIAbtMeUabwxCZi3WEtiRfLv9Rv7gFz2qqTm5D5UELD
-         z9C7ibswGJhaDaKmIGfLDsTl9KneDIiukxrxRgWebyjQFvy9jOhE9eLFHZDJe/CcPskh
-         dXWqS2TdoG8+R/IyhKIYm5paGFcBCZEau7/PZNrKqMbdx4C4cvMKjuJu2OM6+E5K/X9R
-         jwLkQDUl2DLPweXDqY+UOD2JP/T/dDxVyWGtrUXsBvzuqjVMYuFZ2ts8bsDhdwdEB5Sv
-         OoKA==
-X-Gm-Message-State: AOAM532xaVWsLnxOSeRBt9XRNUY84VWvHLFIrgNsd6cK3nnXuSnStLVn
-        vorP+s/e+f1mjnLDfvcpcS7ta7emd1D2CabhG8fLug==
-X-Google-Smtp-Source: ABdhPJzw4AXagK88h3IvA01AciBUdKDaE3KyCS8Lz/IMvU52NU66GWMWXgJ7wvKfGw+PVx8X1AL4krqmBRohWpAIHck=
-X-Received: by 2002:a25:c683:: with SMTP id k125mr36522770ybf.32.1612290528066;
- Tue, 02 Feb 2021 10:28:48 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=93B1hwUGpTMtS5SZqP8BFl4z4pGXcZ5Af5eOCl6zLTI=;
+        b=XFll42mTDdFVSXU+ZvdLVG85vVxGXx34RRidHd7ObsSfpwb8mkBJa7tG8pjW4sWKi1
+         FR/SOmUvheSPT99VUHMZVufkoYGMEiOecBctXz5s2H6k1KrjnvmCO4xTZtyYY/eRtOai
+         WKczbrt1+ZMdww9P5dgA/7BILiYoceF4wRjbYXqws3f/xX8CGexOUu9yK8Vr//wRS+As
+         Jvk3uHsRV2+QctwDPhNxsbGuv8SqG9WiCGhghGpy1eCp/mSovThbGYwXIRg2u2wDnzvN
+         cWXI/omxv5R3CVKvRrNv2hZXYQSL4NuM0GhEzsW6wfz6XB9qAlqT4IT2ojLIRlmTypMQ
+         6saQ==
+X-Gm-Message-State: AOAM531RPzGWbKtMWpZh7iMa6+qPs4lRP9G4kqrcdkvnHWWONWS4ioU9
+        mpE4QqDtIiphCrNuxisP0FBrsIdxZZJ3ZQ==
+X-Google-Smtp-Source: ABdhPJx4cyLCDGVzd8QBXVdWMTSEG++Arft38UUmG7ky+whsyp/Cgtks2SZGoRJfWnqblrJCxoHJhw==
+X-Received: by 2002:a63:ce4a:: with SMTP id r10mr10177872pgi.3.1612291008025;
+        Tue, 02 Feb 2021 10:36:48 -0800 (PST)
+Received: from smtp.gmail.com ([2620:15c:202:201:3571:bd6e:ee19:b59f])
+        by smtp.gmail.com with ESMTPSA id c204sm21781994pfc.152.2021.02.02.10.36.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Feb 2021 10:36:47 -0800 (PST)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel test robot <lkp@intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>
+Subject: [PATCH for-next] ASoC: da7218: Drop CONFIG_OF ifdef
+Date:   Tue,  2 Feb 2021 10:36:46 -0800
+Message-Id: <20210202183646.38602-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
 MIME-Version: 1.0
-References: <20210202043345.3778765-1-saravanak@google.com>
- <cb6edbd0-346b-0674-5b5c-7ce3a437736d@microchip.com> <CAL_JsqKa5tHsKpOzkTjoiyQSJ+Q7_JOhkZ1m5tnOHK8dDGP7uA@mail.gmail.com>
-In-Reply-To: <CAL_JsqKa5tHsKpOzkTjoiyQSJ+Q7_JOhkZ1m5tnOHK8dDGP7uA@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 2 Feb 2021 10:28:11 -0800
-Message-ID: <CAGETcx9w5mnPzB=+xgApNiDkAup4+4Axi3P+H51t82RK2oAbhw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Make fw_devlink=on more forgiving
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Martin Kaiser <martin@kaiser.cx>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 2, 2021 at 9:41 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Tue, Feb 2, 2021 at 10:52 AM <Tudor.Ambarus@microchip.com> wrote:
-> >
-> > Hi, Saravana,
-> >
-> > On 2/2/21 6:33 AM, Saravana Kannan wrote:
-> > > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > >
-> > > This patch series solves two general issues with fw_devlink=on
-> > >
-> > > Patch 1/3 and 3/3 addresses the issue of firmware nodes that look like
-> > > they'll have struct devices created for them, but will never actually
-> > > have struct devices added for them. For example, DT nodes with a
-> > > compatible property that don't have devices added for them.
-> > >
-> > > Patch 2/2 address (for static kernels) the issue of optional suppliers
-> > > that'll never have a driver registered for them. So, if the device could
-> > > have probed with fw_devlink=permissive with a static kernel, this patch
-> > > should allow those devices to probe with a fw_devlink=on. This doesn't
-> > > solve it for the case where modules are enabled because there's no way
-> > > to tell if a driver will never be registered or it's just about to be
-> > > registered. I have some other ideas for that, but it'll have to come
-> > > later thinking about it a bit.
-> > >
-> > > Marek, Geert,
-> > >
-> > > I don't expect v2 to do any better for your cases.
-> > >
-> > > This series not making any difference for Marek is still a mystery to
-> > > me. I guess one of the consumers doesn't take too well to its probe (and
-> > > it's consumers' probe) being delayed till late_initcall(). I'll continue
-> > > looking into it.
-> > >
-> > > Marc,
-> > >
-> > > This v2 should do better than v1 with gpiolib stub driver reverted. I
-> > > forgot to take care of the case where more suppliers could link after I
-> > > went and deleted some of the links. v2 handles that now.
-> > >
-> > > Tudor,
-> > >
-> > > You should still make the clock driver fix (because it's a bug), but I
-> > > think this series will fix your issue too (even without the clock driver
-> > > fix). Can you please give this a shot?
-> > >
-> >
-> > Did the following tests (using sama5_defconfig and at91-sama5d2_xplained.dts):
-> > 1/ modular kernel with your v2 on top of next-20210202, and without the clock
-> > driver fix: the problem persists.
-> >
-> > 2/ static kernel with your v2 on top of next-20210202, and without the clock
-> > driver fix: the problem persists. Comparing to the previous test, I see that
-> > the links to pmc are dropped. I can see the following only with early printk
-> > enabled:
-> > platform fc008000.serial: Dropping the link to f0014000.pmc
-> > But later on, the serial still gets deferred waiting for the dma controller
-> > this time:
-> > platform f8020000.serial: probe deferral - supplier f0010000.dma-controller not ready
-> > I'll check what happens in the dma-controller.
->
-> Not sure if it's the case here, but some serial drivers use DMA only
-> when available and decide that on open() rather than probe. How is
-> devlinks going to deal with that?
+This reverts commit a06cd8cf97a3 ("ASoC: da7218: skip of_device_id table
+when !CONFIG_OF") because we want to make of_match_device() stop using
+of_match_ptr() internally, confusing compilers and causing ifdef
+pollution.
 
-That's kinda what I'm trying to work out here :) but in a more generic fashion.
+Reported-by: kernel test robot <lkp@intel.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Mark Brown <broonie@kernel.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
 
--Saravana
+Please ack so Rob can take through DT tree.
+
+ sound/soc/codecs/da7218.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/sound/soc/codecs/da7218.c b/sound/soc/codecs/da7218.c
+index 2bfafbe9e3dc..6d78bccb55c3 100644
+--- a/sound/soc/codecs/da7218.c
++++ b/sound/soc/codecs/da7218.c
+@@ -2278,14 +2278,12 @@ static irqreturn_t da7218_irq_thread(int irq, void *data)
+  * DT
+  */
+ 
+-#ifdef CONFIG_OF
+ static const struct of_device_id da7218_of_match[] = {
+ 	{ .compatible = "dlg,da7217", .data = (void *) DA7217_DEV_ID },
+ 	{ .compatible = "dlg,da7218", .data = (void *) DA7218_DEV_ID },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, da7218_of_match);
+-#endif
+ 
+ static inline int da7218_of_get_id(struct device *dev)
+ {
+
+base-commit: 19c329f6808995b142b3966301f217c831e7cf31
+-- 
+https://chromeos.dev
+
