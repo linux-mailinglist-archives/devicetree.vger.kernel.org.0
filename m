@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A35A30BB1B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 10:39:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8398A30BB23
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 10:39:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233068AbhBBJgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 04:36:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48734 "EHLO
+        id S233097AbhBBJhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 04:37:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233006AbhBBJfW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 04:35:22 -0500
-Received: from mail-qv1-xf4a.google.com (mail-qv1-xf4a.google.com [IPv6:2607:f8b0:4864:20::f4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 271C2C06121C
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 01:34:09 -0800 (PST)
-Received: by mail-qv1-xf4a.google.com with SMTP id j4so13279144qvi.8
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 01:34:09 -0800 (PST)
+        with ESMTP id S232874AbhBBJfs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 04:35:48 -0500
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B27C06121F
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 01:34:12 -0800 (PST)
+Received: by mail-yb1-xb49.google.com with SMTP id l10so23400725ybt.6
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 01:34:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=x0kHz4XtxKkom+zRNKnnp4MgCeBYWS7Fk/X1sDcZ9lU=;
-        b=Xyci0DE8YTLvCIvUKPG/julsOqmGAJQczRVTCm1utiQ+ngxeHoitsUHAdpFZFSkfCq
-         X/p/BaxcTeYBPo0C8d4rz7s/v3QDN4EM6MeWdP9JA/oav2M5LgCHlErDzQK6jfX6MKFf
-         w1Me7LkxP3O5Yvfr6tTgk4r1MNBBPhc5tYMIHYho25CEwp0IpgqBQOBZNGJULdHncgLX
-         WsVogbftrPxc3l5k89gxIm4sNIwAkZUpYrA09NhudR5VZ3/mmlgmKnbHVPg3P8jr9flc
-         qqUfeBNDhLscAh5JweBtVO8OXYfkv2HC1jWtLiPwnQWKE9TD3aONdt6jWTGj8DeGIqev
-         WHQA==
+        bh=n+HIDm5l4jQRPPtNBc/UNsUvzf1d4KY5BZBGTQEQIq8=;
+        b=fyJZYtIOnNGXE3WJ6HGneefUyCbgC57EOFdBFPZD3uPqdNEVD6obsGjb6FmaG/5Y5u
+         lYuqLYlmGCQWgk5uaFHF34hja5oDgc3hcQCMlLlpZ9xZIMV3yy3Jc6i4N2ISFZeu6pwb
+         Dj0Ji574t008WKCCSyY+4izoHjBobobcmL+iZxyIgtS9yw0kzg2y+GK8W7lkeVNAO3Xk
+         Un6yeGPIN/pnzoNMllsM/ZGQapSzKVJUaF/gvetfYICCwQ8OTFvhuON+yRT9W71len/e
+         CSB48Kefl+d8qcFuXuZp5g/A9J0HatWbS8LfSu6xo9Hr1P/74YFIs0JKn+FNsS6QtQwv
+         xubQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=x0kHz4XtxKkom+zRNKnnp4MgCeBYWS7Fk/X1sDcZ9lU=;
-        b=sw06UNhAWJDtCbCEoTalEZbT+rQ3Ytbk9ouZqj3rTKir+BlCIYeKfuJSZ8ndvichP+
-         oM8T/1VAVbrvM+4whmXmr9D0t0KjrhtQh65qKGBh1B9YbrUIHJ8kFxWmVub5jkNj4+s+
-         p4SrMhFxWRLtsXTEKkoktjZGNj8J3lBaGu1id1fFFcu2udxsAQJtgS2WMdcJ8nTg7EFX
-         qk0dIzZ9zIO52CcaNFjUd205jK9BjsstI3UFO8LS31aGxudKdtuZmNCzwvUnYQPPJThY
-         eJay3G3zwWqOe8C0P1br3GlUDSJa/CVYVLhNTH1Pyk4R00s7AbmqkK0F4dv1Mn4BUruP
-         bAwA==
-X-Gm-Message-State: AOAM533pdmF8uA3MmMkqkTlBHk+fqqYCLvpd0x9vHdusBr4IXDWAx8C9
-        +JKgnnQhuT4uN7DdRR1wdYmxRf68EIJR
-X-Google-Smtp-Source: ABdhPJyqmNuS9gu9YAlz1M+KeHOdP3p4n4n3v/6FvDMmLgk1D9Mf85oLtkHIhwQIYRRGq0JkEDkQ2tlZwM2b
+        bh=n+HIDm5l4jQRPPtNBc/UNsUvzf1d4KY5BZBGTQEQIq8=;
+        b=RgTg1PIIiLxYf4l0zqFbJgUTWT+dgh9G0x4nGxcqJzELr4bfeDMY7Yu4KySfm44evT
+         2YvSA1Hv/Q0B2Ges5gOPgUnbG2gcVECnBsn5Nj34lKtY6Zs6GmG6ARcGHcVnH7nrVghK
+         LlseizHzdrBw7Xsmsdz0stnie6S9nR0C8YHveMbyQ4SN5ZTEXmSXtPDpSol77vbeuUJp
+         DuO53d3fxEc2hR4Gu5kNQGF/LKSdSy7LwP0O3u/Vat2i5SqnsvmmJRT0rWfmERcWREmJ
+         neNE2D8AWJ9lJUdbeygphR2q7pKIBziacAuYLhaUh6Xl0PM5/nsWPjAQd7mN8xL2pMun
+         OLKA==
+X-Gm-Message-State: AOAM530OKQ4hwv4MEB9UC3cWKrO+jJz8Ctlim4PmSUsZbATkwcLQuduS
+        oZiILCL2m30l3Z5+qfVkEsZBb8+236Xc
+X-Google-Smtp-Source: ABdhPJwVRfvopollGibiCRWVfMgFR2TNOM63D0rQ6huMczsd5aorRh6yYa/vUtowKmuwJ6GDz5levI9m6Ayq
 Sender: "kyletso via sendgmr" <kyletso@kyletso.ntc.corp.google.com>
 X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:dd94:c753:a81d:c855])
- (user=kyletso job=sendgmr) by 2002:a0c:906c:: with SMTP id
- o99mr5167269qvo.28.1612258448306; Tue, 02 Feb 2021 01:34:08 -0800 (PST)
-Date:   Tue,  2 Feb 2021 17:33:39 +0800
+ (user=kyletso job=sendgmr) by 2002:a25:df48:: with SMTP id
+ w69mr31861428ybg.85.1612258452148; Tue, 02 Feb 2021 01:34:12 -0800 (PST)
+Date:   Tue,  2 Feb 2021 17:33:40 +0800
 In-Reply-To: <20210202093342.738691-1-kyletso@google.com>
-Message-Id: <20210202093342.738691-6-kyletso@google.com>
+Message-Id: <20210202093342.738691-7-kyletso@google.com>
 Mime-Version: 1.0
 References: <20210202093342.738691-1-kyletso@google.com>
 X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
-Subject: [PATCH v4 5/8] usb: typec: ucsi: Detemine common SVDM Version
+Subject: [PATCH v4 6/8] usb: typec: displayport: Fill the negotiated SVDM
+ Version in the header
 From:   Kyle Tso <kyletso@google.com>
 To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
         gregkh@linuxfoundation.org, hdegoede@redhat.com, robh+dt@kernel.org
@@ -63,100 +64,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch implements the following requirement in the Spec.
-
-PD Spec Revision 3.0 Version 2.0 + ECNs 2020-12-10
-  6.4.4.2.3 Structured VDM Version
-  "The Structured VDM Version field of the Discover Identity Command
-  sent and received during VDM discovery Shall be used to determine the
-  lowest common Structured VDM Version supported by the Port Partners or
-  Cable Plug and Shall continue to operate using this Specification
-  Revision until they are Detached."
+VDM header now requires SVDM Version. Get it from typec_port.
 
 Signed-off-by: Kyle Tso <kyletso@google.com>
 ---
- drivers/usb/typec/ucsi/displayport.c | 12 +++++++++---
- drivers/usb/typec/ucsi/ucsi.c        |  2 ++
- 2 files changed, 11 insertions(+), 3 deletions(-)
+ drivers/usb/typec/altmodes/displayport.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/usb/typec/ucsi/displayport.c b/drivers/usb/typec/ucsi/displayport.c
-index 261131c9e37c..b58ef26a50e0 100644
---- a/drivers/usb/typec/ucsi/displayport.c
-+++ b/drivers/usb/typec/ucsi/displayport.c
-@@ -48,6 +48,7 @@ struct ucsi_dp {
- static int ucsi_displayport_enter(struct typec_altmode *alt, u32 *vdo)
- {
- 	struct ucsi_dp *dp = typec_altmode_get_drvdata(alt);
-+	struct typec_port *port = dp->con->port;
- 	struct ucsi *ucsi = dp->con->ucsi;
- 	u64 command;
- 	u8 cur = 0;
-@@ -83,7 +84,7 @@ static int ucsi_displayport_enter(struct typec_altmode *alt, u32 *vdo)
- 	 * mode, and letting the alt mode driver continue.
- 	 */
+diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
+index e62e5e3da01e..7b47dd4ea531 100644
+--- a/drivers/usb/typec/altmodes/displayport.c
++++ b/drivers/usb/typec/altmodes/displayport.c
+@@ -15,8 +15,10 @@
+ #include <linux/usb/typec_dp.h>
+ #include "displayport.h"
  
--	dp->header = VDO(USB_TYPEC_DP_SID, 1, CMD_ENTER_MODE);
-+	dp->header = VDO(USB_TYPEC_DP_SID, 1, typec_get_svdm_version(port), CMD_ENTER_MODE);
- 	dp->header |= VDO_OPOS(USB_TYPEC_DP_MODE);
- 	dp->header |= VDO_CMDT(CMDT_RSP_ACK);
+-#define DP_HEADER(_dp, cmd)		(VDO((_dp)->alt->svid, 1, cmd) | \
+-					 VDO_OPOS(USB_TYPEC_DP_MODE))
++#define DP_HEADER(_dp, cmd)		(VDO((_dp)->alt->svid, 1,			\
++					     typec_get_svdm_version((_dp)->typec),	\
++					     cmd)					\
++					 | VDO_OPOS(USB_TYPEC_DP_MODE))
  
-@@ -101,6 +102,7 @@ static int ucsi_displayport_enter(struct typec_altmode *alt, u32 *vdo)
- static int ucsi_displayport_exit(struct typec_altmode *alt)
- {
- 	struct ucsi_dp *dp = typec_altmode_get_drvdata(alt);
-+	struct typec_port *port = dp->con->port;
- 	u64 command;
- 	int ret = 0;
+ enum {
+ 	DP_CONF_USB,
+@@ -62,6 +64,7 @@ struct dp_altmode {
+ 	struct work_struct work;
+ 	struct typec_altmode *alt;
+ 	const struct typec_altmode *port;
++	struct typec_port *typec;
+ };
  
-@@ -120,7 +122,7 @@ static int ucsi_displayport_exit(struct typec_altmode *alt)
- 	if (ret < 0)
- 		goto out_unlock;
+ static int dp_altmode_notify(struct dp_altmode *dp)
+@@ -536,6 +539,7 @@ int dp_altmode_probe(struct typec_altmode *alt)
+ 	mutex_init(&dp->lock);
+ 	dp->port = port;
+ 	dp->alt = alt;
++	dp->typec = typec_altmode2port(alt);
  
--	dp->header = VDO(USB_TYPEC_DP_SID, 1, CMD_EXIT_MODE);
-+	dp->header = VDO(USB_TYPEC_DP_SID, 1, typec_get_svdm_version(port), CMD_EXIT_MODE);
- 	dp->header |= VDO_OPOS(USB_TYPEC_DP_MODE);
- 	dp->header |= VDO_CMDT(CMDT_RSP_ACK);
- 
-@@ -184,6 +186,7 @@ static int ucsi_displayport_vdm(struct typec_altmode *alt,
- 				u32 header, const u32 *data, int count)
- {
- 	struct ucsi_dp *dp = typec_altmode_get_drvdata(alt);
-+	struct typec_port *port = dp->con->port;
- 	int cmd_type = PD_VDO_CMDT(header);
- 	int cmd = PD_VDO_CMD(header);
- 
-@@ -200,7 +203,10 @@ static int ucsi_displayport_vdm(struct typec_altmode *alt,
- 
- 	switch (cmd_type) {
- 	case CMDT_INIT:
--		dp->header = VDO(USB_TYPEC_DP_SID, 1, cmd);
-+		if (PD_VDO_SVDM_VER(header) < typec_get_svdm_version(port))
-+			typec_set_svdm_version(port, PD_VDO_SVDM_VER(header));
-+
-+		dp->header = VDO(USB_TYPEC_DP_SID, 1, typec_get_svdm_version(port), cmd);
- 		dp->header |= VDO_OPOS(USB_TYPEC_DP_MODE);
- 
- 		switch (cmd) {
-diff --git a/drivers/usb/typec/ucsi/ucsi.c b/drivers/usb/typec/ucsi/ucsi.c
-index ca3f4194ad90..8c4897a7bf75 100644
---- a/drivers/usb/typec/ucsi/ucsi.c
-+++ b/drivers/usb/typec/ucsi/ucsi.c
-@@ -764,6 +764,7 @@ static void ucsi_handle_connector_change(struct work_struct *work)
- 
- 	if (con->status.change & UCSI_CONSTAT_CONNECT_CHANGE) {
- 		typec_set_pwr_role(con->port, role);
-+		typec_set_svdm_version(con->port, con->typec_cap.svdm_version);
- 
- 		switch (UCSI_CONSTAT_PARTNER_TYPE(con->status.flags)) {
- 		case UCSI_CONSTAT_PARTNER_TYPE_UFP:
-@@ -1052,6 +1053,7 @@ static int ucsi_register_port(struct ucsi *ucsi, int index)
- 
- 	cap->revision = ucsi->cap.typec_version;
- 	cap->pd_revision = ucsi->cap.pd_version;
-+	cap->svdm_version = SVDM_VER_2_0;
- 	cap->prefer_role = TYPEC_NO_PREFERRED_ROLE;
- 
- 	if (con->cap.op_mode & UCSI_CONCAP_OPMODE_AUDIO_ACCESSORY)
+ 	alt->desc = "DisplayPort";
+ 	alt->ops = &dp_altmode_ops;
 -- 
 2.30.0.365.g02bc693789-goog
 
