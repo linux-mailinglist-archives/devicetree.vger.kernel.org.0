@@ -2,110 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A60530BE13
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 13:19:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 220A830BEC0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 13:53:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbhBBMTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 07:19:52 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:11674 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbhBBMTl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 07:19:41 -0500
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.59])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4DVP2R6VTVzlDtZ;
-        Tue,  2 Feb 2021 20:17:19 +0800 (CST)
-Received: from [127.0.0.1] (10.174.176.220) by DGGEMS403-HUB.china.huawei.com
- (10.3.19.203) with Microsoft SMTP Server id 14.3.498.0; Tue, 2 Feb 2021
- 20:18:51 +0800
-Subject: Re: [PATCH v7 4/4] ARM: Add support for Hisilicon Kunpeng L3 cache
- controller
-To:     Arnd Bergmann <arnd@kernel.org>
-CC:     Russell King <rmk+kernel@arm.linux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will.deacon@arm.com>,
-        "Haojian Zhuang" <haojian.zhuang@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20210202071648.1776-1-thunder.leizhen@huawei.com>
- <20210202071648.1776-5-thunder.leizhen@huawei.com>
- <CAK8P3a1HuXx7qpOPAdcGadtWCkNOp75bgO8cLSpXnobULHU6ZQ@mail.gmail.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <99b8672c-467c-9698-40e7-aed7dc5d2ee2@huawei.com>
-Date:   Tue, 2 Feb 2021 20:18:50 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <CAK8P3a1HuXx7qpOPAdcGadtWCkNOp75bgO8cLSpXnobULHU6ZQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.176.220]
-X-CFilter-Loop: Reflected
+        id S232088AbhBBMwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 07:52:13 -0500
+Received: from mga17.intel.com ([192.55.52.151]:58495 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232108AbhBBMwL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Feb 2021 07:52:11 -0500
+IronPort-SDR: Swp0zFIQxOfzMGI82hJ0kmycpXlZOvxcNFgMnRdUV/wLCf9RXESeCrmpIrzS6IyAtrzgokGTBl
+ yEvhvkC3RjKA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="160612475"
+X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; 
+   d="scan'208";a="160612475"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2021 04:50:24 -0800
+IronPort-SDR: 4enmk+KzrKzMsEYc2hUEN8GchXBIiYGnAtdjidhMj3ACyTk6qE7VBIjoCFux0tJ3y21FJTvttj
+ qWiPlzvkFTfw==
+X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; 
+   d="scan'208";a="370644291"
+Received: from mkrastex-mobl.ger.corp.intel.com ([10.104.84.31])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2021 04:50:21 -0800
+From:   Martina Krasteva <martinax.krasteva@linux.intel.com>
+To:     linux-media@vger.kernel.org
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        sakari.ailus@linux.intel.com,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com,
+        gjorgjix.rosikopulos@linux.intel.com,
+        martinax.krasteva@linux.intel.com
+Subject: [PATCH v6 0/2] IMX334 Camera Sensor Driver
+Date:   Tue,  2 Feb 2021 12:50:16 +0000
+Message-Id: <20210202125018.208-1-martinax.krasteva@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Martina Krasteva <mkrasteva@mm-sol.com>
+
+Hello,
+
+This patch series contains Sony imx334 sensor driver and device tree binding document.
+
+A v4l2 sub-device driver for the Sony imx334 image sensor is added.
+This is a camera sensor using the i2c bus for control and the
+csi-2 bus for data.
+
+The following features are supported:
+- manual exposure and analog gain control support
+- vblank/hblank/pixel rate control support
+- supported resolution:
+    - 3840x2160 @ 60fps
+- supported bayer order output:
+    - SRGGB12
+
+v1: https://patchwork.kernel.org/project/linux-media/list/?series=388393
+
+v1->v2:
+- dt-bindings doc fixes
+- minor cosmetic changes
+- improvement in write_reg()
+- set all media bus format fields to pass v4l2-compliance test
+- remove link_validate from source entity
+
+v2: https://patchwork.kernel.org/project/linux-media/list/?series=396393
+
+v2->v3:
+- small cosmetic changes
+
+v3: https://patchwork.kernel.org/project/linux-media/list/?series=397689
+
+v3->v4:
+- fix read/write_reg() functions
+
+v4: https://patchwork.kernel.org/project/linux-media/list/?series=400459
+
+v4->v5:
+- add link-frequencies in dt-bindings doc
+- edit required properties in db-bindings doc
+- fix data_buf overrun in read_reg()
+- add function to parse dt configuration
+- allow cahnging vblank in power off state
+- change lpfr and ppln with vblank and hblank in mode description
+
+v5: https://patchwork.kernel.org/project/linux-media/list/?series=425541
+
+v5->v6:
+- declare imx334_parse_hw_config() as static function
+
+Best Regards,
+Martina
 
 
-On 2021/2/2 16:44, Arnd Bergmann wrote:
-> On Tue, Feb 2, 2021 at 8:16 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
->> +
->> +/*
->> + * All read and write operations on L3 cache registers are protected by the
->> + * spinlock, except for l3cache_init(). Each time the L3 cache operation is
->> + * performed, all related information is filled into its registers. Therefore,
->> + * there is no memory order problem when only _relaxed() functions are used.
-> 
-> Thank you for including the text.
-> 
-> I don't think the explanation with the spin_lock() explains why this
-> can be considered safe though, as spin_lock() only contains serialization
-> against other CPUs (smp_mb()) rather than the stronger DMA barriers
-> implied by readl and writel. As Russell previously explained, these
-> barriers are the L1 cache operations (e.g. v7_dma_inv_range) do
-> include stronger barriers, so it would be better to come up with a
-> justification based on those.
+Martina Krasteva (2):
+  dt-bindings: media: Add bindings for imx334
+  media: i2c: Add imx334 camera sensor driver
 
-Okay, I'll correct the description.
+ .../devicetree/bindings/media/i2c/sony,imx334.yaml |   77 ++
+ MAINTAINERS                                        |    9 +
+ drivers/media/i2c/Kconfig                          |   14 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/imx334.c                         | 1097 ++++++++++++++++++++
+ 5 files changed, 1198 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+ create mode 100644 drivers/media/i2c/imx334.c
 
-> 
->> + * This can help us achieve some performance improvement:
->> + * 1) The readl_relaxed() is about 20ns faster than readl().
->> + * 2) The writel_relaxed() is about 123ns faster than writel().
-> 
-> These are not really the performance numbers I asked for, as a
-> low-level benchmark comparing the instructions is rather meaningless.
-> The time spent waiting for the barrier depends on what else is going
-> on around the barrier. Also, most of the time would likely be
-> spent spinning in the loop around readl() while the cache operations
-> are in progress, so the latency of a single readl() is not necessarily
-> significant.
-> 
-> To have a more useful performance number, try mentioning the
-> most performance sensitive non-coherent DMA master on one
-> of the chips that has this cache controller, and a high-level
-> performance number such as "1.2% more network packets per
-> second" if that is something you can measure easily.
 
-It's not easy. My board only have debugging NIC, only the downstream
-products have high-speed service NIC. Software needs to be packaged
-layer by layer.
-
-> 
-> Of course, if all high-speed DMA masters on this chip are
-> cache coherent, there is no need for performance numbers, just
-> mention that we don't care about speed in that case.
-
-It's not cache coherent, otherwise, the L3 cache does not need to be
-operated.
-
-> 
->         Arnd
-> 
-> .
-> 
+base-commit: fb2a9c3209872b6e65661e3737f2767832a42973
+-- 
+2.11.0
 
