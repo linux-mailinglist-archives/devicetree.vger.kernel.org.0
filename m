@@ -2,109 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2AF430BF35
-	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 14:20:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E67D30BF2F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Feb 2021 14:20:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232326AbhBBNSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 08:18:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231667AbhBBNSt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 08:18:49 -0500
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [IPv6:2a00:da80:fff0:2::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64FD0C06174A;
-        Tue,  2 Feb 2021 05:18:08 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id CBF041C0B7A; Tue,  2 Feb 2021 14:13:26 +0100 (CET)
-Date:   Tue, 2 Feb 2021 14:13:26 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Jonathan Albrieux <jonathan.albrieux@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S232296AbhBBNS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 08:18:29 -0500
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:14216 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232040AbhBBNRx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 08:17:53 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B601950d00000>; Tue, 02 Feb 2021 05:17:04 -0800
+Received: from [10.26.73.224] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 2 Feb
+ 2021 13:17:00 +0000
+Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: tegra: Add binding for RT5631
+To:     Ion Agorria <AG0RRIA@yahoo.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Stephen Warren <swarren@nvidia.com>,
+        "Liam Girdwood" <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Add initial support for BQ Aquaris X5
-Message-ID: <20210202131326.GA23980@duo.ucw.cz>
-References: <20210124135409.5473-1-jonathan.albrieux@gmail.com>
- <20210124210119.GA27676@amd>
- <YA3rTAx2vfOXPCMq@gerhold.net>
- <20210127222407.GD24799@amd>
- <YBKDa1irydOUaXag@gerhold.net>
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Ion Agorria <ion@agorria.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210131184101.651486-1-AG0RRIA@yahoo.com>
+ <20210131184101.651486-2-AG0RRIA@yahoo.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <ef45da2b-22b0-80f5-c3e8-f25f9209e1e8@nvidia.com>
+Date:   Tue, 2 Feb 2021 13:16:57 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="1yeeQ81UyVL57Vl7"
-Content-Disposition: inline
-In-Reply-To: <YBKDa1irydOUaXag@gerhold.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210131184101.651486-2-AG0RRIA@yahoo.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1612271824; bh=kHwwCFZOBcZt8HEeiinoBimAE/Mk7BxGie3JGOVk6Vg=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=SXcxHqIz/otPP7pSDUkaNNJyzDSKSpq05Z7/lRwcuR529gT9L8F/dhOAPNpyDgn77
+         h4fgNq8ecgTor2hP0/5ASb/OS9lmgWsaBSOAFcrx31D3/4JTaJykC4jjF/+IOraLpB
+         Oog4HjOm1c+p3kf6HSAh1VseNOjtxgERT40zDk+Mp4//N5rWMLbGyPy4VtGvrjLTLL
+         ToDqtmc4vShE+B61DxAqMtfBOP13mmAWAQhsupQcRl0GzfcABkOU5skdkTrKaY4nth
+         x+5nXkRA/fBz/awz33SIppEzLLsO8toMWYOEeDf8Arbpqkjq9hh2Fegl3kAYscbamR
+         fcE0z5/kiP2gA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---1yeeQ81UyVL57Vl7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 31/01/2021 18:41, Ion Agorria wrote:
+> From: Svyatoslav Ryhel <clamor95@gmail.com>
+> 
+> Add device-tree binding that describes hardware integration of RT5631
+> audio codec chip with NVIDIA Tegra SoCs.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Ion Agorria <ion@agorria.com>
+> ---
+>  .../sound/nvidia,tegra-audio-rt5631.yaml      | 134 ++++++++++++++++++
+>  1 file changed, 134 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5631.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5631.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5631.yaml
+> new file mode 100644
+> index 000000000000..6ee62c599518
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5631.yaml
+> @@ -0,0 +1,134 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/sound/nvidia,tegra-audio-rt5631.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVIDIA Tegra RT5631 ASoC
+> +
+> +description: |
+> +  This binding describes integration of the Realtek ALC5631/RT5631 sound
+> +  codec with the sound system of NVIDIA Tegra SoCs.
+> +
+> +maintainers:
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Stephen Warren <swarren@nvidia.com>
+> +  - Thierry Reding <thierry.reding@gmail.com>
 
-Hi!
 
-> > > > How close are you to having useful phone calls?
-> > >=20
-> > > You can do phone calls (with audio) and you can use mobile data, if y=
-ou
-> > > have the patches for that. :) I'm trying to find time to finish up the
-> > > drivers needed for that, but I've been a bit short on time lately.
-> >=20
-> > > Most of the functionality is packaged in postmarketOS [1] and you can
-> > > find a list of the devices in the postmarketOS wiki [2]. Especially
-> > > the ones in the "community" category are quite similar in terms of
-> > > working functionality.
-> >=20
-> > I know about postmarketOS (I even contributed a bit some time ago),
-> > and watch it from time to time. Currently I'm using old Nokia 6151 for
-> > phone calls, but would not mind switching. Work is ongoing in Droid 4
-> > land -- phone calls are also "almost there". But the almost seems to
-> > be a lot of work :-(.
-> >=20
->=20
-> It's fairly simple on Qualcomm SoCs once audio DSP and modem are working
-> (which is not that simple). I basically just tell the audio DSP to
-> stream voice call audio to the audio ports and then it does that without
-> involving the kernel.
->=20
-> It seems to work quite well, so far no one complained about quality or
-> something like that. Not sure if anyone is actively using it already
-> though :)
+Thierry and I should be sufficient and so no need to include Stephen in
+the list.
 
-Ok, thanks for info :-).=20
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nvidia,tegra-audio-rt5631
+> +
+> +  clocks:
+> +    minItems: 3
+> +    items:
+> +      - description: PLL A clock
+> +      - description: PLL A OUT0 clock
+> +      - description: The Tegra cdev1/extern1 clock, which feeds the card's mclk
+> +
+> +  clock-names:
+> +    minItems: 3
+> +    items:
+> +      - const: pll_a
+> +      - const: pll_a_out0
+> +      - const: mclk
+> +
+> +  assigned-clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  assigned-clock-parents:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  assigned-clock-rates:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  nvidia,model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: User-visible name of this sound complex.
+> +
+> +  nvidia,audio-routing:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description: |
+> +      A list of the connections between audio components.
+> +      Each entry is a pair of strings, the first being the connection's sink,
+> +      the second being the connection's source. Valid names for sources and
+> +      sinks are the RT5631's pins (as documented in its binding), and the jacks
+> +      on the board:
+> +
+> +      * Int Spk
+> +      * Headphone Jack
+> +      * Mic Jack
+> +      * Int Mic
+> +
+> +  nvidia,i2s-controller:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle of the Tegra I2S controller.
+> +
+> +  nvidia,audio-codec:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle of the RT5631 audio codec.
+> +
+> +  nvidia,hp-mute-gpios:
+> +    description: GPIO that mutes the headphones (button event).
+> +    maxItems: 1
+> +
+> +  nvidia,hp-det-gpios:
+> +    description: GPIO that detects headphones plug-in.
+> +    maxItems: 1
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - assigned-clocks
+> +  - assigned-clock-parents
+> +  - nvidia,model
+> +  - nvidia,audio-routing
+> +  - nvidia,i2s-controller
+> +  - nvidia,audio-codec
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/tegra30-car.h>
+> +    #include <dt-bindings/soc/tegra-pmc.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    sound {
+> +        compatible = "nvidia,tegra-audio-rt5631";
+> +        nvidia,model = "NVIDIA Tegra RT5631";
+> +
+> +        nvidia,audio-routing =
+> +            "Headphone Jack", "HPOL",
+> +            "Headphone Jack", "HPOR",
+> +            "Int Spk", "SPOL",
+> +            "Int Spk", "SPOR",
+> +            "MIC1", "MIC Bias1",
+> +            "MIC Bias1", "Mic Jack",
+> +            "DMIC", "Int Mic";
+> +
+> +        nvidia,i2s-controller = <&tegra_i2s1>;
+> +        nvidia,audio-codec = <&rt5631>;
+> +
+> +        nvidia,hp-det-gpios = <&gpio 178 GPIO_ACTIVE_LOW>;
+> +        nvidia,hp-mute-gpios = <&gpio 186 GPIO_ACTIVE_LOW>;
+> +
+> +        clocks = <&tegra_car TEGRA30_CLK_PLL_A>,
+> +                 <&tegra_car TEGRA30_CLK_PLL_A_OUT0>,
+> +                 <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
+> +        clock-names = "pll_a", "pll_a_out0", "mclk";
+> +
+> +        assigned-clocks = <&tegra_car TEGRA30_CLK_EXTERN1>,
+> +                          <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
+> +
+> +        assigned-clock-parents = <&tegra_car TEGRA30_CLK_PLL_A_OUT0>,
+> +                                 <&tegra_car TEGRA30_CLK_EXTERN1>;
+> +    };
+> +
+> +...
+> 
 
-> The work left is mainly making the driver more generic so it can work on
-> other Qualcomm SoCs as well (right now I have some things hardcoded).
-> Also, I still haven't fully figured out what is the best way to
-> integrate it into ASoC/UCM/..., so that it can be easily activated when
-> starting a voice call.
+Otherwise looks good to me ...
 
-On droid 4, we use mixer settings to configure audio system for a
-call. Maemo Leste has some kind of component to automatically adjust
-mixers when call is started. We use ofonod.
+Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
 
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
+Cheers
+Jon
 
---1yeeQ81UyVL57Vl7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYBlP9gAKCRAw5/Bqldv6
-8tzWAKCdkEFZl9hRFG46yPE3C/spvowpWQCaA6Ukg3wKxEbu1zi+xVIs9ckw2Ks=
-=mY9d
------END PGP SIGNATURE-----
-
---1yeeQ81UyVL57Vl7--
+-- 
+nvpublic
