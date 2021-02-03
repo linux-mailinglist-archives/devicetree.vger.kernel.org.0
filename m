@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16FE530DA86
+	by mail.lfdr.de (Postfix) with ESMTP id 87C5E30DA87
 	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 14:03:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230034AbhBCND2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 08:03:28 -0500
-Received: from esa2.hgst.iphmx.com ([68.232.143.124]:14157 "EHLO
+        id S230159AbhBCNDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 08:03:31 -0500
+Received: from esa2.hgst.iphmx.com ([68.232.143.124]:14163 "EHLO
         esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbhBCND0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 08:03:26 -0500
+        with ESMTP id S230151AbhBCNDa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 08:03:30 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1612358042; x=1643894042;
+  t=1612358048; x=1643894048;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=cLJLy/HsfaKJnI40HMcMyu6lTnD7VmKbWkTSB5pV0yE=;
-  b=bplNr+6Wz0ZTcT0lDrwYOwGOTvoW6tnXrXTSfAKchkawiyidWhsEoap4
-   1rhgCz2cSS6/vNXJceYAxzhaym6kljZOCWYZgYAKm16X5sWBryHHkIyvF
-   wGP1OFVvfjNzedv4YvtFVrH88aVSPVkhI0cB6iiZTHVWV8YPm14adnsQL
-   D9YzQu1gjVPLJXSVK2G8BIquOVdTdyAYtk4nMjL7HIXnCAcaU8x3U3ZkS
-   1lMGqnonhMohxvbUWdbX1oiyt3z2YWgXKWbprZjnDAFwOJQKBboWGvbv7
-   +0MjrUc41bgKkjze571UXe+4JyNuz1kECZ9eIY5UNaXXkF+g1GtWLGeRk
-   A==;
-IronPort-SDR: SHlFIzeQj1l8wlEz4iykymxJWUWiwFbfqMefVrIAp4Oyk//mDWSDid+DKybcZNyJP0hB1l97Jk
- /KQu+vMTU2n5vwMy0XcODCtKMngcDYzCO7OdN9gcExxWkCTVqoYYkqV/nF7M/rL37F8rvECqXt
- ygPi/fxRa+lV2mHwpbOIKZIZGAb9eFy+5YYwZ4zBpQywkA9GjRXLOHx365IDzea9l8eSApgJ9k
- 4ZiY94wmBw1AjzcZnA2NO0vhQOrNkXh3je5jV2Dv+YauRQ6KRjl9xOkhYB2m1ei8RpVvBGJb+w
- FU8=
+  bh=/H1g/Hywhdh1HiprEz/LxEfy6KOoveylLatAxx0A954=;
+  b=BIgKSsevpHJR5CHdBgwLAENBPeq+euy2NjgNoxOFNL64jSgs9gnb2/CX
+   KQeViG0JX+5x0ZWfO2tTrF7iBiBwc/l8omXZfJA6AkhQCcITerZiVUTN4
+   I0xL8QsnvUiO3T/IJTrqaZ+2NIoJsBN1i2XvDv/3GqOJGbd3Sc9Bx5H/j
+   aW4oeK8/1sfo0VfnvIa95yPdieJegvyEmDm3w2vKISPbCX/xUdxkSM8Wy
+   ulvYOStn7MIlQ73EXveYNMMgsRKHHiRcyEDXR6Lj01lJaBpj5vFf4CYDJ
+   DC+PR4kPvX+NcGN9DrNpoETVR2fFqvat3ijLDd9BbOC/EkUa2Tc5CzSP8
+   g==;
+IronPort-SDR: qvGrfzbasFbj3A6qkNeRzbi2mEmP9MgIMCDlAq0/A7Cig9z2brTbQj+e7AncRcNZDaHb/xUI2A
+ IWij51k+uvEi3vBK4Puw6Aqgwn+mQeLA0urEau+1vVCxjvpqYUJHSYLIOTjM/M9kSZdrv68SMF
+ 6dmHEUujijsGg0JL0XmXXLuRSjedy78evmwo3P2hR1g0mkI2naAYnTWAAP1K+JWxefHorQ7cBd
+ cekFQvUD/xBU8YbPzB4W5poyYkNb+wON4UC9qGGcICtEdS+mK7QdmkKVkHaAiMME5qF6RYYpBf
+ 2bE=
 X-IronPort-AV: E=Sophos;i="5.79,398,1602518400"; 
-   d="scan'208";a="263106954"
+   d="scan'208";a="263106958"
 Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 03 Feb 2021 21:08:49 +0800
-IronPort-SDR: 73I7uHGPgAIE2lsC7YCmMwtHqBz07YshWO2JVhQG8Kn2fjuufFCgY6u6tz3IzAezkXUC3kgQWE
- ijyBekYsUlz1Tuj6s5YN9vXM7pieDbwml/m191s8j72FKCgrYGbjjXEQpwbm1L0R6p4ZLZoDGQ
- dUiHxXFZh9N5wo/9P81t3V1AalOmWB9lJJgPi8wfm36nvs8AgdzpvXW1n/nvmnt3JKT27iI0UN
- 8GqIhCeSvs2ljM1Po36xsq2+hZaP6xdj/WuKXIhXNeuEoDM4zMto4iIoSK05GUnzP+D5v4UPtI
- gexZzSmjX3UWUy95JgCKmXD/
+  by ob1.hgst.iphmx.com with ESMTP; 03 Feb 2021 21:08:52 +0800
+IronPort-SDR: b4KOUIeaZjiHyk6UDg9JP0WQD24rzZar1NWVFjUyt8RyOcDhJeHlnjLXhxMXlOuyTOHBA9BApU
+ mcc4OlwqCC2X/oRMMRRZJnMhw+fRXQdoOY0+yxeSHsGgfO9gganZV6ruiDOKSQBBkW1x2461Y8
+ nDpVTNEbYestX3dB7UZyXTuUjnoadZpISD1NA4Fntf0w0CgQILDNfKuuz+i0mA4WHQwOyhZGio
+ f6e079HMciloGlEViB2afxjt/iCbCXGb+/qtu+zKrKpbvRzA+0iwtuBvAZj8e6hJa8dAJSLNaT
+ BkTvJR82mXCLWs3jAjjkP1gY
 Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2021 04:43:58 -0800
-IronPort-SDR: FQMMPJyweYod6LvjosWTuQbwNrGKdhixIM6NbZpvmbPn9rg2NlZBnaL+tTNhTs8sHO0JYOhFJx
- QEp87BP8SG9HmMums5TjMAUi1S+7cgIr+PcYGK6Suf1rzpWfo1tAdoQ+aoiyS2pvC53x7WQ4aW
- B79pH0UxWhAIx1uKGrtawhH44x/QOBP6JvdGgRkrWpW0x0Ofl1208tv5Tgh2OH+RrTXp+/pWif
- OF/wBE3IPmyC45iB1PZ6+TNg30CmqbHk/SpyULW52GygF4/V/yOY9q3Pbr42dniWYIzX1HPyrH
- RF0=
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2021 04:44:00 -0800
+IronPort-SDR: 6yiYoozsdJPTyusGVt8dQbBAZPAqQ7153o9ZHmL6wsbs6bVaFeq/19rV+L6zM3JDm2lDxTyWXy
+ Qs7X0AK3PmJ9vs8vFnIAmB1qm2BAmoPkSN229/dMWLJ1UxE4oA7EgAzscSqztLzKccnMGkkrhD
+ 8G2GkHZ8hnMvlkp5UZVY5CSAdybk2ZzCdalPxhCH7ctMUEnv653aZ56eufRMED3knnjeC+XtHv
+ qiYL8ZXaI5USdm/EaRO8dERissKyJ1RSZqpJamaEaSldedf5/mZnREHWU1tM5QHMemrKEQ8r+O
+ Cj8=
 WDCIronportException: Internal
 Received: from wdapacbjl0003.my.asia.wdc.com (HELO twashi.fujisawa.hgst.com) ([10.84.71.58])
-  by uls-op-cesaip01.wdc.com with ESMTP; 03 Feb 2021 04:59:57 -0800
+  by uls-op-cesaip01.wdc.com with ESMTP; 03 Feb 2021 04:59:58 -0800
 From:   Damien Le Moal <damien.lemoal@wdc.com>
 To:     Palmer Dabbelt <palmer@dabbelt.com>,
         linux-riscv@lists.infradead.org
 Cc:     Atish Patra <atish.patra@wdc.com>, Anup Patel <anup.patel@wdc.com>,
         Sean Anderson <seanga2@gmail.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v15 11/16] riscv: Add SiPeed MAIX DOCK board device tree
-Date:   Wed,  3 Feb 2021 21:59:08 +0900
-Message-Id: <20210203125913.390949-12-damien.lemoal@wdc.com>
+Subject: [PATCH v15 12/16] riscv: Add SiPeed MAIX GO board device tree
+Date:   Wed,  3 Feb 2021 21:59:09 +0900
+Message-Id: <20210203125913.390949-13-damien.lemoal@wdc.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210203125913.390949-1-damien.lemoal@wdc.com>
 References: <20210203125913.390949-1-damien.lemoal@wdc.com>
@@ -66,24 +66,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the device tree sipeed_maix_dock.dts for the SiPeed MAIX DOCK m1
-and m1w boards. This device tree enables LEDs, gpio, i2c and spi/mmc
-SD card devices.
+Add the device tree sipeed_maix_go.dts for the SiPeed MAIX GO board.
+This device tree enables buttons, LEDs, gpio, i2c and spi/mmc SD card
+devices.
 
 Cc: Rob Herring <robh@kernel.org>
 Cc: devicetree@vger.kernel.org
 Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
 ---
- .../boot/dts/canaan/sipeed_maix_dock.dts      | 236 ++++++++++++++++++
- 1 file changed, 236 insertions(+)
- create mode 100644 arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
+ arch/riscv/boot/dts/canaan/sipeed_maix_go.dts | 244 ++++++++++++++++++
+ 1 file changed, 244 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
 
-diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
+diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
 new file mode 100644
-index 000000000000..fae0149a8740
+index 000000000000..373fbaa3ab94
 --- /dev/null
-+++ b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
-@@ -0,0 +1,236 @@
++++ b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
+@@ -0,0 +1,244 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/*
 + * Copyright (C) 2019-20 Sean Anderson <seanga2@gmail.com>
@@ -99,9 +99,8 @@ index 000000000000..fae0149a8740
 +#include <dt-bindings/leds/common.h>
 +
 +/ {
-+	model = "SiPeed MAIX Dock";
-+	compatible = "sipeed,maix-dock-m1", "sipeed,maix-dock-m1w",
-+		     "canaan,kendryte-k210";
++	model = "SiPeed MAIX GO";
++	compatible = "sipeed,maix-go", "canaan,kendryte-k210";
 +
 +	chosen {
 +		bootargs = "earlycon console=ttySIF0";
@@ -111,26 +110,21 @@ index 000000000000..fae0149a8740
 +	gpio-leds {
 +		compatible = "gpio-leds";
 +
-+		/*
-+		 * Note: the board wiring drawing documents green on
-+		 * gpio #4, red on gpio #5 and blue on gpio #6. However,
-+		 * the board is actually wired differently as defined here.
-+		 */
 +		led0 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			label = "blue";
++			color = <LED_COLOR_ID_GREEN>;
++			label = "green";
 +			gpios = <&gpio1_0 4 GPIO_ACTIVE_LOW>;
 +		};
 +
 +		led1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "green";
++			color = <LED_COLOR_ID_RED>;
++			label = "red";
 +			gpios = <&gpio1_0 5 GPIO_ACTIVE_LOW>;
 +		};
 +
 +		led2 {
-+			color = <LED_COLOR_ID_RED>;
-+			label = "red";
++			color = <LED_COLOR_ID_BLUE>;
++			label = "blue";
 +			gpios = <&gpio1_0 6 GPIO_ACTIVE_LOW>;
 +		};
 +	};
@@ -138,10 +132,22 @@ index 000000000000..fae0149a8740
 +	gpio-keys {
 +		compatible = "gpio-keys";
 +
-+		boot {
-+			label = "BOOT";
++		up {
++			label = "UP";
++			linux,code = <BTN_1>;
++			gpios = <&gpio1_0 7 GPIO_ACTIVE_LOW>;
++		};
++
++		press {
++			label = "PRESS";
 +			linux,code = <BTN_0>;
 +			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
++		};
++
++		down {
++			label = "DOWN";
++			linux,code = <BTN_2>;
++			gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
 +		};
 +	};
 +
@@ -185,6 +191,8 @@ index 000000000000..fae0149a8740
 +
 +	gpio_pinctrl: gpio-pinmux {
 +		pinmux = <K210_FPIOA(8, K210_PCF_GPIO0)>,
++			 <K210_FPIOA(9, K210_PCF_GPIO1)>,
++			 <K210_FPIOA(10, K210_PCF_GPIO2)>,
 +			 <K210_FPIOA(11, K210_PCF_GPIO3)>,
 +			 <K210_FPIOA(12, K210_PCF_GPIO4)>,
 +			 <K210_FPIOA(13, K210_PCF_GPIO5)>,
@@ -238,8 +246,8 @@ index 000000000000..fae0149a8740
 +	};
 +
 +	i2c1_pinctrl: i2c1-pinmux {
-+		pinmux = <K210_FPIOA(9, K210_PCF_I2C1_SCLK)>,
-+			 <K210_FPIOA(10, K210_PCF_I2C1_SDA)>;
++		pinmux = <K210_FPIOA(30, K210_PCF_I2C1_SCLK)>,
++			 <K210_FPIOA(31, K210_PCF_I2C1_SDA)>;
 +	};
 +};
 +
@@ -289,7 +297,7 @@ index 000000000000..fae0149a8740
 +		compatible = "sitronix,st7789v";
 +		reg = <0>;
 +		reset-gpios = <&gpio0 21 GPIO_ACTIVE_LOW>;
-+		dc-gpios = <&gpio0 22 0>;
++		dc-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
 +		spi-max-frequency = <15000000>;
 +		status = "disabled";
 +	};
