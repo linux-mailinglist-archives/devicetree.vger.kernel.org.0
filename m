@@ -2,131 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 504E230E42D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 21:49:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92F9230E44F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 21:54:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232114AbhBCUmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 15:42:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52372 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231951AbhBCUl4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 15:41:56 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4E00764F76
-        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 20:41:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612384875;
-        bh=a155rDiUOTottK3BkpGV7GBGnkCxskQN2uR3TL7Vctw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hi43SE5VpL/+cZC2xHvp1iDB1HfNWB/jwplmjUvPf1PaeWmLra9S7qAc/fZ+Kcd/F
-         e0KFp8e7TA28FbsvGIWn2ZvQDpKj8CmDkcxhZYzMg0oVENlnqBuFXnEHZzOUrX9mGm
-         8GmGdyRZGbossbnmqv+TGU8ZDn5g7CV1s962DWN7TcPKgBwJhg0ej5XUCWr8wcJSPN
-         uCHiE4dTcff9kqiym+On1aVI3iaKoGm3yFNUdwV61JpYBk9P4AAU0aItD3g8r0gzJA
-         epJC8AtZ/2Qreqx/D//5PjD5YQOLrFhr3L0d/M1WKi+goaHc8IHi2ApnLsIzFaWkR7
-         j+Sud+9q3UsQw==
-Received: by mail-ej1-f53.google.com with SMTP id p20so1256143ejb.6
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 12:41:15 -0800 (PST)
-X-Gm-Message-State: AOAM532ISTm5Aiq0NDA1aZVFZIZKyH8rOXQXgsAkTamqC3D85qq4Rqee
-        ANRg06Y+TqOXKyOOZtRDFMaYbQs9pLZrhOLpvQ==
-X-Google-Smtp-Source: ABdhPJwo6MDaFeVcL5eSWg9cKv2dOm2G3R6qtzjS3WgxrTzbKoMsX4swNQLb31rSbGCbi1pcSPUcmAZ5xShD6BHyT80=
-X-Received: by 2002:a17:906:af41:: with SMTP id ly1mr4830556ejb.525.1612384873695;
- Wed, 03 Feb 2021 12:41:13 -0800 (PST)
+        id S232180AbhBCUx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 15:53:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51912 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232331AbhBCUqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 15:46:17 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39671C06178A;
+        Wed,  3 Feb 2021 12:45:14 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id q2so1315303edi.4;
+        Wed, 03 Feb 2021 12:45:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=nMmfcO/AZRyYFfYSGaN+T619JHB1KRYF9FquTjBISLc=;
+        b=kyIilSPW7nOlg/PaY1n5KUud5IPBsZimQfmhqkZfK8qI8I/gUAB0FDoY/6dHW9qoVo
+         O5S4BQJ6PuyliWi7SnLgMshXNz9GVXvswyxmc4wXDDYXud0By2lvdBIp3417h8a5SLCz
+         fAFfIaaM8nRNxKXaXJN9aLyM9cp34ZAm0MRpRTOMN+q/m6JICnOzVqMxAR0eeLCfqThq
+         GB20139o5V19wYpc8GNHDBjxlJ8ej0gNXlwMj7nMqHRrtyaAD/2XlE1lbHaVA3MsDbas
+         LVqyRzhTQ2XCLDCXydUk27gK7iU0HyksHyqo4Zcbu8YRN00yZqxRwZl0lUe/Phb0hszu
+         5KfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=nMmfcO/AZRyYFfYSGaN+T619JHB1KRYF9FquTjBISLc=;
+        b=ae0xT+b1OKpKHn4QAjP0H7wVYFidohd6qHSPruJoTkA4eIcUk4AesncdJb+wbO/vmI
+         RvoCYZzw8Pj031Z/RKdwXEMAQgK2mIcJhFGxYb7VUumHodGsxTC0SqZZsl0x16tOinWN
+         GTndsRETTHLyhf/BSEpdkhXLxdtedQN+2NIpi3U2OrkUEfJOjw1EHd4l8YFFWwSCAQk4
+         8Rj3WFQnmd+VO7VJ/Cb1SdTR6w7ROS8iMSPeVztVvohJC1iSL0zdkAaiJWCJ21T9hJLD
+         1lgnWnXlrcHey9Devuc+gCg6aVySIvXrWBCy4lpiH9HqOh1P6+YzxLHmp5JVI52PmYRa
+         36Wg==
+X-Gm-Message-State: AOAM533z62SQDJt5Gsdl7OZS3fyJdpziByyjTdprGad9hIpGOqUXR9mP
+        f82jKxHQDQA5hSOFNBcOUcq8+KY0fr0=
+X-Google-Smtp-Source: ABdhPJyIM0iDtjZHLtqWxu2EzV907xvDuhKhWtz7iCuvodfHQp2cDGjU8WMfIBsw2OVzuyaoxkd22Q==
+X-Received: by 2002:a05:6402:40c4:: with SMTP id z4mr4984026edb.233.1612385112898;
+        Wed, 03 Feb 2021 12:45:12 -0800 (PST)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id r9sm1452666eju.74.2021.02.03.12.45.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Feb 2021 12:45:12 -0800 (PST)
+Subject: Re: [PATCH v2 1/7] dt-bindings: usb: convert rockchip,dwc3.txt to
+ yaml
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org, balbi@kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210203165233.22177-1-jbx6244@gmail.com>
+Message-ID: <597269b3-3fc4-85a1-fecd-7ee2816e228b@gmail.com>
+Date:   Wed, 3 Feb 2021 21:45:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <20210202103623.200809-1-damien.lemoal@wdc.com>
- <20210202103623.200809-8-damien.lemoal@wdc.com> <CAL_JsqJNqKrsB3LJvBpNmY6H3V1c5x4duqB_0p8YKit4+ZYRBw@mail.gmail.com>
- <89cccbae5add85c7bd811f3819ea3db7061e928d.camel@wdc.com>
-In-Reply-To: <89cccbae5add85c7bd811f3819ea3db7061e928d.camel@wdc.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 3 Feb 2021 14:41:02 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJeF364bPSNQLGujNHDkA7x8H_H7YXQFNZQ7vDzdAevcA@mail.gmail.com>
-Message-ID: <CAL_JsqJeF364bPSNQLGujNHDkA7x8H_H7YXQFNZQ7vDzdAevcA@mail.gmail.com>
-Subject: Re: [PATCH v14 07/16] dt-bindings: fix sifive gpio properties
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>
-Cc:     "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
-        "palmer@dabbelt.com" <palmer@dabbelt.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Atish Patra <Atish.Patra@wdc.com>,
-        "seanga2@gmail.com" <seanga2@gmail.com>,
-        Anup Patel <Anup.Patel@wdc.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210203165233.22177-1-jbx6244@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 3, 2021 at 6:52 AM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
->
-> On Tue, 2021-02-02 at 13:02 -0600, Rob Herring wrote:
-> > On Tue, Feb 2, 2021 at 4:36 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
-> > >
-> > > The sifive gpio IP block supports up to 32 GPIOs. Reflect that in the
-> > > interrupts property description and maxItems. Also add the standard
-> > > ngpios property to describe the number of GPIOs available on the
-> > > implementation.
-> > >
-> > > Also add the "canaan,k210-gpiohs" compatible string to indicate the use
-> > > of this gpio controller in the Canaan Kendryte K210 SoC. If this
-> > > compatible string is used, do not define the clocks property as
-> > > required as the K210 SoC does not have a software controllable clock
-> > > for the Sifive gpio IP block.
-> > >
-> > > Cc: Paul Walmsley <paul.walmsley@sifive.com>
-> > > Cc: Rob Herring <robh@kernel.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> > > ---
-> > >  .../devicetree/bindings/gpio/sifive,gpio.yaml | 21 ++++++++++++++++---
-> > >  1 file changed, 18 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-> > > index ab22056f8b44..2cef18ca737c 100644
-> > > --- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-> > > +++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-> > > @@ -16,6 +16,7 @@ properties:
-> > >        - enum:
-> > >            - sifive,fu540-c000-gpio
-> > >            - sifive,fu740-c000-gpio
-> > > +          - canaan,k210-gpiohs
-> > >        - const: sifive,gpio0
-> > >
-> > >    reg:
-> > > @@ -23,9 +24,9 @@ properties:
-> > >
-> > >    interrupts:
-> > >      description:
-> > > -      interrupt mapping one per GPIO. Maximum 16 GPIOs.
-> > > +      interrupt mapping one per GPIO. Maximum 32 GPIOs.
-> > >      minItems: 1
-> > > -    maxItems: 16
-> > > +    maxItems: 32
-> > >
-> > >    interrupt-controller: true
-> > >
-> > > @@ -38,6 +39,10 @@ properties:
-> > >    "#gpio-cells":
-> > >      const: 2
-> > >
-> > > +  ngpios:
-> > > +    minimum: 1
-> > > +    maximum: 32
-> >
-> > What's the default as obviously drivers already assume something.
-> >
-> > Does a driver actually need to know this? For example, does the
-> > register stride change or something?
-> >
-> > Please don't add it if the only purpose is error check your DT (IOW,
-> > if it just checks the max cell value in gpios phandles).
->
-> If I remove that, make dtbs_check complains. Looking at othe gpio controller
-> bindings, they all have it. So isn't it better to be consistent, and avoid make
-> dtbs_check errors ?
+Hi Rob, Heiko,
 
-That would mean you are already using 'ngpios' and it is undocumented
-(for this binding). If already in use and possibly having users then
-that changes things, but that's not what the commit msg says.
+Version 2 without node wrapper.
+Is that OK for backwards compatibility?
+New SoC rk3568 and rk3566 in the manufacturer tree also seem to use dwc3
+usb, so now only a rk3399 node restyle in mainline with conversion to yaml.
 
-Not *all* gpio controllers have ngpios. It's a good number, but
-probably more than need it though. If we wanted it everywhere, there
-would be a schema enforcing that.
+On 2/3/21 5:52 PM, Johan Jonker wrote:
+> In the past Rockchip dwc3 usb nodes were manually checked.
+> With the conversion of snps,dwc3.yaml as common document
+> we now can convert rockchip,dwc3.txt to yaml as well.
+> Remove node wrapper.
+> 
+> Added properties for rk3399 are:
+>   power-domains
+>   resets
+>   reset-names
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>  .../devicetree/bindings/usb/rockchip,dwc3.txt      |  56 -----------
+>  .../devicetree/bindings/usb/rockchip,dwc3.yaml     | 103 +++++++++++++++++++++
+>  2 files changed, 103 insertions(+), 56 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+>  create mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt b/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+> deleted file mode 100644
+> index 945204932..000000000
+> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+> +++ /dev/null
+> @@ -1,56 +0,0 @@
+> -Rockchip SuperSpeed DWC3 USB SoC controller
+> -
+> -Required properties:
+> -- compatible:	should contain "rockchip,rk3399-dwc3" for rk3399 SoC
+> -- clocks:	A list of phandle + clock-specifier pairs for the
+> -		clocks listed in clock-names
+> -- clock-names:	Should contain the following:
+> -  "ref_clk"	Controller reference clk, have to be 24 MHz
+> -  "suspend_clk"	Controller suspend clk, have to be 24 MHz or 32 KHz
+> -  "bus_clk"	Master/Core clock, have to be >= 62.5 MHz for SS
+> -		operation and >= 30MHz for HS operation
+> -  "grf_clk"	Controller grf clk
+> -
+> -Required child node:
+> -A child node must exist to represent the core DWC3 IP block. The name of
+> -the node is not important. The content of the node is defined in dwc3.txt.
+> -
+> -Phy documentation is provided in the following places:
+> -Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml - USB2.0 PHY
+> -Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt     - Type-C PHY
+> -
+> -Example device nodes:
+> -
+> -	usbdrd3_0: usb@fe800000 {
+> -		compatible = "rockchip,rk3399-dwc3";
+> -		clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
+> -			 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_GRF>;
+> -		clock-names = "ref_clk", "suspend_clk",
+> -			      "bus_clk", "grf_clk";
+> -		#address-cells = <2>;
+> -		#size-cells = <2>;
+> -		ranges;
+> -		usbdrd_dwc3_0: dwc3@fe800000 {
+> -			compatible = "snps,dwc3";
+> -			reg = <0x0 0xfe800000 0x0 0x100000>;
+> -			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> -			dr_mode = "otg";
+> -		};
+> -	};
+> -
+> -	usbdrd3_1: usb@fe900000 {
+> -		compatible = "rockchip,rk3399-dwc3";
+> -		clocks = <&cru SCLK_USB3OTG1_REF>, <&cru SCLK_USB3OTG1_SUSPEND>,
+> -			 <&cru ACLK_USB3OTG1>, <&cru ACLK_USB3_GRF>;
+> -		clock-names = "ref_clk", "suspend_clk",
+> -			      "bus_clk", "grf_clk";
+> -		#address-cells = <2>;
+> -		#size-cells = <2>;
+> -		ranges;
+> -		usbdrd_dwc3_1: dwc3@fe900000 {
+> -			compatible = "snps,dwc3";
+> -			reg = <0x0 0xfe900000 0x0 0x100000>;
+> -			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+> -			dr_mode = "otg";
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> new file mode 100644
+> index 000000000..fdf9497bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/rockchip,dwc3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip SuperSpeed DWC3 USB SoC controller
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +description:
 
-Rob
+> +      The common content of the node is defined in snps,dwc3.yaml.
+> +
+> +      Phy documentation is provided in the following places.
+> +
+> +      USB2.0 PHY
+> +      Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+> +
+> +      Type-C PHY
+> +      Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
+
+wrong indentation: expected 2 but found 6  (indentation)
+
+yamllint ./Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+
+
+This warning doesn't seem to show up with the command below.
+
+make ARCH=arm64 dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+
+> +
+> +allOf:
+
+> +  - $ref: snps,dwc3.yaml#
+
+No warning is given here with dt_binding_check.
+
+From patchwork log:
+Unknown file referenced: [Errno 2] No such file or directory:
+'/usr/local/lib/python3.8/dist-packages/dtschema/schemas/usb/snps,dwc3.yaml'
+
+/////
+
+What's the correct format?
+
+- $ref: snps,dwc3.yaml#
+
+or
+
+- $ref: "snps,dwc3.yaml#"
+
+/////
+
+This serie is for linux-next.
+What kernel version does patchwork work test with?
+
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210203165233.22177-1-jbx6244@gmail.com/
+
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - rockchip,rk3399-dwc3
+> +      - const: snps,dwc3
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description:
+> +          Controller reference clock, must to be 24 MHz
+> +      - description:
+> +          Controller suspend clock, must to be 24 MHz or 32 KHz
+> +      - description:
+> +          Master/Core clock, must to be >= 62.5 MHz for SS
+> +          operation and >= 30MHz for HS operation
+> +      - description:
+> +          Controller aclk_usb3_rksoc_axi_perf clock
+> +      - description:
+> +          Controller aclk_usb3 clock
+> +      - description:
+> +          Controller grf clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref_clk
+> +      - const: suspend_clk
+> +      - const: bus_clk
+> +      - const: aclk_usb3_rksoc_axi_perf
+> +      - const: aclk_usb3
+> +      - const: grf_clk
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: usb3-otg
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3399-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    bus {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      usbdrd3_0: usb@fe800000 {
+> +        compatible = "rockchip,rk3399-dwc3", "snps,dwc3";
+> +        reg = <0x0 0xfe800000 0x0 0x100000>;
+> +        interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
+> +                 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_RKSOC_AXI_PERF>,
+> +                 <&cru ACLK_USB3>, <&cru ACLK_USB3_GRF>;
+> +        clock-names = "ref_clk", "suspend_clk",
+> +                      "bus_clk", "aclk_usb3_rksoc_axi_perf",
+> +                      "aclk_usb3", "grf_clk";
+> +        dr_mode = "otg";
+> +      };
+> +    };
+> 
+
