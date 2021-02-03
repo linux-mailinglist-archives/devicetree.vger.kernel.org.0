@@ -2,89 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D26030D6F3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 11:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2113030D77F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 11:29:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232911AbhBCKBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 05:01:43 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:2016 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233357AbhBCKBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 05:01:37 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B601a74530003>; Wed, 03 Feb 2021 02:00:51 -0800
-Received: from [10.26.73.224] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 3 Feb
- 2021 10:00:48 +0000
-Subject: Re: [PATCH v2 5/9] arm64: defconfig: Enable RT5659
-To:     Sameer Pujar <spujar@nvidia.com>, <thierry.reding@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>, <lgirdwood@gmail.com>
-CC:     <kuninori.morimoto.gx@renesas.com>, <linux-tegra@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <sharadg@nvidia.com>, Oder Chiou <oder_chiou@realtek.com>,
-        Bard Liao <bardliao@realtek.com>
-References: <1611944866-29373-1-git-send-email-spujar@nvidia.com>
- <1611944866-29373-6-git-send-email-spujar@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <3d0aa7e4-9c9e-38a0-7cff-d86009b9266b@nvidia.com>
-Date:   Wed, 3 Feb 2021 10:00:45 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S233758AbhBCK2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 05:28:15 -0500
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:15410 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233840AbhBCK1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 05:27:38 -0500
+X-UUID: 4f3509ed5a864599ae31313abd2c1798-20210203
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=oRQwwEBqC4tKIu7cXvamzV8CPVw7VRwU+JGP2zYTRyU=;
+        b=VNzHi5FwcNFawbvb3kelq0+m02Q+mqSnGRZozUL+EB6RQ8tOSMoszXr89xzvmXC5EuBmGjCmsMMnf3PMbUvFVRO90qNJC/sT3KPNijEPQsb04Y3LI4ykrBeyK7mwXYJotMBao7c2AQFnyqg7HutZmU9nzENKb/HmO1zEKgNbqLo=;
+X-UUID: 4f3509ed5a864599ae31313abd2c1798-20210203
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1460794024; Wed, 03 Feb 2021 18:26:52 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 3 Feb 2021 18:26:46 +0800
+Received: from mtkslt301.mediatek.inc (10.21.14.114) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 3 Feb 2021 18:26:46 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Ikjoon Jang <ikjn@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+Subject: [RFC PATCH v2 1/3] dt-bindings: usb: mtk-xhci: add compatible for mt8195
+Date:   Wed, 3 Feb 2021 18:26:40 +0800
+Message-ID: <20210203102642.7353-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <1611944866-29373-6-git-send-email-spujar@nvidia.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1612346451; bh=Zm6eAFzmy5jCUF8zdukXzNtqTTnjEePWswJsRjm9IPg=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Language:
-         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-        b=QRFtyKBWB9Jqwvm2v8PbDaYUm7fs3hNnYaMFwt1GUk0en/9nJgrESDwqV8hJYWLQ/
-         gOvOefAkfpp1WBRL2agcSHkcqdbvQQucDQeb/iZqhzWkAmY6vcdMxm7IIoj4oS8JZo
-         76dPFpXwPVXLNjvISSh704k2yUamtyRygmAFO4MwYlo+m/uB9XahkKuWs8z/Tg04om
-         4zesNHGTLUpHFrgjtOgnNmot18L4pzi2Xu2w0sYIcu5ONnvOOOqNa5wN7BP8xvRU4y
-         2jx4v3AZR+vY+BxFNi0Dbsu90ZTqkUl5In9T0a5uKumb+nxUN9j5timObv5ypSObfL
-         MEpWu4cFi2JEQ==
+Content-Type: text/plain
+X-TM-SNTS-SMTP: B45C9A23E638F617A8804501C1C14A4441E4A31D6616F8B7CF5DFAD9D9CF1FB82000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+VGhlcmUgYXJlIDQgVVNCIGNvbnRyb2xsZXJzIG9uIE1UODE5NSwgdGhlIGNvbnRyb2xsZXJzIChJ
+UDF+SVAzLA0KZXhjbHVkZSBJUDApIGhhdmUgYSB3cm9uZyBkZWZhdWx0IFNPRi9JVFAgaW50ZXJ2
+YWwgd2hpY2ggaXMNCmNhbGN1bGF0ZWQgZnJvbSB0aGUgZnJhbWUgY291bnRlciBjbG9jayAyNE1o
+eiBieSBkZWZhdWx0LCBidXQNCmluIGZhY3QsIHRoZSBmcmFtZSBjb3VudGVyIGNsb2NrIGlzIDQ4
+TWh6LCBzbyB3ZSBzaG91bGQgc2V0DQp0aGUgYWNjdXJhdGUgaW50ZXJ2YWwgYWNjb3JkaW5nIHRv
+IDQ4TWh6LiBIZXJlIGFkZCBhIG5ldyBjb21wYXRpYmxlDQpmb3IgTVQ4MTk1LCBpdCdzIGFsc28g
+c3VwcG9ydGVkIGluIGRyaXZlci4gQnV0IHRoZSBmaXJzdCBjb250cm9sbGVyDQooSVAwKSBoYXMg
+bm8gc3VjaCBpc3N1ZSwgd2UgcHJlZmVyIHRvIHVzZSBnZW5lcmljIGNvbXBhdGlibGUsDQplLmcu
+IG10ODE5MidzIGNvbXBhdGlibGUuDQoNClNpZ25lZC1vZmYtYnk6IENodW5mZW5nIFl1biA8Y2h1
+bmZlbmcueXVuQG1lZGlhdGVrLmNvbT4NCi0tLQ0KdjI6IG5vIGNoYW5nZXMNCi0tLQ0KIERvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRrLXhoY2kudHh0IHwg
+MSArDQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQoNCmRpZmYgLS1naXQgYS9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL21lZGlhdGVrLG10ay14aGNpLnR4dCBi
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRrLXhoY2ku
+dHh0DQppbmRleCA0MmQ4ODE0ZjkwM2EuLjAyY2JhNDIxMmY3ZCAxMDA2NDQNCi0tLSBhL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRrLXhoY2kudHh0DQor
+KysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL21lZGlhdGVrLG10ay14
+aGNpLnR4dA0KQEAgLTE2LDYgKzE2LDcgQEAgUmVxdWlyZWQgcHJvcGVydGllczoNCiAJIm1lZGlh
+dGVrLG10ay14aGNpIiBjb21wYXRpYmxlIHN0cmluZywgeW91IG5lZWQgU29DIHNwZWNpZmljIG9u
+ZXMgaW4NCiAJYWRkaXRpb24sIG9uZSBvZjoNCiAJLSAibWVkaWF0ZWssbXQ4MTczLXhoY2kiDQor
+CS0gIm1lZGlhdGVrLG10ODE5NS14aGNpIg0KICAtIHJlZyA6IHNwZWNpZmllcyBwaHlzaWNhbCBi
+YXNlIGFkZHJlc3MgYW5kIHNpemUgb2YgdGhlIHJlZ2lzdGVycw0KICAtIHJlZy1uYW1lczogc2hv
+dWxkIGJlICJtYWMiIGZvciB4SENJIE1BQyBhbmQgImlwcGMiIGZvciBJUCBwb3J0IGNvbnRyb2wN
+CiAgLSBpbnRlcnJ1cHRzIDogaW50ZXJydXB0IHVzZWQgYnkgdGhlIGNvbnRyb2xsZXINCi0tIA0K
+Mi4xOC4wDQo=
 
-On 29/01/2021 18:27, Sameer Pujar wrote:
-> Enable the RT5659 audio codec driver.
-
-We could add that the Jetson AGX Xavier uses this codec and so we want
-to enable this for testing purposes. Otherwise ...
-
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> Cc: Oder Chiou <oder_chiou@realtek.com>
-> Cc: Bard Liao <bardliao@realtek.com>
-> ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index ec377f7..ea279e8 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -754,6 +754,7 @@ CONFIG_SND_SOC_ES7134=m
->  CONFIG_SND_SOC_ES7241=m
->  CONFIG_SND_SOC_GTM601=m
->  CONFIG_SND_SOC_PCM3168A_I2C=m
-> +CONFIG_SND_SOC_RT5659=m
->  CONFIG_SND_SOC_SIMPLE_AMPLIFIER=m
->  CONFIG_SND_SOC_TAS571X=m
->  CONFIG_SND_SOC_WCD934X=m
-> 
-
-Acked-by: Jon Hunter <jonathanh@nvidia.com>
-
-Cheers
-Jon
-
--- 
-nvpublic
