@@ -2,209 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3D9530D263
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 05:15:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD3D630D335
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 06:56:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232439AbhBCEPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 23:15:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36078 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232409AbhBCEPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 23:15:22 -0500
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DA23C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 20:14:42 -0800 (PST)
-Received: by mail-qv1-xf2b.google.com with SMTP id n14so11075495qvg.5
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 20:14:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=u1Kmi6mnBkkCqSWXEJQ15LYAb6ytoT8kO+7cz71e1rU=;
-        b=da6AATUe8y4TboRqC4zCieDv8D8OTBREivy/rggxnLrmM4ziQ7FHrIaC9xbR1/gg6b
-         T2QplsYjhFngkMCxETRmRDh/+TpN7R0t24Lad14wuzuax/Di+7OfttDIADXD+QsfYaI6
-         U0+nahdPRrKwTQF3SbyyONb6rncuE7am214uqugNs324lrx7TVD9MMv5VpmPsJsJB4rl
-         IcfI1VUwSiM0KXr9Hq7HDhU0IDXi3E95taL5v7cTTQ6PRZI1Ki2y/9NHL0MWlrHeO4y8
-         oL+iFyip3MeYsxKTfqaEaJkVnRUyE3gr9ijr+OLsbdUZulStbY0hJ7suCupZfEN9mGKF
-         09Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=u1Kmi6mnBkkCqSWXEJQ15LYAb6ytoT8kO+7cz71e1rU=;
-        b=n4XcEC6ekSkPDvwipVyjSvYxQ+CghdLpCcTXsFgDt6ryAiUI6JsBCj+ZyxorGIEytZ
-         7egD02k7kmB4jMIOoSK5UpgUYais+AAlvzxVsQPNqPWaueTufVRFBGvCC5fcB9kGZ8fb
-         iCSdes0C6YAjL/wTVyABF3YPPIZfZZTsubNsYjKUlwTBMhHPWWcpOEpRuhoe/BS+Pyxy
-         wtvUKh7tfGiNCyHBagCARu8eRL5eGSqZiAkdVi8l1WsN62rfUoKJcoDEw6dfX6TO7AHj
-         3YeVKmtp/uvbl3nSNvLwZNts6usZwxadJ7+N70omnnWwlSQUaK5bX/GgcWvmPMmLOr7g
-         rErw==
-X-Gm-Message-State: AOAM5301Oxlu1LN25hUYpkLxaBTSvJtjP1Yyh+hETSyIDNN7wYLfR1kN
-        YXL5oyJcpCW24SBchE+p9L2W0OcJVc9Ynyaj9XLVGQ==
-X-Google-Smtp-Source: ABdhPJxjosTt4MD6QbAu3MNnxE3G5OB3RpNdWyI4h5AYp07kKinJhX1QGim1Veu0tQDQNyij7ZBP8TFf51YhyE1Uj1g=
-X-Received: by 2002:a0c:b912:: with SMTP id u18mr1348119qvf.2.1612325681056;
- Tue, 02 Feb 2021 20:14:41 -0800 (PST)
+        id S229845AbhBCFyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 00:54:40 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:32845 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229831AbhBCFyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 00:54:39 -0500
+X-UUID: 928c5272a54a49d29c504588855f962e-20210203
+X-UUID: 928c5272a54a49d29c504588855f962e-20210203
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <seiya.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1238875708; Wed, 03 Feb 2021 13:53:57 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 3 Feb 2021 13:53:55 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 3 Feb 2021 13:53:56 +0800
+From:   Seiya Wang <seiya.wang@mediatek.com>
+To:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Peter Zijlstra <peterz@infradead.org>,
+        Ingo Molnar <mingo@redhat.com>,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Jiri Olsa <jolsa@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <srv_heupstream@mediatek.com>
+Subject: [PATCH v2 0/2] Add support for ARM Cortex-A78 PMU 
+Date:   Wed, 3 Feb 2021 13:53:46 +0800
+Message-ID: <20210203055348.4935-1-seiya.wang@mediatek.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
-References: <da0ac373-4edb-0230-b264-49697fa3d86a@linaro.org>
- <20210129215024.GA113900@bjorn-Precision-5520> <CAA8EJpoPsv5tfsaiJq4UnBYt3o+gJanWzy8aaZRK=V8yOk3mJQ@mail.gmail.com>
- <YBTYKLi81Cf65yUB@builder.lan> <CAA8EJprwBKbGrh-BjrzkQTxoboUi470wYcn-gTBHdNQ1Af7DKA@mail.gmail.com>
- <YBmsjDiKnpQjYeQh@builder.lan> <CAL_JsqJoKEVUs0f7rP87M3Wh6yVvB-bYi7vBprti8hoim3-e-A@mail.gmail.com>
-In-Reply-To: <CAL_JsqJoKEVUs0f7rP87M3Wh6yVvB-bYi7vBprti8hoim3-e-A@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 3 Feb 2021 07:14:30 +0300
-Message-ID: <CAA8EJpq6A28RHSD7YVz_AAdWnnvtCEAh1XcPyUTu0Ufp67M1XA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] pcie-qcom: provide a way to power up qca6390 chip
- on RB5 platform
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        Andy Gross <agross@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Feb 2021 at 00:37, Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Tue, Feb 2, 2021 at 1:48 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > On Sat 30 Jan 10:14 CST 2021, Dmitry Baryshkov wrote:
-> >
-> > > On Sat, 30 Jan 2021 at 06:53, Bjorn Andersson
-> > > <bjorn.andersson@linaro.org> wrote:
-> > > >
-> > > > On Fri 29 Jan 16:19 CST 2021, Dmitry Baryshkov wrote:
-> > > >
-> > > > > On Sat, 30 Jan 2021 at 00:50, Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > > > >
-> > > > > > On Fri, Jan 29, 2021 at 06:45:21AM +0300, Dmitry Baryshkov wrote:
-> > > > > > > On 28/01/2021 22:26, Rob Herring wrote:
-> > > > > > > > On Thu, Jan 28, 2021 at 11:52 AM Dmitry Baryshkov
-> > > > > > > > <dmitry.baryshkov@linaro.org> wrote:
-> > > > > > > > >
-> > > > > > > > > Some Qualcomm platforms require to power up an external device before
-> > > > > > > > > probing the PCI bus. E.g. on RB5 platform the QCA6390 WiFi/BT chip needs
-> > > > > > > > > to be powered up before PCIe0 bus is probed. Add a quirk to the
-> > > > > > > > > respective PCIe root bridge to attach to the power domain if one is
-> > > > > > > > > required, so that the QCA chip is started before scanning the PCIe bus.
-> > > > > > > >
-> > > > > > > > This is solving a generic problem in a specific driver. It needs to be
-> > > > > > > > solved for any PCI host and any device.
-> > > > > > >
-> > > > > > > Ack. I see your point here.
-> > > > > > >
-> > > > > > > As this would require porting code from powerpc/spark of-pci code and
-> > > > > > > changing pcie port driver to apply power supply before bus probing happens,
-> > > > > > > I'd also ask for the comments from PCI maintainers. Will that solution be
-> > > > > > > acceptable to you?
-> > > > > >
-> > > > > > I can't say without seeing the code.  I don't know enough about this
-> > > > > > scenario to envision how it might look.
-> > > > > >
-> > > > > > I guess the QCA6390 is a PCIe device?  Why does it need to be powered
-> > > > > > up before probing?  Shouldn't we get a link-up interrupt when it is
-> > > > > > powered up so we could probe it then?
-> > > > >
-> > > > > Not quite. QCA6390 is a multifunction device, with PCIe and serial
-> > > > > parts. It has internal power regulators which once enabled will
-> > > > > powerup the PCIe, serial and radio parts. There is no need to manage
-> > > > > regulators. Once enabled they will automatically handle device
-> > > > > suspend/resume, etc.
-> > > > >
-> > > >
-> > > > So what you're saying is that if either the PCI controller or bluetooth
-> > > > driver probes these regulators will be turned on, indefinitely?
-> > > >
-> > > > If so, why do we need a driver to turn them on, rather than just mark
-> > > > them as always-on?
-> > > >
-> > > > What's the timing requirement wrt regulators vs WL_EN/BT_EN?
-> > >
-> > > According to the documentation I have, they must be enabled right
-> > > after enabling powering the chip and they must stay enabled all the
-> > > time.
-> > >
-> >
-> > So presumably just marking these things always-on and flipping the GPIO
-> > statically won't be good enough due to the lack of control over the
-> > timing.
-> >
-> > This really do look like a simplified case of what we see with the
-> > PCIe attached modems, where similar requirements are provided, but also
-> > the ability to perform a device specific reset sequence in case the
-> > hardware has locked up. I'm slightly worried about the ability of
-> > extending your power-domain model to handle the restart operation
-> > though.
->
-> I think this is an abuse of 'power-domains'. Just define the
-> regulators in both WiFi and BT nodes and have each driver enable them.
 
-I think it is too late to enable regulators in the WiFi driver. Even
-if I modify the/pci code to register devices basing on the OF nodes
-(like we do for PPC and Sparc), necessary link training/hotplug
-handling should happen outside of the WiFi driver.
+Add support for ARM Cortex-A78 PMU since it will be used in
+new Mediatek SoC.
 
-> They're refcounted. If that's still not enough control over the power
-> sequencing, then create a 3rd entity to do it, but that doesn't need
-> to leak into DT. You already have all the information you need.
+Based on v5.11-rc6
 
-From my point of view the proposed design (with three nodes) exactly
-represents the hardware: the power-handling part, the WiFi part and
-the BT part. If you don't like the power domains, would regulators be
-better from your point of view? The "power" device providing a
-regulator to be used by the child nodes. For the BT part the regulator
-is fine, while for the WiFi...
+Change in v2:
+Remove change-id in commit message
 
-The major problem with regulators in this case is that they are
-typically enabled by the device driver itself, rather than by parent
-device/bus code. And in the WiFi driver case the WiFi chip should be
-already up and running before probing the ath11k driver.
+Seiya Wang (2):
+  arm64: perf: add support for Cortex-A78
+  dt-bindings: arm: add Cortex-A78 binding
 
-Maybe it would still be better to take a step back and just introduce
-'vcc-child-supply' entry to the pcie-qcom device tree node or to the
-PCIe bridge node? This would also cover cases of PCIe mezzanine boards
-when the on-mezzanine devices are visible through the PCIe bus, but
-the mezzanine is powered by a separate voltage regulator. It would not
-be possible to describe child devices in the device tree node, but
-rather it would be possible to describe that there might be devices
-behind the PCIe bridge, they must be powered on using a referenced
-regulator. This starts to sound like a kind of PCI hotplug.
+ Documentation/devicetree/bindings/arm/pmu.yaml | 1 +
+ arch/arm64/kernel/perf_event.c                 | 7 +++++++
+ 2 files changed, 8 insertions(+)
 
-This would result in the following nodes:
+--
+2.14.1
 
-pcie0: pci@1c0000 {
-   compatible = "qcom,pcie-sm8250";
-   [....]
-   bridge@0,0 {
-        compatible = "pci17cb,010b", "linux,regulator-hotplug";
-        [....]
-        vcc-children-supply = <&qca6390>;
-        /* known WiFi card */
-   };
-};
-
-pce1: pci@1c08000 {
-   compatible = "qcom,pcie-sm8250";
-   [....]
-   bridge@1,0 {
-        compatible = "pci17cb,010b", "linux,regulator-hotplug";
-        [....]
-        vcc-children-supply = <&vdc_gpio13>;
-        /* unpredictable devices on the mezzanine card */
-   };
-};
-
--- 
-With best wishes
-Dmitry
