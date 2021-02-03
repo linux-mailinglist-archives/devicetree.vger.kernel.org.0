@@ -2,114 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7292330D07E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 01:53:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6693530D0FB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 02:48:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232457AbhBCAu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 19:50:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48736 "EHLO
+        id S230375AbhBCBqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 20:46:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231508AbhBCAuz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 19:50:55 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78EF5C061573
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 16:50:15 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id m12so3374136pjs.4
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 16:50:15 -0800 (PST)
+        with ESMTP id S229739AbhBCBqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 20:46:40 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065FFC061573;
+        Tue,  2 Feb 2021 17:46:00 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id m2so4094157wmm.1;
+        Tue, 02 Feb 2021 17:45:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=squareup.com; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=WrIVK8sDseMlS4o9lz0V6MRsGpJ6jWjlISOO9cArdaE=;
-        b=SWSiiHtZvYGMNzfqn0C705T+byGm0SCksZTFqTryqHaM/C6AJ2+ZFyZfH977qTEzUb
-         S+fzKzvzpBfi9CqT6vS20/vSqQ3Pgf9kx+tWZTe7I7oF+n7AL3aNgDDxxV/YNFIDK463
-         IDXak76GlG862GDExIWJUcWa9x1fedwPFH+1o=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NA+Vp6FOxTsN0rhRmqWACq/BX4WRBLfi30qX+qsu3WA=;
+        b=pAFQ38fj4r/BasPAvMLNQe+108j256tvT/jZiRNbzIYyZeKz4jQqRAc7n0CgGe+FbT
+         /sKq4I/sjRMZLhUtLKwxAiKHU0Gg9aBU4Zo4EN+3qShSaTNVWiwk7Vib8u4QSvcbBZHe
+         rahywyW8WRbvWpRPrutG/9MVWGQg6maeku9tHP20/RfbWWknqnKUeVadlDQyUSKk64oP
+         xgvUtuP8f3UZGjFHsYViHRsKsQd/V/bi4fezrs6Dmu2wTzdit6JXDFvlLNBqBWJC2Iy4
+         BGAiXzg0nlYAEITmGVPHc38u70jbFCSkB9wjJqFzQujaLFdKXHHAJxesNLJ9hdS/DCnC
+         QgHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=WrIVK8sDseMlS4o9lz0V6MRsGpJ6jWjlISOO9cArdaE=;
-        b=NY4oy4MXLUl6T/tiofVfFMsR9udwjHljjvGdts+UAAI7iZ1P4BgInlVT+M19Imc8fW
-         XoZmO5FxBwRyjn+mu115BToysiK55ouwU05Au/k9WHzY15qo7lH3fQYCGFsHC3pgyhQs
-         /RmVchB3miJvbEiMYCHf9774dso1JF/zZUl4KAaMwmK3D18DPj2lnh29xzI/4J7dKb6h
-         jUm1TFbLTnGX504oPldkoH9TzizREiStBFDjHAQBE1iZS/cdi7YtXjj5NYC0mYmbi56j
-         yewxF/pJE3ZShZz3A5horxHvVWS3CZimWZNhe2EYdd1Zzktfi1NCGp+xmzBeEAn3q61J
-         3yaw==
-X-Gm-Message-State: AOAM532eEVF2Q51SrTzepkOfgvk3UIkCZqam/SVQy4IFRP3J34gFIZWf
-        lNztQ+o4ph5ltxMYmK4T6TnBDw==
-X-Google-Smtp-Source: ABdhPJwUtVndBlHghaUzgOXZqCD8uLRkChgDzib4W7gmbknEoDqpUtRqOAYHnIJg9ki5c/5sOFwvKQ==
-X-Received: by 2002:a17:902:a614:b029:e1:5b43:956a with SMTP id u20-20020a170902a614b02900e15b43956amr846276plq.38.1612313415034;
-        Tue, 02 Feb 2021 16:50:15 -0800 (PST)
-Received: from benl-m5lvdt.local ([2600:1700:87d0:94f:dd59:3fb8:f6a9:fc02])
-        by smtp.gmail.com with ESMTPSA id z11sm169589pfk.97.2021.02.02.16.50.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Feb 2021 16:50:14 -0800 (PST)
-Subject: Re: [PATCH v2 5/5] interconnect: qcom: Add MSM8939 interconnect
- provider driver
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Jun Nie <jun.nie@linaro.org>, devicetree@vger.kernel.org,
-        bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh@kernel.org
-Cc:     shawn.guo@linaro.org
-References: <20201204075345.5161-1-jun.nie@linaro.org>
- <20201204075345.5161-6-jun.nie@linaro.org>
- <d869ea94b3b1c73800a5c3b855cb6f280be6c185.camel@mailoo.org>
- <a88b39dd-1c50-8aff-f85e-27086db9b040@linaro.org>
-From:   Benjamin Li <benl@squareup.com>
-Message-ID: <7630c4aa-b023-55a6-e2aa-37a7538c6b45@squareup.com>
-Date:   Tue, 2 Feb 2021 16:50:12 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.7.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NA+Vp6FOxTsN0rhRmqWACq/BX4WRBLfi30qX+qsu3WA=;
+        b=uPq2ZyXQuEM/KBUhsVnG4dOLzzWxkN1jekuXwZMNRi/rhhXpIUgGFjHKdaRWneZUyU
+         wq2nh+Wtqe+D0OIP3+0JfAT5+ygcCAO8h7g+x6NdIBsjJ+RFMcjW3a86MDKpa5XcErm9
+         OKwkGsUR7Ss6LOD90R8xe2t/mrx0518fkQbQr6gyC/KL1yE+7gTdphllpAzHW/7Adzz9
+         xLfPihCU9vt8YYwNvsAdRHPoO4wUq6PVM0GUXWxnCWzCdTOALy2rkjeqF1RiXmc1mNRJ
+         dflHkaWyzalJMEUWIzUgBjJeUnTa9f52HDFaY8Wwrxx0sQrgyKG7uVt0ogGTsBqKfN7G
+         6acw==
+X-Gm-Message-State: AOAM532uk9kJgzPA2cqoFQcKttFQz49fMUtpUcA00iCktCN1+qYd9gcS
+        Dq73fcOQggmyCj5pLeWCdaxh39dvn07Dnl/C5is=
+X-Google-Smtp-Source: ABdhPJweWJm9bNSHZ1fcDogI4a6pspPbN1XKVhCcuzUdgLu8xCK2ZtvzgwGygNuVi1YcLZZ9N82vivx7UxB18K4ahT8=
+X-Received: by 2002:a7b:cb45:: with SMTP id v5mr629304wmj.58.1612316758120;
+ Tue, 02 Feb 2021 17:45:58 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <a88b39dd-1c50-8aff-f85e-27086db9b040@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210202073258.559443-3-zhang.lyra@gmail.com> <20210202104257.736836-1-zhang.lyra@gmail.com>
+ <20210202141349.GB32671@8bytes.org>
+In-Reply-To: <20210202141349.GB32671@8bytes.org>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Wed, 3 Feb 2021 09:45:21 +0800
+Message-ID: <CAAfSe-uGeji18yZaqEWAS1W-_3Fmvnq_7PQmGE7hhGs4r+Mcvg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] iommu: add Unisoc iommu basic driver
+To:     Joerg Roedel <joro@8bytes.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/5/21 5:54 AM, Georgi Djakov wrote:
-> On 1/2/21 13:08, Vincent Knecht wrote:
->> Le vendredi 04 décembre 2020 à 15:53 +0800, Jun Nie a écrit :
->>> Add driver for the Qualcomm interconnect buses found in MSM8939 based
->>> platforms. The topology consists of four NoCs that are controlled by
->>> a remote processor that collects the aggregated bandwidth for each
->>> master-slave pairs.
->>>
->>> Signed-off-by: Jun Nie <jun.nie@linaro.org>
->>
->> Shouldn't some rpm ids be changed like they were for msm8916 in the following patch ?
->> c497f9322af9 ("interconnect: qcom: msm8916: Remove rpm-ids from non-RPM nodes")
->> https://patchwork.kernel.org/project/linux-arm-msm/patch/20201112105140.10092-1-georgi.djakov@linaro.org/
-> 
-> Maybe they should. I don't have the hardware to try it, but the test will be
-> to just add the NoC DT nodes, enable the driver and inspect the boot log for
-> messages like:
-> [    2.926647] qcom_icc_rpm_smd_send mas X error -6
-> 
-> Thanks,
-> Georgi
+On Tue, 2 Feb 2021 at 22:14, Joerg Roedel <joro@8bytes.org> wrote:
+>
+> On Tue, Feb 02, 2021 at 06:42:57PM +0800, Chunyan Zhang wrote:
+> > +static phys_addr_t sprd_iommu_iova_to_phys(struct iommu_domain *domain,
+> > +                                        dma_addr_t iova)
+> > +{
+> > +     struct sprd_iommu_domain *dom = to_sprd_domain(domain);
+> > +     unsigned long flags;
+> > +     phys_addr_t pa;
+> > +     unsigned long start = domain->geometry.aperture_start;
+> > +     unsigned long end = domain->geometry.aperture_end;
+> > +
+> > +     if (iova < start || iova > end)
+> > +             pr_err("iova (0x%llx) exceed the vpn range[0x%lx-0x%lx]!\n",
+> > +                    iova, start, end);
+>
+> It is not a good idea to continue here with an out-of-range iova. The
+> code below might access random memory for its checks. Better do a
+> WARN_ON here and return an invalid physical address.
 
-Hi Vincent & Georgi,
+Yes, I will fix this.
 
-Thanks, I ran your suggestion on an MSM8939 board (with an additional
-change to print slave IDs as well). Results:
+Thanks,
+Chunyan
 
-[    1.901376] qcom_icc_rpm_smd_send slv 24 error -6
-[    2.005977] qcom_icc_rpm_smd_send mas 20 error -6
-[    2.010250] qcom_icc_rpm_smd_send slv 20 error -6
-[    2.014684] qcom_icc_rpm_smd_send slv 106 error -6
-[    2.019338] qcom_icc_rpm_smd_send slv 107 error -6
-[    2.024615] qcom_icc_rpm_smd_send slv 29 error -6
-[    2.028782] qcom_icc_rpm_smd_send mas 3 error -6
-[    2.034657] qcom_icc_rpm_smd_send mas 100 error -6
-(and there's another slv 131 that's hidden by the mas 100 failure)
-
-Jun, I'll send you the patch I tested with to silence all these errors,
-if you want to just squash that into the next version of your patchset.
-
-Ben
+>
+> > +
+> > +     spin_lock_irqsave(&dom->pgtlock, flags);
+> > +     pa = *(dom->pgt_va + ((iova - start) >> SPRD_IOMMU_PAGE_SHIFT));
+> > +     pa = (pa << SPRD_IOMMU_PAGE_SHIFT) + ((iova - start) & (SPRD_IOMMU_PAGE_SIZE - 1));
+> > +     spin_unlock_irqrestore(&dom->pgtlock, flags);
+> > +
+> > +     return pa;
+> > +}
+> > +
