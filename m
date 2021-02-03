@@ -2,157 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68DA830D51E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 09:23:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EC4B30D539
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 09:31:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232773AbhBCIXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 03:23:20 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:59043 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232445AbhBCIXS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 03:23:18 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id CDA5E5801CA;
-        Wed,  3 Feb 2021 03:22:31 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 03 Feb 2021 03:22:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=UWp3cTR8UlCtxWWrylu98BqrLP6
-        gokgH/+UUDAES7bc=; b=izBbaIxXq3u1WterMcXA8m478hwLEeJutIS8a7YuYeZ
-        Vi42oiGsRDqrSULcHG4xVSAcpkY2A6VtaJRm+E10OqdMwfujpp4DItI6jMUiv27W
-        RGmEiChWp37gV/KSCL5kJtvUmeezEQQ+B0bg4eBrX9Ahsk5I7QTaJzW9ekWX7h2y
-        QFzAfml9CQjZ3FKCgWLYtFoAhzWdrQfr2rIGL5xDp+d2LLJqgwoKjSDeOGsjR2rP
-        Fm2pPQHoj22jpf1RufSNs4FYfJrP0PI2Rw/X59WziKhkRKDgKDC5lZRpb39NIzZp
-        vcAGde6weuPh658VEl9059ls9Uu/Vi1AvALTccKurkA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=UWp3cT
-        R8UlCtxWWrylu98BqrLP6gokgH/+UUDAES7bc=; b=t1KBEuFc49+xMxqyXKoA8/
-        3WulD3tIJgeVT7eIlcnWMsTdXmZB6jEs0TTx1IWwOhZ9dFEQ0dFcSuMicV6ydQx8
-        iu8rMQyX2ej1yEI2wkUSvDpWum0PQTLN8s5pyFRQBcTsKGEzK8sSnm1BrjKbQjqP
-        eSoEWze8EyVg+zYeYpnxcX3NeVQGARYhkm2Vi5AR3/oj94MHf2xCwOW4PM9dBnvu
-        xmyYMwqcexvQGIBcW/BFr3KBbHQl0WIm2ab/sdLmnmaryM1x4LWmagh5WQBwNSFu
-        x5qWRhy1aPzLiKnrPQRGC60avUBAVBRELf3vfo4zXU8VsUY+3YrgE/k8dPrLbxIg
-        ==
-X-ME-Sender: <xms:QV0aYFcXyYQ5TRYF7WGlLELFRJ1yQrOtHhDhPTipbdc2SMX1x6avng>
-    <xme:QV0aYDKbQJPLw9pI2uDq_kM1o2gSVmuw6NUgK-0koA0owfmY95Lzv5Weugu-XmQH9
-    93sR2yeFpxpTbVhM1Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrgedugdduudelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:QV0aYLb1Lc2GX4BVZHDPMIXgosvMbTnsa4utNq8m25HOwmKHKexoSw>
-    <xmx:QV0aYGsPxsALW4VvASQluws1JKhNT-dddtY-lQD2QtZfe8BSp71ccA>
-    <xmx:QV0aYAu80RUvGgUCDStecBY7uxawxEupGRT2YOBtRmQT3b7gK2f1tA>
-    <xmx:R10aYMJuTiGgAhdHzPiQSUSFePWiskGLbKXQEI-JgoTQwKfIw7bxkg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id D9835240066;
-        Wed,  3 Feb 2021 03:22:24 -0500 (EST)
-Date:   Wed, 3 Feb 2021 09:22:22 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Vincent Cheng <vincent.cheng.xh@renesas.com>,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-watchdog@vger.kernel.org,
-        Eric Anholt <eric@anholt.net>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: Fix errors in 'if' schemas
-Message-ID: <20210203082222.z27map6smi2x7ry7@gilmour>
-References: <20210202205544.24812-1-robh@kernel.org>
- <20210202205544.24812-3-robh@kernel.org>
+        id S232590AbhBCIae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 03:30:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232512AbhBCIad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 03:30:33 -0500
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE90FC061573;
+        Wed,  3 Feb 2021 00:29:52 -0800 (PST)
+Received: by mail-oi1-x22d.google.com with SMTP id k25so25914707oik.13;
+        Wed, 03 Feb 2021 00:29:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Fw7mhJ/ALXeJZR+44OFAC0sbpDziXpuDZAubERRVzFg=;
+        b=Gf4D99yyAGOZ90xVmedTlmHqUPxdM+6hM26isYs20UlmBRFXHcIHNUMpo72aolFpcP
+         8D/v/2G6lKq9u/93G2AcMlmE9SPD2mgCAKX7NbV4qrJ3YRlFmvD4BPVXeWq301FClRsM
+         y9jxMdbOdkQXEwmh70WVeWxMH3kFRroAyUf3Jh893QymPpT2Jn95lQ1XNn5YDNnXFRSX
+         4VDvaQfBcQGtB32mHEEPokjc0knJ37BSW2fajRDHzxR6MQna/o9SMl4902qbGe10iHY7
+         zisckfJj2pnkG+quwEg6t03KcL2TVS0yN98jEoVji33sE7MCDp+zhKLLQtyqKRZnrgRT
+         pCXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Fw7mhJ/ALXeJZR+44OFAC0sbpDziXpuDZAubERRVzFg=;
+        b=g6yU4I4Bf1U/1cKCm8sEbUKoGFmplAaFr+vX7XZS43G2cDh4AF6by5orsoWLvcXFLf
+         C/nMit/0MX5H9qF1Uwj7duwEMl1mR39Ch353bfVFlMlNXbpBj5vMeT/uoRXsTzk/gbYr
+         4zkQQNpxKsGwd0SgNCbTM0TLMaOj0ln+vgV2q+FGPELnQHKtc4RONKQ0Cj6k2t5CLtR7
+         1uMPwN0f8ei+6pIJS/MEQENRKIUF18ggioc/SMKDNGVxHdUzL4HEVdAeHH2X28lOShB+
+         0ouQsE2M4QL9rhHowlL1XGdQ/FM2NROCKthytLsZQKN0jeSvtK51c2jSXIGlWQNY0oZW
+         CIoQ==
+X-Gm-Message-State: AOAM533ceS+bjga10ETmI+hU1yRe1L3ULIHSF56LFt/ZPsTIY04k0f6p
+        xFdk3wNuGTn2giiXoRUvO1jtH90s4T576Ruj3nU=
+X-Google-Smtp-Source: ABdhPJyoWWtBttqrhsG53CwbEqSmRLh1H8YTHimPEVkBZhFUCZ+sKisqTESaxWyAlhg6iF9K81LGmeIyGJN5AGQfyK0=
+X-Received: by 2002:aca:4454:: with SMTP id r81mr1268682oia.129.1612340992276;
+ Wed, 03 Feb 2021 00:29:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mkorhjmes6qelxs4"
-Content-Disposition: inline
-In-Reply-To: <20210202205544.24812-3-robh@kernel.org>
+References: <20210202184434.42644-1-swboyd@chromium.org> <20210202184434.42644-3-swboyd@chromium.org>
+In-Reply-To: <20210202184434.42644-3-swboyd@chromium.org>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Wed, 3 Feb 2021 09:29:40 +0100
+Message-ID: <CAFqH_52xjAmjWu3DFuFyqQBDYFccZXYp=8wcXVOr4H5deRa2bw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: iio: Add cros ec proximity yaml doc
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Stephen,
 
---mkorhjmes6qelxs4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Missatge de Stephen Boyd <swboyd@chromium.org> del dia dt., 2 de febr.
+2021 a les 19:53:
+>
+> Some cros ECs support a front proximity MKBP event via
+> 'EC_MKBP_FRONT_PROXIMITY'. Add a DT binding to document this feature via
+> a node that is a child of the main cros_ec device node. Devices that
+> have this ability will describe this in firmware.
+>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Gwendal Grignou <gwendal@chromium.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 
-On Tue, Feb 02, 2021 at 02:55:44PM -0600, Rob Herring wrote:
-> Properties in if/then schemas weren't getting checked by the meta-schemas.
-> Enabling meta-schema checks finds several errors.
->=20
-> The use of an 'items' schema (as opposed to the list form) is wrong in
-> some cases as it applies to all entries. 'contains' is the correct schema
-> to use in the case of multiple entries.
->=20
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Eric Anholt <eric@anholt.net>
-> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Ray Jui <rjui@broadcom.com>
-> Cc: Scott Branden <sbranden@broadcom.com>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: linux-crypto@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-leds@vger.kernel.org
-> Cc: linux-mmc@vger.kernel.org
-> Cc: linux-gpio@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Thanks for adding a full example, IIRC this is preferred by Rob and we
+are also trying to apply this rule on all the cros-ec related
+bindings, so the dt_bindings_check really checks a full example. From
+my side looks good to me.
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-Maxime
-
---mkorhjmes6qelxs4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBpdPgAKCRDj7w1vZxhR
-xRUtAP94Y18dPhOCV8TVxavL7kG7XsboIrsPGFEgK0eLh1EFVgD/Z52O0dog31tF
-YkN66sClBd92y+lqf0Ark2e+vBrqFwU=
-=Zd51
------END PGP SIGNATURE-----
-
---mkorhjmes6qelxs4--
+> ---
+>  .../google,cros-ec-mkbp-proximity.yaml        | 46 +++++++++++++++++++
+>  .../bindings/mfd/google,cros-ec.yaml          |  3 ++
+>  2 files changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+> new file mode 100644
+> index 000000000000..d82b929af445
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/iio/proximity/google,cros-ec-mkbp-proximity.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ChromeOS EC MKBP Proximity Sensor
+> +
+> +maintainers:
+> +  - Stephen Boyd <swboyd@chromium.org>
+> +  - Benson Leung <bleung@chromium.org>
+> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> +
+> +description: |
+> +  Google's ChromeOS EC sometimes has the ability to detect user proximity.
+> +  This is implemented on the EC as near/far logic and exposed to the OS
+> +  via an MKBP switch bit.
+> +
+> +properties:
+> +  compatible:
+> +    const: google,cros-ec-mkbp-proximity
+> +
+> +  label:
+> +    description: Name for proximity sensor
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      ec@0 {
+> +        compatible = "google,cros-ec-spi";
+> +        reg = <0>;
+> +        proximity {
+> +          compatible = "google,cros-ec-mkbp-proximity";
+> +          label = "proximity-wifi-lte";
+> +        };
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index 76bf16ee27ec..479a9f15de32 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -94,6 +94,9 @@ properties:
+>    keyboard-controller:
+>      $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
+>
+> +  proximity:
+> +    $ref: "/schemas/iio/proximity/google,cros-ec-mkbp-proximity.yaml#"
+> +
+>    codecs:
+>      type: object
+>      additionalProperties: false
+> --
+> https://chromeos.dev
+>
