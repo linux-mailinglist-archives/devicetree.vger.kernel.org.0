@@ -2,95 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FD4730D10E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 02:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53C7F30D1AD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 03:40:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231390AbhBCBvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 20:51:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33372 "EHLO
+        id S231862AbhBCCil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 21:38:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230369AbhBCBvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 20:51:00 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79E8FC06174A;
-        Tue,  2 Feb 2021 17:50:20 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id d16so22384211wro.11;
-        Tue, 02 Feb 2021 17:50:20 -0800 (PST)
+        with ESMTP id S231657AbhBCCig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 21:38:36 -0500
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C57DC061573;
+        Tue,  2 Feb 2021 18:37:56 -0800 (PST)
+Received: by mail-il1-x134.google.com with SMTP id y5so21075774ilg.4;
+        Tue, 02 Feb 2021 18:37:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=/sDnQCoBJzd+G1dm09IQlU+bQBdo7KOQBQfZsd1ArQ0=;
-        b=nMRLLe8JMleMFMolDyysYg3G2GQLLGzj1p+0EBXMboUMqWvFbD+atIXFkqjAjLYCRk
-         7q0uue/yRjX5F1PefvYifacevyoi+t3W9v/PsRcMdG7FP969aw/sZbN9C7jqRK2Kmjae
-         +W83nZE99gLaJHAop3T+FycqEXEY5f3Jw1cKOgersHMzdqudPmhNe2yeWd77Xu7uwv51
-         E9e8V2leRVC8tyhmmEL1rVBVeYDPuWn61QMwA2ErXa6s0fV+YYprSv5VaPqROjLnMkfA
-         WtdiRiRCEWnDBAR3C1rzDR1NSDRnLmuZcAdu4l7nl0YXSuTlkyOehjqnfYu7pt7dHI/9
-         OHBw==
+        bh=c9KYKY7BZB045Y0XHBzCqMEwAkz/SHgyfk9a9Zvnx1w=;
+        b=dO6jtuqtKEavhfxhTNu5s7lQe29zOh50QUYflKA2OwgBi8wTI2YuiTJ+aggFGb7T8b
+         +KijGMkTZsaqDFhcH0CRPKPeM0wYr5Aai6tG8A4MBOxwBtsK+O63QaVlXLi0ZUU39R3T
+         TpPBBtUTWBnoeGNGOEkDcejLEN1/9DOhjhtoXztDtVbDB2MBt2IsEkkdUGhoh0KClfqL
+         lz/BJRYhw9IamdVEGssrPDgtl98vYxq6mAShmHWH9NwEBu6mHwD8oUxCsREmtAOmDDJ0
+         FmJL7vfxnMv0mijpZAnhBA9/vDUA6IzW85xgMucOdqJUs+wCDzpZLDg8VSAjkuBglS8k
+         hNnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=/sDnQCoBJzd+G1dm09IQlU+bQBdo7KOQBQfZsd1ArQ0=;
-        b=XFW7AjkZ8NaaEE6SPfoiBzoFRM0iG7sp+1PZQVUAXYEP5igeoiJC1Hwajc2MNT9eCb
-         Rfp+KY04ukUOks1vBeCtm/RI1p9xngWFL+sSVXvmE0pRgscluuAST+gbolzVfq15IZwl
-         l0ueGrMNsb/7opdhgSl9sJQmx3mNnkBizQefBFYzaJL2rQEYcm8rtWDk/QoOX30kggky
-         RetLgaIg4ZwN+y8ml8H6jROEHk5fI2BLnD2D1BRcCiSwvVVYazegWg05JA4uRtXJqTG9
-         cg8lVzcBKzscAAwdXIKIthCZDgzTm71at1cHruZ7jwbbe7J/SNtwQm7nZvEin6iTK04j
-         jdnA==
-X-Gm-Message-State: AOAM5331i8PKOj0pL9NwDWiJMG/Kq6rVuS5rNDlPMyH+7GPyXcg3HFzF
-        uK+ZY/+gBlMoYIr4qbAo9D+VR/vXxM4mwU3C1AE=
-X-Google-Smtp-Source: ABdhPJyPpgBrxvykPqF+w1syFYv3dXpj7oxP5i2ZCmF+lg81VymYeH3nMLCZptiI1ZZ9uX/6Lz60WIqiFW5oI4LMSkg=
-X-Received: by 2002:adf:9427:: with SMTP id 36mr779616wrq.271.1612317019328;
- Tue, 02 Feb 2021 17:50:19 -0800 (PST)
+        bh=c9KYKY7BZB045Y0XHBzCqMEwAkz/SHgyfk9a9Zvnx1w=;
+        b=mJ8/7iSYDVW1/rhTFY7Nmw+hC4SgKPo5BpOdAwQi/JSpf2x09JFWhicSLNHCWtePAf
+         WggwLbpNYP2hsgNEvovagOhjHXm70Z6WSwfLNMnTtRO/z8UgKBmelr0BsLARFtu0rYNL
+         v+ExF54QNY4MUOq07MOgPKjNVy6hDk7UC525z79VB6wIat4K57bEGDnDlL+zAQMvCFbu
+         aunR6xEWB0R+GB7ex8lxW/IIGiSadbib6PGuRI5XZx8kYMR5zTz1dczDKkcc4U0z5GOZ
+         S9wp3roMLKlYs5q7Lt6JfvsTIEvPaVUA3lE16aPB/IbKT+gFUrrbdvg9KvPx1BXuIIsk
+         nTmA==
+X-Gm-Message-State: AOAM533J6l91+/OE8DbYS29rkp9NqD5dPE8TXfMiVbgTl0v5FyllaLQk
+        5Z3zBb3ZyYlg/oq2vL3aUosGx/IaHzCK/7L56FDYq6ZDZOI=
+X-Google-Smtp-Source: ABdhPJxstGXg5V8CFyAY5tIsoqIS7MtVBE41LQI6vI7iMaFPp/NfUERZR2dFTmDyFToFVWiBbfpQGve9fuFgA0tr8Cc=
+X-Received: by 2002:a92:4b06:: with SMTP id m6mr989025ilg.177.1612319876111;
+ Tue, 02 Feb 2021 18:37:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20210202073258.559443-3-zhang.lyra@gmail.com> <20210202104257.736836-1-zhang.lyra@gmail.com>
- <20210202140101.GA32671@8bytes.org> <992fad43-c457-d809-3bd7-7fd5b6e8fa22@arm.com>
- <20210202144126.GC32671@8bytes.org> <5e766b74-ab51-8c47-66c1-ca65bc5743cd@arm.com>
-In-Reply-To: <5e766b74-ab51-8c47-66c1-ca65bc5743cd@arm.com>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Wed, 3 Feb 2021 09:49:43 +0800
-Message-ID: <CAAfSe-s9ppQBuM81KB_KWaiY5hz3cFAycFP5jd8JXysicoqFGw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] iommu: add Unisoc iommu basic driver
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Sheng Xu <sheng.xu@unisoc.com>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
+References: <20210117180301.1956-1-alistair@alistair23.me> <20210117180301.1956-3-alistair@alistair23.me>
+ <20210129071341.GH4356@dragon>
+In-Reply-To: <20210129071341.GH4356@dragon>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Tue, 2 Feb 2021 18:37:29 -0800
+Message-ID: <CAKmqyKOoTG+BGhRFtppQxnaV61GFxXXhmZJcxqGQVbnuV1PfqA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arch/arm/configs: Enable VMSPLIT_2G in imx_v6_v7_defconfig
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Feb 2021 at 02:02, Robin Murphy <robin.murphy@arm.com> wrote:
+On Thu, Jan 28, 2021 at 11:13 PM Shawn Guo <shawnguo@kernel.org> wrote:
 >
-> On 2021-02-02 14:41, Joerg Roedel wrote:
-> > On Tue, Feb 02, 2021 at 02:34:34PM +0000, Robin Murphy wrote:
-> >> Nope, I believe if Arm Ltd. had any involvement in this I'd know about it :)
+> On Sun, Jan 17, 2021 at 10:03:01AM -0800, Alistair Francis wrote:
+> > The reMarkable2 requires VMSPLIT_2G, so lets set this in the
+> > imx_v6_v7_defconfig.
+>
+> Hmm, why is VMSPLIT_2G required by reMarkable2?
+
+I'm not too sure. It's difficult to debug problems as I only have a
+UART but without this I don't see any kernel prints so it seems like
+the kernel doesn't get very far. I haven't had any luck with earlycon
+on the device so I don't know how I can get more information.
+
+Alistair
+
+>
+> Shawn
+>
 > >
-> > Okay, got confused by thinking of ARM as the CPU architecture, not the
-> > company :)
-> > But given the intel/ and amd/ subdirectories refer to company names as
-> > well, the same is true for arm/.
->
-> Right, trying to group IOMMU drivers by supposed CPU architecture is
-> already a demonstrable non-starter; does intel-iommu count as x86, or
-> IA-64, or do you want two copies? :P
->
-> I somehow doubt anyone would license one of Arm's SMMUs to go in a
-> RISC-V/MIPS/etc. based SoC, but in principle, they *could*. In fact it's
-> precisely cases like this one - where silicon vendors come up with their
-> own little scatter-gather unit to go with their own display controller
-> etc. - that I imagine are most likely to get reused if the vendor
-> decides to experiment with different CPUs to reach new market segments.
-
-Yes, I agree, I believe this iommu unit along with Unisoc's
-multi-media modules can be used on other architecture SoCs, not only
-ARM based.
-
->
-> Robin.
+> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > ---
+> >  arch/arm/configs/imx_v6_v7_defconfig | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm/configs/imx_v6_v7_defconfig b/arch/arm/configs/imx_v6_v7_defconfig
+> > index 55674cb1ffce..fa9229616106 100644
+> > --- a/arch/arm/configs/imx_v6_v7_defconfig
+> > +++ b/arch/arm/configs/imx_v6_v7_defconfig
+> > @@ -29,6 +29,7 @@ CONFIG_SOC_IMX7D=y
+> >  CONFIG_SOC_IMX7ULP=y
+> >  CONFIG_SOC_VF610=y
+> >  CONFIG_SMP=y
+> > +CONFIG_VMSPLIT_2G=y
+> >  CONFIG_ARM_PSCI=y
+> >  CONFIG_HIGHMEM=y
+> >  CONFIG_FORCE_MAX_ZONEORDER=14
+> > --
+> > 2.29.2
+> >
