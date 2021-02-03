@@ -2,81 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E06430E156
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 18:46:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEFD530E189
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 18:57:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231436AbhBCRp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 12:45:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41146 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229731AbhBCRp1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 12:45:27 -0500
-Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1231::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA265C0613D6;
-        Wed,  3 Feb 2021 09:44:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description;
-        bh=9KPYi1ZkyDHL7NUtRviqQ04hmYB82hAl0iGOYO+e6lE=; b=n2V4w7nv98vN71CUuyoViod1A8
-        VZsyXrEwuYNtnxrBrW71oyF0c+dby6fBxgSSKt8o398+DZFnniydLWvY8vPctZubrpEWm7xrVeBrP
-        Gr2bFKiZdVQY4N+x6pt4vgVBNMnBeGCf+RcbZNB7BfESglpqbiHXFXoDmwJC5WnUsohcHgCoRZ+nq
-        FY1+CyDAsx+O+CxA5c8fx5AJEIau7MEq3d7g+O/5pJS7D7crdGe8LJsephVEA2o8it+p7y9n+QqOG
-        /9yyAXCAPnwGaui1UGWIA9zyJXE9v0WTNteA16Df3Q1nT9feVz3Wv3xbBv2O3CmHHTUcOmDWuqaHS
-        3DH+fk0w==;
-Received: from [2601:1c0:6280:3f0::aec2]
-        by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
-        id 1l7MCh-0001xN-Gk; Wed, 03 Feb 2021 17:44:35 +0000
-Subject: Re: [PATCH v3 2/2] iommu: add Unisoc iommu basic driver
-To:     Chunyan Zhang <zhang.lyra@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-        Sheng Xu <sheng.xu@unisoc.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>
-References: <20210203090727.789939-1-zhang.lyra@gmail.com>
- <20210203090727.789939-3-zhang.lyra@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <eb55a1de-2816-9029-b642-b3067e311417@infradead.org>
-Date:   Wed, 3 Feb 2021 09:44:30 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S232149AbhBCRzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 12:55:45 -0500
+Received: from so15.mailgun.net ([198.61.254.15]:25629 "EHLO so15.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231274AbhBCRzi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Feb 2021 12:55:38 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1612374914; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=skd9G4BcflC/QWV4zSXi1f5Z3sAt9lA/5vhec0dO9FM=; b=OxXAYGrlmCZyFRvPl1Y1KrjOUA08mbP/1zMtW/gu2d112Rl7EkYP8VZ8KnOsSnWK/aR10nmj
+ 7k4scplU3iRQUxz93Uv7GRQlnCq5Q5PxKAwxbFxFTXvJ1lAN6Ofyg7up8wNVaQaaKqxJcXqS
+ Lhzd8lr8X+/ZwmdA4qqdjtb3LOU=
+X-Mailgun-Sending-Ip: 198.61.254.15
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 601ae35c84d0ac8967a1fbdc (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 03 Feb 2021 17:54:36
+ GMT
+Sender: akhilpo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 72E16C43462; Wed,  3 Feb 2021 17:54:35 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.1 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.105] (unknown [117.210.176.5])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akhilpo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7D02EC433ED;
+        Wed,  3 Feb 2021 17:54:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7D02EC433ED
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
+Subject: Re: [PATCH v4 2/2] arm: dts: sc7180: Add support for gpu fuse
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mka@chromium.org,
+        dri-devel@freedesktop.org, freedreno@lists.freedesktop.org
+References: <1610129731-4875-1-git-send-email-akhilpo@codeaurora.org>
+ <1610129731-4875-2-git-send-email-akhilpo@codeaurora.org>
+ <YBnXshYzJmNpmuEW@builder.lan>
+From:   Akhil P Oommen <akhilpo@codeaurora.org>
+Message-ID: <af88628d-08ca-a2f3-c8f3-91732366760f@codeaurora.org>
+Date:   Wed, 3 Feb 2021 23:24:27 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-In-Reply-To: <20210203090727.789939-3-zhang.lyra@gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <YBnXshYzJmNpmuEW@builder.lan>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/3/21 1:07 AM, Chunyan Zhang wrote:
-> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-> index 192ef8f61310..99e7712f3903 100644
-> --- a/drivers/iommu/Kconfig
-> +++ b/drivers/iommu/Kconfig
-> @@ -408,4 +408,16 @@ config VIRTIO_IOMMU
->  
->  	  Say Y here if you intend to run this kernel as a guest.
->  
-> +config SPRD_IOMMU
-> +	tristate "Unisoc IOMMU Support"
-> +	depends on ARCH_SPRD || COMPILE_TEST
-> +	select IOMMU_API
-> +	help
-> +	  Support for IOMMU on Unisoc's SoCs, this iommu can be used by
+On 2/3/2021 4:22 AM, Bjorn Andersson wrote:
+> On Fri 08 Jan 12:15 CST 2021, Akhil P Oommen wrote:
+> 
+> Please align the $subject prefix with other changes in the same file.
+> I fixed it up while picking up the patch this time.
+> 
+Will take of this in future. Thanks, Bjorn.
 
-	s/iommu/IOMMU/ please
+-Akhil.
 
-> +	  Unisoc's multimedia devices, such as display, Image codec(jpeg)
-> +	  and a few signal processors, including VSP(video), GSP(graphic),
-> +	  ISP(image), and CPP(camera pixel processor), etc.
-> +
-> +	  Say Y here if you want to use the multimedia devices listed above.
+> Regards,
+> Bjorn
+> 
+>> Add support for gpu fuse to help identify the supported opps.
+>>
+>> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7180.dtsi | 22 ++++++++++++++++++++++
+>>   1 file changed, 22 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> index 6678f1e..8cae3eb 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> @@ -675,6 +675,11 @@
+>>   				reg = <0x25b 0x1>;
+>>   				bits = <1 3>;
+>>   			};
+>> +
+>> +			gpu_speed_bin: gpu_speed_bin@1d2 {
+>> +				reg = <0x1d2 0x2>;
+>> +				bits = <5 8>;
+>> +			};
+>>   		};
+>>   
+>>   		sdhc_1: sdhci@7c4000 {
+>> @@ -1907,52 +1912,69 @@
+>>   			operating-points-v2 = <&gpu_opp_table>;
+>>   			qcom,gmu = <&gmu>;
+>>   
+>> +			nvmem-cells = <&gpu_speed_bin>;
+>> +			nvmem-cell-names = "speed_bin";
+>> +
+>>   			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
+>>   			interconnect-names = "gfx-mem";
+>>   
+>>   			gpu_opp_table: opp-table {
+>>   				compatible = "operating-points-v2";
+>>   
+>> +				opp-825000000 {
+>> +					opp-hz = /bits/ 64 <825000000>;
+>> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
+>> +					opp-peak-kBps = <8532000>;
+>> +					opp-supported-hw = <0x04>;
+>> +				};
+>> +
+>>   				opp-800000000 {
+>>   					opp-hz = /bits/ 64 <800000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
+>>   					opp-peak-kBps = <8532000>;
+>> +					opp-supported-hw = <0x07>;
+>>   				};
+>>   
+>>   				opp-650000000 {
+>>   					opp-hz = /bits/ 64 <650000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
+>>   					opp-peak-kBps = <7216000>;
+>> +					opp-supported-hw = <0x07>;
+>>   				};
+>>   
+>>   				opp-565000000 {
+>>   					opp-hz = /bits/ 64 <565000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
+>>   					opp-peak-kBps = <5412000>;
+>> +					opp-supported-hw = <0x07>;
+>>   				};
+>>   
+>>   				opp-430000000 {
+>>   					opp-hz = /bits/ 64 <430000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+>>   					opp-peak-kBps = <5412000>;
+>> +					opp-supported-hw = <0x07>;
+>>   				};
+>>   
+>>   				opp-355000000 {
+>>   					opp-hz = /bits/ 64 <355000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
+>>   					opp-peak-kBps = <3072000>;
+>> +					opp-supported-hw = <0x07>;
+>>   				};
+>>   
+>>   				opp-267000000 {
+>>   					opp-hz = /bits/ 64 <267000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+>>   					opp-peak-kBps = <3072000>;
+>> +					opp-supported-hw = <0x07>;
+>>   				};
+>>   
+>>   				opp-180000000 {
+>>   					opp-hz = /bits/ 64 <180000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+>>   					opp-peak-kBps = <1804000>;
+>> +					opp-supported-hw = <0x07>;
+>>   				};
+>>   			};
+>>   		};
+>> -- 
+>> 2.7.4
+>>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 
 
-
--- 
-~Randy
