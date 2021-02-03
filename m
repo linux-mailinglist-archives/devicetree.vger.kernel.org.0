@@ -2,68 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7789730DE5F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 16:40:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE97630D437
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 08:47:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234069AbhBCPhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 10:37:36 -0500
-Received: from 198-20-226-115.unifiedlayer.com ([198.20.226.115]:56722 "EHLO
-        198-20-226-115.unifiedlayer.com" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S234512AbhBCPgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 10:36:17 -0500
-X-Greylist: delayed 29383 seconds by postgrey-1.27 at vger.kernel.org; Wed, 03 Feb 2021 10:35:24 EST
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=carnivalassure.com.bd; s=default; h=Content-Transfer-Encoding:Content-Type:
-        Message-ID:Reply-To:Subject:To:From:Date:MIME-Version:Sender:Cc:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=miRpAdBSO5eDo01VDX+EK9bqGCmqMjXHS3kO16T6iWw=; b=BeRp52iTZNZnIj6Yk4q4qmVg1o
-        TGW3OyQQDqdIygbFzrOvnb1VFlTwDZeYzPg7x0gcAhNqpY+RPOU8XZPJCHVzHp7N6NMkd40+DlrAZ
-        BxMd0S46HbScvjeaenOH3+S94exP2AbS+FzziGjhE87mUv7G1Yf3DGvnuFRQOMF8rB7m0VxjRMPDd
-        55/dxUiSnVbBa0JImuQYYXUpRt83SOvMPmEy3tm7HhC6eVNF+f6Wxow3WBSbpKE+vZC1jXRKKl9C1
-        bK6OQxLWFq7P4uMl6BygkP9QC4QklVZQU7qWYFjfzBfV8UP2ROnwJjNJGJIyClrEEjRpgcDNFfVIx
-        4EKHpC7g==;
-Received: from [127.0.0.1] (port=46990 helo=dot.dotlines.com.sg)
-        by dot.dotlines.com.sg with esmtpa (Exim 4.93)
-        (envelope-from <noreply@carnivalassure.com.bd>)
-        id 1l7CVy-0005dS-7D; Wed, 03 Feb 2021 01:23:50 -0600
+        id S231922AbhBCHqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 02:46:15 -0500
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:37381 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231840AbhBCHqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 02:46:14 -0500
+Received: by mail-ot1-f50.google.com with SMTP id h14so22523530otr.4;
+        Tue, 02 Feb 2021 23:45:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tl2HQz+y+iOPiQILzhqqnPhDi9CBql1fJsRNfHL12Q0=;
+        b=oG1RRYBkkmvma1MULMt1aKqHDeMoY1evle65gjdANYEFWaWWH0wus0ZJ8qCInGbIsp
+         N0rRHPSgv+tjG00/QuNvDSbxc7rpKrH6eMezJavMsCKsIQQ3EyPeCPk6iaTHVdvknEdd
+         mm3PLcEtaZijCJuhasM4MxXlZ9wRrNMBy6RrCF/+oK34qHauYuKiHEZkvuB+H5Q50mBF
+         JnRKI4zs1uki2KK+AAQcHIWfv5hlJVHAMrfzR1DhjQqwngC4dIjnTpPiICFf4wD7fxS8
+         YrMzVsnMnUTDPWVknsiw24nus5UhV5fgbNdx7kh2tmWikh1lez/OHpt/gkT5zdMOCo2S
+         g9zg==
+X-Gm-Message-State: AOAM530Wxc9VpWTyZOLljS9fKcdIUoCoYWF1NrZA35vrDfEx7bCoxUJC
+        zuOEv0XSA5r1QKtzAtBvgDBe3hokI2rglbnFy8Y=
+X-Google-Smtp-Source: ABdhPJx9yZoxbg+9CSe33TkzPC+sv+1KS9raIvmdY3DrG/UQPjHtQB4ehiLgkRgipyn5NeUe8XLh5bBW9yzj3ZDOG3A=
+X-Received: by 2002:a9d:3604:: with SMTP id w4mr1148270otb.107.1612338333629;
+ Tue, 02 Feb 2021 23:45:33 -0800 (PST)
 MIME-Version: 1.0
-Date:   Wed, 03 Feb 2021 01:23:49 -0600
-From:   Francois Pinault <noreply@carnivalassure.com.bd>
-To:     undisclosed-recipients:;
-Subject: Hello/Hallo
-Organization: Donation
-Reply-To: francoispinault1936@outlook.com
-Mail-Reply-To: francoispinault1936@outlook.com
-Message-ID: <6b70d71c493b5c027dd3ef878f38d028@carnivalassure.com.bd>
-X-Sender: noreply@carnivalassure.com.bd
-User-Agent: Roundcube Webmail/1.3.15
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - dot.dotlines.com.sg
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - carnivalassure.com.bd
-X-Get-Message-Sender-Via: dot.dotlines.com.sg: authenticated_id: noreply@carnivalassure.com.bd
-X-Authenticated-Sender: dot.dotlines.com.sg: noreply@carnivalassure.com.bd
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+References: <20210202192016.49028-1-swboyd@chromium.org> <CAMuHMdWKr5q1OrwJ5DEnFvqYYXJqXhH_isKQnJozf5tu=ZVViA@mail.gmail.com>
+ <CAK8P3a0AETMRBJ3=kFi1zJUR3tywGz5aOx_uBYOVuJ7=d_peog@mail.gmail.com>
+In-Reply-To: <CAK8P3a0AETMRBJ3=kFi1zJUR3tywGz5aOx_uBYOVuJ7=d_peog@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 3 Feb 2021 08:45:22 +0100
+Message-ID: <CAMuHMdVP9tEpQpGNe9pupeDHinm_vzRsc7HAfk-d5wm8bXk3Gg@mail.gmail.com>
+Subject: Re: [PATCH v2] ASoC: da7218: Drop CONFIG_OF ifdef
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, kernel test robot <lkp@intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Arnd,
 
+On Tue, Feb 2, 2021 at 9:50 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> On Tue, Feb 2, 2021 at 9:06 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Tue, Feb 2, 2021 at 8:20 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> > > This reverts commit a06cd8cf97a3 ("ASoC: da7218: skip of_device_id table
+> > > when !CONFIG_OF") because we want to make of_match_device() stop using
+> > > of_match_ptr() internally, confusing compilers and causing ifdef
+> a> > pollution.
+> > >
+> > > Reported-by: kernel test robot <lkp@intel.com>
+> > > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > Acked-by: Arnd Bergmann <arnd@arndb.de>
+> > > Cc: Mark Brown <broonie@kernel.org>
+> > > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> >
+> > Thanks for your patch!
+> >
+> > > ---
+> > >
+> > > Changes from v1:
+> > >  * Dropped of_match_ptr() in driver too
+> > >
+> > >  sound/soc/codecs/da7218.c | 4 +---
+> > >  1 file changed, 1 insertion(+), 3 deletions(-)
+> > >
+> > > diff --git a/sound/soc/codecs/da7218.c b/sound/soc/codecs/da7218.c
+> > > index 2bfafbe9e3dc..83cace9d0139 100644
+> > > --- a/sound/soc/codecs/da7218.c
+> > > +++ b/sound/soc/codecs/da7218.c
+> > > @@ -2278,14 +2278,12 @@ static irqreturn_t da7218_irq_thread(int irq, void *data)
+> > >   * DT
+> > >   */
+> > >
+> > > -#ifdef CONFIG_OF
+> > >  static const struct of_device_id da7218_of_match[] = {
+> > >         { .compatible = "dlg,da7217", .data = (void *) DA7217_DEV_ID },
+> > >         { .compatible = "dlg,da7218", .data = (void *) DA7218_DEV_ID },
+> > >         { }
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, da7218_of_match);
+> > > -#endif
+> > >
+> > >  static inline int da7218_of_get_id(struct device *dev)
+> > >  {
+> > > @@ -3311,7 +3309,7 @@ MODULE_DEVICE_TABLE(i2c, da7218_i2c_id);
+> > >  static struct i2c_driver da7218_i2c_driver = {
+> > >         .driver = {
+> > >                 .name = "da7218",
+> > > -               .of_match_table = of_match_ptr(da7218_of_match),
+> > > +               .of_match_table = da7218_of_match,
+> >
+> > This does mean the compiler can no longer optimize the table away
+> > in the CONFIG_OF=n case. Is that intentional?
+>
+> It already couldn't do that because of the other reference.
+
+But that will be fixed by the conversion to of_device_get_match_data(),
+right?
+
+> In general, I don't see much value in optimizing the match table
+> away regardless, since most drivers that have one do not work
+> without a devicetree anyway. It seems that this could in theory
+> work using a locally defined platform device, but I don't see any
+> such users in the mainline kernel.
+
+For platform devices, limited to one SoC or SoC family, I agree.
+
+Given this is an i2c driver with a MODULE_DEVICE_TABLE listing multiple
+entries, I wouldn't be surprised if there are out-of-tree users, using
+i2c_register_board_info() or echo > /sys/.../new_device.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Hallo, ich bin Herr Francois Pinault, ich habe Ihnen gespendet. Sie 
-können mein Profil auf Wikipedia, Google oder Forbes überprüfen.
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Für Ihren Spendenanspruch und weitere Informationen kontaktieren Sie 
-mich umgehend unter francoispinault1936@outlook.com
-
-Mit freundlichen Grüßen,
-Herr Francois Pinault
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
