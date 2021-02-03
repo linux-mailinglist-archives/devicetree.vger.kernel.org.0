@@ -2,78 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 994B130E4FE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 22:33:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0F2C30E514
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 22:45:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232217AbhBCVc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 16:32:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39474 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230139AbhBCVcZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 16:32:25 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C9FC364F6C;
-        Wed,  3 Feb 2021 21:31:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612387905;
-        bh=ZpTMR0gW1LpUGwa7HIq+Jy13+2Nq7mPR/mRtLQGn/Tg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mDkqbswX2zNccGbpkomRfgKvEaP30lm10rDQ1x3GHFHpq817wb27WZF6jpDvEICoh
-         cJXwwSLi6sOZDEDLwfVSo9m80V01qu/v9R/cblZJ9Fhpq71aAoLoNPCgbCsglxSC7s
-         GeEhzND8sOkXsa3V5+V4kyxaPTL41dGtcUVf/VUULgwfrI+BehjQFRRrC9ZU1bwOLC
-         WqizeGK5RW84G4uwBPin3e/NMsqv8oMcTVUhKz4z5zNnU8ZczLebcULHVxowJH2mTo
-         cnDwITeNPt14PlSRZ0DaejnSfMh9urPD/Ix3hXHEL3CnE89YfwT3DuwuAtnnt8DeeH
-         D/qQMy6bAS4yQ==
-From:   Will Deacon <will@kernel.org>
-To:     Mark Rutland <mark.rutland@arm.com>,
+        id S229973AbhBCVnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 16:43:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35978 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231421AbhBCVnI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 16:43:08 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D9D3C061573;
+        Wed,  3 Feb 2021 13:42:28 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id y14so829345ljn.8;
+        Wed, 03 Feb 2021 13:42:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=kGfWwvJGFe5MnbxnWxw8m85yVGSi7i3eo7HdmO414+I=;
+        b=Jt3eshR6Cb65RBKKS7bJSkJwBKNbwaWYZF1yG6Unr1PpsgtzzIDhAOryZkRSpwlIas
+         N46UmYuQOQmqKeoPISXsdrMfTPyEWVkG+J1BPCIN98mg8dy688bOCCzoJoysTzCizx78
+         /O6GW5L5LNbCviwy3iJNCfMijC1iN58ouqMnlFtdK2IKBFk3QY6oOPvl+ZokSCoDu0Ta
+         fY3QWrAwtTMdI/UzjgoLKQKhvpSSo5v9oPjILTGTshJMcWauQ01ivqgSLyIfqo+tkq8Y
+         HFH4SxhaUjKINuYKX7MuSloUQxUB8uTUkelfNKFSNMbdn+ClxpW3Tz2eqiSsK0CrmIZO
+         uOGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kGfWwvJGFe5MnbxnWxw8m85yVGSi7i3eo7HdmO414+I=;
+        b=FBAEGJfc8k7WyZQk2i88jS84YletZDG0yyd/+zaK/bHJ481ATQprQE30HnHmnXWc06
+         0VzRePcSPwEtazVACCm4EiLp2KlfqPhoqqIyFHV7aWGNycc4gKSJgB27IhhUIkB5JYhg
+         S7oGe3LIT5hYD2wff2pOvvlXXvIrKCqIZtoKKw6E7Y15gAtoiRsfmmyIFnNsCX2qnZrx
+         JQqhsV4HM5xtp/+Zgi9EMt9WCQdiW05UeNcVfAINfEw/StTvprwiuD0tLkxEod2Fp7Kg
+         QIDFey8gXoxnZIr1aYEhz1Alp/xNrsvhzkMu2trAkANPMSg4wErZnrEWpFRG9LIfv8ay
+         zYBg==
+X-Gm-Message-State: AOAM533eqeOJnKcis9Tnj8dona8leMQQ4DVwWoFL28oGX9xY+V3k4DfV
+        Ua7Yi8ldHC1yiOiIw2mNo7UTDSZulls=
+X-Google-Smtp-Source: ABdhPJwM9zMCbOUxbaZ2qjIu4vzLHjQlv3PhkGbm1yCJZzlYIfR2HUYhnjIfNGnWeZEdg8F7YgY8Iw==
+X-Received: by 2002:a2e:b17c:: with SMTP id a28mr2794523ljm.189.1612388546509;
+        Wed, 03 Feb 2021 13:42:26 -0800 (PST)
+Received: from ?IPv6:2a00:1370:814d:ea25:a10:76ff:fe69:21b6? ([2a00:1370:814d:ea25:a10:76ff:fe69:21b6])
+        by smtp.googlemail.com with ESMTPSA id a16sm382539lji.52.2021.02.03.13.42.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Feb 2021 13:42:25 -0800 (PST)
+Subject: Re: [PATCH v1 0/2] ASoC: tegra: Add RT5631 machine driver
+To:     Jon Hunter <jonathanh@nvidia.com>, Ion Agorria <AG0RRIA@yahoo.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Stephen Warren <swarren@nvidia.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Seiya Wang <seiya.wang@mediatek.com>
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Namhyung Kim <namhyung@kernel.org>,
-        Jiri Olsa <jolsa@redhat.com>, Ingo Molnar <mingo@redhat.com>,
-        srv_heupstream@mediatek.com,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Peter Zijlstra <peterz@infradead.org>
-Subject: Re: [PATCH v2 0/2] Add support for ARM Cortex-A78 PMU
-Date:   Wed,  3 Feb 2021 21:31:33 +0000
-Message-Id: <161238497478.1983958.15302406214791753919.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210203055348.4935-1-seiya.wang@mediatek.com>
-References: <20210203055348.4935-1-seiya.wang@mediatek.com>
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Ion Agorria <ion@agorria.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210131184101.651486-1-AG0RRIA.ref@yahoo.com>
+ <20210131184101.651486-1-AG0RRIA@yahoo.com>
+ <82a3375e-6105-875c-3332-33fcf2c0f785@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <a9874e27-8d5c-c784-ee16-5e7b2607b058@gmail.com>
+Date:   Thu, 4 Feb 2021 00:42:24 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <82a3375e-6105-875c-3332-33fcf2c0f785@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Feb 2021 13:53:46 +0800, Seiya Wang wrote:
-> Add support for ARM Cortex-A78 PMU since it will be used in
-> new Mediatek SoC.
+02.02.2021 16:23, Jon Hunter пишет:
 > 
-> Based on v5.11-rc6
+> On 31/01/2021 18:40, Ion Agorria wrote:
+>> From: Ion Agorria <ion@agorria.com>
+>>
+>> Adds support for Tegra SoC devices with RT5631 sound codec.
+>> Playback to speakers, headphones and internal mic recording works.
+>>
+>> This driver is used for ASUS Transformer TF201, TF700T and others
+>> Tegra based devices containing RT5631.
+>>
+>> Svyatoslav Ryhel (2):
+>>   ASoC: dt-bindings: tegra: Add binding for RT5631
+>>   ASoC: tegra: Add RT5631 machine driver
+>>
+>>  .../sound/nvidia,tegra-audio-rt5631.yaml      | 134 +++++++++
+>>  sound/soc/tegra/Kconfig                       |   8 +
+>>  sound/soc/tegra/Makefile                      |   2 +
+>>  sound/soc/tegra/tegra_rt5631.c                | 261 ++++++++++++++++++
+>>  4 files changed, 405 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5631.yaml
+>>  create mode 100644 sound/soc/tegra/tegra_rt5631.c
 > 
-> Change in v2:
-> Remove change-id in commit message
 > 
-> [...]
+> I don't see any user of this driver included. Any reason why?
 
-Applied to will (for-next/perf), thanks!
+They should come a bit later. The TF201/300T device-trees should be in a
+good state already, we just need to finalize them for upstream and send out.
 
-[1/2] arm64: perf: add support for Cortex-A78
-      https://git.kernel.org/will/c/db2bb91f2e8e
-[2/2] dt-bindings: arm: add Cortex-A78 binding
-      https://git.kernel.org/will/c/750d43b4a79e
-
-Cheers,
--- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+IIUC, the audio codec and dock station drivers are the most noticeable
+missing parts in upsteam kernel. Ion and Svyatoslav should be able to
+clarify the state of the devices in a more details.
