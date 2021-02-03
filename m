@@ -2,241 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FBB930D567
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 09:39:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1721830D5A6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 09:56:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232931AbhBCIjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 03:39:23 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:53461 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232895AbhBCIjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 03:39:13 -0500
-X-UUID: 13d2b68f2a2746dfb322651117bda9bd-20210203
-X-UUID: 13d2b68f2a2746dfb322651117bda9bd-20210203
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1204533195; Wed, 03 Feb 2021 16:38:47 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 3 Feb 2021 16:38:07 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 3 Feb 2021 16:38:07 +0800
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>
-CC:     Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Irui Wang <irui.wang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <linux-mediatek@lists.infradead.org>
-Subject: [PATCH 5/5] media: mtk-vcodec: Support H264 4K encoding on MT8192
-Date:   Wed, 3 Feb 2021 16:37:52 +0800
-Message-ID: <20210203083752.12586-6-irui.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210203083752.12586-1-irui.wang@mediatek.com>
-References: <20210203083752.12586-1-irui.wang@mediatek.com>
+        id S233048AbhBCIzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 03:55:46 -0500
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:60535 "EHLO
+        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233001AbhBCIzp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 03:55:45 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.west.internal (Postfix) with ESMTP id 73FAF7EC;
+        Wed,  3 Feb 2021 03:54:37 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Wed, 03 Feb 2021 03:54:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=GaOLsyDn+K9t8Cmz3jhQ2iNqP2j
+        HmQT4/mycnVeQRqg=; b=mgFuVZJE93uHPKSj61GuzGt4ANRzWWeMaeLQOkqzUhl
+        +s2crr4ey2bHX1EdFQkQe8COHz3isCJglC9GrOmScYvozYhU+nZBu5JvJnznzLMF
+        wtdBz5txM1qGa8NQWCf2OTTHQYMEft8jX/uCNgIOiFDSNXfPJ5NssTG0Tenav0MU
+        Boi5OqXzh2PZrobyFMNIS8cI+dnX/dEGcnvGDj2o8V1DE32uxY0J0eke2x9V2COR
+        k8ZEflNz2JivX6nKZTwfyCuf06EeJ5lZvLqDnX4n0+02N7+0RQ5c8oCGeNUPtFwJ
+        RLe8tVz+PdPpOp7RFugpN5QMG7Z6hbD4IapzD8PAj+A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=GaOLsy
+        Dn+K9t8Cmz3jhQ2iNqP2jHmQT4/mycnVeQRqg=; b=V8S9lzqykEqQdNrk+fUE3D
+        8ZyRgSzxeyu4wDt2UhPn31WPyEuHi8zqxqXjHZF+CngILjcnda34f8EZ0DvIHoLn
+        gYplq67zIH4HRptquAkqIctfsVqEJmJRYdwEprlc5/c2AjBIfB+y4wKthYlL0U/F
+        v5qIA3GZSiWjyEcowyoWfOBTE6CuOjfrbi2Hblko7A2HSEg5VOAUasIc3l2107Fb
+        utj8v+hj5Dh+/eRIC7k8wfglkRklU7DezStVsaqaXFPfHjRdMLRlYTS/rWQurgMj
+        WMnPRuhsv+EkfBHod6OyVegq5pUJ49QHCJsT1ShCWLniMj3IXoy4mEJwod91Hfaw
+        ==
+X-ME-Sender: <xms:y2QaYNuVwRXCbUP8B_-oVw1vXQeoviuJzeKvtesSPsAX6kPh7Z6zFg>
+    <xme:y2QaYGes6Yf2hdUw91rn5RlGqTBfnk3ROgFAfYDuV_tebLF5ckXII4KKB61p2ShvO
+    CqZtoAKBEZRVAPKw6I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrgedugdduvdehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:zGQaYAxKtwfeEBuREydjmikFi1JldJAYQLXfe6Gbm4PCLIq7G328Uw>
+    <xmx:zGQaYEO7hOUy7LcZ03L3D0pkcDICfmw9HNNB0N3GZdHMzL48A3HO-Q>
+    <xmx:zGQaYN-xyfEnKOK8Sk21yQjGrq7i1m7bD04VmcedojckcZiCHjIooA>
+    <xmx:zWQaYJTNPKlb7_nHGO8qV24jIrJn_YeYLT-15CZrHZrJVjw9QQnfE6v1vg4>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id BB09024005A;
+        Wed,  3 Feb 2021 03:54:35 -0500 (EST)
+Date:   Wed, 3 Feb 2021 09:54:34 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: thermal: sun8i: Fix misplaced schema
+ keyword in compatible strings
+Message-ID: <20210203085434.pbbefshqhhbglqz6@gilmour>
+References: <20210202181538.3936235-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nnfikiw6pmkhcc66"
+Content-Disposition: inline
+In-Reply-To: <20210202181538.3936235-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Supports H264 4K (3840x2176) and level 5.1 encoding on MT8192.
 
-Signed-off-by: Irui Wang <irui.wang@mediatek.com>
----
- .../platform/mtk-vcodec/mtk_vcodec_enc.c      | 58 ++++++++++++++-----
- .../platform/mtk-vcodec/venc/venc_h264_if.c   |  4 ++
- 2 files changed, 47 insertions(+), 15 deletions(-)
+--nnfikiw6pmkhcc66
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c
-index 0da6871b4b39..3d8c8fe24372 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c
-@@ -21,12 +21,16 @@
- #define MTK_VENC_MIN_H	128U
- #define MTK_VENC_MAX_W	1920U
- #define MTK_VENC_MAX_H	1088U
-+#define MTK_VENC_4K_MAX_W	3840U
-+#define MTK_VENC_4K_MAX_H	2176U
-+
- #define DFT_CFG_WIDTH	MTK_VENC_MIN_W
- #define DFT_CFG_HEIGHT	MTK_VENC_MIN_H
- #define MTK_MAX_CTRLS_HINT	20
- 
- #define MTK_DEFAULT_FRAMERATE_NUM 1001
- #define MTK_DEFAULT_FRAMERATE_DENOM 30000
-+#define MTK_VENC_4K_CAPABILITY_ENABLE BIT(0)
- 
- static void mtk_venc_worker(struct work_struct *work);
- 
-@@ -152,18 +156,23 @@ static int vidioc_enum_framesizes(struct file *file, void *fh,
- 				  struct v4l2_frmsizeenum *fsize)
- {
- 	const struct mtk_video_fmt *fmt;
-+	struct mtk_vcodec_ctx *ctx = fh_to_ctx(fh);
- 
- 	if (fsize->index != 0)
- 		return -EINVAL;
- 
- 	fmt = mtk_venc_find_format(fsize->pixel_format,
--				   fh_to_ctx(fh)->dev->venc_pdata);
-+			ctx->dev->venc_pdata);
- 	if (!fmt)
- 		return -EINVAL;
- 
- 	fsize->type = V4L2_FRMSIZE_TYPE_STEPWISE;
- 	fsize->stepwise = mtk_venc_framesizes;
- 
-+	if (ctx->dev->enc_capability & MTK_VENC_4K_CAPABILITY_ENABLE) {
-+		fsize->stepwise.max_width = MTK_VENC_4K_MAX_W;
-+		fsize->stepwise.max_height = MTK_VENC_4K_MAX_H;
-+	}
- 	return 0;
- }
- 
-@@ -252,7 +261,7 @@ static struct mtk_q_data *mtk_venc_get_q_data(struct mtk_vcodec_ctx *ctx,
- /* V4L2 specification suggests the driver corrects the format struct if any of
-  * the dimensions is unsupported
-  */
--static int vidioc_try_fmt(struct v4l2_format *f,
-+static int vidioc_try_fmt(struct mtk_vcodec_ctx *ctx, struct v4l2_format *f,
- 			  const struct mtk_video_fmt *fmt)
- {
- 	struct v4l2_pix_format_mplane *pix_fmt_mp = &f->fmt.pix_mp;
-@@ -265,13 +274,22 @@ static int vidioc_try_fmt(struct v4l2_format *f,
- 		pix_fmt_mp->plane_fmt[0].bytesperline = 0;
- 	} else if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
- 		int tmp_w, tmp_h;
-+		unsigned int max_width, max_height;
-+
-+		if (ctx->dev->enc_capability & MTK_VENC_4K_CAPABILITY_ENABLE) {
-+			max_width = MTK_VENC_4K_MAX_W;
-+			max_height = MTK_VENC_4K_MAX_H;
-+		} else {
-+			max_width = MTK_VENC_MAX_W;
-+			max_height = MTK_VENC_MAX_H;
-+		}
- 
- 		pix_fmt_mp->height = clamp(pix_fmt_mp->height,
- 					MTK_VENC_MIN_H,
--					MTK_VENC_MAX_H);
-+					max_height);
- 		pix_fmt_mp->width = clamp(pix_fmt_mp->width,
- 					MTK_VENC_MIN_W,
--					MTK_VENC_MAX_W);
-+					max_width);
- 
- 		/* find next closer width align 16, heign align 32, size align
- 		 * 64 rectangle
-@@ -280,16 +298,16 @@ static int vidioc_try_fmt(struct v4l2_format *f,
- 		tmp_h = pix_fmt_mp->height;
- 		v4l_bound_align_image(&pix_fmt_mp->width,
- 					MTK_VENC_MIN_W,
--					MTK_VENC_MAX_W, 4,
-+					max_width, 4,
- 					&pix_fmt_mp->height,
- 					MTK_VENC_MIN_H,
--					MTK_VENC_MAX_H, 5, 6);
-+					max_height, 5, 6);
- 
- 		if (pix_fmt_mp->width < tmp_w &&
--			(pix_fmt_mp->width + 16) <= MTK_VENC_MAX_W)
-+			(pix_fmt_mp->width + 16) <= max_width)
- 			pix_fmt_mp->width += 16;
- 		if (pix_fmt_mp->height < tmp_h &&
--			(pix_fmt_mp->height + 32) <= MTK_VENC_MAX_H)
-+			(pix_fmt_mp->height + 32) <= max_height)
- 			pix_fmt_mp->height += 32;
- 
- 		mtk_v4l2_debug(0,
-@@ -416,7 +434,7 @@ static int vidioc_venc_s_fmt_cap(struct file *file, void *priv,
- 	}
- 
- 	q_data->fmt = fmt;
--	ret = vidioc_try_fmt(f, q_data->fmt);
-+	ret = vidioc_try_fmt(ctx, f, q_data->fmt);
- 	if (ret)
- 		return ret;
- 
-@@ -489,7 +507,7 @@ static int vidioc_venc_s_fmt_out(struct file *file, void *priv,
- 	q_data->visible_width = f->fmt.pix_mp.width;
- 	q_data->visible_height = f->fmt.pix_mp.height;
- 	q_data->fmt = fmt;
--	ret = vidioc_try_fmt(f, q_data->fmt);
-+	ret = vidioc_try_fmt(ctx, f, q_data->fmt);
- 	if (ret)
- 		return ret;
- 
-@@ -566,7 +584,7 @@ static int vidioc_try_fmt_vid_cap_mplane(struct file *file, void *priv,
- 	f->fmt.pix_mp.quantization = ctx->quantization;
- 	f->fmt.pix_mp.xfer_func = ctx->xfer_func;
- 
--	return vidioc_try_fmt(f, fmt);
-+	return vidioc_try_fmt(ctx, f, fmt);
- }
- 
- static int vidioc_try_fmt_vid_out_mplane(struct file *file, void *priv,
-@@ -588,7 +606,7 @@ static int vidioc_try_fmt_vid_out_mplane(struct file *file, void *priv,
- 		f->fmt.pix_mp.xfer_func = V4L2_XFER_FUNC_DEFAULT;
- 	}
- 
--	return vidioc_try_fmt(f, fmt);
-+	return vidioc_try_fmt(ctx, f, fmt);
- }
- 
- static int vidioc_venc_g_selection(struct file *file, void *priv,
-@@ -1260,9 +1278,19 @@ int mtk_vcodec_enc_ctrls_setup(struct mtk_vcodec_ctx *ctx)
- 	v4l2_ctrl_new_std_menu(handler, ops, V4L2_CID_MPEG_VIDEO_H264_PROFILE,
- 			V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
- 			0, V4L2_MPEG_VIDEO_H264_PROFILE_HIGH);
--	v4l2_ctrl_new_std_menu(handler, ops, V4L2_CID_MPEG_VIDEO_H264_LEVEL,
--			V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
--			0, V4L2_MPEG_VIDEO_H264_LEVEL_4_0);
-+
-+	if (ctx->dev->enc_capability & MTK_VENC_4K_CAPABILITY_ENABLE) {
-+		v4l2_ctrl_new_std_menu(handler, ops,
-+				       V4L2_CID_MPEG_VIDEO_H264_LEVEL,
-+				       V4L2_MPEG_VIDEO_H264_LEVEL_5_1,
-+				       0, V4L2_MPEG_VIDEO_H264_LEVEL_4_0);
-+	} else {
-+		v4l2_ctrl_new_std_menu(handler, ops,
-+				       V4L2_CID_MPEG_VIDEO_H264_LEVEL,
-+				       V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
-+				       0, V4L2_MPEG_VIDEO_H264_LEVEL_4_0);
-+	}
-+
- 	if (handler->error) {
- 		mtk_v4l2_err("Init control handler fail %d",
- 				handler->error);
-diff --git a/drivers/media/platform/mtk-vcodec/venc/venc_h264_if.c b/drivers/media/platform/mtk-vcodec/venc/venc_h264_if.c
-index d0123dfc5f93..b6a4f2074fa5 100644
---- a/drivers/media/platform/mtk-vcodec/venc/venc_h264_if.c
-+++ b/drivers/media/platform/mtk-vcodec/venc/venc_h264_if.c
-@@ -215,6 +215,10 @@ static unsigned int h264_get_level(struct venc_h264_inst *inst,
- 		return 41;
- 	case V4L2_MPEG_VIDEO_H264_LEVEL_4_2:
- 		return 42;
-+	case V4L2_MPEG_VIDEO_H264_LEVEL_5_0:
-+		return 50;
-+	case V4L2_MPEG_VIDEO_H264_LEVEL_5_1:
-+		return 51;
- 	default:
- 		mtk_vcodec_debug(inst, "unsupported level %d", level);
- 		return 31;
--- 
-2.25.1
+On Tue, Feb 02, 2021 at 12:15:38PM -0600, Rob Herring wrote:
+> A compatible string 'enum' mistakenly has 'const: ' in the compatible
+> strings. Remove these.
+>=20
+> Fixes: 0b28594d67a8 ("dt-bindings: thermal: Add YAML schema for sun8i-the=
+rmal driver bindings")
+> Cc: Vasily Khoruzhick <anarsoul@gmail.com>
+> Cc: Yangtao Li <tiny.windzz@gmail.com>
+> Cc: Zhang Rui <rui.zhang@intel.com>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Amit Kucheria <amitk@kernel.org>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Chen-Yu Tsai <wens@csie.org>
+> Cc: Jernej Skrabec <jernej.skrabec@siol.net>
+> Cc: linux-pm@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
+Acked-by: Maxime Ripard <mripard@kernel.org>
+
+Maxime
+
+--nnfikiw6pmkhcc66
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBpkygAKCRDj7w1vZxhR
+xU7JAQDuw/6tE0iP0CW3MelQJEwaxJ7DWKlM2Cle0Hdwvm3cEQEA4DBO+XcqrZD/
+KLlCf7KWMOpSK5M1foiS5bJj42ph1A8=
+=VC9f
+-----END PGP SIGNATURE-----
+
+--nnfikiw6pmkhcc66--
