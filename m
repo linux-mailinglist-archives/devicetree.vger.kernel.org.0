@@ -2,125 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B4130D94A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 12:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50CE730D9DE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 13:38:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234375AbhBCL4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 06:56:46 -0500
-Received: from mx2.suse.de ([195.135.220.15]:44332 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234170AbhBCL4p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 06:56:45 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id B2493AEE7;
-        Wed,  3 Feb 2021 11:56:02 +0000 (UTC)
-Message-ID: <fcf4d0934a1523975c325c9911c1830a2121b27a.camel@suse.de>
-Subject: Re: [PATCH 3/3] dt-bindings: Fix errors in 'if' schemas
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Vincent Cheng <vincent.cheng.xh@renesas.com>,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-watchdog@vger.kernel.org,
-        Eric Anholt <eric@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Date:   Wed, 03 Feb 2021 12:55:58 +0100
-In-Reply-To: <20210202205544.24812-3-robh@kernel.org>
-References: <20210202205544.24812-1-robh@kernel.org>
-         <20210202205544.24812-3-robh@kernel.org>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-5GqMeNDA14mTF3lYuG5p"
-User-Agent: Evolution 3.38.3 
+        id S229548AbhBCMie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 07:38:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229519AbhBCMid (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 07:38:33 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB30C061573
+        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 04:37:53 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id v15so25092108ljk.13
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 04:37:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PsKOKy4V9D9WnvUQN6LIGu7MAfCGEGVQl2UwB6I9OcM=;
+        b=JPozc/2TNPFC2N1NrvfUSmM2iarvlNvhYfZ9SrlCTYHUMmOlTL8Iq9Bbgcvxb04IIc
+         dlAswCtX5etR01UrRUvppwX7rKOWMG+ltiriNvtuWe4D8OcYzuiPwFsGD7mFSaBcrSic
+         4rkWYAGFPKy0mEKdr/fgL4O0pPkaPQ3WKmuGWaYrDi2VGTa3STAEYEewkAnVgfUwBxqj
+         M9B7jFceGHsX13lUbwSdtvkvPXXErg+AWeKuEd6Y/HWTXhk3Uf4rjp4uwVMHx5Hy2PJK
+         25Ri1dNLgKi44PcoD3iRM2KjxWxa+U/mheapMxq/CmJXM3QKh9+VeqUBLbIEdlFIDJmz
+         fd7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PsKOKy4V9D9WnvUQN6LIGu7MAfCGEGVQl2UwB6I9OcM=;
+        b=VmXVqrp3+ASZ1/WrQ/VMUC7K1cXdjt3sxGe3a6Fda1QrIlPGiWABG3q4sXKA0UV+qY
+         T7CgWP46rfpw0xDlyuqS57NcJtUNuXhQkQHXxWp4nTG2M3M9/gpxbPOD2sXFF7byHEt5
+         pGxyDN2qbAftX94GdpX7kRpFCToa1gLSJ62F0nRSDBI1Y0XI585UEReOfB+8F2egOwju
+         PmOQBmL/rq0BFjfslcWrB2rp1Mw/HF30SrH1ioBL4yn7w30dhessjfZa1xiLLaMwb005
+         sTejqcDB+OmE+vM6o17eNJbDSO1qPzsXMUaQdNT8rIL+fa2VRVdHT75B+dRe+KDVLdVM
+         gscg==
+X-Gm-Message-State: AOAM531+NMIT00WT5zkHMZX5rTIiTnlPHJZx7+AHmO3pDigJMNW9jjF9
+        X9YviVbaSaz+fUq4bxcjL271CA==
+X-Google-Smtp-Source: ABdhPJxBrEDtWi2jykHLBsvmvz6yah7CRpC8Gi1zQkspE/kj1IBE1CFE/S4XuIHxtL0VwVEs15mH4g==
+X-Received: by 2002:a2e:86c1:: with SMTP id n1mr1614700ljj.148.1612355871484;
+        Wed, 03 Feb 2021 04:37:51 -0800 (PST)
+Received: from localhost.localdomain (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id m16sm232423lfh.109.2021.02.03.04.37.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Feb 2021 04:37:50 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH] dt-bindings: Add Apple as vendor
+Date:   Wed,  3 Feb 2021 13:35:47 +0100
+Message-Id: <20210203123547.318876-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As noted in discussion, this prefix is already in use.
 
---=-5GqMeNDA14mTF3lYuG5p
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Link: https://lore.kernel.org/linux-arm-kernel/CAL_Jsq+znLsyQOw59xqYgoYo9eJrn1R1Tj--aRvPHOD_jv0fxA@mail.gmail.com/
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On Tue, 2021-02-02 at 14:55 -0600, Rob Herring wrote:
-> Properties in if/then schemas weren't getting checked by the meta-schemas=
-.
-> Enabling meta-schema checks finds several errors.
->=20
-> The use of an 'items' schema (as opposed to the list form) is wrong in
-> some cases as it applies to all entries. 'contains' is the correct schema
-> to use in the case of multiple entries.
->=20
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Eric Anholt <eric@anholt.net>
-> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Ray Jui <rjui@broadcom.com>
-> Cc: Scott Branden <sbranden@broadcom.com>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: linux-crypto@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-leds@vger.kernel.org
-> Cc: linux-mmc@vger.kernel.org
-> Cc: linux-gpio@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-
-Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-
-
---=-5GqMeNDA14mTF3lYuG5p
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmAaj04ACgkQlfZmHno8
-x/7Bywf9Ghk5CuwNSJHbRiqlKJ1q12tWeWcLF7LmZIFgm2sawjY0skG82SyJfJow
-cwKef8GMfZ51OrlO4VmeoOJ1sK8zmq6rkPz24dgE0Fe82CRAXneaxyr+m19SOgll
-vmrtNrEQpRqlVrOTo4A2jAufrJtStlw2VAy0jJT/QlRlyRwArJoUskuIqwNzj7wF
-KbgUjHD7GbVhRHlbfhsY7TdO6MYB4iKQek7IgiYoK8lB8TexlKr2ygDdBj1aXs4u
-omTYdJANyOFSbFAmnWfl3ScKeyS7lVHPUZybV6rHp6YDt+k1vjRivIzZXOLXrv14
-i2YyoJudc8K5ZBi0AE6j2Y0njKpi9A==
-=vnPw
------END PGP SIGNATURE-----
-
---=-5GqMeNDA14mTF3lYuG5p--
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 076d4b26261b..450596d2a108 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -101,6 +101,8 @@ patternProperties:
+     description: Anvo-Systems Dresden GmbH
+   "^apm,.*":
+     description: Applied Micro Circuits Corporation (APM)
++  "^apple,.*":
++    description: Apple Inc.
+   "^aptina,.*":
+     description: Aptina Imaging
+   "^arasan,.*":
+-- 
+2.29.2
 
