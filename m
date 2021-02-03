@@ -2,122 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C09BB30D66E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:39:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADFCE30D672
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:39:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233135AbhBCJha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 04:37:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48544 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbhBCJh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:37:29 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA15AC061788
-        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 01:36:08 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id a17so2335283ljq.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:36:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6GnRcNKibxztYcvUQzDGCgHL6AviuIrNT8YjYqp4o+g=;
-        b=FULorK8vsWlfT9sFbadP6z4zJxOs9AiVRnvUe7J2rfjR8hquBrIAC9NlypGz9UeYow
-         fXSHbY/48b4B5FIWctnJBzdDTMZq9tEReP6vEhxmitTovmHof64D1sG8EOw5cefbG83b
-         b6WHunVOHISOl9wNdGRCjou+X/7CDB2GZGoy1u48n6WpbKI7eHXwxjaSrEfO+KrQAeGa
-         MiIrxSEsA6COQt6+e85FcGXmmkpNbcJ6g/AC8Pvg2DqvXoSiLe8ytw/3OA8kIkmwOMSD
-         yBCRLiGLJ8rT5lH/iTbOBidfsCnzjchOZKQeN/OhXQqHkDq0+TtRW3ouM6MyzaxbLyzz
-         Rqvw==
+        id S233424AbhBCJhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 04:37:53 -0500
+Received: from mail-vs1-f48.google.com ([209.85.217.48]:42990 "EHLO
+        mail-vs1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233421AbhBCJhw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:37:52 -0500
+Received: by mail-vs1-f48.google.com with SMTP id v19so12742360vsf.9
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:37:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=6GnRcNKibxztYcvUQzDGCgHL6AviuIrNT8YjYqp4o+g=;
-        b=dD0MDG4s7NMXGtVvxLfI6sBrYU4Ae98SqzdWsWIOcT4hi8/u+WTxzHIgQZg7UqIs+V
-         xZcUt/DAGCeg+ZUzuNVDv4KxfLkQpQYvsBQ8bDOO0mTKG1ddNPiVT9MlwyFMoAM+woyw
-         O9GS2oV5dAadKyzHTPd5CfNSUN2H/P0vovoIHXvpN35ofyPZoCUXey+st5fFgZDchymC
-         JvD5WQjCqKL/XYjniWxXE77DlQgINN9BMThj0xIQ/dFCz/WLWJEXsFdPEHT3UYdkGD8I
-         iX7hiZCGgFgrKXfJh9mRaBYGuJZtTfN1T7tPXOpQCd36fw0ihHjdM8FllqpKYEDRyhXd
-         33gA==
-X-Gm-Message-State: AOAM530khibNLqEnOgKsowOAJDzQYvZaYjSSrzoOVAnUnkMFghhTgVOM
-        avyNWLavDmUANveXUJvXFrYnRgBRrLVfjxGWHUII9sGk0gavXw==
-X-Google-Smtp-Source: ABdhPJy4FflXpUjChVW+K6gb6Ck95k2cKDdhJLsDyahupxAN2akbTAdmitGaAnNIhYk43WdM7SiuRSAXZjsbLKYTmG8=
-X-Received: by 2002:a2e:8746:: with SMTP id q6mr1238712ljj.326.1612344967044;
- Wed, 03 Feb 2021 01:36:07 -0800 (PST)
+        bh=MvldrpsQXbyiISgT1/pCoqDQWmte0DSrfjVAlOcff4s=;
+        b=Tj0YYU1LOC/90de6SxKz4hmQBGz+Q9a6vSSOjpdb2qRIo3AMHrcQ4MbLmFDysPpTqj
+         PtIIaxKrNSVActt0q28Q7HQuFV4DQ2I1wJC8f8Pj2XDePmGJAUT9u8msbRKTUguFbNLA
+         KYlnmSwfvevupn6s7263+nsXy2nLANuE8alKi5Q2mMYMoQv6GlbRQcU8xPt+F2TqJQoW
+         EmEBlMG6bu9o9jXiIsEobJrdI4S2YpEkRSIjVQluROzFZnCpoyg6grZyQIPSlsWKThHl
+         Sfr1FpUewF/C4iPV8gDTwBCh9WdjIBDUu64zt3tU6F3G2+zKw2pi5pWzoUt/dq9Wgwz7
+         9biA==
+X-Gm-Message-State: AOAM531Rj8CanEU+0HZU7CJEJurXqkIfh8Qbwnuj3D3m90nydCYB1B32
+        rqvhlvSYmY1uD9F6/JGXmLaAIN5vJexBQg==
+X-Google-Smtp-Source: ABdhPJyHkf4G/HOPiBw7u8GY/L8CU/Du3TQM7Zaw4yOLIovIrw9BUhb13yTrwtYevgNd5qe8TjllCQ==
+X-Received: by 2002:a67:c992:: with SMTP id y18mr1087965vsk.7.1612345031965;
+        Wed, 03 Feb 2021 01:37:11 -0800 (PST)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id f85sm196852vke.2.2021.02.03.01.37.10
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Feb 2021 01:37:11 -0800 (PST)
+Received: by mail-vs1-f47.google.com with SMTP id b10so6663344vsa.8
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:37:10 -0800 (PST)
+X-Received: by 2002:a05:6102:243:: with SMTP id a3mr1190211vsq.17.1612345030630;
+ Wed, 03 Feb 2021 01:37:10 -0800 (PST)
 MIME-Version: 1.0
-References: <20210202205544.24812-1-robh@kernel.org>
-In-Reply-To: <20210202205544.24812-1-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 3 Feb 2021 10:35:56 +0100
-Message-ID: <CACRpkdZF1zvykXj58oKjBVqomH86BSW8N=noDs8q3BA--CLAvw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: Fix undocumented compatible strings in examples
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Vincent Cheng <vincent.cheng.xh@renesas.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>
+References: <20210127054620.510912-1-geomatsi@gmail.com> <20210203092912.s3wm3y5hfptwirqy@gilmour>
+In-Reply-To: <20210203092912.s3wm3y5hfptwirqy@gilmour>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Wed, 3 Feb 2021 17:36:58 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66cskANPS7Zc_atCv9WYRq_aAEUi6Dd6LBrDPODOJ_ueQ@mail.gmail.com>
+Message-ID: <CAGb2v66cskANPS7Zc_atCv9WYRq_aAEUi6Dd6LBrDPODOJ_ueQ@mail.gmail.com>
+Subject: Re: [PATCH 1/1] ARM: dts: orange-pi-zero-plus2: use fixed mmc indexes
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Sergey Matyukevich <geomatsi@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 2, 2021 at 9:55 PM Rob Herring <robh@kernel.org> wrote:
-
-> Running 'dt-validate -m' will flag any compatible strings missing a schema.
-> Fix all the errors found in DT binding examples. Most of these are just
-> typos.
+On Wed, Feb 3, 2021 at 5:29 PM Maxime Ripard <maxime@cerno.tech> wrote:
 >
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Daniel Palmer <daniel@thingy.jp>
-> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> Cc: Avi Fishman <avifishman70@gmail.com>
-> Cc: Tomer Maimon <tmaimon77@gmail.com>
-> Cc: Tali Perry <tali.perry1@gmail.com>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Andrew Jeffery <andrew@aj.id.au>
-> Cc: Joel Stanley <joel@jms.id.au>
-> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Cc: Vincent Cheng <vincent.cheng.xh@renesas.com>
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-crypto@vger.kernel.org
-> Cc: linux-gpio@vger.kernel.org
-> Cc: linux-i2c@vger.kernel.org
-> Cc: iommu@lists.linux-foundation.org
-> Cc: linux-watchdog@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Hi,
+>
+> On Wed, Jan 27, 2021 at 08:46:20AM +0300, Sergey Matyukevich wrote:
+> > Driver sunxi-mmc has recently been switched to asynchronous probe.
+> > As a result, mmc indexes can be shuffled breaking existing setups
+> > where UUIDs are not used for boot devices. Pin mmc indexes to keep
+> > running the systems where fixed MMC or eMMC are specified,
+> > e.g. root=/dev/mmcblk0p2.
+> >
+> > Signed-off-by: Sergey Matyukevich <geomatsi@gmail.com>
+>
+> I'm not sure, really.
+>
+> That would change the indices once again, and you shouldn't really rely
+> on them anyway, there's never been any guarantee on the order of any
+> device.
 
-Ooops.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+I assume one reason people want stable MMC indices is for setting the
+root device. This could be done with UUID or PARTUUID. Another would
+be setting the LED trigger to some MMC device, preferably in the DT
+so it kicks in when the LED device is created. Though even that isn't
+guaranteed since the MMC could probe after the LED. :(
 
-Yours,
-Linus Walleij
+Currently I'm using some shell script to parse the root device then
+get the device name and program that as an LED trigger through sysfs.
+
+> And whatever the outcome of that discussion, it definitely shouldn't be
+> done for a single board.
+
+I believe this should be done at the SoC level so we would have consistent
+MMC indices across the board. However that seems to conflict with the order
+swap we currently have in U-boot to support eMMCs seamlessly.
+
+Regards
+ChenYu
