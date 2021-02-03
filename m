@@ -2,158 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3BD730DB6B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 14:38:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8672930DBB6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 14:48:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231691AbhBCNgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 08:36:31 -0500
-Received: from mga12.intel.com ([192.55.52.136]:53857 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232078AbhBCNgH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 08:36:07 -0500
-IronPort-SDR: m+0DYk33G3PA7AxzQNJtvKjsWkYheUFWDbgunej4W4zIKNBup27SVVg9OhsJFc7cSIjMRO/5RW
- VTYeU2k7U28g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="160205448"
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; 
-   d="diff'?scan'208";a="160205448"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2021 05:34:12 -0800
-IronPort-SDR: ebZ4EKkbByu9zyt371NkzmzjxNMJcy6cR2nDbKa+Oj1ilrgll0Rn9FR5xeBc7xilx74s60AuYW
- WilY1Q93q46w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; 
-   d="diff'?scan'208";a="480351688"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 03 Feb 2021 05:34:09 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 03 Feb 2021 15:34:08 +0200
-Date:   Wed, 3 Feb 2021 15:34:08 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Kyle Tso <kyletso@google.com>
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org,
-        hdegoede@redhat.com, robh+dt@kernel.org, badhri@google.com,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/8] usb: typec: Manage SVDM version
-Message-ID: <20210203133408.GF1687065@kuha.fi.intel.com>
-References: <20210202161733.932215-1-kyletso@google.com>
- <20210202161733.932215-2-kyletso@google.com>
- <20210203124724.GD1687065@kuha.fi.intel.com>
+        id S232065AbhBCNsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 08:48:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46088 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232209AbhBCNrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 08:47:32 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6DB4C0613D6
+        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 05:46:47 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id c127so5266156wmf.5
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 05:46:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mmTxJHAG7BsEX/Yjqdov/BgOcZ1IzcMMUHM38mX2sec=;
+        b=qB0oDq1RTsfWgvowujAcezLYRLxOtpcsrCVoX3XJi8oCmR/CberX0JRL59qfNpVuDV
+         aQSkX6rpmB98Hy1XqGiANoIn+BG9XfOu5Px7ajIEu1kUNhVdrcKLL6Kg18g8S6ZArOwc
+         r7pSkfSkuFN6LCuD9rTgxuz6JNeQenXMZk+WIAapYlGyh52pllzEx7jbOp6X9XEPbMew
+         /YXD9LUQtHP0jZseBMh2BbOuDXLReHO8+2wTAm1GD/PNPTmF70Y1xYiVALnzy9csnyNS
+         tvKgeMHHLO1G86DVj6oaJcBkFLmqRTA4yPahKOj3mqSJVWqJyyv3ciUkRpcO7rMRApdC
+         fl3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=mmTxJHAG7BsEX/Yjqdov/BgOcZ1IzcMMUHM38mX2sec=;
+        b=IPkrirqMby1IzwQkf69gEZWbogol8QDtK48zhaVBlmw1EchUOpBsTPLghwy0bom8/j
+         W7D1Cju6j8ocDUkTaAtI6FrsvZMjVYJ2oRUq6nCNfW6PLuJLYbQ+t+czPzmOuBkrp2TS
+         VIsXX+AW7UqmnWUK9VvPj64RC/e7pkQrfhANM3fboF9WOU8LpTplkKjmyZIauKC4Hz5E
+         rwHukgYrRTGhYO/HzlUMpnF6yECbj3V2Zd04kdWqlDJyw4whhYKlNb7rWjOlkUMM4hHw
+         2BZWlrCFXFyX+6RMbPR9WW/PE5I+Cx2Jd2ZyFi16MQqk/IYoEGU7M9xk4P3CdgPIUHCg
+         ehtQ==
+X-Gm-Message-State: AOAM532DTT4BUqq4TFITOv23yB9T4xxCvEYVqzCep2qMpJ7qo/pLaa5E
+        iO45XjDXVj3euVfztlSt00/GTQ==
+X-Google-Smtp-Source: ABdhPJx3KQn2TI1gBNF9KqD1+7cVwPChsoEAyCpczLY2Qqbxi76gjEbrSX8g4yz+pmbo9toW6rB51g==
+X-Received: by 2002:a1c:cc14:: with SMTP id h20mr2911595wmb.180.1612360006519;
+        Wed, 03 Feb 2021 05:46:46 -0800 (PST)
+Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id f7sm3513534wre.78.2021.02.03.05.46.45
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 03 Feb 2021 05:46:45 -0800 (PST)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-spi@vger.kernel.org
+Subject: [PATCH] dt-bindings: spi: zynq: Convert Zynq QSPI binding to yaml
+Date:   Wed,  3 Feb 2021 14:46:44 +0100
+Message-Id: <22ca0a9a15ccdf4b520baacc5ed837f6d3a3f781.1612360002.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="CE+1k2dSO48ffgeK"
-Content-Disposition: inline
-In-Reply-To: <20210203124724.GD1687065@kuha.fi.intel.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert spi-zynq-qspi.txt to yaml.
 
---CE+1k2dSO48ffgeK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+---
 
-Hi Kyle,
+ .../devicetree/bindings/spi/spi-zynq-qspi.txt | 25 --------
+ .../bindings/spi/xlnx,zynq-qspi.yaml          | 59 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 60 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
 
-On Wed, Feb 03, 2021 at 02:47:28PM +0200, Heikki Krogerus wrote:
-> You need to document those exported functions! You need to do that in
-> any case, but in this case it's very important, because the purpose of
-> these functions is not clear from the ctx.
-> 
-> I'm sorry for noticing that so late. Since you do need to fix that,
-> please see if you can also store that detail in the partner device
-> object instead of the port object.
-
-I'm attaching here my (quite crude) proposal how to do this. It should
-give you an idea what I'm after here.
-
-Br,
-
+diff --git a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt b/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
+deleted file mode 100644
+index 16b734ad3102..000000000000
+--- a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-Xilinx Zynq QSPI controller Device Tree Bindings
+--------------------------------------------------------------------
+-
+-Required properties:
+-- compatible		: Should be "xlnx,zynq-qspi-1.0".
+-- reg			: Physical base address and size of QSPI registers map.
+-- interrupts		: Property with a value describing the interrupt
+-			  number.
+-- clock-names		: List of input clock names - "ref_clk", "pclk"
+-			  (See clock bindings for details).
+-- clocks		: Clock phandles (see clock bindings for details).
+-
+-Optional properties:
+-- num-cs		: Number of chip selects used.
+-
+-Example:
+-	qspi: spi@e000d000 {
+-		compatible = "xlnx,zynq-qspi-1.0";
+-		reg = <0xe000d000 0x1000>;
+-		interrupt-parent = <&intc>;
+-		interrupts = <0 19 4>;
+-		clock-names = "ref_clk", "pclk";
+-		clocks = <&clkc 10>, <&clkc 43>;
+-		num-cs = <1>;
+-	};
+diff --git a/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml b/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+new file mode 100644
+index 000000000000..03269a7433b3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/xlnx,zynq-qspi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xilinx Zynq QSPI controller
++
++description:
++  The Xilinx Zynq QSPI controller is used to access multi-bit serial flash
++  memory devices.
++
++allOf:
++  - $ref: "spi-controller.yaml#"
++
++maintainers:
++  - Michal Simek <michal.simek@xilinx.com>
++
++# Everything else is described in the common file
++properties:
++  compatible:
++    const: xlnx,zynq-qspi-1.0
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: reference clock
++      - description: peripheral clock
++
++  clock-names:
++    items:
++      - const: ref_clk
++      - const: pclk
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++additionalProperties: true
++
++examples:
++  - |
++    spi@e000d000 {
++        compatible = "xlnx,zynq-qspi-1.0";
++        reg = <0xe000d000 0x1000>;
++        interrupt-parent = <&intc>;
++        interrupts = <0 19 4>;
++        clock-names = "ref_clk", "pclk";
++        clocks = <&clkc 10>, <&clkc 43>;
++        num-cs = <1>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 546aa66428c9..e494b061dcd1 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2766,6 +2766,7 @@ W:	http://wiki.xilinx.com
+ T:	git https://github.com/Xilinx/linux-xlnx.git
+ F:	Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+ F:	Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
++F:	Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+ F:	arch/arm/mach-zynq/
+ F:	drivers/block/xsysace.c
+ F:	drivers/clocksource/timer-cadence-ttc.c
 -- 
-heikki
+2.30.0
 
---CE+1k2dSO48ffgeK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename="svdm_version_proposal.diff"
-
-diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
-index 8f77669f9cf4f..04238b0a5d47f 100644
---- a/drivers/usb/typec/class.c
-+++ b/drivers/usb/typec/class.c
-@@ -36,6 +36,8 @@ struct typec_partner {
- 	enum typec_accessory		accessory;
- 	struct ida			mode_ids;
- 	int				num_altmodes;
-+
-+	enum usb_pd_svdm_ver            svdm_version;
- };
- 
- struct typec_port {
-@@ -792,6 +794,18 @@ typec_partner_register_altmode(struct typec_partner *partner,
- }
- EXPORT_SYMBOL_GPL(typec_partner_register_altmode);
- 
-+/**
-+ * typec_partner_set_svdm_version - Set negotiated SVDM version
-+ * @partner: The partner.
-+ * ...
-+ */
-+void typec_partner_set_svdm_version(struct typec_partner *partner,
-+				   enum usb_pd_svdm_ver svdm_version)
-+{
-+	partner->svdm_version = svdm_version;
-+}
-+EXPORT_SYMBOL_GPL(typec_partner_set_svdm_version);
-+
- /**
-  * typec_register_partner - Register a USB Type-C Partner
-  * @port: The USB Type-C Port the partner is connected to
-@@ -1847,6 +1861,27 @@ EXPORT_SYMBOL_GPL(typec_set_mode);
- 
- /* --------------------------------------- */
- 
-+/**
-+ * typec_get_negotiated_svdm_version - Get negotiated SVDM version
-+ * @port: The port.
-+ * ...
-+ */
-+int typec_get_negotiated_svdm_version(struct typec_port *port)
-+{
-+	enum usb_pd_svdm_ver svdm_version;
-+	struct device *partner_dev;
-+
-+	partner_dev = device_find_child(&port->dev, NULL, partner_match);
-+	if (!partner_dev)
-+		return -ENODEV;
-+
-+	svdm_version = to_typec_partner(partner_dev)->svdm_version;
-+	put_device(partner_dev);
-+
-+	return svdm_version
-+}
-+EXPORT_SYMBOL_GPL(typec_partner_set_svdm_version);
-+
- /**
-  * typec_get_drvdata - Return private driver data pointer
-  * @port: USB Type-C port
-diff --git a/include/linux/usb/typec_altmode.h b/include/linux/usb/typec_altmode.h
-index 5e0a7b7647c3b..91e119e37ba70 100644
---- a/include/linux/usb/typec_altmode.h
-+++ b/include/linux/usb/typec_altmode.h
-@@ -132,6 +132,16 @@ typec_altmode_get_orientation(struct typec_altmode *altmode)
- 	return typec_get_orientation(typec_altmode2port(altmode));
- }
- 
-+/**
-+ * typec_get_negotiated_svdm_version - Get negotiated SVDM version
-+ * ...
-+ */
-+static inline int
-+typec_altmode_get_svdm_version(struct typec_altmode *altmode)
-+{
-+	return typec_get_negotiated_svdm_version(typec_altmode2port(altmode));
-+}
-+
- /**
-  * struct typec_altmode_driver - USB Type-C alternate mode device driver
-  * @id_table: Null terminated array of SVIDs
-
---CE+1k2dSO48ffgeK--
