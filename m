@@ -2,181 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEFD530E189
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 18:57:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96A8830E1C8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 19:03:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232149AbhBCRzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 12:55:45 -0500
-Received: from so15.mailgun.net ([198.61.254.15]:25629 "EHLO so15.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231274AbhBCRzi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 12:55:38 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1612374914; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=skd9G4BcflC/QWV4zSXi1f5Z3sAt9lA/5vhec0dO9FM=; b=OxXAYGrlmCZyFRvPl1Y1KrjOUA08mbP/1zMtW/gu2d112Rl7EkYP8VZ8KnOsSnWK/aR10nmj
- 7k4scplU3iRQUxz93Uv7GRQlnCq5Q5PxKAwxbFxFTXvJ1lAN6Ofyg7up8wNVaQaaKqxJcXqS
- Lhzd8lr8X+/ZwmdA4qqdjtb3LOU=
-X-Mailgun-Sending-Ip: 198.61.254.15
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 601ae35c84d0ac8967a1fbdc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 03 Feb 2021 17:54:36
- GMT
-Sender: akhilpo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 72E16C43462; Wed,  3 Feb 2021 17:54:35 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.1 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.1.105] (unknown [117.210.176.5])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7D02EC433ED;
-        Wed,  3 Feb 2021 17:54:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7D02EC433ED
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
-Subject: Re: [PATCH v4 2/2] arm: dts: sc7180: Add support for gpu fuse
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        dri-devel@freedesktop.org, freedreno@lists.freedesktop.org
-References: <1610129731-4875-1-git-send-email-akhilpo@codeaurora.org>
- <1610129731-4875-2-git-send-email-akhilpo@codeaurora.org>
- <YBnXshYzJmNpmuEW@builder.lan>
-From:   Akhil P Oommen <akhilpo@codeaurora.org>
-Message-ID: <af88628d-08ca-a2f3-c8f3-91732366760f@codeaurora.org>
-Date:   Wed, 3 Feb 2021 23:24:27 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S232573AbhBCSDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 13:03:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44954 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230355AbhBCSDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 13:03:11 -0500
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB21C0613ED
+        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 10:02:24 -0800 (PST)
+Received: by mail-il1-x134.google.com with SMTP id z18so67447ile.9
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 10:02:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=O4JlNu8/UKJ4TcIvZSZaq+J3GkWnkAas9iNj9NlLHeM=;
+        b=mvSmPEuV3qNgYCAQTcYKupvgpZsxP4EFNF2/jb6z8/9y7GJAwEn3IjJ1hXbCtVOdrP
+         9dikj2yUHTEA1BKCKxl5TrYx0K1c04aaz65KWDgzGaZOHdKlupPv1c1vDQt97kYtX7zZ
+         TKBa845jd6WCteZDZsPddfCs8z/YHxBCJLYJk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=O4JlNu8/UKJ4TcIvZSZaq+J3GkWnkAas9iNj9NlLHeM=;
+        b=di5xvNuFnuTufQZcrMQ8/+0+KYQMhF9lMbN0hrjuBisd4mb0Rr6xzGTbK8izPlKIVD
+         u/nlRbbN15s6zqZKD8AKK6ZEO8m0keVpP+n9yXVuqYbgTCC2Q9lyiLhS1Kmj64MiEbh+
+         dJccyT92HJmrwUnEfGi6Lz4qelPZzBJ8cZf5+a5OjMaUL0m8yz7niRC8y1m64ViaI7PL
+         GXcwiHDZxis4pbdSPCY/dMJUlWWXlv9r05wYr/RHqGfZEfadGnJdSZDAqlfapzoYvwhh
+         cC/mT1dB42eQ5vkgBAc95fCrhJsIg+q+YI3kB1yAbQAllu4ZrXzSN2lSJKlu6NWtohrx
+         E5nw==
+X-Gm-Message-State: AOAM530ZLVhqZVnaYaGulL/HGhUWL2u51sWskVq5AjXitKV4eqGxpAuQ
+        snipZVKZqTnFromfV/oSyPuUF7VEnJPlOpFHTJqF
+X-Google-Smtp-Source: ABdhPJwIcQ3qi/WS218RvzSvV7N2bb+NFL58ELQ2CH2SiyWJNr3JUXVM6U/iAu/YvppBMVqmGLN/EoSurNZeUSmq54g=
+X-Received: by 2002:a92:ce50:: with SMTP id a16mr3574520ilr.219.1612375344325;
+ Wed, 03 Feb 2021 10:02:24 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <YBnXshYzJmNpmuEW@builder.lan>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210203125913.390949-1-damien.lemoal@wdc.com> <20210203125913.390949-8-damien.lemoal@wdc.com>
+In-Reply-To: <20210203125913.390949-8-damien.lemoal@wdc.com>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Wed, 3 Feb 2021 10:02:13 -0800
+Message-ID: <CAOnJCUJAbkWj4OUWBjPQiLKuYD4Pr=u+Cvm46ZFR47VxpwQA3g@mail.gmail.com>
+Subject: Re: [PATCH v15 07/16] dt-bindings: fix sifive gpio properties
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>, Anup Patel <anup.patel@wdc.com>,
+        Sean Anderson <seanga2@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/3/2021 4:22 AM, Bjorn Andersson wrote:
-> On Fri 08 Jan 12:15 CST 2021, Akhil P Oommen wrote:
-> 
-> Please align the $subject prefix with other changes in the same file.
-> I fixed it up while picking up the patch this time.
-> 
-Will take of this in future. Thanks, Bjorn.
-
--Akhil.
-
-> Regards,
-> Bjorn
-> 
->> Add support for gpu fuse to help identify the supported opps.
->>
->> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7180.dtsi | 22 ++++++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> index 6678f1e..8cae3eb 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> @@ -675,6 +675,11 @@
->>   				reg = <0x25b 0x1>;
->>   				bits = <1 3>;
->>   			};
->> +
->> +			gpu_speed_bin: gpu_speed_bin@1d2 {
->> +				reg = <0x1d2 0x2>;
->> +				bits = <5 8>;
->> +			};
->>   		};
->>   
->>   		sdhc_1: sdhci@7c4000 {
->> @@ -1907,52 +1912,69 @@
->>   			operating-points-v2 = <&gpu_opp_table>;
->>   			qcom,gmu = <&gmu>;
->>   
->> +			nvmem-cells = <&gpu_speed_bin>;
->> +			nvmem-cell-names = "speed_bin";
->> +
->>   			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
->>   			interconnect-names = "gfx-mem";
->>   
->>   			gpu_opp_table: opp-table {
->>   				compatible = "operating-points-v2";
->>   
->> +				opp-825000000 {
->> +					opp-hz = /bits/ 64 <825000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
->> +					opp-peak-kBps = <8532000>;
->> +					opp-supported-hw = <0x04>;
->> +				};
->> +
->>   				opp-800000000 {
->>   					opp-hz = /bits/ 64 <800000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
->>   					opp-peak-kBps = <8532000>;
->> +					opp-supported-hw = <0x07>;
->>   				};
->>   
->>   				opp-650000000 {
->>   					opp-hz = /bits/ 64 <650000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
->>   					opp-peak-kBps = <7216000>;
->> +					opp-supported-hw = <0x07>;
->>   				};
->>   
->>   				opp-565000000 {
->>   					opp-hz = /bits/ 64 <565000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
->>   					opp-peak-kBps = <5412000>;
->> +					opp-supported-hw = <0x07>;
->>   				};
->>   
->>   				opp-430000000 {
->>   					opp-hz = /bits/ 64 <430000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
->>   					opp-peak-kBps = <5412000>;
->> +					opp-supported-hw = <0x07>;
->>   				};
->>   
->>   				opp-355000000 {
->>   					opp-hz = /bits/ 64 <355000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
->>   					opp-peak-kBps = <3072000>;
->> +					opp-supported-hw = <0x07>;
->>   				};
->>   
->>   				opp-267000000 {
->>   					opp-hz = /bits/ 64 <267000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
->>   					opp-peak-kBps = <3072000>;
->> +					opp-supported-hw = <0x07>;
->>   				};
->>   
->>   				opp-180000000 {
->>   					opp-hz = /bits/ 64 <180000000>;
->>   					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
->>   					opp-peak-kBps = <1804000>;
->> +					opp-supported-hw = <0x07>;
->>   				};
->>   			};
->>   		};
->> -- 
->> 2.7.4
->>
+On Wed, Feb 3, 2021 at 5:00 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
+>
+> The sifive gpio IP block supports up to 32 GPIOs. Reflect that in the
+> interrupts property description and maxItems. Also add the standard
+> ngpios property to describe the number of GPIOs available on the
+> implementation.
+>
+> Also add the "canaan,k210-gpiohs" compatible string to indicate the use
+> of this gpio controller in the Canaan Kendryte K210 SoC. If this
+> compatible string is used, do not define the clocks property as
+> required as the K210 SoC does not have a software controllable clock
+> for the Sifive gpio IP block.
+>
+> Cc: Paul Walmsley <paul.walmsley@sifive.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+> ---
+>  .../devicetree/bindings/gpio/sifive,gpio.yaml | 21 ++++++++++++++++---
+>  1 file changed, 18 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> index ab22056f8b44..2cef18ca737c 100644
+> --- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> @@ -16,6 +16,7 @@ properties:
+>        - enum:
+>            - sifive,fu540-c000-gpio
+>            - sifive,fu740-c000-gpio
+> +          - canaan,k210-gpiohs
+>        - const: sifive,gpio0
+>
+>    reg:
+> @@ -23,9 +24,9 @@ properties:
+>
+>    interrupts:
+>      description:
+> -      interrupt mapping one per GPIO. Maximum 16 GPIOs.
+> +      interrupt mapping one per GPIO. Maximum 32 GPIOs.
+>      minItems: 1
+> -    maxItems: 16
+> +    maxItems: 32
+>
+>    interrupt-controller: true
+>
+> @@ -38,6 +39,10 @@ properties:
+>    "#gpio-cells":
+>      const: 2
+>
+> +  ngpios:
+> +    minimum: 1
+> +    maximum: 32
+> +
+>    gpio-controller: true
+>
+>  required:
+> @@ -46,10 +51,20 @@ required:
+>    - interrupts
+>    - interrupt-controller
+>    - "#interrupt-cells"
+> -  - clocks
+>    - "#gpio-cells"
+>    - gpio-controller
+>
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - sifive,fu540-c000-gpio
+> +          - sifive,fu740-c000-gpio
+> +then:
+> +  required:
+> +    - clocks
+> +
+>  additionalProperties: false
+>
+>  examples:
+> --
+> 2.29.2
+>
+>
 > _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> 
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
+
+Reviewed-by: Atish Patra <atish.patra@wdc.com>
+
+-- 
+Regards,
+Atish
