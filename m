@@ -2,497 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14CE530DA40
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 13:54:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5D7B30DA47
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 13:56:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231286AbhBCMxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 07:53:49 -0500
-Received: from mga11.intel.com ([192.55.52.93]:47357 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229736AbhBCMuX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 07:50:23 -0500
-IronPort-SDR: 1NVojhFYXuUBsgroWa7Bo0prkKAjnG+L4Q7ZMaSNqZINYa16tt8PusshPHGgHnSbHwd2F8q6RP
- fa0yrB/ck6XQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="177526623"
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; 
-   d="scan'208";a="177526623"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2021 04:48:40 -0800
-IronPort-SDR: CZaT/ePaF571jY1T9ltcUREYguIvXLREIYKb/PTw0KNRUCbSnUpZS4XC74V0pXU/iUYmsOdd+g
- OQp+ZjAFZDmQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; 
-   d="scan'208";a="480338794"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 03 Feb 2021 04:48:37 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 03 Feb 2021 14:48:36 +0200
-Date:   Wed, 3 Feb 2021 14:48:36 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Kyle Tso <kyletso@google.com>
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org,
-        hdegoede@redhat.com, robh+dt@kernel.org, badhri@google.com,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/8] usb: pd: Update VDO definitions
-Message-ID: <20210203124836.GE1687065@kuha.fi.intel.com>
-References: <20210202161733.932215-1-kyletso@google.com>
- <20210202161733.932215-3-kyletso@google.com>
+        id S231520AbhBCMzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 07:55:07 -0500
+Received: from esa2.hgst.iphmx.com ([68.232.143.124]:42293 "EHLO
+        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231444AbhBCMxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 07:53:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1612357133; x=1643893133;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=I0Zs7Mt/4P9NK3GvbU4uQYW59R+axVhnhP5g2PcB7No=;
+  b=RWcOHvFwGEDYhbR6NaKmRQ7tuUrg2Az80o40mNKjJxxzrJkG/ySfBLbx
+   ezvai0/5tB5cK3qIM8ZGGoMDdsNRrzp6PN7IrBvAx0KdUGEnnurm0/rFE
+   1aYUoEbQjGSwortyZelUhx0H+njY/swE7Rh2/F42G7yWmytN02zxX3hu3
+   gjr7kYO8GdWHUplaOVdMCpwj7h/yJTTqG4xKbIXBQXR55x/Luqj0Z9cQ4
+   BAMUGgF0mvRo3tZg4+poKBG3GxlFPZoFnoCIiAUo4J3l+oWQe7mCUFgKo
+   3EeRlmAkRIGE0Yc17Zmzn/ZEjfzm4NnyxG3LT6mLC2nB7epS6mwsYgM6e
+   g==;
+IronPort-SDR: mG958t7pgFgSCsffddx4tmFWtB6jG7cA9eOdUJGGGn45pHHum3E57YDWqFQqTaQuIevGwLLo8W
+ kAMlH2GwezikR3TOp9OA4XpAVMDhJm+4OvM3rLo9iMm54a5cz9WJ2liDx5JUK9wxo7dHLSBwKo
+ 6CVE3GWv0cE6egq+04CIaSksxsYTRdkA+ATvDfIUho03lnJRaqtnrgcy3qm4Bo9Rmi6dFa5ex4
+ pVBFm9ISZLTwEa9bnPs+te5K8iXeUyDv7yK4y1ZA2aYpj7zGGVpZ9LyOm8a8jXERreOd3t7FC3
+ C08=
+X-IronPort-AV: E=Sophos;i="5.79,398,1602518400"; 
+   d="scan'208";a="263106599"
+Received: from mail-bl2nam02lp2050.outbound.protection.outlook.com (HELO NAM02-BL2-obe.outbound.protection.outlook.com) ([104.47.38.50])
+  by ob1.hgst.iphmx.com with ESMTP; 03 Feb 2021 20:57:13 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Bwn0p06brE+mJ0O7nvEriBvelYj0GRcvuJTacuXw9T87wAvMkmZDZ5tfZTru2gdhg6rpyLbbLZB3aLrkq5NKeFggGqYHBZROrHdR6enDgzG4XXUq7FsTGUUOoj2LjQHOgHCmoJ5UJUoFHlSgfCpsBUqxuaMdP9MniTEOxWidW/3oH2ubrKPkp6Q0d40IccAoU1HGzb40nhjIyVzAraJivRV08b8+EV0F3VwJN2Qc08ZWvtRpQ62//FNH/GUx5F4k/wG2tX4mDDbHJNW13Mw3sf9zZxScaMiCmteva1YnjLqw0tdMIYECAlB1QarE6YaXmscPn2/y9VG8ig1nCRADpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I0Zs7Mt/4P9NK3GvbU4uQYW59R+axVhnhP5g2PcB7No=;
+ b=UOFsemo34XhEu6+OXuTQN3Cv/gs52fSFQlJp7C71S4enAWI4ObW2PZU2A+kcoa1qwL+L6CQijNzxPssoxbs/dVXVkO+ze4uS+aj8AQ0T3zzihDqC9fwxpyxuzY0npqT5goPcoRyX2ZDJgVXmuCbAvquJsEKCDK0LQIDh1ywZMjfSoWYd3A6Cne2OyYTQXWrQlmbQu/sKl2Mf7DPLGyOW+6pZWw5YC1799b8zxYPttR6ve3kxjePfihmibkG4+hAKhF9nxYEPEb2e37nBpDiS587ECXBCWNcAOHIm/LT7tGxqxt3MzYbvQf700hGZsLJiFCreqZtSy9se8/n/9r1oXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
+ header.d=wdc.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I0Zs7Mt/4P9NK3GvbU4uQYW59R+axVhnhP5g2PcB7No=;
+ b=dCuLrEfrEWhxsfrA9Co3iT1z2T8oCwEdhHsSz7cHiamPf1mKvj7Y3FsfZAjH92+ynsntO59eFkdQRsZQjD3lzvKiufdWwQz/+dJfgTI9YqX4FO0QgJgOAs9YoAIE78ZILO3PnLeNBXtv0HhWgX0oYSckHF79BqJK8YO5GU+4vg8=
+Received: from BL0PR04MB6514.namprd04.prod.outlook.com (2603:10b6:208:1ca::23)
+ by MN2PR04MB7071.namprd04.prod.outlook.com (2603:10b6:208:1ec::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17; Wed, 3 Feb
+ 2021 12:52:16 +0000
+Received: from BL0PR04MB6514.namprd04.prod.outlook.com
+ ([fe80::b880:19d5:c7fe:329d]) by BL0PR04MB6514.namprd04.prod.outlook.com
+ ([fe80::b880:19d5:c7fe:329d%8]) with mapi id 15.20.3805.024; Wed, 3 Feb 2021
+ 12:52:16 +0000
+From:   Damien Le Moal <Damien.LeMoal@wdc.com>
+To:     "robh@kernel.org" <robh@kernel.org>
+CC:     "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        Atish Patra <Atish.Patra@wdc.com>,
+        "seanga2@gmail.com" <seanga2@gmail.com>,
+        Anup Patel <Anup.Patel@wdc.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v14 07/16] dt-bindings: fix sifive gpio properties
+Thread-Topic: [PATCH v14 07/16] dt-bindings: fix sifive gpio properties
+Thread-Index: AQHW+U9T59FA/s8Z20mcfAvTuPFEfqpFOSgAgAErBIA=
+Date:   Wed, 3 Feb 2021 12:52:16 +0000
+Message-ID: <89cccbae5add85c7bd811f3819ea3db7061e928d.camel@wdc.com>
+References: <20210202103623.200809-1-damien.lemoal@wdc.com>
+         <20210202103623.200809-8-damien.lemoal@wdc.com>
+         <CAL_JsqJNqKrsB3LJvBpNmY6H3V1c5x4duqB_0p8YKit4+ZYRBw@mail.gmail.com>
+In-Reply-To: <CAL_JsqJNqKrsB3LJvBpNmY6H3V1c5x4duqB_0p8YKit4+ZYRBw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.38.3 (3.38.3-1.fc33) 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=wdc.com;
+x-originating-ip: [2400:2411:43c0:6000:8d3e:27aa:85c2:44b5]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: de918b55-15f6-4595-03fc-08d8c84288f3
+x-ms-traffictypediagnostic: MN2PR04MB7071:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MN2PR04MB70714EF5CF29B37332657DFDE7B49@MN2PR04MB7071.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: dszRHkjUn20EvvD+xXTtdznvokhf5DCwU4rmD/PQha+h11nyQv9jyUIEYJGYKVHVfF2E3TtA/ha4aodk03q6qUPdt9u+BnQbrtIxyzwP02KSbfx0mm0wHKfpnEizs2uMiIQBGt/kagp4mYJ1SHZwK2Si8/wshFlqp7Z3S0GHM/tbT1PCy/O8pipNR2oOX2AMf6ECrVpRHeBh2vkawMOyaPB7Tl9A+doIlx3zQGj+2iiZ6hXejdNSuuqxDc/hBFJlI91Mc7qdPjkdn8hqdYvzv5nT7V06Sb4bcUctxxVRMx6kp0MlPsycROWV+hdFv+b/BvBVpoLqhzc41c2hfjspA7AE+nGutFaU9h6km6SG56aMcgGA/2dzKAA84d65hNpxlgQUJWiHmPPvuTZ2dchm95uPI3aihQEugZSJ+yVALUnryTWj5mQMAB69uyqGbt0JjyN4wRrQ9uq+do7Y5NklbPAzVeLA3z5bKw/nMdu92d6M2UAiVLtYfRYvmC/LeHkpZSct3Iw3jCTCZ0TL0IMu5Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR04MB6514.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(376002)(39860400002)(346002)(366004)(4326008)(2906002)(6916009)(76116006)(36756003)(66946007)(5660300002)(66446008)(53546011)(478600001)(8676002)(8936002)(91956017)(6506007)(6486002)(83380400001)(316002)(71200400001)(2616005)(6512007)(66556008)(64756008)(186003)(66476007)(86362001)(54906003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?elNXZzZrZGFsNU9KMHI2aDRBRHpZano4ZzZzOGEzQlVGMWhkTit3MktCS2g4?=
+ =?utf-8?B?ajNCQ2F1N3RVSW1LOU4yY1ZUU3cxWWVnM2ZlVEl6TWw4Tkc3S2RNMG8reUVI?=
+ =?utf-8?B?QStNK3hrU1RGSjRHMzRqaWNoR3RTREVGNS84MkFzWW00YTVvdDU5OFB2WUZM?=
+ =?utf-8?B?cWRVbUJPZzVsQ0VWNWV0MWVmc1IwUXRnWndnNU5ML0tFWGJnbUlDUDR2UUh4?=
+ =?utf-8?B?dFVROWVrT05vMElVQWJDVE9nWmNkOWNVUGcrOXZ5bkRQNmZkRWh6MXlFTTdx?=
+ =?utf-8?B?UFV5UFREMmZjSzhTVzBJZnhtWlJJN0lOaCsxeVg2WjU2d1dNUjVEV0RKdVll?=
+ =?utf-8?B?TFNIYmVWTHRwdDFqMVVrMEUzZ2J1bjhTbEgrenloaVpUWGlQdzh1ZjRtend0?=
+ =?utf-8?B?cnVIL2d1cEZjS3htZENaRG1pSVlydWh2dkRab09VZ1c3NGcrOVJrcGR5M1ox?=
+ =?utf-8?B?d1YzMjhHcXR0OG9EeE1ZTGhTSy9EMlk4ZWFCVVlFbTJjMURqbmo2TjNzMjlW?=
+ =?utf-8?B?ZUpiQ3ZlMStIMDc1Nmkvekp2aHU5d0YrTmJJbWJ1V0ZzM2M4SXlxcDdZUEND?=
+ =?utf-8?B?V3lWVmQ0b2w2dU8rZW8rOXcyS3Q5dWg3ZFV5V2pBTDhrVldxNUExdTdIcFEx?=
+ =?utf-8?B?Q1BQZXVucHFNSFl0MDVFcnJTakpBUVFVem54WjIvK0dmQUpkMnI3OVoweGVB?=
+ =?utf-8?B?QnozcnNwUkRoMU9NdEYydjRxNUdqVkZlRlh6NUpQSEtQMmJsWGFqeVoxNlZP?=
+ =?utf-8?B?RmNvdFpUWlVlNzFGTUVyK24rbWw5RWtBdmE0dk11a1o1VDMwVkx5Z0NjV1FM?=
+ =?utf-8?B?b040UllYMjgybXhKU0xpOU1HdndadnpUeWRxa2RrOFNNZTRBRDYrdWNJRytE?=
+ =?utf-8?B?V1l1V3prcHFTOXVhQnBWZ3k0VzZvNC9saFcrWnFYUktTWGRBMm5ocTFNWjVD?=
+ =?utf-8?B?MTdlSEJpYmg0dnlUcjZEL05SbUw3c0l2R2lwYXQvbVZhSzZpK0hVVGRBQjdx?=
+ =?utf-8?B?aG0zSUZvZTBYY05CRGRIcmI0Qnk0anI1U2JhUG5MaVhyR09pVzZwTE8rZ29I?=
+ =?utf-8?B?Qmwybk1aWVZxZmJ0bFZuaU5PcjRaZEYxMDdiMmc3OVZzUFg5TEd4NkNwcC9t?=
+ =?utf-8?B?MWRseHZHZy91M0VjUDhQalY3UGgrL2lHRFNBSW9XS3FnTjlyNVZDMEJONVJB?=
+ =?utf-8?B?Y1dsaTg1YytYamZNWFAwZGtBUnZVem05RUgvNW1RQ1FLSmdGNStwY2E1Yjlx?=
+ =?utf-8?B?WWtaMWh4WUEwaWtCVDQyN2gzeGFEcXphRXAyUTh0S0J3WWJuMFhHcEU4SjBQ?=
+ =?utf-8?B?NW1LR291SEx2UmJ4ZUFldlE3dGN1MkttRzZtOEw4VStYS1VFOHRxbGxEZWlJ?=
+ =?utf-8?B?ZjZFWGNienFjaHdBczFUcnBWNUhwQ2dPVk1LZmdoQzZQaStKbW5mQmhCQTBM?=
+ =?utf-8?B?cTA1MUszdGQzQlJ6RHF5N1hXN2F5RWdBMFhEMDRjS0g5Uy81M056VVVMRFFX?=
+ =?utf-8?B?Z1NBQk5HY01IOUllZmJOWndGSEZuTFpSbnVkNFZ6RFMzZkNvRUVabG0vZ1lZ?=
+ =?utf-8?B?czdEdzluaDhiM3FXcmZ5Vm9HWFR4SWFlVkYwNlRIRWpJNmVrdUtscEJ2dmxO?=
+ =?utf-8?B?S0M4R2l2cDNZOEkwQmJxekRnNDc5MWN0eEM1TUgxWVBKN0RqUndGc05yYVZL?=
+ =?utf-8?B?TzJtZ2xXSEM1R2tQYjlnQTQzZHZzckduMk1OUEdkbUhkcGYwSStOQ1NEM3lr?=
+ =?utf-8?B?bzdWTVY0MGVSRkJ0YjRGTG1GT3ZlWHY1dFN5eFpaK1luTnNGSi84bjBobThm?=
+ =?utf-8?B?RmZKM1RGWENSaDZFOUswMjRBTzg5dnFUZ3hHbWx4Qkc0VDFhS29OQnpIT1lF?=
+ =?utf-8?B?eVFySS95RksyOGhBdm13RE9NUkVoNEFra012cWJtVi95d3c9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DC13B063437D31448C2C475C051FB180@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210202161733.932215-3-kyletso@google.com>
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR04MB6514.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: de918b55-15f6-4595-03fc-08d8c84288f3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2021 12:52:16.2625
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZF728wiwvcNnyragLMV0LJ1XhrnxTXTADU05a0r+Tt0PJrxJ91ysepS3PvY4wAfgDJYgVTHwuoiUpkCFv0TrGw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR04MB7071
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 03, 2021 at 12:17:27AM +0800, Kyle Tso wrote:
-> "PD Spec Revision 3.0 Version 2.0 + ECNs 2020-12-10" introduces several
-> changes regarding the ID Header VDO and the Product Type VDOs.
-> 
-> Signed-off-by: Kyle Tso <kyletso@google.com>
-
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
-> ---
->  drivers/usb/typec/class.c  |   8 +-
->  include/linux/usb/pd_vdo.h | 308 ++++++++++++++++++++++++++++---------
->  2 files changed, 242 insertions(+), 74 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
-> index 42d1be1eece9..1db08138b75d 100644
-> --- a/drivers/usb/typec/class.c
-> +++ b/drivers/usb/typec/class.c
-> @@ -89,7 +89,7 @@ static const char * const typec_accessory_modes[] = {
->  
->  /* Product types defined in USB PD Specification R3.0 V2.0 */
->  static const char * const product_type_ufp[8] = {
-> -	[IDH_PTYPE_UNDEF]		= "undefined",
-> +	[IDH_PTYPE_NOT_UFP]		= "not_ufp",
->  	[IDH_PTYPE_HUB]			= "hub",
->  	[IDH_PTYPE_PERIPH]		= "peripheral",
->  	[IDH_PTYPE_PSD]			= "psd",
-> @@ -97,17 +97,17 @@ static const char * const product_type_ufp[8] = {
->  };
->  
->  static const char * const product_type_dfp[8] = {
-> -	[IDH_PTYPE_DFP_UNDEF]		= "undefined",
-> +	[IDH_PTYPE_NOT_DFP]		= "not_dfp",
->  	[IDH_PTYPE_DFP_HUB]		= "hub",
->  	[IDH_PTYPE_DFP_HOST]		= "host",
->  	[IDH_PTYPE_DFP_PB]		= "power_brick",
-> -	[IDH_PTYPE_DFP_AMC]		= "amc",
->  };
->  
->  static const char * const product_type_cable[8] = {
-> -	[IDH_PTYPE_UNDEF]		= "undefined",
-> +	[IDH_PTYPE_NOT_CABLE]		= "not_cable",
->  	[IDH_PTYPE_PCABLE]		= "passive",
->  	[IDH_PTYPE_ACABLE]		= "active",
-> +	[IDH_PTYPE_VPD]			= "vpd",
->  };
->  
->  static struct usb_pd_identity *get_pd_identity(struct device *dev)
-> diff --git a/include/linux/usb/pd_vdo.h b/include/linux/usb/pd_vdo.h
-> index 8c08eeb9a74b..e9b6822c54c2 100644
-> --- a/include/linux/usb/pd_vdo.h
-> +++ b/include/linux/usb/pd_vdo.h
-> @@ -103,34 +103,46 @@
->   * --------------------
->   * <31>     :: data capable as a USB host
->   * <30>     :: data capable as a USB device
-> - * <29:27>  :: product type (UFP / Cable)
-> + * <29:27>  :: product type (UFP / Cable / VPD)
->   * <26>     :: modal operation supported (1b == yes)
-> - * <25:16>  :: product type (DFP)
-> + * <25:23>  :: product type (DFP) (SVDM version 2.0+ only; set to zero in version 1.0)
-> + * <22:21>  :: connector type (SVDM version 2.0+ only; set to zero in version 1.0)
-> + * <20:16>  :: Reserved, Shall be set to zero
->   * <15:0>   :: USB-IF assigned VID for this cable vendor
->   */
-> -#define IDH_PTYPE_UNDEF		0
-> +/* SOP Product Type (UFP) */
-> +#define IDH_PTYPE_NOT_UFP	0
->  #define IDH_PTYPE_HUB		1
->  #define IDH_PTYPE_PERIPH	2
->  #define IDH_PTYPE_PSD		3
->  #define IDH_PTYPE_AMA		5
->  
-> +/* SOP' Product Type (Cable Plug / VPD) */
-> +#define IDH_PTYPE_NOT_CABLE	0
->  #define IDH_PTYPE_PCABLE	3
->  #define IDH_PTYPE_ACABLE	4
-> +#define IDH_PTYPE_VPD		6
->  
-> -#define IDH_PTYPE_DFP_UNDEF	0
-> +/* SOP Product Type (DFP) */
-> +#define IDH_PTYPE_NOT_DFP	0
->  #define IDH_PTYPE_DFP_HUB	1
->  #define IDH_PTYPE_DFP_HOST	2
->  #define IDH_PTYPE_DFP_PB	3
-> -#define IDH_PTYPE_DFP_AMC	4
->  
-> -#define VDO_IDH(usbh, usbd, ptype, is_modal, vid)		\
-> -	((usbh) << 31 | (usbd) << 30 | ((ptype) & 0x7) << 27	\
-> -	 | (is_modal) << 26 | ((vid) & 0xffff))
-> +/* ID Header Mask */
-> +#define IDH_DFP_MASK		GENMASK(25, 23)
-> +#define IDH_CONN_MASK		GENMASK(22, 21)
-> +
-> +#define VDO_IDH(usbh, usbd, ufp_cable, is_modal, dfp, conn, vid)		\
-> +	((usbh) << 31 | (usbd) << 30 | ((ufp_cable) & 0x7) << 27		\
-> +	 | (is_modal) << 26 | ((dfp) & 0x7) << 23 | ((conn) & 0x3) << 21	\
-> +	 | ((vid) & 0xffff))
->  
->  #define PD_IDH_PTYPE(vdo)	(((vdo) >> 27) & 0x7)
->  #define PD_IDH_VID(vdo)		((vdo) & 0xffff)
->  #define PD_IDH_MODAL_SUPP(vdo)	((vdo) & (1 << 26))
->  #define PD_IDH_DFP_PTYPE(vdo)	(((vdo) >> 23) & 0x7)
-> +#define PD_IDH_CONN_TYPE(vdo)	(((vdo) >> 21) & 0x3)
->  
->  /*
->   * Cert Stat VDO
-> @@ -138,6 +150,7 @@
->   * <31:0>  : USB-IF assigned XID for this cable
->   */
->  #define PD_CSTAT_XID(vdo)	(vdo)
-> +#define VDO_CERT(xid)		((xid) & 0xffffffff)
->  
->  /*
->   * Product VDO
-> @@ -149,112 +162,267 @@
->  #define PD_PRODUCT_PID(vdo)	(((vdo) >> 16) & 0xffff)
->  
->  /*
-> - * UFP VDO1
-> + * UFP VDO (PD Revision 3.0+ only)
->   * --------
->   * <31:29> :: UFP VDO version
->   * <28>    :: Reserved
->   * <27:24> :: Device capability
-> - * <23:6>  :: Reserved
-> + * <23:22> :: Connector type (10b == receptacle, 11b == captive plug)
-> + * <21:11> :: Reserved
-> + * <10:8>  :: Vconn power (AMA only)
-> + * <7>     :: Vconn required (AMA only, 0b == no, 1b == yes)
-> + * <6>     :: Vbus required (AMA only, 0b == yes, 1b == no)
->   * <5:3>   :: Alternate modes
->   * <2:0>   :: USB highest speed
->   */
-> -#define PD_VDO1_UFP_DEVCAP(vdo)	(((vdo) & GENMASK(27, 24)) >> 24)
-> +#define PD_VDO_UFP_DEVCAP(vdo)	(((vdo) & GENMASK(27, 24)) >> 24)
-> +
-> +/* UFP VDO Version */
-> +#define UFP_VDO_VER1_2		2
->  
-> +/* Device Capability */
->  #define DEV_USB2_CAPABLE	BIT(0)
->  #define DEV_USB2_BILLBOARD	BIT(1)
->  #define DEV_USB3_CAPABLE	BIT(2)
->  #define DEV_USB4_CAPABLE	BIT(3)
->  
-> +/* Connector Type */
-> +#define UFP_RECEPTACLE		2
-> +#define UFP_CAPTIVE		3
-> +
-> +/* Vconn Power (AMA only, set to AMA_VCONN_NOT_REQ if Vconn is not required) */
-> +#define AMA_VCONN_PWR_1W	0
-> +#define AMA_VCONN_PWR_1W5	1
-> +#define AMA_VCONN_PWR_2W	2
-> +#define AMA_VCONN_PWR_3W	3
-> +#define AMA_VCONN_PWR_4W	4
-> +#define AMA_VCONN_PWR_5W	5
-> +#define AMA_VCONN_PWR_6W	6
-> +
-> +/* Vconn Required (AMA only) */
-> +#define AMA_VCONN_NOT_REQ	0
-> +#define AMA_VCONN_REQ		1
-> +
-> +/* Vbus Required (AMA only) */
-> +#define AMA_VBUS_REQ		0
-> +#define AMA_VBUS_NOT_REQ	1
-> +
-> +/* Alternate Modes */
-> +#define UFP_ALTMODE_NOT_SUPP	0
-> +#define UFP_ALTMODE_TBT3	BIT(0)
-> +#define UFP_ALTMODE_RECFG	BIT(1)
-> +#define UFP_ALTMODE_NO_RECFG	BIT(2)
-> +
-> +/* USB Highest Speed */
-> +#define UFP_USB2_ONLY		0
-> +#define UFP_USB32_GEN1		1
-> +#define UFP_USB32_4_GEN2	2
-> +#define UFP_USB4_GEN3		3
-> +
-> +#define VDO_UFP(ver, cap, conn, vcpwr, vcr, vbr, alt, spd)			\
-> +	(((ver) & 0x7) << 29 | ((cap) & 0xf) << 24 | ((conn) & 0x3) << 22	\
-> +	 | ((vcpwr) & 0x7) << 8 | (vcr) << 7 | (vbr) << 6 | ((alt) & 0x7) << 3	\
-> +	 | ((spd) & 0x7))
-> +
->  /*
-> - * DFP VDO
-> + * DFP VDO (PD Revision 3.0+ only)
->   * --------
->   * <31:29> :: DFP VDO version
->   * <28:27> :: Reserved
->   * <26:24> :: Host capability
-> - * <23:5>  :: Reserved
-> + * <23:22> :: Connector type (10b == receptacle, 11b == captive plug)
-> + * <21:5>  :: Reserved
->   * <4:0>   :: Port number
->   */
->  #define PD_VDO_DFP_HOSTCAP(vdo)	(((vdo) & GENMASK(26, 24)) >> 24)
->  
-> +#define DFP_VDO_VER1_1		1
->  #define HOST_USB2_CAPABLE	BIT(0)
->  #define HOST_USB3_CAPABLE	BIT(1)
->  #define HOST_USB4_CAPABLE	BIT(2)
-> +#define DFP_RECEPTACLE		2
-> +#define DFP_CAPTIVE		3
-> +
-> +#define VDO_DFP(ver, cap, conn, pnum)						\
-> +	(((ver) & 0x7) << 29 | ((cap) & 0x7) << 24 | ((conn) & 0x3) << 22	\
-> +	 | ((pnum) & 0x1f))
->  
->  /*
-> - * Cable VDO
-> + * Passive Cable VDO
->   * ---------
->   * <31:28> :: Cable HW version
->   * <27:24> :: Cable FW version
-> - * <23:20> :: Reserved, Shall be set to zero
-> - * <19:18> :: type-C to Type-A/B/C/Captive (00b == A, 01 == B, 10 == C, 11 == Captive)
-> - * <17>    :: Type-C to Plug/Receptacle (0b == plug, 1b == receptacle)
-> + * <23:21> :: VDO version
-> + * <20>    :: Reserved, Shall be set to zero
-> + * <19:18> :: Type-C to Type-C/Captive (10b == C, 11b == Captive)
-> + * <17>    :: Reserved, Shall be set to zero
->   * <16:13> :: cable latency (0001 == <10ns(~1m length))
-> - * <12:11> :: cable termination type (11b == both ends active VCONN req)
-> - * <10>    :: SSTX1 Directionality support (0b == fixed, 1b == cfgable)
-> - * <9>     :: SSTX2 Directionality support
-> - * <8>     :: SSRX1 Directionality support
-> - * <7>     :: SSRX2 Directionality support
-> - * <6:5>   :: Vbus current handling capability
-> + * <12:11> :: cable termination type (10b == Vconn not req, 01b == Vconn req)
-> + * <10:9>  :: Maximum Vbus voltage (00b == 20V, 01b == 30V, 10b == 40V, 11b == 50V)
-> + * <8:7>   :: Reserved, Shall be set to zero
-> + * <6:5>   :: Vbus current handling capability (01b == 3A, 10b == 5A)
-> + * <4:3>   :: Reserved, Shall be set to zero
-> + * <2:0>   :: USB highest speed
-> + *
-> + * Active Cable VDO 1
-> + * ---------
-> + * <31:28> :: Cable HW version
-> + * <27:24> :: Cable FW version
-> + * <23:21> :: VDO version
-> + * <20>    :: Reserved, Shall be set to zero
-> + * <19:18> :: Connector type (10b == C, 11b == Captive)
-> + * <17>    :: Reserved, Shall be set to zero
-> + * <16:13> :: cable latency (0001 == <10ns(~1m length))
-> + * <12:11> :: cable termination type (10b == one end active, 11b == both ends active VCONN req)
-> + * <10:9>  :: Maximum Vbus voltage (00b == 20V, 01b == 30V, 10b == 40V, 11b == 50V)
-> + * <8>     :: SBU supported (0b == supported, 1b == not supported)
-> + * <7>     :: SBU type (0b == passive, 1b == active)
-> + * <6:5>   :: Vbus current handling capability (01b == 3A, 10b == 5A)
->   * <4>     :: Vbus through cable (0b == no, 1b == yes)
->   * <3>     :: SOP" controller present? (0b == no, 1b == yes)
-> - * <2:0>   :: USB SS Signaling support
-> + * <2:0>   :: USB highest speed
->   */
-> -#define CABLE_ATYPE		0
-> -#define CABLE_BTYPE		1
-> +/* Cable VDO Version */
-> +#define CABLE_VDO_VER1_0	0
-> +#define CABLE_VDO_VER1_3	3
-> +
-> +/* Connector Type */
->  #define CABLE_CTYPE		2
->  #define CABLE_CAPTIVE		3
-> -#define CABLE_PLUG		0
-> -#define CABLE_RECEPTACLE	1
-> -#define CABLE_CURR_1A5		0
-> +
-> +/* Cable Latency */
-> +#define CABLE_LATENCY_1M	1
-> +#define CABLE_LATENCY_2M	2
-> +#define CABLE_LATENCY_3M	3
-> +#define CABLE_LATENCY_4M	4
-> +#define CABLE_LATENCY_5M	5
-> +#define CABLE_LATENCY_6M	6
-> +#define CABLE_LATENCY_7M	7
-> +#define CABLE_LATENCY_7M_PLUS	8
-> +
-> +/* Cable Termination Type */
-> +#define PCABLE_VCONN_NOT_REQ	0
-> +#define PCABLE_VCONN_REQ	1
-> +#define ACABLE_ONE_END		2
-> +#define ACABLE_BOTH_END		3
-> +
-> +/* Maximum Vbus Voltage */
-> +#define CABLE_MAX_VBUS_20V	0
-> +#define CABLE_MAX_VBUS_30V	1
-> +#define CABLE_MAX_VBUS_40V	2
-> +#define CABLE_MAX_VBUS_50V	3
-> +
-> +/* Active Cable SBU Supported/Type */
-> +#define ACABLE_SBU_SUPP		0
-> +#define ACABLE_SBU_NOT_SUPP	1
-> +#define ACABLE_SBU_PASSIVE	0
-> +#define ACABLE_SBU_ACTIVE	1
-> +
-> +/* Vbus Current Handling Capability */
-> +#define CABLE_CURR_DEF		0
->  #define CABLE_CURR_3A		1
->  #define CABLE_CURR_5A		2
-> -#define CABLE_USBSS_U2_ONLY	0
-> -#define CABLE_USBSS_U31_GEN1	1
-> -#define CABLE_USBSS_U31_GEN2	2
-> -#define VDO_CABLE(hw, fw, cbl, gdr, lat, term, tx1d, tx2d, rx1d, rx2d, cur,\
-> -		  vps, sopp, usbss) \
-> -	(((hw) & 0x7) << 28 | ((fw) & 0x7) << 24 | ((cbl) & 0x3) << 18	\
-> -	 | (gdr) << 17 | ((lat) & 0x7) << 13 | ((term) & 0x3) << 11	\
-> -	 | (tx1d) << 10 | (tx2d) << 9 | (rx1d) << 8 | (rx2d) << 7	\
-> -	 | ((cur) & 0x3) << 5 | (vps) << 4 | (sopp) << 3		\
-> -	 | ((usbss) & 0x7))
-> +
-> +/* USB Highest Speed */
-> +#define CABLE_USB2_ONLY		0
-> +#define CABLE_USB32_GEN1	1
-> +#define CABLE_USB32_4_GEN2	2
-> +#define CABLE_USB4_GEN3		3
-> +
-> +#define VDO_PCABLE(hw, fw, ver, conn, lat, term, vbm, cur, spd)			\
-> +	(((hw) & 0xf) << 28 | ((fw) & 0xf) << 24 | ((ver) & 0x7) << 21		\
-> +	 | ((conn) & 0x3) << 18 | ((lat) & 0xf) << 13 | ((term) & 0x3) << 11	\
-> +	 | ((vbm) & 0x3) << 9 | ((cur) & 0x3) << 5 | ((spd) & 0x7))
-> +#define VDO_ACABLE1(hw, fw, ver, conn, lat, term, vbm, sbu, sbut, cur, vbt, sopp, spd) \
-> +	(((hw) & 0xf) << 28 | ((fw) & 0xf) << 24 | ((ver) & 0x7) << 21		\
-> +	 | ((conn) & 0x3) << 18	| ((lat) & 0xf) << 13 | ((term) & 0x3) << 11	\
-> +	 | ((vbm) & 0x3) << 9 | (sbu) << 8 | (sbut) << 7 | ((cur) & 0x3) << 5	\
-> +	 | (vbt) << 4 | (sopp) << 3 | ((spd) & 0x7))
-> +
->  #define VDO_TYPEC_CABLE_TYPE(vdo)	(((vdo) >> 18) & 0x3)
->  
->  /*
-> - * AMA VDO
-> + * Active Cable VDO 2
->   * ---------
-> - * <31:28> :: Cable HW version
-> - * <27:24> :: Cable FW version
-> - * <23:12> :: Reserved, Shall be set to zero
-> - * <11>    :: SSTX1 Directionality support (0b == fixed, 1b == cfgable)
-> - * <10>    :: SSTX2 Directionality support
-> - * <9>     :: SSRX1 Directionality support
-> - * <8>     :: SSRX2 Directionality support
-> - * <7:5>   :: Vconn power
-> - * <4>     :: Vconn power required
-> - * <3>     :: Vbus power required
-> - * <2:0>   :: USB SS Signaling support
-> + * <31:24> :: Maximum operating temperature
-> + * <23:16> :: Shutdown temperature
-> + * <15>    :: Reserved, Shall be set to zero
-> + * <14:12> :: U3/CLd power
-> + * <11>    :: U3 to U0 transition mode (0b == direct, 1b == through U3S)
-> + * <10>    :: Physical connection (0b == copper, 1b == optical)
-> + * <9>     :: Active element (0b == redriver, 1b == retimer)
-> + * <8>     :: USB4 supported (0b == yes, 1b == no)
-> + * <7:6>   :: USB2 hub hops consumed
-> + * <5>     :: USB2 supported (0b == yes, 1b == no)
-> + * <4>     :: USB3.2 supported (0b == yes, 1b == no)
-> + * <3>     :: USB lanes supported (0b == one lane, 1b == two lanes)
-> + * <2>     :: Optically isolated active cable (0b == no, 1b == yes)
-> + * <1>     :: Reserved, Shall be set to zero
-> + * <0>     :: USB gen (0b == gen1, 1b == gen2+)
->   */
-> -#define VDO_AMA(hw, fw, tx1d, tx2d, rx1d, rx2d, vcpwr, vcr, vbr, usbss) \
-> -	(((hw) & 0x7) << 28 | ((fw) & 0x7) << 24			\
-> -	 | (tx1d) << 11 | (tx2d) << 10 | (rx1d) << 9 | (rx2d) << 8	\
-> -	 | ((vcpwr) & 0x7) << 5 | (vcr) << 4 | (vbr) << 3		\
-> -	 | ((usbss) & 0x7))
-> -
-> -#define PD_VDO_AMA_VCONN_REQ(vdo)	(((vdo) >> 4) & 1)
-> -#define PD_VDO_AMA_VBUS_REQ(vdo)	(((vdo) >> 3) & 1)
-> +/* U3/CLd Power*/
-> +#define ACAB2_U3_CLD_10MW_PLUS	0
-> +#define ACAB2_U3_CLD_10MW	1
-> +#define ACAB2_U3_CLD_5MW	2
-> +#define ACAB2_U3_CLD_1MW	3
-> +#define ACAB2_U3_CLD_500UW	4
-> +#define ACAB2_U3_CLD_200UW	5
-> +#define ACAB2_U3_CLD_50UW	6
-> +
-> +/* Other Active Cable VDO 2 Fields */
-> +#define ACAB2_U3U0_DIRECT	0
-> +#define ACAB2_U3U0_U3S		1
-> +#define ACAB2_PHY_COPPER	0
-> +#define ACAB2_PHY_OPTICAL	1
-> +#define ACAB2_REDRIVER		0
-> +#define ACAB2_RETIMER		1
-> +#define ACAB2_USB4_SUPP		0
-> +#define ACAB2_USB4_NOT_SUPP	1
-> +#define ACAB2_USB2_SUPP		0
-> +#define ACAB2_USB2_NOT_SUPP	1
-> +#define ACAB2_USB32_SUPP	0
-> +#define ACAB2_USB32_NOT_SUPP	1
-> +#define ACAB2_LANES_ONE		0
-> +#define ACAB2_LANES_TWO		1
-> +#define ACAB2_OPT_ISO_NO	0
-> +#define ACAB2_OPT_ISO_YES	1
-> +#define ACAB2_GEN_1		0
-> +#define ACAB2_GEN_2_PLUS	1
-> +
-> +#define VDO_ACABLE2(mtemp, stemp, u3p, trans, phy, ele, u4, hops, u2, u32, lane, iso, gen)	\
-> +	(((mtemp) & 0xff) << 24 | ((stemp) & 0xff) << 16 | ((u3p) & 0x7) << 12	\
-> +	 | (trans) << 11 | (phy) << 10 | (ele) << 9 | (u4) << 8			\
-> +	 | ((hops) & 0x3) << 6 | (u2) << 5 | (u32) << 4 | (lane) << 3		\
-> +	 | (iso) << 2 | (gen))
->  
-> -#define AMA_VCONN_PWR_1W	0
-> -#define AMA_VCONN_PWR_1W5	1
-> -#define AMA_VCONN_PWR_2W	2
-> -#define AMA_VCONN_PWR_3W	3
-> -#define AMA_VCONN_PWR_4W	4
-> -#define AMA_VCONN_PWR_5W	5
-> -#define AMA_VCONN_PWR_6W	6
-> -#define AMA_USBSS_U2_ONLY	0
-> -#define AMA_USBSS_U31_GEN1	1
-> -#define AMA_USBSS_U31_GEN2	2
-> -#define AMA_USBSS_BBONLY	3
-> +/*
-> + * VPD VDO
-> + * ---------
-> + * <31:28> :: HW version
-> + * <27:24> :: FW version
-> + * <23:21> :: VDO version
-> + * <20:17> :: Reserved, Shall be set to zero
-> + * <16:15> :: Maximum Vbus voltage (00b == 20V, 01b == 30V, 10b == 40V, 11b == 50V)
-> + * <14>    :: Charge through current support (0b == 3A, 1b == 5A)
-> + * <13>    :: Reserved, Shall be set to zero
-> + * <12:7>  :: Vbus impedance
-> + * <6:1>   :: Ground impedance
-> + * <0>     :: Charge through support (0b == no, 1b == yes)
-> + */
-> +#define VPD_VDO_VER1_0		0
-> +#define VPD_MAX_VBUS_20V	0
-> +#define VPD_MAX_VBUS_30V	1
-> +#define VPD_MAX_VBUS_40V	2
-> +#define VPD_MAX_VBUS_50V	3
-> +#define VPDCT_CURR_3A		0
-> +#define VPDCT_CURR_5A		1
-> +#define VPDCT_NOT_SUPP		0
-> +#define VPDCT_SUPP		1
-> +
-> +#define VDO_VPD(hw, fw, ver, vbm, curr, vbi, gi, ct)			\
-> +	(((hw) & 0xf) << 28 | ((fw) & 0xf) << 24 | ((ver) & 0x7) << 21	\
-> +	 | ((vbm) & 0x3) << 15 | (curr) << 14 | ((vbi) & 0x3f) << 7	\
-> +	 | ((gi) & 0x3f) << 1 | (ct))
->  
->  /*
->   * SVDM Discover SVIDs request -> response
-> -- 
-> 2.30.0.365.g02bc693789-goog
-
-thanks,
-
--- 
-heikki
+T24gVHVlLCAyMDIxLTAyLTAyIGF0IDEzOjAyIC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gVHVlLCBGZWIgMiwgMjAyMSBhdCA0OjM2IEFNIERhbWllbiBMZSBNb2FsIDxkYW1pZW4ubGVt
+b2FsQHdkYy5jb20+IHdyb3RlOg0KPiA+IA0KPiA+IFRoZSBzaWZpdmUgZ3BpbyBJUCBibG9jayBz
+dXBwb3J0cyB1cCB0byAzMiBHUElPcy4gUmVmbGVjdCB0aGF0IGluIHRoZQ0KPiA+IGludGVycnVw
+dHMgcHJvcGVydHkgZGVzY3JpcHRpb24gYW5kIG1heEl0ZW1zLiBBbHNvIGFkZCB0aGUgc3RhbmRh
+cmQNCj4gPiBuZ3Bpb3MgcHJvcGVydHkgdG8gZGVzY3JpYmUgdGhlIG51bWJlciBvZiBHUElPcyBh
+dmFpbGFibGUgb24gdGhlDQo+ID4gaW1wbGVtZW50YXRpb24uDQo+ID4gDQo+ID4gQWxzbyBhZGQg
+dGhlICJjYW5hYW4sazIxMC1ncGlvaHMiIGNvbXBhdGlibGUgc3RyaW5nIHRvIGluZGljYXRlIHRo
+ZSB1c2UNCj4gPiBvZiB0aGlzIGdwaW8gY29udHJvbGxlciBpbiB0aGUgQ2FuYWFuIEtlbmRyeXRl
+IEsyMTAgU29DLiBJZiB0aGlzDQo+ID4gY29tcGF0aWJsZSBzdHJpbmcgaXMgdXNlZCwgZG8gbm90
+IGRlZmluZSB0aGUgY2xvY2tzIHByb3BlcnR5IGFzDQo+ID4gcmVxdWlyZWQgYXMgdGhlIEsyMTAg
+U29DIGRvZXMgbm90IGhhdmUgYSBzb2Z0d2FyZSBjb250cm9sbGFibGUgY2xvY2sNCj4gPiBmb3Ig
+dGhlIFNpZml2ZSBncGlvIElQIGJsb2NrLg0KPiA+IA0KPiA+IENjOiBQYXVsIFdhbG1zbGV5IDxw
+YXVsLndhbG1zbGV5QHNpZml2ZS5jb20+DQo+ID4gQ2M6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5l
+bC5vcmc+DQo+ID4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+ID4gU2lnbmVkLW9m
+Zi1ieTogRGFtaWVuIExlIE1vYWwgPGRhbWllbi5sZW1vYWxAd2RjLmNvbT4NCj4gPiAtLS0NCj4g
+PiDCoC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2dwaW8vc2lmaXZlLGdwaW8ueWFtbCB8IDIxICsr
+KysrKysrKysrKysrKystLS0NCj4gPiDCoDEgZmlsZSBjaGFuZ2VkLCAxOCBpbnNlcnRpb25zKCsp
+LCAzIGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvZ3Bpby9zaWZpdmUsZ3Bpby55YW1sIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2dwaW8vc2lmaXZlLGdwaW8ueWFtbA0KPiA+IGluZGV4IGFiMjIw
+NTZmOGI0NC4uMmNlZjE4Y2E3MzdjIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2
+aWNldHJlZS9iaW5kaW5ncy9ncGlvL3NpZml2ZSxncGlvLnlhbWwNCj4gPiArKysgYi9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3Bpby9zaWZpdmUsZ3Bpby55YW1sDQo+ID4gQEAg
+LTE2LDYgKzE2LDcgQEAgcHJvcGVydGllczoNCj4gPiDCoMKgwqDCoMKgwqDCoC0gZW51bToNCj4g
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLSBzaWZpdmUsZnU1NDAtYzAwMC1ncGlvDQo+ID4gwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoC0gc2lmaXZlLGZ1NzQwLWMwMDAtZ3Bpbw0KPiA+ICsgICAgICAg
+ICAgLSBjYW5hYW4sazIxMC1ncGlvaHMNCj4gPiDCoMKgwqDCoMKgwqDCoC0gY29uc3Q6IHNpZml2
+ZSxncGlvMA0KPiA+IA0KPiA+IMKgwqDCoHJlZzoNCj4gPiBAQCAtMjMsOSArMjQsOSBAQCBwcm9w
+ZXJ0aWVzOg0KPiA+IA0KPiA+IMKgwqDCoGludGVycnVwdHM6DQo+ID4gwqDCoMKgwqDCoGRlc2Ny
+aXB0aW9uOg0KPiA+IC0gICAgICBpbnRlcnJ1cHQgbWFwcGluZyBvbmUgcGVyIEdQSU8uIE1heGlt
+dW0gMTYgR1BJT3MuDQo+ID4gKyAgICAgIGludGVycnVwdCBtYXBwaW5nIG9uZSBwZXIgR1BJTy4g
+TWF4aW11bSAzMiBHUElPcy4NCj4gPiDCoMKgwqDCoMKgbWluSXRlbXM6IDENCj4gPiAtICAgIG1h
+eEl0ZW1zOiAxNg0KPiA+ICsgICAgbWF4SXRlbXM6IDMyDQo+ID4gDQo+ID4gwqDCoMKgaW50ZXJy
+dXB0LWNvbnRyb2xsZXI6IHRydWUNCj4gPiANCj4gPiBAQCAtMzgsNiArMzksMTAgQEAgcHJvcGVy
+dGllczoNCj4gPiDCoMKgwqAiI2dwaW8tY2VsbHMiOg0KPiA+IMKgwqDCoMKgwqBjb25zdDogMg0K
+PiA+IA0KPiA+ICsgIG5ncGlvczoNCj4gPiArICAgIG1pbmltdW06IDENCj4gPiArICAgIG1heGlt
+dW06IDMyDQo+IA0KPiBXaGF0J3MgdGhlIGRlZmF1bHQgYXMgb2J2aW91c2x5IGRyaXZlcnMgYWxy
+ZWFkeSBhc3N1bWUgc29tZXRoaW5nLg0KPiANCj4gRG9lcyBhIGRyaXZlciBhY3R1YWxseSBuZWVk
+IHRvIGtub3cgdGhpcz8gRm9yIGV4YW1wbGUsIGRvZXMgdGhlDQo+IHJlZ2lzdGVyIHN0cmlkZSBj
+aGFuZ2Ugb3Igc29tZXRoaW5nPw0KPiANCj4gUGxlYXNlIGRvbid0IGFkZCBpdCBpZiB0aGUgb25s
+eSBwdXJwb3NlIGlzIGVycm9yIGNoZWNrIHlvdXIgRFQgKElPVywNCj4gaWYgaXQganVzdCBjaGVj
+a3MgdGhlIG1heCBjZWxsIHZhbHVlIGluIGdwaW9zIHBoYW5kbGVzKS4NCg0KSWYgSSByZW1vdmUg
+dGhhdCwgbWFrZSBkdGJzX2NoZWNrIGNvbXBsYWlucy4gTG9va2luZyBhdCBvdGhlIGdwaW8gY29u
+dHJvbGxlcg0KYmluZGluZ3MsIHRoZXkgYWxsIGhhdmUgaXQuIFNvIGlzbid0IGl0IGJldHRlciB0
+byBiZSBjb25zaXN0ZW50LCBhbmQgYXZvaWQgbWFrZQ0KZHRic19jaGVjayBlcnJvcnMgPw0KDQoN
+Cj4gDQo+IFJvYg0KDQotLSANCkRhbWllbiBMZSBNb2FsDQpXZXN0ZXJuIERpZ2l0YWwgUmVzZWFy
+Y2gNCg0K
