@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6C7B30D548
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 09:34:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB7C530D54D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 09:36:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232531AbhBCIeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 03:34:01 -0500
-Received: from mail-am6eur05on2093.outbound.protection.outlook.com ([40.107.22.93]:45441
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        id S232613AbhBCIfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 03:35:16 -0500
+Received: from mail-db8eur05on2115.outbound.protection.outlook.com ([40.107.20.115]:57880
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232427AbhBCIeB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 03:34:01 -0500
+        id S232590AbhBCIfL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Feb 2021 03:35:11 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ioeB6Z98SZ4sE0+mFl2CSJMipH+NkU8m3xO/PngH3ImB1wIaXLaYDf6i4aKkx80/a2uSYlMDo6U5c9O+6K69EZNfRwiJ5OD1CvGfrQBIxe5W12CTlqb2Bf30jSF5G+5VwUddyVIoObbi0Kui2assq1dzWFDvyOfVRa4A/ccYp4Y+NalNa1SAQ+UhHJ1r2X3CB4gHgW87uM7SdLAlHYvihE6dht7SaePyvR9WoAall4LQfeiY503OS9ck10NLu/y36h6YDiXVLtYm5YCUaNnIQGND+jO9ZktyAkbRhlNP+bWVCYdjXE1jdmQMxuldzxACG8haUal28LHasjIo49ySzQ==
+ b=oMSaw8RLcZJm9XYHNqMf2KzDd81eAW+gaxUofxMfmE+kIwzbv605J9vXej0nreYQUmFRZFH0lmSKF8r7J6+c0EJo2R/4q8tBqxfrlwD39CLlFPnUqr5PguYMLdZ4SDtL/YjAEZ9vXUXzvbqUB++VRd7daVuKLNVI9Sq0MmFQF6uMyoOa/1NBbZOIBeHSB2mUtN7nX0c/eS/0OBec3NXtSj+KbFPw9jDIII9oT3CSkoA2x8e8X/Kjjc0FQ93Xb/t8zpPd8OpEalT/GOISnvI/jSphTHefuSB1UEQAvXnGo3YEB2sCIbq3BMbO7JQEgqffe0ambI/QYTZf8AzD0HHS9w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fIQ5aVc8j6wPONhR97VooRWUuupFHz58Mznm6W7U2P0=;
- b=Op/4FglAGIIciMPEJjybsrRsvGKiBJA/YUtImeC/6jbdsGGbwh2a5OYRZ1c1u9TVrdKzXwVqUxWHY2zgA2dtzOirephoiZ7LZlC/c6OoEkts+XoKFu57eLtae4TV51+HNXKeTlb/jbDOv24RUqxWAY9R8iDCbC6CURNTFZKEBxrCFwyp59ciiuYXFiYO/ih3gr7CFCEtBrLKHOYzWdlF2e9Bfx/rdRv0YcfiKYiAfqHOtOgovWKK8FW95y0mLQSaFpi2cvTRduMEkbKfwTOcoRkhaUxE/BAJ3ncEOn2UKyCRwRdHkREmMuxgNEXMvwdbGqUT+sfq2gpd3fL1qiVF1Q==
+ bh=cbm+6OHG7Hsit5rbDiWNzN9vof6WsnRbTnD2nK9A3Kc=;
+ b=C0JBXo+yjpuXempAeitDypxw66W7gO7kSaO9zWmGprIgzMmrCq5F4x18SoPKeOrNvh0oGsB3DV80gAwSg4MLfevUnHuTSFYQP+QP4gkZacsoPjLzusqE2zZLClMuwQQpoLpfV1ZB9gYhDyoLuXXdnnpt1ZREgArAz2a2UoQ6ROOjvmOFjLCTn07QmEHBLjAOZRef4s7GZ3SaY9xBxUtVbpEixassHG2bAI28pMbVHi/LneIMHehYWSEPAaay6AMRxmJulPbJ42Yh3cqGqynphPZQ8ouo7SvZGYDdVJuLVRKhIi0aUrQR2fUhzoBK730wIh3g53dSMD8EUCiUTAwDIg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
  62.153.209.162) smtp.rcpttodomain=vger.kernel.org
  smtp.mailfrom=schleissheimer.de; dmarc=none action=none
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=schleissheimer.onmicrosoft.com; s=selector1-schleissheimer-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fIQ5aVc8j6wPONhR97VooRWUuupFHz58Mznm6W7U2P0=;
- b=CXax+oitaiFPJx0YyTVzghFpUHrBAYrR4hDy8AEyODEj0rupePp3P5NJo34p/xnQpZWIbcvJoV+SZH9wc2d0EYs0WpjINS8seQeyQHi/snnGMlazRkjqZdLdtAfO7fJVR6W0thZoy7yQd4DEom9sJ5/OAuSvdGm0K8eZGND3ZQo=
-Received: from DBBPR09CA0017.eurprd09.prod.outlook.com (2603:10a6:10:c0::29)
- by DB9P190MB1356.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:22a::21) with
+ bh=cbm+6OHG7Hsit5rbDiWNzN9vof6WsnRbTnD2nK9A3Kc=;
+ b=E+qkE5Wx6fBBO9htEm/YfITeuEoAi846KOyHz+Wyamg5EJvqZUjJ7xaiJ0vmin3rynrCyleUT0iURq55xciIDAjR8Hv/R03apcXt9d6+a/BM8KP7a+vJUizg1/gFZqIcbAE+BpbSbQgClsf3wE5+pQYBT5HUsqH5sFuVFFLFEv0=
+Received: from MR2P264CA0099.FRAP264.PROD.OUTLOOK.COM (2603:10a6:500:33::15)
+ by AM9P190MB1074.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:272::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.16; Wed, 3 Feb
- 2021 08:33:12 +0000
-Received: from DB3EUR04FT016.eop-eur04.prod.protection.outlook.com
- (2603:10a6:10:c0:cafe::b2) by DBBPR09CA0017.outlook.office365.com
- (2603:10a6:10:c0::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.19 via Frontend
- Transport; Wed, 3 Feb 2021 08:33:12 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.17; Wed, 3 Feb
+ 2021 08:34:22 +0000
+Received: from VI1EUR04FT031.eop-eur04.prod.protection.outlook.com
+ (2603:10a6:500:33:cafe::9) by MR2P264CA0099.outlook.office365.com
+ (2603:10a6:500:33::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.18 via Frontend
+ Transport; Wed, 3 Feb 2021 08:34:22 +0000
 X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 62.153.209.162)
  smtp.mailfrom=schleissheimer.de; vger.kernel.org; dkim=fail (no key for
  signature) header.d=schleissheimer.de;vger.kernel.org; dmarc=none action=none
@@ -48,48 +48,48 @@ Received-SPF: Fail (protection.outlook.com: domain of schleissheimer.de does
  receiver=protection.outlook.com; client-ip=62.153.209.162;
  helo=mail.schleissheimer.de;
 Received: from mail.schleissheimer.de (62.153.209.162) by
- DB3EUR04FT016.mail.protection.outlook.com (10.152.25.23) with Microsoft SMTP
+ VI1EUR04FT031.mail.protection.outlook.com (10.152.28.254) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3784.11 via Frontend Transport; Wed, 3 Feb 2021 08:33:11 +0000
+ 15.20.3784.11 via Frontend Transport; Wed, 3 Feb 2021 08:34:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=schleissheimer.de; s=dkim1;
-        h=Message-Id:Date:Subject:Cc:To:From; bh=fIQ5aVc8j6wPONhR97VooRWUuupFHz58Mznm6W7U2P0=;
-        b=AQnUeJvp/h/4GaDUE/R67rWnf/1ghIDQ3ZfkaIZBYaZI3o3DKoYS5797Jm3YAFDKkmjNP/nWmEe3d8iWVEHNZe1OJhDALjvmmlb045z24ztNytscqxPblRD9W0bFlrTLlJnzAORdhewISunHNH3WvGZ0osjrySd5Hl46HZIsNmg=;
-Received: from [192.168.10.165] (port=41936 helo=contiredmine.schleissheimer.de)
+        h=Message-Id:Date:Subject:Cc:To:From; bh=cbm+6OHG7Hsit5rbDiWNzN9vof6WsnRbTnD2nK9A3Kc=;
+        b=cqz6QM/see/WO+40DQs4kCXVAeiORycvdbFdmVp9EbK4IQf4UGON61ghyjYukbdbht+Uo2FGTP+slmlUfRYcp2KLPpahRPofp/9jld/gCbTdntHc3e6QhM1yap9RBXPCAG2R6xM565mj8tkw4IhGliDSe6QSeyee1vEMYJV4/6w=;
+Received: from [192.168.10.165] (port=41938 helo=contiredmine.schleissheimer.de)
         by mail.schleissheimer.de with esmtp (Exim 4.82_1-5b7a7c0-XX)
         (envelope-from <schuchmann@schleissheimer.de>)
-        id 1l7Db0-0001iI-2v; Wed, 03 Feb 2021 09:33:06 +0100
-X-CTCH-RefID: str=0001.0A782F21.601A5FC2.00F3,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+        id 1l7Dc4-0001pv-1d; Wed, 03 Feb 2021 09:34:12 +0100
+X-CTCH-RefID: str=0001.0A782F17.601A6004.009B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
 From:   Sven Schuchmann <schuchmann@schleissheimer.de>
 To:     schuchmann@schleissheimer.de
 Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
         Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] leds: lp50xx: remove unused regulator
-Date:   Wed,  3 Feb 2021 08:33:05 +0000
-Message-Id: <20210203083305.2434-1-schuchmann@schleissheimer.de>
+Subject: [PATCH 2/2] leds: lp50xx: remove unused regulator
+Date:   Wed,  3 Feb 2021 08:34:08 +0000
+Message-Id: <20210203083408.2534-1-schuchmann@schleissheimer.de>
 X-Mailer: git-send-email 2.17.1
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
 MIME-Version: 1.0
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: edeb942f-af85-4d65-ddd6-08d8c81e5781
-X-MS-TrafficTypeDiagnostic: DB9P190MB1356:
-X-Microsoft-Antispam-PRVS: <DB9P190MB135616909AA378FB5026F908D8B49@DB9P190MB1356.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Office365-Filtering-Correlation-Id: 4dd67d29-9f37-464d-2a5f-08d8c81e8153
+X-MS-TrafficTypeDiagnostic: AM9P190MB1074:
+X-Microsoft-Antispam-PRVS: <AM9P190MB10746386BC60291B8367C480D8B49@AM9P190MB1074.EURP190.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +u8RctszHKYbvun+WYX7nN/p03xr816hmpiNwFXizouMfwpxHBWprTr+QoA8FtSNX+dRWsPOZT6PPXYTIryClR3QxMP8dyQ1+2YzyylxIu9WQfrEJjKV+i1UcjW4kcH5NSpLntbt+rVJheJ2VAZfNza8ipJ1qCphjGMdxXa4fuyZVjG+2oKd6j9aZ6bRtgFRfEV7DATb5gINaMjqaQTZ53aYHACOskW18Q3IS3HDDhVbMzF5fJ++ln8q9QjDpibCZADm7aWy/j2H61/uSlgmYLS1B7oULSNteHB/rHn6qS2Bn7QeSR32nFMGNXjlPVtoIpkduRBSAXgGOEhKJN/yJquqOhLeBsC0HlYLdwAW0n/hl9OPXGFs6KGSlf2QGsZwlKjQ01Tf1O7F5r1/yG+ODGQOQUweDnY1a+UnaPvC/jzT5GzBtqzy6gLyKlB4MpuvNAVFmPkSxXV4baR2T/wsA1j6xPKQ4YP3Bclmgcu682nTe3urYQeaHjigHMnJVtwpMQQQiJK5uhLuNYkepp9so69DEUZfM0XGJaVzIH8VPxYhyN6chmQG6we6kc1w60b6ZLu7/ax6s0DUEvBc8+TuAHovgcInjC6LPn7CwXuc+2PQR9esqwuzVnjOys/AkZDj4OusUzgTMYS+58SwhULYZwgtPf3b69J90V46M6y2yQQ=
-X-Forefront-Antispam-Report: CIP:62.153.209.162;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.schleissheimer.de;PTR:mail.schleissheimer.de;CAT:NONE;SFS:(346002)(376002)(396003)(136003)(39830400003)(46966006)(36840700001)(36756003)(356005)(70206006)(4744005)(1076003)(336012)(2906002)(7636003)(47076005)(83380400001)(82310400003)(5660300002)(8676002)(70586007)(54906003)(37006003)(316002)(4326008)(426003)(2616005)(34206002)(7696005)(8936002)(9786002)(186003)(26005)(36860700001)(7596003)(478600001);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam-Message-Info: BMqxzssuuoSTTb27KjPXp3gyAs5hWrUOxDxwT2VJFqFrAbJ97kkVzlHN0zAvSGcQsw8/8eIx+ksRLpBDxakLht1RZPGJzO8rMe4QgIxcF29al2+gZBQfVvH+6xf7m2NkGAbvBxlUsoY+kIMvI8HsLLH3CaDq08IGspVHnJnX3DLNf1XML4NMkWHPqvVsTCmoS6Trw95q4gb3OxX+TjCTLfSvzN7QGC4gM7wpTPC0oW6NNPKk/GyMy3tTPXVvBpfPoQQ1L0yS61HAsn/jy9pDq/fX4HwPDWudtix8MjJ/UxB//kKfqI1ZPe301CA/P3PleoBffv2i/pDa2d0AFEf43uw9QbkFFitNJSEcizctn4BBySHTZltCWoK2GCgGMlBDXsOUbCN8N6+u8TiMvLH4q8c9ykyi8QyrAZMCC+RCIQh7qbhaxPCVKA21Jup87nDaWnrxnV7+aV1/ktZ5aP+bRPCVeIkS69Go6QKN0uA/93eBDa2dqxEGXP6Ug8JNtkbqiSXApYvvZDVILdU0ycXXZQM0M0DcaHDb9PaHjN7TAWZO5LQN50J7UoEX1MyYQlUFAqSBDx9MXiH3ojl/SjDVU/Pj+PUrD+zi5bl0J4X+7nTnTlvWdb8eWR2u3nem3BDx6fEHF51pwnsUxOjkwZLWAg==
+X-Forefront-Antispam-Report: CIP:62.153.209.162;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.schleissheimer.de;PTR:www.schleissheimer.de;CAT:NONE;SFS:(136003)(396003)(39830400003)(346002)(376002)(36840700001)(46966006)(47076005)(5660300002)(478600001)(9786002)(1076003)(2616005)(7696005)(34206002)(70206006)(70586007)(316002)(6666004)(8936002)(54906003)(36756003)(336012)(426003)(4326008)(356005)(8676002)(82310400003)(26005)(83380400001)(186003)(2906002)(36860700001)(37006003)(7636003);DIR:OUT;SFP:1102;
 X-OriginatorOrg: schleissheimer.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2021 08:33:11.4738
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2021 08:34:21.6440
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: edeb942f-af85-4d65-ddd6-08d8c81e5781
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4dd67d29-9f37-464d-2a5f-08d8c81e8153
 X-MS-Exchange-CrossTenant-Id: ba05321a-a007-44df-8805-c7e62d5887b5
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ba05321a-a007-44df-8805-c7e62d5887b5;Ip=[62.153.209.162];Helo=[mail.schleissheimer.de]
-X-MS-Exchange-CrossTenant-AuthSource: DB3EUR04FT016.eop-eur04.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: VI1EUR04FT031.eop-eur04.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9P190MB1356
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9P190MB1074
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
@@ -104,23 +104,62 @@ Part 2 removes the code
 Signed-off-by: Sven Schuchmann <schuchmann@schleissheimer.de>
 
 ---
- Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/leds/leds-lp50xx.c | 14 --------------
+ 1 file changed, 14 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-index c192b5feadc7..c20a81d13bfd 100644
---- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-@@ -43,9 +43,6 @@ properties:
-     maxItems: 1
-     description: GPIO pin to enable/disable the device.
+diff --git a/drivers/leds/leds-lp50xx.c b/drivers/leds/leds-lp50xx.c
+index f13117eed976..b0871495bae3 100644
+--- a/drivers/leds/leds-lp50xx.c
++++ b/drivers/leds/leds-lp50xx.c
+@@ -11,7 +11,6 @@
+ #include <linux/of.h>
+ #include <linux/of_gpio.h>
+ #include <linux/regmap.h>
+-#include <linux/regulator/consumer.h>
+ #include <linux/slab.h>
+ #include <uapi/linux/uleds.h>
  
--  vled-supply:
--    description: LED supply.
+@@ -275,7 +274,6 @@ struct lp50xx_led {
+ /**
+  * struct lp50xx -
+  * @enable_gpio: hardware enable gpio
+- * @regulator: LED supply regulator pointer
+  * @client: pointer to the I2C client
+  * @regmap: device register map
+  * @dev: pointer to the devices device struct
+@@ -286,7 +284,6 @@ struct lp50xx_led {
+  */
+ struct lp50xx {
+ 	struct gpio_desc *enable_gpio;
+-	struct regulator *regulator;
+ 	struct i2c_client *client;
+ 	struct regmap *regmap;
+ 	struct device *dev;
+@@ -462,10 +459,6 @@ static int lp50xx_probe_dt(struct lp50xx *priv)
+ 		return ret;
+ 	}
+ 
+-	priv->regulator = devm_regulator_get(priv->dev, "vled");
+-	if (IS_ERR(priv->regulator))
+-		priv->regulator = NULL;
 -
-   '#address-cells':
-     const: 1
+ 	device_for_each_child_node(priv->dev, child) {
+ 		led = &priv->leds[i];
+ 		ret = fwnode_property_count_u32(child, "reg");
+@@ -583,13 +576,6 @@ static int lp50xx_remove(struct i2c_client *client)
+ 		return ret;
+ 	}
  
+-	if (led->regulator) {
+-		ret = regulator_disable(led->regulator);
+-		if (ret)
+-			dev_err(&led->client->dev,
+-				"Failed to disable regulator\n");
+-	}
+-
+ 	mutex_destroy(&led->lock);
+ 
+ 	return 0;
 -- 
 2.17.1
 
