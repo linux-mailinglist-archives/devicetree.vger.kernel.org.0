@@ -2,650 +2,373 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81BC530D636
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:26:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C706730D64A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:29:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233331AbhBCJYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 04:24:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45270 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233384AbhBCJWL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:22:11 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58349C0613ED
-        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 01:21:30 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id d16so23272653wro.11
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:21:30 -0800 (PST)
+        id S233448AbhBCJ2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 04:28:47 -0500
+Received: from mail-dm6nam11on2085.outbound.protection.outlook.com ([40.107.223.85]:38975
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233511AbhBCJ1n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Feb 2021 04:27:43 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hPa5WXZR5YfjtFSTxDlxvbbe1WaSnyeQ8Bc1h+Fn4CEEvSF4CcNxC0eU+Ce8qIT+1Dn81VUN9Xx61deaGBeoYinqyXZrxw9FVc4OBxVvaYATvgzBHJOASDCPLWLHlaWQy0eQrGc2wUN2keNTaf02+g1WwMk36wVkr4SrP4mV7bWvN0niijr1klKG2ISUCw52EFbwERtyKnMTOu8EIF4OuRBB7u8qUBguxXzG/TFUHgBUoU22HMELKXsXMbq/5B2NogvSoxpA9D2DRN1EjHHmS25hEvB0El1/IvDyPgfJpJSyEP0FrBQhDOMABR+a4QYPu0chWo7nK8lMpZd1Gv7Z7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dum0a+rVcDTRogtoXclxld+SZk9fmljeUVAwblaqh9g=;
+ b=VZo2NgSlrF8W1qPcvZxWuFNEqCmVUcM/SKMAyEovRZ+s+vq+K+g+OaISpJK0vxSAwZZKoddW4giMxUnB8NPwcZ/gfG05T6trRmG5yrgVWkK1OSeOPO0J0uon5YZRTjT/HMe6FbJIYeJxq17IGUSsc3otDsTmdGJItwvipQaAS/JcZkKd7aMpBzgyFVTigSHsfR4PgVslKwUdj9kHMa+Un322b9QKFp2/TYbjfsLuMAnMdGk4M+PjNHVqOTT7VRLPqlZzL8ZNHxyDNNTyttD7u2D+Zt+DLfzvy+7aQC5ivE7W/hdc5+E3Y7UaWGYyYV4KHmjmwgjSuJeRI261+lHeow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qnFXiiatEmKea55DERDjSyHg2UtSGTmNv3iG1wzOwY8=;
-        b=dwGMP/kL1ORT+hAinNe8eMnSPYCU7chw15L40cbkqneoNSdPOgtxf3N741Bbh6p6In
-         WgHQEnhLDmIqEFo0iuY8/G+NDVxjyN/wyq0h4LWntrYiIGpVC+33eSOCVeVZCct1/ulY
-         7wlTND0TRO3nmZNUZj2M57qchdMZpfzoCvKS0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qnFXiiatEmKea55DERDjSyHg2UtSGTmNv3iG1wzOwY8=;
-        b=t8OVXRkcxK5LLByGCqYFLrlVNIgwofj+rQFcPP+wwXIu2owBANdffxV8TmPjsXUxVG
-         9vSBEZV0deXKdyEWWI/LMgImP0bMPXVfUsHNzXSc9YI2tPc4/1g/TltFtsqzQQ7UQ0/b
-         R35wSTzKy4oOAzwHkSaIIu5C3KpDW59iG0lH9vKuI15IKl4bDrW/58hxwrqivWjv6rMf
-         Pd4mfoe5gdq5MCENpqADC09vkisAmmVOGiZjVssf0D/j7AC9x7aHgrGVcumcMKeHmPNo
-         I/M+G+mpIMHHwIaOSM0AtLMqXLbyu5IeqJYCTbgU1psaFG5lBLeqBthIx1UkbGSZK8Tt
-         83UQ==
-X-Gm-Message-State: AOAM531XEyJYnFUK1nxT4xua/Yy3DiaBuxdgIM6sjxk3C0UaNmeA1UwT
-        GV3TLvZ6Z4tKg2JtUGN60ni/YjOmc8VzFCouN+yEfZbhV94=
-X-Google-Smtp-Source: ABdhPJwXVNOc6j/cwz+TiaKcOYCNaA0zVL4SybgJUDHpGYupY3YjPlXAnx3nJjBw7iGCypV8aa6I9JBvqsp542T9e/8=
-X-Received: by 2002:a5d:6206:: with SMTP id y6mr2412812wru.413.1612344088862;
- Wed, 03 Feb 2021 01:21:28 -0800 (PST)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dum0a+rVcDTRogtoXclxld+SZk9fmljeUVAwblaqh9g=;
+ b=ay9h9Aw8+grTSlm3ut6vg5vjm/sFH/fxo8ob2sB/RCGKCw/edcQZuT49dcmAZqjDEzGq8of3XrgXV8p3v6RzC7fUt23498re+3Aj84zcn0doYIfuAB3q4OrbIun6IqrS0sU3kBxqS/xlfWBYtniRjkMSJUeoAT7nMt1jfUk95iw=
+Received: from MWHPR02MB2623.namprd02.prod.outlook.com (2603:10b6:300:44::9)
+ by CO6PR02MB7540.namprd02.prod.outlook.com (2603:10b6:303:b1::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17; Wed, 3 Feb
+ 2021 09:26:47 +0000
+Received: from MWHPR02MB2623.namprd02.prod.outlook.com
+ ([fe80::804d:5b7:ada6:2f4]) by MWHPR02MB2623.namprd02.prod.outlook.com
+ ([fe80::804d:5b7:ada6:2f4%2]) with mapi id 15.20.3825.017; Wed, 3 Feb 2021
+ 09:26:46 +0000
+From:   Nava kishore Manne <navam@xilinx.com>
+To:     Moritz Fischer <mdf@kernel.org>, Michal Simek <michals@xilinx.com>
+CC:     "trix@redhat.com" <trix@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>,
+        Appana Durga Kedareswara Rao <appanad@xilinx.com>
+Subject: RE: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
+Thread-Topic: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
+Thread-Index: AQHW7USLyeY5b3FOfkKTbQUTtVqUFaouGt0AgAVRbYCAAnmHgIAFUX3ggAAIXQCAANEDgIAKLgJQ
+Date:   Wed, 3 Feb 2021 09:26:46 +0000
+Message-ID: <MWHPR02MB2623CCE3D5BD30E0EF3E5BA6C2B49@MWHPR02MB2623.namprd02.prod.outlook.com>
+References: <20210118024318.9530-1-nava.manne@xilinx.com>
+ <20210118024318.9530-3-nava.manne@xilinx.com> <YAYo1ksLfMMNxPuL@epycbox.lan>
+ <MWHPR02MB26239A3F539DE8E053D512D5C2A09@MWHPR02MB2623.namprd02.prod.outlook.com>
+ <YAyyU9dybSdmOAQL@epycbox.lan>
+ <MWHPR02MB26231DAF3A8E2A65EF25A4C3C2BB9@MWHPR02MB2623.namprd02.prod.outlook.com>
+ <5ae6d181-3258-a877-23c5-6ba81c40b10a@xilinx.com>
+ <YBHexYg/Bw1U7LQm@epycbox.lan>
+In-Reply-To: <YBHexYg/Bw1U7LQm@epycbox.lan>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
+x-originating-ip: [149.199.50.130]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: f29d4c19-9a7a-411c-8b2c-08d8c825d411
+x-ms-traffictypediagnostic: CO6PR02MB7540:
+x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CO6PR02MB75400100B5668EFFC71361E0C2B49@CO6PR02MB7540.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: t8j7Rp0aigI0VXBBISo+QAqm49S2k3ZjZEPTQNn2MIuWAIRwv3QbL63M0bEsl9JF1zu78KpizhASZgOQZGMwRJ+kjGF4supWdqhfLrKjKZo3rUAhyLzO3oZnzRtpFiWT9l4zjnWRAAFq0FcFNussDDyAzQ+P7J8Aecyjn6Q8NfNiV+QoBlrIOPWKtTiIqow5YNKeMEqdQjMXSHkkbHeWlgU94Mu0kKwV9t98ElvaHXLaNctBdgudkqNpMSw4U0etQ3uJXOeVwOFFVlFOokTfn7xbiD1bS35ylXdPPPWulLV5iv4wF4Uxd08AKC/aMJFW3EgiaJFG+R9rR8dF6Lx+bQfKleEDGpuuqyriUjgiVp9euxVod4F/LDJknG17KvirkD+O003X3ztwOHtrOw79H102UnxDJT38Ikf0SqEXTYS8+iM4bCQDh8McmuAk6yauRZOmejTNUpnNwI+wBiMiob1TY6pSERV+mDJNerCimJz4X4B2FtKB1miHS9suNPrzm6ToT3HgSs/QHaoA7qXkmw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2623.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(366004)(376002)(136003)(39860400002)(86362001)(8936002)(2906002)(107886003)(4326008)(6636002)(9686003)(66446008)(55016002)(5660300002)(6506007)(186003)(26005)(33656002)(52536014)(66476007)(316002)(66556008)(76116006)(7696005)(54906003)(8676002)(478600001)(110136005)(64756008)(66946007)(53546011)(83380400001)(71200400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?2FWlettT1SgKNEHwCaTPXa+7snFWm1vB1hu1d5SiFFMNG9pKUC/596ljvqQG?=
+ =?us-ascii?Q?JHhzsMLxN7Ay1Z2JH1wLsHvmH4pCN2gkkpJ1dLQZHyaL8JaIFdRM8FJ0z8j/?=
+ =?us-ascii?Q?nCDBW4QuIeckWO4kONQlSdPLAK76loPKkTMRDcKO2oBviXTwx+uj9yOcpdG8?=
+ =?us-ascii?Q?8IE4BuCTheI7yxS1xksuiQ63DjizHThy0Sh+SwVx1qslIF0nBEOavOYjHO78?=
+ =?us-ascii?Q?LP1oyn3aDbvKXvnbZwye7RWlhgo9DC5MEiNnfeoMzmoyA9o2AgkSHhjJqgw1?=
+ =?us-ascii?Q?YtBAe+FduPwUge85QjXCce13n+r6TOXE7RNJpXdilKx7RlVXRsQxk2hEi39g?=
+ =?us-ascii?Q?xTI4C2ZTp+pF5XQliE0mbioyzsa0dGvi/mnga0Vy056GJaARccTGDoM++72l?=
+ =?us-ascii?Q?JpdXuxNmBlfhJddbi1g3FTRJ7FYlOBsPZjMRILhD/icq9yOUGjK8Nm+pECBN?=
+ =?us-ascii?Q?MwmN5e4Mm6emEFIFXk7zxqNvgTC9a2n4OwOC6+KDrwJntcRfbAhO/7HGaCaf?=
+ =?us-ascii?Q?9KDgJRIdSgkENomYe1tuRpNWpXkfi/q+V+a9/OH8mW3r9y/jGsoMUnsQBr5C?=
+ =?us-ascii?Q?82jZBXdcsLCDEdR45SqxdvB4loZwknCFpSygYYeFMJZ1u+yGXRK9AV5tKgwP?=
+ =?us-ascii?Q?x7iSfyPYy7UEP2l+pW8x1trSTjSeqIjPKDjADPlwvhncDo8GtMEBafOy6AZO?=
+ =?us-ascii?Q?mWV62cpl5zlJk49NRYXpNnKz3NlKwIGfQgCrZSd8OjiWL9GZVSacy5NKgfCU?=
+ =?us-ascii?Q?twEFwhufIF3PUUd709N1jUibYtc7jbR80ZlwxqTc/uiIrKfrvmKEYlq8Pfkt?=
+ =?us-ascii?Q?GGu45qTYn5FCosR/CMWGEDkacgIiLiom2rpAnKorGIsjwl2X6f01/9eh9fuW?=
+ =?us-ascii?Q?+8woZ55CKgfwVs22p9fjEh1c481wRQHa5t8erVOqMk52D2YVwZCnyqlVL9pV?=
+ =?us-ascii?Q?ial6KRC/LnljQvfpH7qvDWFiM+LXkc1T5AhcX3ftYMZTYLpqh+O0IrewvHeX?=
+ =?us-ascii?Q?pLXDA2TQp8/tQLL2P02lkdZZJZOgqNpft+cMPa6eE+//7yO5trlqhEJeGV7S?=
+ =?us-ascii?Q?n+oUex5roG2Ikw2HiMxyQab8m8nwK+xidED8HFqRrcJmJOioVWDX09aAvIhN?=
+ =?us-ascii?Q?Dym8hrLASVhvg5/Zo2Ofa1PRzxd6tdtpaPDb+JvrNwf2mZp5YaiAgah7QVZ6?=
+ =?us-ascii?Q?MDM1b8NFa+4jRHZGEzT0hlx1lbs24TU9Oy3pIA83RhgFGrBQEcrrZf9Rz2m9?=
+ =?us-ascii?Q?gT/OCf1m1SPWxk9dEPNZhDvtuujSWhzWpQIlXiWj+fvN7NzYT9HQjRml8V0T?=
+ =?us-ascii?Q?8JQvdCYV8lmeJxQUeOXXNynU?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20210203071256.42050-1-jagan@amarulasolutions.com> <20210203071256.42050-2-jagan@amarulasolutions.com>
-In-Reply-To: <20210203071256.42050-2-jagan@amarulasolutions.com>
-From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Date:   Wed, 3 Feb 2021 10:21:17 +0100
-Message-ID: <CAOf5uwkba925uEctVaEepGWL-Bs_k38aCyh=j5K2Dpe8MTzLgw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] drm: bridge: Add SN65DSI84 DSI to LVDS bridge
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2623.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f29d4c19-9a7a-411c-8b2c-08d8c825d411
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2021 09:26:46.8145
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9lmW/QU3XA2yCAq9qZh4CRMqlcV94nFndZzzwS+PG99EmOWJkUamsAjIHQccqyzSQJ9VLehqTlem1yFDbnk5jQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR02MB7540
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Hi,
 
-On Wed, Feb 3, 2021 at 8:13 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> SN65DSI84 is a Single Channel DSI to Dual-link LVDS bridge from
-> Texas Instruments.
->
-> SN65DSI83, SN65DSI85 are variants of the same family of bridge
-> controllers.
->
-> Right now the bridge driver is supporting a single link, dual-link
-> support requires to initiate I2C Channel B registers.
->
-> Tested with STM32MP1 MIPI DSI host design configuration.
->
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
-> Changes for v2:
-> - dropped the mdelays between commands as delays in init script in
->   datasheet is based Aardvark I2C host adaptor.
->   https://e2e.ti.com/support/interface/f/138/t/974276
->
->  MAINTAINERS                           |   6 +
->  drivers/gpu/drm/bridge/Kconfig        |  19 ++
->  drivers/gpu/drm/bridge/Makefile       |   1 +
->  drivers/gpu/drm/bridge/ti-sn65dsi84.c | 457 ++++++++++++++++++++++++++
->  4 files changed, 483 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/ti-sn65dsi84.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 12dd1fff2a39..44750ff7640c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -5984,6 +5984,12 @@ S:       Maintained
->  F:     Documentation/devicetree/bindings/display/ti/
->  F:     drivers/gpu/drm/omapdrm/
->
-> +DRM DRIVERS FOR TI SN65DSI84 DSI TO LVDS BRIDGE
-> +M:     Jagan Teki <jagan@amarulasolutions.com>
-> +S:     Maintained
-> +F:     Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml
-> +F:     drivers/gpu/drm/bridge/ti-sn65dsi84.c
-> +
->  DRM DRIVERS FOR V3D
->  M:     Eric Anholt <eric@anholt.net>
->  S:     Supported
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> index e4110d6ca7b3..6494881bffb3 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -232,6 +232,25 @@ config DRM_TI_TFP410
->         help
->           Texas Instruments TFP410 DVI/HDMI Transmitter driver
->
-> +config DRM_TI_SN65DSI84
-> +       tristate "TI SN65DSI84 DSI to LVDS bridge"
-> +       depends on OF
-> +       select DRM_KMS_HELPER
-> +       select REGMAP_I2C
-> +       select DRM_PANEL
-> +       select DRM_MIPI_DSI
-> +       help
-> +         Texas Instruments SN65DSI84 Single Channel DSI to Dual-link LVDS
-> +         bridge driver.
-> +
-> +         Bridge decodes MIPI DSI 18bpp RGB666 and 240bpp RG888 packets and
-> +         converts the formatted video data stream to a FlatLink compatible
-> +         LVDS output operating at pixel clocks operating from 25 MHx to
-> +         154 MHz.
-> +
-> +         SN65DSI84 offers a Dual-Link LVDS, Single-Link LVDS interface with
-> +         four data lanes per link.
-> +
->  config DRM_TI_SN65DSI86
->         tristate "TI SN65DSI86 DSI to eDP bridge"
->         depends on OF
-> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-> index 86e7acc76f8d..3906052ef639 100644
-> --- a/drivers/gpu/drm/bridge/Makefile
-> +++ b/drivers/gpu/drm/bridge/Makefile
-> @@ -20,6 +20,7 @@ obj-$(CONFIG_DRM_TOSHIBA_TC358767) += tc358767.o
->  obj-$(CONFIG_DRM_TOSHIBA_TC358768) += tc358768.o
->  obj-$(CONFIG_DRM_TOSHIBA_TC358775) += tc358775.o
->  obj-$(CONFIG_DRM_I2C_ADV7511) += adv7511/
-> +obj-$(CONFIG_DRM_TI_SN65DSI84) += ti-sn65dsi84.o
->  obj-$(CONFIG_DRM_TI_SN65DSI86) += ti-sn65dsi86.o
->  obj-$(CONFIG_DRM_TI_TFP410) += ti-tfp410.o
->  obj-$(CONFIG_DRM_TI_TPD12S015) += ti-tpd12s015.o
-> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi84.c b/drivers/gpu/drm/bridge/ti-sn65dsi84.c
-> new file mode 100644
-> index 000000000000..27a9074db17e
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi84.c
-> @@ -0,0 +1,457 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2021 Engicam srl
-> + * Copyright (C) 2021 Amarula Solutions(India)
-> + * Author: Jagan Teki <jagan@amarulasolutions.com>
-> + */
-> +
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_panel.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +
-> +/* sn65dsi84 registers */
-> +#define SN65DSI_SOFT_RESET             0x09
-> +#define SN65DSI_LVDS_CLK               0x0a
-> +#define SN65DSI_CLK_DIV                        0x0b
-> +#define SN65DSI_CLK_PLL                        0x0d
-> +#define SN65DSI_DSI_CFG                        0x10
-> +#define SN65DSI_DSI_CLK_EQ             0x11
-> +#define SN65DSI_DSI_CLK_RANGE          0x12
-> +#define SN65DSI_LVDS_MODE              0x18
-> +#define SN65DSI_CHA_LINE_LO            0x20
-> +#define SN65DSI_CHA_LINE_HI            0x21
-> +#define SN65DSI_CHA_VIRT_LO            0x24
-> +#define SN65DSI_CHA_VIRT_HI            0x25
-> +#define SN65DSI_CHA_SYNC_DELAY_LO      0x28
-> +#define SN65DSI_CHA_SYNC_DELAY_HI      0x29
-> +#define SN65DSI_CHA_HSYNC_WIDTH_LO     0x2c
-> +#define SN65DSI_CHA_HSYNC_WIDTH_HI     0x2d
-> +#define SN65DSI_CHA_VSYNC_WIDTH_LO     0x30
-> +#define SN65DSI_CHA_VSYNC_WIDTH_HI     0x31
-> +#define SN65DSI_CHA_HBACK_PORCH                0x34
-> +#define SN65DSI_CHA_VBACK_PORCH                0x36
-> +#define SN65DSI_CHA_HFRONT_PORCH       0x38
-> +#define SN65DSI_CHA_VFRONT_PORCH       0x3a
-> +#define SN65DSI_CHA_ERR                        0xe5
-> +
-> +/* sn65dsi register bits */
-> +#define SN65DSI_RESET_EN               BIT(0)
-> +#define SN65DSI_PLL_EN                 BIT(0)
-> +#define SN65DSI_LVDS_CLK_MASK          GENMASK(3, 1)
-> +#define SN65DSI_LVDS_CLK_SHIFT         1
-> +#define SN65DSI_LVDS_CLK_SRC_DSI       BIT(0)
-> +#define SN65DSI_CLK_DIV_MASK           GENMASK(7, 3)
-> +#define SN65DSI_CLK_DIV_SHIFT          3
-> +#define SN65DSI_DSI_LANE_MASK          GENMASK(4, 3)
-> +#define SN65DSI_DSI_LANE_SHIFT         3
-> +#define SN65DSI_LVDS_LINK_CFG          BIT(4)
-> +#define SN65DSI_LVDS_CHA_24BPP         BIT(3)
-> +#define SN65DSI_CHA_LOW_SYNC_DELAY     0x20
-> +#define SN65DSI_CHA_HIGH_SYNC_DELAY    0x00
-> +
-> +struct sn65dsi {
-> +       struct device                   *dev;
-> +       struct drm_bridge               bridge;
-> +       struct drm_bridge               *panel_bridge;
-> +
-> +       struct device_node              *host_node;
-> +       struct mipi_dsi_device          *dsi;
-> +       u8                              dsi_lanes;
-> +
-> +       struct regmap                   *regmap;
-> +       struct gpio_desc                *enable;
-> +};
+> -----Original Message-----
+> From: Moritz Fischer <mdf@kernel.org>
+> Sent: Thursday, January 28, 2021 3:15 AM
+> To: Michal Simek <michals@xilinx.com>
+> Cc: Nava kishore Manne <navam@xilinx.com>; Moritz Fischer
+> <mdf@kernel.org>; trix@redhat.com; robh+dt@kernel.org; linux-
+> fpga@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git
+> <git@xilinx.com>; chinnikishore369@gmail.com; Appana Durga Kedareswara
+> Rao <appanad@xilinx.com>
+> Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager drive=
+r
+>=20
+> On Wed, Jan 27, 2021 at 10:16:32AM +0100, Michal Simek wrote:
+> > Hi
+> >
+> > On 1/27/21 9:57 AM, Nava kishore Manne wrote:
+> > > Hi Moritz,
+> > >
+> > > 	Please find my response inline.
+> > >
+> > >> -----Original Message-----
+> > >> From: Moritz Fischer <mdf@kernel.org>
+> > >> Sent: Sunday, January 24, 2021 5:04 AM
+> > >> To: Nava kishore Manne <navam@xilinx.com>
+> > >> Cc: Moritz Fischer <mdf@kernel.org>; trix@redhat.com;
+> > >> robh+dt@kernel.org; Michal Simek <michals@xilinx.com>; linux-
+> > >> fpga@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> > >> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git
+> > >> <git@xilinx.com>; chinnikishore369@gmail.com; Appana Durga
+> > >> Kedareswara Rao <appanad@xilinx.com>
+> > >> Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager
+> > >> driver
+> > >>
+> > >> Hi Nava,
+> > >>
+> > >> On Fri, Jan 22, 2021 at 10:34:15AM +0000, Nava kishore Manne wrote:
+> > >>> Hi Moritz,
+> > >>>
+> > >>> 	Thanks for the review.
+> > >>> Please find my response inline.
+> > >>>
+> > >>>> -----Original Message-----
+> > >>>> From: Moritz Fischer <mdf@kernel.org>
+> > >>>> Sent: Tuesday, January 19, 2021 6:03 AM
+> > >>>> To: Nava kishore Manne <navam@xilinx.com>
+> > >>>> Cc: mdf@kernel.org; trix@redhat.com; robh+dt@kernel.org; Michal
+> > >>>> Simek <michals@xilinx.com>; linux-fpga@vger.kernel.org;
+> > >>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > >>>> linux- kernel@vger.kernel.org; git <git@xilinx.com>;
+> > >>>> chinnikishore369@gmail.com; Appana Durga Kedareswara Rao
+> > >>>> <appanad@xilinx.com>
+> > >>>> Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga
+> > >>>> manager driver
+> > >>>>
+> > >>>> Hi Nava,
+> > >>>>
+> > >>>> On Mon, Jan 18, 2021 at 08:13:18AM +0530, Nava kishore Manne
+> wrote:
+> > >>>>> This patch adds driver for versal fpga manager.
+> > >>>> Nit: Add support for Xilinx Versal FPGA manager
+> > >>>
+> > >>> Will fix in v2.
+> > >>>
+> > >>>>>
+> > >>>>> PDI source type can be DDR, OCM, QSPI flash etc..
+> > >>>> No idea what PDI is :)
+> > >>>
+> > >>> Programmable device image (PDI).
+> > >>> This file is generated by Xilinx Vivado tool and it contains
+> > >>> configuration data
+> > >> objects.
+> > >>>
+> > >>>>> But driver allocates memory always from DDR, Since driver
+> > >>>>> supports only DDR source type.
+> > >>>>>
+> > >>>>> Signed-off-by: Appana Durga Kedareswara rao
+> > >>>>> <appana.durga.rao@xilinx.com>
+> > >>>>> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> > >>>>> ---
+> > >>>>>  drivers/fpga/Kconfig       |   8 ++
+> > >>>>>  drivers/fpga/Makefile      |   1 +
+> > >>>>>  drivers/fpga/versal-fpga.c | 149
+> > >>>>> +++++++++++++++++++++++++++++++++++++
+> > >>>>>  3 files changed, 158 insertions(+)  create mode 100644
+> > >>>>> drivers/fpga/versal-fpga.c
+> > >>>>>
+> > >>>>> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig index
+> > >>>>> 5645226ca3ce..9f779c3a6739 100644
+> > >>>>> --- a/drivers/fpga/Kconfig
+> > >>>>> +++ b/drivers/fpga/Kconfig
+> > >>>>> @@ -216,4 +216,12 @@ config FPGA_MGR_ZYNQMP_FPGA
+> > >>>>>  	  to configure the programmable logic(PL) through PS
+> > >>>>>  	  on ZynqMP SoC.
+> > >>>>>
+> > >>>>> +config FPGA_MGR_VERSAL_FPGA
+> > >>>>> +        tristate "Xilinx Versal FPGA"
+> > >>>>> +        depends on ARCH_ZYNQMP || COMPILE_TEST
+> > >>>>> +        help
+> > >>>>> +          Select this option to enable FPGA manager driver suppo=
+rt for
+> > >>>>> +          Xilinx Versal SOC. This driver uses the versal soc fir=
+mware
+> > >>>>> +          interface to load programmable logic(PL) images
+> > >>>>> +          on versal soc.
+> > >>>>>  endif # FPGA
+> > >>>>> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile index
+> > >>>>> d8e21dfc6778..40c9adb6a644 100644
+> > >>>>> --- a/drivers/fpga/Makefile
+> > >>>>> +++ b/drivers/fpga/Makefile
+> > >>>>> @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)
+> 	+=3D
+> > >>>> ts73xx-fpga.o
+> > >>>>>  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+=3D xilinx-spi.o
+> > >>>>>  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+=3D zynq-fpga.o
+> > >>>>>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+=3D zynqmp-fpga.o
+> > >>>>> +obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      +=3D versal-fpga.o
+> > >>>>>  obj-$(CONFIG_ALTERA_PR_IP_CORE)         +=3D altera-pr-ip-core.o
+> > >>>>>  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    +=3D altera-pr-ip-core-
+> plat.o
+> > >>>>>
+> > >>>>> diff --git a/drivers/fpga/versal-fpga.c
+> > >>>>> b/drivers/fpga/versal-fpga.c new file mode 100644 index
+> > >>>>> 000000000000..2a42aa78b182
+> > >>>>> --- /dev/null
+> > >>>>> +++ b/drivers/fpga/versal-fpga.c
+> > >>>>> @@ -0,0 +1,149 @@
+> > >>>>> +// SPDX-License-Identifier: GPL-2.0+
+> > >>>>> +/*
+> > >>>>> + * Copyright (C) 2021 Xilinx, Inc.
+> > >>>>> + */
+> > >>>>> +
+> > >>>>> +#include <linux/dma-mapping.h>
+> > >>>>> +#include <linux/fpga/fpga-mgr.h> #include <linux/io.h> #include
+> > >>>>> +<linux/kernel.h> #include <linux/module.h> #include
+> > >>>>> +<linux/of_address.h> #include <linux/string.h> #include
+> > >>>>> +<linux/firmware/xlnx-zynqmp.h>
+> > >>>>> +
+> > >>>>> +/* Constant Definitions */
+> > >>>>> +#define PDI_SOURCE_TYPE	0xF
+> > >>>>> +
+> > >>>>> +/**
+> > >>>>> + * struct versal_fpga_priv - Private data structure
+> > >>>>> + * @dev:	Device data structure
+> > >>>>> + * @flags:	flags which is used to identify the PL Image type
+> > >>>>> + */
+> > >>>>> +struct versal_fpga_priv {
+> > >>>>> +	struct device *dev;
+> > >>>>> +	u32 flags;
+> > >>>> This seems unused ... please introduce them when/if you start
+> > >>>> using
+> > >> them.
+> > >>>
+> > >>> Will fix in v2.
+> > >>>
+> > >>>>> +};
+> > >>>>> +
+> > >>>>> +static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
+> > >>>>> +				      struct fpga_image_info *info,
+> > >>>>> +				      const char *buf, size_t size) {
+> > >>>>> +	struct versal_fpga_priv *priv;
+> > >>>>> +
+> > >>>>> +	priv =3D mgr->priv;
+> > >>>>> +	priv->flags =3D info->flags;
+> > >>>> ? What uses this ? It seems this function could just be 'return 0'=
+ right
+> now.
+> > >>>
+> > >>> Will fix in v2.
+> > >>>
+> > >>>>> +
+> > >>>>> +	return 0;
+> > >>>>> +}
+> > >>>>> +
+> > >>>>> +static int versal_fpga_ops_write(struct fpga_manager *mgr,
+> > >>>>> +				 const char *buf, size_t size) {
+> > >>>>> +	struct versal_fpga_priv *priv;
+> > >>>>> +	dma_addr_t dma_addr =3D 0;
+> > >>>>> +	char *kbuf;
+> > >>>>> +	int ret;
+> > >>>>> +
+> > >>>>> +	priv =3D mgr->priv;
+> > >>>>> +
+> > >>>>> +	kbuf =3D dma_alloc_coherent(priv->dev, size, &dma_addr,
+> > >>>> GFP_KERNEL);
+> > >>>>> +	if (!kbuf)
+> > >>>>> +		return -ENOMEM;
+> > >>>>> +
+> > >>>>> +	memcpy(kbuf, buf, size);
+> > >>>>> +
+> > >>>>> +	wmb(); /* ensure all writes are done before initiate FW call
+> > >>>>> +*/
+> > >>>>> +
+> > >>>>> +	ret =3D zynqmp_pm_load_pdi(PDI_SOURCE_TYPE, dma_addr);
+> > >>>>> +
+> > >>>>> +	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
+> > >>>>> +
+> > >>>>> +	return ret;
+> > >>>>> +}
+> > >>>>> +
+> > >>>>> +static int versal_fpga_ops_write_complete(struct fpga_manager
+> *mgr,
+> > >>>>> +					  struct fpga_image_info
+> *info) {
+> > >>>>> +	return 0;
+> > >>>>> +}
+> > >>>>> +
+> > >>>>> +static enum fpga_mgr_states versal_fpga_ops_state(struct
+> > >>>>> +fpga_manager
+> > >>>>> +*mgr) {
+> > >>>>> +	return FPGA_MGR_STATE_OPERATING;
+> > >>>> Is that always the case? Shouldn't that be
+> > >> FPGA_MGR_STATE_UNKNOWN?
+> > >>>
+> > >>> For Versal SoC base PDI is always configured prior to Linux boot
+> > >>> up. So I
+> > >> make the fpga state as OPERATING.
+> > >>> Please let know if it is not a proper implementation will think
+> > >>> about the
+> > >> alternate solution.
+> > >>
+> > >> So you're saying I can't boot a Versal SoC without a PDI / Bitstream
+> loaded?
+> > >> Interesting :)
+> > >>>
+> > >
+> > > For Versal SoC Vivado generated base PDI is always needed to bring-up
+> the board.
+> >
+> > Look at PDI as ps7_init/psu_init file but in different format. And
+> > bitstream is optional part of it (like a one partition).
+>=20
+> So at that point I could still have no bitstream loaded (optional), and m=
+y
+> status would be 'unknown' not 'operating' if I cannot tell the two cases =
+apart.
+> What am I missing? :)
+>=20
 
-I suggest a better name. 3 different families are compatible here
-> +
-> +static const struct regmap_config sn65dsi_regmap_config = {
-> +       .reg_bits = 8,
-> +       .val_bits = 8,
-> +       .max_register = SN65DSI_CHA_ERR,
-> +       .name = "sn65dsi",
-> +       .cache_type = REGCACHE_RBTREE,
-> +};
-> +
-> +static inline struct sn65dsi *bridge_to_sn65dsi(struct drm_bridge *bridge)
-> +{
-> +       return container_of(bridge, struct sn65dsi, bridge);
-> +}
-> +
-> +static struct drm_display_mode *bridge_to_mode(struct drm_bridge *bridge)
-> +{
-> +       return &bridge->encoder->crtc->state->mode;
-> +}
-> +
-> +static void sn65dsi_setup_channels(struct sn65dsi *sn,
-> +                                  struct drm_display_mode *mode)
-> +{
-> +       u32 hsync_len, hfront_porch, hback_porch;
-> +       u32 vsync_len, vfront_porch, vback_porch;
-> +
-> +       hfront_porch = mode->hsync_start - mode->hdisplay;
-> +       hsync_len = mode->hsync_end - mode->hsync_start;
-> +       hback_porch = mode->htotal - mode->hsync_end;
-> +
-> +       vfront_porch = mode->vsync_start - mode->vdisplay;
-> +       vsync_len = mode->vsync_end - mode->vsync_start;
-> +       vback_porch = mode->vtotal - mode->vsync_end;
-> +
-> +       /* cha, lower 8-bits of hdisplay */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_LINE_LO, mode->hdisplay & 0xff);
-> +
-> +       /* cha, upper 4-bits of hdisplay */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_LINE_HI, (mode->hdisplay >> 8) & 0xff);
-> +
-> +       /* cha, lower 8-bits of vdisplay */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_VIRT_LO, mode->vdisplay & 0xff);
-> +
-> +       /* cha, upper 4-bits of vdisplay */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_VIRT_HI, (mode->vdisplay >> 8) & 0xff);
-> +
-> +       /*cha, lower sync delay */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_SYNC_DELAY_LO, SN65DSI_CHA_LOW_SYNC_DELAY);
-> +
-> +       /*cha, upper sync delay */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_SYNC_DELAY_HI, SN65DSI_CHA_HIGH_SYNC_DELAY);
-> +
-> +       /* cha, lower 8-bits of hsync_len */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_HSYNC_WIDTH_LO, hsync_len & 0xff);
-> +
-> +       /* cha, upper 2-bits of hsync_len */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_HSYNC_WIDTH_HI, (hsync_len >> 8) & 0xff);
-> +
-> +       /* cha, lower 8-bits of vsync_len */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_VSYNC_WIDTH_LO, vsync_len & 0xff);
-> +
-> +       /* cha, upper 2-bits of vsync_len */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_VSYNC_WIDTH_HI, (vsync_len >> 8) & 0xff);
-> +
-> +       /* cha, hback_porch */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_HBACK_PORCH, hback_porch & 0xff);
-> +
-> +       /* cha, vback_porch */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_VBACK_PORCH, vback_porch & 0xff);
-> +
-> +       /* cha, hfront_porch */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_HFRONT_PORCH, hfront_porch & 0xff);
-> +
-> +       /* cha, vfront_porch */
-> +       regmap_write(sn->regmap, SN65DSI_CHA_VFRONT_PORCH, vfront_porch & 0xff);
-> +}
-> +
-> +static int sn65dsi_get_clk_range(int min, int max, unsigned long clock,
-> +                                unsigned long start, unsigned long diff)
-> +{
-> +       unsigned long next;
-> +       int i;
-> +
-> +       for (i = min; i <= max; i++) {
-> +               next = start + diff;
-> +               if (start <= clock && clock < next)
-> +                       return i;
-> +
-> +               start += diff;
-> +       }
-> +
-> +       return -EINVAL;
-> +}
-> +
-> +static void sn65dsi_enable(struct drm_bridge *bridge)
-> +{
-> +       struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
-> +       struct drm_display_mode *mode = bridge_to_mode(bridge);
-> +       int bpp = mipi_dsi_pixel_format_to_bpp(sn->dsi->format);
-> +       unsigned int lanes = sn->dsi->lanes;
-> +       unsigned int pixel_clk = mode->clock * 1000;
-> +       unsigned int dsi_clk = pixel_clk * bpp / (lanes * 2);
-> +       unsigned int val;
-> +
-> +       /* reset SOFT_RESET bit */
-> +       regmap_write(sn->regmap, SN65DSI_SOFT_RESET, 0x0);
-> +
-> +       msleep(10);
-> +
-> +       /* reset PLL_EN bit */
-> +       regmap_write(sn->regmap, SN65DSI_CLK_PLL, 0x0);
-> +
-> +       msleep(10);
-> +
-> +       /* setup lvds clock */
-> +       val = sn65dsi_get_clk_range(0, 5, pixel_clk, 25000000, 25000000);
-> +       if (val < 0) {
-> +               DRM_DEV_ERROR(sn->dev, "invalid LVDS clock range %d\n", val);
-> +               return;
-> +       }
-> +
-> +       regmap_update_bits(sn->regmap, SN65DSI_LVDS_CLK,
-> +                          SN65DSI_LVDS_CLK_MASK,
-> +                          val << SN65DSI_LVDS_CLK_SHIFT);
-> +
-> +       regmap_update_bits(sn->regmap, SN65DSI_LVDS_CLK,
-> +                          SN65DSI_LVDS_CLK_SRC_DSI,
-> +                          SN65DSI_LVDS_CLK_SRC_DSI);
-> +
-> +       /* setup bridge clock divider */
-> +       val = (dsi_clk / pixel_clk) - 1;
-> +       regmap_update_bits(sn->regmap, SN65DSI_CLK_DIV,
-> +                          SN65DSI_CLK_DIV_MASK,
-> +                          val << SN65DSI_CLK_DIV_SHIFT);
-> +
-> +       /* configure dsi */
-> +       regmap_update_bits(sn->regmap, SN65DSI_DSI_CFG,
-> +                          SN65DSI_DSI_LANE_MASK,
-> +                          lanes << SN65DSI_DSI_LANE_SHIFT);
-> +
-> +       /* dsi clock range */
-> +       val = sn65dsi_get_clk_range(8, 100, dsi_clk, 40000000, 5000000);
-> +       if (val < 0) {
-> +               DRM_DEV_ERROR(sn->dev, "invalid DSI clock range %d\n", val);
-> +               return;
-> +       }
-> +
-> +       regmap_write(sn->regmap, SN65DSI_DSI_CLK_RANGE, val);
-> +
-> +       /* setup lvds channels */
-> +       regmap_read(sn->regmap, SN65DSI_LVDS_MODE, &val);
-> +       if (bpp == 24)
-> +               val |= SN65DSI_LVDS_CHA_24BPP;
-> +       regmap_write(sn->regmap, SN65DSI_LVDS_MODE, val);
+Agree, In few cases Bitstream partition is optional, So we can't say exactl=
+y whether the PL is having Bitstream or Not . So here the ideal default PL =
+state should be Unknown.
+Will fix in v2.
 
-This register should have even how data are packed by dsi. There are two mode
-mode 1 and mode 2.
+Regards,
+Navakishore.
 
-> +
-> +       /* TODO Channel B required to set up for dual-link LVDS */
-> +       sn65dsi_setup_channels(sn, mode);
-> +
-> +       /* set SOFT_RESET bit */
-> +       regmap_write(sn->regmap, SN65DSI_SOFT_RESET, SN65DSI_RESET_EN);
-> +
-> +       msleep(10);
-> +
-> +       /* set PLL_EN bit */
-> +       regmap_write(sn->regmap, SN65DSI_CLK_PLL, SN65DSI_PLL_EN);
-> +
-> +       msleep(10);
-> +}
-> +
-> +static void sn65dsi_disable(struct drm_bridge *bridge)
-> +{
-> +       struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
-> +
-> +       /* set PLL_EN bit */
-> +       regmap_write(sn->regmap, SN65DSI_CLK_PLL, 0x0);
-> +
-> +       msleep(10);
-> +
-> +       /* set SOFT_RESET bit */
-> +       regmap_write(sn->regmap, SN65DSI_SOFT_RESET, 0x0);
-> +
-> +       msleep(10);
-
-Can you point me out the documenation where is written
-
-> +}
-> +
-> +static void sn65dsi_post_disable(struct drm_bridge *bridge)
-> +{
-> +       struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
-> +
-> +       gpiod_set_value_cansleep(sn->enable, 1);
-> +
-> +       msleep(10);
-> +
-> +       gpiod_set_value_cansleep(sn->enable, 0);
-> +
-> +       msleep(10);
-
-Again is there any description about the reset time in datasheet. If
-so, please point to the section
-
-> +}
-> +
-> +static void sn65dsi_pre_enable(struct drm_bridge *bridge)
-> +{
-> +       struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
-> +
-> +       gpiod_set_value_cansleep(sn->enable, 0);
-> +
-> +       msleep(10);
-> +
-> +       gpiod_set_value_cansleep(sn->enable, 1);
-> +
-> +       msleep(10);
-
-Ditto
-
-> +}
-> +
-> +static int sn65dsi_attach(struct drm_bridge *bridge, enum drm_bridge_attach_flags flags)
-> +{
-> +       struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
-> +       struct mipi_dsi_host *host;
-> +       struct mipi_dsi_device *dsi;
-> +       const struct mipi_dsi_device_info info = { .type = "sn65dsi",
-> +                                                  .channel = 0,
-> +                                                  .node = NULL,
-> +                                                };
-> +       int ret;
-> +
-> +       host = of_find_mipi_dsi_host_by_node(sn->host_node);
-> +       if (!host) {
-> +               DRM_DEV_ERROR(sn->dev, "failed to find dsi host\n");
-> +               return -EPROBE_DEFER;
-> +       }
-> +
-> +       dsi = mipi_dsi_device_register_full(host, &info);
-> +       if (IS_ERR(dsi)) {
-> +               DRM_DEV_ERROR(sn->dev, "failed to create dsi device\n");
-> +               return PTR_ERR(sn->dsi);
-> +       }
-> +
-> +       sn->dsi = dsi;
-> +       dsi->lanes = sn->dsi_lanes;
-> +       dsi->format = MIPI_DSI_FMT_RGB888;
-> +       dsi->mode_flags = MIPI_DSI_MODE_VIDEO;
-> +
-> +       ret = mipi_dsi_attach(dsi);
-> +       if (ret) {
-> +               DRM_DEV_ERROR(sn->dev, "failed to attach dsi host\n");
-> +               goto err_dsi_attach;
-> +       }
-> +
-> +       return drm_bridge_attach(bridge->encoder, sn->panel_bridge,
-> +                                &sn->bridge, flags);
-> +
-> +err_dsi_attach:
-> +       mipi_dsi_device_unregister(dsi);
-> +       return ret;
-> +}
-> +
-> +static const struct drm_bridge_funcs sn65dsi_bridge_funcs = {
-> +       .attach         = sn65dsi_attach,
-> +       .pre_enable     = sn65dsi_pre_enable,
-> +       .enable         = sn65dsi_enable,
-> +       .disable        = sn65dsi_disable,
-> +       .post_disable   = sn65dsi_post_disable,
-> +};
-> +
-> +static int sn65dsi_parse_dt(struct sn65dsi *sn)
-> +{
-> +       struct device *dev = sn->dev;
-> +       struct device_node *endpoint, *parent;
-> +       struct property *prop;
-> +       struct drm_panel *panel;
-> +       int len = 0;
-> +       int ret;
-> +
-> +       sn->enable = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-> +       if (IS_ERR(sn->enable)) {
-> +               DRM_DEV_ERROR(dev, "failed to get enable gpio\n");
-> +               return PTR_ERR(sn->enable);
-> +       }
-> +
-> +       ret = drm_of_find_panel_or_bridge(dev->of_node, 1, 0, &panel, NULL);
-> +       if (ret < 0)
-> +               return ret;
-> +       if (!panel)
-> +               return -ENODEV;
-> +
-> +       sn->panel_bridge = devm_drm_panel_bridge_add(dev, panel);
-> +       if (IS_ERR(sn->panel_bridge))
-> +               return PTR_ERR(sn->panel_bridge);
-> +
-> +       /*
-> +        * To get the data-lanes of dsi, we need to access the port1 of dsi_out
-> +        * from the port0 of bridge.
-> +        */
-> +       endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
-> +       if (endpoint) {
-
-What is happen if you have no endpoint should not already fail?
-
-
-> +               /* dsi_out node */
-> +               parent = of_graph_get_remote_port_parent(endpoint);
-> +               of_node_put(endpoint);
-> +               if (parent) {
-> +                       /* dsi port 1 */
-> +                       endpoint = of_graph_get_endpoint_by_regs(parent, 1, -1);
-> +                       of_node_put(parent);
-> +                       if (endpoint) {
-> +                               prop = of_find_property(endpoint, "data-lanes", &len);
-> +                               of_node_put(endpoint);
-> +                               if (!prop) {
-> +                                       DRM_DEV_ERROR(dev, "failed to find data lane\n");
-> +                                       return -EPROBE_DEFER;
-> +                               }
-> +                       }
-> +               }
-> +       }
-> +
-> +       sn->dsi_lanes = len / sizeof(u32);
-> +       if (sn->dsi_lanes < 1 || sn->dsi_lanes > 4)
-> +               return -EINVAL;
-> +
-> +       sn->host_node = of_graph_get_remote_node(dev->of_node, 0, 0);
-> +       if (!sn->host_node)
-> +               return -ENODEV;
-> +
-> +       of_node_put(sn->host_node);
-> +
-> +       return 0;
-> +}
-> +
-> +static int sn65dsi_probe(struct i2c_client *client)
-> +{
-> +       struct sn65dsi *sn;
-> +       int ret;
-> +
-> +       sn = devm_kzalloc(&client->dev, sizeof(*sn), GFP_KERNEL);
-> +       if (!sn)
-> +               return -ENOMEM;
-> +
-> +       i2c_set_clientdata(client, sn);
-> +       sn->dev = &client->dev;
-> +
-> +       sn->regmap = devm_regmap_init_i2c(client, &sn65dsi_regmap_config);
-> +       if (IS_ERR(sn->regmap)) {
-> +               DRM_DEV_ERROR(&client->dev,
-> +                             "regmap allocation failed (ret = %d)\n", ret);
-> +               return PTR_ERR(sn->regmap);
-> +       }
-> +
-> +       ret = sn65dsi_parse_dt(sn);
-> +       if (ret)
-> +               return ret;
-> +
-> +       sn->bridge.funcs = &sn65dsi_bridge_funcs;
-> +       sn->bridge.of_node = client->dev.of_node;
-> +
-> +       drm_bridge_add(&sn->bridge);
-> +
-> +       return 0;
-> +}
-> +
-> +static int sn65dsi_remove(struct i2c_client *client)
-> +{
-> +       struct sn65dsi *sn = i2c_get_clientdata(client);
-> +
-> +       drm_bridge_remove(&sn->bridge);
-> +
-> +       return 0;
-> +}
-> +
-> +static struct i2c_device_id sn65dsi_i2c_id[] = {
-> +       { "sn65dsi84", 0},
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, sn65dsi_i2c_id);
-> +
-> +static const struct of_device_id sn65dsi_match_table[] = {
-> +       {.compatible = "ti,sn65dsi84"},
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, sn65dsi_match_table);
-> +
-> +static struct i2c_driver sn65dsi_driver = {
-> +       .driver = {
-> +               .name = "ti-sn65dsi84",
-> +               .of_match_table = sn65dsi_match_table,
-> +       },
-> +       .probe_new = sn65dsi_probe,
-> +       .remove = sn65dsi_remove,
-> +       .id_table = sn65dsi_i2c_id,
-> +};
-> +module_i2c_driver(sn65dsi_driver);
-> +
-> +MODULE_AUTHOR("Jagan Teki <jagan@amarulasolutions.com>");
-> +MODULE_DESCRIPTION("SN65DSI84 DSI to LVDS bridge");
-> +MODULE_LICENSE("GPL v2");
-> --
-> 2.25.1
->
->
-
-
--- 
-Michael Nazzareno Trimarchi
-Amarula Solutions BV
-COO Co-Founder
-Cruquiuskade 47 Amsterdam 1018 AM NL
-T. +31(0)851119172
-M. +39(0)3479132170
-[`as] https://www.amarulasolutions.com
+=20
