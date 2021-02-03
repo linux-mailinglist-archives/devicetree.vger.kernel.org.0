@@ -2,142 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 959C930D6F2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 11:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D26030D6F3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 11:01:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233508AbhBCKBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 05:01:39 -0500
-Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:48965 "EHLO
-        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232911AbhBCKBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 05:01:36 -0500
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.west.internal (Postfix) with ESMTP id 720CD9EB;
-        Wed,  3 Feb 2021 05:00:23 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Wed, 03 Feb 2021 05:00:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=E4L+1XtSxc+gT8WxAB2fGZI5P2p
-        /OpnyQE0/QGStu7g=; b=hDWYE1Gq3os6DJAQF4sbe61SZ2UMAbwoPLS1E9Gz7Px
-        Wgz+oCxb0ykLKvvIXAt/mKKrql8usbXTYH8kReiHQeZFbMDlrdtzd4wLsU76KlT5
-        KYV/4V/hdsrmeL2eiQBZK1iDDE6wLUzEb9yjuUPXAyR5PcljllQt/JzBXVEHlTZS
-        iIw3HJLyiehdf6xW5KJwnW6SrKYE5If1gxXQz07JGO2L7tNwNKmoVOJ7x8p2KDUT
-        rq5henA4XBEK1v6xVXoOzuiBgCRAC0n78ySA8fKM8CC+9R2LY98ZmPCa1Lrs0djK
-        yU20o67UWSlJy8SaQZHzoCcuyC6oLftpiGbcCcR3NsQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=E4L+1X
-        tSxc+gT8WxAB2fGZI5P2p/OpnyQE0/QGStu7g=; b=g1R5qbUYkKD87+uoVhfBPH
-        TNmwuFe1ZNn7lpn9vBxE26c9I6534TjYk1wTm2T/Ij36DUo2Py8chm2Gyh0moY7R
-        xybSuRmSj1HayiVCwy/IcUqTuIUhNAnrP+H7k/wj+ku4xR7ndYLJZ9bvpObQkszc
-        9GHsX8HnG9rJmQsKAbLCBati0MFZr7zJ/fU0NtBHnhSWGZNGuAunGCayaKI26Ja3
-        e5sRrVRKTAV23PWX+ne1o24nTHNDeXRAWn9kY7pidIZiKhvPqBWzQ7JRYhTD4/54
-        prwd4vEa1wdu6+wsugIc+btvBxE1DktmkBUjf6hoElLSGWp9St9LmitetYIs6QsA
-        ==
-X-ME-Sender: <xms:NXQaYKMKgkbQ5O_UCSRiykJhUPEeGmZZtDIEJG81FMHl_g_Qf63rFA>
-    <xme:NXQaYPtJ9IXcQsK3C7O-8C0E2NtTQPKOCXbehmEm2toy3lXY5-tZY8zri2kUP7vub
-    cqPjvB2yG6veCc4Nks>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrgedvgddutdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:NXQaYDDikpNhnTNcqdE9oDYXZIctg-nesqDpEBjqPwIV-cIP5IYTJg>
-    <xmx:NXQaYGZDH3inVKZz14Uy5YdqCzpnA3hWvlXjZY8-VGjPaUwcoy8-kw>
-    <xmx:NXQaYOULct8uMzEodNwn3jGPHXwo33wXMmSI48VVwiWcVBUgPgyEkQ>
-    <xmx:N3QaYIJEjGW28rPjqQAYgX-KYHgm9CLWeBwGD_H6ltPP34nfhhab_Q>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 8F448240064;
-        Wed,  3 Feb 2021 05:00:21 -0500 (EST)
-Date:   Wed, 3 Feb 2021 11:00:19 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Sergey Matyukevich <geomatsi@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Subject: Re: [PATCH 1/1] ARM: dts: orange-pi-zero-plus2: use fixed mmc indexes
-Message-ID: <20210203100019.sdlb6rxfoxl45b2h@gilmour>
-References: <20210127054620.510912-1-geomatsi@gmail.com>
- <20210203092912.s3wm3y5hfptwirqy@gilmour>
- <CAGb2v66cskANPS7Zc_atCv9WYRq_aAEUi6Dd6LBrDPODOJ_ueQ@mail.gmail.com>
+        id S232911AbhBCKBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 05:01:43 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:2016 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233357AbhBCKBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 05:01:37 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B601a74530003>; Wed, 03 Feb 2021 02:00:51 -0800
+Received: from [10.26.73.224] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 3 Feb
+ 2021 10:00:48 +0000
+Subject: Re: [PATCH v2 5/9] arm64: defconfig: Enable RT5659
+To:     Sameer Pujar <spujar@nvidia.com>, <thierry.reding@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>, <lgirdwood@gmail.com>
+CC:     <kuninori.morimoto.gx@renesas.com>, <linux-tegra@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <sharadg@nvidia.com>, Oder Chiou <oder_chiou@realtek.com>,
+        Bard Liao <bardliao@realtek.com>
+References: <1611944866-29373-1-git-send-email-spujar@nvidia.com>
+ <1611944866-29373-6-git-send-email-spujar@nvidia.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <3d0aa7e4-9c9e-38a0-7cff-d86009b9266b@nvidia.com>
+Date:   Wed, 3 Feb 2021 10:00:45 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5r7f2yelcaek4r7g"
-Content-Disposition: inline
-In-Reply-To: <CAGb2v66cskANPS7Zc_atCv9WYRq_aAEUi6Dd6LBrDPODOJ_ueQ@mail.gmail.com>
+In-Reply-To: <1611944866-29373-6-git-send-email-spujar@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1612346451; bh=Zm6eAFzmy5jCUF8zdukXzNtqTTnjEePWswJsRjm9IPg=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=QRFtyKBWB9Jqwvm2v8PbDaYUm7fs3hNnYaMFwt1GUk0en/9nJgrESDwqV8hJYWLQ/
+         gOvOefAkfpp1WBRL2agcSHkcqdbvQQucDQeb/iZqhzWkAmY6vcdMxm7IIoj4oS8JZo
+         76dPFpXwPVXLNjvISSh704k2yUamtyRygmAFO4MwYlo+m/uB9XahkKuWs8z/Tg04om
+         4zesNHGTLUpHFrgjtOgnNmot18L4pzi2Xu2w0sYIcu5ONnvOOOqNa5wN7BP8xvRU4y
+         2jx4v3AZR+vY+BxFNi0Dbsu90ZTqkUl5In9T0a5uKumb+nxUN9j5timObv5ypSObfL
+         MEpWu4cFi2JEQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---5r7f2yelcaek4r7g
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 29/01/2021 18:27, Sameer Pujar wrote:
+> Enable the RT5659 audio codec driver.
 
-On Wed, Feb 03, 2021 at 05:36:58PM +0800, Chen-Yu Tsai wrote:
-> On Wed, Feb 3, 2021 at 5:29 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> >
-> > Hi,
-> >
-> > On Wed, Jan 27, 2021 at 08:46:20AM +0300, Sergey Matyukevich wrote:
-> > > Driver sunxi-mmc has recently been switched to asynchronous probe.
-> > > As a result, mmc indexes can be shuffled breaking existing setups
-> > > where UUIDs are not used for boot devices. Pin mmc indexes to keep
-> > > running the systems where fixed MMC or eMMC are specified,
-> > > e.g. root=3D/dev/mmcblk0p2.
-> > >
-> > > Signed-off-by: Sergey Matyukevich <geomatsi@gmail.com>
-> >
-> > I'm not sure, really.
-> >
-> > That would change the indices once again, and you shouldn't really rely
-> > on them anyway, there's never been any guarantee on the order of any
-> > device.
->=20
-> I assume one reason people want stable MMC indices is for setting the
-> root device. This could be done with UUID or PARTUUID.
+We could add that the Jetson AGX Xavier uses this codec and so we want
+to enable this for testing purposes. Otherwise ...
 
-PARTLABEL is also an option
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: Oder Chiou <oder_chiou@realtek.com>
+> Cc: Bard Liao <bardliao@realtek.com>
+> ---
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index ec377f7..ea279e8 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -754,6 +754,7 @@ CONFIG_SND_SOC_ES7134=m
+>  CONFIG_SND_SOC_ES7241=m
+>  CONFIG_SND_SOC_GTM601=m
+>  CONFIG_SND_SOC_PCM3168A_I2C=m
+> +CONFIG_SND_SOC_RT5659=m
+>  CONFIG_SND_SOC_SIMPLE_AMPLIFIER=m
+>  CONFIG_SND_SOC_TAS571X=m
+>  CONFIG_SND_SOC_WCD934X=m
+> 
 
-> Another would be setting the LED trigger to some MMC device,
-> preferably in the DT so it kicks in when the LED device is created.
-> Though even that isn't guaranteed since the MMC could probe after the
-> LED. :(
->=20
-> Currently I'm using some shell script to parse the root device then
-> get the device name and program that as an LED trigger through sysfs.
+Acked-by: Jon Hunter <jonathanh@nvidia.com>
 
-Surely a udev / mdev rule can help there?
+Cheers
+Jon
 
-> > And whatever the outcome of that discussion, it definitely shouldn't be
-> > done for a single board.
->=20
-> I believe this should be done at the SoC level so we would have consistent
-> MMC indices across the board. However that seems to conflict with the ord=
-er
-> swap we currently have in U-boot to support eMMCs seamlessly.
-
-I'm not sure we can do it at the SoC level anyway: if only the emmc is
-enabled, we want it to be mmcblk0
-
-Maxime
-
---5r7f2yelcaek4r7g
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBp0MwAKCRDj7w1vZxhR
-xbYzAQC+kPJQLAHljopX1M1FmPdSALG1ao9tWSrmU72OkCniDAD/Sj3OpCouLCMb
-oKHAvxtXkZlg1+o2DMaS9gPVGS5e5Qs=
-=SF4k
------END PGP SIGNATURE-----
-
---5r7f2yelcaek4r7g--
+-- 
+nvpublic
