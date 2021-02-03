@@ -2,113 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10D4E30D659
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:31:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C09BB30D66E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:39:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233168AbhBCJbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 04:31:17 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:56025 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233021AbhBCJaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:30:21 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 3B46E412;
-        Wed,  3 Feb 2021 04:29:15 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 03 Feb 2021 04:29:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=8AjUspHyp0dbrktgZY3EO9Adu8x
-        YOO4AaFkBqwyzX3M=; b=n6tFp02TSvVYyxU+VgrVy8lQQRrC5gF0cf0xHXnXjv5
-        +gBTCmDTrQDA5kbm2s0v6fpPLC82udGuKSrT4ZhAgCH3IkO/cbrxfazuXFO+qaNc
-        eywqOg0k+n9qCqEEvEVB/61C/00AXTGDyZaBbufFVP2FFrx61/cesYLgA+bj3hAy
-        bts5yWoMufXSpTd0A1xSESxhEIfsfmn8/Xs2mXvexPo0KyOb/GVvlivhnJwr/ZrN
-        +DA+zdiAbAvdKqiJX1+UxIbn0/wkty1qLqWrTMSxcZDF8+vxzYLlG9Y2vy6KvUt7
-        BGjm24hsBEgDA1NDlH68GKlPIZgZGR0SUHi0SgBQDNg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=8AjUsp
-        Hyp0dbrktgZY3EO9Adu8xYOO4AaFkBqwyzX3M=; b=MvveJqXOewWPMwME4s2J3p
-        7rkepCp5UGXMwVK8iCJQNIhANIgJMG7ue/Mz/Ml7tKizEGFxgXiLkA253d/Ilal5
-        lzfgqocheqhe8tqxXbTJtMjn+EShXG4r1FmCaudFvqel6N2s8HDESd42eiCskIvV
-        iyCOkPTRuD3iAWyJ3z+Qhxm9afgp6zasMZMIkUOcfgezg+GAtzGR2SXTgdRKGfRl
-        FODXqse5r+/rFo5EtRaLy1wCpxMdMMYdnMhSxNPN4FVWfmQF0zH4VheYWrlaUXhx
-        QMenk/YFzegMG757JbtdGa9y3nO1IPD4ftyrPkxOzhHVqBMw+0JzMzHHQxxfiLkw
-        ==
-X-ME-Sender: <xms:6mwaYNe0q9BibGr-ClfUWxxwZWx7-vgYcIwspKVTzwWJBoHM_vFSrw>
-    <xme:6mwaYE3cXSFumvUOdzQsOjFoU4t3rChP_WG9jR7wsIIfbClH7-CVlyJl20dCZk2io
-    EgyU9L2tURcOSiim4U>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrgedvgddthecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:6mwaYGjysRcM91lE3gpMv-4KGAVwhm-vxRdxYeC_th0f-VP9K8HbqA>
-    <xmx:6mwaYKSu69KJ14UqHni8yqU5tkjF7QaKstEvdVeu5q5cUCYQEBjnxQ>
-    <xmx:6mwaYHg3O61-f4Ffmro2N3P-N38gFHs54uShMNkLd_Bi3wuvpep5MA>
-    <xmx:6mwaYFpBpoBR-ZsEeCvggn6atEJKZn8IttbQcUvrAhHA9-JdPsyjnw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 0C62324005A;
-        Wed,  3 Feb 2021 04:29:13 -0500 (EST)
-Date:   Wed, 3 Feb 2021 10:29:12 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Sergey Matyukevich <geomatsi@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Subject: Re: [PATCH 1/1] ARM: dts: orange-pi-zero-plus2: use fixed mmc indexes
-Message-ID: <20210203092912.s3wm3y5hfptwirqy@gilmour>
-References: <20210127054620.510912-1-geomatsi@gmail.com>
+        id S233135AbhBCJha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 04:37:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48544 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229650AbhBCJh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:37:29 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA15AC061788
+        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 01:36:08 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id a17so2335283ljq.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:36:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6GnRcNKibxztYcvUQzDGCgHL6AviuIrNT8YjYqp4o+g=;
+        b=FULorK8vsWlfT9sFbadP6z4zJxOs9AiVRnvUe7J2rfjR8hquBrIAC9NlypGz9UeYow
+         fXSHbY/48b4B5FIWctnJBzdDTMZq9tEReP6vEhxmitTovmHof64D1sG8EOw5cefbG83b
+         b6WHunVOHISOl9wNdGRCjou+X/7CDB2GZGoy1u48n6WpbKI7eHXwxjaSrEfO+KrQAeGa
+         MiIrxSEsA6COQt6+e85FcGXmmkpNbcJ6g/AC8Pvg2DqvXoSiLe8ytw/3OA8kIkmwOMSD
+         yBCRLiGLJ8rT5lH/iTbOBidfsCnzjchOZKQeN/OhXQqHkDq0+TtRW3ouM6MyzaxbLyzz
+         Rqvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6GnRcNKibxztYcvUQzDGCgHL6AviuIrNT8YjYqp4o+g=;
+        b=dD0MDG4s7NMXGtVvxLfI6sBrYU4Ae98SqzdWsWIOcT4hi8/u+WTxzHIgQZg7UqIs+V
+         xZcUt/DAGCeg+ZUzuNVDv4KxfLkQpQYvsBQ8bDOO0mTKG1ddNPiVT9MlwyFMoAM+woyw
+         O9GS2oV5dAadKyzHTPd5CfNSUN2H/P0vovoIHXvpN35ofyPZoCUXey+st5fFgZDchymC
+         JvD5WQjCqKL/XYjniWxXE77DlQgINN9BMThj0xIQ/dFCz/WLWJEXsFdPEHT3UYdkGD8I
+         iX7hiZCGgFgrKXfJh9mRaBYGuJZtTfN1T7tPXOpQCd36fw0ihHjdM8FllqpKYEDRyhXd
+         33gA==
+X-Gm-Message-State: AOAM530khibNLqEnOgKsowOAJDzQYvZaYjSSrzoOVAnUnkMFghhTgVOM
+        avyNWLavDmUANveXUJvXFrYnRgBRrLVfjxGWHUII9sGk0gavXw==
+X-Google-Smtp-Source: ABdhPJy4FflXpUjChVW+K6gb6Ck95k2cKDdhJLsDyahupxAN2akbTAdmitGaAnNIhYk43WdM7SiuRSAXZjsbLKYTmG8=
+X-Received: by 2002:a2e:8746:: with SMTP id q6mr1238712ljj.326.1612344967044;
+ Wed, 03 Feb 2021 01:36:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ucvf4xd5cjciklr2"
-Content-Disposition: inline
-In-Reply-To: <20210127054620.510912-1-geomatsi@gmail.com>
+References: <20210202205544.24812-1-robh@kernel.org>
+In-Reply-To: <20210202205544.24812-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 3 Feb 2021 10:35:56 +0100
+Message-ID: <CACRpkdZF1zvykXj58oKjBVqomH86BSW8N=noDs8q3BA--CLAvw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: Fix undocumented compatible strings in examples
+To:     Rob Herring <robh@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Daniel Palmer <daniel@thingy.jp>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Vincent Cheng <vincent.cheng.xh@renesas.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Feb 2, 2021 at 9:55 PM Rob Herring <robh@kernel.org> wrote:
 
---ucvf4xd5cjciklr2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Running 'dt-validate -m' will flag any compatible strings missing a schema.
+> Fix all the errors found in DT binding examples. Most of these are just
+> typos.
+>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Chen-Yu Tsai <wens@csie.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Daniel Palmer <daniel@thingy.jp>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Cc: Avi Fishman <avifishman70@gmail.com>
+> Cc: Tomer Maimon <tmaimon77@gmail.com>
+> Cc: Tali Perry <tali.perry1@gmail.com>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Andrew Jeffery <andrew@aj.id.au>
+> Cc: Joel Stanley <joel@jms.id.au>
+> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Cc: Vincent Cheng <vincent.cheng.xh@renesas.com>
+> Cc: linux-clk@vger.kernel.org
+> Cc: linux-crypto@vger.kernel.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: linux-i2c@vger.kernel.org
+> Cc: iommu@lists.linux-foundation.org
+> Cc: linux-watchdog@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Hi,
+Ooops.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-On Wed, Jan 27, 2021 at 08:46:20AM +0300, Sergey Matyukevich wrote:
-> Driver sunxi-mmc has recently been switched to asynchronous probe.
-> As a result, mmc indexes can be shuffled breaking existing setups
-> where UUIDs are not used for boot devices. Pin mmc indexes to keep
-> running the systems where fixed MMC or eMMC are specified,
-> e.g. root=3D/dev/mmcblk0p2.
->=20
-> Signed-off-by: Sergey Matyukevich <geomatsi@gmail.com>
-
-I'm not sure, really.
-
-That would change the indices once again, and you shouldn't really rely
-on them anyway, there's never been any guarantee on the order of any
-device.
-
-And whatever the outcome of that discussion, it definitely shouldn't be
-done for a single board.
-
-Maxime
-
---ucvf4xd5cjciklr2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBps6AAKCRDj7w1vZxhR
-xe5VAP44lPCgURhSraPUihHo7puqYSKmyf1kIxJXnFuFPaKnPAEA2ECDGQCBEjXk
-5pj7fvmQs8unx0xHrt35KPy7vJlA0Qs=
-=eJw/
------END PGP SIGNATURE-----
-
---ucvf4xd5cjciklr2--
+Yours,
+Linus Walleij
