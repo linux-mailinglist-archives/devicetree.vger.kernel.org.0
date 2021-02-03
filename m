@@ -2,161 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BFE430DF12
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 17:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B92830DF61
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 17:13:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234753AbhBCQDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 11:03:50 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:39433 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234663AbhBCQDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 11:03:46 -0500
-Received: by mail-oi1-f181.google.com with SMTP id w124so360511oia.6;
-        Wed, 03 Feb 2021 08:03:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BcE4ZZBKyxCDLDrYAu9i4Md6o808j4TR1LnI5e2y0b0=;
-        b=Pv7EAV7LVXNefmZvDYuPMaW5uicPXU42jzlHeMVKRwzMO63RVnIiZNLQx50SxEU+ZJ
-         vifcOCdikr5tM0dQkk/RGNzswHEVG8QQSiqdXTYxzY85N65whK5Acgg0laP45SlWZLWr
-         h0cYumMKRubU/P9ePZMtkMnWXW7v7YxFXHww9b6RtQ38xV+id/DWREtYc7kO1qBn6hlB
-         seVeYsLWcU4/48IJrqv5Qoy3QhSvzTKABDoMhTIbQCkOSxFuXcbow/1AoRXWSGMSxxIp
-         crEStqfAv1RpzdZsBtc8JSR2rTyIAIUMl238SUm0hg+iEg9VvJaz7aSaGLhfC/4g3dL8
-         Zbqw==
-X-Gm-Message-State: AOAM5325KjcvwGCDjCafnMrhv8vJpeMfqZetUw6yRa+sLP1iuU4GIlmm
-        bnFLi/xg5HymGxzuewxGyfG4zYOKZVfjU6KkE4k=
-X-Google-Smtp-Source: ABdhPJy5RnEli5EScDsGGPC/30HmbHWChMG7KZn1WeCaaLseFVr6EQuBii7Iq7M5O8vzqs7BmEy6ag0EovkF5KtgUsQ=
-X-Received: by 2002:a54:4e88:: with SMTP id c8mr2343251oiy.148.1612368184741;
- Wed, 03 Feb 2021 08:03:04 -0800 (PST)
+        id S234824AbhBCQNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 11:13:20 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36032 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234927AbhBCQIB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Feb 2021 11:08:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 101D264F9B;
+        Wed,  3 Feb 2021 16:06:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612368365;
+        bh=GNyZIbhSMsMA+IdaAyNXFV3wbRVRMl0Dn1D0Eg9euXw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FO9H6iajc6NVqYVl4y5je/YxxoDHEFiT2NosmwBHrOBdYZi5oFgx0buRz+Bq1V8UA
+         czLa4+xX/opvBFh8yb4fHjTdDyB6M5onZzQ20opl3i4yaX/bOlKYcycLb0rKOWI/NG
+         mFjcYWp1jS7FxsSzlU8zLmEL8lQMA7tm+YMyNF2zl9jXsS0TsjcLAWALn3TncBqA3q
+         XPYRLOAPkkKjTnSQl2XGVs8tIspIlbLQ8gigJvAEEnLyVBufLTa0X5rASMYZ+Ec1zx
+         rUCFiK3OLYBAXt0rCyHniYKy0rm0+SQlUPMGdohf8CfYe4Vu2EX/ip48sGX1DEQoRO
+         BgdqTVMBtro+w==
+Date:   Wed, 3 Feb 2021 16:05:58 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Quentin Perret <qperret@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, android-kvm@google.com,
+        linux-kernel@vger.kernel.org, kernel-team@android.com,
+        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
+        Fuad Tabba <tabba@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Brazdil <dbrazdil@google.com>
+Subject: Re: [RFC PATCH v2 20/26] KVM: arm64: Set host stage 2 using
+ kvm_nvhe_init_params
+Message-ID: <20210203160558.GI18974@willie-the-truck>
+References: <20210108121524.656872-1-qperret@google.com>
+ <20210108121524.656872-21-qperret@google.com>
 MIME-Version: 1.0
-References: <20210202205544.24812-1-robh@kernel.org> <20210202205544.24812-3-robh@kernel.org>
- <CAMuHMdVvtUvrQh3-3kxaqqWvHnF_UOQmt-6jq_GkX8g=cszUug@mail.gmail.com> <20210203155517.GC3706951@robh.at.kernel.org>
-In-Reply-To: <20210203155517.GC3706951@robh.at.kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 3 Feb 2021 17:02:53 +0100
-Message-ID: <CAMuHMdVp-YXtMBPistV0XPDHoSbW6Rz4c7=t3y2JB7B56LniBg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: Fix errors in 'if' schemas
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Vincent Cheng <vincent.cheng.xh@renesas.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
-        Eric Anholt <eric@anholt.net>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        Linux MMC List <linux-mmc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210108121524.656872-21-qperret@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, Jan 08, 2021 at 12:15:18PM +0000, Quentin Perret wrote:
+> Move the registers relevant to host stage 2 enablement to
+> kvm_nvhe_init_params to prepare the ground for enabling it in later
+> patches.
+> 
+> Signed-off-by: Quentin Perret <qperret@google.com>
+> ---
+>  arch/arm64/include/asm/kvm_asm.h   | 3 +++
+>  arch/arm64/kernel/asm-offsets.c    | 3 +++
+>  arch/arm64/kvm/arm.c               | 5 +++++
+>  arch/arm64/kvm/hyp/nvhe/hyp-init.S | 9 +++++++++
+>  arch/arm64/kvm/hyp/nvhe/switch.c   | 5 +----
+>  5 files changed, 21 insertions(+), 4 deletions(-)
 
-On Wed, Feb 3, 2021 at 4:55 PM Rob Herring <robh@kernel.org> wrote:
-> On Wed, Feb 03, 2021 at 09:01:23AM +0100, Geert Uytterhoeven wrote:
-> > On Tue, Feb 2, 2021 at 9:55 PM Rob Herring <robh@kernel.org> wrote:
-> > > Properties in if/then schemas weren't getting checked by the meta-schemas.
-> > > Enabling meta-schema checks finds several errors.
-> > >
-> > > The use of an 'items' schema (as opposed to the list form) is wrong in
-> > > some cases as it applies to all entries. 'contains' is the correct schema
-> > > to use in the case of multiple entries.
-> >
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> > > +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> > > @@ -81,9 +81,8 @@ properties:
-> > >  if:
-> > >    properties:
-> > >      compatible:
-> > > -      items:
-> > > -        enum:
-> > > -          - renesas,usb2-phy-r7s9210
-> > > +      contains:
-> > > +        const: renesas,usb2-phy-r7s9210
-> >
-> > Single entry, so "contains" not needed?
->
-> No, you are misunderstanding how these work. 'contains' means at least
-> one entry in an array passes with the subschema. In this case,
-> 'renesas,usb2-phy-r7s9210' must appear somewhere in the 'compatible'
-> values. (Before, it said *every* entry must be
-> 'renesas,usb2-phy-r7s9210'.) As there is a fallback compatible, we need
-> 'contains'.
->
-> > > --- a/Documentation/devicetree/bindings/pinctrl/renesas,pfc.yaml
-> > > +++ b/Documentation/devicetree/bindings/pinctrl/renesas,pfc.yaml
-> > > @@ -76,11 +76,10 @@ required:
-> > >  if:
-> > >    properties:
-> > >      compatible:
-> > > -      items:
-> > > -        enum:
-> > > -          - renesas,pfc-r8a73a4
-> > > -          - renesas,pfc-r8a7740
-> > > -          - renesas,pfc-sh73a0
-> > > +      enum:
-> > > +        - renesas,pfc-r8a73a4
-> > > +        - renesas,pfc-r8a7740
-> > > +        - renesas,pfc-sh73a0
-> >
-> > Missing "contains"?
->
-> No. In this case, 'compatible' is always a single entry, so no
-> 'contains' needed (but would work). If compatible is one of these 3
-> strings, then the 'if' is true.
->
-> The original way would actually work in this case (i.e. is valid
-> json-schema), but we require 'items' to have a size (maxItems/minItems)
-> in our meta-schema.
+Acked-by: Will Deacon <will@kernel.org>
 
-Thanks for the explanation!
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Will
