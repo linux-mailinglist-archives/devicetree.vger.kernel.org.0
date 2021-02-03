@@ -2,122 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7577130D386
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 07:51:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0446830D397
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 08:00:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231726AbhBCGu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 01:50:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40840 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231722AbhBCGuX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 01:50:23 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 396F5C0613D6
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 22:49:43 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id p15so22829796wrq.8
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 22:49:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=Llt9wZ/++YWpNuv24fYJyAK2KaKZ50JAQBYyHHTRHl0=;
-        b=eMd6ybxnZ1GMNU8CePXnXb1pTr6Ufz1IDd0Ctp4ZlKMVoPoNxn0ozbVA2qeUr1CqPN
-         Go0jM+q9METdwsc19UY3lhxyBGBqmQem9uQv3feFzfiYu4Xm4gubwTEDWsqd6ndAz/R5
-         zZaaTNnjrM7HXSPRIzwwnd+ICKb9BAO+0Q0r9CbY+tLvoNv5Wmq3vEwWU3qWhB6v6x0s
-         p15tmaQ+8Rx7FSXc4FF1/shXUABaAcZhXzjWQvk+prBEyBK8nxwoDu2/H9wPkCsqj7wv
-         jXQo5x/fNSBx3ThDZnAN6BUFvMO4tD6gcg8vofcRDo3n2hTDGX67QtWQV5CHc9lU+dg9
-         aiAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Llt9wZ/++YWpNuv24fYJyAK2KaKZ50JAQBYyHHTRHl0=;
-        b=a9gU3H2BGNjk8d4xP1z+tJQ0Hx6NIFc96mga9AFBfe+XvvK4E6wEipVLWbGEuYx/76
-         WjfvWeus/aZ6F4pnInX68dwluCgdJr8uvKlVeRqCNqtWFvwYHQOm4yJ9iGw0ISKqnRW2
-         zScdthhNW3Oy9acDS+tKLNpiqBoXscwf7pQjOcUHvNNZuEloF1+FEpR2MoP24TE6ntkL
-         LsoWyBxcQEGqsy1qTMKZt4IZmNn6M8ncxN83HNVzupjyOu2v4sz6bdcksERp95MQOzL2
-         w89j/oGQX78GD1cjZyetEx6Fp/gV0U3hrrf39crV4MibgTi4NnkrrhHb81+hi0jTE5Ew
-         HupQ==
-X-Gm-Message-State: AOAM532Y+sbqsiin28RURDuX7eitZqmxg5o62NlVadTkBnsO3ieBXyF9
-        uko/mDO3S3sJGrCHctQ77zKFkw==
-X-Google-Smtp-Source: ABdhPJxQrjhEspsMyRywC+CZuV6pLjH2d0gs0SU2q/MWY/IqDeweyxSs/Z4+de3Z6tAprGygraB2Qw==
-X-Received: by 2002:adf:fc86:: with SMTP id g6mr1721941wrr.20.1612334981687;
-        Tue, 02 Feb 2021 22:49:41 -0800 (PST)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id l5sm1883815wrv.44.2021.02.02.22.49.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Feb 2021 22:49:41 -0800 (PST)
-Subject: Re: [PATCH v2 5/5] interconnect: qcom: Add MSM8939 interconnect
- provider driver
-To:     Benjamin Li <benl@squareup.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Jun Nie <jun.nie@linaro.org>, devicetree@vger.kernel.org,
-        bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh@kernel.org
-Cc:     shawn.guo@linaro.org
-References: <20201204075345.5161-1-jun.nie@linaro.org>
- <20201204075345.5161-6-jun.nie@linaro.org>
- <d869ea94b3b1c73800a5c3b855cb6f280be6c185.camel@mailoo.org>
- <a88b39dd-1c50-8aff-f85e-27086db9b040@linaro.org>
- <7630c4aa-b023-55a6-e2aa-37a7538c6b45@squareup.com>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Message-ID: <8aa03f6d-dcf5-73b3-41f8-0d872d9f4f86@linaro.org>
-Date:   Wed, 3 Feb 2021 08:49:40 +0200
+        id S231437AbhBCG6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 01:58:32 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:52377 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230193AbhBCG6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 01:58:30 -0500
+X-UUID: b25f4208624141f387ec8ef77e08ea68-20210203
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xRMlI2EADtM4gae429sxpvqn+NvYbc5cVgo4D59hErQ=;
+        b=BT4M3PrsQ5TGCxdMvQMoEw82htr4KY49+wSBhScM0I4Mgp6CZPdigPsdoyqjhkLNFyJ1gW7bGmptO7phCBeRKL+llB2dnBgiG/D6RtueM043GNLl0kVDgngD1wmuYcqBJy6hERGLiMJOhqFfXzBZ7atfJkElpdDyBrmhzZrbRDU=;
+X-UUID: b25f4208624141f387ec8ef77e08ea68-20210203
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <argus.lin@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 815628569; Wed, 03 Feb 2021 14:57:44 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 3 Feb 2021 14:57:43 +0800
+Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 3 Feb 2021 14:57:43 +0800
+Message-ID: <1612335462.9202.1.camel@mtkswgap22>
+Subject: Re: [PATCH 0/2] Add mediatek MT6359 accdet driver
+From:   Argus Lin <argus.lin@mediatek.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+CC:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        "Geert Uytterhoeven" <geert@linux-m68k.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Arnd Bergmann <arnd@arndb.de>, Jack Yu <jack.yu@realtek.com>,
+        Shuming Fan <shumingf@realtek.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jiaxin Yu =?UTF-8?Q?=28=E4=BF=9E=E5=AE=B6=E9=91=AB=29?= 
+        <Jiaxin.Yu@mediatek.com>, Tzung-Bi Shih <tzungbi@google.com>,
+        Shane Chien =?UTF-8?Q?=28=E7=B0=A1=E4=BD=91=E8=BB=92=29?= 
+        <Shane.Chien@mediatek.com>,
+        ChiPeng Chang =?UTF-8?Q?=28=E5=BC=B5=E7=90=A6=E6=9C=8B=29?= 
+        <chipeng.chang@mediatek.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        wsd_upstream <wsd_upstream@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>
+Date:   Wed, 3 Feb 2021 14:57:42 +0800
+In-Reply-To: <1609935546-11722-1-git-send-email-argus.lin@mediatek.com>
+References: <1609935546-11722-1-git-send-email-argus.lin@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-In-Reply-To: <7630c4aa-b023-55a6-e2aa-37a7538c6b45@squareup.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ben,
+RGVhciBtYWludGFpbmVyczoNCkNhbiB5b3UgcmVwbHkgdG8gbWUgaWYgYW55IG9waW5pb24/DQp0
+aGFua3MNCg0KQi5SLg0KQXJndXMNCg0KT24gV2VkLCAyMDIxLTAxLTA2IGF0IDIwOjE5ICswODAw
+LCBBcmd1cyBMaW4gd3JvdGU6DQo+IE1UNjM1OSBhdWRpbyBjb2RlYyBzdXBwb3J0IGFjY2Vzc29y
+eSBkZXRlY3QgZmVhdHVyZXMsIHRoZSBnZW5lcmFsIGZlYXR1cmVzDQo+IGFyZSBqYWNrIHBsdWcg
+ZGV0ZWN0aW9uIGFuZCBrZXkgZGV0ZWN0aW9uLg0KPiANCj4gQWxsIG9mIDMtcG9sZSBhbmQgNC1w
+b2xlIGphY2sgYXJlIHN1cHBvcnRlZC4NCj4gDQo+IGNoYW5nZSBzaW5jZSB2MToNCj4gICAtIGFk
+ZHMgbXQ2MzU5IGFjY2RldCBiaW5kaW5nIGRvY3VtZW50DQo+ICAgLSBhZGRzIG10NjM1OSBhY2Nk
+ZXQgZHJpdmVyDQo+IA0KPiANCj4gQXJndXMgTGluICgyKToNCj4gICBkdC1iaW5kaW5nczogbWVk
+aWF0ZWs6IG10NjM1OTogYWRkIEFTb0MgbXQ2MzU5IGFjY2RldCBkb2N1bWVudA0KPiAgIEFTb0M6
+IG1lZGlhdGVrOiBtdDYzNTk6IGFkZCBNVDYzNTkgYWNjZGV0IGRyaXZlcg0KPiANCj4gIC4uLi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5kL210NjM1OS1hY2NkZXQueWFtbCAgIHwgIDE0MiArKw0K
+PiAgc291bmQvc29jL2NvZGVjcy9LY29uZmlnICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAg
+ICA3ICsNCj4gIHNvdW5kL3NvYy9jb2RlY3MvTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHwgICAgMiArDQo+ICBzb3VuZC9zb2MvY29kZWNzL210NjM1OS1hY2NkZXQuYyAgICAgICAg
+ICAgICAgICAgICB8IDE5NTEgKysrKysrKysrKysrKysrKysrKysNCj4gIHNvdW5kL3NvYy9jb2Rl
+Y3MvbXQ2MzU5LWFjY2RldC5oICAgICAgICAgICAgICAgICAgIHwgIDEzNiArKw0KPiAgc291bmQv
+c29jL2NvZGVjcy9tdDYzNTkuaCAgICAgICAgICAgICAgICAgICAgICAgICAgfCAxODYzICsrKysr
+KysrKysrKysrKysrLS0NCj4gIDYgZmlsZXMgY2hhbmdlZCwgMzk5NSBpbnNlcnRpb25zKCspLCAx
+MDYgZGVsZXRpb25zKC0pDQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3NvdW5kL210NjM1OS1hY2NkZXQueWFtbA0KPiAgY3JlYXRlIG1vZGUg
+MTAwNjQ0IHNvdW5kL3NvYy9jb2RlY3MvbXQ2MzU5LWFjY2RldC5jDQo+ICBjcmVhdGUgbW9kZSAx
+MDA2NDQgc291bmQvc29jL2NvZGVjcy9tdDYzNTktYWNjZGV0LmgNCj4gDQo+IC0tDQo+IDEuOC4x
+LjEuZGlydHkNCj4gDQoNCg==
 
-On 2/3/21 02:50, Benjamin Li wrote:
-> On 1/5/21 5:54 AM, Georgi Djakov wrote:
->> On 1/2/21 13:08, Vincent Knecht wrote:
->>> Le vendredi 04 décembre 2020 à 15:53 +0800, Jun Nie a écrit :
->>>> Add driver for the Qualcomm interconnect buses found in MSM8939 based
->>>> platforms. The topology consists of four NoCs that are controlled by
->>>> a remote processor that collects the aggregated bandwidth for each
->>>> master-slave pairs.
->>>>
->>>> Signed-off-by: Jun Nie <jun.nie@linaro.org>
->>>
->>> Shouldn't some rpm ids be changed like they were for msm8916 in the following patch ?
->>> c497f9322af9 ("interconnect: qcom: msm8916: Remove rpm-ids from non-RPM nodes")
->>> https://patchwork.kernel.org/project/linux-arm-msm/patch/20201112105140.10092-1-georgi.djakov@linaro.org/
->>
->> Maybe they should. I don't have the hardware to try it, but the test will be
->> to just add the NoC DT nodes, enable the driver and inspect the boot log for
->> messages like:
->> [    2.926647] qcom_icc_rpm_smd_send mas X error -6
->>
->> Thanks,
->> Georgi
-> 
-> Hi Vincent & Georgi,
-> 
-> Thanks, I ran your suggestion on an MSM8939 board (with an additional
-> change to print slave IDs as well). Results:
-> 
-> [    1.901376] qcom_icc_rpm_smd_send slv 24 error -6
-> [    2.005977] qcom_icc_rpm_smd_send mas 20 error -6
-> [    2.010250] qcom_icc_rpm_smd_send slv 20 error -6
-> [    2.014684] qcom_icc_rpm_smd_send slv 106 error -6
-> [    2.019338] qcom_icc_rpm_smd_send slv 107 error -6
-> [    2.024615] qcom_icc_rpm_smd_send slv 29 error -6
-> [    2.028782] qcom_icc_rpm_smd_send mas 3 error -6
-> [    2.034657] qcom_icc_rpm_smd_send mas 100 error -6
-> (and there's another slv 131 that's hidden by the mas 100 failure)
-> 
-> Jun, I'll send you the patch I tested with to silence all these errors,
-> if you want to just squash that into the next version of your patchset.
-
-Thank you for doing this! Please send a follow-up patch as i already
-queued Jun's patches.
-
-Thanks,
-Georgi
