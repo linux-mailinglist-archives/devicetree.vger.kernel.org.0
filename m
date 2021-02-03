@@ -2,74 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF38030D337
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 06:56:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53A1330D35D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 07:28:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231222AbhBCFyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 00:54:49 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:33347 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229831AbhBCFyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 00:54:49 -0500
-X-UUID: c25576edade840c0893467911c5a9a8f-20210203
-X-UUID: c25576edade840c0893467911c5a9a8f-20210203
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <seiya.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 682888429; Wed, 03 Feb 2021 13:54:01 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 3 Feb 2021 13:54:00 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 3 Feb 2021 13:54:00 +0800
-From:   Seiya Wang <seiya.wang@mediatek.com>
-To:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Peter Zijlstra <peterz@infradead.org>,
-        Ingo Molnar <mingo@redhat.com>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Jiri Olsa <jolsa@redhat.com>,
-        Namhyung Kim <namhyung@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, Seiya Wang <seiya.wang@mediatek.com>
-Subject: [PATCH v2 2/2] dt-bindings: arm: add Cortex-A78 binding
-Date:   Wed, 3 Feb 2021 13:53:48 +0800
-Message-ID: <20210203055348.4935-3-seiya.wang@mediatek.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20210203055348.4935-1-seiya.wang@mediatek.com>
-References: <20210203055348.4935-1-seiya.wang@mediatek.com>
+        id S229995AbhBCG2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 01:28:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36138 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230193AbhBCG2P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 01:28:15 -0500
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2F25C061573
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 22:27:34 -0800 (PST)
+Received: by mail-il1-x130.google.com with SMTP id y5so21425799ilg.4
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 22:27:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=X5H7u6zfULjhTslVinp72inAV8tftlmzyLj44kPZOIo=;
+        b=ATr9kJuhoM7hsEPMLnjZO+qm6UV1LVj8rzqxjUU8jx4jPJAuLYrR7/ZJvq/6fqdSZQ
+         YKZmkGo8OmonC93l2P0UjhAlLyQpvI2y4QXQZzaehVss6Kyw5UiKDYw4hb2oGnyYq+ja
+         E5b+ocFQF8WGclyVsu0U5ahnR/jWsjkBBHlbM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X5H7u6zfULjhTslVinp72inAV8tftlmzyLj44kPZOIo=;
+        b=Q8Yqyjk/vD8CVLwzFVZBT7jNpZrtCU9DpV2L9vOZtseP2ueqAk4Sg253pK2vltbY6A
+         c7R5+StaPZwXLg3j+mmscyLBNvo4gGkGqp+XMOiazx0NnjP1i3D7abjFLy0zwG99sCgh
+         DZMH7Y7MfcsxyawiO90OyKHVHpJvHPGTtNAASoa8A1jRRSb5i+OSLrvjRm/w6QuqWrv+
+         JiZaP6hZBBWlLF5p+olAwdBdBK5Puuth7Xm6CrzfqAe2lZOyepGqtFanAnG4o1zapVlE
+         wNTUsCg0jQWLBMTsmVehoL4e6QK0TdUlPzEw1qj/WlEensLluZXw0dCDaTCWZNMl1n2n
+         Maew==
+X-Gm-Message-State: AOAM530Z6YTckaG2h7LLfRnf/JTUKlZH36fwcimz/FgU/NNN5PbkpuId
+        c9xUKW+NFNe312q0W3Hg2EgzOxt0CtvIIoo0OG7W5w==
+X-Google-Smtp-Source: ABdhPJxejwYn2puVey+RwiCn1hqYG5601tBESzbm/PelZLqN5flyaRACJ3sbmOAAzVTl66bgVRKcsUxC399ATAVUfXY=
+X-Received: by 2002:a92:cc4d:: with SMTP id t13mr370408ilq.150.1612333654249;
+ Tue, 02 Feb 2021 22:27:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20210129101012.25180-1-michael.kao@mediatek.com> <20210129101012.25180-2-michael.kao@mediatek.com>
+In-Reply-To: <20210129101012.25180-2-michael.kao@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Wed, 3 Feb 2021 14:27:08 +0800
+Message-ID: <CAJMQK-iYYGQ3N08PnkDzwSOc22ydEeekp_e1bXrm9Eas9xJQrA@mail.gmail.com>
+Subject: Re: [v6,1/3] arm64: dts: mt8183: add thermal zone node
+To:     Michael Kao <michael.kao@mediatek.com>
+Cc:     fan.chen@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        srv_heupstream@mediatek.com,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for Cortex-A78 PMU
+On Fri, Jan 29, 2021 at 6:10 PM Michael Kao <michael.kao@mediatek.com> wrote:
+>
+> From: "michael.kao" <michael.kao@mediatek.com>
+>
+> Add thermal zone node to Mediatek MT8183 dts file.
+>
+> Evaluate the thermal zone every 500ms while not cooling
+> and every 100ms when passive cooling is performed.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 84 ++++++++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 5b782a4769e7..0aa31d338fb0 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -657,6 +657,87 @@
+>                         status = "disabled";
+>                 };
+>
+> +               thermal: thermal@1100b000 {
+> +                       #thermal-sensor-cells = <1>;
+> +                       compatible = "mediatek,mt8183-thermal";
+> +                       reg = <0 0x1100b000 0 0x1000>;
+> +                       clocks = <&infracfg CLK_INFRA_THERM>,
+> +                                <&infracfg CLK_INFRA_AUXADC>;
+> +                       clock-names = "therm", "auxadc";
+> +                       resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
+> +                       interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
+> +                       mediatek,auxadc = <&auxadc>;
+> +                       mediatek,apmixedsys = <&apmixedsys>;
+> +                       nvmem-cells = <&thermal_calibration>;
+> +                       nvmem-cell-names = "calibration-data";
+> +               };
+> +
+> +               thermal-zones {
+> +                       cpu_thermal: cpu_thermal {
+> +                               polling-delay-passive = <100>;
+> +                               polling-delay = <500>;
+> +                               thermal-sensors = <&thermal 0>;
+> +                               sustainable-power = <5000>;
+> +                       };
+> +
+> +                       /* The tzts1 ~ tzts6 don't need to polling */
+> +                       /* The tzts1 ~ tzts6 don't need to thermal throttle */
+> +
+> +                       tzts1: tzts1 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 1>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tzts2: tzts2 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 2>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tzts3: tzts3 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 3>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tzts4: tzts4 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 4>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tzts5: tzts5 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 5>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tztsABB: tztsABB {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 6>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +               };
+> +
+>                 pwm0: pwm@1100e000 {
+>                         compatible = "mediatek,mt8183-disp-pwm";
+>                         reg = <0 0x1100e000 0 0x1000>;
+> @@ -926,6 +1007,9 @@
+>                         reg = <0 0x11f10000 0 0x1000>;
+>                         #address-cells = <1>;
+>                         #size-cells = <1>;
+> +                       thermal_calibration: calib@180 {
+> +                               reg = <0x180 0xc>;
+> +
+missing };
 
-Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
----
- Documentation/devicetree/bindings/arm/pmu.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/pmu.yaml b/Documentation/devicetree/bindings/arm/pmu.yaml
-index 693ef3f185a8..e17ac049e890 100644
---- a/Documentation/devicetree/bindings/arm/pmu.yaml
-+++ b/Documentation/devicetree/bindings/arm/pmu.yaml
-@@ -43,6 +43,7 @@ properties:
-           - arm,cortex-a75-pmu
-           - arm,cortex-a76-pmu
-           - arm,cortex-a77-pmu
-+          - arm,cortex-a78-pmu
-           - arm,neoverse-e1-pmu
-           - arm,neoverse-n1-pmu
-           - brcm,vulcan-pmu
--- 
-2.14.1
-
+>                         mipi_tx_calibration: calib@190 {
+>                                 reg = <0x190 0xc>;
+>                         };
+> --
+> 2.18.0
+>
