@@ -2,167 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28EE830D6E6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 11:00:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 959C930D6F2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 11:01:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233639AbhBCKAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 05:00:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53396 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233586AbhBCKAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 05:00:06 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29163C0613ED
-        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 01:59:23 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id n10so16959589pgl.10
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:59:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=b/R050Y1V5Ge6RgQndzOtSwrUqfobK01w5MWFMoCoZ8=;
-        b=LKVycDXu0rsyOBfww/WsyR7fnRDdngTyJ0nhdbiq7M5uOFBrBJ9KNZqfmMbVDQL9Sr
-         866hPIsso4aRMM+hkbxVJZ8o/4Pm/6Cti1gadMSOAGnnk6Sfsa463M6nR4eHS178Glbk
-         +35ZJ6gMP9bSlDGW7UVIPsEVWaTPtIlbZjjOxQYwUmy9moXwqZ6NCrqtiLl8g+q2uJ5h
-         /lsPqhs6EaVup+ACAU0KGc0FSwl8Cy5AfzBWiT6z828uJGegzpNX+iVieSc3/HSCEnMA
-         OBfXswsLbTp15zuTgO2pSQtwOgYHSjP/rNR+2SMDFpVHhv2/NGy2yLKK/H+PhpYoIe2I
-         uiHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=b/R050Y1V5Ge6RgQndzOtSwrUqfobK01w5MWFMoCoZ8=;
-        b=GxzuDQYf62gcA+Iy4Anvrt3+ZxaR1jaE27B3Tt+SGtNyQ62//JyPzoD3l/NF467mLg
-         c0iNFToTvt54VL4OVVSi6cw07w2DItSZjbOG2NYISe7aXiD0dtEYceMYjv6B5bAHmbMI
-         7L4lLBRr7JJo4fz2luYXtci761ZF0j4dhcvc7xV1eVMc24qIaWsghLCU9oG5D8f9jU8P
-         4F6gGlj6nsymUuPpCMd0N819IAvaEemtHVFkwYVzvPMA+ApCzUREQeNcXd30X3IIvOfL
-         51m7EaM1/woHLE3nSzdhG486NeIccmlF3F0ZWs/n94B85UI7lzGv+fvCV0rTatbVT/6m
-         rQCw==
-X-Gm-Message-State: AOAM530Adplgw9jbSbk62633uKpYmZ9sspN5ZZHuzq0m2MCQU5YpK0UH
-        6kuD7YY7rDd6dIx+c0dWjKCoEg==
-X-Google-Smtp-Source: ABdhPJzt+iVFoaJcjuLKZlhysrfskisg5TT52CJKFKEDsjf4a4huk6neQOw5FYOuABb5d83ch1bfsA==
-X-Received: by 2002:a63:db03:: with SMTP id e3mr2733397pgg.225.1612346362659;
-        Wed, 03 Feb 2021 01:59:22 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:6803:610b:1c6f:cebf:a887:dd42])
-        by smtp.gmail.com with ESMTPSA id p16sm1757182pfq.28.2021.02.03.01.59.19
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Feb 2021 01:59:22 -0800 (PST)
-From:   Amit Pundir <amit.pundir@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and panel bits
-Date:   Wed,  3 Feb 2021 15:29:16 +0530
-Message-Id: <1612346356-26445-1-git-send-email-amit.pundir@linaro.org>
-X-Mailer: git-send-email 2.7.4
+        id S233508AbhBCKBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 05:01:39 -0500
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:48965 "EHLO
+        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232911AbhBCKBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 05:01:36 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailout.west.internal (Postfix) with ESMTP id 720CD9EB;
+        Wed,  3 Feb 2021 05:00:23 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Wed, 03 Feb 2021 05:00:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=E4L+1XtSxc+gT8WxAB2fGZI5P2p
+        /OpnyQE0/QGStu7g=; b=hDWYE1Gq3os6DJAQF4sbe61SZ2UMAbwoPLS1E9Gz7Px
+        Wgz+oCxb0ykLKvvIXAt/mKKrql8usbXTYH8kReiHQeZFbMDlrdtzd4wLsU76KlT5
+        KYV/4V/hdsrmeL2eiQBZK1iDDE6wLUzEb9yjuUPXAyR5PcljllQt/JzBXVEHlTZS
+        iIw3HJLyiehdf6xW5KJwnW6SrKYE5If1gxXQz07JGO2L7tNwNKmoVOJ7x8p2KDUT
+        rq5henA4XBEK1v6xVXoOzuiBgCRAC0n78ySA8fKM8CC+9R2LY98ZmPCa1Lrs0djK
+        yU20o67UWSlJy8SaQZHzoCcuyC6oLftpiGbcCcR3NsQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=E4L+1X
+        tSxc+gT8WxAB2fGZI5P2p/OpnyQE0/QGStu7g=; b=g1R5qbUYkKD87+uoVhfBPH
+        TNmwuFe1ZNn7lpn9vBxE26c9I6534TjYk1wTm2T/Ij36DUo2Py8chm2Gyh0moY7R
+        xybSuRmSj1HayiVCwy/IcUqTuIUhNAnrP+H7k/wj+ku4xR7ndYLJZ9bvpObQkszc
+        9GHsX8HnG9rJmQsKAbLCBati0MFZr7zJ/fU0NtBHnhSWGZNGuAunGCayaKI26Ja3
+        e5sRrVRKTAV23PWX+ne1o24nTHNDeXRAWn9kY7pidIZiKhvPqBWzQ7JRYhTD4/54
+        prwd4vEa1wdu6+wsugIc+btvBxE1DktmkBUjf6hoElLSGWp9St9LmitetYIs6QsA
+        ==
+X-ME-Sender: <xms:NXQaYKMKgkbQ5O_UCSRiykJhUPEeGmZZtDIEJG81FMHl_g_Qf63rFA>
+    <xme:NXQaYPtJ9IXcQsK3C7O-8C0E2NtTQPKOCXbehmEm2toy3lXY5-tZY8zri2kUP7vub
+    cqPjvB2yG6veCc4Nks>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrgedvgddutdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:NXQaYDDikpNhnTNcqdE9oDYXZIctg-nesqDpEBjqPwIV-cIP5IYTJg>
+    <xmx:NXQaYGZDH3inVKZz14Uy5YdqCzpnA3hWvlXjZY8-VGjPaUwcoy8-kw>
+    <xmx:NXQaYOULct8uMzEodNwn3jGPHXwo33wXMmSI48VVwiWcVBUgPgyEkQ>
+    <xmx:N3QaYIJEjGW28rPjqQAYgX-KYHgm9CLWeBwGD_H6ltPP34nfhhab_Q>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 8F448240064;
+        Wed,  3 Feb 2021 05:00:21 -0500 (EST)
+Date:   Wed, 3 Feb 2021 11:00:19 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Sergey Matyukevich <geomatsi@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Subject: Re: [PATCH 1/1] ARM: dts: orange-pi-zero-plus2: use fixed mmc indexes
+Message-ID: <20210203100019.sdlb6rxfoxl45b2h@gilmour>
+References: <20210127054620.510912-1-geomatsi@gmail.com>
+ <20210203092912.s3wm3y5hfptwirqy@gilmour>
+ <CAGb2v66cskANPS7Zc_atCv9WYRq_aAEUi6Dd6LBrDPODOJ_ueQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="5r7f2yelcaek4r7g"
+Content-Disposition: inline
+In-Reply-To: <CAGb2v66cskANPS7Zc_atCv9WYRq_aAEUi6Dd6LBrDPODOJ_ueQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sumit Semwal <sumit.semwal@linaro.org>
 
-Enabling the Display panel for beryllium phone (Xiaomi
-Pocophone F1) requires DSI labibb regulators and panel
-dts nodes to be added. It is also required to keep some
-of the regulators as always-on.
+--5r7f2yelcaek4r7g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
----
- .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts      | 55 ++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
+On Wed, Feb 03, 2021 at 05:36:58PM +0800, Chen-Yu Tsai wrote:
+> On Wed, Feb 3, 2021 at 5:29 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > Hi,
+> >
+> > On Wed, Jan 27, 2021 at 08:46:20AM +0300, Sergey Matyukevich wrote:
+> > > Driver sunxi-mmc has recently been switched to asynchronous probe.
+> > > As a result, mmc indexes can be shuffled breaking existing setups
+> > > where UUIDs are not used for boot devices. Pin mmc indexes to keep
+> > > running the systems where fixed MMC or eMMC are specified,
+> > > e.g. root=3D/dev/mmcblk0p2.
+> > >
+> > > Signed-off-by: Sergey Matyukevich <geomatsi@gmail.com>
+> >
+> > I'm not sure, really.
+> >
+> > That would change the indices once again, and you shouldn't really rely
+> > on them anyway, there's never been any guarantee on the order of any
+> > device.
+>=20
+> I assume one reason people want stable MMC indices is for setting the
+> root device. This could be done with UUID or PARTUUID.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index cd15ae0347e8..e09effa555f1 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -160,6 +160,14 @@
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-+		vreg_l14a_1p88: ldo14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-boot-on;
-+			regulator-always-on;
-+		};
-+
- 		vreg_l17a_1p3: ldo17 {
- 			regulator-min-microvolt = <1304000>;
- 			regulator-max-microvolt = <1304000>;
-@@ -194,6 +202,7 @@
- 			regulator-min-microvolt = <1200000>;
- 			regulator-max-microvolt = <1200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-boot-on;
- 		};
- 	};
- };
-@@ -207,6 +216,44 @@
- 	firmware-name = "qcom/sdm845/cdsp.mdt";
- };
- 
-+&dsi0 {
-+	status = "okay";
-+	vdda-supply = <&vreg_l26a_1p2>;
-+
-+	ports {
-+		port@1 {
-+			endpoint {
-+				remote-endpoint = <&tianma_nt36672a_in_0>;
-+				data-lanes = <0 1 2 3>;
-+			};
-+		};
-+	};
-+
-+	panel@0 {
-+		compatible = "tianma,fhd-video";
-+		reg = <0>;
-+		vddi0-supply = <&vreg_l14a_1p88>;
-+		vddpos-supply = <&lab>;
-+		vddneg-supply = <&ibb>;
-+
-+		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port {
-+			tianma_nt36672a_in_0: endpoint {
-+				remote-endpoint = <&dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi0_phy {
-+	status = "okay";
-+	vdds-supply = <&vreg_l1a_0p875>;
-+};
-+
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
-@@ -274,6 +321,14 @@
- 
- };
- 
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_mdp {
-+	status = "okay";
-+};
-+
- &mss_pil {
- 	status = "okay";
- 	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
--- 
-2.7.4
+PARTLABEL is also an option
 
+> Another would be setting the LED trigger to some MMC device,
+> preferably in the DT so it kicks in when the LED device is created.
+> Though even that isn't guaranteed since the MMC could probe after the
+> LED. :(
+>=20
+> Currently I'm using some shell script to parse the root device then
+> get the device name and program that as an LED trigger through sysfs.
+
+Surely a udev / mdev rule can help there?
+
+> > And whatever the outcome of that discussion, it definitely shouldn't be
+> > done for a single board.
+>=20
+> I believe this should be done at the SoC level so we would have consistent
+> MMC indices across the board. However that seems to conflict with the ord=
+er
+> swap we currently have in U-boot to support eMMCs seamlessly.
+
+I'm not sure we can do it at the SoC level anyway: if only the emmc is
+enabled, we want it to be mmcblk0
+
+Maxime
+
+--5r7f2yelcaek4r7g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBp0MwAKCRDj7w1vZxhR
+xbYzAQC+kPJQLAHljopX1M1FmPdSALG1ao9tWSrmU72OkCniDAD/Sj3OpCouLCMb
+oKHAvxtXkZlg1+o2DMaS9gPVGS5e5Qs=
+=SF4k
+-----END PGP SIGNATURE-----
+
+--5r7f2yelcaek4r7g--
