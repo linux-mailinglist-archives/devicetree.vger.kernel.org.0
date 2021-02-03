@@ -2,94 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADFCE30D672
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF8F430D6A3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:49:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233424AbhBCJhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 04:37:53 -0500
-Received: from mail-vs1-f48.google.com ([209.85.217.48]:42990 "EHLO
-        mail-vs1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233421AbhBCJhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:37:52 -0500
-Received: by mail-vs1-f48.google.com with SMTP id v19so12742360vsf.9
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:37:37 -0800 (PST)
+        id S233446AbhBCJtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 04:49:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50936 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233450AbhBCJsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:48:37 -0500
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5798EC0613ED
+        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 01:47:57 -0800 (PST)
+Received: by mail-qt1-x832.google.com with SMTP id t14so17074366qto.8
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:47:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zk8/vp8JgNY876P4l17ZIlAqzB9Wo0hE+dFWOx8FtrM=;
+        b=SY8KB6ZL7hu4tsDAT4WtjBrjedqhdXnJ0WfEvfJfTY4yh0iSUYYRhinj5pTMbKBDV1
+         aUGstOUKrtsV6s3+W+PrL5fuzfzO0w1ItRwwVf+Gj24JPi7XOxzASbip5S8aN+T6CEwU
+         +NX0nAvHbl0Z+rP1h+42oA2pbBBS/9Oc57Pzw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=MvldrpsQXbyiISgT1/pCoqDQWmte0DSrfjVAlOcff4s=;
-        b=Tj0YYU1LOC/90de6SxKz4hmQBGz+Q9a6vSSOjpdb2qRIo3AMHrcQ4MbLmFDysPpTqj
-         PtIIaxKrNSVActt0q28Q7HQuFV4DQ2I1wJC8f8Pj2XDePmGJAUT9u8msbRKTUguFbNLA
-         KYlnmSwfvevupn6s7263+nsXy2nLANuE8alKi5Q2mMYMoQv6GlbRQcU8xPt+F2TqJQoW
-         EmEBlMG6bu9o9jXiIsEobJrdI4S2YpEkRSIjVQluROzFZnCpoyg6grZyQIPSlsWKThHl
-         Sfr1FpUewF/C4iPV8gDTwBCh9WdjIBDUu64zt3tU6F3G2+zKw2pi5pWzoUt/dq9Wgwz7
-         9biA==
-X-Gm-Message-State: AOAM531Rj8CanEU+0HZU7CJEJurXqkIfh8Qbwnuj3D3m90nydCYB1B32
-        rqvhlvSYmY1uD9F6/JGXmLaAIN5vJexBQg==
-X-Google-Smtp-Source: ABdhPJyHkf4G/HOPiBw7u8GY/L8CU/Du3TQM7Zaw4yOLIovIrw9BUhb13yTrwtYevgNd5qe8TjllCQ==
-X-Received: by 2002:a67:c992:: with SMTP id y18mr1087965vsk.7.1612345031965;
-        Wed, 03 Feb 2021 01:37:11 -0800 (PST)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id f85sm196852vke.2.2021.02.03.01.37.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Feb 2021 01:37:11 -0800 (PST)
-Received: by mail-vs1-f47.google.com with SMTP id b10so6663344vsa.8
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:37:10 -0800 (PST)
-X-Received: by 2002:a05:6102:243:: with SMTP id a3mr1190211vsq.17.1612345030630;
- Wed, 03 Feb 2021 01:37:10 -0800 (PST)
+        bh=zk8/vp8JgNY876P4l17ZIlAqzB9Wo0hE+dFWOx8FtrM=;
+        b=TrMfNbWoEJd1YV6PQXOR8Zfs+oje8P+Ksyo5+755LBTVR7Jd0yPjt3tyrJbfrcOf8n
+         xXQ2javzasglyL85vzKoUbqtAxs0MVqjHuBWDjs4VMEV9C5Rmoj2xp/UcsMBWjNyzybM
+         m4sWqBa8ookiioeVSwCbjGFPjf6VIL55BmZbWwOE0nsDfmXfNKJIlbwWwKdb7P9JpK08
+         Wop0+paD3/p3/vyMMSiAqYrVzE2PLmp+izx2XYw047U3UfGwpqr3LqNq3uIbb6CAN3o7
+         ReP0LpREqns5BddEWH12O8w247HxtXzjH1QYAgNm9fHOnXIGg6C/H6lAqAu7eiWQqtXE
+         M4DA==
+X-Gm-Message-State: AOAM530h+CEuOarlGZMY8JIry1CUk4kqR/OGkr732+qJz+wmFl9JR5aK
+        NT23Lb2G67CLVdq8xr/Ib/oulRaT+vBcQr0lrbqNEw==
+X-Google-Smtp-Source: ABdhPJybIlxUI+vQirOWdUqx6AbdqbGySWHXWBWrXBPSLHmsuhjkp60HqhVWg2mWEWZVLnKYEXPVHI64xIy6+ueWcow=
+X-Received: by 2002:ac8:5dc8:: with SMTP id e8mr1685704qtx.249.1612345676494;
+ Wed, 03 Feb 2021 01:47:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20210127054620.510912-1-geomatsi@gmail.com> <20210203092912.s3wm3y5hfptwirqy@gilmour>
-In-Reply-To: <20210203092912.s3wm3y5hfptwirqy@gilmour>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Wed, 3 Feb 2021 17:36:58 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66cskANPS7Zc_atCv9WYRq_aAEUi6Dd6LBrDPODOJ_ueQ@mail.gmail.com>
-Message-ID: <CAGb2v66cskANPS7Zc_atCv9WYRq_aAEUi6Dd6LBrDPODOJ_ueQ@mail.gmail.com>
-Subject: Re: [PATCH 1/1] ARM: dts: orange-pi-zero-plus2: use fixed mmc indexes
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Sergey Matyukevich <geomatsi@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
+References: <20210202205544.24812-1-robh@kernel.org>
+In-Reply-To: <20210202205544.24812-1-robh@kernel.org>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Wed, 3 Feb 2021 18:48:59 +0900
+Message-ID: <CAFr9PX=NmCev3c1jQ3VA89rwcTr3jpRQB-NKf+j+LOeOMHy1Og@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: Fix undocumented compatible strings in examples
+To:     Rob Herring <robh@kernel.org>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Daniel Palmer <daniel@thingy.jp>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Vincent Cheng <vincent.cheng.xh@renesas.com>,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-i2c@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-watchdog@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 3, 2021 at 5:29 PM Maxime Ripard <maxime@cerno.tech> wrote:
+Hi Rob,
+
+On Wed, 3 Feb 2021 at 05:55, Rob Herring <robh@kernel.org> wrote:
+> diff --git a/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+> index 1f2ef408bb43..fe1e1c63ffe3 100644
+> --- a/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+> @@ -46,7 +46,7 @@ examples:
+>      #include <dt-bindings/gpio/msc313-gpio.h>
 >
-> Hi,
->
-> On Wed, Jan 27, 2021 at 08:46:20AM +0300, Sergey Matyukevich wrote:
-> > Driver sunxi-mmc has recently been switched to asynchronous probe.
-> > As a result, mmc indexes can be shuffled breaking existing setups
-> > where UUIDs are not used for boot devices. Pin mmc indexes to keep
-> > running the systems where fixed MMC or eMMC are specified,
-> > e.g. root=/dev/mmcblk0p2.
-> >
-> > Signed-off-by: Sergey Matyukevich <geomatsi@gmail.com>
->
-> I'm not sure, really.
->
-> That would change the indices once again, and you shouldn't really rely
-> on them anyway, there's never been any guarantee on the order of any
-> device.
+>      gpio: gpio@207800 {
+> -      compatible = "mstar,msc313e-gpio";
+> +      compatible = "mstar,msc313-gpio";
+>        #gpio-cells = <2>;
+>        reg = <0x207800 0x200>;
+>        gpio-controller;
 
-I assume one reason people want stable MMC indices is for setting the
-root device. This could be done with UUID or PARTUUID. Another would
-be setting the LED trigger to some MMC device, preferably in the DT
-so it kicks in when the LED device is created. Though even that isn't
-guaranteed since the MMC could probe after the LED. :(
+This is correct. The compatible string dropped the e at some point and
+I must have missed the example.
+Thanks for the fix.
 
-Currently I'm using some shell script to parse the root device then
-get the device name and program that as an LED trigger through sysfs.
-
-> And whatever the outcome of that discussion, it definitely shouldn't be
-> done for a single board.
-
-I believe this should be done at the SoC level so we would have consistent
-MMC indices across the board. However that seems to conflict with the order
-swap we currently have in U-boot to support eMMCs seamlessly.
-
-Regards
-ChenYu
+Reviewed-by: Daniel Palmer <daniel@thingy.jp>
