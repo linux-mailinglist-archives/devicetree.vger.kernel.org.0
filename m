@@ -2,188 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8672930DBB6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 14:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3222A30DBCA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 14:51:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232065AbhBCNsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 08:48:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46088 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232209AbhBCNrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 08:47:32 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6DB4C0613D6
-        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 05:46:47 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id c127so5266156wmf.5
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 05:46:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mmTxJHAG7BsEX/Yjqdov/BgOcZ1IzcMMUHM38mX2sec=;
-        b=qB0oDq1RTsfWgvowujAcezLYRLxOtpcsrCVoX3XJi8oCmR/CberX0JRL59qfNpVuDV
-         aQSkX6rpmB98Hy1XqGiANoIn+BG9XfOu5Px7ajIEu1kUNhVdrcKLL6Kg18g8S6ZArOwc
-         r7pSkfSkuFN6LCuD9rTgxuz6JNeQenXMZk+WIAapYlGyh52pllzEx7jbOp6X9XEPbMew
-         /YXD9LUQtHP0jZseBMh2BbOuDXLReHO8+2wTAm1GD/PNPTmF70Y1xYiVALnzy9csnyNS
-         tvKgeMHHLO1G86DVj6oaJcBkFLmqRTA4yPahKOj3mqSJVWqJyyv3ciUkRpcO7rMRApdC
-         fl3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=mmTxJHAG7BsEX/Yjqdov/BgOcZ1IzcMMUHM38mX2sec=;
-        b=IPkrirqMby1IzwQkf69gEZWbogol8QDtK48zhaVBlmw1EchUOpBsTPLghwy0bom8/j
-         W7D1Cju6j8ocDUkTaAtI6FrsvZMjVYJ2oRUq6nCNfW6PLuJLYbQ+t+czPzmOuBkrp2TS
-         VIsXX+AW7UqmnWUK9VvPj64RC/e7pkQrfhANM3fboF9WOU8LpTplkKjmyZIauKC4Hz5E
-         rwHukgYrRTGhYO/HzlUMpnF6yECbj3V2Zd04kdWqlDJyw4whhYKlNb7rWjOlkUMM4hHw
-         2BZWlrCFXFyX+6RMbPR9WW/PE5I+Cx2Jd2ZyFi16MQqk/IYoEGU7M9xk4P3CdgPIUHCg
-         ehtQ==
-X-Gm-Message-State: AOAM532DTT4BUqq4TFITOv23yB9T4xxCvEYVqzCep2qMpJ7qo/pLaa5E
-        iO45XjDXVj3euVfztlSt00/GTQ==
-X-Google-Smtp-Source: ABdhPJx3KQn2TI1gBNF9KqD1+7cVwPChsoEAyCpczLY2Qqbxi76gjEbrSX8g4yz+pmbo9toW6rB51g==
-X-Received: by 2002:a1c:cc14:: with SMTP id h20mr2911595wmb.180.1612360006519;
-        Wed, 03 Feb 2021 05:46:46 -0800 (PST)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id f7sm3513534wre.78.2021.02.03.05.46.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 03 Feb 2021 05:46:45 -0800 (PST)
-Sender: Michal Simek <monstr@monstr.eu>
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-spi@vger.kernel.org
-Subject: [PATCH] dt-bindings: spi: zynq: Convert Zynq QSPI binding to yaml
-Date:   Wed,  3 Feb 2021 14:46:44 +0100
-Message-Id: <22ca0a9a15ccdf4b520baacc5ed837f6d3a3f781.1612360002.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.30.0
+        id S231774AbhBCNuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 08:50:44 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:38482 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230123AbhBCNun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 08:50:43 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 113Dnfnb065738;
+        Wed, 3 Feb 2021 07:49:41 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1612360181;
+        bh=j6icRAuTZgy1AtJAEQIOxn7n/y4lnVdH9Vjvn+YesGI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=mua55PK9ZobR4t0zc/U1M/HaDWdHiB+Qb9V4lUK27I2nYvf8s8B7mIFVt3I3r976i
+         4PVA1oDLx3Qu87uOKefLoBg7AFYwspsoJA0dxpmlp098Ie96aoFI6Nq4Nrmv0aD5OJ
+         afs2IlIHTCIGqnoL6GOFFwuL8FSc6MGnzS4LvidM=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 113DnfZN107665
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 3 Feb 2021 07:49:41 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 3 Feb
+ 2021 07:49:40 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 3 Feb 2021 07:49:41 -0600
+Received: from [10.250.39.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 113DneOw033189;
+        Wed, 3 Feb 2021 07:49:40 -0600
+Subject: Re: [PATCH 2/2] leds: lp50xx: remove unused regulator
+To:     Pavel Machek <pavel@ucw.cz>,
+        Sven Schuchmann <schuchmann@schleissheimer.de>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210203083408.2534-1-schuchmann@schleissheimer.de>
+ <20210203090249.GA14154@amd>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <2e9dff78-7fde-404d-6fad-6aeedf1145d1@ti.com>
+Date:   Wed, 3 Feb 2021 07:49:35 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210203090249.GA14154@amd>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert spi-zynq-qspi.txt to yaml.
+Pavel
 
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
----
+On 2/3/21 3:02 AM, Pavel Machek wrote:
+> On Wed 2021-02-03 08:34:08, Sven Schuchmann wrote:
+>> The regulator for vled-supply is unused in the driver.
+>> It is just assigned from DT and disabled in lp50xx_remove.
+>> So the code can be removed from the driver.
+> Dan, what is going on here? Do we need to also enable the regulator,
+> or is the removal correct thing to do?
+>
+I think it would be better to do an enable as opposed to removing the code.
 
- .../devicetree/bindings/spi/spi-zynq-qspi.txt | 25 --------
- .../bindings/spi/xlnx,zynq-qspi.yaml          | 59 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 3 files changed, 60 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
- create mode 100644 Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+This would be needed especially in applications that have to meet strict 
+power management requirements.
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt b/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
-deleted file mode 100644
-index 16b734ad3102..000000000000
---- a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Xilinx Zynq QSPI controller Device Tree Bindings
---------------------------------------------------------------------
--
--Required properties:
--- compatible		: Should be "xlnx,zynq-qspi-1.0".
--- reg			: Physical base address and size of QSPI registers map.
--- interrupts		: Property with a value describing the interrupt
--			  number.
--- clock-names		: List of input clock names - "ref_clk", "pclk"
--			  (See clock bindings for details).
--- clocks		: Clock phandles (see clock bindings for details).
--
--Optional properties:
--- num-cs		: Number of chip selects used.
--
--Example:
--	qspi: spi@e000d000 {
--		compatible = "xlnx,zynq-qspi-1.0";
--		reg = <0xe000d000 0x1000>;
--		interrupt-parent = <&intc>;
--		interrupts = <0 19 4>;
--		clock-names = "ref_clk", "pclk";
--		clocks = <&clkc 10>, <&clkc 43>;
--		num-cs = <1>;
--	};
-diff --git a/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml b/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
-new file mode 100644
-index 000000000000..03269a7433b3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/xlnx,zynq-qspi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Zynq QSPI controller
-+
-+description:
-+  The Xilinx Zynq QSPI controller is used to access multi-bit serial flash
-+  memory devices.
-+
-+allOf:
-+  - $ref: "spi-controller.yaml#"
-+
-+maintainers:
-+  - Michal Simek <michal.simek@xilinx.com>
-+
-+# Everything else is described in the common file
-+properties:
-+  compatible:
-+    const: xlnx,zynq-qspi-1.0
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: reference clock
-+      - description: peripheral clock
-+
-+  clock-names:
-+    items:
-+      - const: ref_clk
-+      - const: pclk
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    spi@e000d000 {
-+        compatible = "xlnx,zynq-qspi-1.0";
-+        reg = <0xe000d000 0x1000>;
-+        interrupt-parent = <&intc>;
-+        interrupts = <0 19 4>;
-+        clock-names = "ref_clk", "pclk";
-+        clocks = <&clkc 10>, <&clkc 43>;
-+        num-cs = <1>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 546aa66428c9..e494b061dcd1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2766,6 +2766,7 @@ W:	http://wiki.xilinx.com
- T:	git https://github.com/Xilinx/linux-xlnx.git
- F:	Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
- F:	Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
-+F:	Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
- F:	arch/arm/mach-zynq/
- F:	drivers/block/xsysace.c
- F:	drivers/clocksource/timer-cadence-ttc.c
--- 
-2.30.0
+Users may want to disable or enable the regulator during suspend/resume. 
+Otherwise it would be considered always-on and the regulator does not 
+need to be populated.
+
+Dan
 
