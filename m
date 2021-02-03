@@ -2,86 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B690E30E4AA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 22:09:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B2FC30E4AB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 22:09:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231962AbhBCVJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 16:09:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35882 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231921AbhBCVJY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 16:09:24 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 53E2D64F43;
-        Wed,  3 Feb 2021 21:08:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612386523;
-        bh=OWUM42k3R9oUeyVrDRlJgBtJLkDRDpWuISrG00E4kDw=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=g5jNmtUPxn6a5xxZL6XHEhkNtXM7X9FQCKyQPTWnLFPz8nxTqz9BKzwFCbbMeqXND
-         XsVC84+4dHnKJ7SkkTcXsxVgSaqWjb0Qu+JlSfMp/eSBUDcp24n3bniNlon/6qjxJb
-         IeqVvyu/SicDQaRiREYQlQuChi+0eclx589ZIncHrsHUBUITaUxr2gWZpTC5U9k+TZ
-         KjoGBOh4CvtHqtizJBpOaqbElv6xOmPc1Xkm4UoCvzQwyrqwY/wZmnjjn4KYL7qD2M
-         uR4XkxX4gEO3e+VUEOOV7JK8/Cyg/udFt/2zY03KqfEhIpAqVorJgExsqWWRpMgcNq
-         RZCutVxpVKQJg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Timon Baetz <timon.baetz@protonmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-In-Reply-To: <20210130172747.2022977-1-timon.baetz@protonmail.com>
-References: <20210130172747.2022977-1-timon.baetz@protonmail.com>
-Subject: Re: (subset) [PATCH 0/3] charger-supply for max8997_charger
-Message-Id: <161238647515.34533.13734452545880023914.b4-ty@kernel.org>
-Date:   Wed, 03 Feb 2021 21:07:55 +0000
+        id S230220AbhBCVJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 16:09:18 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:35467 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231400AbhBCVJR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 16:09:17 -0500
+Received: by mail-ot1-f42.google.com with SMTP id 36so1288967otp.2;
+        Wed, 03 Feb 2021 13:09:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=fvoHcHkCk93ZEer9cwtNPDbnksZwvyPINiCKRNMusH0=;
+        b=czH5QdVayf1H4463CCE3ubKr837udMyNswOADH6Uc3jKmtnczL0cnuiK1sg0e3kt3r
+         KKnJ3pR4wOkhDEnre3LqjFaKMi6VLV6b+nPxOAFAlBpsBr2MJ2+h1PX9oKOMIxOtdC3i
+         tn8AypxNp/fB1bd6ojRhW2FV6kiDi7woyvldkqNwQbB3BLiYB9WcCvtd9506YSP1vB9Z
+         adnxydeIfrhMDC6UOAd5aSeATa1op4LWzcwk+p5e7gBuVDBcV3zxupTJFg/1lT8FJb3j
+         XouKlaM/4v/zIFyg3fHsNT4ID+Xa3Hvii+1N8EsLh8T1MT9/L5EMrBs2RSjP4VaXQaMQ
+         I8Lg==
+X-Gm-Message-State: AOAM533Ki86uQySdUZNQKQ9BGsrUBq1C9LFNF/vqGS/qzE2dTjd2nzYu
+        rzVDmE6RYNKnCMlzXYeKcXtXat6eXw==
+X-Google-Smtp-Source: ABdhPJx5OhbJx5YGnt91NiV22Delq1k29Az9wFuKJQ2EtGzv+VDJvA6FK5ECLdI9pD0A8GVoacvMhQ==
+X-Received: by 2002:a9d:73c9:: with SMTP id m9mr1770312otk.75.1612386516510;
+        Wed, 03 Feb 2021 13:08:36 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g14sm653139oon.23.2021.02.03.13.08.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Feb 2021 13:08:35 -0800 (PST)
+Received: (nullmailer pid 2449721 invoked by uid 1000);
+        Wed, 03 Feb 2021 21:08:34 -0000
+Date:   Wed, 3 Feb 2021 15:08:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: usb: generic-ohci: Add missing
+ compatible strings
+Message-ID: <20210203210834.GD3706951@robh.at.kernel.org>
+References: <20210202175439.3904060-1-robh@kernel.org>
+ <20210202175439.3904060-2-robh@kernel.org>
+ <YBpn4zqGk6mV0aII@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YBpn4zqGk6mV0aII@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 30 Jan 2021 17:28:49 +0000, Timon Baetz wrote:
-> Based on the discussion from [0] add an optional DT property to retrieve
-> the regulator used for charging control in the max8997_charger driver.
+On Wed, Feb 03, 2021 at 10:07:47AM +0100, Greg Kroah-Hartman wrote:
+> On Tue, Feb 02, 2021 at 11:54:39AM -0600, Rob Herring wrote:
+> > The generic OHCI binding needs to document all the specific compatible
+> > strings so we can track undocumented compatible strings. Add all the
+> > compatible strings from in tree users.
+> > 
+> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Cc: linux-usb@vger.kernel.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../devicetree/bindings/usb/generic-ohci.yaml | 34 +++++++++++++++++--
+> >  1 file changed, 32 insertions(+), 2 deletions(-)
 > 
-> [0] https://lore.kernel.org/lkml/20210118124505.GG4455@sirena.org.uk/
-> 
-> 
-> Timon Baetz (3):
->   regulator: dt-bindings: Document charger-supply for max8997
->   ARM: dts: exynos: Add charger supply for I9100
->   power: supply: max8997_charger: Switch to new binding
-> 
-> [...]
+> Both look fine to me, do you want me to take this through my trees or
+> will you take them?
 
-Applied to
+You'd better take them. I don't think they conflict with any of the 
+other USB binding changes, but there have been a few this cycle IIRC.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/3] regulator: dt-bindings: Document charger-supply for max8997
-      commit: 41a8a027f4d3f81d83b8942ef29f84223ca35ffc
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Rob
