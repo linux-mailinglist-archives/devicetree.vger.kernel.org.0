@@ -2,117 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 294BA30D87D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 12:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1533230D895
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 12:27:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233959AbhBCLXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 06:23:30 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34424 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234198AbhBCLXI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 06:23:08 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B73E164DE8;
-        Wed,  3 Feb 2021 11:22:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612351346;
-        bh=wGQw7gT3qnKCIXEO+rxqRvVbPbNtV92xRV2Pv+Ej3+o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MrJAtf5mnK1C4Q4ZyKjla2kAdXf633/lnbrk7VmF4rTw8ELv9cY7AI3lYFHz5IvTs
-         gW1JO8UMu0KWxpiE11pDElcoFi2aScKR/6EtEhTveStAUFXYmhZ/2VkMZcgd1/0YfE
-         ni15CbrfkH0uB9TmCzEv5FfL+g5ymnw5CEbyZXJD4ppEFij+lOdgpYmtLPj5YnxQt2
-         S89UXBGzveoZJe7weH0eyO7487Q9x29lPyzQEfs7eq9AcnO8mCcpuFXjNyVKHYr8yx
-         p+BAk8A9gP2L8aa7Eyu5laiQUOjkYC5JRKTNmmv8FsKcsF1NgygkcixHo6F7gFSZQG
-         dH3CVM+A3lgnQ==
-Date:   Wed, 3 Feb 2021 16:52:22 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Vincent Cheng <vincent.cheng.xh@renesas.com>,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-watchdog@vger.kernel.org,
-        Eric Anholt <eric@anholt.net>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: Fix errors in 'if' schemas
-Message-ID: <20210203112222.GO2771@vkoul-mobl>
-References: <20210202205544.24812-1-robh@kernel.org>
- <20210202205544.24812-3-robh@kernel.org>
+        id S234142AbhBCLZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 06:25:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43304 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234260AbhBCLYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 06:24:23 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BAE4C061573
+        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 03:23:43 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id m12so4190029pjs.4
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 03:23:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RnlKEoqL6Uqu9RS0As6U8cIWvU/IELkyhrvevpKdgbw=;
+        b=UCJf7UQE4VrPAHUTxOeE0IsNKU7wvCbx6VNRvt7n1unumgU7/r9krB7H9HQ61DJiq+
+         rnu5L10YfSJBjuiZ3N1FUsO3PkE9uYMpjMw/S29sRWVd3poQWAQv55ENSei9Qw6cz9fa
+         72ShS/6wQajSwGt31iYAFb57X45dXvNZrdCqQl57Wndd8w67cVNN2SVhJaDdiD/d0UQ1
+         oyZpzeGoACyQVnDntN6hG2HHs6omTr2dyLZRvner+OzUl66HeiZHqQbK/nXFMJy8KwAr
+         /jEwW4qxdj5DTG+jZPsN7itsc07ZVORplhBsVcObF66SU/pBhWlN1zDU6BCe7jzAgOMA
+         OKEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RnlKEoqL6Uqu9RS0As6U8cIWvU/IELkyhrvevpKdgbw=;
+        b=Hjec8SKMVhgZqId8bmu+klI47d3WU2UYtkeL/tARvWCRbZvIpQStRi9L9DinFmEpse
+         Folt4D6qdXARX3GRhapsan6pf+d7WZKGpmcXa8blWstfLmFsgXhO/KbWyRdCw3sy1ARe
+         pGbXxnYBY4009DPH78oBwQA6CbC0fga9hvV6uI+Gqso98ChhkAmdAniYoypRzZnQZ83W
+         nxatQZmdGcJTW5/HtdVWfmVG+OPOcsemjbPy6k5Oe4GNJNpcKW5r4jXgT1KsvQpIEqYa
+         zYbFptXlPx2VGMDuzEiBmDm5lXx2MsTu5b2aHYbmD8P0uoH/4ua3KPxqj9TXCX3wMtEW
+         HoXA==
+X-Gm-Message-State: AOAM53076TfR5EKa4bpVp9GCUEsRY1I1iw52An9l4kWaVpbqOpp+Rsxj
+        Tr0HwbVKy58fwEI3xwUyZrDu1s2EnahW2b89AJpKkg==
+X-Google-Smtp-Source: ABdhPJx4nQQVdUgmUlxyoMXLNsuDGqeQE8pvJ48nGJ398xMHkV8QhPQ2xHWO0IiNyMsiTwLSd+9zeJn/fk9UacodvKA=
+X-Received: by 2002:a17:90a:9414:: with SMTP id r20mr2615124pjo.222.1612351422042;
+ Wed, 03 Feb 2021 03:23:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210202205544.24812-3-robh@kernel.org>
+References: <20210127144930.2158242-1-robert.foss@linaro.org>
+ <20210127144930.2158242-16-robert.foss@linaro.org> <1612027420.831924.1419424.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1612027420.831924.1419424.nullmailer@robh.at.kernel.org>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Wed, 3 Feb 2021 12:23:30 +0100
+Message-ID: <CAG3jFytNc39y4XR4j-b8mrxjUQPmoejJA6NZfszib2ZO3V_CFA@mail.gmail.com>
+Subject: Re: [PATCH v3 15/22] dt-bindings: media: camss: Add qcom,
+ sdm660-camss binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     michael@walle.cc, leoyang.li@nxp.com,
+        linux-media <linux-media@vger.kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Anson.Huang@nxp.com, Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Jonathan Marek <jonathan@marek.ca>, shawnguo@kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        agx@sigxcpu.org, Tomasz Figa <tfiga@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        angelogioacchino.delregno@somainline.org, max.oss.09@gmail.com,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-02-21, 14:55, Rob Herring wrote:
-> Properties in if/then schemas weren't getting checked by the meta-schemas.
-> Enabling meta-schema checks finds several errors.
-> 
-> The use of an 'items' schema (as opposed to the list form) is wrong in
-> some cases as it applies to all entries. 'contains' is the correct schema
-> to use in the case of multiple entries.
-> 
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Eric Anholt <eric@anholt.net>
-> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Ray Jui <rjui@broadcom.com>
-> Cc: Scott Branden <sbranden@broadcom.com>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: linux-crypto@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-leds@vger.kernel.org
-> Cc: linux-mmc@vger.kernel.org
-> Cc: linux-gpio@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/crypto/allwinner,sun8i-ce.yaml   | 3 +--
->  .../devicetree/bindings/display/brcm,bcm2835-hvs.yaml    | 2 +-
->  Documentation/devicetree/bindings/leds/ti,tca6507.yaml   | 1 +
->  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml  | 2 +-
->  Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml | 3 +--
->  .../devicetree/bindings/phy/renesas,usb2-phy.yaml        | 5 ++---
+On Sat, 30 Jan 2021 at 18:23, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, 27 Jan 2021 15:49:23 +0100, Robert Foss wrote:
+> > Add bindings for qcom,sdm660-camss in order to support the camera
+> > subsystem on SDM630/660 and SDA variants.
+> >
+> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> > ---
+> >
+> > Changes since v2
+> >  - Rob: Add new line at end of file
+> >  - Rob: Remove redundant descriptions
+> >  - Rob: Add power domain description
+> >  - Rob: Make clock-lanes a constant
+> >  - Rob: Rework to conform to new port schema
+> >  - Add max & minItems to data-lanes
+> >  - Remove ports requirement - endpoint & reg
+> >  - Added Angelo as binding maintainer
+> >  - Removed Todor as binding maintainer
+> >
+> >
+> >  .../bindings/media/qcom,sdm660-camss.yaml     | 398 ++++++++++++++++++
+> >  1 file changed, 398 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
+> >
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/media/qcom,sdm660-camss.example.dts:21:18: fatal error: dt-bindings/clock/qcom,mmcc-sdm660.h: No such file or directory
+>    21 |         #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/media/qcom,sdm660-camss.example.dt.yaml] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1370: dt_binding_check] Error 2
 
-For phy:
+This is expected and mentioned in the cover letter due to a dependency
+on an as of yet unmerged mmcc-sdm660 series.
 
-Acked-By: Vinod Koul <vkoul@kernel.org>
-
--- 
-~Vinod
+>
+> See https://patchwork.ozlabs.org/patch/1432255
+>
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
+>
