@@ -2,133 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B1430E526
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 22:50:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8892A30E55A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 22:59:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231504AbhBCVt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 16:49:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37446 "EHLO
+        id S232443AbhBCV6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 16:58:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231421AbhBCVt4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 16:49:56 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33932C0613D6;
-        Wed,  3 Feb 2021 13:49:16 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id f19so877751ljn.5;
-        Wed, 03 Feb 2021 13:49:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=zjj/jkP+xn619jANr2B4+D1sCFTFtB9T3NGWPn2LjBc=;
-        b=hFzLCgIudkVuHaU+AsBo3PCx753kPHuscLyt9remO4q2A6GJjyyZSxGR7wZ/bN3HfG
-         tw6SbrBWZ7Aaczs8FEX8jlsbng7V6K7o09LBRMJwq2YtoMjoO+Ij3v3T8C9JGyiReI/u
-         v1+fi2TmR9IlQQWo9uQGbC6PQi/Q7f4jyRuKtMBTF6+Sy8i03RhGtHzuuL3uN2n1Khlq
-         1Kg7Ox+VB6d8DUr83FNR5vTWbe8IBW5j6EYVtnfCzyurm7yD8JV5/A6NkEyUWXYjpsMD
-         Q/B+GlHZI6je3xniqvD7HDJvUldUDLj7xWB6iPQrbprf4wuPeh7CHWpMnBrK8HiCUoG+
-         OF5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=zjj/jkP+xn619jANr2B4+D1sCFTFtB9T3NGWPn2LjBc=;
-        b=WFgUtceCfuoGUeViJh+1wZ96YZIj6tOqerrCrv7EYeR6xEVjyr/FzkZ7AiU0ybxMMG
-         XchvVAwgzRLSMWExiKY+QVVdAq4stik7vS1Gi5FRAAD+Pvaqvsr4gIuxSvDLlcfNoPab
-         ogHaHUjOdBY6AOLdfqEUmeCZbCoMS0aZjbLvVVnsQ4ktEDZNeKm0xD0CxeC60RQ9x0zx
-         Bmb9uWX/V7ixuDe1tAQSljk/c4emNW0KnQLdYJpUiB2auwoFyAy31o6DigHcap6fCxdp
-         +PtkR2exqnueSg20zKqBWTvbE7fr/fZT2123ovzss/YdsmG04MqlWuAzTnZa5gG+trFV
-         QK5g==
-X-Gm-Message-State: AOAM531byKoYbBP52dQEw3sZMfGQ03xSRMo0QK3J6YRhhml580JiseiR
-        IBO19DvAnU5T6rcdK7ZPcQ==
-X-Google-Smtp-Source: ABdhPJzGGI6vNDACNDp6o9+k4gy+tF6KiiLm+DYFUDjDZrRdL26L4+TuIS7m591rm6+zH9/Mk9H5yw==
-X-Received: by 2002:a2e:311:: with SMTP id 17mr2987134ljd.14.1612388954719;
-        Wed, 03 Feb 2021 13:49:14 -0800 (PST)
-Received: from localhost.localdomain ([212.180.222.158])
-        by smtp.gmail.com with ESMTPSA id c7sm381852ljd.95.2021.02.03.13.49.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Feb 2021 13:49:14 -0800 (PST)
-From:   Marek Czerski <ma.czerski@gmail.com>
-To:     sre@kernel.org
-Cc:     robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Marek Czerski <ma.czerski@gmail.com>
-Subject: [PATCH v2] power: reset: ltc2952: make trigger delay configurable
-Date:   Wed,  3 Feb 2021 22:49:00 +0100
-Message-Id: <20210203214900.71677-1-ma.czerski@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232249AbhBCV6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 16:58:49 -0500
+Received: from viti.kaiser.cx (viti.kaiser.cx [IPv6:2a01:238:43fe:e600:cd0c:bd4a:7a3:8e9f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBBB9C061573;
+        Wed,  3 Feb 2021 13:58:08 -0800 (PST)
+Received: from martin by viti.kaiser.cx with local (Exim 4.89)
+        (envelope-from <martin@viti.kaiser.cx>)
+        id 1l7Q9t-0000kb-Rx; Wed, 03 Feb 2021 22:57:57 +0100
+Date:   Wed, 3 Feb 2021 22:57:57 +0100
+From:   Martin Kaiser <martin@kaiser.cx>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>
+Subject: Re: [PATCH v2 0/3] Make fw_devlink=on more forgiving
+Message-ID: <20210203215757.pnfvfny2x67phyd7@viti.kaiser.cx>
+References: <20210202043345.3778765-1-saravanak@google.com>
+ <20210202212231.g5tj3f7tv74gagm6@viti.kaiser.cx>
+ <CAGETcx_cS_Y-1Bw3tNhZRckEQO=yB8UDzNRr+Khs_X2ym7tnwA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAGETcx_cS_Y-1Bw3tNhZRckEQO=yB8UDzNRr+Khs_X2ym7tnwA@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+Sender: Martin Kaiser <martin@viti.kaiser.cx>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make trigger delay configurable through device tree with
-trigger-delay-ms property.
+Thus wrote Saravana Kannan (saravanak@google.com):
 
-Trigger delay is the time to wait before starting shutdown
-sequence after trigger line assertion.
-Trigger delay must take into account the OFFT time configured
-with the capacitor connected to OFFT pin of the LTC2952 chip.
-Basically, the higher the capacitance connected to OFFT pin,
-the larger trigger delay must be.
+> > With modules disabled, the kernel boots but probe fails for some
+> > (non-mainline) drivers in my tree.
 
-Signed-off-by: Marek Czerski <ma.czerski@gmail.com>
----
- .../devicetree/bindings/power/reset/ltc2952-poweroff.txt  | 4 ++++
- drivers/power/reset/ltc2952-poweroff.c                    | 8 ++++++++
- 2 files changed, 12 insertions(+)
+> Thanks Martin!
 
-diff --git a/Documentation/devicetree/bindings/power/reset/ltc2952-poweroff.txt b/Documentation/devicetree/bindings/power/reset/ltc2952-poweroff.txt
-index cd2d7f58a9d7..38e54b3fd9f3 100644
---- a/Documentation/devicetree/bindings/power/reset/ltc2952-poweroff.txt
-+++ b/Documentation/devicetree/bindings/power/reset/ltc2952-poweroff.txt
-@@ -17,6 +17,9 @@ Optional properties:
- 			chip's trigger line. If this property is not set, the
- 			trigger function is ignored and the chip is kept alive
- 			until an explicit kill signal is received
-+- trigger-delay-ms	The number of milliseconds to wait after trigger line
-+			assertion before executing shut down procedure.
-+			The default is 2500ms.
- 
- Example:
- 
-@@ -24,6 +27,7 @@ ltc2952 {
- 	compatible = "lltc,ltc2952";
- 
- 	trigger-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
-+	trigger-delay-ms = <2000>;
- 	watchdog-gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
- 	kill-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
- };
-diff --git a/drivers/power/reset/ltc2952-poweroff.c b/drivers/power/reset/ltc2952-poweroff.c
-index 318927938b05..d1495af30081 100644
---- a/drivers/power/reset/ltc2952-poweroff.c
-+++ b/drivers/power/reset/ltc2952-poweroff.c
-@@ -55,6 +55,7 @@
- #include <linux/mod_devicetable.h>
- #include <linux/gpio/consumer.h>
- #include <linux/reboot.h>
-+#include <linux/property.h>
- 
- struct ltc2952_poweroff {
- 	struct hrtimer timer_trigger;
-@@ -172,10 +173,17 @@ static void ltc2952_poweroff_default(struct ltc2952_poweroff *data)
- static int ltc2952_poweroff_init(struct platform_device *pdev)
- {
- 	int ret;
-+	u32 trigger_delay_ms;
- 	struct ltc2952_poweroff *data = platform_get_drvdata(pdev);
- 
- 	ltc2952_poweroff_default(data);
- 
-+	if (!device_property_read_u32(&pdev->dev, "trigger-delay-ms",
-+				      &trigger_delay_ms)) {
-+		data->trigger_delay = ktime_set(trigger_delay_ms / MSEC_PER_SEC,
-+			(trigger_delay_ms % MSEC_PER_SEC) * NSEC_PER_MSEC);
-+	}
-+
- 	data->gpio_watchdog = devm_gpiod_get(&pdev->dev, "watchdog",
- 					     GPIOD_OUT_LOW);
- 	if (IS_ERR(data->gpio_watchdog)) {
--- 
-2.25.1
+> > All of those drivers have a gpio in
+> > their device-tree node, such as
 
+> > my_driver {
+> >    gpio_test1 = <&gpio1 0 0>;
+> >    ...
+> > };
+
+> > with gpio1 from arch/arm/boot/dts/imx25.dtsi.
+
+> > The probe function calls
+
+> > of_get_named_gpio(np, "gpio_test1", 0);
+
+> > to get the gpio. This fails with -EINVAL.
+
+> And you didn't see this issue with the fsl,avic patch?
+
+No. With the fsl,avic patch in place, all drivers are probed correctly.
+
+> The property you are using is not a standard GPIO binding (-gpios,
+> gpio, gpios) and I'm not surprised it's not working.
+
+I know that I should be using the gpiod API as suggested by Geert.
+
+BTW is this definition ok? Could its driver be converted to using the
+gpiod api?
+
+rtc: rtc {
+   compatible = "moxa,moxart-rtc";
+   gpio-rtc-sclk = <&gpio 5 0>;
+...
+
+
+> The gpio1 is probably getting probe deferred and ends up running after
+> "my_driver".
+
+I added a debug print in the probe function. It turned out that the
+driver for gpio1 is probed for the first time after my_driver.
+
+I removed the interrupt-controller property for gpio2 for testing. gpio2
+was then probed much earlier.
+
+Best regards,
+Martin
