@@ -2,86 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C42A130E0F8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 18:27:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E06430E156
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 18:46:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232456AbhBCR0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 12:26:42 -0500
-Received: from jabberwock.ucw.cz ([46.255.230.98]:56682 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232415AbhBCR0F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 12:26:05 -0500
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 7D6E11C0B9C; Wed,  3 Feb 2021 18:25:08 +0100 (CET)
-Date:   Wed, 3 Feb 2021 18:25:08 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Sven Schuchmann <schuchmann@schleissheimer.de>
-Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1] leds: lp50xx: add setting of default intensity from DT
-Message-ID: <20210203172508.GC23019@duo.ucw.cz>
-References: <20210119105312.2636-1-schuchmann@schleissheimer.de>
- <20210203142940.GB12369@duo.ucw.cz>
- <DB8P190MB06348FC85033135BFC3EF5C4D9B49@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
- <20210203163555.GA23019@duo.ucw.cz>
- <DB8P190MB0634880713B530F51F95CEE0D9B49@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
+        id S231436AbhBCRp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 12:45:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41146 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229731AbhBCRp1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 12:45:27 -0500
+Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1231::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA265C0613D6;
+        Wed,  3 Feb 2021 09:44:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description;
+        bh=9KPYi1ZkyDHL7NUtRviqQ04hmYB82hAl0iGOYO+e6lE=; b=n2V4w7nv98vN71CUuyoViod1A8
+        VZsyXrEwuYNtnxrBrW71oyF0c+dby6fBxgSSKt8o398+DZFnniydLWvY8vPctZubrpEWm7xrVeBrP
+        Gr2bFKiZdVQY4N+x6pt4vgVBNMnBeGCf+RcbZNB7BfESglpqbiHXFXoDmwJC5WnUsohcHgCoRZ+nq
+        FY1+CyDAsx+O+CxA5c8fx5AJEIau7MEq3d7g+O/5pJS7D7crdGe8LJsephVEA2o8it+p7y9n+QqOG
+        /9yyAXCAPnwGaui1UGWIA9zyJXE9v0WTNteA16Df3Q1nT9feVz3Wv3xbBv2O3CmHHTUcOmDWuqaHS
+        3DH+fk0w==;
+Received: from [2601:1c0:6280:3f0::aec2]
+        by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1l7MCh-0001xN-Gk; Wed, 03 Feb 2021 17:44:35 +0000
+Subject: Re: [PATCH v3 2/2] iommu: add Unisoc iommu basic driver
+To:     Chunyan Zhang <zhang.lyra@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+References: <20210203090727.789939-1-zhang.lyra@gmail.com>
+ <20210203090727.789939-3-zhang.lyra@gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <eb55a1de-2816-9029-b642-b3067e311417@infradead.org>
+Date:   Wed, 3 Feb 2021 09:44:30 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="nmemrqcdn5VTmUEE"
-Content-Disposition: inline
-In-Reply-To: <DB8P190MB0634880713B530F51F95CEE0D9B49@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210203090727.789939-3-zhang.lyra@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2/3/21 1:07 AM, Chunyan Zhang wrote:
+> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
+> index 192ef8f61310..99e7712f3903 100644
+> --- a/drivers/iommu/Kconfig
+> +++ b/drivers/iommu/Kconfig
+> @@ -408,4 +408,16 @@ config VIRTIO_IOMMU
+>  
+>  	  Say Y here if you intend to run this kernel as a guest.
+>  
+> +config SPRD_IOMMU
+> +	tristate "Unisoc IOMMU Support"
+> +	depends on ARCH_SPRD || COMPILE_TEST
+> +	select IOMMU_API
+> +	help
+> +	  Support for IOMMU on Unisoc's SoCs, this iommu can be used by
 
---nmemrqcdn5VTmUEE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+	s/iommu/IOMMU/ please
 
-Hi!
+> +	  Unisoc's multimedia devices, such as display, Image codec(jpeg)
+> +	  and a few signal processors, including VSP(video), GSP(graphic),
+> +	  ISP(image), and CPP(camera pixel processor), etc.
+> +
+> +	  Say Y here if you want to use the multimedia devices listed above.
 
-> > Yes, sounds reasonable. Could we get default intensity of 100% on all
-> > channels if nothing else is specified?
-> >=20
-> > Or maybe simply "if intensity is not specified, start with 100%, and
-> > use explicit =3D0 if other color is expected".
-> >=20
-> Mh, if someone is already using the led driver and updates to a newer ker=
-nel=20
-> we would then turn on all leds per default to the maximum intensity durin=
-g boot=20
-> until they are set the way they should be from userspace. I don't know if=
- this
-> is what we want? If yes, sure, we could set them to maximum per
-> default.
 
-Not really. If they don't have trigger configured, nothing will happen.
-
-> Also if we want to use Percentage Values (%) for setting the intensity
-> I think this should also be done for the userspace interfaces and
-> not only from DT.
-
-We don't want to use percentages in the API (but let me still use
-percentages in discussion).
-
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
-
---nmemrqcdn5VTmUEE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYBrcdAAKCRAw5/Bqldv6
-8jkUAJwNJ0tMFMEhlguq/D6XwEq0NqqDEgCgv9kRAIWGuBErh1lbV1J4F3uWhqI=
-=3Fgp
------END PGP SIGNATURE-----
-
---nmemrqcdn5VTmUEE--
+-- 
+~Randy
