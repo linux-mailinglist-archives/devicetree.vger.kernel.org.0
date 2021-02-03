@@ -2,100 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8F430D6A3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:49:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A7E030D6B7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:52:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233446AbhBCJtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 04:49:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50936 "EHLO
+        id S233555AbhBCJwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 04:52:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233450AbhBCJsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:48:37 -0500
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5798EC0613ED
-        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 01:47:57 -0800 (PST)
-Received: by mail-qt1-x832.google.com with SMTP id t14so17074366qto.8
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:47:57 -0800 (PST)
+        with ESMTP id S233270AbhBCJwL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:52:11 -0500
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35348C0613D6
+        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 01:51:31 -0800 (PST)
+Received: by mail-pg1-x52f.google.com with SMTP id o7so16983084pgl.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:51:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zk8/vp8JgNY876P4l17ZIlAqzB9Wo0hE+dFWOx8FtrM=;
-        b=SY8KB6ZL7hu4tsDAT4WtjBrjedqhdXnJ0WfEvfJfTY4yh0iSUYYRhinj5pTMbKBDV1
-         aUGstOUKrtsV6s3+W+PrL5fuzfzO0w1ItRwwVf+Gj24JPi7XOxzASbip5S8aN+T6CEwU
-         +NX0nAvHbl0Z+rP1h+42oA2pbBBS/9Oc57Pzw=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=wBX1VyZvqFargIbuzyCHxeXh2t3OMi+jyqk4NEoTLjM=;
+        b=AiM1Z09V1NldCLbYRQDI5f11YZ3KIFhKCp4i9BbbQEYKRZyk5uJt6ITm3vN4JZuUi0
+         lpLluAPvDU4g0FPWlvKTeLoBQXYd2f4xFgurRJCc6JDGjYbGbahgPThn6BWCMfWlpjlh
+         4L34FmhLwHwnLFpoiYa9zfkPiq+r0G6ZZ4qjRg5ITarmRd7xB5qluz72JFRiUfrSrQIX
+         Nec9nNzmue67ZhjGvvcmH7KKAwd5Y+t9XvRotSvK2B0F6M90TnSoLn4FUSLmUkjCH82D
+         j8bPfpMfEYMCyUR/Vcbebgq8rXZzKnh2pzlToWx8ruoAaEcJJl0NM9sszpfZpvFR3E96
+         HG1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zk8/vp8JgNY876P4l17ZIlAqzB9Wo0hE+dFWOx8FtrM=;
-        b=TrMfNbWoEJd1YV6PQXOR8Zfs+oje8P+Ksyo5+755LBTVR7Jd0yPjt3tyrJbfrcOf8n
-         xXQ2javzasglyL85vzKoUbqtAxs0MVqjHuBWDjs4VMEV9C5Rmoj2xp/UcsMBWjNyzybM
-         m4sWqBa8ookiioeVSwCbjGFPjf6VIL55BmZbWwOE0nsDfmXfNKJIlbwWwKdb7P9JpK08
-         Wop0+paD3/p3/vyMMSiAqYrVzE2PLmp+izx2XYw047U3UfGwpqr3LqNq3uIbb6CAN3o7
-         ReP0LpREqns5BddEWH12O8w247HxtXzjH1QYAgNm9fHOnXIGg6C/H6lAqAu7eiWQqtXE
-         M4DA==
-X-Gm-Message-State: AOAM530h+CEuOarlGZMY8JIry1CUk4kqR/OGkr732+qJz+wmFl9JR5aK
-        NT23Lb2G67CLVdq8xr/Ib/oulRaT+vBcQr0lrbqNEw==
-X-Google-Smtp-Source: ABdhPJybIlxUI+vQirOWdUqx6AbdqbGySWHXWBWrXBPSLHmsuhjkp60HqhVWg2mWEWZVLnKYEXPVHI64xIy6+ueWcow=
-X-Received: by 2002:ac8:5dc8:: with SMTP id e8mr1685704qtx.249.1612345676494;
- Wed, 03 Feb 2021 01:47:56 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wBX1VyZvqFargIbuzyCHxeXh2t3OMi+jyqk4NEoTLjM=;
+        b=cuncMFmNfaXdjPrKqhxoepcDF6j/qSXznT2ro7E2tSzuD6Tj70x880LPkYZ+0czUU/
+         OJEk0XldSkaiYr7uHuJy/Lb4Txp6h6VmdyLDvxpmySSW5V9OOJt/CpSMlMdbM8YwZKoY
+         7JaIeNrkIVlqqBjDVbGTO5CoxT5CAYSI8hCBUmLCIZn0pDqKlS3wgToYGFGGnHIjJAkR
+         VDnUZG7JzLRQ4t6GQZridlMMgRRKdUoWCn5f7taWG6lNAtW3HvUF+I3w22TuI75ugcuv
+         A1T3cdsRNXDzeLYjEGMF2la2InFtRY7gVS65CYQtB9XWzCGfXX71SVfL4RrRnKg4bwk+
+         jHVg==
+X-Gm-Message-State: AOAM532OdPIKTEbyjnQdphEs+jIG8DUktkk+MWIkXRaMIXEafbmbsVlU
+        z/Tz8DDEzooSrZg7EyY833jLcA==
+X-Google-Smtp-Source: ABdhPJz3UhCxsItVgjwGFq3F1oJLAlxuq8TjQGPtcjP1wtlQScn0kERt8vcsVCTTQKPRAIN7zRoCoQ==
+X-Received: by 2002:a63:3747:: with SMTP id g7mr2700514pgn.376.1612345890802;
+        Wed, 03 Feb 2021 01:51:30 -0800 (PST)
+Received: from localhost ([122.172.59.240])
+        by smtp.gmail.com with ESMTPSA id h6sm1738999pfr.47.2021.02.03.01.51.29
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Feb 2021 01:51:29 -0800 (PST)
+Date:   Wed, 3 Feb 2021 15:21:27 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     David Gibson <david@gibson.dropbear.id.au>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH V4 0/3] scripts: dtc: Build fdtoverlay
+Message-ID: <20210203095127.rphegopnavk7ijhu@vireshk-i7>
+References: <cover.1610431620.git.viresh.kumar@linaro.org>
+ <74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com>
+ <20210120051740.yph4v7zldvs7szdz@vireshk-i7>
+ <20210122063455.GE4400@yekko.fritz.box>
+ <83242f56-19a5-6d32-c050-8d9f63ac1e47@gmail.com>
+ <20210201040748.GB2251@yekko.fritz.box>
 MIME-Version: 1.0
-References: <20210202205544.24812-1-robh@kernel.org>
-In-Reply-To: <20210202205544.24812-1-robh@kernel.org>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Wed, 3 Feb 2021 18:48:59 +0900
-Message-ID: <CAFr9PX=NmCev3c1jQ3VA89rwcTr3jpRQB-NKf+j+LOeOMHy1Og@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: Fix undocumented compatible strings in examples
-To:     Rob Herring <robh@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Vincent Cheng <vincent.cheng.xh@renesas.com>,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-i2c@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-watchdog@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210201040748.GB2251@yekko.fritz.box>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 01-02-21, 15:07, David Gibson wrote:
+> On Mon, Jan 25, 2021 at 09:42:21PM -0600, Frank Rowand wrote:
+> > Before having looked at libfdt only at a cursory level while debugging the proposed
+> > use of fdtoverlay in Linux, my first thought was that maybe it would be possible
+> > to add warning and error messages within "#ifdef" blocks, or other ways that
+> > cause the error code to _not_ be compiled as part of library version of libfdt,
+> > but only be compiled as part of fdtoverlay _when built in the Linux kernel_
+> > (noting that the proposed Linux patch builds the libfdt files as part of
+> > the fdtoverlay compile instead of as a discrete library).  After looking at
+> > the libfdt source a tiny bit more carefully, I would probably shoot down this
+> > suggestion, as it makes the source code uglier and harder to understand and
+> > maintain for the primary purpose of being an embedded library.
+> 
+> Oof.  That sounds really ugly, but maybe it could be pulled off.
 
-On Wed, 3 Feb 2021 at 05:55, Rob Herring <robh@kernel.org> wrote:
-> diff --git a/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
-> index 1f2ef408bb43..fe1e1c63ffe3 100644
-> --- a/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
-> @@ -46,7 +46,7 @@ examples:
->      #include <dt-bindings/gpio/msc313-gpio.h>
->
->      gpio: gpio@207800 {
-> -      compatible = "mstar,msc313e-gpio";
-> +      compatible = "mstar,msc313-gpio";
->        #gpio-cells = <2>;
->        reg = <0x207800 0x200>;
->        gpio-controller;
+I started looking at this and I was able to get to a not so ugly
+solution.
 
-This is correct. The compatible string dropped the e at some point and
-I must have missed the example.
-Thanks for the fix.
+Do this in dtc:
+-------------------------8<-------------------------
+---
+ dtc.h        | 6 ++++++
+ fdtoverlay.c | 2 ++
+ 2 files changed, 8 insertions(+)
 
-Reviewed-by: Daniel Palmer <daniel@thingy.jp>
+diff --git a/dtc.h b/dtc.h
+index d3e82fb8e3db..cc1e591b3f8c 100644
+--- a/dtc.h
++++ b/dtc.h
+@@ -29,6 +29,12 @@
+ #define debug(...)
+ #endif
+ 
++#ifdef VERBOSE
++#define pr_err(...)    fprintf(stderr, __VA_ARGS__)
++#else
++#define pr_err(...)
++#endif
++
+ #define DEFAULT_FDT_VERSION    17
+ 
+ /*
+diff --git a/fdtoverlay.c b/fdtoverlay.c
+index 5350af65679f..28ceac0d8079 100644
+--- a/fdtoverlay.c
++++ b/fdtoverlay.c
+@@ -16,6 +16,7 @@
+ 
+ #include <libfdt.h>
+ 
++#include "dtc.h"
+ #include "util.h"
+ 
+ #define BUF_INCREMENT  65536
+@@ -76,6 +77,7 @@ static void *apply_one(char *base, const char *overlay, size_t *buf_len,
+        if (ret) {
+                fprintf(stderr, "\nFailed to apply '%s': %s\n",
+                        name, fdt_strerror(ret));
++               pr_err("New error\n");
+                goto fail;
+        }
+ 
+
+-------------------------8<-------------------------
+And do this in kernel:
+-------------------------8<-------------------------
+
+diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
+index c8c21e0f2531..9dafb9773f06 100644
+--- a/scripts/dtc/Makefile
++++ b/scripts/dtc/Makefile
+@@ -13,6 +13,7 @@ dtc-objs      += dtc-lexer.lex.o dtc-parser.tab.o
+ libfdt-objs    := fdt.o fdt_ro.o fdt_wip.o fdt_sw.o fdt_rw.o fdt_strerror.o fdt_empty_tree.o fdt_addresses.o fdt_overlay.o
+ libfdt         = $(addprefix libfdt/,$(libfdt-objs))
+ fdtoverlay-objs        := $(libfdt) fdtoverlay.o util.o
++HOSTCFLAGS_fdtoverlay.o := -DVERBOSE
+ 
+ # Source files need to get at the userspace version of libfdt_env.h to compile
+ HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
+
+-------------------------8<-------------------------
+
+Will that be acceptable ? With this we can add as many error messages
+to libfdt without affecting any other users of it other than Linux.
+
+-- 
+viresh
