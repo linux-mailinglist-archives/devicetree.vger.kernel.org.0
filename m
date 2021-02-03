@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81B8230D00B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 00:55:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3041730D01C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 01:03:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbhBBXzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 18:55:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36758 "EHLO
+        id S231610AbhBCACP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 19:02:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbhBBXzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 18:55:07 -0500
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C7DCC061788
-        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 15:54:09 -0800 (PST)
-Received: by mail-qk1-x72e.google.com with SMTP id k193so21712555qke.6
-        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 15:54:09 -0800 (PST)
+        with ESMTP id S231223AbhBCACO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 19:02:14 -0500
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CC56C06174A
+        for <devicetree@vger.kernel.org>; Tue,  2 Feb 2021 16:01:34 -0800 (PST)
+Received: by mail-qk1-x731.google.com with SMTP id k193so21729467qke.6
+        for <devicetree@vger.kernel.org>; Tue, 02 Feb 2021 16:01:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=owa7yspMu7oxtY/40pJhJawCs1eLW8zh4phVTlhRQGA=;
-        b=BOWvLBJ0dKIZx1ByJ56uFwT9ud1ZJnZHsF7ytLpr4i0CFNa6udW4Tps2e2syypWelZ
-         gk7kBxiPSAk4L4g6YiSfk6uxwWGfl873Blxi2//W5UN+ZbNSpnHlX7bEwNRegjW859hY
-         BM1vd+vffJ5tq4uH82eTSVY41HJiGySOoxQ6KIdewGi9Q1hsr0yoLqaOrYW2mV8KtoN8
-         3DSOCWC5xtYAW43ID7NSXfQOEIlkFnK7npZchnIiK/OCy8rgMjwPhwBMfr4kFyHLCQyU
-         5LpSzn3fmgYslRMXssdzCZ9GsIM8m2Sia2UjwZS+KawchIM1WzP3+N8Unt3fGchIzrH1
-         e+QQ==
+        bh=KWrgLgvPSeSqktiYSiGArNaUaJGPgSmru6EUJ4fc25w=;
+        b=cp3I13nxA2/k7MXvOcYp9Gef6QHcInoYqEwf4PTFMHMvLgTChlfL+I3yqIrahHjJP5
+         1Nj9bk0qQ+miJ57wX0yK5zg+nJqR2sK/ZA2Eas9JYrUAZFpl7oYMFLOrdN3eScjHpF2z
+         eqcI/hxyUlNLKICGhnvIhdNIYHqeDflS7tM/sUwcGnMUx4X8GIuz/mySIn2gDegURGnk
+         +Z7BHDVDPhzeQL7DAacHOLTIrRd58gl9amndxcn1ofjbRgvLOJNCRrx1yeyul4Do6Wbc
+         ZKkSVv04ayQCfCDiCH30Vo923Iq+3U+WgSAjH3CW3u3MPUeg98LV/YUYxIIrwmZ+WgF5
+         tubQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=owa7yspMu7oxtY/40pJhJawCs1eLW8zh4phVTlhRQGA=;
-        b=odC1mSeYucB7cn+wU8NWr0FGBA81s6zPwkvoBaEPudcYiAYlRrDHAHRZD1GGBWtM/2
-         2Cywk/92beHAhu9sUYJtBDB5yQH4O3U1Ulq38RW9Ek9INfEeMeGUa2BHrzzNa0Ckkx6G
-         UQzNe/bD1Kw5cYxUv2RonE/5zvwGfTslIHs2PafY05pzQUDZFP2qmRVH00Sgmo+Cv5lI
-         Nt45MLSokoZcjUpXbeeNVdoD9dFIYzWHS8FOYFKi8bkNG9QAwiD10XA7p+S4w/p64H5g
-         +4ol4UL0uczJYTuRpW3lLLIxHeoNI+pv0Y4G5X3oUqv4wmtDsb6/tn/Ik0CZvgBwvNQS
-         E8WA==
-X-Gm-Message-State: AOAM533PqVdrtRaq3FW3eWPKDPD5ndr0trTVIpHLhRKWbeX7/kHJs58Z
-        Z68LFC7s68VfoH1yoTnEjbI=
-X-Google-Smtp-Source: ABdhPJxW3GU5vDb2kFDZKMKepKJOoPG54JDdAI7VY/1e98WRrqu4W+TDTU+vuyaj3PmYsFXmEfD/Fw==
-X-Received: by 2002:a05:620a:531:: with SMTP id h17mr194998qkh.93.1612310048591;
-        Tue, 02 Feb 2021 15:54:08 -0800 (PST)
+        bh=KWrgLgvPSeSqktiYSiGArNaUaJGPgSmru6EUJ4fc25w=;
+        b=H2I54okqJ35fiaED3WeAs3fzdadRq1M+Q7I9HzzFP/8w/KvH0L9rvDkHSNEHnbumVh
+         SmZvLrkCNWpmOfERFBY6XT61aRW+HkWVGTf1QQD5x8ZJJ/4btnLr+ee99CDAyZ8UAV4l
+         ICpMsZosGQubB36MMJ1xHrvGZqRm3IJGUZJxhiL8OioVgYgwrfoT9xAI28yiO70ZWWdH
+         9NjEMk5fgDRwS82ERjZ8jNSisBQX/4qnbY1K8S3O+NVXeoVhKG1rDGu0LUf9tkUF7gss
+         ymd0pc1C5+LOCI5yVHCx2T5WCrobXJ2ETn7vsuAjZd27My7SYt3ah4Tb5vz86udUo6fJ
+         aesQ==
+X-Gm-Message-State: AOAM531PjFD/DS+kiPXiPPpe3fxnKve2Yvsr0jLq8/rebM5+isSs2b66
+        PMGLYdIx4BfWobKJxLrvk2TbibcYixY=
+X-Google-Smtp-Source: ABdhPJwd++c8dxDLCkBm7EnB/V48iIYc1gZAR4YM11rl08zYJstR7i99PlgF484jqsk0EBQDrFtc+w==
+X-Received: by 2002:a37:6897:: with SMTP id d145mr238876qkc.168.1612310493418;
+        Tue, 02 Feb 2021 16:01:33 -0800 (PST)
 Received: from [192.168.1.201] (pool-108-51-35-162.washdc.fios.verizon.net. [108.51.35.162])
-        by smtp.googlemail.com with ESMTPSA id q25sm404003qkq.32.2021.02.02.15.54.07
+        by smtp.googlemail.com with ESMTPSA id c17sm421985qkb.13.2021.02.02.16.01.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Feb 2021 15:54:08 -0800 (PST)
+        Tue, 02 Feb 2021 16:01:32 -0800 (PST)
 Subject: Re: [PATCH v14 07/16] dt-bindings: fix sifive gpio properties
-To:     Atish Patra <atishp@atishpatra.org>,
+To:     Rob Herring <robh@kernel.org>,
         Damien Le Moal <damien.lemoal@wdc.com>
 Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
         linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>, Anup Patel <anup.patel@wdc.com>,
         Atish Patra <atish.patra@wdc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>
+        Anup Patel <anup.patel@wdc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org
 References: <20210202103623.200809-1-damien.lemoal@wdc.com>
  <20210202103623.200809-8-damien.lemoal@wdc.com>
- <CAOnJCUKQ+yFJN9+biMMQW6Wvf=eckfcfMHVpDB74TmxWVNoEkQ@mail.gmail.com>
+ <CAL_JsqJNqKrsB3LJvBpNmY6H3V1c5x4duqB_0p8YKit4+ZYRBw@mail.gmail.com>
 From:   Sean Anderson <seanga2@gmail.com>
-Message-ID: <5d565fe4-f624-ea28-177b-2fe01a678260@gmail.com>
-Date:   Tue, 2 Feb 2021 18:54:07 -0500
+Message-ID: <700da807-a5c8-a552-3d50-948b3ff6a734@gmail.com>
+Date:   Tue, 2 Feb 2021 19:01:32 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <CAOnJCUKQ+yFJN9+biMMQW6Wvf=eckfcfMHVpDB74TmxWVNoEkQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqJNqKrsB3LJvBpNmY6H3V1c5x4duqB_0p8YKit4+ZYRBw@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -74,26 +74,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/2/21 1:45 PM, Atish Patra wrote:
-> On Tue, Feb 2, 2021 at 2:37 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
+On 2/2/21 2:02 PM, Rob Herring wrote:
+> On Tue, Feb 2, 2021 at 4:36 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
 >>
 >> The sifive gpio IP block supports up to 32 GPIOs. Reflect that in the
-> 
-> The spec here says 16 GPIOs
-> https://static.dev.sifive.com/FU540-C000-v1.0.pdf
-> 
-> Is there a updated spec available ?
-
-This GPIO device is (AFAICT) from [1]. While the version instantiated on
-SiFive's cores has 16 GPIOs, the actual number of GPIOs is configurable. In
-Canaan's version, there are 32 GPIOs. Unfortunately, I am not aware of any
-non-implementation-specific documentation for this device.
-
---Sean
-
-[1] https://github.com/sifive/sifive-blocks/tree/master/src/main/scala/devices/gpio
-
-> 
 >> interrupts property description and maxItems. Also add the standard
 >> ngpios property to describe the number of GPIOs available on the
 >> implementation.
@@ -143,41 +127,32 @@ non-implementation-specific documentation for this device.
 >> +  ngpios:
 >> +    minimum: 1
 >> +    maximum: 32
->> +
->>     gpio-controller: true
->>
->>   required:
->> @@ -46,10 +51,20 @@ required:
->>     - interrupts
->>     - interrupt-controller
->>     - "#interrupt-cells"
->> -  - clocks
->>     - "#gpio-cells"
->>     - gpio-controller
->>
->> +if:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        enum:
->> +          - sifive,fu540-c000-gpio
->> +          - sifive,fu740-c000-gpio
->> +then:
->> +  required:
->> +    - clocks
->> +
->>   additionalProperties: false
->>
->>   examples:
->> --
->> 2.29.2
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
 > 
-> 
-> 
+> What's the default as obviously drivers already assume something.
 
+The driver currently assumes 16. However, as noted in reply to Atish,
+the number of GPIOs is configurable.
+
+> Does a driver actually need to know this? For example, does the
+> register stride change or something?
+
+No. I believe that the number of GPIOs sets which bits in the control
+registers are valid. So the maximum number of GPIOs is the word width of
+the bus.
+
+> Please don't add it if the only purpose is error check your DT (IOW,
+> if it just checks the max cell value in gpios phandles).
+
+Why not? This seems like exactly the situation this property was
+designed for.
+
+> Optionally, a GPIO controller may have a "ngpios" property. This property
+> indicates the number of in-use slots of available slots for GPIOs. The
+> typical example is something like this: the hardware register is 32 bits
+> wide, but only 18 of the bits have a physical counterpart. The driver is
+> generally written so that all 32 bits can be used, but the IP block is reused
+> in a lot of designs, some using all 32 bits, some using 18 and some using
+> 12. In this case, setting "ngpios = <18>;" informs the driver that only the
+> first 18 GPIOs, at local offset 0 .. 17, are in use.
+
+--Sean
