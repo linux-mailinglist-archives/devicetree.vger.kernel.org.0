@@ -2,119 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9914830D503
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 09:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 114D530D519
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 09:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232637AbhBCIQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 03:16:42 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:33114 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232632AbhBCIQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 03:16:41 -0500
-Received: by mail-oi1-f169.google.com with SMTP id j25so25937448oii.0;
-        Wed, 03 Feb 2021 00:16:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OMNMC+xpp5BmBErZ7DTtHEEdPkb5Qun0a5vbRXVX3vY=;
-        b=POUgEegnMg7DMDQLrjEjgKdFHfrWjvwj8udpuPYIdEuwBzcLGEv0HtuWkrzYsb+pDp
-         tlN79z4zrt40hE1IYgDWuENhJCz918W/sH0mLMrSfxsLIUyLrgD1qG7lNqjED5724oJH
-         vek8NEL/52PkxUm4zmtpPvZ1hytLDkrzsE8QBafbdBtk5LcR1R7KSuiUicLK7lVTVNL3
-         9ciUS1rXYHwp0aUL0ZCSx2EtRteN8N4iEXFwIMqHnKFrgkY5ue9Y41RztEzChWmCYyFK
-         AaQJsrG42B8qWF9D7nvj1dNV7KbcqxxUlDs/6kXJ7qrhcdfn40soMnth7hUx5FcUNZuI
-         jXDQ==
-X-Gm-Message-State: AOAM532Rxdg1AKi+72YhT+dwmLpqXcsKy8bHewPPY+kqkcUr8KdovIZ4
-        gpUbObOwOqQHnYsxhXfickEFxdI87+QKKGIcF8k=
-X-Google-Smtp-Source: ABdhPJw59iItHayjaGX97phdW1sK3zjTtayzwJ1NUfqJOoKyyAHQO7+Dk/qcLkjM2SfB36dbgq0cCIFHKr1/YJuwhRk=
-X-Received: by 2002:aca:4d8d:: with SMTP id a135mr1200672oib.153.1612340160027;
- Wed, 03 Feb 2021 00:16:00 -0800 (PST)
-MIME-Version: 1.0
-References: <20210202043345.3778765-1-saravanak@google.com>
- <20210202212231.g5tj3f7tv74gagm6@viti.kaiser.cx> <CAGETcx_cS_Y-1Bw3tNhZRckEQO=yB8UDzNRr+Khs_X2ym7tnwA@mail.gmail.com>
- <CAMuHMdWN4JA4w+6MUAc-ogRAE602G8KSgy+71dtx7QQ60t1XZQ@mail.gmail.com> <CAGETcx8Yai=q+sHiixcv=D=T9r0+X1GZ8LRBc98SX_omYVhavQ@mail.gmail.com>
-In-Reply-To: <CAGETcx8Yai=q+sHiixcv=D=T9r0+X1GZ8LRBc98SX_omYVhavQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 3 Feb 2021 09:15:48 +0100
-Message-ID: <CAMuHMdWyA3y1PYff5X9DoPaj0TREK3jFe_P+e+rNVb1K-kRDbA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Make fw_devlink=on more forgiving
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Martin Kaiser <martin@kaiser.cx>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        id S232731AbhBCIW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 03:22:58 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:34787 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232445AbhBCIW4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 03:22:56 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id C68A05801C8;
+        Wed,  3 Feb 2021 03:22:08 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Wed, 03 Feb 2021 03:22:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=fqkHRYodlshvhyIA+UJ4UfsOf/l
+        tAp7H6MffX1tyNxE=; b=slcOTGvTpKA4WljhiJv7+iCUZH8gSK7HINfjxfcyHYS
+        oVWP3iCVbGh8iebkQ64Otesly/pgB6Ojkd/8+NHHcXREflHQrwFbmKhQW9Pt1mpo
+        0jGaiibdct3rA5gtLBBJD+WqevLjejqfXmO25CUl/H7wZ16tsr7G4Bi7EM++QQiP
+        uGt1hmCkYEs9fT3Ccb33TsiX1rUASf/lWhTrjChfxbVhV/ThkAddln2eUhyy5d1W
+        AruG4cHgZ5LbUzJLSv2lNTCZRTV4iYx6F8KiPqcNKqHbAiNmegBw9hqzuZ3RcezD
+        TAjxwAkZUcA0rRhpbZgJpZ2cTP+j4TNMlDxTLMpoQbQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=fqkHRY
+        odlshvhyIA+UJ4UfsOf/ltAp7H6MffX1tyNxE=; b=u81W7hCHQNnX8ioS0QjzTI
+        dXYEXN8u7Zv12w/JGQY9cb+EXhyFPhGHybUSyy58L5BYFAsTB8TIvPcJMO1yIzR2
+        wXB4Q63BEG+dRtnsn+ScSOdchORgRtuhUciKHps0h8VG/5wFo00V85MKJi+839q/
+        HyrbXvamWMkX0+lH9Umbi7gcrOfD+UXSmY6lb64xzZO5TS7nuWW9Swbxnz0U7WsV
+        QTSrEj6zktT37l7KKq0Zzl1v/vpW/Gvjx9A5aaByY3qvZ8RNRbvfHoZELkHYwIbK
+        gNATlaHd7ZYOa1pqxowGPfDGKqx62lN3MwsHhZkmGfe63hzwVwjtB3Uy80MSe28w
+        ==
+X-ME-Sender: <xms:LV0aYHdnCSxFxDCLC5CXYrWHBt_VwtPnVzVDdh1oD7oRXvVdQXmklg>
+    <xme:LV0aYNMToA5In7Ytxt8daA1e-8wVQnQ6K7h_43MrxcNeQajOhD4r3bA09TSyCLrWb
+    i6sO3Rh85G3zl0eh-I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrgedugdduudelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:LV0aYAhb3EPSlG7qHPT7wzMboPymJneBnX7mcDOV8ZX_7-2InDhEaQ>
+    <xmx:LV0aYI9e3_6x364E7PvAgYd1Z-BjvqNvpdA2yELBilajlOhDzNbDug>
+    <xmx:LV0aYDuBJ57wK1dK4YgxXtVXo_Mm4TBHG6QekGn_AcEfBHtQ_3jAZw>
+    <xmx:MF0aYC9hdUdELtEoyj7de93BQEQX4jOyhX4iH0KZUvHvXhdclUakXQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 8D50D1080063;
+        Wed,  3 Feb 2021 03:22:05 -0500 (EST)
+Date:   Wed, 3 Feb 2021 09:22:03 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
         Linus Walleij <linus.walleij@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Daniel Palmer <daniel@thingy.jp>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Vincent Cheng <vincent.cheng.xh@renesas.com>,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: Fix undocumented compatible strings in
+ examples
+Message-ID: <20210203082203.pq2xxyrjkzhbwfks@gilmour>
+References: <20210202205544.24812-1-robh@kernel.org>
+ <161231243653.76967.3231080427102153199@swboyd.mtv.corp.google.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4gldcp53h554eeqa"
+Content-Disposition: inline
+In-Reply-To: <161231243653.76967.3231080427102153199@swboyd.mtv.corp.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravana,
 
-On Wed, Feb 3, 2021 at 9:11 AM Saravana Kannan <saravanak@google.com> wrote:
-> On Tue, Feb 2, 2021 at 11:55 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Tue, Feb 2, 2021 at 11:44 PM Saravana Kannan <saravanak@google.com> wrote:
-> > > On Tue, Feb 2, 2021 at 1:22 PM Martin Kaiser <martin@kaiser.cx> wrote:
-> > > > Thus wrote Saravana Kannan (saravanak@google.com):
-> > > > All of those drivers have a gpio in
-> > > > their device-tree node, such as
-> > > >
-> > > > my_driver {
-> > > >    gpio_test1 = <&gpio1 0 0>;
-> > > >    ...
-> > > > };
-> > > >
-> > > > with gpio1 from arch/arm/boot/dts/imx25.dtsi.
-> > > >
-> > > > The probe function calls
-> > > >
-> > > > of_get_named_gpio(np, "gpio_test1", 0);
-> > > >
-> > > > to get the gpio. This fails with -EINVAL.
-> > >
-> > > And you didn't see this issue with the fsl,avic patch?
-> > >
-> > > The property you are using is not a standard GPIO binding (-gpios,
-> > > gpio, gpios) and I'm not surprised it's not working. The gpio1 is
-> > > probably getting probe deferred and ends up running after "my_driver".
-> >
-> > So my_driver doesn't support deferred probe, as of_get_named_gpio()
-> > returns -EINVAL instead of -EPROBE_DEFER?
-> > Converting my_driver from of_get_named_gpio() to the gpiod_*() API
-> > should at least make the driver support probe deferral, after which I
-> > expect it to start working again on reprobe?
->
-> The way I understood the API/example, you can't just change the code
-> and have it work. The DT itself isn't using standard bindings. And we
+--4gldcp53h554eeqa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Oh, right.
+On Tue, Feb 02, 2021 at 04:33:56PM -0800, Stephen Boyd wrote:
+> Quoting Rob Herring (2021-02-02 12:55:42)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun9i-a8=
+0-usb-clocks.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun9i=
+-a80-usb-clocks.yaml
+> > index fa0ee03a527f..53cc6df0df96 100644
+> > --- a/Documentation/devicetree/bindings/clock/allwinner,sun9i-a80-usb-c=
+locks.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/allwinner,sun9i-a80-usb-c=
+locks.yaml
+> > @@ -18,7 +18,7 @@ properties:
+> >      const: 1
+> > =20
+> >    compatible:
+> > -    const: allwinner,sun9i-a80-usb-clocks
+> > +    const: allwinner,sun9i-a80-usb-clks
+>=20
+> Should the file name change too?
 
-> can't make kernel changes that assume the DT has been changed to match
-> the code. So, the best we could do is have of_get_named_gpio() return
-> -EPROBE_DEFER if it doesn't find the GPIO -- assuming that doesn't
-> break other users. Or have this specific driver remap the -EINVAL to
-> -EPROBE_DEFER.
+Ideally yes, and with that change
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
-The latter would hide real errors, too, and would cause futile reprobes.
+Maxime
 
-Gr{oetje,eeting}s,
+--4gldcp53h554eeqa
+Content-Type: application/pgp-signature; name="signature.asc"
 
-                        Geert
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBpdKwAKCRDj7w1vZxhR
+xfXZAP4mNYff3e9rGt7MOkYTYcw0pPEWCEpYYXYTI2ssF+qYBwD9FyVvxvbomZwA
+YVE/qhtvuINsw89s7u6/KsQoWh85RwA=
+=Nhso
+-----END PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--4gldcp53h554eeqa--
