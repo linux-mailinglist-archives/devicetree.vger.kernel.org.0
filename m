@@ -2,118 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1721830D5A6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 09:56:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63E6630D5C7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:04:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233048AbhBCIzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 03:55:46 -0500
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:60535 "EHLO
-        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233001AbhBCIzp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 03:55:45 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.west.internal (Postfix) with ESMTP id 73FAF7EC;
-        Wed,  3 Feb 2021 03:54:37 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 03 Feb 2021 03:54:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=GaOLsyDn+K9t8Cmz3jhQ2iNqP2j
-        HmQT4/mycnVeQRqg=; b=mgFuVZJE93uHPKSj61GuzGt4ANRzWWeMaeLQOkqzUhl
-        +s2crr4ey2bHX1EdFQkQe8COHz3isCJglC9GrOmScYvozYhU+nZBu5JvJnznzLMF
-        wtdBz5txM1qGa8NQWCf2OTTHQYMEft8jX/uCNgIOiFDSNXfPJ5NssTG0Tenav0MU
-        Boi5OqXzh2PZrobyFMNIS8cI+dnX/dEGcnvGDj2o8V1DE32uxY0J0eke2x9V2COR
-        k8ZEflNz2JivX6nKZTwfyCuf06EeJ5lZvLqDnX4n0+02N7+0RQ5c8oCGeNUPtFwJ
-        RLe8tVz+PdPpOp7RFugpN5QMG7Z6hbD4IapzD8PAj+A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=GaOLsy
-        Dn+K9t8Cmz3jhQ2iNqP2jHmQT4/mycnVeQRqg=; b=V8S9lzqykEqQdNrk+fUE3D
-        8ZyRgSzxeyu4wDt2UhPn31WPyEuHi8zqxqXjHZF+CngILjcnda34f8EZ0DvIHoLn
-        gYplq67zIH4HRptquAkqIctfsVqEJmJRYdwEprlc5/c2AjBIfB+y4wKthYlL0U/F
-        v5qIA3GZSiWjyEcowyoWfOBTE6CuOjfrbi2Hblko7A2HSEg5VOAUasIc3l2107Fb
-        utj8v+hj5Dh+/eRIC7k8wfglkRklU7DezStVsaqaXFPfHjRdMLRlYTS/rWQurgMj
-        WMnPRuhsv+EkfBHod6OyVegq5pUJ49QHCJsT1ShCWLniMj3IXoy4mEJwod91Hfaw
-        ==
-X-ME-Sender: <xms:y2QaYNuVwRXCbUP8B_-oVw1vXQeoviuJzeKvtesSPsAX6kPh7Z6zFg>
-    <xme:y2QaYGes6Yf2hdUw91rn5RlGqTBfnk3ROgFAfYDuV_tebLF5ckXII4KKB61p2ShvO
-    CqZtoAKBEZRVAPKw6I>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrgedugdduvdehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:zGQaYAxKtwfeEBuREydjmikFi1JldJAYQLXfe6Gbm4PCLIq7G328Uw>
-    <xmx:zGQaYEO7hOUy7LcZ03L3D0pkcDICfmw9HNNB0N3GZdHMzL48A3HO-Q>
-    <xmx:zGQaYN-xyfEnKOK8Sk21yQjGrq7i1m7bD04VmcedojckcZiCHjIooA>
-    <xmx:zWQaYJTNPKlb7_nHGO8qV24jIrJn_YeYLT-15CZrHZrJVjw9QQnfE6v1vg4>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id BB09024005A;
-        Wed,  3 Feb 2021 03:54:35 -0500 (EST)
-Date:   Wed, 3 Feb 2021 09:54:34 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: thermal: sun8i: Fix misplaced schema
- keyword in compatible strings
-Message-ID: <20210203085434.pbbefshqhhbglqz6@gilmour>
-References: <20210202181538.3936235-1-robh@kernel.org>
+        id S233120AbhBCJD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 04:03:58 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:40898 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233105AbhBCJDk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:03:40 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id B241B1C0B79; Wed,  3 Feb 2021 10:02:50 +0100 (CET)
+Date:   Wed, 3 Feb 2021 10:02:50 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Sven Schuchmann <schuchmann@schleissheimer.de>
+Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] leds: lp50xx: remove unused regulator
+Message-ID: <20210203090249.GA14154@amd>
+References: <20210203083408.2534-1-schuchmann@schleissheimer.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="nnfikiw6pmkhcc66"
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="yrj/dFKFPuw6o+aM"
 Content-Disposition: inline
-In-Reply-To: <20210202181538.3936235-1-robh@kernel.org>
+In-Reply-To: <20210203083408.2534-1-schuchmann@schleissheimer.de>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---nnfikiw6pmkhcc66
+--yrj/dFKFPuw6o+aM
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 02, 2021 at 12:15:38PM -0600, Rob Herring wrote:
-> A compatible string 'enum' mistakenly has 'const: ' in the compatible
-> strings. Remove these.
+On Wed 2021-02-03 08:34:08, Sven Schuchmann wrote:
+> The regulator for vled-supply is unused in the driver.
+> It is just assigned from DT and disabled in lp50xx_remove.
+> So the code can be removed from the driver.
+
+Dan, what is going on here? Do we need to also enable the regulator,
+or is the removal correct thing to do?
+
+Best regards,
+							Pavel
+
+
+> Part 1 updates the documentation
+> Part 2 removes the code
 >=20
-> Fixes: 0b28594d67a8 ("dt-bindings: thermal: Add YAML schema for sun8i-the=
-rmal driver bindings")
-> Cc: Vasily Khoruzhick <anarsoul@gmail.com>
-> Cc: Yangtao Li <tiny.windzz@gmail.com>
-> Cc: Zhang Rui <rui.zhang@intel.com>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Amit Kucheria <amitk@kernel.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Jernej Skrabec <jernej.skrabec@siol.net>
-> Cc: linux-pm@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Sven Schuchmann <schuchmann@schleissheimer.de>
+>=20
+> ---
+>  drivers/leds/leds-lp50xx.c | 14 --------------
+>  1 file changed, 14 deletions(-)
+>=20
+> diff --git a/drivers/leds/leds-lp50xx.c b/drivers/leds/leds-lp50xx.c
+> index f13117eed976..b0871495bae3 100644
+> --- a/drivers/leds/leds-lp50xx.c
+> +++ b/drivers/leds/leds-lp50xx.c
+> @@ -11,7 +11,6 @@
+>  #include <linux/of.h>
+>  #include <linux/of_gpio.h>
+>  #include <linux/regmap.h>
+> -#include <linux/regulator/consumer.h>
+>  #include <linux/slab.h>
+>  #include <uapi/linux/uleds.h>
+> =20
+> @@ -275,7 +274,6 @@ struct lp50xx_led {
+>  /**
+>   * struct lp50xx -
+>   * @enable_gpio: hardware enable gpio
+> - * @regulator: LED supply regulator pointer
+>   * @client: pointer to the I2C client
+>   * @regmap: device register map
+>   * @dev: pointer to the devices device struct
+> @@ -286,7 +284,6 @@ struct lp50xx_led {
+>   */
+>  struct lp50xx {
+>  	struct gpio_desc *enable_gpio;
+> -	struct regulator *regulator;
+>  	struct i2c_client *client;
+>  	struct regmap *regmap;
+>  	struct device *dev;
+> @@ -462,10 +459,6 @@ static int lp50xx_probe_dt(struct lp50xx *priv)
+>  		return ret;
+>  	}
+> =20
+> -	priv->regulator =3D devm_regulator_get(priv->dev, "vled");
+> -	if (IS_ERR(priv->regulator))
+> -		priv->regulator =3D NULL;
+> -
+>  	device_for_each_child_node(priv->dev, child) {
+>  		led =3D &priv->leds[i];
+>  		ret =3D fwnode_property_count_u32(child, "reg");
+> @@ -583,13 +576,6 @@ static int lp50xx_remove(struct i2c_client *client)
+>  		return ret;
+>  	}
+> =20
+> -	if (led->regulator) {
+> -		ret =3D regulator_disable(led->regulator);
+> -		if (ret)
+> -			dev_err(&led->client->dev,
+> -				"Failed to disable regulator\n");
+> -	}
+> -
+>  	mutex_destroy(&led->lock);
+> =20
+>  	return 0;
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+--=20
+http://www.livejournal.com/~pavelmachek
 
-Maxime
-
---nnfikiw6pmkhcc66
+--yrj/dFKFPuw6o+aM
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYBpkygAKCRDj7w1vZxhR
-xU7JAQDuw/6tE0iP0CW3MelQJEwaxJ7DWKlM2Cle0Hdwvm3cEQEA4DBO+XcqrZD/
-KLlCf7KWMOpSK5M1foiS5bJj42ph1A8=
-=VC9f
+iEYEARECAAYFAmAaZrkACgkQMOfwapXb+vJVAACePCdJ0/J96bFqKYIylfKvj3YI
+aVQAn3Or6tou+NWIQCpTFM7mtRe3R7XT
+=O55N
 -----END PGP SIGNATURE-----
 
---nnfikiw6pmkhcc66--
+--yrj/dFKFPuw6o+aM--
