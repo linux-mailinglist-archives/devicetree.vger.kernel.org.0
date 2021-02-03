@@ -2,80 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3222A30DBCA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 14:51:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 843B330DBF9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 14:56:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231774AbhBCNuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 08:50:44 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38482 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230123AbhBCNun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 08:50:43 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 113Dnfnb065738;
-        Wed, 3 Feb 2021 07:49:41 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1612360181;
-        bh=j6icRAuTZgy1AtJAEQIOxn7n/y4lnVdH9Vjvn+YesGI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=mua55PK9ZobR4t0zc/U1M/HaDWdHiB+Qb9V4lUK27I2nYvf8s8B7mIFVt3I3r976i
-         4PVA1oDLx3Qu87uOKefLoBg7AFYwspsoJA0dxpmlp098Ie96aoFI6Nq4Nrmv0aD5OJ
-         afs2IlIHTCIGqnoL6GOFFwuL8FSc6MGnzS4LvidM=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 113DnfZN107665
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 3 Feb 2021 07:49:41 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 3 Feb
- 2021 07:49:40 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 3 Feb 2021 07:49:41 -0600
-Received: from [10.250.39.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 113DneOw033189;
-        Wed, 3 Feb 2021 07:49:40 -0600
-Subject: Re: [PATCH 2/2] leds: lp50xx: remove unused regulator
-To:     Pavel Machek <pavel@ucw.cz>,
-        Sven Schuchmann <schuchmann@schleissheimer.de>
-CC:     Rob Herring <robh+dt@kernel.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210203083408.2534-1-schuchmann@schleissheimer.de>
- <20210203090249.GA14154@amd>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <2e9dff78-7fde-404d-6fad-6aeedf1145d1@ti.com>
-Date:   Wed, 3 Feb 2021 07:49:35 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210203090249.GA14154@amd>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S232014AbhBCN4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 08:56:35 -0500
+Received: from mga01.intel.com ([192.55.52.88]:38693 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230248AbhBCN4e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Feb 2021 08:56:34 -0500
+IronPort-SDR: KntuWThZd3mGwZAk+/GglcXTztQjve3IQ5tvJfVL0zuOoGvqPJY4EJNYB2MiOr6bLXfomAzAIj
+ RQwMZt2f7NEQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="200000775"
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; 
+   d="scan'208";a="200000775"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2021 05:54:46 -0800
+IronPort-SDR: ja6jLdwbUz9FEFHcnplrIFdFpAVql+5RqzFUbvXo62WvcMtr2Kfmw0wmMfm35avcpkdBl4XJJz
+ eCZX35mJGWFg==
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; 
+   d="scan'208";a="371487672"
+Received: from mkrastex-mobl.ger.corp.intel.com ([10.104.88.36])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2021 05:54:44 -0800
+From:   Martina Krasteva <martinax.krasteva@linux.intel.com>
+To:     linux-media@vger.kernel.org
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        sakari.ailus@linux.intel.com,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com,
+        gjorgjix.rosikopulos@linux.intel.com,
+        martinax.krasteva@linux.intel.com
+Subject: [PATCH v7 0/2] IMX334 Camera Sensor Driver
+Date:   Wed,  3 Feb 2021 13:54:39 +0000
+Message-Id: <20210203135441.136-1-martinax.krasteva@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pavel
+From: Martina Krasteva <martinax.krasteva@intel.com>
 
-On 2/3/21 3:02 AM, Pavel Machek wrote:
-> On Wed 2021-02-03 08:34:08, Sven Schuchmann wrote:
->> The regulator for vled-supply is unused in the driver.
->> It is just assigned from DT and disabled in lp50xx_remove.
->> So the code can be removed from the driver.
-> Dan, what is going on here? Do we need to also enable the regulator,
-> or is the removal correct thing to do?
->
-I think it would be better to do an enable as opposed to removing the code.
+Hello,
 
-This would be needed especially in applications that have to meet strict 
-power management requirements.
+This patch series contains Sony imx334 sensor driver and device tree binding document.
 
-Users may want to disable or enable the regulator during suspend/resume. 
-Otherwise it would be considered always-on and the regulator does not 
-need to be populated.
+A v4l2 sub-device driver for the Sony imx334 image sensor is added.
+This is a camera sensor using the i2c bus for control and the
+csi-2 bus for data.
 
-Dan
+The following features are supported:
+- manual exposure and analog gain control support
+- vblank/hblank/pixel rate control support
+- supported resolution:
+    - 3840x2160 @ 60fps
+- supported bayer order output:
+    - SRGGB12
+
+v1: https://patchwork.kernel.org/project/linux-media/list/?series=388393
+
+v1->v2:
+- dt-bindings doc fixes
+- minor cosmetic changes
+- improvement in write_reg()
+- set all media bus format fields to pass v4l2-compliance test
+- remove link_validate from source entity
+
+v2: https://patchwork.kernel.org/project/linux-media/list/?series=396393
+
+v2->v3:
+- small cosmetic changes
+
+v3: https://patchwork.kernel.org/project/linux-media/list/?series=397689
+
+v3->v4:
+- fix read/write_reg() functions
+
+v4: https://patchwork.kernel.org/project/linux-media/list/?series=400459
+
+v4->v5:
+- add link-frequencies in dt-bindings doc
+- edit required properties in db-bindings doc
+- fix data_buf overrun in read_reg()
+- add function to parse dt configuration
+- allow cahnging vblank in power off state
+- change lpfr and ppln with vblank and hblank in mode description
+
+v5: https://patchwork.kernel.org/project/linux-media/list/?series=425541
+
+v5->v6:
+- declare imx334_parse_hw_config() as static function
+
+v6: https://patchwork.kernel.org/project/linux-media/list/?series=426171
+
+v6->v7:
+- add clocks and reset-gpios in dt-bindings doc
+- fix error handling in imx334_set_pad_format()
+- add LINK_FREQ ctrl
+- do not specify a clock name in devm_clk_get()
+
+Best Regards,
+Martina
+
+Martina Krasteva (2):
+  dt-bindings: media: Add bindings for imx334
+  media: i2c: Add imx334 camera sensor driver
+
+ .../devicetree/bindings/media/i2c/sony,imx334.yaml |   90 ++
+ MAINTAINERS                                        |    9 +
+ drivers/media/i2c/Kconfig                          |   14 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/imx334.c                         | 1131 ++++++++++++++++++++
+ 5 files changed, 1245 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+ create mode 100644 drivers/media/i2c/imx334.c
+
+
+base-commit: fb2a9c3209872b6e65661e3737f2767832a42973
+-- 
+2.11.0
 
