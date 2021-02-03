@@ -2,162 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7E030D6B7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 10:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28EE830D6E6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 11:00:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233555AbhBCJwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 04:52:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51710 "EHLO
+        id S233639AbhBCKAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 05:00:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233270AbhBCJwL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 04:52:11 -0500
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35348C0613D6
-        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 01:51:31 -0800 (PST)
-Received: by mail-pg1-x52f.google.com with SMTP id o7so16983084pgl.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:51:31 -0800 (PST)
+        with ESMTP id S233586AbhBCKAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 05:00:06 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29163C0613ED
+        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 01:59:23 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id n10so16959589pgl.10
+        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 01:59:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=wBX1VyZvqFargIbuzyCHxeXh2t3OMi+jyqk4NEoTLjM=;
-        b=AiM1Z09V1NldCLbYRQDI5f11YZ3KIFhKCp4i9BbbQEYKRZyk5uJt6ITm3vN4JZuUi0
-         lpLluAPvDU4g0FPWlvKTeLoBQXYd2f4xFgurRJCc6JDGjYbGbahgPThn6BWCMfWlpjlh
-         4L34FmhLwHwnLFpoiYa9zfkPiq+r0G6ZZ4qjRg5ITarmRd7xB5qluz72JFRiUfrSrQIX
-         Nec9nNzmue67ZhjGvvcmH7KKAwd5Y+t9XvRotSvK2B0F6M90TnSoLn4FUSLmUkjCH82D
-         j8bPfpMfEYMCyUR/Vcbebgq8rXZzKnh2pzlToWx8ruoAaEcJJl0NM9sszpfZpvFR3E96
-         HG1A==
+        h=from:to:cc:subject:date:message-id;
+        bh=b/R050Y1V5Ge6RgQndzOtSwrUqfobK01w5MWFMoCoZ8=;
+        b=LKVycDXu0rsyOBfww/WsyR7fnRDdngTyJ0nhdbiq7M5uOFBrBJ9KNZqfmMbVDQL9Sr
+         866hPIsso4aRMM+hkbxVJZ8o/4Pm/6Cti1gadMSOAGnnk6Sfsa463M6nR4eHS178Glbk
+         +35ZJ6gMP9bSlDGW7UVIPsEVWaTPtIlbZjjOxQYwUmy9moXwqZ6NCrqtiLl8g+q2uJ5h
+         /lsPqhs6EaVup+ACAU0KGc0FSwl8Cy5AfzBWiT6z828uJGegzpNX+iVieSc3/HSCEnMA
+         OBfXswsLbTp15zuTgO2pSQtwOgYHSjP/rNR+2SMDFpVHhv2/NGy2yLKK/H+PhpYoIe2I
+         uiHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wBX1VyZvqFargIbuzyCHxeXh2t3OMi+jyqk4NEoTLjM=;
-        b=cuncMFmNfaXdjPrKqhxoepcDF6j/qSXznT2ro7E2tSzuD6Tj70x880LPkYZ+0czUU/
-         OJEk0XldSkaiYr7uHuJy/Lb4Txp6h6VmdyLDvxpmySSW5V9OOJt/CpSMlMdbM8YwZKoY
-         7JaIeNrkIVlqqBjDVbGTO5CoxT5CAYSI8hCBUmLCIZn0pDqKlS3wgToYGFGGnHIjJAkR
-         VDnUZG7JzLRQ4t6GQZridlMMgRRKdUoWCn5f7taWG6lNAtW3HvUF+I3w22TuI75ugcuv
-         A1T3cdsRNXDzeLYjEGMF2la2InFtRY7gVS65CYQtB9XWzCGfXX71SVfL4RrRnKg4bwk+
-         jHVg==
-X-Gm-Message-State: AOAM532OdPIKTEbyjnQdphEs+jIG8DUktkk+MWIkXRaMIXEafbmbsVlU
-        z/Tz8DDEzooSrZg7EyY833jLcA==
-X-Google-Smtp-Source: ABdhPJz3UhCxsItVgjwGFq3F1oJLAlxuq8TjQGPtcjP1wtlQScn0kERt8vcsVCTTQKPRAIN7zRoCoQ==
-X-Received: by 2002:a63:3747:: with SMTP id g7mr2700514pgn.376.1612345890802;
-        Wed, 03 Feb 2021 01:51:30 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id h6sm1738999pfr.47.2021.02.03.01.51.29
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=b/R050Y1V5Ge6RgQndzOtSwrUqfobK01w5MWFMoCoZ8=;
+        b=GxzuDQYf62gcA+Iy4Anvrt3+ZxaR1jaE27B3Tt+SGtNyQ62//JyPzoD3l/NF467mLg
+         c0iNFToTvt54VL4OVVSi6cw07w2DItSZjbOG2NYISe7aXiD0dtEYceMYjv6B5bAHmbMI
+         7L4lLBRr7JJo4fz2luYXtci761ZF0j4dhcvc7xV1eVMc24qIaWsghLCU9oG5D8f9jU8P
+         4F6gGlj6nsymUuPpCMd0N819IAvaEemtHVFkwYVzvPMA+ApCzUREQeNcXd30X3IIvOfL
+         51m7EaM1/woHLE3nSzdhG486NeIccmlF3F0ZWs/n94B85UI7lzGv+fvCV0rTatbVT/6m
+         rQCw==
+X-Gm-Message-State: AOAM530Adplgw9jbSbk62633uKpYmZ9sspN5ZZHuzq0m2MCQU5YpK0UH
+        6kuD7YY7rDd6dIx+c0dWjKCoEg==
+X-Google-Smtp-Source: ABdhPJzt+iVFoaJcjuLKZlhysrfskisg5TT52CJKFKEDsjf4a4huk6neQOw5FYOuABb5d83ch1bfsA==
+X-Received: by 2002:a63:db03:: with SMTP id e3mr2733397pgg.225.1612346362659;
+        Wed, 03 Feb 2021 01:59:22 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:6803:610b:1c6f:cebf:a887:dd42])
+        by smtp.gmail.com with ESMTPSA id p16sm1757182pfq.28.2021.02.03.01.59.19
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Feb 2021 01:51:29 -0800 (PST)
-Date:   Wed, 3 Feb 2021 15:21:27 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     David Gibson <david@gibson.dropbear.id.au>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH V4 0/3] scripts: dtc: Build fdtoverlay
-Message-ID: <20210203095127.rphegopnavk7ijhu@vireshk-i7>
-References: <cover.1610431620.git.viresh.kumar@linaro.org>
- <74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com>
- <20210120051740.yph4v7zldvs7szdz@vireshk-i7>
- <20210122063455.GE4400@yekko.fritz.box>
- <83242f56-19a5-6d32-c050-8d9f63ac1e47@gmail.com>
- <20210201040748.GB2251@yekko.fritz.box>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210201040748.GB2251@yekko.fritz.box>
-User-Agent: NeoMutt/20180716-391-311a52
+        Wed, 03 Feb 2021 01:59:22 -0800 (PST)
+From:   Amit Pundir <amit.pundir@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and panel bits
+Date:   Wed,  3 Feb 2021 15:29:16 +0530
+Message-Id: <1612346356-26445-1-git-send-email-amit.pundir@linaro.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-02-21, 15:07, David Gibson wrote:
-> On Mon, Jan 25, 2021 at 09:42:21PM -0600, Frank Rowand wrote:
-> > Before having looked at libfdt only at a cursory level while debugging the proposed
-> > use of fdtoverlay in Linux, my first thought was that maybe it would be possible
-> > to add warning and error messages within "#ifdef" blocks, or other ways that
-> > cause the error code to _not_ be compiled as part of library version of libfdt,
-> > but only be compiled as part of fdtoverlay _when built in the Linux kernel_
-> > (noting that the proposed Linux patch builds the libfdt files as part of
-> > the fdtoverlay compile instead of as a discrete library).  After looking at
-> > the libfdt source a tiny bit more carefully, I would probably shoot down this
-> > suggestion, as it makes the source code uglier and harder to understand and
-> > maintain for the primary purpose of being an embedded library.
-> 
-> Oof.  That sounds really ugly, but maybe it could be pulled off.
+From: Sumit Semwal <sumit.semwal@linaro.org>
 
-I started looking at this and I was able to get to a not so ugly
-solution.
+Enabling the Display panel for beryllium phone (Xiaomi
+Pocophone F1) requires DSI labibb regulators and panel
+dts nodes to be added. It is also required to keep some
+of the regulators as always-on.
 
-Do this in dtc:
--------------------------8<-------------------------
+Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 ---
- dtc.h        | 6 ++++++
- fdtoverlay.c | 2 ++
- 2 files changed, 8 insertions(+)
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts      | 55 ++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
-diff --git a/dtc.h b/dtc.h
-index d3e82fb8e3db..cc1e591b3f8c 100644
---- a/dtc.h
-+++ b/dtc.h
-@@ -29,6 +29,12 @@
- #define debug(...)
- #endif
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+index cd15ae0347e8..e09effa555f1 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+@@ -160,6 +160,14 @@
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
  
-+#ifdef VERBOSE
-+#define pr_err(...)    fprintf(stderr, __VA_ARGS__)
-+#else
-+#define pr_err(...)
-+#endif
++		vreg_l14a_1p88: ldo14 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++			regulator-boot-on;
++			regulator-always-on;
++		};
 +
- #define DEFAULT_FDT_VERSION    17
+ 		vreg_l17a_1p3: ldo17 {
+ 			regulator-min-microvolt = <1304000>;
+ 			regulator-max-microvolt = <1304000>;
+@@ -194,6 +202,7 @@
+ 			regulator-min-microvolt = <1200000>;
+ 			regulator-max-microvolt = <1200000>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++			regulator-boot-on;
+ 		};
+ 	};
+ };
+@@ -207,6 +216,44 @@
+ 	firmware-name = "qcom/sdm845/cdsp.mdt";
+ };
  
- /*
-diff --git a/fdtoverlay.c b/fdtoverlay.c
-index 5350af65679f..28ceac0d8079 100644
---- a/fdtoverlay.c
-+++ b/fdtoverlay.c
-@@ -16,6 +16,7 @@
++&dsi0 {
++	status = "okay";
++	vdda-supply = <&vreg_l26a_1p2>;
++
++	ports {
++		port@1 {
++			endpoint {
++				remote-endpoint = <&tianma_nt36672a_in_0>;
++				data-lanes = <0 1 2 3>;
++			};
++		};
++	};
++
++	panel@0 {
++		compatible = "tianma,fhd-video";
++		reg = <0>;
++		vddi0-supply = <&vreg_l14a_1p88>;
++		vddpos-supply = <&lab>;
++		vddneg-supply = <&ibb>;
++
++		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port {
++			tianma_nt36672a_in_0: endpoint {
++				remote-endpoint = <&dsi0_out>;
++			};
++		};
++	};
++};
++
++&dsi0_phy {
++	status = "okay";
++	vdds-supply = <&vreg_l1a_0p875>;
++};
++
+ &gcc {
+ 	protected-clocks = <GCC_QSPI_CORE_CLK>,
+ 			   <GCC_QSPI_CORE_CLK_SRC>,
+@@ -274,6 +321,14 @@
  
- #include <libfdt.h>
+ };
  
-+#include "dtc.h"
- #include "util.h"
- 
- #define BUF_INCREMENT  65536
-@@ -76,6 +77,7 @@ static void *apply_one(char *base, const char *overlay, size_t *buf_len,
-        if (ret) {
-                fprintf(stderr, "\nFailed to apply '%s': %s\n",
-                        name, fdt_strerror(ret));
-+               pr_err("New error\n");
-                goto fail;
-        }
- 
-
--------------------------8<-------------------------
-And do this in kernel:
--------------------------8<-------------------------
-
-diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-index c8c21e0f2531..9dafb9773f06 100644
---- a/scripts/dtc/Makefile
-+++ b/scripts/dtc/Makefile
-@@ -13,6 +13,7 @@ dtc-objs      += dtc-lexer.lex.o dtc-parser.tab.o
- libfdt-objs    := fdt.o fdt_ro.o fdt_wip.o fdt_sw.o fdt_rw.o fdt_strerror.o fdt_empty_tree.o fdt_addresses.o fdt_overlay.o
- libfdt         = $(addprefix libfdt/,$(libfdt-objs))
- fdtoverlay-objs        := $(libfdt) fdtoverlay.o util.o
-+HOSTCFLAGS_fdtoverlay.o := -DVERBOSE
- 
- # Source files need to get at the userspace version of libfdt_env.h to compile
- HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
-
--------------------------8<-------------------------
-
-Will that be acceptable ? With this we can add as many error messages
-to libfdt without affecting any other users of it other than Linux.
-
++&mdss {
++	status = "okay";
++};
++
++&mdss_mdp {
++	status = "okay";
++};
++
+ &mss_pil {
+ 	status = "okay";
+ 	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
 -- 
-viresh
+2.7.4
+
