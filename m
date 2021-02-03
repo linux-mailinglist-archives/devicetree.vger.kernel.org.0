@@ -2,133 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ECA230E593
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 23:05:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6861730E6B7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 00:07:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233064AbhBCWFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 17:05:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233043AbhBCWE7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 17:04:59 -0500
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63D61C061786
-        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 14:04:19 -0800 (PST)
-Received: by mail-yb1-xb29.google.com with SMTP id w204so1152517ybg.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 14:04:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=v7K3rW8zvq+XYmMSjDf3MSB+TOa5aFl39/Zfs0xNs5U=;
-        b=Es7NUx4/adad+Te1etGM6bwLwJ+xNQFACicd47TDJTcUwCw0zDHsw6oP16iLf4nz+L
-         N+wFktl7eNs+K6vmdsykdjHt8yoZvbxmBwggr9UzdN9c3gIufH8PRHP5Wv05cQO1Z94b
-         HyLFKzyhmFf+L2qBsOqWGIPywS+sRgdJ/sNLy8AvmenYWwnQ3NWAidiIQ2la0tzOBvi9
-         ie3kHKTLajBVzmdG8geg+EKsREOeeCydyP1b7Ro4OgWtnIxEy1i5FpGGc8onMeorgTB3
-         sxtBJhh2dTbqeczjqzkOWomUGBXOYoIPLQ29kctTWYynhR9l0HJ6unt5UDKykjcysHoi
-         6BuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=v7K3rW8zvq+XYmMSjDf3MSB+TOa5aFl39/Zfs0xNs5U=;
-        b=dzJq3S/+Uhr4Q5ZC/oImwJC/95eNizS3PdzNRh+IWQb7yEf5mzcFnLfOi3L/zNDgwl
-         XX1yS2OCw1eR6iZyZ5ykyGro1EAWXKX5yZeUlwCz53dSzydpRbAqfVOYW3jUjUZGa7HW
-         CphAEdn25SulfSUzm1597KW4UARaTEB9isPdMvm8L9VwcHTGJyfYcGpYu0j4x5zIM5F9
-         SSPJc40Hq2cfgyOxt8MySKkpmgdzernFQB7Zwrsq4YTEkbl2suDvw3WIMwPQiaLMvnWU
-         lRC1Wl+kR8b6zKBBBJREDUahJ+bzpPqRsbsYji6JFmky5Pl3SkcjuMccCLg+F6hyUcNA
-         tOVw==
-X-Gm-Message-State: AOAM532g+/hATFWyRRCqBxHWiuCzIcbKnuwwJMTzhdclAjnn5GRKXhic
-        zJA/FNd5o3q4mC8edWsFXmqx6Os7O0rCtkhmpxxAxw==
-X-Google-Smtp-Source: ABdhPJyx22+rwKcjQf1sOF4vT0S+2zuBCVq2Amx9fXv363dMobm/ynDLr7OM46rqz11e1gNt/PhUW8JMNl8MCP4C42o=
-X-Received: by 2002:a25:c683:: with SMTP id k125mr8298996ybf.32.1612389858339;
- Wed, 03 Feb 2021 14:04:18 -0800 (PST)
+        id S233683AbhBCXFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 18:05:53 -0500
+Received: from mga01.intel.com ([192.55.52.88]:22456 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233480AbhBCXFN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Feb 2021 18:05:13 -0500
+IronPort-SDR: 9OkjN/I70cHjTqlKPt7r27pctHzyx6vpa8RNs6A4m87Gy/FzYLs3saydhGynZBI2ueCbEbqWH+
+ eYwYv6HCPENg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="200103605"
+X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; 
+   d="scan'208";a="200103605"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2021 15:03:21 -0800
+IronPort-SDR: f+dZu8T3JVttwGtFAnqqieBAOdzCi319FHLnmdI/Hfu+W5eL80CBFtWCbOAeJTkN7dgB050pJl
+ yYmyHWkXXiAQ==
+X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; 
+   d="scan'208";a="579663169"
+Received: from yoojae-mobl.amr.corp.intel.com (HELO [10.255.231.105]) ([10.255.231.105])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2021 15:03:20 -0800
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: aspeed: add buffer and DMA mode
+ transfer support
+From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Rob Herring <robh@kernel.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>, linux-i2c@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+References: <20210112003749.10565-1-jae.hyun.yoo@linux.intel.com>
+ <20210112003749.10565-2-jae.hyun.yoo@linux.intel.com>
+ <20210114193416.GA3432711@robh.at.kernel.org>
+ <4f67358e-58e5-65a5-3680-1cd8e9851faa@linux.intel.com>
+ <CACPK8XcZTE=bnCP1-E9PTA09WnXG9Eduwx0dm-QqmQJUDa_OrQ@mail.gmail.com>
+ <1814b8d1-954c-0988-0745-e95129079708@linux.intel.com>
+Message-ID: <87ed4085-26e4-98f8-21e3-b1e3c16b0891@linux.intel.com>
+Date:   Wed, 3 Feb 2021 15:03:15 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <20210202043345.3778765-1-saravanak@google.com>
- <20210202212231.g5tj3f7tv74gagm6@viti.kaiser.cx> <CAGETcx_cS_Y-1Bw3tNhZRckEQO=yB8UDzNRr+Khs_X2ym7tnwA@mail.gmail.com>
- <20210203215757.pnfvfny2x67phyd7@viti.kaiser.cx>
-In-Reply-To: <20210203215757.pnfvfny2x67phyd7@viti.kaiser.cx>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 3 Feb 2021 14:03:42 -0800
-Message-ID: <CAGETcx9YGkqOj7e5xeXdE-icog9-v+SsTpW35-n1KeCf6JvpbQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Make fw_devlink=on more forgiving
-To:     Martin Kaiser <martin@kaiser.cx>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1814b8d1-954c-0988-0745-e95129079708@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 3, 2021 at 1:58 PM Martin Kaiser <martin@kaiser.cx> wrote:
->
-> Thus wrote Saravana Kannan (saravanak@google.com):
->
-> > > With modules disabled, the kernel boots but probe fails for some
-> > > (non-mainline) drivers in my tree.
->
-> > Thanks Martin!
->
-> > > All of those drivers have a gpio in
-> > > their device-tree node, such as
->
-> > > my_driver {
-> > >    gpio_test1 = <&gpio1 0 0>;
-> > >    ...
-> > > };
->
-> > > with gpio1 from arch/arm/boot/dts/imx25.dtsi.
->
-> > > The probe function calls
->
-> > > of_get_named_gpio(np, "gpio_test1", 0);
->
-> > > to get the gpio. This fails with -EINVAL.
->
-> > And you didn't see this issue with the fsl,avic patch?
->
-> No. With the fsl,avic patch in place, all drivers are probed correctly.
->
-> > The property you are using is not a standard GPIO binding (-gpios,
-> > gpio, gpios) and I'm not surprised it's not working.
->
-> I know that I should be using the gpiod API as suggested by Geert.
->
-> BTW is this definition ok? Could its driver be converted to using the
-> gpiod api?
->
-> rtc: rtc {
->    compatible = "moxa,moxart-rtc";
->    gpio-rtc-sclk = <&gpio 5 0>;
-> ...
+Hi Joel
 
-The correct non-deprecated binding AFAIK is something-gpios. Not
-gpio-something. And then you can use different APIs to get the GPIO (I
-forget what it's called).
+On 1/28/2021 11:36 AM, Jae Hyun Yoo wrote:
+> Hi Joel
+> 
+> On 1/27/2021 4:06 PM, Joel Stanley wrote:
+>> On Thu, 14 Jan 2021 at 20:05, Jae Hyun Yoo 
+>> <jae.hyun.yoo@linux.intel.com> wrote:
+>>>
+>>> Hi Rob,
+>>>
+>>> On 1/14/2021 11:34 AM, Rob Herring wrote:
+>>>>> -- reg                       : address offset and range of bus
+>>>>> +- reg                       : Address offset and range of bus 
+>>>>> registers.
+>>>>> +
+>>>>> +                      An additional SRAM buffer address offset and 
+>>>>> range is
+>>>>> +                      optional in case of enabling I2C dedicated 
+>>>>> SRAM for
+>>>>> +                      buffer mode transfer support. If the 
+>>>>> optional range
+>>>>> +                      is defined, buffer mode will be enabled.
+>>>>> +                      - AST2400
+>>>>> +                        &i2c0 { reg = <0x40 0x40>, <0x800 0x80>; };
+>>>>> +                        &i2c1 { reg = <0x80 0x40>, <0x880 0x80>; };
+>>>>> +                        &i2c2 { reg = <0xc0 0x40>, <0x900 0x80>; };
+>>>>> +                        &i2c3 { reg = <0x100 0x40>, <0x980 0x80>; };
+>>>>> +                        &i2c4 { reg = <0x140 0x40>, <0xa00 0x80>; };
+>>>>> +                        &i2c5 { reg = <0x180 0x40>, <0xa80 0x80>; };
+>>>>> +                        &i2c6 { reg = <0x1c0 0x40>, <0xb00 0x80>; };
+>>>>> +                        &i2c7 { reg = <0x300 0x40>, <0xb80 0x80>; };
+>>>>> +                        &i2c8 { reg = <0x340 0x40>, <0xc00 0x80>; };
+>>>>> +                        &i2c9 { reg = <0x380 0x40>, <0xc80 0x80>; };
+>>>>> +                        &i2c10 { reg = <0x3c0 0x40>, <0xd00 0x80>; };
+>>>>> +                        &i2c11 { reg = <0x400 0x40>, <0xd80 0x80>; };
+>>>>> +                        &i2c12 { reg = <0x440 0x40>, <0xe00 0x80>; };
+>>>>> +                        &i2c13 { reg = <0x480 0x40>, <0xe80 0x80>; };
+>>>>
+>>>> All this information doesn't need to be in the binding.
+>>>>
+>>>> It's also an oddly structured dts file if this is what you are doing...
+>>>
+>>> I removed the default buffer mode settings that I added into
+>>> 'aspeed-g4.dtsi' and 'aspeed-g5.dtsi' in v1 to avoid touching of the
+>>> default transfer mode setting, but each bus should use its dedicated
+>>> SRAM buffer range for enabling buffer mode so I added this information
+>>> at here as overriding examples instead. I thought that binding document
+>>> is a right place for providing this information but looks like it's not.
+>>> Any recommended place for it? Is it good enough if I add it just into
+>>> the commit message?
+>>
+>> I agree with Rob, we don't need this described in the device tree
+>> (binding or dts). We know what the layout is for a given aspeed
+>> family, so the driver can have this information hard coded.
+>>
+>> (Correct me if I've misinterpted here Rob)
+>>
+> 
+> Makes sense. Will add these settings into the driver module as hard
+> coded per each bus.
+> 
 
--Saravana
+Realized that the SRAM buffer range setting should be added into device
+tree because each bus module should get the dedicated IO resource range.
+So I'm going to add it to dtsi default reg setting for each I2C bus
+and will remove this description in binding. Also, I'll add a mode
+setting property instead to keep the current setting as byte mode.
 
->
->
-> > The gpio1 is probably getting probe deferred and ends up running after
-> > "my_driver".
->
-> I added a debug print in the probe function. It turned out that the
-> driver for gpio1 is probed for the first time after my_driver.
->
-> I removed the interrupt-controller property for gpio2 for testing. gpio2
-> was then probed much earlier.
+Please let me know if you have any different thought.
+
+Thanks,
+Jae
+
