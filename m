@@ -2,107 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53C7F30D1AD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 03:40:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 140BE30D1EB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 04:07:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231862AbhBCCil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Feb 2021 21:38:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43564 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231657AbhBCCig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 21:38:36 -0500
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C57DC061573;
-        Tue,  2 Feb 2021 18:37:56 -0800 (PST)
-Received: by mail-il1-x134.google.com with SMTP id y5so21075774ilg.4;
-        Tue, 02 Feb 2021 18:37:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=c9KYKY7BZB045Y0XHBzCqMEwAkz/SHgyfk9a9Zvnx1w=;
-        b=dO6jtuqtKEavhfxhTNu5s7lQe29zOh50QUYflKA2OwgBi8wTI2YuiTJ+aggFGb7T8b
-         +KijGMkTZsaqDFhcH0CRPKPeM0wYr5Aai6tG8A4MBOxwBtsK+O63QaVlXLi0ZUU39R3T
-         TpPBBtUTWBnoeGNGOEkDcejLEN1/9DOhjhtoXztDtVbDB2MBt2IsEkkdUGhoh0KClfqL
-         lz/BJRYhw9IamdVEGssrPDgtl98vYxq6mAShmHWH9NwEBu6mHwD8oUxCsREmtAOmDDJ0
-         FmJL7vfxnMv0mijpZAnhBA9/vDUA6IzW85xgMucOdqJUs+wCDzpZLDg8VSAjkuBglS8k
-         hNnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=c9KYKY7BZB045Y0XHBzCqMEwAkz/SHgyfk9a9Zvnx1w=;
-        b=mJ8/7iSYDVW1/rhTFY7Nmw+hC4SgKPo5BpOdAwQi/JSpf2x09JFWhicSLNHCWtePAf
-         WggwLbpNYP2hsgNEvovagOhjHXm70Z6WSwfLNMnTtRO/z8UgKBmelr0BsLARFtu0rYNL
-         v+ExF54QNY4MUOq07MOgPKjNVy6hDk7UC525z79VB6wIat4K57bEGDnDlL+zAQMvCFbu
-         aunR6xEWB0R+GB7ex8lxW/IIGiSadbib6PGuRI5XZx8kYMR5zTz1dczDKkcc4U0z5GOZ
-         S9wp3roMLKlYs5q7Lt6JfvsTIEvPaVUA3lE16aPB/IbKT+gFUrrbdvg9KvPx1BXuIIsk
-         nTmA==
-X-Gm-Message-State: AOAM533J6l91+/OE8DbYS29rkp9NqD5dPE8TXfMiVbgTl0v5FyllaLQk
-        5Z3zBb3ZyYlg/oq2vL3aUosGx/IaHzCK/7L56FDYq6ZDZOI=
-X-Google-Smtp-Source: ABdhPJxstGXg5V8CFyAY5tIsoqIS7MtVBE41LQI6vI7iMaFPp/NfUERZR2dFTmDyFToFVWiBbfpQGve9fuFgA0tr8Cc=
-X-Received: by 2002:a92:4b06:: with SMTP id m6mr989025ilg.177.1612319876111;
- Tue, 02 Feb 2021 18:37:56 -0800 (PST)
+        id S232211AbhBCC7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Feb 2021 21:59:40 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49046 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231245AbhBCC7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Feb 2021 21:59:40 -0500
+X-UUID: b1a44f580c7b41c78ba9368cec986f6d-20210203
+X-UUID: b1a44f580c7b41c78ba9368cec986f6d-20210203
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <seiya.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 568021075; Wed, 03 Feb 2021 10:58:52 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 3 Feb 2021 10:58:51 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 3 Feb 2021 10:58:45 +0800
+From:   Seiya Wang <seiya.wang@mediatek.com>
+To:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Peter Zijlstra <peterz@infradead.org>,
+        Ingo Molnar <mingo@redhat.com>,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Jiri Olsa <jolsa@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <srv_heupstream@mediatek.com>
+Subject: [PATCH 0/2] Add support for ARM Cortex-A78 PMU 
+Date:   Wed, 3 Feb 2021 10:58:00 +0800
+Message-ID: <20210203025802.30201-1-seiya.wang@mediatek.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
-References: <20210117180301.1956-1-alistair@alistair23.me> <20210117180301.1956-3-alistair@alistair23.me>
- <20210129071341.GH4356@dragon>
-In-Reply-To: <20210129071341.GH4356@dragon>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Tue, 2 Feb 2021 18:37:29 -0800
-Message-ID: <CAKmqyKOoTG+BGhRFtppQxnaV61GFxXXhmZJcxqGQVbnuV1PfqA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arch/arm/configs: Enable VMSPLIT_2G in imx_v6_v7_defconfig
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 11:13 PM Shawn Guo <shawnguo@kernel.org> wrote:
->
-> On Sun, Jan 17, 2021 at 10:03:01AM -0800, Alistair Francis wrote:
-> > The reMarkable2 requires VMSPLIT_2G, so lets set this in the
-> > imx_v6_v7_defconfig.
->
-> Hmm, why is VMSPLIT_2G required by reMarkable2?
+Add support for ARM Cortex-A78 PMU since it will be used in
+new Mediatek SoC.
 
-I'm not too sure. It's difficult to debug problems as I only have a
-UART but without this I don't see any kernel prints so it seems like
-the kernel doesn't get very far. I haven't had any luck with earlycon
-on the device so I don't know how I can get more information.
+Based on v5.11-rc6
 
-Alistair
+Seiya Wang (2):
+  arm64: perf: add support for Cortex-A78
+  dt-bindings: arm: add Cortex-A78 binding
 
->
-> Shawn
->
-> >
-> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> > ---
-> >  arch/arm/configs/imx_v6_v7_defconfig | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/arm/configs/imx_v6_v7_defconfig b/arch/arm/configs/imx_v6_v7_defconfig
-> > index 55674cb1ffce..fa9229616106 100644
-> > --- a/arch/arm/configs/imx_v6_v7_defconfig
-> > +++ b/arch/arm/configs/imx_v6_v7_defconfig
-> > @@ -29,6 +29,7 @@ CONFIG_SOC_IMX7D=y
-> >  CONFIG_SOC_IMX7ULP=y
-> >  CONFIG_SOC_VF610=y
-> >  CONFIG_SMP=y
-> > +CONFIG_VMSPLIT_2G=y
-> >  CONFIG_ARM_PSCI=y
-> >  CONFIG_HIGHMEM=y
-> >  CONFIG_FORCE_MAX_ZONEORDER=14
-> > --
-> > 2.29.2
-> >
+ Documentation/devicetree/bindings/arm/pmu.yaml | 1 +
+ arch/arm64/kernel/perf_event.c                 | 7 +++++++
+ 2 files changed, 8 insertions(+)
+
+--
+2.14.1
+
