@@ -2,90 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA44F30D44D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 08:52:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 641D730D46F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Feb 2021 08:57:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232038AbhBCHvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 02:51:01 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53352 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231654AbhBCHvA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Feb 2021 02:51:00 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BF4CC64F5C;
-        Wed,  3 Feb 2021 07:50:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612338619;
-        bh=9ZnPLFWxyuVetTdyZ2rsor+35zbCTQFmm3ShxD+mVqY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Gk5Bf9vdAcFYZzrPCyBBs5JrE83AKH5RSA9ClK3d+bPSj2wT+GMLKpmU35yKDEGzF
-         RqLH6eYza5hwa9/ZpkTBpaoAStu1czKkIsQmshE9agjqnQppsagQziPWaQT6zHsB9d
-         fNbel7y62aBzWivivTNxebUiHYluvB7u5hfaayoIQc5gD8NmyFzYmMPZSye+5hk6dh
-         xerO5y8MVAf+ta7wU9PtjmKby6wKSSeMw2GFFsDLTiNNimo4nJLUUymRZG++1wm6OM
-         Vif/QsyHtskqdhjysIml3SY3SNDnmUfc3EeD19oSEZOQmBIFuu+vYvfs0okleOtKyH
-         52zvt+EF7Eakw==
-Received: by mail-ot1-f48.google.com with SMTP id 36so22506269otp.2;
-        Tue, 02 Feb 2021 23:50:19 -0800 (PST)
-X-Gm-Message-State: AOAM5321eBWz14p0TYq0hy+PAEwNAA8kx2IlPkH9PDw2rP4BeWAwyNEV
-        dgCQZT0byRQ3qYmwxK0FpPzEGGv5TtnlJp6b3O8=
-X-Google-Smtp-Source: ABdhPJx2IAIFAijainQxsZvUjR94cQY1A0IfXD4DaJu5Y/wvAhddYXhrBd+YScXteK8LRmPUQLLJcnZSKhSCQmfhgtI=
-X-Received: by 2002:a05:6830:1256:: with SMTP id s22mr1221124otp.251.1612338618909;
- Tue, 02 Feb 2021 23:50:18 -0800 (PST)
+        id S231956AbhBCHzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 02:55:53 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:45654 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231929AbhBCHzv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 02:55:51 -0500
+Received: by mail-ot1-f41.google.com with SMTP id o12so871931ote.12;
+        Tue, 02 Feb 2021 23:55:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CiVkUnX1rF7MfRbPuBk59y3JgbJm++nqR8KpbyKln9E=;
+        b=Jaja+bThwGxU7TwK8cfXJYhoYqmi/Z17M7s/FoD9Z51y4qxqEPmSlUyUkP3XdsBsga
+         CG85REYrCghUAJv21AGGsoRZ5bu3/k7GBrXf1OyQcrmtNNSPDtiytlNFdOYJvmPc1snx
+         Y1mB9air9vLTeD61tEXLCcLBnDPQz6S6oYIH9IfaBYVH8BsWv26Cw5cHUXsOhBQiRaYZ
+         CaEvBNR9xoBnr7/v9UnUMaiBCgBYqX6LXmb08n1vI9qKze0TjJUhY/bjiVvDV+gWWmU6
+         hbzj2hnoaXLSo6FIEcZeV1GXZ05R6iyU8Wm1HhCG12x1Ni7yLRxo8yhSHChzDRLrNSh/
+         NIWA==
+X-Gm-Message-State: AOAM531AIwMHXHbHOA4asId5JgZwHg1dNruIKn5xJJW0umerubraL6Vt
+        egNrLx5J3ZBEKno4VP2CMrPR/danqD22sigS7Rw=
+X-Google-Smtp-Source: ABdhPJxc3BQwrIRlIATWeCLFrLCFZibhWXfsRO1E9PPrbBHdptbcNVEi+ZoVF3PUaTBfdWY3rke88vmuJdbnB7koodw=
+X-Received: by 2002:a05:6830:1489:: with SMTP id s9mr1207916otq.250.1612338910673;
+ Tue, 02 Feb 2021 23:55:10 -0800 (PST)
 MIME-Version: 1.0
-References: <20210117180301.1956-1-alistair@alistair23.me> <20210117180301.1956-3-alistair@alistair23.me>
- <20210129071341.GH4356@dragon> <CAKmqyKOoTG+BGhRFtppQxnaV61GFxXXhmZJcxqGQVbnuV1PfqA@mail.gmail.com>
-In-Reply-To: <CAKmqyKOoTG+BGhRFtppQxnaV61GFxXXhmZJcxqGQVbnuV1PfqA@mail.gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Wed, 3 Feb 2021 08:50:02 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1ZLuDTKY6YbPrcM338K4vmAgESeBiNwWN7VaWj2PtKFg@mail.gmail.com>
-Message-ID: <CAK8P3a1ZLuDTKY6YbPrcM338K4vmAgESeBiNwWN7VaWj2PtKFg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arch/arm/configs: Enable VMSPLIT_2G in imx_v6_v7_defconfig
-To:     Alistair Francis <alistair23@gmail.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Alistair Francis <alistair@alistair23.me>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+References: <20210202043345.3778765-1-saravanak@google.com>
+ <20210202212231.g5tj3f7tv74gagm6@viti.kaiser.cx> <CAGETcx_cS_Y-1Bw3tNhZRckEQO=yB8UDzNRr+Khs_X2ym7tnwA@mail.gmail.com>
+In-Reply-To: <CAGETcx_cS_Y-1Bw3tNhZRckEQO=yB8UDzNRr+Khs_X2ym7tnwA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 3 Feb 2021 08:54:59 +0100
+Message-ID: <CAMuHMdWN4JA4w+6MUAc-ogRAE602G8KSgy+71dtx7QQ60t1XZQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Make fw_devlink=on more forgiving
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Martin Kaiser <martin@kaiser.cx>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 3, 2021 at 3:37 AM Alistair Francis <alistair23@gmail.com> wrote:
->
-> On Thu, Jan 28, 2021 at 11:13 PM Shawn Guo <shawnguo@kernel.org> wrote:
+On Tue, Feb 2, 2021 at 11:44 PM Saravana Kannan <saravanak@google.com> wrote:
+> On Tue, Feb 2, 2021 at 1:22 PM Martin Kaiser <martin@kaiser.cx> wrote:
+> > Thus wrote Saravana Kannan (saravanak@google.com):
+> > All of those drivers have a gpio in
+> > their device-tree node, such as
 > >
-> > On Sun, Jan 17, 2021 at 10:03:01AM -0800, Alistair Francis wrote:
-> > > The reMarkable2 requires VMSPLIT_2G, so lets set this in the
-> > > imx_v6_v7_defconfig.
+> > my_driver {
+> >    gpio_test1 = <&gpio1 0 0>;
+> >    ...
+> > };
 > >
-> > Hmm, why is VMSPLIT_2G required by reMarkable2?
+> > with gpio1 from arch/arm/boot/dts/imx25.dtsi.
+> >
+> > The probe function calls
+> >
+> > of_get_named_gpio(np, "gpio_test1", 0);
+> >
+> > to get the gpio. This fails with -EINVAL.
 >
-> I'm not too sure. It's difficult to debug problems as I only have a
-> UART but without this I don't see any kernel prints so it seems like
-> the kernel doesn't get very far. I haven't had any luck with earlycon
-> on the device so I don't know how I can get more information.
+> And you didn't see this issue with the fsl,avic patch?
+>
+> The property you are using is not a standard GPIO binding (-gpios,
+> gpio, gpios) and I'm not surprised it's not working. The gpio1 is
+> probably getting probe deferred and ends up running after "my_driver".
 
-In the dts file, I can see that the machine has 1GB of RAM at
-contiguous addresses. My first guess would be a problem with
-highmem, as this configuration means that with VMSPLIT_3G
-there are 768MB of lowmem and 256MB of highmem.
+So my_driver doesn't support deferred probe, as of_get_named_gpio()
+returns -EINVAL instead of -EPROBE_DEFER?
+Converting my_driver from of_get_named_gpio() to the gpiod_*() API
+should at least make the driver support probe deferral, after which I
+expect it to start working again on reprobe?
 
-Can you try these two things to narrow the problem down
-further?
+Gr{oetje,eeting}s,
 
-a) disable CONFIG_HIGHMEM when using VMSPLIT_3G
-b) use VMSPLIT_3G_OPT
+                        Geert
 
-If both of them solve the problem, then highmem is likely
-the root cause. One possible issue might be that the boot
-loader loads the initramfs or the dtb into a location outside
-of the first 768 MB of lowmem where it is unreachable
-in the VMSPLIT_3G configuration.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-        Arnd
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
