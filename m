@@ -2,144 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 804E530F2BC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 12:54:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D98430F34A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 13:40:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235774AbhBDLxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 06:53:38 -0500
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:47293 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235558AbhBDLxf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 06:53:35 -0500
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20210204115252euoutp01644022993936a183c7019d0e51a2cf13~giT_dSjTs1398013980euoutp01g
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 11:52:52 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20210204115252euoutp01644022993936a183c7019d0e51a2cf13~giT_dSjTs1398013980euoutp01g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1612439572;
-        bh=CrNgGnBdM3NHfovieeL3wYXRz6hRRA0BSDq+Zhi40gc=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=opQRrg4yNliSwPvrTcw9NCGBZaU5+ib/zuJTVeAg8PuVl5TeCSC98Wclq2+i+a7lP
-         lS1J42MSY0lOXPwDA8TCO6bqefWMNBzLfLfNKj40M0JNbMEXMMOqaWvYGV5Rj9ZuY3
-         KLNUS5qXBGrZe5f2qSs0F7ze1GTRXv22j4R5xO0g=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20210204115252eucas1p1687ce7461fd73e9919d4d03153359a52~giT_HgnrA0326603266eucas1p1L;
-        Thu,  4 Feb 2021 11:52:52 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id B2.75.27958.410EB106; Thu,  4
-        Feb 2021 11:52:52 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c~giT9p1X5J0269002690eucas1p2C;
-        Thu,  4 Feb 2021 11:52:52 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20210204115252eusmtrp12f62cfd97065c534ade5377020fb5da9~giT9pCph30897708977eusmtrp1I;
-        Thu,  4 Feb 2021 11:52:52 +0000 (GMT)
-X-AuditID: cbfec7f2-efdff70000006d36-85-601be014fb48
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id C2.12.21957.310EB106; Thu,  4
-        Feb 2021 11:52:51 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20210204115251eusmtip1b345e76e5f3e7e4261b975491b6070cb~giT81Cnlj0653106531eusmtip1g;
-        Thu,  4 Feb 2021 11:52:51 +0000 (GMT)
-Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for
- interrupts
-To:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-tegra <linux-tegra@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>, kernel-team@android.com,
-        Rob Herring <robh@kernel.org>,
-        Thierry Reding <treding@nvidia.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
-Date:   Thu, 4 Feb 2021 12:52:50 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.7.0
+        id S236087AbhBDMjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 07:39:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58718 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235895AbhBDMj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 07:39:28 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 507B5C061786
+        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 04:38:48 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id y142so2058184pfb.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 04:38:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2dvgQdQ6hKfQnFN6cqPppjkW9v8eA0H2PjYK802sxpo=;
+        b=BNEQCznMNh8r0jLb9D7EexdCQzuEeG7tRhc7/5Xr5bLtHg4/YMMeu1f33qhVQ9k6x5
+         c9X8mzULfLUvJyNGW2KJVU+8n3yw3b0JOiWwHVMipnqOmi7mB2y8rcpL3Q3Er1LWIeXd
+         HXqodl8ZmCUwNkKHina/mvRq/XjerB7irxnK5etoEZB3UKFE+7dIMa8zN3Jlc9jtjvv2
+         RPpXBGkKCz3vl4ROsdeXfEfxVUJIvFQk+kaGQsY2Km8cWCZnHRsOetVp1OicJtm9DUXd
+         r8UjH2Xj3lxH6N+iGsAZSnr01RwmNS8nzKfkmcXKzqe172Y76mzvpDD1aren5hp8cfHv
+         /q/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2dvgQdQ6hKfQnFN6cqPppjkW9v8eA0H2PjYK802sxpo=;
+        b=cysfgXdDFnmyJVpbrJQBT8iSQBmTt/F2m/y/4WJjrw7REAcOnHqATpeBxIq7zegVjq
+         mZ0uIEXLkff7v+5BaCqC2QTuG8Oz//PwzGOE/jQunnxGNAEGEqhwKdHV7pbpgEuzkD2Z
+         c9xEffdJhWyODfcuHc/NwNI79OCeZ3WddZwL5IZAH7/nRvaVRsLFHMMW7Q0V/qPymMw5
+         Wcc9MHRAs6qU4NR7byW1jsFCQwaZFa6qlyrC+dHnyrn5p44tz0jEIK027kJP2Jg/x1HF
+         qi97btdLUlOc/BcMh/A115FOc1oA6MCakNTGHBaQKiw8r1b4VaYlDcxi90PLKZOnZujv
+         2Grw==
+X-Gm-Message-State: AOAM532aGCDhBVTYASCL3ZpYs3Kv0AWG67dHcX4iJ0gLRtMrDDKK3h88
+        f7mMZ9Wjpa66qJlg62oNM2rL5ah6cKLFcEqXASaHYA==
+X-Google-Smtp-Source: ABdhPJy3NmQ6w+rzYQfD4UrbFDVSoOhOsQHrBW+h26hmwT2e06tr4AzZ5nWGZCFbAK/jlrd3r9KmgGEneSIqEODKxKM=
+X-Received: by 2002:a63:5b4f:: with SMTP id l15mr8863564pgm.339.1612442327673;
+ Thu, 04 Feb 2021 04:38:47 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210121225712.1118239-3-saravanak@google.com>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrIKsWRmVeSWpSXmKPExsWy7djPc7oiD6QTDGb+lrH4MvcUi8X8I+dY
-        LWa++c9m8ezWXiaL5sXr2SxaZi1isdixXcTiZ/sWJospf5YzWVzeNYfNovPLLDaLnXNOslq0
-        7j3CbvF/zw52i65Df9ksbv/mcxDw2LZ7G6vH+xut7B47Z91l91iwqdRj06pONo871/aweRw6
-        3MHosX/uGnaP3uZ3bB6fN8kFcEVx2aSk5mSWpRbp2yVwZfw8Poup4A57xY8Le5kbGHexdTFy
-        cEgImEjcWmTZxcjFISSwglFi+Y6dTBDOF0aJBW2T2SCcz4wSR/b1wHW8eJgCEV/OKLHh/A2o
-        jo+MEid7r7F3MXJyCAsESnS1HmIGsUVA5l756wJSxCywl1li85dbjCAJNgFDia63XWwgNq+A
-        ncTOG+vAmlkEVCSuTtkCFhcVSJJYfvMPE0SNoMTJmU9YQGxOARuJPwuPg9nMAvIS29/OYYaw
-        xSVuPZkPdpGEwGFOicNX/rCCJCQEXCQudO9jh7CFJV4d3wJly0icntzDAtHQzCjx8Nxadgin
-        h1HictMMRogqa4k7536BA4BZQFNi/S59iLCjxN3fz1gh4cInceOtIMQRfBKTtk1nhgjzSnS0
-        CUFUq0nMOr4Obu3BC5eYJzAqzULy2iwk78xC8s4shL0LGFlWMYqnlhbnpqcWG+allusVJ+YW
-        l+al6yXn525iBKbC0/+Of9rBOPfVR71DjEwcjIcYJTiYlUR4E9ukEoR4UxIrq1KL8uOLSnNS
-        iw8xSnOwKInzrpq9Jl5IID2xJDU7NbUgtQgmy8TBKdXAlLcoMjD4wIyTW2LvrTrsYh8/7YFP
-        y7Vvy+sZtnK1v98onlp7vn/vq8XfrQq4N75sOKh46LlL9Imy+anNLDpJIo+Wrtu2JO+75pKH
-        nUf2n3FrMd+g3r1XbJXig4oma/nMN3JvjbL/1YheU1CrM2+6pn0q5c2Dg3Ls6+PVVsyf51st
-        kpBrZSFpF272SPmzmYhIv4DPG4290lXXnGQYVUSna7182MiQl/booaWjhIQAB/P9A6apRz5t
-        U2S7tHfBKcWevqufOGd/EV1s+eO6qCvDmr0T7qrs9jzBttTi/9bnkY0+uR/vvZt3dPvNnLi/
-        mtUaXDvSQ/dLOLrkGPPtZLLauKV3+81L1fl3GKv6ggIdlViKMxINtZiLihMBSKReA/QDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMIsWRmVeSWpSXmKPExsVy+t/xu7rCD6QTDO4dtbD4MvcUi8X8I+dY
-        LWa++c9m8ezWXiaL5sXr2SxaZi1isdixXcTiZ/sWJospf5YzWVzeNYfNovPLLDaLnXNOslq0
-        7j3CbvF/zw52i65Df9ksbv/mcxDw2LZ7G6vH+xut7B47Z91l91iwqdRj06pONo871/aweRw6
-        3MHosX/uGnaP3uZ3bB6fN8kFcEXp2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZ
-        Kunb2aSk5mSWpRbp2yXoZfw8Poup4A57xY8Le5kbGHexdTFycEgImEi8eJjSxcjFISSwlFFi
-        64+drF2MnEBxGYmT0xqgbGGJP9e62CCK3jNKrNnWzwaSEBYIlOhqPcQMkhARWMEoMe9sEzuI
-        wyywl1li28TTTCArhARyJY718II0sAkYSnS97QJr5hWwk9h5Yx07iM0ioCJxdcoWsLioQJLE
-        41v3mSBqBCVOznzCAmJzCthI/Fl4HMxmFjCTmLf5ITOELS+x/e0cKFtc4taT+UwTGIVmIWmf
-        haRlFpKWWUhaFjCyrGIUSS0tzk3PLTbUK07MLS7NS9dLzs/dxAiM/W3Hfm7ewTjv1Ue9Q4xM
-        HIyHGCU4mJVEeBPbpBKEeFMSK6tSi/Lji0pzUosPMZoC/TORWUo0OR+YfPJK4g3NDEwNTcws
-        DUwtzYyVxHm3zl0TLySQnliSmp2aWpBaBNPHxMEp1cC0starKl/3doP3+Z7Y5jB55ResgqKn
-        k4Ki73w6u6Fi+4uJjJs2MlZXybt0KLx1mcaW6N2psGHxSvt75/ZcnqGctpH9tJqlSPsN/95I
-        vayf0XebvY42v97uO68zcMpO9ZuVMz+uCi7ekuhYcttG7+Rc1tWK72ZqXNA2yrf1cXtvf77+
-        UGX11llqL46kFR291HZg3W4XjthrG6LyL3hvjzOsupe09tXOOQa/N221Xfy478D1Vec/iVt/
-        O9g82VM/5BVP7da53EaBV1m4YniP/jc9Ua3xnEvt7QWuFqvPrxafPSDDm7tljsnus/ZL7rFm
-        lF+QfLRq9ZKOqTZGArIGU7eavz/pb+22NfrgjPm2esa3lViKMxINtZiLihMBbyoRwIYDAAA=
-X-CMS-MailID: 20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c
-References: <20210121225712.1118239-1-saravanak@google.com>
-        <20210121225712.1118239-3-saravanak@google.com>
-        <CGME20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c@eucas1p2.samsung.com>
+References: <cover.1611802321.git.xji@analogixsemi.com> <246b8bd6e51ed5c8cb3618f4259adf8aba319511.1611802321.git.xji@analogixsemi.com>
+In-Reply-To: <246b8bd6e51ed5c8cb3618f4259adf8aba319511.1611802321.git.xji@analogixsemi.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Thu, 4 Feb 2021 13:38:36 +0100
+Message-ID: <CAG3jFyu0qj_ipqz8eKWtmkjKDBBAF_X20f1i-d=83vksgh6nxg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings:drm/bridge:anx7625:add vendor define flags
+To:     Xin Ji <xji@analogixsemi.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        =?UTF-8?Q?Ricardo_Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>,
+        dri-devel@lists.freedesktop.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Sheng Pan <span@analogixsemi.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravana,
+Hey Xin,
 
-On 21.01.2021 23:57, Saravana Kannan wrote:
-> This allows fw_devlink to create device links between consumers of an
-> interrupt and the supplier of the interrupt.
+On Thu, 28 Jan 2021 at 04:10, Xin Ji <xji@analogixsemi.com> wrote:
 >
-> Cc: Marc Zyngier <maz@kernel.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Thierry Reding <treding@nvidia.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Add 'bus-type' and 'data-lanes' define for port0, add HDCP support
+> flag and DP tx lane0 and lane1 swing register array define.
+>
+> Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> ---
+>  .../bindings/display/bridge/analogix,anx7625.yaml  | 54 +++++++++++++++++++++-
+>  1 file changed, 53 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> index c789784..048deec 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> @@ -34,6 +34,24 @@ properties:
+>      description: used for reset chip control, RESET_N pin B7.
+>      maxItems: 1
+>
+> +  analogix,lane0-swing:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    maxItems: 20
+> +    description:
+> +      an array of swing register setting for DP tx lane0 PHY, please don't
+> +      add this property, or contact vendor.
+> +
+> +  analogix,lane1-swing:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    maxItems: 20
+> +    description:
+> +      an array of swing register setting for DP tx lane1 PHY, please don't
+> +      add this property, or contact vendor.
+> +
+> +  analogix,hdcp-support:
+> +    type: boolean
+> +    description: indicate the DP tx HDCP support or not.
+> +
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>
+> @@ -41,13 +59,45 @@ properties:
+>        port@0:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description:
+> -          Video port for MIPI DSI input.
+> +          Video port for MIPI input.
 
-This patch landed some time ago in linux-next as commit 4104ca776ba3 
-("of: property: Add fw_devlink support for interrupts"). It breaks MMC 
-host controller operation on ARM Juno R1 board (the mmci@50000 device 
-defined in arch/arm64/boot/dts/arm/juno-motherboard.dtsi). I didn't 
-check further what's wrong there as without MMC mounting rootfs fails in 
-my test system.
+Maybe MIPI DSI/DPI input is more correct, since there are a lot of
+other MIPI standards.
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+> +
+> +        properties:
+> +          endpoint:
+> +            type: object
+> +            additionalProperties: false
+> +
+> +            # Properties described in
+> +            # Documentation/devicetree/bindings/media/video-interfaces.txt
+> +            properties:
+> +              remote-endpoint: true
+> +              bus-type: true
+> +              data-lanes: true
+> +
+> +            required:
+> +              - remote-endpoint
+> +
+> +        required:
+> +          - endpoint
+> +
+>
+>        port@1:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description:
+>            Video port for panel or connector.
+>
+> +        properties:
+> +          endpoint:
+> +            type: object
+> +            additionalProperties: false
+> +
+> +            # Properties described in
+> +            # Documentation/devicetree/bindings/media/video-interfaces.txt
+> +            properties:
+> +              remote-endpoint: true
+> +
+> +            required:
+> +              - remote-endpoint
+> +
+>      required:
+>        - port@0
+>        - port@1
+> @@ -81,6 +131,8 @@ examples:
+>                      reg = <0>;
+>                      anx7625_in: endpoint {
+>                          remote-endpoint = <&mipi_dsi>;
+> +                        bus-type = <5>;
+> +                        data-lanes = <0 1 2 3>;
+>                      };
+>                  };
+>
+> --
+> 2.7.4
+>
