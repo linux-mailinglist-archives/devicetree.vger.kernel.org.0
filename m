@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED4130F4ED
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4971130F50A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:34:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236614AbhBDO2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 09:28:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53686 "EHLO
+        id S236703AbhBDOc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 09:32:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236519AbhBDO1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 09:27:45 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0443C06178A
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 06:26:39 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id w4so3280062wmi.4
-        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 06:26:39 -0800 (PST)
+        with ESMTP id S236512AbhBDOT3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 09:19:29 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45D92C0613D6
+        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 06:18:46 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id b3so3702208wrj.5
+        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 06:18:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=WHxuqsEXEN4au8FdhV49UEllGtCSQh/DCdcron9InCc=;
-        b=Pg47DSWBlJxWDTyOy0uhMGzKVxdYFLXQWQS0K5+zxLWQojmzL5h6ffmzz8z8JphFg+
-         GGQnNvn4zYaBYDPyC6oVULe1wxqtXA5XmivtJVmAw1gi3hAHI9cxbYJ8QeLjDxBqhN2z
-         sfjDy3JiEEXoc6s37Q0mTdakrkoM5BHiSvuWBi3o11isnRp8muh/HasfGTLX1h7INMPE
-         eu5FT15vPLlyQyL95luBYGKr7scOfYg8dDnnK/YcunKE0eaIWI/fCuGuv0YDlc808WV5
-         I+uMW4rSIiz6w0P13aivINkdIWrIx32dUc9bZPEOpmtG5xjHFd+ejnKzad1gnP1Q9wvP
-         8ztg==
+        bh=1A5jaGMH8v+8RmdU0UTE1kbhV4vjjan/ogFcu70QFBM=;
+        b=kRbGsvSTuji0iv5YtpH4MYYQqNnFddgufEy4QsAH7R2fLfOK7onqaAUtIbALHOKYnc
+         NAEQ9am67BI4JNDLRDj0tSJ5nfUszcCN6tSuhpwWcque/KXCX4cfDO0U8JK43+dsj+vx
+         1Y2kxvNZSdfgt2n4gKlVaxpCgAK0iZg3HekpS3oJRCfDdxiInXL1wH/eS5ZTRCsd5C47
+         zoHUZ9lKr0b9hqj1r4cvMY40hRG5umkYAWcWVgdL1nqFt4TxFku5KNI0DDFSqHDOJQ29
+         ENRRELa3ERiq5FgRUFXRNakDuEhpvvsXdHWHvn6eCuVv5LdB57u6hIYKryT8KZJ0fgD4
+         sj1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WHxuqsEXEN4au8FdhV49UEllGtCSQh/DCdcron9InCc=;
-        b=D0mnqjoK8UqoKMajVqzQUrGK5+7ERz2qIk9cRXmL7J9NAZlhRL2fiVQOf36WjQhO74
-         DT41Sr1v32caeUxJ0UJplcGl5KUwhOikuPv0svNfOMIvT/KazLByMvaNkoRll0+5Khau
-         TnD9itytrkhMA8CQqWAHjATIS5W2DhmVsNp46J1WM0B6PlszbMyT6IB5I3TtplievH6K
-         dODKGXgRic+Db5llJJKWUAIQhSBr2tYw0yUWP3JmVNKSa1rdB9LiA9K6hjPHrKaDYxGy
-         TMTM3BOgF6gxjvNVfahUmbzOSvesjpNh9Z6B9Tuc20v/0mZ72Qb7FHjC2ouOTslk+j7m
-         wgmg==
-X-Gm-Message-State: AOAM530kDBeAR85B1eB45ApuN8fme8p3GjLRFbdFgUpkL2+G5x5pr5y2
-        kCmf5FjpfQ74/t/rSizeiWNBjg==
-X-Google-Smtp-Source: ABdhPJz8JyfdFBQ/Eq1UMUYtaCSGJYG+KqzKASSPlnHSKDldVsKHnk3I1lXTriVT3KNvdGryo6FBXw==
-X-Received: by 2002:a05:600c:4f13:: with SMTP id l19mr7619926wmq.70.1612448798327;
-        Thu, 04 Feb 2021 06:26:38 -0800 (PST)
+        bh=1A5jaGMH8v+8RmdU0UTE1kbhV4vjjan/ogFcu70QFBM=;
+        b=ofEmn2Ht5sEbyFxfMbYJ22bcwlQbV+lAIP9jjFXeRR7uYbCDVTr/8eJq4yqY2nxEip
+         Beuoi88K6mmLPr1PNcxbgDNbUQoYZ3gvxPZH2kC7Csq0z1HteO/mGmLEmtS+DNAeClsh
+         CpqGWnCTqofs3W8bqb0A5YE7jnlgNUbXlfKBpWDKY5qFQrHuLNv4J21GOW1/HMjLzK3d
+         l8vWmkATM3j+SZyg2ZWHwAZzkZJQDnSJkniE5lDmk3C2OjaZg02ilu6nhyrzvtvfCHI0
+         b0EJNuMCkzR4kgIKAANFiUp8vObsZqIKTatK02aeCz0F9HZ05Lf/TXRWuLraliGezOLy
+         QO0g==
+X-Gm-Message-State: AOAM531gHFl5cbgoano7N2qgRl3G3c8zd1s4wpsQHqQmShjG3/v0w1Tn
+        fFtA/93YpJAgirkabAqJFAXvVw==
+X-Google-Smtp-Source: ABdhPJwmxlEADo2pamrd4+uG+uA5gIHQiPMR8XnPrPRMCr82leKGAKYaVIlc3piIwQdzJpEdnxUfkQ==
+X-Received: by 2002:adf:9148:: with SMTP id j66mr10034560wrj.28.1612448324809;
+        Thu, 04 Feb 2021 06:18:44 -0800 (PST)
 Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
-        by smtp.gmail.com with ESMTPSA id u3sm9286516wre.54.2021.02.04.06.26.37
+        by smtp.gmail.com with ESMTPSA id 35sm9159761wrn.42.2021.02.04.06.18.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Feb 2021 06:26:37 -0800 (PST)
-Date:   Thu, 4 Feb 2021 14:26:35 +0000
+        Thu, 04 Feb 2021 06:18:43 -0800 (PST)
+Date:   Thu, 4 Feb 2021 14:18:41 +0000
 From:   Quentin Perret <qperret@google.com>
 To:     Will Deacon <will@kernel.org>
 Cc:     Catalin Marinas <catalin.marinas@arm.com>,
@@ -63,65 +63,44 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         Fuad Tabba <tabba@google.com>,
         Mark Rutland <mark.rutland@arm.com>,
         David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 26/26] KVM: arm64: Wrap the host with a stage 2
-Message-ID: <YBwEGx1tv8hob9ho@google.com>
+Subject: Re: [RFC PATCH v2 23/26] KVM: arm64: Refactor __populate_fault_info()
+Message-ID: <YBwCQVi2JUxKUy9Y@google.com>
 References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-27-qperret@google.com>
- <20210203161146.GJ18974@willie-the-truck>
+ <20210108121524.656872-24-qperret@google.com>
+ <20210203155831.GG18974@willie-the-truck>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210203161146.GJ18974@willie-the-truck>
+In-Reply-To: <20210203155831.GG18974@willie-the-truck>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 03 Feb 2021 at 16:11:47 (+0000), Will Deacon wrote:
-> On Fri, Jan 08, 2021 at 12:15:24PM +0000, Quentin Perret wrote:
-> > When KVM runs in protected nVHE mode, make use of a stage 2 page-table
-> > to give the hypervisor some control over the host memory accesses. At
-> > the moment all memory aborts from the host will be instantly idmapped
-> > RWX at stage 2 in a lazy fashion. Later patches will make use of that
-> > infrastructure to implement access control restrictions to e.g. protect
-> > guest memory from the host.
+On Wednesday 03 Feb 2021 at 15:58:32 (+0000), Will Deacon wrote:
+> On Fri, Jan 08, 2021 at 12:15:21PM +0000, Quentin Perret wrote:
+> > Refactor __populate_fault_info() to introduce __get_fault_info() which
+> > will be used once the host is wrapped in a stage 2.
 > > 
 > > Signed-off-by: Quentin Perret <qperret@google.com>
 > > ---
-> >  arch/arm64/include/asm/kvm_cpufeature.h       |   2 +
-> >  arch/arm64/kernel/image-vars.h                |   3 +
-> >  arch/arm64/kvm/hyp/include/nvhe/mem_protect.h |  33 +++
-> >  arch/arm64/kvm/hyp/nvhe/Makefile              |   2 +-
-> >  arch/arm64/kvm/hyp/nvhe/hyp-init.S            |   1 +
-> >  arch/arm64/kvm/hyp/nvhe/hyp-main.c            |   6 +
-> >  arch/arm64/kvm/hyp/nvhe/mem_protect.c         | 191 ++++++++++++++++++
-> >  arch/arm64/kvm/hyp/nvhe/setup.c               |   6 +
-> >  arch/arm64/kvm/hyp/nvhe/switch.c              |   7 +-
-> >  arch/arm64/kvm/hyp/nvhe/tlb.c                 |   4 +-
-> >  10 files changed, 248 insertions(+), 7 deletions(-)
-> >  create mode 100644 arch/arm64/kvm/hyp/include/nvhe/mem_protect.h
-> >  create mode 100644 arch/arm64/kvm/hyp/nvhe/mem_protect.c
+> >  arch/arm64/kvm/hyp/include/hyp/switch.h | 36 +++++++++++++++----------
+> >  1 file changed, 22 insertions(+), 14 deletions(-)
+> > 
+> > diff --git a/arch/arm64/kvm/hyp/include/hyp/switch.h b/arch/arm64/kvm/hyp/include/hyp/switch.h
+> > index 84473574c2e7..e9005255d639 100644
+> > --- a/arch/arm64/kvm/hyp/include/hyp/switch.h
+> > +++ b/arch/arm64/kvm/hyp/include/hyp/switch.h
+> > @@ -157,19 +157,9 @@ static inline bool __translate_far_to_hpfar(u64 far, u64 *hpfar)
+> >  	return true;
+> >  }
+> >  
+> > -static inline bool __populate_fault_info(struct kvm_vcpu *vcpu)
+> > +static inline bool __get_fault_info(u64 esr, u64 *far, u64 *hpfar)
 > 
-> [...]
-> 
-> > +void handle_host_mem_abort(struct kvm_cpu_context *host_ctxt)
-> > +{
-> > +	enum kvm_pgtable_prot prot;
-> > +	u64 far, hpfar, esr, ipa;
-> > +	int ret;
-> > +
-> > +	esr = read_sysreg_el2(SYS_ESR);
-> > +	if (!__get_fault_info(esr, &far, &hpfar))
-> > +		hyp_panic();
-> > +
-> > +	prot = KVM_PGTABLE_PROT_R | KVM_PGTABLE_PROT_W | KVM_PGTABLE_PROT_X;
-> > +	ipa = (hpfar & HPFAR_MASK) << 8;
-> > +	ret = host_stage2_map(ipa, PAGE_SIZE, prot);
-> 
-> Can we try to put down a block mapping if the whole thing falls within
-> memory?
+> Could this take a pointer to a struct kvm_vcpu_fault_info instead?
 
-Yes we can! And in fact we can do that outside of memory too. It's
-queued for v3 already, so stay tuned ... :)
+The disr_el1 field will be unused in this case, but yes, that should
+work.
 
-Thanks,
+Cheers,
 Quentin
