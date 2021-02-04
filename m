@@ -2,75 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F89A30FEFE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 22:04:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 275C930FF16
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 22:10:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbhBDVBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 16:01:14 -0500
-Received: from elvis.franken.de ([193.175.24.41]:52893 "EHLO elvis.franken.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229511AbhBDVBM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 16:01:12 -0500
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1l7ljq-0002rO-01; Thu, 04 Feb 2021 22:00:30 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 4D99BC0D71; Thu,  4 Feb 2021 21:59:13 +0100 (CET)
-Date:   Thu, 4 Feb 2021 21:59:13 +0100
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Bert Vermeulen <bert@biot.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sander Vanheule <sander@svanheule.net>,
-        John Crispin <john@phrozen.org>,
-        Birger Koblitz <mail@birger-koblitz.de>
-Subject: Re: [PATCH v4 5/5] mips: dts: Add support for Cisco SG220-26 switch
-Message-ID: <20210204205913.GB19460@alpha.franken.de>
-References: <20210119092109.185282-1-bert@biot.com>
- <20210119092109.185282-6-bert@biot.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210119092109.185282-6-bert@biot.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S230022AbhBDVKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 16:10:19 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:44351 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229518AbhBDVKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 16:10:18 -0500
+Received: by mail-ot1-f46.google.com with SMTP id e70so4800463ote.11;
+        Thu, 04 Feb 2021 13:10:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=kDCEeeVNBxm4PZ+XUDNv/+J3MgQ6LbJpFq4H4iRKaqk=;
+        b=DR6ARsbopXp5YCot7p8kCTjaBJ0d0eBLA7ADFwFsRpSvNUMA3hH5FwG1Z8IsoSwD+6
+         ppbcBArJekmT60wKgMRGKKQzwfiKKR+IAm+JKThs/RgQw5ujTOyvWxGPnjJOCzOZqPHt
+         vYT11zGXorz4GMl9t9zvxteJzlbgPo/wg+uJ3v4qwTDWSd8VB7FGfPDsQTLz+WjqyuNT
+         5wkq3y09V0ImwBJ1xnF9tetFkXKEyfhOwfcDGjy5I+A/aTBmB1QaO67VVTdUUHMuZJFO
+         PpFwFOL6yyVvAanW9i5TyCxdkHwScJz1nmsaQfXbZqDoBZ7nDNRxqcQPjV6VbAazRbpY
+         nJHA==
+X-Gm-Message-State: AOAM533jdu25OiqoK1WMduDJUzKWxI2CtnntscM6IhwhGJOOkrmpt988
+        nC2RWpA9iyB2aJ110YhSQw==
+X-Google-Smtp-Source: ABdhPJzzXqbwqmE12QzS0yfeLW64QI9YDIx5wLA6mfngOwRiUqdGhd6bvA+euThEIUmL7CssCFXRxQ==
+X-Received: by 2002:a9d:674f:: with SMTP id w15mr993190otm.88.1612472977321;
+        Thu, 04 Feb 2021 13:09:37 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y17sm1326755oie.7.2021.02.04.13.09.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Feb 2021 13:09:36 -0800 (PST)
+Received: (nullmailer pid 1070128 invoked by uid 1000);
+        Thu, 04 Feb 2021 21:09:35 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Maulik Shah <mkshah@codeaurora.org>
+Cc:     lsrao@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        mka@chromium.org, linux-kernel@vger.kernel.org, agross@kernel.org,
+        linux@roeck-us.net, devicetree@vger.kernel.org,
+        dianders@chromium.org, ilina@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        swboyd@chromium.org, bjorn.andersson@linaro.org,
+        evgreen@chromium.org, rnayak@codeaurora.org
+In-Reply-To: <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
+References: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org> <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
+Subject: Re: [PATCH v6 1/4] dt-bindings: Introduce SoC sleep stats bindings
+Date:   Thu, 04 Feb 2021 15:09:35 -0600
+Message-Id: <1612472975.265026.1070127.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 10:21:09AM +0100, Bert Vermeulen wrote:
-> Signed-off-by: Bert Vermeulen <bert@biot.com>
-> ---
->  arch/mips/Kconfig                             | 10 ++++++++
->  arch/mips/boot/dts/realtek/Makefile           |  2 ++
->  arch/mips/boot/dts/realtek/cisco_sg220-26.dts | 25 +++++++++++++++++++
->  3 files changed, 37 insertions(+)
->  create mode 100644 arch/mips/boot/dts/realtek/Makefile
->  create mode 100644 arch/mips/boot/dts/realtek/cisco_sg220-26.dts
+On Thu, 04 Feb 2021 19:51:45 +0530, Maulik Shah wrote:
+> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
 > 
-> diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
-> index 0986d0c4405f..a398416842ca 100644
-> --- a/arch/mips/Kconfig
-> +++ b/arch/mips/Kconfig
-> @@ -1055,6 +1055,16 @@ config NLM_XLP_BOARD
->  
->  endchoice
->  
-> +if MACH_REALTEK_RTL
-> +choice
-> +	prompt "Realtek RTL838x/RTL839x-based switch"
-> +	optional
-> +
-> +	config DT_CISCO_SG220_26
-> +		bool "Cisco SG220-26"
-> +endchoice
-> +endif
-> +
+> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+> SoC sleep stats driver. The driver is used for displaying SoC sleep
+> statistic maintained by Always On Processor or Resource Power Manager.
+> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>  .../bindings/soc/qcom/soc-sleep-stats.yaml         | 46 ++++++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> 
 
-I've dropped that while applying, because it's just one DT so far and if
-there are more of them, please move to arch/mips/realtek/Kconfig
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Thomas.
+yamllint warnings/errors:
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml: 'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.example.dt.yaml: example-0: rpmh-sleep-stats@c3f0000:reg:0: [0, 205455360, 0, 1024] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.example.dt.yaml: example-1: rpm-sleep-stats@4690000:reg:0: [0, 73990144, 0, 1024] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+
+See https://patchwork.ozlabs.org/patch/1436034
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
