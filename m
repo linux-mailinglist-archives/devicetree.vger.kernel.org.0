@@ -2,125 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D379A310036
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 23:41:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D112A31007A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 00:09:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230039AbhBDWkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 17:40:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47152 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230009AbhBDWkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 17:40:22 -0500
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E299C06178B
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 14:39:36 -0800 (PST)
-Received: by mail-yb1-xb4a.google.com with SMTP id e62so4797093yba.5
-        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 14:39:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=0dbkPCei0EVZxiD/xgF8DsX5xGgDmOcId+wNtSYzaY4=;
-        b=Fpa96Kq7NFETtqxrJ7hdmqTO6wZkjuxubgRR7/8v7tw0ssWWJXO00+GHBbsCaytH3N
-         di/IFDwL3tNHRnlG+ZRfBlrH/Flao5qRyDIv7m8Zj5pbFF7izx3uOMZh6brCNdUyxG4T
-         WnRJHR2OwpYnXpY6R/IOM+bgZ29PwcYgwfmAHxBELprTBayUssCjsKTLmN8VT2SLIND6
-         FI8XNLLkV5yv3Nq7w6ulX6KqbE0We/Mv6DXgOLku0BkZjGcpGa7tVpZaKBFLzk9NHvcT
-         KZC4xDAvCPuBWU3oQqZ9booDuDNuPpJ1SXQWP14XOjQ9f2ctM7X/tifJESiMPNuzcGWs
-         NjBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=0dbkPCei0EVZxiD/xgF8DsX5xGgDmOcId+wNtSYzaY4=;
-        b=qGU99Igmh8d3jnBjj4m6HMfzzev6T2OC/9qRp6GZHax70PucyvtZojAY1qSlru+u21
-         a7M1VuKQ20hd61RFJwrJqA20NN7vl/OlyMXUQZvsHX/vQp7fXNrpiFLwuykOqQ3Erqxg
-         azc4bNaV8Q/6RSgAvpLBY9hPsBrRFUpk76n1pjFv7fVCID8nwtUiBrbGQQZ8XfujCg0G
-         jjb2U1hqK1ktvo0jhSiK0Dtxm6JqEQy5r+8k82J7wplpLkclFqsvJIDqkcmBZ0U913qW
-         9HTORvC/Wc2TLPwbZyvLqfCTMM7e9pDs8icKdOIh6KaGvvkS1uT4eKBmR5F85Mtdoa39
-         +5kw==
-X-Gm-Message-State: AOAM531xdydId11HXJJGJhRASlkJcRI47y+uTbinT9rcSoi6EGDt5b0E
-        K0P+4UphOcoHUM+E2JTCQGq3qBTyic4uXSA=
-X-Google-Smtp-Source: ABdhPJzFSX+PON0ie+o6EiaxXNdvovbgxp9M0i+ykscDv1cefCl6vtAT+nFkuA4cAkgfz5AnpSUCldUZ6G7XQok=
-Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:8475:2f1d:e8b4:f65a])
- (user=saravanak job=sendgmr) by 2002:a25:83d0:: with SMTP id
- v16mr2494628ybm.40.1612478375921; Thu, 04 Feb 2021 14:39:35 -0800 (PST)
-Date:   Thu,  4 Feb 2021 14:39:21 -0800
-In-Reply-To: <20210204223921.1693487-1-saravanak@google.com>
-Message-Id: <20210204223921.1693487-5-saravanak@google.com>
-Mime-Version: 1.0
-References: <20210204223921.1693487-1-saravanak@google.com>
-X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
-Subject: [PATCH v3 4/4] of: property: Add fw_devlink support for optional properties
-From:   Saravana Kannan <saravanak@google.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc:     Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Martin Kaiser <martin@kaiser.cx>
+        id S230034AbhBDXG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 18:06:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38782 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229787AbhBDXG6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 18:06:58 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3E14A64D9D;
+        Thu,  4 Feb 2021 23:06:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612479977;
+        bh=2yrQoi07tSr3GqEztnm6rCdEQC9o4rSjgEng2ClYQak=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LgO4ASIb40EkgS5QUIrz31ZXO+KtNJO2DVty+vGFXrR25WNxSEfhpqgoDnW0Sc57M
+         +Okydb53JOlHovRe3gN96g8AAslzWF7U37VQg0HN9Ez81TcDR1OqShEnNRQiMsBqMN
+         0W10WBbhbPnqDUEbOgOt8QhlexG4IWMkMnbdKLkg1IyuaoDIv2opvy3hgMcehd0uyS
+         8iR1HPvmJ5beUeU1koXRIuo1Dhu9hZ3PDLszFoft2jRmZtVUmpit0OQ3CvCqxOUB/k
+         vlhvHVYsxhpNEz3Zo9s+DZl45xsyxY46dUw5kFvT8kN8lMB0CbeeZc2lmz1k1Jy+dP
+         jPPC/e3SA9Ugg==
+Received: by mail-ej1-f47.google.com with SMTP id hs11so8570181ejc.1;
+        Thu, 04 Feb 2021 15:06:17 -0800 (PST)
+X-Gm-Message-State: AOAM530tweY9P05wXLrWJgyXJ+faf8gpXs3zX4OJPV3R0S/eSi1ayXqt
+        PqeJaemH/MhNV21g06ELEmC/obLtTzO0ZsLPAw==
+X-Google-Smtp-Source: ABdhPJyPjFOTPT0jH+zG0qjs4Py4MMPiXwafYcoMdMZUPPpd+AV2YfCVLMo4epWY2VUqB7scUFvuB/IXyikfDLpQJwo=
+X-Received: by 2002:a17:906:57cd:: with SMTP id u13mr1304383ejr.341.1612479975730;
+ Thu, 04 Feb 2021 15:06:15 -0800 (PST)
+MIME-Version: 1.0
+References: <20210203135441.136-1-martinax.krasteva@linux.intel.com>
+ <20210203135441.136-2-martinax.krasteva@linux.intel.com> <1612452057.710530.452037.nullmailer@robh.at.kernel.org>
+ <20210204161654.GC32460@paasikivi.fi.intel.com>
+In-Reply-To: <20210204161654.GC32460@paasikivi.fi.intel.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 4 Feb 2021 17:06:04 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJDwtUQEe7RTaNsCkbLr+WO-RS5QuGsQwtAmmm5nkcw_Q@mail.gmail.com>
+Message-ID: <CAL_JsqJDwtUQEe7RTaNsCkbLr+WO-RS5QuGsQwtAmmm5nkcw_Q@mail.gmail.com>
+Subject: Re: [PATCH v7 1/2] dt-bindings: media: Add bindings for imx334
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Martina Krasteva <martinax.krasteva@linux.intel.com>,
+        gjorgjix.rosikopulos@linux.intel.com, devicetree@vger.kernel.org,
+        Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        paul.j.murphy@linux.intel.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Not all DT bindings are mandatory bindings. Add support for optional DT
-bindings and mark iommus, iommu-map, dmas as optional DT bindings.
+On Thu, Feb 4, 2021 at 10:17 AM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Rob,
+>
+> On Thu, Feb 04, 2021 at 09:20:57AM -0600, Rob Herring wrote:
+> > On Wed, 03 Feb 2021 13:54:40 +0000, Martina Krasteva wrote:
+> > > From: Martina Krasteva <martinax.krasteva@intel.com>
+> > >
+> > > - Add dt-bindings documentation for Sony imx334 sensor driver.
+> > > - Add MAINTAINERS entry for Sony imx334 binding documentation.
+> > >
+> > > Signed-off-by: Martina Krasteva <martinax.krasteva@intel.com>
+> > > Reviewed-by: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
+> > > Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> > > Acked-by: Paul J. Murphy <paul.j.murphy@intel.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  .../devicetree/bindings/media/i2c/sony,imx334.yaml | 90 ++++++++++++++++++++++
+> > >  MAINTAINERS                                        |  8 ++
+> > >  2 files changed, 98 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> > >
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Error: Documentation/devicetree/bindings/media/i2c/sony,imx334.example.dts:28.17-18 syntax error
+> > FATAL ERROR: Unable to parse input tree
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/property.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+That's usually a missing header for #defines.
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 53d163c8d39b..962109082df1 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1235,6 +1235,7 @@ static struct device_node *parse_##fname(struct device_node *np,	     \
- struct supplier_bindings {
- 	struct device_node *(*parse_prop)(struct device_node *np,
- 					  const char *prop_name, int index);
-+	bool optional;
- };
- 
- DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
-@@ -1308,12 +1309,12 @@ static struct device_node *parse_interrupts(struct device_node *np,
- static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_clocks, },
- 	{ .parse_prop = parse_interconnects, },
--	{ .parse_prop = parse_iommus, },
--	{ .parse_prop = parse_iommu_maps, },
-+	{ .parse_prop = parse_iommus, .optional = true, },
-+	{ .parse_prop = parse_iommu_maps, .optional = true, },
- 	{ .parse_prop = parse_mboxes, },
- 	{ .parse_prop = parse_io_channels, },
- 	{ .parse_prop = parse_interrupt_parent, },
--	{ .parse_prop = parse_dmas, },
-+	{ .parse_prop = parse_dmas, .optional = true, },
- 	{ .parse_prop = parse_power_domains, },
- 	{ .parse_prop = parse_hwlocks, },
- 	{ .parse_prop = parse_extcon, },
-@@ -1368,6 +1369,11 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
- 
- 	/* Do not stop at first failed link, link all available suppliers. */
- 	while (!matched && s->parse_prop) {
-+		if (s->optional && !fw_devlink_is_strict()) {
-+			s++;
-+			continue;
-+		}
-+
- 		while ((phandle = s->parse_prop(con_np, prop_name, i))) {
- 			matched = true;
- 			i++;
--- 
-2.30.0.365.g02bc693789-goog
+> > make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/media/i2c/sony,imx334.example.dt.yaml] Error 1
+> > make[1]: *** Waiting for unfinished jobs....
+> > make: *** [Makefile:1370: dt_binding_check] Error 2
+> >
+> > See https://patchwork.ozlabs.org/patch/1435383
+> >
+> > This check can fail if there are any dependencies. The base for a patch
+> > series is generally the most recent rc1.
+> >
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> >
+> > pip3 install dtschema --upgrade
+> >
+> > Please check and re-submit.
+>
+> Thanks for reporting this. The example was apparently missing the
+> assigned-clock-parents property. I'll squash the following change to the
+> patch:
 
+Doubtful. That would be a more specific schema error.
+
+>
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> index 3145e94d043e7..4217fbea0735a 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> @@ -76,6 +76,7 @@ examples:
+>              clocks = <&imx334_clk>
+>
+>              assigned-clocks = <&imx334_clk>;
+> +            assigned-clock-parents = <&imx334_clk_parent>;
+>              assigned-clock-rates = <24000000>;
+>
+>              port {
+>
+> --
+> Kind regards,
+>
+> Sakari Ailus
