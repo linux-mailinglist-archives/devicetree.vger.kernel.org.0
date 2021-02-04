@@ -2,259 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C4A030EEAC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 09:44:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD41730EF47
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 10:12:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234897AbhBDIlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 03:41:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36094 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234712AbhBDIln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 03:41:43 -0500
-Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24FD8C061573;
-        Thu,  4 Feb 2021 00:41:03 -0800 (PST)
-Received: from [2a04:4540:1402:a1ac::c66]
-        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <john@phrozen.org>)
-        id 1l7aCC-0006Bk-UO; Thu, 04 Feb 2021 09:41:00 +0100
-Subject: Re: [PATCH v4 2/2] irqchip: Add support for Realtek RTL838x/RTL839x
- interrupt controller
-To:     Bert Vermeulen <bert@biot.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210122204224.509124-1-bert@biot.com>
- <20210122204224.509124-3-bert@biot.com>
-From:   John Crispin <john@phrozen.org>
-Message-ID: <9ec31fee-124b-f16d-f7e3-fb440b5246ea@phrozen.org>
-Date:   Thu, 4 Feb 2021 09:41:00 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S234640AbhBDJKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 04:10:34 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:1066 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235010AbhBDJIr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 04:08:47 -0500
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11496o5L023295;
+        Thu, 4 Feb 2021 04:08:06 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 36dbud5gw0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 04 Feb 2021 04:08:05 -0500
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 114984qw013140
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Thu, 4 Feb 2021 04:08:04 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Thu, 4 Feb 2021 04:08:03 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.721.2;
+ Thu, 4 Feb 2021 04:08:03 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Thu, 4 Feb 2021 04:08:03 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 114982l3001727;
+        Thu, 4 Feb 2021 04:08:02 -0500
+From:   <alexandru.tachici@analog.com>
+To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <jic23@kernel.org>, <robh+dt@kernel.org>
+Subject: [PATCH 0/2] iio: adc: ad7124: allow 16 channels
+Date:   Thu, 4 Feb 2021 11:10:43 +0200
+Message-ID: <20210204091045.4175-1-alexandru.tachici@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210122204224.509124-3-bert@biot.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-04_05:2021-02-04,2021-02-04 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 clxscore=1011 suspectscore=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=999 spamscore=0 phishscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2102040057
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Alexandru Tachici <alexandru.tachici@analog.com>
 
-On 22.01.21 21:42, Bert Vermeulen wrote:
-> This is a standard IRQ driver with only status and mask registers.
->
-> The mapping from SoC interrupts (18-31) to MIPS core interrupts is
-> done via an interrupt-map in device tree.
->
-> Signed-off-by: Bert Vermeulen <bert@biot.com>
-> Signed-off-by: Birger Koblitz <mail@birger-koblitz.de>
+AD7124-8 can have up to 16 pseudo-differential channels
+enabled simultaneously and only 8 configurations. In this
+scenario we cannot assign one configuration per channel,
+some channels will have to share configurations like, ODR,
+gain and filter parameters.
 
-Acked-by: John Crispin <john@phrozen.org>
+Allow the user to specify channels and configurations
+separately in device-tree and assign, if needed, the same
+configuration to multiple channels.
 
-Thanks !
+If two channels share the configuration changing the
+sampling rate of one will change the sampling rate of the
+other too.
 
-> ---
->   drivers/irqchip/Makefile          |   1 +
->   drivers/irqchip/irq-realtek-rtl.c | 180 ++++++++++++++++++++++++++++++
->   2 files changed, 181 insertions(+)
->   create mode 100644 drivers/irqchip/irq-realtek-rtl.c
->
-> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> index 0ac93bfaec61..4fc1086bed7e 100644
-> --- a/drivers/irqchip/Makefile
-> +++ b/drivers/irqchip/Makefile
-> @@ -113,3 +113,4 @@ obj-$(CONFIG_LOONGSON_PCH_PIC)		+= irq-loongson-pch-pic.o
->   obj-$(CONFIG_LOONGSON_PCH_MSI)		+= irq-loongson-pch-msi.o
->   obj-$(CONFIG_MST_IRQ)			+= irq-mst-intc.o
->   obj-$(CONFIG_SL28CPLD_INTC)		+= irq-sl28cpld.o
-> +obj-$(CONFIG_MACH_REALTEK_RTL)		+= irq-realtek-rtl.o
-> diff --git a/drivers/irqchip/irq-realtek-rtl.c b/drivers/irqchip/irq-realtek-rtl.c
-> new file mode 100644
-> index 000000000000..b57c67dfab5b
-> --- /dev/null
-> +++ b/drivers/irqchip/irq-realtek-rtl.c
-> @@ -0,0 +1,180 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2020 Birger Koblitz <mail@birger-koblitz.de>
-> + * Copyright (C) 2020 Bert Vermeulen <bert@biot.com>
-> + * Copyright (C) 2020 John Crispin <john@phrozen.org>
-> + */
-> +
-> +#include <linux/of_irq.h>
-> +#include <linux/irqchip.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/of_address.h>
-> +#include <linux/irqchip/chained_irq.h>
-> +
-> +/* Global Interrupt Mask Register */
-> +#define RTL_ICTL_GIMR		0x00
-> +/* Global Interrupt Status Register */
-> +#define RTL_ICTL_GISR		0x04
-> +/* Interrupt Routing Registers */
-> +#define RTL_ICTL_IRR0		0x08
-> +#define RTL_ICTL_IRR1		0x0c
-> +#define RTL_ICTL_IRR2		0x10
-> +#define RTL_ICTL_IRR3		0x14
-> +
-> +#define REG(x)		(realtek_ictl_base + x)
-> +
-> +static DEFINE_RAW_SPINLOCK(irq_lock);
-> +static void __iomem *realtek_ictl_base;
-> +
-> +static void realtek_ictl_unmask_irq(struct irq_data *i)
-> +{
-> +	unsigned long flags;
-> +	u32 value;
-> +
-> +	raw_spin_lock_irqsave(&irq_lock, flags);
-> +
-> +	value = readl(REG(RTL_ICTL_GIMR));
-> +	value |= BIT(i->hwirq);
-> +	writel(value, REG(RTL_ICTL_GIMR));
-> +
-> +	raw_spin_unlock_irqrestore(&irq_lock, flags);
-> +}
-> +
-> +static void realtek_ictl_mask_irq(struct irq_data *i)
-> +{
-> +	unsigned long flags;
-> +	u32 value;
-> +
-> +	raw_spin_lock_irqsave(&irq_lock, flags);
-> +
-> +	value = readl(REG(RTL_ICTL_GIMR));
-> +	value &= ~BIT(i->hwirq);
-> +	writel(value, REG(RTL_ICTL_GIMR));
-> +
-> +	raw_spin_unlock_irqrestore(&irq_lock, flags);
-> +}
-> +
-> +static struct irq_chip realtek_ictl_irq = {
-> +	.name = "realtek-rtl-intc",
-> +	.irq_mask = realtek_ictl_mask_irq,
-> +	.irq_unmask = realtek_ictl_unmask_irq,
-> +};
-> +
-> +static int intc_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hw)
-> +{
-> +	irq_set_chip_and_handler(hw, &realtek_ictl_irq, handle_level_irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct irq_domain_ops irq_domain_ops = {
-> +	.map = intc_map,
-> +	.xlate = irq_domain_xlate_onecell,
-> +};
-> +
-> +static void realtek_irq_dispatch(struct irq_desc *desc)
-> +{
-> +	struct irq_chip *chip = irq_desc_get_chip(desc);
-> +	struct irq_domain *domain;
-> +	unsigned int pending;
-> +
-> +	chained_irq_enter(chip, desc);
-> +	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR));
-> +	if (unlikely(!pending)) {
-> +		spurious_interrupt();
-> +		goto out;
-> +	}
-> +	domain = irq_desc_get_handler_data(desc);
-> +	generic_handle_irq(irq_find_mapping(domain, __ffs(pending)));
-> +
-> +out:
-> +	chained_irq_exit(chip, desc);
-> +}
-> +
-> +/*
-> + * SoC interrupts are cascaded to MIPS CPU interrupts according to the
-> + * interrupt-map in the device tree. Each SoC interrupt gets 4 bits for
-> + * the CPU interrupt in an Interrupt Routing Register. Max 32 SoC interrupts
-> + * thus go into 4 IRRs.
-> + */
-> +static int __init map_interrupts(struct device_node *node, struct irq_domain *domain)
-> +{
-> +	struct device_node *cpu_ictl;
-> +	const __be32 *imap;
-> +	u32 imaplen, soc_int, cpu_int, tmp, regs[4];
-> +	int ret, i, irr_regs[] = {
-> +		RTL_ICTL_IRR3,
-> +		RTL_ICTL_IRR2,
-> +		RTL_ICTL_IRR1,
-> +		RTL_ICTL_IRR0,
-> +	};
-> +	u8 mips_irqs_set;
-> +
-> +	ret = of_property_read_u32(node, "#address-cells", &tmp);
-> +	if (ret || tmp)
-> +		return -EINVAL;
-> +
-> +	imap = of_get_property(node, "interrupt-map", &imaplen);
-> +	if (!imap || imaplen % 3)
-> +		return -EINVAL;
-> +
-> +	mips_irqs_set = 0;
-> +	memset(regs, 0, sizeof(regs));
-> +	for (i = 0; i < imaplen; i += 3 * sizeof(u32)) {
-> +		soc_int = be32_to_cpup(imap);
-> +		if (soc_int > 31)
-> +			return -EINVAL;
-> +
-> +		cpu_ictl = of_find_node_by_phandle(be32_to_cpup(imap + 1));
-> +		if (!cpu_ictl)
-> +			return -EINVAL;
-> +		ret = of_property_read_u32(cpu_ictl, "#interrupt-cells", &tmp);
-> +		if (ret || tmp != 1)
-> +			return -EINVAL;
-> +		of_node_put(cpu_ictl);
-> +
-> +		cpu_int = be32_to_cpup(imap + 2);
-> +		if (cpu_int > 7)
-> +			return -EINVAL;
-> +
-> +		if (!(mips_irqs_set & BIT(cpu_int))) {
-> +			irq_set_chained_handler_and_data(cpu_int, realtek_irq_dispatch,
-> +							 domain);
-> +			mips_irqs_set |= BIT(cpu_int);
-> +		}
-> +
-> +		regs[(soc_int * 4) / 32] |= cpu_int << (soc_int * 4) % 32;
-> +		imap += 3;
-> +	}
-> +
-> +	for (i = 0; i < 4; i++)
-> +		writel(regs[i], REG(irr_regs[i]));
-> +
-> +	return 0;
-> +}
-> +
-> +static int __init realtek_rtl_of_init(struct device_node *node, struct device_node *parent)
-> +{
-> +	struct irq_domain *domain;
-> +	int ret;
-> +
-> +	realtek_ictl_base = of_iomap(node, 0);
-> +	if (!realtek_ictl_base)
-> +		return -ENXIO;
-> +
-> +	/* Disable all cascaded interrupts */
-> +	writel(0, REG(RTL_ICTL_GIMR));
-> +
-> +	domain = irq_domain_add_simple(node, 32, 0,
-> +				       &irq_domain_ops, NULL);
-> +
-> +	ret = map_interrupts(node, domain);
-> +	if (ret) {
-> +		pr_err("invalid interrupt map\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +IRQCHIP_DECLARE(realtek_rtl_intc, "realtek,rtl-intc", realtek_rtl_of_init);
+Alexandru Tachici (2):
+  iio: adc: ad7124: allow 16 channels
+  dt-bindings: iio: adc: ad7124: add config nodes
+
+ .../bindings/iio/adc/adi,ad7124.yaml          |  72 +++++--
+ drivers/iio/adc/ad7124.c                      | 196 +++++++++++-------
+ 2 files changed, 179 insertions(+), 89 deletions(-)
+
+-- 
+2.20.1
+
