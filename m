@@ -2,118 +2,370 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4483030F705
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 17:00:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E807530F7B7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 17:26:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237574AbhBDQAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 11:00:05 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:46432 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237695AbhBDP7p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 10:59:45 -0500
-Received: by mail-ot1-f53.google.com with SMTP id d1so3813404otl.13;
-        Thu, 04 Feb 2021 07:59:26 -0800 (PST)
+        id S237013AbhBDQZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 11:25:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33304 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236925AbhBDPEN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 10:04:13 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A788C0613D6;
+        Thu,  4 Feb 2021 07:03:33 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id c6so4562391ede.0;
+        Thu, 04 Feb 2021 07:03:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=CsMggE1T6Db0Mf+4aVw1lDImMHCALtp0EmDWSQ+hzjk=;
+        b=AV1kUnKE/1+RMYTR27ymKOGjWJ6qOgNNUsA2hMtOHnHaUEtE1CKdU0Moc6ack+GDc5
+         fue56MImdLXqCDC6ZoQDfxRX5mUUYemTjEtws1sqlhilKMBnNieFsZDkdF9E3xPXf4it
+         jz+loR9sBN1Do/SpxALFE7Wka7GQ5XuYpjETDjTDDKAIjhY9DAr3ivoY2JAS0MOBFk1a
+         NWhk5g4pgpy/GzAXwtgb4dA3XdDirjhcVvKabilP8VgCjkawiPMqF3MYpYXTd5/mjHH8
+         gPPqxsSR9iHgBYbhMFWI4Of/FCIFIatYjXTvZ4B+5UGl3psrzRKXZ0KYL4rE0mIjm5q/
+         snxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=etT7X4K+k0BfrP2kEIs+zpn4CYM9jnwbFRYIw/Vpixw=;
-        b=Kj7q/y/6JtcVSYS6Dsw/3Ix3o/eVDnfa2UD/GiYSDNvYNKX+/v3Y5xx4T6tiOeNezN
-         LWBKP1kYhFOu4RJYSZ+PTP45HvJbtc5HKAyO/CSAYwz0wNTcuOsQ4gwx6yRE1lagsjLz
-         SwR69u3PvdVfeFUW3rXjiMBYAtU/i210zE1clNHWU7w4bGmW/VSifShUi758HwU5hb0j
-         9LJEAXAy/hWcHBGQ7JHSUdTYviY4e7IEBBDMWju/pIOIwrjFvtYxc0Fw+SLowZCciPZg
-         bQ/UQdo/W3gfa8ccpChNNS43wUoGLff8HeOuk0k42xdAjhVElPPUgnkRT/fHFmY4BTok
-         kzIg==
-X-Gm-Message-State: AOAM531/u4c8AfXpOB1g7S6dTgkrPuXMxgDcpm1EFDu8ODgscQ9VMrjS
-        WEYZJhSkuBkhwETh/Zi7SMCORVRBYw==
-X-Google-Smtp-Source: ABdhPJwVocn+Ng0f/439/DQREsxWgxQRuh6eH4eFJYY0ZzCWr10/uXUh6klDpHTyzqOK6IdTgPd9Rw==
-X-Received: by 2002:a9d:5f0b:: with SMTP id f11mr5820687oti.263.1612454341191;
-        Thu, 04 Feb 2021 07:59:01 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g13sm1174935otl.60.2021.02.04.07.58.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Feb 2021 07:59:00 -0800 (PST)
-Received: (nullmailer pid 521229 invoked by uid 1000);
-        Thu, 04 Feb 2021 15:58:59 -0000
-Date:   Thu, 4 Feb 2021 09:58:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        anmar.oueja@linaro.org, linux-kernel@vger.kernel.org,
-        Bill Mills <bill.mills@linaro.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-kbuild@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V7 0/6] dt: build overlays
-Message-ID: <20210204155859.GB519221@robh.at.kernel.org>
-References: <cover.1611904394.git.viresh.kumar@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CsMggE1T6Db0Mf+4aVw1lDImMHCALtp0EmDWSQ+hzjk=;
+        b=p+KJLnun+3ptVFHWwwHAuvPN3+iC5T/QCPAsWQPeBfSC3fALyOMY0LtKnqw13A37sY
+         q2ipEGUjGPvlGSAbsM/Wt66Hif1kpY6WAD89TLRywi5+/YE2oMUov6wqvaLqZeOyHe5O
+         FFx6WsK6j51ebYHFLKeHfyhD3fixccftCicheC6rpUJp5OubS4QEJOfZTfTCbfidKwhq
+         7PNqPwD3QmvOhax4+Ac+sypeOg8vfoNLMBmSJxV8iyCRjGMHpgGM+PaO+c9K8UjCPMFa
+         Mqq3UI6dqbuDTubnsWSckzuTbxmMWDWnbH1tTKiPQuRgQbKHdw4NNNmRvfXHG2mSe3Zc
+         VJ5Q==
+X-Gm-Message-State: AOAM531eE4f6/LnBVNvpQE79bC0NMh22/RqT+rrbTMLoLh1tqeO8PKry
+        KrKgiosB/AwD0wRZ2MU6aExgrAhN8KM=
+X-Google-Smtp-Source: ABdhPJxckEbUUMlxgF12SnhiHhLcZ9kucmRnh6hK8Pd16exBTu9Xyc0U9OpGDyGKzc7fLpT3LTn3og==
+X-Received: by 2002:a50:b746:: with SMTP id g64mr8325992ede.33.1612451008450;
+        Thu, 04 Feb 2021 07:03:28 -0800 (PST)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id u21sm2601234ejj.120.2021.02.04.07.03.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Feb 2021 07:03:27 -0800 (PST)
+Subject: Re: [PATCH v2 1/7] dt-bindings: usb: convert rockchip,dwc3.txt to
+ yaml
+To:     Robin Murphy <robin.murphy@arm.com>, heiko@sntech.de,
+        Elaine Zhang <zhangqing@rock-chips.com>
+Cc:     devicetree@vger.kernel.org, balbi@kernel.org,
+        gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20210203165233.22177-1-jbx6244@gmail.com>
+ <41efd28c-ff64-2b9f-2cdc-ac4aaaeb4611@arm.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <bc44860d-57e4-4717-739c-7bbac1d2f56e@gmail.com>
+Date:   Thu, 4 Feb 2021 16:03:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1611904394.git.viresh.kumar@linaro.org>
+In-Reply-To: <41efd28c-ff64-2b9f-2cdc-ac4aaaeb4611@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Jan 2021 12:54:04 +0530, Viresh Kumar wrote:
-> Hi,
-> 
-> This patchset makes necessary changes to the kernel to add support for
-> building overlays (%.dtbo) and the required fdtoverlay tool. This also
-> builds static_test.dtb using most of the existing overlay tests present
-> in drivers/of/unittest-data/ for better test coverage.
-> 
-> Note that in order for anyone to test this stuff, you need to manually
-> run the ./update-dtc-source.sh script once to fetch the necessary
-> changes from the external DTC project (i.e. fdtoverlay.c and this[1]
-> patch).
-> 
-> I have tested this patchset for static and runtime testing (on Hikey
-> board) and no issues were reported.
-> 
-> V7:
-> - Add a comment in scripts/dtc/Makefile
-> - Add Ack from Masahiro for patch 4/6.
-> - Drop word "merge" from commit log of 2/6.
-> - Split apply_static_overlay, static_test.dtb, and static_base.dts into
->   two parts to handle overlay_base.dts and testcases.dts separately.
-> 
-> V6:
-> - Create separate rules for dtbo-s and separate entries in .gitignore in
->   4/6 (Masahiro).
-> - A new file layout for handling all overlays for existing and new tests
->   5/6 (Frank).
-> - Include overlay.dts as well now in 6/6 (Frank).
-> 
-> V5:
-> 
-> - Don't reuse DTC_SOURCE for fdtoverlay.c in patch 1/5 (Frank).
-> 
-> - Update .gitignore and scripts/Makefile.dtbinst, drop dtbo-y syntax and
->   DTC_FLAGS += -@ in patch 4/5 (Masahiro).
-> 
-> - Remove the intermediate dtb, rename output to static_test.dtb, don't
->   use overlay.dtb and overlay_base.dtb for static builds, improved
->   layout/comments in Makefile for patch 5/5 (Frank).
-> 
-> --
-> Viresh
-> 
-> [1] https://github.com/dgibson/dtc/commit/163f0469bf2ed8b2fe5aa15bc796b93c70243ddc
-> [2] https://lore.kernel.org/lkml/74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com/
-> 
-> Viresh Kumar (6):
->   scripts: dtc: Fetch fdtoverlay.c from external DTC project
->   scripts: dtc: Build fdtoverlay tool
->   scripts: dtc: Remove the unused fdtdump.c file
->   kbuild: Add support to build overlays (%.dtbo)
->   of: unittest: Create overlay_common.dtsi and testcases_common.dtsi
->   of: unittest: Statically apply overlays using fdtoverlay
+Hi Robin,
 
-I've applied the first 4 patches and did a dtc sync after patch 1.
+Thank you for your comments.
+The old binding txt is not so up to date.
+The question is now what do we add or not..
 
-Rob
+On 2/4/21 12:35 PM, Robin Murphy wrote:
+> On 2021-02-03 16:52, Johan Jonker wrote:
+>> In the past Rockchip dwc3 usb nodes were manually checked.
+>> With the conversion of snps,dwc3.yaml as common document
+>> we now can convert rockchip,dwc3.txt to yaml as well.
+>> Remove node wrapper.
+>>
+>> Added properties for rk3399 are:
+>>    power-domains
+>>    resets
+>>    reset-names
+>>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>> ---
+>>   .../devicetree/bindings/usb/rockchip,dwc3.txt      |  56 -----------
+>>   .../devicetree/bindings/usb/rockchip,dwc3.yaml     | 103
+>> +++++++++++++++++++++
+>>   2 files changed, 103 insertions(+), 56 deletions(-)
+>>   delete mode 100644
+>> Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+>>   create mode 100644
+>> Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+>> b/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+>> deleted file mode 100644
+>> index 945204932..000000000
+>> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+>> +++ /dev/null
+>> @@ -1,56 +0,0 @@
+>> -Rockchip SuperSpeed DWC3 USB SoC controller
+>> -
+>> -Required properties:
+>> -- compatible:    should contain "rockchip,rk3399-dwc3" for rk3399 SoC
+>> -- clocks:    A list of phandle + clock-specifier pairs for the
+>> -        clocks listed in clock-names
+>> -- clock-names:    Should contain the following:
+>> -  "ref_clk"    Controller reference clk, have to be 24 MHz
+>> -  "suspend_clk"    Controller suspend clk, have to be 24 MHz or 32 KHz
+>> -  "bus_clk"    Master/Core clock, have to be >= 62.5 MHz for SS
+>> -        operation and >= 30MHz for HS operation
+>> -  "grf_clk"    Controller grf clk
+>> -
+>> -Required child node:
+>> -A child node must exist to represent the core DWC3 IP block. The name of
+>> -the node is not important. The content of the node is defined in
+>> dwc3.txt.
+>> -
+>> -Phy documentation is provided in the following places:
+>> -Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml -
+>> USB2.0 PHY
+>> -Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt     -
+>> Type-C PHY
+>> -
+>> -Example device nodes:
+>> -
+>> -    usbdrd3_0: usb@fe800000 {
+>> -        compatible = "rockchip,rk3399-dwc3";
+>> -        clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
+>> -             <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_GRF>;
+>> -        clock-names = "ref_clk", "suspend_clk",
+>> -                  "bus_clk", "grf_clk";
+>> -        #address-cells = <2>;
+>> -        #size-cells = <2>;
+>> -        ranges;
+>> -        usbdrd_dwc3_0: dwc3@fe800000 {
+>> -            compatible = "snps,dwc3";
+>> -            reg = <0x0 0xfe800000 0x0 0x100000>;
+>> -            interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+>> -            dr_mode = "otg";
+>> -        };
+>> -    };
+>> -
+>> -    usbdrd3_1: usb@fe900000 {
+>> -        compatible = "rockchip,rk3399-dwc3";
+>> -        clocks = <&cru SCLK_USB3OTG1_REF>, <&cru SCLK_USB3OTG1_SUSPEND>,
+>> -             <&cru ACLK_USB3OTG1>, <&cru ACLK_USB3_GRF>;
+>> -        clock-names = "ref_clk", "suspend_clk",
+>> -                  "bus_clk", "grf_clk";
+>> -        #address-cells = <2>;
+>> -        #size-cells = <2>;
+>> -        ranges;
+>> -        usbdrd_dwc3_1: dwc3@fe900000 {
+>> -            compatible = "snps,dwc3";
+>> -            reg = <0x0 0xfe900000 0x0 0x100000>;
+>> -            interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+>> -            dr_mode = "otg";
+>> -        };
+>> -    };
+>> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+>> b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+>> new file mode 100644
+>> index 000000000..fdf9497bc
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+>> @@ -0,0 +1,103 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/usb/rockchip,dwc3.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Rockchip SuperSpeed DWC3 USB SoC controller
+>> +
+>> +maintainers:
+>> +  - Heiko Stuebner <heiko@sntech.de>
+>> +
+>> +description:
+>> +      The common content of the node is defined in snps,dwc3.yaml.
+>> +
+>> +      Phy documentation is provided in the following places.
+>> +
+>> +      USB2.0 PHY
+>> +      Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+>> +
+>> +      Type-C PHY
+>> +      Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
+>> +
+>> +allOf:
+
+>> +  - $ref: snps,dwc3.yaml#
+
+Could Rob advise here? Is this OK or not?
+
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - rockchip,rk3399-dwc3
+>> +      - const: snps,dwc3
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description:
+>> +          Controller reference clock, must to be 24 MHz
+>> +      - description:
+>> +          Controller suspend clock, must to be 24 MHz or 32 KHz
+>> +      - description:
+>> +          Master/Core clock, must to be >= 62.5 MHz for SS
+>> +          operation and >= 30MHz for HS operation
+>> +      - description:
+>> +          Controller aclk_usb3_rksoc_axi_perf clock
+> 
+
+> I'm pretty sure these last 3 don't belong to the controller itself,
+> hence why they were in the glue layer node to being with.
+
+New proposal:
+
+		clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
+			 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_GRF>;
+		clock-names = "ref_clk", "suspend_clk",
+			      "bus_clk", "grf_clk";
+
+Clocks seem to be enabled in bulk.
+
+	ret = clk_bulk_get_all(simple->dev, &simple->clks);
+
+With dt checks no longer able to add "@" in the nodename without reg
+property in the node.
+Given only clocks left in parent node and Rob's comment I've combined
+all in 1 node.
+
+> 
+>> +      - description:
+>> +          Controller aclk_usb3 clock
+> 
+
+> Does anything in the USB3 block actually consume this clock directly? If
+> not, then I don't think it needs to be specified since it's already the
+> parent of the controller's required bus_clk.
+
+The patch from the manufacturer tree in the link below seems to confirm
+this.
+
+////
+
+From manufacturer tree:
+
+arm64: dts: rockchip: optimize clks for rk3399 dwc3
+
+https://github.com/rockchip-linux/kernel/commit/1948bffacbc7a893d550141a63664b596717623a
+
+remove unnecessary clocks, refer to rk3399 TRM, aclk_usb3 is the
+parent of aclk_usb3otg0/1 and aclk_usb3_grf, and we will enable
+aclk_usb3otg0/1 and aclk_usb3_grf, so don't need to enable aclk_usb3
+again. In addition, the aclk_usb3_rksoc_axi_perf clk is used for usb3
+performance monitor module which we don't use now, so don't need to
+enable it.
+
+////
+> 
+> I'm similarly suspicious of ACLK_USB3_NOC which is currently marked as
+> CLK_IGNORE_UNUSED - if that's necessary for USB3 to function then it
+> probably *should* be specified as part of the glue layer binding here.
+
+Don't know about ACLK_USB3_NOC. I leave it as it is for now.
+
+> 
+> Robin.
+> 
+>> +      - description:
+>> +          Controller grf clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: ref_clk
+>> +      - const: suspend_clk
+>> +      - const: bus_clk
+
+>> +      - const: aclk_usb3_rksoc_axi_perf
+>> +      - const: aclk_usb3
+
+Remove these ??
+
+>> +      - const: grf_clk
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    const: usb3-otg
+
+From manufacturer tree:
+
+arm64: dts: rockchip: move resets to the subnode of dwc3 for rk3399
+
+https://github.com/rockchip-linux/kernel/commit/966da4dbacab847825f50a70036baacd74b2358d
+
+////
+
+In mainline:
+
+	/*
+	 * Some controllers need to toggle the usb3-otg reset before trying to
+	 * initialize the PHY, otherwise the PHY times out.
+	 */
+	if (of_device_is_compatible(np, "rockchip,rk3399-dwc3"))
+		simple->need_reset = true;
+	simple->resets = of_reset_control_array_get(np, false, true,
+						    true);
+////
+
+Do we still need "reset-names" here??
+
+
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/rk3399-cru.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +
+>> +    bus {
+>> +      #address-cells = <2>;
+>> +      #size-cells = <2>;
+>> +
+>> +      usbdrd3_0: usb@fe800000 {
+>> +        compatible = "rockchip,rk3399-dwc3", "snps,dwc3";
+>> +        reg = <0x0 0xfe800000 0x0 0x100000>;
+>> +        interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+>> +        clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
+>> +                 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_RKSOC_AXI_PERF>,
+>> +                 <&cru ACLK_USB3>, <&cru ACLK_USB3_GRF>;
+>> +        clock-names = "ref_clk", "suspend_clk",
+>> +                      "bus_clk", "aclk_usb3_rksoc_axi_perf",
+>> +                      "aclk_usb3", "grf_clk";
+>> +        dr_mode = "otg";
+>> +      };
+>> +    };
+>>
+
