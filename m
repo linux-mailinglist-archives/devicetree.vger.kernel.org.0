@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD64930F50B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:34:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57BE830F523
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:38:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236512AbhBDOcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 09:32:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38632 "EHLO mail.kernel.org"
+        id S236648AbhBDOhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 09:37:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40164 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236658AbhBDOb7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 09:31:59 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5F6F564DDD;
-        Thu,  4 Feb 2021 14:31:11 +0000 (UTC)
+        id S236808AbhBDOhG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 09:37:06 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7490864F5E;
+        Thu,  4 Feb 2021 14:36:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612449074;
-        bh=Q3tSj3k5RgYOiGbv7iOvJxUQ4L1+b07VOWx7Yec4fvs=;
+        s=k20201202; t=1612449385;
+        bh=q+Q5OcQ6akzkt/aKtlVLcbW3FULf1J4eGOwrszsVCug=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aDwGuOreW092lBC4s22o/u/Ou7dzP5kXPOcjuc/uEmPD0+dKb01WWUDchmpaYgf+l
-         ucvAb+KoWg19k6IB4/71zGDBzCLu065P9vDjbJiYRccdPp3C+Wb2ylir8ejqoAtU0E
-         8B29egoR1qiIUCUuJxZv/2JNmH2mnSKtF3OKV2L5AlYp1PZAiCtgFd+B6qtSAjNLQa
-         wHzG8rydoLlYFfSZ+puE/2qfx0ihpVkDYX1VbIieI7rIETSjhYZxmLIXdjqa71xIxe
-         /7ErNUVL2gN24XCOsmJUik9XTtOhKJsZ/1RylLAZPsS13KbJ4o2y1lX030Igy78GyE
-         +GxQ0S/63GbGg==
-Date:   Thu, 4 Feb 2021 14:31:08 +0000
+        b=rTmic4TMup6IFFAFKWQx3xr963WJyxq5iq7OlxQrCxnv+5bTzGvamdKhsPYWYiAel
+         Q1+7Gz821B0byhtUOHN+nyWHIHJdvJVh6hgjatpUO3UWjbwV+vzppDXMNokGZDJaq6
+         OGiBFaBMHIjRKRQPKbks6XQQpvM86D+PpgnmeKddLybIn5TYJDK3qYLPouOt9iSYBN
+         ZPJt0EsmandHOY1E4gWEPJJTQIqCfDK/gxBfBpt6vx+bWwTOKNkLd6jBWA8pWutj/2
+         SKHhmaVDyEQaaKBdiwI3vkRVxAMyZOeeAgETPxMweukOqAFYQzYwMU8Xcdq0Wjk1vi
+         2fs8AS0XL5X0w==
+Date:   Thu, 4 Feb 2021 14:36:19 +0000
 From:   Will Deacon <will@kernel.org>
 To:     Quentin Perret <qperret@google.com>
 Cc:     Catalin Marinas <catalin.marinas@arm.com>,
@@ -39,94 +39,57 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         Fuad Tabba <tabba@google.com>,
         Mark Rutland <mark.rutland@arm.com>,
         David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 12/26] KVM: arm64: Introduce a Hyp buddy page
- allocator
-Message-ID: <20210204143106.GA20792@willie-the-truck>
+Subject: Re: [RFC PATCH v2 24/26] KVM: arm64: Make memcache anonymous in
+ pgtable allocator
+Message-ID: <20210204143618.GA20815@willie-the-truck>
 References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-13-qperret@google.com>
- <20210202181307.GA17311@willie-the-truck>
- <YBrsep4xK1F4YRWb@google.com>
+ <20210108121524.656872-25-qperret@google.com>
+ <20210203155944.GH18974@willie-the-truck>
+ <YBwDrBH8p0aEpKKC@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YBrsep4xK1F4YRWb@google.com>
+In-Reply-To: <YBwDrBH8p0aEpKKC@google.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 03, 2021 at 06:33:30PM +0000, Quentin Perret wrote:
-> On Tuesday 02 Feb 2021 at 18:13:08 (+0000), Will Deacon wrote:
-> > On Fri, Jan 08, 2021 at 12:15:10PM +0000, Quentin Perret wrote:
-> > > + *   __find_buddy(pool, page 0, order 0) => page 1
-> > > + *   __find_buddy(pool, page 0, order 1) => page 2
-> > > + *   __find_buddy(pool, page 1, order 0) => page 0
-> > > + *   __find_buddy(pool, page 2, order 0) => page 3
-> > > + */
-> > > +static struct hyp_page *__find_buddy(struct hyp_pool *pool, struct hyp_page *p,
-> > > +				     unsigned int order)
-> > > +{
-> > > +	phys_addr_t addr = hyp_page_to_phys(p);
-> > > +
-> > > +	addr ^= (PAGE_SIZE << order);
-> > > +	if (addr < pool->range_start || addr >= pool->range_end)
-> > > +		return NULL;
+On Thu, Feb 04, 2021 at 02:24:44PM +0000, Quentin Perret wrote:
+> On Wednesday 03 Feb 2021 at 15:59:44 (+0000), Will Deacon wrote:
+> > On Fri, Jan 08, 2021 at 12:15:22PM +0000, Quentin Perret wrote:
+> > > The current stage2 page-table allocator uses a memcache to get
+> > > pre-allocated pages when it needs any. To allow re-using this code at
+> > > EL2 which uses a concept of memory pools, make the memcache argument to
+> > > kvm_pgtable_stage2_map() anonymous. and let the mm_ops zalloc_page()
+> > > callbacks use it the way they need to.
+> > > 
+> > > Signed-off-by: Quentin Perret <qperret@google.com>
+> > > ---
+> > >  arch/arm64/include/asm/kvm_pgtable.h | 6 +++---
+> > >  arch/arm64/kvm/hyp/pgtable.c         | 4 ++--
+> > >  2 files changed, 5 insertions(+), 5 deletions(-)
+> > > 
+> > > diff --git a/arch/arm64/include/asm/kvm_pgtable.h b/arch/arm64/include/asm/kvm_pgtable.h
+> > > index 8e8f1d2c5e0e..d846bc3d3b77 100644
+> > > --- a/arch/arm64/include/asm/kvm_pgtable.h
+> > > +++ b/arch/arm64/include/asm/kvm_pgtable.h
+> > > @@ -176,8 +176,8 @@ void kvm_pgtable_stage2_destroy(struct kvm_pgtable *pgt);
+> > >   * @size:	Size of the mapping.
+> > >   * @phys:	Physical address of the memory to map.
+> > >   * @prot:	Permissions and attributes for the mapping.
+> > > - * @mc:		Cache of pre-allocated GFP_PGTABLE_USER memory from which to
+> > > - *		allocate page-table pages.
+> > > + * @mc:		Cache of pre-allocated memory from which to allocate page-table
+> > > + *		pages.
 > > 
-> > Are these range checks only needed because the pool isn't required to be
-> > an exact power-of-2 pages in size? If so, maybe it would be more
-> > straightforward to limit the max order on a per-pool basis depending upon
-> > its size?
+> > We should probably mention that this memory must be zeroed, since I don't
+> > think the page-table code takes care of that.
 > 
-> More importantly, it is because pages outside of the pool are not
-> guaranteed to be covered by the hyp_vmemmap, so I really need to make
-> sure I don't dereference them.
+> OK, though I think this is unrelated to this change -- this is already
+> true today I believe. Anyhow, I'll pile a change on top.
 
-Wouldn't having a per-pool max order help with that?
-
-> > > +	return hyp_phys_to_page(addr);
-> > > +}
-> > > +
-> > > +static void __hyp_attach_page(struct hyp_pool *pool,
-> > > +			      struct hyp_page *p)
-> > > +{
-> > > +	unsigned int order = p->order;
-> > > +	struct hyp_page *buddy;
-> > > +
-> > > +	p->order = HYP_NO_ORDER;
-> > 
-> > Why is this needed?
-> 
-> If p->order is say 3, I may be able to coalesce with the buddy of order
-> 3 to form a higher order page of order 4. And that higher order page
-> will be represented by the 'first' of the two order-3 pages (let's call
-> it the head), and the other order 3 page (let's say the tail) will be
-> assigned 'HYP_NO_ORDER'.
-> 
-> And basically at this point I don't know if 'p' is going be the head or
-> the tail, so I set it to HYP_NO_ORDER a priori so I don't have to think
-> about this in the loop below. Is that helping?
-> 
-> I suppose this could use more comments as well ...
-
-Comments would definitely help, but perhaps even having a simple function to
-do the coalescing, which you could call from the loop body and which would
-deal with marking the tail pages as HYP_NO_ORDER?
-
-> > > +	for (; order < HYP_MAX_ORDER; order++) {
-> > > +		/* Nothing to do if the buddy isn't in a free-list */
-> > > +		buddy = __find_buddy(pool, p, order);
-> > > +		if (!buddy || list_empty(&buddy->node) || buddy->order != order)
-> > 
-> > Could we move the "buddy->order" check into __find_buddy()?
-> 
-> I think might break __hyp_extract_page() below. The way I think about
-> __find_buddy() is as a low level function which gives you the buddy page
-> blindly if it exists in the hyp_vmemmap, and it's up to the callers to
-> decide whether the buddy is in the right state for their use or not.
-
-Just feels a bit backwards having __find_buddy() take an order parameter,
-yet then return a page of the wrong order! __hyp_extract_page() always
-passes the p->order as the order, so I think it would be worth having a
-separate function that just takes the pool and the page for that.
+It is, but GFP_PGTABLE_USER implies __GFP_ZERO, so the existing comment
+captures that.
 
 Will
