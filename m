@@ -2,96 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B88430FA3D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 18:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3164B30FABC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 19:10:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238519AbhBDRuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 12:50:46 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36688 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237500AbhBDRtm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 12:49:42 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 639A164F41;
-        Thu,  4 Feb 2021 17:48:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612460936;
-        bh=BE4sTc2vQLpAqcnSed7nO8BgiaDvc3jDuHi/BhMHhuw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BJdPmR0qx04Q0OC8F92po0hMHhrRiWvCaxDONmHEOoUlPgCayFyD25VcKG9WAE5Ab
-         dsuh0qli7OfmSqeEkwH0tHklTV6xlGGaJICNA3Bf4Kc2zQEzKSlwDMjJP4OtHhT/Az
-         unbkjzC/50L2YixQX7un0SEMXdb+1hbaD3m5rjR8iUXk/Rs81QPavwoAn0+TmUUQgq
-         c51he+0ZCZ/l4W+Onfm4pbnVfVAQCatI6xGIqlmqFEpLCjf0/tx9tOt5qOom6lDmNU
-         wSXrZoHUHqE8XQVhWEcCQKWNWBHNhIaLyoHPM4WHK/OO4PWoWHpW1XZpP+9r6IK6Aq
-         jy0+RUjalzziw==
-Date:   Thu, 4 Feb 2021 17:48:49 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 12/26] KVM: arm64: Introduce a Hyp buddy page
- allocator
-Message-ID: <20210204174849.GA21303@willie-the-truck>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-13-qperret@google.com>
- <20210202181307.GA17311@willie-the-truck>
- <YBrsep4xK1F4YRWb@google.com>
- <20210204143106.GA20792@willie-the-truck>
- <YBwKRM3uHDMC9S0U@google.com>
+        id S238688AbhBDSHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 13:07:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43856 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238690AbhBDSDu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 13:03:50 -0500
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF8BC061223
+        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 10:02:36 -0800 (PST)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by michel.telenet-ops.be with bizsmtp
+        id R62b240044C55Sk0662bzf; Thu, 04 Feb 2021 19:02:35 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1l7im7-003Fgj-Hx; Thu, 04 Feb 2021 18:50:39 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1l7eAi-006uBx-2W; Thu, 04 Feb 2021 13:55:44 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: power: renesas,apmu: Group tuples in cpus properties
+Date:   Thu,  4 Feb 2021 13:55:42 +0100
+Message-Id: <20210204125542.1645925-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YBwKRM3uHDMC9S0U@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 04, 2021 at 02:52:52PM +0000, Quentin Perret wrote:
-> On Thursday 04 Feb 2021 at 14:31:08 (+0000), Will Deacon wrote:
-> > On Wed, Feb 03, 2021 at 06:33:30PM +0000, Quentin Perret wrote:
-> > > On Tuesday 02 Feb 2021 at 18:13:08 (+0000), Will Deacon wrote:
-> > > > On Fri, Jan 08, 2021 at 12:15:10PM +0000, Quentin Perret wrote:
-> > > > > + *   __find_buddy(pool, page 0, order 0) => page 1
-> > > > > + *   __find_buddy(pool, page 0, order 1) => page 2
-> > > > > + *   __find_buddy(pool, page 1, order 0) => page 0
-> > > > > + *   __find_buddy(pool, page 2, order 0) => page 3
-> > > > > + */
-> > > > > +static struct hyp_page *__find_buddy(struct hyp_pool *pool, struct hyp_page *p,
-> > > > > +				     unsigned int order)
-> > > > > +{
-> > > > > +	phys_addr_t addr = hyp_page_to_phys(p);
-> > > > > +
-> > > > > +	addr ^= (PAGE_SIZE << order);
-> > > > > +	if (addr < pool->range_start || addr >= pool->range_end)
-> > > > > +		return NULL;
-> > > > 
-> > > > Are these range checks only needed because the pool isn't required to be
-> > > > an exact power-of-2 pages in size? If so, maybe it would be more
-> > > > straightforward to limit the max order on a per-pool basis depending upon
-> > > > its size?
-> > > 
-> > > More importantly, it is because pages outside of the pool are not
-> > > guaranteed to be covered by the hyp_vmemmap, so I really need to make
-> > > sure I don't dereference them.
-> > 
-> > Wouldn't having a per-pool max order help with that?
-> 
-> The issue is, I have no alignment guarantees for the pools, so I may end
-> up with max_order = 0 ...
+To improve human readability and enable automatic validation, the tuples
+in "cpus" properties in device nodes for Advanced Power Management Units
+for AP-System Core (APMU) should be grouped using angle brackets.
 
-Yeah, so you would still need the range tracking, but it would at least help
-to reduce HYP_MAX_ORDER failed searches each time. Still, we can always do
-that later.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ Documentation/devicetree/bindings/power/renesas,apmu.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Will
+diff --git a/Documentation/devicetree/bindings/power/renesas,apmu.yaml b/Documentation/devicetree/bindings/power/renesas,apmu.yaml
+index 60a23b3beb40c3c8..391897d897f241c9 100644
+--- a/Documentation/devicetree/bindings/power/renesas,apmu.yaml
++++ b/Documentation/devicetree/bindings/power/renesas,apmu.yaml
+@@ -52,5 +52,5 @@ examples:
+     apmu@e6152000 {
+             compatible = "renesas,r8a7791-apmu", "renesas,apmu";
+             reg = <0xe6152000 0x188>;
+-            cpus = <&cpu0 &cpu1>;
++            cpus = <&cpu0>, <&cpu1>;
+     };
+-- 
+2.25.1
+
