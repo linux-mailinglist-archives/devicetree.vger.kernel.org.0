@@ -2,157 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2749E31009E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 00:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 771C93100AE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 00:29:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbhBDX0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 18:26:33 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:40839 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbhBDX0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 18:26:32 -0500
-Received: by mail-ot1-f53.google.com with SMTP id i20so5167280otl.7;
-        Thu, 04 Feb 2021 15:26:16 -0800 (PST)
+        id S230152AbhBDX3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 18:29:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230091AbhBDX3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 18:29:04 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7860AC06178A
+        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 15:28:23 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id i187so7188250lfd.4
+        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 15:28:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wrnz6l1Kc/IHahayxg6JcFhU1NyXvIp7/tC0nvwYbY8=;
+        b=IIHALYqnetpnKRgTpAh13O6zD5lMJsFclZYluHf7Y4H7Y0rG2lKSNOXOoLoKbqv0RR
+         omZIi0iYUeTfesxYInX6G1GBDLSAvyrT708zTyQA8qIxb3P5hApb2IAySU//iKmzNXDV
+         KuCOZvlHyqjaiT9AhuJphQ6B2vOMUbV9m6whhE7JjLDVPeCPG8UlJXoTHfXMDYI7SISo
+         7sv7Bg+Anj99JL23va5jsAmpBcOsqBXPMKfGyJZkr2htGauTVNmqMf8V2vAZHkDjegyF
+         Qi6fubWamfhh1q1BkCucfAfuVYtexj7pOMnDe/eAY21fQC1l9ehIpq8bWQMT9OfKGkO4
+         3qKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=v2nkVg18wGZEoa8kUGTJqurwpIhtPaAbXmqRIWrxCUE=;
-        b=V3eEP9JJEfj3ydO7NsU48zQ2MigAmNAVma2aJgjA71DDBFYF7zzvc5AKLFoGqLpIRR
-         Xlcfc67SKVyyNZg1dEXfKL1m+7eaGlbZy1sULl5xEgipLM95FUk3KYTvzP3fjHXM4mNf
-         hM3+daxg01mw8DkgwDyNMVaKChKseNghCQWW4VgCmLt9O6AFXeDQMq6MmkmhJOvBECmK
-         nQwri9/givimkVmTsXoGPikYyL/w4WH6tJCBagOpiznb254Y3QQTlrNuAMe4SeEy91Ii
-         7u1mrhWsqgZd6trtfMIhziz5mz1poR6ZvXl8Xn70f+oaFBBQHEzYy1WbRDBcEO2A6yRJ
-         OnrQ==
-X-Gm-Message-State: AOAM530Br0tibHWCxFAzz9CSddeM/VCWY54ZXL8RLELXWsVvkF/G8Mf2
-        qLx7O6zgqNO09wBD+k8DPA==
-X-Google-Smtp-Source: ABdhPJwJqr3wnatNUe8DWoShRTE94TDBe87ONFVy1DR98EDCJ7JzDYuizEWR+rUsPGi1b34+LdMtCQ==
-X-Received: by 2002:a05:6830:1f4e:: with SMTP id u14mr1333850oth.65.1612481151222;
-        Thu, 04 Feb 2021 15:25:51 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w10sm1445771oih.8.2021.02.04.15.25.49
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wrnz6l1Kc/IHahayxg6JcFhU1NyXvIp7/tC0nvwYbY8=;
+        b=uG04UxUiLC1tT6me+X/c31yp2dxn3HzoKc0UBNiwAmpvYKFaFbd6QEy3fGTsJH+46f
+         t5MOgYlMohFlMjTEh1Kq6IGpPPsZ9RWqlg2IB2DO5ZxXsLQJQVZpMF541VTjBDOH2QSn
+         eLEQGFgU3KlyqH6OjPrqCv3EIUu7TmHGaTXO2o+DCt5SoPPCozjnFo736YC7URqv3Cz5
+         JhHQJIIvLAlzayV9VEkvz6jQrMwUGZhf4eWYFVWwUOvtkT3d361lBf1XQUks7gqCnLbk
+         5i/KSRMReS8iDVmlVOc0GjvCNSCPybqAeuChV3e6Na5WLKE+wd46mN/4p4tA2YNW0iwj
+         K3Jw==
+X-Gm-Message-State: AOAM531uSdnEA1Lntp2BCLMAHROc5C76bYYrKun1SlSHsffTlql7HLpT
+        vnHwI0H2kLwJjZMHri8F0TEeWw==
+X-Google-Smtp-Source: ABdhPJyPcrSjtwNtcsr/OAnEPKURpvfJ87fi1O5MdTpqiONZtt1PtXszDX9oR73Kmg35m9rXYi0e9Q==
+X-Received: by 2002:a05:6512:110a:: with SMTP id l10mr966579lfg.140.1612481301784;
+        Thu, 04 Feb 2021 15:28:21 -0800 (PST)
+Received: from eriador.lan ([188.162.64.67])
+        by smtp.gmail.com with ESMTPSA id x20sm769906lfe.256.2021.02.04.15.28.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Feb 2021 15:25:50 -0800 (PST)
-Received: (nullmailer pid 1311195 invoked by uid 1000);
-        Thu, 04 Feb 2021 23:25:49 -0000
-Date:   Thu, 4 Feb 2021 17:25:49 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-        Sheng Xu <sheng.xu@unisoc.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iommu: add bindings for sprd iommu
-Message-ID: <20210204232549.GA1305874@robh.at.kernel.org>
-References: <20210203090727.789939-1-zhang.lyra@gmail.com>
- <20210203090727.789939-2-zhang.lyra@gmail.com>
+        Thu, 04 Feb 2021 15:28:21 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+Subject: [PATCH v13 0/2]
+Date:   Fri,  5 Feb 2021 02:28:07 +0300
+Message-Id: <20210204232809.474733-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210203090727.789939-2-zhang.lyra@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 03, 2021 at 05:07:26PM +0800, Chunyan Zhang wrote:
-> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> 
-> This iommu module can be used by Unisoc's multimedia devices, such as
-> display, Image codec(jpeg) and a few signal processors, including
-> VSP(video), GSP(graphic), ISP(image), and CPP(camera pixel processor), etc.
-> 
-> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> ---
->  .../devicetree/bindings/iommu/sprd,iommu.yaml | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
-> new file mode 100644
-> index 000000000000..4fc99e81fa66
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2020 Unisoc Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iommu/sprd,iommu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Unisoc IOMMU and Multi-media MMU
-> +
-> +maintainers:
-> +  - Chunyan Zhang <zhang.lyra@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sprd,iommu-v1
-> +
-> +  "#iommu-cells":
-> +    const: 0
-> +    description:
-> +      Unisoc IOMMUs are all single-master IOMMU devices, therefore no
-> +      additional information needs to associate with its master device.
-> +      Please refer to the generic bindings document for more details,
-> +      Documentation/devicetree/bindings/iommu/iommu.txt
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      Not required if 'sprd,iommu-regs' is defined.
-> +
-> +  clocks:
-> +    description:
-> +      Reference to a gate clock phandle, since access to some of IOMMUs are
-> +      controlled by gate clock, but this is not required.
-> +
-> +  sprd,iommu-regs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Reference to a syscon phandle plus 1 cell, the syscon defines the
-> +      register range used by the iommu and the media device, the cell
-> +      defines the offset for iommu registers. Since iommu module shares
-> +      the same register range with the media device which uses it.
-> +
-> +required:
-> +  - compatible
-> +  - "#iommu-cells"
-> +
-> +oneOf:
-> +  - required:
-> +      - reg
-> +  - required:
-> +      - sprd,iommu-regs
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    iommu_disp: iommu-disp {
-> +      compatible = "sprd,iommu-v1";
-> +      sprd,iommu-regs = <&dpu_regs 0x800>;
+This patch serie adds support for thermal monitoring block on Qualcomm's
+PMIC5 chips. PM8150{,b,l}, qrb5165-rb5 board and sm8250-mtp board device
+trees are extended to support thermal zones provided by this thermal
+monitoring block.  Unlike the rest of PMIC thermal senses, these thermal
+zones describe particular thermistors, which differ between from board
+to board.
 
-If the IOMMU is contained within another device, then it should just be 
-a child node of that device. Or just make 'dpu_regs' an IOMMU provider 
-(i.e. just add #iommu-cells to it).
+Dependencies: https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/log/?h=ib-iio-thermal-5.11-rc1
 
-> +      #iommu-cells = <0>;
-> +    };
-> +
-> +  - |
-> +    iommu_jpg: iommu-jpg {
-> +      compatible = "sprd,iommu-v1";
-> +      sprd,iommu-regs = <&jpg_regs 0x300>;
-> +      #iommu-cells = <0>;
-> +      clocks = <&mm_gate 1>;
-> +    };
-> +
-> +...
-> -- 
-> 2.25.1
-> 
+Changes since v12:
+ - Drop patches taken into linux-next.
+ - Fix adc_tm5_get_temp to handle IIO_VAL_INT properly (removed in v9).
+
+Changes since v11:
+ - Drop io-channel-ranges from dts example.
+
+Changes since v10:
+ - Rebased on top of ib-iio-thermal-5.11-rc1 immutable branch, with
+   IIO-related patches picked up by Jonathan.
+ - Changed thermal zone device tree nodes to use -thermal suffix
+   following the schema.
+ - Reordered device tree nodes to keep the alphanumeric sorting order.
+
+Changes since v9:
+ - In patch 12 add comments to the code as requested by Daniel Lezcano.
+ - Change copyright comment in qcom-spmi-adc-tm5.c to clearly note
+   driver history.
+
+Changes since v8:
+ - Simplified qcom_vadc_map_voltage_temp() code by removing ascending
+   tables support
+ - Simplified qcom-vadc-common volt/temp mapping code
+ - Implement suggestions by Matthias Kaehlcke: message formatting,
+   rewrite comments, remove unused variable initialization.
+
+Changes since v7:
+ - Move qcom-vadc-common.h header to include/linux/iio/adc/ dir.
+ - Use explicit sizeof(var) instead of hand-coding 1 when accessing
+   adc-tm registers.
+ - Remove buffer read from adc_tm5_init().
+ - Remove extra on-stack var from adc_tm5_get_temp().
+ - Minor formatting changes as suggested Daniel.
+
+Changes since v6:
+ - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
+
+Changes since v5:
+ - Reworked DT bindings:
+   * Removed qcom,adc-channel, instead it is parsed from io-channels
+   * Renamed qcom,hw-settle-time to include -us suffix
+ - Re-added monitor enabling which got lost during refactored. Noted by
+   Jishnu Prakash.
+ - Use threaded IRQ handler as susggested by Jishnu.
+
+Changes since v4:
+ - Added kernel-doc comments to ADC-TM structures
+ - Used several sizeof(buf) instead of hand-conding register size
+
+Changes since v3:
+ - Fix DT description to spell "thermal monitoring" instead of just TM
+ - Fix warnings in DT example
+ - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
+ - Fixed whitespace chanes in qcom-vadc-common.c
+ - Removed error message if IIO chanel get returns -EPROBE_DEFER
+
+Changes since v2:
+ - IIO: export of_iio_channel_get_by_name() function
+ - dt-bindings: move individual io-channels to each thermal monitoring
+   channel rather than listing them all in device node
+ - added fallback defaults to of_device_get_match_data calls in
+   qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
+ - minor typo fixes
+
+Changes since v1:
+ - Introduce fixp_linear_interpolate() by Craig Tatlor
+ - Lots of syntax/whitespace changes
+ - Cleaned up register definitions per Jonathan's suggestion
+ - Implemented most of the suggestions from Bjorn's and Jonathan's
+   review
+
+
+
