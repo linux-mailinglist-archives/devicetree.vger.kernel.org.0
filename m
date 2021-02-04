@@ -2,79 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD5C130F4BD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55D0F30F4DB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:24:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236373AbhBDORa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 09:17:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236651AbhBDORZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 09:17:25 -0500
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FCBDC061786;
-        Thu,  4 Feb 2021 06:16:29 -0800 (PST)
-Received: from [192.168.1.101] (abaf219.neoplus.adsl.tpnet.pl [83.6.169.219])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S236697AbhBDOXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 09:23:46 -0500
+Received: from mail29.static.mailgun.info ([104.130.122.29]:25987 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236701AbhBDOX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 09:23:28 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1612448581; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=wwYV6Ck3GBuzl06xq1r3JumrcWoG+sVnkDj7ll/vZfQ=; b=jrDVxLRl3Gt+IgACtXsNS8p6W2zX/mLyZv6f5nlhTKa0H+I3JASwv7C/XrVy4MpSfy++A5M3
+ zU1YdLcLOunHSeXtfiHd4Jq588cIfxI0XozjmUm2AlGmlmhS1St1cnA4Wehn2u4nXCH3s8Tn
+ /foN2jqrc6huXzeFPUukAHuR4Vw=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 601c031b0bb8f50fb9a97931 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 04 Feb 2021 14:22:19
+ GMT
+Sender: mkshah=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 37264C433C6; Thu,  4 Feb 2021 14:22:19 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from mkshah-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id E97C71F881;
-        Thu,  4 Feb 2021 15:16:24 +0100 (CET)
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and
- panel bits
-To:     Amit Pundir <amit.pundir@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
-References: <1612426177-6611-1-git-send-email-amit.pundir@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <889e6ed8-133a-9416-be3b-5b2a97ea7fbb@somainline.org>
-Date:   Thu, 4 Feb 2021 15:16:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
-MIME-Version: 1.0
-In-Reply-To: <1612426177-6611-1-git-send-email-amit.pundir@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        (Authenticated sender: mkshah)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 52A22C433CA;
+        Thu,  4 Feb 2021 14:22:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 52A22C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=mkshah@codeaurora.org
+From:   Maulik Shah <mkshah@codeaurora.org>
+To:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, ilina@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org, Maulik Shah <mkshah@codeaurora.org>
+Subject: [PATCH v6 1/4] dt-bindings: Introduce SoC sleep stats bindings
+Date:   Thu,  4 Feb 2021 19:51:45 +0530
+Message-Id: <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org>
+References: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
 
->vreg_l14a_1p88: ldo14 {
->+			regulator-min-microvolt = <1800000>;
->+			regulator-max-microvolt = <1800000>;
+Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+SoC sleep stats driver. The driver is used for displaying SoC sleep
+statistic maintained by Always On Processor or Resource Power Manager.
 
-Should probably be renamed to vreg_l14a_1p8 then.
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+---
+ .../bindings/soc/qcom/soc-sleep-stats.yaml         | 46 ++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
 
+diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+new file mode 100644
+index 0000000..1e012ba
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/qcom/soc-sleep-stats.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. (QTI) SoC sleep stats bindings
++
++maintainers:
++  - Maulik Shah <mkshah@codeaurora.org>
++  - Lina Iyer <ilina@codeaurora.org>
++
++description:
++  Always On Processor/Resource Power Manager maintains statistics of the SoC
++  sleep modes involving powering down of the rails and oscillator clock.
++
++  Statistics includes SoC sleep mode type, number of times low power mode were
++  entered, time of last entry, time of last exit and accumulated sleep duration.
++
++properties:
++  compatible:
++    enum:
++      - qcom,rpmh-sleep-stats
++      - qcom,rpm-sleep-stats
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++examples:
++  # Example of rpmh sleep stats
++  - |
++    rpmh-sleep-stats@c3f0000 {
++      compatible = "qcom,rpmh-sleep-stats";
++      reg = <0 0x0c3f0000 0 0x400>;
++    };
++  # Example of rpm sleep stats
++  - |
++    rpm-sleep-stats@4690000 {
++      compatible = "qcom,rpm-sleep-stats";
++      reg = <0 0x04690000 0 0x400>;
++    };
++...
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
->+	ports {
->+		port@1 {
->+			endpoint {
->+				remote-endpoint = <&tianma_nt36672a_in_0>;
->+				data-lanes = <0 1 2 3>;
->+			};
->+		};
->+	};
-
-The endpoint has a label, you can simply use &dsi0_out {};.
-
->+		vddpos-supply = <&lab>;
->+		vddneg-supply = <&ibb>;
-
-With Angelo's latest series [1] merged in, I reckon you should explicitly configure lab/ibb (like in [2]),
-as wrong settings (which CAN BE SET BY THE BOOTLOADER in some instances!!) can lead to hardware damage.
-
-
-
-Konrad
-
-[1] https://lore.kernel.org/linux-arm-msm/20210119174421.226541-1-angelogioacchino.delregno@somainline.org/
-[2] https://github.com/SoMainline/linux/commit/4f4853b2e252b5f9d03e90119110aac80258fc53
