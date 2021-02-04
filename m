@@ -2,146 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0387E30FB90
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 19:35:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1BAB30FB98
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 19:36:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239042AbhBDScs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 13:32:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44982 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239153AbhBDSaq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 13:30:46 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 13D1B64E06;
-        Thu,  4 Feb 2021 18:29:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612463391;
-        bh=m2ULECe/5nShjpaNukVPB1Kg9k0QQfSi+2ZmqBBEpGs=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=O/LNBdO3xd+g9w7/5qjfXOSTtr4mSJ9IrEz1BxVvwHFiiel3fILTMyxF534RzQQ6e
-         dWNmW4YGkhvR3f0qNjS1F1cWrRBMnsLyW1vNcoqBVmXGn6etQ5nHpKlRcWNHvDfY3I
-         18fpGaTjYYafIzHvYgkqDlZdUYjXqHZqYDYrE8B3KTAurSebytxHkx/+7SfOJmKxtv
-         89V+vfbFUaYNvT3t1SVFjp//aaornWIug+AH20j3apiqMBiyXwAB76RYE8V6Ack1pN
-         4KVJeJiu3hHE7/lDBCLzXRh7+wGLvZ/Xw32uIGZaMFElJNBnci1ddtEY22poxwjSte
-         2KS29439QNy+g==
-Date:   Thu, 4 Feb 2021 19:29:39 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Andy Gross <agross@kernel.org>,
-        Jesper Nilsson <jesper.nilsson@axis.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-samsung-soc@vger.kernel.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-arm-kernel@axis.com, Richard Zhu <hongxing.zhu@nxp.com>,
-        linux-arm-msm@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-pci@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-omap@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
-        linux-tegra@vger.kernel.org, Jonathan Chocron <jonnyc@amazon.com>,
-        Zhou Wang <wangzhou1@hisilicon.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH 01/13] doc: bindings: pci: designware-pcie.txt: convert
- it to yaml
-Message-ID: <20210204192939.0daaec74@coco.lan>
-In-Reply-To: <20210204172945.GA662023@robh.at.kernel.org>
-References: <cover.1612271903.git.mchehab+huawei@kernel.org>
-        <706e684f571e142362d7be74eb1dcee2c8558052.1612271903.git.mchehab+huawei@kernel.org>
-        <1612287895.001149.3887347.nullmailer@robh.at.kernel.org>
-        <20210203074900.6d581153@coco.lan>
-        <20210204172945.GA662023@robh.at.kernel.org>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+        id S239157AbhBDSdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 13:33:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50194 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238947AbhBDSdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 13:33:17 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F128C0613D6
+        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 10:32:37 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id q7so4666349wre.13
+        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 10:32:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=i5OkDpHRHvhiXPZMMrrT7zhfgAaMhV3SLJ8BwwytR0s=;
+        b=NzENSC2sGUAf6yMy4ybJ293aeKFlUOzRFqVDwa74QP6UwZ/5IB3S3LIPQlwbp8bt+o
+         my5F6ZY9nh5di/2C5uBrcKhs1fQfE4OjUXJxheN1wZ1ovB0osI0wHXutPiHAY6pkY928
+         OR/S/0A2mA0gjFJH/vBiR0uoQi938QDkKsHzUCcRVEycYypV02mCwH+ckuhX0Clxw+2v
+         McHwgjv6KG1P3zyyXs7Bt3u5wlGAn4NA54GuwScW05yezBwR9v5ja/FCqYiw2uJ6WrWA
+         XhnTVy2FmSfpuLX/NciEWonqr0lJprKj2D3hDkRr4Fs5NcqZ2QedkbgZMh7JLQPgylbK
+         e7oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=i5OkDpHRHvhiXPZMMrrT7zhfgAaMhV3SLJ8BwwytR0s=;
+        b=J0vEzfgFKygYgSWpNmBw2OCK2kNKBemJdIEFdZ+QqjNFJdSCWOpxjSDIkhy20RUXKu
+         88G00mjVqy5djvnbhC60KW1jwxchHwSM7mUqB/T73/oSv8Ca7cqV9YvSFd4kJvIt/HGw
+         YUnxXXk18FCGnBLywVpdwm05aK82nNqwSyB01gNlzEiIaOGjKUuMsMbO2ch9HYDiAuVE
+         E5hxwriIRDlpPEyONajBYE0LQvOzK+unBo7Ie/DGhLJHIvsnIWbNsV6DIx2SCa/kMuL7
+         UivagWaAl9Et8UuVPwZ7G/NRLF32S71dqcwp15zmYGq8hqsA62ymjj9/pbu/P+3uonUe
+         l/sg==
+X-Gm-Message-State: AOAM532DhvPatfu8QHZ/Ks0bH3Nm1rI2ZWRRoOXjWA3cdp5vjhjOY5aD
+        XMV7ZuGx1iNVcsTq6fOdvtehZQ==
+X-Google-Smtp-Source: ABdhPJy3jMGnpK1oKMDwo50uDDpX8aOtqGavw98z6Rfz/JgQr0QwNihP4xXGA7II1oRyQsQB6m2lqg==
+X-Received: by 2002:a5d:560c:: with SMTP id l12mr675373wrv.417.1612463555851;
+        Thu, 04 Feb 2021 10:32:35 -0800 (PST)
+Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
+        by smtp.gmail.com with ESMTPSA id c20sm6618034wmb.38.2021.02.04.10.32.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Feb 2021 10:32:35 -0800 (PST)
+Date:   Thu, 4 Feb 2021 18:32:32 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Will Deacon <will@kernel.org>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, android-kvm@google.com,
+        linux-kernel@vger.kernel.org, kernel-team@android.com,
+        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
+        Fuad Tabba <tabba@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Brazdil <dbrazdil@google.com>
+Subject: Re: [RFC PATCH v2 12/26] KVM: arm64: Introduce a Hyp buddy page
+ allocator
+Message-ID: <YBw9wCvkAXLUpgw7@google.com>
+References: <20210108121524.656872-1-qperret@google.com>
+ <20210108121524.656872-13-qperret@google.com>
+ <20210202181307.GA17311@willie-the-truck>
+ <YBrsep4xK1F4YRWb@google.com>
+ <20210204143106.GA20792@willie-the-truck>
+ <YBw6uInyY+AlE7D3@google.com>
+ <20210204182404.GB21526@willie-the-truck>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210204182404.GB21526@willie-the-truck>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Thu, 4 Feb 2021 11:29:45 -0600
-Rob Herring <robh@kernel.org> escreveu:
-
-> On Wed, Feb 03, 2021 at 07:49:00AM +0100, Mauro Carvalho Chehab wrote:
-> > Hi Rob,
+On Thursday 04 Feb 2021 at 18:24:05 (+0000), Will Deacon wrote:
+> On Thu, Feb 04, 2021 at 06:19:36PM +0000, Quentin Perret wrote:
+> > On Thursday 04 Feb 2021 at 14:31:08 (+0000), Will Deacon wrote:
+> > > Just feels a bit backwards having __find_buddy() take an order parameter,
+> > > yet then return a page of the wrong order! __hyp_extract_page() always
+> > > passes the p->order as the order,
 > > 
-> > Em Tue, 02 Feb 2021 11:44:54 -0600
-> > Rob Herring <robh@kernel.org> escreveu:
-> >   
-> > > My bot found errors running 'make dt_binding_check' on your patch:
-> > > 
-> > > yamllint warnings/errors:
-> > > 
-> > > dtschema/dtc warnings/errors:
-> > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
-> > > 	'type' is a required property
-> > > 	Additional properties are not allowed ('$ref' was unexpected)
-> > > 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
-> > > 		'enum' is a required property
-> > > 		'const' is a required property
-> > > 	'/schemas/types.yaml#definitions/flag' does not match 'types.yaml#/definitions/'  
+> > Gotcha, so maybe this is just a naming problem. __find_buddy() is simply
+> > a helper to lookup/index the vmemmap, but it's perfectly possible that
+> > the 'destination' page that is being indexed has already been allocated,
+> > and split up multiple time (and so at a different order), etc ... And
+> > that is the caller's job to decide.
+> > 
+> > How about __lookup_potential_buddy() ? Any suggestion?
 > 
-> You need a '/' between '#' and 'definitions'.
+> Hey, my job here is to waffle incoherently and hope that you find bugs in
+> your own code. Now you want me to _name_ something! Jeez...
 
-ah, OK. Will add it at the next version.
- 
-> > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: ignoring, error in schema: properties: snps,enable-cdm-check
-> > > warning: no schema found in file: ./Documentation/devicetree/bindings/pci/snps,pcie.yaml
-> > > 
-> > > See https://patchwork.ozlabs.org/patch/1434686
-> > > 
-> > > This check can fail if there are any dependencies. The base for a patch
-> > > series is generally the most recent rc1.
-> > > 
-> > > If you already ran 'make dt_binding_check' and didn't see the above
-> > > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > > date:
-> > > 
-> > > pip3 install dtschema --upgrade
-> > > 
-> > > Please check and re-submit.  
-> > 
-> > I've no idea why the bot is hitting those. My tree is based on
-> > staging-testing[1], as I need the regulator patches merged there.
-> > Such tree is based on v5.11-rc5.
-> > 
-> > There, dt_binding_check doesn't get any warnings on this schema:
-> > 
-> > $ pip3 install dtschema --upgrade --user
-> > Requirement already up-to-date: dtschema in /home/mchehab/.local/lib/python3.9/site-packages (2020.12)  
-> 
-> This particular check is in master, but not yet a release on pypi. I'll 
-> be tagging a release soon.
-> 
-> I've got this problem that adding new meta-schema checks like this one 
-> requires fixing up all the existing in tree schemas first. So I give 
-> some amount of time before adding them to a tagged release. However, I 
-> want to start testing new schemas right away. I haven't come up with a 
-> better solution short of importing the meta-schema into the kernel tree 
-> or separately versioning them.
+Hey, that's my special -- I already got Marc to make a suggestion on v1
+and it's been my favorite function name so far, so why not try again?
 
-IMO, having the meta-schema inside the Kernel tree would be better...
+https://lore.kernel.org/kvmarm/d6a674a0e8e259161ab741d78924c756@kernel.org/
 
-It took me some time to discover that some problems I had with a past
-version of this patch series were due to something outside the
-Kernel tree, at local/lib/python3.9/site-packages.
+> Ok, how about __find_buddy() does what it does today but doesn't take an
+> order argument, whereas __find_buddy_of_order() takes the order argument
+> and checks the page order before returning?
 
-Thanks,
-Mauro
+Sounds like a plan!
+
+Cheers,
+Quentin
