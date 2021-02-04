@@ -2,106 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88DB930F530
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:42:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E573130F55D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:51:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236697AbhBDOkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 09:40:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40470 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236850AbhBDOiN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 09:38:13 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 96D7A64F42;
-        Thu,  4 Feb 2021 14:37:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612449452;
-        bh=eX/1xnMdBH58oq4Cm//d2eH7lZEj/ruuIIGGb0auhuU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lFUg2MhCGRwGCnWckleg2a585Xz+UPVroJoNasl+l4uT0swGpvGoFDX9tZU3lQU8T
-         /yrQSfPWtuDwynUHzXjcNMRmcL3Hpe9GUojzRx7oLBzcEMnuf5Fugs46AmSYNirHm0
-         GOMjZtv2zt6lmt5JUCXfTx3Ou8ZLooidFTn5ePcH+jLvp6JlcZ/wq3kED3EeiOTmV8
-         JEyrlU6Zy1/rze1wxKk2PST5LR1xrcY/gBK6mtU2kGkZssp+m9Yz6Ihgp+3PZWtUtX
-         O386OeZwIL5OOsEzKkiZf9BK0SHUN10bysPQh3rGOM9NhwGiYRKNzb5RJWkLPFQzp3
-         CLQa41rKVOCfA==
-Date:   Thu, 4 Feb 2021 14:37:26 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 26/26] KVM: arm64: Wrap the host with a stage 2
-Message-ID: <20210204143725.GB20815@willie-the-truck>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-27-qperret@google.com>
- <20210203161146.GJ18974@willie-the-truck>
- <YBwEGx1tv8hob9ho@google.com>
+        id S236027AbhBDOtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 09:49:13 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:43674 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236725AbhBDOs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 09:48:29 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 6E8E21C0B77; Thu,  4 Feb 2021 15:47:28 +0100 (CET)
+Date:   Thu, 4 Feb 2021 15:47:28 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     Sven Schuchmann <schuchmann@schleissheimer.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] leds: lp50xx: remove unused regulator
+Message-ID: <20210204144728.GA14305@duo.ucw.cz>
+References: <20210203083408.2534-1-schuchmann@schleissheimer.de>
+ <20210203090249.GA14154@amd>
+ <2e9dff78-7fde-404d-6fad-6aeedf1145d1@ti.com>
+ <20210203142336.GA12369@duo.ucw.cz>
+ <0ddd5bdf-0484-3c20-1b6e-5573d1ff90f6@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="sdtB3X0nJg68CQEu"
 Content-Disposition: inline
-In-Reply-To: <YBwEGx1tv8hob9ho@google.com>
+In-Reply-To: <0ddd5bdf-0484-3c20-1b6e-5573d1ff90f6@ti.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 04, 2021 at 02:26:35PM +0000, Quentin Perret wrote:
-> On Wednesday 03 Feb 2021 at 16:11:47 (+0000), Will Deacon wrote:
-> > On Fri, Jan 08, 2021 at 12:15:24PM +0000, Quentin Perret wrote:
-> > > When KVM runs in protected nVHE mode, make use of a stage 2 page-table
-> > > to give the hypervisor some control over the host memory accesses. At
-> > > the moment all memory aborts from the host will be instantly idmapped
-> > > RWX at stage 2 in a lazy fashion. Later patches will make use of that
-> > > infrastructure to implement access control restrictions to e.g. protect
-> > > guest memory from the host.
-> > > 
-> > > Signed-off-by: Quentin Perret <qperret@google.com>
-> > > ---
-> > >  arch/arm64/include/asm/kvm_cpufeature.h       |   2 +
-> > >  arch/arm64/kernel/image-vars.h                |   3 +
-> > >  arch/arm64/kvm/hyp/include/nvhe/mem_protect.h |  33 +++
-> > >  arch/arm64/kvm/hyp/nvhe/Makefile              |   2 +-
-> > >  arch/arm64/kvm/hyp/nvhe/hyp-init.S            |   1 +
-> > >  arch/arm64/kvm/hyp/nvhe/hyp-main.c            |   6 +
-> > >  arch/arm64/kvm/hyp/nvhe/mem_protect.c         | 191 ++++++++++++++++++
-> > >  arch/arm64/kvm/hyp/nvhe/setup.c               |   6 +
-> > >  arch/arm64/kvm/hyp/nvhe/switch.c              |   7 +-
-> > >  arch/arm64/kvm/hyp/nvhe/tlb.c                 |   4 +-
-> > >  10 files changed, 248 insertions(+), 7 deletions(-)
-> > >  create mode 100644 arch/arm64/kvm/hyp/include/nvhe/mem_protect.h
-> > >  create mode 100644 arch/arm64/kvm/hyp/nvhe/mem_protect.c
-> > 
-> > [...]
-> > 
-> > > +void handle_host_mem_abort(struct kvm_cpu_context *host_ctxt)
-> > > +{
-> > > +	enum kvm_pgtable_prot prot;
-> > > +	u64 far, hpfar, esr, ipa;
-> > > +	int ret;
-> > > +
-> > > +	esr = read_sysreg_el2(SYS_ESR);
-> > > +	if (!__get_fault_info(esr, &far, &hpfar))
-> > > +		hyp_panic();
-> > > +
-> > > +	prot = KVM_PGTABLE_PROT_R | KVM_PGTABLE_PROT_W | KVM_PGTABLE_PROT_X;
-> > > +	ipa = (hpfar & HPFAR_MASK) << 8;
-> > > +	ret = host_stage2_map(ipa, PAGE_SIZE, prot);
-> > 
-> > Can we try to put down a block mapping if the whole thing falls within
-> > memory?
-> 
-> Yes we can! And in fact we can do that outside of memory too. It's
-> queued for v3 already, so stay tuned ... :)
 
-Awesome! The Stage-2 TLB thanks you.
+--sdtB3X0nJg68CQEu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Will
+On Wed 2021-02-03 10:02:00, Dan Murphy wrote:
+> Pavel
+>=20
+> On 2/3/21 8:23 AM, Pavel Machek wrote:
+> > On Wed 2021-02-03 07:49:35, Dan Murphy wrote:
+> > > Pavel
+> > >=20
+> > > On 2/3/21 3:02 AM, Pavel Machek wrote:
+> > > > On Wed 2021-02-03 08:34:08, Sven Schuchmann wrote:
+> > > > > The regulator for vled-supply is unused in the driver.
+> > > > > It is just assigned from DT and disabled in lp50xx_remove.
+> > > > > So the code can be removed from the driver.
+> > > > Dan, what is going on here? Do we need to also enable the regulator,
+> > > > or is the removal correct thing to do?
+> > > >=20
+> > > I think it would be better to do an enable as opposed to removing the=
+ code.
+> > >=20
+> > > This would be needed especially in applications that have to meet str=
+ict
+> > > power management requirements.
+> > >=20
+> > > Users may want to disable or enable the regulator during suspend/resu=
+me.
+> > > Otherwise it would be considered always-on and the regulator does not=
+ need
+> > > to be populated.
+> > Do you have set up where this is needed and you can test this? Will
+> > you submit the fixes?
+>=20
+> No I use an always on regulator in my setup. I have no managed supplies
+> exposed.
+
+Hmm, that is not ideal :-(. Can you try to provide patch, anyway?
+
+Best regards,
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--sdtB3X0nJg68CQEu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYBwJAAAKCRAw5/Bqldv6
+8sggAJ4zBz1csm1BfQrxFGY4y05ScEhujQCgj4moxaLa/wt98rt3OYfnoCuDJO4=
+=+oon
+-----END PGP SIGNATURE-----
+
+--sdtB3X0nJg68CQEu--
