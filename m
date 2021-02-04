@@ -2,129 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5538030F3A5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 14:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C7EC30F43E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 14:55:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236187AbhBDNG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 08:06:27 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:56359 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235605AbhBDNGU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 08:06:20 -0500
-X-UUID: 6ef6fe6e6c0a402a91e9207d653967c9-20210204
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xjPlZsUgJ8zWKx32syTlMFFWZeRIUmfEgX2pBjQv40w=;
-        b=afrLmZvNlDKffq4yrhcTZuJ9N84I3H93yxx8Vsj1JwuOAZ0KXVuiskN0QoyHRmf4Ov5t/J32K/Txy67eaZgZ7xy9UhGOOni/zP7IB9+TE/LiY8d2DncqN0oxqRDE69VpjEH5NjeWtiyW1c5vIbqoicp4vvi7t8g8M68GxnaQKsw=;
-X-UUID: 6ef6fe6e6c0a402a91e9207d653967c9-20210204
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 648410008; Thu, 04 Feb 2021 21:05:34 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 4 Feb 2021 21:05:22 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 4 Feb 2021 21:05:22 +0800
-Message-ID: <1612443922.32298.3.camel@mtksdaap41>
-Subject: Re: [PATCH v4 4/5] soc: mediatek: pwrap: add pwrap driver for
- MT6873/8192 SoCs
-From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Nicolas Boichat <drinkcat@chromium.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Fei Shao <fshao@chromium.org>,
-        Argus Lin <argus.lin@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 4 Feb 2021 21:05:22 +0800
-In-Reply-To: <CANMq1KBXKQOj=qUMULeJsqy8bvsJLgRniuF2kqzhxpKTWCVq1w@mail.gmail.com>
-References: <1605700894-32699-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1605700894-32699-5-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <CANMq1KBXKQOj=qUMULeJsqy8bvsJLgRniuF2kqzhxpKTWCVq1w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S236385AbhBDNyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 08:54:37 -0500
+Received: from mail-mw2nam10on2059.outbound.protection.outlook.com ([40.107.94.59]:65056
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236391AbhBDNyf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 08:54:35 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j1+nCBgrJXoHbYuhb43jeXCA2TptL4nLiLlyJ0JznaULSCktorOgyI3WzgJ5Ukgv6q8+KYPbemvoc2oFCmP2bi4bSS5avcjTde1vhJ/3IX8qh1Rhk4SooD0fVIuViO1oljbryayXQGghGL6zQhxvQFvdZJpmDXOg3KOJXJ35qNGMyuKC3cEaGTG5xGhu/Vq1+Ct9JCeXusbN4Yn5y6QQ3iZoyaw62rVdmYNPmIQmDM8b5F7D3kyIQvP9Vw7oE7U51k7olig8O+HiW8ZAILLN4rMXsqYyaPNj7DRU/6b501fc4whw3x9SHcwIrLGuABhxbE0BDOM+q9OPLJaaGuBz/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZsZQw9MKpzyc5UCpdKqK97jk+DARdvIZi6RaifU531s=;
+ b=KLJDVont6PhcUoJgfbwO5Q2aab+yYsJlR7rMx+7cRuRow7BqT8BMAr3VTMMEpDstzWftAjGyXQIUrrSXlPfL/grH5tbF4PSbIy8Ug66uroBcqREo0IXN/iS/Mf8kzJGGQp2hxuSPAoR0PAFHKMxsiDczWyppjeFV1OO+Hmyor3vzBMvQk8v2JVByq8i6Fk/UXgduhyze6gmRTmXknDrbc5hhF0/kPPuxiLFCg8x1SE7cZy5fLTa8p2YjzU3MS6EJdYSpwXw27C79Ap9uyDUXAae9vwhjN1MEIO21BZReU7cVZrNDwdQcOcZQnaZd3faRscTTu/YnlAKFMsE3SqMvfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZsZQw9MKpzyc5UCpdKqK97jk+DARdvIZi6RaifU531s=;
+ b=OvHUe2mjTW7n1cS2BnJqsM+daP428i0lBQfASK7iVHoebjNs0R/byaYQf953n47nplt8NJo0WGrqgNvnQd3PfXFTBTiTNEqP+ZsgbOy0ozrDvyHQE9UnP+jnly/HPv04v2WLxy++7/D87BguB3FcNHG8DFJJ5JNgM2qJ8pawcio=
+Received: from BL1PR13CA0296.namprd13.prod.outlook.com (2603:10b6:208:2bc::31)
+ by PH0PR02MB7192.namprd02.prod.outlook.com (2603:10b6:510:16::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.19; Thu, 4 Feb
+ 2021 13:53:37 +0000
+Received: from BL2NAM02FT045.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:208:2bc:cafe::e0) by BL1PR13CA0296.outlook.office365.com
+ (2603:10b6:208:2bc::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.13 via Frontend
+ Transport; Thu, 4 Feb 2021 13:53:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ BL2NAM02FT045.mail.protection.outlook.com (10.152.77.16) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3784.12 via Frontend Transport; Thu, 4 Feb 2021 13:53:37 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Thu, 4 Feb 2021 05:53:35 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Thu, 4 Feb 2021 05:53:35 -0800
+Envelope-to: git-dev@xilinx.com,
+ linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ shubhrajyoti.datta@gmail.com,
+ sboyd@kernel.org,
+ robh+dt@kernel.org,
+ gregkh@linuxfoundation.org
+Received: from [10.140.6.59] (port=57876 helo=xhdshubhraj40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1l7f4g-0000Tm-B7; Thu, 04 Feb 2021 05:53:34 -0800
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+To:     <linux-clk@vger.kernel.org>, <git-dev@xilinx.com>
+CC:     <devicetree@vger.kernel.org>, <shubhrajyoti.datta@gmail.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Subject: [PATCH v8 0/7] clk: clk-wizard: clock-wizard: Driver updates
+Date:   Thu, 4 Feb 2021 19:23:23 +0530
+Message-ID: <1612446810-6113-1-git-send-email-shubhrajyoti.datta@xilinx.com>
+X-Mailer: git-send-email 2.1.1
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3b36abef-9c8d-4179-2512-08d8c9144549
+X-MS-TrafficTypeDiagnostic: PH0PR02MB7192:
+X-Microsoft-Antispam-PRVS: <PH0PR02MB719214B9011422FAA911A1A3AAB39@PH0PR02MB7192.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:207;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1sePdelRefxsCcvXnvkLsvXf4QRkYNgYoDG1061mCYjACfDFLflwiZd0QUCCQNfRgIN1EVWOeVKYVSOUcdGu4xMH2xb69MGVwVLCCoAV+1xcpoPXcVKKpGEjy7ZbKEEOINWBEu1O0zHwBZ3nL8L3PA/dUnrvb37UiiHdFmQ8mbvRSW+Phq6lnS2nMgPc8uutDggRiYfoBWcG3F7zv1lAyNAAifc4H4o5ULs6DFEo5a/f7kJpm5fdPASFV3r+YYAi0iOYSk7JVJhWNJQnKUbC1KJxL2Y4+O3gVVvGdwbYH821nb/BM25o09G2WCfmSR+sqG8nUYq134Sn4+D3y1+JVns7xQUzT+gF8r+kO3XnDOTyjtfrB8q8DRhJC/OKxrAng6mHE7E55NJIKGeF1JvKDy7c9BmP1wls/sBJulnZBx3euvV7ek/lW2CKt2TfREsDlvMi3NF82WHWBnnQEVv0e7S7TEth88nT5lRO1fDjyhHgJTg1KIUPb5FJeMw21qCVL/7LAaRPv0CBVQGklEH8J4f/T0JOKLQbqjhDOROVqZFhJKJIiXKaTgNvusVTIEIXQUIngEUL95nbIrUxvAgA0MrxlHo3rKY/vrBM+69v6DpLygpEsi0Idnjfa7eA7kIWarwfTj/E4SnXknAPmOWy4N2mn4cqAV8TLcHbfc8Jsm7aUV6C5QboQd1vukMfCeckFhkfUj8ZIfMLsiab9MrqCZ452e7z6rVX8D7Pv09gCoz6aLOraxXgwTqbt4TpnRyj
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(376002)(39860400002)(346002)(396003)(46966006)(36840700001)(7696005)(36756003)(15650500001)(186003)(7636003)(54906003)(44832011)(4326008)(9786002)(110136005)(26005)(70206006)(316002)(36906005)(8676002)(82740400003)(966005)(2906002)(36860700001)(82310400003)(107886003)(47076005)(70586007)(83380400001)(5660300002)(426003)(336012)(356005)(478600001)(6636002)(6666004)(2616005)(8936002)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2021 13:53:37.0466
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b36abef-9c8d-4179-2512-08d8c9144549
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT045.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7192
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNCk9uIE1vbiwgMjAyMC0xMi0yMSBhdCAxMDo0MiArMDgwMCwgTmljb2xhcyBCb2ljaGF0
-IHdyb3RlOg0KPiBPbiBXZWQsIE5vdiAxOCwgMjAyMCBhdCA4OjA4IFBNIEhzaW4tSHNpdW5nIFdh
-bmcNCj4gPGhzaW4taHNpdW5nLndhbmdAbWVkaWF0ZWsuY29tPiB3cm90ZToNCj4gPg0KPiA+IE1U
-Njg3My84MTkyIGFyZSBoaWdobHkgaW50ZWdyYXRlZCBTb0NzIGFuZCB1c2UgUE1JQ19NVDYzNTkg
-Zm9yDQo+ID4gcG93ZXIgbWFuYWdlbWVudC4gVGhpcyBwYXRjaCBhZGRzIHB3cmFwIG1hc3RlciBk
-cml2ZXIgdG8NCj4gPiBhY2Nlc3MgUE1JQ19NVDYzNTkuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5
-OiBIc2luLUhzaXVuZyBXYW5nIDxoc2luLWhzaXVuZy53YW5nQG1lZGlhdGVrLmNvbT4NCj4gPiAt
-LS0NCj4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtaWMtd3JhcC5jIHwgMjkgKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDI5IGluc2VydGlv
-bnMoKykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstcG1p
-Yy13cmFwLmMgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstcG1pYy13cmFwLmMNCj4gPiBpbmRl
-eCA1Njc4ZjQ2Li5kMWNkMDUwIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvc29jL21lZGlhdGVr
-L210ay1wbWljLXdyYXAuYw0KPiA+ICsrKyBiL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1wbWlj
-LXdyYXAuYw0KPiA+IEBAIC02MzIsNiArNjMyLDE3IEBAIHN0YXRpYyBpbnQgbXQ2Nzk3X3JlZ3Nb
-XSA9IHsNCj4gPiAgICAgICAgIFtQV1JBUF9EQ01fREJDX1BSRF0gPSAgICAgICAgICAgMHgxRDQs
-DQo+ID4gIH07DQo+ID4NCj4gPiArc3RhdGljIGludCBtdDY4NzNfcmVnc1tdID0gew0KPiA+ICsg
-ICAgICAgW1BXUkFQX0lOSVRfRE9ORTJdID0gICAgICAgICAgICAweDAsDQo+IA0KPiBJIGRvbid0
-IGhhdmUgdGhlIGRhdGFzaGVldCBmb3IgdGhlIFBXUkFQIGludGVyZmFjZSwgaXMgdGhpcyByZWdp
-c3Rlcg0KPiBhdCBvZmZzZXQgMHgwIHJlYWw/DQo+IA0KPiBJZiBzbywgSSdtIGNvbmNlcm5lZCB0
-aGF0IG10Njg3M19yZWdzIG9ubHkgZGVmaW5lcyB2ZXJ5IGZldyByZWdpc3RlcnMNCj4gb2Zmc2V0
-cywgc28gdGhlIGluaXQgY29kZSB3aWxsIGRvIGEgX2xvdF8gd3JpdGVzIGF0IHJlZ2lzdGVyIGFk
-ZHJlc3MNCj4gMHgwIChlLmcuIGZvciBhbGwgdGhlIHVuZGVmaW5lZCB2YWx1ZXMgaW4gdGhpcyBh
-cnJheTogUFdSQVBfV0FDUzBfRU4sDQo+IFBXUkFQX1dBQ1MxX0VOLCBQV1JBUF9XQUNTMl9FTiwg
-ZXRjLCBldGMuKQ0KPiANCg0KVGhlIHJlZ2lzdGVyIGZvciB0aGUgaW5pdF9kb25lIGlzIDB4MC4N
-Ckhvd2V2ZXIsIHRoZSBwd3JhcCBkcml2ZXIgb2YgbXQ2ODczIG9ubHkgY2hlY2tzIHRoaXMgcmVn
-aXN0ZXIgaW4gdGhlDQpiZWdpbm5pbmcgYW5kIHdvdWxkbid0IGNoZWNrIGl0IGFnYWluLg0KSW4g
-b3RoZXIgd29yZHMsIHRoZSAgcmVnaXN0ZXIgaXMgdGhlIGZpcnN0IHJlZ2lzdGVyIHdlIGNoZWNr
-LCBzbyBJIHRoaW5rDQp0aGVyZSBpcyBubyBwcm9ibGVtIGZvciBpdC4NCg0KPiA+ICsgICAgICAg
-W1BXUkFQX1RJTUVSX0VOXSA9ICAgICAgICAgICAgICAweDNFMCwNCj4gPiArICAgICAgIFtQV1JB
-UF9JTlRfRU5dID0gICAgICAgICAgICAgICAgMHg0NDgsDQo+ID4gKyAgICAgICBbUFdSQVBfV0FD
-UzJfQ01EXSA9ICAgICAgICAgICAgIDB4QzgwLA0KPiA+ICsgICAgICAgW1BXUkFQX1NXSU5GXzJf
-V0RBVEFfMzFfMF0gPSAgICAweEM4NCwNCj4gPiArICAgICAgIFtQV1JBUF9TV0lORl8yX1JEQVRB
-XzMxXzBdID0gICAgMHhDOTQsDQo+ID4gKyAgICAgICBbUFdSQVBfV0FDUzJfVkxEQ0xSXSA9ICAg
-ICAgICAgIDB4Q0E0LA0KPiA+ICsgICAgICAgW1BXUkFQX1dBQ1MyX1JEQVRBXSA9ICAgICAgICAg
-ICAweENBOCwNCj4gPiArfTsNCj4gPiArDQo+ID4gIHN0YXRpYyBpbnQgbXQ3NjIyX3JlZ3NbXSA9
-IHsNCj4gPiAgICAgICAgIFtQV1JBUF9NVVhfU0VMXSA9ICAgICAgICAgICAgICAgMHgwLA0KPiA+
-ICAgICAgICAgW1BXUkFQX1dSQVBfRU5dID0gICAgICAgICAgICAgICAweDQsDQo+ID4gQEAgLTEw
-NTAsNiArMTA2MSw3IEBAIGVudW0gcHdyYXBfdHlwZSB7DQo+ID4gICAgICAgICBQV1JBUF9NVDY3
-NjUsDQo+ID4gICAgICAgICBQV1JBUF9NVDY3NzksDQo+ID4gICAgICAgICBQV1JBUF9NVDY3OTcs
-DQo+ID4gKyAgICAgICBQV1JBUF9NVDY4NzMsDQo+ID4gICAgICAgICBQV1JBUF9NVDc2MjIsDQo+
-ID4gICAgICAgICBQV1JBUF9NVDgxMzUsDQo+ID4gICAgICAgICBQV1JBUF9NVDgxNzMsDQo+ID4g
-QEAgLTE1MTIsNiArMTUyNCw3IEBAIHN0YXRpYyBpbnQgcHdyYXBfaW5pdF9jaXBoZXIoc3RydWN0
-IHBtaWNfd3JhcHBlciAqd3JwKQ0KPiA+ICAgICAgICAgY2FzZSBQV1JBUF9NVDc2MjI6DQo+ID4g
-ICAgICAgICAgICAgICAgIHB3cmFwX3dyaXRlbCh3cnAsIDAsIFBXUkFQX0NJUEhFUl9FTik7DQo+
-ID4gICAgICAgICAgICAgICAgIGJyZWFrOw0KPiA+ICsgICAgICAgY2FzZSBQV1JBUF9NVDY4NzM6
-DQo+ID4gICAgICAgICBjYXNlIFBXUkFQX01UODE4MzoNCj4gPiAgICAgICAgICAgICAgICAgYnJl
-YWs7DQo+ID4gICAgICAgICB9DQo+ID4gQEAgLTE5NDgsNiArMTk2MSwxOSBAQCBzdGF0aWMgY29u
-c3Qgc3RydWN0IHBtaWNfd3JhcHBlcl90eXBlIHB3cmFwX210Njc5NyA9IHsNCj4gPiAgICAgICAg
-IC5pbml0X3NvY19zcGVjaWZpYyA9IE5VTEwsDQo+ID4gIH07DQo+ID4NCj4gPiArc3RhdGljIGNv
-bnN0IHN0cnVjdCBwbWljX3dyYXBwZXJfdHlwZSBwd3JhcF9tdDY4NzMgPSB7DQo+ID4gKyAgICAg
-ICAucmVncyA9IG10Njg3M19yZWdzLA0KPiA+ICsgICAgICAgLnR5cGUgPSBQV1JBUF9NVDY4NzMs
-DQo+ID4gKyAgICAgICAuYXJiX2VuX2FsbCA9IDB4Nzc3ZiwNCj4gPiArICAgICAgIC5pbnRfZW5f
-YWxsID0gQklUKDQpIHwgQklUKDUpLA0KPiA+ICsgICAgICAgLmludDFfZW5fYWxsID0gMCwNCj4g
-PiArICAgICAgIC5zcGlfdyA9IFBXUkFQX01BTl9DTURfU1BJX1dSSVRFLA0KPiA+ICsgICAgICAg
-LndkdF9zcmMgPSBQV1JBUF9XRFRfU1JDX01BU0tfQUxMLA0KPiA+ICsgICAgICAgLmNhcHMgPSBQ
-V1JBUF9DQVBfQVJCLA0KPiA+ICsgICAgICAgLmluaXRfcmVnX2Nsb2NrID0gcHdyYXBfY29tbW9u
-X2luaXRfcmVnX2Nsb2NrLA0KPiA+ICsgICAgICAgLmluaXRfc29jX3NwZWNpZmljID0gTlVMTCwN
-Cj4gPiArfTsNCj4gPiArDQo+ID4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcG1pY193cmFwcGVyX3R5
-cGUgcHdyYXBfbXQ3NjIyID0gew0KPiA+ICAgICAgICAgLnJlZ3MgPSBtdDc2MjJfcmVncywNCj4g
-PiAgICAgICAgIC50eXBlID0gUFdSQVBfTVQ3NjIyLA0KPiA+IEBAIC0yMDI2LDYgKzIwNTIsOSBA
-QCBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBvZl9wd3JhcF9tYXRjaF90YmxbXSA9
-IHsNCj4gPiAgICAgICAgICAgICAgICAgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzk3LXB3
-cmFwIiwNCj4gPiAgICAgICAgICAgICAgICAgLmRhdGEgPSAmcHdyYXBfbXQ2Nzk3LA0KPiA+ICAg
-ICAgICAgfSwgew0KPiA+ICsgICAgICAgICAgICAgICAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxt
-dDY4NzMtcHdyYXAiLA0KPiA+ICsgICAgICAgICAgICAgICAuZGF0YSA9ICZwd3JhcF9tdDY4NzMs
-DQo+ID4gKyAgICAgICB9LCB7DQo+ID4gICAgICAgICAgICAgICAgIC5jb21wYXRpYmxlID0gIm1l
-ZGlhdGVrLG10NzYyMi1wd3JhcCIsDQo+ID4gICAgICAgICAgICAgICAgIC5kYXRhID0gJnB3cmFw
-X210NzYyMiwNCj4gPiAgICAgICAgIH0sIHsNCj4gPiAtLQ0KPiA+IDIuNi40DQo+ID4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiBMaW51eC1tZWRp
-YXRlayBtYWlsaW5nIGxpc3QNCj4gPiBMaW51eC1tZWRpYXRla0BsaXN0cy5pbmZyYWRlYWQub3Jn
-DQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1t
-ZWRpYXRlaw0KDQo=
+
+In the thread [1] Greg suggested that we move the driver
+to the clk from the staging.
+Add patches to address the concerns regarding the fractional and
+set rate support in the TODO.
+
+The patch set does the following
+- Trivial fixes for kernel doc.
+- Move the driver to the clk folder
+- Add capability to set rate.
+- Add fractional support.
+- Add support for configurable outputs.
+- Make the output names unique so that multiple instances
+do not crib.
+
+Changes in the v3:
+Added the cover-letter.
+Add patches for rate setting and fractional support
+Add patches for warning.
+Remove the driver from staging as suggested
+
+v4:
+Reorder the patches.
+Merge the CLK_IS_BASIC patch.
+Add the yaml form of binding document
+
+v5:
+Fix a mismerge
+
+v6:
+Fix the yaml warning
+use poll timedout
+
+v7:
+Binding doc updates
+Use common divisor function.
+
+v8:
+Fix Robs comments
+
+[1] https://spinics.net/lists/linux-driver-devel/msg117326.html
+
+Shubhrajyoti Datta (7):
+  dt-bindings: add documentation of xilinx clocking wizard
+  clk: clock-wizard: Add the clockwizard to clk directory
+  clk: clock-wizard: Fix kernel-doc warning
+  clk: clock-wizard: Add support for dynamic reconfiguration
+  clk: clock-wizard: Add support for fractional support
+  clk: clock-wizard: Remove the hardcoding of the clock outputs
+  clk: clock-wizard: Update the fixed factor divisors
+
+ .../bindings/clock/xlnx,clocking-wizard.yaml       |  62 ++
+ drivers/clk/Kconfig                                |   9 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/clk-xlnx-clock-wizard.c                | 689 +++++++++++++++++++++
+ drivers/staging/Kconfig                            |   2 -
+ drivers/staging/Makefile                           |   1 -
+ drivers/staging/clocking-wizard/Kconfig            |  10 -
+ drivers/staging/clocking-wizard/Makefile           |   2 -
+ drivers/staging/clocking-wizard/TODO               |  12 -
+ .../clocking-wizard/clk-xlnx-clock-wizard.c        | 333 ----------
+ drivers/staging/clocking-wizard/dt-binding.txt     |  30 -
+ 11 files changed, 761 insertions(+), 390 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+ create mode 100644 drivers/clk/clk-xlnx-clock-wizard.c
+ delete mode 100644 drivers/staging/clocking-wizard/Kconfig
+ delete mode 100644 drivers/staging/clocking-wizard/Makefile
+ delete mode 100644 drivers/staging/clocking-wizard/TODO
+ delete mode 100644 drivers/staging/clocking-wizard/clk-xlnx-clock-wizard.c
+ delete mode 100644 drivers/staging/clocking-wizard/dt-binding.txt
+
+-- 
+2.1.1
 
