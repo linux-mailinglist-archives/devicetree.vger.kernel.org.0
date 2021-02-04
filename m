@@ -2,148 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F64230FDD3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 21:15:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7C6930FED7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 21:52:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238951AbhBDUOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 15:14:46 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34648 "EHLO mail.kernel.org"
+        id S229983AbhBDUue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 15:50:34 -0500
+Received: from marcansoft.com ([212.63.210.85]:35800 "EHLO mail.marcansoft.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238762AbhBDULW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 15:11:22 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6F6E164F6A;
-        Thu,  4 Feb 2021 20:09:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612469354;
-        bh=ZbLhFh9ekMPZ7GsNUm17lM69d0KfshZaVXI3G/nk2ms=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Npo7RmNAZ6aSCRqxm4nVlbaC/27YVRcbCPdd/fbIg19/B+FHezlIum4hWxlFIF7ON
-         HMOxuGrqn9JuVV79dSuBTZghrifXAnGKneLW7L/czTVKPl1MzkLQbuw3PahK1Amqy2
-         cnBZC/y1Ot1iy8ll6/IASEqB/ZdXLA7vrWkAmhvhtZHqT0hFRmnEt66ImRMlB13Icx
-         NtJeNk/LaUOIDjpJBVB9ebf1u9+lZOn+UsBT1S/liZzVG46TrZcZ4mHf1BkmjlJL5G
-         2cvkY+S7xZ8ThK83wbkfkmvi5O4WLdd7xBdUeGvpLT+Ss3FBG7ySG8TNHT77tD85JA
-         NkkFlyHwtO0Lg==
-Received: by mail-ed1-f47.google.com with SMTP id s26so46656edt.10;
-        Thu, 04 Feb 2021 12:09:14 -0800 (PST)
-X-Gm-Message-State: AOAM531K4uYq6IDJ93BAFYjox0VBQjP8N2zqqGGaHHen5cBcWwemTJcd
-        SCrjjyK05ugEGQarzr138Q9rU1Iqz4dJrQN67w==
-X-Google-Smtp-Source: ABdhPJyUV5HEhzX+4uiSU3UPrmRnNReleaqLxoxL2nV/uRrWwsFnvLuMCAGXLzBp06xeHA/+3g2JdEtwmOqvoL43N+E=
-X-Received: by 2002:aa7:c906:: with SMTP id b6mr311329edt.194.1612469352891;
- Thu, 04 Feb 2021 12:09:12 -0800 (PST)
+        id S229984AbhBDUub (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 15:50:31 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: hector@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 88EF3425B6;
+        Thu,  4 Feb 2021 20:40:06 +0000 (UTC)
+From:   Hector Martin <marcan@marcan.st>
+To:     Hector Martin <marcan@marcan.st>, soc@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>, robh+dt@kernel.org,
+        Arnd Bergmann <arnd@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Olof Johansson <olof@lixom.net>
+Subject: [PATCH 00/18] Apple M1 SoC platform bring-up
+Date:   Fri,  5 Feb 2021 05:39:33 +0900
+Message-Id: <20210204203951.52105-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-References: <91e3405245c89f134676449cf3822285798d2ed2.1612189652.git.michal.simek@xilinx.com>
- <CAL_JsqJnu1M6ut8g_36ve-OG22jFsySHbmVHOgtDRhc-s37rpQ@mail.gmail.com>
- <210b0e5a-767b-c285-62e2-23de19bd3cf1@xilinx.com> <CAL_Jsq+m7F+nD6VKd2L5i44hz32_-6iX3toZ0A0CBT-g7Xqu9g@mail.gmail.com>
- <a2f10400-51e5-bb76-f5c4-3b8e2fbc2793@xilinx.com> <20210203144344.4e261aea@slackpad.fritz.box>
- <CAL_JsqKfLM03of1Pzoxx=n_PaU9gnFuxt2zikGPuc1UkMK9PVQ@mail.gmail.com> <CAL_JsqJjBWpL=gpcNxQnN8Gkp+e=gxOVVmsZuaOz2+uuQ3QTOA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJjBWpL=gpcNxQnN8Gkp+e=gxOVVmsZuaOz2+uuQ3QTOA@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 4 Feb 2021 14:09:01 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq++DyiKG9smQGx9FAPDJnVrezcXNb0Y5uh-5_2GBzTQpQ@mail.gmail.com>
-Message-ID: <CAL_Jsq++DyiKG9smQGx9FAPDJnVrezcXNb0Y5uh-5_2GBzTQpQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: zynq: Add address-cells property to interrupt controllers
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Michal Simek <michal.simek@xilinx.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 3, 2021 at 12:03 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Wed, Feb 3, 2021 at 10:49 AM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Wed, Feb 3, 2021 at 8:44 AM Andre Przywara <andre.przywara@arm.com> wrote:
-> > >
-> > > On Wed, 3 Feb 2021 15:15:19 +0100
-> > > Michal Simek <michal.simek@xilinx.com> wrote:
-> > >
-> > > > On 2/3/21 3:12 PM, Rob Herring wrote:
-> > > > > On Wed, Feb 3, 2021 at 1:01 AM Michal Simek <michal.simek@xilinx.com> wrote:
-> > > > >>
-> > > > >>
-> > > > >>
-> > > > >> On 2/1/21 6:41 PM, Rob Herring wrote:
-> > > > >>> On Mon, Feb 1, 2021 at 8:27 AM Michal Simek <michal.simek@xilinx.com> wrote:
-> > > > >>>>
-> > > > >>>> The commit 3eb619b2f7d8 ("scripts/dtc: Update to upstream version
-> > > > >>>> v1.6.0-11-g9d7888cbf19c") updated dtc version which also contained DTC
-> > > > >>>> commit
-> > > > >>>> "81e0919a3e21 checks: Add interrupt provider test"
-> > > > >>>> where reasons for this checking are mentioned as
-> > > > >>>> "A missing #address-cells property is less critical, but creates
-> > > > >>>> ambiguities when used in interrupt-map properties, so warn about this as
-> > > > >>>> well now."
-> > > > >>>>
-> > > > >>>> Add address-cells property to gic and gpio nodes to get rid of this warning.
-> > > > >>>> The similar change has been done for ZynqMP too.
-> > > > >>>
-> > > > >>> FYI, we're going to make this check dependent on having an
-> > > > >>> interrupt-map property. So adding these isn't necessary.
-> > > > >>
-> > > > >> Good to know. Is there going to be report if interrupt-map doesn't
-> > > > >> exist? Which can end up with reverting these changes?
-> > > > >
-> > > > > You mean a warning if '#address-cells' is present and interrupt-map is
-> > > > > not? No, that would cause lots of warnings.
-> > > >
-> > > > yep.
-> > >
-> > > Why would we do that? That sounds dangerous and would be broken if the
-> > > IRQ controller is in a generic .dtsi (as it usually is), but the
-> > > interrupt map is only in *some* of the board .dts files.
-> > >
-> > > What is the problem of just putting #address-cells = <0>; in the
-> > > IRQ controller node, after checking that there currently no interrupt
-> > > maps in use and no IRQ children? And be safe for good? That's 16 bytes
-> > > in the DTB, IIUC.
-> >
-> > Because I don't think we need a bunch of warning fix patches to add
-> > these everywhere. Also, the need for #address-cells pretty much makes
-> > no sense on any modern system. It is a relic from days when the bus
-> > (address) topology and interrupt topology were related.
-> >
-> > > Because otherwise we have that lovely ambiguity between the
-> > > implicit default #address-cells = 2; and the assumed default of 0.
-> > >
-> > > And that's why I think we also cannot *automatically* add an #ac = <0>;
-> > > property, because that would change behaviour.
-> >
-> > I'd rather try to limit where we assume the default of 2. My guess is
-> > that's only some combination of old PowerPC and/or Sparc and no FDT
-> > based DT.
->
-> Actually, after reviewing of_irq_parse_raw() again, I think you're
-> mixing the 2 different #address-cells involved. Let's review which
-> #*-cells applies to parts of interrupt-map:
->
-> interrupt-map = <[ac current node or parent] [ic current node] [parent
-> intc phandle] [ac parent intc] [ic parent intc]>;
->
-> For [ac current node or parent], we start in the 'interrupt-map' node
-> (because it's the interrupt parent). From there, we walk up the tree
-> to find #address-cells. Worst case is we find none and take the
-> default of 2. First, dtc has pretty much always made no root
-> #address-cells a warning. Second, Linux has notion of a default and
-> that varies by arch and isn't used here. Only Sparc defaults to 2 (see
-> of_private.h) which means we should never hit the default on PowerPC
-> or Arm (or anything else).
+This series brings up initial support for the Apple M1 SoC, used in the
+2020 Mac Mini, MacBook Pro, and MacBook Air models.
 
-Actually, Sparc doesn't even use this code. Turns out PowerPC is a bit
-more complicated.
+The following features are supported in this initial port:
 
-I traced where the '2' in this code came from. PowerPC had a mixture
-of the default being 1 or 2. For the interrupt parsing code, it was 1
-(from prom_n_addr_cells()) before commit 0ebfff1491ef and 2
-(hardcoded) after it. That's not the only place that a default was
-set. The early_init_dt_scan_root() function at that time defaulted to
-2. Now it's 1 as we added per arch default defines which used the '1'
-from prom_n_addr_cells() (now of_n_addr_cells()). So in conclusion,
-PowerPC has had a mixture of defaults and no one cared since 2006 when
-it changed. I'm inclined to rip out these defaults and just fail.
+- UART (samsung-style) with earlycon support
+- Interrupts, including affinity and IPIs (Apple Interrupt Controller)
+- SMP (through standard spin-table support)
+- simplefb-based framebuffer
+- Devicetree for the Mac Mini (should work for the others too at this
+  stage)
 
-Rob
+The primary pain points of this port are:
+
+- Apple SoCs require FIQs, as the timers and "fast" IPIs are hardwired
+  to the FIQ interrupt line. This patchset introduces FIQ support through
+  the alternatives mechanism, so as to not affect other platforms,
+  implemented as simply merging IRQs and FIQs. The AIC driver takes care
+  of discriminating and routing IRQs to the right users.
+
+- These SoCs blackhole nGnRE writes to internal MMIO ranges, and require
+  nGnRnE. There is no obvious right solution to solve this. I do not
+  expect the two patches for that in this series to be merged as-is, but
+  the commit messages describe the problem and potential solutions. I
+  hope we can have a discussion and converge on the right approach to
+  solve this problem in the sanest way.
+
+These machines officially support booting unsigned/user-provided
+XNU-like kernels, with a very different boot protocol and devicetree
+format. We are developing an initial bootloader, m1n1 [1], to take care
+of as many hardware peculiarities as possible and present a standard
+Linux arm64 boot protocol and device tree. In the future, I expect that
+production setups will add U-Boot and perhaps GRUB into the boot chain,
+to make the boot process similar to other ARM64 platforms.
+
+The machines expose their debug UART over USB Type C, triggered with
+vendor-specific USB-PD commands. Currently, the easiest way to get a
+serial console on these machines is to use a second M1 box and a simple
+USB C cable [2]. You can also build a DIY interface using an Arduino, a
+FUSB302 chip or board, and a 1.2V UART-TTL adapter [3]. In the coming
+weeks we will be designing an open hardware project to provide
+serial/debug connectivity to these machines (and, hopefully, also
+support other UART-over-Type C setups from other vendors). Please
+contact me privately if you are interested in getting an early prototype
+version of one of these devices.
+
+A quickstart guide to booting Linux kernels on these machines is
+available at [4], and we are documenting the hardware at [5].
+
+[1] https://github.com/AsahiLinux/m1n1/
+[2] https://github.com/AsahiLinux/macvdmtool/
+[3] https://github.com/AsahiLinux/vdmtool/
+[4] https://github.com/AsahiLinux/docs/wiki/Developer-Quickstart
+[5] https://github.com/AsahiLinux/docs/wiki
+
+== Project Blurb ==
+
+Asahi Linux is an open community project dedicated to developing and
+maintaining mainline support for Apple Silicon on Linux. Feel free to
+drop by #asahi on freenode to chat with us, or check our website for
+more information on the project:
+
+https://asahilinux.org/
+
+
+Hector Martin (18):
+  dt-bindings: vendor-prefixes: add AAPL prefix
+  dt-bindings: arm: cpus: Add AAPL,firestorm & icestorm compatibles
+  dt-bindings: arm: AAPL: Add bindings for Apple ARM platforms
+  arm64: Kconfig: Introduce CONFIG_ARCH_APPLE
+  tty: serial: samsung_tty: add support for Apple UARTs
+  dt-bindings: serial: samsung: Add AAPL,s5l-uart compatible
+  tty: serial: samsung_tty: enable for ARCH_APPLE
+  arm64: cpufeature: Add a feature for FIQ support
+  arm64: cputype: Add CPU types for the Apple M1 big/little cores
+  arm64: Introduce FIQ support
+  arm64: Kconfig: Require FIQ support for ARCH_APPLE
+  arm64: setup: Use nGnRnE IO mappings for fixmap on Apple platforms
+  arm64: ioremap: use nGnRnE mappings on platforms that require it
+  dt-bindings: interrupt-controller: Add DT bindings for apple-aic
+  irqchip/apple-aic: Add support for the Apple Interrupt Controller
+  irqchip/apple-aic: Add SMP / IPI support
+  dt-bindings: display: add AAPL,simple-framebuffer
+  arm64: apple: Add initial Mac Mini 2020 (M1) devicetree
+
+ .../devicetree/bindings/arm/AAPL.yaml         |  36 ++
+ .../devicetree/bindings/arm/cpus.yaml         |   2 +
+ .../bindings/display/simple-framebuffer.yaml  |   5 +
+ .../interrupt-controller/AAPL,aic.yaml        |  88 +++
+ .../bindings/serial/samsung_uart.yaml         |   4 +-
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |  14 +
+ arch/arm64/Kconfig                            |  10 +
+ arch/arm64/Kconfig.platforms                  |   8 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/apple/Makefile            |   2 +
+ arch/arm64/boot/dts/apple/apple-j274.dts      | 143 +++++
+ arch/arm64/include/asm/assembler.h            |   4 +
+ arch/arm64/include/asm/cpucaps.h              |   3 +-
+ arch/arm64/include/asm/cpufeature.h           |   6 +
+ arch/arm64/include/asm/cputype.h              |   6 +
+ arch/arm64/include/asm/daifflags.h            |   7 +
+ arch/arm64/include/asm/fixmap.h               |  10 +-
+ arch/arm64/include/asm/io.h                   |   9 +-
+ arch/arm64/include/asm/irqflags.h             |  17 +-
+ arch/arm64/kernel/cpufeature.c                |  32 ++
+ arch/arm64/kernel/entry.S                     |  27 +-
+ arch/arm64/kernel/setup.c                     |  12 +
+ drivers/irqchip/Kconfig                       |  10 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-apple-aic.c               | 501 ++++++++++++++++++
+ drivers/tty/serial/Kconfig                    |   2 +-
+ drivers/tty/serial/samsung_tty.c              | 297 +++++++++--
+ .../interrupt-controller/apple-aic.h          |  14 +
+ include/linux/serial_s3c.h                    |  16 +
+ include/uapi/linux/serial_core.h              |   3 +
+ 31 files changed, 1243 insertions(+), 49 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/AAPL.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/AAPL,aic.yaml
+ create mode 100644 arch/arm64/boot/dts/apple/Makefile
+ create mode 100644 arch/arm64/boot/dts/apple/apple-j274.dts
+ create mode 100644 drivers/irqchip/irq-apple-aic.c
+ create mode 100644 include/dt-bindings/interrupt-controller/apple-aic.h
+
+--
+2.30.0
+
