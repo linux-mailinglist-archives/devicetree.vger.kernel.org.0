@@ -2,145 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A42D030F9BF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 18:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE8B630F9FA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 18:42:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238458AbhBDRbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 12:31:51 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:44648 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238484AbhBDRab (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 12:30:31 -0500
-Received: by mail-ot1-f44.google.com with SMTP id e70so4132402ote.11;
-        Thu, 04 Feb 2021 09:30:14 -0800 (PST)
+        id S237940AbhBDRl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 12:41:58 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:45485 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238589AbhBDRlU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 12:41:20 -0500
+Received: by mail-oi1-f181.google.com with SMTP id m7so4504587oiw.12;
+        Thu, 04 Feb 2021 09:41:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=VABDqQO4SCCxw9n6VdMjP3tpI9MOBd0XV0ilXTl4TqU=;
-        b=bXZsNUSAr9FCbeJcIlPQ3E82Ruq35nNAKUkkToEQlsWSGZmyEy24aI6FZXVfkZmY+G
-         TF64rW4JYqJAajQypMzpzuxFvGkH4UakP7wEiHaKO7fQ+LPvUFbBO10X2nVwuDFt9jDU
-         WpWAUdKvKSk2cJL1POhx0EL5NA+qJcCkdxz389/pT9YODDrZXxM2r9HMeXiwPaF9cRh3
-         HhdM7swoTdodw0GT3qbA0Gcs9fU6TyT0fuvqVJSxRa7kiM1Q00vKUKCQRmtFjwe+nDfp
-         xhgZPRp1tT+Hc2oyZ7fz/6ZhMb/FRyzu2e5MyxixLIia+jHSg27SFf2bcn00RLu4Aayd
-         OSiw==
-X-Gm-Message-State: AOAM532L9rSKQC/tT7al+O6vDAOpNpIJ+0wGtsDOismZW9B3mOXzT7cF
-        gZzIrfwKSvohs7mLbRi3qA==
-X-Google-Smtp-Source: ABdhPJyRucRa6WFuTvsk3abTvCXMHWztBy5ONKR24Bi/EstX7fiI57+Du8n2gQUyyz1NuIk23MVq1Q==
-X-Received: by 2002:a9d:1c9a:: with SMTP id l26mr331207ota.316.1612459788720;
-        Thu, 04 Feb 2021 09:29:48 -0800 (PST)
+        bh=ppFNAnwz/O2d3fmUTcOou1FwVZxpBcox4zp0+9mjbI0=;
+        b=O78orqmvTwrEOs7ZHGwoIQl2PrVvCEHDeNP7rieH4kcKwMTamRDmB4VMMBvuE6j/n8
+         93xsfODX/QS0nUVBwRKgCpTrituU35FOqqO9JeYUs8VP63e0mDL3zHtq5Bpmg8LFcY6Y
+         32vhSbGTR9O0PpiaydF3jjTDaDgtV7P1IoLvV5yUCYPa+onhb/HVvAkxfbHBRjyvsck9
+         OpL9QKAAzlfgsyspXIKL2UD67ctIvkUqgz9PFaNTUpmTCPibvIA+nyWDXsroGAUqs2OW
+         LNZbCT9ac5nQ1U2FEYDJ8Ri3mwZsHOEcaHtj/bIOnLj+Ev/fo0doweldDlQ1aeFONfhw
+         N50A==
+X-Gm-Message-State: AOAM532CcB66+fR4UJ7BN9yeswIqcYmkrvbVRD1qu9G8ck4fkZwYZv58
+        FeFryvtoIKVfnJbig6t+2A==
+X-Google-Smtp-Source: ABdhPJwyQZK/KLQa58IT9c/ne8vaoP5CTOrMYyKDPUl4t2Upj/dzcMYl4KNRnM0QPe8DsbgWaulQrw==
+X-Received: by 2002:a05:6808:145:: with SMTP id h5mr406403oie.87.1612460439336;
+        Thu, 04 Feb 2021 09:40:39 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z10sm1238418otk.8.2021.02.04.09.29.46
+        by smtp.gmail.com with ESMTPSA id a63sm1233750otc.75.2021.02.04.09.40.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Feb 2021 09:29:47 -0800 (PST)
-Received: (nullmailer pid 682797 invoked by uid 1000);
-        Thu, 04 Feb 2021 17:29:45 -0000
-Date:   Thu, 4 Feb 2021 11:29:45 -0600
+        Thu, 04 Feb 2021 09:40:38 -0800 (PST)
+Received: (nullmailer pid 702724 invoked by uid 1000);
+        Thu, 04 Feb 2021 17:40:37 -0000
+Date:   Thu, 4 Feb 2021 11:40:37 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Andy Gross <agross@kernel.org>,
-        Jesper Nilsson <jesper.nilsson@axis.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-samsung-soc@vger.kernel.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-arm-kernel@axis.com, Richard Zhu <hongxing.zhu@nxp.com>,
-        linux-arm-msm@vger.kernel.org,
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-pci@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-omap@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
-        linux-tegra@vger.kernel.org, Jonathan Chocron <jonnyc@amazon.com>,
-        Zhou Wang <wangzhou1@hisilicon.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH 01/13] doc: bindings: pci: designware-pcie.txt: convert
- it to yaml
-Message-ID: <20210204172945.GA662023@robh.at.kernel.org>
-References: <cover.1612271903.git.mchehab+huawei@kernel.org>
- <706e684f571e142362d7be74eb1dcee2c8558052.1612271903.git.mchehab+huawei@kernel.org>
- <1612287895.001149.3887347.nullmailer@robh.at.kernel.org>
- <20210203074900.6d581153@coco.lan>
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Add documentation
+ for SN65DSI84
+Message-ID: <20210204174037.GA690342@robh.at.kernel.org>
+References: <20210203071256.42050-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210203074900.6d581153@coco.lan>
+In-Reply-To: <20210203071256.42050-1-jagan@amarulasolutions.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 03, 2021 at 07:49:00AM +0100, Mauro Carvalho Chehab wrote:
-> Hi Rob,
+On Wed, Feb 03, 2021 at 12:42:55PM +0530, Jagan Teki wrote:
+> SN65DSI84 is a Single Channel DSI to Dual-link LVDS bridge from
+> Texas Instruments.
 > 
-> Em Tue, 02 Feb 2021 11:44:54 -0600
-> Rob Herring <robh@kernel.org> escreveu:
+> SN65DSI83, SN65DSI85 are variants of the same family of bridge
+> controllers.
 > 
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
-> > 	'type' is a required property
-> > 	Additional properties are not allowed ('$ref' was unexpected)
-> > 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
-> > 		'enum' is a required property
-> > 		'const' is a required property
-> > 	'/schemas/types.yaml#definitions/flag' does not match 'types.yaml#/definitions/'
-
-You need a '/' between '#' and 'definitions'.
-
-
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: ignoring, error in schema: properties: snps,enable-cdm-check
-> > warning: no schema found in file: ./Documentation/devicetree/bindings/pci/snps,pcie.yaml
-> > 
-> > See https://patchwork.ozlabs.org/patch/1434686
-> > 
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> > 
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> > 
-> > pip3 install dtschema --upgrade
-> > 
-> > Please check and re-submit.
+> Right now the bridge driver is supporting a single link, dual-link
+> support requires to initiate I2C Channel B registers, so dt-bindings
+> documented with single link LVDS.
 > 
-> I've no idea why the bot is hitting those. My tree is based on
-> staging-testing[1], as I need the regulator patches merged there.
-> Such tree is based on v5.11-rc5.
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> Changes for v2:
+> - none
 > 
-> There, dt_binding_check doesn't get any warnings on this schema:
+>  .../bindings/display/bridge/ti,sn65dsi84.yaml | 127 ++++++++++++++++++
+>  1 file changed, 127 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml
 > 
-> $ pip3 install dtschema --upgrade --user
-> Requirement already up-to-date: dtschema in /home/mchehab/.local/lib/python3.9/site-packages (2020.12)
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml
+> new file mode 100644
+> index 000000000000..891382a76c1a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml
+> @@ -0,0 +1,127 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi84.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI SN65DSI84 MIPI DSI to LVDS bridge bindings
+> +
+> +maintainers:
+> +  - Jagan Teki <jagan@amarulasolutions.com>
+> +
+> +description: |
+> +  The SN65DSI84 DSI to FlatLink bridge features a single channel MIPI D-PHY receiver
+> +  front-end configuration with 4 lanes per channel operating at 1 Gbps per lanes.
+> +  The bridge decodes MIPI DSI 18bpp RGB666 and 240bpp RG888 packets and converts
+> +  the formatted video data stream to a FlatLink compatible LVDS output operating
+> +  at pixel clocks operating from 25 MHx to 154 MHz, offering a Dual-Link LVDS,
+> +  Single-Link LVDS interface with four data lanes per link.
+> +
+> +  https://www.ti.com/product/SN65DSI84
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,sn65dsi84
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: i2c address of the bridge, 0x2c
 
-This particular check is in master, but not yet a release on pypi. I'll 
-be tagging a release soon.
+Just 'const: 0x2c' if that's the only valid address.
 
-I've got this problem that adding new meta-schema checks like this one 
-requires fixing up all the existing in tree schemas first. So I give 
-some amount of time before adding them to a tagged release. However, I 
-want to start testing new schemas right away. I haven't come up with a 
-better solution short of importing the meta-schema into the kernel tree 
-or separately versioning them.
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description: GPIO specifier for bridge enable pin (active high).
+> +
+> +  ports:
+> +    type: object
+> +    description:
+> +      A node containing input and output port nodes with endpoint definitions
+> +      as documented in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      port@0:
+> +        type: object
+> +        description: |
+> +          DSI Input. The remote endpoint phandle should be a
+> +          reference to a valid mipi_dsi_host device node.
+> +
+> +      port@1:
+> +        type: object
+> +        description: |
+> +          Video port for LVDS output (panel or connector).
 
-Rob
+This needs to use the graph.yaml schema. See the ones in drm-misc-next 
+that are already converted.
+
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - enable-gpios
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +       #address-cells = <1>;
+> +       #size-cells = <0>;
+> +
+> +       ports {
+> +           #address-cells = <1>;
+> +           #size-cells = <0>;
+> +
+> +           port@0 {
+> +               reg = <0>;
+> +               dsi_in: endpoint {
+> +                   remote-endpoint = <&ltdc_ep0_out>;
+> +               };
+> +           };
+> +
+> +           port@1 {
+> +               reg = <1>;
+> +               dsi_out: endpoint {
+> +                   remote-endpoint = <&bridge_in>;
+> +                   data-lanes = <0 1>;
+> +               };
+> +           };
+> +       };
+> +    };
+> +
+> +    i2c6 {
+> +       #address-cells = <1>;
+> +       #size-cells = <0>;
+> +
+> +       bridge@2c {
+> +           compatible = "ti,sn65dsi84";
+> +           reg = <0x2c>;
+> +           enable-gpios = <&gpiof 15 GPIO_ACTIVE_HIGH>;
+> +
+> +           ports {
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               port@0 {
+> +                   reg = <0>;
+> +                   bridge_in: endpoint {
+> +                        remote-endpoint = <&dsi_out>;
+> +                   };
+> +               };
+> +
+> +               port@1 {
+> +                   reg = <1>;
+> +                   bridge_out: endpoint {
+> +                        remote-endpoint = <&panel_in_lvds>;
+> +                   };
+> +               };
+> +           };
+> +       };
+> +    };
+> -- 
+> 2.25.1
+> 
