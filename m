@@ -2,137 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1202630FA4D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 18:54:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A42D030F9BF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 18:33:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238153AbhBDRxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 12:53:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41504 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238725AbhBDRxJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 12:53:09 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A846BC0617AB
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 09:50:43 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by michel.telenet-ops.be with bizsmtp
-        id R5qf240084C55Sk065qfy4; Thu, 04 Feb 2021 18:50:39 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l7im7-003Fgj-1n; Thu, 04 Feb 2021 18:50:39 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l7eK2-006uV2-9f; Thu, 04 Feb 2021 14:05:22 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 5/5] arm64: dts: renesas: Group tuples in pin control properties
-Date:   Thu,  4 Feb 2021 14:05:17 +0100
-Message-Id: <20210204130517.1647073-6-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210204130517.1647073-1-geert+renesas@glider.be>
-References: <20210204130517.1647073-1-geert+renesas@glider.be>
+        id S238458AbhBDRbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 12:31:51 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:44648 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238484AbhBDRab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 12:30:31 -0500
+Received: by mail-ot1-f44.google.com with SMTP id e70so4132402ote.11;
+        Thu, 04 Feb 2021 09:30:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VABDqQO4SCCxw9n6VdMjP3tpI9MOBd0XV0ilXTl4TqU=;
+        b=bXZsNUSAr9FCbeJcIlPQ3E82Ruq35nNAKUkkToEQlsWSGZmyEy24aI6FZXVfkZmY+G
+         TF64rW4JYqJAajQypMzpzuxFvGkH4UakP7wEiHaKO7fQ+LPvUFbBO10X2nVwuDFt9jDU
+         WpWAUdKvKSk2cJL1POhx0EL5NA+qJcCkdxz389/pT9YODDrZXxM2r9HMeXiwPaF9cRh3
+         HhdM7swoTdodw0GT3qbA0Gcs9fU6TyT0fuvqVJSxRa7kiM1Q00vKUKCQRmtFjwe+nDfp
+         xhgZPRp1tT+Hc2oyZ7fz/6ZhMb/FRyzu2e5MyxixLIia+jHSg27SFf2bcn00RLu4Aayd
+         OSiw==
+X-Gm-Message-State: AOAM532L9rSKQC/tT7al+O6vDAOpNpIJ+0wGtsDOismZW9B3mOXzT7cF
+        gZzIrfwKSvohs7mLbRi3qA==
+X-Google-Smtp-Source: ABdhPJyRucRa6WFuTvsk3abTvCXMHWztBy5ONKR24Bi/EstX7fiI57+Du8n2gQUyyz1NuIk23MVq1Q==
+X-Received: by 2002:a9d:1c9a:: with SMTP id l26mr331207ota.316.1612459788720;
+        Thu, 04 Feb 2021 09:29:48 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z10sm1238418otk.8.2021.02.04.09.29.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Feb 2021 09:29:47 -0800 (PST)
+Received: (nullmailer pid 682797 invoked by uid 1000);
+        Thu, 04 Feb 2021 17:29:45 -0000
+Date:   Thu, 4 Feb 2021 11:29:45 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Andy Gross <agross@kernel.org>,
+        Jesper Nilsson <jesper.nilsson@axis.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-samsung-soc@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-arm-kernel@axis.com, Richard Zhu <hongxing.zhu@nxp.com>,
+        linux-arm-msm@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-pci@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-omap@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
+        linux-tegra@vger.kernel.org, Jonathan Chocron <jonnyc@amazon.com>,
+        Zhou Wang <wangzhou1@hisilicon.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH 01/13] doc: bindings: pci: designware-pcie.txt: convert
+ it to yaml
+Message-ID: <20210204172945.GA662023@robh.at.kernel.org>
+References: <cover.1612271903.git.mchehab+huawei@kernel.org>
+ <706e684f571e142362d7be74eb1dcee2c8558052.1612271903.git.mchehab+huawei@kernel.org>
+ <1612287895.001149.3887347.nullmailer@robh.at.kernel.org>
+ <20210203074900.6d581153@coco.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210203074900.6d581153@coco.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To improve human readability and enable automatic validation, the tuples
-in "pinctrl-*" properties should be grouped using angle brackets.
+On Wed, Feb 03, 2021 at 07:49:00AM +0100, Mauro Carvalho Chehab wrote:
+> Hi Rob,
+> 
+> Em Tue, 02 Feb 2021 11:44:54 -0600
+> Rob Herring <robh@kernel.org> escreveu:
+> 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
+> > 	'type' is a required property
+> > 	Additional properties are not allowed ('$ref' was unexpected)
+> > 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
+> > 		'enum' is a required property
+> > 		'const' is a required property
+> > 	'/schemas/types.yaml#definitions/flag' does not match 'types.yaml#/definitions/'
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/hihope-rev4.dtsi              | 2 +-
- arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts           | 2 +-
- arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts            | 2 +-
- arch/arm64/boot/dts/renesas/salvator-common.dtsi          | 2 +-
- arch/arm64/boot/dts/renesas/ulcb.dtsi                     | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
+You need a '/' between '#' and 'definitions'.
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-index c88229990d422d4d..d8046fedf9c12929 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-@@ -615,7 +615,7 @@ &pwm2 {
- };
- 
- &rcar_sound {
--	pinctrl-0 = <&sound_pins &sound_clk_pins>;
-+	pinctrl-0 = <&sound_pins>, <&sound_clk_pins>;
- 	pinctrl-names = "default";
- 
- 	/* Single DAI */
-diff --git a/arch/arm64/boot/dts/renesas/hihope-rev4.dtsi b/arch/arm64/boot/dts/renesas/hihope-rev4.dtsi
-index 929f4a1d3f9054ef..7fc0339a3ac97896 100644
---- a/arch/arm64/boot/dts/renesas/hihope-rev4.dtsi
-+++ b/arch/arm64/boot/dts/renesas/hihope-rev4.dtsi
-@@ -80,7 +80,7 @@ sound_pins: sound {
- };
- 
- &rcar_sound {
--	pinctrl-0 = <&sound_pins &sound_clk_pins>;
-+	pinctrl-0 = <&sound_pins>, <&sound_clk_pins>;
- 	pinctrl-names = "default";
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts b/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-index 07fbbc4f4572016f..a46b24f54c580d96 100644
---- a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-@@ -351,7 +351,7 @@ usb30_pins: usb30 {
- };
- 
- &rcar_sound {
--	pinctrl-0 = <&sound_pins &sound_clk_pins>;
-+	pinctrl-0 = <&sound_pins>, <&sound_clk_pins>;
- 	pinctrl-names = "default";
- 
- 	/* Single DAI */
-diff --git a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
-index 0992fff676e3dab3..b966541f2e5b6f32 100644
---- a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
-@@ -621,7 +621,7 @@ &pwm5 {
- };
- 
- &rcar_sound {
--	pinctrl-0 = <&sound_pins &sound_clk_pins>;
-+	pinctrl-0 = <&sound_pins>, <&sound_clk_pins>;
- 	pinctrl-names = "default";
- 
- 	/* Single DAI */
-diff --git a/arch/arm64/boot/dts/renesas/salvator-common.dtsi b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-index 9a0ee01df51327f0..99a8d887e3821f22 100644
---- a/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-@@ -736,7 +736,7 @@ &pwm1 {
- };
- 
- &rcar_sound {
--	pinctrl-0 = <&sound_pins &sound_clk_pins>;
-+	pinctrl-0 = <&sound_pins>, <&sound_clk_pins>;
- 	pinctrl-names = "default";
- 
- 	/* Single DAI */
-diff --git a/arch/arm64/boot/dts/renesas/ulcb.dtsi b/arch/arm64/boot/dts/renesas/ulcb.dtsi
-index 97e9ed93cf15cd18..01124efa92bd3875 100644
---- a/arch/arm64/boot/dts/renesas/ulcb.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ulcb.dtsi
-@@ -365,7 +365,7 @@ usb1_pins: usb1 {
- };
- 
- &rcar_sound {
--	pinctrl-0 = <&sound_pins &sound_clk_pins>;
-+	pinctrl-0 = <&sound_pins>, <&sound_clk_pins>;
- 	pinctrl-names = "default";
- 
- 	/* Single DAI */
--- 
-2.25.1
 
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: ignoring, error in schema: properties: snps,enable-cdm-check
+> > warning: no schema found in file: ./Documentation/devicetree/bindings/pci/snps,pcie.yaml
+> > 
+> > See https://patchwork.ozlabs.org/patch/1434686
+> > 
+> > This check can fail if there are any dependencies. The base for a patch
+> > series is generally the most recent rc1.
+> > 
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> > 
+> > pip3 install dtschema --upgrade
+> > 
+> > Please check and re-submit.
+> 
+> I've no idea why the bot is hitting those. My tree is based on
+> staging-testing[1], as I need the regulator patches merged there.
+> Such tree is based on v5.11-rc5.
+> 
+> There, dt_binding_check doesn't get any warnings on this schema:
+> 
+> $ pip3 install dtschema --upgrade --user
+> Requirement already up-to-date: dtschema in /home/mchehab/.local/lib/python3.9/site-packages (2020.12)
+
+This particular check is in master, but not yet a release on pypi. I'll 
+be tagging a release soon.
+
+I've got this problem that adding new meta-schema checks like this one 
+requires fixing up all the existing in tree schemas first. So I give 
+some amount of time before adding them to a tagged release. However, I 
+want to start testing new schemas right away. I haven't come up with a 
+better solution short of importing the meta-schema into the kernel tree 
+or separately versioning them.
+
+Rob
