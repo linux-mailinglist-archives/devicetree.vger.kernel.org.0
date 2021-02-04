@@ -2,70 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 914F730F6FA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 17:00:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1777A30F6FF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 17:00:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237504AbhBDP5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 10:57:37 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37784 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237671AbhBDP5N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 10:57:13 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A7F0764F4D;
-        Thu,  4 Feb 2021 15:56:32 +0000 (UTC)
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=hot-poop.lan)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1l7gze-00C2bj-KI; Thu, 04 Feb 2021 15:56:30 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
-        linux-kernel@vger.kernel.org, Bert Vermeulen <bert@biot.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 0/2] Realtek RTL838x/RTL839x interrupt controller driver
-Date:   Thu,  4 Feb 2021 15:56:27 +0000
-Message-Id: <161245417429.1472579.8336169597303326540.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210122204224.509124-1-bert@biot.com>
-References: <20210122204224.509124-1-bert@biot.com>
+        id S237671AbhBDP6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 10:58:48 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:40629 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237661AbhBDP6l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 10:58:41 -0500
+Received: by mail-oi1-f176.google.com with SMTP id k142so4173563oib.7;
+        Thu, 04 Feb 2021 07:58:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1JoS7ZOVE9Ml5mvNzoRFgSFxVIiKASQvqvy7j1NPt3U=;
+        b=nhJIsssXK15CqsjxpbwmXr1f3u85DTfzZvbQk1YqZuuI1tD8nhHdWeMprjH4nZvf08
+         VqYxFD7m/2ZF3ehF5mVIlCsNJklxf4ezsmSx0PN3VHmNRsIyWR2Ifut+N1h7EU176w3o
+         xqKSHmmryoJNY6g1MWZUWkv9rs2oZF5PtlCtiOHMT5lEyazz/nD0JomiAL/wIuf1JknR
+         Ef0fdhz33cKyDVK+GaL/VUxYeRaDRbRRfY90UJ2B4CtbEpl8J8KxBW1UScY3r3xeAfQH
+         jA+TjeFotmwTWJgCXxZUSuJun1DD2sp9iSc3K89G4laINUNT/A5t9Gtw0D2cJpDoySdY
+         LAww==
+X-Gm-Message-State: AOAM533PBrQISRPBe3A3CFO/ZREB2LhIea2M37KQW/eG7frrmhrMigAH
+        6HEUOSIlpw7yz7OP4kNMhA==
+X-Google-Smtp-Source: ABdhPJwsBZ5X+etCKN8Abu4ufC5JowP7grlS3OIUacD2jRxRHv/O619GgCksaoDNro8ZLT90PYGmBA==
+X-Received: by 2002:aca:c310:: with SMTP id t16mr29076oif.151.1612454280855;
+        Thu, 04 Feb 2021 07:58:00 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w140sm319379oia.32.2021.02.04.07.57.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Feb 2021 07:58:00 -0800 (PST)
+Received: (nullmailer pid 519407 invoked by uid 1000);
+        Thu, 04 Feb 2021 15:57:59 -0000
+Date:   Thu, 4 Feb 2021 09:57:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Adam Ford <aford173@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: clk: versaclock5: Miscellaneous fixes
+ and improvements:
+Message-ID: <20210204155759.GA519221@robh.at.kernel.org>
+References: <20210126163955.1933893-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: tglx@linutronix.de, mail@birger-koblitz.de, devicetree@vger.kernel.org, john@phrozen.org, linux-kernel@vger.kernel.org, bert@biot.com, robh+dt@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210126163955.1933893-1-geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Jan 2021 21:42:22 +0100, Bert Vermeulen wrote:
-> v4:
-> - Disable cascaded interrupts before mapping, not after.
-> - Set chained handlers as interrupt mappings are read, instead of beforehand.
-> - Removed timer interrupt clear.
+On Tue, 26 Jan 2021 17:39:55 +0100, Geert Uytterhoeven wrote:
+>   - Remove unneeded reference for "idt,slew-percent", as vendor specific
+>     properties having a standard unit suffix don't need a type,
+>   - Add missing "additionalProperties: false" for subnodes, to catch
+>     typos in properties,
+>   - Fix property names in example.
+> 
+> Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> This depends on "[PATCH dt-schema 0/2] dt-schema: Add percentage"
+> https://lore.kernel.org/r/20210126162756.1932692-1-geert+renesas@glider.be
 > 
 > v3:
-> - Fixed syntax and maxItems problems in DT bindings.
+>   - Drop references for "idt,voltage-microvolt" and "idt,slew-percent",
 > 
-> [...]
+> v2:
+>   - Settle on "idt,voltage-microvolt", cfr. commit 4b003f5fcadfa2d0
+>     ('clk: vc5: Use "idt,voltage-microvolt" instead of
+>     "idt,voltage-microvolts"'),
+>   - Drop reference to clock.yaml, which is already applied
+>     unconditionally,
+>   - Drop removal of allOf around if condition, as it is unnecessary
+>     churn.
+> ---
+>  .../devicetree/bindings/clock/idt,versaclock5.yaml       | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
+> 
 
-Applied to irq/irqchip-next, thanks!
-
-[1/2] dt-bindings: interrupt-controller: Add Realtek RTL838x/RTL839x support
-      commit: 4a2b92a5d3519fc2c1edda4d4aa0e05bff41e8de
-[2/2] irqchip: Add support for Realtek RTL838x/RTL839x interrupt controller
-      commit: 9f3a0f34b84ad1b9a8f2bdae44b66f16685b2143
-
-Cheers,
-
-	M.
--- 
-Without deviation from the norm, progress is not possible.
-
-
+Reviewed-by: Rob Herring <robh@kernel.org>
