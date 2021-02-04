@@ -2,61 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBBDC30FF44
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 22:28:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F44230FF5C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 22:35:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229518AbhBDV14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 16:27:56 -0500
-Received: from marcansoft.com ([212.63.210.85]:45724 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229513AbhBDV14 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 16:27:56 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 020AD4267C;
-        Thu,  4 Feb 2021 21:27:11 +0000 (UTC)
-Subject: Re: [PATCH 07/18] tty: serial: samsung_tty: enable for ARCH_APPLE
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-8-marcan@marcan.st>
- <CAK8P3a1n+C5V5J24myy_h67DVp2YTN5Hd=tCWjPUYZcrAX4hCg@mail.gmail.com>
-From:   Hector Martin 'marcan' <marcan@marcan.st>
-Message-ID: <6eab2c0c-d44d-ff67-7e92-f2de2bf0c6a1@marcan.st>
-Date:   Fri, 5 Feb 2021 06:27:09 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S230070AbhBDVcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 16:32:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60834 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230009AbhBDVcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 16:32:31 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41133C061794
+        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 13:31:50 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id w204so4705752ybg.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 13:31:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=29BoGNlBSuRptp75qdFu7EtcEjyZvsuV2W9BZnedNiw=;
+        b=m7JhjKA5LR57ijKi9WJBvdVcUt8vGEfUDLk1uoFrZoPnHCr4eWh1SKKac2ygEQBFVC
+         2qvmKOu3CcpqsHl7+roCbgqgdQWOrewROlxxDAtknEB8iggJidNsgfxaivb90APnN9wv
+         0h0+zbwPFSal3i2jtZP0PilXVsEgBOx7DmwwAmJIci6gnYls7ICevMnfnpvKxYhTrZoH
+         TjUOKIqeZ+XTHGWwT7Lcytkhpi8tkMNJoS360hisK3n0o8tuIyTaFkrctKNBJAxA1VJk
+         0bDISpotUj6pO/5XTpO3UOC5rprKrCVZkGBj0T4HtHYQaxOa9A8XKXbZhyd9r1ybG9nm
+         AP8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=29BoGNlBSuRptp75qdFu7EtcEjyZvsuV2W9BZnedNiw=;
+        b=sknVUp2Ii8ysL2OIFsXRT1ICCBU9iK38F+wusOdwsVrt/RhdteJ1tvSzi24kLcV8la
+         8FEFUoRCuUGAhjS94aTtUHUqAdQgQ2E/94z2wUNR3jjjxwEq0m9cH8uY5HqAJ0JAnjhE
+         PaWA0z4mpX4GoGMNkhx20jM5poaDDazEH2FexQPMXX/y04Y2E/2aWwcxqx1PqWjFBQnw
+         VmXB/Erw0gemf636bKYlPh3bj6nJVoKCQq6IaPORppd1+ubLsBg0x2o8AYY805cmsEil
+         pqEJTk94AtE/OtuNirj9LkmyZ+Pi1iWcHIDsrvg+f2SkF5JnuXS9aHX3P0ru/S0j2k9k
+         GLFw==
+X-Gm-Message-State: AOAM5313ET/8VM/kIDmEeqkd3IvqDuBhwvPwA9AGrM51yAA5vPm/NAXe
+        WcDH88TvuCMa8ojETIBxEhp+yar1bA+tl76h20j36g==
+X-Google-Smtp-Source: ABdhPJzXo+2QfAAZsWBIWdDQJqEUS/VFWFs+8oVZFxPhskYIqgK0ZJ38GKKtHrSVeSIg0cb1D3Jg1FOxNRw1AGpG7/w=
+X-Received: by 2002:a25:b74c:: with SMTP id e12mr2004516ybm.20.1612474309232;
+ Thu, 04 Feb 2021 13:31:49 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a1n+C5V5J24myy_h67DVp2YTN5Hd=tCWjPUYZcrAX4hCg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+References: <20210121225712.1118239-1-saravanak@google.com>
+ <CGME20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c@eucas1p2.samsung.com>
+ <20210121225712.1118239-3-saravanak@google.com> <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
+In-Reply-To: <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 4 Feb 2021 13:31:13 -0800
+Message-ID: <CAGETcx_KDA55Ti=5CHw48BP1L2Xo64=AFFe+17g27n=P-KUrow@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/02/2021 06.16, Arnd Bergmann wrote:
-> On Thu, Feb 4, 2021 at 9:39 PM Hector Martin <marcan@marcan.st> wrote:
-> 
->>
->>   config SERIAL_SAMSUNG
->>          tristate "Samsung SoC serial support"
->> -       depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
->> +       depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST || ARCH_APPLE
-> 
-> By convention, please keep "|| COMPILE_TEST" last in the list.
+On Thu, Feb 4, 2021 at 3:52 AM Marek Szyprowski
+<m.szyprowski@samsung.com> wrote:
+>
+> Hi Saravana,
+>
+> On 21.01.2021 23:57, Saravana Kannan wrote:
+> > This allows fw_devlink to create device links between consumers of an
+> > interrupt and the supplier of the interrupt.
+> >
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > Cc: Kevin Hilman <khilman@baylibre.com>
+> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Reviewed-by: Thierry Reding <treding@nvidia.com>
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+>
+> This patch landed some time ago in linux-next as commit 4104ca776ba3
+> ("of: property: Add fw_devlink support for interrupts"). It breaks MMC
+> host controller operation on ARM Juno R1 board (the mmci@50000 device
+> defined in arch/arm64/boot/dts/arm/juno-motherboard.dtsi). I didn't
 
-Ack, good catch! Fixed for v2.
+I grepped around and it looks like the final board file is this or
+whatever includes it?
+arch/arm64/boot/dts/arm/juno-base.dtsi
 
--- 
-Hector Martin "marcan" (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+This patch just finds the interrupt-parent and then tries to use that
+as a supplier if "interrupts" property is listed. But the only
+interrupt parent I can see is:
+        gic: interrupt-controller@2c010000 {
+                compatible = "arm,gic-400", "arm,cortex-a15-gic";
+
+And the driver uses IRQCHIP_DECLARE() and hence should be pretty much
+a NOP since those suppliers are never devices and are ignored.
+$ git grep "arm,gic-400" -- drivers/
+drivers/irqchip/irq-gic.c:IRQCHIP_DECLARE(gic_400, "arm,gic-400", gic_of_init);
+
+This doesn't make any sense. Am I looking at the right files? Am I
+missing something?
+
+-Saravana
