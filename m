@@ -2,128 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D112A31007A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 00:09:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F43131008A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 00:22:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230034AbhBDXG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 18:06:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38782 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229787AbhBDXG6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 18:06:58 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3E14A64D9D;
-        Thu,  4 Feb 2021 23:06:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612479977;
-        bh=2yrQoi07tSr3GqEztnm6rCdEQC9o4rSjgEng2ClYQak=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LgO4ASIb40EkgS5QUIrz31ZXO+KtNJO2DVty+vGFXrR25WNxSEfhpqgoDnW0Sc57M
-         +Okydb53JOlHovRe3gN96g8AAslzWF7U37VQg0HN9Ez81TcDR1OqShEnNRQiMsBqMN
-         0W10WBbhbPnqDUEbOgOt8QhlexG4IWMkMnbdKLkg1IyuaoDIv2opvy3hgMcehd0uyS
-         8iR1HPvmJ5beUeU1koXRIuo1Dhu9hZ3PDLszFoft2jRmZtVUmpit0OQ3CvCqxOUB/k
-         vlhvHVYsxhpNEz3Zo9s+DZl45xsyxY46dUw5kFvT8kN8lMB0CbeeZc2lmz1k1Jy+dP
-         jPPC/e3SA9Ugg==
-Received: by mail-ej1-f47.google.com with SMTP id hs11so8570181ejc.1;
-        Thu, 04 Feb 2021 15:06:17 -0800 (PST)
-X-Gm-Message-State: AOAM530tweY9P05wXLrWJgyXJ+faf8gpXs3zX4OJPV3R0S/eSi1ayXqt
-        PqeJaemH/MhNV21g06ELEmC/obLtTzO0ZsLPAw==
-X-Google-Smtp-Source: ABdhPJyPjFOTPT0jH+zG0qjs4Py4MMPiXwafYcoMdMZUPPpd+AV2YfCVLMo4epWY2VUqB7scUFvuB/IXyikfDLpQJwo=
-X-Received: by 2002:a17:906:57cd:: with SMTP id u13mr1304383ejr.341.1612479975730;
- Thu, 04 Feb 2021 15:06:15 -0800 (PST)
+        id S229785AbhBDXVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 18:21:32 -0500
+Received: from mail-out.m-online.net ([212.18.0.9]:60312 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229500AbhBDXVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 18:21:31 -0500
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4DWvft2rt4z1qsjt;
+        Fri,  5 Feb 2021 00:20:38 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4DWvft1JMtz1t6q3;
+        Fri,  5 Feb 2021 00:20:38 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id zHp_fqeBdiam; Fri,  5 Feb 2021 00:20:36 +0100 (CET)
+X-Auth-Info: /EEokMMTLiaG7ulH+Hks+51zGFPhXIDs4hynjRrPDLk=
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Fri,  5 Feb 2021 00:20:36 +0100 (CET)
+Subject: Re: [PATCH v2 2/2] drm: bridge: Add SN65DSI84 DSI to LVDS bridge
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
+References: <20210203071256.42050-1-jagan@amarulasolutions.com>
+ <20210203071256.42050-2-jagan@amarulasolutions.com>
+ <YBx1T3U1pNaLfJLQ@pendragon.ideasonboard.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <ae346027-a58e-e773-60ce-92a79f0d99d6@denx.de>
+Date:   Fri, 5 Feb 2021 00:20:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <20210203135441.136-1-martinax.krasteva@linux.intel.com>
- <20210203135441.136-2-martinax.krasteva@linux.intel.com> <1612452057.710530.452037.nullmailer@robh.at.kernel.org>
- <20210204161654.GC32460@paasikivi.fi.intel.com>
-In-Reply-To: <20210204161654.GC32460@paasikivi.fi.intel.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 4 Feb 2021 17:06:04 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJDwtUQEe7RTaNsCkbLr+WO-RS5QuGsQwtAmmm5nkcw_Q@mail.gmail.com>
-Message-ID: <CAL_JsqJDwtUQEe7RTaNsCkbLr+WO-RS5QuGsQwtAmmm5nkcw_Q@mail.gmail.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: media: Add bindings for imx334
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Martina Krasteva <martinax.krasteva@linux.intel.com>,
-        gjorgjix.rosikopulos@linux.intel.com, devicetree@vger.kernel.org,
-        Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        paul.j.murphy@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YBx1T3U1pNaLfJLQ@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 4, 2021 at 10:17 AM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> Hi Rob,
->
-> On Thu, Feb 04, 2021 at 09:20:57AM -0600, Rob Herring wrote:
-> > On Wed, 03 Feb 2021 13:54:40 +0000, Martina Krasteva wrote:
-> > > From: Martina Krasteva <martinax.krasteva@intel.com>
-> > >
-> > > - Add dt-bindings documentation for Sony imx334 sensor driver.
-> > > - Add MAINTAINERS entry for Sony imx334 binding documentation.
-> > >
-> > > Signed-off-by: Martina Krasteva <martinax.krasteva@intel.com>
-> > > Reviewed-by: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
-> > > Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > > Acked-by: Paul J. Murphy <paul.j.murphy@intel.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  .../devicetree/bindings/media/i2c/sony,imx334.yaml | 90 ++++++++++++++++++++++
-> > >  MAINTAINERS                                        |  8 ++
-> > >  2 files changed, 98 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-> > >
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > Error: Documentation/devicetree/bindings/media/i2c/sony,imx334.example.dts:28.17-18 syntax error
-> > FATAL ERROR: Unable to parse input tree
+On 2/4/21 11:29 PM, Laurent Pinchart wrote:
+> Hi Jagan,
+> 
+> Thank you for the patch.
+> 
+> On Wed, Feb 03, 2021 at 12:42:56PM +0530, Jagan Teki wrote:
+>> SN65DSI84 is a Single Channel DSI to Dual-link LVDS bridge from
+>> Texas Instruments.
+>>
+>> SN65DSI83, SN65DSI85 are variants of the same family of bridge
+>> controllers.
+>>
+>> Right now the bridge driver is supporting a single link, dual-link
+>> support requires to initiate I2C Channel B registers.
+> 
+> MArek Vasut (on CC) has very recently posted a driver for the SN65DSI86.
+> Should the two drivers be merged together ?
 
-That's usually a missing header for #defines.
+Since Jagan's V1 was out first, I will let Jagan pick whatever might be 
+useful from the driver I posted, probably the O(1) clock rate 
+calculation and some of the regmap stuff, and once there is some merged 
+result, I am happy to test it on my hardware. The DSI83 is I think the 
+same as DSI84, except with half of the channels.
 
-> > make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/media/i2c/sony,imx334.example.dt.yaml] Error 1
-> > make[1]: *** Waiting for unfinished jobs....
-> > make: *** [Makefile:1370: dt_binding_check] Error 2
-> >
-> > See https://patchwork.ozlabs.org/patch/1435383
-> >
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> >
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> >
-> > pip3 install dtschema --upgrade
-> >
-> > Please check and re-submit.
->
-> Thanks for reporting this. The example was apparently missing the
-> assigned-clock-parents property. I'll squash the following change to the
-> patch:
-
-Doubtful. That would be a more specific schema error.
-
->
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-> index 3145e94d043e7..4217fbea0735a 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-> @@ -76,6 +76,7 @@ examples:
->              clocks = <&imx334_clk>
->
->              assigned-clocks = <&imx334_clk>;
-> +            assigned-clock-parents = <&imx334_clk_parent>;
->              assigned-clock-rates = <24000000>;
->
->              port {
->
-> --
-> Kind regards,
->
-> Sakari Ailus
+[...]
