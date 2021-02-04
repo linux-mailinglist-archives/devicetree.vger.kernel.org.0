@@ -2,169 +2,609 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB67230FFD8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 23:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F26BA310019
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 23:30:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbhBDWF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 17:05:28 -0500
-Received: from marcansoft.com ([212.63.210.85]:55658 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229500AbhBDWF1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 17:05:27 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id F2C1242598;
-        Thu,  4 Feb 2021 22:04:40 +0000 (UTC)
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-16-marcan@marcan.st>
- <CAK8P3a1zbLM0s_GwkJ0AJQ8cocS-zcsWWKhOB7B99OtRYyDE7g@mail.gmail.com>
-From:   Hector Martin 'marcan' <marcan@marcan.st>
-Subject: Re: [PATCH 15/18] irqchip/apple-aic: Add support for the Apple
- Interrupt Controller
-Message-ID: <8adb1047-2b1a-9cfc-c906-3c369a8e494f@marcan.st>
-Date:   Fri, 5 Feb 2021 07:04:38 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S229513AbhBDWan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 17:30:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45078 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229511AbhBDWan (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 17:30:43 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9ADC0613D6;
+        Thu,  4 Feb 2021 14:30:03 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6196B45D;
+        Thu,  4 Feb 2021 23:29:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1612477798;
+        bh=mp/GMylVgx/Hs4SGTxzR76Oty9nky1VMW307BpTP/g8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dqFn7NMcr5+Fau/IfmhEXX8hLUEeZNq1H6OCYSP4ssE1DsBdh4EaFJILF9DxY4ykt
+         s277qipWP8VJ6pUZipD9WJR8g5Kl6wDy0TYmu7KwhnMUyp9zggSyzXJhHoovAee/wd
+         uarEQU2OKi6ovInQYNQ8q2SyhZDOwLl8VN8SAUoA=
+Date:   Fri, 5 Feb 2021 00:29:35 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v2 2/2] drm: bridge: Add SN65DSI84 DSI to LVDS bridge
+Message-ID: <YBx1T3U1pNaLfJLQ@pendragon.ideasonboard.com>
+References: <20210203071256.42050-1-jagan@amarulasolutions.com>
+ <20210203071256.42050-2-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a1zbLM0s_GwkJ0AJQ8cocS-zcsWWKhOB7B99OtRYyDE7g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210203071256.42050-2-jagan@amarulasolutions.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/02/2021 06.37, Arnd Bergmann wrote:
-> On Thu, Feb 4, 2021 at 9:39 PM Hector Martin <marcan@marcan.st> wrote:
->> + * - This driver creates one IRQ domain for HW IRQs and the timer FIQs
->> + * - FIQ hwirq numbers are assigned after true hwirqs, and are per-cpu
->> + * - DT bindings use 3-cell form (like GIC):
->> + *   - <0 nr flags> - hwirq #nr
->> + *   - <1 nr flags> - FIQ #nr
->> + *     - nr=0  physical timer
->> + *     - nr=1  virtual timer
->> + *   - <2 nr flags> - IPI #nr
->> + *     - nr=0  other IPI
->> + *     - nr=1  self IPI
+Hi Jagan,
+
+Thank you for the patch.
+
+On Wed, Feb 03, 2021 at 12:42:56PM +0530, Jagan Teki wrote:
+> SN65DSI84 is a Single Channel DSI to Dual-link LVDS bridge from
+> Texas Instruments.
 > 
-> I think we should discuss the binding a bit here. My initial thinking was that
-> it would be better to separate the AIC from the FIQ handling, as they don't
-> seem to have any relation in hardware, and representing them as two
-> separate nodes seems like a cleaner abstraction.
-
-This was actually my original approach (I still have the FIQ irqchip 
-patch lying around), but that idea somewhat broke when we decided to 
-merge the vectors.
-
-If we split it up again, one of the two still needs to be the root, 
-decide whether what fired is an IRQ or FIQ, and dispatch accordingly. Or 
-we could have three nodes and have one root handler dispatch to IRQ and 
-FIQ nodes, but that sounds like overkill... (?)
-
-Are you proposing just having different drivers/nodes in the same file, 
-or implementing these as separate drivers in separate files?
-
->> +#define TIMER_FIRING(x)                                                        \
->> +       (((x) & (ARCH_TIMER_CTRL_ENABLE | ARCH_TIMER_CTRL_IT_MASK |            \
->> +                ARCH_TIMER_CTRL_IT_STAT)) ==                                  \
->> +        (ARCH_TIMER_CTRL_ENABLE | ARCH_TIMER_CTRL_IT_STAT))
->> +
->> +static void aic_handle_fiq(struct pt_regs *regs)
->> +{
->> +       /*
->> +        * It would be really nice to find a system register that lets us get the FIQ source
->> +        * state without having to peek down into clients...
->> +        */
->> +       if (TIMER_FIRING(read_sysreg(cntp_ctl_el0))) {
->> +               handle_domain_irq(aic_irqc->hw_domain,
->> +                                 aic_irqc->nr_hw + AIC_TMR_PHYS, regs);
->> +       }
->> +
->> +       if (TIMER_FIRING(read_sysreg(cntv_ctl_el0))) {
->> +               handle_domain_irq(aic_irqc->hw_domain,
->> +                                 aic_irqc->nr_hw + AIC_TMR_VIRT, regs);
->> +       }
->> +}
+> SN65DSI83, SN65DSI85 are variants of the same family of bridge
+> controllers.
 > 
-> This seems to be a minor layering violation to me.
+> Right now the bridge driver is supporting a single link, dual-link
+> support requires to initiate I2C Channel B registers.
 
-Absolutely. Under the assumption that these IRQ lines are ORed together 
-into FIQ with no top-level dispatch though, there isn't a great solution 
-here...
+MArek Vasut (on CC) has very recently posted a driver for the SN65DSI86.
+Should the two drivers be merged together ?
 
-I think there is a chance FIQ interrupt child bits exist *somewhere*, so 
-I actually plan on brute-forcing the list of implemented/valid CPU 
-registers and trying to see if I can find some bits that do what I want. 
-If it turns out they exist, this could alleviate some of the ugliness of 
-the current approach.
-
-> One idea I had was to just keep all the fiq handling in the timer driver
-> itself, jumping there directly from the top-level fiq entry whenever
-> we are on an Apple platform. At least as long as nothing else ever
-> uses fiq.
-
-In principle, as long as the timer handler only ever uses one IRQ (which 
-I think is the case here, it just picks one of the 4, usually the 
-physical timer, and it should only enable that one) it would work. But 
-we still need *some* IRQ chip driver to deliver that, unless we want to 
-throw a bunch of special-case code into the timer driver to hook 
-directly into FIQs without an interrupt parent which... seems like it 
-could get quite messy.
-
-> When we discussed the earlier submission for the aic, I understood
-> that FIQ is used for both timer and IPI, but the IPI actually has another
-> method based on normal AIC interrupts that can be used as an
-> alternative.
-
-Correct, there are two parallel IPI implementations. It is my 
-understanding that the CPU register based one, which ties into FIQ, is 
-faster / more featureful (it has deferred IPIs, not sure if the plain 
-AIC does those), as it is built into the core complexes instead of being 
-part of the external AIC block. I could try benchmarking it within m1n1 
-and see if I can find out how much faster it is.
-
-I think it's worth thinking about supporting that IPI mechanism, which 
-would necessitate dispatching FIQs too, so hard-coding it to route 
-straight to the timer doesn't sound like a very future-proof plan... 
-consider that Apple might put out a SoC in the future that rips out the 
-AIC IPIs and leaves only the FIQ ones too.
-
->> +static void __exception_irq_entry aic_handle_irq_or_fiq(struct pt_regs *regs)
->> +{
->> +       u64 isr = read_sysreg(isr_el1);
->> +
->> +       if (isr & PSR_F_BIT)
->> +               aic_handle_fiq(regs);
->> +
->> +       if (isr & PSR_I_BIT)
->> +               aic_handle_irq(regs);
->> +}
+> Tested with STM32MP1 MIPI DSI host design configuration.
 > 
-> Having the shared entry point here looks reasonable to me though, it
-> does seem to make a few things easier.
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> Changes for v2:
+> - dropped the mdelays between commands as delays in init script in
+>   datasheet is based Aardvark I2C host adaptor.
+>   https://e2e.ti.com/support/interface/f/138/t/974276
 > 
-> I wonder if there is a possible race here: if we are ever in a situation
-> where one of the two -- fiq or irq -- is disabled while the other one
-> is enabled, we could get into a state where a handler is run while
-> it should be masked.
-
-That's a good point. We could filter with the SPSR_ELx mask bits here.
-
-Though the FIQ support patch tries pretty hard to keep the mask bits in 
-sync after early boot, so this concern might be somewhat academic. I'm 
-happy to implement it if you think it might help though.
+>  MAINTAINERS                           |   6 +
+>  drivers/gpu/drm/bridge/Kconfig        |  19 ++
+>  drivers/gpu/drm/bridge/Makefile       |   1 +
+>  drivers/gpu/drm/bridge/ti-sn65dsi84.c | 457 ++++++++++++++++++++++++++
+>  4 files changed, 483 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/ti-sn65dsi84.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 12dd1fff2a39..44750ff7640c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -5984,6 +5984,12 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/display/ti/
+>  F:	drivers/gpu/drm/omapdrm/
+>  
+> +DRM DRIVERS FOR TI SN65DSI84 DSI TO LVDS BRIDGE
+> +M:	Jagan Teki <jagan@amarulasolutions.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml
+> +F:	drivers/gpu/drm/bridge/ti-sn65dsi84.c
+> +
+>  DRM DRIVERS FOR V3D
+>  M:	Eric Anholt <eric@anholt.net>
+>  S:	Supported
+> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> index e4110d6ca7b3..6494881bffb3 100644
+> --- a/drivers/gpu/drm/bridge/Kconfig
+> +++ b/drivers/gpu/drm/bridge/Kconfig
+> @@ -232,6 +232,25 @@ config DRM_TI_TFP410
+>  	help
+>  	  Texas Instruments TFP410 DVI/HDMI Transmitter driver
+>  
+> +config DRM_TI_SN65DSI84
+> +	tristate "TI SN65DSI84 DSI to LVDS bridge"
+> +	depends on OF
+> +	select DRM_KMS_HELPER
+> +	select REGMAP_I2C
+> +	select DRM_PANEL
+> +	select DRM_MIPI_DSI
+> +	help
+> +	  Texas Instruments SN65DSI84 Single Channel DSI to Dual-link LVDS
+> +	  bridge driver.
+> +
+> +	  Bridge decodes MIPI DSI 18bpp RGB666 and 240bpp RG888 packets and
+> +	  converts the formatted video data stream to a FlatLink compatible
+> +	  LVDS output operating at pixel clocks operating from 25 MHx to
+> +	  154 MHz.
+> +
+> +	  SN65DSI84 offers a Dual-Link LVDS, Single-Link LVDS interface with
+> +	  four data lanes per link.
+> +
+>  config DRM_TI_SN65DSI86
+>  	tristate "TI SN65DSI86 DSI to eDP bridge"
+>  	depends on OF
+> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
+> index 86e7acc76f8d..3906052ef639 100644
+> --- a/drivers/gpu/drm/bridge/Makefile
+> +++ b/drivers/gpu/drm/bridge/Makefile
+> @@ -20,6 +20,7 @@ obj-$(CONFIG_DRM_TOSHIBA_TC358767) += tc358767.o
+>  obj-$(CONFIG_DRM_TOSHIBA_TC358768) += tc358768.o
+>  obj-$(CONFIG_DRM_TOSHIBA_TC358775) += tc358775.o
+>  obj-$(CONFIG_DRM_I2C_ADV7511) += adv7511/
+> +obj-$(CONFIG_DRM_TI_SN65DSI84) += ti-sn65dsi84.o
+>  obj-$(CONFIG_DRM_TI_SN65DSI86) += ti-sn65dsi86.o
+>  obj-$(CONFIG_DRM_TI_TFP410) += ti-tfp410.o
+>  obj-$(CONFIG_DRM_TI_TPD12S015) += ti-tpd12s015.o
+> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi84.c b/drivers/gpu/drm/bridge/ti-sn65dsi84.c
+> new file mode 100644
+> index 000000000000..27a9074db17e
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi84.c
+> @@ -0,0 +1,457 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2021 Engicam srl
+> + * Copyright (C) 2021 Amarula Solutions(India)
+> + * Author: Jagan Teki <jagan@amarulasolutions.com>
+> + */
+> +
+> +#include <drm/drm_of.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_print.h>
+> +#include <drm/drm_mipi_dsi.h>
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +
+> +/* sn65dsi84 registers */
+> +#define SN65DSI_SOFT_RESET		0x09
+> +#define SN65DSI_LVDS_CLK		0x0a
+> +#define SN65DSI_CLK_DIV			0x0b
+> +#define SN65DSI_CLK_PLL			0x0d
+> +#define SN65DSI_DSI_CFG			0x10
+> +#define SN65DSI_DSI_CLK_EQ		0x11
+> +#define SN65DSI_DSI_CLK_RANGE		0x12
+> +#define SN65DSI_LVDS_MODE		0x18
+> +#define SN65DSI_CHA_LINE_LO		0x20
+> +#define SN65DSI_CHA_LINE_HI		0x21
+> +#define SN65DSI_CHA_VIRT_LO		0x24
+> +#define SN65DSI_CHA_VIRT_HI		0x25
+> +#define SN65DSI_CHA_SYNC_DELAY_LO	0x28
+> +#define SN65DSI_CHA_SYNC_DELAY_HI	0x29
+> +#define SN65DSI_CHA_HSYNC_WIDTH_LO	0x2c
+> +#define SN65DSI_CHA_HSYNC_WIDTH_HI	0x2d
+> +#define SN65DSI_CHA_VSYNC_WIDTH_LO	0x30
+> +#define SN65DSI_CHA_VSYNC_WIDTH_HI	0x31
+> +#define SN65DSI_CHA_HBACK_PORCH		0x34
+> +#define SN65DSI_CHA_VBACK_PORCH		0x36
+> +#define SN65DSI_CHA_HFRONT_PORCH	0x38
+> +#define SN65DSI_CHA_VFRONT_PORCH	0x3a
+> +#define SN65DSI_CHA_ERR			0xe5
+> +
+> +/* sn65dsi register bits */
+> +#define SN65DSI_RESET_EN		BIT(0)
+> +#define SN65DSI_PLL_EN			BIT(0)
+> +#define SN65DSI_LVDS_CLK_MASK		GENMASK(3, 1)
+> +#define SN65DSI_LVDS_CLK_SHIFT		1
+> +#define SN65DSI_LVDS_CLK_SRC_DSI	BIT(0)
+> +#define SN65DSI_CLK_DIV_MASK		GENMASK(7, 3)
+> +#define SN65DSI_CLK_DIV_SHIFT		3
+> +#define SN65DSI_DSI_LANE_MASK		GENMASK(4, 3)
+> +#define SN65DSI_DSI_LANE_SHIFT		3
+> +#define SN65DSI_LVDS_LINK_CFG		BIT(4)
+> +#define SN65DSI_LVDS_CHA_24BPP		BIT(3)
+> +#define SN65DSI_CHA_LOW_SYNC_DELAY	0x20
+> +#define SN65DSI_CHA_HIGH_SYNC_DELAY	0x00
+> +
+> +struct sn65dsi {
+> +	struct device			*dev;
+> +	struct drm_bridge		bridge;
+> +	struct drm_bridge		*panel_bridge;
+> +
+> +	struct device_node		*host_node;
+> +	struct mipi_dsi_device		*dsi;
+> +	u8				dsi_lanes;
+> +
+> +	struct regmap			*regmap;
+> +	struct gpio_desc		*enable;
+> +};
+> +
+> +static const struct regmap_config sn65dsi_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = SN65DSI_CHA_ERR,
+> +	.name = "sn65dsi",
+> +	.cache_type = REGCACHE_RBTREE,
+> +};
+> +
+> +static inline struct sn65dsi *bridge_to_sn65dsi(struct drm_bridge *bridge)
+> +{
+> +	return container_of(bridge, struct sn65dsi, bridge);
+> +}
+> +
+> +static struct drm_display_mode *bridge_to_mode(struct drm_bridge *bridge)
+> +{
+> +	return &bridge->encoder->crtc->state->mode;
+> +}
+> +
+> +static void sn65dsi_setup_channels(struct sn65dsi *sn,
+> +				   struct drm_display_mode *mode)
+> +{
+> +	u32 hsync_len, hfront_porch, hback_porch;
+> +	u32 vsync_len, vfront_porch, vback_porch;
+> +
+> +	hfront_porch = mode->hsync_start - mode->hdisplay;
+> +	hsync_len = mode->hsync_end - mode->hsync_start;
+> +	hback_porch = mode->htotal - mode->hsync_end;
+> +
+> +	vfront_porch = mode->vsync_start - mode->vdisplay;
+> +	vsync_len = mode->vsync_end - mode->vsync_start;
+> +	vback_porch = mode->vtotal - mode->vsync_end;
+> +
+> +	/* cha, lower 8-bits of hdisplay */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_LINE_LO, mode->hdisplay & 0xff);
+> +
+> +	/* cha, upper 4-bits of hdisplay */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_LINE_HI, (mode->hdisplay >> 8) & 0xff);
+> +
+> +	/* cha, lower 8-bits of vdisplay */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_VIRT_LO, mode->vdisplay & 0xff);
+> +
+> +	/* cha, upper 4-bits of vdisplay */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_VIRT_HI, (mode->vdisplay >> 8) & 0xff);
+> +
+> +	/*cha, lower sync delay */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_SYNC_DELAY_LO, SN65DSI_CHA_LOW_SYNC_DELAY);
+> +
+> +	/*cha, upper sync delay */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_SYNC_DELAY_HI, SN65DSI_CHA_HIGH_SYNC_DELAY);
+> +
+> +	/* cha, lower 8-bits of hsync_len */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_HSYNC_WIDTH_LO, hsync_len & 0xff);
+> +
+> +	/* cha, upper 2-bits of hsync_len */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_HSYNC_WIDTH_HI, (hsync_len >> 8) & 0xff);
+> +
+> +	/* cha, lower 8-bits of vsync_len */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_VSYNC_WIDTH_LO, vsync_len & 0xff);
+> +
+> +	/* cha, upper 2-bits of vsync_len */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_VSYNC_WIDTH_HI, (vsync_len >> 8) & 0xff);
+> +
+> +	/* cha, hback_porch */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_HBACK_PORCH, hback_porch & 0xff);
+> +
+> +	/* cha, vback_porch */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_VBACK_PORCH, vback_porch & 0xff);
+> +
+> +	/* cha, hfront_porch */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_HFRONT_PORCH, hfront_porch & 0xff);
+> +
+> +	/* cha, vfront_porch */
+> +	regmap_write(sn->regmap, SN65DSI_CHA_VFRONT_PORCH, vfront_porch & 0xff);
+> +}
+> +
+> +static int sn65dsi_get_clk_range(int min, int max, unsigned long clock,
+> +				 unsigned long start, unsigned long diff)
+> +{
+> +	unsigned long next;
+> +	int i;
+> +
+> +	for (i = min; i <= max; i++) {
+> +		next = start + diff;
+> +		if (start <= clock && clock < next)
+> +			return i;
+> +
+> +		start += diff;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static void sn65dsi_enable(struct drm_bridge *bridge)
+> +{
+> +	struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
+> +	struct drm_display_mode *mode = bridge_to_mode(bridge);
+> +	int bpp = mipi_dsi_pixel_format_to_bpp(sn->dsi->format);
+> +	unsigned int lanes = sn->dsi->lanes;
+> +	unsigned int pixel_clk = mode->clock * 1000;
+> +	unsigned int dsi_clk = pixel_clk * bpp / (lanes * 2);
+> +	unsigned int val;
+> +
+> +	/* reset SOFT_RESET bit */
+> +	regmap_write(sn->regmap, SN65DSI_SOFT_RESET, 0x0);
+> +
+> +	msleep(10);
+> +
+> +	/* reset PLL_EN bit */
+> +	regmap_write(sn->regmap, SN65DSI_CLK_PLL, 0x0);
+> +
+> +	msleep(10);
+> +
+> +	/* setup lvds clock */
+> +	val = sn65dsi_get_clk_range(0, 5, pixel_clk, 25000000, 25000000);
+> +	if (val < 0) {
+> +		DRM_DEV_ERROR(sn->dev, "invalid LVDS clock range %d\n", val);
+> +		return;
+> +	}
+> +
+> +	regmap_update_bits(sn->regmap, SN65DSI_LVDS_CLK,
+> +			   SN65DSI_LVDS_CLK_MASK,
+> +			   val << SN65DSI_LVDS_CLK_SHIFT);
+> +
+> +	regmap_update_bits(sn->regmap, SN65DSI_LVDS_CLK,
+> +			   SN65DSI_LVDS_CLK_SRC_DSI,
+> +			   SN65DSI_LVDS_CLK_SRC_DSI);
+> +
+> +	/* setup bridge clock divider */
+> +	val = (dsi_clk / pixel_clk) - 1;
+> +	regmap_update_bits(sn->regmap, SN65DSI_CLK_DIV,
+> +			   SN65DSI_CLK_DIV_MASK,
+> +			   val << SN65DSI_CLK_DIV_SHIFT);
+> +
+> +	/* configure dsi */
+> +	regmap_update_bits(sn->regmap, SN65DSI_DSI_CFG,
+> +			   SN65DSI_DSI_LANE_MASK,
+> +			   lanes << SN65DSI_DSI_LANE_SHIFT);
+> +
+> +	/* dsi clock range */
+> +	val = sn65dsi_get_clk_range(8, 100, dsi_clk, 40000000, 5000000);
+> +	if (val < 0) {
+> +		DRM_DEV_ERROR(sn->dev, "invalid DSI clock range %d\n", val);
+> +		return;
+> +	}
+> +
+> +	regmap_write(sn->regmap, SN65DSI_DSI_CLK_RANGE, val);
+> +
+> +	/* setup lvds channels */
+> +	regmap_read(sn->regmap, SN65DSI_LVDS_MODE, &val);
+> +	if (bpp == 24)
+> +		val |= SN65DSI_LVDS_CHA_24BPP;
+> +	regmap_write(sn->regmap, SN65DSI_LVDS_MODE, val);
+> +
+> +	/* TODO Channel B required to set up for dual-link LVDS */
+> +	sn65dsi_setup_channels(sn, mode);
+> +
+> +	/* set SOFT_RESET bit */
+> +	regmap_write(sn->regmap, SN65DSI_SOFT_RESET, SN65DSI_RESET_EN);
+> +
+> +	msleep(10);
+> +
+> +	/* set PLL_EN bit */
+> +	regmap_write(sn->regmap, SN65DSI_CLK_PLL, SN65DSI_PLL_EN);
+> +
+> +	msleep(10);
+> +}
+> +
+> +static void sn65dsi_disable(struct drm_bridge *bridge)
+> +{
+> +	struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
+> +
+> +	/* set PLL_EN bit */
+> +	regmap_write(sn->regmap, SN65DSI_CLK_PLL, 0x0);
+> +
+> +	msleep(10);
+> +
+> +	/* set SOFT_RESET bit */
+> +	regmap_write(sn->regmap, SN65DSI_SOFT_RESET, 0x0);
+> +
+> +	msleep(10);
+> +}
+> +
+> +static void sn65dsi_post_disable(struct drm_bridge *bridge)
+> +{
+> +	struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
+> +
+> +	gpiod_set_value_cansleep(sn->enable, 1);
+> +
+> +	msleep(10);
+> +
+> +	gpiod_set_value_cansleep(sn->enable, 0);
+> +
+> +	msleep(10);
+> +}
+> +
+> +static void sn65dsi_pre_enable(struct drm_bridge *bridge)
+> +{
+> +	struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
+> +
+> +	gpiod_set_value_cansleep(sn->enable, 0);
+> +
+> +	msleep(10);
+> +
+> +	gpiod_set_value_cansleep(sn->enable, 1);
+> +
+> +	msleep(10);
+> +}
+> +
+> +static int sn65dsi_attach(struct drm_bridge *bridge, enum drm_bridge_attach_flags flags)
+> +{
+> +	struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
+> +	struct mipi_dsi_host *host;
+> +	struct mipi_dsi_device *dsi;
+> +	const struct mipi_dsi_device_info info = { .type = "sn65dsi",
+> +						   .channel = 0,
+> +						   .node = NULL,
+> +						 };
+> +	int ret;
+> +
+> +	host = of_find_mipi_dsi_host_by_node(sn->host_node);
+> +	if (!host) {
+> +		DRM_DEV_ERROR(sn->dev, "failed to find dsi host\n");
+> +		return -EPROBE_DEFER;
+> +	}
+> +
+> +	dsi = mipi_dsi_device_register_full(host, &info);
+> +	if (IS_ERR(dsi)) {
+> +		DRM_DEV_ERROR(sn->dev, "failed to create dsi device\n");
+> +		return PTR_ERR(sn->dsi);
+> +	}
+> +
+> +	sn->dsi = dsi;
+> +	dsi->lanes = sn->dsi_lanes;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO;
+> +
+> +	ret = mipi_dsi_attach(dsi);
+> +	if (ret) {
+> +		DRM_DEV_ERROR(sn->dev, "failed to attach dsi host\n");
+> +		goto err_dsi_attach;
+> +	}
+> +
+> +	return drm_bridge_attach(bridge->encoder, sn->panel_bridge,
+> +				 &sn->bridge, flags);
+> +
+> +err_dsi_attach:
+> +	mipi_dsi_device_unregister(dsi);
+> +	return ret;
+> +}
+> +
+> +static const struct drm_bridge_funcs sn65dsi_bridge_funcs = {
+> +	.attach		= sn65dsi_attach,
+> +	.pre_enable	= sn65dsi_pre_enable,
+> +	.enable		= sn65dsi_enable,
+> +	.disable	= sn65dsi_disable,
+> +	.post_disable	= sn65dsi_post_disable,
+> +};
+> +
+> +static int sn65dsi_parse_dt(struct sn65dsi *sn)
+> +{
+> +	struct device *dev = sn->dev;
+> +	struct device_node *endpoint, *parent;
+> +	struct property *prop;
+> +	struct drm_panel *panel;
+> +	int len = 0;
+> +	int ret;
+> +
+> +	sn->enable = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
+> +	if (IS_ERR(sn->enable)) {
+> +		DRM_DEV_ERROR(dev, "failed to get enable gpio\n");
+> +		return PTR_ERR(sn->enable);
+> +	}
+> +
+> +	ret = drm_of_find_panel_or_bridge(dev->of_node, 1, 0, &panel, NULL);
+> +	if (ret < 0)
+> +		return ret;
+> +	if (!panel)
+> +		return -ENODEV;
+> +
+> +	sn->panel_bridge = devm_drm_panel_bridge_add(dev, panel);
+> +	if (IS_ERR(sn->panel_bridge))
+> +		return PTR_ERR(sn->panel_bridge);
+> +
+> +	/*
+> +	 * To get the data-lanes of dsi, we need to access the port1 of dsi_out
+> +	 * from the port0 of bridge.
+> +	 */
+> +	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
+> +	if (endpoint) {
+> +		/* dsi_out node */
+> +		parent = of_graph_get_remote_port_parent(endpoint);
+> +		of_node_put(endpoint);
+> +		if (parent) {
+> +			/* dsi port 1 */
+> +			endpoint = of_graph_get_endpoint_by_regs(parent, 1, -1);
+> +			of_node_put(parent);
+> +			if (endpoint) {
+> +				prop = of_find_property(endpoint, "data-lanes", &len);
+> +				of_node_put(endpoint);
+> +				if (!prop) {
+> +					DRM_DEV_ERROR(dev, "failed to find data lane\n");
+> +					return -EPROBE_DEFER;
+> +				}
+> +			}
+> +		}
+> +	}
+> +
+> +	sn->dsi_lanes = len / sizeof(u32);
+> +	if (sn->dsi_lanes < 1 || sn->dsi_lanes > 4)
+> +		return -EINVAL;
+> +
+> +	sn->host_node = of_graph_get_remote_node(dev->of_node, 0, 0);
+> +	if (!sn->host_node)
+> +		return -ENODEV;
+> +
+> +	of_node_put(sn->host_node);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sn65dsi_probe(struct i2c_client *client)
+> +{
+> +	struct sn65dsi *sn;
+> +	int ret;
+> +
+> +	sn = devm_kzalloc(&client->dev, sizeof(*sn), GFP_KERNEL);
+> +	if (!sn)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(client, sn);
+> +	sn->dev = &client->dev;
+> +
+> +	sn->regmap = devm_regmap_init_i2c(client, &sn65dsi_regmap_config);
+> +	if (IS_ERR(sn->regmap)) {
+> +		DRM_DEV_ERROR(&client->dev,
+> +			      "regmap allocation failed (ret = %d)\n", ret);
+> +		return PTR_ERR(sn->regmap);
+> +	}
+> +
+> +	ret = sn65dsi_parse_dt(sn);
+> +	if (ret)
+> +		return ret;
+> +
+> +	sn->bridge.funcs = &sn65dsi_bridge_funcs;
+> +	sn->bridge.of_node = client->dev.of_node;
+> +
+> +	drm_bridge_add(&sn->bridge);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sn65dsi_remove(struct i2c_client *client)
+> +{
+> +	struct sn65dsi *sn = i2c_get_clientdata(client);
+> +
+> +	drm_bridge_remove(&sn->bridge);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct i2c_device_id sn65dsi_i2c_id[] = {
+> +	{ "sn65dsi84", 0},
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, sn65dsi_i2c_id);
+> +
+> +static const struct of_device_id sn65dsi_match_table[] = {
+> +	{.compatible = "ti,sn65dsi84"},
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, sn65dsi_match_table);
+> +
+> +static struct i2c_driver sn65dsi_driver = {
+> +	.driver = {
+> +		.name = "ti-sn65dsi84",
+> +		.of_match_table = sn65dsi_match_table,
+> +	},
+> +	.probe_new = sn65dsi_probe,
+> +	.remove = sn65dsi_remove,
+> +	.id_table = sn65dsi_i2c_id,
+> +};
+> +module_i2c_driver(sn65dsi_driver);
+> +
+> +MODULE_AUTHOR("Jagan Teki <jagan@amarulasolutions.com>");
+> +MODULE_DESCRIPTION("SN65DSI84 DSI to LVDS bridge");
+> +MODULE_LICENSE("GPL v2");
 
 -- 
-Hector Martin "marcan" (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Regards,
+
+Laurent Pinchart
