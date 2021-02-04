@@ -2,208 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F3B630FCA7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 20:27:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B378330FC30
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 20:06:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238249AbhBDTZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 14:25:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54050 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238247AbhBDQ7O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 11:59:14 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5781A64F6A;
-        Thu,  4 Feb 2021 16:58:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612457913;
-        bh=3cR4ub0anzzqMSTyHOhBLKh7dM9treWJAF/IvIyFH+A=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=VN9RTB1BG8Ig+e0Zj1DO2T3L0hpHHK1B7cvvBcuKKa8C/5aU05gxLBv752brgFuDg
-         Ax1JDJ2G01c4YT9OTeUbsJsn3kvjrrZ/O91eMeRbplhZtCS++VVFrtofaX4fBOePH5
-         lHZp9+55Z02UsUO/rWdTjXG1N3JT2FSy7ceOLDKCDJ7HgZPGMNu6XI+dcMBAhVO04G
-         IIwzcamxUTZ3mh90lrlKM0cH3/PWBUUuruUDjUV/tGOWOXTv0glOUptv6LPbwsFyLV
-         z1KEtw/cnjvuEF7uYq+H5Ra2tzA71egcFx7HpMMb3Ecryc5dK3iyDn6GrDJriJ8oAU
-         PFK/CZHQ3kVSA==
-From:   Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Jack Pham <jackp@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] phy: qcom-qmp: Add support for SM8350 UFS phy
-Date:   Thu,  4 Feb 2021 22:28:05 +0530
-Message-Id: <20210204165805.62235-4-vkoul@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210204165805.62235-1-vkoul@kernel.org>
-References: <20210204165805.62235-1-vkoul@kernel.org>
+        id S238978AbhBDTFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 14:05:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56988 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239591AbhBDTEc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 14:04:32 -0500
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314BBC061788
+        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 11:03:52 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id m76so4295301ybf.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 11:03:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8pFMSWYtOcx3mOzDSdCGPWAdMJDgzGkU83bZlEALqTo=;
+        b=vfEVvC1lYHn6Fj+zWqdky+ChL5ta8UEWXXK+vig24H5APqmBhB4mw53fJR4LAyRfpY
+         UiQaVeGt8rQJMu8H4AvmdLhhocepsS8iLD9kUA1hFMJxUWikkQxPL8GLK9bL/0xAHF8o
+         D+ZORW6p/sXmLD3S5sHj3bn0ew5FaEQzSeTfQ0Qwq9g9ywE8kDFa0G9VLwJGO8vuUiyp
+         55xdaaQszFePyj4dm9JWN8J/2Zt6/Anv5L/76YWypAGMhovrFFIcdq56JRrU1v80Wm4C
+         RQ2q5RNrDi6/KlwXoH7WPxLGRnCQ3CWZTzdA2OP2z4iY4W87tkvtwCwflD12jnP7oC77
+         zLEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8pFMSWYtOcx3mOzDSdCGPWAdMJDgzGkU83bZlEALqTo=;
+        b=FxUsqERFZk2IBM6xjVxKZ/IlI9ndeFj6w8lNd5YHQdV4CE/tS2yqTb+S/eUoQAS7e5
+         L0QFTzNrYv6PRJm+u7BY5CTXt4q/oraIFBm8NEbLd56OcSowMypHyPXgV9grBCRGLdLW
+         Ot7GS2O2VvK0pwmrGTXoFi7IsC0hv8O0fxCxcgDnvVijCq0B+jKhri8UlQ6QYtIB+/+X
+         4XTQ7RgGlNqydykqAW5HMjyC4sPEh6TpMe57VOdmyzKPgvvI/HdpbWX2H+N/Q/BozDQ7
+         unxHjSkIpEIfdYj/kGTxzNDM8MTKWmQUxEpd2fmn4eKCvO3gw+BHaTkyXfpWgOXAlu0o
+         uO+g==
+X-Gm-Message-State: AOAM5312uOzqwqr4MGqoUSwr4NQ03RhkRelLnItv2t7s3oVOiQlTkmNp
+        37yMEMDwBzKr2qbEaoAy21pfjZPVUz5sSJLZPzyHgg==
+X-Google-Smtp-Source: ABdhPJzcGgzu8LZWzsJhcX66VRN4ZDnrbioj+FqeXow0ChEDW0z0f85UCmOn7Ept/b/Q+cyBQ0jTcYinD8ez1LgPdjU=
+X-Received: by 2002:a25:c683:: with SMTP id k125mr1179350ybf.32.1612465431205;
+ Thu, 04 Feb 2021 11:03:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+References: <20210202043345.3778765-1-saravanak@google.com>
+ <20210202043345.3778765-3-saravanak@google.com> <CAJZ5v0g6t4kWaMrhj35G01_6t1rrOhOe8Vqa9bAanJDaE5+zCA@mail.gmail.com>
+ <CAGETcx-nYs2Ab+sxyvT7pixWTrzLYkr3GbaRv2m16vAcpBD-DQ@mail.gmail.com> <CAJZ5v0jeY3dFRCZr0h874q=dFQ7CvPy2XnemGQ6Zh5xB_Bu+ZQ@mail.gmail.com>
+In-Reply-To: <CAJZ5v0jeY3dFRCZr0h874q=dFQ7CvPy2XnemGQ6Zh5xB_Bu+ZQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 4 Feb 2021 11:03:15 -0800
+Message-ID: <CAGETcx-B_--ZUFcbVmL7Y3KeG+Sq16hbaSR8eNk2+XNa_W7-Pg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] driver core: fw_devlink: Handle missing drivers
+ for optional suppliers
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Martin Kaiser <martin@kaiser.cx>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        "Cc: Android Kernel" <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the tables for init sequences for UFS QMP phy found in  SM8350 SoC.
+On Thu, Feb 4, 2021 at 10:41 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
+>
+> On Tue, Feb 2, 2021 at 8:47 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Tue, Feb 2, 2021 at 6:34 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
+> > >
+> > > On Tue, Feb 2, 2021 at 5:33 AM Saravana Kannan <saravanak@google.com> wrote:
+> > > >
+>
+> [cut]
+>
+> > >
+> > > > + *
+> > > > + * This function requests fw_devlink to set itself up for a deferred probe
+> > > > + * retry. This allows fw_devlink to ignore device links it created to
+> > > > + * suppliers that'll never probe. This is necessary in case some of the
+> > > > + * suppliers are optional and their consumers can probe without them.
+> > > > + *
+> > > > + * Returns true if deferred probe retry is likely to make any difference.
+> > > > + */
+> > > > +bool fw_devlink_deferred_probe_retry(void)
+> > > > +{
+> > > > +       if (IS_ENABLED(CONFIG_MODULES))
+> > > > +               return false;
+> > >
+> > > To make the above more visible, I'd fold this function into the caller.
+> >
+> > I had written it this way because I'm thinking of adding a timeout
+> > heuristic for MODULES in here. I can move it to the caller if you feel
+> > strongly about it.
+>
+> Not really strongly, but then moving it back when you need doesn't
+> sound particularly troublesome to me. :-)
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp.c | 127 ++++++++++++++++++++++++++++
- 1 file changed, 127 insertions(+)
+Ok, will move it. I'm also rewriting this patch. So we'll see where this lands.
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-index dbc12a19b702..4c6e0e86632b 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-@@ -1983,6 +1983,106 @@ static const struct qmp_phy_init_tbl sm8250_qmp_gen3x2_pcie_pcs_misc_tbl[] = {
- 	QMP_PHY_INIT_CFG(QPHY_V4_PCS_PCIE_POWER_STATE_CONFIG4, 0x07),
- };
- 
-+static const struct qmp_phy_init_tbl sm8350_ufsphy_serdes_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_SYSCLK_EN_SEL, 0xd9),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_HSCLK_SEL, 0x11),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_HSCLK_HS_SWITCH_SEL, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_LOCK_CMP_EN, 0x42),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_VCO_TUNE_MAP, 0x02),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_PLL_IVCO, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_VCO_TUNE_INITVAL2, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIN_VCOCAL_HSCLK_SEL, 0x11),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_DEC_START_MODE0, 0x82),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_CP_CTRL_MODE0, 0x14),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_PLL_RCTRL_MODE0, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_PLL_CCTRL_MODE0, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_LOCK_CMP1_MODE0, 0xff),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_LOCK_CMP2_MODE0, 0x19),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE1_MODE0, 0xac),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE2_MODE0, 0x1e),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_DEC_START_MODE1, 0x98),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_CP_CTRL_MODE1, 0x14),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_PLL_RCTRL_MODE1, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_PLL_CCTRL_MODE1, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_LOCK_CMP1_MODE1, 0x65),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_LOCK_CMP2_MODE1, 0x1e),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE1_MODE1, 0xdd),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE2_MODE1, 0x23),
-+
-+	/* Rate B */
-+	QMP_PHY_INIT_CFG(QSERDES_V5_COM_VCO_TUNE_MAP, 0x06),
-+};
-+
-+static const struct qmp_phy_init_tbl sm8350_ufsphy_tx_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V5_TX_PWM_GEAR_1_DIVIDER_BAND0_1, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_TX_PWM_GEAR_2_DIVIDER_BAND0_1, 0x03),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_TX_PWM_GEAR_3_DIVIDER_BAND0_1, 0x01),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_TX_PWM_GEAR_4_DIVIDER_BAND0_1, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_TX_LANE_MODE_1, 0xf5),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_TX_LANE_MODE_3, 0x3f),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_TX_RES_CODE_LANE_OFFSET_TX, 0x09),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_TX_RES_CODE_LANE_OFFSET_RX, 0x09),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_TX_TRAN_DRVR_EMP_EN, 0x0c),
-+};
-+
-+static const struct qmp_phy_init_tbl sm8350_ufsphy_rx_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_SIGDET_LVL, 0x24),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_SIGDET_CNTRL, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_SIGDET_DEGLITCH_CNTRL, 0x1e),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_BAND, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_UCDR_FASTLOCK_FO_GAIN, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x5a),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_UCDR_PI_CONTROLS, 0xf1),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_UCDR_FASTLOCK_COUNT_LOW, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_UCDR_PI_CTRL2, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_UCDR_FO_GAIN, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_UCDR_SO_GAIN, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_TERM_BW, 0x1b),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_EQU_ADAPTOR_CNTRL1, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_EQU_ADAPTOR_CNTRL2, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_EQU_ADAPTOR_CNTRL3, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_EQU_ADAPTOR_CNTRL4, 0x1a),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x17),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_IDAC_MEASURE_TIME, 0x10),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_IDAC_TSETTLE_LOW, 0xc0),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_IDAC_TSETTLE_HIGH, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_00_LOW, 0x6d),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_00_HIGH, 0x6d),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_00_HIGH2, 0xed),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_00_HIGH3, 0x3b),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_00_HIGH4, 0x3c),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_01_LOW, 0xe0),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_01_HIGH, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_01_HIGH2, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_01_HIGH3, 0x3b),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_01_HIGH4, 0xb7),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_10_LOW, 0xe0),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_10_HIGH, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_10_HIGH2, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_10_HIGH3, 0x3b),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_RX_MODE_10_HIGH4, 0xb7),
-+	QMP_PHY_INIT_CFG(QSERDES_V5_RX_DCC_CTRL1, 0x0c),
-+};
-+
-+static const struct qmp_phy_init_tbl sm8350_ufsphy_pcs_tbl[] = {
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_RX_SIGDET_CTRL2, 0x6d),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0a),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_TX_SMALL_AMP_DRV_LVL, 0x02),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_DEBUG_BUS_CLKSEL, 0x1f),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_RX_MIN_HIBERN8_TIME, 0xff),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_PLL_CNTL, 0x03),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_TIMER_20US_CORECLK_STEPS_MSB, 0x16),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_TIMER_20US_CORECLK_STEPS_LSB, 0xd8),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_TX_PWM_GEAR_BAND, 0xaa),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_TX_HS_GEAR_BAND, 0x06),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_TX_HSGEAR_CAPABILITY, 0x03),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_RX_HSGEAR_CAPABILITY, 0x03),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_RX_SIGDET_CTRL1, 0x0e),
-+	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
-+};
-+
- static const struct qmp_phy_init_tbl sm8350_usb3_tx_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V5_TX_RES_CODE_LANE_TX, 0x00),
- 	QMP_PHY_INIT_CFG(QSERDES_V5_TX_RES_CODE_LANE_RX, 0x00),
-@@ -2971,6 +3071,30 @@ static const struct qmp_phy_cfg sm8250_usb3_uniphy_cfg = {
- 	.pwrdn_delay_max	= POWER_DOWN_DELAY_US_MAX,
- };
- 
-+static const struct qmp_phy_cfg sm8350_ufsphy_cfg = {
-+	.type			= PHY_TYPE_UFS,
-+	.nlanes			= 2,
-+
-+	.serdes_tbl		= sm8350_ufsphy_serdes_tbl,
-+	.serdes_tbl_num		= ARRAY_SIZE(sm8350_ufsphy_serdes_tbl),
-+	.tx_tbl			= sm8350_ufsphy_tx_tbl,
-+	.tx_tbl_num		= ARRAY_SIZE(sm8350_ufsphy_tx_tbl),
-+	.rx_tbl			= sm8350_ufsphy_rx_tbl,
-+	.rx_tbl_num		= ARRAY_SIZE(sm8350_ufsphy_rx_tbl),
-+	.pcs_tbl		= sm8350_ufsphy_pcs_tbl,
-+	.pcs_tbl_num		= ARRAY_SIZE(sm8350_ufsphy_pcs_tbl),
-+	.clk_list		= sdm845_ufs_phy_clk_l,
-+	.num_clks		= ARRAY_SIZE(sdm845_ufs_phy_clk_l),
-+	.vreg_list		= qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.regs			= sm8150_ufsphy_regs_layout,
-+
-+	.start_ctrl		= SERDES_START,
-+	.pwrdn_ctrl		= SW_PWRDN,
-+
-+	.is_dual_lane_phy	= true,
-+};
-+
- static const struct qmp_phy_cfg sm8350_usb3phy_cfg = {
- 	.type			= PHY_TYPE_USB3,
- 	.nlanes			= 1,
-@@ -4379,6 +4503,9 @@ static const struct of_device_id qcom_qmp_phy_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,sm8250-qmp-modem-pcie-phy",
- 		.data = &sm8250_qmp_gen3x2_pciephy_cfg,
-+	}, {
-+		.compatible = "qcom,sm8350-qmp-ufs-phy",
-+		.data = &sm8350_ufsphy_cfg,
- 	}, {
- 		.compatible = "qcom,sm8350-qmp-usb3-phy",
- 		.data = &sm8350_usb3phy_cfg,
--- 
-2.26.2
+>
+> > >
+> > > > +
+> > > > +       fw_devlink_def_probe_retry = true;
+> > > > +       return fw_devlink_get_flags() && !fw_devlink_is_permissive();
+> > > > +}
+> > > > +
+> > > >  /**
+> > > >   * fw_devlink_create_devlink - Create a device link from a consumer to fwnode
+> > > >   * @con - Consumer device for the device link
+> > > > diff --git a/drivers/base/dd.c b/drivers/base/dd.c
+> > > > index 9179825ff646..11325df2327f 100644
+> > > > --- a/drivers/base/dd.c
+> > > > +++ b/drivers/base/dd.c
+> > > > @@ -317,6 +317,11 @@ static int deferred_probe_initcall(void)
+> > > >         driver_deferred_probe_trigger();
+> > > >         /* Sort as many dependencies as possible before exiting initcalls */
+> > > >         flush_work(&deferred_probe_work);
+> > > > +
+> > > > +       if (fw_devlink_deferred_probe_retry()) {
+> > > > +               driver_deferred_probe_trigger();
+> > > > +               flush_work(&deferred_probe_work);
+> > > > +       }
+> > > >         initcalls_done = true;
+> > > >
+> > > >         /*
+> > > > --
+> > >
+> > > Overall, the "let's do nothing if modules are not enabled" approach is
+> > > a bit disappointing, because what if somebody builds all of the
+> > > drivers needed for boot in and enables modules anyway, for example to
+> > > allow USB drivers to be probed dynamically?
+> >
+> > Yeah, I'm disappointed too :( But I'm trying to get it to work for
+> > !MODULES so that we can enable fw_devlink=on by default at least for
+> > !MODULES to make sure drivers don't introduce more issues going
+> > forward. And then I plan to continue working on making it work
+> > correctly for MODULES case too.
+> >
+> > Getting fw_devlink=on to work perfectly for MODULES and !MODULES is
+> > not a problem at all. But it needs fixing a bunch of drivers (mostly
+> > simple fixes like setting the right flag, handling deferred probes
+> > correctly, etc), but I'm hitting a catch-22 here. I can't find the
+> > drivers without setting fw_devlink=on by default. But if I did that,
+> > it's going to break a bunch of boards.
+> >
+> > What's your thought on leaving fw_devlink=on by default on 5.12 and
+> > fixing drivers as issues are reported?
+>
+> If there are any issues known today that need to be addressed, I'd fix
+> them first and then try to enable fw_devlink=on maybe just for
+> !MODULES to start with.
 
+Yeah, that's what I'm thinking of for now.
+
+> > If that's a no, do you have any other ideas on how to deal with this catch-22?
+>
+> Try to enable, fix issues as they show up in linux-next.  If there are
+> still outstanding issues before the next release, back off and try in
+> the next cycle.  Repeat.
+
+If it's just dealing with outstanding issues that are reported, I'm
+hoping I can do that. The biggest headache right now is dealing with
+devices that have drivers that directly parse the fwnode AND still
+have a struct device. So the struct device remains unbound even if the
+driver has initialized the device.
+
+>
+> This doesn't sound particularly attractive, but I don't have any
+> better idea, sorry.
+
+:'( Yeah, another approach I'm thinking of is to have a separate
+"strict mode" for fw_devlink=on or above. Where it'll try it's best
+till kernel late init and then fallback to permissive. But it's
+becoming a headache to deal with some corner cases.
+
+-Saravana
