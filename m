@@ -2,101 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84AA730F4E3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:27:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 713D030F4E5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 15:27:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236687AbhBDOZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 09:25:12 -0500
-Received: from so15.mailgun.net ([198.61.254.15]:50362 "EHLO so15.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236701AbhBDOX4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 09:23:56 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1612448607; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=xWUv4etC0mcuSIMJ64YH3m+nsTHsH5wo6zjPUMPrOFY=; b=SnOpe79CwSg9Ig4JSSh53CJ+fFnWyXl3psT8rOTXGksWbmQXjYpppbMZN5eRKBlhAGrrp0Ie
- iazh3X1U74yl9bXJB4s7Ngf1IbbGPMuIEUxfaqBBGKzi7K7AaNVrQhgHTrFsKVhWxojaNWfs
- AXzoOWvEaOjmvQ5BisDPhtL/k78=
-X-Mailgun-Sending-Ip: 198.61.254.15
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 601c032571c26722934de35b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 04 Feb 2021 14:22:29
- GMT
-Sender: mkshah=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D4558C43465; Thu,  4 Feb 2021 14:22:28 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from mkshah-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkshah)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 24E46C43463;
-        Thu,  4 Feb 2021 14:22:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 24E46C43463
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=mkshah@codeaurora.org
-From:   Maulik Shah <mkshah@codeaurora.org>
-To:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
-        bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
-        rnayak@codeaurora.org, ilina@codeaurora.org, lsrao@codeaurora.org,
-        Maulik Shah <mkshah@codeaurora.org>, devicetree@vger.kernel.org
-Subject: [PATCH v6 3/4] arm64: dts: qcom: sc7180: Enable SoC sleep stats
-Date:   Thu,  4 Feb 2021 19:51:47 +0530
-Message-Id: <1612448508-9179-4-git-send-email-mkshah@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org>
-References: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org>
+        id S236671AbhBDO0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 09:26:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53210 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236692AbhBDOZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 09:25:33 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 630CDC061573
+        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 06:24:51 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id c127so3136329wmf.5
+        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 06:24:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=R1KAZ4C9ZeFSR+FFennp2QasFQcPFSyFTyZPPFMkXU8=;
+        b=fCG8+WqCngaRVeR+fwhWXAcIWBn5Sl2e4mDoXuHKx8d69fodkwnVanTjcKzun/Oq1F
+         aTuzHpifYoZkmVn9bAHqWJgOJOooBfSwFajyd2zSvXQqpExigCq2XXq0+QtPS5k0mrbC
+         x0q4/10MpavYzq68sUQS9x65l72az1O6NDyfucEPMbG4JeQlFbs9Q2nyOXha6I4TQIEc
+         PO/rwCmZ4HiKjmoHcQS6UP/eZBjC0WutDWRCjo2hkH2sCoVsGdcL/3M82SEwcTCBi9Vn
+         dH03nNLXfcRs2DN/nVxzrDRf5njO6cbdUEANrH34er4ju+uET6WVTEZVNMKVoC/U2Mmk
+         aF3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=R1KAZ4C9ZeFSR+FFennp2QasFQcPFSyFTyZPPFMkXU8=;
+        b=o0yPd0lYrbzc57SafhBgHuB+Cwy47OOiaL9lpLx+obYtpbjkQm9NGimeaL84PWcVeN
+         ypc4OLNreQaS+LRhjo0DRPBSOxPMQQWDC0KB8/NsdgZGuvdmvzyQJzx8UdF2aMRv+80p
+         XV2HpbK4yTdd3gFGnIOMIfgrSc/rLGd+UosN1qP60b5zACVKPKKxvLAaZJSIY00mil09
+         DzSL3eTThgAsVfraK1pxpsv7SP7EvbD19GEJB1fohYfnbobMPEnT/eRkwMEYXPbn02DC
+         bVlPnubvP1890jkFZVwVvoGeXbjeKriAdGw+w5ffX5ZsM3oe7sg7KBDN7HzXyVySn7dl
+         rNiQ==
+X-Gm-Message-State: AOAM532kIEIeE4Le2xdXABeD2yFKWuD+tK2IoVsQPqKOvNFZDOIlTfOD
+        13LNPodF1AMbLIakIkA8fLieOg==
+X-Google-Smtp-Source: ABdhPJyG/2NylKDcXm3Y18fIrqWKuc6sdceMpQkq33NZ0aiLb5JS4Ixo+Ft8ux+j9u+mNAQt0C8/Cw==
+X-Received: by 2002:a7b:c153:: with SMTP id z19mr7657226wmi.87.1612448690019;
+        Thu, 04 Feb 2021 06:24:50 -0800 (PST)
+Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
+        by smtp.gmail.com with ESMTPSA id v6sm8568185wrx.32.2021.02.04.06.24.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Feb 2021 06:24:49 -0800 (PST)
+Date:   Thu, 4 Feb 2021 14:24:44 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Will Deacon <will@kernel.org>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, android-kvm@google.com,
+        linux-kernel@vger.kernel.org, kernel-team@android.com,
+        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
+        Fuad Tabba <tabba@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Brazdil <dbrazdil@google.com>
+Subject: Re: [RFC PATCH v2 24/26] KVM: arm64: Make memcache anonymous in
+ pgtable allocator
+Message-ID: <YBwDrBH8p0aEpKKC@google.com>
+References: <20210108121524.656872-1-qperret@google.com>
+ <20210108121524.656872-25-qperret@google.com>
+ <20210203155944.GH18974@willie-the-truck>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210203155944.GH18974@willie-the-truck>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device node for SoC sleep stats driver which provides various
-low power mode stats.
+On Wednesday 03 Feb 2021 at 15:59:44 (+0000), Will Deacon wrote:
+> On Fri, Jan 08, 2021 at 12:15:22PM +0000, Quentin Perret wrote:
+> > The current stage2 page-table allocator uses a memcache to get
+> > pre-allocated pages when it needs any. To allow re-using this code at
+> > EL2 which uses a concept of memory pools, make the memcache argument to
+> > kvm_pgtable_stage2_map() anonymous. and let the mm_ops zalloc_page()
+> > callbacks use it the way they need to.
+> > 
+> > Signed-off-by: Quentin Perret <qperret@google.com>
+> > ---
+> >  arch/arm64/include/asm/kvm_pgtable.h | 6 +++---
+> >  arch/arm64/kvm/hyp/pgtable.c         | 4 ++--
+> >  2 files changed, 5 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/arch/arm64/include/asm/kvm_pgtable.h b/arch/arm64/include/asm/kvm_pgtable.h
+> > index 8e8f1d2c5e0e..d846bc3d3b77 100644
+> > --- a/arch/arm64/include/asm/kvm_pgtable.h
+> > +++ b/arch/arm64/include/asm/kvm_pgtable.h
+> > @@ -176,8 +176,8 @@ void kvm_pgtable_stage2_destroy(struct kvm_pgtable *pgt);
+> >   * @size:	Size of the mapping.
+> >   * @phys:	Physical address of the memory to map.
+> >   * @prot:	Permissions and attributes for the mapping.
+> > - * @mc:		Cache of pre-allocated GFP_PGTABLE_USER memory from which to
+> > - *		allocate page-table pages.
+> > + * @mc:		Cache of pre-allocated memory from which to allocate page-table
+> > + *		pages.
+> 
+> We should probably mention that this memory must be zeroed, since I don't
+> think the page-table code takes care of that.
 
-Also update the reg size of aoss_qmp device to 0x400.
+OK, though I think this is unrelated to this change -- this is already
+true today I believe. Anyhow, I'll pile a change on top.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 11d4f66..273c896 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3202,7 +3202,7 @@
- 
- 		aoss_qmp: qmp@c300000 {
- 			compatible = "qcom,sc7180-aoss-qmp";
--			reg = <0 0x0c300000 0 0x100000>;
-+			reg = <0 0x0c300000 0 0x400>;
- 			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
- 			mboxes = <&apss_shared 0>;
- 
-@@ -3210,6 +3210,11 @@
- 			#power-domain-cells = <1>;
- 		};
- 
-+		rpmh-sleep-stats@c3f0000 {
-+			compatible = "qcom,rpmh-sleep-stats";
-+			reg = <0 0x0c3f0000 0 0x400>;
-+		};
-+
- 		spmi_bus: spmi@c440000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0 0x0c440000 0 0x1100>,
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
-
+Cheers,
+Quentin
