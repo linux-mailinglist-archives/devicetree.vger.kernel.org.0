@@ -2,70 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE11830F71C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 17:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36DBB30F711
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 17:04:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237728AbhBDQCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 11:02:15 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:40642 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237251AbhBDPVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 10:21:47 -0500
-Received: by mail-oi1-f173.google.com with SMTP id k142so4048663oib.7;
-        Thu, 04 Feb 2021 07:21:28 -0800 (PST)
+        id S237255AbhBDPdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 10:33:04 -0500
+Received: from mail-oo1-f44.google.com ([209.85.161.44]:44999 "EHLO
+        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237250AbhBDPVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 10:21:48 -0500
+Received: by mail-oo1-f44.google.com with SMTP id n19so827328ooj.11;
+        Thu, 04 Feb 2021 07:21:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=0Xz1ybUurg+f25NNPsQWdKN8LBDg+PlVPnnnyR6Rc1U=;
-        b=koqPMIe2ECoHBDHI6zKQCunbreQRkM0XINGtJOLXtI5EB9ePj8a+FdIEI40HpC+SOe
-         XXXeU5V1PkP1fHyUnQuDRdkILIqx/mQwqV+/+Ew0YBlX9bQQC8zdhLqr9zmvg/eJrKDM
-         DCNCODvE0YcaXziYdMw6z7iW6mFOEnioLUw5A/w5Yd8xBM9Wtr2224SeRSG6jAyrK/+e
-         Fh23rYHSS1GJohvmLg2usiNZxB9dgohk0XS08p/5YTLFONSkFbXmF48mMBJJygzOPg9F
-         DrNy4Nz2JWdCkGBG2P0dluefXHVpqlqwWLYLd59j5RmBxX4O8RDypYvaEP9Urv5A+q3I
-         rV4g==
-X-Gm-Message-State: AOAM533MVttGQKKIKrGiyPEj9p5HsRxcLwFIiRDE1XH+J3vkv9rsU3gp
-        EJCpLk2M6N3oNt5KXC6fDd5G20PmAQ==
-X-Google-Smtp-Source: ABdhPJzC7FiNBWX3zaBTJ9JJlU/bqOBsrbewNufb2sOsil4SMXvP/WRhJk9mzBX1NxSMUn0HFYhvcg==
-X-Received: by 2002:a54:4e87:: with SMTP id c7mr30959oiy.94.1612452062575;
-        Thu, 04 Feb 2021 07:21:02 -0800 (PST)
+        bh=P7JarkNG0Jr4x/lj1itZ7BSEgkDgo9dz5ORdHCgfdk8=;
+        b=Zo0NmWhlaKEdDnz60vg4clm2uM+qfG+TmAsZm9uWAvERLScDh4aCBssmqQmhsnkvXV
+         /KQr2iMRTO/5k7QcFS6a7Wmgc4frscHFgJ/Z49Spim8GruSrTb3q5oGm2o/AthpH6U6a
+         Hu06U+3yLqV/fGfYkgWDEzNGkzrRZ2k7YNkUb1CaIGUEPIbiLPMfQiaG+1mVl7CznLH+
+         QrWpqhtMpGgkBss750HPJDA9UsMCWfSHsT7A+ekoJqIA2Y595xd9RyZeA/ApKwpiy8dD
+         0JqJCXvBMJ75aDILVkggF62iWKAVWqWt34UGrPUQU4e9F4fypVNbtyAqqtT5sFmgLdAs
+         6EXQ==
+X-Gm-Message-State: AOAM533IhD3MzlLMZgW2JJ2jxZvgpOGejP280jVFylV82VZMS/tWJ7Ax
+        3At+zr8vNQY/6C3jFuEKlw==
+X-Google-Smtp-Source: ABdhPJzM3kHORViPede34wMD/uUSw98pduiPbhxgxRYTa/nSc0pWIAtPIW3tqD1eZiyu3WZiHYs1VA==
+X-Received: by 2002:a4a:d50d:: with SMTP id m13mr52826oos.2.1612452060739;
+        Thu, 04 Feb 2021 07:21:00 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q195sm1163904oic.15.2021.02.04.07.21.01
+        by smtp.gmail.com with ESMTPSA id 33sm1139125ota.69.2021.02.04.07.20.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Feb 2021 07:21:01 -0800 (PST)
-Received: (nullmailer pid 452038 invoked by uid 1000);
+        Thu, 04 Feb 2021 07:20:59 -0800 (PST)
+Received: (nullmailer pid 452035 invoked by uid 1000);
         Thu, 04 Feb 2021 15:20:57 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
-Cc:     robh+dt@kernel.org, gjorgjix.rosikopulos@linux.intel.com,
-        devicetree@vger.kernel.org, daniele.alessandrelli@linux.intel.com,
-        mchehab@kernel.org, linux-media@vger.kernel.org,
-        sakari.ailus@linux.intel.com, paul.j.murphy@linux.intel.com
-In-Reply-To: <20210203135441.136-2-martinax.krasteva@linux.intel.com>
-References: <20210203135441.136-1-martinax.krasteva@linux.intel.com> <20210203135441.136-2-martinax.krasteva@linux.intel.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: media: Add bindings for imx334
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@axis.com, Kevin Hilman <khilman@baylibre.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        linux-samsung-soc@vger.kernel.org,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Jonathan Chocron <jonnyc@amazon.com>,
+        devicetree@vger.kernel.org, Jaehoon Chung <jh80.chung@samsung.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Jesper Nilsson <jesper.nilsson@axis.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-omap@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
+        linux-amlogic@lists.infradead.org,
+        Zhou Wang <wangzhou1@hisilicon.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>
+In-Reply-To: <bf3d0a5683c50062a55182922daeec5cfdbe00cc.1612335031.git.mchehab+huawei@kernel.org>
+References: <cover.1612335031.git.mchehab+huawei@kernel.org> <bf3d0a5683c50062a55182922daeec5cfdbe00cc.1612335031.git.mchehab+huawei@kernel.org>
+Subject: Re: [PATCH v2 01/11] doc: bindings: PCI: designware-pcie.txt: convert it to YAML
 Date:   Thu, 04 Feb 2021 09:20:57 -0600
-Message-Id: <1612452057.710530.452037.nullmailer@robh.at.kernel.org>
+Message-Id: <1612452057.699681.452034.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 03 Feb 2021 13:54:40 +0000, Martina Krasteva wrote:
-> From: Martina Krasteva <martinax.krasteva@intel.com>
+On Wed, 03 Feb 2021 08:01:45 +0100, Mauro Carvalho Chehab wrote:
+> Convert the file into a DT schema.
 > 
-> - Add dt-bindings documentation for Sony imx334 sensor driver.
-> - Add MAINTAINERS entry for Sony imx334 binding documentation.
-> 
-> Signed-off-by: Martina Krasteva <martinax.krasteva@intel.com>
-> Reviewed-by: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
-> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> Acked-by: Paul J. Murphy <paul.j.murphy@intel.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
->  .../devicetree/bindings/media/i2c/sony,imx334.yaml | 90 ++++++++++++++++++++++
->  MAINTAINERS                                        |  8 ++
->  2 files changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+>  .../bindings/pci/amlogic,meson-pcie.txt       |   4 +-
+>  .../bindings/pci/axis,artpec6-pcie.txt        |   2 +-
+>  .../bindings/pci/designware-pcie.txt          |  77 ----------
+>  .../bindings/pci/fsl,imx6q-pcie.txt           |   2 +-
+>  .../bindings/pci/hisilicon-histb-pcie.txt     |   2 +-
+>  .../bindings/pci/hisilicon-pcie.txt           |   2 +-
+>  .../devicetree/bindings/pci/kirin-pcie.txt    |   2 +-
+>  .../bindings/pci/layerscape-pci.txt           |   2 +-
+>  .../bindings/pci/nvidia,tegra194-pcie.txt     |   4 +-
+>  .../devicetree/bindings/pci/pci-armada8k.txt  |   2 +-
+>  .../devicetree/bindings/pci/pci-keystone.txt  |  10 +-
+>  .../devicetree/bindings/pci/pcie-al.txt       |   2 +-
+>  .../devicetree/bindings/pci/qcom,pcie.txt     |  14 +-
+>  .../bindings/pci/samsung,exynos-pcie.yaml     |   2 +-
+>  .../devicetree/bindings/pci/snps,pcie.yaml    | 139 ++++++++++++++++++
+>  .../pci/socionext,uniphier-pcie-ep.yaml       |   2 +-
+>  .../devicetree/bindings/pci/ti-pci.txt        |   4 +-
+>  .../devicetree/bindings/pci/uniphier-pcie.txt |   2 +-
+>  MAINTAINERS                                   |   2 +-
+>  19 files changed, 169 insertions(+), 107 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/designware-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/snps,pcie.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -73,13 +112,17 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/media/i2c/sony,imx334.example.dts:28.17-18 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/media/i2c/sony,imx334.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1370: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+	Additional properties are not allowed ('$ref' was unexpected)
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+	'/schemas/types.yaml#definitions/flag' does not match 'types.yaml#/definitions/'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: ignoring, error in schema: properties: snps,enable-cdm-check
+warning: no schema found in file: ./Documentation/devicetree/bindings/pci/snps,pcie.yaml
 
-See https://patchwork.ozlabs.org/patch/1435383
+See https://patchwork.ozlabs.org/patch/1435145
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
