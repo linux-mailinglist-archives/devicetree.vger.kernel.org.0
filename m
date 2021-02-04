@@ -2,150 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC6FF30FBE6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 19:49:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BE7A30FCAD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 20:27:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239378AbhBDSsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 13:48:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53336 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239329AbhBDSrz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 13:47:55 -0500
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77299C061786
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 10:46:59 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4DWnb50SKhz1s479;
-        Thu,  4 Feb 2021 19:46:57 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4DWnb46ppsz1t6pp;
-        Thu,  4 Feb 2021 19:46:56 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id SR-7xsAzxyQK; Thu,  4 Feb 2021 19:46:55 +0100 (CET)
-X-Auth-Info: bxnTP5xuJO9A07TpN758S5k87NX4EzxiN/09vLEQ3nY=
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Thu,  4 Feb 2021 19:46:55 +0100 (CET)
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add TI
- SN65DSI83 bindings
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20210130181014.161457-1-marex@denx.de>
- <CAD=FV=UzkP8Rp6BDNVr1FmOK4GY9_dSeT6fCjQLMatHftyj9iA@mail.gmail.com>
- <c7df0302-c2c1-6ccb-7f7f-8b781d9e3d9b@denx.de>
- <CAD=FV=U1xN5SPxGzCLMbTT1bL7W4wpXfOt0KeJ3=84TCHfJ8UA@mail.gmail.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <0a92a80a-e4cb-2e3f-326e-1250a2787258@denx.de>
-Date:   Thu, 4 Feb 2021 19:46:54 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S239766AbhBDT0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 14:26:40 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54028 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238268AbhBDQ7K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 11:59:10 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 83EBF64F72;
+        Thu,  4 Feb 2021 16:58:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612457909;
+        bh=J778l9M1K8153trMZBWLrcMcnqBtk9mX7SssLwTjnZg=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Sr/7UWgOOzsbZ+6eyN8VQRljp/yFgix0YHfd8FdGDBIWWQ6/rRpChV+Vr8c3DEoag
+         EUNNpauXVD0laBCGDzODaLxwcKbCQ3RPA4P1+7FRvnvhyyciHarKnlDB+X66HIqBY6
+         GWcAhn1KkW7qaYeXqEgBAf5xezhIojXJgZmoJOggTWQ5EjB26PYNayxvOs8HMGjKV8
+         EhnQOUlRLyIscKKm30hZ1VCXn3unlz5HyBBD1krE6ck+Xhd5H0RTCy0rZyg0hs/8Uh
+         GdlZGgp+RGoV0WN+QVL/UwBMVYa0f3duHSgeghTvUCxPqN5eI+czl6q+54oNkqFuJM
+         Qqlg8GgIwA/0A==
+From:   Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Jack Pham <jackp@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 2/3] phy: qcom-qmp: Add UFS V5 registers found in SM8350
+Date:   Thu,  4 Feb 2021 22:28:04 +0530
+Message-Id: <20210204165805.62235-3-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210204165805.62235-1-vkoul@kernel.org>
+References: <20210204165805.62235-1-vkoul@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=U1xN5SPxGzCLMbTT1bL7W4wpXfOt0KeJ3=84TCHfJ8UA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/4/21 7:38 PM, Doug Anderson wrote:
-> Hi,
+Add the registers for UFS found in SM8350. The UFS phy used in SM8350
+seems to have same offsets as V5 phy, although Documentation for that is
+lacking.
 
-Hi,
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ drivers/phy/qualcomm/phy-qcom-qmp.h | 47 +++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
 
-[...]
+diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
+index dff7be5a1cc1..71ce3aa174ae 100644
+--- a/drivers/phy/qualcomm/phy-qcom-qmp.h
++++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
+@@ -824,6 +824,32 @@
+ #define QPHY_V4_PCS_PCIE_PRESET_P10_PRE			0xbc
+ #define QPHY_V4_PCS_PCIE_PRESET_P10_POST		0xe0
+ 
++/* Only for QMP V5 PHY - QSERDES COM registers */
++#define QSERDES_V5_COM_PLL_IVCO				0x058
++#define QSERDES_V5_COM_CP_CTRL_MODE0			0x074
++#define QSERDES_V5_COM_CP_CTRL_MODE1			0x078
++#define QSERDES_V5_COM_PLL_RCTRL_MODE0			0x07c
++#define QSERDES_V5_COM_PLL_RCTRL_MODE1			0x080
++#define QSERDES_V5_COM_PLL_CCTRL_MODE0			0x084
++#define QSERDES_V5_COM_PLL_CCTRL_MODE1			0x088
++#define QSERDES_V5_COM_SYSCLK_EN_SEL			0x094
++#define QSERDES_V5_COM_LOCK_CMP_EN			0x0a4
++#define QSERDES_V5_COM_LOCK_CMP1_MODE0			0x0ac
++#define QSERDES_V5_COM_LOCK_CMP2_MODE0			0x0b0
++#define QSERDES_V5_COM_LOCK_CMP1_MODE1			0x0b4
++#define QSERDES_V5_COM_DEC_START_MODE0			0x0bc
++#define QSERDES_V5_COM_LOCK_CMP2_MODE1			0x0b8
++#define QSERDES_V5_COM_DEC_START_MODE1			0x0c4
++#define QSERDES_V5_COM_VCO_TUNE_MAP			0x10c
++#define QSERDES_V5_COM_VCO_TUNE_INITVAL2		0x124
++#define QSERDES_V5_COM_HSCLK_SEL			0x158
++#define QSERDES_V5_COM_HSCLK_HS_SWITCH_SEL		0x15c
++#define QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE1_MODE0	0x1ac
++#define QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE2_MODE0	0x1b0
++#define QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE1_MODE1	0x1b4
++#define QSERDES_V5_COM_BIN_VCOCAL_HSCLK_SEL		0x1bc
++#define QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE2_MODE1	0x1b8
++
+ /* Only for QMP V5 PHY - TX registers */
+ #define QSERDES_V5_TX_RES_CODE_LANE_TX			0x34
+ #define QSERDES_V5_TX_RES_CODE_LANE_RX			0x38
+@@ -837,6 +863,10 @@
+ #define QSERDES_V5_TX_RCV_DETECT_LVL_2			0xa4
+ #define QSERDES_V5_TX_TRAN_DRVR_EMP_EN			0xc0
+ #define QSERDES_V5_TX_PI_QEC_CTRL			0xe4
++#define QSERDES_V5_TX_PWM_GEAR_1_DIVIDER_BAND0_1	0x178
++#define QSERDES_V5_TX_PWM_GEAR_2_DIVIDER_BAND0_1	0x17c
++#define QSERDES_V5_TX_PWM_GEAR_3_DIVIDER_BAND0_1	0x180
++#define QSERDES_V5_TX_PWM_GEAR_4_DIVIDER_BAND0_1	0x184
+ 
+ /* Only for QMP V5 PHY - RX registers */
+ #define QSERDES_V5_RX_UCDR_FO_GAIN			0x008
+@@ -893,6 +923,23 @@
+ #define QSERDES_V5_RX_DCC_CTRL1				0x1a8
+ #define QSERDES_V5_RX_VTH_CODE				0x1b0
+ 
++/* Only for QMP V5 PHY - UFS PCS registers */
++#define QPHY_V5_PCS_UFS_TIMER_20US_CORECLK_STEPS_MSB	0x00c
++#define QPHY_V5_PCS_UFS_TIMER_20US_CORECLK_STEPS_LSB	0x010
++#define QPHY_V5_PCS_UFS_PLL_CNTL			0x02c
++#define QPHY_V5_PCS_UFS_TX_LARGE_AMP_DRV_LVL		0x030
++#define QPHY_V5_PCS_UFS_TX_SMALL_AMP_DRV_LVL		0x038
++#define QPHY_V5_PCS_UFS_TX_HSGEAR_CAPABILITY		0x074
++#define QPHY_V5_PCS_UFS_RX_HSGEAR_CAPABILITY		0x0b4
++#define QPHY_V5_PCS_UFS_DEBUG_BUS_CLKSEL		0x124
++#define QPHY_V5_PCS_UFS_RX_MIN_HIBERN8_TIME		0x150
++#define QPHY_V5_PCS_UFS_RX_SIGDET_CTRL1			0x154
++#define QPHY_V5_PCS_UFS_RX_SIGDET_CTRL2			0x158
++#define QPHY_V5_PCS_UFS_TX_PWM_GEAR_BAND		0x160
++#define QPHY_V5_PCS_UFS_TX_HS_GEAR_BAND			0x168
++#define QPHY_V5_PCS_UFS_TX_MID_TERM_CTRL1		0x1d8
++#define QPHY_V5_PCS_UFS_MULTI_LANE_CTRL1		0x1e0
++
+ /* Only for QMP V5 PHY - USB3 have different offsets than V4 */
+ #define QPHY_V5_PCS_USB3_POWER_STATE_CONFIG1		0x300
+ #define QPHY_V5_PCS_USB3_AUTONOMOUS_MODE_STATUS		0x304
+-- 
+2.26.2
 
->>>> +properties:
->>>> +  compatible:
->>>> +    const: ti,sn65dsi83
->>>> +
->>>> +  reg:
->>>> +    const: 0x2d
->>>> +
->>>> +  enable-gpios:
->>>> +    maxItems: 1
->>>> +    description: GPIO specifier for bridge_en pin (active high).
->>>
->>> I see two regulators: vcc and vcore.  Shouldn't those be listed?
->>
->> Those are not implemented and not tested, so if someone needs them later
->> on, they can be added then.
-> 
-> Sure.  I guess it can go either way.  For the regulator it'd the kind
-> of thing that's super easy to add support for and hard to mess up.
-
-If someone can test those regulators (I might be able to, in next 
-revision of hardware, we'll see), then this can be added.
-
->>>> +          endpoint:
->>>> +            type: object
->>>> +            additionalProperties: false
->>>> +            properties:
->>>> +              remote-endpoint: true
->>>> +              data-lanes:
->>>> +                description: array of physical DSI data lane indexes.
->>>
->>> The chip doesn't allow for arbitrary remapping here, right?  So you're
->>> just using this as the official way to specify the number of lanes?  I
->>> guess the only valid values are:
->>>
->>> <0>
->>> <0 1>
->>> <0 1 2>
->>> <0 1 2 3>
->>
->> Shouldn't that be <1 2 3 4> ?
-> 
-> The data manual refers to the channels starting at 0, so if it's
-> arbitrary that seems a better way to go?
-
-Either way is OK, but before I change this, I would like some 
-confirmation this enumeration really is arbitrary.
-
->>> In sn65dsi86 we attempted to enforce that a valid option was selected
->>> for the output lanes.  Could you do something similar?  If nothing
->>> else adding a description of the valid options would be good.
->>
->> I saw the binding, but I was under the impressions the DSI86 can do lane
->> reordering, isn't that the case ? Maybe I misunderstood it.
-> 
-> DSI86 can reorder the output lanes quite flexibly.  It can't reorder
-> the input lanes, though.
-
-The eDP ones ? OK
-
->> But yes, if you have a suggestion how to make a non-cryptic list of
->> those four lane mapping options, please do share this info.
-> 
-> I doubt I can write this correctly without a whole lot of futzing /
-> messing, but maybe something like:
-> 
-> data-lanes:
->    oneOf:
->      - items:
->          - 0
->      - items:
->          - 0
->          - 1
->      - items:
->          - 0
->          - 1
->          - 2
->      - items:
->          - 0
->          - 1
->          - 2
->          - 3
-> 
-
-I was hoping for some better syntax. Maybe there is one ?
