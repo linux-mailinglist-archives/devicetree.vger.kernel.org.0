@@ -2,115 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F44230FF5C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 22:35:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB23130FF8B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 22:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbhBDVcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 16:32:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60834 "EHLO
+        id S230267AbhBDVq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 16:46:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230009AbhBDVcb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 16:32:31 -0500
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41133C061794
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 13:31:50 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id w204so4705752ybg.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 13:31:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=29BoGNlBSuRptp75qdFu7EtcEjyZvsuV2W9BZnedNiw=;
-        b=m7JhjKA5LR57ijKi9WJBvdVcUt8vGEfUDLk1uoFrZoPnHCr4eWh1SKKac2ygEQBFVC
-         2qvmKOu3CcpqsHl7+roCbgqgdQWOrewROlxxDAtknEB8iggJidNsgfxaivb90APnN9wv
-         0h0+zbwPFSal3i2jtZP0PilXVsEgBOx7DmwwAmJIci6gnYls7ICevMnfnpvKxYhTrZoH
-         TjUOKIqeZ+XTHGWwT7Lcytkhpi8tkMNJoS360hisK3n0o8tuIyTaFkrctKNBJAxA1VJk
-         0bDISpotUj6pO/5XTpO3UOC5rprKrCVZkGBj0T4HtHYQaxOa9A8XKXbZhyd9r1ybG9nm
-         AP8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=29BoGNlBSuRptp75qdFu7EtcEjyZvsuV2W9BZnedNiw=;
-        b=sknVUp2Ii8ysL2OIFsXRT1ICCBU9iK38F+wusOdwsVrt/RhdteJ1tvSzi24kLcV8la
-         8FEFUoRCuUGAhjS94aTtUHUqAdQgQ2E/94z2wUNR3jjjxwEq0m9cH8uY5HqAJ0JAnjhE
-         PaWA0z4mpX4GoGMNkhx20jM5poaDDazEH2FexQPMXX/y04Y2E/2aWwcxqx1PqWjFBQnw
-         VmXB/Erw0gemf636bKYlPh3bj6nJVoKCQq6IaPORppd1+ubLsBg0x2o8AYY805cmsEil
-         pqEJTk94AtE/OtuNirj9LkmyZ+Pi1iWcHIDsrvg+f2SkF5JnuXS9aHX3P0ru/S0j2k9k
-         GLFw==
-X-Gm-Message-State: AOAM5313ET/8VM/kIDmEeqkd3IvqDuBhwvPwA9AGrM51yAA5vPm/NAXe
-        WcDH88TvuCMa8ojETIBxEhp+yar1bA+tl76h20j36g==
-X-Google-Smtp-Source: ABdhPJzXo+2QfAAZsWBIWdDQJqEUS/VFWFs+8oVZFxPhskYIqgK0ZJ38GKKtHrSVeSIg0cb1D3Jg1FOxNRw1AGpG7/w=
-X-Received: by 2002:a25:b74c:: with SMTP id e12mr2004516ybm.20.1612474309232;
- Thu, 04 Feb 2021 13:31:49 -0800 (PST)
-MIME-Version: 1.0
-References: <20210121225712.1118239-1-saravanak@google.com>
- <CGME20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c@eucas1p2.samsung.com>
- <20210121225712.1118239-3-saravanak@google.com> <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
-In-Reply-To: <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 4 Feb 2021 13:31:13 -0800
-Message-ID: <CAGETcx_KDA55Ti=5CHw48BP1L2Xo64=AFFe+17g27n=P-KUrow@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
+        with ESMTP id S230209AbhBDVqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 16:46:14 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F65C0611C0;
+        Thu,  4 Feb 2021 13:44:19 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 2DF0C425B6;
+        Thu,  4 Feb 2021 21:44:14 +0000 (UTC)
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Rob Herring <robh@kernel.org>,
-        Thierry Reding <treding@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Ard Biesheuvel <ardb@kernel.org>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-19-marcan@marcan.st>
+ <CAK8P3a3v6emxavbyjFhY+WdvH1t4EPMZSjEsSx0M+cRqjRCO1g@mail.gmail.com>
+From:   Hector Martin 'marcan' <marcan@marcan.st>
+Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
+ devicetree
+Message-ID: <de236d0c-579d-c0d9-8d60-77f30889f50c@marcan.st>
+Date:   Fri, 5 Feb 2021 06:44:13 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
+MIME-Version: 1.0
+In-Reply-To: <CAK8P3a3v6emxavbyjFhY+WdvH1t4EPMZSjEsSx0M+cRqjRCO1g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 4, 2021 at 3:52 AM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
->
-> Hi Saravana,
->
-> On 21.01.2021 23:57, Saravana Kannan wrote:
-> > This allows fw_devlink to create device links between consumers of an
-> > interrupt and the supplier of the interrupt.
-> >
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > Cc: Kevin Hilman <khilman@baylibre.com>
-> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Reviewed-by: Thierry Reding <treding@nvidia.com>
-> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
->
-> This patch landed some time ago in linux-next as commit 4104ca776ba3
-> ("of: property: Add fw_devlink support for interrupts"). It breaks MMC
-> host controller operation on ARM Juno R1 board (the mmci@50000 device
-> defined in arch/arm64/boot/dts/arm/juno-motherboard.dtsi). I didn't
+On 05/02/2021 06.29, Arnd Bergmann wrote:
+> On Thu, Feb 4, 2021 at 9:39 PM Hector Martin <marcan@marcan.st> wrote:
+> 
+>> +/ {
+>> +       model = "Apple Mac Mini M1 2020";
+>> +       compatible = "AAPL,j274", "AAPL,m1", "AAPL,arm-platform";
+>> +       #address-cells = <2>;
+>> +       #size-cells = <2>;
+>> +
+>> +       chosen {
+>> +               #address-cells = <2>;
+>> +               #size-cells = <2>;
+>> +               ranges;
+>> +
+>> +               bootargs = "earlycon";
+>> +               stdout-path = "serial0:1500000";
+>> +
+>> +               framebuffer0: framebuffer@0 {
+>> +                       compatible = "AAPL,simple-framebuffer", "simple-framebuffer";
+>> +                       reg = <0 0 0 0>; // To be filled by loader
+>> +                       // Format properties will be added by loader
+>> +                       status = "disabled";
+>> +               };
+>> +       };
+>> +
+>> +       memory@800000000 {
+>> +               device_type = "memory";
+>> +               reg = <0 0 0 0>; // To be filled by loader
+>> +       };
+>> +
+>> +       aliases {
+>> +               serial0 = &serial0;
+>> +       };
+> 
+> We tend to split the dts file into one file per SoC and one for the
+> specific board. I guess in this case the split can be slightly different,
+> but it does feel better to be prepared for sharing a lot of the contents
+> between the different products.
+> 
+> In most cases, you'd want the 'aliases' and 'chosen' nodes to be
+> in the board specific file.
 
-I grepped around and it looks like the final board file is this or
-whatever includes it?
-arch/arm64/boot/dts/arm/juno-base.dtsi
+I thought about that, but wasn't sure if splitting it up at this early 
+stage made much sense since I'm not sure what the split should be, given 
+all supported hardware is the same for all 3 released devices.
 
-This patch just finds the interrupt-parent and then tries to use that
-as a supplier if "interrupts" property is listed. But the only
-interrupt parent I can see is:
-        gic: interrupt-controller@2c010000 {
-                compatible = "arm,gic-400", "arm,cortex-a15-gic";
+I'm happy to throw the aliases/chosen nodes into board specific files if 
+you think that's a good starting point. Perhaps /memory too? Those 
+properties are filled in/patched by the bootloader anyway...
 
-And the driver uses IRQCHIP_DECLARE() and hence should be pretty much
-a NOP since those suppliers are never devices and are ignored.
-$ git grep "arm,gic-400" -- drivers/
-drivers/irqchip/irq-gic.c:IRQCHIP_DECLARE(gic_400, "arm,gic-400", gic_of_init);
+There are also DT overlays; I was wondering if we could use those to 
+keep the hierarchy and avoid having many duplicate trees in a 
+hypothetical bootloader that embeds support for a large set of hardware, 
+having it construct the final devicetree on the fly from SoC + a board 
+overlay (and possibly further levels); but I'm not sure how that ties in 
+with the device trees that live in the Linux tree. Do you have any 
+pointers about this?
 
-This doesn't make any sense. Am I looking at the right files? Am I
-missing something?
+For reference, this is our current DT patching code in m1n1:
 
--Saravana
+https://github.com/AsahiLinux/m1n1/blob/main/src/kboot.c
+
+Eventually we're going to build some kind of tooling to automate diffing 
+Apple device trees and importing changes/new devices into our own, 
+though it will probably be quite a while until that is relevant; at this 
+stage hand-maintaining them is perfectly fine (in any case this wouldn't 
+be fully automated, so in the end our trees will still be organized 
+however we want).
+
+>> +       cpus {
+>> +               #address-cells = <2>;
+>> +               #size-cells = <0>;
+>> +
+>> +               cpu0: cpu@0 {
+>> +                       compatible = "AAPL,icestorm";
+>> +                       device_type = "cpu";
+>> +                       reg = <0x0 0x0>;
+>> +                       enable-method = "spin-table";
+>> +                       cpu-release-addr = <0 0>; // To be filled by loader
+>> +               };
+> 
+> Did you see the discussion on the #armlinux channel about the possibility
+> of moving the cpu-enable method to PSCI based on a UEFI runtime
+> interface?
+> 
+> There are a few open questions about what that would look like in the
+> end, but Ard has come up with a prototype for the kernel side of it
+> (obviously untested), which would interface either into the UEFI side
+> of u-boot, or a simple already-instantiated version that could be
+> kept inside of m1n1 and stay resident in memory.
+> 
+> I would like to see that model get adopted here eventually. If
+> we manage to get the other patches ready for an initial merge in
+> v5.12, we can probably start out with spin-table and move to that
+> in a following release though.
+
+I saw it go by but need to review it again; I've been missing too much 
+sleep this week :) thanks for the reminder.
+
+I think we might want to start with spin-table for now, given that there 
+are no kernel changes needed anyway, but I'm happy to take the protoype 
+for a spin (:)) and try implementing it in m1n1.
+
+I do think it's valuable for whatever we do, at this stage, to not 
+require u-boot; having that be an integral part of the boot chain is 
+perfectly fine in the future but right now it helps to have a simple 
+boot chain while we work out the early bring-up, and while u-boot grows 
+the required support.
+
+-- 
+Hector Martin "marcan" (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
