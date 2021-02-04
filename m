@@ -2,297 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4883F30EF58
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 10:13:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C88D30F05B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 11:20:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235040AbhBDJMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 04:12:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42646 "EHLO
+        id S235315AbhBDKR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 05:17:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233214AbhBDJMY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 04:12:24 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9FF1C061573;
-        Thu,  4 Feb 2021 01:11:40 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: gtucker)
-        with ESMTPSA id E7C281F45EBF
-Subject: Re: next/master bisection: baseline.login on
- sun50i-h5-libretech-all-h3-cc
-To:     Maxime Ripard <mripard@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Chen-Yu Tsai <wens@csie.org>
-References: <601b368c.1c69fb81.97b07.770c@mx.google.com>
-Cc:     "kernelci-results@groups.io" <kernelci-results@groups.io>,
-        linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, clabbe.montjoie@gmail.com,
-        Kevin Hilman <khilman@baylibre.com>
-From:   Guillaume Tucker <guillaume.tucker@collabora.com>
-Message-ID: <357810a1-4c66-063d-24a1-dacdf9a2aba5@collabora.com>
-Date:   Thu, 4 Feb 2021 09:11:35 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        with ESMTP id S235341AbhBDKR4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 05:17:56 -0500
+Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF87CC0613D6;
+        Thu,  4 Feb 2021 02:17:00 -0800 (PST)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4DWZGd01GPz1s9Md;
+        Thu,  4 Feb 2021 11:16:56 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4DWZGc5Htjz1t6pT;
+        Thu,  4 Feb 2021 11:16:56 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id TdOZO1FNesDN; Thu,  4 Feb 2021 11:16:54 +0100 (CET)
+X-Auth-Info: R3kUBoT+0FzKZyrjHuZtR30ewrjf9cb/uph0bi8KbkJmEE+Nd464fPDFS1OnqdTo
+Received: from igel.home (ppp-46-244-168-92.dynamic.mnet-online.de [46.244.168.92])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Thu,  4 Feb 2021 11:16:54 +0100 (CET)
+Received: by igel.home (Postfix, from userid 1000)
+        id 23E1A2C3746; Thu,  4 Feb 2021 11:16:54 +0100 (CET)
+From:   Andreas Schwab <schwab@linux-m68k.org>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     sagar.kadam@sifive.com, devicetree@vger.kernel.org,
+        aou@eecs.berkeley.edu, kernel@esmil.dk, anup@brainfault.org,
+        linux-kernel@vger.kernel.org, Atish Patra <Atish.Patra@wdc.com>,
+        yash.shah@sifive.com, robh+dt@kernel.org,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 0/3] fix macb phy probe failure if phy-reset is not
+ handled
+References: <1605021732-268521-1-git-send-email-sagar.kadam@sifive.com>
+        <mhng-40b3307c-6849-46f4-83c3-ffa1ab92baef@palmerdabbelt-glaptop>
+X-Yow:  ..I just walked into th' HOUSE OF REPRESENTATIVES with fourteen WET
+ DOLPHINS and an out-of-date MARRIAGE MANUAL...
+Date:   Thu, 04 Feb 2021 11:16:54 +0100
+In-Reply-To: <mhng-40b3307c-6849-46f4-83c3-ffa1ab92baef@palmerdabbelt-glaptop>
+        (Palmer Dabbelt's message of "Wed, 13 Jan 2021 21:01:00 -0800 (PST)")
+Message-ID: <87a6skw31l.fsf@igel.home>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1.91 (gnu/linux)
 MIME-Version: 1.0
-In-Reply-To: <601b368c.1c69fb81.97b07.770c@mx.google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Samuel,
+On Jan 13 2021, Palmer Dabbelt wrote:
 
-Please see the bisection report below about a boot failure on
-sun50i-h5-libretech-all-h3-cc with next-20210203.
+> On Tue, 10 Nov 2020 07:22:09 PST (-0800), sagar.kadam@sifive.com wrote:
+>> HiFive Unleashed is having VSC8541-01 ethernet phy device and requires a
+>> specific reset sequence of 0-1-0-1 in order to use it in unmanaged mode.
+>> This series addresses a corner case where phy reset is not handled by boot
+>> stages prior to linux.
+>> Somewhat similar unreliable phy probe failure was reported and discussed
+>> here [1].
+>> The macb driver fails to detect the ethernet phy device if the bootloader
+>> doesn't provide a proper reset sequence to the phy device or the phy itself
+>> is in some invalid state. Currently, the FSBL or u-boot-spl is resetting
+>> the phy device, and so there is no issue observed in the linux network
+>> setup.
+>>
+>> The series is based on linux-5.10-rc5.
+>> Patch 1: Add the OUI to the phy dt node to fix issue of missing mdio device
+>> Patch 2 and 3:
+>> 	Resetting phy needs GPIO support so add to dt and defconfig.
+>>
+>> [1] https://lkml.org/lkml/2018/11/29/154
+>>
+>> To reproduce the issue:
+>> Using FSBL:
+>> 1. Comment out VSC8541 reset sequence in fsbl/main.c
+>>    from within the freedom-u540-c000-bootloader.
+>> 2. Build and flash fsbl.bin to micro sdcard.
+>>
+>> Using u-boot:
+>> 1. Comment out VSC8541 reset sequence in board/sifive/fu540/spl.c
+>>    from mainline u-boot source code.
+>> 2. Build and flash u-boot binaries to micro sdcard.
+>>
+>> Boot the board and bootlog will show network setup failure messages as:
+>>
+>> [  1.069474] libphy: MACB_mii_bus: probed
+>> [  1.073092] mdio_bus 10090000.ethernet-ffffffff: MDIO device at address 0
+>> 	       is missing
+>> .....
+>> [  1.979252] macb 10090000.ethernet eth0: Could not attach PHY (-19)
+>>
+>> 3. Now apply the series build, and boot kernel.
+>> 4. MACB and VSC8541 driver get successfully probed and the network is set
+>>    without any failure.
+>>
+>>
+>> So irrespective of whether the prior stages handle the phy reset sequence,
+>> the probing is successful in both the cases of cold boot and warm boot.
+>>
+>> Change History:
+>> ===============================
+>> V2:
+>> -Rebased v1 on linux kernel v5.10-rc3.
+>>
+>> V1:
+>> -Ignore 4th patch as suggested and so removed it from the series.
+>> -Verified this series on 5.7-rc5.
+>>
+>> V0: Base RFC patch. Verified on 5.7-rc2
+>>
+>> Sagar Shrikant Kadam (3):
+>>   dts: phy: fix missing mdio device and probe failure of vsc8541-01
+>>     device
+>>   dts: phy: add GPIO number and active state used for phy reset
+>>   riscv: defconfig: enable gpio support for HiFive Unleashed
+>>
+>>  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 2 ++
+>>  arch/riscv/configs/defconfig                        | 2 ++
+>>  2 files changed, 4 insertions(+)
+>
+> David pointed out I missed these, they're on fixes.  Thanks!
 
-Reports aren't automatically sent to the public while we're
-trialing new bisection features on kernelci.org but this one
-looks valid.
+This is now on 5.10.12, and breaks ethernet on the Hifive Unleashed:
 
-The kernel is most likely crashing very early on, so there's
-nothing in the logs.  Please let us know if you need some help
-with debugging or trying a fix on these platforms.
+[   12.777976] macb 10090000.ethernet: Registered clk switch 'sifive-gemgxl-mgmt'
+[   12.784559] macb 10090000.ethernet: GEM doesn't support hardware ptp.
+[   12.791629] libphy: MACB_mii_bus: probed
+[   12.919728] MACsec IEEE 802.1AE
+[   12.984676] macb 10090000.ethernet eth0: Cadence GEM rev 0x10070109 at 0x10090000 irq 16 (70:b3:d5:92:f1:07)
+[   14.030319] Microsemi VSC8541 SyncE 10090000.ethernet-ffffffff:00: phy_poll_reset failed: -110
+[   14.038986] macb 10090000.ethernet eth0: Could not attach PHY (-110)
 
-Best wishes,
-Guillaume
+Andreas.
 
-
-On 03/02/2021 23:49, KernelCI bot wrote:
-> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-> * This automated bisection report was sent to you on the basis  *
-> * that you may be involved with the breaking commit it has      *
-> * found.  No manual investigation has been done to verify it,   *
-> * and the root cause of the problem may be somewhere else.      *
-> *                                                               *
-> * If you do send a fix, please include this trailer:            *
-> *   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
-> *                                                               *
-> * Hope this helps!                                              *
-> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-> 
-> next/master bisection: baseline.login on sun50i-h5-libretech-all-h3-cc
-> 
-> Summary:
->   Start:      58b6c0e507b7 Add linux-next specific files for 20210203
->   Plain log:  https://storage.kernelci.org/next/master/next-20210203/arm64/defconfig/gcc-8/lab-baylibre/baseline-sun50i-h5-libretech-all-h3-cc.txt
->   HTML log:   https://storage.kernelci.org/next/master/next-20210203/arm64/defconfig/gcc-8/lab-baylibre/baseline-sun50i-h5-libretech-all-h3-cc.html
->   Result:     7240f6156428 ARM: dts: sunxi: Move wakeup-capable IRQs to r_intc
-> 
-> Checks:
->   revert:     PASS
->   verify:     PASS
-> 
-> Parameters:
->   Tree:       next
->   URL:        https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
->   Branch:     master
->   Target:     sun50i-h5-libretech-all-h3-cc
->   CPU arch:   arm64
->   Lab:        lab-baylibre
->   Compiler:   gcc-8
->   Config:     defconfig
->   Test case:  baseline.login
-> 
-> Breaking commit found:
-> 
-> -------------------------------------------------------------------------------
-> commit 7240f6156428fd61a9b681db71cc288848dd04d7
-> Author: Samuel Holland <samuel@sholland.org>
-> Date:   Sun Jan 17 23:50:38 2021 -0600
-> 
->     ARM: dts: sunxi: Move wakeup-capable IRQs to r_intc
->     
->     All IRQs that can be used to wake up the system must be routed through
->     r_intc, so they are visible to firmware while the system is suspended.
->     
->     In addition to the external NMI input, which is already routed through
->     r_intc, these include PIO and R_PIO (gpio-keys), the LRADC, and the RTC.
->     
->     Acked-by: Maxime Ripard <mripard@kernel.org>
->     Signed-off-by: Samuel Holland <samuel@sholland.org>
->     Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> 
-> diff --git a/arch/arm/boot/dts/sun6i-a31.dtsi b/arch/arm/boot/dts/sun6i-a31.dtsi
-> index 9532331af8ef..a31f9072bf79 100644
-> --- a/arch/arm/boot/dts/sun6i-a31.dtsi
-> +++ b/arch/arm/boot/dts/sun6i-a31.dtsi
-> @@ -611,6 +611,7 @@
->  		pio: pinctrl@1c20800 {
->  			compatible = "allwinner,sun6i-a31-pinctrl";
->  			reg = <0x01c20800 0x400>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> @@ -802,6 +803,7 @@
->  		lradc: lradc@1c22800 {
->  			compatible = "allwinner,sun4i-a10-lradc-keys";
->  			reg = <0x01c22800 0x100>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
->  			status = "disabled";
->  		};
-> @@ -1299,6 +1301,7 @@
->  			#clock-cells = <1>;
->  			compatible = "allwinner,sun6i-a31-rtc";
->  			reg = <0x01f00000 0x54>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&osc32k>;
-> @@ -1383,6 +1386,7 @@
->  		r_pio: pinctrl@1f02c00 {
->  			compatible = "allwinner,sun6i-a31-r-pinctrl";
->  			reg = <0x01f02c00 0x400>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&apb0_gates 0>, <&osc24M>, <&rtc 0>;
-> diff --git a/arch/arm/boot/dts/sun8i-a23-a33.dtsi b/arch/arm/boot/dts/sun8i-a23-a33.dtsi
-> index a84c90a660ca..4461d5098b20 100644
-> --- a/arch/arm/boot/dts/sun8i-a23-a33.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-a23-a33.dtsi
-> @@ -338,6 +338,7 @@
->  		pio: pinctrl@1c20800 {
->  			/* compatible gets set in SoC specific dtsi file */
->  			reg = <0x01c20800 0x400>;
-> +			interrupt-parent = <&r_intc>;
->  			/* interrupts get set in SoC specific dtsi file */
->  			clocks = <&ccu CLK_BUS_PIO>, <&osc24M>, <&rtc 0>;
->  			clock-names = "apb", "hosc", "losc";
-> @@ -473,6 +474,7 @@
->  		lradc: lradc@1c22800 {
->  			compatible = "allwinner,sun4i-a10-lradc-keys";
->  			reg = <0x01c22800 0x100>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
->  			status = "disabled";
->  		};
-> @@ -709,6 +711,7 @@
->  		rtc: rtc@1f00000 {
->  			compatible = "allwinner,sun8i-a23-rtc";
->  			reg = <0x01f00000 0x400>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
->  			clock-output-names = "osc32k", "osc32k-out";
-> @@ -805,6 +808,7 @@
->  		r_pio: pinctrl@1f02c00 {
->  			compatible = "allwinner,sun8i-a23-r-pinctrl";
->  			reg = <0x01f02c00 0x400>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&apb0_gates 0>, <&osc24M>, <&rtc 0>;
->  			clock-names = "apb", "hosc", "losc";
-> diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/sun8i-a83t.dtsi
-> index 414a8f9c73d1..dcccdd7b0c5b 100644
-> --- a/arch/arm/boot/dts/sun8i-a83t.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
-> @@ -708,6 +708,7 @@
->  
->  		pio: pinctrl@1c20800 {
->  			compatible = "allwinner,sun8i-a83t-pinctrl";
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -1147,6 +1148,7 @@
->  		r_lradc: lradc@1f03c00 {
->  			compatible = "allwinner,sun8i-a83t-r-lradc";
->  			reg = <0x01f03c00 0x100>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
->  			status = "disabled";
->  		};
-> @@ -1154,6 +1156,7 @@
->  		r_pio: pinctrl@1f02c00 {
->  			compatible = "allwinner,sun8i-a83t-r-pinctrl";
->  			reg = <0x01f02c00 0x400>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&r_ccu CLK_APB0_PIO>, <&osc24M>,
->  				 <&osc16Md512>;
-> diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-> index 4bf25c5b873e..c7428df9469e 100644
-> --- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-> +++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-> @@ -395,6 +395,7 @@
->  		pio: pinctrl@1c20800 {
->  			/* compatible is in per SoC .dtsi file */
->  			reg = <0x01c20800 0x400>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&ccu CLK_BUS_PIO>, <&osc24M>, <&rtc 0>;
-> @@ -852,6 +853,7 @@
->  		rtc: rtc@1f00000 {
->  			/* compatible is in per SoC .dtsi file */
->  			reg = <0x01f00000 0x400>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
->  			clock-output-names = "osc32k", "osc32k-out", "iosc";
-> @@ -909,6 +911,7 @@
->  		r_pio: pinctrl@1f02c00 {
->  			compatible = "allwinner,sun8i-h3-r-pinctrl";
->  			reg = <0x01f02c00 0x400>;
-> +			interrupt-parent = <&r_intc>;
->  			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&r_ccu CLK_APB0_PIO>, <&osc24M>, <&rtc 0>;
->  			clock-names = "apb", "hosc", "losc";
-> -------------------------------------------------------------------------------
-> 
-> 
-> Git bisection log:
-> 
-> -------------------------------------------------------------------------------
-> git bisect start
-> # good: [3aaf0a27ffc29b19a62314edd684b9bc6346f9a8] Merge tag 'clang-format-for-linux-v5.11-rc7' of git://github.com/ojeda/linux
-> git bisect good 3aaf0a27ffc29b19a62314edd684b9bc6346f9a8
-> # bad: [58b6c0e507b7421b03b2f2a92bddbb8c6fa1b2f6] Add linux-next specific files for 20210203
-> git bisect bad 58b6c0e507b7421b03b2f2a92bddbb8c6fa1b2f6
-> # bad: [f3c2d07b431902b54796d1f9900e204e259b3fbe] Merge remote-tracking branch 'crypto/master'
-> git bisect bad f3c2d07b431902b54796d1f9900e204e259b3fbe
-> # bad: [beaae3d63383e985ab1586e11ea920079f05f436] Merge remote-tracking branch 'printk/for-next'
-> git bisect bad beaae3d63383e985ab1586e11ea920079f05f436
-> # good: [54fb15f26a5df379e94312bc836479359224a10e] Merge remote-tracking branch 'qcom/for-next'
-> git bisect good 54fb15f26a5df379e94312bc836479359224a10e
-> # bad: [e6eac2cd0d330b34a20cc8d44d7d9128cb4c4546] Merge remote-tracking branch 'fscache/fscache-next'
-> git bisect bad e6eac2cd0d330b34a20cc8d44d7d9128cb4c4546
-> # bad: [262b65d26567fbd8c794ed38b3166a04fdb144a7] Merge remote-tracking branch 'mips/mips-next'
-> git bisect bad 262b65d26567fbd8c794ed38b3166a04fdb144a7
-> # bad: [c0c33fc2564d400e72dfd7aa5480fe00dcfa6f56] Merge remote-tracking branch 'clk-renesas/renesas-clk'
-> git bisect bad c0c33fc2564d400e72dfd7aa5480fe00dcfa6f56
-> # good: [83b531d880acaa48b922321d0474bc93794d1b06] Merge remote-tracking branch 'stm32/stm32-next'
-> git bisect good 83b531d880acaa48b922321d0474bc93794d1b06
-> # bad: [fd8a1ce48fdbaa03abddf604d4f69b8e4c4a0de4] Merge remote-tracking branch 'sunxi/sunxi/for-next'
-> git bisect bad fd8a1ce48fdbaa03abddf604d4f69b8e4c4a0de4
-> # bad: [02e07b8ada0e8933d8a7f6e1126658bdd2f322d2] arm64: dts: allwinner: Move wakeup-capable IRQs to r_intc
-> git bisect bad 02e07b8ada0e8933d8a7f6e1126658bdd2f322d2
-> # good: [ee3ff030a3a9a88f14148ab81d62945ffbd77396] arm64: dts: allwinner: pinephone: Remove useless light sensor supplies
-> git bisect good ee3ff030a3a9a88f14148ab81d62945ffbd77396
-> # good: [01223da25a060c456d5a50116bbce7f1c3de0f2a] ARM: dts: sunxi: Rename nmi_intc to r_intc
-> git bisect good 01223da25a060c456d5a50116bbce7f1c3de0f2a
-> # good: [f10d37f21eaf50458f215cc1d4cf1ea1d4adc6c7] ARM: dts: sunxi: h3/h5: Add r_intc node
-> git bisect good f10d37f21eaf50458f215cc1d4cf1ea1d4adc6c7
-> # bad: [77f8a235273909e2d9a6da787046355098f5331c] arm64: dts: allwinner: Use the new r_intc binding
-> git bisect bad 77f8a235273909e2d9a6da787046355098f5331c
-> # bad: [7240f6156428fd61a9b681db71cc288848dd04d7] ARM: dts: sunxi: Move wakeup-capable IRQs to r_intc
-> git bisect bad 7240f6156428fd61a9b681db71cc288848dd04d7
-> # first bad commit: [7240f6156428fd61a9b681db71cc288848dd04d7] ARM: dts: sunxi: Move wakeup-capable IRQs to r_intc
-> -------------------------------------------------------------------------------
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Groups.io Links: You receive all messages sent to this group.
-> View/Reply Online (#6404): https://groups.io/g/kernelci-results/message/6404
-> Mute This Topic: https://groups.io/mt/80368574/924702
-> Group Owner: kernelci-results+owner@groups.io
-> Unsubscribe: https://groups.io/g/kernelci-results/unsub [guillaume.tucker@collabora.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
-> 
-
+-- 
+Andreas Schwab, schwab@linux-m68k.org
+GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
+"And now for something completely different."
