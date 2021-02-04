@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BF1F30ECD2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 07:59:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5CF830ECF3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 08:08:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbhBDG7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 01:59:07 -0500
-Received: from muru.com ([72.249.23.125]:56976 "EHLO muru.com"
+        id S233887AbhBDHHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 02:07:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46814 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229998AbhBDG7G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Feb 2021 01:59:06 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 01C9A80C5;
-        Thu,  4 Feb 2021 06:58:35 +0000 (UTC)
-Date:   Thu, 4 Feb 2021 08:58:20 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Drew Fustini <drew@beagleboard.org>
-Cc:     bcousson@baylibre.com, Rob Herring <robh+dt@kernel.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 1/2] ARM: dts: am335x-pocketbeagle: unique gpio-line-names
-Message-ID: <YBubDME90umkF9aQ@atomide.com>
-References: <20210127000303.436595-1-drew@beagleboard.org>
+        id S233790AbhBDHHG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 02:07:06 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3815564DC3;
+        Thu,  4 Feb 2021 07:06:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612422386;
+        bh=dRzN1eritz4KejDq5y9CtyTsPixq4UxULm6ILZY6750=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DRkMuM6nAbD1KdJtNr2tyLGFz10R7J2AfWuX+1kDtqbZnI7UOb3UWGTCgDfn6bT9T
+         6Tk6IVkjKa0grgzEhyoeTxYTGnoPbIc1k00rZR5lYlijsNn9xNus3s0etPvGXg2ctc
+         BtvtnWpIU/C5usV7NezaTYYgPR6n4OMCcuDfRdWUed1ez3Kb/DboYIG3MNoyd565bD
+         HNKoQBWs9KEDJdzAFCQKhO9zkCYU6FIbhQBYPMTRJhe3w3lQIPy/7V7OsNQKSmxn3p
+         tplbimqqFeO5mPVXS4Cxfy8ezcooCpSdh2sHRJD+lcHc3COwSRo9heFBkamZJdVIGX
+         j+FMcWearue1g==
+Date:   Thu, 4 Feb 2021 12:36:22 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp: Add SC8180X UFS to the
+ QMP binding
+Message-ID: <20210204070622.GB3079@vkoul-mobl.Dlink>
+References: <20210120224531.1610709-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210127000303.436595-1-drew@beagleboard.org>
+In-Reply-To: <20210120224531.1610709-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Drew Fustini <drew@beagleboard.org> [210127 02:04]:
-> Based on linux-gpio discussion [1], it is best practice to make the
-> gpio-line-names unique. Generic names like "[ethernet]" are replaced
-> with the name of the unique signal on the AM3358 SoC ball corresponding
-> to the gpio line. "[NC]" is also renamed to the standard "NC" name to
-> represent "not connected".
-> 
-> [1] https://lore.kernel.org/linux-gpio/20201216195357.GA2583366@x1/
+On 20-01-21, 14:45, Bjorn Andersson wrote:
+> Add compatible for the SC8180x UFS PHY to the QMP binding.
 
-So are these needed for v5.12 as fixes, or can these wait until after
-the merge window for v5.13?
+Applied, thanks
 
-Regards,
-
-Tony
+-- 
+~Vinod
