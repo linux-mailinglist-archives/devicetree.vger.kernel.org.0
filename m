@@ -2,119 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ECBE30EA26
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 03:26:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DAD030EAD6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 04:20:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233677AbhBDCZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Feb 2021 21:25:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40348 "EHLO
+        id S234409AbhBDDTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Feb 2021 22:19:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233520AbhBDCZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 21:25:45 -0500
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B26DC0613D6
-        for <devicetree@vger.kernel.org>; Wed,  3 Feb 2021 18:25:05 -0800 (PST)
-Received: by mail-qk1-x72f.google.com with SMTP id l27so1958946qki.9
-        for <devicetree@vger.kernel.org>; Wed, 03 Feb 2021 18:25:05 -0800 (PST)
+        with ESMTP id S229601AbhBDDTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Feb 2021 22:19:33 -0500
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DEB1C061573;
+        Wed,  3 Feb 2021 19:18:53 -0800 (PST)
+Received: by mail-io1-xd2d.google.com with SMTP id j5so1693493iog.11;
+        Wed, 03 Feb 2021 19:18:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=coQqiN3FjhMumWX+Pj5k2VahzTykRwZ/urCVvX96ACs=;
-        b=QRw9w8JbGadOnoLA6qR/63CZCpksB52KDOqQ3673VQ/ViuSlws/Hx9o/vcDJK+Khek
-         Wx4K29ZWJwSd2nZ0Ng5sOry3reqIeFnmjGYHi1IKgsAIHHrYEbhcMDwhAOv6EwObg2uX
-         LOXTgl+qcVDYtk4b+EgCf1YQRHhk28g0CFWXtsSw5P4/5gJgzTUze8qMhYgM+lFEd0yh
-         rh4K0YtwNz5aF/3/YyMjxRhEk7Dr53MWxvva2SqldUvT41+k8FuP1vVQThPHHjQknvQb
-         lq5Ok3CWLm1C0V2OqDOhe3jsWtiAcCwIcp2qnNWDqMHJ7Fvr6gdRY4qZdmrXQlLHwwNn
-         7NWw==
+        bh=DZiFYdS72YXSF/YcGe+WmP/kvp/Q5JIvKaSw7pcHJWA=;
+        b=hH6n317tODhtW1eRiw0q6H0BcGIlYcbBt8e4FRq2vp5JHlhLTnWrH82VZR7jnSXyA6
+         5UOKoKnnfc5XEgNSJ3owPgQnppne7gFAnl8/8vs9jYRsdDyRjd/tt/iauK+6fSli3Dlp
+         R9U0Bnggmj7z/QcLYisWXTMeYBRZCADdTygmtuXM9I9kDJm7UCGn3GCKZtRHFxWgXySl
+         fd1RSPgWL2i3kRmFmckrXEnzdzU5oINDAlS5uNq1vV1sdKcgudsgMT+26ZjOIT/bxdPG
+         F0tbP/0OUxgvtoTn7xCLJTwC5S8LGC5MUMo4tHWKdxhJGST7IJ9NRhb78pZ+ug5gVHty
+         cMkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=coQqiN3FjhMumWX+Pj5k2VahzTykRwZ/urCVvX96ACs=;
-        b=ewzTY+jfKHqwj2V4AmMWWu3OGHryXpA+LL6xp8IjMnk7uyzFyuQU2gRb2mZ8juBXlN
-         p7Y5NnIYYR5n2skbKh5Oguf94eJSe814BxbK4PSecxq8KafjUuvK/CaL9fG+kF960Wi8
-         G95NHZY4Gx5NIPBliDgnSZcxRlPNX9ACdqsIvdORPhdGo5JGQhLkYgqmB6ZiknUAamcq
-         fJQhnS0ALjuCquDWkiRWUv7S0pYgRf0EwrZGQ30yX6lk37e9IEsiv7mhZWUwBb8ZagRQ
-         C6gvTK3BVxJ1Yl9QzPcZwwqI1r0bR81TP4rGacrSFZgyuC+ue1TkNOVKVUK1vn9JC0Lw
-         Mk0w==
-X-Gm-Message-State: AOAM532bqO2z7APs3GteV7DPl8xCCU7elnSEAwTH7UFEfgVbVlkFXSCQ
-        WAQYskjggewgQYbQ5EpLb5BKoMG/5NmMfW90TRFbWg==
-X-Google-Smtp-Source: ABdhPJyRfjc8PKg1KqpRhg1EDVcRoiAlJjnb05X+vD4GIEVsvYUxljT0A1kSoDUY0OLCR0KH4+t+b5gMLOv09r5pQgs=
-X-Received: by 2002:a37:cd5:: with SMTP id 204mr5690206qkm.410.1612405503880;
- Wed, 03 Feb 2021 18:25:03 -0800 (PST)
+        bh=DZiFYdS72YXSF/YcGe+WmP/kvp/Q5JIvKaSw7pcHJWA=;
+        b=iD/66i0UKsrB7ZiMTjLie658ITjwPa5w5o2FRs4ln19k5SMe9hqCY8cNs8u/ky16oJ
+         gxCnE9zo0CXIe2y2/YKdIo5qIJHdJir/IM+Hl0TlT/Yp1nRA5bHrABpFZbrcoUhTZ19O
+         U2CztpWhcIsqXutP6dS+gERO7nB7VjjTCDDBbzfVaJDl7eUc5egy+lDveYgPZubwK/X3
+         EGLFf3KSzVayWBk928BB7PMBeG0J4NvU6BQRPIyxGOnzZp15iRfBkGQLoMS51OYKaCXc
+         4WKM6qBJO04cmKiTnxC5+27pTwHsY+JGCjSCxc8oov+8zYj9F1V5eMYD2pg0772Fp5tC
+         RxkA==
+X-Gm-Message-State: AOAM531xKDnEEFynkt7ylSRFxy+vTllRAbVW5CABOiEngmsw4MtSKh+l
+        KWiyh4jO7i8RF5moZwya2N5M5cXCv6sAodt1jZU=
+X-Google-Smtp-Source: ABdhPJxbxiBXBnRWIlSF2MVAG+Lc4eNFMSRSxXep/mfEYl/G3WZThA77PSJaoeG4ONXxqjQkCICKjiim+guzwid5Ng4=
+X-Received: by 2002:a05:6638:35a3:: with SMTP id v35mr6064046jal.36.1612408732602;
+ Wed, 03 Feb 2021 19:18:52 -0800 (PST)
 MIME-Version: 1.0
-References: <20210202161733.932215-1-kyletso@google.com> <20210202161733.932215-3-kyletso@google.com>
- <CANLzEksFtyYe01F_+MEFdG+KC83FAu00-PAtc95-v2GswMnTvw@mail.gmail.com>
-In-Reply-To: <CANLzEksFtyYe01F_+MEFdG+KC83FAu00-PAtc95-v2GswMnTvw@mail.gmail.com>
-From:   Kyle Tso <kyletso@google.com>
-Date:   Thu, 4 Feb 2021 10:24:47 +0800
-Message-ID: <CAGZ6i=3EqLVJn+KE4TV2iq+Z+HKOJQzMOgODvw-Z0z3CpjYCzA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/8] usb: pd: Update VDO definitions
-To:     Benson Leung <bleung@chromium.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hans de Goede <hdegoede@redhat.com>,
+References: <20210203090727.789939-1-zhang.lyra@gmail.com> <20210203090727.789939-3-zhang.lyra@gmail.com>
+ <eb55a1de-2816-9029-b642-b3067e311417@infradead.org>
+In-Reply-To: <eb55a1de-2816-9029-b642-b3067e311417@infradead.org>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Thu, 4 Feb 2021 11:18:16 +0800
+Message-ID: <CAAfSe-sKqzub08kBgYNimBwbaf5s-Ed=Ef3PcMvA_8YTYsDwUw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] iommu: add Unisoc iommu basic driver
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Prashant Malani <pmalani@google.com>
+        Joerg Roedel <joro@8bytes.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 4, 2021 at 12:55 AM Benson Leung <bleung@chromium.org> wrote:
+On Thu, 4 Feb 2021 at 01:44, Randy Dunlap <rdunlap@infradead.org> wrote:
 >
-> Hey Kyle,
->
-> On Tue, Feb 2, 2021 at 8:23 AM Kyle Tso <kyletso@google.com> wrote:
+> On 2/3/21 1:07 AM, Chunyan Zhang wrote:
+> > diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
+> > index 192ef8f61310..99e7712f3903 100644
+> > --- a/drivers/iommu/Kconfig
+> > +++ b/drivers/iommu/Kconfig
+> > @@ -408,4 +408,16 @@ config VIRTIO_IOMMU
 > >
-> > "PD Spec Revision 3.0 Version 2.0 + ECNs 2020-12-10" introduces several
-> > changes regarding the ID Header VDO and the Product Type VDOs.
+> >         Say Y here if you intend to run this kernel as a guest.
 > >
-> > Signed-off-by: Kyle Tso <kyletso@google.com>
+> > +config SPRD_IOMMU
+> > +     tristate "Unisoc IOMMU Support"
+> > +     depends on ARCH_SPRD || COMPILE_TEST
+> > +     select IOMMU_API
+> > +     help
+> > +       Support for IOMMU on Unisoc's SoCs, this iommu can be used by
 >
-> We have to actually be very careful in this change, because the switch
-> from PD 2.0 -> PD 3.0 does not mean that a PD 3.0 DFP will never
-> encounter a PD 2.0 partner or cable again.
+>         s/iommu/IOMMU/ please
+
+Sure, thanks.
+
+Chunyan
+
 >
-> It actually has to be the case that we may have to maintain two sets
-> of these object field definitions (and any other PD object decoding we
-> do in the kernel) and switch the decoding on pd_revision (which I
-> recently added here:
-> https://lore.kernel.org/linux-usb/20210129061406.2680146-3-bleung@chromium.org).
->
-> Just to put a point on it: PD 2.0's Passive Cable VDO has B4, which is
-> "Vbus through cable." PD 3.0, on the other hand, reserves this bit, so
-> the field is gone. We can't just delete that bit in the kernel's data
-> structures. We have to be able to refer to it if we encounter a PD 2.0
-> cable.
->
-> I think this change needs to be reworked so that we strictly maintain
-> a PD 2.0 object field definitions, and a separate PD 3.0 one too. They
-> will operate on the same objects, but whoever's doing the decoding has
-> to check the revision (2.0 vs 3.0) first to check applicability of one
-> set or the other.
->
-> Thanks,
-> Benson
+> > +       Unisoc's multimedia devices, such as display, Image codec(jpeg)
+> > +       and a few signal processors, including VSP(video), GSP(graphic),
+> > +       ISP(image), and CPP(camera pixel processor), etc.
+> > +
+> > +       Say Y here if you want to use the multimedia devices listed above.
 >
 >
 > --
-> Benson Leung
-> Staff Software Engineer
-> Chrome OS Kernel
-> Google Inc.
-> bleung@google.com
-> Chromium OS Project
-> bleung@chromium.org
-
-You are correct!
-Fix is here: https://patchwork.kernel.org/project/linux-usb/patch/20210204005036.1555294-1-kyletso@google.com/
-
-thanks,
-Kyle
+> ~Randy
