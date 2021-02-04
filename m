@@ -2,99 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5147B30FB58
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 19:28:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0387E30FB90
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 19:35:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238964AbhBDSZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 13:25:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48458 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239008AbhBDSZJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 13:25:09 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132CAC061786
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 10:24:29 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id z6so4666257wrq.10
-        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 10:24:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bqhKJeoVgC8X9omnqAQFhGwn7i6vcm5biCu8hCuSmsc=;
-        b=mS1F26WRUDL/2eC6m6CaQ7EFMSsdGeTCCOhzSMDCjGT93wLceWJ9el78YcVG2XqT5i
-         UqVytoukFRxRQT8DHQOcZSdezf6aZfm4cMHxWtUBL914wTBeCU3B+7bROExs5LUwFrCJ
-         WXe2PCmgsr4VArHc42+FuL7ILIXzXBFQv0oVLONVawbLaWqcC6hgjXQBMZBD6TX8J8dJ
-         3TrqtrEJZ117lGENT5OWBVyBNmhfhsO2lc4Ev0t3lQ+xJX2ZNI9xwHK76j1T8+bfINfz
-         SSnuRec1a0u+Fgv5p1JNHOiDUnNYpC3ZZM4JebJW5CZizUNezhin4g67sF9QjV0HpO74
-         meWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bqhKJeoVgC8X9omnqAQFhGwn7i6vcm5biCu8hCuSmsc=;
-        b=ED5a5uTpAK77dNzU+WKnf7fUqsOOTpewSfFyQR2vJ/2dRMM0QBc9nCoX1vLmKMjyhT
-         xEJI8mkO49hNQCqT4DefB+v/e5Qe22l3HhdGW6Khp9ooxlPFgLnlOl7DVja0ZlSa7mO4
-         QjSHRRlByCdIQGd/137IprM9c9o5r4HfAg0RRYkLHkrR9JQhMO4EWBvDptn2A7/a/RmK
-         qxlKCN3awd1lfnMQDcsIoq0Ybj+Vz6+1HYM0OthYACBFzd890kSetpS/xtEuxaZNENk8
-         LyLRIkINOT9SX/1Ijuu+GrUyGkEA0tsRWExgA4ZJBhitKr0Gjbq74ZmPAt7HkPrneVhX
-         Bpxw==
-X-Gm-Message-State: AOAM530RH8/669BqCBXh8krbmeLQD3lEjH3hqMYxsyBhm+JRpU2BAHV8
-        JKDA9dLb9f+hUbJ3pf+36F2yqA==
-X-Google-Smtp-Source: ABdhPJyY9kiYlOPf8laxHOlhG16GwuGMkScM8L4Dj0rm/ARmDfAXf85n5/++3N6RBc9bsoayAr8Ncg==
-X-Received: by 2002:adf:e642:: with SMTP id b2mr668852wrn.221.1612463067694;
-        Thu, 04 Feb 2021 10:24:27 -0800 (PST)
-Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
-        by smtp.gmail.com with ESMTPSA id g14sm9650047wru.45.2021.02.04.10.24.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Feb 2021 10:24:27 -0800 (PST)
-Date:   Thu, 4 Feb 2021 18:24:24 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Will Deacon <will@kernel.org>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 12/26] KVM: arm64: Introduce a Hyp buddy page
- allocator
-Message-ID: <YBw72KeLQ5dzSoJi@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-13-qperret@google.com>
- <20210202181307.GA17311@willie-the-truck>
- <YBrsep4xK1F4YRWb@google.com>
- <20210204143106.GA20792@willie-the-truck>
- <YBwKRM3uHDMC9S0U@google.com>
- <20210204174849.GA21303@willie-the-truck>
- <YBw2aIr/Ktx1dsOT@google.com>
- <20210204181317.GE21303@willie-the-truck>
+        id S239042AbhBDScs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 13:32:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44982 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239153AbhBDSaq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 13:30:46 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 13D1B64E06;
+        Thu,  4 Feb 2021 18:29:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612463391;
+        bh=m2ULECe/5nShjpaNukVPB1Kg9k0QQfSi+2ZmqBBEpGs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=O/LNBdO3xd+g9w7/5qjfXOSTtr4mSJ9IrEz1BxVvwHFiiel3fILTMyxF534RzQQ6e
+         dWNmW4YGkhvR3f0qNjS1F1cWrRBMnsLyW1vNcoqBVmXGn6etQ5nHpKlRcWNHvDfY3I
+         18fpGaTjYYafIzHvYgkqDlZdUYjXqHZqYDYrE8B3KTAurSebytxHkx/+7SfOJmKxtv
+         89V+vfbFUaYNvT3t1SVFjp//aaornWIug+AH20j3apiqMBiyXwAB76RYE8V6Ack1pN
+         4KVJeJiu3hHE7/lDBCLzXRh7+wGLvZ/Xw32uIGZaMFElJNBnci1ddtEY22poxwjSte
+         2KS29439QNy+g==
+Date:   Thu, 4 Feb 2021 19:29:39 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Andy Gross <agross@kernel.org>,
+        Jesper Nilsson <jesper.nilsson@axis.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-samsung-soc@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-arm-kernel@axis.com, Richard Zhu <hongxing.zhu@nxp.com>,
+        linux-arm-msm@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-pci@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-omap@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
+        linux-tegra@vger.kernel.org, Jonathan Chocron <jonnyc@amazon.com>,
+        Zhou Wang <wangzhou1@hisilicon.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH 01/13] doc: bindings: pci: designware-pcie.txt: convert
+ it to yaml
+Message-ID: <20210204192939.0daaec74@coco.lan>
+In-Reply-To: <20210204172945.GA662023@robh.at.kernel.org>
+References: <cover.1612271903.git.mchehab+huawei@kernel.org>
+        <706e684f571e142362d7be74eb1dcee2c8558052.1612271903.git.mchehab+huawei@kernel.org>
+        <1612287895.001149.3887347.nullmailer@robh.at.kernel.org>
+        <20210203074900.6d581153@coco.lan>
+        <20210204172945.GA662023@robh.at.kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210204181317.GE21303@willie-the-truck>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 04 Feb 2021 at 18:13:18 (+0000), Will Deacon wrote:
-> I was going from memory, but the loop in __hyp_alloc_pages() searches up to
-> HYP_MAX_ORDER, whereas this is _never_ going to succeed beyond some per-pool
-> order determined by the size of the pool. But I doubt it matters -- I
-> thought we did more than just check a list.
+Em Thu, 4 Feb 2021 11:29:45 -0600
+Rob Herring <robh@kernel.org> escreveu:
 
-Ah, I see -- I was looking at the __hyp_attach_page() loop.
+> On Wed, Feb 03, 2021 at 07:49:00AM +0100, Mauro Carvalho Chehab wrote:
+> > Hi Rob,
+> > 
+> > Em Tue, 02 Feb 2021 11:44:54 -0600
+> > Rob Herring <robh@kernel.org> escreveu:
+> >   
+> > > My bot found errors running 'make dt_binding_check' on your patch:
+> > > 
+> > > yamllint warnings/errors:
+> > > 
+> > > dtschema/dtc warnings/errors:
+> > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
+> > > 	'type' is a required property
+> > > 	Additional properties are not allowed ('$ref' was unexpected)
+> > > 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: properties:snps,enable-cdm-check: 'oneOf' conditional failed, one must be fixed:
+> > > 		'enum' is a required property
+> > > 		'const' is a required property
+> > > 	'/schemas/types.yaml#definitions/flag' does not match 'types.yaml#/definitions/'  
+> 
+> You need a '/' between '#' and 'definitions'.
 
-I think it's a good point, I should be able to figure out a max order
-based on the size and alignment of the pool, and cache that in struct
-hyp_pool to optimize cases where this is < HYP_MAX_ORDER.
-Should be easy enough, I'll see what I can do in v3.
+ah, OK. Will add it at the next version.
+ 
+> > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/snps,pcie.yaml: ignoring, error in schema: properties: snps,enable-cdm-check
+> > > warning: no schema found in file: ./Documentation/devicetree/bindings/pci/snps,pcie.yaml
+> > > 
+> > > See https://patchwork.ozlabs.org/patch/1434686
+> > > 
+> > > This check can fail if there are any dependencies. The base for a patch
+> > > series is generally the most recent rc1.
+> > > 
+> > > If you already ran 'make dt_binding_check' and didn't see the above
+> > > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > > date:
+> > > 
+> > > pip3 install dtschema --upgrade
+> > > 
+> > > Please check and re-submit.  
+> > 
+> > I've no idea why the bot is hitting those. My tree is based on
+> > staging-testing[1], as I need the regulator patches merged there.
+> > Such tree is based on v5.11-rc5.
+> > 
+> > There, dt_binding_check doesn't get any warnings on this schema:
+> > 
+> > $ pip3 install dtschema --upgrade --user
+> > Requirement already up-to-date: dtschema in /home/mchehab/.local/lib/python3.9/site-packages (2020.12)  
+> 
+> This particular check is in master, but not yet a release on pypi. I'll 
+> be tagging a release soon.
+> 
+> I've got this problem that adding new meta-schema checks like this one 
+> requires fixing up all the existing in tree schemas first. So I give 
+> some amount of time before adding them to a tagged release. However, I 
+> want to start testing new schemas right away. I haven't come up with a 
+> better solution short of importing the meta-schema into the kernel tree 
+> or separately versioning them.
 
-Thanks!
-Quentin
+IMO, having the meta-schema inside the Kernel tree would be better...
+
+It took me some time to discover that some problems I had with a past
+version of this patch series were due to something outside the
+Kernel tree, at local/lib/python3.9/site-packages.
+
+Thanks,
+Mauro
