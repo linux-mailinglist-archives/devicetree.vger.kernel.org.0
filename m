@@ -2,172 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5E0830EE0E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 09:11:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C4A030EEAC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 09:44:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234769AbhBDIK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 03:10:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57622 "EHLO
+        id S234897AbhBDIlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 03:41:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234755AbhBDIKZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 03:10:25 -0500
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D224C061788
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 00:09:45 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id d13so1360361plg.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 00:09:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=mbzglOInmCBEXi+RhAT4Ml3f+J7eG2WI0sIBzkLXfK0=;
-        b=SZ3fQhEZi6dCMB7apBij9SlRLDenqp7RPeseE09ECbMTNx32BSzfp6j2xkAjThBubz
-         X71vvESM4qpUsKIetZcjH8oVKxHRc6tIOMvcCcFqvDdh8w41zEzu1a7Q491f1mld2xK0
-         SC2IxsAGzp5RuKelfRv0qCkpaJKBJiisG7Qc3IrOrTRbubkwB6PdHClePE3c1dncS4yP
-         q0Q8WJhAl+GF0glkL48/U04GIIQwHeG+wALkCJrX4iE6I4Xf754hrSFzEb+/Dy9Qg5Qv
-         d4WaYj9IEQraIvPO6KRE2JOYrodg/Q1ckGZUjH64spb83V7j7aNB0Sc1XRboPE8yUWEj
-         z3pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=mbzglOInmCBEXi+RhAT4Ml3f+J7eG2WI0sIBzkLXfK0=;
-        b=bzEBEEbeyUW5MMLFdq5Leo0vLbL/hb5xqwBYVHTI2X8E0SExJ6cctiaklzeBaZOVUC
-         FOc9zyGuewHknFEfIDhjZoaC328zqNgrQ1lncYVLpey82ecsMqKhfWBWYQQRe4Vh1Vfg
-         GDcjn4i5qe03uhOllB3IRO0TSi1gnNkzWwIOEIUk0rhslr2Bjm01HSMmeirlXMHH/uqp
-         3O+FWvDjjbBRZeTL2n1hgAQVD8i7aVssU1x+3tggBRLp2FqMMDO5Me0pn/oSFwOTAEhl
-         JJKi1eokvyKT4yAQ6IO+UiZnXcNbdjF5kjlboA5Mcl08eqvNAmSXUuugTdx03yPcFlHY
-         FJ4g==
-X-Gm-Message-State: AOAM531IoWGSxYR+6tPGlrXasXcLWwyL1i9YcTERikJV8c+qC/K6e5U7
-        wIZPZgmoJscgxYzydPMfKGkTVg==
-X-Google-Smtp-Source: ABdhPJx84IjwzzWpe79dKS1zQyZmeN9Puw8PDovhSQYM9e3FvitZrqHK6CyiqgES8SplFG48bg1KVg==
-X-Received: by 2002:a17:902:ea0f:b029:de:5fd5:abb9 with SMTP id s15-20020a170902ea0fb02900de5fd5abb9mr6853830plg.46.1612426183934;
-        Thu, 04 Feb 2021 00:09:43 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:6803:610b:1c6f:cebf:a887:dd42])
-        by smtp.gmail.com with ESMTPSA id 9sm4698796pfy.110.2021.02.04.00.09.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 04 Feb 2021 00:09:43 -0800 (PST)
-From:   Amit Pundir <amit.pundir@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
+        with ESMTP id S234712AbhBDIln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 03:41:43 -0500
+Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24FD8C061573;
+        Thu,  4 Feb 2021 00:41:03 -0800 (PST)
+Received: from [2a04:4540:1402:a1ac::c66]
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <john@phrozen.org>)
+        id 1l7aCC-0006Bk-UO; Thu, 04 Feb 2021 09:41:00 +0100
+Subject: Re: [PATCH v4 2/2] irqchip: Add support for Realtek RTL838x/RTL839x
+ interrupt controller
+To:     Bert Vermeulen <bert@biot.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and panel bits
-Date:   Thu,  4 Feb 2021 13:39:37 +0530
-Message-Id: <1612426177-6611-1-git-send-email-amit.pundir@linaro.org>
-X-Mailer: git-send-email 2.7.4
+        Birger Koblitz <mail@birger-koblitz.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210122204224.509124-1-bert@biot.com>
+ <20210122204224.509124-3-bert@biot.com>
+From:   John Crispin <john@phrozen.org>
+Message-ID: <9ec31fee-124b-f16d-f7e3-fb440b5246ea@phrozen.org>
+Date:   Thu, 4 Feb 2021 09:41:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210122204224.509124-3-bert@biot.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sumit Semwal <sumit.semwal@linaro.org>
 
-Enabling the Display panel for beryllium phone (Xiaomi
-Pocophone F1) requires DSI labibb regulators and panel
-dts nodes to be added. It is also required to keep some
-of the regulators as always-on.
+On 22.01.21 21:42, Bert Vermeulen wrote:
+> This is a standard IRQ driver with only status and mask registers.
+>
+> The mapping from SoC interrupts (18-31) to MIPS core interrupts is
+> done via an interrupt-map in device tree.
+>
+> Signed-off-by: Bert Vermeulen <bert@biot.com>
+> Signed-off-by: Birger Koblitz <mail@birger-koblitz.de>
 
-Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
----
-v2: Rebased to mainline (v5.11-rc6) and fixed build warnings.
+Acked-by: John Crispin <john@phrozen.org>
 
- .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts      | 58 ++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+Thanks !
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index 86cbae63eaf7..034246b5c529 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -157,6 +157,14 @@
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-+		vreg_l14a_1p88: ldo14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-boot-on;
-+			regulator-always-on;
-+		};
-+
- 		vreg_l17a_1p3: ldo17 {
- 			regulator-min-microvolt = <1304000>;
- 			regulator-max-microvolt = <1304000>;
-@@ -191,6 +199,7 @@
- 			regulator-min-microvolt = <1200000>;
- 			regulator-max-microvolt = <1200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-boot-on;
- 		};
- 	};
- };
-@@ -200,6 +209,47 @@
- 	firmware-name = "qcom/sdm845/cdsp.mdt";
- };
- 
-+&dsi0 {
-+	status = "okay";
-+	vdda-supply = <&vreg_l26a_1p2>;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	ports {
-+		port@1 {
-+			endpoint {
-+				remote-endpoint = <&tianma_nt36672a_in_0>;
-+				data-lanes = <0 1 2 3>;
-+			};
-+		};
-+	};
-+
-+	panel@0 {
-+		compatible = "tianma,fhd-video";
-+		reg = <0>;
-+		vddi0-supply = <&vreg_l14a_1p88>;
-+		vddpos-supply = <&lab>;
-+		vddneg-supply = <&ibb>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			tianma_nt36672a_in_0: endpoint {
-+				remote-endpoint = <&dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi0_phy {
-+	status = "okay";
-+	vdds-supply = <&vreg_l1a_0p875>;
-+};
-+
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
-@@ -215,6 +265,14 @@
- 	};
- };
- 
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_mdp {
-+	status = "okay";
-+};
-+
- &mss_pil {
- 	status = "okay";
- 	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
--- 
-2.7.4
-
+> ---
+>   drivers/irqchip/Makefile          |   1 +
+>   drivers/irqchip/irq-realtek-rtl.c | 180 ++++++++++++++++++++++++++++++
+>   2 files changed, 181 insertions(+)
+>   create mode 100644 drivers/irqchip/irq-realtek-rtl.c
+>
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index 0ac93bfaec61..4fc1086bed7e 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -113,3 +113,4 @@ obj-$(CONFIG_LOONGSON_PCH_PIC)		+= irq-loongson-pch-pic.o
+>   obj-$(CONFIG_LOONGSON_PCH_MSI)		+= irq-loongson-pch-msi.o
+>   obj-$(CONFIG_MST_IRQ)			+= irq-mst-intc.o
+>   obj-$(CONFIG_SL28CPLD_INTC)		+= irq-sl28cpld.o
+> +obj-$(CONFIG_MACH_REALTEK_RTL)		+= irq-realtek-rtl.o
+> diff --git a/drivers/irqchip/irq-realtek-rtl.c b/drivers/irqchip/irq-realtek-rtl.c
+> new file mode 100644
+> index 000000000000..b57c67dfab5b
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-realtek-rtl.c
+> @@ -0,0 +1,180 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2020 Birger Koblitz <mail@birger-koblitz.de>
+> + * Copyright (C) 2020 Bert Vermeulen <bert@biot.com>
+> + * Copyright (C) 2020 John Crispin <john@phrozen.org>
+> + */
+> +
+> +#include <linux/of_irq.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/of_address.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +
+> +/* Global Interrupt Mask Register */
+> +#define RTL_ICTL_GIMR		0x00
+> +/* Global Interrupt Status Register */
+> +#define RTL_ICTL_GISR		0x04
+> +/* Interrupt Routing Registers */
+> +#define RTL_ICTL_IRR0		0x08
+> +#define RTL_ICTL_IRR1		0x0c
+> +#define RTL_ICTL_IRR2		0x10
+> +#define RTL_ICTL_IRR3		0x14
+> +
+> +#define REG(x)		(realtek_ictl_base + x)
+> +
+> +static DEFINE_RAW_SPINLOCK(irq_lock);
+> +static void __iomem *realtek_ictl_base;
+> +
+> +static void realtek_ictl_unmask_irq(struct irq_data *i)
+> +{
+> +	unsigned long flags;
+> +	u32 value;
+> +
+> +	raw_spin_lock_irqsave(&irq_lock, flags);
+> +
+> +	value = readl(REG(RTL_ICTL_GIMR));
+> +	value |= BIT(i->hwirq);
+> +	writel(value, REG(RTL_ICTL_GIMR));
+> +
+> +	raw_spin_unlock_irqrestore(&irq_lock, flags);
+> +}
+> +
+> +static void realtek_ictl_mask_irq(struct irq_data *i)
+> +{
+> +	unsigned long flags;
+> +	u32 value;
+> +
+> +	raw_spin_lock_irqsave(&irq_lock, flags);
+> +
+> +	value = readl(REG(RTL_ICTL_GIMR));
+> +	value &= ~BIT(i->hwirq);
+> +	writel(value, REG(RTL_ICTL_GIMR));
+> +
+> +	raw_spin_unlock_irqrestore(&irq_lock, flags);
+> +}
+> +
+> +static struct irq_chip realtek_ictl_irq = {
+> +	.name = "realtek-rtl-intc",
+> +	.irq_mask = realtek_ictl_mask_irq,
+> +	.irq_unmask = realtek_ictl_unmask_irq,
+> +};
+> +
+> +static int intc_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hw)
+> +{
+> +	irq_set_chip_and_handler(hw, &realtek_ictl_irq, handle_level_irq);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops irq_domain_ops = {
+> +	.map = intc_map,
+> +	.xlate = irq_domain_xlate_onecell,
+> +};
+> +
+> +static void realtek_irq_dispatch(struct irq_desc *desc)
+> +{
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	struct irq_domain *domain;
+> +	unsigned int pending;
+> +
+> +	chained_irq_enter(chip, desc);
+> +	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR));
+> +	if (unlikely(!pending)) {
+> +		spurious_interrupt();
+> +		goto out;
+> +	}
+> +	domain = irq_desc_get_handler_data(desc);
+> +	generic_handle_irq(irq_find_mapping(domain, __ffs(pending)));
+> +
+> +out:
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +/*
+> + * SoC interrupts are cascaded to MIPS CPU interrupts according to the
+> + * interrupt-map in the device tree. Each SoC interrupt gets 4 bits for
+> + * the CPU interrupt in an Interrupt Routing Register. Max 32 SoC interrupts
+> + * thus go into 4 IRRs.
+> + */
+> +static int __init map_interrupts(struct device_node *node, struct irq_domain *domain)
+> +{
+> +	struct device_node *cpu_ictl;
+> +	const __be32 *imap;
+> +	u32 imaplen, soc_int, cpu_int, tmp, regs[4];
+> +	int ret, i, irr_regs[] = {
+> +		RTL_ICTL_IRR3,
+> +		RTL_ICTL_IRR2,
+> +		RTL_ICTL_IRR1,
+> +		RTL_ICTL_IRR0,
+> +	};
+> +	u8 mips_irqs_set;
+> +
+> +	ret = of_property_read_u32(node, "#address-cells", &tmp);
+> +	if (ret || tmp)
+> +		return -EINVAL;
+> +
+> +	imap = of_get_property(node, "interrupt-map", &imaplen);
+> +	if (!imap || imaplen % 3)
+> +		return -EINVAL;
+> +
+> +	mips_irqs_set = 0;
+> +	memset(regs, 0, sizeof(regs));
+> +	for (i = 0; i < imaplen; i += 3 * sizeof(u32)) {
+> +		soc_int = be32_to_cpup(imap);
+> +		if (soc_int > 31)
+> +			return -EINVAL;
+> +
+> +		cpu_ictl = of_find_node_by_phandle(be32_to_cpup(imap + 1));
+> +		if (!cpu_ictl)
+> +			return -EINVAL;
+> +		ret = of_property_read_u32(cpu_ictl, "#interrupt-cells", &tmp);
+> +		if (ret || tmp != 1)
+> +			return -EINVAL;
+> +		of_node_put(cpu_ictl);
+> +
+> +		cpu_int = be32_to_cpup(imap + 2);
+> +		if (cpu_int > 7)
+> +			return -EINVAL;
+> +
+> +		if (!(mips_irqs_set & BIT(cpu_int))) {
+> +			irq_set_chained_handler_and_data(cpu_int, realtek_irq_dispatch,
+> +							 domain);
+> +			mips_irqs_set |= BIT(cpu_int);
+> +		}
+> +
+> +		regs[(soc_int * 4) / 32] |= cpu_int << (soc_int * 4) % 32;
+> +		imap += 3;
+> +	}
+> +
+> +	for (i = 0; i < 4; i++)
+> +		writel(regs[i], REG(irr_regs[i]));
+> +
+> +	return 0;
+> +}
+> +
+> +static int __init realtek_rtl_of_init(struct device_node *node, struct device_node *parent)
+> +{
+> +	struct irq_domain *domain;
+> +	int ret;
+> +
+> +	realtek_ictl_base = of_iomap(node, 0);
+> +	if (!realtek_ictl_base)
+> +		return -ENXIO;
+> +
+> +	/* Disable all cascaded interrupts */
+> +	writel(0, REG(RTL_ICTL_GIMR));
+> +
+> +	domain = irq_domain_add_simple(node, 32, 0,
+> +				       &irq_domain_ops, NULL);
+> +
+> +	ret = map_interrupts(node, domain);
+> +	if (ret) {
+> +		pr_err("invalid interrupt map\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +IRQCHIP_DECLARE(realtek_rtl_intc, "realtek,rtl-intc", realtek_rtl_of_init);
