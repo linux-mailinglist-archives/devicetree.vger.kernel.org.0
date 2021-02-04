@@ -2,222 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE8B630F9FA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 18:42:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B88430FA3D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 18:54:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237940AbhBDRl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 12:41:58 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:45485 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238589AbhBDRlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 12:41:20 -0500
-Received: by mail-oi1-f181.google.com with SMTP id m7so4504587oiw.12;
-        Thu, 04 Feb 2021 09:41:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ppFNAnwz/O2d3fmUTcOou1FwVZxpBcox4zp0+9mjbI0=;
-        b=O78orqmvTwrEOs7ZHGwoIQl2PrVvCEHDeNP7rieH4kcKwMTamRDmB4VMMBvuE6j/n8
-         93xsfODX/QS0nUVBwRKgCpTrituU35FOqqO9JeYUs8VP63e0mDL3zHtq5Bpmg8LFcY6Y
-         32vhSbGTR9O0PpiaydF3jjTDaDgtV7P1IoLvV5yUCYPa+onhb/HVvAkxfbHBRjyvsck9
-         OpL9QKAAzlfgsyspXIKL2UD67ctIvkUqgz9PFaNTUpmTCPibvIA+nyWDXsroGAUqs2OW
-         LNZbCT9ac5nQ1U2FEYDJ8Ri3mwZsHOEcaHtj/bIOnLj+Ev/fo0doweldDlQ1aeFONfhw
-         N50A==
-X-Gm-Message-State: AOAM532CcB66+fR4UJ7BN9yeswIqcYmkrvbVRD1qu9G8ck4fkZwYZv58
-        FeFryvtoIKVfnJbig6t+2A==
-X-Google-Smtp-Source: ABdhPJwyQZK/KLQa58IT9c/ne8vaoP5CTOrMYyKDPUl4t2Upj/dzcMYl4KNRnM0QPe8DsbgWaulQrw==
-X-Received: by 2002:a05:6808:145:: with SMTP id h5mr406403oie.87.1612460439336;
-        Thu, 04 Feb 2021 09:40:39 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a63sm1233750otc.75.2021.02.04.09.40.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Feb 2021 09:40:38 -0800 (PST)
-Received: (nullmailer pid 702724 invoked by uid 1000);
-        Thu, 04 Feb 2021 17:40:37 -0000
-Date:   Thu, 4 Feb 2021 11:40:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Add documentation
- for SN65DSI84
-Message-ID: <20210204174037.GA690342@robh.at.kernel.org>
-References: <20210203071256.42050-1-jagan@amarulasolutions.com>
+        id S238519AbhBDRuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 12:50:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36688 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237500AbhBDRtm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 12:49:42 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 639A164F41;
+        Thu,  4 Feb 2021 17:48:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612460936;
+        bh=BE4sTc2vQLpAqcnSed7nO8BgiaDvc3jDuHi/BhMHhuw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BJdPmR0qx04Q0OC8F92po0hMHhrRiWvCaxDONmHEOoUlPgCayFyD25VcKG9WAE5Ab
+         dsuh0qli7OfmSqeEkwH0tHklTV6xlGGaJICNA3Bf4Kc2zQEzKSlwDMjJP4OtHhT/Az
+         unbkjzC/50L2YixQX7un0SEMXdb+1hbaD3m5rjR8iUXk/Rs81QPavwoAn0+TmUUQgq
+         c51he+0ZCZ/l4W+Onfm4pbnVfVAQCatI6xGIqlmqFEpLCjf0/tx9tOt5qOom6lDmNU
+         wSXrZoHUHqE8XQVhWEcCQKWNWBHNhIaLyoHPM4WHK/OO4PWoWHpW1XZpP+9r6IK6Aq
+         jy0+RUjalzziw==
+Date:   Thu, 4 Feb 2021 17:48:49 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Quentin Perret <qperret@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, android-kvm@google.com,
+        linux-kernel@vger.kernel.org, kernel-team@android.com,
+        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
+        Fuad Tabba <tabba@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Brazdil <dbrazdil@google.com>
+Subject: Re: [RFC PATCH v2 12/26] KVM: arm64: Introduce a Hyp buddy page
+ allocator
+Message-ID: <20210204174849.GA21303@willie-the-truck>
+References: <20210108121524.656872-1-qperret@google.com>
+ <20210108121524.656872-13-qperret@google.com>
+ <20210202181307.GA17311@willie-the-truck>
+ <YBrsep4xK1F4YRWb@google.com>
+ <20210204143106.GA20792@willie-the-truck>
+ <YBwKRM3uHDMC9S0U@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210203071256.42050-1-jagan@amarulasolutions.com>
+In-Reply-To: <YBwKRM3uHDMC9S0U@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 03, 2021 at 12:42:55PM +0530, Jagan Teki wrote:
-> SN65DSI84 is a Single Channel DSI to Dual-link LVDS bridge from
-> Texas Instruments.
+On Thu, Feb 04, 2021 at 02:52:52PM +0000, Quentin Perret wrote:
+> On Thursday 04 Feb 2021 at 14:31:08 (+0000), Will Deacon wrote:
+> > On Wed, Feb 03, 2021 at 06:33:30PM +0000, Quentin Perret wrote:
+> > > On Tuesday 02 Feb 2021 at 18:13:08 (+0000), Will Deacon wrote:
+> > > > On Fri, Jan 08, 2021 at 12:15:10PM +0000, Quentin Perret wrote:
+> > > > > + *   __find_buddy(pool, page 0, order 0) => page 1
+> > > > > + *   __find_buddy(pool, page 0, order 1) => page 2
+> > > > > + *   __find_buddy(pool, page 1, order 0) => page 0
+> > > > > + *   __find_buddy(pool, page 2, order 0) => page 3
+> > > > > + */
+> > > > > +static struct hyp_page *__find_buddy(struct hyp_pool *pool, struct hyp_page *p,
+> > > > > +				     unsigned int order)
+> > > > > +{
+> > > > > +	phys_addr_t addr = hyp_page_to_phys(p);
+> > > > > +
+> > > > > +	addr ^= (PAGE_SIZE << order);
+> > > > > +	if (addr < pool->range_start || addr >= pool->range_end)
+> > > > > +		return NULL;
+> > > > 
+> > > > Are these range checks only needed because the pool isn't required to be
+> > > > an exact power-of-2 pages in size? If so, maybe it would be more
+> > > > straightforward to limit the max order on a per-pool basis depending upon
+> > > > its size?
+> > > 
+> > > More importantly, it is because pages outside of the pool are not
+> > > guaranteed to be covered by the hyp_vmemmap, so I really need to make
+> > > sure I don't dereference them.
+> > 
+> > Wouldn't having a per-pool max order help with that?
 > 
-> SN65DSI83, SN65DSI85 are variants of the same family of bridge
-> controllers.
-> 
-> Right now the bridge driver is supporting a single link, dual-link
-> support requires to initiate I2C Channel B registers, so dt-bindings
-> documented with single link LVDS.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
-> Changes for v2:
-> - none
-> 
->  .../bindings/display/bridge/ti,sn65dsi84.yaml | 127 ++++++++++++++++++
->  1 file changed, 127 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml
-> new file mode 100644
-> index 000000000000..891382a76c1a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi84.yaml
-> @@ -0,0 +1,127 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi84.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI SN65DSI84 MIPI DSI to LVDS bridge bindings
-> +
-> +maintainers:
-> +  - Jagan Teki <jagan@amarulasolutions.com>
-> +
-> +description: |
-> +  The SN65DSI84 DSI to FlatLink bridge features a single channel MIPI D-PHY receiver
-> +  front-end configuration with 4 lanes per channel operating at 1 Gbps per lanes.
-> +  The bridge decodes MIPI DSI 18bpp RGB666 and 240bpp RG888 packets and converts
-> +  the formatted video data stream to a FlatLink compatible LVDS output operating
-> +  at pixel clocks operating from 25 MHx to 154 MHz, offering a Dual-Link LVDS,
-> +  Single-Link LVDS interface with four data lanes per link.
-> +
-> +  https://www.ti.com/product/SN65DSI84
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,sn65dsi84
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: i2c address of the bridge, 0x2c
+> The issue is, I have no alignment guarantees for the pools, so I may end
+> up with max_order = 0 ...
 
-Just 'const: 0x2c' if that's the only valid address.
+Yeah, so you would still need the range tracking, but it would at least help
+to reduce HYP_MAX_ORDER failed searches each time. Still, we can always do
+that later.
 
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description: GPIO specifier for bridge enable pin (active high).
-> +
-> +  ports:
-> +    type: object
-> +    description:
-> +      A node containing input and output port nodes with endpoint definitions
-> +      as documented in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +      port@0:
-> +        type: object
-> +        description: |
-> +          DSI Input. The remote endpoint phandle should be a
-> +          reference to a valid mipi_dsi_host device node.
-> +
-> +      port@1:
-> +        type: object
-> +        description: |
-> +          Video port for LVDS output (panel or connector).
-
-This needs to use the graph.yaml schema. See the ones in drm-misc-next 
-that are already converted.
-
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - enable-gpios
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi {
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +
-> +       ports {
-> +           #address-cells = <1>;
-> +           #size-cells = <0>;
-> +
-> +           port@0 {
-> +               reg = <0>;
-> +               dsi_in: endpoint {
-> +                   remote-endpoint = <&ltdc_ep0_out>;
-> +               };
-> +           };
-> +
-> +           port@1 {
-> +               reg = <1>;
-> +               dsi_out: endpoint {
-> +                   remote-endpoint = <&bridge_in>;
-> +                   data-lanes = <0 1>;
-> +               };
-> +           };
-> +       };
-> +    };
-> +
-> +    i2c6 {
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +
-> +       bridge@2c {
-> +           compatible = "ti,sn65dsi84";
-> +           reg = <0x2c>;
-> +           enable-gpios = <&gpiof 15 GPIO_ACTIVE_HIGH>;
-> +
-> +           ports {
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               port@0 {
-> +                   reg = <0>;
-> +                   bridge_in: endpoint {
-> +                        remote-endpoint = <&dsi_out>;
-> +                   };
-> +               };
-> +
-> +               port@1 {
-> +                   reg = <1>;
-> +                   bridge_out: endpoint {
-> +                        remote-endpoint = <&panel_in_lvds>;
-> +                   };
-> +               };
-> +           };
-> +       };
-> +    };
-> -- 
-> 2.25.1
-> 
+Will
