@@ -2,260 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2F90310098
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 00:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2749E31009E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 00:27:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230088AbhBDXYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 18:24:36 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:36868 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229977AbhBDXYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 18:24:36 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 11B9220202A2;
-        Thu,  4 Feb 2021 15:23:54 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 11B9220202A2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1612481034;
-        bh=OndhVLOBSOlhxfWlUBORpyBHTxhkHChscviUHCrmugg=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Pc8u7bQB2zafW4H9OcRXdd4zfCD7etti6D+z/mvcNw790E1OXQcgHp7HB7DoxGo5q
-         HDIdQFcCJ4KVzGQnh7lAemZUn50HwRcbWmYbMb0Ahu04P3IHGhur97lof5rAWYHbyY
-         Ci84szXcAv4hAB34Pzxi+YE/BVgqSJaCdH34lvCE=
-Subject: Re: [PATCH v16 11/12] powerpc: Use OF alloc and free for FDT
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mimi Zohar <zohar@linux.ibm.com>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        James Morse <james.morse@arm.com>,
-        Sasha Levin <sashal@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        vincenzo.frascino@arm.com, Mark Rutland <mark.rutland@arm.com>,
-        dmitry.kasatkin@gmail.com, James Morris <jmorris@namei.org>,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        Pavel Tatashin <pasha.tatashin@soleen.com>,
-        Allison Randal <allison@lohutok.net>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Bhupesh Sharma <bhsharma@redhat.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Prakhar Srivastava <prsriva@linux.microsoft.com>,
-        balajib@linux.microsoft.com, linux-integrity@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-References: <20210204164135.29856-1-nramas@linux.microsoft.com>
- <20210204164135.29856-12-nramas@linux.microsoft.com>
- <CAL_JsqK1Pb9nAeL84EP2U3MQgpBsm+E_0QXmzbigWXnS245WPQ@mail.gmail.com>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <503d42ba-89bf-4ad9-9d4c-acb625580f77@linux.microsoft.com>
-Date:   Thu, 4 Feb 2021 15:23:53 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229609AbhBDX0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 18:26:33 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:40839 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229518AbhBDX0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 18:26:32 -0500
+Received: by mail-ot1-f53.google.com with SMTP id i20so5167280otl.7;
+        Thu, 04 Feb 2021 15:26:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=v2nkVg18wGZEoa8kUGTJqurwpIhtPaAbXmqRIWrxCUE=;
+        b=V3eEP9JJEfj3ydO7NsU48zQ2MigAmNAVma2aJgjA71DDBFYF7zzvc5AKLFoGqLpIRR
+         Xlcfc67SKVyyNZg1dEXfKL1m+7eaGlbZy1sULl5xEgipLM95FUk3KYTvzP3fjHXM4mNf
+         hM3+daxg01mw8DkgwDyNMVaKChKseNghCQWW4VgCmLt9O6AFXeDQMq6MmkmhJOvBECmK
+         nQwri9/givimkVmTsXoGPikYyL/w4WH6tJCBagOpiznb254Y3QQTlrNuAMe4SeEy91Ii
+         7u1mrhWsqgZd6trtfMIhziz5mz1poR6ZvXl8Xn70f+oaFBBQHEzYy1WbRDBcEO2A6yRJ
+         OnrQ==
+X-Gm-Message-State: AOAM530Br0tibHWCxFAzz9CSddeM/VCWY54ZXL8RLELXWsVvkF/G8Mf2
+        qLx7O6zgqNO09wBD+k8DPA==
+X-Google-Smtp-Source: ABdhPJwJqr3wnatNUe8DWoShRTE94TDBe87ONFVy1DR98EDCJ7JzDYuizEWR+rUsPGi1b34+LdMtCQ==
+X-Received: by 2002:a05:6830:1f4e:: with SMTP id u14mr1333850oth.65.1612481151222;
+        Thu, 04 Feb 2021 15:25:51 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w10sm1445771oih.8.2021.02.04.15.25.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Feb 2021 15:25:50 -0800 (PST)
+Received: (nullmailer pid 1311195 invoked by uid 1000);
+        Thu, 04 Feb 2021 23:25:49 -0000
+Date:   Thu, 4 Feb 2021 17:25:49 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iommu: add bindings for sprd iommu
+Message-ID: <20210204232549.GA1305874@robh.at.kernel.org>
+References: <20210203090727.789939-1-zhang.lyra@gmail.com>
+ <20210203090727.789939-2-zhang.lyra@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqK1Pb9nAeL84EP2U3MQgpBsm+E_0QXmzbigWXnS245WPQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210203090727.789939-2-zhang.lyra@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/4/21 11:26 AM, Rob Herring wrote:
-> On Thu, Feb 4, 2021 at 10:42 AM Lakshmi Ramasubramanian
-> <nramas@linux.microsoft.com> wrote:
->>
->> of_alloc_and_init_fdt() and of_free_fdt() have been defined in
->> drivers/of/kexec.c to allocate and free memory for FDT.
->>
->> Use of_alloc_and_init_fdt() and of_free_fdt() to allocate and
->> initialize the FDT, and to free the FDT respectively.
->>
->> powerpc sets the FDT address in image_loader_data field in
->> "struct kimage" and the memory is freed in
->> kimage_file_post_load_cleanup().  This cleanup function uses kfree()
->> to free the memory. But since of_alloc_and_init_fdt() uses kvmalloc()
->> for allocation, the buffer needs to be freed using kvfree().
+On Wed, Feb 03, 2021 at 05:07:26PM +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > 
-> You could just change the kexec core to call kvfree() instead.
-
+> This iommu module can be used by Unisoc's multimedia devices, such as
+> display, Image codec(jpeg) and a few signal processors, including
+> VSP(video), GSP(graphic), ISP(image), and CPP(camera pixel processor), etc.
 > 
->> Define "fdt" field in "struct kimage_arch" for powerpc to store
->> the address of FDT, and free the memory in powerpc specific
->> arch_kimage_file_post_load_cleanup().
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> ---
+>  .../devicetree/bindings/iommu/sprd,iommu.yaml | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
 > 
-> However, given all the other buffers have an explicit field in kimage
-> or kimage_arch, changing powerpc is to match arm64 is better IMO.
+> diff --git a/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+> new file mode 100644
+> index 000000000000..4fc99e81fa66
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2020 Unisoc Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iommu/sprd,iommu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Unisoc IOMMU and Multi-media MMU
+> +
+> +maintainers:
+> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sprd,iommu-v1
+> +
+> +  "#iommu-cells":
+> +    const: 0
+> +    description:
+> +      Unisoc IOMMUs are all single-master IOMMU devices, therefore no
+> +      additional information needs to associate with its master device.
+> +      Please refer to the generic bindings document for more details,
+> +      Documentation/devicetree/bindings/iommu/iommu.txt
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      Not required if 'sprd,iommu-regs' is defined.
+> +
+> +  clocks:
+> +    description:
+> +      Reference to a gate clock phandle, since access to some of IOMMUs are
+> +      controlled by gate clock, but this is not required.
+> +
+> +  sprd,iommu-regs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Reference to a syscon phandle plus 1 cell, the syscon defines the
+> +      register range used by the iommu and the media device, the cell
+> +      defines the offset for iommu registers. Since iommu module shares
+> +      the same register range with the media device which uses it.
+> +
+> +required:
+> +  - compatible
+> +  - "#iommu-cells"
+> +
+> +oneOf:
+> +  - required:
+> +      - reg
+> +  - required:
+> +      - sprd,iommu-regs
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    iommu_disp: iommu-disp {
+> +      compatible = "sprd,iommu-v1";
+> +      sprd,iommu-regs = <&dpu_regs 0x800>;
 
-Just to be clear:
-I'll leave this as is - free FDT buffer in powerpc's 
-arch_kimage_file_post_load_cleanup() to match arm64 behavior.
+If the IOMMU is contained within another device, then it should just be 
+a child node of that device. Or just make 'dpu_regs' an IOMMU provider 
+(i.e. just add #iommu-cells to it).
 
-Will not change "kexec core" to call kvfree() - doing that change would 
-require changing all architectures to use kvmalloc() for 
-image_loader_data allocation.
-
+> +      #iommu-cells = <0>;
+> +    };
+> +
+> +  - |
+> +    iommu_jpg: iommu-jpg {
+> +      compatible = "sprd,iommu-v1";
+> +      sprd,iommu-regs = <&jpg_regs 0x300>;
+> +      #iommu-cells = <0>;
+> +      clocks = <&mm_gate 1>;
+> +    };
+> +
+> +...
+> -- 
+> 2.25.1
 > 
->> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
->> Suggested-by: Rob Herring <robh@kernel.org>
->> Suggested-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
->> ---
->>   arch/powerpc/include/asm/kexec.h  |  2 ++
->>   arch/powerpc/kexec/elf_64.c       | 26 ++++++++++++++++----------
->>   arch/powerpc/kexec/file_load_64.c |  3 +++
->>   3 files changed, 21 insertions(+), 10 deletions(-)
->>
->> diff --git a/arch/powerpc/include/asm/kexec.h b/arch/powerpc/include/asm/kexec.h
->> index 2c0be93d239a..d7d13cac4d31 100644
->> --- a/arch/powerpc/include/asm/kexec.h
->> +++ b/arch/powerpc/include/asm/kexec.h
->> @@ -111,6 +111,8 @@ struct kimage_arch {
->>          unsigned long elf_headers_mem;
->>          unsigned long elf_headers_sz;
->>          void *elf_headers;
->> +
->> +       void *fdt;
->>   };
->>
->>   char *setup_kdump_cmdline(struct kimage *image, char *cmdline,
->> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
->> index d0e459bb2f05..51d2d8eb6c1b 100644
->> --- a/arch/powerpc/kexec/elf_64.c
->> +++ b/arch/powerpc/kexec/elf_64.c
->> @@ -19,6 +19,7 @@
->>   #include <linux/kexec.h>
->>   #include <linux/libfdt.h>
->>   #include <linux/module.h>
->> +#include <linux/of.h>
->>   #include <linux/of_fdt.h>
->>   #include <linux/slab.h>
->>   #include <linux/types.h>
->> @@ -32,7 +33,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
->>          unsigned int fdt_size;
->>          unsigned long kernel_load_addr;
->>          unsigned long initrd_load_addr = 0, fdt_load_addr;
->> -       void *fdt;
->> +       void *fdt = NULL;
->>          const void *slave_code;
->>          struct elfhdr ehdr;
->>          char *modified_cmdline = NULL;
->> @@ -103,18 +104,12 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
->>          }
->>
->>          fdt_size = fdt_totalsize(initial_boot_params) * 2;
->> -       fdt = kmalloc(fdt_size, GFP_KERNEL);
->> +       fdt = of_alloc_and_init_fdt(fdt_size);
->>          if (!fdt) {
->>                  pr_err("Not enough memory for the device tree.\n");
->>                  ret = -ENOMEM;
->>                  goto out;
->>          }
->> -       ret = fdt_open_into(initial_boot_params, fdt, fdt_size);
->> -       if (ret < 0) {
->> -               pr_err("Error setting up the new device tree.\n");
->> -               ret = -EINVAL;
->> -               goto out;
->> -       }
->>
->>          ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
-> 
-> The first thing this function does is call setup_new_fdt() which first
-> calls of_kexec_setup_new_fdt(). (Note, I really don't understand the
-> PPC code split. It looks like there's a 32-bit and 64-bit split, but
-> 32-bit looks broken to me. Nothing ever calls setup_new_fdt() except
-> setup_new_fdt_ppc64()). The arm64 version is calling
-> of_alloc_and_init_fdt() and then of_kexec_setup_new_fdt() directly.
-> 
-> So we can just make of_alloc_and_init_fdt() also call
-> of_kexec_setup_new_fdt() (really, just tweak of_kexec_setup_new_fdt do
-> the alloc and copy). 
-ok - will move fdt allocation into of_kexec_setup_new_fdt().
-
-I don't think the architecture needs to pick the
-> size either. It's doubtful that either one is that sensitive to the
-> amount of extra space.
-I am not clear about the above comment -
-are you saying the architectures don't need to pass FDT size to the 
-alloc function?
-
-arm64 is adding command line string length and some extra space to the 
-size computed from initial_boot_params for FDT Size:
-
-	buf_size = fdt_totalsize(initial_boot_params)
-			+ cmdline_len + DTB_EXTRA_SPACE;
-
-powerpc is just using twice the size computed from initial_boot_params
-
-	fdt_size = fdt_totalsize(initial_boot_params) * 2;
-
-I think it would be safe to let arm64 and powerpc pass the required FDT 
-size, along with the other params to of_kexec_setup_new_fdt() - and in 
-this function we allocate FDT and set it up.
-
-And, for powerpc leave the remaining code in setup_new_fdt_ppc64().
-
-Would that be ok?
-
-> 
->>                                    initrd_len, cmdline);
->> @@ -131,6 +126,10 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
->>          ret = kexec_add_buffer(&kbuf);
->>          if (ret)
->>                  goto out;
->> +
->> +       /* FDT will be freed in arch_kimage_file_post_load_cleanup */
->> +       image->arch.fdt = fdt;
->> +
->>          fdt_load_addr = kbuf.mem;
->>
->>          pr_debug("Loaded device tree at 0x%lx\n", fdt_load_addr);
->> @@ -145,8 +144,15 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
->>          kfree(modified_cmdline);
->>          kexec_free_elf_info(&elf_info);
->>
->> -       /* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
->> -       return ret ? ERR_PTR(ret) : fdt;
->> +       /*
->> +        * Once FDT buffer has been successfully passed to kexec_add_buffer(),
->> +        * the FDT buffer address is saved in image->arch.fdt. In that case,
->> +        * the memory cannot be freed here in case of any other error.
->> +        */
->> +       if (ret && !image->arch.fdt)
->> +               of_free_fdt(fdt);
-> 
-> Just call kvfree() directly.
-Sure - will do.
-
-  -lakshmi
-
-> 
->> +
->> +       return ret ? ERR_PTR(ret) : NULL;
->>   }
->>
->>   const struct kexec_file_ops kexec_elf64_ops = {
->> diff --git a/arch/powerpc/kexec/file_load_64.c b/arch/powerpc/kexec/file_load_64.c
->> index 3cab318aa3b9..d9d5b5569a6d 100644
->> --- a/arch/powerpc/kexec/file_load_64.c
->> +++ b/arch/powerpc/kexec/file_load_64.c
->> @@ -1113,5 +1113,8 @@ int arch_kimage_file_post_load_cleanup(struct kimage *image)
->>          image->arch.elf_headers = NULL;
->>          image->arch.elf_headers_sz = 0;
->>
->> +       of_free_fdt(image->arch.fdt);
->> +       image->arch.fdt = NULL;
->> +
->>          return kexec_image_post_load_cleanup_default(image);
->>   }
->> --
->> 2.30.0
->>
-
