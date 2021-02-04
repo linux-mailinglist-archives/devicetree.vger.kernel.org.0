@@ -2,309 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 285C930F19C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 12:10:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87FC330F285
+	for <lists+devicetree@lfdr.de>; Thu,  4 Feb 2021 12:39:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235574AbhBDLJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 06:09:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39434 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235491AbhBDLJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 06:09:18 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D58DC0613ED
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 03:08:38 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id l12so2760683wmq.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 03:08:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Ac2cWoetiRazQ6sY02jAtUWhjT9m83ovv4OBQ4t/wAE=;
-        b=A4pYkiXZ376bPY33RfHADMh/Av+CR5JRDGbuuLfF8edaHdTjgTDmNsL2P1wbxBnu9n
-         6+VHNCMB4m+vXPsgmT/sW4vL31F9UfF1V2/d/I8u6zAhT2cr8tHLj6ujCg8u3or8NhU4
-         9AjHewTcziPuwb5SF88UTdGtsaLLRiNGclmWIKW3x3YMCcy2J0SjCm6qzOOWHJHt/eM6
-         EYA3/kcSK3f54psGOhTOHB2+XqczNu8pRisvRhZCpksIye+1a4Y4eSaW8/tkW02FenGC
-         QYEwJmjsOfZ8SYkGnHTWHzwFxibFw5swOcjMKpm1B40MPRK43AUPNO2plnYy2tAau8AV
-         cXDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ac2cWoetiRazQ6sY02jAtUWhjT9m83ovv4OBQ4t/wAE=;
-        b=mBAE8T4fZK33c3VTx9VLS+PRTCAtPVj8XkUHMlia7eRSpDbOc1Fiq2tt51YUPt5a8Z
-         rAohPyVd8lVRH81z0DAlWFzEpER2m5GwuCNms+9S/z0S0vmjoYTO3+HAll89lwo/1Yij
-         be79KpzfTdRaKKFUdSjd6PdviLgtG1Ub1Dp6Y3qGkuTlroTYEvbp1uuf3pNo3F7jANz6
-         sBQ8OlkGw3s+Qs5TEs+7VLNkl/vq52fA8pNta65VilGCnkMrCw/E10263utqKZ+OdQft
-         f/r1LadwUT0UkgGad09TwxLllhRDtBp05jzYvM6by9/+MYc/OD4NiRphDs3VTJwJrwOs
-         bRKA==
-X-Gm-Message-State: AOAM533qtxxj6TjyFWia4hRzakXgxOtaZg2eI+B1BZ2QfkrQOcks+LGq
-        g6g88ix2a0uPsV68VePoo7LLNA==
-X-Google-Smtp-Source: ABdhPJxofrOU9QtBbx8B1URQt7oPE0DC7M1sC/q1/8AlgNixgkixfYv7H9DmSmdVl0NIFGKJzk2aIg==
-X-Received: by 2002:a1c:d7:: with SMTP id 206mr7022487wma.68.1612436916642;
-        Thu, 04 Feb 2021 03:08:36 -0800 (PST)
-Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
-        by smtp.gmail.com with ESMTPSA id w25sm5923406wmc.42.2021.02.04.03.08.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Feb 2021 03:08:36 -0800 (PST)
-Date:   Thu, 4 Feb 2021 11:08:33 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Will Deacon <will@kernel.org>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 17/26] KVM: arm64: Elevate Hyp mappings creation
- at EL2
-Message-ID: <YBvVseNd/r8q5He1@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-18-qperret@google.com>
- <20210203153138.GB18974@willie-the-truck>
+        id S235851AbhBDLiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 06:38:11 -0500
+Received: from foss.arm.com ([217.140.110.172]:56600 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235857AbhBDLgc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 06:36:32 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6787411FB;
+        Thu,  4 Feb 2021 03:35:46 -0800 (PST)
+Received: from [10.57.49.26] (unknown [10.57.49.26])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B4C483F73B;
+        Thu,  4 Feb 2021 03:35:44 -0800 (PST)
+Subject: Re: [PATCH v2 1/7] dt-bindings: usb: convert rockchip,dwc3.txt to
+ yaml
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de,
+        Elaine Zhang <zhangqing@rock-chips.com>
+Cc:     devicetree@vger.kernel.org, balbi@kernel.org,
+        gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20210203165233.22177-1-jbx6244@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <41efd28c-ff64-2b9f-2cdc-ac4aaaeb4611@arm.com>
+Date:   Thu, 4 Feb 2021 11:35:43 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210203153138.GB18974@willie-the-truck>
+In-Reply-To: <20210203165233.22177-1-jbx6244@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 03 Feb 2021 at 15:31:39 (+0000), Will Deacon wrote:
-> On Fri, Jan 08, 2021 at 12:15:15PM +0000, Quentin Perret wrote:
-> > Previous commits have introduced infrastructure at EL2 to enable the Hyp
-> > code to manage its own memory, and more specifically its stage 1 page
-> > tables. However, this was preliminary work, and none of it is currently
-> > in use.
-> > 
-> > Put all of this together by elevating the hyp mappings creation at EL2
-> > when memory protection is enabled. In this case, the host kernel running
-> > at EL1 still creates _temporary_ Hyp mappings, only used while
-> > initializing the hypervisor, but frees them right after.
-> > 
-> > As such, all calls to create_hyp_mappings() after kvm init has finished
-> > turn into hypercalls, as the host now has no 'legal' way to modify the
-> > hypevisor page tables directly.
-> > 
-> > Signed-off-by: Quentin Perret <qperret@google.com>
-> > ---
-> >  arch/arm64/include/asm/kvm_mmu.h |  1 -
-> >  arch/arm64/kvm/arm.c             | 62 +++++++++++++++++++++++++++++---
-> >  arch/arm64/kvm/mmu.c             | 34 ++++++++++++++++++
-> >  3 files changed, 92 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/arch/arm64/include/asm/kvm_mmu.h b/arch/arm64/include/asm/kvm_mmu.h
-> > index d7ebd73ec86f..6c8466a042a9 100644
-> > --- a/arch/arm64/include/asm/kvm_mmu.h
-> > +++ b/arch/arm64/include/asm/kvm_mmu.h
-> > @@ -309,6 +309,5 @@ static __always_inline void __load_guest_stage2(struct kvm_s2_mmu *mmu)
-> >  	 */
-> >  	asm(ALTERNATIVE("nop", "isb", ARM64_WORKAROUND_SPECULATIVE_AT));
-> >  }
-> > -
-> >  #endif /* __ASSEMBLY__ */
-> >  #endif /* __ARM64_KVM_MMU_H__ */
-> > diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-> > index 6af9204bcd5b..e524682c2ccf 100644
-> > --- a/arch/arm64/kvm/arm.c
-> > +++ b/arch/arm64/kvm/arm.c
-> > @@ -1421,7 +1421,7 @@ static void cpu_prepare_hyp_mode(int cpu)
-> >  	kvm_flush_dcache_to_poc(params, sizeof(*params));
-> >  }
-> >  
-> > -static void cpu_init_hyp_mode(void)
-> > +static void kvm_set_hyp_vector(void)
+On 2021-02-03 16:52, Johan Jonker wrote:
+> In the past Rockchip dwc3 usb nodes were manually checked.
+> With the conversion of snps,dwc3.yaml as common document
+> we now can convert rockchip,dwc3.txt to yaml as well.
+> Remove node wrapper.
 > 
-> Please do something about the naming: now we have both cpu_set_hyp_vector()
-> and kvm_set_hyp_vector()!
-
-I'll try to find something different, but no guarantees it'll be much
-better :) Suggestions welcome.
-
-> >  {
-> >  	struct kvm_nvhe_init_params *params;
-> >  	struct arm_smccc_res res;
-> > @@ -1439,6 +1439,11 @@ static void cpu_init_hyp_mode(void)
-> >  	params = this_cpu_ptr_nvhe_sym(kvm_init_params);
-> >  	arm_smccc_1_1_hvc(KVM_HOST_SMCCC_FUNC(__kvm_hyp_init), virt_to_phys(params), &res);
-> >  	WARN_ON(res.a0 != SMCCC_RET_SUCCESS);
-> > +}
-> > +
-> > +static void cpu_init_hyp_mode(void)
-> > +{
-> > +	kvm_set_hyp_vector();
-> >  
-> >  	/*
-> >  	 * Disabling SSBD on a non-VHE system requires us to enable SSBS
-> > @@ -1481,7 +1486,10 @@ static void cpu_set_hyp_vector(void)
-> >  	struct bp_hardening_data *data = this_cpu_ptr(&bp_hardening_data);
-> >  	void *vector = hyp_spectre_vector_selector[data->slot];
-> >  
-> > -	*this_cpu_ptr_hyp_sym(kvm_hyp_vector) = (unsigned long)vector;
-> > +	if (!is_protected_kvm_enabled())
-> > +		*this_cpu_ptr_hyp_sym(kvm_hyp_vector) = (unsigned long)vector;
-> > +	else
-> > +		kvm_call_hyp_nvhe(__pkvm_cpu_set_vector, data->slot);
+> Added properties for rk3399 are:
+>    power-domains
+>    resets
+>    reset-names
 > 
-> *Very* minor nit, but it might be cleaner to have static inline functions
-> with the same prototypes as the hypercalls, just to make the code even
-> easier to read. e.g
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>   .../devicetree/bindings/usb/rockchip,dwc3.txt      |  56 -----------
+>   .../devicetree/bindings/usb/rockchip,dwc3.yaml     | 103 +++++++++++++++++++++
+>   2 files changed, 103 insertions(+), 56 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+>   create mode 100644 Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
 > 
-> 	if (!is_protected_kvm_enabled())
-> 		_cpu_set_vector(data->slot);
-> 	else
-> 		kvm_call_hyp_nvhe(__pkvm_cpu_set_vector, data->slot);
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt b/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+> deleted file mode 100644
+> index 945204932..000000000
+> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.txt
+> +++ /dev/null
+> @@ -1,56 +0,0 @@
+> -Rockchip SuperSpeed DWC3 USB SoC controller
+> -
+> -Required properties:
+> -- compatible:	should contain "rockchip,rk3399-dwc3" for rk3399 SoC
+> -- clocks:	A list of phandle + clock-specifier pairs for the
+> -		clocks listed in clock-names
+> -- clock-names:	Should contain the following:
+> -  "ref_clk"	Controller reference clk, have to be 24 MHz
+> -  "suspend_clk"	Controller suspend clk, have to be 24 MHz or 32 KHz
+> -  "bus_clk"	Master/Core clock, have to be >= 62.5 MHz for SS
+> -		operation and >= 30MHz for HS operation
+> -  "grf_clk"	Controller grf clk
+> -
+> -Required child node:
+> -A child node must exist to represent the core DWC3 IP block. The name of
+> -the node is not important. The content of the node is defined in dwc3.txt.
+> -
+> -Phy documentation is provided in the following places:
+> -Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml - USB2.0 PHY
+> -Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt     - Type-C PHY
+> -
+> -Example device nodes:
+> -
+> -	usbdrd3_0: usb@fe800000 {
+> -		compatible = "rockchip,rk3399-dwc3";
+> -		clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
+> -			 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_GRF>;
+> -		clock-names = "ref_clk", "suspend_clk",
+> -			      "bus_clk", "grf_clk";
+> -		#address-cells = <2>;
+> -		#size-cells = <2>;
+> -		ranges;
+> -		usbdrd_dwc3_0: dwc3@fe800000 {
+> -			compatible = "snps,dwc3";
+> -			reg = <0x0 0xfe800000 0x0 0x100000>;
+> -			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> -			dr_mode = "otg";
+> -		};
+> -	};
+> -
+> -	usbdrd3_1: usb@fe900000 {
+> -		compatible = "rockchip,rk3399-dwc3";
+> -		clocks = <&cru SCLK_USB3OTG1_REF>, <&cru SCLK_USB3OTG1_SUSPEND>,
+> -			 <&cru ACLK_USB3OTG1>, <&cru ACLK_USB3_GRF>;
+> -		clock-names = "ref_clk", "suspend_clk",
+> -			      "bus_clk", "grf_clk";
+> -		#address-cells = <2>;
+> -		#size-cells = <2>;
+> -		ranges;
+> -		usbdrd_dwc3_1: dwc3@fe900000 {
+> -			compatible = "snps,dwc3";
+> -			reg = <0x0 0xfe900000 0x0 0x100000>;
+> -			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+> -			dr_mode = "otg";
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> new file mode 100644
+> index 000000000..fdf9497bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/rockchip,dwc3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip SuperSpeed DWC3 USB SoC controller
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +description:
+> +      The common content of the node is defined in snps,dwc3.yaml.
+> +
+> +      Phy documentation is provided in the following places.
+> +
+> +      USB2.0 PHY
+> +      Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+> +
+> +      Type-C PHY
+> +      Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
+> +
+> +allOf:
+> +  - $ref: snps,dwc3.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - rockchip,rk3399-dwc3
+> +      - const: snps,dwc3
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description:
+> +          Controller reference clock, must to be 24 MHz
+> +      - description:
+> +          Controller suspend clock, must to be 24 MHz or 32 KHz
+> +      - description:
+> +          Master/Core clock, must to be >= 62.5 MHz for SS
+> +          operation and >= 30MHz for HS operation
+> +      - description:
+> +          Controller aclk_usb3_rksoc_axi_perf clock
+
+I'm pretty sure these last 3 don't belong to the controller itself, 
+hence why they were in the glue layer node to being with.
+
+> +      - description:
+> +          Controller aclk_usb3 clock
+
+Does anything in the USB3 block actually consume this clock directly? If 
+not, then I don't think it needs to be specified since it's already the 
+parent of the controller's required bus_clk.
+
+I'm similarly suspicious of ACLK_USB3_NOC which is currently marked as 
+CLK_IGNORE_UNUSED - if that's necessary for USB3 to function then it 
+probably *should* be specified as part of the glue layer binding here.
+
+Robin.
+
+> +      - description:
+> +          Controller grf clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref_clk
+> +      - const: suspend_clk
+> +      - const: bus_clk
+> +      - const: aclk_usb3_rksoc_axi_perf
+> +      - const: aclk_usb3
+> +      - const: grf_clk
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: usb3-otg
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3399-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    bus {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      usbdrd3_0: usb@fe800000 {
+> +        compatible = "rockchip,rk3399-dwc3", "snps,dwc3";
+> +        reg = <0x0 0xfe800000 0x0 0x100000>;
+> +        interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
+> +                 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_RKSOC_AXI_PERF>,
+> +                 <&cru ACLK_USB3>, <&cru ACLK_USB3_GRF>;
+> +        clock-names = "ref_clk", "suspend_clk",
+> +                      "bus_clk", "aclk_usb3_rksoc_axi_perf",
+> +                      "aclk_usb3", "grf_clk";
+> +        dr_mode = "otg";
+> +      };
+> +    };
 > 
-> you could then conceivably wrap that in a macro and avoid having the
-> "is_protected_kvm_enabled()" checks explicit every time.
-
-Happy to do this here, but are you suggesting to generalize this pattern
-to other places as well?
-
-> >  }
-> >  
-> >  static void cpu_hyp_reinit(void)
-> > @@ -1489,13 +1497,14 @@ static void cpu_hyp_reinit(void)
-> >  	kvm_init_host_cpu_context(&this_cpu_ptr_hyp_sym(kvm_host_data)->host_ctxt);
-> >  
-> >  	cpu_hyp_reset();
-> > -	cpu_set_hyp_vector();
-> >  
-> >  	if (is_kernel_in_hyp_mode())
-> >  		kvm_timer_init_vhe();
-> >  	else
-> >  		cpu_init_hyp_mode();
-> >  
-> > +	cpu_set_hyp_vector();
-> > +
-> >  	kvm_arm_init_debug();
-> >  
-> >  	if (vgic_present)
-> > @@ -1714,13 +1723,52 @@ static int copy_cpu_ftr_regs(void)
-> >  	return 0;
-> >  }
-> >  
-> > +static int kvm_hyp_enable_protection(void)
-> > +{
-> > +	void *per_cpu_base = kvm_ksym_ref(kvm_arm_hyp_percpu_base);
-> > +	int ret, cpu;
-> > +	void *addr;
-> > +
-> > +	if (!is_protected_kvm_enabled())
-> > +		return 0;
-> 
-> Maybe I'm hung up on my previous suggestion, but I feel like we shouldn't
-> get here if protected kvm isn't enabled.
-
-The alternative is to move this check next to the call site, but it
-won't help much IMO.
-
-> 
-> > +	if (!hyp_mem_base)
-> > +		return -ENOMEM;
-> > +
-> > +	addr = phys_to_virt(hyp_mem_base);
-> > +	ret = create_hyp_mappings(addr, addr + hyp_mem_size - 1, PAGE_HYP);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	preempt_disable();
-> > +	kvm_set_hyp_vector();
-> > +	ret = kvm_call_hyp_nvhe(__pkvm_init, hyp_mem_base, hyp_mem_size,
-> > +				num_possible_cpus(), kern_hyp_va(per_cpu_base));
-> 
-> Would it make sense for the __pkvm_init() hypercall to set the vector as
-> well, so that we wouldn't need to disable preemption over two hypercalls?
-
-Not sure, kvm_set_hyp_vector() itself already does multiple hypercalls,
-and I need it separate from __pkvm_init for secondary CPUs.
-
-> Failing that, maybe move the whole preempt_disable/enable sequence into
-> another function.
-
-But that I can do.
-
-> > +	preempt_enable();
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	free_hyp_pgds();
-> > +	for_each_possible_cpu(cpu)
-> > +		free_page(per_cpu(kvm_arm_hyp_stack_page, cpu));
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  /**
-> >   * Inits Hyp-mode on all online CPUs
-> >   */
-> >  static int init_hyp_mode(void)
-> >  {
-> >  	int cpu;
-> > -	int err = 0;
-> > +	int err = -ENOMEM;
-> > +
-> > +	/*
-> > +	 * The protected Hyp-mode cannot be initialized if the memory pool
-> > +	 * allocation has failed.
-> > +	 */
-> > +	if (is_protected_kvm_enabled() && !hyp_mem_base)
-> > +		return err;
-> >  
-> >  	/*
-> >  	 * Copy the required CPU feature register in their EL2 counterpart
-> > @@ -1854,6 +1902,12 @@ static int init_hyp_mode(void)
-> >  	for_each_possible_cpu(cpu)
-> >  		cpu_prepare_hyp_mode(cpu);
-> >  
-> > +	err = kvm_hyp_enable_protection();
-> > +	if (err) {
-> > +		kvm_err("Failed to enable hyp memory protection: %d\n", err);
-> > +		goto out_err;
-> > +	}
-> > +
-> >  	return 0;
-> >  
-> >  out_err:
-> > diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-> > index 3cf9397dabdb..9d4c9251208e 100644
-> > --- a/arch/arm64/kvm/mmu.c
-> > +++ b/arch/arm64/kvm/mmu.c
-> > @@ -225,15 +225,39 @@ void free_hyp_pgds(void)
-> >  	if (hyp_pgtable) {
-> >  		kvm_pgtable_hyp_destroy(hyp_pgtable);
-> >  		kfree(hyp_pgtable);
-> > +		hyp_pgtable = NULL;
-> >  	}
-> >  	mutex_unlock(&kvm_hyp_pgd_mutex);
-> >  }
-> >  
-> > +static bool kvm_host_owns_hyp_mappings(void)
-> > +{
-> > +	if (static_branch_likely(&kvm_protected_mode_initialized))
-> > +		return false;
-> > +
-> > +	/*
-> > +	 * This can happen at boot time when __create_hyp_mappings() is called
-> > +	 * after the hyp protection has been enabled, but the static key has
-> > +	 * not been flipped yet.
-> > +	 */
-> > +	if (!hyp_pgtable && is_protected_kvm_enabled())
-> > +		return false;
-> > +
-> > +	BUG_ON(!hyp_pgtable);
-> 
-> Can we fail more gracefully, e.g. by continuing without KVM?
-
-Got any suggestion as to how that can be done? We could also just remove
-that line -- that really should not happen.
-
-Thanks!
-Quentin
