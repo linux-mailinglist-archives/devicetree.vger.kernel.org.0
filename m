@@ -2,293 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4178311279
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 21:30:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D31DB3111AA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 21:01:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233242AbhBESpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 13:45:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45592 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233089AbhBEPEk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 10:04:40 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 23F1264EBB;
-        Fri,  5 Feb 2021 16:35:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612542918;
-        bh=IFsoR33cfLR/NdsmSDvU1b96AKsLDHBLu6xFlw273pg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=KZxh+APv+35iGZRKPPFRQTJ/hGBEgBXyyL709ntUmNkBZA0K/e7U6qxFt6OyDwGQV
-         o5y+9Az7Xav+3WoePuF3+yQEQ4wdLNX+1UkW7eLJ2P22gtD+b7Y7Q9bBXPByAz8Cr2
-         fGFFU3Bg6uIfHKxq4V9iHWzqbA5rEFGrMjSBLxt7859Chpr+ZP03c/A0zERKiJa5FE
-         7vFCgdIfO0NznmeJaKivQmVZ4C8Nkif/nrYunM0siFx86qYFBE53La+zLoY63pMUrV
-         Ge9xRqRSC9tbrwgbb3oR36Gy2LOW90il1O4gtyqY6ul8B08CdHE4ytOMgf1rmaKOhs
-         welBiSbNSmYxw==
-Received: by mail-wr1-f44.google.com with SMTP id a1so8371347wrq.6;
-        Fri, 05 Feb 2021 08:35:18 -0800 (PST)
-X-Gm-Message-State: AOAM531CAnDptnHE4QcsPMmEwy3NIOmR4EeM5IV/oSpFdVJ73Lyy7Bp6
-        tiuLrr4Ol+baFDTW7/4Km9WOdYfq4T2EFXlXXQ==
-X-Google-Smtp-Source: ABdhPJxHaO6IYPbyxfqRFCa2tsAhyIgQYiwjsqx933EYqGvODP9OdFZKkygaQFKEuVKnf1Lb6O8Kcb8tXYF+CWHULSc=
-X-Received: by 2002:a5d:524a:: with SMTP id k10mr5993484wrc.394.1612542916550;
- Fri, 05 Feb 2021 08:35:16 -0800 (PST)
+        id S229754AbhBEPTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 10:19:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53742 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233034AbhBEPRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 10:17:39 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B80CC061786;
+        Fri,  5 Feb 2021 08:57:00 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id q20so4704200pfu.8;
+        Fri, 05 Feb 2021 08:57:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=FOEm1D+Czxz58La1dq4BWslisSDqj3ZoJUzqSPK4QeE=;
+        b=HPYF9orm8rK6s3eR3XgUDsB11ukoLEPZt9HsBpj3Ah7VK7SaapxjTnGiMI606xQB2y
+         yK3FkTLO1t5Dtzbf9CYBo6bw3q7Jb1pVqEJxX43Q/h2IiPcz6IbHBcYX1kN+dNjlGmw4
+         N6vdCzZcv/KkDOmLT1jvCaalf4dlqebS7JA6R+g7i3lyO/KiS3q+u85QQPnteGmnVsS1
+         CDaBQoVI+Q62akG78XNrMPkdNnQUbFjHjynSqNQm9+a1DWEsTe6G5oIUDJRJr2SyZq9/
+         n3GQp0KxtqqF3liCQZYnqnDdJShwv5TZ4aG3IXJsmMBNGlyv/gSTW53F0PR4kjvS/owA
+         kDZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=FOEm1D+Czxz58La1dq4BWslisSDqj3ZoJUzqSPK4QeE=;
+        b=esHhGIOsAWteT/PfUA0nCwhehkGGq5szFtUHRLRE0JndzHm76jGaMMflW0oXr0L+e8
+         GzsKBGBWTOHCOfd9aXmyKMNslI0CLv9M2nzzYccc1E1Km/QF1uhzYqjnB2ENbuxzKODc
+         wJP2dbEKETjcQAAABfao9+GtsU42hmhVGucKx7LaZuLRK2ywKErePjB+ZbhnmDiltzSm
+         JBeZEe9IplOl71ufzKLzrRNBW6fGF8cf0w0LeA6J/zAAhyADAr9F2g6kbh06WvGnxibE
+         kC41cTMb8Lz96mZSkEL+Z1OWKsU2vLucdHGplQAteMEeN9dU+j2eDIiFPFVIazSlbjVy
+         ru4Q==
+X-Gm-Message-State: AOAM532lZSkK7+kW/gMSz5xh800BMiLhmGVaB251XTVto0cHb9DgRkBP
+        h4UK9/yHp3/txgxBHWaK1FzQWlHiOvw=
+X-Google-Smtp-Source: ABdhPJyEQT//X6RRg+ULJzUDO2g+vQNQWutV/o1BN0IHvB+N/F1vgkRelzNNfjSUpYvV1dRhIMQuIw==
+X-Received: by 2002:a05:6a00:138f:b029:1b8:b9d5:3a2c with SMTP id t15-20020a056a00138fb02901b8b9d53a2cmr5405836pfg.10.1612544219531;
+        Fri, 05 Feb 2021 08:56:59 -0800 (PST)
+Received: from [10.67.49.228] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id c6sm6229575pjd.21.2021.02.05.08.56.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Feb 2021 08:56:58 -0800 (PST)
+Subject: Re: [RFC/PATCH 05/11] soc: bcm: bcm2835-power: Add support for
+ BCM2711's ARSAN ASB
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     phil@raspberrypi.com, wahrenst@gmx.net,
+        linux-kernel@vger.kernel.org
+References: <20210205135249.2924-1-nsaenzjulienne@suse.de>
+ <20210205135249.2924-6-nsaenzjulienne@suse.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <d081a505-487d-eb29-94fd-5e1f638bba29@gmail.com>
+Date:   Fri, 5 Feb 2021 08:56:55 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210205071833.2707243-1-hsinyi@chromium.org> <20210205071833.2707243-2-hsinyi@chromium.org>
-In-Reply-To: <20210205071833.2707243-2-hsinyi@chromium.org>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 6 Feb 2021 00:35:05 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9CJQ9dF4D04Kp6SwVX4zoJ5HZJKD5aKbko3Qqiy0xEPw@mail.gmail.com>
-Message-ID: <CAAOTY_9CJQ9dF4D04Kp6SwVX4zoJ5HZJKD5aKbko3Qqiy0xEPw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-binding: gce: add gce header file for mt8192
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210205135249.2924-6-nsaenzjulienne@suse.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Hsin-Yi:
+On 2/5/21 5:52 AM, Nicolas Saenz Julienne wrote:
+> In BCM2711 the new ARGON ASB took over V3D. The old ASB is still present
+> with the ISP and H264 bits, and V3D is in the same place in the new ASB
+> as the old one.
+> 
+> Use the fact that 'pm->arsan_asb' is populated as a hint that we're on
+> BCM2711. On top of that introduce the macro ASB_BASE() which will select
+> the correct ASB register base, based on whether we're trying to access
+> V3D and which platform we're on.
 
-Hsin-Yi Wang <hsinyi@chromium.org> =E6=96=BC 2021=E5=B9=B42=E6=9C=885=E6=97=
-=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=883:19=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
->
-> Add documentation for the mt8192 gce.
->
-> Add gce header file defined the gce hardware event,
-> subsys number and constant for mt8192.
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
->  .../devicetree/bindings/mailbox/mtk-gce.txt   |   7 +-
->  include/dt-bindings/gce/mt8192-gce.h          | 419 ++++++++++++++++++
->  2 files changed, 423 insertions(+), 3 deletions(-)
->  create mode 100644 include/dt-bindings/gce/mt8192-gce.h
->
-> diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Docu=
-mentation/devicetree/bindings/mailbox/mtk-gce.txt
-> index 7771ecaac5868..ac4245050d17d 100644
-> --- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> +++ b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> @@ -9,8 +9,8 @@ CMDQ driver uses mailbox framework for communication. Ple=
-ase refer to
->  mailbox.txt for generic information about mailbox device-tree bindings.
->
->  Required properties:
-> -- compatible: can be "mediatek,mt8173-gce", "mediatek,mt8183-gce" or
-> -  "mediatek,mt6779-gce".
-> +- compatible: can be "mediatek,mt8173-gce", "mediatek,mt8183-gce",
-> +  "mediatek,mt8192-gce" or "mediatek,mt6779-gce".
->  - reg: Address range of the GCE unit
->  - interrupts: The interrupt signal from the GCE block
->  - clock: Clocks according to the common clock binding
-> @@ -36,7 +36,8 @@ Optional properties for a client device:
->    size: the total size of register address that GCE can access.
->
->  Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h',
-> -'dt-binding/gce/mt8183-gce.h' or 'dt-bindings/gce/mt6779-gce.h'. Such as
-> +'dt-binding/gce/mt8183-gce.h', 'dt-binding/gce/mt8192-gce.h' or
-> +'dt-bindings/gce/mt6779-gce.h'. Such as
->  sub-system ids, thread priority, event ids.
->
->  Example:
-> diff --git a/include/dt-bindings/gce/mt8192-gce.h b/include/dt-bindings/g=
-ce/mt8192-gce.h
-> new file mode 100644
-> index 0000000000000..062754416bfda
-> --- /dev/null
-> +++ b/include/dt-bindings/gce/mt8192-gce.h
-> @@ -0,0 +1,419 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2020 MediaTek Inc.
-> + * Author: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_GCE_MT8192_H
-> +#define _DT_BINDINGS_GCE_MT8192_H
-> +
-> +/* assign timeout 0 also means default */
-> +#define CMDQ_NO_TIMEOUT                0xffffffff
-> +#define CMDQ_TIMEOUT_DEFAULT   1000
-> +
-> +/* GCE thread priority */
-> +#define CMDQ_THR_PRIO_LOWEST   0
-> +#define CMDQ_THR_PRIO_1                1
-> +#define CMDQ_THR_PRIO_2                2
-> +#define CMDQ_THR_PRIO_3                3
-> +#define CMDQ_THR_PRIO_4                4
-> +#define CMDQ_THR_PRIO_5                5
-> +#define CMDQ_THR_PRIO_6                6
-> +#define CMDQ_THR_PRIO_HIGHEST  7
-> +
-> +/* CPR count in 32bit register */
-> +#define GCE_CPR_COUNT          1312
-> +
-> +/* GCE subsys table */
-> +#define SUBSYS_1300XXXX                0
-> +#define SUBSYS_1400XXXX                1
-> +#define SUBSYS_1401XXXX                2
-> +#define SUBSYS_1402XXXX                3
-> +#define SUBSYS_1502XXXX                4
-> +#define SUBSYS_1880XXXX                5
-> +#define SUBSYS_1881XXXX                6
-> +#define SUBSYS_1882XXXX                7
-> +#define SUBSYS_1883XXXX                8
-> +#define SUBSYS_1884XXXX                9
-> +#define SUBSYS_1000XXXX                10
-> +#define SUBSYS_1001XXXX                11
-> +#define SUBSYS_1002XXXX                12
-> +#define SUBSYS_1003XXXX                13
-> +#define SUBSYS_1004XXXX                14
-> +#define SUBSYS_1005XXXX                15
-> +#define SUBSYS_1020XXXX                16
-> +#define SUBSYS_1028XXXX                17
-> +#define SUBSYS_1700XXXX                18
-> +#define SUBSYS_1701XXXX                19
-> +#define SUBSYS_1702XXXX                20
-> +#define SUBSYS_1703XXXX                21
-> +#define SUBSYS_1800XXXX                22
-> +#define SUBSYS_1801XXXX                23
-> +#define SUBSYS_1802XXXX                24
-> +#define SUBSYS_1804XXXX                25
-> +#define SUBSYS_1805XXXX                26
-> +#define SUBSYS_1808XXXX                27
-> +#define SUBSYS_180aXXXX                28
-> +#define SUBSYS_180bXXXX                29
-> +#define SUBSYS_NO_SUPPORT      99
+Your subject has a typo, you most likely intended to write "Argon ASB",
+right?
 
-Why define no support?
-
-> +
-> +/* GCE General Purpose Register (GPR) support
-> + * Leave note for scenario usage here
-> + */
-> +/* GCE: write mask */
-> +#define GCE_GPR_R00            0x00
-> +#define GCE_GPR_R01            0x01
-> +/* MDP: P1: JPEG dest */
-> +#define GCE_GPR_R02            0x02
-> +#define GCE_GPR_R03            0x03
-> +/* MDP: PQ color */
-> +#define GCE_GPR_R04            0x04
-> +/* MDP: 2D sharpness */
-> +#define GCE_GPR_R05            0x05
-> +/* DISP: poll esd */
-> +#define GCE_GPR_R06            0x06
-> +#define GCE_GPR_R07            0x07
-> +/* MDP: P4: 2D sharpness dst */
-> +#define GCE_GPR_R08            0x08
-> +#define GCE_GPR_R09            0x09
-> +/* VCU: poll with timeout for GPR timer */
-> +#define GCE_GPR_R10            0x0A
-> +#define GCE_GPR_R11            0x0B
-> +/* CMDQ: debug */
-> +#define GCE_GPR_R12            0x0C
-> +#define GCE_GPR_R13            0x0D
-> +/* CMDQ: P7: debug */
-> +#define GCE_GPR_R14            0x0E
-> +#define GCE_GPR_R15            0x0F
-> +
-
-If there are 1024 general registers, you would have 1024 definition here?
-
-[snip]
-
-> +#define CMDQ_EVENT_OUT_EVENT_0                         898
-
-If the sw token is from 512 to 1023, is this sw token?
-
-> +
-> +/* CMDQ sw tokens
-> + * Following definitions are gce sw token which may use by clients
-> + * event operation API.
-> + * Note that token 512 to 639 may set secure
-> + */
-> +
-> +/* end of hw event and begin of sw token */
-> +#define CMDQ_MAX_HW_EVENT                              512
-> +
-> +/* Config thread notify trigger thread */
-> +#define CMDQ_SYNC_TOKEN_CONFIG_DIRTY                   640
-> +/* Trigger thread notify config thread */
-> +#define CMDQ_SYNC_TOKEN_STREAM_EOF                     641
-> +/* Block Trigger thread until the ESD check finishes. */
-> +#define CMDQ_SYNC_TOKEN_ESD_EOF                                642
-> +#define CMDQ_SYNC_TOKEN_STREAM_BLOCK                   643
-> +/* check CABC setup finish */
-> +#define CMDQ_SYNC_TOKEN_CABC_EOF                       644
-> +
-> +/* Notify normal CMDQ there are some secure task done
-> + * MUST NOT CHANGE, this token sync with secure world
-> + */
-> +#define CMDQ_SYNC_SECURE_THR_EOF                       647
-> +
-> +/* CMDQ use sw token */
-> +#define CMDQ_SYNC_TOKEN_USER_0                         649
-> +#define CMDQ_SYNC_TOKEN_USER_1                         650
-> +#define CMDQ_SYNC_TOKEN_POLL_MONITOR                   651
-> +
-> +/* ISP sw token */
-> +#define CMDQ_SYNC_TOKEN_MSS                            665
-> +#define CMDQ_SYNC_TOKEN_MSF                            666
-> +
-> +/* DISP sw token */
-> +#define CMDQ_SYNC_TOKEN_SODI                           671
-
-sw token is an event which is trigger by software. Each driver could
-choose some sw token to use. But I think each sw token could be used
-by any driver. So this definition is a software definition and it
-should be placed in driver.
-
-> +
-> +/* GPR access tokens (for HW register backup)
-> + * There are 15 32-bit GPR, 3 GPR form a set
-> + * (64-bit for address, 32-bit for value)
-> + * MUST NOT CHANGE, these tokens sync with MDP
-> + */
-> +#define CMDQ_SYNC_TOKEN_GPR_SET_0                      700
-> +#define CMDQ_SYNC_TOKEN_GPR_SET_1                      701
-> +#define CMDQ_SYNC_TOKEN_GPR_SET_2                      702
-> +#define CMDQ_SYNC_TOKEN_GPR_SET_3                      703
-> +#define CMDQ_SYNC_TOKEN_GPR_SET_4                      704
-
-This looks like software definition.
-
-> +
-> +/* Resource lock event to control resource in GCE thread */
-> +#define CMDQ_SYNC_RESOURCE_WROT0                       710
-> +#define CMDQ_SYNC_RESOURCE_WROT1                       711
-
-This looks like software definition.
-
-Regards,
-Chun-Kuang.
-
-> +
-> +#define CMDQ_EVENT_MAX                                 0x3FF
-> +/* CMDQ sw tokens END */
-> +
-> +#endif
-> --
-> 2.30.0.365.g02bc693789-goog
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+I will review the series a little later today.
+-- 
+Florian
