@@ -2,80 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25A6F311A3B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:38:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53985311A7B
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:52:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231355AbhBFDhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 22:37:15 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:35350 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231387AbhBFDfJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 22:35:09 -0500
-Received: by mail-oi1-f176.google.com with SMTP id w8so9720974oie.2;
-        Fri, 05 Feb 2021 19:34:43 -0800 (PST)
+        id S231715AbhBFDuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 22:50:06 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:34611 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231592AbhBFDr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 22:47:56 -0500
+Received: by mail-oi1-f177.google.com with SMTP id h192so9748900oib.1;
+        Fri, 05 Feb 2021 19:47:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=oYX3STVGOutn/ODTJ1Chx6wd1ikGLIpdQAWlo27fcnA=;
-        b=P/tmvMNJuCuqeky6J0kl0Kj1FLXJrI6DbCiAoZ274C7A4WTyk2uLzxl+LKN7kDMYzp
-         fQdHe4ZHjIp/K4xG0g45oblqhLfZL9P/oQ9fnjDp4a02Y/5VnowiUiL18s/AAubCOZBP
-         QLj2aKwmq+meqg60tlD+/PajmOFUlN3Ns38A+WnIdQAJ5BRI0VMW0aTvpriLtUSEMZLj
-         o/kSf2iyTANckXVa15Z8WULqesTu2yQdTO3BSbVUuixzohYwxH76z5SHz4sWQMxupss0
-         9ArTEOdoSaTROnG9MNc2u3RxTryhDJWvB+WijT33vgP6z1mDiCQKFENC/naBSgeCOlAm
-         p49w==
-X-Gm-Message-State: AOAM530erH1pbtNZAgpnrFXgHOyb+/S0D9/b/X7SKVpNqimfbrrN3urP
-        BuczDvVF1VijgIm/jXqOMF9iuUWJWA==
-X-Google-Smtp-Source: ABdhPJx7yvm1O6oqJ0lLXbtfmYGfoeVWzvCVL9cCxLieYLbGmE6b1ddW84xEXKVGBDviVnEhIIsV6Q==
-X-Received: by 2002:a05:6808:918:: with SMTP id w24mr4534554oih.20.1612562677933;
-        Fri, 05 Feb 2021 14:04:37 -0800 (PST)
+        bh=+M4rD8lhAIwaWja6r8ayIGoRcioSa2ru8gsy3RVn3Ec=;
+        b=j3K9yItLD3FwuIHsyb3Ybul5mNJXGIz8hs/l1dIKqv8V/avLLHxr5z/qdCVWPA/1QD
+         pS4CNAv2H4avFyobYL/FLAo43KPaHSNiflXDxn7rZbmmiFUtbmz+dKwgKWwKZ2RdQRBV
+         VzN06EmK8N/oGyzAET7LxQwhpgfUDi1KfuY4E1V6L0TgyJK5eyjlmOgeewY/RtqV9NgO
+         w3z+JTk8ltARgDcJi9Db5eEUjRlAFHJwanQnc3DTpZDOT87tbZzYSDlvpszHTKqakGMw
+         EZwfOPwYOffJuPsYyxiDqmS1TPyUcY7ZrztaZ3yd+K+JaP+myHGiVeW1YwJ9plEb/FL3
+         VWPg==
+X-Gm-Message-State: AOAM532NoAZTupbiwAOBYonBm7AEVxSm5n5HlldUDwTj4hl3Qw0nyZih
+        IQCi8Zcl5gTnbxD2mWRziQfL17bZGg==
+X-Google-Smtp-Source: ABdhPJwT+do3Tf8ShVWqxdJZu0MSFLTcBAZfVqwvPQ1VqaYfgImnDQkA3Ib6XJKGM1n47zjkuTd86w==
+X-Received: by 2002:aca:b255:: with SMTP id b82mr4420318oif.98.1612563238100;
+        Fri, 05 Feb 2021 14:13:58 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u15sm1970378oiu.28.2021.02.05.14.04.35
+        by smtp.gmail.com with ESMTPSA id u73sm2035591oie.30.2021.02.05.14.13.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 14:04:36 -0800 (PST)
-Received: (nullmailer pid 3833547 invoked by uid 1000);
-        Fri, 05 Feb 2021 22:04:34 -0000
-Date:   Fri, 5 Feb 2021 16:04:34 -0600
+        Fri, 05 Feb 2021 14:13:56 -0800 (PST)
+Received: (nullmailer pid 3847968 invoked by uid 1000);
+        Fri, 05 Feb 2021 22:13:55 -0000
+Date:   Fri, 5 Feb 2021 16:13:55 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, Ran Bi <ran.bi@mediatek.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        srv_heupstream@mediatek.com, Liam Girdwood <lgirdwood@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Lee Jones <lee.jones@linaro.org>, linux-rtc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH RESEND v5 3/8] dt-bindings: mfd: Add compatible for the
- MediaTek MT6359 PMIC
-Message-ID: <20210205220434.GA3833495@robh.at.kernel.org>
-References: <1611913781-23460-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1611913781-23460-4-git-send-email-hsin-hsiung.wang@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     devel@driverdev.osuosl.org, Yu Chen <chenyu56@huawei.com>,
+        Alex Dewar <alex.dewar90@gmail.com>,
+        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 5/5] phy: phy-hi3670-usb3: move driver from staging
+ into phy
+Message-ID: <20210205221355.GA3847933@robh.at.kernel.org>
+References: <cover.1611052729.git.mchehab+huawei@kernel.org>
+ <82ce73ac9a383f0cae0faded5ec6fef2d3417d3c.1611052729.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1611913781-23460-4-git-send-email-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <82ce73ac9a383f0cae0faded5ec6fef2d3417d3c.1611052729.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Jan 2021 17:49:36 +0800, Hsin-Hsiung Wang wrote:
-> This adds compatible for the MediaTek MT6359 PMIC.
+On Tue, 19 Jan 2021 11:44:43 +0100, Mauro Carvalho Chehab wrote:
+> The phy USB3 driver for Hisilicon 970 (hi3670) is ready
+> for mainstream. Mode it from staging into the main driver's
+> phy/ directory.
 > 
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
-> changes since v4:
-> - remove unused compatible name.
-> ---
->  Documentation/devicetree/bindings/mfd/mt6397.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/phy/hisilicon,hi3670-usb3.yaml   |  73 ++
+>  MAINTAINERS                                   |   9 +-
+>  drivers/phy/hisilicon/Kconfig                 |  10 +
+>  drivers/phy/hisilicon/Makefile                |   1 +
+>  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 668 ++++++++++++++++++
+>  drivers/staging/hikey9xx/Kconfig              |  11 -
+>  drivers/staging/hikey9xx/Makefile             |   2 -
+>  drivers/staging/hikey9xx/phy-hi3670-usb3.c    | 668 ------------------
+>  drivers/staging/hikey9xx/phy-hi3670-usb3.yaml |  73 --
+>  9 files changed, 760 insertions(+), 755 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
+>  create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
+>  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.c
+>  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
