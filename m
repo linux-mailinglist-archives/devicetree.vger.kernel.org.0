@@ -2,108 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69CF23118D4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 03:50:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 467D03118C7
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 03:49:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231205AbhBFCrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 21:47:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38880 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231634AbhBFClL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 21:41:11 -0500
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A059C0698CA;
-        Fri,  5 Feb 2021 14:23:01 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 9D6E13F290;
-        Fri,  5 Feb 2021 23:22:56 +0100 (CET)
-Subject: Re: [PATCH v5 3/7] dt-bindings: arm: cpus: Document
- 'qcom,freq-domain' property
-To:     Rob Herring <robh@kernel.org>
-Cc:     viresh.kumar@linaro.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, rjw@rjwysocki.net, devicetree@vger.kernel.org,
-        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20210121195250.492500-1-angelogioacchino.delregno@somainline.org>
- <20210121195250.492500-4-angelogioacchino.delregno@somainline.org>
- <20210205214641.GA3802952@robh.at.kernel.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <65135511-1360-c094-9eaf-fec75f9ab53a@somainline.org>
-Date:   Fri, 5 Feb 2021 23:22:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S231352AbhBFCpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 21:45:40 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:35381 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230515AbhBFCmJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 21:42:09 -0500
+Received: by mail-ot1-f54.google.com with SMTP id k10so6508936otl.2;
+        Fri, 05 Feb 2021 18:41:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FU+UCOFQQYVXfS0+LCrISl1mGUUH7pHKT1RulCQQqCk=;
+        b=lRJ7rKFrYJNPcL2fAV7PVPqNPRHQ+ks4xHyuUBFrOxWlLI3+yyMdj5lWWCUUwAZ7og
+         EFfwAotUhNZUkoaCtbJfJxlHHHIzz4mAgaMEyJU68POJLscPBzwt1MWgHlLydO+zAw4e
+         pSzxy0fLqR8ZSbswn6qeb+K1p19B0zrfWuY8/NlebXCUAynyhBtf6pLYimJ1CFmmY6td
+         xKI+Ynxem/1wAuCcruUZmxpLxiOXCHARQuJYPCigwl3eQtz/c6VwXc6vW/0BTocMhuBF
+         Q9ULkmDDnBYyL+9J3Mow6kkCauSB1hnfrR2llWPWh0zEccMm2ydxDSDs8XkaJ81cLwJb
+         lK5w==
+X-Gm-Message-State: AOAM531ToE63J7mBR1+QKJ4UoT4HH/VQev+iR1LLIFkx/SBTbI9Hm5LE
+        qW92apQHpn27ofceG5SAqYfCf2peSg==
+X-Google-Smtp-Source: ABdhPJyr1AlIFE4ExmRHCvX9qNXq8/sjd9wV24kKZcLUt9dS+ovyZrQ6nuiOsTAaglcyp92xF8HXfg==
+X-Received: by 2002:a9d:37c4:: with SMTP id x62mr5065131otb.87.1612563968681;
+        Fri, 05 Feb 2021 14:26:08 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a63sm2097188otc.75.2021.02.05.14.26.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Feb 2021 14:26:07 -0800 (PST)
+Received: (nullmailer pid 3866684 invoked by uid 1000);
+        Fri, 05 Feb 2021 22:26:06 -0000
+Date:   Fri, 5 Feb 2021 16:26:06 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mayulong <mayulong1@huawei.com>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 18/21] mfd: hi6421-spmi-pmic: move driver from staging
+Message-ID: <20210205222606.GA3857395@robh.at.kernel.org>
+References: <cover.1611072387.git.mchehab+huawei@kernel.org>
+ <e79ffb200c52fc8c8926492cc82ac5dbcda3e3fb.1611072387.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210205214641.GA3802952@robh.at.kernel.org>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e79ffb200c52fc8c8926492cc82ac5dbcda3e3fb.1611072387.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/02/21 22:46, Rob Herring ha scritto:
-> On Thu, Jan 21, 2021 at 08:52:46PM +0100, AngeloGioacchino Del Regno wrote:
->> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>
->> Add devicetree documentation for 'qcom,freq-domain' property specific
->> to Qualcomm CPUs. This property is used to reference the CPUFREQ node
->> along with Domain ID (0/1).
->>
->> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> ---
->>   Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
->> index 14cd727d3c4b..1d60975df23a 100644
->> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
->> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
->> @@ -290,6 +290,12 @@ properties:
->>   
->>         * arm/msm/qcom,kpss-acc.txt
->>   
->> +  qcom,freq-domain:
+On Tue, Jan 19, 2021 at 05:10:44PM +0100, Mauro Carvalho Chehab wrote:
+> This driver is ready for mainstream. So, move it out of staging.
 > 
-> What happened to having a standard property here? There were 1 or 2
-> other cases of doing the same thing.
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 135 +++++++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/mfd/Kconfig                           |  15 +
+>  drivers/mfd/Makefile                          |   1 +
+>  drivers/mfd/hi6421-spmi-pmic.c                | 281 ++++++++++++++++++
+>  drivers/staging/hikey9xx/Kconfig              |  16 -
+>  drivers/staging/hikey9xx/Makefile             |   1 -
+>  drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 281 ------------------
+>  .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 135 ---------
+>  9 files changed, 439 insertions(+), 433 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+>  create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
+>  delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
+>  delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+> new file mode 100644
+> index 000000000000..3b23ad56b31a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/hisilicon,hi6421-spmi-pmic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HiSilicon 6421v600 SPMI PMIC
+> +
+> +maintainers:
+> +  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> +
+> +description: |
+> +  HiSilicon 6421v600 should be connected inside a MIPI System Power Management
+> +  (SPMI) bus. It provides interrupts and power supply.
+> +
+> +  The GPIO and interrupt settings are represented as part of the top-level PMIC
+> +  node.
+> +
+> +  The SPMI controller part is provided by
+> +  drivers/staging/hikey9xx/hisilicon,hisi-spmi-controller.yaml.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "pmic@[0-9a-f]"
+> +
+> +  compatible:
+> +    const: hisilicon,hi6421v600-spmi
 
-The original discussion didn't have any more replies, so I thought to
-bring it back on the table.
-I have no idea about what are the other cases, but if you can suggest
-a different property name (just "frequency-domain"?) I can send a new
-one with the suggested one!
+'-spmi' is redundant.
 
-Though, since I don't know about other cases, how would this get
-described?
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  interrupt-controller:
+> +    description:
+> +      Identify that the PMIC is capable of behaving as an interrupt controller.
 
-frequency-domain:
-"CPUs supporting frequency-domain must set this property with phandle
-  to the appropriate [domain node or cpufreq node?] followed by the
-  Domain ID"
+Don't need a description here.
 
-Would this be fine?
+Don't you need 'interrupts' here to get the interrupts to the host?
 
-Thanks,
-- Angelo
+> +
+> +  gpios:
+> +    maxItems: 1
 
->> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
->> +    description: |
->> +      CPUs supporting freq-domain must set their "qcom,freq-domain" property
->> +      with phandle to a cpufreq_hw node followed by the Domain ID(0/1).
->> +
->>     rockchip,pmu:
->>       $ref: '/schemas/types.yaml#/definitions/phandle'
->>       description: |
->> -- 
->> 2.30.0
->>
+GPIO for what? It's preferred to have a named gpio.
 
+> +
+> +  regulators:
+> +    type: object
+> +
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+> +    patternProperties:
+> +      '^ldo[0-9]+@[0-9a-f]$':
+> +        type: object
+> +
+> +        $ref: "/schemas/regulator/regulator.yaml#"
+
+       additionalProperties: false
+
+Which will give you errors in the example.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - regulators
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    /* pmic properties */
+> +
+> +    pmic: pmic@0 {
+> +      compatible = "hisilicon,hi6421-spmi";
+> +      reg = <0 0>;
+> +
+> +      #interrupt-cells = <2>;
+> +      interrupt-controller;
+> +      gpios = <&gpio28 0 0>;
+> +
+> +      regulators {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ldo3: LDO3 {
+
+LDO3: ldo3  {
+
+is preferred and closer to what you defined above.
+
+> +          regulator-name = "ldo3";
+> +          regulator-min-microvolt = <1500000>;
+> +          regulator-max-microvolt = <2000000>;
+> +          regulator-boot-on;
+> +        };
+> +
+> +        ldo4: LDO4 {
+> +          regulator-name = "ldo4";
+> +          regulator-min-microvolt = <1725000>;
+> +          regulator-max-microvolt = <1900000>;
+> +          regulator-boot-on;
+> +        };
+> +
+> +        ldo9: LDO9 {
+> +          regulator-name = "ldo9";
+> +          regulator-min-microvolt = <1750000>;
+> +          regulator-max-microvolt = <3300000>;
+> +          regulator-boot-on;
+> +        };
+> +
+> +        ldo15: LDO15 {
+> +          regulator-name = "ldo15";
+> +          regulator-min-microvolt = <1800000>;
+> +          regulator-max-microvolt = <3000000>;
+> +          regulator-always-on;
+> +        };
+> +
+> +        ldo16: LDO16 {
+> +          regulator-name = "ldo16";
+> +          regulator-min-microvolt = <1800000>;
+> +          regulator-max-microvolt = <3000000>;
+> +          regulator-boot-on;
+> +        };
+> +
+> +        ldo17: LDO17 {
+> +          regulator-name = "ldo17";
+> +          regulator-min-microvolt = <2500000>;
+> +          regulator-max-microvolt = <3300000>;
+> +        };
+> +
+> +        ldo33: LDO33 {
+> +          regulator-name = "ldo33";
+> +          regulator-min-microvolt = <2500000>;
+> +          regulator-max-microvolt = <3300000>;
+> +          regulator-boot-on;
+> +        };
+> +
+> +        ldo34: LDO34 {
+> +          regulator-name = "ldo34";
+> +          regulator-min-microvolt = <2600000>;
+> +          regulator-max-microvolt = <3300000>;
+> +        };
+> +      };
+> +    };
