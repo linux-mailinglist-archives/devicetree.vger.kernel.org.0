@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00CFC3115A4
+	by mail.lfdr.de (Postfix) with ESMTP id 70B473115A5
 	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:43:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbhBEWhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 17:37:23 -0500
-Received: from mx2.suse.de ([195.135.220.15]:59188 "EHLO mx2.suse.de"
+        id S230138AbhBEWhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 17:37:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53124 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231622AbhBEN4U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 08:56:20 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 241F5AEC4;
-        Fri,  5 Feb 2021 13:53:02 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     f.fainelli@gmail.com, Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     phil@raspberrypi.com, wahrenst@gmx.net,
-        linux-kernel@vger.kernel.org
-Subject: [RFC/PATCH 06/11] soc: bcm: bcm2835-power: Bypass power_on/off() calls
-Date:   Fri,  5 Feb 2021 14:52:42 +0100
-Message-Id: <20210205135249.2924-7-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210205135249.2924-1-nsaenzjulienne@suse.de>
-References: <20210205135249.2924-1-nsaenzjulienne@suse.de>
+        id S231833AbhBEOCg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 09:02:36 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 33F7464E2A;
+        Fri,  5 Feb 2021 14:01:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612533701;
+        bh=NFeWIebETg3okPClyzNzxfFim9lVW6swzDLEuTntgIo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=eoQ/m5XH0+SUUDudg/i3Z0Lty/d7yrvyftbrWjo46RHfmBOnXsMwSGo+BDiIXlxD5
+         9YRrJNiCgGWISqQQvXQIatKRGzfHfYX6vn++p1qefLwOflxcb8BvwCjXrD4A0GxI1z
+         kEnFDQyLVvxit7TzofSyH3zT8m5fKBC+/l9Y5osPtr+FsKc8fAYoh0K3TsfGMxMw9t
+         irJCbnx2o5l3PbUKbyOyi41YMHQFuZ1+LNN668IbsGz8eFHRhjGK3f1VQuoIwg5KXK
+         IXCHZuVGCeSt/U5ai/AxJpIcvuIt881IKrzkYuD9Yqjg6ixXukURyJAqMcS1VPXV/V
+         vBzyiBKiAsg3g==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/2] pinctrl: qcom: Add SM8350 pinctrl support
+Date:   Fri,  5 Feb 2021 19:31:30 +0530
+Message-Id: <20210205140132.274242-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bypass power_on/power_off() when running on BCM2711 as they are not
-needed.
+This adds binding and driver for TLMM block found in SM8350 SoC
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
----
- drivers/soc/bcm/bcm2835-power.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+The binding is dependent on TLMM common binding from Bjorn:
+ https://lore.kernel.org/linux-arm-msm/20210126042650.1725176-1-bjorn.andersson@linaro.org
 
-diff --git a/drivers/soc/bcm/bcm2835-power.c b/drivers/soc/bcm/bcm2835-power.c
-index 17bc71fd243c..ea65f459161d 100644
---- a/drivers/soc/bcm/bcm2835-power.c
-+++ b/drivers/soc/bcm/bcm2835-power.c
-@@ -197,6 +197,10 @@ static int bcm2835_power_power_off(struct bcm2835_power_domain *pd, u32 pm_reg)
- {
- 	struct bcm2835_power *power = pd->power;
- 
-+	/* We don't run this on BCM2711 */
-+	if (power->arsan_asb)
-+		return 0;
-+
- 	/* Enable functional isolation */
- 	PM_WRITE(pm_reg, PM_READ(pm_reg) & ~PM_ISFUNC);
- 
-@@ -218,6 +222,10 @@ static int bcm2835_power_power_on(struct bcm2835_power_domain *pd, u32 pm_reg)
- 	int inrush;
- 	bool powok;
- 
-+	/* We don't run this on BCM2711 */
-+	if (power->arsan_asb)
-+		return 0;
-+
- 	/* If it was already powered on by the fw, leave it that way. */
- 	if (PM_READ(pm_reg) & PM_POWUP)
- 		return 0;
+Changes in v6:
+ - Add rob and bjorn r-b
+ - removed quotes around 'defs' and drop the phandle for binding
+
+Changes in v5:
+ - rebase and revise binding based on Bjorn's qcom common TLMM binding
+
+Changes in v4:
+ - rename to qcom,sm8350-tlmm along with binding and driver structs
+ - fix some nits in binding pointer by Rob
+
+Vinod Koul (2):
+  dt-bindings: pinctrl: qcom: Add SM8350 pinctrl bindings
+  pinctrl: qcom: Add SM8350 pinctrl driver
+
+ .../bindings/pinctrl/qcom,sm8350-pinctrl.yaml |  145 ++
+ drivers/pinctrl/qcom/Kconfig                  |    9 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-sm8350.c         | 1649 +++++++++++++++++
+ 4 files changed, 1804 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8350-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8350.c
+
 -- 
-2.30.0
+2.26.2
 
