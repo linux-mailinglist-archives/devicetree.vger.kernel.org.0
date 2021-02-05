@@ -2,138 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7515F311A72
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FC9A311A1C
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:33:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbhBFDrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 22:47:40 -0500
-Received: from mail-yb1-f173.google.com ([209.85.219.173]:44540 "EHLO
-        mail-yb1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232297AbhBFDqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 22:46:01 -0500
-Received: by mail-yb1-f173.google.com with SMTP id r2so8753338ybk.11;
-        Fri, 05 Feb 2021 19:45:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AcoHueHL4Wy2Pr1abC9BKUiPNmDLmBdlWfI1XWRBONM=;
-        b=mzcx5IqU/FXiySpZJNqVXesUlFsT46cWaStGdRJ2RbJruaAojZAuEY9MCaZ6HQIZKC
-         krsRxNiqgNF89cXO9qWRS4Y1QAcEIyXmUkfi0DFUFY9rHRhd+tj8PeerRTN025wrHUYR
-         YonK/pmMyd23q9IzqNtD1Lfo/qBZtAtQCfr0Qzxqj8+EYtO6tpEQsaIrGHgtJJ+ljYqF
-         yizglPyTVJvrw1wHNxUrfDq1wSwzhZEdKs3Vf7GmueAuKd5SMw17fIUa76BmiVG5wz6R
-         0jjtYp/64tmobuUiyQ/OrxF1GMkPj+Bq9DgthXpqSAOBeBHvM3JhaaKz3RzkZIsNXp9T
-         /BeA==
-X-Gm-Message-State: AOAM531RO545iule3qjvRk/5/Vtz6NB706PI77xF6XRfVp/F+143OtFS
-        uH7lf9p9XCbJg7r5x433WVEnzXVKVw==
-X-Google-Smtp-Source: ABdhPJysckCTiEn4BNOgsJXp+mp8XOnY9U26In4PM5Rfmj18l/aBfio/eMtVXS8Vr++qgTQZHHkzxA==
-X-Received: by 2002:a9d:2035:: with SMTP id n50mr4917292ota.44.1612568066555;
-        Fri, 05 Feb 2021 15:34:26 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 36sm2096266oty.62.2021.02.05.15.34.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 15:34:25 -0800 (PST)
-Received: (nullmailer pid 3971304 invoked by uid 1000);
-        Fri, 05 Feb 2021 23:34:24 -0000
-Date:   Fri, 5 Feb 2021 17:34:24 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: counter: add pulse-counter binding
-Message-ID: <20210205233424.GA3955177@robh.at.kernel.org>
-References: <20210126131239.8335-1-o.rempel@pengutronix.de>
- <20210126131239.8335-2-o.rempel@pengutronix.de>
- <CACRpkdY2XYi2jqYiXaBUfRO1+UEK3QCC8JQ0duENVGoOfYTmBA@mail.gmail.com>
- <20210128133922.khkb4zyccoxdnlyp@pengutronix.de>
+        id S231574AbhBFDau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 22:30:50 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:58666 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230334AbhBFD2d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 22:28:33 -0500
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 994841A0BED;
+        Sat,  6 Feb 2021 00:50:50 +0100 (CET)
+Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 529E61A025F;
+        Sat,  6 Feb 2021 00:50:50 +0100 (CET)
+Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.70])
+        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 2D82540BCF;
+        Fri,  5 Feb 2021 16:50:46 -0700 (MST)
+From:   Li Yang <leoyang.li@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Li Yang <leoyang.li@nxp.com>
+Subject: [PATCH 02/15] dt-bindings: i2c: imx: update schema to align with original binding
+Date:   Fri,  5 Feb 2021 17:47:21 -0600
+Message-Id: <20210205234734.3397-3-leoyang.li@nxp.com>
+X-Mailer: git-send-email 2.25.1.377.g2d2118b
+In-Reply-To: <20210205234734.3397-1-leoyang.li@nxp.com>
+References: <20210205234734.3397-1-leoyang.li@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210128133922.khkb4zyccoxdnlyp@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 02:39:22PM +0100, Oleksij Rempel wrote:
-> On Thu, Jan 28, 2021 at 09:17:23AM +0100, Linus Walleij wrote:
-> > Hi Oleksij,
-> > 
-> > thanks for your patch!
-> > 
-> > On Tue, Jan 26, 2021 at 2:15 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> > 
-> > > Add binding for the pulse counter node
-> > >
-> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > (...)
-> > 
-> > > +properties:
-> > > +  compatible:
-> > > +    const: virtual,pulse-counter
-> > 
-> > What is so virtual about this? The device seems very real.
-> 
-> Currently there are two ways:
-> 1. use "virtual" or "linux" vendor. Same as "virtual,mdio-gpio"
+Layerscape SoCs doesn't use ipg as clock name.  Remove the clock name
+requirement in the schema.  Also the original binding doesn't enforce
+the order of "tx" and "rx" in dma-names.  Both orders are used
+extensively in existing dtses, update the schema to allow both.
 
-virtual is used by exactly one case. linux for a few more, mostly 
-linux,spdif-dit and extcon (deprecated).
+Signed-off-by: Li Yang <leoyang.li@nxp.com>
+---
+ Documentation/devicetree/bindings/i2c/i2c-imx.yaml | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-> 2. Extend the list of "not vendor" prefixes in the prefixes list:
->    Documentation/devicetree/bindings/vendor-prefixes.yaml
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx.yaml b/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
+index f23966b0d6c6..57237b0b7d89 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
+@@ -54,20 +54,19 @@ properties:
+     maxItems: 1
+ 
+   clock-names:
+-    const: ipg
++    maxItems: 1
+ 
+   clock-frequency:
+     enum: [ 100000, 400000 ]
+ 
+   dmas:
+-    items:
+-      - description: DMA controller phandle and request line for RX
+-      - description: DMA controller phandle and request line for TX
++    minItems: 2
++    maxItems: 2
+ 
+   dma-names:
+     items:
+-      - const: rx
+-      - const: tx
++      - enum: [ "rx", "tx" ]
++      - enum: [ "tx", "rx" ]
+ 
+   sda-gpios:
+     maxItems: 1
+-- 
+2.17.1
 
-Pretty sure that says 'DON'T ADD MORE'. Maybe I forgot to scream it.
-
-> 
-> Since both ways seems to be valid, i personally prefer to use existing
-> prefix instead of maintaining the vendor-prefixes.yaml
-> 
-> @Rob, what do you prefer?
-
-For vendorless bindings, no vendor prefix! 'gpio-counter' if only gpio 
-interfaced. No idea what other options would be.
-
-> 
-> > However it is certainly a GPIO counter.
-> 
-> This was my first implementation. @Jonathan you suggest to use GPIO-free
-> way, can you and Linus please decide what is the way to go.
-> 
-> I personally can imagine that this driver can be attached to any IRQ
-> source, including drivers/iio/trigger/iio-trig-sysfs.c
-> 
-> > I would call it "gpio-counter" simply.
-> > 
-> > Define:
-> >   $nodename:
-> >      pattern: "^counter(@.*)?$"
-> > 
-> > > +    counter-0 {
-> > 
-> > counter@0 {
-> > 
-> > > +    counter-1 {
-> > 
-> > counter@1 {
-> 
-> In this case the dtc compiler will say:
-> /counter@0: node has a unit name, but no reg property
-
-counter-0 then.
-
-> 
-> Regards,
-> Oleksij
-> -- 
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
