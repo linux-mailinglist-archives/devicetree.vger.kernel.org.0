@@ -2,74 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84B61310D5D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 16:46:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05AD1310E91
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 18:24:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231919AbhBEODL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 09:03:11 -0500
-Received: from mx2.suse.de ([195.135.220.15]:59198 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231667AbhBEN4V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 08:56:21 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 3AEC8AEE6;
-        Fri,  5 Feb 2021 13:53:04 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     f.fainelli@gmail.com, Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Eric Anholt <eric@anholt.net>
-Cc:     phil@raspberrypi.com, wahrenst@gmx.net,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [RFC/PATCH 08/11] drm/v3d: Add support for bcm2711
-Date:   Fri,  5 Feb 2021 14:52:44 +0100
-Message-Id: <20210205135249.2924-9-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210205135249.2924-1-nsaenzjulienne@suse.de>
-References: <20210205135249.2924-1-nsaenzjulienne@suse.de>
+        id S233166AbhBEPlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 10:41:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230333AbhBEPjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 10:39:00 -0500
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242B8C06178A
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 09:20:21 -0800 (PST)
+Received: by mail-yb1-xb36.google.com with SMTP id k4so7457366ybp.6
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 09:20:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HtUmaHVGKMTER0zPZkbPzVgyHjlGoQr/YRzZS7f90Ms=;
+        b=aHpt9OnEcaczQcDTexhw/5ToJDfcb6X9rOtrLpucQjD2LaE1fsDrqJQULv/zPO/LTF
+         blj1UNNfmMp/0MXNFF7S1pE9zx41wCUMzP+JK5Dm31Nk8KeC4OEf3X7sKa7H8SlYU1Or
+         mza3qTDSKct3SiuZGP6jixrF733goOx4ANf8PoB14WyQbE9ww3XgkPhsUXxj0/e42XDt
+         Bs3ljq+riaVC9f6YfnrznBvRuxT+8mXPLFqIaigEDIUdpYG90CswJ1yqFOXXn/5ZC3u3
+         2xEfppeSzNYVGNweLAQSwgNLXYgCridHPVeJzMw4dNlk/FL09T4UVGeowIhSszs28m1Z
+         bqzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HtUmaHVGKMTER0zPZkbPzVgyHjlGoQr/YRzZS7f90Ms=;
+        b=cDyYjxKZpXfthF+jyxoFKstMmE+uFlKPLo0B2XvxdnaNngGkNyhqm2XPfLDZJRGKxD
+         VqF1pYjxn7oyYTyaX4+eoDwV0vrN8cEjvevOjBcYbABJ/SVK+kdBanltIHg9fKUlu1TP
+         +J5EUhCJh8tK0eA2VbzQ25307bCIhkAFgN7A0saG+0TMxY2kluP6TgJMN4cBbuLxkMaW
+         i5rG+p+P+QHrPtyhiiI/xkG9p21dkyf+G+iGJAyfEB1xFyg8X49bQRwdq93bB2kXs20S
+         8he6nimz0ZCHhX1j7bfXmAfBKdbU0g++ogr/RK+h6lCpqRiP/3OalSghxnEn3a5DA3bu
+         GcTg==
+X-Gm-Message-State: AOAM5302DOv2X7XhGwP0jc3UH2AESHV7+aNqnXhBqF/mtBysvv+xJzC7
+        8uxE+lbo0qcP54G54EhgBVorw4bZ5uF39SepYlHXdw==
+X-Google-Smtp-Source: ABdhPJwcSypX5fvPHVDGq7BZdlRRfRE9SLjn8D9QazacAtCoRpHd/VCn6i7ROdPS/b8FkuBIoW5aB/eLRiTAmznuSXA=
+X-Received: by 2002:a05:6902:1025:: with SMTP id x5mr7622157ybt.96.1612545620171;
+ Fri, 05 Feb 2021 09:20:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210121225712.1118239-1-saravanak@google.com>
+ <CGME20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c@eucas1p2.samsung.com>
+ <20210121225712.1118239-3-saravanak@google.com> <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
+ <CAGETcx_KDA55Ti=5CHw48BP1L2Xo64=AFFe+17g27n=P-KUrow@mail.gmail.com>
+ <6b606a5d-0435-1e9d-ac61-a8dacf051067@samsung.com> <CAMuHMdWqZonpeyk59b=o_3EKOQx4TxUZE4Jeo-Kxy_o_3CQvnQ@mail.gmail.com>
+ <CAGETcx9Rqa7PygjSiQvadm7C2bpxS2rCf5oB_pFhjh+ESV-WQA@mail.gmail.com> <CAMuHMdUt4tSEO_Hcf4AgVY_jqZ6Bsyk2+f2P3gQRQk0UfgSSjQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdUt4tSEO_Hcf4AgVY_jqZ6Bsyk2+f2P3gQRQk0UfgSSjQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 5 Feb 2021 09:19:44 -0800
+Message-ID: <CAGETcx9YN6uC3XJ_J+PLxvHBVFK-h2X3Qh+kuKDceN5XSt3ZuQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string and Kconfig options for bcm2711.
+On Fri, Feb 5, 2021 at 2:20 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Saravana,
+>
+> On Fri, Feb 5, 2021 at 11:06 AM Saravana Kannan <saravanak@google.com> wrote:
+> > On Fri, Feb 5, 2021 at 12:06 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Fri, Feb 5, 2021 at 8:38 AM Marek Szyprowski
+> > > <m.szyprowski@samsung.com> wrote:
+> > > > On 04.02.2021 22:31, Saravana Kannan wrote:
+> > > > > On Thu, Feb 4, 2021 at 3:52 AM Marek Szyprowski
+> > > > > <m.szyprowski@samsung.com> wrote:
+> > > > >> On 21.01.2021 23:57, Saravana Kannan wrote:
+> > > > >>> This allows fw_devlink to create device links between consumers of an
+> > > > >>> interrupt and the supplier of the interrupt.
+> > > > >>>
+> > > > >>> Cc: Marc Zyngier <maz@kernel.org>
+> > > > >>> Cc: Kevin Hilman <khilman@baylibre.com>
+> > > > >>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > > >>> Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > >>> Reviewed-by: Thierry Reding <treding@nvidia.com>
+> > > > >>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > > > >>> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > >> This patch landed some time ago in linux-next as commit 4104ca776ba3
+> > > > >> ("of: property: Add fw_devlink support for interrupts"). It breaks MMC
+> > > > >> host controller operation on ARM Juno R1 board (the mmci@50000 device
+> > > > >> defined in arch/arm64/boot/dts/arm/juno-motherboard.dtsi). I didn't
+> > > > > I grepped around and it looks like the final board file is this or
+> > > > > whatever includes it?
+> > > > > arch/arm64/boot/dts/arm/juno-base.dtsi
+> > > > The final board file is arch/arm64/boot/dts/arm/juno-r1.dts
+> > > > > This patch just finds the interrupt-parent and then tries to use that
+> > > > > as a supplier if "interrupts" property is listed. But the only
+> > > > > interrupt parent I can see is:
+> > > > >          gic: interrupt-controller@2c010000 {
+> > > > >                  compatible = "arm,gic-400", "arm,cortex-a15-gic";
+> > > > >
+> > > > > And the driver uses IRQCHIP_DECLARE() and hence should be pretty much
+> > > > > a NOP since those suppliers are never devices and are ignored.
+> > > > > $ git grep "arm,gic-400" -- drivers/
+> > > > > drivers/irqchip/irq-gic.c:IRQCHIP_DECLARE(gic_400, "arm,gic-400", gic_of_init);
+> > > > >
+> > > > > This doesn't make any sense. Am I looking at the right files? Am I
+> > > > > missing something?
+> > > >
+> > > > Okay, I've added displaying a list of deferred devices when mounting
+> > > > rootfs fails and got following items:
+> > > >
+> > > > Deferred devices:
+> > > > 18000000.ethernet        platform: probe deferral - supplier
+> > > > bus@8000000:motherboard-bus not ready
+> > > > 1c050000.mmci    amba: probe deferral - supplier
+> > > > bus@8000000:motherboard-bus not ready
+> > > > 1c1d0000.gpio    amba: probe deferral - supplier
+> > > > bus@8000000:motherboard-bus not ready
+> > > > 2b600000.iommu   platform: probe deferral - wait for supplier
+> > > > scpi-power-domains
+> > > > 7ff50000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
+> > > > 7ff60000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
+> > > > 1c060000.kmi     amba: probe deferral - supplier
+> > > > bus@8000000:motherboard-bus not ready
+> > > > 1c070000.kmi     amba: probe deferral - supplier
+> > > > bus@8000000:motherboard-bus not ready
+> > > > 1c170000.rtc     amba: probe deferral - supplier
+> > > > bus@8000000:motherboard-bus not ready
+> > > > 1c0f0000.wdt     amba: probe deferral - supplier
+> > > > bus@8000000:motherboard-bus not ready
+> > > > gpio-keys
+> > > > Kernel panic - not syncing: VFS: Unable to mount root fs on
+> > > > unknown-block(0,0)
+> > > >
+> > > > I don't see the 'bus@8000000:motherboard-bus' on the deferred devices
+> > > > list, so it looks that device core added a link to something that is not
+> > > > a platform device...
+> >
+> > Probe deferred devices (even platform devices) not showing up in that
+> > list is not unusual. That's because devices end up on that list only
+> > after a driver for them is matched and then it fails.
+> >
+> > > Lemme guess: bus@8000000 is a simple bus, but it has an
+> > > interrupt-map, and the devlink code doesn't follow the mapping?
+> > >
+> >
+> > No, what's happening is that (and this is something I just learned)
+> > that if a parent has an "#interrupt-cells" property, it becomes your
+> > interrupt parent. In this case, the motherboard-bus (still a platform
+> > device) is the parent, but it never probes (because it's simple-bus
+> > and "arm,vexpress,v2p-p1"). But it becomes the interrupt parent. And
+> > this mmci device is marked as a consumer of this bus (while still a
+> > grand-child). Yeah, I'm working on patches (multiple rewrites) to take
+> > care of cases like this.
+>
+> One more reason to scrap the different handling of "simple-bus" and
+> "simple-pm-bus", and use drivers/bus/simple-pm-bus.c, which is a
+> platform device driver, for both? (like I originally intended ;-)
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
----
- drivers/gpu/drm/v3d/Kconfig   | 2 +-
- drivers/gpu/drm/v3d/v3d_drv.c | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+I'm not sure if this will cause more issues since people are used to
+simple-bus not needing a driver. I'm afraid to open that pandora's
+box. Maybe last resort if I don't have any other options.
 
-diff --git a/drivers/gpu/drm/v3d/Kconfig b/drivers/gpu/drm/v3d/Kconfig
-index 9a5c44606337..b0e048697964 100644
---- a/drivers/gpu/drm/v3d/Kconfig
-+++ b/drivers/gpu/drm/v3d/Kconfig
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config DRM_V3D
- 	tristate "Broadcom V3D 3.x and newer"
--	depends on ARCH_BCM || ARCH_BCMSTB || COMPILE_TEST
-+	depends on ARCH_BCM || ARCH_BCMSTB || ARCH_BCM2835 || COMPILE_TEST
- 	depends on DRM
- 	depends on COMMON_CLK
- 	depends on MMU
-diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-index 7a3336443a12..1504b6f84441 100644
---- a/drivers/gpu/drm/v3d/v3d_drv.c
-+++ b/drivers/gpu/drm/v3d/v3d_drv.c
-@@ -184,6 +184,7 @@ static const struct drm_driver v3d_drm_driver = {
- static const struct of_device_id v3d_of_match[] = {
- 	{ .compatible = "brcm,7268-v3d" },
- 	{ .compatible = "brcm,7278-v3d" },
-+	{ .compatible = "brcm,bcm2711-v3d" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, v3d_of_match);
--- 
-2.30.0
+But keeping that aside, I'm confused how interrupts are even working
+if the parent is a DT node with no driver (let alone a device). Any
+ideas on what's going on or what I'm misunderstanding?
 
+-Saravana
