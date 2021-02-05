@@ -2,144 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45609310662
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 09:12:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A7C5310674
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 09:18:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231575AbhBEIMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 03:12:24 -0500
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:43226 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231574AbhBEIHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 03:07:07 -0500
-Received: by mail-oo1-f49.google.com with SMTP id x19so1411722ooj.10;
-        Fri, 05 Feb 2021 00:06:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i1sbeZYAOwBKv6wE1Ckk+wE5naRJCnZ4LL+AW39A3/w=;
-        b=MEMDy3CefHLQJtqvpW2KmzN64CMLgGkkPyiiFndtyX7fZPZkXJD3SpwvnjvAubFsez
-         j+BlWlGN4OS87n9DJGOmoPA7u3ajKPCJvYSJMsD6xNW3QMuH2XlF8RDEGdJHlaEL9CEJ
-         CUiA+YDlTO/Y4l+Czc34vGiEWPZ13vqHCuzbANYKMSEhbmfP3g3Yr5z2aaN9AiVrZM+L
-         rtTRw1QZtSDUqJf+rbF3NfhMERYgF6RQTnbnYcE2WCmDesA8F/Vl9fFicXk7yTCSh59v
-         MaoZG/LODDdEVd+M+rO9gAeN+K7T8/Vg2RAgrXjJLkuEaISTaLuTGWJPMRA/pbnvO5s5
-         sfOA==
-X-Gm-Message-State: AOAM533aKSRYcxT8dZukZoK9DmeRDMFP+EpyHU1pTahCkdr9+WXu/aSC
-        xkdTfCrHcjQri4s/hOGiYtFU7ke2p5GbGCmgy8M=
-X-Google-Smtp-Source: ABdhPJz46bJWsBPHyZM+AgT9VAN4FHCddLasieW1kdal/35EqalLOcrmu9pCZYE0c0KUJ5WVnwvWVR8uTRoL/Ix6xdQ=
-X-Received: by 2002:a4a:96b3:: with SMTP id s48mr2624067ooi.11.1612512386119;
- Fri, 05 Feb 2021 00:06:26 -0800 (PST)
+        id S231494AbhBEIQs convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 5 Feb 2021 03:16:48 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:41336 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231400AbhBEIQq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 03:16:46 -0500
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1l7wHL-0000bu-I7; Fri, 05 Feb 2021 09:15:47 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Sebastian Fricke <sebastian.fricke@posteo.net>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        hjc@rock-chips.com, robh+dt@kernel.org,
+        linux-media@vger.kernel.org, dafna.hirschfeld@collabora.com,
+        helen.koike@collabora.com, ezequiel@collabora.com,
+        cmuellner@linux.com
+Subject: Re: [PATCH 0/6] Support second Image Signal Processor on rk3399
+Date:   Fri, 05 Feb 2021 09:15:47 +0100
+Message-ID: <5271305.e9J7NaK4W3@diego>
+In-Reply-To: <20210205064335.6c3gs3h3pgvhceku@basti-TUXEDO-Book-XA1510>
+References: <20210202145632.1263136-1-heiko@sntech.de> <16624224.lhrHg4fidi@diego> <20210205064335.6c3gs3h3pgvhceku@basti-TUXEDO-Book-XA1510>
 MIME-Version: 1.0
-References: <20210121225712.1118239-1-saravanak@google.com>
- <CGME20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c@eucas1p2.samsung.com>
- <20210121225712.1118239-3-saravanak@google.com> <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
- <CAGETcx_KDA55Ti=5CHw48BP1L2Xo64=AFFe+17g27n=P-KUrow@mail.gmail.com> <6b606a5d-0435-1e9d-ac61-a8dacf051067@samsung.com>
-In-Reply-To: <6b606a5d-0435-1e9d-ac61-a8dacf051067@samsung.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 5 Feb 2021 09:06:14 +0100
-Message-ID: <CAMuHMdWqZonpeyk59b=o_3EKOQx4TxUZE4Jeo-Kxy_o_3CQvnQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Rob Herring <robh@kernel.org>,
-        Thierry Reding <treding@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hi Sebastian,
 
-On Fri, Feb 5, 2021 at 8:38 AM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
-> On 04.02.2021 22:31, Saravana Kannan wrote:
-> > On Thu, Feb 4, 2021 at 3:52 AM Marek Szyprowski
-> > <m.szyprowski@samsung.com> wrote:
-> >> On 21.01.2021 23:57, Saravana Kannan wrote:
-> >>> This allows fw_devlink to create device links between consumers of an
-> >>> interrupt and the supplier of the interrupt.
-> >>>
-> >>> Cc: Marc Zyngier <maz@kernel.org>
-> >>> Cc: Kevin Hilman <khilman@baylibre.com>
-> >>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> >>> Reviewed-by: Rob Herring <robh@kernel.org>
-> >>> Reviewed-by: Thierry Reding <treding@nvidia.com>
-> >>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> >>> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> >> This patch landed some time ago in linux-next as commit 4104ca776ba3
-> >> ("of: property: Add fw_devlink support for interrupts"). It breaks MMC
-> >> host controller operation on ARM Juno R1 board (the mmci@50000 device
-> >> defined in arch/arm64/boot/dts/arm/juno-motherboard.dtsi). I didn't
-> > I grepped around and it looks like the final board file is this or
-> > whatever includes it?
-> > arch/arm64/boot/dts/arm/juno-base.dtsi
-> The final board file is arch/arm64/boot/dts/arm/juno-r1.dts
-> > This patch just finds the interrupt-parent and then tries to use that
-> > as a supplier if "interrupts" property is listed. But the only
-> > interrupt parent I can see is:
-> >          gic: interrupt-controller@2c010000 {
-> >                  compatible = "arm,gic-400", "arm,cortex-a15-gic";
+Am Freitag, 5. Februar 2021, 07:43:35 CET schrieb Sebastian Fricke:
+> On 03.02.2021 20:54, Heiko Stübner wrote:
+> >Am Mittwoch, 3. Februar 2021, 19:14:22 CET schrieb Sebastian Fricke:
+> >> I have tested your patch set on my nanoPC-T4, here is a complete log
+> >> with:
+> >> - relevant kernel log entries
+> >> - system information
+> >> - media ctl output
+> >> - sysfs entry information
+> >>
+> >> https://paste.debian.net/1183874/
+> >>
+> >> Additionally, to your patchset I have applied the following patches:
+> >> https://github.com/initBasti/Linux_kernel_media_tree_fork/commits/dual_cam_setup
+> >>
+> >> And just to not cause confusion the `media_dev` entries come from this
+> >> unmerged series:
+> >> https://patchwork.kernel.org/project/linux-media/list/?series=426269
+> >>
+> >> I have actually been able to stream with both of my cameras at the same
+> >> time using the libcamera cam command.
+> >> I would like to thank you a lot for making this possible.
 > >
-> > And the driver uses IRQCHIP_DECLARE() and hence should be pretty much
-> > a NOP since those suppliers are never devices and are ignored.
-> > $ git grep "arm,gic-400" -- drivers/
-> > drivers/irqchip/irq-gic.c:IRQCHIP_DECLARE(gic_400, "arm,gic-400", gic_of_init);
+> >Thanks for testing a dual camera setup. On my board I could only test
+> >the second ISP. And really glad it works for you tool :-) .
 > >
-> > This doesn't make any sense. Am I looking at the right files? Am I
-> > missing something?
->
-> Okay, I've added displaying a list of deferred devices when mounting
-> rootfs fails and got following items:
->
-> Deferred devices:
-> 18000000.ethernet        platform: probe deferral - supplier
-> bus@8000000:motherboard-bus not ready
-> 1c050000.mmci    amba: probe deferral - supplier
-> bus@8000000:motherboard-bus not ready
-> 1c1d0000.gpio    amba: probe deferral - supplier
-> bus@8000000:motherboard-bus not ready
-> 2b600000.iommu   platform: probe deferral - wait for supplier
-> scpi-power-domains
-> 7ff50000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
-> 7ff60000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
-> 1c060000.kmi     amba: probe deferral - supplier
-> bus@8000000:motherboard-bus not ready
-> 1c070000.kmi     amba: probe deferral - supplier
-> bus@8000000:motherboard-bus not ready
-> 1c170000.rtc     amba: probe deferral - supplier
-> bus@8000000:motherboard-bus not ready
-> 1c0f0000.wdt     amba: probe deferral - supplier
-> bus@8000000:motherboard-bus not ready
-> gpio-keys
-> Kernel panic - not syncing: VFS: Unable to mount root fs on
-> unknown-block(0,0)
->
-> I don't see the 'bus@8000000:motherboard-bus' on the deferred devices
-> list, so it looks that device core added a link to something that is not
-> a platform device...
+> >Out of curiosity, do you also see that green tint in the images the cameras
+> >produce?
+> 
+> Yes, I do. Actually, I currently have two forms of a green tint, on my
+> OV13850 everything is quite dark and greenish, which is caused by the
+> missing 3A algorithms. On my OV4689, I have big patches of the image
+> with bright green color and flickering, I investigated if this is
+> connected to the 2nd ISP instance, but that doesn't seem to be the case
+> as I have the same results when I switch the CSI ports of the cameras.
+> 
+> I have found another issue, while testing I discovered following
+> issue:
+> When I start the system with an HDMI monitor connected, then the camera
+> on the 2nd port doesn't work. This is probably because the RX/TX is
+> reserved as a TX.
+> But it made me wonder because if the system has an RX, a TX, and
+> an RX/TX, why isn't the pure TX used by the monitor and the
+> cameras take RX and RX/TX?
+> Or do you think that this is maybe a malfunction of this patch?
 
-Lemme guess: bus@8000000 is a simple bus, but it has an
-interrupt-map, and the devlink code doesn't follow the mapping?
+I don't think it is an issue with this specific series, but still puzzling.
 
-Gr{oetje,eeting}s,
+I.e. the DPHYs are actually only relevant to the DSI controllers,
+with TX0 being connected to DSI0 and TX1RX1 being connected
+to DSI1. So having an hdmi display _in theory_ shouldn't matter at all.
 
-                        Geert
+Out of curiosity what happens, when you boot without hdmi connected
+turn on the cameras, connect the hdmi after this, try the cameras again?
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Heiko
+
+> 
+> >
+> >Thanks
+> >Heiko
+> 
+> Greetings,
+> Sebastian
+> 
+> >
+> >
+> >> If you like to you can add:
+> >> Tested-by: Sebastian Fricke <sebastian.fricke@posteo.net>
+> >>
+> >> On 02.02.2021 15:56, Heiko Stuebner wrote:
+> >> >The rk3399 has two ISPs and right now only the first one is usable.
+> >> >The second ISP is connected to the TXRX dphy on the soc.
+> >> >
+> >> >The phy of ISP1 is only accessible through the DSI controller's
+> >> >io-memory, so this series adds support for simply using the dsi
+> >> >controller is a phy if needed.
+> >> >
+> >> >That solution is needed at least on rk3399 and rk3288 but no-one
+> >> >has looked at camera support on rk3288 at all, so right now
+> >> >only implement the rk3399 specifics.
+> >> >
+> >> >
+> >> >Heiko Stuebner (6):
+> >> >  drm/rockchip: dsi: add own additional pclk handling
+> >> >  dt-bindings: display: rockchip-dsi: add optional #phy-cells property
+> >> >  drm/rockchip: dsi: add ability to work as a phy instead of full dsi
+> >> >  arm64: dts: rockchip: add #phy-cells to mipi-dsi1
+> >> >  arm64: dts: rockchip: add cif clk-control pinctrl for rk3399
+> >> >  arm64: dts: rockchip: add isp1 node on rk3399
+> >> >
+> >> > .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
+> >> > arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  39 ++
+> >> > drivers/gpu/drm/rockchip/Kconfig              |   2 +
+> >> > .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 342 ++++++++++++++++++
+> >> > 4 files changed, 384 insertions(+)
+> >> >
+> >>
+> >
+> >
+> >
+> >
+> 
+
+
+
+
