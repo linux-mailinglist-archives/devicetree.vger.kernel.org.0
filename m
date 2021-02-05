@@ -2,99 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91AF33107DB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 10:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD4EA310801
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 10:38:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230186AbhBEJ3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 04:29:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44298 "EHLO
+        id S230436AbhBEJgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 04:36:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbhBEJZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 04:25:52 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51A5AC0617A9
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 01:25:10 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id m12so3291269pjs.4
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 01:25:10 -0800 (PST)
+        with ESMTP id S230208AbhBEJeL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 04:34:11 -0500
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A2CC061793
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 01:33:31 -0800 (PST)
+Received: by mail-qt1-x82b.google.com with SMTP id h16so4475483qth.11
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 01:33:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=s43rqcddTJ2FeEIu7EODes4JBPptootjcXSiKSYA+pM=;
-        b=nKGabKVcenfJ68yBGA4Cc1EN4/QAYBP1kedi7EXt1QRkZDCnBMYkya7hIRNrT8vu4y
-         6z2Tk4LrWTYqOQ1StYLP0NWwJDlx85r+FMLu7oLT5AqrmYIzrl16EolcnA6/wBM3qc19
-         4EUXCz22M7XJeLIgUgJvDoZc/jMrm49M5u3YYQskhWxBegoWFG0cZiYyEjxmMbhFX+co
-         pYzejteh+Coolv2koO0iFHp1PcpbEsMNj+yc2nkpxtvEAM1SbyR+TjpGdLek60Dg7TKy
-         /AGB+2Na4B7b6vqtN0WPukvqwUSz3IQaafy9ZA4o4QzlzAzG78qK19HJWa24rjkoAE0w
-         VoHg==
+        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ojCeZlO98s2SPY23e+5Mf36GGQC+0u+nCZYUoLCQnwU=;
+        b=c3m2FX9eauVZ9sIWQoZ+8mW8Xl5kQUxMzUIXIiXpEUEEdseHz+zR2axVX4AWVDhyh1
+         nYzlpYc7gA23nipHsSuC9lATjWbV+qKnwJxrpYZP7hP8UyikduSztl2Kg31pDEJzshY3
+         vjn6u4wX+cOGp1HFsTDaos9fsfZZJKT0g694Pqd89AuFJjoVTiHynmhXFMwqLvKfzLEA
+         q9o4k/V1Kvsq4DuGBqqU3jnjHB//7WErk7+czsnf9rHGhYV4n/SXI5T/0euC+F/+Jifp
+         6mfu0RkpmP8U8Imd5i4UsNZBQD1B4krshdK5FywN50HEHyqQD+RsiQvEMdPC3uexUaaP
+         wORw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=s43rqcddTJ2FeEIu7EODes4JBPptootjcXSiKSYA+pM=;
-        b=nlOqOteTNB11k2YHWzJQEK99IQ792ctpZSUQlCW8ltdLimnOxchTBFbem3Aefd6Srr
-         h3h/ce946Jq5V681myOJNmpj+1zXdm9omLwevc7fy9k4b2ismieujPiSJxGn5kBQhKsM
-         KZH4Bf/nB0RnyKoM3ditB6Lhr8skT+ZptB4RqguaY3m/u1H68fX8AWI4UdM/WRIuPoB8
-         RP92mjzyj6WxckIxOQ8zYJPSypLbBjbLf2NspmkNvDMH+s/wfKxdEEG8KcdQTGIoTXoK
-         x5MBuG2j/Ob2IZnlZRkCJqhWkiUhKgbj0BcIFfJ7MNNxp/llP7k5nQrecaffnLy9STzG
-         G9sw==
-X-Gm-Message-State: AOAM5308wPJpkJ3ra6vRQ+7ghqzUd0YEvEE7kfUjXng45FWGWi6ZCe3h
-        s0Sl5hvcgTza2xv8659cQ9cLSQ==
-X-Google-Smtp-Source: ABdhPJwfTj6udKE++Vdr5D1T2JL/RACP9w/++Lia17Nb/xJ1InWWnOvdZVtkzaWin1IaH1TkWgonlg==
-X-Received: by 2002:a17:90a:470b:: with SMTP id h11mr3314883pjg.186.1612517109869;
-        Fri, 05 Feb 2021 01:25:09 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id 141sm8685022pfa.65.2021.02.05.01.25.08
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 05 Feb 2021 01:25:09 -0800 (PST)
-Date:   Fri, 5 Feb 2021 14:55:07 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>
-Subject: Re: [PATCH V7 4/6] kbuild: Add support to build overlays (%.dtbo)
-Message-ID: <20210205092507.fdxotdjlq5rjs2yh@vireshk-i7>
-References: <cover.1611904394.git.viresh.kumar@linaro.org>
- <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
- <CAMuHMdVp0vGMqoEoP9A7Y7-ph-DYUWdddtChdq_eZcROYTBMHg@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ojCeZlO98s2SPY23e+5Mf36GGQC+0u+nCZYUoLCQnwU=;
+        b=GMdQJgMeYrO2qOkzzGUB9lGrZd39KPTyXp1b/h53zgAS2bHIPKpxlxN7Eq5/AFoRSW
+         AmrXVaxXe1dtUcghxCwSCsVELyACvjezj7puXd8dwN/Mftm+mELG+V8MJUG+0B8EEqC9
+         4EMu8rOSbOI0Bk1hsQBmPRsVD/T24CVNK1gS33dcDYhwDGbdmiZJxpKKV1EE6TXwh5cy
+         0Yytqq+AUSz09QdYV5/ZkQDNQyY32KK11oVI/iPAL1ngpRAcszwJ8tLv3oUFX1J0H2es
+         z0oWrMvG50b2Gm9LO1S2Saqp/eWCENPLBnpXU1uyvtD9BZ/wFbJO5m0CIk/MQLF/sWrA
+         zePw==
+X-Gm-Message-State: AOAM530CeZqelTjELZh5pTVLZdc9aa3HXSX/OSZfYhRJphvNG9eD5D45
+        mgBANo9F8AruwrAat2EoTYMHJgRY65/2KD5m9osA0A==
+X-Google-Smtp-Source: ABdhPJw3Y0hQpeQyuzEHQLbC/PYwn+TCOT2lEoDgw8N2kDbcDCqdOYxzzpvB1XfBAWP2gvhu09yxOoofpcZtoebCUkY=
+X-Received: by 2002:aed:204d:: with SMTP id 71mr3478755qta.318.1612517610095;
+ Fri, 05 Feb 2021 01:33:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdVp0vGMqoEoP9A7Y7-ph-DYUWdddtChdq_eZcROYTBMHg@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20210203133138.10754-1-kostap@marvell.com> <20210203133138.10754-3-kostap@marvell.com>
+ <87h7mtckxe.fsf@tarshish> <DM5PR18MB14529A28A31785A574A4DEF5CAB49@DM5PR18MB1452.namprd18.prod.outlook.com>
+ <20210203143851.GR1463@shell.armlinux.org.uk> <DM5PR18MB1452A6CF26E3A54730872A14CAB49@DM5PR18MB1452.namprd18.prod.outlook.com>
+ <20210203161137.GS1463@shell.armlinux.org.uk> <DM5PR18MB14525D61BC500B0026F30D07CAB49@DM5PR18MB1452.namprd18.prod.outlook.com>
+In-Reply-To: <DM5PR18MB14525D61BC500B0026F30D07CAB49@DM5PR18MB1452.namprd18.prod.outlook.com>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Fri, 5 Feb 2021 10:33:18 +0100
+Message-ID: <CAPv3WKdvzZm2qpaNBr7zCzqnzuadhreTe-2E=91TxG2zGQ692A@mail.gmail.com>
+Subject: Re: [EXT] Re: [PATCH 02/11] dts: mvebu: Update A8K AP806 SDHCI settings
+To:     Kostya Porotchkin <kostap@marvell.com>
+Cc:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Baruch Siach <baruch@tkos.co.il>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "jaz@semihalf.com" <jaz@semihalf.com>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Stefan Chulski <stefanc@marvell.com>,
+        Ben Peled <bpeled@marvell.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-02-21, 10:02, Geert Uytterhoeven wrote:
-> Hi Viresh,
-> 
-> Thanks for your patch
-> (which I only noticed because it appeared in dt-rh/for-next ;-)
-> 
-> On Fri, Jan 29, 2021 at 8:31 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > Add support for building DT overlays (%.dtbo). The overlay's source file
-> > will have the usual extension, i.e. .dts, though the blob will have
-> 
-> Why use .dts and not .dtso for overlays?
-> Because you originally (until v5) had a single rule for building .dtb
-> and .dtbo files?
+Hi Kosta,
 
-I am fine with doing that as well if Rob and David agree to it. Rob
-did suggest that at one point but we didn't do much about it later on
-for some reason.
+Let me chime in.
 
-FWIW, this will also require a change in the DTC compiler.
+=C5=9Br., 3 lut 2021 o 17:57 Kostya Porotchkin <kostap@marvell.com> napisa=
+=C5=82(a):
+>
+> Hello, Russell,
+> I agree that this patch needs rework.
+> I will definitely do it and issue a new version.
+>
+> > On Wed, Feb 03, 2021 at 02:50:45PM +0000, Kostya Porotchkin wrote:
+> > > [KP] So for older systems this "slow mode" parameter could be set on =
+the
+> > board level.
+> > > When it is set in ap80x,dtsi file it downgrades all systems to HS-SDR=
+52, even
+> > if they support HS400 on AP side.
+> > > MacchiatoBIN AP eMMC is connected to 3.3v regulator and has "no-1-8-v=
+"
+> > flag set, so it should remain in low speed anyway.
+> >
+> > Your reasoning does not make sense.
+> >
+> > The ap80x.dtsi file does not specify "marvell,xenon-phy-slow-mode".
+> > It is not specified at this level. It is already specified at board lev=
+el.
+> [KP] it does. In current armada-ap80x.dtsi File this specification is on =
+row 260:
+>                         ap_sdhci0: sdhci@6e0000 {
+>                                 compatible =3D "marvell,armada-ap806-sdhc=
+i";
+>                                 reg =3D <0x6e0000 0x300>;
+>                                 interrupts =3D <GIC_SPI 16 IRQ_TYPE_LEVEL=
+_HIGH>;
+>                                 clock-names =3D "core";
+>                                 clocks =3D <&ap_clk 4>;
+>                                 dma-coherent;
+>                                 marvell,xenon-phy-slow-mode;
+>                                 status =3D "disabled";
+>                         };
+> So I would like to remove this row.
+>
+> > Given that Macchiatobin will still use slow mode, why remove the
+> > marvell,xenon-phy-slow-mode property from this file?
+> [KP] Agree, I will keep this property in Macchiatobin DTS file.
+>
 
--- 
-viresh
+Please do it another way around.
+1. We need to leave the device tree bindings intact as much as
+possible -  specifically for Armada 7k8k changes in this area have
+been causing enough problems in the past, breaking compatibility
+between kernel revisions. Moving the property to board level can be
+good here, but forces all other board dts files to adjust.
+Unfortunately Linux is a source of truth for the arm64 device tree
+bindings, but please note other OS's use those files as well - let's
+minimize the impact for existing HW and drivers.
+
+2. What I propose is to remove `marvell,xenon-phy-slow-mode` from
+armada-ap80x.dtsi and add below in armada-ap806.dtsi:
+&ap_sdhci0 {
+         marvell,xenon-phy-slow-mode;
+ };
+
+This way AP807 becomes free from the unwanted slow mode setting. Also
+any user of Armada 7k8k the B0 revision can add below to the board
+file:
+
+&ap_sdhci0 {
++      /delete-property/marvell,xenon-phy-slow-mode;
+ };
+
+3. Contrary to the SDK version, sdhci-xenon.c is not capable of
+checking the SoC revision. HS200 is disabled for all versions of AP806
+there - I believe this place requires revisiting, to start relying
+explicitly on the `marvell,xenon-phy-slow-mode` setting, rather than
+the compatible string. I can handle this one.
+
+4. Please move armada-8040-db.dts changes to a separate patch, please.
+
+Thanks,
+Marcin
+
+
+
+> >
+> > Also, if you're upgrading ap80x.dtsi to use a bus-width of 8, why keep =
+the bus-
+> > width specifier of 8 in the board files?
+> [KP] The bus width is updated in A8040 DB DTS. This board utilizes 8-bit =
+interface.
+> The armada-ap80x.dtsi file does not specifies the bus width since it is b=
+oard-specific.
+>
+> >
+> > This patch just doesn't make sense, and your responses to our points se=
+em to
+> > add to the confusion.
+> [KP] I am sorry about it. Hope my last response clarifies it.
+>
+> Kosta
+> >
+> > --
+> > RMK's Patch system: https://urldefense.proofpoint.com/v2/url?u=3Dhttps-
+> > 3A__www.armlinux.org.uk_developer_patches_&d=3DDwIBAg&c=3DnKjWec2b6R0
+> > mOyPaz7xtfQ&r=3D-
+> > N9sN4p5NSr0JGQoQ_2UCOgAqajG99W1EbSOww0WU8o&m=3DV27OOcgNqKN2
+> > WrlW2YFvHm_D_dXoP44wPd5zyOKvEBk&s=3Do3OrmStt1ZuXVNlYklTV_b1wY35
+> > NvPPrdLqwGgtxRZU&e=3D
+> > FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
