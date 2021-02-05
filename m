@@ -2,130 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7DD3109A8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 11:58:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76B443109D5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 12:09:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231666AbhBEK57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 05:57:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34374 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231837AbhBEKzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:55:08 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EACCC03542F
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 02:45:32 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id d16so7081896wro.11
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 02:45:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UlBA+jrFoLLefklW/JXu8ZcQb+a+i4EuznUW8mxqVQQ=;
-        b=PqKERPjbhxZNjkGht1IFO5TdJeRVTxzAZGFYKkDKSrC8ellJI/LegoneY4UXNMyD9Y
-         WhBN0TjwlegpGe5zpEn/KfmKlyZkFZA6/85Wj2xnBxatPNiMKGYPY9UWzNP6lTyuhUyq
-         p6Da6T/uUewppG/gL/2KkLAcHB5YVJTAELWrJeka6x7W3YEMEdY1ueR6Spf9s8X/h6H5
-         Jz+gvbU3XiFNDMNCOOMWdTqfs+fFiBFctEyKQYBsgIts/ztYkH7RQWYrmtewt2WBy9G5
-         jXpUQA/jsu+2SYt4xZ/wzCEM1HqAvXpfVz1XWzT/s790M6BF+0ZfsMNZ7uQdTWj8K8cJ
-         HYNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UlBA+jrFoLLefklW/JXu8ZcQb+a+i4EuznUW8mxqVQQ=;
-        b=OQLY8WmtAjMgvVzsP2RLMHLo6m0QtQP14v3j0WwMs/leyCOnHb6KeunGqEvjbCvl23
-         B9VOv0f7fQRN/3haEM/WNU4zneZe9/wykg7xKNOWVKM9B5aLkC7QR31F8pVnJxsHVH1s
-         3c151PukD0k6oBVF/r9TRa3MNYhEdkCc9Zc1Omqjt3KKndEfEDB7CDASbxOe818cfomj
-         Sdmm+4wrhLir/3UKndL16F6Lr38vBzMM9B4J5QMvI13IcyZ7dAQKtwTzzx6z1cYp/IJC
-         bRxUItdF9Imxy1AqvudE14O9f98D2MZHR9Q7SQs3W8EgtQ2XQYsHTJMRS1e/daLdxeX5
-         QE4Q==
-X-Gm-Message-State: AOAM531x2FVsTqmisw0Z05HihpqyXI+UywZUFC3YTc1FMhfdLudHfIh7
-        UDxzd/hGqOYhaWGgL0XS8LUD7w==
-X-Google-Smtp-Source: ABdhPJxoovUV7wVeOhzmdRMv7aCTKZPQPB3xPLRIoQvFSA/9FWjM8iO4wmInb5AIfzCqE3AHzssUyw==
-X-Received: by 2002:a05:6000:188c:: with SMTP id a12mr4434247wri.105.1612521930887;
-        Fri, 05 Feb 2021 02:45:30 -0800 (PST)
-Received: from localhost.localdomain ([2a02:2450:102f:d6a:38fd:e0db:ea01:afc8])
-        by smtp.gmail.com with ESMTPSA id u4sm11300233wrr.37.2021.02.05.02.45.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 02:45:30 -0800 (PST)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        bjorn.andersson@linaro.org, mchehab@kernel.org, robh+dt@kernel.org,
-        angelogioacchino.delregno@somainline.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>
-Cc:     Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonathan Marek <jonathan@marek.ca>
-Subject: [PATCH v4 22/22] arm64: dts: sdm845-db845c: Enable ov8856 sensor and connect to ISP
-Date:   Fri,  5 Feb 2021 11:44:14 +0100
-Message-Id: <20210205104414.299732-23-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210205104414.299732-1-robert.foss@linaro.org>
-References: <20210205104414.299732-1-robert.foss@linaro.org>
+        id S231829AbhBELH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 06:07:59 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:42282 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231965AbhBELFv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 06:05:51 -0500
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1l7yvB-0001Ja-Di; Fri, 05 Feb 2021 12:05:05 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     heiko@sntech.de
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Subject: [PATCH 2/5] clk: rockchip: use clock ids for PCLK_DPHYRX and PCLK_DPHYTX0 on rk3368
+Date:   Fri,  5 Feb 2021 12:04:59 +0100
+Message-Id: <20210205110502.1850669-2-heiko@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210205110502.1850669-1-heiko@sntech.de>
+References: <20210205110502.1850669-1-heiko@sntech.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable camss & ov8856 DT nodes.
+From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
+Export the clocks via the newly added clock-ids.
+
+Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+ drivers/clk/rockchip/clk-rk3368.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 5842ab65789c..d89286f6aacb 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -1108,6 +1108,21 @@ &cci {
+diff --git a/drivers/clk/rockchip/clk-rk3368.c b/drivers/clk/rockchip/clk-rk3368.c
+index 55443349439b..76fb04120089 100644
+--- a/drivers/clk/rockchip/clk-rk3368.c
++++ b/drivers/clk/rockchip/clk-rk3368.c
+@@ -818,8 +818,8 @@ static struct rockchip_clk_branch rk3368_clk_branches[] __initdata = {
+ 	 * pclk_vio gates
+ 	 * pclk_vio comes from the exactly same source as hclk_vio
+ 	 */
+-	GATE(0, "pclk_dphyrx", "hclk_vio", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(14), 8, GFLAGS),
+-	GATE(0, "pclk_dphytx", "hclk_vio", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(14), 8, GFLAGS),
++	GATE(PCLK_DPHYRX, "pclk_dphyrx", "hclk_vio", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(14), 8, GFLAGS),
++	GATE(PCLK_DPHYTX0, "pclk_dphytx0", "hclk_vio", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(14), 8, GFLAGS),
  
- &camss {
- 	vdda-supply = <&vreg_l1a_0p875>;
-+
-+	status = "ok";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		port@0 {
-+			reg = <0>;
-+			csiphy0_ep: endpoint {
-+				clock-lanes = <1>;
-+				data-lanes = <1 2 3 4>;
-+				remote-endpoint = <&ov8856_ep>;
-+			};
-+		};
-+	};
- };
- 
- &cci_i2c0 {
-@@ -1139,7 +1154,7 @@ camera@10 {
- 		avdd-supply = <&cam0_avdd_2v8>;
- 		dvdd-supply = <&cam0_dvdd_1v2>;
- 
--		status = "disable";
-+		status = "ok";
- 
- 		port {
- 			ov8856_ep: endpoint {
-@@ -1147,7 +1162,7 @@ ov8856_ep: endpoint {
- 				link-frequencies = /bits/ 64
- 					<360000000 180000000>;
- 				data-lanes = <1 2 3 4>;
--//				remote-endpoint = <&csiphy0_ep>;
-+				remote-endpoint = <&csiphy0_ep>;
- 			};
- 		};
- 	};
+ 	/* pclk_pd_pmu gates */
+ 	GATE(PCLK_PMUGRF, "pclk_pmugrf", "pclk_pd_pmu", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(23), 5, GFLAGS),
 -- 
-2.27.0
+2.29.2
 
