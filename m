@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57B023118A0
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 03:44:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E5053118D2
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 03:50:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231400AbhBFCmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 21:42:52 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:45668 "EHLO inva020.nxp.com"
+        id S230077AbhBFCr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 21:47:26 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:47588 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229492AbhBFCil (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 21:38:41 -0500
+        id S231694AbhBFCl2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 21:41:28 -0500
 Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4C2401A1610;
-        Sat,  6 Feb 2021 00:50:52 +0100 (CET)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AD3E91A17A7;
+        Sat,  6 Feb 2021 00:50:53 +0100 (CET)
 Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 11DC51A023C;
-        Sat,  6 Feb 2021 00:50:52 +0100 (CET)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7220A1A024F;
+        Sat,  6 Feb 2021 00:50:53 +0100 (CET)
 Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.70])
-        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 62F0240AB2;
-        Fri,  5 Feb 2021 16:50:51 -0700 (MST)
+        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id D32F540BCF;
+        Fri,  5 Feb 2021 16:50:52 -0700 (MST)
 From:   Li Yang <leoyang.li@nxp.com>
 To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org,
@@ -27,9 +27,9 @@ To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Li Yang <leoyang.li@nxp.com>
-Subject: [PATCH 07/15] ARM: dts: ls1021a: fix board compatible to follow binding schema
-Date:   Fri,  5 Feb 2021 17:47:26 -0600
-Message-Id: <20210205234734.3397-8-leoyang.li@nxp.com>
+Subject: [PATCH 09/15] ARM: dts: ls1021a: fix ifc node to follow binding schema
+Date:   Fri,  5 Feb 2021 17:47:28 -0600
+Message-Id: <20210205234734.3397-10-leoyang.li@nxp.com>
 X-Mailer: git-send-email 2.25.1.377.g2d2118b
 In-Reply-To: <20210205234734.3397-1-leoyang.li@nxp.com>
 References: <20210205234734.3397-1-leoyang.li@nxp.com>
@@ -40,39 +40,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Align the compatible strings with the board binding defined in schema
-file.
+Breakup long values in the ifc node.  Change the node name to ifc-bus to
+follow the schema of simple-bus and disable the bus in the SoC dtsi file
+to be enabled only in board dts files.
 
 Signed-off-by: Li Yang <leoyang.li@nxp.com>
 ---
- arch/arm/boot/dts/ls1021a-tsn.dts | 1 +
- arch/arm/boot/dts/ls1021a.dtsi    | 1 -
- 2 files changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/ls1021a-qds.dts | 6 +++---
+ arch/arm/boot/dts/ls1021a.dtsi    | 3 ++-
+ 2 files changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/ls1021a-tsn.dts b/arch/arm/boot/dts/ls1021a-tsn.dts
-index 9d8f0c2a8aba..ce470ebfb2c0 100644
---- a/arch/arm/boot/dts/ls1021a-tsn.dts
-+++ b/arch/arm/boot/dts/ls1021a-tsn.dts
-@@ -8,6 +8,7 @@
+diff --git a/arch/arm/boot/dts/ls1021a-qds.dts b/arch/arm/boot/dts/ls1021a-qds.dts
+index 86d969d0ef68..9b0f9212e777 100644
+--- a/arch/arm/boot/dts/ls1021a-qds.dts
++++ b/arch/arm/boot/dts/ls1021a-qds.dts
+@@ -189,9 +189,9 @@
+ 	#address-cells = <2>;
+ 	#size-cells = <1>;
+ 	/* NOR, NAND Flashes and FPGA on board */
+-	ranges = <0x0 0x0 0x0 0x60000000 0x08000000
+-		  0x2 0x0 0x0 0x7e800000 0x00010000
+-		  0x3 0x0 0x0 0x7fb00000 0x00000100>;
++	ranges = <0x0 0x0 0x0 0x60000000 0x08000000>,
++		 <0x2 0x0 0x0 0x7e800000 0x00010000>,
++		 <0x3 0x0 0x0 0x7fb00000 0x00000100>;
+ 	status = "okay";
  
- / {
- 	model = "NXP LS1021A-TSN Board";
-+	compatible = "fsl,ls1021a-tsn", "fsl,ls1021a";
- 
- 	sys_mclk: clock-mclk {
- 		compatible = "fixed-clock";
+ 	nor@0,0 {
 diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index 959a3c85b83e..215a3d928ec9 100644
+index 88e7248fc5f0..875202f26450 100644
 --- a/arch/arm/boot/dts/ls1021a.dtsi
 +++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -10,7 +10,6 @@
- / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
--	compatible = "fsl,ls1021a";
- 	interrupt-parent = <&gic>;
+@@ -123,10 +123,11 @@
+ 			interrupts = <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
  
- 	aliases {
+-		ifc: ifc@1530000 {
++		ifc: ifc-bus@1530000 {
+ 			compatible = "fsl,ifc", "simple-bus";
+ 			reg = <0x0 0x1530000 0x0 0x10000>;
+ 			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
++			status = "disabled";
+ 		};
+ 
+ 		dcfg: dcfg@1ee0000 {
 -- 
 2.17.1
 
