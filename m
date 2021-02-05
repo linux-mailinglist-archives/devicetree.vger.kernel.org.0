@@ -2,138 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FC0C31158A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:43:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F101311554
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:32:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232923AbhBEWc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 17:32:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39932 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232392AbhBEOPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 09:15:55 -0500
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04663C061D73
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 07:53:45 -0800 (PST)
-Received: by mail-io1-xd2f.google.com with SMTP id f8so7573564ion.4
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 07:53:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HeuHLQ7JECkgdoRKO/4LxCyiZkjLTmsvyU3Pu79LXkI=;
-        b=I9UpfpO5HdcWAccTUrGlLX5qDWG3gjoHXGhAAIBeWPfTAANsrkbXZALJ85OryQXAyS
-         fNcjtbwQmYSL52UoY6vhHkjjlccBfDahNxMXl++WG6N09lFczbh7zDIR83X4D03y4kK8
-         o72O0PaZAZNiF9cHenj+WaQxug7rrH73pyGFs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HeuHLQ7JECkgdoRKO/4LxCyiZkjLTmsvyU3Pu79LXkI=;
-        b=ewjfzNcTfC/QtxhnwK3kBsCYfqMJZdwg9x0ucoIJ+NqU028k7uR1J8d513LMGBUYhY
-         kZdqpSDTrcMPE+mNY3L0Z1oEOz+ZAM2mHnjucU3doFT5e05eBaY+fG5zRsvP8vTI2MpQ
-         tbUhVYVJIBxoY//ZtnpnWDNIlnEXjpu8eOtASV1nyEEEkYvzFqSXiYsLLUSAlbupIC1L
-         OtI8fJcJNOJ+6JX6bOH2yxBKcI59AIaHH2g88QaDD5JMU75nLpLd8WAV/vHrk79NWgHZ
-         lvD+rG/U/9iOFSTSex2C/6bbN1XYVL+JRTgnT0s5dJvK5eW2VnDPDxbSE2DwWwa0jM+P
-         Q5Uw==
-X-Gm-Message-State: AOAM533ZcOx8wTPr8m0+a31X1TwUW0uNdYeZCWiq7mlPBGh52x2Uo4lP
-        Wx4VnE9m2JlNgZ0bBYJNPxKNY/1yrFUsXw==
-X-Google-Smtp-Source: ABdhPJwggCvQR4szPtjHEzcHzkL4vZDf5ZJJyUzEsKlv7v722TTDtRNwYaF155fTOamEK5fr2D9rSQ==
-X-Received: by 2002:a37:c06:: with SMTP id 6mr4789531qkm.39.1612536958476;
-        Fri, 05 Feb 2021 06:55:58 -0800 (PST)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id d9sm9278930qko.84.2021.02.05.06.55.57
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Feb 2021 06:55:57 -0800 (PST)
-Received: by mail-yb1-f182.google.com with SMTP id y128so6948826ybf.10
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 06:55:57 -0800 (PST)
-X-Received: by 2002:a25:60d6:: with SMTP id u205mr6993695ybb.276.1612536957207;
- Fri, 05 Feb 2021 06:55:57 -0800 (PST)
+        id S232695AbhBEW2h convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 5 Feb 2021 17:28:37 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:44268 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231708AbhBEOUM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 09:20:12 -0500
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1l82Wb-0002S7-Fm; Fri, 05 Feb 2021 15:55:57 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Sebastian Fricke <sebastian.fricke@posteo.net>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        hjc@rock-chips.com, robh+dt@kernel.org,
+        linux-media@vger.kernel.org, dafna.hirschfeld@collabora.com,
+        helen.koike@collabora.com, ezequiel@collabora.com,
+        cmuellner@linux.com
+Subject: Re: [PATCH 0/6] Support second Image Signal Processor on rk3399
+Date:   Fri, 05 Feb 2021 15:55:56 +0100
+Message-ID: <5860385.iIbC2pHGDl@diego>
+In-Reply-To: <5271305.e9J7NaK4W3@diego>
+References: <20210202145632.1263136-1-heiko@sntech.de> <20210205064335.6c3gs3h3pgvhceku@basti-TUXEDO-Book-XA1510> <5271305.e9J7NaK4W3@diego>
 MIME-Version: 1.0
-References: <1612524533-3970-1-git-send-email-rbokka@codeaurora.org>
-In-Reply-To: <1612524533-3970-1-git-send-email-rbokka@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 5 Feb 2021 06:55:45 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=W9YWxVY6cEEXBr1wMcMzEPak3PeyROSvmnOWewL9BiUQ@mail.gmail.com>
-Message-ID: <CAD=FV=W9YWxVY6cEEXBr1wMcMzEPak3PeyROSvmnOWewL9BiUQ@mail.gmail.com>
-Subject: Re: [PATCH] drivers: nvmem: Fix voltage settings for QTI qfprom-efuse
-To:     Ravi Kumar Bokka <rbokka@codeaurora.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        dhavalp@codeaurora.org, mturney@codeaurora.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Sebastian,
 
-On Fri, Feb 5, 2021 at 3:29 AM Ravi Kumar Bokka <rbokka@codeaurora.org> wrote:
->
-> QFPROM controller hardware requires 1.8V min for fuse blowing.
-> So, this change sets the voltage to 1.8V, required to blow the fuse
-> for qfprom-efuse controller.
->
-> To disable fuse blowing, we set the voltage to 0V since this may
-> be a shared rail and may be able to run at a lower rate when we're
-> not blowing fuses.
->
-> Fixes: 93b4e49f8c86 ("nvmem: qfprom: Add fuse blowing support")
-> Reported-by: Douglas Anderson <dianders@chromium.org>
-> Suggested-by: Douglas Anderson <dianders@chromium.org>
-> Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
-> ---
->  drivers/nvmem/qfprom.c | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
->
-> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
-> index 6cace24..100d69d 100644
-> --- a/drivers/nvmem/qfprom.c
-> +++ b/drivers/nvmem/qfprom.c
-> @@ -127,6 +127,16 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
->  {
->         int ret;
->
-> +       /*
-> +        * This may be a shared rail and may be able to run at a lower rate
-> +        * when we're not blowing fuses.  At the moment, the regulator framework
-> +        * applies voltage constraints even on disabled rails, so remove our
-> +        * constraints and allow the rail to be adjusted by other users.
+I did some tests myself today as well and can confirm your
+hdmi related finding - at least when plugged in on boot.
 
-Some year maybe I'll try to fix the regulator framework to not count
-voltage constraints for disbled rails, or perhaps have it be optional.
-;-)  In theory it should be much easier after the patches we already
-landed not to count current requests for disabled rails...
+I tried some combinations of camera vs. hdmi and it seems
+really only when hdmi is plugged in on boot
+
+(1)
+- boot
+- camera
+--> works
+
+(2)
+- boot
+- camera
+- hdmi plugged in
+- hdmi works
+- camera
+--> works
+
+(3)
+- hdmi plugged in
+- boot
+- hdmi works
+- camera
+--> camera doesn't work
+
+(4)
+- boot
+- hdmi plugged in
+- hdmi works
+- camera
+-> camera works
 
 
-> +        */
-> +       ret = regulator_set_voltage(priv->vcc, 0, INT_MAX);
-> +       if (ret)
-> +               dev_warn(priv->dev, "Failed to set 0 voltage (ignoring)\n");
-> +
->         ret = regulator_disable(priv->vcc);
->         if (ret)
->                 dev_warn(priv->dev, "Failed to disable regulator (ignoring)\n");
-> @@ -172,6 +182,17 @@ static int qfprom_enable_fuse_blowing(const struct qfprom_priv *priv,
->                 goto err_clk_prepared;
->         }
->
-> +       /*
-> +        * Hardware requires 1.8V min for fuse blowing; this may be
-> +        * a rail shared do don't specify a max--regulator constraints
-> +        * will handle.
-> +        */
-> +       ret = regulator_set_voltage(priv->vcc, 1800000, INT_MAX);
-> +       if (ret) {
-> +               dev_err(priv->dev, "Failed to set 1.8 voltage\n");
-> +               goto err_clk_rate_set;
-> +       }
-> +
+With a bit of brute-force [0] it seems the camera also works again even
+with hdmi connected on boot. So conclusion would be that some clock
+is misbehaving.
 
-Looks right to me.  Assuming that this works.
+Now we'll "only" need to find out which one that is.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+Heiko
+
+
+[0]
+Don't disable any clock gates
+
+diff --git a/drivers/clk/clk-gate.c b/drivers/clk/clk-gate.c
+index 070dc47e95a1..8daf1fc3388c 100644
+--- a/drivers/clk/clk-gate.c
++++ b/drivers/clk/clk-gate.c
+@@ -61,6 +61,9 @@ static void clk_gate_endisable(struct clk_hw *hw, int enable)
+ 
+        set ^= enable;
+ 
++if (!enable)
++return;
++
+        if (gate->lock)
+                spin_lock_irqsave(gate->lock, flags);
+        else
+
+
+
+Am Freitag, 5. Februar 2021, 09:15:47 CET schrieb Heiko Stübner:
+> Hi Sebastian,
+> 
+> Am Freitag, 5. Februar 2021, 07:43:35 CET schrieb Sebastian Fricke:
+> > On 03.02.2021 20:54, Heiko Stübner wrote:
+> > >Am Mittwoch, 3. Februar 2021, 19:14:22 CET schrieb Sebastian Fricke:
+> > >> I have tested your patch set on my nanoPC-T4, here is a complete log
+> > >> with:
+> > >> - relevant kernel log entries
+> > >> - system information
+> > >> - media ctl output
+> > >> - sysfs entry information
+> > >>
+> > >> https://paste.debian.net/1183874/
+> > >>
+> > >> Additionally, to your patchset I have applied the following patches:
+> > >> https://github.com/initBasti/Linux_kernel_media_tree_fork/commits/dual_cam_setup
+> > >>
+> > >> And just to not cause confusion the `media_dev` entries come from this
+> > >> unmerged series:
+> > >> https://patchwork.kernel.org/project/linux-media/list/?series=426269
+> > >>
+> > >> I have actually been able to stream with both of my cameras at the same
+> > >> time using the libcamera cam command.
+> > >> I would like to thank you a lot for making this possible.
+> > >
+> > >Thanks for testing a dual camera setup. On my board I could only test
+> > >the second ISP. And really glad it works for you tool :-) .
+> > >
+> > >Out of curiosity, do you also see that green tint in the images the cameras
+> > >produce?
+> > 
+> > Yes, I do. Actually, I currently have two forms of a green tint, on my
+> > OV13850 everything is quite dark and greenish, which is caused by the
+> > missing 3A algorithms. On my OV4689, I have big patches of the image
+> > with bright green color and flickering, I investigated if this is
+> > connected to the 2nd ISP instance, but that doesn't seem to be the case
+> > as I have the same results when I switch the CSI ports of the cameras.
+> > 
+> > I have found another issue, while testing I discovered following
+> > issue:
+> > When I start the system with an HDMI monitor connected, then the camera
+> > on the 2nd port doesn't work. This is probably because the RX/TX is
+> > reserved as a TX.
+> > But it made me wonder because if the system has an RX, a TX, and
+> > an RX/TX, why isn't the pure TX used by the monitor and the
+> > cameras take RX and RX/TX?
+> > Or do you think that this is maybe a malfunction of this patch?
+> 
+> I don't think it is an issue with this specific series, but still puzzling.
+> 
+> I.e. the DPHYs are actually only relevant to the DSI controllers,
+> with TX0 being connected to DSI0 and TX1RX1 being connected
+> to DSI1. So having an hdmi display _in theory_ shouldn't matter at all.
+> 
+> Out of curiosity what happens, when you boot without hdmi connected
+> turn on the cameras, connect the hdmi after this, try the cameras again?
+> 
+> 
+> Heiko
+> 
+> > 
+> > >
+> > >Thanks
+> > >Heiko
+> > 
+> > Greetings,
+> > Sebastian
+> > 
+> > >
+> > >
+> > >> If you like to you can add:
+> > >> Tested-by: Sebastian Fricke <sebastian.fricke@posteo.net>
+> > >>
+> > >> On 02.02.2021 15:56, Heiko Stuebner wrote:
+> > >> >The rk3399 has two ISPs and right now only the first one is usable.
+> > >> >The second ISP is connected to the TXRX dphy on the soc.
+> > >> >
+> > >> >The phy of ISP1 is only accessible through the DSI controller's
+> > >> >io-memory, so this series adds support for simply using the dsi
+> > >> >controller is a phy if needed.
+> > >> >
+> > >> >That solution is needed at least on rk3399 and rk3288 but no-one
+> > >> >has looked at camera support on rk3288 at all, so right now
+> > >> >only implement the rk3399 specifics.
+> > >> >
+> > >> >
+> > >> >Heiko Stuebner (6):
+> > >> >  drm/rockchip: dsi: add own additional pclk handling
+> > >> >  dt-bindings: display: rockchip-dsi: add optional #phy-cells property
+> > >> >  drm/rockchip: dsi: add ability to work as a phy instead of full dsi
+> > >> >  arm64: dts: rockchip: add #phy-cells to mipi-dsi1
+> > >> >  arm64: dts: rockchip: add cif clk-control pinctrl for rk3399
+> > >> >  arm64: dts: rockchip: add isp1 node on rk3399
+> > >> >
+> > >> > .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
+> > >> > arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  39 ++
+> > >> > drivers/gpu/drm/rockchip/Kconfig              |   2 +
+> > >> > .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 342 ++++++++++++++++++
+> > >> > 4 files changed, 384 insertions(+)
+> > >> >
+> > >>
+> > >
+> > >
+> > >
+> > >
+> > 
+> 
+> 
+
+
+
+
