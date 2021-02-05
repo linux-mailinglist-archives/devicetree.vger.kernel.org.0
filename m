@@ -2,148 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A7C5310674
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 09:18:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C23D53106BA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 09:33:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231494AbhBEIQs convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 5 Feb 2021 03:16:48 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:41336 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231400AbhBEIQq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 03:16:46 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1l7wHL-0000bu-I7; Fri, 05 Feb 2021 09:15:47 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Sebastian Fricke <sebastian.fricke@posteo.net>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        hjc@rock-chips.com, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, dafna.hirschfeld@collabora.com,
-        helen.koike@collabora.com, ezequiel@collabora.com,
-        cmuellner@linux.com
-Subject: Re: [PATCH 0/6] Support second Image Signal Processor on rk3399
-Date:   Fri, 05 Feb 2021 09:15:47 +0100
-Message-ID: <5271305.e9J7NaK4W3@diego>
-In-Reply-To: <20210205064335.6c3gs3h3pgvhceku@basti-TUXEDO-Book-XA1510>
-References: <20210202145632.1263136-1-heiko@sntech.de> <16624224.lhrHg4fidi@diego> <20210205064335.6c3gs3h3pgvhceku@basti-TUXEDO-Book-XA1510>
+        id S229692AbhBEIbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 03:31:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60802 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229651AbhBEIbb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 03:31:31 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3B6C06178A
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 00:30:50 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id sa23so10608220ejb.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 00:30:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Q+ylPOmVqxiwI3Mekr9xiE5Ov1z7xP6kqenxfg8J3H8=;
+        b=oa8tmGM+AmeFGtvqDJCuZkdvBIJN7ltjyDQe8/Nr7zCn4xfCihxZAlowFHMnUiA4Hh
+         7K/YRitiR0/G7MpGf/nU+5aemA1UZ7139JzG8SLWaeU+xGOBXuSKk9CUT9KiOhEkcrUg
+         xqb2ITyP7MNpVeM0KUyAK7MrqDV/lBiK/ZRj4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Q+ylPOmVqxiwI3Mekr9xiE5Ov1z7xP6kqenxfg8J3H8=;
+        b=Fx5Lx56RDSF5WaLTYT67hw8OI6emLC1BXlj8eJaNj607XgP9V8LdMGU+UJYigyOw1t
+         xpYhEnHyAIvlOIbKfdid58GL6PW83AX6nbLWUjmxzUoNlsewNV6zYSwQ9WxKqAO1zxAE
+         1yzpwlK/a5bmLmh5KQHj1H2j+cebdWa6rVKp5GZCHwD+W6LCFRjWAE9pCqs7/RINvGSo
+         Pko2QYLs8CAyE7id1Me1VKLQbLVL2UhrwT4fFTDZGloWdTGbK09sjxh+b8tyeoSRNIfh
+         EHRalyKjJumjMiMRrQzX8dXnG5TcuYbb8cw5M/4LzDtLSYOfBSD+01LxiRVG07DAVc2u
+         /RKQ==
+X-Gm-Message-State: AOAM533N+QsuhcwMwU4mW7PE/IzDMbwiNwUtW2F/y+Gvs/whb2Gs39ae
+        zoiWI8u0VHJOHMRALBepLHV3mwaaWKx6pBjCI8Ez7A==
+X-Google-Smtp-Source: ABdhPJyrgtcgk1gvRXUJeAHKakFmL/Gl9g9udzyY62k9eYBNyjE7YAy+aSD8k+pxV1stsSIWt2joswrMvstVkMdJkKA=
+X-Received: by 2002:a17:906:8252:: with SMTP id f18mr3041674ejx.418.1612513848888;
+ Fri, 05 Feb 2021 00:30:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+References: <20210203071256.42050-1-jagan@amarulasolutions.com>
+ <20210203071256.42050-2-jagan@amarulasolutions.com> <YBx1T3U1pNaLfJLQ@pendragon.ideasonboard.com>
+ <ae346027-a58e-e773-60ce-92a79f0d99d6@denx.de>
+In-Reply-To: <ae346027-a58e-e773-60ce-92a79f0d99d6@denx.de>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Fri, 5 Feb 2021 14:00:37 +0530
+Message-ID: <CAMty3ZApHx=o5SR14nL62Mc9Skd3a0HJyqsZVW06NBiF7uwR=w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm: bridge: Add SN65DSI84 DSI to LVDS bridge
+To:     Marek Vasut <marex@denx.de>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
-
-Am Freitag, 5. Februar 2021, 07:43:35 CET schrieb Sebastian Fricke:
-> On 03.02.2021 20:54, Heiko Stübner wrote:
-> >Am Mittwoch, 3. Februar 2021, 19:14:22 CET schrieb Sebastian Fricke:
-> >> I have tested your patch set on my nanoPC-T4, here is a complete log
-> >> with:
-> >> - relevant kernel log entries
-> >> - system information
-> >> - media ctl output
-> >> - sysfs entry information
+On Fri, Feb 5, 2021 at 4:50 AM Marek Vasut <marex@denx.de> wrote:
+>
+> On 2/4/21 11:29 PM, Laurent Pinchart wrote:
+> > Hi Jagan,
+> >
+> > Thank you for the patch.
+> >
+> > On Wed, Feb 03, 2021 at 12:42:56PM +0530, Jagan Teki wrote:
+> >> SN65DSI84 is a Single Channel DSI to Dual-link LVDS bridge from
+> >> Texas Instruments.
 > >>
-> >> https://paste.debian.net/1183874/
+> >> SN65DSI83, SN65DSI85 are variants of the same family of bridge
+> >> controllers.
 > >>
-> >> Additionally, to your patchset I have applied the following patches:
-> >> https://github.com/initBasti/Linux_kernel_media_tree_fork/commits/dual_cam_setup
-> >>
-> >> And just to not cause confusion the `media_dev` entries come from this
-> >> unmerged series:
-> >> https://patchwork.kernel.org/project/linux-media/list/?series=426269
-> >>
-> >> I have actually been able to stream with both of my cameras at the same
-> >> time using the libcamera cam command.
-> >> I would like to thank you a lot for making this possible.
+> >> Right now the bridge driver is supporting a single link, dual-link
+> >> support requires to initiate I2C Channel B registers.
 > >
-> >Thanks for testing a dual camera setup. On my board I could only test
-> >the second ISP. And really glad it works for you tool :-) .
-> >
-> >Out of curiosity, do you also see that green tint in the images the cameras
-> >produce?
-> 
-> Yes, I do. Actually, I currently have two forms of a green tint, on my
-> OV13850 everything is quite dark and greenish, which is caused by the
-> missing 3A algorithms. On my OV4689, I have big patches of the image
-> with bright green color and flickering, I investigated if this is
-> connected to the 2nd ISP instance, but that doesn't seem to be the case
-> as I have the same results when I switch the CSI ports of the cameras.
-> 
-> I have found another issue, while testing I discovered following
-> issue:
-> When I start the system with an HDMI monitor connected, then the camera
-> on the 2nd port doesn't work. This is probably because the RX/TX is
-> reserved as a TX.
-> But it made me wonder because if the system has an RX, a TX, and
-> an RX/TX, why isn't the pure TX used by the monitor and the
-> cameras take RX and RX/TX?
-> Or do you think that this is maybe a malfunction of this patch?
+> > MArek Vasut (on CC) has very recently posted a driver for the SN65DSI86.
+> > Should the two drivers be merged together ?
+>
+> Since Jagan's V1 was out first, I will let Jagan pick whatever might be
+> useful from the driver I posted, probably the O(1) clock rate
+> calculation and some of the regmap stuff, and once there is some merged
+> result, I am happy to test it on my hardware. The DSI83 is I think the
+> same as DSI84, except with half of the channels.
 
-I don't think it is an issue with this specific series, but still puzzling.
+Thanks. please wait for the v3 series, we can discuss further on top.
 
-I.e. the DPHYs are actually only relevant to the DSI controllers,
-with TX0 being connected to DSI0 and TX1RX1 being connected
-to DSI1. So having an hdmi display _in theory_ shouldn't matter at all.
-
-Out of curiosity what happens, when you boot without hdmi connected
-turn on the cameras, connect the hdmi after this, try the cameras again?
-
-
-Heiko
-
-> 
-> >
-> >Thanks
-> >Heiko
-> 
-> Greetings,
-> Sebastian
-> 
-> >
-> >
-> >> If you like to you can add:
-> >> Tested-by: Sebastian Fricke <sebastian.fricke@posteo.net>
-> >>
-> >> On 02.02.2021 15:56, Heiko Stuebner wrote:
-> >> >The rk3399 has two ISPs and right now only the first one is usable.
-> >> >The second ISP is connected to the TXRX dphy on the soc.
-> >> >
-> >> >The phy of ISP1 is only accessible through the DSI controller's
-> >> >io-memory, so this series adds support for simply using the dsi
-> >> >controller is a phy if needed.
-> >> >
-> >> >That solution is needed at least on rk3399 and rk3288 but no-one
-> >> >has looked at camera support on rk3288 at all, so right now
-> >> >only implement the rk3399 specifics.
-> >> >
-> >> >
-> >> >Heiko Stuebner (6):
-> >> >  drm/rockchip: dsi: add own additional pclk handling
-> >> >  dt-bindings: display: rockchip-dsi: add optional #phy-cells property
-> >> >  drm/rockchip: dsi: add ability to work as a phy instead of full dsi
-> >> >  arm64: dts: rockchip: add #phy-cells to mipi-dsi1
-> >> >  arm64: dts: rockchip: add cif clk-control pinctrl for rk3399
-> >> >  arm64: dts: rockchip: add isp1 node on rk3399
-> >> >
-> >> > .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
-> >> > arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  39 ++
-> >> > drivers/gpu/drm/rockchip/Kconfig              |   2 +
-> >> > .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 342 ++++++++++++++++++
-> >> > 4 files changed, 384 insertions(+)
-> >> >
-> >>
-> >
-> >
-> >
-> >
-> 
-
-
-
-
+Jagan.
