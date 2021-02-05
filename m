@@ -2,110 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45E7B3114BC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BECCA3114F4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:23:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231728AbhBEWNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 17:13:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42858 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232775AbhBEOiV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 09:38:21 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 220B864FBC;
-        Fri,  5 Feb 2021 14:59:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612537146;
-        bh=pcoVC9g6Ql5brnm8ZYrxM8gXd4vKE+CdwztAMluc3jc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dAu9XINGXWMXKM/v4VSMEpR5UUCt36txoacXH7ka0tNv+vG8Uhvnlhf5OOFcYyRyK
-         tKUvQdjoSvGBnoTZ1QDZRsluTJ4fRW+i0tlc+VKsUF9R5bkMFO921B8eKwzT9xS89+
-         BxgNKjCkkKuVdr2Xb16fv/oWk2wF/IpowhfTwmRmdl/hk0xAPKiy6q/JPbOV9rihec
-         DwKrhy22qVj5ArEmPBouXYoyduoc9mEyFyB8W2cvPw7M1ank7v970HjrN9h2zkMlCC
-         yhP5EQx8DqzkpHfzgFM25WJfLei1aGv86v8U7bPoZpWQE7W4pd9B5eIU9O0dmMTnAy
-         8ir6e/XFyhIKg==
-Date:   Fri, 5 Feb 2021 14:58:16 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
-        festevam@gmail.com, linuxppc-dev@lists.ozlabs.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/7] ASoC: imx-pcm-rpmsg: Add platform driver for audio
- base on rpmsg
-Message-ID: <20210205145816.GD4720@sirena.org.uk>
-References: <1612508250-10586-1-git-send-email-shengjiu.wang@nxp.com>
- <1612508250-10586-6-git-send-email-shengjiu.wang@nxp.com>
+        id S232677AbhBEWTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 17:19:11 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:39825 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232647AbhBEObN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 09:31:13 -0500
+Received: by mail-ot1-f51.google.com with SMTP id d7so5083938otq.6;
+        Fri, 05 Feb 2021 08:08:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5BRKM6m1G8jCHmWPk/p4NoJLu5lrM6XNxY2Am/U+Ay4=;
+        b=SD0+wAFS1Pagj62rapulYqoZGGKeggbDwDqPjT1JHAko94Z5SnuYicW+ANWebw136C
+         dnZOYs9SAaNspjfZGA++x0tg2aucHeHpe2kCDYC6PLp1dEtBK0LI36cU0CDxG6PqOQBA
+         WS7/khkZO0ufkCg2o9TVsK1SbiSGHuE77dp1zZqkC0FS9t2ctMT43ois7Hl9XPb3UDy3
+         0St2UFlzV/McEPXI43jB6YgEMDXVfAEzLf56oGw4sZnfa7VC5HnGehgquGsv8KV5BGUY
+         tUBW55wLC9UGXvoaSuS7aYbIa00hBZ5Trgw5Q1gxbdc7G06S+2nwGygCWI+r2hNFVjnw
+         vT5A==
+X-Gm-Message-State: AOAM531p0GSvwWhR63k2uCC83rNwWG3nIcHMVl/+WqluMPi7Z0DWfehz
+        q4So7w4Ehf3riHLateW/6tRJfE6wTg==
+X-Google-Smtp-Source: ABdhPJzgpseoww0GbKtxA4oUNmoyVQDNbUB9bioWqchv0MrmT+y8lv8T9HoSpmnszZsFRwkafoxDTg==
+X-Received: by 2002:a05:6830:1410:: with SMTP id v16mr3556521otp.347.1612539519314;
+        Fri, 05 Feb 2021 07:38:39 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y66sm971759oig.46.2021.02.05.07.38.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Feb 2021 07:38:38 -0800 (PST)
+Received: (nullmailer pid 3112099 invoked by uid 1000);
+        Fri, 05 Feb 2021 15:38:37 -0000
+Date:   Fri, 5 Feb 2021 09:38:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: dwc3-xilinx: Add missing comma in example
+Message-ID: <20210205153837.GA3108557@robh.at.kernel.org>
+References: <8fa5edcaa6b93859cfda97d080aad378e89c1b44.1611232967.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="k4f25fnPtRuIRUb3"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1612508250-10586-6-git-send-email-shengjiu.wang@nxp.com>
-X-Cookie: Huh?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <8fa5edcaa6b93859cfda97d080aad378e89c1b44.1611232967.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jan 21, 2021 at 01:42:49PM +0100, Michal Simek wrote:
+> Trivial example fix.
 
---k4f25fnPtRuIRUb3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I see this is already applied, but in the future please convert to 
+schema rather than doing trivial fixes.
 
-On Fri, Feb 05, 2021 at 02:57:28PM +0800, Shengjiu Wang wrote:
-
-> +	if (params_format(params) == SNDRV_PCM_FORMAT_S16_LE)
-> +		msg->s_msg.param.format   = RPMSG_S16_LE;
-> +	else if (params_format(params) == SNDRV_PCM_FORMAT_S24_LE)
-
-Again this should be a switch statement.
-
-> +	if (params_channels(params) == 1)
-> +		msg->s_msg.param.channels = RPMSG_CH_LEFT;
-> +	else
-> +		msg->s_msg.param.channels = RPMSG_CH_STEREO;
-
-Shouldn't this be reporting an error if the number of channels is more
-than 2?
-
-> +		/*
-> +		 * if the data in the buffer is less than one period
-> +		 * send message immediately.
-> +		 * if there is more than one period data, delay one
-> +		 * period (timer) to send the message.
-> +		 */
-> +		if ((avail - writen_num * period_size) <= period_size) {
-> +			imx_rpmsg_insert_workqueue(substream, msg, info);
-> +		} else if (rpmsg->force_lpa && !timer_pending(timer)) {
-> +			int time_msec;
-> +
-> +			time_msec = (int)(runtime->period_size * 1000 / runtime->rate);
-> +			mod_timer(timer, jiffies + msecs_to_jiffies(time_msec));
-> +		}
-
-The comment here is at least confusing - why would we not send a full
-buffer immediately if we have one?  This sounds like it's the opposite
-way round to what we'd do if we were trying to cut down the number of
-messages.  It might help to say which buffer and where?
-
-> +	/**
-> +	 * Every work in the work queue, first we check if there
-
-/** comments are only for kerneldoc.
-
---k4f25fnPtRuIRUb3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAdXQcACgkQJNaLcl1U
-h9ACUwf9EcHPKiRzzRa6Atb6PHhaM1oBK/2zYZcdmLDejwBct/KltZywmVsBQv0o
-JmeLnKw7/jLk3Sph4Pqk6J2lyizC5nik/w7NjFO5CIUyNTQnFRZtaDILcnVr7vNk
-28HX0/XoPM54EbfyncrP41lr/L4EYgHmjIMqi/TjVtFnfyOt1Pq99Rj02lKDVnV3
-ERmOguBociG3yf9kV/wcrZzJ4hOg7Lw468CHtxoeCpPKsJovmByQ0I78JQJlJ1Jj
-TRjC06zUmRhscWFCrWiOkItqPpTcrv5TxMVh5Ko5zE1rYslk8XURTFpnKDxWoxkR
-MtylP+v1qS4G4STsZObKZtcso3D9hA==
-=hzt6
------END PGP SIGNATURE-----
-
---k4f25fnPtRuIRUb3--
+> 
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+> 
+>  Documentation/devicetree/bindings/usb/dwc3-xilinx.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> index 4aae5b2cef56..a668f43bedf5 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> @@ -19,7 +19,7 @@ Example device node:
+>  			#address-cells = <0x2>;
+>  			#size-cells = <0x1>;
+>  			compatible = "xlnx,zynqmp-dwc3";
+> -			clock-names = "bus_clk" "ref_clk";
+> +			clock-names = "bus_clk", "ref_clk";
+>  			clocks = <&clk125>, <&clk125>;
+>  			ranges;
+>  
+> -- 
+> 2.30.0
+> 
