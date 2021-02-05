@@ -2,140 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E63310BDB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 14:35:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C38A8310C41
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 14:56:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229705AbhBENbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 08:31:41 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:50350 "EHLO vps0.lunn.ch"
+        id S231653AbhBENzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 08:55:43 -0500
+Received: from mx2.suse.de ([195.135.220.15]:56246 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230035AbhBEN2x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 08:28:53 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1l818f-004NO7-Fu; Fri, 05 Feb 2021 14:27:09 +0100
-Date:   Fri, 5 Feb 2021 14:27:09 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Prasanna Vengateshan Varadharajan 
-        <prasanna.vengateshan@microchip.com>
-Cc:     olteanv@gmail.com, netdev@vger.kernel.org, robh+dt@kernel.org,
-        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, UNGLinuxDriver@microchip.com,
-        Woojung.Huh@microchip.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/8] net: dsa: microchip: add DSA support for
- microchip lan937x
-Message-ID: <YB1HrTfUvgXbcsTr@lunn.ch>
-References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
- <20210128064112.372883-4-prasanna.vengateshan@microchip.com>
- <YBNf715MJ9OfaXfV@lunn.ch>
- <b565944e72a0af12dec0430bd819eb6b755d84b4.camel@microchip.com>
+        id S231571AbhBENxj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 08:53:39 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id B18E9ACD4;
+        Fri,  5 Feb 2021 13:52:57 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     f.fainelli@gmail.com, Saenz Julienne <nsaenzjulienne@suse.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     phil@raspberrypi.com, wahrenst@gmx.net,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [RFC/PATCH 01/11] dt-bindings: soc: bcm: bcm2835-pm: Convert bindings to DT schema
+Date:   Fri,  5 Feb 2021 14:52:37 +0100
+Message-Id: <20210205135249.2924-2-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210205135249.2924-1-nsaenzjulienne@suse.de>
+References: <20210205135249.2924-1-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b565944e72a0af12dec0430bd819eb6b755d84b4.camel@microchip.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +bool lan937x_is_internal_tx_phy_port(struct ksz_device *dev, int
-> > > port)
-> > > +{
-> > > +     /* Check if the port is internal tx phy port */
-> > 
-> > What is an internal TX phy port? Is it actually a conventional t2
-> > Fast
-> > Ethernet port, as opposed to a t1 port?
-> This is 100 Base-Tx phy which is compliant with
-> 802.3/802.3u standards. Two of the SKUs have both T1 and TX integrated
-> Phys as mentioned in the patch intro mail.
+This converts the brcm,bcm2835-pc bindings from text to proper schema.
 
-I don't think we have a good name for a conventional fast Ethernet.
-But since we call the other T1, since it has a single pair, maybe use
-T2, since Fast Ethernet uses 2 pair. I would also suggest a comment
-near this code explaining what T1 and T2 mean.
+Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+---
+ .../bindings/soc/bcm/brcm,bcm2835-pm.txt      | 46 -----------
+ .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 79 +++++++++++++++++++
+ 2 files changed, 79 insertions(+), 46 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
 
-> > What PHY driver is actually used? The "Microchip LAN87xx T1" driver?
+diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+deleted file mode 100644
+index 72ff033565e5..000000000000
+--- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
++++ /dev/null
+@@ -1,46 +0,0 @@
+-BCM2835 PM (Power domains, watchdog)
+-
+-The PM block controls power domains and some reset lines, and includes
+-a watchdog timer.  This binding supersedes the brcm,bcm2835-pm-wdt
+-binding which covered some of PM's register range and functionality.
+-
+-Required properties:
+-
+-- compatible:		Should be "brcm,bcm2835-pm"
+-- reg:			Specifies base physical address and size of the two
+-			  register ranges ("PM" and "ASYNC_BRIDGE" in that
+-			  order)
+-- clocks:		a) v3d: The V3D clock from CPRMAN
+-			b) peri_image: The PERI_IMAGE clock from CPRMAN
+-			c) h264: The H264 clock from CPRMAN
+-			d) isp: The ISP clock from CPRMAN
+-- #reset-cells: 	Should be 1.  This property follows the reset controller
+-			  bindings[1].
+-- #power-domain-cells:	Should be 1.  This property follows the power domain
+-			  bindings[2].
+-
+-Optional properties:
+-
+-- timeout-sec:		Contains the watchdog timeout in seconds
+-- system-power-controller: Whether the watchdog is controlling the
+-    system power.  This node follows the power controller bindings[3].
+-
+-[1] Documentation/devicetree/bindings/reset/reset.txt
+-[2] Documentation/devicetree/bindings/power/power-domain.yaml
+-[3] Documentation/devicetree/bindings/power/power-controller.txt
+-
+-Example:
+-
+-pm {
+-	compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
+-	#power-domain-cells = <1>;
+-	#reset-cells = <1>;
+-	reg = <0x7e100000 0x114>,
+-	      <0x7e00a000 0x24>;
+-	clocks = <&clocks BCM2835_CLOCK_V3D>,
+-		 <&clocks BCM2835_CLOCK_PERI_IMAGE>,
+-		 <&clocks BCM2835_CLOCK_H264>,
+-		 <&clocks BCM2835_CLOCK_ISP>;
+-	clock-names = "v3d", "peri_image", "h264", "isp";
+-	system-power-controller;
+-};
+diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+new file mode 100644
+index 000000000000..5e0555fc0666
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/soc/bcm/brcm,bcm2835-pm.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: BCM2835 PM (Power domains, watchdog)
++
++description: |
++  The PM block controls power domains and some reset lines, and includes a
++  watchdog timer.
++
++maintainers:
++  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
++
++allOf:
++  - $ref: ../../watchdog/watchdog.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - brcm,bcm2835-pm
++      - const: brcm,bcm2835-pm-wdt
++
++  reg:
++    minItems: 1
++    maxItems: 2
++    description: Specifies base physical address and size of the two register
++                 ranges, "PM" and "ASYNC_BRIDGE" in that order.
++
++  "#power-domain-cells":
++    const: 1
++
++  "#reset-cells":
++    const: 1
++
++  clocks:
++    minItems: 4
++    maxItems: 4
++
++  clock-names:
++    items:
++      - const: v3d
++      - const: peri_image
++      - const: h264
++      - const: isp
++
++  system-power-controller:
++    type: boolean
++
++  timeout-sec: true
++
++required:
++  - compatible
++  - reg
++  - "#power-domain-cells"
++  - "#reset-cells"
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/bcm2835.h>
++
++    watchdog@0 {
++        compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
++        #power-domain-cells = <1>;
++        #reset-cells = <1>;
++        reg = <0x7e100000 0x114>,
++              <0x7e00a000 0x24>;
++        clocks = <&clocks BCM2835_CLOCK_V3D>,
++        	 <&clocks BCM2835_CLOCK_PERI_IMAGE>,
++        	 <&clocks BCM2835_CLOCK_H264>,
++        	 <&clocks BCM2835_CLOCK_ISP>;
++        clock-names = "v3d", "peri_image", "h264", "isp";
++        system-power-controller;
++    };
+-- 
+2.30.0
 
-> Phy is basically a LAN87xx PHY. But the driver is customized for
-> LAN937x.
-
-Does it have its own ID in registers 2 and 3? Can you tell this
-customised version from the regular?
-
-> > > +static void tx_phy_port_init(struct ksz_device *dev, int port)
-> > > +{
-> > > +     u32 data;
-> > > +
-> > > +     /* Software reset. */
-> > > +     lan937x_t1_tx_phy_mod_bits(dev, port, MII_BMCR, BMCR_RESET,
-> > > true);
-> > > +
-> > > +     /* tx phy setup */
-> > > +     tx_phy_setup(dev, port);
-> > 
-> > And which PHY driver is used here? "Microchip LAN88xx"? All this code
-> > should be in the PHY driver.
-> As of now, no driver is available in the kernel since its part of
-> LAN937x.
-
-Right, so you need to write such a driver, and put it into
-drivers/net/phy.
-
-> > > +             member = dev->host_mask | p->vid_member;
-> > > +             mutex_lock(&dev->dev_mutex);
-> > > +
-> > > +             /* Port is a member of a bridge. */
-> > > +             if (dev->br_member & (1 << port)) {
-> > > +                     dev->member |= (1 << port);
-> > > +                     member = dev->member;
-> > > +             }
-> > > +             mutex_unlock(&dev->dev_mutex);
-> > > +             break;
-> > > +     case BR_STATE_BLOCKING:
-> > > +             data |= PORT_LEARN_DISABLE;
-> > > +             if (port != dev->cpu_port &&
-> > > +                 p->stp_state == BR_STATE_DISABLED)
-> > > +                     member = dev->host_mask | p->vid_member;
-> > > +             break;
-> > > +     default:
-> > > +             dev_err(ds->dev, "invalid STP state: %d\n", state);
-> > > +             return;
-> > > +     }
-> > > +
-> > > +     lan937x_pwrite8(dev, port, P_STP_CTRL, data);
-> > > +
-> > > +     p->stp_state = state;
-> > > +     mutex_lock(&dev->dev_mutex);
-> > > +
-> > > +     /* Port membership may share register with STP state. */
-> > > +     if (member >= 0 && member != p->member)
-> > > +             lan937x_cfg_port_member(dev, port, (u8)member);
-> > > +
-> > > +     /* Check if forwarding needs to be updated. */
-> > > +     if (state != BR_STATE_FORWARDING) {
-> > > +             if (dev->br_member & (1 << port))
-> > > +                     dev->member &= ~(1 << port);
-> > > +     }
-> > > +
-> > > +     /* When topology has changed the function
-> > > ksz_update_port_member
-> > > +      * should be called to modify port forwarding behavior.
-> > > +      */
-> > > +     if (forward != dev->member)
-> > > +             ksz_update_port_member(dev, port);
-> > 
-> > Please could you explain more what is going on with membership?
-> > Generally, STP state is specific to the port, and nothing else
-> > changes. So it is not clear what this membership is all about.
-> It updates the membership for the forwarding behavior based on
-> forwarding state of the port.
-
-So membership is about forwarding packets between ports. Most other
-chips handles this itself. But for this device, you need to handle
-this in software. O.K.
-
-You only want to forward when in STP state BR_STATE_FORWARDING. But
-the code seems more complex than this.
-
-    Andrew
