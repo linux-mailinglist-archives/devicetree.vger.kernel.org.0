@@ -2,183 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B520D3112C4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 21:46:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C283112E7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 21:57:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233003AbhBETDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 14:03:31 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:45722 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231725AbhBETBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 14:01:24 -0500
-Received: by mail-oi1-f178.google.com with SMTP id m7so8853053oiw.12;
-        Fri, 05 Feb 2021 12:43:34 -0800 (PST)
+        id S233759AbhBETON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 14:14:13 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:37133 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233654AbhBETMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 14:12:30 -0500
+Received: by mail-ot1-f43.google.com with SMTP id k25so6092546otb.4;
+        Fri, 05 Feb 2021 12:54:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=afmn48XmJAf5UHtknLL+vZ43WdJumPw28Jtuqw8EJAI=;
-        b=RAqYTzVtCDjNFrUykaiNB/rN2lJ77nD+YF8IbPCibNLgcZC9cNDBMWIJE/1Wgct7QB
-         ZEusWgMD/6Y9PSaEfSyikPsYCVa3FpILJ++WfAy5YtIe2ggGNH56VtFkH60gn2nYQPC3
-         Y/eFzGtknkfZ++raXQtz3ryQna2sx0Od5HGWiCXIVx+BeZHQF77leexlspt8AccogqA1
-         C8unOUgDUMWn1nIfcTL/nc9NDHqMPf8jMjPa9OR4trOZVdvhhPPg03uxIImqjt/rtLh+
-         ybBOxU3HDE2W8/cFQ3ekt8Byg3eCFptUY5jH4Z+881GDuzQCZMhom6lUcx8C9pSNNVsW
-         aY8g==
-X-Gm-Message-State: AOAM532XVuM2u1HULq0UDHXJiHX/pLrj5XScLOl3w2nRadHWPV4+7Jal
-        J8fRuXCVdcecEHnKK+b1yQ==
-X-Google-Smtp-Source: ABdhPJwyCaAFj5u9ICufn3AaMqQoT2FLq45wljxNPZVfVlhr1bm4C38Uek+pFLCPFShGkrSA6BtPaw==
-X-Received: by 2002:aca:4e13:: with SMTP id c19mr4336663oib.66.1612557789168;
-        Fri, 05 Feb 2021 12:43:09 -0800 (PST)
+        bh=sMbAuO/ZpwNzTU+MAP15wnEg3+eVX3c2ZzjflSg1SMc=;
+        b=gR0x2sgeaA5rU+p9wjcX5Dwk2+bbc6Y4ksu8x7IyUbTU0JA59Irhh+HBYWwE9Bjihu
+         01lXwRnQLfQGb6m+ciThxsgg4D6wzMRNyCaIz6/B3f5Z9ukYeZKCl7MGXdG1cgnMzqSV
+         dFDPyEdtrxvBqdE/WgfYuFmBwFJ0nv9C9pi850vOAms7fUWECttiuGjl4Zp6Xhs3lhr2
+         Mg7eNqRWaCkUNCGlVRHV6rpguKctnnM1/IUf5d5TLA418muwg0Pf/WCKQG6wOlMKCuB8
+         Uk4iLUByu5k4z4iSkezwMRarJjqVMsPXB9wp1JYL8CIFyKf4spdxIPwUI6vGw2pWdHyq
+         T/oQ==
+X-Gm-Message-State: AOAM531GNd3xiGeO/BYKF0WSCuyHepkwGn3fiXQD6t2iaL1XumvPr3lt
+        O2yR+qz3W8+IPatjmIZUdPohA8YrqQ==
+X-Google-Smtp-Source: ABdhPJzFDIBZHPsLjncq8NKBhPPokxP1ndVrxlx0qn2wKJzHpb3rux8Ejl1IPCpqcfMW/kb3MjpfsQ==
+X-Received: by 2002:a05:6830:2012:: with SMTP id e18mr4699299otp.32.1612557980310;
+        Fri, 05 Feb 2021 12:46:20 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a188sm2013782oif.11.2021.02.05.12.43.07
+        by smtp.gmail.com with ESMTPSA id k32sm1981232otc.74.2021.02.05.12.46.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 12:43:08 -0800 (PST)
-Received: (nullmailer pid 3696812 invoked by uid 1000);
-        Fri, 05 Feb 2021 20:43:06 -0000
-Date:   Fri, 5 Feb 2021 14:43:06 -0600
+        Fri, 05 Feb 2021 12:46:19 -0800 (PST)
+Received: (nullmailer pid 3702781 invoked by uid 1000);
+        Fri, 05 Feb 2021 20:46:18 -0000
+Date:   Fri, 5 Feb 2021 14:46:18 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Henry Chen <henryc.chen@mediatek.com>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        Arvin Wang <arvin.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH V8 01/12] dt-bindings: soc: Add dvfsrc driver bindings
-Message-ID: <20210205204306.GA3692875@robh.at.kernel.org>
-References: <1611648234-15043-1-git-send-email-henryc.chen@mediatek.com>
- <1611648234-15043-2-git-send-email-henryc.chen@mediatek.com>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, John Youn <John.Youn@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/6] dt-binding: usb: Include USB SSP rates in GenXxY
+Message-ID: <20210205204618.GA3702715@robh.at.kernel.org>
+References: <cover.1611106162.git.Thinh.Nguyen@synopsys.com>
+ <cc7cc15f87e209c9963f19129f51398cdc374358.1611106162.git.Thinh.Nguyen@synopsys.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1611648234-15043-2-git-send-email-henryc.chen@mediatek.com>
+In-Reply-To: <cc7cc15f87e209c9963f19129f51398cdc374358.1611106162.git.Thinh.Nguyen@synopsys.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 26, 2021 at 04:03:43PM +0800, Henry Chen wrote:
-> Document the binding for enabling dvfsrc on MediaTek SoC.
+On Tue, 19 Jan 2021 17:36:08 -0800, Thinh Nguyen wrote:
+> According to the USB 3.2 spec, a SuperSpeed Plus device can operate at
+> gen2x2, gen2x1, or gen1x2. If the USB controller device supports
+> multiple lanes at different transfer rates, the user can specify the HW
+> capability via these new speed strings:
 > 
-> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+> "super-speed-plus-gen2x2"
+> "super-speed-plus-gen2x1"
+> "super-speed-plus-gen1x2"
+> 
+> If the argument is simply "super-speed-plus", USB controllers should
+> default to their maximum transfer rate and number of lanes.
+> 
+> Signed-off-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
 > ---
->  .../devicetree/bindings/soc/mediatek/dvfsrc.yaml   | 67 ++++++++++++++++++++++
->  include/dt-bindings/interconnect/mtk,mt8183-emi.h  | 21 +++++++
->  2 files changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/dvfsrc.yaml
->  create mode 100644 include/dt-bindings/interconnect/mtk,mt8183-emi.h
+> Changes in v7:
+> - Rebase on Greg's usb-testing branch
+> Changes in v6:
+> - Update the different maximum_speed enums to the usb.yaml
+> - Remove Reviewed-by: Rob Herring <robh@kernel.org> because the commit is updated
+> - Rebase on Greg's usb-testing branch
+> - Update commit message
+> Changes in v5:
+> - Add Reviewed-by: Rob Herring <robh@kernel.org>
+> - Rebase on Felipe's testing/next branch
+> - Changed Signed-off-by email to match From: email header
+> Changes in v4:
+> - None
+> Changes in v3:
+> - Use "maximum-speed" to include both the num-lane and transfer rate for SSP
+> - Remove "num-lanes" and "lane-speed-mantissa-gbps" properties
+> Changes in v2:
+> - Make "num-lanes" and "lane-speed-mantissa-gbps" common USB properties
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.yaml b/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.yaml
-> new file mode 100644
-> index 0000000..0b746a8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/mediatek/dvfsrc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: MediaTek dynamic voltage and frequency scaling resource collector (DVFSRC)
-> +
-> +description: |
-> +  The Dynamic Voltage and Frequency Scaling Resource Collector (DVFSRC) is a
-> +  HW module which is used to collect all the requests from both software and
-> +  hardware and turn into the decision of minimum operating voltage and minimum
-> +  DRAM frequency to fulfill those requests.
-> +
-> +maintainers:
-> +  - henryc.chen <henryc.chen@mediatek.com>
-> +
-> +properties:
-> +  reg:
-> +    description: DVFSRC common register address and length.
-
-maxItems: 1
-
-> +
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt6873-dvfsrc
-> +      - mediatek,mt8183-dvfsrc
-> +      - mediatek,mt8192-dvfsrc
-> +
-> +  '#interconnect-cells':
-> +    const: 1
-> +
-> +patternProperties:
-> +  dvfsrc-vcore:
-
-Not a pattern. Move to 'properties'.
-
-> +    type: object
-> +    description:
-> +      The DVFSRC regulator is modelled as a subdevice of the DVFSRC.
-> +      Because DVFSRC can request power directly via register read/write, likes
-> +      vcore which is a core power of mt8183. As such, the DVFSRC regulator
-> +      requires that DVFSRC nodes be present.
-> +    $ref: /schemas/regulator/regulator.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#interconnect-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interconnect/mtk,mt8183-emi.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        dvfsrc@10012000 {
-> +            compatible = "mediatek,mt8183-dvfsrc";
-> +            reg = <0 0x10012000 0 0x1000>;
-> +            #interconnect-cells = <1>;
-> +            dvfsrc_vcore: dvfsrc-vcore {
-> +                    regulator-name = "dvfsrc-vcore";
-> +                    regulator-min-microvolt = <725000>;
-> +                    regulator-max-microvolt = <800000>;
-> +                    regulator-always-on;
-> +            };
-> +        };
-> +    };
-> diff --git a/include/dt-bindings/interconnect/mtk,mt8183-emi.h b/include/dt-bindings/interconnect/mtk,mt8183-emi.h
-> new file mode 100644
-> index 0000000..dfd143f
-> --- /dev/null
-> +++ b/include/dt-bindings/interconnect/mtk,mt8183-emi.h
-> @@ -0,0 +1,21 @@
-> +/* SPDX-License-Identifier: GPL-2.0
-> + *
-> + * Copyright (c) 2021 MediaTek Inc.
-> + */
-> +
-> +#ifndef __DT_BINDINGS_INTERCONNECT_MTK_MT8183_EMI_H
-> +#define __DT_BINDINGS_INTERCONNECT_MTK_MT8183_EMI_H
-> +
-> +#define MT8183_SLAVE_DDR_EMI			0
-> +#define MT8183_MASTER_MCUSYS			1
-> +#define MT8183_MASTER_GPU			2
-> +#define MT8183_MASTER_MMSYS			3
-> +#define MT8183_MASTER_MM_VPU			4
-> +#define MT8183_MASTER_MM_DISP			5
-> +#define MT8183_MASTER_MM_VDEC			6
-> +#define MT8183_MASTER_MM_VENC			7
-> +#define MT8183_MASTER_MM_CAM			8
-> +#define MT8183_MASTER_MM_IMG			9
-> +#define MT8183_MASTER_MM_MDP			10
-> +
-> +#endif
-> -- 
-> 1.9.1
+>  Documentation/devicetree/bindings/usb/usb.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
