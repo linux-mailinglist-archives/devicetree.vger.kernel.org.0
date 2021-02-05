@@ -2,169 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C1A53113EC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 22:52:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B716731150F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:24:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231701AbhBEVwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 16:52:19 -0500
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:43702 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231612AbhBEVwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 16:52:14 -0500
-Received: by mail-oi1-f177.google.com with SMTP id d20so9036371oiw.10;
-        Fri, 05 Feb 2021 13:51:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=COL52QGXJvkARFQTtCnDnLk2UkHSuPhjiRfQpCqhUQs=;
-        b=FW7DyoijCD6dtjhZyG8KiVrsjgrKlSR/O5KBRWZ0CbaHD6jgOumphSjD0pEqrIya4l
-         BGRoBqgvqtEkPJUYtLvmf2x4CUSNq78lRguvaQt6UOSZRyxZ6Q8ccQW0VoxZDzUCQWOJ
-         cF++1SC7LWsuE84nGpx/0efGsJIHRZn4rGxpij9wkaTrsWeb2QaUEaS5m7DF+FlvATcT
-         ejLYKi4Ee1lhS1O0IlcPnvMhCH3sQsOdhf2b6wzEdDXLWsaBHAHCsr31GBInoCfx9I64
-         jhPUgpfoKoHn/wva64RUsQZawLpoubKApfuniXn3CqgNz7F9rpw57fVJJ3qV9Ba6i8d9
-         bSwQ==
-X-Gm-Message-State: AOAM532Sr0m//LvunZPrsvyJiMZkWPmAUVw9tnA/28/rYLcUMJbtAm3i
-        f0Vkh8bsWBHiAtjGfDf3rw==
-X-Google-Smtp-Source: ABdhPJwoNAK2aJcbnmBeWAVOjt5glY3+Tq3cZKnS9qalBY1LrIf9g/5VoqrPJl2ZnX20hNYqZE5OWw==
-X-Received: by 2002:a05:6808:140a:: with SMTP id w10mr4460954oiv.146.1612561887610;
-        Fri, 05 Feb 2021 13:51:27 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u73sm2025538oie.30.2021.02.05.13.51.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 13:51:26 -0800 (PST)
-Received: (nullmailer pid 3813194 invoked by uid 1000);
-        Fri, 05 Feb 2021 21:51:25 -0000
-Date:   Fri, 5 Feb 2021 15:51:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     viresh.kumar@linaro.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, rjw@rjwysocki.net, devicetree@vger.kernel.org,
-        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com
-Subject: Re: [PATCH v5 7/7] dt-bindings: cpufreq: qcom-hw: Add bindings for
- 8998
-Message-ID: <20210205215125.GA3810714@robh.at.kernel.org>
-References: <20210121195250.492500-1-angelogioacchino.delregno@somainline.org>
- <20210121195250.492500-8-angelogioacchino.delregno@somainline.org>
+        id S230191AbhBEWW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 17:22:58 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:53432 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230088AbhBEO1N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 09:27:13 -0500
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 115EosxG001254;
+        Fri, 5 Feb 2021 15:57:48 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : subject : to
+ : cc : references : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=aWDWtjgjvIr2y3zTvyZfIzBb+OyjkthoLMM6dyPBcVE=;
+ b=oxIa9uWsFM5obMv0fBgVcd9iyGG0c1i0xPxb4Z2ZRFlbzEF0xK6gqmOeQPvB+U54HasS
+ KAmL9hx2l0mTSb7/lfJq8QldK7bT7E4ls2fdAE7CZjk+AZWOgLJ3KoAdHiAeCOZ7T2V5
+ Ws8c/e9PIt+HhbVB9cb/XzCrz+vNLM9ck2bPnqXbeiXK2YZmb0p4LzklbDIjXgY3P4sf
+ Dz+6MBeul8NArDWkhNO1QbdM9iAe3c2vek80OZbKTD9IuzufBf4HHPrthH4RBAHOvnF7
+ bMg+SlFCc3ceT6HFRF4r0AY/6TtLgtlAxTQ1CxB0XUVIZ7Sx6X6yyucSoy3UjJuZhTJw OQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 36ey7hh1j7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 05 Feb 2021 15:57:48 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3BE6B100034;
+        Fri,  5 Feb 2021 15:57:48 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 219BA2402BB;
+        Fri,  5 Feb 2021 15:57:48 +0100 (CET)
+Received: from lmecxl1060.lme.st.com (10.75.127.44) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 5 Feb
+ 2021 15:57:47 +0100
+From:   Pierre Yves MORDRET <pierre-yves.mordret@foss.st.com>
+Subject: Re: [PATCH 0/5] i2c: stm32: filter binding support & debug info
+To:     Alain Volmat <alain.volmat@foss.st.com>, <wsa@kernel.org>,
+        <robh+dt@kernel.org>
+CC:     <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@foss.st.com>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>
+References: <1612515104-838-1-git-send-email-alain.volmat@foss.st.com>
+Message-ID: <4addb8e0-8fcb-d713-065d-858698f3d493@foss.st.com>
+Date:   Fri, 5 Feb 2021 15:57:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210121195250.492500-8-angelogioacchino.delregno@somainline.org>
+In-Reply-To: <1612515104-838-1-git-send-email-alain.volmat@foss.st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-05_09:2021-02-05,2021-02-05 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 08:52:50PM +0100, AngeloGioacchino Del Regno wrote:
-> The OSM programming addition has been done under the
-> qcom,cpufreq-hw-8998 compatible name: specify the requirement
-> of two additional register spaces for this functionality.
-> This implementation, with the same compatible, has been
-> tested on MSM8998 and SDM630.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> ---
->  .../bindings/cpufreq/cpufreq-qcom-hw.yaml     | 66 +++++++++++++++----
->  1 file changed, 52 insertions(+), 14 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> index bc81b6203e27..17fd6a6cefb0 100644
-> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> @@ -18,6 +18,10 @@ description: |
->  properties:
->    compatible:
->      oneOf:
-> +      - description: Non-secure v1 of CPUFREQ HW
-> +        items:
-> +          - const: qcom,cpufreq-hw-8998
-> +
->        - description: v1 of CPUFREQ HW
->          items:
->            - const: qcom,cpufreq-hw
-> @@ -28,21 +32,9 @@ properties:
->                - qcom,sm8250-cpufreq-epss
->            - const: qcom,cpufreq-epss
->  
-> -  reg:
-> -    minItems: 2
-> -    maxItems: 3
-> -    items:
-> -      - description: Frequency domain 0 register region
-> -      - description: Frequency domain 1 register region
-> -      - description: Frequency domain 2 register region
-> +  reg: {}
->  
-> -  reg-names:
-> -    minItems: 2
-> -    maxItems: 3
-> -    items:
-> -      - const: freq-domain0
-> -      - const: freq-domain1
-> -      - const: freq-domain2
-> +  reg-names: {}
->  
->    clocks:
->      items:
-> @@ -57,6 +49,52 @@ properties:
->    '#freq-domain-cells':
->      const: 1
->  
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: qcom,cpufreq-hw-8998
-> +then:
-> +  properties:
-> +    reg:
-> +      minItems: 2
-> +      maxItems: 6
-> +      items:
-> +        - description: Frequency domain 0 register region
-> +        - description: Operating State Manager domain 0 register region
-> +        - description: Frequency domain 1 register region
-> +        - description: Operating State Manager domain 1 register region
-> +        - description: PLL ACD domain 0 register region (if ACD programming required)
-> +        - description: PLL ACD domain 1 register region (if ACD programming required)
-> +
-> +    reg-names:
-> +      minItems: 2
-> +      maxItems: 6
-> +      items:
-> +        - const: "osm-domain0"
-> +        - const: "freq-domain0"
-> +        - const: "osm-domain1"
-> +        - const: "freq-domain1"
-> +        - const: "osm-acd0"
-> +        - const: "osm-acd1"
+Hello all
 
-Don't need quotes.
+Looks good to me
 
-> +
-> +else:
-> +  properties:
-> +    reg:
-> +      minItems: 2
-> +      maxItems: 3
-> +      items:
-> +        - description: Frequency domain 0 register region
-> +        - description: Frequency domain 1 register region
-> +        - description: Frequency domain 2 register region
-> +    reg-names:
-> +      minItems: 2
-> +      maxItems: 3
-> +      items:
-> +        - const: "freq-domain0"
-> +        - const: "freq-domain1"
-> +        - const: "freq-domain2"
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.30.0
+Signed-off-by: Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
+
+Regards
+On 2/5/21 9:51 AM, Alain Volmat wrote:
+> This serie add support for the analog and digital filter binding
+> for the stm32f7 i2c driver.
+> An additional patch add also debug informations, displayed in case
+> of errors.
 > 
+> Alain Volmat (5):
+>   i2c: stm32f7: fix configuration of the digital filter
+>   i2c: stm32f7: support DT binding i2c-analog-filter
+>   i2c: stm32f7: add support for DNF i2c-digital-filter binding
+>   ARM: dts: stm32: enable the analog filter for all I2C nodes in
+>     stm32mp151
+>   i2c: stm32f7: indicate the address being accessed on errors
+> 
+>  arch/arm/boot/dts/stm32mp151.dtsi |  6 +++
+>  drivers/i2c/busses/i2c-stm32f7.c  | 63 ++++++++++++++++++++-----------
+>  2 files changed, 46 insertions(+), 23 deletions(-)
+> 
+
+-- 
+--
+~ Py MORDRET
+--
