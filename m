@@ -2,96 +2,481 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0E4C310975
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 11:48:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4427310999
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 11:55:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231737AbhBEKsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 05:48:21 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:34752 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231480AbhBEKqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:46:12 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 115AbKPS013481;
-        Fri, 5 Feb 2021 11:44:33 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=Qa7QSCQdCnvBgqG8mjLC1ghulWEhp4Q3PlR+4amm4RE=;
- b=zi0YUXr64YqlsbWNjXsUZOEf0rqYXnNpFJM6/eWMWWvxcHj46oCGVt5CSxFeVJTCOtuN
- nJg0+P00nNcE30zorQFGHy4IxtMQRXLG9PEilQz+HDh/gREkjVs5yovjj8oqVgogTvpt
- x4xyUptrS7qTa5waBQpscDUmvLmDfmxh9cg4ZdpB5HQSKn+gCrC5M6Wc02no+3qKVLVk
- mKP8ITEZnuHWUThOgZKBxNs04E3M+28sk/5CDXBI9OpWM11pXahBZ9IxAQ9Y0tljLfS4
- n46rw6mS8yZAXTiuAV0nVPFZXPn/veZp7k84vErjAuD8YxkzvsGMSO54sxjEo2QFCImk mA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 36h1ke9d48-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 05 Feb 2021 11:44:33 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 43B1D10002A;
-        Fri,  5 Feb 2021 11:44:31 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 357552298CD;
-        Fri,  5 Feb 2021 11:44:31 +0100 (CET)
-Received: from localhost (10.75.127.45) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 5 Feb 2021 11:44:30
- +0100
-From:   Olivier Moysan <olivier.moysan@foss.st.com>
-To:     Alexandre Torgue <alexandre.torgue@st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        "Rob Herring" <robh+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: [RESEND PATCH 1/2] ASoC: dt-bindings: add mclk provider support to stm32 i2s
-Date:   Fri, 5 Feb 2021 11:44:03 +0100
-Message-ID: <20210205104404.18786-2-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210205104404.18786-1-olivier.moysan@foss.st.com>
-References: <20210205104404.18786-1-olivier.moysan@foss.st.com>
+        id S231785AbhBEKzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 05:55:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33894 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231809AbhBEKww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:52:52 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E9EC0698D9
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 02:45:22 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id g10so7167911wrx.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 02:45:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=lEGGOwSCOizh9sWnUmMBiHnT4BEc9myth/lV8X0eO00=;
+        b=H4fwW4+A4lL54GZraHW/Wy3Dt40UYErHwS1DaY63UcerFHZuZ3aX9DQKUVVFKp+MBT
+         AOyhhPjMtQC+yXZEdD4plW4zzN/WKnSVTk3qhgCSBj4L7r0E2X3UOtgNnExS6gCX42Zk
+         2HPfH9nfp2PWy2VgA5g9gQbWKvYYC7vZQ3T4oFbOkqNZqJNxaEtcI67tl5Ipv0JwNZsV
+         z9qoS/b2sjrEc8pbxb7KVLxJj34+BeurwOBVCsuet2J+2SKrsQQ2/yb/LSXnm3ebBhz/
+         m+gqJhtuybDD06sMHDNpDO21m7gAcn1qU264mER8x570IVaLCiR0/r19tlk0C9/f9M+5
+         5wNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=lEGGOwSCOizh9sWnUmMBiHnT4BEc9myth/lV8X0eO00=;
+        b=P4x79dQO8kJ94ugNFnt0bBiMA3inbe7qdx8UBiIKklcFKVyu19/FTg7fO06XVeYyrT
+         WmGH6KhUjF54uiCnHuUTXOipgu/05x2AMki1BM3JAfrpFh9pM1TVaAViATbhJFswNLII
+         H9JdQWWMjmaAYl/BcpX/tVAyCKg/Oi2m/KegoCB1NsiHtbxPo6SDOqaXY1M83x+sYPBt
+         8HGuyGwpwFhlunMTWDI/cK5L+rpAva7YGf1cnfMzWXRHmawLD98ylLkzCGomfbRdBpw0
+         sGPYA2Q9pb1V0gd/gdT7Rg4RXKoEn2rlfIXaXiqNpnhvjkSkxv4L7FvZLLDAUgazI7mu
+         8Wpw==
+X-Gm-Message-State: AOAM532637RrSKjejJ2Js0Wv8WaP+K3vFLMSqe8BUXyuoJM0ywRVgAwc
+        SxIFZlG+w8QHjXdWWqWLwXD66g==
+X-Google-Smtp-Source: ABdhPJxrjya+s07DM0jsn5G9kfvfHh7ZCdDtQHGROMA9sNz9mRwbNeBKAfHx0damnf9qw4w6zJu4GQ==
+X-Received: by 2002:adf:ec52:: with SMTP id w18mr4255562wrn.65.1612521921590;
+        Fri, 05 Feb 2021 02:45:21 -0800 (PST)
+Received: from localhost.localdomain ([2a02:2450:102f:d6a:38fd:e0db:ea01:afc8])
+        by smtp.gmail.com with ESMTPSA id u4sm11300233wrr.37.2021.02.05.02.45.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Feb 2021 02:45:20 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, mchehab@kernel.org, robh+dt@kernel.org,
+        angelogioacchino.delregno@somainline.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>
+Cc:     Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+Subject: [PATCH v4 17/22] dt-bindings: media: camss: Add qcom,sdm845-camss binding
+Date:   Fri,  5 Feb 2021 11:44:09 +0100
+Message-Id: <20210205104414.299732-18-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210205104414.299732-1-robert.foss@linaro.org>
+References: <20210205104414.299732-1-robert.foss@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-05_06:2021-02-05,2021-02-05 signatures=0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Olivier Moysan <olivier.moysan@st.com>
+Add bindings for qcom,sdm845-camss in order to support the camera
+subsystem for SDM845.
 
-Add master clock provider support to STM32 I2S.
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
-index f32410890589..6feb5a09c184 100644
---- a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
-@@ -54,6 +54,10 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  "#clock-cells":
-+    description: Configure the I2S device as MCLK clock provider.
-+    const: 0
+Changes since v2
+ - Rob: Removed extra empty lines at end of file
+ - Rob: Add new line at end of file
+ - Rob: Remove redundant descriptions
+ - Rob: Add power domain description
+ - Rob: Make clock-lanes a constant
+ - Rob: Rework to conform to new port schema
+ - Add max & minItems to data-lanes
+ - Remove ports requirement - endpoint & reg
+ - Add proper commit message
+ - Remove Todor as binding maintainer
+
+Changes since v3
+ - Fixed ordering of IRQs
+
+
+ .../bindings/media/qcom,sdm845-camss.yaml     | 370 ++++++++++++++++++
+ 1 file changed, 370 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+new file mode 100644
+index 000000000000..70991b2cd596
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+@@ -0,0 +1,370 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +
- required:
-   - compatible
-   - "#sound-dai-cells"
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/media/qcom,sdm845-camss.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm CAMSS ISP
++
++maintainers:
++  - Robert Foss <robert.foss@linaro.org>
++
++description: |
++  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms
++
++properties:
++  compatible:
++    const: qcom,sdm845-camss
++
++  clocks:
++    minItems: 36
++    maxItems: 36
++
++  clock-names:
++    items:
++      - const: camnoc_axi
++      - const: cpas_ahb
++      - const: cphy_rx_src
++      - const: csi0
++      - const: csi0_src
++      - const: csi1
++      - const: csi1_src
++      - const: csi2
++      - const: csi2_src
++      - const: csiphy0
++      - const: csiphy0_timer
++      - const: csiphy0_timer_src
++      - const: csiphy1
++      - const: csiphy1_timer
++      - const: csiphy1_timer_src
++      - const: csiphy2
++      - const: csiphy2_timer
++      - const: csiphy2_timer_src
++      - const: csiphy3
++      - const: csiphy3_timer
++      - const: csiphy3_timer_src
++      - const: gcc_camera_ahb
++      - const: gcc_camera_axi
++      - const: slow_ahb_src
++      - const: soc_ahb
++      - const: vfe0_axi
++      - const: vfe0
++      - const: vfe0_cphy_rx
++      - const: vfe0_src
++      - const: vfe1_axi
++      - const: vfe1
++      - const: vfe1_cphy_rx
++      - const: vfe1_src
++      - const: vfe_lite
++      - const: vfe_lite_cphy_rx
++      - const: vfe_lite_src
++
++  interrupts:
++    minItems: 10
++    maxItems: 10
++
++  interrupt-names:
++    items:
++      - const: csid0
++      - const: csid1
++      - const: csid2
++      - const: csiphy0
++      - const: csiphy1
++      - const: csiphy2
++      - const: csiphy3
++      - const: vfe0
++      - const: vfe1
++      - const: vfe_lite
++
++  iommus:
++    maxItems: 4
++
++  power-domains:
++    items:
++      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
++      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
++      - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    description:
++      CSI input ports.
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@2:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@3:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++  reg:
++    minItems: 10
++    maxItems: 10
++
++  reg-names:
++    items:
++      - const: csid0
++      - const: csid1
++      - const: csid2
++      - const: csiphy0
++      - const: csiphy1
++      - const: csiphy2
++      - const: csiphy3
++      - const: vfe0
++      - const: vfe1
++      - const: vfe_lite
++
++  vdda-supply:
++    description:
++      Definition of the regulator used as analog power supply.
++
++required:
++  - clock-names
++  - clocks
++  - compatible
++  - interrupt-names
++  - interrupts
++  - iommus
++  - power-domains
++  - reg
++  - reg-names
++  - vdda-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/qcom,camcc-sdm845.h>
++    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
++
++    soc {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      camss: camss@a00000 {
++        compatible = "qcom,sdm845-camss";
++
++        clocks = <&clock_camcc CAM_CC_CAMNOC_AXI_CLK>,
++          <&clock_camcc CAM_CC_CPAS_AHB_CLK>,
++          <&clock_camcc CAM_CC_CPHY_RX_CLK_SRC>,
++          <&clock_camcc CAM_CC_IFE_0_CSID_CLK>,
++          <&clock_camcc CAM_CC_IFE_0_CSID_CLK_SRC>,
++          <&clock_camcc CAM_CC_IFE_1_CSID_CLK>,
++          <&clock_camcc CAM_CC_IFE_1_CSID_CLK_SRC>,
++          <&clock_camcc CAM_CC_IFE_LITE_CSID_CLK>,
++          <&clock_camcc CAM_CC_IFE_LITE_CSID_CLK_SRC>,
++          <&clock_camcc CAM_CC_CSIPHY0_CLK>,
++          <&clock_camcc CAM_CC_CSI0PHYTIMER_CLK>,
++          <&clock_camcc CAM_CC_CSI0PHYTIMER_CLK_SRC>,
++          <&clock_camcc CAM_CC_CSIPHY1_CLK>,
++          <&clock_camcc CAM_CC_CSI1PHYTIMER_CLK>,
++          <&clock_camcc CAM_CC_CSI1PHYTIMER_CLK_SRC>,
++          <&clock_camcc CAM_CC_CSIPHY2_CLK>,
++          <&clock_camcc CAM_CC_CSI2PHYTIMER_CLK>,
++          <&clock_camcc CAM_CC_CSI2PHYTIMER_CLK_SRC>,
++          <&clock_camcc CAM_CC_CSIPHY3_CLK>,
++          <&clock_camcc CAM_CC_CSI3PHYTIMER_CLK>,
++          <&clock_camcc CAM_CC_CSI3PHYTIMER_CLK_SRC>,
++          <&gcc GCC_CAMERA_AHB_CLK>,
++          <&gcc GCC_CAMERA_AXI_CLK>,
++          <&clock_camcc CAM_CC_SLOW_AHB_CLK_SRC>,
++          <&clock_camcc CAM_CC_SOC_AHB_CLK>,
++          <&clock_camcc CAM_CC_IFE_0_AXI_CLK>,
++          <&clock_camcc CAM_CC_IFE_0_CLK>,
++          <&clock_camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
++          <&clock_camcc CAM_CC_IFE_0_CLK_SRC>,
++          <&clock_camcc CAM_CC_IFE_1_AXI_CLK>,
++          <&clock_camcc CAM_CC_IFE_1_CLK>,
++          <&clock_camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
++          <&clock_camcc CAM_CC_IFE_1_CLK_SRC>,
++          <&clock_camcc CAM_CC_IFE_LITE_CLK>,
++          <&clock_camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
++          <&clock_camcc CAM_CC_IFE_LITE_CLK_SRC>;
++
++        clock-names = "camnoc_axi",
++          "cpas_ahb",
++          "cphy_rx_src",
++          "csi0",
++          "csi0_src",
++          "csi1",
++          "csi1_src",
++          "csi2",
++          "csi2_src",
++          "csiphy0",
++          "csiphy0_timer",
++          "csiphy0_timer_src",
++          "csiphy1",
++          "csiphy1_timer",
++          "csiphy1_timer_src",
++          "csiphy2",
++          "csiphy2_timer",
++          "csiphy2_timer_src",
++          "csiphy3",
++          "csiphy3_timer",
++          "csiphy3_timer_src",
++          "gcc_camera_ahb",
++          "gcc_camera_axi",
++          "slow_ahb_src",
++          "soc_ahb",
++          "vfe0_axi",
++          "vfe0",
++          "vfe0_cphy_rx",
++          "vfe0_src",
++          "vfe1_axi",
++          "vfe1",
++          "vfe1_cphy_rx",
++          "vfe1_src",
++          "vfe_lite",
++          "vfe_lite_cphy_rx",
++          "vfe_lite_src";
++
++        interrupts = <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
++          <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
++          <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
++          <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
++          <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
++          <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
++          <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
++          <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
++          <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
++          <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
++
++        interrupt-names = "csid0",
++          "csid1",
++          "csid2",
++          "csiphy0",
++          "csiphy1",
++          "csiphy2",
++          "csiphy3",
++          "vfe0",
++          "vfe1",
++          "vfe_lite";
++
++        iommus = <&apps_smmu 0x0808 0x0>,
++          <&apps_smmu 0x0810 0x8>,
++          <&apps_smmu 0x0c08 0x0>,
++          <&apps_smmu 0x0c10 0x8>;
++
++        power-domains = <&clock_camcc IFE_0_GDSC>,
++          <&clock_camcc IFE_1_GDSC>,
++          <&clock_camcc TITAN_TOP_GDSC>;
++
++        reg = <0 0xacb3000 0 0x1000>,
++          <0 0xacba000 0 0x1000>,
++          <0 0xacc8000 0 0x1000>,
++          <0 0xac65000 0 0x1000>,
++          <0 0xac66000 0 0x1000>,
++          <0 0xac67000 0 0x1000>,
++          <0 0xac68000 0 0x1000>,
++          <0 0xacaf000 0 0x4000>,
++          <0 0xacb6000 0 0x4000>,
++          <0 0xacc4000 0 0x4000>;
++
++        reg-names = "csid0",
++          "csid1",
++          "csid2",
++          "csiphy0",
++          "csiphy1",
++          "csiphy2",
++          "csiphy3",
++          "vfe0",
++          "vfe1",
++          "vfe_lite";
++
++        vdda-supply = <&reg_2v8>;
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++        };
++      };
++    };
 -- 
-2.17.1
+2.27.0
 
