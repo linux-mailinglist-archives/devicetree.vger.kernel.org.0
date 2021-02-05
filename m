@@ -2,138 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15E993106E3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 09:41:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5674F310729
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 09:56:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbhBEIiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 03:38:07 -0500
-Received: from mga14.intel.com ([192.55.52.115]:14144 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229736AbhBEIiD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 03:38:03 -0500
-IronPort-SDR: 1lyIEEZCHWsuBxZq0tABCg67KABRBUWZW8iAGjUQn/QI/jtHUMTn4eeFe3Gg9lWSu8HrUbL6I1
- tYKlnsrMYuvw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="180627142"
-X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; 
-   d="scan'208";a="180627142"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2021 00:36:11 -0800
-IronPort-SDR: Q3dRjpCv2RccvW796ai0N3auitlP3dOEZRq4rGlTkFc8QtJXMSvVbnNUC9RxmqV6LszSaIsgpn
- 1yXZaJ0YYz5A==
-X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; 
-   d="scan'208";a="415952976"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2021 00:36:09 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 81D99205D2; Fri,  5 Feb 2021 10:35:37 +0200 (EET)
-Date:   Fri, 5 Feb 2021 10:35:37 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Martina Krasteva <martinax.krasteva@linux.intel.com>,
-        gjorgjix.rosikopulos@linux.intel.com, devicetree@vger.kernel.org,
-        Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        paul.j.murphy@linux.intel.com
-Subject: Re: [PATCH v7 1/2] dt-bindings: media: Add bindings for imx334
-Message-ID: <20210205083537.GE32460@paasikivi.fi.intel.com>
-References: <20210203135441.136-1-martinax.krasteva@linux.intel.com>
- <20210203135441.136-2-martinax.krasteva@linux.intel.com>
- <1612452057.710530.452037.nullmailer@robh.at.kernel.org>
- <20210204161654.GC32460@paasikivi.fi.intel.com>
- <CAL_JsqJDwtUQEe7RTaNsCkbLr+WO-RS5QuGsQwtAmmm5nkcw_Q@mail.gmail.com>
+        id S229941AbhBEIyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 03:54:02 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:14210 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229691AbhBEIxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 03:53:04 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1158l1WR007611;
+        Fri, 5 Feb 2021 09:52:06 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=KoN+yQlvSs0QDXzP0LKAFNH9utHipTRcikoBgtIN8lo=;
+ b=e8kOMd+kETgkqyl4sIq8whYdqEBEdZjz+AKVGKs7p6sxePii7iHgmhJU9fRmDfO/Nu9I
+ zazUUpps4ATPiOwzDtfT4q+7RNWA5GgxErCU6rBzqQEMX29DCM2j68RoTh18Vngnz8wq
+ Uwy+WDRKJFIKTcREj1SO3GlG91aC/9mpD+qVsnyDAtiqWYuxTIiL4lmN2MRGZ1ZAfZeS
+ TcLkSbGV1FdyAIUtRjPkJaZfo6oqDu16lfN4ekzBu3O+m6Kjw+rty1mubjTUPV3DQgwq
+ LwtJDsH4hnCpOqHYprvoNoRrw8Mr6SxtMZH+GekcDA4JUWaMhRQoPDCb+NtvLEZc9kXf QQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 36d0nse4kf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 05 Feb 2021 09:52:06 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2BCCF10002A;
+        Fri,  5 Feb 2021 09:52:06 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EC4A8221793;
+        Fri,  5 Feb 2021 09:52:05 +0100 (CET)
+Received: from localhost (10.75.127.45) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 5 Feb 2021 09:52:05
+ +0100
+From:   Alain Volmat <alain.volmat@foss.st.com>
+To:     <wsa@kernel.org>, <robh+dt@kernel.org>
+CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@foss.st.com>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>,
+        <alain.volmat@foss.st.com>
+Subject: [PATCH 0/5] i2c: stm32: filter binding support & debug info
+Date:   Fri, 5 Feb 2021 09:51:39 +0100
+Message-ID: <1612515104-838-1-git-send-email-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJDwtUQEe7RTaNsCkbLr+WO-RS5QuGsQwtAmmm5nkcw_Q@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-05_06:2021-02-05,2021-02-05 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI Rob,
+This serie add support for the analog and digital filter binding
+for the stm32f7 i2c driver.
+An additional patch add also debug informations, displayed in case
+of errors.
 
-On Thu, Feb 04, 2021 at 05:06:04PM -0600, Rob Herring wrote:
-> On Thu, Feb 4, 2021 at 10:17 AM Sakari Ailus
-> <sakari.ailus@linux.intel.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Thu, Feb 04, 2021 at 09:20:57AM -0600, Rob Herring wrote:
-> > > On Wed, 03 Feb 2021 13:54:40 +0000, Martina Krasteva wrote:
-> > > > From: Martina Krasteva <martinax.krasteva@intel.com>
-> > > >
-> > > > - Add dt-bindings documentation for Sony imx334 sensor driver.
-> > > > - Add MAINTAINERS entry for Sony imx334 binding documentation.
-> > > >
-> > > > Signed-off-by: Martina Krasteva <martinax.krasteva@intel.com>
-> > > > Reviewed-by: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
-> > > > Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > > > Acked-by: Paul J. Murphy <paul.j.murphy@intel.com>
-> > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > ---
-> > > >  .../devicetree/bindings/media/i2c/sony,imx334.yaml | 90 ++++++++++++++++++++++
-> > > >  MAINTAINERS                                        |  8 ++
-> > > >  2 files changed, 98 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-> > > >
-> > >
-> > > My bot found errors running 'make dt_binding_check' on your patch:
-> > >
-> > > yamllint warnings/errors:
-> > >
-> > > dtschema/dtc warnings/errors:
-> > > Error: Documentation/devicetree/bindings/media/i2c/sony,imx334.example.dts:28.17-18 syntax error
-> > > FATAL ERROR: Unable to parse input tree
-> 
-> That's usually a missing header for #defines.
-> 
-> > > make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/media/i2c/sony,imx334.example.dt.yaml] Error 1
-> > > make[1]: *** Waiting for unfinished jobs....
-> > > make: *** [Makefile:1370: dt_binding_check] Error 2
-> > >
-> > > See https://patchwork.ozlabs.org/patch/1435383
-> > >
-> > > This check can fail if there are any dependencies. The base for a patch
-> > > series is generally the most recent rc1.
-> > >
-> > > If you already ran 'make dt_binding_check' and didn't see the above
-> > > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > > date:
-> > >
-> > > pip3 install dtschema --upgrade
-> > >
-> > > Please check and re-submit.
-> >
-> > Thanks for reporting this. The example was apparently missing the
-> > assigned-clock-parents property. I'll squash the following change to the
-> > patch:
-> 
-> Doubtful. That would be a more specific schema error.
+Alain Volmat (5):
+  i2c: stm32f7: fix configuration of the digital filter
+  i2c: stm32f7: support DT binding i2c-analog-filter
+  i2c: stm32f7: add support for DNF i2c-digital-filter binding
+  ARM: dts: stm32: enable the analog filter for all I2C nodes in
+    stm32mp151
+  i2c: stm32f7: indicate the address being accessed on errors
 
-Well, I guess the parsing didn't get quite there. There's a missing
-semicolon a few lines above it.
-
-> 
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-> > index 3145e94d043e7..4217fbea0735a 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-> > @@ -76,6 +76,7 @@ examples:
-> >              clocks = <&imx334_clk>
-
-				       ^
-
-> >
-> >              assigned-clocks = <&imx334_clk>;
-> > +            assigned-clock-parents = <&imx334_clk_parent>;
-> >              assigned-clock-rates = <24000000>;
-> >
-> >              port {
-> >
-
--- 
-Kind regards,
-
-Sakari Ailus
+ arch/arm/boot/dts/stm32mp151.dtsi |  6 +++
+ drivers/i2c/busses/i2c-stm32f7.c  | 63 ++++++++++++++++++++-----------
+ 2 files changed, 46 insertions(+), 23 deletions(-)
