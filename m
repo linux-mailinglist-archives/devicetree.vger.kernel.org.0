@@ -2,161 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCB53311512
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:24:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C90603114BB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232796AbhBEWXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 17:23:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42622 "EHLO
+        id S229608AbhBEWNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 17:13:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232482AbhBEO15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 09:27:57 -0500
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB23C061223
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 08:05:50 -0800 (PST)
-Received: by mail-oo1-xc2d.google.com with SMTP id g46so1729101ooi.9
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 08:05:50 -0800 (PST)
+        with ESMTP id S232674AbhBEOhh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 09:37:37 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9596C06178B;
+        Fri,  5 Feb 2021 08:15:26 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 190so6476734wmz.0;
+        Fri, 05 Feb 2021 08:15:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=i+s2FZx53SQqxDw+1zONomhnnt1uwtiTU8GemVlvAO0=;
-        b=fot037dobwcRId/9HL/KeJ7m7AtvNPnIuli3LuaUHiSIuMoDWtJEP0R7+qmv1XaKXN
-         9lT/yZg+DvR5DJxSVbT/lHnMC7MzqKCFAYUMjntE8M++BVlJfTMLSTs6nX81Y74gwWW3
-         IU2Y/KNJdxJJ1X+KJbw6atVuEPR9a/mgLAf1/6qVEwEGW8Q0YpT1EeZNzMOJOpK6uhvg
-         87FLh4N4l5LnQh/5hkxoLbtXKVwKXvg7W26hhgTKgJ+mQJ53e+OHdZjKGXV/NkWXzR+m
-         psZGPWWMLEkohzZdJg9ud7dYimzBnw6Kc04he1gOqmGGXv7hU6S7Lp5srqyjXz6n31AR
-         gFPw==
+         :content-disposition:in-reply-to:user-agent;
+        bh=mACicL3rE+Kh0IehlID0L8VuwnVf9CB87E6ZMKmgukU=;
+        b=PBL7qppo0ij8tdwx68ivvnBR12W0uA9PnbUlNDF4iPl4aRGOW1Ux+UrVSXDgpyQbwS
+         mKa+pmVe9gZg7WNyuaI6m7hb066N+EWYyvPBqSCV2a8FrDWBJ5/QPUI1aUI0LquSL+Uz
+         XvljK1qhu1BLFIU0x5P4JmHKsOsAKlEe12MH6CNW+8yZWGj1SZp7iD4KqlXtzGiyEWw7
+         4BFW5Cdbl+CybT3K0UHwVJ/xSnZA8U1furIBoE6S/pBcp+urgpC7VbZMCxXjmgFCnnLo
+         xJZ7yuOH0tGOvEw6EYIuKaDVtyu+jZfJOpM95hYkY442HOmOSJa2zrNbTyukwfhE3MQf
+         AfAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=i+s2FZx53SQqxDw+1zONomhnnt1uwtiTU8GemVlvAO0=;
-        b=M30mDUB7ilAHQvXjfr69c4p3lCfqlw5+HzTOqddrGE4ej7LAKVe/M+G8WosNR4CKf1
-         1uUptDMHwDgYRfK7sxgN5MQS2t0WgPgq6wV9j1QbylQyjh0tKTmc9OLCLudYSnPtr7V6
-         HkZ5JkoBLNGRp6gGChkUIgbFai6PPMLywpIVus8dTAhYV7GjSdPhPREZ1/zFFOFMsR2i
-         /bHZz2xVn/O23B9QtdZVkf94fUFNIl0w13DCGGpbOctsQy/az7dGx51iGHomUKMqtkGQ
-         MDeW26fLC0hRubMfmfd3nX1xX20BFMhdEMH0BiVxwnO0fUauE1/nTZUP5uzmqU/F5o9l
-         NxxA==
-X-Gm-Message-State: AOAM530zDnXqq30IskLYRfhU++iOzKziC/gxSml0/+8oQB3Qd7HTsDud
-        qZdBmQ37R8EqjFqVVw9PzfXPpFPRPCykuw==
-X-Google-Smtp-Source: ABdhPJwCsMQUz4jaikEzFIzuv4+PIPPBltgRkatECk/BpkPrrPOkmq7zHAw9E2z6WlXuG+pdO5L5cg==
-X-Received: by 2002:a4a:e99b:: with SMTP id s27mr242342ood.87.1612541149476;
-        Fri, 05 Feb 2021 08:05:49 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id y66sm990059oig.46.2021.02.05.08.05.48
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mACicL3rE+Kh0IehlID0L8VuwnVf9CB87E6ZMKmgukU=;
+        b=Cdbyi745bIGCN572JfZyTNP32Xl+pvZ7YUnE2309IDVGxpU9dKSCdHWo9+nRy5BLkG
+         IIbZkH8Oj9xbdHfMocidQtr2oJSCJzw8D2xhPz0KyvBJkYtvm/hM4X9VvSA2ZfjUCtPB
+         QFUYhUkZrl056imL9ukCb2agO1noAiVJ6N6UT9nvhhnJFI7NsoiRaDXnn8EeQKGqTWr9
+         66X06liIVkqGcZVBlxJD7YfzaYQ7lDLhN7cqOkrZWo9MVDgE9UxRaPusu5UAUXZTA6SA
+         WYB8mGjwUQL2E5A0YT3ELT1SdIecFZyazDDaowa2AtyEII53ndWTFnwJukk6IoT4SbF/
+         GauQ==
+X-Gm-Message-State: AOAM533gaqHv/LPYszVI/L5d3rRRYlz0qjQEWtqQCq27cPBqXLz1wgA4
+        BI2Xy0uZkAB9a7aXNb21CQk=
+X-Google-Smtp-Source: ABdhPJx8X8W0cynwZXl8aKAQ163MTMwsU5DJ+VhIRSM5tIIit2yHBlZDBooRC5fOiOG/QM2ZOpSqDg==
+X-Received: by 2002:a1c:32c4:: with SMTP id y187mr4261470wmy.120.1612541725495;
+        Fri, 05 Feb 2021 08:15:25 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id h15sm13085203wrt.10.2021.02.05.08.15.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 08:05:48 -0800 (PST)
-Date:   Fri, 5 Feb 2021 10:05:47 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Jack Pham <jackp@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] phy: qcom-qmp: Add UFS V5 registers found in
- SM8350
-Message-ID: <YB1s2/lo0ud82anm@builder.lan>
-References: <20210204165805.62235-1-vkoul@kernel.org>
- <20210204165805.62235-3-vkoul@kernel.org>
+        Fri, 05 Feb 2021 08:15:23 -0800 (PST)
+Date:   Fri, 5 Feb 2021 17:15:21 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     gregkh@linuxfoundation.org, kishon@ti.com, mturquette@baylibre.com,
+        sboyd@kernel.org
+Cc:     JC Kuo <jckuo@nvidia.com>, robh@kernel.org, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        nkristam@nvidia.com, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v7 00/14] Tegra XHCI controller ELPG support
+Message-ID: <YB1vGTt0ufzsYBgo@ulmo>
+References: <20210120073414.69208-1-jckuo@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="zgswFb86aj1T/vHg"
 Content-Disposition: inline
-In-Reply-To: <20210204165805.62235-3-vkoul@kernel.org>
+In-Reply-To: <20210120073414.69208-1-jckuo@nvidia.com>
+User-Agent: Mutt/2.0.5 (da5e3282) (2021-01-21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 04 Feb 10:58 CST 2021, Vinod Koul wrote:
 
-> Add the registers for UFS found in SM8350. The UFS phy used in SM8350
-> seems to have same offsets as V5 phy, although Documentation for that is
-> lacking.
-> 
+--zgswFb86aj1T/vHg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Wed, Jan 20, 2021 at 03:34:00PM +0800, JC Kuo wrote:
+> Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
+> state for power saving when all of the connected USB devices are in
+> suspended state. This patch series includes clk, phy and pmc changes
+> that are required for properly place controller in ELPG and bring
+> controller out of ELPG.
+>=20
+> JC Kuo (14):
+>   clk: tegra: Add PLLE HW power sequencer control
+>   clk: tegra: Don't enable PLLE HW sequencer at init
+>   phy: tegra: xusb: Move usb3 port init for Tegra210
+>   phy: tegra: xusb: Rearrange UPHY init on Tegra210
+>   phy: tegra: xusb: Add Tegra210 lane_iddq operation
+>   phy: tegra: xusb: Add sleepwalk and suspend/resume
+>   soc/tegra: pmc: Provide USB sleepwalk register map
+>   arm64: tegra210: XUSB PADCTL add "nvidia,pmc" prop
+>   dt-bindings: phy: tegra-xusb: Add nvidia,pmc prop
+>   phy: tegra: xusb: Add wake/sleepwalk for Tegra210
+>   phy: tegra: xusb: Tegra210 host mode VBUS control
+>   phy: tegra: xusb: Add wake/sleepwalk for Tegra186
+>   usb: host: xhci-tegra: Unlink power domain devices
+>   xhci: tegra: Enable ELPG for runtime/system PM
+>=20
+>  .../phy/nvidia,tegra124-xusb-padctl.txt       |    1 +
+>  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |    1 +
+>  drivers/clk/tegra/clk-pll.c                   |   12 -
+>  drivers/clk/tegra/clk-tegra210.c              |   53 +-
+>  drivers/phy/tegra/xusb-tegra186.c             |  558 ++++-
+>  drivers/phy/tegra/xusb-tegra210.c             | 1889 +++++++++++++----
+>  drivers/phy/tegra/xusb.c                      |   92 +-
+>  drivers/phy/tegra/xusb.h                      |   22 +-
+>  drivers/soc/tegra/pmc.c                       |   94 +
+>  drivers/usb/host/xhci-tegra.c                 |  613 ++++--
+>  include/linux/clk/tegra.h                     |    4 +-
+>  include/linux/phy/tegra/xusb.h                |   10 +-
+>  12 files changed, 2784 insertions(+), 565 deletions(-)
+>=20
+> v5 "phy: tegra: xusb: tegra210: Do not reset UPHY PLL" is moved
+> into v6 "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
 
-Regards,
-Bjorn
+Mike, Stephen,
 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp.h | 47 +++++++++++++++++++++++++++++
->  1 file changed, 47 insertions(+)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
-> index dff7be5a1cc1..71ce3aa174ae 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp.h
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
-> @@ -824,6 +824,32 @@
->  #define QPHY_V4_PCS_PCIE_PRESET_P10_PRE			0xbc
->  #define QPHY_V4_PCS_PCIE_PRESET_P10_POST		0xe0
->  
-> +/* Only for QMP V5 PHY - QSERDES COM registers */
-> +#define QSERDES_V5_COM_PLL_IVCO				0x058
-> +#define QSERDES_V5_COM_CP_CTRL_MODE0			0x074
-> +#define QSERDES_V5_COM_CP_CTRL_MODE1			0x078
-> +#define QSERDES_V5_COM_PLL_RCTRL_MODE0			0x07c
-> +#define QSERDES_V5_COM_PLL_RCTRL_MODE1			0x080
-> +#define QSERDES_V5_COM_PLL_CCTRL_MODE0			0x084
-> +#define QSERDES_V5_COM_PLL_CCTRL_MODE1			0x088
-> +#define QSERDES_V5_COM_SYSCLK_EN_SEL			0x094
-> +#define QSERDES_V5_COM_LOCK_CMP_EN			0x0a4
-> +#define QSERDES_V5_COM_LOCK_CMP1_MODE0			0x0ac
-> +#define QSERDES_V5_COM_LOCK_CMP2_MODE0			0x0b0
-> +#define QSERDES_V5_COM_LOCK_CMP1_MODE1			0x0b4
-> +#define QSERDES_V5_COM_DEC_START_MODE0			0x0bc
-> +#define QSERDES_V5_COM_LOCK_CMP2_MODE1			0x0b8
-> +#define QSERDES_V5_COM_DEC_START_MODE1			0x0c4
-> +#define QSERDES_V5_COM_VCO_TUNE_MAP			0x10c
-> +#define QSERDES_V5_COM_VCO_TUNE_INITVAL2		0x124
-> +#define QSERDES_V5_COM_HSCLK_SEL			0x158
-> +#define QSERDES_V5_COM_HSCLK_HS_SWITCH_SEL		0x15c
-> +#define QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE1_MODE0	0x1ac
-> +#define QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE2_MODE0	0x1b0
-> +#define QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE1_MODE1	0x1b4
-> +#define QSERDES_V5_COM_BIN_VCOCAL_HSCLK_SEL		0x1bc
-> +#define QSERDES_V5_COM_BIN_VCOCAL_CMP_CODE2_MODE1	0x1b8
-> +
->  /* Only for QMP V5 PHY - TX registers */
->  #define QSERDES_V5_TX_RES_CODE_LANE_TX			0x34
->  #define QSERDES_V5_TX_RES_CODE_LANE_RX			0x38
-> @@ -837,6 +863,10 @@
->  #define QSERDES_V5_TX_RCV_DETECT_LVL_2			0xa4
->  #define QSERDES_V5_TX_TRAN_DRVR_EMP_EN			0xc0
->  #define QSERDES_V5_TX_PI_QEC_CTRL			0xe4
-> +#define QSERDES_V5_TX_PWM_GEAR_1_DIVIDER_BAND0_1	0x178
-> +#define QSERDES_V5_TX_PWM_GEAR_2_DIVIDER_BAND0_1	0x17c
-> +#define QSERDES_V5_TX_PWM_GEAR_3_DIVIDER_BAND0_1	0x180
-> +#define QSERDES_V5_TX_PWM_GEAR_4_DIVIDER_BAND0_1	0x184
->  
->  /* Only for QMP V5 PHY - RX registers */
->  #define QSERDES_V5_RX_UCDR_FO_GAIN			0x008
-> @@ -893,6 +923,23 @@
->  #define QSERDES_V5_RX_DCC_CTRL1				0x1a8
->  #define QSERDES_V5_RX_VTH_CODE				0x1b0
->  
-> +/* Only for QMP V5 PHY - UFS PCS registers */
-> +#define QPHY_V5_PCS_UFS_TIMER_20US_CORECLK_STEPS_MSB	0x00c
-> +#define QPHY_V5_PCS_UFS_TIMER_20US_CORECLK_STEPS_LSB	0x010
-> +#define QPHY_V5_PCS_UFS_PLL_CNTL			0x02c
-> +#define QPHY_V5_PCS_UFS_TX_LARGE_AMP_DRV_LVL		0x030
-> +#define QPHY_V5_PCS_UFS_TX_SMALL_AMP_DRV_LVL		0x038
-> +#define QPHY_V5_PCS_UFS_TX_HSGEAR_CAPABILITY		0x074
-> +#define QPHY_V5_PCS_UFS_RX_HSGEAR_CAPABILITY		0x0b4
-> +#define QPHY_V5_PCS_UFS_DEBUG_BUS_CLKSEL		0x124
-> +#define QPHY_V5_PCS_UFS_RX_MIN_HIBERN8_TIME		0x150
-> +#define QPHY_V5_PCS_UFS_RX_SIGDET_CTRL1			0x154
-> +#define QPHY_V5_PCS_UFS_RX_SIGDET_CTRL2			0x158
-> +#define QPHY_V5_PCS_UFS_TX_PWM_GEAR_BAND		0x160
-> +#define QPHY_V5_PCS_UFS_TX_HS_GEAR_BAND			0x168
-> +#define QPHY_V5_PCS_UFS_TX_MID_TERM_CTRL1		0x1d8
-> +#define QPHY_V5_PCS_UFS_MULTI_LANE_CTRL1		0x1e0
-> +
->  /* Only for QMP V5 PHY - USB3 have different offsets than V4 */
->  #define QPHY_V5_PCS_USB3_POWER_STATE_CONFIG1		0x300
->  #define QPHY_V5_PCS_USB3_AUTONOMOUS_MODE_STATUS		0x304
-> -- 
-> 2.26.2
-> 
+could you guys take a look at the two clk patches here and give an
+Acked-by? There's build-time dependencies throughout the series, so it'd
+be good if they can all go through either the PHY or USB trees.
+
+Kishon, Greg,
+
+any comments on these patches? Unfortunately, the USB patches in this
+series have a build-time dependency on the PHY patches, so this should
+all go through one tree. Since this all culminates in the XHCI driver,
+merging this through the USB tree might be best, provided that Kishon
+provides his Acked-by on the PHY patches.
+
+Alternatively, I can create a set of branches with the correct
+dependencies and send out pull requests for the three subsystems if
+that's preferrable.
+
+Let me know how you want to handle these.
+
+Thanks,
+Thierry
+
+--zgswFb86aj1T/vHg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAdbxUACgkQ3SOs138+
+s6HPWA//bsqVHuTYuYpOfFyr9+CAEKLUWRjjySBwjp2J0wzqbpAm1VJZqxGyCP2n
+C1rHW7FNBhXcH1fy68JWC9fovri9TtEXmmNusF4BPnnqacJeQ8FpGKxVi7wqlzBf
+FgkqEdFWbtjVY+Pb9roDzEI3pp6V0dN2133j/9Z278ushVoPg21eqPnY2mAnOZBQ
+lyU9JIEbR3Zos1fb9/Hhi2vNhk4sbJsviktAi/OYmFj2NlDGHxg8JMHA7Xk8e5P6
+9MuFqxclirj7bwhkRgCH/BmiHqhO1rmLhGi+Hfrd/VKDeF9srcY8J5eAUHRtaibt
+bg9tCbnLk4dN/JXAZgTly4obqxx2WayLZhxXuG18otd0sX9vis+dFnO/dw78TVET
+Nmm3zUcqvSvA0X/pEH9ijC7YT3lbpcWvVnCuRCjJt8FF4O0ecXUyqqA2wIRd4+I5
+7xPkIubuvOZsERheGrQoTSlD43Yt8ky/IiyNz3z/RNa4uj5DxK90BpXQtppr3lE3
+PKngxHkeeAm3DTstpr1z4IAglFuOnhh7H9Cc/leD3mnJDfwzs7qp9cTg0Lg50V4V
+dukwQV06CFWWA+TpyJkRjrBJw2Tw6pnFALrWzeT61Zg9KsoAVcTZI4so+BjaEPPg
+MsGzpg0gcHVGdFzfAI1LU/MuFDdkZwQ4Rtjv28ZAko7NcR7eoUQ=
+=+est
+-----END PGP SIGNATURE-----
+
+--zgswFb86aj1T/vHg--
