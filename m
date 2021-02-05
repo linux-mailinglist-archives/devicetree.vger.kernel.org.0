@@ -2,159 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C90603114BB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BF3D31162F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:59:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229608AbhBEWNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 17:13:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44714 "EHLO
+        id S231750AbhBEW4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 17:56:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232674AbhBEOhh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 09:37:37 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9596C06178B;
-        Fri,  5 Feb 2021 08:15:26 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 190so6476734wmz.0;
-        Fri, 05 Feb 2021 08:15:26 -0800 (PST)
+        with ESMTP id S231429AbhBEMVM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 07:21:12 -0500
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6957C06178A;
+        Fri,  5 Feb 2021 04:20:32 -0800 (PST)
+Received: by mail-ot1-x32c.google.com with SMTP id v1so6647670ott.10;
+        Fri, 05 Feb 2021 04:20:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=mACicL3rE+Kh0IehlID0L8VuwnVf9CB87E6ZMKmgukU=;
-        b=PBL7qppo0ij8tdwx68ivvnBR12W0uA9PnbUlNDF4iPl4aRGOW1Ux+UrVSXDgpyQbwS
-         mKa+pmVe9gZg7WNyuaI6m7hb066N+EWYyvPBqSCV2a8FrDWBJ5/QPUI1aUI0LquSL+Uz
-         XvljK1qhu1BLFIU0x5P4JmHKsOsAKlEe12MH6CNW+8yZWGj1SZp7iD4KqlXtzGiyEWw7
-         4BFW5Cdbl+CybT3K0UHwVJ/xSnZA8U1furIBoE6S/pBcp+urgpC7VbZMCxXjmgFCnnLo
-         xJZ7yuOH0tGOvEw6EYIuKaDVtyu+jZfJOpM95hYkY442HOmOSJa2zrNbTyukwfhE3MQf
-         AfAg==
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=fCs7IE516zQ19D9vt6jCBZXhuJNVNEljBAYvbM9SaJ0=;
+        b=ho3ObzkRYNSmgdKNBv7/fQfoPZLx2b6H5wugiL+qVF/t24188pREP5xbh9sXBhJ1eu
+         +fwDfhF4WuFIF0pSJA2Sh7qoHvp/0bgIP8lMPyBY+V5aOLeD7xf8bCPNXVY8dHWruPUk
+         mshN/MGGuXbaBtDJjtkCQ73XZGJeXwm4GFgUqm2AWLHeawCaP0PM8BUjVmc6dJWOIBbv
+         uJj/VVov1EJvjxSIvAJWiOH0kvhkCP3oT29u6bEfZiOeA0VZ61KTZAAWXEGp3s5ci/qZ
+         Q1RUe5Kszei2DhJvT2yqkscC1HfiwuoDBTOLsTp4uOejB0w/b4jDkoAOP31u7I7N5iXW
+         MaSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mACicL3rE+Kh0IehlID0L8VuwnVf9CB87E6ZMKmgukU=;
-        b=Cdbyi745bIGCN572JfZyTNP32Xl+pvZ7YUnE2309IDVGxpU9dKSCdHWo9+nRy5BLkG
-         IIbZkH8Oj9xbdHfMocidQtr2oJSCJzw8D2xhPz0KyvBJkYtvm/hM4X9VvSA2ZfjUCtPB
-         QFUYhUkZrl056imL9ukCb2agO1noAiVJ6N6UT9nvhhnJFI7NsoiRaDXnn8EeQKGqTWr9
-         66X06liIVkqGcZVBlxJD7YfzaYQ7lDLhN7cqOkrZWo9MVDgE9UxRaPusu5UAUXZTA6SA
-         WYB8mGjwUQL2E5A0YT3ELT1SdIecFZyazDDaowa2AtyEII53ndWTFnwJukk6IoT4SbF/
-         GauQ==
-X-Gm-Message-State: AOAM533gaqHv/LPYszVI/L5d3rRRYlz0qjQEWtqQCq27cPBqXLz1wgA4
-        BI2Xy0uZkAB9a7aXNb21CQk=
-X-Google-Smtp-Source: ABdhPJx8X8W0cynwZXl8aKAQ163MTMwsU5DJ+VhIRSM5tIIit2yHBlZDBooRC5fOiOG/QM2ZOpSqDg==
-X-Received: by 2002:a1c:32c4:: with SMTP id y187mr4261470wmy.120.1612541725495;
-        Fri, 05 Feb 2021 08:15:25 -0800 (PST)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id h15sm13085203wrt.10.2021.02.05.08.15.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 08:15:23 -0800 (PST)
-Date:   Fri, 5 Feb 2021 17:15:21 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     gregkh@linuxfoundation.org, kishon@ti.com, mturquette@baylibre.com,
-        sboyd@kernel.org
-Cc:     JC Kuo <jckuo@nvidia.com>, robh@kernel.org, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        nkristam@nvidia.com, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v7 00/14] Tegra XHCI controller ELPG support
-Message-ID: <YB1vGTt0ufzsYBgo@ulmo>
-References: <20210120073414.69208-1-jckuo@nvidia.com>
+        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=fCs7IE516zQ19D9vt6jCBZXhuJNVNEljBAYvbM9SaJ0=;
+        b=bndEAHXqCFHO+5cTuZ7qFx6U6iaL0h7R+ZdrSfOjrI7aQ8u3VD8NrmJnImuep4rtlI
+         ymae37AwCHObb+frrdyB89IVb7+SRV/XFwNUQCRvP44aWfiXkfPUhvPJz6V2zcS974aR
+         J64GDuico0duOi9fJ5LQ7X6B65LmY1grOaD7ISGyUT1vR/l5pJB9+X5AuvwV8HZiUhHt
+         Vu6GHkI+TciyMaCtJSuWfmKJvix1gE1GiNZ77nr4eY1OYI7ZCn0s7oFS+M/agT6eX4tQ
+         wNH/lbhFtr4jfiQdoHcn5shCtWLDGlPVT9AsvkpjlDQQiMrjWNUsIsiB/8nCYqtHe+63
+         KEIQ==
+X-Gm-Message-State: AOAM532gS+hH3JhHim3EGXRBwNbSyYn95oZO0nwD7cdpS8KMY7WibhGp
+        iqjJ3hqiNGnKQ8PUAkllBxRYEGGoAYA=
+X-Google-Smtp-Source: ABdhPJyw6Tk/ajNVsLnemw8o2xP/w2QpdNOU6Fmkbm77g4YwslcBprLvbur3pFC484VpqELrbP7rVA==
+X-Received: by 2002:a9d:2c2:: with SMTP id 60mr1346148otl.357.1612527631840;
+        Fri, 05 Feb 2021 04:20:31 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id l24sm1782827otq.5.2021.02.05.04.20.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Feb 2021 04:20:30 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v6 0/7] common SVDM version and VDO from dt
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Kyle Tso <kyletso@google.com>
+Cc:     gregkh@linuxfoundation.org, hdegoede@redhat.com,
+        robh+dt@kernel.org, badhri@google.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210205033415.3320439-1-kyletso@google.com>
+ <20210205114234.GB2476581@kuha.fi.intel.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <648bcf2f-8f75-26c9-2427-87bc13234335@roeck-us.net>
+Date:   Fri, 5 Feb 2021 04:20:28 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zgswFb86aj1T/vHg"
-Content-Disposition: inline
-In-Reply-To: <20210120073414.69208-1-jckuo@nvidia.com>
-User-Agent: Mutt/2.0.5 (da5e3282) (2021-01-21)
+In-Reply-To: <20210205114234.GB2476581@kuha.fi.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2/5/21 3:42 AM, Heikki Krogerus wrote:
+[ ... ]
+>> Kyle Tso (7):
+>>   usb: typec: Manage SVDM version
+>>   usb: pd: Make SVDM Version configurable in VDM header
+>>   usb: typec: tcpm: Determine common SVDM Version
+>>   usb: typec: ucsi: Determine common SVDM Version
+>>   usb: typec: displayport: Fill the negotiated SVDM Version in the header
+>>   dt-bindings: connector: Add SVDM VDO properties
+>>   usb: typec: tcpm: Get Sink VDO from fwnode
+> 
+> These are OK by me, but I think it would be great if Guenter could
+> give them the once-over, as usual. I hope he has time. FWIW, for all
 
---zgswFb86aj1T/vHg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'll try my best, but I'll need a couple of days.
 
-On Wed, Jan 20, 2021 at 03:34:00PM +0800, JC Kuo wrote:
-> Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
-> state for power saving when all of the connected USB devices are in
-> suspended state. This patch series includes clk, phy and pmc changes
-> that are required for properly place controller in ELPG and bring
-> controller out of ELPG.
->=20
-> JC Kuo (14):
->   clk: tegra: Add PLLE HW power sequencer control
->   clk: tegra: Don't enable PLLE HW sequencer at init
->   phy: tegra: xusb: Move usb3 port init for Tegra210
->   phy: tegra: xusb: Rearrange UPHY init on Tegra210
->   phy: tegra: xusb: Add Tegra210 lane_iddq operation
->   phy: tegra: xusb: Add sleepwalk and suspend/resume
->   soc/tegra: pmc: Provide USB sleepwalk register map
->   arm64: tegra210: XUSB PADCTL add "nvidia,pmc" prop
->   dt-bindings: phy: tegra-xusb: Add nvidia,pmc prop
->   phy: tegra: xusb: Add wake/sleepwalk for Tegra210
->   phy: tegra: xusb: Tegra210 host mode VBUS control
->   phy: tegra: xusb: Add wake/sleepwalk for Tegra186
->   usb: host: xhci-tegra: Unlink power domain devices
->   xhci: tegra: Enable ELPG for runtime/system PM
->=20
->  .../phy/nvidia,tegra124-xusb-padctl.txt       |    1 +
->  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |    1 +
->  drivers/clk/tegra/clk-pll.c                   |   12 -
->  drivers/clk/tegra/clk-tegra210.c              |   53 +-
->  drivers/phy/tegra/xusb-tegra186.c             |  558 ++++-
->  drivers/phy/tegra/xusb-tegra210.c             | 1889 +++++++++++++----
->  drivers/phy/tegra/xusb.c                      |   92 +-
->  drivers/phy/tegra/xusb.h                      |   22 +-
->  drivers/soc/tegra/pmc.c                       |   94 +
->  drivers/usb/host/xhci-tegra.c                 |  613 ++++--
->  include/linux/clk/tegra.h                     |    4 +-
->  include/linux/phy/tegra/xusb.h                |   10 +-
->  12 files changed, 2784 insertions(+), 565 deletions(-)
->=20
-> v5 "phy: tegra: xusb: tegra210: Do not reset UPHY PLL" is moved
-> into v6 "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
-
-Mike, Stephen,
-
-could you guys take a look at the two clk patches here and give an
-Acked-by? There's build-time dependencies throughout the series, so it'd
-be good if they can all go through either the PHY or USB trees.
-
-Kishon, Greg,
-
-any comments on these patches? Unfortunately, the USB patches in this
-series have a build-time dependency on the PHY patches, so this should
-all go through one tree. Since this all culminates in the XHCI driver,
-merging this through the USB tree might be best, provided that Kishon
-provides his Acked-by on the PHY patches.
-
-Alternatively, I can create a set of branches with the correct
-dependencies and send out pull requests for the three subsystems if
-that's preferrable.
-
-Let me know how you want to handle these.
-
-Thanks,
-Thierry
-
---zgswFb86aj1T/vHg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAdbxUACgkQ3SOs138+
-s6HPWA//bsqVHuTYuYpOfFyr9+CAEKLUWRjjySBwjp2J0wzqbpAm1VJZqxGyCP2n
-C1rHW7FNBhXcH1fy68JWC9fovri9TtEXmmNusF4BPnnqacJeQ8FpGKxVi7wqlzBf
-FgkqEdFWbtjVY+Pb9roDzEI3pp6V0dN2133j/9Z278ushVoPg21eqPnY2mAnOZBQ
-lyU9JIEbR3Zos1fb9/Hhi2vNhk4sbJsviktAi/OYmFj2NlDGHxg8JMHA7Xk8e5P6
-9MuFqxclirj7bwhkRgCH/BmiHqhO1rmLhGi+Hfrd/VKDeF9srcY8J5eAUHRtaibt
-bg9tCbnLk4dN/JXAZgTly4obqxx2WayLZhxXuG18otd0sX9vis+dFnO/dw78TVET
-Nmm3zUcqvSvA0X/pEH9ijC7YT3lbpcWvVnCuRCjJt8FF4O0ecXUyqqA2wIRd4+I5
-7xPkIubuvOZsERheGrQoTSlD43Yt8ky/IiyNz3z/RNa4uj5DxK90BpXQtppr3lE3
-PKngxHkeeAm3DTstpr1z4IAglFuOnhh7H9Cc/leD3mnJDfwzs7qp9cTg0Lg50V4V
-dukwQV06CFWWA+TpyJkRjrBJw2Tw6pnFALrWzeT61Zg9KsoAVcTZI4so+BjaEPPg
-MsGzpg0gcHVGdFzfAI1LU/MuFDdkZwQ4Rtjv28ZAko7NcR7eoUQ=
-=+est
------END PGP SIGNATURE-----
-
---zgswFb86aj1T/vHg--
+Guenter
