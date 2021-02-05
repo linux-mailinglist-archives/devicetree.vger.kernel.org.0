@@ -2,104 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D90E3103B3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 04:38:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B1EB3103B4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 04:38:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231139AbhBEDgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Feb 2021 22:36:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54356 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231126AbhBEDgd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Feb 2021 22:36:33 -0500
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392D9C0611C1
-        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 19:34:49 -0800 (PST)
-Received: by mail-yb1-xb4a.google.com with SMTP id p22so5445374ybc.18
-        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 19:34:49 -0800 (PST)
+        id S231150AbhBEDgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Feb 2021 22:36:54 -0500
+Received: from mail-co1nam11on2071.outbound.protection.outlook.com ([40.107.220.71]:22880
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229841AbhBEDgu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Feb 2021 22:36:50 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l2L81WYLORq8Non/HlCByOxJBasHU1E1insDm9bWI0jhuH0i3N8aZKX4zpxnb6X+1ZBe0o8HaALxsrtey39sdZ6nqvcJWTxtJ7QX2rTYHqSgZgDM5tmqOFlYaogkD7ptZpkq2rX404bTFZJ7MCuE8CMMwUSkH8jVLtJRkEZxeD1pa5omkH3w061VsbEJrFHTKVZbXlwcaooRHkZaowiodHPUMW5f/5eZV6bf99bwQHK3snq5QgCArPeVtJ2rFUyJ7Qp5hwfZZ/6cuRSMW59HUJ6ixqZikA58GwN4HGJerD96CG90I6lKKdgBD8cgP+jY/mAT9orRH/JdSSJjn3oc3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NlGDE0TZ9mOzHkiI+gO6ciZ9DmhTp41LMafBs74nwds=;
+ b=YS+GLGf6yKP/a8QLacY94BjDNuhvGWitDH/CyNqT5g7BSpANThDt1Trxo34AaxJAtm3NEsJQXMRK4V1m2AGGOcDEwPv9iAds/y/NiPHhMJoZD9VjYwiO38i1EZrZ1j72qQDeKCiu9ADewUnEotSTshFEvw1KqL+9COCReKYaPLQrldEy0skBuYGZ1RjXBUyW64fgcUD0yYKxlrt7WW9OXnq+cNErpPHBP0XoTbgZDdqfpvjkpuL7f1TtjbLXex4aNliCy/J6J67zLioDrXHJu661sdlU2MAqwzePBoLwCJ0+79cjynPwAPUTyeDxJe6oD7A8ZyE8w4HC6IUWnh30aA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=RIYGazHKwdiw8rZDp51KX5sbecBkFaXLqVCFGOqV4wU=;
-        b=VFDeaWSUgomDUxLAC3wdb5aTGJ97LZERGnGBFBKQ1LFZTue7BSLwZCMOyiugq42rYz
-         C5MO2rsuQyHd8xgbUmhsjeJ4qIJf5TEVjqfU+O/lMxDZ8R8ybm4btbA8rsHRadUtGF7T
-         aY+TI8ZT7HMSCph4r18yF82O2kk1LTwMnDW/qgx3tS4j94qDtVFtJsDEX9TcUJq7bOEh
-         RUwQL1LBx/jeU+wxfmDMcAttkIVektziHifMc7A77m2q+Rg6KpiDOPdCZ6ftMeOvCgFv
-         eyIFyiagoe8d43aYVodyVe7K94oAIVETyTC3a8LoZmYSFrAR2TN9XYY1SpAWjQEbGPCs
-         W5EA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=RIYGazHKwdiw8rZDp51KX5sbecBkFaXLqVCFGOqV4wU=;
-        b=dqhLi73kDaHhmAKmNqEICgtnIKtYQT29Gz92hJ629Pb4NRa8X0QpXOZ8L0U4M4ozc1
-         c/qiRQRPbZsGS3/gAFGoDfrrG62dHgkpd7Q0Yu7eMzretr6CYm2CH/Mrhg0wkD3QxwXd
-         t3ZrYU5e7l/8we1H4Fclwfi6+9uG1ivq1bJPb4trTJ20KLvxQocB9ZNI/HEY/eS89SKO
-         bdtgD7oeEgJtDYTHJbgWYO33n/uwvw7fCrU/NFei5/Ydq7a0cZnJLWtgGLJajqa5eq3k
-         tDJqppdkaKvhvboy5n6t2OSBcZ9YC9kfYW3Nwcdmw/6a27E+/D6ptF2FGPFd1S6spPx8
-         hseA==
-X-Gm-Message-State: AOAM530jAkq8HaTrO2vGdJYKMWaGG/mKNTcNGKtAET6maCtz9aVTaPOH
-        LDk5mqt1SGdfPSUPAIR3kRuUoX6NyLaO
-X-Google-Smtp-Source: ABdhPJwNDNmEPnvWeNyiRJve6FpmwifBvfgLKSmsdeq7q10FQrwEuhwekKenfO+9dez4RQk/hq+bkYDvZWve
-Sender: "kyletso via sendgmr" <kyletso@kyletso.ntc.corp.google.com>
-X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:dd94:c753:a81d:c855])
- (user=kyletso job=sendgmr) by 2002:a25:c381:: with SMTP id
- t123mr3653853ybf.299.1612496088518; Thu, 04 Feb 2021 19:34:48 -0800 (PST)
-Date:   Fri,  5 Feb 2021 11:34:15 +0800
-In-Reply-To: <20210205033415.3320439-1-kyletso@google.com>
-Message-Id: <20210205033415.3320439-8-kyletso@google.com>
-Mime-Version: 1.0
-References: <20210205033415.3320439-1-kyletso@google.com>
-X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
-Subject: [PATCH v6 7/7] usb: typec: tcpm: Get Sink VDO from fwnode
-From:   Kyle Tso <kyletso@google.com>
-To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, hdegoede@redhat.com, robh+dt@kernel.org
-Cc:     badhri@google.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Kyle Tso <kyletso@google.com>
-Content-Type: text/plain; charset="UTF-8"
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NlGDE0TZ9mOzHkiI+gO6ciZ9DmhTp41LMafBs74nwds=;
+ b=cdDU7181hpac27PeYTXIzk6+SNkAuwdBFvb/7tKoaeINopcr8d9SLzTdiB0c6fPJNEOp7oBabWHYY82tD4bzidu6RojrqjwmAk/8G8RBtyueTNjY96nHDwfu0uWvB2zHdcCWKVmJMQEFPu7WRzKtV5zqcdoTmkwhE2vS0Mrkfgc=
+Received: from SA0PR11CA0110.namprd11.prod.outlook.com (2603:10b6:806:d1::25)
+ by BYAPR02MB4613.namprd02.prod.outlook.com (2603:10b6:a03:57::33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.22; Fri, 5 Feb
+ 2021 03:35:43 +0000
+Received: from SN1NAM02FT060.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:d1:cafe::15) by SA0PR11CA0110.outlook.office365.com
+ (2603:10b6:806:d1::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.20 via Frontend
+ Transport; Fri, 5 Feb 2021 03:35:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT060.mail.protection.outlook.com (10.152.72.192) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3784.12 via Frontend Transport; Fri, 5 Feb 2021 03:35:43 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Thu, 4 Feb 2021 19:35:42 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Thu, 4 Feb 2021 19:35:42 -0800
+Envelope-to: git-dev@xilinx.com,
+ linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ mturquette@baylibre.com,
+ sboyd@kernel.org,
+ robh+dt@kernel.org
+Received: from [172.19.2.30] (port=57600 helo=xsjsaeedn50.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <saeed.nowshadi@xilinx.com>)
+        id 1l7ruH-0000iH-2w; Thu, 04 Feb 2021 19:35:41 -0800
+From:   Saeed Nowshadi <saeed.nowshadi@xilinx.com>
+To:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <git-dev@xilinx.com>,
+        Saeed Nowshadi <saeed.nowshadi@xilinx.com>
+Subject: [PATCH 0/2] clk: si570: Skip recall NVM into RAM operation
+Date:   Thu, 4 Feb 2021 19:35:02 -0800
+Message-ID: <1612496104-3437-1-git-send-email-saeed.nowshadi@xilinx.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7044f8f9-0a69-4cfb-6fcc-08d8c9871e03
+X-MS-TrafficTypeDiagnostic: BYAPR02MB4613:
+X-Microsoft-Antispam-PRVS: <BYAPR02MB46134677C4CDBA88DEAB1BFFAFB29@BYAPR02MB4613.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Q0PbE/Nq1Ry2JJgfvYTcGYDZlAY4PCEzqgcbGXCX6ePZFf4McoefJgKeSgm8Er89Wmib57BA2siorMj221teOB3aYBXspwfc6a51NpVkvlFkke7h+9n6iLjuGP4WPplElir7u5gb2rW5s+1xIYoXCHIZXR17jCEzVFEkFjrEzdJDSI4tYbXkSWu/mVzwnLOW4lOFGqHerdC3jULm8xNGD65aTudpHCL9Lh/GVomeLBhcKBWm0d7AUp5b/trqz193iva6VaLGq8T2t9b6Il/dyFxvnPY0gI9mKlaWXgx688J5ilYeew+GSbEegoxK3ulP1y8ABIDYcPBSfjHbAh/LOQJ6NbtZTDXS09lJ2KZGWdKP3I/L5TUyG6oPgM/mmCnVvFKnYuIGM9heiPIwUdrDKe0QlMeqKB69n1ELyp80Dkv49GjSSqExGV6VeSEGDoeE8V6aciQMsrgcW+tnYG2JysroJQxD8Xl/aKeK2GVMg9ofnKvvvv6SF8Ai10mZXDSAPAN/r0KRl+3E94NnsXXzdJLbbSCne2oFAo2SgmFcQQeIOp6pq0kpFe9CFnPdEiFtEtyQbI60VT/q8GpMnk9mh9bVucYiBCAhFSLYurxLFSYBKr6v6hsFKZxWXfNCuY6qLKfTn1VrdiQDrP8iT/1HaOfETyZeUAneNDSCd8Mpxpx2lCcNrg14KrJMyO0OTZ2e
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(36840700001)(46966006)(9786002)(36906005)(36860700001)(8936002)(82740400003)(70586007)(107886003)(4326008)(426003)(478600001)(54906003)(2616005)(6666004)(7696005)(356005)(8676002)(83380400001)(186003)(26005)(70206006)(82310400003)(316002)(336012)(7636003)(5660300002)(4744005)(110136005)(47076005)(44832011)(2906002)(36756003)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2021 03:35:43.3415
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7044f8f9-0a69-4cfb-6fcc-08d8c9871e03
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT060.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4613
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit a079973f462a ("usb: typec: tcpm: Remove tcpc_config
-configuration mechanism") removed the tcpc_config which includes the
-Sink VDO and it is not yet added back with fwnode. Add it now.
+Silicon Labs' si570 clock driver re-initializes the register space from
+non-volatile memory by issuing a 'recall NVM to RAM' operation during
+probe(). This operation causes the device to re-calibrate the frequency of
+clock out. If the clock is being used while this operation is occurring, a
+pause/glitch could be detected on the clock out.  For use cases that the
+clock frequency needs to remain consistent from power on, a device tree
+optional property is added so the recall operation could be skipped.
 
-Signed-off-by: Kyle Tso <kyletso@google.com>
----
-Changes since v5:
-- no change
+Saeed Nowshadi (2):
+  dt-bindings: clock: si570: Add 'silabs,skip-recall' property
+  clk: si570: Skip NVM to RAM recall operation if an optional property
+    is set
 
- drivers/usb/typec/tcpm/tcpm.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ Documentation/devicetree/bindings/clock/silabs,si570.txt |  2 ++
+ drivers/clk/clk-si570.c                                  | 16 ++++++++++++----
+ 2 files changed, 14 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index b45cd191a8a4..be0b6469dd3d 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -5722,6 +5722,20 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 			port->new_source_frs_current = frs_current;
- 	}
- 
-+	/* sink-vdos is optional */
-+	ret = fwnode_property_count_u32(fwnode, "sink-vdos");
-+	if (ret < 0)
-+		ret = 0;
-+
-+	port->nr_snk_vdo = min(ret, VDO_MAX_OBJECTS);
-+	if (port->nr_snk_vdo) {
-+		ret = fwnode_property_read_u32_array(fwnode, "sink-vdos",
-+						     port->snk_vdo,
-+						     port->nr_snk_vdo);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	return 0;
- }
- 
 -- 
-2.30.0.365.g02bc693789-goog
+2.7.4
 
