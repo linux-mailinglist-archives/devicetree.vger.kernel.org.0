@@ -2,82 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53985311A7B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:52:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86878311A3F
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:38:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231715AbhBFDuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 22:50:06 -0500
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:34611 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231592AbhBFDr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 22:47:56 -0500
-Received: by mail-oi1-f177.google.com with SMTP id h192so9748900oib.1;
-        Fri, 05 Feb 2021 19:47:41 -0800 (PST)
+        id S229988AbhBFDh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 22:37:59 -0500
+Received: from mail-yb1-f180.google.com ([209.85.219.180]:40006 "EHLO
+        mail-yb1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231396AbhBFDfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 22:35:38 -0500
+Received: by mail-yb1-f180.google.com with SMTP id i71so8773580ybg.7;
+        Fri, 05 Feb 2021 19:35:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+M4rD8lhAIwaWja6r8ayIGoRcioSa2ru8gsy3RVn3Ec=;
-        b=j3K9yItLD3FwuIHsyb3Ybul5mNJXGIz8hs/l1dIKqv8V/avLLHxr5z/qdCVWPA/1QD
-         pS4CNAv2H4avFyobYL/FLAo43KPaHSNiflXDxn7rZbmmiFUtbmz+dKwgKWwKZ2RdQRBV
-         VzN06EmK8N/oGyzAET7LxQwhpgfUDi1KfuY4E1V6L0TgyJK5eyjlmOgeewY/RtqV9NgO
-         w3z+JTk8ltARgDcJi9Db5eEUjRlAFHJwanQnc3DTpZDOT87tbZzYSDlvpszHTKqakGMw
-         EZwfOPwYOffJuPsYyxiDqmS1TPyUcY7ZrztaZ3yd+K+JaP+myHGiVeW1YwJ9plEb/FL3
-         VWPg==
-X-Gm-Message-State: AOAM532NoAZTupbiwAOBYonBm7AEVxSm5n5HlldUDwTj4hl3Qw0nyZih
-        IQCi8Zcl5gTnbxD2mWRziQfL17bZGg==
-X-Google-Smtp-Source: ABdhPJwT+do3Tf8ShVWqxdJZu0MSFLTcBAZfVqwvPQ1VqaYfgImnDQkA3Ib6XJKGM1n47zjkuTd86w==
-X-Received: by 2002:aca:b255:: with SMTP id b82mr4420318oif.98.1612563238100;
-        Fri, 05 Feb 2021 14:13:58 -0800 (PST)
+        bh=bWD0Xd1LugmrPim9uT1TIxiY19YbyAjLXKLTF24G3cs=;
+        b=aEFQvXg8Do6lrwB9raiRz8itDaZTBRwuDhWL1S/6aDcoFwtXDOb7LbTflYn3G2XCAt
+         5dKu2+VDYIL6/SepMFoASr/NsxFMeFWD3IGIFer80aXKgeMXQZEEziDAIJc28X9EcgRX
+         TWy7/IpTo/ifQ1KHl7KhFCFA7A+l7VLpbSLZsw4OIkS1DN2MRODrxf8smuXRw1cd3Ba5
+         OyEVMGKKnMhQNLw6A8LiLIAVEuyhxAycD7KlQqMw8+XR6cuE9KmSc/3Hyz9Qk8CihRGr
+         W47Qp+vNt4wg3djXcdDBNyqY84Uf3sb8o1OgUfU1eDUD5yYvZpLDIKvF/b2MexNQZl6b
+         GGiw==
+X-Gm-Message-State: AOAM5304zjZ+BI8oxKXrOFCwl8WXZdgX2q0hJQjZmK8LEdRbcirDrr8X
+        jveO7nT5z3GFUY0DVp7WfLpX3rQ2Yg==
+X-Google-Smtp-Source: ABdhPJx4H3231S2pjcifJwGi+k2xYKRAeq+BOInc+gwPHSJdr5kMBWGsfC5hidReoeOqkxqNElMVZQ==
+X-Received: by 2002:a9d:7514:: with SMTP id r20mr4899658otk.318.1612564007144;
+        Fri, 05 Feb 2021 14:26:47 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u73sm2035591oie.30.2021.02.05.14.13.55
+        by smtp.gmail.com with ESMTPSA id u7sm2067882oib.22.2021.02.05.14.26.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 14:13:56 -0800 (PST)
-Received: (nullmailer pid 3847968 invoked by uid 1000);
-        Fri, 05 Feb 2021 22:13:55 -0000
-Date:   Fri, 5 Feb 2021 16:13:55 -0600
+        Fri, 05 Feb 2021 14:26:46 -0800 (PST)
+Received: (nullmailer pid 3867655 invoked by uid 1000);
+        Fri, 05 Feb 2021 22:26:45 -0000
+Date:   Fri, 5 Feb 2021 16:26:45 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     devel@driverdev.osuosl.org, Yu Chen <chenyu56@huawei.com>,
-        Alex Dewar <alex.dewar90@gmail.com>,
-        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+Cc:     Mark Brown <broonie@kernel.org>, Lee Jones <lee.jones@linaro.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] phy: phy-hi3670-usb3: move driver from staging
- into phy
-Message-ID: <20210205221355.GA3847933@robh.at.kernel.org>
-References: <cover.1611052729.git.mchehab+huawei@kernel.org>
- <82ce73ac9a383f0cae0faded5ec6fef2d3417d3c.1611052729.git.mchehab+huawei@kernel.org>
+        Mayulong <mayulong1@huawei.com>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 18/21] mfd: hi6421-spmi-pmic: move driver from staging
+Message-ID: <20210205222645.GB3857395@robh.at.kernel.org>
+References: <cover.1611072387.git.mchehab+huawei@kernel.org>
+ <e79ffb200c52fc8c8926492cc82ac5dbcda3e3fb.1611072387.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <82ce73ac9a383f0cae0faded5ec6fef2d3417d3c.1611052729.git.mchehab+huawei@kernel.org>
+In-Reply-To: <e79ffb200c52fc8c8926492cc82ac5dbcda3e3fb.1611072387.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jan 2021 11:44:43 +0100, Mauro Carvalho Chehab wrote:
-> The phy USB3 driver for Hisilicon 970 (hi3670) is ready
-> for mainstream. Mode it from staging into the main driver's
-> phy/ directory.
+On Tue, Jan 19, 2021 at 05:10:44PM +0100, Mauro Carvalho Chehab wrote:
+> This driver is ready for mainstream. So, move it out of staging.
 > 
 > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
->  .../bindings/phy/hisilicon,hi3670-usb3.yaml   |  73 ++
->  MAINTAINERS                                   |   9 +-
->  drivers/phy/hisilicon/Kconfig                 |  10 +
->  drivers/phy/hisilicon/Makefile                |   1 +
->  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 668 ++++++++++++++++++
->  drivers/staging/hikey9xx/Kconfig              |  11 -
->  drivers/staging/hikey9xx/Makefile             |   2 -
->  drivers/staging/hikey9xx/phy-hi3670-usb3.c    | 668 ------------------
->  drivers/staging/hikey9xx/phy-hi3670-usb3.yaml |  73 --
->  9 files changed, 760 insertions(+), 755 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
->  create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
->  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.c
->  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
+>  .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 135 +++++++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/mfd/Kconfig                           |  15 +
+>  drivers/mfd/Makefile                          |   1 +
+>  drivers/mfd/hi6421-spmi-pmic.c                | 281 ++++++++++++++++++
+>  drivers/staging/hikey9xx/Kconfig              |  16 -
+>  drivers/staging/hikey9xx/Makefile             |   1 -
+>  drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 281 ------------------
+>  .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 135 ---------
+>  9 files changed, 439 insertions(+), 433 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+>  create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
+>  delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
+>  delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+> new file mode 100644
+> index 000000000000..3b23ad56b31a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/hisilicon,hi6421-spmi-pmic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HiSilicon 6421v600 SPMI PMIC
+> +
+> +maintainers:
+> +  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> +
+> +description: |
+> +  HiSilicon 6421v600 should be connected inside a MIPI System Power Management
+> +  (SPMI) bus. It provides interrupts and power supply.
+> +
+> +  The GPIO and interrupt settings are represented as part of the top-level PMIC
+> +  node.
+> +
+> +  The SPMI controller part is provided by
+> +  drivers/staging/hikey9xx/hisilicon,hisi-spmi-controller.yaml.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "pmic@[0-9a-f]"
+> +
+> +  compatible:
+> +    const: hisilicon,hi6421v600-spmi
 
-Acked-by: Rob Herring <robh@kernel.org>
+Also, use the compatible string as the filename.
