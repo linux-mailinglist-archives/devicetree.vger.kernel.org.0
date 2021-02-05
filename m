@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C7731189C
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 03:44:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DC7431185D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 03:36:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230415AbhBFCmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 21:42:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38854 "EHLO
+        id S231261AbhBFCgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 21:36:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231380AbhBFCid (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 21:38:33 -0500
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB30EC03547A
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 14:27:02 -0800 (PST)
-Received: by mail-yb1-xb49.google.com with SMTP id 203so8751274ybz.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 14:27:02 -0800 (PST)
+        with ESMTP id S230324AbhBFCdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 21:33:33 -0500
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 036B2C08EB2C
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 14:27:08 -0800 (PST)
+Received: by mail-yb1-xb4a.google.com with SMTP id c12so8706227ybf.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 14:27:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=nTYZSPOjkc18IliuMfnfRh5H/pVF22NJbjiTgx5RAVQ=;
-        b=Mm6nmK+U9sWgdy5Kl5FWR72rOFcOPFvROrGTmdoXRpZIiuZV62ELOWH/ANFl9FZv48
-         WKXxbas72ewJwQSAlM+tuQ5oro9iQc2J6lQg3Fj4ZGY95z4hvdDMslQ/xFUCHGw9JTQW
-         ozCrQLXZ4ZZwk460RT8jQymPqzGWnn6RzLezbUwlZbxeN6sZ9i9EFrxpHIMJXDCZ+GtS
-         ZxX35V5B8D7JFLk2l9CMndHRKsILANotrh6ov6yUqsjE4ZkLpQq/qs+6ILuymjBzW/t3
-         lfMT6f+nRYfVGGUpAXuGaHE3M4iW6zmvvcop6V9w3pEKg6VttIn53oZg6LRjtoP47yQC
-         LIaA==
+        bh=hqgmXDFwubR/4OnYp87mHqkgPgat9JpTuiz1JNw02ec=;
+        b=HlWJductGnrWtiPlz4VOZAKZtOtHqGtLYG+/m1uG/3j65UbnLXs2ZbOsEsXyQxmcET
+         g5WBXP+ZNdGYsnDNt1AesV/YgtyYbWi8DAfFoP0DUlB0H5AivhCjx7cacjqpzdvJGJkd
+         KJC2axaJVKWb1aZIsjpltmtFIvFilsr/MFeX+VgPTcT+ctffNfukCK16/1DH2bNHZiHq
+         Hs7/PR9SRig14irkeZyDibp5UYV06N4v4E99Aa8HWCyCWoP6sXyRZruGYn7FnGjIrZAc
+         i9RLCHWExeGNkOCk36mOaRKleCDV2qf/Or99/FRsSW4kmlVWj7q6WRTD/+sE9+7tZQaK
+         FlQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=nTYZSPOjkc18IliuMfnfRh5H/pVF22NJbjiTgx5RAVQ=;
-        b=hYJnNw25gqhe2liOvn/s65J+UzPMdRybujdwxlwYZ7mWEi5VWmbxbg+0H0r8fvdxxu
-         1pF1hIHzkg2Ff4Bm7uJYVp9OhcJUqt/qZjqQ9Akpr/dlHU/f1bbXHRYtk1jqkoLG0QfB
-         wIdTDgP+CVO/d+oWcjVc3wno3NgNKO/yvenoui14H/CZ3ZLCqtna7F6cxi7N0rAPLGBJ
-         FaJDLG6hDmNlI8c8U+qjAIRXPkn5mYauL7d0Ql1N/gX/VokuPAVBeVKts0rPJZYgdALT
-         jpnHYRBeEq3m51SqGuHTnlOe21ygREba6oaQu6ZFiGC43OHxiFUfgc3Q9uEythVrmdaj
-         CLMQ==
-X-Gm-Message-State: AOAM531M7Ve95CAjrSvV8hHk1sjstQhcgNayUgpJzMjHnNzscg7C+nxn
-        m1P5U9LtH14Vv5t2Q3XMdQGyDSrGdMAA+M4=
-X-Google-Smtp-Source: ABdhPJyW1m9SbXAqH09239WynVsuVFpGwpuvcunwzfCPoBBzTTIBp5GlOy/wl0ZJFwtPTfMh78OkuipnUZY/zB8=
+        bh=hqgmXDFwubR/4OnYp87mHqkgPgat9JpTuiz1JNw02ec=;
+        b=KDLdad1qt3FaU7YOHxEqxANPD+OnY+aO0n1jZAg5eaDd8TP7vtHEOGUCM19VjZpivY
+         TnRmoYHvIoiUoby6v5qEAMnUts44OeZX1G+4ofLz5RLQrndc/rx8yeEGhPEkMuaU20Fm
+         UpR8/9/X9TQQ7Vbrcr795t6DNcpa8KESanAHKQGOp31eSSc/EaZURb5s2lqOVHOvWvkL
+         zRLkVz0ZeRfzZM1XmoHS/w7D5WvSMn/HQdGpLBLf0s+/F1724blejkdAMUptmbZO9SHM
+         OMM89Nx1NmHReG+krEwGUCTWAJd1mpYSGQKPL43q0hF5crSxui7HdRX8Rl3l3hQuKk7V
+         32jg==
+X-Gm-Message-State: AOAM5311CZ266kRfTBaPcGEvpjV862XD4dg9l9i5IYxich8380Sk2/Qr
+        jJRo/yc5bNUEwi4j4jUxoW2aGVt76fAE6qs=
+X-Google-Smtp-Source: ABdhPJypj8OxFVj8NpBAu+RA/WW+/KzA+etEoUDFgMecuxAKnsbx9dKd514JBTdlGgxWwGx8SVTerVvqi1AS370=
 Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
 X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:6d36:b798:55d7:f5c5])
- (user=saravanak job=sendgmr) by 2002:a25:3104:: with SMTP id
- x4mr9895088ybx.141.1612564022147; Fri, 05 Feb 2021 14:27:02 -0800 (PST)
-Date:   Fri,  5 Feb 2021 14:26:41 -0800
+ (user=saravanak job=sendgmr) by 2002:a25:5b8a:: with SMTP id
+ p132mr10020763ybb.67.1612564027217; Fri, 05 Feb 2021 14:27:07 -0800 (PST)
+Date:   Fri,  5 Feb 2021 14:26:43 -0800
 In-Reply-To: <20210205222644.2357303-1-saravanak@google.com>
-Message-Id: <20210205222644.2357303-6-saravanak@google.com>
+Message-Id: <20210205222644.2357303-8-saravanak@google.com>
 Mime-Version: 1.0
 References: <20210205222644.2357303-1-saravanak@google.com>
 X-Mailer: git-send-email 2.30.0.478.g8a0d178c01-goog
-Subject: [PATCH v4 5/8] driver core: fw_devlink: Handle suppliers that don't
- use driver core
+Subject: [PATCH v4 7/8] PM: domains: Mark fwnodes when their powerdomain is added/removed
 From:   Saravana Kannan <saravanak@google.com>
 To:     Jonathan Corbet <corbet@lwn.net>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -66,7 +65,8 @@ To:     Jonathan Corbet <corbet@lwn.net>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
         Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
 Cc:     Saravana Kannan <saravanak@google.com>, linux-doc@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
@@ -79,100 +79,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Device links only work between devices that use the driver core to match
-and bind a driver to a device. So, add an API for frameworks to let the
-driver core know that a fwnode has been initialized by a driver without
-using the driver core.
-
-Then use this information to make sure that fw_devlink doesn't make the
-consumers wait indefinitely on suppliers that'll never bind to a driver.
+This allows fw_devlink to recognize power domain drivers that don't use
+the device-driver model to initialize the device. fw_devlink will use
+this information to make sure consumers of such power domain aren't
+indefinitely blocked from probing, waiting for the power domain device
+to appear and bind to a driver.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/base/core.c    | 15 +++++++++++++++
- include/linux/fwnode.h | 19 +++++++++++++++++--
- 2 files changed, 32 insertions(+), 2 deletions(-)
+ drivers/base/power/domain.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/base/core.c b/drivers/base/core.c
-index f466ab4f1c35..ea710b33bda6 100644
---- a/drivers/base/core.c
-+++ b/drivers/base/core.c
-@@ -1636,6 +1636,17 @@ static int fw_devlink_create_devlink(struct device *con,
+diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+index 9a14eedacb92..6ac52a038bb9 100644
+--- a/drivers/base/power/domain.c
++++ b/drivers/base/power/domain.c
+@@ -2164,6 +2164,7 @@ static int genpd_add_provider(struct device_node *np, genpd_xlate_t xlate,
+ 	cp->node = of_node_get(np);
+ 	cp->data = data;
+ 	cp->xlate = xlate;
++	fwnode_dev_initialized(&np->fwnode, true);
  
- 	sup_dev = get_dev_from_fwnode(sup_handle);
- 	if (sup_dev) {
-+		/*
-+		 * If it's one of those drivers that don't actually bind to
-+		 * their device using driver core, then don't wait on this
-+		 * supplier device indefinitely.
-+		 */
-+		if (sup_dev->links.status == DL_DEV_NO_DRIVER &&
-+		    sup_handle->flags & FWNODE_FLAG_INITIALIZED) {
-+			ret = -EINVAL;
-+			goto out;
-+		}
-+
- 		/*
- 		 * If this fails, it is due to cycles in device links.  Just
- 		 * give up on this link and treat it as invalid.
-@@ -1655,6 +1666,10 @@ static int fw_devlink_create_devlink(struct device *con,
- 		goto out;
- 	}
+ 	mutex_lock(&of_genpd_mutex);
+ 	list_add(&cp->link, &of_genpd_providers);
+@@ -2353,6 +2354,7 @@ void of_genpd_del_provider(struct device_node *np)
+ 				}
+ 			}
  
-+	/* Supplier that's already initialized without a struct device. */
-+	if (sup_handle->flags & FWNODE_FLAG_INITIALIZED)
-+		return -EINVAL;
-+
- 	/*
- 	 * DL_FLAG_SYNC_STATE_ONLY doesn't block probing and supports
- 	 * cycles. So cycle detection isn't necessary and shouldn't be
-diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-index d5caefe39d93..dfefd43a737c 100644
---- a/include/linux/fwnode.h
-+++ b/include/linux/fwnode.h
-@@ -11,6 +11,7 @@
- 
- #include <linux/types.h>
- #include <linux/list.h>
-+#include <linux/err.h>
- 
- struct fwnode_operations;
- struct device;
-@@ -18,11 +19,13 @@ struct device;
- /*
-  * fwnode link flags
-  *
-- * LINKS_ADDED: The fwnode has already be parsed to add fwnode links.
-- * NOT_DEVICE: The fwnode will never be populated as a struct device.
-+ * LINKS_ADDED:	The fwnode has already be parsed to add fwnode links.
-+ * NOT_DEVICE:	The fwnode will never be populated as a struct device.
-+ * INITIALIZED: The hardware corresponding to fwnode has been initialized.
-  */
- #define FWNODE_FLAG_LINKS_ADDED		BIT(0)
- #define FWNODE_FLAG_NOT_DEVICE		BIT(1)
-+#define FWNODE_FLAG_INITIALIZED		BIT(2)
- 
- struct fwnode_handle {
- 	struct fwnode_handle *secondary;
-@@ -161,6 +164,18 @@ static inline void fwnode_init(struct fwnode_handle *fwnode,
- 	INIT_LIST_HEAD(&fwnode->suppliers);
- }
- 
-+static inline void fwnode_dev_initialized(struct fwnode_handle *fwnode,
-+					  bool initialized)
-+{
-+	if (IS_ERR_OR_NULL(fwnode))
-+		return;
-+
-+	if (initialized)
-+		fwnode->flags |= FWNODE_FLAG_INITIALIZED;
-+	else
-+		fwnode->flags &= ~FWNODE_FLAG_INITIALIZED;
-+}
-+
- extern u32 fw_devlink_get_flags(void);
- extern bool fw_devlink_is_strict(void);
- int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *sup);
++			fwnode_dev_initialized(&cp->node->fwnode, false);
+ 			list_del(&cp->link);
+ 			of_node_put(cp->node);
+ 			kfree(cp);
 -- 
 2.30.0.478.g8a0d178c01-goog
 
