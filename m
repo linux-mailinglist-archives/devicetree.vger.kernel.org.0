@@ -2,62 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D85573109D8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 12:09:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D15D310A4E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 12:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231926AbhBELIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 06:08:20 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:42278 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231941AbhBELFv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 06:05:51 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1l7yvC-0001Ja-BO; Fri, 05 Feb 2021 12:05:06 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     heiko@sntech.de
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Subject: [PATCH 5/5] clk: rockchip: fix DPHY gate locations on rk3368
-Date:   Fri,  5 Feb 2021 12:05:02 +0100
-Message-Id: <20210205110502.1850669-5-heiko@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210205110502.1850669-1-heiko@sntech.de>
-References: <20210205110502.1850669-1-heiko@sntech.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S231254AbhBELcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 06:32:39 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:31757 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231357AbhBELaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 06:30:09 -0500
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 05 Feb 2021 03:29:18 -0800
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 05 Feb 2021 03:29:16 -0800
+X-QCInternal: smtphost
+Received: from c-rbokka-linux.qualcomm.com ([10.206.24.149])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 05 Feb 2021 16:58:58 +0530
+Received: by c-rbokka-linux.qualcomm.com (Postfix, from userid 203305)
+        id 1AEAC3416; Fri,  5 Feb 2021 16:58:57 +0530 (IST)
+From:   Ravi Kumar Bokka <rbokka@codeaurora.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
+        dhavalp@codeaurora.org, mturney@codeaurora.org,
+        Ravi Kumar Bokka <rbokka@codeaurora.org>
+Subject: [PATCH] drivers: nvmem: Fix voltage settings for QTI qfprom-efuse
+Date:   Fri,  5 Feb 2021 16:58:52 +0530
+Message-Id: <1612524533-3970-1-git-send-email-rbokka@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+QFPROM controller hardware requires 1.8V min for fuse blowing.
+So, this change sets the voltage to 1.8V, required to blow the fuse
+for qfprom-efuse controller.
 
-Fix the register and bits of the DPHY gate locations.
+To disable fuse blowing, we set the voltage to 0V since this may
+be a shared rail and may be able to run at a lower rate when we're
+not blowing fuses.
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Fixes: 93b4e49f8c86 ("nvmem: qfprom: Add fuse blowing support")
+Reported-by: Douglas Anderson <dianders@chromium.org>
+Suggested-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
 ---
- drivers/clk/rockchip/clk-rk3368.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/nvmem/qfprom.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/drivers/clk/rockchip/clk-rk3368.c b/drivers/clk/rockchip/clk-rk3368.c
-index 61413be48d1a..9a0dab9448db 100644
---- a/drivers/clk/rockchip/clk-rk3368.c
-+++ b/drivers/clk/rockchip/clk-rk3368.c
-@@ -818,8 +818,8 @@ static struct rockchip_clk_branch rk3368_clk_branches[] __initdata = {
- 	 * pclk_vio gates
- 	 * pclk_vio comes from the exactly same source as hclk_vio
- 	 */
--	GATE(PCLK_DPHYRX, "pclk_dphyrx", "hclk_vio", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(14), 8, GFLAGS),
--	GATE(PCLK_DPHYTX0, "pclk_dphytx0", "hclk_vio", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(14), 8, GFLAGS),
-+	GATE(PCLK_DPHYRX, "pclk_dphyrx", "hclk_vio", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(22), 11, GFLAGS),
-+	GATE(PCLK_DPHYTX0, "pclk_dphytx0", "hclk_vio", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(22), 10, GFLAGS),
+diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
+index 6cace24..100d69d 100644
+--- a/drivers/nvmem/qfprom.c
++++ b/drivers/nvmem/qfprom.c
+@@ -127,6 +127,16 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
+ {
+ 	int ret;
  
- 	/* pclk_pd_pmu gates */
- 	GATE(PCLK_PMUGRF, "pclk_pmugrf", "pclk_pd_pmu", CLK_IGNORE_UNUSED, RK3368_CLKGATE_CON(23), 5, GFLAGS),
++	/*
++	 * This may be a shared rail and may be able to run at a lower rate
++	 * when we're not blowing fuses.  At the moment, the regulator framework
++	 * applies voltage constraints even on disabled rails, so remove our
++	 * constraints and allow the rail to be adjusted by other users.
++	 */
++	ret = regulator_set_voltage(priv->vcc, 0, INT_MAX);
++	if (ret)
++		dev_warn(priv->dev, "Failed to set 0 voltage (ignoring)\n");
++
+ 	ret = regulator_disable(priv->vcc);
+ 	if (ret)
+ 		dev_warn(priv->dev, "Failed to disable regulator (ignoring)\n");
+@@ -172,6 +182,17 @@ static int qfprom_enable_fuse_blowing(const struct qfprom_priv *priv,
+ 		goto err_clk_prepared;
+ 	}
+ 
++	/*
++	 * Hardware requires 1.8V min for fuse blowing; this may be
++	 * a rail shared do don't specify a max--regulator constraints
++	 * will handle.
++	 */
++	ret = regulator_set_voltage(priv->vcc, 1800000, INT_MAX);
++	if (ret) {
++		dev_err(priv->dev, "Failed to set 1.8 voltage\n");
++		goto err_clk_rate_set;
++	}
++
+ 	ret = regulator_enable(priv->vcc);
+ 	if (ret) {
+ 		dev_err(priv->dev, "Failed to enable regulator\n");
 -- 
-2.29.2
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by the Linux Foundation.
 
