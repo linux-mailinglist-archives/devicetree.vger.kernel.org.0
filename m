@@ -2,91 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 852C63115A3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:43:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00CFC3115A4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 23:43:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231363AbhBEWhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 17:37:15 -0500
-Received: from mx2.suse.de ([195.135.220.15]:56214 "EHLO mx2.suse.de"
+        id S230090AbhBEWhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 17:37:23 -0500
+Received: from mx2.suse.de ([195.135.220.15]:59188 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231566AbhBENxi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 08:53:38 -0500
+        id S231622AbhBEN4U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 08:56:20 -0500
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id A9F6CACB7;
-        Fri,  5 Feb 2021 13:52:56 +0000 (UTC)
+        by mx2.suse.de (Postfix) with ESMTP id 241F5AEC4;
+        Fri,  5 Feb 2021 13:53:02 +0000 (UTC)
 From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 To:     f.fainelli@gmail.com, Saenz Julienne <nsaenzjulienne@suse.de>,
         bcm-kernel-feedback-list@broadcom.com,
         linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
 Cc:     phil@raspberrypi.com, wahrenst@gmx.net,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: [RFC/PATCH 00/11] Raspberry PI 4 V3D enablement
-Date:   Fri,  5 Feb 2021 14:52:36 +0100
-Message-Id: <20210205135249.2924-1-nsaenzjulienne@suse.de>
+        linux-kernel@vger.kernel.org
+Subject: [RFC/PATCH 06/11] soc: bcm: bcm2835-power: Bypass power_on/off() calls
+Date:   Fri,  5 Feb 2021 14:52:42 +0100
+Message-Id: <20210205135249.2924-7-nsaenzjulienne@suse.de>
 X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210205135249.2924-1-nsaenzjulienne@suse.de>
+References: <20210205135249.2924-1-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series attempts to enable V3D on BCM2711, the SoC available on the
-Raspberry Pi 4 family of boards.
+Bypass power_on/power_off() when running on BCM2711 as they are not
+needed.
 
-Due to the lack of documentation some things are taken as it from
-testing/downstream implementation[1], which I'm hilighting here:
-
-- It's not clear that the following is 100% true, maybe someone can confirm:
-
-	"In BCM2711 the new ARGON ASB took over V3D. The old ASB is still
-	present with the ISP and H264 bits, and V3D is in the same place in the
-	new ASB as the old one."
-
-- Patch #6 I took as is from the downstream implementation, I can't really
-  provide an exact explanation on what changed HW wise.
-
-Ultimately, I need confirmation from the Broadcom folks that they are alright
-with patch #7.
-
-With all this, I get a more or less stable experience using mesa 20.3.4 and
-X11/Gnome.
-
-Regards,
-Nicolas
-
+Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 ---
+ drivers/soc/bcm/bcm2835-power.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Nicolas Saenz Julienne (11):
-  dt-bindings: soc: bcm: bcm2835-pm: Convert bindings to DT schema
-  dt-bindings: soc: bcm: brcm,bcm2835-pm: Add support for bcm2711
-  ARM: dts: bcm2711: Use proper compatible in PM/Watchdog node
-  mfd: bcm2835-pm: Add support for BCM2711
-  soc: bcm: bcm2835-power: Add support for BCM2711's ARSAN ASB
-  soc: bcm: bcm2835-power: Bypass power_on/off() calls
-  drm/v3d: Get rid of pm code
-  drm/v3d: Add support for bcm2711
-  ARM: dts: bcm2711: Enable V3D
-  ARM: configs: Enable DRM_V3D
-  arm64: config: Enable DRM_V3D
-
- .../bindings/soc/bcm/brcm,bcm2835-pm.txt      | 46 -----------
- .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 80 +++++++++++++++++++
- arch/arm/boot/dts/bcm2711.dtsi                | 14 +++-
- arch/arm/configs/multi_v7_defconfig           |  1 +
- arch/arm64/configs/defconfig                  |  1 +
- drivers/gpu/drm/v3d/Kconfig                   |  2 +-
- drivers/gpu/drm/v3d/v3d_debugfs.c             | 18 +----
- drivers/gpu/drm/v3d/v3d_drv.c                 | 12 +--
- drivers/gpu/drm/v3d/v3d_gem.c                 |  9 ---
- drivers/mfd/bcm2835-pm.c                      | 55 ++++++++++---
- drivers/soc/bcm/bcm2835-power.c               | 74 +++++++++++------
- include/linux/mfd/bcm2835-pm.h                |  1 +
- 12 files changed, 190 insertions(+), 123 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
- create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-
+diff --git a/drivers/soc/bcm/bcm2835-power.c b/drivers/soc/bcm/bcm2835-power.c
+index 17bc71fd243c..ea65f459161d 100644
+--- a/drivers/soc/bcm/bcm2835-power.c
++++ b/drivers/soc/bcm/bcm2835-power.c
+@@ -197,6 +197,10 @@ static int bcm2835_power_power_off(struct bcm2835_power_domain *pd, u32 pm_reg)
+ {
+ 	struct bcm2835_power *power = pd->power;
+ 
++	/* We don't run this on BCM2711 */
++	if (power->arsan_asb)
++		return 0;
++
+ 	/* Enable functional isolation */
+ 	PM_WRITE(pm_reg, PM_READ(pm_reg) & ~PM_ISFUNC);
+ 
+@@ -218,6 +222,10 @@ static int bcm2835_power_power_on(struct bcm2835_power_domain *pd, u32 pm_reg)
+ 	int inrush;
+ 	bool powok;
+ 
++	/* We don't run this on BCM2711 */
++	if (power->arsan_asb)
++		return 0;
++
+ 	/* If it was already powered on by the fw, leave it that way. */
+ 	if (PM_READ(pm_reg) & PM_POWUP)
+ 		return 0;
 -- 
 2.30.0
 
