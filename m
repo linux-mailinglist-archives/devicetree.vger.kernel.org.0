@@ -2,120 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C854231086D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 10:55:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15774310902
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 11:26:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbhBEJxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 04:53:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbhBEJqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 04:46:32 -0500
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 068E1C06121D
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 01:45:45 -0800 (PST)
-Received: by mail-qk1-x733.google.com with SMTP id a12so6234000qkh.10
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 01:45:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=0FlvauPxI82lJp8jNkOhgq79rt6yfGv1K5PxDtLBQRg=;
-        b=SJjIEqN+fAXUPvWNb4TqBr1kFjSDVRi9dpOpTeX8ViKkCaRS4TeNiraJModQFugQwc
-         bD3tizzNKKTCZcLWTuXiQrzdt1SefwVfayL98KiXujC1Q8YEidcbHDMRrZgdw2vTzBKG
-         j0uN4QiPMLMaKUuhvbDZKUNE9ny7GjV5AWsQ1GZR5mmuUDAs/RXQa9Zvg7oR4Go2tL5s
-         mLqQlnJTjkhgtOqhTbUZN6G+FTQTwafcaGcEHFEqXrj3289UXbsmSWkAMAOw1umnCfoW
-         7k9R2VvnDVb2fvnWBdoAL+RypoPIl+0bbQYU6UVZVv4wH/M63KM3l64GVmOCM0ixlEGf
-         lU5w==
+        id S230506AbhBEKZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 05:25:38 -0500
+Received: from mail-oo1-f43.google.com ([209.85.161.43]:33852 "EHLO
+        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231253AbhBEKSC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:18:02 -0500
+Received: by mail-oo1-f43.google.com with SMTP id x23so1491746oop.1;
+        Fri, 05 Feb 2021 02:17:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=0FlvauPxI82lJp8jNkOhgq79rt6yfGv1K5PxDtLBQRg=;
-        b=C16yfBWINmHffwiQgQ3To2s1Qu1pU6mEfu3PU6baHM+bqxSWFszL0rJcoCpgQQQUmv
-         uS/swxgsYabf1ICe028vIv6jUei5029pcaOBcG+U6Cw5TC6tSkLQyQnOSji4wTwO0w9l
-         +mlclwmU5AN6HnEdjzPDHd3gBDiM9bSBreilugTFv2OmAEBBIavENHBXia2x2Mqa3P0+
-         xYZikreRLmsCKnnSQwG/aXICYrQzYnJ3S9yDesbn0KIp8R/I4TeExL7IAMsa17AwDEWr
-         8n+Y2wWDS3BZ3fB9OIcCb+CSvEaFLiturVyR7OrnDcOuy7ktPV26J31UFxVI7tuiw482
-         DUPg==
-X-Gm-Message-State: AOAM533v9MjzXqHdrH1skIz3XjhBgQo0aKz1IkWrRX15UsIfy/CkEmO8
-        hR4mBDepXFW3Ctr2W5J4PSpXp/dTEOAs0BMfkwM9hw==
-X-Google-Smtp-Source: ABdhPJxxmATRZtKOwg48ZhqL0MPxHUwiOYl7cBEJUhrGUaD7tMXIx/qXPPY2uuFsJAamMyhJf8dbADxPcXTfTfRciG8=
-X-Received: by 2002:a05:620a:f96:: with SMTP id b22mr3257258qkn.295.1612518344222;
- Fri, 05 Feb 2021 01:45:44 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=l72BMIb3zhzzE8Mc2vCdYcqGUh+JciNiU1J70+nqoJI=;
+        b=lSKuaFzPlqrvQkHbpvlXBeh3i+1FF9i5QtYM8s97XUnj2stya8f/r+i8G64MXk8vee
+         LfYBbfrkTDnR4u93qoveoxOJAgf6mkucbqfHux41scYt56aU8g6JX/vAZy66kJIn3gNw
+         lGh6Iz3t38KGFx/O0MiiagpxlVAm22Af/QGE0Y0X5oKaQEZnWEQ9RGnOzJ02e8HeoXES
+         iSczVQHwIoYI/3NPe9kfAYAf544fB9FoMOgrvexH/EqPAZqXbumEiPEcQBtivQTtx3lF
+         ar5obKOZ2v8av4d5Vs+piqgkEYOIgnQzvidy0BAGZH7wuPMPsAtafO9fh2sbxy6Nq1V0
+         BdOg==
+X-Gm-Message-State: AOAM531L2E/xj+CPGvX7JhIJJG+UAOLKBErmFjhjJcJtulms7MDXLqTS
+        yehTP8yIY0VaeQUx97vETNd+AMNGBX2n2URNCrk=
+X-Google-Smtp-Source: ABdhPJygXWRTFA7m8W3rDa/nNXZsqdUMOa+4wi/8Xobw0G4luRVdhEzx1c9WHF/DD7QSyQ2KNLJAi78q7X63Idf+eDg=
+X-Received: by 2002:a4a:e6d2:: with SMTP id v18mr2910653oot.40.1612520241833;
+ Fri, 05 Feb 2021 02:17:21 -0800 (PST)
 MIME-Version: 1.0
-References: <20210203133138.10754-1-kostap@marvell.com> <20210203133138.10754-10-kostap@marvell.com>
-In-Reply-To: <20210203133138.10754-10-kostap@marvell.com>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Fri, 5 Feb 2021 10:45:32 +0100
-Message-ID: <CAPv3WKcuOXdN4zRSaGm1RnaBaXLsCtuT7CRMBAPDFvnBL76oEw@mail.gmail.com>
-Subject: Re: [PATCH 09/11] dts: a3700: enable dma coherence for PCIE interface
-To:     Kostya Porotchkin <kostap@marvell.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
+References: <cover.1611904394.git.viresh.kumar@linaro.org> <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
+ <CAMuHMdVp0vGMqoEoP9A7Y7-ph-DYUWdddtChdq_eZcROYTBMHg@mail.gmail.com>
+ <20210205092507.fdxotdjlq5rjs2yh@vireshk-i7> <CAMuHMdWUMcMcJxnC+oML8P0+r72_+d6RWGY50dOWCUECdJGWPA@mail.gmail.com>
+ <20210205095545.woevnkxg3ar7ctys@vireshk-i7>
+In-Reply-To: <20210205095545.woevnkxg3ar7ctys@vireshk-i7>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 5 Feb 2021 11:17:10 +0100
+Message-ID: <CAMuHMdXKT3LD3ojMJEg-oHsEKO5TN5P1BTJMyf2fYkhnC8PU=Q@mail.gmail.com>
+Subject: Re: [PATCH V7 4/6] kbuild: Add support to build overlays (%.dtbo)
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Grzegorz Jaszczyk <jaz@semihalf.com>, nadavh@marvell.com,
-        Stefan Chulski <stefanc@marvell.com>,
-        =?UTF-8?B?QmVuIFBlbGVkICjXkdefINek15zXkyk=?= <bpeled@marvell.com>
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kbuild <linux-kbuild@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kosta,
+Hi Viresh,
 
-=C5=9Br., 3 lut 2021 o 14:32 <kostap@marvell.com> napisa=C5=82(a):
+On Fri, Feb 5, 2021 at 10:55 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> On 05-02-21, 10:41, Geert Uytterhoeven wrote:
+> > On Fri, Feb 5, 2021 at 10:25 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > > On 05-02-21, 10:02, Geert Uytterhoeven wrote:
+> > > > Thanks for your patch
+> > > > (which I only noticed because it appeared in dt-rh/for-next ;-)
+> > > >
+> > > > On Fri, Jan 29, 2021 at 8:31 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > > > > Add support for building DT overlays (%.dtbo). The overlay's source file
+> > > > > will have the usual extension, i.e. .dts, though the blob will have
+> > > >
+> > > > Why use .dts and not .dtso for overlays?
+> > > > Because you originally (until v5) had a single rule for building .dtb
+> > > > and .dtbo files?
+> > >
+> > > I am fine with doing that as well if Rob and David agree to it. Rob
+> > > did suggest that at one point but we didn't do much about it later on
+> > > for some reason.
+> > >
+> > > FWIW, this will also require a change in the DTC compiler.
+> >
+> > Care to explain why? I've been using .dtsi for ages in
+> > https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/renesas-overlays
 >
-> From: Stefan Chulski <stefanc@marvell.com>
+> I don't see you building them anywhere, they aren't added to the
+> Makefile ever. What am I missing ?
 >
-> Enavble PCIe dma coherence for A3700 platform
+> actually none of the dtso's were added to any makefile in that branch.
+
+E.g. "ARM: dts: Build all overlays if OF_OVERLAY=y"?
+https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/commit/?h=topic/renesas-overlays&id=597ee90971687a45678cca8d16bf624d174a99eb
+
+> Anyway, the DTC needs to know how to treat the dtso format and it will
+> error out currently with unknown format kind of errors.
 >
-
-While at it, can we also add:
-
---- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-@@ -71,6 +71,7 @@ soc {
-                compatible =3D "simple-bus";
-                #address-cells =3D <2>;
-                #size-cells =3D <2>;
-+               dma-coherent;
-                ranges;
-
-                internal-regs@d0000000 {
-
-so that to enable it for all bus-attached interfaces? This safe and
-will boost IO performance.
-
-Thanks,
-Marcin
-
-> Signed-off-by: Stefan Chulski <stefanc@marvell.com>
-> Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
-> ---
->  arch/arm64/boot/dts/marvell/armada-37xx.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+> Below email [1] have some information on the kind of changes required
+> here. Also note that we had to do similar changes for dtbo earlier
+> [2].
 >
-> diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/bo=
-ot/dts/marvell/armada-37xx.dtsi
-> index d5b6c0a1c54a..5c0df06bc707 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> @@ -486,6 +486,7 @@
->                         #interrupt-cells =3D <1>;
->                         msi-parent =3D <&pcie0>;
->                         msi-controller;
-> +                       dma-coherent;
->                         ranges =3D <0x82000000 0 0xe8000000   0 0xe800000=
-0 0 0x1000000 /* Port 0 MEM */
->                                   0x81000000 0 0xe9000000   0 0xe9000000 =
-0 0x10000>; /* Port 0 IO*/
->                         interrupt-map-mask =3D <0 0 0 7>;
 > --
-> 2.17.1
+> viresh
 >
+> [1] https://lore.kernel.org/lkml/CAK7LNASViCOTGR7yDTfh0O+PAu+X-P2NwdY4oPMuXrr51awafA@mail.gmail.com/
+
+-@ is handled by "kbuild: Enable DT symbols when CONFIG_OF_OVERLAY is used"
+https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/commit/?h=topic/renesas-overlays&id=91e9d998514f3743125a707013a30d5f83054579
+
+> [2] https://lore.kernel.org/lkml/30fd0e5f2156665c713cf191c5fea9a5548360c0.1609926856.git.viresh.kumar@linaro.org/
+
+I never had a need for those changes to dtc. .dtso/.dtbo work fine regardless.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
