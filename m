@@ -2,146 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C35F5310602
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 08:44:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45609310662
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 09:12:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbhBEHmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 02:42:53 -0500
-Received: from marcansoft.com ([212.63.210.85]:39276 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231335AbhBEHmt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 02:42:49 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id AFC7742598;
-        Fri,  5 Feb 2021 07:41:41 +0000 (UTC)
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-16-marcan@marcan.st>
- <CAK8P3a1zbLM0s_GwkJ0AJQ8cocS-zcsWWKhOB7B99OtRYyDE7g@mail.gmail.com>
- <8adb1047-2b1a-9cfc-c906-3c369a8e494f@marcan.st>
- <CAK8P3a14vsLkCujd_XBAOAjL2h878gxkaoKPpaxL4jddZZcc-A@mail.gmail.com>
-From:   Hector Martin 'marcan' <marcan@marcan.st>
-Subject: Re: [PATCH 15/18] irqchip/apple-aic: Add support for the Apple
- Interrupt Controller
-Message-ID: <06620a31-ed81-5e3e-c81a-047d986769fd@marcan.st>
-Date:   Fri, 5 Feb 2021 16:41:39 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S231575AbhBEIMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 03:12:24 -0500
+Received: from mail-oo1-f49.google.com ([209.85.161.49]:43226 "EHLO
+        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231574AbhBEIHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 03:07:07 -0500
+Received: by mail-oo1-f49.google.com with SMTP id x19so1411722ooj.10;
+        Fri, 05 Feb 2021 00:06:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i1sbeZYAOwBKv6wE1Ckk+wE5naRJCnZ4LL+AW39A3/w=;
+        b=MEMDy3CefHLQJtqvpW2KmzN64CMLgGkkPyiiFndtyX7fZPZkXJD3SpwvnjvAubFsez
+         j+BlWlGN4OS87n9DJGOmoPA7u3ajKPCJvYSJMsD6xNW3QMuH2XlF8RDEGdJHlaEL9CEJ
+         CUiA+YDlTO/Y4l+Czc34vGiEWPZ13vqHCuzbANYKMSEhbmfP3g3Yr5z2aaN9AiVrZM+L
+         rtTRw1QZtSDUqJf+rbF3NfhMERYgF6RQTnbnYcE2WCmDesA8F/Vl9fFicXk7yTCSh59v
+         MaoZG/LODDdEVd+M+rO9gAeN+K7T8/Vg2RAgrXjJLkuEaISTaLuTGWJPMRA/pbnvO5s5
+         sfOA==
+X-Gm-Message-State: AOAM533aKSRYcxT8dZukZoK9DmeRDMFP+EpyHU1pTahCkdr9+WXu/aSC
+        xkdTfCrHcjQri4s/hOGiYtFU7ke2p5GbGCmgy8M=
+X-Google-Smtp-Source: ABdhPJz46bJWsBPHyZM+AgT9VAN4FHCddLasieW1kdal/35EqalLOcrmu9pCZYE0c0KUJ5WVnwvWVR8uTRoL/Ix6xdQ=
+X-Received: by 2002:a4a:96b3:: with SMTP id s48mr2624067ooi.11.1612512386119;
+ Fri, 05 Feb 2021 00:06:26 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a14vsLkCujd_XBAOAjL2h878gxkaoKPpaxL4jddZZcc-A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+References: <20210121225712.1118239-1-saravanak@google.com>
+ <CGME20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c@eucas1p2.samsung.com>
+ <20210121225712.1118239-3-saravanak@google.com> <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
+ <CAGETcx_KDA55Ti=5CHw48BP1L2Xo64=AFFe+17g27n=P-KUrow@mail.gmail.com> <6b606a5d-0435-1e9d-ac61-a8dacf051067@samsung.com>
+In-Reply-To: <6b606a5d-0435-1e9d-ac61-a8dacf051067@samsung.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 5 Feb 2021 09:06:14 +0100
+Message-ID: <CAMuHMdWqZonpeyk59b=o_3EKOQx4TxUZE4Jeo-Kxy_o_3CQvnQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/02/2021 08.04, Arnd Bergmann wrote:
-> On Thu, Feb 4, 2021 at 11:06 PM Hector Martin 'marcan' <marcan@marcan.st> wrote:
->> If we split it up again, one of the two still needs to be the root,
->> decide whether what fired is an IRQ or FIQ, and dispatch accordingly. Or
->> we could have three nodes and have one root handler dispatch to IRQ and
->> FIQ nodes, but that sounds like overkill... (?)
-> 
-> Maybe I'm misreading the low-level entry code, but my impression
-> was that the fiq and irq exception vectors could just be pointed to
-> two different root drivers from the code in kernel_ventry
+Hi Marek,
 
-Certainly, but we'd have to introduce a fiq handler global and duplicate 
-the handler code; this is what was done in the previous submission, but 
-I seem to recall someone (Marc?) mentioned it would be cleaner to just 
-merge them into the single IRQ path and discriminate in the irqchip, 
-which is what I did here.
+On Fri, Feb 5, 2021 at 8:38 AM Marek Szyprowski
+<m.szyprowski@samsung.com> wrote:
+> On 04.02.2021 22:31, Saravana Kannan wrote:
+> > On Thu, Feb 4, 2021 at 3:52 AM Marek Szyprowski
+> > <m.szyprowski@samsung.com> wrote:
+> >> On 21.01.2021 23:57, Saravana Kannan wrote:
+> >>> This allows fw_devlink to create device links between consumers of an
+> >>> interrupt and the supplier of the interrupt.
+> >>>
+> >>> Cc: Marc Zyngier <maz@kernel.org>
+> >>> Cc: Kevin Hilman <khilman@baylibre.com>
+> >>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> >>> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>> Reviewed-by: Thierry Reding <treding@nvidia.com>
+> >>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> >>> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> >> This patch landed some time ago in linux-next as commit 4104ca776ba3
+> >> ("of: property: Add fw_devlink support for interrupts"). It breaks MMC
+> >> host controller operation on ARM Juno R1 board (the mmci@50000 device
+> >> defined in arch/arm64/boot/dts/arm/juno-motherboard.dtsi). I didn't
+> > I grepped around and it looks like the final board file is this or
+> > whatever includes it?
+> > arch/arm64/boot/dts/arm/juno-base.dtsi
+> The final board file is arch/arm64/boot/dts/arm/juno-r1.dts
+> > This patch just finds the interrupt-parent and then tries to use that
+> > as a supplier if "interrupts" property is listed. But the only
+> > interrupt parent I can see is:
+> >          gic: interrupt-controller@2c010000 {
+> >                  compatible = "arm,gic-400", "arm,cortex-a15-gic";
+> >
+> > And the driver uses IRQCHIP_DECLARE() and hence should be pretty much
+> > a NOP since those suppliers are never devices and are ignored.
+> > $ git grep "arm,gic-400" -- drivers/
+> > drivers/irqchip/irq-gic.c:IRQCHIP_DECLARE(gic_400, "arm,gic-400", gic_of_init);
+> >
+> > This doesn't make any sense. Am I looking at the right files? Am I
+> > missing something?
+>
+> Okay, I've added displaying a list of deferred devices when mounting
+> rootfs fails and got following items:
+>
+> Deferred devices:
+> 18000000.ethernet        platform: probe deferral - supplier
+> bus@8000000:motherboard-bus not ready
+> 1c050000.mmci    amba: probe deferral - supplier
+> bus@8000000:motherboard-bus not ready
+> 1c1d0000.gpio    amba: probe deferral - supplier
+> bus@8000000:motherboard-bus not ready
+> 2b600000.iommu   platform: probe deferral - wait for supplier
+> scpi-power-domains
+> 7ff50000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
+> 7ff60000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
+> 1c060000.kmi     amba: probe deferral - supplier
+> bus@8000000:motherboard-bus not ready
+> 1c070000.kmi     amba: probe deferral - supplier
+> bus@8000000:motherboard-bus not ready
+> 1c170000.rtc     amba: probe deferral - supplier
+> bus@8000000:motherboard-bus not ready
+> 1c0f0000.wdt     amba: probe deferral - supplier
+> bus@8000000:motherboard-bus not ready
+> gpio-keys
+> Kernel panic - not syncing: VFS: Unable to mount root fs on
+> unknown-block(0,0)
+>
+> I don't see the 'bus@8000000:motherboard-bus' on the deferred devices
+> list, so it looks that device core added a link to something that is not
+> a platform device...
 
-I can certainly go with either solution; I don't have a strong 
-preference here.
+Lemme guess: bus@8000000 is a simple bus, but it has an
+interrupt-map, and the devlink code doesn't follow the mapping?
 
-Advantages of split path:
+Gr{oetje,eeting}s,
 
-* More orthogonal
-
-Advantages of merged path:
-
-* Minimizes common vector changes needed for a single platform
-* Keeps FIQ/IRQ code common, so FIQs are less likely to be accidentally 
-broken by people not testing on Apple platforms.
-
-Unclear:
-
-* Performance. Split path runs less code, merged path has lower icache 
-pressure.
-
->> Are you proposing just having different drivers/nodes in the same file,
->> or implementing these as separate drivers in separate files?
-> 
-> I was thinking of separate driver files.
-
-That's what I previously had then :)
-
-If this is the way to go I can certainly go back to that.
-
-> I looked at other architectures, and found that at least powerpc
-> and sparc64 have a really minimal timer tick, with their timer_interrupt()
-> function getting called directly from the exception vector, and
-> doing a minimum of accounting (irq_enter(), statistics, ...) manually.
-> 
-> It's a different question if we want to do that, or if there should always
-> be an irqchip for consistency.
-
-I think the issue here is that those platforms presumably have *one* 
-timer hard wired to a specific exception vector (e.g. on PowerPC that's 
-the decrementer). So, that setup is shared by all implementations in 
-that platform.
-
-But on ARM64, the architectural timer is supposed to go through an 
-irqchip (GIC in normal platforms), it's just that here it ended up 
-hard-wired to FIQ - though not alone, since fast IPIs are also there, so 
-we can't treat it as a strict "timer vector" either.
-
-So even if we could do this for Apple SoCs, it would be a non-standard 
-setup, since every other ARM64 platform puts the timer behind an 
-irqchip. Therefore, I think it makes sense to always go through an 
-irqchip, rather than introduce a bypass for these SoCs.
-
-Also worth noting that we have at least two functional hardware timers 
-here (not sure if there are more, we run with HCR_EL2.E2H=1 in m1n1 
-which maps the EL2 timer to be the EL1 timer; I'm not yet sure if 
-setting that to 0 will expose extra HV timers or not) wired to the same 
-FIQ. I confirmed that both the virtual and physical timers function 
-independently in m1n1.
-
-I did confirm there are no secure timers, which is expected given that 
-there is no EL3 on these chips.
-
-> Benchmarking would at least help understand why there are two.
-
-Well, they call them "Fast IPIs" so *presumably* they are faster, but 
-we'll see :)
-
-> I don't think we have to pay too much attention to preparing the
-> code design for it, we can always change it when needed. However,
-> anything that impacts the DT binding here would have to be designed
-> to not get in the way of adding it later.
-
-I think this shouldn't pose much of a problem, since IPIs aren't exposed 
-in the DT anyway. As long as we decide how we're handling IRQs vs FIQs 
-(one or two nodes/drivers), then either of them could take 
-responsibility for handling IPIs depending on the platform. We should 
-probably just add a "fast-ipi" property to both nodes on platforms that 
-support that, so that the drivers can make the decision based on it. Or 
-perhaps that should be done with different compatibles?
+                        Geert
 
 -- 
-Hector Martin "marcan" (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
