@@ -2,107 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D65A3311287
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 21:33:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25F86311281
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 21:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232956AbhBESuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 13:50:03 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45588 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233086AbhBEPEk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 10:04:40 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7681664DA8;
-        Fri,  5 Feb 2021 16:22:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1612542152;
-        bh=2FOXgrVvrtQQwxzm4Wfix8cnVUh7IkUdTTu1De+bjtU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KfFDSzcVzjJbQYJ7meo6+XLjz46z89rptPO7r0cjN61WrYRyEN3XrG1sLfkaa43Ud
-         ExG/AI741QCRdc2A3z0dnPK65OJTg2MFRTlWFMlkLM7X9XtAOfKjQzqhv0OqXyG8pr
-         tgMWAaKQ8D5iEAfl3J+c1jPNT7ZfVcyr1oRM+yq0=
-Date:   Fri, 5 Feb 2021 17:22:29 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     kishon@ti.com, mturquette@baylibre.com, sboyd@kernel.org,
-        JC Kuo <jckuo@nvidia.com>, robh@kernel.org,
-        jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, nkristam@nvidia.com,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v7 00/14] Tegra XHCI controller ELPG support
-Message-ID: <YB1wxazg/QpRSJz6@kroah.com>
-References: <20210120073414.69208-1-jckuo@nvidia.com>
- <YB1vGTt0ufzsYBgo@ulmo>
+        id S233455AbhBESr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 13:47:26 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:46634 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233118AbhBESqF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 13:46:05 -0500
+Received: by mail-oi1-f170.google.com with SMTP id k25so8815270oik.13;
+        Fri, 05 Feb 2021 12:28:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jX/IDqbyvll8w6wyZZ4Cj2yRz+uUuRNKbkr2Ni7Gh1A=;
+        b=sPWDBDOboVtgz7L6+2wMX3yxMcRic20z0HxEh4rheyWS5nREb2wU2RCrnD2AiNrPJP
+         JUgt/lDRG61cjiBk4K5NE3lL729DAdt4tvt4gzFpwpzHghQFPTagMGUBv5Nr6FshP4Y1
+         7eHeKCDvU6M9E33S1QUt1zMrRvRuOeeHoKk82wWzox+Wx9cqIQ+oUnyIxMOnUNFdKvOS
+         LepKMesD1qzyRlVMtdlSK7YaCHH7CdWBs3Rr6/m+zmO22RcWoqk/uMXeT8Jzr2ncW9pv
+         /US6TM+OALEuw5TJDvXiwBWGcuAscw24nGgPCNgzh7N779/fokCIBxkEBGgIyzhcBfbs
+         kUsw==
+X-Gm-Message-State: AOAM53008rG7fixeVIrgMN7Lu6TgLXHGM+p0YbThnMeZIahk9Z/Nhuby
+        q73R3astt1iF4y8ZheMRzQ==
+X-Google-Smtp-Source: ABdhPJz8CUi5+i96guoIgJKUCUhhGLrPNUElr8USXuQmVUt0ogKvxivHEPBFlzbi0C4QhUI2PZOt5g==
+X-Received: by 2002:a05:6808:918:: with SMTP id w24mr4326260oih.20.1612556869753;
+        Fri, 05 Feb 2021 12:27:49 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l12sm1995301oov.37.2021.02.05.12.27.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Feb 2021 12:27:48 -0800 (PST)
+Received: (nullmailer pid 3669209 invoked by uid 1000);
+        Fri, 05 Feb 2021 20:27:47 -0000
+Date:   Fri, 5 Feb 2021 14:27:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     peng.fan@nxp.com
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        paul@crapouillou.net, matthias.bgg@gmail.com, agross@kernel.org,
+        patrice.chotard@st.com
+Subject: Re: [PATCH V9 01/10] dt-bindings: remoteproc: convert imx rproc
+ bindings to json-schema
+Message-ID: <20210205202747.GA3664957@robh.at.kernel.org>
+References: <1611191015-22584-1-git-send-email-peng.fan@nxp.com>
+ <1611191015-22584-2-git-send-email-peng.fan@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YB1vGTt0ufzsYBgo@ulmo>
+In-Reply-To: <1611191015-22584-2-git-send-email-peng.fan@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 05, 2021 at 05:15:21PM +0100, Thierry Reding wrote:
-> On Wed, Jan 20, 2021 at 03:34:00PM +0800, JC Kuo wrote:
-> > Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
-> > state for power saving when all of the connected USB devices are in
-> > suspended state. This patch series includes clk, phy and pmc changes
-> > that are required for properly place controller in ELPG and bring
-> > controller out of ELPG.
-> > 
-> > JC Kuo (14):
-> >   clk: tegra: Add PLLE HW power sequencer control
-> >   clk: tegra: Don't enable PLLE HW sequencer at init
-> >   phy: tegra: xusb: Move usb3 port init for Tegra210
-> >   phy: tegra: xusb: Rearrange UPHY init on Tegra210
-> >   phy: tegra: xusb: Add Tegra210 lane_iddq operation
-> >   phy: tegra: xusb: Add sleepwalk and suspend/resume
-> >   soc/tegra: pmc: Provide USB sleepwalk register map
-> >   arm64: tegra210: XUSB PADCTL add "nvidia,pmc" prop
-> >   dt-bindings: phy: tegra-xusb: Add nvidia,pmc prop
-> >   phy: tegra: xusb: Add wake/sleepwalk for Tegra210
-> >   phy: tegra: xusb: Tegra210 host mode VBUS control
-> >   phy: tegra: xusb: Add wake/sleepwalk for Tegra186
-> >   usb: host: xhci-tegra: Unlink power domain devices
-> >   xhci: tegra: Enable ELPG for runtime/system PM
-> > 
-> >  .../phy/nvidia,tegra124-xusb-padctl.txt       |    1 +
-> >  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |    1 +
-> >  drivers/clk/tegra/clk-pll.c                   |   12 -
-> >  drivers/clk/tegra/clk-tegra210.c              |   53 +-
-> >  drivers/phy/tegra/xusb-tegra186.c             |  558 ++++-
-> >  drivers/phy/tegra/xusb-tegra210.c             | 1889 +++++++++++++----
-> >  drivers/phy/tegra/xusb.c                      |   92 +-
-> >  drivers/phy/tegra/xusb.h                      |   22 +-
-> >  drivers/soc/tegra/pmc.c                       |   94 +
-> >  drivers/usb/host/xhci-tegra.c                 |  613 ++++--
-> >  include/linux/clk/tegra.h                     |    4 +-
-> >  include/linux/phy/tegra/xusb.h                |   10 +-
-> >  12 files changed, 2784 insertions(+), 565 deletions(-)
-> > 
-> > v5 "phy: tegra: xusb: tegra210: Do not reset UPHY PLL" is moved
-> > into v6 "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
+On Thu, Jan 21, 2021 at 09:03:26AM +0800, peng.fan@nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Mike, Stephen,
+> Convert the imx rproc binding to DT schema format using json-schema.
 > 
-> could you guys take a look at the two clk patches here and give an
-> Acked-by? There's build-time dependencies throughout the series, so it'd
-> be good if they can all go through either the PHY or USB trees.
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 59 +++++++++++++++++++
+>  .../bindings/remoteproc/imx-rproc.txt         | 33 -----------
+>  2 files changed, 59 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
 > 
-> Kishon, Greg,
-> 
-> any comments on these patches? Unfortunately, the USB patches in this
-> series have a build-time dependency on the PHY patches, so this should
-> all go through one tree. Since this all culminates in the XHCI driver,
-> merging this through the USB tree might be best, provided that Kishon
-> provides his Acked-by on the PHY patches.
-> 
-> Alternatively, I can create a set of branches with the correct
-> dependencies and send out pull requests for the three subsystems if
-> that's preferrable.
+> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> new file mode 100644
+> index 000000000000..bce6ccfe1538
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: NXP iMX6SX/iMX7D Co-Processor Bindings
+> +
+> +description:
+> +  This binding provides support for ARM Cortex M4 Co-processor found on some NXP iMX SoCs.
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx7d-cm4
+> +      - fsl,imx6sx-cm4
+> +
+> +  clocks:
+> +    description:
+> +      Clock for co-processor (See ../clock/clock-bindings.txt)
 
-I have no objection for the usb patches to go through your tree as they
-are hardware-specific.
+Drop description. You need to define how many clocks (maxItems: 1)
 
-thanks,
+> +
+> +  syscon:
+> +    description:
+> +      Phandle to syscon block which provide access to System Reset Controller
 
-greg k-h
+type ref
+
+> +
+> +  memory-region:
+> +    description:
+> +      list of phandels to the reserved memory regions.
+> +      (see ../reserved-memory/reserved-memory.txt)
+
+Don't need a generic description for a common property.
+
+How many and what is each one.
+
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - syscon
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx7d-clock.h>
+> +    m4_reserved_sysmem1: cm4@80000000 {
+> +      reg = <0x80000000 0x80000>;
+> +    };
+> +
+> +    m4_reserved_sysmem2: cm4@81000000 {
+> +      reg = <0x81000000 0x80000>;
+> +    };
+> +
+> +    imx7d-cm4 {
+> +      compatible	= "fsl,imx7d-cm4";
+> +      memory-region	= <&m4_reserved_sysmem1>, <&m4_reserved_sysmem2>;
+> +      syscon		= <&src>;
+> +      clocks		= <&clks IMX7D_ARM_M4_ROOT_CLK>;
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt b/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> deleted file mode 100644
+> index fbcefd965dc4..000000000000
+> --- a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> +++ /dev/null
+> @@ -1,33 +0,0 @@
+> -NXP iMX6SX/iMX7D Co-Processor Bindings
+> -----------------------------------------
+> -
+> -This binding provides support for ARM Cortex M4 Co-processor found on some
+> -NXP iMX SoCs.
+> -
+> -Required properties:
+> -- compatible		Should be one of:
+> -				"fsl,imx7d-cm4"
+> -				"fsl,imx6sx-cm4"
+> -- clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
+> -- syscon		Phandle to syscon block which provide access to
+> -			System Reset Controller
+> -
+> -Optional properties:
+> -- memory-region		list of phandels to the reserved memory regions.
+> -			(See: ../reserved-memory/reserved-memory.txt)
+> -
+> -Example:
+> -	m4_reserved_sysmem1: cm4@80000000 {
+> -		reg = <0x80000000 0x80000>;
+> -	};
+> -
+> -	m4_reserved_sysmem2: cm4@81000000 {
+> -		reg = <0x81000000 0x80000>;
+> -	};
+> -
+> -	imx7d-cm4 {
+> -		compatible	= "fsl,imx7d-cm4";
+> -		memory-region	= <&m4_reserved_sysmem1>, <&m4_reserved_sysmem2>;
+> -		syscon		= <&src>;
+> -		clocks		= <&clks IMX7D_ARM_M4_ROOT_CLK>;
+> -	};
+> -- 
+> 2.28.0
+> 
