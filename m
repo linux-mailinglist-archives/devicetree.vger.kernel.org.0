@@ -2,101 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CCCE310A93
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 12:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A6C0310BB7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 14:22:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231652AbhBELrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 06:47:01 -0500
-Received: from mga04.intel.com ([192.55.52.120]:24544 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231290AbhBELo2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 06:44:28 -0500
-IronPort-SDR: PrhTMBByXsJKyj+XgV7/24vB5Smre3qJ7G562bgwoB4+GJOh5uxHiesNPgtVkHBu9FHTiL0cai
- 4Xk+y2/JgZOQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="178859630"
-X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; 
-   d="scan'208";a="178859630"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2021 03:42:37 -0800
-IronPort-SDR: Uue4XEHUmBnkESacLps3AFN5v4NEmkGfMu4v41c9saOAerT1MEAXzEiUAU5nttPq1+yfKM74at
- YcH7hdXFsnlA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; 
-   d="scan'208";a="484104587"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 05 Feb 2021 03:42:34 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 05 Feb 2021 13:42:34 +0200
-Date:   Fri, 5 Feb 2021 13:42:34 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Kyle Tso <kyletso@google.com>
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org,
-        hdegoede@redhat.com, robh+dt@kernel.org, badhri@google.com,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 0/7] common SVDM version and VDO from dt
-Message-ID: <20210205114234.GB2476581@kuha.fi.intel.com>
-References: <20210205033415.3320439-1-kyletso@google.com>
+        id S229638AbhBENVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 08:21:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37582 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229986AbhBENQi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 08:16:38 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3A74C061797
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 05:15:57 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id w204so6716518ybg.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 05:15:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eMddkzoLtzudk6Saw9haOw0jx/RFJpF2riNKCfwuqgA=;
+        b=RF4nwrg/bI2QEh/WsUpLibjI3mQomXHb2vuTc+uJUHticYqHRHVZN4pY7kach2qUP3
+         b2ivhKJ38YAJghUzI2MwT8xBhEbUWyI0TmRmDSecrz6bXz6mpYM7dzVlnIOmK4Z89ffa
+         FfASdFuLG72rqoDVYfG/5MJfikNWmyVgqKX3FHsq+gb0ivvHYmDuabct6s07+8xD2MX1
+         CL+QIU4OwpqVWWzzVusw0VYq912podjjaSzg8cBxTX6i6QyvRR4SWdRbnCRMXta7Z8w0
+         kCqjWhdpHJUMPxBHj764KNf+HLxSGxHKWW3mEP1d3K4yOmwDsN2y2uIGZ/a+iXonm9q6
+         sQ3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eMddkzoLtzudk6Saw9haOw0jx/RFJpF2riNKCfwuqgA=;
+        b=hsTa8IPtep9NVkom3BDnujp4Iqpvhk7cysy6Zuy7oQk5kwKMPZLUJZd6wAPWIkp9C0
+         YmbPhJgB+oTon0EtABUgq4UTCtL0eJaVrBnk8qjiuhp3FaRJtDNF0hgMsLEntaWIHUr/
+         5O3Hddfq/fwY++zV92HTzf2jUXsYDJTTXCQg2KuWeyIURfkgJ2F4SBRY9kY3pCTHUI+e
+         QJDftOL0Y7eOd8hZ0aSi3MoNUPQLUONW5RoUCxeZfpD71xRokEj/c7GwxTn/UeMtELNp
+         dMB61xPaWHRpkPpUEy8qClITInjPqGhF5raxiCx0g6R2xW2ctl3An58HLegwJS+iIR24
+         jzfw==
+X-Gm-Message-State: AOAM532V40V5wSIyFzz+27pV6A0R1px0ULrem9IwcF6wYDWCshORQZv/
+        KuwEchjms95ukCssnoTZYlU44xklLXURzdcEptrb2A==
+X-Google-Smtp-Source: ABdhPJyhGAXEhx3VeGUjX84AVY7g2N8qPiWTR3n4heInBOto2Tcb4lOfLcSIy1g6eC9M61iOlCDdJrlNah6gn/LAJa8=
+X-Received: by 2002:a25:41cb:: with SMTP id o194mr5820275yba.167.1612530956948;
+ Fri, 05 Feb 2021 05:15:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210205033415.3320439-1-kyletso@google.com>
+References: <1612426177-6611-1-git-send-email-amit.pundir@linaro.org> <889e6ed8-133a-9416-be3b-5b2a97ea7fbb@somainline.org>
+In-Reply-To: <889e6ed8-133a-9416-be3b-5b2a97ea7fbb@somainline.org>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Fri, 5 Feb 2021 18:45:21 +0530
+Message-ID: <CAMi1Hd3bgDaqsH+txFVEnBc9dsGbrgic5TK7uq4GwqqkM6seiw@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and
+ panel bits
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 05, 2021 at 11:34:08AM +0800, Kyle Tso wrote:
-> v5 is here:
-> https://patchwork.kernel.org/project/linux-usb/cover/20210202161733.932215-1-kyletso@google.com/
-> 
-> Changes since v5:
-> =================
-> usb: typec: Manage SVDM version
-> - !! most changes are from Heikki
-> - location of the negotiated SVDM version is changed. Now the variable
->   resides in typec_partner
-> - The setter and getter functions were modified according to the above
->   changes
-> - the default SVDM version is stored upon calling to
->   typec_register_partner
-> 
-> usb: pd: Make SVDM Version configurable in VDM header
-> - no change
-> 
-> usb: typec: tcpm: Determine common SVDM Version
-> - follow the changes of "usb: typec: Manage SVDM version"
-> - remove the "reset to default". Now the default SVDM version will be
->   set when calling to typec_register_partner
-> 
-> usb: typec: ucsi: Determine common SVDM Version
-> - follow the changes of "usb: typec: Manage SVDM version"
-> - remove the "reset to default". Now the default SVDM version will be
->   set when calling to typec_register_partner
-> 
-> usb: typec: displayport: Fill the negotiated SVDM Version in the header
-> - follow the changes of "usb: typec: Manage SVDM version"
-> 
-> dt-bindings: connector: Add SVDM VDO properties
-> - no change
-> 
-> usb: typec: tcpm: Get Sink VDO from fwnode
-> - no change
-> 
-> Kyle Tso (7):
->   usb: typec: Manage SVDM version
->   usb: pd: Make SVDM Version configurable in VDM header
->   usb: typec: tcpm: Determine common SVDM Version
->   usb: typec: ucsi: Determine common SVDM Version
->   usb: typec: displayport: Fill the negotiated SVDM Version in the header
->   dt-bindings: connector: Add SVDM VDO properties
->   usb: typec: tcpm: Get Sink VDO from fwnode
+Hi Konrad,
 
-These are OK by me, but I think it would be great if Guenter could
-give them the once-over, as usual. I hope he has time. FWIW, for all
-of these:
+On Thu, 4 Feb 2021 at 19:46, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
+>
+> Hi!
+>
+> >vreg_l14a_1p88: ldo14 {
+> >+                      regulator-min-microvolt = <1800000>;
+> >+                      regulator-max-microvolt = <1800000>;
+>
+> Should probably be renamed to vreg_l14a_1p8 then.
 
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+ack.
 
-thanks,
+>
+>
+> >+      ports {
+> >+              port@1 {
+> >+                      endpoint {
+> >+                              remote-endpoint = <&tianma_nt36672a_in_0>;
+> >+                              data-lanes = <0 1 2 3>;
+> >+                      };
+> >+              };
+> >+      };
+>
+> The endpoint has a label, you can simply use &dsi0_out {};.
 
--- 
-heikki
+I didn't get what you meant there. Care to point to some reference dts
+snippet please?
+
+>
+> >+              vddpos-supply = <&lab>;
+> >+              vddneg-supply = <&ibb>;
+>
+> With Angelo's latest series [1] merged in, I reckon you should explicitly configure lab/ibb (like in [2]),
+> as wrong settings (which CAN BE SET BY THE BOOTLOADER in some instances!!) can lead to hardware damage.
+
+So iirc in the case of beryllium device, these regulators are pre set
+by the bootloader and I can't find any reference of we
+setting/resetting it explicitly to switch ON the panel and display. So
+far default lab/ibb nodes are working fine for us and I'm hesitant to
+tinker around anything regulator related that can potentially damage
+the hardware. Having said that, I do see lab/ibb nodes being set in
+the downstream dts, with relevant soft-start and discharge-resistor
+properties and I can try switching to that once the new lab/ibb
+changes land upstream.
+
+Regards,
+Amit Pundir
+
+
+>
+>
+>
+> Konrad
+>
+> [1] https://lore.kernel.org/linux-arm-msm/20210119174421.226541-1-angelogioacchino.delregno@somainline.org/
+> [2] https://github.com/SoMainline/linux/commit/4f4853b2e252b5f9d03e90119110aac80258fc53
