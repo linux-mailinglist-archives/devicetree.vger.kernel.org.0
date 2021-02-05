@@ -2,113 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15774310902
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 11:26:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24FCE3108F5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 11:24:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230506AbhBEKZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 05:25:38 -0500
-Received: from mail-oo1-f43.google.com ([209.85.161.43]:33852 "EHLO
-        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231253AbhBEKSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:18:02 -0500
-Received: by mail-oo1-f43.google.com with SMTP id x23so1491746oop.1;
-        Fri, 05 Feb 2021 02:17:47 -0800 (PST)
+        id S231359AbhBEKX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 05:23:27 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:42929 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229609AbhBEKVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:21:19 -0500
+Received: by mail-ot1-f53.google.com with SMTP id f6so6371557ots.9;
+        Fri, 05 Feb 2021 02:21:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=l72BMIb3zhzzE8Mc2vCdYcqGUh+JciNiU1J70+nqoJI=;
-        b=lSKuaFzPlqrvQkHbpvlXBeh3i+1FF9i5QtYM8s97XUnj2stya8f/r+i8G64MXk8vee
-         LfYBbfrkTDnR4u93qoveoxOJAgf6mkucbqfHux41scYt56aU8g6JX/vAZy66kJIn3gNw
-         lGh6Iz3t38KGFx/O0MiiagpxlVAm22Af/QGE0Y0X5oKaQEZnWEQ9RGnOzJ02e8HeoXES
-         iSczVQHwIoYI/3NPe9kfAYAf544fB9FoMOgrvexH/EqPAZqXbumEiPEcQBtivQTtx3lF
-         ar5obKOZ2v8av4d5Vs+piqgkEYOIgnQzvidy0BAGZH7wuPMPsAtafO9fh2sbxy6Nq1V0
-         BdOg==
-X-Gm-Message-State: AOAM531L2E/xj+CPGvX7JhIJJG+UAOLKBErmFjhjJcJtulms7MDXLqTS
-        yehTP8yIY0VaeQUx97vETNd+AMNGBX2n2URNCrk=
-X-Google-Smtp-Source: ABdhPJygXWRTFA7m8W3rDa/nNXZsqdUMOa+4wi/8Xobw0G4luRVdhEzx1c9WHF/DD7QSyQ2KNLJAi78q7X63Idf+eDg=
-X-Received: by 2002:a4a:e6d2:: with SMTP id v18mr2910653oot.40.1612520241833;
- Fri, 05 Feb 2021 02:17:21 -0800 (PST)
+        bh=W3RF2C/PA6a6ba6a9kvICkFlC1q6hnsnECE3kSeEdlo=;
+        b=HJFofwczRVQAvLnj9wcxvk5wu3JM879AeQV1XQ9cArUXMFMukGQYp1hALPhmM/XgeD
+         heaw8uCO88gni6htNwpAxIrrW7oXGIEO1ts6lWx8MrHmpgIK1IHXYb8FKNjwtwoTUHyT
+         b7u5dG3Dyy9DFSJu7lyHyRXGuN6U+PTNcFcTYeENGglMLWZWClryWV1e/Y8vtWNDVg6F
+         t8S7MG0Sdf87srY44mb1YyX/p/+TS1/0ZDFhNQlKxRuo+GLhufRTwArRTTN66UpwPWUc
+         z/MuOl2iB0Y0UJdGJoap+CPYf74g9OPJVAmf1FvRHuNwseMkNsKBGqkAhag1eyE2hinM
+         PujA==
+X-Gm-Message-State: AOAM531Xi8g9KGTnREZahRG1aOKNm1SMlAlkDvlk9n0ECkpDfkNEh+3V
+        1/Lkip2NE1Xgnb3985VZ6HbYhK0ht7Jhm9WKGrw=
+X-Google-Smtp-Source: ABdhPJxaAzP865Vmnvr1fq9k8jVK1cEEm2Qir3RiFDzwCxIrZEbUN97VUFhB9QV4+y8tU2656HDzFkvuQjfME2sklqE=
+X-Received: by 2002:a9d:3604:: with SMTP id w4mr2857988otb.107.1612520437777;
+ Fri, 05 Feb 2021 02:20:37 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1611904394.git.viresh.kumar@linaro.org> <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
- <CAMuHMdVp0vGMqoEoP9A7Y7-ph-DYUWdddtChdq_eZcROYTBMHg@mail.gmail.com>
- <20210205092507.fdxotdjlq5rjs2yh@vireshk-i7> <CAMuHMdWUMcMcJxnC+oML8P0+r72_+d6RWGY50dOWCUECdJGWPA@mail.gmail.com>
- <20210205095545.woevnkxg3ar7ctys@vireshk-i7>
-In-Reply-To: <20210205095545.woevnkxg3ar7ctys@vireshk-i7>
+References: <20210121225712.1118239-1-saravanak@google.com>
+ <CGME20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c@eucas1p2.samsung.com>
+ <20210121225712.1118239-3-saravanak@google.com> <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
+ <CAGETcx_KDA55Ti=5CHw48BP1L2Xo64=AFFe+17g27n=P-KUrow@mail.gmail.com>
+ <6b606a5d-0435-1e9d-ac61-a8dacf051067@samsung.com> <CAMuHMdWqZonpeyk59b=o_3EKOQx4TxUZE4Jeo-Kxy_o_3CQvnQ@mail.gmail.com>
+ <CAGETcx9Rqa7PygjSiQvadm7C2bpxS2rCf5oB_pFhjh+ESV-WQA@mail.gmail.com>
+In-Reply-To: <CAGETcx9Rqa7PygjSiQvadm7C2bpxS2rCf5oB_pFhjh+ESV-WQA@mail.gmail.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 5 Feb 2021 11:17:10 +0100
-Message-ID: <CAMuHMdXKT3LD3ojMJEg-oHsEKO5TN5P1BTJMyf2fYkhnC8PU=Q@mail.gmail.com>
-Subject: Re: [PATCH V7 4/6] kbuild: Add support to build overlays (%.dtbo)
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
+Date:   Fri, 5 Feb 2021 11:20:26 +0100
+Message-ID: <CAMuHMdUt4tSEO_Hcf4AgVY_jqZ6Bsyk2+f2P3gQRQk0UfgSSjQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh,
+Hi Saravana,
 
-On Fri, Feb 5, 2021 at 10:55 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> On 05-02-21, 10:41, Geert Uytterhoeven wrote:
-> > On Fri, Feb 5, 2021 at 10:25 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > > On 05-02-21, 10:02, Geert Uytterhoeven wrote:
-> > > > Thanks for your patch
-> > > > (which I only noticed because it appeared in dt-rh/for-next ;-)
+On Fri, Feb 5, 2021 at 11:06 AM Saravana Kannan <saravanak@google.com> wrote:
+> On Fri, Feb 5, 2021 at 12:06 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Fri, Feb 5, 2021 at 8:38 AM Marek Szyprowski
+> > <m.szyprowski@samsung.com> wrote:
+> > > On 04.02.2021 22:31, Saravana Kannan wrote:
+> > > > On Thu, Feb 4, 2021 at 3:52 AM Marek Szyprowski
+> > > > <m.szyprowski@samsung.com> wrote:
+> > > >> On 21.01.2021 23:57, Saravana Kannan wrote:
+> > > >>> This allows fw_devlink to create device links between consumers of an
+> > > >>> interrupt and the supplier of the interrupt.
+> > > >>>
+> > > >>> Cc: Marc Zyngier <maz@kernel.org>
+> > > >>> Cc: Kevin Hilman <khilman@baylibre.com>
+> > > >>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > >>> Reviewed-by: Rob Herring <robh@kernel.org>
+> > > >>> Reviewed-by: Thierry Reding <treding@nvidia.com>
+> > > >>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > > >>> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > >> This patch landed some time ago in linux-next as commit 4104ca776ba3
+> > > >> ("of: property: Add fw_devlink support for interrupts"). It breaks MMC
+> > > >> host controller operation on ARM Juno R1 board (the mmci@50000 device
+> > > >> defined in arch/arm64/boot/dts/arm/juno-motherboard.dtsi). I didn't
+> > > > I grepped around and it looks like the final board file is this or
+> > > > whatever includes it?
+> > > > arch/arm64/boot/dts/arm/juno-base.dtsi
+> > > The final board file is arch/arm64/boot/dts/arm/juno-r1.dts
+> > > > This patch just finds the interrupt-parent and then tries to use that
+> > > > as a supplier if "interrupts" property is listed. But the only
+> > > > interrupt parent I can see is:
+> > > >          gic: interrupt-controller@2c010000 {
+> > > >                  compatible = "arm,gic-400", "arm,cortex-a15-gic";
 > > > >
-> > > > On Fri, Jan 29, 2021 at 8:31 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > > > > Add support for building DT overlays (%.dtbo). The overlay's source file
-> > > > > will have the usual extension, i.e. .dts, though the blob will have
+> > > > And the driver uses IRQCHIP_DECLARE() and hence should be pretty much
+> > > > a NOP since those suppliers are never devices and are ignored.
+> > > > $ git grep "arm,gic-400" -- drivers/
+> > > > drivers/irqchip/irq-gic.c:IRQCHIP_DECLARE(gic_400, "arm,gic-400", gic_of_init);
 > > > >
-> > > > Why use .dts and not .dtso for overlays?
-> > > > Because you originally (until v5) had a single rule for building .dtb
-> > > > and .dtbo files?
+> > > > This doesn't make any sense. Am I looking at the right files? Am I
+> > > > missing something?
 > > >
-> > > I am fine with doing that as well if Rob and David agree to it. Rob
-> > > did suggest that at one point but we didn't do much about it later on
-> > > for some reason.
+> > > Okay, I've added displaying a list of deferred devices when mounting
+> > > rootfs fails and got following items:
 > > >
-> > > FWIW, this will also require a change in the DTC compiler.
+> > > Deferred devices:
+> > > 18000000.ethernet        platform: probe deferral - supplier
+> > > bus@8000000:motherboard-bus not ready
+> > > 1c050000.mmci    amba: probe deferral - supplier
+> > > bus@8000000:motherboard-bus not ready
+> > > 1c1d0000.gpio    amba: probe deferral - supplier
+> > > bus@8000000:motherboard-bus not ready
+> > > 2b600000.iommu   platform: probe deferral - wait for supplier
+> > > scpi-power-domains
+> > > 7ff50000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
+> > > 7ff60000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
+> > > 1c060000.kmi     amba: probe deferral - supplier
+> > > bus@8000000:motherboard-bus not ready
+> > > 1c070000.kmi     amba: probe deferral - supplier
+> > > bus@8000000:motherboard-bus not ready
+> > > 1c170000.rtc     amba: probe deferral - supplier
+> > > bus@8000000:motherboard-bus not ready
+> > > 1c0f0000.wdt     amba: probe deferral - supplier
+> > > bus@8000000:motherboard-bus not ready
+> > > gpio-keys
+> > > Kernel panic - not syncing: VFS: Unable to mount root fs on
+> > > unknown-block(0,0)
+> > >
+> > > I don't see the 'bus@8000000:motherboard-bus' on the deferred devices
+> > > list, so it looks that device core added a link to something that is not
+> > > a platform device...
+>
+> Probe deferred devices (even platform devices) not showing up in that
+> list is not unusual. That's because devices end up on that list only
+> after a driver for them is matched and then it fails.
+>
+> > Lemme guess: bus@8000000 is a simple bus, but it has an
+> > interrupt-map, and the devlink code doesn't follow the mapping?
 > >
-> > Care to explain why? I've been using .dtsi for ages in
-> > https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/renesas-overlays
 >
-> I don't see you building them anywhere, they aren't added to the
-> Makefile ever. What am I missing ?
->
-> actually none of the dtso's were added to any makefile in that branch.
+> No, what's happening is that (and this is something I just learned)
+> that if a parent has an "#interrupt-cells" property, it becomes your
+> interrupt parent. In this case, the motherboard-bus (still a platform
+> device) is the parent, but it never probes (because it's simple-bus
+> and "arm,vexpress,v2p-p1"). But it becomes the interrupt parent. And
+> this mmci device is marked as a consumer of this bus (while still a
+> grand-child). Yeah, I'm working on patches (multiple rewrites) to take
+> care of cases like this.
 
-E.g. "ARM: dts: Build all overlays if OF_OVERLAY=y"?
-https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/commit/?h=topic/renesas-overlays&id=597ee90971687a45678cca8d16bf624d174a99eb
-
-> Anyway, the DTC needs to know how to treat the dtso format and it will
-> error out currently with unknown format kind of errors.
->
-> Below email [1] have some information on the kind of changes required
-> here. Also note that we had to do similar changes for dtbo earlier
-> [2].
->
-> --
-> viresh
->
-> [1] https://lore.kernel.org/lkml/CAK7LNASViCOTGR7yDTfh0O+PAu+X-P2NwdY4oPMuXrr51awafA@mail.gmail.com/
-
--@ is handled by "kbuild: Enable DT symbols when CONFIG_OF_OVERLAY is used"
-https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/commit/?h=topic/renesas-overlays&id=91e9d998514f3743125a707013a30d5f83054579
-
-> [2] https://lore.kernel.org/lkml/30fd0e5f2156665c713cf191c5fea9a5548360c0.1609926856.git.viresh.kumar@linaro.org/
-
-I never had a need for those changes to dtc. .dtso/.dtbo work fine regardless.
+One more reason to scrap the different handling of "simple-bus" and
+"simple-pm-bus", and use drivers/bus/simple-pm-bus.c, which is a
+platform device driver, for both? (like I originally intended ;-)
 
 Gr{oetje,eeting}s,
 
