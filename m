@@ -2,86 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55352310908
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 11:28:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 517D531093C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 11:37:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231350AbhBEK0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 05:26:55 -0500
-Received: from jabberwock.ucw.cz ([46.255.230.98]:36840 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229763AbhBEKYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:24:24 -0500
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 803601C0B77; Fri,  5 Feb 2021 11:23:40 +0100 (CET)
-Date:   Fri, 5 Feb 2021 11:23:38 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Sven Schuchmann <schuchmann@schleissheimer.de>
-Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/4] leds: lp50xx: add setting of default intensity
- from DT
-Message-ID: <20210205102338.GA27854@amd>
-References: <20210204143726.27977-1-schuchmann@schleissheimer.de>
- <20210204145201.GB14305@duo.ucw.cz>
- <DB8P190MB063482D8E38C0529AD16A4D5D9B29@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
+        id S231522AbhBEKgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 05:36:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59028 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231452AbhBEKeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:34:01 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB499C061793
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 02:33:20 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id b9so11058155ejy.12
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 02:33:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nakZx3zOEZLUUZAMILq/ar1r+Acw84d9yqhqJi2BCQ4=;
+        b=MCaRB/yhouM+RasCXL7nWTII8zlWlMUWJAulO8jiC92x8qY3zCz/ZGArDm64ac/QVu
+         VLQM9j87YSDa3s86JmjFuS0nHbLZedPdvmtL7t/YozzV3TlB5BwbFOu+tbzemhs3XjDv
+         qQyeiCfX55uvYTwtzs6Qm0U0ROsgSkXHI7zsFMI84+S4aUpEwnJLT1sb0s1QqxH9N76H
+         aFcfa1C0x/QwJzp1/IMOouUvIXzmYNBHSoMxXokMqH3fjYiacgwIGHe51hPP5gTubOXT
+         tttNxPaUJCMjFmYYAT2UziRm1+BKsTzMNXOhAzCsl9vWOXkAutzGpRf1FXkTdXqnALF8
+         W4ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nakZx3zOEZLUUZAMILq/ar1r+Acw84d9yqhqJi2BCQ4=;
+        b=mFl3d/QIB7XV84goWDofhZonpAjIHcy+Mh8LVv0Cz7CUMfP9bScVZNMsOqEob1zuZp
+         SCeVHP7ahANY8K8uauC8U5ifUpV6+rLF3yj41N53JqGDruYcfR3fbajj8nCPeDjs3p8q
+         wlDfu8oN6Kt/Zjc5RtDdW1yJhMX9nANN5ZcEzzCcTtovqdEgyH8deyuIBhEtE3OiIesR
+         QtocyYNLvRSf6P0Cb125RDWM/077ZKKvAkhR16YZZFx8Cvzeve1TxsWRpv6QqxtvwaD+
+         wK+flG8bftrGpVx3UeaSzZywpherihMumm/Kt2NsXYURlD0cGSXlZ6Skw74mAQvy/5MK
+         I3YQ==
+X-Gm-Message-State: AOAM533+yDaVGHQXFDMbahprouRf9EnbfQ+Hgcqd9qSWgN4QfRLbyr7W
+        2xAEPQVtbxRIzZIXGMfTNix+0OHPQLrRK7UqR9ilXw==
+X-Google-Smtp-Source: ABdhPJyHaqQrjRO5cpqMINsa6mjFq2ZDnqJ4rhd+YTk+15U1aHYwn6Iulgfm+QqVy4Lfq+NfF6kym99R3LGVRL0xXUA=
+X-Received: by 2002:a17:906:8053:: with SMTP id x19mr3388210ejw.470.1612521199418;
+ Fri, 05 Feb 2021 02:33:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="HcAYCG3uE/tztfnV"
-Content-Disposition: inline
-In-Reply-To: <DB8P190MB063482D8E38C0529AD16A4D5D9B29@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+References: <20210128111343.2295888-1-geert+renesas@glider.be>
+ <20210128113353.GN963@ninjato> <CAMuHMdW--A2bwe==+A35_sLAS2OkXzi2hY0Ky_dwL0n8irHMZw@mail.gmail.com>
+In-Reply-To: <CAMuHMdW--A2bwe==+A35_sLAS2OkXzi2hY0Ky_dwL0n8irHMZw@mail.gmail.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Fri, 5 Feb 2021 11:33:08 +0100
+Message-ID: <CAMpxmJXcbTnCbseAap=F0QO2Er6ANGSfgPMuoufaD2qQyUbpRA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: eeprom: at24: Document ROHM BR24G01
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jan 28, 2021 at 12:59 PM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Wolfram,
+>
+> On Thu, Jan 28, 2021 at 12:33 PM Wolfram Sang
+> <wsa+renesas@sang-engineering.com> wrote:
+> > On Thu, Jan 28, 2021 at 12:13:43PM +0100, Geert Uytterhoeven wrote:
+> > > Document the compatible value for the ROHM Semiconductor BR24G01 I2C bus
+> > > EEPROM.
+> >
+> > What is the difference between those two? Could one also be the fallback
+> > of the other (just in the highly unlikely case we need "generic" Rohm
+> > handling somewhen)?
+>
+> Good question.  The datasheets look similar.
+> Parametric search on rohm.com says the G-series differs in using
+> "Cu wire bonding".
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
---HcAYCG3uE/tztfnV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm fine with the current form as it's simpler than using two
+fallbacks. Do you want to submit another version anyway or can I pick
+it up?
 
-Hi!
-
-> > >      patternProperties:
-> > >        "(^led-[0-9a-f]$|led)":
-> > > @@ -99,6 +104,7 @@ examples:
-> > >                 reg =3D <0x1>;
-> > >                 color =3D <LED_COLOR_ID_RGB>;
-> > >                 function =3D LED_FUNCTION_CHARGING;
-> > > +               default-intensity =3D <100 0 0>;
-> > >
-> > >                 led-0 {
-> > >                     color =3D <LED_COLOR_ID_RED>;
-> >=20
-> > Should this go to leds-class-multicolor.yaml ?=20
->=20
-> I think then all drivers should support it,  but I cannot change all driv=
-ers.=20
-> So I would only leave it in there.
-
-It really should be in common binding, and no, that does not mean you
-need to change all the drivers.
-
-Plus there's at most two of them at the moment.
-
-Best regards,
-							Pavel
-
---=20
-http://www.livejournal.com/~pavelmachek
-
---HcAYCG3uE/tztfnV
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAmAdHKoACgkQMOfwapXb+vLFegCgp5fsWD5ZfPr20YCODLcTu/2F
-YfMAmQEwkcFypjBKY/922iLgshcFNhVn
-=2653
------END PGP SIGNATURE-----
-
---HcAYCG3uE/tztfnV--
+Bartosz
