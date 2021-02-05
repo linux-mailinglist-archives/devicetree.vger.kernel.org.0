@@ -2,106 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60AEB31071C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 09:54:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3830E310754
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 10:10:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbhBEIxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 03:53:16 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:53886 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229720AbhBEIxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 03:53:04 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1158oe9c025982;
-        Fri, 5 Feb 2021 09:52:08 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=a/WzW5u9oZm4Te6wakI3Z6sVptDelyDPT1JPG6TGgag=;
- b=1HK5VDL7zr91nt5H11oRqFSg0FkcSCEJBolqlEV70tfB/9m18AgHD/ptj9S6khitsXrr
- 70yrP5TemjJdQ8Djj7iF4bwmS+hWTWAUkVMuhOsE8PKwRn8bI9D0BoFlKZJhRpGPzfYj
- fN0GEUbxza4y7Ym5LAMbVy4JpFpGGmSF2VyGz7C3TY3UiwNv/dsI9lZu7hklFHfHoxVy
- AZqbIJqdpIeBuTvh05kmGmVn9BDOt6/SlRwAUDj+oy8p9Iu/tCytjDSy16FGTkoy80Vf
- RPwVsTAaGP314HTckLDaNSxHyJ6GFsOp51TwPKDA+172okHp7kmB2xQQfyoIc+oclkPQ 2w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 36ey7hev2k-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 05 Feb 2021 09:52:08 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2CA82100038;
-        Fri,  5 Feb 2021 09:52:08 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 17FB8221794;
-        Fri,  5 Feb 2021 09:52:08 +0100 (CET)
-Received: from localhost (10.75.127.46) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 5 Feb 2021 09:52:07
- +0100
-From:   Alain Volmat <alain.volmat@foss.st.com>
-To:     <wsa@kernel.org>, <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@foss.st.com>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>,
-        <alain.volmat@foss.st.com>
-Subject: [PATCH 5/5] i2c: stm32f7: indicate the address being accessed on errors
-Date:   Fri, 5 Feb 2021 09:51:44 +0100
-Message-ID: <1612515104-838-6-git-send-email-alain.volmat@foss.st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1612515104-838-1-git-send-email-alain.volmat@foss.st.com>
-References: <1612515104-838-1-git-send-email-alain.volmat@foss.st.com>
+        id S229554AbhBEJI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 04:08:57 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:45248 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229789AbhBEJEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 04:04:00 -0500
+Received: by mail-ot1-f44.google.com with SMTP id o12so6169626ote.12;
+        Fri, 05 Feb 2021 01:03:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=l7Sh3OKLYK8/nf4Ykbw6S9nNzg4ZLGDikm1EE1e+r9w=;
+        b=BAJliugn1VP7rzDxtX5QFmZOoCdMLCRpQHTD1ZQHv9dDdr6hOpp4Lup7OmQAInlv85
+         4ZzXLhCSB7xX228VLxZhwOkqsdX17VImR5c875iACbtxeVUQiWRYk6yhmVQXyilmxI/H
+         zxSgoUkDZBYfmVnnhyinH3Ej7eilgxWbMG4pYH+uN3Zc7yYy0tafkCBhyudG83rTLgRm
+         87mvseeFQ9F0fBQaKZCKZoTpqjYBlcTPt2fhhfKsRpSDftIzpr52dKEenles6Yt7hxQr
+         X+WFLasyn4BizDMJ8KLKXV8HtSu2Q2EyapMd6yaUR4UeHPLXbGhO6d3nocxNrk95fI+F
+         MOSA==
+X-Gm-Message-State: AOAM531qirj9Jy27no4bdO9q5FUWwRDucVnK9eLHh7YK8KrFN7KYhQ/R
+        5r8XN2M5hnadRTwtJxBb1vE2i3EYlLQw/rtXnjbFAwss2xQ=
+X-Google-Smtp-Source: ABdhPJwj49VQVnIUkrsrhrUkZIoxqLtC0zpgNHTh266wX+Jh32XKOa1YFkFARheJBx+QtP0uUm1taeVX6kVZxfNJOKo=
+X-Received: by 2002:a9d:3604:: with SMTP id w4mr2673501otb.107.1612515758371;
+ Fri, 05 Feb 2021 01:02:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-05_06:2021-02-05,2021-02-05 signatures=0
+References: <cover.1611904394.git.viresh.kumar@linaro.org> <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
+In-Reply-To: <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 5 Feb 2021 10:02:27 +0100
+Message-ID: <CAMuHMdVp0vGMqoEoP9A7Y7-ph-DYUWdddtChdq_eZcROYTBMHg@mail.gmail.com>
+Subject: Re: [PATCH V7 4/6] kbuild: Add support to build overlays (%.dtbo)
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kbuild <linux-kbuild@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To help debugging issues, add the address of the slave being
-accessed when getting an error.
+Hi Viresh,
 
-Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
----
- drivers/i2c/busses/i2c-stm32f7.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+Thanks for your patch
+(which I only noticed because it appeared in dt-rh/for-next ;-)
 
-diff --git a/drivers/i2c/busses/i2c-stm32f7.c b/drivers/i2c/busses/i2c-stm32f7.c
-index f77cd6512a86..ef642fe1eb2c 100644
---- a/drivers/i2c/busses/i2c-stm32f7.c
-+++ b/drivers/i2c/busses/i2c-stm32f7.c
-@@ -1602,7 +1602,8 @@ static irqreturn_t stm32f7_i2c_isr_error(int irq, void *data)
- 
- 	/* Bus error */
- 	if (status & STM32F7_I2C_ISR_BERR) {
--		dev_err(dev, "<%s>: Bus error\n", __func__);
-+		dev_err(dev, "<%s>: Bus error accessing addr 0x%x\n",
-+			__func__, f7_msg->addr);
- 		writel_relaxed(STM32F7_I2C_ICR_BERRCF, base + STM32F7_I2C_ICR);
- 		stm32f7_i2c_release_bus(&i2c_dev->adap);
- 		f7_msg->result = -EIO;
-@@ -1610,13 +1611,15 @@ static irqreturn_t stm32f7_i2c_isr_error(int irq, void *data)
- 
- 	/* Arbitration loss */
- 	if (status & STM32F7_I2C_ISR_ARLO) {
--		dev_dbg(dev, "<%s>: Arbitration loss\n", __func__);
-+		dev_dbg(dev, "<%s>: Arbitration loss accessing addr 0x%x\n",
-+			__func__, f7_msg->addr);
- 		writel_relaxed(STM32F7_I2C_ICR_ARLOCF, base + STM32F7_I2C_ICR);
- 		f7_msg->result = -EAGAIN;
- 	}
- 
- 	if (status & STM32F7_I2C_ISR_PECERR) {
--		dev_err(dev, "<%s>: PEC error in reception\n", __func__);
-+		dev_err(dev, "<%s>: PEC error in reception accessing addr 0x%x\n",
-+			__func__, f7_msg->addr);
- 		writel_relaxed(STM32F7_I2C_ICR_PECCF, base + STM32F7_I2C_ICR);
- 		f7_msg->result = -EINVAL;
- 	}
+On Fri, Jan 29, 2021 at 8:31 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> Add support for building DT overlays (%.dtbo). The overlay's source file
+> will have the usual extension, i.e. .dts, though the blob will have
+
+Why use .dts and not .dtso for overlays?
+Because you originally (until v5) had a single rule for building .dtb
+and .dtbo files?
+
+> .dtbo extension to distinguish it from normal blobs.
+>
+> Acked-by: Masahiro Yamada <masahiroy@kernel.org>
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.17.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
