@@ -2,115 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF20A310F4B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 19:00:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95623310FCC
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 19:24:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233648AbhBEQQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 11:16:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33346 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233599AbhBEQO1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 11:14:27 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4FCEA64DE8;
-        Fri,  5 Feb 2021 17:56:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612547769;
-        bh=tIx6Mq/q5bP075IBZ2ir3cjgV11ktDBdIgJkvpvVC3M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jTlgNtQ+Yw6PFVByGmHUzsyUYEpwKsJzsW+GNjtotiY8po0ywRgaiSjr1GuAsoMeR
-         x+IR75GE7rrnakWiqzHBh0pNtil4DAStD/4cngKoM8MO8fypTdchG7tV9bDrEbIa7w
-         f+b2Dm1Os9T7y+9ksGSx1SvohGbjRLeJxGbwH/96VBf/O8XGlMhJBW1NOYn1/w3SKb
-         K83RbvvvM+XTwui5PkYnwUF+bft7iDfOSasn/J2V40uzD7vOP11AIQO3w8HrcHl7Yl
-         QibMDqZEl9DdxiYCusF7CLgyazJvBPi+SAVwgsOQPH9kauUz65mCbKNapKpxju4iyo
-         JNCM2nQUL+HXw==
-Date:   Fri, 5 Feb 2021 17:56:02 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 16/26] KVM: arm64: Prepare Hyp memory protection
-Message-ID: <20210205175602.GG22665@willie-the-truck>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-17-qperret@google.com>
- <20210203143709.GA18907@willie-the-truck>
- <YBvQrHdbiNTSLQq6@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YBvQrHdbiNTSLQq6@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S232778AbhBEQkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 11:40:21 -0500
+Received: from sibelius.xs4all.nl ([83.163.83.176]:64066 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233223AbhBEQiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 11:38:19 -0500
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 700eed23;
+        Fri, 5 Feb 2021 15:19:53 +0100 (CET)
+Date:   Fri, 5 Feb 2021 15:19:53 +0100 (CET)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Johan Jonker <jbx6244@gmail.com>
+CC:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/8] arm64: dts: rockchip: restyle rk3399 usbdrd3_0 node
+Message-ID: <4268f9759816bb98@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 04, 2021 at 10:47:08AM +0000, Quentin Perret wrote:
-> On Wednesday 03 Feb 2021 at 14:37:10 (+0000), Will Deacon wrote:
-> > On Fri, Jan 08, 2021 at 12:15:14PM +0000, Quentin Perret wrote:
-> > > +static inline unsigned long __hyp_pgtable_max_pages(unsigned long nr_pages)
-> > > +{
-> > > +	unsigned long total = 0, i;
-> > > +
-> > > +	/* Provision the worst case scenario with 4 levels of page-table */
-> > > +	for (i = 0; i < 4; i++) {
-> > 
-> > Looks like you want KVM_PGTABLE_MAX_LEVELS, so maybe move that into a
-> > header?
+> For rk3399 dwc3 usb the wrapper node for only clocks makes no sense,
+> so restyle the rk3399 usbdrd3_0 node before more new SoC types are
+> added with the same IP.
 > 
-> Will do.
-> 
-> > 
-> > > +		nr_pages = DIV_ROUND_UP(nr_pages, PTRS_PER_PTE);
-> > > +		total += nr_pages;
-> > > +	}
-> > 
-> > ... that said, I'm not sure this needs to iterate at all. What exactly are
-> > you trying to compute?
-> 
-> I'm trying to figure out how many pages I will need to construct a
-> page-table covering nr_pages contiguous pages. The first iteration tells
-> me how many level 0 pages I need to cover nr_pages, the second iteration
-> how many level 1 pages I need to cover the level 0 pages, and so on...
+> Signed-off-by: Johan Jonker <jbx6244 at gmail.com>
+> ---
+> Changed V3:
+>   remove aclk_usb3_rksoc_axi_perf
+>   remove aclk_usb3
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3399-ficus.dts      |  2 +-
+>  arch/arm64/boot/dts/rockchip/rk3399-firefly.dts    |  6 +---
+>  arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi       |  6 +---
+>  arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts |  6 +---
+>  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi      |  6 +---
+>  arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts  |  6 +---
+>  arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi   |  4 ---
+>  arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts   |  6 +---
+>  .../boot/dts/rockchip/rk3399-pinebook-pro.dts      |  4 ---
+>  .../arm64/boot/dts/rockchip/rk3399-puma-haikou.dts |  4 ---
+>  arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi    |  4 ---
+>  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi |  6 +---
+>  arch/arm64/boot/dts/rockchip/rk3399-rock960.dts    |  2 +-
+>  arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi   |  4 ---
+>  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi |  6 +---
+>  arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi  |  6 +---
+>  arch/arm64/boot/dts/rockchip/rk3399.dtsi           | 37 ++++++++--------------
+>  .../boot/dts/rockchip/rk3399pro-vmarc-som.dtsi     |  4 ---
+>  18 files changed, 24 insertions(+), 95 deletions(-)
 
-Ah, you iterate from leaves back to the root. Got it, thanks.
+This change is problematic since:
 
-> I might be doing this naively though. Got a better idea?
+-    	    compatible = "rockchip,rk3399-dwc3";
++    	    compatible = "rockchip,rk3399-dwc3", "snps,dwc3";
 
-I thought I did, but I ended up with something based on a geometric series
-and it looks terrible to code-up in C without, err, iterating like you do.
+This means that an existing "glue" driver will now attach to the node
+for the actual DWC3 controller.  Not sure what the consequences
+exactly are on Linux, but on other systems that consume device trees
+(e.g. U-Boot, OpenBSD) this may break things because only the glue
+driver attaches.  And even if on Linux both the "glue" driver and the
+"core" driver can share a single device tree node, this will still lead to
+multiple drivers manipulating the same clocks and resets, which I
+think is undesirable.
 
-So yeah, ignore me :)
+You could introduce a new rk3399-specific compatible for the node.
+But I don't think this device tree binding change is helpful.
 
-> > > +
-> > > +	return total;
-> > > +}
-> > > +
-> > > +static inline unsigned long hyp_s1_pgtable_size(void)
-> > > +{
-> > > +	struct hyp_memblock_region *reg;
-> > > +	unsigned long nr_pages, res = 0;
-> > > +	int i;
-> > > +
-> > > +	if (kvm_nvhe_sym(hyp_memblock_nr) <= 0)
-> > > +		return 0;
-> > 
-> > It's a bit grotty having this be signed. Why do we need to encode the error
-> > case differently from the 0 case?
-> 
-> Here specifically we don't, but it is needed in early_init_dt_add_memory_hyp()
-> to distinguish the overflow case from the first memblock being added.
+Cheers,
 
-Fair enough, but if you figure out a way for hyp_memblock_nr to be unsigned,
-I think that would be preferable.
-
-Will
+Mark
