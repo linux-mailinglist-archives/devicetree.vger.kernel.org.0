@@ -2,93 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51F1C3105A3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 08:13:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B923105B7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 08:21:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231256AbhBEHNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 02:13:00 -0500
-Received: from marcansoft.com ([212.63.210.85]:59618 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231364AbhBEHMo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 02:12:44 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 857B5423AD;
-        Fri,  5 Feb 2021 07:11:55 +0000 (UTC)
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Ard Biesheuvel <ardb@kernel.org>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-19-marcan@marcan.st>
- <CAK8P3a3v6emxavbyjFhY+WdvH1t4EPMZSjEsSx0M+cRqjRCO1g@mail.gmail.com>
- <de236d0c-579d-c0d9-8d60-77f30889f50c@marcan.st>
- <CAK8P3a2DawQA-PD5aqbkVPB7UxuohN0oe9mJPe8488pUryotJQ@mail.gmail.com>
-From:   Hector Martin 'marcan' <marcan@marcan.st>
-Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
- devicetree
-Message-ID: <3f2001f0-4a90-645e-d016-03907228dc7a@marcan.st>
-Date:   Fri, 5 Feb 2021 16:11:53 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S231250AbhBEHT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 02:19:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230489AbhBEHTT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 02:19:19 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21F7C0613D6
+        for <devicetree@vger.kernel.org>; Thu,  4 Feb 2021 23:18:39 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id o21so2513562pgn.12
+        for <devicetree@vger.kernel.org>; Thu, 04 Feb 2021 23:18:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZPvlIT0HoqfzZ/kPoc529sp4UTquUpxTHygdzOzpf6k=;
+        b=h5bCogGGi7kKVjxcIMg4MtTIPxABpO83xNsg3cS18Ysfjkgf3YP4g0i/WfSRE/swuo
+         GKdATqNb65ipswcMkc7mrODTQcUPPcPgUAkT7IPBdhFzk/pzwouO/L3WnV5Dd58xUosv
+         sjTmUS/N5RvxHotu9O+ra3mIwOWYPx2WKtPGs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZPvlIT0HoqfzZ/kPoc529sp4UTquUpxTHygdzOzpf6k=;
+        b=On4ihNQP5BEmuB5KTQTIlr0UhpQDooJRs6HY+cFyQBL+Y+Ylwy0uT82vmB+fMFGoA1
+         L9qHsh8/xSUn3M6vuoKxXWINaDmoXUrz+une3zJ5DOc4GbZONdTgYsJhedf60dVOseiZ
+         Ut+F/vLUnf8PtCzd9+NWniMpaWwcr+y4I3Il9ZAGqfOyA9MXs7TuuJYCP6dHyz1cwIdn
+         S467mvYUgDgo9fArIRwzH22qHdVr7riP/I6xhUvgzhMRxBowibXhPDo/7ubIU8+LWdQg
+         Gi+sLOOexoH0LFMoA1pmdrsEiB8PXJSjHFnT8x7rpAsqzIz83/JzSiXcCEjM7pTzjzUA
+         6wmw==
+X-Gm-Message-State: AOAM531niRhqKuVWOlihO9rnWr4Zz79PAOpe8Gf2wJccQD4olDCrbx0z
+        CAoQqsZzyw/nkv9Q4wYw+qcBWg==
+X-Google-Smtp-Source: ABdhPJwt6ELkujlzDtiBO5NFLk+8rtHdnqs2ggIxilA4kdYsoyGvhf/+SwXS3b7NARo3AkRtwa28lA==
+X-Received: by 2002:a65:6152:: with SMTP id o18mr3112704pgv.392.1612509519160;
+        Thu, 04 Feb 2021 23:18:39 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:ed70:6d43:9c6a:2e22])
+        by smtp.gmail.com with ESMTPSA id oa10sm6292028pjb.45.2021.02.04.23.18.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Feb 2021 23:18:38 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        CK Hu <ck.hu@mediatek.com>, linux-mediatek@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] support gce on mt8192 platform
+Date:   Fri,  5 Feb 2021 15:18:30 +0800
+Message-Id: <20210205071833.2707243-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.30.0.365.g02bc693789-goog
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a2DawQA-PD5aqbkVPB7UxuohN0oe9mJPe8488pUryotJQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/02/2021 08.08, Arnd Bergmann wrote:
-> On Thu, Feb 4, 2021 at 10:44 PM Hector Martin 'marcan' <marcan@marcan.st> wrote:
->> On 05/02/2021 06.29, Arnd Bergmann wrote:
->>> On Thu, Feb 4, 2021 at 9:39 PM Hector Martin <marcan@marcan.st> wrote:
->>>
->>> We tend to split the dts file into one file per SoC and one for the
->>> specific board. I guess in this case the split can be slightly different,
->>> but it does feel better to be prepared for sharing a lot of the contents
->>> between the different products.
->>>
->>> In most cases, you'd want the 'aliases' and 'chosen' nodes to be
->>> in the board specific file.
->>
->> I thought about that, but wasn't sure if splitting it up at this early
->> stage made much sense since I'm not sure what the split should be, given
->> all supported hardware is the same for all 3 released devices.
->>
->> I'm happy to throw the aliases/chosen nodes into board specific files if
->> you think that's a good starting point. Perhaps /memory too? Those
->> properties are filled in/patched by the bootloader anyway...
-> 
-> Yes, I think that would help make it more consistent with other
-> platforms even if we don't care too much here.
+Change since v2:
+- add controy_by_sw for mt8192
 
-Ack, I'll split it up for v2.
+Change since v1:
+- move out shift jump patch
+- remove useless patch
 
-> We don't really have overlays in the kernel sources (yet), though it
-> is something that keeps coming up. For the moment, I'd just
-> assume you can have one .dts file for each thing you want to
-> support and keep the shared bits in .dtsi files.
+Yongqiang Niu (3):
+  dt-binding: gce: add gce header file for mt8192
+  arm64: dts: mt8192: add gce node
+  mailbox: cmdq: add mt8192 support
 
-No problem. We'll experiment with overlays in m1n1 and see how that goes.
-
-One thing I wanted to ask: is there some kind of "experimental" policy 
-for DT bindings? At early platform bring-up stages it seems like it 
-could be valuable to allow for breaking DT changes while we flesh out 
-the details (this is especially true of a reverse engineered platform 
-like this, where we don't have knowledge of all the hardware details a 
-priori). The dozen or so users we might have at this stage obviously 
-won't complain too much :)
+ .../devicetree/bindings/mailbox/mtk-gce.txt   |   7 +-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  10 +
+ drivers/mailbox/mtk-cmdq-mailbox.c            |  10 +
+ include/dt-bindings/gce/mt8192-gce.h          | 419 ++++++++++++++++++
+ 4 files changed, 443 insertions(+), 3 deletions(-)
+ create mode 100644 include/dt-bindings/gce/mt8192-gce.h
 
 -- 
-Hector Martin "marcan" (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+2.30.0.365.g02bc693789-goog
+
