@@ -2,146 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D13DC31050B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 07:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F70731052C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 07:52:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230513AbhBEGoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 01:44:37 -0500
-Received: from mout01.posteo.de ([185.67.36.65]:47106 "EHLO mout01.posteo.de"
+        id S230510AbhBEGul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 01:50:41 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56366 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230191AbhBEGog (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 01:44:36 -0500
-Received: from submission (posteo.de [89.146.220.130]) 
-        by mout01.posteo.de (Postfix) with ESMTPS id 2170F16005F
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 07:43:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-        t=1612507419; bh=8zUn+UyozeAseEbIW29rRlgrAkKAcwU7JN9yB32OBVU=;
-        h=Date:From:To:Cc:Subject:From;
-        b=nxK5M0KsURI7H8q7N/u7Z5J40DfSmNln6h/rtHagaUbtb/h3fDvIEHpOyKDQ6Ppxk
-         5BCcMFNUpaQMZx71PIv3eSlcHr1Hsd9NeFXGkWZg5jI5slYy+6wwBwWT2avZql8Wtv
-         aI+Iw0bjBgv5HPfxjAN5gKAza50eCOCktUh1hBUGp4+Aq20GcBqezetx2gQdvVvUwb
-         X8pm0B43c1TcA+tFJ5R7esBcFOz44IqE0fTqopArBLgvW3PWsBdtPtw45KPjyYQreA
-         TA0+TOUFYljkM6ZkAqwVbLku1/ZS9wu4PZur0lWUuHw0SQlKciR2J/hbKY/A4ca4/2
-         WMZpdjYeFI1AA==
-Received: from customer (localhost [127.0.0.1])
-        by submission (posteo.de) with ESMTPSA id 4DX5V03kQNz6tmM;
-        Fri,  5 Feb 2021 07:43:36 +0100 (CET)
-Date:   Fri, 5 Feb 2021 07:43:35 +0100
-From:   Sebastian Fricke <sebastian.fricke@posteo.net>
-To:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        hjc@rock-chips.com, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, dafna.hirschfeld@collabora.com,
-        helen.koike@collabora.com, ezequiel@collabora.com,
-        cmuellner@linux.com
-Subject: Re: [PATCH 0/6] Support second Image Signal Processor on rk3399
-Message-ID: <20210205064335.6c3gs3h3pgvhceku@basti-TUXEDO-Book-XA1510>
-References: <20210202145632.1263136-1-heiko@sntech.de>
- <20210203181422.txbd6kvujlmz4nju@basti-TUXEDO-Book-XA1510>
- <16624224.lhrHg4fidi@diego>
+        id S231217AbhBEGu0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 01:50:26 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0B0C264F40;
+        Fri,  5 Feb 2021 06:49:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1612507785;
+        bh=s85dMwg+GO6SbZVBIHATXUrRp+nKovYwFl5YC4obN9g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gEgsAkhGsu6SaEmKA++mwd6xrZVfSp15QJc2LBNSA2M1u9csK/V8rXHqc1S1LPupI
+         VNsnxeuRbYTI6vO8R2F+twayWInOVVHRIipETzJvJHWf8KHGF79BZV554Lm40+7QWe
+         AAfrI8tud6RssdMs1ZsEnzHtImJR42eZs9mzQ2tQ=
+Date:   Fri, 5 Feb 2021 07:49:42 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        John Youn <John.Youn@synopsys.com>
+Subject: Re: [PATCH v7 0/6] usb: Support USB 3.2 multi-lanes
+Message-ID: <YBzqhlNeKf+lgA+8@kroah.com>
+References: <cover.1611106162.git.Thinh.Nguyen@synopsys.com>
+ <04cc67bd-29b0-91d7-6144-a3f4dc6661f9@synopsys.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <16624224.lhrHg4fidi@diego>
+In-Reply-To: <04cc67bd-29b0-91d7-6144-a3f4dc6661f9@synopsys.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Heiko,
+On Fri, Feb 05, 2021 at 02:39:41AM +0000, Thinh Nguyen wrote:
+> Hi Felipe, Greg,
+> 
+> Thinh Nguyen wrote:
+> > A USB SuperSpeed Plus device may operate at different speed and lane count
+> > (i.e. gen2x2, gen1x2, or gen2x1). The DWC_usb32 IP supports SuperSpeed Plus
+> > gen2x2. To support this, this series update a few things to the USB gadget
+> > stack and dwc3 driver:
+> >
+> > * Accept and parse new maximum_speed devicetree property strings
+> > * Introduce enum usb_ssp_rate to describe the speed in SuperSpeed Plus genXxY
+> > * Capture the connected and max supported usb_ssp_rate
+> > * Report the device sublink speeds base on the usb_ssp_rate in the BOS
+> >   descriptor
+> > * Introduce gadget ops to select SuperSpeed Plus various transfer rate and lane
+> >   count
+> > * Update dwc3 driver to support the above changes
+> >
+> > Changes in v7:
+> >  - Greg picked up the first few patches of the series to his usb-testing
+> >    branch. Rebase the remaining patches on Greg's usb-testing branch
+> >
+> > Changes in v6:
+> >  - Rebase on Greg's usb-testing branch
+> >  - Update cover letter and title since there are many updates
+> >    * Previous version 5: https://lore.kernel.org/linux-usb/cover.1601001199.git.Thinh.Nguyen@synopsys.com/
+> >  - To simplify things, use usb_ssp_rate enum to specify the signaling rate
+> >    generation and lane count instead of separately tracking them.
+> >  - Convert the sublink speed attributes to macros and move it to uapi
+> >  - Remove usb_sublink_speed struct
+> >  - Remove "usb: dwc3: gadget: Report sublink speed capability"
+> >  - Update dwc3 to support the new changes
+> >
+> > Changes in v5:
+> >  - Rebase on Felipe's testing/next branch
+> >  - Changed Signed-off-by email to match From: email header
+> >  - Add Rob's Reviewed-by
+> >
+> > Changes in v4:
+> >  - Instead of using a single function to parse "maximum-speed" property for
+> >    speed, gen X, and number of lanes, split those tasks to separate common
+> >    functions
+> >  - Revise DWC3 driver to use those new common functions
+> >  - Fix checkpatch warnings for using "unsigned" rather than "unsigned int" and
+> >    missing identifier name in udc_set_num_lanes_and_speed gadget ops
+> >
+> > Changes in v3:
+> >  - Remove "num-lanes" and "lane-speed-mantissa-gbps" common properties
+> >  - Remove "num-lanes" and "lane-speed-mantissa-gbps" properties validation in dwc3
+> >  - Update "maximum-speed" to support variations of SSP Gen X x Y
+> >  - Update common function to parse new strings for "maximum-speed"
+> >  - Update commit messages for the new changes
+> >
+> > Changes in v2:
+> >  - Move usb_sublink_speed attribute struct and enum to include/linux/usb/ch9.h
+> >  - Use "num-lanes" and "lane-speed-mantissa-gbps" as common properties instead
+> >  - Add common functions to get num-lanes and lsm properties
+> >  - Fix missing gen1x2 sublink speed attribute check report in dwc3
+> >
+> >
+> > Thinh Nguyen (6):
+> >   dt-binding: usb: Include USB SSP rates in GenXxY
+> >   usb: common: Parse for USB SSP genXxY
+> >   usb: dwc3: core: Check maximum_speed SSP genXxY
+> >   usb: dwc3: gadget: Implement setting of SSP rate
+> >   usb: dwc3: gadget: Track connected SSP rate and lane count
+> >   usb: dwc3: gadget: Set speed only up to the max supported
+> >
+> >  .../devicetree/bindings/usb/usb.yaml          |  3 +
+> >  drivers/usb/common/common.c                   | 26 +++++-
+> >  drivers/usb/dwc3/core.c                       | 37 +++++++++
+> >  drivers/usb/dwc3/core.h                       |  9 +++
+> >  drivers/usb/dwc3/gadget.c                     | 80 ++++++++++++++++++-
+> >  include/linux/usb/ch9.h                       | 11 +++
+> >  6 files changed, 162 insertions(+), 4 deletions(-)
+> >
+> >
+> > base-commit: 7a79f1f7f7e75e532c5a803ab3ebf42a3e79497c
+> 
+> Let me know if there's any issue with these remaining patches. It'd be
+> great if they can go on the "next" branch at some point.
 
-On 03.02.2021 20:54, Heiko Stübner wrote:
->Hi Sebastian,
->
->Am Mittwoch, 3. Februar 2021, 19:14:22 CET schrieb Sebastian Fricke:
->> Hey Heiko,
->>
->> I have tested your patch set on my nanoPC-T4, here is a complete log
->> with:
->> - relevant kernel log entries
->> - system information
->> - media ctl output
->> - sysfs entry information
->>
->> https://paste.debian.net/1183874/
->>
->> Additionally, to your patchset I have applied the following patches:
->> https://github.com/initBasti/Linux_kernel_media_tree_fork/commits/dual_cam_setup
->>
->> And just to not cause confusion the `media_dev` entries come from this
->> unmerged series:
->> https://patchwork.kernel.org/project/linux-media/list/?series=426269
->>
->> I have actually been able to stream with both of my cameras at the same
->> time using the libcamera cam command.
->> I would like to thank you a lot for making this possible.
->
->Thanks for testing a dual camera setup. On my board I could only test
->the second ISP. And really glad it works for you tool :-) .
->
->Out of curiosity, do you also see that green tint in the images the cameras
->produce?
-
-Yes, I do. Actually, I currently have two forms of a green tint, on my
-OV13850 everything is quite dark and greenish, which is caused by the
-missing 3A algorithms. On my OV4689, I have big patches of the image
-with bright green color and flickering, I investigated if this is
-connected to the 2nd ISP instance, but that doesn't seem to be the case
-as I have the same results when I switch the CSI ports of the cameras.
-
-I have found another issue, while testing I discovered following
-issue:
-When I start the system with an HDMI monitor connected, then the camera
-on the 2nd port doesn't work. This is probably because the RX/TX is
-reserved as a TX.
-But it made me wonder because if the system has an RX, a TX, and
-an RX/TX, why isn't the pure TX used by the monitor and the
-cameras take RX and RX/TX?
-Or do you think that this is maybe a malfunction of this patch?
-
->
->Thanks
->Heiko
-
-Greetings,
-Sebastian
-
->
->
->> If you like to you can add:
->> Tested-by: Sebastian Fricke <sebastian.fricke@posteo.net>
->>
->> On 02.02.2021 15:56, Heiko Stuebner wrote:
->> >The rk3399 has two ISPs and right now only the first one is usable.
->> >The second ISP is connected to the TXRX dphy on the soc.
->> >
->> >The phy of ISP1 is only accessible through the DSI controller's
->> >io-memory, so this series adds support for simply using the dsi
->> >controller is a phy if needed.
->> >
->> >That solution is needed at least on rk3399 and rk3288 but no-one
->> >has looked at camera support on rk3288 at all, so right now
->> >only implement the rk3399 specifics.
->> >
->> >
->> >Heiko Stuebner (6):
->> >  drm/rockchip: dsi: add own additional pclk handling
->> >  dt-bindings: display: rockchip-dsi: add optional #phy-cells property
->> >  drm/rockchip: dsi: add ability to work as a phy instead of full dsi
->> >  arm64: dts: rockchip: add #phy-cells to mipi-dsi1
->> >  arm64: dts: rockchip: add cif clk-control pinctrl for rk3399
->> >  arm64: dts: rockchip: add isp1 node on rk3399
->> >
->> > .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
->> > arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  39 ++
->> > drivers/gpu/drm/rockchip/Kconfig              |   2 +
->> > .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 342 ++++++++++++++++++
->> > 4 files changed, 384 insertions(+)
->> >
->>
->
->
->
->
+I was waiting for Rob's review of the dt changes...
