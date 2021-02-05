@@ -2,505 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AB013116AA
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 00:19:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A1A23116B0
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 00:19:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231135AbhBEXJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 18:09:54 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:45748 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229554AbhBEKqd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:46:33 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 115AeiHv023391;
-        Fri, 5 Feb 2021 11:45:04 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=vn7AJEws6oioE8XLmvySJJ+6r15eUGv/1k+XuTuQR34=;
- b=Bil8WcOE5ccWIc4Ew3ISYKO9otzAk0J9XJUraBgIiGCqq9R5RG73pR6r2Twh9e4/DxnZ
- fJJSiwQCwVblfVB3IMrsslLyVT7Lx/x7Gatd9jUMSrU7dpiR/r7lyuUQIHVRxALZ11ss
- A9XlWWGiv+Pw1y/j35g7159v+O6n8hiPU+fT5QDxhi3okGYL5sdCavR0HRlL3g0DG7/4
- 1mMxJnLqTSl9EWQkYZWMBOCPxlh41RCDSZWRJdOfnhSrepiRjJeC96FpyuPIb4ZODGD7
- x4alRXIv5sxKgGKyhABDKsD0BM+ss3w3MTo/kchE8qghQMeA8TciMTbycTvELYr4oqZV bA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 36ey7hfpb7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 05 Feb 2021 11:45:04 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D43A210002A;
-        Fri,  5 Feb 2021 11:45:03 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BD22E2298CD;
-        Fri,  5 Feb 2021 11:45:03 +0100 (CET)
-Received: from localhost (10.75.127.44) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 5 Feb 2021 11:45:03
- +0100
-From:   Olivier Moysan <olivier.moysan@foss.st.com>
-To:     Alexandre Torgue <alexandre.torgue@st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        "Rob Herring" <robh+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: [RESEND PATCH 2/2] ASoC: stm32: i2s: add master clock provider
-Date:   Fri, 5 Feb 2021 11:44:04 +0100
-Message-ID: <20210205104404.18786-3-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210205104404.18786-1-olivier.moysan@foss.st.com>
-References: <20210205104404.18786-1-olivier.moysan@foss.st.com>
+        id S231359AbhBEXKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 18:10:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231761AbhBEKuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:50:37 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C7FC0698C4
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 02:45:13 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id w4so5612736wmi.4
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 02:45:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=bhijpy86VBLH1z/QR8DmTQnzKog7xaGemOCJvaezDFY=;
+        b=I1f4P88tmjKhD9nAeTeG42QMJXc51TQL9LFq2uUaMelOVAPEmZg1mSouCIVlP4XBGd
+         bpjqQxMPS42M+3n1XVnziy6u5CPN5XRsbUtWnX5A0CQ9+itw+FwHUhg+pAOhQH+zqMFT
+         OCLN6gpDYIUGGiAELUsv5La50KsmOpbcLS+ClEsknpm4DAUcFumlFFtWY0EY5cfR4/jo
+         h4w2ExPRW7QHKAVw5rlr+up4hcYt/7bLfhPLD1JZyWrQCQWmrtx6WcskE8AltBGuaaXb
+         S6O3sNxI2LiAsbtMFT4BJtavd02m6zWJAZTVra4zI2Quz4EiXUk8Mmr8TieA5/tqq6zP
+         CJYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=bhijpy86VBLH1z/QR8DmTQnzKog7xaGemOCJvaezDFY=;
+        b=gOeHWrTb95D/ISPilyTxlt696r3h449gD8nEs0/R8tndzYsCBrjtn6lZYa8W4jEEsn
+         aqTb9YObXAvYBxLHm+vbZ1PX76s3fvqci7DqZ7fykMFeiaXKN76OLYZb4vL+rftCyOqf
+         rHnXf/9oX+MXuwoFBsSKPWU/Cbp8jWeL21TJN6sBhNEn9HIHpYzearQVToeDVCDbh3mi
+         EGrU7f+6GU5qQtcJMU9sZWxQIgEcFxdbXKDvw4Sva43lt1lciS//K0Ssbw9L+I6MzpQ1
+         95smrgJ1pooyl2DqjoWTap+4t/xmJ4PPLCiZpya1zT7jXSJALrUu/73w1dcUdUzqEzQm
+         KhuA==
+X-Gm-Message-State: AOAM5336k7/OiNSfk6yy65mH9Cew8Jb6yp2ElwXgRkzFs8gjw0Hwq45n
+        3vnf2cAs7+U4UAwu8mR5LTTqJA==
+X-Google-Smtp-Source: ABdhPJyRfo1Xd9kdbFnk9gG7FK4NwhSnrqBF3CGs3t+a+eCiGXdP6H1m+o2UJRsgFBUel+isXS+Yhg==
+X-Received: by 2002:a05:600c:2ca:: with SMTP id 10mr3026622wmn.151.1612521912071;
+        Fri, 05 Feb 2021 02:45:12 -0800 (PST)
+Received: from localhost.localdomain ([2a02:2450:102f:d6a:38fd:e0db:ea01:afc8])
+        by smtp.gmail.com with ESMTPSA id u4sm11300233wrr.37.2021.02.05.02.45.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Feb 2021 02:45:11 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, mchehab@kernel.org, robh+dt@kernel.org,
+        angelogioacchino.delregno@somainline.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>
+Cc:     Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+Subject: [PATCH v4 12/22] media: camss: Remove per VFE power domain toggling
+Date:   Fri,  5 Feb 2021 11:44:04 +0100
+Message-Id: <20210205104414.299732-13-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210205104414.299732-1-robert.foss@linaro.org>
+References: <20210205104414.299732-1-robert.foss@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-05_06:2021-02-05,2021-02-05 signatures=0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Olivier Moysan <olivier.moysan@st.com>
+For Titan ISPs clocks fail to re-enable during vfe_get()
+after any vfe has been halted and its corresponding power
+domain power has been detached.
 
-Add master clock generation support in STM32 I2S driver.
-The master clock provided by I2S can be used to feed a codec.
+Since all of the clocks depend on all of the PDs, per
+VFE PD detaching is no option for this generation of HW.
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- sound/soc/stm/stm32_i2s.c | 310 ++++++++++++++++++++++++++++++++------
- 1 file changed, 266 insertions(+), 44 deletions(-)
+ .../media/platform/qcom/camss/camss-ispif.c   | 11 ---
+ drivers/media/platform/qcom/camss/camss-vfe.c |  7 --
+ drivers/media/platform/qcom/camss/camss.c     | 94 +++++++++++--------
+ drivers/media/platform/qcom/camss/camss.h     | 12 +--
+ 4 files changed, 60 insertions(+), 64 deletions(-)
 
-diff --git a/sound/soc/stm/stm32_i2s.c b/sound/soc/stm/stm32_i2s.c
-index 7c4d63c33f15..7d1672cf78cc 100644
---- a/sound/soc/stm/stm32_i2s.c
-+++ b/sound/soc/stm/stm32_i2s.c
-@@ -8,6 +8,7 @@
- 
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/delay.h>
- #include <linux/module.h>
- #include <linux/of_irq.h>
-@@ -196,6 +197,9 @@ enum i2s_datlen {
- #define STM32_I2S_IS_MASTER(x)		((x)->ms_flg == I2S_MS_MASTER)
- #define STM32_I2S_IS_SLAVE(x)		((x)->ms_flg == I2S_MS_SLAVE)
- 
-+#define STM32_I2S_NAME_LEN		32
-+#define STM32_I2S_RATE_11K		11025
-+
- /**
-  * struct stm32_i2s_data - private data of I2S
-  * @regmap_conf: I2S register map configuration pointer
-@@ -206,6 +210,7 @@ enum i2s_datlen {
-  * @dma_data_rx: dma configuration data for tx channel
-  * @substream: PCM substream data pointer
-  * @i2sclk: kernel clock feeding the I2S clock generator
-+ * @i2smclk: master clock from I2S mclk provider
-  * @pclk: peripheral clock driving bus interface
-  * @x8kclk: I2S parent clock for sampling frequencies multiple of 8kHz
-  * @x11kclk: I2S parent clock for sampling frequencies multiple of 11kHz
-@@ -215,6 +220,9 @@ enum i2s_datlen {
-  * @irq_lock: prevent race condition with IRQ
-  * @mclk_rate: master clock frequency (Hz)
-  * @fmt: DAI protocol
-+ * @divider: prescaler division ratio
-+ * @div: prescaler div field
-+ * @odd: prescaler odd field
-  * @refcount: keep count of opened streams on I2S
-  * @ms_flg: master mode flag.
-  */
-@@ -227,6 +235,7 @@ struct stm32_i2s_data {
- 	struct snd_dmaengine_dai_dma_data dma_data_rx;
- 	struct snd_pcm_substream *substream;
- 	struct clk *i2sclk;
-+	struct clk *i2smclk;
- 	struct clk *pclk;
- 	struct clk *x8kclk;
- 	struct clk *x11kclk;
-@@ -236,10 +245,210 @@ struct stm32_i2s_data {
- 	spinlock_t irq_lock; /* used to prevent race condition with IRQ */
- 	unsigned int mclk_rate;
- 	unsigned int fmt;
-+	unsigned int divider;
-+	unsigned int div;
-+	bool odd;
- 	int refcount;
- 	int ms_flg;
- };
- 
-+struct stm32_i2smclk_data {
-+	struct clk_hw hw;
-+	unsigned long freq;
-+	struct stm32_i2s_data *i2s_data;
-+};
-+
-+#define to_mclk_data(_hw) container_of(_hw, struct stm32_i2smclk_data, hw)
-+
-+static int stm32_i2s_calc_clk_div(struct stm32_i2s_data *i2s,
-+				  unsigned long input_rate,
-+				  unsigned long output_rate)
-+{
-+	unsigned int ratio, div, divider = 1;
-+	bool odd;
-+
-+	ratio = DIV_ROUND_CLOSEST(input_rate, output_rate);
-+
-+	/* Check the parity of the divider */
-+	odd = ratio & 0x1;
-+
-+	/* Compute the div prescaler */
-+	div = ratio >> 1;
-+
-+	/* If div is 0 actual divider is 1 */
-+	if (div) {
-+		divider = ((2 * div) + odd);
-+		dev_dbg(&i2s->pdev->dev, "Divider: 2*%d(div)+%d(odd) = %d\n",
-+			div, odd, divider);
-+	}
-+
-+	/* Division by three is not allowed by I2S prescaler */
-+	if ((div == 1 && odd) || div > I2S_CGFR_I2SDIV_MAX) {
-+		dev_err(&i2s->pdev->dev, "Wrong divider setting\n");
-+		return -EINVAL;
-+	}
-+
-+	if (input_rate % divider)
-+		dev_dbg(&i2s->pdev->dev,
-+			"Rate not accurate. requested (%ld), actual (%ld)\n",
-+			output_rate, input_rate / divider);
-+
-+	i2s->div = div;
-+	i2s->odd = odd;
-+	i2s->divider = divider;
-+
-+	return 0;
-+}
-+
-+static int stm32_i2s_set_clk_div(struct stm32_i2s_data *i2s)
-+{
-+	u32 cgfr, cgfr_mask;
-+
-+	cgfr = I2S_CGFR_I2SDIV_SET(i2s->div) | (i2s->odd << I2S_CGFR_ODD_SHIFT);
-+	cgfr_mask = I2S_CGFR_I2SDIV_MASK | I2S_CGFR_ODD;
-+
-+	return regmap_update_bits(i2s->regmap, STM32_I2S_CGFR_REG,
-+				  cgfr_mask, cgfr);
-+}
-+
-+static int stm32_i2s_set_parent_clock(struct stm32_i2s_data *i2s,
-+				      unsigned int rate)
-+{
-+	struct platform_device *pdev = i2s->pdev;
-+	struct clk *parent_clk;
-+	int ret;
-+
-+	if (!(rate % STM32_I2S_RATE_11K))
-+		parent_clk = i2s->x11kclk;
-+	else
-+		parent_clk = i2s->x8kclk;
-+
-+	ret = clk_set_parent(i2s->i2sclk, parent_clk);
-+	if (ret)
-+		dev_err(&pdev->dev,
-+			"Error %d setting i2sclk parent clock\n", ret);
-+
-+	return ret;
-+}
-+
-+static long stm32_i2smclk_round_rate(struct clk_hw *hw, unsigned long rate,
-+				     unsigned long *prate)
-+{
-+	struct stm32_i2smclk_data *mclk = to_mclk_data(hw);
-+	struct stm32_i2s_data *i2s = mclk->i2s_data;
-+	int ret;
-+
-+	ret = stm32_i2s_calc_clk_div(i2s, *prate, rate);
-+	if (ret)
-+		return ret;
-+
-+	mclk->freq = *prate / i2s->divider;
-+
-+	return mclk->freq;
-+}
-+
-+static unsigned long stm32_i2smclk_recalc_rate(struct clk_hw *hw,
-+					       unsigned long parent_rate)
-+{
-+	struct stm32_i2smclk_data *mclk = to_mclk_data(hw);
-+
-+	return mclk->freq;
-+}
-+
-+static int stm32_i2smclk_set_rate(struct clk_hw *hw, unsigned long rate,
-+				  unsigned long parent_rate)
-+{
-+	struct stm32_i2smclk_data *mclk = to_mclk_data(hw);
-+	struct stm32_i2s_data *i2s = mclk->i2s_data;
-+	int ret;
-+
-+	ret = stm32_i2s_calc_clk_div(i2s, parent_rate, rate);
-+	if (ret)
-+		return ret;
-+
-+	ret = stm32_i2s_set_clk_div(i2s);
-+	if (ret)
-+		return ret;
-+
-+	mclk->freq = rate;
-+
-+	return 0;
-+}
-+
-+static int stm32_i2smclk_enable(struct clk_hw *hw)
-+{
-+	struct stm32_i2smclk_data *mclk = to_mclk_data(hw);
-+	struct stm32_i2s_data *i2s = mclk->i2s_data;
-+
-+	dev_dbg(&i2s->pdev->dev, "Enable master clock\n");
-+
-+	return regmap_update_bits(i2s->regmap, STM32_I2S_CGFR_REG,
-+				    I2S_CGFR_MCKOE, I2S_CGFR_MCKOE);
-+}
-+
-+static void stm32_i2smclk_disable(struct clk_hw *hw)
-+{
-+	struct stm32_i2smclk_data *mclk = to_mclk_data(hw);
-+	struct stm32_i2s_data *i2s = mclk->i2s_data;
-+
-+	dev_dbg(&i2s->pdev->dev, "Disable master clock\n");
-+
-+	regmap_update_bits(i2s->regmap, STM32_I2S_CGFR_REG, I2S_CGFR_MCKOE, 0);
-+}
-+
-+static const struct clk_ops mclk_ops = {
-+	.enable = stm32_i2smclk_enable,
-+	.disable = stm32_i2smclk_disable,
-+	.recalc_rate = stm32_i2smclk_recalc_rate,
-+	.round_rate = stm32_i2smclk_round_rate,
-+	.set_rate = stm32_i2smclk_set_rate,
-+};
-+
-+static int stm32_i2s_add_mclk_provider(struct stm32_i2s_data *i2s)
-+{
-+	struct clk_hw *hw;
-+	struct stm32_i2smclk_data *mclk;
-+	struct device *dev = &i2s->pdev->dev;
-+	const char *pname = __clk_get_name(i2s->i2sclk);
-+	char *mclk_name, *p, *s = (char *)pname;
-+	int ret, i = 0;
-+
-+	mclk = devm_kzalloc(dev, sizeof(*mclk), GFP_KERNEL);
-+	if (!mclk)
-+		return -ENOMEM;
-+
-+	mclk_name = devm_kcalloc(dev, sizeof(char),
-+				 STM32_I2S_NAME_LEN, GFP_KERNEL);
-+	if (!mclk_name)
-+		return -ENOMEM;
-+
-+	/*
-+	 * Forge mclk clock name from parent clock name and suffix.
-+	 * String after "_" char is stripped in parent name.
-+	 */
-+	p = mclk_name;
-+	while (*s && *s != '_' && (i < (STM32_I2S_NAME_LEN - 7))) {
-+		*p++ = *s++;
-+		i++;
-+	}
-+	strcat(p, "_mclk");
-+
-+	mclk->hw.init = CLK_HW_INIT(mclk_name, pname, &mclk_ops, 0);
-+	mclk->i2s_data = i2s;
-+	hw = &mclk->hw;
-+
-+	dev_dbg(dev, "Register master clock %s\n", mclk_name);
-+	ret = devm_clk_hw_register(&i2s->pdev->dev, hw);
-+	if (ret) {
-+		dev_err(dev, "mclk register fails with error %d\n", ret);
-+		return ret;
-+	}
-+	i2s->i2smclk = hw->clk;
-+
-+	/* register mclk provider */
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, hw);
-+}
-+
- static irqreturn_t stm32_i2s_isr(int irq, void *devid)
- {
- 	struct stm32_i2s_data *i2s = (struct stm32_i2s_data *)devid;
-@@ -405,18 +614,46 @@ static int stm32_i2s_set_sysclk(struct snd_soc_dai *cpu_dai,
- 				int clk_id, unsigned int freq, int dir)
- {
- 	struct stm32_i2s_data *i2s = snd_soc_dai_get_drvdata(cpu_dai);
-+	int ret = 0;
- 
--	dev_dbg(cpu_dai->dev, "I2S MCLK frequency is %uHz\n", freq);
-+	dev_dbg(cpu_dai->dev, "I2S MCLK frequency is %uHz. mode: %s, dir: %s\n",
-+		freq, STM32_I2S_IS_MASTER(i2s) ? "master" : "slave",
-+		dir ? "output" : "input");
- 
--	if ((dir == SND_SOC_CLOCK_OUT) && STM32_I2S_IS_MASTER(i2s)) {
--		i2s->mclk_rate = freq;
-+	/* MCLK generation is available only in master mode */
-+	if (dir == SND_SOC_CLOCK_OUT && STM32_I2S_IS_MASTER(i2s)) {
-+		if (!i2s->i2smclk) {
-+			dev_dbg(cpu_dai->dev, "No MCLK registered\n");
-+			return 0;
-+		}
- 
--		/* Enable master clock if master mode and mclk-fs are set */
--		return regmap_update_bits(i2s->regmap, STM32_I2S_CGFR_REG,
--					  I2S_CGFR_MCKOE, I2S_CGFR_MCKOE);
-+		/* Assume shutdown if requested frequency is 0Hz */
-+		if (!freq) {
-+			/* Release mclk rate only if rate was actually set */
-+			if (i2s->mclk_rate) {
-+				clk_rate_exclusive_put(i2s->i2smclk);
-+				i2s->mclk_rate = 0;
-+			}
-+			return regmap_update_bits(i2s->regmap,
-+						  STM32_I2S_CGFR_REG,
-+						  I2S_CGFR_MCKOE, 0);
-+		}
-+		/* If master clock is used, set parent clock now */
-+		ret = stm32_i2s_set_parent_clock(i2s, freq);
-+		if (ret)
-+			return ret;
-+		ret = clk_set_rate_exclusive(i2s->i2smclk, freq);
-+		if (ret) {
-+			dev_err(cpu_dai->dev, "Could not set mclk rate\n");
-+			return ret;
-+		}
-+		ret = regmap_update_bits(i2s->regmap, STM32_I2S_CGFR_REG,
-+					 I2S_CGFR_MCKOE, I2S_CGFR_MCKOE);
-+		if (!ret)
-+			i2s->mclk_rate = freq;
- 	}
- 
--	return 0;
-+	return ret;
- }
- 
- static int stm32_i2s_configure_clock(struct snd_soc_dai *cpu_dai,
-@@ -424,11 +661,10 @@ static int stm32_i2s_configure_clock(struct snd_soc_dai *cpu_dai,
- {
- 	struct stm32_i2s_data *i2s = snd_soc_dai_get_drvdata(cpu_dai);
- 	unsigned long i2s_clock_rate;
--	unsigned int tmp, div, real_div, nb_bits, frame_len;
-+	unsigned int nb_bits, frame_len;
- 	unsigned int rate = params_rate(params);
-+	u32 cgfr;
+diff --git a/drivers/media/platform/qcom/camss/camss-ispif.c b/drivers/media/platform/qcom/camss/camss-ispif.c
+index c36570042082..e41925850ba2 100644
+--- a/drivers/media/platform/qcom/camss/camss-ispif.c
++++ b/drivers/media/platform/qcom/camss/camss-ispif.c
+@@ -323,14 +323,6 @@ static int ispif_reset(struct ispif_device *ispif, u8 vfe_id)
+ 	struct camss *camss = ispif->camss;
  	int ret;
--	u32 cgfr, cgfr_mask;
--	bool odd;
  
- 	if (!(rate % 11025))
- 		clk_set_parent(i2s->i2sclk, i2s->x11kclk);
-@@ -449,7 +685,10 @@ static int stm32_i2s_configure_clock(struct snd_soc_dai *cpu_dai,
- 	 *   dsp mode : div = i2s_clk / (nb_bits x ws)
- 	 */
- 	if (i2s->mclk_rate) {
--		tmp = DIV_ROUND_CLOSEST(i2s_clock_rate, i2s->mclk_rate);
-+		ret = stm32_i2s_calc_clk_div(i2s, i2s_clock_rate,
-+					     i2s->mclk_rate);
-+		if (ret)
-+			return ret;
- 	} else {
- 		frame_len = 32;
- 		if ((i2s->fmt & SND_SOC_DAIFMT_FORMAT_MASK) ==
-@@ -462,34 +701,13 @@ static int stm32_i2s_configure_clock(struct snd_soc_dai *cpu_dai,
- 			return ret;
- 
- 		nb_bits = frame_len * ((cgfr & I2S_CGFR_CHLEN) + 1);
--		tmp = DIV_ROUND_CLOSEST(i2s_clock_rate, (nb_bits * rate));
--	}
--
--	/* Check the parity of the divider */
--	odd = tmp & 0x1;
--
--	/* Compute the div prescaler */
--	div = tmp >> 1;
--
--	cgfr = I2S_CGFR_I2SDIV_SET(div) | (odd << I2S_CGFR_ODD_SHIFT);
--	cgfr_mask = I2S_CGFR_I2SDIV_MASK | I2S_CGFR_ODD;
--
--	real_div = ((2 * div) + odd);
--	dev_dbg(cpu_dai->dev, "I2S clk: %ld, SCLK: %d\n",
--		i2s_clock_rate, rate);
--	dev_dbg(cpu_dai->dev, "Divider: 2*%d(div)+%d(odd) = %d\n",
--		div, odd, real_div);
--
--	if (((div == 1) && odd) || (div > I2S_CGFR_I2SDIV_MAX)) {
--		dev_err(cpu_dai->dev, "Wrong divider setting\n");
--		return -EINVAL;
-+		ret = stm32_i2s_calc_clk_div(i2s, i2s_clock_rate,
-+					     (nb_bits * rate));
-+		if (ret)
-+			return ret;
- 	}
- 
--	if (!div && !odd)
--		dev_warn(cpu_dai->dev, "real divider forced to 1\n");
--
--	ret = regmap_update_bits(i2s->regmap, STM32_I2S_CGFR_REG,
--				 cgfr_mask, cgfr);
-+	ret = stm32_i2s_set_clk_div(i2s);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -694,9 +912,6 @@ static void stm32_i2s_shutdown(struct snd_pcm_substream *substream,
- 	struct stm32_i2s_data *i2s = snd_soc_dai_get_drvdata(cpu_dai);
- 	unsigned long flags;
- 
--	regmap_update_bits(i2s->regmap, STM32_I2S_CGFR_REG,
--			   I2S_CGFR_MCKOE, (unsigned int)~I2S_CGFR_MCKOE);
--
- 	clk_disable_unprepare(i2s->i2sclk);
- 
- 	spin_lock_irqsave(&i2s->irq_lock, flags);
-@@ -861,6 +1076,13 @@ static int stm32_i2s_parse_dt(struct platform_device *pdev,
- 		return PTR_ERR(i2s->x11kclk);
- 	}
- 
-+	/* Register mclk provider if requested */
-+	if (of_find_property(np, "#clock-cells", NULL)) {
-+		ret = stm32_i2s_add_mclk_provider(i2s);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	/* Get irqs */
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0)
-@@ -906,16 +1128,16 @@ static int stm32_i2s_probe(struct platform_device *pdev)
- 	if (!i2s)
- 		return -ENOMEM;
- 
--	ret = stm32_i2s_parse_dt(pdev, i2s);
--	if (ret)
+-	ret = camss_pm_domain_on(camss, PM_DOMAIN_VFE0);
+-	if (ret < 0)
 -		return ret;
 -
- 	i2s->pdev = pdev;
- 	i2s->ms_flg = I2S_MS_NOT_SET;
- 	spin_lock_init(&i2s->lock_fd);
- 	spin_lock_init(&i2s->irq_lock);
- 	platform_set_drvdata(pdev, i2s);
+-	ret = camss_pm_domain_on(camss, PM_DOMAIN_VFE1);
+-	if (ret < 0)
+-		return ret;
+-
+ 	ret = camss_enable_clocks(ispif->nclocks_for_reset,
+ 				  ispif->clock_for_reset,
+ 				  camss->dev);
+@@ -343,9 +335,6 @@ static int ispif_reset(struct ispif_device *ispif, u8 vfe_id)
  
-+	ret = stm32_i2s_parse_dt(pdev, i2s);
-+	if (ret)
-+		return ret;
+ 	camss_disable_clocks(ispif->nclocks_for_reset, ispif->clock_for_reset);
+ 
+-	camss_pm_domain_off(camss, PM_DOMAIN_VFE0);
+-	camss_pm_domain_off(camss, PM_DOMAIN_VFE1);
+-
+ 	return ret;
+ }
+ 
+diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
+index fa9629835e98..e41c22da4b9b 100644
+--- a/drivers/media/platform/qcom/camss/camss-vfe.c
++++ b/drivers/media/platform/qcom/camss/camss-vfe.c
+@@ -587,10 +587,6 @@ static int vfe_get(struct vfe_device *vfe)
+ 	mutex_lock(&vfe->power_lock);
+ 
+ 	if (vfe->power_count == 0) {
+-		ret = camss_pm_domain_on(vfe->camss, vfe->id);
+-		if (ret < 0)
+-			goto error_pm_domain;
+-
+ 		ret = pm_runtime_get_sync(vfe->camss->dev);
+ 		if (ret < 0)
+ 			goto error_pm_runtime_get;
+@@ -627,9 +623,7 @@ static int vfe_get(struct vfe_device *vfe)
+ 
+ error_pm_runtime_get:
+ 	pm_runtime_put_sync(vfe->camss->dev);
+-	camss_pm_domain_off(vfe->camss, vfe->id);
+ 
+-error_pm_domain:
+ 	mutex_unlock(&vfe->power_lock);
+ 
+ 	return ret;
+@@ -653,7 +647,6 @@ static void vfe_put(struct vfe_device *vfe)
+ 		}
+ 		camss_disable_clocks(vfe->nclocks, vfe->clock);
+ 		pm_runtime_put_sync(vfe->camss->dev);
+-		camss_pm_domain_off(vfe->camss, vfe->id);
+ 	}
+ 
+ 	vfe->power_count--;
+diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+index 7e7763f04b58..22f9d7d7085a 100644
+--- a/drivers/media/platform/qcom/camss/camss.c
++++ b/drivers/media/platform/qcom/camss/camss.c
+@@ -774,28 +774,6 @@ int camss_get_pixel_clock(struct media_entity *entity, u32 *pixel_clock)
+ 	return 0;
+ }
+ 
+-int camss_pm_domain_on(struct camss *camss, int id)
+-{
+-	if (camss->version == CAMSS_8x96 ||
+-	    camss->version == CAMSS_660) {
+-		camss->genpd_link[id] = device_link_add(camss->dev,
+-				camss->genpd[id], DL_FLAG_STATELESS |
+-				DL_FLAG_PM_RUNTIME | DL_FLAG_RPM_ACTIVE);
+-
+-		if (!camss->genpd_link[id])
+-			return -EINVAL;
+-	}
+-
+-	return 0;
+-}
+-
+-void camss_pm_domain_off(struct camss *camss, int id)
+-{
+-	if (camss->version == CAMSS_8x96 ||
+-	    camss->version == CAMSS_660)
+-		device_link_del(camss->genpd_link[id]);
+-}
+-
+ /*
+  * camss_of_parse_endpoint_node - Parse port endpoint node
+  * @dev: Device
+@@ -1214,6 +1192,48 @@ static const struct media_device_ops camss_media_ops = {
+ 	.link_notify = v4l2_pipeline_link_notify,
+ };
+ 
 +
- 	ret = stm32_i2s_dais_init(pdev, i2s);
- 	if (ret)
- 		return ret;
++static int camss_configure_pd(struct camss *camss)
++{
++	int nbr_pm_domains = 0;
++	int last_pm_domain = 0;
++	int i;
++	int ret;
++
++	if (camss->version == CAMSS_8x96 ||
++	    camss->version == CAMSS_660)
++		nbr_pm_domains = PM_DOMAIN_CAMSS_COUNT;
++
++	for (i = 0; i < nbr_pm_domains; i++) {
++		camss->genpd[i] = dev_pm_domain_attach_by_id(camss->dev, i);
++		if (IS_ERR(camss->genpd[i])) {
++			ret = PTR_ERR(camss->genpd[i]);
++			goto fail_pm;
++		}
++
++		camss->genpd_link[i] = device_link_add(camss->dev, camss->genpd[i],
++			DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME | DL_FLAG_RPM_ACTIVE);
++
++		if (!camss->genpd_link[i]) {
++			dev_pm_domain_detach(camss->genpd[i], true);
++			ret = -EINVAL;
++			goto fail_pm;
++		}
++
++		last_pm_domain = i;
++	}
++
++	return 0;
++
++fail_pm:
++	for (i = 0; i < last_pm_domain; i++) {
++		device_link_del(camss->genpd_link[i]);
++		dev_pm_domain_detach(camss->genpd[i], true);
++	}
++
++	return ret;
++}
++
+ /*
+  * camss_probe - Probe CAMSS platform device
+  * @pdev: Pointer to CAMSS platform device
+@@ -1346,20 +1366,10 @@ static int camss_probe(struct platform_device *pdev)
+ 		}
+ 	}
+ 
+-	if (camss->version == CAMSS_8x96 ||
+-	    camss->version == CAMSS_660) {
+-		camss->genpd[PM_DOMAIN_VFE0] = dev_pm_domain_attach_by_id(
+-						camss->dev, PM_DOMAIN_VFE0);
+-		if (IS_ERR(camss->genpd[PM_DOMAIN_VFE0]))
+-			return PTR_ERR(camss->genpd[PM_DOMAIN_VFE0]);
+-
+-		camss->genpd[PM_DOMAIN_VFE1] = dev_pm_domain_attach_by_id(
+-						camss->dev, PM_DOMAIN_VFE1);
+-		if (IS_ERR(camss->genpd[PM_DOMAIN_VFE1])) {
+-			dev_pm_domain_detach(camss->genpd[PM_DOMAIN_VFE0],
+-					     true);
+-			return PTR_ERR(camss->genpd[PM_DOMAIN_VFE1]);
+-		}
++	ret = camss_configure_pd(camss);
++	if (ret < 0) {
++		dev_err(dev, "Failed to configure power domains: %d\n", ret);
++		return ret;
+ 	}
+ 
+ 	pm_runtime_enable(dev);
+@@ -1380,6 +1390,9 @@ static int camss_probe(struct platform_device *pdev)
+ 
+ void camss_delete(struct camss *camss)
+ {
++	int nbr_pm_domains = 0;
++	int i;
++
+ 	v4l2_device_unregister(&camss->v4l2_dev);
+ 	media_device_unregister(&camss->media_dev);
+ 	media_device_cleanup(&camss->media_dev);
+@@ -1387,9 +1400,12 @@ void camss_delete(struct camss *camss)
+ 	pm_runtime_disable(camss->dev);
+ 
+ 	if (camss->version == CAMSS_8x96 ||
+-	    camss->version == CAMSS_660) {
+-		dev_pm_domain_detach(camss->genpd[PM_DOMAIN_VFE0], true);
+-		dev_pm_domain_detach(camss->genpd[PM_DOMAIN_VFE1], true);
++	    camss->version == CAMSS_660)
++		nbr_pm_domains = PM_DOMAIN_CAMSS_COUNT;
++
++	for (i = 0; i < nbr_pm_domains; i++) {
++		device_link_del(camss->genpd_link[i]);
++		dev_pm_domain_detach(camss->genpd[i], true);
+ 	}
+ 
+ 	kfree(camss);
+diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
+index b7ad8e9f68a8..7560d85b3352 100644
+--- a/drivers/media/platform/qcom/camss/camss.h
++++ b/drivers/media/platform/qcom/camss/camss.h
+@@ -57,9 +57,9 @@ struct resources_ispif {
+ };
+ 
+ enum pm_domain {
+-	PM_DOMAIN_VFE0,
+-	PM_DOMAIN_VFE1,
+-	PM_DOMAIN_COUNT
++	PM_DOMAIN_VFE0 = 0,
++	PM_DOMAIN_VFE1 = 1,
++	PM_DOMAIN_CAMSS_COUNT = 2,	/* CAMSS series of ISPs */
+ };
+ 
+ enum camss_version {
+@@ -83,8 +83,8 @@ struct camss {
+ 	int vfe_num;
+ 	struct vfe_device *vfe;
+ 	atomic_t ref_count;
+-	struct device *genpd[PM_DOMAIN_COUNT];
+-	struct device_link *genpd_link[PM_DOMAIN_COUNT];
++	struct device *genpd[PM_DOMAIN_CAMSS_COUNT];
++	struct device_link *genpd_link[PM_DOMAIN_CAMSS_COUNT];
+ };
+ 
+ struct camss_camera_interface {
+@@ -110,8 +110,6 @@ int camss_enable_clocks(int nclocks, struct camss_clock *clock,
+ void camss_disable_clocks(int nclocks, struct camss_clock *clock);
+ struct media_entity *camss_find_sensor(struct media_entity *entity);
+ int camss_get_pixel_clock(struct media_entity *entity, u32 *pixel_clock);
+-int camss_pm_domain_on(struct camss *camss, int id);
+-void camss_pm_domain_off(struct camss *camss, int id);
+ void camss_delete(struct camss *camss);
+ 
+ #endif /* QC_MSM_CAMSS_H */
 -- 
-2.17.1
+2.27.0
 
