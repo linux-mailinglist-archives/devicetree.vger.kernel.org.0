@@ -2,167 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F35303116A4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 00:19:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CC3A3116A6
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 00:19:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbhBEXJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 18:09:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53220 "EHLO
+        id S229548AbhBEXJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 18:09:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229832AbhBEKHB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:07:01 -0500
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA8AC06178A
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 02:06:18 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id e132so6172599ybh.8
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 02:06:18 -0800 (PST)
+        with ESMTP id S231542AbhBEKpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:45:40 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41E02C061793
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 02:44:51 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id w4so5611713wmi.4
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 02:44:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Qlca0su+U02LsbC3LLD1AYGrfUlPzDaezLX5AMYp+eo=;
-        b=GlB8KK/AC8pgbczI0FcWoM7bJ5I+52mIFSdzFSd2Vp/n9A4AAg0PL8npODANtmmWeO
-         Wp8+EGrJW8RX9/K66tcc74TJJBZYWiZBVxalvlbwTOyHjCnoYrkXQSyszVBfN3wfuvg0
-         0iXcbwp475fdB6w/4sLRAqMVajtGPgAVQ968qn1mQtbjC2ZdKyRdYS60f1uldjebwwbD
-         RVDVqX8hmVeB8ecWq9QyN43MCPAbkWRW+G21hQU6zR2d6mAh3s2vUST9QTs+YZRjC3CE
-         Qq2xGMxZXJaEphn6UgVzAasrYoEcTxO9EoGv0cNqh1xr53kIdq88H0KQaSI23X0CpM41
-         sJjA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PscHFxOMqgQynPYB8wJSydBOtl1mB/ZENgiaMJXnBNg=;
+        b=Xnwy6Stvyl7d4mKYFauSzv4Ov4mLtGai8oShxV8Wzv7cqw2yCwQ3bVX43bFIPPnBFV
+         axNNOqrQiHNBZ/HsdXiar0jdpxQCUAYtkn3S/VL1BCznwnKQJS0Lqj/vXKV/q9arYQqL
+         FjpcjUrWWxDv0aGM716N7nsK633aaqZ4dWKRUUwXOGNs4HOWgbg3meFv5qrrjq1WI6OY
+         CVco7R9OdXitqKx+IbjVCDsXGwBdKbXHyAr0rCR/JzcqRkL60OX/KiOwfjsSFlABxIDE
+         TV7YAuq16tEpdsJuLElNu1MJUbXBmxQ2/Fvd4pUlBqYENcn/jiA6aQCltNiBsGIl8D+c
+         e/ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Qlca0su+U02LsbC3LLD1AYGrfUlPzDaezLX5AMYp+eo=;
-        b=C8pysWe/DQqqF4ho1yMqC+67JlVJO90uFv9w6fqPExlRJxAj4uWq2uYPU8zMQs2Bqx
-         6w9KA/ZwyxrS5tE0id7xV3CCLWqkyzhIm8MW4PaPHtcTUGO8GS5qOKdoClAT4fQkOSX5
-         qlpDzID+Z82klRSktfC8xMuQnr0ZctO3zUPoVEptcZ2WL+IAG+MQjsAzpu+EgyqHg4cF
-         kcJMQc9sFwjwM5jXx6/6ldz73ztCQXzTyY0KwdKB0pCT9RVnGEeUjrfbtqt/ozuEMHGv
-         jOgPTMUEXpDWEdZfqmcafzAKDVXjfrqbyW3mzhMPIp29SDVNQcQbubVOGJb6TrrAp55F
-         bHHQ==
-X-Gm-Message-State: AOAM532Tme9Ry5mzr0vSbm27/NEHHwNMDQH3QQsO4TwXf8Tg1yPqMp2N
-        dEdLckM7QbR2sZowV0ZZPjBUrEJlOpYhqY1/nLXtTA==
-X-Google-Smtp-Source: ABdhPJyW8GfWJvznKAIv9fkh9s+dgE5JsOR2n/TnXb5uyNuJ1xs1XK3M+JJN8pdzVpQtHnvoezuJsF3m6mBiZ2M8aJI=
-X-Received: by 2002:a25:f8a:: with SMTP id 132mr4973807ybp.228.1612519577059;
- Fri, 05 Feb 2021 02:06:17 -0800 (PST)
-MIME-Version: 1.0
-References: <20210121225712.1118239-1-saravanak@google.com>
- <CGME20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c@eucas1p2.samsung.com>
- <20210121225712.1118239-3-saravanak@google.com> <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
- <CAGETcx_KDA55Ti=5CHw48BP1L2Xo64=AFFe+17g27n=P-KUrow@mail.gmail.com>
- <6b606a5d-0435-1e9d-ac61-a8dacf051067@samsung.com> <CAMuHMdWqZonpeyk59b=o_3EKOQx4TxUZE4Jeo-Kxy_o_3CQvnQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWqZonpeyk59b=o_3EKOQx4TxUZE4Jeo-Kxy_o_3CQvnQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 5 Feb 2021 02:05:41 -0800
-Message-ID: <CAGETcx9Rqa7PygjSiQvadm7C2bpxS2rCf5oB_pFhjh+ESV-WQA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PscHFxOMqgQynPYB8wJSydBOtl1mB/ZENgiaMJXnBNg=;
+        b=bfKtniyB0ws6slb3T2WEbKQ262o5EQHxVk+0dVOJpk7okymog+jZE7m7i9VcesdLIk
+         L1nwWzZYY1xJdmFU9APcdv1Dn3PjVqC4akbHQOUfukAf4J8YskbD3FJnEOqSLvlVawwX
+         GclxYUF1cvsbF3MLMpMeDlTALSMZmy5w5yzvPczNqMtkhpRQo5dkFbl97JUrzKEgst00
+         sGmjv76e9bv1+piE3vZCJplgfO+LhmBlXmHF9rZK5z3uc4j7A3ETijHofhtsR4piDQtz
+         OYBeuGuAUi8OBHyp9KjADrmZcHh2vbVtEYZYngxNrYexp4okEOAycFK1+nf3O7Lggfxm
+         1yKQ==
+X-Gm-Message-State: AOAM532fb0Gneu2TbJ01g8Ivx5CgxSP9dFjXVR1j41E1Gc7nFSMfV5eg
+        IV9tGUv44jXbpWjuU3aq5c0Jgw==
+X-Google-Smtp-Source: ABdhPJwCYhuOndrmaR6NkwZDOMSptgFNZUKBjUqRiHuxhmTMygAkfKARJfqiGnPk4elsLNgYvTqeLQ==
+X-Received: by 2002:a05:600c:4f0d:: with SMTP id l13mr3055927wmq.92.1612521889780;
+        Fri, 05 Feb 2021 02:44:49 -0800 (PST)
+Received: from localhost.localdomain ([2a02:2450:102f:d6a:38fd:e0db:ea01:afc8])
+        by smtp.gmail.com with ESMTPSA id u4sm11300233wrr.37.2021.02.05.02.44.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Feb 2021 02:44:49 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, mchehab@kernel.org, robh+dt@kernel.org,
+        angelogioacchino.delregno@somainline.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
         Rob Herring <robh@kernel.org>,
-        Thierry Reding <treding@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>
+Cc:     Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+Subject: [PATCH v4 00/22] Add support for the SDM845 Camera Subsystem
+Date:   Fri,  5 Feb 2021 11:43:52 +0100
+Message-Id: <20210205104414.299732-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 5, 2021 at 12:06 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Marek,
->
-> On Fri, Feb 5, 2021 at 8:38 AM Marek Szyprowski
-> <m.szyprowski@samsung.com> wrote:
-> > On 04.02.2021 22:31, Saravana Kannan wrote:
-> > > On Thu, Feb 4, 2021 at 3:52 AM Marek Szyprowski
-> > > <m.szyprowski@samsung.com> wrote:
-> > >> On 21.01.2021 23:57, Saravana Kannan wrote:
-> > >>> This allows fw_devlink to create device links between consumers of an
-> > >>> interrupt and the supplier of the interrupt.
-> > >>>
-> > >>> Cc: Marc Zyngier <maz@kernel.org>
-> > >>> Cc: Kevin Hilman <khilman@baylibre.com>
-> > >>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > >>> Reviewed-by: Rob Herring <robh@kernel.org>
-> > >>> Reviewed-by: Thierry Reding <treding@nvidia.com>
-> > >>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > >>> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > >> This patch landed some time ago in linux-next as commit 4104ca776ba3
-> > >> ("of: property: Add fw_devlink support for interrupts"). It breaks MMC
-> > >> host controller operation on ARM Juno R1 board (the mmci@50000 device
-> > >> defined in arch/arm64/boot/dts/arm/juno-motherboard.dtsi). I didn't
-> > > I grepped around and it looks like the final board file is this or
-> > > whatever includes it?
-> > > arch/arm64/boot/dts/arm/juno-base.dtsi
-> > The final board file is arch/arm64/boot/dts/arm/juno-r1.dts
-> > > This patch just finds the interrupt-parent and then tries to use that
-> > > as a supplier if "interrupts" property is listed. But the only
-> > > interrupt parent I can see is:
-> > >          gic: interrupt-controller@2c010000 {
-> > >                  compatible = "arm,gic-400", "arm,cortex-a15-gic";
-> > >
-> > > And the driver uses IRQCHIP_DECLARE() and hence should be pretty much
-> > > a NOP since those suppliers are never devices and are ignored.
-> > > $ git grep "arm,gic-400" -- drivers/
-> > > drivers/irqchip/irq-gic.c:IRQCHIP_DECLARE(gic_400, "arm,gic-400", gic_of_init);
-> > >
-> > > This doesn't make any sense. Am I looking at the right files? Am I
-> > > missing something?
-> >
-> > Okay, I've added displaying a list of deferred devices when mounting
-> > rootfs fails and got following items:
-> >
-> > Deferred devices:
-> > 18000000.ethernet        platform: probe deferral - supplier
-> > bus@8000000:motherboard-bus not ready
-> > 1c050000.mmci    amba: probe deferral - supplier
-> > bus@8000000:motherboard-bus not ready
-> > 1c1d0000.gpio    amba: probe deferral - supplier
-> > bus@8000000:motherboard-bus not ready
-> > 2b600000.iommu   platform: probe deferral - wait for supplier
-> > scpi-power-domains
-> > 7ff50000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
-> > 7ff60000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
-> > 1c060000.kmi     amba: probe deferral - supplier
-> > bus@8000000:motherboard-bus not ready
-> > 1c070000.kmi     amba: probe deferral - supplier
-> > bus@8000000:motherboard-bus not ready
-> > 1c170000.rtc     amba: probe deferral - supplier
-> > bus@8000000:motherboard-bus not ready
-> > 1c0f0000.wdt     amba: probe deferral - supplier
-> > bus@8000000:motherboard-bus not ready
-> > gpio-keys
-> > Kernel panic - not syncing: VFS: Unable to mount root fs on
-> > unknown-block(0,0)
-> >
-> > I don't see the 'bus@8000000:motherboard-bus' on the deferred devices
-> > list, so it looks that device core added a link to something that is not
-> > a platform device...
+This series implements support for the camera subsystem found in
+the SDM845 SOCs and the Titan 170 ISP. The support is partial
+in that it implements CSIPHY, CSID, and partial VFE support.
 
-Probe deferred devices (even platform devices) not showing up in that
-list is not unusual. That's because devices end up on that list only
-after a driver for them is matched and then it fails.
+The Titan generation of the ISP diverges a fair amount from the
+design of the previous architecture generation, CAMSS. As a result
+some pretty invasive refactoring is done in this series. It also
+means that at this time we're unable to implement support for all
+of the IP blocks contained. This is due to a combination of legal
+considerations with respect to the IP and its owner Qualcomm and
+time & man hour constrains on the Linaro side.
 
->
-> Lemme guess: bus@8000000 is a simple bus, but it has an
-> interrupt-map, and the devlink code doesn't follow the mapping?
->
+The CSIPHY (CSI Physical Layer) & CSID (CSI Decoder) support is
+complete, but the VFE (Video Front End, which is referred to as IFE
+(Image Front End) in the Titan generation of ISPs) only has support
+for the RDI (Raw Dump Interface) which allows the raw output of
+the CSID to be written to memory.
 
-No, what's happening is that (and this is something I just learned)
-that if a parent has an "#interrupt-cells" property, it becomes your
-interrupt parent. In this case, the motherboard-bus (still a platform
-device) is the parent, but it never probes (because it's simple-bus
-and "arm,vexpress,v2p-p1"). But it becomes the interrupt parent. And
-this mmci device is marked as a consumer of this bus (while still a
-grand-child). Yeah, I'm working on patches (multiple rewrites) to take
-care of cases like this.
+The 2nd interface implemented in the VFE silicon is the PIX
+interface, and camss does not support it for this generation of ISPs.
+The reason for this is that the PIX interface is used for sending
+image data to the BPS (Bayer Processing Section) & IPE (Image
+Processing Engine), but both of these units are beyond the scope
+of enabling basic ISP functionality for the SDM845.
 
--Saravana
+Since the Titan architecture generation diverges quite a bit from
+the CAMSS generation, a lot of pretty major refactoring is carried
+out in this series. Both the CSID & VFE core paths are made more
+general and hardware version specific parts are broken out.
+The CSIPHY didn't require quite as radical changes and therefore
+keeps its current form.
+
+Tested on:
+ - Qcom RB3 / db845c + camera mezzanine, which is SDM845 based
+ - db410c + D3 Camera mezzanine, which is APQ8016 based
+ 
+Branch:
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v1
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v2
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v3
+
+
+Due to the dt-bindings supporting sdm660-camss, this series depends
+the sdm660 clock driver being upstreamed. I've linked this series below.
+
+SDM630/660 Multimedia and GPU clock controllers
+https://lkml.org/lkml/2020/9/26/166
+
+
+Robert Foss (22):
+  media: camss: Fix vfe_isr_comp_done() documentation
+  media: camss: Fix vfe_isr comment typo
+  media: camss: Replace trace_printk() with dev_dbg()
+  media: camss: Add CAMSS_845 camss version
+  media: camss: Make ISPIF subdevice optional
+  media: camss: Refactor VFE HW version support
+  media: camss: Add support for VFE hardware version Titan 170
+  media: camss: Add missing format identifiers
+  media: camss: Refactor CSID HW version support
+  media: camss: Add support for CSID hardware version Titan 170
+  media: camss: Add support for CSIPHY hardware version Titan 170
+  media: camss: Remove per VFE power domain toggling
+  media: camss: Enable SDM845
+  dt-bindings: media: camss: Add qcom,msm8916-camss binding
+  dt-bindings: media: camss: Add qcom,msm8996-camss binding
+  dt-bindings: media: camss: Add qcom,sdm660-camss binding
+  dt-bindings: media: camss: Add qcom,sdm845-camss binding
+  MAINTAINERS: Change CAMSS documentation to use dtschema bindings
+  media: dt-bindings: media: Remove qcom,camss documentation
+  arm64: dts: sdm845: Add CAMSS ISP node
+  arm64: dts: sdm845-db845c: Configure regulators for camss node
+  arm64: dts: sdm845-db845c: Enable ov8856 sensor and connect to ISP
+
+ .../devicetree/bindings/media/qcom,camss.txt  |  236 ----
+ .../bindings/media/qcom,msm8916-camss.yaml    |  256 ++++
+ .../bindings/media/qcom,msm8996-camss.yaml    |  387 ++++++
+ .../bindings/media/qcom,sdm660-camss.yaml     |  398 ++++++
+ .../bindings/media/qcom,sdm845-camss.yaml     |  370 ++++++
+ MAINTAINERS                                   |    2 +-
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |   23 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  135 ++
+ drivers/media/platform/qcom/camss/Makefile    |    6 +
+ .../platform/qcom/camss/camss-csid-170.c      |  602 +++++++++
+ .../platform/qcom/camss/camss-csid-4-1.c      |  338 +++++
+ .../platform/qcom/camss/camss-csid-4-7.c      |  406 ++++++
+ .../media/platform/qcom/camss/camss-csid.c    |  620 +--------
+ .../media/platform/qcom/camss/camss-csid.h    |  178 ++-
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         |  182 ++-
+ .../media/platform/qcom/camss/camss-csiphy.c  |   66 +-
+ .../media/platform/qcom/camss/camss-ispif.c   |  117 +-
+ .../media/platform/qcom/camss/camss-ispif.h   |    3 +-
+ .../media/platform/qcom/camss/camss-vfe-170.c |  804 ++++++++++++
+ .../media/platform/qcom/camss/camss-vfe-4-1.c |  123 +-
+ .../media/platform/qcom/camss/camss-vfe-4-7.c |  244 ++--
+ .../media/platform/qcom/camss/camss-vfe-4-8.c | 1164 +++++++++++++++++
+ .../platform/qcom/camss/camss-vfe-gen1.c      |  763 +++++++++++
+ .../platform/qcom/camss/camss-vfe-gen1.h      |  110 ++
+ drivers/media/platform/qcom/camss/camss-vfe.c |  840 +-----------
+ drivers/media/platform/qcom/camss/camss-vfe.h |  118 +-
+ .../media/platform/qcom/camss/camss-video.c   |  100 ++
+ drivers/media/platform/qcom/camss/camss.c     |  419 ++++--
+ drivers/media/platform/qcom/camss/camss.h     |   17 +-
+ 29 files changed, 6965 insertions(+), 2062 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/qcom,camss.txt
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-170.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-4-1.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-4-7.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-170.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-4-8.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-gen1.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-gen1.h
+
+-- 
+2.27.0
+
