@@ -2,196 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17CFC311A15
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:32:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC992311A2A
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:33:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbhBFD36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 22:29:58 -0500
-Received: from mga17.intel.com ([192.55.52.151]:55062 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230103AbhBFD1b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Feb 2021 22:27:31 -0500
-IronPort-SDR: 5xS4w/a+oEydoeWuetAaiyRYsR/Pzhp4W+X0IR7GY7dqocthjeA+hWSNI4F2CyXovg47bCyjHM
- ys2BELtayOkA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9886"; a="161252151"
-X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; 
-   d="scan'208";a="161252151"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2021 14:52:10 -0800
-IronPort-SDR: RySe2jKXU4lzXShaz4+/13E+2zcrbQy8XbZ/V8Dv8FKWSZ0IvHZ3KH98krrWouoXzs6We5YiVT
- 6c2eET8CJvVw==
-X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; 
-   d="scan'208";a="581453544"
-Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2021 14:52:09 -0800
-Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id 97B166365;
-        Fri,  5 Feb 2021 14:52:09 -0800 (PST)
-Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
-        id 8C249363624; Fri,  5 Feb 2021 14:52:09 -0800 (PST)
-From:   mgross@linux.intel.com
-To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
-        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
-        gregkh@linuxfoundation.org, corbet@lwn.net,
-        palmerdabbelt@google.com, paul.walmsley@sifive.com,
-        peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
-        jassisinghbrar@gmail.com
-Cc:     linux-kernel@vger.kernel.org,
-        "C, Udhayakumar" <udhayakumar.c@intel.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v5 32/34] dt-bindings: misc: hddl_dev: Add hddl device management documentation
-Date:   Fri,  5 Feb 2021 14:52:02 -0800
-Message-Id: <20210205225204.32902-33-mgross@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210205225204.32902-1-mgross@linux.intel.com>
-References: <20210205225204.32902-1-mgross@linux.intel.com>
+        id S230448AbhBFDcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 22:32:46 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:40442 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230413AbhBFDaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 22:30:03 -0500
+Received: by mail-ot1-f48.google.com with SMTP id i20so8927457otl.7;
+        Fri, 05 Feb 2021 19:29:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mxnIFywdT9xUbNO9H2UneBOcEjIlQcVWaQNkaPhN+vs=;
+        b=phZsmIiLGrYnSb2x0afQzUdsML6nA9C5se8tPxm4ajTVYvMCKnR3+cTyC0WBRC2Z6T
+         8D09NUY3efo0mPkcAOFQBS1Bx26Mj82Luc6LNSBpo1F1OHZY6pMNq9GYsEb7xJjr7Wcn
+         Tao3e3dZ5U8hNe+/7D/ovKm5yfa2xBVSaJyNEwIxGJ7DK8aouwX7VrJ4X8IlMyqS3O5X
+         x29uI7E3w1Ls7W1VghaVYb+5EXK3u/pTCmoCdDAjqOhFl4L8zjWS0j7VJBaPbRcA1XK8
+         ryKyzPCQ7P+i/2HXA0LJ9yFd2JukYaD1DJ+7HF+QPCbHsNoPw3ngN76c6ssQBwVCOSZH
+         olpQ==
+X-Gm-Message-State: AOAM532D1BgShr7fhJxd+h3NZKqk/tJjMY7xTYJuPC0KP9aJloiHOwXK
+        1yTOtT9mVQVNjSEDRrFjJjBS2aWtYw==
+X-Google-Smtp-Source: ABdhPJzNgDcQeIwJUmVNF2N1Ty0TwcWQwG5fL8hjfJCXFld6MJNH3sK1yxm9gS20vW/sgM4DeTBSwQ==
+X-Received: by 2002:a9d:4d85:: with SMTP id u5mr5029369otk.47.1612566996937;
+        Fri, 05 Feb 2021 15:16:36 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o20sm27784otp.20.2021.02.05.15.16.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Feb 2021 15:16:35 -0800 (PST)
+Received: (nullmailer pid 3944047 invoked by uid 1000);
+        Fri, 05 Feb 2021 23:16:34 -0000
+Date:   Fri, 5 Feb 2021 17:16:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jiada Wang <jiada_wang@mentor.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-tegra@vger.kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Nick Dyer <nick@shmanahar.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: input: atmel_mxt_ts: Document
+ atmel,wakeup-method and WAKE line GPIO
+Message-ID: <20210205231634.GA3944013@robh.at.kernel.org>
+References: <20210122200659.7404-1-digetx@gmail.com>
+ <20210122200659.7404-2-digetx@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210122200659.7404-2-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "C, Udhayakumar" <udhayakumar.c@intel.com>
+On Fri, 22 Jan 2021 23:06:57 +0300, Dmitry Osipenko wrote:
+> Some Atmel touchscreen controllers have a WAKE line that needs to be
+> asserted low in order to wake up controller from a deep sleep. Document
+> the wakeup methods and the new GPIO properties.
+> 
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../bindings/input/atmel,maxtouch.yaml        | 29 +++++++++++++++++++
+>  include/dt-bindings/input/atmel-maxtouch.h    | 10 +++++++
+>  2 files changed, 39 insertions(+)
+>  create mode 100644 include/dt-bindings/input/atmel-maxtouch.h
+> 
 
-Add hddl device management documentation
-
-The HDDL client driver acts as an software RTC to sync with network time.
-It abstracts xlink protocol to communicate with remote IA host.
-This driver exports the details about sensors available in the platform
-to remote IA host as xlink packets.
-This driver also handles device connect/disconnect events and identifies
-board id and soc id using gpio's based on platform configuration.
-
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: C Udhayakumar <udhayakumar.c@intel.com>
-Signed-off-by: Mark Gross <mgross@linux.intel.com>
----
- .../bindings/misc/intel,hddl-client.yaml      | 117 ++++++++++++++++++
- 1 file changed, 117 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
-
-diff --git a/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml b/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
-new file mode 100644
-index 000000000000..522b461663b5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
-@@ -0,0 +1,117 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/misc/intel,hddl-client.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel hddl client device to handle platform management in Bay series
-+
-+maintainers:
-+  - Udhayakumar C <udhayakumar.c@intel.com>
-+
-+description: |
-+  The HDDL client driver acts as an software RTC to sync with network time.
-+  It abstracts xlink protocol to communicate with remote host. This driver
-+  exports the details about sensors available in the platform to remote
-+  host as xlink packets.
-+  This driver also handles device connect/disconnect events and identifies
-+  board id and soc id using gpio's based on platform configuration.
-+
-+select: false
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: intel,hddl-client
-+
-+  reg:
-+    minItems: 4
-+    maxItems: 4
-+
-+  xlink_chan:
-+    minItems: 1
-+    maxItems: 1
-+    description: xlink channel number used for communication
-+                 with remote host for time sync and sharing sensor
-+                 details available in platform.
-+
-+  i2c_xlink_chan:
-+    minItems: 1
-+    maxItems: 1
-+    description: xlink channel number used for communication
-+                 with remote host for xlink i2c smbus.
-+
-+  sensor_name:
-+    type: object
-+    description:
-+      Details about sensors and its configuration on local host and remote
-+      host.
-+
-+    properties:
-+      compatible:
-+        items:
-+          - const: intel_tsens
-+
-+      reg:
-+        description: i2c slave address for sensor.
-+
-+      local-host:
-+        minItems: 1
-+        maxItems: 1
-+        description: enable bit 0 to register sensor as i2c slave
-+                     in local host (normal i2c client)
-+                     enable bit 1 to mimic sensor as i2c slave
-+                     in local host (onchip sensors as i2c slave)
-+                     enable bit 2 to register i2c slave as xlink smbus slave
-+                     in local host.
-+      remote-host:
-+        minItems: 1
-+        maxItems: 1
-+        description: enable bit 0 to register sensor as i2c slave
-+                     in remote host (normal i2c client)
-+                     enable bit 1 to mimic sensor as i2c slave
-+                     in remote host (onchip sensors as i2c slave)
-+                     enable bit 2 to register i2c slave as xlink smbus slave
-+                     in remote host.
-+
-+      bus:
-+        minItems: 1
-+        maxItems: 1
-+        description: i2c bus number for the i2c client device.
-+
-+    required:
-+      - compatible
-+      - reg
-+      - local-host
-+      - remote-host
-+      - bus
-+
-+required:
-+  - compatible
-+  - reg
-+  - xlink_chan
-+  - i2c_xlink_chan
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    hddl_dev{
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        hddl@20320000 {
-+                compatible = "intel,hddl-client";
-+                status = "disabled";
-+                reg = <0x0 0x20320000 0x0 0x800>;
-+                xlink_chan = <1080>;
-+                i2c_xlink_chan = <1081>;
-+                kmb_xlink_tj {
-+                  status = "okay";
-+                  compatible = "intel_tsens";
-+                  local-host = <0x3>;
-+                  remote-host = <0x3>;
-+                  bus = <0x1>;
-+                };
-+        };
-+    };
--- 
-2.17.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
