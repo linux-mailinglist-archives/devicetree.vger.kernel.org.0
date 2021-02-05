@@ -2,83 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3830E310754
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 10:10:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 606D9310768
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 10:13:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbhBEJI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 04:08:57 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:45248 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229789AbhBEJEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 04:04:00 -0500
-Received: by mail-ot1-f44.google.com with SMTP id o12so6169626ote.12;
-        Fri, 05 Feb 2021 01:03:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=l7Sh3OKLYK8/nf4Ykbw6S9nNzg4ZLGDikm1EE1e+r9w=;
-        b=BAJliugn1VP7rzDxtX5QFmZOoCdMLCRpQHTD1ZQHv9dDdr6hOpp4Lup7OmQAInlv85
-         4ZzXLhCSB7xX228VLxZhwOkqsdX17VImR5c875iACbtxeVUQiWRYk6yhmVQXyilmxI/H
-         zxSgoUkDZBYfmVnnhyinH3Ej7eilgxWbMG4pYH+uN3Zc7yYy0tafkCBhyudG83rTLgRm
-         87mvseeFQ9F0fBQaKZCKZoTpqjYBlcTPt2fhhfKsRpSDftIzpr52dKEenles6Yt7hxQr
-         X+WFLasyn4BizDMJ8KLKXV8HtSu2Q2EyapMd6yaUR4UeHPLXbGhO6d3nocxNrk95fI+F
-         MOSA==
-X-Gm-Message-State: AOAM531qirj9Jy27no4bdO9q5FUWwRDucVnK9eLHh7YK8KrFN7KYhQ/R
-        5r8XN2M5hnadRTwtJxBb1vE2i3EYlLQw/rtXnjbFAwss2xQ=
-X-Google-Smtp-Source: ABdhPJwj49VQVnIUkrsrhrUkZIoxqLtC0zpgNHTh266wX+Jh32XKOa1YFkFARheJBx+QtP0uUm1taeVX6kVZxfNJOKo=
-X-Received: by 2002:a9d:3604:: with SMTP id w4mr2673501otb.107.1612515758371;
- Fri, 05 Feb 2021 01:02:38 -0800 (PST)
+        id S229997AbhBEJLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 04:11:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59932 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229669AbhBEJJr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 04:09:47 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4EFB064FBF;
+        Fri,  5 Feb 2021 09:09:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1612516172;
+        bh=JdD0MSkgGiDQgR1RqZMYYZuQVt/HbkXgGJeoHCpYJio=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kmMA0pCiSfbnVQOP9h8OWUUs1gL0W3kE2qPu9+x+tMXmNjuqO/DHFbIepE4bOuxOH
+         GQBcrhUsbX6GyzQt/WPlsYs5a77THjVGJM95iiwKE+V3ETQ+/VZGmRJinOIeJVXMBT
+         +heMmOj2VdzbISIWeHN8fbVnuqzIlYv7PGtKlcpI=
+Date:   Fri, 5 Feb 2021 10:09:29 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Ikjoon Jang <ikjn@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Subject: Re: [RFC PATCH v2 1/3] dt-bindings: usb: mtk-xhci: add compatible
+ for mt8195
+Message-ID: <YB0LSQdCZk3xL+ru@kroah.com>
+References: <20210203102642.7353-1-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-References: <cover.1611904394.git.viresh.kumar@linaro.org> <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
-In-Reply-To: <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 5 Feb 2021 10:02:27 +0100
-Message-ID: <CAMuHMdVp0vGMqoEoP9A7Y7-ph-DYUWdddtChdq_eZcROYTBMHg@mail.gmail.com>
-Subject: Re: [PATCH V7 4/6] kbuild: Add support to build overlays (%.dtbo)
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210203102642.7353-1-chunfeng.yun@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh,
+On Wed, Feb 03, 2021 at 06:26:40PM +0800, Chunfeng Yun wrote:
+> There are 4 USB controllers on MT8195, the controllers (IP1~IP3,
+> exclude IP0) have a wrong default SOF/ITP interval which is
+> calculated from the frame counter clock 24Mhz by default, but
+> in fact, the frame counter clock is 48Mhz, so we should set
+> the accurate interval according to 48Mhz. Here add a new compatible
+> for MT8195, it's also supported in driver. But the first controller
+> (IP0) has no such issue, we prefer to use generic compatible,
+> e.g. mt8192's compatible.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v2: no changes
 
-Thanks for your patch
-(which I only noticed because it appeared in dt-rh/for-next ;-)
+Note, I do not apply patches that have "RFC" as that means you do not
+feel comfortable with them being applied.
 
-On Fri, Jan 29, 2021 at 8:31 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> Add support for building DT overlays (%.dtbo). The overlay's source file
-> will have the usual extension, i.e. .dts, though the blob will have
+Please resend without that when you feel they are ready to be merged.
 
-Why use .dts and not .dtso for overlays?
-Because you originally (until v5) had a single rule for building .dtb
-and .dtbo files?
+thanks,
 
-> .dtbo extension to distinguish it from normal blobs.
->
-> Acked-by: Masahiro Yamada <masahiroy@kernel.org>
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+greg k-h
