@@ -2,95 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D15D310A4E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 12:35:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8405D310A63
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 12:38:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231254AbhBELcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 06:32:39 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:31757 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231357AbhBELaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 06:30:09 -0500
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 05 Feb 2021 03:29:18 -0800
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 05 Feb 2021 03:29:16 -0800
-X-QCInternal: smtphost
-Received: from c-rbokka-linux.qualcomm.com ([10.206.24.149])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 05 Feb 2021 16:58:58 +0530
-Received: by c-rbokka-linux.qualcomm.com (Postfix, from userid 203305)
-        id 1AEAC3416; Fri,  5 Feb 2021 16:58:57 +0530 (IST)
-From:   Ravi Kumar Bokka <rbokka@codeaurora.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        dhavalp@codeaurora.org, mturney@codeaurora.org,
-        Ravi Kumar Bokka <rbokka@codeaurora.org>
-Subject: [PATCH] drivers: nvmem: Fix voltage settings for QTI qfprom-efuse
-Date:   Fri,  5 Feb 2021 16:58:52 +0530
-Message-Id: <1612524533-3970-1-git-send-email-rbokka@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S231217AbhBELh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 06:37:59 -0500
+Received: from marcansoft.com ([212.63.210.85]:43572 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231377AbhBELf4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 06:35:56 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 3107A41F5F;
+        Fri,  5 Feb 2021 11:35:05 +0000 (UTC)
+To:     soc@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>, robh@kernel.org,
+        Arnd Bergmann <arnd@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Olof Johansson <olof@lixom.net>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>
+References: <20210204203951.52105-1-marcan@marcan.st>
+From:   Hector Martin 'marcan' <marcan@marcan.st>
+Subject: Re: [PATCH 00/18] Apple M1 SoC platform bring-up
+Message-ID: <d7802d11-ce90-5645-1636-7f75a7a0694f@marcan.st>
+Date:   Fri, 5 Feb 2021 20:35:03 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
+MIME-Version: 1.0
+In-Reply-To: <20210204203951.52105-1-marcan@marcan.st>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QFPROM controller hardware requires 1.8V min for fuse blowing.
-So, this change sets the voltage to 1.8V, required to blow the fuse
-for qfprom-efuse controller.
+On 05/02/2021 05.39, Hector Martin wrote:
+> This series brings up initial support for the Apple M1 SoC, used in the
+> 2020 Mac Mini, MacBook Pro, and MacBook Air models.
 
-To disable fuse blowing, we set the voltage to 0V since this may
-be a shared rail and may be able to run at a lower rate when we're
-not blowing fuses.
+Forgot to CC: a few folks involved in the previous related thread, 
+sorry! Adding them here, hope everyone got the series via the MLs.
 
-Fixes: 93b4e49f8c86 ("nvmem: qfprom: Add fuse blowing support")
-Reported-by: Douglas Anderson <dianders@chromium.org>
-Suggested-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
----
- drivers/nvmem/qfprom.c | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+v2 will be CCed to everyone else too.
 
-diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
-index 6cace24..100d69d 100644
---- a/drivers/nvmem/qfprom.c
-+++ b/drivers/nvmem/qfprom.c
-@@ -127,6 +127,16 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
- {
- 	int ret;
- 
-+	/*
-+	 * This may be a shared rail and may be able to run at a lower rate
-+	 * when we're not blowing fuses.  At the moment, the regulator framework
-+	 * applies voltage constraints even on disabled rails, so remove our
-+	 * constraints and allow the rail to be adjusted by other users.
-+	 */
-+	ret = regulator_set_voltage(priv->vcc, 0, INT_MAX);
-+	if (ret)
-+		dev_warn(priv->dev, "Failed to set 0 voltage (ignoring)\n");
-+
- 	ret = regulator_disable(priv->vcc);
- 	if (ret)
- 		dev_warn(priv->dev, "Failed to disable regulator (ignoring)\n");
-@@ -172,6 +182,17 @@ static int qfprom_enable_fuse_blowing(const struct qfprom_priv *priv,
- 		goto err_clk_prepared;
- 	}
- 
-+	/*
-+	 * Hardware requires 1.8V min for fuse blowing; this may be
-+	 * a rail shared do don't specify a max--regulator constraints
-+	 * will handle.
-+	 */
-+	ret = regulator_set_voltage(priv->vcc, 1800000, INT_MAX);
-+	if (ret) {
-+		dev_err(priv->dev, "Failed to set 1.8 voltage\n");
-+		goto err_clk_rate_set;
-+	}
-+
- 	ret = regulator_enable(priv->vcc);
- 	if (ret) {
- 		dev_err(priv->dev, "Failed to enable regulator\n");
 -- 
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by the Linux Foundation.
-
+Hector Martin "marcan" (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
