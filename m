@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A1A23116B0
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 00:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE21A3116AF
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 00:19:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231359AbhBEXKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 18:10:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34394 "EHLO
+        id S231335AbhBEXKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 18:10:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231761AbhBEKuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:50:37 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C7FC0698C4
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 02:45:13 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id w4so5612736wmi.4
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 02:45:13 -0800 (PST)
+        with ESMTP id S231268AbhBEKug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 05:50:36 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 013EFC0698C7
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 02:45:15 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id t142so3450619wmt.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 02:45:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=bhijpy86VBLH1z/QR8DmTQnzKog7xaGemOCJvaezDFY=;
-        b=I1f4P88tmjKhD9nAeTeG42QMJXc51TQL9LFq2uUaMelOVAPEmZg1mSouCIVlP4XBGd
-         bpjqQxMPS42M+3n1XVnziy6u5CPN5XRsbUtWnX5A0CQ9+itw+FwHUhg+pAOhQH+zqMFT
-         OCLN6gpDYIUGGiAELUsv5La50KsmOpbcLS+ClEsknpm4DAUcFumlFFtWY0EY5cfR4/jo
-         h4w2ExPRW7QHKAVw5rlr+up4hcYt/7bLfhPLD1JZyWrQCQWmrtx6WcskE8AltBGuaaXb
-         S6O3sNxI2LiAsbtMFT4BJtavd02m6zWJAZTVra4zI2Quz4EiXUk8Mmr8TieA5/tqq6zP
-         CJYw==
+        bh=kvX1fPx3FMQ5uXckxXhS8AVQna5Rb5Ybg4HAxWPNgfE=;
+        b=ENQh6NsMSfxa3GT7kJpNjD/dyfyphvRasEWdBNimWlO4LIe86KW4N1moIzupJz2z85
+         LDc/Vxu3a07Vh4eTVGu9Lb26aeWdlG/Z43nl8EJEg8BRhXGQW2f9dk4WDuRCH1uIu6dj
+         EuNAAn31hTfM4UdqCQCKN7ctnKkY5zHsZM2HN6SRNGwJO+Jsa7FhUmi7uThHZX7DwWQS
+         crgmC+wAUYisJVtEdIYzsgjjV0koO+/Bt7+3jAMgf1SxppncMKy/EsEiowKdTcoMtF72
+         Ewyj1JqueuvVn638tkSB69rcACTdyldOOu7kA1Hah/ManVFw3zr8LT2ZHVpgwCaM+B6e
+         DN3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=bhijpy86VBLH1z/QR8DmTQnzKog7xaGemOCJvaezDFY=;
-        b=gOeHWrTb95D/ISPilyTxlt696r3h449gD8nEs0/R8tndzYsCBrjtn6lZYa8W4jEEsn
-         aqTb9YObXAvYBxLHm+vbZ1PX76s3fvqci7DqZ7fykMFeiaXKN76OLYZb4vL+rftCyOqf
-         rHnXf/9oX+MXuwoFBsSKPWU/Cbp8jWeL21TJN6sBhNEn9HIHpYzearQVToeDVCDbh3mi
-         EGrU7f+6GU5qQtcJMU9sZWxQIgEcFxdbXKDvw4Sva43lt1lciS//K0Ssbw9L+I6MzpQ1
-         95smrgJ1pooyl2DqjoWTap+4t/xmJ4PPLCiZpya1zT7jXSJALrUu/73w1dcUdUzqEzQm
-         KhuA==
-X-Gm-Message-State: AOAM5336k7/OiNSfk6yy65mH9Cew8Jb6yp2ElwXgRkzFs8gjw0Hwq45n
-        3vnf2cAs7+U4UAwu8mR5LTTqJA==
-X-Google-Smtp-Source: ABdhPJyRfo1Xd9kdbFnk9gG7FK4NwhSnrqBF3CGs3t+a+eCiGXdP6H1m+o2UJRsgFBUel+isXS+Yhg==
-X-Received: by 2002:a05:600c:2ca:: with SMTP id 10mr3026622wmn.151.1612521912071;
-        Fri, 05 Feb 2021 02:45:12 -0800 (PST)
+        bh=kvX1fPx3FMQ5uXckxXhS8AVQna5Rb5Ybg4HAxWPNgfE=;
+        b=OTwvf6BaetNR5WwiEs2Sjb+P6BkSZWrXbYwdpU3XRHPvEKw642olAA9GSPADhF1K//
+         tHoK+aw/mQWT6zoC/HiQpK5naqi4f+w/OIsqo3KRF71QaSNWLD43yYKYK+ciPL3W6osT
+         vhL3Oi+CFr49O4JSECrMjDPnFGuZTQpM/3x/g0lDpuw02ajfF5wpR07N3SABVBaecDXE
+         RNppBrizAN0/g30rSEmsxzn5PK/SN7jD4CsPw8GdhG0B4z7HCNvmqlHi9m8NN4XwSg3c
+         hr4bCR3TB0HOVdRhGVbuPXiKD1hmnSCGuDZuKdIqAbxp/+PVvavsCFtNsIZVh5lghurt
+         YSNQ==
+X-Gm-Message-State: AOAM531FGhT8F36TemBkKOMLXYGoM24JEV/O6Lmht76Fbg86OErteDTt
+        fXETwYFYB3m4B+NFJ+8c8OP/zA==
+X-Google-Smtp-Source: ABdhPJxEgdxWOYeSfxwa2WBWHlaCingCJ7zZEoEQFGr+hSU4LEQCS2q+mHzY0cYKNMpC4Ejw1DYdCQ==
+X-Received: by 2002:a1c:9d4c:: with SMTP id g73mr2937298wme.105.1612521913733;
+        Fri, 05 Feb 2021 02:45:13 -0800 (PST)
 Received: from localhost.localdomain ([2a02:2450:102f:d6a:38fd:e0db:ea01:afc8])
-        by smtp.gmail.com with ESMTPSA id u4sm11300233wrr.37.2021.02.05.02.45.10
+        by smtp.gmail.com with ESMTPSA id u4sm11300233wrr.37.2021.02.05.02.45.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 02:45:11 -0800 (PST)
+        Fri, 05 Feb 2021 02:45:13 -0800 (PST)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
         bjorn.andersson@linaro.org, mchehab@kernel.org, robh+dt@kernel.org,
@@ -63,9 +63,9 @@ Cc:     Tomasz Figa <tfiga@chromium.org>,
         Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Jonathan Marek <jonathan@marek.ca>
-Subject: [PATCH v4 12/22] media: camss: Remove per VFE power domain toggling
-Date:   Fri,  5 Feb 2021 11:44:04 +0100
-Message-Id: <20210205104414.299732-13-robert.foss@linaro.org>
+Subject: [PATCH v4 13/22] media: camss: Enable SDM845
+Date:   Fri,  5 Feb 2021 11:44:05 +0100
+Message-Id: <20210205104414.299732-14-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210205104414.299732-1-robert.foss@linaro.org>
 References: <20210205104414.299732-1-robert.foss@linaro.org>
@@ -75,253 +75,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For Titan ISPs clocks fail to re-enable during vfe_get()
-after any vfe has been halted and its corresponding power
-domain power has been detached.
-
-Since all of the clocks depend on all of the PDs, per
-VFE PD detaching is no option for this generation of HW.
+Enable support for SDM845 based Titan 170 ISPs.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- .../media/platform/qcom/camss/camss-ispif.c   | 11 ---
- drivers/media/platform/qcom/camss/camss-vfe.c |  7 --
- drivers/media/platform/qcom/camss/camss.c     | 94 +++++++++++--------
- drivers/media/platform/qcom/camss/camss.h     | 12 +--
- 4 files changed, 60 insertions(+), 64 deletions(-)
+ drivers/media/platform/qcom/camss/camss.c | 17 +++++++++++++++++
+ drivers/media/platform/qcom/camss/camss.h |  6 ++++--
+ 2 files changed, 21 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/media/platform/qcom/camss/camss-ispif.c b/drivers/media/platform/qcom/camss/camss-ispif.c
-index c36570042082..e41925850ba2 100644
---- a/drivers/media/platform/qcom/camss/camss-ispif.c
-+++ b/drivers/media/platform/qcom/camss/camss-ispif.c
-@@ -323,14 +323,6 @@ static int ispif_reset(struct ispif_device *ispif, u8 vfe_id)
- 	struct camss *camss = ispif->camss;
- 	int ret;
- 
--	ret = camss_pm_domain_on(camss, PM_DOMAIN_VFE0);
--	if (ret < 0)
--		return ret;
--
--	ret = camss_pm_domain_on(camss, PM_DOMAIN_VFE1);
--	if (ret < 0)
--		return ret;
--
- 	ret = camss_enable_clocks(ispif->nclocks_for_reset,
- 				  ispif->clock_for_reset,
- 				  camss->dev);
-@@ -343,9 +335,6 @@ static int ispif_reset(struct ispif_device *ispif, u8 vfe_id)
- 
- 	camss_disable_clocks(ispif->nclocks_for_reset, ispif->clock_for_reset);
- 
--	camss_pm_domain_off(camss, PM_DOMAIN_VFE0);
--	camss_pm_domain_off(camss, PM_DOMAIN_VFE1);
--
- 	return ret;
- }
- 
-diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
-index fa9629835e98..e41c22da4b9b 100644
---- a/drivers/media/platform/qcom/camss/camss-vfe.c
-+++ b/drivers/media/platform/qcom/camss/camss-vfe.c
-@@ -587,10 +587,6 @@ static int vfe_get(struct vfe_device *vfe)
- 	mutex_lock(&vfe->power_lock);
- 
- 	if (vfe->power_count == 0) {
--		ret = camss_pm_domain_on(vfe->camss, vfe->id);
--		if (ret < 0)
--			goto error_pm_domain;
--
- 		ret = pm_runtime_get_sync(vfe->camss->dev);
- 		if (ret < 0)
- 			goto error_pm_runtime_get;
-@@ -627,9 +623,7 @@ static int vfe_get(struct vfe_device *vfe)
- 
- error_pm_runtime_get:
- 	pm_runtime_put_sync(vfe->camss->dev);
--	camss_pm_domain_off(vfe->camss, vfe->id);
- 
--error_pm_domain:
- 	mutex_unlock(&vfe->power_lock);
- 
- 	return ret;
-@@ -653,7 +647,6 @@ static void vfe_put(struct vfe_device *vfe)
- 		}
- 		camss_disable_clocks(vfe->nclocks, vfe->clock);
- 		pm_runtime_put_sync(vfe->camss->dev);
--		camss_pm_domain_off(vfe->camss, vfe->id);
- 	}
- 
- 	vfe->power_count--;
 diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-index 7e7763f04b58..22f9d7d7085a 100644
+index 22f9d7d7085a..5ce7cae2ab9b 100644
 --- a/drivers/media/platform/qcom/camss/camss.c
 +++ b/drivers/media/platform/qcom/camss/camss.c
-@@ -774,28 +774,6 @@ int camss_get_pixel_clock(struct media_entity *entity, u32 *pixel_clock)
- 	return 0;
- }
+@@ -897,6 +897,12 @@ static int camss_init_subdevices(struct camss *camss)
+ 		csid_res = csid_res_660;
+ 		ispif_res = &ispif_res_660;
+ 		vfe_res = vfe_res_660;
++	}  else if (camss->version == CAMSS_845) {
++		csiphy_res = csiphy_res_845;
++		csid_res = csid_res_845;
++		/* Titan VFEs don't have an ISPIF  */
++		ispif_res = NULL;
++		vfe_res = vfe_res_845;
+ 	} else {
+ 		return -EINVAL;
+ 	}
+@@ -1203,6 +1209,8 @@ static int camss_configure_pd(struct camss *camss)
+ 	if (camss->version == CAMSS_8x96 ||
+ 	    camss->version == CAMSS_660)
+ 		nbr_pm_domains = PM_DOMAIN_CAMSS_COUNT;
++	else if (camss->version == CAMSS_845)
++		nbr_pm_domains = PM_DOMAIN_TITAN_COUNT;
  
--int camss_pm_domain_on(struct camss *camss, int id)
--{
--	if (camss->version == CAMSS_8x96 ||
--	    camss->version == CAMSS_660) {
--		camss->genpd_link[id] = device_link_add(camss->dev,
--				camss->genpd[id], DL_FLAG_STATELESS |
--				DL_FLAG_PM_RUNTIME | DL_FLAG_RPM_ACTIVE);
--
--		if (!camss->genpd_link[id])
--			return -EINVAL;
--	}
--
--	return 0;
--}
--
--void camss_pm_domain_off(struct camss *camss, int id)
--{
--	if (camss->version == CAMSS_8x96 ||
--	    camss->version == CAMSS_660)
--		device_link_del(camss->genpd_link[id]);
--}
--
- /*
-  * camss_of_parse_endpoint_node - Parse port endpoint node
-  * @dev: Device
-@@ -1214,6 +1192,48 @@ static const struct media_device_ops camss_media_ops = {
- 	.link_notify = v4l2_pipeline_link_notify,
+ 	for (i = 0; i < nbr_pm_domains; i++) {
+ 		camss->genpd[i] = dev_pm_domain_attach_by_id(camss->dev, i);
+@@ -1271,6 +1279,12 @@ static int camss_probe(struct platform_device *pdev)
+ 		camss->csiphy_num = 3;
+ 		camss->csid_num = 4;
+ 		camss->vfe_num = 2;
++	} else if (of_device_is_compatible(dev->of_node,
++					   "qcom,sdm845-camss")) {
++		camss->version = CAMSS_845;
++		camss->csiphy_num = 4;
++		camss->csid_num = 3;
++		camss->vfe_num = 3;
+ 	} else {
+ 		ret = -EINVAL;
+ 		goto err_free;
+@@ -1402,6 +1416,8 @@ void camss_delete(struct camss *camss)
+ 	if (camss->version == CAMSS_8x96 ||
+ 	    camss->version == CAMSS_660)
+ 		nbr_pm_domains = PM_DOMAIN_CAMSS_COUNT;
++	else if (camss->version == CAMSS_845)
++		nbr_pm_domains = PM_DOMAIN_TITAN_COUNT;
+ 
+ 	for (i = 0; i < nbr_pm_domains; i++) {
+ 		device_link_del(camss->genpd_link[i]);
+@@ -1435,6 +1451,7 @@ static const struct of_device_id camss_dt_match[] = {
+ 	{ .compatible = "qcom,msm8916-camss" },
+ 	{ .compatible = "qcom,msm8996-camss" },
+ 	{ .compatible = "qcom,sdm660-camss" },
++	{ .compatible = "qcom,sdm845-camss" },
+ 	{ }
  };
  
-+
-+static int camss_configure_pd(struct camss *camss)
-+{
-+	int nbr_pm_domains = 0;
-+	int last_pm_domain = 0;
-+	int i;
-+	int ret;
-+
-+	if (camss->version == CAMSS_8x96 ||
-+	    camss->version == CAMSS_660)
-+		nbr_pm_domains = PM_DOMAIN_CAMSS_COUNT;
-+
-+	for (i = 0; i < nbr_pm_domains; i++) {
-+		camss->genpd[i] = dev_pm_domain_attach_by_id(camss->dev, i);
-+		if (IS_ERR(camss->genpd[i])) {
-+			ret = PTR_ERR(camss->genpd[i]);
-+			goto fail_pm;
-+		}
-+
-+		camss->genpd_link[i] = device_link_add(camss->dev, camss->genpd[i],
-+			DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME | DL_FLAG_RPM_ACTIVE);
-+
-+		if (!camss->genpd_link[i]) {
-+			dev_pm_domain_detach(camss->genpd[i], true);
-+			ret = -EINVAL;
-+			goto fail_pm;
-+		}
-+
-+		last_pm_domain = i;
-+	}
-+
-+	return 0;
-+
-+fail_pm:
-+	for (i = 0; i < last_pm_domain; i++) {
-+		device_link_del(camss->genpd_link[i]);
-+		dev_pm_domain_detach(camss->genpd[i], true);
-+	}
-+
-+	return ret;
-+}
-+
- /*
-  * camss_probe - Probe CAMSS platform device
-  * @pdev: Pointer to CAMSS platform device
-@@ -1346,20 +1366,10 @@ static int camss_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	if (camss->version == CAMSS_8x96 ||
--	    camss->version == CAMSS_660) {
--		camss->genpd[PM_DOMAIN_VFE0] = dev_pm_domain_attach_by_id(
--						camss->dev, PM_DOMAIN_VFE0);
--		if (IS_ERR(camss->genpd[PM_DOMAIN_VFE0]))
--			return PTR_ERR(camss->genpd[PM_DOMAIN_VFE0]);
--
--		camss->genpd[PM_DOMAIN_VFE1] = dev_pm_domain_attach_by_id(
--						camss->dev, PM_DOMAIN_VFE1);
--		if (IS_ERR(camss->genpd[PM_DOMAIN_VFE1])) {
--			dev_pm_domain_detach(camss->genpd[PM_DOMAIN_VFE0],
--					     true);
--			return PTR_ERR(camss->genpd[PM_DOMAIN_VFE1]);
--		}
-+	ret = camss_configure_pd(camss);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to configure power domains: %d\n", ret);
-+		return ret;
- 	}
- 
- 	pm_runtime_enable(dev);
-@@ -1380,6 +1390,9 @@ static int camss_probe(struct platform_device *pdev)
- 
- void camss_delete(struct camss *camss)
- {
-+	int nbr_pm_domains = 0;
-+	int i;
-+
- 	v4l2_device_unregister(&camss->v4l2_dev);
- 	media_device_unregister(&camss->media_dev);
- 	media_device_cleanup(&camss->media_dev);
-@@ -1387,9 +1400,12 @@ void camss_delete(struct camss *camss)
- 	pm_runtime_disable(camss->dev);
- 
- 	if (camss->version == CAMSS_8x96 ||
--	    camss->version == CAMSS_660) {
--		dev_pm_domain_detach(camss->genpd[PM_DOMAIN_VFE0], true);
--		dev_pm_domain_detach(camss->genpd[PM_DOMAIN_VFE1], true);
-+	    camss->version == CAMSS_660)
-+		nbr_pm_domains = PM_DOMAIN_CAMSS_COUNT;
-+
-+	for (i = 0; i < nbr_pm_domains; i++) {
-+		device_link_del(camss->genpd_link[i]);
-+		dev_pm_domain_detach(camss->genpd[i], true);
- 	}
- 
- 	kfree(camss);
 diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
-index b7ad8e9f68a8..7560d85b3352 100644
+index 7560d85b3352..2f853557ed16 100644
 --- a/drivers/media/platform/qcom/camss/camss.h
 +++ b/drivers/media/platform/qcom/camss/camss.h
-@@ -57,9 +57,9 @@ struct resources_ispif {
- };
- 
- enum pm_domain {
--	PM_DOMAIN_VFE0,
--	PM_DOMAIN_VFE1,
--	PM_DOMAIN_COUNT
-+	PM_DOMAIN_VFE0 = 0,
-+	PM_DOMAIN_VFE1 = 1,
-+	PM_DOMAIN_CAMSS_COUNT = 2,	/* CAMSS series of ISPs */
+@@ -60,6 +60,8 @@ enum pm_domain {
+ 	PM_DOMAIN_VFE0 = 0,
+ 	PM_DOMAIN_VFE1 = 1,
+ 	PM_DOMAIN_CAMSS_COUNT = 2,	/* CAMSS series of ISPs */
++	PM_DOMAIN_VFELITE = 2,		/* VFELITE / TOP GDSC */
++	PM_DOMAIN_TITAN_COUNT = 3,	/* Titan series of ISPs */
  };
  
  enum camss_version {
-@@ -83,8 +83,8 @@ struct camss {
+@@ -83,8 +85,8 @@ struct camss {
  	int vfe_num;
  	struct vfe_device *vfe;
  	atomic_t ref_count;
--	struct device *genpd[PM_DOMAIN_COUNT];
--	struct device_link *genpd_link[PM_DOMAIN_COUNT];
-+	struct device *genpd[PM_DOMAIN_CAMSS_COUNT];
-+	struct device_link *genpd_link[PM_DOMAIN_CAMSS_COUNT];
+-	struct device *genpd[PM_DOMAIN_CAMSS_COUNT];
+-	struct device_link *genpd_link[PM_DOMAIN_CAMSS_COUNT];
++	struct device *genpd[PM_DOMAIN_TITAN_COUNT];
++	struct device_link *genpd_link[PM_DOMAIN_TITAN_COUNT];
  };
  
  struct camss_camera_interface {
-@@ -110,8 +110,6 @@ int camss_enable_clocks(int nclocks, struct camss_clock *clock,
- void camss_disable_clocks(int nclocks, struct camss_clock *clock);
- struct media_entity *camss_find_sensor(struct media_entity *entity);
- int camss_get_pixel_clock(struct media_entity *entity, u32 *pixel_clock);
--int camss_pm_domain_on(struct camss *camss, int id);
--void camss_pm_domain_off(struct camss *camss, int id);
- void camss_delete(struct camss *camss);
- 
- #endif /* QC_MSM_CAMSS_H */
 -- 
 2.27.0
 
