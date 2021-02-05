@@ -2,156 +2,422 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FCCF31136A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 22:24:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE8A311397
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 22:33:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233651AbhBEVW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 16:22:59 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:34834 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233816AbhBEVWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 16:22:17 -0500
-Received: by mail-oi1-f171.google.com with SMTP id w8so9025962oie.2;
-        Fri, 05 Feb 2021 13:22:00 -0800 (PST)
+        id S231575AbhBEVbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 16:31:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56192 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230383AbhBEVal (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 16:30:41 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63AB6C06174A;
+        Fri,  5 Feb 2021 13:30:01 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id 63so8334749oty.0;
+        Fri, 05 Feb 2021 13:30:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jocZMba4zIL2h1yCNatGbik1KvXn4y8YG1xTFpkN/Co=;
-        b=VYbwU+vjRnQ7LryvnO+z0mcRvOWam2Wjao4Ve3IVQO8pt2uo7BCFcAm/QujniCledz
-         F/6mA8yDoZyuacvHlhZmJvWdpjphTVydip/2lVzIWi/BcJ9KMthpGjd5UPX5hoWRfPHw
-         LQ7ClVsvV/jAkdX9Ril49c04Zq+NznRGU21aLLvH04O9sRnQX4PKCVW+Jz4/lFNi4/xe
-         9vTJhk+ug4mSNV8xE3g2vSq4qrjcAkJOn2X44bSGka1etyOFG065bqUzeJZpyz2idYaT
-         TGY4mvT6igAz0rYfer2AMduhb5KYC/KMrp/8ztfV5aMBZw9owRM4Gp1onWmGHQ8cwQmj
-         9f7g==
-X-Gm-Message-State: AOAM531H1OtySxBpce/jqYViYIMkWoFXQwVfyWytNTuwUzQFkjGE2OAM
-        0woi7ZoVWWwYj8UtgP+qSu3iHalBAA==
-X-Google-Smtp-Source: ABdhPJyBctuEa2lJbXV3As6EdaWOf8hcdJvn9AQoelXaG4VA2D6LMqtHhVNUj/qEHT7t+fAFVfQWEA==
-X-Received: by 2002:aca:3b06:: with SMTP id i6mr4363448oia.81.1612560095487;
-        Fri, 05 Feb 2021 13:21:35 -0800 (PST)
+        bh=28MmnOERZ9cCSiQisHpu2OTrInyUV994M9TbW1k4YZE=;
+        b=l01FoFVAqY4dn26kG+lHsg+GbhutXZ0PlWktBYEAHeMx/XUAK7LyuuOku9S7snTFRD
+         XjfdjIWxf3HF9XDz/WmXW6XZGMo5JBFZYM366ELQnhOG3RHKtwrW1jM6ilylvIIf7cB6
+         UncCkLQlN2k7LMortL7qmPfMBhBKyO3dG07j7Pqi6OacngYw0G+fbkp/viyWIa1pWzfb
+         8qasdBi90jAdapBl3bQjayK5DmZHITHdYUZ1vUkiEJsmCoNq3DUQ0G99cLkoltf5UQoP
+         AFLkw2LTc4H8NYZOIepALsUvoBdYLpISSflW8EGOZBZATZ/CGL+go3UAPti3MMIYq2QB
+         /eSQ==
+X-Gm-Message-State: AOAM533GJDrSQtr3g5tfNgGGiyyO/1y7Wb2o3znDgfbRUPrkSsXrGRgS
+        QtpH5V8KSibny17UuYnYbaOJRRE57w==
+X-Google-Smtp-Source: ABdhPJwX3j86Em/oGBCf90CO+zPRF5sdNfUU8MS4gWVTOa8/JiOApOXnag5NvmRjJXhmVKT9KCTqrQ==
+X-Received: by 2002:a9d:21ca:: with SMTP id s68mr4841347otb.164.1612560599250;
+        Fri, 05 Feb 2021 13:29:59 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q20sm2040441otf.2.2021.02.05.13.21.33
+        by smtp.gmail.com with ESMTPSA id 94sm2090478otf.41.2021.02.05.13.29.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Feb 2021 13:21:34 -0800 (PST)
-Received: (nullmailer pid 3765901 invoked by uid 1000);
-        Fri, 05 Feb 2021 21:21:33 -0000
-Date:   Fri, 5 Feb 2021 15:21:33 -0600
+        Fri, 05 Feb 2021 13:29:58 -0800 (PST)
+Received: (nullmailer pid 3779970 invoked by uid 1000);
+        Fri, 05 Feb 2021 21:29:57 -0000
+Date:   Fri, 5 Feb 2021 15:29:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Campion Kang <campion.kang@advantech.com.tw>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        linux-hwmon@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        AceLan Kao <chia-lin.kao@canonical.com>
-Subject: Re: [PATCH v6 3/6] dt-bindings: mfd: ahc1ec0.yaml: Add Advantech
- embedded controller - AHC1EC0
-Message-ID: <20210205212133.GA3759495@robh.at.kernel.org>
-References: <20210118123749.4769-1-campion.kang@advantech.com.tw>
- <20210118123749.4769-3-campion.kang@advantech.com.tw>
+To:     Kyle Tso <kyletso@google.com>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, hdegoede@redhat.com, badhri@google.com,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 6/7] dt-bindings: connector: Add SVDM VDO properties
+Message-ID: <20210205212957.GA3766168@robh.at.kernel.org>
+References: <20210205033415.3320439-1-kyletso@google.com>
+ <20210205033415.3320439-7-kyletso@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210118123749.4769-3-campion.kang@advantech.com.tw>
+In-Reply-To: <20210205033415.3320439-7-kyletso@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 18, 2021 at 08:37:46PM +0800, Campion Kang wrote:
-> Add DT binding schema for Advantech embedded controller AHC1EC0.
+On Fri, Feb 05, 2021 at 11:34:14AM +0800, Kyle Tso wrote:
+> Add bindings of VDO properties of USB PD SVDM so that they can be
+> used in device tree.
 > 
-> Changed since V5:
-> 	- rename dt-bindings/mfd/ahc1ec0.h to dt-bindings/mfd/ahc1ec0-dt.h
-> 	that found errors by bot 'make dt_binding_check'
-> 
-> Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
+> Signed-off-by: Kyle Tso <kyletso@google.com>
 > ---
->  .../devicetree/bindings/mfd/ahc1ec0.yaml      | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ahc1ec0.yaml
+> Changes since v5:
+> - no change
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/ahc1ec0.yaml b/Documentation/devicetree/bindings/mfd/ahc1ec0.yaml
-> new file mode 100644
-> index 000000000000..40af14bb9c0a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ahc1ec0.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ahc1ec0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Advantech Embedded Controller (AHC1EC0)
-> +
-> +maintainers:
-> +  - Campion Kang <campion.kang@advantech.com.tw>
-> +
-> +description: |
-> +  AHC1EC0 is one of the embedded controllers used by Advantech to provide several
-> +  functions such as watchdog, hwmon, brightness, etc. Advantech related applications
-> +  can control the whole system via these functions.
-> +
-> +properties:
-> +  compatible:
-> +    const: advantech,ahc1ec0
-> +
-> +  advantech,sub-dev-nb:
-> +    description:
-> +      The number of sub-devices specified in the platform.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
+>  .../bindings/connector/usb-connector.yaml     |  11 +
+>  include/dt-bindings/usb/pd.h                  | 311 +++++++++++++++++-
+>  2 files changed, 321 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> index 4286ed767a0a..d385026944ec 100644
+> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> @@ -137,6 +137,17 @@ properties:
+>      maxItems: 7
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+>  
+> +  sink-vdos:
+> +    description: An array of u32 with each entry (VDM Objects) providing additional information
 
-You don't need this, just count the length of the next property:
+VDO stands for 'VDM Objects' and VDM stands for ???
 
-> +
-> +  advantech,sub-dev:
-> +    description:
-> +      A list of the sub-devices supported in the platform. Defines for the
-> +      appropriate values can found in dt-bindings/mfd/ahc1ec0-dt.h.
-> +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-> +    minItems: 1
+Other than that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +      corresponding to the product, the detailed bit definitions and the order of each VDO can be
+> +      found in "USB Power Delivery Specification Revision 3.0, Version 2.0 + ECNs 2020-12-10"
+> +      chapter 6.4.4.3.1 Discover Identity. User can specify the VDO array via
+> +      VDO_IDH/_CERT/_PRODUCT/_UFP/_DFP/_PCABLE/_ACABLE(1/2)/_VPD() defined in
+> +      dt-bindings/usb/pd.h.
+> +    minItems: 3
 > +    maxItems: 6
-
-But as I said before, this binding is odd. It doesn't look like how we 
-do any other MFD. Either we have child nodes or they are implicit.
-
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
 > +
-> +  advantech,hwmon-profile:
-> +    description:
-> +      The number of sub-devices specified in the platform. Defines for the
-> +      hwmon profiles can found in dt-bindings/mfd/ahc1ec0-dt.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
+>    op-sink-microwatt:
+>      description: Sink required operating power in microwatt, if source can't
+>        offer the power, Capability Mismatch is set. Required for power sink and
+> diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/pd.h
+> index 0352893697f0..fef3ef65967f 100644
+> --- a/include/dt-bindings/usb/pd.h
+> +++ b/include/dt-bindings/usb/pd.h
+> @@ -93,4 +93,313 @@
+>  #define FRS_DEFAULT_POWER      1
+>  #define FRS_5V_1P5A            2
+>  #define FRS_5V_3A              3
+> - #endif /* __DT_POWER_DELIVERY_H */
 > +
-> +required:
-> +  - compatible
-> +  - advantech,sub-dev-nb
-> +  - advantech,sub-dev
+> +/*
+> + * SVDM Identity Header
+> + * --------------------
+> + * <31>     :: data capable as a USB host
+> + * <30>     :: data capable as a USB device
+> + * <29:27>  :: product type (UFP / Cable / VPD)
+> + * <26>     :: modal operation supported (1b == yes)
+> + * <25:23>  :: product type (DFP) (SVDM version 2.0+ only; set to zero in version 1.0)
+> + * <22:21>  :: connector type (SVDM version 2.0+ only; set to zero in version 1.0)
+> + * <20:16>  :: Reserved, Shall be set to zero
+> + * <15:0>   :: USB-IF assigned VID for this cable vendor
+> + */
+> +/* SOP Product Type (UFP) */
+> +#define IDH_PTYPE_NOT_UFP       0
+> +#define IDH_PTYPE_HUB           1
+> +#define IDH_PTYPE_PERIPH        2
+> +#define IDH_PTYPE_PSD           3
+> +#define IDH_PTYPE_AMA           5
 > +
-> +if:
-> +  properties:
-> +    advantech,sub-dev:
-> +      contains:
-> +        const: 0x3
-> +then:
-> +  required:
-> +    - advantech,hwmon-profile
+> +/* SOP' Product Type (Cable Plug / VPD) */
+> +#define IDH_PTYPE_NOT_CABLE     0
+> +#define IDH_PTYPE_PCABLE        3
+> +#define IDH_PTYPE_ACABLE        4
+> +#define IDH_PTYPE_VPD           6
 > +
-> +additionalProperties: false
+> +/* SOP Product Type (DFP) */
+> +#define IDH_PTYPE_NOT_DFP       0
+> +#define IDH_PTYPE_DFP_HUB       1
+> +#define IDH_PTYPE_DFP_HOST      2
+> +#define IDH_PTYPE_DFP_PB        3
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/mfd/ahc1ec0-dt.h>
-> +    ahc1ec0 {
-> +        compatible = "advantech,ahc1ec0";
+> +#define VDO_IDH(usbh, usbd, ufp_cable, is_modal, dfp, conn, vid)                \
+> +	((usbh) << 31 | (usbd) << 30 | ((ufp_cable) & 0x7) << 27                \
+> +	 | (is_modal) << 26 | ((dfp) & 0x7) << 23 | ((conn) & 0x3) << 21        \
+> +	 | ((vid) & 0xffff))
 > +
-> +        advantech,sub-dev-nb = <2>;
-> +        advantech,sub-dev = <AHC1EC0_SUBDEV_HWMON
-> +                             AHC1EC0_SUBDEV_WDT>;
+> +/*
+> + * Cert Stat VDO
+> + * -------------
+> + * <31:0>  : USB-IF assigned XID for this cable
+> + */
+> +#define VDO_CERT(xid)		((xid) & 0xffffffff)
 > +
-> +        advantech,hwmon-profile = <AHC1EC0_HWMON_PRO_UNO2271G>;
-> +    };
+> +/*
+> + * Product VDO
+> + * -----------
+> + * <31:16> : USB Product ID
+> + * <15:0>  : USB bcdDevice
+> + */
+> +#define VDO_PRODUCT(pid, bcd)   (((pid) & 0xffff) << 16 | ((bcd) & 0xffff))
+> +
+> +/*
+> + * UFP VDO (PD Revision 3.0+ only)
+> + * --------
+> + * <31:29> :: UFP VDO version
+> + * <28>    :: Reserved
+> + * <27:24> :: Device capability
+> + * <23:22> :: Connector type (10b == receptacle, 11b == captive plug)
+> + * <21:11> :: Reserved
+> + * <10:8>  :: Vconn power (AMA only)
+> + * <7>     :: Vconn required (AMA only, 0b == no, 1b == yes)
+> + * <6>     :: Vbus required (AMA only, 0b == yes, 1b == no)
+> + * <5:3>   :: Alternate modes
+> + * <2:0>   :: USB highest speed
+> + */
+> +/* UFP VDO Version */
+> +#define UFP_VDO_VER1_2		2
+> +
+> +/* Device Capability */
+> +#define DEV_USB2_CAPABLE	BIT(0)
+> +#define DEV_USB2_BILLBOARD	BIT(1)
+> +#define DEV_USB3_CAPABLE	BIT(2)
+> +#define DEV_USB4_CAPABLE	BIT(3)
+> +
+> +/* Connector Type */
+> +#define UFP_RECEPTACLE		2
+> +#define UFP_CAPTIVE		3
+> +
+> +/* Vconn Power (AMA only, set to AMA_VCONN_NOT_REQ if Vconn is not required) */
+> +#define AMA_VCONN_PWR_1W	0
+> +#define AMA_VCONN_PWR_1W5	1
+> +#define AMA_VCONN_PWR_2W	2
+> +#define AMA_VCONN_PWR_3W	3
+> +#define AMA_VCONN_PWR_4W	4
+> +#define AMA_VCONN_PWR_5W	5
+> +#define AMA_VCONN_PWR_6W	6
+> +
+> +/* Vconn Required (AMA only) */
+> +#define AMA_VCONN_NOT_REQ	0
+> +#define AMA_VCONN_REQ		1
+> +
+> +/* Vbus Required (AMA only) */
+> +#define AMA_VBUS_REQ		0
+> +#define AMA_VBUS_NOT_REQ	1
+> +
+> +/* Alternate Modes */
+> +#define UFP_ALTMODE_NOT_SUPP	0
+> +#define UFP_ALTMODE_TBT3	BIT(0)
+> +#define UFP_ALTMODE_RECFG	BIT(1)
+> +#define UFP_ALTMODE_NO_RECFG	BIT(2)
+> +
+> +/* USB Highest Speed */
+> +#define UFP_USB2_ONLY		0
+> +#define UFP_USB32_GEN1		1
+> +#define UFP_USB32_4_GEN2	2
+> +#define UFP_USB4_GEN3		3
+> +
+> +#define VDO_UFP(ver, cap, conn, vcpwr, vcr, vbr, alt, spd)			\
+> +	(((ver) & 0x7) << 29 | ((cap) & 0xf) << 24 | ((conn) & 0x3) << 22	\
+> +	 | ((vcpwr) & 0x7) << 8 | (vcr) << 7 | (vbr) << 6 | ((alt) & 0x7) << 3	\
+> +	 | ((spd) & 0x7))
+> +
+> +/*
+> + * DFP VDO (PD Revision 3.0+ only)
+> + * --------
+> + * <31:29> :: DFP VDO version
+> + * <28:27> :: Reserved
+> + * <26:24> :: Host capability
+> + * <23:22> :: Connector type (10b == receptacle, 11b == captive plug)
+> + * <21:5>  :: Reserved
+> + * <4:0>   :: Port number
+> + */
+> +#define DFP_VDO_VER1_1		1
+> +#define HOST_USB2_CAPABLE	BIT(0)
+> +#define HOST_USB3_CAPABLE	BIT(1)
+> +#define HOST_USB4_CAPABLE	BIT(2)
+> +#define DFP_RECEPTACLE		2
+> +#define DFP_CAPTIVE		3
+> +
+> +#define VDO_DFP(ver, cap, conn, pnum)						\
+> +	(((ver) & 0x7) << 29 | ((cap) & 0x7) << 24 | ((conn) & 0x3) << 22	\
+> +	 | ((pnum) & 0x1f))
+> +
+> +/*
+> + * Passive Cable VDO
+> + * ---------
+> + * <31:28> :: Cable HW version
+> + * <27:24> :: Cable FW version
+> + * <23:21> :: VDO version
+> + * <20>    :: Reserved, Shall be set to zero
+> + * <19:18> :: Type-C to Type-C/Captive (10b == C, 11b == Captive)
+> + * <17>    :: Reserved, Shall be set to zero
+> + * <16:13> :: cable latency (0001 == <10ns(~1m length))
+> + * <12:11> :: cable termination type (10b == Vconn not req, 01b == Vconn req)
+> + * <10:9>  :: Maximum Vbus voltage (00b == 20V, 01b == 30V, 10b == 40V, 11b == 50V)
+> + * <8:7>   :: Reserved, Shall be set to zero
+> + * <6:5>   :: Vbus current handling capability (01b == 3A, 10b == 5A)
+> + * <4:3>   :: Reserved, Shall be set to zero
+> + * <2:0>   :: USB highest speed
+> + *
+> + * Active Cable VDO 1
+> + * ---------
+> + * <31:28> :: Cable HW version
+> + * <27:24> :: Cable FW version
+> + * <23:21> :: VDO version
+> + * <20>    :: Reserved, Shall be set to zero
+> + * <19:18> :: Connector type (10b == C, 11b == Captive)
+> + * <17>    :: Reserved, Shall be set to zero
+> + * <16:13> :: cable latency (0001 == <10ns(~1m length))
+> + * <12:11> :: cable termination type (10b == one end active, 11b == both ends active VCONN req)
+> + * <10:9>  :: Maximum Vbus voltage (00b == 20V, 01b == 30V, 10b == 40V, 11b == 50V)
+> + * <8>     :: SBU supported (0b == supported, 1b == not supported)
+> + * <7>     :: SBU type (0b == passive, 1b == active)
+> + * <6:5>   :: Vbus current handling capability (01b == 3A, 10b == 5A)
+> + * <4>     :: Vbus through cable (0b == no, 1b == yes)
+> + * <3>     :: SOP" controller present? (0b == no, 1b == yes)
+> + * <2:0>   :: USB highest speed
+> + */
+> +/* Cable VDO Version */
+> +#define CABLE_VDO_VER1_0	0
+> +#define CABLE_VDO_VER1_3	3
+> +
+> +/* Connector Type */
+> +#define CABLE_CTYPE		2
+> +#define CABLE_CAPTIVE		3
+> +
+> +/* Cable Latency */
+> +#define CABLE_LATENCY_1M	1
+> +#define CABLE_LATENCY_2M	2
+> +#define CABLE_LATENCY_3M	3
+> +#define CABLE_LATENCY_4M	4
+> +#define CABLE_LATENCY_5M	5
+> +#define CABLE_LATENCY_6M	6
+> +#define CABLE_LATENCY_7M	7
+> +#define CABLE_LATENCY_7M_PLUS	8
+> +
+> +/* Cable Termination Type */
+> +#define PCABLE_VCONN_NOT_REQ	0
+> +#define PCABLE_VCONN_REQ	1
+> +#define ACABLE_ONE_END		2
+> +#define ACABLE_BOTH_END		3
+> +
+> +/* Maximum Vbus Voltage */
+> +#define CABLE_MAX_VBUS_20V	0
+> +#define CABLE_MAX_VBUS_30V	1
+> +#define CABLE_MAX_VBUS_40V	2
+> +#define CABLE_MAX_VBUS_50V	3
+> +
+> +/* Active Cable SBU Supported/Type */
+> +#define ACABLE_SBU_SUPP		0
+> +#define ACABLE_SBU_NOT_SUPP	1
+> +#define ACABLE_SBU_PASSIVE	0
+> +#define ACABLE_SBU_ACTIVE	1
+> +
+> +/* Vbus Current Handling Capability */
+> +#define CABLE_CURR_DEF		0
+> +#define CABLE_CURR_3A		1
+> +#define CABLE_CURR_5A		2
+> +
+> +/* USB Highest Speed */
+> +#define CABLE_USB2_ONLY		0
+> +#define CABLE_USB32_GEN1	1
+> +#define CABLE_USB32_4_GEN2	2
+> +#define CABLE_USB4_GEN3		3
+> +
+> +#define VDO_PCABLE(hw, fw, ver, conn, lat, term, vbm, cur, spd)			\
+> +	(((hw) & 0xf) << 28 | ((fw) & 0xf) << 24 | ((ver) & 0x7) << 21		\
+> +	 | ((conn) & 0x3) << 18 | ((lat) & 0xf) << 13 | ((term) & 0x3) << 11	\
+> +	 | ((vbm) & 0x3) << 9 | ((cur) & 0x3) << 5 | ((spd) & 0x7))
+> +#define VDO_ACABLE1(hw, fw, ver, conn, lat, term, vbm, sbu, sbut, cur, vbt, sopp, spd) \
+> +	(((hw) & 0xf) << 28 | ((fw) & 0xf) << 24 | ((ver) & 0x7) << 21		\
+> +	 | ((conn) & 0x3) << 18	| ((lat) & 0xf) << 13 | ((term) & 0x3) << 11	\
+> +	 | ((vbm) & 0x3) << 9 | (sbu) << 8 | (sbut) << 7 | ((cur) & 0x3) << 5	\
+> +	 | (vbt) << 4 | (sopp) << 3 | ((spd) & 0x7))
+> +
+> +/*
+> + * Active Cable VDO 2
+> + * ---------
+> + * <31:24> :: Maximum operating temperature
+> + * <23:16> :: Shutdown temperature
+> + * <15>    :: Reserved, Shall be set to zero
+> + * <14:12> :: U3/CLd power
+> + * <11>    :: U3 to U0 transition mode (0b == direct, 1b == through U3S)
+> + * <10>    :: Physical connection (0b == copper, 1b == optical)
+> + * <9>     :: Active element (0b == redriver, 1b == retimer)
+> + * <8>     :: USB4 supported (0b == yes, 1b == no)
+> + * <7:6>   :: USB2 hub hops consumed
+> + * <5>     :: USB2 supported (0b == yes, 1b == no)
+> + * <4>     :: USB3.2 supported (0b == yes, 1b == no)
+> + * <3>     :: USB lanes supported (0b == one lane, 1b == two lanes)
+> + * <2>     :: Optically isolated active cable (0b == no, 1b == yes)
+> + * <1>     :: Reserved, Shall be set to zero
+> + * <0>     :: USB gen (0b == gen1, 1b == gen2+)
+> + */
+> +/* U3/CLd Power*/
+> +#define ACAB2_U3_CLD_10MW_PLUS	0
+> +#define ACAB2_U3_CLD_10MW	1
+> +#define ACAB2_U3_CLD_5MW	2
+> +#define ACAB2_U3_CLD_1MW	3
+> +#define ACAB2_U3_CLD_500UW	4
+> +#define ACAB2_U3_CLD_200UW	5
+> +#define ACAB2_U3_CLD_50UW	6
+> +
+> +/* Other Active Cable VDO 2 Fields */
+> +#define ACAB2_U3U0_DIRECT	0
+> +#define ACAB2_U3U0_U3S		1
+> +#define ACAB2_PHY_COPPER	0
+> +#define ACAB2_PHY_OPTICAL	1
+> +#define ACAB2_REDRIVER		0
+> +#define ACAB2_RETIMER		1
+> +#define ACAB2_USB4_SUPP		0
+> +#define ACAB2_USB4_NOT_SUPP	1
+> +#define ACAB2_USB2_SUPP		0
+> +#define ACAB2_USB2_NOT_SUPP	1
+> +#define ACAB2_USB32_SUPP	0
+> +#define ACAB2_USB32_NOT_SUPP	1
+> +#define ACAB2_LANES_ONE		0
+> +#define ACAB2_LANES_TWO		1
+> +#define ACAB2_OPT_ISO_NO	0
+> +#define ACAB2_OPT_ISO_YES	1
+> +#define ACAB2_GEN_1		0
+> +#define ACAB2_GEN_2_PLUS	1
+> +
+> +#define VDO_ACABLE2(mtemp, stemp, u3p, trans, phy, ele, u4, hops, u2, u32, lane, iso, gen)	\
+> +	(((mtemp) & 0xff) << 24 | ((stemp) & 0xff) << 16 | ((u3p) & 0x7) << 12	\
+> +	 | (trans) << 11 | (phy) << 10 | (ele) << 9 | (u4) << 8			\
+> +	 | ((hops) & 0x3) << 6 | (u2) << 5 | (u32) << 4 | (lane) << 3		\
+> +	 | (iso) << 2 | (gen))
+> +
+> +/*
+> + * VPD VDO
+> + * ---------
+> + * <31:28> :: HW version
+> + * <27:24> :: FW version
+> + * <23:21> :: VDO version
+> + * <20:17> :: Reserved, Shall be set to zero
+> + * <16:15> :: Maximum Vbus voltage (00b == 20V, 01b == 30V, 10b == 40V, 11b == 50V)
+> + * <14>    :: Charge through current support (0b == 3A, 1b == 5A)
+> + * <13>    :: Reserved, Shall be set to zero
+> + * <12:7>  :: Vbus impedance
+> + * <6:1>   :: Ground impedance
+> + * <0>     :: Charge through support (0b == no, 1b == yes)
+> + */
+> +#define VPD_VDO_VER1_0		0
+> +#define VPD_MAX_VBUS_20V	0
+> +#define VPD_MAX_VBUS_30V	1
+> +#define VPD_MAX_VBUS_40V	2
+> +#define VPD_MAX_VBUS_50V	3
+> +#define VPDCT_CURR_3A		0
+> +#define VPDCT_CURR_5A		1
+> +#define VPDCT_NOT_SUPP		0
+> +#define VPDCT_SUPP		1
+> +
+> +#define VDO_VPD(hw, fw, ver, vbm, curr, vbi, gi, ct)			\
+> +	(((hw) & 0xf) << 28 | ((fw) & 0xf) << 24 | ((ver) & 0x7) << 21	\
+> +	 | ((vbm) & 0x3) << 15 | (curr) << 14 | ((vbi) & 0x3f) << 7	\
+> +	 | ((gi) & 0x3f) << 1 | (ct))
+> +
+> +#endif /* __DT_POWER_DELIVERY_H */
 > -- 
-> 2.17.1
+> 2.30.0.365.g02bc693789-goog
 > 
