@@ -2,113 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 562B231101D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 19:40:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5A031102F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 19:44:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231912AbhBEQ5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 11:57:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47358 "EHLO
+        id S233722AbhBERBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 12:01:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233084AbhBEQzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 11:55:50 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F31EC06174A;
-        Fri,  5 Feb 2021 10:37:32 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id v24so11269001lfr.7;
-        Fri, 05 Feb 2021 10:37:32 -0800 (PST)
+        with ESMTP id S233289AbhBEQ77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 11:59:59 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50285C06174A;
+        Fri,  5 Feb 2021 10:41:41 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id n10so5144904pgl.10;
+        Fri, 05 Feb 2021 10:41:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=UP0XlE4LR2VUHfzWpArMCJWyCE5EqOZWjJJ7fRjzT1k=;
-        b=QAK7yWLw33+gmq5epSQ5amUdSkHiXqWCkk6cUzN4oj6W+l6kwRX3dBOlxwZab0uKFb
-         pCekN73CZXkdEa5BqNfTcZevrqK50f0W3IjqpLr9OWgTUhTgewjBK+ZuWEZaSuBKIUus
-         mX8mB09NNQGcSssOCb4HNWhDfkABjENlfvZsdcZt/arrRzQ4AFOGPEwZ8Qq1Gw9xsgg5
-         Y8I7H8+Pua36diFMi5RVu/1usgETAJjL3qbTBLt31iChX7lHlP5F4tXe/UVpWyXQkTDR
-         2XA3ZgT6ZoKU3IXc93ZKUEY3kCjZfH75JlIFPVHeBGM4HsJCVeu0NnOhIMQF3m3kTC8t
-         4i6w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hC/UygB6GdsZ6eOraCnag63BwEncrG0x9BtmpVb+yMo=;
+        b=TjRy+eWKEXJUVeK/Gsejs2eaRhnLYsV0zq1vBr7NEsVAkz0F+cLP8n/qyRJhBd8RJ0
+         i8caCeYZvMwSx3PQRy3U8AhfRs5hqucvRhRetp4ZmWtJqjCOW0HJAW/NTdqZ1mGGjoCW
+         mIDuyz974q+SPxzrjIL9HI522rILrBeWl/abgB2nqB3DVt//140xaEpCbIlXkGgtwBp4
+         pRbM8YhcnK6Rse+YEa49mhHgDHPaRCcJ0j2reS9o0w+LjupolZFbMeYnVPAkjymxt/QN
+         mZ0Ruc/wh3S1ut7QZM8Czq4QjJFDsUQE6xbH/ei2zIONU8XfkXbOtixcQmkWIaNFQf97
+         1/pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UP0XlE4LR2VUHfzWpArMCJWyCE5EqOZWjJJ7fRjzT1k=;
-        b=EGJHRkuTOkDnCvI4WwY/VbS1DjMBd774xSIyiLdYzXBZ75sAh7RJzYNCp2Sb+h15h7
-         tFmd8Q6DWGEwFSkWDkNTuMaYcmwgIaI/Aj0dp+7yDgN5pZZG8vqlryZjPMdQROjl66Sx
-         bBZAk4umzCTOf9H6B10MFOPq2sKbiQFk+D/pS/tAsWNqyk5q7GP1TNEHQBBduXm4Vgzn
-         1wwnOddLlCLhGOmOOH3yy2ZP6NeahKVZeCTzUo53aRircSkpyx06HGoixnHoVSGShKhm
-         ixqEMQZVUfwNCTBGgtrdrDs7+EwAbjb6P3SmO+oFDCcLCEMd9Hd1O8iNVp+AnKDeMeo1
-         ZDeA==
-X-Gm-Message-State: AOAM53266+5hUgJHTmX2gWs38jQoOyUKmlLn2DRXhDvz/9makZZYkUPs
-        7gBhjo8xuD7SOIFOmPsD5o6g9UUMf6E=
-X-Google-Smtp-Source: ABdhPJxfX7NqquPYdIrOxKtKzGX9emO9ypOPh3HU9g000h2WGQA06AIDPgDVg1/qLYlig0ncr1LEgQ==
-X-Received: by 2002:ac2:5ded:: with SMTP id z13mr3222186lfq.160.1612550250894;
-        Fri, 05 Feb 2021 10:37:30 -0800 (PST)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id x4sm1063192lfe.255.2021.02.05.10.37.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Feb 2021 10:37:29 -0800 (PST)
-Subject: Re: [PATCH v2 1/4] leds: lp50xx: add setting of default intensity
- from DT
-To:     Pavel Machek <pavel@ucw.cz>,
-        Sven Schuchmann <schuchmann@schleissheimer.de>
-Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20210204143726.27977-1-schuchmann@schleissheimer.de>
- <20210204145201.GB14305@duo.ucw.cz>
- <DB8P190MB063482D8E38C0529AD16A4D5D9B29@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
- <20210205102338.GA27854@amd>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <c107d3b9-2141-7cad-837a-f8ef107df61c@gmail.com>
-Date:   Fri, 5 Feb 2021 19:37:28 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hC/UygB6GdsZ6eOraCnag63BwEncrG0x9BtmpVb+yMo=;
+        b=rhGvD0CSuvE+LuR7zxAg/J5myooHeVfr84Iu3ZuG6IJhAT747gyBiUw0/NR1zb5LwJ
+         YA93cFMQBL/q1/5ZZdHHq3aAkhAqOtc1aGVRpXzXEBL2bDmtCsmC6W/eZGLfDhzlRV6l
+         Bmh8hA0iiyCBre1awY3ipwbXNtqEAiUd+MVBAohyH1MOK4oCjJiuNx9jjR//j3SG0LTD
+         JSyAu57CN8UeuFN/YWA9aN4Ge70vi8C7dZMwPsxeoJs3YdGe1FlnmC0AiGMEIjxQal4Q
+         KDSv/1vSjhNd3wbjxYEEt/EsvGRYspJFCGQribOBmy4eGaKXpJqDxhDt2KMdZlUARWlZ
+         oxjg==
+X-Gm-Message-State: AOAM532z53Ukecx25pkz8Uuyt2Io+BHYS6f6sJ9VCmULuf26MAp+Iwt/
+        fk5AT7D46d82HKX3KD7kgM8OdbjILOWd6vA17NU=
+X-Google-Smtp-Source: ABdhPJwrOVLtit11sVA7UUmR/FA4HIEYLB0s09rOj5SXdwwlTMX4WOOCacRZCmMo1dZ+2GRXJIpGMQMAWYw6VULr1Og=
+X-Received: by 2002:a63:e50:: with SMTP id 16mr5569002pgo.74.1612550500873;
+ Fri, 05 Feb 2021 10:41:40 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210205102338.GA27854@amd>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210122154300.7628-1-calvin.johnson@oss.nxp.com>
+ <20210122154300.7628-8-calvin.johnson@oss.nxp.com> <20210205172518.GA18214@lsv03152.swis.in-blr01.nxp.com>
+ <CAHp75VdX2gZbt-eYp31wg0r+yih8omGxcTf6cMyhxjMZZYzFuQ@mail.gmail.com>
+In-Reply-To: <CAHp75VdX2gZbt-eYp31wg0r+yih8omGxcTf6cMyhxjMZZYzFuQ@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 5 Feb 2021 20:41:24 +0200
+Message-ID: <CAHp75VdEjNhj5oQTqnnOhnibBAa2CoHf1PAvJi57X0d-6LC3NQ@mail.gmail.com>
+Subject: Re: [net-next PATCH v4 07/15] net: mdiobus: Introduce fwnode_mdiobus_register_phy()
+To:     Calvin Johnson <calvin.johnson@oss.nxp.com>
+Cc:     Grant Likely <grant.likely@arm.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Cristi Sovaiala <cristian.sovaiala@nxp.com>,
+        Florin Laurentiu Chiculita <florinlaurentiu.chiculita@nxp.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Pieter Jansen Van Vuuren <pieter.jansenvv@bamboosystems.io>,
+        Jon <jon@solid-run.com>, Saravana Kannan <saravanak@google.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        "linux.cj" <linux.cj@gmail.com>,
+        Diana Madalina Craciun <diana.craciun@nxp.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
+On Fri, Feb 5, 2021 at 8:25 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+> On Fri, Feb 5, 2021 at 7:25 PM Calvin Johnson
+> <calvin.johnson@oss.nxp.com> wrote:
+> > On Fri, Jan 22, 2021 at 09:12:52PM +0530, Calvin Johnson wrote:
+>
+> ...
+>
+> > > +     rc = fwnode_property_match_string(child, "compatible", "ethernet-phy-ieee802.3-c45");
+> > With ACPI, I'm facing some problem with fwnode_property_match_string(). It is
+> > unable to detect the compatible string and returns -EPROTO.
+> >
+> > ACPI node for PHY4 is as below:
+> >
+> >  Device(PHY4) {
+> >     Name (_ADR, 0x4)
+> >     Name(_CRS, ResourceTemplate() {
+> >     Interrupt(ResourceConsumer, Level, ActiveHigh, Shared)
+> >     {
+> >       AQR_PHY4_IT
+> >     }
+> >     }) // end of _CRS for PHY4
+> >     Name (_DSD, Package () {
+> >       ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+> >         Package () {
 
-On 2/5/21 11:23 AM, Pavel Machek wrote:
-> Hi!
-> 
->>>>       patternProperties:
->>>>         "(^led-[0-9a-f]$|led)":
->>>> @@ -99,6 +104,7 @@ examples:
->>>>                  reg = <0x1>;
->>>>                  color = <LED_COLOR_ID_RGB>;
->>>>                  function = LED_FUNCTION_CHARGING;
->>>> +               default-intensity = <100 0 0>;
+> >           Package () {"compatible", "ethernet-phy-ieee802.3-c45"}
 
-How will you know which array position is for which child LED?
-I presume DT child nodes are not guaranteed to be parsed in the order
-of declaration?
+I guess converting this to
+           Package () {"compatible", Package() {"ethernet-phy-ieee802.3-c45"}}
+will solve it.
 
->>>>
->>>>                  led-0 {
->>>>                      color = <LED_COLOR_ID_RED>;
->>>
->>> Should this go to leds-class-multicolor.yaml ?
->>
->> I think then all drivers should support it,  but I cannot change all drivers.
->> So I would only leave it in there.
-> 
-> It really should be in common binding, and no, that does not mean you
-> need to change all the drivers.
-> 
-> Plus there's at most two of them at the moment.
-> 
-> Best regards,
-> 							Pavel
-> 
+> >        }
+
+> >     })
+> >   } // end of PHY4
+> >
+> >  What is see is that in acpi_data_get_property(),
+> > propvalue->type = 0x2(ACPI_TYPE_STRING) and type = 0x4(ACPI_TYPE_PACKAGE).
+> >
+> > Any help please?
+> >
+> > fwnode_property_match_string() works fine for DT.
+>
+> Can you show the DT node which works and also input for the
+> )match_string() (i.o.w what exactly you are trying to match with)?
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+
+
 
 -- 
-Best regards,
-Jacek Anaszewski
+With Best Regards,
+Andy Shevchenko
