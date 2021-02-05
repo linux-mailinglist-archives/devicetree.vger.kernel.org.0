@@ -2,124 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A6C0310BB7
-	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 14:22:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72E63310BDB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Feb 2021 14:35:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbhBENVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 08:21:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37582 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229986AbhBENQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 08:16:38 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3A74C061797
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 05:15:57 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id w204so6716518ybg.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 05:15:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eMddkzoLtzudk6Saw9haOw0jx/RFJpF2riNKCfwuqgA=;
-        b=RF4nwrg/bI2QEh/WsUpLibjI3mQomXHb2vuTc+uJUHticYqHRHVZN4pY7kach2qUP3
-         b2ivhKJ38YAJghUzI2MwT8xBhEbUWyI0TmRmDSecrz6bXz6mpYM7dzVlnIOmK4Z89ffa
-         FfASdFuLG72rqoDVYfG/5MJfikNWmyVgqKX3FHsq+gb0ivvHYmDuabct6s07+8xD2MX1
-         CL+QIU4OwpqVWWzzVusw0VYq912podjjaSzg8cBxTX6i6QyvRR4SWdRbnCRMXta7Z8w0
-         kCqjWhdpHJUMPxBHj764KNf+HLxSGxHKWW3mEP1d3K4yOmwDsN2y2uIGZ/a+iXonm9q6
-         sQ3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eMddkzoLtzudk6Saw9haOw0jx/RFJpF2riNKCfwuqgA=;
-        b=hsTa8IPtep9NVkom3BDnujp4Iqpvhk7cysy6Zuy7oQk5kwKMPZLUJZd6wAPWIkp9C0
-         YmbPhJgB+oTon0EtABUgq4UTCtL0eJaVrBnk8qjiuhp3FaRJtDNF0hgMsLEntaWIHUr/
-         5O3Hddfq/fwY++zV92HTzf2jUXsYDJTTXCQg2KuWeyIURfkgJ2F4SBRY9kY3pCTHUI+e
-         QJDftOL0Y7eOd8hZ0aSi3MoNUPQLUONW5RoUCxeZfpD71xRokEj/c7GwxTn/UeMtELNp
-         dMB61xPaWHRpkPpUEy8qClITInjPqGhF5raxiCx0g6R2xW2ctl3An58HLegwJS+iIR24
-         jzfw==
-X-Gm-Message-State: AOAM532V40V5wSIyFzz+27pV6A0R1px0ULrem9IwcF6wYDWCshORQZv/
-        KuwEchjms95ukCssnoTZYlU44xklLXURzdcEptrb2A==
-X-Google-Smtp-Source: ABdhPJyhGAXEhx3VeGUjX84AVY7g2N8qPiWTR3n4heInBOto2Tcb4lOfLcSIy1g6eC9M61iOlCDdJrlNah6gn/LAJa8=
-X-Received: by 2002:a25:41cb:: with SMTP id o194mr5820275yba.167.1612530956948;
- Fri, 05 Feb 2021 05:15:56 -0800 (PST)
+        id S229705AbhBENbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 08:31:41 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:50350 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230035AbhBEN2x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Feb 2021 08:28:53 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1l818f-004NO7-Fu; Fri, 05 Feb 2021 14:27:09 +0100
+Date:   Fri, 5 Feb 2021 14:27:09 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Prasanna Vengateshan Varadharajan 
+        <prasanna.vengateshan@microchip.com>
+Cc:     olteanv@gmail.com, netdev@vger.kernel.org, robh+dt@kernel.org,
+        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        davem@davemloft.net, UNGLinuxDriver@microchip.com,
+        Woojung.Huh@microchip.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 3/8] net: dsa: microchip: add DSA support for
+ microchip lan937x
+Message-ID: <YB1HrTfUvgXbcsTr@lunn.ch>
+References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
+ <20210128064112.372883-4-prasanna.vengateshan@microchip.com>
+ <YBNf715MJ9OfaXfV@lunn.ch>
+ <b565944e72a0af12dec0430bd819eb6b755d84b4.camel@microchip.com>
 MIME-Version: 1.0
-References: <1612426177-6611-1-git-send-email-amit.pundir@linaro.org> <889e6ed8-133a-9416-be3b-5b2a97ea7fbb@somainline.org>
-In-Reply-To: <889e6ed8-133a-9416-be3b-5b2a97ea7fbb@somainline.org>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Fri, 5 Feb 2021 18:45:21 +0530
-Message-ID: <CAMi1Hd3bgDaqsH+txFVEnBc9dsGbrgic5TK7uq4GwqqkM6seiw@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and
- panel bits
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b565944e72a0af12dec0430bd819eb6b755d84b4.camel@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
+> > > +bool lan937x_is_internal_tx_phy_port(struct ksz_device *dev, int
+> > > port)
+> > > +{
+> > > +     /* Check if the port is internal tx phy port */
+> > 
+> > What is an internal TX phy port? Is it actually a conventional t2
+> > Fast
+> > Ethernet port, as opposed to a t1 port?
+> This is 100 Base-Tx phy which is compliant with
+> 802.3/802.3u standards. Two of the SKUs have both T1 and TX integrated
+> Phys as mentioned in the patch intro mail.
 
-On Thu, 4 Feb 2021 at 19:46, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
->
-> Hi!
->
-> >vreg_l14a_1p88: ldo14 {
-> >+                      regulator-min-microvolt = <1800000>;
-> >+                      regulator-max-microvolt = <1800000>;
->
-> Should probably be renamed to vreg_l14a_1p8 then.
+I don't think we have a good name for a conventional fast Ethernet.
+But since we call the other T1, since it has a single pair, maybe use
+T2, since Fast Ethernet uses 2 pair. I would also suggest a comment
+near this code explaining what T1 and T2 mean.
 
-ack.
+> > What PHY driver is actually used? The "Microchip LAN87xx T1" driver?
 
->
->
-> >+      ports {
-> >+              port@1 {
-> >+                      endpoint {
-> >+                              remote-endpoint = <&tianma_nt36672a_in_0>;
-> >+                              data-lanes = <0 1 2 3>;
-> >+                      };
-> >+              };
-> >+      };
->
-> The endpoint has a label, you can simply use &dsi0_out {};.
+> Phy is basically a LAN87xx PHY. But the driver is customized for
+> LAN937x.
 
-I didn't get what you meant there. Care to point to some reference dts
-snippet please?
+Does it have its own ID in registers 2 and 3? Can you tell this
+customised version from the regular?
 
->
-> >+              vddpos-supply = <&lab>;
-> >+              vddneg-supply = <&ibb>;
->
-> With Angelo's latest series [1] merged in, I reckon you should explicitly configure lab/ibb (like in [2]),
-> as wrong settings (which CAN BE SET BY THE BOOTLOADER in some instances!!) can lead to hardware damage.
+> > > +static void tx_phy_port_init(struct ksz_device *dev, int port)
+> > > +{
+> > > +     u32 data;
+> > > +
+> > > +     /* Software reset. */
+> > > +     lan937x_t1_tx_phy_mod_bits(dev, port, MII_BMCR, BMCR_RESET,
+> > > true);
+> > > +
+> > > +     /* tx phy setup */
+> > > +     tx_phy_setup(dev, port);
+> > 
+> > And which PHY driver is used here? "Microchip LAN88xx"? All this code
+> > should be in the PHY driver.
+> As of now, no driver is available in the kernel since its part of
+> LAN937x.
 
-So iirc in the case of beryllium device, these regulators are pre set
-by the bootloader and I can't find any reference of we
-setting/resetting it explicitly to switch ON the panel and display. So
-far default lab/ibb nodes are working fine for us and I'm hesitant to
-tinker around anything regulator related that can potentially damage
-the hardware. Having said that, I do see lab/ibb nodes being set in
-the downstream dts, with relevant soft-start and discharge-resistor
-properties and I can try switching to that once the new lab/ibb
-changes land upstream.
+Right, so you need to write such a driver, and put it into
+drivers/net/phy.
 
-Regards,
-Amit Pundir
+> > > +             member = dev->host_mask | p->vid_member;
+> > > +             mutex_lock(&dev->dev_mutex);
+> > > +
+> > > +             /* Port is a member of a bridge. */
+> > > +             if (dev->br_member & (1 << port)) {
+> > > +                     dev->member |= (1 << port);
+> > > +                     member = dev->member;
+> > > +             }
+> > > +             mutex_unlock(&dev->dev_mutex);
+> > > +             break;
+> > > +     case BR_STATE_BLOCKING:
+> > > +             data |= PORT_LEARN_DISABLE;
+> > > +             if (port != dev->cpu_port &&
+> > > +                 p->stp_state == BR_STATE_DISABLED)
+> > > +                     member = dev->host_mask | p->vid_member;
+> > > +             break;
+> > > +     default:
+> > > +             dev_err(ds->dev, "invalid STP state: %d\n", state);
+> > > +             return;
+> > > +     }
+> > > +
+> > > +     lan937x_pwrite8(dev, port, P_STP_CTRL, data);
+> > > +
+> > > +     p->stp_state = state;
+> > > +     mutex_lock(&dev->dev_mutex);
+> > > +
+> > > +     /* Port membership may share register with STP state. */
+> > > +     if (member >= 0 && member != p->member)
+> > > +             lan937x_cfg_port_member(dev, port, (u8)member);
+> > > +
+> > > +     /* Check if forwarding needs to be updated. */
+> > > +     if (state != BR_STATE_FORWARDING) {
+> > > +             if (dev->br_member & (1 << port))
+> > > +                     dev->member &= ~(1 << port);
+> > > +     }
+> > > +
+> > > +     /* When topology has changed the function
+> > > ksz_update_port_member
+> > > +      * should be called to modify port forwarding behavior.
+> > > +      */
+> > > +     if (forward != dev->member)
+> > > +             ksz_update_port_member(dev, port);
+> > 
+> > Please could you explain more what is going on with membership?
+> > Generally, STP state is specific to the port, and nothing else
+> > changes. So it is not clear what this membership is all about.
+> It updates the membership for the forwarding behavior based on
+> forwarding state of the port.
 
+So membership is about forwarding packets between ports. Most other
+chips handles this itself. But for this device, you need to handle
+this in software. O.K.
 
->
->
->
-> Konrad
->
-> [1] https://lore.kernel.org/linux-arm-msm/20210119174421.226541-1-angelogioacchino.delregno@somainline.org/
-> [2] https://github.com/SoMainline/linux/commit/4f4853b2e252b5f9d03e90119110aac80258fc53
+You only want to forward when in STP state BR_STATE_FORWARDING. But
+the code seems more complex than this.
+
+    Andrew
