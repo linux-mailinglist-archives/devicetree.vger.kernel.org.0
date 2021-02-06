@@ -2,144 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9525931197F
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:08:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AD56311984
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 04:11:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230392AbhBFDIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 22:08:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43508 "EHLO
+        id S231452AbhBFDIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 22:08:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229934AbhBFDAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 22:00:05 -0500
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52586C061D73
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 18:45:58 -0800 (PST)
-Received: by mail-yb1-xb29.google.com with SMTP id k4so8703216ybp.6
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 18:45:58 -0800 (PST)
+        with ESMTP id S231831AbhBFDC5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 22:02:57 -0500
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37A25C061786
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 19:02:10 -0800 (PST)
+Received: by mail-ua1-x92b.google.com with SMTP id c44so807990uad.12
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 19:02:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=oeZT1Ar4/x7iejk6TCKZJw9nmldyPb7Q9CQuMN8dXaw=;
-        b=AFhS6ATY/Y9NYutPrE19KVJ8QEJaF2PGTuOgrz9Gy3OYD8T3nfEM6tCPc4DQDe+cmT
-         gGbLVifQsQtzUiF3X4dGA4SNwVI3LH7qwxl1vZhz3YR9Cp0qiGY/3jeh+rr5qm3r6IY7
-         7hxHxK00mdEOHcIzgnBPiTqPV6L0vljvrfDvcDix7+8XPR81Lvup9F+WfsCimBB6dz24
-         J+btxbs8E6J54C44KCAuZnUKGV86hdX+MuPzB7x2eyZrfnvisXKRD/0QNEtfhqDIpVGA
-         Umt5XZHpqcC8bLOtBUQYJkjuYUyDhcO+rJXg9bilCjQKjRIdxzmsD4JoNfGKr5VvY1w/
-         v/NQ==
+        bh=vuPLugpx3nVqN901hZhHAJ68fe+2jLjEwlOR0tJDXYA=;
+        b=F6opSYqv6jZOIDMw2g1ehsjaiUwtHudjb08fDacbv/EDpLlwSpy4IMI9fFhh8IsrUR
+         6z2eJKGywevwZfoGwCPGT5Nm9kzq//cAUkMjmj4ttLr0H4RuMnf0xAHFZ3WXDK2CX4Jv
+         kxl/y2itpTtbDt2HwFVoyjCBpFYEnW27WBFeQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=oeZT1Ar4/x7iejk6TCKZJw9nmldyPb7Q9CQuMN8dXaw=;
-        b=trKwZHUhRWQ2YAVlfH+a5ihDr91MdYo3ZBtgaoE3OG+2URytN0QNqZDIVSIrZ/75i9
-         n9VXs7giL+9uNP1nOC1FAbbkuJkvsbyTSqf2qt478FYKGY2GgWij4pbr+ts6DK8KXTQt
-         zpWVukRSqqP6XeiFMecxgAyXr+bTinn4pIueXC7ZPnvQ+VaPfjxOaqo8lmnLj1BZvkNa
-         aeIwK412N4xd9tQkN0s+6eALV9v2A9TlHKUrKLXzjPs+hsX/mCgYmjJK2poSUAnU7TvG
-         IcW0TvbYZTVGG4fPHcswGahaGv3WqQu0amie/LnsRto4OeQclnBP8yakA6n83pg/7saI
-         1+6g==
-X-Gm-Message-State: AOAM532SrzeCkdk6KNvW3HtEya2TngmfBTijEW9G+/Q6/X1hVXfFiQF1
-        61BM3sKA048VcSLvBDQajW1YWVfi49Kv2aEfxV1Avw==
-X-Google-Smtp-Source: ABdhPJy11Z5i7gStQAF/aV2cWsIZWC4t0l/3YBj3YIJdn7KvpZm4nPNRQyA7a/+WGcaogoso5SndN/JmnOvk57r9ybc=
-X-Received: by 2002:a25:af0b:: with SMTP id a11mr4263580ybh.228.1612579557241;
- Fri, 05 Feb 2021 18:45:57 -0800 (PST)
+        bh=vuPLugpx3nVqN901hZhHAJ68fe+2jLjEwlOR0tJDXYA=;
+        b=GBCp7VKgpyxz0MLFVmbeSnwfu5kwMyX9FZHLtssM3DKKgngYhdtqu2MeYgIjhqIuUo
+         sDij72leAHrNfj5sytLnsT9C93n9ua8V1oHK1hDzG4GBp9Ter61KOeWA/YV7BFWVY6G8
+         XqVEQSB2Ot9TSy1ccslUa/ASQHPlqHOt427ONx07S+NgbWYMIOB9hZ7oYyW7gGU4JPT+
+         /f2ijs6/ZfHo6NO6zgzcIbP9m5PeLWdAyBUZJcIJYJuIgj93pMVPxnjcKujDCr+GujOQ
+         H/NHz4MRDl+I9rhDdKO0It8HeT9jMhUYxLdp54AfcoIY+vj6ZqtRrsvZ0JFY8CAmBpJm
+         fB5Q==
+X-Gm-Message-State: AOAM5334HMcb88E3rmAyToWjbRB50zt/h22FovfuIbQyyzov6gLCcxTL
+        TnzvZzgTZrxPSxAMq9mIE6cpmMhhESFi40t7G/wpAw==
+X-Google-Smtp-Source: ABdhPJx8dqL+kHCdeyZ4DlETrA6syQ9QDsjU5KGZ5QnyvgeCk+5tYIv9ZfqZvBXd6LQikBo/7yMyvzQGpgRlw96uTRc=
+X-Received: by 2002:ab0:20d:: with SMTP id 13mr2631762uas.27.1612580529357;
+ Fri, 05 Feb 2021 19:02:09 -0800 (PST)
 MIME-Version: 1.0
-References: <20210205222644.2357303-1-saravanak@google.com>
-In-Reply-To: <20210205222644.2357303-1-saravanak@google.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 5 Feb 2021 18:45:21 -0800
-Message-ID: <CAGETcx_f7BEbkOFtw_6_4fMcgGOWkujbqXhDbDcNstOxgvcPfA@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
-To:     Jonathan Corbet <corbet@lwn.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Android Kernel Team <kernel-team@android.com>
+References: <20210126011759.1605641-1-drinkcat@chromium.org>
+ <20210126091747.v11.1.Ie74d3355761aab202d4825ac6f66d990bba0130e@changeid> <20210205175543.GA3363048@robh.at.kernel.org>
+In-Reply-To: <20210205175543.GA3363048@robh.at.kernel.org>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Sat, 6 Feb 2021 11:01:57 +0800
+Message-ID: <CANMq1KAshVgWPp=4KpjkwfAD=N4ZOw0xBCZHkfGob-TY0RCGew@mail.gmail.com>
+Subject: Re: [PATCH v11 1/4] dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fei Shao <fshao@chromium.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Steven Price <steven.price@arm.com>,
+        Kristian Kristensen <hoegsberg@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 5, 2021 at 2:26 PM Saravana Kannan <saravanak@google.com> wrote:
+On Sat, Feb 6, 2021 at 1:55 AM Rob Herring <robh@kernel.org> wrote:
 >
-> There are a lot of devices/drivers where they never have a struct device
-> created for them or the driver initializes the hardware without ever
-> binding to the struct device.
+> On Tue, 26 Jan 2021 09:17:56 +0800, Nicolas Boichat wrote:
+> > Define a compatible string for the Mali Bifrost GPU found in
+> > Mediatek's MT8183 SoCs.
+> >
+> > Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> > ---
+> >
+> > Changes in v11:
+> >  - binding: power-domain-names not power-domainS-names
+> >
+> > Changes in v10:
+> >  - Fix the binding to make sure sram-supply property can be provided.
+> >
+> > Changes in v9: None
+> > Changes in v8: None
+> > Changes in v7: None
+> > Changes in v6:
+> >  - Rebased, actually tested with recent mesa driver.
+> >
+> > Changes in v5:
+> >  - Rename "2d" power domain to "core2"
+> >
+> > Changes in v4:
+> >  - Add power-domain-names description
+> >    (kept Alyssa's reviewed-by as the change is minor)
+> >
+> > Changes in v3: None
+> > Changes in v2: None
+> >
+> >  .../bindings/gpu/arm,mali-bifrost.yaml        | 28 +++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> >
 >
-> This series is intended to avoid any boot regressions due to such
-> devices/drivers when fw_devlink=on and also address the handling of
-> optional suppliers.
 >
-> Patch 1 and 2 addresses the issue of firmware nodes that look like
-> they'll have struct devices created for them, but will never actually
-> have struct devices added for them. For example, DT nodes with a
-> compatible property that don't have devices added for them.
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
 >
-> Patch 3 and 4 allow for handling optional DT bindings.
->
-> Patch 5 sets up a generic API to handle drivers that never bind with
-> their devices.
->
-> Patch 6 through 8 update different frameworks to use the new API.
->
-> Thanks,
-> Saravana
->
+> If a tag was not added on purpose, please state why and what changed.
 
-Forgot to add version history:
+There were changes in v11, I thought you'd want to review again?
 
-v1 -> v2:
-Patch 1: Added a flag to fwnodes that aren't devices.
-Patch 3: New patch to ise the flag set in patch 1 to not create bad links.
+Anyway, I can resend a v12 with all the Rb/Ab if that works better for you.
 
-v2 -> v3:
-- Patch 1: Added Rafael's Ack
-- New patches 3 and 4
-
-v3 -> v4:
-- No changes to patches 1-4.
-- New patches 5-8.
-
--Saravana
-
-> Saravana Kannan (8):
->   driver core: fw_devlink: Detect supplier devices that will never be
->     added
->   of: property: Don't add links to absent suppliers
->   driver core: Add fw_devlink.strict kernel param
->   of: property: Add fw_devlink support for optional properties
->   driver core: fw_devlink: Handle suppliers that don't use driver core
->   irqdomain: Mark fwnodes when their irqdomain is added/removed
->   PM: domains: Mark fwnodes when their powerdomain is added/removed
->   clk: Mark fwnodes when their clock provider is added/removed
->
->  .../admin-guide/kernel-parameters.txt         |  5 ++
->  drivers/base/core.c                           | 58 ++++++++++++++++++-
->  drivers/base/power/domain.c                   |  2 +
->  drivers/clk/clk.c                             |  3 +
->  drivers/of/property.c                         | 16 +++--
->  include/linux/fwnode.h                        | 20 ++++++-
->  kernel/irq/irqdomain.c                        |  2 +
->  7 files changed, 98 insertions(+), 8 deletions(-)
->
-> --
-> 2.30.0.478.g8a0d178c01-goog
 >
