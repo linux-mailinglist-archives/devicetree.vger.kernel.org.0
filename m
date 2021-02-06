@@ -2,147 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C4F312011
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 21:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7F0131201D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 21:59:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbhBFUs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Feb 2021 15:48:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45810 "EHLO
+        id S229529AbhBFU7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Feb 2021 15:59:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbhBFUsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 15:48:25 -0500
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67203C06174A
-        for <devicetree@vger.kernel.org>; Sat,  6 Feb 2021 12:47:45 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id y128so10476535ybf.10
-        for <devicetree@vger.kernel.org>; Sat, 06 Feb 2021 12:47:45 -0800 (PST)
+        with ESMTP id S229522AbhBFU7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 15:59:23 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E49EC06174A;
+        Sat,  6 Feb 2021 12:58:43 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id s18so11750383ljg.7;
+        Sat, 06 Feb 2021 12:58:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+hjAXsPVbgElgRdj+BZ+6MVnNMTVzcYGHrvtwU1AcCs=;
-        b=PivZDf7vbfBH6bSgHRaWMYMP8xN20P+lGSInQZfjmRrebl4zG19XOD81h4xHPsxfvN
-         rrEa3VG5KM++VddLx0G0hTtcKmO3HR5nuYYQszPGx7j17MOYIXpprrMbnqMjHCQ16gnh
-         vAAp8M7sh5ngMRXLEvCnpR0SE2eLb/b831luTAfpCMUIl/+mJcASqjF/vSQElaBpCa5G
-         ILxRh/y64IoVeO+zKE/zafs6iW5iGJpNWNeiVO4o5xdYwVvhVcqNHRaL4XC6XStW1r/E
-         jU8CFfUhqfItkbmKMgW8wP9A8yilwS0e3PFFDVjJn3PIqvllgunktYiSTLq9+arpDImJ
-         yCYw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=fODc4Y13jnUgYFxRk0/SlJ0oEOTVWjVViI6j6TXwrmA=;
+        b=i+BNW/3lPIn8qBEL4dJSYVVoNBe4G3m2fgH7TV4qRli2Y4zuXfrL3ikjrrJSXN9QOV
+         /jx3qFgEgkW+O7Gl44iV8Vi3upllIZM4E2ARLbwYwztquYKNqOGjsor5pdhM8G8dx1C1
+         bqw6EKRkRC51ozp047gC4F2wIBPE/O2iVcpAUOkCoD3oCzOY4NzC9fkdQZL3gGeI8cYC
+         3hCFf/DBMCKnopIFFpORPEg8kciDMfINbpVT2nUvJ2W1glufCsg4bkGr7iN3vNQgexUs
+         dL1a++FA+Mh8vP8liREDQuw0Ewsjbq+A6ZWdFDV/K51vKCH2hQOxq39Rm/Y+F9I+SxK5
+         8RUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+hjAXsPVbgElgRdj+BZ+6MVnNMTVzcYGHrvtwU1AcCs=;
-        b=f7Mcmt0DBXbX+RvsAZbuuUu8SaHhrZy+9cWae1rtfFfppV4SZZiJ4pB5g31dOypZbt
-         rObUOrxWf72rXn2LsI06Q5YrTLtobqccMqbjRhGmBJi9oti0xkEokoScOIkjlDhdIiZG
-         3QLBi4r3NOveI8I5nchF+XhRkOOF2c5T/BpHUslgR2aJeZ3LbBe+hmNpBAAuv0Ox/C8e
-         aKQBsVSefncjE35sKkkCT5iVJOkVvwTDak0/s+MlVpfeuDRXTPlZAbtguKn8kibV7v0d
-         c7LQJhIsJJs+WBpSBIiUau+NBV+pQ+AWRoqeKyQoigNTEPcUoD61x7fAbudXzZbXxb+g
-         HTVw==
-X-Gm-Message-State: AOAM532MXidaEk4GGFeER8oWyZBqxmAsJ8YJGn7Rsi9vL8LxzPcm0kOf
-        A6dncgvnsdJbVYcqkwaaQcTITN8HfQ/uP1qz+1Fxjg==
-X-Google-Smtp-Source: ABdhPJyL0NcBX/RigrI99Osm8m1ZvOqxCkoIvfHxGEI93KNtJj0ymk4vExKY8KweKVKWPIOdql7mDcRKQHJIMzVuTpU=
-X-Received: by 2002:a25:b74c:: with SMTP id e12mr16000102ybm.20.1612644464464;
- Sat, 06 Feb 2021 12:47:44 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=fODc4Y13jnUgYFxRk0/SlJ0oEOTVWjVViI6j6TXwrmA=;
+        b=IBWliyORz+uqgxjXBHQ0pZDtFdSRCu0TV71mA0ccCXvwNTZCUB0NCZKElZrGKLbAOq
+         czK9LPIEvKY4Xa+oSSv8wAIq37HbbcWFNDoML5uo9Y0pyAKJ2enIuvW0xvIpQC/0SXIF
+         hHYJWpD0fV0/7ZotBH8L0kS6JLRWDLkcRpV1nj+josW030wDCw7OlUNYTJ0lESHPlDYi
+         Yza2Y+OYk3hdGSK4LBTFog0cF5Qq/qRhF9C41ZNmoIpt4wqlSKFZoiM7j/oqz7/3DxcU
+         ZHXc5tw5QwLau0kMNb04encKal5vx50fEuzT3hiVJFD7wAcbBnaUJpwVa4VabVuD+DYo
+         MeTA==
+X-Gm-Message-State: AOAM532132npUc0fQgrD09OwR9TiykG3ZOFrXtqhq6G8zZgb5WiLd9iH
+        Rab2yV/kurl35nQ6chdZy2ZmECumMTQ=
+X-Google-Smtp-Source: ABdhPJz0+XIQ0VmKOXwuXGw+Yp6c6LpRsX19zuZPttNlimegwkGn6w0xU0Bd08AOaN/VgftdtgH/Fg==
+X-Received: by 2002:a2e:8444:: with SMTP id u4mr1155075ljh.342.1612645121429;
+        Sat, 06 Feb 2021 12:58:41 -0800 (PST)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id b39sm1376435ljf.68.2021.02.06.12.58.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 06 Feb 2021 12:58:40 -0800 (PST)
+Subject: Re: AW: [PATCH v2 1/4] leds: lp50xx: add setting of default intensity
+ from DT
+To:     Sven Schuchmann <schuchmann@schleissheimer.de>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210204143726.27977-1-schuchmann@schleissheimer.de>
+ <20210204145201.GB14305@duo.ucw.cz>
+ <DB8P190MB063482D8E38C0529AD16A4D5D9B29@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
+ <20210205102338.GA27854@amd> <c107d3b9-2141-7cad-837a-f8ef107df61c@gmail.com>
+ <DB8P190MB06344FAD6492E56D28A4E916D9B19@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <d5631e35-cd62-106f-2ec4-de3163367bc0@gmail.com>
+Date:   Sat, 6 Feb 2021 21:58:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-References: <20210205222644.2357303-1-saravanak@google.com> <CAMuHMdXo+ShM3Ct2OSCscJwaLJ4rbytpA14=dR5q+3F9kJjNfw@mail.gmail.com>
-In-Reply-To: <CAMuHMdXo+ShM3Ct2OSCscJwaLJ4rbytpA14=dR5q+3F9kJjNfw@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Sat, 6 Feb 2021 12:47:08 -0800
-Message-ID: <CAGETcx9j8YzcJa6-s4cuyTpwFsUAAaBD6H9mf1wfzafb_x+5tg@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <DB8P190MB06344FAD6492E56D28A4E916D9B19@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 6, 2021 at 11:41 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Saravana,
->
-> On Fri, Feb 5, 2021 at 11:26 PM Saravana Kannan <saravanak@google.com> wrote:
-> > There are a lot of devices/drivers where they never have a struct device
-> > created for them or the driver initializes the hardware without ever
-> > binding to the struct device.
-> >
-> > This series is intended to avoid any boot regressions due to such
-> > devices/drivers when fw_devlink=on and also address the handling of
-> > optional suppliers.
->
-> Thanks for your series!
->
-> > Patch 5 sets up a generic API to handle drivers that never bind with
-> > their devices.
-> >
-> > Patch 6 through 8 update different frameworks to use the new API.
->
-> >   driver core: fw_devlink: Handle suppliers that don't use driver core
-> >   irqdomain: Mark fwnodes when their irqdomain is added/removed
-> >   PM: domains: Mark fwnodes when their powerdomain is added/removed
-> >   clk: Mark fwnodes when their clock provider is added/removed
->
-> I take it this is an automatic alternative for letting drivers set the
-> OF_POPULATED flag manually?
+Sven,
 
-The frameworks can still continue setting it to avoid creating dead
-"struct devices" that'll never be used. This new flag handles cases
-where the device is already created, but will never bind to a driver.
-So, they are meant to do slightly different things, but the end result
-is removing the need for individual drivers to set OF_POPULATED (and
-Rob hates that too).
+On 2/6/21 2:14 PM, Sven Schuchmann wrote:
+> Hello Dan,
+> 
+>> Von: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+>> Gesendet: Freitag, 5. Februar 2021 19:37
+>> Hi Pavel,
+>>
+>> On 2/5/21 11:23 AM, Pavel Machek wrote:
+>>> Hi!
+>>>
+>>>>>>        patternProperties:
+>>>>>>          "(^led-[0-9a-f]$|led)":
+>>>>>> @@ -99,6 +104,7 @@ examples:
+>>>>>>                   reg = <0x1>;
+>>>>>>                   color = <LED_COLOR_ID_RGB>;
+>>>>>>                   function = LED_FUNCTION_CHARGING;
+>>>>>> +               default-intensity = <100 0 0>;
+>>
+>> How will you know which array position is for which child LED?
+>> I presume DT child nodes are not guaranteed to be parsed in the order
+>> of declaration?
+> 
+> I tried to fiddle this out, but it seems Jacek is right over here.
+> The multi-led definition looks like this (from the documentation leds-lp50xx.yaml)
+> 
+>          multi-led@1 {
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+>                 reg = <0x1>;
+>                 color = <LED_COLOR_ID_RGB>;
+>                 function = LED_FUNCTION_CHARGING;
+> 
+>                 led-0 {
+>                     color = <LED_COLOR_ID_RED>;
+>                 };
+> 
+>                 led-1 {
+>                     color = <LED_COLOR_ID_GREEN>;
+>                 };
+> 
+>                 led-2 {
+>                     color = <LED_COLOR_ID_BLUE>;
+>                 };
+>            };
+> 
+> But it seems that the color definition of each led is ignored.
+> By ignored I mean the driver does not take care which color
+> is at which position. So if I change led-0 to be LED_COLOR_ID_BLUE
+> and led-2 to be LED_COLOR_ID_RED nothing will change if I write
+> from userspace. Could you help to clarify?
+> Then it is even hard to know which led to set with default-intensity.
 
-> Is this actually safe?  It's not uncommon for a driver to register
-> multiple providers, sometimes even of different types (clock, genpd,
-> irq, reset[1], ...).
+See Documentation/ABI/testing/sysfs-class-led-multicolor and
+documentation of multi_index and multi_intensity files.
+It is the multi_index file that tells what is the order of colors
+in the multi_intensity file.
 
-This flag is just an indication that the fwnode has been initialized
-by a driver. It's okay if the flag gets set multiple times when a
-driver is registering with multiple frameworks. It's also okay if the
-flag is cleared multiple times as the driver is uninitializing the
-hardware (although, this is very unlikely for drivers that don't use
-device-driver model). When we actually try to create device links, we
-just check if this happened without a driver actually binding to this
-device. There's no "probing" race because the "status" I check goes
-through NO_DRIVER -> PROBING -(registering happens)-> BOUND ->
-UNBINDING -(deregistering happens) -> NO_DRIVER. So if the fwnode flag
-is getting set as part of the driver's probe function, the "status"
-value will never be NO_DRIVER.
+And that depends on the order of enumeration of the nodes by DT parser.
 
-> Can you be sure consumer drivers do not start probing while their
-> dependency is still busy registering providers?
+> Also it seems that the enumeration of the multi-leds should
+> start with multi-led@0 (and not 1 as in the documentation).
 
-The code only acts on that flag when trying to create device links
-from the consumer to the supplier. This is just a way to tell "hey,
-don't bother creating a device link, this supplier will never bind".
-So it just avoids blocking the consumer. Doesn't really make the
-consumers probe earlier than they would have.
-
-> [1] Which brings my attention to the fact that devlink does not consider
->     "resets" properties yet.
->
-
-Yeah, we can add that and other bindings as we go.
-
--Saravana
+The @unit-address part of node name must match the first address
+specified in the reg property of the node, so this is correct.
+-- 
+Best regards,
+Jacek Anaszewski
