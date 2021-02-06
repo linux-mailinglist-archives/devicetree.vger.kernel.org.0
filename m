@@ -2,55 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 625B0311C79
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 10:57:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 742F3311C9C
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 11:30:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbhBFJ4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Feb 2021 04:56:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38916 "EHLO mail.kernel.org"
+        id S229581AbhBFK3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Feb 2021 05:29:50 -0500
+Received: from lnfm1.sai.msu.ru ([93.180.26.255]:40178 "EHLO lnfm1.sai.msu.ru"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229562AbhBFJ4I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 6 Feb 2021 04:56:08 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1AE5664E59;
-        Sat,  6 Feb 2021 09:55:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612605328;
-        bh=dVYA6oWp1GEX1fhArWhzZslhwBKjxmZlK/TPLT+tf64=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iFzYTwCM+FfAUAY/NMPcnKq/pSk/h9IyeD8zVkBr7qFca7cyCyrGRFAzZywoviq0S
-         +eHzrGt5HGdYAzSyU6D88uqK0WLtWMTW/pV+aEFaWFdx+23sxm7MagY1+iZNRAHkJZ
-         fjEo1IFlxLRRY7Fy0XH4rgY7h7eiR0cG3kNL919GE53ylwOfDB3rN9s0bLkldLSSmh
-         WfYyeHZEUwyo6Ah/4Edl+qOZi+zf4RwoHLVYoEknwIQJ0qSTtRVllqrAiyO4Epk94m
-         wnmvMF4BzLwlwrwX9NyyxlpQQ1LyLS/tEF40snJ6Ji0y0tFC/q9KACFUwz3NEfmeAH
-         AnUtNR3ZwQsHQ==
-Date:   Sat, 6 Feb 2021 15:25:22 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        id S229508AbhBFK3u (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 6 Feb 2021 05:29:50 -0500
+X-Greylist: delayed 2210 seconds by postgrey-1.27 at vger.kernel.org; Sat, 06 Feb 2021 05:29:49 EST
+Received: from dragon.sai.msu.ru (dragon.sai.msu.ru [93.180.26.172])
+        by lnfm1.sai.msu.ru (8.14.1/8.12.8) with ESMTP id 1169pesx029777;
+        Sat, 6 Feb 2021 12:51:45 +0300
+Received: from oak.local (unknown [83.167.113.121])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by dragon.sai.msu.ru (Postfix) with ESMTPSA id 807601CDFD;
+        Sat,  6 Feb 2021 12:51:41 +0300 (MSK)
+From:   "Matwey V. Kornilov" <matwey@sai.msu.ru>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Jack Pham <jackp@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] phy: Add Support for SM8350 UFS
-Message-ID: <20210206095522.GI2656@vkoul-mobl.Dlink>
-References: <20210204165805.62235-1-vkoul@kernel.org>
+        linux-hwmon@vger.kernel.org (open list:HARDWARE MONITORING),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Cc:     linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "Matwey V. Kornilov" <matwey@sai.msu.ru>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v4 1/4] hwmon: lm75: Add lm75 to of_match list
+Date:   Sat,  6 Feb 2021 12:51:18 +0300
+Message-Id: <20210206095121.20625-2-matwey@sai.msu.ru>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210206095121.20625-1-matwey@sai.msu.ru>
+References: <2588ea5c-630e-6509-689d-4c8fea358e9b@roeck-us.net>
+ <20210206095121.20625-1-matwey@sai.msu.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210204165805.62235-1-vkoul@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04-02-21, 22:28, Vinod Koul wrote:
-> This series adds support for UFS found in SM8350 SoC.
-> 
-> We add binding for UFS phy and new regsiters for QMPv5 followed by UFS phy
-> tables.
+Currently, many boards use just 'lm75' as a compatible string.
 
-Applied, thanks
+Signed-off-by: Matwey V. Kornilov <matwey@sai.msu.ru>
+---
+ Documentation/devicetree/bindings/hwmon/lm75.yaml | 1 +
+ drivers/hwmon/lm75.c                              | 4 ++++
+ 2 files changed, 5 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/hwmon/lm75.yaml b/Documentation/devicetree/bindings/hwmon/lm75.yaml
+index 96eed5cc7841..aec8edd1e0c6 100644
+--- a/Documentation/devicetree/bindings/hwmon/lm75.yaml
++++ b/Documentation/devicetree/bindings/hwmon/lm75.yaml
+@@ -13,6 +13,7 @@ maintainers:
+ properties:
+   compatible:
+     enum:
++      - lm75
+       - adi,adt75
+       - dallas,ds1775
+       - dallas,ds75
+diff --git a/drivers/hwmon/lm75.c b/drivers/hwmon/lm75.c
+index e447febd121a..08cde1c446db 100644
+--- a/drivers/hwmon/lm75.c
++++ b/drivers/hwmon/lm75.c
+@@ -667,6 +667,10 @@ static const struct i2c_device_id lm75_ids[] = {
+ MODULE_DEVICE_TABLE(i2c, lm75_ids);
+ 
+ static const struct of_device_id __maybe_unused lm75_of_match[] = {
++	{
++		.compatible = "lm75",
++		.data = (void *)lm75
++	},
+ 	{
+ 		.compatible = "adi,adt75",
+ 		.data = (void *)adt75
 -- 
-~Vinod
+2.26.2
+
