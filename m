@@ -2,121 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F4206311FC9
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 20:50:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9C4F312011
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 21:49:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbhBFTst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Feb 2021 14:48:49 -0500
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:42955 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbhBFTsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 14:48:41 -0500
-Received: by mail-ot1-f52.google.com with SMTP id q4so751111otm.9;
-        Sat, 06 Feb 2021 11:48:25 -0800 (PST)
+        id S229629AbhBFUs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Feb 2021 15:48:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45810 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229506AbhBFUsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 15:48:25 -0500
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67203C06174A
+        for <devicetree@vger.kernel.org>; Sat,  6 Feb 2021 12:47:45 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id y128so10476535ybf.10
+        for <devicetree@vger.kernel.org>; Sat, 06 Feb 2021 12:47:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+hjAXsPVbgElgRdj+BZ+6MVnNMTVzcYGHrvtwU1AcCs=;
+        b=PivZDf7vbfBH6bSgHRaWMYMP8xN20P+lGSInQZfjmRrebl4zG19XOD81h4xHPsxfvN
+         rrEa3VG5KM++VddLx0G0hTtcKmO3HR5nuYYQszPGx7j17MOYIXpprrMbnqMjHCQ16gnh
+         vAAp8M7sh5ngMRXLEvCnpR0SE2eLb/b831luTAfpCMUIl/+mJcASqjF/vSQElaBpCa5G
+         ILxRh/y64IoVeO+zKE/zafs6iW5iGJpNWNeiVO4o5xdYwVvhVcqNHRaL4XC6XStW1r/E
+         jU8CFfUhqfItkbmKMgW8wP9A8yilwS0e3PFFDVjJn3PIqvllgunktYiSTLq9+arpDImJ
+         yCYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=8mVMNF4fRsyTZazYCsaAIH58/5IMUtcIzDAOPD4XiLo=;
-        b=R7AgR3EvwypHb0F2brBXz0ZAB82ZRwLdUFWS8Ipry1qAJ3JDp+1z5qC0iTb8eTUgeP
-         tQT6gKaCf7if3/qIjn+qOjGVx8MVBYivczGkt6RwHa2tZT4WGHyMCvv/4hXdBkSdAxe9
-         0jCjCibZwp4/WbveJqMoDKCHoOLuKD6TGGBjAegOKhshEwJF2HS3A8Nmj/RgZkqz4zTv
-         RUL2eBrqqjSDmScEA5iFWB6JRlBJ6PLZ3QnfYnSLMoXi5/BqPcKSMgzEikYRkOU2y2BY
-         s7NGkmnpPcQ/MFTHrLdAUSMaSzjKx0MnHPTRu7aK63Zajzill0Uy/lV8vr5Q1Ss0swXQ
-         rYQg==
-X-Gm-Message-State: AOAM531knbpEapYKzaHq0xJHR8ACxKkJY7uWgYhMDXigg66G7uFA9tha
-        T+cKnjPwdHLJNtm01TCX2JuH7pY4AzAHzDCRkDQ=
-X-Google-Smtp-Source: ABdhPJw745S8LM8O3h8fPOXwjE6gI72k4oPqS5/xYZ9eVQi+tWwpGN5S3rTWZsDTboMo0cSPFheifgB+2yBBK2ArvyU=
-X-Received: by 2002:a05:6830:15cc:: with SMTP id j12mr7710395otr.145.1612640880368;
- Sat, 06 Feb 2021 11:48:00 -0800 (PST)
+        bh=+hjAXsPVbgElgRdj+BZ+6MVnNMTVzcYGHrvtwU1AcCs=;
+        b=f7Mcmt0DBXbX+RvsAZbuuUu8SaHhrZy+9cWae1rtfFfppV4SZZiJ4pB5g31dOypZbt
+         rObUOrxWf72rXn2LsI06Q5YrTLtobqccMqbjRhGmBJi9oti0xkEokoScOIkjlDhdIiZG
+         3QLBi4r3NOveI8I5nchF+XhRkOOF2c5T/BpHUslgR2aJeZ3LbBe+hmNpBAAuv0Ox/C8e
+         aKQBsVSefncjE35sKkkCT5iVJOkVvwTDak0/s+MlVpfeuDRXTPlZAbtguKn8kibV7v0d
+         c7LQJhIsJJs+WBpSBIiUau+NBV+pQ+AWRoqeKyQoigNTEPcUoD61x7fAbudXzZbXxb+g
+         HTVw==
+X-Gm-Message-State: AOAM532MXidaEk4GGFeER8oWyZBqxmAsJ8YJGn7Rsi9vL8LxzPcm0kOf
+        A6dncgvnsdJbVYcqkwaaQcTITN8HfQ/uP1qz+1Fxjg==
+X-Google-Smtp-Source: ABdhPJyL0NcBX/RigrI99Osm8m1ZvOqxCkoIvfHxGEI93KNtJj0ymk4vExKY8KweKVKWPIOdql7mDcRKQHJIMzVuTpU=
+X-Received: by 2002:a25:b74c:: with SMTP id e12mr16000102ybm.20.1612644464464;
+ Sat, 06 Feb 2021 12:47:44 -0800 (PST)
 MIME-Version: 1.0
-References: <20210125191240.11278-1-krzk@kernel.org> <20210125191240.11278-3-krzk@kernel.org>
- <20210206134531.l5vpzlmev4v3f3uo@kozik-lap> <CAK8P3a0Kgn9PTHjsU7MbJPC8vatvb9KYJJKWxrx7zQzTNgK10g@mail.gmail.com>
-In-Reply-To: <CAK8P3a0Kgn9PTHjsU7MbJPC8vatvb9KYJJKWxrx7zQzTNgK10g@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Sat, 6 Feb 2021 20:47:49 +0100
-Message-ID: <CAMuHMdWZ8QmiQCmiW9AvCpviNZeuaxThSo_4Xb2DGEs9hMTKMQ@mail.gmail.com>
-Subject: Re: [GIT PULL 2/3] ARM: dts: samsung: DTS for v5.12
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        arm-soc <arm@kernel.org>, SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Frank Rowand <frowand.list@gmail.com>,
+References: <20210205222644.2357303-1-saravanak@google.com> <CAMuHMdXo+ShM3Ct2OSCscJwaLJ4rbytpA14=dR5q+3F9kJjNfw@mail.gmail.com>
+In-Reply-To: <CAMuHMdXo+ShM3Ct2OSCscJwaLJ4rbytpA14=dR5q+3F9kJjNfw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Sat, 6 Feb 2021 12:47:08 -0800
+Message-ID: <CAGETcx9j8YzcJa6-s4cuyTpwFsUAAaBD6H9mf1wfzafb_x+5tg@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Maxime Ripard <mripard@kernel.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Android Kernel Team <kernel-team@android.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
-
-On Sat, Feb 6, 2021 at 3:36 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> That said, I'm still not happy about the patch we discussed in the
-> other email thread[1] and I'd like to handle it a little more strictly in
-> the future, but I agree this wasn't obvious and we have been rather
-> inconsistent about it in the past, with some platform maintainers
-> handling it way more strictly than others.
+On Sat, Feb 6, 2021 at 11:41 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> I've added the devicetree maintainers and a few other platform
-> maintainers to Cc here, maybe they can provide some further
-> opinions on the topic so we can come to an approach that
-> works for everyone.
+> Hi Saravana,
 >
-> My summary of the thread in [1] is there was a driver bug that
-> required a DT binding change. Krzysztof and the other involved
-> parties made sure the driver handles it in a backward-compatible
-> way (an old dtb file will still run into the bug but keep working
-> with new kernels), but decided that they did not need to worry
-> about the opposite case (running an old kernel with an updated
-> dtb). I noticed the compatibility break and said that I would
-> prefer this to be done in a way that is compatible both ways,
-> or at the minimum be alerted about the binding break in the
-> pull request, with an explanation about why this had to be done,
-> even when we don't think anyone is going to be affected.
+> On Fri, Feb 5, 2021 at 11:26 PM Saravana Kannan <saravanak@google.com> wrote:
+> > There are a lot of devices/drivers where they never have a struct device
+> > created for them or the driver initializes the hardware without ever
+> > binding to the struct device.
+> >
+> > This series is intended to avoid any boot regressions due to such
+> > devices/drivers when fw_devlink=on and also address the handling of
+> > optional suppliers.
 >
-> What do others think about this? Should we generally assume
-> that breaking old kernels with new dtbs is acceptable, or should
-> we try to avoid it if possible, the same way we try to avoid
-> breaking new kernels with old dtbs? Should this be a platform
-> specific policy or should we try to handle all platforms the same
-> way?
+> Thanks for your series!
+>
+> > Patch 5 sets up a generic API to handle drivers that never bind with
+> > their devices.
+> >
+> > Patch 6 through 8 update different frameworks to use the new API.
+>
+> >   driver core: fw_devlink: Handle suppliers that don't use driver core
+> >   irqdomain: Mark fwnodes when their irqdomain is added/removed
+> >   PM: domains: Mark fwnodes when their powerdomain is added/removed
+> >   clk: Mark fwnodes when their clock provider is added/removed
+>
+> I take it this is an automatic alternative for letting drivers set the
+> OF_POPULATED flag manually?
 
-For Renesas SoCs, we typically only consider compatibility of new
-kernels with old DTBs, not the other way around.
-However, most DTB updates are due to new hardware support, so using the
-new DTB with an old kernel usually just means no newly documented
-hardware, or new feature, is being used by the old kernel.
+The frameworks can still continue setting it to avoid creating dead
+"struct devices" that'll never be used. This new flag handles cases
+where the device is already created, but will never bind to a driver.
+So, they are meant to do slightly different things, but the end result
+is removing the need for individual drivers to set OF_POPULATED (and
+Rob hates that too).
 
-In case there was a real issue fixed, and using the new DTB with the old
-kernel would cause a regression, and we're aware of it, we do make sure
-the DTS update is postponed until the corresponding driver update has
-hit upstream.
+> Is this actually safe?  It's not uncommon for a driver to register
+> multiple providers, sometimes even of different types (clock, genpd,
+> irq, reset[1], ...).
 
-Gr{oetje,eeting}s,
+This flag is just an indication that the fwnode has been initialized
+by a driver. It's okay if the flag gets set multiple times when a
+driver is registering with multiple frameworks. It's also okay if the
+flag is cleared multiple times as the driver is uninitializing the
+hardware (although, this is very unlikely for drivers that don't use
+device-driver model). When we actually try to create device links, we
+just check if this happened without a driver actually binding to this
+device. There's no "probing" race because the "status" I check goes
+through NO_DRIVER -> PROBING -(registering happens)-> BOUND ->
+UNBINDING -(deregistering happens) -> NO_DRIVER. So if the fwnode flag
+is getting set as part of the driver's probe function, the "status"
+value will never be NO_DRIVER.
 
-                        Geert
+> Can you be sure consumer drivers do not start probing while their
+> dependency is still busy registering providers?
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+The code only acts on that flag when trying to create device links
+from the consumer to the supplier. This is just a way to tell "hey,
+don't bother creating a device link, this supplier will never bind".
+So it just avoids blocking the consumer. Doesn't really make the
+consumers probe earlier than they would have.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> [1] Which brings my attention to the fact that devlink does not consider
+>     "resets" properties yet.
+>
+
+Yeah, we can add that and other bindings as we go.
+
+-Saravana
