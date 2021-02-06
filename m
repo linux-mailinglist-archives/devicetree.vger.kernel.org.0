@@ -2,92 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12D0A311F83
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 19:53:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A51D4311FBB
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 20:42:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231316AbhBFSwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Feb 2021 13:52:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49314 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231277AbhBFSvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 13:51:54 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1131C061793;
-        Sat,  6 Feb 2021 10:50:32 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id p20so18291332ejb.6;
-        Sat, 06 Feb 2021 10:50:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=VKpw+TGxcSonBmJvYVbjnLKEXkavUls9cDkglgeREzs=;
-        b=dxnRtsYmoNO08QDTm2EZFmG/T23JMcH5IQolk9/b0IoNtT5EFbyKFtRfgdirtktHdg
-         QS0Kyg6BQoCR6hrtkpphM9v0vA9+KnndfyAs12PitPwIvQl76NNbUMmrti5m84D+KU0+
-         JdYmTqINPLzMqd9tzWVusZHAk3WzHRHVhKksOH5KqJUm6UZv0gzMpng0VWVk7PNEpgr4
-         CHKaU208IpfJjWT+0Yyq0tn6Wucg8O2BLeWn+f49bLU+JDzVkxpMP2xrBQswIQh3OSie
-         VDeEtgHLrIn5nBQsJ+/5eMhJcDVv8hAaRTl4bOrmds9yACjz8CQavz3sX8bAwmbfDQzm
-         ytFQ==
+        id S229558AbhBFTmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Feb 2021 14:42:15 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:38893 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229522AbhBFTmO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 14:42:14 -0500
+Received: by mail-oi1-f175.google.com with SMTP id h6so11399159oie.5;
+        Sat, 06 Feb 2021 11:41:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=VKpw+TGxcSonBmJvYVbjnLKEXkavUls9cDkglgeREzs=;
-        b=BmvczFrsjMkaQ2S05p2tW9ek0qIEuLYNDkOUWn+TG+eQaY7wGz9dkICFj0EkxqPpxP
-         KLacbmOUYaCTSwGi/OZvj1Un+jsnpayF/gNjnRq2T/GD3bfxPXul3lc80Aodo6UsAIBu
-         JaSuLauUMdi4GaD3yLiQyio80hCYJn4Ihk/FEok7YsDld/TNxHKl/79ZVy/Fuo7FEh3d
-         u/H7f/GrPueka0kbLwWyVP9oh9MzmerWz+7ptAIUmYqLfdK5HHXmBpWJFyzrnZPdAogh
-         v2hGeLnBw4B4Ra03sh+VH+xYovtbj5Ne5bysYZLUsai6VnY9hFRF8raNQLsZOzHefJ2T
-         rEkA==
-X-Gm-Message-State: AOAM531T7BXzcyESOgyqs6IQ2uHV2/JqR39/bsnHec+pIwkCVTnh41ZH
-        /1tlAhnKhYKjolDcc1iGbWpD8PfClA4=
-X-Google-Smtp-Source: ABdhPJzeqxbxxXcW77TaBb3tEnIZmr97HAxQZzXcFqol723r3W9n0T3CYbLDmWAah/M+tRsSHEZ5Ig==
-X-Received: by 2002:a17:906:f102:: with SMTP id gv2mr9769363ejb.47.1612637431762;
-        Sat, 06 Feb 2021 10:50:31 -0800 (PST)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id cb21sm5890005edb.57.2021.02.06.10.50.31
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 06 Feb 2021 10:50:31 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org, balbi@kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 8/8] dts64: rockchip: enable dwc3 usb for A95X Z2
-Date:   Sat,  6 Feb 2021 19:50:17 +0100
-Message-Id: <20210206185017.1817-8-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210206185017.1817-1-jbx6244@gmail.com>
-References: <20210206185017.1817-1-jbx6244@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FKD3uWoM232ZDb97jtcXu4bvy3RO8KL/znUc8UnnK5o=;
+        b=ea5eTQmg3xpJKvaacNCZPSSh5QpyGfvc4Uckt8zldkOyDDobHf31qiKO7BDrz7sxUv
+         FCM0GCUkg42l854aPPO744cttRSmzV8g5Y615mSAMo/3G8wwKDkq1SmsrBEt2sKfu5Mx
+         Sv79pfMwh4sgD19AXAmy47GM8fdeSTsMYXRcGhgl8Xu74XYQiNweDyFXUinWuFOlcidK
+         b7YcDMPQekm2LEI+SAJh37+LV0pwFiPdgS0O+8jP2HIAPtYvRt5V7vFWMZMuNHf1eyEJ
+         gZfdE3IqteHlZPUcc1+TP/Nj6OAVpRFvRv4xlvT0Suqwr3B7ZbWIwF1J+meFrl5Qzkyw
+         6Uvg==
+X-Gm-Message-State: AOAM530ykiqlEeaFn+Z9XB+MKcf4RcKHwX6R2RwB97RKV51rTp5kEdyC
+        sTCZd7uN76d/2wLxXjGS/A8EHyBqG/Ff8jInMeJtAvqV
+X-Google-Smtp-Source: ABdhPJxQVTTEsgj9ERT0OqxlrVS5WhFx+iXJMf6D3lnCqIAwjU2C9L4GlRHxxmCD4IjzA1ObH/hGYJBKA2PuEeFOkHQ=
+X-Received: by 2002:aca:744:: with SMTP id 65mr6621996oih.153.1612640492897;
+ Sat, 06 Feb 2021 11:41:32 -0800 (PST)
+MIME-Version: 1.0
+References: <20210205222644.2357303-1-saravanak@google.com>
+In-Reply-To: <20210205222644.2357303-1-saravanak@google.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sat, 6 Feb 2021 20:41:22 +0100
+Message-ID: <CAMuHMdXo+ShM3Ct2OSCscJwaLJ4rbytpA14=dR5q+3F9kJjNfw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable dwc3 usb for A95X Z2.
+Hi Saravana,
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
-Changed V2:
-  remove node wrapper
----
- arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+On Fri, Feb 5, 2021 at 11:26 PM Saravana Kannan <saravanak@google.com> wrote:
+> There are a lot of devices/drivers where they never have a struct device
+> created for them or the driver initializes the hardware without ever
+> binding to the struct device.
+>
+> This series is intended to avoid any boot regressions due to such
+> devices/drivers when fw_devlink=on and also address the handling of
+> optional suppliers.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts b/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-index 30c73ef25..e71870768 100644
---- a/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-@@ -357,6 +357,11 @@
- 	status = "okay";
- };
- 
-+&usbdrd3 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
- &usb_host0_ehci {
- 	status = "okay";
- };
--- 
-2.11.0
+Thanks for your series!
 
+> Patch 5 sets up a generic API to handle drivers that never bind with
+> their devices.
+>
+> Patch 6 through 8 update different frameworks to use the new API.
+
+>   driver core: fw_devlink: Handle suppliers that don't use driver core
+>   irqdomain: Mark fwnodes when their irqdomain is added/removed
+>   PM: domains: Mark fwnodes when their powerdomain is added/removed
+>   clk: Mark fwnodes when their clock provider is added/removed
+
+I take it this is an automatic alternative for letting drivers set the
+OF_POPULATED flag manually?
+
+Is this actually safe?  It's not uncommon for a driver to register
+multiple providers, sometimes even of different types (clock, genpd,
+irq, reset[1], ...).
+Can you be sure consumer drivers do not start probing while their
+dependency is still busy registering providers?
+
+[1] Which brings my attention to the fact that devlink does not consider
+    "resets" properties yet.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
