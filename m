@@ -2,221 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2F64311AEC
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 05:35:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12BFD311AFE
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 05:41:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbhBFEeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 23:34:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35372 "EHLO
+        id S230191AbhBFEj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 23:39:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231230AbhBFEeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 23:34:17 -0500
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2996C061756
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 20:33:36 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id w204so8890707ybg.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 20:33:36 -0800 (PST)
+        with ESMTP id S231317AbhBFEjb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 23:39:31 -0500
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29BD9C061786
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 20:38:51 -0800 (PST)
+Received: by mail-ua1-x92b.google.com with SMTP id a16so2829139uad.9
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 20:38:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=iBy5OHY8hIBDKOCJG0ENUP0fJTrRtoeoFN5MKTy49Ds=;
-        b=oc1YsYGPqPaHndrlvUBz1LMBSeBlLuGVgxBJyDbZQKoKu1N3VslVfDouBimvM0jmEi
-         VpkppKgO6NVBfT+gBDq9QJjesuxPtDUNk5hpCP6u5XhjpndpNlpu6nLRq4lYhvL95CdF
-         FDcXwmLm6VgqXhomZj7Q/Vv7T//hqJp3nt3bubJ7Xc43GThFWXBfVspeyUO5ai4My/q3
-         B/N4Jmwa3NyP1LNfjcOuQdU+JcnmiHB7XOmsNF7uoiZxZM8q1SQnDq7V02C1zdmV5ToN
-         5jiDaEQlyU5ZCVRoW2jIsrVA8VOTjSfynMkIEoXhPRqe4RwVJFMH1/WdsUsJ85X2Ahn6
-         NY9A==
+        bh=7tNqLsfYX9gzibf9LwB4HQxkaRZ+2tGUkdroBxSOk2A=;
+        b=jeSp4ZWDa+2AdP7dQ54QhQ4gHYklqrtRaIc6KBcRn6T9e2cVRq02Ci0Ua4KWN2Dig+
+         QXUR9aNriY9noKbl1c0FLmhZCNjx41o0W9Km6L8+l3H28qzvTIXR/Vt+VfQmlLdIF1l4
+         AglCrYVfTUI88jvaJHN5Ali1/jP5vX9C4P8oQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=iBy5OHY8hIBDKOCJG0ENUP0fJTrRtoeoFN5MKTy49Ds=;
-        b=OOq9M2OSFxF8ZBgjYfSOvCJYvV6ID8Me+CpShWbgDG5qfZfaMh63xouf9MLbKmx49C
-         Or1TjmMg6ewPHCI7PCi4V5uZQ9V6+Xro+O+z3eQWzQqgzYiKp5qpnfh/EhTKIJW8E5TR
-         nXVV35apgUS/uuOtX78bedcpRzN0gh9O2g+cPYBxXtEB/PmntrzIl/mrDwcKLjIvnlww
-         Q+iuIXGPMDiMRI3W1tLKYiPLET0hKj1Rd0xNnlgVk/IgnsJ6ZdQxiHBZlvS0QP+2icoA
-         VQtNb37jJksKHKQEiS8cEyhrOa2UbOIMWQXNSZ/EpgrwlZ2Vhl+bgjHuTlM10vefhxxw
-         wS/A==
-X-Gm-Message-State: AOAM532/6PXX29Tn6fxdPOgwh8Iuj+PxWM66Gt3OhcoQCMMRc+PBYMg9
-        5OuEdXEXiA4aRhyMAhvdZE8rN/OwAJkK65I4rg2Hzg==
-X-Google-Smtp-Source: ABdhPJxOSrKiFD+buoiVVF4ixfC9Aq47269ZMEXDtX0dNj4/AnVdEow9wihgtsJTUfJyIQyl0p28icTf7XNJtTv7eS4=
-X-Received: by 2002:a25:c683:: with SMTP id k125mr11986396ybf.32.1612586015826;
- Fri, 05 Feb 2021 20:33:35 -0800 (PST)
+        bh=7tNqLsfYX9gzibf9LwB4HQxkaRZ+2tGUkdroBxSOk2A=;
+        b=sE5A4PZ+yYRKEejS6s6iDSOYRTvTN/EeChO0BWT58I6PVkhYGDIYHAvk/LjFt9BTh1
+         MC9oLJEyPs3pcx+Dup06OTnDsO93WGg/0GF2fjS6BCFKd9vVkxh5h3Y2nSN6IBu7pS8C
+         yPEm/N2uiAMcvkzG+u8opBSxmeZyHvvuBl7+EWO0yvoaR+cygdav5z4m2rFOrAfw5qbR
+         Nq38qYxIUnoAsigaqx1pWZzFS0aJ4Xerom4Ntn7R3D+ffY2B2YUxUNEVVZBbglnP16po
+         qBKu6MNev2+zm797RXijDaCtQJobBTdVOvswMQgSbN3bJNTWzFdL8r2FHjtUViB3HCgz
+         wyVg==
+X-Gm-Message-State: AOAM530M87dC2NGcubHL+dTOPtTEh96/bY2dcN12gAG77QgJJ6jpXQzY
+        8pQvUiCQS+I2LyFXNTw4/omywRN/Y3rBv16IJwo4GQ==
+X-Google-Smtp-Source: ABdhPJxSHD2bpO8QMNrO1PfovadiW1b4ieesCYcbVLPKGrkZ6vddV0zbMaKl8blR8MYOamb7kehPbnr1ttSffkVpJlY=
+X-Received: by 2002:ab0:3043:: with SMTP id x3mr5342812ual.88.1612586330175;
+ Fri, 05 Feb 2021 20:38:50 -0800 (PST)
 MIME-Version: 1.0
-References: <20210121225712.1118239-1-saravanak@google.com>
- <CGME20210204115252eucas1p2d145686f7a5dc7e7a04dddd0b0f2286c@eucas1p2.samsung.com>
- <20210121225712.1118239-3-saravanak@google.com> <9692dfc9-4c63-71c9-b52b-d0feba466695@samsung.com>
- <CAGETcx_KDA55Ti=5CHw48BP1L2Xo64=AFFe+17g27n=P-KUrow@mail.gmail.com>
- <6b606a5d-0435-1e9d-ac61-a8dacf051067@samsung.com> <CAMuHMdWqZonpeyk59b=o_3EKOQx4TxUZE4Jeo-Kxy_o_3CQvnQ@mail.gmail.com>
- <CAGETcx9Rqa7PygjSiQvadm7C2bpxS2rCf5oB_pFhjh+ESV-WQA@mail.gmail.com>
- <CAMuHMdUt4tSEO_Hcf4AgVY_jqZ6Bsyk2+f2P3gQRQk0UfgSSjQ@mail.gmail.com>
- <CAGETcx9YN6uC3XJ_J+PLxvHBVFK-h2X3Qh+kuKDceN5XSt3ZuQ@mail.gmail.com>
- <CAMuHMdVyTOp9PU0rO+YkpzE68VtGdy-bMOwmE_PJx2fiwwpMzQ@mail.gmail.com> <CAGETcx93cee=aH+cOyf-xmYGSHcn6AfBHC=fOw7By6=8JzT56Q@mail.gmail.com>
-In-Reply-To: <CAGETcx93cee=aH+cOyf-xmYGSHcn6AfBHC=fOw7By6=8JzT56Q@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 5 Feb 2021 20:32:59 -0800
-Message-ID: <CAGETcx8+de7RYcUZQzq4WvdK_Qq9ZsJ_SuXw4rX9EZ+sXWtu+A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+References: <20210205104414.299732-1-robert.foss@linaro.org> <20210205104414.299732-4-robert.foss@linaro.org>
+In-Reply-To: <20210205104414.299732-4-robert.foss@linaro.org>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Sat, 6 Feb 2021 12:38:39 +0800
+Message-ID: <CANMq1KDN8TLhUPH2i_S3gCQAU0nM9b_aYnNs-o3rETYgp5-pHw@mail.gmail.com>
+Subject: Re: [PATCH v4 03/22] media: camss: Replace trace_printk() with dev_dbg()
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     Todor Tomov <todor.too@gmail.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
+        angelogioacchino.delregno@somainline.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
         Rob Herring <robh@kernel.org>,
-        Thierry Reding <treding@nvidia.com>
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 5, 2021 at 9:55 AM Saravana Kannan <saravanak@google.com> wrote:
+On Fri, Feb 5, 2021 at 6:44 PM Robert Foss <robert.foss@linaro.org> wrote:
 >
-> On Fri, Feb 5, 2021 at 9:52 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >
-> > Hi Saravana,
-> >
-> > On Fri, Feb 5, 2021 at 6:20 PM Saravana Kannan <saravanak@google.com> wrote:
-> > > On Fri, Feb 5, 2021 at 2:20 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > On Fri, Feb 5, 2021 at 11:06 AM Saravana Kannan <saravanak@google.com> wrote:
-> > > > > On Fri, Feb 5, 2021 at 12:06 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > > > On Fri, Feb 5, 2021 at 8:38 AM Marek Szyprowski
-> > > > > > <m.szyprowski@samsung.com> wrote:
-> > > > > > > On 04.02.2021 22:31, Saravana Kannan wrote:
-> > > > > > > > On Thu, Feb 4, 2021 at 3:52 AM Marek Szyprowski
-> > > > > > > > <m.szyprowski@samsung.com> wrote:
-> > > > > > > >> On 21.01.2021 23:57, Saravana Kannan wrote:
-> > > > > > > >>> This allows fw_devlink to create device links between consumers of an
-> > > > > > > >>> interrupt and the supplier of the interrupt.
-> > > > > > > >>>
-> > > > > > > >>> Cc: Marc Zyngier <maz@kernel.org>
-> > > > > > > >>> Cc: Kevin Hilman <khilman@baylibre.com>
-> > > > > > > >>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > > > > > >>> Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > > > > >>> Reviewed-by: Thierry Reding <treding@nvidia.com>
-> > > > > > > >>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > > > > > > >>> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > > > > > >> This patch landed some time ago in linux-next as commit 4104ca776ba3
-> > > > > > > >> ("of: property: Add fw_devlink support for interrupts"). It breaks MMC
-> > > > > > > >> host controller operation on ARM Juno R1 board (the mmci@50000 device
-> > > > > > > >> defined in arch/arm64/boot/dts/arm/juno-motherboard.dtsi). I didn't
-> > > > > > > > I grepped around and it looks like the final board file is this or
-> > > > > > > > whatever includes it?
-> > > > > > > > arch/arm64/boot/dts/arm/juno-base.dtsi
-> > > > > > > The final board file is arch/arm64/boot/dts/arm/juno-r1.dts
-> > > > > > > > This patch just finds the interrupt-parent and then tries to use that
-> > > > > > > > as a supplier if "interrupts" property is listed. But the only
-> > > > > > > > interrupt parent I can see is:
-> > > > > > > >          gic: interrupt-controller@2c010000 {
-> > > > > > > >                  compatible = "arm,gic-400", "arm,cortex-a15-gic";
-> > > > > > > >
-> > > > > > > > And the driver uses IRQCHIP_DECLARE() and hence should be pretty much
-> > > > > > > > a NOP since those suppliers are never devices and are ignored.
-> > > > > > > > $ git grep "arm,gic-400" -- drivers/
-> > > > > > > > drivers/irqchip/irq-gic.c:IRQCHIP_DECLARE(gic_400, "arm,gic-400", gic_of_init);
-> > > > > > > >
-> > > > > > > > This doesn't make any sense. Am I looking at the right files? Am I
-> > > > > > > > missing something?
-> > > > > > >
-> > > > > > > Okay, I've added displaying a list of deferred devices when mounting
-> > > > > > > rootfs fails and got following items:
-> > > > > > >
-> > > > > > > Deferred devices:
-> > > > > > > 18000000.ethernet        platform: probe deferral - supplier
-> > > > > > > bus@8000000:motherboard-bus not ready
-> > > > > > > 1c050000.mmci    amba: probe deferral - supplier
-> > > > > > > bus@8000000:motherboard-bus not ready
-> > > > > > > 1c1d0000.gpio    amba: probe deferral - supplier
-> > > > > > > bus@8000000:motherboard-bus not ready
-> > > > > > > 2b600000.iommu   platform: probe deferral - wait for supplier
-> > > > > > > scpi-power-domains
-> > > > > > > 7ff50000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
-> > > > > > > 7ff60000.hdlcd   platform: probe deferral - wait for supplier scpi-clk
-> > > > > > > 1c060000.kmi     amba: probe deferral - supplier
-> > > > > > > bus@8000000:motherboard-bus not ready
-> > > > > > > 1c070000.kmi     amba: probe deferral - supplier
-> > > > > > > bus@8000000:motherboard-bus not ready
-> > > > > > > 1c170000.rtc     amba: probe deferral - supplier
-> > > > > > > bus@8000000:motherboard-bus not ready
-> > > > > > > 1c0f0000.wdt     amba: probe deferral - supplier
-> > > > > > > bus@8000000:motherboard-bus not ready
-> > > > > > > gpio-keys
-> > > > > > > Kernel panic - not syncing: VFS: Unable to mount root fs on
-> > > > > > > unknown-block(0,0)
-> > > > > > >
-> > > > > > > I don't see the 'bus@8000000:motherboard-bus' on the deferred devices
-> > > > > > > list, so it looks that device core added a link to something that is not
-> > > > > > > a platform device...
-> > > > >
-> > > > > Probe deferred devices (even platform devices) not showing up in that
-> > > > > list is not unusual. That's because devices end up on that list only
-> > > > > after a driver for them is matched and then it fails.
-> > > > >
-> > > > > > Lemme guess: bus@8000000 is a simple bus, but it has an
-> > > > > > interrupt-map, and the devlink code doesn't follow the mapping?
-> > > > > >
-> > > > >
-> > > > > No, what's happening is that (and this is something I just learned)
-> > > > > that if a parent has an "#interrupt-cells" property, it becomes your
-> > > > > interrupt parent. In this case, the motherboard-bus (still a platform
-> > > > > device) is the parent, but it never probes (because it's simple-bus
-> > > > > and "arm,vexpress,v2p-p1"). But it becomes the interrupt parent. And
-> > > > > this mmci device is marked as a consumer of this bus (while still a
-> > > > > grand-child). Yeah, I'm working on patches (multiple rewrites) to take
-> > > > > care of cases like this.
-> > > >
-> > > > One more reason to scrap the different handling of "simple-bus" and
-> > > > "simple-pm-bus", and use drivers/bus/simple-pm-bus.c, which is a
-> > > > platform device driver, for both? (like I originally intended ;-)
-> > >
-> > > I'm not sure if this will cause more issues since people are used to
-> > > simple-bus not needing a driver. I'm afraid to open that pandora's
-> > > box. Maybe last resort if I don't have any other options.
-> > >
-> > > But keeping that aside, I'm confused how interrupts are even working
-> > > if the parent is a DT node with no driver (let alone a device). Any
-> > > ideas on what's going on or what I'm misunderstanding?
-> >
-> > No driver is needed, as the interrupts are just translated by the map,
-> > and passed to another interrupt controller, which does have a driver.
-> >
-> > Cfr. Section 2.4.3 "Interrupt Nexus Properties" in the DeviceTree
-> > Specification (https://www.devicetree.org/).
-> >
+> trace_printk() should not be used in production code,
+> since extra memory is used for special buffers whenever
+> trace_puts() is used.
 >
-> Yeah, I need to add interrupt-map support. Sigh. Only so many things I
-> can fix at a time. Let me know if you want to help.
+> Replace it with dev_dbg() which provides all of the desired
+> debugging functionality.
 >
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> Suggested-by: Nicolas Boichat <drinkcat@chromium.org>
 
-Marek,
+Thanks!
 
-After reading the DT spec and poking at the code, I THINK this code is
-correct. Can you give it a shot? If it works, then I can clean it up,
-roll in interrupts-extended and send a patch.
+Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
 
--Saravana
-
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1300,10 +1300,12 @@ static struct device_node
-*parse_gpio_compat(struct device_node *np,
- static struct device_node *parse_interrupts(struct device_node *np,
-                                            const char *prop_name, int index)
- {
--       if (strcmp(prop_name, "interrupts") || index)
-+       struct of_phandle_args sup_args;
-+       if (strcmp(prop_name, "interrupts"))
-                return NULL;
-
--       return of_irq_find_parent(np);
-+       return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
- }
+> ---
+>
+> Changes since v3:
+>  - Nicolas: Create this patch
+>
+>
+>  drivers/media/platform/qcom/camss/camss-vfe-4-1.c | 5 +++--
+>  drivers/media/platform/qcom/camss/camss-vfe-4-7.c | 5 +++--
+>  2 files changed, 6 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-4-1.c b/drivers/media/platform/qcom/camss/camss-vfe-4-1.c
+> index a1b56b89130d..85b9bcbc7321 100644
+> --- a/drivers/media/platform/qcom/camss/camss-vfe-4-1.c
+> +++ b/drivers/media/platform/qcom/camss/camss-vfe-4-1.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+>
+> +#include "camss.h"
+>  #include "camss-vfe.h"
+>
+>  #define VFE_0_HW_VERSION               0x000
+> @@ -936,8 +937,8 @@ static irqreturn_t vfe_isr(int irq, void *dev)
+>
+>         vfe->ops->isr_read(vfe, &value0, &value1);
+>
+> -       trace_printk("VFE: status0 = 0x%08x, status1 = 0x%08x\n",
+> -                    value0, value1);
+> +       dev_dbg(vfe->camss->dev, "VFE: status0 = 0x%08x, status1 = 0x%08x\n",
+> +               value0, value1);
+>
+>         if (value0 & VFE_0_IRQ_STATUS_0_RESET_ACK)
+>                 vfe->isr_ops.reset_ack(vfe);
+> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-4-7.c b/drivers/media/platform/qcom/camss/camss-vfe-4-7.c
+> index 84c33b8f9fe3..f7e00a2de393 100644
+> --- a/drivers/media/platform/qcom/camss/camss-vfe-4-7.c
+> +++ b/drivers/media/platform/qcom/camss/camss-vfe-4-7.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+>
+> +#include "camss.h"
+>  #include "camss-vfe.h"
+>
+>  #define VFE_0_HW_VERSION               0x000
+> @@ -1069,8 +1070,8 @@ static irqreturn_t vfe_isr(int irq, void *dev)
+>
+>         vfe->ops->isr_read(vfe, &value0, &value1);
+>
+> -       trace_printk("VFE: status0 = 0x%08x, status1 = 0x%08x\n",
+> -                    value0, value1);
+> +       dev_dbg(vfe->camss->dev, "VFE: status0 = 0x%08x, status1 = 0x%08x\n",
+> +               value0, value1);
+>
+>         if (value0 & VFE_0_IRQ_STATUS_0_RESET_ACK)
+>                 vfe->isr_ops.reset_ack(vfe);
+> --
+> 2.27.0
+>
