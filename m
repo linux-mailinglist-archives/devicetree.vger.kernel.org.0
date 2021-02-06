@@ -2,242 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7ED7311CEE
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 12:43:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F7AB311CFB
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 12:53:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbhBFLnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Feb 2021 06:43:31 -0500
-Received: from mail-wr1-f52.google.com ([209.85.221.52]:42006 "EHLO
-        mail-wr1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbhBFLna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 06:43:30 -0500
-Received: by mail-wr1-f52.google.com with SMTP id r7so1155288wrq.9;
-        Sat, 06 Feb 2021 03:43:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Z5+il/kFvaOKLe+vkHQ3jUQ2W//xLcXbRoumcD7gta0=;
-        b=DleaozABJOncx6a9QTuZX6r3lHnAfU8KbiFkT+WTycXwXlZ9c3f1P4IPaj58fw8zCY
-         edN4y3AhwEQLYJn6hrTkZqUkFQ147fiLQ6g58YOKM6h90BwPK2daz5g2bHq5L23Dmy+x
-         moIOGCt0drv1197FSjG7MIYUcA+ymSy2Wl2/lsfw3j84U1nOziXm5Rk5IKHCJoxsITA7
-         BlvW6mTF2MqRNRMba6z5mQOciygXmcSIAj2RZABET2WYBSbbPqoxfoccB7x7oQ3GIHwE
-         T773pwSOI+157aiWT4sSSaG+/TlSwRTFGoCUVPbBlSqedfHoZfr1aGHd0ARKSd7Eidf9
-         tArw==
-X-Gm-Message-State: AOAM530ykOsqBcz1TMEBhwM/ywNpI31Cnf2JzzY9HEmrwkpkKpI1ycGS
-        RHJjEsuvi9nmTg65YCyLVOkJHUKM/GM=
-X-Google-Smtp-Source: ABdhPJwmuRNDbRfe7XUqGtzhJtpUMljOeJ+rcHo/cs7ssJn/GZRZrN22zmidYNSXEEBIIyQjO2Ksrw==
-X-Received: by 2002:adf:f750:: with SMTP id z16mr10028432wrp.243.1612611766217;
-        Sat, 06 Feb 2021 03:42:46 -0800 (PST)
-Received: from kozik-lap (194-95-143-94.dyn.cable.fcom.ch. [94.143.95.194])
-        by smtp.googlemail.com with ESMTPSA id c20sm10936238wmb.38.2021.02.06.03.42.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Feb 2021 03:42:45 -0800 (PST)
-Date:   Sat, 6 Feb 2021 12:42:43 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Li Yang <leoyang.li@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 04/15] ARM: dts: ls1021a: change to use SPDX identifiers
-Message-ID: <20210206114243.txc2jujr5acos2gf@kozik-lap>
-References: <20210205234734.3397-1-leoyang.li@nxp.com>
- <20210205234734.3397-5-leoyang.li@nxp.com>
+        id S229631AbhBFLwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Feb 2021 06:52:39 -0500
+Received: from mout.gmx.net ([212.227.17.20]:58121 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229707AbhBFLwh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 6 Feb 2021 06:52:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1612612258;
+        bh=HQRvOd7R+XGLJh5/A0+URGFieXzXq8K66bXLp9TitJc=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=jotPSxi2gj4m1M0enmSN3AZoHWT40/czP9/WC0woKO0ucSUMhjVFd5Y0/ZoBIdnIZ
+         GliLM3WqytmVJ8L9nYXK8AaBrob7sVnRT1y0nAVUMrd1msdI27UCje4CW6s3E/Qnay
+         x8mHVgaDyI+QOpFlozAo0it+2sh2Jqvj5bpP0WYM=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.1.167] ([37.4.249.89]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MPogF-1lLMh729kR-00MvcP; Sat, 06
+ Feb 2021 12:50:58 +0100
+Subject: Re: [RFC/PATCH 09/11] ARM: dts: bcm2711: Enable V3D
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     phil@raspberrypi.com, linux-kernel@vger.kernel.org
+References: <20210205135249.2924-1-nsaenzjulienne@suse.de>
+ <20210205135249.2924-10-nsaenzjulienne@suse.de>
+From:   Stefan Wahren <wahrenst@gmx.net>
+Message-ID: <bb5c1091-8e3a-c13a-1f75-3c2bc1a40632@gmx.net>
+Date:   Sat, 6 Feb 2021 12:50:57 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20210205135249.2924-10-nsaenzjulienne@suse.de>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210205234734.3397-5-leoyang.li@nxp.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+X-Provags-ID: V03:K1:UuGM7JJSSCyFqp62EFvQsewyj3POYV88WAMG0nLsE3jr9exgP8a
+ xR10r2+TKg4tICSJb/4dCgaZvA401yOLSXYB4T/PH9p6nIWCbOQICDHv8U150E3lVLcIX7p
+ boy8kJxfMumlk1buzbIo1I90fkywqveLjTOAkv1qeEwKPf9eyqVbIYAIfLYJk1goSaIGV+r
+ 6bYeNuoblfdIyHOoet5wQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:k4eAxP1S9EE=:5daa6BEohiVAajSS55KHvv
+ alnktLEsYxmp8fRBn5JJS63xhee7gkadnzVZnB/yaQJefe1SbctyKQ2OTcbB0eaVX2BoTKy3v
+ AXLH4vLf4Jx15O/pKy8kwCklC7oEekT0gboDyVgV44/YUqoCWl4sSP+il0sIE06c9PF7s49ML
+ J4z5Y/ThFpJIChRR8BCwMU7w4NxyuLCqxl3+qbiQa7BH9OtZGvizp/kyuCI0OU274DpStKaf5
+ TEpilyyKH60XUY/6/oMRg9MPwiXu9e+T+Bj4cNGOUJIha+CjL+BCKuRn8LLy+nqCJFQpCih5d
+ N/ixOIsIZFKMje24/VUxPgaITjqgnO0ME9uKcsQYoE11tqVYfUXt2n0E4xG0oVtiMp0JA4Za5
+ BVhN37b08Kk1pusKwOuO+sV7zKAfPGLW4gw0e8n3iF7t7AeC5Eo1l1Mvz2DJJPIK3q+Zn3FQY
+ 8R0C+pMnl+LeaeoGIs54y8VMvQm03ixEGaor6i587q155uqlbTFUY8YCoK9LwFLvtAxd5KIwH
+ mrrZIIVohRXKsEMXh3jQNI5CW73so5pM49B+oGqxeBkOY9/chw+mtrs0Y+kgycgphqFZx/zJr
+ D6yg6RH5Ptk0b5COFH9GL0rT19JTx7Cy6T5P6563hZaCewqWuKIOeH+BV2GiZkNnooHVBaNyW
+ 3Fca3UukCw5koN1iuW4SFV4fg4WMZTeRQS4/ZNBuKaApXY7VdediCzxrYhcO27JbeDaNdzPjJ
+ Hhq1iB1FnnZnPXFSDwl6YkzP+l6ETw28mYVHPIk/EkxpeVqLxH9bZfKhNqIWI6ktJkNZKY6GZ
+ yE231F3IGGL7soJ/7lsptLmCCLthjM4ZwFn9z9t1CN0ontMJcncQ+IeVnsXLWGY0HICoV6QvD
+ FqcXVEAYZF6pXX7rnq0g==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 05, 2021 at 05:47:23PM -0600, Li Yang wrote:
-> Replace the license text with SPDX identifiers.  In the mean while
-> updated copyright years for previous changes.
-> 
-> Signed-off-by: Li Yang <leoyang.li@nxp.com>
+Hi,
+
+Am 05.02.21 um 14:52 schrieb Nicolas Saenz Julienne:
+> This enables V3D for bcm2711 (used in the Raspberry Pi 4).
+>
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 > ---
->  arch/arm/boot/dts/ls1021a-qds.dts | 46 ++-----------------------------
->  arch/arm/boot/dts/ls1021a-twr.dts | 46 ++-----------------------------
->  arch/arm/boot/dts/ls1021a.dtsi    | 45 ++----------------------------
->  3 files changed, 6 insertions(+), 131 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/ls1021a-qds.dts b/arch/arm/boot/dts/ls1021a-qds.dts
-> index 74a67604876c..71bab93bc4cc 100644
-> --- a/arch/arm/boot/dts/ls1021a-qds.dts
-> +++ b/arch/arm/boot/dts/ls1021a-qds.dts
-> @@ -1,49 +1,7 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->  /*
->   * Copyright 2013-2014 Freescale Semiconductor, Inc.
-> - * Copyright 2018 NXP
-
-Please split the copyright update. Adding a SPDX is not big enough to
-justify adding new copyrights. On the other hand, if NXP contributed
-over time and you want to reflect it in the copyrights, it's a different
-path.
-
-> - *
-> - * This file is dual-licensed: you can use it either under the terms
-> - * of the GPL or the X11 license, at your option. Note that this dual
-> - * licensing only applies to this file, and not this project as a
-> - * whole.
-> - *
-> - *  a) This file is free software; you can redistribute it and/or
-> - *     modify it under the terms of the GNU General Public License as
-> - *     published by the Free Software Foundation; either version 2 of
-> - *     the License, or (at your option) any later version.
-> - *
-> - *     This file is distributed in the hope that it will be useful,
-> - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-> - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> - *     GNU General Public License for more details.
-> - *
-> - *     You should have received a copy of the GNU General Public
-> - *     License along with this file; if not, write to the Free
-> - *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
-> - *     MA 02110-1301 USA
-> - *
-> - * Or, alternatively,
-> - *
-> - *  b) Permission is hereby granted, free of charge, to any person
-> - *     obtaining a copy of this software and associated documentation
-> - *     files (the "Software"), to deal in the Software without
-> - *     restriction, including without limitation the rights to use,
-> - *     copy, modify, merge, publish, distribute, sublicense, and/or
-> - *     sell copies of the Software, and to permit persons to whom the
-> - *     Software is furnished to do so, subject to the following
-> - *     conditions:
-> - *
-> - *     The above copyright notice and this permission notice shall be
-> - *     included in all copies or substantial portions of the Software.
-> - *
-> - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-> - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-> - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-> - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-> - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-> - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> - *     OTHER DEALINGS IN THE SOFTWARE.
-> + * Copyright 2018-2021 NXP
->   */
->  
->  /dts-v1/;
-> diff --git a/arch/arm/boot/dts/ls1021a-twr.dts b/arch/arm/boot/dts/ls1021a-twr.dts
-> index 5edf001f6138..01bf316bcc99 100644
-> --- a/arch/arm/boot/dts/ls1021a-twr.dts
-> +++ b/arch/arm/boot/dts/ls1021a-twr.dts
-> @@ -1,49 +1,7 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->  /*
->   * Copyright 2013-2014 Freescale Semiconductor, Inc.
-> - * Copyright 2018 NXP
-> - *
-> - * This file is dual-licensed: you can use it either under the terms
-> - * of the GPL or the X11 license, at your option. Note that this dual
-> - * licensing only applies to this file, and not this project as a
-> - * whole.
-> - *
-> - *  a) This file is free software; you can redistribute it and/or
-> - *     modify it under the terms of the GNU General Public License as
-> - *     published by the Free Software Foundation; either version 2 of
-> - *     the License, or (at your option) any later version.
-> - *
-> - *     This file is distributed in the hope that it will be useful,
-> - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-> - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> - *     GNU General Public License for more details.
-> - *
-> - *     You should have received a copy of the GNU General Public
-> - *     License along with this file; if not, write to the Free
-> - *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
-> - *     MA 02110-1301 USA
-> - *
-> - * Or, alternatively,
-> - *
-> - *  b) Permission is hereby granted, free of charge, to any person
-> - *     obtaining a copy of this software and associated documentation
-> - *     files (the "Software"), to deal in the Software without
-> - *     restriction, including without limitation the rights to use,
-> - *     copy, modify, merge, publish, distribute, sublicense, and/or
-> - *     sell copies of the Software, and to permit persons to whom the
-> - *     Software is furnished to do so, subject to the following
-> - *     conditions:
-> - *
-> - *     The above copyright notice and this permission notice shall be
-> - *     included in all copies or substantial portions of the Software.
-> - *
-> - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-> - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-> - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-> - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-> - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-> - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> - *     OTHER DEALINGS IN THE SOFTWARE.
-> + * Copyright 2018-2020 NXP
->   */
->  
->  /dts-v1/;
-> diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-> index 007dd2bd0595..4bf6320c85d9 100644
-> --- a/arch/arm/boot/dts/ls1021a.dtsi
-> +++ b/arch/arm/boot/dts/ls1021a.dtsi
-> @@ -1,48 +1,7 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->  /*
->   * Copyright 2013-2014 Freescale Semiconductor, Inc.
-> - *
-> - * This file is dual-licensed: you can use it either under the terms
-> - * of the GPL or the X11 license, at your option. Note that this dual
-> - * licensing only applies to this file, and not this project as a
-> - * whole.
-> - *
-> - *  a) This file is free software; you can redistribute it and/or
-> - *     modify it under the terms of the GNU General Public License as
-> - *     published by the Free Software Foundation; either version 2 of
-> - *     the License, or (at your option) any later version.
-> - *
-> - *     This file is distributed in the hope that it will be useful,
-> - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-> - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> - *     GNU General Public License for more details.
-> - *
-> - *     You should have received a copy of the GNU General Public
-> - *     License along with this file; if not, write to the Free
-> - *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
-> - *     MA 02110-1301 USA
-> - *
-> - * Or, alternatively,
-> - *
-> - *  b) Permission is hereby granted, free of charge, to any person
-> - *     obtaining a copy of this software and associated documentation
-> - *     files (the "Software"), to deal in the Software without
-> - *     restriction, including without limitation the rights to use,
-> - *     copy, modify, merge, publish, distribute, sublicense, and/or
-> - *     sell copies of the Software, and to permit persons to whom the
-> - *     Software is furnished to do so, subject to the following
-> - *     conditions:
-> - *
-> - *     The above copyright notice and this permission notice shall be
-> - *     included in all copies or substantial portions of the Software.
-> - *
-> - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-> - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-> - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-> - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-> - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-> - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> - *     OTHER DEALINGS IN THE SOFTWARE.
-> + * Copyright 2015-2021 NXP
-
-Srsly, you even add here entirely new copyrights hidden under a SPDX
-change.
-
-No, it's not the way to do it.
-
-Best regards,
-Krzysztof
+>  arch/arm/boot/dts/bcm2711.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.=
+dtsi
+> index 537498a93a3a..dd8376f474db 100644
+> --- a/arch/arm/boot/dts/bcm2711.dtsi
+> +++ b/arch/arm/boot/dts/bcm2711.dtsi
+> @@ -548,6 +548,18 @@ genet_mdio: mdio@e14 {
+>  				#size-cells =3D <0x1>;
+>  			};
+>  		};
+> +
+> +		v3d: gpu@7ec04000 {
+just a nit. I prefer the lowest register value here.
+> +			compatible =3D "brcm,bcm2711-v3d";
+> +			reg =3D <0x0 0x7ec00000 0x4000>,
+> +			      <0x0 0x7ec04000 0x4000>;
+> +			reg-names =3D "hub", "core0";
+> +
+> +			power-domains =3D <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
+> +			resets =3D <&pm BCM2835_RESET_V3D>;
+> +			clocks =3D <&firmware_clocks 5>;
+> +			interrupts =3D <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+>  	};
+>  };
+>
