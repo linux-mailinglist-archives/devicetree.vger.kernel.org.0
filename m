@@ -2,134 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BFF0311CCC
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 12:04:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F25B311CDF
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 12:23:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbhBFLE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Feb 2021 06:04:27 -0500
-Received: from mail-oo1-f53.google.com ([209.85.161.53]:45345 "EHLO
-        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbhBFLEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 06:04:25 -0500
-Received: by mail-oo1-f53.google.com with SMTP id y21so2287884oot.12;
-        Sat, 06 Feb 2021 03:04:10 -0800 (PST)
+        id S229522AbhBFLXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Feb 2021 06:23:34 -0500
+Received: from mail-wm1-f50.google.com ([209.85.128.50]:37193 "EHLO
+        mail-wm1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229508AbhBFLXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 06:23:32 -0500
+Received: by mail-wm1-f50.google.com with SMTP id m1so8075711wml.2;
+        Sat, 06 Feb 2021 03:23:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=C6lX81VL+W5b2OWAyfZlO80FWfJRJ3Y5NfrlCPUjFYY=;
-        b=Xw1GWphpcqMYUr///jFPQOuQ6P4Xh2IJOpz1mrgr670iWybncSZ3AlFZuV4u0aj+SH
-         y5LJnpmdZdn/XhlbDsmxXpGxRA0Om5lNrgL2j0TF1eV/j2lLsdqMKjnXrp/4iMuKJN57
-         3MCM09LKHSFd01CPTQw3Njk2HQWwNLgPzySosZ6TGlyFFb/UPgDAb4j1Ucid4KARWExf
-         ax92634J9vPlC3tpHbSVAxzotSqDK7N/VVBV1Jxw8WgwXE9uGcxrdYZXF4MP3U8kdmYu
-         2MHBTcdlkfA9I3I2zKOfg9E3RXUURdoftuuZ+XAIAyC2d9K0IfTcQg55HIz6TNxouM7W
-         fvvQ==
-X-Gm-Message-State: AOAM5315VHUh0CjmlGAPfaYEXuqXxvfqPSX71KtqueU/h5zhO5eulQKe
-        dv8mu1mwhHd6vgATa9F/tu8fiDCXBM1xyxVErSnvfFeQ9AI=
-X-Google-Smtp-Source: ABdhPJyIhKYR8uiSFmowRVcN0ighX+TbbX1FuohQqvKMOg83LJQmYM8DWixjNZ5Ua+5JR/+MvLLhzW2UbmVIUy5+r40=
-X-Received: by 2002:a4a:e6d2:: with SMTP id v18mr6546905oot.40.1612609424930;
- Sat, 06 Feb 2021 03:03:44 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kzfW6WiMXjYesYGQDPS9JlxcoI8ehYDfNNhAn2oCINo=;
+        b=ivAEhPK3tshecoqiJC7NNwr2fmp5M2VSB6IJaGWfXlaChrSGLZ4eBqRMFn8tnUlFCG
+         OntBP/0lh7xgbsWWXU/9B9nWQuU1tUkVX3/t4ijDwWq+uQkAYykSVrDKfKeupreRpQb8
+         0EylE602v6Ft+nzde+wOm8V995eR3p+hyhst1M4g/b93n/Mzv8n+eo13IRa7DvQgU8Cf
+         JR7oebtuO4N2vMIrTrA5fNOG8sC4GpwGSFpH9nONzVbxt6DTKB8iitgccvvGQ4ltp9Qw
+         4vnjidDKZDMIa5gaVoA7oh+Z10k2yusEx0O0LA6vmHvFhFAl8QDseBKzetgqcmxlJfQr
+         xueg==
+X-Gm-Message-State: AOAM53274Qr0MEoz1p6U6anbJcvffVrVfL95DWDGgtnvoTVkUndYmpSx
+        o3ea3T+RLfeLhEMzoYALmxs=
+X-Google-Smtp-Source: ABdhPJx/PULiReV/Ud1AL6i1KrbGmnDJ71+PJK0aFK0m8pp7f7Rc+WTdnksS7oxvvQrgkVLOqySbbA==
+X-Received: by 2002:a05:600c:2d44:: with SMTP id a4mr2111357wmg.95.1612610570887;
+        Sat, 06 Feb 2021 03:22:50 -0800 (PST)
+Received: from kozik-lap (194-95-143-94.dyn.cable.fcom.ch. [94.143.95.194])
+        by smtp.googlemail.com with ESMTPSA id s4sm14916348wrt.85.2021.02.06.03.22.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Feb 2021 03:22:49 -0800 (PST)
+Date:   Sat, 6 Feb 2021 12:22:47 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Li Yang <leoyang.li@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/15] dt-bindings: arm: fsl: add ls1021a-tsn board
+Message-ID: <20210206112247.lososkktc4b624lu@kozik-lap>
+References: <20210205234734.3397-1-leoyang.li@nxp.com>
+ <20210205234734.3397-2-leoyang.li@nxp.com>
 MIME-Version: 1.0
-References: <cover.1611904394.git.viresh.kumar@linaro.org> <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
- <CAMuHMdVp0vGMqoEoP9A7Y7-ph-DYUWdddtChdq_eZcROYTBMHg@mail.gmail.com>
- <20210205092507.fdxotdjlq5rjs2yh@vireshk-i7> <CAMuHMdWUMcMcJxnC+oML8P0+r72_+d6RWGY50dOWCUECdJGWPA@mail.gmail.com>
- <20210205095545.woevnkxg3ar7ctys@vireshk-i7> <CAMuHMdXKT3LD3ojMJEg-oHsEKO5TN5P1BTJMyf2fYkhnC8PU=Q@mail.gmail.com>
- <20210205210814.GA3707622@robh.at.kernel.org>
-In-Reply-To: <20210205210814.GA3707622@robh.at.kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Sat, 6 Feb 2021 12:03:33 +0100
-Message-ID: <CAMuHMdX_4Liv8j4z7kgggWh4WqV6mbv2qCNzQpbkjyEAm+6oqw@mail.gmail.com>
-Subject: Re: [PATCH V7 4/6] kbuild: Add support to build overlays (%.dtbo)
-To:     Rob Herring <robh@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Anmar Oueja <anmar.oueja@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210205234734.3397-2-leoyang.li@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, Feb 05, 2021 at 05:47:20PM -0600, Li Yang wrote:
+> Add the missing board in the binding docuemnt.
 
-On Fri, Feb 5, 2021 at 10:08 PM Rob Herring <robh@kernel.org> wrote:
-> On Fri, Feb 05, 2021 at 11:17:10AM +0100, Geert Uytterhoeven wrote:
- > On Fri, Feb 5, 2021 at 10:55 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > > On 05-02-21, 10:41, Geert Uytterhoeven wrote:
-> > > > On Fri, Feb 5, 2021 at 10:25 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > > > > On 05-02-21, 10:02, Geert Uytterhoeven wrote:
-> > > > > > Thanks for your patch
-> > > > > > (which I only noticed because it appeared in dt-rh/for-next ;-)
-> > > > > >
-> > > > > > On Fri, Jan 29, 2021 at 8:31 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > > > > > > Add support for building DT overlays (%.dtbo). The overlay's source file
-> > > > > > > will have the usual extension, i.e. .dts, though the blob will have
-> > > > > >
-> > > > > > Why use .dts and not .dtso for overlays?
-> > > > > > Because you originally (until v5) had a single rule for building .dtb
-> > > > > > and .dtbo files?
-> > > > >
-> > > > > I am fine with doing that as well if Rob and David agree to it. Rob
-> > > > > did suggest that at one point but we didn't do much about it later on
-> > > > > for some reason.
-> > > > >
-> > > > > FWIW, this will also require a change in the DTC compiler.
+It's not necessarily missing as there are no DTS (in tree) using this
+compatible, so maybe rephrase it to:
 
-> I think what Viresh means is dtc won't automatically set the input type
-> to dts if not .dts.
+"Add board compatible for ls1021a-tsn board".
 
-Which is not needed with the kernel build rules.
+Best regards,
+Krzysztof
 
-> We stuck with .dtbo as it's already widely used. I don't know about
-> dtso though. If there's strong consensus to use .dtso, then let's do
-> that. Whatever color for this shed you like.
 
-I did a quick survey of its popularity, and found:
-
-  1. .dts => .dtbo
-        https://www.kernel.org/doc/Documentation/devicetree/overlay-notes.txt
-        https://github.com/beagleboard/bb.org-overlays
-        https://www.raspberrypi.org/documentation/configuration/device-tree.md
-        https://www.96boards.org/documentation/consumer/dragonboard/dragonboard410c/guides/dt-overlays.md.html
-        https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree/compiling-an-overlay
-        https://developer.toradex.com/knowledge-base/device-tree-overlays
-
-  2. .dtso => .dtbo
-        https://github.com/linux4sam/dt-overlay-at91/tree/master/sama5d3_xplained
-        https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/renesas-overlays
-
-  3. .dtsi => .dtbo
-        https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841645/Solution+Zynq+PL+Programming+With+FPGA+Manager
-
-Note that many overlay users haven't migrated to the sugar syntax yet.
-
-IMHO the biggest advantage of .dtso over .dts is that you (and the
-tooling) know which files should be compiled to .dtbo, and which to
-.dtb.  This doesn't matter for
-
-    obj-$(CONFIG_FOO) += foo.dtbo
-
-but it does for options like CONFIG_OF_ALL_DTBS.
-Having a way to build all overlays will become more important when we
-will have more generic overlays (capes/hats/wings/...), that can apply
-to multiple base DTBs.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> Signed-off-by: Li Yang <leoyang.li@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
