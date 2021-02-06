@@ -2,443 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CDB63118D9
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 03:50:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56CEA3118CF
+	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 03:50:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbhBFCsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Feb 2021 21:48:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38830 "EHLO
+        id S229609AbhBFCrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Feb 2021 21:47:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231493AbhBFCkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 21:40:40 -0500
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 480F9C08EE2C
-        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 16:30:03 -0800 (PST)
-Received: by mail-qv1-xf30.google.com with SMTP id ew18so4379125qvb.4
-        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 16:30:03 -0800 (PST)
+        with ESMTP id S231749AbhBFCnj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Feb 2021 21:43:39 -0500
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60AEBC08EE24
+        for <devicetree@vger.kernel.org>; Fri,  5 Feb 2021 16:31:51 -0800 (PST)
+Received: by mail-qt1-x82c.google.com with SMTP id r20so6394917qtm.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Feb 2021 16:31:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CUOyz0JApmAerE3CGFZrKWYuf+9QAjw+bZZGlxr3LTw=;
-        b=s64H440z63RTVBaYPipR17pSfhaZw6vZVI9IFEK06N7leJ3u7O+Ln7mK4Hzsk2AZwp
-         SZpd3fLc6H070Ywn2YHr+lqfeWDl2Ln7TP32BKrpQBEHWyQcgegrVh7fn5dUEVNOL2V3
-         qoLNBul8Ql6mdNE2OrSReBLxYqSNs+apiasc/0XaQo+mQTwU6tluq7/AOx6J/WC4h38q
-         9UrWcQi1KU0EXNaY10bfUYcBBYuDh9gxRuSssrrI+jOmAXElFv1GfWpX0+MgWHpKR6vH
-         jINBem5fySSzQRTUNYk0lU9lr6c86urcEZr88UNspquDWNGobZ7+BXq5q53cBJ1EUd2h
-         h4Fw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=F+SY9eK3XDXeBXzsdGe1L5Qvg1tCpCGMdSMejg6tzVs=;
+        b=Mn+/YmKCJze+tIuCNwRzJzh3WzYLX+YEiE2Qf8KN7jgKBM6IOdhE142hc5Viqualvt
+         s6dZWmGmom5ANYXCspiFKBdxMvA3U1dFa6+H/77fbqxNFPXIihA7W+bZvptSk1ptCSrL
+         2CR7ta7FYm5sSQJFfNCVp0DsuTMaimQUGaAl8HRrxFMSqqFnYUgmxph1xgSwE41rHS/o
+         vFagQmdc8nD3QxAJ3Rxsr85Lj2wQdl6pwrAlETPK3mf8WKcnGd1oM6iWohnuyQwo+8Fn
+         wcPw3kskH7InrWkPhzkvMBgE1anSXkXX+mbihAdeCxkRPpPT3Tvoek6sBU5UOVy9op6h
+         2EnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CUOyz0JApmAerE3CGFZrKWYuf+9QAjw+bZZGlxr3LTw=;
-        b=H/o2+mPA9QzDVFPyXU6uY2Bg0ioKjnvVzSJvB6eAZJiRzIEizMvsW8phGb1Dcj2eqj
-         OU6xzaN+zxvIlUfNSv2TxDm2QnSWIdslC4okKgbXMjgvo9w8DzPHwo8tYlUD2p68FAlc
-         rHoqkgdXlkfQmRptsiiU6IKCfnTs+LP4QYgM7J44lqE7/qTtNhaZqAK7op+0UQaeehrn
-         x/z1rK5py1EWyOPzf1O/Z4m88jvdRoNhG6kp8W1wFUYPflo7NJbzD19fsFcmf6akZX2v
-         oShiLeDBum3W51noysZlEzKxyjMipaG+Gg1dhdyF/agZl/hKOSedBv9ix0U/3vx8yG9E
-         PykA==
-X-Gm-Message-State: AOAM531pNtdWf8cfpnE9vZub5b7vwB1g6XoypS0cCyAAVwbQ/jw2jlhi
-        aNabgjqOJDeypLtMlqT5U8RqOas/Qsoc2WSTxgo7BA==
-X-Google-Smtp-Source: ABdhPJxo2hLIo/4Dv/c0Oj1KiXz0CXv9uKzb6p7G+gPzSGFKOmM9Rmrr1AGukxrXud3/IvxWHWTubUAclaqa1nTWIPo=
-X-Received: by 2002:a0c:8365:: with SMTP id j92mr6967174qva.19.1612571401993;
- Fri, 05 Feb 2021 16:30:01 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=F+SY9eK3XDXeBXzsdGe1L5Qvg1tCpCGMdSMejg6tzVs=;
+        b=l6I1s/n8DSgG81tGj1n1LQ2052ErcMie+8msIshjxGsOLU4wreuHhQL8uf9QyKNI92
+         7EIYaAiVy4na/KD4wN/zBDFKHgM7ygewO6PRiHuJN4ncoDncO3xhIwhV51njJNu/D3jT
+         GZX0IQ49asfhnH98rafqaQTCe3aLgrqJjMdyijEw23AY6vFapBASTp9vNIFVXxD2fv9Z
+         b5oTKeQlQO7qFLdvDQ39+S5Xq52RPOrVaTWKKPIrLXd/sq2I4hEQPlJU6SWVxAlUSs+Y
+         iXagqBeBDlaTs8eU0gq603AkuJ63P/RE6KWCNpSpJ477/mabwktKsIJJ5lClSCA4qjsY
+         yj9w==
+X-Gm-Message-State: AOAM531wdD8z4SA09jceFNi2tD07OwfW0TauI35ZOZhn6xEe6LNGka0w
+        epT4StoOI91fXLxolz2TmLUi1Yz7n1I=
+X-Google-Smtp-Source: ABdhPJzZw32OhRkgZbWp1oyQlI9huQfuTQ8fJJ/4/YbX3IMr1wcRsav642KJ1jebtZYtl/5d2yyjyw==
+X-Received: by 2002:ac8:78d:: with SMTP id l13mr6489351qth.278.1612571510570;
+        Fri, 05 Feb 2021 16:31:50 -0800 (PST)
+Received: from [192.168.1.201] (pool-108-51-35-162.washdc.fios.verizon.net. [108.51.35.162])
+        by smtp.googlemail.com with ESMTPSA id f14sm10769582qkl.76.2021.02.05.16.31.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Feb 2021 16:31:50 -0800 (PST)
+Subject: Re: [PATCH v14 07/16] dt-bindings: fix sifive gpio properties
+To:     Damien Le Moal <Damien.LeMoal@wdc.com>,
+        "robh@kernel.org" <robh@kernel.org>
+Cc:     "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        Atish Patra <Atish.Patra@wdc.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Anup Patel <Anup.Patel@wdc.com>
+References: <20210202103623.200809-1-damien.lemoal@wdc.com>
+ <20210202103623.200809-8-damien.lemoal@wdc.com>
+ <CAL_JsqJNqKrsB3LJvBpNmY6H3V1c5x4duqB_0p8YKit4+ZYRBw@mail.gmail.com>
+ <89cccbae5add85c7bd811f3819ea3db7061e928d.camel@wdc.com>
+ <CAL_JsqJeF364bPSNQLGujNHDkA7x8H_H7YXQFNZQ7vDzdAevcA@mail.gmail.com>
+ <c9d273c87815a89be314e4e824a365313be0d677.camel@wdc.com>
+ <CAL_JsqKnAQ+ngNkaKkDAO5Bqd=ZwNm5A4VhxvuVZxgLdxxxpSg@mail.gmail.com>
+ <6351faa35c175d38e033ce433780c03c141c0ddf.camel@wdc.com>
+ <c170e192-9e3f-5682-5a7f-ac9fc573fd9d@gmail.com>
+ <f0b7df37e67151dab5699923549de6b3fbe30367.camel@wdc.com>
+From:   Sean Anderson <seanga2@gmail.com>
+Message-ID: <1726dceb-868e-68a1-38df-2f80ee233ed1@gmail.com>
+Date:   Fri, 5 Feb 2021 19:31:49 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <20210205033415.3320439-1-kyletso@google.com> <20210205033415.3320439-7-kyletso@google.com>
- <20210205212957.GA3766168@robh.at.kernel.org>
-In-Reply-To: <20210205212957.GA3766168@robh.at.kernel.org>
-From:   Kyle Tso <kyletso@google.com>
-Date:   Sat, 6 Feb 2021 08:29:45 +0800
-Message-ID: <CAGZ6i=1nkPCc-Q0A6+X+iL6oYqU0gfNV6ig2SBYOhrNd5KcLXA@mail.gmail.com>
-Subject: Re: [PATCH v6 6/7] dt-bindings: connector: Add SVDM VDO properties
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        USB <linux-usb@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <f0b7df37e67151dab5699923549de6b3fbe30367.camel@wdc.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 6, 2021 at 5:30 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Feb 05, 2021 at 11:34:14AM +0800, Kyle Tso wrote:
-> > Add bindings of VDO properties of USB PD SVDM so that they can be
-> > used in device tree.
-> >
-> > Signed-off-by: Kyle Tso <kyletso@google.com>
-> > ---
-> > Changes since v5:
-> > - no change
-> >
-> >  .../bindings/connector/usb-connector.yaml     |  11 +
-> >  include/dt-bindings/usb/pd.h                  | 311 +++++++++++++++++-
-> >  2 files changed, 321 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > index 4286ed767a0a..d385026944ec 100644
-> > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > @@ -137,6 +137,17 @@ properties:
-> >      maxItems: 7
-> >      $ref: /schemas/types.yaml#/definitions/uint32-array
-> >
-> > +  sink-vdos:
-> > +    description: An array of u32 with each entry (VDM Objects) providing additional information
->
-> VDO stands for 'VDM Objects' and VDM stands for ???
->
-> Other than that,
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
->
+On 2/5/21 6:32 PM, Damien Le Moal wrote:
+> On Fri, 2021-02-05 at 17:55 -0500, Sean Anderson wrote:
+>> On 2/5/21 5:53 PM, Damien Le Moal wrote:
+>>> On Fri, 2021-02-05 at 14:02 -0600, Rob Herring wrote:
+>>>> On Wed, Feb 3, 2021 at 6:47 PM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
+>>>>>
+>>>>> On Wed, 2021-02-03 at 14:41 -0600, Rob Herring wrote:
+>>>>>> On Wed, Feb 3, 2021 at 6:52 AM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
+>>>>>>>
+>>>>>>> On Tue, 2021-02-02 at 13:02 -0600, Rob Herring wrote:
+>>>>>>>> On Tue, Feb 2, 2021 at 4:36 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
+>>>>>>>>>
+>>>>>>>>> The sifive gpio IP block supports up to 32 GPIOs. Reflect that in the
+>>>>>>>>> interrupts property description and maxItems. Also add the standard
+>>>>>>>>> ngpios property to describe the number of GPIOs available on the
+>>>>>>>>> implementation.
+>>>>>>>>>
+>>>>>>>>> Also add the "canaan,k210-gpiohs" compatible string to indicate the use
+>>>>>>>>> of this gpio controller in the Canaan Kendryte K210 SoC. If this
+>>>>>>>>> compatible string is used, do not define the clocks property as
+>>>>>>>>> required as the K210 SoC does not have a software controllable clock
+>>>>>>>>> for the Sifive gpio IP block.
+>>>>>>>>>
+>>>>>>>>> Cc: Paul Walmsley <paul.walmsley@sifive.com>
+>>>>>>>>> Cc: Rob Herring <robh@kernel.org>
+>>>>>>>>> Cc: devicetree@vger.kernel.org
+>>>>>>>>> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+>>>>>>>>> ---
+>>>>>>>>>    .../devicetree/bindings/gpio/sifive,gpio.yaml | 21 ++++++++++++++++---
+>>>>>>>>>    1 file changed, 18 insertions(+), 3 deletions(-)
+>>>>>>>>>
+>>>>>>>>> diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+>>>>>>>>> index ab22056f8b44..2cef18ca737c 100644
+>>>>>>>>> --- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+>>>>>>>>> +++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+>>>>>>>>> @@ -16,6 +16,7 @@ properties:
+>>>>>>>>>          - enum:
+>>>>>>>>>              - sifive,fu540-c000-gpio
+>>>>>>>>>              - sifive,fu740-c000-gpio
+>>>>>>>>> +          - canaan,k210-gpiohs
+>>>>>>>>>          - const: sifive,gpio0
+>>>>>>>>>
+>>>>>>>>>      reg:
+>>>>>>>>> @@ -23,9 +24,9 @@ properties:
+>>>>>>>>>
+>>>>>>>>>      interrupts:
+>>>>>>>>>        description:
+>>>>>>>>> -      interrupt mapping one per GPIO. Maximum 16 GPIOs.
+>>>>>>>>> +      interrupt mapping one per GPIO. Maximum 32 GPIOs.
+>>>>>>>>>        minItems: 1
+>>>>>>>>> -    maxItems: 16
+>>>>>>>>> +    maxItems: 32
+>>>>>>>>>
+>>>>>>>>>      interrupt-controller: true
+>>>>>>>>>
+>>>>>>>>> @@ -38,6 +39,10 @@ properties:
+>>>>>>>>>      "#gpio-cells":
+>>>>>>>>>        const: 2
+>>>>>>>>>
+>>>>>>>>> +  ngpios:
+>>>>>>>>> +    minimum: 1
+>>>>>>>>> +    maximum: 32
+>>>>>>>>
+>>>>>>>> What's the default as obviously drivers already assume something.
+>>>>>>>>
+>>>>>>>> Does a driver actually need to know this? For example, does the
+>>>>>>>> register stride change or something?
+>>>>>>>>
+>>>>>>>> Please don't add it if the only purpose is error check your DT (IOW,
+>>>>>>>> if it just checks the max cell value in gpios phandles).
+>>>>>>>
+>>>>>>> If I remove that, make dtbs_check complains. Looking at othe gpio controller
+>>>>>>> bindings, they all have it. So isn't it better to be consistent, and avoid make
+>>>>>>> dtbs_check errors ?
+>>>>>>
+>>>>>> That would mean you are already using 'ngpios' and it is undocumented
+>>>>>> (for this binding). If already in use and possibly having users then
+>>>>>> that changes things, but that's not what the commit msg says.
+>>>>>>
+>>>>>> Not *all* gpio controllers have ngpios. It's a good number, but
+>>>>>> probably more than need it though. If we wanted it everywhere, there
+>>>>>> would be a schema enforcing that.
+>>>>>
+>>>>> If I remove the minimum and maximum lines, I get this error:
+>>>>
+>>>> I never said remove minimum/maximum. The suggestion is either add
+>>>> 'default: 16' or remove 'ngpios' entirely.
+>>>>
+>>>>> ./Documentation/devicetree/bindings/gpio/sifive,gpio.yaml:42:10: [error] empty
+>>>>> value in block mapping (empty-values)
+>>>>>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+>>>>> /home/damien/Projects/RISCV/linux/Documentation/devicetree/bindings/gpio/sifive
+>>>>> ,gpio.yaml: properties:ngpios: None is not of type 'object', 'boolean'
+>>>>>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+>>>>> /home/damien/Projects/RISCV/linux/Documentation/devicetree/bindings/gpio/sifive
+>>>>> ,gpio.yaml: ignoring, error in schema: properties: ngpios
+>>>>> warning: no schema found in file:
+>>>>> ./Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+>>>>
+>>>> ngpios: true
+>>>>
+>>>> or
+>>>>
+>>>> ngpios: {}
+>>>>
+>>>> Are the minimum valid values for a key. (Though not what should be done here.)
+>>>>
+>>>>>
+>>>>> If I remove the ngpios property entirely, then I get a hit on the device tree:
+>>>>>
+>>>>>     CHECK   arch/riscv/boot/dts/canaan/sipeed_maix_bit.dt.yaml
+>>>>> /linux/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dt.yaml:
+>>>>> gpio-controller@38001000: 'ngpios' does not match any of the regexes: 'pinctrl-
+>>>>> [0-9]+'
+>>>>>           From schema:
+>>>>> /home/damien/Projects/RISCV/linux/Documentation/devicetree/bindings/gpio/sifive
+>>>>> ,gpio.yaml
+>>>>
+>>>> That's not upstream, right? Then fix it.
+>>>>
+>>>>> Now, If I change the property definition to this:
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+>>>>> b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+>>>>> index 2cef18ca737c..5c7865180383 100644
+>>>>> --- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+>>>>> @@ -40,8 +40,11 @@ properties:
+>>>>>        const: 2
+>>>>>
+>>>>>      ngpios:
+>>>>> -    minimum: 1
+>>>>> -    maximum: 32
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    description:
+>>>>> +      The number of GPIO pins implemented by the controller.
+>>>>> +      It is 16 for the SiFive SoCs and 32 for the Canaan K210 SoC.
+>>>>> +
+>>>>>
+>>>>>      gpio-controller: true
+>>>>>
+>>>>> Then all is OK.
+>>>>>
+>>>>> Which option should I go for here ? If we want to avoid a dtbs_check error, as
+>>>>> far as I can see, we can:
+>>>>> 1) Remove the ngpios property and remove its use from the DTS, which is not
+>>>>> nice in my opinion
+>>>>
+>>>> Again, it depends if there are users depending on it. A user being a
+>>>> GPIO driver somewhere, not a DTS file. The GPIO driver in the kernel
+>>>> doesn't need it. So u-boot? BSD?
+>>>
+>>> The Linux driver uses the number of interrupts for the number of gpios but
+>>> upstream U-Boot uses the ngpios property. So I will change this to use
+>>> "default: 16" as you suggested.
+>>
+>> There is no reasonable default for this hardware. I would much rather
+>> you keep the schema as-is, or at least go with the second option.
+> 
+> Since the SiFive official doc seems to say "16" as the number of gpio for this
+> controller, we could assume that to be the default. No ? But I agree that
+> clearly, the implementation can be hacked to have any number of GPIOs...
 
-Thanks for the review.
+Keep in mind that those docs are for SiFive's particular instantiation
+of that IP, not for the IP in general. Although some parameters (e.g.
+dsWidth) have defaults, width does not.
 
-The full name of VDM is "Vendor Defined Message"
-If the patch set is accepted, I will have another patch for this.
-If there will be a next version of this patchset, it will include the change.
+--Sean
 
-thanks,
-Kyle
+> 
+> 
+>>
+>> --Sean
+>>
+>>>
+>>> Thanks !
+>>>
+>>>>
+>>>>> 2) Use the modification proposed above
+>>>
+>>
+> 
 
-> > +      corresponding to the product, the detailed bit definitions and the order of each VDO can be
-> > +      found in "USB Power Delivery Specification Revision 3.0, Version 2.0 + ECNs 2020-12-10"
-> > +      chapter 6.4.4.3.1 Discover Identity. User can specify the VDO array via
-> > +      VDO_IDH/_CERT/_PRODUCT/_UFP/_DFP/_PCABLE/_ACABLE(1/2)/_VPD() defined in
-> > +      dt-bindings/usb/pd.h.
-> > +    minItems: 3
-> > +    maxItems: 6
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +
-> >    op-sink-microwatt:
-> >      description: Sink required operating power in microwatt, if source can't
-> >        offer the power, Capability Mismatch is set. Required for power sink and
-> > diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/pd.h
-> > index 0352893697f0..fef3ef65967f 100644
-> > --- a/include/dt-bindings/usb/pd.h
-> > +++ b/include/dt-bindings/usb/pd.h
-> > @@ -93,4 +93,313 @@
-> >  #define FRS_DEFAULT_POWER      1
-> >  #define FRS_5V_1P5A            2
-> >  #define FRS_5V_3A              3
-> > - #endif /* __DT_POWER_DELIVERY_H */
-> > +
-> > +/*
-> > + * SVDM Identity Header
-> > + * --------------------
-> > + * <31>     :: data capable as a USB host
-> > + * <30>     :: data capable as a USB device
-> > + * <29:27>  :: product type (UFP / Cable / VPD)
-> > + * <26>     :: modal operation supported (1b == yes)
-> > + * <25:23>  :: product type (DFP) (SVDM version 2.0+ only; set to zero in version 1.0)
-> > + * <22:21>  :: connector type (SVDM version 2.0+ only; set to zero in version 1.0)
-> > + * <20:16>  :: Reserved, Shall be set to zero
-> > + * <15:0>   :: USB-IF assigned VID for this cable vendor
-> > + */
-> > +/* SOP Product Type (UFP) */
-> > +#define IDH_PTYPE_NOT_UFP       0
-> > +#define IDH_PTYPE_HUB           1
-> > +#define IDH_PTYPE_PERIPH        2
-> > +#define IDH_PTYPE_PSD           3
-> > +#define IDH_PTYPE_AMA           5
-> > +
-> > +/* SOP' Product Type (Cable Plug / VPD) */
-> > +#define IDH_PTYPE_NOT_CABLE     0
-> > +#define IDH_PTYPE_PCABLE        3
-> > +#define IDH_PTYPE_ACABLE        4
-> > +#define IDH_PTYPE_VPD           6
-> > +
-> > +/* SOP Product Type (DFP) */
-> > +#define IDH_PTYPE_NOT_DFP       0
-> > +#define IDH_PTYPE_DFP_HUB       1
-> > +#define IDH_PTYPE_DFP_HOST      2
-> > +#define IDH_PTYPE_DFP_PB        3
-> > +
-> > +#define VDO_IDH(usbh, usbd, ufp_cable, is_modal, dfp, conn, vid)                \
-> > +     ((usbh) << 31 | (usbd) << 30 | ((ufp_cable) & 0x7) << 27                \
-> > +      | (is_modal) << 26 | ((dfp) & 0x7) << 23 | ((conn) & 0x3) << 21        \
-> > +      | ((vid) & 0xffff))
-> > +
-> > +/*
-> > + * Cert Stat VDO
-> > + * -------------
-> > + * <31:0>  : USB-IF assigned XID for this cable
-> > + */
-> > +#define VDO_CERT(xid)                ((xid) & 0xffffffff)
-> > +
-> > +/*
-> > + * Product VDO
-> > + * -----------
-> > + * <31:16> : USB Product ID
-> > + * <15:0>  : USB bcdDevice
-> > + */
-> > +#define VDO_PRODUCT(pid, bcd)   (((pid) & 0xffff) << 16 | ((bcd) & 0xffff))
-> > +
-> > +/*
-> > + * UFP VDO (PD Revision 3.0+ only)
-> > + * --------
-> > + * <31:29> :: UFP VDO version
-> > + * <28>    :: Reserved
-> > + * <27:24> :: Device capability
-> > + * <23:22> :: Connector type (10b == receptacle, 11b == captive plug)
-> > + * <21:11> :: Reserved
-> > + * <10:8>  :: Vconn power (AMA only)
-> > + * <7>     :: Vconn required (AMA only, 0b == no, 1b == yes)
-> > + * <6>     :: Vbus required (AMA only, 0b == yes, 1b == no)
-> > + * <5:3>   :: Alternate modes
-> > + * <2:0>   :: USB highest speed
-> > + */
-> > +/* UFP VDO Version */
-> > +#define UFP_VDO_VER1_2               2
-> > +
-> > +/* Device Capability */
-> > +#define DEV_USB2_CAPABLE     BIT(0)
-> > +#define DEV_USB2_BILLBOARD   BIT(1)
-> > +#define DEV_USB3_CAPABLE     BIT(2)
-> > +#define DEV_USB4_CAPABLE     BIT(3)
-> > +
-> > +/* Connector Type */
-> > +#define UFP_RECEPTACLE               2
-> > +#define UFP_CAPTIVE          3
-> > +
-> > +/* Vconn Power (AMA only, set to AMA_VCONN_NOT_REQ if Vconn is not required) */
-> > +#define AMA_VCONN_PWR_1W     0
-> > +#define AMA_VCONN_PWR_1W5    1
-> > +#define AMA_VCONN_PWR_2W     2
-> > +#define AMA_VCONN_PWR_3W     3
-> > +#define AMA_VCONN_PWR_4W     4
-> > +#define AMA_VCONN_PWR_5W     5
-> > +#define AMA_VCONN_PWR_6W     6
-> > +
-> > +/* Vconn Required (AMA only) */
-> > +#define AMA_VCONN_NOT_REQ    0
-> > +#define AMA_VCONN_REQ                1
-> > +
-> > +/* Vbus Required (AMA only) */
-> > +#define AMA_VBUS_REQ         0
-> > +#define AMA_VBUS_NOT_REQ     1
-> > +
-> > +/* Alternate Modes */
-> > +#define UFP_ALTMODE_NOT_SUPP 0
-> > +#define UFP_ALTMODE_TBT3     BIT(0)
-> > +#define UFP_ALTMODE_RECFG    BIT(1)
-> > +#define UFP_ALTMODE_NO_RECFG BIT(2)
-> > +
-> > +/* USB Highest Speed */
-> > +#define UFP_USB2_ONLY                0
-> > +#define UFP_USB32_GEN1               1
-> > +#define UFP_USB32_4_GEN2     2
-> > +#define UFP_USB4_GEN3                3
-> > +
-> > +#define VDO_UFP(ver, cap, conn, vcpwr, vcr, vbr, alt, spd)                   \
-> > +     (((ver) & 0x7) << 29 | ((cap) & 0xf) << 24 | ((conn) & 0x3) << 22       \
-> > +      | ((vcpwr) & 0x7) << 8 | (vcr) << 7 | (vbr) << 6 | ((alt) & 0x7) << 3  \
-> > +      | ((spd) & 0x7))
-> > +
-> > +/*
-> > + * DFP VDO (PD Revision 3.0+ only)
-> > + * --------
-> > + * <31:29> :: DFP VDO version
-> > + * <28:27> :: Reserved
-> > + * <26:24> :: Host capability
-> > + * <23:22> :: Connector type (10b == receptacle, 11b == captive plug)
-> > + * <21:5>  :: Reserved
-> > + * <4:0>   :: Port number
-> > + */
-> > +#define DFP_VDO_VER1_1               1
-> > +#define HOST_USB2_CAPABLE    BIT(0)
-> > +#define HOST_USB3_CAPABLE    BIT(1)
-> > +#define HOST_USB4_CAPABLE    BIT(2)
-> > +#define DFP_RECEPTACLE               2
-> > +#define DFP_CAPTIVE          3
-> > +
-> > +#define VDO_DFP(ver, cap, conn, pnum)                                                \
-> > +     (((ver) & 0x7) << 29 | ((cap) & 0x7) << 24 | ((conn) & 0x3) << 22       \
-> > +      | ((pnum) & 0x1f))
-> > +
-> > +/*
-> > + * Passive Cable VDO
-> > + * ---------
-> > + * <31:28> :: Cable HW version
-> > + * <27:24> :: Cable FW version
-> > + * <23:21> :: VDO version
-> > + * <20>    :: Reserved, Shall be set to zero
-> > + * <19:18> :: Type-C to Type-C/Captive (10b == C, 11b == Captive)
-> > + * <17>    :: Reserved, Shall be set to zero
-> > + * <16:13> :: cable latency (0001 == <10ns(~1m length))
-> > + * <12:11> :: cable termination type (10b == Vconn not req, 01b == Vconn req)
-> > + * <10:9>  :: Maximum Vbus voltage (00b == 20V, 01b == 30V, 10b == 40V, 11b == 50V)
-> > + * <8:7>   :: Reserved, Shall be set to zero
-> > + * <6:5>   :: Vbus current handling capability (01b == 3A, 10b == 5A)
-> > + * <4:3>   :: Reserved, Shall be set to zero
-> > + * <2:0>   :: USB highest speed
-> > + *
-> > + * Active Cable VDO 1
-> > + * ---------
-> > + * <31:28> :: Cable HW version
-> > + * <27:24> :: Cable FW version
-> > + * <23:21> :: VDO version
-> > + * <20>    :: Reserved, Shall be set to zero
-> > + * <19:18> :: Connector type (10b == C, 11b == Captive)
-> > + * <17>    :: Reserved, Shall be set to zero
-> > + * <16:13> :: cable latency (0001 == <10ns(~1m length))
-> > + * <12:11> :: cable termination type (10b == one end active, 11b == both ends active VCONN req)
-> > + * <10:9>  :: Maximum Vbus voltage (00b == 20V, 01b == 30V, 10b == 40V, 11b == 50V)
-> > + * <8>     :: SBU supported (0b == supported, 1b == not supported)
-> > + * <7>     :: SBU type (0b == passive, 1b == active)
-> > + * <6:5>   :: Vbus current handling capability (01b == 3A, 10b == 5A)
-> > + * <4>     :: Vbus through cable (0b == no, 1b == yes)
-> > + * <3>     :: SOP" controller present? (0b == no, 1b == yes)
-> > + * <2:0>   :: USB highest speed
-> > + */
-> > +/* Cable VDO Version */
-> > +#define CABLE_VDO_VER1_0     0
-> > +#define CABLE_VDO_VER1_3     3
-> > +
-> > +/* Connector Type */
-> > +#define CABLE_CTYPE          2
-> > +#define CABLE_CAPTIVE                3
-> > +
-> > +/* Cable Latency */
-> > +#define CABLE_LATENCY_1M     1
-> > +#define CABLE_LATENCY_2M     2
-> > +#define CABLE_LATENCY_3M     3
-> > +#define CABLE_LATENCY_4M     4
-> > +#define CABLE_LATENCY_5M     5
-> > +#define CABLE_LATENCY_6M     6
-> > +#define CABLE_LATENCY_7M     7
-> > +#define CABLE_LATENCY_7M_PLUS        8
-> > +
-> > +/* Cable Termination Type */
-> > +#define PCABLE_VCONN_NOT_REQ 0
-> > +#define PCABLE_VCONN_REQ     1
-> > +#define ACABLE_ONE_END               2
-> > +#define ACABLE_BOTH_END              3
-> > +
-> > +/* Maximum Vbus Voltage */
-> > +#define CABLE_MAX_VBUS_20V   0
-> > +#define CABLE_MAX_VBUS_30V   1
-> > +#define CABLE_MAX_VBUS_40V   2
-> > +#define CABLE_MAX_VBUS_50V   3
-> > +
-> > +/* Active Cable SBU Supported/Type */
-> > +#define ACABLE_SBU_SUPP              0
-> > +#define ACABLE_SBU_NOT_SUPP  1
-> > +#define ACABLE_SBU_PASSIVE   0
-> > +#define ACABLE_SBU_ACTIVE    1
-> > +
-> > +/* Vbus Current Handling Capability */
-> > +#define CABLE_CURR_DEF               0
-> > +#define CABLE_CURR_3A                1
-> > +#define CABLE_CURR_5A                2
-> > +
-> > +/* USB Highest Speed */
-> > +#define CABLE_USB2_ONLY              0
-> > +#define CABLE_USB32_GEN1     1
-> > +#define CABLE_USB32_4_GEN2   2
-> > +#define CABLE_USB4_GEN3              3
-> > +
-> > +#define VDO_PCABLE(hw, fw, ver, conn, lat, term, vbm, cur, spd)                      \
-> > +     (((hw) & 0xf) << 28 | ((fw) & 0xf) << 24 | ((ver) & 0x7) << 21          \
-> > +      | ((conn) & 0x3) << 18 | ((lat) & 0xf) << 13 | ((term) & 0x3) << 11    \
-> > +      | ((vbm) & 0x3) << 9 | ((cur) & 0x3) << 5 | ((spd) & 0x7))
-> > +#define VDO_ACABLE1(hw, fw, ver, conn, lat, term, vbm, sbu, sbut, cur, vbt, sopp, spd) \
-> > +     (((hw) & 0xf) << 28 | ((fw) & 0xf) << 24 | ((ver) & 0x7) << 21          \
-> > +      | ((conn) & 0x3) << 18 | ((lat) & 0xf) << 13 | ((term) & 0x3) << 11    \
-> > +      | ((vbm) & 0x3) << 9 | (sbu) << 8 | (sbut) << 7 | ((cur) & 0x3) << 5   \
-> > +      | (vbt) << 4 | (sopp) << 3 | ((spd) & 0x7))
-> > +
-> > +/*
-> > + * Active Cable VDO 2
-> > + * ---------
-> > + * <31:24> :: Maximum operating temperature
-> > + * <23:16> :: Shutdown temperature
-> > + * <15>    :: Reserved, Shall be set to zero
-> > + * <14:12> :: U3/CLd power
-> > + * <11>    :: U3 to U0 transition mode (0b == direct, 1b == through U3S)
-> > + * <10>    :: Physical connection (0b == copper, 1b == optical)
-> > + * <9>     :: Active element (0b == redriver, 1b == retimer)
-> > + * <8>     :: USB4 supported (0b == yes, 1b == no)
-> > + * <7:6>   :: USB2 hub hops consumed
-> > + * <5>     :: USB2 supported (0b == yes, 1b == no)
-> > + * <4>     :: USB3.2 supported (0b == yes, 1b == no)
-> > + * <3>     :: USB lanes supported (0b == one lane, 1b == two lanes)
-> > + * <2>     :: Optically isolated active cable (0b == no, 1b == yes)
-> > + * <1>     :: Reserved, Shall be set to zero
-> > + * <0>     :: USB gen (0b == gen1, 1b == gen2+)
-> > + */
-> > +/* U3/CLd Power*/
-> > +#define ACAB2_U3_CLD_10MW_PLUS       0
-> > +#define ACAB2_U3_CLD_10MW    1
-> > +#define ACAB2_U3_CLD_5MW     2
-> > +#define ACAB2_U3_CLD_1MW     3
-> > +#define ACAB2_U3_CLD_500UW   4
-> > +#define ACAB2_U3_CLD_200UW   5
-> > +#define ACAB2_U3_CLD_50UW    6
-> > +
-> > +/* Other Active Cable VDO 2 Fields */
-> > +#define ACAB2_U3U0_DIRECT    0
-> > +#define ACAB2_U3U0_U3S               1
-> > +#define ACAB2_PHY_COPPER     0
-> > +#define ACAB2_PHY_OPTICAL    1
-> > +#define ACAB2_REDRIVER               0
-> > +#define ACAB2_RETIMER                1
-> > +#define ACAB2_USB4_SUPP              0
-> > +#define ACAB2_USB4_NOT_SUPP  1
-> > +#define ACAB2_USB2_SUPP              0
-> > +#define ACAB2_USB2_NOT_SUPP  1
-> > +#define ACAB2_USB32_SUPP     0
-> > +#define ACAB2_USB32_NOT_SUPP 1
-> > +#define ACAB2_LANES_ONE              0
-> > +#define ACAB2_LANES_TWO              1
-> > +#define ACAB2_OPT_ISO_NO     0
-> > +#define ACAB2_OPT_ISO_YES    1
-> > +#define ACAB2_GEN_1          0
-> > +#define ACAB2_GEN_2_PLUS     1
-> > +
-> > +#define VDO_ACABLE2(mtemp, stemp, u3p, trans, phy, ele, u4, hops, u2, u32, lane, iso, gen)   \
-> > +     (((mtemp) & 0xff) << 24 | ((stemp) & 0xff) << 16 | ((u3p) & 0x7) << 12  \
-> > +      | (trans) << 11 | (phy) << 10 | (ele) << 9 | (u4) << 8                 \
-> > +      | ((hops) & 0x3) << 6 | (u2) << 5 | (u32) << 4 | (lane) << 3           \
-> > +      | (iso) << 2 | (gen))
-> > +
-> > +/*
-> > + * VPD VDO
-> > + * ---------
-> > + * <31:28> :: HW version
-> > + * <27:24> :: FW version
-> > + * <23:21> :: VDO version
-> > + * <20:17> :: Reserved, Shall be set to zero
-> > + * <16:15> :: Maximum Vbus voltage (00b == 20V, 01b == 30V, 10b == 40V, 11b == 50V)
-> > + * <14>    :: Charge through current support (0b == 3A, 1b == 5A)
-> > + * <13>    :: Reserved, Shall be set to zero
-> > + * <12:7>  :: Vbus impedance
-> > + * <6:1>   :: Ground impedance
-> > + * <0>     :: Charge through support (0b == no, 1b == yes)
-> > + */
-> > +#define VPD_VDO_VER1_0               0
-> > +#define VPD_MAX_VBUS_20V     0
-> > +#define VPD_MAX_VBUS_30V     1
-> > +#define VPD_MAX_VBUS_40V     2
-> > +#define VPD_MAX_VBUS_50V     3
-> > +#define VPDCT_CURR_3A                0
-> > +#define VPDCT_CURR_5A                1
-> > +#define VPDCT_NOT_SUPP               0
-> > +#define VPDCT_SUPP           1
-> > +
-> > +#define VDO_VPD(hw, fw, ver, vbm, curr, vbi, gi, ct)                 \
-> > +     (((hw) & 0xf) << 28 | ((fw) & 0xf) << 24 | ((ver) & 0x7) << 21  \
-> > +      | ((vbm) & 0x3) << 15 | (curr) << 14 | ((vbi) & 0x3f) << 7     \
-> > +      | ((gi) & 0x3f) << 1 | (ct))
-> > +
-> > +#endif /* __DT_POWER_DELIVERY_H */
-> > --
-> > 2.30.0.365.g02bc693789-goog
-> >
