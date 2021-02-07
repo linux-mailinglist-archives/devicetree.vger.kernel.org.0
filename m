@@ -2,155 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84764312297
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 09:26:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE163122BB
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 09:32:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbhBGIZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 03:25:52 -0500
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:8460 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229975AbhBGIXg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 03:23:36 -0500
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1178LJnR025674;
-        Sun, 7 Feb 2021 00:22:45 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=OPe9kw3KgrmCl20IXxeiNKwyyAIVDOtu+mzfNNZEIRs=;
- b=K6cfxUAlAzRWPGg1Feo8VqgJM4G//j6Fza/dgIJ1W6ryijXtzCiT9CeB7unCLkL9BFIH
- JbXqYbB6qU/A4/dj4WESNKYjPRuDeoYQD/POvFMHqRwF0VAPOlmJYUcqrtohTaVYiBQa
- P0PX9T60QMx9GHwncJgMM7ed8pVwO4ocNjw+nRnKrw/QbrVVMS+aUoEZ+GAxVfJB8Fjl
- VxuYvCQlp8GWvxCcPwCi6Tl9i/UnAnM7DXdgg0lesNji/cDoEYYUoj8kgJDDUaPbgi7m
- hlQyvsxavjMuFo0UHVXU7t48ujZN4lcQfX7yXpOc/hLSIzmLYjS3ZCYKtTVXZZkJBBAy XQ== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0b-0016f401.pphosted.com with ESMTP id 36hugq1m3k-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Sun, 07 Feb 2021 00:22:45 -0800
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 7 Feb
- 2021 00:22:44 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 7 Feb 2021 00:22:44 -0800
-Received: from stefan-pc.marvell.com (stefan-pc.marvell.com [10.5.25.21])
-        by maili.marvell.com (Postfix) with ESMTP id 3A28D3F703F;
-        Sun,  7 Feb 2021 00:22:40 -0800 (PST)
-From:   <stefanc@marvell.com>
-To:     <netdev@vger.kernel.org>
-CC:     <thomas.petazzoni@bootlin.com>, <davem@davemloft.net>,
-        <nadavh@marvell.com>, <ymarkman@marvell.com>,
-        <linux-kernel@vger.kernel.org>, <stefanc@marvell.com>,
-        <kuba@kernel.org>, <linux@armlinux.org.uk>, <mw@semihalf.com>,
-        <andrew@lunn.ch>, <rmk+kernel@armlinux.org.uk>,
-        <atenart@kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, <sebastian.hesselbarth@gmail.com>,
-        <gregory.clement@bootlin.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [RESEND PATCH v8 net-next 15/15] net: mvpp2: add TX FC firmware check
-Date:   Sun, 7 Feb 2021 10:19:24 +0200
-Message-ID: <1612685964-21890-16-git-send-email-stefanc@marvell.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1612685964-21890-1-git-send-email-stefanc@marvell.com>
-References: <1612685964-21890-1-git-send-email-stefanc@marvell.com>
+        id S229939AbhBGIbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 03:31:39 -0500
+Received: from marcansoft.com ([212.63.210.85]:48078 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230274AbhBGI3d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Feb 2021 03:29:33 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 370D242856;
+        Sun,  7 Feb 2021 08:28:36 +0000 (UTC)
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, Arnd Bergmann <arnd@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Olof Johansson <olof@lixom.net>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-9-marcan@marcan.st> <87im75l2lp.wl-maz@kernel.org>
+From:   Hector Martin 'marcan' <marcan@marcan.st>
+Subject: Re: [PATCH 08/18] arm64: cpufeature: Add a feature for FIQ support
+Message-ID: <d110504f-2461-8b41-72cc-72681d775a97@marcan.st>
+Date:   Sun, 7 Feb 2021 17:28:35 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-07_03:2021-02-05,2021-02-07 signatures=0
+In-Reply-To: <87im75l2lp.wl-maz@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stefan Chulski <stefanc@marvell.com>
+On 06/02/2021 22.58, Marc Zyngier wrote:
+> Hector Martin <marcan@marcan.st> wrote:
+>> +static void cpu_sync_irq_to_fiq(struct arm64_cpu_capabilities const *cap)
+>> +{
+>> +	u64 daif = read_sysreg(daif);
+>> +
+>> +	/*
+>> +	 * By this point in the boot process IRQs are likely masked and FIOs
+>> +	 * aren't, so we need to sync things to avoid spurious early FIQs.
+>> +	 */
+>> +
+>> +	if (daif & PSR_I_BIT)
+>> +		daif |= PSR_F_BIT;
+>> +	else
+>> +		daif &= ~PSR_F_BIT;
+>> +
+>> +	write_sysreg(daif, daif);
+> 
+> Could this happen too late? If, as explained above, we can get a FIQ
+> until we mask it here, what prevents something (a timer?) from kicking
+> and creating havoc just before the sync?
 
-Patch check that TX FC firmware is running in CM3.
-If not, global TX FC would be disabled.
+Nothing, other than timers not being enabled this early (hopefully the 
+bootloader doesn't leave a rogue timer running for us...)
 
-Signed-off-by: Stefan Chulski <stefanc@marvell.com>
----
- drivers/net/ethernet/marvell/mvpp2/mvpp2.h      |  1 +
- drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 42 ++++++++++++++++----
- 2 files changed, 36 insertions(+), 7 deletions(-)
+> If the answer is "nothing", then it probably means that the default
+> behaviour should be to treat PSTATE.I and PSTATE.F as containing the
+> same value at all times, and not just as an afterthought when we
+> detect that we're on a CPU type or another.
 
-diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h b/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-index 9947385..25013a4 100644
---- a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-+++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-@@ -829,6 +829,7 @@
- 
- #define MSS_THRESHOLD_STOP	768
- #define MSS_THRESHOLD_START	1024
-+#define MSS_FC_MAX_TIMEOUT	5000
- 
- /* RX buffer constants */
- #define MVPP2_SKB_SHINFO_SIZE \
-diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-index 5526214..dfc2e71 100644
---- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-+++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-@@ -932,6 +932,34 @@ static void mvpp2_bm_pool_update_fc(struct mvpp2_port *port,
- 	spin_unlock_irqrestore(&port->priv->mss_spinlock, flags);
- }
- 
-+static int mvpp2_enable_global_fc(struct mvpp2 *priv)
-+{
-+	int val, timeout = 0;
-+
-+	/* Enable global flow control. In this stage global
-+	 * flow control enabled, but still disabled per port.
-+	 */
-+	val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
-+	val |= FLOW_CONTROL_ENABLE_BIT;
-+	mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+
-+	/* Check if Firmware running and disable FC if not*/
-+	val |= FLOW_CONTROL_UPDATE_COMMAND_BIT;
-+	mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+
-+	while (timeout < MSS_FC_MAX_TIMEOUT) {
-+		val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
-+
-+		if (!(val & FLOW_CONTROL_UPDATE_COMMAND_BIT))
-+			return 0;
-+		usleep_range(10, 20);
-+		timeout++;
-+	}
-+
-+	priv->global_tx_fc = false;
-+	return -EOPNOTSUPP;
-+}
-+
- /* Release buffer to BM */
- static inline void mvpp2_bm_pool_put(struct mvpp2_port *port, int pool,
- 				     dma_addr_t buf_dma_addr,
-@@ -7281,7 +7309,7 @@ static int mvpp2_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	void __iomem *base;
- 	int i, shared;
--	int err, val;
-+	int err;
- 
- 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -7509,13 +7537,13 @@ static int mvpp2_probe(struct platform_device *pdev)
- 		goto err_port_probe;
- 	}
- 
--	/* Enable global flow control. In this stage global
--	 * flow control enabled, but still disabled per port.
--	 */
- 	if (priv->global_tx_fc && priv->hw_version != MVPP21) {
--		val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
--		val |= FLOW_CONTROL_ENABLE_BIT;
--		mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+		err = mvpp2_enable_global_fc(priv);
-+		if (err) {
-+			dev_warn(&pdev->dev, "CM3 firmware not running, version should be higher than 18.09 ");
-+			dev_warn(&pdev->dev, "and chip revision B0\n");
-+			dev_warn(&pdev->dev, "Flow control not supported\n");
-+		}
- 	}
- 
- 	mvpp2_dbgfs_init(priv, pdev->name);
+I thought of this too. Originally I thought PSTATE.F was always set on 
+other systems, and thus unmasking FIQs could cause problems if there is 
+a pending rogue FIQ for some reason. However, while writing this patch I 
+realized that as part of normal process state changes we already unmask 
+FIQs anyway (see DAIF_PROCCTX).
+
+Thus, in fact, this patch actually changes things (when the cpufeature 
+is set) to mask FIQs in some cases where they currently aren't, and 
+conversely to unmask them in some cases where they currently are. But 
+the fact that FIQ masking is somewhat inconsistent to begin with 
+suggests that we should be able to mess with it without causing breakage 
+for other systems.
+
+So I guess in this case it would be legitimate to just make I==F on 
+every system, and if something breaks it should be fixed by making 
+whatever is causing a rogue FIQ not do that, right?
+
+That would leave the vector switcheroo as the only thing the cpufeature 
+does, which would certainly simplify a lot of the patch.
+
+> This could expand into enabling Group-0 interrupts with GICv3 on
+> systems that have a single security state (such as virtual machines),
+> though I don't really see a good use case for it.
+
+I could see having a separate vector path opening up the door for 
+performance hacks for very specific use cases that want really low 
+latency for *one* thing (e.g. the mess the Raspberry Pi folks do to work 
+around that braindead USB controller's performance issues), though I 
+imagine there would have to be very compelling reasons to develop a 
+framework to do this sanely upstream.
+
+Incidentally, I have a personal interest in real-time performance 
+(especially audio); once the dust settles and we have a workable kernel 
+for normal use I do hope to spend some time taking a deep dive into 
+latencies and finding RT-unfriendly code, but that's pretty far off 
+right now. Maybe PREEMPT_RT will even be merged by then :-) (I hope that 
+without SMM to screw things up on these machines they might make very 
+nice RT-capable boxes...)
+
 -- 
-1.9.1
-
+Hector Martin "marcan" (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
