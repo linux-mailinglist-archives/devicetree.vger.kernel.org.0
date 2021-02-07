@@ -2,40 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38FA93122CF
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 09:38:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6633122DD
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 09:48:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbhBGIiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 03:38:19 -0500
-Received: from marcansoft.com ([212.63.210.85]:50108 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229522AbhBGIhH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Feb 2021 03:37:07 -0500
+        id S229646AbhBGIsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 03:48:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57596 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229548AbhBGIsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 03:48:10 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75230C061756;
+        Sun,  7 Feb 2021 00:47:29 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 3A3F742856;
-        Sun,  7 Feb 2021 08:36:14 +0000 (UTC)
-To:     Arnd Bergmann <arnd@kernel.org>, Marc Zyngier <maz@kernel.org>
-Cc:     SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 0B62E4283E;
+        Sun,  7 Feb 2021 08:47:24 +0000 (UTC)
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, Arnd Bergmann <arnd@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Olof Johansson <olof@lixom.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        James Morse <james.morse@arm.com>
 References: <20210204203951.52105-1-marcan@marcan.st>
  <20210204203951.52105-11-marcan@marcan.st> <87h7mpky0f.wl-maz@kernel.org>
- <CAK8P3a0-Qk1WAUaCWeX8Zypphpadan3YAOES9t7LFYBOJkXKog@mail.gmail.com>
 From:   Hector Martin 'marcan' <marcan@marcan.st>
 Subject: Re: [PATCH 10/18] arm64: Introduce FIQ support
-Message-ID: <cb721f28-d5e9-3381-2d04-746c0aa2a0d3@marcan.st>
-Date:   Sun, 7 Feb 2021 17:36:12 +0900
+Message-ID: <2bfebb31-afb5-88a7-d092-87f88aa7367a@marcan.st>
+Date:   Sun, 7 Feb 2021 17:47:23 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a0-Qk1WAUaCWeX8Zypphpadan3YAOES9t7LFYBOJkXKog@mail.gmail.com>
+In-Reply-To: <87h7mpky0f.wl-maz@kernel.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
@@ -43,41 +45,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2021 01.22, Arnd Bergmann wrote:
-> * In the fiq handler code, check if normal interrupts were enabled
->    when the fiq hit. Normally they are enabled, so just proceed to
->    handle the timer and ipi directly
+On 07/02/2021 00.37, Marc Zyngier wrote:
+> See my digression in patch 8. I really wonder what the benefit is to
+> treat FIQ independently of IRQ, and we might as well generalise
+> this. We could always panic on getting a FIQ on platforms that don't
+> expect one.
 > 
-> * if irq was disabled, defer the handling by doing a self-ipi
->    through the aic's ipi method, and handle it from there
->    when dealing with the next interrupt once interrupts get
->    enabled.
+> It'd be good to rope in the other interested parties (Mark for the
+> early entry code, James for RAS and SError handling).
+
+CCing Mark and James: TL;DR what do you think about unconditionally 
+keeping DAIF.I == DAIF.F, would this break other platforms with spurious 
+FIQs or conversely mask FIQs when we don't want to in some cases? The 
+FIQ vector would remain a panic except on platforms that require using 
+it, via an alternatives patch.
+
+>>   	kernel_ventry	1, sync				// Synchronous EL1h
+>>   	kernel_ventry	1, irq				// IRQ EL1h
+>> -	kernel_ventry	1, fiq_invalid			// FIQ EL1h
+>> +							// FIQ EL1h
+>> +	kernel_ventry	1, fiq_invalid, 64, irq, ARM64_NEEDS_FIQ
 > 
-> This would be similar to the soft-disable feature on powerpc, which
-> never actually turns off interrupts from regular kernel code but
-> just checks a flag in local_irq_enable that gets set when a
-> hardirq happened.
+> It could be better to create a set of first class FIQ handlers rather
+> than this alternative target macro. I quickly hacked this instead,
+> which I find more readable.
 
-Case #2 seems messy. In AIC, we'd have to either:
+I think I ended up with the macro change to keep it 1:1 with IRQ, vs a 
+separate branch... but I didn't think of the fallthrough-with-nop trick, 
+neat. It is definitely is more readable. Are you OK with me pulling this 
+patch in for v2, with your name on it?
 
-* Disable FIQs, and hope that doesn't confuse any save/restore code 
-going on, then set a flag and check it in *both* the IRQ and FIQ path 
-since either might trigger depending on what happens next, or
-* Mask the relevant timer, which we'd then need to make sure does not 
-confuse the timer code (Unmask it again when we fire the interrupt? But 
-what if the timer code intended to mask it in the interim?)
+> -	kernel_ventry	0, fiq_invalid_compat, 32	// FIQ 32-bit EL0
+> +	kernel_ventry	0, fiq, 32			// FIQ 32-bit EL0
 
-Neither sounds particularly clean to me... if we had FIQ status masking 
-registers this would be more reasonable, but I'm not sure I'd want the 
-AIC driver to mess with neither DAIF nor the timer registers. It's bad 
-enough that it has to read the latter already (and I hope I can find a 
-better way of doing that...).
-
-Plus I don't know if the vector entry code and other scaffolding between 
-the vector and the AIC driver would be happy with, effectively, 
-recursive interrupts. This could work with a carefully controlled path 
-to make sure it doesn't break things, but I'm not so sure about the 
-current "just point FIQ and IRQ to the same place" approach here.
+fiq_compat here, right?
 
 -- 
 Hector Martin "marcan" (marcan@marcan.st)
