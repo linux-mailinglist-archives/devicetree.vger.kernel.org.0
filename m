@@ -2,39 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C93A3312105
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 04:11:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FDF0312172
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 06:20:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbhBGDK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Feb 2021 22:10:56 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:39627 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229536AbhBGDKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 22:10:55 -0500
-X-UUID: cf7bdd3aca7c4a5f845f02ee3baf42fb-20210207
-X-UUID: cf7bdd3aca7c4a5f845f02ee3baf42fb-20210207
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <leilk.liu@mediatek.com>)
+        id S229611AbhBGFUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 00:20:06 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:40765 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229445AbhBGFUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 00:20:06 -0500
+X-UUID: 00d7ca97f6a2439995aa625fcc37ec5e-20210207
+X-UUID: 00d7ca97f6a2439995aa625fcc37ec5e-20210207
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 585972220; Sun, 07 Feb 2021 11:10:12 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 7 Feb 2021 11:10:10 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+        with ESMTP id 209622233; Sun, 07 Feb 2021 13:19:19 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sun, 7 Feb 2021 13:19:19 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 7 Feb 2021 11:10:10 +0800
-From:   Leilk Liu <leilk.liu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
+ Transport; Sun, 7 Feb 2021 13:19:19 +0800
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <drinkcat@chromium.org>
+CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <fparent@baylibre.com>
-Subject: [PATCH 0/3] spi: add set_cs_timing support for HW/SW CS mode
-Date:   Sun, 7 Feb 2021 11:09:50 +0800
-Message-ID: <20210207030953.9297-1-leilk.liu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v6 0/4] Add SPMI support for Mediatek MT6873/8192 SoC IC
+Date:   Sun, 7 Feb 2021 13:19:10 +0800
+Message-ID: <1612675154-2747-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Mailer: git-send-email 2.6.4
 MIME-Version: 1.0
 Content-Type: text/plain
 X-MTK:  N
@@ -42,21 +44,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some controllers only have one HW CS, if support multiple devices, other devices need
-to use SW CS.
-This patch adds the support of both HW and SW CS via cs_gpio.
+This series adds support for new SoC MT6873/8192 to the spmi driver.
+This series is based on Weiyi's patches[1].
 
-leilk.liu (3):
-  spi: add power control when set_cs_timing
-  spi: support CS timing for HW & SW mode
-  spi: mediatek: add set_cs_timing support
+[1] https://patchwork.kernel.org/project/linux-mediatek/patch/1608642587-15634-7-git-send-email-weiyi.lu@mediatek.com/
 
- drivers/spi/spi-mt65xx.c | 72 +++++++++++++++++++++++++++++++---------
- drivers/spi/spi.c        | 32 +++++++++++++++---
- 2 files changed, 83 insertions(+), 21 deletions(-)
+changes since v5:
+- fix the yaml error.
+- refine the spmi-mtk-pmif driver for better code quality.
+- fix the build error about MT8192.dtsi
+
+Hsin-Hsiung Wang (4):
+  dt-bindings: spmi: modify the constraint 'maxItems' to 'minItems'
+  dt-bindings: spmi: document binding for the Mediatek SPMI controller
+  spmi: mediatek: Add support for MT6873/8192
+  arm64: dts: mt8192: add spmi node
+
+ .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      |  74 +++
+ .../devicetree/bindings/spmi/spmi.yaml        |   2 +-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  17 +
+ drivers/spmi/Kconfig                          |   9 +
+ drivers/spmi/Makefile                         |   2 +
+ drivers/spmi/spmi-mtk-pmif.c                  | 488 ++++++++++++++++++
+ 6 files changed, 591 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
+ create mode 100644 drivers/spmi/spmi-mtk-pmif.c
 
 -- 
 2.18.0
-
-
 
