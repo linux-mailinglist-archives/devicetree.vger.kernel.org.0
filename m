@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31108312813
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 00:15:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E92312814
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 00:15:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbhBGXOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 18:14:54 -0500
-Received: from esa2.hgst.iphmx.com ([68.232.143.124]:64368 "EHLO
+        id S229590AbhBGXPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 18:15:19 -0500
+Received: from esa2.hgst.iphmx.com ([68.232.143.124]:1047 "EHLO
         esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbhBGXOy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 18:14:54 -0500
+        with ESMTP id S229570AbhBGXPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 18:15:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1612740911; x=1644276911;
+  t=1612739730; x=1644275730;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=U5RPnx9naL44L8pODbHMwPFT+udQFeaq9RcnNssxEXo=;
-  b=luiAPe3rhSiWIWvHwLGWmi0WCt9MhLKnM8h9p7fTAAmXLDRB93Kfmsav
-   bITWoLm/5QYGsHg8UqXX9voi4A9tRoYsZwFtuLifzprIt9jgFdtBc21qG
-   06CW9u7QtV6GcNlBfpjZmOBcTlC/QbGFP/0UIbEddwvUoc+B60VomJw3c
-   29uTkXSIsDct2s5fWTUomZ6JrP0kWK+ww3dFHDtJYEnRAeT+Gx1UiKPgf
-   GQMirJwJR2Iyq8WhZfloYqdMG6gxNHDn8ytfU2zPNMLFFpcs1m4D2OGE9
-   4OD6+Rik3V4aoEkgKTT/qDyBX3FkZVm1MguefhxIUvK1/VT5Yi3CXlNQz
-   A==;
-IronPort-SDR: N04SLQPZ/FqIfRDWVPis8EVT6NSHLjRwbRahlPYnOplFmlh903LnVdQl/VrhtWInp5U3VLh3FD
- LDe7aMaxsz6OKun/FkGJClD9zXklWccE4gOcNYTKWKIb7hAr/4xOISVgArqNv/fr3kECeSxGkX
- vh4POkQLt7JLpgwgh/n2ZuBxpp/ZvI0SDDIVzQgl5IJjTG9KqS5OxYaH4v4bYwUN7Yw1zH+cIB
- 6ho48FXEklGQZ4L3MKvwAh3kYsdmytY71CKA49h0vF/uKHull60gyCuVRbZ6+CiCowM4unB2s0
- Pao=
+  bh=6K57gJ4d4JJEae1PJW0yBIWM0fdObKVyG7NMETneATc=;
+  b=oD+RIL1bfmjAwCuVWOhcb+OSUrfW5h55FMOjk1RhLFQ0bb+FnsL2yUBH
+   se7WkJNA6uf+htXOVTxsFbETEWM/4sFoyZ0ti6eAlLhr4UB5ntIJO97ph
+   m4uH5RT+UEIIPUqd8LBeO+71yECfP3Z1USQ//7qjcqZAwAbx733OcEJ3r
+   RuaUS8L0BuYjIboLwcYvTA4VCXakwC0RTJrxF1tjYvY1UX5SyV9PG/cIt
+   N/u+F0vdsxrOQTaEslKJjwKZ+z/7u1Uv+uJ0hPwJG2GEkMELkxXXOiFBR
+   z1hnQlSXmHXB+GnqrVXh/6+YLhXO6lifK24sfVL5kjkmFOwNGdJ4ztec8
+   Q==;
+IronPort-SDR: dymqyBjr2fzJC4CsEzDagWg3mbCwZyvSmk6cvUArEvtqV845JY4F0TBaBTGfubNTE0Cd1kp1az
+ f0lKk1w4RfE7no2RFOkkK4v6Lpw4e4xOu8XdDZ+LD6psShAbYKivscXMbIf2iLPMSipUr5RTTZ
+ 4oPd816MJB5Te7BHtgzwtf2sCBsNHQz7qO0J421sj9nvSK1sChUJ9cc+ky68AWVKSIBpdEp473
+ gICHCcSRGrUsAsvWG6VqWZySSP3FSUKuuMV63HChscDD8/EG2pUSmyc0hPpc5iljj4fxZTAZUp
+ nEU=
 X-IronPort-AV: E=Sophos;i="5.81,160,1610380800"; 
-   d="scan'208";a="263503239"
+   d="scan'208";a="263503244"
 Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 08 Feb 2021 07:32:26 +0800
-IronPort-SDR: LjY4HnUkLquWHCtpNc7siYQP/5sMGKi4JTS/TgN9wtsvkM58NFZV0VHXlFLP7o0SMlAjSaePw+
- crZqyaLbz+8Q8D0IlarF+scuP5HLxUrQZxF0OYfWCqFAqfRMmjlclUQvdsjPug08KO8JUTMJkG
- rb0M6YTdcbYj5fx+b7m+GselBb8cPY+rIy9u+KFnRSshLGnm7PwxdNs2jnrt2vALKDqpWrA5Be
- hkox7BEdSdaIDeA7fypCtMzE8aHlQzu9GVs248WekfreJ7sNlsn0q3/t2SlPR3NzzETHfJWNWj
- MyDYZAjo8oIf5UuR3XsOHT3x
+  by ob1.hgst.iphmx.com with ESMTP; 08 Feb 2021 07:32:28 +0800
+IronPort-SDR: z8EUlrI99NAYdkUttR5AYXWWG3XOJjrUt77dhr28307kZ4ALaDXGecvbcRRq5Xs/gwGK/vdfMr
+ 6apFbbWnztFwDeQ4jlD+X+ysVZSVBwvfTQqxCOF3ARGcVbXTcWWAKAxDTcXaPNsaqMt15RdqCx
+ B4+Yq1N3yExueSB9ca9/C85pkmfBhBR6A+atZcDam8G1r4Pfdgts+E/pAZ3+B2yuyHu7NyWOPC
+ EMHnsw9en+tAltCo26vFBgnRwDHCllp3e67q3SKrLR7hOk39xMZQxZyVtjUscRj0WuEeq2OHaj
+ EcM64+DKS8OlnutBLuEv4JqM
 Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2021 14:56:57 -0800
-IronPort-SDR: VK66jiKZ0AydLoNU9tF39WZx9m9H4S8LruBDNXtjmeANlMHBw7+IuyTrczsSLJ6aA78lXT+GAq
- 182m6Yl8M0TrUGIBqfYEqKK5iw9VtgGELM/ajQUcz0StMcqQn0NKV/wMyx6cmKOXsTIN6Htpdo
- vve5/wngjNBcvtAHyz5Mj4djjl5vJTrTZFT9eMjzivtL3yfQ2tjur5efvJLcvbLq4cfLGky7t0
- DmcgJBfpjXvICQQWQWy3L1Aqn0pYqrKstk/8CTWPM8q4/jU9MW7SH6d4KbddgkgnaasxToSyh0
- p/E=
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2021 14:56:59 -0800
+IronPort-SDR: GZpnlkHSqUSIz1nLJHVnoFn/yP2F6QQ0+fdh5vknXlqFx0EVk+X7bc+1aj6Kjv7exdCVpJK3Pc
+ 9jik/n472IR6V2Gru/35ssynQ9utMmEvzTCEeWayRBpEpGfOirFxEeHaaaOh8hNHbvZHF2fK01
+ VZQK4+qcE1uh8SbWJHmhwgtJyHKiVuKzVBBPPD4NMMIa9KPdLLeomsJ0jj2CmaTkHlVqcLoTcv
+ 27hh6HrIdOs8IQ5Gw+hxHn8+1SOwjSBEycDhuxZYK13C21renIOPr0YQJIRsyiZL2MvtwHlUCJ
+ CEs=
 WDCIronportException: Internal
 Received: from phd004806.ad.shared (HELO twashi.fujisawa.hgst.com) ([10.84.71.69])
-  by uls-op-cesaip02.wdc.com with ESMTP; 07 Feb 2021 15:13:04 -0800
+  by uls-op-cesaip02.wdc.com with ESMTP; 07 Feb 2021 15:13:05 -0800
 From:   Damien Le Moal <damien.lemoal@wdc.com>
 To:     Palmer Dabbelt <palmer@dabbelt.com>,
         linux-riscv@lists.infradead.org
 Cc:     Atish Patra <atish.patra@wdc.com>, Anup Patel <anup.patel@wdc.com>,
         Sean Anderson <seanga2@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v17 02/16] dt-bindings: add Canaan boards compatible strings
-Date:   Mon,  8 Feb 2021 08:12:42 +0900
-Message-Id: <20210207231256.115130-3-damien.lemoal@wdc.com>
+Subject: [PATCH v17 03/16] dt-bindings: update risc-v cpu properties
+Date:   Mon,  8 Feb 2021 08:12:43 +0900
+Message-Id: <20210207231256.115130-4-damien.lemoal@wdc.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210207231256.115130-1-damien.lemoal@wdc.com>
 References: <20210207231256.115130-1-damien.lemoal@wdc.com>
@@ -66,75 +67,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce the file riscv/canaan.yaml to document compatible strings
-related to the Canaan Kendryte K210 SoC. The compatible string
-"canaan,kendryte-k210" used to indicate the use of this SoC to the
-early SoC init code is added. This new file also defines the compatible
-strings of all supported boards based on this SoC.
+The Canaan Kendryte K210 SoC CPU cores are based on a rocket chip
+version using a draft verion of the RISC-V ISA specifications. To avoid
+any confusion with CPU cores using stable specifications, add the
+compatible string "canaan,k210" for this SoC CPU cores.
 
+Also add the "riscv,none" value to the mmu-type property to allow a DT
+to indicate that the CPU being described does not have an MMU or that
+it has an MMU that is not usable (which is the case for the K210 SoC).
+
+Cc: Paul Walmsley <paul.walmsley@sifive.com>
 Cc: Rob Herring <robh@kernel.org>
 Cc: devicetree@vger.kernel.org
 Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
 Reviewed-by: Atish Patra <atish.patra@wdc.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Anup Patel <anup@brainfault.org>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/riscv/canaan.yaml     | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/riscv/canaan.yaml
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/riscv/canaan.yaml b/Documentation/devicetree/bindings/riscv/canaan.yaml
-new file mode 100644
-index 000000000000..f8f3f286bd55
---- /dev/null
-+++ b/Documentation/devicetree/bindings/riscv/canaan.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/riscv/canaan.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Canaan SoC-based boards
-+
-+maintainers:
-+  - Damien Le Moal <damien.lemoal@wdc.com>
-+
-+description:
-+  Canaan Kendryte K210 SoC-based boards
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: sipeed,maix-bit
-+          - const: sipeed,maix-bitm
-+          - const: canaan,kendryte-k210
-+
-+      - items:
-+          - const: sipeed,maix-go
-+          - const: canaan,kendryte-k210
-+
-+      - items:
-+          - const: sipeed,maix-dock-m1
-+          - const: sipeed,maix-dock-m1w
-+          - const: canaan,kendryte-k210
-+
-+      - items:
-+          - const: sipeed,maixduino
-+          - const: canaan,kendryte-k210
-+
-+      - items:
-+          - const: canaan,kendryte-kd233
-+          - const: canaan,kendryte-k210
-+
-+      - items:
-+          - const: canaan,kendryte-k210
-+
-+additionalProperties: true
-+
-+...
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index eb6843f69f7c..e534f6a7cfa1 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -39,6 +39,7 @@ properties:
+               - sifive,u74
+               - sifive,u5
+               - sifive,u7
++              - canaan,k210
+           - const: riscv
+       - const: riscv    # Simulator only
+     description:
+@@ -56,6 +57,7 @@ properties:
+       - riscv,sv32
+       - riscv,sv39
+       - riscv,sv48
++      - riscv,none
+ 
+   riscv,isa:
+     description:
 -- 
 2.29.2
 
