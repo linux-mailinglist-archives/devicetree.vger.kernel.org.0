@@ -2,77 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C86A312332
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 10:28:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 850A331233F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 10:50:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbhBGJ1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 04:27:46 -0500
-Received: from marcansoft.com ([212.63.210.85]:35302 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229537AbhBGJ1o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Feb 2021 04:27:44 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id C083042852;
-        Sun,  7 Feb 2021 09:26:45 +0000 (UTC)
-Subject: Re: [PATCH 05/18] tty: serial: samsung_tty: add support for Apple
- UARTs
-From:   Hector Martin 'marcan' <marcan@marcan.st>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, Arnd Bergmann <arnd@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-6-marcan@marcan.st> <87lfc1l4lo.wl-maz@kernel.org>
- <e842f37d-d788-2d34-05e4-86ef94aed8f5@marcan.st>
-Message-ID: <e2bd8f99-58db-4cae-30b3-6fa608bc76dd@marcan.st>
-Date:   Sun, 7 Feb 2021 18:26:43 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S229691AbhBGJtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 04:49:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42482 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229564AbhBGJtw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 04:49:52 -0500
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD01AC061756;
+        Sun,  7 Feb 2021 01:49:11 -0800 (PST)
+Received: by mail-qk1-x72f.google.com with SMTP id r77so11524888qka.12;
+        Sun, 07 Feb 2021 01:49:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cbbpsfQOSGbGs7R9zUS8hYozEigpvRyjnIt3/cvm3W4=;
+        b=diViRcfhsBkjhy6mWySEJOvsQpOFK8pZMbHHTOXwUoPo1Ufs827UZAvqXypn/cYfbC
+         w6BVY6DkW3CKlG2KmSRpgU5z2KocTnpA6/MSr+resHu5Lry5t6So7Ij6KP0YOIUAM9W/
+         huFYnUNtqpAcUFTaoClhw4N7n27WmMKnsKfev01KHJxc+8bzxTWIJGGdzL6ZJgkcbpJg
+         IdB8X6n+ct1xkjqGPnj+HWL0/tirsOdYu2VRr7ftt2i//YyLHiP9LHr7JFBytNJUAaI1
+         5cgpzZ3gAIyg49t2FiBhrd7VMbFLD9n5qn+iTRwhsPWZI1OMMqICxBPAgxO5SQLVPtx/
+         NDuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cbbpsfQOSGbGs7R9zUS8hYozEigpvRyjnIt3/cvm3W4=;
+        b=S2sN5X3+CKTIEKySU/HdJfUJqkf3RZGejze9h79tt2SUy+oUxw1Bfatvu5mExexaBE
+         qgZt4e4OBBpPTTRSZCyvXhV5rCXx33IYMmEv/cbpTLMPAbIQcXJKwGEuGCBKB93kHq+7
+         yMai9M94TzvyN5qfD5RP7GMoFXBcMeqTtcJ+2Y20fhALxn8EssX1YhqJzfURW4FlkBIG
+         tpFmzsaUBc4GjhY+iUJ4VxjZc9rR9gyrYvbWjxuQBrX1eM2OP5twDS5MtqhC8CUVDgAk
+         89DsEygo+WNpFkHJ5asoW79oLU5Mk0pe0HKbhjDfBUSGzLTZ+BusJluZAtJlJaDf1lON
+         qhJg==
+X-Gm-Message-State: AOAM531w36QWr3EDAqzrw1hzEkgwGosUNoNaV7YiJQW1RTi58lf+g3K4
+        7UoBVMPi/0fXEtLXY0Ep7ZBpSXXCZCsOVznLj+Y=
+X-Google-Smtp-Source: ABdhPJz7+XOZYuIE5pcblvhRQewVLTixRZW/R/cp3G96D5R/aLCDqK4IrND0zV4hhmv9HidC2Ycs1HEyKDlklGV2C98=
+X-Received: by 2002:ae9:e80e:: with SMTP id a14mr2346374qkg.103.1612691351108;
+ Sun, 07 Feb 2021 01:49:11 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <e842f37d-d788-2d34-05e4-86ef94aed8f5@marcan.st>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+References: <1612508250-10586-1-git-send-email-shengjiu.wang@nxp.com>
+ <1612508250-10586-3-git-send-email-shengjiu.wang@nxp.com> <20210205140251.GB4720@sirena.org.uk>
+In-Reply-To: <20210205140251.GB4720@sirena.org.uk>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Sun, 7 Feb 2021 17:49:00 +0800
+Message-ID: <CAA+D8AOa73k4yRsy20w2yHOTPoKATm0pwsBdJvtxthEtff6WrA@mail.gmail.com>
+Subject: Re: [PATCH 2/7] ASoC: fsl_rpmsg: Add CPU DAI driver for audio base on rpmsg
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
+        Timur Tabi <timur@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org, Xiubo Li <Xiubo.Lee@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2021 18.12, Hector Martin 'marcan' wrote:
-> On 06/02/2021 22.15, Marc Zyngier wrote:
->> The default should be IRQ_NONE, otherwise the kernel cannot detect a
->> screaming spurious interrupt.
-> 
-> Good point, and this needs fixing in s3c64xx_serial_handle_irq too then
-> (which is what I based mine off of).
-> 
->>> +	ret = request_irq(port->irq, apple_serial_handle_irq, IRQF_SHARED,
->>> +			  s3c24xx_serial_portname(port), ourport);
->>
->> Why IRQF_SHARED? Do you expect any other device sharing the same line
->> with this UART?
-> 
-> This also came from s3c64xx_serial_startup and... now I wonder why that
-> one needs it. Maybe on some SoCs it does get shared? Certainly not for
-> discrete rx/tx irq chips (and indeed those don't set the flag)...
-> 
-> CCing Thomas, who added the S3C64xx support (and should probably review
-> this patch); is there a reason for IRQF_SHARED there? NB: v1 breaks the
-> build on arm or with CONFIG_PM_SLEEP, those will be fixed for v2.
+On Fri, Feb 5, 2021 at 10:04 PM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Fri, Feb 05, 2021 at 02:57:25PM +0800, Shengjiu Wang wrote:
+> > This is a dummy cpu dai driver for rpmsg audio use case,
+> > which is mainly used for getting the user's configuration
+>
+> This is actually doing stuff, it's not a dummy driver.
+>
+> > +static int fsl_rpmsg_remove(struct platform_device *pdev)
+> > +{
+> > +     return 0;
+> > +}
+>
+> If this isn't needed just remove it.
 
-Seems Thomas does not work for Linaro any more :)
+Thanks Mark. I will update them.
 
-CCing Krzysztof instead, who is the Samsung arch maintainer.
-
-> 
-> Either way, certainly not for Apple SoCs; I'll get rid of IRQF_SHARED
-> for v2.
-
--- 
-Hector Martin "marcan" (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Best regards
+Wang shengjiu
