@@ -2,119 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C57B73126F1
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 19:49:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C104B3126F8
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 19:53:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbhBGStT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 13:49:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44518 "EHLO
+        id S229615AbhBGSwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 13:52:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbhBGStS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 13:49:18 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6431C06174A;
-        Sun,  7 Feb 2021 10:48:37 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id y18so15591661edw.13;
-        Sun, 07 Feb 2021 10:48:37 -0800 (PST)
+        with ESMTP id S229491AbhBGSwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 13:52:35 -0500
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 725D6C061756;
+        Sun,  7 Feb 2021 10:51:55 -0800 (PST)
+Received: by mail-io1-xd32.google.com with SMTP id j5so12734485iog.11;
+        Sun, 07 Feb 2021 10:51:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EGUleL2eUhQNkqgdSNGHaB4lMTeXgM8GYS8mqXoep18=;
-        b=ToR10LHsn60YUDp2DP0hDjaXCyVzc8zWU/NGOLWEgKHS6gMxtdfHAMZ6v3cS6X0/iY
-         aZwv5NRsuqKhCHL0rJMZX+249h0GhfVmma5wrykmnWvvGkZA1mHvIEORbNp5IKyPx1R7
-         47IGQ16ETe9b+F4QIb+C5P/JwoY+vv0K3Vzn1umWLIBVY+eKNZSTJIkzD89xhjqn+mF3
-         UeY+vdZsEvvSLhf5zMl3eweZVvJ8gQ/AZEVlLre/YN1LNTwHJE9ErIpyR1+rmASTrOnV
-         mDbZaSTdvK4AdIeqguB8QY/JDaKUe1YwXadFwDC0rB684zoN3pZTw5ABoJWssinMRv9Y
-         GUhg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=C1b2/ijDZ9H0sKDfYhenHE6daVwDApyvYHnzhcgt0pg=;
+        b=MFQXikcjPXIAShI40vHiklo9q+lVC0Iwi/7VO/SRnnaj+2RgNifeW95GGqO9S/masX
+         7nzjkGK0+i2IxWpTimWX40wehq8pZygPGf/YslAQprZLjcRnUDsR4CmYS+xvG3AJA27R
+         KfNqGIreA9oSHup0+GVNc86I5fbHZZfnWMJFEmPVInYl/5Mijtwf+fBMdxa1IW+yNTQ5
+         wleXjsGXdDp6STCIlab1VTKOXA6fRoGjEvkWcD+GObgatttllLX1d9gv/Oe30WIvxNcq
+         NXJlSyHpxPiPoDKn7zTE5oYJOqFa6dVSRrUE82E8M4iMuxTiA6Us+A1vXQSrZU5cimw2
+         zkPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=EGUleL2eUhQNkqgdSNGHaB4lMTeXgM8GYS8mqXoep18=;
-        b=C/fSQjKc2o96F1ABaq29HFLMyyfPXdcp3dKy9as6e7Tp1QN+1rCqJh/F1lcj6lCJe/
-         8zViHCvyAWfQ0Gv2GrtCf8rMBdbVmtbcsGpq6bD0/imVryaY/sRdug5RxXzkgSIhNbYA
-         xEOzpANagMOtmOujIDv5cmPxStZUcGQru+eTeYFzxRBhfCQWsvyV7/geVqkcq8R6xZvz
-         ujdxbQacSBRCU7gtMAfNXWU0auUS5vHyw6NnKqW6xsHgTlp/Hm2LG1h6teWQC0XrvxP4
-         jaSZtBbF256Ln7L5Tmzg12QFnECartz+kmIGVyAvu6uoa+d4ugelJb316opnAuN1/fjS
-         X5OA==
-X-Gm-Message-State: AOAM533s8mX1FJr4G64XKNKQKyyHiyAIFEWa/Zj9GhZAwYZvH+bXfxMT
-        EJ/bWe/lFfa6iF4EwCIMEW89L28iij4X5w==
-X-Google-Smtp-Source: ABdhPJw0mfAfPKKjiEL+LasOhxLInAfCF/IyAaxDCVbPW22DiVvyPcta0oxPzyEwqia1eDWJFUublw==
-X-Received: by 2002:a50:d6c1:: with SMTP id l1mr13873785edj.336.1612723716670;
-        Sun, 07 Feb 2021 10:48:36 -0800 (PST)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id bz20sm7383803ejc.38.2021.02.07.10.48.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Feb 2021 10:48:35 -0800 (PST)
-Subject: Re: [PATCH RESEND v5 8/8] arm64: dts: mt6359: add PMIC MT6359 related
- nodes
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        Ran Bi <ran.bi@mediatek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Wen Su <wen.su@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>
-References: <1611913781-23460-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1611913781-23460-9-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1cbf58f1-376c-fa93-98a2-53a41fa24273@gmail.com>
- <CA+Px+wXP2vrFbou+SCRZuXYr4XPPxYHZfk+oSM7_GPXZSD24UQ@mail.gmail.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <f0ed6a53-d2ee-4699-10c9-e2d937f0ff60@gmail.com>
-Date:   Sun, 7 Feb 2021 19:48:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        bh=C1b2/ijDZ9H0sKDfYhenHE6daVwDApyvYHnzhcgt0pg=;
+        b=rpb2tz3b4N6jYz3kyFMysy6DCGfmVxyHLD+xeD/id2ABHI8dTk1koRiS9RHdmcZXh1
+         uq7iA6cvgnjJ6ahtYaIeGA5QuYJfQpjGfoji3OZsLFyrbeiIaB5QrcuhfWohuwyzucay
+         cCl0q5A2zGJPwn26ePuyBP6sdRqYCtXRrhGkWD5t5fn7HbsJ9GOu4xm4ZwT2ajPhSAwY
+         MB3Bub3ZVgxVKNHU/Xt0OQ0CJAsJy1fhT27W1CRcMQqYRtWKiIlaT1hlLn9WFgd4vmMP
+         sHyYxSYSbuun2nM5YpKc5zn0OVQjs3GCe7lIhPhU/eQeBRA25thbJUQYFLe0Qy1I2t0N
+         LXOA==
+X-Gm-Message-State: AOAM5329dIKi5Xdgg5a+DkrdWiH8BtjtU0irVRLbVuIl3WsUp+OLGBAK
+        UJv5vHP2eZx9JJOdFH9KhPSrJi9z+9CseA==
+X-Google-Smtp-Source: ABdhPJzUaVyGsmNps3Ljb3GSgCk1I0HkgSOXlRivc5lvf5P3IDbfkpVcqVRKrUVS7MMNk7rY0QePMg==
+X-Received: by 2002:a02:cd25:: with SMTP id h5mr14124991jaq.31.1612723914694;
+        Sun, 07 Feb 2021 10:51:54 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:a6b4:a5d5:60b9:fff0])
+        by smtp.gmail.com with ESMTPSA id e1sm7942738iol.31.2021.02.07.10.51.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Feb 2021 10:51:54 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-clk@vger.kernel.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V3 1/2] dt-bindings: clk: versaclock5: Add optional load capacitance property
+Date:   Sun,  7 Feb 2021 12:51:38 -0600
+Message-Id: <20210207185140.3653350-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <CA+Px+wXP2vrFbou+SCRZuXYr4XPPxYHZfk+oSM7_GPXZSD24UQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+There are two registers which can set the load capacitance for
+XTAL1 and XTAL2. These are optional registers when using an
+external crystal.  Since XTAL1 and XTAL2 will set to the same value,
+update the binding to support a single property called
+xtal-load-femtofarads.
 
+Signed-off-by: Adam Ford <aford173@gmail.com>
+---
+V3:  No Change
+V2:  No Change
 
-On 02/02/2021 04:51, Tzung-Bi Shih wrote:
-> On Sun, Jan 31, 2021 at 7:06 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
->> On 29/01/2021 10:49, Hsin-Hsiung Wang wrote:
->>> +             mt6359codec: mt6359codec {
->>> +             };
->>
->> I understand that the dmic-mode and mic-type-X depends on the actual board on
->> which it is used. In that case I think we should add mt6359codec node in the dts
->> instead of dtsi file. I'd advise to set these properties as well as otherwise we
->> get a (slightly misleading) warning in the driver.
-> 
-> I feel it is better to include the node in dtsi to represent the whole
-> MT6359 PMIC.
-> 
-> We could either:
-> - Set default values of these properties in the dtsi to avoid the
-> warning message.
-> - Or https://patchwork.kernel.org/project/alsa-devel/patch/20210202033557.1621029-1-tzungbi@google.com/
-> 
+A couple people suggested that I not use the $ref, but without it,
+the bindings check failed with errors.
 
-As this got accpeted upstream, you don't need to do anything about it.
+diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+index 2ac1131fd922..c268debe5b8d 100644
+--- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
++++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+@@ -59,6 +59,12 @@ properties:
+     minItems: 1
+     maxItems: 2
+ 
++  idt,xtal-load-femtofarads:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 9000
++    maximum: 22760
++    description: Optional load capacitor for XTAL1 and XTAL2
++
+ patternProperties:
+   "^OUT[1-4]$":
+     type: object
+-- 
+2.25.1
 
-Thanks for the pointer.
-Matthias
