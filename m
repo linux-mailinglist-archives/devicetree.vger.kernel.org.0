@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 850A331233F
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 10:50:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD4F312347
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 10:52:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229691AbhBGJtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 04:49:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42482 "EHLO
+        id S229522AbhBGJug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 04:50:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbhBGJtw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 04:49:52 -0500
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD01AC061756;
-        Sun,  7 Feb 2021 01:49:11 -0800 (PST)
-Received: by mail-qk1-x72f.google.com with SMTP id r77so11524888qka.12;
-        Sun, 07 Feb 2021 01:49:11 -0800 (PST)
+        with ESMTP id S229506AbhBGJuf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 04:50:35 -0500
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1109FC06174A;
+        Sun,  7 Feb 2021 01:49:53 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id t63so11599011qkc.1;
+        Sun, 07 Feb 2021 01:49:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=cbbpsfQOSGbGs7R9zUS8hYozEigpvRyjnIt3/cvm3W4=;
-        b=diViRcfhsBkjhy6mWySEJOvsQpOFK8pZMbHHTOXwUoPo1Ufs827UZAvqXypn/cYfbC
-         w6BVY6DkW3CKlG2KmSRpgU5z2KocTnpA6/MSr+resHu5Lry5t6So7Ij6KP0YOIUAM9W/
-         huFYnUNtqpAcUFTaoClhw4N7n27WmMKnsKfev01KHJxc+8bzxTWIJGGdzL6ZJgkcbpJg
-         IdB8X6n+ct1xkjqGPnj+HWL0/tirsOdYu2VRr7ftt2i//YyLHiP9LHr7JFBytNJUAaI1
-         5cgpzZ3gAIyg49t2FiBhrd7VMbFLD9n5qn+iTRwhsPWZI1OMMqICxBPAgxO5SQLVPtx/
-         NDuQ==
+        bh=FYzO838l1olFuso01/LKL9EKMqYrX52CmTrPsMkBDNA=;
+        b=PH/nShvusjxGG+pD98o6NOty7igDMLoVCNcNMmmjFvvckGRm0oVqX1c7mx4J+ayJWh
+         PCIX7g4Xc+nZmsDqDERSkx7dzoHKAYcxNT61mIYdBwx1hNy5ilCwTdXXMmpzge2a7KDK
+         /xi3ULiq5Msm+qvMpLhHXO57vX/3f1spJxrUgaN85rDrp1w1sEvYzsGlrcd6+YucJMIy
+         xpjwb12qxSbsE5rw/WD7sQZxYc1mDD1QGoIma/VOnbQFQvTBcXaa5G0spS8BW5vttuJ0
+         3jcB9pb5TAKYjnK2JM/uBfQzOfoWGRZxdExX+a70dnbh3NnbAcVXlKL9exdZ+2Bb8IVh
+         24EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=cbbpsfQOSGbGs7R9zUS8hYozEigpvRyjnIt3/cvm3W4=;
-        b=S2sN5X3+CKTIEKySU/HdJfUJqkf3RZGejze9h79tt2SUy+oUxw1Bfatvu5mExexaBE
-         qgZt4e4OBBpPTTRSZCyvXhV5rCXx33IYMmEv/cbpTLMPAbIQcXJKwGEuGCBKB93kHq+7
-         yMai9M94TzvyN5qfD5RP7GMoFXBcMeqTtcJ+2Y20fhALxn8EssX1YhqJzfURW4FlkBIG
-         tpFmzsaUBc4GjhY+iUJ4VxjZc9rR9gyrYvbWjxuQBrX1eM2OP5twDS5MtqhC8CUVDgAk
-         89DsEygo+WNpFkHJ5asoW79oLU5Mk0pe0HKbhjDfBUSGzLTZ+BusJluZAtJlJaDf1lON
-         qhJg==
-X-Gm-Message-State: AOAM531w36QWr3EDAqzrw1hzEkgwGosUNoNaV7YiJQW1RTi58lf+g3K4
-        7UoBVMPi/0fXEtLXY0Ep7ZBpSXXCZCsOVznLj+Y=
-X-Google-Smtp-Source: ABdhPJz7+XOZYuIE5pcblvhRQewVLTixRZW/R/cp3G96D5R/aLCDqK4IrND0zV4hhmv9HidC2Ycs1HEyKDlklGV2C98=
-X-Received: by 2002:ae9:e80e:: with SMTP id a14mr2346374qkg.103.1612691351108;
- Sun, 07 Feb 2021 01:49:11 -0800 (PST)
+        bh=FYzO838l1olFuso01/LKL9EKMqYrX52CmTrPsMkBDNA=;
+        b=QOxlIBKVxZMnT/VPGfpsr7havxV5axs4/scDjfu3/erq2HSE6PdGgnOefTKCLQZKKk
+         PEJ1hl3Coespv/VvA+aWEw/84k+8mvj14ibxsPa5Gbh+VLr2D38n9UMm4Lj4tE13wTiR
+         FNEbmin81+h6Mt7GQlBBJHYIeZ/8gDem8bmB/83HUNh1cUBE1CEp8d+dSZERZbVt/1Tx
+         QjK2+cqoENWFVwiMtU8cC0uEsyr8ggQT+LU9qigrHciVdgml3jHY7yQGE0br/rcFz9hy
+         yxvf9/vR15EMyuRRjY6+LiaWGKxhwXYpsA7OKxmr00wvfb4EQLcA/CU7t7wuNgN+Qjwn
+         aj1A==
+X-Gm-Message-State: AOAM531Ym5thH9kUsxGDPeJAgO+0+GLIx2PmNNLR2xceaLNXodw8GYPN
+        3/taTzUdb4L3qUnYzFenJp3R8U9IDwk4hSXUyAk=
+X-Google-Smtp-Source: ABdhPJwBFvr9P32/Q0z9GRaRw15XheT3/2z/Vbq8+UOXhCI06iB1wVa/pcAviEiXyvpKDJQ/NID21lMi+PuAC/mGLuk=
+X-Received: by 2002:a05:620a:14a6:: with SMTP id x6mr11806815qkj.152.1612691392406;
+ Sun, 07 Feb 2021 01:49:52 -0800 (PST)
 MIME-Version: 1.0
 References: <1612508250-10586-1-git-send-email-shengjiu.wang@nxp.com>
- <1612508250-10586-3-git-send-email-shengjiu.wang@nxp.com> <20210205140251.GB4720@sirena.org.uk>
-In-Reply-To: <20210205140251.GB4720@sirena.org.uk>
+ <1612508250-10586-5-git-send-email-shengjiu.wang@nxp.com> <20210205142516.GC4720@sirena.org.uk>
+In-Reply-To: <20210205142516.GC4720@sirena.org.uk>
 From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Sun, 7 Feb 2021 17:49:00 +0800
-Message-ID: <CAA+D8AOa73k4yRsy20w2yHOTPoKATm0pwsBdJvtxthEtff6WrA@mail.gmail.com>
-Subject: Re: [PATCH 2/7] ASoC: fsl_rpmsg: Add CPU DAI driver for audio base on rpmsg
+Date:   Sun, 7 Feb 2021 17:49:41 +0800
+Message-ID: <CAA+D8APye40DiiYtQbsaM0X5vt4-4z+=YAvf-aSHxzvBk=aBfA@mail.gmail.com>
+Subject: Re: [PATCH 4/7] ASoC: imx-audio-rpmsg: Add rpmsg_driver for audio channel
 To:     Mark Brown <broonie@kernel.org>
 Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
@@ -68,22 +68,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 5, 2021 at 10:04 PM Mark Brown <broonie@kernel.org> wrote:
+On Fri, Feb 5, 2021 at 10:27 PM Mark Brown <broonie@kernel.org> wrote:
 >
-> On Fri, Feb 05, 2021 at 02:57:25PM +0800, Shengjiu Wang wrote:
-> > This is a dummy cpu dai driver for rpmsg audio use case,
-> > which is mainly used for getting the user's configuration
+> On Fri, Feb 05, 2021 at 02:57:27PM +0800, Shengjiu Wang wrote:
 >
-> This is actually doing stuff, it's not a dummy driver.
+> > +     /* TYPE C is notification from M core */
+> > +     if (r_msg->header.type == MSG_TYPE_C) {
+> > +             if (r_msg->header.cmd == TX_PERIOD_DONE) {
 >
-> > +static int fsl_rpmsg_remove(struct platform_device *pdev)
-> > +{
-> > +     return 0;
-> > +}
+> > +             } else if (r_msg->header.cmd == RX_PERIOD_DONE) {
 >
-> If this isn't needed just remove it.
+> A switch statement would be clearer and more extensible...
+>
+> > +     /* TYPE B is response msg */
+> > +     if (r_msg->header.type == MSG_TYPE_B) {
+> > +             memcpy(&info->r_msg, r_msg, sizeof(struct rpmsg_r_msg));
+> > +             complete(&info->cmd_complete);
+> > +     }
+>
+> ...and make this flow clearer for example.  Do we need to warn on
+> unknown messages?
 
-Thanks Mark. I will update them.
+Thanks for reviewing. I will update them.
 
 Best regards
-Wang shengjiu
+wang shengjiu
