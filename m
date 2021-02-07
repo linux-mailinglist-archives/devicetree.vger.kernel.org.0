@@ -2,155 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE123126E3
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 19:46:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C57B73126F1
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 19:49:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230124AbhBGSpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 13:45:13 -0500
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:49776 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230034AbhBGSn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 13:43:58 -0500
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 117IUPmw027844;
-        Sun, 7 Feb 2021 10:43:07 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=YyIJ/1eDbCh0foaOPgcKNNopcXPvlFkHzZZvwgJfM/4=;
- b=dM2EmSeXOG9Yb/fxeYrJM0TT9ok+ev2aA68lL3teTYl5LopVAedtFwaYx9HwQ1RBbjjy
- Dhcb8de0rLWCDxMFWGgb6TmYjVwB1VEJSH88vX2+Hz3JfZIKgYUHOudWJt/PC7xD3xdL
- wXjZetags4pFBMBu+y4xn1L7FdEQqFj4KJZ5NKNSPLmDDKQ8He2NF5h5QTP2gl6yHPfD
- qR+aiKnXH2wqV60ILZ+ta8Z3TjOl3jNdPVPpMKq+DQvkZtYRXGgoHVSwmdqVwmGJZStK
- 053fsLoC++bbwKzmElFO8bD1vKFs1C/JiE5bcEVc/bjrUiUNpNhJP4AoF0mUOvBmcnxA CA== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0b-0016f401.pphosted.com with ESMTP id 36hugq2ex2-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Sun, 07 Feb 2021 10:43:07 -0800
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 7 Feb
- 2021 10:43:05 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 7 Feb 2021 10:43:05 -0800
-Received: from stefan-pc.marvell.com (stefan-pc.marvell.com [10.5.25.21])
-        by maili.marvell.com (Postfix) with ESMTP id 5788C3F7040;
-        Sun,  7 Feb 2021 10:43:01 -0800 (PST)
-From:   <stefanc@marvell.com>
-To:     <netdev@vger.kernel.org>
-CC:     <thomas.petazzoni@bootlin.com>, <davem@davemloft.net>,
-        <nadavh@marvell.com>, <ymarkman@marvell.com>,
-        <linux-kernel@vger.kernel.org>, <stefanc@marvell.com>,
-        <kuba@kernel.org>, <linux@armlinux.org.uk>, <mw@semihalf.com>,
-        <andrew@lunn.ch>, <rmk+kernel@armlinux.org.uk>,
-        <atenart@kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, <sebastian.hesselbarth@gmail.com>,
-        <gregory.clement@bootlin.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v9 net-next 15/15] net: mvpp2: add TX FC firmware check
-Date:   Sun, 7 Feb 2021 20:38:57 +0200
-Message-ID: <1612723137-18045-16-git-send-email-stefanc@marvell.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1612723137-18045-1-git-send-email-stefanc@marvell.com>
-References: <1612723137-18045-1-git-send-email-stefanc@marvell.com>
+        id S229564AbhBGStT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 13:49:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44518 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229548AbhBGStS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 13:49:18 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6431C06174A;
+        Sun,  7 Feb 2021 10:48:37 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id y18so15591661edw.13;
+        Sun, 07 Feb 2021 10:48:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EGUleL2eUhQNkqgdSNGHaB4lMTeXgM8GYS8mqXoep18=;
+        b=ToR10LHsn60YUDp2DP0hDjaXCyVzc8zWU/NGOLWEgKHS6gMxtdfHAMZ6v3cS6X0/iY
+         aZwv5NRsuqKhCHL0rJMZX+249h0GhfVmma5wrykmnWvvGkZA1mHvIEORbNp5IKyPx1R7
+         47IGQ16ETe9b+F4QIb+C5P/JwoY+vv0K3Vzn1umWLIBVY+eKNZSTJIkzD89xhjqn+mF3
+         UeY+vdZsEvvSLhf5zMl3eweZVvJ8gQ/AZEVlLre/YN1LNTwHJE9ErIpyR1+rmASTrOnV
+         mDbZaSTdvK4AdIeqguB8QY/JDaKUe1YwXadFwDC0rB684zoN3pZTw5ABoJWssinMRv9Y
+         GUhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EGUleL2eUhQNkqgdSNGHaB4lMTeXgM8GYS8mqXoep18=;
+        b=C/fSQjKc2o96F1ABaq29HFLMyyfPXdcp3dKy9as6e7Tp1QN+1rCqJh/F1lcj6lCJe/
+         8zViHCvyAWfQ0Gv2GrtCf8rMBdbVmtbcsGpq6bD0/imVryaY/sRdug5RxXzkgSIhNbYA
+         xEOzpANagMOtmOujIDv5cmPxStZUcGQru+eTeYFzxRBhfCQWsvyV7/geVqkcq8R6xZvz
+         ujdxbQacSBRCU7gtMAfNXWU0auUS5vHyw6NnKqW6xsHgTlp/Hm2LG1h6teWQC0XrvxP4
+         jaSZtBbF256Ln7L5Tmzg12QFnECartz+kmIGVyAvu6uoa+d4ugelJb316opnAuN1/fjS
+         X5OA==
+X-Gm-Message-State: AOAM533s8mX1FJr4G64XKNKQKyyHiyAIFEWa/Zj9GhZAwYZvH+bXfxMT
+        EJ/bWe/lFfa6iF4EwCIMEW89L28iij4X5w==
+X-Google-Smtp-Source: ABdhPJw0mfAfPKKjiEL+LasOhxLInAfCF/IyAaxDCVbPW22DiVvyPcta0oxPzyEwqia1eDWJFUublw==
+X-Received: by 2002:a50:d6c1:: with SMTP id l1mr13873785edj.336.1612723716670;
+        Sun, 07 Feb 2021 10:48:36 -0800 (PST)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id bz20sm7383803ejc.38.2021.02.07.10.48.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 Feb 2021 10:48:35 -0800 (PST)
+Subject: Re: [PATCH RESEND v5 8/8] arm64: dts: mt6359: add PMIC MT6359 related
+ nodes
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Fei Shao <fshao@chromium.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Yuchen Huang <yuchen.huang@mediatek.com>,
+        Ran Bi <ran.bi@mediatek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Wen Su <wen.su@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>
+References: <1611913781-23460-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1611913781-23460-9-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1cbf58f1-376c-fa93-98a2-53a41fa24273@gmail.com>
+ <CA+Px+wXP2vrFbou+SCRZuXYr4XPPxYHZfk+oSM7_GPXZSD24UQ@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <f0ed6a53-d2ee-4699-10c9-e2d937f0ff60@gmail.com>
+Date:   Sun, 7 Feb 2021 19:48:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-07_10:2021-02-05,2021-02-07 signatures=0
+In-Reply-To: <CA+Px+wXP2vrFbou+SCRZuXYr4XPPxYHZfk+oSM7_GPXZSD24UQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stefan Chulski <stefanc@marvell.com>
 
-Patch check that TX FC firmware is running in CM3.
-If not, global TX FC would be disabled.
 
-Signed-off-by: Stefan Chulski <stefanc@marvell.com>
----
- drivers/net/ethernet/marvell/mvpp2/mvpp2.h      |  1 +
- drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 42 ++++++++++++++++----
- 2 files changed, 36 insertions(+), 7 deletions(-)
+On 02/02/2021 04:51, Tzung-Bi Shih wrote:
+> On Sun, Jan 31, 2021 at 7:06 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
+>> On 29/01/2021 10:49, Hsin-Hsiung Wang wrote:
+>>> +             mt6359codec: mt6359codec {
+>>> +             };
+>>
+>> I understand that the dmic-mode and mic-type-X depends on the actual board on
+>> which it is used. In that case I think we should add mt6359codec node in the dts
+>> instead of dtsi file. I'd advise to set these properties as well as otherwise we
+>> get a (slightly misleading) warning in the driver.
+> 
+> I feel it is better to include the node in dtsi to represent the whole
+> MT6359 PMIC.
+> 
+> We could either:
+> - Set default values of these properties in the dtsi to avoid the
+> warning message.
+> - Or https://patchwork.kernel.org/project/alsa-devel/patch/20210202033557.1621029-1-tzungbi@google.com/
+> 
 
-diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h b/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-index b61a1ba..da87152 100644
---- a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-+++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-@@ -828,6 +828,7 @@
- 
- #define MSS_THRESHOLD_STOP	768
- #define MSS_THRESHOLD_START	1024
-+#define MSS_FC_MAX_TIMEOUT	5000
- 
- /* RX buffer constants */
- #define MVPP2_SKB_SHINFO_SIZE \
-diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-index 4d0a398..fed4521 100644
---- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-+++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-@@ -931,6 +931,34 @@ static void mvpp2_bm_pool_update_fc(struct mvpp2_port *port,
- 	spin_unlock_irqrestore(&port->priv->mss_spinlock, flags);
- }
- 
-+static int mvpp2_enable_global_fc(struct mvpp2 *priv)
-+{
-+	int val, timeout = 0;
-+
-+	/* Enable global flow control. In this stage global
-+	 * flow control enabled, but still disabled per port.
-+	 */
-+	val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
-+	val |= FLOW_CONTROL_ENABLE_BIT;
-+	mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+
-+	/* Check if Firmware running and disable FC if not*/
-+	val |= FLOW_CONTROL_UPDATE_COMMAND_BIT;
-+	mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+
-+	while (timeout < MSS_FC_MAX_TIMEOUT) {
-+		val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
-+
-+		if (!(val & FLOW_CONTROL_UPDATE_COMMAND_BIT))
-+			return 0;
-+		usleep_range(10, 20);
-+		timeout++;
-+	}
-+
-+	priv->global_tx_fc = false;
-+	return -EOPNOTSUPP;
-+}
-+
- /* Release buffer to BM */
- static inline void mvpp2_bm_pool_put(struct mvpp2_port *port, int pool,
- 				     dma_addr_t buf_dma_addr,
-@@ -7263,7 +7291,7 @@ static int mvpp2_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	void __iomem *base;
- 	int i, shared;
--	int err, val;
-+	int err;
- 
- 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -7487,13 +7515,13 @@ static int mvpp2_probe(struct platform_device *pdev)
- 		goto err_port_probe;
- 	}
- 
--	/* Enable global flow control. In this stage global
--	 * flow control enabled, but still disabled per port.
--	 */
- 	if (priv->global_tx_fc && priv->hw_version != MVPP21) {
--		val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
--		val |= FLOW_CONTROL_ENABLE_BIT;
--		mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+		err = mvpp2_enable_global_fc(priv);
-+		if (err) {
-+			dev_warn(&pdev->dev, "CM3 firmware not running, version should be higher than 18.09 ");
-+			dev_warn(&pdev->dev, "and chip revision B0\n");
-+			dev_warn(&pdev->dev, "Flow control not supported\n");
-+		}
- 	}
- 
- 	mvpp2_dbgfs_init(priv, pdev->name);
--- 
-1.9.1
+As this got accpeted upstream, you don't need to do anything about it.
 
+Thanks for the pointer.
+Matthias
