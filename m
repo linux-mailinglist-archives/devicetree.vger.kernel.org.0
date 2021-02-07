@@ -2,145 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7F0131201D
-	for <lists+devicetree@lfdr.de>; Sat,  6 Feb 2021 21:59:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56CBF3120D0
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 03:12:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbhBFU7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Feb 2021 15:59:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48132 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbhBFU7X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 15:59:23 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E49EC06174A;
-        Sat,  6 Feb 2021 12:58:43 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id s18so11750383ljg.7;
-        Sat, 06 Feb 2021 12:58:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=fODc4Y13jnUgYFxRk0/SlJ0oEOTVWjVViI6j6TXwrmA=;
-        b=i+BNW/3lPIn8qBEL4dJSYVVoNBe4G3m2fgH7TV4qRli2Y4zuXfrL3ikjrrJSXN9QOV
-         /jx3qFgEgkW+O7Gl44iV8Vi3upllIZM4E2ARLbwYwztquYKNqOGjsor5pdhM8G8dx1C1
-         bqw6EKRkRC51ozp047gC4F2wIBPE/O2iVcpAUOkCoD3oCzOY4NzC9fkdQZL3gGeI8cYC
-         3hCFf/DBMCKnopIFFpORPEg8kciDMfINbpVT2nUvJ2W1glufCsg4bkGr7iN3vNQgexUs
-         dL1a++FA+Mh8vP8liREDQuw0Ewsjbq+A6ZWdFDV/K51vKCH2hQOxq39Rm/Y+F9I+SxK5
-         8RUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=fODc4Y13jnUgYFxRk0/SlJ0oEOTVWjVViI6j6TXwrmA=;
-        b=IBWliyORz+uqgxjXBHQ0pZDtFdSRCu0TV71mA0ccCXvwNTZCUB0NCZKElZrGKLbAOq
-         czK9LPIEvKY4Xa+oSSv8wAIq37HbbcWFNDoML5uo9Y0pyAKJ2enIuvW0xvIpQC/0SXIF
-         hHYJWpD0fV0/7ZotBH8L0kS6JLRWDLkcRpV1nj+josW030wDCw7OlUNYTJ0lESHPlDYi
-         Yza2Y+OYk3hdGSK4LBTFog0cF5Qq/qRhF9C41ZNmoIpt4wqlSKFZoiM7j/oqz7/3DxcU
-         ZHXc5tw5QwLau0kMNb04encKal5vx50fEuzT3hiVJFD7wAcbBnaUJpwVa4VabVuD+DYo
-         MeTA==
-X-Gm-Message-State: AOAM532132npUc0fQgrD09OwR9TiykG3ZOFrXtqhq6G8zZgb5WiLd9iH
-        Rab2yV/kurl35nQ6chdZy2ZmECumMTQ=
-X-Google-Smtp-Source: ABdhPJz0+XIQ0VmKOXwuXGw+Yp6c6LpRsX19zuZPttNlimegwkGn6w0xU0Bd08AOaN/VgftdtgH/Fg==
-X-Received: by 2002:a2e:8444:: with SMTP id u4mr1155075ljh.342.1612645121429;
-        Sat, 06 Feb 2021 12:58:41 -0800 (PST)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id b39sm1376435ljf.68.2021.02.06.12.58.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Feb 2021 12:58:40 -0800 (PST)
-Subject: Re: AW: [PATCH v2 1/4] leds: lp50xx: add setting of default intensity
- from DT
-To:     Sven Schuchmann <schuchmann@schleissheimer.de>,
-        Pavel Machek <pavel@ucw.cz>
-Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20210204143726.27977-1-schuchmann@schleissheimer.de>
- <20210204145201.GB14305@duo.ucw.cz>
- <DB8P190MB063482D8E38C0529AD16A4D5D9B29@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
- <20210205102338.GA27854@amd> <c107d3b9-2141-7cad-837a-f8ef107df61c@gmail.com>
- <DB8P190MB06344FAD6492E56D28A4E916D9B19@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <d5631e35-cd62-106f-2ec4-de3163367bc0@gmail.com>
-Date:   Sat, 6 Feb 2021 21:58:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S229529AbhBGCL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Feb 2021 21:11:26 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:56339 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229522AbhBGCLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Feb 2021 21:11:25 -0500
+X-UUID: ced1d66ed56b4ac091400e5512e046af-20210207
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=TX4lSlAbeAqKjYx/w0Lj9bavqM0Zf4skWi3dYgpYSTE=;
+        b=kpPoCgCD2C0SU3+NlzPJem6BU0fRAM8Cqm0BusfJu+z2ZLmThP8ZutrCptxfrZAuHn6/rpb83/QKqHI9z96bNcwjEslsnpVNcmB2ILyipm39W3apDYkA0WrPb8MsrjptGZVzlfdPFdA9S1DP2TBMWCmmNm7SagZpBFwBoucYyPA=;
+X-UUID: ced1d66ed56b4ac091400e5512e046af-20210207
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 641904420; Sun, 07 Feb 2021 10:10:36 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33N2.mediatek.inc
+ (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 7 Feb
+ 2021 10:10:33 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 7 Feb 2021 10:10:33 +0800
+Message-ID: <1612663833.5147.19.camel@mhfsdcap03>
+Subject: Re: [RFC PATCH v2 1/3] dt-bindings: usb: mtk-xhci: add compatible
+ for mt8195
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Ikjoon Jang <ikjn@chromium.org>,
+        "Nicolas Boichat" <drinkcat@chromium.org>
+Date:   Sun, 7 Feb 2021 10:10:33 +0800
+In-Reply-To: <YBp7hnyPJwgK598V@kroah.com>
+References: <20210203102642.7353-1-chunfeng.yun@mediatek.com>
+         <YBp7hnyPJwgK598V@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <DB8P190MB06344FAD6492E56D28A4E916D9B19@DB8P190MB0634.EURP190.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 5AAE49BA3F09489F842EFD23B49F651E0B37C4C1342176E6BF5BF481ACC3F1D62000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sven,
+T24gV2VkLCAyMDIxLTAyLTAzIGF0IDExOjMxICswMTAwLCBHcmVnIEtyb2FoLUhhcnRtYW4gd3Jv
+dGU6DQo+IE9uIFdlZCwgRmViIDAzLCAyMDIxIGF0IDA2OjI2OjQwUE0gKzA4MDAsIENodW5mZW5n
+IFl1biB3cm90ZToNCj4gPiBUaGVyZSBhcmUgNCBVU0IgY29udHJvbGxlcnMgb24gTVQ4MTk1LCB0
+aGUgY29udHJvbGxlcnMgKElQMX5JUDMsDQo+ID4gZXhjbHVkZSBJUDApIGhhdmUgYSB3cm9uZyBk
+ZWZhdWx0IFNPRi9JVFAgaW50ZXJ2YWwgd2hpY2ggaXMNCj4gPiBjYWxjdWxhdGVkIGZyb20gdGhl
+IGZyYW1lIGNvdW50ZXIgY2xvY2sgMjRNaHogYnkgZGVmYXVsdCwgYnV0DQo+ID4gaW4gZmFjdCwg
+dGhlIGZyYW1lIGNvdW50ZXIgY2xvY2sgaXMgNDhNaHosIHNvIHdlIHNob3VsZCBzZXQNCj4gPiB0
+aGUgYWNjdXJhdGUgaW50ZXJ2YWwgYWNjb3JkaW5nIHRvIDQ4TWh6LiBIZXJlIGFkZCBhIG5ldyBj
+b21wYXRpYmxlDQo+ID4gZm9yIE1UODE5NSwgaXQncyBhbHNvIHN1cHBvcnRlZCBpbiBkcml2ZXIu
+IEJ1dCB0aGUgZmlyc3QgY29udHJvbGxlcg0KPiA+IChJUDApIGhhcyBubyBzdWNoIGlzc3VlLCB3
+ZSBwcmVmZXIgdG8gdXNlIGdlbmVyaWMgY29tcGF0aWJsZSwNCj4gPiBlLmcuIG10ODE5MidzIGNv
+bXBhdGlibGUuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQ2h1bmZlbmcgWXVuIDxjaHVuZmVu
+Zy55dW5AbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+IHYyOiBubyBjaGFuZ2VzDQo+IA0KPiBO
+b3RlLCBJIGRvIG5vdCBhcHBseSBwYXRjaGVzIHdpdGggIlJGQyIgYXMgb2J2aW91c2x5IHlvdSBk
+byBub3QgdGhpbmsNCj4gdGhleSBhcmUgd29ydGh5IG9mIGJlaW5nIGFwcGxpZWQuICBJIGRvbid0
+IHNlZSB3aGF0IHlvdSBhcmUgYXNraW5nIHRvIGJlDQo+IGRvbmUgd2l0aCB0aGlzIHNldCBvZiBw
+YXRjaGVzLCBwbGVhc2UgZXhwbGFpbj8NClRoZSBEVFMgcGF0Y2ggWzIvM10gaW4gdGhlIHNlcmll
+cyB3aWxsIGNhdXNlIG1lcmdlIGNvbmZsaWN0LCBkdWUgdG8gdGhlDQpkZXBlbmRlbnQgcGF0Y2hl
+cyBhcmUgbm90IHVwc3RyZWFtZWQuDQoNCkFub3RoZXIgcHJvYmxlbSBpcyB0aGF0IEkgd2FuZGVy
+IHRvIGtub3cgd2hldGhlciB0aGUgY29tcGF0aWJsZSB1c2FnZSBhcw0KZm9sbG93aW5nIGlzIGFs
+bG93ZWQ6DQoNCmFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTk1LmR0c2kNCg0KICAg
+dXNiQDExMjAwMDAwIHsgIC8vIGlwMA0KICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10
+ODE5Mi14aGNpIiwgIC8vIGhlcmUgdXNlIG10ODE5MidzDQpjb21wYXRpYmxlLCBhdm9pZCBjaGFu
+Z2luZyBTT0YvSVRQIGludGVydmFsIGZvciBpcDAsIGJlY2F1c2UgaXQncw0KZGVmYXVsdCB2YWx1
+ZSBpcyBvay4ibWVkaWF0ZWssbXQ4MTkyLXhoY2kiIGlzIG5vdCBzdXBwb3J0ZWQgaW4gZHJpdmVy
+LA0Kc28gZmluYWxseSB3aWxsIHVzZSBnZW5lcmljIGNvcGF0aWJsZSAibWVkaWF0ZWssbXRrLXho
+Y2kiLg0KDQogICAgICAgICAgICAgICAgICAgICAibWVkaWF0ZWssbXRrLXhoY2kiOw0KICAgICAg
+ICAuLi4uDQogICAgfTsNCg0KICAgdXNiQDExMjkwMDAwIHsgIC8vIGlwMQ0KICAgICAgICBjb21w
+YXRpYmxlID0gIm1lZGlhdGVrLG10ODE5NS14aGNpIiwgIC8vIGhlcmUgdXNlIG10ODE5NSdzDQpj
+b21wYXRpYmxlLCB1c2VkIHRvIGNoYW5nZSBTT0YvSVRQIGludGVydmFsLCBkdWUgdGhlIHRoZSB3
+cm9uZyBkZWZhdWx0DQp2YWx1ZS4NCiAgICAgICAgICAgICAgICAgICAgICJtZWRpYXRlayxtdGst
+eGhjaSI7DQogICB9Ow0KDQogICB1c2JAMTEyYTAwMDAgeyAgLy8gaXAyDQogICAgICAgIGNvbXBh
+dGlibGUgPSAibWVkaWF0ZWssbXQ4MTk1LXhoY2kiLCAgLy8gc2FtZSBhcyBpcDENCiAgICAgICAg
+ICAgICAgICAgICAgICJtZWRpYXRlayxtdGsteGhjaSI7DQogICAgfTsNCg0KVGhhbmsgeW91DQoN
+Cj4gDQo+IHRoYW5rcywNCj4gDQo+IGdyZWcgay1oDQoNCg==
 
-On 2/6/21 2:14 PM, Sven Schuchmann wrote:
-> Hello Dan,
-> 
->> Von: Jacek Anaszewski <jacek.anaszewski@gmail.com>
->> Gesendet: Freitag, 5. Februar 2021 19:37
->> Hi Pavel,
->>
->> On 2/5/21 11:23 AM, Pavel Machek wrote:
->>> Hi!
->>>
->>>>>>        patternProperties:
->>>>>>          "(^led-[0-9a-f]$|led)":
->>>>>> @@ -99,6 +104,7 @@ examples:
->>>>>>                   reg = <0x1>;
->>>>>>                   color = <LED_COLOR_ID_RGB>;
->>>>>>                   function = LED_FUNCTION_CHARGING;
->>>>>> +               default-intensity = <100 0 0>;
->>
->> How will you know which array position is for which child LED?
->> I presume DT child nodes are not guaranteed to be parsed in the order
->> of declaration?
-> 
-> I tried to fiddle this out, but it seems Jacek is right over here.
-> The multi-led definition looks like this (from the documentation leds-lp50xx.yaml)
-> 
->          multi-led@1 {
->                 #address-cells = <1>;
->                 #size-cells = <0>;
->                 reg = <0x1>;
->                 color = <LED_COLOR_ID_RGB>;
->                 function = LED_FUNCTION_CHARGING;
-> 
->                 led-0 {
->                     color = <LED_COLOR_ID_RED>;
->                 };
-> 
->                 led-1 {
->                     color = <LED_COLOR_ID_GREEN>;
->                 };
-> 
->                 led-2 {
->                     color = <LED_COLOR_ID_BLUE>;
->                 };
->            };
-> 
-> But it seems that the color definition of each led is ignored.
-> By ignored I mean the driver does not take care which color
-> is at which position. So if I change led-0 to be LED_COLOR_ID_BLUE
-> and led-2 to be LED_COLOR_ID_RED nothing will change if I write
-> from userspace. Could you help to clarify?
-> Then it is even hard to know which led to set with default-intensity.
-
-See Documentation/ABI/testing/sysfs-class-led-multicolor and
-documentation of multi_index and multi_intensity files.
-It is the multi_index file that tells what is the order of colors
-in the multi_intensity file.
-
-And that depends on the order of enumeration of the nodes by DT parser.
-
-> Also it seems that the enumeration of the multi-leds should
-> start with multi-led@0 (and not 1 as in the documentation).
-
-The @unit-address part of node name must match the first address
-specified in the reg property of the node, so this is correct.
--- 
-Best regards,
-Jacek Anaszewski
