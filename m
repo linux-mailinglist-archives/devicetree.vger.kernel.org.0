@@ -2,119 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C493121F2
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 07:15:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C125312263
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 09:06:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229445AbhBGGPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 01:15:09 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51241 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229510AbhBGGPI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 01:15:08 -0500
-X-UUID: ed3ede3be01640919feff153308401d6-20210207
-X-UUID: ed3ede3be01640919feff153308401d6-20210207
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 929363599; Sun, 07 Feb 2021 14:14:20 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 7 Feb 2021 14:14:19 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 7 Feb 2021 14:14:19 +0800
-From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <drinkcat@chromium.org>
-CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v4 3/3] arm64: dts: mt8192: add mt6315 regulator nodes
-Date:   Sun, 7 Feb 2021 14:14:17 +0800
-Message-ID: <1612678457-11548-4-git-send-email-hsin-hsiung.wang@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1612678457-11548-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1612678457-11548-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+        id S229621AbhBGIFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 03:05:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48626 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229445AbhBGIFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 03:05:54 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36807C06174A;
+        Sun,  7 Feb 2021 00:05:14 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id DE2DE41DF4;
+        Sun,  7 Feb 2021 08:05:09 +0000 (UTC)
+Subject: Re: [PATCH 04/18] arm64: Kconfig: Introduce CONFIG_ARCH_APPLE
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, Arnd Bergmann <arnd@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Olof Johansson <olof@lixom.net>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-5-marcan@marcan.st> <87k0rll4i8.wl-maz@kernel.org>
+From:   Hector Martin 'marcan' <marcan@marcan.st>
+Message-ID: <6eabfdb7-826d-a07e-33a9-3f1e75039272@marcan.st>
+Date:   Sun, 7 Feb 2021 17:05:07 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <87k0rll4i8.wl-maz@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT6315 regulator nodes to MT8192 evaluation board.
+On 06/02/2021 22.17, Marc Zyngier wrote:
+>> +config ARCH_APPLE
+>> +	bool "Apple Silicon SoC family"
+>> +	select GENERIC_IRQ_CHIP
+> 
+> nit: This is better selected by the interrupt controller that relies
+> on the generic irqchip infrastructure.
 
-Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
----
-changes since v3:
-- update the dts node.
----
- arch/arm64/boot/dts/mediatek/mt8192-evb.dts | 46 +++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+Ack, changed for v2.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-index 0205837fa698..83f26cd5f693 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-@@ -24,6 +24,52 @@
- 	};
- };
- 
-+&spmi {
-+	grpid = <11>;
-+	mt6315_6: pmic@6 {
-+		compatible = "mediatek,mt6315-regulator";
-+		reg = <0x6 0>;
-+
-+		regulators {
-+			mt6315_6_vbuck1: vbuck1 {
-+				regulator-compatible = "vbuck1";
-+				regulator-name = "Vbcpu";
-+				regulator-min-microvolt = <300000>;
-+				regulator-max-microvolt = <1193750>;
-+				regulator-enable-ramp-delay = <256>;
-+				regulator-allowed-modes = <0 1 2 4>;
-+				regulator-always-on;
-+			};
-+
-+			mt6315_6_vbuck3: vbuck3 {
-+				regulator-compatible = "vbuck3";
-+				regulator-name = "Vlcpu";
-+				regulator-min-microvolt = <300000>;
-+				regulator-max-microvolt = <1193750>;
-+				regulator-enable-ramp-delay = <256>;
-+				regulator-allowed-modes = <0 1 2 4>;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+
-+	mt6315_7: pmic@7 {
-+		compatible = "mediatek,mt6315-regulator";
-+		reg = <0x7 0>;
-+
-+		regulators {
-+			mt6315_7_vbuck1: vbuck1 {
-+				regulator-compatible = "vbuck1";
-+				regulator-name = "Vgpu";
-+				regulator-min-microvolt = <300000>;
-+				regulator-max-microvolt = <1193750>;
-+				regulator-enable-ramp-delay = <256>;
-+				regulator-allowed-modes = <0 1 2 4>;
-+			};
-+		};
-+	};
-+};
-+
- &uart0 {
- 	status = "okay";
- };
 -- 
-2.18.0
-
+Hector Martin "marcan" (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
