@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 020E6312625
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 17:59:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A96B531265E
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 18:25:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbhBGQ7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 11:59:37 -0500
-Received: from mga11.intel.com ([192.55.52.93]:24591 "EHLO mga11.intel.com"
+        id S229564AbhBGRYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 12:24:50 -0500
+Received: from mga09.intel.com ([134.134.136.24]:27844 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229445AbhBGQ7h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Feb 2021 11:59:37 -0500
-IronPort-SDR: 25KYC6HPQjrCo7nEcMrn8H6O7l7EOz7whK7drf+J0p2pCph1BRYgm65npubE0+7k0sNU/6A125
- lGlp0UjsOnxQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9888"; a="178111065"
+        id S229506AbhBGRYt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Feb 2021 12:24:49 -0500
+IronPort-SDR: P92RoiKdMKsyCBanCSxwB1LkD39+k+vXyNToZvhqgwUtFL9kC0oBQdD+WdH+Z3r6Xp7EqveRno
+ bIRSRcocfjsw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9888"; a="181767174"
 X-IronPort-AV: E=Sophos;i="5.81,160,1610438400"; 
-   d="gz'50?scan'50,208,50";a="178111065"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2021 08:58:54 -0800
-IronPort-SDR: 1NBmoatNm09XMoNXeKTl9CuYFHuraS/UY03Z9oVp1syF8lWavuKTgiW/gKWBrIbPbA/5JvgZtN
- WLQceJtxbPdQ==
+   d="gz'50?scan'50,208,50";a="181767174"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2021 09:24:04 -0800
+IronPort-SDR: SETQWiJnKVhbcLBip1PR7XayZ2JB0NXWFDrjH/zHEvHV5rL+/8CbXq8CtBNuv/CXNEDP/jS9Bf
+ rUCVaQVjWYjg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.81,160,1610438400"; 
-   d="gz'50?scan'50,208,50";a="361145558"
+   d="gz'50?scan'50,208,50";a="410594529"
 Received: from lkp-server02.sh.intel.com (HELO 8b832f01bb9c) ([10.239.97.151])
-  by orsmga006.jf.intel.com with ESMTP; 07 Feb 2021 08:58:50 -0800
+  by fmsmga004.fm.intel.com with ESMTP; 07 Feb 2021 09:24:00 -0800
 Received: from kbuild by 8b832f01bb9c with local (Exim 4.92)
         (envelope-from <lkp@intel.com>)
-        id 1l8nOb-0002yh-Ou; Sun, 07 Feb 2021 16:58:49 +0000
-Date:   Mon, 8 Feb 2021 00:58:28 +0800
+        id 1l8nmx-0002zT-TI; Sun, 07 Feb 2021 17:23:59 +0000
+Date:   Mon, 8 Feb 2021 01:23:34 +0800
 From:   kernel test robot <lkp@intel.com>
 To:     Jitao Shi <jitao.shi@mediatek.com>,
         Chun-Kuang Hu <chunkuang.hu@kernel.org>,
@@ -38,21 +38,20 @@ Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
         srv_heupstream@mediatek.com, shuijing.li@mediatek.com,
         airlied@linux.ie, huijuan.xie@mediatek.com, stonea168@163.com,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] drm/mediatek: mtk_dpi: Add check for max clock rate
- in mode_valid
-Message-ID: <202102080056.aBS36ve3-lkp@intel.com>
-References: <20210207125850.155979-2-jitao.shi@mediatek.com>
+Subject: Re: [PATCH 2/3] drm/mediatek: mtk_dpi: Add dpi config for mt8192
+Message-ID: <202102080123.wDCNV8bH-lkp@intel.com>
+References: <20210207125850.155979-3-jitao.shi@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="AqsLC8rIMeq19msA"
+Content-Type: multipart/mixed; boundary="dDRMvlgZJXvWKvBx"
 Content-Disposition: inline
-In-Reply-To: <20210207125850.155979-2-jitao.shi@mediatek.com>
+In-Reply-To: <20210207125850.155979-3-jitao.shi@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---AqsLC8rIMeq19msA
+--dDRMvlgZJXvWKvBx
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
@@ -61,7 +60,7 @@ Hi Jitao,
 Thank you for the patch! Yet something to improve:
 
 [auto build test ERROR on robh/for-next]
-[also build test ERROR on pza/reset/next linux/master linus/master v5.11-rc6 next-20210125]
+[also build test ERROR on linux/master linus/master v5.11-rc6 next-20210125]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch]
@@ -73,26 +72,36 @@ compiler: aarch64-linux-gcc (GCC) 9.3.0
 reproduce (this is a W=1 build):
         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
         chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/730e2bd7e5dd88d40a320cd8d74057a51a3d3395
+        # https://github.com/0day-ci/linux/commit/094ecc22dd2d9bfee293b97b33ba267a861ee301
         git remote add linux-review https://github.com/0day-ci/linux
         git fetch --no-tags linux-review Jitao-Shi/Add-check-for-max-clock-rate-in-mode_valid/20210207-210121
-        git checkout 730e2bd7e5dd88d40a320cd8d74057a51a3d3395
+        git checkout 094ecc22dd2d9bfee293b97b33ba267a861ee301
         # save the attached .config to linux build tree
         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=arm64 
 
 If you fix the issue, kindly add following tag as appropriate
 Reported-by: kernel test robot <lkp@intel.com>
 
+Note: the linux-review/Jitao-Shi/Add-check-for-max-clock-rate-in-mode_valid/20210207-210121 HEAD 9361778ccbd0d19a6c7376b1f3489b6e5063bb73 builds fine.
+      It only hurts bisectibility.
+
 All errors (new ones prefixed by >>):
 
->> drivers/gpu/drm/mediatek/mtk_dpi.c:574:16: error: initialization of 'enum drm_mode_status (*)(struct drm_bridge *, const struct drm_display_info *, const struct drm_display_mode *)' from incompatible pointer type 'enum drm_mode_status (*)(struct drm_bridge *, const struct drm_display_mode *)' [-Werror=incompatible-pointer-types]
+   drivers/gpu/drm/mediatek/mtk_dpi.c:574:16: error: initialization of 'enum drm_mode_status (*)(struct drm_bridge *, const struct drm_display_info *, const struct drm_display_mode *)' from incompatible pointer type 'enum drm_mode_status (*)(struct drm_bridge *, const struct drm_display_mode *)' [-Werror=incompatible-pointer-types]
      574 |  .mode_valid = mtk_dpi_bridge_mode_valid,
          |                ^~~~~~~~~~~~~~~~~~~~~~~~~
    drivers/gpu/drm/mediatek/mtk_dpi.c:574:16: note: (near initialization for 'mtk_dpi_bridge_funcs.mode_valid')
+>> drivers/gpu/drm/mediatek/mtk_dpi.c:709:3: error: 'const struct mtk_dpi_conf' has no member named 'dual_edge'
+     709 |  .dual_edge = true,
+         |   ^~~~~~~~~
+   drivers/gpu/drm/mediatek/mtk_dpi.c:710:19: warning: initialized field overwritten [-Woverride-init]
+     710 |  .max_clock_khz = 150000,
+         |                   ^~~~~~
+   drivers/gpu/drm/mediatek/mtk_dpi.c:710:19: note: (near initialization for 'mt8192_conf.max_clock_khz')
    cc1: some warnings being treated as errors
 
 
-vim +574 drivers/gpu/drm/mediatek/mtk_dpi.c
+vim +709 drivers/gpu/drm/mediatek/mtk_dpi.c
 
    570	
    571	static const struct drm_bridge_funcs mtk_dpi_bridge_funcs = {
@@ -103,17 +112,151 @@ vim +574 drivers/gpu/drm/mediatek/mtk_dpi.c
    576		.enable = mtk_dpi_bridge_enable,
    577	};
    578	
+   579	static void mtk_dpi_start(struct mtk_ddp_comp *comp)
+   580	{
+   581		struct mtk_dpi *dpi = container_of(comp, struct mtk_dpi, ddp_comp);
+   582	
+   583		mtk_dpi_power_on(dpi);
+   584	}
+   585	
+   586	static void mtk_dpi_stop(struct mtk_ddp_comp *comp)
+   587	{
+   588		struct mtk_dpi *dpi = container_of(comp, struct mtk_dpi, ddp_comp);
+   589	
+   590		mtk_dpi_power_off(dpi);
+   591	}
+   592	
+   593	static const struct mtk_ddp_comp_funcs mtk_dpi_funcs = {
+   594		.start = mtk_dpi_start,
+   595		.stop = mtk_dpi_stop,
+   596	};
+   597	
+   598	static int mtk_dpi_bind(struct device *dev, struct device *master, void *data)
+   599	{
+   600		struct mtk_dpi *dpi = dev_get_drvdata(dev);
+   601		struct drm_device *drm_dev = data;
+   602		int ret;
+   603	
+   604		ret = mtk_ddp_comp_register(drm_dev, &dpi->ddp_comp);
+   605		if (ret < 0) {
+   606			dev_err(dev, "Failed to register component %pOF: %d\n",
+   607				dev->of_node, ret);
+   608			return ret;
+   609		}
+   610	
+   611		ret = drm_simple_encoder_init(drm_dev, &dpi->encoder,
+   612					      DRM_MODE_ENCODER_TMDS);
+   613		if (ret) {
+   614			dev_err(dev, "Failed to initialize decoder: %d\n", ret);
+   615			goto err_unregister;
+   616		}
+   617	
+   618		dpi->encoder.possible_crtcs = mtk_drm_find_possible_crtc_by_comp(drm_dev, dpi->ddp_comp);
+   619	
+   620		ret = drm_bridge_attach(&dpi->encoder, &dpi->bridge, NULL, 0);
+   621		if (ret) {
+   622			dev_err(dev, "Failed to attach bridge: %d\n", ret);
+   623			goto err_cleanup;
+   624		}
+   625	
+   626		dpi->bit_num = MTK_DPI_OUT_BIT_NUM_8BITS;
+   627		dpi->channel_swap = MTK_DPI_OUT_CHANNEL_SWAP_RGB;
+   628		dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
+   629		dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+   630	
+   631		return 0;
+   632	
+   633	err_cleanup:
+   634		drm_encoder_cleanup(&dpi->encoder);
+   635	err_unregister:
+   636		mtk_ddp_comp_unregister(drm_dev, &dpi->ddp_comp);
+   637		return ret;
+   638	}
+   639	
+   640	static void mtk_dpi_unbind(struct device *dev, struct device *master,
+   641				   void *data)
+   642	{
+   643		struct mtk_dpi *dpi = dev_get_drvdata(dev);
+   644		struct drm_device *drm_dev = data;
+   645	
+   646		drm_encoder_cleanup(&dpi->encoder);
+   647		mtk_ddp_comp_unregister(drm_dev, &dpi->ddp_comp);
+   648	}
+   649	
+   650	static const struct component_ops mtk_dpi_component_ops = {
+   651		.bind = mtk_dpi_bind,
+   652		.unbind = mtk_dpi_unbind,
+   653	};
+   654	
+   655	static unsigned int mt8173_calculate_factor(int clock)
+   656	{
+   657		if (clock <= 27000)
+   658			return 3 << 4;
+   659		else if (clock <= 84000)
+   660			return 3 << 3;
+   661		else if (clock <= 167000)
+   662			return 3 << 2;
+   663		else
+   664			return 3 << 1;
+   665	}
+   666	
+   667	static unsigned int mt2701_calculate_factor(int clock)
+   668	{
+   669		if (clock <= 64000)
+   670			return 4;
+   671		else if (clock <= 128000)
+   672			return 2;
+   673		else
+   674			return 1;
+   675	}
+   676	
+   677	static unsigned int mt8183_calculate_factor(int clock)
+   678	{
+   679		if (clock <= 27000)
+   680			return 8;
+   681		else if (clock <= 167000)
+   682			return 4;
+   683		else
+   684			return 2;
+   685	}
+   686	
+   687	static const struct mtk_dpi_conf mt8173_conf = {
+   688		.cal_factor = mt8173_calculate_factor,
+   689		.reg_h_fre_con = 0xe0,
+   690		.max_clock_khz = 300000,
+   691	};
+   692	
+   693	static const struct mtk_dpi_conf mt2701_conf = {
+   694		.cal_factor = mt2701_calculate_factor,
+   695		.reg_h_fre_con = 0xb0,
+   696		.edge_sel_en = true,
+   697		.max_clock_khz = 150000,
+   698	};
+   699	
+   700	static const struct mtk_dpi_conf mt8183_conf = {
+   701		.cal_factor = mt8183_calculate_factor,
+   702		.reg_h_fre_con = 0xe0,
+   703		.max_clock_khz = 100000,
+   704	};
+   705	
+   706	static const struct mtk_dpi_conf mt8192_conf = {
+   707		.cal_factor = mt8183_calculate_factor,
+   708		.reg_h_fre_con = 0xe0,
+ > 709		.dual_edge = true,
+   710		.max_clock_khz = 150000,
+   711	};
+   712	
 
 ---
 0-DAY CI Kernel Test Service, Intel Corporation
 https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
---AqsLC8rIMeq19msA
+--dDRMvlgZJXvWKvBx
 Content-Type: application/gzip
 Content-Disposition: attachment; filename=".config.gz"
 Content-Transfer-Encoding: base64
 
-H4sICDD6H2AAAy5jb25maWcAnDzbchs3su/5Clb8kjzEy5tkuU7pAZzBkAjnZgBDUnqZ4sq0
+H4sICHoEIGAAAy5jb25maWcAnDzbchs3su/5Clb8kjzEy5tkuU7pAZzBkAjnZgBDUnqZ4sq0
 o1pZykpyEv/96Qbm0sBgaJ/j2o093bg2Gn0H3/z0ZsK+vj59Ob7e3x0fHr5NPp8eT8/H19PH
 yaf7h9P/TOJikhd6wmOh30Lj9P7x6z//Oj5/uVxOLt7OZm+nvz3fzSbb0/Pj6WESPT1+uv/8
 FfrfPz3+9OanqMgTsa6jqN5xqUSR15of9PXPx+Pz3R+Xy98ecLTfPt/dTX5ZR9Gvk/dvF2+n
@@ -1531,4 +1674,4 @@ UUn2/ZdKIE+qpAI0CZCspkPf99rI3AkLs2bsmZAC5jkcb8brJAsENHDNaGd8mICwUctRKE0E
 24+iujhyVo0wUdBtIlcd49kz577YIa20OTy31bfJjCo3iUoMY1sHmW/WTZKtVfWuIrsLlkr2
 rRHi/w8DSi+e1vkEAA==
 
---AqsLC8rIMeq19msA--
+--dDRMvlgZJXvWKvBx--
