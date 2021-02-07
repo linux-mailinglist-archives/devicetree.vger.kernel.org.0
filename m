@@ -2,134 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF857312591
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 16:50:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27E1A3125B3
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 17:01:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbhBGPua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 10:50:30 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34030 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229690AbhBGPu0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Feb 2021 10:50:26 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D8A2A64E64;
-        Sun,  7 Feb 2021 15:49:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612712955;
-        bh=BNvWERF7kZIB0Y4RCSxZOcMeDmUk3d5+ItEOYMBWmnw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=X/7FzrvrgHwobvr6KC+eQtFYdns4a4VNMsE67SK304yOWKPOmLwnZTBFPLdV86Wbk
-         GlDXQQn4n4Ul9+Hdj4QBfBuF1Yz+9ufUIMU/4wtX4/9agW6DdmUgnzg422CvyIbq6Q
-         9RDiE9SnyHEeHMdhc7Tt4b0VmvhfQylLpu65SjuqSoNAjeUTY0mNXycRnq6t4gwjdu
-         oJQQERc5h3WfpR8WXrv4lVQMBgXYJPSTC6/8MOA8Tp3kkNLFHhlWIx4uPWObCouJns
-         bBVLGgpp8dPXPSFLzYmZ5rSoZS9Qa0T9ZD6MxkiJCALRTMhijWv5X+DLslwSzqZUqp
-         XlWL9ssYUR3xw==
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     linux-iio@vger.kernel.org
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
+        id S229548AbhBGQBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 11:01:12 -0500
+Received: from www381.your-server.de ([78.46.137.84]:34524 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229510AbhBGQBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 11:01:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=NFhX8hYysFqBWHs42JSggtQWnQGnjozUPE9iksY9+dA=; b=Mb232ZOg7s1Tzxi+rKN+OIUGlU
+        SefpKWgTVDIyj/+dn1PjUmySjvHQMYqCgEEWxfsCGzQuQW3cadVXzio6byWWcO6e9BmZibk8EzuWZ
+        VoehBeZECweyNWbUMwEB8xgbvtvf05s5BYkIa9iKq7W2AgE4L0183juE/nya5Hj3UmK6xBtnYsBTL
+        54E+wg2aaktrkZy5UoizvkUDyUUc1aNlrl7QE00D4Ve3RFsFJG2tLjMKPHeB7tHlY1+3KKlPQn1B9
+        5tUeNuFmJdDz/jBX6r+6AQcziFOnhHZf8jLv1mlcmU40BIHbHp/4A2k84y0GqiNWdzGxHItfEyX0a
+        jZH14XRw==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1l8mU5-000Eyd-43; Sun, 07 Feb 2021 17:00:25 +0100
+Received: from [62.216.202.92] (helo=[192.168.178.20])
+        by sslproxy03.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1l8mU4-000GZg-RA; Sun, 07 Feb 2021 17:00:24 +0100
+Subject: Re: [PATCH 21/24] dt-bindings:iio:cdc:adi,ad7150 binding doc
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Michael Hennerich <Michael.Hennerich@analog.com>,
         song.bao.hua@hisilicon.com, robh+dt@kernel.org,
         Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 21/24] dt-bindings:iio:cdc:adi,ad7150 binding doc
-Date:   Sun,  7 Feb 2021 15:46:20 +0000
-Message-Id: <20210207154623.433442-22-jic23@kernel.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210207154623.433442-1-jic23@kernel.org>
+        devicetree@vger.kernel.org
 References: <20210207154623.433442-1-jic23@kernel.org>
+ <20210207154623.433442-22-jic23@kernel.org>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <1840bd30-be94-761e-403d-59b13eeef774@metafoo.de>
+Date:   Sun, 7 Feb 2021 17:00:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210207154623.433442-22-jic23@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.102.4/26073/Sun Feb  7 13:23:32 2021)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On 2/7/21 4:46 PM, Jonathan Cameron wrote:
+> +required:
+> +  - compatible
+> +  - reg
 
-Binding covering the ad7150, ad7151 and ad7156 capacitance to digital
-convertors.  The only difference between these is how many channels they
-have (1 or 2)
+Is vdd-supply really optional the way it is implemented in the driver?
 
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Robh+dt@kernel.org
-Cc: devicetree@vger.kernel.org
----
- .../bindings/iio/cdc/adi,ad7150.yaml          | 69 +++++++++++++++++++
- 1 file changed, 69 insertions(+)
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        cdc@48 {
+> +            compatible = "adi,ad7150";
+> +            reg = <0x48>;
+> +            interrupts = <25 2>, <26 2>;
 
-diff --git a/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml b/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml
-new file mode 100644
-index 000000000000..2155d3f5666c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/cdc/adi,ad7150.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog device AD7150 and similar capacitance to digital convertors.
-+
-+maintainers:
-+  - Jonathan Cameron <jic23@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad7150
-+      - adi,ad7151
-+      - adi,ad7156
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+  interrupts: true
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,ad7150
-+              - adi,ad7156
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 2
-+          maxItems: 2
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: adi,ad7151
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 1
-+          maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cdc@48 {
-+            compatible = "adi,ad7150";
-+            reg = <0x48>;
-+            interrupts = <25 2>, <26 2>;
-+            interrupt-parent = <&gpio>;
-+        };
-+    };
-+...
--- 
-2.30.0
+I wonder if we should use the symbolic constants for the IRQ type to 
+make the example more clear. E.g.
+
+interrupts = <25 IRQ_TYPE_EDGE_FALLING>, ...
+
+> +            interrupt-parent = <&gpio>;
+> +        };
+> +    };
+> +...
+
 
