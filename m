@@ -2,63 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 325E5312791
-	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 22:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B7E03127DC
+	for <lists+devicetree@lfdr.de>; Sun,  7 Feb 2021 23:28:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbhBGVdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 16:33:01 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:53854 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229548AbhBGVcz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Feb 2021 16:32:55 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1l8rf7-004iGX-8h; Sun, 07 Feb 2021 22:32:09 +0100
-Date:   Sun, 7 Feb 2021 22:32:09 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     stefanc@marvell.com
-Cc:     netdev@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        davem@davemloft.net, nadavh@marvell.com, ymarkman@marvell.com,
-        linux-kernel@vger.kernel.org, kuba@kernel.org,
-        linux@armlinux.org.uk, mw@semihalf.com, rmk+kernel@armlinux.org.uk,
-        atenart@kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org,
-        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9 net-next 03/15] net: mvpp2: add CM3 SRAM memory map
-Message-ID: <YCBcWbATtEuw470X@lunn.ch>
-References: <1612723137-18045-1-git-send-email-stefanc@marvell.com>
- <1612723137-18045-4-git-send-email-stefanc@marvell.com>
+        id S229565AbhBGW1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 17:27:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34588 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229564AbhBGW1o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 17:27:44 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF642C061756;
+        Sun,  7 Feb 2021 14:27:03 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id r23so12743482ljh.1;
+        Sun, 07 Feb 2021 14:27:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Di6p90oAYaCEY0Dm7sI6vpfXpEsHy9/oRKceNj8Eu0c=;
+        b=f75BMbPQ8WQQFH2FanltOAgV1MwkfM9ONOzTtMHaj6U3XwCbsxxh+BPIFZMojSFhoc
+         oXNrpU3lWwo6tdBZzpqH2fWb9V/Jfo+TtTm385WZyt0C6mYkqSTv0dDmUC06Yqo1jlmG
+         etV+92GNlzx0M24vb1LaJ1Pt/6SN1i9lrVyc2+P5nHaTJPTNz9WjiFq0oFhhxDvya/Ow
+         lZsrRtJB9bxWNb19A9LIX3bFYCwWEy1zXSson4BOTBuKPTBdpSSkHCqQ8eBFLzqQp0rZ
+         aB3k0eDtlZUGnMAZIis5Ds26ryRTYy834D32NqycvXbH41GzOvTY7tiWDCIzOp+NGBrm
+         tvLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Di6p90oAYaCEY0Dm7sI6vpfXpEsHy9/oRKceNj8Eu0c=;
+        b=XuTWN0+U5413Fj/s4LJQ5cWq5bPKRP8yFPlGXbbBKbBOaNOjsXtL/EguvIhV6Ixr9y
+         tNa8xWh19uabL0edw+zOJTp/H8ZrjKjpVR3FqJ+dhQXHBGfmh/Qg9yHEh53ZJs5T8qht
+         9vfuVkYEodxRHPz1UIXy9twyYeYyzSAv9kodxEoi7CAOpQzVPYYARvMfTTW1xnD0SF6c
+         hoTeny4iG+vBc+IbTzLqx2pUMj1QTHWHOjjWCp51brbAROM7p11oh0mVCmGSVcOd6PmY
+         9N4YTsaTq/odLj0TKu28MaPGylpbVAKXu3KRmAG1UTDaIeqmKtAxMJm4wswI1w8wrzJ8
+         gYPw==
+X-Gm-Message-State: AOAM530zmf6v4I0EkXUFmTFIBlwugbQ4rOhCcJiNn4jRKbLom3iQtu61
+        1xqqzRXkXZrV1M61rurZ64k=
+X-Google-Smtp-Source: ABdhPJzUfoE+9NCLD/4Z/HcxCQp2kdiPk7Dr+HCTKIbGu9eFjXP/Cg0XAN/XuIshnMBNNIGsF+86Pw==
+X-Received: by 2002:a2e:9d04:: with SMTP id t4mr9062916lji.56.1612736822472;
+        Sun, 07 Feb 2021 14:27:02 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id n16sm502415lfe.13.2021.02.07.14.27.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Feb 2021 14:27:01 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Masahiro Yamada <masahiroy@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 net-next 1/2] dt-bindings: net: document BCM4908 Ethernet controller
+Date:   Sun,  7 Feb 2021 23:26:31 +0100
+Message-Id: <20210207222632.10981-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210205214417.11178-1-zajec5@gmail.com>
+References: <20210205214417.11178-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1612723137-18045-4-git-send-email-stefanc@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int mvpp2_get_sram(struct platform_device *pdev,
-> +			  struct mvpp2 *priv)
-> +{
-> +	struct resource *res;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 2);
-> +	if (!res) {
-> +		if (has_acpi_companion(&pdev->dev))
-> +			dev_warn(&pdev->dev, "ACPI is too old, Flow control not supported\n");
-> +		else
-> +			dev_warn(&pdev->dev, "DT is too old, Flow control not supported\n");
-> +		return 0;
-> +	}
-> +
-> +	priv->cm3_base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(priv->cm3_base))
-> +		return PTR_ERR(priv->cm3_base);
-> +
-> +	return 0;
-> +}
+From: Rafał Miłecki <rafal@milecki.pl>
 
-This looks much better. Thanks
+BCM4908 is a family of SoCs with integrated Ethernet controller.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bindings/net/brcm,bcm4908enet.yaml        | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml
 
-    Andrew
+diff --git a/Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml b/Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml
+new file mode 100644
+index 000000000000..5f12f51c5b19
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/brcm,bcm4908enet.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM4908 Ethernet controller
++
++description: Broadcom's Ethernet controller integrated into BCM4908 family SoCs
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  compatible:
++    const: brcm,bcm4908enet
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description: RX interrupt
++
++  interrupt-names:
++    const: rx
++
++required:
++  - reg
++  - interrupts
++  - interrupt-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    ethernet@80002000 {
++        compatible = "brcm,bcm4908enet";
++        reg = <0x80002000 0x1000>;
++
++        interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "rx";
++    };
+-- 
+2.26.2
+
