@@ -2,113 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 005E1313CEE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24AC5313D1A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:20:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234282AbhBHSNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 13:13:55 -0500
-Received: from mail-wr1-f42.google.com ([209.85.221.42]:44351 "EHLO
-        mail-wr1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235580AbhBHSNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 13:13:34 -0500
-Received: by mail-wr1-f42.google.com with SMTP id g6so5342820wrs.11;
-        Mon, 08 Feb 2021 10:13:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uG44Nh0+1Z6GPKJ+sMh7UFsXf5L8CgK5m4MwsqTm8vM=;
-        b=jIf9VlxY9qXAESIYVVQ8yyiks4N/dz0BJYlqXZAY90rGLWxOuuJPRU5t5THsiZKqdS
-         Oj1UpgZAgcVpMCPPqC27LDAMyLxIKZl4s9qwaKL/2o9o6mfU3ByQ16PqT8voF/KtHNHy
-         eCStGUm0p2ItUrO55oRDLmfWQeBawSqDHq9GsnFVTwO/GtPNdMeAK/dGoRgjXFF8cbAW
-         WiXKgzH7SNbZie3sTMVJ5RYovCRQCIgg5iFYvUuysEComz05WfapqHZ16hF0/AlDoFgK
-         psjY9mYv81rE36Fk0c6u4rz3ACUoJt6YKrdIbMyVg9Ps5m0gajXNG/AybCmH1bx/7g4G
-         2dPg==
-X-Gm-Message-State: AOAM532svuTI3fuV3E1WSVHWuNc2xHTUJi9+nuBlGUOCxPXwcdgS3F72
-        nWyW3EcGDTEjbo7xN8UqCUI=
-X-Google-Smtp-Source: ABdhPJy/wKPjP7+LBFoeHW0XLxMt/V+JDUKUXKCYLCJTnC5Yurk6M5a1DiVIEb/R09EmHRvq8ISlSg==
-X-Received: by 2002:adf:e3cd:: with SMTP id k13mr84116wrm.289.1612807972155;
-        Mon, 08 Feb 2021 10:12:52 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id s23sm21317647wmc.35.2021.02.08.10.12.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Feb 2021 10:12:49 -0800 (PST)
-Date:   Mon, 8 Feb 2021 19:12:48 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Hector Martin <marcan@marcan.st>, Arnd Bergmann <arnd@kernel.org>,
-        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
-        linux-kernel@vger.kernel.org, soc@kernel.org,
-        Olof Johansson <olof@lixom.net>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 01/18] dt-bindings: vendor-prefixes: add AAPL prefix
-Message-ID: <20210208181248.tbgffdwghlseawic@kozik-lap>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-2-marcan@marcan.st>
- <20210208102730.p4nhsl35oowsklv2@kozik-lap>
- <20210208173215.GA1567700@robh.at.kernel.org>
+        id S235528AbhBHSUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 13:20:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53002 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235418AbhBHSTX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 13:19:23 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 39ABC64E37;
+        Mon,  8 Feb 2021 18:18:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612808322;
+        bh=96MNIodpcXR/mW7T1ax+ZYH4V6b346/V4WuZthXRDCM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=N8LW/lRR47VtbE+4a8lW6Jaj0cKLZMWVFpFUVs6JL64Vw8tMQreuygRNPqgsDwabI
+         qgRDXKuvcAkFduYw8UmXDb9C4l1D1aYqSm+mSI8qdRFSmUQopzQpxMma3jUxdDessL
+         FMDYerSWW2kKlTQngJueKtJx+ERg/ghe0tm0gIf1MLKTgcKtshKutGiK5dQaLGpSy5
+         eBUOstCxOO+GygKvlpscvlynqIwWAanVUnkj/dfwopMLMX+jWrZUjV3GYD0V9dnET3
+         nwKZrUsS+rLdtCluF1GGchLP4Sej7YYwmH8fqwZqHj2HCrJQMTvMRufsd5PAEaVpr6
+         +tmVU4FY+YnaQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210208173215.GA1567700@robh.at.kernel.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210114221059.483390-6-angelogioacchino.delregno@somainline.org>
+References: <20210114221059.483390-1-angelogioacchino.delregno@somainline.org> <20210114221059.483390-6-angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH v2 05/11] clk: qcom: gcc-msm8998: Mark gpu_cfg_ahb_clk as critical
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        linux-arm-msm@vger.kernel.org
+Date:   Mon, 08 Feb 2021 10:18:40 -0800
+Message-ID: <161280832085.76967.5394456316048533384@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 08, 2021 at 11:32:15AM -0600, Rob Herring wrote:
-> On Mon, Feb 08, 2021 at 11:27:30AM +0100, Krzysztof Kozlowski wrote:
-> > On Fri, Feb 05, 2021 at 05:39:34AM +0900, Hector Martin wrote:
-> > > Amusingly, this wasn't yet documented, even though this vendor prefix
-> > > has been used since time immemorial on PPC.
-> > > 
-> > > Signed-off-by: Hector Martin <marcan@marcan.st>
-> > > ---
-> > >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > > index 041ae90b0d8f..d7950c723472 100644
-> > > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > > @@ -25,6 +25,8 @@ patternProperties:
-> > >    # Keep list in alphabetical order.
-> > >    "^70mai,.*":
-> > >      description: 70mai Co., Ltd.
-> > > +  "^AAPL,.*":
-> > 
-> > All prefixes are lower case... see ABB below (not mentioning that the
-> > company name is not APPLE), so just "apple".
-> 
-> Grep the kernel tree for 'AAPL,'.
+Quoting AngeloGioacchino Del Regno (2021-01-14 14:10:53)
+> The GPU IOMMU depends on this clock and the hypervisor will crash
+> the SoC if this clock gets disabled because the secure contexts
+> that have been set on this IOMMU by the bootloader will become
+> unaccessible (or they get reset).
+> Mark this clock as critical to avoid this issue when the Adreno
+> GPU is enabled.
+>=20
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@soma=
+inline.org>
+> ---
+>  drivers/clk/qcom/gcc-msm8998.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/drivers/clk/qcom/gcc-msm8998.c b/drivers/clk/qcom/gcc-msm899=
+8.c
+> index c8d4c0348952..afea60a3ef43 100644
+> --- a/drivers/clk/qcom/gcc-msm8998.c
+> +++ b/drivers/clk/qcom/gcc-msm8998.c
+> @@ -2081,6 +2081,12 @@ static struct clk_branch gcc_gpu_cfg_ahb_clk =3D {
+>                 .hw.init =3D &(struct clk_init_data){
+>                         .name =3D "gcc_gpu_cfg_ahb_clk",
+>                         .ops =3D &clk_branch2_ops,
+> +                       /*
+> +                        * The GPU IOMMU depends on this clock and hyperv=
+isor
+> +                        * will crash the SoC if this clock goes down, du=
+e to
+> +                        * secure contexts protection.
+> +                        */
+> +                       .flags =3D CLK_IS_CRITICAL,
+>                 },
+>         },
 
-I know it's the ticker, but the point was - we don't use tickers here
-for none of other platforms.
-
-Mentioned grep brings only one result:
-arch/powerpc/platforms/powermac/pic.c:   * cases where the APPL,interrupts property is completely
-
-so hardly an argument for backwards consistency, within the kernel.
-
-On the other hand, some DTs for iPhones mention "apple", not APPL:
-https://www.theiphonewiki.com/wiki/D211AP/Device_Tree
-https://www.theiphonewiki.com/wiki/D331AP/Device_Tree
-https://gist.github.com/bazad/1faef1a6fe396b820a43170b43e38be1
-
-Although I am not sure how reliable are the sources.
-
-> It comes from the the ticker symbol 
-> which early on was the preferred form, but we've tended to move away 
-> from that. The DT Apple ships (which is *very* different) uses both 
-> forms.
-> 
-> So keep what exists already or have old AAPL and new apple?
-
-Hectore mention old PowerPC Apple sources were using the APPL, but it
-seems they did not end up here. What would be the point to stick to the
-old prefix if we cannot find it?
-
-Maybe they exists in other systems? I could not find such in latest
-FreeBSD, but there were not many DTSes inside.
-
-Best regards,
-Krzysztof
+Please send a followup patch that hits the branch on at probe time and
+removes this clk from the kernel. That will save some memory and
+overhead of worrying about this clk.
