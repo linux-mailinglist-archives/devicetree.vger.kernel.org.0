@@ -2,93 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32B72314198
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 22:21:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF6673141F5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 22:38:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236216AbhBHVVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 16:21:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236176AbhBHVVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 16:21:18 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9E67C061786;
-        Mon,  8 Feb 2021 13:20:38 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id g3so8542498plp.2;
-        Mon, 08 Feb 2021 13:20:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=R+r2jOyAlqjRMKHtvLPADXW3voMgq9h98r709KcrCLA=;
-        b=on8PcE7z2qaHBS1NRAIcQDoBXSzdz3AfDUoAyrGwgMKmBymB8+KwNn/wQ8bxs/nE8W
-         F4+jm/1ZrtEw2O3+RjFPADSLKNZtUYPAFmJqs8iB9H2lppiw+EQp7dBDi2JyI1AqPoPP
-         H6pWUG78CBYYcLwAQvNvv7Q6OelL3XodzgyVOaPFcp12WC+VTD/ea+aaeULbzkwVCsAX
-         NGtjR2iaRo/kU901b5AjsBBCjdSb6vFLAwL0t6Uzl48C9fxcV6ygj9O4biTxV/qn6lY3
-         oxt3BS01ghGL4UxY+wQpHaoyqqmD+gTxUanw5JXjP53YIBdZlvf7LSJd/TC1eicyLSL9
-         jOKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=R+r2jOyAlqjRMKHtvLPADXW3voMgq9h98r709KcrCLA=;
-        b=hHZh5F3PZrAEl2D+aOHkiDnZ/8JCJSLoKjKJGAUgoHEjf0SXNUpGT+5/733Z0vSccl
-         4SjwjJGbBzNhWkjcTWMmozeG2PML0/Ea0TcHqnRW3PFSQnaDvp8uGZ1QyWlOyANF3A4O
-         RON9HSVhEgh7z3dBsm1WxM2UDaGls62DkIZpSc9bkrBotj8U4gb5JbhNb3PArWmdXjL3
-         UOCDEUM+JdCb9fhE1mXVV1mDCKpH1PtWj3ZMD/etRgKsI9JzcPJnPTHrmurE9a/GHppc
-         +nqZRb+SNkykgn+4NFsrgtPXUNyJwfTMOXkeKz5vZm8h0q9DVQNl1TGu2njm1skhVNF9
-         zE0g==
-X-Gm-Message-State: AOAM532slb+ge+EJKQgiJ1dhdIduDdjngHtEWfKisb+urpca8D246XNT
-        gq7rlPnHvnFMFxeuYwTwRBuM2Rg6cZQ444AjRQzivU0d
-X-Google-Smtp-Source: ABdhPJwlLrUw1rV3Nhhbhev6KiudY8wFgGQ6XXUwlUEyRbugwdSU+pRmpSd2OCN8pUcKOXmjuWx45WHicCFxjzqqWkU=
-X-Received: by 2002:a17:90b:14cf:: with SMTP id jz15mr716661pjb.180.1612819238195;
- Mon, 08 Feb 2021 13:20:38 -0800 (PST)
-MIME-Version: 1.0
-References: <20210118041156.50016-1-manivannan.sadhasivam@linaro.org>
- <161280637168.76967.9168707371952675235@swboyd.mtv.corp.google.com> <20210208181954.GA276254@thinkpad>
-In-Reply-To: <20210208181954.GA276254@thinkpad>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Mon, 8 Feb 2021 15:20:27 -0600
-Message-ID: <CABb+yY2pCdQnvmkBMBuYXsMYCNKheqmroQxF5YvjDQ5xqJP-NA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] Add APCS support for SDX55
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        id S236788AbhBHVgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 16:36:50 -0500
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:60665 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236367AbhBHVgm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 16:36:42 -0500
+X-Originating-IP: 86.202.109.140
+Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id B154B4000A;
+        Mon,  8 Feb 2021 21:35:37 +0000 (UTC)
+Date:   Mon, 8 Feb 2021 22:35:37 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
+        arm-soc <arm@kernel.org>, SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Maxime Ripard <mripard@kernel.org>
+Subject: Re: [GIT PULL 2/3] ARM: dts: samsung: DTS for v5.12
+Message-ID: <20210208213537.GA351084@piout.net>
+References: <20210125191240.11278-1-krzk@kernel.org>
+ <20210125191240.11278-3-krzk@kernel.org>
+ <20210206134531.l5vpzlmev4v3f3uo@kozik-lap>
+ <CAK8P3a0Kgn9PTHjsU7MbJPC8vatvb9KYJJKWxrx7zQzTNgK10g@mail.gmail.com>
+ <CAMuHMdWZ8QmiQCmiW9AvCpviNZeuaxThSo_4Xb2DGEs9hMTKMQ@mail.gmail.com>
+ <YCGBIvRfoP0BeyrP@builder.lan>
+ <20210208184230.onhlioflyylkx6xo@kozik-lap>
+ <CAK8P3a3bsw8p2Geyo-vh1AJUfMQCCf3kpa_YB+tKmcvWHqRcEw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a3bsw8p2Geyo-vh1AJUfMQCCf3kpa_YB+tKmcvWHqRcEw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 8, 2021 at 12:20 PM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
->
-> On Mon, Feb 08, 2021 at 09:46:11AM -0800, Stephen Boyd wrote:
-> > Quoting Manivannan Sadhasivam (2021-01-17 20:11:51)
-> > > Changes in v2:
-> > >
-> > > * Modified the max_register value as per the SDX55 IPC offset in mailbox
-> > >   driver.
-> > >
-> > > Manivannan Sadhasivam (5):
-> > >   dt-bindings: mailbox: Add binding for SDX55 APCS
-> > >   mailbox: qcom: Add support for SDX55 APCS IPC
-> >
-> > I think I can apply the clk patches to clk tree without the mailbox
-> > patches, right?
-> >
->
-> Yes, you can. Thanks for applying!
->
-> Jassi: Can you please look into the mailbox patches?
->
-They are compatible strings mostly... so assume it ok.
+Hello,
 
-cheers!
+On 08/02/2021 20:52:37+0100, Arnd Bergmann wrote:
+> On Mon, Feb 8, 2021 at 7:42 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > Let me steer the discussion to original topic - it's about old kernel
+> > and new DTB, assuming that mainline kernel bisectability is not
+> > affected.
+> >
+> > Flow looks like this:
+> >
+> > 0. You have existing bidings and drivers.
+> > 1. Patch changing bindings (with new compatible) and drivers gets
+> >    accepted by maintainer.
+> > 2. Patch above (bindings+drivers) goes during merge window to v5.11-rc1.
+> > 3. Patch changing in-tree DTS to new compatible gets accepted by
+> >    maintainer and it is sent as v5.12-rc1 material to SoC maintainers.
+> >
+> > So again: old kernel, using old bindings, new DTB.
+> >
+
+I don't think forward compatibility was ever considered. I've seen it
+being mentioned a few times on #armlinux but honestly this simply can't
+be achieved. This would mean being able to write complete DT bindings
+for a particular SoC at day 0 which will realistically never happen. You
+may noteven have a complete datasheet and even if you have a datasheet,
+it may not be complete or it may be missing hw errata that are
+discovered later on and need a new binding to handle.
+
+> > Another case is where out-of-tree user of bindings, e.g. FreeBSD, takes
+> > new DTS (at point of #3 above or later) but did not take the bindings.
+> > Such system would be broken but it's their fault - they took DTS without
+> > taking the bindings (which were there already for one release!).
+> 
+> The particular boot flow that I am worried about here is when the dtb and
+> kernel are not updated in sync. Traditionally this happens when the dtb
+> is contained in the firmware image or generated by the firmware, as would
+> be the case on any server class system, but also on embedded systems
+> that can run an upstream kernel but without having the dts contributed
+> into the kernel sources.
+> 
+> When you have this case, you can install a working system, and install
+> an upgraded kernel without problems. You might then want to update the
+> firmware as well, in order to take advantage of the features implemented
+> in the kernel kernel that require a DT description. Again, no problem.
+> 
+> However, once the firmware is updated, it may no longer be possible to
+> go back to the old kernel in case the new one is busted.
+> 
+
+Any serious update strategy will update both the kernel and device tree
+at the same time, exactly like you already have to update the initramfs
+with the kernel as soon as it is including kernel modules.
+I would expect any embedded platform to actually use a container format,
+like a FIT image that will ship the kernel, DT and intiramfs in a single
+image and will allow to sign all parts.
+
+> A similar problem can happen with the EBBR boot flow that relies on
+> a uefi-enabled firmware such as a u-boot, while using grub2 as the
+> actual boot loader. This is commonly supported across distros. While
+> grub2 can load a matching set of kernel+initrd+dtb from disk and run
+> that, this often fails in practice because u-boot needs to fill a
+> board specific set of DT properties (bootargs, detected memory,
+> mac address, ...). The usual way this gets handled is that u-boot loads
+> grub2 and the dtb from disk and then passes the modified dtb to grub,
+> which picks only kernel+initrd from disk and boots this with the dtb.
+> 
+> The result is similar to case with dtb built into the firmware: after
+> upgrading the dtb that gets loaded by u-boot, grub can still pick
+> old kernels but they may not work as they did in the past. There are
+> obviously ways to work around it, but it does lead to user frustration.
+> 
+
+Are there really any platforms with the dtb built into the firmware? I
+feel like this is a mythical creature used to scare people into keeping
+the DTB ABI stable. Aren't all the distribution already able to cope
+with keeping DTB and kernel in sync?
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
