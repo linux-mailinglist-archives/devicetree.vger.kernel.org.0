@@ -2,79 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5511D3138EF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:10:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 347213138F7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:12:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234229AbhBHQKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 11:10:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47080 "EHLO mail.kernel.org"
+        id S232776AbhBHQLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 11:11:05 -0500
+Received: from marcansoft.com ([212.63.210.85]:43722 "EHLO mail.marcansoft.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233699AbhBHQKC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 11:10:02 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D07B464DF0;
-        Mon,  8 Feb 2021 16:09:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612800562;
-        bh=0r7EFWA3/TE6ZV9vLRgre43wSwtaomAWRjcEc4vmFu0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DOvsbfwF4KSVBmzD/1qj4FjM38TK1t5Mvh9JUpyQ8/rWuP4AbY9ZQ234D9hMWuxPi
-         ZQDRRW3D0YqpDvdEu9pyPdr8yi7M5E965qVK6m/xw10VroMsJHINt+phllwzSbabAZ
-         ZG5XHx1V2KDv3iwXStGR1mW4kj/9jpVnl6yrskiwJu7TgbBYnyaSjKbiCj/Ti+UcHw
-         UYlDmkR1+og0vCa8oJFfFSToxWLUihPaeSCmkU01Me5b6FPAdPJc7eJ6wOrDVKSdEL
-         9c0HPaCdP/TiW7R49Xqyh+tyF1/Na2v9at03ihoek+vHRa4hYENnfs5yBKVpbRe4je
-         VKa6dUO99bQug==
-Date:   Mon, 8 Feb 2021 16:08:30 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     perex@perex.cz, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2 2/7] ASoC: codec: lpass-rx-macro: add support for
- lpass rx macro
-Message-ID: <20210208160830.GI8645@sirena.org.uk>
-References: <20210208141719.23305-1-srinivas.kandagatla@linaro.org>
- <20210208141719.23305-3-srinivas.kandagatla@linaro.org>
+        id S232597AbhBHQK6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 11:10:58 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 2093141F47;
+        Mon,  8 Feb 2021 16:10:03 +0000 (UTC)
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>, robh+dt@kernel.org,
+        Arnd Bergmann <arnd@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Olof Johansson <olof@lixom.net>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-6-marcan@marcan.st>
+ <20210208105451.yumjjunjeyrglfnw@kozik-lap>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 05/18] tty: serial: samsung_tty: add support for Apple
+ UARTs
+Message-ID: <11d36c47-45c6-03ee-2d08-6692b5d0e241@marcan.st>
+Date:   Tue, 9 Feb 2021 01:10:02 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="OfrWf2Fun5Ae4m0Y"
-Content-Disposition: inline
-In-Reply-To: <20210208141719.23305-3-srinivas.kandagatla@linaro.org>
-X-Cookie: You will triumph over your enemy.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210208105451.yumjjunjeyrglfnw@kozik-lap>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08/02/2021 19.54, Krzysztof Kozlowski wrote:
+>> +enum s3c24xx_irq_type {
+>> +	IRQ_DISCRETE = 0,
+>> +	IRQ_S3C6400 = 1,
+>> +	IRQ_APPLE = 2,
+> 
+> It seems you add the third structure to differentiate type of UART.
+> There is already port type and s3c24xx_serial_drv_data, no need for
+> third structure (kind of similar to tries of Tamseel Shams in recent
+> patches). It's too much. Instead, differentiate by port type or prepare
+> own set of uart_ops if it's really different (like you did with startup
+> op).
 
---OfrWf2Fun5Ae4m0Y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This ties into little changes in a bunch of places, so separate uart_ops 
+  callbacks for every one of those would end up duplicating a lot of code :(
 
-On Mon, Feb 08, 2021 at 02:17:14PM +0000, Srinivas Kandagatla wrote:
+That list is just used to map the port type to something that only 
+represents the type of IRQs, but its only real purpose for the 
+indirection is so I can do "== IRQ_DISCRETE" in some codepaths to mean 
+"not apple or S3C6400".
 
-> +	SOC_SINGLE_EXT("RX_Softclip Enable", SND_SOC_NOPM, 0, 1, 0,
-> +		     rx_macro_soft_clip_enable_get,
-> +		     rx_macro_soft_clip_enable_put),
-> +	SOC_SINGLE_EXT("AUX_HPF Enable", SND_SOC_NOPM, 0, 1, 0,
-> +			rx_macro_aux_hpf_mode_get,
-> +			rx_macro_aux_hpf_mode_put),
+e.g.
 
-These are simple on/off controls so should end in Switch AFAICT.
-Otherwise this looks good.
+     if (s3c24xx_irq_type(port) == IRQ_DISCRETE)
+         free_irq(ourport->rx_irq, ourport);
 
---OfrWf2Fun5Ae4m0Y
-Content-Type: application/pgp-signature; name="signature.asc"
+Would have to become
 
------BEGIN PGP SIGNATURE-----
+     if (port->type != IRQ_S3C6400 && port->type != IRQ_APPLE)
+         free_irq(ourport->rx_irq, ourport);
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAhYf4ACgkQJNaLcl1U
-h9C62gf/diIBpdPwSy/dQ9FyjTxlRvQ8YgXHyIgxJph8g1/PS6SiP9o8g6UWFbtM
-8ZVD5mqT1L+WiczOlCGy+uQwgXLL2y5GvtzcuaogTizMvjf3Vm0Qcv1CLAgxw3bj
-U/PIbxNxDuAF2v8wp6GIrtrHGYQ4oPoSWv4nq5joooXiKB+77i+XjQu2/nYsnqEy
-gBDDCYetYYdhekoQZu5E1B9neZWC3svCFG0h8lgfYnZ/WwMDc72Ix99Cvr/bW5yC
-VDHX/qrExutLOlXY3d2SWOfGgQG56p+zof74szk2A8we1LHEOfFBzN33sYBS8xyA
-jpu0IqyQTDgLc/3Huy7tCeQxaPPdvw==
-=IuI7
------END PGP SIGNATURE-----
+or
 
---OfrWf2Fun5Ae4m0Y--
+     switch (port->type) {
+     case IRQ_S3C6400:
+     case IRQ_APPLE:
+         break;
+     default:
+         free_irq(ourport->rx_irq, ourport);
+     }
+
+Which one do you prefer?
+
+Aside: Marc didn't like introducing new port types into uapi, but if we 
+don't do that then we need a "real" port type in drv_data that isn't the 
+uapi-exposed port or something along those lines, with a separate enum 
+containing all the true port type values for that.
+
+>>   	/* Startup sequence is different for s3c64xx and higher SoC's */
+>> -	if (s3c24xx_serial_has_interrupt_mask(port))
+>> +	case IRQ_S3C6400:
+>>   		s3c24xx_serial_ops.startup = s3c64xx_serial_startup;
+> 
+> Don't overwrite specific ops. It's difficult to see then which ops are
+> being used. Instead create a new set of uart_ops matching the needs.
+
+s3c24xx_serial_ops was already doing that here, but I can move that to a 
+a separate uart_ops too.
+
+Ack on all the other comments, I'll make the changes for v2.
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
