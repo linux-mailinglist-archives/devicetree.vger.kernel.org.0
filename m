@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84760312979
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 04:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0150831297A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 04:40:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbhBHDkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Feb 2021 22:40:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44506 "EHLO
+        id S229581AbhBHDkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Feb 2021 22:40:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbhBHDkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 22:40:04 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF72AC06174A
-        for <devicetree@vger.kernel.org>; Sun,  7 Feb 2021 19:39:23 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id o24so4361420wmh.5
-        for <devicetree@vger.kernel.org>; Sun, 07 Feb 2021 19:39:23 -0800 (PST)
+        with ESMTP id S229565AbhBHDke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Feb 2021 22:40:34 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89446C061756
+        for <devicetree@vger.kernel.org>; Sun,  7 Feb 2021 19:40:18 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id c12so15477422wrc.7
+        for <devicetree@vger.kernel.org>; Sun, 07 Feb 2021 19:40:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=brainfault-org.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=RpTCh4zPWil1E9eVPUn25eGZ20sG4ggktcUM75YaYS0=;
-        b=EOZ66Icn4zv6aGJ6bjM2dcTA+fAHAuJ8NL5JOSE/G9G9N2caRgLPhcj/4XKUY67it/
-         uCfvhYVw7rnrjevKEYo0Ceg3mvXQF+lYyY+AG2jiE3ShKQltn9DDQrurE2ac+zn+ZVAr
-         lY7NFlZ2rXJhP+jnX4x1MB0CVMREMknX45JhyBRzr+vE07TsDM6lmwcyMpSXrp9rsOOr
-         8M3uukK6IinVkjVa59e/KC7APPyjxqm2FGH9caiTemFJpsstPPcQDiH8ueqtYuLijKv+
-         6xGKnjz4JledxoBFECtxUb0qS78MCsXiKVKm1rbRNa0tXosqI5G3zB6TMysVzzTyZpTX
-         1qUQ==
+        bh=N6ZyHUTmCEmT+XCoKg7SofUeA5MMG7jkHar2R6egTWg=;
+        b=RFF19kUD0mlCtbUfFfu8kcu5YAJD9KqGvIFn3BJRqamzi/O6iv25px8jENxNRS7jas
+         LCKMmpSmcGNAUiurBwcri/xuFHwoE+pH0pbwd7CKyk7nEq0GfFLSgKsH1A+VaGFH0ouT
+         2RWE+ur/tT3BOJW932NuRmBDNvHjF510am3UgksS/Vl1wY96AzBqvSNT+k2jtSy7IKAh
+         crMifX9NGA/dWL4cFgrgHdsSZDmy6E7HOZumEzZQr7+yu21/CXdPJUsNwsBdJgXaT9ck
+         gjWk+De+JWid4fxpBOBtEO2wtdDIJvRvnYiH7bqv6rn+kgCaBVdXykvNScbnOJuVEUCw
+         4BDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=RpTCh4zPWil1E9eVPUn25eGZ20sG4ggktcUM75YaYS0=;
-        b=asXNS74ZbW7D0Tmh8pVoF8rTiUIHHbXgqPt/iPNNU4leIX+AfXAO75I+NT5EL4N4F8
-         Rc9C300Wr8PjTLlUfT4esHwYHznFg8C+pWsHN7bRhxeT6ATnZ/djDvASa4+lPY/jnldS
-         3jx5G/mLnqGkc3Nj5Rx80/GS48dc0Elqwg20wIPaiVLRaI5l8o1kwNUZcOsT6w6v1zAG
-         Yf+XcY9jb8N32PTnyLSkX1wP6Eoe1U29rrIcM4hDlQRxxwDuAFKwyIs6vm2zcKcW2gD7
-         +3kHv64U4RXe04TpCpzUA7KcC9XNcAFhMP4QLsHU3Hwg5+q6PVaRud8+EoDOTwl9qddm
-         TDCw==
-X-Gm-Message-State: AOAM533vSv30ezsL6jye5sC5aQsSrbzYerxGueEEftoCiw3AWDCQwZ7X
-        fqS/KBBPl0uBkW1abQPmwaf0ZhnmDWOtdiVlBS6vTQZcuEM=
-X-Google-Smtp-Source: ABdhPJxYqRLpBvi+uOOWBbn7WDbODLgRGu1aQCWaU/aJiEUADCfQnuF9RWN0316FhmWZmMbWL6PaiQGSgU9v0NxRB1c=
-X-Received: by 2002:a05:600c:3545:: with SMTP id i5mr13045345wmq.134.1612755562558;
- Sun, 07 Feb 2021 19:39:22 -0800 (PST)
+        bh=N6ZyHUTmCEmT+XCoKg7SofUeA5MMG7jkHar2R6egTWg=;
+        b=t3jgiLcy1OGvMFIQYrlUTV/VqPQsfB1pQr8rQIjqmmMVO6T2Bu9/pbCfaq2ALTmwQJ
+         eSv+th+qIROqgdVvbQnKt8LGLZ2Mc2zET/MtVKR7vHp+1UQy/NSgLi7Rne5XTyDsgbrf
+         pGwT23S2rOvl/P9ys8bxan65SZAStBmzP+laDyL2i1FWw/HqwpZpBz+WnkK5LP8joSwm
+         rfrsr+RCxOC2vycfvKrY1nFYLa4BpJrsP+ELXkbAxokRYm605PT15B2gx0BKYTQp+EvK
+         ezsSxr8sznSRHq3a5xmkx4VFsfFAvhIXIKC8WzxIZ+J1JvWQT8rKnfjWFV4AMwmMBAcV
+         TuyQ==
+X-Gm-Message-State: AOAM533AXw8m9ADWBS49yvkrY+AF8KHQ3Bs6qZGOM1inUdBh/wk4LP+S
+        oUX7FaZ+rByjwfNgo/RbbiMAc6LRFmocaG93atST1w==
+X-Google-Smtp-Source: ABdhPJw76T+V82EquJv9MrJvkZCs9YCs/jyTy5SWiIDXZcqpEbe3lU15nbF0G5tVjbitqcmnZZC3MnPmPeHU4FErtU8=
+X-Received: by 2002:a5d:6541:: with SMTP id z1mr17249649wrv.128.1612755617227;
+ Sun, 07 Feb 2021 19:40:17 -0800 (PST)
 MIME-Version: 1.0
-References: <20210207231256.115130-1-damien.lemoal@wdc.com> <20210207231256.115130-12-damien.lemoal@wdc.com>
-In-Reply-To: <20210207231256.115130-12-damien.lemoal@wdc.com>
+References: <20210207231256.115130-1-damien.lemoal@wdc.com> <20210207231256.115130-13-damien.lemoal@wdc.com>
+In-Reply-To: <20210207231256.115130-13-damien.lemoal@wdc.com>
 From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 8 Feb 2021 09:09:10 +0530
-Message-ID: <CAAhSdy0-qLiFQ2XSDxFeDCicd1RH1V6RX=HhRw1ROEc5nG_jcQ@mail.gmail.com>
-Subject: Re: [PATCH v17 11/16] riscv: Add SiPeed MAIX DOCK board device tree
+Date:   Mon, 8 Feb 2021 09:10:06 +0530
+Message-ID: <CAAhSdy0=Lxm8WWkEQBtW7WdJ-fpXyvOoaoqoeGux7wnkNuRhyA@mail.gmail.com>
+Subject: Re: [PATCH v17 12/16] riscv: Add SiPeed MAIX GO board device tree
 To:     Damien Le Moal <damien.lemoal@wdc.com>
 Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
         linux-riscv <linux-riscv@lists.infradead.org>,
@@ -63,9 +63,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, Feb 8, 2021 at 4:43 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
 >
-> Add the device tree sipeed_maix_dock.dts for the SiPeed MAIX DOCK m1
-> and m1w boards. This device tree enables LEDs, gpio, i2c and spi/mmc
-> SD card devices.
+> Add the device tree sipeed_maix_go.dts for the SiPeed MAIX GO board.
+> This device tree enables buttons, LEDs, gpio, i2c and spi/mmc SD card
+> devices.
 >
 > Cc: Rob Herring <robh@kernel.org>
 > Cc: devicetree@vger.kernel.org
@@ -79,16 +79,16 @@ Regards,
 Anup
 
 > ---
->  .../boot/dts/canaan/sipeed_maix_dock.dts      | 236 ++++++++++++++++++
->  1 file changed, 236 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
+>  arch/riscv/boot/dts/canaan/sipeed_maix_go.dts | 244 ++++++++++++++++++
+>  1 file changed, 244 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
 >
-> diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
+> diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
 > new file mode 100644
-> index 000000000000..fae0149a8740
+> index 000000000000..373fbaa3ab94
 > --- /dev/null
-> +++ b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
-> @@ -0,0 +1,236 @@
+> +++ b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
+> @@ -0,0 +1,244 @@
 > +// SPDX-License-Identifier: GPL-2.0+
 > +/*
 > + * Copyright (C) 2019-20 Sean Anderson <seanga2@gmail.com>
@@ -104,9 +104,8 @@ Anup
 > +#include <dt-bindings/leds/common.h>
 > +
 > +/ {
-> +       model = "SiPeed MAIX Dock";
-> +       compatible = "sipeed,maix-dock-m1", "sipeed,maix-dock-m1w",
-> +                    "canaan,kendryte-k210";
+> +       model = "SiPeed MAIX GO";
+> +       compatible = "sipeed,maix-go", "canaan,kendryte-k210";
 > +
 > +       chosen {
 > +               bootargs = "earlycon console=ttySIF0";
@@ -116,26 +115,21 @@ Anup
 > +       gpio-leds {
 > +               compatible = "gpio-leds";
 > +
-> +               /*
-> +                * Note: the board wiring drawing documents green on
-> +                * gpio #4, red on gpio #5 and blue on gpio #6. However,
-> +                * the board is actually wired differently as defined here.
-> +                */
 > +               led0 {
-> +                       color = <LED_COLOR_ID_BLUE>;
-> +                       label = "blue";
+> +                       color = <LED_COLOR_ID_GREEN>;
+> +                       label = "green";
 > +                       gpios = <&gpio1_0 4 GPIO_ACTIVE_LOW>;
 > +               };
 > +
 > +               led1 {
-> +                       color = <LED_COLOR_ID_GREEN>;
-> +                       label = "green";
+> +                       color = <LED_COLOR_ID_RED>;
+> +                       label = "red";
 > +                       gpios = <&gpio1_0 5 GPIO_ACTIVE_LOW>;
 > +               };
 > +
 > +               led2 {
-> +                       color = <LED_COLOR_ID_RED>;
-> +                       label = "red";
+> +                       color = <LED_COLOR_ID_BLUE>;
+> +                       label = "blue";
 > +                       gpios = <&gpio1_0 6 GPIO_ACTIVE_LOW>;
 > +               };
 > +       };
@@ -143,10 +137,22 @@ Anup
 > +       gpio-keys {
 > +               compatible = "gpio-keys";
 > +
-> +               boot {
-> +                       label = "BOOT";
+> +               up {
+> +                       label = "UP";
+> +                       linux,code = <BTN_1>;
+> +                       gpios = <&gpio1_0 7 GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               press {
+> +                       label = "PRESS";
 > +                       linux,code = <BTN_0>;
 > +                       gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
+> +               };
+> +
+> +               down {
+> +                       label = "DOWN";
+> +                       linux,code = <BTN_2>;
+> +                       gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
 > +               };
 > +       };
 > +
@@ -190,6 +196,8 @@ Anup
 > +
 > +       gpio_pinctrl: gpio-pinmux {
 > +               pinmux = <K210_FPIOA(8, K210_PCF_GPIO0)>,
+> +                        <K210_FPIOA(9, K210_PCF_GPIO1)>,
+> +                        <K210_FPIOA(10, K210_PCF_GPIO2)>,
 > +                        <K210_FPIOA(11, K210_PCF_GPIO3)>,
 > +                        <K210_FPIOA(12, K210_PCF_GPIO4)>,
 > +                        <K210_FPIOA(13, K210_PCF_GPIO5)>,
@@ -243,8 +251,8 @@ Anup
 > +       };
 > +
 > +       i2c1_pinctrl: i2c1-pinmux {
-> +               pinmux = <K210_FPIOA(9, K210_PCF_I2C1_SCLK)>,
-> +                        <K210_FPIOA(10, K210_PCF_I2C1_SDA)>;
+> +               pinmux = <K210_FPIOA(30, K210_PCF_I2C1_SCLK)>,
+> +                        <K210_FPIOA(31, K210_PCF_I2C1_SDA)>;
 > +       };
 > +};
 > +
@@ -294,7 +302,7 @@ Anup
 > +               compatible = "sitronix,st7789v";
 > +               reg = <0>;
 > +               reset-gpios = <&gpio0 21 GPIO_ACTIVE_LOW>;
-> +               dc-gpios = <&gpio0 22 0>;
+> +               dc-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
 > +               spi-max-frequency = <15000000>;
 > +               status = "disabled";
 > +       };
