@@ -2,148 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79F86313DE3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:43:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19CED313E7F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 20:09:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232535AbhBHSnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 13:43:31 -0500
-Received: from mail-ed1-f51.google.com ([209.85.208.51]:38824 "EHLO
-        mail-ed1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235879AbhBHSnP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 13:43:15 -0500
-Received: by mail-ed1-f51.google.com with SMTP id s11so19860158edd.5;
-        Mon, 08 Feb 2021 10:42:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=o0MO6kYhDlukwe2FztGhJY4JOmsuVtg2OPvSn78DT4o=;
-        b=dAdHxwPFGIMoqa/lBmCRcIfp5CNpz6JNqivt5dX9nKDVtEltyRYdJ8/Ov7E9u6c4Hw
-         dCfcX1jGYFGTS0D0TiloDu/ZeP5eXC93kjCz+5NxUmqgsuj9aV9sF46/LqBHnIs1J6HX
-         deORHajAKcVXymltgZbh815MonPcoln1rfQDF/Fa9eJZfUySZ8bc8a0+99kstly0xJGr
-         GSnObmyz4oPQg/0btEs26NgC0elnTp8zgufFHiZZ8sLgSQpQtBhVLBgpQuaXmJHdviPY
-         wIwLux93IBgKNyiXOgKxYowullCVPK3bDtPUAR2VmcJaRAO+sTXUw6GTWSDItFNWhDr4
-         iyOg==
-X-Gm-Message-State: AOAM532EkZFUsNgr0alikqmD6chf/3rvkGYXUXN2zZOAgyIwkTEY2y5B
-        uNNZ+wtD6wzQ6s71fw6r3V8=
-X-Google-Smtp-Source: ABdhPJxPQoDmwOFtcSLnMjYpNRs+iVkrhj4hV31wgmf6XJ1MLpWB5omO8uuafc7Bk011dYwog3NnRA==
-X-Received: by 2002:a05:6402:22ce:: with SMTP id dm14mr13185754edb.256.1612809753077;
-        Mon, 08 Feb 2021 10:42:33 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id hy24sm8682518ejc.40.2021.02.08.10.42.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Feb 2021 10:42:31 -0800 (PST)
-Date:   Mon, 8 Feb 2021 19:42:30 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        arm-soc <arm@kernel.org>, SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        id S229581AbhBHTIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 14:08:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35526 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234923AbhBHTGK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 14:06:10 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 783B364E8C;
+        Mon,  8 Feb 2021 19:05:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612811125;
+        bh=2JC70mXZqImlB6IjWOvtQN/wJ5o2d5jfmnWoF61hxG4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=DfdXaKmVsCHSnfTWKM2Kspc1e1q8brgQ5Et/bNcRGbkjoDXPEMgaIrXX6IjiQoqki
+         DIoZ0Ab9usdBoEJkv5z4+AQHyWJVUefYiswO9p7HbGP/qEz+PP3XIpcyoIUpSxO1xd
+         JmkFmVEF4/sTc+q4u62dhpdOEShQec1zisR22w93DS4qZ77gUQnQaRyWMcG9HcReTz
+         8wAeVOwkq6p30PA2V5o4twg3+kz/JUUbu0T6O8QE+2N7cnsnWNiqcL5NF9Y9oYrwmI
+         ACivHDxYm1Yp0hJfpMIWrbzMdCaHL8ze4M1Z5BoCqrM/sgdVfFvbnxWr7NOqgjCJdT
+         0hTi5tVHoVbEA==
+Date:   Mon, 8 Feb 2021 11:05:21 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
         Alexandre Torgue <alexandre.torgue@st.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Maxime Ripard <mripard@kernel.org>
-Subject: Re: [GIT PULL 2/3] ARM: dts: samsung: DTS for v5.12
-Message-ID: <20210208184230.onhlioflyylkx6xo@kozik-lap>
-References: <20210125191240.11278-1-krzk@kernel.org>
- <20210125191240.11278-3-krzk@kernel.org>
- <20210206134531.l5vpzlmev4v3f3uo@kozik-lap>
- <CAK8P3a0Kgn9PTHjsU7MbJPC8vatvb9KYJJKWxrx7zQzTNgK10g@mail.gmail.com>
- <CAMuHMdWZ8QmiQCmiW9AvCpviNZeuaxThSo_4Xb2DGEs9hMTKMQ@mail.gmail.com>
- <YCGBIvRfoP0BeyrP@builder.lan>
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Johan Hovold <johan@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Joao Pinto <jpinto@synopsys.com>,
+        Lars Persson <larper@axis.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Vyacheslav Mitrofanov 
+        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 00/24] net: stmmac: Fix clocks/reset-related
+ procedures
+Message-ID: <20210208110521.59804f08@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
+References: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YCGBIvRfoP0BeyrP@builder.lan>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 08, 2021 at 12:21:22PM -0600, Bjorn Andersson wrote:
-> On Sat 06 Feb 13:47 CST 2021, Geert Uytterhoeven wrote:
+On Mon, 8 Feb 2021 16:55:44 +0300 Serge Semin wrote:
+> Baikal-T1 SoC is equipped with two Synopsys DesignWare GMAC v3.73a-based
+> ethernet interfaces with no internal Ethernet PHY attached. The IP-cores
+> are configured as GMAC-AXI with CSR interface clocked by a dedicated
+> signal. Each of which has got Rx/Tx FIFOs of 16KB, up to 8 MAC addresses
+> capability, no embedded filter hash table logic, EEE enabled, IEEE 1588
+> and 1588-2008 Advanced timestamping capabilities, power management with
+> remote wake-up, IP CSUM hardware acceleration, a single PHY interface -
+> RGMII with MDIO bus, 1xGPI and 1xGPO.
 > 
-> > Hi Arnd,
-> > 
-> > On Sat, Feb 6, 2021 at 3:36 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> > > That said, I'm still not happy about the patch we discussed in the
-> > > other email thread[1] and I'd like to handle it a little more strictly in
-> > > the future, but I agree this wasn't obvious and we have been rather
-> > > inconsistent about it in the past, with some platform maintainers
-> > > handling it way more strictly than others.
-> > >
-> > > I've added the devicetree maintainers and a few other platform
-> > > maintainers to Cc here, maybe they can provide some further
-> > > opinions on the topic so we can come to an approach that
-> > > works for everyone.
-> > >
-> > > My summary of the thread in [1] is there was a driver bug that
-> > > required a DT binding change. Krzysztof and the other involved
-> > > parties made sure the driver handles it in a backward-compatible
-> > > way (an old dtb file will still run into the bug but keep working
-> > > with new kernels), but decided that they did not need to worry
-> > > about the opposite case (running an old kernel with an updated
-> > > dtb). I noticed the compatibility break and said that I would
-> > > prefer this to be done in a way that is compatible both ways,
-> > > or at the minimum be alerted about the binding break in the
-> > > pull request, with an explanation about why this had to be done,
-> > > even when we don't think anyone is going to be affected.
-> > >
-> > > What do others think about this? Should we generally assume
-> > > that breaking old kernels with new dtbs is acceptable, or should
-> > > we try to avoid it if possible, the same way we try to avoid
-> > > breaking new kernels with old dtbs? Should this be a platform
-> > > specific policy or should we try to handle all platforms the same
-> > > way?
-> > 
-> > For Renesas SoCs, we typically only consider compatibility of new
-> > kernels with old DTBs, not the other way around.
-> > However, most DTB updates are due to new hardware support, so using the
-> > new DTB with an old kernel usually just means no newly documented
-> > hardware, or new feature, is being used by the old kernel.
-> > 
-> 
-> This is the case for the Qualcomm tree as well, it's expected that a new
-> kernel should work with older DT. But, while we don't actively try to
-> break it, there are plenty of examples where we don't/can't give the
-> promise in the other direction.
+> This is a very first series of patches with fixes we've found to be
+> required in order to make things working well for our setup. The series
+> has turned to be rather large, but most of the patches are trivial and
+> some of them are just cleanups, so it shouldn't be that hard to review.
 
-Thanks everyone for comments.
+Hi Serge!
 
-Let me steer the discussion to original topic - it's about old kernel
-and new DTB, assuming that mainline kernel bisectability is not
-affected.
+You've submitted 60 patches at once, that's a lot of patches, in netdev
+we limit submissions to 15 patches at a time to avoid overwhelming
+reviewers. 
 
-Flow looks like this:
+At a glance the patches seem to mix fixes which affect existing,
+supported systems (eg. error patch reference leaks) with extensions
+required to support your platform. Can the two be separated?
+The fixes for existing bugs should be targeting net (Subject: 
+[PATCH net]) and patches to support your platform net-next (Subject:
+[PATCH net-next]).
 
-0. You have existing bidings and drivers.
-1. Patch changing bindings (with new compatible) and drivers gets
-   accepted by maintainer.
-2. Patch above (bindings+drivers) goes during merge window to v5.11-rc1.
-3. Patch changing in-tree DTS to new compatible gets accepted by
-   maintainer and it is sent as v5.12-rc1 material to SoC maintainers.
+Right now the patches are not tagged so our build bot tried applying
+them to net-next and they failed to apply, so I need to toss them away.
 
-So again: old kernel, using old bindings, new DTB.
-
-Another case is where out-of-tree user of bindings, e.g. FreeBSD, takes
-new DTS (at point of #3 above or later) but did not take the bindings.
-Such system would be broken but it's their fault - they took DTS without
-taking the bindings (which were there already for one release!).
-
-Best regards,
-Krzysztof
+Andrew, others, please chime in if I'm misreading the contents of the
+series or if you have additional guidance!
