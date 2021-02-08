@@ -2,87 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CE03313813
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 16:37:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BA18313840
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 16:43:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233896AbhBHPg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 10:36:26 -0500
-Received: from marcansoft.com ([212.63.210.85]:33448 "EHLO mail.marcansoft.com"
+        id S231894AbhBHPl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 10:41:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41384 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229623AbhBHPcN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 10:32:13 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id D408541F47;
-        Mon,  8 Feb 2021 15:31:20 +0000 (UTC)
-To:     Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>
-Cc:     SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-16-marcan@marcan.st> <87eehqlxlr.wl-maz@kernel.org>
- <CAK8P3a25eFFrMG-9QknFZ6Ckc3-gkiLK=jQdnyTMgn-z4X0RHQ@mail.gmail.com>
- <87a6selrkt.wl-maz@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 15/18] irqchip/apple-aic: Add support for the Apple
- Interrupt Controller
-Message-ID: <c699ab0c-39a0-6b0a-9409-db506ac6f824@marcan.st>
-Date:   Tue, 9 Feb 2021 00:31:18 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S233758AbhBHPjk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 10:39:40 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 68DDF64E88;
+        Mon,  8 Feb 2021 15:38:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612798739;
+        bh=C034IrTVhQbEJ3ajlv6WrWRUJxx8ppxLnRBANxOdy/g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=r9jJGCr7R7RYEvSKD0hZSi3jCz2TF2ak9cxeLBc0NcajP5yDMbVVDR8Y3MJK0Ybt+
+         XbG01QWnofikSLxL7rSQMT7PaVCM+D3xUxfkdk8EY+p5zmiI6NZclcNCOBFRHHwy7I
+         d/zniqlCOOaqNAt/MxN7BlnotwcMKSrlquS7QHLuwo8zU0NmbWsLrX7fBkn64kXWa2
+         pSq1q7cDjmcnXMOePwl/J8W4ebq1UyAa5y5+8+0Xvlll56Zv3Wd/alAGk5ydbSZfgi
+         a41buJgmsI+2YFuVA3tWBcng7EbJaE3IuZ5OeudOU0MyHUeG7NjPh7Lu7hbU02yxfw
+         CWn1NMAWRWtIA==
+Received: by mail-qk1-f176.google.com with SMTP id l27so14725180qki.9;
+        Mon, 08 Feb 2021 07:38:59 -0800 (PST)
+X-Gm-Message-State: AOAM5320fQnblUl7oFMJebOepkd3sx5cqd0xxOYIMHfIfuRKWE6Cprrw
+        I48edlOzrLmVtM9V5Fn/9EJXuH2f245G65LbGw==
+X-Google-Smtp-Source: ABdhPJwUlbH9545MTd15G8WLEpDvOJelS15H4dOXXykl4felpUc4bGpib+NBOAQICuAM4jKRlXweB35IiC3gXZN0+r0=
+X-Received: by 2002:a05:620a:22c5:: with SMTP id o5mr16753642qki.364.1612798738274;
+ Mon, 08 Feb 2021 07:38:58 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <87a6selrkt.wl-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+References: <20210205222644.2357303-1-saravanak@google.com> <20210205222644.2357303-9-saravanak@google.com>
+In-Reply-To: <20210205222644.2357303-9-saravanak@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 8 Feb 2021 09:38:46 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJc8XRAL5Bj5LpH0M528K7ZL=wSqt8t=ibwjWutjCgB-Q@mail.gmail.com>
+Message-ID: <CAL_JsqJc8XRAL5Bj5LpH0M528K7ZL=wSqt8t=ibwjWutjCgB-Q@mail.gmail.com>
+Subject: Re: [PATCH v4 8/8] clk: Mark fwnodes when their clock provider is added/removed
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2021 20.36, Marc Zyngier wrote:
-> On Mon, 08 Feb 2021 10:29:23 +0000,
-> Arnd Bergmann <arnd@kernel.org> wrote:
->>
->> On Mon, Feb 8, 2021 at 10:25 AM Marc Zyngier <maz@kernel.org> wrote:
->>> On Thu, 04 Feb 2021 20:39:48 +0000, Hector Martin <marcan@marcan.st> wrote:
->>
->>>> +{
->>>> +     return readl(ic->base + reg);
->>>
->>> Please consider using the _relaxed accessors, as I don't think any of
->>> these interacts with memory (apart from IPIs, of course).
->>
->> MSI interrupts require serializing with DMA, so at the minimum I think there
->> needs to be something that ensures that DMA from device into memory
->> has completed before delivering the completion interrupt to a driver. This
->> may already be implied when the AIC is entered, but this is hard to know
->> without actual hardware specs.
-> 
-> If there is a sync with memory required, it should happen at the point
-> where it is Acked, not when masked/unmasked or anything else. And
-> given that you want to sync with an external agent (the DMA producer),
-> the DMB generated by readl won't save you, as it only orders CPU
-> accesses AFAICT.
+On Fri, Feb 5, 2021 at 4:27 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> This allows fw_devlink to recognize clock provider drivers that don't
+> use the device-driver model to initialize the device. fw_devlink will
+> use this information to make sure consumers of such clock providers
+> aren't indefinitely blocked from probing, waiting for the power domain
+> device to appear and bind to a driver.
 
-Found an doc that talks about this, but then... how does the current 
-Linux code work anyway for normal use cases?
+Don't we have cases that are a mixture? IOW, a subset of the clock
+provider is initialized early, then the full driver takes over. You'd
+want consumers that are not a driver to succeed, but drivers to defer
+until the full driver is up.
 
-https://elinux.org/images/7/73/Deacon-weak-to-weedy.pdf
-
-That says dmb is not enough for DMA-control to DMA-data dependencies due 
-to speculation, which is what we have here and the situation I described 
-(with an IRQ along the way, but that's irrelevant). But that's what 
-readl does: a read followed by a dmb(oshld) followed by a control 
-dependency (but that needs an isb to take effect). How does this not 
-break drivers that read DMA-accessed memory after a readl of a status 
-register? I thought that was the point of the non-relaxed functions.
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/clk/clk.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index 8c1d04db990d..27ff90eacb1f 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -4555,6 +4555,8 @@ int of_clk_add_provider(struct device_node *np,
+>         if (ret < 0)
+>                 of_clk_del_provider(np);
+>
+> +       fwnode_dev_initialized(&np->fwnode, true);
+> +
+>         return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(of_clk_add_provider);
+> @@ -4672,6 +4674,7 @@ void of_clk_del_provider(struct device_node *np)
+>         list_for_each_entry(cp, &of_clk_providers, link) {
+>                 if (cp->node == np) {
+>                         list_del(&cp->link);
+> +                       fwnode_dev_initialized(&np->fwnode, false);
+>                         of_node_put(cp->node);
+>                         kfree(cp);
+>                         break;
+> --
+> 2.30.0.478.g8a0d178c01-goog
+>
