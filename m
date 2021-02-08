@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3298C31342F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94C01313432
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:00:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232254AbhBHN7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 08:59:39 -0500
-Received: from mail.baikalelectronics.com ([87.245.175.226]:57062 "EHLO
+        id S232295AbhBHOAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 09:00:12 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:57070 "EHLO
         mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231976AbhBHN6I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 08:58:08 -0500
+        with ESMTP id S232021AbhBHN6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 08:58:11 -0500
 From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
 To:     Rob Herring <robh+dt@kernel.org>,
         Giuseppe Cavallaro <peppe.cavallaro@st.com>,
@@ -22,8 +22,7 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
         Joao Pinto <jpinto@synopsys.com>,
         Lars Persson <larper@axis.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
 CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Serge Semin <fancer.lancer@gmail.com>,
         Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
@@ -34,9 +33,9 @@ CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 16/24] net: stmmac: Use optional reset control API to work with stmmaceth
-Date:   Mon, 8 Feb 2021 16:56:00 +0300
-Message-ID: <20210208135609.7685-17-Sergey.Semin@baikalelectronics.ru>
+Subject: [PATCH v2 19/24] net: stmmac: Add Tx/Rx platform clocks support
+Date:   Mon, 8 Feb 2021 16:56:03 +0300
+Message-ID: <20210208135609.7685-20-Sergey.Semin@baikalelectronics.ru>
 In-Reply-To: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
 References: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
@@ -47,59 +46,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit bb3222f71b57 ("net: stmmac: platform: use optional clk/reset
-get APIs") a manual implementation of the optional device reset control
-functionality has been replaced with using the
-devm_reset_control_get_optional() method. But for some reason the optional
-reset control handler usage hasn't been fixed and preserved the
-NULL-checking statements. There is no need in that in order to perform the
-reset control assertion/deassertion because the passed NULL will be
-considered by the reset framework as absent optional reset control handler
-anyway.
+Depending on the DW *MAC configuration it can be at least connected to an
+external Transmit clock, but in some cases to an external Receive clock
+generator. In order to simplify/unify the sub-drivers code and to prevent
+having the same clocks named differently add the Tx/Rx clocks support to
+the generic STMMAC DT-based platform data initialization method under the
+names "tx" and "rx" respectively. The bindings schema has already been
+altered in accordance with that.
 
-Fixes: bb3222f71b57 ("net: stmmac: platform: use optional clk/reset get APIs")
 Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 ---
- .../net/ethernet/stmicro/stmmac/stmmac_main.c | 19 ++++++++-----------
- 1 file changed, 8 insertions(+), 11 deletions(-)
+ .../ethernet/stmicro/stmmac/stmmac_platform.c | 22 +++++++++++++++++++
+ include/linux/stmmac.h                        |  2 ++
+ 2 files changed, 24 insertions(+)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index 4f1bf8f6538b..a8dec219c295 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -4935,15 +4935,13 @@ int stmmac_dvr_probe(struct device *device,
- 	if ((phyaddr >= 0) && (phyaddr <= 31))
- 		priv->plat->phy_addr = phyaddr;
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+index 9a7c94622c36..a6e35c84e135 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+@@ -585,6 +585,22 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
+ 	}
+ 	clk_prepare_enable(plat->pclk);
  
--	if (priv->plat->stmmac_rst) {
--		ret = reset_control_assert(priv->plat->stmmac_rst);
--		reset_control_deassert(priv->plat->stmmac_rst);
--		/* Some reset controllers have only reset callback instead of
--		 * assert + deassert callbacks pair.
--		 */
--		if (ret == -ENOTSUPP)
--			reset_control_reset(priv->plat->stmmac_rst);
--	}
-+	ret = reset_control_assert(priv->plat->stmmac_rst);
-+	reset_control_deassert(priv->plat->stmmac_rst);
-+	/* Some reset controllers have only reset callback instead of
-+	 * assert + deassert callbacks pair.
-+	 */
-+	if (ret == -ENOTSUPP)
-+		reset_control_reset(priv->plat->stmmac_rst);
++	plat->tx_clk = devm_clk_get_optional(&pdev->dev, "tx");
++	if (IS_ERR(plat->tx_clk)) {
++		rc = PTR_ERR(plat->tx_clk);
++		dev_err_probe(&pdev->dev, rc, "Cannot get Tx clock\n");
++		goto error_tx_clk_get;
++	}
++	clk_prepare_enable(plat->tx_clk);
++
++	plat->rx_clk = devm_clk_get_optional(&pdev->dev, "rx");
++	if (IS_ERR(plat->rx_clk)) {
++		rc = PTR_ERR(plat->rx_clk);
++		dev_err_probe(&pdev->dev, rc, "Cannot get Rx clock\n");
++		goto error_rx_clk_get;
++	}
++	clk_prepare_enable(plat->rx_clk);
++
+ 	/* Fall-back to main clock in case of no PTP ref is passed */
+ 	plat->clk_ptp_ref = devm_clk_get_optional(&pdev->dev, "ptp_ref");
+ 	if (IS_ERR(plat->clk_ptp_ref)) {
+@@ -609,6 +625,10 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
+ 	return plat;
  
- 	/* Init MAC and get the capabilities */
- 	ret = stmmac_hw_init(priv);
-@@ -5155,8 +5153,7 @@ int stmmac_dvr_remove(struct device *dev)
- 	stmmac_exit_fs(ndev);
- #endif
- 	phylink_destroy(priv->phylink);
--	if (priv->plat->stmmac_rst)
--		reset_control_assert(priv->plat->stmmac_rst);
-+	reset_control_assert(priv->plat->stmmac_rst);
- 	if (priv->hw->pcs != STMMAC_PCS_TBI &&
- 	    priv->hw->pcs != STMMAC_PCS_RTBI)
- 		stmmac_mdio_unregister(ndev);
+ error_hw_init:
++	clk_disable_unprepare(plat->rx_clk);
++error_rx_clk_get:
++	clk_disable_unprepare(plat->tx_clk);
++error_tx_clk_get:
+ 	clk_disable_unprepare(plat->pclk);
+ error_pclk_get:
+ 	clk_disable_unprepare(plat->stmmac_clk);
+@@ -630,6 +650,8 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
+ void stmmac_remove_config_dt(struct platform_device *pdev,
+ 			     struct plat_stmmacenet_data *plat)
+ {
++	clk_disable_unprepare(plat->rx_clk);
++	clk_disable_unprepare(plat->tx_clk);
+ 	clk_disable_unprepare(plat->pclk);
+ 	clk_disable_unprepare(plat->stmmac_clk);
+ 	of_node_put(plat->phy_node);
+diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+index 15ca6b4167cc..cec970adaf2e 100644
+--- a/include/linux/stmmac.h
++++ b/include/linux/stmmac.h
+@@ -186,6 +186,8 @@ struct plat_stmmacenet_data {
+ 	void *bsp_priv;
+ 	struct clk *stmmac_clk;
+ 	struct clk *pclk;
++	struct clk *tx_clk;
++	struct clk *rx_clk;
+ 	struct clk *clk_ptp_ref;
+ 	unsigned int clk_ptp_rate;
+ 	unsigned int clk_ref_rate;
 -- 
 2.29.2
 
