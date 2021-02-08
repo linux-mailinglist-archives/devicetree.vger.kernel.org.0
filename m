@@ -2,115 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF5F93138E0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5511D3138EF
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:10:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230328AbhBHQHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 11:07:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46686 "EHLO mail.kernel.org"
+        id S234229AbhBHQKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 11:10:07 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47080 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233959AbhBHQHc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 11:07:32 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 703C364DF0;
-        Mon,  8 Feb 2021 16:06:51 +0000 (UTC)
+        id S233699AbhBHQKC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 11:10:02 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D07B464DF0;
+        Mon,  8 Feb 2021 16:09:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612800411;
-        bh=fTuhJ5RT5eLAOUQrf/tdirgkNlz+VEc+4HXnU0SEBNY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CE+UBgTcDUlapJhqmFejcia3qaw0B8VrsoRrETcKyAGabydxD4GrGLxeuQh4z2WIV
-         fEZUTK3eyBYKhdKsVYF1E09qTHQFS9rpK+bfnU5WcTgMyQTcStYiBjA8Or50Bygx3i
-         P+1YFg3c1WmM/GRPnWKHhQEIJrWWfa+f4JEK5X+p4uJC7vvyk//cyBqLY++9h2ZgWh
-         ZmphXs+BzmLpUhXwZE2rmbfUSSbU0Hgr8R8TFT1Ec1Ks31652+73b0yy3R61zX3+V4
-         RDb1bq8r+a9PvwCpd7w5rnK2D4g6ob+0j7PXUc/F625iJ3HNs2ZUOXcWIz6lsnxOGI
-         ytIzgvJv58S6w==
-Received: by mail-qt1-f182.google.com with SMTP id w20so10669510qta.0;
-        Mon, 08 Feb 2021 08:06:51 -0800 (PST)
-X-Gm-Message-State: AOAM531PbvIWNh1HoTpcl2TbMEO9/WPrtJDz5V86miULqnODZj7Xkuwu
-        BGddixzu6B17Ek55cks6W8S8D+0ZGQ5S6YWGBw==
-X-Google-Smtp-Source: ABdhPJzQqyDVjzf3UbUtZdEJmP0vjWtaTKE5/EstbBlrylclBdwLqosH30kf0R50qJ8YnbDKvk1GGSZilez2wJPVCUk=
-X-Received: by 2002:ac8:5c41:: with SMTP id j1mr15757118qtj.306.1612800410564;
- Mon, 08 Feb 2021 08:06:50 -0800 (PST)
+        s=k20201202; t=1612800562;
+        bh=0r7EFWA3/TE6ZV9vLRgre43wSwtaomAWRjcEc4vmFu0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DOvsbfwF4KSVBmzD/1qj4FjM38TK1t5Mvh9JUpyQ8/rWuP4AbY9ZQ234D9hMWuxPi
+         ZQDRRW3D0YqpDvdEu9pyPdr8yi7M5E965qVK6m/xw10VroMsJHINt+phllwzSbabAZ
+         ZG5XHx1V2KDv3iwXStGR1mW4kj/9jpVnl6yrskiwJu7TgbBYnyaSjKbiCj/Ti+UcHw
+         UYlDmkR1+og0vCa8oJFfFSToxWLUihPaeSCmkU01Me5b6FPAdPJc7eJ6wOrDVKSdEL
+         9c0HPaCdP/TiW7R49Xqyh+tyF1/Na2v9at03ihoek+vHRa4hYENnfs5yBKVpbRe4je
+         VKa6dUO99bQug==
+Date:   Mon, 8 Feb 2021 16:08:30 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     perex@perex.cz, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 2/7] ASoC: codec: lpass-rx-macro: add support for
+ lpass rx macro
+Message-ID: <20210208160830.GI8645@sirena.org.uk>
+References: <20210208141719.23305-1-srinivas.kandagatla@linaro.org>
+ <20210208141719.23305-3-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-References: <20210204113551.68744-1-alexandru.tachici@analog.com>
- <20210204113551.68744-3-alexandru.tachici@analog.com> <20210206152643.53b0e01b@archlinux>
-In-Reply-To: <20210206152643.53b0e01b@archlinux>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 8 Feb 2021 10:06:39 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+zXzqkMbq5x6GCdE_175MpTGHw3kfOKaPpuaWuAtMF-Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+zXzqkMbq5x6GCdE_175MpTGHw3kfOKaPpuaWuAtMF-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: iio: adc: ad7124: add config nodes
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Alexandru Tachici <alexandru.tachici@analog.com>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="OfrWf2Fun5Ae4m0Y"
+Content-Disposition: inline
+In-Reply-To: <20210208141719.23305-3-srinivas.kandagatla@linaro.org>
+X-Cookie: You will triumph over your enemy.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 6, 2021 at 9:26 AM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Thu, 4 Feb 2021 13:35:51 +0200
-> <alexandru.tachici@analog.com> wrote:
->
-> > From: Alexandru Tachici <alexandru.tachici@analog.com>
-> >
-> > Document use of configurations in device-tree bindings.
-> >
-> > Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
->
-> Ignoring discussing in my reply to the cover letter...
->
-> This is a breaking change as described.  We can't move properties
-> around without some sort of fullback for them being in the old
-> location.
->
-> > ---
-> >  .../bindings/iio/adc/adi,ad7124.yaml          | 72 +++++++++++++++----
-> >  1 file changed, 57 insertions(+), 15 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-> > index fb3d0dae9bae..330064461d0a 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-> > @@ -62,20 +62,19 @@ required:
-> >    - interrupts
-> >
-> >  patternProperties:
-> > -  "^channel@([0-9]|1[0-5])$":
-> > -    $ref: "adc.yaml"
-> > +  "^config@(2[0-7])$":
-> >      type: object
-> >      description: |
-> > -      Represents the external channels which are connected to the ADC.
-> > +      Represents a channel configuration.
-> > +      See Documentation/devicetree/bindings/iio/adc/adc.txt.
->
-> adc.yaml now.
->
->
-> >
-> >      properties:
-> >        reg:
-> >          description: |
-> > -          The channel number. It can have up to 8 channels on ad7124-4
-> > -          and 16 channels on ad7124-8, numbered from 0 to 15.
-> > +          The config number. It can have up to 8 configuration.
-> >          items:
-> > -          minimum: 0
-> > -          maximum: 15
-> > +         minimum: 20
-> > +         maximum: 27
->
-> Number then 0-7 please rather than 20-27.
 
-That doesn't work. It would be creating 2 address spaces at one level
-with channel@0 and config@0. The way to address this is add a
-'configs' node with config@N children.
+--OfrWf2Fun5Ae4m0Y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My question here though is where does 20-27 come from. I suspect it's
-made up which isn't good either. Addresses should also be rooted in
-something in the h/w.
+On Mon, Feb 08, 2021 at 02:17:14PM +0000, Srinivas Kandagatla wrote:
 
-Rob
+> +	SOC_SINGLE_EXT("RX_Softclip Enable", SND_SOC_NOPM, 0, 1, 0,
+> +		     rx_macro_soft_clip_enable_get,
+> +		     rx_macro_soft_clip_enable_put),
+> +	SOC_SINGLE_EXT("AUX_HPF Enable", SND_SOC_NOPM, 0, 1, 0,
+> +			rx_macro_aux_hpf_mode_get,
+> +			rx_macro_aux_hpf_mode_put),
+
+These are simple on/off controls so should end in Switch AFAICT.
+Otherwise this looks good.
+
+--OfrWf2Fun5Ae4m0Y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAhYf4ACgkQJNaLcl1U
+h9C62gf/diIBpdPwSy/dQ9FyjTxlRvQ8YgXHyIgxJph8g1/PS6SiP9o8g6UWFbtM
+8ZVD5mqT1L+WiczOlCGy+uQwgXLL2y5GvtzcuaogTizMvjf3Vm0Qcv1CLAgxw3bj
+U/PIbxNxDuAF2v8wp6GIrtrHGYQ4oPoSWv4nq5joooXiKB+77i+XjQu2/nYsnqEy
+gBDDCYetYYdhekoQZu5E1B9neZWC3svCFG0h8lgfYnZ/WwMDc72Ix99Cvr/bW5yC
+VDHX/qrExutLOlXY3d2SWOfGgQG56p+zof74szk2A8we1LHEOfFBzN33sYBS8xyA
+jpu0IqyQTDgLc/3Huy7tCeQxaPPdvw==
+=IuI7
+-----END PGP SIGNATURE-----
+
+--OfrWf2Fun5Ae4m0Y--
