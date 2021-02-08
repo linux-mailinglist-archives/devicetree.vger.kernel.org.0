@@ -2,56 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7548E313EFE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 20:31:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4DD0313F3D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 20:38:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236303AbhBHTar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 14:30:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40288 "EHLO mail.kernel.org"
+        id S233999AbhBHTiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 14:38:18 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:56178 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236308AbhBHT3Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 14:29:24 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B27B264DC3;
-        Mon,  8 Feb 2021 19:28:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612812521;
-        bh=s0JgrqQa+G0wPRwnpZnlE2dShxRomBj4t2pW7KWbP8I=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=JrUylQRrCmKmeeyowwSWrB44pt/GZjlrckJ/eNmUN1WqDzWej39YLeb+wAurhdk+R
-         43QBk4f3OnrR0dX7CBEbYxjycsk3VFd9x6yNZUip8ymVL3qimGTQZ4KL36GQxltJb+
-         IvV0heaGQ8w+fTMMsU5yt6Gp2MdcgLkCAQemUymwus547COdfzsANHY0/khGTc1v7F
-         AbdR8oCs30javFffP7icwC9HQZrasdv2g197sZdygVrS3b8ohpi3b6tei9vdTiaZiB
-         /S59GseQJuyqH8U/4lOT50dXeTamRjw4vq6gMVcmLjbwSAMnScQZPlU4//LPhZzk/E
-         ISJRe6gMoyWbw==
-Content-Type: text/plain; charset="utf-8"
+        id S236371AbhBHThW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 14:37:22 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1l9CKn-004vUw-8i; Mon, 08 Feb 2021 20:36:33 +0100
+Date:   Mon, 8 Feb 2021 20:36:33 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Vyacheslav Mitrofanov 
+        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/16] net: stmmac: Add DW MAC GPIOs and Baikal-T1 GMAC
+ support
+Message-ID: <YCGSwZnSXIz5Ssef@lunn.ch>
+References: <20210208140820.10410-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210120073414.69208-3-jckuo@nvidia.com>
-References: <20210120073414.69208-1-jckuo@nvidia.com> <20210120073414.69208-3-jckuo@nvidia.com>
-Subject: Re: [PATCH v7 02/14] clk: tegra: Don't enable PLLE HW sequencer at init
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        nkristam@nvidia.com, linux-clk@vger.kernel.org,
-        JC Kuo <jckuo@nvidia.com>, Thierry Reding <treding@nvidia.com>
-To:     JC Kuo <jckuo@nvidia.com>, gregkh@linuxfoundation.org,
-        jonathanh@nvidia.com, kishon@ti.com, mturquette@baylibre.com,
-        robh@kernel.org, thierry.reding@gmail.com
-Date:   Mon, 08 Feb 2021 11:28:40 -0800
-Message-ID: <161281252000.76967.4881086496669699756@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210208140820.10410-1-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting JC Kuo (2021-01-19 23:34:02)
-> PLLE hardware power sequencer references PEX/SATA UPHY PLL hardware
-> power sequencers' output to enable/disable PLLE. PLLE hardware power
-> sequencer has to be enabled only after PEX/SATA UPHY PLL's sequencers
-> are enabled.
->=20
-> Signed-off-by: JC Kuo <jckuo@nvidia.com>
-> Acked-by: Thierry Reding <treding@nvidia.com>
-> ---
+On Mon, Feb 08, 2021 at 05:08:04PM +0300, Serge Semin wrote:
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+Hi Serge
+
+I suggest you split this patchset up. This uses the generic GPIO
+framework, which is great. But that also means you should be Cc: the
+GPIO subsystem maintainers and list. But you don't want to spam them
+with all the preparation work, which has little to do with the GPIO
+code.
+
+So please split the actual GPIO driver and DT binding patches from the
+rest. netdev can review the preparation work, with a comment in the
+0/X patch about what the big picture is, and then afterwards review
+the GPIO patchset with a wider audience.
+
+And as Jakub pointed out, nobody is going to review 60 patches all at
+once. Please submit one series at a time, get it merged, and then
+move onto the next.
+
+	 Andrew
