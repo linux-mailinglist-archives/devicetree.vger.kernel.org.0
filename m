@@ -2,87 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E9E313926
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:19:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 752223139E2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:43:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230313AbhBHQTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 11:19:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38138 "EHLO
+        id S233536AbhBHQnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 11:43:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232677AbhBHQTI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 11:19:08 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E45C061786;
-        Mon,  8 Feb 2021 08:18:27 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id B33B54207F;
-        Mon,  8 Feb 2021 16:18:23 +0000 (UTC)
-Subject: Re: [PATCH 05/18] tty: serial: samsung_tty: add support for Apple
- UARTs
-To:     Marc Zyngier <maz@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, Arnd Bergmann <arnd@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-6-marcan@marcan.st> <87lfc1l4lo.wl-maz@kernel.org>
- <e842f37d-d788-2d34-05e4-86ef94aed8f5@marcan.st>
- <73116feaa00de9173d1f2c35ce16e08f@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <7adf8ede-f7ff-7c62-d0fd-9ab4eaf25741@marcan.st>
-Date:   Tue, 9 Feb 2021 01:18:21 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        with ESMTP id S234589AbhBHQm6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 11:42:58 -0500
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED00FC061794;
+        Mon,  8 Feb 2021 08:41:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=zsMyB8iB5UFqB7I23yLfnPURCPkNxas5AAE7y5zKVNk=; b=0KBKndFzSldu2iADE2qOcDWoAu
+        fI//NkZoWtROK5JPXUNq1Hrz73Ua6/4jCPrvxg5ZN/DgAfcxuEY5bSjcmscNbY3J76I3vYQaKnBi4
+        vYvCv3mMoQeIqJClK6IYUmCRbtxSdNpVz8LBIsrNeN0TBi/oqZ79zQpzRV2549g2zC2RmNK5cXBvb
+        AG3wqRxCgvCHq26ugQI8HxKKF4PV48dJwEiyx7fWF6vr6rngXmlt/PI1jNztMDJsj0v5oasRwFmY1
+        PPModuGvc/3gxr7RPlJ/IyRk/NZY8+4AR5dzrTV96MsiNjCMgn64YCk1Ec57UaOXyEHcxKOwNiXw2
+        XoCsD83w==;
+Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <mperttunen@nvidia.com>)
+        id 1l99as-0000Cr-G2; Mon, 08 Feb 2021 18:40:58 +0200
+From:   Mikko Perttunen <mperttunen@nvidia.com>
+To:     thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
+        will@kernel.org, robh+dt@kernel.org, frowand.list@gmail.com,
+        robin.murphy@arm.com
+Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [RFC PATCH 0/8] Host1x context isolation support
+Date:   Mon,  8 Feb 2021 18:38:40 +0200
+Message-Id: <20210208163848.2504291-1-mperttunen@nvidia.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-In-Reply-To: <73116feaa00de9173d1f2c35ce16e08f@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 84.249.134.236
+X-SA-Exim-Mail-From: mperttunen@nvidia.com
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2021 19.34, Marc Zyngier wrote:
-> On 2021-02-07 09:12, Hector Martin 'marcan' wrote:
->> On 06/02/2021 22.15, Marc Zyngier wrote:
->>> Do you actually need a new port type here? Looking at the driver
->>> itself, it is mainly used to work out the IRQ model. Maybe introducing
->>> a new irq_type field in the port structure would be better than
->>> exposing this to userspace (which should see something that is exactly
->>> the same as a S3C UART).
->>
->> Well... every S3C variant already has its own port type here.
->>
->> #define PORT_S3C2410    55
->> #define PORT_S3C2440    61
->> #define PORT_S3C2400    67
->> #define PORT_S3C2412    73
->> #define PORT_S3C6400    84
->>
->> If we don't introduce a new one, which one should we pretend to be? :)
-> 
-> Pick one! :D
+Hi all,
 
-*queries /dev/urandom* :-)
+this series adds support for Host1x 'context isolation'. Since
+when programming engines through Host1x, userspace can program in
+any addresses it wants, we need some way to isolate the engines'
+memory spaces. Traditionally this has either been done imperfectly
+with a single shared IOMMU domain, or by copying and verifying the
+programming command stream at submit time (Host1x firewall).
 
->> I agree that it might make sense to merge all of these into one,
->> though; I don't know what the original reason for splitting them out
->> is. But now that they're part of the userspace API, this might not be
->> a good idea. Though, unsurprisingly, some googling suggests there are
->> zero users of these defines in userspace.
-> 
-> I don't think we can do that, but I don't think we should keep adding
-> to this unless there is a very good reason. Greg would know, I expect.
+Since Tegra186 there is a privileged (only usable by kernel)
+Host1x opcode that allows setting the stream ID sent by the engine
+to the SMMU. So, by allocating a number of context banks and stream
+IDs for this purpose, and using this opcode at the beginning of
+each job, we can implement isolation. Due to the limited number of
+context banks only each process gets its own context, and not
+each channel.
 
-Greg, what do you think? Add more PORT_ UART types for Samsung variants, 
-or overload one of the existing ones and deal with it in the driver?
+This feature also allows sharing engines among multiple VMs when
+used with Host1x's hardware virtualization support - up to 8 VMs
+can be configured with a subset of allowed stream IDs, enforced
+at hardware level.
+
+To implement this, this series adds a new host1x context bus, which
+will contain the 'struct device's corresponding to each context
+bank / stream ID, changes to device tree and SMMU code to allow
+registering the devices and using the bus, as well as the Host1x
+stream ID programming code and support in TegraDRM.
+
+The series is based on v5 of the "Host1x/TegraDRM UAPI" series,
+which still hasn't quite settled. Also, I haven't updated the
+device tree bindings (or converted them to YAML) yet, so this
+is RFC for now.
+
+Thanks!
+
+Mikko
+
+Mikko Perttunen (8):
+  of/device: Allow specifying a custom iommu_spec to of_dma_configure
+  gpu: host1x: Add context bus
+  gpu: host1x: Add context device management code
+  gpu: host1x: Program context stream ID on submission
+  iommu/arm-smmu: Attach to host1x context device bus
+  arm64: tegra: Add Host1x context stream IDs on Tegra186+
+  drm/tegra: Support context isolation
+  drm/tegra: vic: Implement get_streamid_offset
+
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi  |   9 ++
+ drivers/gpu/Makefile                      |   3 +-
+ drivers/gpu/drm/tegra/drm.h               |   1 +
+ drivers/gpu/drm/tegra/uapi.h              |   1 +
+ drivers/gpu/drm/tegra/uapi/submit.c       |  13 ++
+ drivers/gpu/drm/tegra/uapi/uapi.c         |  34 ++++-
+ drivers/gpu/drm/tegra/vic.c               |  38 +++++
+ drivers/gpu/host1x/Kconfig                |   5 +
+ drivers/gpu/host1x/Makefile               |   2 +
+ drivers/gpu/host1x/context.c              | 161 ++++++++++++++++++++++
+ drivers/gpu/host1x/context.h              |  27 ++++
+ drivers/gpu/host1x/context_bus.c          |  31 +++++
+ drivers/gpu/host1x/dev.c                  |  12 +-
+ drivers/gpu/host1x/dev.h                  |   2 +
+ drivers/gpu/host1x/hw/channel_hw.c        |  52 ++++++-
+ drivers/gpu/host1x/hw/host1x06_hardware.h |  10 ++
+ drivers/gpu/host1x/hw/host1x07_hardware.h |  10 ++
+ drivers/iommu/arm/arm-smmu/arm-smmu.c     |  13 ++
+ drivers/iommu/of_iommu.c                  |  12 +-
+ drivers/of/device.c                       |   9 +-
+ include/linux/host1x.h                    |  21 +++
+ include/linux/host1x_context_bus.h        |  15 ++
+ include/linux/of_device.h                 |  34 ++++-
+ include/linux/of_iommu.h                  |   6 +-
+ 24 files changed, 495 insertions(+), 26 deletions(-)
+ create mode 100644 drivers/gpu/host1x/context.c
+ create mode 100644 drivers/gpu/host1x/context.h
+ create mode 100644 drivers/gpu/host1x/context_bus.c
+ create mode 100644 include/linux/host1x_context_bus.h
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+2.30.0
+
