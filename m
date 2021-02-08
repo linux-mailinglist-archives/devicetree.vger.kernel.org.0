@@ -2,41 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3C92313DC0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:41:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C01DE313DCA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:42:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235700AbhBHSkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 13:40:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57894 "EHLO mail.kernel.org"
+        id S234504AbhBHSlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 13:41:20 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58448 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235710AbhBHSjg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 13:39:36 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B47A760C3F;
-        Mon,  8 Feb 2021 18:38:54 +0000 (UTC)
+        id S235690AbhBHSlQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 13:41:16 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C1F2F64E6F;
+        Mon,  8 Feb 2021 18:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612809535;
-        bh=SJZ0NVTsr2Wlxcsv1fv1kCF7qQH9E81Nonfp1RQf2jc=;
+        s=k20201202; t=1612809635;
+        bh=7ALs6mqpwEmsTP800ZCsUHPGdJfs/sIf4APkcqdnOxw=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=aKgHoLgsSGyJMiXx+Ih+Tk1rC/2eMKt2fZf5+Sx31/ElTclR/w2bWqwtCygNbuWfj
-         Yj4FV7LzG+aY+XAg//9s83baQAdpuEHLct4DpQyoyrF1NxO8ikj1i3vSemmIz55rcF
-         KYDTVM1vcWpw66bXt7A1jTuj2M7bGRjf23/9FC6strvhdxFvbbZ2AbYrlO4owsSy1m
-         xxqGkD7bWvBRQ3T/3HIOMseF7m0M7utgOvqpi4qz3ZM+3IBGkb4Arh4EjPyqiWo6xd
-         rz90DTRAEU5TZ8/mmYFsmIZX8BA/aZWB5tBZTfyTdoZFmo1fteGJI+ch/wEloUKCcg
-         0N8WQPz3D1i8g==
+        b=AgbQiKd/TXtpeuqqQeXJTMbG2BcWztR5Lz+nbm5VE/ohurr8g3laR2xPMm7ui9EHn
+         vM8LcwSS29oGzQa0PLVIGfb+GHhZS5RwNG9W+TK1ihAekdtQ0YsY16Yq24nHir19kq
+         A4jnSoIxHLEU7FI558re9r5KMGkr80j3FNCN5lzbwf/izRLHKjGikaIpVoIzGRf0n6
+         lTdUIEBqE506kcLYvzCUvdnZl23vpXJqTgT4U5kVd1dc+6u+2bdFhJUCgqbdl8ZpcL
+         NKZG064snD0sbNu5kfYT3ICGw9sD7c96q6g8CYjT2FEuIp98zuBY4r+uAGl0iXZai4
+         7JeJdhCXwhzUQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        od@zcrc.me, Christophe Branchereau <cbranchereau@gmail.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-In-Reply-To: <20210123140958.12895-1-paul@crapouillou.net>
-References: <20210123140958.12895-1-paul@crapouillou.net>
-Subject: Re: [PATCH 1/3] dt-bindings: sound/ingenic: Add compatible strings for JZ4760(B) SoC
-Message-Id: <161280948305.10741.16478273980568461792.b4-ty@kernel.org>
-Date:   Mon, 08 Feb 2021 18:38:03 +0000
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        drinkcat@chromium.org, Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        srv_heupstream@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <1612678457-11548-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+References: <1612678457-11548-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+Subject: Re: (subset) [PATCH v4 0/3] Add support for MT6315 regulator
+Message-Id: <161280958330.10970.11171389385513802451.b4-ty@kernel.org>
+Date:   Mon, 08 Feb 2021 18:39:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -44,25 +45,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 23 Jan 2021 14:09:56 +0000, Paul Cercueil wrote:
-> Add the ingenic,jz4760b-codec and ingenic,jz4760-codec compatible
-> strings.
+On Sun, 7 Feb 2021 14:14:14 +0800, Hsin-Hsiung Wang wrote:
+> This patch series adds support for MediaTek PMIC MT6315 regulator driver,
+> which adds MT6315 related buck voltage data to the driver.
+> This series is based on below patch[1].
 > 
-> In the process, convert the previous compatible strings to use an enum
-> instead.
+> [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=429385
+> 
+> changes since v3:
+> - fix the error of binding document.
+> - refine the mt6315 regulator for better code quality.
+> - update mt6315 regulator node in the mt8192-evb.dts.
+> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/3] dt-bindings: sound/ingenic: Add compatible strings for JZ4760(B) SoC
-      commit: 45a90d4aba1781aa382d4aeedebcac7cc78e1927
-[2/3] ASoC: codec/ingenic: Depend on MACH_INGENIC
-      commit: bad929b81ce25bba1c3e9d91848ffdc166974256
-[3/3] ASoC: codec: Add driver for JZ4760 internal codec
-      commit: d9cd22e9c87cb61488d00f7279cfb2abf5238879
+[1/3] dt-bindings: regulator: document binding for MT6315 regulator
+      commit: 977fb5b58469c1367aa075e7e913c03cba7d466f
+[2/3] regulator: mt6315: Add support for MT6315 regulator
+      commit: 7aa382cfe714f61b0c29f02c31d389c506b4e2ae
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
