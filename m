@@ -2,359 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 047243133DE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 14:55:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36570313410
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 14:58:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231722AbhBHNyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 08:54:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35236 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231710AbhBHNye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 08:54:34 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86EF0C061788
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 05:53:53 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l96z7-0006qK-Br; Mon, 08 Feb 2021 14:53:49 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l96z6-0004pZ-KW; Mon, 08 Feb 2021 14:53:48 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
+        id S231816AbhBHN5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 08:57:12 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:56726 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231756AbhBHN5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 08:57:00 -0500
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
 To:     Rob Herring <robh+dt@kernel.org>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: [PATCH v5 2/2] counter: add IRQ or GPIO based event counter
-Date:   Mon,  8 Feb 2021 14:53:47 +0100
-Message-Id: <20210208135347.18494-3-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210208135347.18494-1-o.rempel@pengutronix.de>
-References: <20210208135347.18494-1-o.rempel@pengutronix.de>
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Joao Pinto <jpinto@synopsys.com>,
+        Lars Persson <larper@axis.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Vyacheslav Mitrofanov 
+        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 00/24] net: stmmac: Fix clocks/reset-related procedures
+Date:   Mon, 8 Feb 2021 16:55:44 +0300
+Message-ID: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add simple IRQ or GPIO base event counter. This device is used to measure
-rotation speed of some agricultural devices, so no high frequency on the
-counter pin is expected.
+Baikal-T1 SoC is equipped with two Synopsys DesignWare GMAC v3.73a-based
+ethernet interfaces with no internal Ethernet PHY attached. The IP-cores
+are configured as GMAC-AXI with CSR interface clocked by a dedicated
+signal. Each of which has got Rx/Tx FIFOs of 16KB, up to 8 MAC addresses
+capability, no embedded filter hash table logic, EEE enabled, IEEE 1588
+and 1588-2008 Advanced timestamping capabilities, power management with
+remote wake-up, IP CSUM hardware acceleration, a single PHY interface -
+RGMII with MDIO bus, 1xGPI and 1xGPO.
 
-The maximal measurement frequency depends on the CPU and system load. On
-the idle iMX6S I was able to measure up to 20kHz without count drops.
+This is a very first series of patches with fixes we've found to be
+required in order to make things working well for our setup. The series
+has turned to be rather large, but most of the patches are trivial and
+some of them are just cleanups, so it shouldn't be that hard to review.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
----
- drivers/counter/Kconfig     |  10 ++
- drivers/counter/Makefile    |   1 +
- drivers/counter/event-cnt.c | 250 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 261 insertions(+)
- create mode 100644 drivers/counter/event-cnt.c
+The series starts with fixes of the PBL (Programmable DMA Burst length)
+DT-property, which is supposed to be defined for each DW *MAC IP-core, but
+not only for a Allwinner sun* GMAC and DW xGMAC. The number of possible
+PBL values need to be also extended in accordance with the DW *MAC manual.
+Then the TSO flag property should be also declared free of the
+vendor-specific conditional schema, because the driver expects the
+compatible string to have the IP-core version specified anyway and none of
+the glue-drivers refer to the property directly.
 
-diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
-index 2de53ab0dd25..3284987e070a 100644
---- a/drivers/counter/Kconfig
-+++ b/drivers/counter/Kconfig
-@@ -29,6 +29,16 @@ config 104_QUAD_8
- 	  The base port addresses for the devices may be configured via the base
- 	  array module parameter.
- 
-+config EVENT_CNT
-+	tristate "Event counter driver"
-+	depends on GPIOLIB
-+	help
-+	  Select this option to enable event counter driver. Any interrupt source
-+	  can be used by this driver as the event source.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called gpio-pulse-cnt.
-+
- config STM32_TIMER_CNT
- 	tristate "STM32 Timer encoder counter driver"
- 	depends on MFD_STM32_TIMERS || COMPILE_TEST
-diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
-index 0a393f71e481..6626900468f6 100644
---- a/drivers/counter/Makefile
-+++ b/drivers/counter/Makefile
-@@ -6,6 +6,7 @@
- obj-$(CONFIG_COUNTER) += counter.o
- 
- obj-$(CONFIG_104_QUAD_8)	+= 104-quad-8.o
-+obj-$(CONFIG_EVENT_CNT)		+= event-cnt.o
- obj-$(CONFIG_STM32_TIMER_CNT)	+= stm32-timer-cnt.o
- obj-$(CONFIG_STM32_LPTIMER_CNT)	+= stm32-lptimer-cnt.o
- obj-$(CONFIG_TI_EQEP)		+= ti-eqep.o
-diff --git a/drivers/counter/event-cnt.c b/drivers/counter/event-cnt.c
-new file mode 100644
-index 000000000000..a394fe72c4e4
---- /dev/null
-+++ b/drivers/counter/event-cnt.c
-@@ -0,0 +1,250 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-+ */
-+
-+#include <linux/counter.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/irq.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#define EVENT_CNT_NAME		"event-cnt"
-+
-+struct event_cnt_priv {
-+	struct counter_device counter;
-+	struct counter_ops ops;
-+	struct gpio_desc *gpio;
-+	int irq;
-+	bool enabled;
-+	atomic_t count;
-+};
-+
-+static irqreturn_t event_cnt_isr(int irq, void *dev_id)
-+{
-+	struct event_cnt_priv *priv = dev_id;
-+
-+	atomic_inc(&priv->count);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static ssize_t event_cnt_enable_read(struct counter_device *counter,
-+				     struct counter_count *count, void *private,
-+				     char *buf)
-+{
-+	struct event_cnt_priv *priv = counter->priv;
-+
-+	return sysfs_emit(buf, "%d\n", priv->enabled);
-+}
-+
-+static ssize_t event_cnt_enable_write(struct counter_device *counter,
-+				      struct counter_count *count,
-+				      void *private, const char *buf,
-+				      size_t len)
-+{
-+	struct event_cnt_priv *priv = counter->priv;
-+	bool enable;
-+	ssize_t ret;
-+
-+	ret = kstrtobool(buf, &enable);
-+	if (ret)
-+		return ret;
-+
-+	if (priv->enabled == enable)
-+		return len;
-+
-+	if (enable) {
-+		priv->enabled = enable;
-+		enable_irq(priv->irq);
-+	} else {
-+		disable_irq(priv->irq);
-+		priv->enabled = enable;
-+	}
-+
-+	return len;
-+}
-+
-+static const struct counter_count_ext event_cnt_ext[] = {
-+	{
-+		.name = "enable",
-+		.read = event_cnt_enable_read,
-+		.write = event_cnt_enable_write,
-+	},
-+};
-+
-+static enum counter_synapse_action event_cnt_synapse_actionss[] = {
-+	COUNTER_SYNAPSE_ACTION_RISING_EDGE,
-+};
-+
-+static int event_cnt_action_get(struct counter_device *counter,
-+			    struct counter_count *count,
-+			    struct counter_synapse *synapse,
-+			    size_t *action)
-+{
-+	*action = COUNTER_SYNAPSE_ACTION_RISING_EDGE;
-+
-+	return 0;
-+}
-+
-+static int event_cnt_read(struct counter_device *counter,
-+				 struct counter_count *count,
-+				 unsigned long *val)
-+{
-+	struct event_cnt_priv *priv = counter->priv;
-+
-+	*val = atomic_read(&priv->count);
-+
-+	return 0;
-+}
-+
-+static int event_cnt_write(struct counter_device *counter,
-+				  struct counter_count *count,
-+				  const unsigned long val)
-+{
-+	struct event_cnt_priv *priv = counter->priv;
-+
-+	atomic_set(&priv->count, val);
-+
-+	return 0;
-+}
-+
-+static int event_cnt_function_get(struct counter_device *counter,
-+				  struct counter_count *count, size_t *function)
-+{
-+	*function = COUNTER_COUNT_FUNCTION_INCREASE;
-+
-+	return 0;
-+}
-+
-+static int event_cnt_signal_read(struct counter_device *counter,
-+				 struct counter_signal *signal,
-+				 enum counter_signal_value *val)
-+{
-+	struct event_cnt_priv *priv = counter->priv;
-+	int ret;
-+
-+	ret = gpiod_get_value(priv->gpio);
-+	if (ret < 0)
-+		return ret;
-+
-+	*val = ret ? COUNTER_SIGNAL_HIGH : COUNTER_SIGNAL_LOW;
-+
-+	return 0;
-+}
-+
-+static struct counter_signal event_cnt_signals[] = {
-+	{
-+		.id = 0,
-+		.name = "Channel 0 signal",
-+	},
-+};
-+
-+static struct counter_synapse event_cnt_synapses[] = {
-+	{
-+		.actions_list = event_cnt_synapse_actionss,
-+		.num_actions = ARRAY_SIZE(event_cnt_synapse_actionss),
-+		.signal = &event_cnt_signals[0]
-+	},
-+};
-+
-+static enum counter_count_function event_cnt_functions[] = {
-+	COUNTER_COUNT_FUNCTION_INCREASE,
-+};
-+
-+static struct counter_count event_cnts[] = {
-+	{
-+		.id = 0,
-+		.name = "Channel 1 Count",
-+		.functions_list = event_cnt_functions,
-+		.num_functions = ARRAY_SIZE(event_cnt_functions),
-+		.synapses = event_cnt_synapses,
-+		.num_synapses = ARRAY_SIZE(event_cnt_synapses),
-+		.ext = event_cnt_ext,
-+		.num_ext = ARRAY_SIZE(event_cnt_ext),
-+	},
-+};
-+
-+static int event_cnt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct event_cnt_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->irq = platform_get_irq_optional(pdev,  0);
-+	if (priv->irq == -ENXIO)
-+		priv->irq = 0;
-+	else if (priv->irq < 0)
-+		return dev_err_probe(dev, priv->irq, "failed to get IRQ\n");
-+
-+	priv->gpio = devm_gpiod_get_optional(dev, NULL, GPIOD_IN);
-+	if (IS_ERR(priv->gpio))
-+		return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get GPIO\n");
-+
-+	if (!priv->irq && !priv->gpio) {
-+		dev_err(dev, "IRQ and GPIO are not found. At least one source should be provided\n");
-+		return -ENODEV;
-+	}
-+
-+	if (!priv->irq) {
-+		int irq = gpiod_to_irq(priv->gpio);
-+
-+		if (irq < 0)
-+			return dev_err_probe(dev, irq, "failed to get IRQ from GPIO\n");
-+
-+		priv->irq = irq;
-+	}
-+
-+	priv->ops.action_get = event_cnt_action_get;
-+	priv->ops.count_read = event_cnt_read;
-+	priv->ops.count_write = event_cnt_write;
-+	priv->ops.function_get = event_cnt_function_get;
-+	if (priv->gpio)
-+		priv->ops.signal_read  = event_cnt_signal_read;
-+
-+	priv->counter.name = dev_name(dev);
-+	priv->counter.parent = dev;
-+	priv->counter.ops = &priv->ops;
-+	priv->counter.counts = event_cnts;
-+	priv->counter.num_counts = ARRAY_SIZE(event_cnts);
-+	priv->counter.signals = event_cnt_signals;
-+	priv->counter.num_signals = ARRAY_SIZE(event_cnt_signals);
-+	priv->counter.priv = priv;
-+
-+	irq_set_status_flags(priv->irq, IRQ_NOAUTOEN);
-+	ret = devm_request_irq(dev, priv->irq, event_cnt_isr,
-+			       IRQF_TRIGGER_RISING | IRQF_NO_THREAD,
-+			       EVENT_CNT_NAME, priv);
-+	if (ret)
-+		return ret;
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	return devm_counter_register(dev, &priv->counter);
-+}
-+
-+static const struct of_device_id event_cnt_of_match[] = {
-+	{ .compatible = "event-counter", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, event_cnt_of_match);
-+
-+static struct platform_driver event_cnt_driver = {
-+	.probe = event_cnt_probe,
-+	.driver = {
-+		.name = EVENT_CNT_NAME,
-+		.of_match_table = event_cnt_of_match,
-+	},
-+};
-+module_platform_driver(event_cnt_driver);
-+
-+MODULE_ALIAS("platform:event-counter");
-+MODULE_AUTHOR("Oleksij Rempel <o.rempel@pengutronix.de>");
-+MODULE_DESCRIPTION("Event counter driver");
-+MODULE_LICENSE("GPL v2");
+Then we suggest to refactor the "snps,{axi,mtl-rx,mtl-tx}-config"
+properties/nodes declaration, so the configs would be able to be defined
+as the sub-nodes of the DW *MAC DT nodes. The reason is that the DW MAC
+DT-schema doesn't validate them at the moment and having them defined as
+separate from the DW MAC nodes isn't descriptive at all. (Please note the
+patch log, since the DT-schema tool needs to be fixed in order to make the
+change working).
+
+Another big modification of the DW *MAC bindings file is the generic
+DT-properties and generic DT-nodes schema splitting up. So in order to
+improve the DW *MAC bindings maintainability we suggest to leave the
+generic DW *MAC properties definition in the "snps,dwmac.yaml" file and
+move the bindings for the generic DW *MAC DT-nodes validation in the
+dedicated DT-schema "snps,dwmac-generic.yaml".
+
+Another concern has been related with the System/CSR clocks. We have
+discovered that currently the "stmmaceth" clocks are considered by the
+driver as the combined system+CSR clocks, while in fact CSR interface can
+be equipped with a dedicated clock source (this is our case). If so then
+the clock with "pclk" can be used to define the later one. But neither
+bindings are descriptive enough nor the DW *MAC driver is fixed to support
+that feature. So first we suggest to elaborate stmmaceth/pclk description
+in the bindings file and then fix the MDIO-bus clock selection procedure
+so pclk would be used there if specified. The DW QoS Eth MAC driver is
+also fixed in accordance with that modification.
+
+The biggest part of the series concerns adding the generic Tx/Rx clocks
+support to the DT-schema and to the DW MAC drivers and with fixed related
+to that. It is really a good decision to add the generic Tx/Rx clocks,
+because a lot of the glue-drivers expect them to be specified in the
+DT-node. So first we add the "tx"/"rx" clocks declaration in the generic
+DW MAC DT-schema. Then the glue-drivers like
+dwmac-rk/dwmac-sti/dwmac-stm32 remove() callbacks need to be fixed to call
+stmmac_remove_config_dt() otherwise the resources allocated in the
+stmmac_probe_config_dt() won't be freed on the device removal. A small
+modification needs to be provided for the cleanup-on-failure path of the
+stmmac_probe_config_dt() method in order to improve its maintainability.
+Then we've discovered that the "stmmaceth" and "pclk" clocks while being
+acquired and enabled in the stmmac_probe_config_dt() method are disabled
+in the stmmac_dvr_remove() function, which is erroneous for every
+cleanup-on-failure path of the glue-driver probe methods. Finally before
+adding the Tx/Rx clocks support we provide a set of optimizations of the
+"stmmaceth"/"pclk"/"ptp_clk" clocks and the "stmmaceth" reset procedures
+by removing the manual optional resources acquisition/enable/disable
+implementation with the one provided by the corresponding subsystems.
+Since the generic Tx/Rx clocks have been added we can freely remove the
+similar clocks handling from the glue-drivers.
+
+(Please note I have also discovered, but didn't try to fix the Allwinner
+Sun8i cleanup-on-failure path implemented in the DW MAC probe() procedure.
+It has been broken since don't know what time and it's a bit too
+complicated to be fixed with no hardware at hands.)
+
+That's it for now. The next series will concern the GPIOs support and
+Baikal-T1 SoC specific bindings.
+
+Link: https://lore.kernel.org/netdev/20201214091616.13545-1-Sergey.Semin@baikalelectronics.ru
+Changelog v2:
+- Discard "snps" vendor-prefix from the new AXI/MTL-Tx/Rx config
+  sub-nodes.
+- Add the new sub-nodes "axi-config", "mtl-rx-config" and "mtl-tx-config"
+  to the DW *MAC bindings describing the nodes the now deprecated
+  config-properties were supposed to refer to.
+- Fix invalid identation in the "snps,route-*" property settings.
+- Discard the patch
+  [PATCH 15/25] net: stmmac: Use optional clock request method to get pclk
+  since the corresponding functionality has already been integrated into
+  the driver.
+- Rebase on top of the kernel 5.11-rc7.
+
+Fixes: d2ed0a7755fe ("net: ethernet: stmmac: fix of-node and fixed-link-phydev leaks")
+Fixes: f573c0b9c4e0 ("stmmac: move stmmac_clk, pclk, clk_ptp_ref and stmmac_rst to platform structure")
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Vyacheslav Mitrofanov <Vyacheslav.Mitrofanov@baikalelectronics.ru>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: netdev@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (24):
+  dt-bindings: net: dwmac: Validate PBL for all IP-cores
+  dt-bindings: net: dwmac: Extend number of PBL values
+  dt-bindings: net: dwmac: Fix the TSO property declaration
+  dt-bindings: net: dwmac: Refactor snps,*-config properties
+  dt-bindings: net: dwmac: Elaborate stmmaceth/pclk description
+  dt-bindings: net: dwmac: Add Tx/Rx clock sources
+  dt-bindings: net: dwmac: Detach Generic DW MAC bindings
+  net: stmmac: Add {axi,mtl-rx,mtl-tx}-config sub-nodes support
+  net: stmmac: dwmac-rk: Cleanup STMMAC DT-config in remove cb
+  net: stmmac: dwmac-sti: Cleanup STMMAC DT-config in remove cb
+  net: stmmac: dwmac-stm32: Cleanup STMMAC DT-config in remove cb
+  net: stmmac: Directly call reverse methods in stmmac_probe_config_dt()
+  net: stmmac: Fix clocks left enabled on glue-probes failure
+  net: stmmac: Use optional clock request method to get stmmaceth
+  net: stmmac: Use optional clock request method to get ptp_clk
+  net: stmmac: Use optional reset control API to work with stmmaceth
+  net: stmmac: dwc-qos: Cleanup STMMAC platform data clock pointers
+  net: stmmac: dwc-qos: Use dev_err_probe() for probe errors handling
+  net: stmmac: Add Tx/Rx platform clocks support
+  net: stmmac: dwc-qos: Discard Tx/Rx clocks request
+  net: stmmac: dwmac-imx: Discard Tx clock request
+  net: stmmac: Call stmmaceth clock as system clock in warn-message
+  net: stmmac: Use pclk to set MDC clock frequency
+  net: stmmac: dwc-qos: Save master/slave clocks in the plat-data
+
+ .../bindings/net/snps,dwmac-generic.yaml      | 154 +++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   | 578 ++++++++++--------
+ .../stmicro/stmmac/dwmac-dwc-qos-eth.c        |  90 +--
+ .../net/ethernet/stmicro/stmmac/dwmac-imx.c   |  21 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-intel.c |   2 +
+ .../net/ethernet/stmicro/stmmac/dwmac-rk.c    |   3 +
+ .../net/ethernet/stmicro/stmmac/dwmac-sti.c   |   3 +
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c |   2 +
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c |  31 +-
+ .../ethernet/stmicro/stmmac/stmmac_platform.c |  85 ++-
+ include/linux/stmmac.h                        |   2 +
+ 11 files changed, 616 insertions(+), 355 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml
+
 -- 
-2.30.0
+2.29.2
 
