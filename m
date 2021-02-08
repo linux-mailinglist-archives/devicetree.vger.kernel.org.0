@@ -2,156 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3315F313DB4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:38:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3C92313DC0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:41:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230395AbhBHSib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 13:38:31 -0500
-Received: from mail-wm1-f48.google.com ([209.85.128.48]:35832 "EHLO
-        mail-wm1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233317AbhBHSiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 13:38:08 -0500
-Received: by mail-wm1-f48.google.com with SMTP id j21so106327wmj.0;
-        Mon, 08 Feb 2021 10:37:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LCazIuYzBZltynFuvPO11MbeG9djR0YG9Vn4Gd94Mj8=;
-        b=QGfiMaFFqYMrxxD9dr1LLO2QXdRd8oDIAgBVmNmZGKSQV9jfes9BxzduerLUDqcL7r
-         WxpxAIbE8v10JbwjQE4DN1A8ci3mYwklZgnxvdnAsdXx00pK5puCCZ+NNnAQtOVaxk+X
-         ndB3UF3nPAu2BCoiZ+KNh8zq8JtQxLhIEITCBborkWXw839IiaYmElWpcSLDXS0lp/g8
-         ddU+b0mkLa6q4N2kDc9kAxBe7UgAbcxfqF4jUKOBlkNe52u1hpj14p84W6acKVsfSpOq
-         BjiNjZ9uVRXuJKtkx0QLIxY9Mw2DHS/D9yOVhAHaIkAM8DFWxb3uvt0R99IenYKqhtni
-         bknw==
-X-Gm-Message-State: AOAM533oPjCIelrBHnvxyBYve31smROscGcFpvRYOSYps5g5XUfuBZQP
-        fakfR2yhbFRAA/d7t5W/E04=
-X-Google-Smtp-Source: ABdhPJx5+93U+Vf00VOHmUASuEOURE6VEeP94SC6giYw0Z/wDYFCVRw7Hu+lyDXt+hRbtNuLKTqKbA==
-X-Received: by 2002:a1c:39d5:: with SMTP id g204mr92727wma.127.1612809444236;
-        Mon, 08 Feb 2021 10:37:24 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id x15sm13363628wro.66.2021.02.08.10.37.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Feb 2021 10:37:23 -0800 (PST)
-Date:   Mon, 8 Feb 2021 19:37:21 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, robh+dt@kernel.org,
-        Arnd Bergmann <arnd@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Olof Johansson <olof@lixom.net>
-Subject: Re: [PATCH 05/18] tty: serial: samsung_tty: add support for Apple
- UARTs
-Message-ID: <20210208183721.4gc7vyfgtpk7nch3@kozik-lap>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-6-marcan@marcan.st>
- <20210208105451.yumjjunjeyrglfnw@kozik-lap>
- <11d36c47-45c6-03ee-2d08-6692b5d0e241@marcan.st>
+        id S235700AbhBHSkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 13:40:07 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57894 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235710AbhBHSjg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 13:39:36 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B47A760C3F;
+        Mon,  8 Feb 2021 18:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612809535;
+        bh=SJZ0NVTsr2Wlxcsv1fv1kCF7qQH9E81Nonfp1RQf2jc=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=aKgHoLgsSGyJMiXx+Ih+Tk1rC/2eMKt2fZf5+Sx31/ElTclR/w2bWqwtCygNbuWfj
+         Yj4FV7LzG+aY+XAg//9s83baQAdpuEHLct4DpQyoyrF1NxO8ikj1i3vSemmIz55rcF
+         KYDTVM1vcWpw66bXt7A1jTuj2M7bGRjf23/9FC6strvhdxFvbbZ2AbYrlO4owsSy1m
+         xxqGkD7bWvBRQ3T/3HIOMseF7m0M7utgOvqpi4qz3ZM+3IBGkb4Arh4EjPyqiWo6xd
+         rz90DTRAEU5TZ8/mmYFsmIZX8BA/aZWB5tBZTfyTdoZFmo1fteGJI+ch/wEloUKCcg
+         0N8WQPz3D1i8g==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        od@zcrc.me, Christophe Branchereau <cbranchereau@gmail.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+In-Reply-To: <20210123140958.12895-1-paul@crapouillou.net>
+References: <20210123140958.12895-1-paul@crapouillou.net>
+Subject: Re: [PATCH 1/3] dt-bindings: sound/ingenic: Add compatible strings for JZ4760(B) SoC
+Message-Id: <161280948305.10741.16478273980568461792.b4-ty@kernel.org>
+Date:   Mon, 08 Feb 2021 18:38:03 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <11d36c47-45c6-03ee-2d08-6692b5d0e241@marcan.st>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 09, 2021 at 01:10:02AM +0900, Hector Martin wrote:
-> On 08/02/2021 19.54, Krzysztof Kozlowski wrote:
-> > > +enum s3c24xx_irq_type {
-> > > +	IRQ_DISCRETE = 0,
-> > > +	IRQ_S3C6400 = 1,
-> > > +	IRQ_APPLE = 2,
-> > 
-> > It seems you add the third structure to differentiate type of UART.
-> > There is already port type and s3c24xx_serial_drv_data, no need for
-> > third structure (kind of similar to tries of Tamseel Shams in recent
-> > patches). It's too much. Instead, differentiate by port type or prepare
-> > own set of uart_ops if it's really different (like you did with startup
-> > op).
+On Sat, 23 Jan 2021 14:09:56 +0000, Paul Cercueil wrote:
+> Add the ingenic,jz4760b-codec and ingenic,jz4760-codec compatible
+> strings.
 > 
-> This ties into little changes in a bunch of places, so separate uart_ops
-> callbacks for every one of those would end up duplicating a lot of code :(
-> 
-> That list is just used to map the port type to something that only
-> represents the type of IRQs, but its only real purpose for the indirection
-> is so I can do "== IRQ_DISCRETE" in some codepaths to mean "not apple or
-> S3C6400".
-> 
-> e.g.
-> 
->     if (s3c24xx_irq_type(port) == IRQ_DISCRETE)
->         free_irq(ourport->rx_irq, ourport);
-> 
-> Would have to become
-> 
->     if (port->type != IRQ_S3C6400 && port->type != IRQ_APPLE)
->         free_irq(ourport->rx_irq, ourport);
-> 
-> or
-> 
->     switch (port->type) {
->     case IRQ_S3C6400:
->     case IRQ_APPLE:
->         break;
->     default:
->         free_irq(ourport->rx_irq, ourport);
->     }
-> 
-> Which one do you prefer?
+> In the process, convert the previous compatible strings to use an enum
+> instead.
 
-The latter, especially that switches will appear quite a lot in such
-case.
+Applied to
 
-However this pattern (== IRQ_DISCRETE) appears only in three places so
-it should not be the main case considered here.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-However I saw later you actually replaced the
-s3c24xx_serial_has_interrupt_mask(), so it's not that bad.
+Thanks!
 
-In most of your code, there will be actually a switch with all three
-cases.
+[1/3] dt-bindings: sound/ingenic: Add compatible strings for JZ4760(B) SoC
+      commit: 45a90d4aba1781aa382d4aeedebcac7cc78e1927
+[2/3] ASoC: codec/ingenic: Depend on MACH_INGENIC
+      commit: bad929b81ce25bba1c3e9d91848ffdc166974256
+[3/3] ASoC: codec: Add driver for JZ4760 internal codec
+      commit: d9cd22e9c87cb61488d00f7279cfb2abf5238879
 
-> 
-> Aside: Marc didn't like introducing new port types into uapi, but if we
-> don't do that then we need a "real" port type in drv_data that isn't the
-> uapi-exposed port or something along those lines, with a separate enum
-> containing all the true port type values for that.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Looking at Greg's comment, we can get rid of the PORT_ stuff entirely.
-First of all, PORT_S3C2410 == PORT_S3C2412, so this define is not
-accurate.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-This leaves us with three types (s3c2400, s3c2440, s3c6410 and Apple).
-The s3c2440 could be removed with adding a new "ucon_mask" field to
-s3c24xx_serial_drv_data.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-This would end with s3c24xx, s3c6410 and Apple - quite nice choice.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-> 
-> > >   	/* Startup sequence is different for s3c64xx and higher SoC's */
-> > > -	if (s3c24xx_serial_has_interrupt_mask(port))
-> > > +	case IRQ_S3C6400:
-> > >   		s3c24xx_serial_ops.startup = s3c64xx_serial_startup;
-> > 
-> > Don't overwrite specific ops. It's difficult to see then which ops are
-> > being used. Instead create a new set of uart_ops matching the needs.
-> 
-> s3c24xx_serial_ops was already doing that here, but I can move that to a a
-> separate uart_ops too.
-
-You're right. This one would have to be improved before your change.
-Instead of replacing specific op calls in startup, I think it's better
-to have entirely separate ops instance for each variant:
-
-static const struct uart_ops s3c24xx_serial_ops;
-static const struct uart_ops s3c64xx_serial_ops;
-static const struct uart_ops s5l_serial_ops;
-
-This allows to add a "const", since uart_port takes such const pointer.
-
-Still during s3c24xx_serial_probe() correct ops would have to be
-assigned, but at least all ops are easily visible.
-
-Best regards,
-Krzysztof
-
+Thanks,
+Mark
