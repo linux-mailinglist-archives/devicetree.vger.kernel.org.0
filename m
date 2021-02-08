@@ -2,138 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46716313FCF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 21:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95DC831410D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 21:57:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235436AbhBHUBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 15:01:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47812 "EHLO mail.kernel.org"
+        id S233050AbhBHU4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 15:56:30 -0500
+Received: from mx2.suse.de ([195.135.220.15]:40120 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236546AbhBHUBW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 15:01:22 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4A5B664EBF
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 20:00:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612814436;
-        bh=nw5cx9R2dyXB0g7HMXdaZI25yvlYlTnfp4TqOf/KTu0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=skxU6r4hj2UW+Ln8wABqwJOsauM5oo4IK2QjQ8ND0nfSmeVTP9sCNpthCzv+VmcNq
-         nA9k4lRt24j+si2kDptPjgZG9mIxRM3dcfHrcf1Y/qOlX6RQAYLnK1u/iSr7HoSmt5
-         huSvPRpBKZq8wKhZk1GUffoAV0h3LvMo31w9NHaFa+r514jJl4NDk74bzOKN9ES8XI
-         AiBqLmN8mmL9rwmhR8OnGgaKRSTaaKOnlqM6fdGG/HGN8m+YSl1dCockFolsPckNL3
-         FKY7NAwxFZYjAvO7CKb6BORxwh95wHpVqdNutMRburqnggm82CwnYRj3nY0QD/KIH0
-         bay3KKdx7fdBA==
-Received: by mail-ej1-f42.google.com with SMTP id a9so27210072ejr.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 12:00:36 -0800 (PST)
-X-Gm-Message-State: AOAM5305lrHzgWe5Z3FoIYdw00w3jvzdDrerAQ8ibkslwNb/B1GAQeXk
-        /50cGC2ZVgQOISs6cq4hpNSkG/seMtg9EEAPtg==
-X-Google-Smtp-Source: ABdhPJwKUf124j8Q1eVEAfFwHApYDJlBFnTiwiC8ZoTuxPtOH1bmWFik979G2hwiVAZMbJnvocgRPGdcn9wmwZHoBYc=
-X-Received: by 2002:a17:906:fca1:: with SMTP id qw1mr17484103ejb.130.1612814434775;
- Mon, 08 Feb 2021 12:00:34 -0800 (PST)
+        id S230305AbhBHUyp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 15:54:45 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id BAD3EAE57;
+        Mon,  8 Feb 2021 20:53:54 +0000 (UTC)
+Message-ID: <5c69d62a7b4479d184b0ee8b8e5168e43cd494a0.camel@suse.de>
+Subject: Re: [PATCH v7 11/11] pwm: Add Raspberry Pi Firmware based PWM bus
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     u.kleine-koenig@pengutronix.de
+Cc:     f.fainelli@gmail.com, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
+        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
+        andy.shevchenko@gmail.com
+Date:   Mon, 08 Feb 2021 21:53:52 +0100
+In-Reply-To: <20210118123244.13669-12-nsaenzjulienne@suse.de>
+References: <20210118123244.13669-1-nsaenzjulienne@suse.de>
+         <20210118123244.13669-12-nsaenzjulienne@suse.de>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-oVNnO66HmWqHkepYu506"
+User-Agent: Evolution 3.38.3 
 MIME-Version: 1.0
-References: <20210205065827.577285-1-damien.lemoal@wdc.com>
- <20210205065827.577285-10-damien.lemoal@wdc.com> <20210205202505.GA3625674@robh.at.kernel.org>
- <aab05bea310fbdbac38990656647dd0fbf3c8323.camel@wdc.com>
-In-Reply-To: <aab05bea310fbdbac38990656647dd0fbf3c8323.camel@wdc.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 8 Feb 2021 14:00:21 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLbMbMx3TLf+CPG-MdimHTz2sdzgQdmmuQkLfnsTJQAvQ@mail.gmail.com>
-Message-ID: <CAL_JsqLbMbMx3TLf+CPG-MdimHTz2sdzgQdmmuQkLfnsTJQAvQ@mail.gmail.com>
-Subject: Re: [PATCH v16 09/16] riscv: Update Canaan Kendryte K210 device tree
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>
-Cc:     "palmer@dabbelt.com" <palmer@dabbelt.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Atish Patra <Atish.Patra@wdc.com>,
-        "seanga2@gmail.com" <seanga2@gmail.com>,
-        Anup Patel <Anup.Patel@wdc.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 5, 2021 at 6:13 PM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
->
-> On Fri, 2021-02-05 at 14:25 -0600, Rob Herring wrote:
-> [...]
-> > > +                   otp0: nvmem@50420000 {
-> > > +                           #address-cells = <1>;
-> > > +                           #size-cells = <1>;
-> > > +                           compatible = "canaan,k210-otp";
-> > > +                           reg = <0x50420000 0x100>,
-> > > +                                 <0x88000000 0x20000>;
-> > > +                           reg-names = "reg", "mem";
-> > > +                           clocks = <&sysclk K210_CLK_ROM>;
-> > > +                           resets = <&sysrst K210_RST_ROM>;
-> > > +                           read-only;
-> > > +                           status = "disabled";
-> >
-> > Your disabled nodes seem a bit excessive. A device should really only be
-> > disabled if it's a board level decision to use or not. I'd assume the
-> > OTP is always there and usable.
->
-> Please see below.
->
-> >
-> > > +
-> > > +                           /* Bootloader */
-> > > +                           firmware@00000 {
-> >
-> > Drop leading 0s.
-> >
-> > Is this memory mapped? If so, you are missing 'ranges' in the parent to
-> > make it translateable.
-> >
-> > > +                                   reg = <0x00000 0xC200>;
-> > > +                           };
-> > > +
-> > > +                           /*
-> > > +                            * config string as described in RISC-V
-> > > +                            * privileged spec 1.9
-> > > +                            */
-> > > +                           config-1-9@1c000 {
-> > > +                                   reg = <0x1C000 0x1000>;
-> > > +                           };
-> > > +
-> > > +                           /*
-> > > +                            * Device tree containing only registers,
-> > > +                            * interrupts, and cpus
-> > > +                            */
-> > > +                           fdt@1d000 {
-> > > +                                   reg = <0x1D000 0x2000>;
-> > > +                           };
-> > > +
-> > > +                           /* CPU/ROM credits */
-> > > +                           credits@1f000 {
-> > > +                                   reg = <0x1F000 0x1000>;
-> > > +                           };
-> > > +                   };
-> > > +
-> > > +                   dvp0: camera@50430000 {
-> > > +                           compatible = "canaan,k210-dvp";
-> >
-> > No documented. Seems to be several of them.
->
-> There are no Linux drivers for these undocumented nodes. That is why I did not
-> add any documentation.
 
-Documentation is required when dts files OR Linux drivers use them.
+--=-oVNnO66HmWqHkepYu506
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> make dtbs_check does not complain about that as long as
-> the nodes are marked disabled.
+On Mon, 2021-01-18 at 13:32 +0100, Nicolas Saenz Julienne wrote:
+> Adds support to control the PWM bus available in official Raspberry Pi
+> PoE HAT. Only RPi's co-processor has access to it, so commands have to
+> be sent through RPi's firmware mailbox interface.
+>=20
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+>=20
+> ---
 
-'disabled' should only turn off required properties missing checks.
-Undocumented compatible strings checks are about to get turned on now
-that I've made it work without false positives.
+ping :)
 
-> I kept these nodes to have the DTS in sync with
-> U-Boot which has them.
+Regards,
+Nicolas
 
-That's a worthwhile goal. Doesn't u-boot require documenting bindings?
 
-> Keeping them also creates documentation for the SoC
-> since this device tree is more detailed than the SoC specsheet...
+--=-oVNnO66HmWqHkepYu506
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-It's already 'documented' in u-boot it seems...
+-----BEGIN PGP SIGNATURE-----
 
-Rob
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmAhpOEACgkQlfZmHno8
+x/5Kegf+M/oVJydAlzbsZjeRxmVcRPlY/aU1YOdpfuIQyx991ny1JYSYaGMZ8b9g
+lJ4nBwIeNjAbsPMc0Th89250D6UkOhRb5L7C6grd0B++Ue01IMyQ2mA8UzxxhzYI
+aP/E3P1iwlnTpd/UbvgBr2xd2XBBEYEZ+CEeQohVX51Z/En4bEofLxQloVCwrAQ9
+z+4AWH9ZQDX3ItJ1zmdJGzmNuZjuNQV2igYjp0UuWY01wIkeau20FxDqFMweN9ul
+xMKBZ8zaX3T85TLQcYtj29KNQQGvUwV5xs8P36KJ5OfVUw4Ay4M5mSpb6nHb0GiU
+9YqIJIOQ+gzZH+tFpYr93phGwLoI7Q==
+=bPaD
+-----END PGP SIGNATURE-----
+
+--=-oVNnO66HmWqHkepYu506--
+
