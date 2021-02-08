@@ -2,54 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 680BD3142A0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 23:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0733142A7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 23:13:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230473AbhBHWLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 17:11:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57480 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229750AbhBHWLs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 17:11:48 -0500
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C6CC061786
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 14:10:52 -0800 (PST)
-Received: from [192.168.1.101] (abac187.neoplus.adsl.tpnet.pl [83.6.166.187])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 437B03E7B5;
-        Mon,  8 Feb 2021 23:10:20 +0100 (CET)
-Subject: Re: [PATCH v4 2/2] interconnect: qcom: Add SDM660 interconnect
- provider driver
-To:     AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, marijns95@gmail.com,
-        martin.botka1@gmail.com, MSM <linux-arm-msm@vger.kernel.org>,
-        phone-devel@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-pm@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20201017133718.31327-1-kholk11@gmail.com>
- <20201017133718.31327-3-kholk11@gmail.com>
- <24ad51dd-ff54-35af-a7bc-92d8cfa30c48@linaro.org>
- <CAK7fi1ZC8F57WmDg57tAS=b++ewjPcMhBXmeuM7Cjqkp-5Zu9Q@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <55f89461-607a-8864-ff31-77d16448128c@somainline.org>
-Date:   Mon, 8 Feb 2021 23:09:41 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S231256AbhBHWMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 17:12:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44988 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231235AbhBHWMq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 17:12:46 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3BAB764E9C;
+        Mon,  8 Feb 2021 22:12:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612822326;
+        bh=CtSTHr+IHwjK8skk3C0GZRJ7Ggi+hz69WkmTK8J4Unk=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=NmF7fyPzFlkCtl8PHMOUqRJ1Qp3oKJBh9UmbCKWc7YgXtorcrjtua7zz9FofZp5/0
+         fsojDfJCf96AVChCiUpQAA0N+agLSbjxzwUYNFYYtwRXGcBuJOpKu+AXdXtAcCURRq
+         7KuYhHEtRnoVC0jiGZWLPAP07/VZXOdSfxwb60ynbSTN9hyA2hCpPqhnblKSei7/an
+         3qFskTUvDnQLPqEFxIDOxFgoQCIzK0folLZTvdWEyaHTU/U7ij1ZkOjGbEMc3Qg3SK
+         4pbHfQYFgGq0DbyKG0UtnMU6golnRxrtcM2eU3HiflWrMHpWdrYhjuk9We1RG8R9PU
+         F3mwEQIMqVwqg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <CAK7fi1ZC8F57WmDg57tAS=b++ewjPcMhBXmeuM7Cjqkp-5Zu9Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <c67050c01ffc28977fee772ced7144390a96ba51.1611949675.git.mchehab+huawei@kernel.org>
+References: <cover.1611949675.git.mchehab+huawei@kernel.org> <c67050c01ffc28977fee772ced7144390a96ba51.1611949675.git.mchehab+huawei@kernel.org>
+Subject: Re: [PATCH v8 11/14] spmi: hisi-spmi-controller: move driver from staging
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Colin Ian King <colin.king@canonical.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        David Gow <davidgow@google.com>,
+        Juan Antonio Aldea-Armenteros <juant.aldea@gmail.com>,
+        Mayulong <mayulong1@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        YueHaibing <yuehaibing@huawei.com>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Date:   Mon, 08 Feb 2021 14:12:04 -0800
+Message-ID: <161282232477.4172033.10207198700180540073@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MMCC got merged via the clk-next tree, so.. since this driver was technically in, say for the dt-bindings conflict.. can we get it merged again? :) 
+Quoting Mauro Carvalho Chehab (2021-01-29 11:51:57)
+> The Hisilicon 6421v600 SPMI driver is ready for mainstream.
+>=20
+> So, move it from staging.
+>=20
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
 
-Konrad
+Acked-by: Stephen Boyd <sboyd@kernel.org>
+
+Rob had some comments on the binding that don't look to be addressed
+though so I'd prefer we get the binding into shape before graduating
+this driver from staging.
