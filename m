@@ -2,90 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 506A6313CEB
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:14:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 005E1313CEE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:14:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233038AbhBHSNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 13:13:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51546 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235530AbhBHSMa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 13:12:30 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2506064DB3;
-        Mon,  8 Feb 2021 18:11:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612807909;
-        bh=y2NVL4Yl43eMG6DShygFH6XSRthRihyKlGMQ4QdfkTU=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=En1E006nnP3KHMxUQLxhxfyvn/RKeVS6gqvvxNj9dORDZCV27/ZIAF+ny1QllUNbD
-         Mb/dNoY/AZOL+eUW30aFAnnRUaJNgIMseZz/p5box6doSINrHt35IbCgmhYGjgmMMe
-         SxFycZSrBMQLHHv5kIYdHjOxAlx9rJTIU8op/AYjEF+FFsFUnVa0YaldzveZTi2waN
-         uyTft2R7goXnTl8DpGOTob8tSGCcszS/gJ52KoXVDAuV96zxB0K88L0xIQfeml9DLn
-         Y8asfRb5ISqsDkWUgCwxPrGdJD6m1OBalA32DfDvFDn1S+VDZCItUmWKNqSKrPdZeN
-         QDiyaoF8LNMgA==
-Content-Type: text/plain; charset="utf-8"
+        id S234282AbhBHSNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 13:13:55 -0500
+Received: from mail-wr1-f42.google.com ([209.85.221.42]:44351 "EHLO
+        mail-wr1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235580AbhBHSNe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 13:13:34 -0500
+Received: by mail-wr1-f42.google.com with SMTP id g6so5342820wrs.11;
+        Mon, 08 Feb 2021 10:13:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uG44Nh0+1Z6GPKJ+sMh7UFsXf5L8CgK5m4MwsqTm8vM=;
+        b=jIf9VlxY9qXAESIYVVQ8yyiks4N/dz0BJYlqXZAY90rGLWxOuuJPRU5t5THsiZKqdS
+         Oj1UpgZAgcVpMCPPqC27LDAMyLxIKZl4s9qwaKL/2o9o6mfU3ByQ16PqT8voF/KtHNHy
+         eCStGUm0p2ItUrO55oRDLmfWQeBawSqDHq9GsnFVTwO/GtPNdMeAK/dGoRgjXFF8cbAW
+         WiXKgzH7SNbZie3sTMVJ5RYovCRQCIgg5iFYvUuysEComz05WfapqHZ16hF0/AlDoFgK
+         psjY9mYv81rE36Fk0c6u4rz3ACUoJt6YKrdIbMyVg9Ps5m0gajXNG/AybCmH1bx/7g4G
+         2dPg==
+X-Gm-Message-State: AOAM532svuTI3fuV3E1WSVHWuNc2xHTUJi9+nuBlGUOCxPXwcdgS3F72
+        nWyW3EcGDTEjbo7xN8UqCUI=
+X-Google-Smtp-Source: ABdhPJy/wKPjP7+LBFoeHW0XLxMt/V+JDUKUXKCYLCJTnC5Yurk6M5a1DiVIEb/R09EmHRvq8ISlSg==
+X-Received: by 2002:adf:e3cd:: with SMTP id k13mr84116wrm.289.1612807972155;
+        Mon, 08 Feb 2021 10:12:52 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id s23sm21317647wmc.35.2021.02.08.10.12.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Feb 2021 10:12:49 -0800 (PST)
+Date:   Mon, 8 Feb 2021 19:12:48 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>, Arnd Bergmann <arnd@kernel.org>,
+        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        linux-kernel@vger.kernel.org, soc@kernel.org,
+        Olof Johansson <olof@lixom.net>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 01/18] dt-bindings: vendor-prefixes: add AAPL prefix
+Message-ID: <20210208181248.tbgffdwghlseawic@kozik-lap>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-2-marcan@marcan.st>
+ <20210208102730.p4nhsl35oowsklv2@kozik-lap>
+ <20210208173215.GA1567700@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210131013009.54177-1-konrad.dybcio@somainline.org>
-References: <20210131013009.54177-1-konrad.dybcio@somainline.org>
-Subject: Re: [PATCH] clk: qcom: smd-rpm: Add mdm9607 clocks
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        phone-devel@vger.kernel.org
-Date:   Mon, 08 Feb 2021 10:11:47 -0800
-Message-ID: <161280790782.76967.18306042361115021910@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210208173215.GA1567700@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Konrad Dybcio (2021-01-30 17:30:09)
-> Add support for RPM-managed clocks on the MDM9607 platform.
->=20
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  .../devicetree/bindings/clock/qcom,rpmcc.txt  |  1 +
->  drivers/clk/qcom/clk-smd-rpm.c                | 32 +++++++++++++++++++
->  2 files changed, 33 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt b/Doc=
-umentation/devicetree/bindings/clock/qcom,rpmcc.txt
-> index b44a0622fb3a..5ac207d4b8ab 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt
-> +++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt
-> @@ -10,6 +10,7 @@ Required properties :
->  - compatible : shall contain only one of the following. The generic
->                 compatible "qcom,rpmcc" should be also included.
-> =20
-> +                       "qcom,rpmcc-mdm9607", "qcom,rpmcc"
->                         "qcom,rpmcc-msm8660", "qcom,rpmcc"
->                         "qcom,rpmcc-apq8060", "qcom,rpmcc"
->                         "qcom,rpmcc-msm8916", "qcom,rpmcc"
-> diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rp=
-m.c
-> index 0e1dfa89489e..ceea50bae8f8 100644
-> --- a/drivers/clk/qcom/clk-smd-rpm.c
-> +++ b/drivers/clk/qcom/clk-smd-rpm.c
-> @@ -406,6 +406,37 @@ static const struct clk_ops clk_smd_rpm_branch_ops =
-=3D {
->         .unprepare      =3D clk_smd_rpm_unprepare,
->  };
-> =20
-> +/* mdm9607 */
-> +DEFINE_CLK_SMD_RPM_BRANCH(mdm9607, xo_clk_src, xo_a_clk_src, QCOM_SMD_RP=
-M_MISC_CLK, 0,
-> +                                                               19200000);
+On Mon, Feb 08, 2021 at 11:32:15AM -0600, Rob Herring wrote:
+> On Mon, Feb 08, 2021 at 11:27:30AM +0100, Krzysztof Kozlowski wrote:
+> > On Fri, Feb 05, 2021 at 05:39:34AM +0900, Hector Martin wrote:
+> > > Amusingly, this wasn't yet documented, even though this vendor prefix
+> > > has been used since time immemorial on PPC.
+> > > 
+> > > Signed-off-by: Hector Martin <marcan@marcan.st>
+> > > ---
+> > >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > index 041ae90b0d8f..d7950c723472 100644
+> > > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > @@ -25,6 +25,8 @@ patternProperties:
+> > >    # Keep list in alphabetical order.
+> > >    "^70mai,.*":
+> > >      description: 70mai Co., Ltd.
+> > > +  "^AAPL,.*":
+> > 
+> > All prefixes are lower case... see ABB below (not mentioning that the
+> > company name is not APPLE), so just "apple".
+> 
+> Grep the kernel tree for 'AAPL,'.
 
-Same comment about the parent rate being specified here. Please follow
-how clk-rpmh has done it.
+I know it's the ticker, but the point was - we don't use tickers here
+for none of other platforms.
 
-> +DEFINE_CLK_SMD_RPM(mdm9607, pcnoc_clk, pcnoc_a_clk, QCOM_SMD_RPM_BUS_CLK=
-, 0);
+Mentioned grep brings only one result:
+arch/powerpc/platforms/powermac/pic.c:   * cases where the APPL,interrupts property is completely
+
+so hardly an argument for backwards consistency, within the kernel.
+
+On the other hand, some DTs for iPhones mention "apple", not APPL:
+https://www.theiphonewiki.com/wiki/D211AP/Device_Tree
+https://www.theiphonewiki.com/wiki/D331AP/Device_Tree
+https://gist.github.com/bazad/1faef1a6fe396b820a43170b43e38be1
+
+Although I am not sure how reliable are the sources.
+
+> It comes from the the ticker symbol 
+> which early on was the preferred form, but we've tended to move away 
+> from that. The DT Apple ships (which is *very* different) uses both 
+> forms.
+> 
+> So keep what exists already or have old AAPL and new apple?
+
+Hectore mention old PowerPC Apple sources were using the APPL, but it
+seems they did not end up here. What would be the point to stick to the
+old prefix if we cannot find it?
+
+Maybe they exists in other systems? I could not find such in latest
+FreeBSD, but there were not many DTSes inside.
+
+Best regards,
+Krzysztof
