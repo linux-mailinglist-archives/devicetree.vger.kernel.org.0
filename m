@@ -2,197 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19460313160
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 12:51:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D0D313176
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 12:55:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233479AbhBHLu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 06:50:27 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:37649 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233475AbhBHLsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 06:48:22 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 118Bl2tP019426;
-        Mon, 8 Feb 2021 12:47:19 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=uLUxLU+qfYHwwCSpsc0nmoBAGh3ZTi70jEcKsAoLbJQ=;
- b=YxYHAD4SMPuXpD4fZ35bT8RM6N7QEZp35uUEYPqg+6QUi2xw9anZAL8bRLT/2AraBKRW
- aB5tExjrqI3G11sZioyDiz8J0IUv779w4fm2IGD7/joSmf2umP7IrJWpCPsrwoSiX8YS
- K6ZXt5TQYXwwTkGy/3blk1v0DpOxr14Ntc71WwhzsVfN7cxR7b6WN7m1H2bE5G215QvW
- MpUEaMustoq1P/NEYW2KU+CcAcvEx4DPk3AgyeGWxA4ESdD7Eeie8nc0xms2xeBjWzFH
- unJ2cpT80Vghms49I29Az52cMVw3YgNmQovcWWQdK/K3GnE/tDXXQBcrsAcxDaaTaV8H Rw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 36hr319qve-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 08 Feb 2021 12:47:19 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AE2C510002A;
-        Mon,  8 Feb 2021 12:47:18 +0100 (CET)
-Received: from Webmail-eu.st.com (gpxdag2node6.st.com [10.75.127.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A159223C7C6;
-        Mon,  8 Feb 2021 12:47:18 +0100 (CET)
-Received: from localhost (10.75.127.117) by GPXDAG2NODE6.st.com (10.75.127.70)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 8 Feb 2021 12:47:17
- +0100
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH v3 2/2] phy: stm32: register usbphyc as clock provider of ck_usbo_48m clock
-Date:   Mon, 8 Feb 2021 12:46:59 +0100
-Message-ID: <20210208114659.15269-3-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210208114659.15269-1-amelie.delaunay@foss.st.com>
-References: <20210208114659.15269-1-amelie.delaunay@foss.st.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.117]
-X-ClientProxiedBy: GPXDAG1NODE6.st.com (10.75.127.67) To GPXDAG2NODE6.st.com
- (10.75.127.70)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-08_03:2021-02-08,2021-02-08 signatures=0
+        id S232002AbhBHLy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 06:54:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232881AbhBHLwl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 06:52:41 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C14C06174A;
+        Mon,  8 Feb 2021 03:52:00 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id 18so7415121pfz.3;
+        Mon, 08 Feb 2021 03:52:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=LfB7ydJjgNU6qdDbdeb61u1uczQgf3qmcl9sbfbMLTw=;
+        b=MDKZtz8SgocSr4SOIJfB/BuBwfQNX+yKBUQHzKIH820YxZIfw4/k4N6e9sePUmkpEV
+         slyVXhcajaz8SG8pfj61dGT7lPhBk0rigFwpOQj1h19c8jwN5IKV5/2euUO6WcWv6UvS
+         qtnTo+ouGZAVCu6YABj6Vu3fbUnclja4EEQ/PknHrH8bDx/wvanRU6fejESTRl7isVM8
+         tDQvEGCf9WuTPJD30fhaIusQ+eyW1CD+G9iRRi7T01SdiB6aVeIwURD8A2klRf/QohKQ
+         V/ijd1FU5wWA0vna+qRg+XC7rx03+ztsRgj6sa3N64EOqA0WQsHiTBDb0PSi08rhY+oY
+         L3aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=LfB7ydJjgNU6qdDbdeb61u1uczQgf3qmcl9sbfbMLTw=;
+        b=eBFErr1JS8yBL5HEyHwqpAmaY3oHYtU90PjoSBXVWp+VVT0BJyxhzDABtfPcNDskz4
+         7NIG+2A8fiEfw8aIEmTebiQe2El+B2oaoYywuZTPJYmH67pwAj6dMBYoLdyQEFNntrez
+         7+Ckf15PobWZOiSLo1N/0cmEvHSUSzwH/NUm+w5LFx4ErqFNd2Mi6C2gh7cyBtHTextT
+         jBjge9EHYJRtGIZNd+s413GZ32Npav/NFpYSGdwAkv5aTwgPxO/qnzRr72Ub2ZKCWo+L
+         k54cmGTDimYbq3h/Z3zoj8SvbGM/T3uyxtViV0YsZ4FbFQuJ7xfxytmN9AJrGzi5S2if
+         x20g==
+X-Gm-Message-State: AOAM530merGo3hdXSWAKVXx9gsh4OdA0gxxwXyCv2Bc5nrTmV+YBEGzp
+        6HFQTlJqjHWsa2pxm9kTTB4z5Zzs2jWjGA==
+X-Google-Smtp-Source: ABdhPJwzg5PkZvis7+lR6gJTvSlytbzD8TGuD0sKsFUC9kEY+SFLp2zMTnJur5uiF2I629pXzOIEjg==
+X-Received: by 2002:a63:d257:: with SMTP id t23mr8645306pgi.290.1612785120501;
+        Mon, 08 Feb 2021 03:52:00 -0800 (PST)
+Received: from lenovo.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id a9sm12875564pfr.204.2021.02.08.03.51.55
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Feb 2021 03:51:59 -0800 (PST)
+From:   Orson Zhai <orsonzhai@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, haidong.yao@unisoc.com,
+        Orson Zhai <orson.zhai@unisoc.com>
+Subject: [PATCH 1/3] mailbox: sprd: Introduce refcnt when clients requests/free channels
+Date:   Mon,  8 Feb 2021 19:51:02 +0800
+Message-Id: <1612785064-3072-1-git-send-email-orsonzhai@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ck_usbo_48m is generated by usbphyc PLL and used by OTG controller
-for Full-Speed use cases with dedicated Full-Speed transceiver.
+From: Orson Zhai <orson.zhai@unisoc.com>
 
-ck_usbo_48m is available as soon as the PLL is enabled.
+Unisoc mailbox has no way to be enabled/disabled for any single channel.
+They can only be set to startup or shutdown as a whole device at same time.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Add a variable to count references to avoid mailbox FIFO being reset
+unexpectedly when clients are requesting or freeing channels.
+
+Also add a lock to dismiss possible conflicts from register r/w in
+different startup or shutdown threads.
+
+Fixes: ca27fc26cd22 ("mailbox: sprd: Add Spreadtrum mailbox driver")
+Signed-off-by: Orson Zhai <orson.zhai@unisoc.com>
 ---
-Changes in v2:
-- fix COMMON_CLK dependency issue reported by kernel test robot
----
- drivers/phy/st/Kconfig             |  1 +
- drivers/phy/st/phy-stm32-usbphyc.c | 65 ++++++++++++++++++++++++++++++
- 2 files changed, 66 insertions(+)
+ drivers/mailbox/sprd-mailbox.c | 38 +++++++++++++++++++++++++-------------
+ 1 file changed, 25 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/phy/st/Kconfig b/drivers/phy/st/Kconfig
-index b32f44ff9033..3fc3d0781fb8 100644
---- a/drivers/phy/st/Kconfig
-+++ b/drivers/phy/st/Kconfig
-@@ -36,6 +36,7 @@ config PHY_STIH407_USB
- config PHY_STM32_USBPHYC
- 	tristate "STMicroelectronics STM32 USB HS PHY Controller driver"
- 	depends on ARCH_STM32 || COMPILE_TEST
-+	depends on COMMON_CLK
- 	select GENERIC_PHY
- 	help
- 	  Enable this to support the High-Speed USB transceivers that are part
-diff --git a/drivers/phy/st/phy-stm32-usbphyc.c b/drivers/phy/st/phy-stm32-usbphyc.c
-index d08fbb180e43..c184f4e34584 100644
---- a/drivers/phy/st/phy-stm32-usbphyc.c
-+++ b/drivers/phy/st/phy-stm32-usbphyc.c
-@@ -7,6 +7,7 @@
-  */
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/delay.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -70,6 +71,7 @@ struct stm32_usbphyc {
- 	struct regulator *vdda1v1;
- 	struct regulator *vdda1v8;
- 	atomic_t n_pll_cons;
-+	struct clk_hw clk48_hw;
- 	int switch_setup;
+diff --git a/drivers/mailbox/sprd-mailbox.c b/drivers/mailbox/sprd-mailbox.c
+index f6fab24..e606f52 100644
+--- a/drivers/mailbox/sprd-mailbox.c
++++ b/drivers/mailbox/sprd-mailbox.c
+@@ -60,6 +60,8 @@ struct sprd_mbox_priv {
+ 	struct clk		*clk;
+ 	u32			outbox_fifo_depth;
+ 
++	struct mutex		lock;
++	u32			refcnt;
+ 	struct mbox_chan	chan[SPRD_MBOX_CHAN_MAX];
  };
  
-@@ -295,6 +297,61 @@ static const struct phy_ops stm32_usbphyc_phy_ops = {
- 	.owner = THIS_MODULE,
- };
+@@ -215,18 +217,22 @@ static int sprd_mbox_startup(struct mbox_chan *chan)
+ 	struct sprd_mbox_priv *priv = to_sprd_mbox_priv(chan->mbox);
+ 	u32 val;
  
-+static int stm32_usbphyc_clk48_prepare(struct clk_hw *hw)
-+{
-+	struct stm32_usbphyc *usbphyc = container_of(hw, struct stm32_usbphyc, clk48_hw);
-+
-+	return stm32_usbphyc_pll_enable(usbphyc);
-+}
-+
-+static void stm32_usbphyc_clk48_unprepare(struct clk_hw *hw)
-+{
-+	struct stm32_usbphyc *usbphyc = container_of(hw, struct stm32_usbphyc, clk48_hw);
-+
-+	stm32_usbphyc_pll_disable(usbphyc);
-+}
-+
-+static unsigned long stm32_usbphyc_clk48_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
-+{
-+	return 48000000;
-+}
-+
-+static const struct clk_ops usbphyc_clk48_ops = {
-+	.prepare = stm32_usbphyc_clk48_prepare,
-+	.unprepare = stm32_usbphyc_clk48_unprepare,
-+	.recalc_rate = stm32_usbphyc_clk48_recalc_rate,
-+};
-+
-+static void stm32_usbphyc_clk48_unregister(void *data)
-+{
-+	struct stm32_usbphyc *usbphyc = data;
-+
-+	of_clk_del_provider(usbphyc->dev->of_node);
-+	clk_hw_unregister(&usbphyc->clk48_hw);
-+}
-+
-+static int stm32_usbphyc_clk48_register(struct stm32_usbphyc *usbphyc)
-+{
-+	struct device_node *node = usbphyc->dev->of_node;
-+	struct clk_init_data init = { };
-+	int ret = 0;
-+
-+	init.name = "ck_usbo_48m";
-+	init.ops = &usbphyc_clk48_ops;
-+
-+	usbphyc->clk48_hw.init = &init;
-+
-+	ret = clk_hw_register(usbphyc->dev, &usbphyc->clk48_hw);
-+	if (ret)
-+		return ret;
-+
-+	ret = of_clk_add_hw_provider(node, of_clk_hw_simple_get, &usbphyc->clk48_hw);
-+	if (ret)
-+		clk_hw_unregister(&usbphyc->clk48_hw);
-+
-+	return ret;
-+}
-+
- static void stm32_usbphyc_switch_setup(struct stm32_usbphyc *usbphyc,
- 				       u32 utmi_switch)
- {
-@@ -473,6 +530,12 @@ static int stm32_usbphyc_probe(struct platform_device *pdev)
- 		goto clk_disable;
- 	}
+-	/* Select outbox FIFO mode and reset the outbox FIFO status */
+-	writel(0x0, priv->outbox_base + SPRD_MBOX_FIFO_RST);
++	mutex_lock(&priv->lock);
++	if (priv->refcnt++ == 0) {
++		/* Select outbox FIFO mode and reset the outbox FIFO status */
++		writel(0x0, priv->outbox_base + SPRD_MBOX_FIFO_RST);
  
-+	ret = stm32_usbphyc_clk48_register(usbphyc);
-+	if (ret) {
-+		dev_err(dev, "failed to register ck_usbo_48m clock: %d\n", ret);
-+		goto clk_disable;
+-	/* Enable inbox FIFO overflow and delivery interrupt */
+-	val = readl(priv->inbox_base + SPRD_MBOX_IRQ_MSK);
+-	val &= ~(SPRD_INBOX_FIFO_OVERFLOW_IRQ | SPRD_INBOX_FIFO_DELIVER_IRQ);
+-	writel(val, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
++		/* Enable inbox FIFO overflow and delivery interrupt */
++		val = readl(priv->inbox_base + SPRD_MBOX_IRQ_MSK);
++		val &= ~(SPRD_INBOX_FIFO_OVERFLOW_IRQ | SPRD_INBOX_FIFO_DELIVER_IRQ);
++		writel(val, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
+ 
+-	/* Enable outbox FIFO not empty interrupt */
+-	val = readl(priv->outbox_base + SPRD_MBOX_IRQ_MSK);
+-	val &= ~SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ;
+-	writel(val, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
++		/* Enable outbox FIFO not empty interrupt */
++		val = readl(priv->outbox_base + SPRD_MBOX_IRQ_MSK);
++		val &= ~SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ;
++		writel(val, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
 +	}
-+
- 	version = readl_relaxed(usbphyc->base + STM32_USBPHYC_VERSION);
- 	dev_info(dev, "registered rev:%lu.%lu\n",
- 		 FIELD_GET(MAJREV, version), FIELD_GET(MINREV, version));
-@@ -497,6 +560,8 @@ static int stm32_usbphyc_remove(struct platform_device *pdev)
- 		if (usbphyc->phys[port]->active)
- 			stm32_usbphyc_phy_exit(usbphyc->phys[port]->phy);
- 
-+	stm32_usbphyc_clk48_unregister(usbphyc);
-+
- 	clk_disable_unprepare(usbphyc->clk);
++	mutex_unlock(&priv->lock);
  
  	return 0;
+ }
+@@ -235,9 +241,13 @@ static void sprd_mbox_shutdown(struct mbox_chan *chan)
+ {
+ 	struct sprd_mbox_priv *priv = to_sprd_mbox_priv(chan->mbox);
+ 
+-	/* Disable inbox & outbox interrupt */
+-	writel(SPRD_INBOX_FIFO_IRQ_MASK, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
+-	writel(SPRD_OUTBOX_FIFO_IRQ_MASK, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
++	mutex_lock(&priv->lock);
++	if (--priv->refcnt == 0) {
++		/* Disable inbox & outbox interrupt */
++		writel(SPRD_INBOX_FIFO_IRQ_MASK, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
++		writel(SPRD_OUTBOX_FIFO_IRQ_MASK, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
++	}
++	mutex_unlock(&priv->lock);
+ }
+ 
+ static const struct mbox_chan_ops sprd_mbox_ops = {
+@@ -266,6 +276,8 @@ static int sprd_mbox_probe(struct platform_device *pdev)
+ 		return -ENOMEM;
+ 
+ 	priv->dev = dev;
++	priv->refcnt = 0;
++	mutex_init(&priv->lock);
+ 
+ 	/*
+ 	 * The Spreadtrum mailbox uses an inbox to send messages to the target
 -- 
-2.17.1
+2.7.4
 
