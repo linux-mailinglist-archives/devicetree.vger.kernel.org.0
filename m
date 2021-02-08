@@ -2,285 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19EAE312C39
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 09:50:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AFDC312CD8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 10:11:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230327AbhBHItr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 03:49:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53830 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230444AbhBHIrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 03:47:51 -0500
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C1FC06178A
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 00:47:10 -0800 (PST)
-Received: by mail-qv1-xf36.google.com with SMTP id a1so6559594qvd.13
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 00:47:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=xV1p38CxkIVydrmrIeBsHFFOrTaFyXrKNcrX5Rxf+CA=;
-        b=jAVwJd5TV7v0XygTlDgr8i80lGZaojREOV0OWhQM8vO8EwHcPyue9rNXBTOfjU2C0W
-         edNa5u5kvDdXS3iCvPfiKn+YaODD7OdHZclO+xI6q2hFYCW7FQLjT9vDcZ7mEtfSQd15
-         gTC8ZEXjGfDVBHCDI0aQm6mNl3wASzut1MTv+vMmDJlilQO8/LEiub/TQGnSazNkaOYd
-         HQqAA+NotpTj4ZvbR8GVUIR1fzAVplSllZAgp5hO0YF6FI3njNRoSM8uSprztY1MCoLt
-         L0sFq9fJCYDhNvifRmMlfeJMO8KxXWNc6Y0b4wGyzsLmDh1E5h2cG/MzQNSS341LFLXN
-         mBaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=xV1p38CxkIVydrmrIeBsHFFOrTaFyXrKNcrX5Rxf+CA=;
-        b=s3QV3ZHt12eJwKSkkv+Nm+gAOxWCxetYgVPJTck+BjZYLnijbT/ADpCePodiKPUKPv
-         ryhv+xh+AvMBT19EbEyqC5kPaJCOoEdHk7kmQgp1a6mx95l3QdgQtkjuVZ+7bbBtX+3W
-         rW1+/lgZ58XHnR2KjzNVT1nWbFjeixMxz+LPdJCD4xIj1beRGAVzoiCoGBtMKNRe4t0c
-         u0rAti/TK5vfSiOV7PhnwGWRldkvI2tCmheNOsY+MQ3cJ2qqk3WmS468ESaqSA+LmsBL
-         d1NCSNtxfRjBKxwjQMXMGsKm+sHnX1mVEp6bCt5tWPKupsxKuzqVqhnzg3bOgr/TVmKk
-         W2Kg==
-X-Gm-Message-State: AOAM532QILv02m00OLwc/YSx8FPevbRJh1KIqKnX5kEaQaDFjcWKZEHA
-        ifuv/0UjwIbOiKCtPXzW1PDAaVuyPhRo9tYhDeRO1A==
-X-Google-Smtp-Source: ABdhPJxffJg6zkK7/jgcbmmmwAD2ytDzCLJVAyIQzxFQnsuVT+hc7i9LIdyMtAGz7cNH26iJBtyucBzcfz9RU8El7Tc=
-X-Received: by 2002:a0c:c509:: with SMTP id x9mr14911433qvi.59.1612774029639;
- Mon, 08 Feb 2021 00:47:09 -0800 (PST)
+        id S230490AbhBHJK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 04:10:28 -0500
+Received: from mail-am6eur05on2086.outbound.protection.outlook.com ([40.107.22.86]:49473
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230327AbhBHJIl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 04:08:41 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A3FJp3lEFQinwyOaiRdlbi4Wzr/0wsd/3X0mgzzqntxE1zkm2QggX/ahx4jsOaPUnZCp628DCxQwEE1ofcUyz3NZEbuD3mrV0/7DmIbusoOl5207ShdjJzUYIs2yP+hzNNO2jubvnt0Zyi9DHzTDATv8E/+nG0raxeu0pFj9kcxYUCYk5QIDbdxz7CeFswEWq+9w+fudfwvtPFXc9ns0qrJ2psaUbnBs1jYTZyWCQGQIJQ1pDy3VF51jLANNrI/nHRexVj2htlH02TMqs6SEFg6sgsjZEk/Hxy2XYSsU87YUBI5FOX0meREfv0964MiqzrikXE2ZHCW91F8654I+Mw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v2hRMMZo8yXjlcef8YmjWoEJwGSXXJ9lGYqo1d+dTh8=;
+ b=d3ynMW4cFHOz/gwV5h2dpMY/dRbCU2vCksPBmigwK2bjwRl+Qhj+bENVcSJP7oedQbywKLQvD3ivgyJLD5ICkf75JqoXssEJmjvX4xoEJiC4MpAWTsd1p2QLDenFiXGLX0MkPRVN8fjoHvLUHH9C2MtZ1Vq9x2QXVmg8tVhA2RVdcFFW3t8sfMoL42Yh9L6N+oAUCLzOxinI/nsIucaF39HFJsNf2qbnFRLo3fAedNDxCu8ZYJQNT7O84nn9pxbGLCQie6EITKhTQNQqaWPM72OTaMCJ24kNuHmCslZCkpTGxZKbxmzpBHfwxMCGxEYDtPBT04yGq+BOgYw4eSWwaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v2hRMMZo8yXjlcef8YmjWoEJwGSXXJ9lGYqo1d+dTh8=;
+ b=IlyICTLuEOhUKezYKeQ1E5feYPDNPCaC6aVP+d8T3v/RHfs49wSI0/BGbGTg2AcC8win85XyS0zhP1bKsd9zzFlqymRSTI1kIzyZ0JtXWWoGdvYVYuX6fejlnKgWsCekCMoPxkI7NNwpLsoUkGAufTjtIR51k3a1LBk3oR91wkA=
+Authentication-Results: wizery.com; dkim=none (message not signed)
+ header.d=none;wizery.com; dmarc=none action=none header.from=oss.nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB6PR0402MB2933.eurprd04.prod.outlook.com (2603:10a6:4:9c::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.20; Mon, 8 Feb
+ 2021 09:07:37 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d58c:d479:d094:43d0]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d58c:d479:d094:43d0%9]) with mapi id 15.20.3825.030; Mon, 8 Feb 2021
+ 09:07:37 +0000
+From:   peng.fan@oss.nxp.com
+To:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        paul@crapouillou.net, matthias.bgg@gmail.com, agross@kernel.org,
+        patrice.chotard@st.com, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V10 00/10] remoteproc: imx_rproc: support iMX8MQ/M 
+Date:   Mon,  8 Feb 2021 16:56:01 +0800
+Message-Id: <1612774571-6134-1-git-send-email-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR01CA0102.apcprd01.prod.exchangelabs.com
+ (2603:1096:3:15::28) To DB6PR0402MB2760.eurprd04.prod.outlook.com
+ (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-References: <1612773167-22490-1-git-send-email-stefanc@marvell.com> <1612773167-22490-6-git-send-email-stefanc@marvell.com>
-In-Reply-To: <1612773167-22490-6-git-send-email-stefanc@marvell.com>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Mon, 8 Feb 2021 09:46:59 +0100
-Message-ID: <CAPv3WKczH5YgDiCuwmdLp7njF7YTfXmQmUNo3U8v=Rto2RUrbA@mail.gmail.com>
-Subject: Re: [PATCH v10 net-next 05/15] net: mvpp2: add PPv23 version definition
-To:     Stefan Chulski <stefanc@marvell.com>
-Cc:     netdev <netdev@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>, nadavh@marvell.com,
-        Yan Markman <ymarkman@marvell.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Russell King <rmk+kernel@armlinux.org.uk>, atenart@kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR01CA0102.apcprd01.prod.exchangelabs.com (2603:1096:3:15::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3825.19 via Frontend Transport; Mon, 8 Feb 2021 09:07:32 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: f7ac2640-305c-4de3-4c38-08d8cc10fad5
+X-MS-TrafficTypeDiagnostic: DB6PR0402MB2933:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB6PR0402MB2933002F8F885F0673E98D68C98F9@DB6PR0402MB2933.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KaQB4yVqYQ9VYg02TuqoHplDg+bP1lWUPTgWgaZvwcGJsiT9pCNQA5dZDAEKX0m91iwL4c0fQVGn26bMIGGC5HDUJDgN5gJ6rFzF52jKLDs0ispS7io80yI8X3ApT47Q8kQP6nh11fjOCFaJB9SYNyGqYhuub+Lv0lAVJ9PGQLax6aMCUbFjTDAtJUK9vmUcrZLbzmloFoVqtYHduCGoQJo7uOk/hUlPX0RbXDV9BbmBi3OUnaZ7BjGHE6ieuECgJAiPqxyLdxirPrbGar3WqqIlsrzEAFmmESfwDHIxzVwnRtBE6TcFTn0m/9X3FN8DVjqFymwWwINAu97zCCAA9VUphIiTNx1Ov6BcZThtQoYHwe2vMQgwGOS1knZQxqLMWj2k+2Y2U7LlTzNePcF0nBfsuxHFAog+fw/Ggd8cwf/oVt697fpVWpCDmIceXHzgGYuyOuJz/v+WnJ5OZ7sS7LdNfpo6ICN3oboN3Nrra+Rt6zjLjjAlHADKIXzdizpqA2RQO9Lq1IB3RjFssnQtBbMKOnSrwHZ9gPz16VD7RutFQDcLD56OyvRZz2zSARu68fNCrsGenFyZ31B0FPmvYAjCYc7AyzKUvAgDP1wIOeOcNDnhxlth57KnDdi2tefvsootpzUrnSAy/fuy4lT5kjXn2LYku0JRDVHfSfYFcdG+HrlUbuZMUMP+MO36yIBH
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(376002)(346002)(39860400002)(136003)(7416002)(52116002)(6666004)(316002)(4743002)(83380400001)(4326008)(8936002)(186003)(69590400011)(86362001)(66946007)(6486002)(8676002)(6512007)(478600001)(6506007)(26005)(956004)(2616005)(5660300002)(16526019)(66476007)(66556008)(2906002)(9686003)(966005)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?+1esIMtgYTxSHXqpuvEyi1LFnEEapiGo1UaUlk+9Lqzw4ulUrL+K5WWdsCBM?=
+ =?us-ascii?Q?uLsW40vFKwn5nM1QN7gJ8MMo71vDHfHB6Y7CLk6Z8VFzY/xvdt4x2Ed+RvU0?=
+ =?us-ascii?Q?scOjzxqo2ajEOvFlIuNTPOJCIP802sFa8nbZVZ5YWoG9omjQnuXGOemwRE5l?=
+ =?us-ascii?Q?6DtcPI7kVI1LzKKJ1/754P9GRKp0sDWxQKz3RmQxBg978ELEOaH3S4SpHTsz?=
+ =?us-ascii?Q?Hbxfw/G9nTB7i4BN8duARBp6sxt5ms1bdk8L04Y80q1X54QKP4oCXJuWU43I?=
+ =?us-ascii?Q?X23LTL7zG2boYGAq+FmOSrNtiWbWu02HL/80s97awaColgu6hvX1Y427eGHX?=
+ =?us-ascii?Q?Qs0ncF9JD+Ak22DkzqWfwKUDMWpC4xZlsUxnUSvuRjgaOoTtGHJCwtrrVHZg?=
+ =?us-ascii?Q?N3NjwUJtZCsGcmw5X1I53OwFIPMwgM8Vy7DuVdswPI9p9cp/wpFLchQERMwO?=
+ =?us-ascii?Q?LX3oKWYuTDK6G+za3luAThHBCT/znf52mAvSld4nkhcphMoj5XS2Yvhh2ijN?=
+ =?us-ascii?Q?k2oEM8UFjoOWSwYo4N+kyIosS8UbAaQLP8+3plO15ZurU7ZPnY0dtkGGGMEW?=
+ =?us-ascii?Q?veJlq4eu2I7YUGtUPe1RYzlFHErQcgnYzl3y4AKbyGszObiT3TD2j4xgHnjR?=
+ =?us-ascii?Q?Z1jgoszHtcG46SIMrWEw+gA5YOjPoi65isiIoU29r0gN5uBrpBULwRxZQpHA?=
+ =?us-ascii?Q?ysSfPp7TSrpfBveTyBHUEwegc33ENxVR4El1jgzaEI+Rw0EK1PmgRwDC5FPA?=
+ =?us-ascii?Q?UPFW84k7GJGZnbkwCy11SX0ALGruuhx0HsqNBNj3K+8fadtjp/v8rSmyYQQR?=
+ =?us-ascii?Q?foTfHc7JdjH1wygETH6iy5DFcyvyBxt016c+EnvCFa/ZSle6fHUKhOW6FzP0?=
+ =?us-ascii?Q?sss/0y2k/q352uGUMNIXWH0GeuHZ3EvRoZzdJ4mnYb+Y7R6xnq7g6pyQ1b+n?=
+ =?us-ascii?Q?eSdL0yTTrPasy8tUqdQ/mAgxK3r7TsoUUsldbQola/rrxN7MjjSA6si9XHm5?=
+ =?us-ascii?Q?HECDsl8MZ1RRWMVCgGq2PdWg78IRZuBpQu9LpqaNQAJqkj3JiCEXkDaeThkB?=
+ =?us-ascii?Q?OJnh1XjkP+HE1gYGMwoM4QVUznCjM/bwNcRTrjux3MKcTPybRpYL9jG9Zn1k?=
+ =?us-ascii?Q?hf0xFoVQuAtTpSTWPwpVHSoguGjIbo1hXEV4wlf5soq1QtjaYXXvEB+a+3bv?=
+ =?us-ascii?Q?nRifjIG/HzV1X4sWnE9yhGxASZf8mvBWmv//At++PQEkxfX5pWiEr68vGUVZ?=
+ =?us-ascii?Q?HFvDpXl2C4SUcSYIcfdxyDq1HxCLzbHEFKto8e2ihTzv+W1YIPU8mD6ZIzgN?=
+ =?us-ascii?Q?kIxoI+uLWV9Sk5OMKykqgLcm1IrNQnmN0nxiafQ95+3ECA=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f7ac2640-305c-4de3-4c38-08d8cc10fad5
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2021 09:07:37.5929
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ItoHiYBuzNXp3DVIEn6dk13JpucnpeYtXdHrXM7JOlZpyH43y9I18VvM6m0GudLV0sL7Jz6eUjuXV4CN6wLCEg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0402MB2933
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Peng Fan <peng.fan@nxp.com>
 
-pon., 8 lut 2021 o 09:33 <stefanc@marvell.com> napisa=C5=82(a):
->
-> From: Stefan Chulski <stefanc@marvell.com>
->
-> This patch add PPv23 version definition.
-> PPv23 is new packet processor in CP115.
-> Everything that supported by PPv22, also supported by PPv23.
-> No functional changes in this stage.
->
-> Signed-off-by: Stefan Chulski <stefanc@marvell.com>
-> ---
->  drivers/net/ethernet/marvell/mvpp2/mvpp2.h      | 24 ++++++++++++-------=
--
->  drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 17 +++++++++-----
->  2 files changed, 25 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h b/drivers/net/eth=
-ernet/marvell/mvpp2/mvpp2.h
-> index 56e90ab..ce08086 100644
-> --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-> +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-> @@ -60,6 +60,9 @@
->  /* Top Registers */
->  #define MVPP2_MH_REG(port)                     (0x5040 + 4 * (port))
->  #define MVPP2_DSA_EXTENDED                     BIT(5)
-> +#define MVPP2_VER_ID_REG                       0x50b0
-> +#define MVPP2_VER_PP22                         0x10
-> +#define MVPP2_VER_PP23                         0x11
->
->  /* Parser Registers */
->  #define MVPP2_PRS_INIT_LOOKUP_REG              0x1000
-> @@ -469,7 +472,7 @@
->  #define     MVPP22_GMAC_INT_SUM_MASK_LINK_STAT BIT(1)
->  #define            MVPP22_GMAC_INT_SUM_MASK_PTP        BIT(2)
->
-> -/* Per-port XGMAC registers. PPv2.2 only, only for GOP port 0,
-> +/* Per-port XGMAC registers. PPv2.2 and PPv2.3, only for GOP port 0,
->   * relative to port->base.
->   */
->  #define MVPP22_XLG_CTRL0_REG                   0x100
-> @@ -506,7 +509,7 @@
->  #define     MVPP22_XLG_CTRL4_MACMODSELECT_GMAC BIT(12)
->  #define     MVPP22_XLG_CTRL4_EN_IDLE_CHECK     BIT(14)
->
-> -/* SMI registers. PPv2.2 only, relative to priv->iface_base. */
-> +/* SMI registers. PPv2.2 and PPv2.3, relative to priv->iface_base. */
->  #define MVPP22_SMI_MISC_CFG_REG                        0x1204
->  #define     MVPP22_SMI_POLLING_EN              BIT(10)
->
-> @@ -582,7 +585,7 @@
->  #define MVPP2_QUEUE_NEXT_DESC(q, index) \
->         (((index) < (q)->last_desc) ? ((index) + 1) : 0)
->
-> -/* XPCS registers. PPv2.2 only */
-> +/* XPCS registers.PPv2.2 and PPv2.3 */
->  #define MVPP22_MPCS_BASE(port)                 (0x7000 + (port) * 0x1000=
-)
->  #define MVPP22_MPCS_CTRL                       0x14
->  #define     MVPP22_MPCS_CTRL_FWD_ERR_CONN      BIT(10)
-> @@ -593,7 +596,7 @@
->  #define     MVPP22_MPCS_CLK_RESET_DIV_RATIO(n) ((n) << 4)
->  #define     MVPP22_MPCS_CLK_RESET_DIV_SET      BIT(11)
->
-> -/* XPCS registers. PPv2.2 only */
-> +/* XPCS registers. PPv2.2 and PPv2.3 */
->  #define MVPP22_XPCS_BASE(port)                 (0x7400 + (port) * 0x1000=
-)
->  #define MVPP22_XPCS_CFG0                       0x0
->  #define     MVPP22_XPCS_CFG0_RESET_DIS         BIT(0)
-> @@ -927,15 +930,16 @@ struct mvpp2 {
->         void __iomem *iface_base;
->         void __iomem *cm3_base;
->
-> -       /* On PPv2.2, each "software thread" can access the base
-> +       /* On PPv2.2 and PPv2.3, each "software thread" can access the ba=
-se
->          * register through a separate address space, each 64 KB apart
->          * from each other. Typically, such address spaces will be
->          * used per CPU.
->          */
->         void __iomem *swth_base[MVPP2_MAX_THREADS];
->
-> -       /* On PPv2.2, some port control registers are located into the sy=
-stem
-> -        * controller space. These registers are accessible through a reg=
-map.
-> +       /* On PPv2.2 and PPv2.3, some port control registers are located =
-into
-> +        * the system controller space. These registers are accessible
-> +        * through a regmap.
->          */
->         struct regmap *sysctrl_base;
->
-> @@ -977,7 +981,7 @@ struct mvpp2 {
->         u32 tclk;
->
->         /* HW version */
-> -       enum { MVPP21, MVPP22 } hw_version;
-> +       enum { MVPP21, MVPP22, MVPP23 } hw_version;
->
->         /* Maximum number of RXQs per port */
->         unsigned int max_port_rxqs;
-> @@ -1221,7 +1225,7 @@ struct mvpp21_rx_desc {
->         __le32 reserved8;
->  };
->
-> -/* HW TX descriptor for PPv2.2 */
-> +/* HW TX descriptor for PPv2.2 and PPv2.3 */
->  struct mvpp22_tx_desc {
->         __le32 command;
->         u8  packet_offset;
-> @@ -1233,7 +1237,7 @@ struct mvpp22_tx_desc {
->         __le64 buf_cookie_misc;
->  };
->
-> -/* HW RX descriptor for PPv2.2 */
-> +/* HW RX descriptor for PPv2.2 and PPv2.3 */
->  struct mvpp22_rx_desc {
->         __le32 status;
->         __le16 reserved1;
-> diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/ne=
-t/ethernet/marvell/mvpp2/mvpp2_main.c
-> index e9c5916..5730900 100644
-> --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> @@ -384,7 +384,7 @@ static int mvpp2_bm_pool_create(struct device *dev, s=
-truct mvpp2 *priv,
->         if (!IS_ALIGNED(size, 16))
->                 return -EINVAL;
->
-> -       /* PPv2.1 needs 8 bytes per buffer pointer, PPv2.2 needs 16
-> +       /* PPv2.1 needs 8 bytes per buffer pointer, PPv2.2 and PPv2.3 nee=
-ds 16
->          * bytes per buffer pointer
->          */
->         if (priv->hw_version =3D=3D MVPP21)
-> @@ -1172,7 +1172,7 @@ static void mvpp2_interrupts_unmask(void *arg)
->         u32 val;
->         int i;
->
-> -       if (port->priv->hw_version !=3D MVPP22)
-> +       if (port->priv->hw_version =3D=3D MVPP21)
->                 return;
+V10:
+ Per Rob's comments, fix patch 1/10
 
-As requested previously, please move above check to 'net: mvpp2:
-always compare hw-version vs MVPP21' patch.
+V9:
+ Per Mathieu's comments,
+   update the tile of yaml in patch 2/10
+   update the Kconfig and MODULE_DESCRIPTION, I merge this change in patch 8/10,
+   since this is a minor change, I still keep Mathieu's R-b tag. If any objection, I could remove.
+   Add R-b tag in Patch 10/10
 
-Thanks,
-Marcin
+ Rob, please help review patch 1/10 and 2/10
 
->
->         if (mask)
-> @@ -5456,7 +5456,7 @@ static void mvpp2_rx_irqs_setup(struct mvpp2_port *=
-port)
->                 return;
->         }
->
-> -       /* Handle the more complicated PPv2.2 case */
-> +       /* Handle the more complicated PPv2.2 and PPv2.3 case */
->         for (i =3D 0; i < port->nqvecs; i++) {
->                 struct mvpp2_queue_vector *qv =3D port->qvecs + i;
->
-> @@ -5633,7 +5633,7 @@ static bool mvpp22_port_has_legacy_tx_irqs(struct d=
-evice_node *port_node,
->
->  /* Checks if the port dt description has the required Tx interrupts:
->   * - PPv2.1: there are no such interrupts.
-> - * - PPv2.2:
-> + * - PPv2.2 and PPv2.3:
->   *   - The old DTs have: "rx-shared", "tx-cpuX" with X in [0...3]
->   *   - The new ones have: "hifX" with X in [0..8]
->   *
-> @@ -6621,7 +6621,7 @@ static void mvpp22_rx_fifo_set_hw(struct mvpp2 *pri=
-v, int port, int data_size)
->         mvpp2_write(priv, MVPP2_RX_ATTR_FIFO_SIZE_REG(port), attr_size);
->  }
->
-> -/* Initialize TX FIFO's: the total FIFO size is 48kB on PPv2.2.
-> +/* Initialize TX FIFO's: the total FIFO size is 48kB on PPv2.2 and PPv2.=
-3.
->   * 4kB fixed space must be assigned for the loopback port.
->   * Redistribute remaining avialable 44kB space among all active ports.
->   * Guarantee minimum 32kB for 10G port and 8kB for port 1, capable of 2.=
-5G
-> @@ -6678,7 +6678,7 @@ static void mvpp22_tx_fifo_set_hw(struct mvpp2 *pri=
-v, int port, int size)
->         mvpp2_write(priv, MVPP22_TX_FIFO_THRESH_REG(port), threshold);
->  }
->
-> -/* Initialize TX FIFO's: the total FIFO size is 19kB on PPv2.2.
-> +/* Initialize TX FIFO's: the total FIFO size is 19kB on PPv2.2 and PPv2.=
-3.
->   * 3kB fixed space must be assigned for the loopback port.
->   * Redistribute remaining avialable 16kB space among all active ports.
->   * The 10G interface should use 10kB (which is maximum possible size
-> @@ -7049,6 +7049,11 @@ static int mvpp2_probe(struct platform_device *pde=
-v)
->                         priv->port_map |=3D BIT(i);
->         }
->
-> +       if (priv->hw_version !=3D MVPP21) {
-> +               if (mvpp2_read(priv, MVPP2_VER_ID_REG) =3D=3D MVPP2_VER_P=
-P23)
-> +                       priv->hw_version =3D MVPP23;
-> +       }
-> +
->         /* Initialize network controller */
->         err =3D mvpp2_init(pdev, priv);
->         if (err < 0) {
-> --
-> 1.9.1
->
+V8:
+ Address sparse warning in patch 4/10 reported by kernel test robot
+
+V7:
+ Add R-b tag from Mathieu
+ vdevbuffer->vdev0buffer in patch 1/10, 7/10
+ correct err msg and shutdown seq per Mathieu's comments in patch 10/10
+ Hope this version is ok to be merged.
+ 
+V6:
+ Add R-b tag from Mathieu
+ Convert imx-rproc.txt to yaml and add dt-bindings support for i.MX8MQ/M, patch 1/10 2/10
+ No other changes.
+
+V5:
+ Apply on Linux next
+ Add V5 subject prefix
+ Add R-b tag from Bjorn for 1/8, 2/8, 3/8
+ https://patchwork.kernel.org/project/linux-remoteproc/cover/20201229033019.25899-1-peng.fan@nxp.com/
+
+V4:
+ According to Bjorn's comments, add is_iomem for da to va usage
+ 1/8, 2/8 is new patch
+ 3/8, follow Bjorn's comments to correct/update the err msg.
+ 6/8, new patch
+ 8/8, use dev_err_probe to simplify code, use queue_work instead schedule_delayed_work
+
+V3:
+ Since I was quite busy in the past days, V3 is late
+ Rebased on Linux-next
+ Add R-b tags
+ 1/7: Add R-b tag of Mathieu, add comments
+ 4/7: Typo fix
+ 5/7: Add R-b tag of Mathieu, drop index Per Mathieu's comments
+ 6/7: Add R-b tag of Mathieu
+ 7/7: Add comment for vqid << 16, drop unneeded timeout settings of mailbox
+      Use queue_work instead of schedule_delayed_work
+      free mbox channels when remove
+ https://lkml.org/lkml/2020/12/4/82
+
+V2:
+ Rebased on linux-next
+ Dropped early boot feature to make patchset simple.
+ Drop rsc-da
+ https://patchwork.kernel.org/project/linux-remoteproc/cover/20200927064131.24101-1-peng.fan@nxp.com/
+
+V1:
+ https://patchwork.kernel.org/cover/11682461/
+
+This patchset is to support i.MX8MQ/M coproc.
+The early boot feature was dropped to make the patchset small in V2.
+
+Since i.MX specific TCM memory requirement, add elf platform hook.
+Several patches have got reviewed by Oleksij and Mathieu in v1.
+
+
+Peng Fan (10):
+  dt-bindings: remoteproc: convert imx rproc bindings to json-schema
+  dt-bindings: remoteproc: imx_rproc: add i.MX8MQ/M support
+  remoteproc: introduce is_iomem to rproc_mem_entry
+  remoteproc: add is_iomem to da_to_va
+  remoteproc: imx_rproc: correct err message
+  remoteproc: imx_rproc: use devm_ioremap
+  remoteproc: imx_rproc: add i.MX specific parse fw hook
+  remoteproc: imx_rproc: support i.MX8MQ/M
+  remoteproc: imx_rproc: ignore mapping vdev regions
+  remoteproc: imx_proc: enable virtio/mailbox
+
+ .../bindings/remoteproc/fsl,imx-rproc.yaml    | 108 ++++++++
+ .../bindings/remoteproc/imx-rproc.txt         |  33 ---
+ drivers/remoteproc/Kconfig                    |   6 +-
+ drivers/remoteproc/imx_rproc.c                | 262 +++++++++++++++++-
+ drivers/remoteproc/ingenic_rproc.c            |   2 +-
+ drivers/remoteproc/keystone_remoteproc.c      |   2 +-
+ drivers/remoteproc/mtk_scp.c                  |   6 +-
+ drivers/remoteproc/omap_remoteproc.c          |   2 +-
+ drivers/remoteproc/pru_rproc.c                |   2 +-
+ drivers/remoteproc/qcom_q6v5_adsp.c           |   2 +-
+ drivers/remoteproc/qcom_q6v5_pas.c            |   2 +-
+ drivers/remoteproc/qcom_q6v5_wcss.c           |   2 +-
+ drivers/remoteproc/qcom_wcnss.c               |   2 +-
+ drivers/remoteproc/remoteproc_core.c          |   7 +-
+ drivers/remoteproc/remoteproc_coredump.c      |   8 +-
+ drivers/remoteproc/remoteproc_debugfs.c       |   2 +-
+ drivers/remoteproc/remoteproc_elf_loader.c    |  21 +-
+ drivers/remoteproc/remoteproc_internal.h      |   2 +-
+ drivers/remoteproc/st_slim_rproc.c            |   2 +-
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c     |   2 +-
+ drivers/remoteproc/ti_k3_r5_remoteproc.c      |   2 +-
+ drivers/remoteproc/wkup_m3_rproc.c            |   2 +-
+ include/linux/remoteproc.h                    |   4 +-
+ 23 files changed, 411 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+
+-- 
+2.30.0
+
