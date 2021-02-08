@@ -2,75 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 293F0313A24
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:55:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C910313A3B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:57:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233809AbhBHQzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 11:55:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45674 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234539AbhBHQyL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 11:54:11 -0500
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7181FC061786;
-        Mon,  8 Feb 2021 08:53:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=FME9VbzmFyLWNxiCozESgnR6SphEi+7tXAYke0+yW0o=; b=CYZbkVwR8/zLr1IC961HpJsuU3
-        rdBv/yBzOhjyYfjEJZqsOgvFObqpluR4IqoxODvBfFAeUkoguFJR8WWqQXhTmFs5I8aDF1bOh63gq
-        /Zl5wC9oFD53XItWUwbO60FErDMgImrYx+yIsqNKFmtex7Y3mDwuAMQS49H/zPADWNb1MJRkHfVHP
-        GAxfrRDo+rVXZMV3hK8EBwqOpDe6J3OMc54qfMxr4vs1sVFzp6K7pBuHJ4swfyT3VnYmxb2keLuk1
-        xS6sYAECK3g2Ow7kev4N3ZJCIkAETKILOjTNItN30DYkCWza2UAnbZCDs9EpmvhWR5iHkTe0Ekose
-        o2w9zSFQ==;
-Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=[192.168.1.10])
-        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1l99mq-0003Mk-Fh; Mon, 08 Feb 2021 18:53:20 +0200
-Subject: Re: [RFC PATCH 1/8] of/device: Allow specifying a custom iommu_spec
- to of_dma_configure
-To:     Mikko Perttunen <mperttunen@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, joro@8bytes.org, will@kernel.org,
-        robh+dt@kernel.org, frowand.list@gmail.com, robin.murphy@arm.com
-Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20210208163848.2504291-1-mperttunen@nvidia.com>
- <20210208163848.2504291-2-mperttunen@nvidia.com>
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-Message-ID: <14e29aae-53bc-923f-568e-eb222bd24ba1@kapsi.fi>
-Date:   Mon, 8 Feb 2021 18:53:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
-MIME-Version: 1.0
-In-Reply-To: <20210208163848.2504291-2-mperttunen@nvidia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 84.249.134.236
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+        id S233086AbhBHQ4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 11:56:38 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:36102 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234622AbhBHQ4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 11:56:11 -0500
+Received: by mail-ot1-f54.google.com with SMTP id 100so8107044otg.3;
+        Mon, 08 Feb 2021 08:55:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=cQOD4UfhBCguCmT5KtaisymtJXK2KlCAy1kN/LZCqm8=;
+        b=S/j0qx/SyjN7p+E+DaQRTbTex5YFa9+XXtLSvmjjJDugcDsApWs+rwKkCiKgneiWzM
+         dIw/o6BQBbWb0sbqC8Ts5wPDYABIN1z7QY8n2jpPY8NV2I0ai/R45IA3KM/I6PzhwDrq
+         eNcQXRsbCz8vdgFKfehSMI2k9esOhANNiQxs/eDTAGiga20dxBBb7h77V+1NgZsLkkhF
+         stjOhk2+zAEzhjCbIe2koCG9RzF0dWrGiCpaIRF0ArY6jKbyvv6VhrjecfCfV6Yvq1Wf
+         sVElj1Wz0bBlgd+t2uSROa87CND3g7JpQVM9jo5PmTpW9H+SgtUMK8QbscaX5UM1awdi
+         CC5w==
+X-Gm-Message-State: AOAM5305l3z9EIloqz08vVDprYHikBX9Z3xn6nQplGYzRzMtPmCVKV+x
+        D/Co+/vmqOux1KGsddhYUg==
+X-Google-Smtp-Source: ABdhPJzgHduVL0CtolKn6INiA3wtYNJLWgeS0pYCALroa6UC1v9J1pa2xhmZzMqmaHUuoepJTuyIDg==
+X-Received: by 2002:a9d:6c7:: with SMTP id 65mr4466510otx.240.1612803330312;
+        Mon, 08 Feb 2021 08:55:30 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id q6sm3873511ota.44.2021.02.08.08.55.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Feb 2021 08:55:28 -0800 (PST)
+Received: (nullmailer pid 1522090 invoked by uid 1000);
+        Mon, 08 Feb 2021 16:55:22 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Orson Zhai <orsonzhai@gmail.com>
+Cc:     Orson Zhai <orson.zhai@unisoc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>, haidong.yao@unisoc.com,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jassi Brar <jassisinghbrar@gmail.com>
+In-Reply-To: <1612785064-3072-3-git-send-email-orsonzhai@gmail.com>
+References: <1612785064-3072-1-git-send-email-orsonzhai@gmail.com> <1612785064-3072-3-git-send-email-orsonzhai@gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: mailbox: Add interrupt-names to SPRD mailbox
+Date:   Mon, 08 Feb 2021 10:55:22 -0600
+Message-Id: <1612803322.554208.1522089.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/8/21 6:38 PM, Mikko Perttunen wrote:
-> ...
-> -static int of_iommu_xlate(struct device *dev,
-> -			  struct of_phandle_args *iommu_spec)
-> +int of_iommu_xlate(struct device *dev, struct of_phandle_args *iommu_spec)
-> ...
-> +EXPORT_SYMBOL_GPL(of_iommu_xlate);
->   
+On Mon, 08 Feb 2021 19:51:04 +0800, Orson Zhai wrote:
+> From: Orson Zhai <orson.zhai@unisoc.com>
+> 
+> We add an optional supp-outbox interrupt support to driver and change to
+> describe interrupts with names for easy configuration in device tree files.
+> 
+> Signed-off-by: Orson Zhai <orson.zhai@unisoc.com>
+> ---
+>  Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
+> 
 
-These two chunks should not be needed.. looks like I left them in from 
-some earlier experiments.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Sending patches out is really the best way to notice mistakes, even 
-after reading through them 5 times before.. :)
+yamllint warnings/errors:
 
-Mikko
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml: properties:interrupt-names:items: {'enum': ['inbox', 'outbox', 'supp-outbox']} is not of type 'array'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml: ignoring, error in schema: properties: interrupt-names: items
+warning: no schema found in file: ./Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
+
+See https://patchwork.ozlabs.org/patch/1437629
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
