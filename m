@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22CE0313431
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FEEB313437
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:01:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232283AbhBHN7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 08:59:55 -0500
-Received: from mail.baikalelectronics.com ([87.245.175.226]:57068 "EHLO
+        id S231720AbhBHOAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 09:00:50 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:57084 "EHLO
         mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232022AbhBHN6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 08:58:10 -0500
+        with ESMTP id S231700AbhBHN6d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 08:58:33 -0500
 From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
 To:     Rob Herring <robh+dt@kernel.org>,
         Giuseppe Cavallaro <peppe.cavallaro@st.com>,
@@ -33,9 +33,9 @@ CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 24/24] net: stmmac: dwc-qos: Save master/slave clocks in the plat-data
-Date:   Mon, 8 Feb 2021 16:56:08 +0300
-Message-ID: <20210208135609.7685-25-Sergey.Semin@baikalelectronics.ru>
+Subject: [PATCH v2 17/24] net: stmmac: dwc-qos: Cleanup STMMAC platform data clock pointers
+Date:   Mon, 8 Feb 2021 16:56:01 +0300
+Message-ID: <20210208135609.7685-18-Sergey.Semin@baikalelectronics.ru>
 In-Reply-To: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
 References: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
@@ -46,66 +46,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently the "master_bus" clock of the DW QoS Eth controller isn't
-preserved in the STMMAC platform data, while the "slave_bus" clock is
-assigned to the stmmaceth clock pointer. It isn't correct from the
-platform clock bindings point of view. The "stmmaceth" clock is supposed
-to be the system clock, which is responsible for clocking the DMA
-transfers from/to the controller FIFOs to/from the system memory and the
-CSR interface if the later isn't separately clocked. If it's clocked
-separately then the STMMAC platform code expects to also have "pclk"
-specified. So in order to have the STMMAC platform data properly
-initialized we need to set the "master_bus" clock handler to the
-"stmmaceth" clock pointer, and the "slave_bus" clock handler to the "pclk"
-clock pointer.
+The pointers need to be nullified otherwise the stmmac_remove_config_dt()
+method called after them being initialized will disable the clocks. That
+then will cause a WARN() backtrace being printed since the clocks would be
+also disabled in the locally defined remove method.
 
 Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ .../stmicro/stmmac/dwmac-dwc-qos-eth.c        | 42 ++++++++++++++-----
+ 1 file changed, 32 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-index f315ca395e12..bb2297638805 100644
+index 27254b27d7ed..20b3696fb776 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-@@ -313,6 +313,8 @@ static int tegra_eqos_probe(struct platform_device *pdev,
- 	if (err < 0)
- 		goto error;
+@@ -123,39 +123,46 @@ static int dwc_qos_probe(struct platform_device *pdev,
+ 			 struct plat_stmmacenet_data *plat_dat,
+ 			 struct stmmac_resources *stmmac_res)
+ {
++	struct clk *clk;
+ 	int err;
  
-+	data->stmmac_clk = eqos->clk_master;
+-	plat_dat->stmmac_clk = devm_clk_get(&pdev->dev, "apb_pclk");
+-	if (IS_ERR(plat_dat->stmmac_clk)) {
++	clk = devm_clk_get(&pdev->dev, "apb_pclk");
++	if (IS_ERR(clk)) {
+ 		dev_err(&pdev->dev, "apb_pclk clock not found.\n");
+-		return PTR_ERR(plat_dat->stmmac_clk);
++		return PTR_ERR(clk);
+ 	}
+ 
+-	err = clk_prepare_enable(plat_dat->stmmac_clk);
++	err = clk_prepare_enable(clk);
+ 	if (err < 0) {
+ 		dev_err(&pdev->dev, "failed to enable apb_pclk clock: %d\n",
+ 			err);
+ 		return err;
+ 	}
+ 
+-	plat_dat->pclk = devm_clk_get(&pdev->dev, "phy_ref_clk");
+-	if (IS_ERR(plat_dat->pclk)) {
++	plat_dat->stmmac_clk = clk;
 +
- 	eqos->clk_slave = devm_clk_get(&pdev->dev, "slave_bus");
- 	if (IS_ERR(eqos->clk_slave)) {
- 		err = PTR_ERR(eqos->clk_slave);
-@@ -323,7 +325,7 @@ static int tegra_eqos_probe(struct platform_device *pdev,
++	clk = devm_clk_get(&pdev->dev, "phy_ref_clk");
++	if (IS_ERR(clk)) {
+ 		dev_err(&pdev->dev, "phy_ref_clk clock not found.\n");
+-		err = PTR_ERR(plat_dat->pclk);
++		err = PTR_ERR(clk);
+ 		goto disable;
+ 	}
+ 
+-	err = clk_prepare_enable(plat_dat->pclk);
++	err = clk_prepare_enable(clk);
+ 	if (err < 0) {
+ 		dev_err(&pdev->dev, "failed to enable phy_ref clock: %d\n",
+ 			err);
+ 		goto disable;
+ 	}
+ 
++	plat_dat->pclk = clk;
++
+ 	return 0;
+ 
+ disable:
+ 	clk_disable_unprepare(plat_dat->stmmac_clk);
++	plat_dat->stmmac_clk = NULL;
++
+ 	return err;
+ }
+ 
+@@ -164,8 +171,15 @@ static int dwc_qos_remove(struct platform_device *pdev)
+ 	struct net_device *ndev = platform_get_drvdata(pdev);
+ 	struct stmmac_priv *priv = netdev_priv(ndev);
+ 
++	/* Cleanup the pointers to the clock handlers hidden in the platform
++	 * data so the stmmac_remove_config_dt() method wouldn't have disabled
++	 * the clocks too.
++	 */
+ 	clk_disable_unprepare(priv->plat->pclk);
++	priv->plat->pclk = NULL;
++
+ 	clk_disable_unprepare(priv->plat->stmmac_clk);
++	priv->plat->stmmac_clk = NULL;
+ 
+ 	return 0;
+ }
+@@ -301,12 +315,12 @@ static int tegra_eqos_probe(struct platform_device *pdev,
+ 		goto disable_master;
+ 	}
+ 
+-	data->stmmac_clk = eqos->clk_slave;
+-
+ 	err = clk_prepare_enable(eqos->clk_slave);
  	if (err < 0)
  		goto disable_master;
  
--	data->stmmac_clk = eqos->clk_slave;
-+	data->pclk = eqos->clk_slave;
- 
- 	eqos->reset = devm_gpiod_get(&pdev->dev, "phy-reset", GPIOD_OUT_HIGH);
- 	if (IS_ERR(eqos->reset)) {
-@@ -371,9 +373,10 @@ static int tegra_eqos_probe(struct platform_device *pdev,
- 	gpiod_set_value(eqos->reset, 1);
++	data->stmmac_clk = eqos->clk_slave;
++
+ 	eqos->clk_rx = devm_clk_get(&pdev->dev, "rx");
+ 	if (IS_ERR(eqos->clk_rx)) {
+ 		err = PTR_ERR(eqos->clk_rx);
+@@ -377,6 +391,7 @@ static int tegra_eqos_probe(struct platform_device *pdev,
+ 	clk_disable_unprepare(eqos->clk_rx);
  disable_slave:
  	clk_disable_unprepare(eqos->clk_slave);
--	data->stmmac_clk = NULL;
-+	data->pclk = NULL;
++	data->stmmac_clk = NULL;
  disable_master:
  	clk_disable_unprepare(eqos->clk_master);
-+	data->stmmac_clk = NULL;
  error:
- 	return err;
- }
-@@ -392,6 +395,7 @@ static int tegra_eqos_remove(struct platform_device *pdev)
- 	 * data so the stmmac_remove_config_dt() method wouldn't have disabled
- 	 * the clocks too.
- 	 */
-+	priv->plat->pclk = NULL;
- 	priv->plat->stmmac_clk = NULL;
+@@ -385,6 +400,7 @@ static int tegra_eqos_probe(struct platform_device *pdev,
  
+ static int tegra_eqos_remove(struct platform_device *pdev)
+ {
++	struct stmmac_priv *priv = netdev_priv(platform_get_drvdata(pdev));
+ 	struct tegra_eqos *eqos = get_stmmac_bsp_priv(&pdev->dev);
+ 
+ 	reset_control_assert(eqos->rst);
+@@ -394,6 +410,12 @@ static int tegra_eqos_remove(struct platform_device *pdev)
+ 	clk_disable_unprepare(eqos->clk_slave);
+ 	clk_disable_unprepare(eqos->clk_master);
+ 
++	/* Cleanup the pointers to the clock handlers hidden in the platform
++	 * data so the stmmac_remove_config_dt() method wouldn't have disabled
++	 * the clocks too.
++	 */
++	priv->plat->stmmac_clk = NULL;
++
  	return 0;
+ }
+ 
 -- 
 2.29.2
 
