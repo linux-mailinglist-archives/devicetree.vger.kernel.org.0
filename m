@@ -2,36 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3048313C10
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:01:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 765A3313C13
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:01:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235185AbhBHSAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 13:00:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46560 "EHLO mail.kernel.org"
+        id S235192AbhBHSA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 13:00:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46602 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235113AbhBHR7l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 12:59:41 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CDBC264E87;
-        Mon,  8 Feb 2021 17:58:14 +0000 (UTC)
+        id S235128AbhBHR7o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 12:59:44 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CC2B764EAA;
+        Mon,  8 Feb 2021 17:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612807095;
-        bh=iFWC2DtP+Zvyu7SqrESfK1vWP5a8+/pgdlP0zwg4DB0=;
+        s=k20201202; t=1612807100;
+        bh=Kpx3RtEO4l3vAXpLy+dut0zIXM92dtPcyvGUkm1NyH4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=b5S+rE337Yd3hiFU81wXbnnu8ZoruYoWy7O2/H77fRNdvGjanZevUg9ra/BuQLozL
-         9TceuZe/Zf8L3I7yqCNPi2Y4XzCiZvW1JA16KnmEQOjB+znu9cfKfNLzR2LGxsgo3+
-         NK61dz8OeN1Ot6x/6//W/ArOqKfpj1K1noOu846ijLPiu56aLfPTWn+MjLdpaL3I2r
-         TNBNdx5ueMYEFX50qL59qQewQvOVgjvXPptVEJaGIerzYkysqdn2hsQ9+dvcQW79RB
-         eFf+jqoemH2gvgAb1OFGsZ8jXwljoBZLmROO2DWq58Zk9GVqikkcrAWKBdpGKwOKMO
-         27pBALffwPAYg==
+        b=TnGe43lAePA4GtmD+QGTM2X7Mhl7prg6/jsbcZfIZmLCaps4iP3m+XzRHJA88CpCi
+         cBBBQiom/bubmg3KV99OwDsAl9rfEwgDe/2eTjQDViU2bI2UpbKY1Nw9DPOPgCQX5P
+         wmyEpeJypirTt0yu+0+fDVVIwxq8oSOQ/qoTvrXgDYaOG9XLUDrzn4H8ajT6oN99x6
+         mgyzPlmYkAxFHK4IjnBaOVIHlNGoDVMajMvRQLUSM73vSR3g31kenIvY/fbLvbeZkG
+         9O8OWhPmEj1TaktAGgXfy0tu8mtobIiNjoIdI36wSdiJrwCtXZXiiBnx1MvUIgubjx
+         BhqV3I9IEvJaA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 06/36] arm64: dts: rockchip: remove interrupt-names property from rk3399 vdec node
-Date:   Mon,  8 Feb 2021 12:57:36 -0500
-Message-Id: <20210208175806.2091668-6-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 10/36] arm64: dts: rockchip: Disable display for NanoPi R2S
+Date:   Mon,  8 Feb 2021 12:57:40 -0500
+Message-Id: <20210208175806.2091668-10-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210208175806.2091668-1-sashal@kernel.org>
 References: <20210208175806.2091668-1-sashal@kernel.org>
@@ -43,42 +44,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Johan Jonker <jbx6244@gmail.com>
+From: Robin Murphy <robin.murphy@arm.com>
 
-[ Upstream commit 94a5400f8b966c91c49991bae41c2ef911b935ac ]
+[ Upstream commit 74532de460ec664e5a725507d1b59aa9e4d40776 ]
 
-A test with the command below gives this error:
-/arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml: video-codec@ff660000:
-'interrupt-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+NanoPi R2S is headless, so rightly does not enable any of the display
+interface hardware, which currently provokes an obnoxious error in the
+boot log from the fake DRM device failing to find anything to bind to.
+It probably isn't *too* hard to obviate the fake device shenanigans
+entirely with a bit of driver reshuffling, but for now let's just
+disable it here to shut up the spurious error.
 
-The rkvdec driver gets it irq with help of the platform_get_irq()
-function, so remove the interrupt-names property from the rk3399
-vdec node.
-
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/
-media/rockchip,vdec.yaml
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/20210117181653.24886-1-jbx6244@gmail.com
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+Link: https://lore.kernel.org/r/c4553dfad1ad6792c4f22454c135ff55de77e2d6.1611186099.git.robin.murphy@arm.com
 Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 5df535ad4bbc3..7e69603fb41c0 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1278,7 +1278,6 @@ vdec: video-codec@ff660000 {
- 		compatible = "rockchip,rk3399-vdec";
- 		reg = <0x0 0xff660000 0x0 0x400>;
- 		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "vdpu";
- 		clocks = <&cru ACLK_VDU>, <&cru HCLK_VDU>,
- 			 <&cru SCLK_VDU_CA>, <&cru SCLK_VDU_CORE>;
- 		clock-names = "axi", "ahb", "cabac", "core";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
+index 2ee07d15a6e37..1eecad724f04c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
+@@ -114,6 +114,10 @@ &cpu3 {
+ 	cpu-supply = <&vdd_arm>;
+ };
+ 
++&display_subsystem {
++	status = "disabled";
++};
++
+ &gmac2io {
+ 	assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
+ 	assigned-clock-parents = <&gmac_clk>, <&gmac_clk>;
 -- 
 2.27.0
 
