@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94C01313432
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 849B7313434
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:00:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232295AbhBHOAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 09:00:12 -0500
-Received: from mail.baikalelectronics.com ([87.245.175.226]:57070 "EHLO
+        id S231286AbhBHOA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 09:00:28 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:57076 "EHLO
         mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232021AbhBHN6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 08:58:11 -0500
+        with ESMTP id S232069AbhBHN6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 08:58:13 -0500
 From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
 To:     Rob Herring <robh+dt@kernel.org>,
         Giuseppe Cavallaro <peppe.cavallaro@st.com>,
@@ -22,6 +22,11 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
         Joao Pinto <jpinto@synopsys.com>,
         Lars Persson <larper@axis.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>
 CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Serge Semin <fancer.lancer@gmail.com>,
@@ -33,9 +38,9 @@ CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 19/24] net: stmmac: Add Tx/Rx platform clocks support
-Date:   Mon, 8 Feb 2021 16:56:03 +0300
-Message-ID: <20210208135609.7685-20-Sergey.Semin@baikalelectronics.ru>
+Subject: [PATCH v2 21/24] net: stmmac: dwmac-imx: Discard Tx clock request
+Date:   Mon, 8 Feb 2021 16:56:05 +0300
+Message-ID: <20210208135609.7685-22-Sergey.Semin@baikalelectronics.ru>
 In-Reply-To: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
 References: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
@@ -46,80 +51,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Depending on the DW *MAC configuration it can be at least connected to an
-external Transmit clock, but in some cases to an external Receive clock
-generator. In order to simplify/unify the sub-drivers code and to prevent
-having the same clocks named differently add the Tx/Rx clocks support to
-the generic STMMAC DT-based platform data initialization method under the
-names "tx" and "rx" respectively. The bindings schema has already been
-altered in accordance with that.
+Since the Tx clock is now requested and enabled/disabled in the STMMAC
+DT-based platform config method, there is no need in duplicating the same
+procedures in the DW MAC iMX sub-driver.
 
 Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 ---
- .../ethernet/stmicro/stmmac/stmmac_platform.c | 22 +++++++++++++++++++
- include/linux/stmmac.h                        |  2 ++
- 2 files changed, 24 insertions(+)
+ .../net/ethernet/stmicro/stmmac/dwmac-imx.c   | 21 +++++--------------
+ 1 file changed, 5 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 9a7c94622c36..a6e35c84e135 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -585,6 +585,22 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+index 223f69da7e95..8b2c7f1ba745 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c
+@@ -40,7 +40,6 @@ struct imx_dwmac_ops {
+ 
+ struct imx_priv_data {
+ 	struct device *dev;
+-	struct clk *clk_tx;
+ 	struct clk *clk_mem;
+ 	struct regmap *intf_regmap;
+ 	u32 intf_reg_off;
+@@ -104,12 +103,6 @@ static int imx_dwmac_init(struct platform_device *pdev, void *priv)
+ 		return ret;
  	}
- 	clk_prepare_enable(plat->pclk);
  
-+	plat->tx_clk = devm_clk_get_optional(&pdev->dev, "tx");
-+	if (IS_ERR(plat->tx_clk)) {
-+		rc = PTR_ERR(plat->tx_clk);
-+		dev_err_probe(&pdev->dev, rc, "Cannot get Tx clock\n");
-+		goto error_tx_clk_get;
-+	}
-+	clk_prepare_enable(plat->tx_clk);
-+
-+	plat->rx_clk = devm_clk_get_optional(&pdev->dev, "rx");
-+	if (IS_ERR(plat->rx_clk)) {
-+		rc = PTR_ERR(plat->rx_clk);
-+		dev_err_probe(&pdev->dev, rc, "Cannot get Rx clock\n");
-+		goto error_rx_clk_get;
-+	}
-+	clk_prepare_enable(plat->rx_clk);
-+
- 	/* Fall-back to main clock in case of no PTP ref is passed */
- 	plat->clk_ptp_ref = devm_clk_get_optional(&pdev->dev, "ptp_ref");
- 	if (IS_ERR(plat->clk_ptp_ref)) {
-@@ -609,6 +625,10 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
- 	return plat;
+-	ret = clk_prepare_enable(dwmac->clk_tx);
+-	if (ret) {
+-		dev_err(&pdev->dev, "tx clock enable failed\n");
+-		goto clk_tx_en_failed;
+-	}
+-
+ 	if (dwmac->ops->set_intf_mode) {
+ 		ret = dwmac->ops->set_intf_mode(plat_dat);
+ 		if (ret)
+@@ -119,8 +112,6 @@ static int imx_dwmac_init(struct platform_device *pdev, void *priv)
+ 	return 0;
  
- error_hw_init:
-+	clk_disable_unprepare(plat->rx_clk);
-+error_rx_clk_get:
-+	clk_disable_unprepare(plat->tx_clk);
-+error_tx_clk_get:
- 	clk_disable_unprepare(plat->pclk);
- error_pclk_get:
- 	clk_disable_unprepare(plat->stmmac_clk);
-@@ -630,6 +650,8 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
- void stmmac_remove_config_dt(struct platform_device *pdev,
- 			     struct plat_stmmacenet_data *plat)
+ intf_mode_failed:
+-	clk_disable_unprepare(dwmac->clk_tx);
+-clk_tx_en_failed:
+ 	clk_disable_unprepare(dwmac->clk_mem);
+ 	return ret;
+ }
+@@ -129,7 +120,6 @@ static void imx_dwmac_exit(struct platform_device *pdev, void *priv)
  {
-+	clk_disable_unprepare(plat->rx_clk);
-+	clk_disable_unprepare(plat->tx_clk);
- 	clk_disable_unprepare(plat->pclk);
- 	clk_disable_unprepare(plat->stmmac_clk);
- 	of_node_put(plat->phy_node);
-diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-index 15ca6b4167cc..cec970adaf2e 100644
---- a/include/linux/stmmac.h
-+++ b/include/linux/stmmac.h
-@@ -186,6 +186,8 @@ struct plat_stmmacenet_data {
- 	void *bsp_priv;
- 	struct clk *stmmac_clk;
- 	struct clk *pclk;
-+	struct clk *tx_clk;
-+	struct clk *rx_clk;
- 	struct clk *clk_ptp_ref;
- 	unsigned int clk_ptp_rate;
- 	unsigned int clk_ref_rate;
+ 	struct imx_priv_data *dwmac = priv;
+ 
+-	clk_disable_unprepare(dwmac->clk_tx);
+ 	clk_disable_unprepare(dwmac->clk_mem);
+ }
+ 
+@@ -162,7 +152,7 @@ static void imx_dwmac_fix_speed(void *priv, unsigned int speed)
+ 		return;
+ 	}
+ 
+-	err = clk_set_rate(dwmac->clk_tx, rate);
++	err = clk_set_rate(plat_dat->tx_clk, rate);
+ 	if (err < 0)
+ 		dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+ }
+@@ -176,10 +166,9 @@ imx_dwmac_parse_dt(struct imx_priv_data *dwmac, struct device *dev)
+ 	if (of_get_property(np, "snps,rmii_refclk_ext", NULL))
+ 		dwmac->rmii_refclk_ext = true;
+ 
+-	dwmac->clk_tx = devm_clk_get(dev, "tx");
+-	if (IS_ERR(dwmac->clk_tx)) {
+-		dev_err(dev, "failed to get tx clock\n");
+-		return PTR_ERR(dwmac->clk_tx);
++	if (!dwmac->plat_dat->tx_clk) {
++		dev_err(dev, "no tx clock found\n");
++		return -EINVAL;
+ 	}
+ 
+ 	dwmac->clk_mem = NULL;
+@@ -239,6 +228,7 @@ static int imx_dwmac_probe(struct platform_device *pdev)
+ 
+ 	dwmac->ops = data;
+ 	dwmac->dev = &pdev->dev;
++	dwmac->plat_dat = plat_dat;
+ 
+ 	ret = imx_dwmac_parse_dt(dwmac, &pdev->dev);
+ 	if (ret) {
+@@ -251,7 +241,6 @@ static int imx_dwmac_probe(struct platform_device *pdev)
+ 	plat_dat->exit = imx_dwmac_exit;
+ 	plat_dat->fix_mac_speed = imx_dwmac_fix_speed;
+ 	plat_dat->bsp_priv = dwmac;
+-	dwmac->plat_dat = plat_dat;
+ 
+ 	ret = imx_dwmac_init(pdev, dwmac);
+ 	if (ret)
 -- 
 2.29.2
 
