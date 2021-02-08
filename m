@@ -2,74 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51A1031425F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 22:56:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42DBB314269
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 22:58:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234133AbhBHV4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 16:56:02 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:41002 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230344AbhBHV4A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 16:56:00 -0500
-Received: by mail-ot1-f46.google.com with SMTP id s107so15615438otb.8;
-        Mon, 08 Feb 2021 13:55:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eqlb8C0ETOy8SvYjIiHc1NLlXDk6F0aQYo/gB9v56Ho=;
-        b=SHX38zG6p+tiPRvtNbC+icHT6LOC/GVuBOpKInsso7QYj/hoLaDc/ZcxOKydEJxQyf
-         ZLKa5dnUyOx1RmH4UFD374LrhN58c7K4Lpc47WL8IxlmJnvM6Qi+eFXIAcTDFEc3VG4p
-         b+e/FkRf0sDL8oP2hCLnhfkKVT+7MK4gxxmqmhkuNfABQ/P+GFT/cNZZ/lI65dKSnjiI
-         nfxs/24sSkDJV4sdy8w9/Znm+4yy7phDhJ4MjPtRBmKU7OeWJ2rBHqQYgF9n9q81Kovz
-         0V+dI+QQTXcAs5rvIIRWkLXmnSzsmrd00kCdDbvjkxF1Zm39qw3BJuXq6rVktwhMrmaW
-         P8GA==
-X-Gm-Message-State: AOAM530EWubpk3/bDiDkL4p9ooB3Jo4ou3LW6esHgzWoaK6wzvh4v6F8
-        sRwHd3vF/PCmNGV3WB8B7Q==
-X-Google-Smtp-Source: ABdhPJy+1GSfNEePnj5f9FpSkMeneRbLS+/hOm1zO1Clyf8W5YTWYvvJRQSNZbhhoca9Gmc9USaCMQ==
-X-Received: by 2002:a9d:701c:: with SMTP id k28mr4166128otj.79.1612821319407;
-        Mon, 08 Feb 2021 13:55:19 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z8sm3801754oon.10.2021.02.08.13.55.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Feb 2021 13:55:18 -0800 (PST)
-Received: (nullmailer pid 2090093 invoked by uid 1000);
-        Mon, 08 Feb 2021 21:55:17 -0000
-Date:   Mon, 8 Feb 2021 15:55:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Min Guo <min.guo@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH next 06/15] dt-bindings: usb: mtk-xhci: add support
- mt2701 and mt7623
-Message-ID: <20210208215517.GA2090042@robh.at.kernel.org>
-References: <20210116090656.11752-1-chunfeng.yun@mediatek.com>
- <20210116090656.11752-6-chunfeng.yun@mediatek.com>
+        id S236966AbhBHV57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 16:57:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231307AbhBHV5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 16:57:48 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E5E5C061786;
+        Mon,  8 Feb 2021 13:57:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=muAMtb9ILWZ6iaLm4pWkawLMXFX8+VhM7QtMLbbVjO8=; b=CSepVBcl/mu1uxOGAD7x76EaSG
+        +LBzoX4IQP+rspzFB9N16nU4JP/i3Kcwahr9P/Ql2k/DNe1nbPGqc5uIiTlGT8PeiIsMn74s1kfG8
+        8yLycgCCScpr5qAROdrbkv7+lDLrEqor+QByAeBVoAXT/d8PJYHy2u7k7XXX7w5xLA9k=;
+Received: from p200300ccff06e1001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff06:e100:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1l9EWT-0005aA-En; Mon, 08 Feb 2021 22:56:45 +0100
+Date:   Mon, 8 Feb 2021 22:56:44 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH v9 0/7] Netronix embedded controller driver for Kobo and
+ Tolino ebook readers
+Message-ID: <20210208225644.3df4da99@aktux>
+In-Reply-To: <20210124214127.3631530-1-j.neuschaefer@gmx.net>
+References: <20210124214127.3631530-1-j.neuschaefer@gmx.net>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210116090656.11752-6-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Jan 2021 17:06:47 +0800, Chunfeng Yun wrote:
-> Add two compatible for mt2701 and mt7623;
-> add property "assigned-clock" and "assigned-clock-parents"
-> used by mt7629.
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml     | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
+On Sun, 24 Jan 2021 22:41:20 +0100
+Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> This patchset adds basic support for the embedded controller found on
+> older ebook reader boards designed by/with the ODM Netronix Inc.[1] and
+> sold by Kobo or Tolino, for example the Kobo Aura and the Tolino Shine.
+> These drivers are based on information contained in the vendor kernel
+> sources, but in order to all information in a single place, I documented
+> the register interface of the EC on GitHub[2].
+>=20
+> [1]: http://www.netronixinc.com/products.aspx?ID=3D1
+> [2]: https://github.com/neuschaefer/linux/wiki/Netronix-MSP430-embedded-c=
+ontroller
+>=20
+> v9:
+> - Fixed a bug in the error handling of ntxec_probe,
+>   Reported-by: kernel test robot <lkp@intel.com>
+> - Added Thierry Reding's ACK to the PWM patch
+>=20
+what is the fate of this one, looks like it got all acks from
+maintainers.
+
+Regards,
+Andreas
