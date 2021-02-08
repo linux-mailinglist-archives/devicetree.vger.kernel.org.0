@@ -2,148 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14FF3313B7F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 18:51:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14BAA313B8E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 18:53:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233924AbhBHRur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 12:50:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57536 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbhBHRtE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 12:49:04 -0500
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94EEDC06178C
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 09:48:24 -0800 (PST)
-Received: by mail-oi1-x22d.google.com with SMTP id d20so16458460oiw.10
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 09:48:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hqIt/UwNUJoQOM09qoHwRbtdcgdq4vD+X81GKl6pUvg=;
-        b=dIROg9GEeJLWJ7XzvQzbHYvDvby5DZSA5wtm0HUz+hH2dGsD3gA6Kmiit0wOe4THHY
-         PFGw2biv/f4Jt3Pmu2/yyyDY6LEptMbHzdQ093MuxDa5rv4qROkzjHFekTzKF0PccSag
-         v3r7b0aWCGMpeHb+QlgQX8AjF6YRATpuqzJPQFniDXHWE5/CII87sM/T9ni8CoMBw341
-         RejS20ewHvzHs7IB9RLQzcF872UhB3z273h10F15S/qg96XUWfScRkkdo8oNT36Yr0Vq
-         Z7et1TtnD0QGfzFZPQny/zxIOrbUVuzRjznOwu0qz/L39S1XAGXn9/iDbEdrbU1gQ/hb
-         SzaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hqIt/UwNUJoQOM09qoHwRbtdcgdq4vD+X81GKl6pUvg=;
-        b=EL46DnTX8/2AxVxfo4qgwJ5G9D9tWr6YrSCTrkxc0gaRcgcnWLmWR6szFfTOm7YPkN
-         AD+EavmLE8x75rTgcncBfxsaWzNutrEvuHIG8jGgXac4hjPFqkYjb86caUw/QLsac5Dw
-         dUVYwxMcyJjDhs9/QcV00xR64vzsoCTvcP4aO5aGYFv5E0jRN2u5xw7HByCeze4rsNKK
-         94MSoEQFIksJmZgIsozw6bBwTcIF4zf0ur5cLoN/VdBgbSJCxZEcYVWVTDx9lAR4zRgY
-         98vYfLkSiqUvzZYPMYvyXHE64mdLWyGA0drQY4QsJRgbl8jhZI+kd4dAwIm+1ZodoGev
-         DdOg==
-X-Gm-Message-State: AOAM532iP5ELr0eEpL7s6Q0WfbFWIEZ9CkbOa3zowdyxLHpcgHPDh5Qc
-        6M8mvxHksMuR062BDSTPm8ddzw==
-X-Google-Smtp-Source: ABdhPJyqiIARYiS9Nx6R2dRAOu7L9fFAY66xYQB52vNM3asD8uPvwfyxjaG4SWOx1mRUBpZwO/soKA==
-X-Received: by 2002:a54:4689:: with SMTP id k9mr12050417oic.149.1612806503972;
-        Mon, 08 Feb 2021 09:48:23 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c17sm853063otp.58.2021.02.08.09.48.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Feb 2021 09:48:22 -0800 (PST)
-Date:   Mon, 8 Feb 2021 11:48:20 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     Amit Pundir <amit.pundir@linaro.org>,
-        Rob Herring <robh@kernel.org>, dt <devicetree@vger.kernel.org>,
-        netdev@vger.kernel.org, Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        linux-wireless@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        ath10k <ath10k@lists.infradead.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        David S Miller <davem@davemloft.net>
-Subject: Re: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap
- QMI requests
-Message-ID: <YCF5ZC/WMRefTRcQ@builder.lan>
-References: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
- <20200929190817.GA968845@bogus>
- <20201029134017.GA807@yoga>
- <CAMi1Hd20UpNhZm6z5t5Kcy8eTABiAj7X_Gm66QnJspZWSio0Ew@mail.gmail.com>
- <20201124175146.GG185852@builder.lan>
- <87sg8heeta.fsf@codeaurora.org>
- <CAMi1Hd2FN6QQzbKHooVyqQfH1NFTNLt4RwxyVXRf+5DwTc9ojg@mail.gmail.com>
- <87czxa4grv.fsf@codeaurora.org>
+        id S233264AbhBHRwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 12:52:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43960 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232955AbhBHRvG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 12:51:06 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7264764E84;
+        Mon,  8 Feb 2021 17:50:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612806625;
+        bh=NhejrOM6a43dC+qjIL+6h3IShBZ+5vhg83SJUixf2w4=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=B2FMW+2MOdXoczhKakD1wHVxvdRj+h7stgVp9ZP+Uo45f/yvqVurJUOrLAWkFhWnB
+         kGEjzROkyiEX343RtIS2TwCHKJBR0kEtRyVNbw6JdThairisxlWOrXvCCcDJF/aFoL
+         M63MygR6F+NPCeZck/5L0N5Z37wbiRIO5IKDErG5kulTT9Is+gxvvg9J3lQp0QL9pU
+         2zw72IDaGhA5LcTanZVbqB2a3QqgWe00Lk80O+PHgFqmcqMVd77YEUQpwuuAcUrfeS
+         juf4WLz1E6lvlHehOLU2LZV++JMioz/4ZlRVcGBrILGzvymMKY0pU11UwGeNSyx3vg
+         8CLXo8Sewz5/Q==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87czxa4grv.fsf@codeaurora.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210118161442.104660-1-konrad.dybcio@somainline.org>
+References: <20210118161442.104660-1-konrad.dybcio@somainline.org>
+Subject: Re: [PATCH] clk: qcom: smd: Add missing RPM clocks for msm8992/4
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        phone-devel@vger.kernel.org
+Date:   Mon, 08 Feb 2021 09:50:24 -0800
+Message-ID: <161280662401.76967.11809752025480357094@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 08 Feb 11:21 CST 2021, Kalle Valo wrote:
+Quoting Konrad Dybcio (2021-01-18 08:14:41)
+> This was omitted when first adding the clocks for these SoCs.
+>=20
 
-> Amit Pundir <amit.pundir@linaro.org> writes:
-> 
-> > Hi Kalle,
-> >
-> > On Mon, 7 Dec 2020 at 22:25, Kalle Valo <kvalo@codeaurora.org> wrote:
-> >>
-> >> This is firmware version specific, right? There's also enum
-> >> ath10k_fw_features which is embedded within firmware-N.bin, we could add
-> >> a new flag there. But that means that a correct firmware-N.bin is needed
-> >> for each firmware version, not sure if that would work out. Just
-> >> throwing out ideas here.
-> >
-> > Apologies for this late reply. I was out for a while.
-> 
-> No worries.
-> 
-> > If by that (the firmware version) you mean "QC_IMAGE_VERSION_STRING",
-> > then that may be a bit tricky. Pocophone F1 use the same firmware
-> > family version (WLAN.HL.2.0.XXX), used by Dragonboard 845c (which has
-> > Wi-Fi working upstream).
-> 
-> I'm meaning the ath10k firmware meta data we have in firmware-N.bin
-> (N=2,3,4...) file. A quick summary:
-> 
-> Every ath10k firmware release should have firmware-N.bin. The file is
-> created with this tool:
-> 
-> https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath10k/ath10k-fwencoder
-> 
-> firmware-N.bin contains various metadata, one of those being firmware
-> feature flags:
-> 
-> enum ath10k_fw_features {
-> 	/* wmi_mgmt_rx_hdr contains extra RSSI information */
-> 	ATH10K_FW_FEATURE_EXT_WMI_MGMT_RX = 0,
-> 
-> 	/* Firmware from 10X branch. Deprecated, don't use in new code. */
-> 	ATH10K_FW_FEATURE_WMI_10X = 1,
-> 
->         [...]
-> 
-> So what you could is add a new flag enum ath10k_fw_features, create a
-> new firmware-N.bin for your device and enable the flag on the firmware
-> releases for your device only.
-> 
-> I don't know if this is usable, but one solution which came to my mind.
+I believe they were omitted because the system crashed if they were
+touched. Is that still the case?
 
-It sounds quite reasonable to pass this using firmawre-N.bin instead of
-DT, however that would imply that we need to find firmware-N.bin in the
-device-specific directory, where we keep the wlanmdsp.mbn as well - and
-not under /lib/firmware/ath10k
+> Fixes: b4297844995 ("clk: qcom: smd: Add support for MSM8992/4 rpm clocks=
+")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  drivers/clk/qcom/clk-smd-rpm.c         | 16 ++++++++++++++++
+>  include/dt-bindings/clock/qcom,rpmcc.h |  2 ++
+>  include/linux/soc/qcom/smd-rpm.h       |  1 +
+>  3 files changed, 19 insertions(+)
+>=20
+> diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rp=
+m.c
+> index 0e1dfa89489e..91d610042a5d 100644
+> --- a/drivers/clk/qcom/clk-smd-rpm.c
+> +++ b/drivers/clk/qcom/clk-smd-rpm.c
+> @@ -624,6 +624,8 @@ static const struct rpm_smd_clk_desc rpm_clk_msm8976 =
+=3D {
+>  };
+> =20
+>  /* msm8992 */
+> +DEFINE_CLK_SMD_RPM_BRANCH(msm8992, bi_tcxo, bi_tcxo_a, QCOM_SMD_RPM_MISC=
+_CLK, 0,
+> +                                                               19200000);
 
+This rate should come from some parent clk specified in the board DTS
+file as a fixed rate clock.
 
-For other devices (e.g. ADSP, modem or wlanmdsp.mbn) we're putting these
-in e.g. /lib/firmware/qcom/LENOVO/81JL/ and specifies the location using
-a firmware-name property in DT.
-
-Regards,
-Bjorn
-
-> 
-> -- 
-> https://patchwork.kernel.org/project/linux-wireless/list/
-> 
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+>  DEFINE_CLK_SMD_RPM(msm8992, pnoc_clk, pnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, =
+0);
+>  DEFINE_CLK_SMD_RPM(msm8992, ocmemgx_clk, ocmemgx_a_clk, QCOM_SMD_RPM_MEM=
+_CLK, 2);
+>  DEFINE_CLK_SMD_RPM(msm8992, bimc_clk, bimc_a_clk, QCOM_SMD_RPM_MEM_CLK, =
+0);
