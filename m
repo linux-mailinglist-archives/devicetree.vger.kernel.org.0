@@ -2,99 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB7BC313C3B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:04:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B4BF313C0C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:01:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235252AbhBHSDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 13:03:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46610 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235191AbhBHSCk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 13:02:40 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 85B7864D92;
-        Mon,  8 Feb 2021 17:59:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612807142;
-        bh=l/mRLh6nguuYRxV20ToE7e2U3A0nwpk5ETan8VcVz9Q=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ehUUkbsGDf2jX4SBbRZV5jxfK5Cjv41PEoz7KapGeIxhWhMzIV9AozeG09ZNRdsnt
-         /voD1GjJ/Wri6VE4m22JPYKeWnxJM1KIsjpMG4mQzStVZJvccHqLu2X+uXxczeN/PU
-         scCXw4d3hzNB7CwTN/PlhRVjjmddNGpK0Qx/PFUoPj5jQ/OVorDVd495C/cjyaliW6
-         F2OQE9LuYNE73uzI6J1EXb5/oWAuLf8nSVebe7wyxjKqRSnpBPxHxtWL1f5Gms1GT5
-         K03e1/ft8HH/yQmbVjDHwqy0GrWNP5g4GoFLUTnQBwXq64Q8a6M7gHHTKB0FkORcLi
-         utTdY9eqk+axQ==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Sasha Levin <sashal@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 02/19] arm64: dts: qcom: sdm845: Reserve LPASS clocks in gcc
-Date:   Mon,  8 Feb 2021 12:58:41 -0500
-Message-Id: <20210208175858.2092008-2-sashal@kernel.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210208175858.2092008-1-sashal@kernel.org>
-References: <20210208175858.2092008-1-sashal@kernel.org>
+        id S235175AbhBHSAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 13:00:48 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:43055 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235085AbhBHR7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 12:59:30 -0500
+Received: by mail-ot1-f42.google.com with SMTP id l23so3348929otn.10;
+        Mon, 08 Feb 2021 09:59:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lScv50d1ZyqagwO0c9BMwWMnexfOHV/tP4Lgw63kKHw=;
+        b=NtVGc0seVH58dsycl89DOE32awTKybGHAgq0XeMsL6JjsVgGVmag/ZOeDXwnTTzUTV
+         CQFDH7WD9WbG+X/loq1cMw+GQauiSeGG5HAI537J/V8bQLK+CGCQCiBr9+J10OZcmLyA
+         NImIaorLQYqpCEGNa8x4N6z4VM8+ZowJ5QZC+2kJxrS1/RxMpw1niloLe1GOKWpiWqSw
+         nC8Yj8+yH5YQ5w6gPu9HAERLGtyuzmoWKA2IFJT4Pt/konC6M+DqrdougDX/9FO96TWt
+         66q3x0D6zObIdqqsgCVi6UqRpWGG3LVUEYVVfCCvxzFAhRxaH1j3OojAleVYz1KC4gsh
+         i/iw==
+X-Gm-Message-State: AOAM533kxJo1FkWV3cUfZ8XNUD8WIUNq3TJdwJS7zRUoTmSY05y9dE4j
+        dDigsF/p4q/WSI8HF2laBA==
+X-Google-Smtp-Source: ABdhPJzqRSrYc4T8fAFx8cdWWHXtMy9OBexjy9vulNRDba6D0v0R4U+Q3TIwsWMEc78NEdWT8dc9FA==
+X-Received: by 2002:a05:6830:22d7:: with SMTP id q23mr5443543otc.71.1612807129548;
+        Mon, 08 Feb 2021 09:58:49 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u73sm3668919oie.30.2021.02.08.09.58.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Feb 2021 09:58:48 -0800 (PST)
+Received: (nullmailer pid 1618899 invoked by uid 1000);
+        Mon, 08 Feb 2021 17:58:47 -0000
+Date:   Mon, 8 Feb 2021 11:58:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Arnd Bergmann <arnd@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        DTML <devicetree@vger.kernel.org>, Marc Zyngier <maz@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        SoC Team <soc@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
+ devicetree
+Message-ID: <20210208175847.GB1567700@robh.at.kernel.org>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-19-marcan@marcan.st>
+ <20210208110441.25qc6yken4effd6c@kozik-lap>
+ <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
+ <20210208121325.owjjd7nfbdanszny@kozik-lap>
+ <CAK8P3a0yBC3dui6vcz+NByWD-3LqRj-2MF89jpjb_k8r5xmNRA@mail.gmail.com>
+ <f98dc238-6742-455e-3f76-e86ae4c0c838@marcan.st>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f98dc238-6742-455e-3f76-e86ae4c0c838@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Mon, Feb 08, 2021 at 11:12:52PM +0900, Hector Martin wrote:
+> On 08/02/2021 21.40, Arnd Bergmann wrote:
+> > On Mon, Feb 8, 2021 at 1:13 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > 
+> > > On Mon, Feb 08, 2021 at 08:56:53PM +0900, Hector Martin 'marcan' wrote:
+> > > > On 08/02/2021 20.04, Krzysztof Kozlowski wrote:
+> > > > > apple
+> > > > > 
+> > > > > Don't make things different for this one platform (comparing to all
+> > > > > other platforms). Apple is not that special. :)
+> > > > 
+> > > > AAPL is the old vendor prefix used in the PowerPC era. I'm happy to use
+> > > > `apple`, as long as we're OK with having two different prefixes for the same
+> > > > vendor, one for PPC and one for ARM64. I've seen opinions go both ways on
+> > > > this one :)
+> > > 
+> > > Thanks for explanation. I propose to choose just "apple". Sticking to
+> > > old vendor name is not a requirement - we have few vendor prefixes which
+> > > were marked as deprecated because we switched to a better one.
+> > 
+> > We've gone back and forth on this a few times already. My current
+> > preference would also be to go with "apple", not because it's somehow
+> > nicer or clearer but because it avoids the namespace conflict with
+> > what the Apple firmware uses:
 
-[ Upstream commit 93f2a11580a9732c1d90f9e01a7e9facc825658f ]
+It's only AAPL,phandle and AAPL,unit-string (equivalent to unit-address) 
+AFAICT which are really internal format details. So it's really 'apple' 
+that could conflct, but I can't see that mattering.
 
-The GCC_LPASS_Q6_AXI_CLK and GCC_LPASS_SWAY_CLK clocks may not be
-touched on a typical UEFI based SDM845 device, but when the kernel is
-built with CONFIG_SDM_LPASSCC_845 this happens, unless they are marked
-as protected-clocks in the DT.
+> Ack, I'll use 'apple' for v2.
 
-This was done for the MTP and the Pocophone, but not for DB845c and the
-Lenovo Yoga C630 - causing these to fail to boot if the LPASS clock
-controller is enabled (which it typically isn't).
+3 votes for 'apple'. You all get to pick the color of this shed.
 
-Tested-by: Vinod Koul <vkoul@kernel.org> #on db845c
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
-Link: https://lore.kernel.org/r/20201222001103.3112306-1-bjorn.andersson@linaro.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts           | 4 +++-
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 4 +++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
+> Amusingly, Apple actually use 'apple,firestorm' and 'apple,icestorm' for the
+> CPUs in their devicetrees for these machines, so those will end up identical
+> :) (they don't use apple-related prefixes for any other compatible strings
+> at all, it's a mess). But we don't care about what their ADTs (Apple DTs) do
+> in Linux anyway, the bootloader abstracts all that out and we'll be dealing
+> with mantaining proper DTs ourselves.
+> 
+> > > Makes sense. In such case it's indeed your work. Since you introduce it,
+> > > the DTSes are usually licensed with (GPL-2.0+ OR MIT).
+> > 
+> > Indeed, we do want other OSs to use our dts files, so the general
+> > preference is to have a permissive license, unless you have a strong
+> > reason yourself to require GPL-only.
+> 
+> Thanks for pointing this out; this was actually unintentional. I based it
+> off of an old dts I'd written ages ago and forgot to revisit the license. I
+> even have it marked GPL-2.0+ in the copy in our bootloader repo, which is
+> otherwise supposed to be MIT for original code...
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 751651a6cd819..bf4fde88011c8 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -337,7 +337,9 @@ &cdsp_pas {
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
--			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-+			   <GCC_LPASS_Q6_AXI_CLK>,
-+			   <GCC_LPASS_SWAY_CLK>;
- };
- 
- &pm8998_gpio {
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index f539b3655f6b9..ccecc8ea0f96d 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -232,7 +232,9 @@ &apps_smmu {
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
--			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-+			   <GCC_LPASS_Q6_AXI_CLK>,
-+			   <GCC_LPASS_SWAY_CLK>;
- };
- 
- &i2c1 {
--- 
-2.27.0
+I'll also highlight there's a DT only tree[1] available to import DT 
+related parts to other projects. It's generated from the kernel tree. 
+Probably an overkill to copying at this point though.
 
+Rob
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/devicetree/devicetree-rebasing.git/
