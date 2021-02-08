@@ -2,88 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBC9F31391B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:18:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4E9E313926
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:19:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232955AbhBHQRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 11:17:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37848 "EHLO
+        id S230313AbhBHQTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 11:19:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234335AbhBHQRp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 11:17:45 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8331CC06178A
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 08:17:05 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id r21so1624535wrr.9
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 08:17:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=aaBKMnRXM76VUB0Qoag8JdTNr4XL1er0J91Eb9Bg540=;
-        b=Q5o5BVqtOKxv7+VCMcZ+h49qvYsbkLeOdPqyKzh5GM6YlClJ8vu9nBRgsVjFH+4H4/
-         taXKbqrMQeXZeT/dTOKtXZpmnkhXbdAuHDe9w+yyMIQrex0yXzC6asrXkQ6SjqD0Lcyp
-         KOjhaxgALsRTgUQ4LXiHinQOIy8PjEBbz1mqvEoDHhxcanjVWNOPo36Bn3R1z+m2MkLT
-         /HqwDeJyqgMsE31cTha3KDGuxjTjwohjmi/iQI0BSlsE/4lliOn9Vytbr5hyqb+4Qxb6
-         ldcw+UtBoKgdj8VRbMpxhrYUqqHQ0CDQ8YYcGAo1zcVCgQgQiOQ1DAuta0JSXgCtB3P8
-         VsUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=aaBKMnRXM76VUB0Qoag8JdTNr4XL1er0J91Eb9Bg540=;
-        b=XZZpyH1PzWFiOHfYHH0RtuLPQg9x78gKYlYeVBK1Ys/PcRbTzvGBS49cAosx1bHRlf
-         nG45T4hal2KDdRTU3L3/QQpZ5Ix8DYWo8A+3jOJB1ww6p0U+ztppwPDbfHFt3iwxxLaB
-         nJ2pYcLIBxRMilXGwCbDERIc2smFK+j2Tc1RDSMeFgiJn2UTWqTieyEDWC20E5gQaDdm
-         l2bjA5FoxajbucTQT2+dgyrE1NwxRSMyFZIGcqAdY7VxPjS0dUjKZBmn0ZSQASqmuUfR
-         Hu3GWPLhvsDeBFK68NouEGR7zazTO0M0kOrhbe2ovnPgH0kdrfv8FSyM6oZrI32gwhuX
-         Fixg==
-X-Gm-Message-State: AOAM530qT/GMiHhuTA3XnJ1/nRd7XmY8U4Hbu1x2mS4X6OHNZHtIOhbE
-        mtHX3imL/Z4PB7AZ3Se3GE5+QQ==
-X-Google-Smtp-Source: ABdhPJxnnCQSjQogvNvpcKbraMOutlLvkJdfzRF8nhXIrYaq59QP+GzyEZfiWFITnEnwC6L5Tnfxpg==
-X-Received: by 2002:adf:fc8a:: with SMTP id g10mr21425065wrr.189.1612801024340;
-        Mon, 08 Feb 2021 08:17:04 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id q24sm20742143wmq.24.2021.02.08.08.17.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 08 Feb 2021 08:17:03 -0800 (PST)
-Subject: Re: [PATCH v2 2/7] ASoC: codec: lpass-rx-macro: add support for lpass
- rx macro
-To:     Mark Brown <broonie@kernel.org>
-Cc:     perex@perex.cz, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-References: <20210208141719.23305-1-srinivas.kandagatla@linaro.org>
- <20210208141719.23305-3-srinivas.kandagatla@linaro.org>
- <20210208160830.GI8645@sirena.org.uk>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <1397a895-c205-ae1a-5319-28cfacaa4ecb@linaro.org>
-Date:   Mon, 8 Feb 2021 16:17:02 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        with ESMTP id S232677AbhBHQTI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 11:19:08 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E45C061786;
+        Mon,  8 Feb 2021 08:18:27 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id B33B54207F;
+        Mon,  8 Feb 2021 16:18:23 +0000 (UTC)
+Subject: Re: [PATCH 05/18] tty: serial: samsung_tty: add support for Apple
+ UARTs
+To:     Marc Zyngier <maz@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, Arnd Bergmann <arnd@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-6-marcan@marcan.st> <87lfc1l4lo.wl-maz@kernel.org>
+ <e842f37d-d788-2d34-05e4-86ef94aed8f5@marcan.st>
+ <73116feaa00de9173d1f2c35ce16e08f@kernel.org>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <7adf8ede-f7ff-7c62-d0fd-9ab4eaf25741@marcan.st>
+Date:   Tue, 9 Feb 2021 01:18:21 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <20210208160830.GI8645@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
+In-Reply-To: <73116feaa00de9173d1f2c35ce16e08f@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08/02/2021 19.34, Marc Zyngier wrote:
+> On 2021-02-07 09:12, Hector Martin 'marcan' wrote:
+>> On 06/02/2021 22.15, Marc Zyngier wrote:
+>>> Do you actually need a new port type here? Looking at the driver
+>>> itself, it is mainly used to work out the IRQ model. Maybe introducing
+>>> a new irq_type field in the port structure would be better than
+>>> exposing this to userspace (which should see something that is exactly
+>>> the same as a S3C UART).
+>>
+>> Well... every S3C variant already has its own port type here.
+>>
+>> #define PORT_S3C2410    55
+>> #define PORT_S3C2440    61
+>> #define PORT_S3C2400    67
+>> #define PORT_S3C2412    73
+>> #define PORT_S3C6400    84
+>>
+>> If we don't introduce a new one, which one should we pretend to be? :)
+> 
+> Pick one! :D
 
+*queries /dev/urandom* :-)
 
-On 08/02/2021 16:08, Mark Brown wrote:
->> +	SOC_SINGLE_EXT("RX_Softclip Enable", SND_SOC_NOPM, 0, 1, 0,
->> +		     rx_macro_soft_clip_enable_get,
->> +		     rx_macro_soft_clip_enable_put),
->> +	SOC_SINGLE_EXT("AUX_HPF Enable", SND_SOC_NOPM, 0, 1, 0,
->> +			rx_macro_aux_hpf_mode_get,
->> +			rx_macro_aux_hpf_mode_put),
-> These are simple on/off controls so should end in Switch AFAICT.
+>> I agree that it might make sense to merge all of these into one,
+>> though; I don't know what the original reason for splitting them out
+>> is. But now that they're part of the userspace API, this might not be
+>> a good idea. Though, unsurprisingly, some googling suggests there are
+>> zero users of these defines in userspace.
+> 
+> I don't think we can do that, but I don't think we should keep adding
+> to this unless there is a very good reason. Greg would know, I expect.
 
-Yes it makes sense!
-> Otherwise this looks good.
-Thanks, will fix this and send a new version!
+Greg, what do you think? Add more PORT_ UART types for Samsung variants, 
+or overload one of the existing ones and deal with it in the driver?
 
---srini
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
