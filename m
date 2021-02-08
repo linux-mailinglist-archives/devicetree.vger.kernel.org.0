@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7552D31343C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 723B9313497
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:10:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230429AbhBHOBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 09:01:25 -0500
-Received: from mail.baikalelectronics.com ([87.245.175.226]:57092 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231735AbhBHN6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 08:58:39 -0500
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Johan Hovold <johan@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Joao Pinto <jpinto@synopsys.com>,
-        Lars Persson <larper@axis.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Vyacheslav Mitrofanov 
-        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
-        <netdev@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 23/24] net: stmmac: Use pclk to set MDC clock frequency
-Date:   Mon, 8 Feb 2021 16:56:07 +0300
-Message-ID: <20210208135609.7685-24-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
-References: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
+        id S230365AbhBHOJa convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Feb 2021 09:09:30 -0500
+Received: from mail-ej1-f52.google.com ([209.85.218.52]:36782 "EHLO
+        mail-ej1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231400AbhBHOG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 09:06:29 -0500
+Received: by mail-ej1-f52.google.com with SMTP id lg21so24887314ejb.3;
+        Mon, 08 Feb 2021 06:06:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=XphVOHheHYoGHKVI4PzWTQj/Y2Cb2UP33rdxMkO7I7M=;
+        b=cH7+WaWRv+Jf/qvqsTtgPx2v0XbH9/9kcyO6mttzstO1PN92UpNXESdUElJGWxm9BZ
+         km+zIupYup6OaiXvWpu+0pHDjl5SD4xGQZXKgSJBZonwlgtLFDbndzkGRE142mEi8JJ2
+         X30QmIuivJ9E6kkLOPElfnAUJmjlXllRwo2+JSAXD+BtWYgOfcTXqSfPVADitZGC/I7P
+         gGrOsR6pI+6zYl2sbqvCWu4LpN2rtqSSeIRRkvRGC6AFKYaxwDS05KS6lQrcKpHnp3Je
+         tHCwSI3XMMv0UhexuWHOAAjThww6N9qq0cx6ZG7/X/YE23RpFDMP95MQ0ApS1sX11rFP
+         KJhg==
+X-Gm-Message-State: AOAM531S79zHUlJQInI7szzAodrHfJqWStpP2mSZwlNerw1cU00fJLAt
+        TvbnHL1oB98jDz6ac6A5QEs=
+X-Google-Smtp-Source: ABdhPJyt0nz9QpecNnWZqKbqOv1aQV6UJHItXhWO9Udd+7YtvNYJnGf8utGJfPMJ2MwPvxbiBFmUnA==
+X-Received: by 2002:a17:906:1c17:: with SMTP id k23mr8206243ejg.121.1612793145996;
+        Mon, 08 Feb 2021 06:05:45 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id h3sm9484366edw.18.2021.02.08.06.05.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Feb 2021 06:05:43 -0800 (PST)
+Date:   Mon, 8 Feb 2021 15:05:42 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     robh@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
+        festevam@gmail.com, kernel@puri.sm, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>
+Subject: Re: [PATCH 3/5] arm64: defconfig: Enable devfreq support for i.MX8MQ
+Message-ID: <20210208140542.yah354hd7tqbweud@kozik-lap>
+References: <20210208131527.24463-1-martin.kepplinger@puri.sm>
+ <20210208131527.24463-4-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20210208131527.24463-4-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In accordance with [1] the MDC clock frequency is supposed to be selected
-with respect to the CSR clock frequency. CSR clock can be either tied to
-the DW MAC system clock (GMAC main clock) or supplied via a dedicated
-clk_csr_i signal. Current MDC clock selection procedure handles the former
-case while having no support of the later one. That's wrong for the
-devices which have separate system and CSR clocks. Let's fix it by first
-trying to get the synchro-signal rate from the "pclk" clock, if it hasn't
-been specified then fall-back to the "stmmaceth" clock.
+On Mon, Feb 08, 2021 at 02:15:25PM +0100, Martin Kepplinger wrote:
+> From: Guido Günther <agx@sigxcpu.org>
+> 
+> This is needed to make DRAM frequency scaling via devfreq as used
+> on the Librem 5 and Librem 5 Devkit.
+> 
+> With the interconnect support enabled we now need imx devfreq on top
+> to make this work.
+> 
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>  arch/arm64/configs/defconfig | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-[1] DesignWare Cores Ethernet MAC Universal Databook, Revision 3.73a,
-    October 2013, p. 424.
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index a8dec219c295..03acf14d76de 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -206,7 +206,12 @@ static void stmmac_clk_csr_set(struct stmmac_priv *priv)
- {
- 	u32 clk_rate;
- 
--	clk_rate = clk_get_rate(priv->plat->stmmac_clk);
-+	/* If APB clock has been specified then it is supposed to be used
-+	 * to select the CSR mode. Otherwise the application clock is the
-+	 * source of the periodic signal for the CSR interface.
-+	 */
-+	clk_rate = clk_get_rate(priv->plat->pclk) ?:
-+		   clk_get_rate(priv->plat->stmmac_clk);
- 
- 	/* Platform provided default clk_csr would be assumed valid
- 	 * for all other cases except for the below mentioned ones.
--- 
-2.29.2
-
+Best regards,
+Krzysztof
