@@ -2,102 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41DB03143DE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 00:36:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CC9A3143E7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 00:36:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230049AbhBHXfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 18:35:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47062 "EHLO
+        id S231132AbhBHXgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 18:36:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbhBHXe5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 18:34:57 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14689C06178A;
-        Mon,  8 Feb 2021 15:34:17 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 3926141F47;
-        Mon,  8 Feb 2021 23:34:12 +0000 (UTC)
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Marc Zyngier <maz@kernel.org>, SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-11-marcan@marcan.st> <87h7mpky0f.wl-maz@kernel.org>
- <CAK8P3a0-Qk1WAUaCWeX8Zypphpadan3YAOES9t7LFYBOJkXKog@mail.gmail.com>
- <cb721f28-d5e9-3381-2d04-746c0aa2a0d3@marcan.st>
- <CAK8P3a1R51_nqfMWG7SxScJNJEQ3qvp-cynABKEDaQ4O9REM=Q@mail.gmail.com>
- <df54df32-088a-c707-9ffd-e099878548bc@marcan.st>
- <CAK8P3a1vmUJ0EpzU2+u2gy8WHCVV5ur9u-oTzU2BP=ddbXQeLQ@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 10/18] arm64: Introduce FIQ support
-Message-ID: <2eecb7cb-1065-9eab-adad-409f10906062@marcan.st>
-Date:   Tue, 9 Feb 2021 08:34:11 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        with ESMTP id S230461AbhBHXgO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 18:36:14 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E45C06178C
+        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 15:35:34 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id i71so16348958ybg.7
+        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 15:35:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8+WfYcK1+ZV8R23zYWi1zlMlBGGvpKMkA8UnDsJm1Oc=;
+        b=aq0w3Rjj+uR7KU5tlbnt8SRF9CFdEuy0AjgqgYqNKMir3fsFHUIThfxfnu6aqGB7eT
+         vs+u57fNuc/O7ZRw5aKGWiem1cEzcuXK+XxIdxgfxTBXHmTIQp3KZHyvYv3tdTODaAav
+         QoqPkDQGqZRxy0sKbdCT1rSSH9CVQWQGCrrH6bCFRUureuu+/e1sQxNUJJLoQ7V7oq1C
+         /4WafwSXw2fU1fJ/QJAqBNP3vkfOAwZW/LHSpQi4qMfFU4IM0iQKD94nDyXeN9KFJ9pM
+         RSovOiSyfkjD/d67bVKM0uYGDgggNUXN0564+kGokV4Qpic30xP48LDt4BmbI0KgTAsy
+         trcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8+WfYcK1+ZV8R23zYWi1zlMlBGGvpKMkA8UnDsJm1Oc=;
+        b=CG4guAskSHIb/Q09WwP1WYnQOB73GeWvT6opBoD+m2ABwcfXjKHDHYamSbe2S1LmQt
+         PaPudRULCWqaZDStvfXE3Jl42sL+izvJU9BXmbj9FTYg6NkhQjKLqhxxLfh949Onhsw6
+         3xQ13WMpoTaRTkbF3s1sJgXKBHm2QM6sl6dggI3lZcrFgQgle8QTckcC+JHRXeeM5/Gl
+         Tbp7aVvaTZa1Ugvwwr+iQtH6GHlHyw/1Aht+BkpOl95Decmrbx3MwYy6IRfE0T/49p3I
+         176PtuN8WvrW12z4HvGXTMdblYDquk8YSQt7aWDB4W+ag6ITRfJAPO5pobKtQt2wI2rN
+         rJeQ==
+X-Gm-Message-State: AOAM533IH5JNm1cKopCh9xGcEQ0b4TagSChX1lxOMKgVDqbiii/Phtd9
+        bWLTYWknYOVFO28AsIfltR8YPxlMNWKxljvjRnu4Gg==
+X-Google-Smtp-Source: ABdhPJxvfXuvovy4qYPt4qo+kIvhWQQydMERIf2YxT9yDyTigYeTY9JT7AKMlyJ6w7jOmvoinijXVeHNTqdDkwzfQ44=
+X-Received: by 2002:a25:aa43:: with SMTP id s61mr2791520ybi.32.1612827333706;
+ Mon, 08 Feb 2021 15:35:33 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a1vmUJ0EpzU2+u2gy8WHCVV5ur9u-oTzU2BP=ddbXQeLQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+References: <20210205222644.2357303-1-saravanak@google.com>
+ <20210205222644.2357303-9-saravanak@google.com> <CAL_JsqJc8XRAL5Bj5LpH0M528K7ZL=wSqt8t=ibwjWutjCgB-Q@mail.gmail.com>
+In-Reply-To: <CAL_JsqJc8XRAL5Bj5LpH0M528K7ZL=wSqt8t=ibwjWutjCgB-Q@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 8 Feb 2021 15:34:57 -0800
+Message-ID: <CAGETcx9Ynzqx5vo+mqi9EGr+bVs8MBzO5sHhZiT+sB8Q_+7dPA@mail.gmail.com>
+Subject: Re: [PATCH v4 8/8] clk: Mark fwnodes when their clock provider is added/removed
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2021 03.49, Arnd Bergmann wrote:
-> Ok, I had not realized the timer was level triggered. In case of the
-> timer, I suppose it could be either masked or acknowledged from the
-> fiq top-half handler when deferring to irq, but I agree that it means a
-> layering violation in either case.
-> 
-> What might still work is an approach where FIQ is normally enabled,
-> and local_irq_disable() leaves it on, while local_irq_enable() turns
-> it on regardless of the current state.
-> 
-> In this case, the fiq handler could run the timer function if interrupts
-> are enabled but just turn off fiqs when they are turned off, waiting
-> for the next local_irq_enable() to get us back in the state where
-> the handler can run.  Not sure if that would buy us anything though,
-> or if that still requires platform specific conditionals in common code.
+On Mon, Feb 8, 2021 at 7:39 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Fri, Feb 5, 2021 at 4:27 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > This allows fw_devlink to recognize clock provider drivers that don't
+> > use the device-driver model to initialize the device. fw_devlink will
+> > use this information to make sure consumers of such clock providers
+> > aren't indefinitely blocked from probing, waiting for the power domain
+> > device to appear and bind to a driver.
+>
+> Don't we have cases that are a mixture? IOW, a subset of the clock
+> provider is initialized early, then the full driver takes over. You'd
+> want consumers that are not a driver to succeed, but drivers to defer
+> until the full driver is up.
 
-It looks like Marc is just leaning towards making the IRQ and FIQ masks 
-track each other unconditionally on all platforms anyway, so I'm going 
-to try that for v2 (which is certainly the simpler solution). If this 
-ends up somehow breaking any other platform we can deal with it in the 
-way that makes most sense, once we know how it breaks :)
+You probably just made a typo, but to clarify, this is about ignoring
+suppliers that never bind. So, in your case the clock device is the
+supplier.
 
->> * An exception seems to be non-HV timer interrupts firing while we have
->> a VM guest running (HCR_EL2.TGE=0). This causes a single FIQ, and no
->> more, which suggests there is a mask bit for guest timer FIQs somewhere
->> that gets automatically set when the FIQ is delivered to the CPU core.
->> I've yet to find where this bit lives, I'll be doing a brute force sweep
->> of system register space soon to see if I can find it, and if there is
->> anything else useful near it.
-> 
-> Right. Maybe you can even find a bit that switches between FIQ and
-> IRQ mode for the timer, as that would solve the problem completely.
-> I think it's not that rare for irqchips to be configurable to either route
-> an interrupt one way or the other.
+To answer your question, consumer devices added after the full
+supplier driver takes over will still have device links created to the
+supplier clock device. But consumers added before the full driver
+takes over won't. So, nothing is worse off with fw_devlink=on and we
+get way more dependency tracking (device links) created than what we
+have today.
 
-That seems increasingly unlikely here; I tried poking all the AIC config 
-bits and nothing switched those to FIQ (which is the converse). It looks 
-like Apple has done something like use FIQ for all core-internal 
-interrupt sources, and IRQ for AIC, and this is all seemingly quite 
-hardwired.
-
-In particular, a subtlety I discovered about how flipping TGE to 1 with 
-a guest timer interrupt pending only takes effect properly (i.e. FIQ 
-fires, and you get a FIQ storm if unhandled, no auto-masking) after 
-subsequently issuing an isb, makes me think all this FIQ stuff is 
-seriously deeply tied into the instruction pipeline. It's probably not 
-an IRQ line any more...
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+-Saravana
