@@ -2,114 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A41E7313C66
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:07:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9795313C6C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:07:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235378AbhBHSGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 13:06:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60682 "EHLO
+        id S235345AbhBHSGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 13:06:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235167AbhBHSDe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 13:03:34 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36A4AC0617A7
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 10:01:55 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id v15so18295175wrx.4
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 10:01:55 -0800 (PST)
+        with ESMTP id S235202AbhBHSDh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 13:03:37 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87112C0617A9
+        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 10:01:56 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id i9so10239wmq.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 10:01:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=15qU8cK0fgAua4gEd/w/zhOHPh1Gn9liZ7KcNZSIbsw=;
-        b=ZtQCs63tKC4YNjAK5YtSkl6sRGMzqMgDk9JBWfHaip5ck0jSZBxtvpIAaRPwa/4Io+
-         k4klxIU6HWNuAA8dl5xtXzodHH2zZc8AQ1ya6+D+UEWTgJ1zFvzsn0md+EIMZ2rO/bkC
-         Eb7Ec+eDvh3Kz15Q8ihsCelhajfqZzJhsaf1coknsthLTdni8EkTINxV5UQMpmoOuycS
-         Ap7BuWa6I/xJ1UrEe55XzHpbhp8AApMKsC6y05LrOwdVM6An8kCcJbIp00GVWf7tGqja
-         8o3faYsFFgVANYKB+UOdAZC54tVQWlUWy0yOZ0PHmetW5fcrfPF7sLKZZ+jpEZLaWa/k
-         lwcw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=5s1sQMKmA5X4b0lhaDVUuKBYgKx/IDMprYcIvq92de4=;
+        b=L3IgZ7BE8UKYs5RN65jeJ5VyW1p1R3WssltervwC6FLLvOnOEFrY2xAFKjnITTdgkB
+         KDLyfDFvKateRh4yZtt+XaAqvBJiDzrEKP25V7lH/T5cEKnmcAaLQ5HBH9ro6BzqHNRU
+         NKYhPboaEv1MbqrNu0wxE+RgiNRaVfwaY6WjdX/NAiMPtYKEENSGv/+SKSqd+OlutZkw
+         4OwYLg/jyuqY1h548ESf3tqrLU7MJVQvpVp8ik1b+NNwFcth30Xk2ALLJIqwbT2OI/9W
+         B7niNfhg8hgm2QjBD6EeS1eKK3vYOGIN11CL4gWJ0mCvhDE3xqWBcyO7LyVas0ep17NY
+         bDLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=15qU8cK0fgAua4gEd/w/zhOHPh1Gn9liZ7KcNZSIbsw=;
-        b=PophyybPf6r3tlk5Q3E+rdQPlG1bwzTRTsNnvZtm7XM+y23Iy5UHzD70oqqlu8FOy7
-         saKr9sqHcajuD8UM1FxHYUMvJkW07sIV2mYLU/yPDqeP7L7nU5UWpKSiGM3MiqML/GX3
-         reqt/DgcrX1laWG26iwrjjKRbGUK1pJ4gYcslDb7RnpbCNhK1LCmASNxCriNbgdchvHS
-         T1+Y4SXaSdIF8CLCAFCg4rQ0axldbbBXKqSnonzj+n2CZafxiRC4Vf8ce9POHr2qxdvI
-         qs8ZMZ2BXdabOLRqnCj8PbZBTN1ehYxAGfS1yLR33gRi/cgVzwJyR7sw0/N0SD/ZDAID
-         F30g==
-X-Gm-Message-State: AOAM533dlmxi/wsoommxOloPHMyb5g4B/5CuK++nfjnCaGqWdymsUZ+G
-        UyLd7HjclmYNBloMv3K+djy50a5HjzkT9A==
-X-Google-Smtp-Source: ABdhPJwrqGjJeWdA+BLfOl3RPdiRzmOJ7nilmxlHvJ0QS3yn9XOx2bYatc29bZoEoaYUpqBYS3z34w==
-X-Received: by 2002:adf:bb54:: with SMTP id x20mr13257775wrg.112.1612807313722;
-        Mon, 08 Feb 2021 10:01:53 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=5s1sQMKmA5X4b0lhaDVUuKBYgKx/IDMprYcIvq92de4=;
+        b=JZqbtcfmFgITDrtgDSwPFnvwz+nUV6Tz2MDAgpg1Bax2JyuWFX7keeUTJlYhYJngzF
+         MlzB/eO5hLWyzclZQrlVZBzR+UjSi/nb5OkQ0d7VJLuaf8HL2GlcXH/Dqc44BGHJ06X6
+         0sx5dVb1Cuwr1OHFkVJV4fvXyi38Fg8BwDNW7XHAihFtZzipjzuzmUoKWUrk1UPGcjVu
+         j+j9xFGlO4AQERPqPDl2FM/KA9CYK9GqT247qpO+h2Wno9NAHqWrx+pmtvokPCHbqzJC
+         ye9U1LRqO1t6FU/phjPjt1jxN0jqVMv6vG3DvVeq51Qnxe9wf1T9sas0GJZlWZKy7XM6
+         HP5Q==
+X-Gm-Message-State: AOAM532hKMY/p8xV8T4wHFMUEysD//YJjfecoCPOgvU/cCDDdVWJuhc+
+        /VbHqDeawa3/X6zkMPD/5wXVgQ==
+X-Google-Smtp-Source: ABdhPJxCZi8H1CydVhCZfqpCFVFhs9A4rb4nG+DOMBKxnKEbl3LV8R30QFkuR1U+WZjKFHv9VJp9kw==
+X-Received: by 2002:a1c:67c4:: with SMTP id b187mr15837322wmc.17.1612807315064;
+        Mon, 08 Feb 2021 10:01:55 -0800 (PST)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id l2sm21194937wmq.17.2021.02.08.10.01.52
+        by smtp.gmail.com with ESMTPSA id l2sm21194937wmq.17.2021.02.08.10.01.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Feb 2021 10:01:53 -0800 (PST)
+        Mon, 08 Feb 2021 10:01:54 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org
 Cc:     perex@perex.cz, alsa-devel@alsa-project.org,
         linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
         devicetree@vger.kernel.org, robh+dt@kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3 0/7] ASoC: codecs: add support for LPASS Codec TX and RX macros
-Date:   Mon,  8 Feb 2021 18:01:02 +0000
-Message-Id: <20210208180109.518-1-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 1/7] ASoC: qcom: dt-bindings: add bindings for lpass rx macro codec
+Date:   Mon,  8 Feb 2021 18:01:03 +0000
+Message-Id: <20210208180109.518-2-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20210208180109.518-1-srinivas.kandagatla@linaro.org>
+References: <20210208180109.518-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for reviewing v2, here is v3 patchset addressing comments from v2.
+This binding is for LPASS has internal codec RX macro which is
+for connecting with SoundWire RX codecs like WCD938x.
 
-This patchset adds support for two Codec Macro blocks(TX and RX) available in
-Qualcomm LPASS (Low Power Audio SubSystem).
-
-There are WSA, VA, TX and RX Macros on LPASS IP, each of the Macro block
-has specific connectivity like WSA Macros are intended to connect
-to WSA Smart speaker codecs via SoundWire. VA Macro is intended for DMICs,
-and TX/RX for Analog codecs via SoundWire like other WCD938x Codecs to provide
-headphone/ear/lineout/amic/dmic etc ..
-
-Most of the work is derived from downstream Qualcomm kernels.
-Credits to various Qualcomm authors from Patrick Lai's team who have
-contributed to this code.
-
-This patchset has been tested on support to SM8250 MTP Development Board.
-This board has 2 WSA881X smart speakers with onboard DMIC connected to
-internal LPASS codec via WSA  and VA macros respectively and WCD938x
-TX and RX connected via Soundwire via TX and RX Macros reseptively.
-
-Thanks,
-srini
-
-Changes since v2:
-	- Suffix some of the simple on/off control names with "Switch"
-
-Srinivas Kandagatla (7):
-  ASoC: qcom: dt-bindings: add bindings for lpass rx macro codec
-  ASoC: codecs: lpass-rx-macro: add support for lpass rx macro
-  ASoC: codecs: lpass-rx-macro: add dapm widgets and route
-  ASoC: codecs: lpass-rx-macro: add iir widgets
-  ASoC: qcom: dt-bindings: add bindings for lpass tx macro codec
-  ASoC: codecs: lpass-tx-macro: add support for lpass tx macro
-  ASoC: codecs: lpass-tx-macro: add dapm widgets and route
-
- .../bindings/sound/qcom,lpass-rx-macro.yaml   |   62 +
- .../bindings/sound/qcom,lpass-tx-macro.yaml   |   67 +
- sound/soc/codecs/Kconfig                      |   10 +
- sound/soc/codecs/Makefile                     |    4 +
- sound/soc/codecs/lpass-rx-macro.c             | 3604 +++++++++++++++++
- sound/soc/codecs/lpass-tx-macro.c             | 1877 +++++++++
- 6 files changed, 5624 insertions(+)
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ .../bindings/sound/qcom,lpass-rx-macro.yaml   | 62 +++++++++++++++++++
+ 1 file changed, 62 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
- create mode 100644 sound/soc/codecs/lpass-rx-macro.c
- create mode 100644 sound/soc/codecs/lpass-tx-macro.c
 
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+new file mode 100644
+index 000000000000..443d556caa69
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/qcom,lpass-rx-macro.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LPASS(Low Power Audio Subsystem) RX Macro audio codec DT bindings
++
++maintainers:
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++properties:
++  compatible:
++    const: qcom,sm8250-lpass-rx-macro
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 1
++
++  '#clock-cells':
++    const: 0
++
++  clocks:
++    maxItems: 5
++
++  clock-names:
++    items:
++      - const: mclk
++      - const: npl
++      - const: macro
++      - const: dcodec
++      - const: fsgen
++
++  clock-output-names:
++    items:
++      - const: mclk
++
++required:
++  - compatible
++  - reg
++  - "#sound-dai-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/sound/qcom,q6afe.h>
++    codec@3200000 {
++      compatible = "qcom,sm8250-lpass-rx-macro";
++      reg = <0x3200000 0x1000>;
++      #sound-dai-cells = <1>;
++      #clock-cells = <0>;
++      clocks = <&audiocc 0>,
++               <&audiocc 1>,
++               <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
++               <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
++               <&vamacro>;
++      clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
++      clock-output-names = "mclk";
++    };
 -- 
 2.21.0
 
