@@ -2,80 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC05E313105
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 12:39:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81FE23130E3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 12:31:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233171AbhBHLhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 06:37:25 -0500
-Received: from wilbur.contactoffice.com ([212.3.242.68]:51196 "EHLO
-        wilbur.contactoffice.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230364AbhBHLfD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 06:35:03 -0500
-X-Greylist: delayed 497 seconds by postgrey-1.27 at vger.kernel.org; Mon, 08 Feb 2021 06:34:35 EST
-Received: from ichabod.co-bxl (ichabod.co-bxl [10.2.0.36])
-        by wilbur.contactoffice.com (Postfix) with ESMTP id 50CB382D;
-        Mon,  8 Feb 2021 12:25:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailfence.com;
-        s=20160819-nLV10XS2; t=1612783501;
-        bh=tmXcTFCoGUWy5tsn4CyiGIQkxw304rxNZgZLyGii41o=;
-        h=Date:To:Subject:Reply-To:From:Cc:From;
-        b=GLG/tkZ0kh2RnxP9SzZusjdW6pfbUhSVMxrfhq3VLbTuE11PEXP1lQIV144a5qxUF
-         VxmGGrOml9ECD6YVoEl2qeVRFMLWcJxXkHWYAZr1r0aIVsuDfQ/vd8Fp3TDNr+D6L3
-         MEr+G6f+h9BNsD4X758LMtfex50cPf/tP52DNr1uN0D2ecb3yNgVAG1fQ4bqzsdYQu
-         l9Z38YdjsuhlTZjMGtsFCq96rPDlep8ZhXY3xnrguSYso6oCpM1p6+grW7ClvYkBel
-         uZa2Q8Pt2tSiTghhcMNOb5fDmTC869P+s+SyGJqqVLE9C5yElNXGDAOwhmAU62ospV
-         FonbPMhBfBAOw==
-Date:   Mon, 8 Feb 2021 12:24:57 +0100 (CET)
-Message-ID: <1243888060.510560.1612783497400@ichabod.co-bxl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-To:     Jernej Skrabec <jernej.skrabec@siol.net>,
-        Chen-Yu Tsai <wens@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY mode
-X-Priority: 3
-Reply-To: "B.R. Oake" <broake@mailfence.com>
-From:   "B.R. Oake" <broake@mailfence.com>
+        id S233199AbhBHLa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 06:30:56 -0500
+Received: from mailoutvs44.siol.net ([185.57.226.235]:38057 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232995AbhBHL2v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 06:28:51 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 5ABB65222CC;
+        Mon,  8 Feb 2021 12:27:46 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id xCUIjupoRsvj; Mon,  8 Feb 2021 12:27:46 +0100 (CET)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 10562522380;
+        Mon,  8 Feb 2021 12:27:46 +0100 (CET)
+Received: from kista.localnet (cpe-86-58-58-53.static.triera.net [86.58.58.53])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id BEF76522137;
+        Mon,  8 Feb 2021 12:27:45 +0100 (CET)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Chen-Yu Tsai <wens@kernel.org>, Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "B.R. Oake" <broake@mailfence.com>
 Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-sunxi@googlegroups.com, devicetree@vger.kernel.org
-X-Mailer: ContactOffice Mail
-X-ContactOffice-Account: com:276068926
+Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY mode
+Date:   Mon, 08 Feb 2021 12:27:45 +0100
+Message-ID: <2006991.bPDHmd0WOD@kista>
+In-Reply-To: <1243888060.510560.1612783497400@ichabod.co-bxl>
+References: <1243888060.510560.1612783497400@ichabod.co-bxl>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx
-delay config"), Ethernet no longer works on the Orange Pi Plus,
-because that commit sets the RX/TX delay according to the phy-mode
-property in the device tree, which is "rgmii", the wrong setting
-for this board.
+Dne ponedeljek, 08. februar 2021 ob 12:24:57 CET je B.R. Oake napisal(a):
+> Since commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx
+> delay config"), Ethernet no longer works on the Orange Pi Plus,
+> because that commit sets the RX/TX delay according to the phy-mode
+> property in the device tree, which is "rgmii", the wrong setting
+> for this board.
+> 
+> Following the example of others who fixed the same problem for
+> many other boards, this patch changes the phy-mode to "rgmii-id"
+> which gets Ethernet working again on this board.
+> 
+> Fixes: 4904337fe34f ("ARM: dts: sunxi: Restore EMAC changes (boards)")
+> Fixes: 1dcd0095019a ("ARM: sun8i: orangepi-plus: Enable dwmac-sun8i")
+> Signed-off-by: B.R. Oake <broake@mailfence.com>
+> ---
+>  arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Following the example of others who fixed the same problem for
-many other boards, this patch changes the phy-mode to "rgmii-id"
-which gets Ethernet working again on this board.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@siol.net>
 
-Fixes: 4904337fe34f ("ARM: dts: sunxi: Restore EMAC changes (boards)")
-Fixes: 1dcd0095019a ("ARM: sun8i: orangepi-plus: Enable dwmac-sun8i")
-Signed-off-by: B.R. Oake <broake@mailfence.com>
----
- arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks!
 
-diff --git a/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts b/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
-index 97f497854e..d05fa679dc 100644
---- a/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
-+++ b/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
-@@ -85,7 +85,7 @@
- 	pinctrl-0 = <&emac_rgmii_pins>;
- 	phy-supply = <&reg_gmac_3v3>;
- 	phy-handle = <&ext_rgmii_phy>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 
- 	status = "okay";
- };
--- 
-2.20.1
+Best regards,
+Jernej
+
+> diff --git a/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts b/arch/arm/boot/
+dts/sun8i-h3-orangepi-plus.dts
+> index 97f497854e..d05fa679dc 100644
+> --- a/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
+> +++ b/arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts
+> @@ -85,7 +85,7 @@
+>  	pinctrl-0 = <&emac_rgmii_pins>;
+>  	phy-supply = <&reg_gmac_3v3>;
+>  	phy-handle = <&ext_rgmii_phy>;
+> -	phy-mode = "rgmii";
+> +	phy-mode = "rgmii-id";
+>  
+>  	status = "okay";
+>  };
+> -- 
+> 2.20.1
+> 
+> 
+
 
