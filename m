@@ -2,106 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 347213138F7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:12:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26E46313907
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:16:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232776AbhBHQLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 11:11:05 -0500
-Received: from marcansoft.com ([212.63.210.85]:43722 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232597AbhBHQK6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 11:10:58 -0500
+        id S233311AbhBHQPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 11:15:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234129AbhBHQPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 11:15:18 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C82C061788;
+        Mon,  8 Feb 2021 08:14:37 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 2093141F47;
-        Mon,  8 Feb 2021 16:10:03 +0000 (UTC)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id C510B4207F;
+        Mon,  8 Feb 2021 16:14:32 +0000 (UTC)
+Subject: Re: [PATCH 05/18] tty: serial: samsung_tty: add support for Apple
+ UARTs
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, robh+dt@kernel.org,
+Cc:     Marc Zyngier <maz@kernel.org>, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
         Arnd Bergmann <arnd@kernel.org>, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Olof Johansson <olof@lixom.net>
 References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-6-marcan@marcan.st>
- <20210208105451.yumjjunjeyrglfnw@kozik-lap>
+ <20210204203951.52105-6-marcan@marcan.st> <87lfc1l4lo.wl-maz@kernel.org>
+ <e842f37d-d788-2d34-05e4-86ef94aed8f5@marcan.st>
+ <e2bd8f99-58db-4cae-30b3-6fa608bc76dd@marcan.st>
+ <20210208093625.trpm3tte2gw24w4l@kozik-lap>
 From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 05/18] tty: serial: samsung_tty: add support for Apple
- UARTs
-Message-ID: <11d36c47-45c6-03ee-2d08-6692b5d0e241@marcan.st>
-Date:   Tue, 9 Feb 2021 01:10:02 +0900
+Message-ID: <9d395524-7aa9-0c6f-33a8-0cd47f0a7633@marcan.st>
+Date:   Tue, 9 Feb 2021 01:14:30 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <20210208105451.yumjjunjeyrglfnw@kozik-lap>
+In-Reply-To: <20210208093625.trpm3tte2gw24w4l@kozik-lap>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2021 19.54, Krzysztof Kozlowski wrote:
->> +enum s3c24xx_irq_type {
->> +	IRQ_DISCRETE = 0,
->> +	IRQ_S3C6400 = 1,
->> +	IRQ_APPLE = 2,
+On 08/02/2021 18.36, Krzysztof Kozlowski wrote:
+> Please use the scripts/get_maintainers.pl to get the list of people to
+> Cc. The script would point necessary folks.
+
+I thought I'd try Thomas first since he introduced the IRQF_SHARED 
+specifically, but I should've gone straight to maintainers (I did use 
+get_maintainers.pl to find you).
+
+> A different issue is that all your emails from this thread were marked
+> by Google as spam.  I don't see any particular warning signs in the
+> header so it looks more of content-based match for spam.
+
+That's weird. Maybe it's because my server doesn't do DKIM yet, and they 
+went through a mailing list? It's probably time to set that up...
+
+>>> Either way, certainly not for Apple SoCs; I'll get rid of IRQF_SHARED
+>>> for v2.
 > 
-> It seems you add the third structure to differentiate type of UART.
-> There is already port type and s3c24xx_serial_drv_data, no need for
-> third structure (kind of similar to tries of Tamseel Shams in recent
-> patches). It's too much. Instead, differentiate by port type or prepare
-> own set of uart_ops if it's really different (like you did with startup
-> op).
+> Please send a v2 after fixing issues pointed out by kbuild.
 
-This ties into little changes in a bunch of places, so separate uart_ops 
-  callbacks for every one of those would end up duplicating a lot of code :(
-
-That list is just used to map the port type to something that only 
-represents the type of IRQs, but its only real purpose for the 
-indirection is so I can do "== IRQ_DISCRETE" in some codepaths to mean 
-"not apple or S3C6400".
-
-e.g.
-
-     if (s3c24xx_irq_type(port) == IRQ_DISCRETE)
-         free_irq(ourport->rx_irq, ourport);
-
-Would have to become
-
-     if (port->type != IRQ_S3C6400 && port->type != IRQ_APPLE)
-         free_irq(ourport->rx_irq, ourport);
-
-or
-
-     switch (port->type) {
-     case IRQ_S3C6400:
-     case IRQ_APPLE:
-         break;
-     default:
-         free_irq(ourport->rx_irq, ourport);
-     }
-
-Which one do you prefer?
-
-Aside: Marc didn't like introducing new port types into uapi, but if we 
-don't do that then we need a "real" port type in drv_data that isn't the 
-uapi-exposed port or something along those lines, with a separate enum 
-containing all the true port type values for that.
-
->>   	/* Startup sequence is different for s3c64xx and higher SoC's */
->> -	if (s3c24xx_serial_has_interrupt_mask(port))
->> +	case IRQ_S3C6400:
->>   		s3c24xx_serial_ops.startup = s3c64xx_serial_startup;
-> 
-> Don't overwrite specific ops. It's difficult to see then which ops are
-> being used. Instead create a new set of uart_ops matching the needs.
-
-s3c24xx_serial_ops was already doing that here, but I can move that to a 
-a separate uart_ops too.
-
-Ack on all the other comments, I'll make the changes for v2.
+Will do, already have those fixed in my WIP tree.
 
 -- 
 Hector Martin (marcan@marcan.st)
