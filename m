@@ -2,35 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3C07313BF4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 18:59:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3048313C10
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:01:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235064AbhBHR7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 12:59:22 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45796 "EHLO mail.kernel.org"
+        id S235185AbhBHSAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 13:00:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46560 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233914AbhBHR6x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 12:58:53 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 32EE864E8A;
-        Mon,  8 Feb 2021 17:58:12 +0000 (UTC)
+        id S235113AbhBHR7l (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 12:59:41 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CDBC264E87;
+        Mon,  8 Feb 2021 17:58:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612807093;
-        bh=kFmKTrabg5KPDv675yNUKA0/ZjWb5Rr9aKIU0/5y+ok=;
+        s=k20201202; t=1612807095;
+        bh=iFWC2DtP+Zvyu7SqrESfK1vWP5a8+/pgdlP0zwg4DB0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=okP0NBK5SxCyihXW+Ds6O2/fikcHLkRO09MPBdY0+VSsS96Ei3rCmS7hnDxj4Qm9x
-         JDT13gTHMfGSchT7y1eJ7lEbNUIUOHi/3xWqljJkSB/JU7pwTkrCUzHlQAqug23jtz
-         xnYvozPBTgEK3h787zWmJILWTG47KYYJ4qCFEYjSGlyzWmqi6RYl8yjsinGNtth41x
-         EZ5/LpQzEydKSYxBbV6Nv8OCCMfEjU4d9RFlPDjs/MsGJnaf5XUQek2pRdQcRyMkKc
-         AMNDz0i7O6LEwqpqs+USCAuJO44SFeaU3xyyZjPG2l3ioJHK1n6mI/DXfxGMG0BAqQ
-         tahbfc4LoFOXQ==
+        b=b5S+rE337Yd3hiFU81wXbnnu8ZoruYoWy7O2/H77fRNdvGjanZevUg9ra/BuQLozL
+         9TceuZe/Zf8L3I7yqCNPi2Y4XzCiZvW1JA16KnmEQOjB+znu9cfKfNLzR2LGxsgo3+
+         NK61dz8OeN1Ot6x/6//W/ArOqKfpj1K1noOu846ijLPiu56aLfPTWn+MjLdpaL3I2r
+         TNBNdx5ueMYEFX50qL59qQewQvOVgjvXPptVEJaGIerzYkysqdn2hsQ9+dvcQW79RB
+         eFf+jqoemH2gvgAb1OFGsZ8jXwljoBZLmROO2DWq58Zk9GVqikkcrAWKBdpGKwOKMO
+         27pBALffwPAYg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Sasha Levin <sashal@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 04/36] arm64: dts: qcom: sdm845: Reserve LPASS clocks in gcc
-Date:   Mon,  8 Feb 2021 12:57:34 -0500
-Message-Id: <20210208175806.2091668-4-sashal@kernel.org>
+Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.10 06/36] arm64: dts: rockchip: remove interrupt-names property from rk3399 vdec node
+Date:   Mon,  8 Feb 2021 12:57:36 -0500
+Message-Id: <20210208175806.2091668-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210208175806.2091668-1-sashal@kernel.org>
 References: <20210208175806.2091668-1-sashal@kernel.org>
@@ -42,59 +43,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
+From: Johan Jonker <jbx6244@gmail.com>
 
-[ Upstream commit 93f2a11580a9732c1d90f9e01a7e9facc825658f ]
+[ Upstream commit 94a5400f8b966c91c49991bae41c2ef911b935ac ]
 
-The GCC_LPASS_Q6_AXI_CLK and GCC_LPASS_SWAY_CLK clocks may not be
-touched on a typical UEFI based SDM845 device, but when the kernel is
-built with CONFIG_SDM_LPASSCC_845 this happens, unless they are marked
-as protected-clocks in the DT.
+A test with the command below gives this error:
+/arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml: video-codec@ff660000:
+'interrupt-names' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-This was done for the MTP and the Pocophone, but not for DB845c and the
-Lenovo Yoga C630 - causing these to fail to boot if the LPASS clock
-controller is enabled (which it typically isn't).
+The rkvdec driver gets it irq with help of the platform_get_irq()
+function, so remove the interrupt-names property from the rk3399
+vdec node.
 
-Tested-by: Vinod Koul <vkoul@kernel.org> #on db845c
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
-Link: https://lore.kernel.org/r/20201222001103.3112306-1-bjorn.andersson@linaro.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/
+media/rockchip,vdec.yaml
+
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Link: https://lore.kernel.org/r/20210117181653.24886-1-jbx6244@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts           | 4 +++-
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 4 +++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 7cc236575ee20..c0b93813ea9ac 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -415,7 +415,9 @@ &dsi0_phy {
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
--			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-+			   <GCC_LPASS_Q6_AXI_CLK>,
-+			   <GCC_LPASS_SWAY_CLK>;
- };
- 
- &gpu {
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index 76a8c996d497f..5748a404062bb 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -245,7 +245,9 @@ &cdsp_pas {
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
--			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-+			   <GCC_LPASS_Q6_AXI_CLK>,
-+			   <GCC_LPASS_SWAY_CLK>;
- };
- 
- &gpu {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 5df535ad4bbc3..7e69603fb41c0 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -1278,7 +1278,6 @@ vdec: video-codec@ff660000 {
+ 		compatible = "rockchip,rk3399-vdec";
+ 		reg = <0x0 0xff660000 0x0 0x400>;
+ 		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH 0>;
+-		interrupt-names = "vdpu";
+ 		clocks = <&cru ACLK_VDU>, <&cru HCLK_VDU>,
+ 			 <&cru SCLK_VDU_CA>, <&cru SCLK_VDU_CORE>;
+ 		clock-names = "axi", "ahb", "cabac", "core";
 -- 
 2.27.0
 
