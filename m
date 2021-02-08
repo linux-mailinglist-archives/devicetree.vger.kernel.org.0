@@ -2,198 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60BC2314373
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 00:06:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFC0E314383
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 00:11:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231393AbhBHXFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 18:05:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40788 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229609AbhBHXFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 18:05:38 -0500
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3D3BC061786
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 15:04:57 -0800 (PST)
-Received: by mail-qk1-x736.google.com with SMTP id r77so16235865qka.12
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 15:04:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=TqVqy/3KmKk2Cf5ztpP7PXsRVgos+MMINVYs7YeFPNg=;
-        b=sgRluMJG9W8EgoDG0k5uqZlg+P6LMczbp86En3W7plMxcC5b3Loqlcgm7oCRFi2FbW
-         R4sbJHXqVPVLHMs9OW+NLiWsMebw0nJ3vX8WicIPlpFFTddJ73yRNs1Rvf0Mux3h1AsM
-         u06isKJ3ByeYXGLd0evFpCZEs7t/aAYn9JnLALxm9pEk7gae8Qha4rQokxC1wX0wBxQZ
-         +YQmNcffLLv03K9znpk4VNpKWc+uG9k7I3aBqWyYNQDJh9m70iOj5ifSdxtRsmyMVQN5
-         fRu05urhBoGinhN3QGkFIy/jDS0YRvNWH+VVmhL+dvsWJ4Xrs3ooMj36TX+PM5vDm8y+
-         ztRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=TqVqy/3KmKk2Cf5ztpP7PXsRVgos+MMINVYs7YeFPNg=;
-        b=e6ipH2xxfl+KrXH+5IOBw2iK6gIAs50SbwBsQaIVzxoKy2WebOT0VlEl3J4VXBkDdI
-         jvTlLUVQiQoXCWF2iQhPdCw4RaqpJO2GbNx4lwLz3fGhx0kZ+KtAWBAZTYbZozK5el5e
-         xpGbwypkvy60c97TgePmGTVb/8DgwBr8pdxGb87qik5XYw6WjBgaWg1AMlzOSncyPNMV
-         qRk2A/igmjOfQclgNUi20MCIHAj/s2gbIXAQ8RAE618dd1ATTf4/7KhIgFs6A6AUGhFX
-         9tLw0rki/hpoDs4ijPBD3Z+sfGHLMDoPFWXI6UagsyO6ca1XhdMcKRP0CQkSOy5PvH0f
-         2Xqg==
-X-Gm-Message-State: AOAM532fMVkSfiMy55r4iYVz0tTyJi9XXO7MK0OP01TSR4TzO1bWEeu1
-        ixUxyoBs6BG3SYD/3dwX/BRMp5dky2w8aA==
-X-Google-Smtp-Source: ABdhPJx8QIl3XctQx9nOI2jqAw6MD26244OAnaJ2RuuAcCoKy9g3zDAw2lKNOcXZOaTdlLRkGWJgiQ==
-X-Received: by 2002:a37:dcf:: with SMTP id 198mr2281719qkn.257.1612825496859;
-        Mon, 08 Feb 2021 15:04:56 -0800 (PST)
-Received: from [192.168.1.201] (pool-108-51-35-162.washdc.fios.verizon.net. [108.51.35.162])
-        by smtp.googlemail.com with ESMTPSA id k90sm14206976qtd.0.2021.02.08.15.04.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Feb 2021 15:04:56 -0800 (PST)
-Subject: Re: [PATCH v16 09/16] riscv: Update Canaan Kendryte K210 device tree
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "palmer@dabbelt.com" <palmer@dabbelt.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Atish Patra <Atish.Patra@wdc.com>,
-        Anup Patel <Anup.Patel@wdc.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20210205065827.577285-1-damien.lemoal@wdc.com>
- <20210205065827.577285-10-damien.lemoal@wdc.com>
- <20210205202505.GA3625674@robh.at.kernel.org>
- <aab05bea310fbdbac38990656647dd0fbf3c8323.camel@wdc.com>
- <CAL_JsqLbMbMx3TLf+CPG-MdimHTz2sdzgQdmmuQkLfnsTJQAvQ@mail.gmail.com>
- <a924468e-9d6e-d66f-403c-77d7e0422651@gmail.com>
- <BL0PR04MB6514747C7AD8FA7E56D61CB9E78F9@BL0PR04MB6514.namprd04.prod.outlook.com>
-From:   Sean Anderson <seanga2@gmail.com>
-Message-ID: <e451a093-a37f-6078-d158-965b7fce4ebf@gmail.com>
-Date:   Mon, 8 Feb 2021 18:04:55 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S229717AbhBHXLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 18:11:31 -0500
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:39909 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229621AbhBHXLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 18:11:31 -0500
+X-Originating-IP: 86.202.109.140
+Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 5895FE0005;
+        Mon,  8 Feb 2021 23:10:40 +0000 (UTC)
+Date:   Tue, 9 Feb 2021 00:10:40 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
+        arm-soc <arm@kernel.org>, SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Maxime Ripard <mripard@kernel.org>
+Subject: Re: [GIT PULL 2/3] ARM: dts: samsung: DTS for v5.12
+Message-ID: <20210208231040.GF351084@piout.net>
+References: <20210125191240.11278-1-krzk@kernel.org>
+ <20210125191240.11278-3-krzk@kernel.org>
+ <20210206134531.l5vpzlmev4v3f3uo@kozik-lap>
+ <CAK8P3a0Kgn9PTHjsU7MbJPC8vatvb9KYJJKWxrx7zQzTNgK10g@mail.gmail.com>
+ <CAMuHMdWZ8QmiQCmiW9AvCpviNZeuaxThSo_4Xb2DGEs9hMTKMQ@mail.gmail.com>
+ <YCGBIvRfoP0BeyrP@builder.lan>
+ <20210208184230.onhlioflyylkx6xo@kozik-lap>
+ <CAK8P3a3bsw8p2Geyo-vh1AJUfMQCCf3kpa_YB+tKmcvWHqRcEw@mail.gmail.com>
+ <20210208213537.GA351084@piout.net>
+ <CAK8P3a0QRcQM4rH9HgVMOHa_eATXsjRbGDXuMO7FgnA8OgPk0Q@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <BL0PR04MB6514747C7AD8FA7E56D61CB9E78F9@BL0PR04MB6514.namprd04.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a0QRcQM4rH9HgVMOHa_eATXsjRbGDXuMO7FgnA8OgPk0Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/8/21 5:55 PM, Damien Le Moal wrote:
-> On 2021/02/09 7:53, Sean Anderson wrote:
->> On 2/8/21 3:00 PM, Rob Herring wrote:
->>> On Fri, Feb 5, 2021 at 6:13 PM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
->>>>
->>>> On Fri, 2021-02-05 at 14:25 -0600, Rob Herring wrote:
->>>> [...]
->>>>>> +                   otp0: nvmem@50420000 {
->>>>>> +                           #address-cells = <1>;
->>>>>> +                           #size-cells = <1>;
->>>>>> +                           compatible = "canaan,k210-otp";
->>>>>> +                           reg = <0x50420000 0x100>,
->>>>>> +                                 <0x88000000 0x20000>;
->>>>>> +                           reg-names = "reg", "mem";
->>>>>> +                           clocks = <&sysclk K210_CLK_ROM>;
->>>>>> +                           resets = <&sysrst K210_RST_ROM>;
->>>>>> +                           read-only;
->>>>>> +                           status = "disabled";
->>>>>
->>>>> Your disabled nodes seem a bit excessive. A device should really only be
->>>>> disabled if it's a board level decision to use or not. I'd assume the
->>>>> OTP is always there and usable.
->>>>
->>>> Please see below.
->>>>
->>>>>
->>>>>> +
->>>>>> +                           /* Bootloader */
->>>>>> +                           firmware@00000 {
->>>>>
->>>>> Drop leading 0s.
->>>>>
->>>>> Is this memory mapped? If so, you are missing 'ranges' in the parent to
->>>>> make it translateable.
->>>>>
->>>>>> +                                   reg = <0x00000 0xC200>;
->>>>>> +                           };
->>>>>> +
->>>>>> +                           /*
->>>>>> +                            * config string as described in RISC-V
->>>>>> +                            * privileged spec 1.9
->>>>>> +                            */
->>>>>> +                           config-1-9@1c000 {
->>>>>> +                                   reg = <0x1C000 0x1000>;
->>>>>> +                           };
->>>>>> +
->>>>>> +                           /*
->>>>>> +                            * Device tree containing only registers,
->>>>>> +                            * interrupts, and cpus
->>>>>> +                            */
->>>>>> +                           fdt@1d000 {
->>>>>> +                                   reg = <0x1D000 0x2000>;
->>>>>> +                           };
->>>>>> +
->>>>>> +                           /* CPU/ROM credits */
->>>>>> +                           credits@1f000 {
->>>>>> +                                   reg = <0x1F000 0x1000>;
->>>>>> +                           };
->>>>>> +                   };
->>>>>> +
->>>>>> +                   dvp0: camera@50430000 {
->>>>>> +                           compatible = "canaan,k210-dvp";
->>>>>
->>>>> No documented. Seems to be several of them.
->>>>
->>>> There are no Linux drivers for these undocumented nodes. That is why I did not
->>>> add any documentation.
->>>
->>> Documentation is required when dts files OR Linux drivers use them.
->>>
->>>> make dtbs_check does not complain about that as long as
->>>> the nodes are marked disabled.
->>>
->>> 'disabled' should only turn off required properties missing checks.
->>> Undocumented compatible strings checks are about to get turned on now
->>> that I've made it work without false positives.
->>>
->>>> I kept these nodes to have the DTS in sync with
->>>> U-Boot which has them.
->>>
->>> That's a worthwhile goal. Doesn't u-boot require documenting bindings?
->>
->> Generally, no. Usually if the bindings differ from the kernel they are
->> documented, but usually the device trees are just imported straight from
->> the kernel. This is a bit of an unusual case in that the device tree is
->> being imported from U-Boot instead of the other way around.
->>
->>>
->>>> Keeping them also creates documentation for the SoC
->>>> since this device tree is more detailed than the SoC specsheet...
->>>
->>> It's already 'documented' in u-boot it seems...
->>
->> I would like to keep Kernel and U-Boot device trees in-sync. However, if
->> there are significant divergences, that becomes more difficult.
+On 08/02/2021 23:14:02+0100, Arnd Bergmann wrote:
+> On Mon, Feb 8, 2021 at 10:35 PM Alexandre Belloni
+> <alexandre.belloni@bootlin.com> wrote:
+> > On 08/02/2021 20:52:37+0100, Arnd Bergmann wrote:
+> > > On Mon, Feb 8, 2021 at 7:42 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > Let me steer the discussion to original topic - it's about old kernel
+> > > > and new DTB, assuming that mainline kernel bisectability is not
+> > > > affected.
+> > > >
+> > > > Flow looks like this:
+> > > >
+> > > > 0. You have existing bidings and drivers.
+> > > > 1. Patch changing bindings (with new compatible) and drivers gets
+> > > >    accepted by maintainer.
+> > > > 2. Patch above (bindings+drivers) goes during merge window to v5.11-rc1.
+> > > > 3. Patch changing in-tree DTS to new compatible gets accepted by
+> > > >    maintainer and it is sent as v5.12-rc1 material to SoC maintainers.
+> > > >
+> > > > So again: old kernel, using old bindings, new DTB.
+> > > >
+> >
+> > I don't think forward compatibility was ever considered. I've seen it
+> > being mentioned a few times on #armlinux but honestly this simply can't
+> > be achieved. This would mean being able to write complete DT bindings
+> > for a particular SoC at day 0 which will realistically never happen. You
+> > may noteven have a complete datasheet and even if you have a datasheet,
+> > it may not be complete or it may be missing hw errata that are
+> > discovered later on and need a new binding to handle.
 > 
-> Sean,
+> You do not have to write the correct DT for this, the only requirement
+> is that any changes to a node are backward-compatible, which is
+> typically the case if you add properties or compatible strings without
+> removing the old one. A bugfix in this case is also backward-compatible.
 > 
-> Are you OK with removing the nodes without a driver ? I think they are the same
-> for the kernel and U-Boot but I have not checked in detail.
-
-I suppose. The 8285 uarts should be kept as iirc someone was using them.
-Same with i2c. WDT has a U-Boot driver, and probably has a Linux one too
-(I haven't checked). I believe the timers also have working drivers, but
-I haven't tested on Linux.
-
---Sean
-
-> 
->>
->> --Sean
->>
->>>
->>> Rob
->>>
->>
->>
-> 
+> The part that can not happen instead is to write a DT that can expose
+> features that any future kernel will use.
 > 
 
+But I think we are speaking about the other way around were you would be
+e.g. removing properties or splitting a node is multiple different
+nodes following a different understanding of the hardware.
+And in this case, any rework of the bindings will be forbidden, like
+32b7cfbd4bb2 ("ARM: dts: at91: remove deprecated ADC properties") will
+break older kernels trying to use the new dtb.
+761f6ed85417 ("ARM: dts: at91: sama5d4: use correct rtc compatible") is
+an other case.
+I'm not sure want to keep the older properties or the older compatible
+string as a fallback for this use case.
+
+> > > However, once the firmware is updated, it may no longer be possible to
+> > > go back to the old kernel in case the new one is busted.
+> > >
+> >
+> > Any serious update strategy will update both the kernel and device tree
+> > at the same time, exactly like you already have to update the initramfs
+> > with the kernel as soon as it is including kernel modules.
+> > I would expect any embedded platform to actually use a container format,
+> > like a FIT image that will ship the kernel, DT and intiramfs in a single
+> > image and will allow to sign all parts.
+> 
+> Embedded systems that do this have no requirement for backward
+> or forward compatibility at all, the only requirement for these is bisectability
+> of git commits.
+> 
+
+Yes and I can't see any drawbacks in this approach.
+
+> > > A similar problem can happen with the EBBR boot flow that relies on
+> > > a uefi-enabled firmware such as a u-boot, while using grub2 as the
+> > > actual boot loader. This is commonly supported across distros. While
+> > > grub2 can load a matching set of kernel+initrd+dtb from disk and run
+> > > that, this often fails in practice because u-boot needs to fill a
+> > > board specific set of DT properties (bootargs, detected memory,
+> > > mac address, ...). The usual way this gets handled is that u-boot loads
+> > > grub2 and the dtb from disk and then passes the modified dtb to grub,
+> > > which picks only kernel+initrd from disk and boots this with the dtb.
+> > >
+> > > The result is similar to case with dtb built into the firmware: after
+> > > upgrading the dtb that gets loaded by u-boot, grub can still pick
+> > > old kernels but they may not work as they did in the past. There are
+> > > obviously ways to work around it, but it does lead to user frustration.
+> > >
+> >
+> > Are there really any platforms with the dtb built into the firmware?
+> > I feel like this is a mythical creature used to scare people into keeping
+> > the DTB ABI stable. Aren't all the distribution already able to cope
+> > with keeping DTB and kernel in sync?
+> 
+> I think most traditional PowerPC systems fall into this category, most
+
+My understanding was that the traditional PPC systems had a small device
+tree and usually are not affected by driver changes but I may be wrong.
+
+> systems that boot using UEFI+grub (as I explained), and anyone who
+> uses a distro kernel on custom hardware with their own dtb.
+> 
+
+Aren't the ones using a distro kernel with a custom dtb more concerned
+by backward compatibility (i.e. new kernel with old dtb) rather than old
+kernel on new dtb? If they have an old dtb, an old kernel, and update to
+a new kernel, backward compatibility will ensure this continues to work.
+If then they work on updating their dtb, they still have the old one and
+can make the distribution match dtb and kernel. This is already handled
+properly by debian and I guess the other distributions as it is anyway
+already matching kernel and initramfs.
+
+This is what I have on my NAS:
+
+$ ls /boot
+config-4.12.0-1-marvell  initrd.img-4.12.0-1-marvell  uImage.bak
+config-4.13.0-1-marvell  initrd.img-4.13.0-1-marvell  uInitrd
+dtb                      initrd.img.old               uInitrd.bak
+dtb-4.12.0-1-marvell     lost+found                   vmlinuz
+dtb-4.13.0-1-marvell     System.map-4.12.0-1-marvell  vmlinuz-4.12.0-1-marvell
+dtbs                     System.map-4.13.0-1-marvell  vmlinuz-4.13.0-1-marvell
+initrd.img               uImage                       vmlinuz.old
+
+So dtbs and kernels are already matching even when the dtbs didn't
+change between 4.9 and 4.13.
+
+I don't have any solution for the UEFI+grub use case but I will also
+question the sanity of doing that ;)
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
