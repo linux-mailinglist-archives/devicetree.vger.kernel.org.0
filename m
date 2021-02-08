@@ -2,66 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E56A31388B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 16:53:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF5F93138E0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 17:07:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbhBHPwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 10:52:12 -0500
-Received: from marcansoft.com ([212.63.210.85]:38724 "EHLO mail.marcansoft.com"
+        id S230328AbhBHQHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 11:07:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46686 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234141AbhBHPv7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 10:51:59 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id DE5D94207F;
-        Mon,  8 Feb 2021 15:51:11 +0000 (UTC)
-Subject: Re: [PATCH 08/18] arm64: cpufeature: Add a feature for FIQ support
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, Arnd Bergmann <arnd@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Olof Johansson <olof@lixom.net>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-9-marcan@marcan.st> <87im75l2lp.wl-maz@kernel.org>
- <d110504f-2461-8b41-72cc-72681d775a97@marcan.st>
- <87czxalrwc.wl-maz@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <271fc761-d782-31b8-d97b-907041f15289@marcan.st>
-Date:   Tue, 9 Feb 2021 00:51:09 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S233959AbhBHQHc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 11:07:32 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 703C364DF0;
+        Mon,  8 Feb 2021 16:06:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612800411;
+        bh=fTuhJ5RT5eLAOUQrf/tdirgkNlz+VEc+4HXnU0SEBNY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CE+UBgTcDUlapJhqmFejcia3qaw0B8VrsoRrETcKyAGabydxD4GrGLxeuQh4z2WIV
+         fEZUTK3eyBYKhdKsVYF1E09qTHQFS9rpK+bfnU5WcTgMyQTcStYiBjA8Or50Bygx3i
+         P+1YFg3c1WmM/GRPnWKHhQEIJrWWfa+f4JEK5X+p4uJC7vvyk//cyBqLY++9h2ZgWh
+         ZmphXs+BzmLpUhXwZE2rmbfUSSbU0Hgr8R8TFT1Ec1Ks31652+73b0yy3R61zX3+V4
+         RDb1bq8r+a9PvwCpd7w5rnK2D4g6ob+0j7PXUc/F625iJ3HNs2ZUOXcWIz6lsnxOGI
+         ytIzgvJv58S6w==
+Received: by mail-qt1-f182.google.com with SMTP id w20so10669510qta.0;
+        Mon, 08 Feb 2021 08:06:51 -0800 (PST)
+X-Gm-Message-State: AOAM531PbvIWNh1HoTpcl2TbMEO9/WPrtJDz5V86miULqnODZj7Xkuwu
+        BGddixzu6B17Ek55cks6W8S8D+0ZGQ5S6YWGBw==
+X-Google-Smtp-Source: ABdhPJzQqyDVjzf3UbUtZdEJmP0vjWtaTKE5/EstbBlrylclBdwLqosH30kf0R50qJ8YnbDKvk1GGSZilez2wJPVCUk=
+X-Received: by 2002:ac8:5c41:: with SMTP id j1mr15757118qtj.306.1612800410564;
+ Mon, 08 Feb 2021 08:06:50 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <87czxalrwc.wl-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+References: <20210204113551.68744-1-alexandru.tachici@analog.com>
+ <20210204113551.68744-3-alexandru.tachici@analog.com> <20210206152643.53b0e01b@archlinux>
+In-Reply-To: <20210206152643.53b0e01b@archlinux>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 8 Feb 2021 10:06:39 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+zXzqkMbq5x6GCdE_175MpTGHw3kfOKaPpuaWuAtMF-Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+zXzqkMbq5x6GCdE_175MpTGHw3kfOKaPpuaWuAtMF-Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: iio: adc: ad7124: add config nodes
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Alexandru Tachici <alexandru.tachici@analog.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2021 20.29, Marc Zyngier wrote:
-> I'm not sure we want to trust the FW on that particular front (no
-> offence intended...;-).
+On Sat, Feb 6, 2021 at 9:26 AM Jonathan Cameron <jic23@kernel.org> wrote:
+>
+> On Thu, 4 Feb 2021 13:35:51 +0200
+> <alexandru.tachici@analog.com> wrote:
+>
+> > From: Alexandru Tachici <alexandru.tachici@analog.com>
+> >
+> > Document use of configurations in device-tree bindings.
+> >
+> > Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+>
+> Ignoring discussing in my reply to the cover letter...
+>
+> This is a breaking change as described.  We can't move properties
+> around without some sort of fullback for them being in the old
+> location.
+>
+> > ---
+> >  .../bindings/iio/adc/adi,ad7124.yaml          | 72 +++++++++++++++----
+> >  1 file changed, 57 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> > index fb3d0dae9bae..330064461d0a 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> > @@ -62,20 +62,19 @@ required:
+> >    - interrupts
+> >
+> >  patternProperties:
+> > -  "^channel@([0-9]|1[0-5])$":
+> > -    $ref: "adc.yaml"
+> > +  "^config@(2[0-7])$":
+> >      type: object
+> >      description: |
+> > -      Represents the external channels which are connected to the ADC.
+> > +      Represents a channel configuration.
+> > +      See Documentation/devicetree/bindings/iio/adc/adc.txt.
+>
+> adc.yaml now.
+>
+>
+> >
+> >      properties:
+> >        reg:
+> >          description: |
+> > -          The channel number. It can have up to 8 channels on ad7124-4
+> > -          and 16 channels on ad7124-8, numbered from 0 to 15.
+> > +          The config number. It can have up to 8 configuration.
+> >          items:
+> > -          minimum: 0
+> > -          maximum: 15
+> > +         minimum: 20
+> > +         maximum: 27
+>
+> Number then 0-7 please rather than 20-27.
 
-Hey, I don't even *use* the timers IRQs; if they are unmasked it's 
-iBoot's fault! :-)
+That doesn't work. It would be creating 2 address spaces at one level
+with channel@0 and config@0. The way to address this is add a
+'configs' node with config@N children.
 
-> That is my current take on this patch. Nothing in the arm64 kernel
-> expects a FIQ today, so *when* a FIQ fires is pretty much irrelevant,
-> as long as we handle it properly (panic). Keeping the two bits in sync
-> is trivial, and shouldn't carry material overhead.
+My question here though is where does 20-27 come from. I suspect it's
+made up which isn't good either. Addresses should also be rooted in
+something in the h/w.
 
-Sounds good then, and again that simplifies a ton of stuff. Will go for 
-that in v2.
-
-> Aside from the lack of programmable priority, the lack of convenient
-> masking for per-CPU interrupts is a bit of an issue...
-
-Yeah... we'll see how that goes.
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Rob
