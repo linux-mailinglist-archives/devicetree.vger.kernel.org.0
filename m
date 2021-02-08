@@ -2,104 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9300C313571
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:44:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6B953135CA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 15:57:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231912AbhBHOnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 09:43:10 -0500
-Received: from relay01.th.seeweb.it ([5.144.164.162]:47385 "EHLO
-        relay01.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232739AbhBHOmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 09:42:35 -0500
-Received: from [192.168.1.101] (abad44.neoplus.adsl.tpnet.pl [83.6.167.44])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S233298AbhBHO42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 09:56:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48152 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233120AbhBHOyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 09:54:44 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A086BC061788;
+        Mon,  8 Feb 2021 06:53:58 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id DBFED1F671;
-        Mon,  8 Feb 2021 15:41:28 +0100 (CET)
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and
- panel bits
-To:     Amit Pundir <amit.pundir@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
-References: <1612426177-6611-1-git-send-email-amit.pundir@linaro.org>
- <889e6ed8-133a-9416-be3b-5b2a97ea7fbb@somainline.org>
- <CAMi1Hd3bgDaqsH+txFVEnBc9dsGbrgic5TK7uq4GwqqkM6seiw@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <9bbeb403-2937-aebd-91ff-5682f9112dee@somainline.org>
-Date:   Mon, 8 Feb 2021 15:41:23 +0100
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id AB4A941F47;
+        Mon,  8 Feb 2021 14:53:54 +0000 (UTC)
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, Arnd Bergmann <arnd@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Olof Johansson <olof@lixom.net>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-19-marcan@marcan.st>
+ <a2825482e2f68c2f8cad7cb564414759@kernel.org>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
+ devicetree
+Message-ID: <8d660b1f-cb80-d16c-14e4-2a1c7f5229d1@marcan.st>
+Date:   Mon, 8 Feb 2021 23:53:52 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <CAMi1Hd3bgDaqsH+txFVEnBc9dsGbrgic5TK7uq4GwqqkM6seiw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <a2825482e2f68c2f8cad7cb564414759@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08/02/2021 21.27, Marc Zyngier wrote:
+>> +	timer {
+>> +		compatible = "arm,armv8-timer";
+>> +		interrupt-parent = <&aic>;
+>> +		interrupts = <AIC_FIQ 0 IRQ_TYPE_LEVEL_HIGH>,
+>> +				<AIC_FIQ 0 IRQ_TYPE_LEVEL_HIGH>,
+>> +				<AIC_FIQ 1 IRQ_TYPE_LEVEL_HIGH>,
+>> +				<AIC_FIQ 0 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> This unfortunately doesn't match the binding, which doesn't cater
+> for systems without a secure physical timer, nor allows the description
+> of the EL2 virtual timer.
+> 
+> You should also have *different* interrupts for EL1 and EL2 timers,
+> although this is all a lie...
 
->>> +      ports {
->>> +              port@1 {
->>> +                      endpoint {
->>> +                              remote-endpoint = <&tianma_nt36672a_in_0>;
->>> +                              data-lanes = <0 1 2 3>;
->>> +                      };
->>> +              };
->>> +      };
->> The endpoint has a label, you can simply use &dsi0_out {};.
-> I didn't get what you meant there. Care to point to some reference dts
-> snippet please?
+Well, we do - now that I confirmed all 4 timers work properly, the AIC 
+driver should provide all 4. And ideally I find those EL1 timer mask 
+bits and implement them in the aic driver too (for only the virt timers 
+that have them and of course need them).
 
-sdm845.dtsi, L4139 as of v5.11-rc7:
+I just found the code in arm_arch_timer that forwards all this stuff to 
+the kvm code, so it all makes sense now; if I can wire that up properly, 
+heck, KVM might even just work here.
 
+> 
+> Looking at the only similar case, XGene lies about the secure timer
+> (it doesn't have any), and of course doesn't have an EL2 virtual
+> timer (ARMv8.0 only).
+> 
+> A sensible course of action could be to update the binding to at least:
+> 
+> - tell the kernel that there is no secure physical timer (and that
+>     the interrupt should be ignored)
+> - introduce a 5th possible interrupt for the EL2 virtual timer.
 
-port@1 {
-                        reg = <1>;
-                        dsi0_out: endpoint {
-                        };
-                    };
+Sounds like I should be introducing interrupt-names support into this 
+driver and using that, so we can just not specify IRQs that don't exist, 
+instead of the hack with dummies. Falling back to indexes of course, to 
+keep DT compat. i.e.
 
+const char *names = {"phys-secure", "phys", "virt", "hyp-phys", "hyp-virt"};
 
-This means you can essentially do:
+bool has_names = of_property_read_bool(..., "interrupt-names");
 
-&dsi0_out {
+for (each irq)
+	if (has_names) foo = of_irq_get_byname(..., names[i])
+	else foo = of_irq_get(..., i)
 
-    remote-endpoint = <&tianma_nt36672a_in_0>;
-    lanes = <0 1 2 3>;
+That said, is there a use case for the EL2 virtual timer? The driver 
+always uses the EL2 physical timer with VHE right now. I guess it's 
+worth describing it in the binding and dts, even if the driver never 
+selects it...?
 
-};
-
-
-in your dt :)
-
-
->>> +              vddpos-supply = <&lab>;
->>> +              vddneg-supply = <&ibb>;
->> With Angelo's latest series [1] merged in, I reckon you should explicitly configure lab/ibb (like in [2]),
->> as wrong settings (which CAN BE SET BY THE BOOTLOADER in some instances!!) can lead to hardware damage.
-> So iirc in the case of beryllium device, these regulators are pre set
-> by the bootloader and I can't find any reference of we
-> setting/resetting it explicitly to switch ON the panel and display. So
-> far default lab/ibb nodes are working fine for us and I'm hesitant to
-> tinker around anything regulator related that can potentially damage
-> the hardware. Having said that, I do see lab/ibb nodes being set in
-> the downstream dts, with relevant soft-start and discharge-resistor
-> properties and I can try switching to that once the new lab/ibb
-> changes land upstream.
->
-> Regards,
-> Amit Pundir
->
-I understand your concerns, however we actually did find out that at least one device had LAB/IBB set up by the bootloader in a way that could potentially damage the electronics, so I'm just making you aware. If it works as-is, it's probably OK.
-
-
-Konrad
-
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
