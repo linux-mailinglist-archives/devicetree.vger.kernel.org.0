@@ -2,36 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7CEE313BF1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 18:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3C07313BF4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 18:59:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231872AbhBHR7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 12:59:13 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45774 "EHLO mail.kernel.org"
+        id S235064AbhBHR7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 12:59:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45796 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235019AbhBHR6v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 12:58:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7739864E84;
-        Mon,  8 Feb 2021 17:58:09 +0000 (UTC)
+        id S233914AbhBHR6x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 12:58:53 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 32EE864E8A;
+        Mon,  8 Feb 2021 17:58:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612807090;
-        bh=XNLkFAXZajpl1pvSlYYyiojg6Cj6P5AJkvwdFzbavls=;
+        s=k20201202; t=1612807093;
+        bh=kFmKTrabg5KPDv675yNUKA0/ZjWb5Rr9aKIU0/5y+ok=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QUQyfz36Emg/KIlt81Y9MZ0KLlQRsZgRitaB8klq7n3RoaZLwz9k941fyzXyoCUxq
-         RnGdOiaCdcNPjkqXCrxf80HYkyZBrkvAhgRePGHKn4bijhohL5wUFVLri8bVeZU2N4
-         Oz5NCZYSuB/OmnbFP+xnH5kv/4yVlpVGNf605Y/lHbBMD5UpECcck7lTkNEJiNzkFF
-         WMrX2CfppuLG2bhIs40tkoF+L+vnX6HljD0272bPUe5ZE0IXnYE+m9dI8oi8NWIAQq
-         bKdrgvImG1UGzqI4PNX7H2CHVgTkOLJ8laFRyLc89l5vfU/vAl+Lzxn8gLoCrt5P8f
-         8k3Vrltt5CwEQ==
+        b=okP0NBK5SxCyihXW+Ds6O2/fikcHLkRO09MPBdY0+VSsS96Ei3rCmS7hnDxj4Qm9x
+         JDT13gTHMfGSchT7y1eJ7lEbNUIUOHi/3xWqljJkSB/JU7pwTkrCUzHlQAqug23jtz
+         xnYvozPBTgEK3h787zWmJILWTG47KYYJ4qCFEYjSGlyzWmqi6RYl8yjsinGNtth41x
+         EZ5/LpQzEydKSYxBbV6Nv8OCCMfEjU4d9RFlPDjs/MsGJnaf5XUQek2pRdQcRyMkKc
+         AMNDz0i7O6LEwqpqs+USCAuJO44SFeaU3xyyZjPG2l3ioJHK1n6mI/DXfxGMG0BAqQ
+         tahbfc4LoFOXQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marc Zyngier <maz@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 02/36] arm64: dts: rockchip: Fix PCIe DT properties on rk3399
-Date:   Mon,  8 Feb 2021 12:57:32 -0500
-Message-Id: <20210208175806.2091668-2-sashal@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Sasha Levin <sashal@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 04/36] arm64: dts: qcom: sdm845: Reserve LPASS clocks in gcc
+Date:   Mon,  8 Feb 2021 12:57:34 -0500
+Message-Id: <20210208175806.2091668-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210208175806.2091668-1-sashal@kernel.org>
 References: <20210208175806.2091668-1-sashal@kernel.org>
@@ -43,48 +42,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marc Zyngier <maz@kernel.org>
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-[ Upstream commit 43f20b1c6140896916f4e91aacc166830a7ba849 ]
+[ Upstream commit 93f2a11580a9732c1d90f9e01a7e9facc825658f ]
 
-It recently became apparent that the lack of a 'device_type = "pci"'
-in the PCIe root complex node for rk3399 is a violation of the PCI
-binding, as documented in IEEE Std 1275-1994. Changes to the kernel's
-parsing of the DT made such violation fatal, as drivers cannot
-probe the controller anymore.
+The GCC_LPASS_Q6_AXI_CLK and GCC_LPASS_SWAY_CLK clocks may not be
+touched on a typical UEFI based SDM845 device, but when the kernel is
+built with CONFIG_SDM_LPASSCC_845 this happens, unless they are marked
+as protected-clocks in the DT.
 
-Add the missing property makes the PCIe node compliant. While we
-are at it, drop the pointless linux,pci-domain property, which only
-makes sense when there are multiple host bridges.
+This was done for the MTP and the Pocophone, but not for DB845c and the
+Lenovo Yoga C630 - causing these to fail to boot if the LPASS clock
+controller is enabled (which it typically isn't).
 
-Signed-off-by: Marc Zyngier <maz@kernel.org>
-Link: https://lore.kernel.org/r/20200815125112.462652-3-maz@kernel.org
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Tested-by: Vinod Koul <vkoul@kernel.org> #on db845c
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
+Link: https://lore.kernel.org/r/20201222001103.3112306-1-bjorn.andersson@linaro.org
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts           | 4 +++-
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 4 +++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 7a9a7aca86c6a..5df535ad4bbc3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -234,6 +234,7 @@ pcie0: pcie@f8000000 {
- 		reg = <0x0 0xf8000000 0x0 0x2000000>,
- 		      <0x0 0xfd000000 0x0 0x1000000>;
- 		reg-names = "axi-base", "apb-base";
-+		device_type = "pci";
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		#interrupt-cells = <1>;
-@@ -252,7 +253,6 @@ pcie0: pcie@f8000000 {
- 				<0 0 0 2 &pcie0_intc 1>,
- 				<0 0 0 3 &pcie0_intc 2>,
- 				<0 0 0 4 &pcie0_intc 3>;
--		linux,pci-domain = <0>;
- 		max-link-speed = <1>;
- 		msi-map = <0x0 &its 0x0 0x1000>;
- 		phys = <&pcie_phy 0>, <&pcie_phy 1>,
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 7cc236575ee20..c0b93813ea9ac 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -415,7 +415,9 @@ &dsi0_phy {
+ &gcc {
+ 	protected-clocks = <GCC_QSPI_CORE_CLK>,
+ 			   <GCC_QSPI_CORE_CLK_SRC>,
+-			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
++			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
++			   <GCC_LPASS_Q6_AXI_CLK>,
++			   <GCC_LPASS_SWAY_CLK>;
+ };
+ 
+ &gpu {
+diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+index 76a8c996d497f..5748a404062bb 100644
+--- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
++++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+@@ -245,7 +245,9 @@ &cdsp_pas {
+ &gcc {
+ 	protected-clocks = <GCC_QSPI_CORE_CLK>,
+ 			   <GCC_QSPI_CORE_CLK_SRC>,
+-			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
++			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
++			   <GCC_LPASS_Q6_AXI_CLK>,
++			   <GCC_LPASS_SWAY_CLK>;
+ };
+ 
+ &gpu {
 -- 
 2.27.0
 
