@@ -2,92 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73B71314252
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 22:53:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9E7E31425E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 22:55:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234019AbhBHVxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 16:53:17 -0500
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:38838 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237059AbhBHVxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 16:53:05 -0500
-Received: by mail-oi1-f174.google.com with SMTP id h6so17289648oie.5;
-        Mon, 08 Feb 2021 13:52:49 -0800 (PST)
+        id S234858AbhBHVza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 16:55:30 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:39589 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230344AbhBHVz3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 16:55:29 -0500
+Received: by mail-ot1-f49.google.com with SMTP id d7so13381768otq.6
+        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 13:55:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=U8tnst308e6RauLdVa5a7TNIbxkAWuY5AsfA0wur2Dk=;
-        b=oPz0PnknK607g+EhHarUWG6eLOaNAxRXpeVGo2SjcXvTxysmSK2LYT5bNuI2B0LMs2
-         I3zkKTEnZ+TvjXhr++WjQkJx3XFsEWpmT5iAJCarCNqbmnkzqmcs4pADxL+uf3YE58hc
-         jyK8fOnXZrRJfBqkKO2l9aBi61Q8vuu1vGGV9y0XhdTxXq3fJa05nAu9pSfP+9P67nRm
-         Va6kL9wU+kRGZ05WlNZ6SvR0Ap/N0JqGad/XUezz6ERRGZqDLk0CFV4B5K9gdJ6uvCMd
-         0NbF5XFWsQdLr6jBU4gcKRTTY4ZFGSIRywNnCMk6ziPGazxbTHej7NZdP0vWgGIB51gf
-         I8KQ==
-X-Gm-Message-State: AOAM530gkCOTW8xSbVETc+NUnKb8UK1XS038vURZdqWMk/LVpCU5sGmw
-        8D8wRFEIedFtUWhvM1Mvug==
-X-Google-Smtp-Source: ABdhPJyujBb8um9slbs8pmbjX48fp1di4TFtFS/wbVUEAmUdc/fIQmMdKAfXk+Pfz8wf0F7yNniuSw==
-X-Received: by 2002:aca:5a57:: with SMTP id o84mr569707oib.0.1612821144124;
-        Mon, 08 Feb 2021 13:52:24 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=4rq3iSsIL7iUk3FNLDWyFOp8YEmpcmaj3S7tUALszS0=;
+        b=cIW8ZLCbTQSJlVYMbDnAsmbqWX+6Hs8UpdJQ9CnKUT4mQ55FaoSZac7nIrYQrBBk0K
+         A2acv81IxZ9kPHKqLvpiMSYaSjK8eRpghkfb5YV8e32O0kLo0FInKd8giYqg1KO/qAnv
+         t67BbYvv65Oo3C1UNkjHdv9OENekLDrsDK1cQMnabDMQbbHTFwgfDj9QB69QpSm7HzQs
+         5DPKgdmJdQG3p4MPSqe7vIgQPcVNpwfsh/TnGbA5n9JvgJQ7+Utf4hZhxxrl5u5wCh05
+         B+LEU6Wdp1148B+ql59n656ksHGRYmpRIP5SU4u20pn7auZVdZ4ivqSxj7Q7NiwQOxoo
+         ENgw==
+X-Gm-Message-State: AOAM532mCRtyhcyO/EQrKRYF2UGFCuY2iS09WaS5TFRwDAErTDNgPDIS
+        5wAF50/O4v3PWSq0xwY5VFXH5kBivg==
+X-Google-Smtp-Source: ABdhPJw9l46+xGzi/ngU7yTiHTzglSBNxVv8ZY8ID86E2bpTKcgjQ5x24sV8PI06QDCbRSm/Ib+qYA==
+X-Received: by 2002:a9d:22c9:: with SMTP id y67mr13788125ota.247.1612821288544;
+        Mon, 08 Feb 2021 13:54:48 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n93sm3878402ota.37.2021.02.08.13.52.23
+        by smtp.gmail.com with ESMTPSA id x187sm3924658oig.3.2021.02.08.13.54.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Feb 2021 13:52:23 -0800 (PST)
-Received: (nullmailer pid 2085478 invoked by uid 1000);
-        Mon, 08 Feb 2021 21:52:22 -0000
-Date:   Mon, 8 Feb 2021 15:52:22 -0600
+        Mon, 08 Feb 2021 13:54:47 -0800 (PST)
+Received: (nullmailer pid 2089194 invoked by uid 1000);
+        Mon, 08 Feb 2021 21:54:47 -0000
+Date:   Mon, 8 Feb 2021 15:54:47 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     Benjamin Fair <benjaminfair@google.com>,
-        Tali Perry <tali.perry1@gmail.com>, openbmc@lists.ozlabs.org,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Avi Fishman <avifishman70@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Convert nuvoton,npcm750 binding
- to YAML
-Message-ID: <20210208215222.GA2085425@robh.at.kernel.org>
-References: <20210116010907.3475405-1-j.neuschaefer@gmx.net>
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] Fix dtbs_check warnings
+Message-ID: <20210208215447.GA2085680@robh.at.kernel.org>
+References: <20210116030156.15726-1-damien.lemoal@wdc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210116010907.3475405-1-j.neuschaefer@gmx.net>
+In-Reply-To: <20210116030156.15726-1-damien.lemoal@wdc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Jan 2021 02:09:05 +0100, Jonathan Neuschäfer wrote:
-> The general trend is to have devicetree bindings in YAML format, to
-> allow automatic validation of bindings and devicetrees.
+On Sat, Jan 16, 2021 at 12:01:54PM +0900, Damien Le Moal wrote:
+> Hi Rob,
 > 
-> Convert the NPCM SoC family's binding to YAML before it accumulates more
-> entries.
+> A couple of patches to fix make dtbs_check warnings about identation.
 > 
-> The nuvoton,npcm750-evb compatible string is introduced to keep the
-> structure of the binding a little simpler.
-> 
-> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
-> ---
-> 
-> If someone else wants to be listed as the maintainer, please let me
-> know.
-> 
-> 
-> v2:
-> - Fix indentation to satisfy yamllint
-> - Fix $schema line
-> 
-> v1:
-> - https://lore.kernel.org/lkml/20210108224008.705687-1-j.neuschaefer@gmx.net/
-> ---
->  .../devicetree/bindings/arm/npcm/npcm.txt     |  6 -----
->  .../devicetree/bindings/arm/npcm/npcm.yaml    | 23 +++++++++++++++++++
->  2 files changed, 23 insertions(+), 6 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/npcm/npcm.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/npcm/npcm.yaml
-> 
+> Thanks !
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thanks, but Linus already picked similar fixes.
+
+Rob
