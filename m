@@ -2,92 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19CED313E7F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 20:09:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B723313EA7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 20:16:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbhBHTIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 14:08:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35526 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234923AbhBHTGK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 14:06:10 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 783B364E8C;
-        Mon,  8 Feb 2021 19:05:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612811125;
-        bh=2JC70mXZqImlB6IjWOvtQN/wJ5o2d5jfmnWoF61hxG4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=DfdXaKmVsCHSnfTWKM2Kspc1e1q8brgQ5Et/bNcRGbkjoDXPEMgaIrXX6IjiQoqki
-         DIoZ0Ab9usdBoEJkv5z4+AQHyWJVUefYiswO9p7HbGP/qEz+PP3XIpcyoIUpSxO1xd
-         JmkFmVEF4/sTc+q4u62dhpdOEShQec1zisR22w93DS4qZ77gUQnQaRyWMcG9HcReTz
-         8wAeVOwkq6p30PA2V5o4twg3+kz/JUUbu0T6O8QE+2N7cnsnWNiqcL5NF9Y9oYrwmI
-         ACivHDxYm1Yp0hJfpMIWrbzMdCaHL8ze4M1Z5BoCqrM/sgdVfFvbnxWr7NOqgjCJdT
-         0hTi5tVHoVbEA==
-Date:   Mon, 8 Feb 2021 11:05:21 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Johan Hovold <johan@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Joao Pinto <jpinto@synopsys.com>,
-        Lars Persson <larper@axis.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Vyacheslav Mitrofanov 
-        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <netdev@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 00/24] net: stmmac: Fix clocks/reset-related
- procedures
-Message-ID: <20210208110521.59804f08@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
-References: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
+        id S234884AbhBHTQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 14:16:06 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:45594 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236069AbhBHTPa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 14:15:30 -0500
+Received: by mail-ot1-f52.google.com with SMTP id o12so15183155ote.12;
+        Mon, 08 Feb 2021 11:15:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9MpW4g/Oa/7358qxsu5N9b3A3zLC/8dOk9zLIzf9+VY=;
+        b=Zk4MBZ26nLLfcAWQQFCxSAJc4oC8VhF37gulUjG+rDuRxsr/DXd/WdrH0xK6Qu7YAo
+         KP7/q3q1FpyAJE3BFJcCRgLSnkxf3covQ0OEWupEfq+yIoAGN9kw3HXjh6upOMIjA3w8
+         +3WBpTP3mRq+TRAWAyCuHDx8Qc5fco3ZaWuZIFfaWN/GqGiDHPOX1uJw6httCl6tRQ9r
+         SR+OEM0qw6DH256MUGbpBiEwxoK0gX1hgAm++3kKPmurSpRG8vKBapsN+fh+1unUoCbF
+         QrWNXWDkEhHbdvqb25Hoo3XTHjCvYAEI5LB55ToyvDs64EejEQd+9R/AcHHP1Q6It9/r
+         ci1Q==
+X-Gm-Message-State: AOAM533TjRbaV3iQeGm35kn5OXtr3lynfpqaBWbsiRg6v8ocreVSE+Ei
+        C9qiXjbJZ5YwG0ZItybO3ntrhpE+jA==
+X-Google-Smtp-Source: ABdhPJy2Zdk/7lhRLfQ4vS7stnE58LqLxeABIlpPpWwn9WDzA3vpkWV8wHQrC0uGs0rwMLBvpmZeqQ==
+X-Received: by 2002:a9d:6e0b:: with SMTP id e11mr8799402otr.343.1612811688715;
+        Mon, 08 Feb 2021 11:14:48 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g11sm3859816oif.9.2021.02.08.11.14.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Feb 2021 11:14:48 -0800 (PST)
+Received: (nullmailer pid 1735846 invoked by uid 1000);
+        Mon, 08 Feb 2021 19:14:47 -0000
+Date:   Mon, 8 Feb 2021 13:14:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Hector Martin 'marcan' <marcan@marcan.st>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>, devicetree@vger.kernel.org,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        soc@kernel.org, Olof Johansson <olof@lixom.net>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
+ devicetree
+Message-ID: <20210208191447.GA1677483@robh.at.kernel.org>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-19-marcan@marcan.st>
+ <20210208110441.25qc6yken4effd6c@kozik-lap>
+ <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 8 Feb 2021 16:55:44 +0300 Serge Semin wrote:
-> Baikal-T1 SoC is equipped with two Synopsys DesignWare GMAC v3.73a-based
-> ethernet interfaces with no internal Ethernet PHY attached. The IP-cores
-> are configured as GMAC-AXI with CSR interface clocked by a dedicated
-> signal. Each of which has got Rx/Tx FIFOs of 16KB, up to 8 MAC addresses
-> capability, no embedded filter hash table logic, EEE enabled, IEEE 1588
-> and 1588-2008 Advanced timestamping capabilities, power management with
-> remote wake-up, IP CSUM hardware acceleration, a single PHY interface -
-> RGMII with MDIO bus, 1xGPI and 1xGPO.
+On Mon, Feb 08, 2021 at 08:56:53PM +0900, Hector Martin 'marcan' wrote:
+> On 08/02/2021 20.04, Krzysztof Kozlowski wrote:
+> > apple
+> > 
+> > Don't make things different for this one platform (comparing to all
+> > other platforms). Apple is not that special. :)
 > 
-> This is a very first series of patches with fixes we've found to be
-> required in order to make things working well for our setup. The series
-> has turned to be rather large, but most of the patches are trivial and
-> some of them are just cleanups, so it shouldn't be that hard to review.
+> AAPL is the old vendor prefix used in the PowerPC era. I'm happy to use
+> `apple`, as long as we're OK with having two different prefixes for the same
+> vendor, one for PPC and one for ARM64. I've seen opinions go both ways on
+> this one :)
+> 
+> > > + * Copyright 2021 Hector Martin <marcan@marcan.st>
+> > 
+> > A lot here might be difficult to reverse-egineer or figure out by
+> > ourself, so usually people rely on vendor sources (the open source
+> > compliance package). Didn't you receive such for the iOS (or whatever
+> > was on your Mac)?
+> 
+> Apple source drops are sparse (they don't even include things like the
+> irqchip driver, only the very core OS code) and APSL licensed, which is a
+> license incompatible with the GPL. Worse, they've moved to a partial-blob
+> model with the M1; M1-compatible XNU source code drops now include a .a blob
+> with startup and CPU-specific code, for which no source code is provided.
+> (to be clear: Apple does not ship Linux for these machines)
+> 
+> Honestly, beyond what's in this patchset and a few more details about CPU
+> registers like performance monitoring stuff that exist in public XNU drops
+> but I haven't looked into yet, Apple's source code drops are going to be
+> practically useless to us from here on out. It's all binaries after this.
+> 
+> Apple device trees are not open source at all; those are provided by iBoot
+> and ship with device firmware, which is not openly licensed. Those device
+> trees are OF-inspired, but otherwise in a different format and structure to
+> Linux device trees.
+> 
+> Since there is zero Apple-published code or data with a license compatible
+> with the Linux kernel to be used here, there can be zero copyright lines
+> claiming any submissions are copyright Apple from us, because that would
+> imply a license violation has occurred. I am treating this as I would any
+> other no-source reverse engineering project, that is, ensuring that I only
+> look at Apple code (binaries, source, devicetrees, whatever) to understand
+> how the hardware functions, build documentation for it (at least in my head,
+> but I am also trying to document things on our wiki as I go), and then write
+> original code to drive it from Linux, unrelated to whatever Apple was doing.
+> 
+> We're also trying to avoid looking at any Apple stuff in general as much as
+> possible, preferring black-box approaches where feasible, to minimize
+> exposure. For example, I only looked at an (outdated, arm32 era) AIC
+> register name list in XNU to write the AIC driver; there is no actual AIC
+> driver code in the source, and instead of decompiling Apple's binary blob
+> AIC driver module, I figured out how the hardware actually worked via
+> probing and experimentation. The entire userspace GPU stack is being reverse
+> engineered via a black-box approach, without any decompilation. I'm going to
+> see what I can do about the kernel driver in the future, and prefer some
+> kind of mmio tracing solution if I can get it all to work on macOS.
+> 
+> As for this file specifically: while I am obviously looking at Apple's DTs
+> to figure out things like register offsets and what hardware exists, those
+> are facts, and facts are not copyrightable, and thus Apple does not hold any
+> copyright interest over this code as I submitted it. Short of verbatim
+> copying and pasting of entire nodes with bespoke property names (which would
+> never fly here anyway because Apple does things very differently from Linux
+> DTs when you get down into the details), it would be extremely hard to argue
+> that translating hardware information from decompiled Apple DTs to Linux DTs
+> would constitute a copyright violation, since the entire purpose of DTs is
+> to describe hardware facts.
+> 
+> You can read more about our reverse engineering and copyright policy at
+> https://alx.sh/re - if you have any suggestions or spot anything
+> problematic, please let me know.
+> 
+> (I'm actually probably going to change that copyright line to "The Asahi
+> Linux Contributors" for v2, if that's okay with the kernel folks, to be in
+> line with our other projects; I defaulted to my name since so far I'm the
+> only contributor to these files, but I expect other people to throw PRs at
+> me in the future and the history to end up with more names here)
 
-Hi Serge!
+Does there need to be a legal entity behind 'The Asahi Linux 
+Contributors' to be valid?
 
-You've submitted 60 patches at once, that's a lot of patches, in netdev
-we limit submissions to 15 patches at a time to avoid overwhelming
-reviewers. 
+From a more practical standpoint, if we want to relicense something in 
+say 5 years from now, who do we ask for an okay?
 
-At a glance the patches seem to mix fixes which affect existing,
-supported systems (eg. error patch reference leaks) with extensions
-required to support your platform. Can the two be separated?
-The fixes for existing bugs should be targeting net (Subject: 
-[PATCH net]) and patches to support your platform net-next (Subject:
-[PATCH net-next]).
+> > I guess Rob will comment on the dt-bindings more... but for me a generic
+> > "arm-platform" is too generic. What's the point of it? I didn't see any
+> > of such generic compatibles in other platforms.
+> 
+> This is a hack for patches #11/#12 to use, and I expect it will go away once
+> we figure out how to properly handle that problem (which needs further
+> discussion). Sorry for the noise, this should not be there in the final
+> version.
 
-Right now the patches are not tagged so our build bot tried applying
-them to net-next and they failed to apply, so I need to toss them away.
+I was going to ask on this. If you have a user of it, I'm okay with it. 
+Generally though, 3 or 4 levels of compatible don't really have users.
 
-Andrew, others, please chime in if I'm misreading the contents of the
-series or if you have additional guidance!
+> > > +		bootargs = "earlycon";
+> > 
+> > This should not be hard-coded in DTS. Pass it from bootloader.
+> 
+> My apologies, this was garbage left over from before I had bootargs support
+> in the bootloader. Will be gone for v2.
+> 
+> > > +	clk24: clk24 {
+> > 
+> > Just "clock". Node names should be generic.
+> 
+> Really? Almost every other device device tree uses unique clock node names.
+
+It's a WIP to be more consistent around node names. For actual
+clock controllers we have 'clock-controller(@.*)?'. There's not really 
+something established for 'fixed-clock'. We probably should define 
+something, but that goes in the schema first.
+
+> > > +		compatible = "fixed-clock";
+> > > +		#clock-cells = <0>;
+> > > +		clock-frequency = <24000000>;
+> > > +		clock-output-names = "clk24";
+> > 
+> > What clock is it? Part of board or SoC? Isn't it a work-around for
+> > missing clock drivers?
+> 
+> The clock topology isn't entirely known yet; I'm submitting this as an
+> initial bring-up patchset and indeed there should be a clockchip driver in
+> the future. The UART driver wants a clock to be able to calculate baud
+> rates. I figured we can get away with a fixed-clock for now while that part
+> of the SoC gets figured out.
+
+That is normal. It does break compatibility between an old kernel 
+and new DT. There's not really a good way to avoid that.
+
+Rob
