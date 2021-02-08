@@ -2,107 +2,451 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CC9A3143E7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 00:36:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAF6F314436
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 00:45:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231132AbhBHXgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 18:36:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47350 "EHLO
+        id S231687AbhBHXoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 18:44:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230461AbhBHXgO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 18:36:14 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E45C06178C
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 15:35:34 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id i71so16348958ybg.7
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 15:35:34 -0800 (PST)
+        with ESMTP id S230166AbhBHXoK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 18:44:10 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2199EC06178A
+        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 15:43:29 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id m2so4555543pgq.5
+        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 15:43:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8+WfYcK1+ZV8R23zYWi1zlMlBGGvpKMkA8UnDsJm1Oc=;
-        b=aq0w3Rjj+uR7KU5tlbnt8SRF9CFdEuy0AjgqgYqNKMir3fsFHUIThfxfnu6aqGB7eT
-         vs+u57fNuc/O7ZRw5aKGWiem1cEzcuXK+XxIdxgfxTBXHmTIQp3KZHyvYv3tdTODaAav
-         QoqPkDQGqZRxy0sKbdCT1rSSH9CVQWQGCrrH6bCFRUureuu+/e1sQxNUJJLoQ7V7oq1C
-         /4WafwSXw2fU1fJ/QJAqBNP3vkfOAwZW/LHSpQi4qMfFU4IM0iQKD94nDyXeN9KFJ9pM
-         RSovOiSyfkjD/d67bVKM0uYGDgggNUXN0564+kGokV4Qpic30xP48LDt4BmbI0KgTAsy
-         trcw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=m5a//ctB0lbfvgcY75wG8GIiRWX1F2zdAidFaSpqxX4=;
+        b=QzBq/9oznTU5xcKqXWrWxepkqHftlhU2V7Wh0rKmF9ssRPaceLi/cgHMCGAY7WcJ3O
+         dhMVJjvVScJhrgPx0GHxnvoSzApvqDVOEx3u9TaGQXgWP7ndW4emmbIOJc/+EQQP4iYN
+         A5R30s9srUCSo+63bnfhTaLULNZWOglf/z4lDDLSrFtZVfWuCs6SJBEnmTFaO3snZBgR
+         rwoK1BNNFkC1DL6ttWKb7++JoDyas785OeePexNuIVMhKjOoTW53dlUa9ntFt1+ri12e
+         Zcvn8BxP0U+ZoGreaSlTwuE1gHw4fPuCBGNZ8qNNlnz2rH9N1nQlHn2R4Ltg7t5Nqq1d
+         bl6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8+WfYcK1+ZV8R23zYWi1zlMlBGGvpKMkA8UnDsJm1Oc=;
-        b=CG4guAskSHIb/Q09WwP1WYnQOB73GeWvT6opBoD+m2ABwcfXjKHDHYamSbe2S1LmQt
-         PaPudRULCWqaZDStvfXE3Jl42sL+izvJU9BXmbj9FTYg6NkhQjKLqhxxLfh949Onhsw6
-         3xQ13WMpoTaRTkbF3s1sJgXKBHm2QM6sl6dggI3lZcrFgQgle8QTckcC+JHRXeeM5/Gl
-         Tbp7aVvaTZa1Ugvwwr+iQtH6GHlHyw/1Aht+BkpOl95Decmrbx3MwYy6IRfE0T/49p3I
-         176PtuN8WvrW12z4HvGXTMdblYDquk8YSQt7aWDB4W+ag6ITRfJAPO5pobKtQt2wI2rN
-         rJeQ==
-X-Gm-Message-State: AOAM533IH5JNm1cKopCh9xGcEQ0b4TagSChX1lxOMKgVDqbiii/Phtd9
-        bWLTYWknYOVFO28AsIfltR8YPxlMNWKxljvjRnu4Gg==
-X-Google-Smtp-Source: ABdhPJxvfXuvovy4qYPt4qo+kIvhWQQydMERIf2YxT9yDyTigYeTY9JT7AKMlyJ6w7jOmvoinijXVeHNTqdDkwzfQ44=
-X-Received: by 2002:a25:aa43:: with SMTP id s61mr2791520ybi.32.1612827333706;
- Mon, 08 Feb 2021 15:35:33 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=m5a//ctB0lbfvgcY75wG8GIiRWX1F2zdAidFaSpqxX4=;
+        b=KE7/a1vdJY/VkG7Lc52v9zLs9bs1oagLeTCbZtVRFh3WtDqt5zdGGD/GHI62sjKxWL
+         5OqVSgHDb38z29Cks/FCEGJqIVYWV6WyilKVrQgk+qtrQMgjOtJJKLG9xUaVL2fbSGFi
+         r1VavSQF+HsypRkbC7/4asods/WD0j67nHwGn20DSICzmm4PhGXgnf+OXT6UPK6reQtt
+         jfoSnlcImt7u26H3+mJlCRsH1VvinFglp1B+Pt8YMwZ6jHej6QIjR9qGgoMlTOllxCG5
+         P6f6YgUmQ5rXdhCG9No0IcZdgN8azqAnftJm3HSUwCp41uaxHBni/lGSlQe2M0klA1hL
+         M12A==
+X-Gm-Message-State: AOAM531pZ3CBRhDUQKL0L1sLrmitrApnIKCbEDUnXmVNdtOOUizFVkLf
+        uK0EE6NJtBfuhPC3wUudWZ6VybAIwEojgg==
+X-Google-Smtp-Source: ABdhPJwPh16dXXbZty8c87pRkRGVwr6dpdxITYAQfVJqU3t4yFDAd7dYI6NWrgPBxBDkcQE5fDQq2w==
+X-Received: by 2002:aa7:8a99:0:b029:1a6:c8b8:1414 with SMTP id a25-20020aa78a990000b02901a6c8b81414mr19395608pfc.66.1612827808297;
+        Mon, 08 Feb 2021 15:43:28 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id i14sm13763815pfk.28.2021.02.08.15.43.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Feb 2021 15:43:27 -0800 (PST)
+Date:   Mon, 8 Feb 2021 16:43:25 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Cc:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>,
+        "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 00/17] remoteproc: Add support for detaching a rproc
+Message-ID: <20210208234325.GA1582054@xps15>
+References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
+ <64b559dc-9e89-c351-ddee-f9cebd155ed7@st.com>
+ <20210202004956.GD1319650@xps15>
+ <200a464a-f6dd-480c-d7cd-d8165828fabc@foss.st.com>
+ <20210202224229.GA1541378@xps15>
+ <0db646f7-a32b-f45f-5ddb-d1d23a54f30d@foss.st.com>
 MIME-Version: 1.0
-References: <20210205222644.2357303-1-saravanak@google.com>
- <20210205222644.2357303-9-saravanak@google.com> <CAL_JsqJc8XRAL5Bj5LpH0M528K7ZL=wSqt8t=ibwjWutjCgB-Q@mail.gmail.com>
-In-Reply-To: <CAL_JsqJc8XRAL5Bj5LpH0M528K7ZL=wSqt8t=ibwjWutjCgB-Q@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 8 Feb 2021 15:34:57 -0800
-Message-ID: <CAGETcx9Ynzqx5vo+mqi9EGr+bVs8MBzO5sHhZiT+sB8Q_+7dPA@mail.gmail.com>
-Subject: Re: [PATCH v4 8/8] clk: Mark fwnodes when their clock provider is added/removed
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0db646f7-a32b-f45f-5ddb-d1d23a54f30d@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 8, 2021 at 7:39 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Fri, Feb 5, 2021 at 4:27 PM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > This allows fw_devlink to recognize clock provider drivers that don't
-> > use the device-driver model to initialize the device. fw_devlink will
-> > use this information to make sure consumers of such clock providers
-> > aren't indefinitely blocked from probing, waiting for the power domain
-> > device to appear and bind to a driver.
->
-> Don't we have cases that are a mixture? IOW, a subset of the clock
-> provider is initialized early, then the full driver takes over. You'd
-> want consumers that are not a driver to succeed, but drivers to defer
-> until the full driver is up.
+On Wed, Feb 03, 2021 at 08:58:15AM +0100, Arnaud POULIQUEN wrote:
+> 
+> 
+> On 2/2/21 11:42 PM, Mathieu Poirier wrote:
+> > On Tue, Feb 02, 2021 at 09:54:13AM +0100, Arnaud POULIQUEN wrote:
+> >>
+> >>
+> >> On 2/2/21 1:49 AM, Mathieu Poirier wrote:
+> >>> On Wed, Jan 27, 2021 at 10:21:24AM +0100, Arnaud POULIQUEN wrote:
+> >>>> Hi Mathieu
+> >>>>
+> >>>> On 12/18/20 6:32 PM, Mathieu Poirier wrote:
+> >>>>> Following the work done here [1], this set provides support for the
+> >>>>> remoteproc core to release resources associated with a remote processor
+> >>>>> without having to switch it off. That way a platform driver can be removed
+> >>>>> or the application processor power cycled while the remote processor is
+> >>>>> still operating.
+> >>>>>
+> >>>>> Of special interest in this series are patches 5 and 6 where getting the
+> >>>>> address of the resource table installed by an eternal entity if moved to
+> >>>>> the core.  This is to support scenarios where a remote process has been
+> >>>>> booted by the core but is being detached.  To re-attach the remote
+> >>>>> processor, the address of the resource table needs to be known at a later
+> >>>>> time than the platform driver's probe() function.
+> >>>>>
+> >>>>> Applies cleanly on v5.10
+> >>>>>
+> >>>>> Thanks,
+> >>>>> Mathieu
+> >>>>>
+> >>>>> [1]. https://lkml.org/lkml/2020/7/14/1600
+> >>>>>
+> >>>>> ----
+> >>>>> New for v4:
+> >>>>> - Made binding description OS agnostic (Rob)
+> >>>>> - Added functionality to set the external resource table in the core
+> >>>>> - Fixed a crash when detaching (Arnaud)
+> >>>>> - Fixed error code propagation in rproc_cdev_relase() and rproc_del() (Arnaud)
+> >>>>> - Added RB tags
+> >>>>
+> >>>>
+> >>>> I tested you series, attach and  detach is working well.
+> >>>>
+> >>>> Then I faced issue when tried to re-attach after a detach.
+> >>>>
+> >>>
+> >>> Right, in this case don't expect the re-attach to work properly because function
+> >>> stm32_rproc_detach() does not exist.  As such the M4 doesn't put itself back
+> >>> in "wait-for-attach" mode as it does when booted by the boot loader.  If I
+> >>> remember correctly we talked about that during an earlier conversation and we
+> >>> agreed FW support would be needed to properly test the re-attach.
+> >>
+> >> Yes you are right the remote firmware needs to be inform about the detach, and
+> >> this is the purpose of the detach ops.
+> >> But also some actions are missing on local side as some resources have also to
+> >> be reinitialized as described in my previous mail.
+> >> For instance the resource table is handled by the remoteproc framework. The
+> >> remote firmware should only have a read access to this table.
+> >>
+> >>>  
+> >>>> But I don't know if this feature has to be supported in this step.
+> >>>>
+> >>>> The 2 issues I found are:
+> >>>>
+> >>>> 1) memory carveouts are released on detach so need to be reinitialized.
+> >>>> The use of prepare/unprepare for the attach and detach would solve the issue but
+> >>>> probably need to add parameter to differentiate a start/stop from a attach/detach.
+> > 
+> > I am in agreement with you assesment and the patch you have proposed to fix it.
+> > Right now carveouts are properly handled between start and stop operations
+> > because their parsing and allocation is done as part for ops:parse_fw(), which
+> > is called for each iteration.  Moving the parsing and allocation to
+> > rproc_prepare_device() ends up doing the same thing.
+> > 
+> > I am not sure we absolutely need an extra parameter to differentiate between
+> > start/stop and attach/detach.  Typically the rproc_prepare_device() is used to
+> > do some kind of setup like providing power to a memory bank.  I suppose that if
+> > a memory bank is already powered by the boot loader, asking to power it up again
+> > won't do anything.
+> > 
+> > As such I suggest we keep the parameters as they are now.  We can revisit if a
+> > use case comes up at a later time. 
+> > 
+> 
+> Your suggestion sound good to me.
+> 
+> >>>>
+> >>>> 2) The vrings in the loaded resource table (so no cached) has to be properly
+> >>>> reinitialized. In rproc_free_vring  the vring da is set to 0 that is then
+> >>>> considered as a fixed address.
+> >>>>
+> >>>> Here is a fix which works on the stm32 platform
+> >>>>
+> >>>> @@ -425,7 +425,7 @@ void rproc_free_vring(struct rproc_vring *rvring)
+> >>>>  	 */
+> >>>>  	if (rproc->table_ptr) {
+> >>>>  		rsc = (void *)rproc->table_ptr + rvring->rvdev->rsc_offset;
+> >>>> -		rsc->vring[idx].da = 0;
+> >>>> +		rsc->vring[idx].da = FW_RSC_ADDR_ANY;
+> >>>>  		rsc->vring[idx].notifyid = -1;
+> >>>>  	}
+> >>>>  }
+> > 
+> > I see why this could be needed.  I initially assumed the remote processor would
+> > install a new resource table in memory upon receiving notification the core is
+> > going away.  But upon reflection the remote processor may not even have access
+> > to the image it is running.
+> 
+> The risk here is that both processors try to access this table at the same time.
+> 
+> > 
+> > Let me think about this further - I want to make sure we don't introduce a
+> > regression for current implementations.
+> 
+> Just a precision: the vring DA can be fixed by the coprocessor firmware to
+> impose the address, my patch is not sufficent in such case for the reattachment.
+> That's why i suggested a copy of the resource table before updating it.
+> 
+> Thanks,
+> Arnaud
+> 
+> > 
+> >>>
+> >>> In light of the above let me know if these two issues are still relevant.  If
+> >>> so I'll investigate further.
+> >>
+> >> To highlight the issue just test attach/detach/attch  with a firmware that
+> >> implements a RPMsg communication. On the second attach the virtio framework is
+> >> not properly restarted.
+> >>
+> >> Then please find at the end of the mail 3 patches for test I added on top of
+> >> your series,that allow me to reattach. Of course the RPMsg channels are not
+> >> re-created as i don't implement the remote FW part, but the Linux virtio and
+> >> RPmsg frameworks are restarted.
+> >>
+> >> - [PATCH 1/3] remoteproc: stm32: add capability to detach from the remoteproc
+> >>   => Add a dummy function in stm32_rproc for test.
+> >> - [PATCH 2/3] remoteproc: Add prepare/unprepare for attach detach
+> >>   => Add prepare/unprepare on attach/detach + implement attach in stm32mp1 to
+> >>      reinitialize the memory region that as been cleaned on detach.
+> >> - [PATCH 3/3] remoteproc: virtio: set to vring address to FW_RSC_ADDR_ANY on free
+> >>   => Reinitialize the vring addresses on detach. For this one a better
+> >>      implementation would be to use a cached resource table to fully
+> >>      reinitialize it on re-attach.
+> >>
+> >> Thanks,
+> >> Arnaud
+> >>
+> >>>
+> >>> Thanks,
+> >>> Mathieu
+> >>>
+> >>>>
+> >>>> Here, perhaps a better alternative would be to make a cached copy on attach
+> >>>> before updating it. On the next attach, the cached copy would be copied as it is
+> >>>> done in rproc_start.
 
-You probably just made a typo, but to clarify, this is about ignoring
-suppliers that never bind. So, in your case the clock device is the
-supplier.
+I've been staring long and hard at this code and I don't see another way than
+keeping a clean copy of the resource table as you mentionned above.  And
+managing that table isn't trivial either.  I am working on a solution, something
+that I should be able to publish by the end of the week.
 
-To answer your question, consumer devices added after the full
-supplier driver takes over will still have device links created to the
-supplier clock device. But consumers added before the full driver
-takes over won't. So, nothing is worse off with fw_devlink=on and we
-get way more dependency tracking (device links) created than what we
-have today.
+Thanks,
+Mathieu
 
--Saravana
+> >>>>
+> >>>> Thanks,
+> >>>> Arnaud
+> >>>>
+> >>>>
+> >>>>>
+> >>>>> Mathieu Poirier (17):
+> >>>>>   dt-bindings: remoteproc: Add bindind to support autonomous processors
+> >>>>>   remoteproc: Re-check state in rproc_shutdown()
+> >>>>>   remoteproc: Remove useless check in rproc_del()
+> >>>>>   remoteproc: Rename function rproc_actuate()
+> >>>>>   remoteproc: Add new get_loaded_rsc_table() remoteproc operation
+> >>>>>   remoteproc: stm32: Move resource table setup to rproc_ops
+> >>>>>   remoteproc: Add new RPROC_ATTACHED state
+> >>>>>   remoteproc: Properly represent the attached state
+> >>>>>   remoteproc: Properly deal with a kernel panic when attached
+> >>>>>   remoteproc: Add new detach() remoteproc operation
+> >>>>>   remoteproc: Introduce function __rproc_detach()
+> >>>>>   remoteproc: Introduce function rproc_detach()
+> >>>>>   remoteproc: Add return value to function rproc_shutdown()
+> >>>>>   remoteproc: Properly deal with a stop request when attached
+> >>>>>   remoteproc: Properly deal with a start request when attached
+> >>>>>   remoteproc: Properly deal with detach request
+> >>>>>   remoteproc: Refactor rproc delete and cdev release path
+> >>>>>
+> >>>>>  .../bindings/remoteproc/remoteproc-core.yaml  |  27 +++
+> >>>>>  drivers/remoteproc/remoteproc_cdev.c          |  32 ++-
+> >>>>>  drivers/remoteproc/remoteproc_core.c          | 211 +++++++++++++++---
+> >>>>>  drivers/remoteproc/remoteproc_internal.h      |   8 +
+> >>>>>  drivers/remoteproc/remoteproc_sysfs.c         |  20 +-
+> >>>>>  drivers/remoteproc/stm32_rproc.c              | 147 ++++++------
+> >>>>>  include/linux/remoteproc.h                    |  24 +-
+> >>>>>  7 files changed, 344 insertions(+), 125 deletions(-)
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
+> >>>>>
+> >>
+> >> Subject: [PATCH 1/3] remoteproc: stm32: add capability to detach from the
+> >>  remoteproc
+> >>
+> >> Add a dummy function to allow to detach. No specific action is needed
+> >>
+> >> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
+> >> ---
+> >>  drivers/remoteproc/stm32_rproc.c | 7 +++++++
+> >>  1 file changed, 7 insertions(+)
+> >>
+> >> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
+> >> index 2c949725b91e..b325d28f627c 100644
+> >> --- a/drivers/remoteproc/stm32_rproc.c
+> >> +++ b/drivers/remoteproc/stm32_rproc.c
+> >> @@ -590,6 +590,12 @@ static int stm32_rproc_attach(struct rproc *rproc)
+> >>  	return reset_control_assert(ddata->hold_boot);
+> >>  }
+> >>
+> >> +static int stm32_rproc_detach(struct rproc *rproc)
+> >> +{
+> >> +	/* Nothing to do but ops mandatory to support the detach feature */
+> >> +	return 0;
+> >> +}
+> >> +
+> >>  static int stm32_rproc_stop(struct rproc *rproc)
+> >>  {
+> >>  	struct stm32_rproc *ddata = rproc->priv;
+> >> @@ -712,6 +718,7 @@ static struct rproc_ops st_rproc_ops = {
+> >>  	.start		= stm32_rproc_start,
+> >>  	.stop		= stm32_rproc_stop,
+> >>  	.attach		= stm32_rproc_attach,
+> >> +	.detach		= stm32_rproc_detach,
+> >>  	.kick		= stm32_rproc_kick,
+> >>  	.load		= rproc_elf_load_segments,
+> >>  	.parse_fw	= stm32_rproc_parse_fw,
+> >> -- 
+> >> 2.17.1
+> >>
+> >>
+> >> ------------------------------------------------------------------------
+> >>
+> >>
+> >> Subject: [PATCH 2/3] remoteproc: Add prepare/unprepare for attach detach
+> >>
+> >> Some actions such as memory resources reallocation are needed when try
+> >> to reattach. Use the prepare ops for these actions.
+> >>
+> >> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> >> ---
+> >>  drivers/remoteproc/remoteproc_core.c | 14 ++++++++++++++
+> >>  drivers/remoteproc/stm32_rproc.c     | 14 +++++++-------
+> >>  2 files changed, 21 insertions(+), 7 deletions(-)
+> >>
+> >> diff --git a/drivers/remoteproc/remoteproc_core.c
+> >> b/drivers/remoteproc/remoteproc_core.c
+> >> index f1f51ad1a1d6..f177561b8863 100644
+> >> --- a/drivers/remoteproc/remoteproc_core.c
+> >> +++ b/drivers/remoteproc/remoteproc_core.c
+> >> @@ -1557,6 +1557,13 @@ static int rproc_attach(struct rproc *rproc)
+> >>  		return ret;
+> >>  	}
+> >>
+> >> +	/* Prepare rproc for firmware loading if needed */
+> >> +	ret = rproc_prepare_device(rproc);
+> >> +	if (ret) {
+> >> +		dev_err(dev, "can't prepare rproc %s: %d\n", rproc->name, ret);
+> >> +		goto disable_iommu;
+> >> +	}
+> >> +
+> >>  	ret = rproc_get_loaded_rsc_table(rproc);
+> >>  	if (ret) {
+> >>  		dev_err(dev, "can't load resource table: %d\n", ret);
+> >> @@ -1990,6 +1997,13 @@ int rproc_detach(struct rproc *rproc)
+> >>  	/* clean up all acquired resources */
+> >>  	rproc_resource_cleanup(rproc);
+> >>
+> >> +	/* Release HW resources if needed */
+> >> +	ret = rproc_unprepare_device(rproc);
+> >> +	if (ret) {
+> >> +		atomic_inc(&rproc->power);
+> >> +		goto out;
+> >> +	}
+> >> +
+> >>  	rproc_disable_iommu(rproc);
+> >>
+> >>  	/*
+> >> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
+> >> index b325d28f627c..bf50d79b1f09 100644
+> >> --- a/drivers/remoteproc/stm32_rproc.c
+> >> +++ b/drivers/remoteproc/stm32_rproc.c
+> >> @@ -413,9 +413,6 @@ static int stm32_rproc_parse_fw(struct rproc *rproc, const
+> >> struct firmware *fw)
+> >>  	struct stm32_rproc *ddata = rproc->priv;
+> >>  	int ret;
+> >>
+> >> -	ret  = stm32_rproc_parse_memory_regions(rproc);
+> >> -	if (ret)
+> >> -		return ret;
+> >>
+> >>  	if (ddata->trproc)
+> >>  		ret = rproc_tee_get_rsc_table(ddata->trproc);
+> >> @@ -580,6 +577,12 @@ static int stm32_rproc_start(struct rproc *rproc)
+> >>
+> >>  	return reset_control_assert(ddata->hold_boot);
+> >>  }
+> >> +static int stm32_rproc_prepare(struct rproc *rproc)
+> >> +{
+> >> +	dev_err(&rproc->dev, "%s: %d\n", __func__, __LINE__);
+> >> +
+> >> +	return stm32_rproc_parse_memory_regions(rproc);
+> >> +}
+> >>
+> >>  static int stm32_rproc_attach(struct rproc *rproc)
+> >>  {
+> >> @@ -717,6 +720,7 @@ static int stm32_rproc_get_loaded_rsc_table(struct rproc *rproc)
+> >>  static struct rproc_ops st_rproc_ops = {
+> >>  	.start		= stm32_rproc_start,
+> >>  	.stop		= stm32_rproc_stop,
+> >> +	.prepare	= stm32_rproc_prepare,
+> >>  	.attach		= stm32_rproc_attach,
+> >>  	.detach		= stm32_rproc_detach,
+> >>  	.kick		= stm32_rproc_kick,
+> >> @@ -921,10 +925,6 @@ static int stm32_rproc_probe(struct platform_device *pdev)
+> >>
+> >>  	if (state == M4_STATE_CRUN) {
+> >>  		rproc->state = RPROC_DETACHED;
+> >> -
+> >> -		ret = stm32_rproc_parse_memory_regions(rproc);
+> >> -		if (ret)
+> >> -			goto free_resources;
+> >>  	}
+> >>
+> >>  	rproc->has_iommu = false;
+> >> -- 
+> >> 2.17.1
+> >>
+> >>
+> >> ------------------------------------------------------------------------
+> >>
+> >> Subject: [PATCH 3/3] remoteproc: virtio: set to vring address to
+> >>  FW_RSC_ADDR_ANY on free
+> >>
+> >> The resource table vring structure is cleaned on free. But value is set
+> >> to 0. This value is considered as a valid address. Set the value
+> >> to  FW_RSC_ADDR_ANY instead.
+> >> This is needed to allow to reattach to an autonomous firmware.
+> >> An alternative would be to save the resource table before updating it.
+> >> On free the value would be reset to initial value.
+> >>
+> >> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> >> ---
+> >>  drivers/remoteproc/remoteproc_core.c | 2 +-
+> >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/remoteproc/remoteproc_core.c
+> >> b/drivers/remoteproc/remoteproc_core.c
+> >> index f177561b8863..5b5de4db3981 100644
+> >> --- a/drivers/remoteproc/remoteproc_core.c
+> >> +++ b/drivers/remoteproc/remoteproc_core.c
+> >> @@ -425,7 +425,7 @@ void rproc_free_vring(struct rproc_vring *rvring)
+> >>  	 */
+> >>  	if (rproc->table_ptr) {
+> >>  		rsc = (void *)rproc->table_ptr + rvring->rvdev->rsc_offset;
+> >> -		rsc->vring[idx].da = 0;
+> >> +		rsc->vring[idx].da = FW_RSC_ADDR_ANY;
+> >>  		rsc->vring[idx].notifyid = -1;
+> >>  	}
+> >>  }
+> >> -- 
+> >> 2.17.1
+> >>
+> >>
+> >>
+> >>
+> >>
+> >>
