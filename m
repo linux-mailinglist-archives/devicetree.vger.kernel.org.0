@@ -2,122 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B4BF313C0C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:01:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AEB6313C40
+	for <lists+devicetree@lfdr.de>; Mon,  8 Feb 2021 19:05:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235175AbhBHSAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 13:00:48 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:43055 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235085AbhBHR7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 12:59:30 -0500
-Received: by mail-ot1-f42.google.com with SMTP id l23so3348929otn.10;
-        Mon, 08 Feb 2021 09:59:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lScv50d1ZyqagwO0c9BMwWMnexfOHV/tP4Lgw63kKHw=;
-        b=NtVGc0seVH58dsycl89DOE32awTKybGHAgq0XeMsL6JjsVgGVmag/ZOeDXwnTTzUTV
-         CQFDH7WD9WbG+X/loq1cMw+GQauiSeGG5HAI537J/V8bQLK+CGCQCiBr9+J10OZcmLyA
-         NImIaorLQYqpCEGNa8x4N6z4VM8+ZowJ5QZC+2kJxrS1/RxMpw1niloLe1GOKWpiWqSw
-         nC8Yj8+yH5YQ5w6gPu9HAERLGtyuzmoWKA2IFJT4Pt/konC6M+DqrdougDX/9FO96TWt
-         66q3x0D6zObIdqqsgCVi6UqRpWGG3LVUEYVVfCCvxzFAhRxaH1j3OojAleVYz1KC4gsh
-         i/iw==
-X-Gm-Message-State: AOAM533kxJo1FkWV3cUfZ8XNUD8WIUNq3TJdwJS7zRUoTmSY05y9dE4j
-        dDigsF/p4q/WSI8HF2laBA==
-X-Google-Smtp-Source: ABdhPJzqRSrYc4T8fAFx8cdWWHXtMy9OBexjy9vulNRDba6D0v0R4U+Q3TIwsWMEc78NEdWT8dc9FA==
-X-Received: by 2002:a05:6830:22d7:: with SMTP id q23mr5443543otc.71.1612807129548;
-        Mon, 08 Feb 2021 09:58:49 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u73sm3668919oie.30.2021.02.08.09.58.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Feb 2021 09:58:48 -0800 (PST)
-Received: (nullmailer pid 1618899 invoked by uid 1000);
-        Mon, 08 Feb 2021 17:58:47 -0000
-Date:   Mon, 8 Feb 2021 11:58:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Arnd Bergmann <arnd@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Marc Zyngier <maz@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        SoC Team <soc@kernel.org>, Olof Johansson <olof@lixom.net>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
- devicetree
-Message-ID: <20210208175847.GB1567700@robh.at.kernel.org>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-19-marcan@marcan.st>
- <20210208110441.25qc6yken4effd6c@kozik-lap>
- <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
- <20210208121325.owjjd7nfbdanszny@kozik-lap>
- <CAK8P3a0yBC3dui6vcz+NByWD-3LqRj-2MF89jpjb_k8r5xmNRA@mail.gmail.com>
- <f98dc238-6742-455e-3f76-e86ae4c0c838@marcan.st>
+        id S235313AbhBHSD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 13:03:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46596 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235336AbhBHSDS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 13:03:18 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5A46E64EBD;
+        Mon,  8 Feb 2021 17:59:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612807161;
+        bh=CACrHjdgxxlqeca6xM+QPTTCAdtofJkj0XFyOoi53QY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=LuhjM5bpXb6Emb4wcWtUeLC0/uzELzYb4hHo7FR/ZSs+x+auECSdj0mtETLb9SvQd
+         AWzWGHYwz36SZWGY9yrLjDIQmNp0WzobvNrdkUud3H7oLocwFmX8udmmUCaw5YUVyw
+         eZe4zlwNOMr9HKvnbDlwB6HUpjf8D494sAjTA0KqvF9fIbf2Ls5AGOtIF68O37Kp3S
+         +zNFMlCfeQj8v4kG+pnn9hkQWCXK22K0UHYhHLA4fKGtZ6Xi2Xk57m1ao4878szbpq
+         b5jXa7VFYeUXwQqPVP+7LCY9frRcwKlEPN+x0xZtThtLDxH8Ds44zwy/OhiZhiHgfO
+         UnxKS2RZ7fCOw==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.4 16/19] ARM: dts: lpc32xx: Revert set default clock rate of HCLK PLL
+Date:   Mon,  8 Feb 2021 12:58:55 -0500
+Message-Id: <20210208175858.2092008-16-sashal@kernel.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210208175858.2092008-1-sashal@kernel.org>
+References: <20210208175858.2092008-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f98dc238-6742-455e-3f76-e86ae4c0c838@marcan.st>
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 08, 2021 at 11:12:52PM +0900, Hector Martin wrote:
-> On 08/02/2021 21.40, Arnd Bergmann wrote:
-> > On Mon, Feb 8, 2021 at 1:13 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > 
-> > > On Mon, Feb 08, 2021 at 08:56:53PM +0900, Hector Martin 'marcan' wrote:
-> > > > On 08/02/2021 20.04, Krzysztof Kozlowski wrote:
-> > > > > apple
-> > > > > 
-> > > > > Don't make things different for this one platform (comparing to all
-> > > > > other platforms). Apple is not that special. :)
-> > > > 
-> > > > AAPL is the old vendor prefix used in the PowerPC era. I'm happy to use
-> > > > `apple`, as long as we're OK with having two different prefixes for the same
-> > > > vendor, one for PPC and one for ARM64. I've seen opinions go both ways on
-> > > > this one :)
-> > > 
-> > > Thanks for explanation. I propose to choose just "apple". Sticking to
-> > > old vendor name is not a requirement - we have few vendor prefixes which
-> > > were marked as deprecated because we switched to a better one.
-> > 
-> > We've gone back and forth on this a few times already. My current
-> > preference would also be to go with "apple", not because it's somehow
-> > nicer or clearer but because it avoids the namespace conflict with
-> > what the Apple firmware uses:
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-It's only AAPL,phandle and AAPL,unit-string (equivalent to unit-address) 
-AFAICT which are really internal format details. So it's really 'apple' 
-that could conflct, but I can't see that mattering.
+[ Upstream commit 5638159f6d93b99ec9743ac7f65563fca3cf413d ]
 
-> Ack, I'll use 'apple' for v2.
+This reverts commit c17e9377aa81664d94b4f2102559fcf2a01ec8e7.
 
-3 votes for 'apple'. You all get to pick the color of this shed.
+The lpc32xx clock driver is not able to actually change the PLL rate as
+this would require reparenting ARM_CLK, DDRAM_CLK, PERIPH_CLK to SYSCLK,
+then stop the PLL, update the register, restart the PLL and wait for the
+PLL to lock and finally reparent ARM_CLK, DDRAM_CLK, PERIPH_CLK to HCLK
+PLL.
 
-> Amusingly, Apple actually use 'apple,firestorm' and 'apple,icestorm' for the
-> CPUs in their devicetrees for these machines, so those will end up identical
-> :) (they don't use apple-related prefixes for any other compatible strings
-> at all, it's a mess). But we don't care about what their ADTs (Apple DTs) do
-> in Linux anyway, the bootloader abstracts all that out and we'll be dealing
-> with mantaining proper DTs ourselves.
-> 
-> > > Makes sense. In such case it's indeed your work. Since you introduce it,
-> > > the DTSes are usually licensed with (GPL-2.0+ OR MIT).
-> > 
-> > Indeed, we do want other OSs to use our dts files, so the general
-> > preference is to have a permissive license, unless you have a strong
-> > reason yourself to require GPL-only.
-> 
-> Thanks for pointing this out; this was actually unintentional. I based it
-> off of an old dts I'd written ages ago and forgot to revisit the license. I
-> even have it marked GPL-2.0+ in the copy in our bootloader repo, which is
-> otherwise supposed to be MIT for original code...
+Currently, the HCLK driver simply updates the registers but this has no
+real effect and all the clock rate calculation end up being wrong. This is
+especially annoying for the peripheral (e.g. UARTs, I2C, SPI).
 
-I'll also highlight there's a DT only tree[1] available to import DT 
-related parts to other projects. It's generated from the kernel tree. 
-Probably an overkill to copying at this point though.
+Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Tested-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Link: https://lore.kernel.org/r/20210203090320.GA3760268@piout.net'
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/lpc32xx.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
 
-Rob
+diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
+index 7b7ec7b1217b8..824393e1bcfb7 100644
+--- a/arch/arm/boot/dts/lpc32xx.dtsi
++++ b/arch/arm/boot/dts/lpc32xx.dtsi
+@@ -329,9 +329,6 @@ clk: clock-controller@0 {
+ 
+ 					clocks = <&xtal_32k>, <&xtal>;
+ 					clock-names = "xtal_32k", "xtal";
+-
+-					assigned-clocks = <&clk LPC32XX_CLK_HCLK_PLL>;
+-					assigned-clock-rates = <208000000>;
+ 				};
+ 			};
+ 
+-- 
+2.27.0
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/devicetree/devicetree-rebasing.git/
