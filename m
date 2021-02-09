@@ -2,78 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 800F331560D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 19:37:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C50C33156A0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 20:18:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233428AbhBISdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 13:33:18 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:58422 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233418AbhBIS1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 13:27:40 -0500
-Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id B3AEB20B57A8;
-        Tue,  9 Feb 2021 10:22:35 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com B3AEB20B57A8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1612894956;
-        bh=PnWEGNNzgiW0doZLICdkrW7n+C1gbwjORBQQKJctZn4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NrWXqrJu4mrjIj8liYoQseEYG4GfDqWnwaW+Yssy+klJObhLv57miFcR25gMZi46I
-         mm57QjH2B/vDNBP0grtdG10dOALHAmB3tJqnyTsZfarR0tZxzjg4K0dtl0O3uDmDNB
-         nC29DRbE0tz3+FHOP+rrch56nJZvbfR/jHk2tOH0=
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
-        mpe@ellerman.id.au
-Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
-        paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
-        tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH v17 10/10] arm64: Enable passing IMA log to next kernel on kexec
-Date:   Tue,  9 Feb 2021 10:22:00 -0800
-Message-Id: <20210209182200.30606-11-nramas@linux.microsoft.com>
+        id S233309AbhBITQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 14:16:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44846 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233608AbhBITHi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 14:07:38 -0500
+X-Greylist: delayed 570 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 09 Feb 2021 10:22:32 PST
+Received: from unicorn.mansr.com (unicorn.mansr.com [IPv6:2001:8b0:ca0d:8d8e::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7313AC061793;
+        Tue,  9 Feb 2021 10:22:32 -0800 (PST)
+Received: from raven.mansr.com (raven.mansr.com [IPv6:2001:8b0:ca0d:8d8e::3])
+        by unicorn.mansr.com (Postfix) with ESMTPS id 93A9C15360;
+        Tue,  9 Feb 2021 18:12:58 +0000 (GMT)
+Received: by raven.mansr.com (Postfix, from userid 51770)
+        id 87057219FD0; Tue,  9 Feb 2021 18:12:58 +0000 (GMT)
+From:   Mans Rullgard <mans@mansr.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: usb-device: fix typo in required properties
+Date:   Tue,  9 Feb 2021 18:12:40 +0000
+Message-Id: <20210209181240.28017-1-mans@mansr.com>
 X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210209182200.30606-1-nramas@linux.microsoft.com>
-References: <20210209182200.30606-1-nramas@linux.microsoft.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC, if CONFIG_IMA
-is enabled, to indicate that the IMA measurement log information is
-present in the device tree for ARM64.
+Fix typo in 'compatible' property name.
 
-Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Suggested-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+Signed-off-by: Mans Rullgard <mans@mansr.com>
 ---
- arch/arm64/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/usb/usb-device.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 05e17351e4f3..8a93573cebb6 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -1093,6 +1093,7 @@ config KEXEC
- config KEXEC_FILE
- 	bool "kexec file based system call"
- 	select KEXEC_CORE
-+	select HAVE_IMA_KEXEC if IMA
- 	help
- 	  This is new version of kexec system call. This system call is
- 	  file based and takes file descriptors as system call argument
+diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml b/Documentation/devicetree/bindings/usb/usb-device.yaml
+index 7bb25a45427d..d4c99809ee9a 100644
+--- a/Documentation/devicetree/bindings/usb/usb-device.yaml
++++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+@@ -76,7 +76,7 @@ patternProperties:
+         maxItems: 1
+ 
+ required:
+-  - compatile
++  - compatible
+   - reg
+ 
+ additionalProperties: true
 -- 
 2.30.0
 
