@@ -2,174 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4082315755
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 21:02:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F6931575E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 21:04:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233294AbhBIUAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 15:00:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54674 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233765AbhBITwA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 14:52:00 -0500
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE2C6C06121E;
-        Tue,  9 Feb 2021 11:19:32 -0800 (PST)
-Received: by mail-qv1-xf31.google.com with SMTP id es14so9230014qvb.3;
-        Tue, 09 Feb 2021 11:19:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=OfTABNqV2/dgIczcIGpTslZ48bA8VW7hHVaIj/4GfsU=;
-        b=JkitmTFeJmEERO+haqbix/PAz2MfSvvtnk7W6zSTIxx8Y+1tUVd7r7IiNoMLcH3HW3
-         YNXR0G3VK0SEMJEEyQTjuybZ2b/IA5HGgyp5sGkrSKp0pInvOBcK5SXM8v+gbwmjFWgi
-         KHiXvShvgfeddE+EdtdTz6b0HgrJUD4zyeuxAHua2aI5modiGThykPiddh+bTQ9FMRVP
-         1NcJCEVQs+JM3zzTMXzBWrqRyHy9wwGVUvQK1Sea2dGWm066uCVSFkx8S8ycMr1zbHuN
-         B+MK7U+rmeAhaZTqNTrq4axpyLWd6FpngeUAd6J1SPe746dDnOCwKgKUnYOH/vbFBtcP
-         dmuA==
+        id S233700AbhBIUB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 15:01:26 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:33630 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233772AbhBITwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 14:52:14 -0500
+Received: by mail-oi1-f178.google.com with SMTP id g84so6925749oib.0;
+        Tue, 09 Feb 2021 11:51:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=OfTABNqV2/dgIczcIGpTslZ48bA8VW7hHVaIj/4GfsU=;
-        b=jf2Zxrsg+tww3qlrCW5FU31+hAiV8Dy2kydXwZG49Kt7uE5RWDi7DfoLU8Szv38uiY
-         pb5dDfze9kSKzoJAG8CR3a8jziV5fSoqMX7XffoRQQ31W6pQNfjUu57NmQ0SQ5piA7nE
-         QMHMRZJPoXjVH+H8dC65ogD1BePB/7CJhLtqvm38VQtgjemOT7GbjX0u/wYr8dA/7j4m
-         DCIW3ii5WFETM8dYZhRymKJlWRRYUH4r6kh7uhc+w8b7XuEDNCFicbUo+AM2+Pefnpj9
-         XuDmC08TBareEbfoRuVdUoHAfMR83srK/7EDnHNoSYm7L5fBpGbmqozyanZLNVfoo0pj
-         2xeg==
-X-Gm-Message-State: AOAM531ZY1PQgnXdYROGG0rdribykR9pJPCucCeOBGv7blmwRWLoz1aw
-        OBeN7UrepL9hb10ckUQ9Gt4=
-X-Google-Smtp-Source: ABdhPJxwpTfsaltd2sTJ+PIvZKKbEuql8jMNGKrFTE7F39NpOxjAuHsIOjA6wv1M8yFV/SlghlllTA==
-X-Received: by 2002:a0c:9e50:: with SMTP id z16mr21934994qve.13.1612898371968;
-        Tue, 09 Feb 2021 11:19:31 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id v1sm3558596qki.49.2021.02.09.11.19.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Feb 2021 11:19:31 -0800 (PST)
-Subject: Re: [GIT PULL 2/3] ARM: dts: samsung: DTS for v5.12
-To:     Arnd Bergmann <arnd@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        arm-soc <arm@kernel.org>, SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-References: <20210125191240.11278-1-krzk@kernel.org>
- <20210125191240.11278-3-krzk@kernel.org>
- <20210206134531.l5vpzlmev4v3f3uo@kozik-lap>
- <CAK8P3a0Kgn9PTHjsU7MbJPC8vatvb9KYJJKWxrx7zQzTNgK10g@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <67970952-e048-efbf-446c-a703da3bc037@gmail.com>
-Date:   Tue, 9 Feb 2021 13:19:29 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=djpia0FYNCw9tE3WP5Tr7Z3WXN4BAb7/Bz2WXM06cjM=;
+        b=FNCy/ITnb/xo2eNmfXPI8mVnDc1D/YvTLG6dK7PVMBxbEfWeNRey7hXCGgnDFSncUE
+         sNTK+XHhCQHZjqASP9+Hzd1DTHCbWAV1qr66Ts9udAEqP6tq3rXKujUQkf4CivwvbA01
+         ZE8Vy5s6lZvWf3NNcH4vSuJkAhCdb7de52hhbKMmROkGsIQVvsiFzuxBI0BtNgzh6o1g
+         3aY3hpJYyoFyk61tOhYWmtv21UFmfE96X2ZqF4PS8+FimpqHRHseV691I8bJYk9weWL3
+         gA5EkOVOor589L4DNKIa9x/w+TdXRueOMDGQEnuX27oDn4XLssVnqea19VqxfF6Redct
+         yCrQ==
+X-Gm-Message-State: AOAM532GLVCobPKjPB+z2BHYpH+r2bNjgwHe7m6Yhx3qFJ7SnYbvBnsq
+        ujQ1u0hZCU/edtrQKjavAE5VSV17RQ==
+X-Google-Smtp-Source: ABdhPJxXHj8LriG5h7lJxb2HcSAF8ts/EcRL9+I3AD9cV1JfGEQuW4cd3YqKhp5vJufOIMZhs5T04Q==
+X-Received: by 2002:aca:2102:: with SMTP id 2mr3615711oiz.80.1612898444606;
+        Tue, 09 Feb 2021 11:20:44 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i13sm2821404oth.52.2021.02.09.11.20.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Feb 2021 11:20:43 -0800 (PST)
+Received: (nullmailer pid 4189533 invoked by uid 1000);
+        Tue, 09 Feb 2021 19:20:41 -0000
+Date:   Tue, 9 Feb 2021 13:20:41 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] [RFC] dt-bindings: power: sysc-remobile: Convert to
+ json-schema
+Message-ID: <20210209192041.GA4168680@robh.at.kernel.org>
+References: <20210127132840.2019595-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a0Kgn9PTHjsU7MbJPC8vatvb9KYJJKWxrx7zQzTNgK10g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210127132840.2019595-1-geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/6/21 8:35 AM, Arnd Bergmann wrote:
-> On Sat, Feb 6, 2021 at 2:45 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On Mon, Jan 25, 2021 at 08:12:39PM +0100, Krzysztof Kozlowski wrote:
->>>
->>> ----------------------------------------------------------------
->>> Samsung DTS ARM changes for v5.12
->>>
->>> 1. Use new compatile to properly configure Exynos5420 USB2 PHY, fixing
->>>    it suspend/resume cycle.
->>> 2. Correct Samsung PMIC interrupt trigger levels on multiple boards.
->>> 3. Correct the voltages of Samsung GT-I9100 charger and add top-off
->>>    charger.
->>>
->>
->> Hi everyone,
->>
->> Any progress or new comments about this pull request?
+On Wed, Jan 27, 2021 at 02:28:40PM +0100, Geert Uytterhoeven wrote:
+> Convert the Renesas R-Mobile System Controller (SYSC) Device Tree
+> binding documentation to json-schema.
 > 
-> Hi Krzysztof,
+> Document missing properties.
+> Drop consumer example, as it does not belong here.
 > 
-> Sorry for not getting back to you on this earlier. I discussed this with
-> Olof the other day and we decided to merge this, I just haven't
-> gone through the pull requests over the past few days. My plan is
-> to do the next round on Monday.
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Marked RFC, as it does not check deeper levels than the first level of
+> the "pm-domains" subnode.
 > 
-> That said, I'm still not happy about the patch we discussed in the
-> other email thread[1] and I'd like to handle it a little more strictly in
-> the future, but I agree this wasn't obvious and we have been rather
-> inconsistent about it in the past, with some platform maintainers
-> handling it way more strictly than others.
+> I think the reference in
 > 
-> I've added the devicetree maintainers and a few other platform
-> maintainers to Cc here, maybe they can provide some further
-> opinions on the topic so we can come to an approach that
-> works for everyone.
+>     additionalProperties:
+> 	$ref: "#/patternProperties"
 > 
-> My summary of the thread in [1] is there was a driver bug that
-> required a DT binding change. Krzysztof and the other involved
-> parties made sure the driver handles it in a backward-compatible
-> way (an old dtb file will still run into the bug but keep working
-> with new kernels), but decided that they did not need to worry
-> about the opposite case (running an old kernel with an updated
-> dtb). I noticed the compatibility break and said that I would
-> prefer this to be done in a way that is compatible both ways,
-> or at the minimum be alerted about the binding break in the
-> pull request, with an explanation about why this had to be done,
-> even when we don't think anyone is going to be affected.
+> should become "#/patternProperties/0/additionalProperties", but that
+> gives:
 > 
-> What do others think about this? Should we generally assume
-> that breaking old kernels with new dtbs is acceptable, or should
-> we try to avoid it if possible, the same way we try to avoid
-> breaking new kernels with old dtbs? Should this be a platform
-> specific policy or should we try to handle all platforms the same
-> way?
+>     Unresolvable JSON pointer: 'patternProperties/0/additionalProperties'
 
-The current policy (since before 2013) is that newer kernels,
-implementing new bindings, do not break with old existing dtbs.
+AFAIK, numbers only work on lists (such as 'allOf' values). So I think 
+you'd want '#/patternProperties/^pm-domains$/additionalProperties'. 
+However, regex's can have illegal characters. I think URI escaping them 
+would work, but that gets too readable and unmaintainable for my tastes. 
+The other way to do this is put the schema under a '$defs'. But in your 
+case, you have just a fixed string, so there's no need for it to be a 
+pattern. Just move it to 'properties'.
 
-Old existing kernels are not required to work with new dtbs.
+Otherwise, looks good to me.
 
-See Documentation/devicetree/bindings/ABI.rst
-
-We can choose to change the rules, so I'm not saying that the
-discussion should not occur.  I'm just pointing out the
-current policy.
-
-I think that ABI.rst does not state "Old existing kernels are
-not required to work with new dtbs" clearly enough, and
-should be updated to do so.
-
-I also think it would be good to explicitly say that care
-should be taken with new bindings to not break existing
-kernels, if reasonably possible.
-
--Frank
-
-> 
->           Arnd
-> 
-> [1] https://lore.kernel.org/lkml/20210130143949.aamac2724esupt7v@kozik-lap/
-> 
-
+Rob
