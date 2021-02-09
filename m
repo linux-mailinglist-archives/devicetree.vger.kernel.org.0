@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC5CE3148BE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 07:25:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B43013148BF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 07:25:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230054AbhBIGYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 01:24:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49906 "EHLO
+        id S229941AbhBIGYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 01:24:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbhBIGX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 01:23:57 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60B1C061788
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 22:22:40 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id cv23so972161pjb.5
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 22:22:40 -0800 (PST)
+        with ESMTP id S230179AbhBIGYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 01:24:06 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8445C06178C
+        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 22:22:48 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id b21so11812698pgk.7
+        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 22:22:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=KUcKCdqxUtmE3c3/sCLCFX58+aEPLItGYu5wwEcivTc=;
-        b=NhEm9T2AwADa9VsvefRZO3hJf81eglORlqEc/M/a8rR0kuSIY5UrlWGbaksqIVirGr
-         J6QDJ3CyNkeplzaOrje+vpzgt129yWbwHTzlb+beGZFWZQ8LQ0tH754TJy6h0q3jS8jo
-         cGxvFhbRKlBHTIBko/408oiJovV3JTKwJW8QU=
+        bh=4zqci56JWIAAF0wW2XoOW1nlucKE1HdU8HbBcVGEoj4=;
+        b=iQ8wBJSEVZzeAe0ffh2h2GM8F5kehjcPxtVFeT4gPFJg8QooaH8d0bbR3DBFmEjh7/
+         +t81Z22ZQ3jfYQJEtw6EEDXPAwtTfgWAGJvdqJ64cWu+Z/90HeG76Xdlz9LMQYcjebg6
+         t1DpKPM5Kv3tzEnaDX3egDRfxshz/CzrFwO+0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=KUcKCdqxUtmE3c3/sCLCFX58+aEPLItGYu5wwEcivTc=;
-        b=JCYzEdpgCFOj2YC0MjwR/IL8xRyvB/XSWgsY50MOMVdNuioN1obxQjya0VeXa6LjmF
-         /JWSGEhIGjcKP1rZJ62HDHJJTDOd3BAYt5wmK8FvvxrG317QGn9l7uRP383Xxfauyxy3
-         QONRSOz5Or4e/u/6trUYFCyTi1sLAUOBomWrr9GIJofeKubjO5Q2MHEZy5V7NGruAU12
-         tpwlDEbK6h6YzBRq7tDyWMMyR/Og18RqeS4EKP65NDO0TsUlIBXq8v+rBw7mSH3LHWh0
-         C6adK3YRl3fj4iG5V7sD2auqkOXj4lSQwDGyA4AKSceHMwZHb3F/PKEmIn+4o8myBmNB
-         0s4Q==
-X-Gm-Message-State: AOAM53310YzmsLKGa40xXHUcERIJTJW00wxj1ZyzgJdWbVlo/5Fqxl6q
-        NK8VSnpB41ezLWg6+PClrOf7Ww==
-X-Google-Smtp-Source: ABdhPJxTkbyFhURADasjsjB42g8YIEdg4z+Ug1Qla2hS5HdHoxmM0uHRHvdpONYXgEmtPzgr5O1D4Q==
-X-Received: by 2002:a17:90a:49c4:: with SMTP id l4mr2647464pjm.33.1612851760260;
-        Mon, 08 Feb 2021 22:22:40 -0800 (PST)
+        bh=4zqci56JWIAAF0wW2XoOW1nlucKE1HdU8HbBcVGEoj4=;
+        b=TOtMQMVHSETovCSOrcqRRvbxkTHZMTy29ZV2rzBqGj1+urmO6pabAl6fYHDak5hd0d
+         Adc43AZ/+Mf0Mcet+S70D6McmqydvSLDi4KKS+z2AE3gjdaPbMfkFeUlIWgH3vIOhoQa
+         Ny15WPFeQufuez7QE7Ng9SY1i5pLC2B7OEWRbuFjFA+F2pqykjUVTAmogMmLhsOi+BI7
+         JUU8/s6R43Lk/WghvNJ+HpwazAOay7L4+zg0+dwPyHTEa2pX5mm97h7k+qZ+ovqRNbYb
+         1q0l93Rs1T1AHb8pjTgRmH/tci0q9SNnQUE+WofDO/8OCaYxctIebzuMpH21W5VsGJHN
+         JCTA==
+X-Gm-Message-State: AOAM530fP0BQeEkRPO/Jxe4o2GybjK60jAJPkh7Znjs4wL11NaZ/sKiy
+        T/cYVFZKtHe6AcThDz6eCnfv7g==
+X-Google-Smtp-Source: ABdhPJy1CzOC+GQys63fdcsVT9unv4NpcqE4/TesqmaSSFAML/xnfw6XY2m3UHOllfAZ0J4Itqp2AA==
+X-Received: by 2002:aa7:80cc:0:b029:1da:689d:2762 with SMTP id a12-20020aa780cc0000b02901da689d2762mr14012849pfn.3.1612851768274;
+        Mon, 08 Feb 2021 22:22:48 -0800 (PST)
 Received: from localhost ([2401:fa00:1:10:a106:46e1:a999:81df])
-        by smtp.gmail.com with UTF8SMTPSA id x14sm20837364pfj.15.2021.02.08.22.22.34
+        by smtp.gmail.com with UTF8SMTPSA id n1sm6296866pgn.94.2021.02.08.22.22.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Feb 2021 22:22:39 -0800 (PST)
+        Mon, 08 Feb 2021 22:22:47 -0800 (PST)
 From:   Claire Chang <tientzu@chromium.org>
 To:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
         Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -72,9 +72,9 @@ Cc:     benh@kernel.crashing.org, paulus@samba.org,
         Nicolas Boichat <drinkcat@chromium.org>,
         Jim Quinlan <james.quinlan@broadcom.com>,
         Claire Chang <tientzu@chromium.org>
-Subject: [PATCH v4 08/14] swiotlb: Use restricted DMA pool if available
-Date:   Tue,  9 Feb 2021 14:21:25 +0800
-Message-Id: <20210209062131.2300005-9-tientzu@chromium.org>
+Subject: [PATCH v4 09/14] swiotlb: Refactor swiotlb_tbl_{map,unmap}_single
+Date:   Tue,  9 Feb 2021 14:21:26 +0800
+Message-Id: <20210209062131.2300005-10-tientzu@chromium.org>
 X-Mailer: git-send-email 2.30.0.478.g8a0d178c01-goog
 In-Reply-To: <20210209062131.2300005-1-tientzu@chromium.org>
 References: <20210209062131.2300005-1-tientzu@chromium.org>
@@ -84,139 +84,181 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Regardless of swiotlb setting, the restricted DMA pool is preferred if
-available.
-
-The restricted DMA pools provide a basic level of protection against the
-DMA overwriting buffer contents at unexpected times. However, to protect
-against general data leakage and system memory corruption, the system
-needs to provide a way to lock down the memory access, e.g., MPU.
+Refactor swiotlb_tbl_{map,unmap}_single to make the code reusable for
+dev_swiotlb_{alloc,free}.
 
 Signed-off-by: Claire Chang <tientzu@chromium.org>
 ---
- include/linux/swiotlb.h | 13 +++++++++++++
- kernel/dma/direct.h     |  2 +-
- kernel/dma/swiotlb.c    | 20 +++++++++++++++++---
- 3 files changed, 31 insertions(+), 4 deletions(-)
+ kernel/dma/swiotlb.c | 116 ++++++++++++++++++++++++++-----------------
+ 1 file changed, 71 insertions(+), 45 deletions(-)
 
-diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-index f13a52a97382..76f86c684524 100644
---- a/include/linux/swiotlb.h
-+++ b/include/linux/swiotlb.h
-@@ -71,6 +71,15 @@ dma_addr_t swiotlb_map(struct device *dev, phys_addr_t phys,
- #ifdef CONFIG_SWIOTLB
- extern enum swiotlb_force swiotlb_force;
- 
-+#ifdef CONFIG_DMA_RESTRICTED_POOL
-+bool is_swiotlb_force(struct device *dev);
-+#else
-+static inline bool is_swiotlb_force(struct device *dev)
-+{
-+	return unlikely(swiotlb_force == SWIOTLB_FORCE);
-+}
-+#endif /* CONFIG_DMA_RESTRICTED_POOL */
-+
- bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr);
- void __init swiotlb_exit(void);
- unsigned int swiotlb_max_segment(void);
-@@ -80,6 +89,10 @@ phys_addr_t get_swiotlb_start(struct device *dev);
- void __init swiotlb_adjust_size(unsigned long new_size);
- #else
- #define swiotlb_force SWIOTLB_NO_FORCE
-+static inline bool is_swiotlb_force(struct device *dev)
-+{
-+	return false;
-+}
- static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
- {
- 	return false;
-diff --git a/kernel/dma/direct.h b/kernel/dma/direct.h
-index 7b83b1595989..b011db1b625d 100644
---- a/kernel/dma/direct.h
-+++ b/kernel/dma/direct.h
-@@ -87,7 +87,7 @@ static inline dma_addr_t dma_direct_map_page(struct device *dev,
- 	phys_addr_t phys = page_to_phys(page) + offset;
- 	dma_addr_t dma_addr = phys_to_dma(dev, phys);
- 
--	if (unlikely(swiotlb_force == SWIOTLB_FORCE))
-+	if (is_swiotlb_force(dev))
- 		return swiotlb_map(dev, phys, size, dir, attrs);
- 
- 	if (unlikely(!dma_capable(dev, dma_addr, size, true))) {
 diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-index e22e7ae75f1c..6fdebde8fb1f 100644
+index 6fdebde8fb1f..f64cbe6e84cc 100644
 --- a/kernel/dma/swiotlb.c
 +++ b/kernel/dma/swiotlb.c
-@@ -40,6 +40,7 @@
- #include <linux/debugfs.h>
- #endif
- #ifdef CONFIG_DMA_RESTRICTED_POOL
-+#include <linux/device.h>
- #include <linux/io.h>
- #include <linux/of.h>
- #include <linux/of_fdt.h>
-@@ -109,6 +110,10 @@ static struct swiotlb default_swiotlb;
- 
- static inline struct swiotlb *get_swiotlb(struct device *dev)
- {
-+#ifdef CONFIG_DMA_RESTRICTED_POOL
-+	if (dev && dev->dev_swiotlb)
-+		return dev->dev_swiotlb;
-+#endif
- 	return &default_swiotlb;
+@@ -509,14 +509,12 @@ static void swiotlb_bounce(phys_addr_t orig_addr, phys_addr_t tlb_addr,
+ 	}
  }
  
-@@ -508,7 +513,7 @@ phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
- 		size_t mapping_size, size_t alloc_size,
- 		enum dma_data_direction dir, unsigned long attrs)
+-phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
+-		size_t mapping_size, size_t alloc_size,
+-		enum dma_data_direction dir, unsigned long attrs)
++static int swiotlb_tbl_find_free_region(struct device *hwdev,
++					dma_addr_t tbl_dma_addr,
++					size_t alloc_size, unsigned long attrs)
  {
--	struct swiotlb *swiotlb = &default_swiotlb;
-+	struct swiotlb *swiotlb = get_swiotlb(hwdev);
- 	dma_addr_t tbl_dma_addr = phys_to_dma_unencrypted(hwdev, swiotlb->start);
+ 	struct swiotlb *swiotlb = get_swiotlb(hwdev);
+-	dma_addr_t tbl_dma_addr = phys_to_dma_unencrypted(hwdev, swiotlb->start);
  	unsigned long flags;
- 	phys_addr_t tlb_addr;
-@@ -519,7 +524,11 @@ phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
- 	unsigned long max_slots;
- 	unsigned long tmp_io_tlb_used;
- 
-+#ifdef CONFIG_DMA_RESTRICTED_POOL
-+	if (no_iotlb_memory && !hwdev->dev_swiotlb)
-+#else
- 	if (no_iotlb_memory)
-+#endif
+-	phys_addr_t tlb_addr;
+ 	unsigned int nslots, stride, index, wrap;
+ 	int i;
+ 	unsigned long mask;
+@@ -531,15 +529,6 @@ phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
+ #endif
  		panic("Can not allocate SWIOTLB buffer earlier and can't now provide you with the DMA bounce buffer");
  
- 	if (mem_encrypt_active())
-@@ -641,7 +650,7 @@ void swiotlb_tbl_unmap_single(struct device *hwdev, phys_addr_t tlb_addr,
- 			      size_t mapping_size, size_t alloc_size,
- 			      enum dma_data_direction dir, unsigned long attrs)
+-	if (mem_encrypt_active())
+-		pr_warn_once("Memory encryption is active and system is using DMA bounce buffers\n");
+-
+-	if (mapping_size > alloc_size) {
+-		dev_warn_once(hwdev, "Invalid sizes (mapping: %zd bytes, alloc: %zd bytes)",
+-			      mapping_size, alloc_size);
+-		return (phys_addr_t)DMA_MAPPING_ERROR;
+-	}
+-
+ 	mask = dma_get_seg_boundary(hwdev);
+ 
+ 	tbl_dma_addr &= mask;
+@@ -601,7 +590,6 @@ phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
+ 				swiotlb->list[i] = 0;
+ 			for (i = index - 1; (OFFSET(i, IO_TLB_SEGSIZE) != IO_TLB_SEGSIZE - 1) && swiotlb->list[i]; i--)
+ 				swiotlb->list[i] = ++count;
+-			tlb_addr = swiotlb->start + (index << IO_TLB_SHIFT);
+ 
+ 			/*
+ 			 * Update the indices to avoid searching in the next
+@@ -624,45 +612,20 @@ phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
+ 	if (!(attrs & DMA_ATTR_NO_WARN) && printk_ratelimit())
+ 		dev_warn(hwdev, "swiotlb buffer is full (sz: %zd bytes), total %lu (slots), used %lu (slots)\n",
+ 			 alloc_size, swiotlb->nslabs, tmp_io_tlb_used);
+-	return (phys_addr_t)DMA_MAPPING_ERROR;
++	return -ENOMEM;
++
+ found:
+ 	swiotlb->used += nslots;
+ 	spin_unlock_irqrestore(&swiotlb->lock, flags);
+ 
+-	/*
+-	 * Save away the mapping from the original address to the DMA address.
+-	 * This is needed when we sync the memory.  Then we sync the buffer if
+-	 * needed.
+-	 */
+-	for (i = 0; i < nslots; i++)
+-		swiotlb->orig_addr[index+i] = orig_addr + (i << IO_TLB_SHIFT);
+-	if (!(attrs & DMA_ATTR_SKIP_CPU_SYNC) &&
+-	    (dir == DMA_TO_DEVICE || dir == DMA_BIDIRECTIONAL))
+-		swiotlb_bounce(orig_addr, tlb_addr, mapping_size, DMA_TO_DEVICE);
+-
+-	return tlb_addr;
++	return index;
+ }
+ 
+-/*
+- * tlb_addr is the physical address of the bounce buffer to unmap.
+- */
+-void swiotlb_tbl_unmap_single(struct device *hwdev, phys_addr_t tlb_addr,
+-			      size_t mapping_size, size_t alloc_size,
+-			      enum dma_data_direction dir, unsigned long attrs)
++static void swiotlb_tbl_release_region(struct device *hwdev, int index, size_t size)
  {
--	struct swiotlb *swiotlb = &default_swiotlb;
-+	struct swiotlb *swiotlb = get_swiotlb(hwdev);
+ 	struct swiotlb *swiotlb = get_swiotlb(hwdev);
  	unsigned long flags;
- 	int i, count, nslots = ALIGN(alloc_size, 1 << IO_TLB_SHIFT) >> IO_TLB_SHIFT;
- 	int index = (tlb_addr - swiotlb->start) >> IO_TLB_SHIFT;
-@@ -689,7 +698,7 @@ void swiotlb_tbl_sync_single(struct device *hwdev, phys_addr_t tlb_addr,
- 			     size_t size, enum dma_data_direction dir,
- 			     enum dma_sync_target target)
- {
--	struct swiotlb *swiotlb = &default_swiotlb;
-+	struct swiotlb *swiotlb = get_swiotlb(hwdev);
- 	int index = (tlb_addr - swiotlb->start) >> IO_TLB_SHIFT;
- 	phys_addr_t orig_addr = swiotlb->orig_addr[index];
+-	int i, count, nslots = ALIGN(alloc_size, 1 << IO_TLB_SHIFT) >> IO_TLB_SHIFT;
+-	int index = (tlb_addr - swiotlb->start) >> IO_TLB_SHIFT;
+-	phys_addr_t orig_addr = swiotlb->orig_addr[index];
+-
+-	/*
+-	 * First, sync the memory before unmapping the entry
+-	 */
+-	if (orig_addr != INVALID_PHYS_ADDR &&
+-	    !(attrs & DMA_ATTR_SKIP_CPU_SYNC) &&
+-	    ((dir == DMA_FROM_DEVICE) || (dir == DMA_BIDIRECTIONAL)))
+-		swiotlb_bounce(orig_addr, tlb_addr, mapping_size, DMA_FROM_DEVICE);
++	int i, count, nslots = ALIGN(size, 1 << IO_TLB_SHIFT) >> IO_TLB_SHIFT;
  
-@@ -801,6 +810,11 @@ late_initcall(swiotlb_create_default_debugfs);
- #endif
+ 	/*
+ 	 * Return the buffer to the free list by setting the corresponding
+@@ -694,6 +657,69 @@ void swiotlb_tbl_unmap_single(struct device *hwdev, phys_addr_t tlb_addr,
+ 	spin_unlock_irqrestore(&swiotlb->lock, flags);
+ }
  
- #ifdef CONFIG_DMA_RESTRICTED_POOL
-+bool is_swiotlb_force(struct device *dev)
++phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
++				   size_t mapping_size, size_t alloc_size,
++				   enum dma_data_direction dir,
++				   unsigned long attrs)
 +{
-+	return unlikely(swiotlb_force == SWIOTLB_FORCE) || dev->dev_swiotlb;
++	struct swiotlb *swiotlb = get_swiotlb(hwdev);
++	dma_addr_t tbl_dma_addr = phys_to_dma_unencrypted(hwdev, swiotlb->start);
++	phys_addr_t tlb_addr;
++	unsigned int nslots, index;
++	int i;
++
++	if (mem_encrypt_active())
++		pr_warn_once("Memory encryption is active and system is using DMA bounce buffers\n");
++
++	if (mapping_size > alloc_size) {
++		dev_warn_once(hwdev, "Invalid sizes (mapping: %zd bytes, alloc: %zd bytes)",
++			      mapping_size, alloc_size);
++		return (phys_addr_t)DMA_MAPPING_ERROR;
++	}
++
++	index = swiotlb_tbl_find_free_region(hwdev, tbl_dma_addr, alloc_size, attrs);
++	if (index < 0)
++		return (phys_addr_t)DMA_MAPPING_ERROR;
++
++	tlb_addr = swiotlb->start + (index << IO_TLB_SHIFT);
++
++	/*
++	 * Save away the mapping from the original address to the DMA address.
++	 * This is needed when we sync the memory.  Then we sync the buffer if
++	 * needed.
++	 */
++	nslots = ALIGN(alloc_size, 1 << IO_TLB_SHIFT) >> IO_TLB_SHIFT;
++	for (i = 0; i < nslots; i++)
++		swiotlb->orig_addr[index + i] = orig_addr + (i << IO_TLB_SHIFT);
++	if (!(attrs & DMA_ATTR_SKIP_CPU_SYNC) &&
++	    (dir == DMA_TO_DEVICE || dir == DMA_BIDIRECTIONAL))
++		swiotlb_bounce(orig_addr, tlb_addr, mapping_size, DMA_TO_DEVICE);
++
++	return tlb_addr;
 +}
 +
- static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
- 				    struct device *dev)
- {
++/*
++ * tlb_addr is the physical address of the bounce buffer to unmap.
++ */
++void swiotlb_tbl_unmap_single(struct device *hwdev, phys_addr_t tlb_addr,
++			      size_t mapping_size, size_t alloc_size,
++			      enum dma_data_direction dir, unsigned long attrs)
++{
++	struct swiotlb *swiotlb = get_swiotlb(hwdev);
++	int index = (tlb_addr - swiotlb->start) >> IO_TLB_SHIFT;
++	phys_addr_t orig_addr = swiotlb->orig_addr[index];
++
++	/*
++	 * First, sync the memory before unmapping the entry
++	 */
++	if (orig_addr != INVALID_PHYS_ADDR &&
++	    !(attrs & DMA_ATTR_SKIP_CPU_SYNC) &&
++	    ((dir == DMA_FROM_DEVICE) || (dir == DMA_BIDIRECTIONAL)))
++		swiotlb_bounce(orig_addr, tlb_addr, mapping_size, DMA_FROM_DEVICE);
++
++	swiotlb_tbl_release_region(hwdev, index, alloc_size);
++}
++
+ void swiotlb_tbl_sync_single(struct device *hwdev, phys_addr_t tlb_addr,
+ 			     size_t size, enum dma_data_direction dir,
+ 			     enum dma_sync_target target)
 -- 
 2.30.0.478.g8a0d178c01-goog
 
