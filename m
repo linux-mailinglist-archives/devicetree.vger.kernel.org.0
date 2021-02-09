@@ -2,127 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 258CD314981
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 08:29:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FFC93149E4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 09:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230192AbhBIH1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 02:27:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35234 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbhBIH1Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 02:27:16 -0500
-Received: from srv1.deutnet.info (srv1.deutnet.info [IPv6:2a01:4f8:c2c:6846::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CAF9C061788;
-        Mon,  8 Feb 2021 23:26:36 -0800 (PST)
-Received: from [2a01:cb14:a98:4900:be5f:f4ff:fe8b:2fc1] (helo=sonata)
-        by srv1.deutnet.info with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <agriveaux@deutnet.info>)
-        id 1l9NPn-000589-7q; Tue, 09 Feb 2021 08:26:27 +0100
-Received: from agriveaux by sonata with local (Exim 4.92)
-        (envelope-from <agriveaux@deutnet.info>)
-        id 1l9NPm-0001QB-Qv; Tue, 09 Feb 2021 08:26:26 +0100
-Date:   Tue, 9 Feb 2021 08:26:26 +0100
-From:   Alexandre GRIVEAUX <agriveaux@deutnet.info>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, wens@csie.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] ARM: dts: sun5i: Add dts for inet86v_rev2
-Message-ID: <20210209072413.GA5159@localhost.localdomain>
-References: <20210124193903.21401-1-agriveaux@deutnet.info>
- <20210128172329.ncuda3xlgpmefpqk@gilmour>
- <20210201171236.GA7024@localhost.localdomain>
- <20210203092103.7nznjzlr2t3llwj5@gilmour>
+        id S229601AbhBIIBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 03:01:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39216 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229517AbhBIIBX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Feb 2021 03:01:23 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 27CCC64E6F;
+        Tue,  9 Feb 2021 08:00:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612857642;
+        bh=PrZKwTBAEkhO9oVwFzz9vR4RpjecGA222H6u+Smz3/g=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=RZfSdW4MONU6xyHZcAlXF3UuyrNKwqpNx49sUuIUYtO86OB+31RzMa1O7dF6M8YBN
+         S9MNPiFRGvoUA8A7uoT3UZCXdmXkFdNWGQbJ+sjvPOwuF+KFSBJW6x2gxRNadUf4bP
+         TGupFGxUhX0KPEaei1olRQFWoplvhuVhF2qYSql41c20wThIpVrLDHHKFENyYOEJl2
+         h6MSfwndGoBOY8w349HyrpUO+EjDiPP8L/NShDsheNvOfjRpZ9QV9QdZU2yJWTiPRZ
+         i9t4psH+djtVZrQpkwSgDJim/iW8woBnt+ZvJELngCF1WqDRt/z1M9KYOY8Du/SNoX
+         y0os1dyaKr6Yg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210203092103.7nznjzlr2t3llwj5@gilmour>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210126090120.19900-3-gabriel.fernandez@foss.st.com>
+References: <20210126090120.19900-1-gabriel.fernandez@foss.st.com> <20210126090120.19900-3-gabriel.fernandez@foss.st.com>
+Subject: Re: [PATCH v2 02/14] clk: stm32mp1: merge 'ck_hse_rtc' and 'ck_rtc' into one clock
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+To:     Alexandre Torgue <alexandre.torgue@st.com>,
+        Etienne Carriere <etienne.carriere@st.com>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, marex@denx.de
+Date:   Tue, 09 Feb 2021 00:00:40 -0800
+Message-ID: <161285764074.418021.15522379930579131077@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 03, 2021 at 10:21:03AM +0100, Maxime Ripard wrote:
-> On Mon, Feb 01, 2021 at 06:18:18PM +0100, agriveaux wrote:
-> > On Thu, Jan 28, 2021 at 06:23:29PM +0100, Maxime Ripard wrote:
-> > > Hi,
-> > Hi,
-Hello,
-> > > 
-> > > On Sun, Jan 24, 2021 at 08:39:03PM +0100, Alexandre GRIVEAUX wrote:
-> > > > Add Inet 86V Rev 2 support, based upon Inet 86VS.
-> > > > 
-> > > > The Inet 86V use SL1536 touchpanel controller, the Inet 86VS a GSL1680,
-> > > > which make them both incompatible.
-> > > > 
-> > > > Missing things:
-> > > > - Accelerometer (MXC6225X)
-> > > > - Touchpanel (Sitronix SL1536)
-> > > > - Nand (29F32G08CBACA)
-> > > > - Camera (HCWY0308)
-> > > > 
-> > > > Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
-> > > > ---
-> > > >  arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts | 17 +++++++++++++++++
-> > > 
-> > > You have to add it to the Makefile
-> > > 
-> > Ok.
-> > > >  1 file changed, 17 insertions(+)
-> > > >  create mode 100644 arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts
-> > > > 
-> > > > diff --git a/arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts b/arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts
-> > > > new file mode 100644
-> > > > index 000000000000..581083e932d8
-> > > > --- /dev/null
-> > > > +++ b/arch/arm/boot/dts/sun5i-a13-inet-86v-rev2.dts
-> > > > @@ -0,0 +1,17 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0+
-> > > > +/*
-> > > > + * Copyright 2021 Alexandre Griveaux <agriveaux@deutnet.info>
-> > > > + *
-> > > > + * Minimal dts file for the iNet 86V
-> > > > + */
-> > > > +
-> > > > +/dts-v1/;
-> > > > +
-> > > > +#include "sun5i-a13.dtsi"
-> > > > +#include "sun5i-reference-design-tablet.dtsi"
-> > > > +
-> > > > +/ {
-> > > > +	model = "iNET 86V Rev 02";
-> > > > +	compatible = "inet,86v-rev2", "allwinner,sun5i-a13";
-> > > 
-> > > inet should be documented in the vendor prefixes, and that compatible
-> > > should be documented in Documentation/devicetree/bindings/arm/sunxi.yaml
-> > > 
-> > 
-> > I forgot, but should be:
-> > 
-> >       - description: iNet-86V Rev 02
-> >         items:
-> >           - const: primux,inet86v-rev2
-> >           - const: allwinner,sun5i-a13
-> > 
-> > > Having the first rev compatible would be good too
-> > 
-> > Unfortunatly, I didn't find inet86v rev1 on FCC website and on
-> > linux-sunxi. 
-> > 
-> > > 
-> > > > +
-> > > > +};
-> > > 
-> > > But I'm wondering. If there's nothing here to add, why would we need
-> > > that DT in the first place?
-> > > 
-> > I prefer to add often instead of bulk adding, and to show there are some
-> > board to add missing things like those above.
-> 
-> Yeah, I get that, but the point really is that you're not really adding
-> anything here except an empty device tree.
-> 
-> Maxime
-In this case, I keep this patch to send it when I have more to add . 
+Quoting gabriel.fernandez@foss.st.com (2021-01-26 01:01:08)
+> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+>=20
+> 'ck_rtc' has multiple clocks as input (ck_hsi, ck_lsi, and ck_hse).
+> A divider is available only on the specific rtc input for ck_hse.
+> This Merge will facilitate to have a more coherent clock tree
+> in no trusted / trusted world.
+>=20
+> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+> ---
+>  drivers/clk/clk-stm32mp1.c | 49 +++++++++++++++++++++++++++++++++-----
+>  1 file changed, 43 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/clk/clk-stm32mp1.c b/drivers/clk/clk-stm32mp1.c
+> index 35d5aee8f9b0..0e1d4427a8df 100644
+> --- a/drivers/clk/clk-stm32mp1.c
+> +++ b/drivers/clk/clk-stm32mp1.c
+> @@ -245,7 +245,7 @@ static const char * const dsi_src[] =3D {
+>  };
+> =20
+>  static const char * const rtc_src[] =3D {
+> -       "off", "ck_lse", "ck_lsi", "ck_hse_rtc"
+> +       "off", "ck_lse", "ck_lsi", "ck_hse"
+>  };
+> =20
+>  static const char * const mco1_src[] =3D {
+> @@ -1031,6 +1031,42 @@ static struct clk_hw *clk_register_cktim(struct de=
+vice *dev, const char *name,
+>         return hw;
+>  }
+> =20
+> +/* The divider of RTC clock concerns only ck_hse clock */
+> +#define HSE_RTC 3
+> +
+> +static unsigned long clk_divider_rtc_recalc_rate(struct clk_hw *hw,
+> +                                                unsigned long parent_rat=
+e)
+> +{
+> +       if (clk_hw_get_parent(hw) =3D=3D clk_hw_get_parent_by_index(hw, H=
+SE_RTC))
+> +               return clk_divider_ops.recalc_rate(hw, parent_rate);
+> +
+> +       return parent_rate;
+> +}
+> +
+> +static long clk_divider_rtc_round_rate(struct clk_hw *hw, unsigned long =
+rate,
+> +                                      unsigned long *prate)
+> +{
+> +       if (clk_hw_get_parent(hw) =3D=3D clk_hw_get_parent_by_index(hw, H=
+SE_RTC))
 
-Thanks.
+This clk op can be called at basically any time. Maybe this should use
+the determine rate op and then look to see what the parent is that comes
+in via the rate request structure? Or is the intention to keep this
+pinned to one particular parent? Looking at this right now it doesn't
+really make much sense why the current parent state should play into
+what rate the clk can round to, unless there is some more clk flags
+going on that constrain the ability to change this clk's parent.
+
+> +               return clk_divider_ops.round_rate(hw, rate, prate);
+> +
+> +       return *prate;
+> +}
+> +
+> +static int clk_divider_rtc_set_rate(struct clk_hw *hw, unsigned long rat=
+e,
+> +                                   unsigned long parent_rate)
+> +{
+> +       if (clk_hw_get_parent(hw) =3D=3D clk_hw_get_parent_by_index(hw, H=
+SE_RTC))
+> +               return clk_divider_ops.set_rate(hw, rate, parent_rate);
+> +
+> +       return parent_rate;
+> +}
+> +
