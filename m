@@ -2,99 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD06A315600
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 19:36:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 093543155FC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 19:36:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233228AbhBISaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 13:30:08 -0500
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:37460 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233437AbhBIS1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 13:27:05 -0500
-Received: by mail-ot1-f47.google.com with SMTP id h16so613848ote.4
-        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 10:26:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=yvEVgFXxj42ho51jb6dVDNgFxU/choj/euDd8LGx2dg=;
-        b=qOffRKB4kTbE6CTZl2LlTKuCh4DAg2uTPufnXAlYYjY8gFBtie2C6tqvQaYa/h1IQ0
-         9wlGfughFa/MUnRBTPORn8HsBeSViYcjIiX+eI7o8RjNAXB0yw30L5xwkcC8MTE5yE+U
-         we7U8ypjhWmxpXOsJ4xpvY8cx5wVPKo6wFHAp0YIHU2lhSWNQWV6eLm3g0qE4UeMN325
-         8xH9wbdiFoJiGCoWNZQSi+l6Vhddvvp+/H2w0JaC2BfY5Lg/Cuyupml+LUY2Qmichu2J
-         RvrT0kwF2SrwrgNKfEVtK+03SK7YDbhDMbgoOo/K5EJUMDRAT19VtBI5u1ms5P5hRb8C
-         Os7g==
-X-Gm-Message-State: AOAM530icPJNtHF2qEAUJgVPVrqfSrfGFZw/62bBiG7SJSq5xOQWtK/R
-        q7NkAY8lf9kU6Vl9eNbyfeNYhiqeEA==
-X-Google-Smtp-Source: ABdhPJw4/5gXHlRhCLR6H+bmHa3XmOMLzdwLZrFeDUAOJtrrf0tETU3GzM5HQDG/rPU0Swpi08bOfg==
-X-Received: by 2002:a9d:17ed:: with SMTP id j100mr17375162otj.169.1612894513667;
-        Tue, 09 Feb 2021 10:15:13 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k67sm3069817oia.7.2021.02.09.10.15.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 10:15:12 -0800 (PST)
-Received: (nullmailer pid 4073574 invoked by uid 1000);
-        Tue, 09 Feb 2021 18:15:10 -0000
-Date:   Tue, 9 Feb 2021 12:15:10 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
-        a.hajda@samsung.com, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@siol.net, kishon@ti.com, vkoul@kernel.org
-Subject: Re: [PATCH v3 09/14] drm/bridge: imx: Add i.MX8qxp pixel link to DPI
- support
-Message-ID: <20210209181510.GA4045547@robh.at.kernel.org>
-References: <1611737488-2791-1-git-send-email-victor.liu@nxp.com>
- <1611737488-2791-10-git-send-email-victor.liu@nxp.com>
+        id S233077AbhBIS3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 13:29:32 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:57666 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233365AbhBISXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 13:23:10 -0500
+Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 4BF462020E9D;
+        Tue,  9 Feb 2021 10:22:29 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4BF462020E9D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1612894949;
+        bh=wqW3xwsp9Cq77lvYiiXd1zv1yJERqbx7C93NSrMrSUg=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=SrrgUTg0bZQW+g3u6ZlXP0I4yeCLtDpWmx/AeP0ePIv4JdJmZ4h6nQO9pF81gTrVA
+         tWLCms4R3CdXNwV6vEZqYb8TsK4JLwtfnBcMkC9pa2kJ0rdsAmey/xSpxIR7aEB79F
+         /1Z2XyD12UGPP6doQndmwaq4WH7IG6FRPURGOsAA=
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
+        mpe@ellerman.id.au
+Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
+        tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH v17 01/10] powerpc: Rename kexec elfcorehdr_addr to elf_headers_mem
+Date:   Tue,  9 Feb 2021 10:21:51 -0800
+Message-Id: <20210209182200.30606-2-nramas@linux.microsoft.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210209182200.30606-1-nramas@linux.microsoft.com>
+References: <20210209182200.30606-1-nramas@linux.microsoft.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1611737488-2791-10-git-send-email-victor.liu@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 04:51:23PM +0800, Liu Ying wrote:
-> This patch adds a drm bridge driver for i.MX8qxp pixel link to display
-> pixel interface(PXL2DPI).  The PXL2DPI interfaces the pixel link 36-bit
-> data output and the DSI controller’s MIPI-DPI 24-bit data input, and
-> inputs of LVDS Display Bridge(LDB) module used in LVDS mode, to remap
-> the pixel color codings between those modules. The PXL2DPI is purely
-> combinatorial.
-> 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v2->v3:
-> * Call syscon_node_to_regmap() to get regmap instead of
->   syscon_regmap_lookup_by_phandle().
-> 
-> v1->v2:
-> * Drop unnecessary port availability check.
-> 
->  drivers/gpu/drm/bridge/imx/Kconfig           |   8 +
->  drivers/gpu/drm/bridge/imx/Makefile          |   1 +
->  drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c | 488 +++++++++++++++++++++++++++
->  3 files changed, 497 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
+From: Rob Herring <robh@kernel.org>
 
-> +	p2d->regmap = syscon_node_to_regmap(np->parent);
-> +	if (IS_ERR(p2d->regmap)) {
-> +		ret = PTR_ERR(p2d->regmap);
-> +		if (ret != -EPROBE_DEFER)
-> +			DRM_DEV_ERROR(dev, "failed to get regmap: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	p2d->id = of_alias_get_id(np, "pxl2dpi");
+The architecture specific field, elfcorehdr_addr in struct kimage_arch,
+that holds the address of the buffer in memory for ELF core header for
+powerpc has a different name than the one used for arm64.  This makes
+it hard to have a common code for setting up the device tree for
+kexec system call.
 
-Don't add random aliases. I'd rather see a property in this node as long 
-as it is specific to what this is used for (and not a generic index).
+Rename elfcorehdr_addr to elf_headers_mem to align with arm64 name so
+common code can use it.
 
-Rob
+Signed-off-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+Reviewed-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+---
+ arch/powerpc/include/asm/kexec.h  | 2 +-
+ arch/powerpc/kexec/file_load.c    | 4 ++--
+ arch/powerpc/kexec/file_load_64.c | 4 ++--
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/arch/powerpc/include/asm/kexec.h b/arch/powerpc/include/asm/kexec.h
+index 55d6ede30c19..dbf09d2f36d0 100644
+--- a/arch/powerpc/include/asm/kexec.h
++++ b/arch/powerpc/include/asm/kexec.h
+@@ -108,7 +108,7 @@ struct kimage_arch {
+ 	unsigned long backup_start;
+ 	void *backup_buf;
+ 
+-	unsigned long elfcorehdr_addr;
++	unsigned long elf_headers_mem;
+ 	unsigned long elf_headers_sz;
+ 	void *elf_headers;
+ 
+diff --git a/arch/powerpc/kexec/file_load.c b/arch/powerpc/kexec/file_load.c
+index 9a232bc36c8f..e452b11df631 100644
+--- a/arch/powerpc/kexec/file_load.c
++++ b/arch/powerpc/kexec/file_load.c
+@@ -45,7 +45,7 @@ char *setup_kdump_cmdline(struct kimage *image, char *cmdline,
+ 		return NULL;
+ 
+ 	elfcorehdr_strlen = sprintf(cmdline_ptr, "elfcorehdr=0x%lx ",
+-				    image->arch.elfcorehdr_addr);
++				    image->arch.elf_headers_mem);
+ 
+ 	if (elfcorehdr_strlen + cmdline_len > COMMAND_LINE_SIZE) {
+ 		pr_err("Appending elfcorehdr=<addr> exceeds cmdline size\n");
+@@ -263,7 +263,7 @@ int setup_new_fdt(const struct kimage *image, void *fdt,
+ 		 * Avoid elfcorehdr from being stomped on in kdump kernel by
+ 		 * setting up memory reserve map.
+ 		 */
+-		ret = fdt_add_mem_rsv(fdt, image->arch.elfcorehdr_addr,
++		ret = fdt_add_mem_rsv(fdt, image->arch.elf_headers_mem,
+ 				      image->arch.elf_headers_sz);
+ 		if (ret) {
+ 			pr_err("Error reserving elfcorehdr memory: %s\n",
+diff --git a/arch/powerpc/kexec/file_load_64.c b/arch/powerpc/kexec/file_load_64.c
+index c69bcf9b547a..a05c19b3cc60 100644
+--- a/arch/powerpc/kexec/file_load_64.c
++++ b/arch/powerpc/kexec/file_load_64.c
+@@ -815,7 +815,7 @@ static int load_elfcorehdr_segment(struct kimage *image, struct kexec_buf *kbuf)
+ 		goto out;
+ 	}
+ 
+-	image->arch.elfcorehdr_addr = kbuf->mem;
++	image->arch.elf_headers_mem = kbuf->mem;
+ 	image->arch.elf_headers_sz = headers_sz;
+ 	image->arch.elf_headers = headers;
+ out:
+@@ -851,7 +851,7 @@ int load_crashdump_segments_ppc64(struct kimage *image,
+ 		return ret;
+ 	}
+ 	pr_debug("Loaded elf core header at 0x%lx, bufsz=0x%lx memsz=0x%lx\n",
+-		 image->arch.elfcorehdr_addr, kbuf->bufsz, kbuf->memsz);
++		 image->arch.elf_headers_mem, kbuf->bufsz, kbuf->memsz);
+ 
+ 	return 0;
+ }
+-- 
+2.30.0
+
