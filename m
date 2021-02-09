@@ -2,127 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CEBE3150EB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 14:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82118315113
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 14:59:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232001AbhBINxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 08:53:03 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48398 "EHLO mail.kernel.org"
+        id S231991AbhBIN6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 08:58:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49668 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231874AbhBINvp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Feb 2021 08:51:45 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 803FA64EEE;
-        Tue,  9 Feb 2021 13:51:04 +0000 (UTC)
+        id S231825AbhBIN5t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Feb 2021 08:57:49 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 553E264EEE;
+        Tue,  9 Feb 2021 13:57:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612878664;
-        bh=0hwOj+12J6Ypx4B1kz3p1bMsshTrMiayq1kwo7nbC/k=;
+        s=k20201202; t=1612879027;
+        bh=NYBRJpVERhcrNPXZUFCqG9eeCVvRA7N1yQGIY6Hsm10=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=g7dSUvxHkI1WtzkIAld7dHXvKRwNM7+FHpKAmh6lYzPA3tO+HOUiHbcpzcxIeTDrS
-         L+5NgY/jdBdWAKzXCO/yXREpKTE3WNEomuVGDwiodUXjk0t5O8cmUJL5UA54INj4Mr
-         AMAJF+ItKme5LuMeGL3kge+WmebMFjs+kyhCrq60N1PRSwuDc4Xcn7dL//O9ltygfy
-         YKo+8ne4Vga1D8ZknDOs2IMYn1CRwTRuD1O3MYl6xb0VkICr8kWpw8vtBmnAL2Tf65
-         ktTUQJRG5//S32rgiEKJkPNiuGSTTL74RrXehZw8iVbUXLNcfwerPJbXrerFUOvuR6
-         o2L2J/j7NGSWA==
-Received: by mail-qt1-f171.google.com with SMTP id w20so12953588qta.0;
-        Tue, 09 Feb 2021 05:51:04 -0800 (PST)
-X-Gm-Message-State: AOAM530MgceseAO1bmMKoPvRLXX6KOvHADgbQr2upVHZjwyToOB/fV2q
-        mAG+CpcLhlMU5me/s1Yu5yz7v0Kq4uA9XYRQYA==
-X-Google-Smtp-Source: ABdhPJzpsae26OkwoIy2nrHJJjzyWoEWmigexX9s/QckxKzoVk7hJ7rWxROznLXeo2XbpJpy6FKj2O+gZWrofmFQYy8=
-X-Received: by 2002:a05:622a:488:: with SMTP id p8mr19368445qtx.137.1612878663486;
- Tue, 09 Feb 2021 05:51:03 -0800 (PST)
+        b=CoXx6r9G7v1kTpRmFlkNMSqNy+qXE4rqUTUJXwzKNgMKfKLQBk1c3FSaxpWFUWJYU
+         LFN/NC/hFLZ9pz3bD1N+/B2nx/OBd9bT/HCZgs9kM+TJFSvXh3Cp8YOWDSZ2zGIazr
+         EtIpfsV2vYLTOadp6htqPxzTh4onfXz/D8QO/XaDcMJHGJ6JfeMD/LECfIlpbzx8wl
+         1+Mez/sJWPs+tfzxdq7xHajxiJS2LNVgip/pLWCYVHaiQpqC6iYbf7DKp+QuTd5g43
+         IqWtLCXqfRIMh4IhvS5j87Z0dHhTJK0BhRR/xWT7/w5f24vjwaqja4MAo0JWFw6iSS
+         FRvAFjVSn8eBQ==
+Received: by mail-qk1-f174.google.com with SMTP id s77so17951112qke.4;
+        Tue, 09 Feb 2021 05:57:07 -0800 (PST)
+X-Gm-Message-State: AOAM531ucW8CNYIWFN/UcopqicS0txCVbwPJLHS668DvPS7QIL7q5Y4L
+        1xFZtZcztK9FliY7+7PP8OtINgYTXqd0s/3kvA==
+X-Google-Smtp-Source: ABdhPJwcdrYR55bl0azRvAzl06gG/0oJAP1Gh4LIiC0dRNTMkptuigKWwu/4kdUDrdmpeoNg1Zq7xfIeiJ+yd35FIK4=
+X-Received: by 2002:ae9:f20b:: with SMTP id m11mr22290060qkg.464.1612879026441;
+ Tue, 09 Feb 2021 05:57:06 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1611037866.git.matti.vaittinen@fi.rohmeurope.com>
- <950a87e680822ab6457ff95bba96730fed93e14d.1611037866.git.matti.vaittinen@fi.rohmeurope.com>
- <20210209022450.GA2546257@robh.at.kernel.org> <0534345fdba452baefed4ad740a51d394b2ac423.camel@fi.rohmeurope.com>
-In-Reply-To: <0534345fdba452baefed4ad740a51d394b2ac423.camel@fi.rohmeurope.com>
+References: <1611034054-63867-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <1611034054-63867-3-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <20210209022041.GA2527041@robh.at.kernel.org> <CY4PR02MB327015F3EF5FD8C265EE20E2BD8E9@CY4PR02MB3270.namprd02.prod.outlook.com>
+In-Reply-To: <CY4PR02MB327015F3EF5FD8C265EE20E2BD8E9@CY4PR02MB3270.namprd02.prod.outlook.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 9 Feb 2021 07:50:52 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJXWkBJKPYm0SwWp03pYbwXUBziBF5B5nZ1tX8TnK7W7g@mail.gmail.com>
-Message-ID: <CAL_JsqJXWkBJKPYm0SwWp03pYbwXUBziBF5B5nZ1tX8TnK7W7g@mail.gmail.com>
-Subject: Re: [PATCH v2 06/17] dt_bindings: regulator: Add ROHM BD71815 PMIC regulators
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+Date:   Tue, 9 Feb 2021 07:56:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ31VkmK526BDZy+dg_O1L1A=2EH9Lq7CqhSUE0FPi2OA@mail.gmail.com>
+Message-ID: <CAL_JsqJ31VkmK526BDZy+dg_O1L1A=2EH9Lq7CqhSUE0FPi2OA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: Added binding for ZynqMP
+ pinctrl driver
+To:     Sai Krishna Potthuri <lakshmis@xilinx.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Michal Simek <michals@xilinx.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 9, 2021 at 7:10 AM Vaittinen, Matti
-<Matti.Vaittinen@fi.rohmeurope.com> wrote:
+On Tue, Feb 9, 2021 at 2:17 AM Sai Krishna Potthuri <lakshmis@xilinx.com> wrote:
 >
-> Hello Again Rob,
+> Hi Rob,
 >
-> And thanks for reviewing the bindings!
+> Thanks for the review.
 >
-> On Mon, 2021-02-08 at 20:24 -0600, Rob Herring wrote:
-> > On Tue, Jan 19, 2021 at 09:17:09AM +0200, Matti Vaittinen wrote:
-> > > Add binding documentation for regulators on ROHM BD71815 PMIC.
-> > > 5 bucks, 7 LDOs and a boost for LED.
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Tuesday, February 9, 2021 7:51 AM
+> > To: Sai Krishna Potthuri <lakshmis@xilinx.com>
+> > Cc: Linus Walleij <linus.walleij@linaro.org>; Michal Simek
+> > <michals@xilinx.com>; Greg Kroah-Hartman <gregkh@linuxfoundation.org>;
+> > linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-gpio@vger.kernel.org; git
+> > <git@xilinx.com>; saikrishna12468@gmail.com
+> > Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: Added binding for ZynqMP
+> > pinctrl driver
+> >
+> > On Tue, Jan 19, 2021 at 10:57:33AM +0530, Sai Krishna Potthuri wrote:
+> > > Added documentation and dt-bindings file which contains MIO pin
+> > > configuration defines for Xilinx ZynqMP pinctrl driver.
 > > >
-> > > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> > > Signed-off-by: Sai Krishna Potthuri
+> > > <lakshmi.sai.krishna.potthuri@xilinx.com>
 > > > ---
->
-> snip
->
-> > > +
-> > > +      rohm,dvs-run-voltage:
-> >
-> > Use standard unit suffix.
-> >
-> > > +        description:
-> > > +          PMIC "RUN" state voltage in uV when PMIC HW states are
-> > > used. See
-> > > +          comments below for bucks/LDOs which support this. 0
-> > > means
-> > > +          regulator should be disabled at RUN state.
-> > > +        $ref: "/schemas/types.yaml#/definitions/uint32"
-> >
-> > And then drop this.
->
-> Quote from v1 review:
->
-> > > > > > > +      rohm,dvs-run-voltage:
-> > > > > >
-> > > > > > These should have a unit suffix.
-> > > > >
-> > > > > I know but these are existing properties. I'd like to re-use
-> them
-> > > > > as
-> > > > > they have exported parser helpers - and I am unsure what kind
-> of
-> > > > > breakages changing them would cause. (The BD71837/BD71847 which
-> > > > > introduced these properties are one of the PMICs which are
-> pretty
-> > > > > widely used.)
-> > > >
-> > > > Okay. Hopefully I remember next time I see this...
+> > >  .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml | 337
+> > > ++++++++++++++++++  include/dt-bindings/pinctrl/pinctrl-zynqmp.h  |
+> > > 23 ++
+> > >  2 files changed, 360 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
+> > >  create mode 100644 include/dt-bindings/pinctrl/pinctrl-zynqmp.h
 > > >
-> > > Actually, I think I can add support for rohm,dvs-run-microvolt and
-> > > fellows to these same helpers so new devices can use appropriately
-> > > named properties. That would mean there is duplicate properties for
-> > > same purpose - but maybe it allows us to eventually deprecate the
-> old
-> > > ones... Which of these options would you prefer?
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
+> > > b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
+> > > new file mode 100644
+> > > index 000000000000..9f2efbafcaa4
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.ya
+> > > +++ ml
+> > > @@ -0,0 +1,337 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/pinctrl/xlnx,zynqmp-pinctrl.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Xilinx ZynqMP Pinctrl
+> > > +
+> > > +maintainers:
+> > > +  - Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+> > > +  - Rajan Vaja <rajan.vaja@xilinx.com>
+> > > +
+> > > +description: |
+> > > +  Please refer to pinctrl-bindings.txt in this directory for details
+> > > +of the
+> > > +  common pinctrl bindings used by client devices, including the
+> > > +meaning of the
+> > > +  phrase "pin configuration node".
+> > > +
+> > > +  ZynqMP's pin configuration nodes act as a container for an
+> > > + arbitrary number of  subnodes. Each of these subnodes represents
+> > > + some desired configuration for a  pin, a group, or a list of pins or
+> > > + groups. This configuration can include the  mux function to select
+> > > + on those pin(s)/group(s), and various pin configuration  parameters, such
+> > as pull-up, slew rate, etc.
+> > > +
+> > > +  Each configuration node can consist of multiple nodes describing
+> > > + the pinmux and  pinconf options. Those nodes can be pinmux nodes or
+> > pinconf nodes.
+> > > +
+> > > +  The name of each subnode is not important; all subnodes should be
+> > > + enumerated  and processed purely based on their content.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: xlnx,zynqmp-pinctrl
+> > > +
+> > > +patternProperties:
+> > > +  '^(.*-)?(default|gpio)$':
+> > > +    type: object
+> > > +    patternProperties:
+> > > +      '^mux(.*)$':
 > >
-> > Just keep the existing ones.
+> > '^mux' is equivalent.
+> I will fix in v3.
 >
-> Seem you predicted this XD If you still think it's Ok to keep the
-> existing ones, then I'll take this an ack, Ok?
+> >
+> > > +        type: object
+> > > +        description:
+> > > +          Pinctrl node's client devices use subnodes for pin muxes,
+> > > +          which in turn use below standard properties.
+> > > +        $ref: pinmux-node.yaml#
+> > > +
+> > > +        properties:
+> > > +          groups:
+> > > +            description:
+> > > +              List of groups to select (either this or "pins" must be
+> > > +              specified), available groups for this subnode.
+> > > +            items:
+> > > +              oneOf:
+> > > +                - enum: [ethernet0_0_grp, ethernet1_0_grp,
+> > > + ethernet2_0_grp,
+> >
+> > Don't need 'oneOf' for a single item.
+> Here we have a possibility to have more than one group item as below,
+> hence used 'oneOf'.
+> groups = "uart0_4_grp", "uart0_5_grp";
+> Please suggest me if there is a better/another way to represent this.
 
-Ah right,
+'items' has 2 forms: a list with a schema per entry or a schema that
+applies to all entries.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+1 item:
+items:
+  - enum: [...]
+
+all items:
+items:
+  enum: [...]
+
+You should use the latter form. You may need 'maxItems' here. Pick a
+'should be enough' value if you don't have an actual max.
+
+Rob
