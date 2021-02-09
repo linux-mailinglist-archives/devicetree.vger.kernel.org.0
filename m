@@ -2,88 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB733159D1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 00:06:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FDE83159D4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 00:06:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233900AbhBIW75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 17:59:57 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58702 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234548AbhBIWbu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Feb 2021 17:31:50 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3F26A64DCF;
-        Tue,  9 Feb 2021 22:30:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612909845;
-        bh=aElboiqUnwR60IIieAwxZ0/UogaCICdYpqt/BDC5xaQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BKFMhqjRdwMrFoFFLkOj2yPtqpuqDT/GMWk+myP7cSptzE+Er4bomoT8tCrcpQCfk
-         uHtrZFcQYPbUh4e649w5HEj9scECzBRpVwwqEcylAxQorsP39a76Th42S/+9wtbrYT
-         sX/dgfaYhvMT1fW/ay7NRhiqzmKc235luf6B+ocqTQ9qNuoJZb54vmJ1kG792QuYEH
-         z0V8030k94Ht4PSKt96eINydx2ReggFZT2PxWEo0rMwcAbhpPFV6ZhzkH2wtY9+f6G
-         04LNghwVNW/tjlGCktHNoj3g80Moh7fyFzpZeSyY4X661b4tpC+v4Md3fu75wB+PDR
-         wyw3Iy2cgtwOQ==
-Date:   Tue, 9 Feb 2021 22:29:53 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
-        Timur Tabi <timur@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org, Xiubo Li <Xiubo.Lee@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v2 2/7] ASoC: fsl_rpmsg: Add CPU DAI driver for audio
- base on rpmsg
-Message-ID: <20210209222953.GF4916@sirena.org.uk>
-References: <1612693435-31418-1-git-send-email-shengjiu.wang@nxp.com>
- <1612693435-31418-3-git-send-email-shengjiu.wang@nxp.com>
- <20210208115112.GD8645@sirena.org.uk>
- <CAA+D8AMRGRRk6FzdiqaHAP1=dPJngNgmdGmU59vrroXA9BMyXw@mail.gmail.com>
+        id S234461AbhBIXCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 18:02:30 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:41956 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234581AbhBIWdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 17:33:43 -0500
+Received: by mail-oi1-f181.google.com with SMTP id v193so15755639oie.8;
+        Tue, 09 Feb 2021 14:33:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/iX2s3bt8uDNQWgU3hcnj4j+Eer2ggS9c+8mDGZZ1Nw=;
+        b=tjHNF6p5vfnalvE0U5qtTkNTdMSzjrAPKVheYh69D7hBtkrLiYB5O8as8XW1gc3vGn
+         NmRz2lrVorNLl/qDDoB+CWhbrN6B3vfQkrDNrCOsHN88GEmjZsK+5SpOj9gWfh/cCC+Z
+         sd1vbiVHUnHTA/Au1rZSn5ckSUcZmJTScvXUSepV1uI2CemkVNmG7sefidaYoaGPDphP
+         yDIvDgF2KN3O2y3mPweV3Wmx8vc/nPNCL0Rp9keUPq+BKZrHhT7ZXq5DFUdGdAI2sBiE
+         c9WvifS6+QTjJ4A02p6EM/fELXQC4OlN44WTeOB+9yPjmWpoq4pHF1jjWUxnF7IYlL+K
+         tQcw==
+X-Gm-Message-State: AOAM530Ur7IJ/fJMV6qjlFzJgvo3U6mjpnpDudeePpe8xLakz7m/ZBpZ
+        SD7u3V8Ss7EBoRoGQvPT2Q==
+X-Google-Smtp-Source: ABdhPJxAL4tl4M1dFOxdOSzVRHF28JqawikqUrbVHLugDyPi6f3KKRBBrFMRaXoAD21fp7uKiOdlUQ==
+X-Received: by 2002:aca:5f44:: with SMTP id t65mr13529oib.46.1612909981279;
+        Tue, 09 Feb 2021 14:33:01 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p16sm26592oic.6.2021.02.09.14.32.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Feb 2021 14:33:00 -0800 (PST)
+Received: (nullmailer pid 337022 invoked by uid 1000);
+        Tue, 09 Feb 2021 22:32:58 -0000
+Date:   Tue, 9 Feb 2021 16:32:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Joao Pinto <jpinto@synopsys.com>,
+        Lars Persson <larper@axis.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Vyacheslav Mitrofanov 
+        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 07/24] dt-bindings: net: dwmac: Detach Generic DW MAC
+ bindings
+Message-ID: <20210209223258.GA328873@robh.at.kernel.org>
+References: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
+ <20210208135609.7685-8-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7cm2iqirTL37Ot+N"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA+D8AMRGRRk6FzdiqaHAP1=dPJngNgmdGmU59vrroXA9BMyXw@mail.gmail.com>
-X-Cookie: Put your trust in those who are worthy.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210208135609.7685-8-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Feb 08, 2021 at 04:55:51PM +0300, Serge Semin wrote:
+> Currently the snps,dwmac.yaml DT bindings file is used for both DT nodes
+> describing generic DW MAC devices and as DT schema with common properties
+> to be evaluated against a vendor-specific DW MAC IP-cores. Due to such
+> dual-purpose design the "compatible" property of the common DW MAC schema
+> needs to contain the vendor-specific strings to successfully pass the
+> schema evaluation in case if it's referenced from the vendor-specific DT
+> bindings. That's a bad design from maintainability point of view, since
+> adding/removing any DW MAC-based device bindings requires the common
+> schema modification. In order to fix that let's detach the schema which
+> provides the generic DW MAC DT nodes evaluation into a dedicated DT
+> bindings file preserving the common DW MAC properties declaration in the
+> snps,dwmac.yaml file. By doing so we'll still provide a common properties
+> evaluation for each vendor-specific MAC bindings which refer to the
+> common bindings file, while the generic DW MAC DT nodes will be checked
+> against the new snps,dwmac-generic.yaml DT schema.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Changelog v2:
+> - Add a note to the snps,dwmac-generic.yaml bindings file description of
+>   a requirement to create a new DT bindings file for the vendor-specific
+>   versions of the DW MAC.
+> ---
+>  .../bindings/net/snps,dwmac-generic.yaml      | 154 ++++++++++++++++++
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 139 +---------------
+>  2 files changed, 155 insertions(+), 138 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml b/Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml
+> new file mode 100644
+> index 000000000000..6c3bf5b2f890
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml
+> @@ -0,0 +1,154 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/snps,dwmac-generic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys DesignWare Generic MAC Device Tree Bindings
+> +
+> +maintainers:
+> +  - Alexandre Torgue <alexandre.torgue@st.com>
+> +  - Giuseppe Cavallaro <peppe.cavallaro@st.com>
+> +  - Jose Abreu <joabreu@synopsys.com>
+> +
+> +description:
+> +  The primary purpose of this bindings file is to validate the Generic
+> +  Synopsys Desginware MAC DT nodes defined in accordance with the select
+> +  schema. All new vendor-specific versions of the DW *MAC IP-cores must
+> +  be described in a dedicated DT bindings file.
+> +
+> +# Select the DT nodes, which have got compatible strings either as just a
+> +# single string with IP-core name optionally followed by the IP version or
+> +# two strings: one with IP-core name plus the IP version, another as just
+> +# the IP-core name.
+> +select:
+> +  properties:
+> +    compatible:
+> +      oneOf:
+> +        - items:
+> +            - pattern: "^snps,dw(xg)+mac(-[0-9]+\\.[0-9]+a?)?$"
 
---7cm2iqirTL37Ot+N
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Use '' instead of "" and you can skip the double \.
 
-On Tue, Feb 09, 2021 at 05:16:16PM +0800, Shengjiu Wang wrote:
-> On Mon, Feb 8, 2021 at 7:53 PM Mark Brown <broonie@kernel.org> wrote:
+With that,
 
-> > hw_params() can be called multiple times and there's no need for it to
-> > be balanced with hw_free(), I'd move this to a different callback (DAPM
-> > should work well).
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> Which callback should I use? Is there an example?
-
-Like I say I'd actually recommend moving this control to DAPM.
-
---7cm2iqirTL37Ot+N
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAjDOAACgkQJNaLcl1U
-h9BfxAf/fm751rk1InZcdQUy/P0JjMUL41sYCGQ90Gg1k2R3RCuWuoeTeCO0a0Yb
-l474cbyVRak4jHTNNgBjRryRcKW9r/NvV+WOdVVUKdVRJ+PpL3VzFLu0nSll9vDg
-aF/J74dcRx2+yj/+Ey8kDwbANEmjGKHdYd9NuJcPcPk+owkE9h0h48n4DpuFucQj
-O7anqyPPxnh1mW/gKSE1Sn0f8MhSWelw+xdX5PlWrMw/gbuW+OyAhwt1DyOMgakW
-xooN5vm0ALYQtVOM1RnKsKta5TDZjlRkI6Zkv4mojbihSKV/rxTju0sLoblIQ/Ju
-0jO/4lAwVhqvokUPYs1HmRwF9Sat4A==
-=1sE+
------END PGP SIGNATURE-----
-
---7cm2iqirTL37Ot+N--
+> +        - items:
+> +            - pattern: "^snps,dwmac-[0-9]+\\.[0-9]+a?$"
+> +            - const: snps,dwmac
+> +        - items:
+> +            - pattern: "^snps,dwxgmac-[0-9]+\\.[0-9]+a?$"
+> +            - const: snps,dwxgmac
