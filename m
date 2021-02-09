@@ -2,180 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1332315A64
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 01:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F3C3315A65
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 01:00:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233693AbhBIX7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 18:59:06 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:36732 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234054AbhBIXA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 18:00:28 -0500
-Received: by mail-oi1-f178.google.com with SMTP id k204so19703067oih.3;
-        Tue, 09 Feb 2021 15:00:12 -0800 (PST)
+        id S234377AbhBIX7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 18:59:33 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:33981 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234773AbhBIXI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 18:08:59 -0500
+Received: by mail-ot1-f41.google.com with SMTP id y11so116589otq.1;
+        Tue, 09 Feb 2021 15:08:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6Ue7D4O8vdXw9UDhxOL/f68EqD5Djbx8qy8gM4ZTo8o=;
-        b=hSNdV7t1PmNYoSCcQAPTCWTG1cVErnnP58PDKKh47L6lR2woKXaKYPN06fLIwGeMiY
-         P4gRT4+xGwFwfi12suxUPvz6Kjh+O0sIbSrXFawqBKTkaAOhD01XMM0Bgb/tMvaeMJW1
-         qEyfHhhT7mTx67+nTVYO6nOe8TxOXHOq2KSa2MGd2FlLJyxjH6pfsuDgHh5Es4MtWHyr
-         3uwsuz3AuFa7W3UJtXLtNQsx1skHrhLD77BZc9E2JSU2mCmo6w671+5p7Lm7wgbw/tKl
-         Z+IaBLZV5k3eDN49Z+KBQEpYnpGIzIZsNvilpTwKZI/hvmJnCEv1IV+h4g2tLyVB6qRb
-         g7ew==
-X-Gm-Message-State: AOAM532N5EP5/NehUP3YGmD5SMAmo3NgqjQG/jjKA5NF4JZ3r2o36Quz
-        D4ngDALbf0sNEJWSe8SzZ3j6yI7jJA==
-X-Google-Smtp-Source: ABdhPJzO6QBdZCXZG20mYXd4tre7KcvWOOgg+uJllJfNXFTuS1MiX/nrrW1uhMgjESZC0Jg1/nh8XQ==
-X-Received: by 2002:a54:478c:: with SMTP id o12mr43726oic.28.1612910978323;
-        Tue, 09 Feb 2021 14:49:38 -0800 (PST)
+        bh=flen+Q6BhqZvu5yUFGM567078RbssUkrmoOHzn1oN0E=;
+        b=QN+qnROo6+hpHjnHK3QRCYoMDXDGYhJkCpWx8n8rZT21XMdK0LBl27wprmc0cmDlzN
+         1aZrQeEzgVjVM9PfzmHHUW320qqpwc7HLqiLwY3UgS8fh7GHHU1F8shtHPBKoUwhO6wB
+         l90ujsBEOFNf5n/498JfPwbHQJoOUy9OjCT7Wi+q+n1OlzdYeTG/S01OSXhS1vrkiZLa
+         HC5nrPETWFfzK/W4kvgezVOL4jL0tnAt03msMPiCA1+gHqkruIuxqVMz4qc7fpnkEs3i
+         vLaP/sJFWfrH5eOSKPw+mvzJgHXkeYm7jSiH1dLtFtSh4vtHggGFq/WRjcSgx3HPitWm
+         ed4g==
+X-Gm-Message-State: AOAM532uxxPgnwt7mpiFw0m8muRhhOYtJRiLeXw/rkfo62JVq3RnRlJG
+        39qCTNBiWQIKRPBoY6n/Lmu28tygqw==
+X-Google-Smtp-Source: ABdhPJwxZgOwm8lVG9U+3qOA69ztcXYK2Xdl9Kak65G3myAMYyBpwcpvQOGW8ZWCWZU9eSatBKyzZg==
+X-Received: by 2002:a9d:61d1:: with SMTP id h17mr6253otk.113.1612912056647;
+        Tue, 09 Feb 2021 15:07:36 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w124sm25348oiw.40.2021.02.09.14.49.36
+        by smtp.gmail.com with ESMTPSA id g66sm2454otg.54.2021.02.09.15.07.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 14:49:37 -0800 (PST)
-Received: (nullmailer pid 366377 invoked by uid 1000);
-        Tue, 09 Feb 2021 22:49:36 -0000
-Date:   Tue, 9 Feb 2021 16:49:36 -0600
+        Tue, 09 Feb 2021 15:07:35 -0800 (PST)
+Received: (nullmailer pid 398853 invoked by uid 1000);
+        Tue, 09 Feb 2021 23:07:34 -0000
+Date:   Tue, 9 Feb 2021 17:07:34 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: spi: zynq: Convert Zynq QSPI binding to yaml
-Message-ID: <20210209224936.GA338434@robh.at.kernel.org>
-References: <22ca0a9a15ccdf4b520baacc5ed837f6d3a3f781.1612360002.git.michal.simek@xilinx.com>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Olof Johansson <olof@lixom.net>
+Subject: Re: [PATCH 14/18] dt-bindings: interrupt-controller: Add DT bindings
+ for apple-aic
+Message-ID: <20210209230734.GA387609@robh.at.kernel.org>
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-15-marcan@marcan.st>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <22ca0a9a15ccdf4b520baacc5ed837f6d3a3f781.1612360002.git.michal.simek@xilinx.com>
+In-Reply-To: <20210204203951.52105-15-marcan@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 03, 2021 at 02:46:44PM +0100, Michal Simek wrote:
-> Convert spi-zynq-qspi.txt to yaml.
+On Fri, Feb 05, 2021 at 05:39:47AM +0900, Hector Martin wrote:
+> AIC is the Apple Interrupt Controller found on Apple ARM SoCs, such as
+> the M1.
 > 
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
+>  .../interrupt-controller/AAPL,aic.yaml        | 88 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +
+>  .../interrupt-controller/apple-aic.h          | 14 +++
+>  3 files changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/AAPL,aic.yaml
+>  create mode 100644 include/dt-bindings/interrupt-controller/apple-aic.h
 > 
->  .../devicetree/bindings/spi/spi-zynq-qspi.txt | 25 --------
->  .../bindings/spi/xlnx,zynq-qspi.yaml          | 59 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  3 files changed, 60 insertions(+), 25 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
->  create mode 100644 Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt b/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
-> deleted file mode 100644
-> index 16b734ad3102..000000000000
-> --- a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
-> +++ /dev/null
-> @@ -1,25 +0,0 @@
-> -Xilinx Zynq QSPI controller Device Tree Bindings
-> --------------------------------------------------------------------
-> -
-> -Required properties:
-> -- compatible		: Should be "xlnx,zynq-qspi-1.0".
-> -- reg			: Physical base address and size of QSPI registers map.
-> -- interrupts		: Property with a value describing the interrupt
-> -			  number.
-> -- clock-names		: List of input clock names - "ref_clk", "pclk"
-> -			  (See clock bindings for details).
-> -- clocks		: Clock phandles (see clock bindings for details).
-> -
-> -Optional properties:
-> -- num-cs		: Number of chip selects used.
-> -
-> -Example:
-> -	qspi: spi@e000d000 {
-> -		compatible = "xlnx,zynq-qspi-1.0";
-> -		reg = <0xe000d000 0x1000>;
-> -		interrupt-parent = <&intc>;
-> -		interrupts = <0 19 4>;
-> -		clock-names = "ref_clk", "pclk";
-> -		clocks = <&clkc 10>, <&clkc 43>;
-> -		num-cs = <1>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml b/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/AAPL,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/AAPL,aic.yaml
 > new file mode 100644
-> index 000000000000..03269a7433b3
+> index 000000000000..7e119614275a
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
-> @@ -0,0 +1,59 @@
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/AAPL,aic.yaml
+> @@ -0,0 +1,88 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/spi/xlnx,zynq-qspi.yaml#
+> +$id: http://devicetree.org/schemas/interrupt-controller/AAPL,aic.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Xilinx Zynq QSPI controller
-> +
-> +description:
-> +  The Xilinx Zynq QSPI controller is used to access multi-bit serial flash
-> +  memory devices.
-> +
-> +allOf:
-> +  - $ref: "spi-controller.yaml#"
+> +title: Apple Interrupt Controller
 > +
 > +maintainers:
-> +  - Michal Simek <michal.simek@xilinx.com>
+> +  - Hector Martin <marcan@marcan.st>
 > +
-> +# Everything else is described in the common file
+> +description: |
+> +  The Apple Interrupt Controller is a simple interrupt controller present on
+> +  Apple ARM SoC platforms, including various iPhone and iPad devices and the
+> +  "Apple Silicon" M1 Macs.
+> +
+> +  It provides the following features:
+> +
+> +  - Level-triggered hardware IRQs wired to SoC blocks
+> +    - Single mask bit per IRQ
+> +    - Per-IRQ affinity setting
+> +    - Automatic masking on event delivery (auto-ack)
+> +    - Software triggering (ORed with hw line)
+> +  - 2 per-CPU IPIs (meant as "self" and "other", but they are interchangeable
+> +    if not symmetric)
+> +  - Automatic prioritization (single event/ack register per CPU, lower IRQs =
+> +    higher priority)
+> +  - Automatic masking on ack
+> +  - Default "this CPU" register view and explicit per-CPU views
+> +
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml#
+> +
 > +properties:
 > +  compatible:
-> +    const: xlnx,zynq-qspi-1.0
+> +    contains:
+> +      enum:
+> +        - AAPL,aic
+> +        - AAPL,m1-aic
+
+Instead of 'contains', this should be:
+
+items:
+  - const: AAPL,m1-aic
+  - const: AAPL,aic
+
+With 'apple' instead...
+
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 3
+> +    description: |
+> +      The 1st cell contains the interrupt type:
+> +        - 0: Hardware IRQ
+> +        - 1: FIQ
+> +        - 2: IPI
+> +
+> +      The 2nd cell contains the interrupt number.
+> +        - HW IRQs: interrupt number
+> +        - FIQs:
+> +          - 0: physical timer
+> +          - 1: virtual timer
+> +        - IPIs:
+> +          - 0: normal/"other" IPI (used interanlly for virtual IPIs)
+> +          - 1: self IPI (normally unused)
+> +
+> +      The 3rd cell contains the interrupt flags. This is normally
+> +      IRQ_TYPE_LEVEL_HIGH (4).
 > +
 > +  reg:
+> +    description: |
+> +      Specifies base physical address and size of the AIC registers.
 > +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: reference clock
-> +      - description: peripheral clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref_clk
-> +      - const: pclk
 > +
 > +required:
 > +  - compatible
+> +  - '#interrupt-cells'
+> +  - interrupt-controller
 > +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
 > +
-> +additionalProperties: true
+> +unevaluatedProperties: false
 
-unevaluatedProperties: false
+additionalProperties: false
+
+(stricter and actually has support implemented)
 
 > +
 > +examples:
 > +  - |
-> +    spi@e000d000 {
-> +        compatible = "xlnx,zynq-qspi-1.0";
-> +        reg = <0xe000d000 0x1000>;
-> +        interrupt-parent = <&intc>;
-> +        interrupts = <0 19 4>;
-> +        clock-names = "ref_clk", "pclk";
-> +        clocks = <&clkc 10>, <&clkc 43>;
-> +        num-cs = <1>;
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        aic: interrupt-controller@23b100000 {
+> +            compatible = "AAPL,m1-aic", "AAPL,aic";
+> +            #interrupt-cells = <3>;
+> +            interrupt-controller;
+> +            reg = <0x2 0x3b100000 0x0 0x8000>;
+> +        };
 > +    };
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index 546aa66428c9..e494b061dcd1 100644
+> index 91a7b33834ac..f3d4661731c8 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
-> @@ -2766,6 +2766,7 @@ W:	http://wiki.xilinx.com
->  T:	git https://github.com/Xilinx/linux-xlnx.git
->  F:	Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
->  F:	Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
-> +F:	Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
->  F:	arch/arm/mach-zynq/
->  F:	drivers/block/xsysace.c
->  F:	drivers/clocksource/timer-cadence-ttc.c
+> @@ -1634,6 +1634,8 @@ B:	https://github.com/AsahiLinux/linux/issues
+>  C:	irc://chat.freenode.net/asahi-dev
+>  T:	git https://github.com/AsahiLinux/linux.git
+>  F:	Documentation/devicetree/bindings/arm/AAPL.yaml
+> +F:	Documentation/devicetree/bindings/interrupt-controller/AAPL,aic.yaml
+> +F:	include/dt-bindings/interrupt-controller/apple-aic.h
+>  
+>  ARM/ARTPEC MACHINE SUPPORT
+>  M:	Jesper Nilsson <jesper.nilsson@axis.com>
+> diff --git a/include/dt-bindings/interrupt-controller/apple-aic.h b/include/dt-bindings/interrupt-controller/apple-aic.h
+> new file mode 100644
+> index 000000000000..f54dc0cd6e9a
+> --- /dev/null
+> +++ b/include/dt-bindings/interrupt-controller/apple-aic.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +#ifndef _DT_BINDINGS_INTERRUPT_CONTROLLER_APPLE_AIC_H
+> +#define _DT_BINDINGS_INTERRUPT_CONTROLLER_APPLE_AIC_H
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +#define AIC_IRQ 0
+> +#define AIC_FIQ 1
+> +#define AIC_IPI 2
+> +
+> +#define AIC_TMR_PHYS 0
+> +#define AIC_TMR_VIRT 1
+> +
+> +#endif
 > -- 
 > 2.30.0
 > 
