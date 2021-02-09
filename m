@@ -2,78 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52A8D3155A2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 19:11:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FD2E3155A5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 19:11:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233263AbhBISHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 13:07:22 -0500
-Received: from mail-oo1-f45.google.com ([209.85.161.45]:34143 "EHLO
-        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233092AbhBIR47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 12:56:59 -0500
-Received: by mail-oo1-f45.google.com with SMTP id x23so4463139oop.1;
-        Tue, 09 Feb 2021 09:56:44 -0800 (PST)
+        id S233311AbhBISHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 13:07:47 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:37684 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232869AbhBIR6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 12:58:04 -0500
+Received: by mail-ot1-f45.google.com with SMTP id h16so526751ote.4;
+        Tue, 09 Feb 2021 09:57:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=vBG1WNZ+VYDg58Hj0p0C8XiVqBI5eXydWO/NFf/WXAw=;
-        b=fABRR1tikxdvOZTDSRUQLYcn2A/OKITUgcpLOHPwS+Rq4O2heGSNv6yG+ro9w7/JrI
-         Y3xrNz9KyGZlvV4pMzTZzgj51UFd5oWSyRSLpsid13FcVrrj/9ltDorlll4+1LRYGIlo
-         4lhLozOhYAj6aCpPxAJSU8QaeFCHm50YU7c9GLBIv7l4QEbslc7UzpaBNaHq5CbjevCF
-         MAhdB6+ERWbFVAWDFaMubLtdbZ14dZCvLiqUMm4yoH8DiPwoGAgLSf/QM4hXvIo62Xsq
-         6mu8ADP1FHZ8EHnB3ZjbVmejarOrUDmuItakAVgsg6QHIQtUXbZJJwzqbVWSauccJ2Uf
-         h0jw==
-X-Gm-Message-State: AOAM531Fu4p51zqKacB8q7ryDKMnVQdkN3vxSsF2o7DubSr+2SJgVHer
-        91SUHerob7hyC8sR2Nxzdw==
-X-Google-Smtp-Source: ABdhPJwDyWG7JxVSQrPKKUjAO9gUPF8tm8MuPSOj8dj3+6IQC3cBmate/FqH6XfP1vsC+kwAHHQdBA==
-X-Received: by 2002:a4a:c489:: with SMTP id f9mr16497336ooq.49.1612893377147;
-        Tue, 09 Feb 2021 09:56:17 -0800 (PST)
+        bh=rx7ShcUPlogVwMh8F9HLA13eYp1scqXW4zBNdroxbow=;
+        b=VIuQyFdvxaqfnCkDLTonHwqMy9BVX1smsuU9kL/9N/utwmFmtkzi2oFfz9wOUBpTws
+         I0SqU0kaSv/6JASQAqsrBpvIHTUGhcUjDnhAeTvT0Pl4syv1bVoiUNwxpdcL3v9LYHIM
+         aUWNa1ArlvyOSNRMbfB+giAo4FiwBVhAVMeNcuNkfxXljcmupoUJRS2B42qT0gX2XIWB
+         cpbPSq6tTAhQzjQuO+iiaIEgtscFR8N4bl8u1vkxHadxlNGubdAKIw8sP+SC63LqMfy1
+         caKZJzFiZXoObhq/mu6Dl+5y92P+1nLBOPYt1xogESNABfMOx3zK3UbmhbNi+x4bQHF8
+         LARA==
+X-Gm-Message-State: AOAM531EJjtEd2+enUNdAJqHBVWY4ATgEfYJxhBtJkhvtRFkAEVq5mbA
+        DXwFODioIBksRXUDBZn1ig==
+X-Google-Smtp-Source: ABdhPJxZWAbE8r3r9BYhHIOTrpouC0/edd7g5RLQ1wJcHj+ewmnVr1TqdFf/lWJp489lqcjqYReVBg==
+X-Received: by 2002:a9d:1465:: with SMTP id h92mr16534642oth.141.1612893440531;
+        Tue, 09 Feb 2021 09:57:20 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a63sm4498903otc.75.2021.02.09.09.56.15
+        by smtp.gmail.com with ESMTPSA id r25sm1612283ota.42.2021.02.09.09.57.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 09:56:15 -0800 (PST)
-Received: (nullmailer pid 4039705 invoked by uid 1000);
-        Tue, 09 Feb 2021 17:56:14 -0000
-Date:   Tue, 9 Feb 2021 11:56:14 -0600
+        Tue, 09 Feb 2021 09:57:19 -0800 (PST)
+Received: (nullmailer pid 4041739 invoked by uid 1000);
+        Tue, 09 Feb 2021 17:57:18 -0000
+Date:   Tue, 9 Feb 2021 11:57:18 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     gabriel.fernandez@foss.st.com
-Cc:     Stephen Boyd <sboyd@kernel.org>, marex@denx.de,
-        Etienne Carriere <etienne.carriere@st.com>,
-        devicetree@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Lechner <david@lechnology.com>,
+        linux-omap@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
         linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-clk@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>
-Subject: Re: [PATCH v2 13/14] dt-bindings: clock: stm32mp1 new compatible for
- secure rcc
-Message-ID: <20210209175614.GA4039647@robh.at.kernel.org>
-References: <20210126090120.19900-1-gabriel.fernandez@foss.st.com>
- <20210126090120.19900-14-gabriel.fernandez@foss.st.com>
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: irqchip: Add node name to PRUSS INTC
+Message-ID: <20210209175718.GA4041654@robh.at.kernel.org>
+References: <20210126163251.29468-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210126090120.19900-14-gabriel.fernandez@foss.st.com>
+In-Reply-To: <20210126163251.29468-1-s-anna@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Jan 2021 10:01:19 +0100, gabriel.fernandez@foss.st.com wrote:
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+On Tue, 26 Jan 2021 10:32:51 -0600, Suman Anna wrote:
+> The current PRUSS Interrupt Controller binding doesn't exactly specify
+> the convention for the node name. These interrupt-controllers will always
+> have a unit address. Update the binding with the '$nodename' using the
+> expected generic name, this shall ensure the interrupt-controller.yaml
+> is automatically applied to this binding.
 > 
-> Introduce new compatible string "st,stm32mp1-rcc-secure" for
-> stm32mp1 clock driver when the device is configured with RCC
-> security support hardened.
-> 
-> Signed-off-by: Etienne Carriere <etienne.carriere@st.com>
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
 > ---
->  .../devicetree/bindings/clock/st,stm32mp1-rcc.yaml          | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> This patch is a result of the previous discussion at
+> https://patchwork.kernel.org/comment/23926133/
+> 
+>  .../bindings/interrupt-controller/ti,pruss-intc.yaml           | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
