@@ -2,556 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C173151E7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 15:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34D6A315205
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 15:50:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231652AbhBIOpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 09:45:39 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:40656 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230260AbhBIOpj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 09:45:39 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 119EiS8W036299;
-        Tue, 9 Feb 2021 08:44:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1612881868;
-        bh=vnCGN2+/fXXg176BhqqKn+/o+NDbB1FmQM90PjVqJvU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=bxLYRqlkgVY2zGbIdmJs4BFx5htJ8Pur/l3b9dDn7LPbFg65rnxVsM0tdAOP/Ar3B
-         Wg1Nl185mbd8i9k3G91hbPsfeterj4UM7lkoHfNOv4JG9kB4QVmUvk5z7H9+r3qgsF
-         8a/DaZsBo0/RK8vh5HBEP1E0bWXaPYe/N3DzgRS0=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 119EiSfp042809
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Feb 2021 08:44:28 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 9 Feb
- 2021 08:44:27 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 9 Feb 2021 08:44:27 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 119EiR4p084107;
-        Tue, 9 Feb 2021 08:44:27 -0600
-Date:   Tue, 9 Feb 2021 08:44:27 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Le Jin <le.jin@siemens.com>,
-        Bao Cheng Su <baocheng.su@siemens.com>
-Subject: Re: [PATCH] arm64: dts: ti: Add support for Siemens IOT2050 boards
-Message-ID: <20210209144427.np6kpecc2jbh2wa7@tingling>
-References: <367f1249-700e-38f2-36de-46fb0be61c5b@siemens.com>
+        id S232319AbhBIOtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 09:49:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232306AbhBIOtU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 09:49:20 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DF59C061786;
+        Tue,  9 Feb 2021 06:48:40 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id k25so19632313oik.13;
+        Tue, 09 Feb 2021 06:48:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aM7dO3tp79jO0fPJZv7YJSSQzHPVyz/cquYYOxatg1s=;
+        b=TakrWn6MQhdn0N6JvhltplGzffQ4B9foAeAxgUhk1txhp3OWj+nbUPSzodZrHB1/mb
+         jwFb2KCApPJ7tzMDAt/bTm4fSNM3CSuwYODCBzXs90rVSfPLyImvA8pjYIkFgy/nK502
+         HYQenV5BZ/vvOPRgegiNFzshJMqIjxcB/Oacdt5zs/v5sV828tC9Mk+nim5Gwfye+Wgq
+         HWixy+7a/KfXWs7NnmrqcLz+5//dgts7yuCANGlKBLOPqie9y8t/D0TwGn3ENoX1kHgT
+         btcaqfEjoaSEJHLCshCcpq/nywWxm/Ewem3JFzPt9yjHKrUZow1w/BdTSTveMKu0JFif
+         tpmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aM7dO3tp79jO0fPJZv7YJSSQzHPVyz/cquYYOxatg1s=;
+        b=HYL/5HIEg5PWwdPU64PGMMKDTGEVJ6GaAVqzx9/AhLPkFoLRYgtNpPEabyYLBHLhhN
+         CdQFNltV2bb2zpKxt+80xneGCUTkfDEd/WBesW6ITjUJd64Q0snV/9M0XR7ljB+9hL9g
+         7eVPNy+FCWc6W9L6uam75iPZN8cJhaWIIjzddOpp/JyxtqMF6WpceaSAAxoQIPN1sUQA
+         k4f8aGZUYqX/1uiWs2dmvuox75Xgat6lutTKqczU+oFVDANaIdTfhtsr7i5E2ehipWv7
+         v44kKDbLUVqoORpsNJcQs94oT9sekf7myH6WWmk4ObSJpskDHEoib/b4OWaBlNa9axuD
+         w+Pg==
+X-Gm-Message-State: AOAM5306svxIeVVnjaJoCZQvpbDFNfP/08shxe2v7ZONQ5NahxKBgRr/
+        AZrXdIG16KTigvdVMzh0sz4VV59KywazMBNQytk=
+X-Google-Smtp-Source: ABdhPJw/p815QsBu3fqLfKcPhGH0uCCJ1J2JQsOu2oSqCmhb8MyHUZopZ7pb49H23pc2XUeiLU321Biifhn1wyJ4zXY=
+X-Received: by 2002:aca:b683:: with SMTP id g125mr2559278oif.47.1612882119731;
+ Tue, 09 Feb 2021 06:48:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <367f1249-700e-38f2-36de-46fb0be61c5b@siemens.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210129092209.2584718-1-hsinyi@chromium.org> <20210129092209.2584718-8-hsinyi@chromium.org>
+In-Reply-To: <20210129092209.2584718-8-hsinyi@chromium.org>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Tue, 9 Feb 2021 15:48:28 +0100
+Message-ID: <CAFqH_53pqgxV0UotaaXNTN=3gfDyHfAzZv6QH9JOdKyg2TEKvw@mail.gmail.com>
+Subject: Re: [PATCH v13 7/8] soc: mediatek: add mtk mutex support for MT8183
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jan,
+Hi Hsin-Yi,
 
-A few quick scan comments below, you might need to post based off
-5.12-rc1 once available..
+Thank you for your patch.
 
-Also, I see a bit of warnings with dtbs_check, which probably needs a
-little more digging into (pcie insists to get a device_type property,
-etc..)
+Missatge de Hsin-Yi Wang <hsinyi@chromium.org> del dia dv., 29 de gen.
+2021 a les 10:23:
+>
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+>
+> Add mtk mutex support for MT8183 SoC.
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
 
-you could use kernel_patch_verify or https://github.com/nmenon/kernel_patch_verify/blob/master/Dockerbuild.md
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-it throws up a report like this https://pastebin.ubuntu.com/p/SdkZr432z3/
+FWIW this patch is required to have the display working on the
+Chromebook IdeaPad Duet, so
 
-So, many of my comments below are just first pass parse of that log -> I
-usually do recommend building with W=2 and dtbs_check (with yamlint etc)
-to make sure things are a bit sane. Will be good to have additional
-eyes.
+Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-On 11:21-20210209, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> Add support for two Siemens SIMATIC IOT2050 variants, Basic and
-> Advanced. They are based on the TI AM6528 and AM6548 SOCs.
-> 
-> Based on original version by Le Jin.
+Matthias, If I am not wrong, this patch is the only one that is not
+applied for this series. I know that is too late for 5.12, but If
+you're fine with it, could you pick this patch directly or do you
+prefer a resend of this patch alone once you will start to accept
+patches for the next release?
 
-Might be good to add links to the boards as well (if available), for
-future reference.
+Thanks,
+  Enric
 
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
 > ---
-
-Will be nice to see at least a pastebin link for a bootlog on the boards
-in the cover-letter / diffstat section with the v2 - for reference.
-
->  .../devicetree/bindings/arm/ti/k3.yaml        |   2 +
->  arch/arm64/boot/dts/ti/Makefile               |   4 +
->  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 649 ++++++++++++++++++
->  .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |  56 ++
->  .../dts/ti/k3-am6548-iot2050-advanced.dts     |  57 ++
->  5 files changed, 768 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index c6e1c1e63e43..b1ab0cf4a2d6 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -23,6 +23,8 @@ properties:
->          items:
->            - enum:
->                - ti,am654-evm
-> +              - siemens,iot2050-basic
-> +              - siemens,iot2050-advanced
-
-- In a separate patch, ./Documentation/devicetree/bindings/vendor-prefixes.yaml -> Could you
-  make sure we add 'siemens' there?
-- and, lets move the bindings to it's own patch, since that is how Rob
- prefers to review in https://patchwork.ozlabs.org/project/devicetree-bindings/list/
-
-Both of these patches will need Rob to ack. I think I should be able
-to pick the first one up as well to reduce dependency, but we can
-check with Rob in case there is a preference.
-
->            - const: ti,am654
->  
->        - description: K3 J721E SoC
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 65506f21ba30..928ea26ce250 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -8,6 +8,10 @@
->  
->  dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
->  
-
-- drop the EOL to club am65 dtbs close to each other
-
-> +dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
+>  drivers/soc/mediatek/mtk-mutex.c | 50 ++++++++++++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>
+> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
+> index f531b119da7a9..718a41beb6afb 100644
+> --- a/drivers/soc/mediatek/mtk-mutex.c
+> +++ b/drivers/soc/mediatek/mtk-mutex.c
+> @@ -14,6 +14,8 @@
+>
+>  #define MT2701_MUTEX0_MOD0                     0x2c
+>  #define MT2701_MUTEX0_SOF0                     0x30
+> +#define MT8183_MUTEX0_MOD0                     0x30
+> +#define MT8183_MUTEX0_SOF0                     0x2c
+>
+>  #define DISP_REG_MUTEX_EN(n)                   (0x20 + 0x20 * (n))
+>  #define DISP_REG_MUTEX(n)                      (0x24 + 0x20 * (n))
+> @@ -37,6 +39,18 @@
+>  #define MT8167_MUTEX_MOD_DISP_DITHER           15
+>  #define MT8167_MUTEX_MOD_DISP_UFOE             16
+>
+> +#define MT8183_MUTEX_MOD_DISP_RDMA0            0
+> +#define MT8183_MUTEX_MOD_DISP_RDMA1            1
+> +#define MT8183_MUTEX_MOD_DISP_OVL0             9
+> +#define MT8183_MUTEX_MOD_DISP_OVL0_2L          10
+> +#define MT8183_MUTEX_MOD_DISP_OVL1_2L          11
+> +#define MT8183_MUTEX_MOD_DISP_WDMA0            12
+> +#define MT8183_MUTEX_MOD_DISP_COLOR0           13
+> +#define MT8183_MUTEX_MOD_DISP_CCORR0           14
+> +#define MT8183_MUTEX_MOD_DISP_AAL0             15
+> +#define MT8183_MUTEX_MOD_DISP_GAMMA0           16
+> +#define MT8183_MUTEX_MOD_DISP_DITHER0          17
 > +
-
-- Drop this EOL as well. Something like this:
-
-dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
-dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
-dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
-
-dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
-
-> +dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
+>  #define MT8173_MUTEX_MOD_DISP_OVL0             11
+>  #define MT8173_MUTEX_MOD_DISP_OVL1             12
+>  #define MT8173_MUTEX_MOD_DISP_RDMA0            13
+> @@ -87,6 +101,11 @@
+>  #define MT2712_MUTEX_SOF_DSI3                  6
+>  #define MT8167_MUTEX_SOF_DPI0                  2
+>  #define MT8167_MUTEX_SOF_DPI1                  3
+> +#define MT8183_MUTEX_SOF_DSI0                  1
+> +#define MT8183_MUTEX_SOF_DPI0                  2
 > +
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
->  
->  dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> new file mode 100644
-> index 000000000000..de05937dbb60
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> @@ -0,0 +1,649 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) Siemens AG, 2018-2021
-> + *
-
-Optional: might be nice to add a oneliner comment for reuse scope..
-
-> + * Authors:
-> + *   Le Jin <le.jin@siemens.com>
-> + *   Jan Kiszka <jan.kiszk@siemens.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "k3-am654.dtsi"
-> +#include <dt-bindings/phy/phy.h>
-> +
-> +/ {
-> +	aliases {
-> +		spi0 = &mcu_spi0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial3:115200n8";
-> +		bootargs = "earlycon=ns16550a,mmio32,0x02800000";
-
-serial3 is main_uart1, did you mean 0x02810000 instead of 0x02800000 ?
-
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		secure_ddr: secure_ddr@9e800000 {
-
-"_" is not something we prefer for node names, so something like
-	secure_ddr: secure-ddr@...
-
-> +			reg = <0 0x9e800000 0 0x01800000>; /* for OP-TEE */
-> +			alignment = <0x1000>;
-> +			no-map;
-> +		};
-> +
-> +		mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0xa0000000 0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		mcu_r5fss0_core0_memory_region: r5f-memory@a0100000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0xa0100000 0 0xf00000>;
-> +			no-map;
-> +		};
-> +
-> +		mcu_r5fss0_core1_dma_memory_region: r5f-dma-memory@a1000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0xa1000000 0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		mcu_r5fss0_core1_memory_region: r5f-memory@a1100000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0xa1100000 0 0xf00000>;
-> +			no-map;
-> +		};
-> +
-> +		rtos_ipc_memory_region: ipc-memories@a2000000 {
-> +			reg = <0x00 0xa2000000 0x00 0x00200000>;
-> +			alignment = <0x1000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	gpio_leds {
-
-just 'leds'?
-
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&leds_pins_default>;
-> +
-> +		status-led-red {
-> +			gpios = <&wkup_gpio0 32 GPIO_ACTIVE_HIGH>;
-> +			panic-indicator;
-> +			linux,default-trigger = "gpio";
-> +		};
-> +
-> +		status-led-green {
-> +			gpios = <&wkup_gpio0 24 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "gpio";
-> +		};
-> +
-> +		user-led1-red {
-> +			gpios = <&pcal9535_3 14 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "gpio";
-> +		};
-> +
-> +		user-led1-green {
-> +			gpios = <&pcal9535_2 15 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "gpio";
-> +		};
-> +
-> +		user-led2-red {
-> +			gpios = <&wkup_gpio0 17 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "gpio";
-> +		};
-> +
-> +		user-led2-green {
-> +			gpios = <&wkup_gpio0 22 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "gpio";
-
-are you sure this is "gpio" ? dtbs_check reports should be one of:
-	['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
-> +		};
-> +	};
-> +
-> +	dp_refclk: clock {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <19200000>;
-> +	};
+> +#define MT8183_MUTEX_EOF_DSI0                  (MT8183_MUTEX_SOF_DSI0 << 6)
+> +#define MT8183_MUTEX_EOF_DPI0                  (MT8183_MUTEX_SOF_DPI0 << 6)
+>
+>  struct mtk_mutex {
+>         int id;
+> @@ -181,6 +200,20 @@ static const unsigned int mt8173_mutex_mod[DDP_COMPONENT_ID_MAX] = {
+>         [DDP_COMPONENT_WDMA1] = MT8173_MUTEX_MOD_DISP_WDMA1,
+>  };
+>
+> +static const unsigned int mt8183_mutex_mod[DDP_COMPONENT_ID_MAX] = {
+> +       [DDP_COMPONENT_AAL0] = MT8183_MUTEX_MOD_DISP_AAL0,
+> +       [DDP_COMPONENT_CCORR] = MT8183_MUTEX_MOD_DISP_CCORR0,
+> +       [DDP_COMPONENT_COLOR0] = MT8183_MUTEX_MOD_DISP_COLOR0,
+> +       [DDP_COMPONENT_DITHER] = MT8183_MUTEX_MOD_DISP_DITHER0,
+> +       [DDP_COMPONENT_GAMMA] = MT8183_MUTEX_MOD_DISP_GAMMA0,
+> +       [DDP_COMPONENT_OVL0] = MT8183_MUTEX_MOD_DISP_OVL0,
+> +       [DDP_COMPONENT_OVL_2L0] = MT8183_MUTEX_MOD_DISP_OVL0_2L,
+> +       [DDP_COMPONENT_OVL_2L1] = MT8183_MUTEX_MOD_DISP_OVL1_2L,
+> +       [DDP_COMPONENT_RDMA0] = MT8183_MUTEX_MOD_DISP_RDMA0,
+> +       [DDP_COMPONENT_RDMA1] = MT8183_MUTEX_MOD_DISP_RDMA1,
+> +       [DDP_COMPONENT_WDMA0] = MT8183_MUTEX_MOD_DISP_WDMA0,
 > +};
 > +
-> +&wkup_pmx0 {
-> +	wkup_i2c0_pins_default: wkup_i2c0_pins_default {
-
-	Here, and else where:
-		wkup_i2c0_pins_default: wkup-i2c0-pins-default
-
-Prefer we dont use _ in node names (rest of the pinmux node names as
-		well).
-
-> +		pinctrl-single,pins = <
-> +			AM65X_WKUP_IOPAD(0x00e0, PIN_INPUT,  0)  /* (AC7) WKUP_I2C0_SCL */
-> +			AM65X_WKUP_IOPAD(0x00e4, PIN_INPUT,  0)  /* (AD6) WKUP_I2C0_SDA */
-> +		>;
-> +	};
-> +
-> +	mcu_i2c0_pins_default: mcu_i2c0_pins_default {
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x0070, PIN_INPUT,  5)  /* (R25) I2C2_SDA */
-
-[... similar issues with '_' elsewhere.. ]
-
-> +		>;
-> +	};
+>  static const unsigned int mt2712_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
+>         [MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
+>         [MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0,
+> @@ -198,6 +231,13 @@ static const unsigned int mt8167_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
+>         [MUTEX_SOF_DPI1] = MT8167_MUTEX_SOF_DPI1,
+>  };
+>
+> +/* Add EOF setting so overlay hardware can receive frame done irq */
+> +static const unsigned int mt8183_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
+> +       [MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
+> +       [MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0 | MT8183_MUTEX_EOF_DSI0,
+> +       [MUTEX_SOF_DPI0] = MT8183_MUTEX_SOF_DPI0 | MT8183_MUTEX_EOF_DPI0,
 > +};
 > +
-> +&main_pmx1 {
-> +	main_i2c0_pins_default: main-i2c0-pins-default {
-
-	these look fine..
-
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x0000, PIN_INPUT,  0)  /* (D20) I2C0_SCL */
-> +			AM65X_IOPAD(0x0004, PIN_INPUT,  0)  /* (C21) I2C0_SDA */
-> +		>;
-> +	};
-> +
-> +	main_i2c1_pins_default: main-i2c1-pins-default {
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x0008, PIN_INPUT,  0)  /* (B21) I2C1_SCL */
-> +			AM65X_IOPAD(0x000c, PIN_INPUT,  0)  /* (E21) I2C1_SDA */
-> +		>;
-> +	};
-> +
-> +	ecap0_pins_default: ecap0-pins-default {
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x0010, PIN_INPUT,  0)  /* (D21) ECAP0_IN_APWM_OUT */
-> +		>;
-> +	};
+>  static const struct mtk_mutex_data mt2701_mutex_driver_data = {
+>         .mutex_mod = mt2701_mutex_mod,
+>         .mutex_sof = mt2712_mutex_sof,
+> @@ -227,6 +267,14 @@ static const struct mtk_mutex_data mt8173_mutex_driver_data = {
+>         .mutex_sof_reg = MT2701_MUTEX0_SOF0,
+>  };
+>
+> +static const struct mtk_mutex_data mt8183_mutex_driver_data = {
+> +       .mutex_mod = mt8183_mutex_mod,
+> +       .mutex_sof = mt8183_mutex_sof,
+> +       .mutex_mod_reg = MT8183_MUTEX0_MOD0,
+> +       .mutex_sof_reg = MT8183_MUTEX0_SOF0,
+> +       .no_clk = true,
 > +};
 > +
-> +&wkup_uart0 {
-> +	/* Wakeup UART is used by System firmware */
-> +	status = "disabled";
-In case of reservation for firmware usage:
-status = "reserved";
-
-[...]
-
-> +
-> +&wkup_gpio0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <
-> +		&arduino_io_d2_to_d3_pins_default
-> +		&arduino_i2c_aio_switch_pins_default
-> +		&arduino_io_oe_pins_default
-> +		&push_button_pins_default
-> +		&db9_com_mode_pins_default
-> +	>;
-> +	gpio-line-names =
-> +		"wkup_gpio0-base", "", "", "", "UART0-mode1", "UART0-mode0",
-> +			"UART0-enable", "UART0-terminate", "", "WIFI-disable",
-> +		"", "", "", "", "", "", "", "", "", "",
-> +		"", "A4A5-I2C-mux", "", "", "", "USER-button", "", "", "","IO0",
-> +		"IO1", "IO2", "", "IO3", "IO17-direction",
-> +			"A5", "IO16-direction", "IO15-direction",
-> +			"IO14-direction", "A3",
-> +		"", "IO18-direction", "A4", "A2", "A1",
-> +			"A0", "", "", "IO13", "IO11",
-> +		"IO12", "IO10";
-
-Any chance of intending this consistently?
-
-> +};
-> +
-> +&wkup_i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_i2c0_pins_default>;
-> +	clock-frequency = <400000>;
-> +};
-> +
-> +&mcu_i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_i2c0_pins_default>;
-> +	clock-frequency = <400000>;
-> +
-> +	psu: tps62363@60 {
-> +		compatible = "ti,tps62363";
-> +		reg =  <0x60>;
-> +		regulator-name = "tps62363-vout";
-> +		regulator-min-microvolt = <500000>;
-> +		regulator-max-microvolt = <1500000>;
-> +		regulator-boot-on;
-> +		/* ti,vsel0-gpio = <&gpio1 16 0>; */
-> +		/* ti,vsel1-gpio = <&gpio1 17 0>; */
-
-Could you drop the commented out properties: above and later?
-
-> +		ti,vsel0-state-high;
-> +		ti,vsel1-state-high;
-> +		/* ti,enable-pull-down; */
-> +		/* ti,enable-force-pwm; */
-> +		ti,enable-vout-discharge;
-> +	};
-> +
-> +	/*D4200*/
-Add a space prefix and postfix? (here and below)
-/* D4200 */
-
-> +	pcal9535_1: gpio@20 {
-> +		compatible = "nxp,pcal9535";
-> +		reg = <0x20>;
-> +		#gpio-cells = <2>;
-> +		gpio-controller;
-> +		gpio-line-names =
-> +			"A0-pull", "A1-pull", "A2-pull", "A3-pull", "A4-pull",
-> +			"A5-pull", "", "",
-> +			"IO14-enable", "IO15-enable", "IO16-enable",
-> +			"IO17-enable", "IO18-enable", "IO19-enable";
-> +	};
-> +
-> +	/*D4201*/
-> +	pcal9535_2: gpio@21 {
-> +		compatible = "nxp,pcal9535";
-> +		reg = <0x21>;
-> +		#gpio-cells = <2>;
-> +		gpio-controller;
-> +		gpio-line-names =
-> +			"IO0-direction", "IO1-direction", "IO2-direction",
-> +			"IO3-direction", "IO4-direction", "IO5-direction",
-> +			"IO6-direction", "IO7-direction",
-> +			"IO8-direction", "IO9-direction", "IO10-direction",
-> +			"IO11-direction", "IO12-direction", "IO13-direction",
-> +			"IO19-direction";
-> +	};
-> +
-
-	[...]
-
-> +
-> +&pcie1_rc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&minipcie_pins_default>;
-> +
-> +	num-lanes = <1>;
-> +	phys = <&serdes1 PHY_TYPE_PCIE 0>;
-> +	phy-names = "pcie-phy0";
-> +	reset-gpios = <&wkup_gpio0 27 GPIO_ACTIVE_HIGH>;
-
-schema seems to want a device_type, and there seems to be some warnings
-	on serdes as well.. might be something to check up on..
-
-> +};
-> +
-> +&pcie1_ep {
-> +	status = "disabled";
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
-> new file mode 100644
-> index 000000000000..bb9ab4fdd74e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
-> @@ -0,0 +1,56 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) Siemens AG, 2018-2021
-> + *
-
-Will be nice to explain the difference between basic and advanced dts.
-
-Are they two different boards? looks like the basic is using a part spin
-with a single cluster, perhaps? I guess links might help..
-
-> + * Authors:
-> + *   Le Jin <le.jin@siemens.com>
-> + *   Jan Kiszka <jan.kiszk@siemens.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "k3-am65-iot2050-common.dtsi"
-> +
-> +/ {
-> +	compatible = "siemens,iot2050-basic", "ti,am654";
-> +	model = "SIMATIC IOT2050 Basic";
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* 1G RAM */
-> +		reg = <0x00000000 0x80000000 0x00000000 0x40000000>;
-> +	};
-> +
-> +	cpus {
-> +		cpu-map {
-> +			/delete-node/ cluster1;
-> +		};
-> +		/delete-node/ cpu@100;
-> +		/delete-node/ cpu@101;
-> +	};
-
-Personally, I'd prefer this (handling efuse spins in board files or
-even overlays) instead of having to create 100s of dtsi per SoC for
-every permutation & combination of TI efused devices and handle these
-in board files. I do see examples of similar usage elsewhere in:
-
-$ git grep /delete-node/ arch/arm64/boot/dts/
-
-But, if someone has a different opinion, feel free to pipe up with a
-reasonable way to prevent file explosion.
-
-> +};
-> +
-> +/* eMMC */
-> +&sdhci0 {
-> +	status = "disabled";
-> +};
-> +
-> +&main_pmx0 {
-> +	main_uart0_pins_default: main_uart0_pins_default {
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x01e4, PIN_INPUT,  0)  /* (AF11) UART0_RXD */
-> +			AM65X_IOPAD(0x01e8, PIN_OUTPUT, 0)  /* (AE11) UART0_TXD */
-> +			AM65X_IOPAD(0x01ec, PIN_INPUT,  0)  /* (AG11) UART0_CTSn */
-> +			AM65X_IOPAD(0x01f0, PIN_OUTPUT, 0)  /* (AD11) UART0_RTSn */
-> +			AM65X_IOPAD(0x0188, PIN_INPUT,  1)  /* (D25) UART0_DCDn */
-> +			AM65X_IOPAD(0x018c, PIN_INPUT,  1)  /* (B26) UART0_DSRn */
-> +			AM65X_IOPAD(0x0190, PIN_OUTPUT, 1)  /* (A24) UART0_DTRn */
-> +			AM65X_IOPAD(0x0194, PIN_INPUT,  1)  /* (E24) UART0_RIN */
-> +		>;
-> +	};
-> +};
-> +
-> +&main_uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_uart0_pins_default>;
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-> new file mode 100644
-> index 000000000000..aa1ef081ef22
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-> @@ -0,0 +1,57 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) Siemens AG, 2018-2021
-> + *
-> + * Authors:
-> + *   Le Jin <le.jin@siemens.com>
-> + *   Jan Kiszka <jan.kiszk@siemens.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "k3-am65-iot2050-common.dtsi"
-[...]
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+>  struct mtk_mutex *mtk_mutex_get(struct device *dev)
+>  {
+>         struct mtk_mutex_ctx *mtx = dev_get_drvdata(dev);
+> @@ -457,6 +505,8 @@ static const struct of_device_id mutex_driver_dt_match[] = {
+>           .data = &mt8167_mutex_driver_data},
+>         { .compatible = "mediatek,mt8173-disp-mutex",
+>           .data = &mt8173_mutex_driver_data},
+> +       { .compatible = "mediatek,mt8183-disp-mutex",
+> +         .data = &mt8183_mutex_driver_data},
+>         {},
+>  };
+>  MODULE_DEVICE_TABLE(of, mutex_driver_dt_match);
+> --
+> 2.30.0.365.g02bc693789-goog
+>
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
