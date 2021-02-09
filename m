@@ -2,161 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C39C314D80
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 11:52:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A22F314D96
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 11:55:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232053AbhBIKu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 05:50:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50368 "EHLO
+        id S232118AbhBIKyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 05:54:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232081AbhBIKsy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 05:48:54 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27A45C06178C
-        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 02:48:14 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id s11so22853734edd.5
-        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 02:48:14 -0800 (PST)
+        with ESMTP id S232178AbhBIKww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 05:52:52 -0500
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9AACC06178A;
+        Tue,  9 Feb 2021 02:52:11 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id v206so5799849qkb.3;
+        Tue, 09 Feb 2021 02:52:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=P0/ds6TqyQAWLEqEisftvaogVWIhX2wWYb95Z1KhnN4=;
-        b=bcMsBCW+9HiNELwvyzTbp9GO8Pm+mluEh0lDlaxb9Vd+6ItEuK1Lzko6p10rtbypY6
-         Yg4AJvhODI49GathqCahEaiXaSo4iGy1XQmzQfe2AXZ8sjkSOiYhNoNhytd8wvMnrYW6
-         E6zQTgAVTckX3Cly7GrmjhFdL96mXLsENwy4ujqVuvTq21YLmSMz3SVYL6InGoTJjpjq
-         nQUGIKTjV9Ejx/Q4NOOyRn7EVIAsJJ6P/FfHERAw7Uisp5gMuAbU3sNdV6kVmW56LJg3
-         6KoYH7I/7dA6LQ6uLVPw8TpYurvfbXHzmk334lZgPGV8Z57QvpMddv2rewnAQsqujkna
-         iviw==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=ENKk6tiQleP0iDXPSQKQWMMrjhG0n1xhZHpyVdmgpYU=;
+        b=gwkGAm+1D/22sMK2n2syhxThOc45LHFGC6PvoypAcMpkPKTvUPr5O72kf5a3w9nFQI
+         R4dV+hz90EG3Q9NAv3sM6Ooe4WnFms7SO32PHGYLS92m2Uu7aj6A4azdf1O7fHh1lkPl
+         TpNgI/ctaJPu/7tVVVmf7SBJts2YVl03KYDcjiEM1LCGkKAfjiVA5WpimfjMUWhIqcqg
+         FkMHOne8Wo4boZ7o/giZk7UtTH7NWJQ5uxShJgC71n+otLCkkRDVgCcRnxfj2+Vs5ztX
+         gl0T4fceIe3grE3tTK2nAONDwhNXzye/8nPhbm6GwrpAXTgsmKW4moroxDZYwPdr46wd
+         lhSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=P0/ds6TqyQAWLEqEisftvaogVWIhX2wWYb95Z1KhnN4=;
-        b=tKgsGY9RzXEFziX6ZPGBVaL/94gO4aRiduwkBPXBrUHhMciFGoQ41q/H+B4pmhgwCn
-         B+kY0Rkp1KZ7Qn1ci4mp8k34ZKPsbe8+xK7zZcDc1aJntrc2q8iH7WkTTfYZzVs94eqL
-         Q7Nv+GXoYlJdiUEPSnbvxyjO2lGgpKOhJql/Bd14duFodxY2IDGLCyvIxoXTxnPXNeC+
-         eJUZ7snGOHqW76wGXUVPObOlrgmqYtPLY/h022KIAny4XtO7lzfSbI+uCo//ni5xyLNz
-         0OmyUogXqx/rJiwQe68bUPH0nBFJG3fL8scc9LOvvAS1h+0KnFGS+XQy9mbCaTyRWMy3
-         8EYA==
-X-Gm-Message-State: AOAM531EBmpmkGzJXEKIbFskwLAUwuX+JQWtrRAkN/du28wJ2nUl3RVg
-        QAUzXW4GH538BXYWerbVCcMruA==
-X-Google-Smtp-Source: ABdhPJzBcV5KCgtMy0P0CJf8soqGHUHtOEc4yMLz7EY8MjXZpHHuBmZSDzu+X3wGL9lrdIY/IgIgEg==
-X-Received: by 2002:a05:6402:3553:: with SMTP id f19mr22313795edd.271.1612867692886;
-        Tue, 09 Feb 2021 02:48:12 -0800 (PST)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id p25sm11025831eds.55.2021.02.09.02.48.12
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 09 Feb 2021 02:48:12 -0800 (PST)
-Sender: Michal Simek <monstr@monstr.eu>
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Piyush Mehta <piyush.mehta@xilinx.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: usb: misc: Add binding for Microchip usb5744 hub
-Date:   Tue,  9 Feb 2021 11:48:09 +0100
-Message-Id: <076994fc051e9230a3fef9e3eb5ec932104ef16a.1612867682.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <cover.1612867682.git.michal.simek@xilinx.com>
-References: <cover.1612867682.git.michal.simek@xilinx.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=ENKk6tiQleP0iDXPSQKQWMMrjhG0n1xhZHpyVdmgpYU=;
+        b=I1EMOACg3iwZ3cWR+j/pSlglFSsE2846NTLEKM6u7tRhZeIDlFkIe9sA9ZISQTQ/v4
+         NKWGePt68sf4ZL0gaIJiynpG/wjd91UXFGnf35CqhL+fnOtlBn/zVMEFB5H0iLfdY2jZ
+         OAAe8/Dqre974aHVHE0eUmxq/pDOtfDJB9iJ4VueG2vXc5Xy0CJgxtF40NRZeR5yp1y8
+         uUCyHrJI0GdPBc+b6rge9fY5ua774HDVvb9yn7FHVG5szlbyPJzJs9upxKO3U2QVRwTC
+         OuIuu8yFZM1lLNHcbe0ECGNTJb5jUyRv4e0GaAKes8yrFCv9H+aGLPSBLqyMVUjsIlLJ
+         2Siw==
+X-Gm-Message-State: AOAM532aO7fjI+nsQxR2UzBWu3gsKSxQ9EYvy6PK1QsKLp3DvvcDf97J
+        aAtLX0qBwJs8I5r0FpFwBZT/qq0G+V/+zzipDa1WSlMuuus=
+X-Google-Smtp-Source: ABdhPJzk2jJFIpJvOmXlsr4s225meLMNVfNadOICOaOUghKYRzue8p98b8D/Lb1djYRJ/h/SRLohQALxhpKl8Fvhlco=
+X-Received: by 2002:a37:c01:: with SMTP id 1mr9564536qkm.493.1612867931240;
+ Tue, 09 Feb 2021 02:52:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1612785064-3072-1-git-send-email-orsonzhai@gmail.com>
+ <CADBw62qiUG2dunB_i1iOp_srkAJP4CrVJX9mU25no++_b10hpg@mail.gmail.com> <20210209032838.GA24248@lenovo>
+In-Reply-To: <20210209032838.GA24248@lenovo>
+From:   Baolin Wang <baolin.wang7@gmail.com>
+Date:   Tue, 9 Feb 2021 18:52:06 +0800
+Message-ID: <CADBw62o+D--S0HGvd0v4vVV3yqWM=ytJonnNJMfw16P-ghiZgw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] mailbox: sprd: Introduce refcnt when clients
+ requests/free channels
+To:     Baolin Wang <baolin.wang7@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Haidong Yao <haidong.yao@unisoc.com>,
+        Orson Zhai <orson.zhai@unisoc.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Piyush Mehta <piyush.mehta@xilinx.com>
+On Tue, Feb 9, 2021 at 11:28 AM Orson Zhai <orsonzhai@gmail.com> wrote:
+>
+> On Mon, Feb 08, 2021 at 10:06:47PM +0800, Baolin Wang wrote:
+> > Hi Orson,
+> >
+> > On Mon, Feb 8, 2021 at 7:52 PM Orson Zhai <orsonzhai@gmail.com> wrote:
+> > >
+> > > From: Orson Zhai <orson.zhai@unisoc.com>
+> > >
+> > > Unisoc mailbox has no way to be enabled/disabled for any single channel.
+> > > They can only be set to startup or shutdown as a whole device at same time.
+> > >
+> > > Add a variable to count references to avoid mailbox FIFO being reset
+> > > unexpectedly when clients are requesting or freeing channels.
+> > >
+> > > Also add a lock to dismiss possible conflicts from register r/w in
+> > > different startup or shutdown threads.
+> > >
+> > > Fixes: ca27fc26cd22 ("mailbox: sprd: Add Spreadtrum mailbox driver")
+> > > Signed-off-by: Orson Zhai <orson.zhai@unisoc.com>
+> > > ---
+> > >  drivers/mailbox/sprd-mailbox.c | 38 +++++++++++++++++++++++++-------------
+> > >  1 file changed, 25 insertions(+), 13 deletions(-)
+> > >
+> > > diff --git a/drivers/mailbox/sprd-mailbox.c b/drivers/mailbox/sprd-mailbox.c
+> > > index f6fab24..e606f52 100644
+> > > --- a/drivers/mailbox/sprd-mailbox.c
+> > > +++ b/drivers/mailbox/sprd-mailbox.c
+> > > @@ -60,6 +60,8 @@ struct sprd_mbox_priv {
+> > >         struct clk              *clk;
+> > >         u32                     outbox_fifo_depth;
+> > >
+> > > +       struct mutex            lock;
+> > > +       u32                     refcnt;
+> > >         struct mbox_chan        chan[SPRD_MBOX_CHAN_MAX];
+> > >  };
+> > >
+> > > @@ -215,18 +217,22 @@ static int sprd_mbox_startup(struct mbox_chan *chan)
+> > >         struct sprd_mbox_priv *priv = to_sprd_mbox_priv(chan->mbox);
+> > >         u32 val;
+> > >
+> > > -       /* Select outbox FIFO mode and reset the outbox FIFO status */
+> > > -       writel(0x0, priv->outbox_base + SPRD_MBOX_FIFO_RST);
+> > > +       mutex_lock(&priv->lock);
+> > > +       if (priv->refcnt++ == 0) {
+> > > +               /* Select outbox FIFO mode and reset the outbox FIFO status */
+> > > +               writel(0x0, priv->outbox_base + SPRD_MBOX_FIFO_RST);
+> > >
+> > > -       /* Enable inbox FIFO overflow and delivery interrupt */
+> > > -       val = readl(priv->inbox_base + SPRD_MBOX_IRQ_MSK);
+> > > -       val &= ~(SPRD_INBOX_FIFO_OVERFLOW_IRQ | SPRD_INBOX_FIFO_DELIVER_IRQ);
+> > > -       writel(val, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
+> > > +               /* Enable inbox FIFO overflow and delivery interrupt */
+> > > +               val = readl(priv->inbox_base + SPRD_MBOX_IRQ_MSK);
+> > > +               val &= ~(SPRD_INBOX_FIFO_OVERFLOW_IRQ | SPRD_INBOX_FIFO_DELIVER_IRQ);
+> > > +               writel(val, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
+> > >
+> > > -       /* Enable outbox FIFO not empty interrupt */
+> > > -       val = readl(priv->outbox_base + SPRD_MBOX_IRQ_MSK);
+> > > -       val &= ~SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ;
+> > > -       writel(val, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
+> > > +               /* Enable outbox FIFO not empty interrupt */
+> > > +               val = readl(priv->outbox_base + SPRD_MBOX_IRQ_MSK);
+> > > +               val &= ~SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ;
+> > > +               writel(val, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
+> > > +       }
+> > > +       mutex_unlock(&priv->lock);
+> >
+> > I think using the atomic_add/sub_and_test() related APIs can remove
+> > the mutex lock.
+>
+> Yes, atomic could make refcnt itself safe. But mutex lock is to make whole processing of
+> reading/writing registers safe.
+>
+> Consider case like this:
+>
+>   channel #1             channel #2
+> -------------------------------------
+>    startup
+>    .....
+>    shutdown               startup
+>      |-refcnt==0            |
+>      |                      |-retcnt+1
+>      |                      |-enable mailbox
+>      |-disable mailbox
+>
+> Mailbox will be wrongly disabled after client requests channel #2's startup.
 
-Added dt binding for usb5744 driver.
+Yeah, you are right. Sorry for noise.
 
-Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
----
+> >
+> > >
+> > >         return 0;
+> > >  }
+> > > @@ -235,9 +241,13 @@ static void sprd_mbox_shutdown(struct mbox_chan *chan)
+> > >  {
+> > >         struct sprd_mbox_priv *priv = to_sprd_mbox_priv(chan->mbox);
+> > >
+> > > -       /* Disable inbox & outbox interrupt */
+> > > -       writel(SPRD_INBOX_FIFO_IRQ_MASK, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
+> > > -       writel(SPRD_OUTBOX_FIFO_IRQ_MASK, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
+> > > +       mutex_lock(&priv->lock);
+> > > +       if (--priv->refcnt == 0) {
+> > > +               /* Disable inbox & outbox interrupt */
+> > > +               writel(SPRD_INBOX_FIFO_IRQ_MASK, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
+> > > +               writel(SPRD_OUTBOX_FIFO_IRQ_MASK, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
+> > > +       }
+> > > +       mutex_unlock(&priv->lock);
+> > >  }
+> > >
+> > >  static const struct mbox_chan_ops sprd_mbox_ops = {
+> > > @@ -266,6 +276,8 @@ static int sprd_mbox_probe(struct platform_device *pdev)
+> > >                 return -ENOMEM;
+> > >
+> > >         priv->dev = dev;
+> > > +       priv->refcnt = 0;
+> >
+> > No need to do this, the priv structure is already cleared to 0.
+>
+> Right, will remove at next version.
+>
+> Thanks for reviewing!
+>
+> -Orson
+>
+> >
+> > > +       mutex_init(&priv->lock);
+> > >
+> > >         /*
+> > >          * The Spreadtrum mailbox uses an inbox to send messages to the target
+> > > --
+> > > 2.7.4
+> > >
+> >
+> >
+> > --
+> > Baolin Wang
 
-Changes in v2: None
 
- .../bindings/usb/microchip,usb5744.yaml       | 56 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
 
-diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-new file mode 100644
-index 000000000000..fe222f6db81d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/usb/microchip,usb5744.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Bindings for the Microchip USB5744 4-port Hub Controller
-+
-+description:
-+  Microchip’s USB5744 SmartHub™ IC is a 4 port, SuperSpeed (SS)/Hi-Speed (HS),
-+  low power, low pin count configurable and fully compliant with the USB 3.1
-+  Gen 1 specification. The USB5744 also supports Full Speed (FS) and Low Speed
-+  (LS) USB signaling, offering complete coverage of all defined USB operating
-+  speeds. The new SuperSpeed hubs operate in parallel with the USB 2.0
-+  controller, so 5 Gbps SuperSpeed data transfers are not affected by slower
-+  USB 2.0 traffic.
-+
-+maintainers:
-+  - Piyush Mehta <piyush.mehta@xilinx.com>
-+  - Michal Simek <michal.simek@xilinx.com>
-+
-+properties:
-+  compatible:
-+    const: microchip,usb5744
-+
-+  reg:
-+    maxItems: 1
-+    description: |
-+      Specifies the i2c slave address, it is required and should be 0x2d
-+      if I2C is used.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      The phandle and specifier for the GPIO that controls the RESET line of
-+      USB hub.
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        usb5744@2d {
-+            compatible = "microchip,usb5744";
-+            reg = <0x2d>;
-+            reset-gpios = <&gpio 44 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 41e8d3d7faec..7439471b5d37 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2697,6 +2697,7 @@ W:	http://wiki.xilinx.com
- T:	git https://github.com/Xilinx/linux-xlnx.git
- F:	Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
- F:	Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
-+F:	Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
- F:	arch/arm/mach-zynq/
- F:	drivers/block/xsysace.c
- F:	drivers/clocksource/timer-cadence-ttc.c
 -- 
-2.30.0
-
+Baolin Wang
