@@ -2,106 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04ED63144BC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:15:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C8543144CF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:25:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbhBIAPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 19:15:31 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37778 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229623AbhBIAPa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 19:15:30 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C010864E9A;
-        Tue,  9 Feb 2021 00:14:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612829689;
-        bh=WoOjxOk8JYT5efEA7HSlP75glTYtvejfp2tn/9Mzzhs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=uhvbNFS8wAXY/9NR9b9Mamz2DDgTkOxSf0m+sS3XnHkntYhctfd+Og/wgum0T3w89
-         VBJ+jSBK0/8q0KCXLhXEj/nn68fTc4mCA5pUK4qmaMzgqpheVMuLuwdWZgr/JPPGM+
-         ecHKZsDLK1GoK/i97a7Ln05r11oJrlIDTtMzLz9grN7/Qz2el8KugzIzV9r8qYGsMn
-         B8cPY0Byq7D8EXnXdON5ZRzZPo9EdxGKaP16TZUNUA9qXGbUiKTagPJ5Wfv+rqizzg
-         Wn1vYf0VDjE+HbR/n5pb/7nJjNqULTLjd2+qWyeQj/Uj8JUI8FWDTu0PGeD4xU60f8
-         IET+D4ponC/uA==
-Received: by mail-ed1-f51.google.com with SMTP id g10so21415076eds.2;
-        Mon, 08 Feb 2021 16:14:48 -0800 (PST)
-X-Gm-Message-State: AOAM530l5PF8iu0iPATT4Tt+Q6jt3pS8gpAG35O3zT2RyCAknakZcZa9
-        8Pvft8dXKTxZtdY7bValz/a2PrQuvWiRKwkXpA==
-X-Google-Smtp-Source: ABdhPJwZu/LT//WuvGKVPlXuTP7AnCe2WDHnPiD5yYbRvAimq56Exf9C2zmxxRxrJUSZmx3eYYMvY1jDe0iuuqPDiF4=
-X-Received: by 2002:a05:6402:1711:: with SMTP id y17mr19613530edu.72.1612829687397;
- Mon, 08 Feb 2021 16:14:47 -0800 (PST)
+        id S229716AbhBIAYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 19:24:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57608 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229554AbhBIAYP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 19:24:15 -0500
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A62EC061788
+        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 16:23:35 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id b145so10796623pfb.4
+        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 16:23:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=nFM0MlsDfR8VM4PPVEkKIEyXxD9NGa9iDMVral5Ujo8=;
+        b=npSBDIqz3idVStJ+6xsbWqKf9jUNdMt6yrfVNgMf2tGtLpgBGTKPD6cdw9z57kt4gk
+         blAeLIZ01h/gXsj5zXy8nhb21YSi2HWO42o9tGZumUirlyod4KJyhCBedGNtY0Wf5WYs
+         myXPhMcRSL9MFPO/FWgac/cElFOjVYw5/9d6A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=nFM0MlsDfR8VM4PPVEkKIEyXxD9NGa9iDMVral5Ujo8=;
+        b=fWBaFZo/sf/bqpEPlynZ74czCRYs9le4vwNoIppLh0LL+YIattLTNWYYvqgrNMICQr
+         FGD4G6AfBKSHuGZtxFq1iBqw1zI247VuT+n2NTQfGZ1sG8XYAI3Nuzj7b4n75JoG2GLV
+         3T2nVmjlDh32Z4fxyPDezNWPyD/SZXBprZtIDWxuw63ecczkIqfUO4uJNoZSvaKjgzUo
+         Nb0jGEKJKL9kHlQYB6lhkJz4enHuMsmAG8KAIY9P2M0B/GFBCVFXb5jKon810fsTJfyy
+         cYebKSTbr6+sVen2mBvwCoVWjFNhZRIBDSwEUSARpMFIHU4x9ZHPnJMuFjtg5YEoII2R
+         1qXA==
+X-Gm-Message-State: AOAM532Z1JPHUMmces+yLvxXxK80gi0lWvoasG/3u2MK7X1kjxHP3EDY
+        eP6zai7Qh+rP8CoJXpWDNMrLVQ==
+X-Google-Smtp-Source: ABdhPJzDQylLd8Wa/D58PdqAO8x2PtLWn0kpNxxwKnpo1/LYbFGRFjqZR+cWKihjhhWuFNVIHT8clw==
+X-Received: by 2002:a62:5fc3:0:b029:1bf:34c4:a128 with SMTP id t186-20020a625fc30000b02901bf34c4a128mr19887537pfb.38.1612830214698;
+        Mon, 08 Feb 2021 16:23:34 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:751a:ba0b:8918:c305])
+        by smtp.gmail.com with ESMTPSA id 194sm17431307pfu.165.2021.02.08.16.23.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Feb 2021 16:23:34 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210208014221.196584-1-jitao.shi@mediatek.com> <20210208014221.196584-3-jitao.shi@mediatek.com>
-In-Reply-To: <20210208014221.196584-3-jitao.shi@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Tue, 9 Feb 2021 08:14:36 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9i0yQ5eg-X_AKXd=sj=6qxbeB8QgaziN-Sw2146iHPKA@mail.gmail.com>
-Message-ID: <CAAOTY_9i0yQ5eg-X_AKXd=sj=6qxbeB8QgaziN-Sw2146iHPKA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] drm/mediatek: mtk_dpi: Add dpi config for mt8192
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
-        CK Hu <ck.hu@mediatek.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>, stonea168@163.com,
-        huijuan.xie@mediatek.com,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, shuijing.li@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
+References: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org> <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
+Subject: Re: [PATCH v6 1/4] dt-bindings: Introduce SoC sleep stats bindings
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, ilina@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org, Maulik Shah <mkshah@codeaurora.org>
+To:     Maulik Shah <mkshah@codeaurora.org>, bjorn.andersson@linaro.org,
+        evgreen@chromium.org, mka@chromium.org
+Date:   Mon, 08 Feb 2021 16:23:32 -0800
+Message-ID: <161283021256.76967.600110253862291436@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
-
-Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2021=E5=B9=B42=E6=9C=888=E6=97=
-=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=889:42=E5=AF=AB=E9=81=93=EF=BC=9A
-
-Where is the description? Say something here.
-
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
-k/mtk_dpi.c
-> index ffa4a0f1989f..f6f71eb67ff1 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -703,6 +703,12 @@ static const struct mtk_dpi_conf mt8183_conf =3D {
->         .max_clock_khz =3D 100000,
->  };
->
-> +static const struct mtk_dpi_conf mt8192_conf =3D {
-> +       .cal_factor =3D mt8183_calculate_factor,
-> +       .reg_h_fre_con =3D 0xe0,
-> +       .max_clock_khz =3D 150000,
-> +};
+Quoting Maulik Shah (2021-02-04 06:21:45)
 > +
->  static int mtk_dpi_probe(struct platform_device *pdev)
->  {
->         struct device *dev =3D &pdev->dev;
-> @@ -837,6 +843,9 @@ static const struct of_device_id mtk_dpi_of_ids[] =3D=
- {
->         { .compatible =3D "mediatek,mt8183-dpi",
->           .data =3D &mt8183_conf,
->         },
-> +       { .compatible =3D "mediatek,mt8192-dpi",
-> +         .data =3D &mt8192_conf,
-> +       },
->         { },
->  };
->
-> --
-> 2.25.1
+> +description:
+> +  Always On Processor/Resource Power Manager maintains statistics of the=
+ SoC
+> +  sleep modes involving powering down of the rails and oscillator clock.
+> +
+> +  Statistics includes SoC sleep mode type, number of times low power mod=
+e were
+> +  entered, time of last entry, time of last exit and accumulated sleep d=
+uration.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,rpmh-sleep-stats
+> +      - qcom,rpm-sleep-stats
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  # Example of rpmh sleep stats
+> +  - |
+> +    rpmh-sleep-stats@c3f0000 {
+> +      compatible =3D "qcom,rpmh-sleep-stats";
+> +      reg =3D <0 0x0c3f0000 0 0x400>;
+> +    };
+
+Maybe it should just be another reg property of the rpmh or rpm node?
+Then the rpmh driver can create the stats "device" at driver probe time,
+or just roll it into the same thing. It looks pretty weird to have a
+device in DT for this given that it's not really hardware, more like a
+place that the processor writes some stuff about what's going on in the
+SoC related to power management.=20
+
+> +  # Example of rpm sleep stats
+> +  - |
+> +    rpm-sleep-stats@4690000 {
+> +      compatible =3D "qcom,rpm-sleep-stats";
+> +      reg =3D <0 0x04690000 0 0x400>;
+> +    };
+> +...
