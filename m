@@ -2,65 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 164EC315806
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 21:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8772E315808
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 21:52:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233868AbhBIUub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 15:50:31 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:41021 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233908AbhBIUmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 15:42:25 -0500
-Received: by mail-oi1-f179.google.com with SMTP id v193so15435556oie.8
-        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 12:42:05 -0800 (PST)
+        id S233446AbhBIUuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 15:50:54 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:43822 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233914AbhBIUml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 15:42:41 -0500
+Received: by mail-ot1-f47.google.com with SMTP id l23so7096045otn.10;
+        Tue, 09 Feb 2021 12:42:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=s+u3vz6e9KCuVkOaGOVf97bYpuYJLb9GDgnFze0FbFo=;
-        b=L8Pi3ROvADuN9woMaKmwyBVY1TdRouuz0VoK28q0AO9ahs0or3U8qP73elcz4n8YVn
-         7oCbJRRq+XNSvm/o5Lcb1pXdNpYDIgeQQ8TkdCRlHHozOBA/kU45mfVi/FysUqZRCAnu
-         hZ0c5cYaOlaDLWI1rfZ4I/vKbSPLh7s7fUGMG82hg8KzSa+FALHOEx81Ax+1oQNdb0p6
-         yTW+1MgbqXDI/H4XwNfQHCs9iyMOgHavFVz12ohFhAxr+QsCMcYi7VhqQUXTB7lWGp+X
-         8UTLtk2MGIwux9tDmYnERgcqZrs3jpfh3MPau5WUxOoNWJcBMI+DNE7rMpcCY6FnLm5Z
-         lW2g==
-X-Gm-Message-State: AOAM53307CShvOnqFZSihVAMs4pC0BRsLxf0lShS6JiyiIJuzfnWdzgq
-        eQhHtYRXtyXmw0sDsb+eFQ==
-X-Google-Smtp-Source: ABdhPJyAk84Z8pz9qQ8lkrDwHztnBDDvhCtnoOD99hW+BNnArmdOX0zcB04Down2wini/oEjkxgXOA==
-X-Received: by 2002:aca:fdd0:: with SMTP id b199mr3634977oii.10.1612903298729;
-        Tue, 09 Feb 2021 12:41:38 -0800 (PST)
+        bh=fZZM67EhmMbZp5VJU7IlbmetXBbcl+XmdSzt7HSdY1U=;
+        b=udX19a1tTkU1Q93yx/7H2lgDEIdSYVOyWPYiTYNizcf1sJCNMSGjZpQikTQQ2BtOyg
+         u3q93YNES0y33lWOut5NpnhzaupW8zJOsvTPiln8NjaVYBJ7cd7WB3lu+eLMs7C5QXS2
+         6Pf5Gx7fpLZ2ZxKRlwF2Eue6DmjrqUt6LidLovDSD6S24hv+ENthcpKnuUKJ59D2fFXU
+         TGz5xiiJOHwlwWGZE11Ix8GXAXLs51oXjWsep17UOwNkypeOtmn8rmgKDsPkwYq9tSuX
+         5CTZFe8nhTdxDmvX4L07x7D2mRivkQ6jxn+EpnnXptyXH6aNgNV/fgj69sAaFzrWMmls
+         sDtw==
+X-Gm-Message-State: AOAM531WRRn4Fhrv6nbPA7LIkEJcOnfDw7c7Hxd0TG5i+mbwOggAzY3O
+        yad42reV/XCQUkxIckuVvg==
+X-Google-Smtp-Source: ABdhPJxGCnWyUkTc1TkCgfXZaB6ldc17uw3AhgXdcQPL7wK34IO4FS5r2QxnYclB57pQ3y3rTJYVIQ==
+X-Received: by 2002:a9d:7dda:: with SMTP id k26mr13308366otn.284.1612903321022;
+        Tue, 09 Feb 2021 12:42:01 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a63sm4590099otc.75.2021.02.09.12.41.37
+        by smtp.gmail.com with ESMTPSA id r25sm1711758ota.42.2021.02.09.12.41.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 12:41:37 -0800 (PST)
-Received: (nullmailer pid 138393 invoked by uid 1000);
-        Tue, 09 Feb 2021 20:41:36 -0000
-Date:   Tue, 9 Feb 2021 14:41:36 -0600
+        Tue, 09 Feb 2021 12:41:59 -0800 (PST)
+Received: (nullmailer pid 139152 invoked by uid 1000);
+        Tue, 09 Feb 2021 20:41:57 -0000
+Date:   Tue, 9 Feb 2021 14:41:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Boris Lysov <arzamas-16@mail.ee>
-Cc:     devicetree@vger.kernel.org, linux@roeck-us.net,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: watchdog: mediatek: add support for
- mt6577 SoC
-Message-ID: <20210209204136.GA138342@robh.at.kernel.org>
-References: <20210131234425.9773-1-arzamas-16@mail.ee>
- <20210131234425.9773-2-arzamas-16@mail.ee>
+To:     Yz.Wu@mediatek.com
+Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: nvmem: mediatek: add support for
+ MediaTek mt8192 SoC
+Message-ID: <20210209204157.GA139100@robh.at.kernel.org>
+References: <1612151986-19820-1-git-send-email-Yz.Wu@mediatek.com>
+ <1612151986-19820-2-git-send-email-Yz.Wu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210131234425.9773-2-arzamas-16@mail.ee>
+In-Reply-To: <1612151986-19820-2-git-send-email-Yz.Wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 Feb 2021 02:44:23 +0300, Boris Lysov wrote:
-> Add support for Mediatek mt6577 SoC to device tree binding
-> documentation.
+On Mon, 01 Feb 2021 11:59:45 +0800, Yz.Wu@mediatek.com wrote:
+> From: Ryan Wu <Yz.Wu@mediatek.com>
 > 
-> Signed-off-by: Boris Lysov <arzamas-16@mail.ee>
+> This updates dt-binding documentation for MediaTek mt8192
+> 
+> Signed-off-by: Ryan Wu <Yz.Wu@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 1 +
+> This patch is based on v5.10-rc7.
+> ---
+>  Documentation/devicetree/bindings/nvmem/mtk-efuse.txt | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
