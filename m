@@ -2,170 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F97E31575B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 21:03:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4082315755
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 21:02:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233726AbhBIUBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 15:01:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54672 "EHLO
+        id S233294AbhBIUAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 15:00:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233766AbhBITwA (ORCPT
+        with ESMTP id S233765AbhBITwA (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 14:52:00 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C708C061356;
-        Tue,  9 Feb 2021 11:19:30 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id v15so23410368wrx.4;
-        Tue, 09 Feb 2021 11:19:30 -0800 (PST)
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE2C6C06121E;
+        Tue,  9 Feb 2021 11:19:32 -0800 (PST)
+Received: by mail-qv1-xf31.google.com with SMTP id es14so9230014qvb.3;
+        Tue, 09 Feb 2021 11:19:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=LdU37lNhDGvGGmXAMcE5ydz9bMREEufjvwEN8UDTB/4=;
-        b=F9+10W24LAFXpvtC9BL+mfIHewjZBcP0gr3jPY+B3GxCXvErXX9JiZ89eAeRvVT88j
-         MSdIvVacH6Ey24JDVhh3g9VuZo0GK3Lej8iw9VhCrbulPcbn8CWXkHcSfkpkAEWrV/5c
-         p6yuTREOGZZEXrDWVcBaZ3lzq4WZ+S/M6MCTnvsSUosBLYMi5/3UWYKuQTntOrmdDdRT
-         V89lpTsbryFNMclIBLuvR1xLKQoV7+fl1IduR6MrvMcZZVI7Sf42DP7nce3EplemuuYR
-         WIkB3D8WmWOd4woXFuOGQe3iaOvl6w8e9eEJfCMfFeZQmG29G2ji9ols/F1SsmLc2swk
-         uKPQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=OfTABNqV2/dgIczcIGpTslZ48bA8VW7hHVaIj/4GfsU=;
+        b=JkitmTFeJmEERO+haqbix/PAz2MfSvvtnk7W6zSTIxx8Y+1tUVd7r7IiNoMLcH3HW3
+         YNXR0G3VK0SEMJEEyQTjuybZ2b/IA5HGgyp5sGkrSKp0pInvOBcK5SXM8v+gbwmjFWgi
+         KHiXvShvgfeddE+EdtdTz6b0HgrJUD4zyeuxAHua2aI5modiGThykPiddh+bTQ9FMRVP
+         1NcJCEVQs+JM3zzTMXzBWrqRyHy9wwGVUvQK1Sea2dGWm066uCVSFkx8S8ycMr1zbHuN
+         B+MK7U+rmeAhaZTqNTrq4axpyLWd6FpngeUAd6J1SPe746dDnOCwKgKUnYOH/vbFBtcP
+         dmuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LdU37lNhDGvGGmXAMcE5ydz9bMREEufjvwEN8UDTB/4=;
-        b=Hheiza1ymQrW3JYzK9DPMlOr88Pa+5t+gXrAsbxfeq2xnQUctN5bWpIcSQWBbqFxk7
-         Ra2W7W9x2U+PzntE/mDjHZcGCnL4S5oVtqnthAyapXZMjrdnNBAivRfDgTppTK18d+C1
-         ffGfwxpQ/MgkoQ4tFNcCtxQ72GcMdO+7Io4ueVI8wYGJiqCw0X4cwaaRRuB/4lGpkqdW
-         avhQ5qpL1AYXUJK/I0Aj6l5KJ0AZ/efjffc6ErqU0ReHB3a8GFipW02W/lOQNYx5VGdF
-         0lI5ZnFktZ/q8t29uYv6b4/vhyhQpIud5Ym59VUgVOGplrejq0JAjcdBGseG8u5tTl7W
-         nkkw==
-X-Gm-Message-State: AOAM532M5mtBd6rrvSHQ6rBhgp/4bn1cvSDVheSeghhWbRiqELBAojKJ
-        +CJRDYoDCnQNq3pmW5iJa3Y=
-X-Google-Smtp-Source: ABdhPJzy2FifsRzBzoPISrOA7c9EjqQOP4MTXtKqAd6gCGSsmhvjzZRRGtnkgeiObYjQeDD5t2IZlA==
-X-Received: by 2002:a5d:6b87:: with SMTP id n7mr14503619wrx.222.1612898369075;
-        Tue, 09 Feb 2021 11:19:29 -0800 (PST)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id l2sm5622864wmq.17.2021.02.09.11.19.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 11:19:27 -0800 (PST)
-Date:   Tue, 9 Feb 2021 20:19:24 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     Rob Herring <robh@kernel.org>, broonie@kernel.org,
-        lgirdwood@gmail.com, kuninori.morimoto.gx@renesas.com,
-        jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        sharadg@nvidia.com, Oder Chiou <oder_chiou@realtek.com>,
-        Bard Liao <bardliao@realtek.com>
-Subject: Re: [PATCH v2 1/9] ASoC: dt-bindings: rt5659: Update binding doc
-Message-ID: <YCLgPKtLyT9PL1/6@ulmo.localdomain>
-References: <1611944866-29373-1-git-send-email-spujar@nvidia.com>
- <1611944866-29373-2-git-send-email-spujar@nvidia.com>
- <20210205152933.GA3089668@robh.at.kernel.org>
- <eb490eb1-d7e2-a188-8e62-496f9a1d99bc@nvidia.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=OfTABNqV2/dgIczcIGpTslZ48bA8VW7hHVaIj/4GfsU=;
+        b=jf2Zxrsg+tww3qlrCW5FU31+hAiV8Dy2kydXwZG49Kt7uE5RWDi7DfoLU8Szv38uiY
+         pb5dDfze9kSKzoJAG8CR3a8jziV5fSoqMX7XffoRQQ31W6pQNfjUu57NmQ0SQ5piA7nE
+         QMHMRZJPoXjVH+H8dC65ogD1BePB/7CJhLtqvm38VQtgjemOT7GbjX0u/wYr8dA/7j4m
+         DCIW3ii5WFETM8dYZhRymKJlWRRYUH4r6kh7uhc+w8b7XuEDNCFicbUo+AM2+Pefnpj9
+         XuDmC08TBareEbfoRuVdUoHAfMR83srK/7EDnHNoSYm7L5fBpGbmqozyanZLNVfoo0pj
+         2xeg==
+X-Gm-Message-State: AOAM531ZY1PQgnXdYROGG0rdribykR9pJPCucCeOBGv7blmwRWLoz1aw
+        OBeN7UrepL9hb10ckUQ9Gt4=
+X-Google-Smtp-Source: ABdhPJxwpTfsaltd2sTJ+PIvZKKbEuql8jMNGKrFTE7F39NpOxjAuHsIOjA6wv1M8yFV/SlghlllTA==
+X-Received: by 2002:a0c:9e50:: with SMTP id z16mr21934994qve.13.1612898371968;
+        Tue, 09 Feb 2021 11:19:31 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id v1sm3558596qki.49.2021.02.09.11.19.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Feb 2021 11:19:31 -0800 (PST)
+Subject: Re: [GIT PULL 2/3] ARM: dts: samsung: DTS for v5.12
+To:     Arnd Bergmann <arnd@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
+        arm-soc <arm@kernel.org>, SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20210125191240.11278-1-krzk@kernel.org>
+ <20210125191240.11278-3-krzk@kernel.org>
+ <20210206134531.l5vpzlmev4v3f3uo@kozik-lap>
+ <CAK8P3a0Kgn9PTHjsU7MbJPC8vatvb9KYJJKWxrx7zQzTNgK10g@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <67970952-e048-efbf-446c-a703da3bc037@gmail.com>
+Date:   Tue, 9 Feb 2021 13:19:29 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fE2lUxibOs/cNBX0"
-Content-Disposition: inline
-In-Reply-To: <eb490eb1-d7e2-a188-8e62-496f9a1d99bc@nvidia.com>
-User-Agent: Mutt/2.0.5 (da5e3282) (2021-01-21)
+In-Reply-To: <CAK8P3a0Kgn9PTHjsU7MbJPC8vatvb9KYJJKWxrx7zQzTNgK10g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2/6/21 8:35 AM, Arnd Bergmann wrote:
+> On Sat, Feb 6, 2021 at 2:45 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On Mon, Jan 25, 2021 at 08:12:39PM +0100, Krzysztof Kozlowski wrote:
+>>>
+>>> ----------------------------------------------------------------
+>>> Samsung DTS ARM changes for v5.12
+>>>
+>>> 1. Use new compatile to properly configure Exynos5420 USB2 PHY, fixing
+>>>    it suspend/resume cycle.
+>>> 2. Correct Samsung PMIC interrupt trigger levels on multiple boards.
+>>> 3. Correct the voltages of Samsung GT-I9100 charger and add top-off
+>>>    charger.
+>>>
+>>
+>> Hi everyone,
+>>
+>> Any progress or new comments about this pull request?
+> 
+> Hi Krzysztof,
+> 
+> Sorry for not getting back to you on this earlier. I discussed this with
+> Olof the other day and we decided to merge this, I just haven't
+> gone through the pull requests over the past few days. My plan is
+> to do the next round on Monday.
+> 
+> That said, I'm still not happy about the patch we discussed in the
+> other email thread[1] and I'd like to handle it a little more strictly in
+> the future, but I agree this wasn't obvious and we have been rather
+> inconsistent about it in the past, with some platform maintainers
+> handling it way more strictly than others.
+> 
+> I've added the devicetree maintainers and a few other platform
+> maintainers to Cc here, maybe they can provide some further
+> opinions on the topic so we can come to an approach that
+> works for everyone.
+> 
+> My summary of the thread in [1] is there was a driver bug that
+> required a DT binding change. Krzysztof and the other involved
+> parties made sure the driver handles it in a backward-compatible
+> way (an old dtb file will still run into the bug but keep working
+> with new kernels), but decided that they did not need to worry
+> about the opposite case (running an old kernel with an updated
+> dtb). I noticed the compatibility break and said that I would
+> prefer this to be done in a way that is compatible both ways,
+> or at the minimum be alerted about the binding break in the
+> pull request, with an explanation about why this had to be done,
+> even when we don't think anyone is going to be affected.
+> 
+> What do others think about this? Should we generally assume
+> that breaking old kernels with new dtbs is acceptable, or should
+> we try to avoid it if possible, the same way we try to avoid
+> breaking new kernels with old dtbs? Should this be a platform
+> specific policy or should we try to handle all platforms the same
+> way?
 
---fE2lUxibOs/cNBX0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The current policy (since before 2013) is that newer kernels,
+implementing new bindings, do not break with old existing dtbs.
 
-On Tue, Feb 09, 2021 at 06:51:58PM +0530, Sameer Pujar wrote:
-> Hi Rob,
->=20
-> On 2/5/2021 8:59 PM, Rob Herring wrote:
-> > External email: Use caution opening links or attachments
-> >=20
-> >=20
-> > On Fri, Jan 29, 2021 at 11:57:38PM +0530, Sameer Pujar wrote:
-> > > Update following in rt5659.txt binding doc
-> > >    - Add JD source for Intel HDA header: Commit 041e74b71491
-> > >      ("ASoC: rt5659: Add the support of Intel HDA Header")
-> > >      added driver support. Add missing info here.
-> > >=20
-> > >    - sound-name-prefix: Used to prefix component widgets/kcontrols
-> > >      with given prefix.
-> > >=20
-> > >    - ports: Helps to use the Codec with audio graph card
-> > >=20
-> > > Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> > > Reported-by: Jon Hunter <jonathanh@nvidia.com>
-> > > Cc: Oder Chiou <oder_chiou@realtek.com>
-> > > Cc: Bard Liao <bardliao@realtek.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/sound/rt5659.txt | 11 +++++++++++
-> > >   1 file changed, 11 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/sound/rt5659.txt b/Doc=
-umentation/devicetree/bindings/sound/rt5659.txt
-> > > index 56788f5..c473df5 100644
-> > > --- a/Documentation/devicetree/bindings/sound/rt5659.txt
-> > > +++ b/Documentation/devicetree/bindings/sound/rt5659.txt
-> > > @@ -37,10 +37,21 @@ Optional properties:
-> > >   - realtek,jd-src
-> > >     0: No JD is used
-> > >     1: using JD3 as JD source
-> > > +  2: JD source for Intel HDA header
-> > >=20
-> > >   - realtek,ldo1-en-gpios : The GPIO that controls the CODEC's LDO1_E=
-N pin.
-> > >   - realtek,reset-gpios : The GPIO that controls the CODEC's RESET pi=
-n.
-> > >=20
-> > > +- sound-name-prefix: Please refer to name-prefix.txt
-> > > +
-> > > +- ports: A Codec may have a single or multiple I2S interfaces. These
-> > > +  interfaces on Codec side can be described under 'ports' or 'port'.
-> > > +  When the SoC or host device is connected to multiple interfaces of
-> > > +  the Codec, the connectivity can be described using 'ports' propert=
-y.
-> > > +  If a single interface is used, then 'port' can be used. The usage
-> > > +  depends on the platform or board design.
-> > > +  Please refer to Documentation/devicetree/bindings/graph.txt
-> > Please read what that file says now.
->=20
-> Sorry, I did not understand above comment. Can you please elaborate a bit
-> more?
+Old existing kernels are not required to work with new dtbs.
 
-I think what Rob meant to point out is that graph.txt now contains a
-mention that the file has been moved to a more central location, which
-is the dt-schema repository. So instead of referencing the graph.txt,
-which then redirects to the graph.yaml in dt-schema, it'd be better to
-directly reference graph.yaml from dt-schema.
+See Documentation/devicetree/bindings/ABI.rst
 
-That said, I'm not aware of a good or standard way to make such a
-reference. Perhaps in this case, given that the rt5659 binding is not
-very large, you can convert the file to json-schema first and then use
-standard json-schema references for this.
+We can choose to change the rules, so I'm not saying that the
+discussion should not occur.  I'm just pointing out the
+current policy.
 
-Thierry
+I think that ABI.rst does not state "Old existing kernels are
+not required to work with new dtbs" clearly enough, and
+should be updated to do so.
 
---fE2lUxibOs/cNBX0
-Content-Type: application/pgp-signature; name="signature.asc"
+I also think it would be good to explicitly say that care
+should be taken with new bindings to not break existing
+kernels, if reasonably possible.
 
------BEGIN PGP SIGNATURE-----
+-Frank
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAi4DkACgkQ3SOs138+
-s6EVCQ/8CB7rS0lCIaO/YUrcXFEY2TLSIUnu3FGjHYkt5fALU7w9Rt8uYVlfcoCF
-Htg0LXUqYXUd/zXjE+x1ymwx3Azrb9z7DVAnAcXrB2Nq4x5QkvKmjJN90P6K+Jw4
-wI30K01fotkcbybxSX9wIIrRhhcSOd/JN0eExv/llHDz2jonCidB43TGd3p+hl71
-aJ0MMMmew8mK5hD+hxOL/3eYbmiPVtgJCstonPWTDUOaq7+Mc7Sdk+Rt2XAHw+5D
-z1oZTbfjo7QQ9UN4JeXQPwv7PEWoAqCV5vEOFTdfljV7s88VhxkBmUWDP76ITJCH
-NL1fU9xRMwVtkN7CrS5/NUBQaOPVsXFYb2cqxHsosakvB/rpDDkWeFrUustar6n3
-P4IspAPdOaeCTL+NzjxhL4Ij+W8xiialaTd1MGZsxdYPkX97+2onmXgUoQ10i8d+
-F0gFWrSM7dMSigKgHId1hRKm2ZJrQXNQONDg+NwN5cX6AOFy9At8RFaFNBbzWRu1
-Sq1n63PDPrHmcWpxy8H53n4Ce1UBNG4ZXDxzc1E91eNXMbdDe3ge/iomFIT1TiQr
-QWArTZk333ic4CuPH67hQFLhe83jWFJZRMLjAeGBJYq6Ff6Q6IcQbKh66CZ75/nV
-LfNAwaVzddpbaG0wMNxF1xCUDcQypRwkgQ2vgSFHjxua+65X6H0=
-=kZ90
------END PGP SIGNATURE-----
+> 
+>           Arnd
+> 
+> [1] https://lore.kernel.org/lkml/20210130143949.aamac2724esupt7v@kozik-lap/
+> 
 
---fE2lUxibOs/cNBX0--
