@@ -2,137 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFBC5314514
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4366931451C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:54:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbhBIAuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 19:50:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34932 "EHLO
+        id S229545AbhBIAyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 19:54:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbhBIAuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 19:50:16 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB19C061786;
-        Mon,  8 Feb 2021 16:49:35 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
+        with ESMTP id S229541AbhBIAyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 19:54:07 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 139A9C061786;
+        Mon,  8 Feb 2021 16:53:27 -0800 (PST)
+Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id BCB7D4207F;
-        Tue,  9 Feb 2021 00:49:31 +0000 (UTC)
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>, devicetree@vger.kernel.org,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
-        soc@kernel.org, Olof Johansson <olof@lixom.net>,
-        linux-arm-kernel@lists.infradead.org
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-19-marcan@marcan.st>
- <20210208110441.25qc6yken4effd6c@kozik-lap>
- <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
- <20210208191447.GA1677483@robh.at.kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
- devicetree
-Message-ID: <d8454963-3242-699b-4c20-e85d26b19796@marcan.st>
-Date:   Tue, 9 Feb 2021 09:49:29 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 9598723E5F;
+        Tue,  9 Feb 2021 01:53:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1612832002;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Xgt/MD7lKvLeSdMrNW2NdaeIS7qBuvz02NxmMJCjUuk=;
+        b=AlYYcVqr/hhtNPyBbatwGVW1XWsZlAHSXOtECFJUPb/iCr+glXWMKcUnSog50JbM8rhhSs
+        TZivp5HbbLvpVvKwM60um1j+4yDS2UJf5g4lUiPv9AyEja4rWxIDzkKa8wc1ZadhPiw2o3
+        g4oIXtgHFnHzIbNcw32BCtg0h59HOu8=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH] arm64: dts: ls1028a: add interrupt to Root Complex Event Collector
+Date:   Tue,  9 Feb 2021 01:52:59 +0100
+Message-Id: <20210209005259.29725-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20210208191447.GA1677483@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2021 04.14, Rob Herring wrote:
-> Does there need to be a legal entity behind 'The Asahi Linux
-> Contributors' to be valid?
+The legacy interrupt INT_A is hardwired to the event collector. RCEC is
+bascially supported starting with v5.11. Having a correct interrupt, will
+make RCEC at least probe correctly.
 
-I don't think so, this seems to be common practice in other open source 
-projects, and recommended these days.
+There are still issues with how RCEC is implemented in the RCiEP on the
+LS1028A. RCEC will report an error, but it cannot find the correct
+subdevice.
 
-Some recent discussion on the subject from the Linux Foundation:
+Signed-off-by: Michael Walle <michael@walle.cc>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-https://www.linuxfoundation.org/en/blog/copyright-notices-in-open-source-software-projects/
-
->  From a more practical standpoint, if we want to relicense something in
-> say 5 years from now, who do we ask for an okay?
-
-I thought that's what Git history was for; certainly we aren't keeping 
-file headers up to date every time someone touches a file (which for 
-anything other than trivial changes gives them a copyright interest in a 
-portion of the file).
-
-Asahi Linux's policy for bespoke projects is to use "The Asahi Linux 
-Contributors" for this reason, acknowledging that the copyright headers 
-aren't up to date anyway (also the years...), and implicitly directing 
-people to the orignal project (which is where Git history is kept and 
-contains the true record of copyright owneship).
-
-I'm not trying to shake up how we handle copyright lines in the kernel 
-here, of course; if you prefer some nominal copyright line from "whoever 
-first wrote the file or most of it" I can do that. But it certainly 
-won't be the only person you have to ask if you want to relicense, if 
-anyone else touched the file in a nontrivial way :)
-
-There are a few examples of this style in the tree, mostly pulled from 
-other projects:
-
-arch/arm/oprofile/common.c
-drivers/gpu/drm/vgem/vgem_drv.[ch]
-drivers/md/dm-verity-target.c
-drivers/md/dm-verity.h
-
->>> I guess Rob will comment on the dt-bindings more... but for me a generic
->>> "arm-platform" is too generic. What's the point of it? I didn't see any
->>> of such generic compatibles in other platforms.
->>
->> This is a hack for patches #11/#12 to use, and I expect it will go away once
->> we figure out how to properly handle that problem (which needs further
->> discussion). Sorry for the noise, this should not be there in the final
->> version.
-> 
-> I was going to ask on this. If you have a user of it, I'm okay with it.
-> Generally though, 3 or 4 levels of compatible don't really have users.
-
-The pattern here was board, soc, "arm-platform"; the first two seem to 
-be a common (and useful) pattern, and I hope I can get rid of the third 
-once we solve #11/#12 in a saner way.
-
-> It's a WIP to be more consistent around node names. For actual
-> clock controllers we have 'clock-controller(@.*)?'. There's not really
-> something established for 'fixed-clock'. We probably should define
-> something, but that goes in the schema first.
-
-What do you suggest for this series?
-
-> 
->>>> +		compatible = "fixed-clock";
->>>> +		#clock-cells = <0>;
->>>> +		clock-frequency = <24000000>;
->>>> +		clock-output-names = "clk24";
->>>
->>> What clock is it? Part of board or SoC? Isn't it a work-around for
->>> missing clock drivers?
->>
->> The clock topology isn't entirely known yet; I'm submitting this as an
->> initial bring-up patchset and indeed there should be a clockchip driver in
->> the future. The UART driver wants a clock to be able to calculate baud
->> rates. I figured we can get away with a fixed-clock for now while that part
->> of the SoC gets figured out.
-> 
-> That is normal. It does break compatibility between an old kernel
-> and new DT. There's not really a good way to avoid that.
-
-Ack. I hope we can basically acknowledge breaking DT changes without too 
-much fuss at this early stage of bring-up, until things calm down a bit 
-and we have real users who would complain :) (not that I won't try to 
-avoid it).
-
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 262fbad8f0ec..c1f2f402ad53 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -1114,6 +1114,12 @@
+ 					full-duplex;
+ 				};
+ 			};
++
++			rcec@1f,0 {
++				reg = <0x00f800 0 0 0 0>;
++				/* IEP INT_A */
++				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
++			};
+ 		};
+ 
+ 		rcpm: power-controller@1e34040 {
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+2.20.1
+
