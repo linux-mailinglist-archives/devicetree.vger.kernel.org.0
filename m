@@ -2,111 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB380315011
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 14:23:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B31E13150C1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 14:50:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230404AbhBINXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 08:23:05 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:11063 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231430AbhBINWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 08:22:50 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B60228c810003>; Tue, 09 Feb 2021 05:22:09 -0800
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 9 Feb
- 2021 13:22:08 +0000
-Received: from [10.25.99.185] (172.20.145.6) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 9 Feb 2021
- 13:22:03 +0000
-Subject: Re: [PATCH v2 1/9] ASoC: dt-bindings: rt5659: Update binding doc
-To:     Rob Herring <robh@kernel.org>
-CC:     <thierry.reding@gmail.com>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>, <kuninori.morimoto.gx@renesas.com>,
-        <jonathanh@nvidia.com>, <linux-tegra@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <sharadg@nvidia.com>, Oder Chiou <oder_chiou@realtek.com>,
-        Bard Liao <bardliao@realtek.com>
-References: <1611944866-29373-1-git-send-email-spujar@nvidia.com>
- <1611944866-29373-2-git-send-email-spujar@nvidia.com>
- <20210205152933.GA3089668@robh.at.kernel.org>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <eb490eb1-d7e2-a188-8e62-496f9a1d99bc@nvidia.com>
-Date:   Tue, 9 Feb 2021 18:51:58 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S231915AbhBINtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 08:49:00 -0500
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:63504 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231682AbhBINrg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 08:47:36 -0500
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 119Dk7lg022653;
+        Tue, 9 Feb 2021 05:46:35 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type :
+ content-transfer-encoding; s=pfpt0220;
+ bh=NsaKeOrilWlS6VK3p4SEc3ce3qbp86cqk1fIIO4fDGs=;
+ b=g4nm0ZwdUZkgBANHfad5EPVOaNHM9P8a6AdI6A7FE/gn7m7HlB81ErA7otLY2pZwc81j
+ EtQlOcADx+C3TtY5/VtIi66dRp0CXH7qa+shypzkfXmFClaedL7DgctP9VKZJdHgkLN/
+ WaKdv2MkL+EHxRu3GT2l6IMlQYgjSygI3C5Q8BDR0CTAZQdLyV/4HaVRYk4GgwR5OCDr
+ 5KgtKc813+LGnS2fKEglz3fTfn+ItuOGKx1ai24W52UknVZMHBPvMhtM2u1qTg/B6+Eu
+ IMR82me7tDg/yWg1h/95ZbNo7JUIgPvELSg99Gf/AmGV8067r7gRrNU1mi5xCh7Gx7IG sA== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+        by mx0a-0016f401.pphosted.com with ESMTP id 36hsbrgcnr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Tue, 09 Feb 2021 05:46:35 -0800
+Received: from SC-EXCH03.marvell.com (10.93.176.83) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 9 Feb
+ 2021 05:46:34 -0800
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by SC-EXCH03.marvell.com
+ (10.93.176.83) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 9 Feb
+ 2021 05:46:33 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 9 Feb 2021 05:46:33 -0800
+Received: from octopus.marvell.com (octopus.marvell.com [10.5.24.3])
+        by maili.marvell.com (Postfix) with ESMTP id 907833F703F;
+        Tue,  9 Feb 2021 05:46:29 -0800 (PST)
+From:   <kostap@marvell.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <vladimir.vid@sartura.hr>, <tmn505@gmail.com>,
+        <luka.kovacic@sartura.hr>, <sebastian.hesselbarth@gmail.com>,
+        <gregory.clement@bootlin.com>, <andrew@lunn.ch>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>, <kishon@ti.com>,
+        <miquel.raynal@bootlin.com>, <mw@semihalf.com>, <jaz@semihalf.com>,
+        <nadavh@marvell.com>, <stefanc@marvell.com>, <bpeled@marvell.com>,
+        "Konstantin Porotchkin" <kostap@marvell.com>
+Subject: [PATCH v4 0/5] DTS updates for Marvell Armada CN913x platforms
+Date:   Tue, 9 Feb 2021 15:46:05 +0200
+Message-ID: <20210209134610.19904-1-kostap@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210205152933.GA3089668@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1612876929; bh=vHTXlq3/gtV+QTcA6Zeb0sAsHB5xsFAtC24ncxfYeQY=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=XVI1tl9hO6JzBBnbEnGnFkYeLKat7/L3LORqrPI6mbMMI/+iHz1hp/RWrABU4Q8O6
-         m3uISE1RrbWV0QQnY2oy0rnAtLCPI5s0+Ae6+J9++QdIm14OIjTUS10xo0LBYVsBiY
-         ha9FZdVrUH8xeF2uJwhM0Pz2KBTsHmwAji2dPHARLWVlHNej0wLy6b7fCcO0wnBPn1
-         G6gZXPmgDBA28Z1ADxuTSfLZlH26fDjOJixEK/JzJ1ChdcASBytvj/Xr4TyIlYunc1
-         HNEy3+rsL0/quarz50CqZCYe5lvHpORPF0AaAeAgjhQmPyPmvdfv0Q1aWohjRi5cM3
-         tHW1cd5P6rIRA==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-09_03:2021-02-09,2021-02-09 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+From: Konstantin Porotchkin <kostap@marvell.com>
 
-On 2/5/2021 8:59 PM, Rob Herring wrote:
-> External email: Use caution opening links or attachments
->
->
-> On Fri, Jan 29, 2021 at 11:57:38PM +0530, Sameer Pujar wrote:
->> Update following in rt5659.txt binding doc
->>    - Add JD source for Intel HDA header: Commit 041e74b71491
->>      ("ASoC: rt5659: Add the support of Intel HDA Header")
->>      added driver support. Add missing info here.
->>
->>    - sound-name-prefix: Used to prefix component widgets/kcontrols
->>      with given prefix.
->>
->>    - ports: Helps to use the Codec with audio graph card
->>
->> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
->> Reported-by: Jon Hunter <jonathanh@nvidia.com>
->> Cc: Oder Chiou <oder_chiou@realtek.com>
->> Cc: Bard Liao <bardliao@realtek.com>
->> ---
->>   Documentation/devicetree/bindings/sound/rt5659.txt | 11 +++++++++++
->>   1 file changed, 11 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/rt5659.txt b/Documentation/devicetree/bindings/sound/rt5659.txt
->> index 56788f5..c473df5 100644
->> --- a/Documentation/devicetree/bindings/sound/rt5659.txt
->> +++ b/Documentation/devicetree/bindings/sound/rt5659.txt
->> @@ -37,10 +37,21 @@ Optional properties:
->>   - realtek,jd-src
->>     0: No JD is used
->>     1: using JD3 as JD source
->> +  2: JD source for Intel HDA header
->>
->>   - realtek,ldo1-en-gpios : The GPIO that controls the CODEC's LDO1_EN pin.
->>   - realtek,reset-gpios : The GPIO that controls the CODEC's RESET pin.
->>
->> +- sound-name-prefix: Please refer to name-prefix.txt
->> +
->> +- ports: A Codec may have a single or multiple I2S interfaces. These
->> +  interfaces on Codec side can be described under 'ports' or 'port'.
->> +  When the SoC or host device is connected to multiple interfaces of
->> +  the Codec, the connectivity can be described using 'ports' property.
->> +  If a single interface is used, then 'port' can be used. The usage
->> +  depends on the platform or board design.
->> +  Please refer to Documentation/devicetree/bindings/graph.txt
-> Please read what that file says now.
+This patch series contains the following changes/fixes:
+1. Add support for Armada CN913x Development Board topology "B"
+2. Add support for Armada CN913x Reference Design boards (CRB)
+3. Fixes the CP11X references in PHY binding document
+4. Fixes the NAND paritioninig scheme in DTS eliminating gap between
+consecutive partitions
+All above changes are already intergated into Marvell official SDK sources
 
-Sorry, I did not understand above comment. Can you please elaborate a 
-bit more?
+v2:
+- extract common nodes from DB boards to separate DTSI files
+- disable eth2 on CRB boards until the required phy mode support is added
+- mention the switch part ID in CRB board description
+
+v3:
+- do not rename setup A DTS files for DB variants
+- fix a couple of wrong include names
+
+v4:
+- Rebase on top of Linus master branch (v5.11-rc7)
+- Remove HS400 timing from CRB AP SDHCI (not supported by connected eMMC)
+- Add cd-gpio entry to CP0 SDHCI for SD card support
+- Add a comment to CN9130-CRB patch about the required defconfig
+  changes for supporting the onboard i2c expander
+- Add Stefan's patch to enable 10G port on CN9130-DB platforms
+
+Grzegorz Jaszczyk (1):
+  Documentation/bindings: phy: update references to cp11x
+
+Konstantin Porotchkin (3):
+  arch/arm64/boot/dts/marvell: fix NAND partitioning scheme
+  arm64: dts: cn913x: add device trees for topology B boards
+  arm64: dts: add support for Marvell cn9130-crb platform
+
+Stefan Chulski (1):
+  dts: marvell: Enable 10G interface on 9130-DB board
+
+ .../bindings/phy/phy-mvebu-comphy.txt         |  12 +-
+ arch/arm64/boot/dts/marvell/Makefile          |   5 +
+ arch/arm64/boot/dts/marvell/cn9130-crb-A.dts  |  38 ++
+ arch/arm64/boot/dts/marvell/cn9130-crb-B.dts  |  46 ++
+ arch/arm64/boot/dts/marvell/cn9130-crb.dtsi   | 221 ++++++++++
+ arch/arm64/boot/dts/marvell/cn9130-db-B.dts   |  22 +
+ arch/arm64/boot/dts/marvell/cn9130-db.dts     | 393 +----------------
+ arch/arm64/boot/dts/marvell/cn9130-db.dtsi    | 402 ++++++++++++++++++
+ arch/arm64/boot/dts/marvell/cn9131-db-B.dts   |  22 +
+ arch/arm64/boot/dts/marvell/cn9131-db.dts     | 192 +--------
+ arch/arm64/boot/dts/marvell/cn9131-db.dtsi    | 201 +++++++++
+ arch/arm64/boot/dts/marvell/cn9132-db-B.dts   |  22 +
+ arch/arm64/boot/dts/marvell/cn9132-db.dts     | 211 +--------
+ arch/arm64/boot/dts/marvell/cn9132-db.dtsi    | 220 ++++++++++
+ 14 files changed, 1223 insertions(+), 784 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb-A.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb-B.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db-B.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db-B.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db-B.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db.dtsi
+
+-- 
+2.17.1
 
