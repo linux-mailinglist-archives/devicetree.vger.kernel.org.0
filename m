@@ -2,114 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DD59315988
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 23:32:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1112131597F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 23:32:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233979AbhBIWbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 17:31:49 -0500
-Received: from msg-2.mailo.com ([213.182.54.12]:41014 "EHLO msg-2.mailo.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234415AbhBIW00 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Feb 2021 17:26:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1612897114; bh=V3ccey8WzD2XM7AIsQttYEM9eTcmjZ4r0L//q+ngfDY=;
-        h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
-         References:Content-Type:MIME-Version:Content-Transfer-Encoding;
-        b=EuwOSoBSYeNTUosXXdJcfv6d/N0BqOdiTnMD29Ho55Q6IP51jmzYzDrgbX+sLfdhX
-         nhCp3nsZlcxop2yWVl6UYSTnvA5bHXWnqGFeg/ruG9BLkSidOYhviXz5ubrzgubHZQ
-         ZyeOCOCKi4yeAgVXj9qPxJS39khz9axAY5H7jvzc=
-Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
-        via proxy.mailoo.org [213.182.55.207]
-        Tue,  9 Feb 2021 19:58:34 +0100 (CET)
-X-EA-Auth: miDhEH5cip3PJigdiPHecsZKJftJVBmcIk/mjlO+sZYfQ82rAqPsLR+iXZKaGjd+Fg+sq5g9isTz3qrMVpIRrbEk72TO8fzfsr7vDETcAvM=
-Message-ID: <07cac63721a9ca63733617e461d640e8927a78f3.camel@mailoo.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: input/touchscreen: add bindings for
- msg26xx
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Date:   Tue, 09 Feb 2021 19:58:33 +0100
-In-Reply-To: <20210209161319.GA3849081@robh.at.kernel.org>
-References: <20210121174359.1455393-1-vincent.knecht@mailoo.org>
-         <20210209161319.GA3849081@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3 (3.38.3-1.fc33) 
+        id S234503AbhBIWay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 17:30:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57316 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234204AbhBIWRy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 17:17:54 -0500
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93104C061A27;
+        Tue,  9 Feb 2021 11:57:07 -0800 (PST)
+Received: from localhost.localdomain (abac187.neoplus.adsl.tpnet.pl [83.6.166.187])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 9F5B61FABC;
+        Tue,  9 Feb 2021 20:54:02 +0100 (CET)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] thermal: qcom: tsens-v1: Add MSM8992 support
+Date:   Tue,  9 Feb 2021 20:53:46 +0100
+Message-Id: <20210209195346.457803-2-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210209195346.457803-1-konrad.dybcio@somainline.org>
+References: <20210209195346.457803-1-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mardi 09 f=C3=A9vrier 2021 =C3=A0 10:13 -0600, Rob Herring a =C3=A9crit=
-=C2=A0:
-> On Thu, Jan 21, 2021 at 06:43:47PM +0100, Vincent Knecht wrote:
-> > This adds dts bindings for the mstar msg26xx touchscreen.
-> >=20
-> > Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> > ---
-> > Changed in v3:
-> > - added `touchscreen-size-x: true` and `touchscreen-size-y: true` prope=
-rties
-> > Changed in v2:
-> > - changed M-Star to MStar in title line
-> > - changed reset gpio to active-low in example section
-> > ---
-> > =C2=A0.../input/touchscreen/mstar,msg26xx.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 69 +++++++++++++++++++
-> > =C2=A01 file changed, 69 insertions(+)
-> > =C2=A0create mode 100644 Documentation/devicetree/bindings/input/touchs=
-creen/mstar,msg26xx.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/mstar,=
-msg26xx.yaml
-> > b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yam=
-l
-> > new file mode 100644
-> > index 000000000000..5d26a1008bf1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx=
-.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/input/touchscreen/mstar,msg26xx.yam=
-l#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MStar msg26xx touchscreen controller Bindings
-> > +
-> > +maintainers:
-> > +=C2=A0 - Vincent Knecht <vincent.knecht@mailoo.org>
-> > +
-> > +allOf:
-> > +=C2=A0 - $ref: touchscreen.yaml#
-> > +
-> > +properties:
-> > +=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0 const: mstar,msg26xx
->=20
-> Don't use wildcards in compatible strings.
+MSM8992 is more or less a cut-down MSM8994, so it only
+makes sense that TSENS support only requires a few lines
+on top of the bigger brother's code.
 
-Thank you for the input...
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ .../bindings/thermal/qcom-tsens.yaml          |  1 +
+ drivers/thermal/qcom/tsens-v1.c               | 25 +++++++++++++++++++
+ drivers/thermal/qcom/tsens.c                  |  3 +++
+ drivers/thermal/qcom/tsens.h                  |  2 +-
+ 4 files changed, 30 insertions(+), 1 deletion(-)
 
-Let's say I set it to "mstar,msg2638", is it better to rename the driver fi=
-le and functions too ?
-According to downstream source file naming, msg2638 is the model I have and=
- test this driver with.
-
-
-There's a possibility this driver works as-is or with minor mods for msg263=
-3 too,
-and a more remote one for msg21xx and msg22xx...
-
-
-
-
-
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+index f194e914a62e..c69b8727a09c 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+@@ -31,6 +31,7 @@ properties:
+         items:
+           - enum:
+               - qcom,msm8976-tsens
++              - qcom,msm8992-tsens
+               - qcom,msm8994-tsens
+               - qcom,qcs404-tsens
+           - const: qcom,tsens-v1
+diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+index 2127b6edd1ae..a470b24ae720 100644
+--- a/drivers/thermal/qcom/tsens-v1.c
++++ b/drivers/thermal/qcom/tsens-v1.c
+@@ -541,6 +541,17 @@ static int calibrate_8994(struct tsens_priv *priv)
+ 		base1[i] = base1[0];
+ 	}
+ 
++	/* 8992 features less sensors and remaps some */
++	if (priv->num_sensors == 13) {
++		p[6] = p[7];
++		p[7] = p[9];
++		p[8] = p[10];
++		p[9] = p[11];
++		p[10] = p[12];
++		p[11] = p[13];
++		p[12] = p[14];
++	}
++
+ 	compute_intercept_slope_8994(priv, base0, base1, p, mode);
+ 	kfree(calib0);
+ 	kfree(calib1);
+@@ -642,6 +653,20 @@ struct tsens_plat_data data_8976 = {
+ 	.fields		= tsens_v1_regfields,
+ };
+ 
++static const struct tsens_ops ops_8992 = {
++	.init		= init_common,
++	.calibrate	= calibrate_8994,
++	.get_temp	= get_temp_tsens_valid,
++};
++
++struct tsens_plat_data data_8992 = {
++	.num_sensors	= 13,
++	.ops		= &ops_8992,
++	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 4, 5, 7, 9, 10, 11, 12, 13, 14 },
++	.feat		= &tsens_v1_feat,
++	.fields	= tsens_v1_regfields,
++};
++
+ static const struct tsens_ops ops_8994 = {
+ 	.init		= init_common,
+ 	.calibrate	= calibrate_8994,
+diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+index 96d17afe3460..1c2e9bebc7c0 100644
+--- a/drivers/thermal/qcom/tsens.c
++++ b/drivers/thermal/qcom/tsens.c
+@@ -903,6 +903,9 @@ static const struct of_device_id tsens_table[] = {
+ 	}, {
+ 		.compatible = "qcom,msm8974-tsens",
+ 		.data = &data_8974,
++	}, {
++		.compatible = "qcom,msm8992-tsens",
++		.data = &data_8992,
+ 	}, {
+ 		.compatible = "qcom,msm8994-tsens",
+ 		.data = &data_8994,
+diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
+index dfbff7f6442c..2548edaa36ec 100644
+--- a/drivers/thermal/qcom/tsens.h
++++ b/drivers/thermal/qcom/tsens.h
+@@ -588,7 +588,7 @@ extern struct tsens_plat_data data_8960;
+ extern struct tsens_plat_data data_8916, data_8939, data_8974;
+ 
+ /* TSENS v1 targets */
+-extern struct tsens_plat_data data_tsens_v1, data_8976, data_8994;
++extern struct tsens_plat_data data_tsens_v1, data_8976, data_8992, data_8994;
+ 
+ /* TSENS v2 targets */
+ extern struct tsens_plat_data data_8996, data_tsens_v2;
+-- 
+2.30.0
 
