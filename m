@@ -2,114 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C8543144CF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:25:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 402FB3144E2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:27:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbhBIAYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 19:24:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57608 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbhBIAYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 19:24:15 -0500
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A62EC061788
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 16:23:35 -0800 (PST)
-Received: by mail-pf1-x42c.google.com with SMTP id b145so10796623pfb.4
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 16:23:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=nFM0MlsDfR8VM4PPVEkKIEyXxD9NGa9iDMVral5Ujo8=;
-        b=npSBDIqz3idVStJ+6xsbWqKf9jUNdMt6yrfVNgMf2tGtLpgBGTKPD6cdw9z57kt4gk
-         blAeLIZ01h/gXsj5zXy8nhb21YSi2HWO42o9tGZumUirlyod4KJyhCBedGNtY0Wf5WYs
-         myXPhMcRSL9MFPO/FWgac/cElFOjVYw5/9d6A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=nFM0MlsDfR8VM4PPVEkKIEyXxD9NGa9iDMVral5Ujo8=;
-        b=fWBaFZo/sf/bqpEPlynZ74czCRYs9le4vwNoIppLh0LL+YIattLTNWYYvqgrNMICQr
-         FGD4G6AfBKSHuGZtxFq1iBqw1zI247VuT+n2NTQfGZ1sG8XYAI3Nuzj7b4n75JoG2GLV
-         3T2nVmjlDh32Z4fxyPDezNWPyD/SZXBprZtIDWxuw63ecczkIqfUO4uJNoZSvaKjgzUo
-         Nb0jGEKJKL9kHlQYB6lhkJz4enHuMsmAG8KAIY9P2M0B/GFBCVFXb5jKon810fsTJfyy
-         cYebKSTbr6+sVen2mBvwCoVWjFNhZRIBDSwEUSARpMFIHU4x9ZHPnJMuFjtg5YEoII2R
-         1qXA==
-X-Gm-Message-State: AOAM532Z1JPHUMmces+yLvxXxK80gi0lWvoasG/3u2MK7X1kjxHP3EDY
-        eP6zai7Qh+rP8CoJXpWDNMrLVQ==
-X-Google-Smtp-Source: ABdhPJzDQylLd8Wa/D58PdqAO8x2PtLWn0kpNxxwKnpo1/LYbFGRFjqZR+cWKihjhhWuFNVIHT8clw==
-X-Received: by 2002:a62:5fc3:0:b029:1bf:34c4:a128 with SMTP id t186-20020a625fc30000b02901bf34c4a128mr19887537pfb.38.1612830214698;
-        Mon, 08 Feb 2021 16:23:34 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:751a:ba0b:8918:c305])
-        by smtp.gmail.com with ESMTPSA id 194sm17431307pfu.165.2021.02.08.16.23.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Feb 2021 16:23:34 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
+        id S229618AbhBIA0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 19:26:37 -0500
+Received: from marcansoft.com ([212.63.210.85]:33500 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229646AbhBIA0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 19:26:36 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 1B24A4207F;
+        Tue,  9 Feb 2021 00:25:49 +0000 (UTC)
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Arnd Bergmann <arnd@kernel.org>
+Cc:     devicetree@vger.kernel.org, maz@kernel.org,
+        linux-kernel@vger.kernel.org, soc@kernel.org, robh+dt@kernel.org,
+        olof@lixom.net, linux-arm-kernel@lists.infradead.org
+References: <20210204203951.52105-1-marcan@marcan.st>
+ <20210204203951.52105-14-marcan@marcan.st>
+ <CAK8P3a2Ad+xmmMWgznOHPpxgCXKWFYfpHBqt_49_UuxrwFSq+A@mail.gmail.com>
+ <c1bc2a087747c4d9@bloch.sibelius.xs4all.nl>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 13/18] arm64: ioremap: use nGnRnE mappings on platforms
+ that require it
+Message-ID: <635f1a81-58c8-f3b6-ab3f-1cf6a084aed0@marcan.st>
+Date:   Tue, 9 Feb 2021 09:25:47 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
-References: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org> <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
-Subject: Re: [PATCH v6 1/4] dt-bindings: Introduce SoC sleep stats bindings
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
-        rnayak@codeaurora.org, ilina@codeaurora.org, lsrao@codeaurora.org,
-        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
-        devicetree@vger.kernel.org, Maulik Shah <mkshah@codeaurora.org>
-To:     Maulik Shah <mkshah@codeaurora.org>, bjorn.andersson@linaro.org,
-        evgreen@chromium.org, mka@chromium.org
-Date:   Mon, 08 Feb 2021 16:23:32 -0800
-Message-ID: <161283021256.76967.600110253862291436@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <c1bc2a087747c4d9@bloch.sibelius.xs4all.nl>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Maulik Shah (2021-02-04 06:21:45)
-> +
-> +description:
-> +  Always On Processor/Resource Power Manager maintains statistics of the=
- SoC
-> +  sleep modes involving powering down of the rails and oscillator clock.
-> +
-> +  Statistics includes SoC sleep mode type, number of times low power mod=
-e were
-> +  entered, time of last entry, time of last exit and accumulated sleep d=
-uration.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,rpmh-sleep-stats
-> +      - qcom,rpm-sleep-stats
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  # Example of rpmh sleep stats
-> +  - |
-> +    rpmh-sleep-stats@c3f0000 {
-> +      compatible =3D "qcom,rpmh-sleep-stats";
-> +      reg =3D <0 0x0c3f0000 0 0x400>;
-> +    };
+On 09/02/2021 08.20, Mark Kettenis wrote:
+> It is only PCI mmio space that needs to be nGnRE.  The PCI host
+> controller register space itself needs nGnRnE just like all other
+> integrated peripherals (or at least it works that way).
 
-Maybe it should just be another reg property of the rpmh or rpm node?
-Then the rpmh driver can create the stats "device" at driver probe time,
-or just roll it into the same thing. It looks pretty weird to have a
-device in DT for this given that it's not really hardware, more like a
-place that the processor writes some stuff about what's going on in the
-SoC related to power management.=20
+This is correct. Actually, as I just discovered, nGnRE writes to MMIO 
+are not silently blackholed, but rather raise an SError. A certain other 
+Linux loader masks those SErrors in a vendor register completely 
+unnecessarily, which is why this isn't apparent when you use it. I never 
+noticed this myself until now because when I first ran into it, it was 
+breaking the UART, so of course I'd never see the SErrors, and I didn't 
+try again after I learned more about the L2C SError control mechanism :-)
 
-> +  # Example of rpm sleep stats
-> +  - |
-> +    rpm-sleep-stats@4690000 {
-> +      compatible =3D "qcom,rpm-sleep-stats";
-> +      reg =3D <0 0x04690000 0 0x400>;
-> +    };
-> +...
+Testing now, it seems we can actually fairly neatly figure out where 
+nGnRE is allowed and where not, as writes that fail due to that raise a 
+SError with L2C_ERR_INF=3.
+
+I probed writing to i<<28 for i = [0..255], using nGnRE. This reveals 
+that nGnRE writes are allowed (i.e. either succeed or error out 
+differently) in the following ranges:
+
+0x400000000 - 0x4ffffffff (apciec0)
+0x580000000 - 0x67fffffff (apciec1)
+0x6a0000000 - 0x6ffffffff (apcie)
+
+Which matches the `ranges` properties of the respective apcie devices in 
+the ADT. The first two are obviously the TB3 ports, amd have more 
+features (three ranges instead of two, presumably IO port ranges are 
+supported on those, there's some extra DMA stuff, etc).
+
+So the hardware behavior is to block nGnRE everywhere except in those 
+ranges (i.e. the nGnRnE fault takes precedence over other errors, like 
+the address not existing at all).
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
