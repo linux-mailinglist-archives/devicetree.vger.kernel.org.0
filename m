@@ -2,113 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98BD03156EF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 20:40:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDECF3156E6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 20:37:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233478AbhBIThW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 14:37:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48706 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233639AbhBIT0F (ORCPT
+        id S233710AbhBIThD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 14:37:03 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:46087 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233678AbhBIT0F (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 14:26:05 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6398C0611C1;
-        Tue,  9 Feb 2021 11:24:01 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id jj19so33687967ejc.4;
-        Tue, 09 Feb 2021 11:24:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=r7BU1Ua7cwHe6jzoj7pIEXXpfnh5K4Y+YXR073vkvQE=;
-        b=bh1IT2E376Yq6oXbtlLRVU+ZZgwlQGngdXEgtoCLNApGVLxKZgNcwTXuBftb9haijP
-         IIjApj2MGOwBkU4/qoDv8H5kROC7Ft9rXktG0pwxcodKCht0kPvXTv/S5Sw/XF2cBeGd
-         qAwGBS1P4pNyT8b2GVyW1VbiAFE2pbYimxz6Wh3twMtY5kDU0JRy1UKKWpaK6ujwF9SI
-         qp3oeiRdTb0QMw0J4grCoBzbrLvAzZhdNi++4bjwbOkdPCyOyiYcuj5p8D4S+Lwffwzd
-         zTXauPyAD+rCiPkeMGS8u2Z9aqlADrMziri6dNWDPabmtIt8ewRfL1HgSNzN38rADgBh
-         he3w==
+Received: by mail-ot1-f54.google.com with SMTP id r21so10032786otk.13;
+        Tue, 09 Feb 2021 11:25:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=r7BU1Ua7cwHe6jzoj7pIEXXpfnh5K4Y+YXR073vkvQE=;
-        b=g6kfxvLv+JkZ4DVu99B/nhi+DAvpqmQTrAlxgHE/mbHVHN89lM2RkxXi6X0Wi19P0y
-         lZBOPEv8Tenae+eRelrsBXyRXdqqNoaouddaEqg4OXKmkTy1OXqW9pXo8qJQ6TkQs/fm
-         IPvZIjY7CqISYvCs6qX4YXgbCqZTCIhyDdCdpKNGrx5zp7pAw5f+9OD+zq2+C2bnKE2x
-         nJugeuhMdFP6v5cAAVh/uWWFSMLCyAus55RuDWzux4ROWZdsnT9DlWWEqJRwXoRtpMIs
-         /aDOvB9vIDTz9R9a1+mueSTG1YouqUsB3bA6j5MekMZ6U/EUmq08DCz7IzZqEAU3iqlA
-         cXKQ==
-X-Gm-Message-State: AOAM530KC3v7rYkq7xYQQ8yAHAevWYTFdY+GDK7u5060b+kOuZ6ZuU1M
-        E5k5NSJ5IC9GVtHfzIjM820=
-X-Google-Smtp-Source: ABdhPJxKg0jN0s/0ilpBmiIkOppmd8gfTSX0HME5CQ924LQSHlmH/a9j412UFHOcO2XDV1B8AX7bGw==
-X-Received: by 2002:a17:906:7b8d:: with SMTP id s13mr23864808ejo.479.1612898640598;
-        Tue, 09 Feb 2021 11:24:00 -0800 (PST)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id w3sm11075779eja.52.2021.02.09.11.23.59
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 09 Feb 2021 11:24:00 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org, balbi@kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 3/8] arm64: dts: rockchip: optimize clks for rk3399 dwc3
-Date:   Tue,  9 Feb 2021 20:23:45 +0100
-Message-Id: <20210209192350.7130-3-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210209192350.7130-1-jbx6244@gmail.com>
-References: <20210209192350.7130-1-jbx6244@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RB4gkqk5AYTbNT/R8winPDN2DYkri5HM/6w5VZS/1Pk=;
+        b=YMTwOcU5sv5I3cd/W/2EedHbvaPDNbt2NN//Qy3xgL5gjbEmbsNGOvR8a90JfFKR0V
+         6cXURSBaTL2nsr3PWJfqPLdZwbYqseGrS49Imjmkh8R1i1u94LgWdRMtwZ0ISUIvkt7a
+         fVFB4ByoXinmsOcUtu5z5dG23dFS4ZWu3whYkpW/KC2EyFSNu03TnDSSoxcTbuFP0Fg+
+         VdKCWoW1Brxxsm+RGOAXrqTaxwuLl5ONsadx8Y5ci957FeA2FX/4fztKebXQCRFKd7qp
+         u+qshwrFEU4lIXudnuNJKiGG/D1w7+jtqFy/b2Y5ad6sCtrecwjUHPEQOZ48uyOL1bhb
+         z7Cw==
+X-Gm-Message-State: AOAM533XAZ0Drd91lrbifqn5vQ+SYKpsc2dPCEoc2MAKwT4+Ddgd1kh6
+        2WoCXbDIg6ea2DajBfOjnA==
+X-Google-Smtp-Source: ABdhPJxxvPhM+OSfew3karFAzcYa0P9ij1U8TKfB94l0ChQ1/miK/474/lYC8+KwAEutNmXE8OfWCw==
+X-Received: by 2002:a9d:42b:: with SMTP id 40mr17437092otc.248.1612898685319;
+        Tue, 09 Feb 2021 11:24:45 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n7sm668778otk.48.2021.02.09.11.24.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Feb 2021 11:24:44 -0800 (PST)
+Received: (nullmailer pid 3216 invoked by uid 1000);
+        Tue, 09 Feb 2021 19:24:43 -0000
+Date:   Tue, 9 Feb 2021 13:24:43 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: omap: Update binding for AM64x
+ SoCs
+Message-ID: <20210209192443.GA4192418@robh.at.kernel.org>
+References: <20210127195600.23501-1-s-anna@ti.com>
+ <20210127195600.23501-2-s-anna@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210127195600.23501-2-s-anna@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Wu Liang feng <wulf@rock-chips.com>
+On Wed, Jan 27, 2021 at 01:55:59PM -0600, Suman Anna wrote:
+> Update the existing OMAP Mailbox binding to include the info for
+> AM64x SoCs. There are some minor IP integration differences between
+> the AM64x SoCs and the previous AM65x and J721E SoC families.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+>  .../bindings/mailbox/omap-mailbox.txt         | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/omap-mailbox.txt b/Documentation/devicetree/bindings/mailbox/omap-mailbox.txt
+> index 5fe80c1c19fc..c993d1a5c14a 100644
+> --- a/Documentation/devicetree/bindings/mailbox/omap-mailbox.txt
+> +++ b/Documentation/devicetree/bindings/mailbox/omap-mailbox.txt
+> @@ -28,6 +28,9 @@ SoCs has each of these instances form a cluster and combine multiple clusters
+>  into a single IP block present within the Main NavSS. The interrupt lines from
+>  all these clusters are multiplexed and routed to different processor subsystems
+>  over a limited number of common interrupt output lines of an Interrupt Router.
+> +The AM64x SoCS also uses a single IP block comprising of multiple clusters,
+> +but the number of clusters are smaller, and the interrupt output lines are
+> +connected directly to various processors.
+>  
+>  Mailbox Device Node:
+>  ====================
+> @@ -42,6 +45,7 @@ Required properties:
+>  			    "ti,omap4-mailbox" for OMAP44xx, OMAP54xx, AM33xx,
+>  						   AM43xx and DRA7xx SoCs
+>  			    "ti,am654-mailbox" for K3 AM65x and J721E SoCs
+> +			    "ti,am64-mailbox" for K3 AM64x SoCs
+>  - reg:			Contains the mailbox register address range (base
+>  			address and length)
+>  - interrupts:		Contains the interrupt information for the mailbox
+> @@ -178,3 +182,21 @@ mailbox: mailbox@480c8000 {
+>  		};
+>  	};
+>  };
+> +
+> +4. /* AM64x */
+> +&cbass_main {
 
-Remove unnecessary clocks, refer to rk3399 TRM, aclk_usb3 is the
-parent of aclk_usb3otg0/1 and aclk_usb3_grf, and we will enable
-aclk_usb3otg0/1 and aclk_usb3_grf, so don't need to enable aclk_usb3
-again. In addition, the aclk_usb3_rksoc_axi_perf clk is used for usb3
-performance monitor module which we don't use now, so don't need to
-enable it.
+Please don't add examples for just a new compatible.
 
-Signed-off-by: Wu Liang feng <wulf@rock-chips.com>
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 04f7cc5c3..b125cac89 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -399,11 +399,9 @@
- 		#size-cells = <2>;
- 		ranges;
- 		clocks = <&cru SCLK_USB3OTG0_REF>, <&cru SCLK_USB3OTG0_SUSPEND>,
--			 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_RKSOC_AXI_PERF>,
--			 <&cru ACLK_USB3>, <&cru ACLK_USB3_GRF>;
-+			 <&cru ACLK_USB3OTG0>, <&cru ACLK_USB3_GRF>;
- 		clock-names = "ref_clk", "suspend_clk",
--			      "bus_clk", "aclk_usb3_rksoc_axi_perf",
--			      "aclk_usb3", "grf_clk";
-+			      "bus_clk", "grf_clk";
- 		resets = <&cru SRST_A_USB3_OTG0>;
- 		reset-names = "usb3-otg";
- 		status = "disabled";
-@@ -435,11 +433,9 @@
- 		#size-cells = <2>;
- 		ranges;
- 		clocks = <&cru SCLK_USB3OTG1_REF>, <&cru SCLK_USB3OTG1_SUSPEND>,
--			 <&cru ACLK_USB3OTG1>, <&cru ACLK_USB3_RKSOC_AXI_PERF>,
--			 <&cru ACLK_USB3>, <&cru ACLK_USB3_GRF>;
-+			 <&cru ACLK_USB3OTG1>, <&cru ACLK_USB3_GRF>;
- 		clock-names = "ref_clk", "suspend_clk",
--			      "bus_clk", "aclk_usb3_rksoc_axi_perf",
--			      "aclk_usb3", "grf_clk";
-+			      "bus_clk", "grf_clk";
- 		resets = <&cru SRST_A_USB3_OTG1>;
- 		reset-names = "usb3-otg";
- 		status = "disabled";
--- 
-2.11.0
-
+> +	mailbox0_cluster2: mailbox@29020000 {
+> +		compatible = "ti,am64-mailbox";
+> +		reg = <0x00 0x29020000 0x00 0x200>;
+> +		interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
+> +		             <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+> +		#mbox-cells = <1>;
+> +		ti,mbox-num-users = <4>;
+> +		ti,mbox-num-fifos = <16>;
+> +
+> +		mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
+> +			ti,mbox-rx = <0 0 2>;
+> +			ti,mbox-tx = <1 0 2>;
+> +		};
+> +	};
+> +};
+> -- 
+> 2.29.2
+> 
