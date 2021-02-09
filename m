@@ -2,81 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4366931451C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA9CF314525
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:56:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbhBIAyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 19:54:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35758 "EHLO
+        id S229729AbhBIA4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 19:56:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbhBIAyH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 19:54:07 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 139A9C061786;
-        Mon,  8 Feb 2021 16:53:27 -0800 (PST)
-Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 9598723E5F;
-        Tue,  9 Feb 2021 01:53:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1612832002;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=Xgt/MD7lKvLeSdMrNW2NdaeIS7qBuvz02NxmMJCjUuk=;
-        b=AlYYcVqr/hhtNPyBbatwGVW1XWsZlAHSXOtECFJUPb/iCr+glXWMKcUnSog50JbM8rhhSs
-        TZivp5HbbLvpVvKwM60um1j+4yDS2UJf5g4lUiPv9AyEja4rWxIDzkKa8wc1ZadhPiw2o3
-        g4oIXtgHFnHzIbNcw32BCtg0h59HOu8=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH] arm64: dts: ls1028a: add interrupt to Root Complex Event Collector
-Date:   Tue,  9 Feb 2021 01:52:59 +0100
-Message-Id: <20210209005259.29725-1-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
+        with ESMTP id S229545AbhBIA42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 19:56:28 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C93C061788;
+        Mon,  8 Feb 2021 16:55:47 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0EE87583;
+        Tue,  9 Feb 2021 01:55:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1612832144;
+        bh=546XL7xvfL+LHfS20TPPogFKXmYg6uzn09ILuWcX4WQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=k4O6FiQMMKQ6cBYRJ5jRsDWoUYRiw+BOA6T8Uw7QvLZoRVVGeAXooKnmfJ2MBsS4p
+         irVBm61yDhYnP9U+A7vtglGHhvoRLJnnMPbzdwFdaBp1QWw90DG7pabLEKztc/MiNx
+         ldEbqEpdlm54OOSjSMHBAWxwDvDcVFhwRzqq4WH4=
+Date:   Tue, 9 Feb 2021 02:55:19 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Mykyta Poturai <ddone@aruko.org>
+Cc:     devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-renesas-soc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: display: Add "disable-hpd" binding
+Message-ID: <YCHdd1msOsodLn+v@pendragon.ideasonboard.com>
+References: <20210131095701.965147-1-ddone@aruko.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210131095701.965147-1-ddone@aruko.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The legacy interrupt INT_A is hardwired to the event collector. RCEC is
-bascially supported starting with v5.11. Having a correct interrupt, will
-make RCEC at least probe correctly.
+Hi Mykyta,
 
-There are still issues with how RCEC is implemented in the RCiEP on the
-LS1028A. RCEC will report an error, but it cannot find the correct
-subdevice.
+Thank you for the patch.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Sun, Jan 31, 2021 at 11:57:01AM +0200, Mykyta Poturai wrote:
+> Add the "disable-hpd" binding, used to disable hotplug detected
+> functionality in the driver. When it's enabled the driver assumes that
+> the connector is always connected and disables the hotplug detect
+> related IRQ.
+> 
+> Signed-off-by: Mykyta Poturai <ddone@aruko.org>
+> ---
+>  .../devicetree/bindings/display/bridge/renesas,dw-hdmi.txt       | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt b/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
+> index 3f6072651182..b2b899f46b86 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
+> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
+> @@ -39,6 +39,7 @@ Optional properties:
+>  
+>  - power-domains: Shall reference the power domain that contains the DWC HDMI,
+>    if any.
+> +- disable-hpd: Disables the hotplug detect feature
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 262fbad8f0ec..c1f2f402ad53 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -1114,6 +1114,12 @@
- 					full-duplex;
- 				};
- 			};
-+
-+			rcec@1f,0 {
-+				reg = <0x00f800 0 0 0 0>;
-+				/* IEP INT_A */
-+				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-+			};
- 		};
- 
- 		rcpm: power-controller@1e34040 {
+A similar property has been added to the ti,sn65dsi86 bindings in commit
+1dbc979172af ("dt-bindings: drm/bridge: ti-sn65dsi86: Document no-hpd").
+A property with the same name exists in panel-common.yaml. Could we
+standardize on that name ?
+
+The description should also explain the hardware architecture, not the
+driver behaviour. This is what the ti,sn65dsi86 binding documents:
+
+  no-hpd:
+    type: boolean
+    description:
+      Set if the HPD line on the bridge isn't hooked up to anything or is
+      otherwise unusable.
+
+You could use the same description, assuming this is the use case you
+want to support. Could you perhaps describe your problem in a bit more
+details ? Do you have a system with an HDMI panel that is always
+connected, with the HPD signal of the dw-hdmi not connected ?
+
+>  Example:
+
 -- 
-2.20.1
+Regards,
 
+Laurent Pinchart
