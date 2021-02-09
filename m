@@ -2,124 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FFC93149E4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 09:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0981E314A08
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 09:12:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbhBIIBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 03:01:25 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39216 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229517AbhBIIBX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Feb 2021 03:01:23 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 27CCC64E6F;
-        Tue,  9 Feb 2021 08:00:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612857642;
-        bh=PrZKwTBAEkhO9oVwFzz9vR4RpjecGA222H6u+Smz3/g=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=RZfSdW4MONU6xyHZcAlXF3UuyrNKwqpNx49sUuIUYtO86OB+31RzMa1O7dF6M8YBN
-         S9MNPiFRGvoUA8A7uoT3UZCXdmXkFdNWGQbJ+sjvPOwuF+KFSBJW6x2gxRNadUf4bP
-         TGupFGxUhX0KPEaei1olRQFWoplvhuVhF2qYSql41c20wThIpVrLDHHKFENyYOEJl2
-         h6MSfwndGoBOY8w349HyrpUO+EjDiPP8L/NShDsheNvOfjRpZ9QV9QdZU2yJWTiPRZ
-         i9t4psH+djtVZrQpkwSgDJim/iW8woBnt+ZvJELngCF1WqDRt/z1M9KYOY8Du/SNoX
-         y0os1dyaKr6Yg==
-Content-Type: text/plain; charset="utf-8"
+        id S229707AbhBIIL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 03:11:58 -0500
+Received: from mail29.static.mailgun.info ([104.130.122.29]:29964 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229611AbhBIILr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 03:11:47 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1612858281; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=5WGte9xt2dXjRFbMOx/ZKB9MKO7A9fu4SSLGKPnadEw=; b=VOb0S9dgBTd6p5tpYKzPfBtyzF1RScwD2typkqfpfBaDJxeNvGXLTXwGsYkZP4Dqce9MN4gW
+ 3iVq8xGHYiqRMYnxWi/xbAKDIc5TyrpynsYdKFjiFMt/wmTXgX/KvsNWVSQt/AopZeCYzjzy
+ 8WiZPbcADKqlqchIvD4nIaE40lA=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 6022438b81f6c45dced25bd3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Feb 2021 08:10:51
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E438CC43462; Tue,  9 Feb 2021 08:10:50 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B1227C433CA;
+        Tue,  9 Feb 2021 08:10:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B1227C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Amit Pundir <amit.pundir@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        ath10k <ath10k@lists.infradead.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        dt <devicetree@vger.kernel.org>,
+        David S Miller <davem@davemloft.net>,
+        John Stultz <john.stultz@linaro.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Subject: Re: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap QMI requests
+References: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
+        <20200929190817.GA968845@bogus> <20201029134017.GA807@yoga>
+        <CAMi1Hd20UpNhZm6z5t5Kcy8eTABiAj7X_Gm66QnJspZWSio0Ew@mail.gmail.com>
+        <20201124175146.GG185852@builder.lan> <87sg8heeta.fsf@codeaurora.org>
+        <CAMi1Hd2FN6QQzbKHooVyqQfH1NFTNLt4RwxyVXRf+5DwTc9ojg@mail.gmail.com>
+        <87czxa4grv.fsf@codeaurora.org> <YCF5ZC/WMRefTRcQ@builder.lan>
+Date:   Tue, 09 Feb 2021 10:10:44 +0200
+In-Reply-To: <YCF5ZC/WMRefTRcQ@builder.lan> (Bjorn Andersson's message of
+        "Mon, 8 Feb 2021 11:48:20 -0600")
+Message-ID: <87blctveyj.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210126090120.19900-3-gabriel.fernandez@foss.st.com>
-References: <20210126090120.19900-1-gabriel.fernandez@foss.st.com> <20210126090120.19900-3-gabriel.fernandez@foss.st.com>
-Subject: Re: [PATCH v2 02/14] clk: stm32mp1: merge 'ck_hse_rtc' and 'ck_rtc' into one clock
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-To:     Alexandre Torgue <alexandre.torgue@st.com>,
-        Etienne Carriere <etienne.carriere@st.com>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, marex@denx.de
-Date:   Tue, 09 Feb 2021 00:00:40 -0800
-Message-ID: <161285764074.418021.15522379930579131077@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting gabriel.fernandez@foss.st.com (2021-01-26 01:01:08)
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->=20
-> 'ck_rtc' has multiple clocks as input (ck_hsi, ck_lsi, and ck_hse).
-> A divider is available only on the specific rtc input for ck_hse.
-> This Merge will facilitate to have a more coherent clock tree
-> in no trusted / trusted world.
->=20
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> ---
->  drivers/clk/clk-stm32mp1.c | 49 +++++++++++++++++++++++++++++++++-----
->  1 file changed, 43 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/clk/clk-stm32mp1.c b/drivers/clk/clk-stm32mp1.c
-> index 35d5aee8f9b0..0e1d4427a8df 100644
-> --- a/drivers/clk/clk-stm32mp1.c
-> +++ b/drivers/clk/clk-stm32mp1.c
-> @@ -245,7 +245,7 @@ static const char * const dsi_src[] =3D {
->  };
-> =20
->  static const char * const rtc_src[] =3D {
-> -       "off", "ck_lse", "ck_lsi", "ck_hse_rtc"
-> +       "off", "ck_lse", "ck_lsi", "ck_hse"
->  };
-> =20
->  static const char * const mco1_src[] =3D {
-> @@ -1031,6 +1031,42 @@ static struct clk_hw *clk_register_cktim(struct de=
-vice *dev, const char *name,
->         return hw;
->  }
-> =20
-> +/* The divider of RTC clock concerns only ck_hse clock */
-> +#define HSE_RTC 3
-> +
-> +static unsigned long clk_divider_rtc_recalc_rate(struct clk_hw *hw,
-> +                                                unsigned long parent_rat=
-e)
-> +{
-> +       if (clk_hw_get_parent(hw) =3D=3D clk_hw_get_parent_by_index(hw, H=
-SE_RTC))
-> +               return clk_divider_ops.recalc_rate(hw, parent_rate);
-> +
-> +       return parent_rate;
-> +}
-> +
-> +static long clk_divider_rtc_round_rate(struct clk_hw *hw, unsigned long =
-rate,
-> +                                      unsigned long *prate)
-> +{
-> +       if (clk_hw_get_parent(hw) =3D=3D clk_hw_get_parent_by_index(hw, H=
-SE_RTC))
+Bjorn Andersson <bjorn.andersson@linaro.org> writes:
 
-This clk op can be called at basically any time. Maybe this should use
-the determine rate op and then look to see what the parent is that comes
-in via the rate request structure? Or is the intention to keep this
-pinned to one particular parent? Looking at this right now it doesn't
-really make much sense why the current parent state should play into
-what rate the clk can round to, unless there is some more clk flags
-going on that constrain the ability to change this clk's parent.
+> On Mon 08 Feb 11:21 CST 2021, Kalle Valo wrote:
+>
+>> Amit Pundir <amit.pundir@linaro.org> writes:
+>> 
+>> > Hi Kalle,
+>> >
+>> > On Mon, 7 Dec 2020 at 22:25, Kalle Valo <kvalo@codeaurora.org> wrote:
+>> >>
+>> >> This is firmware version specific, right? There's also enum
+>> >> ath10k_fw_features which is embedded within firmware-N.bin, we could add
+>> >> a new flag there. But that means that a correct firmware-N.bin is needed
+>> >> for each firmware version, not sure if that would work out. Just
+>> >> throwing out ideas here.
+>> >
+>> > Apologies for this late reply. I was out for a while.
+>> 
+>> No worries.
+>> 
+>> > If by that (the firmware version) you mean "QC_IMAGE_VERSION_STRING",
+>> > then that may be a bit tricky. Pocophone F1 use the same firmware
+>> > family version (WLAN.HL.2.0.XXX), used by Dragonboard 845c (which has
+>> > Wi-Fi working upstream).
+>> 
+>> I'm meaning the ath10k firmware meta data we have in firmware-N.bin
+>> (N=2,3,4...) file. A quick summary:
+>> 
+>> Every ath10k firmware release should have firmware-N.bin. The file is
+>> created with this tool:
+>> 
+>> https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath10k/ath10k-fwencoder
+>> 
+>> firmware-N.bin contains various metadata, one of those being firmware
+>> feature flags:
+>> 
+>> enum ath10k_fw_features {
+>> 	/* wmi_mgmt_rx_hdr contains extra RSSI information */
+>> 	ATH10K_FW_FEATURE_EXT_WMI_MGMT_RX = 0,
+>> 
+>> 	/* Firmware from 10X branch. Deprecated, don't use in new code. */
+>> 	ATH10K_FW_FEATURE_WMI_10X = 1,
+>> 
+>>         [...]
+>> 
+>> So what you could is add a new flag enum ath10k_fw_features, create a
+>> new firmware-N.bin for your device and enable the flag on the firmware
+>> releases for your device only.
+>> 
+>> I don't know if this is usable, but one solution which came to my mind.
+>
+> It sounds quite reasonable to pass this using firmawre-N.bin instead of
+> DT, however that would imply that we need to find firmware-N.bin in the
+> device-specific directory, where we keep the wlanmdsp.mbn as well - and
+> not under /lib/firmware/ath10k
+>
+> For other devices (e.g. ADSP, modem or wlanmdsp.mbn) we're putting these
+> in e.g. /lib/firmware/qcom/LENOVO/81JL/ and specifies the location using
+> a firmware-name property in DT.
 
-> +               return clk_divider_ops.round_rate(hw, rate, prate);
-> +
-> +       return *prate;
-> +}
-> +
-> +static int clk_divider_rtc_set_rate(struct clk_hw *hw, unsigned long rat=
-e,
-> +                                   unsigned long parent_rate)
-> +{
-> +       if (clk_hw_get_parent(hw) =3D=3D clk_hw_get_parent_by_index(hw, H=
-SE_RTC))
-> +               return clk_divider_ops.set_rate(hw, rate, parent_rate);
-> +
-> +       return parent_rate;
-> +}
-> +
+Ah, I didn't realise that.
+
+Actually I would like to have ath10k in control[1] of QMI/rproc firmware
+loading as the firmware releases have different constraints, like the
+issue we are now discussing. Ideally firmware-N.bin would contain all
+firmware files, for example wlanmdsp.mbn, and from the meta data
+ath10k/ath11k would know what version of the firmware interface should
+be used.
+
+I remember we discussed this briefly a year or two ago and there was no
+easy solution, but I really wish we could find one. More these kind of
+firmware interface incompatibilities will most likely pop up, also in
+ath11k, so it would be great to find a clean and easily maneagable
+solution.
+
+[1] With control I mean that ath10k/ath11k can choose which firmware
+should be loaded
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
