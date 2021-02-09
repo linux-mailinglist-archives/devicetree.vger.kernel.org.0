@@ -2,115 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 577AB3156E4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 20:37:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E04D23156EC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 20:40:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233654AbhBITfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 14:35:54 -0500
-Received: from mga07.intel.com ([134.134.136.100]:63377 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233522AbhBITZy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Feb 2021 14:25:54 -0500
-IronPort-SDR: aqZlTnDLpYP24DoIeTBbkkXA7/RCK0UwTkNZYLKOtUa3QLI09GbbcCw46x+2UlwedMvbcDpS9C
- R6W21kvdGymg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="246010853"
-X-IronPort-AV: E=Sophos;i="5.81,166,1610438400"; 
-   d="scan'208";a="246010853"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2021 11:17:31 -0800
-IronPort-SDR: MxO/TaNgsO9MJwQeVuSDeZorgw79f/mE+ATgYIh8UIY00h59Mhp7oCFKPPRQQErfUUviuKCn6m
- NrxcRfEOV2Jg==
-X-IronPort-AV: E=Sophos;i="5.81,166,1610438400"; 
-   d="scan'208";a="375068802"
-Received: from yoojae-mobl.amr.corp.intel.com (HELO [10.209.39.4]) ([10.209.39.4])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2021 11:17:30 -0800
-Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: aspeed: add buffer and DMA mode
- transfer support
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Rob Herring <robh@kernel.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
-        Cedric Le Goater <clg@kaod.org>, linux-i2c@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-References: <20210112003749.10565-1-jae.hyun.yoo@linux.intel.com>
- <20210112003749.10565-2-jae.hyun.yoo@linux.intel.com>
- <20210114193416.GA3432711@robh.at.kernel.org>
- <4f67358e-58e5-65a5-3680-1cd8e9851faa@linux.intel.com>
- <CACPK8XcZTE=bnCP1-E9PTA09WnXG9Eduwx0dm-QqmQJUDa_OrQ@mail.gmail.com>
- <1814b8d1-954c-0988-0745-e95129079708@linux.intel.com>
- <87ed4085-26e4-98f8-21e3-b1e3c16b0891@linux.intel.com>
- <CACPK8XekihpoXEeyUbWSXsRkVMbX1gKG-gSeYgWq=s3UR2gi1g@mail.gmail.com>
-From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Message-ID: <3cb75f5e-43d8-a06c-5149-e69823728325@linux.intel.com>
-Date:   Tue, 9 Feb 2021 11:17:29 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S233715AbhBIThL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 14:37:11 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:42385 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233513AbhBIT0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 14:26:05 -0500
+Received: by mail-ot1-f47.google.com with SMTP id q4so8889830otm.9;
+        Tue, 09 Feb 2021 11:22:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lCKSYN1S/BMKGDmQxUAKaGzQhreo9bxAbsTabQriVq0=;
+        b=f2zXT5ZULBvInFxM4HK4YVTSndaH8nce4GGxPp4Kj/qfvhHvtSZJoZ7AKwyJPTKwIm
+         3GXiSLNWDJ4zQB7tk0h+RGWdB1o8CX51NmEEUrcNvTR66VMB3yMUrZZIpypJUDiHhpga
+         QDaVyyY+elZh9PI9vpmCzteoth9nharMDDoX480v3UQQZID/qlsT/ekxZty1v8et6G53
+         Gj509WiNX97mOuJsSxwkdwkUoFtg0QF2Rm04/ZlqwbRe9IWtpScJsk9fbtdLWBZWCJj4
+         GTsy4Q5FVsujFKZxteRge5DfAMryKpPK9EMO+f+Z1R3d244vnqIQTqsCbuwTLS/vwPVT
+         sUXw==
+X-Gm-Message-State: AOAM533TNs/yd4bSCR/FRn2sQEJ8EABNXdw111jXs3b6quh1hA/U4WNi
+        UNph4+MmiGwomm6eCDJRew==
+X-Google-Smtp-Source: ABdhPJx6BPlprKBUC+xb/5qwJuVzUFsGtm4/bQfhNhu+3WhtLx7/Y0mh++ghwg3JoeR3YOsrjneqAg==
+X-Received: by 2002:a9d:ec7:: with SMTP id 65mr17119409otj.311.1612898517920;
+        Tue, 09 Feb 2021 11:21:57 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l110sm4513430otc.25.2021.02.09.11.21.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Feb 2021 11:21:56 -0800 (PST)
+Received: (nullmailer pid 4191780 invoked by uid 1000);
+        Tue, 09 Feb 2021 19:21:55 -0000
+Date:   Tue, 9 Feb 2021 13:21:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] thermal: qcom: tsens-v0_1: Add support for MDM9607
+Message-ID: <20210209192155.GA4191751@robh.at.kernel.org>
+References: <20210127182506.52311-1-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
-In-Reply-To: <CACPK8XekihpoXEeyUbWSXsRkVMbX1gKG-gSeYgWq=s3UR2gi1g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210127182506.52311-1-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/9/2021 4:10 AM, Joel Stanley wrote:
-> On Wed, 3 Feb 2021 at 23:03, Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com> wrote:
->>
->> Hi Joel
->>
->> On 1/28/2021 11:36 AM, Jae Hyun Yoo wrote:
->>> Hi Joel
->>>
->>> On 1/27/2021 4:06 PM, Joel Stanley wrote:
->>>>>> All this information doesn't need to be in the binding.
->>>>>>
->>>>>> It's also an oddly structured dts file if this is what you are doing...
->>>>>
->>>>> I removed the default buffer mode settings that I added into
->>>>> 'aspeed-g4.dtsi' and 'aspeed-g5.dtsi' in v1 to avoid touching of the
->>>>> default transfer mode setting, but each bus should use its dedicated
->>>>> SRAM buffer range for enabling buffer mode so I added this information
->>>>> at here as overriding examples instead. I thought that binding document
->>>>> is a right place for providing this information but looks like it's not.
->>>>> Any recommended place for it? Is it good enough if I add it just into
->>>>> the commit message?
->>>>
->>>> I agree with Rob, we don't need this described in the device tree
->>>> (binding or dts). We know what the layout is for a given aspeed
->>>> family, so the driver can have this information hard coded.
->>>>
->>>> (Correct me if I've misinterpted here Rob)
->>>>
->>>
->>> Makes sense. Will add these settings into the driver module as hard
->>> coded per each bus.
->>>
->>
->> Realized that the SRAM buffer range setting should be added into device
->> tree because each bus module should get the dedicated IO resource range.
->> So I'm going to add it to dtsi default reg setting for each I2C bus
->> and will remove this description in binding. Also, I'll add a mode
->> setting property instead to keep the current setting as byte mode.
+On Wed, 27 Jan 2021 19:25:05 +0100, Konrad Dybcio wrote:
+> MDM9607 TSENS IP is very similar to the one of MSM8916, with
+> minor adjustments to various tuning values.
 > 
-> I don't understand. What do you propose adding?
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+> Changes since v1:
+> - Move the defines so as not to cut into the middle of 8974 regs
+> 
+>  .../bindings/thermal/qcom-tsens.yaml          |   2 +
+>  drivers/thermal/qcom/tsens-v0_1.c             | 100 +++++++++++++++++-
+>  drivers/thermal/qcom/tsens.c                  |   3 +
+>  drivers/thermal/qcom/tsens.h                  |   2 +-
+>  4 files changed, 105 insertions(+), 2 deletions(-)
 > 
 
-I'm going to add reg resource for the SRAM buffer per each bus like
-
-reg = <0x40 0x40>, <0x800 0x80>;
-
-into the aspeed-g*.dtsi but adding like this will not be a key for
-enabling buffer mode like this v2 does. Also, I'm going to remove the
-'aspeed,dma-buf-size' in this patch series and I'll add fixed DMA length
-as a configuration per each SoC. Instead, I'm going to add a xfer mode
-property e.g. 'aspeed,i2c-xfer-mode' to select 'byte', 'buffer' or 'dma'
-modes.
-
-Thanks,
-Jae
+Acked-by: Rob Herring <robh@kernel.org>
