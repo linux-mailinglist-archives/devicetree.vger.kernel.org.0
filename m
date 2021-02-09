@@ -2,216 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF2D731472D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 04:47:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14BE6314749
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 05:06:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbhBIDqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 22:46:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43600 "EHLO
+        id S230077AbhBIEGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 23:06:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230196AbhBIDmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 22:42:38 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4BAC061786;
-        Mon,  8 Feb 2021 19:28:44 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id my11so814192pjb.1;
-        Mon, 08 Feb 2021 19:28:44 -0800 (PST)
+        with ESMTP id S230138AbhBIEFG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 23:05:06 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD18C06178A
+        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 20:04:05 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id n10so11622900pgl.10
+        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 20:04:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:mail-followup-to:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=iNkvVbVPjvkONhlILwVRwh9nXa2Wj/wsvujkY/JhyuM=;
-        b=DtAKq9YCmmp3nhieg5RaC5F/0aChM7KbLSPPB4PxecWaRQjbsBDAhICKW+Na4tgmH4
-         dY9dKT5RHkKGkoFh3byCYiqBjkdrLaiBka8WxhFS6pAk4YlriQzJ4l1q9qAeMSUqRcQW
-         sgs0MitnA/d0ahIiDTY4r406X67ORimTkOKAtFh+XsaYQtr52DRs9RoZRu/jR5ChOXty
-         IbkbLcoJin9mC6JnbZwV98BDiqDIhg2sh0VEM1ioXk5e+L+H3F5+kLqqKF9LMggiejzM
-         L8srmTyqTEGkPze5t1ynjCgjzgbuE8qyfy9ENaH5Mwaf+EPu4EdzYOgYRDCo5rRb4lan
-         RLuA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=au9zGJI92rCYptzRiz2GTxndwXWMkdMY60ITYaRvJ48=;
+        b=pNiqgSv7Zq+dihvISC6o3Vyf1V+HDRTxtg5M1v5ONv3+vn3Bw1+deTY0IopTUwk00X
+         Vyx/bHrdx2wIhPuJS41p26TniVdoF4FreVxUagnUUXnNBXuZbdBEIBY+QFRiotim23p7
+         1Nbe13cBkwQJdXZUJdl5y/U/IGD5jhnjtU31afGIjDcJGKOVJU/GnHfVxeQyAdXc2kcR
+         vl+8G3iF0ZErBCZLpIZx6qK1GN18pqnQlbRzSLslOGeJ4aSHuhuAA10FBcMfSyYGmEAo
+         c7+/eho7+otUdK/vxIUQSwkwfMK5bRTv+Je/xXDbklsXm1R4TdfEMVhzDi+8bm8/qhcH
+         ALBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :in-reply-to:user-agent;
-        bh=iNkvVbVPjvkONhlILwVRwh9nXa2Wj/wsvujkY/JhyuM=;
-        b=obeEJ5gl3qoJGpwUdDZCP3g1iQ+PxAU4gTw5Ej27F/pmPCmySjTjonm9DLioYgTU33
-         EusVK7gKJ7K2hePhnNMR//daUkyXSn223qozJ++VZGcPRy0P7JHQ707UUJATuOx5Y13W
-         htpQEMQVgIqUG2Sv+vAnaXVmadSZrzKJsy7A0IRIqqTjAlxy28shPx5KiNvZhcoEdvb/
-         ssYc9hx+HwbZZYZEsNprumvz1oFm4F4OtHmV2BiOQ9C14RmO5qcbeaFXP+GBAtaAKWZg
-         KHrMc/ZeAZU7U8f6rFOH/Am4k882ZdfyuGYYGJCc56vuDStMK9rl6zN/bwt3Dd73Xlfv
-         8YZA==
-X-Gm-Message-State: AOAM532kLlKjLIVMpLIgm6SQPdwfVc44RBnJYfW0X4gdk/X7Z/Mi47zd
-        t1WxHmgT1VUrLBnHmw2GHYra1i+6q2slHA==
-X-Google-Smtp-Source: ABdhPJwS4m692WkJDHRki0OD1NmzMYo3U9c5MT7W2cpmC2agASAx0ZlEHkOJuyYJgmdCfpjXfwSkNA==
-X-Received: by 2002:a17:902:d48e:b029:e2:efbc:5fed with SMTP id c14-20020a170902d48eb02900e2efbc5fedmr2991833plg.53.1612841324367;
-        Mon, 08 Feb 2021 19:28:44 -0800 (PST)
-Received: from lenovo ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id a9sm14374382pfr.204.2021.02.08.19.28.41
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 08 Feb 2021 19:28:43 -0800 (PST)
-Date:   Tue, 9 Feb 2021 11:28:38 +0800
-From:   Orson Zhai <orsonzhai@gmail.com>
-To:     Baolin Wang <baolin.wang7@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Haidong Yao <haidong.yao@unisoc.com>,
-        Orson Zhai <orson.zhai@unisoc.com>
-Subject: Re: [PATCH 1/3] mailbox: sprd: Introduce refcnt when clients
- requests/free channels
-Message-ID: <20210209032838.GA24248@lenovo>
-Mail-Followup-To: Baolin Wang <baolin.wang7@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Haidong Yao <haidong.yao@unisoc.com>,
-        Orson Zhai <orson.zhai@unisoc.com>
-References: <1612785064-3072-1-git-send-email-orsonzhai@gmail.com>
- <CADBw62qiUG2dunB_i1iOp_srkAJP4CrVJX9mU25no++_b10hpg@mail.gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=au9zGJI92rCYptzRiz2GTxndwXWMkdMY60ITYaRvJ48=;
+        b=lruIs/lWGppCi0ZQb5r4jGjrgxLsS4TU/0kfStGMRZA2CqrFcaHifdhDoaBdy7Lfkl
+         rXC7d1lUQJyWagYqp7H7MFigaslElvrq+QDzFFCgSnysO/edCypuw114RErtxcz6PqFw
+         YfXbE5qAtChyOe+6XKld0y1+LJHg7FFAJ/oHJzIpYwxX6tMQzmhBQ1NUu75LNGdmtOeo
+         tm0fPJ4dT2/ZESCqy8ZFw+gW5WQtf6DRtZO6if0hHAvblv8EW8AAAXagqqTJIFv6uaX/
+         dYCn1hSIx5xQ84DUF+bio3LO8GcnuE5XDTFcpSV5xLdE5mUJXzkvlWISaesehRPdb67W
+         IdOg==
+X-Gm-Message-State: AOAM530YGnf/c+gB0TGeQf13Qvg8B4F6y1z4lg360qqT2fuTemEMqzi+
+        9nMgEENH/q2KH4GoCMB5/TbIvw==
+X-Google-Smtp-Source: ABdhPJzMxrmqTRmQb7VYVSMoSHfQalmUB4OnhVBzLyJePOaHHdx7FC9WvPb05H5V0noe6+vqV4ByiQ==
+X-Received: by 2002:aa7:8016:0:b029:1d5:ea54:d7be with SMTP id j22-20020aa780160000b02901d5ea54d7bemr20976254pfi.29.1612843444429;
+        Mon, 08 Feb 2021 20:04:04 -0800 (PST)
+Received: from localhost ([122.172.59.240])
+        by smtp.gmail.com with ESMTPSA id j7sm20246400pfh.147.2021.02.08.20.04.03
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Feb 2021 20:04:03 -0800 (PST)
+Date:   Tue, 9 Feb 2021 09:34:01 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        devicetree@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>
+Subject: Re: [PATCH V7 6/6] of: unittest: Statically apply overlays using
+ fdtoverlay
+Message-ID: <20210209040401.j5yya6qa442dvrur@vireshk-i7>
+References: <cover.1611904394.git.viresh.kumar@linaro.org>
+ <3683a542d4141cfcf9c2524a40a9ee75b657c1c2.1611904394.git.viresh.kumar@linaro.org>
+ <20210204015409.GA3150757@robh.at.kernel.org>
+ <20210208111813.oql6jmeaxuq3btz7@vireshk-i7>
+ <CAL_JsqK+eM_RrzXnbm2GJGJuVwAjEz1TeTux18Hc727vovbqDA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CADBw62qiUG2dunB_i1iOp_srkAJP4CrVJX9mU25no++_b10hpg@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <CAL_JsqK+eM_RrzXnbm2GJGJuVwAjEz1TeTux18Hc727vovbqDA@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 08, 2021 at 10:06:47PM +0800, Baolin Wang wrote:
-> Hi Orson,
+On 08-02-21, 08:21, Rob Herring wrote:
+> In string 'm' replace '.dtb' with '-dtbs'. Then we get the value of
+> that variable.
+
+Ah, thanks. I was able to get everything to work as expected now :)
+
+> >  ifneq ($(CHECK_DTBS),)
+> >  extra-y += $(patsubst %.dtb,%.dt.yaml, $(dtb-y))
+> > +extra-y += $(patsubst %.dtbo,%.dt.yaml, $(dtb-y))
+> >  extra-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtb,%.dt.yaml, $(dtb-))
+> > +extra-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtbo,%.dt.yaml, $(dtb-))
+> >  endif
 > 
-> On Mon, Feb 8, 2021 at 7:52 PM Orson Zhai <orsonzhai@gmail.com> wrote:
+> I'll have to try that out. I think that should work.
+
+It works with your patch itself, just that it was done after the
+failure and so wasn't happening.
+
+> > 2. This fails dtbs_check as it tries to run it for the source file of
+> >    test1.dtb
 > >
-> > From: Orson Zhai <orson.zhai@unisoc.com>
+> > $ make ARCH=arm64 O=../barm64/ -j8 CROSS_COMPILE=aarch64-linux-gnu- dtbs_check
+> > make[1]: Entering directory '/mnt/ssd/all/work/repos/devel/barm64'
+> > make[3]: *** No rule to make target 'arch/arm64/boot/dts/hisilicon/test1.dt.yaml', needed by '__build'.  Stop.
+> > /mnt/ssd/all/work/repos/devel/linux/scripts/Makefile.build:496: recipe for target 'arch/arm64/boot/dts/hisilicon' failed
+> > make[2]: *** [arch/arm64/boot/dts/hisilicon] Error 2
+> > make[2]: *** Waiting for unfinished jobs....
+> > /mnt/ssd/all/work/repos/devel/linux/Makefile:1345: recipe for target 'dtbs' failed
+> > make[1]: *** [dtbs] Error 2
+> > make[1]: Leaving directory '/mnt/ssd/all/work/repos/devel/barm64'
+> > Makefile:185: recipe for target '__sub-make' failed
+> > make: *** [__sub-make] Error 2
 > >
-> > Unisoc mailbox has no way to be enabled/disabled for any single channel.
-> > They can only be set to startup or shutdown as a whole device at same time.
-> >
-> > Add a variable to count references to avoid mailbox FIFO being reset
-> > unexpectedly when clients are requesting or freeing channels.
-> >
-> > Also add a lock to dismiss possible conflicts from register r/w in
-> > different startup or shutdown threads.
-> >
-> > Fixes: ca27fc26cd22 ("mailbox: sprd: Add Spreadtrum mailbox driver")
-> > Signed-off-by: Orson Zhai <orson.zhai@unisoc.com>
-> > ---
-> >  drivers/mailbox/sprd-mailbox.c | 38 +++++++++++++++++++++++++-------------
-> >  1 file changed, 25 insertions(+), 13 deletions(-)
-> >
-> > diff --git a/drivers/mailbox/sprd-mailbox.c b/drivers/mailbox/sprd-mailbox.c
-> > index f6fab24..e606f52 100644
-> > --- a/drivers/mailbox/sprd-mailbox.c
-> > +++ b/drivers/mailbox/sprd-mailbox.c
-> > @@ -60,6 +60,8 @@ struct sprd_mbox_priv {
-> >         struct clk              *clk;
-> >         u32                     outbox_fifo_depth;
-> >
-> > +       struct mutex            lock;
-> > +       u32                     refcnt;
-> >         struct mbox_chan        chan[SPRD_MBOX_CHAN_MAX];
-> >  };
-> >
-> > @@ -215,18 +217,22 @@ static int sprd_mbox_startup(struct mbox_chan *chan)
-> >         struct sprd_mbox_priv *priv = to_sprd_mbox_priv(chan->mbox);
-> >         u32 val;
-> >
-> > -       /* Select outbox FIFO mode and reset the outbox FIFO status */
-> > -       writel(0x0, priv->outbox_base + SPRD_MBOX_FIFO_RST);
-> > +       mutex_lock(&priv->lock);
-> > +       if (priv->refcnt++ == 0) {
-> > +               /* Select outbox FIFO mode and reset the outbox FIFO status */
-> > +               writel(0x0, priv->outbox_base + SPRD_MBOX_FIFO_RST);
-> >
-> > -       /* Enable inbox FIFO overflow and delivery interrupt */
-> > -       val = readl(priv->inbox_base + SPRD_MBOX_IRQ_MSK);
-> > -       val &= ~(SPRD_INBOX_FIFO_OVERFLOW_IRQ | SPRD_INBOX_FIFO_DELIVER_IRQ);
-> > -       writel(val, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
-> > +               /* Enable inbox FIFO overflow and delivery interrupt */
-> > +               val = readl(priv->inbox_base + SPRD_MBOX_IRQ_MSK);
-> > +               val &= ~(SPRD_INBOX_FIFO_OVERFLOW_IRQ | SPRD_INBOX_FIFO_DELIVER_IRQ);
-> > +               writel(val, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
-> >
-> > -       /* Enable outbox FIFO not empty interrupt */
-> > -       val = readl(priv->outbox_base + SPRD_MBOX_IRQ_MSK);
-> > -       val &= ~SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ;
-> > -       writel(val, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
-> > +               /* Enable outbox FIFO not empty interrupt */
-> > +               val = readl(priv->outbox_base + SPRD_MBOX_IRQ_MSK);
-> > +               val &= ~SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ;
-> > +               writel(val, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
-> > +       }
-> > +       mutex_unlock(&priv->lock);
+> > I am not sure how to fix this.
 > 
-> I think using the atomic_add/sub_and_test() related APIs can remove
-> the mutex lock.
+> Even if we fixed the make rules, it's not going to work with
+> validation. There's some information from source files that we
+> maintain in yaml output, but is lost in dtb output. For example, the
+> sizes of /bits/ syntax are maintained. For now, I think we'll want to
+> just validate base and overlays separately. We may need to turn off
+> checks in overlays for required properties as they may be incomplete.
+> We already do that on disabled nodes.
 
-Yes, atomic could make refcnt itself safe. But mutex lock is to make whole processing of
-reading/writing registers safe.
+I did this instead and it made everything work, we don't try dt.yaml
+for the test1.dtb file anymore, is this acceptable ?
 
-Consider case like this:
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index 886d2e6c58f0..b86ff1b3de14 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -66,7 +66,7 @@ multi-used   := $(multi-used-y) $(multi-used-m)
+ real-obj-y := $(foreach m, $(obj-y), $(if $(strip $($(m:.o=-objs)) $($(m:.o=-y)) $($(m:.o=-))),$($(m:.o=-objs)) $($(m:.o=-y)),$(m)))
+ real-obj-m := $(foreach m, $(obj-m), $(if $(strip $($(m:.o=-objs)) $($(m:.o=-y)) $($(m:.o=-m)) $($(m:.o=-))),$($(m:.o=-objs)) $($(m:.o=-y)) $($(m:.o=-m)),$(m)))
+ 
+-real-dtb-y := $(foreach m,$(dtb-y), $(if $(strip $($(m:.dtb=-dtbs))),$($(m:.dtb=-dtbs)),))
++real-dtb-y := $(foreach m,$(overlay-y), $(if $(strip $($(m:.dtb=-dtbs))),$($(m:.dtb=-dtbs)),))
+ dtb-y += $(real-dtb-y)
+ 
+ always-y += $(always-m)
 
-  channel #1             channel #2
--------------------------------------
-   startup
-   .....
-   shutdown               startup
-     |-refcnt==0            |
-     |                      |-retcnt+1
-     |                      |-enable mailbox
-     |-disable mailbox 
+diff --git a/arch/arm64/boot/dts/hisilicon/Makefile b/arch/arm64/boot/dts/hisilicon/Makefile
+index f4d68caeba83..69ca27014e89 100644
+--- a/arch/arm64/boot/dts/hisilicon/Makefile
++++ b/arch/arm64/boot/dts/hisilicon/Makefile
+@@ -6,3 +6,8 @@ dtb-$(CONFIG_ARCH_HISI) += hi6220-hikey.dtb
+ dtb-$(CONFIG_ARCH_HISI) += hip05-d02.dtb
+ dtb-$(CONFIG_ARCH_HISI) += hip06-d03.dtb
+ dtb-$(CONFIG_ARCH_HISI) += hip07-d05.dtb
++
++DTC_FLAGS_hi3660-hikey960 += -@
++
++test1-dtbs := hi3660-hikey960.dtb hi3660-hikey960-overlay.dtbo
++overlay-y += test1.dtb
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960-overlay.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960-overlay.dts
+new file mode 100644
+index 000000000000..1235a911caae
+--- /dev/null
++++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960-overlay.dts
+@@ -0,0 +1,16 @@
++// SPDX-License-Identifier: GPL-2.0
++/dts-v1/;
++/plugin/;
++
++&dwmmc2 {
++       #address-cells = <0x1>;
++       #size-cells = <0x0>;
++
++       wlcore2: wlcore@5 {
++               compatible = "ti,wl1837";
++               reg = <2>;
++               interrupt-parent = <&gpio22>;
++               interrupts = <3 1>;
++               test = <1>;
++       };
++};
 
-Mailbox will be wrongly disabled after client requests channel #2's startup.
-
-> 
-> >
-> >         return 0;
-> >  }
-> > @@ -235,9 +241,13 @@ static void sprd_mbox_shutdown(struct mbox_chan *chan)
-> >  {
-> >         struct sprd_mbox_priv *priv = to_sprd_mbox_priv(chan->mbox);
-> >
-> > -       /* Disable inbox & outbox interrupt */
-> > -       writel(SPRD_INBOX_FIFO_IRQ_MASK, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
-> > -       writel(SPRD_OUTBOX_FIFO_IRQ_MASK, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
-> > +       mutex_lock(&priv->lock);
-> > +       if (--priv->refcnt == 0) {
-> > +               /* Disable inbox & outbox interrupt */
-> > +               writel(SPRD_INBOX_FIFO_IRQ_MASK, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
-> > +               writel(SPRD_OUTBOX_FIFO_IRQ_MASK, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
-> > +       }
-> > +       mutex_unlock(&priv->lock);
-> >  }
-> >
-> >  static const struct mbox_chan_ops sprd_mbox_ops = {
-> > @@ -266,6 +276,8 @@ static int sprd_mbox_probe(struct platform_device *pdev)
-> >                 return -ENOMEM;
-> >
-> >         priv->dev = dev;
-> > +       priv->refcnt = 0;
-> 
-> No need to do this, the priv structure is already cleared to 0.
-
-Right, will remove at next version.
-
-Thanks for reviewing!
-
--Orson
-
-> 
-> > +       mutex_init(&priv->lock);
-> >
-> >         /*
-> >          * The Spreadtrum mailbox uses an inbox to send messages to the target
-> > --
-> > 2.7.4
-> >
-> 
-> 
-> -- 
-> Baolin Wang
+-- 
+viresh
