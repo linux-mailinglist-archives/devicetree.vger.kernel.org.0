@@ -2,172 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED71F3158CC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 22:43:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69D453158CD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 22:43:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231324AbhBIVlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 16:41:06 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:43411 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234300AbhBIU75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 15:59:57 -0500
-Received: by mail-oi1-f172.google.com with SMTP id d20so20924002oiw.10;
-        Tue, 09 Feb 2021 12:59:41 -0800 (PST)
+        id S229834AbhBIVlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 16:41:39 -0500
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:37176 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233840AbhBIVGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 16:06:19 -0500
+Received: by mail-ua1-f53.google.com with SMTP id d3so6301336uap.4
+        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 13:06:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1pFQxRqA7pwwbpDRPrTabjXC5pKxQglsd9mMJ/rVkfA=;
-        b=BUqr8XUT8/Is7VrFtdHRdvdgWN6EzhaMTXCHDLD+U+usbzv78RSjGlzZtON3Y8Jkdx
-         8S9KPQYcmGx7yysXVlXFvVj3mYlJjY39+OyX4m4/c09XvDhpUvxaMJHpPRKkxWibK1XR
-         q1NlaNfeAzkU1yIUsGzL4Rz9ngWFaRxe+wDO+9kbEu0U6RZzvdkp/YeOhhe54lw0xdGQ
-         +wNK4OvegVDmgZdvfKdFIyeHdq41teKzhPI8XIQ1qEJG5HgqOcBEeHEcXs0zviBH7IHV
-         r+UMZMAYc4PeOMe5Vw5LfiYJxm23GuByyDQTJgONBCSmwlQl0hi2Ejjre+pfPeOBVHgp
-         0A/A==
-X-Gm-Message-State: AOAM533jSFWiCWmiiyVYSsJ3bGDRrTteh8Fzs7qYzxYzdoD4lmZiljpZ
-        BP90LpQ7V3SaBJigm6VdHMI49Cpf8A==
-X-Google-Smtp-Source: ABdhPJzXDZLzbrCk09AaBERqSNisnXCLkNA0Hm1UCP6W7w4JBoDw6xivdV4L/wUJtJTwvoiX6lMWOg==
-X-Received: by 2002:aca:d14:: with SMTP id 20mr3633257oin.157.1612897233375;
-        Tue, 09 Feb 2021 11:00:33 -0800 (PST)
+        bh=0lSV4AohGsl1Zr1fTQrQWSThsP43A4U9NitlrjcGFLY=;
+        b=Szd2ZHk9F/ocMLpbkZvZPAFX8OerBdm5XsGJHx9KoLfA8CFZ4/Kbq8ULRf35mUNydq
+         9JQedFEry2dsjL2AFYpIeR5JxBhDegAhWFET8yhsaQ8e7UAQWCI9nbfOxWhppvlW1Xd/
+         YSh5zu3bEM6wLTQ7VadVrLN+rj5FTMqlP9O5Ms0u45sAdPMAX6JTq8nlDsLIWKfOwE0M
+         U/rINuHvmykqnoer490dRWssQ/7hU1VYBVfWHqJ2UfljOwOGI1uzpeywbuGTKuvzPZxQ
+         th9YaBmZulISPkdVpLlkFKpBM2SycUj+EtX7OOl1vT4S878pwLZZCbNIxljgkpW/sZyC
+         73HQ==
+X-Gm-Message-State: AOAM5320yqCdbMyX2LlodznMAfHB/daruAGjBnE51UeTDCcwxKBn7ATl
+        xdd2JwpNQnIQArkhKew08a15x1vPBA==
+X-Google-Smtp-Source: ABdhPJzKfXsiizxjCyXEx0VckoiwC/5UFxLGdVQTZTq7WF7ZYGtOjNpOJapzmlORTAvYbqLUa9YFig==
+X-Received: by 2002:a9d:71c6:: with SMTP id z6mr17187410otj.276.1612897691853;
+        Tue, 09 Feb 2021 11:08:11 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y10sm2197802otq.71.2021.02.09.11.00.31
+        by smtp.gmail.com with ESMTPSA id i20sm4504476otl.78.2021.02.09.11.08.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 11:00:32 -0800 (PST)
-Received: (nullmailer pid 4153442 invoked by uid 1000);
-        Tue, 09 Feb 2021 19:00:31 -0000
-Date:   Tue, 9 Feb 2021 13:00:31 -0600
+        Tue, 09 Feb 2021 11:08:10 -0800 (PST)
+Received: (nullmailer pid 4167159 invoked by uid 1000);
+        Tue, 09 Feb 2021 19:08:09 -0000
+Date:   Tue, 9 Feb 2021 13:08:09 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Anshuman Khandual <anshuman.khandual@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        mathieu.poirier@linaro.org, suzuki.poulose@arm.com,
-        mike.leach@linaro.org, lcherian@marvell.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V3 06/14] dts: bindings: Document device tree bindings
- for ETE
-Message-ID: <20210209190031.GA4102836@robh.at.kernel.org>
-References: <1611737738-1493-1-git-send-email-anshuman.khandual@arm.com>
- <1611737738-1493-7-git-send-email-anshuman.khandual@arm.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     nicolas.ferre@microchip.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linus.walleij@linaro.org, alexandre.belloni@bootlin.com,
+        ludovic.desroches@microchip.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: at91-pio4: add slew-rate
+Message-ID: <20210209190809.GA4167103@robh.at.kernel.org>
+References: <1611747945-29960-1-git-send-email-claudiu.beznea@microchip.com>
+ <1611747945-29960-2-git-send-email-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1611737738-1493-7-git-send-email-anshuman.khandual@arm.com>
+In-Reply-To: <1611747945-29960-2-git-send-email-claudiu.beznea@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 02:25:30PM +0530, Anshuman Khandual wrote:
-> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+On Wed, 27 Jan 2021 13:45:43 +0200, Claudiu Beznea wrote:
+> Document slew-rate DT binding for SAMA7G5.
 > 
-> Document the device tree bindings for Embedded Trace Extensions.
-> ETE can be connected to legacy coresight components and thus
-> could optionally contain a connection graph as described by
-> the CoreSight bindings.
-> 
-> Cc: devicetree@vger.kernel.org
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Mike Leach <mike.leach@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
 > ---
-> Changes in V3:
+>  .../devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt       | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
 > 
-> - Fixed all DT yaml semantics problems
-> 
->  Documentation/devicetree/bindings/arm/ete.yaml | 74 ++++++++++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
-> new file mode 100644
-> index 0000000..edc1fe2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/ete.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +# Copyright 2021, Arm Ltd
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/ete.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: ARM Embedded Trace Extensions
-> +
-> +maintainers:
-> +  - Suzuki K Poulose <suzuki.poulose@arm.com>
-> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
-> +
-> +description: |
-> +  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
-> +  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
-> +  architecture and has extended support for future architecture changes.
-> +  The trace generated by the ETE could be stored via legacy CoreSight
-> +  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
-> +  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
-> +  legacy CoreSight components, a node must be listed per instance, along
-> +  with any optional connection graph as per the coresight bindings.
-> +  See bindings/arm/coresight.txt.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^ete([0-9a-f]+)$"
-> +  compatible:
-> +    items:
-> +      - const: arm,embedded-trace-extension
-> +
-> +  cpu:
 
-We've already established 'cpus' for this purpose.
-
-> +    description: |
-> +      Handle to the cpu this ETE is bound to.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  out-ports:
-> +    type: object
-
-Replace with: $ref: /schemas/graph.yaml#/properties/ports
-
-> +    description: |
-> +      Output connections from the ETE to legacy CoreSight trace bus.
-> +    properties:
-> +      port:
-> +        $ref: /schemas/graph.yaml#/properties/port
-
-Actually, if only 1 port ever, you can drop 'out-ports' and just have 
-'port'. Not sure though if the coresight stuff depends on 'out-ports'.
-
-> +
-> +required:
-> +  - compatible
-> +  - cpu
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +
-> +# An ETE node without legacy CoreSight connections
-> +  - |
-> +    ete0 {
-> +      compatible = "arm,embedded-trace-extension";
-> +      cpu = <&cpu_0>;
-> +    };
-> +# An ETE node with legacy CoreSight connections
-> +  - |
-> +   ete1 {
-> +      compatible = "arm,embedded-trace-extension";
-> +      cpu = <&cpu_1>;
-> +
-> +      out-ports {        /* legacy coresight connection */
-> +         port {
-> +             ete1_out_port: endpoint {
-> +                remote-endpoint = <&funnel_in_port0>;
-> +             };
-> +         };
-> +      };
-> +   };
-> +
-> +...
-> -- 
-> 2.7.4
-> 
+Acked-by: Rob Herring <robh@kernel.org>
