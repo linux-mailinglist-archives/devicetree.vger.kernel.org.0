@@ -2,70 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F259A3159D6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 00:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20C65315A61
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 00:59:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234706AbhBIXDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 18:03:20 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:34999 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234586AbhBIWyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 17:54:19 -0500
-Received: by mail-ot1-f53.google.com with SMTP id k10so81012otl.2;
-        Tue, 09 Feb 2021 14:53:03 -0800 (PST)
+        id S233999AbhBIX6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 18:58:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55608 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233693AbhBIWHM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 17:07:12 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C77C08EB2E
+        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 13:55:29 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id b187so19676245ybg.9
+        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 13:55:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/PGZ6373hwX21uII2yTNlUq0BGVrzE4VOh9IUqL/yOY=;
+        b=QMbKQ/jadoFRzkunArX38Q12u3yrUElD5NaALMt6Gr5sASFNErzU750CisBVhEKxbZ
+         BKsBL/FAnK6bP4RsSApVhEr6Anv9KwZcAzCeS1G5UxYly2GzVAHU4nj+zBK7fQzg9KWS
+         hkfl7KFyNbN8Fd9hOTVkK+MlD2a++rRtv0rbzXsbf6CmGOD5Z55NCopVLSQg80Mu4oam
+         hJAOgavYCPe0Z0AGKoON1zf9X5fDwPt+LVwlbW0+8R9wFlkxS77ze0Dn3fWBZ9FdZdEz
+         0aa6qtJavWGV6X8bmsNRzFp7OLc33PfIGmHAIOrdFBs0JOWb5NOoqY193QJVgrCECaYu
+         /f3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BdXrNYH73Jb2kpPTUcCxcN6nJbRmjpr252i7yRd/ggk=;
-        b=I6j242afR1bGVHPA78DIpg36KAcDA6RH+YSBVIqsLS4nr/aA6pQTS6nAc5gRo3FIc5
-         qlVtEZlMvhV82isi2+KB4Mje+JJOWQ40OndBxvVpethcd11a/OamQrIMXM4K+m3C/xlI
-         okj26FgdNuFZNR9WrES4PH8ehIzJq4QiwSwkjUt9nSvgO3IGcpXOWX86od8nhtBJgZgM
-         fktdz9cVPRYFbwKDi7frTlJb8pYstb/enyxpUA0EdbKlk9ZZGAtNZivjjGaFr7yclKV1
-         zoQQxk4SzMFRsZBdZnxmm8KBNwMLVqRI4q8Lo3AvrkRDyup+elnw92zOHaKs9xIs2UZi
-         0X/Q==
-X-Gm-Message-State: AOAM531M9hfaz4kN636GZxNGm+JgK033W2wc36nvg/e8CxAY3ilvxmZm
-        5S9uIm944qTp4VHjqghkyjqHHSSZEQ==
-X-Google-Smtp-Source: ABdhPJwzuiohuTuCd8IQ8dk5kVshNfOVLhoaBlPjyV7EoguvkYCz0yVz+su4drcXtxGAADhkz3ARLA==
-X-Received: by 2002:a9d:7514:: with SMTP id r20mr17267303otk.318.1612911157755;
-        Tue, 09 Feb 2021 14:52:37 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o98sm641ota.0.2021.02.09.14.52.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 14:52:36 -0800 (PST)
-Received: (nullmailer pid 372109 invoked by uid 1000);
-        Tue, 09 Feb 2021 22:52:35 -0000
-Date:   Tue, 9 Feb 2021 16:52:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-can@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Marc Kleine-Budde <mkl@pengutronix.de>, netdev@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: can: rcar_canfd: Group tuples in pin
- control properties
-Message-ID: <20210209225235.GA371996@robh.at.kernel.org>
-References: <20210204125937.1646305-1-geert+renesas@glider.be>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/PGZ6373hwX21uII2yTNlUq0BGVrzE4VOh9IUqL/yOY=;
+        b=jDTmLVbW2TnJ8K5wi2B0E3sqPL2eyqHKxHV2oPcAmyPzLybbpdm8eGL14Tebhc/0qb
+         CFwIPHAzSBGaf6BAAvO0yxlJhYSaxyGbJutXE0Iiu8HxowEseaJvSJ3q+Mds78L4axUN
+         /JsvojZbdVZx953he9Tz5EqNL/8y5oQaR0A0TzXTxFbmsplkJzNETB2j2bnFsLspSbiC
+         TvT3VkAQv627EPTVQhdOJFW+PlA4i1r9sJc3a+zgmHB+r+YLy5Di9jN+jRJKmkZ6BtCy
+         8wcvFaemr1/9p7Vp1mLxR03PvYzcY1nDAFKW6dT+4XfayTdQHeHqLBFjMzdZJFQYShW7
+         JXUA==
+X-Gm-Message-State: AOAM530+zHayNQF3WP9RS0qNNDpo1mbpLgv8L7Js7hRO3GVUztWobWkT
+        LgwpGhXA/2zFAXCpq7lkW4Ug869qi7MoLFocfDDwFQ==
+X-Google-Smtp-Source: ABdhPJyj1xOOpj4onlG2/WW3umTyJvCVg8fQGOPytjYVlJXvUchM6BAlnaXUWge9bvj0zPdNDJIpSnxTV2zaYfiH3IQ=
+X-Received: by 2002:a25:b74c:: with SMTP id e12mr37996841ybm.20.1612907728418;
+ Tue, 09 Feb 2021 13:55:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210204125937.1646305-1-geert+renesas@glider.be>
+References: <20210205222644.2357303-1-saravanak@google.com>
+ <20210205222644.2357303-5-saravanak@google.com> <20210209213320.GA219007@robh.at.kernel.org>
+In-Reply-To: <20210209213320.GA219007@robh.at.kernel.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 9 Feb 2021 13:54:52 -0800
+Message-ID: <CAGETcx_gHRd9UYHvSsHX_=NFF+HEJkamJp3JcpojuJob_a8_DA@mail.gmail.com>
+Subject: Re: [PATCH v4 4/8] of: property: Add fw_devlink support for optional properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 04 Feb 2021 13:59:37 +0100, Geert Uytterhoeven wrote:
-> To improve human readability and enable automatic validation, the tuples
-> in "pinctrl-*" properties should be grouped using angle brackets.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/net/can/rcar_canfd.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+On Tue, Feb 9, 2021 at 1:33 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Feb 05, 2021 at 02:26:40PM -0800, Saravana Kannan wrote:
+> > Not all DT bindings are mandatory bindings. Add support for optional DT
+> > bindings and mark iommus, iommu-map, dmas as optional DT bindings.
+>
+> I don't think we can say these are optional or not. It's got to be a
+> driver decision somehow.
 
-Applied, thanks!
+Right, so maybe the word "optional" isn't a good name for it. I can
+change that if you want.
+
+The point being, fw_devlink can't block the probe of this driver based
+on iommu property. We let the driver decide if it wants to
+-EPROBE_DEFER or not or however it wants to handle this.
+
+> For example, if IOMMU is optional, what happens with this sequence:
+>
+> driver probes without IOMMU
+> driver calls dma_map_?()
+> IOMMU driver probes
+> h/w accesses DMA buffer --> BOOM!
+
+Right. But how is this really related to fw_devlink? AFAICT, this is
+an issue even today. If the driver needs the IOMMU, then it needs to
+make sure the IOMMU has probed? What am I missing?
+
+-Saravana
