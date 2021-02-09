@@ -2,53 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35FA8315DF7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 04:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51186315DF9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 05:00:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229881AbhBJD5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 22:57:11 -0500
+        id S229729AbhBJEAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 23:00:08 -0500
 Received: from fllv0015.ext.ti.com ([198.47.19.141]:42344 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbhBJD5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 22:57:11 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 119Jarfk020980;
-        Tue, 9 Feb 2021 13:36:53 -0600
+        with ESMTP id S229601AbhBJEAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 23:00:07 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 119Jb6fX021023;
+        Tue, 9 Feb 2021 13:37:06 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1612899413;
-        bh=WEvmW5fPviMFTlXzHzjYc91rOSWFJPJRq44UukhxYc8=;
-        h=From:To:CC:Subject:Date;
-        b=aY6zkuYxuckyg0u/Hl+bTDWfsqSS3CIvR08GYJ9WzTgJvtAdrY7MR33b3suBo5b9+
-         m2oWuPQNWBP+Ah1isPzy6WljxQX6R2Iq8m9wAFJ4PvHkyK+6pc+laMgFoV5x4pcMZA
-         oFpp9DnekNC818X3gQ7wCkloCZZY45f2aYJJbmQ4=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 119JarNc054717
+        s=ti-com-17Q1; t=1612899427;
+        bh=L9YNORugLibqxGGcKUb7I7kHap34krhtwxZBPRsk79I=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=A8FoptXT3H0vp39VQ0D4plELeFt6ZT38OLGqyM0GcgoCP2faAwuDMTExeAHDGdu2Y
+         58OENQU/gh9e/HqteVyj7m+UgBbiyK60KvJJTNEUcsRpyqrraLweaIttrrrn7vgf7F
+         0pEUzoDudHd855vMXQgfUyJon1bL5Fm0JYnayjCk=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 119Jb6Jo115654
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Feb 2021 13:36:53 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 9 Feb 2021 13:37:06 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 9 Feb
- 2021 13:36:52 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 13:37:06 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 9 Feb 2021 13:36:52 -0600
+ Frontend Transport; Tue, 9 Feb 2021 13:37:06 -0600
 Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 119Jaqbm049383;
-        Tue, 9 Feb 2021 13:36:52 -0600
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 119Jb6Q1080251;
+        Tue, 9 Feb 2021 13:37:06 -0600
 Received: from localhost ([10.250.35.110])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 119JaqI2082144;
-        Tue, 9 Feb 2021 13:36:52 -0600
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 119Jb6Ah082592;
+        Tue, 9 Feb 2021 13:37:06 -0600
 From:   Suman Anna <s-anna@ti.com>
 To:     Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>
 CC:     <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 0/2] Add Mailbox support for TI K3 AM64x SoCs
-Date:   Tue, 9 Feb 2021 13:36:41 -0600
-Message-ID: <20210209193643.24824-1-s-anna@ti.com>
+Subject: [PATCH v2 2/2] mailbox: omap: Add support for K3 AM64x SoCs
+Date:   Tue, 9 Feb 2021 13:36:43 -0600
+Message-ID: <20210209193643.24824-3-s-anna@ti.com>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210209193643.24824-1-s-anna@ti.com>
+References: <20210209193643.24824-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -57,26 +59,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jassi,
+The AM64x SoC contains a Mailbox IP instance with multiple clusters
+in the MAIN domain, and is a variant of the IP on current AM65x and
+J721E SoCs. The AM64x SoC has only 8 clusters with no interrupts
+routed to the A53 core on the first 2 clusters. The interrupt outputs
+from the IP do not go through any Interrupt Routers and are hard-wired
+to each processor, with only couple of interrupts from each cluster
+reaching the A53 core. The IP is also not built with the K3 safety
+feature in hardware.
 
-The following is a minor revision of the series [1] that extends the OMAP
-Mailbox driver for the IP on TI K3 AM64x SoCs.
+Add the support for this IP through a new compatible.
 
-Only change is in patch 1 to drop the example in the dt-bindings patch.
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+v2: No changes
 
-regards
-Suman
+ drivers/mailbox/omap-mailbox.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210127195600.23501-1-s-anna@ti.com/
-
-Suman Anna (2):
-  dt-bindings: mailbox: omap: Update binding for AM64x SoCs
-  mailbox: omap: Add support for K3 AM64x SoCs
-
- Documentation/devicetree/bindings/mailbox/omap-mailbox.txt | 4 ++++
- drivers/mailbox/omap-mailbox.c                             | 6 +++++-
- 2 files changed, 9 insertions(+), 1 deletion(-)
-
+diff --git a/drivers/mailbox/omap-mailbox.c b/drivers/mailbox/omap-mailbox.c
+index 93fe08aef3ca..7295e3835e30 100644
+--- a/drivers/mailbox/omap-mailbox.c
++++ b/drivers/mailbox/omap-mailbox.c
+@@ -3,7 +3,7 @@
+  * OMAP mailbox driver
+  *
+  * Copyright (C) 2006-2009 Nokia Corporation. All rights reserved.
+- * Copyright (C) 2013-2019 Texas Instruments Incorporated - https://www.ti.com
++ * Copyright (C) 2013-2021 Texas Instruments Incorporated - https://www.ti.com
+  *
+  * Contact: Hiroshi DOYU <Hiroshi.DOYU@nokia.com>
+  *          Suman Anna <s-anna@ti.com>
+@@ -663,6 +663,10 @@ static const struct of_device_id omap_mailbox_of_match[] = {
+ 		.compatible	= "ti,am654-mailbox",
+ 		.data		= &omap4_data,
+ 	},
++	{
++		.compatible	= "ti,am64-mailbox",
++		.data		= &omap4_data,
++	},
+ 	{
+ 		/* end */
+ 	},
 -- 
 2.29.2
 
