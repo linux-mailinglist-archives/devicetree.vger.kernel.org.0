@@ -2,70 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E01C3158C3
+	by mail.lfdr.de (Postfix) with ESMTP id BE8723158C4
 	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 22:43:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234113AbhBIVjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 16:39:20 -0500
-Received: from mail-oo1-f54.google.com ([209.85.161.54]:36055 "EHLO
-        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234084AbhBIUwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 15:52:55 -0500
-Received: by mail-oo1-f54.google.com with SMTP id x10so14967oor.3;
-        Tue, 09 Feb 2021 12:52:39 -0800 (PST)
+        id S233645AbhBIVjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 16:39:33 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:44926 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234191AbhBIU4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 15:56:35 -0500
+Received: by mail-ot1-f42.google.com with SMTP id e5so11957232otb.11;
+        Tue, 09 Feb 2021 12:56:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=zYWOrkcsKfChRImNqLSWdyR0i73LhsnHKlqkLnp7i9w=;
-        b=sJc948wv8cJRqkRlVMiNx6uEm3QIT1qewtMOs3/VUo7LRdK9up4qqdyltq78tI+thz
-         SJykwy48nV2zTDX5xBTWhMi5xt5p2H3wqWGmwgaSuUvbtsvh+H3l08xHExpq56e0uzzN
-         PsVGfCPY1LLCg00Pkuv8RSM6R74vZqmuio4k8Tcm6vEAavLzvYM54zdZDlZ6qHTbHkU1
-         zQ/pKBmDHMkVhO/ai+sP5TDL8t19B0wLyiQMT5CeN3IDMpnfgREY64hnq0uzR8RIObXN
-         2llrL/bLDcMO1RN1fuppyiFGNNkXWXO6/743BGoank25x8S2FoDhAWoOwF3csxEjOuPO
-         o1QQ==
-X-Gm-Message-State: AOAM5316kr0LkZcYORj8cM9WxPaeOzs2AVsf2tWPLQF8BFsGQHifcO3M
-        wrbupQB/oKa7uwq8bx+y0w==
-X-Google-Smtp-Source: ABdhPJzjsfC6m6597yiSi2bf2jQF3/2bD3LpwzGwpJ9MNjpY7vbQdMc+V54wsIohaWTF94Cd0VU2CA==
-X-Received: by 2002:a05:6820:414:: with SMTP id o20mr17289292oou.46.1612903934493;
-        Tue, 09 Feb 2021 12:52:14 -0800 (PST)
+        bh=RP3dhPMdlKAjivrXGUHAi9hHjPbrEKsu6Dv+Yzctmhw=;
+        b=PoZ93d/ZjJLUEG7Xo15K49AUUoxBwjFKZEAvy/pO0X3csLBYFJPK7sFMP/Q2i4kEEE
+         ATevZw084dYdpE778y0xHwASE8UfUrCHjHoDaDcyY9Kx0LWHIBtTFkxmDcq88ZihX33X
+         SUH9KSVlC8bPJ6CYnut+zAm/BrbblKGrE8ZWJtgAHccYMqUZGMKoLsEcGtkJmrEaTXPT
+         Coo8ep6nElTn2dNX+H0kFOsUfphK5SWAEFj3jQEQmKUxkrgREvIrLjdZpCUj8yJdSa/3
+         1zHbI3aEb0ZX3eUjZy5tdCAoYvi8iSeN6eq80s6WabMgUhGtKzJ0hOQOgFe+1+SZUNBU
+         Y9cQ==
+X-Gm-Message-State: AOAM533XhvZiJggHP3w8x7xQoHKaaMrhhWy2+Xf/u39v+npJ8QwO9xdQ
+        A1mXpozX7m6Je9EovG+Vbw==
+X-Google-Smtp-Source: ABdhPJyKYoGnii7JnW/1A4WdWWq6HpZ+jUyGwMPxsQGjJmlzc/2O4MqhObgvPviB1qdJQgl1D0k8Cw==
+X-Received: by 2002:a05:6830:c6:: with SMTP id x6mr2228694oto.135.1612904151832;
+        Tue, 09 Feb 2021 12:55:51 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 3sm4710017otn.18.2021.02.09.12.52.11
+        by smtp.gmail.com with ESMTPSA id a63sm4597844otc.75.2021.02.09.12.55.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 12:52:12 -0800 (PST)
-Received: (nullmailer pid 158305 invoked by uid 1000);
-        Tue, 09 Feb 2021 20:52:11 -0000
-Date:   Tue, 9 Feb 2021 14:52:11 -0600
+        Tue, 09 Feb 2021 12:55:50 -0800 (PST)
+Received: (nullmailer pid 164883 invoked by uid 1000);
+        Tue, 09 Feb 2021 20:55:49 -0000
+Date:   Tue, 9 Feb 2021 14:55:49 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
-        devicetree@vger.kernel.org, Michael Walle <michael@walle.cc>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: arm: xilinx: Add missing Zturn boards
-Message-ID: <20210209205211.GA158245@robh.at.kernel.org>
-References: <f6f642d75c1b1160ed78f6de0a2944ab64017691.1612185370.git.michal.simek@xilinx.com>
+To:     Iskren Chernev <iskren.chernev@gmail.com>
+Cc:     David Airlie <airlied@linux.ie>, Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        dri-devel@lists.freedesktop.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: panel: Add Samsung S6E3FA2 panel
+Message-ID: <20210209205549.GA164827@robh.at.kernel.org>
+References: <20210201165307.51443-1-iskren.chernev@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f6f642d75c1b1160ed78f6de0a2944ab64017691.1612185370.git.michal.simek@xilinx.com>
+In-Reply-To: <20210201165307.51443-1-iskren.chernev@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 Feb 2021 14:16:12 +0100, Michal Simek wrote:
-> Add missing DT compatible strings for Zturn boards.
+On Mon, 01 Feb 2021 18:53:05 +0200, Iskren Chernev wrote:
+> The Samsung S6E3FA2 AMOLED cmd LCD panel is used on the Samsung Galaxy
+> S5 (klte).
 > 
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
 > ---
+> Add a simple generated panel driver that supports on/off and the corresponding
+> binding documentation.
 > 
-> Patches are based on
-> https://lore.kernel.org/linux-arm-kernel/20210120194033.26970-3-michael@walle.cc/
-> ---
->  Documentation/devicetree/bindings/arm/xilinx.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Changes in v3:
+> - fix dt_binding_check issue with missing include
+> - fix panel type (cmd) in kconfig description
+> 
+> Changes in v2:
+> - move bindings to separate file, add 2 regulators
+> - add standalone panel driver
+> 
+> v1: https://lkml.org/lkml/2020/12/30/293
+> v2: https://lkml.org/lkml/2021/2/1/313
+> 
+>  .../display/panel/samsung,s6e3fa2.yaml        | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6e3fa2.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
