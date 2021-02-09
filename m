@@ -2,40 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 402FB3144E2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:27:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED6AD3144F8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 01:33:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbhBIA0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 19:26:37 -0500
-Received: from marcansoft.com ([212.63.210.85]:33500 "EHLO mail.marcansoft.com"
+        id S229554AbhBIAdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 19:33:32 -0500
+Received: from marcansoft.com ([212.63.210.85]:35348 "EHLO mail.marcansoft.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229646AbhBIA0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Feb 2021 19:26:36 -0500
+        id S229541AbhBIAdc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 19:33:32 -0500
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 1B24A4207F;
-        Tue,  9 Feb 2021 00:25:49 +0000 (UTC)
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Arnd Bergmann <arnd@kernel.org>
-Cc:     devicetree@vger.kernel.org, maz@kernel.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org, robh+dt@kernel.org,
-        olof@lixom.net, linux-arm-kernel@lists.infradead.org
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 5BE0441F47;
+        Tue,  9 Feb 2021 00:32:47 +0000 (UTC)
+To:     Rob Herring <robh@kernel.org>
+Cc:     Arnd Bergmann <arnd@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        DTML <devicetree@vger.kernel.org>, Marc Zyngier <maz@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        SoC Team <soc@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-14-marcan@marcan.st>
- <CAK8P3a2Ad+xmmMWgznOHPpxgCXKWFYfpHBqt_49_UuxrwFSq+A@mail.gmail.com>
- <c1bc2a087747c4d9@bloch.sibelius.xs4all.nl>
+ <20210204203951.52105-19-marcan@marcan.st>
+ <20210208110441.25qc6yken4effd6c@kozik-lap>
+ <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
+ <20210208121325.owjjd7nfbdanszny@kozik-lap>
+ <CAK8P3a0yBC3dui6vcz+NByWD-3LqRj-2MF89jpjb_k8r5xmNRA@mail.gmail.com>
+ <f98dc238-6742-455e-3f76-e86ae4c0c838@marcan.st>
+ <20210208175847.GB1567700@robh.at.kernel.org>
 From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 13/18] arm64: ioremap: use nGnRnE mappings on platforms
- that require it
-Message-ID: <635f1a81-58c8-f3b6-ab3f-1cf6a084aed0@marcan.st>
-Date:   Tue, 9 Feb 2021 09:25:47 +0900
+Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
+ devicetree
+Message-ID: <cace3b98-b102-ffb7-2fa1-1fa896160774@marcan.st>
+Date:   Tue, 9 Feb 2021 09:32:45 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <c1bc2a087747c4d9@bloch.sibelius.xs4all.nl>
+In-Reply-To: <20210208175847.GB1567700@robh.at.kernel.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
@@ -43,39 +49,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2021 08.20, Mark Kettenis wrote:
-> It is only PCI mmio space that needs to be nGnRE.  The PCI host
-> controller register space itself needs nGnRnE just like all other
-> integrated peripherals (or at least it works that way).
+On 09/02/2021 02.58, Rob Herring wrote:
+> I'll also highlight there's a DT only tree[1] available to import DT
+> related parts to other projects. It's generated from the kernel tree.
+> Probably an overkill to copying at this point though.
+> 
+> Rob
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/devicetree/devicetree-rebasing.git/
 
-This is correct. Actually, as I just discovered, nGnRE writes to MMIO 
-are not silently blackholed, but rather raise an SError. A certain other 
-Linux loader masks those SErrors in a vendor register completely 
-unnecessarily, which is why this isn't apparent when you use it. I never 
-noticed this myself until now because when I first ran into it, it was 
-breaking the UART, so of course I'd never see the SErrors, and I didn't 
-try again after I learned more about the L2C SError control mechanism :-)
+This actually brings up something else: do we want (eventually) *all* 
+Apple boards using these SoCs to have up-to-date devicetrees in the 
+Linux kernel tree? Obviously not every device supported by mainline has 
+proper ones in, but I don't know if that's expected or something to be 
+avoided.
 
-Testing now, it seems we can actually fairly neatly figure out where 
-nGnRE is allowed and where not, as writes that fail due to that raise a 
-SError with L2C_ERR_INF=3.
-
-I probed writing to i<<28 for i = [0..255], using nGnRE. This reveals 
-that nGnRE writes are allowed (i.e. either succeed or error out 
-differently) in the following ranges:
-
-0x400000000 - 0x4ffffffff (apciec0)
-0x580000000 - 0x67fffffff (apciec1)
-0x6a0000000 - 0x6ffffffff (apcie)
-
-Which matches the `ranges` properties of the respective apcie devices in 
-the ADT. The first two are obviously the TB3 ports, amd have more 
-features (three ranges instead of two, presumably IO port ranges are 
-supported on those, there's some extra DMA stuff, etc).
-
-So the hardware behavior is to block nGnRE everywhere except in those 
-ranges (i.e. the nGnRnE fault takes precedence over other errors, like 
-the address not existing at all).
+If this is intended to be kept in sync and be fully comprehensive, I 
+might as well start planning out our longer term DT maintenance strategy 
+around that (which might involve using that tree in our bootloader).
 
 -- 
 Hector Martin (marcan@marcan.st)
