@@ -2,214 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DA02315710
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 20:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F97E31575B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 21:03:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233259AbhBITpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 14:45:07 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:39884 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233621AbhBITil (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 14:38:41 -0500
-Received: by mail-oi1-f179.google.com with SMTP id l19so8182817oih.6;
-        Tue, 09 Feb 2021 11:35:37 -0800 (PST)
+        id S233726AbhBIUBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 15:01:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54672 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233766AbhBITwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 14:52:00 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C708C061356;
+        Tue,  9 Feb 2021 11:19:30 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id v15so23410368wrx.4;
+        Tue, 09 Feb 2021 11:19:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=LdU37lNhDGvGGmXAMcE5ydz9bMREEufjvwEN8UDTB/4=;
+        b=F9+10W24LAFXpvtC9BL+mfIHewjZBcP0gr3jPY+B3GxCXvErXX9JiZ89eAeRvVT88j
+         MSdIvVacH6Ey24JDVhh3g9VuZo0GK3Lej8iw9VhCrbulPcbn8CWXkHcSfkpkAEWrV/5c
+         p6yuTREOGZZEXrDWVcBaZ3lzq4WZ+S/M6MCTnvsSUosBLYMi5/3UWYKuQTntOrmdDdRT
+         V89lpTsbryFNMclIBLuvR1xLKQoV7+fl1IduR6MrvMcZZVI7Sf42DP7nce3EplemuuYR
+         WIkB3D8WmWOd4woXFuOGQe3iaOvl6w8e9eEJfCMfFeZQmG29G2ji9ols/F1SsmLc2swk
+         uKPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IBorz2otqQJxo0SaT5C7A5IkE1Wk8d8NppL9llXu7UE=;
-        b=c5VvMUsJHaPDswDg1QYopW1fOV53DSDrMVrPZdMppsW8GlPXd4256/mbuxtjA32T96
-         0rxH5m9TWF1Sf+UuEps6u2dSfpUOrukW/N5O4Bpvph781KFHXKRSCmD66fHkR10M492P
-         hpq92OR84MCwNmiTDD8U81ORz107z6E8Tz8+9XoOHoWSIJUBnMdIEo/MLq3qKhcVW3UF
-         xGhpL5/GM7YRQbzz0VFBpX/z8WfBGGF/FCNjNrnErv1AXizzk4b8y0Zmy1MRtuDiJv1s
-         e2hsKURq5nMcyTjmaTNOKh5FWP8KIyBiTOl+bgF6+fQ0R8rcl2YkDY6gNhUq7s73sqCg
-         +Iwg==
-X-Gm-Message-State: AOAM531WWUrMXp/mHOOioT5ZzI0h1o0//U+I3PHfxDBgwAbNJ/AOhev5
-        d00f/qIe4ElRlMg0k59urg==
-X-Google-Smtp-Source: ABdhPJz2JJIMXsH2KMeqHdo/5sxOJZRjKo7SFHnjZ0/HwqRTrOI7WqRCWYjXyDqU7L3VAU3h4B+6fQ==
-X-Received: by 2002:aca:eb91:: with SMTP id j139mr110967oih.101.1612899311796;
-        Tue, 09 Feb 2021 11:35:11 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a28sm4368979ook.24.2021.02.09.11.35.10
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=LdU37lNhDGvGGmXAMcE5ydz9bMREEufjvwEN8UDTB/4=;
+        b=Hheiza1ymQrW3JYzK9DPMlOr88Pa+5t+gXrAsbxfeq2xnQUctN5bWpIcSQWBbqFxk7
+         Ra2W7W9x2U+PzntE/mDjHZcGCnL4S5oVtqnthAyapXZMjrdnNBAivRfDgTppTK18d+C1
+         ffGfwxpQ/MgkoQ4tFNcCtxQ72GcMdO+7Io4ueVI8wYGJiqCw0X4cwaaRRuB/4lGpkqdW
+         avhQ5qpL1AYXUJK/I0Aj6l5KJ0AZ/efjffc6ErqU0ReHB3a8GFipW02W/lOQNYx5VGdF
+         0lI5ZnFktZ/q8t29uYv6b4/vhyhQpIud5Ym59VUgVOGplrejq0JAjcdBGseG8u5tTl7W
+         nkkw==
+X-Gm-Message-State: AOAM532M5mtBd6rrvSHQ6rBhgp/4bn1cvSDVheSeghhWbRiqELBAojKJ
+        +CJRDYoDCnQNq3pmW5iJa3Y=
+X-Google-Smtp-Source: ABdhPJzy2FifsRzBzoPISrOA7c9EjqQOP4MTXtKqAd6gCGSsmhvjzZRRGtnkgeiObYjQeDD5t2IZlA==
+X-Received: by 2002:a5d:6b87:: with SMTP id n7mr14503619wrx.222.1612898369075;
+        Tue, 09 Feb 2021 11:19:29 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id l2sm5622864wmq.17.2021.02.09.11.19.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 11:35:10 -0800 (PST)
-Received: (nullmailer pid 21987 invoked by uid 1000);
-        Tue, 09 Feb 2021 19:35:09 -0000
-Date:   Tue, 9 Feb 2021 13:35:09 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, olteanv@gmail.com, netdev@vger.kernel.org,
-        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, UNGLinuxDriver@microchip.com,
-        Woojung.Huh@microchip.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/8] dt-bindings: net: dsa: dt bindings for
- microchip lan937x
-Message-ID: <20210209193509.GA16232@robh.at.kernel.org>
-References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
- <20210128064112.372883-2-prasanna.vengateshan@microchip.com>
+        Tue, 09 Feb 2021 11:19:27 -0800 (PST)
+Date:   Tue, 9 Feb 2021 20:19:24 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     Rob Herring <robh@kernel.org>, broonie@kernel.org,
+        lgirdwood@gmail.com, kuninori.morimoto.gx@renesas.com,
+        jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        sharadg@nvidia.com, Oder Chiou <oder_chiou@realtek.com>,
+        Bard Liao <bardliao@realtek.com>
+Subject: Re: [PATCH v2 1/9] ASoC: dt-bindings: rt5659: Update binding doc
+Message-ID: <YCLgPKtLyT9PL1/6@ulmo.localdomain>
+References: <1611944866-29373-1-git-send-email-spujar@nvidia.com>
+ <1611944866-29373-2-git-send-email-spujar@nvidia.com>
+ <20210205152933.GA3089668@robh.at.kernel.org>
+ <eb490eb1-d7e2-a188-8e62-496f9a1d99bc@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="fE2lUxibOs/cNBX0"
 Content-Disposition: inline
-In-Reply-To: <20210128064112.372883-2-prasanna.vengateshan@microchip.com>
+In-Reply-To: <eb490eb1-d7e2-a188-8e62-496f9a1d99bc@nvidia.com>
+User-Agent: Mutt/2.0.5 (da5e3282) (2021-01-21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 12:11:05PM +0530, Prasanna Vengateshan wrote:
-> Documentation in .yaml format and updates to the MAINTAINERS
-> Also 'make dt_binding_check' is passed
-> 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> ---
->  .../bindings/net/dsa/microchip,lan937x.yaml   | 115 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 116 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> new file mode 100644
-> index 000000000000..8531ca603f13
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/dsa/microchip,lan937x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LAN937x Ethernet Switch Series Tree Bindings
-> +
-> +maintainers:
-> +  - woojung.huh@microchip.com
-> +  - prasanna.vengateshan@microchip.com
-> +
-> +allOf:
-> +  - $ref: dsa.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,lan9370
-> +      - microchip,lan9371
-> +      - microchip,lan9372
-> +      - microchip,lan9373
-> +      - microchip,lan9374
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 50000000
-> +
-> +  reset-gpios:
-> +    description: Optional gpio specifier for a reset line
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    //Ethernet switch connected via spi to the host, CPU port wired to eth1
-> +    eth1 {
 
-ethernet {
+--fE2lUxibOs/cNBX0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      fixed-link {
-> +        speed = <1000>;
-> +        full-duplex;
-> +      };
-> +    };
-> +
-> +    spi1 {
+On Tue, Feb 09, 2021 at 06:51:58PM +0530, Sameer Pujar wrote:
+> Hi Rob,
+>=20
+> On 2/5/2021 8:59 PM, Rob Herring wrote:
+> > External email: Use caution opening links or attachments
+> >=20
+> >=20
+> > On Fri, Jan 29, 2021 at 11:57:38PM +0530, Sameer Pujar wrote:
+> > > Update following in rt5659.txt binding doc
+> > >    - Add JD source for Intel HDA header: Commit 041e74b71491
+> > >      ("ASoC: rt5659: Add the support of Intel HDA Header")
+> > >      added driver support. Add missing info here.
+> > >=20
+> > >    - sound-name-prefix: Used to prefix component widgets/kcontrols
+> > >      with given prefix.
+> > >=20
+> > >    - ports: Helps to use the Codec with audio graph card
+> > >=20
+> > > Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> > > Reported-by: Jon Hunter <jonathanh@nvidia.com>
+> > > Cc: Oder Chiou <oder_chiou@realtek.com>
+> > > Cc: Bard Liao <bardliao@realtek.com>
+> > > ---
+> > >   Documentation/devicetree/bindings/sound/rt5659.txt | 11 +++++++++++
+> > >   1 file changed, 11 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/sound/rt5659.txt b/Doc=
+umentation/devicetree/bindings/sound/rt5659.txt
+> > > index 56788f5..c473df5 100644
+> > > --- a/Documentation/devicetree/bindings/sound/rt5659.txt
+> > > +++ b/Documentation/devicetree/bindings/sound/rt5659.txt
+> > > @@ -37,10 +37,21 @@ Optional properties:
+> > >   - realtek,jd-src
+> > >     0: No JD is used
+> > >     1: using JD3 as JD source
+> > > +  2: JD source for Intel HDA header
+> > >=20
+> > >   - realtek,ldo1-en-gpios : The GPIO that controls the CODEC's LDO1_E=
+N pin.
+> > >   - realtek,reset-gpios : The GPIO that controls the CODEC's RESET pi=
+n.
+> > >=20
+> > > +- sound-name-prefix: Please refer to name-prefix.txt
+> > > +
+> > > +- ports: A Codec may have a single or multiple I2S interfaces. These
+> > > +  interfaces on Codec side can be described under 'ports' or 'port'.
+> > > +  When the SoC or host device is connected to multiple interfaces of
+> > > +  the Codec, the connectivity can be described using 'ports' propert=
+y.
+> > > +  If a single interface is used, then 'port' can be used. The usage
+> > > +  depends on the platform or board design.
+> > > +  Please refer to Documentation/devicetree/bindings/graph.txt
+> > Please read what that file says now.
+>=20
+> Sorry, I did not understand above comment. Can you please elaborate a bit
+> more?
 
-spi {
+I think what Rob meant to point out is that graph.txt now contains a
+mention that the file has been moved to a more central location, which
+is the dt-schema repository. So instead of referencing the graph.txt,
+which then redirects to the graph.yaml in dt-schema, it'd be better to
+directly reference graph.yaml from dt-schema.
 
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
+That said, I'm not aware of a good or standard way to make such a
+reference. Perhaps in this case, given that the rt5659 binding is not
+very large, you can convert the file to json-schema first and then use
+standard json-schema references for this.
 
-> +      pinctrl-0 = <&pinctrl_spi_ksz>;
-> +      cs-gpios = <0>, <0>, <0>, <&pioC 28 0>;
-> +      id = <1>;
+Thierry
 
-These 3 are relevant to the example, drop
+--fE2lUxibOs/cNBX0
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
-> +      lan9374: switch@0 {
-> +        compatible = "microchip,lan9374";
-> +        reg = <0>;
-> +
-> +        spi-max-frequency = <44000000>;
-> +
-> +        ethernet-ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          port@0 {
-> +            reg = <0>;
-> +            label = "lan1";
-> +          };
-> +          port@1 {
-> +            reg = <1>;
-> +            label = "lan2";
-> +          };
-> +          port@2 {
-> +            reg = <7>;
-> +            label = "lan3";
-> +          };
-> +          port@3 {
-> +            reg = <2>;
-> +            label = "lan4";
-> +          };
-> +          port@4 {
-> +            reg = <6>;
-> +            label = "lan5";
-> +          };
-> +          port@5 {
-> +            reg = <3>;
-> +            label = "lan6";
-> +          };
-> +          port@6 {
-> +            reg = <4>;
-> +            label = "cpu";
-> +            ethernet = <&eth1>;
-> +            fixed-link {
-> +              speed = <1000>;
-> +              full-duplex;
-> +            };
-> +          };
-> +          port@7 {
-> +            reg = <5>;
-> +            label = "lan7";
-> +            fixed-link {
-> +              speed = <1000>;
-> +              full-duplex;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 650deb973913..455670f37231 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11688,6 +11688,7 @@ M:	UNGLinuxDriver@microchip.com
->  L:	netdev@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> +F:	Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
->  F:	drivers/net/dsa/microchip/*
->  F:	include/linux/platform_data/microchip-ksz.h
->  F:	net/dsa/tag_ksz.c
-> -- 
-> 2.25.1
-> 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAi4DkACgkQ3SOs138+
+s6EVCQ/8CB7rS0lCIaO/YUrcXFEY2TLSIUnu3FGjHYkt5fALU7w9Rt8uYVlfcoCF
+Htg0LXUqYXUd/zXjE+x1ymwx3Azrb9z7DVAnAcXrB2Nq4x5QkvKmjJN90P6K+Jw4
+wI30K01fotkcbybxSX9wIIrRhhcSOd/JN0eExv/llHDz2jonCidB43TGd3p+hl71
+aJ0MMMmew8mK5hD+hxOL/3eYbmiPVtgJCstonPWTDUOaq7+Mc7Sdk+Rt2XAHw+5D
+z1oZTbfjo7QQ9UN4JeXQPwv7PEWoAqCV5vEOFTdfljV7s88VhxkBmUWDP76ITJCH
+NL1fU9xRMwVtkN7CrS5/NUBQaOPVsXFYb2cqxHsosakvB/rpDDkWeFrUustar6n3
+P4IspAPdOaeCTL+NzjxhL4Ij+W8xiialaTd1MGZsxdYPkX97+2onmXgUoQ10i8d+
+F0gFWrSM7dMSigKgHId1hRKm2ZJrQXNQONDg+NwN5cX6AOFy9At8RFaFNBbzWRu1
+Sq1n63PDPrHmcWpxy8H53n4Ce1UBNG4ZXDxzc1E91eNXMbdDe3ge/iomFIT1TiQr
+QWArTZk333ic4CuPH67hQFLhe83jWFJZRMLjAeGBJYq6Ff6Q6IcQbKh66CZ75/nV
+LfNAwaVzddpbaG0wMNxF1xCUDcQypRwkgQ2vgSFHjxua+65X6H0=
+=kZ90
+-----END PGP SIGNATURE-----
+
+--fE2lUxibOs/cNBX0--
