@@ -2,80 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7017B314EDF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 13:24:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F079314EEB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 13:32:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbhBIMXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 07:23:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56290 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229503AbhBIMXv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Feb 2021 07:23:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CFB4664EB4;
-        Tue,  9 Feb 2021 12:23:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612873390;
-        bh=L+CvYP2l7yxFcu390LciJ5wzeQ4zlYr5y+5yTYVenYA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LDSUx5Wy/6WXXiafzKEK/f2JAMCSwNDd8U9cvhpFPM6vk0Mg9SCYWzpf41Fw00BNT
-         NuiGBA6Fxs4ZBiRYT7xF28QYktSPLVTV0Qu9MxT9SFh35axTZGqekyQrTtRkIhOFPC
-         2N8+Re1ScL4ZFotJE4gNLw/5KZo5FqGXIG6S8nyCGVQFwe46xsZbi275T6tRngYX5o
-         635JJP4Nh2sRTaUfygmLKAzzXF3EPHnWdUjwgzQL/tGfUYXzpHENg6mtfhmzfYCnCz
-         aElTv+gkpGxAPFlb6u8nxWqDH9daBoPGppZZbCziF4YVldt+9Eev+4UKyrY9o5VhAo
-         jPRrXPoki0DnQ==
-Date:   Tue, 9 Feb 2021 12:23:04 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 16/26] KVM: arm64: Prepare Hyp memory protection
-Message-ID: <20210209122303.GA27058@willie-the-truck>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-17-qperret@google.com>
- <20210203143709.GA18907@willie-the-truck>
- <YBvQrHdbiNTSLQq6@google.com>
- <YCJdPXuGr9kCIKVM@google.com>
+        id S229849AbhBIMcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 07:32:11 -0500
+Received: from esa2.hgst.iphmx.com ([68.232.143.124]:8999 "EHLO
+        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229584AbhBIMcJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 07:32:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1612874352; x=1644410352;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=U5RPnx9naL44L8pODbHMwPFT+udQFeaq9RcnNssxEXo=;
+  b=HxWwlDog2CxqPlYdKcz/MWAQn47Xb5/SO7fOa8Ug567gvg+0a5fuwSVV
+   m9JmEJeHUyobfR+cxy0/tV9UV80mosgBdL5EIcHNFWbhshXxqFSOZgC+b
+   U/w67uxjn5oA7TPAA/LV2W40XCmKLTPPM6NXCZ9BVOrPfKtvjGqsQAVvK
+   KlFKwQ5f5s4mEPap8vw9K7PfLipioICtTSHT8ZLBe05KpSVvHDbJHQObH
+   1h/f3As+XCdxzbkXvg1rcF4GaFqS7sGdvgFUnDkT9BKtPaujcnCdrnQ8K
+   eR/NdZBtRCYOXjXnzOmQ6IUHZzrpL+Uxuorj/4ObnG9cbtKiIMIaElWor
+   w==;
+IronPort-SDR: QgWytLQZ3hYtU8YyTpg75bTf6KUUSckSUej/cK5/rnBsELiBVKXHCXtxio+P3eTuRLYz87LJ05
+ hji5rMKET6rIlOk6RfwqQfD4Ma24HnWYMtwwYVVwxpq3PmGO0HkGlCLzRv56/8KmZIDfX2VpjL
+ 4GnuPRHuRkGNz8UDaobiHPsFALwqwbti+FmQXdXZ8/y1a7WspIj2bdu/Ae3nfGN2spznnHrDt9
+ hv29mNUDanCGnEInZxX6eD19+qV6Ue3QE/SerJ9ZoYzsPlGr2WluieSakUDYWaJOFkJJsYl4lL
+ QGQ=
+X-IronPort-AV: E=Sophos;i="5.81,164,1610380800"; 
+   d="scan'208";a="263648818"
+Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 09 Feb 2021 20:36:32 +0800
+IronPort-SDR: Bt+cz8rJgpPcfiO1bpgalyLjn4qNxvUI+50GPahGMlAOoP1589LFwBIVb7jbBTMF5C5xTAp+1g
+ I7oDSPxCl3V779N6c2Tt7VF2EjsTyXzrxgRTMnCtFZ6/uFjL7wi7JjfowzBbC0AVhtUfl5xK/B
+ IbjVp+kiBx7LMTrCc02FhuX+k5SOUDLFB06OXKamIQv1w6parvVUDm4l4B5Lee7hJ/t4vieD3C
+ UGMPisyD1hm8bUYo5apPWUq3m+Dulkk8wz9j2Tggme04AxpgZjxfbXZOfg/kZ1awFKZNP0M0QU
+ qexIcVZF/iQjpWxGeIaN3b2C
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2021 04:12:14 -0800
+IronPort-SDR: r9hEnmBu4wIfPTdBYSA76Z/ywFdhj6ON6RjGc0GOcZSRSI1kK+JTgPaI0w/KSHucAh3pQSD3/C
+ hP+4DvttaT2Pa32wnT8XO8eV8T5vO9rmmoF7OgsGNGNQsrGF2dKgtsF0q2feRCY6mlHLyzbz4R
+ xHQIPb0v0SLWAq/DQ4ojO3WEBSMWnyaqo8CzPMLM4DQkDH+7oWtVtMvsOEibMO8/PCrquAsrDr
+ OeAcErzjWlWu5Gjb+9EVketDTTJheHSEX1AV8FPoc4mxCnZQohdJFq2HDkS1KaJ7MFrhUy396h
+ j4E=
+WDCIronportException: Internal
+Received: from phd004806.ad.shared (HELO twashi.fujisawa.hgst.com) ([10.84.71.69])
+  by uls-op-cesaip01.wdc.com with ESMTP; 09 Feb 2021 04:30:20 -0800
+From:   Damien Le Moal <damien.lemoal@wdc.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org
+Cc:     Atish Patra <atish.patra@wdc.com>, Anup Patel <anup.patel@wdc.com>,
+        Sean Anderson <seanga2@gmail.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v18 02/16] dt-bindings: add Canaan boards compatible strings
+Date:   Tue,  9 Feb 2021 21:30:00 +0900
+Message-Id: <20210209123014.165928-3-damien.lemoal@wdc.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210209123014.165928-1-damien.lemoal@wdc.com>
+References: <20210209123014.165928-1-damien.lemoal@wdc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YCJdPXuGr9kCIKVM@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 09, 2021 at 10:00:29AM +0000, Quentin Perret wrote:
-> On Thursday 04 Feb 2021 at 10:47:08 (+0000), Quentin Perret wrote:
-> > On Wednesday 03 Feb 2021 at 14:37:10 (+0000), Will Deacon wrote:
-> > > > +static void handle___pkvm_init(struct kvm_cpu_context *host_ctxt)
-> > > > +{
-> > > > +	DECLARE_REG(phys_addr_t, phys, host_ctxt, 1);
-> > > > +	DECLARE_REG(unsigned long, size, host_ctxt, 2);
-> > > > +	DECLARE_REG(unsigned long, nr_cpus, host_ctxt, 3);
-> > > > +	DECLARE_REG(unsigned long *, per_cpu_base, host_ctxt, 4);
-> > > > +
-> > > > +	cpu_reg(host_ctxt, 1) = __pkvm_init(phys, size, nr_cpus, per_cpu_base);
-> > > 
-> > > __pkvm_init() doesn't return, so I think this assignment back into host_ctxt
-> > > is confusing.
-> > 
-> > Very good point, I'll get rid of this.
-> 
-> Actually not, I think I'll leave it like that. __pkvm_init can return an
-> error, which is why I did this in the first place And it is useful for
-> debugging to have it propagated back to the host.
+Introduce the file riscv/canaan.yaml to document compatible strings
+related to the Canaan Kendryte K210 SoC. The compatible string
+"canaan,kendryte-k210" used to indicate the use of this SoC to the
+early SoC init code is added. This new file also defines the compatible
+strings of all supported boards based on this SoC.
 
-Good point, but please add a comment!
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+Reviewed-by: Atish Patra <atish.patra@wdc.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/riscv/canaan.yaml     | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/canaan.yaml
 
-Will
+diff --git a/Documentation/devicetree/bindings/riscv/canaan.yaml b/Documentation/devicetree/bindings/riscv/canaan.yaml
+new file mode 100644
+index 000000000000..f8f3f286bd55
+--- /dev/null
++++ b/Documentation/devicetree/bindings/riscv/canaan.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/riscv/canaan.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Canaan SoC-based boards
++
++maintainers:
++  - Damien Le Moal <damien.lemoal@wdc.com>
++
++description:
++  Canaan Kendryte K210 SoC-based boards
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++      - items:
++          - const: sipeed,maix-bit
++          - const: sipeed,maix-bitm
++          - const: canaan,kendryte-k210
++
++      - items:
++          - const: sipeed,maix-go
++          - const: canaan,kendryte-k210
++
++      - items:
++          - const: sipeed,maix-dock-m1
++          - const: sipeed,maix-dock-m1w
++          - const: canaan,kendryte-k210
++
++      - items:
++          - const: sipeed,maixduino
++          - const: canaan,kendryte-k210
++
++      - items:
++          - const: canaan,kendryte-kd233
++          - const: canaan,kendryte-k210
++
++      - items:
++          - const: canaan,kendryte-k210
++
++additionalProperties: true
++
++...
+-- 
+2.29.2
+
