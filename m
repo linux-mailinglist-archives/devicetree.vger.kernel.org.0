@@ -2,215 +2,339 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34D6A315205
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 15:50:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A735B31522C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 15:57:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232319AbhBIOtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 09:49:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
+        id S231520AbhBIO4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 09:56:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232306AbhBIOtU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 09:49:20 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DF59C061786;
-        Tue,  9 Feb 2021 06:48:40 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id k25so19632313oik.13;
-        Tue, 09 Feb 2021 06:48:40 -0800 (PST)
+        with ESMTP id S232250AbhBIOzw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 09:55:52 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACCBCC06178A
+        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 06:55:11 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id o24so3744204wmh.5
+        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 06:55:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aM7dO3tp79jO0fPJZv7YJSSQzHPVyz/cquYYOxatg1s=;
-        b=TakrWn6MQhdn0N6JvhltplGzffQ4B9foAeAxgUhk1txhp3OWj+nbUPSzodZrHB1/mb
-         jwFb2KCApPJ7tzMDAt/bTm4fSNM3CSuwYODCBzXs90rVSfPLyImvA8pjYIkFgy/nK502
-         HYQenV5BZ/vvOPRgegiNFzshJMqIjxcB/Oacdt5zs/v5sV828tC9Mk+nim5Gwfye+Wgq
-         HWixy+7a/KfXWs7NnmrqcLz+5//dgts7yuCANGlKBLOPqie9y8t/D0TwGn3ENoX1kHgT
-         btcaqfEjoaSEJHLCshCcpq/nywWxm/Ewem3JFzPt9yjHKrUZow1w/BdTSTveMKu0JFif
-         tpmg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=41GqsJE0IgbgOx9fGT/tciJEr52uBJmAe5Ibl6UOkXM=;
+        b=ZCwDJGsUuLwNEhPK2MSimhIEOnNjoFiZHdGbeuIASZ8UEP6ueJWGjn+b9JQRJlJvpv
+         WcNjBm4YJeeAiVj5hg9nC0ro4mkNMc5BmwYm/rbOrk44uP0J1/hMPQgNtIh4ERzZlrKX
+         gwHRYh+bcaoD2DV2Y9VWSzEVDm3DonH5v4QmNhPxRpBsGmQozWDxE5JEWbZg91jyG+Qc
+         d62xXVaJ5T/reiEoL2NFEHrmNmh6dNdtmuanHU9VrkxSK9jNQ/2I+z7OIxYTY4/9B2VA
+         5SjotVWjDdAfJ39VPXpqwSYF4kx1dYCQiy6zV77xbj5UFlDQwE1oQ5VB/8nfpV29SN6m
+         UL+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aM7dO3tp79jO0fPJZv7YJSSQzHPVyz/cquYYOxatg1s=;
-        b=HYL/5HIEg5PWwdPU64PGMMKDTGEVJ6GaAVqzx9/AhLPkFoLRYgtNpPEabyYLBHLhhN
-         CdQFNltV2bb2zpKxt+80xneGCUTkfDEd/WBesW6ITjUJd64Q0snV/9M0XR7ljB+9hL9g
-         7eVPNy+FCWc6W9L6uam75iPZN8cJhaWIIjzddOpp/JyxtqMF6WpceaSAAxoQIPN1sUQA
-         k4f8aGZUYqX/1uiWs2dmvuox75Xgat6lutTKqczU+oFVDANaIdTfhtsr7i5E2ehipWv7
-         v44kKDbLUVqoORpsNJcQs94oT9sekf7myH6WWmk4ObSJpskDHEoib/b4OWaBlNa9axuD
-         w+Pg==
-X-Gm-Message-State: AOAM5306svxIeVVnjaJoCZQvpbDFNfP/08shxe2v7ZONQ5NahxKBgRr/
-        AZrXdIG16KTigvdVMzh0sz4VV59KywazMBNQytk=
-X-Google-Smtp-Source: ABdhPJw/p815QsBu3fqLfKcPhGH0uCCJ1J2JQsOu2oSqCmhb8MyHUZopZ7pb49H23pc2XUeiLU321Biifhn1wyJ4zXY=
-X-Received: by 2002:aca:b683:: with SMTP id g125mr2559278oif.47.1612882119731;
- Tue, 09 Feb 2021 06:48:39 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=41GqsJE0IgbgOx9fGT/tciJEr52uBJmAe5Ibl6UOkXM=;
+        b=jd+3GuWA2cymnZkEp4yUWDGnvJxr56p5Gkb2NY0ZOHSlUeqYukj4072kbbIjZ6drzb
+         Dv9w0D50BzaW02DM7rp1hflbbkp5K8yn2Eok5r5aFHmHLzb+dFofrEUNVOdeaG8Pq76c
+         xZw5f/O+rVu5IlWGYLYc6XrlvlOlqKPglOlTQgIGhfEY4i7i0/Jy/5Iu4+dnQUNXx49q
+         uMU6D/WiDgHxAvUFkNSgPa8Wnr5qBnBvB3/aaxd4b8YFqa7LRVCvTxd5aeNCMr9dJwc9
+         kAQPkXlaTzFNFgIuqzUQ9R3XBUEANe+HD6ao3sv/yKRZjAsEu4IvHxqI5nFv3HNRaTbp
+         mgtg==
+X-Gm-Message-State: AOAM533qW86YhiFO0eJzk+x6/yv7HhlCf65+xff8gGFAjvZDlhoQ4ZJy
+        bHFi/93A6oe+5VLzTd2F2e4UaQ==
+X-Google-Smtp-Source: ABdhPJx5xoHWBG5urbk7oQExPAnvoYKsVmuv7nrt4+0PVNju/XB97HOdz0pTowi2e0Qnky7lNtyQpA==
+X-Received: by 2002:a05:600c:3588:: with SMTP id p8mr3723020wmq.71.1612882510392;
+        Tue, 09 Feb 2021 06:55:10 -0800 (PST)
+Received: from dell ([91.110.221.187])
+        by smtp.gmail.com with ESMTPSA id i20sm4570491wmq.7.2021.02.09.06.55.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Feb 2021 06:55:09 -0800 (PST)
+Date:   Tue, 9 Feb 2021 14:55:07 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     mazziesaccount@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-watchdog@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: Re: [PATCH v7 2/6] mfd: Support ROHM BD9576MUF and BD9573MUF
+Message-ID: <20210209145507.GA220368@dell>
+References: <cover.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
+ <185621c77e5eaecea239e0146ea48bc7a2648b9f.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-References: <20210129092209.2584718-1-hsinyi@chromium.org> <20210129092209.2584718-8-hsinyi@chromium.org>
-In-Reply-To: <20210129092209.2584718-8-hsinyi@chromium.org>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Tue, 9 Feb 2021 15:48:28 +0100
-Message-ID: <CAFqH_53pqgxV0UotaaXNTN=3gfDyHfAzZv6QH9JOdKyg2TEKvw@mail.gmail.com>
-Subject: Re: [PATCH v13 7/8] soc: mediatek: add mtk mutex support for MT8183
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <185621c77e5eaecea239e0146ea48bc7a2648b9f.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hsin-Yi,
+On Fri, 22 Jan 2021, Matti Vaittinen wrote:
 
-Thank you for your patch.
-
-Missatge de Hsin-Yi Wang <hsinyi@chromium.org> del dia dv., 29 de gen.
-2021 a les 10:23:
->
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
->
-> Add mtk mutex support for MT8183 SoC.
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-
-FWIW this patch is required to have the display working on the
-Chromebook IdeaPad Duet, so
-
-Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-
-Matthias, If I am not wrong, this patch is the only one that is not
-applied for this series. I know that is too late for 5.12, but If
-you're fine with it, could you pick this patch directly or do you
-prefer a resend of this patch alone once you will start to accept
-patches for the next release?
-
-Thanks,
-  Enric
-
+> Add core support for ROHM BD9576MUF and BD9573MUF PMICs which are
+> mainly used to power the R-Car series processors.
+> 
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 > ---
->  drivers/soc/mediatek/mtk-mutex.c | 50 ++++++++++++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
->
-> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-> index f531b119da7a9..718a41beb6afb 100644
-> --- a/drivers/soc/mediatek/mtk-mutex.c
-> +++ b/drivers/soc/mediatek/mtk-mutex.c
-> @@ -14,6 +14,8 @@
->
->  #define MT2701_MUTEX0_MOD0                     0x2c
->  #define MT2701_MUTEX0_SOF0                     0x30
-> +#define MT8183_MUTEX0_MOD0                     0x30
-> +#define MT8183_MUTEX0_SOF0                     0x2c
->
->  #define DISP_REG_MUTEX_EN(n)                   (0x20 + 0x20 * (n))
->  #define DISP_REG_MUTEX(n)                      (0x24 + 0x20 * (n))
-> @@ -37,6 +39,18 @@
->  #define MT8167_MUTEX_MOD_DISP_DITHER           15
->  #define MT8167_MUTEX_MOD_DISP_UFOE             16
->
-> +#define MT8183_MUTEX_MOD_DISP_RDMA0            0
-> +#define MT8183_MUTEX_MOD_DISP_RDMA1            1
-> +#define MT8183_MUTEX_MOD_DISP_OVL0             9
-> +#define MT8183_MUTEX_MOD_DISP_OVL0_2L          10
-> +#define MT8183_MUTEX_MOD_DISP_OVL1_2L          11
-> +#define MT8183_MUTEX_MOD_DISP_WDMA0            12
-> +#define MT8183_MUTEX_MOD_DISP_COLOR0           13
-> +#define MT8183_MUTEX_MOD_DISP_CCORR0           14
-> +#define MT8183_MUTEX_MOD_DISP_AAL0             15
-> +#define MT8183_MUTEX_MOD_DISP_GAMMA0           16
-> +#define MT8183_MUTEX_MOD_DISP_DITHER0          17
+> Changes since v6:
+>  - no changes
+>  drivers/mfd/Kconfig              |  11 ++++
+>  drivers/mfd/Makefile             |   1 +
+>  drivers/mfd/rohm-bd9576.c        | 108 +++++++++++++++++++++++++++++++
+>  include/linux/mfd/rohm-bd957x.h  |  59 +++++++++++++++++
+>  include/linux/mfd/rohm-generic.h |   2 +
+>  5 files changed, 181 insertions(+)
+>  create mode 100644 drivers/mfd/rohm-bd9576.c
+>  create mode 100644 include/linux/mfd/rohm-bd957x.h
+> 
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index bdfce7b15621..53c7c96283bd 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -1998,6 +1998,17 @@ config MFD_ROHM_BD71828
+>  	  Also included is a Coulomb counter, a real-time clock (RTC), and
+>  	  a 32.768 kHz clock gate.
+>  
+> +config MFD_ROHM_BD957XMUF
+> +	tristate "ROHM BD9576MUF and BD9573MUF Power Management ICs"
+> +	depends on I2C=y
+> +	depends on OF
+> +	select REGMAP_I2C
+> +	select MFD_CORE
+> +	help
+> +	  Select this option to get support for the ROHM BD9576MUF and
+> +	  BD9573MUF Power Management ICs. BD9576 and BD9573 are primarily
+> +	  designed to be used to power R-Car series processors.
 > +
->  #define MT8173_MUTEX_MOD_DISP_OVL0             11
->  #define MT8173_MUTEX_MOD_DISP_OVL1             12
->  #define MT8173_MUTEX_MOD_DISP_RDMA0            13
-> @@ -87,6 +101,11 @@
->  #define MT2712_MUTEX_SOF_DSI3                  6
->  #define MT8167_MUTEX_SOF_DPI0                  2
->  #define MT8167_MUTEX_SOF_DPI1                  3
-> +#define MT8183_MUTEX_SOF_DSI0                  1
-> +#define MT8183_MUTEX_SOF_DPI0                  2
+>  config MFD_STM32_LPTIMER
+>  	tristate "Support for STM32 Low-Power Timer"
+>  	depends on (ARCH_STM32 && OF) || COMPILE_TEST
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 14fdb188af02..e58fae024bb2 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -262,6 +262,7 @@ obj-$(CONFIG_RAVE_SP_CORE)	+= rave-sp.o
+>  obj-$(CONFIG_MFD_ROHM_BD70528)	+= rohm-bd70528.o
+>  obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
+>  obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
+> +obj-$(CONFIG_MFD_ROHM_BD957XMUF)	+= rohm-bd9576.o
+>  obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
+>  obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
+>  
+> diff --git a/drivers/mfd/rohm-bd9576.c b/drivers/mfd/rohm-bd9576.c
+> new file mode 100644
+> index 000000000000..f4dd9e438427
+> --- /dev/null
+> +++ b/drivers/mfd/rohm-bd9576.c
+> @@ -0,0 +1,108 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +//
+> +// Copyright (C) 2020 ROHM Semiconductors
+> +//
+> +// ROHM BD9576MUF and BD9573MUF PMIC driver
+
+No C++ comments (save the SPDX line) please.
+
+> +#include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/ioport.h>
+> +#include <linux/irq.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/rohm-bd957x.h>
+> +#include <linux/mfd/rohm-generic.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/types.h>
 > +
-> +#define MT8183_MUTEX_EOF_DSI0                  (MT8183_MUTEX_SOF_DSI0 << 6)
-> +#define MT8183_MUTEX_EOF_DPI0                  (MT8183_MUTEX_SOF_DPI0 << 6)
->
->  struct mtk_mutex {
->         int id;
-> @@ -181,6 +200,20 @@ static const unsigned int mt8173_mutex_mod[DDP_COMPONENT_ID_MAX] = {
->         [DDP_COMPONENT_WDMA1] = MT8173_MUTEX_MOD_DISP_WDMA1,
->  };
->
-> +static const unsigned int mt8183_mutex_mod[DDP_COMPONENT_ID_MAX] = {
-> +       [DDP_COMPONENT_AAL0] = MT8183_MUTEX_MOD_DISP_AAL0,
-> +       [DDP_COMPONENT_CCORR] = MT8183_MUTEX_MOD_DISP_CCORR0,
-> +       [DDP_COMPONENT_COLOR0] = MT8183_MUTEX_MOD_DISP_COLOR0,
-> +       [DDP_COMPONENT_DITHER] = MT8183_MUTEX_MOD_DISP_DITHER0,
-> +       [DDP_COMPONENT_GAMMA] = MT8183_MUTEX_MOD_DISP_GAMMA0,
-> +       [DDP_COMPONENT_OVL0] = MT8183_MUTEX_MOD_DISP_OVL0,
-> +       [DDP_COMPONENT_OVL_2L0] = MT8183_MUTEX_MOD_DISP_OVL0_2L,
-> +       [DDP_COMPONENT_OVL_2L1] = MT8183_MUTEX_MOD_DISP_OVL1_2L,
-> +       [DDP_COMPONENT_RDMA0] = MT8183_MUTEX_MOD_DISP_RDMA0,
-> +       [DDP_COMPONENT_RDMA1] = MT8183_MUTEX_MOD_DISP_RDMA1,
-> +       [DDP_COMPONENT_WDMA0] = MT8183_MUTEX_MOD_DISP_WDMA0,
+> +static struct mfd_cell bd9573_mfd_cells[] = {
+> +	{ .name = "bd9573-pmic", },
+> +	{ .name = "bd9576-wdt", },
 > +};
 > +
->  static const unsigned int mt2712_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
->         [MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
->         [MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0,
-> @@ -198,6 +231,13 @@ static const unsigned int mt8167_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
->         [MUTEX_SOF_DPI1] = MT8167_MUTEX_SOF_DPI1,
->  };
->
-> +/* Add EOF setting so overlay hardware can receive frame done irq */
-> +static const unsigned int mt8183_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
-> +       [MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
-> +       [MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0 | MT8183_MUTEX_EOF_DSI0,
-> +       [MUTEX_SOF_DPI0] = MT8183_MUTEX_SOF_DPI0 | MT8183_MUTEX_EOF_DPI0,
+> +static struct mfd_cell bd9576_mfd_cells[] = {
+> +	{ .name = "bd9576-pmic", },
+> +	{ .name = "bd9576-wdt", },
+> +};
+
+What is a PMIC in this context?
+
+To me a PMIC is a bunch of devices.  What is this probing?
+
+Maybe this is *-regulator?
+
+> +static const struct regmap_range volatile_ranges[] = {
+> +	regmap_reg_range(BD957X_REG_SMRB_ASSERT, BD957X_REG_SMRB_ASSERT),
+> +	regmap_reg_range(BD957X_REG_PMIC_INTERNAL_STAT,
+> +			 BD957X_REG_PMIC_INTERNAL_STAT),
+> +	regmap_reg_range(BD957X_REG_INT_THERM_STAT, BD957X_REG_INT_THERM_STAT),
+> +	regmap_reg_range(BD957X_REG_INT_OVP_STAT, BD957X_REG_INT_SYS_STAT),
+> +	regmap_reg_range(BD957X_REG_INT_MAIN_STAT, BD957X_REG_INT_MAIN_STAT),
 > +};
 > +
->  static const struct mtk_mutex_data mt2701_mutex_driver_data = {
->         .mutex_mod = mt2701_mutex_mod,
->         .mutex_sof = mt2712_mutex_sof,
-> @@ -227,6 +267,14 @@ static const struct mtk_mutex_data mt8173_mutex_driver_data = {
->         .mutex_sof_reg = MT2701_MUTEX0_SOF0,
->  };
->
-> +static const struct mtk_mutex_data mt8183_mutex_driver_data = {
-> +       .mutex_mod = mt8183_mutex_mod,
-> +       .mutex_sof = mt8183_mutex_sof,
-> +       .mutex_mod_reg = MT8183_MUTEX0_MOD0,
-> +       .mutex_sof_reg = MT8183_MUTEX0_SOF0,
-> +       .no_clk = true,
+> +static const struct regmap_access_table volatile_regs = {
+> +	.yes_ranges = &volatile_ranges[0],
+> +	.n_yes_ranges = ARRAY_SIZE(volatile_ranges),
 > +};
 > +
->  struct mtk_mutex *mtk_mutex_get(struct device *dev)
->  {
->         struct mtk_mutex_ctx *mtx = dev_get_drvdata(dev);
-> @@ -457,6 +505,8 @@ static const struct of_device_id mutex_driver_dt_match[] = {
->           .data = &mt8167_mutex_driver_data},
->         { .compatible = "mediatek,mt8173-disp-mutex",
->           .data = &mt8173_mutex_driver_data},
-> +       { .compatible = "mediatek,mt8183-disp-mutex",
-> +         .data = &mt8183_mutex_driver_data},
->         {},
+> +static struct regmap_config bd957x_regmap = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.volatile_table = &volatile_regs,
+> +	.max_register = BD957X_MAX_REGISTER,
+> +	.cache_type = REGCACHE_RBTREE,
+> +};
+> +
+> +static int bd957x_i2c_probe(struct i2c_client *i2c,
+> +			     const struct i2c_device_id *id)
+> +{
+> +	int ret;
+> +	struct regmap *regmap;
+> +	struct mfd_cell *mfd;
+> +	int cells;
+> +	unsigned long chip_type;
+> +
+> +	chip_type = (unsigned long)of_device_get_match_data(&i2c->dev);
+> +
+> +	switch (chip_type) {
+> +	case ROHM_CHIP_TYPE_BD9576:
+> +		mfd = bd9576_mfd_cells;
+> +		cells = ARRAY_SIZE(bd9576_mfd_cells);
+> +		break;
+> +	case ROHM_CHIP_TYPE_BD9573:
+> +		mfd = bd9573_mfd_cells;
+> +		cells = ARRAY_SIZE(bd9573_mfd_cells);
+> +		break;
+> +	default:
+> +		dev_err(&i2c->dev, "Unknown device type");
+> +		return -EINVAL;
+> +	}
+> +
+> +	regmap = devm_regmap_init_i2c(i2c, &bd957x_regmap);
+> +	if (IS_ERR(regmap)) {
+> +		dev_err(&i2c->dev, "Failed to initialize Regmap\n");
+> +		return PTR_ERR(regmap);
+> +	}
+> +
+> +	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO, mfd, cells,
+
+This nomenclature is confusing.
+
+cells and num_cells would clear it up.
+
+> +				   NULL, 0, NULL);
+> +	if (ret)
+> +		dev_err(&i2c->dev, "Failed to create subdevices\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id bd957x_of_match[] = {
+> +	{ .compatible = "rohm,bd9576", .data = (void *)ROHM_CHIP_TYPE_BD9576, },
+> +	{ .compatible = "rohm,bd9573", .data = (void *)ROHM_CHIP_TYPE_BD9573, },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, bd957x_of_match);
+> +
+> +static struct i2c_driver bd957x_drv = {
+> +	.driver = {
+> +		.name = "rohm-bd957x",
+> +		.of_match_table = bd957x_of_match,
+> +	},
+> +	.probe = &bd957x_i2c_probe,
+> +};
+> +module_i2c_driver(bd957x_drv);
+> +
+> +MODULE_AUTHOR("Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>");
+> +MODULE_DESCRIPTION("ROHM BD9576MUF and BD9573MUF Power Management IC driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/mfd/rohm-bd957x.h b/include/linux/mfd/rohm-bd957x.h
+> new file mode 100644
+> index 000000000000..3e7ca6fe5d4f
+> --- /dev/null
+> +++ b/include/linux/mfd/rohm-bd957x.h
+> @@ -0,0 +1,59 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +/* Copyright (C) 2020 ROHM Semiconductors */
+> +
+> +#ifndef __LINUX_MFD_BD957X_H__
+> +#define __LINUX_MFD_BD957X_H__
+> +
+> +enum {
+> +	BD957X_VD50,
+> +	BD957X_VD18,
+> +	BD957X_VDDDR,
+> +	BD957X_VD10,
+> +	BD957X_VOUTL1,
+> +	BD957X_VOUTS1,
+> +};
+> +
+> +#define BD957X_REG_SMRB_ASSERT		0x15
+> +#define BD957X_REG_PMIC_INTERNAL_STAT	0x20
+> +#define BD957X_REG_INT_THERM_STAT	0x23
+> +#define BD957X_REG_INT_THERM_MASK 0x24
+> +#define BD957X_REG_INT_OVP_STAT 0x25
+> +#define BD957X_REG_INT_SCP_STAT 0x26
+> +#define BD957X_REG_INT_OCP_STAT 0x27
+> +#define BD957X_REG_INT_OVD_STAT 0x28
+> +#define BD957X_REG_INT_UVD_STAT 0x29
+> +#define BD957X_REG_INT_UVP_STAT 0x2a
+> +#define BD957X_REG_INT_SYS_STAT 0x2b
+> +#define BD957X_REG_INT_SYS_MASK 0x2c
+> +#define BD957X_REG_INT_MAIN_STAT 0x30
+> +#define BD957X_REG_INT_MAIN_MASK 0x31
+> +
+> +#define BD957X_REG_WDT_CONF 0x16
+> +
+> +#define BD957X_REG_POW_TRIGGER1 0x41
+> +#define BD957X_REG_POW_TRIGGER2 0x42
+> +#define BD957X_REG_POW_TRIGGER3 0x43
+> +#define BD957X_REG_POW_TRIGGER4 0x44
+> +#define BD957X_REG_POW_TRIGGERL1 0x45
+> +#define BD957X_REG_POW_TRIGGERS1 0x46
+> +
+> +#define BD957X_REGULATOR_EN_MASK 0xff
+> +#define BD957X_REGULATOR_DIS_VAL 0xff
+> +
+> +#define BD957X_VSEL_REG_MASK	0xff
+> +
+> +#define BD957X_MASK_VOUT1_TUNE	0x87
+> +#define BD957X_MASK_VOUT2_TUNE	0x87
+> +#define BD957X_MASK_VOUT3_TUNE	0x1f
+> +#define BD957X_MASK_VOUT4_TUNE	0x1f
+> +#define BD957X_MASK_VOUTL1_TUNE	0x87
+> +
+> +#define BD957X_REG_VOUT1_TUNE	0x50
+> +#define BD957X_REG_VOUT2_TUNE	0x53
+> +#define BD957X_REG_VOUT3_TUNE	0x56
+> +#define BD957X_REG_VOUT4_TUNE	0x59
+> +#define BD957X_REG_VOUTL1_TUNE	0x5c
+> +
+> +#define BD957X_MAX_REGISTER 0x61
+
+Nit: Can you tab these out for improved readability please?
+
+> +#endif
+> diff --git a/include/linux/mfd/rohm-generic.h b/include/linux/mfd/rohm-generic.h
+> index 4283b5b33e04..58b4f1a0f4af 100644
+> --- a/include/linux/mfd/rohm-generic.h
+> +++ b/include/linux/mfd/rohm-generic.h
+> @@ -12,6 +12,8 @@ enum rohm_chip_type {
+>  	ROHM_CHIP_TYPE_BD71847,
+>  	ROHM_CHIP_TYPE_BD70528,
+>  	ROHM_CHIP_TYPE_BD71828,
+> +	ROHM_CHIP_TYPE_BD9576,
+> +	ROHM_CHIP_TYPE_BD9573,
+>  	ROHM_CHIP_TYPE_AMOUNT
 >  };
->  MODULE_DEVICE_TABLE(of, mutex_driver_dt_match);
-> --
-> 2.30.0.365.g02bc693789-goog
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+>  
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
