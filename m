@@ -2,100 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06D13314C67
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 11:05:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D5A9314CB7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 11:17:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbhBIKDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 05:03:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40130 "EHLO
+        id S231470AbhBIKQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 05:16:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbhBIKBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 05:01:15 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD88DC061788
-        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 02:00:33 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id g10so20895128wrx.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 02:00:33 -0800 (PST)
+        with ESMTP id S231531AbhBIKLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 05:11:43 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E142EC06178B
+        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 02:11:02 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id nm1so1278703pjb.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 02:11:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qm0cSL/QtRytmHGpisi5xpuLYYaM91e4VtafX8yXdgA=;
-        b=Qu2b01DvtGYXJeJxDXNNE1KeI4fwXHqTFP9NUINIClmyovM1EXyaAgdMtyphaqcPjz
-         BW240oE/Ro+4mYQ1ho1diep6tj3gk7c8M0PWNQLRph+DujYRBkt+OZiYtke0CFce7jNu
-         eWWChjHaBXyma6Xojt/HIqFpTZhtiIr0lUinDES0r/155umcLvlXYF1CdiDmsr5kDpdc
-         7+6EjCub+DdSxNlJS+ueD7dMv83ZN0AEi4wyB90rziN/G7o5cmaehpvfAuHpWq/wNyIT
-         WjeOv5dbYzTilYNyXTp8Us0S0ITCiDcb8eVCd4CLm/L+uBwK1C5FbMuA2YsxK3110zzh
-         ng/w==
+         :content-disposition:in-reply-to:user-agent;
+        bh=5i1+312252523epfG8I2zcLcLI8LRpUJsPoSSG4hwGM=;
+        b=JeePriOOUxi+J/TQLjYadusaKDnPV2qhhfQ/06TUQGZqX/mDsv+ZHfdxQ8h3kLyLdA
+         looiCLo1L/CcCUVLe0/0For+Dfjl0APqlIKDDw6eFUfCPYBHZNM0oAGTCSsRugy7NCAg
+         dk+FgL/262s5RDdH1m2i3IezsWiRaCQCZKn0tkkJAsGhLUMrbdSfJqBwzyvZiC7SEIyJ
+         JBaU4POphQwHoISOQXukxH2iRG6CM5uDraeVqRnA7NV49oDUT3iVWOHZESdsg2nWsuGM
+         8jiZ9i/3klTJaGeXBIjOMi13//6OkK8z0PfINy3m69/Z6Lp/om78ttMxOspt0yYl6X32
+         M+IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qm0cSL/QtRytmHGpisi5xpuLYYaM91e4VtafX8yXdgA=;
-        b=rloEj9CfuvxdzlAiGlGXNIJ8ZRJueLi1bu4ZrHuSZoO8gjVqD+TDexax7VJm/3gKsy
-         0mH6fm26cOqo1l3VD5FG/KrtD3xK6jgqlw4fhHQveA30h0S10AMRpKsR7Duw9XJhDQZ2
-         7u8L2xyD0oiQ0as+MgILC5bgYjqabQ4EEvAu6LQ9RLARKaGkxNYN6Ex7jwifPzK1vU8Z
-         wH47DJVZc3DcE/LaNGHz75Y8SkppzgSf1Do1h6dC2MAGOBmFKP52ICWyHGSbC67RYdJ+
-         Sd3rj1fExpFH79aJ8UfXUfoKI7SF+L2Sh2W02IxVEIFQkZ9PK/CbLpj2jy9cz902EcrU
-         PLQA==
-X-Gm-Message-State: AOAM533bMtVIWmc+TwiSruUqfEdFoq0WMzI3PbSRk3f3IoXd5ZTdNNvK
-        rApe5t9xA/E19fg//xbebtTNyg==
-X-Google-Smtp-Source: ABdhPJyXLvE+jYOfb0Dy90ik3YsfWn6xHnuNbVcZCVLQKV4b7h1RDaJQVeB4jpjHc7njZBq4PHZhFQ==
-X-Received: by 2002:a5d:43c2:: with SMTP id v2mr12217582wrr.81.1612864832295;
-        Tue, 09 Feb 2021 02:00:32 -0800 (PST)
-Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
-        by smtp.gmail.com with ESMTPSA id m6sm3113718wmq.13.2021.02.09.02.00.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 02:00:31 -0800 (PST)
-Date:   Tue, 9 Feb 2021 10:00:29 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Will Deacon <will@kernel.org>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 16/26] KVM: arm64: Prepare Hyp memory protection
-Message-ID: <YCJdPXuGr9kCIKVM@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-17-qperret@google.com>
- <20210203143709.GA18907@willie-the-truck>
- <YBvQrHdbiNTSLQq6@google.com>
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=5i1+312252523epfG8I2zcLcLI8LRpUJsPoSSG4hwGM=;
+        b=bxDNSs2O+eOtr0hheo0LZjdTg56/ZZSZ0QncCpsvfRkhDal8QmkVlS+BfXDmr02+GK
+         M/DsnB+7E/xDWPCMzWnzGM0lTJ9UtfDTobS5Jhe7EbYo03ipjwRrPHnefTGRiS9KYWTe
+         hztJCMsKCm9EMa6XmB0e5Er8mVPnV308LADzMBz4A51cV/S/+j78BEji5pZogbJn7qDd
+         h1qjMNWuls0wPuPH8M+3J+OR9+f5ur1n5vVI44icM/Y4vGtq+kPKTO9hVImCyGwyjXs3
+         6nqXrp8Axf6Wv4xKxp5L29LyH7GiyNaGjmCmRu0TDax8cUy6GxRNq/NBBruHIn8QGnBy
+         ztkA==
+X-Gm-Message-State: AOAM531HerXW637YN+go3kzyyr+DxupidSE9QpMqL9APIW6fMnmy4Dp2
+        UQ2DpTqwOZKUsRJX7aCqZMIvFw==
+X-Google-Smtp-Source: ABdhPJztLnRvmN7Zpdv6M1GDZXxFpHQY+sv6mnUEKUTJiloTp6w01kvvTUz+SaeqMheOwm+MoyNnaA==
+X-Received: by 2002:a17:90a:5318:: with SMTP id x24mr3387101pjh.226.1612865462346;
+        Tue, 09 Feb 2021 02:11:02 -0800 (PST)
+Received: from localhost ([122.172.59.240])
+        by smtp.gmail.com with ESMTPSA id t1sm11865742pfl.194.2021.02.09.02.11.00
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 09 Feb 2021 02:11:01 -0800 (PST)
+Date:   Tue, 9 Feb 2021 15:40:58 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        devicetree@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>
+Subject: Re: [PATCH V7 6/6] of: unittest: Statically apply overlays using
+ fdtoverlay
+Message-ID: <20210209101058.kmqqjxfjz3alre55@vireshk-i7>
+References: <cover.1611904394.git.viresh.kumar@linaro.org>
+ <3683a542d4141cfcf9c2524a40a9ee75b657c1c2.1611904394.git.viresh.kumar@linaro.org>
+ <20210204015409.GA3150757@robh.at.kernel.org>
+ <20210208111813.oql6jmeaxuq3btz7@vireshk-i7>
+ <CAL_JsqK+eM_RrzXnbm2GJGJuVwAjEz1TeTux18Hc727vovbqDA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YBvQrHdbiNTSLQq6@google.com>
+In-Reply-To: <CAL_JsqK+eM_RrzXnbm2GJGJuVwAjEz1TeTux18Hc727vovbqDA@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 04 Feb 2021 at 10:47:08 (+0000), Quentin Perret wrote:
-> On Wednesday 03 Feb 2021 at 14:37:10 (+0000), Will Deacon wrote:
-> > > +static void handle___pkvm_init(struct kvm_cpu_context *host_ctxt)
-> > > +{
-> > > +	DECLARE_REG(phys_addr_t, phys, host_ctxt, 1);
-> > > +	DECLARE_REG(unsigned long, size, host_ctxt, 2);
-> > > +	DECLARE_REG(unsigned long, nr_cpus, host_ctxt, 3);
-> > > +	DECLARE_REG(unsigned long *, per_cpu_base, host_ctxt, 4);
-> > > +
-> > > +	cpu_reg(host_ctxt, 1) = __pkvm_init(phys, size, nr_cpus, per_cpu_base);
-> > 
-> > __pkvm_init() doesn't return, so I think this assignment back into host_ctxt
-> > is confusing.
-> 
-> Very good point, I'll get rid of this.
+On 08-02-21, 08:21, Rob Herring wrote:
+> We may need to turn off
+> checks in overlays for required properties as they may be incomplete.
+> We already do that on disabled nodes.
 
-Actually not, I think I'll leave it like that. __pkvm_init can return an
-error, which is why I did this in the first place And it is useful for
-debugging to have it propagated back to the host.
+And after decent amount of effort understanding how to do this, I
+finally did it in a not so efficient way, I am sure you can help
+improving it :)
 
-Thanks,
-Quentin
+Author: Viresh Kumar <viresh.kumar@linaro.org>
+Date:   Tue Feb 9 12:19:50 2021 +0530
+
+    dt-validate: Skip "required property" checks for overlays
+    
+    The overlays may not carry the required properties and would depend on
+    the base dtb to carry those, there is no point raising those errors
+    here.
+    
+    Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+---
+ tools/dt-validate | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/tools/dt-validate b/tools/dt-validate
+index 410b0538ef47..c6117504f1d1 100755
+--- a/tools/dt-validate
++++ b/tools/dt-validate
+@@ -80,6 +80,23 @@ show_unmatched = False
+                                   (filename, line, col, fullname, node['compatible']), file=sys.stderr)
+                             continue
+ 
++                        if nodename == '/':
++                            is_fragment = False
++                            for name in node.items():
++                                if name[0] == 'fragment@0':
++                                    is_fragment = True
++                                    break;
++
++                            if is_fragment == True:
++                                if 'required property' in error.message:
++                                    continue
++                                elif error.context:
++                                    for e in error.context:
++                                        if not 'required property' in e.message:
++                                            break
++                                    else:
++                                        continue
++
+                         print(dtschema.format_error(filename, error, nodename=nodename, verbose=verbose) +
+                             '\n\tFrom schema: ' + schema['$filename'],
+                             file=sys.stderr)
+
+-- 
+viresh
