@@ -2,105 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51186315DF9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 05:00:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07848315DCB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 04:32:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbhBJEAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 23:00:08 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:42344 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbhBJEAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 23:00:07 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 119Jb6fX021023;
-        Tue, 9 Feb 2021 13:37:06 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1612899427;
-        bh=L9YNORugLibqxGGcKUb7I7kHap34krhtwxZBPRsk79I=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=A8FoptXT3H0vp39VQ0D4plELeFt6ZT38OLGqyM0GcgoCP2faAwuDMTExeAHDGdu2Y
-         58OENQU/gh9e/HqteVyj7m+UgBbiyK60KvJJTNEUcsRpyqrraLweaIttrrrn7vgf7F
-         0pEUzoDudHd855vMXQgfUyJon1bL5Fm0JYnayjCk=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 119Jb6Jo115654
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Feb 2021 13:37:06 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 9 Feb
- 2021 13:37:06 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 9 Feb 2021 13:37:06 -0600
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 119Jb6Q1080251;
-        Tue, 9 Feb 2021 13:37:06 -0600
-Received: from localhost ([10.250.35.110])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 119Jb6Ah082592;
-        Tue, 9 Feb 2021 13:37:06 -0600
-From:   Suman Anna <s-anna@ti.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 2/2] mailbox: omap: Add support for K3 AM64x SoCs
-Date:   Tue, 9 Feb 2021 13:36:43 -0600
-Message-ID: <20210209193643.24824-3-s-anna@ti.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210209193643.24824-1-s-anna@ti.com>
-References: <20210209193643.24824-1-s-anna@ti.com>
+        id S229564AbhBJDcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 22:32:35 -0500
+Received: from 14.mo7.mail-out.ovh.net ([178.33.251.19]:48444 "EHLO
+        14.mo7.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229544AbhBJDcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 22:32:35 -0500
+X-Greylist: delayed 8401 seconds by postgrey-1.27 at vger.kernel.org; Tue, 09 Feb 2021 22:32:33 EST
+Received: from player774.ha.ovh.net (unknown [10.108.35.210])
+        by mo7.mail-out.ovh.net (Postfix) with ESMTP id 5E337191C8A
+        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 23:07:23 +0100 (CET)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player774.ha.ovh.net (Postfix) with ESMTPSA id 72B011AFB9FE1;
+        Tue,  9 Feb 2021 22:07:12 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-98R00214cc0512-b6f7-4d99-9498-2d40eb3402b0,
+                    ECAF73ED9022E26008F51CC3B8E5D9CA72646693) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Subject: Re: [PATCH V2 net-next 1/2] dt-bindings: net: document BCM4908
+ Ethernet controller
+To:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Masahiro Yamada <masahiroy@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
+References: <20210205214417.11178-1-zajec5@gmail.com>
+ <20210207222632.10981-1-zajec5@gmail.com>
+ <20210209214345.GA244143@robh.at.kernel.org>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Message-ID: <a22b4a6b-8712-f074-5168-f0800e6fa489@milecki.pl>
+Date:   Tue, 9 Feb 2021 23:07:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
+In-Reply-To: <20210209214345.GA244143@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Ovh-Tracer-Id: 548031780550512271
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrheehgdduheelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepffefgefhhfehjeetfeetkefgkeehleeghefgtddthefhgfffhfduieetjeffveegnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeejgedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AM64x SoC contains a Mailbox IP instance with multiple clusters
-in the MAIN domain, and is a variant of the IP on current AM65x and
-J721E SoCs. The AM64x SoC has only 8 clusters with no interrupts
-routed to the A53 core on the first 2 clusters. The interrupt outputs
-from the IP do not go through any Interrupt Routers and are hard-wired
-to each processor, with only couple of interrupts from each cluster
-reaching the A53 core. The IP is also not built with the K3 safety
-feature in hardware.
+On 09.02.2021 22:43, Rob Herring wrote:
+> On Sun, Feb 07, 2021 at 11:26:31PM +0100, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> BCM4908 is a family of SoCs with integrated Ethernet controller.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>>   .../bindings/net/brcm,bcm4908enet.yaml        | 45 +++++++++++++++++++
+>>   1 file changed, 45 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml b/Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml
+>> new file mode 100644
+>> index 000000000000..5f12f51c5b19
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml
+>> @@ -0,0 +1,45 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/brcm,bcm4908enet.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Broadcom BCM4908 Ethernet controller
+>> +
+>> +description: Broadcom's Ethernet controller integrated into BCM4908 family SoCs
+>> +
+>> +maintainers:
+>> +  - Rafał Miłecki <rafal@milecki.pl>
+>> +
+> 
+> allOf:
+>    - $ref: 'ethernet-controller.yaml#'
 
-Add the support for this IP through a new compatible.
+Thanks!
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
-v2: No changes
 
- drivers/mailbox/omap-mailbox.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+>> +properties:
+>> +  compatible:
+>> +    const: brcm,bcm4908enet
+> 
+> Normal convention is 'brcm,bcm4908-enet'. (And update the filename/$id)
 
-diff --git a/drivers/mailbox/omap-mailbox.c b/drivers/mailbox/omap-mailbox.c
-index 93fe08aef3ca..7295e3835e30 100644
---- a/drivers/mailbox/omap-mailbox.c
-+++ b/drivers/mailbox/omap-mailbox.c
-@@ -3,7 +3,7 @@
-  * OMAP mailbox driver
-  *
-  * Copyright (C) 2006-2009 Nokia Corporation. All rights reserved.
-- * Copyright (C) 2013-2019 Texas Instruments Incorporated - https://www.ti.com
-+ * Copyright (C) 2013-2021 Texas Instruments Incorporated - https://www.ti.com
-  *
-  * Contact: Hiroshi DOYU <Hiroshi.DOYU@nokia.com>
-  *          Suman Anna <s-anna@ti.com>
-@@ -663,6 +663,10 @@ static const struct of_device_id omap_mailbox_of_match[] = {
- 		.compatible	= "ti,am654-mailbox",
- 		.data		= &omap4_data,
- 	},
-+	{
-+		.compatible	= "ti,am64-mailbox",
-+		.data		= &omap4_data,
-+	},
- 	{
- 		/* end */
- 	},
--- 
-2.29.2
+Is it? ;) It seems we have:
+brcm,bcmgenet (not brcm,bcmg-enet)
+fsl-enetc (not e.g. fsl-enet-c)
+xilinx_axienet (not xilinx_axi-enet)
+apm,xgene1-sgenet (not apm,xgene1-sg-enet)
 
+Of course, as you seem to prefer *-enet, I'll make it so! V3 soon.
+
+
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    description: RX interrupt
+>> +
+>> +  interrupt-names:
+>> +    const: rx
+> 
+> Don't really need *-names when only 1 possible entry.
+
+I think this controller may have some more interrupts (I don't know about). We can "interrupt-names" later, when we find them out.
