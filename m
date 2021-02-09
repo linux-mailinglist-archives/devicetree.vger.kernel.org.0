@@ -2,197 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD219314E5B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 12:44:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F7D7314EC3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 13:16:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbhBILo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 06:44:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33470 "EHLO
+        id S229564AbhBIMM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 07:12:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbhBILle (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 06:41:34 -0500
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B4EC061786
-        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 03:40:54 -0800 (PST)
-Received: by mail-qk1-x731.google.com with SMTP id u20so17556569qku.7
-        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 03:40:53 -0800 (PST)
+        with ESMTP id S229684AbhBIMLw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 07:11:52 -0500
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A753C061786;
+        Tue,  9 Feb 2021 04:11:12 -0800 (PST)
+Received: by mail-qk1-x72d.google.com with SMTP id o193so8100565qke.11;
+        Tue, 09 Feb 2021 04:11:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+        d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=41hi0c02oO4tuVV9L3cubuwMoL173xYyde0J3gmHoXc=;
-        b=fCj4pquVd+PYGzXHqiOzDIiiXRItclK5wdS6DU24eUPtYG+9Cggfj3eH70jg+mmE2X
-         Kc8C4HjFPJ+96a6fmoFEq9Vj+0JBrS3CEusK9LwAu/fmTYSQvI8dRDE3r8DTwJaVKxOS
-         dioyYvCpcHCKJubWfmmxabMaMeJ1m1R8tKy5MLKvdLpen13KO/+3fKblqdX2y/3qxgrm
-         rYH1YnUtRSO420arDanE5tBHaDrrcPgP6AamClV1ZnhQkximvTzpj6ggX5lIU+ladOAi
-         uNEE2LlTLBtxa+5FoaGjWipXnBbskEAWG+dKZcKd5WzHjNGyMYE9lp7IUX7stfa7WJv4
-         0YAQ==
+         :cc;
+        bh=9b1+FT42iYfcBaXACNqZZ8m0dOYDgpi8jpItwihB888=;
+        b=UGlY2FQWhtT3walGbEZSEZicPmfHAAfnO+Qy2cpBcfFE/eCtSyGhllrt7V3ARb+idi
+         VZmpoIChaC56Wocfdzm1xDhttnJKU2403POE7bOYgWPj0jFttWxJPiUHMEt9Rug7z7/G
+         gZKy8gxFr7zOIt15N98S/AxtUPaWeD5aZRssE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=41hi0c02oO4tuVV9L3cubuwMoL173xYyde0J3gmHoXc=;
-        b=fMF+nONGxPaLMmQlEv+1Wuzlse82xC5c3fJvuwTITKt+guUQM048gTDUABE571UnX6
-         5KJAc5+RAifEM5hylWBMKb+KiaEIUcfG+LtJaKlpVPxzmHTl7dkhJmxiigtguXm6Z5SN
-         h7wwCJkQJPuEjmXWKX6xyjU1hBed/XcBbdTbu/aEo84BMkNf4CdZ3oph/ViyLs/egqTW
-         9s5ZCliZxRyes38U8v3Edxak0S8iep/N8uWZCIygjVV3Y23DGEFAFMTj9bKtfwSxzdnR
-         DCoe5Tx/H6nJhQOhknrZYow2AVkuFBYFVRfMTa/FUKFGAh3+Uha5T9hMFeFpFEegBpZW
-         1wGA==
-X-Gm-Message-State: AOAM530LLW8Dh6mcq5D9thShUoWpToD8IO9wUprs8waJp/CmvTggqIXV
-        rFd0AgGsBbQX+EmgbSkPtlA8jI5EN+QAsmaNsqqFiA==
-X-Google-Smtp-Source: ABdhPJxCHSJNQXMjgze7X9u2yZHdDNqVyw+Bk6ovFO5Ibu9/5qGY8UcJiI9iON3FJkM1rECcEHVerJiY6P8pQKYSQYs=
-X-Received: by 2002:a37:74b:: with SMTP id 72mr20666133qkh.155.1612870853195;
- Tue, 09 Feb 2021 03:40:53 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=9b1+FT42iYfcBaXACNqZZ8m0dOYDgpi8jpItwihB888=;
+        b=tDB3ftXvRXtf/PJS4HGeUFZV+atoEWHdgmHQu+GIzYmmCZJUZZNTH1jcDQIhNKCWMS
+         Nx4PHEyRXdG7Z+lQKo0kq1xwiL4tEptdS8TDI/IzYOc0lcJyv1cPUM5DMcLJz3NrCD3t
+         2KuTu8BRAKnbG0q2/4MQP6VlSD6uGXo8XNF/T+fCnySRcIYaIy1FVMS4fBOEh4BQp+o0
+         d8q51qXHvLyPvSdzQwQc7g/p2PL9PuhOYMTOBLII1Ogu96n+nwxv1UOVqo0t5JLUKayJ
+         qZTUfLZGbwago+0dl2zVluP3R1WYnsyMT9c/COOWDHBksdA8+zwycvZDWid5Ihd4Gtpb
+         iTEg==
+X-Gm-Message-State: AOAM532fqVxQTIOFb6dV2n5n30RfwhXxUkPjJ4MOl5j39YFNu/qGNBne
+        8Rgn+6cHyyMgTDDk17a6NbOtFNbICOx62wQSGH4=
+X-Google-Smtp-Source: ABdhPJznG+/3DRBuaBXOdhGQaUyUKQ7CvJxjrD65Ucij76t+VNLlWYhA5nJdNKP2loti8FRSBk9GJ1U7fyFVqRwjKmQ=
+X-Received: by 2002:ae9:e314:: with SMTP id v20mr11627616qkf.66.1612872671495;
+ Tue, 09 Feb 2021 04:11:11 -0800 (PST)
 MIME-Version: 1.0
-References: <1612860151-12275-1-git-send-email-stefanc@marvell.com>
-In-Reply-To: <1612860151-12275-1-git-send-email-stefanc@marvell.com>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Tue, 9 Feb 2021 12:40:41 +0100
-Message-ID: <CAPv3WKfbz6c69ON_gd7yu41QFU+C9qtoW1P=+P-NKZ7vQLE5FA@mail.gmail.com>
-Subject: Re: [PATCH v11 net-next 00/15] net: mvpp2: Add TX Flow Control support
-To:     Stefan Chulski <stefanc@marvell.com>
-Cc:     netdev <netdev@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>, nadavh@marvell.com,
-        Yan Markman <ymarkman@marvell.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Russell King <rmk+kernel@armlinux.org.uk>, atenart@kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org
+References: <20210112003749.10565-1-jae.hyun.yoo@linux.intel.com>
+ <20210112003749.10565-2-jae.hyun.yoo@linux.intel.com> <20210114193416.GA3432711@robh.at.kernel.org>
+ <4f67358e-58e5-65a5-3680-1cd8e9851faa@linux.intel.com> <CACPK8XcZTE=bnCP1-E9PTA09WnXG9Eduwx0dm-QqmQJUDa_OrQ@mail.gmail.com>
+ <1814b8d1-954c-0988-0745-e95129079708@linux.intel.com> <87ed4085-26e4-98f8-21e3-b1e3c16b0891@linux.intel.com>
+In-Reply-To: <87ed4085-26e4-98f8-21e3-b1e3c16b0891@linux.intel.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 9 Feb 2021 12:10:59 +0000
+Message-ID: <CACPK8XekihpoXEeyUbWSXsRkVMbX1gKG-gSeYgWq=s3UR2gi1g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: aspeed: add buffer and DMA mode
+ transfer support
+To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>, linux-i2c@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
+On Wed, 3 Feb 2021 at 23:03, Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com> wrote:
+>
+> Hi Joel
+>
+> On 1/28/2021 11:36 AM, Jae Hyun Yoo wrote:
+> > Hi Joel
+> >
+> > On 1/27/2021 4:06 PM, Joel Stanley wrote:
+> >>>> All this information doesn't need to be in the binding.
+> >>>>
+> >>>> It's also an oddly structured dts file if this is what you are doing...
+> >>>
+> >>> I removed the default buffer mode settings that I added into
+> >>> 'aspeed-g4.dtsi' and 'aspeed-g5.dtsi' in v1 to avoid touching of the
+> >>> default transfer mode setting, but each bus should use its dedicated
+> >>> SRAM buffer range for enabling buffer mode so I added this information
+> >>> at here as overriding examples instead. I thought that binding document
+> >>> is a right place for providing this information but looks like it's not.
+> >>> Any recommended place for it? Is it good enough if I add it just into
+> >>> the commit message?
+> >>
+> >> I agree with Rob, we don't need this described in the device tree
+> >> (binding or dts). We know what the layout is for a given aspeed
+> >> family, so the driver can have this information hard coded.
+> >>
+> >> (Correct me if I've misinterpted here Rob)
+> >>
+> >
+> > Makes sense. Will add these settings into the driver module as hard
+> > coded per each bus.
+> >
+>
+> Realized that the SRAM buffer range setting should be added into device
+> tree because each bus module should get the dedicated IO resource range.
+> So I'm going to add it to dtsi default reg setting for each I2C bus
+> and will remove this description in binding. Also, I'll add a mode
+> setting property instead to keep the current setting as byte mode.
 
-wt., 9 lut 2021 o 09:43 <stefanc@marvell.com> napisa=C5=82(a):
->
-> From: Stefan Chulski <stefanc@marvell.com>
->
-> Armada hardware has a pause generation mechanism in GOP (MAC).
-> The GOP generate flow control frames based on an indication programmed in=
- Ports Control 0 Register. There is a bit per port.
-> However assertion of the PortX Pause bits in the ports control 0 register=
- only sends a one time pause.
-> To complement the function the GOP has a mechanism to periodically send p=
-ause control messages based on periodic counters.
-> This mechanism ensures that the pause is effective as long as the Appropr=
-iate PortX Pause is asserted.
->
-> Problem is that Packet Processor that actually can drop packets due to la=
-ck of resources not connected to the GOP flow control generation mechanism.
-> To solve this issue Armada has firmware running on CM3 CPU dedicated for =
-Flow Control support.
-> Firmware monitors Packet Processor resources and asserts XON/XOFF by writ=
-ing to Ports Control 0 Register.
->
-> MSS shared SRAM memory used to communicate between CM3 firmware and PP2 d=
-river.
-> During init PP2 driver informs firmware about used BM pools, RXQs, conges=
-tion and depletion thresholds.
->
-> The pause frames are generated whenever congestion or depletion in resour=
-ces is detected.
-> The back pressure is stopped when the resource reaches a sufficient level=
-.
-> So the congestion/depletion and sufficient level implement a hysteresis t=
-hat reduces the XON/XOFF toggle frequency.
->
-> Packet Processor v23 hardware introduces support for RX FIFO fill level m=
-onitor.
-> Patch "add PPv23 version definition" to differ between v23 and v22 hardwa=
-re.
-> Patch "add TX FC firmware check" verifies that CM3 firmware supports Flow=
- Control monitoring.
->
-> v10 --> v11
-> - Improve "net: mvpp2: add CM3 SRAM memory map" comment
-> - Move condition check to 'net: mvpp2: always compare hw-version vs MVPP2=
-1' patch
->
-> v9 --> v10
-> - Add CM3 SRAM description to PPv2 documentation
->
-> v8 --> v9
-> - Replace generic pool allocation with devm_ioremap_resource
->
-> v7 --> v8
-> - Reorder "always compare hw-version vs MVPP21" and "add PPv23 version de=
-finition" commits
-> - Typo fixes
-> - Remove condition fix from "add RXQ flow control configurations"
->
-> v6 --> v7
-> - Reduce patch set from 18 to 15 patches
->  - Documentation change combined into a single patch
->  - RXQ and BM size change combined into a single patch
->  - Ring size change check moved into "add RXQ flow control configurations=
-" commit
->
-> v5 --> v6
-> - No change
->
-> v4 --> v5
-> - Add missed Signed-off
-> - Fix warnings in patches 3 and 12
-> - Add revision requirement to warning message
-> - Move mss_spinlock into RXQ flow control configurations patch
-> - Improve FCA RXQ non occupied descriptor threshold commit message
->
-> v3 --> v4
-> - Remove RFC tag
->
-> v2 --> v3
-> - Remove inline functions
-> - Add PPv2.3 description into marvell-pp2.txt
-> - Improve mvpp2_interrupts_mask/unmask procedure
-> - Improve FC enable/disable procedure
-> - Add priv->sram_pool check
-> - Remove gen_pool_destroy call
-> - Reduce Flow Control timer to x100 faster
->
-> v1 --> v2
-> - Add memory requirements information
-> - Add EPROBE_DEFER if of_gen_pool_get return NULL
-> - Move Flow control configuration to mvpp2_mac_link_up callback
-> - Add firmware version info with Flow control support
->
-> Konstantin Porotchkin (1):
->   dts: marvell: add CM3 SRAM memory to cp11x ethernet device tree
->
-> Stefan Chulski (14):
->   doc: marvell: add CM3 address space and PPv2.3 description
->   net: mvpp2: add CM3 SRAM memory map
->   net: mvpp2: always compare hw-version vs MVPP21
->   net: mvpp2: add PPv23 version definition
->   net: mvpp2: increase BM pool and RXQ size
->   net: mvpp2: add FCA periodic timer configurations
->   net: mvpp2: add FCA RXQ non occupied descriptor threshold
->   net: mvpp2: enable global flow control
->   net: mvpp2: add RXQ flow control configurations
->   net: mvpp2: add ethtool flow control configuration support
->   net: mvpp2: add BM protection underrun feature support
->   net: mvpp2: add PPv23 RX FIFO flow control
->   net: mvpp2: set 802.3x GoP Flow Control mode
->   net: mvpp2: add TX FC firmware check
->
->  Documentation/devicetree/bindings/net/marvell-pp2.txt |   6 +-
->  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi         |   2 +-
->  drivers/net/ethernet/marvell/mvpp2/mvpp2.h            | 124 ++++-
->  drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c       | 526 ++++++++++++=
-++++++--
->  4 files changed, 609 insertions(+), 49 deletions(-)
->
-
-For the series:
-Acked-by: Marcin Wojtas <mw@semihalf.com>
-
-Thanks,
-Marcin
+I don't understand. What do you propose adding?
