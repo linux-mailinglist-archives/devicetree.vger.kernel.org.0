@@ -2,120 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07848315DCB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 04:32:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05109315E31
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 05:28:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbhBJDcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 22:32:35 -0500
-Received: from 14.mo7.mail-out.ovh.net ([178.33.251.19]:48444 "EHLO
-        14.mo7.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbhBJDcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 22:32:35 -0500
-X-Greylist: delayed 8401 seconds by postgrey-1.27 at vger.kernel.org; Tue, 09 Feb 2021 22:32:33 EST
-Received: from player774.ha.ovh.net (unknown [10.108.35.210])
-        by mo7.mail-out.ovh.net (Postfix) with ESMTP id 5E337191C8A
-        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 23:07:23 +0100 (CET)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player774.ha.ovh.net (Postfix) with ESMTPSA id 72B011AFB9FE1;
-        Tue,  9 Feb 2021 22:07:12 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-98R00214cc0512-b6f7-4d99-9498-2d40eb3402b0,
-                    ECAF73ED9022E26008F51CC3B8E5D9CA72646693) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Subject: Re: [PATCH V2 net-next 1/2] dt-bindings: net: document BCM4908
- Ethernet controller
-To:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Masahiro Yamada <masahiroy@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
-References: <20210205214417.11178-1-zajec5@gmail.com>
- <20210207222632.10981-1-zajec5@gmail.com>
- <20210209214345.GA244143@robh.at.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Message-ID: <a22b4a6b-8712-f074-5168-f0800e6fa489@milecki.pl>
-Date:   Tue, 9 Feb 2021 23:07:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S230200AbhBJE2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 23:28:11 -0500
+Received: from msg-2.mailo.com ([213.182.54.12]:58080 "EHLO msg-2.mailo.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229716AbhBJE2L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Feb 2021 23:28:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1612897114; bh=V3ccey8WzD2XM7AIsQttYEM9eTcmjZ4r0L//q+ngfDY=;
+        h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+         References:Content-Type:MIME-Version:Content-Transfer-Encoding;
+        b=EuwOSoBSYeNTUosXXdJcfv6d/N0BqOdiTnMD29Ho55Q6IP51jmzYzDrgbX+sLfdhX
+         nhCp3nsZlcxop2yWVl6UYSTnvA5bHXWnqGFeg/ruG9BLkSidOYhviXz5ubrzgubHZQ
+         ZyeOCOCKi4yeAgVXj9qPxJS39khz9axAY5H7jvzc=
+Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Tue,  9 Feb 2021 19:58:34 +0100 (CET)
+X-EA-Auth: miDhEH5cip3PJigdiPHecsZKJftJVBmcIk/mjlO+sZYfQ82rAqPsLR+iXZKaGjd+Fg+sq5g9isTz3qrMVpIRrbEk72TO8fzfsr7vDETcAvM=
+Message-ID: <07cac63721a9ca63733617e461d640e8927a78f3.camel@mailoo.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: input/touchscreen: add bindings for
+ msg26xx
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Date:   Tue, 09 Feb 2021 19:58:33 +0100
+In-Reply-To: <20210209161319.GA3849081@robh.at.kernel.org>
+References: <20210121174359.1455393-1-vincent.knecht@mailoo.org>
+         <20210209161319.GA3849081@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3 (3.38.3-1.fc33) 
 MIME-Version: 1.0
-In-Reply-To: <20210209214345.GA244143@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 548031780550512271
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrheehgdduheelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepffefgefhhfehjeetfeetkefgkeehleeghefgtddthefhgfffhfduieetjeffveegnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeejgedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09.02.2021 22:43, Rob Herring wrote:
-> On Sun, Feb 07, 2021 at 11:26:31PM +0100, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> BCM4908 is a family of SoCs with integrated Ethernet controller.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->>   .../bindings/net/brcm,bcm4908enet.yaml        | 45 +++++++++++++++++++
->>   1 file changed, 45 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml b/Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml
->> new file mode 100644
->> index 000000000000..5f12f51c5b19
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/brcm,bcm4908enet.yaml
->> @@ -0,0 +1,45 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/brcm,bcm4908enet.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Broadcom BCM4908 Ethernet controller
->> +
->> +description: Broadcom's Ethernet controller integrated into BCM4908 family SoCs
->> +
->> +maintainers:
->> +  - Rafał Miłecki <rafal@milecki.pl>
->> +
-> 
-> allOf:
->    - $ref: 'ethernet-controller.yaml#'
+Le mardi 09 f=C3=A9vrier 2021 =C3=A0 10:13 -0600, Rob Herring a =C3=A9crit=
+=C2=A0:
+> On Thu, Jan 21, 2021 at 06:43:47PM +0100, Vincent Knecht wrote:
+> > This adds dts bindings for the mstar msg26xx touchscreen.
+> >=20
+> > Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> > ---
+> > Changed in v3:
+> > - added `touchscreen-size-x: true` and `touchscreen-size-y: true` prope=
+rties
+> > Changed in v2:
+> > - changed M-Star to MStar in title line
+> > - changed reset gpio to active-low in example section
+> > ---
+> > =C2=A0.../input/touchscreen/mstar,msg26xx.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 69 +++++++++++++++++++
+> > =C2=A01 file changed, 69 insertions(+)
+> > =C2=A0create mode 100644 Documentation/devicetree/bindings/input/touchs=
+creen/mstar,msg26xx.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/mstar,=
+msg26xx.yaml
+> > b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yam=
+l
+> > new file mode 100644
+> > index 000000000000..5d26a1008bf1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx=
+.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/input/touchscreen/mstar,msg26xx.yam=
+l#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MStar msg26xx touchscreen controller Bindings
+> > +
+> > +maintainers:
+> > +=C2=A0 - Vincent Knecht <vincent.knecht@mailoo.org>
+> > +
+> > +allOf:
+> > +=C2=A0 - $ref: touchscreen.yaml#
+> > +
+> > +properties:
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 const: mstar,msg26xx
+>=20
+> Don't use wildcards in compatible strings.
 
-Thanks!
+Thank you for the input...
+
+Let's say I set it to "mstar,msg2638", is it better to rename the driver fi=
+le and functions too ?
+According to downstream source file naming, msg2638 is the model I have and=
+ test this driver with.
 
 
->> +properties:
->> +  compatible:
->> +    const: brcm,bcm4908enet
-> 
-> Normal convention is 'brcm,bcm4908-enet'. (And update the filename/$id)
-
-Is it? ;) It seems we have:
-brcm,bcmgenet (not brcm,bcmg-enet)
-fsl-enetc (not e.g. fsl-enet-c)
-xilinx_axienet (not xilinx_axi-enet)
-apm,xgene1-sgenet (not apm,xgene1-sg-enet)
-
-Of course, as you seem to prefer *-enet, I'll make it so! V3 soon.
+There's a possibility this driver works as-is or with minor mods for msg263=
+3 too,
+and a more remote one for msg21xx and msg22xx...
 
 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    description: RX interrupt
->> +
->> +  interrupt-names:
->> +    const: rx
-> 
-> Don't really need *-names when only 1 possible entry.
 
-I think this controller may have some more interrupts (I don't know about). We can "interrupt-names" later, when we find them out.
+
+
+
