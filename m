@@ -2,320 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 232E13155E2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 19:28:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD06A315600
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 19:36:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233427AbhBISZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 13:25:57 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:57818 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233378AbhBISXQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 13:23:16 -0500
-Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 7B3E020B57A1;
-        Tue,  9 Feb 2021 10:22:31 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 7B3E020B57A1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1612894952;
-        bh=yVOu+W9Ef2mF4o+uSPjE6GG6o7AdGKWk/90O+6j2zlc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=spwuPa/gWbjaK5M3ZWk04am4JWFmGG96JxtX/nT9ncTN7aya+72SDVYXfYekzanDe
-         b1tUhkmrU/leJpNZNM4GuXWOiQifEImKUMaQK6mQ/49UNHD+rinQnMb/ClY6RuG46O
-         gYpRriOdpqa1DLYy3IPdnBCmTDwstfWC/GBRhBII=
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
-        mpe@ellerman.id.au
-Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
-        paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
-        tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH v17 04/10] powerpc: Use common of_kexec_alloc_and_setup_fdt()
-Date:   Tue,  9 Feb 2021 10:21:54 -0800
-Message-Id: <20210209182200.30606-5-nramas@linux.microsoft.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210209182200.30606-1-nramas@linux.microsoft.com>
-References: <20210209182200.30606-1-nramas@linux.microsoft.com>
+        id S233228AbhBISaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 13:30:08 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:37460 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233437AbhBIS1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 13:27:05 -0500
+Received: by mail-ot1-f47.google.com with SMTP id h16so613848ote.4
+        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 10:26:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=yvEVgFXxj42ho51jb6dVDNgFxU/choj/euDd8LGx2dg=;
+        b=qOffRKB4kTbE6CTZl2LlTKuCh4DAg2uTPufnXAlYYjY8gFBtie2C6tqvQaYa/h1IQ0
+         9wlGfughFa/MUnRBTPORn8HsBeSViYcjIiX+eI7o8RjNAXB0yw30L5xwkcC8MTE5yE+U
+         we7U8ypjhWmxpXOsJ4xpvY8cx5wVPKo6wFHAp0YIHU2lhSWNQWV6eLm3g0qE4UeMN325
+         8xH9wbdiFoJiGCoWNZQSi+l6Vhddvvp+/H2w0JaC2BfY5Lg/Cuyupml+LUY2Qmichu2J
+         RvrT0kwF2SrwrgNKfEVtK+03SK7YDbhDMbgoOo/K5EJUMDRAT19VtBI5u1ms5P5hRb8C
+         Os7g==
+X-Gm-Message-State: AOAM530icPJNtHF2qEAUJgVPVrqfSrfGFZw/62bBiG7SJSq5xOQWtK/R
+        q7NkAY8lf9kU6Vl9eNbyfeNYhiqeEA==
+X-Google-Smtp-Source: ABdhPJw4/5gXHlRhCLR6H+bmHa3XmOMLzdwLZrFeDUAOJtrrf0tETU3GzM5HQDG/rPU0Swpi08bOfg==
+X-Received: by 2002:a9d:17ed:: with SMTP id j100mr17375162otj.169.1612894513667;
+        Tue, 09 Feb 2021 10:15:13 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id k67sm3069817oia.7.2021.02.09.10.15.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Feb 2021 10:15:12 -0800 (PST)
+Received: (nullmailer pid 4073574 invoked by uid 1000);
+        Tue, 09 Feb 2021 18:15:10 -0000
+Date:   Tue, 9 Feb 2021 12:15:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
+        a.hajda@samsung.com, narmstrong@baylibre.com,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, kishon@ti.com, vkoul@kernel.org
+Subject: Re: [PATCH v3 09/14] drm/bridge: imx: Add i.MX8qxp pixel link to DPI
+ support
+Message-ID: <20210209181510.GA4045547@robh.at.kernel.org>
+References: <1611737488-2791-1-git-send-email-victor.liu@nxp.com>
+ <1611737488-2791-10-git-send-email-victor.liu@nxp.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1611737488-2791-10-git-send-email-victor.liu@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Herring <robh@kernel.org>
+On Wed, Jan 27, 2021 at 04:51:23PM +0800, Liu Ying wrote:
+> This patch adds a drm bridge driver for i.MX8qxp pixel link to display
+> pixel interface(PXL2DPI).  The PXL2DPI interfaces the pixel link 36-bit
+> data output and the DSI controller’s MIPI-DPI 24-bit data input, and
+> inputs of LVDS Display Bridge(LDB) module used in LVDS mode, to remap
+> the pixel color codings between those modules. The PXL2DPI is purely
+> combinatorial.
+> 
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v2->v3:
+> * Call syscon_node_to_regmap() to get regmap instead of
+>   syscon_regmap_lookup_by_phandle().
+> 
+> v1->v2:
+> * Drop unnecessary port availability check.
+> 
+>  drivers/gpu/drm/bridge/imx/Kconfig           |   8 +
+>  drivers/gpu/drm/bridge/imx/Makefile          |   1 +
+>  drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c | 488 +++++++++++++++++++++++++++
+>  3 files changed, 497 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
 
-The code for setting up the /chosen node in the device tree
-and updating the memory reservation for the next kernel has been
-moved to of_kexec_alloc_and_setup_fdt() defined in "drivers/of/kexec.c".
+> +	p2d->regmap = syscon_node_to_regmap(np->parent);
+> +	if (IS_ERR(p2d->regmap)) {
+> +		ret = PTR_ERR(p2d->regmap);
+> +		if (ret != -EPROBE_DEFER)
+> +			DRM_DEV_ERROR(dev, "failed to get regmap: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	p2d->id = of_alias_get_id(np, "pxl2dpi");
 
-Use the common of_kexec_alloc_and_setup_fdt() to setup the device tree
-and update the memory reservation for kexec for powerpc.
+Don't add random aliases. I'd rather see a property in this node as long 
+as it is specific to what this is used for (and not a generic index).
 
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
----
- arch/powerpc/include/asm/kexec.h  |   1 +
- arch/powerpc/kexec/elf_64.c       |  29 ++++---
- arch/powerpc/kexec/file_load.c    | 132 +-----------------------------
- arch/powerpc/kexec/file_load_64.c |   3 +
- 4 files changed, 25 insertions(+), 140 deletions(-)
-
-diff --git a/arch/powerpc/include/asm/kexec.h b/arch/powerpc/include/asm/kexec.h
-index dbf09d2f36d0..bdd0ddb9ac4d 100644
---- a/arch/powerpc/include/asm/kexec.h
-+++ b/arch/powerpc/include/asm/kexec.h
-@@ -111,6 +111,7 @@ struct kimage_arch {
- 	unsigned long elf_headers_mem;
- 	unsigned long elf_headers_sz;
- 	void *elf_headers;
-+	void *fdt;
- 
- #ifdef CONFIG_IMA_KEXEC
- 	phys_addr_t ima_buffer_addr;
-diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
-index d0e459bb2f05..bfabd06f99b1 100644
---- a/arch/powerpc/kexec/elf_64.c
-+++ b/arch/powerpc/kexec/elf_64.c
-@@ -19,6 +19,7 @@
- #include <linux/kexec.h>
- #include <linux/libfdt.h>
- #include <linux/module.h>
-+#include <linux/of.h>
- #include <linux/of_fdt.h>
- #include <linux/slab.h>
- #include <linux/types.h>
-@@ -29,7 +30,6 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
- 			unsigned long cmdline_len)
- {
- 	int ret;
--	unsigned int fdt_size;
- 	unsigned long kernel_load_addr;
- 	unsigned long initrd_load_addr = 0, fdt_load_addr;
- 	void *fdt;
-@@ -102,19 +102,13 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
- 		pr_debug("Loaded initrd at 0x%lx\n", initrd_load_addr);
- 	}
- 
--	fdt_size = fdt_totalsize(initial_boot_params) * 2;
--	fdt = kmalloc(fdt_size, GFP_KERNEL);
-+	fdt = of_kexec_alloc_and_setup_fdt(image, initrd_load_addr,
-+					   initrd_len, cmdline);
- 	if (!fdt) {
- 		pr_err("Not enough memory for the device tree.\n");
- 		ret = -ENOMEM;
- 		goto out;
- 	}
--	ret = fdt_open_into(initial_boot_params, fdt, fdt_size);
--	if (ret < 0) {
--		pr_err("Error setting up the new device tree.\n");
--		ret = -EINVAL;
--		goto out;
--	}
- 
- 	ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
- 				  initrd_len, cmdline);
-@@ -124,13 +118,17 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
- 	fdt_pack(fdt);
- 
- 	kbuf.buffer = fdt;
--	kbuf.bufsz = kbuf.memsz = fdt_size;
-+	kbuf.bufsz = kbuf.memsz = fdt_totalsize(fdt);
- 	kbuf.buf_align = PAGE_SIZE;
- 	kbuf.top_down = true;
- 	kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
- 	ret = kexec_add_buffer(&kbuf);
- 	if (ret)
- 		goto out;
-+
-+	/* FDT will be freed in arch_kimage_file_post_load_cleanup */
-+	image->arch.fdt = fdt;
-+
- 	fdt_load_addr = kbuf.mem;
- 
- 	pr_debug("Loaded device tree at 0x%lx\n", fdt_load_addr);
-@@ -145,8 +143,15 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
- 	kfree(modified_cmdline);
- 	kexec_free_elf_info(&elf_info);
- 
--	/* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
--	return ret ? ERR_PTR(ret) : fdt;
-+	/*
-+	 * Once FDT buffer has been successfully passed to kexec_add_buffer(),
-+	 * the FDT buffer address is saved in image->arch.fdt. In that case,
-+	 * the memory cannot be freed here in case of any other error.
-+	 */
-+	if (ret && !image->arch.fdt)
-+		kvfree(fdt);
-+
-+	return ret ? ERR_PTR(ret) : NULL;
- }
- 
- const struct kexec_file_ops kexec_elf64_ops = {
-diff --git a/arch/powerpc/kexec/file_load.c b/arch/powerpc/kexec/file_load.c
-index e452b11df631..d23e2969395c 100644
---- a/arch/powerpc/kexec/file_load.c
-+++ b/arch/powerpc/kexec/file_load.c
-@@ -156,135 +156,11 @@ int setup_new_fdt(const struct kimage *image, void *fdt,
- 		  unsigned long initrd_load_addr, unsigned long initrd_len,
- 		  const char *cmdline)
- {
--	int ret, chosen_node;
--	const void *prop;
--
--	/* Remove memory reservation for the current device tree. */
--	ret = delete_fdt_mem_rsv(fdt, __pa(initial_boot_params),
--				 fdt_totalsize(initial_boot_params));
--	if (ret == 0)
--		pr_debug("Removed old device tree reservation.\n");
--	else if (ret != -ENOENT)
--		return ret;
--
--	chosen_node = fdt_path_offset(fdt, "/chosen");
--	if (chosen_node == -FDT_ERR_NOTFOUND) {
--		chosen_node = fdt_add_subnode(fdt, fdt_path_offset(fdt, "/"),
--					      "chosen");
--		if (chosen_node < 0) {
--			pr_err("Error creating /chosen.\n");
--			return -EINVAL;
--		}
--	} else if (chosen_node < 0) {
--		pr_err("Malformed device tree: error reading /chosen.\n");
--		return -EINVAL;
--	}
--
--	/* Did we boot using an initrd? */
--	prop = fdt_getprop(fdt, chosen_node, "linux,initrd-start", NULL);
--	if (prop) {
--		uint64_t tmp_start, tmp_end, tmp_size;
--
--		tmp_start = fdt64_to_cpu(*((const fdt64_t *) prop));
--
--		prop = fdt_getprop(fdt, chosen_node, "linux,initrd-end", NULL);
--		if (!prop) {
--			pr_err("Malformed device tree.\n");
--			return -EINVAL;
--		}
--		tmp_end = fdt64_to_cpu(*((const fdt64_t *) prop));
--
--		/*
--		 * kexec reserves exact initrd size, while firmware may
--		 * reserve a multiple of PAGE_SIZE, so check for both.
--		 */
--		tmp_size = tmp_end - tmp_start;
--		ret = delete_fdt_mem_rsv(fdt, tmp_start, tmp_size);
--		if (ret == -ENOENT)
--			ret = delete_fdt_mem_rsv(fdt, tmp_start,
--						 round_up(tmp_size, PAGE_SIZE));
--		if (ret == 0)
--			pr_debug("Removed old initrd reservation.\n");
--		else if (ret != -ENOENT)
--			return ret;
--
--		/* If there's no new initrd, delete the old initrd's info. */
--		if (initrd_len == 0) {
--			ret = fdt_delprop(fdt, chosen_node,
--					  "linux,initrd-start");
--			if (ret) {
--				pr_err("Error deleting linux,initrd-start.\n");
--				return -EINVAL;
--			}
--
--			ret = fdt_delprop(fdt, chosen_node, "linux,initrd-end");
--			if (ret) {
--				pr_err("Error deleting linux,initrd-end.\n");
--				return -EINVAL;
--			}
--		}
--	}
--
--	if (initrd_len) {
--		ret = fdt_setprop_u64(fdt, chosen_node,
--				      "linux,initrd-start",
--				      initrd_load_addr);
--		if (ret < 0)
--			goto err;
--
--		/* initrd-end is the first address after the initrd image. */
--		ret = fdt_setprop_u64(fdt, chosen_node, "linux,initrd-end",
--				      initrd_load_addr + initrd_len);
--		if (ret < 0)
--			goto err;
--
--		ret = fdt_add_mem_rsv(fdt, initrd_load_addr, initrd_len);
--		if (ret) {
--			pr_err("Error reserving initrd memory: %s\n",
--			       fdt_strerror(ret));
--			return -EINVAL;
--		}
--	}
--
--	if (cmdline != NULL) {
--		ret = fdt_setprop_string(fdt, chosen_node, "bootargs", cmdline);
--		if (ret < 0)
--			goto err;
--	} else {
--		ret = fdt_delprop(fdt, chosen_node, "bootargs");
--		if (ret && ret != -FDT_ERR_NOTFOUND) {
--			pr_err("Error deleting bootargs.\n");
--			return -EINVAL;
--		}
--	}
--
--	if (image->type == KEXEC_TYPE_CRASH) {
--		/*
--		 * Avoid elfcorehdr from being stomped on in kdump kernel by
--		 * setting up memory reserve map.
--		 */
--		ret = fdt_add_mem_rsv(fdt, image->arch.elf_headers_mem,
--				      image->arch.elf_headers_sz);
--		if (ret) {
--			pr_err("Error reserving elfcorehdr memory: %s\n",
--			       fdt_strerror(ret));
--			goto err;
--		}
--	}
--
--	ret = setup_ima_buffer(image, fdt, chosen_node);
--	if (ret) {
--		pr_err("Error setting up the new device tree.\n");
--		return ret;
--	}
-+	int ret;
- 
--	ret = fdt_setprop(fdt, chosen_node, "linux,booted-from-kexec", NULL, 0);
-+	ret = setup_ima_buffer(image, fdt, fdt_path_offset(fdt, "/chosen"));
- 	if (ret)
--		goto err;
--
--	return 0;
-+		pr_err("Error setting up the new device tree.\n");
- 
--err:
--	pr_err("Error setting up the new device tree.\n");
--	return -EINVAL;
-+	return ret;
- }
-diff --git a/arch/powerpc/kexec/file_load_64.c b/arch/powerpc/kexec/file_load_64.c
-index a05c19b3cc60..dac3d29c7c77 100644
---- a/arch/powerpc/kexec/file_load_64.c
-+++ b/arch/powerpc/kexec/file_load_64.c
-@@ -1111,5 +1111,8 @@ int arch_kimage_file_post_load_cleanup(struct kimage *image)
- 	image->arch.elf_headers = NULL;
- 	image->arch.elf_headers_sz = 0;
- 
-+	kvfree(image->arch.fdt);
-+	image->arch.fdt = NULL;
-+
- 	return kexec_image_post_load_cleanup_default(image);
- }
--- 
-2.30.0
-
+Rob
