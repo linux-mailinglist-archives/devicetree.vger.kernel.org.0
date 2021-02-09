@@ -2,181 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E693315338
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 16:54:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E9B231535D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 17:06:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232414AbhBIPyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 10:54:36 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:33979 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232294AbhBIPyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 10:54:35 -0500
-Received: by mail-oi1-f169.google.com with SMTP id i3so9021062oif.1;
-        Tue, 09 Feb 2021 07:54:18 -0800 (PST)
+        id S232654AbhBIQEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 11:04:50 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:41452 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232650AbhBIQEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 11:04:47 -0500
+Received: by mail-oi1-f181.google.com with SMTP id v193so14477910oie.8;
+        Tue, 09 Feb 2021 08:04:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=n8RGtZJUggLSCRq7qMrNt9PC2BllhIR7lzoDCBdYMa8=;
-        b=X6gPFBPVKVC+IFk33YKFkULffR9WSmqR73auE2ZKI8QH6Zm959B9Ah9KBPAc5HIHw2
-         3m0/Ch12gU1xVMZMzE2o3kXIwROg48sz+ETGpy46Fp189slQP51ws5IY8ktiFzgjQsAZ
-         vNCq1Gk03+c9FBBjo7ukpZ+mfkJSwkCdc3kILDKmFkgLs39XquKtNYxRDF+9kTQJtqb+
-         XL656yjF8P0wwXddlgPsp8wJwuvaWFwiKSAzR7E0T7qBgV7l66BwZUlyq2zwRadQB2yk
-         C+PyKYQsFktEH+afOEc9nj2jfQ3vZ63d5CKiJmovAjUuJLkR/q0CIiGktCZS5SL+ZHmu
-         wwtA==
-X-Gm-Message-State: AOAM531lvt26+Kz089KuPI/czul41Qc9eXqZx1orEJDdiffEMtacr3x2
-        Me/K/ZO6suQ6oZgSFIAmKg==
-X-Google-Smtp-Source: ABdhPJymQc7IHN4pNsxzcoYtAeiTFpG1/W/MbAoJvQPnwIAXU6moHoTqEDDFHzxQJeoydepWxYwURg==
-X-Received: by 2002:aca:cfd0:: with SMTP id f199mr2909983oig.64.1612886032958;
-        Tue, 09 Feb 2021 07:53:52 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=7ZuEtfm+aDvR3PynQiFYy1ZPav1OUzL36rYQRVcoZgA=;
+        b=LN9/HIzNueQvaekMZF2fSFzo5Nf2ouf51i188gJTzMTZ90GdMdDx89dYwh4LvUqzfr
+         FwWjUYYXSYg7Sxj895zlVBIFKNg5r9h3RUENxIjyt3dvZpQ2lzBg1PxPLitqyi5Crg61
+         mlua/39sP9VisKpIXZCkA7VuzRp7PhhsPXP6kUJeegoYYb/tprIYBLHe+ekojxcadwaw
+         MNWgmJ8h6rcNuPLF8lOMdbLGiBIOLc7yr8AZ+176weIejJ2OSpxQZQ5pbVCXrBhwKfb4
+         KMxZQBY/svXf5xup378CsKSYxtqIUIacA+kkb/76zZ4lOGKKUFabfwZpKILNN9WdGVo0
+         6bSQ==
+X-Gm-Message-State: AOAM533GRg+PU/hQCBuBKI7vYAnZWDQV71ZMslsOCB20jYoiqeUwPyky
+        OqIf/0v1HmetGmNCxxqmrPXQ2483Fw==
+X-Google-Smtp-Source: ABdhPJzCCOzLI519ZBVzaYiBxfJDwBoUmtv2JTmWMNV4I82WEWkc9KGC+3ipomPFW6PK9cRId1BI9A==
+X-Received: by 2002:aca:5d84:: with SMTP id r126mr2900564oib.76.1612886646455;
+        Tue, 09 Feb 2021 08:04:06 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c20sm4384328oiw.18.2021.02.09.07.53.50
+        by smtp.gmail.com with ESMTPSA id k23sm4433524oik.4.2021.02.09.08.04.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 07:53:51 -0800 (PST)
-Received: (nullmailer pid 3832812 invoked by uid 1000);
-        Tue, 09 Feb 2021 15:53:50 -0000
-Date:   Tue, 9 Feb 2021 09:53:50 -0600
+        Tue, 09 Feb 2021 08:04:05 -0800 (PST)
+Received: (nullmailer pid 3847693 invoked by uid 1000);
+        Tue, 09 Feb 2021 16:04:04 -0000
+Date:   Tue, 9 Feb 2021 10:04:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: media: mtk-vcodec: Separating mtk
- vcodec encoder node
-Message-ID: <20210209155350.GA3827709@robh.at.kernel.org>
-References: <20210121061804.26423-1-irui.wang@mediatek.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        devicetree@vger.kernel.org,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: Re: [PATCH 4/4] dt-bindings: adis16475: remove property
+Message-ID: <20210209160404.GA3847638@robh.at.kernel.org>
+References: <20210121114954.64156-1-nuno.sa@analog.com>
+ <20210121114954.64156-5-nuno.sa@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210121061804.26423-1-irui.wang@mediatek.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210121114954.64156-5-nuno.sa@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 02:18:02PM +0800, Irui Wang wrote:
-> Updates binding document since the avc and vp8 hardware encoder in
-> MT8173 are now separated. Separate "mediatek,mt8173-vcodec-enc" to
-> "mediatek,mt8173-vcodec-vp8-enc" and "mediatek,mt8173-vcodec-avc-enc".
-
-This is not a compatible change. You need to detail that and why that's 
-okay (assuming it is).
-
+On Thu, 21 Jan 2021 12:49:54 +0100, Nuno Sá wrote:
+> `adi,scaled-output-hz` is no longer used by the driver.
 > 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Signed-off-by: Maoguang Meng <maoguang.meng@mediatek.com>
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
 > ---
->  .../bindings/media/mediatek-vcodec.txt        | 58 ++++++++++---------
->  1 file changed, 31 insertions(+), 27 deletions(-)
+>  .../devicetree/bindings/iio/imu/adi,adis16475.yaml       | 9 ---------
+>  1 file changed, 9 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> index 8217424fd4bd..f85276e629bf 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> +++ b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> @@ -4,7 +4,9 @@ Mediatek Video Codec is the video codec hw present in Mediatek SoCs which
->  supports high resolution encoding and decoding functionalities.
->  
->  Required properties:
-> -- compatible : "mediatek,mt8173-vcodec-enc" for MT8173 encoder
-> +- compatible : must be one of the following string:
-> +  "mediatek,mt8173-vcodec-vp8-enc" for mt8173 vp8 encoder.
-> +  "mediatek,mt8173-vcodec-avc-enc" for mt8173 avc encoder.
->    "mediatek,mt8183-vcodec-enc" for MT8183 encoder.
->    "mediatek,mt8173-vcodec-dec" for MT8173 decoder.
->  - reg : Physical base address of the video codec registers and length of
-> @@ -13,10 +15,11 @@ Required properties:
->  - mediatek,larb : must contain the local arbiters in the current Socs.
->  - clocks : list of clock specifiers, corresponding to entries in
->    the clock-names property.
-> -- clock-names: encoder must contain "venc_sel_src", "venc_sel",,
-> -  "venc_lt_sel_src", "venc_lt_sel", decoder must contain "vcodecpll",
-> -  "univpll_d2", "clk_cci400_sel", "vdec_sel", "vdecpll", "vencpll",
-> -  "venc_lt_sel", "vdec_bus_clk_src".
-> +- clock-names:
-> +   avc venc must contain "venc_sel";
-> +   vp8 venc must contain "venc_lt_sel";
-> +   decoder  must contain "vcodecpll", "univpll_d2", "clk_cci400_sel",
-> +   "vdec_sel", "vdecpll", "vencpll", "venc_lt_sel", "vdec_bus_clk_src".
->  - iommus : should point to the respective IOMMU block with master port as
->    argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
->    for details.
-> @@ -80,14 +83,10 @@ vcodec_dec: vcodec@16000000 {
->      assigned-clock-rates = <0>, <0>, <0>, <1482000000>, <800000000>;
->    };
->  
-> -  vcodec_enc: vcodec@18002000 {
-> -    compatible = "mediatek,mt8173-vcodec-enc";
-> -    reg = <0 0x18002000 0 0x1000>,    /*VENC_SYS*/
-> -          <0 0x19002000 0 0x1000>;    /*VENC_LT_SYS*/
-> -    interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>,
-> -		 <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
-> -    mediatek,larb = <&larb3>,
-> -		    <&larb5>;
-> +vcodec_enc: vcodec@18002000 {
-> +    compatible = "mediatek,mt8173-vcodec-avc-enc";
-> +    reg = <0 0x18002000 0 0x1000>;
-> +    interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>;
->      iommus = <&iommu M4U_PORT_VENC_RCPU>,
->               <&iommu M4U_PORT_VENC_REC>,
->               <&iommu M4U_PORT_VENC_BSDMA>,
-> @@ -98,8 +97,20 @@ vcodec_dec: vcodec@16000000 {
->               <&iommu M4U_PORT_VENC_REF_LUMA>,
->               <&iommu M4U_PORT_VENC_REF_CHROMA>,
->               <&iommu M4U_PORT_VENC_NBM_RDMA>,
-> -             <&iommu M4U_PORT_VENC_NBM_WDMA>,
-> -             <&iommu M4U_PORT_VENC_RCPU_SET2>,
-> +             <&iommu M4U_PORT_VENC_NBM_WDMA>;
-> +    mediatek,larb = <&larb3>;
-> +    mediatek,vpu = <&vpu>;
-> +    clocks = <&topckgen CLK_TOP_VENC_SEL>;
-> +    clock-names = "venc_sel";
-> +    assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>;
-> +    assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>;
-> +  };
-> +
-> +vcodec_enc_lt: vcodec@19002000 {
-> +    compatible = "mediatek,mt8173-vcodec-vp8-enc";
-> +    reg =  <0 0x19002000 0 0x1000>;	/* VENC_LT_SYS */
-> +    interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
-> +    iommus = <&iommu M4U_PORT_VENC_RCPU_SET2>,
->               <&iommu M4U_PORT_VENC_REC_FRM_SET2>,
->               <&iommu M4U_PORT_VENC_BSDMA_SET2>,
->               <&iommu M4U_PORT_VENC_SV_COMA_SET2>,
-> @@ -108,17 +119,10 @@ vcodec_dec: vcodec@16000000 {
->               <&iommu M4U_PORT_VENC_CUR_CHROMA_SET2>,
->               <&iommu M4U_PORT_VENC_REF_LUMA_SET2>,
->               <&iommu M4U_PORT_VENC_REC_CHROMA_SET2>;
-> +    mediatek,larb = <&larb5>;
->      mediatek,vpu = <&vpu>;
-> -    clocks = <&topckgen CLK_TOP_VENCPLL_D2>,
-> -             <&topckgen CLK_TOP_VENC_SEL>,
-> -             <&topckgen CLK_TOP_UNIVPLL1_D2>,
-> -             <&topckgen CLK_TOP_VENC_LT_SEL>;
-> -    clock-names = "venc_sel_src",
-> -                  "venc_sel",
-> -                  "venc_lt_sel_src",
-> -                  "venc_lt_sel";
-> -    assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>,
-> -                      <&topckgen CLK_TOP_VENC_LT_SEL>;
-> -    assigned-clock-parents = <&topckgen CLK_TOP_VENCPLL_D2>,
-> -                             <&topckgen CLK_TOP_UNIVPLL1_D2>;
-> +    clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
-> +    clock-names = "venc_lt_sel";
-> +    assigned-clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
-> +    assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL_370P5>;
->    };
-> -- 
-> 2.18.0
-> 
+
+Acked-by: Rob Herring <robh@kernel.org>
