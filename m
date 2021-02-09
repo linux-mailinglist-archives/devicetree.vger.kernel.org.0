@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19DD6314C27
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 10:54:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94EDF314C2E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 10:56:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230191AbhBIJyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 04:54:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38180 "EHLO
+        id S230313AbhBIJyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 04:54:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230518AbhBIJwM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 04:52:12 -0500
+        with ESMTP id S230481AbhBIJwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 04:52:33 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 025B3C06178C
-        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 01:51:32 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F1A0C0617AB
+        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 01:51:53 -0800 (PST)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1l9Pg3-0008AA-Il; Tue, 09 Feb 2021 10:51:23 +0100
+        id 1l9Pg3-0008AB-Ik; Tue, 09 Feb 2021 10:51:23 +0100
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1l9Pg2-0007Ka-6y; Tue, 09 Feb 2021 10:51:22 +0100
+        id 1l9Pg2-0007Kk-82; Tue, 09 Feb 2021 10:51:22 +0100
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -39,9 +39,9 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         David Jander <david@protonic.nl>,
         dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 3/6] ARM: dts: imx6dl-prtvt7: Add display and panel nodes
-Date:   Tue,  9 Feb 2021 10:51:18 +0100
-Message-Id: <20210209095121.28098-4-o.rempel@pengutronix.de>
+Subject: [PATCH v3 4/6] ARM: dts: imx6dl-prtvt7: add TSC2046 touchscreen node
+Date:   Tue,  9 Feb 2021 10:51:19 +0100
+Message-Id: <20210209095121.28098-5-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210209095121.28098-1-o.rempel@pengutronix.de>
 References: <20210209095121.28098-1-o.rempel@pengutronix.de>
@@ -55,93 +55,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Innolux G070Y2-T02 panel to the Protonic VT7 board.
+Add touchscreen support to the Protonic VT7 board.
 
+Co-Developed-by: Robin van der Gracht <robin@protonic.nl>
 Signed-off-by: Robin van der Gracht <robin@protonic.nl>
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- arch/arm/boot/dts/imx6dl-prtvt7.dts | 47 +++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ arch/arm/boot/dts/imx6dl-prtvt7.dts | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/arch/arm/boot/dts/imx6dl-prtvt7.dts b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-index ae6da241f13e..d9cb1e41cc10 100644
+index d9cb1e41cc10..836026a0e219 100644
 --- a/arch/arm/boot/dts/imx6dl-prtvt7.dts
 +++ b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-@@ -31,6 +31,30 @@ backlight_lcd: backlight-lcd {
- 		enable-gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	display {
-+		compatible = "fsl,imx-parallel-display";
-+		pinctrl-0 = <&pinctrl_ipu1_disp>;
-+		pinctrl-names = "default";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			display_in: endpoint {
-+				remote-endpoint = <&ipu1_di0_disp0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			display_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+
- 	keys {
- 		compatible = "gpio-keys";
- 		autorepeat;
-@@ -138,6 +162,18 @@ led-debug0 {
- 		};
- 	};
- 
-+	panel {
-+		compatible = "innolux,g070y2-t02";
-+		backlight = <&backlight_lcd>;
-+		power-supply = <&reg_3v3>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
-+
- 	reg_bl_12v0: regulator-bl-12v0 {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
-@@ -149,6 +185,13 @@ reg_bl_12v0: regulator-bl-12v0 {
- 		enable-active-high;
- 	};
- 
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
- 	reg_1v8: regulator-1v8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "1v8";
-@@ -260,6 +303,10 @@ &ipu1 {
+@@ -266,6 +266,21 @@ &ecspi2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_ecspi2>;
  	status = "okay";
++
++	touchscreen@0 {
++		compatible = "ti,tsc2046";
++		reg = <0>;
++		pinctrl-0 = <&pinctrl_tsc>;
++		pinctrl-names ="default";
++		spi-max-frequency = <100000>;
++		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
++		pendown-gpio = <&gpio3 20 GPIO_ACTIVE_LOW>;
++		touchscreen-max-pressure = <4095>;
++		ti,vref-delay-usecs = /bits/ 16 <100>;
++		ti,x-plate-ohms = /bits/ 16 <800>;
++		ti,y-plate-ohms = /bits/ 16 <300>;
++		wakeup-source;
++	};
  };
  
-+&ipu1_di0_disp0 {
-+	remote-endpoint = <&display_in>;
-+};
-+
- &pwm1 {
- 	#pwm-cells = <2>;
- 	pinctrl-names = "default";
+ &i2c1 {
 -- 
 2.30.0
 
