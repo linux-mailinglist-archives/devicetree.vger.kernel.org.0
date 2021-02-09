@@ -2,65 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10634314A8C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 09:43:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82976314A91
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 09:43:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbhBIIlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 03:41:39 -0500
-Received: from verein.lst.de ([213.95.11.211]:45491 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229861AbhBIIlg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Feb 2021 03:41:36 -0500
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id 711FD68AFE; Tue,  9 Feb 2021 09:40:51 +0100 (CET)
-Date:   Tue, 9 Feb 2021 09:40:50 +0100
-From:   Christoph Hellwig <hch@lst.de>
-To:     Claire Chang <tientzu@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>
-Subject: Re: [PATCH v4 01/14] swiotlb: Remove external access to
- io_tlb_start
-Message-ID: <20210209084050.GA32212@lst.de>
-References: <20210209062131.2300005-1-tientzu@chromium.org> <20210209062131.2300005-2-tientzu@chromium.org>
+        id S229908AbhBIIns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 03:43:48 -0500
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:7430 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229690AbhBIInr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 03:43:47 -0500
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1198afpp003954;
+        Tue, 9 Feb 2021 00:42:45 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=RBZH28AihrXWJ0czsh9x/Sr5BV4yon92OXbl1WE+hOA=;
+ b=KKt1buR7m9FyfKosk82NAEdPD3UhRDhXg/Kif9tWVDEoIcUCnMWypea/Ov/z1nl7yggY
+ AXf7dORFHkx+CcWr3iJLcrxORzhDRZQbUcpaYKyFKjZks4GSjremZS7cHCxrpPcKYXVp
+ VZ57C++fkrR5QCFm5GS4nq5G6MtMqfd1VmHP0Ck6lK/7I5doiJI8TmyjkhMBxVXEFe+B
+ ywChlvR64BuwG7jKc7z9w2Sg+SQBvtYdowI6R5t38zCEReJnZqP8IUBP9xMI7xJCVE9E
+ 0tpx9/fzhVMIisdp4557fGCDch/8HG3dzmtTrTtZDv1VJ7JphVFO+zQyBZxdWC4Y48XH IA== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+        by mx0a-0016f401.pphosted.com with ESMTP id 36hsbrfspc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Tue, 09 Feb 2021 00:42:45 -0800
+Received: from SC-EXCH02.marvell.com (10.93.176.82) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 9 Feb
+ 2021 00:42:43 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by SC-EXCH02.marvell.com
+ (10.93.176.82) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 9 Feb
+ 2021 00:42:43 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 9 Feb 2021 00:42:43 -0800
+Received: from stefan-pc.marvell.com (stefan-pc.marvell.com [10.5.25.21])
+        by maili.marvell.com (Postfix) with ESMTP id 255953F703F;
+        Tue,  9 Feb 2021 00:42:38 -0800 (PST)
+From:   <stefanc@marvell.com>
+To:     <netdev@vger.kernel.org>
+CC:     <thomas.petazzoni@bootlin.com>, <davem@davemloft.net>,
+        <nadavh@marvell.com>, <ymarkman@marvell.com>,
+        <linux-kernel@vger.kernel.org>, <stefanc@marvell.com>,
+        <kuba@kernel.org>, <linux@armlinux.org.uk>, <mw@semihalf.com>,
+        <andrew@lunn.ch>, <rmk+kernel@armlinux.org.uk>,
+        <atenart@kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <sebastian.hesselbarth@gmail.com>,
+        <gregory.clement@bootlin.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v11 net-next 00/15] net: mvpp2: Add TX Flow Control support
+Date:   Tue, 9 Feb 2021 10:42:16 +0200
+Message-ID: <1612860151-12275-1-git-send-email-stefanc@marvell.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210209062131.2300005-2-tientzu@chromium.org>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+Content-Type: text/plain
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-09_02:2021-02-09,2021-02-09 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 09, 2021 at 02:21:18PM +0800, Claire Chang wrote:
-> This can be dropped if Christoph's swiotlb cleanups are landed.
-> https://lore.kernel.org/linux-iommu/20210207160934.2955931-1-hch@lst.de/T/#m7124f29b6076d462101fcff6433295157621da09 
+From: Stefan Chulski <stefanc@marvell.com>
 
-FYI, I've also started looking into additional cleanups based on your
-struct in this branch, but I'd like to wait for all the previous
-changes to settle first:
+Armada hardware has a pause generation mechanism in GOP (MAC).
+The GOP generate flow control frames based on an indication programmed in Ports Control 0 Register. There is a bit per port.
+However assertion of the PortX Pause bits in the ports control 0 register only sends a one time pause.
+To complement the function the GOP has a mechanism to periodically send pause control messages based on periodic counters.
+This mechanism ensures that the pause is effective as long as the Appropriate PortX Pause is asserted.
 
-http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/swiotlb-struct
+Problem is that Packet Processor that actually can drop packets due to lack of resources not connected to the GOP flow control generation mechanism.
+To solve this issue Armada has firmware running on CM3 CPU dedicated for Flow Control support.
+Firmware monitors Packet Processor resources and asserts XON/XOFF by writing to Ports Control 0 Register.
+
+MSS shared SRAM memory used to communicate between CM3 firmware and PP2 driver.
+During init PP2 driver informs firmware about used BM pools, RXQs, congestion and depletion thresholds.
+
+The pause frames are generated whenever congestion or depletion in resources is detected.
+The back pressure is stopped when the resource reaches a sufficient level.
+So the congestion/depletion and sufficient level implement a hysteresis that reduces the XON/XOFF toggle frequency.
+
+Packet Processor v23 hardware introduces support for RX FIFO fill level monitor.
+Patch "add PPv23 version definition" to differ between v23 and v22 hardware.
+Patch "add TX FC firmware check" verifies that CM3 firmware supports Flow Control monitoring.
+
+v10 --> v11
+- Improve "net: mvpp2: add CM3 SRAM memory map" comment
+- Move condition check to 'net: mvpp2: always compare hw-version vs MVPP21' patch
+
+v9 --> v10
+- Add CM3 SRAM description to PPv2 documentation
+
+v8 --> v9
+- Replace generic pool allocation with devm_ioremap_resource
+
+v7 --> v8
+- Reorder "always compare hw-version vs MVPP21" and "add PPv23 version definition" commits
+- Typo fixes
+- Remove condition fix from "add RXQ flow control configurations"
+
+v6 --> v7
+- Reduce patch set from 18 to 15 patches
+ - Documentation change combined into a single patch
+ - RXQ and BM size change combined into a single patch
+ - Ring size change check moved into "add RXQ flow control configurations" commit
+
+v5 --> v6
+- No change
+
+v4 --> v5
+- Add missed Signed-off
+- Fix warnings in patches 3 and 12
+- Add revision requirement to warning message
+- Move mss_spinlock into RXQ flow control configurations patch
+- Improve FCA RXQ non occupied descriptor threshold commit message
+
+v3 --> v4
+- Remove RFC tag
+
+v2 --> v3
+- Remove inline functions
+- Add PPv2.3 description into marvell-pp2.txt
+- Improve mvpp2_interrupts_mask/unmask procedure
+- Improve FC enable/disable procedure
+- Add priv->sram_pool check
+- Remove gen_pool_destroy call
+- Reduce Flow Control timer to x100 faster
+
+v1 --> v2
+- Add memory requirements information
+- Add EPROBE_DEFER if of_gen_pool_get return NULL
+- Move Flow control configuration to mvpp2_mac_link_up callback
+- Add firmware version info with Flow control support
+
+Konstantin Porotchkin (1):
+  dts: marvell: add CM3 SRAM memory to cp11x ethernet device tree
+
+Stefan Chulski (14):
+  doc: marvell: add CM3 address space and PPv2.3 description
+  net: mvpp2: add CM3 SRAM memory map
+  net: mvpp2: always compare hw-version vs MVPP21
+  net: mvpp2: add PPv23 version definition
+  net: mvpp2: increase BM pool and RXQ size
+  net: mvpp2: add FCA periodic timer configurations
+  net: mvpp2: add FCA RXQ non occupied descriptor threshold
+  net: mvpp2: enable global flow control
+  net: mvpp2: add RXQ flow control configurations
+  net: mvpp2: add ethtool flow control configuration support
+  net: mvpp2: add BM protection underrun feature support
+  net: mvpp2: add PPv23 RX FIFO flow control
+  net: mvpp2: set 802.3x GoP Flow Control mode
+  net: mvpp2: add TX FC firmware check
+
+ Documentation/devicetree/bindings/net/marvell-pp2.txt |   6 +-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi         |   2 +-
+ drivers/net/ethernet/marvell/mvpp2/mvpp2.h            | 124 ++++-
+ drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c       | 526 ++++++++++++++++++--
+ 4 files changed, 609 insertions(+), 49 deletions(-)
+
+-- 
+1.9.1
+
