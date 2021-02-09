@@ -2,155 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B9F1314AD2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 09:51:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E69314B5C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 10:22:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbhBIIuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 03:50:51 -0500
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:48452 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230127AbhBIIso (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 03:48:44 -0500
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1198jbPv027034;
-        Tue, 9 Feb 2021 00:47:50 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=YyIJ/1eDbCh0foaOPgcKNNopcXPvlFkHzZZvwgJfM/4=;
- b=hCof6M2YKcLKQbpifTqV/kfwkweYWAXi3BIR+uFMmVrx/x9S7z5D6Gi2tsZayLcmtwfy
- PQgPYmmpJZSdfjX2xIJYjiLq9wgmNMRxtHmr9AM/cJ7qBVSOMG7G1YvpOe2Yj4e+Qx+p
- RUSjX42n3vNuLQCICJmr+sXJ9BDoLgKAosBjiLQLhn84I5ZWCwfGA5CFG2cCD4a1N7E0
- GA23ZH25Y78aNHMQUe40lAmRZVXqWY5j09n8IB3/crOKguzHLyKhTYfTZzAMsp69Q2hA
- bQvhgZMrKNeYhDUxQtXbGQV4VX2FPrv0MqoDRBt1voYoF/STp8bCoBG0RjnxfEFkjsvw DA== 
-Received: from dc5-exch01.marvell.com ([199.233.59.181])
-        by mx0b-0016f401.pphosted.com with ESMTP id 36hugq7m9f-4
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Tue, 09 Feb 2021 00:47:50 -0800
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 9 Feb
- 2021 00:47:48 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 9 Feb 2021 00:47:48 -0800
-Received: from stefan-pc.marvell.com (stefan-pc.marvell.com [10.5.25.21])
-        by maili.marvell.com (Postfix) with ESMTP id 4F32F3F703F;
-        Tue,  9 Feb 2021 00:47:44 -0800 (PST)
-From:   <stefanc@marvell.com>
-To:     <netdev@vger.kernel.org>
-CC:     <thomas.petazzoni@bootlin.com>, <davem@davemloft.net>,
-        <nadavh@marvell.com>, <ymarkman@marvell.com>,
-        <linux-kernel@vger.kernel.org>, <stefanc@marvell.com>,
-        <kuba@kernel.org>, <linux@armlinux.org.uk>, <mw@semihalf.com>,
-        <andrew@lunn.ch>, <rmk+kernel@armlinux.org.uk>,
-        <atenart@kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, <sebastian.hesselbarth@gmail.com>,
-        <gregory.clement@bootlin.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v11 net-next 15/15] net: mvpp2: add TX FC firmware check
-Date:   Tue, 9 Feb 2021 10:42:31 +0200
-Message-ID: <1612860151-12275-16-git-send-email-stefanc@marvell.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1612860151-12275-1-git-send-email-stefanc@marvell.com>
-References: <1612860151-12275-1-git-send-email-stefanc@marvell.com>
+        id S229638AbhBIJVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 04:21:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58844 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230344AbhBIJRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 04:17:10 -0500
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEEB4C06178C;
+        Tue,  9 Feb 2021 01:16:27 -0800 (PST)
+Received: by mail-qt1-x834.google.com with SMTP id e11so12432419qtg.6;
+        Tue, 09 Feb 2021 01:16:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UCCWDHu0sYSquKe4LwEXk0kUehGPBZCaQ+gPrhz2B70=;
+        b=tnKURcRDMsX6KiDYyAtN3ScVm4Xp3sVDTWZQKtuJnUh3KGUrksRRRmet2qx+mEjT1Y
+         Zgpj6m0XBE1jPTA/ISmoEhBqNEGLjcjfrYz9RYjjbdW1bOVkR8WJUvBwwXuH2XYBv1Ot
+         cD4e4JVB5h00iD4b8COz3OM4fX1NmMfXTeFPG7F64PuyWj/VNJT579c9TP9OZ/sKetnY
+         UL4jEkoesboHATyk8jB+ZuwLqHUgiBemu1v9dn8CLnNNA6GLG13X+YYI3Qmf480tNcTW
+         e1CuEtTNIEXMrXK6Z911F09dY/V4GuXNrk8TlhuoseP0TL/3s0Jy+jXl4EcYNLKnK06X
+         dHRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UCCWDHu0sYSquKe4LwEXk0kUehGPBZCaQ+gPrhz2B70=;
+        b=NSIWN7n0M1QImOZQsHbLt0TH7fSZp+G8uLqTEZlRkWvllrXNwIMroi774hBzX1iqo3
+         CkUq0rh+5xDtIFv9VruPxzIHMDgRaBfOwQaBTAN2hYRL7wtnY/csdroQrQ2Z2bLheTOw
+         NGnr4rsQg4z8w1ZvmAHEByISbJNddc4ALynAGYufRuNXhZa0AyiGN7N8jFBH52POv5qK
+         d//h9B+YNFlMh1CdJt7bAn5QZsa042YCa0ydBwLjgQ8Qyg/RzwiYi0mVApG0vTExlkWO
+         NDmDEAGoe31Z2DdCi9ZDccnHbQmNt4xLToARx1CUbqbl2LbKnAEI1xt/wRHxpbOtF9nu
+         92CA==
+X-Gm-Message-State: AOAM533ajX9Zrf/k1ubNM24ie6s0JntH5cNlbqvacqJdnsyX/Cs2+uv7
+        i6sYhdJ5y/0Ul9Q/3aFt3XFrmlxJ7qyJwdNac4AxMt88
+X-Google-Smtp-Source: ABdhPJxk7JApErbcYd9iIq2ywHmycgjkc6ZN9v2FM3gZNbGEGB6G4khg1FgLHMytyhFDNZEL3y9l+4+oq0VpDadZElI=
+X-Received: by 2002:ac8:4e8b:: with SMTP id 11mr18524155qtp.292.1612862187116;
+ Tue, 09 Feb 2021 01:16:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-09_02:2021-02-09,2021-02-09 signatures=0
+References: <1612693435-31418-1-git-send-email-shengjiu.wang@nxp.com>
+ <1612693435-31418-3-git-send-email-shengjiu.wang@nxp.com> <20210208115112.GD8645@sirena.org.uk>
+In-Reply-To: <20210208115112.GD8645@sirena.org.uk>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Tue, 9 Feb 2021 17:16:16 +0800
+Message-ID: <CAA+D8AMRGRRk6FzdiqaHAP1=dPJngNgmdGmU59vrroXA9BMyXw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/7] ASoC: fsl_rpmsg: Add CPU DAI driver for audio base
+ on rpmsg
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
+        Timur Tabi <timur@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org, Xiubo Li <Xiubo.Lee@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stefan Chulski <stefanc@marvell.com>
+On Mon, Feb 8, 2021 at 7:53 PM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Sun, Feb 07, 2021 at 06:23:50PM +0800, Shengjiu Wang wrote:
+>
+> > +static int fsl_rpmsg_hw_params(struct snd_pcm_substream *substream,
+> > +                            struct snd_pcm_hw_params *params,
+> > +                            struct snd_soc_dai *dai)
+> > +{
+>
+> ...
+>
+> > +     ret = clk_prepare_enable(rpmsg->mclk);
+> > +     if (ret)
+> > +             dev_err(dai->dev, "failed to enable mclk: %d\n", ret);
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +static int fsl_rpmsg_hw_free(struct snd_pcm_substream *substream,
+> > +                          struct snd_soc_dai *dai)
+> > +{
+> > +     struct fsl_rpmsg *rpmsg = snd_soc_dai_get_drvdata(dai);
+> > +
+> > +     clk_disable_unprepare(rpmsg->mclk);
+>
+> hw_params() can be called multiple times and there's no need for it to
+> be balanced with hw_free(), I'd move this to a different callback (DAPM
+> should work well).
 
-Patch check that TX FC firmware is running in CM3.
-If not, global TX FC would be disabled.
+Which callback should I use? Is there an example?
 
-Signed-off-by: Stefan Chulski <stefanc@marvell.com>
----
- drivers/net/ethernet/marvell/mvpp2/mvpp2.h      |  1 +
- drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 42 ++++++++++++++++----
- 2 files changed, 36 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h b/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-index b61a1ba..da87152 100644
---- a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-+++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-@@ -828,6 +828,7 @@
- 
- #define MSS_THRESHOLD_STOP	768
- #define MSS_THRESHOLD_START	1024
-+#define MSS_FC_MAX_TIMEOUT	5000
- 
- /* RX buffer constants */
- #define MVPP2_SKB_SHINFO_SIZE \
-diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-index 4d0a398..fed4521 100644
---- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-+++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-@@ -931,6 +931,34 @@ static void mvpp2_bm_pool_update_fc(struct mvpp2_port *port,
- 	spin_unlock_irqrestore(&port->priv->mss_spinlock, flags);
- }
- 
-+static int mvpp2_enable_global_fc(struct mvpp2 *priv)
-+{
-+	int val, timeout = 0;
-+
-+	/* Enable global flow control. In this stage global
-+	 * flow control enabled, but still disabled per port.
-+	 */
-+	val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
-+	val |= FLOW_CONTROL_ENABLE_BIT;
-+	mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+
-+	/* Check if Firmware running and disable FC if not*/
-+	val |= FLOW_CONTROL_UPDATE_COMMAND_BIT;
-+	mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+
-+	while (timeout < MSS_FC_MAX_TIMEOUT) {
-+		val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
-+
-+		if (!(val & FLOW_CONTROL_UPDATE_COMMAND_BIT))
-+			return 0;
-+		usleep_range(10, 20);
-+		timeout++;
-+	}
-+
-+	priv->global_tx_fc = false;
-+	return -EOPNOTSUPP;
-+}
-+
- /* Release buffer to BM */
- static inline void mvpp2_bm_pool_put(struct mvpp2_port *port, int pool,
- 				     dma_addr_t buf_dma_addr,
-@@ -7263,7 +7291,7 @@ static int mvpp2_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	void __iomem *base;
- 	int i, shared;
--	int err, val;
-+	int err;
- 
- 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -7487,13 +7515,13 @@ static int mvpp2_probe(struct platform_device *pdev)
- 		goto err_port_probe;
- 	}
- 
--	/* Enable global flow control. In this stage global
--	 * flow control enabled, but still disabled per port.
--	 */
- 	if (priv->global_tx_fc && priv->hw_version != MVPP21) {
--		val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
--		val |= FLOW_CONTROL_ENABLE_BIT;
--		mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+		err = mvpp2_enable_global_fc(priv);
-+		if (err) {
-+			dev_warn(&pdev->dev, "CM3 firmware not running, version should be higher than 18.09 ");
-+			dev_warn(&pdev->dev, "and chip revision B0\n");
-+			dev_warn(&pdev->dev, "Flow control not supported\n");
-+		}
- 	}
- 
- 	mvpp2_dbgfs_init(priv, pdev->name);
--- 
-1.9.1
-
+best regards
+wang shengjiu
