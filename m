@@ -2,72 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79F23315803
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 21:51:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 164EC315806
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 21:51:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234064AbhBIUtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 15:49:52 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:33357 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233847AbhBIUkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 15:40:06 -0500
-Received: by mail-oi1-f175.google.com with SMTP id g84so7084464oib.0;
-        Tue, 09 Feb 2021 12:39:50 -0800 (PST)
+        id S233868AbhBIUub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 15:50:31 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:41021 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233908AbhBIUmZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 15:42:25 -0500
+Received: by mail-oi1-f179.google.com with SMTP id v193so15435556oie.8
+        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 12:42:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=pQrcr7qodVD4dFMqYIjjfo+nDgak3hQS5PmI2pXPFsU=;
-        b=HvC8K356tSnNRPr2/XjSJqNX7I1WiGPOQuY3JCejxqZ+n1WMMW2wDvjWTDGTIXHuB/
-         EoadAU66O+jIpg+F2akFhxKYa7JMiZs6KE8gUsPgS4Lq7x2/XU6sEvQCgGNINDVzz7Hb
-         am9kh1x/X7RVLwyEhej6x1fqpIF620+T7zHwbilOLl6TM7iLhhPGFHJkS8kMYCNoX9Yu
-         c4F5zfafvPhX5sg2vgbOwpmI/l6X9FqMioEdg/hb7XD8TV22qCTU/+/wM9JLDbtTNqF5
-         6DWF2jydFMGE7Iz5IWTKVudiSfZfGBP7x6zSndR6VwXoh4QAjkqpeKrcnv4zS25Ja6Qm
-         I6IA==
-X-Gm-Message-State: AOAM533oL66RUIIx4gIfPA+JD8l7R+uestZTBLdktnC4/v4SzPIzhotf
-        WHkdp4ijXHG7Ps3XVcdZog==
-X-Google-Smtp-Source: ABdhPJyyV0uETGRfszmy2JoR1ifofA1BkCnLQcxp0SYCDLuFpGm9pxBDDqA1OGSQtyy0USq/IgOprQ==
-X-Received: by 2002:a54:4106:: with SMTP id l6mr3828124oic.110.1612903164902;
-        Tue, 09 Feb 2021 12:39:24 -0800 (PST)
+        bh=s+u3vz6e9KCuVkOaGOVf97bYpuYJLb9GDgnFze0FbFo=;
+        b=L8Pi3ROvADuN9woMaKmwyBVY1TdRouuz0VoK28q0AO9ahs0or3U8qP73elcz4n8YVn
+         7oCbJRRq+XNSvm/o5Lcb1pXdNpYDIgeQQ8TkdCRlHHozOBA/kU45mfVi/FysUqZRCAnu
+         hZ0c5cYaOlaDLWI1rfZ4I/vKbSPLh7s7fUGMG82hg8KzSa+FALHOEx81Ax+1oQNdb0p6
+         yTW+1MgbqXDI/H4XwNfQHCs9iyMOgHavFVz12ohFhAxr+QsCMcYi7VhqQUXTB7lWGp+X
+         8UTLtk2MGIwux9tDmYnERgcqZrs3jpfh3MPau5WUxOoNWJcBMI+DNE7rMpcCY6FnLm5Z
+         lW2g==
+X-Gm-Message-State: AOAM53307CShvOnqFZSihVAMs4pC0BRsLxf0lShS6JiyiIJuzfnWdzgq
+        eQhHtYRXtyXmw0sDsb+eFQ==
+X-Google-Smtp-Source: ABdhPJyAk84Z8pz9qQ8lkrDwHztnBDDvhCtnoOD99hW+BNnArmdOX0zcB04Down2wini/oEjkxgXOA==
+X-Received: by 2002:aca:fdd0:: with SMTP id b199mr3634977oii.10.1612903298729;
+        Tue, 09 Feb 2021 12:41:38 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i13sm2862667oth.52.2021.02.09.12.39.22
+        by smtp.gmail.com with ESMTPSA id a63sm4590099otc.75.2021.02.09.12.41.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 12:39:23 -0800 (PST)
-Received: (nullmailer pid 134304 invoked by uid 1000);
-        Tue, 09 Feb 2021 20:39:21 -0000
-Date:   Tue, 9 Feb 2021 14:39:21 -0600
+        Tue, 09 Feb 2021 12:41:37 -0800 (PST)
+Received: (nullmailer pid 138393 invoked by uid 1000);
+        Tue, 09 Feb 2021 20:41:36 -0000
+Date:   Tue, 9 Feb 2021 14:41:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     phone-devel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Subject: Re: [PATCH] soc: qcom: rpmpd: Add MDM9607 RPM Power Domains
-Message-ID: <20210209203921.GA134215@robh.at.kernel.org>
-References: <20210131013233.54666-1-konrad.dybcio@somainline.org>
+To:     Boris Lysov <arzamas-16@mail.ee>
+Cc:     devicetree@vger.kernel.org, linux@roeck-us.net,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: watchdog: mediatek: add support for
+ mt6577 SoC
+Message-ID: <20210209204136.GA138342@robh.at.kernel.org>
+References: <20210131234425.9773-1-arzamas-16@mail.ee>
+ <20210131234425.9773-2-arzamas-16@mail.ee>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210131013233.54666-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20210131234425.9773-2-arzamas-16@mail.ee>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 31 Jan 2021 02:32:32 +0100, Konrad Dybcio wrote:
-> This SoC while being from 8916 era, makes use of the
-> newer-style, floor-level management, instead of the older
-> floor-corner.
+On Mon, 01 Feb 2021 02:44:23 +0300, Boris Lysov wrote:
+> Add support for Mediatek mt6577 SoC to device tree binding
+> documentation.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Boris Lysov <arzamas-16@mail.ee>
 > ---
->  .../devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
->  drivers/soc/qcom/rpmpd.c                      | 22 +++++++++++++++++++
->  include/dt-bindings/power/qcom-rpmpd.h        |  8 +++++++
->  3 files changed, 31 insertions(+)
+>  Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
