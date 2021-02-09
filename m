@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95D8A314EEA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 13:31:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE605314EEC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 13:32:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229503AbhBIMba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 07:31:30 -0500
+        id S229521AbhBIMcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 07:32:12 -0500
 Received: from esa3.hgst.iphmx.com ([216.71.153.141]:39021 "EHLO
         esa3.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbhBIMb3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 07:31:29 -0500
+        with ESMTP id S229815AbhBIMcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 07:32:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1612873888; x=1644409888;
+  t=1612873929; x=1644409929;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=6K57gJ4d4JJEae1PJW0yBIWM0fdObKVyG7NMETneATc=;
-  b=TXHwRXvpG4ltWbqHvk/Cg+BXOvUhbvZ30ThczEzqH4vDfwv4fQsKZ/Zn
-   FjRWz110Pjlvzo6RSicTnKala+JvrkGVR+cexjIwXanVqM09nQ6wg/fDl
-   99HLLwTEtO4j3M+g99YBqkhAb5UwQHCZiFL7jIFJMx2NJVHgO753XI0mC
-   ZX3T51Vy5yTAMh2XLU2bsMv/fBIdblX7WUo7sG7aZCaQKOp+nh9l/04Pl
-   oUl7Hfd1/zbRJrsX1zvfpeTpD2woyf7R0VJ4TA6rPs8c4KIzQZ4dypJpZ
-   2pdzVIlsw8EKKCncNJIduQWstn9w87dIrMk2nlWy7SyqMPZO2h+xDyXn8
-   A==;
-IronPort-SDR: T30T2FrFDz16oJRHhH3IcY8zkH+ec9DLnFFlvHMH3bh0X3bqs01KZZtJ47vXcK/uPb5tsoVwz6
- dec+1bhNQENQix9lXCOcGVu9dkNs7EPsATUaltE14Ewff1qTlrU5mOOSyssJkfV/b/USRUT6nI
- rMoPJqCKBq/KCoX+rVsy9M21bu+AKpGH3LrTIT/LDs1xdalYmNL1+Vl+6V0WE1vKlf3VoBQ7qt
- SBs6RBSp6loi30tM5jYDwvajPgfDXYzrj1aPNg7/Eeu0dNNqbdFShvGfsWgzD5woh0Pa1B7ccj
- /fQ=
+  bh=NGUiJ8C+bTM58/VzIl1j0v+4iWOTF+8rASnEfXwaBo0=;
+  b=Xcl2MBHuEQSkyGIOvGxi26xI5NmhbgR2b0+thcB48eBABzgEe82tKAqE
+   /YMplhTM0qhu5+TlLXzQemUlLoOsLMqjQwMXH3lXG6Aw44wiiQeAyWp9o
+   WRSDdMq15MOqXc8BYe4/u1tWhcMiaDb3B5R8yzZ2fegWIZfYKFLHhBjm+
+   y2bLxyhrsVa9Pd72s1l9/OMNuLzqal9T3ZurhYIS1ZFernt6zywtaMRIw
+   vCVnwgQnu/kMh0xFtis8dNucXOAui8MlIfQcgp7LDFoUW215d2Bae5Tan
+   aRks21Va2GmctUMyiNcfpWvPU3J81AWHCY2XjEoeU7FhuuoknRust2sHN
+   w==;
+IronPort-SDR: uPU4cSPHC7Ibot9EVNAgFMEP3zU9RaTYWcsSJ7+JXxRZOXiLEkV1KIHAe8qNkZqUqmqAhUXmla
+ T9v3uNWCxSY+g6gQcMeQmYo4Q3kYbRTpYrwp1q98YdRsjpf1HudxlawbRtmboUHyPLV6L98dUB
+ gsJ/834SaMJMXks4L3JHXiCRIrZDl9QSYpGneo8Xsv5puZ7KB2peo6L3w4ERDmdTZViZHEzgEN
+ /PmQrdgXdnXg/B1OJ9xC1h2hOdHqUJebojmkfpkGZzN3AyOs6QfyhUhtQ22/IrRtBtkmT7pKkE
+ LK0=
 X-IronPort-AV: E=Sophos;i="5.81,164,1610380800"; 
-   d="scan'208";a="163996804"
+   d="scan'208";a="163996806"
 Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 09 Feb 2021 20:30:22 +0800
-IronPort-SDR: 3k/NJqspALYOOAr6GabHo3wPhvuoiFPgZP+Asr6JodvFOOr+JciFsptufE7I1D/gtwnxbqpgrb
- trLc2dyXfQOlAuhm2/fbN/SIZ1L9J94NDsIm0rD7qRrKpU1kqNgHToRqVdBjYDoyFNa5MG+WqX
- +2Z4vW826lnkq5NrsXJ6CUgJTLAPLYOiZhGUtyFUfFD5rPFFVZMmi6iUxzUFSlVjGefuEbBqAT
- L2lW15ZYx+LNlccBQL2aOoKXgbbULwPTxYv9QRPBTsgCBA0TlUH43Zb9etdhayd17AgTNggLvA
- 8l1excNkDIMYRKKZc9GfIrjC
+  by ob1.hgst.iphmx.com with ESMTP; 09 Feb 2021 20:30:24 +0800
+IronPort-SDR: otd083aP3ggRY+oGKsNl06I4Craitd09bVowz3srgoT/oyFuMnU1goM68XXO7E/KjoG29f1n3s
+ rpOgGG0GC9oKrUCeu0NkyUApAWmm4IHKwlgxlKz22Kl62TurQipVUnG3yU2SPmqx+DiesoSP+e
+ rDru/hPz0D62Hitc2YSD9KXRo1k7RivnBDbvu5BIE8LmEz/Iib2m5N0gTAMtUHXoRxUlEprYTL
+ XgbjZM/5DKDQVAgRVR2wZNvy7uVdtqK9p42krgpRFHuRCXtU54SkZlOFTF3SCJ+sPFpNonV66L
+ KGRnLUxX+UxRam5ydXj/nUoj
 Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2021 04:14:07 -0800
-IronPort-SDR: MQyDinRdhBof0TBzSa/ZG/iJFHUtLY0doAsDije0XaGZWciMyGH5/cORW0qEvTs8L7BatoGNBV
- pQiHsSW16XKkR2EoyGXY3gp/yrAIh2Y4SMkb4rilKGmYypm2kagnbJeiIUvIqLsvHof70ZfWgR
- 1Vpcch7i5LHxJXuM+8XrM74AGueKNTU2fq0OMJ455h0kPJzfQBT9KKsQUr2s4dZh6PP/UyxhX0
- R+gbna/+JuuMBH/hXg2EAF9s9AH+yqsYWe8k7R6SYS2MpBCG6cFF8G7QuJA9kn1+VOqHr6zt8H
- i3E=
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2021 04:14:09 -0800
+IronPort-SDR: tVpNS3b5HttM+gO4JgIkVgnoba0hYx90quy4/NNyq9c/v+AM+MNv8pvaTqGs4Ddevvit0ObYvx
+ DQiJF+KtJgZRy4tLAh+zF3M7YzziIMADUcu/nZ6fZy5lXYjG2qWqcmjPETvAv6ASQce2tHI2JQ
+ gOx5k/tfTcuCcTjVGdHu0+KEkx1SqegXfmidkPrwHvBlJg+B7SW+R2FcquYC+kqomSdOQBLfL0
+ FhKqBy0EQu9wH91VcsEZ9WMHF6zAZBh2E3ef2gVAPsOyzWVVnsHBjshLhPcGp9UFoPHekqV8sn
+ +is=
 WDCIronportException: Internal
 Received: from phd004806.ad.shared (HELO twashi.fujisawa.hgst.com) ([10.84.71.69])
-  by uls-op-cesaip01.wdc.com with ESMTP; 09 Feb 2021 04:30:22 -0800
+  by uls-op-cesaip01.wdc.com with ESMTP; 09 Feb 2021 04:30:24 -0800
 From:   Damien Le Moal <damien.lemoal@wdc.com>
 To:     Palmer Dabbelt <palmer@dabbelt.com>,
         linux-riscv@lists.infradead.org
@@ -55,9 +55,9 @@ Cc:     Atish Patra <atish.patra@wdc.com>, Anup Patel <anup.patel@wdc.com>,
         Sean Anderson <seanga2@gmail.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v18 03/16] dt-bindings: update risc-v cpu properties
-Date:   Tue,  9 Feb 2021 21:30:01 +0900
-Message-Id: <20210209123014.165928-4-damien.lemoal@wdc.com>
+Subject: [PATCH v18 04/16] dt-bindings: update sifive plic compatible string
+Date:   Tue,  9 Feb 2021 21:30:02 +0900
+Message-Id: <20210209123014.165928-5-damien.lemoal@wdc.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210209123014.165928-1-damien.lemoal@wdc.com>
 References: <20210209123014.165928-1-damien.lemoal@wdc.com>
@@ -67,46 +67,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Canaan Kendryte K210 SoC CPU cores are based on a rocket chip
-version using a draft verion of the RISC-V ISA specifications. To avoid
-any confusion with CPU cores using stable specifications, add the
-compatible string "canaan,k210" for this SoC CPU cores.
-
-Also add the "riscv,none" value to the mmu-type property to allow a DT
-to indicate that the CPU being described does not have an MMU or that
-it has an MMU that is not usable (which is the case for the K210 SoC).
+Add the compatible string "canaan,k210-plic" to the Sifive plic bindings
+to indicate the use of the "sifive,plic-1.0.0" IP block in the Canaan
+Kendryte K210 SoC. The description is also updated to reflect this
+change, that is, that SoCs from other vendors may also use this plic
+implementation.
 
 Cc: Paul Walmsley <paul.walmsley@sifive.com>
 Cc: Rob Herring <robh@kernel.org>
 Cc: devicetree@vger.kernel.org
 Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-Reviewed-by: Atish Patra <atish.patra@wdc.com>
-Reviewed-by: Anup Patel <anup@brainfault.org>
 Acked-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/riscv/cpus.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../interrupt-controller/sifive,plic-1.0.0.yaml     | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index eb6843f69f7c..e534f6a7cfa1 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -39,6 +39,7 @@ properties:
-               - sifive,u74
-               - sifive,u5
-               - sifive,u7
-+              - canaan,k210
-           - const: riscv
-       - const: riscv    # Simulator only
-     description:
-@@ -56,6 +57,7 @@ properties:
-       - riscv,sv32
-       - riscv,sv39
-       - riscv,sv48
-+      - riscv,none
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+index b9a61c9f7530..08d5a57ce00f 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+@@ -8,10 +8,11 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: SiFive Platform-Level Interrupt Controller (PLIC)
  
-   riscv,isa:
-     description:
+ description:
+-  SiFive SOCs include an implementation of the Platform-Level Interrupt Controller
+-  (PLIC) high-level specification in the RISC-V Privileged Architecture
+-  specification. The PLIC connects all external interrupts in the system to all
+-  hart contexts in the system, via the external interrupt source in each hart.
++  SiFive SoCs and other RISC-V SoCs include an implementation of the
++  Platform-Level Interrupt Controller (PLIC) high-level specification in
++  the RISC-V Privileged Architecture specification. The PLIC connects all
++  external interrupts in the system to all hart contexts in the system, via
++  the external interrupt source in each hart.
+ 
+   A hart context is a privilege mode in a hardware execution thread. For example,
+   in an 4 core system with 2-way SMT, you have 8 harts and probably at least two
+@@ -42,7 +43,9 @@ maintainers:
+ properties:
+   compatible:
+     items:
+-      - const: sifive,fu540-c000-plic
++      - enum:
++          - sifive,fu540-c000-plic
++          - canaan,k210-plic
+       - const: sifive,plic-1.0.0
+ 
+   reg:
 -- 
 2.29.2
 
