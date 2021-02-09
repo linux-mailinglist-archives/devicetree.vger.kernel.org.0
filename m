@@ -2,137 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA998315376
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 17:10:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51C69315384
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 17:14:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232614AbhBIQKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 11:10:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34948 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232655AbhBIQKa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 11:10:30 -0500
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E98AC061786
-        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 08:09:50 -0800 (PST)
-Received: by mail-ot1-x32c.google.com with SMTP id t25so17969807otc.5
-        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 08:09:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4/inwIB/bagSTME5nAGqiwX4oeNlpTqINvLjf+dIyzg=;
-        b=aTuaZb6pOYgSh7gL+OPQi1FSFbm73knDRD5yGvNdtv8Uacz+GfBTOZQ6Tn5ksK7UN3
-         b5axrpCr90QYxVSyOP4a1/eOl3Wz5Y7aLKuwF4eqwbNVcERHaIM1mhKr2HY/wGG2UAyD
-         K609NjpuCtYQmznAkIvbat5B2JVeccB7i6uC+CTWS6pOJOPBEVBKC0vZ/qj/R+TPmGGb
-         CgHyMOV6p6tAIWl8/llVLy5P0at8AacIaGShbAaKcMeffgBCiwkdBhw12NWXBMb7l5fT
-         jTRDM68XS6J0MfPge8ogaOdulB9CwCHHlBJvTfBVglCAbVJDuFNa0GXZT7C3KNSv2Uh1
-         UTQQ==
+        id S232762AbhBIQOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 11:14:04 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:37368 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232605AbhBIQOD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 11:14:03 -0500
+Received: by mail-ot1-f44.google.com with SMTP id h16so187177ote.4;
+        Tue, 09 Feb 2021 08:13:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4/inwIB/bagSTME5nAGqiwX4oeNlpTqINvLjf+dIyzg=;
-        b=uJfcSYYt7zpu4seKgrstkDHkMF+l4W3nLagiCp3ROcRNIBYifq5BnpPtzfEOii6NHz
-         +F8hl/emeuZoHw8UKZFME7pUM0N0o0xRc1ratLblrHVwuGpPLkTmmnTgGPEqEM8gpgJ6
-         8S1ds5uwTrq8p32nigx73SR0BoufF3bdS5k86UtOJzbDZ5Q/HDXSEgPzY23YJ9bA6ZOE
-         fpdQ4PBrgLVK0jNR2CUSKautdVZlT1yKNvj+6yao9orLK9+Dc4ntivx911Uf6QEg+zdz
-         RnCz+OlfXbyCoRxD/vNdDPeRnnql+RhHdC3nTNavSUmjfAVsSNg6eTGJCD0o/ql3CZiS
-         660Q==
-X-Gm-Message-State: AOAM532eN+uAp1QZFmA5/Jt2p5jaNxcZnFW11ZoV8nJEQWYNqHxz6+uo
-        gECV5RdAvDbKz8KLF62Cx3uVGU3UHDbulQ==
-X-Google-Smtp-Source: ABdhPJyebxA3dKgogsPSJSyVMGFHA+vmYOCFxmFOhCuy1WB3Q7NjyW69ejlUEwb/5LULmlBEzcMWHw==
-X-Received: by 2002:a9d:21ca:: with SMTP id s68mr16333016otb.164.1612886989714;
-        Tue, 09 Feb 2021 08:09:49 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k4sm2725967ots.24.2021.02.09.08.09.48
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jR97En3b34Ol6ESOXDCKQqtKUbkthU4wmGPDId0RT0w=;
+        b=jCWc/ZjmJzXjISBk87D4kg0GdxbUOdxsUQOKqXwRGY2J+R0BAHxq4hPpnFT8ogLWON
+         Nd2Dnhn+PdOE6A+B4yL/LM9MlAaawi0IC5yKusAWcyd1oI57CenO6XlUbVTZRtP705KD
+         ffjECSXD5AOj6hQZDR0kb/hOqtm+LS76PatxDI9nx/Vnh4bdmQmD+vYj64Ys75SJ36J1
+         DcfyrIlWVfYk0FuHgE+HpeqZwLGIqhBYKC36rdi8MZMD0jMamu2UeSOr8t5RRWU1uRGC
+         WNYsDTv6t1hPjO8hs1mDVUQ3st8fy9KQc33QTIbAe68LUdqq9rpwpk26oDkgkk6ivFFF
+         VZOw==
+X-Gm-Message-State: AOAM531VMDh1TNCNv0c825A+OYMvUJAKVV5Q2wEILCvh/1Ffe80b7HAd
+        G7/KVRkLeF7oLUshmnq49Q==
+X-Google-Smtp-Source: ABdhPJxfuQiGnRgaL6GK4Bz7pZyeuUykNWGmbkZ3OE1l2180JsrofW7N4XDivm32eMrKNswAiNZpHw==
+X-Received: by 2002:a9d:6c85:: with SMTP id c5mr16429869otr.300.1612887202769;
+        Tue, 09 Feb 2021 08:13:22 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a23sm4331799oii.16.2021.02.09.08.13.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Feb 2021 08:09:49 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sdm850-yoga: Enable IPA
-Date:   Tue,  9 Feb 2021 10:09:46 -0600
-Message-Id: <20210209160946.29382-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210209160946.29382-1-bjorn.andersson@linaro.org>
-References: <20210209160946.29382-1-bjorn.andersson@linaro.org>
+        Tue, 09 Feb 2021 08:13:21 -0800 (PST)
+Received: (nullmailer pid 3861217 invoked by uid 1000);
+        Tue, 09 Feb 2021 16:13:19 -0000
+Date:   Tue, 9 Feb 2021 10:13:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Vincent Knecht <vincent.knecht@mailoo.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v3 1/2] dt-bindings: input/touchscreen: add bindings for
+ msg26xx
+Message-ID: <20210209161319.GA3849081@robh.at.kernel.org>
+References: <20210121174359.1455393-1-vincent.knecht@mailoo.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210121174359.1455393-1-vincent.knecht@mailoo.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ipa_fws.elf found in the Lenovo Yoga C630 isn't packed like the one
-found in e.g. the MTP, so it doesn't fit in the "standard" ipa_fws
-memory region. Further more, authentication of ipa_fws at the usual base
-address is rejected by the Peripheral Authentication Service (in
-TrustZone), so some shuffling and trial and error was used to come up
-with acceptable regions.
+On Thu, Jan 21, 2021 at 06:43:47PM +0100, Vincent Knecht wrote:
+> This adds dts bindings for the mstar msg26xx touchscreen.
+> 
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+> Changed in v3:
+> - added `touchscreen-size-x: true` and `touchscreen-size-y: true` properties
+> Changed in v2:
+> - changed M-Star to MStar in title line
+> - changed reset gpio to active-low in example section
+> ---
+>  .../input/touchscreen/mstar,msg26xx.yaml      | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml
+> new file mode 100644
+> index 000000000000..5d26a1008bf1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/mstar,msg26xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MStar msg26xx touchscreen controller Bindings
+> +
+> +maintainers:
+> +  - Vincent Knecht <vincent.knecht@mailoo.org>
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: mstar,msg26xx
 
-With this in order, enable the IPA device.
-
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 26 +++++++++----------
- 1 file changed, 13 insertions(+), 13 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index 9c2ab377faf1..4dd5820b3b31 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -74,28 +74,23 @@ rmtfs_mem: memory@88f00000 {
- 			qcom,vmid = <15>;
- 		};
- 
--		ipa_fw_mem: memory@8c400000 {
--			reg = <0 0x8c400000 0 0x10000>;
-+		wlan_msa_mem: memory@8c400000 {
-+			reg = <0 0x8c400000 0 0x100000>;
- 			no-map;
- 		};
- 
--		ipa_gsi_mem: memory@8c410000 {
--			reg = <0 0x8c410000 0 0x5000>;
-+		gpu_mem: memory@8c515000 {
-+			reg = <0 0x8c515000 0 0x2000>;
- 			no-map;
- 		};
- 
--		gpu_mem: memory@8c415000 {
--			reg = <0 0x8c415000 0 0x2000>;
-+		ipa_fw_mem: memory@8c517000 {
-+			reg = <0 0x8c517000 0 0x5a000>;
- 			no-map;
- 		};
- 
--		adsp_mem: memory@8c500000 {
--			reg = <0 0x8c500000 0 0x1a00000>;
--			no-map;
--		};
--
--		wlan_msa_mem: memory@8df00000 {
--			reg = <0 0x8df00000 0 0x100000>;
-+		adsp_mem: memory@8c600000 {
-+			reg = <0 0x8c600000 0 0x1a00000>;
- 			no-map;
- 		};
- 
-@@ -500,6 +495,11 @@ ecsh: hid@5c {
- 	};
- };
- 
-+&ipa {
-+	status = "okay";
-+	memory-region = <&ipa_fw_mem>;
-+};
-+
- &mdss {
- 	status = "okay";
- };
--- 
-2.30.0
-
+Don't use wildcards in compatible strings.
