@@ -2,123 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6185131453A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 02:05:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 604583145BC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Feb 2021 02:42:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbhBIBFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Feb 2021 20:05:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbhBIBFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Feb 2021 20:05:02 -0500
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5165C06178A
-        for <devicetree@vger.kernel.org>; Mon,  8 Feb 2021 17:04:42 -0800 (PST)
-Received: by mail-yb1-xb49.google.com with SMTP id l197so18936829ybf.17
-        for <devicetree@vger.kernel.org>; Mon, 08 Feb 2021 17:04:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:message-id:mime-version:subject:from:to:cc;
-        bh=+ejAYf6RFze/7mcFs9laQRj3JeOW5TThaToa2ePllHE=;
-        b=uQGyN9/uid6kEc344dGUHhufvU0FWp5osHTigoBHyDdlIS+lEBdRvBqA/Wi+Qh3J99
-         0rdO4rRhdmz0LHEaus2oo3yrxPRMaq8q4W5sFb20ajRSOmS0Fg7l04MCIgBbbX2CztqN
-         GYuIUPpmg8plcfSJ48KTZTzwq9Tl85LJpYoJdmuRXy0ZvTKFFSQBudtoF2YkRpbotgTG
-         fQwTaTPosMEWYTf9A0ahy0bKg5KawUoodNeO9AJJlRZO48zwP84phpyvtf7XHFfQCSbH
-         X8MVLQX6AVY/5a+Jfz0JINKFMb43lLP1Jgr/zXKeWFn1Y3bxQPdXtzydEgRaL0kcIaBt
-         OV8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
-         :to:cc;
-        bh=+ejAYf6RFze/7mcFs9laQRj3JeOW5TThaToa2ePllHE=;
-        b=sLfhrSvQ2THBMKPJtnsgobjksEv3Yy+Ct2nG2ypcTMtDvFZBwKTMekBFJQScUMGwLP
-         0ZF+HbGTsTpG//nvHCzuJ234k6I3ThG4LjH/2BaN0L5yAf5mj5fZRbhGgS+N6zcs7XFI
-         A20dihS65YKMs4Y9l7I3bLB8C85oTKqp7qP6N4rB7KB1EPKrs3UsoqjZu4p6ZgeyPfCc
-         FE2GfKqZ97AzWGT2hfS/VrdOqk+oK1XmnvJrkU+KQZsX14HRd7J+3zR1qp90eV/KZDGa
-         V4O88R+z4w5O/pAPv7vR+xSzLTF2yqxbDhkXBpfGcXBKZ0dKnEwtQ6xGxSfHIoWbsSut
-         wXsQ==
-X-Gm-Message-State: AOAM531G7yXKnp91Dy4wCcGq+a48nvVwP/ULeASSFmSwVs3as7CiAJdj
-        ZAyv0P9IRCd84BiFFfogdZaoqwZi1XEFrMM=
-X-Google-Smtp-Source: ABdhPJxC1JuXNwRRIWi0N8wFznbmeW788ZV3yjK+VcE9zY/ARsRMO1bJrgMpvf7GgY9Q/BjPTM7IPCLBjGFnJx4=
-Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:d2a:da02:d812:71f7])
- (user=saravanak job=sendgmr) by 2002:a05:6902:1025:: with SMTP id
- x5mr28936258ybt.493.1612832682139; Mon, 08 Feb 2021 17:04:42 -0800 (PST)
-Date:   Mon,  8 Feb 2021 17:04:38 -0800
-Message-Id: <20210209010439.3529036-1-saravanak@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.30.0.478.g8a0d178c01-goog
-Subject: [PATCH] of: property: Fix fw_devlink handling of interrupts/interrupts-extended
-From:   Saravana Kannan <saravanak@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        kernel-team@android.com, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        id S229753AbhBIBk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Feb 2021 20:40:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54544 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230296AbhBIBj5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Feb 2021 20:39:57 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9E87E64EB7;
+        Tue,  9 Feb 2021 01:39:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612834756;
+        bh=Yssry1rGrff/ixMW7HC9O2cGPS/DZCi9ONOYOLrfEEU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NHOjjP7VU7qiBkVJj4mWLok+NVAtg70PVb12cY+ZH/wR2uSOGXElEDoaKtwH4TSHb
+         w9IvajANNwDF6Kv+NYfdLVx34pQnctxxO51LdF+gO2RXCD9AGniGpsDOQXUjGwrz3p
+         J63W+wX2sI1ja5xDAJ4EHVfulKcOFydNCPdtbAWtVH6VZglUr31x8p8BQYEeTmFkts
+         50Goym9lFRV6jgcaEIgCroDzphHc8Xw8jz11zsp3Ii7Im2J4lnobX7MnDV4TJxhyfa
+         FjL+yaUk1pbQd1EZoAJERV23YrRWcdMxJX+0By0IGV0bXKr61IGYqHwS6CPTdvh8ao
+         MCZlOZnOzVE+Q==
+Received: by mail-ed1-f49.google.com with SMTP id s3so21551452edi.7;
+        Mon, 08 Feb 2021 17:39:16 -0800 (PST)
+X-Gm-Message-State: AOAM532Amj8WNZcxfHDw9q8XD7JvVlz7CN1O/wX4Sl0PtW2z7MaBwcc0
+        5SnRCPOiOt74Lmgl68rlVY1F8bbdeHXeq+qhzQ==
+X-Google-Smtp-Source: ABdhPJwNIL+IgeMPg0JT77GupHlMMWVPBldkV7z70Fsk6uAKAPgZpHyk7Ce2OSyYBpUjYbFtwOwmo9pncZ1VFo9FiAI=
+X-Received: by 2002:a05:6402:6c7:: with SMTP id n7mr20413803edy.289.1612834755034;
+ Mon, 08 Feb 2021 17:39:15 -0800 (PST)
+MIME-Version: 1.0
+References: <20210203113914.1072380-1-bryan.odonoghue@linaro.org>
+ <20210203113914.1072380-2-bryan.odonoghue@linaro.org> <20210204233905.GA1334487@robh.at.kernel.org>
+In-Reply-To: <20210204233905.GA1334487@robh.at.kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 8 Feb 2021 19:39:03 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLE91CqOOjqmvDs-xbtbjp_T1ux7Gd375gHF8pJapUyCQ@mail.gmail.com>
+Message-ID: <CAL_JsqLE91CqOOjqmvDs-xbtbjp_T1ux7Gd375gHF8pJapUyCQ@mail.gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: media: venus: Add sm8250 dt schema
+To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc:     vgarodia@qti.qualcomm.com, "Gross, Andy" <agross@kernel.org>,
+        dikshita@qti.qualcomm.com,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 4104ca776ba3 ("of: property: Add fw_devlink support for interrupts")
-was not taking interrupt-map into account. Fix that.
+On Thu, Feb 4, 2021 at 5:39 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, 03 Feb 2021 11:39:14 +0000, Bryan O'Donoghue wrote:
+> > Add a schema description for the venus video encoder/decoder on the sm8250.
+> >
+> > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > ---
+> >  .../bindings/media/qcom,sm8250-venus.yaml     | 153 ++++++++++++++++++
+> >  1 file changed, 153 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
+> >
+>
+> Applied, thanks!
 
-Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Fixes: 4104ca776ba3 ("of: property: Add fw_devlink support for interrupts")
-Signed-off-by: Saravana Kannan <saravanak@google.com>
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
----
-Greg,
+And now dropped. The example has lots of errors and I got tired of
+fixing them and didn't know if the undocumented properties should be
+removed or documented. Here's what I fixed so far:
 
-This needs to go into driver-core as the "Fixes" commit is only in
-driver-core if I'm not mistaken.
+diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
+b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
+index 1d4b1ab63297..fe66de5d91ea 100644
+--- a/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
+@@ -116,10 +116,13 @@ examples:
+   - |
+         #include <dt-bindings/interrupt-controller/arm-gic.h>
+         #include <dt-bindings/clock/qcom,videocc-sm8250.h>
++        #include <dt-bindings/clock/qcom,gcc-sm8250.h>
++        #include <dt-bindings/power/qcom-rpmpd.h>
++        #include <dt-bindings/interconnect/qcom,sm8250.h>
 
--Saravana
+         venus: video-codec@aa00000 {
+             compatible = "qcom,sm8250-venus";
+-            reg = <0 0x0aa00000 0 0xff000>;
++            reg = <0x0aa00000 0xff000>;
+             interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+             power-domains = <&videocc MVS0C_GDSC>,
+                             <&videocc MVS0_GDSC>,
+@@ -129,12 +132,12 @@ examples:
 
- drivers/of/property.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+             clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
+                      <&videocc VIDEO_CC_MVS0C_CLK>,
+-                     <&videocc VIDEO_CC_MVS0_CLK>;
++                     <&videocc VIDEO_CC_MVS0_CLK_SRC>;
+             clock-names = "iface", "core", "vcodec0_core";
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 962109082df1..79b68519fe30 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1248,8 +1248,6 @@ DEFINE_SIMPLE_PROP(dmas, "dmas", "#dma-cells")
- DEFINE_SIMPLE_PROP(power_domains, "power-domains", "#power-domain-cells")
- DEFINE_SIMPLE_PROP(hwlocks, "hwlocks", "#hwlock-cells")
- DEFINE_SIMPLE_PROP(extcon, "extcon", NULL)
--DEFINE_SIMPLE_PROP(interrupts_extended, "interrupts-extended",
--					"#interrupt-cells")
- DEFINE_SIMPLE_PROP(nvmem_cells, "nvmem-cells", NULL)
- DEFINE_SIMPLE_PROP(phys, "phys", "#phy-cells")
- DEFINE_SIMPLE_PROP(wakeup_parent, "wakeup-parent", NULL)
-@@ -1300,10 +1298,13 @@ static struct device_node *parse_gpio_compat(struct device_node *np,
- static struct device_node *parse_interrupts(struct device_node *np,
- 					    const char *prop_name, int index)
- {
--	if (strcmp(prop_name, "interrupts") || index)
-+	struct of_phandle_args sup_args;
-+
-+	if (strcmp(prop_name, "interrupts") &&
-+	    strcmp(prop_name, "interrupts-extended"))
- 		return NULL;
- 
--	return of_irq_find_parent(np);
-+	return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
- }
- 
- static const struct supplier_bindings of_supplier_bindings[] = {
-@@ -1318,7 +1319,6 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_power_domains, },
- 	{ .parse_prop = parse_hwlocks, },
- 	{ .parse_prop = parse_extcon, },
--	{ .parse_prop = parse_interrupts_extended, },
- 	{ .parse_prop = parse_nvmem_cells, },
- 	{ .parse_prop = parse_phys, },
- 	{ .parse_prop = parse_wakeup_parent, },
--- 
-2.30.0.478.g8a0d178c01-goog
+             interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc
+SLAVE_VENUS_CFG>,
+                             <&mmss_noc MASTER_VIDEO_P0 &mc_virt SLAVE_EBI_CH0>;
+-            interconnect-names = "cpu-cfg", "video-mem";
++            interconnect-names = "video-mem", "cpu-cfg";
 
+             iommus = <&apps_smmu 0x2100 0x0400>;
+             memory-region = <&video_mem>;
+diff --git a/arch/arm64/boot/dts/arm/foundation-v8.dtsi
+b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
+index 05ae893d1b2e..312c076379e1 100644
+--- a/arch/arm64/boot/dts/arm/foundation-v8.dtsi
++++ b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
+@@ -36,6 +36,7 @@ cpu0: cpu@0 {
+                        compatible = "arm,armv8";
+                        reg = <0x0 0x0>;
+                        next-level-cache = <&L2_0>;
++                       next-level-cache {};
+                };
+                cpu1: cpu@1 {
+                        device_type = "cpu";
