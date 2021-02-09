@@ -2,108 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20C65315A61
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 00:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1332315A64
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 01:00:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233999AbhBIX6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 18:58:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55608 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233693AbhBIWHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 17:07:12 -0500
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C77C08EB2E
-        for <devicetree@vger.kernel.org>; Tue,  9 Feb 2021 13:55:29 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id b187so19676245ybg.9
-        for <devicetree@vger.kernel.org>; Tue, 09 Feb 2021 13:55:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/PGZ6373hwX21uII2yTNlUq0BGVrzE4VOh9IUqL/yOY=;
-        b=QMbKQ/jadoFRzkunArX38Q12u3yrUElD5NaALMt6Gr5sASFNErzU750CisBVhEKxbZ
-         BKsBL/FAnK6bP4RsSApVhEr6Anv9KwZcAzCeS1G5UxYly2GzVAHU4nj+zBK7fQzg9KWS
-         hkfl7KFyNbN8Fd9hOTVkK+MlD2a++rRtv0rbzXsbf6CmGOD5Z55NCopVLSQg80Mu4oam
-         hJAOgavYCPe0Z0AGKoON1zf9X5fDwPt+LVwlbW0+8R9wFlkxS77ze0Dn3fWBZ9FdZdEz
-         0aa6qtJavWGV6X8bmsNRzFp7OLc33PfIGmHAIOrdFBs0JOWb5NOoqY193QJVgrCECaYu
-         /f3g==
+        id S233693AbhBIX7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 18:59:06 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:36732 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234054AbhBIXA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 18:00:28 -0500
+Received: by mail-oi1-f178.google.com with SMTP id k204so19703067oih.3;
+        Tue, 09 Feb 2021 15:00:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/PGZ6373hwX21uII2yTNlUq0BGVrzE4VOh9IUqL/yOY=;
-        b=jDTmLVbW2TnJ8K5wi2B0E3sqPL2eyqHKxHV2oPcAmyPzLybbpdm8eGL14Tebhc/0qb
-         CFwIPHAzSBGaf6BAAvO0yxlJhYSaxyGbJutXE0Iiu8HxowEseaJvSJ3q+Mds78L4axUN
-         /JsvojZbdVZx953he9Tz5EqNL/8y5oQaR0A0TzXTxFbmsplkJzNETB2j2bnFsLspSbiC
-         TvT3VkAQv627EPTVQhdOJFW+PlA4i1r9sJc3a+zgmHB+r+YLy5Di9jN+jRJKmkZ6BtCy
-         8wcvFaemr1/9p7Vp1mLxR03PvYzcY1nDAFKW6dT+4XfayTdQHeHqLBFjMzdZJFQYShW7
-         JXUA==
-X-Gm-Message-State: AOAM530+zHayNQF3WP9RS0qNNDpo1mbpLgv8L7Js7hRO3GVUztWobWkT
-        LgwpGhXA/2zFAXCpq7lkW4Ug869qi7MoLFocfDDwFQ==
-X-Google-Smtp-Source: ABdhPJyj1xOOpj4onlG2/WW3umTyJvCVg8fQGOPytjYVlJXvUchM6BAlnaXUWge9bvj0zPdNDJIpSnxTV2zaYfiH3IQ=
-X-Received: by 2002:a25:b74c:: with SMTP id e12mr37996841ybm.20.1612907728418;
- Tue, 09 Feb 2021 13:55:28 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6Ue7D4O8vdXw9UDhxOL/f68EqD5Djbx8qy8gM4ZTo8o=;
+        b=hSNdV7t1PmNYoSCcQAPTCWTG1cVErnnP58PDKKh47L6lR2woKXaKYPN06fLIwGeMiY
+         P4gRT4+xGwFwfi12suxUPvz6Kjh+O0sIbSrXFawqBKTkaAOhD01XMM0Bgb/tMvaeMJW1
+         qEyfHhhT7mTx67+nTVYO6nOe8TxOXHOq2KSa2MGd2FlLJyxjH6pfsuDgHh5Es4MtWHyr
+         3uwsuz3AuFa7W3UJtXLtNQsx1skHrhLD77BZc9E2JSU2mCmo6w671+5p7Lm7wgbw/tKl
+         Z+IaBLZV5k3eDN49Z+KBQEpYnpGIzIZsNvilpTwKZI/hvmJnCEv1IV+h4g2tLyVB6qRb
+         g7ew==
+X-Gm-Message-State: AOAM532N5EP5/NehUP3YGmD5SMAmo3NgqjQG/jjKA5NF4JZ3r2o36Quz
+        D4ngDALbf0sNEJWSe8SzZ3j6yI7jJA==
+X-Google-Smtp-Source: ABdhPJzO6QBdZCXZG20mYXd4tre7KcvWOOgg+uJllJfNXFTuS1MiX/nrrW1uhMgjESZC0Jg1/nh8XQ==
+X-Received: by 2002:a54:478c:: with SMTP id o12mr43726oic.28.1612910978323;
+        Tue, 09 Feb 2021 14:49:38 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w124sm25348oiw.40.2021.02.09.14.49.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Feb 2021 14:49:37 -0800 (PST)
+Received: (nullmailer pid 366377 invoked by uid 1000);
+        Tue, 09 Feb 2021 22:49:36 -0000
+Date:   Tue, 9 Feb 2021 16:49:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: spi: zynq: Convert Zynq QSPI binding to yaml
+Message-ID: <20210209224936.GA338434@robh.at.kernel.org>
+References: <22ca0a9a15ccdf4b520baacc5ed837f6d3a3f781.1612360002.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
-References: <20210205222644.2357303-1-saravanak@google.com>
- <20210205222644.2357303-5-saravanak@google.com> <20210209213320.GA219007@robh.at.kernel.org>
-In-Reply-To: <20210209213320.GA219007@robh.at.kernel.org>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 9 Feb 2021 13:54:52 -0800
-Message-ID: <CAGETcx_gHRd9UYHvSsHX_=NFF+HEJkamJp3JcpojuJob_a8_DA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/8] of: property: Add fw_devlink support for optional properties
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <22ca0a9a15ccdf4b520baacc5ed837f6d3a3f781.1612360002.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 9, 2021 at 1:33 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Feb 05, 2021 at 02:26:40PM -0800, Saravana Kannan wrote:
-> > Not all DT bindings are mandatory bindings. Add support for optional DT
-> > bindings and mark iommus, iommu-map, dmas as optional DT bindings.
->
-> I don't think we can say these are optional or not. It's got to be a
-> driver decision somehow.
+On Wed, Feb 03, 2021 at 02:46:44PM +0100, Michal Simek wrote:
+> Convert spi-zynq-qspi.txt to yaml.
+> 
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+> 
+>  .../devicetree/bindings/spi/spi-zynq-qspi.txt | 25 --------
+>  .../bindings/spi/xlnx,zynq-qspi.yaml          | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 60 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
+>  create mode 100644 Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt b/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
+> deleted file mode 100644
+> index 16b734ad3102..000000000000
+> --- a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -Xilinx Zynq QSPI controller Device Tree Bindings
+> --------------------------------------------------------------------
+> -
+> -Required properties:
+> -- compatible		: Should be "xlnx,zynq-qspi-1.0".
+> -- reg			: Physical base address and size of QSPI registers map.
+> -- interrupts		: Property with a value describing the interrupt
+> -			  number.
+> -- clock-names		: List of input clock names - "ref_clk", "pclk"
+> -			  (See clock bindings for details).
+> -- clocks		: Clock phandles (see clock bindings for details).
+> -
+> -Optional properties:
+> -- num-cs		: Number of chip selects used.
+> -
+> -Example:
+> -	qspi: spi@e000d000 {
+> -		compatible = "xlnx,zynq-qspi-1.0";
+> -		reg = <0xe000d000 0x1000>;
+> -		interrupt-parent = <&intc>;
+> -		interrupts = <0 19 4>;
+> -		clock-names = "ref_clk", "pclk";
+> -		clocks = <&clkc 10>, <&clkc 43>;
+> -		num-cs = <1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml b/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+> new file mode 100644
+> index 000000000000..03269a7433b3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/xlnx,zynq-qspi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx Zynq QSPI controller
+> +
+> +description:
+> +  The Xilinx Zynq QSPI controller is used to access multi-bit serial flash
+> +  memory devices.
+> +
+> +allOf:
+> +  - $ref: "spi-controller.yaml#"
+> +
+> +maintainers:
+> +  - Michal Simek <michal.simek@xilinx.com>
+> +
+> +# Everything else is described in the common file
+> +properties:
+> +  compatible:
+> +    const: xlnx,zynq-qspi-1.0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: reference clock
+> +      - description: peripheral clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref_clk
+> +      - const: pclk
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: true
 
-Right, so maybe the word "optional" isn't a good name for it. I can
-change that if you want.
+unevaluatedProperties: false
 
-The point being, fw_devlink can't block the probe of this driver based
-on iommu property. We let the driver decide if it wants to
--EPROBE_DEFER or not or however it wants to handle this.
-
-> For example, if IOMMU is optional, what happens with this sequence:
->
-> driver probes without IOMMU
-> driver calls dma_map_?()
-> IOMMU driver probes
-> h/w accesses DMA buffer --> BOOM!
-
-Right. But how is this really related to fw_devlink? AFAICT, this is
-an issue even today. If the driver needs the IOMMU, then it needs to
-make sure the IOMMU has probed? What am I missing?
-
--Saravana
+> +
+> +examples:
+> +  - |
+> +    spi@e000d000 {
+> +        compatible = "xlnx,zynq-qspi-1.0";
+> +        reg = <0xe000d000 0x1000>;
+> +        interrupt-parent = <&intc>;
+> +        interrupts = <0 19 4>;
+> +        clock-names = "ref_clk", "pclk";
+> +        clocks = <&clkc 10>, <&clkc 43>;
+> +        num-cs = <1>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 546aa66428c9..e494b061dcd1 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2766,6 +2766,7 @@ W:	http://wiki.xilinx.com
+>  T:	git https://github.com/Xilinx/linux-xlnx.git
+>  F:	Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+>  F:	Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
+> +F:	Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+>  F:	arch/arm/mach-zynq/
+>  F:	drivers/block/xsysace.c
+>  F:	drivers/clocksource/timer-cadence-ttc.c
+> -- 
+> 2.30.0
+> 
