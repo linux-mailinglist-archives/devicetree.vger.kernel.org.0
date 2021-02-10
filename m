@@ -2,102 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2A1131654F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:36:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85E3231655D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:39:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbhBJLgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 06:36:31 -0500
-Received: from muru.com ([72.249.23.125]:59812 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229600AbhBJLfn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 06:35:43 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 3301280EB;
-        Wed, 10 Feb 2021 11:35:16 +0000 (UTC)
-Date:   Wed, 10 Feb 2021 13:34:50 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Arnd Bergmann <arnd@kernel.org>, devicetree@vger.kernel.org,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>, soc@kernel.org,
-        robh+dt@kernel.org, Olof Johansson <olof@lixom.net>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
- devicetree
-Message-ID: <YCPE2lPpBlhCi7TH@atomide.com>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-19-marcan@marcan.st>
- <20210208110441.25qc6yken4effd6c@kozik-lap>
- <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
- <YCOzLSqdsr83xf0b@atomide.com>
- <4481998a-27f6-951e-bb4f-a9d2b95f211f@marcan.st>
+        id S229583AbhBJLjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 06:39:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32814 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229611AbhBJLiC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 06:38:02 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29185C061756
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 03:37:20 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id u14so2126254wri.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 03:37:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=tAlt2AWMRf+ppapnfIwS3IIQSTyeAdGOjz/xqXMAQy8=;
+        b=mVTGUnzQMGuNLnKKHydMVOuXLhU+BJUTKWqI2GhhILiy4LsCHu8NOM4LEaMWSDSnw6
+         3oVP1xUcpqkIPqxRvexjgQ0N0gnAtdmbF6/7Y07O6DOf3g2wBG4wm6b+B1CSYtJ/cZCY
+         y4z7rBuMWdKqUzWaQAU4U70J9R8qoCKxbIHC1upCeY7ZkIhP6HLHQF6pyohninyFjKH3
+         aLoT58U4bdxkGz8o2nbY+KQ3iWo7xMVbatOfJw2Dwm140YlRB9ZXqZPMD5Z2vzYeKCW0
+         D3JbJXCFYVDdD9zCHJ/yS9q96Orkl5iYx2bLh8U4X/8jjcBzRtEper3/Dd2u4A+17cic
+         7dpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tAlt2AWMRf+ppapnfIwS3IIQSTyeAdGOjz/xqXMAQy8=;
+        b=p2L92fHsCitaWpvcoltxvyEHaz2IZ336yV+MWyha/LeC7zeWHClheGZM7iJrCnIyHJ
+         ydOIWlO1fWm3EUfIMFap5zOSRomQ4y6Xpazw9f6DQV9xShEq9FNdjp6ytuVkreBMzcuh
+         sty8thyfMNXRMNKjhmqfJjyAzM+WIjHGASEEunAWYkVC0OrB1gU19JN+uvwy+g5kJLim
+         DszNFomudPrmVuH0o2Hp8ttrwUbD2B0BUM2/froRzzglZvR9e2huXW6rTKDAPheyfm5K
+         jG19JWxtMU8IvZt0oUW6wXX513Z8qd7DpyZA7OegRhVDfjoJ2e8lTlZLOP4hfQLg6isZ
+         n2Fw==
+X-Gm-Message-State: AOAM532f8OzwTHfUoFNApG2RFn94Ld55JGvtM18kbJzQM4hpMOK+IJ6+
+        DxzWl5w7v9eGigzg1mGmHJg=
+X-Google-Smtp-Source: ABdhPJzyaZ5hER8iYOoD7B0dMNiH1h5hjCjbKV8kOPK2BhNic61kBShxM+HPX5G8APC3BXiWUwxsCw==
+X-Received: by 2002:adf:fc48:: with SMTP id e8mr3213836wrs.154.1612957038930;
+        Wed, 10 Feb 2021 03:37:18 -0800 (PST)
+Received: from ziggy.stardust (static-188-169-27-46.ipcom.comunitel.net. [46.27.169.188])
+        by smtp.gmail.com with ESMTPSA id z15sm2490795wrs.25.2021.02.10.03.37.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Feb 2021 03:37:18 -0800 (PST)
+Subject: Re: [PATCH 2/3] watchdog: mtk_wdt: add support for 16-bit control
+ registers
+To:     Boris Lysov <arzamas-16@mail.ee>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, linux-mediatek@lists.infradead.org
+References: <20210131234425.9773-1-arzamas-16@mail.ee>
+ <20210131234425.9773-3-arzamas-16@mail.ee>
+ <050f2f8e-9c3c-10e3-05ef-cd84e949b98f@roeck-us.net>
+ <20210202043355.18080818@pc>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <f73f3d85-5f2e-21a3-5ce0-02f384ffa660@gmail.com>
+Date:   Wed, 10 Feb 2021 12:37:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4481998a-27f6-951e-bb4f-a9d2b95f211f@marcan.st>
+In-Reply-To: <20210202043355.18080818@pc>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Hector Martin <marcan@marcan.st> [210210 11:14]:
-> On 10/02/2021 19.19, Tony Lindgren wrote:
-> > * Hector Martin 'marcan' <marcan@marcan.st> [210208 12:05]:
-> > > On 08/02/2021 20.04, Krzysztof Kozlowski wrote:
-> > ...
-> > 
-> > > > > +	clk24: clk24 {
-> > > > 
-> > > > Just "clock". Node names should be generic.
-> > > 
-> > > Really? Almost every other device device tree uses unique clock node names.
-> > 
-> > Yeah please just use generic node name "clock". FYI, we're still hurting
-> > because of this for the TI clock node names years after because the drivers
-> > got a chance to rely on the clock node name..
-> > 
-> > Using "clock" means your clock driver code won't get a chance to wrongly
-> > use the node name and you avoid similar issues.
-> 
-> That means it'll end up like this (so that we can have more than one
-> fixed-clock):
-> 
-> clocks {
->     #address-cells = <1>;
->     #size-cells = <0>;
-> 
->     clk123: clock@0 {
->         ...
->         reg = <0>
->     }
-> 
->     clk456: clock@1 {
->         ...
->         reg = <1>
->     }
-> }
-> 
-> Correct?
 
-Yeah, just don't use an imaginary dummy index for the reg. Use a real
-register offset from a clock controller instance base, and a register
-bit offset too if needed.
 
-That way if you discover a new clock inbetween somewhere, you don't have
-renumber any imaginary lists in the driver or device tree. So try to
-follow sort of what the standard interrupts binding is doing only
-describing the hardware.
+On 02/02/2021 02:33, Boris Lysov wrote:
+> В Sun, 31 Jan 2021 16:31:09 -0800
+> Guenter Roeck <linux@roeck-us.net> пишет:
+> 
+>> We can't do this. With this flag enabled, the watchdog won't
+>> support other SoCs, and there is nothing that prevents the flag
+>> from being set for those SoCs.
+>>
+>> This has to be handled differently, without configuration
+>> flag. Maybe use regmap for register addresses, [snip],
+>> or use accessor functions in mtk_wdt_dev.
+> 
+> Thank you for reviewing my patch!
+> 
+> I will consider suggested fixes, and I will come up with better solution
+> in V2. I'm beginner developer, and am still learning.
+> 
+>> use the compatible string to determine which regmap settings to use
+> 
+> I think relying on hardcoded "compatible string - settings" pairs in
+> driver is not good. Whilst most Mediatek watchdogs I've seen use
+> similar drivers, no one (except Mediatek itself, of course) knows for
+> sure how many devices use 16-bit mode, and specifying each one in C
+> code may _theoretically_ bloat it. (well, on the other hand, I've seen
+> other watchdog drivers with many compatible devices listed in C code,
+> and they didn't seem bloated at all)
 
-> Incidentally, there is just one example in the kernel tree of doing this
-> right (in arch/arm/boot/dts/imx6qdl-tx6.dtsi). All the others that use
-> non-mmio clocks called `clock`, including the various tegra devicetrees,
-> violate the DT spec by not including a dummy reg property matching the
-> unit-address.
+We enable 16 bit access for "mediatek,mt6577-wdt" if we have a new SoC that also
+needs 16 bit access, most probably we can just update the binding documentation
+by adding the new SoC with a fallback to mt6577:
 
-Doing it right will save you tons of time later on ;)
+"mediatek,mt1234-wdt", "mediatek,mt6577-wdt": for MT1234
 
-FYI, for the TI clocks, we ended up redoing most of the clocks as
-documented in Documentation/devicetree/bindings/clock/ti-clkctrl.txt.
+As no binding to mt1234 is present in the driver, the mt6577 one will be used.
 
 Regards,
-
-Tony
+Matthias
