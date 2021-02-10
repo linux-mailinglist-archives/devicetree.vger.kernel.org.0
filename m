@@ -2,111 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E3D317381
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 23:38:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E2C3317391
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 23:45:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233065AbhBJWiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 17:38:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231897AbhBJWiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 17:38:13 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 445D6C061574
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 14:37:33 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id o21so2188514pgn.12
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 14:37:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=s90SilBQFi+ziwOIINhOeEY8oYLj+xr0s/beSIR3XzA=;
-        b=MnEVVT6ElZKR6HNoGnByOlde92Fc00O5NLMZG97kXOqfO9xJdd/lo+nOZrahuarmX4
-         VpRMSLM/1rx0YTuEN6S/wDCBZBx1OX/tF+6TJrlgVtxArkAUYjwv4gpdTc7RvK11vkhi
-         bDep2WDFkBv5OrnATTrAr3VFk391/iVVMxyQA=
+        id S232279AbhBJWo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 17:44:58 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:39296 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230229AbhBJWo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 17:44:57 -0500
+Received: by mail-oi1-f176.google.com with SMTP id l19so3966092oih.6;
+        Wed, 10 Feb 2021 14:44:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=s90SilBQFi+ziwOIINhOeEY8oYLj+xr0s/beSIR3XzA=;
-        b=MLlCu6UKoZrq56FOHdisbP7BcuCMrTq5fcsbyfQo0OqQXlgsQGi/0UvQtleOcdDqes
-         4K18lVB4rwecAWfewkdiELb4+1t1N6voUsz012kH+Cope4FyNjfB/eGVDsRRdQe+DnBn
-         liCPsnhkkn9Z7xGfYvVU16F+WVk9PBDMq4jfsSUMPxux+9g/lw0HJh2gr56ybYJruygC
-         GIJnPTPadkIZCA1N/gtHuxNbfNzTRZKBZ5K6L67pCQRVvbFwTwLPBWnDu1+CD/9COGAm
-         gBYQGTrwD5I9dIwLP1pZjoO1zHgLCajWiPzrmKHl2N9wAsDBM8Kv9LUsaHktU7lCceR1
-         jcWw==
-X-Gm-Message-State: AOAM530uL/Z80FLzeo8RAern6ojbmw3talNGBEciKYP1uWJEb469tof1
-        AOClVCb2yN4SNctlalPF0RdEWw==
-X-Google-Smtp-Source: ABdhPJyK3ihZe4QNyRenuGNSz4QvYRxteZ2JVLj89pyhupD+zRHusDk4TLTrUBPt+L3CXxPY8cRUiQ==
-X-Received: by 2002:a63:4a49:: with SMTP id j9mr5225931pgl.197.1612996652851;
-        Wed, 10 Feb 2021 14:37:32 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:d8e6:826a:fc50:2158])
-        by smtp.gmail.com with UTF8SMTPSA id j20sm3331858pfe.172.2021.02.10.14.37.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Feb 2021 14:37:32 -0800 (PST)
-Date:   Wed, 10 Feb 2021 14:37:30 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Al Cooper <alcooperx@gmail.com>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v5 0/4] USB: misc: Add onboard_usb_hub driver
-Message-ID: <YCRgKpnBOv1+u0Lh@google.com>
-References: <20210210171040.684659-1-mka@chromium.org>
- <20210210210451.3coi62cynptzb6wf@kozik-lap>
+        bh=3M0msBaL9p/7nJ6GlqMOEs3GDwMywxHD5jz1IJHrbdE=;
+        b=RxKbdr1Oanjt+axrW26lPwXeDsJhnCnnSJ7qzQL0bUHiIf2Q0mCH8vKSutudhYUFIP
+         i81GobnoIGNv/R73y2uB/sN0cEq84BaChnLtpZKClevkcLSKnACkWUGoWQoRl+j+WJhT
+         LrPIdSy2uJXEvk2G1ZDB3e1qUhuPXy4L03u+kMvu4vqBFwbzC/+HM+zcbXdu8AVowqMP
+         DkvTm9zMQj9x10PRunB4+NuVix8zJVKXpOI5XNNm+8sZL+PVHHmdDpw8ULQjHp6amJMI
+         kSWXj9nOFfixIFfC0UNlPeGSM4BhLJvT/KYaC+AnpodY718WMykQseNn4rr+kcwRufI7
+         kX0w==
+X-Gm-Message-State: AOAM532Q0eCzBdrZXb/SvoJ8lVTFj92viSUb/upyszZmZIGab9WVUX3e
+        zq2mWR5wkszULqTKKmSRqQ==
+X-Google-Smtp-Source: ABdhPJxy+3o6WWoRuZXvNqoGfKln05oXvoDI2zQTSg/JoBEmpJWdCKyHSLC63mr2/0y9Tg4Ezi62HQ==
+X-Received: by 2002:aca:4d55:: with SMTP id a82mr883173oib.23.1612997056503;
+        Wed, 10 Feb 2021 14:44:16 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i20sm644411otl.78.2021.02.10.14.44.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Feb 2021 14:44:15 -0800 (PST)
+Received: (nullmailer pid 2949448 invoked by uid 1000);
+        Wed, 10 Feb 2021 22:44:13 -0000
+Date:   Wed, 10 Feb 2021 16:44:13 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     f.fainelli@gmail.com, linux-kernel@vger.kernel.org,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org, phil@raspberrypi.com,
+        wahrenst@gmx.net, linux-arm-kernel@lists.infradead.org,
+        mripard@kernel.org, eric@anholt.net, devicetree@vger.kernel.org
+Subject: Re: [RFC/PATCH v2 02/16] dt-bindings: soc: bcm: bcm2835-pm:
+ Introduce reg-names
+Message-ID: <20210210224413.GA2919056@robh.at.kernel.org>
+References: <20210209125912.3398-1-nsaenzjulienne@suse.de>
+ <20210209125912.3398-3-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210210210451.3coi62cynptzb6wf@kozik-lap>
+In-Reply-To: <20210209125912.3398-3-nsaenzjulienne@suse.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Wed, Feb 10, 2021 at 10:04:51PM +0100, Krzysztof Kozlowski wrote:
-> On Wed, Feb 10, 2021 at 09:10:35AM -0800, Matthias Kaehlcke wrote:
-> > This series adds the onboard_usb_hub_driver, the corresponding
-> > device tree bindings and creation of onboard_usb_hub platform in
-> > the xhci-plat driver during probe().
-> > 
-> > The main issue the driver addresses is that a USB hub needs to be
-> > powered before it can be discovered. For discrete onboard hubs (an
-> > example for such a hub is the Realtek RTS5411) this is often solved
-> > by supplying the hub with an 'always-on' regulator, which is kind
-> > of a hack.
+On Tue, Feb 09, 2021 at 01:58:58PM +0100, Nicolas Saenz Julienne wrote:
+> Anticipating the introduction of BCM2711, of which we'll need to support
+> its new Argon ASB, introduce reg-names into bcm2835-pm's binding. This
+> will help to have a consistent mapping between resources and their
+> meaning.
 > 
-> It seems you are re-developing the power sequence drivers which perform
-> exactly this. Peter Chen some time ago was bringing power sequence to
-> USB devices, but I lost track where this ended up.
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> ---
+>  .../devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml  | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
 > 
-> Some of his (and my) very old work (2017...) can be found here:
-> https://github.com/krzk/linux/tree/wip/odroid-u3-usb3503-pwrseq
+> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> index 8bc65e5f62a7..1dbe3657c690 100644
+> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> @@ -26,8 +26,13 @@ properties:
+>    reg:
+>      minItems: 1
+>      maxItems: 2
+> -    description: Specifies base physical address and size of the two register
+> -                 ranges, "PM" and "ASYNC_BRIDGE" in that order.
 
-pwrseq was brought up in the discussion about this driver, but wasn't
-deemed suitable for this use case which might require more complex
-configurations:
+Ah, it's okay this way if you have -names. Or have items to give a bit 
+more detail.
 
-https://lore.kernel.org/patchwork/patch/1313000/#1512725
+> +
+> +  reg-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - const: pm
+> +      - const: rpivid_asb
 
-> Instead of adding custom driver hiding some USB hub implementation,
-> power sequence seems a generic solution. What if you need to power cycle
-> other embedded USB device? Not a hub?
+Not really clear how this corresponds to 'ASYNC_BRIDGE'. 'asb' I guess?
 
-The driver could be extended to also cover other types of devices if desired.
-Maybe it should be called usb-pwrseq then, even though it's not directly
-related with the original pwrseq series.
+>  
+>    "#power-domain-cells":
+>      const: 1
+> @@ -54,6 +59,7 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> +  - reg-names
+
+You can't really make added properties required.
+
+>    - "#power-domain-cells"
+>    - "#reset-cells"
+>    - clocks
+> @@ -70,6 +76,7 @@ examples:
+>          #reset-cells = <1>;
+>          reg = <0x7e100000 0x114>,
+>                <0x7e00a000 0x24>;
+> +        reg-names = "pm", "rpivid_asb";
+>          clocks = <&clocks BCM2835_CLOCK_V3D>,
+>          	 <&clocks BCM2835_CLOCK_PERI_IMAGE>,
+>          	 <&clocks BCM2835_CLOCK_H264>,
+> -- 
+> 2.30.0
+> 
