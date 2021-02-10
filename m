@@ -2,88 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDB79316731
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 13:56:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93A7431673A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 13:57:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230125AbhBJMzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 07:55:45 -0500
-Received: from muru.com ([72.249.23.125]:59866 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229977AbhBJMzn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 07:55:43 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 589B880EB;
-        Wed, 10 Feb 2021 12:55:17 +0000 (UTC)
-Date:   Wed, 10 Feb 2021 14:54:56 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Hector Martin <marcan@marcan.st>, Arnd Bergmann <arnd@kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
- devicetree
-Message-ID: <YCPXoEKJQyVFdOHv@atomide.com>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-19-marcan@marcan.st>
- <20210208110441.25qc6yken4effd6c@kozik-lap>
- <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
- <YCOzLSqdsr83xf0b@atomide.com>
- <4481998a-27f6-951e-bb4f-a9d2b95f211f@marcan.st>
- <YCPE2lPpBlhCi7TH@atomide.com>
- <4dd911d8-ce84-bf4d-3aae-95ef321b4a97@marcan.st>
- <CAFr9PXkLRKHguszidJX2Qit0QUJ0QxFi3H=Wp2HDqpfJQYZEVw@mail.gmail.com>
+        id S230160AbhBJM5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 07:57:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49614 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231326AbhBJM4M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 07:56:12 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29858C06174A
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 04:55:31 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a9so4018133ejr.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 04:55:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OHOlOhcQ+zRM08ThU13hzkWKzBwX1E8wDjj/X8CawAg=;
+        b=1NJLJVasOsjg2D8QyTt6YfgsQSkcKVj6ahijVhKmG5dQ6UCBcMYGvYWDE5dpYlNSaz
+         OT3p91d6FOX8k2qln/eIt1EMXmML2/1xSKmZVg6Rg3PM5lERdBBQeaMytNqvWVXbSIj0
+         mr6Mbbs/z7/cyXq4vyf0PsFnisJNKuFAQHb0YvjWoPv9wWhcrILORBXXC8dkB8Y88c69
+         9FMtUhflhwWTB9dSD/LHYZK4H7lwandVc6Re/f3DnJDmfXzx1iAEbOC5axjaHm1ZKpbS
+         FxuxYyUVe7u32A34wJcd29v9f7Ap0w53MwfHbnTCyZckuRjBOATVM/3sdeS73rpA6nRO
+         gt0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OHOlOhcQ+zRM08ThU13hzkWKzBwX1E8wDjj/X8CawAg=;
+        b=Cp3bPxg7xOxy8y/7BdvQYKBgBFoImlDVjLFC7zRA/hpAMdbABM9A6YVGjnRnn9/SkH
+         Mnc62aJdqke/GuzKJq3gzg83hc8pWkHEgZCvJY8AcDdGHB+pK3ikF822UWxpuOszuVa9
+         ye8/wMfL1kI3N3vixsz/4FvK2w/i+MRHadTffZwrA2ndDeHnVmhRwRpn+ww1Y35/ZVbt
+         1hVT8sSb1JvFGrhG4S7OKkoHRjwPDHqxB/qNo8/3ic5ABTp+inMwhNrgCUKtdye07iUZ
+         t2f1eGJgm/tzAX7fmWmbh35rZPMPZtLGn5ikxoFq1k7UwBTtOY5GDCcpkCBDsY8FCnK7
+         SdnQ==
+X-Gm-Message-State: AOAM533S73mfX08v9+fIVAYDatJajZUmHdbM2L4fP0OWJFZtzvxZ7wLV
+        zDeGeUh+P3kiDfm3TpV8zLraeA==
+X-Google-Smtp-Source: ABdhPJz5myXkPhHhSvFomd4ohKnj3VSNl3FJWuFgcafxmK6wC/Ofubabk2glsJSKLT+eTLFeaMZkeQ==
+X-Received: by 2002:a17:906:d922:: with SMTP id rn2mr2882148ejb.414.1612961729918;
+        Wed, 10 Feb 2021 04:55:29 -0800 (PST)
+Received: from localhost.localdomain (dh207-97-164.xnet.hr. [88.207.97.164])
+        by smtp.googlemail.com with ESMTPSA id u5sm1084900edc.29.2021.02.10.04.55.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Feb 2021 04:55:29 -0800 (PST)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
+        netdev@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
+        linux@armlinux.org.uk
+Cc:     Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v2 net-next 0/4] Add support for Qualcomm QCA807x PHYs
+Date:   Wed, 10 Feb 2021 13:55:19 +0100
+Message-Id: <20210210125523.2146352-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFr9PXkLRKHguszidJX2Qit0QUJ0QxFi3H=Wp2HDqpfJQYZEVw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Daniel Palmer <daniel@0x0f.com> [210210 12:24]:
-> Hi Hector,
-> 
-> On Wed, 10 Feb 2021 at 20:49, Hector Martin <marcan@marcan.st> wrote:
-> 
-> > > Yeah, just don't use an imaginary dummy index for the reg. Use a real
-> > > register offset from a clock controller instance base, and a register
-> > > bit offset too if needed.
-> >
-> > I mean for fixed input clocks without any particular numbering, or for
-> > temporary fake clocks while we figure out the clock controller. Once a
-> > real clock controller is involved, if there are hardware indexes
-> > involved that are consistent then of course I'll use those in some way
-> > that makes sense.
-> 
-> This exact problem exists for MStar/SigmaStar too.
-> As it stands there is no documentation to show what the actual clock
-> tree looks like so everything is guess and I need to come up with numbers.
-> I'm interested to see what the solution to this is as it will come up again
-> when mainlining chips without documentation.
-> 
-> 
-> > The purpose of the clock in this particular case is just to make the
-> > uart driver work, since it wants to know its reference clock; there is
-> > work to be done here to figure out the real clock tree
-> 
-> FWIW arm/boot/dts/mstar-v7.dtsi has the same issue: Needs uart,
-> has no uart clock. In that instance the uart clock setup by u-boot
-> is passed to the uart driver as a property instead of creating a fake
-> clock.
+This patch series adds support for Qualcomm QCA807x PHYs.
 
-Using more local dts nodes for the fixed clocks might help a bit with
-the dummy numbering problem but is still not a nice solution.
+These are really common companion PHYs on boards featuring
+Qualcomm IPQ40xx, IPQ60xx and IPQ807x SoCs.
 
-How about using node names like "clock-foo" for the fixed clocks?
-This would be along what we do for with regulator names.
+They are 2 or 5 port IEEE 802.3 clause 22 compliant
+10BASE-Te, 100BASE-TX and 1000BASE-T PHY-s.
 
-Rob and Stephen might have some better suggestions here.
+They feature 2 SerDes, one for PSGMII or QSGMII connection with MAC,
+while second one is SGMII for connection to MAC or fiber.
 
-Regards,
+Both models have a combo port that supports 1000BASE-X and 100BASE-FX
+fiber.
 
-Tony
+Each PHY inside of QCA807x series has 2 digitally controlled output only
+pins that natively drive LED-s.
+But some vendors used these to driver generic LED-s controlled by
+user space, so lets enable registering each PHY as GPIO controller and
+add driver for it.
+
+Robert Marko (4):
+  dt-bindings: net: Add QCA807x PHY
+  dt-bindings: net: Add bindings for Qualcomm QCA807x
+  net: phy: Add Qualcomm QCA807x driver
+  MAINTAINERS: Add entry for Qualcomm QCA807x PHY driver
+
+ .../devicetree/bindings/net/qcom,qca807x.yaml |  70 ++
+ MAINTAINERS                                   |   9 +
+ drivers/net/phy/Kconfig                       |  10 +
+ drivers/net/phy/Makefile                      |   1 +
+ drivers/net/phy/qca807x.c                     | 855 ++++++++++++++++++
+ include/dt-bindings/net/qcom-qca807x.h        |  30 +
+ 6 files changed, 975 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,qca807x.yaml
+ create mode 100644 drivers/net/phy/qca807x.c
+ create mode 100644 include/dt-bindings/net/qcom-qca807x.h
+
+-- 
+2.29.2
+
