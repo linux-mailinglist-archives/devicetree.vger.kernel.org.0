@@ -2,119 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DC5F31669D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 13:28:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBB953166DE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 13:37:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230300AbhBJM1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 07:27:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42938 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231186AbhBJMZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 07:25:03 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0688C06174A;
-        Wed, 10 Feb 2021 04:24:22 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 8CBC341FA3;
-        Wed, 10 Feb 2021 12:24:18 +0000 (UTC)
-To:     Will Deacon <will@kernel.org>
-Cc:     SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-14-marcan@marcan.st>
- <CAK8P3a2Ad+xmmMWgznOHPpxgCXKWFYfpHBqt_49_UuxrwFSq+A@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 13/18] arm64: ioremap: use nGnRnE mappings on platforms
- that require it
-Message-ID: <475f7586-cabf-1169-8800-cdd2c012a5a6@marcan.st>
-Date:   Wed, 10 Feb 2021 21:24:15 +0900
+        id S231307AbhBJMhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 07:37:25 -0500
+Received: from foss.arm.com ([217.140.110.172]:36866 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231860AbhBJMfL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 07:35:11 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E8392D6E;
+        Wed, 10 Feb 2021 04:33:57 -0800 (PST)
+Received: from [10.57.47.61] (unknown [10.57.47.61])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D45BE3F73D;
+        Wed, 10 Feb 2021 04:33:55 -0800 (PST)
+Subject: Re: [PATCH V3 06/14] dts: bindings: Document device tree bindings for
+ ETE
+To:     Rob Herring <robh@kernel.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        mathieu.poirier@linaro.org, mike.leach@linaro.org,
+        lcherian@marvell.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <1611737738-1493-1-git-send-email-anshuman.khandual@arm.com>
+ <1611737738-1493-7-git-send-email-anshuman.khandual@arm.com>
+ <20210209190031.GA4102836@robh.at.kernel.org>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+Message-ID: <4d0e6b88-72c2-be23-f43a-3f541f9ebb86@arm.com>
+Date:   Wed, 10 Feb 2021 12:33:44 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a2Ad+xmmMWgznOHPpxgCXKWFYfpHBqt_49_UuxrwFSq+A@mail.gmail.com>
+In-Reply-To: <20210209190031.GA4102836@robh.at.kernel.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Will, I'm pulling you in at Marc's suggestion. Do you have an opinion 
-on what the better solution to this problem is?
+Hi Rob
 
-The executive summary is that Apple SoCs require nGnRnE memory mappings 
-for MMIO, except for PCI space which uses nGnRE. ARM64 currently uses 
-nGnRE everywhere. Solutions discussed in this thread and elsewhere include:
-
-1. Something similar to the current hacky patch (which isn't really 
-intended as a real solution...); change ioremap to default to nGnRnE 
-using some kind of platform-level flag in the DT, then figure out how to 
-get the PCI drivers to bypass that. This requires changing almost every 
-PCI driver, since most of them use plain ioremap().
-
-2. A per-device DT property that tells of_address_to_resource to set a 
-flag in the struct resource, which is then used by 
-devm_ioremap_resource/of_iomap to pick a new ioremap_ variant for nGnRnE 
-(introduce ioremap_np() for nonposted?) (PCI would work with this 
-inasmuch as it would not support it, and thus fall back to the current 
-nGnRE default, which is correct for PCI...). This requires changing 
-DT-binding drivers that we depend on to not use plain ioremap() (if any 
-do so), but that is a finite subset (unlike PCI which involves 
-potentially every driver, because thunderbolt).
-
-3. Encode the mapping type in the address of child devices, either 
-abusing the high bits of the reg or introducing an extra DT cell there, 
-introduce a new OF bus type that strips those away via a ranges mapping 
-and sets flags in the struct resource, similar to what the PCI bus does 
-with its 3-cell ranges, then do as (2) above and make 
-devm_ioremap_resource/of_iomap use it:
-
-On 09/02/2021 07.57, Arnd Bergmann wrote:
-> #define MAP_NONPOSTED 0x80000000
+On 2/9/21 7:00 PM, Rob Herring wrote:
+> On Wed, Jan 27, 2021 at 02:25:30PM +0530, Anshuman Khandual wrote:
+>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>
+>> Document the device tree bindings for Embedded Trace Extensions.
+>> ETE can be connected to legacy coresight components and thus
+>> could optionally contain a connection graph as described by
+>> the CoreSight bindings.
+>>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>> Cc: Mike Leach <mike.leach@linaro.org>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+>> ---
+>> Changes in V3:
+>>
+>> - Fixed all DT yaml semantics problems
+>>
+>>   Documentation/devicetree/bindings/arm/ete.yaml | 74 ++++++++++++++++++++++++++
+>>   1 file changed, 74 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
+>> new file mode 100644
+>> index 0000000..edc1fe2
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/ete.yaml
+>> @@ -0,0 +1,74 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+>> +# Copyright 2021, Arm Ltd
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/arm/ete.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: ARM Embedded Trace Extensions
+>> +
+>> +maintainers:
+>> +  - Suzuki K Poulose <suzuki.poulose@arm.com>
+>> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
+>> +
+>> +description: |
+>> +  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
+>> +  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
+>> +  architecture and has extended support for future architecture changes.
+>> +  The trace generated by the ETE could be stored via legacy CoreSight
+>> +  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
+>> +  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
+>> +  legacy CoreSight components, a node must be listed per instance, along
+>> +  with any optional connection graph as per the coresight bindings.
+>> +  See bindings/arm/coresight.txt.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^ete([0-9a-f]+)$"
+>> +  compatible:
+>> +    items:
+>> +      - const: arm,embedded-trace-extension
+>> +
+>> +  cpu:
 > 
-> arm-io { /* name for adt, should be changed */
->       compatible = "apple,m1-internal-bus";
->       #address-cells = <2>; /* or maybe <3> if we want */
->       #size-cells = <2>;
->       ranges =
->                 /* on-chip MMIO */
->                 <(MAP_NONPOSTED | 0x2) 0x0   0x2 0x0 0x1 0x0>,
+> We've already established 'cpus' for this purpose.
 > 
->                /* first PCI: 2GB control, 4GB memory space */
->               <(MAP_NONPOSTED | 0x3) 0x80000000  0x3 0x80000000  0x0 0x80000000>,
->                <0x4 0x0   0x4 0x0  0x1 0x0>,
-[...]
 
-> The MAP_NONPOSTED flag then gets interpreted by the .translate() and
-> .get_flags() callbacks of "struct of_bus" in the kernel, where it is put into
-> a "struct resource" flag, and interpreted when the resource gets mapped.
+Please see : https://lkml.kernel.org/r/9417218b-6eda-373b-a2cb-869089ffc7cd@arm.com
+for my response in the previous version to this and the one with out-ports.
+
+>> +    description: |
+>> +      Handle to the cpu this ETE is bound to.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +
+>> +  out-ports:
+>> +    type: object
 > 
-> The PCI host controller nests inside of the node above, and (in theory)
-> uses the same trick to distinguish between prefetchable and non-prefetchable
-> memory, except in practice this is handled in device drivers that already
-> know whether to call ioremap() or ioremap_wc().
+> Replace with: $ref: /schemas/graph.yaml#/properties/ports
 
-4. Introduce a new top-level DT element in the style of reserved-memory, 
-that describes address ranges and the mapping type to use. This could be 
-implemented entirely in arch code, having arm64's ioremap look up the 
-address in a structure populated from this.
+So, just to confirm again :
+The CoreSight graph bindings expect the input ports and output ports
+grouped under in-ports{} and out-ports{} respectively to avoid having
+to specify the direction of the ports in the individual "port" nodes.
+i.e
 
-As an additional wrinkle, earlycon is almost certainly going to need a 
-special path to handle this very early, before OF stuff is available; it 
-also uses fixmap instead of ioremap, which has its own idea about what 
-type of mapping to use.
+in-ports {
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+	property: ports
+	  OR
+	property: port
+
+	required:
+		OneOf:
+			ports
+			port
+}
+
+out-ports {
+
+	# same as above
+}
+
+So thats why I added out-ports as a new object, where the ports/port
+could be a child node.
+
+Ideally the definition of out-ports /in-ports should go to a common schema
+for CoreSight bindings, when we move to Yaml for the existing bindings,
+which will follow in a separate series, later.
+
+> 
+>> +    description: |
+>> +      Output connections from the ETE to legacy CoreSight trace bus.
+>> +    properties:
+>> +      port:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+> 
+> Actually, if only 1 port ever, you can drop 'out-ports' and just have
+> 'port'. Not sure though if the coresight stuff depends on 'out-ports'.
+> 
+
+Cheers
+Suzuki
