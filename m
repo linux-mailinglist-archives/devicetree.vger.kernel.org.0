@@ -2,127 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF87B316A67
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 16:42:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36A47316AFA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 17:17:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbhBJPlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 10:41:42 -0500
-Received: from mail-eopbgr00046.outbound.protection.outlook.com ([40.107.0.46]:65152
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231894AbhBJPlV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 10:41:21 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hm2CwMIuNkN2tEKvoOR4iv8XCRFKFFTVRyl1fDbTf1gG1B7SHE11B28LD3OWz2V21FrjYEdsy8OWXK91S+aan2mxzSvufTuU46xzYkOZxXYKIJLPSFcJ4y3f+U3tOE4LBwNCWiUeLDL/wwXdqLwEluf9OoLqF9JMVKlhYXyM7hi3Qw7pbnQpBqEfpyifG/KxNLbq0TcHqZSw92zJCO1HSaqzefr6NGz8hycqAEZppodPbGK9aeB4PQBbRgODXqO+Zrrro2VgHWOb1HNOM01ty66vd31PiaJWTxuvmN/7GGCOHgwakoDwaG/CLiZHWRr9cZ60RxDutcj5rjrs5NgqyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t5R80X8Zr1i1CGYiuJGTjwB6qVX7KgMz0zMTqaxlJqE=;
- b=e6P3pMapv3www9CmDpfwepeehOarBqs851OrmU+Lqs0ssTtzrEsb6Hq98n3LT16w008LfddW5LRlfIgiIq/n+fVp/wiAnlFiItvEY9rPhlaY3XaYTUmompCTeqlzIHe/H6HSsjM5KD9KOSQepqsd2DxfQU1l5QWu42shdQ6P9PraU3vM2uWpTYxHg4jN7Z0dDVwNdbqC1q4fNEhr5M9rgF1vVdK/X5x/z1iY1NbwrmYcFAZ5cwO0DT4OHsVqYbMbZOmfc+phT3DQSDa62hil/DYGsgibtxs4MlKFNkWARt1mE6XfEUHWWIngQB5vOiBAAdlJgEshuyA5vayQyHJe/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t5R80X8Zr1i1CGYiuJGTjwB6qVX7KgMz0zMTqaxlJqE=;
- b=OonQQG667qZT47GsAhVeog689Vyy/WmnCF9z+GvJ8Dc5L72BKJzdW1Qu6oYUJ3YMGtEn2GLyKxBJj/cJUynFjxk+3wqq+OZ79XoNr/sO3eJXMJiGfrNWrsATj7hZkdupRfA2ry+ug9oSQ9H5/CiKfdw4aDPZhJRk4imSfIi8dXY=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB4909.eurprd04.prod.outlook.com (2603:10a6:803:52::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.23; Wed, 10 Feb
- 2021 15:40:32 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::3df3:2eba:51bb:58d7]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::3df3:2eba:51bb:58d7%7]) with mapi id 15.20.3825.030; Wed, 10 Feb 2021
- 15:40:32 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Michael Walle <michael@walle.cc>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: ls1028a: add interrupt to Root Complex Event
- Collector
-Thread-Topic: [PATCH] arm64: dts: ls1028a: add interrupt to Root Complex Event
- Collector
-Thread-Index: AQHW/n36X417tT1c50ix7Ht/4eSN/KpRiSUA
-Date:   Wed, 10 Feb 2021 15:40:32 +0000
-Message-ID: <20210210154032.dqvzs4oam3iqwows@skbuf>
-References: <20210209005259.29725-1-michael@walle.cc>
-In-Reply-To: <20210209005259.29725-1-michael@walle.cc>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: walle.cc; dkim=none (message not signed)
- header.d=none;walle.cc; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [5.12.227.87]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: fa4dc1b7-33ff-485c-a221-08d8cdda33da
-x-ms-traffictypediagnostic: VI1PR04MB4909:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB49093A1B945F2D736ACE2A1CE08D9@VI1PR04MB4909.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3968;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2D+DCwOUAZeJ+pYz4RlBGcWM0BejSyj3U2XhWaCtxVKkVxI+VnF9lKv5vDujveseJJdP2szwHhPb6taCQRICnVeNep5xAiEheO/s/a1B4GruCly4zxDrDrbaPwk08sZY2M5uDS6cMJ7+V81XaX1/TtIGD8Qy34QZYxnlUNfMCdZJpuCrA0FEkICObw3uthj5KeXaJFP34fSxS+IF1yWhsWD/OaEqhnPaJ3H0vdKXhhD9eRfDf15QGCL/pq300ZTjA1Jsq2RGZBfhemH+Qe4sF4EGQQebDyzXL40YreGA87Znn1syA+8bhkp78FE4wvKzetlpk6wWPt/bv550GjQQT3jd6SVnajY7+rkB5enqQfD7VxM/sh6WWES+UUCK/eKM60vqjdbGnMDsyROJJaIqNMtZyAO1/0q9d5DvByLYdvhAvyoB2rHg0WY2SLeLQru+PweVsTLJ4QcCR8Jw708AjE5XtXdhchQ9S49yyNmYV50zyiWry0MxF5Viqeu4D5BSvrwmwCXW6GTxqnNhDVOqIQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(346002)(376002)(39860400002)(366004)(396003)(136003)(6506007)(6512007)(66446008)(6916009)(4326008)(8936002)(26005)(8676002)(33716001)(478600001)(1076003)(2906002)(71200400001)(86362001)(66946007)(186003)(44832011)(64756008)(66476007)(316002)(5660300002)(66556008)(54906003)(6486002)(4744005)(9686003)(76116006);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?sI4E2b3YxqFRIkdHA2tLPx22GrRUy/gBDP4hiO2OC+/UUMNrTkNMtBD6cExw?=
- =?us-ascii?Q?P/JpMLPlAsu1kgPrJE80SjkIBNVLDdnmd+8A4sjw/7vg9+8HFXDOY7w388D5?=
- =?us-ascii?Q?+cAQdfBzn7fWXIq56m5dZsQ8m2K+RdfJDgfGm8c/g2tA5NCBaxdBZfBxit42?=
- =?us-ascii?Q?J9vDJA+SkKz5eiXeKRwOeTRHzExQ8cVKAIxpcV8TJS1HXjVGbFG5PhaVlXg/?=
- =?us-ascii?Q?UyzbJGAox7DSCsVOumRYL6LW6tF7XvHnF2gaMbK5OXPZgkunUwVECPetbiSA?=
- =?us-ascii?Q?xBHoYIAcd7gmK3XYzAP+wQK88RNgKu4rIMHImVzQmODhvo6xI05SZfAYLaBF?=
- =?us-ascii?Q?OSdZAw4vSTSvC4wbswi33nwso5jBhyeVAkmf9pHXQfsX+izRUGnzBb9Pn6V7?=
- =?us-ascii?Q?ihIpo53DsZu+g0c0Kl4D7/5x7cLFA8j9JIQ9FuvGJxxZMS8u53t3wUhsS200?=
- =?us-ascii?Q?Y2os1lqUdpttNKjMYg0YRaYwE4XZ7qCOwtSWxMM8GC4rmAsCqhc5pOstDDxk?=
- =?us-ascii?Q?UbsXcKdt+9A2LGA4ksalrLjgN0L5e5FG4dgIvaobeJVBa9gHLG6T4ZBOzIIV?=
- =?us-ascii?Q?TxamVg77MI7Hjf+kobrVlySS93PNDAO3aJBahKmtqoJdsSMeGSBdwdWUbMDT?=
- =?us-ascii?Q?9PcnAYna7+oewKlJGdMUp1vmR5eeuqGkHOoRDRX7LRNoYUT4n9qZtfNS53yv?=
- =?us-ascii?Q?HufRrc0ZzJcjBP4D0AJyBUzo3sQJugwDWb7xLoRnhmJlSzADetWhD+aOye//?=
- =?us-ascii?Q?2PEyLG/Fjxx7f6VT8b/a1nYlklEKQRZuQhW75M4LhT+5B0Do9kHmdvRfevVP?=
- =?us-ascii?Q?hiiwkayO6t7DdsMT35EGBKz3yQP+5k6M2mgROucPQ+Vtl1UqKLTcRu93xNZE?=
- =?us-ascii?Q?OCpLx5u0D4k8lWMEmT2aHuoVoqXwiWRVBaCn0hPrFIz7ZvwVjmHYe/S6nUcp?=
- =?us-ascii?Q?tIIJkCqvWwIVCmyboQye9n7d+TbhtnvLyZS8agAoHhbjQbM4jP/pW/Eu1qWt?=
- =?us-ascii?Q?aGYioCQ6CG0TbpM91CgjGIZhuKonqr/RaIQIcjZFC3Ystyddj9tDOZ7Mr/VB?=
- =?us-ascii?Q?36gDglnaNaNJYxUBqaESMT/gnshQfuamiFgHQMyzUBPTmcWVCMp59M9zyf5T?=
- =?us-ascii?Q?8PJ19S8xfZ4DxqXOlRek+B2Img4UwT9OZUSCM81vfpMadfLC4s+NZPt6Qq8N?=
- =?us-ascii?Q?jsNfgE+PTzUunDM3uwnM7lJOmsuyIlxk1+5Ri08gApVs+DkiV/MckUJKwF5+?=
- =?us-ascii?Q?R9piuEVx8tUvr5BOl/mFkq6xEbpRxDyHXTdHdNwKWsGzgciTtKvWkxlLEzoN?=
- =?us-ascii?Q?1Ma93dHguGDGLlAM9alyzFq2?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <D22E1D0EEA191B41BCE8A7AFDF5BE90C@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S232138AbhBJQRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 11:17:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55958 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232184AbhBJQRl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 11:17:41 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A627C64E05;
+        Wed, 10 Feb 2021 16:16:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612973820;
+        bh=hh4UIkJdtViE9hIUqy2HP352No8PkABh6qI6Cce0cZI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Y0XyTvfrhIwcX/ppb49PkzQCYxWXkGOEC5KujWcwQziC033w4IUoJ7IP5Gje3b8RK
+         1qWyy5fi6A4/l5c38FstWJSoQjQvLXvsjtGH3wZWQmjtGPKkMyIye2OW52T3+M5nx9
+         qg6yFU4d3E/XKy0rxPesbQCl4kQc3pdITqXzfJuhiXeWza+qjX9cg6eQab/Uo9oUwX
+         sm5Q9rRLiMwvdfx/YipLKMIkLRQ71tvkwaqWihjTweMtJgiXgARPLmT/5eAKwanOZa
+         wojusx2hbVfr3HIe6nXGWrVS5rxBOADCFwNsnb6SWI5CPH/s1gS/kIUA5KWoFD+bt4
+         P2kZoh+e8tjMA==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] clk: qcom: gcc-sm8350: add gdsc
+Date:   Wed, 10 Feb 2021 21:46:49 +0530
+Message-Id: <20210210161649.431741-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa4dc1b7-33ff-485c-a221-08d8cdda33da
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2021 15:40:32.8506
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0/wwzmsru6fClMmTXp+n5666bwJnm3kaaQbvWNlKjlEL/c+w09YA1VwNIjbs4g/Uva17+cEi19z8QFrsFJLwsg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4909
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 09, 2021 at 01:52:59AM +0100, Michael Walle wrote:
-> The legacy interrupt INT_A is hardwired to the event collector. RCEC is
-> bascially supported starting with v5.11. Having a correct interrupt, will
-> make RCEC at least probe correctly.
->=20
-> There are still issues with how RCEC is implemented in the RCiEP on the
-> LS1028A. RCEC will report an error, but it cannot find the correct
-> subdevice.
->=20
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
+Add the GDSC found in GCC for SM8350 SoC
 
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Tested-by: Vladimir Oltean <vladimir.oltean@nxp.com>=
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ drivers/clk/qcom/gcc-sm8350.c               | 100 ++++++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sm8350.h |  12 +++
+ 2 files changed, 112 insertions(+)
+
+diff --git a/drivers/clk/qcom/gcc-sm8350.c b/drivers/clk/qcom/gcc-sm8350.c
+index a16c08651206..1c23b9f84900 100644
+--- a/drivers/clk/qcom/gcc-sm8350.c
++++ b/drivers/clk/qcom/gcc-sm8350.c
+@@ -16,6 +16,7 @@
+ #include "clk-regmap.h"
+ #include "clk-regmap-divider.h"
+ #include "clk-regmap-mux.h"
++#include "gdsc.h"
+ #include "reset.h"
+ 
+ enum {
+@@ -3452,6 +3453,90 @@ static struct clk_branch gcc_video_axi1_clk = {
+ 	},
+ };
+ 
++static struct gdsc pcie_0_gdsc = {
++	.gdscr = 0x6b004,
++	.pd = {
++		.name = "pcie_0_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++};
++
++static struct gdsc pcie_1_gdsc = {
++	.gdscr = 0x8d004,
++	.pd = {
++		.name = "pcie_1_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++};
++
++static struct gdsc ufs_card_gdsc = {
++	.gdscr = 0x75004,
++	.pd = {
++		.name = "ufs_card_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++};
++
++static struct gdsc ufs_phy_gdsc = {
++	.gdscr = 0x77004,
++	.pd = {
++		.name = "ufs_phy_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++};
++
++static struct gdsc usb30_prim_gdsc = {
++	.gdscr = 0xf004,
++	.pd = {
++		.name = "usb30_prim_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++};
++
++static struct gdsc usb30_sec_gdsc = {
++	.gdscr = 0x10004,
++	.pd = {
++		.name = "usb30_sec_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++};
++
++static struct gdsc hlos1_vote_mmnoc_mmu_tbu_hf0_gdsc = {
++	.gdscr = 0x7d050,
++	.pd = {
++		.name = "hlos1_vote_mmnoc_mmu_tbu_hf0_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++	.flags = VOTABLE,
++};
++
++static struct gdsc hlos1_vote_mmnoc_mmu_tbu_hf1_gdsc = {
++	.gdscr = 0x7d058,
++	.pd = {
++		.name = "hlos1_vote_mmnoc_mmu_tbu_hf1_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++	.flags = VOTABLE,
++};
++
++static struct gdsc hlos1_vote_mmnoc_mmu_tbu_sf0_gdsc = {
++	.gdscr = 0x7d054,
++	.pd = {
++		.name = "hlos1_vote_mmnoc_mmu_tbu_sf0_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++	.flags = VOTABLE,
++};
++
++static struct gdsc hlos1_vote_mmnoc_mmu_tbu_sf1_gdsc = {
++	.gdscr = 0x7d06c,
++	.pd = {
++		.name = "hlos1_vote_mmnoc_mmu_tbu_sf1_gdsc",
++	},
++	.pwrsts = PWRSTS_OFF_ON,
++	.flags = VOTABLE,
++};
++
+ static struct clk_regmap *gcc_sm8350_clocks[] = {
+ 	[GCC_AGGRE_NOC_PCIE_0_AXI_CLK] = &gcc_aggre_noc_pcie_0_axi_clk.clkr,
+ 	[GCC_AGGRE_NOC_PCIE_1_AXI_CLK] = &gcc_aggre_noc_pcie_1_axi_clk.clkr,
+@@ -3646,6 +3731,19 @@ static struct clk_regmap *gcc_sm8350_clocks[] = {
+ 	[GCC_VIDEO_AXI1_CLK] = &gcc_video_axi1_clk.clkr,
+ };
+ 
++static struct gdsc *gcc_sm8350_gdscs[] = {
++	[PCIE_0_GDSC] = &pcie_0_gdsc,
++	[PCIE_1_GDSC] = &pcie_1_gdsc,
++	[UFS_CARD_GDSC] = &ufs_card_gdsc,
++	[UFS_PHY_GDSC] = &ufs_phy_gdsc,
++	[USB30_PRIM_GDSC] = &usb30_prim_gdsc,
++	[USB30_SEC_GDSC] = &usb30_sec_gdsc,
++	[HLOS1_VOTE_MMNOC_MMU_TBU_HF0_GDSC] = &hlos1_vote_mmnoc_mmu_tbu_hf0_gdsc,
++	[HLOS1_VOTE_MMNOC_MMU_TBU_HF1_GDSC] = &hlos1_vote_mmnoc_mmu_tbu_hf1_gdsc,
++	[HLOS1_VOTE_MMNOC_MMU_TBU_SF0_GDSC] = &hlos1_vote_mmnoc_mmu_tbu_sf0_gdsc,
++	[HLOS1_VOTE_MMNOC_MMU_TBU_SF1_GDSC] = &hlos1_vote_mmnoc_mmu_tbu_sf1_gdsc,
++};
++
+ static const struct qcom_reset_map gcc_sm8350_resets[] = {
+ 	[GCC_CAMERA_BCR] = { 0x26000 },
+ 	[GCC_DISPLAY_BCR] = { 0x27000 },
+@@ -3724,6 +3822,8 @@ static const struct qcom_cc_desc gcc_sm8350_desc = {
+ 	.num_clks = ARRAY_SIZE(gcc_sm8350_clocks),
+ 	.resets = gcc_sm8350_resets,
+ 	.num_resets = ARRAY_SIZE(gcc_sm8350_resets),
++	.gdscs = gcc_sm8350_gdscs,
++	.num_gdscs = ARRAY_SIZE(gcc_sm8350_gdscs),
+ };
+ 
+ static const struct of_device_id gcc_sm8350_match_table[] = {
+diff --git a/include/dt-bindings/clock/qcom,gcc-sm8350.h b/include/dt-bindings/clock/qcom,gcc-sm8350.h
+index 1331da65f669..f6be3da5f781 100644
+--- a/include/dt-bindings/clock/qcom,gcc-sm8350.h
++++ b/include/dt-bindings/clock/qcom,gcc-sm8350.h
+@@ -251,4 +251,16 @@
+ #define GCC_VIDEO_AXI1_CLK_ARES					36
+ #define GCC_VIDEO_BCR						37
+ 
++/* GCC power domains */
++#define PCIE_0_GDSC						0
++#define PCIE_1_GDSC						1
++#define UFS_CARD_GDSC						2
++#define UFS_PHY_GDSC						3
++#define USB30_PRIM_GDSC						4
++#define USB30_SEC_GDSC						5
++#define HLOS1_VOTE_MMNOC_MMU_TBU_HF0_GDSC			6
++#define HLOS1_VOTE_MMNOC_MMU_TBU_HF1_GDSC			7
++#define HLOS1_VOTE_MMNOC_MMU_TBU_SF0_GDSC			8
++#define HLOS1_VOTE_MMNOC_MMU_TBU_SF1_GDSC			9
++
+ #endif
+-- 
+2.26.2
+
