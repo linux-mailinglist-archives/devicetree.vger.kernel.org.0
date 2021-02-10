@@ -2,95 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C40FC31614A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:46:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 416B231614B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:46:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229854AbhBJInR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 03:43:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51050 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbhBJIjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 03:39:53 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65396C0613D6
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 00:39:12 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1l9l1f-0002CI-DR; Wed, 10 Feb 2021 09:39:07 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1l9l1d-0006A9-A0; Wed, 10 Feb 2021 09:39:05 +0100
-Date:   Wed, 10 Feb 2021 09:39:05 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-usb@vger.kernel.org, Minas Harutyunyan <hminas@synopsys.com>,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc2: Add support for additional
- clock
-Message-ID: <20210210083905.GN19583@pengutronix.de>
-References: <20210125093825.4292-1-s.hauer@pengutronix.de>
- <20210125093825.4292-2-s.hauer@pengutronix.de>
- <20210209164659.GA3909217@robh.at.kernel.org>
+        id S230368AbhBJIoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 03:44:02 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:52996 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230127AbhBJIkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 03:40:32 -0500
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11A8Uspd032146;
+        Wed, 10 Feb 2021 09:39:33 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=IdIphRq0oo03Upaifx4Sr2lddUG/YQLMaBXzjBtS7BU=;
+ b=0YLLFZjDT3TCALs25fy5Dia6PQlM89y1hFyTr9xH1csDL1FClrZcu7NHicXWytBBXhnq
+ DBTtzv5gLl+JnY5n8TRI4fR7mTibaaJUNDMJtjIi8VNIRX1q4aNXzL9sCXMW+56zuV0l
+ 8GMv9ym9beQXLVombOk8VtrYlGdAQ6p8ScSjOPx3bWgb7H4hsOtw1Dv14xooRARK+4nq
+ MOqBc/mWcN1k3zJZk6CQxF0L5TS38O6iYrUCEtSr4lPxM6wEKYggHOTmFZsajyIMgw+w
+ lVunJuS/RA1ODu/slEkxlbkKHPaHion/Vs/M3ap1w5WFEGFPl8hYttVdc+rwA9f1h7IP Mg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 36hr2ceg1d-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 10 Feb 2021 09:39:33 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0781410002A;
+        Wed, 10 Feb 2021 09:39:33 +0100 (CET)
+Received: from Webmail-eu.st.com (gpxdag2node6.st.com [10.75.127.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E14A921CA9C;
+        Wed, 10 Feb 2021 09:39:32 +0100 (CET)
+Received: from lmecxl1060.lme.st.com (10.75.127.122) by GPXDAG2NODE6.st.com
+ (10.75.127.70) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 10 Feb
+ 2021 09:39:31 +0100
+Subject: Re: [PATCH 4/5] ARM: dts: stm32: enable the analog filter for all I2C
+ nodes in stm32mp151
+To:     Alain Volmat <alain.volmat@foss.st.com>, <wsa@kernel.org>,
+        <robh+dt@kernel.org>
+CC:     <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@foss.st.com>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>
+References: <1612515104-838-1-git-send-email-alain.volmat@foss.st.com>
+ <1612515104-838-5-git-send-email-alain.volmat@foss.st.com>
+From:   Pierre Yves MORDRET <pierre-yves.mordret@foss.st.com>
+Message-ID: <59aec92b-9e5d-b9e9-0fee-d14d50281d4b@foss.st.com>
+Date:   Wed, 10 Feb 2021 09:39:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210209164659.GA3909217@robh.at.kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:09:36 up 69 days, 20:36, 91 users,  load average: 0.11, 0.38,
- 0.25
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1612515104-838-5-git-send-email-alain.volmat@foss.st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.122]
+X-ClientProxiedBy: GPXDAG2NODE4.st.com (10.75.127.68) To GPXDAG2NODE6.st.com
+ (10.75.127.70)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-10_02:2021-02-09,2021-02-10 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 09, 2021 at 10:46:59AM -0600, Rob Herring wrote:
-> On Mon, Jan 25, 2021 at 10:38:24AM +0100, Sascha Hauer wrote:
-> > This adds support for an additional clock for the dwc2 core in case
-> > there is another clock to the phy which must be enabled.
+Hello
+
+Looks good to me
+
+Reviewed-by: Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
+
+Thx
+Regards
+
+
+On 2/5/21 9:51 AM, Alain Volmat wrote:
+> Enable the analog filter for all I2C nodes of the stm32mp151.
 > 
-> to the phy? 'clocks' is inputs to DWC2. Shouldn't there be a phy 
-> device/driver?
-
-Maybe I should have said "from the phy". I have a USB3320 ULPI phy here
-connected to the DWC2. The usual setup would look like this:
-
------.    clk60M   .------------
-DWC2 |<------------| USB3320 Phy
------'             '------------
-
-I don't think this clock is abstracted anywhere in this case, it's just
-there and always enabled.
-
-For reasons unknown to me our customer decided to not let the USB3320
-generate the clock, but used an external clock generator instead, so
-my setup looks like this:
-
-        | SI5351a |
-        '---------'
-  clk60M_1 |  | clk60M_2
------.     |  |    .------------
-DWC2 |<----'  '--->| USB3320 Phy
------'             '------------
-
-The SI5351a is abstracted as a clock driver in Linux. Note that clk60M_1
-and clk60M_2 are really two clocks which must both be enabled. clk60M_2
-is handled by the phy driver (which is the usb-nop-xceiver in my case),
-what I am trying to add here in this patch is support for clk60M_1.
-
-Sascha
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+> ---
+>  arch/arm/boot/dts/stm32mp151.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+> index 3c75abacb374..558fc8fb38b6 100644
+> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+> @@ -493,6 +493,7 @@
+>  			#size-cells = <0>;
+>  			st,syscfg-fmp = <&syscfg 0x4 0x1>;
+>  			wakeup-source;
+> +			i2c-analog-filter;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -508,6 +509,7 @@
+>  			#size-cells = <0>;
+>  			st,syscfg-fmp = <&syscfg 0x4 0x2>;
+>  			wakeup-source;
+> +			i2c-analog-filter;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -523,6 +525,7 @@
+>  			#size-cells = <0>;
+>  			st,syscfg-fmp = <&syscfg 0x4 0x4>;
+>  			wakeup-source;
+> +			i2c-analog-filter;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -538,6 +541,7 @@
+>  			#size-cells = <0>;
+>  			st,syscfg-fmp = <&syscfg 0x4 0x10>;
+>  			wakeup-source;
+> +			i2c-analog-filter;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -1533,6 +1537,7 @@
+>  			#size-cells = <0>;
+>  			st,syscfg-fmp = <&syscfg 0x4 0x8>;
+>  			wakeup-source;
+> +			i2c-analog-filter;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -1570,6 +1575,7 @@
+>  			#size-cells = <0>;
+>  			st,syscfg-fmp = <&syscfg 0x4 0x20>;
+>  			wakeup-source;
+> +			i2c-analog-filter;
+>  			status = "disabled";
+>  		};
+>  
+> 
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+--
+~ Py MORDRET
+--
