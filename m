@@ -2,111 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CC7D316F84
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 20:06:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82D7B316FD9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 20:15:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232359AbhBJTEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 14:04:32 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:43822 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233033AbhBJTEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 14:04:08 -0500
-Received: by mail-ot1-f45.google.com with SMTP id l23so2809847otn.10;
-        Wed, 10 Feb 2021 11:03:49 -0800 (PST)
+        id S234560AbhBJTPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 14:15:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46606 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234462AbhBJTPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 14:15:23 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10495C061788
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 11:13:57 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id v5so3132144ybi.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 11:13:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9tOqcLFPGtBJA35TM92FKNxWnaOl6vWWHEx3bmxeU4c=;
+        b=XFODFH/7aQvtIfr1O4SP9Wqe5MlKRy2+5dSSHkXHfVH+R+9OU/TOZ09pDYnsl2vv6f
+         7cEH0Z6UoELRKGzsUtNvmrtDQBC7r/G6Qbtc6/JSVfpXccP4PLau8NMeL9A/OubRwHB1
+         VcQgYnA99MaEy+19EMwjObrtrLHqOsWNZCG7glqOH4z70X5XE+yqXhvDlsdiAQ/u3YSN
+         Knm1TcpqnE53hNrSXGIaZ1BOedUnzxDSf5jrLpOiLeIOK5pwSMexOYyGY2xjXBi3ngV8
+         8z+ArJgCyMQcwrbbGYQ++ExEvF/KSID9fcTT6i+zsJoDK7PfrUfv724oQwAHLyzfxRpH
+         jSMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2x+EOIuPdBTznUqzDSV5oD4ee/OTH0GyH6F9c80brmU=;
-        b=E69JDJ6vzVP4kBGBSXK53zaOIaLZjvRj2rXcJpaECV3W+I3gJi4UoncldCMUILhFqX
-         pW+CwFjTNltGh+TxnM/Xk7gdrE8YkbBPs7G8hfTqMa80+/iTy40o7YdNKheFtPtPsCoo
-         TjHb2ov9O5W32g+/GfRhxr3Idr/zY0vTLhedHIOAg2TA0iAwTlMei511XwQilDIvIBuX
-         0zZbs/oMwbux6B2qkBcsy9T9hNuf+TI/gmkxXKRpupdjJdKuhzDAhrYHPIvNwlZ79HNI
-         VLDljGuw7LtoBITzf3WgCFJ9bIm6V2SX4lqTiJCh04zwFKbTjTIHr++ocC5RNjrJwf5O
-         tFcw==
-X-Gm-Message-State: AOAM530bEGoRKFPPuVZAMBx2VlFiBahLHgVcuQ74QQBHOW0k8jS2j51T
-        o6FY5IgoZyJq7EMJb7ka7g==
-X-Google-Smtp-Source: ABdhPJxNanMjvR3D9jVhNKwPipPfT3CkersCx0nGRPMJcnbWgEoxRBYupmh5YT36/6Y3BJq4k8s3qQ==
-X-Received: by 2002:a9d:3ec:: with SMTP id f99mr3267311otf.299.1612983804617;
-        Wed, 10 Feb 2021 11:03:24 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g14sm521323oon.23.2021.02.10.11.03.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 11:03:23 -0800 (PST)
-Received: (nullmailer pid 2555793 invoked by uid 1000);
-        Wed, 10 Feb 2021 19:03:22 -0000
-Date:   Wed, 10 Feb 2021 13:03:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     kostap@marvell.com
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, vladimir.vid@sartura.hr,
-        tmn505@gmail.com, luka.kovacic@sartura.hr,
-        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
-        andrew@lunn.ch, vkoul@kernel.org, kishon@ti.com,
-        miquel.raynal@bootlin.com, mw@semihalf.com, jaz@semihalf.com,
-        nadavh@marvell.com, stefanc@marvell.com, bpeled@marvell.com
-Subject: Re: [PATCH v5 1/5] Documentation/bindings: phy: update references to
- cp11x
-Message-ID: <20210210190322.GA2549599@robh.at.kernel.org>
-References: <20210210131604.28806-1-kostap@marvell.com>
- <20210210131604.28806-2-kostap@marvell.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9tOqcLFPGtBJA35TM92FKNxWnaOl6vWWHEx3bmxeU4c=;
+        b=MOsmr7s9mNyMYZRJ/LX4NchpoFC4z1kAAF50cnmUNPrQ9Qr/Owl6td4wp8Bu20Zmrk
+         P+Hc4TF1gfQ0kBV3ptHt8LkMJbjNkVs2K2qZrW0DkfC/7Ac+EGdTR5pKcKi22SYrX8QX
+         UZliOs9jEHLWocHwlvYi0c49QZjYOFZnuER+nDMxb0fz9po69N63QICXkdYzDbsWToBI
+         DUaZ1Su48koPjqtfnaVV/+jwDkISWL6K4pXKMGJGVyU2foogBOg1D+8EOVpcSXPEpjzY
+         1+C1wqT5uhSqZZl/n5ey8gKfdNvj0Q03ia+1YFmIMLCxn2LD+pmfNvL3aur4fLW8K8MU
+         Tg4g==
+X-Gm-Message-State: AOAM533Tvj1f5UdA8peV3ohlaBh7bUTZM1YwXeDQAsikUPkW80iM21av
+        dyOW2WvJt9fqJSLs3TmMQqATu93vH4lPE7H7HgJP2w==
+X-Google-Smtp-Source: ABdhPJyWPzmY+tyazkCwj4t0k4KGhEheNTDTa4+Z3XmMbe8kh4uk1AUlS/mwh8JLpJB4vJDlgZWe56Y+dIqi6GwmOz8=
+X-Received: by 2002:a05:6902:1025:: with SMTP id x5mr6466442ybt.96.1612984436001;
+ Wed, 10 Feb 2021 11:13:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210210131604.28806-2-kostap@marvell.com>
+References: <20210205222644.2357303-9-saravanak@google.com> <20210210114435.122242-1-tudor.ambarus@microchip.com>
+In-Reply-To: <20210210114435.122242-1-tudor.ambarus@microchip.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 10 Feb 2021 11:13:19 -0800
+Message-ID: <CAGETcx-aztut-RkZTjyGfzBGYLBQQDnaVFRQMMVTMPMA7Xs3Hg@mail.gmail.com>
+Subject: Re: [PATCH] clk: Mark fwnodes when their clock provider is added
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Brown, Len" <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 10, 2021 at 03:16:00PM +0200, kostap@marvell.com wrote:
-> From: Grzegorz Jaszczyk <jaz@semihalf.com>
-> 
-> The cp11x references in dts has changed, reflect it in comphy
-> documentation.
+On Wed, Feb 10, 2021 at 3:44 AM Tudor Ambarus
+<tudor.ambarus@microchip.com> wrote:
+>
+> This is a follow-up for:
+> commit 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is added/removed")
+>
+> The above commit updated the deprecated of_clk_add_provider(),
+> but missed to update the preferred of_clk_add_hw_provider().
+> Update it now.
 
-Who cares. Examples are just examples.
+Thanks Tudor! Good catch!
 
-If you really want to improve the binding, convert it to schema.
+I checked to make sure the deregistration path undoes this one. So, it
+looks good to me.
 
-> Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
-> Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
+Reviewed-by: Saravana Kannan <saravanak@google.com>
+
+-Saravana
+
+>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
 > ---
->  Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt b/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt
-> index 8c60e6985950..5ffd0f55d010 100644
-> --- a/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt
-> +++ b/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt
-> @@ -42,22 +42,22 @@ Required properties (child nodes):
->  
->  Examples:
->  
-> -	cpm_comphy: phy@120000 {
-> +	CP11X_LABEL(comphy): phy@120000 {
->  		compatible = "marvell,comphy-cp110";
->  		reg = <0x120000 0x6000>;
-> -		marvell,system-controller = <&cpm_syscon0>;
-> -		clocks = <&CP110_LABEL(clk) 1 5>, <&CP110_LABEL(clk) 1 6>,
-> -			 <&CP110_LABEL(clk) 1 18>;
-> +		marvell,system-controller = <&CP11X_LABEL(syscon0)>;
-> +		clocks = <&CP11X_LABEL(clk) 1 5>, <&CP11X_LABEL(clk) 1 6>,
-> +			 <&CP11X_LABEL(clk) 1 18>;
->  		clock-names = "mg_clk", "mg_core_clk", "axi_clk";
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  
-> -		cpm_comphy0: phy@0 {
-> +		CP11X_LABEL(comphy0): phy@0 {
->  			reg = <0>;
->  			#phy-cells = <1>;
->  		};
->  
-> -		cpm_comphy1: phy@1 {
-> +		CP11X_LABEL(comphy1): phy@1 {
->  			reg = <1>;
->  			#phy-cells = <1>;
->  		};
-> -- 
-> 2.17.1
-> 
+>  drivers/clk/clk.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index 27ff90eacb1f..9370e4dfecae 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -4594,6 +4594,8 @@ int of_clk_add_hw_provider(struct device_node *np,
+>         if (ret < 0)
+>                 of_clk_del_provider(np);
+>
+> +       fwnode_dev_initialized(&np->fwnode, true);
+> +
+>         return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(of_clk_add_hw_provider);
+> --
+> 2.25.1
+>
