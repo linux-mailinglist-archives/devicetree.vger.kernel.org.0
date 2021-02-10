@@ -2,40 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D50D63168BC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 15:11:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C03053168BE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 15:11:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231396AbhBJOLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 09:11:08 -0500
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:58124 "EHLO
+        id S231767AbhBJOLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 09:11:12 -0500
+Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:50873 "EHLO
         mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231562AbhBJOLC (ORCPT
+        by vger.kernel.org with ESMTP id S231643AbhBJOLG (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 09:11:02 -0500
+        Wed, 10 Feb 2021 09:11:06 -0500
 Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11AE0okm011463;
-        Wed, 10 Feb 2021 06:10:12 -0800
+        by mx0b-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11AE0okn011463;
+        Wed, 10 Feb 2021 06:10:15 -0800
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=/tzCBWBQoMr9rX/Ddw9Lc9VvAUTNrksmReYp0v/Ppv8=;
- b=JmilXKStfwP+Vn5MnQxTIIiudZ8vqC6x6ZTUu1kjIbtVpAXJq4FfH54KszUhhd4Z38GQ
- IH5OrdhU9m57Pt1nzy75aNcjmkB6TM2oYhShH2fTyhBN/p2jAzYlYxDQZ5phAqUd7GPy
- H02o7TbNoYIJR4578rnRY5noOxXgE85FKUmgn/uC5OrQvLFaB4U1VlaqDFo+jvfEN0fa
- i7VrbcRmgfFkMBaxls0llq2ea+gBTEOj5ubY53TEpXRKX22Uwy8iTnbrc+1NYe6o6BvO
- 4/LbyPRlHU92fylagzE086wF3PptwSY+5V9zRyL3ZZW8tAYdK3RHcRK+BUoMgLTy6OWl ag== 
+ content-type; s=pfpt0220; bh=y1j52uOfzBx3GUao41qAmpabKvsuQHh3Ms1pKkA3Pq8=;
+ b=AVA+C+FiW1ZQQO0iTzK/iSacZsMrHpS9tJV4eXmtXx9yge8WKQGwl/lIvybNAjGdOLi0
+ AnBY4d5AyUoJB8SvCXoJCKcwu8WVvm5QWZBIDFJcHuTHb5KiUDMe9CqKjZCk7wMnEONy
+ 3YYau7Yzpk3AyQzlWhj0jDS++FoEeZrYQMD79y44LdU8wv0FxGCdGkWompl9ndCf775V
+ 2MGVhMj917KI+dNAbrBzmuFinz1ZLhCVNhyItoJyJW4+WOG2N/JqLVKHxDtPp1Zjx1My
+ eSbfgR6HJBhx27wg0G/5spF6BQIG7qgdeWxdKoHmDDB5QHSr1Fv9hKm1Tpwv5JMz+u5a Nw== 
 Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0b-0016f401.pphosted.com with ESMTP id 36hugqbs08-2
+        by mx0b-0016f401.pphosted.com with ESMTP id 36hugqbs0c-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Wed, 10 Feb 2021 06:10:12 -0800
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
+        Wed, 10 Feb 2021 06:10:15 -0800
+Received: from SC-EXCH01.marvell.com (10.93.176.81) by DC5-EXCH02.marvell.com
  (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 10 Feb
- 2021 06:10:09 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 10 Feb 2021 06:10:09 -0800
+ 2021 06:10:14 -0800
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by SC-EXCH01.marvell.com
+ (10.93.176.81) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 10 Feb
+ 2021 06:10:13 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 10 Feb 2021 06:10:13 -0800
 Received: from octopus.marvell.com (octopus.marvell.com [10.5.24.3])
-        by maili.marvell.com (Postfix) with ESMTP id ADCED3F7045;
-        Wed, 10 Feb 2021 06:10:06 -0800 (PST)
+        by maili.marvell.com (Postfix) with ESMTP id 4350F3F7041;
+        Wed, 10 Feb 2021 06:10:10 -0800 (PST)
 From:   <kostap@marvell.com>
 To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>
@@ -44,9 +47,9 @@ CC:     <linux@armlinux.org.uk>, <robh+dt@kernel.org>,
         <andrew@lunn.ch>, <mw@semihalf.com>, <jaz@semihalf.com>,
         <nadavh@marvell.com>, <stefanc@marvell.com>, <bpeled@marvell.com>,
         "Konstantin Porotchkin" <kostap@marvell.com>
-Subject: [PATCH v2 04/12] fix: dts: a8k: Add CP eMMC regulator and update device parameters
-Date:   Wed, 10 Feb 2021 16:09:41 +0200
-Message-ID: <20210210140949.32515-5-kostap@marvell.com>
+Subject: [PATCH v2 05/12] arm64: dts: marvell: armada-3720-db: add comphy references
+Date:   Wed, 10 Feb 2021 16:09:42 +0200
+Message-ID: <20210210140949.32515-6-kostap@marvell.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210210140949.32515-1-kostap@marvell.com>
 References: <20210210140949.32515-1-kostap@marvell.com>
@@ -58,87 +61,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Konstantin Porotchkin <kostap@marvell.com>
+From: Grzegorz Jaszczyk <jaz@semihalf.com>
 
-Add GPIO regulator for controlling CP0 eMMC voltage (3.3V/1.8V)
-Update CP0 SDHCI parameters in A7K/A8K boards DTS files.
+Adding phy description to pcie, sata and usb will allow appropriate drivers
+to configure marvell comphy-a3700 accordingly.
 
+Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
 Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
 ---
- arch/arm64/boot/dts/marvell/armada-7040-db.dts | 17 ++++++++++++++++-
- arch/arm64/boot/dts/marvell/armada-8040-db.dts | 18 +++++++++++++++++-
- 2 files changed, 33 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/marvell/armada-3720-db.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-7040-db.dts b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-index a7eb4e7697a2..f8179cadc610 100644
---- a/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-@@ -28,6 +28,19 @@
- 		ethernet2 = &cp0_eth2;
- 	};
- 
-+	cp0_vccq_sd0_reg: cp0_vccq_sd0 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "cp0-vccq-sd0";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		gpios = <&expander0 15 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <0>;
-+		states = <1800000 0x1
-+			  3300000 0x0>;
-+		enable-active-high;
-+	};
-+
- 	cp0_exp_usb3_0_current_regulator: gpio-regulator {
- 		compatible = "regulator-gpio";
- 		regulator-name = "cp0-usb3-0-current-regulator";
-@@ -253,8 +266,10 @@
- 
- &cp0_sdhci0 {
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-db.dts b/arch/arm64/boot/dts/marvell/armada-3720-db.dts
+index 3e5789f37206..15e923f945d4 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-db.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-db.dts
+@@ -132,11 +132,15 @@
+ 	pinctrl-0 = <&pcie_reset_pins &pcie_clkreq_pins>;
+ 	reset-gpios = <&gpiosb 3 GPIO_ACTIVE_LOW>;
  	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdhci_pins>;
- 	bus-width = <4>;
--	no-1-8-v;
-+	vqmmc-supply = <&cp0_vccq_sd0_reg>;
- 	cd-gpios = <&expander0 12 GPIO_ACTIVE_LOW>;
++	/* Generic PHY, providing serdes lanes */
++	phys = <&comphy1 0>;
  };
  
-diff --git a/arch/arm64/boot/dts/marvell/armada-8040-db.dts b/arch/arm64/boot/dts/marvell/armada-8040-db.dts
-index 09fb5256f1db..790c7ab0b816 100644
---- a/arch/arm64/boot/dts/marvell/armada-8040-db.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-8040-db.dts
-@@ -31,6 +31,19 @@
- 		i2c2 = &cp1_i2c0;
- 	};
- 
-+	cp0_vccq_sd0_reg: cp0_vccq_sd0 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "cp0-vccq-sd0";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		gpios = <&expander0 15 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <0>;
-+		states = <1800000 0x1
-+			  3300000 0x0>;
-+		enable-active-high;
-+	};
-+
- 	cp0_reg_usb3_0_vbus: cp0-usb3-0-vbus {
- 		compatible = "regulator-fixed";
- 		regulator-name = "cp0-usb3h0-vbus";
-@@ -353,6 +366,9 @@
- 
- &cp0_sdhci0 {
+ /* CON3 */
+ &sata {
  	status = "okay";
--	bus-width = <8>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdhci_pins>;
-+	bus-width = <4>;
-+	vqmmc-supply = <&cp0_vccq_sd0_reg>;
- 	non-removable;
++	/* Generic PHY, providing serdes lanes */
++	phys = <&comphy2 0>;
+ };
+ 
+ &sdhci0 {
+@@ -217,4 +221,7 @@
+ &usb3 {
+ 	status = "okay";
+ 	usb-phy = <&usb3_phy>;
++	/* Generic PHY, providing serdes lanes */
++	phys = <&comphy0 0>;
++	phy-names = "usb";
  };
 -- 
 2.17.1
