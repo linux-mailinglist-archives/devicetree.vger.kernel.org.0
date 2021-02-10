@@ -2,569 +2,377 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CD01317297
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 22:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05A4D3172C0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 22:59:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232231AbhBJVnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 16:43:14 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:47728 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232859AbhBJVnH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 16:43:07 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.sntech)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1l9xFZ-0006dd-Sy; Wed, 10 Feb 2021 22:42:17 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     kishon@ti.com, vkoul@kernel.org
-Cc:     cmuellner@linux.com, robh+dt@kernel.org, heiko@sntech.de,
-        ezequiel@collabora.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Subject: [PATCH 2/2] phy/rockchip: add Innosilicon-based CSI dphy
-Date:   Wed, 10 Feb 2021 22:42:05 +0100
-Message-Id: <20210210214205.2496336-3-heiko@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210210214205.2496336-1-heiko@sntech.de>
-References: <20210210214205.2496336-1-heiko@sntech.de>
+        id S232318AbhBJV7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 16:59:00 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:35422 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231642AbhBJV6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 16:58:51 -0500
+Date:   Thu, 11 Feb 2021 00:57:49 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Joao Pinto <jpinto@synopsys.com>,
+        Lars Persson <larper@axis.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Vyacheslav Mitrofanov 
+        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 04/24] dt-bindings: net: dwmac: Refactor snps,*-config
+ properties
+Message-ID: <20210210215749.yswl5efc3k55zx3v@mobilestation>
+References: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
+ <20210208135609.7685-5-Sergey.Semin@baikalelectronics.ru>
+ <20210209222608.GA269004@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210209222608.GA269004@robh.at.kernel.org>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+On Tue, Feb 09, 2021 at 04:26:08PM -0600, Rob Herring wrote:
+> On Mon, Feb 08, 2021 at 04:55:48PM +0300, Serge Semin wrote:
+> > Currently the "snps,axi-config", "snps,mtl-rx-config" and
+> > "snps,mtl-tx-config" properties are declared as a single phandle reference
+> > to a node with corresponding parameters defined. That's not good for
+> > several reasons. First of all scattering around a device tree some
+> > particular device-specific configs with no visual relation to that device
+> > isn't suitable from maintainability point of view. That leads to a
+> > disturbed representation of the actual device tree mixing actual device
+> > nodes and some vendor-specific configs. Secondly using the same configs
+> > set for several device nodes doesn't represent well the devices structure,
+> > since the interfaces these configs describe in hardware belong to
+> > different devices and may actually differ. In the later case having the
+> > configs node separated from the corresponding device nodes gets to be
+> > even unjustified.
+> > 
+> > So instead of having a separate DW *MAC configs nodes we suggest to
+> > define them as sub-nodes of the device nodes, which interfaces they
+> > actually describe. By doing so we'll make the DW *MAC nodes visually
+> > correct describing all the aspects of the IP-core configuration. Thus
+> > we'll be able to describe the configs sub-nodes bindings right in the
+> > snps,dwmac.yaml file.
+> > 
+> > Note the former "snps,axi-config", "snps,mtl-rx-config" and
+> > "snps,mtl-tx-config" properties have been marked as deprecated in favor of
+> > the added by this commit "axi-config", "mtl-rx-config" and "mtl-tx-config"
+> > sub-nodes respectively.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > 
+> > ---
+> > 
+> > Note this change will work only if DT-schema tool is fixed like this:
+> > 
+> > --- a/meta-schemas/nodes.yaml	2021-02-08 14:20:56.732447780 +0300
+> > +++ b/meta-schemas/nodes.yaml	2021-02-08 14:21:00.736492245 +0300
+> > @@ -22,6 +22,7 @@
+> >      - unevaluatedProperties
+> >      - deprecated
+> >      - required
+> > +    - not
+> >      - allOf
+> >      - anyOf
+> >      - oneOf
+> 
 
-The CSI dphy found for example on the rk3326/px30 and rk3368 is based
-on an IP design from Innosilicon. Add a driver for it.
+> Can you send me a patch or GH PR. There is another way to express. More 
+> below.
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
----
- drivers/phy/rockchip/Kconfig                  |   9 +
- drivers/phy/rockchip/Makefile                 |   1 +
- .../phy/rockchip/phy-rockchip-inno-csidphy.c  | 480 ++++++++++++++++++
- 3 files changed, 490 insertions(+)
- create mode 100644 drivers/phy/rockchip/phy-rockchip-inno-csidphy.c
+Ok. I'll send a patch. To what email and mailing lists shall I send it
+to?
 
-diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
-index 159285f42e5c..e812adad7242 100644
---- a/drivers/phy/rockchip/Kconfig
-+++ b/drivers/phy/rockchip/Kconfig
-@@ -48,6 +48,15 @@ config PHY_ROCKCHIP_INNO_USB2
- 	help
- 	  Support for Rockchip USB2.0 PHY with Innosilicon IP block.
- 
-+config PHY_ROCKCHIP_INNO_CSIDPHY
-+	tristate "Rockchip Innosilicon MIPI CSI PHY driver"
-+	depends on (ARCH_ROCKCHIP || COMPILE_TEST) && OF
-+	select GENERIC_PHY
-+	select GENERIC_PHY_MIPI_DPHY
-+	help
-+	  Enable this to support the Rockchip MIPI CSI PHY with
-+	  Innosilicon IP block.
-+
- config PHY_ROCKCHIP_INNO_DSIDPHY
- 	tristate "Rockchip Innosilicon MIPI/LVDS/TTL PHY driver"
- 	depends on (ARCH_ROCKCHIP || COMPILE_TEST) && OF
-diff --git a/drivers/phy/rockchip/Makefile b/drivers/phy/rockchip/Makefile
-index c3cfc7f0af5c..f0eec212b2aa 100644
---- a/drivers/phy/rockchip/Makefile
-+++ b/drivers/phy/rockchip/Makefile
-@@ -2,6 +2,7 @@
- obj-$(CONFIG_PHY_ROCKCHIP_DP)		+= phy-rockchip-dp.o
- obj-$(CONFIG_PHY_ROCKCHIP_DPHY_RX0)     += phy-rockchip-dphy-rx0.o
- obj-$(CONFIG_PHY_ROCKCHIP_EMMC)		+= phy-rockchip-emmc.o
-+obj-$(CONFIG_PHY_ROCKCHIP_INNO_CSIDPHY)	+= phy-rockchip-inno-csidphy.o
- obj-$(CONFIG_PHY_ROCKCHIP_INNO_DSIDPHY)	+= phy-rockchip-inno-dsidphy.o
- obj-$(CONFIG_PHY_ROCKCHIP_INNO_HDMI)	+= phy-rockchip-inno-hdmi.o
- obj-$(CONFIG_PHY_ROCKCHIP_INNO_USB2)	+= phy-rockchip-inno-usb2.o
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-csidphy.c b/drivers/phy/rockchip/phy-rockchip-inno-csidphy.c
-new file mode 100644
-index 000000000000..b30bb2885029
---- /dev/null
-+++ b/drivers/phy/rockchip/phy-rockchip-inno-csidphy.c
-@@ -0,0 +1,480 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Rockchip MIPI RX Innosilicon DPHY driver
-+ *
-+ * Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/phy/phy.h>
-+#include <linux/phy/phy-mipi-dphy.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+
-+/* GRF */
-+#define RK1808_GRF_PD_VI_CON_OFFSET	0x0430
-+
-+#define RK3326_GRF_PD_VI_CON_OFFSET	0x0430
-+
-+#define RK3368_GRF_SOC_CON6_OFFSET	0x0418
-+
-+/* PHY */
-+#define CSIDPHY_CTRL_LANE_ENABLE		0x00
-+#define CSIDPHY_CTRL_LANE_ENABLE_CK		BIT(6)
-+#define CSIDPHY_CTRL_LANE_ENABLE_LANE3		BIT(5)
-+#define CSIDPHY_CTRL_LANE_ENABLE_LANE2		BIT(4)
-+#define CSIDPHY_CTRL_LANE_ENABLE_LANE1		BIT(3)
-+#define CSIDPHY_CTRL_LANE_ENABLE_LANE0		BIT(2)
-+#define CSIDPHY_CTRL_LANE_ENABLE_UNDEFINED	BIT(0)
-+
-+#define CSIDPHY_CTRL_LANE_ENABLE_SHIFT		2
-+
-+/* not present on all variants */
-+#define CSIDPHY_CTRL_PWRCTL			0x04
-+#define CSIDPHY_CTRL_PWRCTL_UNDEFINED		GENMASK(7, 5)
-+#define CSIDPHY_CTRL_PWRCTL_SYNCRST		BIT(2)
-+#define CSIDPHY_CTRL_PWRCTL_LDO_PD		BIT(1)
-+#define CSIDPHY_CTRL_PWRCTL_PLL_PD		BIT(0)
-+
-+#define CSIDPHY_CTRL_DIG_RST			0x80
-+#define CSIDPHY_CTRL_DIG_RST_UNDEFINED		0x1e
-+#define CSIDPHY_CTRL_DIG_RST_RESET		BIT(0)
-+
-+/* offset after ths_settle_offset */
-+#define CSIDPHY_CLK_THS_SETTLE			0
-+#define CSIDPHY_LANE_THS_SETTLE(n)		((n + 1) * 0x80)
-+#define CSIDPHY_THS_SETTLE_MASK			0x7f
-+
-+/* offset after calib_offset */
-+#define CSIDPHY_CLK_CALIB_EN			0
-+#define CSIDPHY_LANE_CALIB_EN(n)		((n + 1) * 0x80)
-+#define CSIDPHY_CALIB_EN			BIT(7)
-+
-+/* Configure the count time of the THS-SETTLE by protocol. */
-+#define RK1808_CSIDPHY_CLK_WR_THS_SETTLE	0x160
-+#define RK3326_CSIDPHY_CLK_WR_THS_SETTLE	0x100
-+#define RK3368_CSIDPHY_CLK_WR_THS_SETTLE	0x100
-+
-+/* Calibration reception enable */
-+#define RK1808_CSIDPHY_CLK_CALIB_EN		0x168
-+
-+#define HIWORD_UPDATE(val, mask)		((val) | (mask) << 16)
-+
-+enum dphy_reg_id {
-+	GRF_DPHY_RX0_TURNDISABLE = 0,
-+	GRF_DPHY_RX0_FORCERXMODE,
-+	GRF_DPHY_RX0_FORCETXSTOPMODE,
-+	GRF_DPHY_RX0_ENABLE,
-+	GRF_DPHY_RX0_TURNREQUEST,
-+	GRF_DPHY_TX0_TURNDISABLE,
-+	GRF_DPHY_TX0_FORCERXMODE,
-+	GRF_DPHY_TX0_FORCETXSTOPMODE,
-+	GRF_DPHY_TX0_TURNREQUEST,
-+	GRF_DPHY_RX1_SRC_SEL,
-+	/* rk1808 & rk3326 */
-+	GRF_DPHY_CSIPHY_FORCERXMODE,
-+	GRF_DPHY_CSIPHY_CLKLANE_EN,
-+	GRF_DPHY_CSIPHY_DATALANE_EN,
-+};
-+
-+struct dphy_reg {
-+	u32 offset;
-+	u32 mask;
-+	u32 shift;
-+};
-+
-+#define PHY_REG(_offset, _width, _shift) \
-+	{ .offset = _offset, .mask = BIT(_width) - 1, .shift = _shift, }
-+
-+static const struct dphy_reg rk1808_grf_dphy_regs[] = {
-+	[GRF_DPHY_CSIPHY_FORCERXMODE] = PHY_REG(RK1808_GRF_PD_VI_CON_OFFSET, 4, 0),
-+	[GRF_DPHY_CSIPHY_CLKLANE_EN] = PHY_REG(RK1808_GRF_PD_VI_CON_OFFSET, 1, 8),
-+	[GRF_DPHY_CSIPHY_DATALANE_EN] = PHY_REG(RK1808_GRF_PD_VI_CON_OFFSET, 4, 4),
-+};
-+
-+static const struct dphy_reg rk3326_grf_dphy_regs[] = {
-+	[GRF_DPHY_CSIPHY_FORCERXMODE] = PHY_REG(RK3326_GRF_PD_VI_CON_OFFSET, 4, 0),
-+	[GRF_DPHY_CSIPHY_CLKLANE_EN] = PHY_REG(RK3326_GRF_PD_VI_CON_OFFSET, 1, 8),
-+	[GRF_DPHY_CSIPHY_DATALANE_EN] = PHY_REG(RK3326_GRF_PD_VI_CON_OFFSET, 4, 4),
-+};
-+
-+static const struct dphy_reg rk3368_grf_dphy_regs[] = {
-+	[GRF_DPHY_CSIPHY_FORCERXMODE] = PHY_REG(RK3368_GRF_SOC_CON6_OFFSET, 4, 8),
-+};
-+
-+struct hsfreq_range {
-+	u32 range_h;
-+	u8 cfg_bit;
-+};
-+
-+struct rockchip_inno_csidphy;
-+
-+struct dphy_drv_data {
-+	int pwrctl_offset;
-+	int ths_settle_offset;
-+	int calib_offset;
-+	const struct hsfreq_range *hsfreq_ranges;
-+	int num_hsfreq_ranges;
-+	const struct dphy_reg *grf_regs;
-+};
-+
-+struct rockchip_inno_csidphy {
-+	struct device *dev;
-+	void __iomem *phy_base;
-+	struct clk *pclk;
-+	struct regmap *grf;
-+	struct reset_control *rst;
-+	const struct dphy_drv_data *drv_data;
-+	struct phy_configure_opts_mipi_dphy config;
-+	u8 hsfreq;
-+};
-+
-+static inline void write_grf_reg(struct rockchip_inno_csidphy *priv,
-+				 int index, u8 value)
-+{
-+	const struct dphy_drv_data *drv_data = priv->drv_data;
-+	const struct dphy_reg *reg = &drv_data->grf_regs[index];
-+
-+	/* Update high word */
-+	unsigned int val = (value << reg->shift) |
-+			   (reg->mask << (reg->shift + 16));
-+
-+	if (reg->offset)
-+		regmap_write(priv->grf, reg->offset, val);
-+}
-+
-+static inline u32 read_grf_reg(struct rockchip_inno_csidphy *priv, int index)
-+{
-+	const struct dphy_drv_data *drv_data = priv->drv_data;
-+	const struct dphy_reg *reg = &drv_data->grf_regs[index];
-+	unsigned int val = 0;
-+
-+	if (reg->offset) {
-+		regmap_read(priv->grf, reg->offset, &val);
-+		val = (val >> reg->shift) & reg->mask;
-+	}
-+	return val;
-+}
-+
-+/* These tables must be sorted by .range_h ascending. */
-+static const struct hsfreq_range rk1808_mipidphy_hsfreq_ranges[] = {
-+	{ 109, 0x02}, { 149, 0x03}, { 199, 0x06}, { 249, 0x06},
-+	{ 299, 0x06}, { 399, 0x08}, { 499, 0x0b}, { 599, 0x0e},
-+	{ 699, 0x10}, { 799, 0x12}, { 999, 0x16}, {1199, 0x1e},
-+	{1399, 0x23}, {1599, 0x2d}, {1799, 0x32}, {1999, 0x37},
-+	{2199, 0x3c}, {2399, 0x41}, {2499, 0x46}
-+};
-+
-+static const struct hsfreq_range rk3326_mipidphy_hsfreq_ranges[] = {
-+	{ 109, 0x00}, { 149, 0x01}, { 199, 0x02}, { 249, 0x03},
-+	{ 299, 0x04}, { 399, 0x05}, { 499, 0x06}, { 599, 0x07},
-+	{ 699, 0x08}, { 799, 0x09}, { 899, 0x0a}, {1099, 0x0b},
-+	{1249, 0x0c}, {1349, 0x0d}, {1500, 0x0e}
-+};
-+
-+static const struct hsfreq_range rk3368_mipidphy_hsfreq_ranges[] = {
-+	{ 109, 0x00}, { 149, 0x01}, { 199, 0x02}, { 249, 0x03},
-+	{ 299, 0x04}, { 399, 0x05}, { 499, 0x06}, { 599, 0x07},
-+	{ 699, 0x08}, { 799, 0x09}, { 899, 0x0a}, {1099, 0x0b},
-+	{1249, 0x0c}, {1349, 0x0d}, {1500, 0x0e}
-+};
-+
-+static void rockchip_inno_csidphy_ths_settle(struct rockchip_inno_csidphy *priv,
-+					     int hsfreq, int offset)
-+{
-+	const struct dphy_drv_data *drv_data = priv->drv_data;
-+	u32 val;
-+
-+	val = readl(priv->phy_base + drv_data->ths_settle_offset + offset);
-+	val &= ~CSIDPHY_THS_SETTLE_MASK;
-+	val |= hsfreq;
-+	writel(val, priv->phy_base + drv_data->ths_settle_offset + offset);
-+}
-+
-+static int rockchip_inno_csidphy_configure(struct phy *phy,
-+					   union phy_configure_opts *opts)
-+{
-+	struct rockchip_inno_csidphy *priv = phy_get_drvdata(phy);
-+	const struct dphy_drv_data *drv_data = priv->drv_data;
-+	struct phy_configure_opts_mipi_dphy *config = &opts->mipi_dphy;
-+	unsigned int hsfreq = 0;
-+	unsigned int i;
-+	u64 data_rate_mbps;
-+	int ret;
-+
-+	/* pass with phy_mipi_dphy_get_default_config (with pixel rate?) */
-+	ret = phy_mipi_dphy_config_validate(config);
-+	if (ret)
-+		return ret;
-+
-+	data_rate_mbps = div_u64(config->hs_clk_rate, 1000 * 1000);
-+
-+	dev_dbg(priv->dev, "lanes %d - data_rate_mbps %llu\n",
-+		config->lanes, data_rate_mbps);
-+	for (i = 0; i < drv_data->num_hsfreq_ranges; i++) {
-+		if (drv_data->hsfreq_ranges[i].range_h >= data_rate_mbps) {
-+			hsfreq = drv_data->hsfreq_ranges[i].cfg_bit;
-+			break;
-+		}
-+	}
-+	if (!hsfreq)
-+		return -EINVAL;
-+
-+	priv->hsfreq = hsfreq;
-+	priv->config = *config;
-+	return 0;
-+}
-+
-+static int rockchip_inno_csidphy_power_on(struct phy *phy)
-+{
-+	struct rockchip_inno_csidphy *priv = phy_get_drvdata(phy);
-+	const struct dphy_drv_data *drv_data = priv->drv_data;
-+	u64 data_rate_mbps;
-+	u32 val = 0;
-+	int ret, i;
-+
-+	data_rate_mbps = div_u64(priv->config.hs_clk_rate, 1000 * 1000);
-+
-+	ret = clk_enable(priv->pclk);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* phy start */
-+	if (drv_data->pwrctl_offset >= 0)
-+		writel(CSIDPHY_CTRL_PWRCTL_UNDEFINED |
-+		       CSIDPHY_CTRL_PWRCTL_SYNCRST,
-+		       priv->phy_base + drv_data->pwrctl_offset);
-+
-+	/* set data lane num and enable clock lane */
-+	val = GENMASK(priv->config.lanes - 1, 0) << CSIDPHY_CTRL_LANE_ENABLE_SHIFT;
-+	writel(val | CSIDPHY_CTRL_LANE_ENABLE_CK |
-+	       CSIDPHY_CTRL_LANE_ENABLE_UNDEFINED,
-+	       priv->phy_base + CSIDPHY_CTRL_LANE_ENABLE);
-+
-+	/* Reset dphy analog part */
-+	if (drv_data->pwrctl_offset >= 0)
-+		writel(CSIDPHY_CTRL_PWRCTL_UNDEFINED,
-+		       priv->phy_base + drv_data->pwrctl_offset);
-+	usleep_range(500, 1000);
-+
-+	/* Reset dphy digital part */
-+	writel(CSIDPHY_CTRL_DIG_RST_UNDEFINED,
-+	       priv->phy_base + CSIDPHY_CTRL_DIG_RST);
-+	writel(CSIDPHY_CTRL_DIG_RST_UNDEFINED + CSIDPHY_CTRL_DIG_RST_RESET,
-+	       priv->phy_base + CSIDPHY_CTRL_DIG_RST);
-+
-+	/* not into receive mode/wait stopstate */
-+	write_grf_reg(priv, GRF_DPHY_CSIPHY_FORCERXMODE, 0x0);
-+
-+	/* enable calibration */
-+	if (data_rate_mbps > 1500 && drv_data->calib_offset >= 0) {
-+		writel(CSIDPHY_CALIB_EN,
-+		       priv->phy_base + drv_data->calib_offset +
-+					CSIDPHY_CLK_CALIB_EN);
-+		for (i = 0; i < priv->config.lanes; i++)
-+			writel(CSIDPHY_CALIB_EN,
-+			       priv->phy_base + drv_data->calib_offset +
-+						CSIDPHY_LANE_CALIB_EN(i));
-+	}
-+
-+	rockchip_inno_csidphy_ths_settle(priv, priv->hsfreq,
-+					 CSIDPHY_CLK_THS_SETTLE);
-+	for (i = 0; i < priv->config.lanes; i++)
-+		rockchip_inno_csidphy_ths_settle(priv, priv->hsfreq,
-+						 CSIDPHY_LANE_THS_SETTLE(i));
-+
-+	write_grf_reg(priv, GRF_DPHY_CSIPHY_CLKLANE_EN, 0x1);
-+	write_grf_reg(priv, GRF_DPHY_CSIPHY_DATALANE_EN,
-+		      GENMASK(priv->config.lanes - 1, 0));
-+
-+	return 0;
-+}
-+
-+static int rockchip_inno_csidphy_power_off(struct phy *phy)
-+{
-+	struct rockchip_inno_csidphy *priv = phy_get_drvdata(phy);
-+	const struct dphy_drv_data *drv_data = priv->drv_data;
-+
-+	/* disable all lanes */
-+	writel(CSIDPHY_CTRL_LANE_ENABLE_UNDEFINED,
-+	       priv->phy_base + CSIDPHY_CTRL_LANE_ENABLE);
-+
-+	/* disable pll and ldo */
-+	if (drv_data->pwrctl_offset >= 0)
-+		writel(CSIDPHY_CTRL_PWRCTL_UNDEFINED |
-+		       CSIDPHY_CTRL_PWRCTL_LDO_PD |
-+		       CSIDPHY_CTRL_PWRCTL_PLL_PD,
-+		       priv->phy_base + drv_data->pwrctl_offset);
-+	usleep_range(500, 1000);
-+
-+	clk_disable(priv->pclk);
-+
-+	return 0;
-+}
-+
-+static int rockchip_inno_csidphy_init(struct phy *phy)
-+{
-+	struct rockchip_inno_csidphy *priv = phy_get_drvdata(phy);
-+
-+	return clk_prepare(priv->pclk);
-+}
-+
-+static int rockchip_inno_csidphy_exit(struct phy *phy)
-+{
-+	struct rockchip_inno_csidphy *priv = phy_get_drvdata(phy);
-+
-+	clk_unprepare(priv->pclk);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops rockchip_inno_csidphy_ops = {
-+	.power_on	= rockchip_inno_csidphy_power_on,
-+	.power_off	= rockchip_inno_csidphy_power_off,
-+	.init		= rockchip_inno_csidphy_init,
-+	.exit		= rockchip_inno_csidphy_exit,
-+	.configure	= rockchip_inno_csidphy_configure,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static const struct dphy_drv_data rk1808_mipidphy_drv_data = {
-+	.pwrctl_offset = -1,
-+	.ths_settle_offset = RK1808_CSIDPHY_CLK_WR_THS_SETTLE,
-+	.calib_offset = RK1808_CSIDPHY_CLK_CALIB_EN,
-+	.hsfreq_ranges = rk1808_mipidphy_hsfreq_ranges,
-+	.num_hsfreq_ranges = ARRAY_SIZE(rk1808_mipidphy_hsfreq_ranges),
-+	.grf_regs = rk1808_grf_dphy_regs,
-+};
-+
-+static const struct dphy_drv_data rk3326_mipidphy_drv_data = {
-+	.pwrctl_offset = CSIDPHY_CTRL_PWRCTL,
-+	.ths_settle_offset = RK3326_CSIDPHY_CLK_WR_THS_SETTLE,
-+	.calib_offset = -1,
-+	.hsfreq_ranges = rk3326_mipidphy_hsfreq_ranges,
-+	.num_hsfreq_ranges = ARRAY_SIZE(rk3326_mipidphy_hsfreq_ranges),
-+	.grf_regs = rk3326_grf_dphy_regs,
-+};
-+
-+static const struct dphy_drv_data rk3368_mipidphy_drv_data = {
-+	.pwrctl_offset = CSIDPHY_CTRL_PWRCTL,
-+	.ths_settle_offset = RK3368_CSIDPHY_CLK_WR_THS_SETTLE,
-+	.calib_offset = -1,
-+	.hsfreq_ranges = rk3368_mipidphy_hsfreq_ranges,
-+	.num_hsfreq_ranges = ARRAY_SIZE(rk3368_mipidphy_hsfreq_ranges),
-+	.grf_regs = rk3368_grf_dphy_regs,
-+};
-+
-+static const struct of_device_id rockchip_inno_csidphy_match_id[] = {
-+	{
-+		.compatible = "rockchip,px30-csi-dphy",
-+		.data = &rk3326_mipidphy_drv_data,
-+	},
-+	{
-+		.compatible = "rockchip,rk1808-csi-dphy",
-+		.data = &rk1808_mipidphy_drv_data,
-+	},
-+	{
-+		.compatible = "rockchip,rk3326-csi-dphy",
-+		.data = &rk3326_mipidphy_drv_data,
-+	},
-+	{
-+		.compatible = "rockchip,rk3368-csi-dphy",
-+		.data = &rk3368_mipidphy_drv_data,
-+	},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rockchip_inno_csidphy_match_id);
-+
-+
-+static int rockchip_inno_csidphy_probe(struct platform_device *pdev)
-+{
-+	struct rockchip_inno_csidphy *priv;
-+	struct device *dev = &pdev->dev;
-+	struct phy_provider *phy_provider;
-+	struct phy *phy;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->dev = dev;
-+	platform_set_drvdata(pdev, priv);
-+
-+	priv->drv_data = of_device_get_match_data(dev);
-+	if (!priv->drv_data) {
-+		dev_err(dev, "Can't find device data\n");
-+		return -ENODEV;
-+	}
-+
-+	priv->grf = syscon_regmap_lookup_by_phandle(dev->of_node,
-+						    "rockchip,grf");
-+	if (IS_ERR(priv->grf)) {
-+		dev_err(dev, "Can't find GRF syscon\n");
-+		return PTR_ERR(priv->grf);
-+	}
-+
-+	priv->phy_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->phy_base))
-+		return PTR_ERR(priv->phy_base);
-+
-+	priv->pclk = devm_clk_get(dev, "pclk");
-+	if (IS_ERR(priv->pclk)) {
-+		dev_err(dev, "failed to get pclk\n");
-+		return PTR_ERR(priv->pclk);
-+	}
-+
-+	priv->rst = devm_reset_control_get(dev, "apb");
-+	if (IS_ERR(priv->rst)) {
-+		dev_err(dev, "failed to get system reset control\n");
-+		return PTR_ERR(priv->rst);
-+	}
-+
-+	phy = devm_phy_create(dev, NULL, &rockchip_inno_csidphy_ops);
-+	if (IS_ERR(phy)) {
-+		dev_err(dev, "failed to create phy\n");
-+		return PTR_ERR(phy);
-+	}
-+
-+	phy_set_drvdata(phy, priv);
-+
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	if (IS_ERR(phy_provider)) {
-+		dev_err(dev, "failed to register phy provider\n");
-+		return PTR_ERR(phy_provider);
-+	}
-+
-+	pm_runtime_enable(dev);
-+
-+	return 0;
-+}
-+
-+static int rockchip_inno_csidphy_remove(struct platform_device *pdev)
-+{
-+	struct rockchip_inno_csidphy *priv = platform_get_drvdata(pdev);
-+
-+	pm_runtime_disable(priv->dev);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver rockchip_inno_csidphy_driver = {
-+	.driver = {
-+			.name = "rockchip-inno-csidphy",
-+			.of_match_table = rockchip_inno_csidphy_match_id,
-+	},
-+	.probe = rockchip_inno_csidphy_probe,
-+	.remove = rockchip_inno_csidphy_remove,
-+};
-+
-+module_platform_driver(rockchip_inno_csidphy_driver);
-+MODULE_AUTHOR("Heiko Stuebner <heiko.stuebner@theobroma-systems.com>");
-+MODULE_DESCRIPTION("Rockchip MIPI Innosilicon CSI-DPHY driver");
-+MODULE_LICENSE("Dual BSD/GPL");
--- 
-2.29.2
+> 
+> > 
+> > So a property with name "not" would be allowed and the "not-required"
+> > pattern would work.
+> > 
+> > Changelog v2:
+> > - Add the new sub-nodes "axi-config", "mtl-rx-config" and "mtl-tx-config"
+> >   describing the nodes now deprecated properties were supposed to
+> >   refer to.
+> > - Fix invalid identation in the "snps,route-*" property settings.
+> > - Use correct syntax of the JSON pointers, so the later would begin
+> >   with a '/' after the '#'.
+> > ---
+> >  .../devicetree/bindings/net/snps,dwmac.yaml   | 389 +++++++++++++-----
+> >  1 file changed, 297 insertions(+), 92 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > index 03d58bf9965f..4dda9ffa822c 100644
+> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > @@ -150,73 +150,264 @@ properties:
+> >        in a different mode than the PHY in order to function.
+> >  
+> >    snps,axi-config:
+> > +    deprecated: true
+> >      $ref: /schemas/types.yaml#/definitions/phandle
+> >      description:
+> > -      AXI BUS Mode parameters. Phandle to a node that can contain the
+> > -      following properties
+> > -        * snps,lpi_en, enable Low Power Interface
+> > -        * snps,xit_frm, unlock on WoL
+> > -        * snps,wr_osr_lmt, max write outstanding req. limit
+> > -        * snps,rd_osr_lmt, max read outstanding req. limit
+> > -        * snps,kbbe, do not cross 1KiB boundary.
+> > -        * snps,blen, this is a vector of supported burst length.
+> > -        * snps,fb, fixed-burst
+> > -        * snps,mb, mixed-burst
+> > -        * snps,rb, rebuild INCRx Burst
+> > +      AXI BUS Mode parameters. Phandle to a node that contains the properties
+> > +      described in the 'axi-config' sub-node.
+> > +
+> > +  axi-config:
+> > +    type: object
+> > +    description: AXI BUS Mode parameters
+> > +
+> > +    properties:
+> > +      snps,lpi_en:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description: Enable Low Power Interface
+> > +
+> > +      snps,xit_frm:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description: Unlock on WoL
+> > +
+> > +      snps,wr_osr_lmt:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        description: Max write outstanding req. limit
+> > +        default: 1
+> > +        minimum: 0
+> > +        maximum: 15
+> > +
+> > +      snps,rd_osr_lmt:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        description: Max read outstanding req. limit
+> > +        default: 1
+> > +        minimum: 0
+> > +        maximum: 15
+> > +
+> > +      snps,kbbe:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description: Do not cross 1KiB boundary
+> > +
+> > +      snps,blen:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +        description: A vector of supported burst lengths
+> > +        minItems: 7
+> > +        maxItems: 7
+> > +        items:
+> > +          enum: [256, 128, 64, 32, 16, 8, 4, 0]
+> > +
+> > +      snps,fb:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description: Fixed-burst
+> > +
+> > +      snps,mb:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description: Mixed-burst
+> > +
+> > +      snps,rb:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description: Rebuild INCRx Burst
+> > +
+> > +    additionalProperties: false
+> >  
+> >    snps,mtl-rx-config:
+> 
 
+> You could keep these pointing to child nodes to avoid driver changes.
+
+Right, but I'd prefer having the AXI/MTL-config nodes directly found
+because they are supposed to be defined as sub-nodes anyway. Having
+the snps-prefixed AXI/MTL-config properties with phandle reference are
+going to be marked as deprecated. By doing so we'll discourage
+defining the DW MAC-related configs scattered around the new dts-es. 
+
+> 
+> > +    deprecated: true
+> >      $ref: /schemas/types.yaml#/definitions/phandle
+> >      description:
+> > -      Multiple RX Queues parameters. Phandle to a node that can
+> > -      contain the following properties
+> > -        * snps,rx-queues-to-use, number of RX queues to be used in the
+> > -          driver
+> > -        * Choose one of these RX scheduling algorithms
+> > -          * snps,rx-sched-sp, Strict priority
+> > -          * snps,rx-sched-wsp, Weighted Strict priority
+> > -        * For each RX queue
+> > -          * Choose one of these modes
+> > -            * snps,dcb-algorithm, Queue to be enabled as DCB
+> > -            * snps,avb-algorithm, Queue to be enabled as AVB
+> > -          * snps,map-to-dma-channel, Channel to map
+> > -          * Specifiy specific packet routing
+> > -            * snps,route-avcp, AV Untagged Control packets
+> > -            * snps,route-ptp, PTP Packets
+> > -            * snps,route-dcbcp, DCB Control Packets
+> > -            * snps,route-up, Untagged Packets
+> > -            * snps,route-multi-broad, Multicast & Broadcast Packets
+> > -          * snps,priority, bitmask of the tagged frames priorities assigned to
+> > -            the queue
+> > +      Multiple RX Queues parameters. Phandle to a node that contains the
+> > +      properties described in the 'mtl-rx-config' sub-node.
+> > +
+> > +  mtl-rx-config:
+> > +    type: object
+> > +    description: Multiple RX Queues parameters
+> > +
+> > +    properties:
+> > +      snps,rx-queues-to-use:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        description: Number of RX queues to be used in the driver
+> > +        default: 1
+> > +        minimum: 1
+> > +
+> > +    patternProperties:
+> > +      "^snps,rx-sched-(sp|wsp)$":
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description: Strict/Weighted Strict RX scheduling priority
+> > +
+> > +      "^queue[0-9]$":
+> > +        type: object
+> > +        description: Each RX Queue parameters
+> > +
+> > +        properties:
+> > +          snps,map-to-dma-channel:
+> > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > +            description: DMA channel to map
+> > +
+> > +          snps,priority:
+> > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > +            description: RX queue priority
+> > +            minimum: 0
+> > +            maximum: 15
+> > +
+> > +        patternProperties:
+> > +          "^snps,(dcb|avb)-algorithm$":
+> > +            $ref: /schemas/types.yaml#/definitions/flag
+> > +            description: Enable Queue as DCB/AVB
+> > +
+> > +          "^snps,route-(avcp|ptp|dcbcp|up|multi-broad)$":
+> > +            $ref: /schemas/types.yaml#/definitions/flag
+> > +            description:
+> > +              AV Untagged/PTP/DCB Control/Untagged/Multicast & Broadcast
+> > +              packets routing respectively.
+> > +
+> > +        additionalProperties: false
+> > +
+> > +        # Choose only one of the Queue modes and the packets routing
+> > +        allOf:
+> > +          - not:
+> > +              required:
+> > +                - snps,dcb-algorithm
+> > +                - snps,avb-algorithm
+> > +          - oneOf:
+> > +              - required:
+> > +                  - snps,route-avcp
+> > +              - required:
+> > +                  - snps,route-ptp
+> > +              - required:
+> > +                  - snps,route-dcbcp
+> > +              - required:
+> > +                  - snps,route-up
+> > +              - required:
+> > +                  - snps,route-multi-broad
+> > +              - not:
+> > +                  anyOf:
+> > +                    - required:
+> > +                        - snps,route-avcp
+> > +                    - required:
+> > +                        - snps,route-ptp
+> > +                    - required:
+> > +                        - snps,route-dcbcp
+> > +                    - required:
+> > +                        - snps,route-up
+> > +                    - required:
+> > +                        - snps,route-multi-broad
+> 
+
+> This 'not: ..." could be:
+> 
+> properties:
+>   snps,route-avcp: false
+>   snps,route-ptp: false
+>   snps,route-dcbcp: false
+>   snps,route-up: false
+>   snps,route-multi-broad: false
+> 
+> Not sure which one is better. Using required everywhere or more 
+> concise...
+
+Thanks for suggesting an alternative. I didn't figure out such option
+myself. Though in this case since we need to use the required property
+anyway, I'd prefer to have it used in the 'not' sub-schema too. At
+least for uniformity and to simplify the conditional statement
+readability, even if it causes a bit of the concise loss.
+
+> 
+> (Really, 'route' should have taken a value and the schema would be 
+> greatly simplified. Oh well.)
+
+Yeah, I had the same thought in mind when first saw that
+boolean-properties hell. There are few more properties in this
+bindings file which should have been also defined as taking values
+instead of being booleans...
+
+> 
+> > +
+> > +    additionalProperties: false
+> > +
+> > +    # Choose one of the RX scheduling algorithms
+> > +    not:
+> > +      required:
+> > +        - snps,rx-sched-sp
+> > +        - snps,rx-sched-wsp
+> 
+
+> I guess this is the problematic one. The rest should be hidden behind 
+> conditionals (a common loophole in meta-schema checks). You could do 
+> that here:
+> 
+> allOf:
+>   - not:
+>       ...
+
+Oh, thanks. I can't believe I've missed that option. Though fixing the
+dt-schema tool would be better than using the combining schema
+keywords as a workaround.
+
+> 
+> But why not just make one of the 2 properties required? You're already 
+> changing things. 
+
+First of all the driver permits omitting all of them in the
+corresponding nodes and implicitly using one of the properties by
+default (the same thing is for the MTL Tx-queues). If we made some of
+them being required we would have broken the driver dts-contract,
+which is not good. Secondly I'd have to fix the
+arch/arm/boot/dts/artpec6.dtsi dts file too, which would have been an
+additional patch in the series, additional work, additional review
+from the platform maintainer, additional merge path, etc. So to speak
+that would cause more troubles, than just using the "not:" statement
+here.)
+
+-Sergey
+
+> 
+> Rob
