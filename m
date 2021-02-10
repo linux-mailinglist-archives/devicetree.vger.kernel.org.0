@@ -2,80 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0D293172C3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 22:59:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C572E3172D5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 23:05:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232661AbhBJV7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 16:59:23 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:39908 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231642AbhBJV7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 16:59:13 -0500
-Received: by mail-ot1-f49.google.com with SMTP id d7so3322015otq.6;
-        Wed, 10 Feb 2021 13:58:57 -0800 (PST)
+        id S230229AbhBJWE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 17:04:58 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:43493 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232045AbhBJWE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 17:04:56 -0500
+Received: by mail-ot1-f44.google.com with SMTP id l23so3322003otn.10;
+        Wed, 10 Feb 2021 14:04:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uzz9hxfNfUAHoY/3tRRT+kBu3++kIrVwo6Tu0JjVTOA=;
-        b=rhuD4PL9+RPWZbo3CMq2DdPFEEDwQ82RQpenRSqQPziH5RY0xUvVAepeFiCkwLZzjA
-         kRN7LZTXCScD28Okqz2o4B6UvA1Kt6Wsf9ps+Y2ZLU76uypIoTlw3ELlUx1OtW+UpGOP
-         NDbZ6IVv9sAegcVVRhVVb5PII9J52Cy6aV4WhPowZb58edumb8hqn93yZVyFBHoavi5a
-         s1yuNUpcUNw73gHUEDgkxlfvEC7dw35jSC4Z7oai+PPtMYxhudDvmlAdaKGrJRFbDmO+
-         8n9QwWHIIjxzLN/Ps2xAm8iORIWtYlSDd7W2Z8A3NMHIHv8e1gsKLk6EdGusax9jlZQ2
-         Nfqw==
-X-Gm-Message-State: AOAM533Upo8T4N8vPonLox7zVlLMHUgimS+91dsguPY9VnAxqoXTLI7z
-        s9kRmzYwVmnnUGQw9KtfFw==
-X-Google-Smtp-Source: ABdhPJxrVr6ixP0bO6YSUh9lvjgUA5Iqr/sRXpCaKJSQpamuci/ExTOUwsJzIsx7P+OBLu+LBfKdWw==
-X-Received: by 2002:a9d:7997:: with SMTP id h23mr3754841otm.296.1612994312037;
-        Wed, 10 Feb 2021 13:58:32 -0800 (PST)
+        bh=RQ7cu9MfHe6aCf9OAL5eEgdmgHeTz7eoNLzlsX/XljQ=;
+        b=sExBhcYum/qA9fLvw/H/yz/dLt+Ux5wIeOYP/CgSSmkkXxvvBVS3yhc9RV6ODBYLIe
+         HNzY0+cl10x8sgrv9+TOUpA/xrk6WGhoNmnK0rhBcpPlO309IbRQ12rkr5Ne5Z0O734j
+         1tGiJOE7qzX+g6eUKdhnpq3EZNQTOfMOl0CfSymOhxZNhPgnX4Vv1dRFWEpgj6i/mqT/
+         ChMMY8VSKPmhPDyJWC8wgdjGgl8ynayQ00AflTLjYrx5c6qxzPT4CRMM0t1obawf8jgu
+         H3fWz2cFFUw1XYVRD+IWW0Ioawjju6bRlKQjv5jxeomY9wNLBnvnhVKdolR55rK0ZvTM
+         Bbow==
+X-Gm-Message-State: AOAM533XjRn5aRhgNjFJxITaPvcE7pNmkpw+V8LbsjvyWUbUBeEb/21w
+        E6sR6uShbtm58jWg08ylQw==
+X-Google-Smtp-Source: ABdhPJwvaI4R3EJJTYNHhZsZgdSFd9OUgJOtk/ez6XnGX6c1KGRuS1jPfUij87XTNeV/TSeyjyldqw==
+X-Received: by 2002:a05:6830:4121:: with SMTP id w33mr3529003ott.361.1612994655493;
+        Wed, 10 Feb 2021 14:04:15 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o20sm608285oor.14.2021.02.10.13.58.30
+        by smtp.gmail.com with ESMTPSA id e19sm631440otp.31.2021.02.10.14.04.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 13:58:31 -0800 (PST)
-Received: (nullmailer pid 2868209 invoked by uid 1000);
-        Wed, 10 Feb 2021 21:58:29 -0000
-Date:   Wed, 10 Feb 2021 15:58:29 -0600
+        Wed, 10 Feb 2021 14:04:14 -0800 (PST)
+Received: (nullmailer pid 2878384 invoked by uid 1000);
+        Wed, 10 Feb 2021 22:04:13 -0000
+Date:   Wed, 10 Feb 2021 16:04:13 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
-        Ikjoon Jang <ikjn@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/3] dt-bindings: usb: mtk-xhci: add compatible
- for mt8195
-Message-ID: <20210210215829.GA2868150@robh.at.kernel.org>
-References: <20210203102642.7353-1-chunfeng.yun@mediatek.com>
+To:     Marek Czerski <ma.czerski@gmail.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-pm@vger.kernel.org, sre@kernel.org
+Subject: Re: [PATCH v2] power: reset: ltc2952: make trigger delay configurable
+Message-ID: <20210210220413.GA2878331@robh.at.kernel.org>
+References: <20210203214900.71677-1-ma.czerski@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210203102642.7353-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20210203214900.71677-1-ma.czerski@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 03 Feb 2021 18:26:40 +0800, Chunfeng Yun wrote:
-> There are 4 USB controllers on MT8195, the controllers (IP1~IP3,
-> exclude IP0) have a wrong default SOF/ITP interval which is
-> calculated from the frame counter clock 24Mhz by default, but
-> in fact, the frame counter clock is 48Mhz, so we should set
-> the accurate interval according to 48Mhz. Here add a new compatible
-> for MT8195, it's also supported in driver. But the first controller
-> (IP0) has no such issue, we prefer to use generic compatible,
-> e.g. mt8192's compatible.
+On Wed, 03 Feb 2021 22:49:00 +0100, Marek Czerski wrote:
+> Make trigger delay configurable through device tree with
+> trigger-delay-ms property.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Trigger delay is the time to wait before starting shutdown
+> sequence after trigger line assertion.
+> Trigger delay must take into account the OFFT time configured
+> with the capacitor connected to OFFT pin of the LTC2952 chip.
+> Basically, the higher the capacitance connected to OFFT pin,
+> the larger trigger delay must be.
+> 
+> Signed-off-by: Marek Czerski <ma.czerski@gmail.com>
 > ---
-> v2: no changes
-> ---
->  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/power/reset/ltc2952-poweroff.txt  | 4 ++++
+>  drivers/power/reset/ltc2952-poweroff.c                    | 8 ++++++++
+>  2 files changed, 12 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
