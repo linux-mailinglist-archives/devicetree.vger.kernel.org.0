@@ -2,199 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6CA6316CFC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 18:39:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F9E6316EA8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 19:30:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232683AbhBJRjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 12:39:18 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:43948 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229888AbhBJRi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 12:38:27 -0500
-Received: by mail-oi1-f176.google.com with SMTP id d20so2893451oiw.10;
-        Wed, 10 Feb 2021 09:38:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=c4tGoeSje1FtQW22/bbQZImu7Ov7f7EbyEaomifyUrs=;
-        b=k6ew1uHERz+7Ww3BOovBwn7Tda6ttoXXek0R0SmmOvWL33cxNrR8bphtgb19tXyocm
-         TguIlHwSBASSAhk55RbBmTc4fLLRTjZtcbauD9xOrPhEhfCaZbe9UZFEbucQLHU9AELE
-         qMjScPeBeDrpMLwYGG6s20iUNp6i084xaAUbJcNZ0mzezu6ZDT08qG9+AUOjM3o66exM
-         Kd4/TjOCbkMNw9AaSEGPSZvUVDcR6rpc9pJDEg4saKtflni5CK05kZUQy5a/Yjr4JQ3r
-         1uF5HE/YBeje+gEKTUqawWBYoSl3654l2ubeAySqY6os0A7eeFLiBZndc9uZO/drhfJD
-         7i0A==
-X-Gm-Message-State: AOAM5323IHA1RmP9ofIfYpGbU3GK9mGdj7PpVagNxVtTqDFUL9UTNRyE
-        E0szt8e7uJ3WlJiYevYuQA==
-X-Google-Smtp-Source: ABdhPJzG5D8rmY8Fs9oCnBNgJ8fWU+eJIXdu9Ees0oagTus8bwF5UCVgqLBnaV8QHAQK8kR4sKOZZA==
-X-Received: by 2002:aca:1903:: with SMTP id l3mr2965163oii.133.1612978663815;
-        Wed, 10 Feb 2021 09:37:43 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r4sm580938oig.52.2021.02.10.09.37.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 09:37:43 -0800 (PST)
-Received: (nullmailer pid 2401604 invoked by uid 1000);
-        Wed, 10 Feb 2021 17:37:41 -0000
-Date:   Wed, 10 Feb 2021 11:37:41 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     peng.fan@oss.nxp.com
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        paul@crapouillou.net, matthias.bgg@gmail.com, agross@kernel.org,
-        patrice.chotard@st.com, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V10 01/10] dt-bindings: remoteproc: convert imx rproc
- bindings to json-schema
-Message-ID: <20210210173741.GA2378005@robh.at.kernel.org>
-References: <1612774571-6134-1-git-send-email-peng.fan@oss.nxp.com>
- <1612774571-6134-2-git-send-email-peng.fan@oss.nxp.com>
+        id S233761AbhBJS36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 13:29:58 -0500
+Received: from ip-15.mailobj.net ([213.182.54.15]:37392 "EHLO msg-4.mailo.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234060AbhBJS1o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 13:27:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1612979336; bh=FiwrkizrBSPTsvKMxQnwJcv6n7jqODJU8WnEpBli1GY=;
+        h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+         References:Content-Type:MIME-Version:Content-Transfer-Encoding;
+        b=aVejjDj+LtOND0rHwfM/BdxyKlPIzF5FVjD5TmwNWFdXOBr9qMrGiduah5cMONWdF
+         crLyraOuDUeRMx+6SDny5iqYZbs73rd3Uqst8HNr9w2EWmnOi+/HoEmleAytVMbVp/
+         xXjGIJcJFSHYZcSFNmRRPofaiR/Uf9tAlje2L5PQ=
+Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Wed, 10 Feb 2021 18:48:56 +0100 (CET)
+X-EA-Auth: 4xS/QoYM2v4q6SHusZVcWgnrZ5wIyvdcZxzttcMlxFecgXiC1vChK1nXQpXsw9yNRr9zDGCf/YWUyTd4ricXeiAGrcCnhkeza7yHCrNqkDA=
+Message-ID: <97ef97e996c2089cedb450f9aaac123208ca18e9.camel@mailoo.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: input/touchscreen: add bindings for
+ msg26xx
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Date:   Wed, 10 Feb 2021 18:48:55 +0100
+In-Reply-To: <20210210031000.GA10151@labundy.com>
+References: <20210121174359.1455393-1-vincent.knecht@mailoo.org>
+         <20210209161319.GA3849081@robh.at.kernel.org>
+         <07cac63721a9ca63733617e461d640e8927a78f3.camel@mailoo.org>
+         <20210210031000.GA10151@labundy.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3 (3.38.3-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1612774571-6134-2-git-send-email-peng.fan@oss.nxp.com>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 08, 2021 at 04:56:02PM +0800, peng.fan@oss.nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Convert the imx rproc binding to DT schema format using json-schema.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 59 +++++++++++++++++++
->  .../bindings/remoteproc/imx-rproc.txt         | 33 -----------
->  2 files changed, 59 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> new file mode 100644
-> index 000000000000..5e906fa6a39d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: NXP iMX6SX/iMX7D Co-Processor Bindings
-> +
-> +description:
-> +  This binding provides support for ARM Cortex M4 Co-processor found on some NXP iMX SoCs.
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx7d-cm4
-> +      - fsl,imx6sx-cm4
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to syscon block which provide access to System Reset Controller
-> +
-> +  memory-region:
-> +    description:
-> +      If present, a phandle for a reserved memory area that used for vdev buffer,
-> +      resource table, vring region and others used by remote processor.
+Le mardi 09 f=C3=A9vrier 2021 =C3=A0 21:10 -0600, Jeff LaBundy a =C3=A9crit=
+=C2=A0:
+> Hi Vincent,
+>=20
+> On Tue, Feb 09, 2021 at 07:58:33PM +0100, Vincent Knecht wrote:
+> > Le mardi 09 f=C3=A9vrier 2021 =C3=A0 10:13 -0600, Rob Herring a =C3=A9c=
+rit=C2=A0:
+> > > On Thu, Jan 21, 2021 at 06:43:47PM +0100, Vincent Knecht wrote:
+> > > > This adds dts bindings for the mstar msg26xx touchscreen.
+> > > >=20
+> > > > Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> > > > ---
+> > > > Changed in v3:
+> > > > - added `touchscreen-size-x: true` and `touchscreen-size-y: true` p=
+roperties
+> > > > Changed in v2:
+> > > > - changed M-Star to MStar in title line
+> > > > - changed reset gpio to active-low in example section
+> > > > ---
+> > > > =C2=A0.../input/touchscreen/mstar,msg26xx.yaml=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 69 +++++++++++++++++++
+> > > > =C2=A01 file changed, 69 insertions(+)
+> > > > =C2=A0create mode 100644 Documentation/devicetree/bindings/input/to=
+uchscreen/mstar,msg26xx.yaml
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/ms=
+tar,msg26xx.yaml
+> > > > b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx=
+.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..5d26a1008bf1
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg=
+26xx.yaml
+> > > > @@ -0,0 +1,69 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/input/touchscreen/mstar,msg26xx=
+.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: MStar msg26xx touchscreen controller Bindings
+> > > > +
+> > > > +maintainers:
+> > > > +=C2=A0 - Vincent Knecht <vincent.knecht@mailoo.org>
+> > > > +
+> > > > +allOf:
+> > > > +=C2=A0 - $ref: touchscreen.yaml#
+> > > > +
+> > > > +properties:
+> > > > +=C2=A0 compatible:
+> > > > +=C2=A0=C2=A0=C2=A0 const: mstar,msg26xx
+> > >=20
+> > > Don't use wildcards in compatible strings.
+> >=20
+> > Thank you for the input...
+> >=20
+> > Let's say I set it to "mstar,msg2638", is it better to rename the drive=
+r file and functions too ?
+> > According to downstream source file naming, msg2638 is the model I have=
+ and test this driver with.
+>=20
+> This is ultimately Dmitry's call, but it's fairly common to use wildcards
+> for driver names and function calls if the driver is known to work across
+> all devices that fit in the wildcard (see iqs5xx and many others).
+>=20
+> The risk with wildcards, however, is that vendors can introduce different
+> devices later with similar part numbers. Therefore, some subsystems (e.g.
+> iio) tend to frown upon wildcards for that reason.
+>=20
+> You should try and make the driver cover as many devices as possible. But
+> if the driver is only known to work for one device then I don't think you
+> can use a wildcard in the name unless you support all other devices (just
+> my opinion).
+>=20
+> In either case, however, compatible strings must be unique just as with a
+> part number in a schematic or bill of materials. As such, it is perfectly
+> fine to have multiple compatible strings in a single driver.
+>=20
+> >=20
+> >=20
+> > There's a possibility this driver works as-is or with minor mods for ms=
+g2633 too,
+> > and a more remote one for msg21xx and msg22xx...
+> >=20
+>=20
+> Kind regards,
+> Jeff LaBundy
 
-You need to define what each one is as a schema. How does the driver 
-know which one is the vring region for example? Minimally, it's:
+Thank you Jeff for the insight.
 
-items:
-  - description: ...
-  - description: ...
-  - description: ...
-
-But if what's present is variable, then it gets more complicated. If the 
-OS side doesn't need to know what each region is, then you can do just:
-
-minItems: N
-maxItems: M
-
-Rob
+Since I can't test it with any other model, I've renamed it to msg2638 in v=
+4:
+https://lore.kernel.org/linux-input/20210210173403.667482-1-vincent.knecht@=
+mailoo.org/T/#t
 
 
 
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - syscon
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx7d-clock.h>
-> +    m4_reserved_sysmem1: cm4@80000000 {
-> +      reg = <0x80000000 0x80000>;
-> +    };
-> +
-> +    m4_reserved_sysmem2: cm4@81000000 {
-> +      reg = <0x81000000 0x80000>;
-> +    };
-> +
-> +    imx7d-cm4 {
-> +      compatible	= "fsl,imx7d-cm4";
-> +      memory-region	= <&m4_reserved_sysmem1>, <&m4_reserved_sysmem2>;
-> +      syscon		= <&src>;
-> +      clocks		= <&clks IMX7D_ARM_M4_ROOT_CLK>;
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt b/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
-> deleted file mode 100644
-> index fbcefd965dc4..000000000000
-> --- a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -NXP iMX6SX/iMX7D Co-Processor Bindings
-> -----------------------------------------
-> -
-> -This binding provides support for ARM Cortex M4 Co-processor found on some
-> -NXP iMX SoCs.
-> -
-> -Required properties:
-> -- compatible		Should be one of:
-> -				"fsl,imx7d-cm4"
-> -				"fsl,imx6sx-cm4"
-> -- clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
-> -- syscon		Phandle to syscon block which provide access to
-> -			System Reset Controller
-> -
-> -Optional properties:
-> -- memory-region		list of phandels to the reserved memory regions.
-> -			(See: ../reserved-memory/reserved-memory.txt)
-> -
-> -Example:
-> -	m4_reserved_sysmem1: cm4@80000000 {
-> -		reg = <0x80000000 0x80000>;
-> -	};
-> -
-> -	m4_reserved_sysmem2: cm4@81000000 {
-> -		reg = <0x81000000 0x80000>;
-> -	};
-> -
-> -	imx7d-cm4 {
-> -		compatible	= "fsl,imx7d-cm4";
-> -		memory-region	= <&m4_reserved_sysmem1>, <&m4_reserved_sysmem2>;
-> -		syscon		= <&src>;
-> -		clocks		= <&clks IMX7D_ARM_M4_ROOT_CLK>;
-> -	};
-> -- 
-> 2.30.0
-> 
+
+
