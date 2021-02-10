@@ -2,432 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A55316503
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C45C316509
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:21:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231265AbhBJLUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 06:20:05 -0500
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:31982 "EHLO
-        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231310AbhBJLSA (ORCPT
+        id S229465AbhBJLUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 06:20:53 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:52499 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231327AbhBJLSh (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 06:18:00 -0500
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 11ABD2KL165563;
-        Wed, 10 Feb 2021 06:17:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=content-type :
- mime-version : subject : from : in-reply-to : date : cc :
- content-transfer-encoding : message-id : references : to; s=pp1;
- bh=bVIRlUcW1nwYMH4p2dPZP5TL5zFGPE6B4Vi1aqOvjlw=;
- b=UqGoRLdVUWcHOZT7R1B/Rsl0w1CmZaNBvEgmUaDlvZtEzGpOyBQAbKq1+H1wVv7JArp9
- N6TPAHbytFYGWJt/kBkBR5jQfu1CasxcyQjhzNI7YA2vgUu3SpxebuV91P+ATwgsDWQh
- vmbeacGeHVE9caMaUs/JBLd9cRUKb6R+Td1VF758PG2KQcTD5pglu+lZHjGcJfIdjiG3
- owLzq0ikCR0VVt/3840dTSZ1jEV36LdYkMWBV4xryJyMnZf1QKEG27bbCCbcB9UE60ZR
- IO2QlEwzbp7cU7ONi1tHxWZzxbOogU4wGr4P7JIm8iV+NzdafKvXFRFkDJTjfknG+paJ vw== 
-Received: from ppma01fra.de.ibm.com (46.49.7a9f.ip4.static.sl-reverse.com [159.122.73.70])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 36medt034p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Feb 2021 06:17:03 -0500
-Received: from pps.filterd (ppma01fra.de.ibm.com [127.0.0.1])
-        by ppma01fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 11ABFSRB018037;
-        Wed, 10 Feb 2021 11:17:01 GMT
-Received: from b06avi18626390.portsmouth.uk.ibm.com (b06avi18626390.portsmouth.uk.ibm.com [9.149.26.192])
-        by ppma01fra.de.ibm.com with ESMTP id 36hjr82edg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Feb 2021 11:17:01 +0000
-Received: from d06av21.portsmouth.uk.ibm.com (d06av21.portsmouth.uk.ibm.com [9.149.105.232])
-        by b06avi18626390.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 11ABGnVL26149368
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 10 Feb 2021 11:16:49 GMT
-Received: from d06av21.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 7046F52057;
-        Wed, 10 Feb 2021 11:16:59 +0000 (GMT)
-Received: from [9.85.100.242] (unknown [9.85.100.242])
-        by d06av21.portsmouth.uk.ibm.com (Postfix) with ESMTPS id F15AF52051;
-        Wed, 10 Feb 2021 11:16:57 +0000 (GMT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.4\))
-Subject: Re: [PATCH 6/6] ARM: dts: aspeed: rainier: Add leds that are on
- optional PCI cable cards
-From:   vishwanatha subbanna <vishwa@linux.vnet.ibm.com>
-In-Reply-To: <CACPK8XfttMptuYFsocBaj2v4z1vzNjDUfe18FeDcAbmZjWKjfQ@mail.gmail.com>
-Date:   Wed, 10 Feb 2021 16:46:57 +0530
-Cc:     vishwanatha subbanna <vishwa@linux.vnet.ibm.com>,
-        Eddie James <eajames@linux.ibm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brad Bishop <bradleyb@fuzziesquirrel.com>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <6CFB3D8D-CF5A-4E33-8D57-6A4034DDC49E@linux.vnet.ibm.com>
-References: <1605247168-1028-1-git-send-email-vishwa@linux.vnet.ibm.com>
- <1605247168-1028-6-git-send-email-vishwa@linux.vnet.ibm.com>
- <CACPK8XfttMptuYFsocBaj2v4z1vzNjDUfe18FeDcAbmZjWKjfQ@mail.gmail.com>
-To:     Joel Stanley <joel@jms.id.au>
-X-Mailer: Apple Mail (2.3608.120.23.2.4)
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-10_03:2021-02-10,2021-02-10 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 phishscore=0 spamscore=0 bulkscore=0 mlxscore=0
- malwarescore=0 adultscore=0 clxscore=1015 impostorscore=0
- priorityscore=1501 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2009150000 definitions=main-2102100104
+        Wed, 10 Feb 2021 06:18:37 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 5D0835C0107;
+        Wed, 10 Feb 2021 06:17:48 -0500 (EST)
+Received: from imap1 ([10.202.2.51])
+  by compute6.internal (MEProxy); Wed, 10 Feb 2021 06:17:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm1; bh=0fdKeLd8QX+rSLuXLX+b0CYKjNLxAm1
+        HABjyUxFi+3w=; b=r9wzb11hpbRv2mFi5VAl6HORCjqgJsPE4Ru29lO7HBJQvnn
+        zUZaTDba9nAjH89ih7Iygzt8f356vDDvTKsfkn2z+/v3hM/RuHf0MgQu7a7pi5uc
+        xfqbAB8rgHCbsV41mVIpmoU3kMY9vCxwOx9wd7CRIU4x/PUvSZJ8S1uPy2lh2WtM
+        aFVzXcvEGLUocJ+oQfRU9jr4w6T/SmSDGR9xR3KG7msBeSZQ1+Y+QJTnIP2AGmOZ
+        uT3OUzHNVOdge63eewEvEkOhMqXHahjAHKNHFqUs3tvRbV/Jo+idp5Jni41YX2KF
+        22l+8iGpgp18IOxxHKQ7TAA/dfKYkgSWzHBGa2g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=0fdKeL
+        d8QX+rSLuXLX+b0CYKjNLxAm1HABjyUxFi+3w=; b=FSha391jRNHCjkdYxY1mJ3
+        9n10XowBVDosqEttfe1Fp50KH4AM2r1kGfFupyszMuO3eSBmJZ68I8hsy2S++GN2
+        eM3o5MflHNb/55Khcqz1uGs49x0w1zZp+QlnWEM4u/iZoun9pOM9Lxf3AR5wSGk0
+        nzG8KYdpfpIXdAi9D1ATjrWm5otuQn81YWjVsNZ6AEBGgyUkz07Xu2mteY5ix7XG
+        1vr4wsAy2+5v7ap8yjhuQMJB690yx03txnngodWG4MJ9jm1cIgqqAdz3dJ5VRZiu
+        KHrrDbKYlpTokoaJJC7wuw/a/YV1Py5QxSsSSNTvzsmkw+oZsEukxCV0G/FrCAhQ
+        ==
+X-ME-Sender: <xms:28AjYAeYCRn1CJieUAt8bL3nO5fDeM3fyF8UrgkD8hFrs_7zL_P85Q>
+    <xme:28AjYCMhFsh4yL0B0HMA8tbi8FobYzlKb5vdbz-AmaFM6ICD8c_Rb3PkL1_LN-jQZ
+    i_ueWxpqAytuX2WkwU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrheejgddviecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedflfhirgig
+    uhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqne
+    cuggftrfgrthhtvghrnhepkeelheethfehffdttdelieevfeeiheeuudeifeeugeeuieel
+    iedtueejheehhedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
+    hfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:28AjYBjm1fCTccv1x94xvBntvuThFZU7CrIBvnNWXAnHly6oB5zMxA>
+    <xmx:28AjYF_0z-rIeqkeoiRsOvNp-UMVeTZg1RFSjLMxjJk11zec3u7kAg>
+    <xmx:28AjYMsq8LVThNPaJAmVVCCaLMiaHckSKoEExwrOFKzCCxvIyOKlVw>
+    <xmx:3MAjYB86JhDFUz-NXPSz5Hfo-Wwrg9v3uwuBoD71tyH4njtbj9yHkg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 10868130005D; Wed, 10 Feb 2021 06:17:47 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-93-gef6c4048e6-fm-20210128.002-gef6c4048
+Mime-Version: 1.0
+Message-Id: <dffca8b3-8850-4cf4-9e69-8f2544695199@www.fastmail.com>
+In-Reply-To: <20210209093224.7085-6-zhangqing@loongson.cn>
+References: <20210209093224.7085-1-zhangqing@loongson.cn>
+ <20210209093224.7085-6-zhangqing@loongson.cn>
+Date:   Wed, 10 Feb 2021 19:17:25 +0800
+From:   "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To:     "Qing Zhang" <zhangqing@loongson.cn>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        "Marc Zyngier" <maz@kernel.org>,
+        "Huacai Chen" <chenhuacai@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        linux-kernel@vger.kernel.org,
+        "Xingxing Su" <suxingxing@loongson.cn>
+Subject: Re: [PATCH 5/6] irqchip/loongson-liointc: irqchip add 2.0 version.
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-> On 16-Nov-2020, at 11:43 AM, Joel Stanley <joel@jms.id.au> wrote:
->=20
-> On Fri, 13 Nov 2020 at 05:59, Vishwanatha Subbanna
-> <vishwa@linux.vnet.ibm.com> wrote:
->>=20
->> These are LEDs on the cable cards that plug into PCIE slots.
->> The LEDs are controlled by PCA9552 I2C expander
->>=20
->> Signed-off-by: Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
->> ---
->> arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 288 =
-+++++++++++++++++++++++++++
->> 1 file changed, 288 insertions(+)
->>=20
->> diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts =
-b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
->> index 67c8c40..7de5f76 100644
->> --- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
->> +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
->> @@ -696,6 +696,70 @@
->>                        gpios =3D <&pca4 7 GPIO_ACTIVE_LOW>;
->>                };
->>        };
->> +
->> +       leds-optional-cablecard0 {
->=20
-> Is it necessary to have separate nodes for each of the different GPIO =
-devices?
->=20
-> Would it make sense to combine them, or is it better to be separate?
->=20
-> Andrew, Eddie, Brad: please review this one before I merge it.
+On Tue, Feb 9, 2021, at 5:32 PM, Qing Zhang wrote:
+> Add IO interrupt controller support for Loongson 2k1000, different
+> from the 3a series is that 2K1000 has 64 interrupt sources, 0-31
+> correspond to the device tree liointc0 device node, and the other
+> correspond to liointc1 node.
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+> Signed-off-by: Xingxing Su <suxingxing@loongson.cn>
 
-I answered this in previous patch set.  If I express =E2=80=98em all in =
-one node that is =E2=80=9Cleds {", then if any of the GPIO is not seen =
-because of not having the card, then the current leds-gpio driver knocks =
-off all the ones on which it successfully acquired the GPIOs also, =
-leaving nothing. I did speak to the maintainer and it looked like the =
-behaviour was existing since long time and changing it would break old =
-code.
+You should document dt binding changes.
 
+Thanks
 
->=20
->> +               compatible =3D "gpio-leds";
->> +
->> +               cablecard0-cxp-top {
->> +                       retain-state-shutdown;
->> +                       default-state =3D "keep";
->> +                       gpios =3D <&pca5 0 GPIO_ACTIVE_LOW>;
->> +               };
->> +
->> +               cablecard0-cxp-bot {
->> +                       retain-state-shutdown;
->> +                       default-state =3D "keep";
->> +                       gpios =3D <&pca5 1 GPIO_ACTIVE_LOW>;
->> +               };
->> +       };
->> +
->> +       leds-optional-cablecard3 {
->> +               compatible =3D "gpio-leds";
->> +
->> +               cablecard3-cxp-top {
->> +                       retain-state-shutdown;
->> +                       default-state =3D "keep";
->> +                       gpios =3D <&pca6 0 GPIO_ACTIVE_LOW>;
->> +               };
->> +
->> +               cablecard3-cxp-bot {
->> +                       retain-state-shutdown;
->> +                       default-state =3D "keep";
->> +                       gpios =3D <&pca6 1 GPIO_ACTIVE_LOW>;
->> +               };
->> +       };
->> +
->> +       leds-optional-cablecard4 {
->> +               compatible =3D "gpio-leds";
->> +
->> +               cablecard4-cxp-top {
->> +                       retain-state-shutdown;
->> +                       default-state =3D "keep";
->> +                       gpios =3D <&pca7 0 GPIO_ACTIVE_LOW>;
->> +               };
->> +
->> +               cablecard4-cxp-bot {
->> +                       retain-state-shutdown;
->> +                       default-state =3D "keep";
->> +                       gpios =3D <&pca7 1 GPIO_ACTIVE_LOW>;
->> +               };
->> +       };
->> +
->> +       leds-optional-cablecard10 {
->> +               compatible =3D "gpio-leds";
->> +
->> +               cablecard10-cxp-top {
->> +                       retain-state-shutdown;
->> +                       default-state =3D "keep";
->> +                       gpios =3D <&pca8 0 GPIO_ACTIVE_LOW>;
->> +               };
->> +
->> +               cablecard10-cxp-bot {
->> +                       retain-state-shutdown;
->> +                       default-state =3D "keep";
->> +                       gpios =3D <&pca8 1 GPIO_ACTIVE_LOW>;
->> +               };
->> +       };
->> };
->>=20
->> &ehci1 {
->> @@ -1212,6 +1276,180 @@
->>                compatible =3D "atmel,24c64";
->>                reg =3D <0x52>;
->>        };
->> +
->> +       pca5: pca9551@60 {
->> +               compatible =3D "nxp,pca9551";
->> +               reg =3D <0x60>;
->> +               #address-cells =3D <1>;
->> +               #size-cells =3D <0>;
->> +
->> +               gpio-controller;
->> +               #gpio-cells =3D <2>;
->> +
->> +               gpio@0 {
->> +                       reg =3D <0>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@1 {
->> +                       reg =3D <1>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@2 {
->> +                       reg =3D <2>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@3 {
->> +                       reg =3D <3>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@4 {
->> +                       reg =3D <4>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@5 {
->> +                       reg =3D <5>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@6 {
->> +                       reg =3D <6>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@7 {
->> +                       reg =3D <7>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +       };
->> +};
->> +
->> +&i2c5 {
->> +       status =3D "okay";
->> +
->> +       tmp275@48 {
->> +               compatible =3D "ti,tmp275";
->> +               reg =3D <0x48>;
->> +       };
->> +
->> +       tmp275@49 {
->> +               compatible =3D "ti,tmp275";
->> +               reg =3D <0x49>;
->> +       };
->> +
->> +       eeprom@50 {
->> +               compatible =3D "atmel,24c64";
->> +               reg =3D <0x50>;
->> +       };
->> +
->> +       eeprom@51 {
->> +               compatible =3D "atmel,24c64";
->> +               reg =3D <0x51>;
->> +       };
->> +
->> +       pca6: pca9551@60 {
->> +               compatible =3D "nxp,pca9551";
->> +               reg =3D <0x60>;
->> +               #address-cells =3D <1>;
->> +               #size-cells =3D <0>;
->> +
->> +               gpio-controller;
->> +               #gpio-cells =3D <2>;
->> +
->> +               gpio@0 {
->> +                       reg =3D <0>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@1 {
->> +                       reg =3D <1>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@2 {
->> +                       reg =3D <2>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@3 {
->> +                       reg =3D <3>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@4 {
->> +                       reg =3D <4>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@5 {
->> +                       reg =3D <5>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@6 {
->> +                       reg =3D <6>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@7 {
->> +                       reg =3D <7>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +       };
->> +
->> +       pca7: pca9551@61 {
->> +               compatible =3D "nxp,pca9551";
->> +               reg =3D <0x61>;
->> +               #address-cells =3D <1>;
->> +               #size-cells =3D <0>;
->> +
->> +               gpio-controller;
->> +               #gpio-cells =3D <2>;
->> +
->> +               gpio@0 {
->> +                       reg =3D <0>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@1 {
->> +                       reg =3D <1>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@2 {
->> +                       reg =3D <2>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@3 {
->> +                       reg =3D <3>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@4 {
->> +                       reg =3D <4>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@5 {
->> +                       reg =3D <5>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@6 {
->> +                       reg =3D <6>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@7 {
->> +                       reg =3D <7>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +       };
->> };
->>=20
->> &i2c5 {
->> @@ -2028,6 +2266,56 @@
->>                compatible =3D "atmel,24c64";
->>                reg =3D <0x51>;
->>        };
->> +
->> +       pca8: pca9551@60 {
->> +               compatible =3D "nxp,pca9551";
->> +               reg =3D <0x60>;
->> +               #address-cells =3D <1>;
->> +               #size-cells =3D <0>;
->> +
->> +               gpio-controller;
->> +               #gpio-cells =3D <2>;
->> +
->> +               gpio@0 {
->> +                       reg =3D <0>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@1 {
->> +                       reg =3D <1>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@2 {
->> +                       reg =3D <2>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@3 {
->> +                       reg =3D <3>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@4 {
->> +                       reg =3D <4>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@5 {
->> +                       reg =3D <5>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@6 {
->> +                       reg =3D <6>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +
->> +               gpio@7 {
->> +                       reg =3D <7>;
->> +                       type =3D <PCA955X_TYPE_GPIO>;
->> +               };
->> +       };
->> };
->>=20
->> &i2c12 {
->> --
->> 1.8.3.1
->>=20
+- Jiaxun
 
+> ---
+>  drivers/irqchip/irq-loongson-liointc.c | 55 +++++++++++++++++++++-----
+>  1 file changed, 46 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-loongson-liointc.c 
+> b/drivers/irqchip/irq-loongson-liointc.c
+> index 9ed1bc473663..496e73bde597 100644
+> --- a/drivers/irqchip/irq-loongson-liointc.c
+> +++ b/drivers/irqchip/irq-loongson-liointc.c
+> @@ -20,6 +20,7 @@
+>  
+>  #define LIOINTC_CHIP_IRQ	32
+>  #define LIOINTC_NUM_PARENT 4
+> +#define LIOINTC_NUM_CORES	4
+>  
+>  #define LIOINTC_INTC_CHIP_START	0x20
+>  
+> @@ -42,6 +43,7 @@ struct liointc_handler_data {
+>  struct liointc_priv {
+>  	struct irq_chip_generic		*gc;
+>  	struct liointc_handler_data	handler[LIOINTC_NUM_PARENT];
+> +	void __iomem			*core_isr[LIOINTC_NUM_CORES];
+>  	u8				map_cache[LIOINTC_CHIP_IRQ];
+>  	bool				has_lpc_irq_errata;
+>  };
+> @@ -51,11 +53,12 @@ static void liointc_chained_handle_irq(struct 
+> irq_desc *desc)
+>  	struct liointc_handler_data *handler = 
+> irq_desc_get_handler_data(desc);
+>  	struct irq_chip *chip = irq_desc_get_chip(desc);
+>  	struct irq_chip_generic *gc = handler->priv->gc;
+> +	int core = get_ebase_cpunum() % LIOINTC_NUM_CORES;
+>  	u32 pending;
+>  
+>  	chained_irq_enter(chip, desc);
+>  
+> -	pending = readl(gc->reg_base + LIOINTC_REG_INTC_STATUS);
+> +	pending = readl(handler->priv->core_isr[core]);
+>  
+>  	if (!pending) {
+>  		/* Always blame LPC IRQ if we have that bug */
+> @@ -141,6 +144,15 @@ static void liointc_resume(struct irq_chip_generic *gc)
+>  }
+>  
+>  static const char * const parent_names[] = {"int0", "int1", "int2", "int3"};
+> +static const char * const core_reg_names[] = {"isr0", "isr1", "isr2", "isr3"};
+> +
+> +static void __iomem *liointc_get_reg_byname(struct device_node *node,
+> +						const char *name)
+> +{
+> +	int index = of_property_match_string(node, "reg-names", name);
+> +
+> +	return of_iomap(node, index);
+> +}
+>  
+>  int __init liointc_of_init(struct device_node *node,
+>  				struct device_node *parent)
+> @@ -159,10 +171,28 @@ int __init liointc_of_init(struct device_node *node,
+>  	if (!priv)
+>  		return -ENOMEM;
+>  
+> -	base = of_iomap(node, 0);
+> -	if (!base) {
+> -		err = -ENODEV;
+> -		goto out_free_priv;
+> +	if (of_device_is_compatible(node, "loongson,liointc-2.0")) {
+> +		base = liointc_get_reg_byname(node, "main");
+> +		if (!base) {
+> +			err = -ENODEV;
+> +			goto out_free_priv;
+> +		}
+> +		for (i = 0; i < LIOINTC_NUM_CORES; i++) {
+> +			priv->core_isr[i] =
+> +				liointc_get_reg_byname(node, core_reg_names[i]);
+> +		}
+> +		if (!priv->core_isr[0]) {
+> +			err = -ENODEV;
+> +			goto out_iounmap_base;
+> +		}
+> +	} else {
+> +		base = of_iomap(node, 0);
+> +		if (!base) {
+> +			err = -ENODEV;
+> +			goto out_free_priv;
+> +		}
+> +		for (i = 0; i < LIOINTC_NUM_CORES; i++)
+> +			priv->core_isr[i] = base + LIOINTC_REG_INTC_STATUS;
+>  	}
+>  
+>  	for (i = 0; i < LIOINTC_NUM_PARENT; i++) {
+> @@ -172,7 +202,7 @@ int __init liointc_of_init(struct device_node *node,
+>  	}
+>  	if (!have_parent) {
+>  		err = -ENODEV;
+> -		goto out_iounmap;
+> +		goto out_iounmap_isr;
+>  	}
+>  
+>  	sz = of_property_read_variable_u32_array(node,
+> @@ -183,7 +213,7 @@ int __init liointc_of_init(struct device_node *node,
+>  	if (sz < 4) {
+>  		pr_err("loongson-liointc: No parent_int_map\n");
+>  		err = -ENODEV;
+> -		goto out_iounmap;
+> +		goto out_iounmap_isr;
+>  	}
+>  
+>  	for (i = 0; i < LIOINTC_NUM_PARENT; i++)
+> @@ -195,7 +225,7 @@ int __init liointc_of_init(struct device_node *node,
+>  	if (!domain) {
+>  		pr_err("loongson-liointc: cannot add IRQ domain\n");
+>  		err = -EINVAL;
+> -		goto out_iounmap;
+> +		goto out_iounmap_isr;
+>  	}
+>  
+>  	err = irq_alloc_domain_generic_chips(domain, 32, 1,
+> @@ -260,7 +290,13 @@ int __init liointc_of_init(struct device_node *node,
+>  
+>  out_free_domain:
+>  	irq_domain_remove(domain);
+> -out_iounmap:
+> +out_iounmap_isr:
+> +	for (i = 0; i < LIOINTC_NUM_CORES; i++) {
+> +		if (!priv->core_isr[i])
+> +			continue;
+> +		iounmap(priv->core_isr[i]);
+> +	}
+> +out_iounmap_base:
+>  	iounmap(base);
+>  out_free_priv:
+>  	kfree(priv);
+> @@ -270,3 +306,4 @@ int __init liointc_of_init(struct device_node *node,
+>  
+>  IRQCHIP_DECLARE(loongson_liointc_1_0, "loongson,liointc-1.0", 
+> liointc_of_init);
+>  IRQCHIP_DECLARE(loongson_liointc_1_0a, "loongson,liointc-1.0a", 
+> liointc_of_init);
+> +IRQCHIP_DECLARE(loongson_liointc_2_0, "loongson,liointc-2.0", 
+> liointc_of_init);
+> -- 
+> 2.20.1
+> 
+>
+
+-- 
+- Jiaxun
