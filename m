@@ -2,128 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D36316B60
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 17:36:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56D80316B83
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 17:43:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232739AbhBJQfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 11:35:14 -0500
-Received: from mo-csw1116.securemx.jp ([210.130.202.158]:54786 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232707AbhBJQc5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 11:32:57 -0500
-Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 11AGUB4b006826; Thu, 11 Feb 2021 01:30:11 +0900
-X-Iguazu-Qid: 2wGqhgW4xaueMBSRto
-X-Iguazu-QSIG: v=2; s=0; t=1612974610; q=2wGqhgW4xaueMBSRto; m=ZHb/nLnVYDrFCjWRAERWKgGTvH0octWl57WAenaU1E0=
-Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
-        by relay.securemx.jp (mx-mr1112) id 11AGU9rA026238;
-        Thu, 11 Feb 2021 01:30:09 +0900
-Received: from enc01.toshiba.co.jp ([106.186.93.100])
-        by imx2.toshiba.co.jp  with ESMTP id 11AGU9ma007062;
-        Thu, 11 Feb 2021 01:30:09 +0900 (JST)
-Received: from hop001.toshiba.co.jp ([133.199.164.63])
-        by enc01.toshiba.co.jp  with ESMTP id 11AGU8I3029439;
-        Thu, 11 Feb 2021 01:30:08 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH 4/4] arm: dts: visconti: Add DT support for Toshiba Visconti5 ethernet controller
-Date:   Thu, 11 Feb 2021 01:29:54 +0900
-X-TSB-HOP: ON
-Message-Id: <20210210162954.3955785-5-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210210162954.3955785-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-References: <20210210162954.3955785-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S230107AbhBJQmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 11:42:05 -0500
+Received: from mail-oo1-f41.google.com ([209.85.161.41]:36561 "EHLO
+        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232468AbhBJQkE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 11:40:04 -0500
+Received: by mail-oo1-f41.google.com with SMTP id x10so625500oor.3;
+        Wed, 10 Feb 2021 08:39:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=hLABr+jMceH1pKsKVWNgeUVRSZCzmjSXfeG61+9prYk=;
+        b=QLhstt/9+UaJgym+mT790xjdqB4e42xMDkjhC/3/gDy4jZPTDYikn78nVMLYpPjIgm
+         8iUg24mHUCLze58BVMl5EZjEequEerOwKy4JjF/nXqOs3d+NmB2MP+kXA5b+1PR16KTT
+         fFdXjF6/ffWWeOP95AAbcamptm3kGY3zPbseMoCA+VdI6VjySQUg/k+z6ekbHTkDWt9l
+         NUenSMJLXQBUBspfL1evgDJ4K6CFXN0JJ+eM48bel8THewNUsFqe5lPEWEvM1nf+Nu62
+         W3LK4IWyGOV8BO0haRp6pZKb1p/bV7LaXoZy+f49tgrI2v6Im5edxNLaFkp7Tqx2Z0wf
+         09cA==
+X-Gm-Message-State: AOAM531idh9nXLpKDZhGYk0A9lvxeA5dpsyIDkATkXKpPoOCzm3yJAKs
+        Ym/ymKl12FdURNkOOS6NSQ==
+X-Google-Smtp-Source: ABdhPJzA1Ih5UrarX2Zd/+htFWKmORb2ZC39mQDt8TDt3wEzv7A8OepEaOs/O4rX1RA3yiSFUY5JUQ==
+X-Received: by 2002:a4a:b103:: with SMTP id a3mr2640058ooo.30.1612975162288;
+        Wed, 10 Feb 2021 08:39:22 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s2sm444254ooc.5.2021.02.10.08.39.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Feb 2021 08:39:21 -0800 (PST)
+Received: (nullmailer pid 2293398 invoked by uid 1000);
+        Wed, 10 Feb 2021 16:39:20 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, kishon@ti.com, vkoul@kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20210210080736.771803-2-narmstrong@baylibre.com>
+References: <20210210080736.771803-1-narmstrong@baylibre.com> <20210210080736.771803-2-narmstrong@baylibre.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings
+Date:   Wed, 10 Feb 2021 10:39:20 -0600
+Message-Id: <1612975160.340384.2293397.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the ethernet controller node in Toshiba Visconti5 SoC-specific DT file.
-And enable this node in TMPV7708 RM main board's board-specific DT file.
+On Wed, 10 Feb 2021 09:07:35 +0100, Neil Armstrong wrote:
+> The Amlogic G12A SoCs embeds an Analog MIPI D-PHY to communicate with DSI
+> panels, this adds the bindings.
+> 
+> This Analog D-PHY works with a separate Digital MIPI D-PHY.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../phy/amlogic,g12a-mipi-dphy-analog.yaml    | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+> 
 
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
----
- .../boot/dts/toshiba/tmpv7708-rm-mbrc.dts     | 18 ++++++++++++++
- arch/arm64/boot/dts/toshiba/tmpv7708.dtsi     | 24 +++++++++++++++++++
- 2 files changed, 42 insertions(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-index ed0bf7f13f54..48fa8776e36f 100644
---- a/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-+++ b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-@@ -41,3 +41,21 @@ &uart1 {
- 	clocks = <&uart_clk>;
- 	clock-names = "apb_pclk";
- };
-+
-+&piether {
-+	status = "okay";
-+	phy-handle = <&phy0>;
-+	phy-mode = "rgmii-id";
-+	clocks = <&clk300mhz>, <&clk125mhz>;
-+	clock-names = "stmmaceth", "phy_ref_clk";
-+
-+	mdio0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		phy0: ethernet-phy@1 {
-+			device_type = "ethernet-phy";
-+			reg = <0x1>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-index 242f25f4e12a..fabb8d66ef93 100644
---- a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-+++ b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-@@ -134,6 +134,20 @@ uart_clk: uart-clk {
- 		#clock-cells = <0>;
- 	};
- 
-+	clk125mhz: clk125mhz {
-+		compatible = "fixed-clock";
-+		clock-frequency = <125000000>;
-+		#clock-cells = <0>;
-+		clock-output-names = "clk125mhz";
-+	};
-+
-+	clk300mhz: clk300mhz {
-+		compatible = "fixed-clock";
-+		clock-frequency = <300000000>;
-+		#clock-cells = <0>;
-+		clock-output-names = "clk300mhz";
-+	};
-+
- 	soc {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -384,6 +398,16 @@ spi6: spi@28146000 {
- 			#size-cells = <0>;
- 			status = "disabled";
- 		};
-+
-+		piether: ethernet@28000000 {
-+			compatible = "toshiba,visconti-dwmac";
-+			reg = <0 0x28000000 0 0x10000>;
-+			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq";
-+			snps,txpbl = <4>;
-+			snps,rxpbl = <4>;
-+			status = "disabled";
-+		};
- 	};
- };
- 
--- 
-2.27.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dts:22.15-25: Warning (reg_format): /example-0/phy@0:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: example-0: phy@0:reg:0: [0] is too short
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+
+See https://patchwork.ozlabs.org/patch/1438845
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
