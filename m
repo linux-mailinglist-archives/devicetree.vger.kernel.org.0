@@ -2,82 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9341F316DC1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 19:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01147316DC3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 19:04:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233311AbhBJSDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 13:03:38 -0500
-Received: from mail.baikalelectronics.com ([87.245.175.226]:34978 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233493AbhBJSBG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 13:01:06 -0500
-Date:   Wed, 10 Feb 2021 21:00:07 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Vyacheslav Mitrofanov 
-        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <netdev@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 00/16] net: stmmac: Add DW MAC GPIOs and Baikal-T1 GMAC
- support
-Message-ID: <20210210180007.tjuvbjw7rpmxhsll@mobilestation>
-References: <20210208140820.10410-1-Sergey.Semin@baikalelectronics.ru>
- <YCGSwZnSXIz5Ssef@lunn.ch>
- <20210209111609.tjxoqr6stkcf22jy@mobilestation>
- <YCKYHay9PsR2o04z@lunn.ch>
+        id S233861AbhBJSDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 13:03:46 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:33878 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233502AbhBJSBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 13:01:33 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id A95AE2078945;
+        Wed, 10 Feb 2021 10:00:49 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com A95AE2078945
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1612980050;
+        bh=R9xpAEULLlRloLEZ3aDp0NwjBNcG/EJw+NYFrjbxovk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=iLPpwBjLdWwIRAhzbc9LVKfkXHca9jl+5BYxYtIL/Nw2utUjaWoz3J/q4Khaingxp
+         9g+ioSTJJfSpxELua3hENK89gsOkGTSQniJuV52oPiEB0xSN23m+EYsm2a7+KTq4dr
+         1Fl6I+Swrn54OePYZFnQpIO72FEz7BkMY+hiVBu0=
+Subject: Re: [PATCH v17 05/10] powerpc: Move ima buffer fields to struct
+ kimage
+To:     Rob Herring <robh@kernel.org>
+Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
+        mpe@ellerman.id.au, james.morse@arm.com, sashal@kernel.org,
+        benh@kernel.crashing.org, paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
+        tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+References: <20210209182200.30606-1-nramas@linux.microsoft.com>
+ <20210209182200.30606-6-nramas@linux.microsoft.com>
+ <20210210172018.GA2361245@robh.at.kernel.org>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <a508a7b9-ce90-a68a-8b07-7fc65052d98a@linux.microsoft.com>
+Date:   Wed, 10 Feb 2021 10:00:49 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YCKYHay9PsR2o04z@lunn.ch>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <20210210172018.GA2361245@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 09, 2021 at 03:11:41PM +0100, Andrew Lunn wrote:
-> > Regarding splitting the series up. I don't see a problem in just
-> > sending the cover-letter patch and actual GPIO-related patches to
-> > the GPIO-maintainers with no need to have them added to Cc in the rest
-> > of the series.
+On 2/10/21 9:20 AM, Rob Herring wrote:
+> On Tue, Feb 09, 2021 at 10:21:55AM -0800, Lakshmi Ramasubramanian wrote:
+>> The fields ima_buffer_addr and ima_buffer_size in "struct kimage_arch"
+>> for powerpc are used to carry forward the IMA measurement list across
+>> kexec system call.  These fields are not architecture specific, but are
+>> currently limited to powerpc.
+>>
+>> arch_ima_add_kexec_buffer() defined in "arch/powerpc/kexec/ima.c"
+>> sets ima_buffer_addr and ima_buffer_size for the kexec system call.
+>> This function does not have architecture specific code, but is
+>> currently limited to powerpc.
+>>
+>> Move ima_buffer_addr and ima_buffer_size to "struct kimage".
+>> Rename arch_ima_add_kexec_buffer() to of_ima_add_kexec_buffer()
+>> and move it in drivers/of/kexec.c.
+>>
+>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>> Suggested-by: Will Deacon <will@kernel.org>
+>> ---
+>>   arch/powerpc/include/asm/ima.h     |  3 ---
+>>   arch/powerpc/include/asm/kexec.h   |  5 -----
+>>   arch/powerpc/kexec/ima.c           | 29 ++++++-----------------------
+>>   drivers/of/kexec.c                 | 23 +++++++++++++++++++++++
+>>   include/linux/kexec.h              |  3 +++
+>>   include/linux/of.h                 |  5 +++++
+>>   security/integrity/ima/ima_kexec.c |  3 ++-
+>>   7 files changed, 39 insertions(+), 32 deletions(-)
+
+>> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+>> index 469e09613cdd..9f33d215b9f2 100644
+>> --- a/drivers/of/kexec.c
+>> +++ b/drivers/of/kexec.c
+>> @@ -63,6 +63,29 @@ static int fdt_find_and_del_mem_rsv(void *fdt, unsigned long start, unsigned lon
+>>   	return -ENOENT;
+>>   }
+>>   
+>> +#ifdef CONFIG_IMA_KEXEC
+>> +/**
+>> + * of_ima_add_kexec_buffer - Add IMA buffer for next kernel
+>> + *
+>> + * @image: kimage struct to set IMA buffer data
+>> + * @load_addr: Starting address where IMA buffer is loaded at
+>> + * @size: Number of bytes in the IMA buffer
+>> + *
+>> + * Use this function to pass on the IMA buffer information to
+>> + * the next kernel across kexec system call.
+>> + *
+>> + * Return: 0 on success, negative errno on error.
+>> + */
+>> +int of_ima_add_kexec_buffer(struct kimage *image,
+>> +			    unsigned long load_addr, size_t size)
+>> +{
+>> +	image->ima_buffer_addr = load_addr;
+>> +	image->ima_buffer_size = size;
+>> +
 > 
+> There's nothing DT specific about this function, so this is the wrong
+> place for it. I would just remove it and directly set the members.
 
-> The Linux community has to handle a large number of patches. I don't
-> particularly want patches which are of no relevance to me landing in
-> my mailbox. It might take 4 or 5 rounds for the preparation patches to
-> be accepted. That is 4 or 5 times you are spamming the GPIO
-> maintainers with stuff which is not relevant to them.
+Will do.
 
-I don't really understand what you are arguing with. My suggestion
-didn't contradict to what you said. I exactly meant to omit sending
-the patches to GPIO maintainers, which they had no relevance to. So
-they wouldn't be spammed with unwanted patches. The GPIO maintainers
-can be Cc/To-ed only to the messages with GPIO-related patches. It's
-normal to have intermixed patchsets, but to post individual patches to
-the maintainers they might be interested in or they need to review. So
-splitting up isn't required in this case.  Moreover doing as you
-suggest would extend the time of the patches review with no really
-much gain in the emailing activity optimization.
+  -lakshmi
 
-> 
-> One of the unfortunately things about the kernel process is, there are
-> a lot of developers, and not many maintainers. So the processes need
-> to make the life of maintainers easier, and not spamming them helps.
 
-Can't argue with that.)
-
--Sergey
-
-> 
->    Andrew
