@@ -2,111 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85E3231655D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:39:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1734F316577
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:45:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229583AbhBJLjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 06:39:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32814 "EHLO
+        id S231124AbhBJLos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 06:44:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbhBJLiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 06:38:02 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29185C061756
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 03:37:20 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id u14so2126254wri.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 03:37:20 -0800 (PST)
+        with ESMTP id S229789AbhBJLme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 06:42:34 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AB26C061756
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 03:40:32 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id g6so2072177wrs.11
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 03:40:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tAlt2AWMRf+ppapnfIwS3IIQSTyeAdGOjz/xqXMAQy8=;
-        b=mVTGUnzQMGuNLnKKHydMVOuXLhU+BJUTKWqI2GhhILiy4LsCHu8NOM4LEaMWSDSnw6
-         3oVP1xUcpqkIPqxRvexjgQ0N0gnAtdmbF6/7Y07O6DOf3g2wBG4wm6b+B1CSYtJ/cZCY
-         y4z7rBuMWdKqUzWaQAU4U70J9R8qoCKxbIHC1upCeY7ZkIhP6HLHQF6pyohninyFjKH3
-         aLoT58U4bdxkGz8o2nbY+KQ3iWo7xMVbatOfJw2Dwm140YlRB9ZXqZPMD5Z2vzYeKCW0
-         D3JbJXCFYVDdD9zCHJ/yS9q96Orkl5iYx2bLh8U4X/8jjcBzRtEper3/Dd2u4A+17cic
-         7dpg==
+        d=linaro.org; s=google;
+        h=to:cc:references:from:subject:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=5GoJC4V0UCuiiuIOTJUq3dIm+H2v/ROpsGNFKYUDXXU=;
+        b=Qi5XNSOFPAVFMr0fcYS7hcd3qhkQTLTVqeruUI9G2lw1lgceAhsT2AYnmtP9wVURdp
+         7PAZENJo35MBq8rQiYSjPTTkHrTP7/qncDHbV+j3O/Euq6kAKQ62yDYuIJt+c2OCtoWo
+         Z4/hWslhlVa7iv2ROx5r/aDDHKf9F4YXl4w1QlvqxlgrSdJAr7E0qROdgDvjDyfhqgfe
+         XCEIodx+aMr7xnX23ufyqWM6AsdTipeHFNJ/JTXE7tUMVl99QyGEQizweoERsWY2v8xb
+         LQa0bCMlSi9rEAAEUBWCIIp9/A1e5xW4rv3S9mQKzCLlDfTkdFm0JVqbj6uUKFAmd/pV
+         3uTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tAlt2AWMRf+ppapnfIwS3IIQSTyeAdGOjz/xqXMAQy8=;
-        b=p2L92fHsCitaWpvcoltxvyEHaz2IZ336yV+MWyha/LeC7zeWHClheGZM7iJrCnIyHJ
-         ydOIWlO1fWm3EUfIMFap5zOSRomQ4y6Xpazw9f6DQV9xShEq9FNdjp6ytuVkreBMzcuh
-         sty8thyfMNXRMNKjhmqfJjyAzM+WIjHGASEEunAWYkVC0OrB1gU19JN+uvwy+g5kJLim
-         DszNFomudPrmVuH0o2Hp8ttrwUbD2B0BUM2/froRzzglZvR9e2huXW6rTKDAPheyfm5K
-         jG19JWxtMU8IvZt0oUW6wXX513Z8qd7DpyZA7OegRhVDfjoJ2e8lTlZLOP4hfQLg6isZ
-         n2Fw==
-X-Gm-Message-State: AOAM532f8OzwTHfUoFNApG2RFn94Ld55JGvtM18kbJzQM4hpMOK+IJ6+
-        DxzWl5w7v9eGigzg1mGmHJg=
-X-Google-Smtp-Source: ABdhPJzyaZ5hER8iYOoD7B0dMNiH1h5hjCjbKV8kOPK2BhNic61kBShxM+HPX5G8APC3BXiWUwxsCw==
-X-Received: by 2002:adf:fc48:: with SMTP id e8mr3213836wrs.154.1612957038930;
-        Wed, 10 Feb 2021 03:37:18 -0800 (PST)
-Received: from ziggy.stardust (static-188-169-27-46.ipcom.comunitel.net. [46.27.169.188])
-        by smtp.gmail.com with ESMTPSA id z15sm2490795wrs.25.2021.02.10.03.37.18
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5GoJC4V0UCuiiuIOTJUq3dIm+H2v/ROpsGNFKYUDXXU=;
+        b=ATaip7beAgxn86KhQPWGISTdahKdIJYoLRkFJ/puHVeMV4WbgILM//OVDjolF3OQ1n
+         Rn+VslbEgzr5rxIYnkJ0ueAPPLhVJ+0dIbFj7iDunVzTrYJLTgjON3rzilRS1nOxHOGt
+         OLBV7+uLh7Bm9LowMh6oPX8Bbs/gBZfEbncURWbVMpNXwIsL42JBAEZaJKEvJUeKfFk2
+         uTIPtvS9iVOpezDdgvOLU34wpX+gtT21s4EXbzJcIj2qCbNPt6xYf5pzUVwb9DR8YPrj
+         n6oaFzbvpfbLSp1JhZ5CJ71KEIt9R1Zs9hB573c4lQ0iYCAycdecx6jIAQ19t1B+bQCJ
+         VtPw==
+X-Gm-Message-State: AOAM531B2oQcst/vtbO9SFb/tdpqHSlyvx9Mg/Vtp6jIdsx2XYOE0XEt
+        R3XziMnNSdcz42zDdIwlYzHRjw==
+X-Google-Smtp-Source: ABdhPJxzau1EbOBPcSPe2+wNcHLxx/mMRPnSIsn0pb7u1nT2J0Pqr4ogGG9I/HtSEhRYsfiKnwqv7w==
+X-Received: by 2002:a5d:6712:: with SMTP id o18mr3077510wru.375.1612957231068;
+        Wed, 10 Feb 2021 03:40:31 -0800 (PST)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id c62sm2216146wmd.43.2021.02.10.03.40.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Feb 2021 03:37:18 -0800 (PST)
-Subject: Re: [PATCH 2/3] watchdog: mtk_wdt: add support for 16-bit control
- registers
-To:     Boris Lysov <arzamas-16@mail.ee>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, linux-mediatek@lists.infradead.org
-References: <20210131234425.9773-1-arzamas-16@mail.ee>
- <20210131234425.9773-3-arzamas-16@mail.ee>
- <050f2f8e-9c3c-10e3-05ef-cd84e949b98f@roeck-us.net>
- <20210202043355.18080818@pc>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <f73f3d85-5f2e-21a3-5ce0-02f384ffa660@gmail.com>
-Date:   Wed, 10 Feb 2021 12:37:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        Wed, 10 Feb 2021 03:40:30 -0800 (PST)
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210210104724.340991-1-vkoul@kernel.org>
+ <20210210104724.340991-2-vkoul@kernel.org>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [PATCH 2/2] interconnect: qcom: Add SM8350 interconnect provider
+ driver
+Message-ID: <8ab6dfcc-a710-1ecd-6774-1f54ce30685c@linaro.org>
+Date:   Wed, 10 Feb 2021 13:40:29 +0200
 MIME-Version: 1.0
-In-Reply-To: <20210202043355.18080818@pc>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210210104724.340991-2-vkoul@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Vinod,
 
+On 2/10/21 12:47, Vinod Koul wrote:
+> Add driver for the Qualcomm interconnect buses found in SM8i350 based
 
-On 02/02/2021 02:33, Boris Lysov wrote:
-> В Sun, 31 Jan 2021 16:31:09 -0800
-> Guenter Roeck <linux@roeck-us.net> пишет:
+SM8i350?
+
+> platforms. The topology consists of several NoCs that are controlled by
+> a remote processor that collects the aggregated bandwidth for each
+> master-slave pairs.
 > 
->> We can't do this. With this flag enabled, the watchdog won't
->> support other SoCs, and there is nothing that prevents the flag
->> from being set for those SoCs.
->>
->> This has to be handled differently, without configuration
->> flag. Maybe use regmap for register addresses, [snip],
->> or use accessor functions in mtk_wdt_dev.
+> Generated from downstream interconnect driver written by David Dai
 > 
-> Thank you for reviewing my patch!
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>   drivers/interconnect/qcom/Kconfig  |  10 +
+>   drivers/interconnect/qcom/Makefile |   2 +
+>   drivers/interconnect/qcom/sm8350.c | 635 +++++++++++++++++++++++++++++
+>   3 files changed, 647 insertions(+)
+>   create mode 100644 drivers/interconnect/qcom/sm8350.c
 > 
-> I will consider suggested fixes, and I will come up with better solution
-> in V2. I'm beginner developer, and am still learning.
-> 
->> use the compatible string to determine which regmap settings to use
-> 
-> I think relying on hardcoded "compatible string - settings" pairs in
-> driver is not good. Whilst most Mediatek watchdogs I've seen use
-> similar drivers, no one (except Mediatek itself, of course) knows for
-> sure how many devices use 16-bit mode, and specifying each one in C
-> code may _theoretically_ bloat it. (well, on the other hand, I've seen
-> other watchdog drivers with many compatible devices listed in C code,
-> and they didn't seem bloated at all)
+> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+> index a8f93ba265f8..2ad0aea8336a 100644
+> --- a/drivers/interconnect/qcom/Kconfig
+> +++ b/drivers/interconnect/qcom/Kconfig
+> @@ -85,5 +85,15 @@ config INTERCONNECT_QCOM_SM8250
+>   	  This is a driver for the Qualcomm Network-on-Chip on sm8250-based
+>   	  platforms.
+>   
+> +config INTERCONNECT_QCOM_SM8350
+> +	tristate "Qualcomm SM8350 interconnect driver"
+> +	depends on INTERCONNECT_QCOM
+> +	depends on (QCOM_RPMH && QCOM_COMMAND_DB && OF) || COMPILE_TEST
 
-We enable 16 bit access for "mediatek,mt6577-wdt" if we have a new SoC that also
-needs 16 bit access, most probably we can just update the binding documentation
-by adding the new SoC with a fallback to mt6577:
+Maybe depend on INTERCONNECT_QCOM_RPMH_POSSIBLE instead of the above.
 
-"mediatek,mt1234-wdt", "mediatek,mt6577-wdt": for MT1234
-
-As no binding to mt1234 is present in the driver, the mt6577 one will be used.
-
-Regards,
-Matthias
+Thanks,
+Georgi
