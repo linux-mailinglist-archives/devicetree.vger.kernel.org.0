@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 687BA3165A4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:50:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A84E3165CF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:59:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbhBJLuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 06:50:25 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:14715 "EHLO
+        id S229683AbhBJL7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 06:59:04 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:15483 "EHLO
         esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231437AbhBJLsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 06:48:22 -0500
+        with ESMTP id S230302AbhBJL5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 06:57:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1612957701; x=1644493701;
+  t=1612958220; x=1644494220;
   h=message-id:subject:from:to:cc:date:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=9diNDRqQHFEjVdCdXqYmIwlaA+jvd0iVcd4+rjBiIks=;
-  b=GtwOBdveErlu+ERoE84axo2ar+t30sLhdOvSx6EwQGMJTcvKo0Wg4aY8
-   ejdcqgejML6qGS5+37wVGLToi+Cmd+kAxIpcd1GAvMz1DhHASlEPOlHe7
-   nkk5vpqwqg22sWIJv0fvlfMAgKsllzivS0l2JRM+jYXY2dxLj7R1Cihku
-   gsh52vCj2O0vnSkFFQOiSSiDm25yuza06Hz647ZbZb+YH9bgm5dNotsoZ
-   s7NYfG9JzLt7CwyUoHfjKN+LNH+iOMBoQtvoPdQ9yULxOsztsqYWaUlfm
-   8ASWfEHA9dqQNPwmHDI58Nz8piv2be+eAc+4oI699N/AoiwazPpfxVt+Q
-   A==;
-IronPort-SDR: C/yerYggcc94jp9199Q0gtGSIRD0uRmUqh5NSFwjeLOjk0fVGi8cHj4tsUj7OE/2KgSKcy3B9e
- 6po4ufSk++LmlYIUvfQOPNMMxF61MHhHoRiYqkYWHc4ScSN8jrniRRA11QVQAQVpbcgDAUfS6f
- iUqPzmjHkB/V5pjZBnDa+7AV68QtXy2TgJzSxnMUzbCawSvvMiYHq2gnU/VyZunZetfJLA5Kfh
- PW2ZTlb1U3VtF68y0Myva9IdD1mvel67/SCKPk4ogeBfnj2FEm5LjHMgDc39UDIr26VLIRrOzS
- +S0=
+  bh=/nFWYpgDz2q9AGtCu9C5FQC0uPo0Ps2PgxNOaxfDfHQ=;
+  b=GtGGnAIrfXusPUVPkdfeRIocr4pjCk+FgMB2n86McT2GMATjRKaodwfP
+   bl7+uht6iRTvWRp25iljhU/W5HXQ5i4+wp1+vQtMI2/bkAB29GXN0gbK+
+   8ZuVNZ4q/ZNhzDn982xgxWLI4lQH6H6qR/yYXGfc6oUteNzFsTGKgTwD7
+   HywAeu8c6u5meGEh+1iuca7dfMZ0NNWxQOi3qGNSs69Pmn9dKpaBC78qs
+   kChDHml/Uk484XZigTE6HBQZDX1IOn+AOf4j+gdhvC5/ENO7LaSIXUGDk
+   m+ktlk2fqK/8YNnJzFBymL/RGD2Eak+AlqL/kWPGU303ZprFX05Q1pdtF
+   Q==;
+IronPort-SDR: xuR3FBea+DUDsOXUbIO+BYMXs1/9OOJi7SiDQoLABp1sn1qXUl3KwBHwB3vifdO1SKWaCVqglG
+ sZxlQCN92sLzG15kPlfWnzB0JpAn+JeiLf/EcptpRW/DeoWpxjOllDTBZnrVi9fwJwz1qM7x8g
+ MLhxw4pFLux6jd6TG+bPyakpYaBegjN/TNqFLJx6ycuXck/BExk1+c3LdjSfqjwAjA7u+gDeWd
+ przWGaZXxz+ZDsvFL9ONdbewW4BVd3ChgrF8KxysFphUR7aLCy4KCn6RqbLtLrTdsKcvhn7XYw
+ ee8=
 X-IronPort-AV: E=Sophos;i="5.81,168,1610434800"; 
-   d="scan'208";a="109198247"
+   d="scan'208";a="109199456"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Feb 2021 04:47:06 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Feb 2021 04:55:45 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 10 Feb 2021 04:46:55 -0700
+ 15.1.1979.3; Wed, 10 Feb 2021 04:55:45 -0700
 Received: from CHE-LT-I21427U.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Wed, 10 Feb 2021 04:46:51 -0700
-Message-ID: <6531ab6c7e40b7e2f73a6087b31ecfe0a8f214e4.camel@microchip.com>
-Subject: Re: [PATCH net-next 1/8] dt-bindings: net: dsa: dt bindings for
- microchip lan937x
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Wed, 10 Feb 2021 04:55:40 -0700
+Message-ID: <fc0549661e10c28d6344be74eb8b29336c1ebdf5.camel@microchip.com>
+Subject: Re: [PATCH net-next 2/8] net: dsa: tag_ksz: add tag handling for
+ Microchip LAN937x
 From:   Prasanna Vengateshan Varadharajan 
         <prasanna.vengateshan@microchip.com>
 To:     Vladimir Oltean <olteanv@gmail.com>
@@ -51,11 +51,11 @@ CC:     <andrew@lunn.ch>, <netdev@vger.kernel.org>, <robh+dt@kernel.org>,
         <f.fainelli@gmail.com>, <davem@davemloft.net>,
         <UNGLinuxDriver@microchip.com>, <Woojung.Huh@microchip.com>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date:   Wed, 10 Feb 2021 17:16:49 +0530
-In-Reply-To: <20210130020227.ahiee4goetpp2hb7@skbuf>
+Date:   Wed, 10 Feb 2021 17:25:38 +0530
+In-Reply-To: <20210130022709.ai5kq7w52gpqrb4n@skbuf>
 References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
-         <20210128064112.372883-2-prasanna.vengateshan@microchip.com>
-         <20210130020227.ahiee4goetpp2hb7@skbuf>
+         <20210128064112.372883-3-prasanna.vengateshan@microchip.com>
+         <20210130022709.ai5kq7w52gpqrb4n@skbuf>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
@@ -64,141 +64,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2021-01-30 at 04:02 +0200, Vladimir Oltean wrote:
+On Sat, 2021-01-30 at 04:27 +0200, Vladimir Oltean wrote:
 > EXTERNAL EMAIL: Do not click links or open attachments unless you
 > know the content is safe
 > 
-Thanks for your time on reviewing the patch series.
-
-> On Thu, Jan 28, 2021 at 12:11:05PM +0530, Prasanna Vengateshan wrote:
-> > +  spi-max-frequency:
-> > +    maximum: 50000000
+> On Thu, Jan 28, 2021 at 12:11:06PM +0530, Prasanna Vengateshan wrote:
+> > diff --git a/net/dsa/tag_ksz.c b/net/dsa/tag_ksz.c
+> > index 4820dbcedfa2..6fac39c2b7d5 100644
+> > --- a/net/dsa/tag_ksz.c
+> > +++ b/net/dsa/tag_ksz.c
+> > @@ -190,10 +190,84 @@ static const struct dsa_device_ops
+> > ksz9893_netdev_ops = {
+> >  DSA_TAG_DRIVER(ksz9893_netdev_ops);
+> >  MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_KSZ9893);
+> > 
+> > +/* For Ingress (Host -> LAN937x), 2 bytes are added before FCS.
+> > + * -------------------------------------------------------------
+> > --------------
+> > + *
+> > DA(6bytes)|SA(6bytes)|....|Data(nbytes)|tag0(1byte)|tag1(1byte)|FCS
+> > (4bytes)
+> > + * -------------------------------------------------------------
+> > --------------
+> > + * tag0 : represents tag override, lookup and valid
+> > + * tag1 : each bit represents port (eg, 0x01=port1, 0x02=port2,
+> > 0x80=port8)
+> > + *
+> > + * For Egress (LAN937x -> Host), 1 byte is added before FCS.
+> > + * -------------------------------------------------------------
+> > --------------
+> > + * DA(6bytes)|SA(6bytes)|....|Data(nbytes)|tag0(1byte)|FCS(4bytes)
+> > + * -------------------------------------------------------------
+> > --------------
+> > + * tag0 : zero-based value represents port
+> > + *     (eg, 0x00=port1, 0x02=port3, 0x07=port8)
+> > + */
 > 
-> And it actually works at 50 MHz? Cool.
-Yes.
-
-> 
-> > +
-> > +  reset-gpios:
-> > +    description: Optional gpio specifier for a reset line
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    //Ethernet switch connected via spi to the host, CPU port
-> > wired to eth1
-> > +    eth1 {
-> 
-> So if you do bother to add the DSA master in the example, can this be
-> &eth1 so that we could associate with the phandle below?
-Sure.
-
-> 
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      fixed-link {
-> > +        speed = <1000>;
-> > +        full-duplex;
-> > +      };
-> > +    };
-> > +
-> > +    spi1 {
-> 
-> Is this a label or a node name? spi1 or spi@1?
-This is a label.
+> You messed up the comment, right now it's as good as not having it.
+> The one-hot port encoding is for xmit. The zero-based encoding is for
+> rcv, not the other way around.
+I understand the problem is with the term Egress & Ingress w.r.to
+LAN937x. I will make sure that the comment is added w.r.to xmit() &
+rcv().
 
 > 
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +      pinctrl-0 = <&pinctrl_spi_ksz>;
-> > +      cs-gpios = <0>, <0>, <0>, <&pioC 28 0>;
-> > +      id = <1>;
+> > +#define LAN937X_INGRESS_TAG_LEN              2
+> > +
+> > +#define LAN937X_TAIL_TAG_OVERRIDE    BIT(11)
+> > +#define LAN937X_TAIL_TAG_LOOKUP              BIT(12)
+> > +#define LAN937X_TAIL_TAG_VALID               BIT(13)
+> > +#define LAN937X_TAIL_TAG_PORT_MASK   7
+> > +
+> > +static struct sk_buff *lan937x_xmit(struct sk_buff *skb,
+> > +                                 struct net_device *dev)
+> > +{
+> > +     struct dsa_port *dp = dsa_slave_to_port(dev);
+> > +     __be16 *tag;
+> > +     u8 *addr;
+> > +     u16 val;
+> > +
+> > +     /* Tag encoding */
 > 
-> I know this is the SPI controller and thus mostly irrelevant, but
-> what
-> is "id = <1>"?
-id is not needed, i will remove it.
+> Do we really need this comment and the one with "Tag decoding" from
+> rcv?
+Okay, will correct it.
 
 > 
+> > +     tag = skb_put(skb, LAN937X_INGRESS_TAG_LEN);
+> > +     addr = skb_mac_header(skb);
 > > +
-> > +      lan9374: switch@0 {
-> > +        compatible = "microchip,lan9374";
-> > +        reg = <0>;
+> > +     val = BIT(dp->index);
 > > +
-> > +        spi-max-frequency = <44000000>;
+> > +     if (is_link_local_ether_addr(addr))
+> > +             val |= LAN937X_TAIL_TAG_OVERRIDE;
 > > +
-> > +        ethernet-ports {
-> > +          #address-cells = <1>;
-> > +          #size-cells = <0>;
-> > +          port@0 {
-> > +            reg = <0>;
-> > +            label = "lan1";
-> > +          };
-> > +          port@1 {
-> > +            reg = <1>;
-> > +            label = "lan2";
-> > +          };
-> > +          port@2 {
-> > +            reg = <7>;
+> > +     /* Tail tag valid bit - This bit should always be set by the
+> > CPU*/
+> > +     val |= LAN937X_TAIL_TAG_VALID;
+> > +
+> > +     *tag = cpu_to_be16(val);
+> > +
+> > +     return skb;
+> > +}
+> > +
+> > +static struct sk_buff *lan937x_rcv(struct sk_buff *skb, struct
+> > net_device *dev,
+> > +                                struct packet_type *pt)
 > 
-> reg should match node index (port@2), here and everywhere below. As
-> for
-> the net device labels, I'm not sure if the mismatch is deliberate
-> there.
-reg & port node indexes are different here because to match with the
- physical to logical port mapping done in the LAN9374. I realized that
-the description is missing and that is to be added. However, should reg
-& port node index match for the net dev? 
-If it should be the same, then the same can be acheived by renaming a
-label (lanx) as well.
+> You can reuse ksz9477_rcv.
+Sure, will reuse ksz9477_rcv. 
 
 > 
-> > +            label = "lan3";
-> > +          };
-> > +          port@3 {
-> > +            reg = <2>;
-> > +            label = "lan4";
-> > +          };
-> > +          port@4 {
-> > +            reg = <6>;
-> > +            label = "lan5";
-> > +          };
-> > +          port@5 {
-> > +            reg = <3>;
-> > +            label = "lan6";
-> > +          };
-> > +          port@6 {
-> > +            reg = <4>;
-> > +            label = "cpu";
-> 
-> label for CPU port is not needed/used.
-Sure, will remove it.
-
-> 
-> > +            ethernet = <&eth1>;
-> > +            fixed-link {
-> > +              speed = <1000>;
-> > +              full-duplex;
-> > +            };
-> > +          };
-> > +          port@7 {
-> > +            reg = <5>;
-> > +            label = "lan7";
-> > +            fixed-link {
-> > +              speed = <1000>;
-> > +              full-duplex;
-> > +            };
-> > +          };
-> > +        };
-> > +      };
-> > +    };
+> > +{
+> > +     /* Tag decoding */
+> > +     u8 *tag = skb_tail_pointer(skb) - KSZ_EGRESS_TAG_LEN;
+> > +     unsigned int port = tag[0] & LAN937X_TAIL_TAG_PORT_MASK;
+> > +     unsigned int len = KSZ_EGRESS_TAG_LEN;
+> > +
+> > +     /* Extra 4-bytes PTP timestamp */
+> > +     if (tag[0] & KSZ9477_PTP_TAG_INDICATION)
+> > +             len += KSZ9477_PTP_TAG_LEN;
+> > +
+> > +     return ksz_common_rcv(skb, dev, port, len);
+> > +}
+> > +
+> > +static const struct dsa_device_ops lan937x_netdev_ops = {
+> > +     .name   = "lan937x",
+> > +     .proto  = DSA_TAG_PROTO_LAN937X,
+> > +     .xmit   = lan937x_xmit,
+> > +     .rcv    = lan937x_rcv,
+> > +     .overhead = LAN937X_INGRESS_TAG_LEN,
+> > +     .tail_tag = true,
+> > +};
+> > +
+> > +DSA_TAG_DRIVER(lan937x_netdev_ops);
+> > +MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_LAN937X);
+> > +
+> >  static struct dsa_tag_driver *dsa_tag_driver_array[] = {
+> >       &DSA_TAG_DRIVER_NAME(ksz8795_netdev_ops),
+> >       &DSA_TAG_DRIVER_NAME(ksz9477_netdev_ops),
+> >       &DSA_TAG_DRIVER_NAME(ksz9893_netdev_ops),
+> > +     &DSA_TAG_DRIVER_NAME(lan937x_netdev_ops),
+> >  };
+> > 
+> >  module_dsa_tag_drivers(dsa_tag_driver_array);
+> > --
+> > 2.25.1
+> > 
 
