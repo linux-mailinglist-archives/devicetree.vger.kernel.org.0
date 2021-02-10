@@ -2,103 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 626C7316CDC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 18:35:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20800316CEE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 18:38:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232754AbhBJRfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 12:35:00 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:58426 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232602AbhBJReG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 12:34:06 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id A053020B6C40;
-        Wed, 10 Feb 2021 09:33:24 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com A053020B6C40
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1612978405;
-        bh=6iW/jXFaWAWQ/vudECjORFajSX6aWkb9ApB+qY8R+5s=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ZTb8yL5XLLS13AwmIB0pBulw3hYrXQ7SwfAX4H7q9qS6I+HQBCVy9jYth6WFHk3uB
-         Xc7IAPEvtuRTX5eJ+zUIRRi/bZZwPAn0kvRAhLC7XNVAAL2oILyaf8l9xH0G8wVqTw
-         SbGUH+X0F4AQdN5xxah0sgRaMp+OyWIF/jmjTm5g=
-Subject: Re: [PATCH v17 00/10] Carry forward IMA measurement log on kexec on
- ARM64
-To:     Rob Herring <robh@kernel.org>
-Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
-        mpe@ellerman.id.au, james.morse@arm.com, sashal@kernel.org,
-        benh@kernel.crashing.org, paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
-        tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-References: <20210209182200.30606-1-nramas@linux.microsoft.com>
- <20210210171500.GA2328209@robh.at.kernel.org>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <5c002c32-bc49-acda-c641-7b1494ea292d@linux.microsoft.com>
-Date:   Wed, 10 Feb 2021 09:33:24 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S232459AbhBJRhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 12:37:17 -0500
+Received: from msg-1.mailo.com ([213.182.54.11]:35638 "EHLO msg-1.mailo.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232977AbhBJRfk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 12:35:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1612978454; bh=EXG7f7uNuaToBdDu8mdjVFdsXTtJGfa9dWahPfAMOKs=;
+        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
+         MIME-Version:Content-Transfer-Encoding;
+        b=YSvRQy0e5tYpdB0gkwZJlqcVagIyjF277QHXddXCKXqaEleE/JRVyFb8stWMHqRgK
+         w/5MxPNHtp3hRcsP5/6lZI2RrCYbBcSIoOD2oaXLy1zbIpGZl+OKRmG3bgE41qwK31
+         udCtG3RvR8WXiQoTRhTCkg4Rmy0KlF4NOcoU+cBs=
+Received: by b-4.in.mailobj.net [192.168.90.14] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Wed, 10 Feb 2021 18:34:13 +0100 (CET)
+X-EA-Auth: Jn1gIZeHdPCnKZ3x43DoTVcJ6WAq6xemBNdS8aTzyQQ4kLdZCyLrp3HFlwQR8olvu5D2A1I63k+EebvUDUGkhNou/bO5U/iiUfxdaEQEG7o=
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v4 1/2] dt-bindings: input/touchscreen: add bindings for msg2638
+Date:   Wed, 10 Feb 2021 18:33:51 +0100
+Message-Id: <20210210173403.667482-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20210210171500.GA2328209@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/10/21 9:15 AM, Rob Herring wrote:
-> On Tue, Feb 09, 2021 at 10:21:50AM -0800, Lakshmi Ramasubramanian wrote:
->> On kexec file load Integrity Measurement Architecture (IMA) subsystem
->> may verify the IMA signature of the kernel and initramfs, and measure
->> it.  The command line parameters passed to the kernel in the kexec call
->> may also be measured by IMA.  A remote attestation service can verify
->> a TPM quote based on the TPM event log, the IMA measurement list, and
->> the TPM PCR data.  This can be achieved only if the IMA measurement log
->> is carried over from the current kernel to the next kernel across
->> the kexec call.
->>
->> powerpc already supports carrying forward the IMA measurement log on
->> kexec.  This patch set adds support for carrying forward the IMA
->> measurement log on kexec on ARM64.
->>
->> This patch set moves the platform independent code defined for powerpc
->> such that it can be reused for other platforms as well.  A chosen node
->> "linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
->> the address and the size of the memory reserved to carry
->> the IMA measurement log.
->>
->> This patch set has been tested for ARM64 platform using QEMU.
->> I would like help from the community for testing this change on powerpc.
->> Thanks.
->>
->> This patch set is based on
->> commit 96acc833dec8 ("ima: Free IMA measurement buffer after kexec syscall")
->> in https://git.kernel.org/pub/scm/linux/kernel/git/zohar/linux-integrity.git
->> "next-integrity" branch.
-> 
-> Is that a hard dependency still? Given this is now almost entirely
-> deleting arch code and adding drivers/of/ code, I was going to apply it.
-> 
+This adds dts bindings for the mstar msg2638 touchscreen.
 
-I tried applying the patches in Linus' mainline branch -
-PATCH #5 0005-powerpc-Move-ima-buffer-fields-to-struct-kimage.patch 
-doesn't apply.
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+Changed in v4:
+- don't use wildcards in compatible strings (Rob H)
+- rename from msg26xx to msg2638
+- rename example pinctrl-0 to &ts_int_reset_default for consistency
+Changed in v3:
+- added `touchscreen-size-x: true` and `touchscreen-size-y: true` properties
+Changed in v2:
+- changed M-Star to MStar in title line
+- changed reset gpio to active-low in example section
+---
+ .../input/touchscreen/mstar,msg2638.yaml      | 69 +++++++++++++++++++
+ 1 file changed, 69 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/mstar,msg2638.yaml
 
-But if I apply the dependent patch set (link given below), all the 
-patches in this patch set apply fine.
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/mstar,msg2638.yaml b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg2638.yaml
+new file mode 100644
+index 000000000000..12f44d9e4d41
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg2638.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/mstar,msg2638.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MStar msg2638 touchscreen controller Bindings
++
++maintainers:
++  - Vincent Knecht <vincent.knecht@mailoo.org>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    const: mstar,msg2638
++
++  reg:
++    const: 0x26
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  vdd-supply:
++    description: Power supply regulator for the chip
++
++  vddio-supply:
++    description: Power supply regulator for the I2C bus
++
++  touchscreen-size-x: true
++  touchscreen-size-y: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++  - touchscreen-size-x
++  - touchscreen-size-y
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      touchscreen@26 {
++        compatible = "mstar,msg2638";
++        reg = <0x26>;
++        interrupt-parent = <&msmgpio>;
++        interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++        reset-gpios = <&msmgpio 100 GPIO_ACTIVE_LOW>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&ts_int_reset_default>;
++        vdd-supply = <&pm8916_l17>;
++        vddio-supply = <&pm8916_l5>;
++        touchscreen-size-x = <720>;
++        touchscreen-size-y = <1280>;
++      };
++    };
++
++...
+-- 
+2.29.2
 
-https://patchwork.kernel.org/project/linux-integrity/patch/20210204174951.25771-2-nramas@linux.microsoft.com/
-
-thanks,
-  -lakshmi
 
 
