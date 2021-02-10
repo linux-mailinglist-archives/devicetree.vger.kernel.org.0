@@ -2,123 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 249DE3160F6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:28:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C40FC31614A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:46:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229719AbhBJI1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 03:27:10 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:42596 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233534AbhBJI0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 03:26:22 -0500
-Received: by mail-oi1-f169.google.com with SMTP id u66so1137800oig.9;
-        Wed, 10 Feb 2021 00:26:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aGjLISWJ+fszvKmcvo2/oB8kqSJgVo4mq+414YKd0ak=;
-        b=tTM6x9WvBKj6CCIlz5RGq1bETqJFXJYJAyrAXjmBzr16syAZxbUCQOGezwW2g727mV
-         w614B9nQnvXZ8OYELXXA+2fURs4cGDkRsj/f66PXoqNUY5tY8ZpgyahSXVf8kBX0L/sE
-         WDjWyDtsCnZofUMxrngqtSJ2clsWhMoo+KtFahwp8HtKKFJiaA/MhFZb+gkY7qLNnHzs
-         oLjEvT1FJW58acYBABkf7kLGPUpra3CoZtS+Ul8ViCMgUNv/4hzy3yRVOXff/MuTvPPd
-         wVBu46NiyjJc3trNDdKRUYqvPe3wVCdyXiay6CbPlbN/K/EHZ2Bi9E8+uurDFardRwmZ
-         /j4g==
-X-Gm-Message-State: AOAM530czFG4/8pl89E0IAj34w1s5I0BFI7K9LTibSdoee0QrQpUkjP1
-        JT9cbPZ8rztGkspJ0aSdxBnTfklbLzCSp3+DHaE=
-X-Google-Smtp-Source: ABdhPJw76RbbTdIjOWOYdNuMSRd5sBeR2j0014yZb4MdeOrBQA1HjGlwkbMtEPnZoE9rsvsL6sEmWZSBR33/719FBhk=
-X-Received: by 2002:a54:4e88:: with SMTP id c8mr1277055oiy.148.1612945537621;
- Wed, 10 Feb 2021 00:25:37 -0800 (PST)
+        id S229854AbhBJInR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 03:43:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229992AbhBJIjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 03:39:53 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65396C0613D6
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 00:39:12 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1l9l1f-0002CI-DR; Wed, 10 Feb 2021 09:39:07 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1l9l1d-0006A9-A0; Wed, 10 Feb 2021 09:39:05 +0100
+Date:   Wed, 10 Feb 2021 09:39:05 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-usb@vger.kernel.org, Minas Harutyunyan <hminas@synopsys.com>,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc2: Add support for additional
+ clock
+Message-ID: <20210210083905.GN19583@pengutronix.de>
+References: <20210125093825.4292-1-s.hauer@pengutronix.de>
+ <20210125093825.4292-2-s.hauer@pengutronix.de>
+ <20210209164659.GA3909217@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <20210205222644.2357303-1-saravanak@google.com>
- <20210205222644.2357303-5-saravanak@google.com> <20210209213320.GA219007@robh.at.kernel.org>
- <CAGETcx_gHRd9UYHvSsHX_=NFF+HEJkamJp3JcpojuJob_a8_DA@mail.gmail.com>
-In-Reply-To: <CAGETcx_gHRd9UYHvSsHX_=NFF+HEJkamJp3JcpojuJob_a8_DA@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 10 Feb 2021 09:25:26 +0100
-Message-ID: <CAMuHMdXi9s_b0xjaQ3n_-qFfdwfBtxnrhYfVuRENJM5UJ9TUwg@mail.gmail.com>
-Subject: Re: [PATCH v4 4/8] of: property: Add fw_devlink support for optional properties
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210209164659.GA3909217@robh.at.kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:09:36 up 69 days, 20:36, 91 users,  load average: 0.11, 0.38,
+ 0.25
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravana,
+On Tue, Feb 09, 2021 at 10:46:59AM -0600, Rob Herring wrote:
+> On Mon, Jan 25, 2021 at 10:38:24AM +0100, Sascha Hauer wrote:
+> > This adds support for an additional clock for the dwc2 core in case
+> > there is another clock to the phy which must be enabled.
+> 
+> to the phy? 'clocks' is inputs to DWC2. Shouldn't there be a phy 
+> device/driver?
 
-CC iommu
+Maybe I should have said "from the phy". I have a USB3320 ULPI phy here
+connected to the DWC2. The usual setup would look like this:
 
-On Tue, Feb 9, 2021 at 10:55 PM Saravana Kannan <saravanak@google.com> wrote:
-> On Tue, Feb 9, 2021 at 1:33 PM Rob Herring <robh@kernel.org> wrote:
-> > On Fri, Feb 05, 2021 at 02:26:40PM -0800, Saravana Kannan wrote:
-> > > Not all DT bindings are mandatory bindings. Add support for optional DT
-> > > bindings and mark iommus, iommu-map, dmas as optional DT bindings.
-> >
-> > I don't think we can say these are optional or not. It's got to be a
-> > driver decision somehow.
->
-> Right, so maybe the word "optional" isn't a good name for it. I can
-> change that if you want.
->
-> The point being, fw_devlink can't block the probe of this driver based
-> on iommu property. We let the driver decide if it wants to
-> -EPROBE_DEFER or not or however it wants to handle this.
+-----.    clk60M   .------------
+DWC2 |<------------| USB3320 Phy
+-----'             '------------
 
-The driver cannot make that decision, cfr. below.
+I don't think this clock is abstracted anywhere in this case, it's just
+there and always enabled.
 
-> > For example, if IOMMU is optional, what happens with this sequence:
-> >
-> > driver probes without IOMMU
-> > driver calls dma_map_?()
-> > IOMMU driver probes
-> > h/w accesses DMA buffer --> BOOM!
+For reasons unknown to me our customer decided to not let the USB3320
+generate the clock, but used an external clock generator instead, so
+my setup looks like this:
 
-Does it really behave that way? Or does it continue without IOMMU?
+        | SI5351a |
+        '---------'
+  clk60M_1 |  | clk60M_2
+-----.     |  |    .------------
+DWC2 |<----'  '--->| USB3320 Phy
+-----'             '------------
 
-> Right. But how is this really related to fw_devlink? AFAICT, this is
-> an issue even today. If the driver needs the IOMMU, then it needs to
-> make sure the IOMMU has probed? What am I missing?
+The SI5351a is abstracted as a clock driver in Linux. Note that clk60M_1
+and clk60M_2 are really two clocks which must both be enabled. clk60M_2
+is handled by the phy driver (which is the usb-nop-xceiver in my case),
+what I am trying to add here in this patch is support for clk60M_1.
 
-Individual I/O (IOMMU slave) drivers are completely unaware of the
-presence or absence of an IOMMU; they just use the DMA API, which is the
-same regardless of an IOMMU being used or not.
-While for GPIO/IRQ/CLK/DMA/... have request/get_{gpio,irq,clk,dma,...}
-APIs for a driver to get a reference, which can return -EPROBE_DEFER, no
-such thing exists for IOMMUs.  This is handled by the IOMMU core
-instead.
-
-Using the IOMMU or not is more like a system policy decision.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+Sascha
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
