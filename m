@@ -2,113 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67E513171F3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 22:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01AD331720B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 22:11:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232418AbhBJVHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 16:07:31 -0500
-Received: from mail-wm1-f46.google.com ([209.85.128.46]:37002 "EHLO
-        mail-wm1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231897AbhBJVHa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 16:07:30 -0500
-Received: by mail-wm1-f46.google.com with SMTP id m1so3169765wml.2;
-        Wed, 10 Feb 2021 13:07:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QxVKcMPVlZSU1s6PYt/R8Rb76zHOdHRNUhzAj/OgexQ=;
-        b=XjdJ0yIMtJ+ym7Zg5enTlyvGJyTMmAI5WygJ3wkc/aZe+yJbgU5XeB+TCQmRHvo7jd
-         FW2OOFN9IvFKAAjDzp9fA8pU9PUspp4vhuhcU09LVH2fiqAJuUQq2WyMgw4hlohp/ir+
-         mqpscOKHsko2J35sNdiB1vG+GDEN87Lx2Ib36Ih4LI9LRsyyE67OxqZKrMutDVxBlduK
-         u8rt8ggW1t7ZKVYoZIhsDVtPkOjSmMg6DeCVtcRWuFNJ3SGj3y9zNBYPkx/rqjnbZ2wJ
-         mzmCi+JTpM1QqS9/th9xi4oi2Av+tahkiajraBrncuhZO2ZqjrJ3peclPBGbPhX9eDif
-         v/0w==
-X-Gm-Message-State: AOAM531Ctyi533uW6qnQBoV3/8YPF/SkUwof1f7piegirz1J2aV0ztVG
-        747QmnsRNK3yb+NdPR6+dXc=
-X-Google-Smtp-Source: ABdhPJyutwczC6gENkSYbGydAjbEIfbr8/xDGH+x6zloSJ2vMT8py8hwsZqxN/svIs773XJbJ72Wlg==
-X-Received: by 2002:a05:600c:2d44:: with SMTP id a4mr890464wmg.95.1612991207591;
-        Wed, 10 Feb 2021 13:06:47 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id w2sm4826858wmg.27.2021.02.10.13.06.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 13:06:46 -0800 (PST)
-Date:   Wed, 10 Feb 2021 22:06:45 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S233582AbhBJVKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 16:10:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43260 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232804AbhBJVKW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 16:10:22 -0500
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94271C0613D6;
+        Wed, 10 Feb 2021 13:09:41 -0800 (PST)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4DbXSx6ckVz9sRf;
+        Thu, 11 Feb 2021 08:09:37 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+        s=201702; t=1612991378;
+        bh=T37OReoOydFbq4unal8lMB7zx6wTkEScGSNlSPw6ilw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Au/K03MmTWDwkNwgXpRYwXzNdKD5CLmWC9iMkxqcsCtod8qCqUNeZ83ml6swojmRW
+         rorY8TZinRrvQAMGvGGqJByedWFJdW2tfwYh8U/M5NH3F9i/abWsaJZZAN2RCGKrzS
+         loPz7nQQPlsXJdu7MKck6V0445fwIM/EpHtG/+04N+bv2wK+FvkvC04HYA8mGzopbd
+         2xqVAANOtZn31q610PlpEyAtCIVMzdTrSFGYmgY5Bq6kXQtDPM71q/bCZ20nWdSPTO
+         0rRKjMV3biyw+dpGji5F9UnYndc+i4AbvkFRrhfKoZjUa5k5+G9CIMLaQxKcFMh+16
+         GJemgs/eqze2A==
+Date:   Thu, 11 Feb 2021 08:09:36 +1100
+From:   Stephen Rothwell <sfr@canb.auug.org.au>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Mathias Nyman <mathias.nyman@intel.com>
-Subject: Re: [PATCH v5 3/4] usb: host: xhci-plat: Create platform device for
- onboard hubs in probe()
-Message-ID: <20210210210645.xapaua7djdsvr3ca@kozik-lap>
-References: <20210210171040.684659-1-mka@chromium.org>
- <20210210091015.v5.3.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        kernel-team@android.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: irq: Fix the return value for of_irq_parse_one()
+ stub
+Message-ID: <20210211080936.7c51b99c@canb.auug.org.au>
+In-Reply-To: <20210210200050.4106032-1-saravanak@google.com>
+References: <20210210200050.4106032-1-saravanak@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210210091015.v5.3.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
+Content-Type: multipart/signed; boundary="Sig_/9VHlBQTTpR8AbkOIrHYbqOp";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 10, 2021 at 09:10:38AM -0800, Matthias Kaehlcke wrote:
-> Check during probe() if a hub supported by the onboard_usb_hub
-> driver is connected to the controller. If such a hub is found
-> create the corresponding platform device. This requires the
-> device tree to have a node for the hub with its vendor and
-> product id (which is not common for USB devices). Further the
-> platform device is only created when CONFIG_USB_ONBOARD_HUB=y/m.
-> 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> 
-> Changes in v5:
-> - patch added to the series
-> 
->  drivers/usb/host/xhci-plat.c | 16 ++++++++++++++++
->  include/linux/usb/hcd.h      |  2 ++
->  2 files changed, 18 insertions(+)
-> 
-> diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
-> index 4d34f6005381..e785fa109eea 100644
-> --- a/drivers/usb/host/xhci-plat.c
-> +++ b/drivers/usb/host/xhci-plat.c
-> @@ -15,6 +15,7 @@
->  #include <linux/of.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
-> +#include <linux/usb/onboard_hub.h>
->  #include <linux/usb/phy.h>
->  #include <linux/slab.h>
->  #include <linux/acpi.h>
-> @@ -184,6 +185,7 @@ static int xhci_plat_probe(struct platform_device *pdev)
->  	int			ret;
->  	int			irq;
->  	struct xhci_plat_priv	*priv = NULL;
-> +	struct device_node	*np;
->  
->  
->  	if (usb_disabled())
-> @@ -356,6 +358,17 @@ static int xhci_plat_probe(struct platform_device *pdev)
->  	 */
->  	pm_runtime_forbid(&pdev->dev);
->  
-> +	np = usb_of_get_device_node(hcd->self.root_hub, hcd->self.busnum);
-> +	if (np && of_is_onboard_usb_hub(np)) {
+--Sig_/9VHlBQTTpR8AbkOIrHYbqOp
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-This looks hackish... what if later we have something else than hub?
-Another if()?
+Hi Saravana,
 
-What if hub could be connected to something else than XHCI controller?
+On Wed, 10 Feb 2021 12:00:49 -0800 Saravana Kannan <saravanak@google.com> w=
+rote:
+>
+> When commit 1852ebd13542 ("of: irq: make a stub for of_irq_parse_one()")
+> added a stub for of_irq_parse_one() it set the return value to 0. Return
+> value of 0 in this instance means the call succeeded and the out_irq
+> pointer was filled with valid data. So, fix it to return an error value.
+>=20
+> Fixes: 1852ebd13542 ("of: irq: make a stub for of_irq_parse_one()")
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 
-Best regards,
-Krzysztof
+Oops, sorry about that.
+
+Acked-by: Stephen Rothwell <sfr@canb.auug.org.au>
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/9VHlBQTTpR8AbkOIrHYbqOp
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmAkS5AACgkQAVBC80lX
+0GwRCQf9EBXY8yx+s8dTbRHzyMaTzfcM8yWhayyA+gpPCBRi2K98HHe7Ru+ayJVP
+u/YA78f3rJAG9IRa6EfZNGPRvZMeEJRuK1QuRdXX9CpMOXx3TIEbHTZI7cD6bpCk
+n7VQpyWKB1tZV4SEC/UYofIZB+R3mgdn/6xGS16oMvLrwE4UEiMBRUeq9may8pia
+hKe/K6/Tg0a3owfPw7JvLtIiAA9qQiCo9VAGV3y/35Jlu3+Ht5IA+YT1m99ljVxd
+c5wFitjJNPdLSyYCIzv0cmbuBjwzWnlhrWz0G3oVq9OchSGyJnwciiOgZT2Mp6Wx
+1ULk877lV3YLLd6Xj8RevOxm7lzibw==
+=ddxf
+-----END PGP SIGNATURE-----
+
+--Sig_/9VHlBQTTpR8AbkOIrHYbqOp--
