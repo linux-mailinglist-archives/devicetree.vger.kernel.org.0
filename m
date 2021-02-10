@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1C8E31626A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 10:37:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AB0731626C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 10:37:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229940AbhBJJgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 04:36:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34532 "EHLO
+        id S229672AbhBJJhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 04:37:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbhBJJep (ORCPT
+        with ESMTP id S229787AbhBJJep (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 04:34:45 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A7BC0617A7
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 01:32:23 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id i5so1209883wmq.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 01:32:23 -0800 (PST)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2304BC0617A9
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 01:32:30 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id g10so1690123wrx.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 01:32:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=H0RH96qD/Oeubgg543O+EPeKnE4J9scK8GfAS4yibWc=;
-        b=nc0KN8yuAVZ9glDMOrjjj32Dh87BJbbBEhyHlPiG5J2Rs4gtzst0ZgQ5NkNNA3h32a
-         JakviFNdF7xDPcGqvTaF0AYsFFMpeumcNzIIYwQozUhUmcrWTVQ4/+ZA7KyEo5UKzBNS
-         Id0cNig3rxDqKM0jmB1AgSPhG+3nFAw6nLUH5GbHnm9bB7KsK+2hqyUeteYJaSzUVHcY
-         +BRhZq8DkoMvYGQIa5kYEz9pxyPqduv84QkL5ZwwajVku2/6fm7yMKQWTf4XMdHFOHbq
-         PvdWQhIUHQjJakAhodk6cOtjlVR9wXAFCYjTSLWe1KFpiE43y7VVy1MiCj9JXH+gxOEI
-         UAeg==
+        bh=y4A5Uf4Os6WPGl/YWHkNN/4TU8yF2iW13SGgEG1fF60=;
+        b=adzTDDLthXXtZaBFlQRqslziLqKvZsWzA05hRdVadOeTo6a4itsepNDCfhBKcm4H/d
+         /DHljJo5F31vdH5ia0X5PLamOixs+5hhp/6a6397c75pPKBj6S4BmzlntJEBzDLi2cvk
+         E8Z+u8DzS/lBmK7VCxK5wC1p3rbavEHTa69WtDtFURWm2iGvyxElBXNYOBdzRzkFJ8gp
+         cQueylBc9+j4cxgCk/ehqkHYHSaslLtxN6jP0L0Jk5wA4Hmx7k91yzcosxBfvnzdAvdl
+         6VU9/m/zncoR4GnNw1ZTqR3uCnJkC/5fhy/ZT8MT6hoJhR5+SzGoP0peI0s/iKj7xtrj
+         TSew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=H0RH96qD/Oeubgg543O+EPeKnE4J9scK8GfAS4yibWc=;
-        b=QtrfGEbqVG/ErubBNfVXYpBNryoFxzStcCPBdR2IlLCa5KkMJC+8EpB6GbZfjtk37K
-         LJWaPSY54rcndVe3byArxAoQXRMNsv8Pik/fM+ni9hxlRfZoYftUE4jyb+drxJDyGxJ8
-         eNsjq+qtf6fzcgwLHFrRW3Y0ZWSeQNjOvW5pQU0Of8XeL731xXav+VRzPVe+V8t2PVi3
-         UJLHGsjMiAUfR3XbIPJjGION99G9jK3cmRbmdMHB9iWxpS8yOe5CRWHk1TyFfUMI8Ovj
-         3eFtQ4chBtXOC1yJG89XoQswPxizhMVVjgQ0CkM5JZN6NfvM3XP32cY8qDuGAFhs09Dv
-         BZiA==
-X-Gm-Message-State: AOAM531oPT4d78w4puK3UXpV7z31YEk0abRflyE/6XgqBEMQ5UXA66RM
-        w6wM6WeZa1jBYQ63OWbWLyRIKQ==
-X-Google-Smtp-Source: ABdhPJxOXAx8zg0eDTtHDtpm4uIVDvVFEPY8z0SZOsKqTpZPsEIKJIhz7e4ZTwscY1WrvMAVd/i0Nw==
-X-Received: by 2002:a1c:750e:: with SMTP id o14mr2120039wmc.60.1612949541848;
-        Wed, 10 Feb 2021 01:32:21 -0800 (PST)
+        bh=y4A5Uf4Os6WPGl/YWHkNN/4TU8yF2iW13SGgEG1fF60=;
+        b=DzEkpoW/BWhpIB4hX89FRkf9FCflBcU19SimyQyXFLu5KT6VTBrsBV54sNXtqBSbRc
+         Q8iV1zWBclvtc+3mknlfZjTmE+9dMWCVdJ5kvl1W7L5x/3zYrNtSUtSPTiXEfEUKGLsg
+         bCunUyg6HVShhyz0sbBcAxZguZEMPLweivXF0vKuJ7q5o2hnDY1xsq/2xhWi4jnLjZZq
+         jiFKifw46bQjJJmtMIMCPxLLRbR6bFVanP5XFVx3TgmOekLYeYdCeOQptIVf4P6pBSsD
+         OMdncwb96CSLrtLH39yRfnOPlOnklJ/mn4M7vOr1MhJbav+MAuoDdm37lxNeReZgO7u0
+         x6xg==
+X-Gm-Message-State: AOAM531zszURi+0apIr1ZgmQ7k+8+eyotCAbNPiMi/r5KOWSRk3q31rb
+        kMLPf1GS3aweVOGD3Yc/Gi78/Q==
+X-Google-Smtp-Source: ABdhPJwh53VbXv1w+xpdN/qRQno7PAQqQ65fFnPwfNieIO4vpJ9+3vDNvUXnu1JZhnq87887ExdDmA==
+X-Received: by 2002:adf:fc88:: with SMTP id g8mr2503989wrr.259.1612949548930;
+        Wed, 10 Feb 2021 01:32:28 -0800 (PST)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id t2sm2150583wru.53.2021.02.10.01.32.16
+        by smtp.gmail.com with ESMTPSA id t2sm2150583wru.53.2021.02.10.01.32.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 01:32:21 -0800 (PST)
+        Wed, 10 Feb 2021 01:32:28 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org
 Cc:     perex@perex.cz, alsa-devel@alsa-project.org,
         linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
         devicetree@vger.kernel.org, robh+dt@kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v4 4/7] ASoC: codecs: lpass-rx-macro: add iir widgets
-Date:   Wed, 10 Feb 2021 09:30:52 +0000
-Message-Id: <20210210093055.18350-5-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v4 5/7] ASoC: qcom: dt-bindings: add bindings for lpass tx macro codec
+Date:   Wed, 10 Feb 2021 09:30:53 +0000
+Message-Id: <20210210093055.18350-6-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20210210093055.18350-1-srinivas.kandagatla@linaro.org>
 References: <20210210093055.18350-1-srinivas.kandagatla@linaro.org>
@@ -65,316 +65,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds iir widgets and mixers on this codec
+This binding is for LPASS has internal codec TX macro which is
+for connecting with Soundwire TX codecs like WCD938x.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- sound/soc/codecs/lpass-rx-macro.c | 264 ++++++++++++++++++++++++++++++
- 1 file changed, 264 insertions(+)
+ .../bindings/sound/qcom,lpass-tx-macro.yaml   | 67 +++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
 
-diff --git a/sound/soc/codecs/lpass-rx-macro.c b/sound/soc/codecs/lpass-rx-macro.c
-index bf42e8affdf2..c448525a9451 100644
---- a/sound/soc/codecs/lpass-rx-macro.c
-+++ b/sound/soc/codecs/lpass-rx-macro.c
-@@ -532,6 +532,38 @@ enum {
- 	INTERP_MIX_PATH,
- };
- 
-+/* Codec supports 2 IIR filters */
-+enum {
-+	IIR0 = 0,
-+	IIR1,
-+	IIR_MAX,
-+};
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+new file mode 100644
+index 000000000000..6b5ca02ccce4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/qcom,lpass-tx-macro.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/* Each IIR has 5 Filter Stages */
-+enum {
-+	BAND1 = 0,
-+	BAND2,
-+	BAND3,
-+	BAND4,
-+	BAND5,
-+	BAND_MAX,
-+};
++title: LPASS(Low Power Audio Subsystem) TX Macro audio codec DT bindings
 +
-+#define RX_MACRO_IIR_FILTER_SIZE	(sizeof(u32) * BAND_MAX)
++maintainers:
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 +
-+#define RX_MACRO_IIR_FILTER_CTL(xname, iidx, bidx) \
-+{ \
-+	.iface = SNDRV_CTL_ELEM_IFACE_MIXER, .name = xname, \
-+	.info = rx_macro_iir_filter_info, \
-+	.get = rx_macro_get_iir_band_audio_mixer, \
-+	.put = rx_macro_put_iir_band_audio_mixer, \
-+	.private_value = (unsigned long)&(struct wcd_iir_filter_ctl) { \
-+		.iir_idx = iidx, \
-+		.band_idx = bidx, \
-+		.bytes_ext = {.max = RX_MACRO_IIR_FILTER_SIZE, }, \
-+	} \
-+}
++properties:
++  compatible:
++    const: qcom,sm8250-lpass-tx-macro
 +
- struct interp_sample_rate {
- 	int sample_rate;
- 	int rate_val;
-@@ -588,6 +620,12 @@ struct rx_macro {
- };
- #define to_rx_macro(_hw) container_of(_hw, struct rx_macro, hw)
- 
-+struct wcd_iir_filter_ctl {
-+	unsigned int iir_idx;
-+	unsigned int band_idx;
-+	struct soc_bytes_ext bytes_ext;
-+};
++  reg:
++    maxItems: 1
 +
- static const DECLARE_TLV_DB_SCALE(digital_gain, -8400, 100, -8400);
- 
- static const char * const rx_int_mix_mux_text[] = {
-@@ -2603,6 +2641,166 @@ static int rx_macro_enable_rx_path_clk(struct snd_soc_dapm_widget *w,
- 	return 0;
- }
- 
-+static int rx_macro_set_iir_gain(struct snd_soc_dapm_widget *w,
-+				 struct snd_kcontrol *kcontrol, int event)
-+{
-+	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
++  "#sound-dai-cells":
++    const: 1
 +
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU: /* fall through */
-+	case SND_SOC_DAPM_PRE_PMD:
-+		if (strnstr(w->name, "IIR0", sizeof("IIR0"))) {
-+			snd_soc_component_write(component,
-+				CDC_RX_SIDETONE_IIR0_IIR_GAIN_B1_CTL,
-+			snd_soc_component_read(component,
-+				CDC_RX_SIDETONE_IIR0_IIR_GAIN_B1_CTL));
-+			snd_soc_component_write(component,
-+				CDC_RX_SIDETONE_IIR0_IIR_GAIN_B2_CTL,
-+			snd_soc_component_read(component,
-+				CDC_RX_SIDETONE_IIR0_IIR_GAIN_B2_CTL));
-+			snd_soc_component_write(component,
-+				CDC_RX_SIDETONE_IIR0_IIR_GAIN_B3_CTL,
-+			snd_soc_component_read(component,
-+				CDC_RX_SIDETONE_IIR0_IIR_GAIN_B3_CTL));
-+			snd_soc_component_write(component,
-+				CDC_RX_SIDETONE_IIR0_IIR_GAIN_B4_CTL,
-+			snd_soc_component_read(component,
-+				CDC_RX_SIDETONE_IIR0_IIR_GAIN_B4_CTL));
-+		} else {
-+			snd_soc_component_write(component,
-+				CDC_RX_SIDETONE_IIR1_IIR_GAIN_B1_CTL,
-+			snd_soc_component_read(component,
-+				CDC_RX_SIDETONE_IIR1_IIR_GAIN_B1_CTL));
-+			snd_soc_component_write(component,
-+				CDC_RX_SIDETONE_IIR1_IIR_GAIN_B2_CTL,
-+			snd_soc_component_read(component,
-+				CDC_RX_SIDETONE_IIR1_IIR_GAIN_B2_CTL));
-+			snd_soc_component_write(component,
-+				CDC_RX_SIDETONE_IIR1_IIR_GAIN_B3_CTL,
-+			snd_soc_component_read(component,
-+				CDC_RX_SIDETONE_IIR1_IIR_GAIN_B3_CTL));
-+			snd_soc_component_write(component,
-+				CDC_RX_SIDETONE_IIR1_IIR_GAIN_B4_CTL,
-+			snd_soc_component_read(component,
-+				CDC_RX_SIDETONE_IIR1_IIR_GAIN_B4_CTL));
-+		}
-+		break;
-+	}
-+	return 0;
-+}
++  '#clock-cells':
++    const: 0
 +
-+static uint32_t get_iir_band_coeff(struct snd_soc_component *component,
-+				   int iir_idx, int band_idx, int coeff_idx)
-+{
-+	u32 value;
-+	int reg, b2_reg;
++  clocks:
++    maxItems: 5
 +
-+	/* Address does not automatically update if reading */
-+	reg = CDC_RX_SIDETONE_IIR0_IIR_COEF_B1_CTL + 16 * iir_idx;
-+	b2_reg = CDC_RX_SIDETONE_IIR0_IIR_COEF_B2_CTL + 16 * iir_idx;
++  clock-names:
++    items:
++      - const: mclk
++      - const: npl
++      - const: macro
++      - const: dcodec
++      - const: fsgen
 +
-+	snd_soc_component_write(component, reg,
-+				((band_idx * BAND_MAX + coeff_idx) *
-+				 sizeof(uint32_t)) & 0x7F);
++  clock-output-names:
++    items:
++      - const: mclk
 +
-+	value = snd_soc_component_read(component, b2_reg);
-+	snd_soc_component_write(component, reg,
-+				((band_idx * BAND_MAX + coeff_idx)
-+				 * sizeof(uint32_t) + 1) & 0x7F);
++  qcom,dmic-sample-rate:
++    description: dmic sample rate
++    $ref: /schemas/types.yaml#/definitions/uint32
 +
-+	value |= (snd_soc_component_read(component, b2_reg) << 8);
-+	snd_soc_component_write(component, reg,
-+				((band_idx * BAND_MAX + coeff_idx)
-+				 * sizeof(uint32_t) + 2) & 0x7F);
++required:
++  - compatible
++  - reg
++  - "#sound-dai-cells"
 +
-+	value |= (snd_soc_component_read(component, b2_reg) << 16);
-+	snd_soc_component_write(component, reg,
-+		((band_idx * BAND_MAX + coeff_idx)
-+		* sizeof(uint32_t) + 3) & 0x7F);
++additionalProperties: false
 +
-+	/* Mask bits top 2 bits since they are reserved */
-+	value |= (snd_soc_component_read(component, b2_reg) << 24);
-+	return value;
-+}
-+
-+static void set_iir_band_coeff(struct snd_soc_component *component,
-+			       int iir_idx, int band_idx, uint32_t value)
-+{
-+	int reg = CDC_RX_SIDETONE_IIR0_IIR_COEF_B2_CTL + 16 * iir_idx;
-+
-+	snd_soc_component_write(component, reg, (value & 0xFF));
-+	snd_soc_component_write(component, reg, (value >> 8) & 0xFF);
-+	snd_soc_component_write(component, reg, (value >> 16) & 0xFF);
-+	/* Mask top 2 bits, 7-8 are reserved */
-+	snd_soc_component_write(component, reg, (value >> 24) & 0x3F);
-+}
-+
-+static int rx_macro_put_iir_band_audio_mixer(
-+					struct snd_kcontrol *kcontrol,
-+					struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *component =
-+			snd_soc_kcontrol_component(kcontrol);
-+	struct wcd_iir_filter_ctl *ctl =
-+			(struct wcd_iir_filter_ctl *)kcontrol->private_value;
-+	struct soc_bytes_ext *params = &ctl->bytes_ext;
-+	int iir_idx = ctl->iir_idx;
-+	int band_idx = ctl->band_idx;
-+	u32 coeff[BAND_MAX];
-+	int reg = CDC_RX_SIDETONE_IIR0_IIR_COEF_B1_CTL + 16 * iir_idx;
-+
-+	memcpy(&coeff[0], ucontrol->value.bytes.data, params->max);
-+
-+	/* Mask top bit it is reserved */
-+	/* Updates addr automatically for each B2 write */
-+	snd_soc_component_write(component, reg, (band_idx * BAND_MAX *
-+						 sizeof(uint32_t)) & 0x7F);
-+
-+	set_iir_band_coeff(component, iir_idx, band_idx, coeff[0]);
-+	set_iir_band_coeff(component, iir_idx, band_idx, coeff[1]);
-+	set_iir_band_coeff(component, iir_idx, band_idx, coeff[2]);
-+	set_iir_band_coeff(component, iir_idx, band_idx, coeff[3]);
-+	set_iir_band_coeff(component, iir_idx, band_idx, coeff[4]);
-+
-+	return 0;
-+}
-+
-+static int rx_macro_get_iir_band_audio_mixer(struct snd_kcontrol *kcontrol,
-+				    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *component =
-+			snd_soc_kcontrol_component(kcontrol);
-+	struct wcd_iir_filter_ctl *ctl =
-+			(struct wcd_iir_filter_ctl *)kcontrol->private_value;
-+	struct soc_bytes_ext *params = &ctl->bytes_ext;
-+	int iir_idx = ctl->iir_idx;
-+	int band_idx = ctl->band_idx;
-+	u32 coeff[BAND_MAX];
-+
-+	coeff[0] = get_iir_band_coeff(component, iir_idx, band_idx, 0);
-+	coeff[1] = get_iir_band_coeff(component, iir_idx, band_idx, 1);
-+	coeff[2] = get_iir_band_coeff(component, iir_idx, band_idx, 2);
-+	coeff[3] = get_iir_band_coeff(component, iir_idx, band_idx, 3);
-+	coeff[4] = get_iir_band_coeff(component, iir_idx, band_idx, 4);
-+
-+	memcpy(ucontrol->value.bytes.data, &coeff[0], params->max);
-+
-+	return 0;
-+}
-+
-+static int rx_macro_iir_filter_info(struct snd_kcontrol *kcontrol,
-+				   struct snd_ctl_elem_info *ucontrol)
-+{
-+	struct wcd_iir_filter_ctl *ctl =
-+		(struct wcd_iir_filter_ctl *)kcontrol->private_value;
-+	struct soc_bytes_ext *params = &ctl->bytes_ext;
-+
-+	ucontrol->type = SNDRV_CTL_ELEM_TYPE_BYTES;
-+	ucontrol->count = params->max;
-+
-+	return 0;
-+}
-+
- static const struct snd_kcontrol_new rx_macro_snd_controls[] = {
- 	SOC_SINGLE_S8_TLV("RX_RX0 Digital Volume", CDC_RX_RX0_RX_VOL_CTL,
- 			  -84, 40, digital_gain),
-@@ -2637,6 +2835,65 @@ static const struct snd_kcontrol_new rx_macro_snd_controls[] = {
- 	SOC_SINGLE_EXT("AUX_HPF Switch", SND_SOC_NOPM, 0, 1, 0,
- 			rx_macro_aux_hpf_mode_get,
- 			rx_macro_aux_hpf_mode_put),
-+
-+	SOC_SINGLE_S8_TLV("IIR0 INP0 Volume",
-+		CDC_RX_SIDETONE_IIR0_IIR_GAIN_B1_CTL, -84, 40,
-+		digital_gain),
-+	SOC_SINGLE_S8_TLV("IIR0 INP1 Volume",
-+		CDC_RX_SIDETONE_IIR0_IIR_GAIN_B2_CTL, -84, 40,
-+		digital_gain),
-+	SOC_SINGLE_S8_TLV("IIR0 INP2 Volume",
-+		CDC_RX_SIDETONE_IIR0_IIR_GAIN_B3_CTL, -84, 40,
-+		digital_gain),
-+	SOC_SINGLE_S8_TLV("IIR0 INP3 Volume",
-+		CDC_RX_SIDETONE_IIR0_IIR_GAIN_B4_CTL, -84, 40,
-+		digital_gain),
-+	SOC_SINGLE_S8_TLV("IIR1 INP0 Volume",
-+		CDC_RX_SIDETONE_IIR1_IIR_GAIN_B1_CTL, -84, 40,
-+		digital_gain),
-+	SOC_SINGLE_S8_TLV("IIR1 INP1 Volume",
-+		CDC_RX_SIDETONE_IIR1_IIR_GAIN_B2_CTL, -84, 40,
-+		digital_gain),
-+	SOC_SINGLE_S8_TLV("IIR1 INP2 Volume",
-+		CDC_RX_SIDETONE_IIR1_IIR_GAIN_B3_CTL, -84, 40,
-+		digital_gain),
-+	SOC_SINGLE_S8_TLV("IIR1 INP3 Volume",
-+		CDC_RX_SIDETONE_IIR1_IIR_GAIN_B4_CTL, -84, 40,
-+		digital_gain),
-+
-+	SOC_SINGLE("IIR1 Band1 Switch", CDC_RX_SIDETONE_IIR0_IIR_CTL,
-+		   0, 1, 0),
-+	SOC_SINGLE("IIR1 Band2 Switch", CDC_RX_SIDETONE_IIR0_IIR_CTL,
-+		   1, 1, 0),
-+	SOC_SINGLE("IIR1 Band3 Switch", CDC_RX_SIDETONE_IIR0_IIR_CTL,
-+		   2, 1, 0),
-+	SOC_SINGLE("IIR1 Band4 Switch", CDC_RX_SIDETONE_IIR0_IIR_CTL,
-+		   3, 1, 0),
-+	SOC_SINGLE("IIR1 Band5 Switch", CDC_RX_SIDETONE_IIR0_IIR_CTL,
-+		   4, 1, 0),
-+	SOC_SINGLE("IIR2 Band1 Switch", CDC_RX_SIDETONE_IIR1_IIR_CTL,
-+		   0, 1, 0),
-+	SOC_SINGLE("IIR2 Band2 Switch", CDC_RX_SIDETONE_IIR1_IIR_CTL,
-+		   1, 1, 0),
-+	SOC_SINGLE("IIR2 Band3 Switch", CDC_RX_SIDETONE_IIR1_IIR_CTL,
-+		   2, 1, 0),
-+	SOC_SINGLE("IIR2 Band4 Switch", CDC_RX_SIDETONE_IIR1_IIR_CTL,
-+		   3, 1, 0),
-+	SOC_SINGLE("IIR2 Band5 Switch", CDC_RX_SIDETONE_IIR1_IIR_CTL,
-+		   4, 1, 0),
-+
-+	RX_MACRO_IIR_FILTER_CTL("IIR0 Band1", IIR0, BAND1),
-+	RX_MACRO_IIR_FILTER_CTL("IIR0 Band2", IIR0, BAND2),
-+	RX_MACRO_IIR_FILTER_CTL("IIR0 Band3", IIR0, BAND3),
-+	RX_MACRO_IIR_FILTER_CTL("IIR0 Band4", IIR0, BAND4),
-+	RX_MACRO_IIR_FILTER_CTL("IIR0 Band5", IIR0, BAND5),
-+
-+	RX_MACRO_IIR_FILTER_CTL("IIR1 Band1", IIR1, BAND1),
-+	RX_MACRO_IIR_FILTER_CTL("IIR1 Band2", IIR1, BAND2),
-+	RX_MACRO_IIR_FILTER_CTL("IIR1 Band3", IIR1, BAND3),
-+	RX_MACRO_IIR_FILTER_CTL("IIR1 Band4", IIR1, BAND4),
-+	RX_MACRO_IIR_FILTER_CTL("IIR1 Band5", IIR1, BAND5),
-+
- };
- 
- static int rx_macro_enable_echo(struct snd_soc_dapm_widget *w,
-@@ -2732,6 +2989,13 @@ static const struct snd_soc_dapm_widget rx_macro_dapm_widgets[] = {
- 			   RX_MACRO_EC2_MUX, 0,
- 			   &rx_mix_tx2_mux, rx_macro_enable_echo,
- 			   SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_MIXER_E("IIR0", CDC_RX_SIDETONE_IIR0_IIR_PATH_CTL,
-+		4, 0, NULL, 0, rx_macro_set_iir_gain,
-+		SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD),
-+	SND_SOC_DAPM_MIXER_E("IIR1", CDC_RX_SIDETONE_IIR1_IIR_PATH_CTL,
-+		4, 0, NULL, 0, rx_macro_set_iir_gain,
-+		SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD),
- 	SND_SOC_DAPM_MIXER("SRC0", CDC_RX_SIDETONE_SRC0_ST_SRC_PATH_CTL,
- 		4, 0, NULL, 0),
- 	SND_SOC_DAPM_MIXER("SRC1", CDC_RX_SIDETONE_SRC1_ST_SRC_PATH_CTL,
++examples:
++  - |
++    #include <dt-bindings/sound/qcom,q6afe.h>
++    codec@3220000 {
++      compatible = "qcom,sm8250-lpass-tx-macro";
++      reg = <0x3220000 0x1000>;
++      #sound-dai-cells = <1>;
++      #clock-cells = <0>;
++      clocks = <&aoncc 0>,
++               <&aoncc 1>,
++               <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
++               <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
++               <&vamacro>;
++      clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
++      clock-output-names = "mclk";
++      qcom,dmic-sample-rate = <600000>;
++    };
 -- 
 2.21.0
 
