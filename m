@@ -2,110 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D13CB315A76
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 01:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E5F315B6C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 01:40:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233917AbhBJABt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 19:01:49 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:41242 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234412AbhBIXwC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Feb 2021 18:52:02 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1l9cmX-0001IP-F6; Wed, 10 Feb 2021 00:50:57 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>, Arnd Bergmann <arnd@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        robin.murphy@arm.com
-Subject: Re: [PATCH 2/5] ARM: dts: rockchip: assign a fixed index to mmc devices on rv1108 boards
-Date:   Wed, 10 Feb 2021 00:50:56 +0100
-Message-ID: <6598201.ejJDZkT8p0@diego>
-In-Reply-To: <CAK8P3a3_uO23Y0tyfdh26tmCVcyp6XM+ur0WUd4khGUoBb32Hw@mail.gmail.com>
-References: <20210118155242.7172-1-jbx6244@gmail.com> <20210118155242.7172-2-jbx6244@gmail.com> <CAK8P3a3_uO23Y0tyfdh26tmCVcyp6XM+ur0WUd4khGUoBb32Hw@mail.gmail.com>
+        id S234120AbhBJAjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 19:39:08 -0500
+Received: from mail-lf1-f51.google.com ([209.85.167.51]:36873 "EHLO
+        mail-lf1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233483AbhBJAhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Feb 2021 19:37:05 -0500
+Received: by mail-lf1-f51.google.com with SMTP id w36so303513lfu.4;
+        Tue, 09 Feb 2021 16:36:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wPsstsbynBD0muJOD6wturTyK6NppfQu4lyJkZAZfH8=;
+        b=FFAWMir4d+LqcUx6Vvhcc8IojjqX86q+s6331nZ3/kjmoIb8EtQviOAsK/UhYnxAkd
+         XorMJy718MWGo+9yDDStbifToulCliyAytAdiuLwUC23XZ4EJDeLYm5jsSygDB5ssBl0
+         qpzcT/TZx84e02gAG8ukM/9kTC9zId/xeI0YCdz73kLO+GpL08T9hYsuFNov6eMKX5ku
+         XBDvnDb6+ZazLSXvN/N0FkrvkPejp3W0nJbQD4JRK6zd3PMHh8D+boW6P5uytWupvpj5
+         45D1G7EYGpmKzH6x7aiKGPnFDkYoVAgjEVMovMs2e4fXhZhBrn9OsLl0Semrg/PKAtUD
+         fC2w==
+X-Gm-Message-State: AOAM530M4YVNAqoWybWejEsiF/+aBrdm4i/qQ6jDa4bwZ3bAlvkf06V+
+        pcUmnNxjCTA32mVP5ldQd5o=
+X-Google-Smtp-Source: ABdhPJxrSG4l3RbglATBasrr8+6cW9tztKybjkr40jjnPmlVr/WsM/qvwRd01Fw0EML319v+qJ8PyQ==
+X-Received: by 2002:a19:5f4c:: with SMTP id a12mr274761lfj.399.1612917382914;
+        Tue, 09 Feb 2021 16:36:22 -0800 (PST)
+Received: from rocinante ([95.155.85.46])
+        by smtp.gmail.com with ESMTPSA id v25sm52098ljc.92.2021.02.09.16.36.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Feb 2021 16:36:22 -0800 (PST)
+Date:   Wed, 10 Feb 2021 01:36:21 +0100
+From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To:     srikanth.thokala@intel.com
+Cc:     bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        mallikarjunappa.sangannavar@intel.com
+Subject: Re: [PATCH v7 2/2] PCI: keembay: Add support for Intel Keem Bay
+Message-ID: <YCMqhe4w1QFYoGhE@rocinante>
+References: <20210124234702.21074-1-srikanth.thokala@intel.com>
+ <20210124234702.21074-3-srikanth.thokala@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210124234702.21074-3-srikanth.thokala@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 9. Februar 2021, 23:25:40 CET schrieb Arnd Bergmann:
-> On Mon, Jan 18, 2021 at 4:52 PM Johan Jonker <jbx6244@gmail.com> wrote:
-> >
-> > Recently introduced async probe on mmc devices can shuffle block IDs.
-> > Pin them to fixed values to ease booting in environments where UUIDs are
-> > not practical. Use newly introduced aliases for mmcblk devices from [1].
-> > The sort order is based on reg address.
-> >
-> > [1] https://patchwork.kernel.org/patch/11747669/
-> 
-> I just saw this in the pull request:
-> 
-> > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/rv1108.dtsi | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/rv1108.dtsi b/arch/arm/boot/dts/rv1108.dtsi
-> > index bec47e0be..a754851f4 100644
-> > --- a/arch/arm/boot/dts/rv1108.dtsi
-> > +++ b/arch/arm/boot/dts/rv1108.dtsi
-> > @@ -19,6 +19,9 @@
-> >                 i2c1 = &i2c1;
-> >                 i2c2 = &i2c2;
-> >                 i2c3 = &i2c3;
-> > +               mmc0 = &emmc;
-> > +               mmc1 = &sdio;
-> > +               mmc2 = &sdmmc;
-> >                 serial0 = &uart0;
-> >                 serial1 = &uart1;
-> >                 serial2 = &uart2;
-> 
-> Please don't put these aliases into a .dtsi file, as not every board
-> will provide each instance. The entire point of the aliases is to
-> have sane enumeration, so you should start at index 0 for the
-> first one that is actually present and count up from there.
+Hi Srikanth,
 
-Hmm, right now I don't see the disadvantage of missing mmc numbers.
-As similarly we count i2c and serial numbers for a long time, even though
-not all of them appear on every board.
+Thank you for all the work here!
 
-Especially as the main goal is to simply have stable numbers and
-not having the mmc devices swap numbers on every boot.
+> +config PCIE_KEEMBAY_HOST
+> +	bool "Intel Keem Bay PCIe controller - Host mode"
+> +	depends on ARCH_KEEMBAY || COMPILE_TEST
+> +	depends on PCI && PCI_MSI_IRQ_DOMAIN
+> +	select PCIE_DW_HOST
+> +	select PCIE_KEEMBAY
+> +	help
+> +	  Say 'Y' here to enable support for the PCIe controller in Keem Bay
+> +	  to work in host mode.
+> +	  The PCIe controller is based on Designware Hardware and uses
+> +	  DesignWare core functions.
+> +
+> +config PCIE_KEEMBAY_EP
+> +	bool "Intel Keem Bay PCIe controller - Endpoint mode"
+> +	depends on ARCH_KEEMBAY || COMPILE_TEST
+> +	depends on PCI && PCI_MSI_IRQ_DOMAIN
+> +	depends on PCI_ENDPOINT
+> +	select PCIE_DW_EP
+> +	select PCIE_KEEMBAY
+> +	help
+> +	  Say 'Y' here to enable support for the PCIe controller in Keem Bay
+> +	  to work in endpoint mode.
+> +	  The PCIe controller is based on Designware Hardware and uses
+> +	  DesignWare core functions.
 
-So right now we're not using them from a userspace POV but
-instead agreed on following the address ordering of the soc.
-so when ordering mmc controllers by their io-address, mmc0
-is the first one, then mmc1, etc.
+It would be "DesignWare" in the sentences above.
 
-So just for my understanding, what is different for mmc?
-I guess to guarantee ongoing numbering similar to sd{a,b,c,...}
-Or should all aliases be duplicted in each board dts and not
-live in any soc dtsi?
+[...]
+> +static void keembay_ep_reset_deassert(struct keembay_pcie *pcie)
+> +{
+> +	/*
+> +	 * Ensure that PERST# is asserted for a minimum of 100ms
+[...]
 
+Just a nitpick, so feel free to ignore, absolutely.  A missing period at
+the end of the sentence.
 
-Heiko
+> +static void keembay_pcie_ltssm_enable(struct keembay_pcie *pcie, bool enable)
+> +{
+> +	u32 val;
+> +
+> +	val = readl(pcie->apb_base + PCIE_REGS_PCIE_APP_CNTRL);
+> +	if (enable)
+> +		val |= APP_LTSSM_ENABLE;
+> +	else
+> +		val &= ~APP_LTSSM_ENABLE;
+> +	writel(val, pcie->apb_base + PCIE_REGS_PCIE_APP_CNTRL);
+> +}
+>
 
+Another nitpick, so also feel free to ignore, of course.
 
-> I would suggest you move these aliases into the .dts files for
-> the existing boards for the next cycle, and then make sure
-> only the ones that are present have an alias.
-> 
-> It might actually be a good idea to have a warning in dtc when
-> there is an alias pointing to a status="disabled" device, but I
-> suspect there would be a lot of fallout from that.
-> 
->       Arnd
-> 
+I wonder if calling this function keembay_pcie_set_ltssm or perhaps
+keembay_pcie_ltssm_set would be more aligned with what it does, since it
+turns the LTSSM support on and off, so to speak, as needed.  Do you
+think this would be OK to do?
 
-
-
-
+Krzysztof
