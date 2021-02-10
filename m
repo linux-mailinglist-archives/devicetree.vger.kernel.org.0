@@ -2,208 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB8FE316C2C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 18:12:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 190C4316C4A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 18:16:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230489AbhBJRL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 12:11:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48204 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232259AbhBJRL4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 12:11:56 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 204FDC061356
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 09:11:02 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id 189so1668359pfy.6
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 09:11:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MynKB3zDxo9w9UYnw53HrNYGxhUpC6ssOT3SyYd0CAw=;
-        b=eYr8ih6o7frG1XMugs8uK4ByheSMHVR7LYRs7DXFJXZBzgdn3ltV+2NCmCvv6lGqYZ
-         1WU+vkGNp9J02UFmdpuS9qPlGswJO3STHx2Nit5AZJHSa3s1RBLoAwCSRaIY8O1JBOcd
-         3D6vrgUxvEDDiCjLyU42/Bxdeqkibq3vA3oeI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MynKB3zDxo9w9UYnw53HrNYGxhUpC6ssOT3SyYd0CAw=;
-        b=K9fILPs5zH7ejShJ07T5EBSSPcPhpj3KW6ozw1hIwKDMklUztOrP+M1ehclgyZtDAr
-         uDRdWUFhx29otTJBxCEFXafez2mwrBeiUAEWmxPlx1tMkLg41Oe/lpD0hp4mViA/yZbR
-         2RF2tw5neuNKb57MSfbiGAJ2iHyl4t9rmEZauiGYb1igLLfUJTIomHMIsEQ16edXtMh5
-         anxp+F+8G3o6emxnWFcSEsNftRoUvkm3R+aDTFD7Y3CFOEVEU8Kgz9ZYsoA0bTwXcFtd
-         chIkj+t9eN9qOLyzah7/z22mXmtWKr0xlIOlAP4o9G4N9Q9EhkwiTuyeZtiEBNBTqiSv
-         EhjQ==
-X-Gm-Message-State: AOAM533h3iMvM1eXalz7MnAMLnqJtElyquSi2CWxGy2Qx7JB4aG9WsjE
-        9SpywMeV+1+SgQocg2K+z3/V0g==
-X-Google-Smtp-Source: ABdhPJzPtcICQpuX4YC1LPJAdGMjTGBS6IgyHMm0O/0AKreWF2jSfD/JtE5/V6qPOX/cngvv04qsjQ==
-X-Received: by 2002:aa7:80ca:0:b029:1c1:b636:ecc2 with SMTP id a10-20020aa780ca0000b02901c1b636ecc2mr4160844pfn.20.1612977060750;
-        Wed, 10 Feb 2021 09:11:00 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:d8e6:826a:fc50:2158])
-        by smtp.gmail.com with UTF8SMTPSA id f3sm2977494pgh.75.2021.02.10.09.10.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Feb 2021 09:10:58 -0800 (PST)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v5 4/4] arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
-Date:   Wed, 10 Feb 2021 09:10:39 -0800
-Message-Id: <20210210091015.v5.4.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
-X-Mailer: git-send-email 2.30.0.478.g8a0d178c01-goog
-In-Reply-To: <20210210171040.684659-1-mka@chromium.org>
-References: <20210210171040.684659-1-mka@chromium.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S232298AbhBJRP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 12:15:28 -0500
+Received: from so15.mailgun.net ([198.61.254.15]:52698 "EHLO so15.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232432AbhBJRO7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 12:14:59 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1612977277; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=28pOe6YfG2engrBhubISUUR0nXmBQ2Y18ezVEkDZQvY=; b=dPCUlkbkjVvk0wZZLVKD9fteQsCoo7fFgWJNzoLgPawy1DhsxGZLm8WSsRtul4CIjd8TrExH
+ 7wWqgqP309Y4Ne7dg3UlcuatdR5/LXnlgWvYhCs9Hn4O2HhXhKnS22O1vy96h65fNV2QJu6T
+ NN25MFZ8x02VsfqVbxWBTgaYtpo=
+X-Mailgun-Sending-Ip: 198.61.254.15
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 6024145fe4842e9128d4655c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 10 Feb 2021 17:14:07
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B4868C43461; Wed, 10 Feb 2021 17:14:06 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id CF3B0C433ED;
+        Wed, 10 Feb 2021 17:14:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CF3B0C433ED
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v1 0/2] Add support for RPMH clock for SC7280
+Date:   Wed, 10 Feb 2021 22:43:48 +0530
+Message-Id: <1612977230-11566-1-git-send-email-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for the onboard USB hub on trogdor devices. Remove the
-'always-on' and 'boot-on' properties from the hub regulator, since
-the regulator is now managed by the onboard_usb_hub driver.
+Add the bindings for sc7280 and support the rpmh clock which
+are required to be supported on SC7280.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+Taniya Das (2):
+  dt-bindings: clock: Add RPMHCC bindings for SC7280
+  clk: qcom: rpmh: Add support for RPMH clocks on SC7280
 
-Changes in v5:
- - patch added to the series
+ .../devicetree/bindings/clock/qcom,rpmhcc.yaml     |  1 +
+ drivers/clk/qcom/clk-rpmh.c                        | 24 +++++++++++++++++++++-
+ 2 files changed, 24 insertions(+), 1 deletion(-)
 
- .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts  | 15 ++++-----------
- .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts  | 11 ++---------
- arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts | 15 ++++-----------
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi   | 18 +++++++++++++++---
- 4 files changed, 25 insertions(+), 34 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-index 30e3e769d2b4..a557c269b998 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-@@ -14,17 +14,6 @@ / {
- 	compatible = "google,lazor-rev0", "qcom,sc7180";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
--
- &sn65dsi86_out {
- 	/*
- 	 * Lane 0 was incorrectly mapped on the cable, but we've now decided
-@@ -33,3 +22,7 @@ &sn65dsi86_out {
- 	 */
- 	lane-polarities = <1 0>;
- };
-+
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-index c2ef06367baf..d182b7a231f4 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-@@ -14,13 +14,6 @@ / {
- 	compatible = "google,lazor-rev1", "google,lazor-rev2", "qcom,sc7180";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-index 2cb522d6962e..699e7815697a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-@@ -53,21 +53,14 @@ ap_ts: touchscreen@10 {
- 	};
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
--
- &sdhc_2 {
- 	status = "okay";
- };
- 
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
- /* PINCTRL - board-specific pinctrl */
- 
- &tlmm {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 8ed7dd39f6e3..9add00cc32a5 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -203,9 +203,6 @@ pp3300_hub: pp3300-hub {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&en_pp3300_hub>;
- 
--		regulator-always-on;
--		regulator-boot-on;
--
- 		vin-supply = <&pp3300_a>;
- 	};
- 
-@@ -894,6 +891,21 @@ &usb_1 {
- 
- &usb_1_dwc3 {
- 	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* 2.0 hub on port 1 */
-+	usb_hub_2_0: hub@1 {
-+		compatible = "usbbda,5411";
-+		reg = <1>;
-+		vdd-supply = <&pp3300_hub>;
-+	};
-+
-+	/* 3.0 hub on port 2 */
-+	usb_hub_3_0: hub@2 {
-+		compatible = "usbbda,411";
-+		reg = <2>;
-+	};
- };
- 
- &usb_1_hsphy {
--- 
-2.30.0.478.g8a0d178c01-goog
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
 
