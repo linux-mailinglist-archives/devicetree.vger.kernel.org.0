@@ -2,141 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C79363160DF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 249DE3160F6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:28:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233862AbhBJIWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 03:22:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47334 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233873AbhBJIWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 03:22:33 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 167B9C061786
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 00:21:53 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id e132so1163973ybh.8
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 00:21:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=65vR6SG2Bxgu7fYiRhCh88Vjzb2irw6GGGy0yalIXkM=;
-        b=LPbRwhPQ6/yQZRRqLwpjkO9i9cYhEEfxPQrDEn0JhbQhI/zaZgHbTrB1WOrAsW48Nm
-         8DnAO761rA7a0hr8Kz+pzOWJBzU9mEZn+REW8D/LtHnD07SW/TW6j48zTLeiUdla/XLj
-         iJOCcCOU+O7dIIVzKrW2UwvoyFOcZSTDkOeTMjPls9pF2UcFI39WS7De+VRQk0QFQgwW
-         IosoVwgFpBw0afved4rHh9++rElFdWER0kM9K55YZtccijBsujCCeVQyCavCVbjFcvHx
-         znEXnaFjysy0sU1GlufpmXpMW4w2cb3O2PlTHXkMTJ6WqsDnhq97jj8a/U+dj5SRxv7F
-         BpBA==
+        id S229719AbhBJI1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 03:27:10 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:42596 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233534AbhBJI0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 03:26:22 -0500
+Received: by mail-oi1-f169.google.com with SMTP id u66so1137800oig.9;
+        Wed, 10 Feb 2021 00:26:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=65vR6SG2Bxgu7fYiRhCh88Vjzb2irw6GGGy0yalIXkM=;
-        b=JOBH8NouadgOMtuHWrpu5tO1DoQAD0trQ1iV2zNVes7/GfZDYEkKJvES80cyPkcZ8p
-         XlO9d2AB09s7ZTZ6eXrrgkFIciusiovdYfpRAOUJ0y4MyGhWANCs6QecXVyY9kAJvaii
-         OH1vtISPKJ6zFBar6yf9ePPM88rvcbT3zvEbmd8EI0VmxIahvfGAo2+Do/Ocp3PTF3uc
-         IjV1b5U/7KmV+Zza4YAeByR6iynOUaXdRyx/xz0W9TZKUK+Zn1IZklknXscpQoPmtBUh
-         ZEJlZzvdSx4hSfmM7bX5N2pTZ/5U4K8As0EHIIi66iV7yaJjl+ykM2SMokjS9ncKxlk+
-         047g==
-X-Gm-Message-State: AOAM533VBFagV3Dq+yWK0B7h+g6b0yB7tpXTcnvNBkSXOadg7m1l/psF
-        pKtEEVMSGFvHopjGmEf+VIKjyJfLKcpdZtajTIlNJA==
-X-Google-Smtp-Source: ABdhPJyxSaGGlwuex18FZi5K/pPfGnm1HqMPKKiFTci/lion367u1Sx4ALhiN7Mx+aV+ZmbAQe0CtgNZMlo7WHnbNZU=
-X-Received: by 2002:a25:2a84:: with SMTP id q126mr2506790ybq.167.1612945312267;
- Wed, 10 Feb 2021 00:21:52 -0800 (PST)
+        bh=aGjLISWJ+fszvKmcvo2/oB8kqSJgVo4mq+414YKd0ak=;
+        b=tTM6x9WvBKj6CCIlz5RGq1bETqJFXJYJAyrAXjmBzr16syAZxbUCQOGezwW2g727mV
+         w614B9nQnvXZ8OYELXXA+2fURs4cGDkRsj/f66PXoqNUY5tY8ZpgyahSXVf8kBX0L/sE
+         WDjWyDtsCnZofUMxrngqtSJ2clsWhMoo+KtFahwp8HtKKFJiaA/MhFZb+gkY7qLNnHzs
+         oLjEvT1FJW58acYBABkf7kLGPUpra3CoZtS+Ul8ViCMgUNv/4hzy3yRVOXff/MuTvPPd
+         wVBu46NiyjJc3trNDdKRUYqvPe3wVCdyXiay6CbPlbN/K/EHZ2Bi9E8+uurDFardRwmZ
+         /j4g==
+X-Gm-Message-State: AOAM530czFG4/8pl89E0IAj34w1s5I0BFI7K9LTibSdoee0QrQpUkjP1
+        JT9cbPZ8rztGkspJ0aSdxBnTfklbLzCSp3+DHaE=
+X-Google-Smtp-Source: ABdhPJw76RbbTdIjOWOYdNuMSRd5sBeR2j0014yZb4MdeOrBQA1HjGlwkbMtEPnZoE9rsvsL6sEmWZSBR33/719FBhk=
+X-Received: by 2002:a54:4e88:: with SMTP id c8mr1277055oiy.148.1612945537621;
+ Wed, 10 Feb 2021 00:25:37 -0800 (PST)
 MIME-Version: 1.0
-References: <1612426177-6611-1-git-send-email-amit.pundir@linaro.org>
- <889e6ed8-133a-9416-be3b-5b2a97ea7fbb@somainline.org> <CAMi1Hd3bgDaqsH+txFVEnBc9dsGbrgic5TK7uq4GwqqkM6seiw@mail.gmail.com>
- <9bbeb403-2937-aebd-91ff-5682f9112dee@somainline.org>
-In-Reply-To: <9bbeb403-2937-aebd-91ff-5682f9112dee@somainline.org>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Wed, 10 Feb 2021 13:51:16 +0530
-Message-ID: <CAMi1Hd24xe9sppQ_R20eF-W0uV2hsZZDZ=G-hYHxcarSB8YSLg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and
- panel bits
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
+References: <20210205222644.2357303-1-saravanak@google.com>
+ <20210205222644.2357303-5-saravanak@google.com> <20210209213320.GA219007@robh.at.kernel.org>
+ <CAGETcx_gHRd9UYHvSsHX_=NFF+HEJkamJp3JcpojuJob_a8_DA@mail.gmail.com>
+In-Reply-To: <CAGETcx_gHRd9UYHvSsHX_=NFF+HEJkamJp3JcpojuJob_a8_DA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 10 Feb 2021 09:25:26 +0100
+Message-ID: <CAMuHMdXi9s_b0xjaQ3n_-qFfdwfBtxnrhYfVuRENJM5UJ9TUwg@mail.gmail.com>
+Subject: Re: [PATCH v4 4/8] of: property: Add fw_devlink support for optional properties
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Saravana,
 
-On Mon, 8 Feb 2021 at 20:11, Konrad Dybcio <konrad.dybcio@somainline.org> wrote:
->
->
-> >>> +      ports {
-> >>> +              port@1 {
-> >>> +                      endpoint {
-> >>> +                              remote-endpoint = <&tianma_nt36672a_in_0>;
-> >>> +                              data-lanes = <0 1 2 3>;
-> >>> +                      };
-> >>> +              };
-> >>> +      };
-> >> The endpoint has a label, you can simply use &dsi0_out {};.
-> > I didn't get what you meant there. Care to point to some reference dts
-> > snippet please?
->
-> sdm845.dtsi, L4139 as of v5.11-rc7:
->
->
-> port@1 {
->                         reg = <1>;
->                         dsi0_out: endpoint {
->                         };
->                     };
->
->
-> This means you can essentially do:
->
-> &dsi0_out {
->
->     remote-endpoint = <&tianma_nt36672a_in_0>;
->     lanes = <0 1 2 3>;
->
-> };
->
->
-> in your dt :)
->
+CC iommu
 
-Thank you. Added in v3.
-
->
-> >>> +              vddpos-supply = <&lab>;
-> >>> +              vddneg-supply = <&ibb>;
-> >> With Angelo's latest series [1] merged in, I reckon you should explicitly configure lab/ibb (like in [2]),
-> >> as wrong settings (which CAN BE SET BY THE BOOTLOADER in some instances!!) can lead to hardware damage.
-> > So iirc in the case of beryllium device, these regulators are pre set
-> > by the bootloader and I can't find any reference of we
-> > setting/resetting it explicitly to switch ON the panel and display. So
-> > far default lab/ibb nodes are working fine for us and I'm hesitant to
-> > tinker around anything regulator related that can potentially damage
-> > the hardware. Having said that, I do see lab/ibb nodes being set in
-> > the downstream dts, with relevant soft-start and discharge-resistor
-> > properties and I can try switching to that once the new lab/ibb
-> > changes land upstream.
+On Tue, Feb 9, 2021 at 10:55 PM Saravana Kannan <saravanak@google.com> wrote:
+> On Tue, Feb 9, 2021 at 1:33 PM Rob Herring <robh@kernel.org> wrote:
+> > On Fri, Feb 05, 2021 at 02:26:40PM -0800, Saravana Kannan wrote:
+> > > Not all DT bindings are mandatory bindings. Add support for optional DT
+> > > bindings and mark iommus, iommu-map, dmas as optional DT bindings.
 > >
-> > Regards,
-> > Amit Pundir
+> > I don't think we can say these are optional or not. It's got to be a
+> > driver decision somehow.
+>
+> Right, so maybe the word "optional" isn't a good name for it. I can
+> change that if you want.
+>
+> The point being, fw_devlink can't block the probe of this driver based
+> on iommu property. We let the driver decide if it wants to
+> -EPROBE_DEFER or not or however it wants to handle this.
+
+The driver cannot make that decision, cfr. below.
+
+> > For example, if IOMMU is optional, what happens with this sequence:
 > >
-> I understand your concerns, however we actually did find out that at least one device had LAB/IBB set up by the bootloader in a way that could potentially damage the electronics, so I'm just making you aware. If it works as-is, it's probably OK.
+> > driver probes without IOMMU
+> > driver calls dma_map_?()
+> > IOMMU driver probes
+> > h/w accesses DMA buffer --> BOOM!
 
-Device seem to be booting fine with downstream labibb regulator node
-changes, hence added them in v3 as well. Smoke tested on
-5.11.0-rc7-next-20210209.
+Does it really behave that way? Or does it continue without IOMMU?
 
-Regards,
-Amit Pundir
+> Right. But how is this really related to fw_devlink? AFAICT, this is
+> an issue even today. If the driver needs the IOMMU, then it needs to
+> make sure the IOMMU has probed? What am I missing?
 
->
->
-> Konrad
->
+Individual I/O (IOMMU slave) drivers are completely unaware of the
+presence or absence of an IOMMU; they just use the DMA API, which is the
+same regardless of an IOMMU being used or not.
+While for GPIO/IRQ/CLK/DMA/... have request/get_{gpio,irq,clk,dma,...}
+APIs for a driver to get a reference, which can return -EPROBE_DEFER, no
+such thing exists for IOMMUs.  This is handled by the IOMMU core
+instead.
+
+Using the IOMMU or not is more like a system policy decision.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
