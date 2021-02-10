@@ -2,93 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BDD13163F7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 11:36:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19C11316403
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 11:38:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbhBJKf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 05:35:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbhBJKdg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 05:33:36 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36429C061786;
-        Wed, 10 Feb 2021 02:32:56 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id e9so977442plh.3;
-        Wed, 10 Feb 2021 02:32:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LLdDQUQP13NzlWu2COedE9BO4DgJfjSYV3P0R/5YqEU=;
-        b=uZplPSuADWwkqUO8bgIIajgUW16QAkBvFN94GSmyqwzYunDJNAR7LhwIUkYGnQPD2x
-         nQTx04fiJwt89Q1lD1B3rXIURUfUgplPBo2veVv3N1tXkuX8ZPncFl9NuZhIdu7/KJcN
-         16e0vSCzMrLr44XWOidlRgn6CbE6OKb6rcyVGvcump3xLxu3uWPthlWDYcpWS6wvU5jN
-         0kILc0OnaKpZnRkfHVo9fb3awdyhDoE5ix966TYcndXF6TpnKh/aV8Q7T+X+a8vCsoZk
-         m7evANyNAGB0nUEWbMiqt2YBLl0OyCYtM28LLaPVK/z3fC45ijd1hStUBVt7PL8n1vgk
-         XyUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LLdDQUQP13NzlWu2COedE9BO4DgJfjSYV3P0R/5YqEU=;
-        b=h2egSvydowzp1adDBtoInfa0FFyqxz4UmQeFFis4qPrv/4XHBz2HnIvoHhvsOZ8aBo
-         6QkEq1wMvOpOxgWbMXtNkMTRQXAtt0DhuXaEyQJKwvh9CxN+pEL34EY6Sxoxt62CQLez
-         EM0U3inhuHvANENaAViUy+NYkQdh3g5Xw8/qONmyhx0dJDhbMUpNygiB1NsdR5NWqvSF
-         BQrpyz6vlS1gbsG0SNgh7PzAJYHsBXeCCdjLAclApBuqj469/yTBeylDAYcE5KPTN2OK
-         zORu0RBm1oaVB4roGH+DEwxphlZHM0ud+qht3/d3UJfghFWH+usPiyRbmMe6sUNzVrGf
-         E0CA==
-X-Gm-Message-State: AOAM530/0uxzjnDCk9CmZioX0AgYi+JShJrgPIwlAMxytj9/uQwiYbbv
-        EN0Pzp19Scb1jP4wugKjBpadMO8cYna9yUJpMgY=
-X-Google-Smtp-Source: ABdhPJx8gN/pOyi4L/K6NTKHaPSYP/H8BZ1OTpKiP3+sA1IEMtj1n/T8uqzmVvTKZh+3ZXyCmDSLCvwBN5DzxXZxl7Y=
-X-Received: by 2002:a17:90a:1b23:: with SMTP id q32mr2522932pjq.181.1612953175724;
- Wed, 10 Feb 2021 02:32:55 -0800 (PST)
+        id S231499AbhBJKie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 05:38:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48738 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231309AbhBJKfk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 05:35:40 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 10F2464E2E;
+        Wed, 10 Feb 2021 10:34:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612953299;
+        bh=1K3KbJuoIq4iabQNHnrRpJS5tQ/x2No+KUluIejW7Pc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ApRSEIX4DkcNosi6JBGhym3f3lE2MS1mNHWiTHA43HBP6CLiaWmEjOlifUANJD5rp
+         FS/4DRsT5eGNrRcGCZwMZnrkDHLnV1VDTUymPsIDMlQbrchGt9XDUndQxw5ijJ/9c7
+         csiS+CJ3kpBOikFl2+YIcbeEQqavukH9b4GJEWdij+70tvMW3FIvgshdDO3gYqRiyY
+         vAKeHMpOnhiJ/XBkpd2ms0K99MhrJwokEtaOneVfP0fvZItQP2TXkFduEvYvZiJnVL
+         1F7xExOHZWIb8w7TllVj2sjCOunc/H5X3Rd/OEgy4EZUTglLK12VtSVI7uMvc9RKGp
+         sNSco52+2x9Zw==
+Received: by mail-oi1-f171.google.com with SMTP id r75so1449354oie.11;
+        Wed, 10 Feb 2021 02:34:59 -0800 (PST)
+X-Gm-Message-State: AOAM531kOore39SPczvcIj+Y48Nj6ppud2it45uDO/ZraRFHJF4noEIx
+        5sEX5pG/CxPf8eS48VIYRMv0mbfHQIhXO0sAW0k=
+X-Google-Smtp-Source: ABdhPJzseKKHEbJC7CnEtbLwFdupZ9GAl1vdMa3N8sPeQgYT+Wi1W+aI+MmSwwkSXkLQsdFrH0EVj4yLjP/H+T3mtu0=
+X-Received: by 2002:aca:e103:: with SMTP id y3mr1528656oig.11.1612953298253;
+ Wed, 10 Feb 2021 02:34:58 -0800 (PST)
 MIME-Version: 1.0
-References: <20210208222203.22335-1-info@metux.net> <20210208222203.22335-12-info@metux.net>
-In-Reply-To: <20210208222203.22335-12-info@metux.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 10 Feb 2021 12:32:39 +0200
-Message-ID: <CAHp75Vd9ui5bttkrG0KQLqecS_-5m_mPQHfdawpLhx7+YObrYQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 11/12] platform/x86: skeleton for oftree based board
- device initialization
-To:     "Enrico Weigelt, metux IT consult" <info@metux.net>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
+References: <20210118155242.7172-1-jbx6244@gmail.com> <20210118155242.7172-2-jbx6244@gmail.com>
+ <CAK8P3a3_uO23Y0tyfdh26tmCVcyp6XM+ur0WUd4khGUoBb32Hw@mail.gmail.com> <6598201.ejJDZkT8p0@diego>
+In-Reply-To: <6598201.ejJDZkT8p0@diego>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Wed, 10 Feb 2021 11:34:41 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com>
+Message-ID: <CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com>
+Subject: Re: [PATCH 2/5] ARM: dts: rockchip: assign a fixed index to mmc
+ devices on rv1108 boards
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 9, 2021 at 12:27 AM Enrico Weigelt, metux IT consult
-<info@metux.net> wrote:
+On Wed, Feb 10, 2021 at 12:50 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote=
+:
+> Am Dienstag, 9. Februar 2021, 23:25:40 CET schrieb Arnd Bergmann:
 >
-> Lots of boards have extra devices that can't be fully probed via bus'es
-> (like PCI) or generic firmware mechanisms like ACPI. Often those capabilities
-> are just partial or even highly depend on firmware version.
->
-> Instead of hand-writing board specific drivers merely for the correct
-> initialization / parameterization of generic drivers, hereby introducing
-> a generic mechanism, using the already well supported oftree.
->
-> These oftrees are compiled into the driver, which first tries to match
-> machine identifications (eg. DMI strings) against rules defined in the
-> individual oftrees, and on success, probes the devices that are defined
-> by them.
->
-> For the time being, we just support matching on DMI_BOARD_NAME and
-> DMI_SYS_VENDOR - other criteria, even bus- or ACPI-id's can be added later,
-> when needed.
+> Hmm, right now I don't see the disadvantage of missing mmc numbers.
 
-This is weird and seems it missed the fact of the DMI based modprobe
-mechanism that the kernel has for ages.
+It's inconsistent with the normal use of these aliases across other
+platforms.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> As similarly we count i2c and serial numbers for a long time, even though
+> not all of them appear on every board.
+
+Yes, that is a similar mistake.
+
+> Especially as the main goal is to simply have stable numbers and
+> not having the mmc devices swap numbers on every boot.
+>
+> So right now we're not using them from a userspace POV but
+> instead agreed on following the address ordering of the soc.
+> so when ordering mmc controllers by their io-address, mmc0
+> is the first one, then mmc1, etc.
+>
+> So just for my understanding, what is different for mmc?
+> I guess to guarantee ongoing numbering similar to sd{a,b,c,...}
+> Or should all aliases be duplicted in each board dts and not
+> live in any soc dtsi?
+
+Each board should have its own aliases node that describes
+exactly which of the devices are wired up on that board, and
+in which order. If there are connectors on the board that
+are labeled in some form, then the aliases are meant to
+match what is written on the board or in its documentation.
+
+      Arnd
