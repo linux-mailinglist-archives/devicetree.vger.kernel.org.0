@@ -2,71 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C572E3172D5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 23:05:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BE733172DC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 23:06:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbhBJWE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 17:04:58 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:43493 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232045AbhBJWE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 17:04:56 -0500
-Received: by mail-ot1-f44.google.com with SMTP id l23so3322003otn.10;
-        Wed, 10 Feb 2021 14:04:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RQ7cu9MfHe6aCf9OAL5eEgdmgHeTz7eoNLzlsX/XljQ=;
-        b=sExBhcYum/qA9fLvw/H/yz/dLt+Ux5wIeOYP/CgSSmkkXxvvBVS3yhc9RV6ODBYLIe
-         HNzY0+cl10x8sgrv9+TOUpA/xrk6WGhoNmnK0rhBcpPlO309IbRQ12rkr5Ne5Z0O734j
-         1tGiJOE7qzX+g6eUKdhnpq3EZNQTOfMOl0CfSymOhxZNhPgnX4Vv1dRFWEpgj6i/mqT/
-         ChMMY8VSKPmhPDyJWC8wgdjGgl8ynayQ00AflTLjYrx5c6qxzPT4CRMM0t1obawf8jgu
-         H3fWz2cFFUw1XYVRD+IWW0Ioawjju6bRlKQjv5jxeomY9wNLBnvnhVKdolR55rK0ZvTM
-         Bbow==
-X-Gm-Message-State: AOAM533XjRn5aRhgNjFJxITaPvcE7pNmkpw+V8LbsjvyWUbUBeEb/21w
-        E6sR6uShbtm58jWg08ylQw==
-X-Google-Smtp-Source: ABdhPJwvaI4R3EJJTYNHhZsZgdSFd9OUgJOtk/ez6XnGX6c1KGRuS1jPfUij87XTNeV/TSeyjyldqw==
-X-Received: by 2002:a05:6830:4121:: with SMTP id w33mr3529003ott.361.1612994655493;
-        Wed, 10 Feb 2021 14:04:15 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e19sm631440otp.31.2021.02.10.14.04.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 14:04:14 -0800 (PST)
-Received: (nullmailer pid 2878384 invoked by uid 1000);
-        Wed, 10 Feb 2021 22:04:13 -0000
-Date:   Wed, 10 Feb 2021 16:04:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marek Czerski <ma.czerski@gmail.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, sre@kernel.org
-Subject: Re: [PATCH v2] power: reset: ltc2952: make trigger delay configurable
-Message-ID: <20210210220413.GA2878331@robh.at.kernel.org>
-References: <20210203214900.71677-1-ma.czerski@gmail.com>
+        id S232045AbhBJWGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 17:06:09 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:35454 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231193AbhBJWGG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 17:06:06 -0500
+Date:   Thu, 11 Feb 2021 01:05:18 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Joao Pinto <jpinto@synopsys.com>,
+        Lars Persson <larper@axis.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Vyacheslav Mitrofanov 
+        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 07/24] dt-bindings: net: dwmac: Detach Generic DW MAC
+ bindings
+Message-ID: <20210210220518.nbzm6ux6pui2csbf@mobilestation>
+References: <20210208135609.7685-1-Sergey.Semin@baikalelectronics.ru>
+ <20210208135609.7685-8-Sergey.Semin@baikalelectronics.ru>
+ <20210209223258.GA328873@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210203214900.71677-1-ma.czerski@gmail.com>
+In-Reply-To: <20210209223258.GA328873@robh.at.kernel.org>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 03 Feb 2021 22:49:00 +0100, Marek Czerski wrote:
-> Make trigger delay configurable through device tree with
-> trigger-delay-ms property.
-> 
-> Trigger delay is the time to wait before starting shutdown
-> sequence after trigger line assertion.
-> Trigger delay must take into account the OFFT time configured
-> with the capacitor connected to OFFT pin of the LTC2952 chip.
-> Basically, the higher the capacitance connected to OFFT pin,
-> the larger trigger delay must be.
-> 
-> Signed-off-by: Marek Czerski <ma.czerski@gmail.com>
-> ---
->  .../devicetree/bindings/power/reset/ltc2952-poweroff.txt  | 4 ++++
->  drivers/power/reset/ltc2952-poweroff.c                    | 8 ++++++++
->  2 files changed, 12 insertions(+)
+On Tue, Feb 09, 2021 at 04:32:58PM -0600, Rob Herring wrote:
+> On Mon, Feb 08, 2021 at 04:55:51PM +0300, Serge Semin wrote:
+> > Currently the snps,dwmac.yaml DT bindings file is used for both DT nodes
+> > describing generic DW MAC devices and as DT schema with common properties
+> > to be evaluated against a vendor-specific DW MAC IP-cores. Due to such
+> > dual-purpose design the "compatible" property of the common DW MAC schema
+> > needs to contain the vendor-specific strings to successfully pass the
+> > schema evaluation in case if it's referenced from the vendor-specific DT
+> > bindings. That's a bad design from maintainability point of view, since
+> > adding/removing any DW MAC-based device bindings requires the common
+> > schema modification. In order to fix that let's detach the schema which
+> > provides the generic DW MAC DT nodes evaluation into a dedicated DT
+> > bindings file preserving the common DW MAC properties declaration in the
+> > snps,dwmac.yaml file. By doing so we'll still provide a common properties
+> > evaluation for each vendor-specific MAC bindings which refer to the
+> > common bindings file, while the generic DW MAC DT nodes will be checked
+> > against the new snps,dwmac-generic.yaml DT schema.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > 
+> > ---
+> > 
+> > Changelog v2:
+> > - Add a note to the snps,dwmac-generic.yaml bindings file description of
+> >   a requirement to create a new DT bindings file for the vendor-specific
+> >   versions of the DW MAC.
+> > ---
+> >  .../bindings/net/snps,dwmac-generic.yaml      | 154 ++++++++++++++++++
+> >  .../devicetree/bindings/net/snps,dwmac.yaml   | 139 +---------------
+> >  2 files changed, 155 insertions(+), 138 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml b/Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml
+> > new file mode 100644
+> > index 000000000000..6c3bf5b2f890
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac-generic.yaml
+> > @@ -0,0 +1,154 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/snps,dwmac-generic.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Synopsys DesignWare Generic MAC Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Alexandre Torgue <alexandre.torgue@st.com>
+> > +  - Giuseppe Cavallaro <peppe.cavallaro@st.com>
+> > +  - Jose Abreu <joabreu@synopsys.com>
+> > +
+> > +description:
+> > +  The primary purpose of this bindings file is to validate the Generic
+> > +  Synopsys Desginware MAC DT nodes defined in accordance with the select
+> > +  schema. All new vendor-specific versions of the DW *MAC IP-cores must
+> > +  be described in a dedicated DT bindings file.
+> > +
+> > +# Select the DT nodes, which have got compatible strings either as just a
+> > +# single string with IP-core name optionally followed by the IP version or
+> > +# two strings: one with IP-core name plus the IP version, another as just
+> > +# the IP-core name.
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      oneOf:
+> > +        - items:
+> > +            - pattern: "^snps,dw(xg)+mac(-[0-9]+\\.[0-9]+a?)?$"
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+> Use '' instead of "" and you can skip the double \.
+> 
+> With that,
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Got it. Thanks.
+
+-Sergey
+
+> 
+> > +        - items:
+> > +            - pattern: "^snps,dwmac-[0-9]+\\.[0-9]+a?$"
+> > +            - const: snps,dwmac
+> > +        - items:
+> > +            - pattern: "^snps,dwxgmac-[0-9]+\\.[0-9]+a?$"
+> > +            - const: snps,dwxgmac
