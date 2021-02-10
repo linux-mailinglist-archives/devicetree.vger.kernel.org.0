@@ -2,94 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59B20317121
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 21:20:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4635D317124
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 21:20:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233267AbhBJUTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 15:19:34 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:39880 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233201AbhBJUTY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 15:19:24 -0500
-Received: by mail-ot1-f53.google.com with SMTP id d7so3051145otq.6;
-        Wed, 10 Feb 2021 12:19:08 -0800 (PST)
+        id S233273AbhBJUUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 15:20:02 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:46476 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233284AbhBJUTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 15:19:39 -0500
+Received: by mail-oi1-f171.google.com with SMTP id k25so3481658oik.13;
+        Wed, 10 Feb 2021 12:19:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=h41qDLzBBrR16Efq3/F/iDABghaBilvwRHFXLq+Yn9s=;
-        b=JBMf/CAF+jB+FbeZV/dHBI7FG18mo3CpAbifK2g79FMj14IQjpRubkvfd3D6Ck6pX1
-         PXFwjpPVX8vdUcyV3QEpJdap1B2F9Nw7H+qJP2p1KGTsX5Rn7jMagBaf56R+LovMWZ9s
-         0FW+BgIpPlwaUKDbuBCfXV8XsCz5ohqhcYK+d0pVnsp9saWm9zhyDyWqJeKWDn8jV0mB
-         zjd2hebQa8mKqZQOPCeVU9QxN2F4aeAWJulbcip0HQYFHMNyAWnLXZB40xSGdugryMQm
-         VGAQJE1nZRBOcOTZqODD9VMr+ByF8e8fI9Clmra34/qmMRWyglvHo16znM/jAAS9AxNd
-         ykpw==
-X-Gm-Message-State: AOAM532p1+n3biv264tYtl9LNeZDuBOxTMNBjqm4VtWRqhKvK2UQfau5
-        0Vf5FSAZnA0OGO3emev58w==
-X-Google-Smtp-Source: ABdhPJyz5kpX+mNnEdlZwoQGZYpWUggvB3mg6nhCt6reKhCwU9w/y3ionZv0xhHlbmBIxN4oG7++Zg==
-X-Received: by 2002:a05:6830:1653:: with SMTP id h19mr3532802otr.78.1612988322998;
-        Wed, 10 Feb 2021 12:18:42 -0800 (PST)
+        bh=1V8t5Prsyy8S7mj+k1iwfG7SFJZpLRdBoSrJSVmZLDo=;
+        b=SmGKYUHFV9pAKHh2civHRu39SsdPtOx2fK9MMOVTpYiZ8YbtLoCviuEsfmAxclzO3D
+         UOU1+lTNlng2UD4Tdb/MZg8OMoCSvn+byPw3y3g/Lfhg3zJLRLoz4AWZrXeh/FOHL8O2
+         o9dpL09NXnCBhnVsLmRujWZtLljUbzHdbiIRcUKbGCb8MBrmLDWECve3OkXJAiwdm3f7
+         tyuvQ1nkCHScg9rmDHMWbL+bcKIDMlo6dm0H26d5mgn4fZoxnHQ7uJ9ugvpOrUVxQxi7
+         B48sIZ3IOkqi/QBLKgOUbwhDBUC1D6Lg7883ZH7L89iCIFGnecz+fdQYZW6JsEILcD1x
+         dImg==
+X-Gm-Message-State: AOAM532miHik9VTmTpW/8ScMnZd1eugVsLMQv+faJthQHQday3BGe/Ja
+        H0ebALuG4pGVS8WHdsRL6r51qwf3wA==
+X-Google-Smtp-Source: ABdhPJyuS7VjbrxGJVv3iJ/xTI1HQADlXtLQ4n+iMb/j+EHT3Wlzn5vWyImtbs3aFTQgWbK0PwMUGw==
+X-Received: by 2002:aca:c545:: with SMTP id v66mr532401oif.116.1612988338560;
+        Wed, 10 Feb 2021 12:18:58 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q7sm682448oif.1.2021.02.10.12.18.41
+        by smtp.gmail.com with ESMTPSA id l133sm654257oia.37.2021.02.10.12.18.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 12:18:42 -0800 (PST)
-Received: (nullmailer pid 2689654 invoked by uid 1000);
-        Wed, 10 Feb 2021 20:18:41 -0000
-Date:   Wed, 10 Feb 2021 14:18:41 -0600
+        Wed, 10 Feb 2021 12:18:57 -0800 (PST)
+Received: (nullmailer pid 2690216 invoked by uid 1000);
+        Wed, 10 Feb 2021 20:18:56 -0000
+Date:   Wed, 10 Feb 2021 14:18:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-clk@vger.kernel.org, aford@beaconembedded.com,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 1/2] dt-bindings: clk: versaclock5: Add optional load
- capacitance property
-Message-ID: <20210210201841.GA2688439@robh.at.kernel.org>
-References: <20210207185140.3653350-1-aford173@gmail.com>
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     srv_heupstream@mediatek.com,
+        Philipp Zabel <p.zabel@pengutronix.de>, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, matthias.bgg@gmail.com,
+        airlied@linux.ie, devicetree@vger.kernel.org,
+        yingjoe.chen@mediatek.com, stonea168@163.com,
+        huijuan.xie@mediatek.com, linux-mediatek@lists.infradead.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        eddie.huang@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, shuijing.li@mediatek.com
+Subject: Re: [PATCH v3 3/3] dt-bindings: mediatek,dpi: add mt8192 to
+ mediatek,dpi
+Message-ID: <20210210201856.GA2690160@robh.at.kernel.org>
+References: <20210208014221.196584-1-jitao.shi@mediatek.com>
+ <20210208014221.196584-4-jitao.shi@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210207185140.3653350-1-aford173@gmail.com>
+In-Reply-To: <20210208014221.196584-4-jitao.shi@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 07, 2021 at 12:51:38PM -0600, Adam Ford wrote:
-> There are two registers which can set the load capacitance for
-> XTAL1 and XTAL2. These are optional registers when using an
-> external crystal.  Since XTAL1 and XTAL2 will set to the same value,
-> update the binding to support a single property called
-> xtal-load-femtofarads.
+On Mon, 08 Feb 2021 09:42:21 +0800, Jitao Shi wrote:
+> Add compatible "mediatek,mt8192-dpi" for the mt8192 dpi.
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
 > ---
-> V3:  No Change
-> V2:  No Change
+>  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> A couple people suggested that I not use the $ref, but without it,
-> the bindings check failed with errors.
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> index 2ac1131fd922..c268debe5b8d 100644
-> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> @@ -59,6 +59,12 @@ properties:
->      minItems: 1
->      maxItems: 2
->  
-> +  idt,xtal-load-femtofarads:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Don't need a type with standard unit suffix.
-
-> +    minimum: 9000
-> +    maximum: 22760
-> +    description: Optional load capacitor for XTAL1 and XTAL2
-> +
->  patternProperties:
->    "^OUT[1-4]$":
->      type: object
-> -- 
-> 2.25.1
-> 
+Acked-by: Rob Herring <robh@kernel.org>
