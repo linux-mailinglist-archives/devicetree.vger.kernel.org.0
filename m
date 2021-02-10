@@ -2,84 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB383316454
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 11:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C824316484
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:02:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231526AbhBJKwC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 10 Feb 2021 05:52:02 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:43390 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231518AbhBJKuM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 05:50:12 -0500
-Received: from [95.90.166.74] (helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1l9n3f-0003Yx-RQ; Wed, 10 Feb 2021 11:49:19 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, robh+dt@kernel.org
-Subject: Re: [PATCH 2/5] ARM: dts: rockchip: assign a fixed index to mmc devices on rv1108 boards
-Date:   Wed, 10 Feb 2021 11:49:17 +0100
-Message-ID: <46108228.fMDQidcC6G@diego>
-In-Reply-To: <CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com>
-References: <20210118155242.7172-1-jbx6244@gmail.com> <6598201.ejJDZkT8p0@diego> <CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com>
+        id S231326AbhBJLCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 06:02:03 -0500
+Received: from mail-03.mail-europe.com ([91.134.188.129]:39006 "EHLO
+        mail-03.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231403AbhBJK75 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 05:59:57 -0500
+Date:   Wed, 10 Feb 2021 10:58:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1612954686;
+        bh=GRRV1eBGqOks0+oMuJPFV2qf6WNyQkliy1bbSM1rdeM=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=bU5LjjP29E8rR5cjyhqZL57GnwCL7lv8a+ssDMDH09ITZxzvTvE7w6pbdRS0aqO/t
+         QFfFeHqiZdtHSL3hK73E4yuSNTrnCUyOyg5yij6X1QvhUNprOOm1zQSj0AY0/9p+50
+         JE5LCOBeNOR9hoPKyPooBsGz/vEal5Zv8+sK7zPA=
+To:     "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     "agross@kernel.org" <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: [PATCH v2] arm64: dts: qcom: pm8994: Add resin node to PON
+Message-ID: <BmEPgqFMiMXOzn9xFz6KSPtOZdWoeJ8zUpGXI_p7U9FBBSgbG2IP6Akuvb-WWzy7MVuBkrhOas158Vd9klSLFmrbSRGEpQGouiAFpsf03Ag=@protonmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 10. Februar 2021, 11:34:41 CET schrieb Arnd Bergmann:
-> On Wed, Feb 10, 2021 at 12:50 AM Heiko Stübner <heiko@sntech.de> wrote:
-> > Am Dienstag, 9. Februar 2021, 23:25:40 CET schrieb Arnd Bergmann:
-> >
-> > Hmm, right now I don't see the disadvantage of missing mmc numbers.
-> 
-> It's inconsistent with the normal use of these aliases across other
-> platforms.
-> 
-> > As similarly we count i2c and serial numbers for a long time, even though
-> > not all of them appear on every board.
-> 
-> Yes, that is a similar mistake.
-> 
-> > Especially as the main goal is to simply have stable numbers and
-> > not having the mmc devices swap numbers on every boot.
-> >
-> > So right now we're not using them from a userspace POV but
-> > instead agreed on following the address ordering of the soc.
-> > so when ordering mmc controllers by their io-address, mmc0
-> > is the first one, then mmc1, etc.
-> >
-> > So just for my understanding, what is different for mmc?
-> > I guess to guarantee ongoing numbering similar to sd{a,b,c,...}
-> > Or should all aliases be duplicted in each board dts and not
-> > live in any soc dtsi?
-> 
-> Each board should have its own aliases node that describes
-> exactly which of the devices are wired up on that board, and
-> in which order. If there are connectors on the board that
-> are labeled in some form, then the aliases are meant to
-> match what is written on the board or in its documentation.
+Add resin as a child node of PON, and specify its key code on apq8096-db820=
+c.
 
-Then we're at least in the clear for i2c, serial and the rest ... as these
-are numbered in the soc documentation, and all boards I've seen so
-far use these number also to identify these in schematics.
+Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+---
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 18 ++++--------------
+ arch/arm64/boot/dts/qcom/pm8994.dtsi         |  6 ++++++
+ 2 files changed, 10 insertions(+), 14 deletions(-)
 
-So an i2c2 is always i2c2 even if i2c1 is not populated.
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot=
+/dts/qcom/apq8096-db820c.dtsi
+index defcbd15edf9..8e129bcc20ba 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+@@ -951,6 +951,10 @@ dai@2 {
+ =09};
+ };
 
-And of course doing
-	i2c0 = &i2c2
-would definitly confuse people to no end.
++&resin {
++=09linux,code =3D <KEY_VOLUMEDOWN>;
++};
++
+ &sound {
+ =09compatible =3D "qcom,apq8096-sndcard";
+ =09model =3D "DB820c";
+@@ -1026,20 +1030,6 @@ codec {
+ =09};
+ };
 
-So I guess we'll just move the mmc stuff over to board files.
+-&spmi_bus {
+-=09pmic@0 {
+-=09=09pon@800 {
+-=09=09=09resin {
+-=09=09=09=09compatible =3D "qcom,pm8941-resin";
+-=09=09=09=09interrupts =3D <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
+-=09=09=09=09debounce =3D <15625>;
+-=09=09=09=09bias-pull-up;
+-=09=09=09=09linux,code =3D <KEY_VOLUMEDOWN>;
+-=09=09=09};
+-=09=09};
+-=09};
+-};
+-
+ &ufsphy {
+ =09status =3D "okay";
 
+diff --git a/arch/arm64/boot/dts/qcom/pm8994.dtsi b/arch/arm64/boot/dts/qco=
+m/pm8994.dtsi
+index 5ffdf37d8e31..b4828188417e 100644
+--- a/arch/arm64/boot/dts/qcom/pm8994.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8994.dtsi
+@@ -58,6 +58,12 @@ pwrkey {
+ =09=09=09=09linux,code =3D <KEY_POWER>;
+ =09=09=09};
+
++=09=09=09resin: resin {
++=09=09=09=09compatible =3D "qcom,pm8941-resin";
++=09=09=09=09interrupts =3D <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
++=09=09=09=09debounce =3D <15625>;
++=09=09=09=09bias-pull-up;
++=09=09=09};
+ =09=09};
+
+ =09=09pm8994_temp: temp-alarm@2400 {
+--
+2.30.0
 
