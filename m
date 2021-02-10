@@ -2,160 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54431317342
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 23:23:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EEE831734E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 23:28:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233231AbhBJWX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 17:23:29 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:38775 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232164AbhBJWXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 17:23:24 -0500
-Received: by mail-ot1-f41.google.com with SMTP id e4so3385325ote.5;
-        Wed, 10 Feb 2021 14:23:08 -0800 (PST)
+        id S232661AbhBJW1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 17:27:43 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:44339 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230229AbhBJW1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 17:27:41 -0500
+Received: by mail-oi1-f178.google.com with SMTP id r75so3896215oie.11;
+        Wed, 10 Feb 2021 14:27:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=M6n3OYgGLF2v6o6pLcsl5i856+A/z2zBwf3QTH//u/w=;
-        b=ngsYsDuSJbzdTp69W+3nXVIua/cOqOJRMIWl2o0+N5yzcz7Bow6TBzeF7Bq2clMWLN
-         rtW5fFkuWarfH1qnAOT170Cbnn+3OlYVigOcujlILno9HcVScMtB80l6rP/tizVbiEWx
-         pzGlbC0uBjNdeWTVh0g1r2Ij4WBnivQbm7j85PFkAX0nPmfXDmizlcLCeFtVaXVYt73F
-         ZZXrD2QZKb9v/2E7E95Tx6wAWoOAfaCPFjGJIwB9raAkVhsl9ZkRJ5Vu46ZupKsWVL+x
-         6bJ3UeKRQTbVXD7xqBYUK6/ZNF47B1erMhlK/wq8SC4NTN1jyy++hu3igw7cSEYR2kxW
-         Rx2g==
-X-Gm-Message-State: AOAM5312Y+gBB7zctBkwznj/LoM0VItRP/hqnpDBIwuJ49aPuuilqOBe
-        BwjV8CTp41dP/YArXIDR0w==
-X-Google-Smtp-Source: ABdhPJwJYPJGLTsZhzkvK1fZdQzPCEUL88/UW98cs/4NQlfUoYDPVDbNik0oj5mLTaWRzjM8wkG53g==
-X-Received: by 2002:a05:6830:8d:: with SMTP id a13mr3626235oto.119.1612995763403;
-        Wed, 10 Feb 2021 14:22:43 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=l9TC4esxc+xfZ+c0X7hu9IPnSeq6h5D3GimauTtA6CI=;
+        b=eE1JpQ9rpRTBhqDLlBvc8MFFUClqnf8RzyBsp2E+zuZGgPj0nLlfUvq/b3Gn7lsPjc
+         /R85nzzNjqtEqkjVXRWWoTWT0QgbOFI45fkIovfh5axF/Q8WYKy9odYE5mtOIfSJ0Gx6
+         Bstl9967+7suTNCv829gmlar5SnX04yC1WRYwo2tXi3Id7g4qZGX22iqiD6tD1CDk/4k
+         F1Qi9HztWRmEIYdZPpGf7OUZJ1UmtunFaNRi8JXFAIDuFiY7yQHPSU+31jVKUPPJj0eW
+         8OOjQpTCR/ggURlUXCie+m+LCKyQWawoGWrKJhN642QrjBKjXsSZwLzMmBp7XF7W+sFY
+         5C3A==
+X-Gm-Message-State: AOAM533biR3xuKQYqXNjvtSwbfnHZsiGrvhIm2vpB+dzg9xb4qEMyoYr
+        ZjPFwqFfqFw2R0oaFC0PIQ==
+X-Google-Smtp-Source: ABdhPJyhbITafpylWo59tDvDK8qPhE9mMpcG59cDZyK9lB/d60Ay75Fxuyb+WkQU2JX3kHrTnrZrBQ==
+X-Received: by 2002:a05:6808:649:: with SMTP id z9mr836073oih.154.1612996019876;
+        Wed, 10 Feb 2021 14:26:59 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m68sm669898otm.46.2021.02.10.14.22.41
+        by smtp.gmail.com with ESMTPSA id 203sm752187oie.14.2021.02.10.14.26.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 14:22:42 -0800 (PST)
-Received: (nullmailer pid 2911108 invoked by uid 1000);
-        Wed, 10 Feb 2021 22:22:41 -0000
-Date:   Wed, 10 Feb 2021 16:22:41 -0600
+        Wed, 10 Feb 2021 14:26:58 -0800 (PST)
+Received: (nullmailer pid 2918770 invoked by uid 1000);
+        Wed, 10 Feb 2021 22:26:57 -0000
+Date:   Wed, 10 Feb 2021 16:26:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
-        Piyush Mehta <piyush.mehta@xilinx.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: misc: Add binding for Microchip
- usb5744 hub
-Message-ID: <20210210222241.GA2901449@robh.at.kernel.org>
-References: <cover.1612867682.git.michal.simek@xilinx.com>
- <076994fc051e9230a3fef9e3eb5ec932104ef16a.1612867682.git.michal.simek@xilinx.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     f.fainelli@gmail.com, linux-kernel@vger.kernel.org,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org, phil@raspberrypi.com,
+        wahrenst@gmx.net, linux-arm-kernel@lists.infradead.org,
+        mripard@kernel.org, eric@anholt.net, devicetree@vger.kernel.org
+Subject: Re: [RFC/PATCH v2 01/16] dt-bindings: soc: bcm: bcm2835-pm: Convert
+ bindings to DT schema
+Message-ID: <20210210222657.GA2911555@robh.at.kernel.org>
+References: <20210209125912.3398-1-nsaenzjulienne@suse.de>
+ <20210209125912.3398-2-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <076994fc051e9230a3fef9e3eb5ec932104ef16a.1612867682.git.michal.simek@xilinx.com>
+In-Reply-To: <20210209125912.3398-2-nsaenzjulienne@suse.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 09, 2021 at 11:48:09AM +0100, Michal Simek wrote:
-> From: Piyush Mehta <piyush.mehta@xilinx.com>
+On Tue, Feb 09, 2021 at 01:58:57PM +0100, Nicolas Saenz Julienne wrote:
+> This converts the brcm,bcm2835-pm bindings from text to proper schema.
 > 
-> Added dt binding for usb5744 driver.
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 > ---
+>  .../bindings/soc/bcm/brcm,bcm2835-pm.txt      | 46 -----------
+>  .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 79 +++++++++++++++++++
+>  2 files changed, 79 insertions(+), 46 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+>  create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
 > 
-> Changes in v2: None
-> 
->  .../bindings/usb/microchip,usb5744.yaml       | 56 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+> deleted file mode 100644
+> index 72ff033565e5..000000000000
+> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+> +++ /dev/null
+> @@ -1,46 +0,0 @@
+> -BCM2835 PM (Power domains, watchdog)
+> -
+> -The PM block controls power domains and some reset lines, and includes
+> -a watchdog timer.  This binding supersedes the brcm,bcm2835-pm-wdt
+> -binding which covered some of PM's register range and functionality.
+> -
+> -Required properties:
+> -
+> -- compatible:		Should be "brcm,bcm2835-pm"
+> -- reg:			Specifies base physical address and size of the two
+> -			  register ranges ("PM" and "ASYNC_BRIDGE" in that
+> -			  order)
+> -- clocks:		a) v3d: The V3D clock from CPRMAN
+> -			b) peri_image: The PERI_IMAGE clock from CPRMAN
+> -			c) h264: The H264 clock from CPRMAN
+> -			d) isp: The ISP clock from CPRMAN
+> -- #reset-cells: 	Should be 1.  This property follows the reset controller
+> -			  bindings[1].
+> -- #power-domain-cells:	Should be 1.  This property follows the power domain
+> -			  bindings[2].
+> -
+> -Optional properties:
+> -
+> -- timeout-sec:		Contains the watchdog timeout in seconds
+> -- system-power-controller: Whether the watchdog is controlling the
+> -    system power.  This node follows the power controller bindings[3].
+> -
+> -[1] Documentation/devicetree/bindings/reset/reset.txt
+> -[2] Documentation/devicetree/bindings/power/power-domain.yaml
+> -[3] Documentation/devicetree/bindings/power/power-controller.txt
+> -
+> -Example:
+> -
+> -pm {
+> -	compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
+> -	#power-domain-cells = <1>;
+> -	#reset-cells = <1>;
+> -	reg = <0x7e100000 0x114>,
+> -	      <0x7e00a000 0x24>;
+> -	clocks = <&clocks BCM2835_CLOCK_V3D>,
+> -		 <&clocks BCM2835_CLOCK_PERI_IMAGE>,
+> -		 <&clocks BCM2835_CLOCK_H264>,
+> -		 <&clocks BCM2835_CLOCK_ISP>;
+> -	clock-names = "v3d", "peri_image", "h264", "isp";
+> -	system-power-controller;
+> -};
+> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
 > new file mode 100644
-> index 000000000000..fe222f6db81d
+> index 000000000000..8bc65e5f62a7
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/usb/microchip,usb5744.yaml#"
+> +$id: "http://devicetree.org/schemas/soc/bcm/brcm,bcm2835-pm.yaml#"
 > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +title: Bindings for the Microchip USB5744 4-port Hub Controller
+> +title: BCM2835 PM (Power domains, watchdog)
 > +
-> +description:
-> +  Microchip’s USB5744 SmartHub™ IC is a 4 port, SuperSpeed (SS)/Hi-Speed (HS),
-> +  low power, low pin count configurable and fully compliant with the USB 3.1
-> +  Gen 1 specification. The USB5744 also supports Full Speed (FS) and Low Speed
-> +  (LS) USB signaling, offering complete coverage of all defined USB operating
-> +  speeds. The new SuperSpeed hubs operate in parallel with the USB 2.0
-> +  controller, so 5 Gbps SuperSpeed data transfers are not affected by slower
-> +  USB 2.0 traffic.
+> +description: |
+> +  The PM block controls power domains and some reset lines, and includes a
+> +  watchdog timer.
 > +
 > +maintainers:
-> +  - Piyush Mehta <piyush.mehta@xilinx.com>
-> +  - Michal Simek <michal.simek@xilinx.com>
+> +  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> +
+> +allOf:
+> +  - $ref: ../../watchdog/watchdog.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    const: microchip,usb5744
+> +    items:
+> +      - enum:
+> +          - brcm,bcm2835-pm
+> +      - const: brcm,bcm2835-pm-wdt
+
+Odd...
+
 > +
 > +  reg:
-> +    maxItems: 1
-> +    description: |
-> +      Specifies the i2c slave address, it is required and should be 0x2d
-> +      if I2C is used.
+> +    minItems: 1
+> +    maxItems: 2
+> +    description: Specifies base physical address and size of the two register
+> +                 ranges, "PM" and "ASYNC_BRIDGE" in that order.
 
-If I2C is not used, then this should be underneath the USB host as a USB 
-device. That also implies a different compatible string. I'd suggest you 
-just say I2C is required if that's your use.
+The number, what they are and order are captured with:
 
-'const: 0x2d' instead of maxItems is the schema to express the address 
-if fixed.
+items:
+  - description: PM registers
+  - description: ASYNC_BRIDGE registers
+
+'Specifies base physical address and size' is every 'reg'.
 
 > +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      The phandle and specifier for the GPIO that controls the RESET line of
-> +      USB hub.
+> +  "#power-domain-cells":
+> +    const: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  clocks:
+> +    minItems: 4
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: v3d
+> +      - const: peri_image
+> +      - const: h264
+> +      - const: isp
+> +
+> +  system-power-controller:
+> +    type: boolean
+> +
+> +  timeout-sec: true
 > +
 > +required:
 > +  - compatible
+> +  - reg
+> +  - "#power-domain-cells"
+> +  - "#reset-cells"
+> +  - clocks
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/clock/bcm2835.h>
 > +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        usb5744@2d {
-> +            compatible = "microchip,usb5744";
-> +            reg = <0x2d>;
-> +            reset-gpios = <&gpio 44 GPIO_ACTIVE_HIGH>;
-> +        };
+> +    watchdog@7e100000 {
+> +        compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
+> +        #power-domain-cells = <1>;
+> +        #reset-cells = <1>;
+> +        reg = <0x7e100000 0x114>,
+> +              <0x7e00a000 0x24>;
+> +        clocks = <&clocks BCM2835_CLOCK_V3D>,
+> +        	 <&clocks BCM2835_CLOCK_PERI_IMAGE>,
+> +        	 <&clocks BCM2835_CLOCK_H264>,
+> +        	 <&clocks BCM2835_CLOCK_ISP>;
+> +        clock-names = "v3d", "peri_image", "h264", "isp";
+> +        system-power-controller;
 > +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 41e8d3d7faec..7439471b5d37 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2697,6 +2697,7 @@ W:	http://wiki.xilinx.com
->  T:	git https://github.com/Xilinx/linux-xlnx.git
->  F:	Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
->  F:	Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
-> +F:	Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
->  F:	arch/arm/mach-zynq/
->  F:	drivers/block/xsysace.c
->  F:	drivers/clocksource/timer-cadence-ttc.c
 > -- 
 > 2.30.0
 > 
