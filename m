@@ -2,108 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F213317354
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 23:28:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B75C317378
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 23:36:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232279AbhBJW2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 17:28:54 -0500
-Received: from mail.baikalelectronics.com ([87.245.175.226]:35520 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232097AbhBJW2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 17:28:52 -0500
-Date:   Thu, 11 Feb 2021 01:28:05 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Vyacheslav Mitrofanov 
-        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <netdev@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 01/16] dt-bindings: net: dwmac: Add DW GMAC GPIOs
- properties
-Message-ID: <20210210222805.upoioue7uc6cat2v@mobilestation>
-References: <20210208140820.10410-1-Sergey.Semin@baikalelectronics.ru>
- <20210208140820.10410-2-Sergey.Semin@baikalelectronics.ru>
- <20210209231352.GA402351@robh.at.kernel.org>
+        id S233692AbhBJWg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 17:36:28 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:39582 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233683AbhBJWgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 17:36:11 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 04C8120B6C40;
+        Wed, 10 Feb 2021 14:34:57 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 04C8120B6C40
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1612996499;
+        bh=C4RT2DxXX8r0QxWsc1tHKf/MPo20abgRwaNI176DYPI=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=onouFjqolPpuZU+smvyVOWVYonhp8wE62mGs4xFoCMBc41e1Qh93K7Mi9KTvGbtmN
+         UAzqFqtJBtcopTyxJ1GQNHoEHiXrWLeTs8SeDEQWYK2LTomPeu/bu09ptLZCtKjF1l
+         qJESL6CaYdPTWm0FK8vjjxpDP90Z9TdzZbUyzDZo=
+Subject: Re: [PATCH v17 00/10] Carry forward IMA measurement log on kexec on
+ ARM64
+To:     Mimi Zohar <zohar@linux.ibm.com>, Rob Herring <robh@kernel.org>
+Cc:     Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        James Morse <james.morse@arm.com>,
+        Sasha Levin <sashal@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        vincenzo.frascino@arm.com, Mark Rutland <mark.rutland@arm.com>,
+        dmitry.kasatkin@gmail.com, James Morris <jmorris@namei.org>,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        Pavel Tatashin <pasha.tatashin@soleen.com>,
+        Allison Randal <allison@lohutok.net>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        balajib@linux.microsoft.com, linux-integrity@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+References: <20210209182200.30606-1-nramas@linux.microsoft.com>
+ <20210210171500.GA2328209@robh.at.kernel.org>
+ <5c002c32-bc49-acda-c641-7b1494ea292d@linux.microsoft.com>
+ <CAL_JsqLmdqfFF8u=dE+dQz+6ngv=moWkQF8tpZjUCX-vHuvU_w@mail.gmail.com>
+ <cf7930239b93044a1be353556b7dc730e024f658.camel@linux.ibm.com>
+ <594445d01e085875b97b46be726247f89d1e6661.camel@linux.ibm.com>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <82fec498-b1c0-7acd-cf1e-8bb40a4e688e@linux.microsoft.com>
+Date:   Wed, 10 Feb 2021 14:34:57 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210209231352.GA402351@robh.at.kernel.org>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <594445d01e085875b97b46be726247f89d1e6661.camel@linux.ibm.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 09, 2021 at 05:13:52PM -0600, Rob Herring wrote:
-> On Mon, Feb 08, 2021 at 05:08:05PM +0300, Serge Semin wrote:
-> > Synopsys DesignWare Ethernet controllers can be synthesized with
-> > General-Purpose IOs support. GPIOs can work either as inputs or as outputs
-> > thus belong to the gpi_i and gpo_o ports respectively. The ports width
-> > (number of possible inputs/outputs) and the configuration registers layout
-> > depend on the IP-core version. For instance, DW GMAC can have from 0 to 4
-> > GPIs and from 0 to 4 GPOs, while DW xGMAC have a wider ports width up to
-> > 16 pins of each one.
-> > 
-> > So the DW MAC DT-node can be equipped with "ngpios" property, which can't
-> > have a value greater than 32, standard GPIO-related properties like
-> > "gpio-controller" and "#gpio-cells", and, if GPIs are supposed to be
-> > detected, IRQ-controller related properties.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > ---
-> >  .../devicetree/bindings/net/snps,dwmac.yaml     | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > index bdc437b14878..fcca23d3727e 100644
-> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > @@ -110,6 +110,23 @@ properties:
-> >    reset-names:
-> >      const: stmmaceth
-> >  
-> > +  ngpios:
-> > +    description:
-> > +      Total number of GPIOs the MAC supports. The property shall include both
-> > +      the GPI and GPO ports width.
-> > +    minimum: 1
-> > +    maximum: 32
+On 2/10/21 1:39 PM, Mimi Zohar wrote:
+> On Wed, 2021-02-10 at 15:55 -0500, Mimi Zohar wrote:
+>> On Wed, 2021-02-10 at 14:42 -0600, Rob Herring wrote:
+>>> On Wed, Feb 10, 2021 at 11:33 AM Lakshmi Ramasubramanian
+>>
+>>> Ideally, we don't apply the same patch in 2 branches. It looks like
+>>> there's a conflict but no real dependence on the above patch (the
+>>> ima_buffer part). The conflict seems trivial enough that Linus can
+>>> resolve it in the merge window.
+>>>
+>>> Or Mimi can take the whole thing if preferred?
+>>
+>> How about I create a topic branch with just the two patches, allowing
+>> both of us to merge it?   There shouldn't be a problem with re-writing
+>> next-integrity history.
+> 
+> The 2 patches are now in the ima-kexec-fixes branch.
 > 
 
-> Does the driver actually need this? I'd omit it if just to validate 
-> consumers are in range.
+Thanks a lot Mimi.
 
-I can't say for all possible DW MAC IP-cores (I've got manuals for
-GMAC and xGMAC only), but at least DW GMAC can't have more than four
-GPIs and four GPOs, while XGMACs can be synthesized with up to 16
-each. That's why I've set the upper boundary here as 32. But the
-driver uses the ngpios property do determine the total number GPIOs
-the core has been synthesized. Th number of GPIs and GPOs will be
-auto-detected then (by writing-reading to-from the GPI type field of
-the GPIO control register).
+Rob - I will address the 2 comments you'd provided today, and build the 
+patches in ima-kexec-fixes branch.
 
-> 
-> Are GPI and GPO counts independent? If so, this isn't really sufficient.
+If you have more comments in the v17 patches, please let me know.
 
-Yeap, they are independent. What do you suggest then? Define some
-vendor-specific properties like snps,ngpis and snps,ngpos? If so then
-they seem more generic than vendor-specific, because the separated
-GPI and GPO space isn't an unique feature of the DW MAC GPIOs. Do we
-need to create a generic version of such properties then? (That much
-more changes then introduced here. We'd need to fix the dt-schema tool
-too then.)
+thanks,
+  -lakshmi
 
--Sergey
-
-> 
-> Rob
