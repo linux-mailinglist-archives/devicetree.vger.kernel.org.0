@@ -2,172 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 003BC316FE1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 20:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B87A317007
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 20:22:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233150AbhBJTQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 14:16:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46790 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234596AbhBJTQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 14:16:12 -0500
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB8EC061574
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 11:15:32 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id q12so979609ybm.8
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 11:15:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bMm7LhCNfiXatte+J72259TBwE3qgGrJaSabgZ25gjg=;
-        b=HRIiwWTs47Szc6oxYxnhSOiBHfT4UHEE38Ch+iU28KkeDshpiC1SepDhdslHI23tt3
-         OS6PP06URj7B5CC3eUzROAwtGPBWwYlZObWB0SekS4wI484RrQtNhKydUqynhO0Q8Pyk
-         qguBlQPU+LMbanRwX+gBvVJF+BhQCcYxMSwMCzRFIEXITAKkGL/LKRyfcgN2HYRlGkG0
-         9Em0m0j6lShbUakz/6okuTXwmW2fb5MPmmWsxUn71aH5g/bQoczVbCIQxEdxfw7rHKoN
-         TLKZpTEXoYkJo9BrpaUYxzaQJytCtOK/yU8wbQvE6Yx/wkzfdo1t+bWo+N2VU47k8h1/
-         XX5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bMm7LhCNfiXatte+J72259TBwE3qgGrJaSabgZ25gjg=;
-        b=W3SFzwfGFzx7Jte4lFdJ3wgwy8Ql/k7ufyZDAO32P8+mTpdFQkptjcToPt5Ckxqmkc
-         qFhZScOt3bJGb52lV/QMbdhoiTl4G5QkFaFxLCkJro3aeA2EGhF/mt7tIadA+bNV3Uyr
-         mHMuU+ol+925Wyy9labIFV2441EKsWPdF3pjhZD9MxRu1rdieI+XdxKq70fwLtsFmtLo
-         MWMKY6HzDKB0Be/fo8sj4U7DVd6Bax/4CfFDGa4GV2w7WBkpaeh993QWYijWrRfLOvm8
-         +DuIVvhoKXrMsBmHig1lmNm3zAc5IW30JfGlvfk3lXd/WVijq2Y1r/Iq8/+VcppWZ1r6
-         wYFg==
-X-Gm-Message-State: AOAM533xJgknxxAfqY9s55FmXKHvdhgTTwc+z6HnLTkJHFmAdjvoalGF
-        8H4A8LtF9uPOf6cwtPddtrKg7w/BZ392Rsr7dnQEkQ==
-X-Google-Smtp-Source: ABdhPJxPLs/+QIJMt+wtIBzBZGrhURUX+xSgCx7EymGDDvrfSfAubD/1PiDbpILIMYyk25/SJ0qOy+BTaFfHFwoVjsg=
-X-Received: by 2002:a05:6902:1025:: with SMTP id x5mr6476503ybt.96.1612984531616;
- Wed, 10 Feb 2021 11:15:31 -0800 (PST)
+        id S233065AbhBJTWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 14:22:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34562 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232516AbhBJTWd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 14:22:33 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DB18564E76;
+        Wed, 10 Feb 2021 19:21:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612984912;
+        bh=CHueUMIMBD3GE7Looz6rSUXBk635o0bKJjvrSZmh/t0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XUrvUlB85euQ4N/sJBKAwuv6Ncp95ojkWdXDak05eJ/dqgN5kGD/q+uN5oZl7zC+o
+         y8Ew3TiYa0GDuChsNQcObLl42RHlna8oPHVyhV6cdrxp+EmyhDgINhT1OdSwIchzGG
+         Xin4HsifB3odO7dy+VN0KkLsVdXTXy5Gk355dRmOvvHDWndynYlyZbRDXc+UUFyYah
+         TRNHtiscqfGY+kiJLqqJ8rCRSTZ8TXozoHasPQpDxh/rPKV3VHxYORZoCkgVwbrj4U
+         9reL4fqRCP8JcKx4GpWduyc/t5lHx2EysByvE6CmiAtNj4tXlnRbVpe/5gAS2rzRpx
+         mpMzxuJL3WP2A==
+Received: by mail-ed1-f47.google.com with SMTP id v7so4323653eds.10;
+        Wed, 10 Feb 2021 11:21:51 -0800 (PST)
+X-Gm-Message-State: AOAM531Hpvl4aYvR1JtMUjwwiGPADYoNPYd7XkCjwNek8dPmyCOFPMA5
+        OBRhQFq77P5r4rX5DnFWaClWRSZ71BsU9QYPpw==
+X-Google-Smtp-Source: ABdhPJxfacP93Q4hCUHSoCae7cx6yfMBjBpwpgV4kLOag14o+4JLbnm+6bzfXkudj0Q6zozjHn8hEL7D/0LMfffGTC8=
+X-Received: by 2002:aa7:c7c8:: with SMTP id o8mr4669819eds.137.1612984910399;
+ Wed, 10 Feb 2021 11:21:50 -0800 (PST)
 MIME-Version: 1.0
-References: <20210205222644.2357303-1-saravanak@google.com>
- <47ca46aa-99f3-5203-8aa7-65c6443bd965@microchip.com> <CAGETcx862JPn8759tk-69WySBvokxMXJaaOVY7L6V8FLwfpV8g@mail.gmail.com>
- <3ec7ba3a-bbf6-aa5f-7800-4fc91ab199ec@microchip.com>
-In-Reply-To: <3ec7ba3a-bbf6-aa5f-7800-4fc91ab199ec@microchip.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 10 Feb 2021 11:14:55 -0800
-Message-ID: <CAGETcx87RmBAhC2Kg0xP9oYGhGWXFWoTtshzuqT2=4_svm5s5A@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
-To:     Tudor Ambarus <Tudor.Ambarus@microchip.com>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Brown, Len" <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Android Kernel Team <kernel-team@android.com>
+References: <20210203090727.789939-1-zhang.lyra@gmail.com> <20210203090727.789939-2-zhang.lyra@gmail.com>
+ <20210204232549.GA1305874@robh.at.kernel.org> <CAAfSe-tQ+7GuO1PgYa=9wqrpVf3N4br=bn8gJcaEJmnYpc1sxA@mail.gmail.com>
+In-Reply-To: <CAAfSe-tQ+7GuO1PgYa=9wqrpVf3N4br=bn8gJcaEJmnYpc1sxA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 10 Feb 2021 13:21:38 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLi3vJ2tDrwa3YL1rdxtAYWnA72rxCRNPtz_EzvWhTn7w@mail.gmail.com>
+Message-ID: <CAL_JsqLi3vJ2tDrwa3YL1rdxtAYWnA72rxCRNPtz_EzvWhTn7w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iommu: add bindings for sprd iommu
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 10, 2021 at 2:02 AM <Tudor.Ambarus@microchip.com> wrote:
+On Fri, Feb 5, 2021 at 1:21 AM Chunyan Zhang <zhang.lyra@gmail.com> wrote:
 >
-> On 2/10/21 10:54 AM, Saravana Kannan wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >
-> > On Wed, Feb 10, 2021 at 12:19 AM <Tudor.Ambarus@microchip.com> wrote:
-> >>
-> >> Hi, Saravana,
-> >>
-> >> On 2/6/21 12:26 AM, Saravana Kannan wrote:
-> >>> There are a lot of devices/drivers where they never have a struct device
-> >>> created for them or the driver initializes the hardware without ever
-> >>> binding to the struct device.
-> >>>
-> >>> This series is intended to avoid any boot regressions due to such
-> >>> devices/drivers when fw_devlink=on and also address the handling of
-> >>> optional suppliers.
-> >>>
-> >>> Patch 1 and 2 addresses the issue of firmware nodes that look like
-> >>> they'll have struct devices created for them, but will never actually
-> >>> have struct devices added for them. For example, DT nodes with a
-> >>> compatible property that don't have devices added for them.
-> >>>
-> >>> Patch 3 and 4 allow for handling optional DT bindings.
-> >>>
-> >>> Patch 5 sets up a generic API to handle drivers that never bind with
-> >>> their devices.
-> >>>
-> >>> Patch 6 through 8 update different frameworks to use the new API.
-> >>>
-> >>> Thanks,
-> >>> Saravana
-> >>>
-> >>> Saravana Kannan (8):
-> >>>   driver core: fw_devlink: Detect supplier devices that will never be
-> >>>     added
-> >>>   of: property: Don't add links to absent suppliers
-> >>>   driver core: Add fw_devlink.strict kernel param
-> >>>   of: property: Add fw_devlink support for optional properties
-> >>>   driver core: fw_devlink: Handle suppliers that don't use driver core
-> >>>   irqdomain: Mark fwnodes when their irqdomain is added/removed
-> >>>   PM: domains: Mark fwnodes when their powerdomain is added/removed
-> >>>   clk: Mark fwnodes when their clock provider is added/removed
-> >>>
-> >>>  .../admin-guide/kernel-parameters.txt         |  5 ++
-> >>>  drivers/base/core.c                           | 58 ++++++++++++++++++-
-> >>>  drivers/base/power/domain.c                   |  2 +
-> >>>  drivers/clk/clk.c                             |  3 +
-> >>>  drivers/of/property.c                         | 16 +++--
-> >>>  include/linux/fwnode.h                        | 20 ++++++-
-> >>>  kernel/irq/irqdomain.c                        |  2 +
-> >>>  7 files changed, 98 insertions(+), 8 deletions(-)
-> >>>
-> >>
-> >> Even with this patch set applied, sama5d2_xplained can not boot.
-> >> Patch at [1] makes sama5d2_xplained boot again. Stephen applied it
-> >> to clk-next.
-> >
-> > I'm glad you won't actually have any boot issues in 5.12, but the fact
-> > you need [1] with this series doesn't make a lot of sense to me
-> > because:
-> >
-> > 1. The FWNODE_FLAG_INITIALIZED flag will be set for the clock fwnode
-> > in question way before any consumer devices are added.
+> Hi Rob,
 >
-> Looks like in my case FWNODE_FLAG_INITIALIZED is not set, because
-> drivers/clk/at91/sama5d2.c uses of_clk_add_hw_provider().
-
-Ah, that explains it.
-
-> > 2. Any consumer device added after (1) will stop trying to link to the
-> > clock device.
+> On Fri, 5 Feb 2021 at 07:25, Rob Herring <robh@kernel.org> wrote:
 > >
-> > Are you somehow adding a consumer to the clock fwnode before (1)?
+> > On Wed, Feb 03, 2021 at 05:07:26PM +0800, Chunyan Zhang wrote:
+> > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > >
+> > > This iommu module can be used by Unisoc's multimedia devices, such as
+> > > display, Image codec(jpeg) and a few signal processors, including
+> > > VSP(video), GSP(graphic), ISP(image), and CPP(camera pixel processor), etc.
+> > >
+> > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > ---
+> > >  .../devicetree/bindings/iommu/sprd,iommu.yaml | 72 +++++++++++++++++++
+> > >  1 file changed, 72 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+> > > new file mode 100644
+> > > index 000000000000..4fc99e81fa66
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+> > > @@ -0,0 +1,72 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +# Copyright 2020 Unisoc Inc.
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iommu/sprd,iommu.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Unisoc IOMMU and Multi-media MMU
+> > > +
+> > > +maintainers:
+> > > +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - sprd,iommu-v1
+> > > +
+> > > +  "#iommu-cells":
+> > > +    const: 0
+> > > +    description:
+> > > +      Unisoc IOMMUs are all single-master IOMMU devices, therefore no
+> > > +      additional information needs to associate with its master device.
+> > > +      Please refer to the generic bindings document for more details,
+> > > +      Documentation/devicetree/bindings/iommu/iommu.txt
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +    description:
+> > > +      Not required if 'sprd,iommu-regs' is defined.
+> > > +
+> > > +  clocks:
+> > > +    description:
+> > > +      Reference to a gate clock phandle, since access to some of IOMMUs are
+> > > +      controlled by gate clock, but this is not required.
+> > > +
+> > > +  sprd,iommu-regs:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +    description:
+> > > +      Reference to a syscon phandle plus 1 cell, the syscon defines the
+> > > +      register range used by the iommu and the media device, the cell
+> > > +      defines the offset for iommu registers. Since iommu module shares
+> > > +      the same register range with the media device which uses it.
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - "#iommu-cells"
+> > > +
+> > > +oneOf:
+> > > +  - required:
+> > > +      - reg
+> > > +  - required:
+> > > +      - sprd,iommu-regs
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    iommu_disp: iommu-disp {
+> > > +      compatible = "sprd,iommu-v1";
+> > > +      sprd,iommu-regs = <&dpu_regs 0x800>;
 > >
-> > Can you try this patch without your clk fix? I was trying to avoid
-> > looping through a list, but looks like your case might somehow need
-> > it?
-> >
+> > If the IOMMU is contained within another device, then it should just be
+> > a child node of that device.
 >
-> I tried it, didn't solve my boot problem.
+> Yes, actually IOMMU can be seen as a child of multimedia devices, I
+> considered moving IOMMU under into multimedia device node, but
+> multimedia devices need IOMMU when probe[1], so I dropped that idea.
 
-Thanks! I should stop coding past midnight!
+Don't design your binding around working-around linux issues.
 
-> The following patch makes the
-> sama5d2_xplained boot again, even without the patch from [1]:
+> And they share the same register base, e.g.
+>
+> +               mm {
+> +                       compatible = "simple-bus";
+> +                       #address-cells = <2>;
+> +                       #size-cells = <2>;
+> +                       ranges;
+> +
+> +                       dpu_regs: syscon@63000000 {
 
-Great! I gave a reviewed-by.
+Drop this node.
 
--Saravana
+> +                               compatible = "sprd,sc9863a-dpuregs", "syscon";
+> +                               reg = <0 0x63000000 0 0x1000>;
+> +                       };
+> +
+> +                       dpu: dpu@63000000 {
+> +                               compatible = "sprd,sharkl3-dpu";
+> +                               sprd,disp-regs = <&dpu_regs>;
+
+reg = <0 0x63000000 0 0x800>;
+
+> +                               iommus = <&iommu_dispc>;
+> +                       };
+> +
+> +                       iommu_dispc: iommu@63000000 {
+> +                               compatible = "sprd,iommu-v1";
+> +                               sprd,iommu-regs = <&dpu_regs 0x800>;
+
+reg = <0 0x63000800 0 0x800>;
+
+> +                               #iommu-cells = <0>;
+
+Though given it seems there is only 1 client and this might really be
+just 1 h/w block, you don't really need to use the iommu binding at
+all. The DPU should be able to instantiate it's own IOMMU device.
+There's other examples of this such as mali GPU though that is all one
+driver, but that's a Linux implementation detail.
+
+Rob
