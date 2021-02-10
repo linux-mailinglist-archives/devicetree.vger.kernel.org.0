@@ -2,51 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE3AA317462
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 00:30:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1F1D31746D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 00:32:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231547AbhBJXaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 18:30:17 -0500
-Received: from shards.monkeyblade.net ([23.128.96.9]:47636 "EHLO
-        mail.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233554AbhBJXaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 18:30:13 -0500
-Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
-        by mail.monkeyblade.net (Postfix) with ESMTPSA id 6DDA84D25BDAF;
-        Wed, 10 Feb 2021 15:29:30 -0800 (PST)
-Date:   Wed, 10 Feb 2021 15:29:24 -0800 (PST)
-Message-Id: <20210210.152924.767175240247395907.davem@davemloft.net>
-To:     stefanc@marvell.com
-Cc:     netdev@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        nadavh@marvell.com, ymarkman@marvell.com,
-        linux-kernel@vger.kernel.org, kuba@kernel.org,
-        linux@armlinux.org.uk, mw@semihalf.com, andrew@lunn.ch,
-        rmk+kernel@armlinux.org.uk, atenart@kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v12 net-next 12/15] net: mvpp2: add BM protection
- underrun feature support
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <1612950500-9682-13-git-send-email-stefanc@marvell.com>
-References: <1612950500-9682-1-git-send-email-stefanc@marvell.com>
-        <1612950500-9682-13-git-send-email-stefanc@marvell.com>
-X-Mailer: Mew version 6.8 on Emacs 27.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.6.2 (mail.monkeyblade.net [0.0.0.0]); Wed, 10 Feb 2021 15:29:31 -0800 (PST)
+        id S233668AbhBJXcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 18:32:08 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:23038 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233952AbhBJXcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 18:32:07 -0500
+Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 11ANIMmD033480;
+        Wed, 10 Feb 2021 18:30:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=WwnxfDfiSUvaoRxLjsUAinYso5jcWLMQITma1Y77IiE=;
+ b=aSa2yX//b5kSC77R8wdXM77GzKfuLxawVVd+SVxyGyw+awLxwdvria14j4FzLGWjALpr
+ tMz6eGziaxLp2/B9S7kLstYHwOYpnntNnuV8JXXCYekh+ne9J+VV6y17gIrl1HMjSbmY
+ 9XezezrwKnU/+XqEP+53Vg2CBNsqBv/86d7Ba1xYTtv7yF+7iab5+uBrnPfGI7uqO86s
+ +4DxlQ6Ff6FHF3E3uTuLyv50QACTDiACCh37ssQ94eamT5E+p15bBrZfhK9KxdB8dVp7
+ bRsYIkyi4LWQFJKJ8N2MNwo+mVWAI5SmpKcDt23K7cawHwCUsfBV31i+vOSTnakX92Tj 5w== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 36ms1w064v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 10 Feb 2021 18:30:52 -0500
+Received: from m0098394.ppops.net (m0098394.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 11ANLLv8052502;
+        Wed, 10 Feb 2021 18:30:51 -0500
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 36ms1w064b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 10 Feb 2021 18:30:51 -0500
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+        by ppma02dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 11ANSMsD024480;
+        Wed, 10 Feb 2021 23:30:50 GMT
+Received: from b01cxnp22035.gho.pok.ibm.com (b01cxnp22035.gho.pok.ibm.com [9.57.198.25])
+        by ppma02dal.us.ibm.com with ESMTP id 36hjraa03g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 10 Feb 2021 23:30:50 +0000
+Received: from b01ledav005.gho.pok.ibm.com (b01ledav005.gho.pok.ibm.com [9.57.199.110])
+        by b01cxnp22035.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 11ANUnFN19136844
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 10 Feb 2021 23:30:49 GMT
+Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id CEF0DAE05F;
+        Wed, 10 Feb 2021 23:30:49 +0000 (GMT)
+Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id A6960AE05C;
+        Wed, 10 Feb 2021 23:30:42 +0000 (GMT)
+Received: from manicouagan.localdomain (unknown [9.160.95.194])
+        by b01ledav005.gho.pok.ibm.com (Postfix) with ESMTPS;
+        Wed, 10 Feb 2021 23:30:42 +0000 (GMT)
+References: <20210209182200.30606-1-nramas@linux.microsoft.com>
+ <20210209182200.30606-4-nramas@linux.microsoft.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
+        gregkh@linuxfoundation.org, will@kernel.org, joe@perches.com,
+        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
+        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
+        frowand.list@gmail.com, vincenzo.frascino@arm.com,
+        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
+        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
+        tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v17 03/10] arm64: Use common of_kexec_alloc_and_setup_fdt()
+In-reply-to: <20210209182200.30606-4-nramas@linux.microsoft.com>
+Date:   Wed, 10 Feb 2021 20:30:40 -0300
+Message-ID: <87v9azo5zz.fsf@manicouagan.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-10_11:2021-02-10,2021-02-10 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=847 mlxscore=0
+ malwarescore=0 priorityscore=1501 phishscore=0 adultscore=0 clxscore=1015
+ lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2102100200
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: <stefanc@marvell.com>
-Date: Wed, 10 Feb 2021 11:48:17 +0200
 
->  
-> +static int bm_underrun_protect = 1;
-> +
-> +module_param(bm_underrun_protect, int, 0444);
-> +MODULE_PARM_DESC(bm_underrun_protect, "Set BM underrun protect feature (0-1), def=1");
+Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
 
-No new module parameters, please.
+> From: Rob Herring <robh@kernel.org>
+>
+> The code for setting up the /chosen node in the device tree
+> and updating the memory reservation for the next kernel has been
+> moved to of_kexec_alloc_and_setup_fdt() defined in "drivers/of/kexec.c".
+>
+> Use the common of_kexec_alloc_and_setup_fdt() to setup the device tree
+> and update the memory reservation for kexec for arm64.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> ---
+>  arch/arm64/kernel/machine_kexec_file.c | 180 ++-----------------------
+>  1 file changed, 8 insertions(+), 172 deletions(-)
+
+Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+
+-- 
+Thiago Jung Bauermann
+IBM Linux Technology Center
