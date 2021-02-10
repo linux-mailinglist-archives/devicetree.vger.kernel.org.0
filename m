@@ -2,73 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E43F31602F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 08:42:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD2FC31609F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:09:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232692AbhBJHmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 02:42:04 -0500
-Received: from smtprelay0243.hostedemail.com ([216.40.44.243]:57246 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231520AbhBJHmA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 02:42:00 -0500
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay06.hostedemail.com (Postfix) with ESMTP id 81F6718010A5F;
-        Wed, 10 Feb 2021 07:41:15 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 50,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:800:967:973:988:989:1260:1261:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1539:1593:1594:1711:1714:1730:1747:1777:1792:2194:2199:2393:2525:2553:2561:2564:2682:2685:2828:2859:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3350:3622:3865:3867:3868:3872:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:5007:6742:6743:7652:7903:9025:9108:10004:10400:10848:11232:11658:11854:11914:12043:12297:12438:12555:12679:12740:12760:12895:12986:13069:13311:13357:13439:13845:14181:14659:14721:14819:21080:21324:21611:21627:21889:30054:30090:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:1,LUA_SUMMARY:none
-X-HE-Tag: trip57_0a1601f2760e
-X-Filterd-Recvd-Size: 2373
-Received: from [192.168.1.159] (unknown [47.151.137.21])
-        (Authenticated sender: joe@perches.com)
-        by omf20.hostedemail.com (Postfix) with ESMTPA;
-        Wed, 10 Feb 2021 07:41:10 +0000 (UTC)
-Message-ID: <715cfa18165f472420496de96a0a08837de2902d.camel@perches.com>
-Subject: Re: [PATCH] Documentation: Replace lkml.org links with lore
-From:   Joe Perches <joe@perches.com>
-To:     Kees Cook <keescook@chromium.org>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        bhelgaas@google.com, robh+dt@kernel.org, tglx@linutronix.de,
-        mingo@redhat.com, bp@alien8.de, x86@kernel.org, hpa@zytor.com,
-        kishon@ti.com, lorenzo.pieralisi@arm.com, hongxing.zhu@nxp.com,
-        l.stach@pengutronix.de, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, m-karicheri2@ti.com, songxiaowei@hisilicon.com,
-        wangbinghui@hisilicon.com, amurray@thegoodpenguin.co.uk,
-        sathyanarayanan.kuppuswamy@linux.intel.com, hkallweit1@gmail.com,
-        rafael.j.wysocki@intel.com, rdunlap@infradead.org,
-        linux-pci@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date:   Tue, 09 Feb 2021 23:41:09 -0800
-In-Reply-To: <202102092327.F6D8335A7@keescook>
-References: <20200627103050.71712-1-grandmaster@al2klimov.de>
-         <20200630180917.GA3455699@bjorn-Precision-5520>
-         <20200630140417.3a2dba67@lwn.net>
-         <77cdb7f32cfb087955bfc3600b86c40bed5d4104.camel@perches.com>
-         <202102092327.F6D8335A7@keescook>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.38.1-1 
+        id S233237AbhBJIIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 03:08:54 -0500
+Received: from 6.mo5.mail-out.ovh.net ([178.32.119.138]:55146 "EHLO
+        6.mo5.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233373AbhBJIIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 03:08:22 -0500
+Received: from player773.ha.ovh.net (unknown [10.108.35.59])
+        by mo5.mail-out.ovh.net (Postfix) with ESMTP id 525462AE708
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 08:58:04 +0100 (CET)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player773.ha.ovh.net (Postfix) with ESMTPSA id 85E8E1AFFF6D6;
+        Wed, 10 Feb 2021 07:57:51 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-104R00586a19810-fc92-4ea2-a265-0e6f67f37ab4,
+                    4D22BEF75CFDE1719A9C318D5396F6FE99F55012) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Subject: Re: [PATCH V3 net-next 2/2] net: broadcom: bcm4908_enet: add BCM4908
+ controller driver
+To:     Andrew Lunn <andrew@lunn.ch>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Masahiro Yamada <masahiroy@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
+References: <20210207222632.10981-2-zajec5@gmail.com>
+ <20210209230130.4690-1-zajec5@gmail.com>
+ <20210209230130.4690-2-zajec5@gmail.com> <YCNHU2g1m4dFahBd@lunn.ch>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Message-ID: <b13c82b5-49fb-533d-dfd6-dcc2f4c9f90d@milecki.pl>
+Date:   Wed, 10 Feb 2021 08:57:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
+In-Reply-To: <YCNHU2g1m4dFahBd@lunn.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Ovh-Tracer-Id: 10523786433230573199
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrheeigdduudehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepkeekgeefieeuhfdujeefgeektddujeekledvheehfeelfffhfeekjefhfeehuefhnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjeefrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-02-09 at 23:28 -0800, Kees Cook wrote:
-> On Sun, Jan 10, 2021 at 12:41:44PM -0800, Joe Perches wrote:
-> > Replace the lkml.org links with lore to better use a single source
-> > that's more likely to stay available long-term.
+On 10.02.2021 03:39, Andrew Lunn wrote:
+>> +static inline u32 enet_read(struct bcm4908_enet *enet, u16 offset)
+>> +{
+>> +	return readl(enet->base + offset);
+>> +}
 > 
-> What's the best way to teach checkpatch about this? I couldn't find the
-> right place to do it. (And more generally, can it also suggest https
-> over http?)
+> No inline functions in C files please. Let the compiler decide.
 
-Bjorn's patch:
-https://lore.kernel.org/lkml/20201217235615.43328-1-helgaas@kernel.org/
+According to the kernel's coding style (coding-style.rst) inline should
+*not* be used for 3+ LOC functions in general. According to that, I should
+only fix my enet_maskset() which isn't 1 LOC indeed.
 
-And my comments:
-https://lore.kernel.org/lkml/3e21b6e87e219d6538a193a9021b965fd8180025.camel@perches.com/
+If that Documentation is outdated and/or inaccurate, could you propose a
+change for it, please? That rule comes from 2006 (a771f2b82aa2), so I
+understand it may need updating. We should have that officially documented
+though, to avoid per-tree or per-maintainer rules for stuff like this.
 
+Personally I don't have enough compiler knowledge to propose and/or discuss
+such stuff. That's why I prefer following Documentation written by smarter
+ones ;)
+
+
+>> +static int bcm4908_dma_alloc_buf_descs(struct bcm4908_enet *enet,
+>> +				       struct bcm4908_enet_dma_ring *ring)
+>> +{
+>> +	int size = ring->length * sizeof(struct bcm4908_enet_dma_ring_bd);
+>> +	struct device *dev = enet->dev;
+>> +
+>> +	ring->cpu_addr = dma_alloc_coherent(dev, size, &ring->dma_addr, GFP_KERNEL);
+>> +	if (!ring->cpu_addr)
+>> +		return -ENOMEM;
+>> +
+>> +	if (((uintptr_t)ring->cpu_addr) & (0x40 - 1)) {
+>> +		dev_err(dev, "Invalid DMA ring alignment\n");
+>> +		goto err_free_buf_descs;
+>> +	}
+>> +
+>> +	ring->slots = kzalloc(ring->length * sizeof(*ring->slots), GFP_KERNEL);
+>> +	if (!ring->slots)
+>> +		goto err_free_buf_descs;
+>> +
+>> +	memset(ring->cpu_addr, 0, size);
+> 
+> It looks like dma_alloc_coherent() will perform a clear. See __dma_alloc_from_coherent()
+
+Thanks!
+
+
+>> +static void bcm4908_enet_dma_reset(struct bcm4908_enet *enet)
+>> +{
+>> +	struct bcm4908_enet_dma_ring *rings[] = { &enet->rx_ring, &enet->tx_ring };
+>> +	int i;
+>> +
+>> +	/* Disable the DMA controller and channel */
+>> +	for (i = 0; i < ARRAY_SIZE(rings); i++)
+>> +		enet_write(enet, rings[i]->cfg_block + ENET_DMA_CH_CFG, 0);
+>> +	enet_maskset(enet, ENET_DMA_CONTROLLER_CFG, ENET_DMA_CTRL_CFG_MASTER_EN, 0);
+> 
+> Is there a need to wait for any in flight DMA transfers to complete
+> before you go further? Or is that what
+> bcm4908_enet_dma_rx_ring_disable() is doing?
+
+bcm4908_enet_dma_rx_ring_disable() checks for DMA to "confirm" it got stopped.
+
+
+>> +
+>> +	/* Reset channels state */
+>> +	for (i = 0; i < ARRAY_SIZE(rings); i++) {
+>> +		struct bcm4908_enet_dma_ring *ring = rings[i];
+>> +
+>> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_BASE_DESC_PTR, 0);
+>> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_STATE_DATA, 0);
+>> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_DESC_LEN_STATUS, 0);
+>> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_DESC_BASE_BUFPTR, 0);
+>> +	}
+>> +}
+>> +
+>> +static void bcm4908_enet_dma_tx_ring_ensable(struct bcm4908_enet *enet,
+>> +					     struct bcm4908_enet_dma_ring *ring)
+> 
+> enable not ensable?
+
+Absolutely :)
+
+
+>> +static int bcm4908_enet_open(struct net_device *netdev)
+>> +{
+>> +	struct bcm4908_enet *enet = netdev_priv(netdev);
+>> +	struct device *dev = enet->dev;
+>> +	int err;
+>> +
+>> +	err = request_irq(netdev->irq, bcm4908_enet_irq_handler, 0, "enet", enet);
+>> +	if (err) {
+>> +		dev_err(dev, "Failed to request IRQ %d: %d\n", netdev->irq, err);
+>> +		return err;
+>> +	}
+>> +
+>> +	bcm4908_enet_gmac_init(enet);
+>> +	bcm4908_enet_dma_reset(enet);
+>> +	bcm4908_enet_dma_init(enet);
+>> +
+>> +	enet_umac_set(enet, UMAC_CMD, CMD_TX_EN | CMD_RX_EN);
+>> +
+>> +	enet_set(enet, ENET_DMA_CONTROLLER_CFG, ENET_DMA_CTRL_CFG_MASTER_EN);
+>> +	enet_maskset(enet, ENET_DMA_CONTROLLER_CFG, ENET_DMA_CTRL_CFG_FLOWC_CH1_EN, 0);
+>> +	bcm4908_enet_dma_rx_ring_enable(enet, &enet->rx_ring);
+>> +
+>> +	napi_enable(&enet->napi);
+>> +	netif_carrier_on(netdev);
+>> +	netif_start_queue(netdev);
+>> +
+>> +	bcm4908_enet_intrs_ack(enet);
+>> +	bcm4908_enet_intrs_on(enet);
+>> +
+>> +	return 0;
+>> +}
+> 
+> No PHY handling? It would be normal to connect the phy in open.
+
+I believe so, this controller is integrated into SoC and is always connected
+to the (internal) switch port. It uses a fixed link.
