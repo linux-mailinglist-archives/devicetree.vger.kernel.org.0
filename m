@@ -2,70 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85818316F6A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 20:00:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBFB6316FCC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 20:14:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233206AbhBJTAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 14:00:12 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:33128 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233756AbhBJS6q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 13:58:46 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1l9ugO-005NHt-KI; Wed, 10 Feb 2021 19:57:48 +0100
-Date:   Wed, 10 Feb 2021 19:57:48 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Prasanna Vengateshan Varadharajan 
-        <prasanna.vengateshan@microchip.com>
-Cc:     Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
-        robh+dt@kernel.org, kuba@kernel.org, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, davem@davemloft.net,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/8] dt-bindings: net: dsa: dt bindings for
- microchip lan937x
-Message-ID: <YCQsrPNmyRnhp4Mm@lunn.ch>
-References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
- <20210128064112.372883-2-prasanna.vengateshan@microchip.com>
- <20210130020227.ahiee4goetpp2hb7@skbuf>
- <6531ab6c7e40b7e2f73a6087b31ecfe0a8f214e4.camel@microchip.com>
+        id S234424AbhBJTOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 14:14:23 -0500
+Received: from www-5.netcourrier.com ([213.182.55.200]:32941 "EHLO
+        www-5.mailo.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234393AbhBJTOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 14:14:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1612979336; bh=FiwrkizrBSPTsvKMxQnwJcv6n7jqODJU8WnEpBli1GY=;
+        h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+         References:Content-Type:MIME-Version:Content-Transfer-Encoding;
+        b=aVejjDj+LtOND0rHwfM/BdxyKlPIzF5FVjD5TmwNWFdXOBr9qMrGiduah5cMONWdF
+         crLyraOuDUeRMx+6SDny5iqYZbs73rd3Uqst8HNr9w2EWmnOi+/HoEmleAytVMbVp/
+         xXjGIJcJFSHYZcSFNmRRPofaiR/Uf9tAlje2L5PQ=
+Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Wed, 10 Feb 2021 18:48:56 +0100 (CET)
+X-EA-Auth: 4xS/QoYM2v4q6SHusZVcWgnrZ5wIyvdcZxzttcMlxFecgXiC1vChK1nXQpXsw9yNRr9zDGCf/YWUyTd4ricXeiAGrcCnhkeza7yHCrNqkDA=
+Message-ID: <97ef97e996c2089cedb450f9aaac123208ca18e9.camel@mailoo.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: input/touchscreen: add bindings for
+ msg26xx
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Date:   Wed, 10 Feb 2021 18:48:55 +0100
+In-Reply-To: <20210210031000.GA10151@labundy.com>
+References: <20210121174359.1455393-1-vincent.knecht@mailoo.org>
+         <20210209161319.GA3849081@robh.at.kernel.org>
+         <07cac63721a9ca63733617e461d640e8927a78f3.camel@mailoo.org>
+         <20210210031000.GA10151@labundy.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3 (3.38.3-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6531ab6c7e40b7e2f73a6087b31ecfe0a8f214e4.camel@microchip.com>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +        ethernet-ports {
-> > > +          #address-cells = <1>;
-> > > +          #size-cells = <0>;
-> > > +          port@0 {
-> > > +            reg = <0>;
-> > > +            label = "lan1";
-> > > +          };
-> > > +          port@1 {
-> > > +            reg = <1>;
-> > > +            label = "lan2";
-> > > +          };
-> > > +          port@2 {
-> > > +            reg = <7>;
-> > 
-> > reg should match node index (port@2), here and everywhere below. As
-> > for
-> > the net device labels, I'm not sure if the mismatch is deliberate
-> > there.
-> reg & port node indexes are different here because to match with the
->  physical to logical port mapping done in the LAN9374. I realized that
-> the description is missing and that is to be added. However, should reg
-> & port node index match for the net dev? 
-> If it should be the same, then the same can be acheived by renaming a
-> label (lanx) as well.
+Le mardi 09 f=C3=A9vrier 2021 =C3=A0 21:10 -0600, Jeff LaBundy a =C3=A9crit=
+=C2=A0:
+> Hi Vincent,
+>=20
+> On Tue, Feb 09, 2021 at 07:58:33PM +0100, Vincent Knecht wrote:
+> > Le mardi 09 f=C3=A9vrier 2021 =C3=A0 10:13 -0600, Rob Herring a =C3=A9c=
+rit=C2=A0:
+> > > On Thu, Jan 21, 2021 at 06:43:47PM +0100, Vincent Knecht wrote:
+> > > > This adds dts bindings for the mstar msg26xx touchscreen.
+> > > >=20
+> > > > Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> > > > ---
+> > > > Changed in v3:
+> > > > - added `touchscreen-size-x: true` and `touchscreen-size-y: true` p=
+roperties
+> > > > Changed in v2:
+> > > > - changed M-Star to MStar in title line
+> > > > - changed reset gpio to active-low in example section
+> > > > ---
+> > > > =C2=A0.../input/touchscreen/mstar,msg26xx.yaml=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 69 +++++++++++++++++++
+> > > > =C2=A01 file changed, 69 insertions(+)
+> > > > =C2=A0create mode 100644 Documentation/devicetree/bindings/input/to=
+uchscreen/mstar,msg26xx.yaml
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/ms=
+tar,msg26xx.yaml
+> > > > b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx=
+.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..5d26a1008bf1
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg=
+26xx.yaml
+> > > > @@ -0,0 +1,69 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/input/touchscreen/mstar,msg26xx=
+.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: MStar msg26xx touchscreen controller Bindings
+> > > > +
+> > > > +maintainers:
+> > > > +=C2=A0 - Vincent Knecht <vincent.knecht@mailoo.org>
+> > > > +
+> > > > +allOf:
+> > > > +=C2=A0 - $ref: touchscreen.yaml#
+> > > > +
+> > > > +properties:
+> > > > +=C2=A0 compatible:
+> > > > +=C2=A0=C2=A0=C2=A0 const: mstar,msg26xx
+> > >=20
+> > > Don't use wildcards in compatible strings.
+> >=20
+> > Thank you for the input...
+> >=20
+> > Let's say I set it to "mstar,msg2638", is it better to rename the drive=
+r file and functions too ?
+> > According to downstream source file naming, msg2638 is the model I have=
+ and test this driver with.
+>=20
+> This is ultimately Dmitry's call, but it's fairly common to use wildcards
+> for driver names and function calls if the driver is known to work across
+> all devices that fit in the wildcard (see iqs5xx and many others).
+>=20
+> The risk with wildcards, however, is that vendors can introduce different
+> devices later with similar part numbers. Therefore, some subsystems (e.g.
+> iio) tend to frown upon wildcards for that reason.
+>=20
+> You should try and make the driver cover as many devices as possible. But
+> if the driver is only known to work for one device then I don't think you
+> can use a wildcard in the name unless you support all other devices (just
+> my opinion).
+>=20
+> In either case, however, compatible strings must be unique just as with a
+> part number in a schematic or bill of materials. As such, it is perfectly
+> fine to have multiple compatible strings in a single driver.
+>=20
+> >=20
+> >=20
+> > There's a possibility this driver works as-is or with minor mods for ms=
+g2633 too,
+> > and a more remote one for msg21xx and msg22xx...
+> >=20
+>=20
+> Kind regards,
+> Jeff LaBundy
 
-The label should match whatever the text on the device case says. So
-it is fine if port 2 says lan3 on the front panel. However, port@2
-should have reg=<2>. Please change it to port@7. This is a generic DT
-requirement, not specific to DSA.
+Thank you Jeff for the insight.
 
-       Andrew
+Since I can't test it with any other model, I've renamed it to msg2638 in v=
+4:
+https://lore.kernel.org/linux-input/20210210173403.667482-1-vincent.knecht@=
+mailoo.org/T/#t
+
+
+
+
+
