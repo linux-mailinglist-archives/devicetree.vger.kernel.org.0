@@ -2,214 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADF283161A5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:59:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF0663161DC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 10:16:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbhBJI6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 03:58:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54542 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229806AbhBJI4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 03:56:12 -0500
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C110EC06178B
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 00:55:31 -0800 (PST)
-Received: by mail-yb1-xb2b.google.com with SMTP id l8so1224219ybe.12
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 00:55:31 -0800 (PST)
+        id S229789AbhBJJOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 04:14:30 -0500
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:50142 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230450AbhBJJGf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 04:06:35 -0500
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11A902jd025696;
+        Wed, 10 Feb 2021 01:05:27 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pfpt0220;
+ bh=x8eYnYYgsyVN1Xq2iHF/pbUVdbjIhH+Lj5UmBcebz+o=;
+ b=KM1IOGNTtRP1TS5psbw3QmhLiLQTUn4X/FeXyIb34UX9bwjTrsuBYDvi1G6fzFLBi4gr
+ zITbanJd5xG3mrbvnY30NopKkobl4A/LRqqolEFV6eTKiws6dI8Oc3Rfkb4JalvaJyZX
+ YWRKpgLNcI7M+Gpty6CIT7jMDYE6nzewwUYJOqE3XZk+93TdO7e2EGdvQwVDDGNKD5u5
+ 6L2/U00421wAz8abRku8qJRDvJM8jkniB6xSDHVywJ13XYGJU34pOjInPnW6rXEo/RHr
+ SmEYqWw860US2Z0yNe7od4fN509c+2Z7BHIJHTAw0vV8lXCqJWmVqQM5KrzGx3+cAaQr Gg== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0a-0016f401.pphosted.com with ESMTP id 36hsbrkdrt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Wed, 10 Feb 2021 01:05:27 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 10 Feb
+ 2021 01:05:26 -0800
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com (104.47.37.50) by
+ DC5-EXCH02.marvell.com (10.69.176.39) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2 via Frontend Transport; Wed, 10 Feb 2021 01:05:26 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XDTSV6b9je8b46S0jG/bbBqF74QRNJSK17zPLXwD4Z31R7QTBbXG6qJYxTaWlqYK5fLo1nJWq3gu04tfqd4MLuvoLdaEBaKIOlT6BQnT7f3Tac8IRax4IhEOWYWVsaWkYu5BecKQsspwMPiGX2aSHx7lL661AQWKmVkLFyKgU9vA0MT3LotEfo6GSOgEsvJFUIa1l1wOVVLqf6ABrAOUlgxvxtdIj/f3s1KvS8fRe9nf9AtAC88lHNwJbJuErL0uUmaV4FDmZbzwoHx7qsLGmJuYGsvADzj0c2ixtgIjJsC98V3edErJ/C5GMLTVhNsuR0cu15MoncVh5uq0yvlc3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x8eYnYYgsyVN1Xq2iHF/pbUVdbjIhH+Lj5UmBcebz+o=;
+ b=gST0XItHm1pAQ/3PBAASphIGVi5lzfk+X3CbTydDMxDZxMrUMF/WbSsx4Pf6ZMyociZBAQ5N1NXjvzC8+N2QZWzMto8LIP3f2iGCpidRP+LRaMopUPc0cTT8rkLeVypOUsCRZFl1rJJSUJQfznvq7rwE3ktse7/dQSEw5SlUSGxHeXJQvjTPKUtYyjouwXI1J//6Ca/DN3EaLvvEAk3QlgzVJnXCXJMqm3BarukBDPrxbIEbfqX4WmQ4T2m3rPTQTaXAX69Ea67OS8qSVQALtkEj07xvS5P3jrXbN/0cLoL9kDRUPbhL9KCyeumhiLN/XKzrCDKdicGTEgI/Wgn7nA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EIYUBkGMy3qE6aqOle/QpEgFxQFoJfY+aVajMelV3xs=;
-        b=qqKG0XSv+akp+PhEDy+mWsosrzGxxmJtkSfE/RiAHtParBQ1+/HeO672kBHv8o8i3G
-         eesnT9wcGJbvHbEc1b+g2cn0zA0r/mdAvB5O6SsxerFnvgsLpiD28pUxjoC2ILa9euYV
-         xYnXmOzzgBvMfFgJOHoRR+nS/1qfbPS4DJMg3ElQZbbZMS9S72aPCJBFR1jKl5o7SEK9
-         gRY86ph1NI9lK898i7M4Bbmis02HInlo2BaYGfBFxcGzfZwvNSrCXXoPaZIT3IgxwxES
-         KbI+yTrvPRW7RVetJNStLFzDlDblpefA1Q7CbbkLfvL9z8TfDasFOAyUL0v8uoBv3qq/
-         JRYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EIYUBkGMy3qE6aqOle/QpEgFxQFoJfY+aVajMelV3xs=;
-        b=UedaliBBb8ZTINVYWP6bHkGUZiDArUUdhs8SoWZlzXZliymUVwNcpNa154BsvO2jzm
-         w/DtDgZBiDTXrmuvibCo2JKBAgUVCSsNT2K68i47eybzGBLN0q6e1JJ5gUuvOe/MpPZY
-         vy3RWEwaGabN7qVIjmab8zfaX2ZPvqlMRvvESFfT1tf8NFYirG49NddkSp/8drcFbta6
-         z/Cb4680ucFXwbIuXs/oYa3vaFyTvfPzDR2fnUBDPs1U1OTMB/mdCkQO6+OPS2mzeV4D
-         ZrL1F2sXLSi9SdFqaLWIQVX0PYTZtX1BKHB1qjAQi3fKq6vEGn9a9Yg9CddSvgh/g6Ni
-         +WKA==
-X-Gm-Message-State: AOAM530276nZQCv/j0NrIQru1lUVUqR2Syh8ihTtVGs5LN996x4xgJhS
-        ni5CqWPWwJzdMjmtpLF8mF1mJrCKCZl3qVIjoWWbTQ==
-X-Google-Smtp-Source: ABdhPJwwgYm9gSe18/JyjErLTRz5FCOkyXxd4stR4ZaLz//fROhqjDQGN2y2rtdVkMLB3bpoDtl1Y3uYT/scb2Xt5zw=
-X-Received: by 2002:a05:6902:1025:: with SMTP id x5mr2865453ybt.96.1612947330653;
- Wed, 10 Feb 2021 00:55:30 -0800 (PST)
+ d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x8eYnYYgsyVN1Xq2iHF/pbUVdbjIhH+Lj5UmBcebz+o=;
+ b=P7BVuJbBlJAMeLMtBMQ0MJcxHGzpofFQK1dEvtmfZlq5a46/Sz1/u9bot+K3cqTVYKcedlLzjpZ4djVVKfIyJOKaVEpkJDWctyQGx8oz7IWR4wYQuaUTMgZtmQlIPIhd4Elvov/S38gLxcOUOa7RM+CRzcOt+ZFOYwVKxTPHYOY=
+Received: from CO6PR18MB3873.namprd18.prod.outlook.com (2603:10b6:5:350::23)
+ by MWHPR18MB1216.namprd18.prod.outlook.com (2603:10b6:320:2b::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.26; Wed, 10 Feb
+ 2021 09:05:24 +0000
+Received: from CO6PR18MB3873.namprd18.prod.outlook.com
+ ([fe80::c041:1c61:e57:349a]) by CO6PR18MB3873.namprd18.prod.outlook.com
+ ([fe80::c041:1c61:e57:349a%3]) with mapi id 15.20.3846.025; Wed, 10 Feb 2021
+ 09:05:24 +0000
+From:   Stefan Chulski <stefanc@marvell.com>
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Yan Markman <ymarkman@marvell.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "mw@semihalf.com" <mw@semihalf.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "atenart@kernel.org" <atenart@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH v11 net-next 15/15] net: mvpp2: add TX FC
+ firmware check
+Thread-Topic: [EXT] Re: [PATCH v11 net-next 15/15] net: mvpp2: add TX FC
+ firmware check
+Thread-Index: AQHW/sBBFbgpQQcn1kKFZbDyaw2oG6pQA9IAgAEWNfA=
+Date:   Wed, 10 Feb 2021 09:05:24 +0000
+Message-ID: <CO6PR18MB3873EB4FE57E1D35531AB5AFB08D9@CO6PR18MB3873.namprd18.prod.outlook.com>
+References: <1612860151-12275-1-git-send-email-stefanc@marvell.com>
+ <1612860151-12275-16-git-send-email-stefanc@marvell.com>
+ <20210209162855.GQ1463@shell.armlinux.org.uk>
+In-Reply-To: <20210209162855.GQ1463@shell.armlinux.org.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: armlinux.org.uk; dkim=none (message not signed)
+ header.d=none;armlinux.org.uk; dmarc=none action=none
+ header.from=marvell.com;
+x-originating-ip: [80.230.78.81]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8872fd71-fc06-4c5f-b813-08d8cda3006e
+x-ms-traffictypediagnostic: MWHPR18MB1216:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MWHPR18MB121691C9B6FD4612C2D5C229B08D9@MWHPR18MB1216.namprd18.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2zAiDVOFctFqurRQuh8d8hI9R/hFVN9htjlCWL4YH73dIqOPdexCOt7sFmUgfEhR4MeH+E0DcXFks/SCrBXc1UWIYoRMpnZHpS4vnRuv5DZ5ECQtj8259YJ9RAxP+cLVTOELK3md6lavCKmI1qwd+39jE2UWY/9r9XjC1RxmG6qwUAotWYx76I1AxUYljvtCrYSju+qnbei+zdSXTekck0O2R7PYyJQH27rnQjgfdCZ4igXAdqpKkiVy0pZiaZay8HYC4xPDw8CAuesrFeGx0Xz8wnPNrxMaL2yBJlLOg1nty04zi1KsZTylgThEPKIrAkwhSwKbqjZGVngdOJXdhJ7lAg84XJMI4hE4p3kZIqfKW+R8XV30zaTtEJkiEzD5WtH+If75tWymWzRt2TeVbBzasMXWxtFvWo77rvHbPqm8nM9ZEbzBy4J5fIXgU4Oo/++9BMMSCqSdZWx6Zz3lH07Ipu13vdkaFjW0OFAnRDw1n/vsZaZKsJNURHsmB2axisqqs67mdTRwXk6MMbRYsQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR18MB3873.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(396003)(376002)(366004)(136003)(346002)(86362001)(76116006)(478600001)(66476007)(66556008)(64756008)(66946007)(66446008)(83380400001)(55016002)(7416002)(6506007)(8936002)(186003)(8676002)(26005)(71200400001)(9686003)(316002)(4744005)(2906002)(5660300002)(6916009)(52536014)(4326008)(7696005)(33656002)(54906003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?3vBeowF7XLmDxLCuh5b8UPtkETEdM6zCsdpbZpFtFJr3BGtsiUfRSJe2Wee9?=
+ =?us-ascii?Q?SZ6UD1njwNAG1qq6ts1JXPMx6rzYf9BIpVEguN76qaMI6x9RIpM1OJuMH2sS?=
+ =?us-ascii?Q?2jOi2mOcecbB8Z42Yv8TiMRtrgDDX/cWSNhk2p9XzAjghR/ubaR7VZhgbEsw?=
+ =?us-ascii?Q?g3yWa4KItI1wWyagZQrNX0KLSWnIeZ1eRFU2mVpQz2nBjJopDuE34Hx2qY2L?=
+ =?us-ascii?Q?2OUk5uyFzquD86RSzy/131rca+kK5S1qsob1/4HmDqQChCiiV6P2KCpD2POp?=
+ =?us-ascii?Q?nXwyg38SgUR2WxA8T4GiJ+VAFFvoZNooy6p14opWg4cqjkJF6gEjwI5VarTy?=
+ =?us-ascii?Q?0ScZ2MEe6UyTFAccU7uK1GA0M8VFzOo5evC0HPoHAvTo6LIIe/NNqF4qb3nj?=
+ =?us-ascii?Q?Jzv7HyVqjHRYu++wtk4NNNCDtATthJe+NuFaVtRrWNs4UCMhxDTvmaBqpbEi?=
+ =?us-ascii?Q?8fFK8i4Dhs0m5TjEQzdvePTgsfLJCiYWgZG94z6O/ZizBWDziBUjUo16dLvU?=
+ =?us-ascii?Q?bXueCbQ3VHLp+d5NbSQBc5l8lgP4Eh1Kr1UEYWgAo6ccprsigSRI47A5GZvi?=
+ =?us-ascii?Q?4ijmgHCurVE4F7KL/cmOtEqIP8s/PycUUwkCIKMLXhQCgG8X8qQ0ovrX/dms?=
+ =?us-ascii?Q?e3cTbnK8UjK4dkxbgY+ZaeihEKAS4d3q/+JgmgFI9XOQeqAiKrX4wxxY2C7c?=
+ =?us-ascii?Q?eORUORQOfT0vqFJcNh4lQosuOYVtKchkYTIb4XCfyodqRWF5JlWFXyGrALkJ?=
+ =?us-ascii?Q?7xM/46luk4bEbkc2Q5WxunX2A2/fxQpINoElihOpkEu4IW8oAPnt3bGt4imq?=
+ =?us-ascii?Q?4MxmRndelWNUBmFj6ca2JfuQSswovoPCSX465YhsMeBy7tEW/U/sWp9temAu?=
+ =?us-ascii?Q?zngHQLbVPIAg6tOWjt6gYNOUAaP26J6+rGQoyqrPQFdHK/vfwl+1XuVHoR5c?=
+ =?us-ascii?Q?JtBwavVejfRMK+mjBd3Job4zNsXoldg+eL4mGlPLVEases/h1l7gUkB/+irQ?=
+ =?us-ascii?Q?BDKwcjXAZGC5K3aSR2N9O04r+5tc1Uo1Zdf7Q34UVKHOMo2U2vkFkYjQNlfp?=
+ =?us-ascii?Q?9fGl2wrjU66OgqoFirNuQCc1PIL4fIZfKJnp1rsCrWetKcnZ4Jt5Ym7/z585?=
+ =?us-ascii?Q?OiK9gF7UTSRi1Kwwy/vg25P8uBiDaHAn/Q4Ru5u3lWSuV1Pe+AO11XImdf0f?=
+ =?us-ascii?Q?5x7+KBdQ+bwKAzC9AryTwze+W2kE+qadX58CQkDod+l3gHQhXyp3PrIJcf56?=
+ =?us-ascii?Q?WC3patLLxxeTmXyIfvZLpClzob/F1lGTvJ3G0KxejfG8xeW1/m7PFy/x4p33?=
+ =?us-ascii?Q?xpg=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20210205222644.2357303-1-saravanak@google.com> <47ca46aa-99f3-5203-8aa7-65c6443bd965@microchip.com>
-In-Reply-To: <47ca46aa-99f3-5203-8aa7-65c6443bd965@microchip.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 10 Feb 2021 00:54:54 -0800
-Message-ID: <CAGETcx862JPn8759tk-69WySBvokxMXJaaOVY7L6V8FLwfpV8g@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
-To:     Tudor Ambarus <Tudor.Ambarus@microchip.com>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Brown, Len" <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR18MB3873.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8872fd71-fc06-4c5f-b813-08d8cda3006e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2021 09:05:24.2369
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ReLtRws93AeRGMqbaglQ2oar46976EAz8Lnx+ae0AZrdtwhB/fVOlyyk33/6zBtzTvQnLxPkw/C7SdL8PTQW+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR18MB1216
+X-OriginatorOrg: marvell.com
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-10_02:2021-02-09,2021-02-10 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 10, 2021 at 12:19 AM <Tudor.Ambarus@microchip.com> wrote:
->
-> Hi, Saravana,
->
-> On 2/6/21 12:26 AM, Saravana Kannan wrote:
-> > There are a lot of devices/drivers where they never have a struct device
-> > created for them or the driver initializes the hardware without ever
-> > binding to the struct device.
-> >
-> > This series is intended to avoid any boot regressions due to such
-> > devices/drivers when fw_devlink=on and also address the handling of
-> > optional suppliers.
-> >
-> > Patch 1 and 2 addresses the issue of firmware nodes that look like
-> > they'll have struct devices created for them, but will never actually
-> > have struct devices added for them. For example, DT nodes with a
-> > compatible property that don't have devices added for them.
-> >
-> > Patch 3 and 4 allow for handling optional DT bindings.
-> >
-> > Patch 5 sets up a generic API to handle drivers that never bind with
-> > their devices.
-> >
-> > Patch 6 through 8 update different frameworks to use the new API.
-> >
-> > Thanks,
-> > Saravana
-> >
-> > Saravana Kannan (8):
-> >   driver core: fw_devlink: Detect supplier devices that will never be
-> >     added
-> >   of: property: Don't add links to absent suppliers
-> >   driver core: Add fw_devlink.strict kernel param
-> >   of: property: Add fw_devlink support for optional properties
-> >   driver core: fw_devlink: Handle suppliers that don't use driver core
-> >   irqdomain: Mark fwnodes when their irqdomain is added/removed
-> >   PM: domains: Mark fwnodes when their powerdomain is added/removed
-> >   clk: Mark fwnodes when their clock provider is added/removed
-> >
-> >  .../admin-guide/kernel-parameters.txt         |  5 ++
-> >  drivers/base/core.c                           | 58 ++++++++++++++++++-
-> >  drivers/base/power/domain.c                   |  2 +
-> >  drivers/clk/clk.c                             |  3 +
-> >  drivers/of/property.c                         | 16 +++--
-> >  include/linux/fwnode.h                        | 20 ++++++-
-> >  kernel/irq/irqdomain.c                        |  2 +
-> >  7 files changed, 98 insertions(+), 8 deletions(-)
-> >
->
-> Even with this patch set applied, sama5d2_xplained can not boot.
-> Patch at [1] makes sama5d2_xplained boot again. Stephen applied it
-> to clk-next.
+> >  	if (priv->global_tx_fc && priv->hw_version !=3D MVPP21) {
+> > -		val =3D mvpp2_cm3_read(priv, MSS_FC_COM_REG);
+> > -		val |=3D FLOW_CONTROL_ENABLE_BIT;
+> > -		mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
+> > +		err =3D mvpp2_enable_global_fc(priv);
+> > +		if (err) {
+> > +			dev_warn(&pdev->dev, "CM3 firmware not running,
+> version should be higher than 18.09 ");
+> > +			dev_warn(&pdev->dev, "and chip revision B0\n");
+> > +			dev_warn(&pdev->dev, "Flow control not
+> supported\n");
+>=20
+> I would much rather this was:
+>=20
+> 			dev_warn(&pdev->dev, "Minimum of CM3 firmware
+> 18.09 and chip revision B0 required for flow control\n");
+>=20
+> rather than trying to split it across several kernel messages.
 
-I'm glad you won't actually have any boot issues in 5.12, but the fact
-you need [1] with this series doesn't make a lot of sense to me
-because:
+I would repots v12 with this change soon.
 
-1. The FWNODE_FLAG_INITIALIZED flag will be set for the clock fwnode
-in question way before any consumer devices are added.
-2. Any consumer device added after (1) will stop trying to link to the
-clock device.
-
-Are you somehow adding a consumer to the clock fwnode before (1)?
-
-Can you try this patch without your clk fix? I was trying to avoid
-looping through a list, but looks like your case might somehow need
-it?
-
--Saravana
-
-+++ b/drivers/base/core.c
-@@ -943,6 +943,31 @@ static void device_links_missing_supplier(struct
-device *dev)
-        }
- }
-
-+static int fw_devlink_check_suppliers(struct device *dev)
-+{
-+       struct fwnode_link *link;
-+       int ret = 0;
-+
-+       if (!dev->fwnode ||fw_devlink_is_permissive())
-+               return 0;
-+
-+       /*
-+        * Device waiting for supplier to become available is not allowed to
-+        * probe.
-+        */
-+       mutex_lock(&fwnode_link_lock);
-+       list_for_each_entry(link, &dev->fwnode->suppliers, c_hook) {
-+               if (link->supplier->flags & FWNODE_FLAG_INITIALIZED)
-+                       continue;
-+
-+               ret = -EPROBE_DEFER;
-+               break;
-+       }
-+       mutex_unlock(&fwnode_link_lock);
-+
-+       return ret;
-+}
-+
- /**
-  * device_links_check_suppliers - Check presence of supplier drivers.
-  * @dev: Consumer device.
-@@ -964,21 +989,13 @@ int device_links_check_suppliers(struct device *dev)
-        struct device_link *link;
-        int ret = 0;
-
--       /*
--        * Device waiting for supplier to become available is not allowed to
--        * probe.
--        */
--       mutex_lock(&fwnode_link_lock);
--       if (dev->fwnode && !list_empty(&dev->fwnode->suppliers) &&
--           !fw_devlink_is_permissive()) {
-+       if (fw_devlink_check_suppliers(dev)) {
-                dev_dbg(dev, "probe deferral - wait for supplier %pfwP\n",
-                        list_first_entry(&dev->fwnode->suppliers,
-                        struct fwnode_link,
-                        c_hook)->supplier);
--               mutex_unlock(&fwnode_link_lock);
-                return -EPROBE_DEFER;
-        }
--       mutex_unlock(&fwnode_link_lock);
-
-        device_links_write_lock();
-
-
-
->
-> Cheers,
-> ta
->
-> [1] https://lore.kernel.org/lkml/20210203154332.470587-1-tudor.ambarus@microchip.com/
+Thanks,
+Stefan.
