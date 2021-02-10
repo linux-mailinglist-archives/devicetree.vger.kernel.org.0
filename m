@@ -2,94 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D17913170D8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 21:02:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E93123170F7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 21:15:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232859AbhBJUBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 15:01:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56638 "EHLO
+        id S232536AbhBJUPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 15:15:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232824AbhBJUBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 15:01:34 -0500
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B47C061574
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 12:00:53 -0800 (PST)
-Received: by mail-yb1-xb4a.google.com with SMTP id d8so3723705ybs.11
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 12:00:53 -0800 (PST)
+        with ESMTP id S232284AbhBJUPC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 15:15:02 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC488C061756
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 12:14:21 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id c18so4545507ljd.9
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 12:14:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:message-id:mime-version:subject:from:to:cc;
-        bh=nAWyJ+zxkv0LYbUQRaRKMv3uecWVrQKPIIyiCbLAoxY=;
-        b=aYx2s5uTYXvURxGfXo2FePoZlMBgiLhXFh8iGW6wYkkIIEVjBdHHE5Bmr+zKX5LqVE
-         sXAE9oLKNYAF6Eo3GNppSO3S8wL5KoL43p4Utf1urdr1Cx8BiVzYlT3vitvVq1VO2dZZ
-         vFY51evq5GqIQdt3BGAiNWVi5v8zJzrJB9B8M6oUfSmcW2y7h2YHsrwLpC0D6cGeiCh7
-         sirmlE9KYu4PaWV/84XvvlDexO0dBEQQmKomiGUeKKwIMcJsoJi75xodus7bGArPlXPp
-         iwsPzZ2jQNs3SOeStu+4Q9xrITQ+FBJ0ZwwRKreYP/JKJZJNENb5olCjsrV/ebSFuG8O
-         bmlg==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=GQdRqR/kJXRC2NOCKDiNUxAr2URFu/7kIkSURwm887c=;
+        b=ebAplM68uk2DaRN48rgxuZ6/sjD9iIQ0PbgBr8StwIUdvNm4eUS7UJCRMEQZG47G+F
+         3twX5CY/MpDOSiJuJ/ujNsRd5pZbhgQruLRab0SI92+X3982Yb550awNV2IqZX512IGm
+         Vyj0p0fWRapHhOVSCZPiSKHkRsb6SJV55D0y6X5RgtA+EOqbLUdHc/n4eW8xRdixjFcP
+         lrmcYtpkQu9D3LpM58W6yoxG5PuGytvI+pmfM0xQPIEo5VA66MyauteGdSgQYidXJJ4E
+         Y15Kd3ol4b0XsDlNarPEocXeOs2MOIjRbBY0E89wz1uCQ2MO9TJpKb3cE4MXamBnT136
+         Gx8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
-         :to:cc;
-        bh=nAWyJ+zxkv0LYbUQRaRKMv3uecWVrQKPIIyiCbLAoxY=;
-        b=V+HZ71DHVMXgqbgmShgrR/Hl4c9yeDjPA0EYMndICQ+wni87CJijuK67GASeb9yYbL
-         CWPmtcdeQLRCCetw1Tdbd9bnOLD16BrDyQSxEWKLi1RJuJUtSVwwmxAopX7tAby6NIx8
-         3vrEOLY7/lQIysbH6fIDqZCHxFGDmEWwzUlQiJGrJJwtcEMYwKJr+ml9B89xhnrMCvCt
-         OD3zN0CIW70RlZyiYg3JDo0U4XjFCIjCLxi1JqEHVkwA3hpV9LlW6NNk+UGeY8TQcLmM
-         b1zwXYh/ycKaATHCh9so8+wT+h8AKFFk92qrmfaIxchPa77suJ8K1x2FxFEbVA6q3DtG
-         uVSw==
-X-Gm-Message-State: AOAM5322ZdVOkUa9wSgFPVOxiJsM1XjSXG4uYle5cm6tWQR+/ddgQofr
-        2FsJCMrRpZuKKbOiiFmAJgu0fBJ/5iord7E=
-X-Google-Smtp-Source: ABdhPJwmVag+wQKQjAADmpTdq761ecbwOkwNmoZOkg6ITLu+atzaYLx1Kpp0+J/C5kPa7r7f66aTWjvXw0sVbVE=
-Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:6d2c:28df:85a5:da6c])
- (user=saravanak job=sendgmr) by 2002:a25:9b88:: with SMTP id
- v8mr6980038ybo.338.1612987253194; Wed, 10 Feb 2021 12:00:53 -0800 (PST)
-Date:   Wed, 10 Feb 2021 12:00:49 -0800
-Message-Id: <20210210200050.4106032-1-saravanak@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.30.0.478.g8a0d178c01-goog
-Subject: [PATCH] of: irq: Fix the return value for of_irq_parse_one() stub
-From:   Saravana Kannan <saravanak@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>
-Cc:     Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=GQdRqR/kJXRC2NOCKDiNUxAr2URFu/7kIkSURwm887c=;
+        b=DTycq0vS49IwYOQVmmaugw7OZ+uHJc0vrTxGiFefGG3sKeJoXJXW87HzXHGhZOIAtw
+         /gDzbsbJQUfBiUrZBGfV3kB2+5ndBbnaKgu7iesy2hG/D+e1FuR8u2Ibi2SP9z8Uiip/
+         m+J9/s/MCH5UdNaOfjUXNDSWaVSarl0gdH3Jwlj/mPz86Gt9xuB/JNAGplA8zYeW+vxq
+         FIIWGsR2mx1+LOdnHDYwOLL6qU1rlaSyngGN9A6D/s4e7sEVuuTObKllEFYn09dUg/68
+         jyvT9tfRk2JHgzqwse77V8oo7mytyWlO3pMOuRXLHpONQpkyDJH6vTm2AmqAphStZCKk
+         XaGg==
+X-Gm-Message-State: AOAM533GbnaYR3TcijxV+UT5qRCSDd/qZ2+6NnReeIeKanJAd+zVJZP8
+        P2Xf8JtgwaeZsOqlmGc039ebdQ==
+X-Google-Smtp-Source: ABdhPJwYCpd33SPFNGRkgEtcmIpVwqC7agC3qhM8NFsdk2q99adk0+MgdYCLvt4WUY2lkI/WpAU2IA==
+X-Received: by 2002:a2e:9a8c:: with SMTP id p12mr3072594lji.196.1612988060226;
+        Wed, 10 Feb 2021 12:14:20 -0800 (PST)
+Received: from [192.168.118.216] ([85.249.43.69])
+        by smtp.gmail.com with ESMTPSA id v23sm447097lfo.43.2021.02.10.12.14.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Feb 2021 12:14:19 -0800 (PST)
+Subject: Re: [PATCH v4 00/22] Add support for the SDM845 Camera Subsystem
+To:     Robert Foss <robert.foss@linaro.org>, todor.too@gmail.com,
+        agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
+        robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Cc:     Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+References: <20210205104414.299732-1-robert.foss@linaro.org>
+From:   Andrey Konovalov <andrey.konovalov@linaro.org>
+Message-ID: <5fea18b2-307b-2b45-4bc7-d327022642b0@linaro.org>
+Date:   Wed, 10 Feb 2021 23:14:17 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210205104414.299732-1-robert.foss@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When commit 1852ebd13542 ("of: irq: make a stub for of_irq_parse_one()")
-added a stub for of_irq_parse_one() it set the return value to 0. Return
-value of 0 in this instance means the call succeeded and the out_irq
-pointer was filled with valid data. So, fix it to return an error value.
+Hi Robert,
 
-Fixes: 1852ebd13542 ("of: irq: make a stub for of_irq_parse_one()")
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
+On 05.02.2021 13:43, Robert Foss wrote:
+> This series implements support for the camera subsystem found in
+> the SDM845 SOCs and the Titan 170 ISP. The support is partial
+> in that it implements CSIPHY, CSID, and partial VFE support.
+> 
+> The Titan generation of the ISP diverges a fair amount from the
+> design of the previous architecture generation, CAMSS. As a result
+> some pretty invasive refactoring is done in this series. It also
+> means that at this time we're unable to implement support for all
+> of the IP blocks contained. This is due to a combination of legal
+> considerations with respect to the IP and its owner Qualcomm and
+> time & man hour constrains on the Linaro side.
+> 
+> The CSIPHY (CSI Physical Layer) & CSID (CSI Decoder) support is
+> complete, but the VFE (Video Front End, which is referred to as IFE
+> (Image Front End) in the Titan generation of ISPs) only has support
+> for the RDI (Raw Dump Interface) which allows the raw output of
+> the CSID to be written to memory.
+> 
+> The 2nd interface implemented in the VFE silicon is the PIX
+> interface, and camss does not support it for this generation of ISPs.
+> The reason for this is that the PIX interface is used for sending
+> image data to the BPS (Bayer Processing Section) & IPE (Image
+> Processing Engine), but both of these units are beyond the scope
+> of enabling basic ISP functionality for the SDM845.
 
-This needs to go into driver-core.
+The problem is that for SDM845 the topology printed by media-ctl
+still has the PIX devices. That is even though the PIX interface is not
+supported for SDM845 in this driver, the msm_vfeN_pix subdevices
+and the corresponding msm_vfeN_video3 devices are still created.
+Your patchset is currently missing changes to the hardcoded:
 
--Saravana
+#define MSM_VFE_LINE_NUM 4
 
- include/linux/of_irq.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+struct vfe_device {
+...
+         struct vfe_line line[MSM_VFE_LINE_NUM];
+...
+};
 
-diff --git a/include/linux/of_irq.h b/include/linux/of_irq.h
-index f898d838d201..aaf219bd0354 100644
---- a/include/linux/of_irq.h
-+++ b/include/linux/of_irq.h
-@@ -60,7 +60,7 @@ u32 of_msi_map_id(struct device *dev, struct device_node *msi_np, u32 id_in);
- static inline int of_irq_parse_one(struct device_node *device, int index,
- 				   struct of_phandle_args *out_irq)
- {
--	return 0;
-+	return -EINVAL;
- }
- static inline int of_irq_count(struct device_node *dev)
- {
--- 
-2.30.0.478.g8a0d178c01-goog
+in drivers/media/platform/qcom/camss/camss-vfe.h.
 
+
+Thanks,
+Andrey
+
+> Since the Titan architecture generation diverges quite a bit from
+> the CAMSS generation, a lot of pretty major refactoring is carried
+> out in this series. Both the CSID & VFE core paths are made more
+> general and hardware version specific parts are broken out.
+> The CSIPHY didn't require quite as radical changes and therefore
+> keeps its current form.
+> 
+> Tested on:
+>   - Qcom RB3 / db845c + camera mezzanine, which is SDM845 based
+>   - db410c + D3 Camera mezzanine, which is APQ8016 based
+>   
+> Branch:
+>   - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v1
+>   - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v2
+>   - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v3
+> 
+> 
+> Due to the dt-bindings supporting sdm660-camss, this series depends
+> the sdm660 clock driver being upstreamed. I've linked this series below.
+> 
+> SDM630/660 Multimedia and GPU clock controllers
+> https://lkml.org/lkml/2020/9/26/166
+> 
+> 
+> Robert Foss (22):
+>    media: camss: Fix vfe_isr_comp_done() documentation
+>    media: camss: Fix vfe_isr comment typo
+>    media: camss: Replace trace_printk() with dev_dbg()
+>    media: camss: Add CAMSS_845 camss version
+>    media: camss: Make ISPIF subdevice optional
+>    media: camss: Refactor VFE HW version support
+>    media: camss: Add support for VFE hardware version Titan 170
+>    media: camss: Add missing format identifiers
+>    media: camss: Refactor CSID HW version support
+>    media: camss: Add support for CSID hardware version Titan 170
+>    media: camss: Add support for CSIPHY hardware version Titan 170
+>    media: camss: Remove per VFE power domain toggling
+>    media: camss: Enable SDM845
+>    dt-bindings: media: camss: Add qcom,msm8916-camss binding
+>    dt-bindings: media: camss: Add qcom,msm8996-camss binding
+>    dt-bindings: media: camss: Add qcom,sdm660-camss binding
+>    dt-bindings: media: camss: Add qcom,sdm845-camss binding
+>    MAINTAINERS: Change CAMSS documentation to use dtschema bindings
+>    media: dt-bindings: media: Remove qcom,camss documentation
+>    arm64: dts: sdm845: Add CAMSS ISP node
+>    arm64: dts: sdm845-db845c: Configure regulators for camss node
+>    arm64: dts: sdm845-db845c: Enable ov8856 sensor and connect to ISP
+> 
+>   .../devicetree/bindings/media/qcom,camss.txt  |  236 ----
+>   .../bindings/media/qcom,msm8916-camss.yaml    |  256 ++++
+>   .../bindings/media/qcom,msm8996-camss.yaml    |  387 ++++++
+>   .../bindings/media/qcom,sdm660-camss.yaml     |  398 ++++++
+>   .../bindings/media/qcom,sdm845-camss.yaml     |  370 ++++++
+>   MAINTAINERS                                   |    2 +-
+>   arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |   23 +-
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi          |  135 ++
+>   drivers/media/platform/qcom/camss/Makefile    |    6 +
+>   .../platform/qcom/camss/camss-csid-170.c      |  602 +++++++++
+>   .../platform/qcom/camss/camss-csid-4-1.c      |  338 +++++
+>   .../platform/qcom/camss/camss-csid-4-7.c      |  406 ++++++
+>   .../media/platform/qcom/camss/camss-csid.c    |  620 +--------
+>   .../media/platform/qcom/camss/camss-csid.h    |  178 ++-
+>   .../qcom/camss/camss-csiphy-3ph-1-0.c         |  182 ++-
+>   .../media/platform/qcom/camss/camss-csiphy.c  |   66 +-
+>   .../media/platform/qcom/camss/camss-ispif.c   |  117 +-
+>   .../media/platform/qcom/camss/camss-ispif.h   |    3 +-
+>   .../media/platform/qcom/camss/camss-vfe-170.c |  804 ++++++++++++
+>   .../media/platform/qcom/camss/camss-vfe-4-1.c |  123 +-
+>   .../media/platform/qcom/camss/camss-vfe-4-7.c |  244 ++--
+>   .../media/platform/qcom/camss/camss-vfe-4-8.c | 1164 +++++++++++++++++
+>   .../platform/qcom/camss/camss-vfe-gen1.c      |  763 +++++++++++
+>   .../platform/qcom/camss/camss-vfe-gen1.h      |  110 ++
+>   drivers/media/platform/qcom/camss/camss-vfe.c |  840 +-----------
+>   drivers/media/platform/qcom/camss/camss-vfe.h |  118 +-
+>   .../media/platform/qcom/camss/camss-video.c   |  100 ++
+>   drivers/media/platform/qcom/camss/camss.c     |  419 ++++--
+>   drivers/media/platform/qcom/camss/camss.h     |   17 +-
+>   29 files changed, 6965 insertions(+), 2062 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/media/qcom,camss.txt
+>   create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
+>   create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
+>   create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
+>   create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+>   create mode 100644 drivers/media/platform/qcom/camss/camss-csid-170.c
+>   create mode 100644 drivers/media/platform/qcom/camss/camss-csid-4-1.c
+>   create mode 100644 drivers/media/platform/qcom/camss/camss-csid-4-7.c
+>   create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-170.c
+>   create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-4-8.c
+>   create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-gen1.c
+>   create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-gen1.h
+> 
