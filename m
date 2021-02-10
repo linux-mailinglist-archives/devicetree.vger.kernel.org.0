@@ -2,121 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B780D316C51
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 18:16:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D7F316C54
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 18:16:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232178AbhBJRPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 12:15:55 -0500
-Received: from mail29.static.mailgun.info ([104.130.122.29]:47556 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232359AbhBJRPJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 12:15:09 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1612977291; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=cILPgz4XyqjUlXxwQuFYrgD9NT4tC0MMCHE1fPTd+sc=; b=K+djEDPby9rqAQswxNP+RvqliiZMT4R968DpwrOpDQ3OSJBbMETiOSymEwiuGCxbsEex87PR
- 2p87NsI36nC1TZH6bWY0XTzdRZerTCyK4uRxU3YnvaVNq/7WyMp5+uUdfVHaUSlQzhoHg00D
- TiElb1bRRgVTke0enL1LcTc8D+c=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 6024146b81f6c45dcefd5ee0 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 10 Feb 2021 17:14:18
- GMT
-Sender: tdas=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 43640C43461; Wed, 10 Feb 2021 17:14:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 82FD6C43462;
-        Wed, 10 Feb 2021 17:14:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 82FD6C43462
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v1 2/2] clk: qcom: rpmh: Add support for RPMH clocks on SC7280
-Date:   Wed, 10 Feb 2021 22:43:50 +0530
-Message-Id: <1612977230-11566-3-git-send-email-tdas@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1612977230-11566-1-git-send-email-tdas@codeaurora.org>
-References: <1612977230-11566-1-git-send-email-tdas@codeaurora.org>
+        id S231596AbhBJRQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 12:16:05 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:44832 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232479AbhBJRPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 12:15:42 -0500
+Received: by mail-oi1-f177.google.com with SMTP id r75so2801916oie.11;
+        Wed, 10 Feb 2021 09:15:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qJ1RPXH4Ky3rknP1i83/kgXLfXXCz/TwgTUNKoCqZ64=;
+        b=jCaPwHLnu4SSILpHP6GBhijrurgzTd4EbjrfWGRRnTjoN9QqldSK8wlbamU7by3rNk
+         6ofNwZfHYZ2PLwo1xlIl1a82toGuiLntMCPj0NJDJVmQ3b3/H2ICtJaiO/b3TZHbbvuZ
+         0xg0aUBSKyb/aNXUr6xypO7EvnkGwz+L4A/tQGdBs2jWTy8LtdvPN5FE9FHWnumRvR3r
+         PahcY9sIL3/hIGDuJnU74GG8k+3/wr0h3J1ynehDliXPTa5nRZXP5QdTRnrWqdP3OPvy
+         VT3RnD+xlVz+KNGRPKEQ23xgBTSHC2qSYq1VoXkKlAauLtF1iyxLw4oXFk1Oq7v5qKwv
+         wf7Q==
+X-Gm-Message-State: AOAM532yXct8P5Ll3nLNAKJZ+TdSovcfv2rf2o2tXHljS3Dqf3j5AC3S
+        uCCylX6vD8eVOPETQuz83A==
+X-Google-Smtp-Source: ABdhPJzsuQvHnbVMCnXzigZFYvy1mjydqefuslXLM2227BCJ57eYbmrcMRouWbgxLWOcD8sgwjoLFw==
+X-Received: by 2002:a54:4803:: with SMTP id j3mr2257771oij.124.1612977302768;
+        Wed, 10 Feb 2021 09:15:02 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u126sm567339oig.55.2021.02.10.09.15.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Feb 2021 09:15:02 -0800 (PST)
+Received: (nullmailer pid 2360939 invoked by uid 1000);
+        Wed, 10 Feb 2021 17:15:00 -0000
+Date:   Wed, 10 Feb 2021 11:15:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
+        mpe@ellerman.id.au, james.morse@arm.com, sashal@kernel.org,
+        benh@kernel.crashing.org, paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
+        tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v17 00/10] Carry forward IMA measurement log on kexec on
+ ARM64
+Message-ID: <20210210171500.GA2328209@robh.at.kernel.org>
+References: <20210209182200.30606-1-nramas@linux.microsoft.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210209182200.30606-1-nramas@linux.microsoft.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for RPMH clocks on SC7280 SoCs.
+On Tue, Feb 09, 2021 at 10:21:50AM -0800, Lakshmi Ramasubramanian wrote:
+> On kexec file load Integrity Measurement Architecture (IMA) subsystem
+> may verify the IMA signature of the kernel and initramfs, and measure
+> it.  The command line parameters passed to the kernel in the kexec call
+> may also be measured by IMA.  A remote attestation service can verify
+> a TPM quote based on the TPM event log, the IMA measurement list, and
+> the TPM PCR data.  This can be achieved only if the IMA measurement log
+> is carried over from the current kernel to the next kernel across
+> the kexec call.
+> 
+> powerpc already supports carrying forward the IMA measurement log on
+> kexec.  This patch set adds support for carrying forward the IMA
+> measurement log on kexec on ARM64.
+> 
+> This patch set moves the platform independent code defined for powerpc
+> such that it can be reused for other platforms as well.  A chosen node
+> "linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
+> the address and the size of the memory reserved to carry
+> the IMA measurement log.
+> 
+> This patch set has been tested for ARM64 platform using QEMU.
+> I would like help from the community for testing this change on powerpc.
+> Thanks.
+> 
+> This patch set is based on
+> commit 96acc833dec8 ("ima: Free IMA measurement buffer after kexec syscall")
+> in https://git.kernel.org/pub/scm/linux/kernel/git/zohar/linux-integrity.git
+> "next-integrity" branch.
 
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
----
- drivers/clk/qcom/clk-rpmh.c | 24 +++++++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+Is that a hard dependency still? Given this is now almost entirely 
+deleting arch code and adding drivers/of/ code, I was going to apply it.
 
-diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-index 6a2a13c..c180959 100644
---- a/drivers/clk/qcom/clk-rpmh.c
-+++ b/drivers/clk/qcom/clk-rpmh.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
-  */
-
- #include <linux/clk-provider.h>
-@@ -486,6 +486,27 @@ static const struct clk_rpmh_desc clk_rpmh_sm8350 = {
- 	.num_clks = ARRAY_SIZE(sm8350_rpmh_clocks),
- };
-
-+static struct clk_hw *sc7280_rpmh_clocks[] = {
-+	[RPMH_CXO_CLK]      = &sdm845_bi_tcxo.hw,
-+	[RPMH_CXO_CLK_A]    = &sdm845_bi_tcxo_ao.hw,
-+	[RPMH_LN_BB_CLK2]   = &sdm845_ln_bb_clk2.hw,
-+	[RPMH_LN_BB_CLK2_A] = &sdm845_ln_bb_clk2_ao.hw,
-+	[RPMH_RF_CLK1]      = &sdm845_rf_clk1.hw,
-+	[RPMH_RF_CLK1_A]    = &sdm845_rf_clk1_ao.hw,
-+	[RPMH_RF_CLK3]      = &sdm845_rf_clk3.hw,
-+	[RPMH_RF_CLK3_A]    = &sdm845_rf_clk3_ao.hw,
-+	[RPMH_RF_CLK4]      = &sm8350_rf_clk4.hw,
-+	[RPMH_RF_CLK4_A]    = &sm8350_rf_clk4_ao.hw,
-+	[RPMH_IPA_CLK]      = &sdm845_ipa.hw,
-+	[RPMH_PKA_CLK]      = &sm8350_pka.hw,
-+	[RPMH_HWKM_CLK]     = &sm8350_hwkm.hw,
-+};
-+
-+static const struct clk_rpmh_desc clk_rpmh_sc7280 = {
-+	.clks = sc7280_rpmh_clocks,
-+	.num_clks = ARRAY_SIZE(sc7280_rpmh_clocks),
-+};
-+
- static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
- 					 void *data)
- {
-@@ -575,6 +596,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
- 	{ .compatible = "qcom,sm8150-rpmh-clk", .data = &clk_rpmh_sm8150},
- 	{ .compatible = "qcom,sm8250-rpmh-clk", .data = &clk_rpmh_sm8250},
- 	{ .compatible = "qcom,sm8350-rpmh-clk", .data = &clk_rpmh_sm8350},
-+	{ .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, clk_rpmh_match_table);
---
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
-
+Rob
