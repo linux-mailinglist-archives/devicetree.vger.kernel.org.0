@@ -2,90 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56D80316B83
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 17:43:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFC8A316BA2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 17:48:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230107AbhBJQmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 11:42:05 -0500
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:36561 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232468AbhBJQkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 11:40:04 -0500
-Received: by mail-oo1-f41.google.com with SMTP id x10so625500oor.3;
-        Wed, 10 Feb 2021 08:39:47 -0800 (PST)
+        id S232012AbhBJQsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 11:48:14 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:38483 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232913AbhBJQsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 11:48:05 -0500
+Received: by mail-ot1-f45.google.com with SMTP id e4so2388550ote.5;
+        Wed, 10 Feb 2021 08:47:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=hLABr+jMceH1pKsKVWNgeUVRSZCzmjSXfeG61+9prYk=;
-        b=QLhstt/9+UaJgym+mT790xjdqB4e42xMDkjhC/3/gDy4jZPTDYikn78nVMLYpPjIgm
-         8iUg24mHUCLze58BVMl5EZjEequEerOwKy4JjF/nXqOs3d+NmB2MP+kXA5b+1PR16KTT
-         fFdXjF6/ffWWeOP95AAbcamptm3kGY3zPbseMoCA+VdI6VjySQUg/k+z6ekbHTkDWt9l
-         NUenSMJLXQBUBspfL1evgDJ4K6CFXN0JJ+eM48bel8THewNUsFqe5lPEWEvM1nf+Nu62
-         W3LK4IWyGOV8BO0haRp6pZKb1p/bV7LaXoZy+f49tgrI2v6Im5edxNLaFkp7Tqx2Z0wf
-         09cA==
-X-Gm-Message-State: AOAM531idh9nXLpKDZhGYk0A9lvxeA5dpsyIDkATkXKpPoOCzm3yJAKs
-        Ym/ymKl12FdURNkOOS6NSQ==
-X-Google-Smtp-Source: ABdhPJzA1Ih5UrarX2Zd/+htFWKmORb2ZC39mQDt8TDt3wEzv7A8OepEaOs/O4rX1RA3yiSFUY5JUQ==
-X-Received: by 2002:a4a:b103:: with SMTP id a3mr2640058ooo.30.1612975162288;
-        Wed, 10 Feb 2021 08:39:22 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=adc+2nnIR7t1ejzx3W6cWVT9M1mXeq25Jq+T/s+mbV4=;
+        b=MUaJMoMz0uwfSlLGz60dOxalvkmapIayNDYiQ3lNWXBzz1PwzbpfsBLwQnIGtH0To8
+         tIU+PX35CPKCoZn87l/yc/BQs3wiPgMnddEJB+QDrFxUzUqJlxq+n2WXGZ70d/u4B+4c
+         5rVOnMOQ6UN4DdiDmcpSOaSltRtGs2iNvuq8rV/Cg3dI53AyZZDWm+Z8FeXoXHvpb4Gx
+         BygSR1801Im4wwRDAKMTHM6oe8b3DGHmSD2WvIG9y9ap01y7/g+mFv67ryx6TrYJRmPR
+         psyZF27KOVKxWJZxUu/OWcRJA7qcyNwNw2Lzp7rkNa79Ont6w9P9nngN5gXjqiIK82Qw
+         PdDw==
+X-Gm-Message-State: AOAM533ud44iWOJ6lrBET6AphN9+AlujuzF7ir3Y5u4JXSKfj5deQPD7
+        mFU3BlNtpNyPbNcxcf4WhA==
+X-Google-Smtp-Source: ABdhPJzDBx6iO9hFxjii9+Tc5ZPdKtL7/LaOdiPcwmllkri6r4LtMp26ANi5eTLgATXAnBb8PjSItg==
+X-Received: by 2002:a9d:2277:: with SMTP id o110mr2841529ota.30.1612975644823;
+        Wed, 10 Feb 2021 08:47:24 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s2sm444254ooc.5.2021.02.10.08.39.20
+        by smtp.gmail.com with ESMTPSA id g11sm567977oif.9.2021.02.10.08.47.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 08:39:21 -0800 (PST)
-Received: (nullmailer pid 2293398 invoked by uid 1000);
-        Wed, 10 Feb 2021 16:39:20 -0000
+        Wed, 10 Feb 2021 08:47:23 -0800 (PST)
+Received: (nullmailer pid 2308105 invoked by uid 1000);
+        Wed, 10 Feb 2021 16:47:22 -0000
+Date:   Wed, 10 Feb 2021 10:47:22 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, kishon@ti.com, vkoul@kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20210210080736.771803-2-narmstrong@baylibre.com>
-References: <20210210080736.771803-1-narmstrong@baylibre.com> <20210210080736.771803-2-narmstrong@baylibre.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings
-Date:   Wed, 10 Feb 2021 10:39:20 -0600
-Message-Id: <1612975160.340384.2293397.nullmailer@robh.at.kernel.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>, drinkcat@chromium.org,
+        devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v6 1/4] dt-bindings: spmi: modify the constraint
+ 'maxItems' to 'minItems'
+Message-ID: <20210210164722.GA2308044@robh.at.kernel.org>
+References: <1612675154-2747-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1612675154-2747-2-git-send-email-hsin-hsiung.wang@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1612675154-2747-2-git-send-email-hsin-hsiung.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Feb 2021 09:07:35 +0100, Neil Armstrong wrote:
-> The Amlogic G12A SoCs embeds an Analog MIPI D-PHY to communicate with DSI
-> panels, this adds the bindings.
+On Sun, 07 Feb 2021 13:19:11 +0800, Hsin-Hsiung Wang wrote:
+> The constraint of 'maxItem: 1' might be larger than 1, so we modify it
+> to 'minItem: 1'.
 > 
-> This Analog D-PHY works with a separate Digital MIPI D-PHY.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 > ---
->  .../phy/amlogic,g12a-mipi-dphy-analog.yaml    | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+> changes since v5:
+> - update the constraint of minItem to 1.
+> ---
+>  Documentation/devicetree/bindings/spmi/spmi.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dts:22.15-25: Warning (reg_format): /example-0/phy@0:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.example.dt.yaml: example-0: phy@0:reg:0: [0] is too short
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-
-See https://patchwork.ozlabs.org/patch/1438845
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Acked-by: Rob Herring <robh@kernel.org>
