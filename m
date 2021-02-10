@@ -2,184 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62A69316F5B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 19:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85818316F6A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 20:00:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232180AbhBJS6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 13:58:10 -0500
-Received: from m-r2.th.seeweb.it ([5.144.164.171]:45423 "EHLO
-        m-r2.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232880AbhBJS4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 13:56:44 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 10E853F350;
-        Wed, 10 Feb 2021 19:55:38 +0100 (CET)
-Subject: Re: [PATCH v3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and
- panel bits
-To:     Amit Pundir <amit.pundir@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
-References: <1612945128-23174-1-git-send-email-amit.pundir@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <13bd5e9d-3f3b-0b97-aa48-9a7bc551ddf6@somainline.org>
-Date:   Wed, 10 Feb 2021 19:55:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S233206AbhBJTAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 14:00:12 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:33128 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233756AbhBJS6q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 13:58:46 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1l9ugO-005NHt-KI; Wed, 10 Feb 2021 19:57:48 +0100
+Date:   Wed, 10 Feb 2021 19:57:48 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Prasanna Vengateshan Varadharajan 
+        <prasanna.vengateshan@microchip.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
+        robh+dt@kernel.org, kuba@kernel.org, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, davem@davemloft.net,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/8] dt-bindings: net: dsa: dt bindings for
+ microchip lan937x
+Message-ID: <YCQsrPNmyRnhp4Mm@lunn.ch>
+References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
+ <20210128064112.372883-2-prasanna.vengateshan@microchip.com>
+ <20210130020227.ahiee4goetpp2hb7@skbuf>
+ <6531ab6c7e40b7e2f73a6087b31ecfe0a8f214e4.camel@microchip.com>
 MIME-Version: 1.0
-In-Reply-To: <1612945128-23174-1-git-send-email-amit.pundir@linaro.org>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6531ab6c7e40b7e2f73a6087b31ecfe0a8f214e4.camel@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 10/02/21 09:18, Amit Pundir ha scritto:
-> From: Sumit Semwal <sumit.semwal@linaro.org>
-> 
-> Enabling the Display panel for beryllium requires DSI
-> labibb regulators and panel dts nodes to be added.
-> It is also required to keep some of the regulators as
-> always-on.
-> 
-> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> ---
+> > > +        ethernet-ports {
+> > > +          #address-cells = <1>;
+> > > +          #size-cells = <0>;
+> > > +          port@0 {
+> > > +            reg = <0>;
+> > > +            label = "lan1";
+> > > +          };
+> > > +          port@1 {
+> > > +            reg = <1>;
+> > > +            label = "lan2";
+> > > +          };
+> > > +          port@2 {
+> > > +            reg = <7>;
+> > 
+> > reg should match node index (port@2), here and everywhere below. As
+> > for
+> > the net device labels, I'm not sure if the mismatch is deliberate
+> > there.
+> reg & port node indexes are different here because to match with the
+>  physical to logical port mapping done in the LAN9374. I realized that
+> the description is missing and that is to be added. However, should reg
+> & port node index match for the net dev? 
+> If it should be the same, then the same can be acheived by renaming a
+> label (lanx) as well.
 
-Hello!
-Your patch looks good, however, I have a few concerns...
+The label should match whatever the text on the device case says. So
+it is fine if port 2 says lan3 on the front panel. However, port@2
+should have reg=<2>. Please change it to port@7. This is a generic DT
+requirement, not specific to DSA.
 
-> v3: Addressed Konrad's concerns. Configured labibb regulators
->      explicitly based on downstream microvolt values. Display
->      comes up fine with default discharge-resistor-kohms and
->      soft-start-us properties, so didn't touch them.
->      Smoke tested on next-20210209.
-> v2: Rebased to mainline (v5.11-rc6) and fixed build warnings.
-> 
->   .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts      | 64 ++++++++++++++++++++++
->   1 file changed, 64 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-> index 86cbae63eaf7..5ac049a247e1 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-> @@ -157,6 +157,14 @@
->   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->   		};
->   
-> +		vreg_l14a_1p8: ldo14 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-boot-on;
-> +			regulator-always-on;
-> +		};
-> +
->   		vreg_l17a_1p3: ldo17 {
->   			regulator-min-microvolt = <1304000>;
->   			regulator-max-microvolt = <1304000>;
-> @@ -191,6 +199,7 @@
->   			regulator-min-microvolt = <1200000>;
->   			regulator-max-microvolt = <1200000>;
->   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-boot-on;
->   		};
->   	};
->   };
-> @@ -200,6 +209,43 @@
->   	firmware-name = "qcom/sdm845/cdsp.mdt";
->   };
->   
-> +&dsi0 {
-> +	status = "okay";
-> +	vdda-supply = <&vreg_l26a_1p2>;
-> +
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	panel@0 {
-> +		compatible = "tianma,fhd-video";
-> +		reg = <0>;
-> +		vddi0-supply = <&vreg_l14a_1p8>;
-> +		vddpos-supply = <&lab>;
-> +		vddneg-supply = <&ibb>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> +
-> +		port {
-> +			tianma_nt36672a_in_0: endpoint {
-> +				remote-endpoint = <&dsi0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&dsi0_out {
-> +	remote-endpoint = <&tianma_nt36672a_in_0>;
-> +	data-lanes = <0 1 2 3>;
-> +};
-> +
-> +&dsi0_phy {
-> +	status = "okay";
-> +	vdds-supply = <&vreg_l1a_0p875>;
-> +};
-> +
->   &gcc {
->   	protected-clocks = <GCC_QSPI_CORE_CLK>,
->   			   <GCC_QSPI_CORE_CLK_SRC>,
-> @@ -215,6 +261,24 @@
->   	};
->   };
->   
-> +&ibb {
-> +	regulator-min-microvolt = <4600000>;
-> +	regulator-max-microvolt = <6000000>;
-> +};
-> +
-
-I think you want to also configure overvoltage and overcurrent 
-protection values for both LAB and IBB, as these regulators may be a bit 
-dangerous if used without.
-Besides that, even if it wouldn't be that dangerous, since the 
-protection features are present, it would be nice to configure them 
-properly as in the rare event that something bad happens, you would be 
-able to save the hardware (or at least have a chance to!).
-
-> +&lab {
-> +	regulator-min-microvolt = <4600000>;
-> +	regulator-max-microvolt = <6000000>;
-> +};
-> +
-
-Same here.
-
-Yours,
--- Angelo
-
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_mdp {
-> +	status = "okay";
-> +};
-> +
->   &mss_pil {
->   	status = "okay";
->   	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
-> 
-
+       Andrew
