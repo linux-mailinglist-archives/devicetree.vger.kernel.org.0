@@ -2,175 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD2FC31609F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:09:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8917331609C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 09:09:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233237AbhBJIIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 03:08:54 -0500
-Received: from 6.mo5.mail-out.ovh.net ([178.32.119.138]:55146 "EHLO
-        6.mo5.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233373AbhBJIIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 03:08:22 -0500
-Received: from player773.ha.ovh.net (unknown [10.108.35.59])
-        by mo5.mail-out.ovh.net (Postfix) with ESMTP id 525462AE708
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 08:58:04 +0100 (CET)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player773.ha.ovh.net (Postfix) with ESMTPSA id 85E8E1AFFF6D6;
-        Wed, 10 Feb 2021 07:57:51 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-104R00586a19810-fc92-4ea2-a265-0e6f67f37ab4,
-                    4D22BEF75CFDE1719A9C318D5396F6FE99F55012) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Subject: Re: [PATCH V3 net-next 2/2] net: broadcom: bcm4908_enet: add BCM4908
- controller driver
-To:     Andrew Lunn <andrew@lunn.ch>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Masahiro Yamada <masahiroy@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
-References: <20210207222632.10981-2-zajec5@gmail.com>
- <20210209230130.4690-1-zajec5@gmail.com>
- <20210209230130.4690-2-zajec5@gmail.com> <YCNHU2g1m4dFahBd@lunn.ch>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Message-ID: <b13c82b5-49fb-533d-dfd6-dcc2f4c9f90d@milecki.pl>
-Date:   Wed, 10 Feb 2021 08:57:50 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S233460AbhBJII5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 03:08:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233410AbhBJIIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 03:08:25 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31BAC061756
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 00:07:44 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id g6so1366114wrs.11
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 00:07:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ADCBKNEvDCsXJjSVMo0gh3Ha9p8ktO5jYuFtRysBMF0=;
+        b=YQjWY+hxJxeD56cqq89+O+y3MDwbuTakyQLYHodtIrzbPq8PcNsRLO5z6jEf4udjmu
+         9ipNyIapLAnvb6vdPjQRv7+BS25p3zD57IpUiX8gYoEp5j7iIfoASJnaTevZ+VY/cq1U
+         ZZ24OOieq/HVm2ngAm56Gwx9bRCOakIGJ+raObziF0qDxw8VNQKr7JdSmpCY3YXy/1aQ
+         BGtVGf4fxV8sqHgyv3Yx1IYvR3REvuwY0OcN1tSmZmXJo43fJnUfNAR1+72iEAC0328K
+         lRNmzIyQfGkI9im1sO2OwzfnfVhvlcXNjqPSNOIhriQ82XHP6cm9OWv6RIl/TiHG8nMP
+         yhBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ADCBKNEvDCsXJjSVMo0gh3Ha9p8ktO5jYuFtRysBMF0=;
+        b=L9jcDNrQ5He/HkStOHZqqPqYJHyGwQcrAtznHkdoIPa7WssPYyVJh0Kwz1zUB5w+hM
+         eRuhzjZbMUL2iXe6/Do4PcgXkCzlmccGiH8vjGky0bztgr6IrMQNqxRz9/uhxo1vbjL5
+         F766XQB4P28QIU5nXfX2S6s2c1dN/qY3rPrICiZzHrQZONd9TupZm/jlT+zI4fUupoQo
+         5hErf9L9BUS7wvPFureTPklnP1eazCaZ0E7P5DbpKlVWD9Zb0JyrZjX+eC0Z4Grp2c/x
+         v+XX09r0yBvpEW6iYVKyqsaem0vbo4E9F7JSZ3vRnisFUDb5217mybQ6N6ydRU4yH77L
+         b5OQ==
+X-Gm-Message-State: AOAM533huMZ0Iu/uEKRbnIiY2b31zC5aw67loido4pUI1uFVtgpPI0n7
+        OtZaZBtIo4xUn98cr75qZoomPw==
+X-Google-Smtp-Source: ABdhPJxN7qsejNz3LbGpff6S3f17fETxX5jUqtrZgVWo2AQppiLn4e8WrPCGMJlCsA22dd/fAqA/IQ==
+X-Received: by 2002:a5d:47af:: with SMTP id 15mr2171896wrb.205.1612944463308;
+        Wed, 10 Feb 2021 00:07:43 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e0a:90c:e290:d403:f5fa:8912:cba5])
+        by smtp.gmail.com with ESMTPSA id c18sm12856597wmk.0.2021.02.10.00.07.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Feb 2021 00:07:42 -0800 (PST)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     vkoul@kernel.org, kishon@ti.com, devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v2 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings
+Date:   Wed, 10 Feb 2021 09:07:35 +0100
+Message-Id: <20210210080736.771803-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210210080736.771803-1-narmstrong@baylibre.com>
+References: <20210210080736.771803-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <YCNHU2g1m4dFahBd@lunn.ch>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Ovh-Tracer-Id: 10523786433230573199
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrheeigdduudehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepkeekgeefieeuhfdujeefgeektddujeekledvheehfeelfffhfeekjefhfeehuefhnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjeefrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.02.2021 03:39, Andrew Lunn wrote:
->> +static inline u32 enet_read(struct bcm4908_enet *enet, u16 offset)
->> +{
->> +	return readl(enet->base + offset);
->> +}
-> 
-> No inline functions in C files please. Let the compiler decide.
+The Amlogic G12A SoCs embeds an Analog MIPI D-PHY to communicate with DSI
+panels, this adds the bindings.
 
-According to the kernel's coding style (coding-style.rst) inline should
-*not* be used for 3+ LOC functions in general. According to that, I should
-only fix my enet_maskset() which isn't 1 LOC indeed.
+This Analog D-PHY works with a separate Digital MIPI D-PHY.
 
-If that Documentation is outdated and/or inaccurate, could you propose a
-change for it, please? That rule comes from 2006 (a771f2b82aa2), so I
-understand it may need updating. We should have that officially documented
-though, to avoid per-tree or per-maintainer rules for stuff like this.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../phy/amlogic,g12a-mipi-dphy-analog.yaml    | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
 
-Personally I don't have enough compiler knowledge to propose and/or discuss
-such stuff. That's why I prefer following Documentation written by smarter
-ones ;)
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+new file mode 100644
+index 000000000000..14bb8d78a860
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+@@ -0,0 +1,35 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/amlogic,g12a-mipi-dphy-analog.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic G12A MIPI analog PHY
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++properties:
++  compatible:
++    const: amlogic,g12a-mipi-dphy-analog
++
++  "#phy-cells":
++    const: 0
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    phy@0 {
++          compatible = "amlogic,g12a-mipi-dphy-analog";
++          #phy-cells = <0>;
++          reg = <0>;
++    };
+-- 
+2.25.1
 
-
->> +static int bcm4908_dma_alloc_buf_descs(struct bcm4908_enet *enet,
->> +				       struct bcm4908_enet_dma_ring *ring)
->> +{
->> +	int size = ring->length * sizeof(struct bcm4908_enet_dma_ring_bd);
->> +	struct device *dev = enet->dev;
->> +
->> +	ring->cpu_addr = dma_alloc_coherent(dev, size, &ring->dma_addr, GFP_KERNEL);
->> +	if (!ring->cpu_addr)
->> +		return -ENOMEM;
->> +
->> +	if (((uintptr_t)ring->cpu_addr) & (0x40 - 1)) {
->> +		dev_err(dev, "Invalid DMA ring alignment\n");
->> +		goto err_free_buf_descs;
->> +	}
->> +
->> +	ring->slots = kzalloc(ring->length * sizeof(*ring->slots), GFP_KERNEL);
->> +	if (!ring->slots)
->> +		goto err_free_buf_descs;
->> +
->> +	memset(ring->cpu_addr, 0, size);
-> 
-> It looks like dma_alloc_coherent() will perform a clear. See __dma_alloc_from_coherent()
-
-Thanks!
-
-
->> +static void bcm4908_enet_dma_reset(struct bcm4908_enet *enet)
->> +{
->> +	struct bcm4908_enet_dma_ring *rings[] = { &enet->rx_ring, &enet->tx_ring };
->> +	int i;
->> +
->> +	/* Disable the DMA controller and channel */
->> +	for (i = 0; i < ARRAY_SIZE(rings); i++)
->> +		enet_write(enet, rings[i]->cfg_block + ENET_DMA_CH_CFG, 0);
->> +	enet_maskset(enet, ENET_DMA_CONTROLLER_CFG, ENET_DMA_CTRL_CFG_MASTER_EN, 0);
-> 
-> Is there a need to wait for any in flight DMA transfers to complete
-> before you go further? Or is that what
-> bcm4908_enet_dma_rx_ring_disable() is doing?
-
-bcm4908_enet_dma_rx_ring_disable() checks for DMA to "confirm" it got stopped.
-
-
->> +
->> +	/* Reset channels state */
->> +	for (i = 0; i < ARRAY_SIZE(rings); i++) {
->> +		struct bcm4908_enet_dma_ring *ring = rings[i];
->> +
->> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_BASE_DESC_PTR, 0);
->> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_STATE_DATA, 0);
->> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_DESC_LEN_STATUS, 0);
->> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_DESC_BASE_BUFPTR, 0);
->> +	}
->> +}
->> +
->> +static void bcm4908_enet_dma_tx_ring_ensable(struct bcm4908_enet *enet,
->> +					     struct bcm4908_enet_dma_ring *ring)
-> 
-> enable not ensable?
-
-Absolutely :)
-
-
->> +static int bcm4908_enet_open(struct net_device *netdev)
->> +{
->> +	struct bcm4908_enet *enet = netdev_priv(netdev);
->> +	struct device *dev = enet->dev;
->> +	int err;
->> +
->> +	err = request_irq(netdev->irq, bcm4908_enet_irq_handler, 0, "enet", enet);
->> +	if (err) {
->> +		dev_err(dev, "Failed to request IRQ %d: %d\n", netdev->irq, err);
->> +		return err;
->> +	}
->> +
->> +	bcm4908_enet_gmac_init(enet);
->> +	bcm4908_enet_dma_reset(enet);
->> +	bcm4908_enet_dma_init(enet);
->> +
->> +	enet_umac_set(enet, UMAC_CMD, CMD_TX_EN | CMD_RX_EN);
->> +
->> +	enet_set(enet, ENET_DMA_CONTROLLER_CFG, ENET_DMA_CTRL_CFG_MASTER_EN);
->> +	enet_maskset(enet, ENET_DMA_CONTROLLER_CFG, ENET_DMA_CTRL_CFG_FLOWC_CH1_EN, 0);
->> +	bcm4908_enet_dma_rx_ring_enable(enet, &enet->rx_ring);
->> +
->> +	napi_enable(&enet->napi);
->> +	netif_carrier_on(netdev);
->> +	netif_start_queue(netdev);
->> +
->> +	bcm4908_enet_intrs_ack(enet);
->> +	bcm4908_enet_intrs_on(enet);
->> +
->> +	return 0;
->> +}
-> 
-> No PHY handling? It would be normal to connect the phy in open.
-
-I believe so, this controller is integrated into SoC and is always connected
-to the (internal) switch port. It uses a fixed link.
