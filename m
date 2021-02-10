@@ -2,84 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDFA7315D53
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 03:33:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8A24315D7B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 03:43:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234370AbhBJCcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Feb 2021 21:32:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60844 "EHLO mail.kernel.org"
+        id S235481AbhBJCmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Feb 2021 21:42:05 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:59310 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235292AbhBJCaV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Feb 2021 21:30:21 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3390D64E2E;
-        Wed, 10 Feb 2021 02:29:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1612924172;
-        bh=3Mx7WnlVCi7iLf7Z4T8FAAbN3TrWqbP/lKf4nZEbdEI=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=oyEYhFwp0DZbNc0cAh3kBUdou6YamNQI7Z3Of1bdT3vpMiQKL1d/uq6vfxY1N7yla
-         9Aa+C+wmjXJl/v0Re0Qp13yRBK4r+lyLjJO00fo36ksp8eZNn0XrMncxAAt7vPST70
-         Zi/kMiZITEWwmy/OHfPbvdokc7s6LernVW8SygGPxxmdMzKfbUm/rJ3ZOMHuoIuV4m
-         JD+j4G2KH7xy2hsbuxIjsav2sl3BXCHhKRf4ek1A28TotTsZpfmxzTv5Y9IV2Wj/LX
-         e8ZwMT1TW342ZD/NgLL+77mChT1kFrv9EHTtpGc1PhI5HM41S3BZR65qTfRjPO4lkG
-         EyamCSw/n0gfg==
-Content-Type: text/plain; charset="utf-8"
+        id S235337AbhBJCkE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Feb 2021 21:40:04 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1l9fPP-005EQK-UG; Wed, 10 Feb 2021 03:39:15 +0100
+Date:   Wed, 10 Feb 2021 03:39:15 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Masahiro Yamada <masahiroy@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3 net-next 2/2] net: broadcom: bcm4908_enet: add BCM4908
+ controller driver
+Message-ID: <YCNHU2g1m4dFahBd@lunn.ch>
+References: <20210207222632.10981-2-zajec5@gmail.com>
+ <20210209230130.4690-1-zajec5@gmail.com>
+ <20210209230130.4690-2-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAFr9PX=oLqQqvykiwOGAGg1H2CG0BTEqn0TuSrijodjxY52LxQ@mail.gmail.com>
-References: <20201114135044.724385-1-daniel@0x0f.com> <20201114135044.724385-3-daniel@0x0f.com> <160843556037.1580929.13575770228476494246@swboyd.mtv.corp.google.com> <CAFr9PX=f=HyHBk4s3e_vnMDC53R1X18m7sKFCLMMjitPm+8oEQ@mail.gmail.com> <160848984935.1580929.936824086681978646@swboyd.mtv.corp.google.com> <CAFr9PX=oLqQqvykiwOGAGg1H2CG0BTEqn0TuSrijodjxY52LxQ@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: clk: mstar msc313 mpll binding description
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Willy Tarreau <w@1wt.eu>
-To:     Daniel Palmer <daniel@0x0f.com>
-Date:   Tue, 09 Feb 2021 18:29:30 -0800
-Message-ID: <161292417080.418021.13416197091150418216@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210209230130.4690-2-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Daniel Palmer (2020-12-21 00:51:56)
-> Hi Stephen,
->=20
-> On Mon, 21 Dec 2020 at 03:44, Stephen Boyd <sboyd@kernel.org> wrote:
-> >
-> > Quoting Daniel Palmer (2020-12-19 22:35:41)
-> > > Hi Stephen,
-> > >
-> > > On Sun, 20 Dec 2020 at 12:39, Stephen Boyd <sboyd@kernel.org> wrote:
-> > > > > +  clock-output-names:
-> > > > > +    minItems: 8
-> > > > > +    maxItems: 8
-> > > > > +    description: |
-> > > > > +      This should provide a name for the internal PLL clock and =
-then
-> > > > > +      a name for each of the divided outputs.
-> > > >
-> > > > Is this necessary?
-> > >
-> > > I found without the names specified in the dt probing of muxes that
-> > > depend on the outputs but appear earlier didn't work.
-> > > Also this same PLL layout seems to be used in some other places so
-> > > eventually I was thinking this driver would get used for those PLLs
-> > > with different output names.
-> >
-> > Still seems like it could be auto-generated based on dev_name() +
-> > number.
->=20
-> At one point I had something similar to that where the output names
-> were generated at probe.
-> Without the clock outputs listed in the device tree clock muxes that
-> source clocks from the mpll couldn't probe properly as they couldn't
-> look up all of their parents if they probed before the mpll.
-> Maybe I'm doing something wrong there? I couldn't find a way to always
-> resolve all of the parents or defer the probe of the muxes until the
-> mpll clocks are registered.
->=20
+> +static inline u32 enet_read(struct bcm4908_enet *enet, u16 offset)
+> +{
+> +	return readl(enet->base + offset);
+> +}
 
-The child clks should be using clk_parent_data to point to the parent
-clks through DT. That way the name of the clk doesn't matter except for
-debug purposes.
+No inline functions in C files please. Let the compiler decide.
+
+> +static int bcm4908_dma_alloc_buf_descs(struct bcm4908_enet *enet,
+> +				       struct bcm4908_enet_dma_ring *ring)
+> +{
+> +	int size = ring->length * sizeof(struct bcm4908_enet_dma_ring_bd);
+> +	struct device *dev = enet->dev;
+> +
+> +	ring->cpu_addr = dma_alloc_coherent(dev, size, &ring->dma_addr, GFP_KERNEL);
+> +	if (!ring->cpu_addr)
+> +		return -ENOMEM;
+> +
+> +	if (((uintptr_t)ring->cpu_addr) & (0x40 - 1)) {
+> +		dev_err(dev, "Invalid DMA ring alignment\n");
+> +		goto err_free_buf_descs;
+> +	}
+> +
+> +	ring->slots = kzalloc(ring->length * sizeof(*ring->slots), GFP_KERNEL);
+> +	if (!ring->slots)
+> +		goto err_free_buf_descs;
+> +
+> +	memset(ring->cpu_addr, 0, size);
+
+It looks like dma_alloc_coherent() will perform a clear. See __dma_alloc_from_coherent()
+
+> +static void bcm4908_enet_dma_reset(struct bcm4908_enet *enet)
+> +{
+> +	struct bcm4908_enet_dma_ring *rings[] = { &enet->rx_ring, &enet->tx_ring };
+> +	int i;
+> +
+> +	/* Disable the DMA controller and channel */
+> +	for (i = 0; i < ARRAY_SIZE(rings); i++)
+> +		enet_write(enet, rings[i]->cfg_block + ENET_DMA_CH_CFG, 0);
+> +	enet_maskset(enet, ENET_DMA_CONTROLLER_CFG, ENET_DMA_CTRL_CFG_MASTER_EN, 0);
+
+Is there a need to wait for any in flight DMA transfers to complete
+before you go further? Or is that what
+bcm4908_enet_dma_rx_ring_disable() is doing?
+
+> +
+> +	/* Reset channels state */
+> +	for (i = 0; i < ARRAY_SIZE(rings); i++) {
+> +		struct bcm4908_enet_dma_ring *ring = rings[i];
+> +
+> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_BASE_DESC_PTR, 0);
+> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_STATE_DATA, 0);
+> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_DESC_LEN_STATUS, 0);
+> +		enet_write(enet, ring->st_ram_block + ENET_DMA_CH_STATE_RAM_DESC_BASE_BUFPTR, 0);
+> +	}
+> +}
+> +
+> +static void bcm4908_enet_dma_tx_ring_ensable(struct bcm4908_enet *enet,
+> +					     struct bcm4908_enet_dma_ring *ring)
+
+enable not ensable?
+
+> +static int bcm4908_enet_open(struct net_device *netdev)
+> +{
+> +	struct bcm4908_enet *enet = netdev_priv(netdev);
+> +	struct device *dev = enet->dev;
+> +	int err;
+> +
+> +	err = request_irq(netdev->irq, bcm4908_enet_irq_handler, 0, "enet", enet);
+> +	if (err) {
+> +		dev_err(dev, "Failed to request IRQ %d: %d\n", netdev->irq, err);
+> +		return err;
+> +	}
+> +
+> +	bcm4908_enet_gmac_init(enet);
+> +	bcm4908_enet_dma_reset(enet);
+> +	bcm4908_enet_dma_init(enet);
+> +
+> +	enet_umac_set(enet, UMAC_CMD, CMD_TX_EN | CMD_RX_EN);
+> +
+> +	enet_set(enet, ENET_DMA_CONTROLLER_CFG, ENET_DMA_CTRL_CFG_MASTER_EN);
+> +	enet_maskset(enet, ENET_DMA_CONTROLLER_CFG, ENET_DMA_CTRL_CFG_FLOWC_CH1_EN, 0);
+> +	bcm4908_enet_dma_rx_ring_enable(enet, &enet->rx_ring);
+> +
+> +	napi_enable(&enet->napi);
+> +	netif_carrier_on(netdev);
+> +	netif_start_queue(netdev);
+> +
+> +	bcm4908_enet_intrs_ack(enet);
+> +	bcm4908_enet_intrs_on(enet);
+> +
+> +	return 0;
+> +}
+
+No PHY handling? It would be normal to connect the phy in open.
+
+   Andrew
