@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9E5B316C8C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 18:25:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F3CA316C98
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 18:28:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232102AbhBJRZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 12:25:09 -0500
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:46311 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232172AbhBJRZA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 12:25:00 -0500
-Received: by mail-ot1-f48.google.com with SMTP id r21so2476833otk.13;
-        Wed, 10 Feb 2021 09:24:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8nNFiLXbySId1/XyNUqt5xlgqNafoMDnEfdcSbaBkSc=;
-        b=Bwn6KHLEyAg9Ss+RRSiBsjMzhGUXRej8q11ZZvvBJYFO2b4uV+JEkBRV0tnheE4f7W
-         x3hS5JDKN2JdX5g008yPvm8nsw2b0BNpHNQUMt3ulMKjRP1SMSYnJ/x+O+cYHmaFptDa
-         lTWwpVWhk8VLcuphQUkaPEfUAGY5IILlSpo97lvDzIFC02qmuxEGcBPflvtV/veaavW7
-         6c5/K4vFNknTF1FUJ5irgQage891uO1ocguUiFJE3TN9WM0cWbJRSnuE9Ap8cI7IUfw0
-         8DPgS4L7IAB3p5V6KbP0AQMJstW9upyBRc8/6OHrfm2HEoLsH5SURTX7c+rpfwdqsXEk
-         benA==
-X-Gm-Message-State: AOAM533cdFKDDR3eo+ZFS4RmUwyopjzWZdcj5l3JLV512sJFOaVaLHzz
-        VAB9yhpnQ9I1FbsBID8uhA==
-X-Google-Smtp-Source: ABdhPJwxJhxyU838P5kr+mpJ1CXXyIzFrPmOrIk4EQh1nYd0zbXwgroTPA6OF11JO28JV3Ur2mvM5Q==
-X-Received: by 2002:a05:6830:1d45:: with SMTP id p5mr2918738oth.272.1612977860067;
-        Wed, 10 Feb 2021 09:24:20 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x201sm567169oix.2.2021.02.10.09.24.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 09:24:19 -0800 (PST)
-Received: (nullmailer pid 2377742 invoked by uid 1000);
-        Wed, 10 Feb 2021 17:24:17 -0000
-Date:   Wed, 10 Feb 2021 11:24:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     stefanc@marvell.com
-Cc:     davem@davemloft.net, linux-kernel@vger.kernel.org,
-        atenart@kernel.org, sebastian.hesselbarth@gmail.com,
-        devicetree@vger.kernel.org, andrew@lunn.ch,
-        thomas.petazzoni@bootlin.com, ymarkman@marvell.com,
-        rmk+kernel@armlinux.org.uk, nadavh@marvell.com, kuba@kernel.org,
-        mw@semihalf.com, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        gregory.clement@bootlin.com, linux@armlinux.org.uk
-Subject: Re: [PATCH v12 net-next 01/15] doc: marvell: add CM3 address space
- and PPv2.3 description
-Message-ID: <20210210172417.GA2377694@robh.at.kernel.org>
-References: <1612950500-9682-1-git-send-email-stefanc@marvell.com>
- <1612950500-9682-2-git-send-email-stefanc@marvell.com>
+        id S232625AbhBJR1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 12:27:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44978 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232107AbhBJR12 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 12:27:28 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 75CF064E05;
+        Wed, 10 Feb 2021 17:26:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612978007;
+        bh=L+9ZY6K3T2erGZBQk5+t7RI7BYJvkEJbar4mTVy5H0U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PYxXK7GDNBqNxrfsDcFg0krA6Xt4Z+erkFS7v3V7XiOxi5ybzH73uGmPfgz0KgzGV
+         rYVPv2YB0pV8PGQnVJDaECb58s8GPGHBB1IiiU2QfmIMkmrt/HUQKdx49BOzdWGqqK
+         ZOb1/dAJnElc+yDzDkvYGXVnu5zGnyPuSpzO6wsakYFMQzZWpUV5ftndbWZ+HwSdhO
+         3/Ba9fYhBMru5owRfcT3fK4u4/TNUdgbHrsyHHiuP+4dOmA78huCa4/v87+JFG0FKn
+         d+mpcP5/OBABfK6ng6UpK+7/MvRQifQjt1Bysohv2GIBVhgLKgriM8l6blDbGj/Vlh
+         P/szDaZsUQ0mA==
+Date:   Wed, 10 Feb 2021 17:26:39 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        joe@perches.com, catalin.marinas@arm.com, mpe@ellerman.id.au,
+        james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
+        tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v17 03/10] arm64: Use common
+ of_kexec_alloc_and_setup_fdt()
+Message-ID: <20210210172638.GA29087@willie-the-truck>
+References: <20210209182200.30606-1-nramas@linux.microsoft.com>
+ <20210209182200.30606-4-nramas@linux.microsoft.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1612950500-9682-2-git-send-email-stefanc@marvell.com>
+In-Reply-To: <20210209182200.30606-4-nramas@linux.microsoft.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Feb 2021 11:48:06 +0200, stefanc@marvell.com wrote:
-> From: Stefan Chulski <stefanc@marvell.com>
+On Tue, Feb 09, 2021 at 10:21:53AM -0800, Lakshmi Ramasubramanian wrote:
+> From: Rob Herring <robh@kernel.org>
 > 
-> Patch adds CM3 address space and PPv2.3 description.
+> The code for setting up the /chosen node in the device tree
+> and updating the memory reservation for the next kernel has been
+> moved to of_kexec_alloc_and_setup_fdt() defined in "drivers/of/kexec.c".
 > 
-> Signed-off-by: Stefan Chulski <stefanc@marvell.com>
-> Acked-by: Marcin Wojtas <mw@semihalf.com>
+> Use the common of_kexec_alloc_and_setup_fdt() to setup the device tree
+> and update the memory reservation for kexec for arm64.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
 > ---
->  Documentation/devicetree/bindings/net/marvell-pp2.txt | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
+>  arch/arm64/kernel/machine_kexec_file.c | 180 ++-----------------------
+>  1 file changed, 8 insertions(+), 172 deletions(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
+I mean, of course I'm going to Ack that!
+
+Acked-by: Will Deacon <will@kernel.org>
+
+Will
