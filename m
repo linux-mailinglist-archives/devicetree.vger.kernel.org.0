@@ -2,177 +2,455 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA0003164E9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:17:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60242316502
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 12:20:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231220AbhBJLQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 06:16:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55614 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230376AbhBJLOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 06:14:48 -0500
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 505CEC0617AB
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 03:13:49 -0800 (PST)
-Received: by mail-pf1-x430.google.com with SMTP id w18so1037821pfu.9
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 03:13:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=QRU7LnSUwsy2J1LUcByliifcDkevWGi1e/7l1FGxdFY=;
-        b=g7X4InNpSo7NEg4suX2BeSEGrpDV26yKM5BqqZkeSr/4o8ywcQXQzv0aC+/MBYnZd0
-         fC+ipxMjsvmPhwCK0C5bZtf687ZxDgvraWUybv5VE2h69zapWBR6go6VRRNMfnqFedzm
-         i/jJeZqWKTKdiikUrO6ZTVg93qXjEOyw+Rvxgk1qkRAhjygrQCm/a6SeduOz2oMzyuA9
-         WsmEEcrFAQ1ROZED540Fi9yBr2c2iM3gTEnogjMHya+lLRRWSszNqIGT7To5jU9lLCA3
-         0LOprTGRy5auRvpHEzViCdbWROCyc4uyiV54ILrBfgk/R2xVaEEUY2OifQVQuN7e4eJI
-         5ksw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QRU7LnSUwsy2J1LUcByliifcDkevWGi1e/7l1FGxdFY=;
-        b=mTekBgOBOtB0z2AXgUV4I3oFN8DsVrcvagkVdhlWNf8JkrAwA8Y3cbCD+gbywAaKGf
-         kwMVfQIF16R3W4MOXU6rFjzoYg460aPtZI2VbpxiaE9/KOIu8pNmRaYehlLH2II5kmK0
-         ynwknaehIw9Ox4VQrUzAkQJngiSRknLq1FcusKGbMH9K7Z7OJ0xlIGMXQUazMAUYnqoG
-         Zqvd1BnMnohKJ2rMUQ3LCQZj1wtFhLCoPGOu5MvMEtP4UMVICMNWPtRa7rokl8vsVGX0
-         1kYXVEk4DnZrmn+KDD+fdmmiP6xUJmuHab7vGm18BowF6y3idJW24hKO+JXlQZKiGg5Q
-         scsw==
-X-Gm-Message-State: AOAM531hmv0DSfCpsmAIPEymAb6bwaBiMEMne8Iozy9Cx0g3h73F9l5B
-        hyVSnyhJ02px3/Q+omP15Hp7iQ==
-X-Google-Smtp-Source: ABdhPJzBP3OqpqSZEkEdtiGKaG9/SUHfEWELDMOS7uSdecD3j4DWi5Q3ln5ROFTnJM+FPHtphI9LuA==
-X-Received: by 2002:a63:c741:: with SMTP id v1mr2603957pgg.316.1612955628899;
-        Wed, 10 Feb 2021 03:13:48 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id e26sm2108659pfm.87.2021.02.10.03.13.48
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 10 Feb 2021 03:13:48 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Subject: [PATCH V7 3/3] of: unittest: Statically apply overlays using fdtoverlay
-Date:   Wed, 10 Feb 2021 16:43:30 +0530
-Message-Id: <72f0396f0eeed6dad25527368ee9e471312f9a59.1612955268.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <cover.1612955268.git.viresh.kumar@linaro.org>
-References: <cover.1612955268.git.viresh.kumar@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S231259AbhBJLUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 06:20:01 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:8520 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231311AbhBJLR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 06:17:57 -0500
+Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 11AB2YQl036197;
+        Wed, 10 Feb 2021 06:16:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=content-type :
+ mime-version : subject : from : in-reply-to : date : cc :
+ content-transfer-encoding : message-id : references : to; s=pp1;
+ bh=pkaRKoUtm3Rz+336z6X2qgztHqjimtA0zmVXBFIgC44=;
+ b=R5W8S/GhXny15maSNfd/rp96HBSInh9eGWo/fF8B9CZA6vuCmbppyPAlQUWeGEP8LRcI
+ 0FDQvQ4+o+R88Q2tBF/tSfnHwh7HxempipwMXifjUVGcVRzoerxht9Y/xxSPdQXqFGvp
+ S7Y44dZ3lR4AQgGK95/owI66jzLEenGAUt5MYuBfg9qEm4AO6I3uKryqO9gzRObXhQFf
+ VEAiZLXxlmIe6mmmSIi5mZ13IcXBg88CXWkDIqAdobxYXTLdBaYllEmtJ1KQnVhtyR6u
+ SJhSr8WqCZtnuLJI83iS/UFGCuyVs4dmb4ehDS0F0Cz2iwGVYT2QuqxhnozNcu+ueabS sw== 
+Received: from ppma02fra.de.ibm.com (47.49.7a9f.ip4.static.sl-reverse.com [159.122.73.71])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 36mc7jcjqs-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 10 Feb 2021 06:16:52 -0500
+Received: from pps.filterd (ppma02fra.de.ibm.com [127.0.0.1])
+        by ppma02fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 11ABDjld013438;
+        Wed, 10 Feb 2021 11:16:50 GMT
+Received: from b06cxnps4074.portsmouth.uk.ibm.com (d06relay11.portsmouth.uk.ibm.com [9.149.109.196])
+        by ppma02fra.de.ibm.com with ESMTP id 36hjr8ae6w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 10 Feb 2021 11:16:50 +0000
+Received: from d06av21.portsmouth.uk.ibm.com (d06av21.portsmouth.uk.ibm.com [9.149.105.232])
+        by b06cxnps4074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 11ABGmqu43188680
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 10 Feb 2021 11:16:48 GMT
+Received: from d06av21.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 4F67E5204F;
+        Wed, 10 Feb 2021 11:16:48 +0000 (GMT)
+Received: from [9.85.100.242] (unknown [9.85.100.242])
+        by d06av21.portsmouth.uk.ibm.com (Postfix) with ESMTPS id CDE3352051;
+        Wed, 10 Feb 2021 11:16:46 +0000 (GMT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.4\))
+Subject: Re: [PATCH 6/6] ARM: dts: aspeed: rainier: Add leds that are on
+ optional PCI cable cards
+From:   vishwanatha subbanna <vishwa@linux.vnet.ibm.com>
+In-Reply-To: <a6855c9f-c843-4e54-bef0-469b5097d596@www.fastmail.com>
+Date:   Wed, 10 Feb 2021 16:44:38 +0530
+Cc:     vishwanatha subbanna <vishwa@linux.vnet.ibm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Eddie James <eajames@linux.ibm.com>,
+        Brad Bishop <bradleyb@fuzziesquirrel.com>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <4E412328-6964-40FB-946A-FF677C82E5C8@linux.vnet.ibm.com>
+References: <1605247168-1028-1-git-send-email-vishwa@linux.vnet.ibm.com>
+ <1605247168-1028-6-git-send-email-vishwa@linux.vnet.ibm.com>
+ <CACPK8XfttMptuYFsocBaj2v4z1vzNjDUfe18FeDcAbmZjWKjfQ@mail.gmail.com>
+ <a6855c9f-c843-4e54-bef0-469b5097d596@www.fastmail.com>
+To:     Andrew Jeffery <andrew@aj.id.au>
+X-Mailer: Apple Mail (2.3608.120.23.2.4)
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-10_03:2021-02-10,2021-02-10 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ phishscore=0 lowpriorityscore=0 malwarescore=0 mlxlogscore=999
+ impostorscore=0 priorityscore=1501 clxscore=1011 suspectscore=0
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2102100104
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that fdtoverlay is part of the kernel build, start using it to test
-the unitest overlays we have by applying them statically. Create two new
-base files static_base_1.dts and static_base_2.dts which includes other
-.dtsi files.
 
-Some unittest overlays deliberately contain errors that unittest checks
-for. These overlays will cause fdtoverlay to fail, and are thus not
-included for static builds.
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
----
- drivers/of/unittest-data/Makefile          | 50 ++++++++++++++++++++++
- drivers/of/unittest-data/static_base_1.dts |  4 ++
- drivers/of/unittest-data/static_base_2.dts |  4 ++
- 3 files changed, 58 insertions(+)
- create mode 100644 drivers/of/unittest-data/static_base_1.dts
- create mode 100644 drivers/of/unittest-data/static_base_2.dts
+> On 30-Nov-2020, at 11:38 AM, Andrew Jeffery <andrew@aj.id.au> wrote:
+>=20
+>=20
+>=20
+> On Mon, 16 Nov 2020, at 16:43, Joel Stanley wrote:
+>> On Fri, 13 Nov 2020 at 05:59, Vishwanatha Subbanna
+>> <vishwa@linux.vnet.ibm.com> wrote:
+>>>=20
+>>> These are LEDs on the cable cards that plug into PCIE slots.
+>>> The LEDs are controlled by PCA9552 I2C expander
+>>>=20
+>>> Signed-off-by: Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
+>>> ---
+>>> arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 288 =
++++++++++++++++++++++++++++
+>>> 1 file changed, 288 insertions(+)
+>>>=20
+>>> diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts =
+b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
+>>> index 67c8c40..7de5f76 100644
+>>> --- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
+>>> +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
+>>> @@ -696,6 +696,70 @@
+>>>                        gpios =3D <&pca4 7 GPIO_ACTIVE_LOW>;
+>>>                };
+>>>        };
+>>> +
+>>> +       leds-optional-cablecard0 {
+>>=20
+>> Is it necessary to have separate nodes for each of the different GPIO =
+devices?
+>=20
+> Good question. Vishwa, what's the advantage either way here?
 
-diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
-index 009f4045c8e4..1d6029e722c0 100644
---- a/drivers/of/unittest-data/Makefile
-+++ b/drivers/of/unittest-data/Makefile
-@@ -34,7 +34,57 @@ DTC_FLAGS_overlay += -@
- DTC_FLAGS_overlay_bad_phandle += -@
- DTC_FLAGS_overlay_bad_symbol += -@
- DTC_FLAGS_overlay_base += -@
-+DTC_FLAGS_static_base_1 += -@
-+DTC_FLAGS_static_base_2 += -@
- DTC_FLAGS_testcases += -@
- 
- # suppress warnings about intentional errors
- DTC_FLAGS_testcases += -Wno-interrupts_property
-+
-+# Apply overlays statically with fdtoverlay.  This is a build time test that
-+# the overlays can be applied successfully by fdtoverlay.  This does not
-+# guarantee that the overlays can be applied successfully at run time by
-+# unittest, but it provides a bit of build time test coverage for those
-+# who do not execute unittest.
-+#
-+# The overlays are applied on top of static_base_1.dtb and static_base_2.dtb to
-+# create static_test_1.dtb and static_test_2.dtb.  If fdtoverlay detects an
-+# error than the kernel build will fail.  static_test_1.dtb and
-+# static_test_2.dtb are not consumed by unittest.
-+#
-+# Some unittest overlays deliberately contain errors that unittest checks for.
-+# These overlays will cause fdtoverlay to fail, and are thus not included
-+# in the static test:
-+#			  overlay_bad_add_dup_node.dtb \
-+#			  overlay_bad_add_dup_prop.dtb \
-+#			  overlay_bad_phandle.dtb \
-+#			  overlay_bad_symbol.dtb \
-+
-+apply_static_overlay_1 := overlay_0.dtbo \
-+			  overlay_1.dtbo \
-+			  overlay_2.dtbo \
-+			  overlay_3.dtbo \
-+			  overlay_4.dtbo \
-+			  overlay_5.dtbo \
-+			  overlay_6.dtbo \
-+			  overlay_7.dtbo \
-+			  overlay_8.dtbo \
-+			  overlay_9.dtbo \
-+			  overlay_10.dtbo \
-+			  overlay_11.dtbo \
-+			  overlay_12.dtbo \
-+			  overlay_13.dtbo \
-+			  overlay_15.dtbo \
-+			  overlay_gpio_01.dtbo \
-+			  overlay_gpio_02a.dtbo \
-+			  overlay_gpio_02b.dtbo \
-+			  overlay_gpio_03.dtbo \
-+			  overlay_gpio_04a.dtbo \
-+			  overlay_gpio_04b.dtbo
-+
-+apply_static_overlay_2 := overlay.dtbo
-+
-+static_test_1-dtbs := static_base_1.dtb $(apply_static_overlay_1)
-+static_test_2-dtbs := static_base_2.dtb $(apply_static_overlay_2)
-+
-+overlay-$(CONFIG_OF_OVERLAY) += static_test_1.dtb static_test_2.dtb
-diff --git a/drivers/of/unittest-data/static_base_1.dts b/drivers/of/unittest-data/static_base_1.dts
-new file mode 100644
-index 000000000000..10556cb3f01f
---- /dev/null
-+++ b/drivers/of/unittest-data/static_base_1.dts
-@@ -0,0 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "testcases_common.dtsi"
-diff --git a/drivers/of/unittest-data/static_base_2.dts b/drivers/of/unittest-data/static_base_2.dts
-new file mode 100644
-index 000000000000..b0ea9504d6f3
---- /dev/null
-+++ b/drivers/of/unittest-data/static_base_2.dts
-@@ -0,0 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "overlay_common.dtsi"
--- 
-2.25.0.rc1.19.g042ed3e048af
+
+
+If I express =E2=80=98em all in one node that is =E2=80=9Cleds {", then =
+if any of the GPIO is not seen because of not having the card, then the =
+current leds-gpio driver knocks off all the ones on which it =
+successfully acquired the GPIOs also, leaving nothing. I did speak to =
+the maintainer and it looked like the behaviour was existing since long =
+time and changing it would break old code.
+
+
+
+>=20
+>>=20
+>> Would it make sense to combine them, or is it better to be separate?
+>>=20
+>> Andrew, Eddie, Brad: please review this one before I merge it.
+>>=20
+>>> +               compatible =3D "gpio-leds";
+>>> +
+>>> +               cablecard0-cxp-top {
+>>> +                       retain-state-shutdown;
+>>> +                       default-state =3D "keep";
+>>> +                       gpios =3D <&pca5 0 GPIO_ACTIVE_LOW>;
+>>> +               };
+>>> +
+>>> +               cablecard0-cxp-bot {
+>>> +                       retain-state-shutdown;
+>>> +                       default-state =3D "keep";
+>>> +                       gpios =3D <&pca5 1 GPIO_ACTIVE_LOW>;
+>>> +               };
+>>> +       };
+>>> +
+>>> +       leds-optional-cablecard3 {
+>>> +               compatible =3D "gpio-leds";
+>>> +
+>>> +               cablecard3-cxp-top {
+>>> +                       retain-state-shutdown;
+>>> +                       default-state =3D "keep";
+>>> +                       gpios =3D <&pca6 0 GPIO_ACTIVE_LOW>;
+>>> +               };
+>>> +
+>>> +               cablecard3-cxp-bot {
+>>> +                       retain-state-shutdown;
+>>> +                       default-state =3D "keep";
+>>> +                       gpios =3D <&pca6 1 GPIO_ACTIVE_LOW>;
+>>> +               };
+>>> +       };
+>>> +
+>>> +       leds-optional-cablecard4 {
+>>> +               compatible =3D "gpio-leds";
+>>> +
+>>> +               cablecard4-cxp-top {
+>>> +                       retain-state-shutdown;
+>>> +                       default-state =3D "keep";
+>>> +                       gpios =3D <&pca7 0 GPIO_ACTIVE_LOW>;
+>>> +               };
+>>> +
+>>> +               cablecard4-cxp-bot {
+>>> +                       retain-state-shutdown;
+>>> +                       default-state =3D "keep";
+>>> +                       gpios =3D <&pca7 1 GPIO_ACTIVE_LOW>;
+>>> +               };
+>>> +       };
+>>> +
+>>> +       leds-optional-cablecard10 {
+>>> +               compatible =3D "gpio-leds";
+>>> +
+>>> +               cablecard10-cxp-top {
+>>> +                       retain-state-shutdown;
+>>> +                       default-state =3D "keep";
+>>> +                       gpios =3D <&pca8 0 GPIO_ACTIVE_LOW>;
+>>> +               };
+>>> +
+>>> +               cablecard10-cxp-bot {
+>>> +                       retain-state-shutdown;
+>>> +                       default-state =3D "keep";
+>>> +                       gpios =3D <&pca8 1 GPIO_ACTIVE_LOW>;
+>>> +               };
+>>> +       };
+>>> };
+>>>=20
+>>> &ehci1 {
+>>> @@ -1212,6 +1276,180 @@
+>>>                compatible =3D "atmel,24c64";
+>>>                reg =3D <0x52>;
+>>>        };
+>>> +
+>>> +       pca5: pca9551@60 {
+>>> +               compatible =3D "nxp,pca9551";
+>>> +               reg =3D <0x60>;
+>>> +               #address-cells =3D <1>;
+>>> +               #size-cells =3D <0>;
+>>> +
+>>> +               gpio-controller;
+>>> +               #gpio-cells =3D <2>;
+>>> +
+>>> +               gpio@0 {
+>>> +                       reg =3D <0>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@1 {
+>>> +                       reg =3D <1>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@2 {
+>>> +                       reg =3D <2>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@3 {
+>>> +                       reg =3D <3>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@4 {
+>>> +                       reg =3D <4>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@5 {
+>>> +                       reg =3D <5>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@6 {
+>>> +                       reg =3D <6>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@7 {
+>>> +                       reg =3D <7>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +       };
+>>> +};
+>>> +
+>>> +&i2c5 {
+>>> +       status =3D "okay";
+>>> +
+>>> +       tmp275@48 {
+>>> +               compatible =3D "ti,tmp275";
+>>> +               reg =3D <0x48>;
+>>> +       };
+>>> +
+>>> +       tmp275@49 {
+>>> +               compatible =3D "ti,tmp275";
+>>> +               reg =3D <0x49>;
+>>> +       };
+>=20
+> These aren't LED devices.
+>=20
+>>> +
+>>> +       eeprom@50 {
+>>> +               compatible =3D "atmel,24c64";
+>>> +               reg =3D <0x50>;
+>>> +       };
+>>> +
+>>> +       eeprom@51 {
+>>> +               compatible =3D "atmel,24c64";
+>>> +               reg =3D <0x51>;
+>>> +       };
+>=20
+> Neither are these.
+>=20
+>>> +
+>>> +       pca6: pca9551@60 {
+>>> +               compatible =3D "nxp,pca9551";
+>>> +               reg =3D <0x60>;
+>>> +               #address-cells =3D <1>;
+>>> +               #size-cells =3D <0>;
+>>> +
+>>> +               gpio-controller;
+>>> +               #gpio-cells =3D <2>;
+>>> +
+>>> +               gpio@0 {
+>>> +                       reg =3D <0>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@1 {
+>>> +                       reg =3D <1>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@2 {
+>>> +                       reg =3D <2>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@3 {
+>>> +                       reg =3D <3>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@4 {
+>>> +                       reg =3D <4>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@5 {
+>>> +                       reg =3D <5>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@6 {
+>>> +                       reg =3D <6>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@7 {
+>>> +                       reg =3D <7>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +       };
+>>> +
+>>> +       pca7: pca9551@61 {
+>>> +               compatible =3D "nxp,pca9551";
+>>> +               reg =3D <0x61>;
+>>> +               #address-cells =3D <1>;
+>>> +               #size-cells =3D <0>;
+>>> +
+>>> +               gpio-controller;
+>>> +               #gpio-cells =3D <2>;
+>>> +
+>>> +               gpio@0 {
+>>> +                       reg =3D <0>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@1 {
+>>> +                       reg =3D <1>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@2 {
+>>> +                       reg =3D <2>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@3 {
+>>> +                       reg =3D <3>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@4 {
+>>> +                       reg =3D <4>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@5 {
+>>> +                       reg =3D <5>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@6 {
+>>> +                       reg =3D <6>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@7 {
+>>> +                       reg =3D <7>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +       };
+>>> };
+>>>=20
+>>> &i2c5 {
+>>> @@ -2028,6 +2266,56 @@
+>>>                compatible =3D "atmel,24c64";
+>>>                reg =3D <0x51>;
+>>>        };
+>>> +
+>>> +       pca8: pca9551@60 {
+>>> +               compatible =3D "nxp,pca9551";
+>>> +               reg =3D <0x60>;
+>>> +               #address-cells =3D <1>;
+>>> +               #size-cells =3D <0>;
+>>> +
+>>> +               gpio-controller;
+>>> +               #gpio-cells =3D <2>;
+>>> +
+>>> +               gpio@0 {
+>>> +                       reg =3D <0>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@1 {
+>>> +                       reg =3D <1>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@2 {
+>>> +                       reg =3D <2>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@3 {
+>>> +                       reg =3D <3>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@4 {
+>>> +                       reg =3D <4>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@5 {
+>>> +                       reg =3D <5>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@6 {
+>>> +                       reg =3D <6>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +
+>>> +               gpio@7 {
+>>> +                       reg =3D <7>;
+>>> +                       type =3D <PCA955X_TYPE_GPIO>;
+>>> +               };
+>>> +       };
+>>> };
+>=20
+> If we're adding LEDs, why aren't we using PCA955X_TYPE_LED? Why the =
+indirection through the leds-gpio driver?
+
+
+Yes.. we could.. I kind of continued what we had for Witherspoon DTS. =
+But then it does not solve the leds-gpio driver knocking off devices. =
+So, I would say
+We still need the leds-gpio driver sections
+
+
+>=20
+> Andrew
 
