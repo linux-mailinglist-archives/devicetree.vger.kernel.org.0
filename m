@@ -2,278 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FF61316ED3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 19:37:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16EB1316F07
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 19:45:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234061AbhBJSgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 13:36:11 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:38545 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234416AbhBJSdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 13:33:53 -0500
-Received: by mail-oi1-f178.google.com with SMTP id h6so3121612oie.5
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 10:33:33 -0800 (PST)
+        id S233820AbhBJSom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 13:44:42 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:43861 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234193AbhBJSmj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 13:42:39 -0500
+Received: by mail-oi1-f179.google.com with SMTP id d20so3131668oiw.10;
+        Wed, 10 Feb 2021 10:42:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ExCRBdXsCjYNNlIpqbTBSerlJezoNKbz4ZxiZ2tP6tg=;
-        b=GLchSRyht5r2bI4w2ltGVtvvmvS0mtGTuMqljTUqqCv7U0FEN/cNe/WcVJeraNPJ3b
-         fDIBNNN9bJ0EChj7fsQ8QqZh/YdVSt1m3LfjBpho8p8yw3tYK/R8WvZylGxoWrbVcOJp
-         ZqUW+sBzCwR33/XBX1/ww4KKuZU19zkAtm7Ouam4lnqhszxH3f/OKgW0VGJ+YLIivZ/3
-         cIJynM1rhVcvg1UfCJZUhFsGVQ33mxyUv3m6W02T7XmONSFV2KwpCFomYoIUOaEU5/Ip
-         TmPiPLFrNqinwi9uz8Hc1+KEvbR3P1LCBA7p7xjovpbqMPGYma1p7GzyN9374a7azyoo
-         69WA==
-X-Gm-Message-State: AOAM531PgunAjfH5+xq+Op23KPQ+8/J8x3fmsy58+BfHmQRVVXD8EUDC
-        SYzviUed0VX7tH/1bEx2NMo76Vg8YQ==
-X-Google-Smtp-Source: ABdhPJx1M6e9yvwkwtZLgqUaKfPz2KVz+Nh/oZ0X7p792CY2tibsXGUO4RZCZqk21NyHpoe4zD9F2A==
-X-Received: by 2002:aca:d908:: with SMTP id q8mr184308oig.67.1612981988380;
-        Wed, 10 Feb 2021 10:33:08 -0800 (PST)
+        bh=JvRsBEYZg1OGL2h8YrNGcRIKhfQwRTmU700nenwBJCU=;
+        b=uf7i3Eshy9nmmEOyIefUjfxJYoRUBAEefN6uMpB0kSP7Ynv+21cKgwt9C4n45x03nT
+         JcBjd83wOVNyRGMthLbL7v96CmTEXQlYqold9hagjp/MYW9jmf8X4e3ioj8ruXLAvLx3
+         RUE86ymRjE0QjpIlXoeLkPTx47a4qAOtpUGS/I94CZDsCG85/jifaVnF9DKh1RIKfRH7
+         /Urd7B9U6Js3OKM/K/x3pOV9lL6qj5FKT5GMFu7CoW9YEQKDD6yALqpnz/kyieGuRZir
+         VR5rMIK2awT85A2EBe8Pr/oqx8fBhYyMwSR/C6M8Tv078DqOeD4hawVgfubrNZ7Ex07P
+         xnpQ==
+X-Gm-Message-State: AOAM530J+3Z1kkkXwmEcdtCwAyd/IewB8NqKv/RD0lh6ABo6InGd9z2c
+        Omr6cMEByHk/jiR2SznKqg==
+X-Google-Smtp-Source: ABdhPJy0dg2yL5pxwbejadofc57qJPksnh692O5UxdLMRiQVAsyc9qhhuYg0uPu28Ga8QsPWujeKTA==
+X-Received: by 2002:aca:c704:: with SMTP id x4mr270547oif.24.1612982501184;
+        Wed, 10 Feb 2021 10:41:41 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u15sm590492oiu.28.2021.02.10.10.33.06
+        by smtp.gmail.com with ESMTPSA id t19sm537508otr.64.2021.02.10.10.41.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 10:33:07 -0800 (PST)
-Received: (nullmailer pid 2500804 invoked by uid 1000);
-        Wed, 10 Feb 2021 18:33:06 -0000
-Date:   Wed, 10 Feb 2021 12:33:06 -0600
+        Wed, 10 Feb 2021 10:41:40 -0800 (PST)
+Received: (nullmailer pid 2516555 invoked by uid 1000);
+        Wed, 10 Feb 2021 18:41:38 -0000
+Date:   Wed, 10 Feb 2021 12:41:38 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH v6] dt-bindings: display: panel: one file of all simple
- LVDS panels with dual ports
-Message-ID: <20210210183306.GA2407269@robh.at.kernel.org>
-References: <1612879992-5908-1-git-send-email-victor.liu@nxp.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     William Breathitt Gray <vilhelm.gray@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: counter: add event-counter binding
+Message-ID: <20210210184138.GA2504266@robh.at.kernel.org>
+References: <20210208135347.18494-1-o.rempel@pengutronix.de>
+ <20210208135347.18494-2-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1612879992-5908-1-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <20210208135347.18494-2-o.rempel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 09, 2021 at 10:13:12PM +0800, Liu Ying wrote:
-> To complement panel-simple.yaml, create panel-simple-lvds-dual-ports.yaml.
-> panel-simple-lvds-dual-ports.yaml is for all simple LVDS panels that
-> have dual LVDS ports and require only a single power-supply.
-> The first port receives odd pixels, and the second port receives even pixels.
-> Optionally, a backlight and an enable GPIO can be specified as properties.
+On Mon, Feb 08, 2021 at 02:53:46PM +0100, Oleksij Rempel wrote:
+> Add binding for the event counter node
 > 
-> Panels with swapped pixel order, if any, need dedicated bindings.
-> 
-> Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
-> 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new file.
-> 
-> The objectives with one file for all the simple LVDS panels with dual ports are:
-> - Make it simpler to add bindings for this kind of LVDS panels
-> - Keep the number of bindings file lower
-> - Keep the binding documentation for this kind of LVDS panels more consistent
-> - Make it possible for drivers to get pixel order via
->   drm_of_lvds_get_dual_link_pixel_order(), as the 'ports' property is required
-> 
-> Suggested-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
-> v5->v6:
-> * Use OF graph schema.
-> * Drop Rob's R-b tag, as review is needed.
+>  .../bindings/counter/event-counter.yaml       | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/counter/event-counter.yaml
 > 
-> v4->v5:
-> * Require the 'ports' property and update commit message accordingly. (Rob)
-> * Add Rob's R-b tag.
-> 
-> v3->v4:
-> * Add type and descriptions for dual-lvds-{odd,even}-pixels properties.
->   Also, update descriptions for port@0 and port@1 properties accordingly. (Rob)
-> 
-> v2->v3:
-> * Do not allow 'port' property. (Rob)
-> * Define port number. (Rob)
-> * Specify 'dual-lvds-odd-pixels' and 'dual-lvds-even-pixels' properties. (Rob)
-> 
-> v1->v2:
-> * Correct pixel order in example LVDS panel node.
-> 
->  .../panel/panel-simple-lvds-dual-ports.yaml        | 116 +++++++++++++++++++++
->  .../bindings/display/panel/panel-simple.yaml       |  10 --
->  2 files changed, 116 insertions(+), 10 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+> diff --git a/Documentation/devicetree/bindings/counter/event-counter.yaml b/Documentation/devicetree/bindings/counter/event-counter.yaml
 > new file mode 100644
-> index 00000000..274e89b
+> index 000000000000..bd05c1b38f20
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> @@ -0,0 +1,116 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/counter/event-counter.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: GPL-2.0
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-simple-lvds-dual-ports.yaml#
+> +$id: http://devicetree.org/schemas/counter/event-counter.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Simple LVDS panels with one power supply and dual LVDS ports
+> +title: Event counter
 > +
 > +maintainers:
-> +  - Liu Ying <victor.liu@nxp.com>
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Sam Ravnborg <sam@ravnborg.org>
+> +  - Oleksij Rempel <o.rempel@pengutronix.de>
 > +
 > +description: |
-> +  This binding file is a collection of the LVDS panels that
-> +  has dual LVDS ports and requires only a single power-supply.
-> +  The first port receives odd pixels, and the second port receives even pixels.
-> +  There are optionally a backlight and an enable GPIO.
-> +  The panel may use an OF graph binding for the association to the display,
-> +  or it may be a direct child node of the display.
-> +
-> +  If the panel is more advanced a dedicated binding file is required.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
+> +  A generic event counter to measure event frequency. It was developed and used
+> +  for agricultural devices to measure rotation speed of wheels or other tools.
+> +  Since the direction of rotation is not important, only one signal line is
+> +  needed.
 > +
 > +properties:
-> +
 > +  compatible:
-> +    enum:
-> +    # compatible must be listed in alphabetical order, ordered by compatible.
-> +    # The description in the comment is mandatory for each compatible.
+> +    const: event-counter
 > +
-> +        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
-> +      - auo,g133han01
-> +        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
-> +      - auo,g185han01
-> +        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> +      - auo,g190ean01
-> +        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS TFT LCD panel
-> +      - koe,tx26d202vm0bwa
-> +        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
-> +      - nlt,nl192108ac18-02d
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
+> +  gpios:
+> +    description: Optional diagnostic interface to measure signal level
 
-If you have any extra properties as you do, then you use 
-'#/$defs/port-base'.
+This description seems wrong in the case of only having a GPIO.
 
-> +        description: The first sink port.
-> +
-> +        properties:
-> +          dual-lvds-odd-pixels:
-> +            type: boolean
-> +            description: The first sink port for odd pixels.
-> +
-> +        required:
-> +          - dual-lvds-odd-pixels
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: The second sink port.
-> +
-> +        properties:
-> +          dual-lvds-even-pixels:
-> +            type: boolean
-> +            description: The second sink port for even pixels.
-> +
-> +        required:
-> +          - dual-lvds-even-pixels
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +  backlight: true
-> +  enable-gpios: true
-> +  power-supply: true
-> +
-> +additionalProperties: false
+Also, a GPIO only implies polled mode because if the GPIO is interrupt 
+capable, 'interrupts' should be required. For gpio-keys, we split the 
+compatible strings in this case. I leave it to you if you want to make 
+it more explicit.
+
+> +    maxItems: 1
 > +
 > +required:
 > +  - compatible
-> +  - ports
-> +  - power-supply
+
+anyOf:
+  - required: [ interrupts ]
+  - required: [ gpios ]
+
+> +
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    panel: panel-lvds {
-> +      compatible = "koe,tx26d202vm0bwa";
-> +      power-supply = <&vdd_lcd_reg>;
 > +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
 > +
-> +        port@0 {
-> +          dual-lvds-odd-pixels;
-> +          reg = <0>;
-> +
-> +          panel_lvds0_in: endpoint {
-> +            remote-endpoint = <&lvds0_out>;
-> +          };
-> +        };
-> +
-> +        port@1 {
-> +          dual-lvds-even-pixels;
-> +          reg = <1>;
-> +
-> +          panel_lvds1_in: endpoint {
-> +            remote-endpoint = <&lvds1_out>;
-> +          };
-> +        };
-> +      };
+> +    counter-0 {
+> +        compatible = "event-counter";
+> +        interrupts-extended = <&gpio 0 IRQ_TYPE_EDGE_RISING>;
 > +    };
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index 35b42ee..e7718d2 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -57,14 +57,8 @@ properties:
->        - auo,g104sn02
->          # AU Optronics Corporation 12.1" (1280x800) TFT LCD panel
->        - auo,g121ean01
-> -        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
-> -      - auo,g133han01
->          # AU Optronics Corporation 15.6" (1366x768) TFT LCD panel
->        - auo,g156xtn01
-> -        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
-> -      - auo,g185han01
-> -        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> -      - auo,g190ean01
->          # AU Optronics Corporation 31.5" FHD (1920x1080) TFT LCD panel
->        - auo,p320hvn03
->          # AU Optronics Corporation 21.5" FHD (1920x1080) color TFT LCD panel
-> @@ -171,8 +165,6 @@ properties:
->        - kingdisplay,kd116n21-30nv-a010
->          # Kaohsiung Opto-Electronics Inc. 5.7" QVGA (320 x 240) TFT LCD panel
->        - koe,tx14d24vm1bpa
-> -        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS TFT LCD panel
-> -      - koe,tx26d202vm0bwa
->          # Kaohsiung Opto-Electronics. TX31D200VM0BAA 12.3" HSXGA LVDS panel
->        - koe,tx31d200vm0baa
->          # Kyocera Corporation 12.1" XGA (1024x768) TFT LCD panel
-> @@ -209,8 +201,6 @@ properties:
->        - neweast,wjfh116008a
->          # Newhaven Display International 480 x 272 TFT LCD panel
->        - newhaven,nhd-4.3-480272ef-atxl
-> -        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
-> -      - nlt,nl192108ac18-02d
->          # New Vision Display 7.0" 800 RGB x 480 TFT LCD panel
->        - nvd,9128
->          # OKAYA Electric America, Inc. RS800480T-7X0GP 7" WVGA LCD panel
+> +
+> +    counter-1 {
+> +        compatible = "event-counter";
+> +        gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
+> +    counter-2 {
+> +        compatible = "event-counter";
+> +        interrupts-extended = <&gpio 2 IRQ_TYPE_EDGE_RISING>;
+> +        gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
+> +...
 > -- 
-> 2.7.4
+> 2.30.0
 > 
