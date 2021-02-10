@@ -2,134 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4D6931682E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 14:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 231D631685B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 14:54:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbhBJNld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 08:41:33 -0500
-Received: from sibelius.xs4all.nl ([83.163.83.176]:63061 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229789AbhBJNla (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 08:41:30 -0500
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id fe8eed21;
-        Wed, 10 Feb 2021 14:40:43 +0100 (CET)
-Date:   Wed, 10 Feb 2021 14:40:43 +0100 (CET)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     will@kernel.org, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org, maz@kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, olof@lixom.net, arnd@kernel.org
-In-Reply-To: <475f7586-cabf-1169-8800-cdd2c012a5a6@marcan.st> (message from
-        Hector Martin on Wed, 10 Feb 2021 21:24:15 +0900)
-Subject: Re: [PATCH 13/18] arm64: ioremap: use nGnRnE mappings on platforms
- that require it
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-14-marcan@marcan.st>
- <CAK8P3a2Ad+xmmMWgznOHPpxgCXKWFYfpHBqt_49_UuxrwFSq+A@mail.gmail.com> <475f7586-cabf-1169-8800-cdd2c012a5a6@marcan.st>
-Message-ID: <c1bc32139ad12bd8@bloch.sibelius.xs4all.nl>
+        id S231124AbhBJNyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 08:54:01 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56940 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230263AbhBJNyB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 08:54:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 85B5264E77;
+        Wed, 10 Feb 2021 13:53:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1612965199;
+        bh=yV6TURZhEtJ6Cwgc9q7dRhbULRCstmiM+RHhfwGM2ZU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JuFE+/H/htE9E/JO5D55Z9g4jY9h9NX1qVbDUM8eEX8uBvEEq15Yi6eAIg9CL3UTs
+         dmSgQzaaBxUTBYQETr46T+2eDsMYyHLJayQLZ/RfqnARndQ3ClGdbCNLNe8RFab8Gl
+         NKMj8qtJUfl3h/mBKInuJ3S15ZM3d6sASQDnlqAcB7Bj5YJbz/wC3wqh4HNDk65W1U
+         MMzEE1Q532KBw3uluuTIa/PbV2poQ14K32F1pyV/85SZOyGFlFWbSg2ayghHrk9CdD
+         V3Gf3PJP3XNUn82c8MTf1ff3AVnCD7TFJX0ySGDqM0ru+oZbTnsMGChgjoi9GJFF1+
+         mmS/2czj8Tnzw==
+Received: by mail-ot1-f44.google.com with SMTP id l23so1792924otn.10;
+        Wed, 10 Feb 2021 05:53:19 -0800 (PST)
+X-Gm-Message-State: AOAM53142gQjphtGRhT2WdKJUferF1dwNV6TbTD8dPrnR4bve7rnraoW
+        eQBhVm+RUHC62nzmBunBH9sOg8RLJgOEdS44NmE=
+X-Google-Smtp-Source: ABdhPJwb9CXfMxZUsIBeiH+dbVDlq4uugNf+KJ+ZAnHaP33UGz/UDaKmzdX0HWNyLIVQBUvu0kkylO78Qv9oAn+xQiA=
+X-Received: by 2002:a05:6830:18e6:: with SMTP id d6mr2159421otf.251.1612965198882;
+ Wed, 10 Feb 2021 05:53:18 -0800 (PST)
+MIME-Version: 1.0
+References: <20210118155242.7172-1-jbx6244@gmail.com> <6598201.ejJDZkT8p0@diego>
+ <CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com> <46108228.fMDQidcC6G@diego>
+In-Reply-To: <46108228.fMDQidcC6G@diego>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Wed, 10 Feb 2021 14:53:02 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0ALgbhTVJ7t3XRXALs9vBM=XBvkGhNKXxB+QTepo-3AQ@mail.gmail.com>
+Message-ID: <CAK8P3a0ALgbhTVJ7t3XRXALs9vBM=XBvkGhNKXxB+QTepo-3AQ@mail.gmail.com>
+Subject: Re: [PATCH 2/5] ARM: dts: rockchip: assign a fixed index to mmc
+ devices on rv1108 boards
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Hector Martin <marcan@marcan.st>
-> Date: Wed, 10 Feb 2021 21:24:15 +0900
+On Wed, Feb 10, 2021 at 11:49 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote=
+:
+> Am Mittwoch, 10. Februar 2021, 11:34:41 CET schrieb Arnd Bergmann:
+> > On Wed, Feb 10, 2021 at 12:50 AM Heiko St=C3=BCbner <heiko@sntech.de> w=
+rote:
+> > > Am Dienstag, 9. Februar 2021, 23:25:40 CET schrieb Arnd Bergmann:
+> > Each board should have its own aliases node that describes
+> > exactly which of the devices are wired up on that board, and
+> > in which order. If there are connectors on the board that
+> > are labeled in some form, then the aliases are meant to
+> > match what is written on the board or in its documentation.
+>
+> Then we're at least in the clear for i2c, serial and the rest ... as thes=
+e
+> are numbered in the soc documentation, and all boards I've seen so
+> far use these number also to identify these in schematics.
 
-Hi Hector,
+Ok, that is helpful. It would still be good to ensure that only aliases
+exist for nodes that are actually enabled.
 
-Since device tree bindings are widely used outside the Linux tree,
-here are some thoughts from a U-Boot and OpenBSD perspective.
+> So an i2c2 is always i2c2 even if i2c1 is not populated.
+>
+> And of course doing
+>         i2c0 =3D &i2c2
+> would definitly confuse people to no end.
 
-> Hi Will, I'm pulling you in at Marc's suggestion. Do you have an opinion 
-> on what the better solution to this problem is?
-> 
-> The executive summary is that Apple SoCs require nGnRnE memory mappings 
-> for MMIO, except for PCI space which uses nGnRE. ARM64 currently uses 
-> nGnRE everywhere. Solutions discussed in this thread and elsewhere include:
-> 
-> 1. Something similar to the current hacky patch (which isn't really 
-> intended as a real solution...); change ioremap to default to nGnRnE 
-> using some kind of platform-level flag in the DT, then figure out how to 
-> get the PCI drivers to bypass that. This requires changing almost every 
-> PCI driver, since most of them use plain ioremap().
-> 
-> 2. A per-device DT property that tells of_address_to_resource to set a 
-> flag in the struct resource, which is then used by 
-> devm_ioremap_resource/of_iomap to pick a new ioremap_ variant for nGnRnE 
-> (introduce ioremap_np() for nonposted?) (PCI would work with this 
-> inasmuch as it would not support it, and thus fall back to the current 
-> nGnRE default, which is correct for PCI...). This requires changing 
-> DT-binding drivers that we depend on to not use plain ioremap() (if any 
-> do so), but that is a finite subset (unlike PCI which involves 
-> potentially every driver, because thunderbolt).
+I think that's just an unfortunate choice of the labels here,
+it's sometimes easier to just refer to the node by the full
+path instead of the label.
 
-That solution is not dissimilar to how "dma-coherent", "big-endian"
-and "little-endian" properties work.  U-Boot could simply ignore the
-property since it already has a memory map with the required memory
-attributes for each SoC.  I don't see any issue with this for the
-OpenBSD kernel either.
-
-The number of existing drivers that would need to be changed is small.
-The dwc3 core driver already uses devm_ioremap_resource().  The nvme
-driver uses plain ioremap() in the PCI-specific part of the driver,
-but that will need new glue for a platform driver anyway.
-
-As things stand now that leaves us with the samsung serial driver
-which uses devm_ioremap().  That could be turned into a
-devm_iomap_resource() without much trouble I think.
-
-> 3. Encode the mapping type in the address of child devices, either 
-> abusing the high bits of the reg or introducing an extra DT cell there, 
-> introduce a new OF bus type that strips those away via a ranges mapping 
-> and sets flags in the struct resource, similar to what the PCI bus does 
-> with its 3-cell ranges, then do as (2) above and make 
-> devm_ioremap_resource/of_iomap use it:
-> 
-> On 09/02/2021 07.57, Arnd Bergmann wrote:
-> > #define MAP_NONPOSTED 0x80000000
-> > 
-> > arm-io { /* name for adt, should be changed */
-> >       compatible = "apple,m1-internal-bus";
-> >       #address-cells = <2>; /* or maybe <3> if we want */
-> >       #size-cells = <2>;
-> >       ranges =
-> >                 /* on-chip MMIO */
-> >                 <(MAP_NONPOSTED | 0x2) 0x0   0x2 0x0 0x1 0x0>,
-> > 
-> >                /* first PCI: 2GB control, 4GB memory space */
-> >               <(MAP_NONPOSTED | 0x3) 0x80000000  0x3 0x80000000  0x0 0x80000000>,
-> >                <0x4 0x0   0x4 0x0  0x1 0x0>,
-> [...]
-> 
-> > The MAP_NONPOSTED flag then gets interpreted by the .translate() and
-> > .get_flags() callbacks of "struct of_bus" in the kernel, where it is put into
-> > a "struct resource" flag, and interpreted when the resource gets mapped.
-> > 
-> > The PCI host controller nests inside of the node above, and (in theory)
-> > uses the same trick to distinguish between prefetchable and non-prefetchable
-> > memory, except in practice this is handled in device drivers that already
-> > know whether to call ioremap() or ioremap_wc().
-
-Using the high bit in the address would be awkward I think.  For
-example in U-Boot I'd have to mask that bit away but doing so in a
-per-SoC way would be ugly.  Unless you map the high bit away using a
-ranges property for the bus.
-
-Using #address-cells = <3> wll cause some fallout as well as it is
-convenient to store addresses as 64-bit integers.  I've written code
-that just panics if that isn't possible.
-
-> 4. Introduce a new top-level DT element in the style of reserved-memory, 
-> that describes address ranges and the mapping type to use. This could be 
-> implemented entirely in arch code, having arm64's ioremap look up the 
-> address in a structure populated from this.
-
-This isn't a strange idea either.  For UEFI such a mapping already
-exists as a separate table that encodes the cache attributes of
-certain memory regions.
- 
-> As an additional wrinkle, earlycon is almost certainly going to need a 
-> special path to handle this very early, before OF stuff is available; it 
-> also uses fixmap instead of ioremap, which has its own idea about what 
-> type of mapping to use.
+      Arnd
