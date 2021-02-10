@@ -2,60 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E3A03163A8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 11:22:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD88E3163E9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Feb 2021 11:34:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230352AbhBJKWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 05:22:13 -0500
-Received: from muru.com ([72.249.23.125]:59766 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230076AbhBJKUL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 05:20:11 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 302D380EB;
-        Wed, 10 Feb 2021 10:19:46 +0000 (UTC)
-Date:   Wed, 10 Feb 2021 12:19:25 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Hector Martin 'marcan' <marcan@marcan.st>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>, devicetree@vger.kernel.org,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
-        soc@kernel.org, robh+dt@kernel.org,
-        Olof Johansson <olof@lixom.net>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 18/18] arm64: apple: Add initial Mac Mini 2020 (M1)
- devicetree
-Message-ID: <YCOzLSqdsr83xf0b@atomide.com>
-References: <20210204203951.52105-1-marcan@marcan.st>
- <20210204203951.52105-19-marcan@marcan.st>
- <20210208110441.25qc6yken4effd6c@kozik-lap>
- <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
+        id S230410AbhBJKdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 05:33:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46798 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230497AbhBJKbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 05:31:37 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91ECDC06174A;
+        Wed, 10 Feb 2021 02:30:57 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id t26so953477pgv.3;
+        Wed, 10 Feb 2021 02:30:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bi4sQc1W0haZULZiCGbFCEA8dMHiZn6QmzMFchXnTYQ=;
+        b=O6BimNAuXjNLj/yIoizM4uAt2GF/5uu64K1ztnL3yk7SXNLm63PvYs+X6csIxGHjvP
+         6OPVzLD+S84m7bvln8dTdCJmIqWOyC18oH1HRiIVGxCuwDU40KdZZTaMearXJBkjWvv8
+         NnbpAdx65RIdyGZGq8+R4u37Bc1hPk9tB0EfvU8NdLQUB98C6WGzqZw+2+2gM07t/lb3
+         q6V0UEaTgjMYbPbRINW9lKUILnngSPNhz4ol82BmG4BOTq7TsIvUA5RI868pym1NeLJT
+         YOusVxVaHPjP11txFj94L08FInBXB2lz0SalNdDSe9vcm9Svltym1l4ZKGPlqCQjhmjD
+         zlcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bi4sQc1W0haZULZiCGbFCEA8dMHiZn6QmzMFchXnTYQ=;
+        b=V475XtikCogFGTirqj9KDAZBD4hzRzWvtO08e5zqw4GbH49JBasuys0I6sJGYzqqGI
+         cguusqxlakzoMGUNx/C7pVB5UejiXX2lhnn6tQdA4yVJBDZ9wN6vCD0R5YXxkSyh3OyD
+         tICeElIDaEAxQHjHqcDifUofiayZzh9JiSnru+JzU7P39xHCQjNlXki8habE5AeX9r3D
+         F4y+zBqbBp4QW9L4anvm75mCI9uA69+zULBlamw786w9iPIAjakyMcD/27GJpWowjXv9
+         qYitijmSJufJ81tDLGEQTawQ0RLB7RnlUGepuNTSY5sdSrH9WgKFJnB5Uzp9NHmd6u3S
+         XkMQ==
+X-Gm-Message-State: AOAM5304zXvasZHAwk2FYFN/pbPajQ19d0SqU3r0aw/cX+WCrgnxDuN2
+        uS4b7D6TADGkY/UtZCSmxZeT4SNfdL7xM7OdV2c=
+X-Google-Smtp-Source: ABdhPJyP0sXFD40X5SO/TEyI/QwQnKtk4YunVmUZ8GB/ony+EeZZbqIf1O+uj1Qqqb2trtjlVfyvr80nzDIMMQAGIYg=
+X-Received: by 2002:a05:6a00:854:b029:1b7:6233:c5f with SMTP id
+ q20-20020a056a000854b02901b762330c5fmr2401710pfk.73.1612953057053; Wed, 10
+ Feb 2021 02:30:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cd67b2ce-9676-31b4-85f7-de1ec9b2bf72@marcan.st>
+References: <20210208222203.22335-1-info@metux.net>
+In-Reply-To: <20210208222203.22335-1-info@metux.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 10 Feb 2021 12:30:40 +0200
+Message-ID: <CAHp75VdNTenoE0AOmGfndqQ7SrxbuK+SvfFYn3W2GmqhkCSByQ@mail.gmail.com>
+Subject: Re: RFC: oftree based setup of composite board devices
+To:     "Enrico Weigelt, metux IT consult" <info@metux.net>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Hector Martin 'marcan' <marcan@marcan.st> [210208 12:05]:
-> On 08/02/2021 20.04, Krzysztof Kozlowski wrote:
-...
+On Tue, Feb 9, 2021 at 12:25 AM Enrico Weigelt, metux IT consult
+<info@metux.net> wrote:
+>
+> Hello folks,
+>
+> here's an RFC for using compiled-in dtb's for initializing board devices
+> that can't be probed via bus'es or firmware.
+>
+> Use cases are boards with non-oftree firmware (ACPI, etc) where certain
+> platform devices can't be directly enumerated via firmware. Traditionally
+> we had to write board specific drivers that check for board identification
+> (DMI strings, etc), then initialize the actual devices and their links
+> (eg. gpio<->leds/buttons, ...). Often this can be expressed just by DT.
 
-> > > +	clk24: clk24 {
-> > 
-> > Just "clock". Node names should be generic.
-> 
-> Really? Almost every other device device tree uses unique clock node names.
+In ACPI we support DT compatible strings, and we support overlays for
+a long time. Would it work for you?
 
-Yeah please just use generic node name "clock". FYI, we're still hurting
-because of this for the TI clock node names years after because the drivers
-got a chance to rely on the clock node name..
+> This patch queue does a bunch of preparations in oftree code, so we can
+> support multiple fully independent DT's (not using DT overlays). And then
+> adds a generic driver parses compiled-in fdt blobs, checks for mathing
+> DMI strings and initializes the devices. As an example, the last patch
+> adds an alternative implementation for the PC engines APU2/3/4 board
+> family based on device tree.
 
-Using "clock" means your clock driver code won't get a chance to wrongly
-use the node name and you avoid similar issues.
+Sounds weird, but let's see...
 
-Regards,
+> The approach can be easily be extended to other kinds of composite devices,
+> eg. PCI cards or USB dongles.
 
-Tony
+What do you mean? PCI and USB are self-enumerated. What's wrong with them?
 
+> Yet some drawbacks of the current implementation:
+>
+>  * individual FDT's can't be modularized yet (IMHO, we don't have DMI-based
+>    modprobing anyways)
+
+What?! https://lwn.net/Articles/233385/
+`git grep -n 'MODULE_DEVICE_TABLE(dmi'`
+
+>  * can't reconfigure or attach to devices outside the individual DT's
+>    (eg. probed by PCI, etc)
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
