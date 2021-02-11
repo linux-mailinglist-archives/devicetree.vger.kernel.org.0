@@ -2,79 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D03B318393
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 03:30:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADC7A31839C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 03:37:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbhBKC3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 21:29:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55758 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbhBKC3b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 21:29:31 -0500
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97FB7C061756
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 18:28:51 -0800 (PST)
-Received: by mail-qv1-xf2f.google.com with SMTP id a1so1907606qvd.13
-        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 18:28:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=v/JR6cxBec2OO4AyQr8LqOFJlkaTALkaG4hkaa3+jH0=;
-        b=tmRca4PB2kps0fAMgBJNaTQMArARvSx/SfChzgUdm89r1VOxPYGtgjUqVJbGvABQBi
-         b1p0l2nSh7eJd4bBjJyqeqxxzLEQMSvO8U2c8yeds2A1CQZbqXlsRAzJKmGHJukytAFJ
-         m/GJu+/zc7xAK2nEL38pW+FCnNngPCIIy0dc0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=v/JR6cxBec2OO4AyQr8LqOFJlkaTALkaG4hkaa3+jH0=;
-        b=iVvJQWkOzw49Y/cypBQNkGlLU/cqyvoZFMyVk2tej4msutKmH46oapqHZtotj1cfLe
-         IJ/AOkCdsko8e9a/lOb/3JnDbbV1fhcgcC6qAXWqFIQF5zJNlkK5LeWDR2SfIvkakIXL
-         SSqF76o7NtIGxaswhEALOYJGOQ+TbU8TH9C7hML7mhtSBHUgRYAVU0kIlvD6Ze+4w5hR
-         r/pf/YvMCKlJPh6XnFe+jkkX6/ebmXBl1+SCoTB8a+WeJmM1GBpCjsxus9GrRTsGYMV/
-         94k7vluAHH2n9CN/a7b0m5OqeKFcCkG4zP4w68kRdm+d/wAlww7KndjcQWdpqAtWf6Eq
-         jzQg==
-X-Gm-Message-State: AOAM530eDpPNVOpQE3oMjhYLvr56KUSLxz/8uCo/rx+/PwNDfGPqaQik
-        S9xpV0/xeiSrEH6TlJoljCI6UjVBu0kAdS76yS0Mcw==
-X-Google-Smtp-Source: ABdhPJwx4HM5jl8YL/e1RHuGN3F2Bjd7U1tHpztED7tcsPkI5wXPP1SMXIcnSHppZZwsNvyRd5ps9xcpcH8nuzQqmAQ=
-X-Received: by 2002:a0c:ec83:: with SMTP id u3mr5631558qvo.55.1613010530875;
- Wed, 10 Feb 2021 18:28:50 -0800 (PST)
+        id S229564AbhBKCgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 21:36:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53290 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229763AbhBKCgB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 21:36:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7D41B64D99;
+        Thu, 11 Feb 2021 02:35:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613010920;
+        bh=v8bnfr01qoRgepjTuxBUnO7nuRYf3dj3a/nVOU1suSE=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=qYfoTtaxvmOiQHh023iVb2E8XdaobfFp7s0UX4qs54ldDVndXnCiS1MHJ9pg4+Jj9
+         LfQIvrF5rspkyBd6FMwbVpjaUs9QwykYzrXSkVB4fup3KLVBXM4pPZyxVejfwX0EFL
+         vdB9GUEiHlgoseTlw9jzZ+l7ximE2RKy1aKKVJUo+bpJEv0SG2fWZbgdRyeNPOx38i
+         rShBIKbnYFKGV6IC22QwoobbwmAFki0YkL8WZNLfI3vjz8Y9dVm9Tds+8IuT8uiRIE
+         p1HthOFuYvfKgqHyF+5KymQ+yEA/ULbr3a4OCqshLihqpxk7f9xdyxoE95tomIwe50
+         4e4Hq7gL7IlJg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20201114135044.724385-1-daniel@0x0f.com> <20201114135044.724385-3-daniel@0x0f.com>
- <160843556037.1580929.13575770228476494246@swboyd.mtv.corp.google.com>
- <CAFr9PX=f=HyHBk4s3e_vnMDC53R1X18m7sKFCLMMjitPm+8oEQ@mail.gmail.com>
- <160848984935.1580929.936824086681978646@swboyd.mtv.corp.google.com>
- <CAFr9PX=oLqQqvykiwOGAGg1H2CG0BTEqn0TuSrijodjxY52LxQ@mail.gmail.com> <161292417080.418021.13416197091150418216@swboyd.mtv.corp.google.com>
-In-Reply-To: <161292417080.418021.13416197091150418216@swboyd.mtv.corp.google.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Thu, 11 Feb 2021 11:28:40 +0900
-Message-ID: <CAFr9PXkGeFUyGCKZgYF+0uJT1ywad42RvPg39ggO8WRngY8uWw@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: clk: mstar msc313 mpll binding description
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Willy Tarreau <w@1wt.eu>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAHCN7xJwd=u8O33j0Gkaw7=5-k5F=pEuSxqoe+hV=LxAPMk_vQ@mail.gmail.com>
+References: <20210207185140.3653350-1-aford173@gmail.com> <20210210201841.GA2688439@robh.at.kernel.org> <CAHCN7xJwd=u8O33j0Gkaw7=5-k5F=pEuSxqoe+hV=LxAPMk_vQ@mail.gmail.com>
+Subject: Re: [PATCH V3 1/2] dt-bindings: clk: versaclock5: Add optional load capacitance property
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk <linux-clk@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+To:     Adam Ford <aford173@gmail.com>, Rob Herring <robh@kernel.org>
+Date:   Wed, 10 Feb 2021 18:35:19 -0800
+Message-ID: <161301091931.1254594.4205475968584073017@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Quoting Adam Ford (2021-02-10 12:40:38)
+> On Wed, Feb 10, 2021 at 2:18 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Sun, Feb 07, 2021 at 12:51:38PM -0600, Adam Ford wrote:
+> > > There are two registers which can set the load capacitance for
+> > > XTAL1 and XTAL2. These are optional registers when using an
+> > > external crystal.  Since XTAL1 and XTAL2 will set to the same value,
+> > > update the binding to support a single property called
+> > > xtal-load-femtofarads.
+> > >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > ---
+> > > V3:  No Change
+> > > V2:  No Change
+> > >
+> > > A couple people suggested that I not use the $ref, but without it,
+> > > the bindings check failed with errors.
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.=
+yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > > index 2ac1131fd922..c268debe5b8d 100644
+> > > --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > > +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > > @@ -59,6 +59,12 @@ properties:
+> > >      minItems: 1
+> > >      maxItems: 2
+> > >
+> > > +  idt,xtal-load-femtofarads:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >
+> > Don't need a type with standard unit suffix.
+>=20
+> If I remove that line, the binding check fails.
+>=20
 
-On Wed, 10 Feb 2021 at 11:29, Stephen Boyd <sboyd@kernel.org> wrote:
-> The child clks should be using clk_parent_data to point to the parent
-> clks through DT. That way the name of the clk doesn't matter except for
-> debug purposes.
-
-I think I get it now. I was using of_clk_parent_fill() to get the
-parent clocks sourced
-from the mpll but I seems like I should be filling out an array of
-struct clk_parent_data
-with the indices of the parents and using
-clk_register_composite_pdata() etc instead.
-
-Thanks!
-
-Daniel
+Is your dt-schema up to date?
