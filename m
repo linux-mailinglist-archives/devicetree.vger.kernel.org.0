@@ -2,70 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9D57319329
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 20:34:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A753F319335
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 20:37:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229961AbhBKTdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 14:33:53 -0500
-Received: from lizzard.sbs.de ([194.138.37.39]:33180 "EHLO lizzard.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229553AbhBKTdv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 14:33:51 -0500
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 11BJWxqd008947
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 11 Feb 2021 20:32:59 +0100
-Received: from md1f2u6c.ad001.siemens.net ([139.22.42.110])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 11BJWuhh031206;
-        Thu, 11 Feb 2021 20:32:58 +0100
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Le Jin <le.jin@siemens.com>,
-        Bao Cheng Su <baocheng.su@siemens.com>
-Subject: [PATCH v2 4/4] arm64: dts: ti: k3-am65-main: Add device_type to pcie*_rc nodes
-Date:   Thu, 11 Feb 2021 20:32:56 +0100
-Message-Id: <881dfd6c75423efce1d10261909939cd5ef19937.1613071976.git.jan.kiszka@siemens.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1613071976.git.jan.kiszka@siemens.com>
-References: <cover.1613071976.git.jan.kiszka@siemens.com>
+        id S230479AbhBKTh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 14:37:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49630 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230379AbhBKThW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 14:37:22 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26A25C061786
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 11:36:42 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id z6so5293852wrq.10
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 11:36:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e0oJrlLa1XWix8J18XAZ23nQzXA4EZb1A3RY1JzHR5A=;
+        b=wdMZ42DQqD7GenhjCm2sSpLmUB3FNGnp0Vb8PP9wcuaFQEbgjc653pIS7L5OamomWq
+         xzytTTWnQomw4i5StbKFfdyU/b23hdiAtH8gN6JnRgVm0m4P9nSkxxJWpVKVFu1PGIej
+         BsjQncIVFYMt/Pouk3uzBFl6/ikvPGPBHcTV8mW5oPNVpaJpf9pLBrBBrX4A4q2pWcgt
+         C5DttvZwbFg8+0CHPJP0jIwhAYuQxlJaTM7aX3OG67gy1Xmy2a+iDu1Q13dGMymuDuWo
+         p/uBFbcpmxH4fM1BF6tDTV9lWC8LWjHKmDy63uJHnLz31pYcuaopmVgCV0NGkbgN5OMb
+         o3Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e0oJrlLa1XWix8J18XAZ23nQzXA4EZb1A3RY1JzHR5A=;
+        b=UwVG5058IgZZbpkr4Vl46Ldk+eHarnRgZKGjyq4V7AkX5ZysQcKNfj61/3P7xi8kxb
+         dDTpxqCjhvrStlgOddzA4cMe+svnlwewSbJiVMBS9nIwxEIvW4ShWifMF/AVsWGacjjm
+         AN/6guoxxEscNBZdydvP6XlP9AQENEVwMXgd8UROT1mhyjH0qndwlgXmlyftFCNQwfph
+         WciZq/BCzFZEs9d8SEnprdCz+KfsIy80mjdlgYMDE4/UjN73OmpEPTIy+cTVhz3xnbOz
+         Vg1XlXiuhweaqn1RxCWHcZ3fqHul2m5qunNKJvg5hQcX6arRRlko/o6DQ1yVlKp6r0ii
+         IKLw==
+X-Gm-Message-State: AOAM532gznSfX+EFCDc2FQNN+LsviTLYBBbTC+5dhS1AXx9Z9iIQeVaU
+        r800QEIrJ0VBPf0OFnObWpH5vQ==
+X-Google-Smtp-Source: ABdhPJwAwFnT4K2bDQJyIX0+wceKSRYQFPASVcjdOZDRI7g5WqoHA+9e7yYMRk/DT7Sp0zz+1ktu8Q==
+X-Received: by 2002:adf:9226:: with SMTP id 35mr7232631wrj.408.1613072199441;
+        Thu, 11 Feb 2021 11:36:39 -0800 (PST)
+Received: from localhost.localdomain ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id j23sm8788649wmo.18.2021.02.11.11.36.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 11 Feb 2021 11:36:38 -0800 (PST)
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+To:     bjorn.andersson@linaro.org
+Cc:     sibis@codeaurora.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, georgi.djakov@linaro.org
+Subject: [PATCH] arm64: dts: qcom: sm8250: Fix epss_l3 unit address
+Date:   Thu, 11 Feb 2021 21:36:37 +0200
+Message-Id: <20210211193637.9737-1-georgi.djakov@linaro.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
+The unit address of the epss_l3 node is incorrect and does not match
+the address of its "reg" property. Let's fix it.
 
-This is demanded by the parent binding of ti,am654-pcie-rc, see
-Documentation/devicetree/bindings/pci/designware-pcie.txt.
-
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
 ---
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 12591a854020..787a49523c35 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -707,6 +707,7 @@ pcie0_rc: pcie@5500000 {
- 		dma-coherent;
- 		interrupts = <GIC_SPI 340 IRQ_TYPE_EDGE_RISING>;
- 		msi-map = <0x0 &gic_its 0x0 0x10000>;
-+		device_type = "pci";
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 947e1accae3a..80fe1cfe8271 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -3721,7 +3721,7 @@ apps_bcm_voter: bcm_voter {
+ 			};
+ 		};
  
- 	pcie0_ep: pcie-ep@5500000 {
-@@ -739,6 +740,7 @@ pcie1_rc: pcie@5600000 {
- 		dma-coherent;
- 		interrupts = <GIC_SPI 355 IRQ_TYPE_EDGE_RISING>;
- 		msi-map = <0x0 &gic_its 0x10000 0x10000>;
-+		device_type = "pci";
- 	};
+-		epss_l3: interconnect@18591000 {
++		epss_l3: interconnect@18590000 {
+ 			compatible = "qcom,sm8250-epss-l3";
+ 			reg = <0 0x18590000 0 0x1000>;
  
- 	pcie1_ep: pcie-ep@5600000 {
--- 
-2.26.2
-
