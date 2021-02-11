@@ -2,67 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 740E93174EA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 01:03:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F2973174ED
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 01:03:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234023AbhBKACj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 19:02:39 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:44334 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234038AbhBKACi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 19:02:38 -0500
-Received: by mail-oi1-f172.google.com with SMTP id r75so4144382oie.11;
-        Wed, 10 Feb 2021 16:02:22 -0800 (PST)
+        id S233744AbhBKADb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 19:03:31 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:39575 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232903AbhBKAD1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 19:03:27 -0500
+Received: by mail-oi1-f182.google.com with SMTP id l19so4165225oih.6;
+        Wed, 10 Feb 2021 16:03:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=kvatFB0Q/jr1PiFB301MPBK04OhOQf953p+PeRkyKoA=;
-        b=K/dpqn8pR2oz5GYqSJYougxCa0M7YNlpVqiGB+8rAx0irUqb9vEGYi9SZUV4XrNnUq
-         0fCadCSQMCVZWjbAiznRIdKg8q/z0FfX0Lm0ixb9Jbo9Pdyz1zNWnIoAjSbsjJAMVu/y
-         pfbcv6k7HMs8pAYFYIXi5VUjESgKiYmcZc3b1ppceGOGU2mXzOF/NCkz31Z8pc9cXGH5
-         6crOxeiFQQsdJp1NT/+LtSypauBZwJUdpb55EJzbjrEMXxF4cP6FBqVUKPcM9a+UKKIy
-         ZPYGbHoDGhDtxutkgsaRWMLBUWS41rAzjru5fZQ9TzoecI2IIKfWk9Ky/sCiTcEdxq+K
-         0dYw==
-X-Gm-Message-State: AOAM531EEiEwtrnbMFmALdGUpoP/cLITsSDAqKGYAjuisApnt7io3mCt
-        9Kqj/cwCQ9DCJQqkSQIpCw==
-X-Google-Smtp-Source: ABdhPJwpSA4lnsqjKtHEt463nu5bmS2soWKAQMwlo1HXdvr0lig5/HWrq3DE7uI5cCxI47QIQU4SYg==
-X-Received: by 2002:a05:6808:f09:: with SMTP id m9mr1102641oiw.92.1613001717507;
-        Wed, 10 Feb 2021 16:01:57 -0800 (PST)
+        bh=KhcTPGLbTTQ3ei4hkYQiiov8uAb8bHQwhbSbgo4CZbw=;
+        b=Y7cfgujuQMN5/FG5SiQyivGvwYUDALD7FlFcUN3JiM0ooZGL9mExS0D+cq5+BGf9B+
+         hsXkV/CaIzdIYaUWXXExsC/G3JgtLmS42nGTHUMOuHdYXHL+5T2D731vv+HWtvWyCAet
+         e1dXAxDeHtqdz3/q191BjRKNDIRPoe9gV+CsmZeQvKJVLzX5dtZH+g/TVmQ061RVoeGt
+         /5jF97CmUXfkEknG2jYCS2et+LlQiIMCbcJgdwL9LaQNl7mPo9hVdYYgk8YD+DtWfC6j
+         IT7wWFKqNxTM0ylxV2nmJUM2On2r3w4GG+yN4ATM8rPV4DRvg9IUUIciyKG3RzplASJv
+         bicQ==
+X-Gm-Message-State: AOAM533QJp3XIN135iKtzi6QM0CGDtKCTvdmPj9Eb3I/q4fPLAeMlvH8
+        TnFXeKXN1solqquVhLdPuw==
+X-Google-Smtp-Source: ABdhPJz+LCL4IckHTXfklTHuAZ8PMKqtL1uSXq4WLg0yntYTkAFs1dmMhiokbKm1tUzWC5trMsY5AQ==
+X-Received: by 2002:aca:4fca:: with SMTP id d193mr1046762oib.135.1613001767053;
+        Wed, 10 Feb 2021 16:02:47 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e25sm701131otj.23.2021.02.10.16.01.56
+        by smtp.gmail.com with ESMTPSA id t65sm788573oie.25.2021.02.10.16.02.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Feb 2021 16:01:56 -0800 (PST)
-Received: (nullmailer pid 3091448 invoked by uid 1000);
-        Thu, 11 Feb 2021 00:01:55 -0000
-Date:   Wed, 10 Feb 2021 18:01:55 -0600
+        Wed, 10 Feb 2021 16:02:46 -0800 (PST)
+Received: (nullmailer pid 3093107 invoked by uid 1000);
+        Thu, 11 Feb 2021 00:02:45 -0000
+Date:   Wed, 10 Feb 2021 18:02:45 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Saeed Nowshadi <saeed.nowshadi@xilinx.com>
-Cc:     devicetree@vger.kernel.org, Michal Simek <michal.simek@xilinx.com>,
-        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
-        git-dev@xilinx.com, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock: si570: Add 'silabs,skip-recall'
- property
-Message-ID: <20210211000155.GA3091392@robh.at.kernel.org>
-References: <1612496104-3437-1-git-send-email-saeed.nowshadi@xilinx.com>
- <1612496104-3437-2-git-send-email-saeed.nowshadi@xilinx.com>
+To:     Li Yang <leoyang.li@nxp.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/15] dt-bindings: arm: fsl: add ls1021a-tsn board
+Message-ID: <20210211000245.GA3093051@robh.at.kernel.org>
+References: <20210205234734.3397-1-leoyang.li@nxp.com>
+ <20210205234734.3397-2-leoyang.li@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1612496104-3437-2-git-send-email-saeed.nowshadi@xilinx.com>
+In-Reply-To: <20210205234734.3397-2-leoyang.li@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 04 Feb 2021 19:35:03 -0800, Saeed Nowshadi wrote:
-> Add an optional property so the driver can skip calling the NVM->RAM
-> recall operation during probe().
+On Fri, 05 Feb 2021 17:47:20 -0600, Li Yang wrote:
+> Add the missing board in the binding docuemnt.
 > 
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-> Signed-off-by: Saeed Nowshadi <saeed.nowshadi@xilinx.com>
+> Signed-off-by: Li Yang <leoyang.li@nxp.com>
 > ---
->  Documentation/devicetree/bindings/clock/silabs,si570.txt | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
