@@ -2,21 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A8E31919A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 18:55:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 435EF3191CD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 19:06:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230448AbhBKRxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 12:53:36 -0500
-Received: from relay02.th.seeweb.it ([5.144.164.163]:50643 "EHLO
-        relay02.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232677AbhBKRv3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 12:51:29 -0500
+        id S231322AbhBKSEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 13:04:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57502 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231516AbhBKSCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 13:02:34 -0500
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03B76C061794
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 09:50:21 -0800 (PST)
 Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 4FEC51F8E3;
-        Thu, 11 Feb 2021 18:50:19 +0100 (CET)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 4A7001F4EA;
+        Thu, 11 Feb 2021 18:50:17 +0100 (CET)
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
 To:     elder@kernel.org
@@ -27,43 +30,68 @@ Cc:     bjorn.andersson@linaro.org, agross@kernel.org, davem@davemloft.net,
         marijn.suijten@somainline.org, phone-devel@vger.kernel.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v1 6/7] dt-bindings: net: qcom-ipa: Document qcom,sc7180-ipa compatible
-Date:   Thu, 11 Feb 2021 18:50:14 +0100
-Message-Id: <20210211175015.200772-7-angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v1 0/7] Add support for IPA v3.1, GSI v1.0, MSM8998 IPA
+Date:   Thu, 11 Feb 2021 18:50:08 +0100
+Message-Id: <20210211175015.200772-1-angelogioacchino.delregno@somainline.org>
 X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210211175015.200772-1-angelogioacchino.delregno@somainline.org>
-References: <20210211175015.200772-1-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver supports SC7180, but the binding was not documented.
-Just add it.
+Hey all!
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
----
- Documentation/devicetree/bindings/net/qcom,ipa.yaml | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+This time around I thought that it would be nice to get some modem
+action going on. We have it, it's working (ish), so just.. why not.
 
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-index 8a2d12644675..b063c6c1077a 100644
---- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-@@ -43,7 +43,11 @@ description:
- 
- properties:
-   compatible:
--    const: "qcom,sdm845-ipa"
-+    oneOf:
-+      - items:
-+          - enum:
-+              - "qcom,sdm845-ipa"
-+              - "qcom,sc7180-ipa"
- 
-   reg:
-     items:
+This series adds support for IPA v3.1 (featuring GSI v1.0) and also
+takes account for some bits that are shared with other unimplemented
+IPA v3 variants and it is specifically targeting MSM8998, for which
+support is added.
+
+Since the userspace isn't entirely ready (as far as I can see) for
+data connection (3g/lte/whatever) through the modem, it was possible
+to only partially test this series.
+Specifically, loading the IPA firmware and setting up the interface
+went just fine, along with a basic setup of the network interface
+that got exposed by this driver.
+
+With this series, the benefits that I see are:
+ 1. The modem doesn't crash anymore when trying to setup a data
+    connection, as now the modem firmware seems to be happy with
+    having IPA initialized and ready;
+ 2. Other random modem crashes while picking up LTE home network
+    signal (even just for calling, nothing fancy) seem to be gone.
+
+These are the reasons why I think that this series is ready for
+upstream action. It's *at least* stabilizing the platform when
+the modem is up.
+
+This was tested on the F(x)Tec Pro 1 (MSM8998) smartphone.
+
+AngeloGioacchino Del Regno (7):
+  net: ipa: Add support for IPA v3.1 with GSI v1.0
+  net: ipa: endpoint: Don't read unexistant register on IPAv3.1
+  net: ipa: gsi: Avoid some writes during irq setup for older IPA
+  net: ipa: gsi: Use right masks for GSI v1.0 channels hw param
+  net: ipa: Add support for IPA on MSM8998
+  dt-bindings: net: qcom-ipa: Document qcom,sc7180-ipa compatible
+  dt-bindings: net: qcom-ipa: Document qcom,msm8998-ipa compatible
+
+ .../devicetree/bindings/net/qcom,ipa.yaml     |   7 +-
+ drivers/net/ipa/Makefile                      |   3 +-
+ drivers/net/ipa/gsi.c                         |  33 +-
+ drivers/net/ipa/gsi_reg.h                     |   5 +
+ drivers/net/ipa/ipa_data-msm8998.c            | 407 ++++++++++++++++++
+ drivers/net/ipa/ipa_data.h                    |   5 +
+ drivers/net/ipa/ipa_endpoint.c                |  26 +-
+ drivers/net/ipa/ipa_main.c                    |  12 +-
+ drivers/net/ipa/ipa_reg.h                     |   3 +
+ drivers/net/ipa/ipa_version.h                 |   1 +
+ 10 files changed, 480 insertions(+), 22 deletions(-)
+ create mode 100644 drivers/net/ipa/ipa_data-msm8998.c
+
 -- 
 2.30.0
 
