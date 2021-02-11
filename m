@@ -2,143 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDB4318997
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 12:38:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D1F43189B8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 12:47:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbhBKLeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 06:34:46 -0500
-Received: from mail-eopbgr770070.outbound.protection.outlook.com ([40.107.77.70]:16889
-        "EHLO NAM02-SN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229836AbhBKLbu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 06:31:50 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HcirqISvNr9kIl6/xAcLste7X+F3iNwR1wUyP9wYLcqMDONemTmi/ihKJHpYdUQQcwFoY4hCX5cur1oQPF2Ink4H8Ltk/SHLzFzodO/NrAYqPBCPAgYjo0S6KACQHBc69dW33LwdlF9Bbet2FMhPMfE1kcLMvXqj8Lfh0RvhHA25hT5iHLT4dkT31OJw+DexaVaadERAPo2kdnw7yItVTJvV90I1B6YDt1jbCZ9HoZqwYLMsepb8C3kL+5YtHCKI3sYD6QuPPJ6m5V0k19b+r2clnGQSfZZ9Lh3oONsBxATZGEbiN4LbJzjr6Ma6C39DRUMGuekfeHH1jhXQXw+ndQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CBBAp9i0l3JIs6SDQ+jCxKnhkmuHaHh7FpEOqEysEYk=;
- b=ik0Rbwfu+rjYB2ynwnkyntxgvxKJiLM/GC66GLUVHtd2kWALo/ti6fBo0+kWNLtREa4RYpfk4HP76KleJWW+Et7/6WBSb5wv3ZgumMNwCMaxNkPNi67JMED84HoQEP1tR3R1ZSR7UCy6ckm5JFE3vSHGN1SuXtjlwOVLy9usvYgCx13NLVB8EqDerNKoUsFtmzickYo4wweTaSTlgriQiNIBQAvtsXwEkbFL9iIJaqnXvPeP4suCEKb4MH5E3gI1jO+1ltJ80AUhfwSTYKvXjGynQVgoSV2YK2puxH6O0UsTMVBPBZCS1Tg7uIsSoq896PiFCxQaYzgszsdUJhtYGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
- header.from=xilinx.com; dkim=none (message not signed); arc=none
+        id S231138AbhBKLo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 06:44:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60688 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230011AbhBKLmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 06:42:20 -0500
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9156DC0613D6;
+        Thu, 11 Feb 2021 03:41:40 -0800 (PST)
+Received: by mail-pg1-x52f.google.com with SMTP id o38so3666750pgm.9;
+        Thu, 11 Feb 2021 03:41:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CBBAp9i0l3JIs6SDQ+jCxKnhkmuHaHh7FpEOqEysEYk=;
- b=cmFDcVPzGR7APZRO/1DOU3DGndc1D34CyB5DsmejB8Pdl6JG2768VDLV1uToZVudVhJMTOdk9PYShXMQrobCXDusHItw4bt+TFxTqJGtYxQ8Z+UcZVEPEIJgfX1dPItdmA6U3ALWMwhnBrJpqZT//7AFhw2+pO54BpqdU2hauJE=
-Received: from BL0PR03CA0032.namprd03.prod.outlook.com (2603:10b6:208:2d::45)
- by SA2PR02MB7530.namprd02.prod.outlook.com (2603:10b6:806:149::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.23; Thu, 11 Feb
- 2021 11:30:55 +0000
-Received: from BL2NAM02FT049.eop-nam02.prod.protection.outlook.com
- (2603:10b6:208:2d:cafe::8a) by BL0PR03CA0032.outlook.office365.com
- (2603:10b6:208:2d::45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.28 via Frontend
- Transport; Thu, 11 Feb 2021 11:30:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- BL2NAM02FT049.mail.protection.outlook.com (10.152.77.118) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3846.25 via Frontend Transport; Thu, 11 Feb 2021 11:30:55 +0000
-Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Thu, 11 Feb 2021 03:30:13 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Thu, 11 Feb 2021 03:30:13 -0800
-Envelope-to: git@xilinx.com,
- michal.simek@xilinx.com,
- linux-arm-kernel@lists.infradead.org,
- robh+dt@kernel.org,
- devicetree@vger.kernel.org,
- monstr@monstr.eu,
- linux-kernel@vger.kernel.org,
- arnd@kernel.org
-Received: from [172.30.17.109] (port=42340)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1lAAAm-0007HU-EY; Thu, 11 Feb 2021 03:30:12 -0800
-Subject: Re: [PATCH] ARM: zynq: Update Copyright date in DTS
-To:     Arnd Bergmann <arnd@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Michal Simek" <monstr@monstr.eu>, git <git@xilinx.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <ac55738da7710848ef4824d45bdac18fa1d11392.1612189714.git.michal.simek@xilinx.com>
- <CAK8P3a2FU1eNnUB+RWREnAaxjSvkVxhJDkW-pMpHmsK_NpeaGw@mail.gmail.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <13c38556-90fb-753f-0a19-f1daccf340d5@xilinx.com>
-Date:   Thu, 11 Feb 2021 12:30:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZKnpBYO+jJqLR8mObCZWV6snnWw00w1z5Mlo7cxi4x4=;
+        b=ShyJFr7Ao+baj5q7zWX0omKGr97CLs+LxaY1OfkIsk2wGdRvLB8XVrcvsA/J78lRod
+         RfrJZCnkZtLq0lCv5tFj+kZ+Uu5m3ntn8W24vsWYAWd5rOR10X4Ci46/3JM90GCg4meo
+         2ho8Fp2j/mtVuGWeASQu1JZ+StH28utRNOHAp3X/THN4SLJWLU66rh94THHfrIgOMjvu
+         ez0TgOiNhHnJqAdRgU6AgsW7jJAHgQwgIQsTCYxZEs098S/hIrYmnlbVD7ymdpHFZ81M
+         ThiSIgKVJfoKKGyLtwyvIbQhwNvpFneHevK+9EwPXTJcenHVCT1wvJ/LcUJShC7gMFvb
+         qqxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZKnpBYO+jJqLR8mObCZWV6snnWw00w1z5Mlo7cxi4x4=;
+        b=EJlIW5jmQy/ZxZTf/sZvWj+tMgcaRb16cfgsr+RGPkc7f7TG+KutJ0lgQdGpk37uCO
+         ZC7nFvlRSkroUnMnaR0JO/a0NCxpgtmyNrHlE4mlakuTFd16bjmc0Rj5Q66W5yNVuO60
+         c8+096qQC+/OnHLppWnHWBw9IIyjMQbZG9CB0stogwP0+JFXqgT1CD/zesiNTrG2dxs6
+         TgfLTHnqGyLLwinIZEBHmTsvUUegue1biIQNDa8X4QKx/sxA2sHlyl3Mgbz1ET5MFak7
+         Meo30JNg4P4vXmsJ0nrUgZtjDKkrCJh9OGApS2C0QJSP5o7o4sQrg0/U3H04wvSEzHjO
+         FPcg==
+X-Gm-Message-State: AOAM530ZupXPkVP8NOXGvYlXw1S+L31Dru49kHClsAaYK/+GgqL8+tTh
+        AYn1uP5LbwqEh5My4DrWbNx5gcv8W4eGhPgR5LfZVFLI0Crp3dHS
+X-Google-Smtp-Source: ABdhPJzoOE6nv0mkkRBPdVzBxR1Run8+t57h/QVHmmlZ07T/TASS22YevmGHC+TZZMAyKNZnk5oaNkMLCbqI7gl4OHQ=
+X-Received: by 2002:a05:6a00:854:b029:1b7:6233:c5f with SMTP id
+ q20-20020a056a000854b02901b762330c5fmr7562483pfk.73.1613043700020; Thu, 11
+ Feb 2021 03:41:40 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a2FU1eNnUB+RWREnAaxjSvkVxhJDkW-pMpHmsK_NpeaGw@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 65cf3fe2-96b0-429d-192e-08d8ce807f0a
-X-MS-TrafficTypeDiagnostic: SA2PR02MB7530:
-X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-X-Microsoft-Antispam-PRVS: <SA2PR02MB7530F92D30EA24504FEA008FC68C9@SA2PR02MB7530.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IFqXcN8+yFzO4CWerHQF2l2p2UyYvbjjBpcUpf0EK+4rEMlJ8eOpdBCrVtdFemEBSBIgmDqr6mVh3C18yRC2Wh17bx+tkuQz2oXiiz+l1fA3XfDKWptZpuj5GxWsEvWcPKtwXBG2uhkqCqwhHB2T55RM7ijLyULChHUIw6Idk+2SRp76+CsI5YYeBiDeW4CfI6p1asfYvLq9+71jcc6kfNFBn+nj/TSwHYm+sNcbPUd+qzWXMvnsANYPc9aSXvsqzFx0kOl1PJPiNbNzo9CxuxVaLS1ssOb9BvdJfAriungHpv9D+KMe0w9mLlYlTEeffSa8WhyBwH67k/Gs8P5bspbK9aawkGif/9Zpz9kYByGaVSJS+7MFIsqawOy1RM/RSoPjtm1MsQrxJVW+Totj/IkZCQzvrfZiceskZyDG2e37XGB5p6MBeQNqcNmO7xvbTMzQWzJ7wJffBORq6lr+kkjNibaTrdUEClJ9WILKSUElSgu0/CbYiAVvy9FN10y8oCTvw2W+N/RVFF2MtAEdMYQGMmcmGymzeWeA3n+vWVWDmRq7xUaI4ffCPxEwqegleWgNAqQbcJGai1blKYIpt1nnoENZcQd0XdnwuvXtcCAOZfWOzxi7fvZYxdZnOBQafgNR56Nchl0IQCColsPli1i61pHbs7yw+Rm6cRnZEps9Kf13Fr1gVPvOZ5CNgiFmbHcH5xDTRkFBTA2GcXIAAg==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(396003)(39860400002)(376002)(346002)(136003)(36840700001)(46966006)(31696002)(70206006)(36756003)(2616005)(7636003)(336012)(54906003)(15650500001)(36860700001)(4744005)(8676002)(2906002)(9786002)(36906005)(4326008)(82740400003)(44832011)(426003)(47076005)(82310400003)(31686004)(5660300002)(83380400001)(110136005)(186003)(26005)(8936002)(356005)(6666004)(53546011)(316002)(70586007)(478600001)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2021 11:30:55.4009
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65cf3fe2-96b0-429d-192e-08d8ce807f0a
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT049.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR02MB7530
+References: <20210208222203.22335-1-info@metux.net> <CAHp75VdNTenoE0AOmGfndqQ7SrxbuK+SvfFYn3W2GmqhkCSByQ@mail.gmail.com>
+ <1b92deea-cf6d-7eca-197f-b12456279890@metux.net>
+In-Reply-To: <1b92deea-cf6d-7eca-197f-b12456279890@metux.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 11 Feb 2021 13:41:23 +0200
+Message-ID: <CAHp75Vd39OaGkgi5mSH+o39Js8gDW77fP8LUBx73EAH_mZ-scg@mail.gmail.com>
+Subject: Re: RFC: oftree based setup of composite board devices
+To:     "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+Cc:     "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Feb 11, 2021 at 1:15 PM Enrico Weigelt, metux IT consult
+<lkml@metux.net> wrote:
+> On 10.02.21 11:30, Andy Shevchenko wrote:
+
+> >> Use cases are boards with non-oftree firmware (ACPI, etc) where certain
+> >> platform devices can't be directly enumerated via firmware. Traditionally
+> >> we had to write board specific drivers that check for board identification
+> >> (DMI strings, etc), then initialize the actual devices and their links
+> >> (eg. gpio<->leds/buttons, ...). Often this can be expressed just by DT.
+> >
+> > In ACPI we support DT compatible strings, and we support overlays for
+> > a long time. Would it work for you?
+>
+> please tell me more, how ACPI and DT can already work together ?
+
+It's all in documentation.
+
+https://www.kernel.org/doc/html/latest/firmware-guide/acpi/enumeration.html#device-tree-namespace-link-device-id
+https://www.kernel.org/doc/html/latest/admin-guide/acpi/ssdt-overlays.html
+
+Please, please, read documentation beforehand!
+
+> You already know my apu board driver - that's my first example usecase.
+
+Sorry, but I forgot about it. Can you summarize what is your use case
+that really needs so intrusive and hard work?
+
+> There're few things I don't know how to solve w/ overlays:
+>
+> * match rules shall be inside the DTS
+> * future match rules shall also check for bios versions etc
+> * adding new boards shall be possible by just adding another DTS to
+>    the tree (not a whole module)
+> * supporting several board variants (w/ small differences) by one DTS
+> * sometimes existing devices (eg. enumerated by acpi) need to be kicked
+>    out (buggy firmware, ...)
+> * can't rely on any special userland tweaks
+
+Show an example why either of the above is needed in your case and
+tell what is the exact issue.
+
+> >> The approach can be easily be extended to other kinds of composite devices,
+> >> eg. PCI cards or USB dongles.
+> >
+> > What do you mean? PCI and USB are self-enumerated. What's wrong with them?
+>
+> In general yes, but of course you need drivers for them. Sometimes those
+> devices are composites of other devices, wired up in some special way.
+> Traditionally, we'd need to write a special driver that just don't do
+> much more than instantiating other drivers.
+
+Yes, that driver represents hardware. MFD already has some support for
+composite devices. We have the auxiliary bus for some other
+interesting cases, etc. Depending on the hardware in question you have
+to choose a proper bus and locking (access synchronisation) schema.
+
+> Those things could be expressed via DTS, so we don't need to write
+> individual drivers anymore.
+
+It seems you are trying to create something like "universal quirk".
+Brave idea, but from my experience a fiasco is what will be out of it.
+The hardware has a lot of different issues and levels of issues and it
+is close to impossible to describe everything possible and predict the
+future... Good luck!
 
 
-On 2/11/21 12:27 PM, Arnd Bergmann wrote:
-> On Mon, Feb 1, 2021 at 3:28 PM Michal Simek <michal.simek@xilinx.com> wrote:
->>
->> Update years in header to be up2date.
->>
->> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-> 
-> I saw this in your pull request, and I did not think this was how
-> copyrights work.
-> 
-> From what I can tell, most of the files have not been touched in
-> years, so it's surprising that the copyright would include every
-> year up to 2021.
-> 
-> Would you mind respinning the pull request either without this
-> patch, or with a clarified patch description that explains
-> what you do and a Signed-off-by from one of your company's
-> lawyers if they asked you for it?
+...
 
-Ok. I will drop it for now. I will be touching this files with adding
-qspi description based on yaml binding.
+> * need to split the information into several places (instead of having
+>    all in one DTS)
+> * need to have one separate module board, or merge the dmi tables.
 
-Thanks,
-Michal
+Have no idea what you are talking about here, sorry.
 
+> My goal is having everything that describes a board into one DTS
+> (source) file.
+
+I'm confused, you are talking about non-DT platforms in the
+cover-letter and now you are talking about DTS. AFAIK DTS allows you
+to put everything in one source.
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
