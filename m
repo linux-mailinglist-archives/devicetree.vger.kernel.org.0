@@ -2,111 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8275318BA8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 14:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D642318BE2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 14:22:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231216AbhBKNKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 08:10:47 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:43869 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231913AbhBKNIZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 08:08:25 -0500
-Received: by mail-ot1-f54.google.com with SMTP id l23so5032581otn.10;
-        Thu, 11 Feb 2021 05:08:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hrYiHZwn2efD/4OUplpcI4tbR7mMPSrjnmc77Wk47SM=;
-        b=GDImj6Feo2+LASjYhUOPPlBUbkTrpCiIGzIWsAh/WlfQDtHJW87ZHZ/YUZ3WaVhL8q
-         trMyfhDQ6LAMoH8lvo2OyXW8Ldx/Q3fjDBZumGu/JkvmTVl8z6G/jsMhwmN4xwmem4P3
-         I1eFGbizUY47C9vHotIuHRlsn5WfIECc2WjPSptEVvXkBLza6rMQ2+MMdkiYBMWuxpH0
-         m5b2n12+pqC3iAfBtBaXIolA1ptPbTOEatuZuej6V+or0RZQTqdQ5s/uvGXkthjI/Kdh
-         qmQG/G8ag7jl/Cp/gulDOogXokmf0Bnv2NjAlYMF2aOLCKG1hFpel/MOWCU3XVZQEdYW
-         kBHg==
-X-Gm-Message-State: AOAM530GK0ct9wDq7JPKjrZsrGCjfZ1olyLEsKL6bW+lLx2Q9ZEhZSz+
-        J9eApMSBPrBjV8PpomM0pDAl8bqmsv9qsbQtWgE=
-X-Google-Smtp-Source: ABdhPJwKgH5jgWs0XUJGT18qx9ESakb1Ou1OwU1Hv1anMHLpNlmoCV/MIo4NfHrfX5uC9XtiUTiaGfqeVe+r3kvmzKw=
-X-Received: by 2002:a05:6830:119:: with SMTP id i25mr2764517otp.107.1613048856670;
- Thu, 11 Feb 2021 05:07:36 -0800 (PST)
+        id S231858AbhBKNVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 08:21:01 -0500
+Received: from mout.kundenserver.de ([212.227.126.131]:37999 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231235AbhBKNSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 08:18:43 -0500
+Received: from [192.168.1.155] ([95.114.27.115]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1M8yPu-1lE3Av2zoM-0063xQ; Thu, 11 Feb 2021 14:15:51 +0100
+Subject: Re: [RFC PATCH 12/12] platform/x86/of: add support for PC Engines APU
+ v2/3/4 boards
+To:     Rob Herring <robh+dt@kernel.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org
+References: <20210208222203.22335-1-info@metux.net>
+ <20210208222203.22335-13-info@metux.net>
+ <CAL_JsqJw+EjMoc92e-XMjn=0wat3TmcToHU1V2rW9UB9UhmDEA@mail.gmail.com>
+From:   "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+Message-ID: <1a96e003-e264-9f9b-4239-4b3b002c0198@metux.net>
+Date:   Thu, 11 Feb 2021 14:15:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <20210125162934.5335-1-daire.mcnamara@microchip.com>
- <20210125162934.5335-4-daire.mcnamara@microchip.com> <CAMuHMdXJQF3c1b6SXyHnuyA_huO7ZiKJ-_xm1r1h7VcGsv=n9A@mail.gmail.com>
- <d47ee0a2-7d9c-5c53-2977-09fa054e856b@codethink.co.uk>
-In-Reply-To: <d47ee0a2-7d9c-5c53-2977-09fa054e856b@codethink.co.uk>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 11 Feb 2021 14:07:25 +0100
-Message-ID: <CAMuHMdWZj5=vjno05F4hX6TGx0bvugBu53dhJ5L5wge2ezZuPQ@mail.gmail.com>
-Subject: Re: [PATCH v21 3/4] PCI: microchip: Add host driver for Microchip
- PCIe controller
-To:     Ben Dooks <ben.dooks@codethink.co.uk>
-Cc:     daire.mcnamara@microchip.com,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, david.abdurachmanov@gmail.com,
-        cyril.jean@microchip.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_JsqJw+EjMoc92e-XMjn=0wat3TmcToHU1V2rW9UB9UhmDEA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: tl
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:X03an0jzA7Ik2yin6U2Zx4JrFGvXamVp+aFMSxgk7gvcKjOnIG2
+ wRS+NMnI958UjkK1bAW4exbjNEvRWZ4ey6UZ/64Wd23lvW+3NvDnpHNqEqa3EAzsTjMSeCb
+ uDnDWaaxXEORuRz806oib9eZzBt5K/+/B3QtShlGtjSybccD7Yex6xVSQN8drwU+hYgwMdT
+ UNQdvFXyUb8a8euhz5KLQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:iBvfJPWk7OE=:tQXOSq539WLmvFCUNCOBEG
+ W4jA2/b156mHHTcc63xYdiTc8DwuHKNNCPNatkoJNn+AmALQJ0VWiwHZKTWrgm2lcxJsMtRxo
+ wnZVhG59kLAMEwXRwSLzyD4AD3Wb9d2jQW5gyYVXos+6kb0UQTDYQsboEZhxo9CKlLD/ceQtV
+ Mi7uaSAvqgfTECa6MnBYgzbln8Xpp3rYHWQT6SGGgVKW2hN42JwUneuwrnyALk9Rzb53NNdtv
+ PhoarSX7K0oU5Vn5AkuhYFzVvWl5xufuI9IV28Rajfp1IG/sq4zutlTf4t8jWUzoHH1D3JQdJ
+ TixDQ5UEECULBXxxLM8BFIe5ZWUedHT8MiuHrWg0aW945siyMdOalTHlKHcUmBocrrC3M5F6z
+ V1wlARoAS3v3rUDA1rv+uEcw5xpeCZ2pDY3NQMEdxwtWHerWKVdE2G/eEj/QW
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ben,
+On 09.02.21 01:06, Rob Herring wrote:
 
-On Thu, Feb 11, 2021 at 2:03 PM Ben Dooks <ben.dooks@codethink.co.uk> wrote:
-> On 10/02/2021 13:07, Geert Uytterhoeven wrote:
-> > On Mon, Jan 25, 2021 at 5:33 PM <daire.mcnamara@microchip.com> wrote:
-> >> From: Daire McNamara <daire.mcnamara@microchip.com>
-> >>
-> >> Add support for the Microchip PolarFire PCIe controller when
-> >> configured in host (Root Complex) mode.
-> >>
-> >> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >
-> > Thanks for your patch!
-> >
-> >> --- a/drivers/pci/controller/Kconfig
-> >> +++ b/drivers/pci/controller/Kconfig
-> >> @@ -298,6 +298,16 @@ config PCI_LOONGSON
-> >>            Say Y here if you want to enable PCI controller support on
-> >>            Loongson systems.
-> >>
-> >> +config PCIE_MICROCHIP_HOST
-> >> +       bool "Microchip AXI PCIe host bridge support"
-> >> +       depends on PCI_MSI && OF
-> >> +       select PCI_MSI_IRQ_DOMAIN
-> >> +       select GENERIC_MSI_IRQ_DOMAIN
-> >> +       select PCI_HOST_COMMON
-> >> +       help
-> >> +         Say Y here if you want kernel to support the Microchip AXI PCIe
-> >> +         Host Bridge driver.
-> >
-> > Is this PCIe host bridge accessible only from the PolarFire RISC-V
-> > CPU cores, or also from softcores implemented in the PolarFire FPGA?
-> >
-> > In case of the former, we want to add a
-> >
-> >      depends on CONFIG_SOC_MICROCHIP_POLARFIRE || COMPILE_TEST
->
->
-> I'd say having it on COMPILE_TEST if there's no polarfire includes
-> would be useful to allow compile testing of the driver by the build
-> robots.
+Hi,
 
-As currently there is no platform dependency at all, it will be
-compile-tested by allmodconfig on every config that has PCI_MSI && OF.
+>> +/ {
+>> +    apu2x {
+>> +        compatible = "virtual,dmi-board";
+>> +        dmi-sys-vendor = "PC engines";
+>> +        dmi-board-name =
+>> +          "APU2",
+>> +          "apu2",
+>> +          "PC engines apu2",
+>> +          "APU3",
+>> +          "apu3",
+>> +          "PC engines apu3",
+>> +          "APU4",
+>> +          "apu4",
+>> +          "PC engines apu4";
+> 
+> I think these DMI properties just need to be the compatible string(s).
+> We already have a way to do matching with DT and don't need a
+> secondary way. If you can
 
-Gr{oetje,eeting}s,
+It's not easy fitting that into one string, because we've got lots of
+combinations that need to be matched. In this specific case, I haven't
+seen any board where the vendor name isn't an exact match of the given
+string (that's why it's only one entry), but in the past seen several
+boards where even this changes between bios versions. The board names,
+more varying.
 
-                        Geert
+Something that's not reflected in this example yet: there're even more
+subtle differences between production series (eg. certain pins not
+wired, etc). Supporting such things would need adding more matching
+rules and possibly runtime DT manipulations.
+
+>> +        unbind {
+>> +            acpi = "PNP0076:00", "PNP0B00:00";
+>> +            platform = "platform-framebuffer.0", "PNP0103:00";
+> 
+> This node really needs to go. It's clearly Linuxisms. It either has to
+> go in the kernel or userspace.
+
+Note that the whole thing here *is* a Linuxism. This kind of DTs is
+built into the kernel, not in firmware or anywhere else. This stuff is
+only for cases where firmware is not giving, or giving broken
+information. And it's for replacing hand-written C code by a machine
+readable description.
+
+I had to put that in, since in some cases firmware (-versions) already
+enumerates some devices, but does it in a wrong or incomplete way.
+So, these devices need to be removed first, before the correct ones
+can be initialized. (note that this patch, for now, is just an hacking
+example - some details are still broken).
+
+If anybody has a better idea how to do that, let me know.
+
+In general, I'd like to have everything for one board (family) in one
+declarative file.
+
+>> +        };
+>> +        devices {
+>> +            gpio1: gpio1 {
+>> +                compatible = "amd,fch-gpio";
+> 
+> This of course will need to be documented.
+
+Yes, but that's a different issue. It's still in RFC stage.
+The gpio-amd-fch changes are in this patch queue for a complete example,
+but probably will be upstreamed separately.
+
+>> +                gpio-controller;
+>> +                status = "okay";
+> 
+> nit: That's the default.
+
+Okay, dropping it.
+
+
+--mtx
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+---
+Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
+werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
+GPG/PGP-Schlüssel zu.
+---
+Enrico Weigelt, metux IT consult
+Free software and Linux embedded engineering
+info@metux.net -- +49-151-27565287
