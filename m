@@ -2,114 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1F1D31746D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 00:32:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 740E93174EA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 01:03:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233668AbhBJXcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 18:32:08 -0500
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:23038 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233952AbhBJXcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 18:32:07 -0500
-Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 11ANIMmD033480;
-        Wed, 10 Feb 2021 18:30:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
- cc : subject : in-reply-to : date : message-id : mime-version :
- content-type; s=pp1; bh=WwnxfDfiSUvaoRxLjsUAinYso5jcWLMQITma1Y77IiE=;
- b=aSa2yX//b5kSC77R8wdXM77GzKfuLxawVVd+SVxyGyw+awLxwdvria14j4FzLGWjALpr
- tMz6eGziaxLp2/B9S7kLstYHwOYpnntNnuV8JXXCYekh+ne9J+VV6y17gIrl1HMjSbmY
- 9XezezrwKnU/+XqEP+53Vg2CBNsqBv/86d7Ba1xYTtv7yF+7iab5+uBrnPfGI7uqO86s
- +4DxlQ6Ff6FHF3E3uTuLyv50QACTDiACCh37ssQ94eamT5E+p15bBrZfhK9KxdB8dVp7
- bRsYIkyi4LWQFJKJ8N2MNwo+mVWAI5SmpKcDt23K7cawHwCUsfBV31i+vOSTnakX92Tj 5w== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 36ms1w064v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Feb 2021 18:30:52 -0500
-Received: from m0098394.ppops.net (m0098394.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 11ANLLv8052502;
-        Wed, 10 Feb 2021 18:30:51 -0500
-Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 36ms1w064b-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Feb 2021 18:30:51 -0500
-Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
-        by ppma02dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 11ANSMsD024480;
-        Wed, 10 Feb 2021 23:30:50 GMT
-Received: from b01cxnp22035.gho.pok.ibm.com (b01cxnp22035.gho.pok.ibm.com [9.57.198.25])
-        by ppma02dal.us.ibm.com with ESMTP id 36hjraa03g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Feb 2021 23:30:50 +0000
-Received: from b01ledav005.gho.pok.ibm.com (b01ledav005.gho.pok.ibm.com [9.57.199.110])
-        by b01cxnp22035.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 11ANUnFN19136844
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 10 Feb 2021 23:30:49 GMT
-Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id CEF0DAE05F;
-        Wed, 10 Feb 2021 23:30:49 +0000 (GMT)
-Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id A6960AE05C;
-        Wed, 10 Feb 2021 23:30:42 +0000 (GMT)
-Received: from manicouagan.localdomain (unknown [9.160.95.194])
-        by b01ledav005.gho.pok.ibm.com (Postfix) with ESMTPS;
-        Wed, 10 Feb 2021 23:30:42 +0000 (GMT)
-References: <20210209182200.30606-1-nramas@linux.microsoft.com>
- <20210209182200.30606-4-nramas@linux.microsoft.com>
-User-agent: mu4e 1.4.10; emacs 27.1
-From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
-        gregkh@linuxfoundation.org, will@kernel.org, joe@perches.com,
-        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
-        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
-        frowand.list@gmail.com, vincenzo.frascino@arm.com,
-        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
-        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
-        tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v17 03/10] arm64: Use common of_kexec_alloc_and_setup_fdt()
-In-reply-to: <20210209182200.30606-4-nramas@linux.microsoft.com>
-Date:   Wed, 10 Feb 2021 20:30:40 -0300
-Message-ID: <87v9azo5zz.fsf@manicouagan.localdomain>
+        id S234023AbhBKACj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 19:02:39 -0500
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:44334 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234038AbhBKACi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 19:02:38 -0500
+Received: by mail-oi1-f172.google.com with SMTP id r75so4144382oie.11;
+        Wed, 10 Feb 2021 16:02:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kvatFB0Q/jr1PiFB301MPBK04OhOQf953p+PeRkyKoA=;
+        b=K/dpqn8pR2oz5GYqSJYougxCa0M7YNlpVqiGB+8rAx0irUqb9vEGYi9SZUV4XrNnUq
+         0fCadCSQMCVZWjbAiznRIdKg8q/z0FfX0Lm0ixb9Jbo9Pdyz1zNWnIoAjSbsjJAMVu/y
+         pfbcv6k7HMs8pAYFYIXi5VUjESgKiYmcZc3b1ppceGOGU2mXzOF/NCkz31Z8pc9cXGH5
+         6crOxeiFQQsdJp1NT/+LtSypauBZwJUdpb55EJzbjrEMXxF4cP6FBqVUKPcM9a+UKKIy
+         ZPYGbHoDGhDtxutkgsaRWMLBUWS41rAzjru5fZQ9TzoecI2IIKfWk9Ky/sCiTcEdxq+K
+         0dYw==
+X-Gm-Message-State: AOAM531EEiEwtrnbMFmALdGUpoP/cLITsSDAqKGYAjuisApnt7io3mCt
+        9Kqj/cwCQ9DCJQqkSQIpCw==
+X-Google-Smtp-Source: ABdhPJwpSA4lnsqjKtHEt463nu5bmS2soWKAQMwlo1HXdvr0lig5/HWrq3DE7uI5cCxI47QIQU4SYg==
+X-Received: by 2002:a05:6808:f09:: with SMTP id m9mr1102641oiw.92.1613001717507;
+        Wed, 10 Feb 2021 16:01:57 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e25sm701131otj.23.2021.02.10.16.01.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Feb 2021 16:01:56 -0800 (PST)
+Received: (nullmailer pid 3091448 invoked by uid 1000);
+        Thu, 11 Feb 2021 00:01:55 -0000
+Date:   Wed, 10 Feb 2021 18:01:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Saeed Nowshadi <saeed.nowshadi@xilinx.com>
+Cc:     devicetree@vger.kernel.org, Michal Simek <michal.simek@xilinx.com>,
+        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+        git-dev@xilinx.com, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clock: si570: Add 'silabs,skip-recall'
+ property
+Message-ID: <20210211000155.GA3091392@robh.at.kernel.org>
+References: <1612496104-3437-1-git-send-email-saeed.nowshadi@xilinx.com>
+ <1612496104-3437-2-git-send-email-saeed.nowshadi@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-10_11:2021-02-10,2021-02-10 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=847 mlxscore=0
- malwarescore=0 priorityscore=1501 phishscore=0 adultscore=0 clxscore=1015
- lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2102100200
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1612496104-3437-2-git-send-email-saeed.nowshadi@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-
-> From: Rob Herring <robh@kernel.org>
->
-> The code for setting up the /chosen node in the device tree
-> and updating the memory reservation for the next kernel has been
-> moved to of_kexec_alloc_and_setup_fdt() defined in "drivers/of/kexec.c".
->
-> Use the common of_kexec_alloc_and_setup_fdt() to setup the device tree
-> and update the memory reservation for kexec for arm64.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+On Thu, 04 Feb 2021 19:35:03 -0800, Saeed Nowshadi wrote:
+> Add an optional property so the driver can skip calling the NVM->RAM
+> recall operation during probe().
+> 
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Signed-off-by: Saeed Nowshadi <saeed.nowshadi@xilinx.com>
 > ---
->  arch/arm64/kernel/machine_kexec_file.c | 180 ++-----------------------
->  1 file changed, 8 insertions(+), 172 deletions(-)
+>  Documentation/devicetree/bindings/clock/silabs,si570.txt | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
-
--- 
-Thiago Jung Bauermann
-IBM Linux Technology Center
+Acked-by: Rob Herring <robh@kernel.org>
