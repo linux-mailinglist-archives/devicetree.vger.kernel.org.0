@@ -2,491 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9B7A31897A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 12:30:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64DB7318989
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 12:38:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231616AbhBKLaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 06:30:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231351AbhBKL2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 06:28:17 -0500
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00A37C061788
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 03:27:36 -0800 (PST)
-Received: by mail-pg1-x532.google.com with SMTP id o63so3650585pgo.6
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 03:27:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JU1gc/ALV1VkkX6EBW5FvgSlWlS/XoSIRN2HuCqDgyE=;
-        b=VqH3nRtmV89x4jHYQhp7d1wniZooga5iMIAUwOyMk3NC1SwOwoh4WjBTc8P8LYu6V8
-         oMkY1ErorG2ioNOMI9zp/H9kczqiwVQvOGvLjT1sHWUysiIWErHT1YGz69SIBv9htmYG
-         YOu4qJmPAifHAd2GLd1p/N1tuY0qfFr/eicv52bF7c9uVOKSRad9a+nSpuDmEr6zfS/Z
-         95T0cd2o8hWkyro9vjfXqhV9bvOcXy9gOIA3WHxCkvfhkHpE2CpXU12kV5ex+scvywOC
-         hZOlQcQzBOgdTjA+dMomoCvaEdYLiLZKVL9+Rqd6hzASrXZUWV8N3w8F2b0OLVAgpXf5
-         Nv1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JU1gc/ALV1VkkX6EBW5FvgSlWlS/XoSIRN2HuCqDgyE=;
-        b=Yc1Am2yvtJok9N56L4ELLe65ukpX+foUO2j5rE7qWMk+woP3vClAJS5ORciOqpt0k7
-         MBv9w7vEG5sCRA5OAszvRie2fy3Bj5ltT7+eK2SiAQ07/QzYAJhi6PkAU3p+419SdUEV
-         JNuLvMKwUyUECcaj4o+5UjPEDH+NDwEeMR62Ktx5ZKhOiE525rYqKxhWREZYUZ6WsVRx
-         RyQN97DLLoQsMfU4sfdM4cRKJARd2EvGINERItrlMsarr5WwMRpnQAeMtee+1voZkm0s
-         1vjS7CeREc6tT0HuTmCPnLziDszO4gAWXplBfwjddka6CslwMHuw802oMUvbHXLGEbof
-         QXCA==
-X-Gm-Message-State: AOAM530lgnVc8dWRx71NbjEnmHEL4KAqeCiwnx/B8lKfY1kNIQoA0E2E
-        n25zi8caq/9sqLb9JYM1qL3qUA==
-X-Google-Smtp-Source: ABdhPJyvhlp8zXjRdDY1k0ky9RPqPpCbh98dIKzeLbwm1dEmEHo8gIbQz3CbbEqBy0oM18yIzpc6lA==
-X-Received: by 2002:a63:515:: with SMTP id 21mr7539230pgf.231.1613042856327;
-        Thu, 11 Feb 2021 03:27:36 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id t8sm4734834pjm.9.2021.02.11.03.27.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 11 Feb 2021 03:27:35 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     David Gibson <david@gibson.dropbear.id.au>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bill Mills <bill.mills@linaro.org>, devicetree@vger.kernel.org,
-        Jon Loeliger <loeliger@gmail.com>,
-        devicetree-compiler@vger.kernel.org
-Subject: [DTC][RFC] dtc: Allow better error reporting
-Date:   Thu, 11 Feb 2021 16:57:21 +0530
-Message-Id: <3950d7da35130a850ba9217ac7bfef781fa850b2.1613042485.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
+        id S229890AbhBKLbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 06:31:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41764 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230259AbhBKL2z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Feb 2021 06:28:55 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4912D64EAA;
+        Thu, 11 Feb 2021 11:28:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613042893;
+        bh=Qb2FS+uMR5geKIx58CTBh2PFaRklthJkDTlNBlz7hy8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=UlQC/3eN92kMP6S03I4Yj6Oxurx73sbgfMc9o0CLW5UjW1K39Fkd7aOmh3Hnh215S
+         pOfLqxx0ZJtBIW1yZZIKSZeiPHnWLJTPJavfjyO/lL1yxDe2cJXzmU8odj7nsUjzgG
+         2gCpFEj2dVKdRyuXOjL0CuJRVf1KQ2vwahRFWRM8Y8jDEedp7KCZ994a6IvvJJry0K
+         6nqmUS0Anw70BmjJ0QI2rWyba3ssZDQjAkY1AOZE2r51PpkPj6fDs0w3qZHVPeO3qL
+         k5Dit7o7wi+/TA9EumvaqqyUhay3oPVU6geETr6c9jEmrMk13CRvxWshiVhzDfICK5
+         I38NljWgK1CLg==
+Received: by mail-ot1-f49.google.com with SMTP id y11so4832909otq.1;
+        Thu, 11 Feb 2021 03:28:13 -0800 (PST)
+X-Gm-Message-State: AOAM532Hsvx8gaDrQKgqhriw0e00gIsjNP2xLdeFHnlWxRR3rTh5U8R2
+        qiQYVQpIeVWDKECBxtIJAG+gYIGXm518oNw89Dk=
+X-Google-Smtp-Source: ABdhPJyeSKW5265p9gWdhHvA5UhFuudJw9w2RFAsgFsNvscX2Cr2rp9ID2vSPCWC/ONInNjCR4PphKSeu0QrIYRB8H0=
+X-Received: by 2002:a05:6830:18e6:: with SMTP id d6mr5472752otf.251.1613042892515;
+ Thu, 11 Feb 2021 03:28:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <ac55738da7710848ef4824d45bdac18fa1d11392.1612189714.git.michal.simek@xilinx.com>
+In-Reply-To: <ac55738da7710848ef4824d45bdac18fa1d11392.1612189714.git.michal.simek@xilinx.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Thu, 11 Feb 2021 12:27:56 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2FU1eNnUB+RWREnAaxjSvkVxhJDkW-pMpHmsK_NpeaGw@mail.gmail.com>
+Message-ID: <CAK8P3a2FU1eNnUB+RWREnAaxjSvkVxhJDkW-pMpHmsK_NpeaGw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: zynq: Update Copyright date in DTS
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dtc tool doesn't do very elaborate error reporting to keep the size
-of the executables small enough for all kind of applications.
+On Mon, Feb 1, 2021 at 3:28 PM Michal Simek <michal.simek@xilinx.com> wrote:
+>
+> Update years in header to be up2date.
+>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 
-This patch tries to provide a way to do better error reporting, without
-increasing the size of the executables for such cases (where we don't
-want elaborate error reporting).
+I saw this in your pull request, and I did not think this was how
+copyrights work.
 
-The error reporting will only be enabled if 'VERBOSE' (as -DVERBOSE)
-flag is passed during compilation of the tools.
+From what I can tell, most of the files have not been touched in
+years, so it's surprising that the copyright would include every
+year up to 2021.
 
-This also updates the fdtoverlay tool to do better error reporting,
-which is required by the Linux Kernel for now.
+Would you mind respinning the pull request either without this
+patch, or with a clarified patch description that explains
+what you do and a Signed-off-by from one of your company's
+lawyers if they asked you for it?
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-
----
-Hi David,
-
-Unfortunately I am not a core DT guy and don't understand most of the
-stuff going on here. I tried to do minimal changes to get more
-information out on errors and it may require someone who understands the
-code well to write better error logs.
-
-FWIW, I stumbled upon this because of the discussion that happened here:
-
-https://lore.kernel.org/lkml/74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com/
-
-Thanks.
-
----
- dtc.h                |   6 ++
- fdtoverlay.c         |   1 +
- libfdt/fdt_overlay.c | 156 ++++++++++++++++++++++++++++++++++---------
- 3 files changed, 132 insertions(+), 31 deletions(-)
-
-diff --git a/dtc.h b/dtc.h
-index d3e82fb8e3db..b8ffec155263 100644
---- a/dtc.h
-+++ b/dtc.h
-@@ -29,6 +29,12 @@
- #define debug(...)
- #endif
- 
-+#ifdef VERBOSE
-+#define dtc_err(fmt, ...)	fprintf(stderr, "DTC: %s: %d: " fmt, __func__, __LINE__, ##__VA_ARGS__)
-+#else
-+#define dtc_err(fmt, ...)
-+#endif
-+
- #define DEFAULT_FDT_VERSION	17
- 
- /*
-diff --git a/fdtoverlay.c b/fdtoverlay.c
-index 5350af65679f..5f60ce4e4cea 100644
---- a/fdtoverlay.c
-+++ b/fdtoverlay.c
-@@ -16,6 +16,7 @@
- 
- #include <libfdt.h>
- 
-+#include "dtc.h"
- #include "util.h"
- 
- #define BUF_INCREMENT	65536
-diff --git a/libfdt/fdt_overlay.c b/libfdt/fdt_overlay.c
-index d217e79b6722..b24286ac8c6c 100644
---- a/libfdt/fdt_overlay.c
-+++ b/libfdt/fdt_overlay.c
-@@ -10,6 +10,7 @@
- #include <libfdt.h>
- 
- #include "libfdt_internal.h"
-+#include "../dtc.h"
- 
- /**
-  * overlay_get_target_phandle - retrieves the target phandle of a fragment
-@@ -160,12 +161,16 @@ static int overlay_adjust_node_phandles(void *fdto, int node,
- 	int ret;
- 
- 	ret = overlay_phandle_add_offset(fdto, node, "phandle", delta);
--	if (ret && ret != -FDT_ERR_NOTFOUND)
-+	if (ret && ret != -FDT_ERR_NOTFOUND) {
-+		dtc_err("Failed to add phandle offset (%d: %s)\n", node, fdt_strerror(ret));
- 		return ret;
-+	}
- 
- 	ret = overlay_phandle_add_offset(fdto, node, "linux,phandle", delta);
--	if (ret && ret != -FDT_ERR_NOTFOUND)
-+	if (ret && ret != -FDT_ERR_NOTFOUND) {
-+		dtc_err("Failed to add linux,phandle offset (%d: %s)\n", node, fdt_strerror(ret));
- 		return ret;
-+	}
- 
- 	fdt_for_each_subnode(child, fdto, node) {
- 		ret = overlay_adjust_node_phandles(fdto, child, delta);
-@@ -239,12 +244,17 @@ static int overlay_update_local_node_references(void *fdto,
- 		if (!fixup_val)
- 			return fixup_len;
- 
--		if (fixup_len % sizeof(uint32_t))
-+		if (fixup_len % sizeof(uint32_t)) {
-+			dtc_err("Invalid fixup length\n");
- 			return -FDT_ERR_BADOVERLAY;
-+		}
- 		fixup_len /= sizeof(uint32_t);
- 
- 		tree_val = fdt_getprop(fdto, tree_node, name, &tree_len);
- 		if (!tree_val) {
-+			dtc_err("Failed to get property: %s: %d\n", name,
-+				tree_len);
-+
- 			if (tree_len == -FDT_ERR_NOTFOUND)
- 				return -FDT_ERR_BADOVERLAY;
- 
-@@ -274,11 +284,17 @@ static int overlay_update_local_node_references(void *fdto,
- 								  poffset,
- 								  &adj_val,
- 								  sizeof(adj_val));
--			if (ret == -FDT_ERR_NOSPACE)
-+			if (ret == -FDT_ERR_NOSPACE) {
-+				dtc_err("Failed to update property's name: %s\n",
-+					name);
- 				return -FDT_ERR_BADOVERLAY;
-+			}
- 
--			if (ret)
-+			if (ret) {
-+				dtc_err("Failed to update property's name: %s: %s\n",
-+					name, fdt_strerror(ret));
- 				return ret;
-+			}
- 		}
- 	}
- 
-@@ -289,10 +305,16 @@ static int overlay_update_local_node_references(void *fdto,
- 
- 		tree_child = fdt_subnode_offset(fdto, tree_node,
- 						fixup_child_name);
--		if (tree_child == -FDT_ERR_NOTFOUND)
-+		if (tree_child == -FDT_ERR_NOTFOUND) {
-+			dtc_err("Failed to find subnode: %s\n",
-+				fixup_child_name);
- 			return -FDT_ERR_BADOVERLAY;
--		if (tree_child < 0)
-+		}
-+		if (tree_child < 0) {
-+			dtc_err("Failed to find subnode: %s: %s\n",
-+				fixup_child_name, fdt_strerror(tree_child));
- 			return tree_child;
-+		}
- 
- 		ret = overlay_update_local_node_references(fdto,
- 							   tree_child,
-@@ -332,6 +354,8 @@ static int overlay_update_local_references(void *fdto, uint32_t delta)
- 		if (fixups == -FDT_ERR_NOTFOUND)
- 			return 0;
- 
-+		dtc_err("Failed to find local_fixups (%s)\n",
-+			fdt_strerror(fixups));
- 		return fixups;
- 	}
- 
-@@ -435,6 +459,8 @@ static int overlay_fixup_phandle(void *fdt, void *fdto, int symbols_off,
- 	value = fdt_getprop_by_offset(fdto, property,
- 				      &label, &len);
- 	if (!value) {
-+		dtc_err("Failed to get property by offset (%s)\n",
-+			fdt_strerror(len));
- 		if (len == -FDT_ERR_NOTFOUND)
- 			return -FDT_ERR_INTERNAL;
- 
-@@ -450,8 +476,10 @@ static int overlay_fixup_phandle(void *fdt, void *fdto, int symbols_off,
- 		int poffset, ret;
- 
- 		fixup_end = memchr(value, '\0', len);
--		if (!fixup_end)
-+		if (!fixup_end) {
-+			dtc_err("fixup_end can't be 0: %s: %s\n", value, label);
- 			return -FDT_ERR_BADOVERLAY;
-+		}
- 		fixup_len = fixup_end - fixup_str;
- 
- 		len -= fixup_len + 1;
-@@ -459,32 +487,47 @@ static int overlay_fixup_phandle(void *fdt, void *fdto, int symbols_off,
- 
- 		path = fixup_str;
- 		sep = memchr(fixup_str, ':', fixup_len);
--		if (!sep || *sep != ':')
-+		if (!sep || *sep != ':') {
-+			dtc_err("Missing ':' separator: %s: %s\n", value,
-+				label);
- 			return -FDT_ERR_BADOVERLAY;
-+		}
- 
- 		path_len = sep - path;
--		if (path_len == (fixup_len - 1))
-+		if (path_len == (fixup_len - 1)) {
-+			dtc_err("Invalid path_len: %s: %s\n", value, label);
- 			return -FDT_ERR_BADOVERLAY;
-+		}
- 
- 		fixup_len -= path_len + 1;
- 		name = sep + 1;
- 		sep = memchr(name, ':', fixup_len);
--		if (!sep || *sep != ':')
-+		if (!sep || *sep != ':') {
-+			dtc_err("Missing ':' separator: %s: %s\n", value,
-+				label);
- 			return -FDT_ERR_BADOVERLAY;
-+		}
- 
- 		name_len = sep - name;
--		if (!name_len)
-+		if (!name_len) {
-+			dtc_err("name_len can't be 0: %s: %s\n", value, label);
- 			return -FDT_ERR_BADOVERLAY;
-+		}
- 
- 		poffset = strtoul(sep + 1, &endptr, 10);
--		if ((*endptr != '\0') || (endptr <= (sep + 1)))
-+		if ((*endptr != '\0') || (endptr <= (sep + 1))) {
-+			dtc_err("Invalid name string: %s: %s\n", value, label);
- 			return -FDT_ERR_BADOVERLAY;
-+		}
- 
- 		ret = overlay_fixup_one_phandle(fdt, fdto, symbols_off,
- 						path, path_len, name, name_len,
- 						poffset, label);
--		if (ret)
-+		if (ret) {
-+			dtc_err("failed to fixup one phandle: %s: %s: %s\n",
-+				value, label, fdt_strerror(ret));
- 			return ret;
-+		}
- 	} while (len > 0);
- 
- 	return 0;
-@@ -516,13 +559,19 @@ static int overlay_fixup_phandles(void *fdt, void *fdto)
- 	fixups_off = fdt_path_offset(fdto, "/__fixups__");
- 	if (fixups_off == -FDT_ERR_NOTFOUND)
- 		return 0; /* nothing to do */
--	if (fixups_off < 0)
-+	if (fixups_off < 0) {
-+		dtc_err("Failed to get fixups offset (%s)\n",
-+			fdt_strerror(fixups_off));
- 		return fixups_off;
-+	}
- 
- 	/* And base DTs without symbols */
- 	symbols_off = fdt_path_offset(fdt, "/__symbols__");
--	if ((symbols_off < 0 && (symbols_off != -FDT_ERR_NOTFOUND)))
-+	if ((symbols_off < 0 && (symbols_off != -FDT_ERR_NOTFOUND))) {
-+		dtc_err("Failed to get symbols offset (%s)\n",
-+			fdt_strerror(symbols_off));
- 		return symbols_off;
-+	}
- 
- 	fdt_for_each_property_offset(property, fdto, fixups_off) {
- 		int ret;
-@@ -633,16 +682,27 @@ static int overlay_merge(void *fdt, void *fdto)
- 		if (overlay == -FDT_ERR_NOTFOUND)
- 			continue;
- 
--		if (overlay < 0)
-+		if (overlay < 0) {
-+			dtc_err("Failed to find __overlay__ tag (%d: %s)\n",
-+				fragment, fdt_strerror(overlay));
- 			return overlay;
-+		}
- 
- 		target = overlay_get_target(fdt, fdto, fragment, NULL);
--		if (target < 0)
-+		if (target < 0) {
-+			dtc_err("Failed to retrieve fragment's target (%d: %s)\n",
-+				fragment, fdt_strerror(target));
- 			return target;
-+		}
- 
- 		ret = overlay_apply_node(fdt, target, fdto, overlay);
--		if (ret)
-+		if (ret) {
-+			if (ret != -FDT_ERR_NOSPACE) {
-+				dtc_err("Failed to apply overlay node (%d: %d: %s)\n",
-+					fragment, target, fdt_strerror(ret));
-+			}
- 			return ret;
-+		}
- 	}
- 
- 	return 0;
-@@ -718,24 +778,35 @@ static int overlay_symbol_update(void *fdt, void *fdto)
- 		root_sym = fdt_add_subnode(fdt, 0, "__symbols__");
- 
- 	/* any error is fatal now */
--	if (root_sym < 0)
-+	if (root_sym < 0) {
-+		dtc_err("Failed to get root __symbols__ (%s)\n",
-+			fdt_strerror(root_sym));
- 		return root_sym;
-+	}
- 
- 	/* iterate over each overlay symbol */
- 	fdt_for_each_property_offset(prop, fdto, ov_sym) {
- 		path = fdt_getprop_by_offset(fdto, prop, &name, &path_len);
--		if (!path)
-+		if (!path) {
-+			dtc_err("Failed to get prop by offset (%s)\n",
-+				fdt_strerror(path_len));
- 			return path_len;
-+		}
- 
- 		/* verify it's a string property (terminated by a single \0) */
--		if (path_len < 1 || memchr(path, '\0', path_len) != &path[path_len - 1])
-+		if (path_len < 1 || memchr(path, '\0', path_len) != &path[path_len - 1]) {
-+			dtc_err("Invalid property (%d)\n", path_len);
- 			return -FDT_ERR_BADVALUE;
-+		}
- 
- 		/* keep end marker to avoid strlen() */
- 		e = path + path_len;
- 
--		if (*path != '/')
-+		if (*path != '/') {
-+			dtc_err("Path should start with '/' (%s : %s)\n", path,
-+				name);
- 			return -FDT_ERR_BADVALUE;
-+		}
- 
- 		/* get fragment name first */
- 		s = strchr(path + 1, '/');
-@@ -769,26 +840,38 @@ static int overlay_symbol_update(void *fdt, void *fdto)
- 		ret = fdt_subnode_offset_namelen(fdto, 0, frag_name,
- 					       frag_name_len);
- 		/* not found? */
--		if (ret < 0)
-+		if (ret < 0) {
-+			dtc_err("Failed to find fragment index (%s: %s: %d)\n",
-+				path, frag_name, ret);
- 			return -FDT_ERR_BADOVERLAY;
-+		}
- 		fragment = ret;
- 
- 		/* an __overlay__ subnode must exist */
- 		ret = fdt_subnode_offset(fdto, fragment, "__overlay__");
--		if (ret < 0)
-+		if (ret < 0) {
-+			dtc_err("Failed to find __overlay__ subnode (%s: %s: %d)\n",
-+				path, frag_name, ret);
- 			return -FDT_ERR_BADOVERLAY;
-+		}
- 
- 		/* get the target of the fragment */
- 		ret = overlay_get_target(fdt, fdto, fragment, &target_path);
--		if (ret < 0)
-+		if (ret < 0) {
-+			dtc_err("Failed to get target for the fragment (%s: %s: %d)\n",
-+				path, frag_name, ret);
- 			return ret;
-+		}
- 		target = ret;
- 
- 		/* if we have a target path use */
- 		if (!target_path) {
- 			ret = get_path_len(fdt, target);
--			if (ret < 0)
-+			if (ret < 0) {
-+				dtc_err("Failed to get path length (%s: %s: %d)\n",
-+					path, name, ret);
- 				return ret;
-+			}
- 			len = ret;
- 		} else {
- 			len = strlen(target_path);
-@@ -796,14 +879,20 @@ static int overlay_symbol_update(void *fdt, void *fdto)
- 
- 		ret = fdt_setprop_placeholder(fdt, root_sym, name,
- 				len + (len > 1) + rel_path_len + 1, &p);
--		if (ret < 0)
-+		if (ret < 0) {
-+			dtc_err("Failed to set prop placeholder (%s: %s: %d)\n",
-+				path, name, ret);
- 			return ret;
-+		}
- 
- 		if (!target_path) {
- 			/* again in case setprop_placeholder changed it */
- 			ret = overlay_get_target(fdt, fdto, fragment, &target_path);
--			if (ret < 0)
-+			if (ret < 0) {
-+				dtc_err("Failed to get target (%s: %s: %d)\n",
-+					path, name, ret);
- 				return ret;
-+			}
- 			target = ret;
- 		}
- 
-@@ -811,8 +900,11 @@ static int overlay_symbol_update(void *fdt, void *fdto)
- 		if (len > 1) { /* target is not root */
- 			if (!target_path) {
- 				ret = fdt_get_path(fdt, target, buf, len + 1);
--				if (ret < 0)
-+				if (ret < 0) {
-+					dtc_err("Failed to get target path (%s: %s: %d)\n",
-+						path, name, ret);
- 					return ret;
-+				}
- 			} else
- 				memcpy(buf, target_path, len + 1);
- 
-@@ -836,8 +928,10 @@ int fdt_overlay_apply(void *fdt, void *fdto)
- 	FDT_RO_PROBE(fdto);
- 
- 	ret = fdt_find_max_phandle(fdt, &delta);
--	if (ret)
-+	if (ret) {
-+		dtc_err("Failed to find max phandle (%s)\n", fdt_strerror(ret));
- 		goto err;
-+	}
- 
- 	ret = overlay_adjust_local_phandles(fdto, delta);
- 	if (ret)
--- 
-2.25.0.rc1.19.g042ed3e048af
-
+       Arnd
