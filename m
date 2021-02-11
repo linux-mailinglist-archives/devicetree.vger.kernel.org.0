@@ -2,116 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7B62318DC7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 16:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1751D318E0A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 16:23:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbhBKPCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 10:02:11 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:43868 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230476AbhBKO5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 09:57:07 -0500
-Received: by mail-oi1-f173.google.com with SMTP id d20so6327544oiw.10;
-        Thu, 11 Feb 2021 06:56:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=ZSBE8OrnBCLoband96iararV+OGia8GbEuLjNGcSNuQ=;
-        b=lRvl2mR/szs2L5nutS+E6boqRlSvBI+Z5C0xEXEdEOnar54Xjb7SN1JWm73bi4CfhZ
-         ZhlNisgf5emSX6jUkru/Gk4KBzDV5SbpeaNCisfA683YC7ODFlu9sWm/BSYcVCvhWwJR
-         +M9Pl8l/e16rJza3WU0SteNGus1MUhUO8SBxtb0krWJ1DuLhDn9G3Di+9gv53frlpEsn
-         NHcPDTZs9kTwO/WAcu6dCTPfbknJFXrE33OhM0yGOmjfGsE9uLvTXkVxHSfRmCbmDoNo
-         7bGjhOlAfZiVE/pGafUBdYOGxJFRtxPhx1qsdcjGVglDJvlxvUO461pp6MlKng7PLBdC
-         NmRg==
-X-Gm-Message-State: AOAM5316D/PQ8HpSYali78l9Jp2NjQ79I3g/mBQz8uDtM408XTn2RZbV
-        QJ/7/7qQpIp3/BPLcdji1w==
-X-Google-Smtp-Source: ABdhPJw5esQJRHPAqK32bAwOjgAKr+dsJzP6O7vNUJAokj+oH0iJolY7KBln+P2dMeQum1Dz5zzHYA==
-X-Received: by 2002:aca:f12:: with SMTP id 18mr3010740oip.106.1613055383043;
-        Thu, 11 Feb 2021 06:56:23 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o98sm1054759ota.0.2021.02.11.06.56.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Feb 2021 06:56:22 -0800 (PST)
-Received: (nullmailer pid 519682 invoked by uid 1000);
-        Thu, 11 Feb 2021 14:56:20 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Peter Chen <peter.chen@nxp.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20210210091015.v5.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
-References: <20210210171040.684659-1-mka@chromium.org> <20210210091015.v5.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
-Subject: Re: [PATCH v5 1/4] dt-bindings: usb: Add binding for discrete onboard USB hubs
-Date:   Thu, 11 Feb 2021 08:56:20 -0600
-Message-Id: <1613055380.685661.519681.nullmailer@robh.at.kernel.org>
+        id S229991AbhBKPTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 10:19:49 -0500
+Received: from mail-41104.protonmail.ch ([185.70.41.104]:23258 "EHLO
+        mail-41104.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230109AbhBKPRn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 10:17:43 -0500
+Received: from mail-03.mail-europe.com (mail-03.mail-europe.com [91.134.188.129])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        by mail-41104.protonmail.ch (Postfix) with ESMTPS id 72F6D201BADD
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 15:05:12 +0000 (UTC)
+Authentication-Results: mail-41104.protonmail.ch;
+        dkim=pass (1024-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="fqEfGOTq"
+Date:   Thu, 11 Feb 2021 15:01:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1613055699;
+        bh=V6GFdB/+L/DZHe/sLaUq7G6+q6BNgR4hjKmXmpQtQlQ=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=fqEfGOTqtGlLdgzNDk0tSUF/ZvbwzfUbqoPsR1f7AGTUodJTf5Fvz0iHxfn2v9Dki
+         5IcnAYHxntRZzP/LB9yEenADY/KIT4e026Yfu1JB2U0drgM/1vpkE6KywhVfKeeVVF
+         GlZLVtwyDvdILD+yj+grEMg/qZWSHXz8BSe6Mfdo=
+To:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "wens@csie.org" <wens@csie.org>,
+        "jernej.skrabec@siol.net" <jernej.skrabec@siol.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: [PATCH] arm: dts: sun5i: Add GPU node
+Message-ID: <3SosG1rcYyn7x4mZWYK0uLKhbdlJxf3irBb7V2qGMqgH0Adv_RvNjn5lsEsx1lii5uKgurcC-lhfQ8r_AprSs9oSl02eYxZvQBqPy0qt3pw=@protonmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Feb 2021 09:10:36 -0800, Matthias Kaehlcke wrote:
-> Discrete onboard USB hubs (an example for such a hub is the Realtek
-> RTS5411) need to be powered and may require initialization of other
-> resources (like GPIOs or clocks) to work properly. This adds a device
-> tree binding for these hubs.
-> 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> 
-> Changes in v5:
-> - updated 'title'
-> - only use standard USB compatible strings
-> - deleted 'usb_hub' node
-> - renamed 'usb_controller' node to 'usb-controller'
-> - removed labels from USB nodes
-> - added 'vdd-supply' to USB nodes
-> 
-> Changes in v4:
-> - none
-> 
-> Changes in v3:
-> - updated commit message
-> - removed recursive reference to $self
-> - adjusted 'compatible' definition to support multiple entries
-> - changed USB controller phandle to be a node
-> 
-> Changes in v2:
-> - removed 'wakeup-source' and 'power-off-in-suspend' properties
-> - consistently use spaces for indentation in example
-> 
->  .../bindings/usb/onboard_usb_hub.yaml         | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> 
+sun5i has the same Mali 400 GPU as sun4i with the same interrupts, clocks
+and resets. Add node for it in dts.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+---
+ arch/arm/boot/dts/sun5i.dtsi | 42 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml:16:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+diff --git a/arch/arm/boot/dts/sun5i.dtsi b/arch/arm/boot/dts/sun5i.dtsi
+index c2b4fbf552a3..81203f19b6ce 100644
+--- a/arch/arm/boot/dts/sun5i.dtsi
++++ b/arch/arm/boot/dts/sun5i.dtsi
+@@ -726,6 +726,27 @@ i2c2: i2c@1c2b400 {
+ =09=09=09#size-cells =3D <0>;
+ =09=09};
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
++=09=09mali: gpu@1c40000 {
++=09=09=09compatible =3D "allwinner,sun4i-a10-mali", "arm,mali-400";
++=09=09=09reg =3D <0x01c40000 0x10000>;
++=09=09=09interrupts =3D <69>,
++=09=09=09=09     <70>,
++=09=09=09=09     <71>,
++=09=09=09=09     <72>,
++=09=09=09=09     <73>;
++=09=09=09interrupt-names =3D "gp",
++=09=09=09=09=09  "gpmmu",
++=09=09=09=09=09  "pp0",
++=09=09=09=09=09  "ppmmu0",
++=09=09=09=09=09  "pmu";
++=09=09=09clocks =3D <&ccu CLK_AHB_GPU>, <&ccu CLK_GPU>;
++=09=09=09clock-names =3D "bus", "core";
++=09=09=09resets =3D <&ccu RST_GPU>;
++
++=09=09=09assigned-clocks =3D <&ccu CLK_GPU>;
++=09=09=09assigned-clock-rates =3D <384000000>;
++=09=09};
++
+ =09=09timer@1c60000 {
+ =09=09=09compatible =3D "allwinner,sun5i-a13-hstimer";
+ =09=09=09reg =3D <0x01c60000 0x1000>;
+@@ -733,6 +754,27 @@ timer@1c60000 {
+ =09=09=09clocks =3D <&ccu CLK_AHB_HSTIMER>;
+ =09=09};
 
-See https://patchwork.ozlabs.org/patch/1439137
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
++=09=09mali: gpu@1c40000 {
++=09=09=09compatible =3D "allwinner,sun4i-a10-mali", "arm,mali-400";
++=09=09=09reg =3D <0x01c40000 0x10000>;
++=09=09=09interrupts =3D <69>,
++=09=09=09=09     <70>,
++=09=09=09=09     <71>,
++=09=09=09=09     <72>,
++=09=09=09=09     <73>;
++=09=09=09interrupt-names =3D "gp",
++=09=09=09=09=09  "gpmmu",
++=09=09=09=09=09  "pp0",
++=09=09=09=09=09  "ppmmu0",
++=09=09=09=09=09  "pmu";
++=09=09=09clocks =3D <&ccu CLK_AHB_GPU>, <&ccu CLK_GPU>;
++=09=09=09clock-names =3D "bus", "core";
++=09=09=09resets =3D <&ccu RST_GPU>;
++
++=09=09=09assigned-clocks =3D <&ccu CLK_GPU>;
++=09=09=09assigned-clock-rates =3D <384000000>;
++=09=09};
++
+ =09=09fe0: display-frontend@1e00000 {
+ =09=09=09compatible =3D "allwinner,sun5i-a13-display-frontend";
+ =09=09=09reg =3D <0x01e00000 0x20000>;
+--
+2.30.0
 
