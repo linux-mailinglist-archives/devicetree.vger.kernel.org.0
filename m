@@ -2,114 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86D1D31835A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 03:03:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D03B318393
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 03:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbhBKB7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 20:59:41 -0500
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:31212 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230519AbhBKBx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 20:53:28 -0500
-Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 11B1cNIE059461;
-        Wed, 10 Feb 2021 20:51:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
- cc : subject : in-reply-to : date : message-id : mime-version :
- content-type; s=pp1; bh=X5j6mPSqGFF1SA0HHpDvqRcxwl9T9VZcJScOOU6QARE=;
- b=MYMojTD8Z/YJpD2TjLKyLMsjbMr2qwB5Q7qBJ5JBDdXEEeQLLCnPDiuNziAlG6QJ+cMO
- znLQjB5kWIm4/B2mEUtJnK+9W+ZoC7LC5X5z4bzFIuDgTVTnlu4aeYk9vd9N8+HQVA9P
- Vm2ACq9tm6Tros60PBp2QEs/5UTDn+2TiDGM/FB/kUghFKDUtLKqWY9UG/N+v5JC6H8O
- bkbh/jtTSUc5xAfcPIw5ArYNUw8KkOSPwGTKkY+kjqy542/6iZYEfgJo9zTzgaSyaSYs
- RjPrDkSEERPEBIPr/exLH6qdy6ELzZ8dQWBcGEY5y2HFobKoa2RU4fjxHKu8nLSr1VJR hg== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 36mtqy8jr4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Feb 2021 20:51:44 -0500
-Received: from m0098393.ppops.net (m0098393.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 11B1cwOF061950;
-        Wed, 10 Feb 2021 20:51:43 -0500
-Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 36mtqy8jqs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Feb 2021 20:51:43 -0500
-Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
-        by ppma02wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 11B1pgGH030550;
-        Thu, 11 Feb 2021 01:51:42 GMT
-Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
-        by ppma02wdc.us.ibm.com with ESMTP id 36hjr9tdsd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 11 Feb 2021 01:51:41 +0000
-Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 11B1pe8V10748198
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 11 Feb 2021 01:51:40 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id CF4D87805C;
-        Thu, 11 Feb 2021 01:51:40 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 93F547805E;
-        Thu, 11 Feb 2021 01:51:30 +0000 (GMT)
-Received: from manicouagan.localdomain (unknown [9.160.95.194])
-        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTPS;
-        Thu, 11 Feb 2021 01:51:30 +0000 (GMT)
-References: <20210209182200.30606-1-nramas@linux.microsoft.com>
- <20210209182200.30606-7-nramas@linux.microsoft.com>
-User-agent: mu4e 1.4.10; emacs 27.1
-From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
-        gregkh@linuxfoundation.org, will@kernel.org, joe@perches.com,
-        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
-        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
-        frowand.list@gmail.com, vincenzo.frascino@arm.com,
-        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
-        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
-        tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v17 06/10] powerpc: Enable passing IMA log to next
- kernel on kexec
-In-reply-to: <20210209182200.30606-7-nramas@linux.microsoft.com>
-Date:   Wed, 10 Feb 2021 22:51:27 -0300
-Message-ID: <87pn17nzhc.fsf@manicouagan.localdomain>
+        id S229517AbhBKC3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 21:29:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55758 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229451AbhBKC3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Feb 2021 21:29:31 -0500
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97FB7C061756
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 18:28:51 -0800 (PST)
+Received: by mail-qv1-xf2f.google.com with SMTP id a1so1907606qvd.13
+        for <devicetree@vger.kernel.org>; Wed, 10 Feb 2021 18:28:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=v/JR6cxBec2OO4AyQr8LqOFJlkaTALkaG4hkaa3+jH0=;
+        b=tmRca4PB2kps0fAMgBJNaTQMArARvSx/SfChzgUdm89r1VOxPYGtgjUqVJbGvABQBi
+         b1p0l2nSh7eJd4bBjJyqeqxxzLEQMSvO8U2c8yeds2A1CQZbqXlsRAzJKmGHJukytAFJ
+         m/GJu+/zc7xAK2nEL38pW+FCnNngPCIIy0dc0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=v/JR6cxBec2OO4AyQr8LqOFJlkaTALkaG4hkaa3+jH0=;
+        b=iVvJQWkOzw49Y/cypBQNkGlLU/cqyvoZFMyVk2tej4msutKmH46oapqHZtotj1cfLe
+         IJ/AOkCdsko8e9a/lOb/3JnDbbV1fhcgcC6qAXWqFIQF5zJNlkK5LeWDR2SfIvkakIXL
+         SSqF76o7NtIGxaswhEALOYJGOQ+TbU8TH9C7hML7mhtSBHUgRYAVU0kIlvD6Ze+4w5hR
+         r/pf/YvMCKlJPh6XnFe+jkkX6/ebmXBl1+SCoTB8a+WeJmM1GBpCjsxus9GrRTsGYMV/
+         94k7vluAHH2n9CN/a7b0m5OqeKFcCkG4zP4w68kRdm+d/wAlww7KndjcQWdpqAtWf6Eq
+         jzQg==
+X-Gm-Message-State: AOAM530eDpPNVOpQE3oMjhYLvr56KUSLxz/8uCo/rx+/PwNDfGPqaQik
+        S9xpV0/xeiSrEH6TlJoljCI6UjVBu0kAdS76yS0Mcw==
+X-Google-Smtp-Source: ABdhPJwx4HM5jl8YL/e1RHuGN3F2Bjd7U1tHpztED7tcsPkI5wXPP1SMXIcnSHppZZwsNvyRd5ps9xcpcH8nuzQqmAQ=
+X-Received: by 2002:a0c:ec83:: with SMTP id u3mr5631558qvo.55.1613010530875;
+ Wed, 10 Feb 2021 18:28:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-10_11:2021-02-10,2021-02-10 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- suspectscore=0 mlxlogscore=999 bulkscore=0 priorityscore=1501
- malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0 phishscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2102110005
+References: <20201114135044.724385-1-daniel@0x0f.com> <20201114135044.724385-3-daniel@0x0f.com>
+ <160843556037.1580929.13575770228476494246@swboyd.mtv.corp.google.com>
+ <CAFr9PX=f=HyHBk4s3e_vnMDC53R1X18m7sKFCLMMjitPm+8oEQ@mail.gmail.com>
+ <160848984935.1580929.936824086681978646@swboyd.mtv.corp.google.com>
+ <CAFr9PX=oLqQqvykiwOGAGg1H2CG0BTEqn0TuSrijodjxY52LxQ@mail.gmail.com> <161292417080.418021.13416197091150418216@swboyd.mtv.corp.google.com>
+In-Reply-To: <161292417080.418021.13416197091150418216@swboyd.mtv.corp.google.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Thu, 11 Feb 2021 11:28:40 +0900
+Message-ID: <CAFr9PXkGeFUyGCKZgYF+0uJT1ywad42RvPg39ggO8WRngY8uWw@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: clk: mstar msc313 mpll binding description
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     DTML <devicetree@vger.kernel.org>, linux-clk@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Willy Tarreau <w@1wt.eu>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Stephen,
 
-Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+On Wed, 10 Feb 2021 at 11:29, Stephen Boyd <sboyd@kernel.org> wrote:
+> The child clks should be using clk_parent_data to point to the parent
+> clks through DT. That way the name of the clk doesn't matter except for
+> debug purposes.
 
-> CONFIG_HAVE_IMA_KEXEC is enabled to indicate that the IMA measurement
-> log information is present in the device tree. This should be selected
-> only if CONFIG_IMA is enabled.
->
-> Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC, if CONFIG_IMA
-> is enabled, to indicate that the IMA measurement log information is
-> present in the device tree for powerpc.
->
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> Suggested-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
-> ---
->  arch/powerpc/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+I think I get it now. I was using of_clk_parent_fill() to get the
+parent clocks sourced
+from the mpll but I seems like I should be filling out an array of
+struct clk_parent_data
+with the indices of the parents and using
+clk_register_composite_pdata() etc instead.
 
-Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+Thanks!
 
--- 
-Thiago Jung Bauermann
-IBM Linux Technology Center
+Daniel
