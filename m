@@ -2,76 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 207FE3187A0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 11:02:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3F0E31879F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 11:02:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbhBKKAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 05:00:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38498 "EHLO
+        id S229965AbhBKKAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 05:00:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbhBKJ6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 04:58:38 -0500
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3DCFC06178A;
-        Thu, 11 Feb 2021 01:57:57 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4DbsV66BM5z1rync;
-        Thu, 11 Feb 2021 10:56:46 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4DbsV64sP3z1qqkk;
-        Thu, 11 Feb 2021 10:56:46 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id YOUNmZ5bNsfv; Thu, 11 Feb 2021 10:56:45 +0100 (CET)
-X-Auth-Info: /ITW3VU/8mHRcQSUWUiZtyRIXNsD9A4dI4pl25FvgWY=
-Received: from localhost (dslb-002-207-026-175.002.207.pools.vodafone-ip.de [2.207.26.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Thu, 11 Feb 2021 10:56:45 +0100 (CET)
-From:   Claudius Heine <ch@denx.de>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Claudius Heine <ch@denx.de>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
-        / MXC ARM ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
-Cc:     Marek Vasut <marex@denx.de>
-Subject: [PATCH] pinctrl: imx: imx8mm: fix pad offset of SD1_DATA0 pin
-Date:   Thu, 11 Feb 2021 10:54:12 +0100
-Message-Id: <20210211095413.1043102-1-ch@denx.de>
-X-Mailer: git-send-email 2.30.0
+        with ESMTP id S230285AbhBKJ61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 04:58:27 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DECBAC061788
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 01:57:46 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id jj19so9137317ejc.4
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 01:57:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rIqYHGlJLrTIm7p5vVOsw9X0+y09tyOklgLAYqgfA6I=;
+        b=WUEpTJ9D8DpxHhl5r4uQFL+jdtHXnzMN0Ilg9hrAI5XLnuccAUUT6Lu+g+9fKADLmq
+         ypSnjXl7taT73JPt1dJSDZK/cEFlq9Nbxhn87TX6FsxYMTN9iiuwmrqnez9rFAHwE7j6
+         aXmF61yzyyjHwMqfkBJ+t05t8d+8Pd4zQCkLeL+e2u7EEBI6oZU4r59rUmA1f6uvEGJF
+         zcVMKJbFVXJigmcOVAo5UBs523jl0cYVS6UjQBkO68h038LFXiBGYZa2ozesPGqsXqI6
+         Rf2rv2ir5ZUqGAEVIahbm5lRb7BeX9Go+5y3lYMEDKxTz5tnK8AsWgKGz+peydAw9woa
+         ShKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rIqYHGlJLrTIm7p5vVOsw9X0+y09tyOklgLAYqgfA6I=;
+        b=fTksmBETDwxZKcoPZxA0hNNGFNb/hwXmIsDBqoJjoopg9b/FhVM1tQTCPEcb4qWoou
+         203ExNg2PXUxAx0zE/3iWkeq5X5od/7ZubJfiBl80LFYyNsDG/SyKVnhu8spo032m5I3
+         ej8dQKFTrmgiPwZ3jPA3I46dqstB5ODae8HEdYlSfPqAViKCNGsIJlgEQjGOXDGdCUg5
+         AwrLnfV0xJ30Qada4RKCrTdWzgXQcgrv2ejKnzy22XuY90dKhUBvjgbeo+4OTfqXmzz7
+         sojEF65A2+Ly+ZXOR/fhnn2a9+0dlpsBrQc+sRhSlfzDoS0gApw6F+J4llSAI1q0jjIC
+         ftvw==
+X-Gm-Message-State: AOAM531lZIxzsv/cLvr8QsS4cgXc0YyWrdmFeIUGuBhYBEUqUob+z7wq
+        CZPNpSBPWCGKelkvRFJuM7JF1/srOiaKl7j9SQ0YOQ==
+X-Google-Smtp-Source: ABdhPJx2pTO4USpUfRR02212letWnFzySzsj9FFAnYoNY64dPlUq3O/Djt7hdh9IbxSXbgmAI1nKJM1el2XUJTuJjIg=
+X-Received: by 2002:a17:906:3105:: with SMTP id 5mr7859252ejx.168.1613037465341;
+ Thu, 11 Feb 2021 01:57:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210208222203.22335-1-info@metux.net> <20210208222203.22335-8-info@metux.net>
+In-Reply-To: <20210208222203.22335-8-info@metux.net>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Thu, 11 Feb 2021 10:57:34 +0100
+Message-ID: <CAMpxmJVO79q7aZPPwsCn1eZWiyRBpH-HQsgXFv-0Hq_YcPg_Og@mail.gmail.com>
+Subject: Re: [RFC PATCH 07/12] gpio: amd-fch: add oftree probing support
+To:     "Enrico Weigelt, metux IT consult" <info@metux.net>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a 0 missing in the pad register offset. This patch adds it.
+On Mon, Feb 8, 2021 at 11:22 PM Enrico Weigelt, metux IT consult
+<info@metux.net> wrote:
+>
+> Add support for probing via device tree.
+> ---
+>  drivers/gpio/gpio-amd-fch.c                     | 58 +++++++++++++++++++++++++
+>  include/dt-bindings/gpio/amd-fch-gpio.h         | 36 +++++++++++++++
+>  include/linux/platform_data/gpio/gpio-amd-fch.h | 24 ++--------
+>  3 files changed, 98 insertions(+), 20 deletions(-)
+>  create mode 100644 include/dt-bindings/gpio/amd-fch-gpio.h
+>
+> diff --git a/drivers/gpio/gpio-amd-fch.c b/drivers/gpio/gpio-amd-fch.c
+> index 2a21354ed6a0..32024f99dae5 100644
+> --- a/drivers/gpio/gpio-amd-fch.c
+> +++ b/drivers/gpio/gpio-amd-fch.c
+> @@ -136,12 +136,61 @@ static int amd_fch_gpio_request(struct gpio_chip *chip,
+>         return 0;
+>  }
+>
+> +static struct amd_fch_gpio_pdata *load_pdata(struct device *dev)
 
-Signed-off-by: Claudius Heine <ch@denx.de>
----
- arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Please stick to the amd_fch_ prefix to all symbols for consistency.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-index 5ccc4cc91959d..a003e6af33533 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-@@ -124,7 +124,7 @@
- #define MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD                                     0x0A4 0x30C 0x000 0x0 0x0
- #define MX8MM_IOMUXC_SD1_CMD_GPIO2_IO1                                      0x0A4 0x30C 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0                                 0x0A8 0x310 0x000 0x0 0x0
--#define MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x31  0x000 0x5 0x0
-+#define MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x310 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1                                 0x0AC 0x314 0x000 0x0 0x0
- #define MX8MM_IOMUXC_SD1_DATA1_GPIO2_IO3                                    0x0AC 0x314 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2                                 0x0B0 0x318 0x000 0x0 0x0
--- 
-2.30.0
+> +{
+> +       struct amd_fch_gpio_pdata *pdata;
+> +       int ret;
+> +
+> +       pdata = devm_kzalloc(dev, sizeof(struct amd_fch_gpio_pdata),
+> +                            GFP_KERNEL);
+> +       if (!pdata)
+> +               goto nomem;
+> +
+> +       pdata->gpio_num = of_property_count_elems_of_size(dev->of_node,
+> +                                                         "gpio-regs",
+> +                                                         sizeof(u32));
+> +       pdata->gpio_reg = devm_kzalloc(dev, sizeof(int)*pdata->gpio_num,
+> +                                      GFP_KERNEL);
+> +       if (!pdata->gpio_reg)
+> +               goto nomem;
+> +
+> +       pdata->gpio_names = devm_kzalloc(dev, sizeof(char*)*pdata->gpio_num,
+> +                                        GFP_KERNEL);
+> +       if (!pdata->gpio_names)
+> +               goto nomem;
+> +
+> +       ret = of_property_read_variable_u32_array(dev->of_node, "gpio-regs",
+> +                                                 pdata->gpio_reg,
+> +                                                 pdata->gpio_num,
+> +                                                 pdata->gpio_num);
+> +       if (ret != pdata->gpio_num) {
+> +               dev_err(dev, "failed reading gpio-regs from DT: %d\n", ret);
+> +               return NULL;
+> +       }
+> +
+> +       ret = of_property_read_string_array(dev->of_node, "gpio-line-names",
+> +                                           pdata->gpio_names, pdata->gpio_num);
+> +       if (ret != pdata->gpio_num) {
+> +               dev_err(dev, "failed reading gpio-names from DT: %d\n", ret);
+> +               return NULL;
+> +       }
 
+Since you're not iterating over DT nodes nor use any interfaces
+specific to OF - I suggest you use the generic device properties to
+load the fill the platform data.
+
+> +
+> +       return pdata;
+> +
+> +nomem:
+> +       dev_err(dev, "load_pdata: failed allocating memory\n");
+> +       return NULL;
+> +}
+> +
+>  static int amd_fch_gpio_probe(struct platform_device *pdev)
+>  {
+>         struct amd_fch_gpio_priv *priv;
+>         struct amd_fch_gpio_pdata *pdata;
+>
+>         pdata = dev_get_platdata(&pdev->dev);
+> +       if (!pdata)
+> +               pdata = load_pdata(&pdev->dev);
+> +
+>         if (!pdata) {
+>                 dev_err(&pdev->dev, "no platform_data\n");
+>                 return -ENOENT;
+> @@ -165,6 +214,9 @@ static int amd_fch_gpio_probe(struct platform_device *pdev)
+>         priv->gc.get_direction          = amd_fch_gpio_get_direction;
+>         priv->gc.get                    = amd_fch_gpio_get;
+>         priv->gc.set                    = amd_fch_gpio_set;
+> +#ifdef CONFIG_OF_GPIO
+> +       priv->gc.of_node                = pdev->dev.of_node;
+> +#endif
+>
+>         spin_lock_init(&priv->lock);
+>
+> @@ -177,9 +229,15 @@ static int amd_fch_gpio_probe(struct platform_device *pdev)
+>         return devm_gpiochip_add_data(&pdev->dev, &priv->gc, priv);
+>  }
+>
+> +static const struct of_device_id amd_fch_gpio_of_match[] = {
+> +       { .compatible = "amd,fch-gpio" },
+> +       {}
+> +};
+
+Don't you need the module table?
+
+> +
+>  static struct platform_driver amd_fch_gpio_driver = {
+>         .driver = {
+>                 .name = AMD_FCH_GPIO_DRIVER_NAME,
+> +               .of_match_table = amd_fch_gpio_of_match,
+>         },
+>         .probe = amd_fch_gpio_probe,
+>  };
+> diff --git a/include/dt-bindings/gpio/amd-fch-gpio.h b/include/dt-bindings/gpio/amd-fch-gpio.h
+> new file mode 100644
+> index 000000000000..7a47e6debcdb
+> --- /dev/null
+> +++ b/include/dt-bindings/gpio/amd-fch-gpio.h
+> @@ -0,0 +1,36 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +
+> +/*
+> + * AMD FCH gpio platform data definitions
+> + *
+> + * Copyright (C) 2020 metux IT consult
+> + * Author: Enrico Weigelt <info@metux.net>
+> + *
+> + */
+> +
+> +#ifndef __DT_BINDINGS_GPIO_AMD_FCH_REGS_H
+> +#define __DT_BINDINGS_GPIO_AMD_FCH_REGS_H
+> +
+> +/*
+> + * gpio registers addresses
+> + *
+> + * these regs need to be assigned by board setup, since they're wired
+> + * in very board specifici was, rarely documented, this should not be
+> + * available to users.
+> + */
+> +#define AMD_FCH_GPIO_REG_GPIO49                0x40
+> +#define AMD_FCH_GPIO_REG_GPIO50                0x41
+> +#define AMD_FCH_GPIO_REG_GPIO51                0x42
+> +#define AMD_FCH_GPIO_REG_GPIO55_DEVSLP0        0x43
+> +#define AMD_FCH_GPIO_REG_GPIO57                0x44
+> +#define AMD_FCH_GPIO_REG_GPIO58                0x45
+> +#define AMD_FCH_GPIO_REG_GPIO59_DEVSLP1        0x46
+> +#define AMD_FCH_GPIO_REG_GPIO64                0x47
+> +#define AMD_FCH_GPIO_REG_GPIO68                0x48
+> +#define AMD_FCH_GPIO_REG_GPIO66_SPKR   0x5B
+> +#define AMD_FCH_GPIO_REG_GPIO71                0x4D
+> +#define AMD_FCH_GPIO_REG_GPIO32_GE1    0x59
+> +#define AMD_FCH_GPIO_REG_GPIO33_GE2    0x5A
+> +#define AMT_FCH_GPIO_REG_GEVT22                0x09
+> +
+> +#endif /* __DT_BINDINGS_GPIO_AMD_FCH_REGS_H */
+> diff --git a/include/linux/platform_data/gpio/gpio-amd-fch.h b/include/linux/platform_data/gpio/gpio-amd-fch.h
+> index 255d51c9d36d..336f7387e82c 100644
+> --- a/include/linux/platform_data/gpio/gpio-amd-fch.h
+> +++ b/include/linux/platform_data/gpio/gpio-amd-fch.h
+> @@ -11,25 +11,9 @@
+>  #ifndef __LINUX_PLATFORM_DATA_GPIO_AMD_FCH_H
+>  #define __LINUX_PLATFORM_DATA_GPIO_AMD_FCH_H
+>
+> -#define AMD_FCH_GPIO_DRIVER_NAME "gpio_amd_fch"
+> +#include <dt-bindings/gpio/amd-fch-gpio.h>
+>
+> -/*
+> - * gpio register index definitions
+> - */
+> -#define AMD_FCH_GPIO_REG_GPIO49                0x40
+> -#define AMD_FCH_GPIO_REG_GPIO50                0x41
+> -#define AMD_FCH_GPIO_REG_GPIO51                0x42
+> -#define AMD_FCH_GPIO_REG_GPIO55_DEVSLP0        0x43
+> -#define AMD_FCH_GPIO_REG_GPIO57                0x44
+> -#define AMD_FCH_GPIO_REG_GPIO58                0x45
+> -#define AMD_FCH_GPIO_REG_GPIO59_DEVSLP1        0x46
+> -#define AMD_FCH_GPIO_REG_GPIO64                0x47
+> -#define AMD_FCH_GPIO_REG_GPIO68                0x48
+> -#define AMD_FCH_GPIO_REG_GPIO66_SPKR   0x5B
+> -#define AMD_FCH_GPIO_REG_GPIO71                0x4D
+> -#define AMD_FCH_GPIO_REG_GPIO32_GE1    0x59
+> -#define AMD_FCH_GPIO_REG_GPIO33_GE2    0x5A
+> -#define AMT_FCH_GPIO_REG_GEVT22                0x09
+> +#define AMD_FCH_GPIO_DRIVER_NAME "gpio_amd_fch"
+>
+>  /*
+>   * struct amd_fch_gpio_pdata - GPIO chip platform data
+> @@ -39,8 +23,8 @@
+>   */
+>  struct amd_fch_gpio_pdata {
+>         int                     gpio_num;
+> -       int                     *gpio_reg;
+> -       const char * const      *gpio_names;
+> +       u32                     *gpio_reg;
+> +       const char *            *gpio_names;
+>  };
+>
+>  #endif /* __LINUX_PLATFORM_DATA_GPIO_AMD_FCH_H */
+> --
+> 2.11.0
+>
+
+Bartosz
