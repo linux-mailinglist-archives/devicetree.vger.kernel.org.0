@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD0F3318B52
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 14:00:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 325A3318B7F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 14:05:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230490AbhBKM7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 07:59:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231192AbhBKM5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 07:57:47 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B3BC0613D6;
-        Thu, 11 Feb 2021 04:57:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=hczxf3HIW10i9ZHaBQsIaDj5cQ6tVYBF+zj1VNBAG80=; b=lJYT4uDsLXbIOSHD560hGhTZE
-        +9pGcejLyOYi14B6m/KKivFpZJjZZunsBcUVH/4yYIhg1KEfTcrU7NMSRHy7cpGKEO2nRBcq/Qfjj
-        QW52KaB3YS3w0c8XMZK0ZSmPIlj1/9bSmKg0uOUXs5jYks1y/Md4Wm1rMjDrxJQzl4EDSXcbVJO7K
-        4egBYiudOcl9o4fAci01i233XbkuSNw8iVxJVv4Ck/AgnR84cGDlAFhPqv4F0rkHXYzfyV2D8oGGd
-        U6NhPaPgm0RbTU0JE0uBrJ9nlQ43trXCUUZe27ZAiuLJ0h1VTqmCbjKtk/iOv2WCln0csaxe6OSRs
-        1HeT5fMNg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42036)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1lABWq-0006BJ-26; Thu, 11 Feb 2021 12:57:04 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1lABWp-00066q-DM; Thu, 11 Feb 2021 12:57:03 +0000
-Date:   Thu, 11 Feb 2021 12:57:03 +0000
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     stefanc@marvell.com
-Cc:     netdev@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        davem@davemloft.net, nadavh@marvell.com, ymarkman@marvell.com,
-        linux-kernel@vger.kernel.org, kuba@kernel.org, mw@semihalf.com,
-        andrew@lunn.ch, atenart@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, sebastian.hesselbarth@gmail.com,
-        gregory.clement@bootlin.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v13 net-next 14/15] net: mvpp2: set 802.3x GoP Flow
- Control mode
-Message-ID: <20210211125701.GI1463@shell.armlinux.org.uk>
-References: <1613040542-16500-1-git-send-email-stefanc@marvell.com>
- <1613040542-16500-15-git-send-email-stefanc@marvell.com>
+        id S231843AbhBKNF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 08:05:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58640 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230450AbhBKNCW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Feb 2021 08:02:22 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F35A564E2E;
+        Thu, 11 Feb 2021 13:01:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613048471;
+        bh=WnyGBvukUkLqPxdNkfpak87sM7oXRCrIkT9BS5tTt3I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dMLfKjEpazSyrsLUGmSOTD7Y6xG8Xx9++lGFL0JkZwLMAskDhuywP1IXGdhMo/edT
+         TMJ4qR1p2L/bUB7vBJXB9dx6d6PYvcuoEA5/cKpD3v56/X1tLgr+xjov/1izDzungN
+         yNL7TVil1i82hO8iam3C01PT+NhGhvQ3w8mSB9KQaifMdEzvtvPQUeW98kXLmwMEdk
+         mLmAZ6jsTym8ilmR7UdjATvdtxcZLTCyoPYjaOetv/RncW+gU+o3dxaIxsi3HJE6WP
+         JWm8QEseg0zhLYK5toOUR07c72i+Jv1PflXK42A6DADuo7laMpCvF6VlGi7V1mbqtQ
+         2phajwNgHslOw==
+Date:   Thu, 11 Feb 2021 13:00:18 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     robh@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
+        kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sharadg@nvidia.com
+Subject: Re: [PATCH 2/3] Revert "ASoC: audio-graph-card: Add clocks property
+ to endpoint node"
+Message-ID: <20210211130018.GB5217@sirena.org.uk>
+References: <1612939421-19900-1-git-send-email-spujar@nvidia.com>
+ <1612939421-19900-3-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="24zk1gE8NUlDmwG9"
 Content-Disposition: inline
-In-Reply-To: <1613040542-16500-15-git-send-email-stefanc@marvell.com>
+In-Reply-To: <1612939421-19900-3-git-send-email-spujar@nvidia.com>
+X-Cookie: Do not pick the flowers.
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 11, 2021 at 12:49:01PM +0200, stefanc@marvell.com wrote:
-> From: Stefan Chulski <stefanc@marvell.com>
-> 
-> This patch fix GMAC TX flow control autoneg.
-> Flow control autoneg wrongly were disabled with enabled TX
-> flow control.
-> 
-> Signed-off-by: Stefan Chulski <stefanc@marvell.com>
-> Acked-by: Marcin Wojtas <mw@semihalf.com>
 
-Should this patch be placed towards the start of this series (along with
-the other fix for the thread number limit I mentioned previously?)
+--24zk1gE8NUlDmwG9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+On Wed, Feb 10, 2021 at 12:13:40PM +0530, Sameer Pujar wrote:
+> An endpoint is not a device and it is recommended to use clocks property
+> in the device node. Hence reverting the original change.
+
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--24zk1gE8NUlDmwG9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAlKmEACgkQJNaLcl1U
+h9AqpggAgl/pYTDMcCSFre1v3IzW62gDhJyT5/i75NSiBoD9gGhTSyWoEguV0Iy3
+CR8KieeeZYDCNBlnXqFh7el6vB7flEfJZrJLcOFxIcOfios3ijLes48HFcQlkIEx
+/Iqz9w76tw6tEj5ZXqD+D7SecR/E94+Wun2AbxbtY4gDizqGCxGJGgCLoQ3NklGL
+6KSCuOsX/njb9vvBfl1Kk2U7IdMc0EuRdAobYB0hWKKri8m0RGmVxWGVXb/3yec7
+KAShGbuZfcnmIWi9SycNi7uoq5KIwOQql5A9FkgQ1cp/8nUz1NCKc1bQlp6noLOM
+iiD03c83baYnzjduuuDbuKRsL3b9hQ==
+=K+NY
+-----END PGP SIGNATURE-----
+
+--24zk1gE8NUlDmwG9--
