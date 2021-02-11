@@ -2,113 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45BB0319940
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 05:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A803199B7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 06:29:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbhBLEmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 23:42:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53378 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbhBLEmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 23:42:07 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC04CC061756
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 20:41:26 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id r2so2058904plr.10
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 20:41:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=3WNMt5XR+692WIpXHZivWGdM4xBg7M/kL8/oPyqVZG4=;
-        b=qaQ5JWYqNNgsWrAMQwM8o2jl8EI0jJR2snb9qPJvnTXgING1a+YDGz4nusTevahy80
-         kWwJ8PR+3Xbj7JFAtYCUuqkzUUc12Y/7Pta24nOyz6mjnVappjZrdflJ3JuSm4bYIQOW
-         w3FYTt1q83kY+ycLunbpsWg7ALI12ARzJcgferXPxk4uZ3euWCv1PPExNynfikwGKhiv
-         MXEt0dgmQ1sAOktW+4niEDh8HTnY43T2cepdVJL1v7+atSnoexSzs98yz40ZSeThDsYr
-         hcbjqWHeBSWXMS1uURtgLlrKaQ0dN3V36yQpSeQQGbIzqapNOylA7gm3ah6LiqEaozAP
-         RZzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3WNMt5XR+692WIpXHZivWGdM4xBg7M/kL8/oPyqVZG4=;
-        b=JKhQRy3dStpaLHAvVIH8FhWIn3XsfIbVujJqk6h0Z6tup8J9dL2otZcz8OARhOXaXx
-         SdtQ7jrybkjTJ5oVQ/Tc9515MOrxuFn6mOtdtJ5QoxWQQkOsxr9Ar3ORTTOc8dRIHLoB
-         pePUsc6o+0goWzZXanj9+CJuo/ZmMwIPDt1dM/rF1AbaJ6MM9gYPiWv9NO+EK8pe94uG
-         bSHeboFg3sIatSWUNoQHEYdM457NrYJDDBOd5G8QqiznMx484PbTEHG7LaZIZhw2YKhW
-         s8WeeGcC96nmNBC+CFU7GKg3SLHI7HW+62IBPsNDce41p76fUXWbTtZoRx+g4i5Ljob/
-         ziOg==
-X-Gm-Message-State: AOAM533NJCMdVy9m3PMW9M0WeKuW0hF9HSybTVJ6n3aeMZRxVXdq+L/U
-        CeQy2coTrvcLffuq3L3/xqO2J/M4s2cJrw==
-X-Google-Smtp-Source: ABdhPJyd9z/0E7cIiRh5X4uMlSbgcHzZSG/VIra3j3yOYbbXcYBEgVNzBzpdHejP7k0epZ2ItDg0Nw==
-X-Received: by 2002:a17:902:b094:b029:e3:a2f:4681 with SMTP id p20-20020a170902b094b02900e30a2f4681mr1370874plr.69.1613104886229;
-        Thu, 11 Feb 2021 20:41:26 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id h11sm7316176pfr.201.2021.02.11.20.41.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 11 Feb 2021 20:41:25 -0800 (PST)
-Date:   Fri, 12 Feb 2021 10:11:23 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Anmar Oueja <anmar.oueja@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Subject: Re: [PATCH V7 1/3] kbuild: Add generic rule to apply fdtoverlay
-Message-ID: <20210212044123.7i6kzgekoddqufko@vireshk-i7>
-References: <cover.1612955268.git.viresh.kumar@linaro.org>
- <44dad578df8a848fc378cd358f03b071f44c9a5b.1612955268.git.viresh.kumar@linaro.org>
- <CAK7LNARa8GzhhvZWV_KAW=MC0DRcSsfPsQ-KTBRRpbBgBqY=ig@mail.gmail.com>
- <CAL_JsqKHUG6VvvpQ18YdzsOA_gZ59gFsc2tUzt1SxKHsO2A03g@mail.gmail.com>
- <CAK7LNAQH8hVwqGF+82j=38gi7VaixLhYS-K1uT1wdX4t07pJ6Q@mail.gmail.com>
+        id S229584AbhBLF3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 00:29:17 -0500
+Received: from ds4-eude-ss.host.gl ([138.201.31.212]:38589 "EHLO
+        ds4-eude-ss.host.gl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229457AbhBLF3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 00:29:15 -0500
+X-Greylist: delayed 44037 seconds by postgrey-1.27 at vger.kernel.org; Fri, 12 Feb 2021 00:29:14 EST
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=baspool.net
+        ; s=default; h=Content-Transfer-Encoding:Content-Type:Message-ID:Subject:To:
+        From:Date:MIME-Version:Sender:Reply-To:Cc:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=ysZYeEAgUQ/2Xdixeq+Pm9OgKbtC8GtW6tWlH59hTCU=; b=vDcLirvYafjLUxh/HmDws84qgN
+        4YreuHHX85bxoyRL3JKUGpGg1oeff9wThwZolmnMDCqlG3YPEiZ6yc5qU4yJFI9eVRAmXZZTmzgZ2
+        r3D83GxAIRk8SZ8aKP+TpPfD2EEKaEPHnRZl8qd2eQDzMo2BkhfrjoY1HX6jnwT612qwUXTFIO+a7
+        gZLn2V9aao8sDO6TAuQOa0kOMjLIKxu4UQ7kYoEtf14PDVtYbXhyk0teT4xrnhPLZqYqLM6eZOAdG
+        2fhDnTf+91SavDr9lmxo52KWm2wIGGVZqJ0VrsFJmM8RbShgWs1J+aQFivZJIKeQxyiGMjQ24g30G
+        UffIBivg==;
+Received: from [::1] (port=36763 helo=ds4-eude-ss.host.gl)
+        by ds4-eude-ss.host.gl with esmtpa (Exim 4.93)
+        (envelope-from <baspool@baspool.net>)
+        id 1lAFGs-0087Ou-Ou; Thu, 11 Feb 2021 17:56:50 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK7LNAQH8hVwqGF+82j=38gi7VaixLhYS-K1uT1wdX4t07pJ6Q@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Date:   Thu, 11 Feb 2021 17:56:50 +0100
+From:   baspool@baspool.net
+To:     baspool@baspool.net
+Subject: Bitcoin Investment Opportunity
+User-Agent: Roundcube Webmail/1.4.10
+Message-ID: <990faa18d914623621e4155789f75ad6@baspool.net>
+X-Sender: baspool@baspool.net
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - ds4-eude-ss.host.gl
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - baspool.net
+X-Get-Message-Sender-Via: ds4-eude-ss.host.gl: authenticated_id: baspool@baspool.net
+X-Authenticated-Sender: ds4-eude-ss.host.gl: baspool@baspool.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-02-21, 12:07, Masahiro Yamada wrote:
-> BTW, I do not know how to use overlay.
-> Do we apply overlay in the build time?
+Enjoy steady daily stream of income using the #Baspool mining network to 
+invest your bitcoins.  https://www.Baspool.net is 100% risk free and 
+your payout is guaranteed.  If you are looking for where to invest 
+bitcoins or love to make money online, I will hire you to work smartly 
+using #baspool network inc.
 
-Ideally it can be applied at both build time and runtime, but we
-haven't allowed the runtime way until now in kernel. This patchset is
-all about applying it at build time.
 
-> If so, I do not know what the benefit of overlay is.
-> Or is this just for build testing?
+   Bitcoin mining is painstaking and expensive.  #Baspool is a Bitcoin 
+mining network that can stand it all for you and give you the financial 
+freedom you deserve, #Baspool is a pool of Bitcoin mining hardware 
+powered by Asic chips.
 
-For now the main benefit of using them is that we can keep stuff in
-separate files without including each other. For example a primary
-board may or may not have an extension board connected to it.
+   ASICs were the next step after processors, GPUs, and FPGAs.  Capable 
+of easily outperforming the aforementioned bitcoin mining platforms in 
+both speed and efficiency, all bitcoin mining equipment that is 
+practically used will use one or more bitcoin ASICs.
 
-Without overlays we will have this many dtbs for this simple case:
-1. primary.dtb
-2. extension.dtb
-3. primary-includes-extension.dtb
+   Please note that Bitcoin ASIC chips can usually only be used to mine 
+Bitcoin.  While there are rare exceptions - for example, chips that mine 
+both Bitcoin and Litecoin - this is often because the chip package 
+actually has two ASICs, one for Bitcoin and one for Litecoin.
 
-With overlays we will have the first two. Now the same extension can
-be applied to lots of boards and multiple extensions can be applied to
-the same primary board. This just complicates the process of managing
-dtbs.
+   Make high profits every day without stress, we are accountable for 
+your progress because we are a network of wonderful people who believe 
+that you have the right to financial freedom.
 
-> I just thought this was done in the boot time,
-> for example, in U-Boot or something.
+   Baspool is registered and legal so you have nothing to worry about and 
+you can be sure that you will receive profit  DAILY.  You can also 
+request bitcoin mining software and connect directly to the network if 
+you want to earn faster.
 
-Yes, bootloader can do it as well.
-
--- 
-viresh
+#bitcoin #blockchain #cryptocurrency #investment #btc #t9fbtc
