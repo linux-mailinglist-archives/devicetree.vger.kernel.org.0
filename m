@@ -2,97 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD6DD318A45
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 13:21:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 761A6318A9E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 13:34:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230401AbhBKMS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 07:18:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39622 "EHLO
+        id S230497AbhBKMbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 07:31:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbhBKMPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 07:15:54 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C45DC0617A7;
-        Thu, 11 Feb 2021 04:13:26 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id a22so7041636ljp.10;
-        Thu, 11 Feb 2021 04:13:26 -0800 (PST)
+        with ESMTP id S231366AbhBKM20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 07:28:26 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47A3C061574
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 04:27:45 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id r21so3974114wrr.9
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 04:27:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cJPoGrTKInAL8lHXhueEWmoIyBBxrbtsidr003g0JVQ=;
-        b=h1S9L/MuiipWGDZk0QdAJ1vxuwelYSDaRBxXL3pl6CAN+SFT1MtEfVK6e/btoiTk31
-         GMoJNQrugZmMkU1zE8A5H9hMrDnCwNngqWKylXHkkCkbdi3nSURxYZIFvDbdWbtUq4eF
-         iWQ9OG1aE0TKTPLnhpl3fFdSWh1EhiD2mAxZ4NURAmvYHZI9o2dqf7/dfPYNzsHn8qN0
-         yDOYopSBM3pV+eMLcIujCB7hodz1oBDMy+0pnhz7PeQJ1iypor5aamhJIuDl5p3zHP1a
-         8Jmlq81J3pTgM5EPtcZB7Kwc/lYmoIvuOXzJeGQPbe7SSDtS39UfVEBrtRdvaLRf9lNF
-         rOuw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hcVy2hhO5lDAWG0A6BnQz5rAwn+vZs+FFC39Fm9Ww1o=;
+        b=I9mSBvY7RXW4LEA30FsIfm6l9OmFw8BV5mszH1j2qz7Q9xDosqu7Ej5vHgf5/p50LY
+         GEKqChEshCwOyOIMrg4kB5WfZToSFT/9FO3fAVqaC3L2+/xhc1dg0u0N1f3X6Gd7THgf
+         sNiz/p5X6IECP1oIx2XXnp1kdomULAyTocQw45yq3hrvVqL/fLBAVLMqyECTqYimOi0b
+         xHFTJw7Nz2fjXEFs53IkNFyvljL3SvW4lCkBMazNJ0cZQwNGSCUaPFU+OKAjlwN9Zb6O
+         QFvHs2D5adRijSqp8PIHki2rGMHyLyWyjQfDuTwLk2+wNAa+joqzE1h+criO1aF3BLR7
+         KRpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cJPoGrTKInAL8lHXhueEWmoIyBBxrbtsidr003g0JVQ=;
-        b=lXLXLryD0n+PBkUTmHzszL7+TwSp+KstC6Qu9ft77zTCly6K0ey6D575DjXgmW3GLp
-         eZkUSVjBoGGTWTl1Iw+FB6F3FfdqoeOyLnxYrPtuwL849Noiv44KIYuCUvfNmdLe6x0X
-         NQsg9kH1lk/eAde2UNfE5TauIjHnV2G55vTHVejd4K5PC8XY1lnwvK7lR1VWogsTEAWL
-         nsxwvsjJN+ciPZV7EmlLHzhLawgRt4vc9mUjl6Rc78crurRfckPUEbiFocbJ1KIaeYM2
-         Xabq/bp3r7jBqtB7SI7h6kzseDrghLpWeWqQIjeh+65EFEcSFLxCDpMvCW2RnewCbjW1
-         QM0A==
-X-Gm-Message-State: AOAM532zYPoy8BFbV0jXvUK3fsXBTwuvgU+SGyI9xDeGp9UCbJPNL/cn
-        idsG3STp7dpngy1JyBBQ1eU=
-X-Google-Smtp-Source: ABdhPJzOWCeQE/xVojne9iRVhq0uq/euljiV13i1vMRK8IOzZ0xMScWhj2h1gBBN4qc11DbGdoz3EQ==
-X-Received: by 2002:a2e:9b0b:: with SMTP id u11mr4879282lji.415.1613045605509;
-        Thu, 11 Feb 2021 04:13:25 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id f23sm834783ljn.131.2021.02.11.04.13.24
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hcVy2hhO5lDAWG0A6BnQz5rAwn+vZs+FFC39Fm9Ww1o=;
+        b=aORlA5GGbIg7il1jy8RDn/jLbVtphZcIzcOe46dY0AAHOOCIDsWXdbJk7QZi5dSedo
+         S45OdFLq9qI064QgdvHR238NmIOMTAajQkFPOcT18f/ck3TEYL+2g3uipjqyPMQl0ZOZ
+         lNg0hjbeU2qUrMLI8lBrWBu5yAaJ4+GrGQne07xuk61ojKlzx2/b8Qb4oBLA5LmPJZ76
+         0a3DnGlvRh7epbLwxrKcteZKK5UEDTPVq3IWBq5IUqt9Arpy/TdP58ABVl2c2xuv6pgD
+         7RKkFSbBws69P7WphU3lGIduyjaUBeXxaQCRk+EsF81Z50ZJqj1QPkKJd1IcQpkiXVlH
+         /+cA==
+X-Gm-Message-State: AOAM532fg7rpiZWYq5fRGpfeUMyc4PA9BVUb6+4V/MAXt16yeovGQRJp
+        KRbEsDiGK+bm+Tehjummmwe1sk8S7Tv16g==
+X-Google-Smtp-Source: ABdhPJy3KCGT43Q6w5VStd69GdPzuKwYkvZ0X9RuaIbErPiw89BI08DD7DOP6E9w6RMQnRe/8LxXyg==
+X-Received: by 2002:a05:6000:1546:: with SMTP id 6mr5447616wry.398.1613046464646;
+        Thu, 11 Feb 2021 04:27:44 -0800 (PST)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id d20sm4026477wrc.12.2021.02.11.04.27.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Feb 2021 04:13:25 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Masahiro Yamada <masahiroy@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH net-next 5.12 8/8] net: broadcom: bcm4908_enet: fix endianness in xmit code
-Date:   Thu, 11 Feb 2021 13:12:39 +0100
-Message-Id: <20210211121239.728-9-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210211121239.728-1-zajec5@gmail.com>
-References: <20210209230130.4690-2-zajec5@gmail.com>
- <20210211121239.728-1-zajec5@gmail.com>
+        Thu, 11 Feb 2021 04:27:44 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org
+Cc:     perex@perex.cz, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v5 0/7] ASoC: codecs: add support for LPASS Codec TX and RX macros
+Date:   Thu, 11 Feb 2021 12:27:28 +0000
+Message-Id: <20210211122735.5691-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+This patchset adds support for two Codec Macro blocks(TX and RX) available in
+Qualcomm LPASS (Low Power Audio SubSystem).
 
-Use le32_to_cpu() for reading __le32 struct field filled by hw.
+There are WSA, VA, TX and RX Macros on LPASS IP, each of the Macro block
+has specific connectivity like WSA Macros are intended to connect
+to WSA Smart speaker codecs via SoundWire. VA Macro is intended for DMICs,
+and TX/RX for Analog codecs via SoundWire like other WCD938x Codecs to provide
+headphone/ear/lineout/amic/dmic etc ..
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/net/ethernet/broadcom/bcm4908_enet.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Most of the work is derived from downstream Qualcomm kernels.
+Credits to various Qualcomm authors from Patrick Lai's team who have
+contributed to this code.
 
-diff --git a/drivers/net/ethernet/broadcom/bcm4908_enet.c b/drivers/net/ethernet/broadcom/bcm4908_enet.c
-index 2e825db3b2f1..0da8c8c73ba7 100644
---- a/drivers/net/ethernet/broadcom/bcm4908_enet.c
-+++ b/drivers/net/ethernet/broadcom/bcm4908_enet.c
-@@ -476,7 +476,7 @@ static int bcm4908_enet_start_xmit(struct sk_buff *skb, struct net_device *netde
- 	/* Free transmitted skbs */
- 	while (ring->read_idx != ring->write_idx) {
- 		buf_desc = &ring->buf_desc[ring->read_idx];
--		if (buf_desc->ctl & DMA_CTL_STATUS_OWN)
-+		if (le32_to_cpu(buf_desc->ctl) & DMA_CTL_STATUS_OWN)
- 			break;
- 		slot = &ring->slots[ring->read_idx];
- 
+This patchset has been tested on support to SM8250 MTP Development Board.
+This board has 2 WSA881X smart speakers with onboard DMIC connected to
+internal LPASS codec via WSA  and VA macros respectively and WCD938x
+TX and RX connected via Soundwire via TX and RX Macros reseptively.
+
+Thanks,
+srini
+
+Changes since v4:
+	- One more ktest fix for unused-but-set-variable warning 
+	 and a fix for W=2 warning and removed unused macros
+	- added bindings ack from Rob
+
+Srinivas Kandagatla (7):
+  ASoC: qcom: dt-bindings: add bindings for lpass rx macro codec
+  ASoC: codecs: lpass-rx-macro: add support for lpass rx macro
+  ASoC: codecs: lpass-rx-macro: add dapm widgets and route
+  ASoC: codecs: lpass-rx-macro: add iir widgets
+  ASoC: qcom: dt-bindings: add bindings for lpass tx macro codec
+  ASoC: codecs: lpass-tx-macro: add support for lpass tx macro
+  ASoC: codecs: lpass-tx-macro: add dapm widgets and route
+
+ .../bindings/sound/qcom,lpass-rx-macro.yaml   |   62 +
+ .../bindings/sound/qcom,lpass-tx-macro.yaml   |   67 +
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/lpass-rx-macro.c             | 3599 +++++++++++++++++
+ sound/soc/codecs/lpass-tx-macro.c             | 1862 +++++++++
+ 6 files changed, 5604 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+ create mode 100644 sound/soc/codecs/lpass-rx-macro.c
+ create mode 100644 sound/soc/codecs/lpass-tx-macro.c
+
 -- 
-2.26.2
+2.21.0
 
