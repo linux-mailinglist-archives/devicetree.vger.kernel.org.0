@@ -2,208 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D81B1318749
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 10:49:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A898C31874A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 10:49:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230050AbhBKJpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 04:45:16 -0500
-Received: from mail-co1nam11on2063.outbound.protection.outlook.com ([40.107.220.63]:49973
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230107AbhBKJgo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 04:36:44 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MryZT4oGS4lI0R6+iv5HCvskulfZMedWnl75m1r5K/8IBb+VQZTRJRABS5o56nZGore6kZ36WeGqyCJCs5t2E6eC/XFS9lvcXr7MteNupsMhM7cIWEywLtP/7Uy9vah0saTzCkbciMIVt35Kwn20M1NNab9btX73dsrdiNy7VyXLts073QHrnh3E3oDqFVWmQG7QIMwxvi9SXbYbL7ZHvmoq+zL9ReQFdh0d3mR9Y9qGc0fqoiPwz64Vlv6kqs+B7g2s/Jl7kH45o3WoWuyRz/varl2S1oI4DAoiweNjgESUQ8w8hVNLSSSm9l6vquVPshaw7kCGQ0CSGhbIMkqrqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1r+jM2FE1fpl/Af6Gg0W6TeIMckZ5z0YAY8gpYSiPJQ=;
- b=HUR0dBORUnr4hqJRo5OIVL48nl/G/2y3dBW9N5TT4JNyLQxz0UrhsQtCCuWksrwd7R/wmSPpDS49oddVwI96rPuOhKBIs+bSB87+e3548AV6D3MXFl3Qo+vd3vqtvPUXGCP11qu2zbawXqV18jJ9PryT6zmQLeEBVl6trWq6oOu2TXEIiB8nc4SDEUfcS9Ifs+fIF+eI3+ssXYm5u58wLpXyEmTFTBmcHxSM4KkbGsnHI4PC2bFFWqU+8tNo81AjaGcQctgv4Ik8oi2RVRqJcGRoTUPLv/pJYI33TJ5uQC0OpbQUq1CjFaiJsL4g9Sll21pTTiV8KGX0rqeXK2TxbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
+        id S229988AbhBKJpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 04:45:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229991AbhBKJi3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 04:38:29 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9FFC061756
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 01:37:43 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id q2so6205179eds.11
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 01:37:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1r+jM2FE1fpl/Af6Gg0W6TeIMckZ5z0YAY8gpYSiPJQ=;
- b=sWrJPUgUJDQZwmjpDuDlVfyHmSnAPSzXq2r8BzDleLw8cGYlIqbUAZYj7il0sopHX2OiKWxOC2cPEtJlQmwT1eTITowJR3Ihx+cZYfsh+Ki1J+z6adL+05IyPTEgyHJjwKdGEvyK1FeZalRSs4faNzQc4XU4qFGwRDJv+NoZiZI=
-Received: from SN1PR12CA0097.namprd12.prod.outlook.com (2603:10b6:802:21::32)
- by BN6PR02MB2578.namprd02.prod.outlook.com (2603:10b6:404:5e::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.30; Thu, 11 Feb
- 2021 09:35:43 +0000
-Received: from SN1NAM02FT016.eop-nam02.prod.protection.outlook.com
- (2603:10b6:802:21:cafe::ca) by SN1PR12CA0097.outlook.office365.com
- (2603:10b6:802:21::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.25 via Frontend
- Transport; Thu, 11 Feb 2021 09:35:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT016.mail.protection.outlook.com (10.152.72.113) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3846.25 via Frontend Transport; Thu, 11 Feb 2021 09:35:42 +0000
-Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Thu, 11 Feb 2021 01:35:24 -0800
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Thu, 11 Feb 2021 01:35:24 -0800
-Envelope-to: git@xilinx.com,
- michal.simek@xilinx.com,
- linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org,
- monstr@monstr.eu,
- linux-kernel@vger.kernel.org,
- robh@kernel.org
-Received: from [172.30.17.109] (port=60730)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1lA8Nf-0003Jy-OY; Thu, 11 Feb 2021 01:35:23 -0800
-To:     Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <git@xilinx.com>, Piyush Mehta <piyush.mehta@xilinx.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-usb@vger.kernel.org>
-References: <cover.1612867682.git.michal.simek@xilinx.com>
- <076994fc051e9230a3fef9e3eb5ec932104ef16a.1612867682.git.michal.simek@xilinx.com>
- <20210210222241.GA2901449@robh.at.kernel.org>
-From:   Michal Simek <michal.simek@xilinx.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: misc: Add binding for Microchip
- usb5744 hub
-Message-ID: <584bfee2-17a6-5935-b61c-b49824bcf857@xilinx.com>
-Date:   Thu, 11 Feb 2021 10:35:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=6hY1ZjZ+/9Got/zDgBihzh+T9youbOEaeflEdA/GJho=;
+        b=oXHC3jLpRQUz/X+J47YQo23xALpa0lHDKrTX7ZNS4VT0G4vk/pqoV77J0Pee3BTbAO
+         oT3bg6HJlvNJtPwNes4CJPWQeDEvVnXCLIRjJqRb+INln+6f3GOJD2hQVydXCS6b5eW4
+         oh2GnQ+hvWkbK3kHSaykbdhWbGntzEq34jXTtEEn8viXSqE5MQaqc8eM8PoeRWdO1KIg
+         +wAPRh0y/PtW4IbgyxlW3AwU+BjK/3RRV7JVM+I2Hw+E2nyIjHKERvyp2ETLMkHO7M/F
+         +ueSwLs6Xsp09a7dwFiMKFn9JFWP/5OmHchfYBOk/Xx7Af9sDvPomh7BjhIrzYzTn6lD
+         ljCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=6hY1ZjZ+/9Got/zDgBihzh+T9youbOEaeflEdA/GJho=;
+        b=jmsW8jTf0bYgUAEm6zg24YwcoS3uTq5a/0MkM9GYId2S8CiVc3eQdiQNeGtmNQZ3Kt
+         Mm2WioQOQK4YuvhZJpbo/K6cWvW4af5m/BfeOM4hf6cCEkIBiokKjNjuy7XipIRFCE8l
+         Ui1GX/W2IkArQPhnNkeCXy0u15+0PhOy31ZdzkEejY43h4KHe9b5eKVIxtKsbdgc1y0Z
+         nlo+33VHLeJkoittQy89gi0TtHFZO0g8RUdNptuKB9apySEpLiQXOYhgwZG73BUdilC6
+         o20edn5BI1lVdw8wFSZuBAbdWDFlaDpf4oL4F8QHzeIAndYkFtjkmcr9TpasWJaIV64j
+         prFA==
+X-Gm-Message-State: AOAM530b/Lx8nt68YlScztPgHCTKVkPfcNghZl4KO0uAuouxhYzh81ph
+        MX9nf3dIK1fMGBOTZNDX/sn/s2dHlfR/HLSnb9wFe2c4bIE=
+X-Google-Smtp-Source: ABdhPJy7EKT8hi84IG7yCpFEKbAockBKvJsxODy2meMI23Us60rkiTSsSWBQRycQSXG/x8XyVSE147QC8KfOAa/0KLU=
+X-Received: by 2002:a05:6402:3590:: with SMTP id y16mr7625655edc.21.1613036261643;
+ Thu, 11 Feb 2021 01:37:41 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210210222241.GA2901449@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bedae879-77f8-4285-35ba-08d8ce7066c8
-X-MS-TrafficTypeDiagnostic: BN6PR02MB2578:
-X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-X-Microsoft-Antispam-PRVS: <BN6PR02MB2578D7E821382BBF92CC858AC68C9@BN6PR02MB2578.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9r5yNa4I/xy+fSZMQIL1pDFT2SrOXo2Ggoy6FGITqGqCYS7MT9xiwL9SsIRzQg0zvsozO571SaJ+2JdEbdllqkRD+KaZ1FYQ2rXN8li8k9gL8c2tk3exnkvSRuUf6nuFyzpXx4LN2CLNrg1az9a37OACm+03lR2v32k4yqhwG+aJP21+7qxJtLOby0r2K66CPHBSeYyUnjWqhL3qbff0vTdkPjbrrpdNg0te6RNBOpw/zNGalKqlvwHKbL9BhVdUO48guf/YYiayxyAx7UU1iI23x7B8b7xZnz7A6ZD3rwnKm+WRzxloXeR+3sR3hy1VLNmHIaUxPwM97pQ5Eo/YpZhMRplk+O7FXu6N/JQWmfEE5QV6ZiTt+IOyr6RpuhbmmIu0pjk+l+euJrt0POGP/z+mVFUSyT5KTJ+9pmb0u5QO3TXWUwS3ZXPIpkeTMTijCpIli/tXveTDKj/ApaqqA9xoqre0QWMMFWXsA8KmKWS/7E2NlBGiAzNUyk+hKcDSOguIOZ8Y7Ov+MU96z0FWgTXzG3EE7xqiSRYtlT6tJPWAqhzz6QNadD8fgD6qLKLFTUdPlBcVYNO/MWDTpyW7OHH2T8uPLo1iSnKmPEZgurU2R4Q7LVJMWy1ktFqI7VrkTwhMvNW7bfyBxpN7BzFq8tyWvzapDiG8EFr1K3wH5/nOkfxMXqxJxWTItmLzWqVgVWh8EXHsZr52/55fMdmgvy3EWeAHKruZ6wYIgKXOEXUGbDKfCTEMUZjZOA1vAO4FPDzK9Ct5FdZ1yimjtWCUwpNRqtZOnOweO/h+0kwWcYs=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(346002)(136003)(39860400002)(396003)(36840700001)(46966006)(8676002)(36860700001)(2906002)(7636003)(426003)(336012)(82740400003)(47076005)(4326008)(31696002)(83380400001)(70586007)(5660300002)(186003)(8936002)(54906003)(110136005)(2616005)(44832011)(26005)(9786002)(53546011)(36756003)(356005)(478600001)(31686004)(70206006)(316002)(6666004)(36906005)(82310400003)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2021 09:35:42.8167
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bedae879-77f8-4285-35ba-08d8ce7066c8
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT016.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR02MB2578
+References: <4ece21a7e9691ed1e775fd6b0b4046b1562e44bd.1612951821.git.michal.simek@xilinx.com>
+In-Reply-To: <4ece21a7e9691ed1e775fd6b0b4046b1562e44bd.1612951821.git.michal.simek@xilinx.com>
+From:   Michal Simek <monstr@monstr.eu>
+Date:   Thu, 11 Feb 2021 10:37:30 +0100
+Message-ID: <CAHTX3dKPTC1+awBADMCcgX+=PXsHPw2Bz3Po5=CocdKzVy3bRg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: spi: zynq: Convert Zynq QSPI binding to yaml
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm <linux-arm-kernel@lists.infradead.org>,
+        linux-spi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+st 10. 2. 2021 v 11:10 odes=C3=ADlatel Michal Simek <michal.simek@xilinx.co=
+m> napsal:
+>
+> Convert spi-zynq-qspi.txt to yaml.
+>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+>
+> Changes in v2:
+> - s/additionalProperties: true/unevaluatedProperties: false/
+>
+>  .../devicetree/bindings/spi/spi-zynq-qspi.txt | 25 --------
+>  .../bindings/spi/xlnx,zynq-qspi.yaml          | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 60 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-zynq-qspi.t=
+xt
+>  create mode 100644 Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.=
+yaml
+>
+> diff --git a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt b/Do=
+cumentation/devicetree/bindings/spi/spi-zynq-qspi.txt
+> deleted file mode 100644
+> index 16b734ad3102..000000000000
+> --- a/Documentation/devicetree/bindings/spi/spi-zynq-qspi.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -Xilinx Zynq QSPI controller Device Tree Bindings
+> --------------------------------------------------------------------
+> -
+> -Required properties:
+> -- compatible           : Should be "xlnx,zynq-qspi-1.0".
+> -- reg                  : Physical base address and size of QSPI register=
+s map.
+> -- interrupts           : Property with a value describing the interrupt
+> -                         number.
+> -- clock-names          : List of input clock names - "ref_clk", "pclk"
+> -                         (See clock bindings for details).
+> -- clocks               : Clock phandles (see clock bindings for details)=
+.
+> -
+> -Optional properties:
+> -- num-cs               : Number of chip selects used.
+> -
+> -Example:
+> -       qspi: spi@e000d000 {
+> -               compatible =3D "xlnx,zynq-qspi-1.0";
+> -               reg =3D <0xe000d000 0x1000>;
+> -               interrupt-parent =3D <&intc>;
+> -               interrupts =3D <0 19 4>;
+> -               clock-names =3D "ref_clk", "pclk";
+> -               clocks =3D <&clkc 10>, <&clkc 43>;
+> -               num-cs =3D <1>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml b/=
+Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+> new file mode 100644
+> index 000000000000..1f1c40a9f320
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/xlnx,zynq-qspi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx Zynq QSPI controller
+> +
+> +description:
+> +  The Xilinx Zynq QSPI controller is used to access multi-bit serial fla=
+sh
+> +  memory devices.
+> +
+> +allOf:
+> +  - $ref: "spi-controller.yaml#"
+> +
+> +maintainers:
+> +  - Michal Simek <michal.simek@xilinx.com>
+> +
+> +# Everything else is described in the common file
+> +properties:
+> +  compatible:
+> +    const: xlnx,zynq-qspi-1.0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: reference clock
+> +      - description: peripheral clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref_clk
+> +      - const: pclk
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi@e000d000 {
+> +        compatible =3D "xlnx,zynq-qspi-1.0";
+> +        reg =3D <0xe000d000 0x1000>;
+> +        interrupt-parent =3D <&intc>;
+> +        interrupts =3D <0 19 4>;
+> +        clock-names =3D "ref_clk", "pclk";
+> +        clocks =3D <&clkc 10>, <&clkc 43>;
+> +        num-cs =3D <1>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 546aa66428c9..e494b061dcd1 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2766,6 +2766,7 @@ W:        http://wiki.xilinx.com
+>  T:     git https://github.com/Xilinx/linux-xlnx.git
+>  F:     Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+>  F:     Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
+> +F:     Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml
+>  F:     arch/arm/mach-zynq/
+>  F:     drivers/block/xsysace.c
+>  F:     drivers/clocksource/timer-cadence-ttc.c
+> --
+> 2.30.0
+>
 
-On 2/10/21 11:22 PM, Rob Herring wrote:
-> On Tue, Feb 09, 2021 at 11:48:09AM +0100, Michal Simek wrote:
->> From: Piyush Mehta <piyush.mehta@xilinx.com>
->>
->> Added dt binding for usb5744 driver.
->>
->> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
->> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
->> ---
->>
->> Changes in v2: None
->>
->>  .../bindings/usb/microchip,usb5744.yaml       | 56 +++++++++++++++++++
->>  MAINTAINERS                                   |  1 +
->>  2 files changed, 57 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
->> new file mode 100644
->> index 000000000000..fe222f6db81d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
->> @@ -0,0 +1,56 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/usb/microchip,usb5744.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Bindings for the Microchip USB5744 4-port Hub Controller
->> +
->> +description:
->> +  Microchip’s USB5744 SmartHub™ IC is a 4 port, SuperSpeed (SS)/Hi-Speed (HS),
->> +  low power, low pin count configurable and fully compliant with the USB 3.1
->> +  Gen 1 specification. The USB5744 also supports Full Speed (FS) and Low Speed
->> +  (LS) USB signaling, offering complete coverage of all defined USB operating
->> +  speeds. The new SuperSpeed hubs operate in parallel with the USB 2.0
->> +  controller, so 5 Gbps SuperSpeed data transfers are not affected by slower
->> +  USB 2.0 traffic.
->> +
->> +maintainers:
->> +  - Piyush Mehta <piyush.mehta@xilinx.com>
->> +  - Michal Simek <michal.simek@xilinx.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: microchip,usb5744
->> +
->> +  reg:
->> +    maxItems: 1
->> +    description: |
->> +      Specifies the i2c slave address, it is required and should be 0x2d
->> +      if I2C is used.
-> 
-> If I2C is not used, then this should be underneath the USB host as a USB 
-> device. That also implies a different compatible string. I'd suggest you 
-> just say I2C is required if that's your use.
+Applied.
+M
 
-We can't say that i2c is required because we have both cases. One is
-really usb hub connected over i2c which at least requires to send one
-smbus command to start operate. But it can be extended to add more
-features - limit speeds, disable ports, etc.
-
-And the second is really the same usb hub without i2c connected which
-runs in default mode. But reset is required to ensure proper reset
-sequence.
-Hub also have external clock chip which is not handled now because it is
-just crystal on the board but if you want I can also model it via fixed
-clock and call clock enable for it.
-
-It is the same use case as is with
-Documentation/devicetree/bindings/usb/usb3503.txt
-
-Can you please elaborate why different compatible string should be used?
-It is still the same device and not quite sure why different compatible
-string should be used.
-
-Do you also want to example where this node is the part of usb node?
-
-> 
-> 'const: 0x2d' instead of maxItems is the schema to express the address 
-> if fixed.
-
-Will fix.
-
-Thanks,
-Michal
+--=20
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
