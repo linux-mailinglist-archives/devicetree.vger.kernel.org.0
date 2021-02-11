@@ -2,96 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4561318914
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 12:10:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A85B318922
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 12:15:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231142AbhBKLIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 06:08:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52926 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231397AbhBKLGR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 06:06:17 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7941C061756;
-        Thu, 11 Feb 2021 03:05:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=aUMOhZ/r6K5pZQMb5adTT2R7mflcUd6gQF1EZlt7rh0=; b=PUhPuNsuYsvXpCGX7J7lZklpk
-        ViW2nNfn6viKIQZYO984pDEFwpaRMcRAOu/BHW7/QP1DqSHqfS4bYC9KzUY64vMYLE7kVPR2k7BMQ
-        wI6B8TRv5yvLsnIBQx8VuPd4UGPzwyKIHhRkWzSXD/iU92dcG/Lo4lbdIa1w4SQ8WSD63auxyYbiO
-        oLv7XYB4/dO5NFJXIqEgOD4hf5QhWUIzjaI9XRlfsfyGZL3qYuDjn6RvHf8zPeicL+XER1v9XzySS
-        w3+kpc6VsfuyDdYKpqFzFF3D1G7qPomAEGtL1c2zuKWJne1jQpnqzI9mrY29xnxP0Z20pnPmZAVtc
-        hN9iNht4w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:41988)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1lA9mi-000613-7N; Thu, 11 Feb 2021 11:05:20 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1lA9mh-00061L-J3; Thu, 11 Feb 2021 11:05:19 +0000
-Date:   Thu, 11 Feb 2021 11:05:19 +0000
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     stefanc@marvell.com
-Cc:     netdev@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        davem@davemloft.net, nadavh@marvell.com, ymarkman@marvell.com,
-        linux-kernel@vger.kernel.org, kuba@kernel.org, mw@semihalf.com,
-        andrew@lunn.ch, atenart@kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, sebastian.hesselbarth@gmail.com,
-        gregory.clement@bootlin.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v13 net-next 03/15] net: mvpp2: add CM3 SRAM memory map
-Message-ID: <20210211110519.GA1463@shell.armlinux.org.uk>
-References: <1613040542-16500-1-git-send-email-stefanc@marvell.com>
- <1613040542-16500-4-git-send-email-stefanc@marvell.com>
+        id S229954AbhBKLKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 06:10:17 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:59614 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231396AbhBKLIB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Feb 2021 06:08:01 -0500
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11BB74Bv028238;
+        Thu, 11 Feb 2021 12:07:05 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : content-type : content-transfer-encoding :
+ mime-version; s=selector1;
+ bh=OeVb/YX9vc0dVFhSp2zIejtpz3jrgkcK0rTNlrGiJj4=;
+ b=CpzT8oAZ5Hu7FV8crOCSrZWHKjASxYMNY2/yKUdKbAkkEVGu/tK0jxTht0f0ZCDACCRL
+ fbAZbOpHpDtiJokRokQs5Dg9HBSFBtNCKxESk6huJuU6eIFrTJNQnUqDLzqYU7pHfszN
+ 0u3ERONsLSyjFBjwB2AvgwG7b6GarPd8k1x6a1w5UzA0iKUOwcFCA8gXvhdALKX6pQ9k
+ cazu+tV4p5v4+DluT+UzALR+6l73A20X2mDUvowP9OA24/cp4kbgk3Fo5kIp6SMlCU7+
+ el6Ra4I6NQGcVV2p7WRpAtlPoRWIvOkanP61QAjtqqrhMfYjNcFLUaW3RGSY5S19Ph0J dg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 36hr2cp4mk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 Feb 2021 12:07:05 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3CBDD10002A;
+        Thu, 11 Feb 2021 12:07:04 +0100 (CET)
+Received: from Webmail-eu.st.com (gpxdag2node6.st.com [10.75.127.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2BDDC225892;
+        Thu, 11 Feb 2021 12:07:04 +0100 (CET)
+Received: from GPXDAG2NODE6.st.com (10.75.127.70) by GPXDAG2NODE6.st.com
+ (10.75.127.70) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 11 Feb
+ 2021 12:07:03 +0100
+Received: from GPXDAG2NODE6.st.com ([fe80::bc43:6900:9b0:6519]) by
+ GPXDAG2NODE6.st.com ([fe80::bc43:6900:9b0:6519%19]) with mapi id
+ 15.00.1473.003; Thu, 11 Feb 2021 12:07:03 +0100
+From:   Valentin CARON - foss <valentin.caron@foss.st.com>
+To:     Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Erwan LE-RAY - foss <erwan.leray@foss.st.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: [PATCH] ARM: dts: stm32: fix usart 2 & 3 pinconf to wake up with flow
+ control
+Thread-Topic: [PATCH] ARM: dts: stm32: fix usart 2 & 3 pinconf to wake up with
+ flow control
+Thread-Index: AQHXAGYHV6g+MvDZYkWHZvdvB4+Udw==
+Date:   Thu, 11 Feb 2021 11:07:03 +0000
+Message-ID: <20210211110620.31594-1-valentin.caron@foss.st.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.119]
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1613040542-16500-4-git-send-email-stefanc@marvell.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-11_05:2021-02-10,2021-02-11 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 11, 2021 at 12:48:50PM +0200, stefanc@marvell.com wrote:
-> +static int mvpp2_get_sram(struct platform_device *pdev,
-> +			  struct mvpp2 *priv)
-> +{
-> +	struct resource *res;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 2);
-> +	if (!res) {
-> +		if (has_acpi_companion(&pdev->dev))
-> +			dev_warn(&pdev->dev, "ACPI is too old, Flow control not supported\n");
-> +		else
-> +			dev_warn(&pdev->dev, "DT is too old, Flow control not supported\n");
-> +		return 0;
-> +	}
-> +
-> +	priv->cm3_base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(priv->cm3_base))
-> +		return PTR_ERR(priv->cm3_base);
-> +
-> +	return 0;
+Modify usart 2 & 3 pins to allow wake up from low power mode while the
+hardware flow control is activated. UART RTS pin need to stay configure
+in idle mode to receive characters in order to wake up.
 
-You can clean this up to use:
+Fixes: 842ed898a757 ("ARM: dts: stm32: add usart2, usart3 and uart7 pins in=
+ stm32mp15-pinctrl")
 
-	return PTR_ERR_OR_ZERO(priv->cm3_base);
+Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
+---
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 21 ++++++++++++++++++---
+ 1 file changed, 18 insertions(+), 3 deletions(-)
 
-> +
-> +		/* Map CM3 SRAM */
-> +		err = mvpp2_get_sram(pdev, priv);
-> +		if (err)
-> +			dev_warn(&pdev->dev, "Fail to alloc CM3 SRAM\n");
-
-It looks to me like mvpp2_get_sram() only fails if we are unable to
-_map_ the CM3 SRAM. We are no longer allocating anything from it, so
-I think this message needs to be updated.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/s=
+tm32mp15-pinctrl.dtsi
+index 7b4249ed1983..060baa8b7e9d 100644
+--- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+@@ -1891,10 +1891,15 @@
+ 	usart2_idle_pins_c: usart2-idle-2 {
+ 		pins1 {
+ 			pinmux =3D <STM32_PINMUX('D', 5, ANALOG)>, /* USART2_TX */
+-				 <STM32_PINMUX('D', 4, ANALOG)>, /* USART2_RTS */
+ 				 <STM32_PINMUX('D', 3, ANALOG)>; /* USART2_CTS_NSS */
+ 		};
+ 		pins2 {
++			pinmux =3D <STM32_PINMUX('D', 4, AF7)>; /* USART2_RTS */
++			bias-disable;
++			drive-push-pull;
++			slew-rate =3D <3>;
++		};
++		pins3 {
+ 			pinmux =3D <STM32_PINMUX('D', 6, AF7)>; /* USART2_RX */
+ 			bias-disable;
+ 		};
+@@ -1940,10 +1945,15 @@
+ 	usart3_idle_pins_b: usart3-idle-1 {
+ 		pins1 {
+ 			pinmux =3D <STM32_PINMUX('B', 10, ANALOG)>, /* USART3_TX */
+-				 <STM32_PINMUX('G', 8, ANALOG)>, /* USART3_RTS */
+ 				 <STM32_PINMUX('I', 10, ANALOG)>; /* USART3_CTS_NSS */
+ 		};
+ 		pins2 {
++			pinmux =3D <STM32_PINMUX('G', 8, AF8)>; /* USART3_RTS */
++			bias-disable;
++			drive-push-pull;
++			slew-rate =3D <0>;
++		};
++		pins3 {
+ 			pinmux =3D <STM32_PINMUX('B', 12, AF8)>; /* USART3_RX */
+ 			bias-disable;
+ 		};
+@@ -1976,10 +1986,15 @@
+ 	usart3_idle_pins_c: usart3-idle-2 {
+ 		pins1 {
+ 			pinmux =3D <STM32_PINMUX('B', 10, ANALOG)>, /* USART3_TX */
+-				 <STM32_PINMUX('G', 8, ANALOG)>, /* USART3_RTS */
+ 				 <STM32_PINMUX('B', 13, ANALOG)>; /* USART3_CTS_NSS */
+ 		};
+ 		pins2 {
++			pinmux =3D <STM32_PINMUX('G', 8, AF8)>; /* USART3_RTS */
++			bias-disable;
++			drive-push-pull;
++			slew-rate =3D <0>;
++		};
++		pins3 {
+ 			pinmux =3D <STM32_PINMUX('B', 12, AF8)>; /* USART3_RX */
+ 			bias-disable;
+ 		};
+--=20
+2.17.1
