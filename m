@@ -2,161 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D28D3191FB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 19:15:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A7C8319247
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 19:32:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231833AbhBKSNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 13:13:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59542 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231575AbhBKSLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 13:11:44 -0500
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DC40C061793
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 10:11:04 -0800 (PST)
-Received: by mail-qk1-x72a.google.com with SMTP id f17so2828182qkl.5
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 10:11:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Y4RC940/J5vqsaVIPUQNgWPR3nZvZ8dS+NWG2FVApHg=;
-        b=zCo1c5051LK4hPwO4DWPdGWEhVsMvHQD93HMbDG5V0p/liAldRQVl2FAKPAwJwQ/L2
-         QiuhOeVKK9lt1VxO4bVCm33ZVecybl0tOhgn9PHq0xlYJkAymO1y7lWsHKDNbMV3a0e4
-         8k0q4pF01J8Y1+UM13ZrIQ0bQ0eiGl/0Napz+EGBobm+YZwZg135Ak81EtkAN2BeosS7
-         pwm1Vk3TxWjGSb7HAfMsbAtWgoJ50Y7rzImMEhHJcooKMUlFhC3s9O1NjWbejB38ipHh
-         f8mhRNeZsZ5mJgKrT5AvK2ffsorP2fjNYvFklgDqgxm00VRYkm3X4W8OpPo35hOsR8Dv
-         TaFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Y4RC940/J5vqsaVIPUQNgWPR3nZvZ8dS+NWG2FVApHg=;
-        b=eWsKsQfHbUFU6KXTsVpAkscmPCYnVJbVdiEqEdgL9NoVgcTZafiYB1UCLsUD+Zb5LO
-         KZkKXWaUsNGQocW5c2nfLfDmIJykciDIAHEdJYs5yKBJ6sFHQszc7U0pSB7upuTOpVDi
-         HVj0EUhjoxjcq2DgMofjxcHn+TEIc0eRHJC7LEe5tiAkF2QYRAC9Ukez0qsT8tVhOU3k
-         CDvVd84cahMbFB7k4anL3Ljna5Vi8H0sap8x3fzfx3ZiRnls+JR5NfBj6tsGB0Xvlj0K
-         sokbjIhxduXtQNR9++AOl5F1XbioslEQ+hnyt+f6zLSqE9Bs1kLp7oep6fjAzyFKSDmc
-         OHhg==
-X-Gm-Message-State: AOAM5301uHuCbNSHu9oGCf5eCfzn7OnxaJ9nKEfFQeKTlxjxJfrUVQwX
-        lKK0hFYmD3Xh5sgq58sXA4z3RA==
-X-Google-Smtp-Source: ABdhPJz9waq/K9FzbyVnTjZ8KBEHlAtEWbEq4NxPq8Fm77HgPGqQvzF1ENDhDdTgTCxuGOk+VAQduQ==
-X-Received: by 2002:a37:478a:: with SMTP id u132mr9692463qka.135.1613067063249;
-        Thu, 11 Feb 2021 10:11:03 -0800 (PST)
-Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id 11sm4615412qkm.25.2021.02.11.10.11.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Feb 2021 10:11:02 -0800 (PST)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8250: fix display nodes
-Date:   Thu, 11 Feb 2021 13:09:59 -0500
-Message-Id: <20210211181002.22922-3-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20210211181002.22922-1-jonathan@marek.ca>
-References: <20210211181002.22922-1-jonathan@marek.ca>
+        id S231480AbhBKSbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 13:31:19 -0500
+Received: from conssluserg-04.nifty.com ([210.131.2.83]:37872 "EHLO
+        conssluserg-04.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229707AbhBKS3K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 13:29:10 -0500
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180]) (authenticated)
+        by conssluserg-04.nifty.com with ESMTP id 11BIS0xX020916;
+        Fri, 12 Feb 2021 03:28:00 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-04.nifty.com 11BIS0xX020916
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1613068081;
+        bh=Hbd1jHEJ4+0Y3UNlpXUZ2xllNrQK93rgVJKBwvGVmL4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=miTs4Pey9xkNLrJ2iWuNzoQNU9S2BxtyRuYzf27ztbI74N7hG/hA+9Qa2Qrq5yh1C
+         BAk/UXxEmqOmtrClLGUsX8y7LRuEIPEb8UbheNKhWYwkGa84s17uaRQQgfYn0mMeTj
+         +b4mWiPASD6moydGDqYozZQ0mShu+fLUH6l1/Z5mxucS+QOpKFPo+cwy82OJHdvGNb
+         bO+swK3Y9h7P6FtJDAbNYLgyj7wSZgS3QhaVcuXueLO73E56hYhMRYyvrYjVmJ5hQT
+         UMNMv3uC1aT64x3AKbGl92VtJkgBrJtZ5dvtVDod2KqsM0nGIMPmPK7yc6a2ueIcq3
+         X48yrgMOs8jww==
+X-Nifty-SrcIP: [209.85.215.180]
+Received: by mail-pg1-f180.google.com with SMTP id j5so4478477pgb.11;
+        Thu, 11 Feb 2021 10:28:00 -0800 (PST)
+X-Gm-Message-State: AOAM530wA1hfMI9DvO2M325NlPo1oVeWEH7ZLv3xIWjauuOQIW9PfJyB
+        YqGSVM6g9/Yzj9qPfZf+Sgt64BbYaXMnggzazAg=
+X-Google-Smtp-Source: ABdhPJySHBd6FtH0OZ1WIyS/vX7OAJIXGGAN3M0cbxk7sYoN2HS/yMkjc3bsSAuUa15koo8k803PqJbDR5RWBtdAKms=
+X-Received: by 2002:a62:b416:0:b029:1e4:fb5a:55bb with SMTP id
+ h22-20020a62b4160000b02901e4fb5a55bbmr8972253pfn.80.1613068079796; Thu, 11
+ Feb 2021 10:27:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1612955268.git.viresh.kumar@linaro.org> <44dad578df8a848fc378cd358f03b071f44c9a5b.1612955268.git.viresh.kumar@linaro.org>
+In-Reply-To: <44dad578df8a848fc378cd358f03b071f44c9a5b.1612955268.git.viresh.kumar@linaro.org>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Fri, 12 Feb 2021 03:27:23 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARa8GzhhvZWV_KAW=MC0DRcSsfPsQ-KTBRRpbBgBqY=ig@mail.gmail.com>
+Message-ID: <CAK7LNARa8GzhhvZWV_KAW=MC0DRcSsfPsQ-KTBRRpbBgBqY=ig@mail.gmail.com>
+Subject: Re: [PATCH V7 1/3] kbuild: Add generic rule to apply fdtoverlay
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apply these fixes to the newly added sm8250 display ndoes
- - Use sm8250 compatibles instead of sdm845 compatibles
- - Remove "notused" interconnect (which apparently was blindly copied from
-   my old patches)
- - Use dispcc node example from dt-bindings, removing clocks which aren't
-   documented or used by the driver and fixing the region size.
+On Wed, Feb 10, 2021 at 8:13 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>
+> From: Rob Herring <robh@kernel.org>
+>
+> Add a generic rule to apply fdtoverlay in Makefile.lib, so every
+> platform doesn't need to carry the complex rule.
+>
+> The platform's Makefile only needs to have this now:
+>
+>  DTC_FLAGS_foo_base += -@
+>  foo-dtbs := foo_base.dtb foo_overlay1.dtbo foo_overlay2.dtbo
+>  overlay-y := foo.dtb
 
-Note: also removed the mmcx-supply for dispcc which wasn't documented when
-it was added. I would have left it there but it is also breaking my
-use-case (setting a lower power level than what the bootloader sets?).
 
-Fixes: 7c1dffd471b1 ("arm64: dts: qcom: sm8250.dtsi: add display system nodes")
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 34 ++++++++--------------------
- 1 file changed, 9 insertions(+), 25 deletions(-)
+Please reuse dtb-y instead of introducing the new
+overlay-y syntax, that is,
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 947e1accae3a..20a3ff30e924 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2323,14 +2323,13 @@ usb_2_dwc3: dwc3@a800000 {
- 		};
- 
- 		mdss: mdss@ae00000 {
--			compatible = "qcom,sdm845-mdss";
-+			compatible = "qcom,sm8250-mdss";
- 			reg = <0 0x0ae00000 0 0x1000>;
- 			reg-names = "mdss";
- 
--			interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_DISPLAY_CFG>,
--					<&mmss_noc MASTER_MDP_PORT0 &mc_virt SLAVE_EBI_CH0>,
-+			interconnects = <&mmss_noc MASTER_MDP_PORT0 &mc_virt SLAVE_EBI_CH0>,
- 					<&mmss_noc MASTER_MDP_PORT1 &mc_virt SLAVE_EBI_CH0>;
--			interconnect-names = "notused", "mdp0-mem", "mdp1-mem";
-+			interconnect-names = "mdp0-mem", "mdp1-mem";
- 
- 			power-domains = <&dispcc MDSS_GDSC>;
- 
-@@ -2356,7 +2355,7 @@ mdss: mdss@ae00000 {
- 			ranges;
- 
- 			mdss_mdp: mdp@ae01000 {
--				compatible = "qcom,sdm845-dpu";
-+				compatible = "qcom,sm8250-dpu";
- 				reg = <0 0x0ae01000 0 0x8f000>,
- 				      <0 0x0aeb0000 0 0x2008>;
- 				reg-names = "mdp", "vbif";
-@@ -2580,36 +2579,21 @@ opp-358000000 {
- 
- 		dispcc: clock-controller@af00000 {
- 			compatible = "qcom,sm8250-dispcc";
--			reg = <0 0x0af00000 0 0x20000>;
--			mmcx-supply = <&mmcx_reg>;
-+			reg = <0 0x0af00000 0 0x10000>;
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
- 				 <&dsi0_phy 0>,
- 				 <&dsi0_phy 1>,
- 				 <&dsi1_phy 0>,
- 				 <&dsi1_phy 1>,
--				 <0>,
--				 <0>,
--				 <0>,
--				 <0>,
--				 <0>,
--				 <0>,
--				 <0>,
--				 <0>,
--				 <&sleep_clk>;
-+				 <&dp_phy 0>,
-+				 <&dp_phy 1>;
- 			clock-names = "bi_tcxo",
- 				      "dsi0_phy_pll_out_byteclk",
- 				      "dsi0_phy_pll_out_dsiclk",
- 				      "dsi1_phy_pll_out_byteclk",
- 				      "dsi1_phy_pll_out_dsiclk",
--				      "dp_link_clk_divsel_ten",
--				      "dp_vco_divided_clk_src_mux",
--				      "dptx1_phy_pll_link_clk",
--				      "dptx1_phy_pll_vco_div_clk",
--				      "dptx2_phy_pll_link_clk",
--				      "dptx2_phy_pll_vco_div_clk",
--				      "edp_phy_pll_link_clk",
--				      "edp_phy_pll_vco_div_clk",
--				      "sleep_clk";
-+				      "dp_phy_pll_link_clk",
-+				      "dp_phy_pll_vco_div_clk";
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
--- 
-2.26.1
+foo-dtbs := foo_base.dtb foo_overlay1.dtbo foo_overlay2.dtbo
+dtb-y := foo.dtb
 
+
+
+This resembles to composite modules.
+
+foo-objs := foo1.o foo2.o foo3.o
+obj-m := foo.o
+
+
+
+
+
+> Rearrange Makefile.lib to keep DT specific stuff together.
+>
+> The files from overlay-y (i.e. files generated by fdtoverlay) aren't
+> added to dtb-y here, as dtb-y is later used to generate .dt.yaml files
+> and the files in overlay-y don't have a corresponding dts file and make
+> dtbs_check fails for them.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> [ Viresh: Add commit log and replace dtb-y with overlay-y, handle
+>           CONFIG_OF_ALL_DTBS case, rearrange Makefile, don't add
+>           overlay-y to dtb-y to skip dtbs_check for them. ]
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> ---
+>  scripts/Makefile.lib | 39 +++++++++++++++++++++++++++------------
+>  1 file changed, 27 insertions(+), 12 deletions(-)
+>
+> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+> index b00855b247e0..a6e79e3be527 100644
+> --- a/scripts/Makefile.lib
+> +++ b/scripts/Makefile.lib
+> @@ -66,23 +66,16 @@ multi-used   := $(multi-used-y) $(multi-used-m)
+>  real-obj-y := $(foreach m, $(obj-y), $(if $(strip $($(m:.o=-objs)) $($(m:.o=-y)) $($(m:.o=-))),$($(m:.o=-objs)) $($(m:.o=-y)),$(m)))
+>  real-obj-m := $(foreach m, $(obj-m), $(if $(strip $($(m:.o=-objs)) $($(m:.o=-y)) $($(m:.o=-m)) $($(m:.o=-))),$($(m:.o=-objs)) $($(m:.o=-y)) $($(m:.o=-m)),$(m)))
+>
+> -always-y += $(always-m)
+> -
+> -# hostprogs-always-y += foo
+> -# ... is a shorthand for
+> -# hostprogs += foo
+> -# always-y  += foo
+> -hostprogs += $(hostprogs-always-y) $(hostprogs-always-m)
+> -always-y += $(hostprogs-always-y) $(hostprogs-always-m)
+> -
+> -# userprogs-always-y is likewise.
+> -userprogs += $(userprogs-always-y) $(userprogs-always-m)
+> -always-y += $(userprogs-always-y) $(userprogs-always-m)
+> +# Add base dtb and overlay dtbo
+> +dtb-y += $(foreach m,$(overlay-y), $(if $(strip $($(m:.dtb=-dtbs))),$($(m:.dtb=-dtbs)),))
+> +dtb-$(CONFIG_OF_ALL_DTBS) += $(foreach m,$(overlay-), $(if $(strip $($(m:.dtb=-dtbs))),$($(m:.dtb=-dtbs)),))
+>
+>  # DTB
+>  # If CONFIG_OF_ALL_DTBS is enabled, all DT blobs are built
+>  extra-y                                += $(dtb-y)
+> +extra-y                                += $(overlay-y)
+>  extra-$(CONFIG_OF_ALL_DTBS)    += $(dtb-)
+> +extra-$(CONFIG_OF_ALL_DTBS)    += $(overlay-)
+>
+>  ifneq ($(CHECK_DTBS),)
+>  extra-y += $(patsubst %.dtb,%.dt.yaml, $(dtb-y))
+> @@ -91,6 +84,19 @@ extra-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtb,%.dt.yaml, $(dtb-))
+>  extra-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtbo,%.dt.yaml, $(dtb-))
+>  endif
+>
+> +always-y += $(always-m)
+> +
+> +# hostprogs-always-y += foo
+> +# ... is a shorthand for
+> +# hostprogs += foo
+> +# always-y  += foo
+> +hostprogs += $(hostprogs-always-y) $(hostprogs-always-m)
+> +always-y += $(hostprogs-always-y) $(hostprogs-always-m)
+> +
+> +# userprogs-always-y is likewise.
+> +userprogs += $(userprogs-always-y) $(userprogs-always-m)
+> +always-y += $(userprogs-always-y) $(userprogs-always-m)
+> +
+>  # Add subdir path
+>
+>  extra-y                := $(addprefix $(obj)/,$(extra-y))
+> @@ -332,6 +338,15 @@ $(obj)/%.dtb: $(src)/%.dts $(DTC) FORCE
+>  $(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
+>         $(call if_changed_dep,dtc)
+>
+> +
+> +quiet_cmd_fdtoverlay = DTOVL   $@
+> +      cmd_fdtoverlay = $(objtree)/scripts/dtc/fdtoverlay -o $@ -i $(real-prereqs)
+> +
+> +.SECONDEXPANSION:
+> +
+> +$(obj)/%.dtb: $$(addprefix $$(obj)/,$$(%-dtbs)) FORCE
+> +       $(call if_changed,fdtoverlay)
+> +
+
+
+
+Please do not use .SECONDEXPANSION.
+
+This will parse the Makefile twice
+in _all_ directories, while only a few
+directories use the overlay-y syntax.
+
+
+Use the multi_depend macro.
+
+
+
+
+
+
+>  DT_CHECKER ?= dt-validate
+>  DT_BINDING_DIR := Documentation/devicetree/bindings
+>  # DT_TMP_SCHEMA may be overridden from Documentation/devicetree/bindings/Makefile
+> --
+> 2.25.0.rc1.19.g042ed3e048af
+>
+
+
+--
+Best Regards
+Masahiro Yamada
