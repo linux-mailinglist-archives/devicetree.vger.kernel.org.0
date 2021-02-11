@@ -2,209 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 366A8318581
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 08:03:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF1AA3185C9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 08:41:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbhBKHDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 02:03:46 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54392 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229478AbhBKHDq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 02:03:46 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4EE3464E66;
-        Thu, 11 Feb 2021 07:03:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1613026984;
-        bh=CWq+pji4/XiLPEOlolpq26pX1Yyz0/9QKDbeBkiamTk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QLyT0WLjNpNSZaKjNmMm7/ONa841uQYyH2X5kJGfzEyKfnLYHHNy9w9x2kSHt0KAt
-         OeMaekB3lLg0hvxzfTINJ3lQkNIutHo9oz1CdAStryCAYwsaFeXVomANiEsLeOOfeG
-         XaMFD0zibLyssxeaafvk5cH+sMRqI9R5Ox3EnMnI=
-Date:   Thu, 11 Feb 2021 08:03:01 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
-        Al Cooper <alcooperx@gmail.com>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH v5 2/4] USB: misc: Add onboard_usb_hub driver
-Message-ID: <YCTWpUqD7vSu0c4k@kroah.com>
-References: <20210210171040.684659-1-mka@chromium.org>
- <20210210091015.v5.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+        id S229768AbhBKHkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 02:40:07 -0500
+Received: from mail-wm1-f41.google.com ([209.85.128.41]:39519 "EHLO
+        mail-wm1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229648AbhBKHkB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 02:40:01 -0500
+Received: by mail-wm1-f41.google.com with SMTP id u14so4422907wmq.4;
+        Wed, 10 Feb 2021 23:39:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Slvp0O5a2xW0GJAJWB769mdLBLRDIEx9/k/OPk1qyq4=;
+        b=cC68LBYr4+ZcSKieQD0/ELHVXYjV5SBAkH9z0d7eVn0W4zu/i83a/tFVoeWCEe0loU
+         ot5e2UPe+eQTXejQm2dKcE5pWx5V1oUPX9TxqitUpPfpFBlKkUAvrMnku0HHMy1EkANN
+         RxriAMYYAUD7fN3+ocPDsV4ufnA4u/lhr9Ms/cL9rCbxW+chFL10nAxToNQ36G02GCbY
+         OvlxHGEIf52mZEWcu6o+OVLPXf3uoPxPN+B0jbE+2mKtPxdHwMDVk/cpt3+Cbgsn2GsF
+         hkUMxM/DOcJDdYSUy0qp1hAjyjw56J9kV23C6Dr0UkpRFbguk+s+UZ7czXprj99ny4az
+         fleQ==
+X-Gm-Message-State: AOAM5330dFhHAnFS3s+WlB2q1HT9VtWdIvLSGimagTiuA52lWtDCtQym
+        ifh/pJfL3AlQV1CGpM7yKAE=
+X-Google-Smtp-Source: ABdhPJzVTOoTs07kV3snqP5vt6nM5+VZaU78wa1lEsRAPeojg+oKlbGxjk5Brt02b4Igkbi4e4XTcA==
+X-Received: by 2002:a05:600c:430a:: with SMTP id p10mr3597169wme.142.1613029158759;
+        Wed, 10 Feb 2021 23:39:18 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id j71sm8445307wmj.31.2021.02.10.23.39.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Feb 2021 23:39:18 -0800 (PST)
+Date:   Thu, 11 Feb 2021 08:39:16 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/3] ARM: dts: exynos: Add charger supply for I9100
+Message-ID: <20210211073916.apyqfins3x2q44yq@kozik-lap>
+References: <20210130172747.2022977-1-timon.baetz@protonmail.com>
+ <20210130172747.2022977-3-timon.baetz@protonmail.com>
+ <20210211065850.1e4a8943.timon.baetz@protonmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210210091015.v5.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+In-Reply-To: <20210211065850.1e4a8943.timon.baetz@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 10, 2021 at 09:10:37AM -0800, Matthias Kaehlcke wrote:
-> +static int onboard_hub_add_usbdev(struct onboard_hub *hub, struct usb_device *udev)
-> +{
-> +	struct udev_node *node;
-> +	char link_name[64];
-> +	int ret = 0;
-> +
-> +	mutex_lock(&hub->lock);
-> +
-> +	if (hub->going_away) {
-> +		ret = -EINVAL;
-> +		goto unlock;
-> +	}
-> +
-> +	node = devm_kzalloc(hub->dev, sizeof(*node), GFP_KERNEL);
-> +	if (!node) {
-> +		ret = -ENOMEM;
-> +		goto unlock;
-> +	}
-> +
-> +	node->udev = udev;
-> +
-> +	list_add(&node->list, &hub->udev_list);
-> +
-> +	snprintf(link_name, sizeof(link_name), "usb_dev.%s", dev_name(&udev->dev));
-> +	WARN_ON(sysfs_create_link(&hub->dev->kobj, &udev->dev.kobj, link_name));
+On Thu, Feb 11, 2021 at 05:59:04AM +0000, Timon Baetz wrote:
+> On Sat, 30 Jan 2021 17:29:31 +0000, Timon Baetz wrote:
+> > The regulator is used for charging control by max8997_charger driver.
+> > 
+> > Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+> > ---
+> >  arch/arm/boot/dts/exynos4210-i9100.dts | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
+> > index 304a8ee2364c..dad950daafb4 100644
+> > --- a/arch/arm/boot/dts/exynos4210-i9100.dts
+> > +++ b/arch/arm/boot/dts/exynos4210-i9100.dts
+> > @@ -384,6 +384,8 @@ pmic@66 {
+> >  		pinctrl-0 = <&max8997_irq>, <&otg_gp>, <&usb_sel>;
+> >  		pinctrl-names = "default";
+> >  
+> > +		charger-supply = <&charger_reg>;
+> > +
+> >  		regulators {
+> >  			vadc_reg: LDO1 {
+> >  				regulator-name = "VADC_3.3V_C210";
+> 
+> Now that the bindings have been accepted and integrated into linux-next,
+> is anything else blocking this?
 
-Never use WARN_ON() unless you want the machine to reboot if it triggers
-(panic on warn).
+No, patch is fine. It's just too late in the cycle, so I'll take the
+patch after merge window.
 
-But the larger question is what is this sysfs link for?  It's not
-documented anywhere, and so, shouldn't be allowed.  Who is going to use
-it and why is it needed?
+Best regards,
+Krzysztof
 
-
-
-> +
-> +unlock:
-> +	mutex_unlock(&hub->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static void onboard_hub_remove_usbdev(struct onboard_hub *hub, struct usb_device *udev)
-> +{
-> +	struct udev_node *node;
-> +	char link_name[64];
-> +
-> +	snprintf(link_name, sizeof(link_name), "usb_dev.%s", dev_name(&udev->dev));
-> +	sysfs_remove_link(&hub->dev->kobj, link_name);
-> +
-> +	mutex_lock(&hub->lock);
-> +
-> +	list_for_each_entry(node, &hub->udev_list, list) {
-> +		if (node->udev == udev) {
-> +			list_del(&node->list);
-> +			break;
-> +		}
-> +	}
-> +
-> +	mutex_unlock(&hub->lock);
-> +}
-> +
-> +static ssize_t always_powered_in_suspend_show(struct device *dev, struct device_attribute *attr,
-> +			   char *buf)
-> +{
-> +	struct onboard_hub *hub = dev_get_drvdata(dev);
-> +
-> +	return sprintf(buf, "%d\n", hub->always_powered_in_suspend);
-
-sysfs_emit()?
-
-And you forgot the Documentation/ABI/ entries for this driver, so it
-really can not be reviewed...
-
-
-> +}
-> +
-> +static ssize_t always_powered_in_suspend_store(struct device *dev, struct device_attribute *attr,
-> +			    const char *buf, size_t count)
-> +{
-> +	struct onboard_hub *hub = dev_get_drvdata(dev);
-> +	bool val;
-> +	int ret;
-> +
-> +	ret = kstrtobool(buf, &val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	hub->always_powered_in_suspend = val;
-> +
-> +	return count;
-> +}
-> +static DEVICE_ATTR_RW(always_powered_in_suspend);
-> +
-> +static struct attribute *onboard_hub_sysfs_entries[] = {
-> +	&dev_attr_always_powered_in_suspend.attr,
-> +	NULL,
-> +};
-> +
-> +static const struct attribute_group onboard_hub_sysfs_group = {
-> +	.attrs = onboard_hub_sysfs_entries,
-> +};
-> +
-> +static int onboard_hub_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct onboard_hub *hub;
-> +	int err;
-> +
-> +	hub = devm_kzalloc(dev, sizeof(*hub), GFP_KERNEL);
-> +	if (!hub)
-> +		return -ENOMEM;
-> +
-> +	hub->vdd = devm_regulator_get(dev, "vdd");
-> +	if (IS_ERR(hub->vdd))
-> +		return PTR_ERR(hub->vdd);
-> +
-> +	hub->dev = dev;
-> +	mutex_init(&hub->lock);
-> +	INIT_LIST_HEAD(&hub->udev_list);
-> +
-> +	dev_set_drvdata(dev, hub);
-> +
-> +	err = devm_device_add_group(dev, &onboard_hub_sysfs_group);
-
-You just raced userspace and lost :(
-
-Please use the correct api to add sysfs attributes to the device
-automatically by the driver core.  But the larger question is why do you
-need them at all?  What do they do that we can't already do with
-existing apis that you feel a one-off api for this driver is required?
-
-
-
-> +	if (err) {
-> +		dev_err(dev, "failed to create sysfs entries: %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	err = onboard_hub_power_on(hub);
-> +	if (err)
-> +		return err;
-> +
-> +	/*
-> +	 * The USB driver might have been detached from the USB devices by
-> +	 * onboard_hub_remove() make sure to re-attach it if needed.
-> +	 */
-> +	(void)driver_attach(&onboard_hub_usbdev_driver.drvwrap.driver);
-
-(void)????
-
-Please no, do it right.
-
-But, why is a driver calling this function anyway?  That feels really
-really wrong...
-
-thanks,
-
-greg k-h
