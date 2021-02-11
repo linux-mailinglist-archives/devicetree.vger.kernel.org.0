@@ -2,92 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 421313187E0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 11:16:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBCDE3187F1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 11:19:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbhBKKQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 05:16:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42160 "EHLO
+        id S229906AbhBKKTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 05:19:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229836AbhBKKQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 05:16:10 -0500
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D7BC061756;
-        Thu, 11 Feb 2021 02:15:12 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4DbsvM2WyGz1rxcC;
-        Thu, 11 Feb 2021 11:15:11 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4DbsvM1JG1z1sP75;
-        Thu, 11 Feb 2021 11:15:11 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id ECRdps7T0nDa; Thu, 11 Feb 2021 11:15:09 +0100 (CET)
-X-Auth-Info: FQL4N4HFTWrrQ9opqhHTxcbEHdtA0CXlQt53FHfqX94=
-Received: from [10.88.0.186] (dslb-002-207-026-175.002.207.pools.vodafone-ip.de [2.207.26.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Thu, 11 Feb 2021 11:15:09 +0100 (CET)
+        with ESMTP id S229708AbhBKKSG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 05:18:06 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F291C061756;
+        Thu, 11 Feb 2021 02:17:24 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id b16so6656557lji.13;
+        Thu, 11 Feb 2021 02:17:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Jm2Vg2vtcC2uZCoulDXy0fsniUr4eVjzDAzUDSNNKSE=;
+        b=kJ4MWHlGcO1k8YkKwbXpzbClY+KIxj4eKCFTLXw3JpIocfPdXG8hJm8ffbwAehAbZe
+         W/TtyZEPWUaB5ltVUC01nF1kigZvDTIFtLqhv2va42R9wNPZMTeqrsr3ioKVepmCzCc4
+         ms8Ypkn6Nl7AQaz+zMM76NnashtmXuu6Fvc0QXVLtP29kDf7Sy5Nhr2NKgRbpqyuvGRi
+         LuA298TlR+PlN0J5ZITIz2+/edAg4LVemPt0bWq4uGOLAKvTU9Z3yxVZq9CckZ+2xJoQ
+         r4S8J/GuQlsHAlBXDs3J91jNHztIZhFs/qmbcsxjGL/Gkn/LYWbiu1grJJdtYb8Z3OQt
+         Jqzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Jm2Vg2vtcC2uZCoulDXy0fsniUr4eVjzDAzUDSNNKSE=;
+        b=Xv9KHl7DN9hz+6mqmcHcWVmPqpMD82Ku7tkeAb8uz7G6HVv447JgJRSEp9Kti+PRJ/
+         sdUe4/29nuYOlCpSWylLuORduKTnl73qHKXjPJfTEqP2uHJyrcMCerG5fLZLqpXm/gh3
+         74iNHlOde97+pMR7uL5LGbeH16C5/xENcQ6i86fVTED0jDvD0s1/eCz6cwNKCdkLnk8F
+         /4QC8OukTO5Q2/ri0VnUN5kNGjSVMbiSmDm/UXlokb/+Q9N00FIK3YlqRITmPCNaBoge
+         PCJKtC+oRZYoh8DqV1prPzrVryG69+o3mKXGysatYSMHVgjy5xu/rWQ+xbtEtBNWosg9
+         QQ4Q==
+X-Gm-Message-State: AOAM531cgHX5CndkKiRi+KR8BHxNMtbMxrEgn/pg/gW+tj3NWwxNkrhb
+        4YviASbWaVL3xoZtlSrI9rNUoMy6zvcEau8tC+s=
+X-Google-Smtp-Source: ABdhPJwzs+vtdW8dlE+eJfKnDrxgE1OVplgXPLeWWVicD6u1HQRmIyoAMDeeIstz519wL1P3b/icBmQP/U+Jn1v3188=
+X-Received: by 2002:a2e:a312:: with SMTP id l18mr4697526lje.490.1613038643003;
+ Thu, 11 Feb 2021 02:17:23 -0800 (PST)
+MIME-Version: 1.0
+References: <20210211095413.1043102-1-ch@denx.de> <8c08b85e-fa1e-3dd7-6d86-6ec9b57a3670@denx.de>
+In-Reply-To: <8c08b85e-fa1e-3dd7-6d86-6ec9b57a3670@denx.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 11 Feb 2021 07:17:12 -0300
+Message-ID: <CAOMZO5Amnrc6Os44B=0-Nqv+m1THhT-AtWA-oTbmUjYbb_xqUw@mail.gmail.com>
 Subject: Re: [PATCH] pinctrl: imx: imx8mm: fix pad offset of SD1_DATA0 pin
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+To:     Claudius Heine <ch@denx.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Cc:     Marek Vasut <marex@denx.de>, stable@vger.kernel.org
-References: <20210211095413.1043102-1-ch@denx.de>
-From:   Claudius Heine <ch@denx.de>
-Organization: Denx Software Engineering
-Message-ID: <8c08b85e-fa1e-3dd7-6d86-6ec9b57a3670@denx.de>
-Date:   Thu, 11 Feb 2021 11:15:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
-MIME-Version: 1.0
-In-Reply-To: <20210211095413.1043102-1-ch@denx.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        open list <linux-kernel@vger.kernel.org>,
+        Marek Vasut <marex@denx.de>, stable <stable@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Claudius,
 
-can you please add:
-
-Fixes: c1c9d41319c3 ("dt-bindings: imx: Add pinctrl binding doc for imx8mm")
-
-to the commit message.
-
-regards,
-Claudius
-
-On 2021-02-11 10:54, Claudius Heine wrote:
-> There is a 0 missing in the pad register offset. This patch adds it.
-> 
-> Signed-off-by: Claudius Heine <ch@denx.de>
-> ---
->   arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-> index 5ccc4cc91959d..a003e6af33533 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-> @@ -124,7 +124,7 @@
->   #define MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD                                     0x0A4 0x30C 0x000 0x0 0x0
->   #define MX8MM_IOMUXC_SD1_CMD_GPIO2_IO1                                      0x0A4 0x30C 0x000 0x5 0x0
->   #define MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0                                 0x0A8 0x310 0x000 0x0 0x0
-> -#define MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x31  0x000 0x5 0x0
-> +#define MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x310 0x000 0x5 0x0
->   #define MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1                                 0x0AC 0x314 0x000 0x0 0x0
->   #define MX8MM_IOMUXC_SD1_DATA1_GPIO2_IO3                                    0x0AC 0x314 0x000 0x5 0x0
->   #define MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2                                 0x0B0 0x318 0x000 0x0 0x0
+On Thu, Feb 11, 2021 at 7:15 AM Claudius Heine <ch@denx.de> wrote:
 >
+> Hi,
+>
+> can you please add:
+>
+> Fixes: c1c9d41319c3 ("dt-bindings: imx: Add pinctrl binding doc for imx8mm")
+
+Yes, I was about to suggest the same. Thanks for the fix:
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
