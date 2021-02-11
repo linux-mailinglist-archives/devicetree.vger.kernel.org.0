@@ -2,205 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A7C8319247
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 19:32:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89CE8319276
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 19:47:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbhBKSbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 13:31:19 -0500
-Received: from conssluserg-04.nifty.com ([210.131.2.83]:37872 "EHLO
-        conssluserg-04.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbhBKS3K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 13:29:10 -0500
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180]) (authenticated)
-        by conssluserg-04.nifty.com with ESMTP id 11BIS0xX020916;
-        Fri, 12 Feb 2021 03:28:00 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-04.nifty.com 11BIS0xX020916
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1613068081;
-        bh=Hbd1jHEJ4+0Y3UNlpXUZ2xllNrQK93rgVJKBwvGVmL4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=miTs4Pey9xkNLrJ2iWuNzoQNU9S2BxtyRuYzf27ztbI74N7hG/hA+9Qa2Qrq5yh1C
-         BAk/UXxEmqOmtrClLGUsX8y7LRuEIPEb8UbheNKhWYwkGa84s17uaRQQgfYn0mMeTj
-         +b4mWiPASD6moydGDqYozZQ0mShu+fLUH6l1/Z5mxucS+QOpKFPo+cwy82OJHdvGNb
-         bO+swK3Y9h7P6FtJDAbNYLgyj7wSZgS3QhaVcuXueLO73E56hYhMRYyvrYjVmJ5hQT
-         UMNMv3uC1aT64x3AKbGl92VtJkgBrJtZ5dvtVDod2KqsM0nGIMPmPK7yc6a2ueIcq3
-         X48yrgMOs8jww==
-X-Nifty-SrcIP: [209.85.215.180]
-Received: by mail-pg1-f180.google.com with SMTP id j5so4478477pgb.11;
-        Thu, 11 Feb 2021 10:28:00 -0800 (PST)
-X-Gm-Message-State: AOAM530wA1hfMI9DvO2M325NlPo1oVeWEH7ZLv3xIWjauuOQIW9PfJyB
-        YqGSVM6g9/Yzj9qPfZf+Sgt64BbYaXMnggzazAg=
-X-Google-Smtp-Source: ABdhPJySHBd6FtH0OZ1WIyS/vX7OAJIXGGAN3M0cbxk7sYoN2HS/yMkjc3bsSAuUa15koo8k803PqJbDR5RWBtdAKms=
-X-Received: by 2002:a62:b416:0:b029:1e4:fb5a:55bb with SMTP id
- h22-20020a62b4160000b02901e4fb5a55bbmr8972253pfn.80.1613068079796; Thu, 11
- Feb 2021 10:27:59 -0800 (PST)
+        id S229940AbhBKSrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 13:47:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38734 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229813AbhBKSqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 13:46:31 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3018FC061756
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 10:45:51 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id r2so1366121plr.10
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 10:45:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QgIYTyhfH72b4fULrOrfaw7q3uY66r3eG0ZY6y6h27g=;
+        b=hFEBW2MXaPJFYKkCfGxQdNc1eSytYrBeXV3p6ZT1FrjSEGdacvycOmi8Rrwh5bYz/E
+         oxAhJutYjhrytLuCWHZqOdVBRUqq4PTcpkkHdX4o9eEdd3mqGLw+pourJhqeSlsRshJB
+         3JTlBxWOkUKkPcCMCY3h0D6zLNdTh9Ml8GXd4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QgIYTyhfH72b4fULrOrfaw7q3uY66r3eG0ZY6y6h27g=;
+        b=LMBZBQ3UatkXCP/Fp9/kblTICW2GVewjKaBi2HZg37NbRtpwAHpIovvsMDp3M4FgTX
+         3m2bS7IzD9eisMlROMMYOvF9OG8qTjh+4Y5UXuP5lMhYkXV+uzq03NwZj3Hi5cRrXqDR
+         foYzboWax7X2+N1CL0617Md1YCSKUJQ9yyvzkz/GtEfTGliDA8+1+zQrqqFoIHOGxh+g
+         NJlI2o3AhuHbAlGiSo8kc8PGO+4l5/G4YjySv1uLM0d+gRnSFlOmhLUnj+InfSPls2ec
+         dfrXQ0jRc+qFb8qNu7MM6+nArkQQM1knm7z+yh352niwClTZMrwBlmJWl2IJaiPaTTG6
+         2pow==
+X-Gm-Message-State: AOAM532p7wuwQUs/Z686Yi/Ur07F7Q40iNSwNPZfWNlYG5E+Oa926SfC
+        MnQaMuBULLFtKPsX6zuWVND+AQ==
+X-Google-Smtp-Source: ABdhPJyWoJFOTr/Z0khlbxK+fLlWgo3O1EoJvvJueeEg2GOZoTLwS1zrIYglhtQ5DwbHOYjFzx6E9A==
+X-Received: by 2002:a17:90a:d34b:: with SMTP id i11mr5118092pjx.235.1613069150706;
+        Thu, 11 Feb 2021 10:45:50 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:fc92:99c:fc2f:8603])
+        by smtp.gmail.com with UTF8SMTPSA id d18sm5808929pjz.40.2021.02.11.10.45.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Feb 2021 10:45:50 -0800 (PST)
+Date:   Thu, 11 Feb 2021 10:45:48 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+Subject: Re: [PATCH v5 3/4] usb: host: xhci-plat: Create platform device for
+ onboard hubs in probe()
+Message-ID: <YCV7XGloQIjtFAqf@google.com>
+References: <20210210171040.684659-1-mka@chromium.org>
+ <20210210091015.v5.3.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
+ <YCTVjx480BzT+saO@kroah.com>
 MIME-Version: 1.0
-References: <cover.1612955268.git.viresh.kumar@linaro.org> <44dad578df8a848fc378cd358f03b071f44c9a5b.1612955268.git.viresh.kumar@linaro.org>
-In-Reply-To: <44dad578df8a848fc378cd358f03b071f44c9a5b.1612955268.git.viresh.kumar@linaro.org>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Fri, 12 Feb 2021 03:27:23 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARa8GzhhvZWV_KAW=MC0DRcSsfPsQ-KTBRRpbBgBqY=ig@mail.gmail.com>
-Message-ID: <CAK7LNARa8GzhhvZWV_KAW=MC0DRcSsfPsQ-KTBRRpbBgBqY=ig@mail.gmail.com>
-Subject: Re: [PATCH V7 1/3] kbuild: Add generic rule to apply fdtoverlay
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Anmar Oueja <anmar.oueja@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YCTVjx480BzT+saO@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 10, 2021 at 8:13 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> From: Rob Herring <robh@kernel.org>
->
-> Add a generic rule to apply fdtoverlay in Makefile.lib, so every
-> platform doesn't need to carry the complex rule.
->
-> The platform's Makefile only needs to have this now:
->
->  DTC_FLAGS_foo_base += -@
->  foo-dtbs := foo_base.dtb foo_overlay1.dtbo foo_overlay2.dtbo
->  overlay-y := foo.dtb
+Hi Greg,
 
+On Thu, Feb 11, 2021 at 07:58:23AM +0100, Greg Kroah-Hartman wrote:
+> On Wed, Feb 10, 2021 at 09:10:38AM -0800, Matthias Kaehlcke wrote:
+> > Check during probe() if a hub supported by the onboard_usb_hub
+> > driver is connected to the controller. If such a hub is found
+> > create the corresponding platform device. This requires the
+> > device tree to have a node for the hub with its vendor and
+> > product id (which is not common for USB devices). Further the
+> > platform device is only created when CONFIG_USB_ONBOARD_HUB=y/m.
+> > 
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> > 
+> > Changes in v5:
+> > - patch added to the series
+> > 
+> >  drivers/usb/host/xhci-plat.c | 16 ++++++++++++++++
+> >  include/linux/usb/hcd.h      |  2 ++
+> >  2 files changed, 18 insertions(+)
+> > 
+> > diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+> > index 4d34f6005381..e785fa109eea 100644
+> > --- a/drivers/usb/host/xhci-plat.c
+> > +++ b/drivers/usb/host/xhci-plat.c
+> > @@ -15,6 +15,7 @@
+> >  #include <linux/of.h>
+> >  #include <linux/of_device.h>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/usb/onboard_hub.h>
+> >  #include <linux/usb/phy.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/acpi.h>
+> > @@ -184,6 +185,7 @@ static int xhci_plat_probe(struct platform_device *pdev)
+> >  	int			ret;
+> >  	int			irq;
+> >  	struct xhci_plat_priv	*priv = NULL;
+> > +	struct device_node	*np;
+> >  
+> >  
+> >  	if (usb_disabled())
+> > @@ -356,6 +358,17 @@ static int xhci_plat_probe(struct platform_device *pdev)
+> >  	 */
+> >  	pm_runtime_forbid(&pdev->dev);
+> >  
+> > +	np = usb_of_get_device_node(hcd->self.root_hub, hcd->self.busnum);
+> > +	if (np && of_is_onboard_usb_hub(np)) {
+> > +		struct platform_device *pdev;
+> > +
+> > +		pdev = of_platform_device_create(np, NULL, NULL);
+> 
+> A platform device is a child of another platform device?  Ok, but
+> really, why?  What uses this device?
 
-Please reuse dtb-y instead of introducing the new
-overlay-y syntax, that is,
+In earlier versions there was a standalone platform device:
+https://lore.kernel.org/patchwork/patch/1313001/
 
-foo-dtbs := foo_base.dtb foo_overlay1.dtbo foo_overlay2.dtbo
-dtb-y := foo.dtb
+However this was rejected by Rob, since the DT would require a node for the
+platform device and (implicit or explicit) nodes for the USB devices,
+representing the same physical device:
 
+https://lore.kernel.org/patchwork/patch/1305395/
+https://lore.kernel.org/patchwork/patch/1313000/
 
-
-This resembles to composite modules.
-
-foo-objs := foo1.o foo2.o foo3.o
-obj-m := foo.o
-
-
-
-
-
-> Rearrange Makefile.lib to keep DT specific stuff together.
->
-> The files from overlay-y (i.e. files generated by fdtoverlay) aren't
-> added to dtb-y here, as dtb-y is later used to generate .dt.yaml files
-> and the files in overlay-y don't have a corresponding dts file and make
-> dtbs_check fails for them.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> [ Viresh: Add commit log and replace dtb-y with overlay-y, handle
->           CONFIG_OF_ALL_DTBS case, rearrange Makefile, don't add
->           overlay-y to dtb-y to skip dtbs_check for them. ]
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-> ---
->  scripts/Makefile.lib | 39 +++++++++++++++++++++++++++------------
->  1 file changed, 27 insertions(+), 12 deletions(-)
->
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index b00855b247e0..a6e79e3be527 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -66,23 +66,16 @@ multi-used   := $(multi-used-y) $(multi-used-m)
->  real-obj-y := $(foreach m, $(obj-y), $(if $(strip $($(m:.o=-objs)) $($(m:.o=-y)) $($(m:.o=-))),$($(m:.o=-objs)) $($(m:.o=-y)),$(m)))
->  real-obj-m := $(foreach m, $(obj-m), $(if $(strip $($(m:.o=-objs)) $($(m:.o=-y)) $($(m:.o=-m)) $($(m:.o=-))),$($(m:.o=-objs)) $($(m:.o=-y)) $($(m:.o=-m)),$(m)))
->
-> -always-y += $(always-m)
-> -
-> -# hostprogs-always-y += foo
-> -# ... is a shorthand for
-> -# hostprogs += foo
-> -# always-y  += foo
-> -hostprogs += $(hostprogs-always-y) $(hostprogs-always-m)
-> -always-y += $(hostprogs-always-y) $(hostprogs-always-m)
-> -
-> -# userprogs-always-y is likewise.
-> -userprogs += $(userprogs-always-y) $(userprogs-always-m)
-> -always-y += $(userprogs-always-y) $(userprogs-always-m)
-> +# Add base dtb and overlay dtbo
-> +dtb-y += $(foreach m,$(overlay-y), $(if $(strip $($(m:.dtb=-dtbs))),$($(m:.dtb=-dtbs)),))
-> +dtb-$(CONFIG_OF_ALL_DTBS) += $(foreach m,$(overlay-), $(if $(strip $($(m:.dtb=-dtbs))),$($(m:.dtb=-dtbs)),))
->
->  # DTB
->  # If CONFIG_OF_ALL_DTBS is enabled, all DT blobs are built
->  extra-y                                += $(dtb-y)
-> +extra-y                                += $(overlay-y)
->  extra-$(CONFIG_OF_ALL_DTBS)    += $(dtb-)
-> +extra-$(CONFIG_OF_ALL_DTBS)    += $(overlay-)
->
->  ifneq ($(CHECK_DTBS),)
->  extra-y += $(patsubst %.dtb,%.dt.yaml, $(dtb-y))
-> @@ -91,6 +84,19 @@ extra-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtb,%.dt.yaml, $(dtb-))
->  extra-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtbo,%.dt.yaml, $(dtb-))
->  endif
->
-> +always-y += $(always-m)
-> +
-> +# hostprogs-always-y += foo
-> +# ... is a shorthand for
-> +# hostprogs += foo
-> +# always-y  += foo
-> +hostprogs += $(hostprogs-always-y) $(hostprogs-always-m)
-> +always-y += $(hostprogs-always-y) $(hostprogs-always-m)
-> +
-> +# userprogs-always-y is likewise.
-> +userprogs += $(userprogs-always-y) $(userprogs-always-m)
-> +always-y += $(userprogs-always-y) $(userprogs-always-m)
-> +
->  # Add subdir path
->
->  extra-y                := $(addprefix $(obj)/,$(extra-y))
-> @@ -332,6 +338,15 @@ $(obj)/%.dtb: $(src)/%.dts $(DTC) FORCE
->  $(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
->         $(call if_changed_dep,dtc)
->
-> +
-> +quiet_cmd_fdtoverlay = DTOVL   $@
-> +      cmd_fdtoverlay = $(objtree)/scripts/dtc/fdtoverlay -o $@ -i $(real-prereqs)
-> +
-> +.SECONDEXPANSION:
-> +
-> +$(obj)/%.dtb: $$(addprefix $$(obj)/,$$(%-dtbs)) FORCE
-> +       $(call if_changed,fdtoverlay)
-> +
-
-
-
-Please do not use .SECONDEXPANSION.
-
-This will parse the Makefile twice
-in _all_ directories, while only a few
-directories use the overlay-y syntax.
-
-
-Use the multi_depend macro.
-
-
-
-
-
-
->  DT_CHECKER ?= dt-validate
->  DT_BINDING_DIR := Documentation/devicetree/bindings
->  # DT_TMP_SCHEMA may be overridden from Documentation/devicetree/bindings/Makefile
-> --
-> 2.25.0.rc1.19.g042ed3e048af
->
-
-
---
-Best Regards
-Masahiro Yamada
+Both Doug Anderson and myself argued that it seems legitimate to distinguish
+between the devices connected to the USB bus, and the chip which might have
+GPIOs, regulators, clocks, ... but apparently our arguments were not
+convincing enough.
