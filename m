@@ -2,65 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC033191CA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 19:06:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A75353191DB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 19:10:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232430AbhBKSEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 13:04:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57500 "EHLO
+        id S232660AbhBKSG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 13:06:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231322AbhBKSCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 13:02:34 -0500
-Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [IPv6:2001:4b7a:2000:18::170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96EA9C061756
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 09:50:21 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 9FD0D1F8EA;
-        Thu, 11 Feb 2021 18:50:19 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     elder@kernel.org
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, davem@davemloft.net,
-        kuba@kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v1 7/7] dt-bindings: net: qcom-ipa: Document qcom,msm8998-ipa compatible
-Date:   Thu, 11 Feb 2021 18:50:15 +0100
-Message-Id: <20210211175015.200772-8-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210211175015.200772-1-angelogioacchino.delregno@somainline.org>
-References: <20210211175015.200772-1-angelogioacchino.delregno@somainline.org>
+        with ESMTP id S231653AbhBKSEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 13:04:53 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E31D1C061788
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 10:04:11 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id m2so4453552pgq.5
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 10:04:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ABmGACKj8AbXK76X6Oa7fcPA01DfnOcIma2NBDr+Ii8=;
+        b=gdDg+trAg1mnOAYW198dpCWFTvXYocL6QHdOt952qYu1iFidwX9K64iSDFdFlMpaas
+         /UPo99v23QnfYtMzFZCBYxt7DtkTQyRdQq0zB/TE8/VxDRKXUYnxvf4Ncf1zAer5315c
+         5JSozgsGTijUu53setjDkpshgqAIqJpq6Jvow=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ABmGACKj8AbXK76X6Oa7fcPA01DfnOcIma2NBDr+Ii8=;
+        b=BdUYDIj4Uiyh0fiwdGopaYf4YLJBPpEvUao7ma81fk1YSsVJGaz55hdgDo9b9hWYPC
+         V2pM1LdubWS11LBCG68A4PlhTfs7Ox9VrD37Zg9dNgAXCoFLu9bGI1kTKxBsh7DP+KwJ
+         CQclby3ixCLhL33Pjg9ny+rkz8LG8aE+3HH4hkCd8sMB6XwI37IL44CCG68vIRN3fiGw
+         wkTwoU0YZZp/KokjHZBPtx/+i5VzmEtOZD6NPJLKCfzj6a38W/N5vU6ZbGZmuNMbJCXu
+         4Oo20hia9V/IUpUiLxDhwsjsURxI48WkUa/yVmrq87nsCNI7YmTjdG84EFdh1MhRatmF
+         vbZA==
+X-Gm-Message-State: AOAM533XDRqVWYqq+i57F99KitbqMxVFXBMMUdBFJbl9+XVZzFNPepXk
+        g8oE/9Q5/ybUuo7bE3R9NDmpTQ==
+X-Google-Smtp-Source: ABdhPJxgeZDClYTwM7w3KSD3XpIZZ3WMRSb8LUUqNHFWQ2sSL1PVnza2+m10uol/5oUW2d5jDTZqrA==
+X-Received: by 2002:a05:6a00:22d6:b029:1cb:35ac:d8e0 with SMTP id f22-20020a056a0022d6b02901cb35acd8e0mr8938502pfj.17.1613066651431;
+        Thu, 11 Feb 2021 10:04:11 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:fc92:99c:fc2f:8603])
+        by smtp.gmail.com with UTF8SMTPSA id h11sm3967858pjc.27.2021.02.11.10.04.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Feb 2021 10:04:10 -0800 (PST)
+Date:   Thu, 11 Feb 2021 10:04:08 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v5 2/4] USB: misc: Add onboard_usb_hub driver
+Message-ID: <YCVxmA8VraYuwN3y@google.com>
+References: <20210210171040.684659-1-mka@chromium.org>
+ <20210210091015.v5.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <YCTWpUqD7vSu0c4k@kroah.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YCTWpUqD7vSu0c4k@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8998 support has been added: document the new compatible.
+Hi Greg,
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
----
- Documentation/devicetree/bindings/net/qcom,ipa.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On Thu, Feb 11, 2021 at 08:03:01AM +0100, Greg Kroah-Hartman wrote:
+> On Wed, Feb 10, 2021 at 09:10:37AM -0800, Matthias Kaehlcke wrote:
+> > +static int onboard_hub_add_usbdev(struct onboard_hub *hub, struct usb_device *udev)
+> > +{
+> > +	struct udev_node *node;
+> > +	char link_name[64];
+> > +	int ret = 0;
+> > +
+> > +	mutex_lock(&hub->lock);
+> > +
+> > +	if (hub->going_away) {
+> > +		ret = -EINVAL;
+> > +		goto unlock;
+> > +	}
+> > +
+> > +	node = devm_kzalloc(hub->dev, sizeof(*node), GFP_KERNEL);
+> > +	if (!node) {
+> > +		ret = -ENOMEM;
+> > +		goto unlock;
+> > +	}
+> > +
+> > +	node->udev = udev;
+> > +
+> > +	list_add(&node->list, &hub->udev_list);
+> > +
+> > +	snprintf(link_name, sizeof(link_name), "usb_dev.%s", dev_name(&udev->dev));
+> > +	WARN_ON(sysfs_create_link(&hub->dev->kobj, &udev->dev.kobj, link_name));
+> 
+> Never use WARN_ON() unless you want the machine to reboot if it triggers
+> (panic on warn).
 
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-index b063c6c1077a..9dacd224b606 100644
---- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-@@ -46,6 +46,7 @@ properties:
-     oneOf:
-       - items:
-           - enum:
-+              - "qcom,msm8998-ipa"
-               - "qcom,sdm845-ipa"
-               - "qcom,sc7180-ipa"
- 
--- 
-2.30.0
+Ah, thanks, I wasn't aware of that. Will change to some type of log if the
+sysfs attributes stick around.
 
+> But the larger question is what is this sysfs link for?  It's not
+> documented anywhere, and so, shouldn't be allowed.  Who is going to use
+> it and why is it needed?
+
+Alan asked to add them: https://lore.kernel.org/patchwork/patch/1313000/#1514338
+
+I'm fine with either way, let's just agree on something :)
+
+> > +
+> > +unlock:
+> > +	mutex_unlock(&hub->lock);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static void onboard_hub_remove_usbdev(struct onboard_hub *hub, struct usb_device *udev)
+> > +{
+> > +	struct udev_node *node;
+> > +	char link_name[64];
+> > +
+> > +	snprintf(link_name, sizeof(link_name), "usb_dev.%s", dev_name(&udev->dev));
+> > +	sysfs_remove_link(&hub->dev->kobj, link_name);
+> > +
+> > +	mutex_lock(&hub->lock);
+> > +
+> > +	list_for_each_entry(node, &hub->udev_list, list) {
+> > +		if (node->udev == udev) {
+> > +			list_del(&node->list);
+> > +			break;
+> > +		}
+> > +	}
+> > +
+> > +	mutex_unlock(&hub->lock);
+> > +}
+> > +
+> > +static ssize_t always_powered_in_suspend_show(struct device *dev, struct device_attribute *attr,
+> > +			   char *buf)
+> > +{
+> > +	struct onboard_hub *hub = dev_get_drvdata(dev);
+> > +
+> > +	return sprintf(buf, "%d\n", hub->always_powered_in_suspend);
+> 
+> sysfs_emit()?
+
+ok
+
+> And you forgot the Documentation/ABI/ entries for this driver, so it
+> really can not be reviewed...
+
+I'll add it in the next version.
+
+> > +}
+> > +
+> > +static ssize_t always_powered_in_suspend_store(struct device *dev, struct device_attribute *attr,
+> > +			    const char *buf, size_t count)
+> > +{
+> > +	struct onboard_hub *hub = dev_get_drvdata(dev);
+> > +	bool val;
+> > +	int ret;
+> > +
+> > +	ret = kstrtobool(buf, &val);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	hub->always_powered_in_suspend = val;
+> > +
+> > +	return count;
+> > +}
+> > +static DEVICE_ATTR_RW(always_powered_in_suspend);
+> > +
+> > +static struct attribute *onboard_hub_sysfs_entries[] = {
+> > +	&dev_attr_always_powered_in_suspend.attr,
+> > +	NULL,
+> > +};
+> > +
+> > +static const struct attribute_group onboard_hub_sysfs_group = {
+> > +	.attrs = onboard_hub_sysfs_entries,
+> > +};
+> > +
+> > +static int onboard_hub_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct onboard_hub *hub;
+> > +	int err;
+> > +
+> > +	hub = devm_kzalloc(dev, sizeof(*hub), GFP_KERNEL);
+> > +	if (!hub)
+> > +		return -ENOMEM;
+> > +
+> > +	hub->vdd = devm_regulator_get(dev, "vdd");
+> > +	if (IS_ERR(hub->vdd))
+> > +		return PTR_ERR(hub->vdd);
+> > +
+> > +	hub->dev = dev;
+> > +	mutex_init(&hub->lock);
+> > +	INIT_LIST_HEAD(&hub->udev_list);
+> > +
+> > +	dev_set_drvdata(dev, hub);
+> > +
+> > +	err = devm_device_add_group(dev, &onboard_hub_sysfs_group);
+> 
+> You just raced userspace and lost :(
+> 
+> Please use the correct api to add sysfs attributes to the device
+> automatically by the driver core.
+
+ok
+
+> But the larger question is why do you need them at all?  What do they
+> do that we can't already do with existing apis that you feel a one-off
+> api for this driver is required?
+
+The 'always_powered_in_suspend' attribute allows the admin to configure whether
+the hub should always been kept on in suspend. I'm know about existing APIs that
+would be suitable for that, but that might be just my ignorance. If you have any
+suggestions please let me know.
+
+> > +	if (err) {
+> > +		dev_err(dev, "failed to create sysfs entries: %d\n", err);
+> > +		return err;
+> > +	}
+> > +
+> > +	err = onboard_hub_power_on(hub);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	/*
+> > +	 * The USB driver might have been detached from the USB devices by
+> > +	 * onboard_hub_remove() make sure to re-attach it if needed.
+> > +	 */
+> > +	(void)driver_attach(&onboard_hub_usbdev_driver.drvwrap.driver);
+> 
+> (void)????
+> 
+> Please no, do it right.
+
+Ok, driver_attach() does not return an error when the driver is already
+attached, so it should be fine to change this to an error check.
+
+> But, why is a driver calling this function anyway?  That feels really
+> really wrong...
+
+I found during testing that this is needed to make sure the driver is attached
+again after it was released in onboard_hub_remove(). Alan requested to release
+the driver to avoid dangling references:
+https://lore.kernel.org/patchwork/patch/1310889/#1506598
+
+Thanks
+
+Matthias
