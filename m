@@ -2,108 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D13DA31904F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 17:47:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A8A319097
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 18:09:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232011AbhBKQrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 11:47:14 -0500
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:53929 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231927AbhBKQql (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 11:46:41 -0500
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.nyi.internal (Postfix) with ESMTP id CB0E55C0101;
-        Thu, 11 Feb 2021 11:45:30 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Thu, 11 Feb 2021 11:45:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=wtqbOGzta9M177pSJSqcwXLiv9t
-        cri+slKWbRQesdkw=; b=b+Yp8sHDZDGAQfChbuZuG5lbeD94iiudNAkuYGNjaIo
-        MeR9FRrXu0jba0AfDGt/RBs4V7W7x9elh20KN7LiUSd3xMy9Btd4RcNkAwvhRD4Q
-        FPWayCY88l6+euWqQhu00tphBjS5iz5hSrt9iqyj5eqMTl3CmItXeG2KhaNEpZAw
-        m2ESaRYucIPNl+B+eCuP/TDQh0HBZBwK2PWzdhMNBPL+cHMz1zBcqLyn+MN0giBV
-        79Z+kg79hlvl5Yy7CdnGeGtz3C4xOIIaqtb1XBcpCX4caLRI12xGYXD+Kgz4ONJT
-        fRuKZetskfVT0dZiUl5WK2XkMyg+GfIld64HM63lQ6w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=wtqbOG
-        zta9M177pSJSqcwXLiv9tcri+slKWbRQesdkw=; b=CIvy4FE5KjS1QohfsfelQi
-        x58mP92CNbZmOqsXVxcs6PgQD58yQJNDMl7cMwO9phKIBShebP2EWVPOdAHLE2TD
-        setTRUj99/o51JboWdjJy0E3AzGkcH4ohRtYWZIW/wpTysEcGyjW+qkNNuSZMmgq
-        NjZ7Y+teyHTvsNd97e58A7N/mh3tLQJUVXNv1qc6d/3EyLwaFBWLivyIo/zPWCxA
-        yVYVtZDHTNppV5TFR0d7dveEp2WA6W4BjVr8cQq3S/go999PAhdO3qqS2gz3cYrT
-        EuHZHVaOY+DcLoxr6dGe8oc3GINZAkFxFyfWpH7X6F0ExqXnUIVKnixeZH7nIIvA
-        ==
-X-ME-Sender: <xms:KV8lYAHDMns51cy4hqrU02R1iJX64h8QY9ARcEhUskItqQ-Ef3Yj-g>
-    <xme:KV8lYC-gUI6jWUJkf-x5JpRlMAcNOGUMxVEovSaYjn6J1f6bhIEoFHSPSW3jKckJa
-    4C8hdzze0yNmAblHt0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrheelgdeludcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:KV8lYKJlZCdE9w0S3DE1lIzcdSLi0kP222J5SA8rzykBkcL1TKTvxA>
-    <xmx:KV8lYFba5FqPd_EYO-N9F7iC2P9slHM74v16qCDm64b1Kj3Pp5Awxw>
-    <xmx:KV8lYEK-rBOUpcSnnbVTjRbY_aqNLp7Cy6hMiiCushVE1XtdktG1qg>
-    <xmx:Kl8lYEDn5FnWVzVQARwfL2IHHImfWhvoUk8mK7FGJnBrYhBVz4_h8Q>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 3873F1080063;
-        Thu, 11 Feb 2021 11:45:29 -0500 (EST)
-Date:   Thu, 11 Feb 2021 17:45:26 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "wens@csie.org" <wens@csie.org>,
-        "jernej.skrabec@siol.net" <jernej.skrabec@siol.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm: dts: sun5i: Add GPU node
-Message-ID: <20210211164526.6n66ozyu7pcuigqq@gilmour>
-References: <nGyI_fodh-zDD7vDOH3sqaiGbOQprYmljxEKSlTdu9Ju5OcpUcLBIHndYSnzQKT0n6Yh4H4VX8ss-XPyuBMU6n8nX5Oag_4LrqrryrZaqx8=@protonmail.com>
+        id S232094AbhBKRFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 12:05:20 -0500
+Received: from mout.kundenserver.de ([212.227.126.130]:57915 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231138AbhBKRDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 12:03:52 -0500
+Received: from [192.168.1.155] ([95.114.27.115]) by mrelayeu.kundenserver.de
+ (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1Mf0Je-1lqkp01DlC-00gYWj; Thu, 11 Feb 2021 18:01:12 +0100
+Subject: Re: RFC: oftree based setup of composite board devices
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20210208222203.22335-1-info@metux.net>
+ <CAHp75VdNTenoE0AOmGfndqQ7SrxbuK+SvfFYn3W2GmqhkCSByQ@mail.gmail.com>
+ <1b92deea-cf6d-7eca-197f-b12456279890@metux.net>
+ <CAHp75Vd39OaGkgi5mSH+o39Js8gDW77fP8LUBx73EAH_mZ-scg@mail.gmail.com>
+From:   "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+Message-ID: <f9c0af52-2930-7227-7ccb-4780fb1bb159@metux.net>
+Date:   Thu, 11 Feb 2021 18:01:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ufx4mccggtpm5zqb"
-Content-Disposition: inline
-In-Reply-To: <nGyI_fodh-zDD7vDOH3sqaiGbOQprYmljxEKSlTdu9Ju5OcpUcLBIHndYSnzQKT0n6Yh4H4VX8ss-XPyuBMU6n8nX5Oag_4LrqrryrZaqx8=@protonmail.com>
+In-Reply-To: <CAHp75Vd39OaGkgi5mSH+o39Js8gDW77fP8LUBx73EAH_mZ-scg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: tl
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:mSMdZII7B/L5K2vNbMMBbOi186sVVNTPZWRXD+rGUPifstgIhqX
+ mbp4DOAf3sOPrv/sAJ+eEjU2gs3+wy+1oM23u5HiuahwM5L2TaMX234+swtoM1JUa987js1
+ JIY4Kb2XhC0cs9ey6NtNHG+Wl+AbAAVOSupkPNFz2Sbf/FHB3a0RsqHtfWQfQBxIWJJ+CLY
+ rrX8IrRMnqWoUh9LSPxDw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:H6wFMNih/84=:LmtpXXihpqFcKAZQwFPgib
+ B2iC6LP7KojdCbUy/la9cRTd/OUQ71mR+mCswI3BIir6CvQ4ANG23f2KRxU6koVRXa2ZsBGQA
+ 0dvKvoN5M0BvCcQXdoW3GNv1+j6RYspIvfLRrfWRCoA/jVC5TcjB5z4txlFQwCi2cw1DPdqmg
+ 4ODIwj//TJvRxKJjYgQ3rSpJSr7N/ZpvSUJdOEfEcj6ToguijOV5AL9aT/qkPhz4QplR6Rh3h
+ 0EcTx8/9W9XTHvLMhkbEekOkCsWjzO0tGxgDx8XtghWtwlCtYheLvrzSifapjF/bwekpiBD7O
+ a3VEKtdR9QOC9RQQ3hmELy7vnwBVh6/DvWVF4u6PzaTf9ZCibgRwQ5ESEK88GNE5L7IwaFJBp
+ pPToAmyn7DcT36CYkUe9HKDutMqAVpWYYnO8swuh9T1xmt+NhVN4UWHBabhkU
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---ufx4mccggtpm5zqb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 11.02.21 12:41, Andy Shevchenko wrote:
 
 Hi,
 
-On Thu, Feb 11, 2021 at 03:25:23PM +0000, Yassine Oudjana wrote:
-> sun5i has the same Mali 400 GPU as sun4i with the same interrupts, clocks
-> and resets. Add node for it in dts.
->=20
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> On Thu, Feb 11, 2021 at 1:15 PM Enrico Weigelt, metux IT consult
+> <lkml@metux.net> wrote:
+>> On 10.02.21 11:30, Andy Shevchenko wrote:
+> 
+>>>> Use cases are boards with non-oftree firmware (ACPI, etc) where certain
+>>>> platform devices can't be directly enumerated via firmware. Traditionally
+>>>> we had to write board specific drivers that check for board identification
+>>>> (DMI strings, etc), then initialize the actual devices and their links
+>>>> (eg. gpio<->leds/buttons, ...). Often this can be expressed just by DT.
+>>>
+>>> In ACPI we support DT compatible strings, and we support overlays for
+>>> a long time. Would it work for you?
+>>
+>> please tell me more, how ACPI and DT can already work together ?
+> 
+> It's all in documentation.
+> 
+> https://www.kernel.org/doc/html/latest/firmware-guide/acpi/enumeration.html#device-tree-namespace-link-device-id
 
-Unfortunately we already merged a similar patch for 5.12
+Thanks, but I'm still unsure how this helps me. I'm not intending to
+touch any firmware (and expect people in the field flashing new fw).
+I have to live with what we find in the field (otherwise I'd just write
+omplete DTs for the corresponding boards and throw out ACPI :p)
 
-Maxime
+> https://www.kernel.org/doc/html/latest/admin-guide/acpi/ssdt-overlays.html
 
---ufx4mccggtpm5zqb
-Content-Type: application/pgp-signature; name="signature.asc"
+Are you suggesting I should load SSDT overlays at runtime (from
+userland ?) instead of using DT ?
 
------BEGIN PGP SIGNATURE-----
+> Please, please, read documentation beforehand!
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYCVfJgAKCRDj7w1vZxhR
-xdJsAQDWMP0NzuJynQroY3M3P0zkseK1FDwCfz9cLp0og84lDQEA77MjjALXJ0dY
-mJlFoN3QDzyi8TE2WxIbPwa9DHOSJwo=
-=nwOc
------END PGP SIGNATURE-----
+I actually did read that documentation, but unfortunately it doesn't
+tell me how to use additional DTs on ACPI systems.
 
---ufx4mccggtpm5zqb--
+>> You already know my apu board driver - that's my first example usecase.
+> 
+> Sorry, but I forgot about it. Can you summarize what is your use case
+> that really needs so intrusive and hard work?
+
+The current APU2/3/4 driver is pretty much fine (except that possibly
+some more bios-version specific quirks might be needed). It basically
+just instantiates a bunch of other devices (gpio, led, input, ...)
+and connects them.
+
+All of that (except for the DMI match table) already can be easily
+expressed in DT, so this calls for a generalization. At that point I
+tried to achieve the following goals:
+
+* a generic mechanism for detecting boards (and later pci cards, usb
+   dongles, etc) and probing the devices from the corresponding DT
+* have everything that makes up an individual board in one DT(S)
+* ability to blacklist (kick out) specific devices already probed via
+   ACPI, so they don't conflict. (*1)
+
+>> * match rules shall be inside the DTS
+>> * future match rules shall also check for bios versions etc
+>> * adding new boards shall be possible by just adding another DTS to
+>>     the tree (not a whole module)
+>> * supporting several board variants (w/ small differences) by one DTS
+>> * sometimes existing devices (eg. enumerated by acpi) need to be kicked
+>>     out (buggy firmware, ...)
+>> * can't rely on any special userland tweaks
+> 
+> Show an example why either of the above is needed in your case and
+> tell what is the exact issue.
+
+In the specific APU case (note that my proposal is a generic mechanism
+for a whole class of similar usecases), *some* bios versions already
+enumerate *some* gpios, later versions already enumerate some LEDs but
+different naming than the driver's, etc., etc. (at time of writing the
+driver, apu bios didn't support any of that). For preventing conflicts
+and consistency between all bios versions, it's IMHO better to just
+remove the conflicting devices if they're enumerated by bios.
+
+> Yes, that driver represents hardware. MFD already has some support for
+> composite devices. We have the auxiliary bus for some other
+> interesting cases, etc. Depending on the hardware in question you have
+> to choose a proper bus and locking (access synchronisation) schema.
+
+Yes, but similar to the apu case, I'd like to be able describe those
+devices just by a DT (instead of lots of C code).
+
+>> Those things could be expressed via DTS, so we don't need to write
+>> individual drivers anymore.
+> 
+> It seems you are trying to create something like "universal quirk".
+> Brave idea, but from my experience a fiasco is what will be out of it.
+> The hardware has a lot of different issues and levels of issues and it
+> is close to impossible to describe everything possible and predict the
+> future... Good luck!
+
+Dont worry, I don't try create some one-fits-all-solution. It's just for
+a specific class of use cases, where we need additional devices that
+can't be (reliably) enumerated via firmware or buses.
+
+>> * need to split the information into several places (instead of having
+>>     all in one DTS)
+>> * need to have one separate module board, or merge the dmi tables.
+> 
+> Have no idea what you are talking about here, sorry.
+
+Well, for now I have the matching criteria (DMI strings) within the DT -
+don't need any additional code per board. For using the existing
+mechanisms, I would need to move that out into a separate .c file,
+something I'd like to avoid.
+
+>> My goal is having everything that describes a board into one DTS
+>> (source) file.
+> 
+> I'm confused, you are talking about non-DT platforms in the
+> cover-letter and now you are talking about DTS. AFAIK DTS allows you
+> to put everything in one source.
+
+Nope, I'm using DT *in addition* to firmware data (ACPI), for things
+that arent't properly described by firmware. The idea goes like this:
+
+* walk through all available board descriptions (builtin dtbs)
+   * check whether board matches critiera given in the DT
+   * if match:
+     * kick out blacklisted devices
+     * populate devices from the DT
+
+The idea is just not having to write lots of C code for cases like the
+apu boards anymore, but reuse existing DT infrastructure for that and
+also heavily reduce code size this way (for apu case, the dtb is around
+2kb, while the existing driver is around 17kb)
+
+
+--mtx
+
+-- 
+---
+Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
+werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
+GPG/PGP-Schlüssel zu.
+---
+Enrico Weigelt, metux IT consult
+Free software and Linux embedded engineering
+info@metux.net -- +49-151-27565287
