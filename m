@@ -2,136 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03614319472
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 21:28:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0756D319499
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 21:39:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231865AbhBKU1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 15:27:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60512 "EHLO
+        id S231364AbhBKUhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 15:37:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231818AbhBKU1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 15:27:45 -0500
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435B1C0613D6
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 12:27:04 -0800 (PST)
-Received: by mail-il1-x12f.google.com with SMTP id a16so6292751ilq.5
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 12:27:04 -0800 (PST)
+        with ESMTP id S229768AbhBKUhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 15:37:18 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93FEBC061574
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 12:36:38 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id z7so3948840plk.7
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 12:36:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=BhGQshN1SJ6FzYvK/Ylak5i6bTCB8ww2nvYRmIy1Hhg=;
-        b=dB8jc5NwlVjd5jAbswz4S6tGscnbR1vlEnvWXzmI5VGKQxt92AINve6Ax5LT703TnI
-         HX50/z+Qhm+1paetK0Na84hXoIqb6Up1iN8socEjg9gbMDWyCcb87Rbykh1peungcU2T
-         Ei0LSx02rQCMLWO3IolI/80HT2YrDpmKhTBWM=
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=CJoKOyJ/+fV1yTi8COq9+GsinjN35J8Xxpn6tpcdpRU=;
+        b=QbmbfyI0qQypKcIHnyCYOUMh+edEbR9HP19kIJJF9u+VacXRyXbibnJTcvI7IFeIgC
+         mfNLBXVuJ9JX+sWaGOhu7GezZGF5Tik1rXGY+b37aIBMezXmRJUz+hV+jQ0yU7wxsmfp
+         vg4KdaSz6StsHsNMB+12sh/Ekya7zOtYuUXVk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=BhGQshN1SJ6FzYvK/Ylak5i6bTCB8ww2nvYRmIy1Hhg=;
-        b=X0sv6nkF0lDddbHNNNwZGAy+XAENTA9URhLA+aEs3iYkurC/Z2yHx2uYT5HAXZnW+o
-         YXR/vcxelyuR7KNvwFA0djUhm2xV0ox7K4hrVm/0sKBeT1PXeipdmYW07vcfNYHjFLq/
-         7D5UUt3Ptd8tCFnf8odHHTs9EBg6laTk7WRc1QtuNLR5iWf/HQPovAc/9nrpzrf9mgQ2
-         jrVK1aPjWRIXSLrMRNgqqYyrUWC3ZxplD+VMG1x7buaC1Eyd/UA9LUQW0AEDzweWhcWB
-         Gi1YbTJxRH+x2E5+0zreWs8sR1qDamrsLkE79ymsuENP87k5ve43tQTcUN8t2cU3Xv1K
-         OiOA==
-X-Gm-Message-State: AOAM5309Bf3XKWWslNflaaJqtG45SZDy2+ymmTKD2b7QWzwV9HSMU/+J
-        udXy4EEmgh6Du72iwt3I6P95wQ==
-X-Google-Smtp-Source: ABdhPJzMlL6cxuNZc0DR632e+CNV3R+bRT9mM+nrr2xk1U1V2+1gi/DwvLGaJVPrlE7F5QiYXbEqsA==
-X-Received: by 2002:a92:730a:: with SMTP id o10mr7310122ilc.160.1613075223595;
-        Thu, 11 Feb 2021 12:27:03 -0800 (PST)
-Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.googlemail.com with ESMTPSA id h2sm3009479ioh.6.2021.02.11.12.27.02
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=CJoKOyJ/+fV1yTi8COq9+GsinjN35J8Xxpn6tpcdpRU=;
+        b=CEMopK0TW/HfvMMrgHpvvTPDbol9fRLx8fWV4U82T7aNcF5m/5blsKTsuMLrBEoAKv
+         n4gT/jY9WHBBx3vg/zHDfa4wWmdXinEZpp3cIt/s39iZTB1EJ9AxVdTYjxRvw5/HakuX
+         3tFHdSsvI776/MUOHPqblQelWVjxRwAK6L9dEMmJ/wX4aIy98wx/zWNIkWDNK6VW0zo9
+         gfzkJyzr2hg81SCPyBpdFhrp7hhXKGKWRsx7JMInk76KuI7/oXMTMiOXp0i0lg12Nx9b
+         Hjc4eu7dNOnuU7NLnPwAo3vY0cVIknAG+y9UpCtlmTKReIhUGhCqInotwEcd+bg36QI7
+         pwoQ==
+X-Gm-Message-State: AOAM530L252LPOAyqdQYEPMny/pFY1JIJMKTFnzV9a266Of7gXLso0kR
+        ypUREGsiw/GJuDpGgTwPZuQ4pg==
+X-Google-Smtp-Source: ABdhPJyvwsXbtNkPHebU5byTz3n/UhWwr1foC+7U/kGK0y+cS85N6zpcfchbtNLyti/UzJJfwuQ9Yw==
+X-Received: by 2002:a17:90b:618:: with SMTP id gb24mr5390563pjb.163.1613075798069;
+        Thu, 11 Feb 2021 12:36:38 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:fc92:99c:fc2f:8603])
+        by smtp.gmail.com with UTF8SMTPSA id b14sm6308643pfi.74.2021.02.11.12.36.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Feb 2021 12:27:03 -0800 (PST)
-Subject: Re: [PATCH v1 0/7] Add support for IPA v3.1, GSI v1.0, MSM8998 IPA
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>, elder@kernel.org
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, davem@davemloft.net,
-        kuba@kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, phone-devel@vger.kernel.org
-References: <20210211175015.200772-1-angelogioacchino.delregno@somainline.org>
-From:   Alex Elder <elder@ieee.org>
-Message-ID: <3a596fce-9aa3-e2eb-7920-4ada65f8d2ee@ieee.org>
-Date:   Thu, 11 Feb 2021 14:27:01 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        Thu, 11 Feb 2021 12:36:37 -0800 (PST)
+Date:   Thu, 11 Feb 2021 12:36:35 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Mathias Nyman <mathias.nyman@intel.com>
+Subject: Re: [PATCH v5 3/4] usb: host: xhci-plat: Create platform device for
+ onboard hubs in probe()
+Message-ID: <YCWVU7YCE+WzRx9v@google.com>
+References: <20210210171040.684659-1-mka@chromium.org>
+ <20210210091015.v5.3.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
+ <20210210210645.xapaua7djdsvr3ca@kozik-lap>
+ <YCRcIuCxB8nYi7/e@google.com>
+ <161307087919.1254594.11784819060723374369@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
-In-Reply-To: <20210211175015.200772-1-angelogioacchino.delregno@somainline.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <161307087919.1254594.11784819060723374369@swboyd.mtv.corp.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/11/21 11:50 AM, AngeloGioacchino Del Regno wrote:
-> Hey all!
-> 
-> This time around I thought that it would be nice to get some modem
-> action going on. We have it, it's working (ish), so just.. why not.
+Hi Stephen,
 
-Thank you for the patches!
+On Thu, Feb 11, 2021 at 11:14:39AM -0800, Stephen Boyd wrote:
+> Quoting Matthias Kaehlcke (2021-02-10 14:20:18)
+> > 
+> > On Wed, Feb 10, 2021 at 10:06:45PM +0100, Krzysztof Kozlowski wrote:
+> > > 
+> > > This looks hackish... what if later we have something else than hub?
+> > > Another if()?
+> > > 
+> > > What if hub could be connected to something else than XHCI controller?
+> > 
+> > In earlier versions this was standalone driver, which was more flexible and
+> > didn't require cooperation from the XHCI driver:
+> > 
+> > https://lore.kernel.org/patchwork/patch/1313001/
+> > 
+> > Rob Herring raised objections about the DT bindings, since the USB hub would be
+> > represented twice in the DT, once in the USB hierachry (with an explicit node or
+> > implicitly) plus a node for the platform device for the new driver:
+> > 
+> > https://lore.kernel.org/patchwork/patch/1305395/
+> > https://lore.kernel.org/patchwork/patch/1313000/
+> > 
+> > Alan Stern suggested to create the platform device in the XHCI platform driver:
+> > 
+> > https://lore.kernel.org/patchwork/patch/1313000/#1510227
+> > 
+> > I wasn't super happy about involving xhci-plat, but at least the code is minimal
+> > and all the device specific stuff is handled by the onboard_usb_hub driver.
+> > 
+> > If you have better suggestions that might satisfy all parties please let us
+> > know :)
+> > 
+> 
+> Is it possible to use the graph binding to connect the USB controller on
+> the SoC to the port on the hub? Then the hub would be a standalone node
+> at the root of DT connected to the USB controller (or phy) and xhci code
+> could probe the firmware to see if there's a graph connection downstream
+> that is a powered hub like this. I didn't see this idea mentioned in the
+> previous discussions, but maybe I missed it.
 
-I would like to review these carefully but I'm sorry
-I won't be able to get to it today, and possibly not
-for a few days.  But I *will* review them.
+Thanks for bringing this up. I'm not sure I completely understand your
+suggestion, but in general it seems a direction that could be worth
+exploring.
 
-I just want you to know I'm paying attention, though
-I'm sort of buried in an important issue right now.
+I think something like the following should work even without requiring
+cooperation from the XHCI code:
 
-I'm very impressed at how small the patches are though.
+onboard-usb-hub {
+    compatible = “realtek,rts5411”, “onboard_usb_hub”;
+    #address-cells = <1>;
+    #size-cells = <0>;
 
-					-Alex
+    vdd-supply = <&pp3300_hub>;
 
-> This series adds support for IPA v3.1 (featuring GSI v1.0) and also
-> takes account for some bits that are shared with other unimplemented
-> IPA v3 variants and it is specifically targeting MSM8998, for which
-> support is added.
-> 
-> Since the userspace isn't entirely ready (as far as I can see) for
-> data connection (3g/lte/whatever) through the modem, it was possible
-> to only partially test this series.
-> Specifically, loading the IPA firmware and setting up the interface
-> went just fine, along with a basic setup of the network interface
-> that got exposed by this driver.
-> 
-> With this series, the benefits that I see are:
->   1. The modem doesn't crash anymore when trying to setup a data
->      connection, as now the modem firmware seems to be happy with
->      having IPA initialized and ready;
->   2. Other random modem crashes while picking up LTE home network
->      signal (even just for calling, nothing fancy) seem to be gone.
-> 
-> These are the reasons why I think that this series is ready for
-> upstream action. It's *at least* stabilizing the platform when
-> the modem is up.
-> 
-> This was tested on the F(x)Tec Pro 1 (MSM8998) smartphone.
-> 
-> AngeloGioacchino Del Regno (7):
->    net: ipa: Add support for IPA v3.1 with GSI v1.0
->    net: ipa: endpoint: Don't read unexistant register on IPAv3.1
->    net: ipa: gsi: Avoid some writes during irq setup for older IPA
->    net: ipa: gsi: Use right masks for GSI v1.0 channels hw param
->    net: ipa: Add support for IPA on MSM8998
->    dt-bindings: net: qcom-ipa: Document qcom,sc7180-ipa compatible
->    dt-bindings: net: qcom-ipa: Document qcom,msm8998-ipa compatible
-> 
->   .../devicetree/bindings/net/qcom,ipa.yaml     |   7 +-
->   drivers/net/ipa/Makefile                      |   3 +-
->   drivers/net/ipa/gsi.c                         |  33 +-
->   drivers/net/ipa/gsi_reg.h                     |   5 +
->   drivers/net/ipa/ipa_data-msm8998.c            | 407 ++++++++++++++++++
->   drivers/net/ipa/ipa_data.h                    |   5 +
->   drivers/net/ipa/ipa_endpoint.c                |  26 +-
->   drivers/net/ipa/ipa_main.c                    |  12 +-
->   drivers/net/ipa/ipa_reg.h                     |   3 +
->   drivers/net/ipa/ipa_version.h                 |   1 +
->   10 files changed, 480 insertions(+), 22 deletions(-)
->   create mode 100644 drivers/net/ipa/ipa_data-msm8998.c
-> 
+    port@0 {
+        reg = <0>;
 
+        rts5411_3_0: endpoint {
+            // should not be needed
+            remote-endpoint = <&usb_1_dwc3_port1>;
+        };
+    };
+
+    port@1 {
+        reg = <1>;
+
+        rts5411_2_0: endpoint {
+            // should not be needed
+            remote-endpoint = <&usb_1_dwc3_port2>;
+        };
+    };
+};
+
+&usb_1_dwc3 {
+    dr_mode = "host";
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    port@1 {
+        reg = <1>;
+
+        usb_1_dwc3_port1: endpoint {
+            remote-endpoint = <&rts5411_3_0>;
+        };
+    };
+
+    port@2 {
+        reg = <2>;
+
+        usb_1_dwc3_port2: endpoint {
+            remote-endpoint = <&rts5411_2_0>;
+        };
+    };
+};
+
+That looks like an actual description of the hardware, without multiple DT
+nodes for the hub.
+
+The USB part of the onboard_hub driver could determine the platform device
+from the remote endpoint and register the USB device with it.
