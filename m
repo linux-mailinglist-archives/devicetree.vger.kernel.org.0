@@ -2,161 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C47C9319600
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 23:48:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 869BC319640
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 00:02:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbhBKWrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 17:47:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44656 "EHLO mail.kernel.org"
+        id S230180AbhBKXBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 18:01:05 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46476 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229903AbhBKWru (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 17:47:50 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E5DD864E4B;
-        Thu, 11 Feb 2021 22:47:09 +0000 (UTC)
+        id S230158AbhBKXBB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Feb 2021 18:01:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPS id 5643164E45;
+        Thu, 11 Feb 2021 23:00:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613083630;
-        bh=ksI7x+CFHJSMWyftjpURxC87NwW7uxJrVV7hwvTi/WU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JAc42ynMvOjdRi8uxYEX3CMxlMCEw+e5PRVj+/w+GfiJcwT1Tjnjk9rnpvrEMldeX
-         snqOgJ6MWXw3+L4DCihgsBE5TZuYBQx9eVLIzBzBhTXE3oy+tinhI2rv/xUe+mXklL
-         AdgKvd6ugsfooOQEUZkh7phiG1UynUotYXKaCenSQEbrgnB3rA3F/vP12o1nCzIOmp
-         F2gO4dFoVEzwnf39kH9UJLxT8AgFNhRGBv9h391lXDFW7AXPpFBWLnoHoTldx5cbSF
-         mi2zgOlZOxlMUIIyVQxq/VRKoCZHyiKr8ZUeqJTetPzTFigyGE0BTbpA1efwpVT6UZ
-         vNJtAa7j1QsRQ==
-Received: by mail-ej1-f50.google.com with SMTP id sa23so12616597ejb.0;
-        Thu, 11 Feb 2021 14:47:09 -0800 (PST)
-X-Gm-Message-State: AOAM532N6ShNxQ2+x2Ch8OMY2+2XxBPM0gyT6MwgE+JyTXxokiDtvKDb
-        HL/svyG1CCTYyEKIRHSy9f9WtSbj7EpE+EH5cw==
-X-Google-Smtp-Source: ABdhPJx8frNq1hOIUUTp4W0tz6HdiEqWhVCjFLmewCa0h36/gkIU+r+6ht8N+8b/IGr+JJVYwzALpuc0/hY1xnX0mo8=
-X-Received: by 2002:a17:906:af41:: with SMTP id ly1mr10307309ejb.525.1613083628399;
- Thu, 11 Feb 2021 14:47:08 -0800 (PST)
+        s=k20201202; t=1613084420;
+        bh=hUAjqC2ipIs0Uawoeq3MF0KtoPUw2dEume6J2zh1Ok8=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=ChPHLGJR8M7fV0WOl7AU6sIHS2iI2uOJfasXJnzJDgJPlCVVLNxYHQFEFWGQmO6FI
+         XE+DpVy0bm+NPz+62uHwsJhku474vUPnxP6zgiFkpTqIwFfdA5QBXvWZl5zDVm8Vi1
+         LJAbvxk6HEuZgGdVuo2YO6zoHoRSsRZLC65M+/wDfDGTGe0pGrAxnUBGc40fTPJDX1
+         VEPu9nOOJuPkMCYjp3f92UdQM7UYSlXn7A+hgXsQJCGjRHiJk4kKIycDFbajcAT2BZ
+         ohBT04MBuvj29OJHnhz/j7qg/c8ReORddae8XgxWuqKFNH2q5OlTy04HRQkl3cDWZp
+         B69j/Cwf74S5Q==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 4170760A0F;
+        Thu, 11 Feb 2021 23:00:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210210171040.684659-1-mka@chromium.org> <20210210091015.v5.3.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
- <20210210210645.xapaua7djdsvr3ca@kozik-lap> <YCRcIuCxB8nYi7/e@google.com>
- <161307087919.1254594.11784819060723374369@swboyd.mtv.corp.google.com>
- <YCWVU7YCE+WzRx9v@google.com> <161307633188.1254594.14761449293146776857@swboyd.mtv.corp.google.com>
-In-Reply-To: <161307633188.1254594.14761449293146776857@swboyd.mtv.corp.google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 11 Feb 2021 16:46:56 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJR5DUiDJ-fkrGbM0M2Lm5S4xQH2dhV9oi9UMhBuiVVrA@mail.gmail.com>
-Message-ID: <CAL_JsqJR5DUiDJ-fkrGbM0M2Lm5S4xQH2dhV9oi9UMhBuiVVrA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/4] usb: host: xhci-plat: Create platform device for
- onboard hubs in probe()
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v13 net-next 00/15] net: mvpp2: Add TX Flow Control support
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161308442026.22878.3631243118969933506.git-patchwork-notify@kernel.org>
+Date:   Thu, 11 Feb 2021 23:00:20 +0000
+References: <1613040542-16500-1-git-send-email-stefanc@marvell.com>
+In-Reply-To: <1613040542-16500-1-git-send-email-stefanc@marvell.com>
+To:     Stefan Chulski <stefanc@marvell.com>
+Cc:     netdev@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        davem@davemloft.net, nadavh@marvell.com, ymarkman@marvell.com,
+        linux-kernel@vger.kernel.org, kuba@kernel.org,
+        linux@armlinux.org.uk, mw@semihalf.com, andrew@lunn.ch,
+        rmk+kernel@armlinux.org.uk, atenart@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
+        linux-arm-kernel@lists.infradead.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 11, 2021 at 2:45 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Matthias Kaehlcke (2021-02-11 12:36:35)
-> > Hi Stephen,
-> >
-> > On Thu, Feb 11, 2021 at 11:14:39AM -0800, Stephen Boyd wrote:
-> > >
-> > > Is it possible to use the graph binding to connect the USB controller=
- on
-> > > the SoC to the port on the hub? Then the hub would be a standalone no=
-de
-> > > at the root of DT connected to the USB controller (or phy) and xhci c=
-ode
-> > > could probe the firmware to see if there's a graph connection downstr=
-eam
-> > > that is a powered hub like this. I didn't see this idea mentioned in =
-the
-> > > previous discussions, but maybe I missed it.
-> >
-> > Thanks for bringing this up. I'm not sure I completely understand your
-> > suggestion, but in general it seems a direction that could be worth
-> > exploring.
->
-> Cool.
->
-> >
-> > I think something like the following should work even without requiring
-> > cooperation from the XHCI code:
-> >
-> > onboard-usb-hub {
-> >     compatible =3D =E2=80=9Crealtek,rts5411=E2=80=9D, =E2=80=9Conboard_=
-usb_hub=E2=80=9D;
-> >     #address-cells =3D <1>;
-> >     #size-cells =3D <0>;
-> >
-> >     vdd-supply =3D <&pp3300_hub>;
-> >
-> >     port@0 {
-> >         reg =3D <0>;
-> >
-> >         rts5411_3_0: endpoint {
-> >             // should not be needed
-> >             remote-endpoint =3D <&usb_1_dwc3_port1>;
-> >         };
-> >     };
-> >
-> >     port@1 {
-> >         reg =3D <1>;
-> >
-> >         rts5411_2_0: endpoint {
-> >             // should not be needed
-> >             remote-endpoint =3D <&usb_1_dwc3_port2>;
-> >         };
-> >     };
-> > };
-> >
-> > &usb_1_dwc3 {
-> >     dr_mode =3D "host";
-> >     #address-cells =3D <1>;
-> >     #size-cells =3D <0>;
-> >
-> >     port@1 {
-> >         reg =3D <1>;
-> >
-> >         usb_1_dwc3_port1: endpoint {
-> >             remote-endpoint =3D <&rts5411_3_0>;
-> >         };
-> >     };
-> >
-> >     port@2 {
-> >         reg =3D <2>;
-> >
-> >         usb_1_dwc3_port2: endpoint {
-> >             remote-endpoint =3D <&rts5411_2_0>;
-> >         };
-> >     };
-> > };
-> >
-> > That looks like an actual description of the hardware, without multiple=
- DT
-> > nodes for the hub.
-> >
-> > The USB part of the onboard_hub driver could determine the platform dev=
-ice
-> > from the remote endpoint and register the USB device with it.
->
-> Yeah you got it, this is what I'm suggesting. I'd like to go even
-> further and also describe the ports on "the other side" or "downstream
-> facing side" of the USB hub that go to things like type-c ports or
-> type-a ports. This would allow us to describe the USB topology and how
-> it is physically connected to ports on the device that humans see. But
-> that's mostly a job for the type-c subsystem, so it's a parallel
-> discussion that's only related because of the graph binding.
+Hello:
 
-I'd like to see a complete case that includes connectors. I really
-need someone to worry about USB bindings with a view on the big
-picture. The piecemeal additions don't result in the best design.
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-Rob
+On Thu, 11 Feb 2021 12:48:47 +0200 you wrote:
+> From: Stefan Chulski <stefanc@marvell.com>
+> 
+> Armada hardware has a pause generation mechanism in GOP (MAC).
+> The GOP generate flow control frames based on an indication programmed in Ports Control 0 Register. There is a bit per port.
+> However assertion of the PortX Pause bits in the ports control 0 register only sends a one time pause.
+> To complement the function the GOP has a mechanism to periodically send pause control messages based on periodic counters.
+> This mechanism ensures that the pause is effective as long as the Appropriate PortX Pause is asserted.
+> 
+> [...]
+
+Here is the summary with links:
+  - [v13,net-next,01/15] doc: marvell: add CM3 address space and PPv2.3 description
+    https://git.kernel.org/netdev/net-next/c/1c2b4812b7da
+  - [v13,net-next,02/15] dts: marvell: add CM3 SRAM memory to cp11x ethernet device tree
+    https://git.kernel.org/netdev/net-next/c/60523583b07c
+  - [v13,net-next,03/15] net: mvpp2: add CM3 SRAM memory map
+    https://git.kernel.org/netdev/net-next/c/e54ad1e01c00
+  - [v13,net-next,04/15] net: mvpp2: always compare hw-version vs MVPP21
+    https://git.kernel.org/netdev/net-next/c/60dcd6b7d96e
+  - [v13,net-next,05/15] net: mvpp2: add PPv23 version definition
+    https://git.kernel.org/netdev/net-next/c/6af27a1dc422
+  - [v13,net-next,06/15] net: mvpp2: increase BM pool and RXQ size
+    https://git.kernel.org/netdev/net-next/c/d07ea73f37f9
+  - [v13,net-next,07/15] net: mvpp2: add FCA periodic timer configurations
+    https://git.kernel.org/netdev/net-next/c/2788d8418af5
+  - [v13,net-next,08/15] net: mvpp2: add FCA RXQ non occupied descriptor threshold
+    https://git.kernel.org/netdev/net-next/c/bf270fa3c445
+  - [v13,net-next,09/15] net: mvpp2: enable global flow control
+    https://git.kernel.org/netdev/net-next/c/a59d354208a7
+  - [v13,net-next,10/15] net: mvpp2: add RXQ flow control configurations
+    https://git.kernel.org/netdev/net-next/c/3bd17fdc08e9
+  - [v13,net-next,11/15] net: mvpp2: add ethtool flow control configuration support
+    https://git.kernel.org/netdev/net-next/c/76055831cf84
+  - [v13,net-next,12/15] net: mvpp2: add BM protection underrun feature support
+    https://git.kernel.org/netdev/net-next/c/eb30b269549a
+  - [v13,net-next,13/15] net: mvpp2: add PPv23 RX FIFO flow control
+    https://git.kernel.org/netdev/net-next/c/aca0e23584c9
+  - [v13,net-next,14/15] net: mvpp2: set 802.3x GoP Flow Control mode
+    https://git.kernel.org/netdev/net-next/c/262412d55acd
+  - [v13,net-next,15/15] net: mvpp2: add TX FC firmware check
+    https://git.kernel.org/netdev/net-next/c/9ca5e767ec34
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
