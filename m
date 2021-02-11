@@ -2,154 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B173188E0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 12:01:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAE82318906
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 12:10:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbhBKK7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 05:59:12 -0500
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:57188 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231135AbhBKKzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 05:55:10 -0500
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11BAp92r017018;
-        Thu, 11 Feb 2021 02:54:10 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=DXjQatTR+FYo0xK3DvzCV6/Fj5dqhPmz90uDt3zfAlI=;
- b=T0z38p58ZfNWJKIsk/ro78YP5sq7SnOQsdpKLvye0EdyKvSq7DeREFEWCFpxFYTs+ceg
- ROp3ZteGIdDQSYdtEPnP2ozuxmReWaZJfZ2U6a8OJc8Qa5fWBrT7UfzGDQU2S9WKcruY
- InDVGrBgt2GsWYZj1n6M/VRGOJFyEa91Am5SH6MIpAkAgj/JSGpyYPjJsXuht4qt1hz4
- aW3YDLWHaxIjzRIySui4FPocLq05CGKTMj7SYhJpZ6Qwg7beODi7r6xHDi9J7ynDW0jE
- aitj7HuzD9f7wgnpUb4mlq4eHPIBa6Lyb/0S0ziMBOG9iePxsSetezoC2WgPINrMaReC sg== 
-Received: from dc5-exch01.marvell.com ([199.233.59.181])
-        by mx0b-0016f401.pphosted.com with ESMTP id 36hugqefhk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Thu, 11 Feb 2021 02:54:10 -0800
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 11 Feb
- 2021 02:54:08 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 11 Feb 2021 02:54:08 -0800
-Received: from stefan-pc.marvell.com (stefan-pc.marvell.com [10.5.25.21])
-        by maili.marvell.com (Postfix) with ESMTP id A925F3F7041;
-        Thu, 11 Feb 2021 02:54:04 -0800 (PST)
-From:   <stefanc@marvell.com>
-To:     <netdev@vger.kernel.org>
-CC:     <thomas.petazzoni@bootlin.com>, <davem@davemloft.net>,
-        <nadavh@marvell.com>, <ymarkman@marvell.com>,
-        <linux-kernel@vger.kernel.org>, <stefanc@marvell.com>,
-        <kuba@kernel.org>, <linux@armlinux.org.uk>, <mw@semihalf.com>,
-        <andrew@lunn.ch>, <rmk+kernel@armlinux.org.uk>,
-        <atenart@kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, <sebastian.hesselbarth@gmail.com>,
-        <gregory.clement@bootlin.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v13 net-next 15/15] net: mvpp2: add TX FC firmware check
-Date:   Thu, 11 Feb 2021 12:49:02 +0200
-Message-ID: <1613040542-16500-16-git-send-email-stefanc@marvell.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1613040542-16500-1-git-send-email-stefanc@marvell.com>
-References: <1613040542-16500-1-git-send-email-stefanc@marvell.com>
-MIME-Version: 1.0
+        id S231236AbhBKLFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 06:05:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50928 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230353AbhBKK4q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 05:56:46 -0500
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on0719.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe0d::719])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9828AC061756;
+        Thu, 11 Feb 2021 02:56:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ORWvq3bhGsnrbYbWykMXlk7AUrp7gwdScmejEWpDXJggw5WMjB/tt6RbYULzCHra/XXUfpquZR5kN+/hQZGp7khIgm6cOteL993eA6lHLa6anm7EKvOn7WoR2OXCa2DC89RpSV+r0Pwyq6TlByCiOoDXICScxdahn3We3VVCyT+pHw/ui1FQItnUgvIq0GzuTwqVd477lNhJ+iD4SznSHEzGgiJI0czsUXfUTmSgfPns7QZAw8fdl/th1dtiSK6P36v7LTUvaEY3/Rxmak6TzkMX1o0gJCrGe0aSmHtWQWW1kb7pi44uZwY4cFMJq/iKwNpoQzE86ECEhJqb8WhZng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A3FLQC1GM3IvP1PCna+UY6bjB1tBF3Swd9BWIp9myHI=;
+ b=aZpNZL4o0HrG3fcNd26Sz/V0K5UBg+q7TspwhP6E3QB913z5EgOHgte4yS4N5OWsDI9Ryvg8Dfi30ltzIWQcf2AnUU76pN3rR8hN8RgqGZ/2GzkJno/vo8uwhMONGkI351EZbgrdASfyFUtOZZ6EVbzBJWIwKbM1LF0RKjvVaZzHyVFi4uB2tbvDdbPxlUxTSpUc9oDPX7ujwKnRVfOIqj7MQH0e+NBC7lyJ78xFo2a033xtp7eezXUWvvVXxRwY7+/hMBQNPiac8nCA+0KouMLkU9FhSCTqFAQQufaydrWGvR/HXt4HNtNN+CVjqVtm8rrLaKwvuiRRsPnKfsGaCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A3FLQC1GM3IvP1PCna+UY6bjB1tBF3Swd9BWIp9myHI=;
+ b=WlMrQTV388FvvRTOdhO+YUuJMMzdsjFpgko4xX1jwteJV3mHYKZ7EUw7Q2sJhwx8FOX95O2NIS+Flkt2L7EEgL4SV6p6BsmfWXxXmJ8qKQdRb4PZcROZrgHq1CyQNGdTwE0bfNL8+ygbKgfS/KKG7Vo7ibcboL6fzQ/FWdNbENc=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=kontron.de;
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
+ by AM0PR10MB3108.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:124::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.27; Thu, 11 Feb
+ 2021 10:55:49 +0000
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::bc4f:2b48:88cd:f90f]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::bc4f:2b48:88cd:f90f%7]) with mapi id 15.20.3825.030; Thu, 11 Feb 2021
+ 10:55:49 +0000
+From:   Schrempf Frieder <frieder.schrempf@kontron.de>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Robin Gong <yibin.gong@nxp.com>
+Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 2/3] dt-bindings: regulator: pca9450: Add sd-vsel GPIO
+Date:   Thu, 11 Feb 2021 11:55:29 +0100
+Message-Id: <20210211105534.38972-2-frieder.schrempf@kontron.de>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210211105534.38972-1-frieder.schrempf@kontron.de>
+References: <20210211105534.38972-1-frieder.schrempf@kontron.de>
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
- definitions=2021-02-11_05:2021-02-10,2021-02-11 signatures=0
+X-Originating-IP: [109.250.136.36]
+X-ClientProxiedBy: AM8P190CA0001.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:219::6) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:157::14)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from fs-work.localdomain (109.250.136.36) by AM8P190CA0001.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:219::6) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.27 via Frontend Transport; Thu, 11 Feb 2021 10:55:46 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c3dc6c0d-0f5e-4894-40cd-08d8ce7b9646
+X-MS-TrafficTypeDiagnostic: AM0PR10MB3108:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM0PR10MB31081F57D99C4C61040A64B4E98C9@AM0PR10MB3108.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nPD2na07pK2tgaujWl9CW1sy58LcVPrKnRo9HfzfPCKE/Miu5DXWTkfmlxTfCMKvIg1bO8LKCyLmSVCZuzcghxIn+tCGu3EctQuP4jC2LRELcVNY/Y7YZooQRK0318iUBOXgQydj5dZX0GJG4hi+Rki7P9Rel8nsZf4MeV10ayBX7Jfy5MZZcT2tr/GMU4CZO7i/NuZoW45LTqXwEesXLbdiyutpLgOd16qJIX9xdLsgihSVjyngBsGMEplBFXFRFX8DAnpGf08k1NWbmCDebzIe5DPrpKm8JjfCpJI9XKtg08Z0i2TZlD5VauFnL7fdt+o4MYyXWq0Xi1gH+C2dfnG8Fw71DjpaLr2ZPk2u/8GNHMmDvTpdbA+Cm6QKnAC03ecQwR+DZEBbqsph+KabW7MOHO2W66SyVxXHeqDtBtVQNobAJZIJlWRXYEf0QkS7Xc79I1uNztTs0FVpTpZ4TkPHh4gW27+KLzvPRTFDOPxETeRN1XXvj2+5LDlIv1OlBteDH7pjZEBYvOR59m6Yhg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(136003)(396003)(366004)(39860400002)(8676002)(52116002)(8936002)(16526019)(186003)(26005)(6506007)(316002)(956004)(66476007)(66946007)(2616005)(86362001)(66556008)(36756003)(6486002)(478600001)(5660300002)(1076003)(2906002)(54906003)(4744005)(6512007)(4326008)(6666004)(110136005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?/leJ0lwsUrmSwE7Rv8oxG+Fx9iEAOuKAPiE2m7gNHzfkMRyB3cvMVflJPcTW?=
+ =?us-ascii?Q?ZvsliQ+9n488lJ8QdUphvIqa3MzkIbrSCYlBgFtJ1coysnyPHIWe5riHSAzC?=
+ =?us-ascii?Q?csWdJxHkJRgZKzzSnl3ua2/kIY8lrnmN71Sob+R28CPQyJnQ/P8wV03EyKYG?=
+ =?us-ascii?Q?4syRtiuNJapIDtoL+8XOjd8k+3O0g+mOXhzEpZn5dykQ193tMnhFNZykyqQQ?=
+ =?us-ascii?Q?qfhRp1EqiQEPJJ8OGohWH1n7BPPHGdJ4XzaOvm6oksEn3oRfwrTtyD1Ko/NW?=
+ =?us-ascii?Q?Pz35DSHhGBB6uRbonKoLutcsxgOAtr9+dcTkeZHyuvTK3BV/dEKX6fk1g11q?=
+ =?us-ascii?Q?U8G90IjC1JVHt1uD0314PMtDi86Op2zDvpJxc3m0D14I7zSwJJJJuTXLFZbV?=
+ =?us-ascii?Q?6BqQtKOHna672FkPJTDVlnPoHI6o04nWZrBSxL/uQzzlIlDL1b6fjt2fjdl3?=
+ =?us-ascii?Q?a926UAFu2vXXYNx98/QSwbrmLjqeCNSvEz4foLX/SeP6qqoF3Ya7zMA++ftU?=
+ =?us-ascii?Q?Gt8jBtS1Way4YAm+1wcckUPG2ZU5BZCo356/qH5TfbZAW0fjdd3PLX8+ax5l?=
+ =?us-ascii?Q?SVMf6Yvij/+OVe4zIJ3j7ZvySLa1ZbkxdAPC0MbX66t5RHShtuqLtawebJsY?=
+ =?us-ascii?Q?TVsRu36NV+ouKTpsp6WaVpIjuST4NdKygTAfksxEhTyxZ5X+xn7Pvhz1EKoZ?=
+ =?us-ascii?Q?UWKcWEKV3WyHnK/vfQMaiqW29wSpVHGTDRlVzqpr1YDB3gmzgi4m5I+oyVbb?=
+ =?us-ascii?Q?8x6rEhkYRU81tC/9qc0GqxG5BuZkHBWf7CY3BREIYtwbLOqb5w200b1N7UV6?=
+ =?us-ascii?Q?tqlHJsTFfy1GOMXXkjo8+3FSnYfNNFYV/KjaEe5yBJRtEeG/sx5RY5+pvZ4J?=
+ =?us-ascii?Q?16LkWRiIQFBezezEGfMLC5lKEiGGnWSzthyGydkvu+HHSvqPDVDWSQlF5hCf?=
+ =?us-ascii?Q?NirXX8mGO9xBpWgI5WySmzEY3GP5hAVYmROiebTm3Yd7yZwPD8Gc/BNb11hW?=
+ =?us-ascii?Q?KlffrccYRm3+5GgQyMc2yzKXIHIZcTOWYkG+i+thrtedlW0GHnAckOpzJYU1?=
+ =?us-ascii?Q?U20RMkdbXNafBz2s/2V1ty6lU4NeQ2DoP9n5TyYY7rrh1ksZM++GsfCHm9VU?=
+ =?us-ascii?Q?D3GmDpjHQ8H5x/70sa77+Z+MxYkQ0lXtoGCVA2V/G5/4XKhXJUjEvPQ17nX/?=
+ =?us-ascii?Q?u67oW17jB3QZqwQx5gA7czdLz2Eaorikeb4bTu/eyTmh1lFk8/a1Le5Pe1JH?=
+ =?us-ascii?Q?xeDR2emXawIXc00w35AUx9MVdNj4P+uGNCf2FbEWjS0iW8d8j4G3/wKJ0gqw?=
+ =?us-ascii?Q?bH+CZMagpLE6xkmUhFiLtIS3?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3dc6c0d-0f5e-4894-40cd-08d8ce7b9646
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2021 10:55:49.2728
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vmd26Ba17xZ1nzB5LTDaG1MDCVZshTq9ThCadJX77qLXcUpvuan/v/SLmT/9O1sr3sx6hrOcaH4xsl6P2WzGT2iqDGynC7TRfmGDCt4L5ls=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3108
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stefan Chulski <stefanc@marvell.com>
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Patch check that TX FC firmware is running in CM3.
-If not, global TX FC would be disabled.
+Add the binding documentation for the optional sd-vsel GPIO.
 
-Signed-off-by: Stefan Chulski <stefanc@marvell.com>
-Acked-by: Marcin Wojtas <mw@semihalf.com>
+Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
- drivers/net/ethernet/marvell/mvpp2/mvpp2.h      |  1 +
- drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 39 ++++++++++++++++----
- 2 files changed, 33 insertions(+), 7 deletions(-)
+ .../devicetree/bindings/regulator/nxp,pca9450-regulator.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h b/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-index b61a1ba..da87152 100644
---- a/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-+++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2.h
-@@ -828,6 +828,7 @@
+diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+index c2b0a8b6da1e..f70f2e758a00 100644
+--- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+@@ -87,6 +87,11 @@ properties:
  
- #define MSS_THRESHOLD_STOP	768
- #define MSS_THRESHOLD_START	1024
-+#define MSS_FC_MAX_TIMEOUT	5000
+     additionalProperties: false
  
- /* RX buffer constants */
- #define MVPP2_SKB_SHINFO_SIZE \
-diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-index 883d742..4ff195a 100644
---- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-+++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-@@ -924,6 +924,34 @@ static void mvpp2_bm_pool_update_fc(struct mvpp2_port *port,
- 	spin_unlock_irqrestore(&port->priv->mss_spinlock, flags);
- }
- 
-+static int mvpp2_enable_global_fc(struct mvpp2 *priv)
-+{
-+	int val, timeout = 0;
++  sd-vsel-gpios:
++    description: GPIO that is used to switch LDO5 between being configured by
++      LDO5CTRL_L or LDO5CTRL_H register. Use this if the SD_VSEL signal is
++      connected to a host GPIO.
 +
-+	/* Enable global flow control. In this stage global
-+	 * flow control enabled, but still disabled per port.
-+	 */
-+	val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
-+	val |= FLOW_CONTROL_ENABLE_BIT;
-+	mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+
-+	/* Check if Firmware running and disable FC if not*/
-+	val |= FLOW_CONTROL_UPDATE_COMMAND_BIT;
-+	mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+
-+	while (timeout < MSS_FC_MAX_TIMEOUT) {
-+		val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
-+
-+		if (!(val & FLOW_CONTROL_UPDATE_COMMAND_BIT))
-+			return 0;
-+		usleep_range(10, 20);
-+		timeout++;
-+	}
-+
-+	priv->global_tx_fc = false;
-+	return -EOPNOTSUPP;
-+}
-+
- /* Release buffer to BM */
- static inline void mvpp2_bm_pool_put(struct mvpp2_port *port, int pool,
- 				     dma_addr_t buf_dma_addr,
-@@ -7256,7 +7284,7 @@ static int mvpp2_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	void __iomem *base;
- 	int i, shared;
--	int err, val;
-+	int err;
- 
- 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -7480,13 +7508,10 @@ static int mvpp2_probe(struct platform_device *pdev)
- 		goto err_port_probe;
- 	}
- 
--	/* Enable global flow control. In this stage global
--	 * flow control enabled, but still disabled per port.
--	 */
- 	if (priv->global_tx_fc && priv->hw_version != MVPP21) {
--		val = mvpp2_cm3_read(priv, MSS_FC_COM_REG);
--		val |= FLOW_CONTROL_ENABLE_BIT;
--		mvpp2_cm3_write(priv, MSS_FC_COM_REG, val);
-+		err = mvpp2_enable_global_fc(priv);
-+		if (err)
-+			dev_warn(&pdev->dev, "Minimum of CM3 firmware 18.09 and chip revision B0 required for flow control\n");
- 	}
- 
- 	mvpp2_dbgfs_init(priv, pdev->name);
+ required:
+   - compatible
+   - reg
 -- 
-1.9.1
+2.25.1
 
