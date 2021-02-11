@@ -2,60 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36C693183C5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 03:56:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67D773183D4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 04:08:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbhBKC4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Feb 2021 21:56:43 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57018 "EHLO mail.kernel.org"
+        id S229763AbhBKDHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Feb 2021 22:07:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57934 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229485AbhBKC4l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Feb 2021 21:56:41 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2C5C264DBA;
-        Thu, 11 Feb 2021 02:56:01 +0000 (UTC)
+        id S229451AbhBKDG6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Feb 2021 22:06:58 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2ACF764E30;
+        Thu, 11 Feb 2021 03:06:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613012161;
-        bh=/IWRxwCmtIxZBUuHS0+t/oVWw89lAGEyoFWFw7vLZNU=;
+        s=k20201202; t=1613012778;
+        bh=vfhY2X8JAN3tDEQxI/FbOg6eg3DdA03WQvJhn6ih+FA=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=hp2BHKSigiWBJ4auAFAQ6iKu1WtfeLill9ls1jFg3GuePoSNk9+5tMCIBLdX7k7YG
-         8fVxmka87bPLRL9+X6MP7N6SjEsYF9h2f8L0ui5MQYMkd6M2xYjQk6opDgHsrliKOn
-         6JnUmL0g0a8mAdcZdwN13JApKWhjZI/Y6rGQ+Dh584ZQBV2dOqWCPRrDt6/Ep28e+7
-         CvCNINsSdusnRB61L2Vd1AwbYLWVFiBKy3kjE3uBtATeoiOjQxTb5jWm+2u/2Ge5+s
-         iSetek+wSgfHrYX8SfBMWQfIi6Pz1wbVWiMT0pQhJHgMJT0lJwsKo86VNyEcxdtdtf
-         /qrJrlnE7KCAA==
+        b=RH+nVGrD+ELKeOg0I9uGsxmVOHfpKz+aDTCUR4bTCADRmZqA2fIbtaZEzIUmvFQv4
+         /jWifxYOKAHU/cJ84yEFolgAZ+pP2GnzUnogDsCqLUlqcG0Pp0UiabH1WOpE6D3EmZ
+         8cCOonbUXNCbAZUF0ijRdt+kxeq+vRMsuZwAHmUBfS27O2eYraSq9AQXAMhInjwwCz
+         GQ5aA6MQn8yN1Lh4wHZKePfOPASlos3V8mxqWO35h0zBD83r65w+BQzMcixfQS5l6Q
+         gFQ9O+sZdDoYQ3z4U+YC+2WakjrZO7iXc5pkhWaDVwoLS+JCdM7wYB7iCF4lkZJ3i7
+         LnMllC35brXWg==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAFr9PXkGeFUyGCKZgYF+0uJT1ywad42RvPg39ggO8WRngY8uWw@mail.gmail.com>
-References: <20201114135044.724385-1-daniel@0x0f.com> <20201114135044.724385-3-daniel@0x0f.com> <160843556037.1580929.13575770228476494246@swboyd.mtv.corp.google.com> <CAFr9PX=f=HyHBk4s3e_vnMDC53R1X18m7sKFCLMMjitPm+8oEQ@mail.gmail.com> <160848984935.1580929.936824086681978646@swboyd.mtv.corp.google.com> <CAFr9PX=oLqQqvykiwOGAGg1H2CG0BTEqn0TuSrijodjxY52LxQ@mail.gmail.com> <161292417080.418021.13416197091150418216@swboyd.mtv.corp.google.com> <CAFr9PXkGeFUyGCKZgYF+0uJT1ywad42RvPg39ggO8WRngY8uWw@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: clk: mstar msc313 mpll binding description
+In-Reply-To: <20210119085546.725005-3-jckuo@nvidia.com>
+References: <20210119085546.725005-1-jckuo@nvidia.com> <20210119085546.725005-3-jckuo@nvidia.com>
+Subject: Re: [PATCH v6 02/15] clk: tegra: Don't enable PLLE HW sequencer at init
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Willy Tarreau <w@1wt.eu>
-To:     Daniel Palmer <daniel@0x0f.com>
-Date:   Wed, 10 Feb 2021 18:55:59 -0800
-Message-ID: <161301215989.1254594.8224717086717364802@swboyd.mtv.corp.google.com>
+Cc:     linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        nkristam@nvidia.com, JC Kuo <jckuo@nvidia.com>,
+        Thierry Reding <treding@nvidia.com>
+To:     JC Kuo <jckuo@nvidia.com>, gregkh@linuxfoundation.org,
+        jonathanh@nvidia.com, kishon@ti.com, robh@kernel.org,
+        thierry.reding@gmail.com
+Date:   Wed, 10 Feb 2021 19:06:17 -0800
+Message-ID: <161301277703.1254594.963977431178461704@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Daniel Palmer (2021-02-10 18:28:40)
-> Hi Stephen,
+Quoting JC Kuo (2021-01-19 00:55:33)
+> PLLE hardware power sequencer references PEX/SATA UPHY PLL hardware
+> power sequencers' output to enable/disable PLLE. PLLE hardware power
+> sequencer has to be enabled only after PEX/SATA UPHY PLL's sequencers
+> are enabled.
 >=20
-> On Wed, 10 Feb 2021 at 11:29, Stephen Boyd <sboyd@kernel.org> wrote:
-> > The child clks should be using clk_parent_data to point to the parent
-> > clks through DT. That way the name of the clk doesn't matter except for
-> > debug purposes.
->=20
-> I think I get it now. I was using of_clk_parent_fill() to get the
-> parent clocks sourced
-> from the mpll but I seems like I should be filling out an array of
-> struct clk_parent_data
-> with the indices of the parents and using
-> clk_register_composite_pdata() etc instead.
->=20
+> Signed-off-by: JC Kuo <jckuo@nvidia.com>
+> Acked-by: Thierry Reding <treding@nvidia.com>
+> ---
 
-Yes that's the idea. Thanks!
+Acked-by: Stephen Boyd <sboyd@kernel.org>
