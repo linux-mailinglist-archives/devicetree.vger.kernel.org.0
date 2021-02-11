@@ -2,136 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BED6319284
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 19:53:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3407E3192C5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 20:05:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbhBKSwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 13:52:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40078 "EHLO
+        id S231470AbhBKTDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 14:03:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbhBKSwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 13:52:44 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0020C0613D6
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 10:52:04 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id a5so4960361otq.4
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 10:52:04 -0800 (PST)
+        with ESMTP id S231144AbhBKTBr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 14:01:47 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8EF5C061574
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 11:01:06 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id o38so4550514pgm.9
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 11:01:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=OVkOWiTcef92BZcXSFNKI6urGv4ClWKqZ2aHBAwr9WI=;
-        b=OcKtPxTMPJ/pI5h/KaWloIQ13BI9MrFfYMnPg8duScubygGcThI6E2xXB64LlL6ubT
-         l6A6w3WjIxITYaBdZvnWhSpbX3kEGtxW/lS84byVX6UzXpL78+Suf8SNIYStVsamPob/
-         4TywyNhn7bkqLbDxNxNWkPxWBxOBI/fC0uP/GEZ1JYSJOmrYVAZ7v2mXU2OJVyJJkJfQ
-         FBoBD9I2C2ogJ/YmvzqfQUueaAbKAgNBGXNqO+KWrlNB1Nin66InnfiYX01UFOrA+or2
-         e1ym18sWol82D+9QLEBkjfSrLZcYkk77QtbbSIQn54G4kDYzKphdrSHM/JglFmm8qNvX
-         L2TA==
+        bh=38z+MQX41khqI4CrfgsdKCbVUZuEtmzm0vpGYv2oT/g=;
+        b=P1Z9ylhoK6aFfRrdpwiLZS0OMGndod97oFC7yb3dqZvLg8Gx9QYB5OA2npK10G3+RR
+         HkRwR4kDaLOHc+i+OOoqADEaeU/NtIUC8trKUbXNr4B0nVfwzzr5gjEuK5AQLfdmCLxD
+         ln1JifQ5EgUk0XAuMpl7m4gSTEaWhoNvQWqp0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=OVkOWiTcef92BZcXSFNKI6urGv4ClWKqZ2aHBAwr9WI=;
-        b=ABOm+6vNzWIX95qzqapTHpOIPXGKO/YlC6yAlvamVR1b8A5PgTp7t7JVF/ljON0x5o
-         aH6xNWuxAWp1j6sXlbr1paOFfmi+DOdxOaYwOlvjxaTxZlgDuzJXjsP+pNYPK6uzyzfn
-         6jalRccmZpdkcNjRH3gvLlHB9qRjIgXeWPQYIX1M4HaElOpW/ewairehkEjKjwA6s3tx
-         OlGGJ5W1eHsNLZ8nEoWhzi0NXImjp8RR+axT+IEu4zUct+sNS9tY2PP2j4igs/iA2g4O
-         YlVFdzZJheMW1dWmsFz54uHOtu1cvbdxiXiBG03KE8q9JADhy8HvDIQeB8GCWZPOy6Hg
-         r6yg==
-X-Gm-Message-State: AOAM531q4isfXH+SkctEuUMDxfmyq4kRwqjICsMhysSFV6m+MLL84fdn
-        pkRR74peG9JTJla1BF7GOw/pLptNcKtqtA==
-X-Google-Smtp-Source: ABdhPJwf6gkTQIas5Mts7gamBTwBrwhQ9GsZm1U8X195GnlW/kAkgV8Ivieym0/0ILPnR3HQuoP/Vg==
-X-Received: by 2002:a9d:77d6:: with SMTP id w22mr6796757otl.145.1613069523801;
-        Thu, 11 Feb 2021 10:52:03 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id b21sm122655otq.4.2021.02.11.10.52.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Feb 2021 10:52:03 -0800 (PST)
-Date:   Thu, 11 Feb 2021 12:52:01 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom: pas: Add SM8350
- remoteprocs
-Message-ID: <YCV80dfkxXEPBveo@builder.lan>
-References: <20210210104539.340349-1-vkoul@kernel.org>
+        bh=38z+MQX41khqI4CrfgsdKCbVUZuEtmzm0vpGYv2oT/g=;
+        b=EiF7+UlgKHAy7mKHE7cFU1IlsGV9T6sH+9tYPb17DluctsTG533eSTUnx4fZqERk0/
+         TIcqTdw+tJugYzlqfVCv0kDVnp2PCTxRIGkutmiurQd+WEuI8/IM5JDKD8qEfyzvScE1
+         B9QC3GBmQQYE8i5os8WCpR/x1hQs6A9hBt7FoCUGStsoLVpdtflIwecCe0j0rGfjNA8m
+         nxKMirpamJxnZ5EYtf5CcFPhguPTixTTfSLxnmHX0oUcbQUW6Pd1olhV4bC6GPsWqdZN
+         C9UXtThjhSW5d1PTzX7oVx0Y4qusF8hHRhPSvAbwBGsMIfhVwCEQAr7fpTArzYw0jH16
+         2N6A==
+X-Gm-Message-State: AOAM5327oTbd+qNHwE1uK5ECWsFYE+Z9/P1qqm10sMj/1WS4xVCGU2y8
+        M5rh2SUQDFcH/oVlGucFVWISBw==
+X-Google-Smtp-Source: ABdhPJwUJi9shALaYdk06rsyxl0whyeAsF17SGdQZ6EWt5HbYkjEqoshMB5Iyt3Fo0kD28w5VX6qpQ==
+X-Received: by 2002:a62:5a45:0:b029:1e5:4c81:c59 with SMTP id o66-20020a625a450000b02901e54c810c59mr9388889pfb.51.1613070066195;
+        Thu, 11 Feb 2021 11:01:06 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:fc92:99c:fc2f:8603])
+        by smtp.gmail.com with UTF8SMTPSA id a37sm6555705pgm.79.2021.02.11.11.01.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Feb 2021 11:01:05 -0800 (PST)
+Date:   Thu, 11 Feb 2021 11:01:03 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+Subject: Re: [PATCH v5 3/4] usb: host: xhci-plat: Create platform device for
+ onboard hubs in probe()
+Message-ID: <YCV+7z8Y/l0eyse9@google.com>
+References: <20210210171040.684659-1-mka@chromium.org>
+ <20210210091015.v5.3.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
+ <YCTVjx480BzT+saO@kroah.com>
+ <YCV7XGloQIjtFAqf@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210210104539.340349-1-vkoul@kernel.org>
+In-Reply-To: <YCV7XGloQIjtFAqf@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 10 Feb 04:45 CST 2021, Vinod Koul wrote:
-
-> Add the SM8350 audio, compute, modem and sensor remoteprocs to the PAS
-> DT binding.
+On Thu, Feb 11, 2021 at 10:45:48AM -0800, Matthias Kaehlcke wrote:
+> Hi Greg,
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  .../devicetree/bindings/remoteproc/qcom,adsp.txt     | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> On Thu, Feb 11, 2021 at 07:58:23AM +0100, Greg Kroah-Hartman wrote:
+> > On Wed, Feb 10, 2021 at 09:10:38AM -0800, Matthias Kaehlcke wrote:
+> > > Check during probe() if a hub supported by the onboard_usb_hub
+> > > driver is connected to the controller. If such a hub is found
+> > > create the corresponding platform device. This requires the
+> > > device tree to have a node for the hub with its vendor and
+> > > product id (which is not common for USB devices). Further the
+> > > platform device is only created when CONFIG_USB_ONBOARD_HUB=y/m.
+> > > 
+> > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > > ---
+> > > 
+> > > Changes in v5:
+> > > - patch added to the series
+> > > 
+> > >  drivers/usb/host/xhci-plat.c | 16 ++++++++++++++++
+> > >  include/linux/usb/hcd.h      |  2 ++
+> > >  2 files changed, 18 insertions(+)
+> > > 
+> > > diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+> > > index 4d34f6005381..e785fa109eea 100644
+> > > --- a/drivers/usb/host/xhci-plat.c
+> > > +++ b/drivers/usb/host/xhci-plat.c
+> > > @@ -15,6 +15,7 @@
+> > >  #include <linux/of.h>
+> > >  #include <linux/of_device.h>
+> > >  #include <linux/platform_device.h>
+> > > +#include <linux/usb/onboard_hub.h>
+> > >  #include <linux/usb/phy.h>
+> > >  #include <linux/slab.h>
+> > >  #include <linux/acpi.h>
+> > > @@ -184,6 +185,7 @@ static int xhci_plat_probe(struct platform_device *pdev)
+> > >  	int			ret;
+> > >  	int			irq;
+> > >  	struct xhci_plat_priv	*priv = NULL;
+> > > +	struct device_node	*np;
+> > >  
+> > >  
+> > >  	if (usb_disabled())
+> > > @@ -356,6 +358,17 @@ static int xhci_plat_probe(struct platform_device *pdev)
+> > >  	 */
+> > >  	pm_runtime_forbid(&pdev->dev);
+> > >  
+> > > +	np = usb_of_get_device_node(hcd->self.root_hub, hcd->self.busnum);
+> > > +	if (np && of_is_onboard_usb_hub(np)) {
+> > > +		struct platform_device *pdev;
+> > > +
+> > > +		pdev = of_platform_device_create(np, NULL, NULL);
+> > 
+> > A platform device is a child of another platform device?  Ok, but
+> > really, why?  What uses this device?
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt
-> index 54737024da20..41eaa2466aab 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.txt
-> @@ -25,6 +25,10 @@ on the Qualcomm ADSP Hexagon core.
->  		    "qcom,sm8250-adsp-pas"
->  		    "qcom,sm8250-cdsp-pas"
->  		    "qcom,sm8250-slpi-pas"
-> +		    "qcom,sm8350-adsp-pas"
-> +		    "qcom,sm8350-cdsp-pas"
-> +		    "qcom,sm8350-slpi-pas"
-> +		    "qcom,sm8350-mpss-pas"
->  
->  - interrupts-extended:
->  	Usage: required
-> @@ -51,10 +55,14 @@ on the Qualcomm ADSP Hexagon core.
->  	qcom,sm8250-adsp-pas:
->  	qcom,sm8250-cdsp-pas:
->  	qcom,sm8250-slpi-pas:
-> +	qcom,sm8350-adsp-pas:
-> +	qcom,sm8350-cdsp-pas:
-> +	qcom,sm8350-slpi-pas:
->  		    must be "wdog", "fatal", "ready", "handover", "stop-ack"
->  	qcom,qcs404-wcss-pas:
->  	qcom,sc7180-mpss-pas:
->  	qcom,sm8150-mpss-pas:
-> +	qcom,sm8350-mpss-pas:
->  		    must be "wdog", "fatal", "ready", "handover", "stop-ack",
->  		    "shutdown-ack"
->  
-> @@ -113,14 +121,18 @@ on the Qualcomm ADSP Hexagon core.
->  	qcom,sdm845-cdsp-pas:
->  	qcom,sm8150-adsp-pas:
->  	qcom,sm8150-cdsp-pas:
-> +	qcom,sm8250-cdsp-pas:
-
-This should be sm8350, I fixed this up and applied the patch.
-
-Thanks,
-Bjorn
-
->  	qcom,sm8250-cdsp-pas:
->  		    must be "cx", "load_state"
->  	qcom,sc7180-mpss-pas:
->  	qcom,sm8150-mpss-pas:
-> +	qcom,sm8350-mpss-pas:
->  		    must be "cx", "load_state", "mss"
->  	qcom,sm8250-adsp-pas:
-> +	qcom,sm8350-adsp-pas:
->  	qcom,sm8150-slpi-pas:
->  	qcom,sm8250-slpi-pas:
-> +	qcom,sm8350-slpi-pas:
->  		    must be "lcx", "lmx", "load_state"
->  
->  - memory-region:
-> -- 
-> 2.26.2
+> In earlier versions there was a standalone platform device:
+> https://lore.kernel.org/patchwork/patch/1313001/
 > 
+> However this was rejected by Rob, since the DT would require a node for the
+> platform device and (implicit or explicit) nodes for the USB devices,
+> representing the same physical device:
+> 
+> https://lore.kernel.org/patchwork/patch/1305395/
+> https://lore.kernel.org/patchwork/patch/1313000/
+> 
+> Both Doug Anderson and myself argued that it seems legitimate to distinguish
+> between the devices connected to the USB bus, and the chip which might have
+> GPIOs, regulators, clocks, ... but apparently our arguments were not
+> convincing enough.
+
+To let the xhci-plat driver create the platform device was suggested by Alan:
+
+https://lore.kernel.org/patchwork/patch/1313000/#1510227
+
+Personally I would favor a standalone platform device, since it provides more
+flexiblity (also works for hubs connected to a non-root hub) and doesn't require
+cooperation from other driver, however I doubt I could convince Rob of the
+corresponding DT bindings.
