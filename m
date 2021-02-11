@@ -2,56 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5725B319413
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 21:15:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ED1F319421
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 21:18:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbhBKUOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 15:14:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44736 "EHLO mail.kernel.org"
+        id S229655AbhBKURu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 15:17:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45168 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229617AbhBKUOf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 15:14:35 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D1FE660231;
-        Thu, 11 Feb 2021 20:13:54 +0000 (UTC)
+        id S230144AbhBKURi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Feb 2021 15:17:38 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 081EF64DBA;
+        Thu, 11 Feb 2021 20:16:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613074435;
-        bh=ah3lCdwhw8KxMw2ZhgC37K5ooXbW8dUcQBF/IpwrnGQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nEwirJqz/3s3qu68Ox1S/Twd0fTiwkrlyifKfR7peoaSYNccRdCP6uEUokrkaIMJ8
-         8aQHzC8DpalZ1GGYH9D1lXRa2+mCCZINSK6SmP896s3ionKcYlrN89Qr15vnAAyyRb
-         GbO7un6zf7CCw6G3JeQ7RaPOoZNfoljFvODVIvzbaw/BGxNGQNBbV2k8h4tauOvjsN
-         wUT37Qt9Jxmwl18+BfAeKssbQY9rSRKc8TtS4x9mXxKqLk5Rew/1RqLkO/+WUROdPv
-         okFyZ2i/3ibls9+mOdy4PouTIOJ4qhCXQY11lALnhcKn0soRmovu/oCpPBp0tOdWmK
-         OgDwzK1D3XM9w==
-Received: by mail-qt1-f175.google.com with SMTP id v3so5132527qtw.4;
-        Thu, 11 Feb 2021 12:13:54 -0800 (PST)
-X-Gm-Message-State: AOAM533g7gH5upWfWqm9PqYhSJLNiIPNZTi9SH2/UWhOv//pltFr4DUh
-        LSK7zZXnztzlv/ad0yFcL/GgI4Rx7q/judOKEA==
-X-Google-Smtp-Source: ABdhPJxPgHgoU2Yw0pheJzl2WIBriV1+z+4Au1lE1OSKXlJbyLgymw9x0x5JLnLa8i7DuHs2sO+AS/qjRCL2rdO2xx0=
-X-Received: by 2002:ac8:7cb8:: with SMTP id z24mr2791819qtv.31.1613074433957;
- Thu, 11 Feb 2021 12:13:53 -0800 (PST)
+        s=k20201202; t=1613074618;
+        bh=ynLIewiFqPy3fzWSxN01PcYzwGpgfJteJiQEG4pnLWs=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=iGg8jdHtRo7IVtuhCaAWWQbT82lk85RgkJE10xKlr6fWiOdeXX7RnZJXu4Bgm8/P3
+         XMfmR7AyIQJ168SQxO1wV2BzPJs5EmDhHuGdIqUoTG04W3spZACfVN8ZM/ZyXFjnSI
+         jF4OvHg1i99Mp3s5uRz21RHR+50tr095SkVNfQd91u8D5YE4nauTiFhHT04R0WDHuY
+         4Yo1z1xaay3F9gaM9eb929Pi7kSzpsz0IEUQ28fbA0NqscPisXCC2iJBFrglwn+bPZ
+         sVsouI5kUNVh9BO9htjMoN9+Ef+UmJTw/HS7KWZ++ZlH0NJqCdLD6PPxo3cS4HAhMi
+         K6HIAOtIOwvNg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210208165806.25466-1-info@metux.net>
-In-Reply-To: <20210208165806.25466-1-info@metux.net>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 11 Feb 2021 14:13:42 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+aWxmA_tXnhi5PfMieZ0KyKj45kr=OUa8h4mEmn7yLTA@mail.gmail.com>
-Message-ID: <CAL_Jsq+aWxmA_tXnhi5PfMieZ0KyKj45kr=OUa8h4mEmn7yLTA@mail.gmail.com>
-Subject: Re: [PATCH] of: base: improve error message in of_phandle_iterator_next()
-To:     "Enrico Weigelt, metux IT consult" <info@metux.net>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1612496104-3437-2-git-send-email-saeed.nowshadi@xilinx.com>
+References: <1612496104-3437-1-git-send-email-saeed.nowshadi@xilinx.com> <1612496104-3437-2-git-send-email-saeed.nowshadi@xilinx.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: si570: Add 'silabs,skip-recall' property
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     mturquette@baylibre.com, robh+dt@kernel.org, git-dev@xilinx.com,
+        Saeed Nowshadi <saeed.nowshadi@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>
+To:     Saeed Nowshadi <saeed.nowshadi@xilinx.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Date:   Thu, 11 Feb 2021 12:16:56 -0800
+Message-ID: <161307461661.1254594.6774037673480167095@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 8, 2021 at 10:58 AM Enrico Weigelt, metux IT consult
-<info@metux.net> wrote:
->
-> Also print out the phandle ID on error message, as a debug aid.
+Quoting Saeed Nowshadi (2021-02-04 19:35:03)
+> Add an optional property so the driver can skip calling the NVM->RAM
+> recall operation during probe().
+>=20
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Signed-off-by: Saeed Nowshadi <saeed.nowshadi@xilinx.com>
+> ---
 
-I already have this patch applied in my tree. Why do you keep sending it?
-
-Rob
+Applied to clk-next
