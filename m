@@ -2,94 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8BE318CA9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 14:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B7C1318C1E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 14:36:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231260AbhBKNvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 08:51:16 -0500
-Received: from imap3.hz.codethink.co.uk ([176.9.8.87]:38754 "EHLO
-        imap3.hz.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231408AbhBKNoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 08:44:23 -0500
-X-Greylist: delayed 2385 seconds by postgrey-1.27 at vger.kernel.org; Thu, 11 Feb 2021 08:44:18 EST
-Received: from cpc79921-stkp12-2-0-cust288.10-2.cable.virginm.net ([86.16.139.33] helo=[192.168.0.18])
-        by imap3.hz.codethink.co.uk with esmtpsa  (Exim 4.92 #3 (Debian))
-        id 1lABcx-0002tK-O0; Thu, 11 Feb 2021 13:03:23 +0000
-Subject: Re: [PATCH v21 3/4] PCI: microchip: Add host driver for Microchip
- PCIe controller
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        daire.mcnamara@microchip.com
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, david.abdurachmanov@gmail.com,
-        cyril.jean@microchip.com
-References: <20210125162934.5335-1-daire.mcnamara@microchip.com>
- <20210125162934.5335-4-daire.mcnamara@microchip.com>
- <CAMuHMdXJQF3c1b6SXyHnuyA_huO7ZiKJ-_xm1r1h7VcGsv=n9A@mail.gmail.com>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-Message-ID: <d47ee0a2-7d9c-5c53-2977-09fa054e856b@codethink.co.uk>
-Date:   Thu, 11 Feb 2021 13:03:22 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S231818AbhBKNch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 08:32:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55582 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231428AbhBKNab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 08:30:31 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A3AC0613D6;
+        Thu, 11 Feb 2021 05:29:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=b6o4aDZrMqqadRFFl5hXLDZ9uNJ0V1uHD3B0a1g67QA=; b=sQGdtXmcj/fpQLIDNuwVr2e7q
+        D6QOXwqSINqDuPtvitlBPfmt2u5LPYJ2ITDGtgy0XCMjPLQJrozQSYhFEAWVKTcVgc39oX6BTiY4U
+        CwBCBu4FgH6JlIHbybbDvTl3IYt8qtoy/nPvkV27c/hQhpen7BhP2EzSyX76DYOSofdS6xZnsi4Oj
+        xn1BefN2dAGgrB0Jnz80PkujScNWj/SWPW460Ks21MwX1ep/OfvOnnAUG5fUiFlF+H+BZmjnja7z+
+        nRSE8XFGXg9pCEm1r7Jkqni07+AvzwsGfTDe5YoLxeGKGwqQqtWinSYdIOx+MVPE+FXFDNNitp26O
+        h0vlWOHsQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42050)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1lAC2U-0006DE-3k; Thu, 11 Feb 2021 13:29:46 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1lAC2S-00068K-Nn; Thu, 11 Feb 2021 13:29:44 +0000
+Date:   Thu, 11 Feb 2021 13:29:44 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Stefan Chulski <stefanc@marvell.com>
+Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Yan Markman <ymarkman@marvell.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "mw@semihalf.com" <mw@semihalf.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "atenart@kernel.org" <atenart@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXT] Re: [PATCH v13 net-next 08/15] net: mvpp2: add FCA RXQ non
+ occupied descriptor threshold
+Message-ID: <20210211132944.GJ1463@shell.armlinux.org.uk>
+References: <1613040542-16500-1-git-send-email-stefanc@marvell.com>
+ <1613040542-16500-9-git-send-email-stefanc@marvell.com>
+ <20210211125009.GF1463@shell.armlinux.org.uk>
+ <CO6PR18MB387356BB83D26789CA8B17E9B08C9@CO6PR18MB3873.namprd18.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdXJQF3c1b6SXyHnuyA_huO7ZiKJ-_xm1r1h7VcGsv=n9A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CO6PR18MB387356BB83D26789CA8B17E9B08C9@CO6PR18MB3873.namprd18.prod.outlook.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2021 13:07, Geert Uytterhoeven wrote:
-> Hi Daire,
+On Thu, Feb 11, 2021 at 01:02:14PM +0000, Stefan Chulski wrote:
+> > On Thu, Feb 11, 2021 at 12:48:55PM +0200, stefanc@marvell.com wrote:
+> > > diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > > b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > > index 761f745..8b4073c 100644
+> > > --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > > +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > > @@ -1133,14 +1133,19 @@ static inline void
+> > > mvpp2_qvec_interrupt_disable(struct mvpp2_queue_vector *qvec)  static
+> > > void mvpp2_interrupts_mask(void *arg)  {
+> > >  	struct mvpp2_port *port = arg;
+> > > +	int cpu = smp_processor_id();
+> > > +	u32 thread;
+> > >
+> > >  	/* If the thread isn't used, don't do anything */
+> > > -	if (smp_processor_id() > port->priv->nthreads)
+> > > +	if (cpu > port->priv->nthreads)
+> > >  		return;
+> > 
+> > What happened to a patch fixing this? Did I miss it? Was it submitted
+> > independently to the net tree?
 > 
-> On Mon, Jan 25, 2021 at 5:33 PM <daire.mcnamara@microchip.com> wrote:
->> From: Daire McNamara <daire.mcnamara@microchip.com>
->>
->> Add support for the Microchip PolarFire PCIe controller when
->> configured in host (Root Complex) mode.
->>
->> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> Thanks for your patch!
-> 
->> --- a/drivers/pci/controller/Kconfig
->> +++ b/drivers/pci/controller/Kconfig
->> @@ -298,6 +298,16 @@ config PCI_LOONGSON
->>            Say Y here if you want to enable PCI controller support on
->>            Loongson systems.
->>
->> +config PCIE_MICROCHIP_HOST
->> +       bool "Microchip AXI PCIe host bridge support"
->> +       depends on PCI_MSI && OF
->> +       select PCI_MSI_IRQ_DOMAIN
->> +       select GENERIC_MSI_IRQ_DOMAIN
->> +       select PCI_HOST_COMMON
->> +       help
->> +         Say Y here if you want kernel to support the Microchip AXI PCIe
->> +         Host Bridge driver.
-> 
-> Is this PCIe host bridge accessible only from the PolarFire RISC-V
-> CPU cores, or also from softcores implemented in the PolarFire FPGA?
-> 
-> In case of the former, we want to add a
-> 
->      depends on CONFIG_SOC_MICROCHIP_POLARFIRE || COMPILE_TEST
+> Some reviewers asked to remove this from the series. I would send it as separate patch to net.
 
+It is not a regression, and although it is a fix, as you explained when
+I first raised it, it isn't a condition that can be reached due to:
 
-I'd say having it on COMPILE_TEST if there's no polarfire includes
-would be useful to allow compile testing of the driver by the build
-robots.
+        priv->nthreads = min_t(unsigned int, num_present_cpus(),
+	                       MVPP2_MAX_THREADS);
 
+and I don't think we support a dynamic present CPU mask on any platform
+that is currently supported by this driver.
+
+If we did, then it would be possible for the off-by-one issue to be
+triggered.
+
+No matter what, it should happen _before_ this patch set is merged.
+Trying to do it afterwards guarantees more pain if stable trees decide
+they want to backport the fix.
 
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
