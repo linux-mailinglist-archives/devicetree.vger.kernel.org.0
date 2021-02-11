@@ -2,76 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90CB43194EE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 22:13:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C046C319559
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 22:47:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbhBKVMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 16:12:54 -0500
-Received: from mail-40131.protonmail.ch ([185.70.40.131]:21270 "EHLO
-        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbhBKVMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 16:12:43 -0500
-Date:   Thu, 11 Feb 2021 21:11:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1613077915;
-        bh=4VV/HM9KaFjIhM38yB9PwprOcTWzMzKSjBUn6r4t3EY=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=hHzE7DRXwMp8sYAYTIeA6IhCsyU0dqZNyaAU4OyLnMgWTSDRkYNHtj7MswuN7zhIS
-         ebZZNDjxL2etJzLlEaJZIgknbzmqe53Qu7lk0AaqqOaykFCCgZwUTIXpZnEGemuEQS
-         65mbAtY3u3+1kqF7PKD+blLDiBljl2NwTIha3RsM=
-To:     Lee Jones <lee.jones@linaro.org>
-From:   Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: Timon Baetz <timon.baetz@protonmail.com>
-Subject: Re: [PATCH v3 3/7] mfd: max8997: Add of_compatible to extcon and charger mfd_cell
-Message-ID: <20210211221132.5e8d156c.timon.baetz@protonmail.com>
-In-Reply-To: <20201222095522.GC53991@dell>
-References: <20201222070520.710096-1-timon.baetz@protonmail.com> <20201222070520.710096-3-timon.baetz@protonmail.com> <20201222095522.GC53991@dell>
+        id S229517AbhBKVq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 16:46:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49258 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229469AbhBKVq5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 16:46:57 -0500
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B6EC061756
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 13:46:16 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id E47B21F625;
+        Thu, 11 Feb 2021 22:46:14 +0100 (CET)
+Subject: Re: [PATCH v2 5/9] clk: qcom: rcg2: Stop hardcoding gfx3d pingpong
+ parent numbers
+To:     Stephen Boyd <sboyd@kernel.org>, agross@kernel.org
+Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org
+References: <20210113183817.447866-1-angelogioacchino.delregno@somainline.org>
+ <20210113183817.447866-6-angelogioacchino.delregno@somainline.org>
+ <161307478271.1254594.18219937886787415438@swboyd.mtv.corp.google.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <2fb677ae-03ac-58a9-4b6e-c0c40b9a8e0d@somainline.org>
+Date:   Thu, 11 Feb 2021 22:46:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+In-Reply-To: <161307478271.1254594.18219937886787415438@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Dec 2020 09:55:22 +0000, Lee Jones wrote:
-> On Tue, 22 Dec 2020, Timon Baetz wrote:
->=20
-> > Add of_compatible ("maxim,max8997-muic") to the mfd_cell to have a
-> > of_node set in the extcon driver.
-> >
-> > Add of_compatible ("maxim,max8997-battery") to the mfd_cell to configur=
-e
-> > the charger driver.
-> >
-> > Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
-> > ---
-> >  drivers/mfd/max8997.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-) =20
->=20
-> Applied, thanks.
+Il 11/02/21 21:19, Stephen Boyd ha scritto:
+> Quoting AngeloGioacchino Del Regno (2021-01-13 10:38:13)
+>> The function clk_gfx3d_determine_rate is selecting different PLLs
+>> to manage the GFX3D clock source in a special way: this one needs
+>> to be ping-pong'ed on different PLLs to ensure stability during
+>> frequency switching (set a PLL rate, let it stabilize, switch the
+>> RCG to the new PLL) and fast frequency transitions.
+>>
+>> This technique is currently being used in the MSM8996 SoC and the
+>> function was assuming that the parents were always at a specific
+>> index in the parents list, which is TRUE, if we use this only on
+>> the MSM8996 MMCC.
+>> Unfortunately, MSM8996 is not the only SoC that needs to ping-pong
+>> the graphics RCG, so choices are:
+>> 1. Make new special ops just to hardcode *again* other indexes,
+>>     creating code duplication for (imo) no reason; or
+>> 2. Generalize this function, so that it becomes usable for a range
+>>     of SoCs with slightly different ping-pong configuration.
+>>
+>> In this commit, the second road was taken: define a new "special"
+>> struct clk_rcg2_gfx3d, containing the ordered list of parents to
+>> ping-pong the graphics clock on, and the "regular" rcg2 clock
+>> structure in order to generalize the clk_gfx3d_determine_rate
+>> function and make it working for other SoCs.
+>>
+>> As for the function itself it is left with the assumption that we
+>> need to ping-pong over three parents. The reasons for this are:
+>> 1. The initial model was MSM8996, which has 3 parents for the
+>>     graphics clock pingpong;
+>> 2. The other example that was taken into consideration is the
+>>     SDM630/636/660 SoC gpu clock controller, which is ping-ponging
+>>     over two dynamic clocked and one fixed clock PLL.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>> ---
+> 
+> Applied to clk-next but I modified it a bunch. Let me know if it doesn't
+> work.
+> 
 
-Once https://lore.kernel.org/lkml/20210130172747.2022977-1-timon.baetz@prot=
-onmail.com/
-gets accepted, this is not needed anymore. Can this be reverted or
-should I create a new patch?
-
-Thanks,
-Timon=20
-
-
+Will check asap!
