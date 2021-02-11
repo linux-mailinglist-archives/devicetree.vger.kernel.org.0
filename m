@@ -2,108 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB752318D5C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 15:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA847318D6D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 15:33:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230191AbhBKO1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 09:27:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44064 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232254AbhBKOZb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 09:25:31 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 849A764ECB;
-        Thu, 11 Feb 2021 14:22:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613053364;
-        bh=+vkDUGE9k0q1TcP98IVbVBVpIIpuD2DYvqDyFTRnLO0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=drTjfn23jTZ8ZOR++TJJc5hgtb8c6rsepYRLvAgrE5G7IXsNeLs+HnLZTccQivJtX
-         +2cEwz4RGkKBS293Vy0KAzuGquiZUKRXMsz8wr8lJATSMxX01J3x+ntlCDBFfLOfUI
-         ZGzMsE4+gqIKQoPplKpOV/UQq/ZWL5wj0s+ki00+GsUXUewMAWG9q+QdUYfKMwy+XC
-         iGT/WA7LR6is60NU8ah8ozFQSv+LxEppwtVp+eMpqA2Nm/fnNdsvA99bCMBgPxwTNO
-         +qKJghtnWI02Jb9IwQ2DK2YMNO/HibQSO8E07GShgSRBD3Ibbs1IoPXUtbHH75pOji
-         VEpwSkdWrN44A==
-Received: by mail-ej1-f48.google.com with SMTP id hs11so10364990ejc.1;
-        Thu, 11 Feb 2021 06:22:44 -0800 (PST)
-X-Gm-Message-State: AOAM530Crc1s8Rkak9TqUI9UEPM+uHtx0OOZHrG5P0PxoD1Cqfh4IQIj
-        GFIpJZjESQLlZ9XXsZ5DMNwAmL8o0mnsIayUrg==
-X-Google-Smtp-Source: ABdhPJwKIfiKYnrNMTzh7e8xbTFeq+QInygJS8clP7cezHBDgdX1QEhivWxCl4NIkaUIuJGolPZ2XLsPhQWHYFihhss=
-X-Received: by 2002:a17:906:af41:: with SMTP id ly1mr8422121ejb.525.1613053362937;
- Thu, 11 Feb 2021 06:22:42 -0800 (PST)
+        id S231300AbhBKObo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 09:31:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39948 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231998AbhBKO3l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 09:29:41 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5DE5C061574
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 06:28:34 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id v5so8283706lft.13
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 06:28:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=re+rp6RpQ0LhBzIcAkVeyUogmblZJZ7YKV/Hi3PFqbo=;
+        b=k/fqi8w9RAquM7fjc7pu9EJWOm1pfJh2+z8UEV/Xq9jlT3HbzHzaSXik1IRFneKoUL
+         20nWYpNCZ4CxFkX2jfVeQijJm+hN8Oc5RgLWWg1jL+8jdNygrfH3c5BKn71Rk5bsaN5b
+         kho+KZKGu7AngaUedFZpzLr4l1wc0qLgXtkHeZCgsKTJtQ7Siz7kVsvxjJW/WdAs+//v
+         Q99pf4ZnSh2lgMw3nWato9td6DHJbcuqgfxqxgeZL3fEfv6CxUayNOd64W+bITucwMn0
+         2DxfI7BCsdruCW4KOnECJUdell+NqP0vlvxu3g/KuZy1V75KXznwkTSIWdGv287qyPWZ
+         Qvzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=re+rp6RpQ0LhBzIcAkVeyUogmblZJZ7YKV/Hi3PFqbo=;
+        b=jxcJDRUzug2ryxqa6xUE+wy67ByPpDo0VnadM4zQRmrmfutGcAceOjPJrDjj7i9qMq
+         nCvJUXsHSdBj/rwgZKFJkyEfeDZAnHwo4Qs1WfLj0t6zrq87OUlP0PbXMV8lYM8yV0FW
+         qwMS7geyvvxUzqnKKn4L351q7j1wnnWmgeBvVnkPE/R2yKI7awTznKs/tvgrHQJ5GhaC
+         G4dAhF0eNt1Xmlgco9ntgO+WpqRuRARQ+tZFsvJzq3TRlSvOZ9EmyC0GEsddGjS0vcP0
+         z+l2ZyewfQKNTKBDPTviSF33EiM25gL/oGoDE2Ohmuc+4nehuGJd/6rodBKgXSe5Zcpb
+         VH/w==
+X-Gm-Message-State: AOAM533Be0lAYQxjUp+5OdyIxJU/Oa96jjz86EvFDzGRRBs0hErhuflv
+        0EtPYICFBnxPkkrTay9xosO1/Q==
+X-Google-Smtp-Source: ABdhPJwWL2kNH6KKEsOe1mpEXyV1U5DIH9c72NbdNoA9n1pnKzMrilz4tkz5WKXhSluFRJt1p6OLIA==
+X-Received: by 2002:ac2:410e:: with SMTP id b14mr4542165lfi.186.1613053713312;
+        Thu, 11 Feb 2021 06:28:33 -0800 (PST)
+Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
+        by smtp.gmail.com with ESMTPSA id p24sm659720lfc.12.2021.02.11.06.28.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Feb 2021 06:28:31 -0800 (PST)
+Date:   Thu, 11 Feb 2021 15:28:30 +0100
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH] dt-bindings: timer: renesas,cmt: Document R8A77961
+Message-ID: <YCU/DnjYlLxR/jGy@oden.dyn.berto.se>
+References: <20201209195701.805254-1-niklas.soderlund+renesas@ragnatech.se>
+ <YCUGtbGl2ld0Tc5/@oden.dyn.berto.se>
 MIME-Version: 1.0
-References: <3950d7da35130a850ba9217ac7bfef781fa850b2.1613042485.git.viresh.kumar@linaro.org>
-In-Reply-To: <3950d7da35130a850ba9217ac7bfef781fa850b2.1613042485.git.viresh.kumar@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 11 Feb 2021 08:22:30 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLfLQe7bxcGYeoSWsBnS+JoagLcOZ-RGS0hbdwjRhfBqA@mail.gmail.com>
-Message-ID: <CAL_JsqLfLQe7bxcGYeoSWsBnS+JoagLcOZ-RGS0hbdwjRhfBqA@mail.gmail.com>
-Subject: Re: [DTC][RFC] dtc: Allow better error reporting
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     David Gibson <david@gibson.dropbear.id.au>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Bill Mills <bill.mills@linaro.org>, devicetree@vger.kernel.org,
-        Jon Loeliger <loeliger@gmail.com>,
-        Devicetree Compiler <devicetree-compiler@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YCUGtbGl2ld0Tc5/@oden.dyn.berto.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 11, 2021 at 5:27 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> The dtc tool doesn't do very elaborate error reporting to keep the size
-> of the executables small enough for all kind of applications.
->
-> This patch tries to provide a way to do better error reporting, without
-> increasing the size of the executables for such cases (where we don't
-> want elaborate error reporting).
->
-> The error reporting will only be enabled if 'VERBOSE' (as -DVERBOSE)
-> flag is passed during compilation of the tools.
->
-> This also updates the fdtoverlay tool to do better error reporting,
-> which is required by the Linux Kernel for now.
->
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
->
-> ---
-> Hi David,
->
-> Unfortunately I am not a core DT guy and don't understand most of the
-> stuff going on here. I tried to do minimal changes to get more
-> information out on errors and it may require someone who understands the
-> code well to write better error logs.
->
-> FWIW, I stumbled upon this because of the discussion that happened here:
->
-> https://lore.kernel.org/lkml/74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com/
->
-> Thanks.
->
-> ---
->  dtc.h                |   6 ++
->  fdtoverlay.c         |   1 +
->  libfdt/fdt_overlay.c | 156 ++++++++++++++++++++++++++++++++++---------
->  3 files changed, 132 insertions(+), 31 deletions(-)
->
-> diff --git a/dtc.h b/dtc.h
-> index d3e82fb8e3db..b8ffec155263 100644
-> --- a/dtc.h
-> +++ b/dtc.h
-> @@ -29,6 +29,12 @@
->  #define debug(...)
->  #endif
->
-> +#ifdef VERBOSE
-> +#define dtc_err(fmt, ...)      fprintf(stderr, "DTC: %s: %d: " fmt, __func__, __LINE__, ##__VA_ARGS__)
-> +#else
-> +#define dtc_err(fmt, ...)
-> +#endif
+Hi Again,
 
-This needs to go in libfdt.
+Sorry for the spam.
 
-The executables can always print, it's the libfdt library that may or
-may not be able to.
+I noticed Rob replied to a similar patch and asked me to resend it with 
+tags to Daniel for him to collect. Will do the same for this patch.
 
-Rob
+On 2021-02-11 11:28:07 +0100, Niklas Söderlund wrote:
+> Hello,
+> 
+> I'm unsure if I should ping Daniel or Rob about picking up this patch as 
+> you both have picked patches for this in the past. Sorry for pinging 
+> both of you.
+> 
+> On 2020-12-09 20:57:01 +0100, Niklas Söderlund wrote:
+> > Add missing bindings for M3-W+.
+> > 
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > ---
+> >  Documentation/devicetree/bindings/timer/renesas,cmt.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
+> > index 428db3a21bb9c384..d16b5a243ed48eef 100644
+> > --- a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
+> > +++ b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
+> > @@ -74,6 +74,7 @@ properties:
+> >                - renesas,r8a774e1-cmt0     # 32-bit CMT0 on RZ/G2H
+> >                - renesas,r8a7795-cmt0      # 32-bit CMT0 on R-Car H3
+> >                - renesas,r8a7796-cmt0      # 32-bit CMT0 on R-Car M3-W
+> > +              - renesas,r8a77961-cmt0     # 32-bit CMT0 on R-Car M3-W+
+> >                - renesas,r8a77965-cmt0     # 32-bit CMT0 on R-Car M3-N
+> >                - renesas,r8a77970-cmt0     # 32-bit CMT0 on R-Car V3M
+> >                - renesas,r8a77980-cmt0     # 32-bit CMT0 on R-Car V3H
+> > @@ -89,6 +90,7 @@ properties:
+> >                - renesas,r8a774e1-cmt1     # 48-bit CMT on RZ/G2H
+> >                - renesas,r8a7795-cmt1      # 48-bit CMT on R-Car H3
+> >                - renesas,r8a7796-cmt1      # 48-bit CMT on R-Car M3-W
+> > +              - renesas,r8a77961-cmt1     # 48-bit CMT on R-Car M3-W+
+> >                - renesas,r8a77965-cmt1     # 48-bit CMT on R-Car M3-N
+> >                - renesas,r8a77970-cmt1     # 48-bit CMT on R-Car V3M
+> >                - renesas,r8a77980-cmt1     # 48-bit CMT on R-Car V3H
+> > -- 
+> > 2.29.2
+> > 
+> 
+> -- 
+> Regards,
+> Niklas Söderlund
+
+-- 
+Regards,
+Niklas Söderlund
