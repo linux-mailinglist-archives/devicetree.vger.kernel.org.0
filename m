@@ -2,231 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1384731874C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 10:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09671318765
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 10:53:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbhBKJpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 04:45:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34360 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230122AbhBKJjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 04:39:12 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12A9C0613D6
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 01:38:31 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id i8so9015995ejc.7
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 01:38:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=xe9/ZM2MZ1zYKLP1SWwA8ED/41ucdulv75xXMBjRsV4=;
-        b=BqAdxk+9ShzfdbfVXZJJFCTqVw5mLQUICMu+vtCM0ytFG2KA77qNETJm1XGzFumSx1
-         gWbFMBUc7Cb6++jZtwYuM2KvNVsRt+AKLxr2Z9pW55Y5Ji/553X+R1lThZln5eHJwPC9
-         nSfZyQaksmmeguuKKnh3ruFl6eq7LNcqwqZ9pO77Rre+3WE1Sv5WWMf8XqEjS49PLfc0
-         CwQf/JVRYPli7gujKpmkSpiCfXL+EwknsUbzkmRpGUbRCFOTFl9YLuJZQxj1yRr0+eEF
-         B540Yl6+vbQyfBH5sXa0MT9PR/bcPR6ctrsOw3w2z7+9DFS9aVA2KF79u5Z7Kr38JQ5L
-         +DKQ==
+        id S230080AbhBKJw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 04:52:26 -0500
+Received: from mail-lj1-f180.google.com ([209.85.208.180]:41421 "EHLO
+        mail-lj1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230003AbhBKJrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 04:47:00 -0500
+Received: by mail-lj1-f180.google.com with SMTP id e17so6592831ljl.8;
+        Thu, 11 Feb 2021 01:46:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=xe9/ZM2MZ1zYKLP1SWwA8ED/41ucdulv75xXMBjRsV4=;
-        b=nhuuy8xglxhAiLLL1IDixxLXvHq4+zEq04Vp8MjPBYnZxzHJBJfr5jvpAiG9zt0AzH
-         7k9L6+pTZOelAUGVuSY4FObdK54Xu8VkuKlLoCywR3BRvaf/CSs89UM+ihqsVsMO7iEy
-         F9Kd3OZKEO1zT+9SssHWtG03Z+gE+kJyk9CcqsYd+CFEo/wQznrdqrjroiI4IPEe2DZs
-         OJzN38BtEoTGXqzZB+dvvGjnKEsgmHJKxSTd97WAQuZyUNd42Cm4V5LHf9FuOk/sBcxj
-         9U3TpT4EwQKuruPLM4ygxqCqA1FrvTu1bO77uoqjxlnCi6nOE+EyLLZTpNGRLSd4cgaf
-         I4+g==
-X-Gm-Message-State: AOAM532N8ybel3H89wYQJT8MAZdWp3YqKsgpxUV7FK1WWAUZP35qpXEJ
-        vNsSDK13JrFOJ6Ssxi9gLsT6pw6842Qlj0FgS5RWvA==
-X-Google-Smtp-Source: ABdhPJwhY2EjzrR41rSyfXYixfPf0w6CMi0rfopWHMDowsy37L+u/jlVF9SURDIvUMNvQ0PvlfvPciUFChzGYZUN/lc=
-X-Received: by 2002:a17:906:af58:: with SMTP id ly24mr7774029ejb.208.1613036310406;
- Thu, 11 Feb 2021 01:38:30 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=ZEJ369A6XCWffUy/foTv3zEVJVD61SEeMj7wTUfLcuQ=;
+        b=a4rmfmngJjO5osXDnF+L2QqOfG6/nZgXXSU51PzZrR4D2MSSrE6LBT5qosqaV3v9FU
+         3eWp8oOTeQgp6tpT5NhGjAf9oNVKHQymDVJ2PS5e+m988k5m3GI5kODjVuKhgAX8VeQ5
+         qT8Yg4SzYrslMBrZ6Kfc6IgfaFwlca51YF0rCAHcm1qkufVq0L1TjI6/IClTaccYiG+Y
+         Bbx4zuHNjfqZijGsG0XQ+Z+yWvEciCjO2c5hfGFlvf023Dyz5xv7n+XEuidXEsLv0S/M
+         vLYBhrEhGzzj3Z4h2Xv4C3i6Rn1aSq6/MqqRHTLDQ+2NOgcUcvQuBJkNcf1ENAlmdVy0
+         w3ig==
+X-Gm-Message-State: AOAM533/AgjkivHAipZqyeBT7us78yGfrDWSUV3GY1Cw7GHxwC1a3abm
+        DBxKyZqVQBNVBf9wz5twkbQ=
+X-Google-Smtp-Source: ABdhPJxVtKG5Prh3cGFwkmJcg8W9SNMT4u1ApdrimoEqtDHvSV3l78ZuEpkrTBnwsQXlo9X6EyEXSg==
+X-Received: by 2002:a05:651c:38f:: with SMTP id e15mr4429041ljp.420.1613036776825;
+        Thu, 11 Feb 2021 01:46:16 -0800 (PST)
+Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id e15sm606319lfn.80.2021.02.11.01.46.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Feb 2021 01:46:15 -0800 (PST)
+Date:   Thu, 11 Feb 2021 11:46:09 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-watchdog@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v8 0/6] Support ROHM BD9576MUF and BD9573MUF PMICs
+Message-ID: <cover.1613031055.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-References: <ac55738da7710848ef4824d45bdac18fa1d11392.1612189714.git.michal.simek@xilinx.com>
-In-Reply-To: <ac55738da7710848ef4824d45bdac18fa1d11392.1612189714.git.michal.simek@xilinx.com>
-From:   Michal Simek <monstr@monstr.eu>
-Date:   Thu, 11 Feb 2021 10:38:19 +0100
-Message-ID: <CAHTX3dJAe2s7S=NORTJQ_UQH9KOf6f7H0qy8okG9Zt6udU498w@mail.gmail.com>
-Subject: Re: [PATCH] ARM: zynq: Update Copyright date in DTS
-To:     LKML <linux-kernel@vger.kernel.org>,
-        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-po 1. 2. 2021 v 15:28 odes=C3=ADlatel Michal Simek <michal.simek@xilinx.com=
-> napsal:
->
-> Update years in header to be up2date.
->
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-> ---
->
->  arch/arm/boot/dts/zynq-7000.dtsi       | 2 +-
->  arch/arm/boot/dts/zynq-cc108.dts       | 2 +-
->  arch/arm/boot/dts/zynq-zc702.dts       | 2 +-
->  arch/arm/boot/dts/zynq-zc706.dts       | 2 +-
->  arch/arm/boot/dts/zynq-zc770-xm010.dts | 2 +-
->  arch/arm/boot/dts/zynq-zc770-xm011.dts | 2 +-
->  arch/arm/boot/dts/zynq-zc770-xm012.dts | 2 +-
->  arch/arm/boot/dts/zynq-zc770-xm013.dts | 2 +-
->  arch/arm/boot/dts/zynq-zed.dts         | 2 +-
->  arch/arm/boot/dts/zynq-zybo.dts        | 2 +-
->  10 files changed, 10 insertions(+), 10 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-70=
-00.dtsi
-> index c4810d58540b..d46c1e2652e7 100644
-> --- a/arch/arm/boot/dts/zynq-7000.dtsi
-> +++ b/arch/arm/boot/dts/zynq-7000.dtsi
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
-> - * Copyright (C) 2011 - 2014 Xilinx
-> + * Copyright (C) 2011 - 2021 Xilinx
->   */
->
->  / {
-> diff --git a/arch/arm/boot/dts/zynq-cc108.dts b/arch/arm/boot/dts/zynq-cc=
-108.dts
-> index 8b9ab9bba23b..33546e13bb46 100644
-> --- a/arch/arm/boot/dts/zynq-cc108.dts
-> +++ b/arch/arm/boot/dts/zynq-cc108.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * Xilinx CC108 board DTS
->   *
-> - * (C) Copyright 2007-2018 Xilinx, Inc.
-> + * (C) Copyright 2007-2021 Xilinx, Inc.
->   * (C) Copyright 2007-2013 Michal Simek
->   * (C) Copyright 2007-2012 PetaLogix Qld Pty Ltd
->   *
-> diff --git a/arch/arm/boot/dts/zynq-zc702.dts b/arch/arm/boot/dts/zynq-zc=
-702.dts
-> index cf70aff26c66..a226498364af 100644
-> --- a/arch/arm/boot/dts/zynq-zc702.dts
-> +++ b/arch/arm/boot/dts/zynq-zc702.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
-> - *  Copyright (C) 2011 - 2014 Xilinx
-> + *  Copyright (C) 2011 - 2021 Xilinx
->   *  Copyright (C) 2012 National Instruments Corp.
->   */
->  /dts-v1/;
-> diff --git a/arch/arm/boot/dts/zynq-zc706.dts b/arch/arm/boot/dts/zynq-zc=
-706.dts
-> index 77943c16d33f..73d8b7a78415 100644
-> --- a/arch/arm/boot/dts/zynq-zc706.dts
-> +++ b/arch/arm/boot/dts/zynq-zc706.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
-> - *  Copyright (C) 2011 - 2014 Xilinx
-> + *  Copyright (C) 2011 - 2021 Xilinx
->   *  Copyright (C) 2012 National Instruments Corp.
->   */
->  /dts-v1/;
-> diff --git a/arch/arm/boot/dts/zynq-zc770-xm010.dts b/arch/arm/boot/dts/z=
-ynq-zc770-xm010.dts
-> index 0dd352289a45..e54a229b1f78 100644
-> --- a/arch/arm/boot/dts/zynq-zc770-xm010.dts
-> +++ b/arch/arm/boot/dts/zynq-zc770-xm010.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * Xilinx ZC770 XM010 board DTS
->   *
-> - * Copyright (C) 2013-2018 Xilinx, Inc.
-> + * Copyright (C) 2013-2021 Xilinx, Inc.
->   */
->  /dts-v1/;
->  #include "zynq-7000.dtsi"
-> diff --git a/arch/arm/boot/dts/zynq-zc770-xm011.dts b/arch/arm/boot/dts/z=
-ynq-zc770-xm011.dts
-> index 56732e8f6ca1..a4ce58e1e648 100644
-> --- a/arch/arm/boot/dts/zynq-zc770-xm011.dts
-> +++ b/arch/arm/boot/dts/zynq-zc770-xm011.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * Xilinx ZC770 XM011 board DTS
->   *
-> - * Copyright (C) 2013-2018 Xilinx, Inc.
-> + * Copyright (C) 2013-2021 Xilinx, Inc.
->   */
->  /dts-v1/;
->  #include "zynq-7000.dtsi"
-> diff --git a/arch/arm/boot/dts/zynq-zc770-xm012.dts b/arch/arm/boot/dts/z=
-ynq-zc770-xm012.dts
-> index d2359b789eb8..f842e7ad4f9d 100644
-> --- a/arch/arm/boot/dts/zynq-zc770-xm012.dts
-> +++ b/arch/arm/boot/dts/zynq-zc770-xm012.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * Xilinx ZC770 XM012 board DTS
->   *
-> - * Copyright (C) 2013-2018 Xilinx, Inc.
-> + * Copyright (C) 2013-2021 Xilinx, Inc.
->   */
->  /dts-v1/;
->  #include "zynq-7000.dtsi"
-> diff --git a/arch/arm/boot/dts/zynq-zc770-xm013.dts b/arch/arm/boot/dts/z=
-ynq-zc770-xm013.dts
-> index 38d96adc870c..fe4cd75bc9db 100644
-> --- a/arch/arm/boot/dts/zynq-zc770-xm013.dts
-> +++ b/arch/arm/boot/dts/zynq-zc770-xm013.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * Xilinx ZC770 XM013 board DTS
->   *
-> - * Copyright (C) 2013 Xilinx, Inc.
-> + * Copyright (C) 2013-2021 Xilinx, Inc.
->   */
->  /dts-v1/;
->  #include "zynq-7000.dtsi"
-> diff --git a/arch/arm/boot/dts/zynq-zed.dts b/arch/arm/boot/dts/zynq-zed.=
-dts
-> index 6a5a93aa6552..fd2b562d374d 100644
-> --- a/arch/arm/boot/dts/zynq-zed.dts
-> +++ b/arch/arm/boot/dts/zynq-zed.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
-> - *  Copyright (C) 2011 - 2014 Xilinx
-> + *  Copyright (C) 2011 - 2021 Xilinx
->   *  Copyright (C) 2012 National Instruments Corp.
->   */
->  /dts-v1/;
-> diff --git a/arch/arm/boot/dts/zynq-zybo.dts b/arch/arm/boot/dts/zynq-zyb=
-o.dts
-> index 755f6f109d5a..f163f9d69f80 100644
-> --- a/arch/arm/boot/dts/zynq-zybo.dts
-> +++ b/arch/arm/boot/dts/zynq-zybo.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
-> - *  Copyright (C) 2011 - 2014 Xilinx
-> + *  Copyright (C) 2011 - 2021 Xilinx
->   *  Copyright (C) 2012 National Instruments Corp.
->   */
->  /dts-v1/;
-> --
-> 2.30.0
->
+Initial support for ROHM BD9576MUF and BD9573MUF PMICs.
 
-Applied.
-M
+These PMICs are primarily intended to be used to power the R-Car family
+processors. BD9576MUF includes some additional safety features the
+BD9573MUF does not have. This initial version of drivers provides
+temperature, over voltage and under voltage warnings is IRQ information
+is passed via DT.
+
+This patch series includes MFD and watchdog drivers. Regulator part was
+already applied.
+
+This series brings in the IRQ support which will be utilized by the
+regulator driver(s). The regulator part was splitted in own series as it
+contains some changes to drivers which are not yet in other trees.
+
+WDG supports
+- Enabling and pinging the watchdog
+- configuring watchog timeout / window from device-tree
+
+Please note that not all of the boards are expected to be utilizing the
+warning IRQs. Thus populating the IRQ information from DT is optional.
+
+Changelog v8:
+  - Drop regulator driver changes which are covered by the separate RFC series.
+  - Renamed regulator driver cell. Regulator driver change will be
+    brought in in the RFC series to avoid conflicts.
+  - Add patch introducing register definitions required by the regulator RFC
+    series.
+  - Cleaned comments at MFD as was suggested by Lee
+  - Do not abort MFD probe if IRQ information for BD9573 is populated
+  - MFD driver/header styling
+
+Changelog v7:
+  - Added interrupt handling
+  - Added notifications and error_flag getter to regulators
+
+Changelog v6:
+  - Fixed watchdog timeout
+
+Changelog v5:
+  - rebased on top of v5.10-rc2
+  - few styling fixes in MFD as suggested by Lee
+
+Changelog v4:
+  - rebased on top of 5.10-rc1
+  - Fix typo (repeated word maximum) from the DT binding doc
+
+Changelog v3:
+  - use only one binding to specify watchdog time-out window.
+
+Changelog v2:
+  - dropped already applied regulator part
+  - dt_bindings: Fix case for regulator-names in the example
+  - watchdod: unify probe error check and revise includes
+
+---
 
 
---=20
-Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
-w: www.monstr.eu p: +42-0-721842854
-Maintainer of Linux kernel - Xilinx Microblaze
-Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
-U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
+Matti Vaittinen (6):
+  dt_bindings: mfd: Add ROHM BD9576MUF and BD9573MUF PMICs
+  mfd: Support ROHM BD9576MUF and BD9573MUF
+  mfd: bd9576: Add IRQ support
+  wdt: Support wdt on ROHM BD9576MUF and BD9573MUF
+  MAINTAINERS: Add ROHM BD9576MUF and BD9573MUF drivers
+  mfd: bd9576: Add safety limit/monitoring registers
+
+ .../bindings/mfd/rohm,bd9576-pmic.yaml        | 123 ++++++++
+ MAINTAINERS                                   |   4 +
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/rohm-bd9576.c                     | 187 +++++++++++
+ drivers/watchdog/Kconfig                      |  13 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/bd9576_wdt.c                 | 291 ++++++++++++++++++
+ include/linux/mfd/rohm-bd957x.h               | 140 +++++++++
+ include/linux/mfd/rohm-generic.h              |   2 +
+ 10 files changed, 773 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd9576-pmic.yaml
+ create mode 100644 drivers/mfd/rohm-bd9576.c
+ create mode 100644 drivers/watchdog/bd9576_wdt.c
+ create mode 100644 include/linux/mfd/rohm-bd957x.h
+
+-- 
+2.25.4
+
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
