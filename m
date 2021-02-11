@@ -2,131 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0AE4319310
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 20:27:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2236E31932C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 20:34:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229775AbhBKT1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 14:27:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47420 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229873AbhBKT1E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 14:27:04 -0500
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 222C8C061574
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 11:26:24 -0800 (PST)
-Received: by mail-qt1-x829.google.com with SMTP id b24so4979745qtp.13
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 11:26:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=SPfnsSxHjOU0EO90H+0z4pIXdOqXdbqu3ojr4t/JMSA=;
-        b=KJXpTn4FoVCntABO/wHHn91KO2J+Q+z3ozOL0wPxCTOjdE3VwScClNNzKmgw9b1O9K
-         SsKKc4aBwTmqZLu1Z0dtK1uLD2pUi4vpQP7RLAl6yOTn5IzB9u0vlnzySrLNd/9yYHLR
-         RM0PjSKru9EVccJRkScy6P7b0LV2YqV0qZxIGHf31cZ7CkdpU/aq6+VC4Z97kHMkq43s
-         Gs6lvKKqdTofYDWogH66RAcLlQ1JmAsuMcnF49XkAmJd21Gf5Bd6Lmx9sd0Z3ihstj8F
-         X/l8J91WVLv7vNhA/TO+iWkqahCakyNOxhYuGbTYUClGFoAoilFB4pDZ25PdfEld9P3j
-         lvAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=SPfnsSxHjOU0EO90H+0z4pIXdOqXdbqu3ojr4t/JMSA=;
-        b=VCba2Z6lyz6EA5LnZLbMKIC5bPckeOlpucl5xrDjK/EjbHCcjx38woHYyInk9swFk7
-         j7oDGSx3GOYYAG66887pqqhrckcNMNNaWbnEHiKgHryPeEmRGD0alfIF7f08RmR4EdFs
-         O9aHdz+QCQN70eRIXCsr9hDWDSmiGj5VtkZEbX/Osi2IDYPIvz9RD1Ve9XJYu3KasD55
-         JbrK87tOg98+OzMO2y75Y2iCUoX0yehxChFTo5gqgmqNoZFc3EfV5HW0nOB+3n6qLBCC
-         qW8tN/Z8ISMY8S/DG9w5qMiCTiAOUZunrkNnmRwJeMWvSV051fjKMOPXPB0G0L5i2Fkd
-         yeYQ==
-X-Gm-Message-State: AOAM533D7gnAEDJ8sVeoIqyOG8FZPOBCoQ09dDSwl/YgjfvJGIrf8XGj
-        9TdfXUN5nP0WRp8Klw9d223ZqldQpYR4BE/GX/EiDA==
-X-Google-Smtp-Source: ABdhPJzi/HMDdzkfbFoD2hx2WTj4HKVz46WWQqa5il0MFIDdf2QKAcCtgCWR5EItM/AR8RN/HDig5gtCFoxpUlC7q5A=
-X-Received: by 2002:ac8:a82:: with SMTP id d2mr8771145qti.343.1613071583329;
- Thu, 11 Feb 2021 11:26:23 -0800 (PST)
+        id S230110AbhBKTeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 14:34:01 -0500
+Received: from gecko.sbs.de ([194.138.37.40]:32770 "EHLO gecko.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230140AbhBKTd4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Feb 2021 14:33:56 -0500
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 11BJWveU027063
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 11 Feb 2021 20:32:57 +0100
+Received: from md1f2u6c.ad001.siemens.net ([139.22.42.110])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 11BJWuhd031206;
+        Thu, 11 Feb 2021 20:32:57 +0100
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Le Jin <le.jin@siemens.com>,
+        Bao Cheng Su <baocheng.su@siemens.com>
+Subject: [PATCH v2 0/4] arm64: Add TI AM65x-based IOT2050 boards
+Date:   Thu, 11 Feb 2021 20:32:52 +0100
+Message-Id: <cover.1613071976.git.jan.kiszka@siemens.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <1613040542-16500-1-git-send-email-stefanc@marvell.com>
- <1613040542-16500-6-git-send-email-stefanc@marvell.com> <20210211114238.GD1463@shell.armlinux.org.uk>
- <CO6PR18MB38739CA874F3748919C8361CB08C9@CO6PR18MB3873.namprd18.prod.outlook.com>
-In-Reply-To: <CO6PR18MB38739CA874F3748919C8361CB08C9@CO6PR18MB3873.namprd18.prod.outlook.com>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Thu, 11 Feb 2021 20:26:10 +0100
-Message-ID: <CAPv3WKcXM9CP4bgo5CYdTcZ9ivyAr=4bTArfrAFp7-8dMjiMtQ@mail.gmail.com>
-Subject: Re: [EXT] Re: [PATCH v13 net-next 05/15] net: mvpp2: add PPv23
- version definition
-To:     Stefan Chulski <stefanc@marvell.com>
-Cc:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Yan Markman <ymarkman@marvell.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "atenart@kernel.org" <atenart@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-czw., 11 lut 2021 o 12:49 Stefan Chulski <stefanc@marvell.com> napisa=C5=82=
-(a):
->
-> > ----------------------------------------------------------------------
-> > On Thu, Feb 11, 2021 at 12:48:52PM +0200, stefanc@marvell.com wrote:
-> > > From: Stefan Chulski <stefanc@marvell.com>
-> > >
-> > > This patch add PPv23 version definition.
-> > > PPv23 is new packet processor in CP115.
-> > > Everything that supported by PPv22, also supported by PPv23.
-> > > No functional changes in this stage.
-> > >
-> > > Signed-off-by: Stefan Chulski <stefanc@marvell.com>
-> > > Acked-by: Marcin Wojtas <mw@semihalf.com>
-> >
-> > Reviewed-by: Russell King <rmk+kernel@armlinux.org.uk>
-> >
-> > > @@ -7049,6 +7049,11 @@ static int mvpp2_probe(struct platform_device
-> > *pdev)
-> > >                     priv->port_map |=3D BIT(i);
-> > >     }
-> > >
-> > > +   if (priv->hw_version !=3D MVPP21) {
-> > > +           if (mvpp2_read(priv, MVPP2_VER_ID_REG) =3D=3D
-> > MVPP2_VER_PP23)
-> > > +                   priv->hw_version =3D MVPP23;
-> > > +   }
-> > > +
-> >
-> > The only minor comment I have on this is... the formatting of the above=
-.
-> > Wouldn't:
-> >
-> >       if (priv->hw_version >=3D MVPP22 &&
-> >           mvpp2_read(priv, MVPP2_VER_ID_REG) =3D=3D MVPP2_VER_PP23)
-> >               priv->hw_version =3D MVPP23;
-> >
-> > read better?
-> >
-> > Do we need to even check priv->hw_version here? Isn't this register
-> > implemented in PPv2.1 where it contains the value zero?
->
-> Yes, we can just:
->         if (mvpp2_read(priv, MVPP2_VER_ID_REG) =3D=3D MVPP2_VER_PP23)
->                 priv->hw_version =3D MVPP23;
->
->
+Changes in v2:
+ - address board-specific issues found by kernel_verify_patch
+ - remove dead l2-cache node from iot2050-basic DT
+ - add binding for Siemens vendor prefix
+ - factor out board bindings into separate patch
+ - add missing device_type to common ti,am654-pcie-rc nodes
 
-I checked the A375 specs and cannot see this particular register. Can
-you please double check whether this register is in the old version of
-the IP and the Functional Spec is incomplete?
+Jan
 
-Thanks,
-Marcin
+Jan Kiszka (4):
+  dt-bindings: Add Siemens vendor prefix
+  dt-bindings: arm: ti: Add bindings for Siemens IOT2050 boards
+  arm64: dts: ti: Add support for Siemens IOT2050 boards
+  arm64: dts: ti: k3-am65-main: Add device_type to pcie*_rc nodes
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 679 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |   2 +
+ .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |  61 ++
+ .../dts/ti/k3-am6548-iot2050-advanced.dts     |  60 ++
+ 7 files changed, 808 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+
+-- 
+2.26.2
+
