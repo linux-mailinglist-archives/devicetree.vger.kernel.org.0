@@ -2,85 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 206BC318EFE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 16:45:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAD51318FD1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 17:25:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbhBKPm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 10:42:28 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57598 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230399AbhBKPkV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 10:40:21 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D53A864E8A;
-        Thu, 11 Feb 2021 15:39:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613057980;
-        bh=WkhNi8ol3f1VI1S+4Gsf371AiJwJ79gqlKtzjzdXMUA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=JkknHSnZybPCBxcOILruAYK5wW9P5YV3XE/aWCQ3Wtd0GrsNhk9pRgH8ZUksmoAdC
-         MCV7CJtO4USAGKEqO7pfZNvjRsoh4amQYycd6fpLhsLrv84ORSbOt711/oEYtOUDv/
-         P89h8UE53rLYviDDI1WxHviiQHWH8mnusX15/aIhnjd1uY7Jt7uL/lWLr1GWGla+OW
-         F2s0Vw0tL9MKeFnQP6NqGs1cOhoaSf3jYcox6fxY6tscTJkyZ1szjlxNhuavfKV9MH
-         DiYPqTD+q50y8xyQtvLkAnmIKNeGIFLKabwknGXHYOyc4n8zhIaTc1aiFD2jAOeJU0
-         FGqHwT1DXsOnQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>, thierry.reding@gmail.com,
-        robh@kernel.org
-Cc:     devicetree@vger.kernel.org, sharadg@nvidia.com,
-        alsa-devel@alsa-project.org, linux-tegra@vger.kernel.org,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        jonathanh@nvidia.com
-In-Reply-To: <1612939421-19900-1-git-send-email-spujar@nvidia.com>
-References: <1612939421-19900-1-git-send-email-spujar@nvidia.com>
-Subject: Re: [PATCH 0/3] Use clocks property in a device node
-Message-Id: <161305792123.12370.8611418623618908867.b4-ty@kernel.org>
-Date:   Thu, 11 Feb 2021 15:38:41 +0000
+        id S229813AbhBKQXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 11:23:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229869AbhBKQVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 11:21:06 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B61F7C061786;
+        Thu, 11 Feb 2021 08:20:24 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id d24so8897048lfs.8;
+        Thu, 11 Feb 2021 08:20:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Klq+8tOZRYNtsr93x0bkE0OFCVkNgyAVAYrNdy6LlIA=;
+        b=d7CSuissF1kLdNUvxsyMgjp5L79P0utUtQBK4o6sghIjh+anGrVTlyRDjO+3yLY0B8
+         358tEQA5wtuE6d6DK7Pf7JJImbZRLmrMp5KLM8Wcry3sxOpEajJjHAZTnldJptxmuKy5
+         gY+vzvpH2qkrZJra0KPAd4/OcxnSULKOKkTt9pastaCUspvfeQdkRl9SYKc8Liygo7Zn
+         s/d1lIVUjUoPv78GfoPII1mXUJU/neI6JA/KVWVj7Qj6HYPj6qtNQB6KFGBYd1zGYe0d
+         BTIKaf0D5CPMiM4aZJu9MA7wcAAmSxz9NfyhE1ofKmirZosXbNg6olULlD62OKi0+rop
+         E26g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Klq+8tOZRYNtsr93x0bkE0OFCVkNgyAVAYrNdy6LlIA=;
+        b=Gaiaz5kljkx3VfzZ4xh/8vTwi2WSC+bn07A6imfu9HQCMjBHS+jdma/IT6pZAt22UH
+         BSJ1d33HywFouKhuwsSoqP3sQU2q5eUFsHOR4eOGV2Ih23zvrluJxApVuVKeGZnAcjsB
+         84WxbKNG7h/JtC322ezlvo1MU2zrD9KJm1S0BtDl9L2RO0Ll81DSADvjAQgUzYjT2LEJ
+         ZjrBuRWIUqCJaRS5HnNFHDDNNsRy/Z9EOFxS5KDYcVaiHC8JeSy+4Zjt7eLe0wFlXRmg
+         aA4LT4fOEr+XCNzYSar3+yNw3kSppoyzo2yituWXV9tw7RsbT3+jrFbsmo0K4PmGMuf6
+         iFhg==
+X-Gm-Message-State: AOAM5313JJQwYynT4dmd3krQsa3knJdOyiIiGAC8bvGYu5p6f2hCtgGH
+        W7iF1UBVnFQ9+ky4M02vK/8=
+X-Google-Smtp-Source: ABdhPJzAho/xEpXrHRwCUYs5X/XOO5iSDUdCi+OiIBXlAlW8Hmvg9Hr9HuhT0buIhy58eiuXoCZ2Ww==
+X-Received: by 2002:a19:6d0a:: with SMTP id i10mr4612142lfc.367.1613060421764;
+        Thu, 11 Feb 2021 08:20:21 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id b5sm685941lfi.3.2021.02.11.08.20.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Feb 2021 08:20:21 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Boris Brezillon <bbrezillon@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH V2 mtd/next 1/3] dt-bindings: mtd: move partition binding to its own file
+Date:   Thu, 11 Feb 2021 17:20:10 +0100
+Message-Id: <20210211162012.27417-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Feb 2021 12:13:38 +0530, Sameer Pujar wrote:
-> It is recommended to not specifiy clocks property in an endpoint subnode.
-> This series moves clocks to device node.
-> 
-> However after moving the clocks to device node, the audio playback or
-> capture fails. The specified clock is not actually getting enabled and
-> hence the failure is seen. There seems to be a bug in simple-card-utils.c
-> where clock handle is not assigned when parsing clocks from device node.
-> 
-> [...]
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Applied to
+Single partition binding is quite common and may be:
+1. Used by multiple parsers
+2. Extended for more specific cases
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Move it to separated file to avoid code duplication.
 
-Thanks!
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../mtd/partitions/fixed-partitions.yaml      | 33 +------------
+ .../bindings/mtd/partitions/partition.yaml    | 47 +++++++++++++++++++
+ 2 files changed, 48 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/partition.yaml
 
-[1/3] ASoC: simple-card-utils: Fix device module clock
-      commit: 1e30f642cf2939bbdac82ea0dd3071232670b5ab
-[2/3] Revert "ASoC: audio-graph-card: Add clocks property to endpoint node"
-      commit: 0be0f142b8323378df6358c36dd15494134f5b94
-[3/3] arm64: tegra: Move clocks from RT5658 endpoint to device node
-      (no commit info)
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+index 6d4a3450e064..ea4cace6a955 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+@@ -27,38 +27,7 @@ properties:
+ 
+ patternProperties:
+   "@[0-9a-f]+$":
+-    description: node describing a single flash partition
+-    type: object
+-
+-    properties:
+-      reg:
+-        description: partition's offset and size within the flash
+-        maxItems: 1
+-
+-      label:
+-        description: The label / name for this partition. If omitted, the label
+-          is taken from the node name (excluding the unit address).
+-
+-      read-only:
+-        description: This parameter, if present, is a hint that this partition
+-          should only be mounted read-only. This is usually used for flash
+-          partitions containing early-boot firmware images or data which should
+-          not be clobbered.
+-        type: boolean
+-
+-      lock:
+-        description: Do not unlock the partition at initialization time (not
+-          supported on all devices)
+-        type: boolean
+-
+-      slc-mode:
+-        description: This parameter, if present, allows one to emulate SLC mode
+-          on a partition attached to an MLC NAND thus making this partition
+-          immune to paired-pages corruptions
+-        type: boolean
+-
+-    required:
+-      - reg
++    $ref: "partition.yaml#"
+ 
+ required:
+   - "#address-cells"
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+new file mode 100644
+index 000000000000..e1ac08064425
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/partitions/partition.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Partition
++
++description: |
++  This binding describes a single flash partition. Each partition must have its
++  relative offset and size specified. Depending on partition function extra
++  properties can be used.
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  reg:
++    description: partition's offset and size within the flash
++    maxItems: 1
++
++  label:
++    description: The label / name for this partition. If omitted, the label
++      is taken from the node name (excluding the unit address).
++
++  read-only:
++    description: This parameter, if present, is a hint that this partition
++      should only be mounted read-only. This is usually used for flash
++      partitions containing early-boot firmware images or data which should
++      not be clobbered.
++    type: boolean
++
++  lock:
++    description: Do not unlock the partition at initialization time (not
++      supported on all devices)
++    type: boolean
++
++  slc-mode:
++    description: This parameter, if present, allows one to emulate SLC mode
++      on a partition attached to an MLC NAND thus making this partition
++      immune to paired-pages corruptions
++    type: boolean
++
++required:
++  - reg
++
++additionalProperties: true
+-- 
+2.26.2
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
