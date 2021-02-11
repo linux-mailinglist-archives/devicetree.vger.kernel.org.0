@@ -2,84 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D22318B13
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 13:48:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0114C318B2D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 13:54:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229939AbhBKMnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 07:43:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54698 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229793AbhBKMkm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Feb 2021 07:40:42 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3BD9764E05;
-        Thu, 11 Feb 2021 12:40:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613047201;
-        bh=qjJTw4Ge1nQUpb57midRU3heEpiHLCmlvVagsllttyo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ns25xXL/is+KBrwNhowdssL582b2VsAwnEkeo3Ncm7EqMeoNCDBaQjI8YckevQOyG
-         0n0oAK7Fbv0YX4loOBVaJibp/potEpIua90/0eb1iIot+Q/AClwhZPkyF6rsI792Zm
-         lTluSe/rv3v3uC2+ZprlUCdGoNCnkXVmbqbA30L/gZuxM9XEXHQyVEPgeXdi3i+mRI
-         4uy6OSBkYXQqL4eSkB/Iu1PBNQDqd0UQyT7ZUNfqnbFlz5P6XD6QH3PfrrMNfDhqKW
-         g0Wo9oZ9LpgO0YCiTs4RL3hlxp4KLhf+ZK2MECfLPj99dxyrgfavBugGr3M1q6DVrr
-         n6Aa0MBk7X1Xw==
-Date:   Thu, 11 Feb 2021 12:39:07 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Michal Simek <monstr@monstr.eu>
-Cc:     LKML <linux-kernel@vger.kernel.org>, git <git@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm <linux-arm-kernel@lists.infradead.org>,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: spi: zynq: Convert Zynq QSPI binding to
- yaml
-Message-ID: <20210211123907.GA5217@sirena.org.uk>
-References: <4ece21a7e9691ed1e775fd6b0b4046b1562e44bd.1612951821.git.michal.simek@xilinx.com>
- <CAHTX3dKPTC1+awBADMCcgX+=PXsHPw2Bz3Po5=CocdKzVy3bRg@mail.gmail.com>
+        id S230420AbhBKMuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 07:50:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46556 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231547AbhBKMsJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 07:48:09 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 883BFC061574;
+        Thu, 11 Feb 2021 04:47:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=jNdqb4nPe0+4Tf1BWon1fj66dn5Zihb+9hnrzoLJEcg=; b=u9lE/RkIgqS1E4pK0wd/xVqNe
+        V6OxKFqjaTwRrqyyAj3totCFfnHNrHJe06L7siydeS2uTLfp8sJWxlUheOkaK8TT/LcVLfkEoiLbT
+        S2jH0qBAYz/SGzK9wMKm/pK0A+wZYdVuSz6YlcJwQDQf2N0aCJprF0rNzdUWdTxnPzKYZdNhS2SVq
+        C5Mc2FqfqTmxtZOqYlsEk/grnyol/6sDwLLk3IZ2unnfKSpTA5KVsRFkjBxYQQenc9BB/fEOK31cB
+        jdL/GgHvCsGHwIO27wy/9+5NyN+kBu/jKJSLCgtx62L8J4dy++EKbdX6pLdTE89sd72VVS3nmGFUA
+        7MFfkpG0w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42028)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1lABNT-00069X-IB; Thu, 11 Feb 2021 12:47:23 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1lABNP-00066C-TH; Thu, 11 Feb 2021 12:47:19 +0000
+Date:   Thu, 11 Feb 2021 12:47:19 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     stefanc@marvell.com
+Cc:     netdev@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        davem@davemloft.net, nadavh@marvell.com, ymarkman@marvell.com,
+        linux-kernel@vger.kernel.org, kuba@kernel.org, mw@semihalf.com,
+        andrew@lunn.ch, atenart@kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, sebastian.hesselbarth@gmail.com,
+        gregory.clement@bootlin.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v13 net-next 07/15] net: mvpp2: add FCA periodic timer
+ configurations
+Message-ID: <20210211124719.GE1463@shell.armlinux.org.uk>
+References: <1613040542-16500-1-git-send-email-stefanc@marvell.com>
+ <1613040542-16500-8-git-send-email-stefanc@marvell.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="h31gzZEtNLTqOjlF"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHTX3dKPTC1+awBADMCcgX+=PXsHPw2Bz3Po5=CocdKzVy3bRg@mail.gmail.com>
-X-Cookie: Do not pick the flowers.
+In-Reply-To: <1613040542-16500-8-git-send-email-stefanc@marvell.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Feb 11, 2021 at 12:48:54PM +0200, stefanc@marvell.com wrote:
+> @@ -751,6 +760,10 @@
+>  #define MVPP2_TX_FIFO_THRESHOLD(kb)	\
+>  		((kb) * 1024 - MVPP2_TX_FIFO_THRESHOLD_MIN)
+>  
+> +/* MSS Flow control */
+> +#define FC_QUANTA		0xFFFF
+> +#define FC_CLK_DIVIDER		100
 
---h31gzZEtNLTqOjlF
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You later change the number of tabs for these definitions in a later
+patch. Would it be better to start having the correct number of tabs?
 
-On Thu, Feb 11, 2021 at 10:37:30AM +0100, Michal Simek wrote:
-> st 10. 2. 2021 v 11:10 odes=EDlatel Michal Simek <michal.simek@xilinx.com=
-> napsal:
+> +
+>  /* RX buffer constants */
+>  #define MVPP2_SKB_SHINFO_SIZE \
+>  	SKB_DATA_ALIGN(sizeof(struct skb_shared_info))
+> diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> index 5730900..761f745 100644
+> --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> @@ -1280,6 +1280,49 @@ static void mvpp22_gop_init_10gkr(struct mvpp2_port *port)
+>  	writel(val, mpcs + MVPP22_MPCS_CLK_RESET);
+>  }
+>  
+> +static void mvpp22_gop_fca_enable_periodic(struct mvpp2_port *port, bool en)
+> +{
+> +	struct mvpp2 *priv = port->priv;
+> +	void __iomem *fca = priv->iface_base + MVPP22_FCA_BASE(port->gop_id);
+> +	u32 val;
 
-> > +description:
-> > +  The Xilinx Zynq QSPI controller is used to access multi-bit serial f=
-lash
-> > +  memory devices.
+net likes to have reverse christmas tree variables. I think you should
+clean this up. However...
 
-> Applied.
+> +
+> +	val = readl(fca + MVPP22_FCA_CONTROL_REG);
+> +	val &= ~MVPP22_FCA_ENABLE_PERIODIC;
+> +	if (en)
+> +		val |= MVPP22_FCA_ENABLE_PERIODIC;
+> +	writel(val, fca + MVPP22_FCA_CONTROL_REG);
 
-Doesn't really matter here but I would really expect subsystem binding
-documents to go through the subsystem tree.
+	if (en)
+		val = MVPP22_FCA_ENABLE_PERIODIC;
+	else
+		val = 0;
 
---h31gzZEtNLTqOjlF
-Content-Type: application/pgp-signature; name="signature.asc"
+	mvpp2_modify(priv->iface_base + MVPP22_FCA_BASE(port->gop_id) +
+		     MVPP22_FCA_CONTROL_REG, MVPP22_FCA_ENABLE_PERIODIC, val);
 
------BEGIN PGP SIGNATURE-----
+avoids the need for "fca".
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAlJWoACgkQJNaLcl1U
-h9CROwf8CWGGnX7EkL4HWz4W+Ff9XeN7IdRAlRnqbuFXz/M4PGZOHhj121uHX/Rg
-d7nl2ndT3S2KinCRf3wh9H8KerCX9JMRob/ZGOqetZlJJqcUDN2WvVQuwMW2u+Ud
-116Fg0gfhNzoswprSSIB6qimJLE8xbLwcd1mbhuyCj/DgCtnz9qjl7XB9Pw+zwap
-cKCFBkcMrhl+uQ5dY8Skm7B/1YYfYBTeyawPXFykNdooolzgt8/kcD5ZarGJw2/w
-CZ8FIL+l1CCggNaV3eocXyR3gD15Cr3TLvqocuY/D5oVx8nrSEeZUizE66g/j9Uo
-ZNiYk0v5FuMJOeh1gAO9FlXvoL6LtA==
-=MCLa
------END PGP SIGNATURE-----
+> +}
+> +
+> +static void mvpp22_gop_fca_set_timer(struct mvpp2_port *port, u32 timer)
+> +{
+> +	struct mvpp2 *priv = port->priv;
+> +	void __iomem *fca = priv->iface_base + MVPP22_FCA_BASE(port->gop_id);
+> +	u32 lsb, msb;
 
---h31gzZEtNLTqOjlF--
+Same reverse christmas tree issue here.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
