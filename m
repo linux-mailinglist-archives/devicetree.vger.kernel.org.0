@@ -2,81 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E91318536
-	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 07:25:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB7B931857C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Feb 2021 07:59:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbhBKGYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 01:24:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbhBKGYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 01:24:35 -0500
-Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1231::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C040AC06174A;
-        Wed, 10 Feb 2021 22:23:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description;
-        bh=ORJIOgAJ2KY93EhL4wb57KAdwo8JGQSLCsh+Dw1LNw4=; b=sACq8E3zfoJh83W1vU2gaOvN03
-        GxtpKW2k+3HQx0oH68bj4NzzVtu5z24lgIdyhNifxrQjvNwGmlneugtl4OSejpgHLudIrETSYed2N
-        6MLi/12H4FsW7Yqvzd3/qcoraSZo/O2Kig+unO2l4JfHb5vOvNbi9KfFvxx0sd5Tw3WbPxXjvgANn
-        8615RYdZXdkzV19zDxP9YtC5JQ6yO702350Kbc82PDkR+m+AQhb9QDE1/Af2XoFwCBrclvAOzQsCG
-        kdg26FbSXMTTn03AHpH3TAncPpmfgvhmUftjJRSX/BEm+VrdE8Axp/RBhbbzfTMObBRpK7Kfd3zjd
-        PgN529zg==;
-Received: from [2601:1c0:6280:3f0::cf3b]
-        by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
-        id 1lA5OH-0007vA-S4; Thu, 11 Feb 2021 06:23:50 +0000
-Subject: Re: [PATCH v2 3/3] fpga: versal-fpga: Add versal fpga manager driver
-To:     Nava kishore Manne <nava.manne@xilinx.com>, mdf@kernel.org,
-        trix@redhat.com, robh+dt@kernel.org, michal.simek@xilinx.com,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        chinnikishore369@gmail.com
-Cc:     git@xilinx.com,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-References: <20210211060532.23662-1-nava.manne@xilinx.com>
- <20210211060532.23662-4-nava.manne@xilinx.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <7016de66-f254-2bd6-ce29-3b44133feaa0@infradead.org>
-Date:   Wed, 10 Feb 2021 22:23:44 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S229585AbhBKG7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 01:59:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53926 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229501AbhBKG7H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Feb 2021 01:59:07 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id ACB9864DBD;
+        Thu, 11 Feb 2021 06:58:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1613026706;
+        bh=T6VVnDDvYITb11F5FAe5DP7RfwvRM0uYGlboSDsTbfY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V++EvLxj2ltRjen3B4FrdawdfznB9NaHwJsxkkoHxonfh8Dywq1mD8Yl7ZHYgZDoA
+         pE6YCvTD28KzVMXw4j1/vbObjxmSZYRZTozgz66b/Eyb/w5ekF2zsmBD5WTl5XX5h0
+         8dE1vCbXHzwnwmaY4r7oCV1IieMwLwbhIKh3oNMA=
+Date:   Thu, 11 Feb 2021 07:58:23 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+Subject: Re: [PATCH v5 3/4] usb: host: xhci-plat: Create platform device for
+ onboard hubs in probe()
+Message-ID: <YCTVjx480BzT+saO@kroah.com>
+References: <20210210171040.684659-1-mka@chromium.org>
+ <20210210091015.v5.3.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
 MIME-Version: 1.0
-In-Reply-To: <20210211060532.23662-4-nava.manne@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210210091015.v5.3.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi--
-
-On 2/10/21 10:05 PM, Nava kishore Manne wrote:
-> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> index bf85b9a65ec2..dcd2ed5a7956 100644
-> --- a/drivers/fpga/Kconfig
-> +++ b/drivers/fpga/Kconfig
-> @@ -223,4 +223,12 @@ config FPGA_MGR_ZYNQMP_FPGA
->  	  to configure the programmable logic(PL) through PS
->  	  on ZynqMP SoC.
+On Wed, Feb 10, 2021 at 09:10:38AM -0800, Matthias Kaehlcke wrote:
+> Check during probe() if a hub supported by the onboard_usb_hub
+> driver is connected to the controller. If such a hub is found
+> create the corresponding platform device. This requires the
+> device tree to have a node for the hub with its vendor and
+> product id (which is not common for USB devices). Further the
+> platform device is only created when CONFIG_USB_ONBOARD_HUB=y/m.
+> 
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> 
+> Changes in v5:
+> - patch added to the series
+> 
+>  drivers/usb/host/xhci-plat.c | 16 ++++++++++++++++
+>  include/linux/usb/hcd.h      |  2 ++
+>  2 files changed, 18 insertions(+)
+> 
+> diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+> index 4d34f6005381..e785fa109eea 100644
+> --- a/drivers/usb/host/xhci-plat.c
+> +++ b/drivers/usb/host/xhci-plat.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/usb/onboard_hub.h>
+>  #include <linux/usb/phy.h>
+>  #include <linux/slab.h>
+>  #include <linux/acpi.h>
+> @@ -184,6 +185,7 @@ static int xhci_plat_probe(struct platform_device *pdev)
+>  	int			ret;
+>  	int			irq;
+>  	struct xhci_plat_priv	*priv = NULL;
+> +	struct device_node	*np;
 >  
-> +config FPGA_MGR_VERSAL_FPGA
-> +        tristate "Xilinx Versal FPGA"
-> +        depends on ARCH_ZYNQMP || COMPILE_TEST
-> +        help
-> +          Select this option to enable FPGA manager driver support for
-> +          Xilinx Versal SOC. This driver uses the versal soc firmware
+>  
+>  	if (usb_disabled())
+> @@ -356,6 +358,17 @@ static int xhci_plat_probe(struct platform_device *pdev)
+>  	 */
+>  	pm_runtime_forbid(&pdev->dev);
+>  
+> +	np = usb_of_get_device_node(hcd->self.root_hub, hcd->self.busnum);
+> +	if (np && of_is_onboard_usb_hub(np)) {
+> +		struct platform_device *pdev;
+> +
+> +		pdev = of_platform_device_create(np, NULL, NULL);
 
-How about consistently capitalizing Versal and SOC (above and below)?
+A platform device is a child of another platform device?  Ok, but
+really, why?  What uses this device?
 
-> +          interface to load programmable logic(PL) images
-> +          on versal soc.
->  endif # FPGA
+thanks,
 
-
-thanks.
--- 
-~Randy
-
+greg k-h
