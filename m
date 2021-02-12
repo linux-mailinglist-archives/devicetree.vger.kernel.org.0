@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCC7131A785
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 23:26:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7208D31A791
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 23:32:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231585AbhBLWZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 17:25:03 -0500
-Received: from mga03.intel.com ([134.134.136.65]:60271 "EHLO mga03.intel.com"
+        id S232113AbhBLW0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 17:26:50 -0500
+Received: from mga07.intel.com ([134.134.136.100]:25955 "EHLO mga07.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231394AbhBLWY5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Feb 2021 17:24:57 -0500
-IronPort-SDR: 4I637Pr5KS5ONDKPPd43Lp3HUgck0txoyKCcJ+b7fLU+4yAaO/An56rJ/L12/9XYe2gOSvonob
- siSutWZ7uEYQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9893"; a="182555233"
+        id S232010AbhBLW03 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Feb 2021 17:26:29 -0500
+IronPort-SDR: mrQR2d5K/Jd080hs3Jil8yUC/oPaaOZkDgDy1PQhHVXNmjy5IONvfpQmt1BWsBoP4Ew0BfP7hW
+ WV8j3ES8iN4g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9893"; a="246551145"
 X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; 
-   d="scan'208";a="182555233"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2021 14:23:09 -0800
-IronPort-SDR: uGl1TIc7eeI9aEP+MrrK5ifyuS0+uGxLNFKvhVLKOQVeVmUlXFq1weKdgOHhCIQkyHGl7vIdxN
- G7Ct5XG4ltRQ==
+   d="scan'208";a="246551145"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2021 14:23:09 -0800
+IronPort-SDR: DznipkpXN2Jkm0jWspkDs3vn3rmMGw69WWIwgX7MDXlechINS8qTgL49FgBpa9knwoJrj8EHTs
+ QrTOdauhXbxA==
 X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; 
-   d="scan'208";a="360580349"
+   d="scan'208";a="376509751"
 Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2021 14:23:09 -0800
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2021 14:23:08 -0800
 Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id 2A4AC6368;
-        Fri, 12 Feb 2021 14:23:09 -0800 (PST)
+        by smtp.ostc.intel.com (Postfix) with ESMTP id 7A15F636D;
+        Fri, 12 Feb 2021 14:23:08 -0800 (PST)
 Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
-        id 22F4036370E; Fri, 12 Feb 2021 14:23:09 -0800 (PST)
+        id 73015363702; Fri, 12 Feb 2021 14:23:08 -0800 (PST)
 From:   mgross@linux.intel.com
 To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
         bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
@@ -37,11 +37,11 @@ To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
         peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
         jassisinghbrar@gmail.com
 Cc:     linux-kernel@vger.kernel.org,
-        "C, Udhayakumar" <udhayakumar.c@intel.com>,
+        Seamus Kelly <seamus.kelly@intel.com>,
         devicetree@vger.kernel.org
-Subject: [PATCH v6 32/34] dt-bindings: misc: hddl_dev: Add hddl device management documentation
-Date:   Fri, 12 Feb 2021 14:23:02 -0800
-Message-Id: <20210212222304.110194-33-mgross@linux.intel.com>
+Subject: [PATCH v6 19/34] xlink-core: Add xlink core device tree bindings
+Date:   Fri, 12 Feb 2021 14:22:49 -0800
+Message-Id: <20210212222304.110194-20-mgross@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210212222304.110194-1-mgross@linux.intel.com>
 References: <20210212222304.110194-1-mgross@linux.intel.com>
@@ -49,148 +49,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "C, Udhayakumar" <udhayakumar.c@intel.com>
+From: Seamus Kelly <seamus.kelly@intel.com>
 
-Add hddl device management documentation
-
-The HDDL client driver acts as an software RTC to sync with network time.
-It abstracts xlink protocol to communicate with remote IA host.
-This driver exports the details about sensors available in the platform
-to remote IA host as xlink packets.
-This driver also handles device connect/disconnect events and identifies
-board id and soc id using gpio's based on platform configuration.
+Add device tree bindings for keembay-xlink.
 
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
-Signed-off-by: C Udhayakumar <udhayakumar.c@intel.com>
+Reviewed-by: Mark Gross <mgross@linux.intel.com>
 Signed-off-by: Mark Gross <mgross@linux.intel.com>
+Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
 ---
- .../bindings/misc/intel,hddl-client.yaml      | 117 ++++++++++++++++++
- 1 file changed, 117 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
+ .../bindings/misc/intel,keembay-xlink.yaml    | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
 
-diff --git a/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml b/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
+diff --git a/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
 new file mode 100644
-index 000000000000..522b461663b5
+index 000000000000..5ac2e7fa5b5e
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/intel,hddl-client.yaml
-@@ -0,0 +1,117 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
+@@ -0,0 +1,29 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (c) Intel Corporation. All rights reserved.
 +%YAML 1.2
 +---
-+$id: "http://devicetree.org/schemas/misc/intel,hddl-client.yaml#"
++$id: "http://devicetree.org/schemas/misc/intel,keembay-xlink.yaml#"
 +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: Intel hddl client device to handle platform management in Bay series
++title: Intel Keem Bay xlink
 +
 +maintainers:
-+  - Udhayakumar C <udhayakumar.c@intel.com>
++  - Seamus Kelly <seamus.kelly@intel.com>
 +
 +description: |
-+  The HDDL client driver acts as an software RTC to sync with network time.
-+  It abstracts xlink protocol to communicate with remote host. This driver
-+  exports the details about sensors available in the platform to remote
-+  host as xlink packets.
-+  This driver also handles device connect/disconnect events and identifies
-+  board id and soc id using gpio's based on platform configuration.
-+
-+select: false
++  The Keem Bay xlink driver enables the communication/control sub-system
++  for internal and external communications to the Intel Keem Bay SoC.
 +
 +properties:
 +  compatible:
-+    items:
-+      - const: intel,hddl-client
++    oneOf:
++      - items:
++          - const: intel,keembay-xlink
 +
-+  reg:
-+    minItems: 4
-+    maxItems: 4
-+
-+  xlink_chan:
-+    minItems: 1
-+    maxItems: 1
-+    description: xlink channel number used for communication
-+                 with remote host for time sync and sharing sensor
-+                 details available in platform.
-+
-+  i2c_xlink_chan:
-+    minItems: 1
-+    maxItems: 1
-+    description: xlink channel number used for communication
-+                 with remote host for xlink i2c smbus.
-+
-+  sensor_name:
-+    type: object
-+    description:
-+      Details about sensors and its configuration on local host and remote
-+      host.
-+
-+    properties:
-+      compatible:
-+        items:
-+          - const: intel_tsens
-+
-+      reg:
-+        description: i2c slave address for sensor.
-+
-+      local-host:
-+        minItems: 1
-+        maxItems: 1
-+        description: enable bit 0 to register sensor as i2c slave
-+                     in local host (normal i2c client)
-+                     enable bit 1 to mimic sensor as i2c slave
-+                     in local host (onchip sensors as i2c slave)
-+                     enable bit 2 to register i2c slave as xlink smbus slave
-+                     in local host.
-+      remote-host:
-+        minItems: 1
-+        maxItems: 1
-+        description: enable bit 0 to register sensor as i2c slave
-+                     in remote host (normal i2c client)
-+                     enable bit 1 to mimic sensor as i2c slave
-+                     in remote host (onchip sensors as i2c slave)
-+                     enable bit 2 to register i2c slave as xlink smbus slave
-+                     in remote host.
-+
-+      bus:
-+        minItems: 1
-+        maxItems: 1
-+        description: i2c bus number for the i2c client device.
-+
-+    required:
-+      - compatible
-+      - reg
-+      - local-host
-+      - remote-host
-+      - bus
-+
-+required:
-+  - compatible
-+  - reg
-+  - xlink_chan
-+  - i2c_xlink_chan
-+
-+additionalProperties: false
++additionalProperties: False
 +
 +examples:
 +  - |
-+    hddl_dev{
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        hddl@20320000 {
-+                compatible = "intel,hddl-client";
-+                status = "disabled";
-+                reg = <0x0 0x20320000 0x0 0x800>;
-+                xlink_chan = <1080>;
-+                i2c_xlink_chan = <1081>;
-+                kmb_xlink_tj {
-+                  status = "okay";
-+                  compatible = "intel_tsens";
-+                  local-host = <0x3>;
-+                  remote-host = <0x3>;
-+                  bus = <0x1>;
-+                };
-+        };
++    xlink {
++        compatible = "intel,keembay-xlink";
 +    };
 -- 
 2.17.1
