@@ -2,105 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE7EE319BCE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 10:26:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAE25319BD3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 10:26:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230132AbhBLJWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 04:22:49 -0500
-Received: from mail29.static.mailgun.info ([104.130.122.29]:53987 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230106AbhBLJWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Feb 2021 04:22:41 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1613121741; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=tH8C0tE6/1Hw9cycCQHi9UfphzpxET/EHjVZKrdKlhg=;
- b=IKXy1+XboEOTY5+RYdS6Z1c351HRyOG1dRbXuvy/N5ZHxMZs8DEZh/n5V3NhT1xSlqM5d2ET
- c2MsVlLoJCi4NNC6GTDj1tcofzbNYBZpYpQrX/DDaA7Yd2H2t+KMu7NE+BIcmxRN4BogoL24
- qjoOKLOgzIoGuisMiCy5p7fX2k8=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 602648aef112b7872cf576c1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 12 Feb 2021 09:21:50
- GMT
-Sender: rojay=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0781CC43461; Fri, 12 Feb 2021 09:21:49 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rojay)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6ABA9C433C6;
-        Fri, 12 Feb 2021 09:21:48 +0000 (UTC)
+        id S230158AbhBLJX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 04:23:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57076 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229940AbhBLJXj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 04:23:39 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD899C061756
+        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 01:22:58 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id z11so4205201lfb.9
+        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 01:22:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0qh8Pdw9qka2TYE2ZgoHexsZ5dGrw0h903IxKKwLo7w=;
+        b=Fa3Fe7P9ew+sbMFs79guYw2cPpaCCLJiiFVkJwqgHaMj0sGMSjLfZutWZ0Ja7Yxnh/
+         RBbooQsjB6f9xB8Yih70bYFqnkabOj+9G0uoPD56BJLOVSDna1oJ5+By8wWYHvw5qAL/
+         xLsY3HpEcA9pFN+wkH8fwiRqRDBp105I3xgVoSmdVkvgNt7oeqNW+5nCjJhpD1kOK+Iu
+         VbN9SWvxE2JI4TJtpIT95Z8weUmBO7xxO3OxFppWrHj7+HkD5ZOe9PjbaQndcdJfojtM
+         xZMN5zHu06UGDsL99wop9QduCoau+e0Kz2/6j7w7pAopTWdaWnYE0vKlKcJQT+rpXdVO
+         v50Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0qh8Pdw9qka2TYE2ZgoHexsZ5dGrw0h903IxKKwLo7w=;
+        b=naedDoLA6yhrtj3nzxXvdB9MF6uNYVIf7qIbviFus0VRyLMPhvws+qWlgEb20WR6X0
+         UN4IDPHNMs0Uai5+Lahm9b6AmfIRW0ywqpPWcSRkv/i6gptvDQdeMV4S4lEnMrICxQhx
+         bTRKGdyEnYPZPo2od9K5bV5QY+GNFyvWQZA/eUKy+RAUhMU8sK9mSpf6SPmXXQCwX5Of
+         CAXnARRD1vtyBP0M4MeUgtwUDiabr5m/TKQ5bMGRD7V/+UvN38SmsZxpjHn81ruXDvEu
+         5DALvpcr1CEtPhbsflRQeR5FIFOU8N1xfrRwxK1O/PlB7TZge/vGtiyAtu1l+L+GY8NX
+         3cHw==
+X-Gm-Message-State: AOAM5336mRSCRdsyvFxYiYhRkjz8P1khv0dlyPyk6pOHPiZU1P8eBTBl
+        +jHtGNvrQBFmuxjTBDABZZqHQah6tVG/zFsmvN4gJd9Dg7icnhIK
+X-Google-Smtp-Source: ABdhPJxEZTrr/PlUo4553XsMa6M1hrTG1Gm7V/GzNiXVb+ZhQVSiS2yPH7AWx++cfkHS/sPVuQALveIu9hqiYxRXO5I=
+X-Received: by 2002:a19:8bc6:: with SMTP id n189mr1061111lfd.291.1613121777318;
+ Fri, 12 Feb 2021 01:22:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 12 Feb 2021 14:51:48 +0530
-From:   rojay@codeaurora.org
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
-        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for
- 'assigned-performance-states'
-In-Reply-To: <CAPDyKFogrWt=K3VtEZVH5bPL_fYt7rgdm5wGgq+QHtzX-n0z7g@mail.gmail.com>
-References: <20201224111210.1214-1-rojay@codeaurora.org>
- <20201224111210.1214-4-rojay@codeaurora.org> <YAGqKfDfB7EEuZVn@builder.lan>
- <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
- <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
- <20210119110516.fgbbllyg7lxwwfdz@vireshk-i7>
- <CAPDyKFogrWt=K3VtEZVH5bPL_fYt7rgdm5wGgq+QHtzX-n0z7g@mail.gmail.com>
-Message-ID: <29b30a2c0c4d7292747a073d23daaa70@codeaurora.org>
-X-Sender: rojay@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <20210208135347.18494-1-o.rempel@pengutronix.de>
+ <20210208135347.18494-2-o.rempel@pengutronix.de> <20210210184138.GA2504266@robh.at.kernel.org>
+In-Reply-To: <20210210184138.GA2504266@robh.at.kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 12 Feb 2021 10:22:46 +0100
+Message-ID: <CACRpkdYLH-D84BinPNvhw2YDvRp=KMeBLqWYhyJQBh+hGFB9Dg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: counter: add event-counter binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-20 19:01, Ulf Hansson wrote:
-> On Tue, 19 Jan 2021 at 12:05, Viresh Kumar <viresh.kumar@linaro.org> 
-> wrote:
->> 
->> On 19-01-21, 12:02, Ulf Hansson wrote:
->> > As a matter of fact this was quite recently discussed [1], which also
->> > pointed out some issues when using the "required-opps" in combination,
->> > but perhaps that got resolved? Viresh?
->> 
->> Perhaps we never did anything there ..
-> 
-> Okay. Looks like we should pick up that discussion again, to conclude
-> on how to move forward.
-> 
+On Wed, Feb 10, 2021 at 7:41 PM Rob Herring <robh@kernel.org> wrote:
+> On Mon, Feb 08, 2021 at 02:53:46PM +0100, Oleksij Rempel wrote:
 
-Soft Reminder!
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  gpios:
+> > +    description: Optional diagnostic interface to measure signal level
+>
+> This description seems wrong in the case of only having a GPIO.
+>
+> Also, a GPIO only implies polled mode because if the GPIO is interrupt
+> capable, 'interrupts' should be required. For gpio-keys, we split the
+> compatible strings in this case. I leave it to you if you want to make
+> it more explicit.
 
->> 
->> --
->> viresh
-> 
-> Kind regards
-> Uffe
+Ouch. This is a bit of semantic confusion where I see different things
+if I put my Linux hat on than if I put my DT hat on ... :/
 
-- Roja
+Linux (or some other OS I suppose) has the ability to look up an
+interrupt resource for a GPIO line and that is used quite extensively.
+
+In this case it is certainly possible to write a Linux driver that only take
+a GPIO resource and looks up a corresponding interrupt without the
+involvement of any DT interrupt resources. This happens a lot.
+
+A typical example is cd-gpios in
+Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+
+The operating system will take cd-gpios and infer the corresponding
+IRQ from the GPIO hardware by OS-internal mechanisms (in the Linux
+case simply using irqdomain) in almost cases, and that is how that is
+used today. It is an hardware interrupt
+that gets allocated and used but the DT is blissfully ignorant about.
+
+The reason is that GPIO is "general purpose" so they don't have very
+specific use cases and the interrupts are general purpose as well.
+A certain GPIO line may not even have a certain interrupt associated
+with it: there exist GPIO controllers with e.g. 32 GPIO lines but
+only 8 interrupts that can be assigned to GPIO lines on a
+first-come-first-serve basis so there could not be anything like
+a cell in the bindings pointing to a certain interrupt: it has to be
+resolved by software, at runtime.
+
+In many cases the corresponsing GPIO hardware will have both
+gpio-controller and interrupt-controller flags, but I bet there exist
+cases that are only flagged with gpio-controller and then the drivers
+in the OS goes and implement interrupts using its abstractions and
+assign them anyway.
+
+I don't know if this can be solved in a generic way (solved as in DT
+needs to know all about the systems interrupt resources, and the OS
+should not be handing out interrupts behind the back of the DT description
+for things that are not flagged as interrupt-controller) or if this ambiguity
+around GPIO chips just has to stay around forever.
+
+I think it may be one of those cases where DT bindings can't be
+all that imperialistic about controlling every resource, but there may
+be other views on this.
+
+Yours,
+Linus Walleij
