@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D74031A2BC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 17:34:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE6CE31A2E7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 17:40:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbhBLQb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 11:31:29 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36382 "EHLO mail.kernel.org"
+        id S230421AbhBLQkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 11:40:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38068 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230089AbhBLQ3W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Feb 2021 11:29:22 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D922F61490;
-        Fri, 12 Feb 2021 16:28:39 +0000 (UTC)
+        id S229989AbhBLQiT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Feb 2021 11:38:19 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B1C9064E42;
+        Fri, 12 Feb 2021 16:37:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613147320;
-        bh=czPSaj8fKA6bbzkVvi8hwsv/gBRa8U5bexlofw0Qygs=;
+        s=k20201202; t=1613147854;
+        bh=7q1Vc3ssciykH0aqot0h+gFx3rf7LE1Jyy2clH+JiQk=;
         h=From:To:Cc:Subject:Date:From;
-        b=gPYeKl0tTxVUd9/4hsSDoLXqxodFpzp3ZUlle2AlnAXDYfJaUiVoKb3mGiTsfn2b6
-         be5yDof39jsOOkMNoEujheitJFFwefohql5ZBnVKjNMKFgowq8s0TpfsFWfbzAkp8e
-         O9zdSAVPrXtv01RKx/5Dc6l0YAuDs441kT2rdmvjkflvHZv33bVKqNtB3QRSzeSqjt
-         qMCESuE573l6vC62UoKnX56WQSkCt6y6arG2jItpFfXd/Ro//4woRl82dqX6cRdV7K
-         2sQzq78XSy2e6XdGry37qI2PyiSVvKKKzaN39cTIRy/onvyFvRF6w+6BD3PylHSNXD
-         ExsrDt3HlbuRQ==
+        b=ivbi4LWZXUWDYisvWHvzin2fotyrP0B9MPa8RpXl5YMMpLRzJRGvNGLip83PGjXkC
+         AiJGDYT7lZKuIvtENi4eRwA0fpP1zi51ZOshLEzWhTpCjct9LAytXG+umTWrigogvm
+         EDgW1jvsqwqQFf04GL6EF2Bs0Bvm2LWxOTJR9+MyQ/s0JgQbTF25iirUAFCa5F8+8Z
+         IfehM7zfcXCCp4v8zynuIGi4/Yn+T067PbfwBNIT33nfIzTiim2VAW+pMOC8sZid56
+         uy62A25bueB+9U2qPjEXnz1r5MKFGnc+QuqUz0KHTMDMtiTv8TZGZCr7fKnzsXRsc6
+         AcpKk3kwINUaQ==
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [RESEND PATCH] dt-bindings: writing-schema: install from PyPI repository
-Date:   Fri, 12 Feb 2021 17:28:36 +0100
-Message-Id: <20210212162836.67393-1-krzk@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH] arm64: dts: exynos: re-order Slim SSS clocks to match dtschema
+Date:   Fri, 12 Feb 2021 17:37:29 +0100
+Message-Id: <20210212163729.69882-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -38,35 +38,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Installing dtschema from github.com/devicetree-org is not needed anymore
-because dtschema is now part of regular PyPI repository.  In certain
-cases it might cause some troubles as it brings latest master version,
-not the stable release:
+The dtschema expects pclk (APB clock) followed by aclk (AXI/AHB clock):
 
-    $ pip3 show dtschema
-    Version: 2020.8.2.dev4+g341f3e3
-    $ make dt_binding_check
-    ERROR: dtschema minimum version is v2020.8.1
+  arch/arm64/boot/dts/exynos/exynos5433-tm2.dt.yaml:
+    slim-sss@11140000: clock-names:0: 'pclk' was expected
+  arch/arm64/boot/dts/exynos/exynos5433-tm2.dt.yaml:
+    slim-sss@11140000: clock-names:1: 'aclk' was expected
 
-Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- Documentation/devicetree/writing-schema.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/writing-schema.rst b/Documentation/devicetree/writing-schema.rst
-index 16f21e182ff6..b3cccb7e2059 100644
---- a/Documentation/devicetree/writing-schema.rst
-+++ b/Documentation/devicetree/writing-schema.rst
-@@ -115,7 +115,7 @@ The DT schema project must be installed in order to validate the DT schema
- binding documents and validate DTS files using the DT schema. The DT schema
- project can be installed with pip::
+diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+index 6433f9ee35e1..18a912eee360 100644
+--- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+@@ -564,9 +564,9 @@ slim_sss: slim-sss@11140000 {
+ 			compatible = "samsung,exynos5433-slim-sss";
+ 			reg = <0x11140000 0x1000>;
+ 			interrupts = <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>;
+-			clock-names = "aclk", "pclk";
+-			clocks = <&cmu_imem CLK_ACLK_SLIMSSS>,
+-				 <&cmu_imem CLK_PCLK_SLIMSSS>;
++			clock-names = "pclk", "aclk";
++			clocks = <&cmu_imem CLK_PCLK_SLIMSSS>,
++				 <&cmu_imem CLK_ACLK_SLIMSSS>;
+ 		};
  
--    pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
-+    pip3 install dtschema
- 
- Several executables (dt-doc-validate, dt-mk-schema, dt-validate) will be
- installed. Ensure they are in your PATH (~/.local/bin by default).
+ 		pd_gscl: power-domain@105c4000 {
 -- 
 2.25.1
 
