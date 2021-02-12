@@ -2,328 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16D8231A304
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 17:46:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AF3B31A370
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 18:20:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231403AbhBLQnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 11:43:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38230 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230519AbhBLQmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 11:42:44 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51099C061574
-        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 08:42:02 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lAbVt-0003Jl-6x; Fri, 12 Feb 2021 17:41:49 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lAbVo-0006yD-Oe; Fri, 12 Feb 2021 17:41:44 +0100
-Date:   Fri, 12 Feb 2021 17:41:44 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v2 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM
- support
-Message-ID: <20210212164144.wcvy7jkxmrysqxux@pengutronix.de>
-References: <20210212131910.557581-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210212131910.557581-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+        id S229497AbhBLRTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 12:19:45 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:38426 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229559AbhBLRTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 12:19:42 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id C5C7020B6C40;
+        Fri, 12 Feb 2021 09:19:00 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C5C7020B6C40
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1613150341;
+        bh=ymZC2uSu1WhDmmhzMMk+j693znWvxWsQ0oRGutDXsUU=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=UFctr/CjGfWUVNUkmlcZdiSnRimSYXYpf7boiSafTdIohyW4op8aqXiOPIXG7tD9w
+         2+CCCjIQwjmCzRCgCyJOtrEfXaan1toeQ6tewZfvQeoz8k1bHJnQ/MjJqkkzxmgjf+
+         fBeDNBT4ANHJIZyDIIuAoR7Wx92T/5Rbhxu+1Yog=
+Subject: Re: [PATCH v17 02/10] of: Add a common kexec FDT setup function
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        James Morse <james.morse@arm.com>,
+        Sasha Levin <sashal@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        vincenzo.frascino@arm.com, Mark Rutland <mark.rutland@arm.com>,
+        dmitry.kasatkin@gmail.com, James Morris <jmorris@namei.org>,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        Pavel Tatashin <pasha.tatashin@soleen.com>,
+        Allison Randal <allison@lohutok.net>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        balajib@linux.microsoft.com, linux-integrity@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+References: <20210209182200.30606-1-nramas@linux.microsoft.com>
+ <20210209182200.30606-3-nramas@linux.microsoft.com>
+ <87k0reozwh.fsf@manicouagan.localdomain>
+ <8a3aa3d2-2eba-549a-9970-a2b0fe3586c9@linux.microsoft.com>
+ <CAL_JsqJ3sDzjsJXtb6EzE77BL+PhUxDJYUngLTqcm0popd7Ajw@mail.gmail.com>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <55685b61-dac0-2f24-f74a-939acf74a4f2@linux.microsoft.com>
+Date:   Fri, 12 Feb 2021 09:19:00 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2ssz6scb22myda7o"
-Content-Disposition: inline
-In-Reply-To: <20210212131910.557581-3-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <CAL_JsqJ3sDzjsJXtb6EzE77BL+PhUxDJYUngLTqcm0popd7Ajw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2/12/21 6:38 AM, Rob Herring wrote:
+> On Thu, Feb 11, 2021 at 7:17 PM Lakshmi Ramasubramanian
+> <nramas@linux.microsoft.com> wrote:
+>>
+>> On 2/11/21 5:09 PM, Thiago Jung Bauermann wrote:
+>>>
+>>> There's actually a complication that I just noticed and needs to be
+>>> addressed. More below.
+>>>
+>>
+>> <...>
+>>
+>>>> +
+>>>> +/*
+>>>> + * of_kexec_alloc_and_setup_fdt - Alloc and setup a new Flattened Device Tree
+>>>> + *
+>>>> + * @image:          kexec image being loaded.
+>>>> + * @initrd_load_addr:       Address where the next initrd will be loaded.
+>>>> + * @initrd_len:             Size of the next initrd, or 0 if there will be none.
+>>>> + * @cmdline:                Command line for the next kernel, or NULL if there will
+>>>> + *                  be none.
+>>>> + *
+>>>> + * Return: fdt on success, or NULL errno on error.
+>>>> + */
+>>>> +void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
+>>>> +                               unsigned long initrd_load_addr,
+>>>> +                               unsigned long initrd_len,
+>>>> +                               const char *cmdline)
+>>>> +{
+>>>> +    void *fdt;
+>>>> +    int ret, chosen_node;
+>>>> +    const void *prop;
+>>>> +    unsigned long fdt_size;
+>>>> +
+>>>> +    fdt_size = fdt_totalsize(initial_boot_params) +
+>>>> +               (cmdline ? strlen(cmdline) : 0) +
+>>>> +               FDT_EXTRA_SPACE;
+>>>
+>>> Just adding 4 KB to initial_boot_params won't be enough for crash
+>>> kernels on ppc64. The current powerpc code doubles the size of
+>>> initial_boot_params (which is normally larger than 4 KB) and even that
+>>> isn't enough. A patch was added to powerpc/next today which uses a more
+>>> precise (but arch-specific) formula:
+>>>
+>>> https://lore.kernel.org/linuxppc-dev/161243826811.119001.14083048209224609814.stgit@hbathini/
+>>>
+>>> So I believe we need a hook here where architectures can provide their
+>>> own specific calculation for the size of the fdt. Perhaps a weakly
+>>> defined function providing a default implementation which an
+>>> arch-specific file can override (a la arch_kexec_kernel_image_load())?
+>>>
+>>> Then the powerpc specific hook would be the kexec_fdt_totalsize_ppc64()
+>>> function from the patch I linked above.
+>>>
+>>
+>> Do you think it'd better to add "fdt_size" parameter to
+>> of_kexec_alloc_and_setup_fdt() so that the caller can provide the
+>> desired FDT buffer size?
+> 
+> Yes, I guess so. But please define the param as extra size, not total
+> size. The kernel command line size addition can be in the common code.
 
---2ssz6scb22myda7o
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Will do. Just to clarify -
 
-Hello Nobuhiro,
+The common code will do:
 
-On Fri, Feb 12, 2021 at 10:19:10PM +0900, Nobuhiro Iwamatsu wrote:
-> Add driver for the PWM controller on Toshiba Visconti ARM SoC.
->=20
-> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> ---
->  drivers/pwm/Kconfig        |   9 ++
->  drivers/pwm/Makefile       |   1 +
->  drivers/pwm/pwm-visconti.c | 173 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 183 insertions(+)
->  create mode 100644 drivers/pwm/pwm-visconti.c
->=20
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 9a4f66ae8070..8ae68d6203fb 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -601,6 +601,15 @@ config PWM_TWL_LED
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-twl-led.
-> =20
-> +config PWM_VISCONTI
-> +	tristate "Toshiba Visconti PWM support"
-> +	depends on ARCH_VISCONTI || COMPILE_TEST
-> +	help
-> +	  PWM Subsystem driver support for Toshiba Visconti SoCs.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-visconti.
-> +
->  config PWM_VT8500
->  	tristate "vt8500 PWM support"
->  	depends on ARCH_VT8500 || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 6374d3b1d6f3..d43b1e17e8e1 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -56,4 +56,5 @@ obj-$(CONFIG_PWM_TIECAP)	+=3D pwm-tiecap.o
->  obj-$(CONFIG_PWM_TIEHRPWM)	+=3D pwm-tiehrpwm.o
->  obj-$(CONFIG_PWM_TWL)		+=3D pwm-twl.o
->  obj-$(CONFIG_PWM_TWL_LED)	+=3D pwm-twl-led.o
-> +obj-$(CONFIG_PWM_VISCONTI)	+=3D pwm-visconti.o
->  obj-$(CONFIG_PWM_VT8500)	+=3D pwm-vt8500.o
-> diff --git a/drivers/pwm/pwm-visconti.c b/drivers/pwm/pwm-visconti.c
-> new file mode 100644
-> index 000000000000..2aa140f1ec04
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-visconti.c
-> @@ -0,0 +1,173 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Toshiba Visconti pulse-width-modulation controller driver
-> + *
-> + * Copyright (c) 2020 TOSHIBA CORPORATION
-> + * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
-> + *
-> + * Authors: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> + *
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/platform_device.h>
-> +
-> +
-> +#define PIPGM_PCSR(ch) (0x400 + 4 * (ch))
-> +#define PIPGM_PDUT(ch) (0x420 + 4 * (ch))
-> +#define PIPGM_PWMC(ch) (0x440 + 4 * (ch))
-> +
-> +#define PIPGM_PWMC_PWMACT		BIT(5)
-> +#define PIPGM_PWMC_CLK_MASK		GENMASK(1, 0)
-> +#define PIPGM_PWMC_POLARITY_MASK	GENMASK(5, 5)
-> +#define PIPGM_PDUT_MAX			0xFFFF
-> +
-> +struct visconti_pwm_chip {
-> +	struct pwm_chip chip;
-> +	void __iomem *base;
-> +};
-> +
-> +#define to_visconti_chip(chip) \
-> +	container_of(chip, struct visconti_pwm_chip, chip)
-> +
-> +static int visconti_pwm_apply(struct pwm_chip *chip, struct pwm_device *=
-pwm,
-> +			  const struct pwm_state *state)
+fdt_totalsize(initial_boot_params) + strlen(cmdline) + extra_fdt_size
 
-Please align the continuation line to the opening parenthesis.
+The caller will pass "extra_fdt_size"
+ARM64 => 4KB
+PPC64 => fdt_totalsize(initial_boot_params) - which will be updated when 
+the patch Thiago had referred to is merged.
 
-> +{
-> +	struct visconti_pwm_chip *priv =3D to_visconti_chip(chip);
-> +	u32 period, duty, pwmc0;
-> +
-> +	dev_dbg(chip->dev, "%s: ch =3D %d en =3D %d p =3D 0x%llx d =3D 0x%llx\n=
-", __func__,
-> +		pwm->hwpwm, state->enabled, state->period, state->duty_cycle);
-> +
-> +	/*
-> +	 * pwmc is a 2-bit divider for the input clock running at 1 MHz.
-> +	 * When the settings of the PWM are modified, the new values are shadow=
-ed in hardware until
-> +	 * the period register (PCSR) is written and the currently running peri=
-od is completed. This
-> +	 * way the hardware switches atomically from the old setting to the new.
-> +	 * Also, disabling the hardware completes the currently running period =
-and keeps the output
-> +	 * at low level at all times.
+> 
+> The above change is also going to conflict, so I think this may have
+> to wait. Or I'll take the common and arm bits and powerpc can be
+> converted next cycle (or after the merge window).
+> 
 
-Did you just copy my optimal description or is your hardware really that
-nice?
+thanks.
 
-Do you know scripts/checkpatch.pl? I bet it will tell you to limit your
-lines to approx. 80 chars where sensible.
+  -lakshmi
 
-> +	 */
-> +	if (!state->enabled) {
-> +		writel(0, priv->base + PIPGM_PCSR(pwm->hwpwm));
-> +		return 0;
-> +	}
-> +
-> +	period =3D state->period / NSEC_PER_USEC;
 
-This becomes wrong if state->period > 1000 * 0xffffffff because you
-discard non-zero bits when reducing the size to u32.
-
-> +	duty =3D state->duty_cycle / NSEC_PER_USEC;
-> +	if (period < 0x10000)
-> +		pwmc0 =3D 0;
-> +	else if (period < 0x20000)
-> +		pwmc0 =3D 1;
-> +	else if (period < 0x40000)
-> +		pwmc0 =3D 2;
-> +	else if (period < 0x80000)
-> +		pwmc0 =3D 3;
-> +	else
-> +		return -EINVAL;
-
-This is equivalent to:
-
-	pwmc0 =3D ilog2(period >> 16);
-	if (pwmc0 > 3)
-		return -EINVAL;
-
-> +	if (duty > PIPGM_PDUT_MAX)
-> +		return -EINVAL;
-
-I would expect that this check should only happen after duty is shifted
-below?! I think this cannot happen if you rely on the core to only give
-you states with duty_cycle <=3D period.
-
-> +	period >>=3D pwmc0;
-> +	duty >>=3D pwmc0;
-> +
-> +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
-> +		pwmc0 |=3D PIPGM_PWMC_PWMACT;
-> +
-> +	writel(pwmc0, priv->base + PIPGM_PWMC(pwm->hwpwm));
-> +	writel(duty, priv->base + PIPGM_PDUT(pwm->hwpwm));
-> +	writel(period, priv->base + PIPGM_PCSR(pwm->hwpwm));
-
-Please implement the following policy:
-
-Pick the biggest possible period not bigger than the requested period.
-With that pick the biggest possible duty cycle not bigger than the
-requested duty cycle. That means (assuming I understood your hardware
-correctly):
-
-	u32 period, duty_cycle;
-
-	/*
-	 * The biggest period the hardware can provide is
-	 * 	(0xffff << 3) * 1000 ns
-	 * This value fits easily in an u32, so simplify the maths by
-	 * capping the values to 32 bit integers.
-	 */
-	if (state->period > (0xffff << 3) * 1000)
-		period =3D (0xffff << 3) * 1000;
-	else
-		period =3D state->period;
-
-	if (state->duty_cycle > period)
-		duty_cycle =3D period;
-	else
-		duty_cycle =3D state->duty_cycle;
-
-	/*
-	 * The input clock runs fixed at 1 MHz, so we have only
-	 * microsecond resolution and so can divide by
-	 * NSEC_PER_SEC / CLKFREQ =3D 1000 without loosing precision.
-	 */
-	period /=3D 1000;
-	duty_cycle /=3D 1000;
-
-	if (!period)
-		/* period too small */
-		return -ERANGE;
-
-	/*
-	 * PWMC controls a divider that divides the input clk by a
-	 * power of two between 1 and 8. As a smaller divider yields
-	 * higher precision, pick the smallest possible one.
-	 */
-	pwmc0 =3D ilog2(period >> 16);
-	BUG_ON(pwmc0 > 3);
-
-	period >>=3D pwmc0;
-	duty_cycle >>=3D pwmc0;
-=09
-	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
-		pwmc0 |=3D PIPGM_PWMC_PWMACT;
-		=09
-	writel(pwmc0, priv->base + PIPGM_PWMC(pwm->hwpwm));
-	writel(duty, priv->base + PIPGM_PDUT(pwm->hwpwm));
-	writel(period, priv->base + PIPGM_PCSR(pwm->hwpwm));
-
-> +	return 0;
-> +}
-> +
-> +static void visconti_pwm_get_state(struct pwm_chip *chip, struct pwm_dev=
-ice *pwm,
-> +				   struct pwm_state *state)
-> +{
-> +[...]
-> +}
-
-Looks good.
-
-> [...]
->=20
-> +static struct platform_driver visconti_pwm_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "pwm-visconti",
-> +		.of_match_table =3D visconti_pwm_of_match,
-> +	},
-> +	.probe =3D visconti_pwm_probe,
-> +	.remove =3D visconti_pwm_remove,
-> +};
-> +module_platform_driver(visconti_pwm_driver);
-> +
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_AUTHOR("Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>");
-> +MODULE_ALIAS("platform:visconti-pwm");
-
-This must match the .name field of the platform driver, so it must be
-
-MODULE_ALIAS("platform:pwm-visconti");
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---2ssz6scb22myda7o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmAmr8QACgkQwfwUeK3K
-7AkXrQf+OSZRSopiaKm+LYuAkFlcVUCiRoyePIf28ohZt07zPF8u7HCGb/tYHXKl
-3pDlplkZoXolQzi3RsTENbH8SMB0ceHzsW2/8G8Dnpz9t7FIaWOLYsjuj3xxHKhs
-EVW1US87mi/4ZT7CwyMiDFSou2zVCe8hI9VHEWYRb6+jfIIIdbWkpOFlwACGOqpl
-3F/ACImmr6uQbzAjWunk1xkV3wB2nv7qPe6KvMxs0AzZ664cGxTG6VaWYCheJAl6
-fI/iXHpZQgUgIEQTXOMDaK/xmow/VC6X9EdkHBj1g/ejWMfIX/hrGajxlIVZ9eYj
-Xmdy3VgdkYYKEDox/WxUyHM6JfUZag==
-=f243
------END PGP SIGNATURE-----
-
---2ssz6scb22myda7o--
