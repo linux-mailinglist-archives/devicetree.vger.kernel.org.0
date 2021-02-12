@@ -2,102 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7208D31A791
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 23:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8E9B31A7D1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 23:41:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232113AbhBLW0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 17:26:50 -0500
-Received: from mga07.intel.com ([134.134.136.100]:25955 "EHLO mga07.intel.com"
+        id S231809AbhBLWgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 17:36:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45152 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232010AbhBLW03 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Feb 2021 17:26:29 -0500
-IronPort-SDR: mrQR2d5K/Jd080hs3Jil8yUC/oPaaOZkDgDy1PQhHVXNmjy5IONvfpQmt1BWsBoP4Ew0BfP7hW
- WV8j3ES8iN4g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9893"; a="246551145"
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; 
-   d="scan'208";a="246551145"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2021 14:23:09 -0800
-IronPort-SDR: DznipkpXN2Jkm0jWspkDs3vn3rmMGw69WWIwgX7MDXlechINS8qTgL49FgBpa9knwoJrj8EHTs
- QrTOdauhXbxA==
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; 
-   d="scan'208";a="376509751"
-Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2021 14:23:08 -0800
-Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id 7A15F636D;
-        Fri, 12 Feb 2021 14:23:08 -0800 (PST)
-Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
-        id 73015363702; Fri, 12 Feb 2021 14:23:08 -0800 (PST)
-From:   mgross@linux.intel.com
-To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
-        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
-        gregkh@linuxfoundation.org, corbet@lwn.net,
-        palmerdabbelt@google.com, paul.walmsley@sifive.com,
-        peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
-        jassisinghbrar@gmail.com
-Cc:     linux-kernel@vger.kernel.org,
-        Seamus Kelly <seamus.kelly@intel.com>,
+        id S229903AbhBLWfC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Feb 2021 17:35:02 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A529F64E8E;
+        Fri, 12 Feb 2021 22:34:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613169257;
+        bh=jx3SkOo53FyBZWQ2WTsLZOKbb/JkJh7B6ZUavSTDDzY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bfYrYGKpjFoeuqMx8ouLctaZfSPcP817M5XYj3VgS6MZKaK8+MOXMhrby7uZvRrOq
+         aSSqyWo4xJ69Wb1sLA8tnAijieITo/QaR4OHrtwYrl2MF/HjGxyrUWx3dq2gPf3mRt
+         QZWF6B6hsHdSPUsnHC1vAX0DHQb7pcnLxcxnGFXBBCjDcLnOw/jdU40McczNAPxSjt
+         Km2aSoGCZhSa7pnOc+T+owGfrWgqQlIOpdp/8QtyZ4mMuDXSnfBksrGJ7RQY9i9wbe
+         40b0W3KmEf2OPwYuIAWewwy7Ab1ZwZ83ys3kq60vFX26GuojdTlFxNfwAaAA2+zsPT
+         XXOPQLhV0/NCg==
+Received: by mail-ej1-f44.google.com with SMTP id y26so1646019eju.13;
+        Fri, 12 Feb 2021 14:34:17 -0800 (PST)
+X-Gm-Message-State: AOAM532WMCBn0CNUQ/HPAPZt+AHLlqqdcBAAcLofek8hfGQa8mWCFxc8
+        kOlUxsvoPwlyjG88/GW2ekvZJT2WO7M/qGUEqg==
+X-Google-Smtp-Source: ABdhPJwzVjipKpkcLY2YlgHVjF8avz4tr5CX828BlvrRaiH8zZVQFzkrqJ7YjY2wDhNk6EwIO07jCPYBxRgkB58Wf9g=
+X-Received: by 2002:a17:906:d1d0:: with SMTP id bs16mr5262013ejb.468.1613169256227;
+ Fri, 12 Feb 2021 14:34:16 -0800 (PST)
+MIME-Version: 1.0
+References: <20210212033120.GA100407@roeck-us.net> <CAL_JsqLm3mHdPg4wkdhoFXNY1JgTJ56dxi3oLqBS_NBrX=rOfw@mail.gmail.com>
+ <20210212151725.GA57042@roeck-us.net> <CAL_Jsq+e+KdzanMdHYCEoGZn3ybY5_ASN60qiqbOkPWpkbQ6NQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+e+KdzanMdHYCEoGZn3ybY5_ASN60qiqbOkPWpkbQ6NQ@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 12 Feb 2021 16:34:04 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL4suDinALfp4v96arJXpWts8pergO1-aenLv+RN9S64Q@mail.gmail.com>
+Message-ID: <CAL_JsqL4suDinALfp4v96arJXpWts8pergO1-aenLv+RN9S64Q@mail.gmail.com>
+Subject: Re: [PATCH] scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         devicetree@vger.kernel.org
-Subject: [PATCH v6 19/34] xlink-core: Add xlink core device tree bindings
-Date:   Fri, 12 Feb 2021 14:22:49 -0800
-Message-Id: <20210212222304.110194-20-mgross@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210212222304.110194-1-mgross@linux.intel.com>
-References: <20210212222304.110194-1-mgross@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Seamus Kelly <seamus.kelly@intel.com>
+On Fri, Feb 12, 2021 at 3:01 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Feb 12, 2021 at 9:17 AM Guenter Roeck <linux@roeck-us.net> wrote:
+> >
+> > On Fri, Feb 12, 2021 at 08:16:04AM -0600, Rob Herring wrote:
+> > > On Thu, Feb 11, 2021 at 9:31 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> > > >
+> > > > Hi Rob,
+> > > >
+> > > > On Wed, Feb 03, 2021 at 03:26:03PM -0600, Rob Herring wrote:
+> > > > > This adds the following commits from upstream:
+> > > > >
+> > > > > 183df9e9c2b9 gitignore: Ignore the swp files
+> > > > > 0db6d09584e1 gitignore: Add cscope files
+> > > > > 307afa1a7be8 Update Jon Loeliger's email
+> > > > > ca16a723fa9d fdtdump: Fix gcc11 warning
+> > > > > 64990a272e8f srcpos: increase MAX_SRCFILE_DEPTH
+> > > > > 163f0469bf2e dtc: Allow overlays to have .dtbo extension
+> > > > > 3b01518e688d Set last_comp_version correctly in new dtb and fix potential version issues in fdt_open_into
+> > > > > f7e5737f26aa tests: Fix overlay_overlay_nosugar test case
+> > > > > 7cd5d5fe43d5 libfdt: Tweak description of assume-aligned load helpers
+> > > > > a7c404099349 libfdt: Internally perform potentially unaligned loads
+> > > > > bab85e48a6f4 meson: increase default timeout for tests
+> > > > > f8b46098824d meson: do not assume python is installed, skip tests
+> > > > > 30a56bce4f0b meson: fix -Wall warning
+> > > > > 5e735860c478 libfdt: Check for 8-byte address alignment in fdt_ro_probe_()
+> > > > > 67849a327927 build-sys: add meson build
+> > > > > 05874d08212d pylibfdt: allow build out of tree
+> > > > > 3bc3a6b9fe0c dtc: Fix signedness comparisons warnings: Wrap (-1)
+> > > > > e1147b159e92 dtc: Fix signedness comparisons warnings: change types
+> > > > > 04cf1fdc0fcf convert-dtsv0: Fix signedness comparisons warning
+> > > > > b30013edb878 libfdt: Fix kernel-doc comments
+> > > > >
+> > > > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > >
+> > > > This patch causes my little-endian microblaze qemu emulations to fail
+> > > > silently (no console output) in next-20210211. Reverting this patch
+> > > > together with "scripts: dtc: Build fdtoverlay tool" fixes the problem.
+> > >
+> > > My guess would be something in libfdt. Maybe 7cd5d5fe43d5 or
+> > > a7c404099349, though that should return to historical behavior.
+> > >
+> > > Can you give me the qemu command line and kernel cfg?
+> > >
+> > I copied everything you should need to build a kernel (including toolchain)
+> > to http://server.roeck-us.net/qemu/microblazeel/
+> >
+> > [ wow, I really need to update that compiler ]
+>
+> I can't seem to get BE/LE nor reverted or not working. It's always
+> dying in microblaze_cache_init() based on the last print. It's your
+> config, but gcc 10.1.0 off of kernel.org.
 
-Add device tree bindings for keembay-xlink.
+It seems gcc 10.1 does not work. Seems to die before here:
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Mark Gross <mgross@linux.intel.com>
-Signed-off-by: Mark Gross <mgross@linux.intel.com>
-Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
----
- .../bindings/misc/intel,keembay-xlink.yaml    | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
+pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
 
-diff --git a/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
-new file mode 100644
-index 000000000000..5ac2e7fa5b5e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
-@@ -0,0 +1,29 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (c) Intel Corporation. All rights reserved.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/misc/intel,keembay-xlink.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel Keem Bay xlink
-+
-+maintainers:
-+  - Seamus Kelly <seamus.kelly@intel.com>
-+
-+description: |
-+  The Keem Bay xlink driver enables the communication/control sub-system
-+  for internal and external communications to the Intel Keem Bay SoC.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: intel,keembay-xlink
-+
-+additionalProperties: False
-+
-+examples:
-+  - |
-+    xlink {
-+        compatible = "intel,keembay-xlink";
-+    };
--- 
-2.17.1
+> There is at least one possible problem here that the FDT may only be 4
+> byte aligned. The assumption is 8 bytes to not have misaligned
+> accesses (and only for 64-bit accesses if 4 byte aligned). That's an
+> issue with the qemu image loading depending on the sizes and
+> combination of images loaded. That doesn't explain your failure
+> though. As the initrd is a multiple of 8 bytes, you should be fine.
 
+It's the built-in dtb alignment that is the problem. I had noticed
+this earlier, then discovered I had no built-in DTB and QEMU provides
+a default. And changing didn't help because on broken gcc-10 it was 8
+byte aligned. None of that should matter because we're not using the
+built-in either, right? Wrong! The assembly entry code copies the
+bootloader dtb into the built-in dtb space. I remember this now from
+the last time I cleaned up the early DT code. I suppose the reason is
+the bootloader dtb is not or may not be at an address mapped early.
+I'd really like to get rid of that copy. Anyway, the oneliner below
+fixes it. We need it either way, but I'd like some comments on the
+copy.
+
+Rob
+
+diff --git a/arch/microblaze/kernel/vmlinux.lds.S
+b/arch/microblaze/kernel/vmlinux.lds.S
+index df07b3d06cd6..fb31747ec092 100644
+--- a/arch/microblaze/kernel/vmlinux.lds.S
++++ b/arch/microblaze/kernel/vmlinux.lds.S
+@@ -45,7 +45,7 @@ SECTIONS {
+                _etext = . ;
+        }
+
+-       . = ALIGN (4) ;
++       . = ALIGN (8) ;
+        __fdt_blob : AT(ADDR(__fdt_blob) - LOAD_OFFSET) {
+                _fdt_start = . ;                /* place for fdt blob */
+                *(__fdt_blob) ;                 /* Any link-placed DTB */
