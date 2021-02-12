@@ -2,99 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A011731A0FB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 15:58:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 672CA31A109
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 16:04:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbhBLO47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 09:56:59 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47214 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbhBLO4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 09:56:51 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11CEt7Tk014615;
-        Fri, 12 Feb 2021 08:55:07 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1613141707;
-        bh=/bYLT8Hs6JR9LTpaSuxWV8Tu/M0MjdnN2Avy/KfFrqk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=L00o9c/UJ00fMieIT+SMpErVzcV4xP0uHSGguvAS1s/Vmdh1AA7lQRLeeRZ9LcQx5
-         w51242jdhVU9EGi4fqAAouEU4VK65ZNlsEmB6QPGWjdFqKpoZfHCnotHC8+iXsvRrJ
-         T2CI8K826hsE4tDV2+MHVw1Lf3MhKYBfs/PgB9qg=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11CEt7BY005708
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 12 Feb 2021 08:55:07 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 12
- Feb 2021 08:55:07 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 12 Feb 2021 08:55:07 -0600
-Received: from [10.250.234.22] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11CEt38t033461;
-        Fri, 12 Feb 2021 08:55:04 -0600
-Subject: Re: [PATCH v2 4/4] arm64: dts: ti: k3-am65-main: Add device_type to
- pcie*_rc nodes
-To:     Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Le Jin <le.jin@siemens.com>
-References: <cover.1613071976.git.jan.kiszka@siemens.com>
- <881dfd6c75423efce1d10261909939cd5ef19937.1613071976.git.jan.kiszka@siemens.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <94eb4288-7c6b-9fef-f266-512e131f5e75@ti.com>
-Date:   Fri, 12 Feb 2021 20:25:03 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229844AbhBLPB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 10:01:57 -0500
+Received: from mo-csw1116.securemx.jp ([210.130.202.158]:46234 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229574AbhBLPB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 10:01:56 -0500
+Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 11CExO9r030513; Fri, 12 Feb 2021 23:59:24 +0900
+X-Iguazu-Qid: 2wGrVxzyElBLa1Vwyu
+X-Iguazu-QSIG: v=2; s=0; t=1613141964; q=2wGrVxzyElBLa1Vwyu; m=2QkLuNMlUJCxF7TouJ5hz1LlS63NCn+01MLR5NgKghM=
+Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
+        by relay.securemx.jp (mx-mr1110) id 11CExMnl023041;
+        Fri, 12 Feb 2021 23:59:23 +0900
+Received: from enc02.toshiba.co.jp ([61.202.160.51])
+        by imx12.toshiba.co.jp  with ESMTP id 11CExMlt014544;
+        Fri, 12 Feb 2021 23:59:22 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 11CExL1P032581;
+        Fri, 12 Feb 2021 23:59:21 +0900
+Date:   Fri, 12 Feb 2021 23:59:20 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Networking <netdev@vger.kernel.org>,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/4] arm: dts: visconti: Add DT support for Toshiba
+ Visconti5 ethernet controller
+X-TSB-HOP: ON
+Message-ID: <20210212145920.lz24qi5orqrfjtza@toshiba.co.jp>
+References: <20210212025806.556217-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210212025806.556217-5-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <CAK8P3a0Wycgn=Dq8KE+-F2keWj4mKaYQ=Y5RLefYn4gc71vVFw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <881dfd6c75423efce1d10261909939cd5ef19937.1613071976.git.jan.kiszka@siemens.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a0Wycgn=Dq8KE+-F2keWj4mKaYQ=Y5RLefYn4gc71vVFw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+Thanks for your review.
 
-On 12/02/21 1:02 am, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
+On Fri, Feb 12, 2021 at 10:32:09AM +0100, Arnd Bergmann wrote:
+> On Fri, Feb 12, 2021 at 4:03 AM Nobuhiro Iwamatsu
+> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+> > @@ -384,6 +398,16 @@ spi6: spi@28146000 {
+> >                         #size-cells = <0>;
+> >                         status = "disabled";
+> >                 };
+> > +
+> > +               piether: ethernet@28000000 {
+> > +                       compatible = "toshiba,visconti-dwmac";
 > 
-> This is demanded by the parent binding of ti,am654-pcie-rc, see
-> Documentation/devicetree/bindings/pci/designware-pcie.txt.
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Shouldn't there be a more specific compatible string here, as well as the
+> particular version of the dwmac you use?
 
-Reviewed-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+I rechecked the code again based on your point.
+I need to specify the version of dwmac. I also noticed that it could
+remove some unnecessary code. I will fix this.
+
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index 12591a854020..787a49523c35 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -707,6 +707,7 @@ pcie0_rc: pcie@5500000 {
->  		dma-coherent;
->  		interrupts = <GIC_SPI 340 IRQ_TYPE_EDGE_RISING>;
->  		msi-map = <0x0 &gic_its 0x0 0x10000>;
-> +		device_type = "pci";
->  	};
->  
->  	pcie0_ep: pcie-ep@5500000 {
-> @@ -739,6 +740,7 @@ pcie1_rc: pcie@5600000 {
->  		dma-coherent;
->  		interrupts = <GIC_SPI 355 IRQ_TYPE_EDGE_RISING>;
->  		msi-map = <0x0 &gic_its 0x10000 0x10000>;
-> +		device_type = "pci";
->  	};
->  
->  	pcie1_ep: pcie-ep@5600000 {
+> In the binding example, you list the device as "dma-coherent",
+> but in this instance, it is not marked that way. Can you find out
+> whether the device is in fact connected properly to a cache-coherent
+> bus?
 > 
+> Note that failing to mark it as cache-coherent will make the device
+> rather slow and possibly not work correctly if it is in fact coherent,
+> but the default is non-coherent since a lot of SoCs are lacking
+> that hardware support.
+
+Thanks for point out.
+This hardware does not require dma-coherent. I will remove dma-coherent from DT
+binding document.
+
+> 
+>        Arnd
+> 
+
+Best regards,
+  Nobuhiro
