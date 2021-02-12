@@ -2,313 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B799E31A42C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 19:05:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E79D031A47C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 19:25:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231604AbhBLSC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 13:02:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55378 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230376AbhBLSCx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 13:02:53 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FFAAC061574;
-        Fri, 12 Feb 2021 10:02:15 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id o15so392736wmq.5;
-        Fri, 12 Feb 2021 10:02:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jVEdZq3GXiVFA/Hko3DC5hV80mFfZHXwzqSPv2+Qh3I=;
-        b=ZzgZiI5k0XMEAkPdDut+jSWlIMgtK1K1YKjJmKtVh7e6Y7zOFL+dZcp1z8CebuM1I4
-         DWJWK+SR/O2UKUwfoi9goozcqXNa5tDBo3bA2o/NifZerhGU9jkuSTBxZXuNfVZHGfWR
-         4r9BPzBigCObUlynW+T2ALDq7qe419Rfskb6+KikDTLCI+B5CEUfJdf/9Qyqx7hbpXBW
-         NFrFjTMA5wuCEGYb2/QwUx2RtOdZnKyhYQl0JzUpLFkhd9HY6JdyoOmbauUBMz4O4ePP
-         Fp+Et6xq7caTC6h/FhySN+MMBf++Irmqg/8sCHtOw6KtcAy1SgY6Q68b/n91rhcqe5hT
-         G+QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jVEdZq3GXiVFA/Hko3DC5hV80mFfZHXwzqSPv2+Qh3I=;
-        b=GIA2Sy7gRVwZ1H64ufxV0ANcJi4OFV34crzvtT1ZG3V+DeOhomzswmSeuf4HqnrRaC
-         R6NDoCDfxwTrUDKSq3HjQSLofCXO5DQ7aTQZtEW07V+fhTFK5kduZL7lUipIcchB/KwM
-         pmPW58xsWRbaxYlv6AU/03ywlsP34bxOQcavQc5LVJ/12yfEz5HVb81pWje3jbppJh1f
-         ROylxv9TL37w0wZp1m4e2mng+Ryp4Hr2+ag1MqOXx98n04jPFtX5d7f/EUeDyuFTM9Ml
-         6VGtnwgIj1JeG3QiKcUkC3OmBtsh6ndmmRVpqnpvol15SU9iukxAzycX3z4yhG2TmT1/
-         djJA==
-X-Gm-Message-State: AOAM530j6ww6zA1VkwWXJ6/ueZDxo0NHWJT23q2aaXxs7Qbkv4XQ9rth
-        thI1irrqU2Bo3DE4ku2oMJiSjfA3X2jxGdAbTfJ2O1m3Qls=
-X-Google-Smtp-Source: ABdhPJy55WTrl7HX52ZANz2U9Sl1yhlrkaWTzoX7iaehNGJUg0wrUyilFtlsgBqKa1sAHLIxVP0otPwFNp9bSxJ9rYo=
-X-Received: by 2002:a1c:31d5:: with SMTP id x204mr3123920wmx.175.1613152933703;
- Fri, 12 Feb 2021 10:02:13 -0800 (PST)
+        id S229611AbhBLSZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 13:25:04 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53514 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229558AbhBLSZE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Feb 2021 13:25:04 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 97AE464E99;
+        Fri, 12 Feb 2021 18:24:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613154261;
+        bh=i59A6KsNy0tuBkPE86R7oS3fgQDlOUtW1mMckoQBugI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NXKvqHb7A+THftvgjtBzxKYyRmPhlWrhWAUE1s5olkMvcyXKGGTsUbOfZ/Kbq+/Sp
+         IJG5euh/BxNwmvojFqLHCbfWwl/eufDrPGlA1sO3o+LM/6rHmoJi77jpQ09sP8oqMU
+         C9N4a4tUCFv/uT1NVHbea95+IDU7HK3tWOVFICI6FDKfuSgnqHVRtePViDIhHnWQsR
+         oJwo38HOo9JZILJUiayMoRBXl10oEW4BImwzUxAQDfHDhxeWAGhUuAew2Jccvfpm6r
+         R5CPg6RWJYG7fQd2KJiupQkfysRO7DOsfVBVvW7jwV7fdJgZ6NtqfhaCy5a3CN48En
+         HbQa2a3Z8isuQ==
+Received: by mail-ej1-f47.google.com with SMTP id y9so629398ejp.10;
+        Fri, 12 Feb 2021 10:24:21 -0800 (PST)
+X-Gm-Message-State: AOAM533VFgDrRwAWYdRgPVEnnAmG7tODJUCAkDnfGAh8AWE5P3vt98pz
+        2sY2pTn1ZqNnCQVJVPHb8ikqvL8RbeUOCqKx7A==
+X-Google-Smtp-Source: ABdhPJyhoggp31g4RDWhw83ePzBTd54yx+b2MhgGQx4aizGlRuZj/as8C2cqI3V6hI+fnA4ZqS7VGuem7Oso5zN7Aec=
+X-Received: by 2002:a17:906:af41:: with SMTP id ly1mr4076035ejb.525.1613154260106;
+ Fri, 12 Feb 2021 10:24:20 -0800 (PST)
 MIME-Version: 1.0
-References: <1613130289-16280-1-git-send-email-kalyant@codeaurora.org>
-In-Reply-To: <1613130289-16280-1-git-send-email-kalyant@codeaurora.org>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Fri, 12 Feb 2021 10:02:01 -0800
-Message-ID: <CAF6AEGuoc5nd=D+AVoFAVf3emjAnkGitoJcoNoOT0ZOeqv_QfQ@mail.gmail.com>
-Subject: Re: [v3] drm/msm/disp/dpu1: turn off vblank irqs aggressively in dpu
-To:     Kalyan Thota <kalyant@codeaurora.org>
-Cc:     y@qualcomm.com, dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Drew Davenport <ddavenport@chromium.org>
+References: <20210209182200.30606-1-nramas@linux.microsoft.com>
+ <20210209182200.30606-3-nramas@linux.microsoft.com> <87k0reozwh.fsf@manicouagan.localdomain>
+ <8a3aa3d2-2eba-549a-9970-a2b0fe3586c9@linux.microsoft.com>
+ <CAL_JsqJ3sDzjsJXtb6EzE77BL+PhUxDJYUngLTqcm0popd7Ajw@mail.gmail.com> <55685b61-dac0-2f24-f74a-939acf74a4f2@linux.microsoft.com>
+In-Reply-To: <55685b61-dac0-2f24-f74a-939acf74a4f2@linux.microsoft.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 12 Feb 2021 12:24:07 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKDCgtJngxqMCRdC9evEQpHnryEaMvfgYEh0Mcto6dLHA@mail.gmail.com>
+Message-ID: <CAL_JsqKDCgtJngxqMCRdC9evEQpHnryEaMvfgYEh0Mcto6dLHA@mail.gmail.com>
+Subject: Re: [PATCH v17 02/10] of: Add a common kexec FDT setup function
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        James Morse <james.morse@arm.com>,
+        Sasha Levin <sashal@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        vincenzo.frascino@arm.com, Mark Rutland <mark.rutland@arm.com>,
+        dmitry.kasatkin@gmail.com, James Morris <jmorris@namei.org>,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        Pavel Tatashin <pasha.tatashin@soleen.com>,
+        Allison Randal <allison@lohutok.net>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        balajib@linux.microsoft.com, linux-integrity@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 12, 2021 at 3:45 AM Kalyan Thota <kalyant@codeaurora.org> wrote:
+On Fri, Feb 12, 2021 at 11:19 AM Lakshmi Ramasubramanian
+<nramas@linux.microsoft.com> wrote:
 >
-> Set the flag vblank_disable_immediate = true to turn off vblank irqs
-> immediately as soon as drm_vblank_put is requested so that there are
-> no irqs triggered during idle state. This will reduce cpu wakeups
-> and help in power saving.
+> On 2/12/21 6:38 AM, Rob Herring wrote:
+> > On Thu, Feb 11, 2021 at 7:17 PM Lakshmi Ramasubramanian
+> > <nramas@linux.microsoft.com> wrote:
+> >>
+> >> On 2/11/21 5:09 PM, Thiago Jung Bauermann wrote:
+> >>>
+> >>> There's actually a complication that I just noticed and needs to be
+> >>> addressed. More below.
+> >>>
+> >>
+> >> <...>
+> >>
+> >>>> +
+> >>>> +/*
+> >>>> + * of_kexec_alloc_and_setup_fdt - Alloc and setup a new Flattened Device Tree
+> >>>> + *
+> >>>> + * @image:          kexec image being loaded.
+> >>>> + * @initrd_load_addr:       Address where the next initrd will be loaded.
+> >>>> + * @initrd_len:             Size of the next initrd, or 0 if there will be none.
+> >>>> + * @cmdline:                Command line for the next kernel, or NULL if there will
+> >>>> + *                  be none.
+> >>>> + *
+> >>>> + * Return: fdt on success, or NULL errno on error.
+> >>>> + */
+> >>>> +void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
+> >>>> +                               unsigned long initrd_load_addr,
+> >>>> +                               unsigned long initrd_len,
+> >>>> +                               const char *cmdline)
+> >>>> +{
+> >>>> +    void *fdt;
+> >>>> +    int ret, chosen_node;
+> >>>> +    const void *prop;
+> >>>> +    unsigned long fdt_size;
+> >>>> +
+> >>>> +    fdt_size = fdt_totalsize(initial_boot_params) +
+> >>>> +               (cmdline ? strlen(cmdline) : 0) +
+> >>>> +               FDT_EXTRA_SPACE;
+> >>>
+> >>> Just adding 4 KB to initial_boot_params won't be enough for crash
+> >>> kernels on ppc64. The current powerpc code doubles the size of
+> >>> initial_boot_params (which is normally larger than 4 KB) and even that
+> >>> isn't enough. A patch was added to powerpc/next today which uses a more
+> >>> precise (but arch-specific) formula:
+> >>>
+> >>> https://lore.kernel.org/linuxppc-dev/161243826811.119001.14083048209224609814.stgit@hbathini/
+> >>>
+> >>> So I believe we need a hook here where architectures can provide their
+> >>> own specific calculation for the size of the fdt. Perhaps a weakly
+> >>> defined function providing a default implementation which an
+> >>> arch-specific file can override (a la arch_kexec_kernel_image_load())?
+> >>>
+> >>> Then the powerpc specific hook would be the kexec_fdt_totalsize_ppc64()
+> >>> function from the patch I linked above.
+> >>>
+> >>
+> >> Do you think it'd better to add "fdt_size" parameter to
+> >> of_kexec_alloc_and_setup_fdt() so that the caller can provide the
+> >> desired FDT buffer size?
+> >
+> > Yes, I guess so. But please define the param as extra size, not total
+> > size. The kernel command line size addition can be in the common code.
 >
-> To enable vblank_disable_immediate flag the underlying KMS driver
-> needs to support high precision vblank timestamping and also a
-> reliable way of providing vblank counter which is incrementing
-> at the leading edge of vblank.
+> Will do. Just to clarify -
 >
-> This patch also brings in changes to support vblank_disable_immediate
-> requirement in dpu driver.
+> The common code will do:
 >
-> Changes in v1:
->  - Specify reason to add vblank timestamp support. (Rob)
->  - Add changes to provide vblank counter from dpu driver.
+> fdt_totalsize(initial_boot_params) + strlen(cmdline) + extra_fdt_size
 >
-> Changes in v2:
->  - fix warn stack reported by Rob with v2 patch
->
-> Signed-off-by: Kalyan Thota <kalyant@codeaurora.org>
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    | 80 +++++++++++++++++++++++++++++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 28 +++++++++-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h | 11 ++++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     |  5 ++
->  4 files changed, 123 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> index d4662e8..9a80981 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> @@ -65,6 +65,83 @@ static void dpu_crtc_destroy(struct drm_crtc *crtc)
->         kfree(dpu_crtc);
->  }
->
-> +static struct drm_encoder *get_encoder_from_crtc(struct drm_crtc *crtc)
-> +{
-> +       struct drm_device *dev = crtc->dev;
-> +       struct drm_encoder *encoder;
-> +
-> +       drm_for_each_encoder(encoder, dev)
-> +               if (encoder->crtc == crtc)
-> +                       return encoder;
-> +
-> +       return NULL;
-> +}
-> +
-> +static u32 dpu_crtc_get_vblank_counter(struct drm_crtc *crtc)
-> +{
-> +       struct drm_encoder *encoder;
-> +
-> +       encoder = get_encoder_from_crtc(crtc);
-> +       if (!encoder) {
-> +               DRM_ERROR("no encoder found for crtc %d\n", crtc->index);
-> +               return false;
-> +       }
-> +
-> +       return dpu_encoder_get_frame_count(encoder);
-> +}
-> +
-> +static bool dpu_crtc_get_scanout_position(struct drm_crtc *crtc,
-> +                                          bool in_vblank_irq,
-> +                                          int *vpos, int *hpos,
-> +                                          ktime_t *stime, ktime_t *etime,
-> +                                          const struct drm_display_mode *mode)
-> +{
-> +       unsigned int pipe = crtc->index;
-> +       struct drm_encoder *encoder;
-> +       int line, vsw, vbp, vactive_start, vactive_end, vfp_end;
-> +
-> +       encoder = get_encoder_from_crtc(crtc);
-> +       if (!encoder) {
-> +               DRM_ERROR("no encoder found for crtc %d\n", pipe);
-> +               return false;
-> +       }
-> +
-> +       vsw = mode->crtc_vsync_end - mode->crtc_vsync_start;
-> +       vbp = mode->crtc_vtotal - mode->crtc_vsync_end;
-> +
-> +       /*
-> +        * the line counter is 1 at the start of the VSYNC pulse and VTOTAL at
-> +        * the end of VFP. Translate the porch values relative to the line
-> +        * counter positions.
-> +        */
-> +
-> +       vactive_start = vsw + vbp + 1;
-> +       vactive_end = vactive_start + mode->crtc_vdisplay;
-> +
-> +       /* last scan line before VSYNC */
-> +       vfp_end = mode->crtc_vtotal;
-> +
-> +       if (stime)
-> +               *stime = ktime_get();
-> +
-> +       line = dpu_encoder_get_linecount(encoder);
-> +
-> +       if (line < vactive_start)
-> +               line -= vactive_start;
-> +       else if (line > vactive_end)
-> +               line = line - vfp_end - vactive_start;
-> +       else
-> +               line -= vactive_start;
-> +
-> +       *vpos = line;
-> +       *hpos = 0;
-> +
-> +       if (etime)
-> +               *etime = ktime_get();
-> +
-> +       return true;
-> +}
-> +
->  static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
->                 struct dpu_plane_state *pstate, struct dpu_format *format)
->  {
-> @@ -1243,6 +1320,8 @@ static const struct drm_crtc_funcs dpu_crtc_funcs = {
->         .early_unregister = dpu_crtc_early_unregister,
->         .enable_vblank  = msm_crtc_enable_vblank,
->         .disable_vblank = msm_crtc_disable_vblank,
-> +       .get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
-> +       .get_vblank_counter = dpu_crtc_get_vblank_counter,
->  };
->
->  static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
-> @@ -1251,6 +1330,7 @@ static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
->         .atomic_check = dpu_crtc_atomic_check,
->         .atomic_begin = dpu_crtc_atomic_begin,
->         .atomic_flush = dpu_crtc_atomic_flush,
-> +       .get_scanout_position = dpu_crtc_get_scanout_position,
->  };
->
->  /* initialize crtc */
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> index f7f5c25..fb6546c 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> @@ -425,6 +425,32 @@ int dpu_encoder_helper_unregister_irq(struct dpu_encoder_phys *phys_enc,
->         return 0;
->  }
->
-> +int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc)
-> +{
-> +       struct dpu_encoder_virt *dpu_enc;
-> +       struct dpu_encoder_phys *phy_enc;
-> +
-> +       dpu_enc = to_dpu_encoder_virt(drm_enc);
-> +       phy_enc = dpu_enc ? dpu_enc->cur_master : NULL;
-> +
-> +       return phy_enc ? atomic_read(&phy_enc->vsync_cnt) : 0;
+> The caller will pass "extra_fdt_size"
+> ARM64 => 4KB
+> PPC64 => fdt_totalsize(initial_boot_params) - which will be updated when
+> the patch Thiago had referred to is merged.
 
-I don't think we should use a sw vsync_cntr.. or at least not use it
-for anything more than detecting that we are in this post-vblank limbo
-period
+Yes, I'd leave the 4KB in there by default and arm64 use 0.
 
-But might as well keep the discussion on the v2 thread
-
-BR,
--R
-
-> +}
-> +
-> +int dpu_encoder_get_linecount(struct drm_encoder *drm_enc)
-> +{
-> +       struct dpu_encoder_virt *dpu_enc;
-> +       struct dpu_encoder_phys *phys;
-> +       int linecount = 0;
-> +
-> +       dpu_enc = to_dpu_encoder_virt(drm_enc);
-> +       phys = dpu_enc ? dpu_enc->cur_master : NULL;
-> +
-> +       if (phys && phys->ops.get_line_count)
-> +               linecount = phys->ops.get_line_count(phys);
-> +
-> +       return linecount;
-> +}
-> +
->  void dpu_encoder_get_hw_resources(struct drm_encoder *drm_enc,
->                                   struct dpu_encoder_hw_resources *hw_res)
->  {
-> @@ -1296,12 +1322,12 @@ static void dpu_encoder_vblank_callback(struct drm_encoder *drm_enc,
->         DPU_ATRACE_BEGIN("encoder_vblank_callback");
->         dpu_enc = to_dpu_encoder_virt(drm_enc);
->
-> +       atomic_inc(&phy_enc->vsync_cnt);
->         spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
->         if (dpu_enc->crtc)
->                 dpu_crtc_vblank_callback(dpu_enc->crtc);
->         spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
->
-> -       atomic_inc(&phy_enc->vsync_cnt);
->         DPU_ATRACE_END("encoder_vblank_callback");
->  }
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-> index b491346..99a5d73 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-> @@ -156,5 +156,16 @@ void dpu_encoder_prepare_commit(struct drm_encoder *drm_enc);
->   */
->  void dpu_encoder_set_idle_timeout(struct drm_encoder *drm_enc,
->                                                         u32 idle_timeout);
-> +/**
-> + * dpu_encoder_get_linecount - get interface line count for the encoder.
-> + * @drm_enc:    Pointer to previously created drm encoder structure
-> + */
-> +int dpu_encoder_get_linecount(struct drm_encoder *drm_enc);
-> +
-> +/**
-> + * dpu_encoder_get_frame_count - get interface frame count for the encoder.
-> + * @drm_enc:    Pointer to previously created drm encoder structure
-> + */
-> +int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc);
->
->  #endif /* __DPU_ENCODER_H__ */
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index 374b0e8..ed636f1 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -14,6 +14,7 @@
->
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_file.h>
-> +#include <drm/drm_vblank.h>
->
->  #include "msm_drv.h"
->  #include "msm_mmu.h"
-> @@ -1020,6 +1021,10 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
->          */
->         dev->mode_config.allow_fb_modifiers = true;
->
-> +       dev->max_vblank_count = 0xffffffff;
-> +       /* Disable vblank irqs aggressively for power-saving */
-> +       dev->vblank_disable_immediate = true;
-> +
->         /*
->          * _dpu_kms_drm_obj_init should create the DRM related objects
->          * i.e. CRTCs, planes, encoders, connectors and so forth
-> --
-> 2.7.4
->
+Rob
