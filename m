@@ -2,77 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 217AA319C97
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 11:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 608AD319CBA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 11:38:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231195AbhBLKXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 05:23:24 -0500
-Received: from mout.kundenserver.de ([217.72.192.73]:45121 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbhBLKVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 05:21:49 -0500
-Received: from [192.168.1.155] ([77.9.136.38]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MkYkC-1lbdA13knm-00m1P6; Fri, 12 Feb 2021 11:19:11 +0100
-Subject: Re: [PATCH] of: base: improve error message in
- of_phandle_iterator_next()
-To:     Rob Herring <robh+dt@kernel.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-References: <20210208165806.25466-1-info@metux.net>
- <CAL_Jsq+aWxmA_tXnhi5PfMieZ0KyKj45kr=OUa8h4mEmn7yLTA@mail.gmail.com>
-From:   "Enrico Weigelt, metux IT consult" <info@metux.net>
-Message-ID: <18570ba4-0157-d20d-5371-c0f223d33d4d@metux.net>
-Date:   Fri, 12 Feb 2021 11:19:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S230264AbhBLKhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 05:37:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53456 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229653AbhBLKgy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Feb 2021 05:36:54 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0AB8B64E6C;
+        Fri, 12 Feb 2021 10:36:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613126172;
+        bh=l1HVYolc9K5zoog78E0hg6Q9NscFKBn5UiLoKkcCsIk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bm+6w43eahWDKpTKO5a8Ic37OrDmUsbmK9OwoGL2tGsLEcoAJV/BsN9fl7bLGkGpu
+         AGS+ZlMBfZWAhCeBUHiJqcFi3I+2sPo9yUkD8qfguMQAgTMBMa+AJoqV94BTuuFuJJ
+         qEc4D+OJtZfq5J+MEcPk6dmMOKD1tNIcF7cVQ06bpIki++3wVeDl7XlezODsQ6aUns
+         KsZkaOlIP6UmUx5K+7VX0+fITHQcWS2UkhiWN6JqVbDCKi99gXjAea4SpyPJ5H7zIy
+         rd86qUF195JJ5tpMVNUXuIJ8R0dSwqVccHdfpPZUBRRd83WLWw54DGVTWp+oEfcc/j
+         1/oM9yEyV+3Og==
+Date:   Fri, 12 Feb 2021 11:36:07 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Alain Volmat <alain.volmat@foss.st.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        pierre-yves.mordret@foss.st.com, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@foss.st.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        fabrice.gasnier@foss.st.com
+Subject: Re: [PATCH 1/5] i2c: stm32f7: fix configuration of the digital filter
+Message-ID: <20210212103607.GC8038@ninjato>
+References: <1612515104-838-1-git-send-email-alain.volmat@foss.st.com>
+ <1612515104-838-2-git-send-email-alain.volmat@foss.st.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+aWxmA_tXnhi5PfMieZ0KyKj45kr=OUa8h4mEmn7yLTA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: tl
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:ulVbFijtQ8jtKYRG7xNboSa3F1svIdl7MYCglduNiR9lTDHNM53
- zd7Z8T6BTNq3KvkuFQh7BCHXFqgOu22dXRjNNXot4ohGkj6SBe82ZDjWXOo028+rjGnYKf7
- uoez3LzNKRTZe3/a2dRO13HiLq8ShwNP9qD8RnPL9lx2AVO57Hp68riFdGvpvqyFJBbwlNf
- Y7En0e4wQfcJHUmCK7R0Q==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:LWcMNQciUJY=:CwCZlD2K1GPQ1uVCJbyHXM
- j1jphyqxuL4JoAOGLEmVMZm3RQ2NnHSBK29m/kIzwOgnSg+NTc/TuXh/b6rXIIMrZPdx1FTFE
- bBnFLq+bIL0LXZjLMEX+ZFyh4eLDLYXq48bwX7/asU/ESWF2X0P0jI84F2NLSfzJFdk0/hlsr
- 6WnH/IfPfYsYw4UEzEE6XyebOOmnWQ3KflviOaIZo+mETTq14Z/HupwkDoeiGqtaDAcbPom1w
- DBPHeq3Bpo0RDsfzm1mP9qh4NWEebIqqGcDXCNfJ+XTulVSsv0u+ZjQuHTIFhddwYV1wFvcaV
- wi+h8KqkutG7goeTaUGpc7wjbzFqUZs/3NQco3GoUXzfEbDSBGEWv1MjGjIpnru8r9OAlc02p
- 3SLAG5jWNnoqAEO5yQxrdTfFyQhpO+6R/ODZPSEgVcYJyvvANwCkZ3+ciYY+a
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="TYecfFk8j8mZq+dy"
+Content-Disposition: inline
+In-Reply-To: <1612515104-838-2-git-send-email-alain.volmat@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.02.21 21:13, Rob Herring wrote:
-> On Mon, Feb 8, 2021 at 10:58 AM Enrico Weigelt, metux IT consult
-> <info@metux.net> wrote:
->>
->> Also print out the phandle ID on error message, as a debug aid.
-> 
-> I already have this patch applied in my tree. Why do you keep sending it?
 
-Sorry, didn't know that when sending it the 2nd time, missed your last
-mail in the mail flood :o
+--TYecfFk8j8mZq+dy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Seems my mail sorting rules are still quite imperfect. I suspect I'm not
-the only one with those problems - how do you folks handle that ?
+On Fri, Feb 05, 2021 at 09:51:40AM +0100, Alain Volmat wrote:
+> The digital filter related computation are present in the driver
+> however the programming of the filter within the IP is missing.
+> The maximum value for the DNF is wrong and should be 15 instead of 16.
+>=20
+> Fixes: aeb068c57214 ("i2c: i2c-stm32f7: add driver")
+>=20
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+
+Applied to for-current, thanks!
+
+The rest will go in within the next cycle.
 
 
---mtx
+--TYecfFk8j8mZq+dy
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
--- 
----
-Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
-werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
-GPG/PGP-Schlüssel zu.
----
-Enrico Weigelt, metux IT consult
-Free software and Linux embedded engineering
-info@metux.net -- +49-151-27565287
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmAmWhcACgkQFA3kzBSg
+KbYsWA/9GOAvOK+8eTc0vi7v5AZ7i77HxG3vZXq6Bm4XBBtXmV0eqg/U+Mr3IIC5
+m6eq7LSkVtalSlJFl1penaXyJ+/d8EEWsZ2sPAFtolODkx5qzL7tZuyT3eu7br0H
+VBSmAJeXUzqfdv96xL5WO2ypeMH8WljsClbp57fUxVqePxZQ9Tq0RVUD0ayyiwG+
+m7tA1uMjQNn+RpYUxF7XdO7TmmN4SHqojOvGYX9qZytKXhD9Ytiw+490a31N2f9r
+dHR/HN4CQdP1kIK0lKPvgQzd2b8/WuBokde7TA3fTwMog0C0Ywe0mPYjRYDwg126
+znIoc646reRXWDNIAdr3g7BiZrDI1E76LzCsqaypoo5E3hz8pkPuo5gO8Mrrt6wN
+aPOf6n8DxTFLvUi6XCDTpbItWC8L2Wi/XRj1gwHS0i67KHh9LZuMns6KDK6JxGyT
+ve4dfYZgG4B0KTdwTrX+EfTLkAQWpr/szYaxqtfg2L//62feBuF98A4IyXJ6eQkB
+mDCYjrQ8ZKGmnEHWV1+dr26M21WeoLcq6eDMOntne4zCEKOCxndtkZTCnDWUS7A/
+FXTWHU3TEIYHaVuDhpqEs4ulCEITApDkNseJToMjbAWaxVmQ4xBetlJ44F4+ZTrs
+YYERqcUpxvea2Iz07wgqChCMCurqPNxrKPivgn+6KKePfx634/o=
+=RiX0
+-----END PGP SIGNATURE-----
+
+--TYecfFk8j8mZq+dy--
