@@ -2,275 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 951F3319DA0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 12:53:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0FFB319DC2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 12:59:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230260AbhBLLxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 06:53:49 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:10229 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbhBLLxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 06:53:06 -0500
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 12 Feb 2021 03:52:20 -0800
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 12 Feb 2021 03:52:19 -0800
-X-QCInternal: smtphost
-Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 12 Feb 2021 17:22:09 +0530
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id 8C5FC427B; Fri, 12 Feb 2021 03:52:09 -0800 (PST)
-From:   Kalyan Thota <kalyan_t@codeaurora.org>
-To:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Cc:     Kalyan Thota <kalyant@codeaurora.org>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        seanpaul@chromium.org, hoegsberg@chromium.org,
-        dianders@chromium.org, mkrishn@codeaurora.org,
-        travitej@codeaurora.org, nganji@codeaurora.org,
-        swboyd@chromium.org, Kalyan Thota <kalyan_t@codeaurora.org>
-Subject: [v3] drm/msm/disp/dpu1: turn off vblank irqs aggressively in dpu
-Date:   Fri, 12 Feb 2021 03:52:07 -0800
-Message-Id: <1613130727-18094-1-git-send-email-kalyan_t@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <y>
-References: <y>
+        id S231265AbhBLL7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 06:59:11 -0500
+Received: from mout.kundenserver.de ([217.72.192.74]:49311 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230510AbhBLL5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 06:57:45 -0500
+Received: from [192.168.1.155] ([77.9.136.38]) by mrelayeu.kundenserver.de
+ (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MtfRp-1m2DDQ1vWp-00v86A; Fri, 12 Feb 2021 12:54:51 +0100
+Subject: Re: [RFC PATCH 11/12] platform/x86: skeleton for oftree based board
+ device initialization
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>
+References: <20210208222203.22335-1-info@metux.net>
+ <20210208222203.22335-12-info@metux.net>
+ <CACRpkdYbOX_RDqwxaiugtYB4vSpSKChvKsPjcB_vv3Q74QeG2Q@mail.gmail.com>
+From:   "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+Message-ID: <c5ed2b27-21a2-5a07-8dd9-e080f9a6cd98@metux.net>
+Date:   Fri, 12 Feb 2021 12:54:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
+MIME-Version: 1.0
+In-Reply-To: <CACRpkdYbOX_RDqwxaiugtYB4vSpSKChvKsPjcB_vv3Q74QeG2Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: tl
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:Npo/PU7UdIpTpagqXDvQYHTvyeYgYpL3AhZrbNJI23XzTyfeuFE
+ THes8swi8Le3F2P/ubGpPoYak7vaedItBxpsgGCM0TeLONNoEft33fPoSTjC5S3Zcq3S5c/
+ YLZVZ48IvmJV02Z4TIQNduQuz6fm+S8pRAqf22GzYLstAbXK6cap/ZWVZTrZhBSvBSa8MDt
+ TciwW/8TStMGki1KwecmA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:WDiPXQt54Es=:9IYQdYBamq+Xb6JVydt0yX
+ ngDglnl/G7B9zcWXfFAYw3vIA+SYhpAr2lxBW7g5cG5tQtTd3mc8u3HXqIrk0iUvPal14pbfB
+ h9eMjHvayGDcI9KYyoDTK6S2rprl0pV3qFdh9mfIaregLKrA0+RkxP/IXezCXOB3EXp0Hp28f
+ RfXg5/bDBpcbQL/V9U6F2q24m44Icp76OfMcbuAlny2mN/QqVIjgLQ1cXBpOtlYbG/1U0vKEG
+ mqTm+rEE0/61L7v0aZM+TsiBw0XrFcqs3ygd8CB+ZIpoi9Y7jnzsWWthpqc5abnrnAa6pJclz
+ oEWC0b1dYVOzcFv/jyWL4F338dIL3WZmUNLaKq8+k1omHiWVK9DqW0VsrWBj8YC6dom4kphZT
+ QKJpbqxlbi8LQlkgvXKiZvYukbTH3R04OhMt/ostar8OWMbL7jbMdc0M7FE2A
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kalyan Thota <kalyant@codeaurora.org>
+On 12.02.21 10:58, Linus Walleij wrote:
 
-Set the flag vblank_disable_immediate = true to turn off vblank irqs
-immediately as soon as drm_vblank_put is requested so that there are
-no irqs triggered during idle state. This will reduce cpu wakeups
-and help in power saving.
+Hi,
 
-To enable vblank_disable_immediate flag the underlying KMS driver
-needs to support high precision vblank timestamping and also a
-reliable way of providing vblank counter which is incrementing
-at the leading edge of vblank.
+> I think Intel people often take the stance that the ACPI DSDT (or whatever)
+> needs to be fixed.
 
-This patch also brings in changes to support vblank_disable_immediate
-requirement in dpu driver.
+It should, actually board/firmware vendors should think more carefully
+and do it right in the first place. But reality is different. And
+firmware upgrade often is anything but easy (as soon as we leave the
+field of average Joh Doe's home PC)
 
-Changes in v1:
- - Specify reason to add vblank timestamp support. (Rob Clark)
- - Add changes to provide vblank counter from dpu driver.
+> If the usecase is to explicitly work around deployed firmware that cannot
+> and will not be upgraded/fixed by describing the hardware using DT
+> instead, based on just the DMI ID then we should spell that out
+> explicitly.
 
-Changes in v2:
- - Fix warn stack reported by Rob Clark with v2 patch
+Okay, maybe I should have stated this more clearly.
 
-Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    | 80 +++++++++++++++++++++++++++++
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 28 +++++++++-
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h | 11 ++++
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     |  5 ++
- 4 files changed, 123 insertions(+), 1 deletion(-)
+OTOH, the scope is also a little bit greater: certain external cards
+that don't need much special handling for the card itself, just
+enumerate devices (and connections between them) using existing drivers.
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-index d4662e8..9a80981 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-@@ -65,6 +65,83 @@ static void dpu_crtc_destroy(struct drm_crtc *crtc)
- 	kfree(dpu_crtc);
- }
- 
-+static struct drm_encoder *get_encoder_from_crtc(struct drm_crtc *crtc)
-+{
-+	struct drm_device *dev = crtc->dev;
-+	struct drm_encoder *encoder;
-+
-+	drm_for_each_encoder(encoder, dev)
-+		if (encoder->crtc == crtc)
-+			return encoder;
-+
-+	return NULL;
-+}
-+
-+static u32 dpu_crtc_get_vblank_counter(struct drm_crtc *crtc)
-+{
-+	struct drm_encoder *encoder;
-+
-+	encoder = get_encoder_from_crtc(crtc);
-+	if (!encoder) {
-+		DRM_ERROR("no encoder found for crtc %d\n", crtc->index);
-+		return false;
-+	}
-+
-+	return dpu_encoder_get_frame_count(encoder);
-+}
-+
-+static bool dpu_crtc_get_scanout_position(struct drm_crtc *crtc,
-+					   bool in_vblank_irq,
-+					   int *vpos, int *hpos,
-+					   ktime_t *stime, ktime_t *etime,
-+					   const struct drm_display_mode *mode)
-+{
-+	unsigned int pipe = crtc->index;
-+	struct drm_encoder *encoder;
-+	int line, vsw, vbp, vactive_start, vactive_end, vfp_end;
-+
-+	encoder = get_encoder_from_crtc(crtc);
-+	if (!encoder) {
-+		DRM_ERROR("no encoder found for crtc %d\n", pipe);
-+		return false;
-+	}
-+
-+	vsw = mode->crtc_vsync_end - mode->crtc_vsync_start;
-+	vbp = mode->crtc_vtotal - mode->crtc_vsync_end;
-+
-+	/*
-+	 * the line counter is 1 at the start of the VSYNC pulse and VTOTAL at
-+	 * the end of VFP. Translate the porch values relative to the line
-+	 * counter positions.
-+	 */
-+
-+	vactive_start = vsw + vbp + 1;
-+	vactive_end = vactive_start + mode->crtc_vdisplay;
-+
-+	/* last scan line before VSYNC */
-+	vfp_end = mode->crtc_vtotal;
-+
-+	if (stime)
-+		*stime = ktime_get();
-+
-+	line = dpu_encoder_get_linecount(encoder);
-+
-+	if (line < vactive_start)
-+		line -= vactive_start;
-+	else if (line > vactive_end)
-+		line = line - vfp_end - vactive_start;
-+	else
-+		line -= vactive_start;
-+
-+	*vpos = line;
-+	*hpos = 0;
-+
-+	if (etime)
-+		*etime = ktime_get();
-+
-+	return true;
-+}
-+
- static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
- 		struct dpu_plane_state *pstate, struct dpu_format *format)
- {
-@@ -1243,6 +1320,8 @@ static const struct drm_crtc_funcs dpu_crtc_funcs = {
- 	.early_unregister = dpu_crtc_early_unregister,
- 	.enable_vblank  = msm_crtc_enable_vblank,
- 	.disable_vblank = msm_crtc_disable_vblank,
-+	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
-+	.get_vblank_counter = dpu_crtc_get_vblank_counter,
- };
- 
- static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
-@@ -1251,6 +1330,7 @@ static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
- 	.atomic_check = dpu_crtc_atomic_check,
- 	.atomic_begin = dpu_crtc_atomic_begin,
- 	.atomic_flush = dpu_crtc_atomic_flush,
-+	.get_scanout_position = dpu_crtc_get_scanout_position,
- };
- 
- /* initialize crtc */
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index f7f5c25..fb6546c 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -425,6 +425,32 @@ int dpu_encoder_helper_unregister_irq(struct dpu_encoder_phys *phys_enc,
- 	return 0;
- }
- 
-+int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc)
-+{
-+	struct dpu_encoder_virt *dpu_enc;
-+	struct dpu_encoder_phys *phy_enc;
-+
-+	dpu_enc = to_dpu_encoder_virt(drm_enc);
-+	phy_enc = dpu_enc ? dpu_enc->cur_master : NULL;
-+
-+	return phy_enc ? atomic_read(&phy_enc->vsync_cnt) : 0;
-+}
-+
-+int dpu_encoder_get_linecount(struct drm_encoder *drm_enc)
-+{
-+	struct dpu_encoder_virt *dpu_enc;
-+	struct dpu_encoder_phys *phys;
-+	int linecount = 0;
-+
-+	dpu_enc = to_dpu_encoder_virt(drm_enc);
-+	phys = dpu_enc ? dpu_enc->cur_master : NULL;
-+
-+	if (phys && phys->ops.get_line_count)
-+		linecount = phys->ops.get_line_count(phys);
-+
-+	return linecount;
-+}
-+
- void dpu_encoder_get_hw_resources(struct drm_encoder *drm_enc,
- 				  struct dpu_encoder_hw_resources *hw_res)
- {
-@@ -1296,12 +1322,12 @@ static void dpu_encoder_vblank_callback(struct drm_encoder *drm_enc,
- 	DPU_ATRACE_BEGIN("encoder_vblank_callback");
- 	dpu_enc = to_dpu_encoder_virt(drm_enc);
- 
-+	atomic_inc(&phy_enc->vsync_cnt);
- 	spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
- 	if (dpu_enc->crtc)
- 		dpu_crtc_vblank_callback(dpu_enc->crtc);
- 	spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
- 
--	atomic_inc(&phy_enc->vsync_cnt);
- 	DPU_ATRACE_END("encoder_vblank_callback");
- }
- 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-index b491346..99a5d73 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-@@ -156,5 +156,16 @@ void dpu_encoder_prepare_commit(struct drm_encoder *drm_enc);
-  */
- void dpu_encoder_set_idle_timeout(struct drm_encoder *drm_enc,
- 							u32 idle_timeout);
-+/**
-+ * dpu_encoder_get_linecount - get interface line count for the encoder.
-+ * @drm_enc:    Pointer to previously created drm encoder structure
-+ */
-+int dpu_encoder_get_linecount(struct drm_encoder *drm_enc);
-+
-+/**
-+ * dpu_encoder_get_frame_count - get interface frame count for the encoder.
-+ * @drm_enc:    Pointer to previously created drm encoder structure
-+ */
-+int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc);
- 
- #endif /* __DPU_ENCODER_H__ */
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index 374b0e8..ed636f1 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -14,6 +14,7 @@
- 
- #include <drm/drm_crtc.h>
- #include <drm/drm_file.h>
-+#include <drm/drm_vblank.h>
- 
- #include "msm_drv.h"
- #include "msm_mmu.h"
-@@ -1020,6 +1021,10 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
- 	 */
- 	dev->mode_config.allow_fb_modifiers = true;
- 
-+	dev->max_vblank_count = 0xffffffff;
-+	/* Disable vblank irqs aggressively for power-saving */
-+	dev->vblank_disable_immediate = true;
-+
- 	/*
- 	 * _dpu_kms_drm_obj_init should create the DRM related objects
- 	 * i.e. CRTCs, planes, encoders, connectors and so forth
+That's a pretty common scenario in industrial backplane systems, where
+we have lots of different (even application specific) cards, usually
+composed of standard chips, that can be identified by some ID, but
+cannot describe themselves. We have to write lots of specific drivers
+for them, usually just for instantiating existing drivers. (we rarely
+see such code going towards mainline).
+
+A similar case (mainlined) seems to be the RCAR display unit - they're
+using dt overlays that are built into the driver and applied by it
+based on the detected DU at runtime. RCAR seems to be a pure DT
+platform, so that's an obvious move. APU2/3/4 is ACPI based, so I went
+in a different direction - but I'm now investigating how to make DT
+overlays work on an ACPI platform (eg. needs some initial nodes, ...)
+In case that's successful, I'll rework my RFC to use overlays, and
+it will become much smaller (my oftree core changes then won't be
+necessary anymore).
+
+> It feels a bit like fixing a problem using a different hardware description
+> just because we can. Look in drivers/gpio/gpiolib-acpi.c
+> table gpiolib_acpi_quirks[]. It's just an example how this is fixed using
+> fine granular ACPI-specific mechanisms at several places in the kernel
+> instead of just tossing out the whole description and redoing it in
+> device tree.
+
+I'm quite reluctant to put everything in there. Theoretically, for apu
+case, I could prevent enumerating the incomplete gpios there, but the
+actual driver setup still remains (certainly don't wanna put that into
+such a global place). But the original problem of having to write so
+much code for just instantiating generic drivers remains. And
+distributing knowledge of certain devices over several places doesn't
+feel like a good idea to me.
+
+
+--mtx
+
 -- 
-2.7.4
-
+---
+Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
+werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
+GPG/PGP-Schlüssel zu.
+---
+Enrico Weigelt, metux IT consult
+Free software and Linux embedded engineering
+info@metux.net -- +49-151-27565287
