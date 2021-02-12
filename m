@@ -2,88 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 608AD319CBA
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 11:38:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D6AB319D2C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 12:18:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230264AbhBLKhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 05:37:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53456 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229653AbhBLKgy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Feb 2021 05:36:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0AB8B64E6C;
-        Fri, 12 Feb 2021 10:36:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613126172;
-        bh=l1HVYolc9K5zoog78E0hg6Q9NscFKBn5UiLoKkcCsIk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bm+6w43eahWDKpTKO5a8Ic37OrDmUsbmK9OwoGL2tGsLEcoAJV/BsN9fl7bLGkGpu
-         AGS+ZlMBfZWAhCeBUHiJqcFi3I+2sPo9yUkD8qfguMQAgTMBMa+AJoqV94BTuuFuJJ
-         qEc4D+OJtZfq5J+MEcPk6dmMOKD1tNIcF7cVQ06bpIki++3wVeDl7XlezODsQ6aUns
-         KsZkaOlIP6UmUx5K+7VX0+fITHQcWS2UkhiWN6JqVbDCKi99gXjAea4SpyPJ5H7zIy
-         rd86qUF195JJ5tpMVNUXuIJ8R0dSwqVccHdfpPZUBRRd83WLWw54DGVTWp+oEfcc/j
-         1/oM9yEyV+3Og==
-Date:   Fri, 12 Feb 2021 11:36:07 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Alain Volmat <alain.volmat@foss.st.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        pierre-yves.mordret@foss.st.com, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@foss.st.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@foss.st.com
-Subject: Re: [PATCH 1/5] i2c: stm32f7: fix configuration of the digital filter
-Message-ID: <20210212103607.GC8038@ninjato>
-References: <1612515104-838-1-git-send-email-alain.volmat@foss.st.com>
- <1612515104-838-2-git-send-email-alain.volmat@foss.st.com>
+        id S229653AbhBLLRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 06:17:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53328 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229965AbhBLLRw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 06:17:52 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85474C061756
+        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 03:17:12 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id r2so2489655plr.10
+        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 03:17:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hv7MSJVHtHXztJBfrSH2Nz4awP2XcECwcmmy9ZhdyEc=;
+        b=U7q1M4AUe1upYev75AvznpBzLqxHDrs6VH71WqHkutQDeQjhqE/ItVHv1YIo3kPjZx
+         cxR2bl9eKMo4V+OqjQ4neNup/bok1cG0545eQg2BN6rK1oK9N84+NOwqklVTGm5s49vx
+         PE37zK4yIEgoMfFYtFgZdjsW7yEwBSEYNC40M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hv7MSJVHtHXztJBfrSH2Nz4awP2XcECwcmmy9ZhdyEc=;
+        b=QZr/Me2SXpzuynyB+HresouBx8REm2DqUL7wEo5M5duZX8Bh1L/ub4KUNcyEjJSnEY
+         dvtAeW/0mSwLUT5RDMRzOhegkY26jSXEl5xatVzmNGqWlE9KFCKFXDOxu/DrYeV3SugU
+         wrdtmjcG3oWS0nNbLegkAK0VNlIMlimX7uIuiu90ShxpnsJGJr4RrQ5aFU1nVY2NKyRO
+         yyazi4HdEBCJlzMheIDe7SB5xoG/Kwy08JZGgzKlftt58fBGe7f18cAOfizCw5IBNjSG
+         +2WgcNwiCw8OvgikpuMOnxwn5xq8jBwJfA0bWenxDD4PJlqrY0WTGzIdhbeuiewrP07d
+         qlFw==
+X-Gm-Message-State: AOAM531QXlb7zdVesJvT5+0yH/IJWdJNNJkau3aKevH6dzXaCURo1Wjh
+        pGQ2yLWcmZXmgNxETvoL8N2efhEJ5C6GNA==
+X-Google-Smtp-Source: ABdhPJxEuXqr7x4iyj35D8dZS/g8HLKTsn1k/I7QIfJPLc3C7aTm8jXEWF05G1Q2LzoSD9+BCGi9mA==
+X-Received: by 2002:a17:90a:fe89:: with SMTP id co9mr2334345pjb.83.1613128631779;
+        Fri, 12 Feb 2021 03:17:11 -0800 (PST)
+Received: from shiro.work (p345188-ipngn200408sizuokaden.shizuoka.ocn.ne.jp. [124.98.97.188])
+        by smtp.googlemail.com with ESMTPSA id h20sm5752662pfv.164.2021.02.12.03.17.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Feb 2021 03:17:11 -0800 (PST)
+From:   Daniel Palmer <daniel@0x0f.com>
+To:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Daniel Palmer <daniel@0x0f.com>
+Subject: [RFC PATCH 0/1] Potential binding MStar clk muxes.
+Date:   Fri, 12 Feb 2021 20:16:48 +0900
+Message-Id: <20210212111649.3251306-1-daniel@0x0f.com>
+X-Mailer: git-send-email 2.30.0.rc2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="TYecfFk8j8mZq+dy"
-Content-Disposition: inline
-In-Reply-To: <1612515104-838-2-git-send-email-alain.volmat@foss.st.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi all,
 
---TYecfFk8j8mZq+dy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+While getting this driver ready to send I realised the current
+binding I have is pretty unwieldly. I'm thinking of refactoring
+the driver to work like this binding desribes and would like
+some feedback before I rework the driver.
 
-On Fri, Feb 05, 2021 at 09:51:40AM +0100, Alain Volmat wrote:
-> The digital filter related computation are present in the driver
-> however the programming of the filter within the IP is missing.
-> The maximum value for the DNF is wrong and should be 15 instead of 16.
->=20
-> Fixes: aeb068c57214 ("i2c: i2c-stm32f7: add driver")
->=20
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+Thanks,
 
-Applied to for-current, thanks!
+Daniel
 
-The rest will go in within the next cycle.
+Daniel Palmer (1):
+  dt-bindings: clk: Mstar msc313 clkgen mux
 
+ .../clock/mstar,msc313-clkgen-mux.yaml        | 87 +++++++++++++++++++
+ 1 file changed, 87 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/mstar,msc313-clkgen-mux.yaml
 
---TYecfFk8j8mZq+dy
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.30.0.rc2
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmAmWhcACgkQFA3kzBSg
-KbYsWA/9GOAvOK+8eTc0vi7v5AZ7i77HxG3vZXq6Bm4XBBtXmV0eqg/U+Mr3IIC5
-m6eq7LSkVtalSlJFl1penaXyJ+/d8EEWsZ2sPAFtolODkx5qzL7tZuyT3eu7br0H
-VBSmAJeXUzqfdv96xL5WO2ypeMH8WljsClbp57fUxVqePxZQ9Tq0RVUD0ayyiwG+
-m7tA1uMjQNn+RpYUxF7XdO7TmmN4SHqojOvGYX9qZytKXhD9Ytiw+490a31N2f9r
-dHR/HN4CQdP1kIK0lKPvgQzd2b8/WuBokde7TA3fTwMog0C0Ywe0mPYjRYDwg126
-znIoc646reRXWDNIAdr3g7BiZrDI1E76LzCsqaypoo5E3hz8pkPuo5gO8Mrrt6wN
-aPOf6n8DxTFLvUi6XCDTpbItWC8L2Wi/XRj1gwHS0i67KHh9LZuMns6KDK6JxGyT
-ve4dfYZgG4B0KTdwTrX+EfTLkAQWpr/szYaxqtfg2L//62feBuF98A4IyXJ6eQkB
-mDCYjrQ8ZKGmnEHWV1+dr26M21WeoLcq6eDMOntne4zCEKOCxndtkZTCnDWUS7A/
-FXTWHU3TEIYHaVuDhpqEs4ulCEITApDkNseJToMjbAWaxVmQ4xBetlJ44F4+ZTrs
-YYERqcUpxvea2Iz07wgqChCMCurqPNxrKPivgn+6KKePfx634/o=
-=RiX0
------END PGP SIGNATURE-----
-
---TYecfFk8j8mZq+dy--
