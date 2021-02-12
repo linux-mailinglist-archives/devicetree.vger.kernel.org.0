@@ -2,86 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45F17319A6D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 08:34:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDDC4319A99
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 08:41:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbhBLHca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 02:32:30 -0500
-Received: from mail-lf1-f43.google.com ([209.85.167.43]:40270 "EHLO
-        mail-lf1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbhBLHa3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 02:30:29 -0500
-Received: by mail-lf1-f43.google.com with SMTP id v24so11767969lfr.7;
-        Thu, 11 Feb 2021 23:30:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
-         :in-reply-to:references:mime-version:date:user-agent
-         :content-transfer-encoding;
-        bh=oHM+FbSwfw+bAEOtvRPNgvbEO07PEfYAR+cRoJRtIhE=;
-        b=IBCWWsslmaeYWDjFjxskJd3VDUxunkKuHAa7xftANS2opSO46uaPvDBoFhnH7QEBz5
-         lcG8D8KYdjMc40cN+Le907oJnxH0RL9V/O0bviSRgMSvSqMbIpcKcwzdtzCsFJkXSV2M
-         9a8tzjclRiVJnMqOUvjuQqttYQx3wu9vhxRnmOSkMGJ0oC+CXZQ5pU0CW8LbdWokBl0F
-         sYbNumBNzXpdM6qSBXPuwM6iNI0j9Hfwqw235U8tS6cR9nrtnxlOMgrK9mZUs7JhXDJS
-         INOW+yBsvY98iDisuVtvnNyUQNik2tll5iztic6/eJt1FsiSFQkapSUnfBkgNbB8tNFL
-         CD4w==
-X-Gm-Message-State: AOAM53144Jt8pGvUEtxq6PTSExCifDevlrwdaLcOS/UrR5UTxKhzElxM
-        rqM4KG5BpUh7DiMQoxduQVM=
-X-Google-Smtp-Source: ABdhPJxsTpcP9GhEE4ZXq/AR57UPCrjzy+mLS/MTfYx4ynoRV0m9jMpm49v8AXzQrU+hc8gewveWbQ==
-X-Received: by 2002:a05:6512:3743:: with SMTP id a3mr936281lfs.8.1613114985467;
-        Thu, 11 Feb 2021 23:29:45 -0800 (PST)
-Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id w3sm883599lft.35.2021.02.11.23.29.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Feb 2021 23:29:44 -0800 (PST)
-Message-ID: <b7019810a6450f43714573f227b0082f8e029634.camel@fi.rohmeurope.com>
-Subject: Re: [RFC PATCH 4/7] regulator: add property parsing and callbacks
- to set protection limits
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Reply-To: matti.vaittinen@fi.rohmeurope.com
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-In-Reply-To: <19d533dbc99d610c40b9023dba7da7a9eaadbe3d.1613042245.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1613042245.git.matti.vaittinen@fi.rohmeurope.com>
-         <19d533dbc99d610c40b9023dba7da7a9eaadbe3d.1613042245.git.matti.vaittinen@fi.rohmeurope.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S229782AbhBLHgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 02:36:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44358 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230005AbhBLHe5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Feb 2021 02:34:57 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D2F6E64DDF;
+        Fri, 12 Feb 2021 07:34:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1613115251;
+        bh=neLigVsdoN+CYxyJjxX/qAVzIuWLkdZyDMtjMwYqrLI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HXxvvzoLkjPDeR3JvcBQ0yM6umQwZkmsCLbD2ensoMiDSwJ12mr5vWKrB0DrZiHW7
+         Gekvt4dNU/S+p5AIGSg4dt+0WYDyTcu/6XVXII5HxZO1gqLk/3yDI3Wlulmpn0zOJp
+         7rgsu6cSkxMG72w51fu99lYoEdiG5ZacmY648UG0=
+Date:   Fri, 12 Feb 2021 08:34:09 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michael Ellerman <mpe@ellerman.id.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Paul Mackerras <paulus@samba.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Julia Lawall <Julia.Lawall@inria.fr>,
+        Gilles Muller <Gilles.Muller@inria.fr>,
+        Nicolas Palix <nicolas.palix@imag.fr>,
+        Michal Marek <michal.lkml@markovi.net>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org, cocci@systeme.lip6.fr,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Subject: Re: [PATCH v2 0/2] of: of_device.h cleanups
+Message-ID: <YCYvcUNiPoG/ipyj@kroah.com>
+References: <20210211232745.1498137-1-robh@kernel.org>
 MIME-Version: 1.0
-Date:   Fri, 12 Feb 2021 09:29:39 +0200
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210211232745.1498137-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Feb 11, 2021 at 05:27:43PM -0600, Rob Herring wrote:
+> This is a couple of cleanups for of_device.h. They fell out from my
+> attempt at decoupling of_device.h and of_platform.h which is a mess
+> and I haven't finished, but there's no reason to wait on these.
 
-On Thu, 2021-02-11 at 14:35 +0200, Matti Vaittinen wrote:
-> Add DT property parsing code and setting callback for regulator
-> over/under
-> voltage, over-current and temperature error limits.
-> 
-> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> ---
->  drivers/regulator/core.c                  | 122
-> +++++++++++++++++++++-
->  drivers/regulator/of_regulator.c          |  58 ++++++++++
->  drivers/regulator/qcom-labibb-regulator.c |  10 +-
->  drivers/regulator/stpmic1_regulator.c     |  17 ++-
->  include/linux/regulator/driver.h          |  41 +++++++-
->  include/linux/regulator/machine.h         |  26 +++++
->  6 files changed, 267 insertions(+), 7 deletions(-)
-
-Just a note. I did somehow miss the qcom_spmi-regulator.c which also
-uses the .set_over_current_protection. I will include that file in next
-version if the idea is still seen worthy. Sorry for the incompleteness.
-
-Best Regards
-	Matti Vaittinen
-
-
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
