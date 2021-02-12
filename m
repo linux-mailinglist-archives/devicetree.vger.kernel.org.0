@@ -2,157 +2,346 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3411E319A07
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 07:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8DD3319A1D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 08:13:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229608AbhBLGrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 01:47:05 -0500
-Received: from mo-csw1114.securemx.jp ([210.130.202.156]:60510 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbhBLGrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 01:47:04 -0500
-Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 11C6ijka021042; Fri, 12 Feb 2021 15:44:46 +0900
-X-Iguazu-Qid: 2wGqhgW4xdcYh6o0w8
-X-Iguazu-QSIG: v=2; s=0; t=1613112285; q=2wGqhgW4xdcYh6o0w8; m=xuBx/1YAhJIgG+Ao+2XQamK3cXyfCAXjCXBDLa2TDbA=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1112) id 11C6ii5P016481;
-        Fri, 12 Feb 2021 15:44:44 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 11C6iiNi014961;
-        Fri, 12 Feb 2021 15:44:44 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 11C6ihk4018829;
-        Fri, 12 Feb 2021 15:44:44 +0900
-Date:   Fri, 12 Feb 2021 15:44:43 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: Add bindings for Toshiba Visconti
- PWM Controller
-X-TSB-HOP: ON
-Message-ID: <20210212064443.ahjoby4w3pdi65uu@toshiba.co.jp>
-References: <20200917223140.227542-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20200917223140.227542-2-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20200923203735.GA1257022@bogus>
+        id S229719AbhBLHLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 02:11:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229592AbhBLHLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 02:11:40 -0500
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDF06C061574
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 23:10:59 -0800 (PST)
+Received: by mail-qk1-x72d.google.com with SMTP id h8so7869011qkk.6
+        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 23:10:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AgHPpwugO+2c7pcQnevcfOS8q102WrSptiZIqx+0+ZI=;
+        b=P6AC+4DRL1B/DZ03XlhA5vtHO1iFHvrH9OoEV2734g1W2wE+0rueaMhn7q+jZ2n24I
+         2V8VVAqz1vCIqrwNfTEnr0m60cn17dqmmRsepRJQ6tZACwBQlOo0DE5Mwf+QqsUxadKX
+         oUTt5PTkwxDPKQwKrcZvPG5YqSxG7zh7FgzQEq3AQWBorqZEsBYvBe3hp8QD2nFhNBi0
+         LFKSgIyxm4XJWrV85Q2K/vLGXnDlScFW/ECRr+qr0Dd6Yb1Jiukef6u00tZfjI8pSF6V
+         Z7zHJiUBrYp4q10rYTgQimoLnFMD3kURtbsvoKRDGaDVhgT1NhLo3yKoOxgFclMA8lQI
+         +XPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AgHPpwugO+2c7pcQnevcfOS8q102WrSptiZIqx+0+ZI=;
+        b=b4DIlpeX0AKT2xJx3I92tfIpb/5acW5Cy8KTFv2lqPl8K17754U9AR0Nx4w5WD2eXU
+         Hvc8VIUNzkFi/j/VDTUqtxvHwGN25ccuDWQELJa/HUmbGzRmFVYRCYbIM/V0mQVQGxAT
+         Km/VrfSaD+eePQFr2jCvHo+x+FxdHFUKmhQ/Bfmv6IPAiCnylajdg3kY7Him9eoBH+j0
+         6SqFFOmATmrFxcf+BrEeo1e2vUJc/nPX/qBHBVJeviaHYJgfi7DFqqRKYN/i+fML/ahc
+         589InmBl8VDxOe+sWQDZ9bV0nCyGjhaB31tCcWmkH3+yJmltE4P/E1WQDfwT5MQQK6wI
+         yIfg==
+X-Gm-Message-State: AOAM533kZOMVQmLhp2J1UjX2X1HxCWN/wTAwhJ+QrILhR/p1D71Qil1C
+        mdnrXZOkWz9BsKlJykhKyvyp0K62XThwkt8Enn6cQg==
+X-Google-Smtp-Source: ABdhPJzTtv/TVkJ2E2Cscs++1DEzDpKHRAYmfk2zkDygJqoGGsAP7nzYhYyYoSNxBLzCJgEYVL4fcDdVtrdbmb/J4T4=
+X-Received: by 2002:a37:a889:: with SMTP id r131mr1463885qke.410.1613113858326;
+ Thu, 11 Feb 2021 23:10:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200923203735.GA1257022@bogus>
+References: <20210205033415.3320439-1-kyletso@google.com> <20210205033415.3320439-4-kyletso@google.com>
+ <20210212041756.GC103223@roeck-us.net>
+In-Reply-To: <20210212041756.GC103223@roeck-us.net>
+From:   Kyle Tso <kyletso@google.com>
+Date:   Fri, 12 Feb 2021 15:10:42 +0800
+Message-ID: <CAGZ6i=2LfU16K7HHVOwVsHvxpL3rQtVhnabScAReqT9cY3HWyw@mail.gmail.com>
+Subject: Re: [PATCH v6 3/7] usb: typec: tcpm: Determine common SVDM Version
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        USB <linux-usb@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Thank for your review.
-
-On Wed, Sep 23, 2020 at 02:37:35PM -0600, Rob Herring wrote:
-> On Fri, Sep 18, 2020 at 07:31:39AM +0900, Nobuhiro Iwamatsu wrote:
-> > Add bindings for the Toshiba Visconti PWM Controller.
-> > 
-> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+On Fri, Feb 12, 2021 at 12:17 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On Fri, Feb 05, 2021 at 11:34:11AM +0800, Kyle Tso wrote:
+> > PD Spec Revision 3.0 Version 2.0 + ECNs 2020-12-10
+> >   6.4.4.2.3 Structured VDM Version
+> >   "The Structured VDM Version field of the Discover Identity Command
+> >   sent and received during VDM discovery Shall be used to determine the
+> >   lowest common Structured VDM Version supported by the Port Partners or
+> >   Cable Plug and Shall continue to operate using this Specification
+> >   Revision until they are Detached."
+> >
+> > Also clear the fields newly defined in SVDM version 2.0 if the
+> > negotiated SVDM version is 1.0.
+> >
+> > Signed-off-by: Kyle Tso <kyletso@google.com>
 > > ---
-> >  .../bindings/pwm/toshiba,pwm-visconti.yaml    | 48 +++++++++++++++++++
-> >  1 file changed, 48 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml b/Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml
-> > new file mode 100644
-> > index 000000000000..9145e9478b41
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml
-> > @@ -0,0 +1,48 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> 
-> Dual license new bindings please.
-> 
-> (GPL-2.0-only OR BSD-2-Clause)
-> 
-
-OK, I will chnage to dual license.
-
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pwm/toshiba,pwm-visconti.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > Changes since v5:
+> > - follow the changes of "usb: typec: Manage SVDM version"
+> > - remove the "reset to default". Now the default SVDM version will be
+> >   set when calling to typec_register_partner
+> >
+> >  drivers/usb/typec/tcpm/tcpm.c | 71 ++++++++++++++++++++++++++++++-----
+> >  1 file changed, 61 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> > index 9aadb1e1bec5..b45cd191a8a4 100644
+> > --- a/drivers/usb/typec/tcpm/tcpm.c
+> > +++ b/drivers/usb/typec/tcpm/tcpm.c
+> > @@ -1475,8 +1475,10 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+> >                       const u32 *p, int cnt, u32 *response,
+> >                       enum adev_actions *adev_action)
+> >  {
+> > +     struct typec_port *typec = port->typec_port;
+> >       struct typec_altmode *pdev;
+> >       struct pd_mode_data *modep;
+> > +     int svdm_version;
+> >       int rlen = 0;
+> >       int cmd_type;
+> >       int cmd;
+> > @@ -1493,6 +1495,10 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+> >       pdev = typec_match_altmode(port->partner_altmode, ALTMODE_DISCOVERY_MAX,
+> >                                  PD_VDO_VID(p[0]), PD_VDO_OPOS(p[0]));
+> >
+> > +     svdm_version = typec_get_negotiated_svdm_version(typec);
+> > +     if (svdm_version < 0)
+> > +             return 0;
 > > +
-> > +title: Toshiba Visconti PWM Controller
+> >       switch (cmd_type) {
+> >       case CMDT_INIT:
+> >               switch (cmd) {
+> > @@ -1500,10 +1506,22 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+> >                       if (PD_VDO_VID(p[0]) != USB_SID_PD)
+> >                               break;
+> >
+> > +                     if (PD_VDO_SVDM_VER(p[0]) < svdm_version)
+> > +                             typec_partner_set_svdm_version(port->partner,
+> > +                                                            PD_VDO_SVDM_VER(p[0]));
+> >                       /* 6.4.4.3.1: Only respond as UFP (device) */
+> >                       if (port->data_role == TYPEC_DEVICE &&
+> >                           port->nr_snk_vdo) {
+> > -                             for (i = 0; i <  port->nr_snk_vdo; i++)
+> > +                             /*
+> > +                              * Product Type DFP and Connector Type are not defined in SVDM
+> > +                              * version 1.0 and shall be set to zero.
+> > +                              */
+> > +                             if (typec_get_negotiated_svdm_version(typec) < SVDM_VER_2_0)
+>
+> Why not
+>                                 if (svdm_version)
+> ?
+>
+
+The "svdm_version" at this line is the cached value of
+"partner->svdm_version" at the time from below lines.
+In the case of the first calling to "tcpm_pd_svdm", this value is the
+default value set when "typec_register_partner" is called.
+
+>>>>>>>>>>>>>
+       pdev = typec_match_altmode(port->partner_altmode, ALTMODE_DISCOVERY_MAX,
+                                  PD_VDO_VID(p[0]), PD_VDO_OPOS(p[0]));
+
++     svdm_version = typec_get_negotiated_svdm_version(typec);
++     if (svdm_version < 0)
++             return 0;
+<<<<<<<<<<<<<
+
+"partner->svdm_version" is updated afterward If someone calls
+"typec_partner_set_svdm_version" like these lines:
+>>>>>>>>>>>>>
++                     if (PD_VDO_SVDM_VER(p[0]) < svdm_version)
++                             typec_partner_set_svdm_version(port->partner,
++
+PD_VDO_SVDM_VER(p[0]));
+<<<<<<<<<<<<<
+
+However, this won't update the local variable "svdm_version". That's
+why we need to get the value of "partner->svdm_version" again.
+Unless every time the local variable "svdm_version" is updated when
+"typec_partner_set_svdm_version" is called.
+
+
+> > +                                     response[1] = port->snk_vdo[0] & ~IDH_DFP_MASK
+> > +                                                   & ~IDH_CONN_MASK;
+> > +                             else
+> > +                                     response[1] = port->snk_vdo[0];
+> > +                             for (i = 1; i <  port->nr_snk_vdo; i++)
+> >                                       response[i + 1] = port->snk_vdo[i];
+> >                               rlen = port->nr_snk_vdo + 1;
+> >                       }
+> > @@ -1532,6 +1550,8 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+> >                       response[0] = p[0] | VDO_CMDT(CMDT_RSP_BUSY);
+> >                       rlen = 1;
+> >               }
+> > +             response[0] = (response[0] & ~VDO_SVDM_VERS_MASK) |
+> > +                           (VDO_SVDM_VERS(typec_get_negotiated_svdm_version(typec)));
+>
+> Unnecessary ( ) around VDO_SVDM_VERS. Also, why not svdm_version ?
+>
+> >               break;
+> >       case CMDT_RSP_ACK:
+> >               /* silently drop message if we are not connected */
+> > @@ -1542,19 +1562,22 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+> >
+> >               switch (cmd) {
+> >               case CMD_DISCOVER_IDENT:
+> > +                     if (PD_VDO_SVDM_VER(p[0]) < svdm_version)
+> > +                             typec_partner_set_svdm_version(port->partner,
+> > +                                                            PD_VDO_SVDM_VER(p[0]));
+> >                       /* 6.4.4.3.1 */
+> >                       svdm_consume_identity(port, p, cnt);
+> > -                     response[0] = VDO(USB_SID_PD, 1, SVDM_VER_1_0, CMD_DISCOVER_SVID);
+> > +                     response[0] = VDO(USB_SID_PD, 1, typec_get_negotiated_svdm_version(typec),
+>
+> Guess I am a bit confused about the use of svdm_version vs.
+> typec_get_negotiated_svdm_version(typec). Is there some rationale
+> for using one vs. the other ?
+>
+
+The local variable "svdm_version" is get at the beginning of this function.
+It cannot be trusted if someone calls "typec_partner_set_svdm_version"
+before you use the local variable.
+Unless, again,  it is updated everytime the
+"typec_partner_set_svdm_version" is called.
+
+
+> > +                                       CMD_DISCOVER_SVID);
+> >                       rlen = 1;
+> >                       break;
+> >               case CMD_DISCOVER_SVID:
+> >                       /* 6.4.4.3.2 */
+> >                       if (svdm_consume_svids(port, p, cnt)) {
+> > -                             response[0] = VDO(USB_SID_PD, 1, SVDM_VER_1_0,
+> > -                                               CMD_DISCOVER_SVID);
+> > +                             response[0] = VDO(USB_SID_PD, 1, svdm_version, CMD_DISCOVER_SVID);
+> >                               rlen = 1;
+> >                       } else if (modep->nsvids && supports_modal(port)) {
+> > -                             response[0] = VDO(modep->svids[0], 1, SVDM_VER_1_0,
+> > +                             response[0] = VDO(modep->svids[0], 1, svdm_version,
+> >                                                 CMD_DISCOVER_MODES);
+> >                               rlen = 1;
+> >                       }
+> > @@ -1565,7 +1588,7 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+> >                       modep->svid_index++;
+> >                       if (modep->svid_index < modep->nsvids) {
+> >                               u16 svid = modep->svids[modep->svid_index];
+> > -                             response[0] = VDO(svid, 1, SVDM_VER_1_0, CMD_DISCOVER_MODES);
+> > +                             response[0] = VDO(svid, 1, svdm_version, CMD_DISCOVER_MODES);
+> >                               rlen = 1;
+> >                       } else {
+> >                               tcpm_register_partner_altmodes(port);
+> > @@ -1592,6 +1615,8 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+> >                       /* Unrecognized SVDM */
+> >                       response[0] = p[0] | VDO_CMDT(CMDT_RSP_NAK);
+> >                       rlen = 1;
+> > +                     response[0] = (response[0] & ~VDO_SVDM_VERS_MASK) |
+> > +                                   (VDO_SVDM_VERS(svdm_version));
+> >                       break;
+> >               }
+> >               break;
+> > @@ -1611,6 +1636,8 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+> >                       /* Unrecognized SVDM */
+> >                       response[0] = p[0] | VDO_CMDT(CMDT_RSP_NAK);
+> >                       rlen = 1;
+> > +                     response[0] = (response[0] & ~VDO_SVDM_VERS_MASK) |
+> > +                                   (VDO_SVDM_VERS(svdm_version));
+> >                       break;
+> >               }
+> >               port->vdm_sm_running = false;
+> > @@ -1618,6 +1645,8 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+> >       default:
+> >               response[0] = p[0] | VDO_CMDT(CMDT_RSP_NAK);
+> >               rlen = 1;
+> > +             response[0] = (response[0] & ~VDO_SVDM_VERS_MASK) |
+> > +                           (VDO_SVDM_VERS(svdm_version));
+> >               port->vdm_sm_running = false;
+> >               break;
+> >       }
+> > @@ -1695,7 +1724,13 @@ static void tcpm_handle_vdm_request(struct tcpm_port *port,
+> >                       break;
+> >               case ADEV_QUEUE_VDM_SEND_EXIT_MODE_ON_FAIL:
+> >                       if (typec_altmode_vdm(adev, p[0], &p[1], cnt)) {
+> > -                             response[0] = VDO(adev->svid, 1, SVDM_VER_1_0, CMD_EXIT_MODE);
+> > +                             int svdm_version = typec_get_negotiated_svdm_version(
+> > +                                                                     port->typec_port);
+> > +                             if (svdm_version < 0)
+> > +                                     break;
 > > +
-> > +maintainers:
-> > +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > +                             response[0] = VDO(adev->svid, 1, svdm_version,
+> > +                                               CMD_EXIT_MODE);
+> >                               response[0] |= VDO_OPOS(adev->mode);
+> >                               rlen = 1;
+> >                       }
+> > @@ -1722,14 +1757,19 @@ static void tcpm_handle_vdm_request(struct tcpm_port *port,
+> >  static void tcpm_send_vdm(struct tcpm_port *port, u32 vid, int cmd,
+> >                         const u32 *data, int count)
+> >  {
+> > +     int svdm_version = typec_get_negotiated_svdm_version(port->typec_port);
+> >       u32 header;
+> >
+> > +     if (svdm_version < 0)
+> > +             return;
 > > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - toshiba,pwm-tmpv7708
-> 
-> The normal order is: vendor,soc-block
-> 
-> > +      - const: toshiba,pwm-visconti
-> 
-> Do you expect a lot of chips with the exact same version of the IP? If 
-> not drop. Future chips can always use toshiba,pwm-tmpv7708 as a 
-> fallback.
-
-
-Currently it still supports only one IP. Therefore, "toshiba, pwm-visconti"
-is enough for now. I will drop enum line..
-
-> 
+> >       if (WARN_ON(count > VDO_MAX_SIZE - 1))
+> >               count = VDO_MAX_SIZE - 1;
+> >
+> >       /* set VDM header with VID & CMD */
+> >       header = VDO(vid, ((vid & USB_SID_PD) == USB_SID_PD) ?
+> > -                     1 : (PD_VDO_CMD(cmd) <= CMD_ATTENTION), SVDM_VER_1_0, cmd);
+> > +                     1 : (PD_VDO_CMD(cmd) <= CMD_ATTENTION),
+> > +                     svdm_version, cmd);
+> >       tcpm_queue_vdm(port, header, data, count);
+> >  }
+> >
+> > @@ -2022,9 +2062,14 @@ static int tcpm_validate_caps(struct tcpm_port *port, const u32 *pdo,
+> >  static int tcpm_altmode_enter(struct typec_altmode *altmode, u32 *vdo)
+> >  {
+> >       struct tcpm_port *port = typec_altmode_get_drvdata(altmode);
+> > +     int svdm_version;
+> >       u32 header;
+> >
+> > -     header = VDO(altmode->svid, vdo ? 2 : 1, SVDM_VER_1_0, CMD_ENTER_MODE);
+> > +     svdm_version = typec_get_negotiated_svdm_version(port->typec_port);
+> > +     if (svdm_version < 0)
+> > +             return svdm_version;
 > > +
-> > +  reg:
-> > +    # base address and length of the registers block for the PWM.
-> 
-> Drop. No need to describe common properties.
-> 
-
-OK, I will drop this properties.
-
-> > +    maxItems: 1
+> > +     header = VDO(altmode->svid, vdo ? 2 : 1, svdm_version, CMD_ENTER_MODE);
+> >       header |= VDO_OPOS(altmode->mode);
+> >
+> >       tcpm_queue_vdm_unlocked(port, header, vdo, vdo ? 1 : 0);
+> > @@ -2034,9 +2079,14 @@ static int tcpm_altmode_enter(struct typec_altmode *altmode, u32 *vdo)
+> >  static int tcpm_altmode_exit(struct typec_altmode *altmode)
+> >  {
+> >       struct tcpm_port *port = typec_altmode_get_drvdata(altmode);
+> > +     int svdm_version;
+> >       u32 header;
+> >
+> > -     header = VDO(altmode->svid, 1, SVDM_VER_1_0, CMD_EXIT_MODE);
+> > +     svdm_version = typec_get_negotiated_svdm_version(port->typec_port);
+> > +     if (svdm_version < 0)
+> > +             return svdm_version;
 > > +
-> > +  '#pwm-cells':
-> > +    # should be 2. See pwm.yaml in this directory for a description of
-> > +    # the cells format.
-> 
-> Drop.
+> > +     header = VDO(altmode->svid, 1, svdm_version, CMD_EXIT_MODE);
+> >       header |= VDO_OPOS(altmode->mode);
+> >
+> >       tcpm_queue_vdm_unlocked(port, header, NULL, 0);
+> > @@ -5977,6 +6027,7 @@ struct tcpm_port *tcpm_register_port(struct device *dev, struct tcpc_dev *tcpc)
+> >       port->typec_caps.fwnode = tcpc->fwnode;
+> >       port->typec_caps.revision = 0x0120;     /* Type-C spec release 1.2 */
+> >       port->typec_caps.pd_revision = 0x0300;  /* USB-PD spec release 3.0 */
+> > +     port->typec_caps.svdm_version = SVDM_VER_2_0;
+> >       port->typec_caps.driver_data = port;
+> >       port->typec_caps.ops = &tcpm_ops;
+> >       port->typec_caps.orientation_aware = 1;
+> > --
+> > 2.30.0.365.g02bc693789-goog
+> >
 
-OK, I will this comment lines.
-
-> 
-> > +    const: 2
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - '#pwm-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    soc {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        pwm: pwm@241c0000 {
-> > +            compatible = "toshiba,pwm-tmpv7708", "toshiba,pwm-visconti";
-> > +            reg = <0 0x241c0000 0 0x1000>;
-> > +            pinctrl-names = "default";
-> > +            pinctrl-0 = <&pwm_mux>;
-> > +            #pwm-cells = <2>;
-> > +        };
-> > +    };
-> > -- 
-> > 2.27.0
-> > 
-> 
-
-Best regards,
-  Nobuhiro
-
+thanks,
+Kyle
