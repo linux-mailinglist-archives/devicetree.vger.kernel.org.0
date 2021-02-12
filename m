@@ -2,208 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20C14319723
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 00:52:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78349319779
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 01:32:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230320AbhBKXvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 18:51:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46764 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230345AbhBKXue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 18:50:34 -0500
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5BEC0698CE
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 15:46:59 -0800 (PST)
-Received: by mail-pf1-x430.google.com with SMTP id 18so4731855pfz.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Feb 2021 15:46:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+0I2FxbDSsv8cQH5eSoJMFXvbpy5lOFWxMK2CkAG6co=;
-        b=bCIeixkzJNEwVKPQsDrd499M79NaeE/5Qcm8AI5oQBm3ldjySTUXAI2Yb/sB8Az5KO
-         doVYzyeXIzSQscA7IcfTX6pqSTsG3UzH5xq4y4IDFSYxckfc5zbkYFNFqSbw81BDqN3L
-         DJQA1lArwqCBBC/3eTbYQX+QZ0OAiw7/JRCyRg2RU4nNjdyj9uk7sO56xiTRtcU6gDxN
-         eBTuifKnwUKvCjQxcFxfkj1Ao0A1lf0yyijzVZhzjYslwrmfNQngmRJb55aIZxitGS/f
-         vUw9efVAkFB5qXuBj8soe1CF+xGaUG74HAMBEc7h+3vo+/GyDGNZDsAbM1fmin0eVsvA
-         acyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+0I2FxbDSsv8cQH5eSoJMFXvbpy5lOFWxMK2CkAG6co=;
-        b=lsCx25YzI/2+uYjNGl1bwOPefiJorRQcAPIFwfTQ3mSeBU39qnRTW594EgggyQba0p
-         bURZ42gBCGKDaC6rw9p/qOEfKhPEjrfeq6KqtvebT/ISLpDMRy+GbYhROXRe7wdB83yU
-         xhWfX/95CXdXNudT813BLIrErBhSDKkehlMKXhsfwklTvw1jlTmrRaUn8FW7PNZtCsVM
-         Ts7dPG6v3qp4sb1e9CCOlAsya4+43S63LkJSRyLG2zOfggSXuR76Gnz9fd6j4TfZfjkb
-         U05xPO1h3NP1ybDhCwK/oy+wGi67sZrtXqzqfJxLedPL/dliXPVrRKGEyfQcNiKDvPqB
-         mFrA==
-X-Gm-Message-State: AOAM53015gw4AD8Z/aBstag94FMSRL9ojb8uA9Q0P+bT0VcgyKJ8rBGZ
-        m+sOyzdbFEDCH9QfqMlXZyIr2Q==
-X-Google-Smtp-Source: ABdhPJycmalaMFdZguE5XDaGUFLOkKYhtUY2aHj0pbXYDy1Md4ax/3AoEkMsJXJ3rS6D52R7XZ2BPg==
-X-Received: by 2002:aa7:9ab2:0:b029:1e3:c753:acd8 with SMTP id x18-20020aa79ab20000b02901e3c753acd8mr370600pfi.44.1613087218700;
-        Thu, 11 Feb 2021 15:46:58 -0800 (PST)
-Received: from xps15.cg.shawcable.net (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id iq6sm5932740pjb.6.2021.02.11.15.46.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Feb 2021 15:46:58 -0800 (PST)
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        arnaud.pouliquen@st.com
-Cc:     robh+dt@kernel.org, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@st.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 19/19] remoteproc: Refactor rproc delete and cdev release path
-Date:   Thu, 11 Feb 2021 16:46:27 -0700
-Message-Id: <20210211234627.2669674-20-mathieu.poirier@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210211234627.2669674-1-mathieu.poirier@linaro.org>
-References: <20210211234627.2669674-1-mathieu.poirier@linaro.org>
+        id S230346AbhBLAcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 19:32:20 -0500
+Received: from mo-csw1516.securemx.jp ([210.130.202.155]:44768 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229873AbhBLAcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 19:32:20 -0500
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 11C0ToQX013725; Fri, 12 Feb 2021 09:29:50 +0900
+X-Iguazu-Qid: 34tKPbYPQHjUA19Ax6
+X-Iguazu-QSIG: v=2; s=0; t=1613089790; q=34tKPbYPQHjUA19Ax6; m=dzUXSzuhKQ+wtGPRe+35JT6KMgJujBv8YF8S0TMdf+U=
+Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
+        by relay.securemx.jp (mx-mr1513) id 11C0TmeK027141;
+        Fri, 12 Feb 2021 09:29:49 +0900
+Received: from enc02.toshiba.co.jp ([61.202.160.51])
+        by imx12.toshiba.co.jp  with ESMTP id 11C0Tmp0029266;
+        Fri, 12 Feb 2021 09:29:48 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 11C0TlAR032392;
+        Fri, 12 Feb 2021 09:29:48 +0900
+Date:   Fri, 12 Feb 2021 09:29:47 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     David Miller <davem@davemloft.net>
+Cc:     kuba@kernel.org, robh+dt@kernel.org, peppe.cavallaro@st.com,
+        alexandre.torgue@st.com, joabreu@synopsys.com,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] net: stmmac: Add Toshiba Visconti SoCs glue driver
+X-TSB-HOP: ON
+Message-ID: <20210212002947.j6l4vsdjq4vx4zum@toshiba.co.jp>
+References: <20210210162954.3955785-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210210162954.3955785-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210211.141307.764092492929918552.davem@davemloft.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210211.141307.764092492929918552.davem@davemloft.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Refactor function rproc_del() and rproc_cdev_release() to take
-into account the policy specified in the device tree.
+Hi,
 
-Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-Reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
----
- drivers/remoteproc/remoteproc_cdev.c | 18 +++++++++++---
- drivers/remoteproc/remoteproc_core.c | 36 ++++++++++++++++++++++++----
- include/linux/remoteproc.h           |  4 ++++
- 3 files changed, 51 insertions(+), 7 deletions(-)
+Thanks for your comment.
 
-diff --git a/drivers/remoteproc/remoteproc_cdev.c b/drivers/remoteproc/remoteproc_cdev.c
-index f7645f289563..9b2fb6fbf8e7 100644
---- a/drivers/remoteproc/remoteproc_cdev.c
-+++ b/drivers/remoteproc/remoteproc_cdev.c
-@@ -87,11 +87,23 @@ static long rproc_device_ioctl(struct file *filp, unsigned int ioctl, unsigned l
- static int rproc_cdev_release(struct inode *inode, struct file *filp)
- {
- 	struct rproc *rproc = container_of(inode->i_cdev, struct rproc, cdev);
-+	int ret;
- 
--	if (rproc->cdev_put_on_release && rproc->state == RPROC_RUNNING)
--		rproc_shutdown(rproc);
-+	if (!rproc->cdev_put_on_release)
-+		return 0;
- 
--	return 0;
-+	/*
-+	 * The application has crashed or is releasing its file handle.  Detach
-+	 * or shutdown the remote processor based on the policy specified in the
-+	 * DT.  No need to check rproc->state right away, it will be done
-+	 * in either rproc_detach() or rproc_shutdown().
-+	 */
-+	if (rproc->autonomous_on_core_shutdown)
-+		ret = rproc_detach(rproc);
-+	else
-+		ret = rproc_shutdown(rproc);
-+
-+	return ret;
- }
- 
- static const struct file_operations rproc_fops = {
-diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-index 12bd177aa8cd..36b3592caf34 100644
---- a/drivers/remoteproc/remoteproc_core.c
-+++ b/drivers/remoteproc/remoteproc_core.c
-@@ -2413,6 +2413,22 @@ static int rproc_alloc_ops(struct rproc *rproc, const struct rproc_ops *ops)
- 	return 0;
- }
- 
-+static void rproc_set_automation_flags(struct rproc *rproc)
-+{
-+	struct device *dev = rproc->dev.parent;
-+	struct device_node *np = dev->of_node;
-+	bool core_shutdown;
-+
-+	/*
-+	 * When function rproc_cdev_release() or rproc_del() are called and
-+	 * the remote processor has been attached to, it will be detached from
-+	 * (rather than turned off) if "autonomous-on-core-shutdown is specified
-+	 * in the DT.
-+	 */
-+	core_shutdown = of_property_read_bool(np, "autonomous-on-core-shutdown");
-+	rproc->autonomous_on_core_shutdown = core_shutdown;
-+}
-+
- /**
-  * rproc_alloc() - allocate a remote processor handle
-  * @dev: the underlying device
-@@ -2471,6 +2487,8 @@ struct rproc *rproc_alloc(struct device *dev, const char *name,
- 	if (rproc_alloc_ops(rproc, ops))
- 		goto put_device;
- 
-+	rproc_set_automation_flags(rproc);
-+
- 	/* Assign a unique device index and name */
- 	rproc->index = ida_simple_get(&rproc_dev_index, 0, 0, GFP_KERNEL);
- 	if (rproc->index < 0) {
-@@ -2547,15 +2565,25 @@ EXPORT_SYMBOL(rproc_put);
-  * of the outstanding reference created by rproc_alloc. To decrement that
-  * one last refcount, one still needs to call rproc_free().
-  *
-- * Returns 0 on success and -EINVAL if @rproc isn't valid.
-+ * Returns 0 on success and a negative error code on failure.
-  */
- int rproc_del(struct rproc *rproc)
- {
-+	int ret;
-+
- 	if (!rproc)
- 		return -EINVAL;
- 
--	/* TODO: make sure this works with rproc->power > 1 */
--	rproc_shutdown(rproc);
-+	/*
-+	 * TODO: make sure this works with rproc->power > 1
-+	 *
-+	 * No need to check rproc->state right away, it will be done in either
-+	 * rproc_detach() or rproc_shutdown().
-+	 */
-+	if (rproc->autonomous_on_core_shutdown)
-+		ret = rproc_detach(rproc);
-+	else
-+		ret = rproc_shutdown(rproc);
- 
- 	mutex_lock(&rproc->lock);
- 	rproc->state = RPROC_DELETED;
-@@ -2574,7 +2602,7 @@ int rproc_del(struct rproc *rproc)
- 
- 	device_del(&rproc->dev);
- 
--	return 0;
-+	return ret;
- }
- EXPORT_SYMBOL(rproc_del);
- 
-diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-index 5b49c4018e90..bd3ac6a47e47 100644
---- a/include/linux/remoteproc.h
-+++ b/include/linux/remoteproc.h
-@@ -524,6 +524,9 @@ struct rproc_dump_segment {
-  * @nb_vdev: number of vdev currently handled by rproc
-  * @char_dev: character device of the rproc
-  * @cdev_put_on_release: flag to indicate if remoteproc should be shutdown on @char_dev release
-+ * @autonomous_on_core_shutdown: true if the remote processor should be detached
-+ *				 from (rather than turned off) when the remoteproc
-+ *				 core goes away.
-  */
- struct rproc {
- 	struct list_head node;
-@@ -563,6 +566,7 @@ struct rproc {
- 	u16 elf_machine;
- 	struct cdev cdev;
- 	bool cdev_put_on_release;
-+	bool autonomous_on_core_shutdown;
- };
- 
- /**
--- 
-2.25.1
+On Thu, Feb 11, 2021 at 02:13:07PM -0800, David Miller wrote:
+> From: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> Date: Thu, 11 Feb 2021 01:29:52 +0900
+> 
+> > +static int visconti_eth_init_hw(struct platform_device *pdev, struct plat_stmmacenet_data *plat_dat)
+> > +{
+> > +	struct visconti_eth *dwmac;
+> > +	unsigned int reg_val, clk_sel_val;
+> 
+> Please use reverse christmas tree ordering for local variable declarations.
+> 
+> > +static int visconti_eth_clock_probe(struct platform_device *pdev,
+> > +				    struct plat_stmmacenet_data *plat_dat)
+> > +{
+> > +	int err;
+> > +	struct visconti_eth *dwmac;
+> 
+> Likewise.
+> 
+> > +static int visconti_eth_clock_remove(struct platform_device *pdev)
+> > +{
+> > +	struct net_device *ndev = platform_get_drvdata(pdev);
+> > +	struct stmmac_priv *priv = netdev_priv(ndev);
+> > +	struct visconti_eth *dwmac = get_stmmac_bsp_priv(&pdev->dev);
+> Likewise.
+> 
 
+OK, I will fix these.
+
+Best regards,
+  Nobuhiro
