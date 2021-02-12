@@ -2,166 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 862D4319D2E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 12:18:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEDD6319D38
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 12:22:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbhBLLR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 06:17:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53336 "EHLO
+        id S229907AbhBLLT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 06:19:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229989AbhBLLRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 06:17:54 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1E6C061786
-        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 03:17:14 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id d15so251875plh.4
-        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 03:17:14 -0800 (PST)
+        with ESMTP id S229940AbhBLLTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 06:19:25 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E6FCC0613D6
+        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 03:18:45 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id t26so6021854pgv.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 03:18:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=w3eAc6FaBMb02UjLTylLBFxDGw5JxOTFicXpZo/jAB4=;
-        b=jOv/7auoPeV648ioJTxzIIypvnEbLcmB7jg/WO0+Rzozd3LRYQWS8xIeVO+AA7wpj7
-         59KRdSLqOZxS56/3R/kta2JjpZd1+pnmGYVs7aEcEzoqfGM9bfTbXumEO/lV5aWYS3xL
-         vtCkdBHmCtYmNu6Lx/DLCsAVEJvJYvj6Cpjvo=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DiH+0nsh0TFSeG09Dd5i67FW61zv+WlXR+4na8usw8M=;
+        b=dstpR3OZccsYNKmvZ/hTIXfK8fOejY/E98zi84c90kxjsQ7EBLijoTbCmTkCmuIBbF
+         X+GGSytGTFlSjU9UuYEaOx6sj8/sNka6gT7pjs0ik1gb1G4WQrFnc2cwFTLlGm4knwUf
+         iCowTv+Qqv7XL1zF9ewVIiSGF/HehKlmYlUbn69m7gMmfYqD5lj8KfXZY4msYJ4YA9jl
+         cP1/8j0xXtGmG1/siNeOUXeW8pSi3cZ6cFzrdv7/4XVBaqUpKs/VVx86hckfpPMcW6Q/
+         q78C7ZQNUYupCAIzhGcEF9cKSVFEMlruom/bQNjKl40UrAaCN9OToOg80gfWrc0k/GvU
+         c1eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=w3eAc6FaBMb02UjLTylLBFxDGw5JxOTFicXpZo/jAB4=;
-        b=LhayhTIfoo2tX1/YAsiSGUvsCA3DhEEWbN98oTpylrbG/Isl3GzTJQRuXjQXpeNsvD
-         7EantXfIU9RZPCun7FAXw66SVynPLUusrGpJAID3eCk49VoeEYqekYWbTuU4uKB+zdah
-         AriIXVU2wLlhcBZvQ94ePfi2a2+khh9gpLwO/wf5UKvT1nJynwlJLQXJcQpavchjJ9Li
-         m7SqOh2zODbBDcDhtrcdtd/8JrHF4btnP0zJiHsGdheRHWX8bFK0AAnumSrZLlP5OADF
-         NCf/IAPVhzKhc2tp1DuCMbLYr4tePek1HkKR/6/leMmFBw05wpg7qBGVGOelpEX2tECd
-         3EPQ==
-X-Gm-Message-State: AOAM530Xl+UJWRuczps0An3/GjVKhtSE6skR16GOpPVhJx7gPPBC48SE
-        gPupAvYkEPwtInbNZPuXqDHDM/pM8l9JPQ==
-X-Google-Smtp-Source: ABdhPJyr3YyowB8Gvq2NvbGkjisZEoQ56XU0gS6QsNrt6V6ukhBJzJf9SVgcnf7U8FRfBHXit92S2g==
-X-Received: by 2002:a17:902:b410:b029:e3:284e:4e0b with SMTP id x16-20020a170902b410b02900e3284e4e0bmr708773plr.33.1613128633438;
-        Fri, 12 Feb 2021 03:17:13 -0800 (PST)
-Received: from shiro.work (p345188-ipngn200408sizuokaden.shizuoka.ocn.ne.jp. [124.98.97.188])
-        by smtp.googlemail.com with ESMTPSA id h20sm5752662pfv.164.2021.02.12.03.17.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Feb 2021 03:17:13 -0800 (PST)
-From:   Daniel Palmer <daniel@0x0f.com>
-To:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Daniel Palmer <daniel@0x0f.com>
-Subject: [RFC PATCH 1/1] dt-bindings: clk: Mstar msc313 clkgen mux
-Date:   Fri, 12 Feb 2021 20:16:49 +0900
-Message-Id: <20210212111649.3251306-2-daniel@0x0f.com>
-X-Mailer: git-send-email 2.30.0.rc2
-In-Reply-To: <20210212111649.3251306-1-daniel@0x0f.com>
-References: <20210212111649.3251306-1-daniel@0x0f.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DiH+0nsh0TFSeG09Dd5i67FW61zv+WlXR+4na8usw8M=;
+        b=Ra6OL31EHLlSupKHJdOUsJPv4wyng101Lxn5PoespnVs0caFIRdwkZ5esaqJuCGo0H
+         Hhd2tuCIVUnk/8Drog5yrEL3R4d3xFFrKawZfz98ZWBehsPm0zcWqe7QnFVIb1wv2Qq3
+         UpSQHBef52tV/YaChw6vW5tRtqpCkhH/ZkrdmKnj9VZmcJZNhoqgQvaUsJJ1sjzFHYUk
+         i2Qvz3cafka7QL/GyH+R72cG09jrRH37tDlA1ODCsyRAxIXuBHAlXNel//CLJvqgTnTM
+         KEDoPgEL7U9JkXCtbbeyrXUUeNfhx3jLkG138MwX9jWlt8jvwGa1nGnhVoeFzm1Fk4im
+         NMAg==
+X-Gm-Message-State: AOAM531yeE0PT/0vbAxBUbR5dBktHD6LXyNc9cW7o/fs0BA0foZiV5n7
+        bDfcpUYu4nli2uOEAM4MCFw1uLrcFm+CJQ==
+X-Google-Smtp-Source: ABdhPJxRLdhA24PIbVGs7N1vm0OoG/+dEpN8+1SGQg64ZwDg/XUKglrx192K9Y5V03Z2d7uBWUdIKA==
+X-Received: by 2002:a62:1bc9:0:b029:1e6:3492:2d88 with SMTP id b192-20020a621bc90000b02901e634922d88mr2540051pfb.72.1613128724860;
+        Fri, 12 Feb 2021 03:18:44 -0800 (PST)
+Received: from localhost ([122.172.59.240])
+        by smtp.gmail.com with ESMTPSA id v31sm9092762pgl.76.2021.02.12.03.18.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 12 Feb 2021 03:18:44 -0800 (PST)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH V8 0/4] dt: Add fdtoverlay rule and statically build unittest
+Date:   Fri, 12 Feb 2021 16:48:34 +0530
+Message-Id: <cover.1613127681.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a devicetree binding yaml for the clkgen muxes used
-in various places in MStar/SigmaStar SoCs.
+Hi,
 
-Signed-off-by: Daniel Palmer <daniel@0x0f.com>
----
- .../clock/mstar,msc313-clkgen-mux.yaml        | 87 +++++++++++++++++++
- 1 file changed, 87 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/mstar,msc313-clkgen-mux.yaml
+This patchset adds a generic rule for applying overlays using fdtoverlay
+tool and then updates unittests to get built statically using the same.
 
-diff --git a/Documentation/devicetree/bindings/clock/mstar,msc313-clkgen-mux.yaml b/Documentation/devicetree/bindings/clock/mstar,msc313-clkgen-mux.yaml
-new file mode 100644
-index 000000000000..7f2ff72a601f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/mstar,msc313-clkgen-mux.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/mstar,msc313-clkgen-mux.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MStar/Sigmastar MSC313 CLKGEN mux
-+
-+maintainers:
-+  - Daniel Palmer <daniel@thingy.jp>
-+
-+description: |
-+  The MStar/SigmaStar MSC313 and later ARMv7 chips has a number of
-+  "CLKGEN"s. Some in the pm area, some in the standard peripheral area
-+  and some in the "scaler" area. Inside of these CLKGENs there are
-+  muxes that either connect the output to an always on clock
-+  (deglitch) or one of a number of clocks that are selectable via
-+  a mux. Each of these muxes also includes a gate for the output.
-+  Most of these are in a nice block with multiple muxes in a single
-+  register. Some of them are embedded within blocks of unrelated
-+  registers like in the pm area. Some seem to be embedded in registers
-+  with unrelated bits. For this reason a syscon is used to access the
-+  registers.
-+
-+properties:
-+  compatible:
-+    const: mstar,msc313-clkgen-mux
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  clocks:
-+    description: |
-+      List of clock sources for this mux. If the mux has a deglitch
-+      bit the last entry should be the source of the deglitch clock.
-+
-+  offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Offset in the register map for the mux register (in bytes).
-+
-+  regmap:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: |
-+      Phandle to the register map node.
-+
-+  mstar,gate:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Bit position for the gate bit.
-+
-+  mstar,deglitch:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Bit position of the deglitch bit for muxes that have one.
-+
-+  mstar,mux-shift:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Left shift value for the mux bits.
-+
-+  mstar,mux-width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: The width of the mux bits.
-+
-+required:
-+  - compatible
-+  - "#clock-cells"
-+  - clocks
-+  - offset
-+  - regmap
-+  - mstar,gate
-+  - mstar,mux-shift
-+  - mstar,mux-width
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clkgen_mux_mspi0: clkgen_mux_mspi0 {
-+      compatible = "mstar,msc313-clkgen-mux";
-+      regmap = <&clkgen>;
-+      offset = <0xcc>;
-+      #clock-cells = <1>;
-+      mstar,gate = <0>;
-+      mstar,mux-shift = <2>;
-+      mstar,mux-width = <2>;
-+      clocks = <&clk_mpll_div2_div2>,
-+               <&clk_mpll_div2_div4>,
-+               <&xtal12>;
-+    };
+V7->V8:
+- Patch 1 is new.
+- Platforms need to use dtb-y += foo.dtb instead of overlay-y +=
+  foo.dtb.
+- Use multi_depend instead of .SECONDEXPANSION.
+- Use dtb-y for unittest instead of overlay-y.
+- Rename the commented dtb filess in unittest Makefile as .dtbo.
+- Improved Makefile code (I am learning a lot every day :)
+
+V6->V7:
+- Dropped the first 4 patches, already merged.
+- Patch 1/3 is new, suggested by Rob and slightly modified by me.
+- Adapt Patch 3/3 to the new rule and name the overlay dtbs as .dtbo.
+
+--
+Viresh
+
+Rob Herring (1):
+  kbuild: Add generic rule to apply fdtoverlay
+
+Viresh Kumar (3):
+  kbuild: Simplify builds with CONFIG_OF_ALL_DTBS
+  of: unittest: Create overlay_common.dtsi and testcases_common.dtsi
+  of: unittest: Statically apply overlays using fdtoverlay
+
+ drivers/of/unittest-data/Makefile             | 50 ++++++++++
+ drivers/of/unittest-data/overlay_base.dts     | 90 +-----------------
+ drivers/of/unittest-data/overlay_common.dtsi  | 91 +++++++++++++++++++
+ drivers/of/unittest-data/static_base_1.dts    |  4 +
+ drivers/of/unittest-data/static_base_2.dts    |  4 +
+ drivers/of/unittest-data/testcases.dts        | 18 ++--
+ .../of/unittest-data/testcases_common.dtsi    | 19 ++++
+ .../of/unittest-data/tests-interrupts.dtsi    |  7 --
+ scripts/Makefile.lib                          | 29 +++++-
+ 9 files changed, 200 insertions(+), 112 deletions(-)
+ create mode 100644 drivers/of/unittest-data/overlay_common.dtsi
+ create mode 100644 drivers/of/unittest-data/static_base_1.dts
+ create mode 100644 drivers/of/unittest-data/static_base_2.dts
+ create mode 100644 drivers/of/unittest-data/testcases_common.dtsi
+
 -- 
-2.30.0.rc2
+2.25.0.rc1.19.g042ed3e048af
 
