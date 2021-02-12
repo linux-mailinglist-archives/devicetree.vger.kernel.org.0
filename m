@@ -2,203 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F3DB31A668
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 22:00:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C765931A672
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 22:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231923AbhBLU7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 15:59:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36568 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231937AbhBLU6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 15:58:41 -0500
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92562C061797
-        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 12:58:01 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id m188so703849yba.13
-        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 12:58:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CqAzPT6VwnPBuxPka3afIBXbnCQbD8+pdFwxBKcHhXQ=;
-        b=uBTJQG+mWgC2KaNYo1bb3HfZG5kNKJ7vb1CkEXXuyZyIlMIUmRy7u+Ui98xv5m6wXD
-         R7N5LfNkcmh1NQ9NxgRQP3cWOkQFo7SAC+qn3I64HrXBzaGyP8UoGVC/bj+K+cZ8nSWe
-         YQAtaHJyorTUUKIOxX53zOw5ATfxwx2KVYuQOmCF02rn7CG0N1rPqvKrBgWPiLi45FON
-         shvjdCt7F02vXc8OsQJNlQ5Dg8hPGX1Xh3uWdinc2aBX3WWsUPVTakWNa4yKxhzAKQdV
-         EuNXoz2GuhV1z+hCYh7JVx2iqHGoG2X6f6zTTF5209mcejt6xlzEddhC7ShsSohFBkLy
-         xwLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CqAzPT6VwnPBuxPka3afIBXbnCQbD8+pdFwxBKcHhXQ=;
-        b=A1zFUKFsoRnJJs/Dl44CAXvtfpXZwe60TY1DL6ZvDaBoLtPVjKfS9dHVicymMH2lbW
-         /L297fnfdqdJLwKPSu+Fn9Jb6Bv7VfoJBa2fEHsKsiS+xcBDVQcmGd6oD9CF9M9MJbXi
-         W5+F+HF9CEvZNC3hqW3evmrziNLnNLasGAHB5v5s+dUrcqaiaLS3XszBycL70Hpbrrvp
-         N23ruIAsq2WNlfPKwR/jupm/aSg+PVOW9oDTY4tpicsoYY4a7wgAkueoPEB/84I2tHwS
-         JSO/CNh/hTQerlWRz4b5ODHvzKH5b4zLBIprceUrT6OtdnBNjkqiXReoZRvvxAOTgiv2
-         1cAw==
-X-Gm-Message-State: AOAM531l9NYcf6ERGojI+vgsbBnmBysQeVGKkUylsmp8iXByL1KKztm1
-        Kb4KN6Ln4Meqj9VCNA2CLrwoOhGku5Re7wyDxsqNEQ==
-X-Google-Smtp-Source: ABdhPJwK0fc2ml/1MYUHRvi8x2ga/wmAbYgOqo2Dy3Txjf3hoDchCtA5qthJoSF2yZyW//AH/pAR//MQ+c+2yrZOeqg=
-X-Received: by 2002:a25:718b:: with SMTP id m133mr6949864ybc.412.1613163480367;
- Fri, 12 Feb 2021 12:58:00 -0800 (PST)
+        id S231926AbhBLVCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 16:02:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57918 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232054AbhBLVCC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Feb 2021 16:02:02 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A68864E05;
+        Fri, 12 Feb 2021 21:01:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613163681;
+        bh=pn5uwII/6r/H6VP+qSj25AE7juU0clcUCoKS/ZUelsw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fezGQO4TkSSBALxJ72g3iRQRtYthvdVjCSSO2pwqAqGfei86fUjhgnZ6QFP3wJHLx
+         gnSr/0NgANKbovmMgjXi+oX4TpM9hW75NEGb0OYe3D4J1jgeVb3kRdDDOvfOJea9dV
+         G1Cw16JscUCqHvnhm/Co/7TvvD48AKca+R0ypSs8XHXWEy/62fYftAXki6qGs1IrY0
+         5u7AC7jhufXrqJihJKrmj2qNZCP+paF3bBdQ7nT4MrayMOvmQOyv3SLKJkuou70/VT
+         r5IQNwZ0I5zhZb+4Up3z2KhYrx9FG5KSZzdPhTTh4i1SeEPr8ONzVGBh9XdF+ri4DA
+         Af54RlTGlMCJA==
+Received: by mail-ej1-f42.google.com with SMTP id z19so1355188eju.9;
+        Fri, 12 Feb 2021 13:01:21 -0800 (PST)
+X-Gm-Message-State: AOAM531wmQopXZ3XVSaZPh8IbfNimM8aFt8D5JuvlxsMfmS9oNagRRyT
+        RsI7pI5N7pb+ptMSxYnAV/LjZl5rTgn/0OAbfg==
+X-Google-Smtp-Source: ABdhPJyjRrUX7Iabe7BDDsQqvDVgcHeC2eL7Z0J6/ghXMUMjyGNjbakaaIGjUuZK2ljNajVT9UYHC/wcmBsdAErn91A=
+X-Received: by 2002:a17:906:d1d0:: with SMTP id bs16mr4962876ejb.468.1613163680046;
+ Fri, 12 Feb 2021 13:01:20 -0800 (PST)
 MIME-Version: 1.0
-References: <20210205222644.2357303-1-saravanak@google.com>
- <CAMuHMdVL-1RKJ5u-HDVA4F4w_+8yGvQQuJQBcZMsdV4yXzzfcw@mail.gmail.com>
- <CAGETcx-668+uGigaOMcsvv00mo6o_eGPcH0YyD28OCVEyVbw+w@mail.gmail.com> <CAMuHMdVG97Zjr1WO0554h9eUZhfeyxwUfNYuAdPoacpznkA6-Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdVG97Zjr1WO0554h9eUZhfeyxwUfNYuAdPoacpznkA6-Q@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 12 Feb 2021 12:57:24 -0800
-Message-ID: <CAGETcx9GAyWQTb1kuUpjAcYyPGYtxxWMRe9u0o5UOSMrryTdvg@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20210212033120.GA100407@roeck-us.net> <CAL_JsqLm3mHdPg4wkdhoFXNY1JgTJ56dxi3oLqBS_NBrX=rOfw@mail.gmail.com>
+ <20210212151725.GA57042@roeck-us.net>
+In-Reply-To: <20210212151725.GA57042@roeck-us.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 12 Feb 2021 15:01:08 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+e+KdzanMdHYCEoGZn3ybY5_ASN60qiqbOkPWpkbQ6NQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+e+KdzanMdHYCEoGZn3ybY5_ASN60qiqbOkPWpkbQ6NQ@mail.gmail.com>
+Subject: Re: [PATCH] scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 12, 2021 at 12:15 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
+On Fri, Feb 12, 2021 at 9:17 AM Guenter Roeck <linux@roeck-us.net> wrote:
 >
-> Hi Saravana,
->
-> On Fri, Feb 12, 2021 at 4:00 AM Saravana Kannan <saravanak@google.com> wrote:
-> > On Thu, Feb 11, 2021 at 5:00 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > >   1. R-Car Gen2 (Koelsch), R-Car Gen3 (Salvator-X(S), Ebisu).
+> On Fri, Feb 12, 2021 at 08:16:04AM -0600, Rob Herring wrote:
+> > On Thu, Feb 11, 2021 at 9:31 PM Guenter Roeck <linux@roeck-us.net> wrote:
 > > >
-> > >       - Commit 2dfc564bda4a31bc ("soc: renesas: rcar-sysc: Mark device
-> > >         node OF_POPULATED after init") is no longer needed (but already
-> > >         queued for v5.12 anyway)
-> >
-> > Rob doesn't like the proliferation of OF_POPULATED and we don't need
-> > it anymore, so maybe work it out with him? It's a balance between some
-> > wasted memory (struct device(s)) vs not proliferating OF_POPULATED.
->
-> Rob: should it be reverted?  For v5.13?
-> I guess other similar "fixes" went in in the mean time.
->
-> > >       - Some devices are reprobed, despite their drivers returning
-> > >         a real error code, and not -EPROBE_DEFER:
-> >
-> > Sorry, it's not obvious from the logs below where "reprobing" is
-> > happening. Can you give more pointers please?
->
-> My log was indeed not a full log, but just the reprobes happening.
-> I'll send you a full log by private email.
->
-> > Also, thinking more about this, the only way I could see this happen is:
-> > 1. Device fails with error that's not -EPROBE_DEFER
-> > 2. It somehow gets added to a device link (with AUTOPROBE_CONSUMER
-> > flag) where it's a consumer.
-> > 3. The supplier probes and the device gets added to the deferred probe
-> > list again.
-> >
-> > But I can't see how this sequence can happen. Device links are created
-> > only when a device is added. And is the supplier isn't added yet, the
-> > consumer wouldn't have probed in the first place.
->
-> The full log doesn't show any evidence of the device being added
-> to a list in between the two probes.
->
-> > Other than "annoying waste of time" is this causing any other problems?
->
-> Probably not.  But see below.
->
-> > >       - The PCI reprobing leads to a memory leak, for which I've sent a fix
-> > >         "[PATCH] PCI: Fix memory leak in pci_register_io_range()"
-> > >         https://lore.kernel.org/linux-pci/20210202100332.829047-1-geert+renesas@glider.be/
-> >
-> > Wrt PCI reprobing,
-> > 1. Is this PCI never expected to probe, but it's being reattempted
-> > despite the NOT EPROBE_DEFER error? Or
->
-> There is no PCIe card present, so the failure is expected.
-> Later it is reprobed, which of course fails again.
->
-> > 2. The PCI was deferred probe when it should have probed and then when
-> > it's finally reattemped and it could succeed, we are hitting this mem
-> > leak issue?
->
-> I think the leak has always been there, but it was just exposed by
-> this unneeded reprobe.  I don't think a reprobe after that specific
-> error path had ever happened before.
->
-> > I'm basically trying to distinguish between "this stuff should never
-> > be retried" vs "this/it's suppliers got probe deferred with
-> > fw_devlink=on vs but didn't get probe deferred with
-> > fw_devlink=permissive and that's causing issues"
->
-> There should not be a probe deferral, as no -EPROBE_DEFER was
-> returned.
->
-> > >       - I2C on R-Car Gen3 does not seem to use DMA, according to
-> > >         /sys/kernel/debug/dmaengine/summary:
+> > > Hi Rob,
 > > >
-> > >             -dma4chan0    | e66d8000.i2c:tx
-> > >             -dma4chan1    | e66d8000.i2c:rx
-> > >             -dma5chan0    | e6510000.i2c:tx
-> >
-> > I think I need more context on the problem before I can try to fix it.
-> > I'm also very unfamiliar with that file. With fw_devlink=permissive,
-> > I2C was using DMA? If so, the next step is to see if the I2C relative
-> > probe order with DMA is getting changed and if so, why.
->
-> Yes, I plan to dig deeper to see what really happens...
-
-Try fw_devlink.strict (you'll need IOMMU enabled too). If that fixes
-it and you also don't see this issue with fw_devlink=permissive, then
-it means there's probably some unnecessary probe deferral that we
-should try to avoid. At least, that's my hunch right now.
-
-Thanks,
-Saravana
-
->
-> > >       - On R-Mobile A1, I get a BUG and a memory leak:
+> > > On Wed, Feb 03, 2021 at 03:26:03PM -0600, Rob Herring wrote:
+> > > > This adds the following commits from upstream:
+> > > >
+> > > > 183df9e9c2b9 gitignore: Ignore the swp files
+> > > > 0db6d09584e1 gitignore: Add cscope files
+> > > > 307afa1a7be8 Update Jon Loeliger's email
+> > > > ca16a723fa9d fdtdump: Fix gcc11 warning
+> > > > 64990a272e8f srcpos: increase MAX_SRCFILE_DEPTH
+> > > > 163f0469bf2e dtc: Allow overlays to have .dtbo extension
+> > > > 3b01518e688d Set last_comp_version correctly in new dtb and fix potential version issues in fdt_open_into
+> > > > f7e5737f26aa tests: Fix overlay_overlay_nosugar test case
+> > > > 7cd5d5fe43d5 libfdt: Tweak description of assume-aligned load helpers
+> > > > a7c404099349 libfdt: Internally perform potentially unaligned loads
+> > > > bab85e48a6f4 meson: increase default timeout for tests
+> > > > f8b46098824d meson: do not assume python is installed, skip tests
+> > > > 30a56bce4f0b meson: fix -Wall warning
+> > > > 5e735860c478 libfdt: Check for 8-byte address alignment in fdt_ro_probe_()
+> > > > 67849a327927 build-sys: add meson build
+> > > > 05874d08212d pylibfdt: allow build out of tree
+> > > > 3bc3a6b9fe0c dtc: Fix signedness comparisons warnings: Wrap (-1)
+> > > > e1147b159e92 dtc: Fix signedness comparisons warnings: change types
+> > > > 04cf1fdc0fcf convert-dtsv0: Fix signedness comparisons warning
+> > > > b30013edb878 libfdt: Fix kernel-doc comments
+> > > >
+> > > > Signed-off-by: Rob Herring <robh@kernel.org>
 > > >
-> > >             BUG: spinlock bad magic on CPU#0, swapper/1
->
+> > > This patch causes my little-endian microblaze qemu emulations to fail
+> > > silently (no console output) in next-20210211. Reverting this patch
+> > > together with "scripts: dtc: Build fdtoverlay tool" fixes the problem.
 > >
-> > Hmm... I looked at this in bits and pieces throughout the day. At
-> > least spent an hour looking at this. This doesn't make a lot of sense
-> > to me. I don't even touch anything in this code path AFAICT.  Are
-> > modules/kernel mixed up somehow? I need more info before I can help.
-> > Does reverting my pm domain change make any difference (assume it
-> > boots this far without it).
+> > My guess would be something in libfdt. Maybe 7cd5d5fe43d5 or
+> > a7c404099349, though that should return to historical behavior.
+> >
+> > Can you give me the qemu command line and kernel cfg?
+> >
+> I copied everything you should need to build a kernel (including toolchain)
+> to http://server.roeck-us.net/qemu/microblazeel/
 >
-> I plan to dig deeper to see what really happens...
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+> [ wow, I really need to update that compiler ]
+
+I can't seem to get BE/LE nor reverted or not working. It's always
+dying in microblaze_cache_init() based on the last print. It's your
+config, but gcc 10.1.0 off of kernel.org.
+
+There is at least one possible problem here that the FDT may only be 4
+byte aligned. The assumption is 8 bytes to not have misaligned
+accesses (and only for 64-bit accesses if 4 byte aligned). That's an
+issue with the qemu image loading depending on the sizes and
+combination of images loaded. That doesn't explain your failure
+though. As the initrd is a multiple of 8 bytes, you should be fine.
+
+Rob
