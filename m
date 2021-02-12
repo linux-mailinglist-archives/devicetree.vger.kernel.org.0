@@ -2,67 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AF3B31A370
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 18:20:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 328FB31A3E9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 18:44:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbhBLRTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 12:19:45 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:38426 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbhBLRTm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 12:19:42 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id C5C7020B6C40;
-        Fri, 12 Feb 2021 09:19:00 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C5C7020B6C40
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1613150341;
-        bh=ymZC2uSu1WhDmmhzMMk+j693znWvxWsQ0oRGutDXsUU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=UFctr/CjGfWUVNUkmlcZdiSnRimSYXYpf7boiSafTdIohyW4op8aqXiOPIXG7tD9w
-         2+CCCjIQwjmCzRCgCyJOtrEfXaan1toeQ6tewZfvQeoz8k1bHJnQ/MjJqkkzxmgjf+
-         fBeDNBT4ANHJIZyDIIuAoR7Wx92T/5Rbhxu+1Yog=
-Subject: Re: [PATCH v17 02/10] of: Add a common kexec FDT setup function
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        James Morse <james.morse@arm.com>,
-        Sasha Levin <sashal@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        vincenzo.frascino@arm.com, Mark Rutland <mark.rutland@arm.com>,
-        dmitry.kasatkin@gmail.com, James Morris <jmorris@namei.org>,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        Pavel Tatashin <pasha.tatashin@soleen.com>,
-        Allison Randal <allison@lohutok.net>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Prakhar Srivastava <prsriva@linux.microsoft.com>,
-        balajib@linux.microsoft.com, linux-integrity@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-References: <20210209182200.30606-1-nramas@linux.microsoft.com>
- <20210209182200.30606-3-nramas@linux.microsoft.com>
- <87k0reozwh.fsf@manicouagan.localdomain>
- <8a3aa3d2-2eba-549a-9970-a2b0fe3586c9@linux.microsoft.com>
- <CAL_JsqJ3sDzjsJXtb6EzE77BL+PhUxDJYUngLTqcm0popd7Ajw@mail.gmail.com>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <55685b61-dac0-2f24-f74a-939acf74a4f2@linux.microsoft.com>
-Date:   Fri, 12 Feb 2021 09:19:00 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231990AbhBLRme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 12:42:34 -0500
+Received: from m-r2.th.seeweb.it ([5.144.164.171]:43613 "EHLO
+        m-r2.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231968AbhBLRm0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 12:42:26 -0500
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 47FAD3ED71;
+        Fri, 12 Feb 2021 18:41:39 +0100 (CET)
+Subject: Re: [PATCH v3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and
+ panel bits
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
+References: <1612945128-23174-1-git-send-email-amit.pundir@linaro.org>
+ <13bd5e9d-3f3b-0b97-aa48-9a7bc551ddf6@somainline.org>
+ <CAMi1Hd3d8krtQHv-3LuiCcgCWSgL1L0UeSYWJp27KToyW338gw@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <b8618ac4-85aa-5f7f-8550-07f7eec6cc08@somainline.org>
+Date:   Fri, 12 Feb 2021 18:41:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJ3sDzjsJXtb6EzE77BL+PhUxDJYUngLTqcm0popd7Ajw@mail.gmail.com>
+In-Reply-To: <CAMi1Hd3d8krtQHv-3LuiCcgCWSgL1L0UeSYWJp27KToyW338gw@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -70,87 +47,185 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/12/21 6:38 AM, Rob Herring wrote:
-> On Thu, Feb 11, 2021 at 7:17 PM Lakshmi Ramasubramanian
-> <nramas@linux.microsoft.com> wrote:
->>
->> On 2/11/21 5:09 PM, Thiago Jung Bauermann wrote:
->>>
->>> There's actually a complication that I just noticed and needs to be
->>> addressed. More below.
->>>
->>
->> <...>
->>
->>>> +
->>>> +/*
->>>> + * of_kexec_alloc_and_setup_fdt - Alloc and setup a new Flattened Device Tree
->>>> + *
->>>> + * @image:          kexec image being loaded.
->>>> + * @initrd_load_addr:       Address where the next initrd will be loaded.
->>>> + * @initrd_len:             Size of the next initrd, or 0 if there will be none.
->>>> + * @cmdline:                Command line for the next kernel, or NULL if there will
->>>> + *                  be none.
->>>> + *
->>>> + * Return: fdt on success, or NULL errno on error.
->>>> + */
->>>> +void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
->>>> +                               unsigned long initrd_load_addr,
->>>> +                               unsigned long initrd_len,
->>>> +                               const char *cmdline)
->>>> +{
->>>> +    void *fdt;
->>>> +    int ret, chosen_node;
->>>> +    const void *prop;
->>>> +    unsigned long fdt_size;
->>>> +
->>>> +    fdt_size = fdt_totalsize(initial_boot_params) +
->>>> +               (cmdline ? strlen(cmdline) : 0) +
->>>> +               FDT_EXTRA_SPACE;
->>>
->>> Just adding 4 KB to initial_boot_params won't be enough for crash
->>> kernels on ppc64. The current powerpc code doubles the size of
->>> initial_boot_params (which is normally larger than 4 KB) and even that
->>> isn't enough. A patch was added to powerpc/next today which uses a more
->>> precise (but arch-specific) formula:
->>>
->>> https://lore.kernel.org/linuxppc-dev/161243826811.119001.14083048209224609814.stgit@hbathini/
->>>
->>> So I believe we need a hook here where architectures can provide their
->>> own specific calculation for the size of the fdt. Perhaps a weakly
->>> defined function providing a default implementation which an
->>> arch-specific file can override (a la arch_kexec_kernel_image_load())?
->>>
->>> Then the powerpc specific hook would be the kexec_fdt_totalsize_ppc64()
->>> function from the patch I linked above.
->>>
->>
->> Do you think it'd better to add "fdt_size" parameter to
->> of_kexec_alloc_and_setup_fdt() so that the caller can provide the
->> desired FDT buffer size?
+Il 12/02/21 10:24, Amit Pundir ha scritto:
+> Hi,
 > 
-> Yes, I guess so. But please define the param as extra size, not total
-> size. The kernel command line size addition can be in the common code.
-
-Will do. Just to clarify -
-
-The common code will do:
-
-fdt_totalsize(initial_boot_params) + strlen(cmdline) + extra_fdt_size
-
-The caller will pass "extra_fdt_size"
-ARM64 => 4KB
-PPC64 => fdt_totalsize(initial_boot_params) - which will be updated when 
-the patch Thiago had referred to is merged.
-
+> On Thu, 11 Feb 2021 at 00:25, AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@somainline.org> wrote:
+>>
+>> Il 10/02/21 09:18, Amit Pundir ha scritto:
+>>> From: Sumit Semwal <sumit.semwal@linaro.org>
+>>>
+>>> Enabling the Display panel for beryllium requires DSI
+>>> labibb regulators and panel dts nodes to be added.
+>>> It is also required to keep some of the regulators as
+>>> always-on.
+>>>
+>>> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+>>> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+>>> ---
+>>
+>> Hello!
+>> Your patch looks good, however, I have a few concerns...
+>>
+>>> v3: Addressed Konrad's concerns. Configured labibb regulators
+>>>       explicitly based on downstream microvolt values. Display
+>>>       comes up fine with default discharge-resistor-kohms and
+>>>       soft-start-us properties, so didn't touch them.
+>>>       Smoke tested on next-20210209.
+>>> v2: Rebased to mainline (v5.11-rc6) and fixed build warnings.
+>>>
+>>>    .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts      | 64 ++++++++++++++++++++++
+>>>    1 file changed, 64 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+>>> index 86cbae63eaf7..5ac049a247e1 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+>>> @@ -157,6 +157,14 @@
+>>>                        regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>>>                };
+>>>
+>>> +             vreg_l14a_1p8: ldo14 {
+>>> +                     regulator-min-microvolt = <1800000>;
+>>> +                     regulator-max-microvolt = <1800000>;
+>>> +                     regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>>> +                     regulator-boot-on;
+>>> +                     regulator-always-on;
+>>> +             };
+>>> +
+>>>                vreg_l17a_1p3: ldo17 {
+>>>                        regulator-min-microvolt = <1304000>;
+>>>                        regulator-max-microvolt = <1304000>;
+>>> @@ -191,6 +199,7 @@
+>>>                        regulator-min-microvolt = <1200000>;
+>>>                        regulator-max-microvolt = <1200000>;
+>>>                        regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>>> +                     regulator-boot-on;
+>>>                };
+>>>        };
+>>>    };
+>>> @@ -200,6 +209,43 @@
+>>>        firmware-name = "qcom/sdm845/cdsp.mdt";
+>>>    };
+>>>
+>>> +&dsi0 {
+>>> +     status = "okay";
+>>> +     vdda-supply = <&vreg_l26a_1p2>;
+>>> +
+>>> +     #address-cells = <1>;
+>>> +     #size-cells = <0>;
+>>> +
+>>> +     panel@0 {
+>>> +             compatible = "tianma,fhd-video";
+>>> +             reg = <0>;
+>>> +             vddi0-supply = <&vreg_l14a_1p8>;
+>>> +             vddpos-supply = <&lab>;
+>>> +             vddneg-supply = <&ibb>;
+>>> +
+>>> +             #address-cells = <1>;
+>>> +             #size-cells = <0>;
+>>> +
+>>> +             reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+>>> +
+>>> +             port {
+>>> +                     tianma_nt36672a_in_0: endpoint {
+>>> +                             remote-endpoint = <&dsi0_out>;
+>>> +                     };
+>>> +             };
+>>> +     };
+>>> +};
+>>> +
+>>> +&dsi0_out {
+>>> +     remote-endpoint = <&tianma_nt36672a_in_0>;
+>>> +     data-lanes = <0 1 2 3>;
+>>> +};
+>>> +
+>>> +&dsi0_phy {
+>>> +     status = "okay";
+>>> +     vdds-supply = <&vreg_l1a_0p875>;
+>>> +};
+>>> +
+>>>    &gcc {
+>>>        protected-clocks = <GCC_QSPI_CORE_CLK>,
+>>>                           <GCC_QSPI_CORE_CLK_SRC>,
+>>> @@ -215,6 +261,24 @@
+>>>        };
+>>>    };
+>>>
+>>> +&ibb {
+>>> +     regulator-min-microvolt = <4600000>;
+>>> +     regulator-max-microvolt = <6000000>;
+>>> +};
+>>> +
+>>
+>> I think you want to also configure overvoltage and overcurrent
+>> protection values for both LAB and IBB, as these regulators may be a bit
+>> dangerous if used without.
 > 
-> The above change is also going to conflict, so I think this may have
-> to wait. Or I'll take the common and arm bits and powerpc can be
-> converted next cycle (or after the merge window).
+> Can you point me to the relevant DT properties please. I didn't find
+> any DT properties which set the over voltage/current protection
+> properties explicitly in upstream as well as in downstream kernel.
+> Plus I also do not see "regulator-min/max-microamp" values set
+> downstream, otherwise I'd have used that as well atleast.
 > 
 
-thanks.
+The regulator-{min/max}-microamp is the equivalent of the downstream
+"qcom,qpnp-lab-limit-maximum-current" and 
+"qcom,qpnp-ibb-limit-maximum-current.
 
-  -lakshmi
+I am sorry if we haven't sent our patch series that will introduce the
+Sony MSM8998 Yoshino and SDM630/636 Nile and Ganges platforms, which
+are actually using the driver that I've sent fully, as these would have
+been a nice reference for you.
 
+In any case, I can point you at our public repositories and their
+downstream equivalents...
+
+Here you find the downstream configuration for LAB/IBB:
+https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.7.1.r1/arch/arm64/boot/dts/qcom/msm8998-yoshino-common.dtsi#L3158
+
+...And here you find the SoMainline upstream stuff for the same:
+https://github.com/SoMainline/linux/blob/SoMainline/v5.11-rc4/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi#L332
+
+https://github.com/SoMainline/linux/blob/SoMainline/v5.11-rc4/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dts#L50
+
+I hope that clears out your doubts and difficulties about implementing
+the protections on labibb.
+
+Yours,
+-- Angelo
+
+> Regards,
+> Amit Pundir
+> 
+>> Besides that, even if it wouldn't be that dangerous, since the
+>> protection features are present, it would be nice to configure them
+>> properly as in the rare event that something bad happens, you would be
+>> able to save the hardware (or at least have a chance to!).
+>>
+>>> +&lab {
+>>> +     regulator-min-microvolt = <4600000>;
+>>> +     regulator-max-microvolt = <6000000>;
+>>> +};
+>>> +
+>>
+>> Same here.
+>>
+>> Yours,
+>> -- Angelo
+>>
+>>> +&mdss {
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&mdss_mdp {
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>>    &mss_pil {
+>>>        status = "okay";
+>>>        firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
+>>>
+>>
 
