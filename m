@@ -2,130 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAE25319BD3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 10:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CD9D319BD9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 10:26:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230158AbhBLJX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 04:23:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57076 "EHLO
+        id S229674AbhBLJZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 04:25:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbhBLJXj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 04:23:39 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD899C061756
-        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 01:22:58 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id z11so4205201lfb.9
-        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 01:22:58 -0800 (PST)
+        with ESMTP id S229983AbhBLJZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 04:25:22 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B6F9C061756
+        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 01:24:42 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id d184so8450058ybf.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 01:24:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0qh8Pdw9qka2TYE2ZgoHexsZ5dGrw0h903IxKKwLo7w=;
-        b=Fa3Fe7P9ew+sbMFs79guYw2cPpaCCLJiiFVkJwqgHaMj0sGMSjLfZutWZ0Ja7Yxnh/
-         RBbooQsjB6f9xB8Yih70bYFqnkabOj+9G0uoPD56BJLOVSDna1oJ5+By8wWYHvw5qAL/
-         xLsY3HpEcA9pFN+wkH8fwiRqRDBp105I3xgVoSmdVkvgNt7oeqNW+5nCjJhpD1kOK+Iu
-         VbN9SWvxE2JI4TJtpIT95Z8weUmBO7xxO3OxFppWrHj7+HkD5ZOe9PjbaQndcdJfojtM
-         xZMN5zHu06UGDsL99wop9QduCoau+e0Kz2/6j7w7pAopTWdaWnYE0vKlKcJQT+rpXdVO
-         v50Q==
+        bh=Y0No0ONR6FUuFWuujJd79fK6HXBhAF9QPUsiKwkH7Y0=;
+        b=J6MmOM83V9YJ2fLjJv6qw5ny8k7dfibZTrMS/tOukhD9W0VWt8JSMxchBBgC7Pmc2H
+         m7Hx+sK/6q7adee0PvddBj7StxLuKl3xcdhQmIjKUkL0HFTLelUZgGXaCfT600GCsvql
+         O/UVe84S0XiD45Eq6nygIpU+zrP/uEJP0YznVtQKM1N7XkZKS5J9gI9jAS3+BG00uWVO
+         BOBOxOChC9bBL6PhR99bg245OFWat3E1fggoCQWac0OaWgSyCmliBJ1RhsjAikhQ6Ke8
+         qykAHD6Nq1Ahjkr5akaCRyH0SPhju7X3Tmhs9GGeW0726BfcPpGNsqQy6SEEPP3ouQzR
+         iOTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0qh8Pdw9qka2TYE2ZgoHexsZ5dGrw0h903IxKKwLo7w=;
-        b=naedDoLA6yhrtj3nzxXvdB9MF6uNYVIf7qIbviFus0VRyLMPhvws+qWlgEb20WR6X0
-         UN4IDPHNMs0Uai5+Lahm9b6AmfIRW0ywqpPWcSRkv/i6gptvDQdeMV4S4lEnMrICxQhx
-         bTRKGdyEnYPZPo2od9K5bV5QY+GNFyvWQZA/eUKy+RAUhMU8sK9mSpf6SPmXXQCwX5Of
-         CAXnARRD1vtyBP0M4MeUgtwUDiabr5m/TKQ5bMGRD7V/+UvN38SmsZxpjHn81ruXDvEu
-         5DALvpcr1CEtPhbsflRQeR5FIFOU8N1xfrRwxK1O/PlB7TZge/vGtiyAtu1l+L+GY8NX
-         3cHw==
-X-Gm-Message-State: AOAM5336mRSCRdsyvFxYiYhRkjz8P1khv0dlyPyk6pOHPiZU1P8eBTBl
-        +jHtGNvrQBFmuxjTBDABZZqHQah6tVG/zFsmvN4gJd9Dg7icnhIK
-X-Google-Smtp-Source: ABdhPJxEZTrr/PlUo4553XsMa6M1hrTG1Gm7V/GzNiXVb+ZhQVSiS2yPH7AWx++cfkHS/sPVuQALveIu9hqiYxRXO5I=
-X-Received: by 2002:a19:8bc6:: with SMTP id n189mr1061111lfd.291.1613121777318;
- Fri, 12 Feb 2021 01:22:57 -0800 (PST)
+        bh=Y0No0ONR6FUuFWuujJd79fK6HXBhAF9QPUsiKwkH7Y0=;
+        b=PFEgBEOdEDKzBiUfV7rTI5iwLu/6a++zRbZmGcOWVp01Hkm4M/rfxqXUclbXOQ5EnH
+         F4mDxf2rIDczNkep3iVciu48rYpe037Ujgxmh1qqxot75w7lq2WFSFkt4o8gpSMO1tuC
+         Ewv8vGyUS8x0IuJQQRHVkE84g6+48CHD1Y5YdzySshFLhdsuhfYaXB5n22p4ZV+9gsMD
+         M2EghlM1brFmNFeXSWApwfkn5MCUt9ZDsRCfVKeZiJMnBxMVdyw/hUoVurglQwtIYk08
+         zOql+PSX9Sc4d9SRhTIXiSBxW/P/837ptzZr3AxseIIUuz7gmZsY+SkHrR9PtkqpneBr
+         jHyA==
+X-Gm-Message-State: AOAM5309pNPTbTPJtX2vJvPt8CZobH5hImK2eyMIB6tBXX2TKC9cv6Tk
+        6UXH/b6TXlpmp6rsiBEyAsAZA/IWitdMBqF3ryBMjw==
+X-Google-Smtp-Source: ABdhPJymHwa8TOcq3zW+VCNvmwG/+uOU+gPqVHU+h64ZngBdFfIYnujLXqJARPqLjFPIUYoanE9Stcqk2k7gtBmHdQE=
+X-Received: by 2002:a25:ca42:: with SMTP id a63mr2856231ybg.318.1613121881114;
+ Fri, 12 Feb 2021 01:24:41 -0800 (PST)
 MIME-Version: 1.0
-References: <20210208135347.18494-1-o.rempel@pengutronix.de>
- <20210208135347.18494-2-o.rempel@pengutronix.de> <20210210184138.GA2504266@robh.at.kernel.org>
-In-Reply-To: <20210210184138.GA2504266@robh.at.kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 12 Feb 2021 10:22:46 +0100
-Message-ID: <CACRpkdYLH-D84BinPNvhw2YDvRp=KMeBLqWYhyJQBh+hGFB9Dg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: counter: add event-counter binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>
+References: <1612945128-23174-1-git-send-email-amit.pundir@linaro.org> <13bd5e9d-3f3b-0b97-aa48-9a7bc551ddf6@somainline.org>
+In-Reply-To: <13bd5e9d-3f3b-0b97-aa48-9a7bc551ddf6@somainline.org>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Fri, 12 Feb 2021 14:54:05 +0530
+Message-ID: <CAMi1Hd3d8krtQHv-3LuiCcgCWSgL1L0UeSYWJp27KToyW338gw@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and
+ panel bits
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 10, 2021 at 7:41 PM Rob Herring <robh@kernel.org> wrote:
-> On Mon, Feb 08, 2021 at 02:53:46PM +0100, Oleksij Rempel wrote:
+Hi,
 
-> > +  interrupts:
-> > +    maxItems: 1
+On Thu, 11 Feb 2021 at 00:25, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@somainline.org> wrote:
+>
+> Il 10/02/21 09:18, Amit Pundir ha scritto:
+> > From: Sumit Semwal <sumit.semwal@linaro.org>
+> >
+> > Enabling the Display panel for beryllium requires DSI
+> > labibb regulators and panel dts nodes to be added.
+> > It is also required to keep some of the regulators as
+> > always-on.
+> >
+> > Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+> > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> > ---
+>
+> Hello!
+> Your patch looks good, however, I have a few concerns...
+>
+> > v3: Addressed Konrad's concerns. Configured labibb regulators
+> >      explicitly based on downstream microvolt values. Display
+> >      comes up fine with default discharge-resistor-kohms and
+> >      soft-start-us properties, so didn't touch them.
+> >      Smoke tested on next-20210209.
+> > v2: Rebased to mainline (v5.11-rc6) and fixed build warnings.
+> >
+> >   .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts      | 64 ++++++++++++++++++++++
+> >   1 file changed, 64 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> > index 86cbae63eaf7..5ac049a247e1 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> > @@ -157,6 +157,14 @@
+> >                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> >               };
+> >
+> > +             vreg_l14a_1p8: ldo14 {
+> > +                     regulator-min-microvolt = <1800000>;
+> > +                     regulator-max-microvolt = <1800000>;
+> > +                     regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > +                     regulator-boot-on;
+> > +                     regulator-always-on;
+> > +             };
 > > +
-> > +  gpios:
-> > +    description: Optional diagnostic interface to measure signal level
+> >               vreg_l17a_1p3: ldo17 {
+> >                       regulator-min-microvolt = <1304000>;
+> >                       regulator-max-microvolt = <1304000>;
+> > @@ -191,6 +199,7 @@
+> >                       regulator-min-microvolt = <1200000>;
+> >                       regulator-max-microvolt = <1200000>;
+> >                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > +                     regulator-boot-on;
+> >               };
+> >       };
+> >   };
+> > @@ -200,6 +209,43 @@
+> >       firmware-name = "qcom/sdm845/cdsp.mdt";
+> >   };
+> >
+> > +&dsi0 {
+> > +     status = "okay";
+> > +     vdda-supply = <&vreg_l26a_1p2>;
+> > +
+> > +     #address-cells = <1>;
+> > +     #size-cells = <0>;
+> > +
+> > +     panel@0 {
+> > +             compatible = "tianma,fhd-video";
+> > +             reg = <0>;
+> > +             vddi0-supply = <&vreg_l14a_1p8>;
+> > +             vddpos-supply = <&lab>;
+> > +             vddneg-supply = <&ibb>;
+> > +
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+> > +
+> > +             reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+> > +
+> > +             port {
+> > +                     tianma_nt36672a_in_0: endpoint {
+> > +                             remote-endpoint = <&dsi0_out>;
+> > +                     };
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&dsi0_out {
+> > +     remote-endpoint = <&tianma_nt36672a_in_0>;
+> > +     data-lanes = <0 1 2 3>;
+> > +};
+> > +
+> > +&dsi0_phy {
+> > +     status = "okay";
+> > +     vdds-supply = <&vreg_l1a_0p875>;
+> > +};
+> > +
+> >   &gcc {
+> >       protected-clocks = <GCC_QSPI_CORE_CLK>,
+> >                          <GCC_QSPI_CORE_CLK_SRC>,
+> > @@ -215,6 +261,24 @@
+> >       };
+> >   };
+> >
+> > +&ibb {
+> > +     regulator-min-microvolt = <4600000>;
+> > +     regulator-max-microvolt = <6000000>;
+> > +};
+> > +
 >
-> This description seems wrong in the case of only having a GPIO.
+> I think you want to also configure overvoltage and overcurrent
+> protection values for both LAB and IBB, as these regulators may be a bit
+> dangerous if used without.
+
+Can you point me to the relevant DT properties please. I didn't find
+any DT properties which set the over voltage/current protection
+properties explicitly in upstream as well as in downstream kernel.
+Plus I also do not see "regulator-min/max-microamp" values set
+downstream, otherwise I'd have used that as well atleast.
+
+Regards,
+Amit Pundir
+
+> Besides that, even if it wouldn't be that dangerous, since the
+> protection features are present, it would be nice to configure them
+> properly as in the rare event that something bad happens, you would be
+> able to save the hardware (or at least have a chance to!).
 >
-> Also, a GPIO only implies polled mode because if the GPIO is interrupt
-> capable, 'interrupts' should be required. For gpio-keys, we split the
-> compatible strings in this case. I leave it to you if you want to make
-> it more explicit.
-
-Ouch. This is a bit of semantic confusion where I see different things
-if I put my Linux hat on than if I put my DT hat on ... :/
-
-Linux (or some other OS I suppose) has the ability to look up an
-interrupt resource for a GPIO line and that is used quite extensively.
-
-In this case it is certainly possible to write a Linux driver that only take
-a GPIO resource and looks up a corresponding interrupt without the
-involvement of any DT interrupt resources. This happens a lot.
-
-A typical example is cd-gpios in
-Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-
-The operating system will take cd-gpios and infer the corresponding
-IRQ from the GPIO hardware by OS-internal mechanisms (in the Linux
-case simply using irqdomain) in almost cases, and that is how that is
-used today. It is an hardware interrupt
-that gets allocated and used but the DT is blissfully ignorant about.
-
-The reason is that GPIO is "general purpose" so they don't have very
-specific use cases and the interrupts are general purpose as well.
-A certain GPIO line may not even have a certain interrupt associated
-with it: there exist GPIO controllers with e.g. 32 GPIO lines but
-only 8 interrupts that can be assigned to GPIO lines on a
-first-come-first-serve basis so there could not be anything like
-a cell in the bindings pointing to a certain interrupt: it has to be
-resolved by software, at runtime.
-
-In many cases the corresponsing GPIO hardware will have both
-gpio-controller and interrupt-controller flags, but I bet there exist
-cases that are only flagged with gpio-controller and then the drivers
-in the OS goes and implement interrupts using its abstractions and
-assign them anyway.
-
-I don't know if this can be solved in a generic way (solved as in DT
-needs to know all about the systems interrupt resources, and the OS
-should not be handing out interrupts behind the back of the DT description
-for things that are not flagged as interrupt-controller) or if this ambiguity
-around GPIO chips just has to stay around forever.
-
-I think it may be one of those cases where DT bindings can't be
-all that imperialistic about controlling every resource, but there may
-be other views on this.
-
-Yours,
-Linus Walleij
+> > +&lab {
+> > +     regulator-min-microvolt = <4600000>;
+> > +     regulator-max-microvolt = <6000000>;
+> > +};
+> > +
+>
+> Same here.
+>
+> Yours,
+> -- Angelo
+>
+> > +&mdss {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&mdss_mdp {
+> > +     status = "okay";
+> > +};
+> > +
+> >   &mss_pil {
+> >       status = "okay";
+> >       firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
+> >
+>
