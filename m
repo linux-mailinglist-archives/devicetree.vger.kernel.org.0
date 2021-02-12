@@ -2,87 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49FE631A02C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 14:59:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A58831A078
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 15:17:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230489AbhBLN6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 08:58:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40208 "EHLO mail.kernel.org"
+        id S231652AbhBLORJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 09:17:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44366 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230249AbhBLN6F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Feb 2021 08:58:05 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 015BE64E57;
-        Fri, 12 Feb 2021 13:57:23 +0000 (UTC)
+        id S231947AbhBLORA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Feb 2021 09:17:00 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E7C2064E3B;
+        Fri, 12 Feb 2021 14:16:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613138244;
-        bh=v4zfZkRGfMEsNs46OiyzraGryvAEHvd4MX/NPDSMX4I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=td3De8T9CuymU1OvNXoEQg9Urm1F4nLlbG1Se4Dj17bNJq/A923AY4oS+l9b0L2ma
-         turAE+DZPk0Bx7EidvByJmaOivX2g84j2u88jI1B9Z6JaBzi2/SIzCSnBH/hCo4ZED
-         bFk3pedUEUsrCdWzNZoVdUQexKXQvX5EtsTLWclDrSQTgOs83e9lXCj2XyCoU+NDue
-         j7OJV/AYDdeWb4KAiXp/MxzO8pTQ5mtHpRHEM6VNQkZ7Z2y61DpFUa/+5VeVZQer4b
-         9rA1pkSPVd0yorV9R2n8SRu8dAOpBYeJRWUM6J4qlZMcPLP63JUKJFEPAL1K/SAjtp
-         J1BnCVeUkd+bg==
-Date:   Fri, 12 Feb 2021 13:56:30 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "agross@kernel.org" <agross@kernel.org>,
-        "tj@kernel.org" <tj@kernel.org>,
-        "jiangshanlai@gmail.com" <jiangshanlai@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [RFC PATCH 3/7] regulator: IRQ based event/error notification
- helpers
-Message-ID: <20210212135630.GF6057@sirena.org.uk>
-References: <cover.1613042245.git.matti.vaittinen@fi.rohmeurope.com>
- <3daf0531910c25d8b0da3964778ae2a6c9049d43.1613042245.git.matti.vaittinen@fi.rohmeurope.com>
- <6355af19b137fe25d55c33f813b05ba43e2cd41e.camel@fi.rohmeurope.com>
+        s=k20201202; t=1613139380;
+        bh=2DKPPXTIDl91yV95565W69MluqACQHUKIxExOf7+KvM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=S4CZ+oDheTkWrVCTbnqJLY7Q3V4/OmsBVlT95GReMZphU1szz0O410gFaKYgf4+lA
+         xouYwlaSRoplsCtDCkkXBfCOlXUXLcY8ddaL9Q2emOEBxIulXEJK8PYHMQ1kACCLMJ
+         NnEqDcpiWctpaHiWKCBi96hIdnFpnhNkFQxtZ3OR+N9FQPTddQpMUQkRMaIYsjvEIT
+         h8dJT7TCeFL4yDa03eXPJvDvJWF1SYuu3s2R8RjBZmzPvSKqnAYCLgoPxlJRy4JZr6
+         OdlaqmVx3+5wyEoYuRRJ+haWkC+WFpju09MDrth1o1n7mIv11AAio8ZCkCaM8Lk7nk
+         IdMaHyLe4+mYQ==
+Received: by mail-ej1-f54.google.com with SMTP id lg21so15891937ejb.3;
+        Fri, 12 Feb 2021 06:16:19 -0800 (PST)
+X-Gm-Message-State: AOAM533ridlCIOLfbjSJMUABWvWhUfdb1CmLLBdGEEs3wT3HyyCOWWCw
+        Bnjr9Mym844OnF9pkmca0bDChISWx8tsyCM4Og==
+X-Google-Smtp-Source: ABdhPJx8DAaEHdBqStC5JxFOLQu8r4fIaQPcutxOHNm2E3Rzi57k0jT8CO/cK3qvKLSAuieTOjOukPC9t13fCVU4Mmw=
+X-Received: by 2002:a17:906:1d44:: with SMTP id o4mr1837578ejh.130.1613139378556;
+ Fri, 12 Feb 2021 06:16:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eDB11BtaWSyaBkpc"
-Content-Disposition: inline
-In-Reply-To: <6355af19b137fe25d55c33f813b05ba43e2cd41e.camel@fi.rohmeurope.com>
-X-Cookie: One size fits all.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210212033120.GA100407@roeck-us.net>
+In-Reply-To: <20210212033120.GA100407@roeck-us.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 12 Feb 2021 08:16:04 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLm3mHdPg4wkdhoFXNY1JgTJ56dxi3oLqBS_NBrX=rOfw@mail.gmail.com>
+Message-ID: <CAL_JsqLm3mHdPg4wkdhoFXNY1JgTJ56dxi3oLqBS_NBrX=rOfw@mail.gmail.com>
+Subject: Re: [PATCH] scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Feb 11, 2021 at 9:31 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> Hi Rob,
+>
+> On Wed, Feb 03, 2021 at 03:26:03PM -0600, Rob Herring wrote:
+> > This adds the following commits from upstream:
+> >
+> > 183df9e9c2b9 gitignore: Ignore the swp files
+> > 0db6d09584e1 gitignore: Add cscope files
+> > 307afa1a7be8 Update Jon Loeliger's email
+> > ca16a723fa9d fdtdump: Fix gcc11 warning
+> > 64990a272e8f srcpos: increase MAX_SRCFILE_DEPTH
+> > 163f0469bf2e dtc: Allow overlays to have .dtbo extension
+> > 3b01518e688d Set last_comp_version correctly in new dtb and fix potential version issues in fdt_open_into
+> > f7e5737f26aa tests: Fix overlay_overlay_nosugar test case
+> > 7cd5d5fe43d5 libfdt: Tweak description of assume-aligned load helpers
+> > a7c404099349 libfdt: Internally perform potentially unaligned loads
+> > bab85e48a6f4 meson: increase default timeout for tests
+> > f8b46098824d meson: do not assume python is installed, skip tests
+> > 30a56bce4f0b meson: fix -Wall warning
+> > 5e735860c478 libfdt: Check for 8-byte address alignment in fdt_ro_probe_()
+> > 67849a327927 build-sys: add meson build
+> > 05874d08212d pylibfdt: allow build out of tree
+> > 3bc3a6b9fe0c dtc: Fix signedness comparisons warnings: Wrap (-1)
+> > e1147b159e92 dtc: Fix signedness comparisons warnings: change types
+> > 04cf1fdc0fcf convert-dtsv0: Fix signedness comparisons warning
+> > b30013edb878 libfdt: Fix kernel-doc comments
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> This patch causes my little-endian microblaze qemu emulations to fail
+> silently (no console output) in next-20210211. Reverting this patch
+> together with "scripts: dtc: Build fdtoverlay tool" fixes the problem.
 
---eDB11BtaWSyaBkpc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+My guess would be something in libfdt. Maybe 7cd5d5fe43d5 or
+a7c404099349, though that should return to historical behavior.
 
-On Fri, Feb 12, 2021 at 09:33:44AM +0000, Vaittinen, Matti wrote:
+Can you give me the qemu command line and kernel cfg?
 
-> There seems to be few drivers which need delayed wq and which implement
-> .remove() just to call the cancel_delayed_work_sync().
-
-> I think this might help cleaning up those(?) Or am I completely off
-> here?
-
-I can see it being useful, yes.
-
---eDB11BtaWSyaBkpc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAmiQ0ACgkQJNaLcl1U
-h9CMuQf9HAhei76oYBLmI/hNxYHgRwXYNE689EdS2oom5KN4iOBmVDDX4Me3G0j/
-11aTN8El2PFkjsSMy8og0ckMsHeStFzDEf8w8ebQ3v3fM2XnJQu7ziCo7EYXgDYr
-RPBdg0WkR/5DrLwqvZKff5ruOa8VVX5EBkWTg7unmlE3bfvrI/U2/hB4626OlgaG
-pKOWECigmK+J3dPiAKDzmhYrcAJ1Uo0ZFOlxJMWIFA8+/mMGAKIi7TCpDP/GqGpb
-w83q2T3SrtDUkQ3b/bohpIRuc81GzLxYBu/8SBkpRHlO4lSKUYM8m1h+vNXDbW74
-37gH3KhykFPng9eb6BTZyZfrhNtGZA==
-=Lycb
------END PGP SIGNATURE-----
-
---eDB11BtaWSyaBkpc--
+Rob
