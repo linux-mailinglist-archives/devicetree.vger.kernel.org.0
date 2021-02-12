@@ -2,177 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18093319D42
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 12:22:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9AB7319D87
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 12:47:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbhBLLUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 06:20:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53846 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229714AbhBLLUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 06:20:16 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05D27C0617A9
-        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 03:18:58 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id o38so6013571pgm.9
-        for <devicetree@vger.kernel.org>; Fri, 12 Feb 2021 03:18:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wF13wHlH8AwN31lqAZwhyJR4x/IvJw4g38aibW4ph8w=;
-        b=Amb+jKC7GS9/Nh89skSUnbGw/MjcxgSTvKj+QeSofjwQWAB72O+crjokGbjJKp4nzt
-         0xo1aAAVZYXXctB3fqwFF4Z+IlaZ4SK61Cl9x07BQVVSGo/NPxaZ7/BKR45XDib8/37A
-         2e/c4V+MhTJ+ag97f4Soca6W4JFcfW/3XOjB6SOty7Jpfp60Jn4MlHY3vqcvQ+cigg15
-         WorvVsnqqfvh7bBwDIQW1p0K7nFd18ZnhXYr3/fhVNbztDxo5c2VALk8iwX2veHnUMDm
-         aYY0dK6GJxq4oJv/hPQ6KOnCWKnlB6TvEjJlu8rmKTSzQwBFEEBhstacZA1Rn/z4LNiY
-         XPKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wF13wHlH8AwN31lqAZwhyJR4x/IvJw4g38aibW4ph8w=;
-        b=btosaDg6ZfTEdRpdaB7Z+fqOaMmfBcC14hwtcxGj4lFRWOwWRHktpuazzZKCJ4+3Q2
-         8s1NyJwC9vPpgNAPJQS0kuWDGF0XpkyXk5B+hRvxFy0d/kBdgiEOMxWx4PB72E/fPGu+
-         pR+rNPmYigVusAyJr2g0l859sqoxHwXr+GhjudBWJ64a3kjlY88jhrg/AUY6Uh55Po/e
-         o4hdaxep8qcV7EK5MUUri5GbDixB1nyqYXM9xBxdcnyiiAfHhUOcnpxijWY9zExKLIrG
-         B6OJmPIivjuzXmVRKHQPMuNI3Nz2REMnodIbuPAWLv9tj+MgwivOUV389L0ugx2NH+Di
-         CRrw==
-X-Gm-Message-State: AOAM5304YqQglNWzwAQ5t2mWxFGM7Q+7dFETKr0x8GMtKRAZ2JZCOQ/H
-        DgoCL7KmQ2dKAZcV1qNk8wvUIw==
-X-Google-Smtp-Source: ABdhPJwc3RACf1a60kDzhiAt8G6zfxfDX50y6YB81gE9Cr9NCRMlnocyE/BJ7az/AHL9e8GmoQCRtw==
-X-Received: by 2002:a63:4f1f:: with SMTP id d31mr2802136pgb.104.1613128737563;
-        Fri, 12 Feb 2021 03:18:57 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id 74sm8836106pfw.53.2021.02.12.03.18.56
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 12 Feb 2021 03:18:57 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Subject: [PATCH V8 4/4] of: unittest: Statically apply overlays using fdtoverlay
-Date:   Fri, 12 Feb 2021 16:48:38 +0530
-Message-Id: <3fd43e11012d0c21606aef6d2af1e01a4efe274c.1613127681.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <cover.1613127681.git.viresh.kumar@linaro.org>
-References: <cover.1613127681.git.viresh.kumar@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S229650AbhBLLqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 06:46:06 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:46742 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229608AbhBLLqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 06:46:06 -0500
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 12 Feb 2021 03:45:25 -0800
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 12 Feb 2021 03:45:23 -0800
+X-QCInternal: smtphost
+Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 12 Feb 2021 17:14:50 +0530
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 1E25C427B; Fri, 12 Feb 2021 03:44:51 -0800 (PST)
+From:   Kalyan Thota <kalyant@codeaurora.org>
+To:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     Kalyan Thota <kalyant@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        dianders@chromium.org, mkrishn@codeaurora.org, swboyd@chromium.org,
+        abhinavk@codeaurora.org, ddavenport@chromium.org
+Subject: [v3] drm/msm/disp/dpu1: turn off vblank irqs aggressively in dpu
+Date:   Fri, 12 Feb 2021 03:44:49 -0800
+Message-Id: <1613130289-16280-1-git-send-email-kalyant@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <y>
+References: <y>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that fdtoverlay is part of the kernel build, start using it to test
-the unitest overlays we have by applying them statically. Create two new
-base files static_base_1.dts and static_base_2.dts which includes other
-.dtsi files.
+Set the flag vblank_disable_immediate = true to turn off vblank irqs
+immediately as soon as drm_vblank_put is requested so that there are
+no irqs triggered during idle state. This will reduce cpu wakeups
+and help in power saving.
 
-Some unittest overlays deliberately contain errors that unittest checks
-for. These overlays will cause fdtoverlay to fail, and are thus not
-included for static builds.
+To enable vblank_disable_immediate flag the underlying KMS driver
+needs to support high precision vblank timestamping and also a
+reliable way of providing vblank counter which is incrementing
+at the leading edge of vblank.
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+This patch also brings in changes to support vblank_disable_immediate
+requirement in dpu driver.
+
+Changes in v1:
+ - Specify reason to add vblank timestamp support. (Rob)
+ - Add changes to provide vblank counter from dpu driver.
+
+Changes in v2:
+ - fix warn stack reported by Rob with v2 patch
+
+Signed-off-by: Kalyan Thota <kalyant@codeaurora.org>
 ---
- drivers/of/unittest-data/Makefile          | 50 ++++++++++++++++++++++
- drivers/of/unittest-data/static_base_1.dts |  4 ++
- drivers/of/unittest-data/static_base_2.dts |  4 ++
- 3 files changed, 58 insertions(+)
- create mode 100644 drivers/of/unittest-data/static_base_1.dts
- create mode 100644 drivers/of/unittest-data/static_base_2.dts
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    | 80 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 28 +++++++++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h | 11 ++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     |  5 ++
+ 4 files changed, 123 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
-index 009f4045c8e4..f88b2f48f172 100644
---- a/drivers/of/unittest-data/Makefile
-+++ b/drivers/of/unittest-data/Makefile
-@@ -34,7 +34,57 @@ DTC_FLAGS_overlay += -@
- DTC_FLAGS_overlay_bad_phandle += -@
- DTC_FLAGS_overlay_bad_symbol += -@
- DTC_FLAGS_overlay_base += -@
-+DTC_FLAGS_static_base_1 += -@
-+DTC_FLAGS_static_base_2 += -@
- DTC_FLAGS_testcases += -@
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+index d4662e8..9a80981 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+@@ -65,6 +65,83 @@ static void dpu_crtc_destroy(struct drm_crtc *crtc)
+ 	kfree(dpu_crtc);
+ }
  
- # suppress warnings about intentional errors
- DTC_FLAGS_testcases += -Wno-interrupts_property
++static struct drm_encoder *get_encoder_from_crtc(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct drm_encoder *encoder;
 +
-+# Apply overlays statically with fdtoverlay.  This is a build time test that
-+# the overlays can be applied successfully by fdtoverlay.  This does not
-+# guarantee that the overlays can be applied successfully at run time by
-+# unittest, but it provides a bit of build time test coverage for those
-+# who do not execute unittest.
-+#
-+# The overlays are applied on top of static_base_1.dtb and static_base_2.dtb to
-+# create static_test_1.dtb and static_test_2.dtb.  If fdtoverlay detects an
-+# error than the kernel build will fail.  static_test_1.dtb and
-+# static_test_2.dtb are not consumed by unittest.
-+#
-+# Some unittest overlays deliberately contain errors that unittest checks for.
-+# These overlays will cause fdtoverlay to fail, and are thus not included
-+# in the static test:
-+#			  overlay_bad_add_dup_node.dtbo \
-+#			  overlay_bad_add_dup_prop.dtbo \
-+#			  overlay_bad_phandle.dtbo \
-+#			  overlay_bad_symbol.dtbo \
++	drm_for_each_encoder(encoder, dev)
++		if (encoder->crtc == crtc)
++			return encoder;
 +
-+apply_static_overlay_1 := overlay_0.dtbo \
-+			  overlay_1.dtbo \
-+			  overlay_2.dtbo \
-+			  overlay_3.dtbo \
-+			  overlay_4.dtbo \
-+			  overlay_5.dtbo \
-+			  overlay_6.dtbo \
-+			  overlay_7.dtbo \
-+			  overlay_8.dtbo \
-+			  overlay_9.dtbo \
-+			  overlay_10.dtbo \
-+			  overlay_11.dtbo \
-+			  overlay_12.dtbo \
-+			  overlay_13.dtbo \
-+			  overlay_15.dtbo \
-+			  overlay_gpio_01.dtbo \
-+			  overlay_gpio_02a.dtbo \
-+			  overlay_gpio_02b.dtbo \
-+			  overlay_gpio_03.dtbo \
-+			  overlay_gpio_04a.dtbo \
-+			  overlay_gpio_04b.dtbo
++	return NULL;
++}
 +
-+apply_static_overlay_2 := overlay.dtbo
++static u32 dpu_crtc_get_vblank_counter(struct drm_crtc *crtc)
++{
++	struct drm_encoder *encoder;
 +
-+static_test_1-dtbs := static_base_1.dtb $(apply_static_overlay_1)
-+static_test_2-dtbs := static_base_2.dtb $(apply_static_overlay_2)
++	encoder = get_encoder_from_crtc(crtc);
++	if (!encoder) {
++		DRM_ERROR("no encoder found for crtc %d\n", crtc->index);
++		return false;
++	}
 +
-+dtb-$(CONFIG_OF_OVERLAY) += static_test_1.dtb static_test_2.dtb
-diff --git a/drivers/of/unittest-data/static_base_1.dts b/drivers/of/unittest-data/static_base_1.dts
-new file mode 100644
-index 000000000000..10556cb3f01f
---- /dev/null
-+++ b/drivers/of/unittest-data/static_base_1.dts
-@@ -0,0 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
++	return dpu_encoder_get_frame_count(encoder);
++}
 +
-+#include "testcases_common.dtsi"
-diff --git a/drivers/of/unittest-data/static_base_2.dts b/drivers/of/unittest-data/static_base_2.dts
-new file mode 100644
-index 000000000000..b0ea9504d6f3
---- /dev/null
-+++ b/drivers/of/unittest-data/static_base_2.dts
-@@ -0,0 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
++static bool dpu_crtc_get_scanout_position(struct drm_crtc *crtc,
++					   bool in_vblank_irq,
++					   int *vpos, int *hpos,
++					   ktime_t *stime, ktime_t *etime,
++					   const struct drm_display_mode *mode)
++{
++	unsigned int pipe = crtc->index;
++	struct drm_encoder *encoder;
++	int line, vsw, vbp, vactive_start, vactive_end, vfp_end;
 +
-+#include "overlay_common.dtsi"
++	encoder = get_encoder_from_crtc(crtc);
++	if (!encoder) {
++		DRM_ERROR("no encoder found for crtc %d\n", pipe);
++		return false;
++	}
++
++	vsw = mode->crtc_vsync_end - mode->crtc_vsync_start;
++	vbp = mode->crtc_vtotal - mode->crtc_vsync_end;
++
++	/*
++	 * the line counter is 1 at the start of the VSYNC pulse and VTOTAL at
++	 * the end of VFP. Translate the porch values relative to the line
++	 * counter positions.
++	 */
++
++	vactive_start = vsw + vbp + 1;
++	vactive_end = vactive_start + mode->crtc_vdisplay;
++
++	/* last scan line before VSYNC */
++	vfp_end = mode->crtc_vtotal;
++
++	if (stime)
++		*stime = ktime_get();
++
++	line = dpu_encoder_get_linecount(encoder);
++
++	if (line < vactive_start)
++		line -= vactive_start;
++	else if (line > vactive_end)
++		line = line - vfp_end - vactive_start;
++	else
++		line -= vactive_start;
++
++	*vpos = line;
++	*hpos = 0;
++
++	if (etime)
++		*etime = ktime_get();
++
++	return true;
++}
++
+ static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
+ 		struct dpu_plane_state *pstate, struct dpu_format *format)
+ {
+@@ -1243,6 +1320,8 @@ static const struct drm_crtc_funcs dpu_crtc_funcs = {
+ 	.early_unregister = dpu_crtc_early_unregister,
+ 	.enable_vblank  = msm_crtc_enable_vblank,
+ 	.disable_vblank = msm_crtc_disable_vblank,
++	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
++	.get_vblank_counter = dpu_crtc_get_vblank_counter,
+ };
+ 
+ static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
+@@ -1251,6 +1330,7 @@ static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
+ 	.atomic_check = dpu_crtc_atomic_check,
+ 	.atomic_begin = dpu_crtc_atomic_begin,
+ 	.atomic_flush = dpu_crtc_atomic_flush,
++	.get_scanout_position = dpu_crtc_get_scanout_position,
+ };
+ 
+ /* initialize crtc */
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+index f7f5c25..fb6546c 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+@@ -425,6 +425,32 @@ int dpu_encoder_helper_unregister_irq(struct dpu_encoder_phys *phys_enc,
+ 	return 0;
+ }
+ 
++int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc)
++{
++	struct dpu_encoder_virt *dpu_enc;
++	struct dpu_encoder_phys *phy_enc;
++
++	dpu_enc = to_dpu_encoder_virt(drm_enc);
++	phy_enc = dpu_enc ? dpu_enc->cur_master : NULL;
++
++	return phy_enc ? atomic_read(&phy_enc->vsync_cnt) : 0;
++}
++
++int dpu_encoder_get_linecount(struct drm_encoder *drm_enc)
++{
++	struct dpu_encoder_virt *dpu_enc;
++	struct dpu_encoder_phys *phys;
++	int linecount = 0;
++
++	dpu_enc = to_dpu_encoder_virt(drm_enc);
++	phys = dpu_enc ? dpu_enc->cur_master : NULL;
++
++	if (phys && phys->ops.get_line_count)
++		linecount = phys->ops.get_line_count(phys);
++
++	return linecount;
++}
++
+ void dpu_encoder_get_hw_resources(struct drm_encoder *drm_enc,
+ 				  struct dpu_encoder_hw_resources *hw_res)
+ {
+@@ -1296,12 +1322,12 @@ static void dpu_encoder_vblank_callback(struct drm_encoder *drm_enc,
+ 	DPU_ATRACE_BEGIN("encoder_vblank_callback");
+ 	dpu_enc = to_dpu_encoder_virt(drm_enc);
+ 
++	atomic_inc(&phy_enc->vsync_cnt);
+ 	spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
+ 	if (dpu_enc->crtc)
+ 		dpu_crtc_vblank_callback(dpu_enc->crtc);
+ 	spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
+ 
+-	atomic_inc(&phy_enc->vsync_cnt);
+ 	DPU_ATRACE_END("encoder_vblank_callback");
+ }
+ 
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+index b491346..99a5d73 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
+@@ -156,5 +156,16 @@ void dpu_encoder_prepare_commit(struct drm_encoder *drm_enc);
+  */
+ void dpu_encoder_set_idle_timeout(struct drm_encoder *drm_enc,
+ 							u32 idle_timeout);
++/**
++ * dpu_encoder_get_linecount - get interface line count for the encoder.
++ * @drm_enc:    Pointer to previously created drm encoder structure
++ */
++int dpu_encoder_get_linecount(struct drm_encoder *drm_enc);
++
++/**
++ * dpu_encoder_get_frame_count - get interface frame count for the encoder.
++ * @drm_enc:    Pointer to previously created drm encoder structure
++ */
++int dpu_encoder_get_frame_count(struct drm_encoder *drm_enc);
+ 
+ #endif /* __DPU_ENCODER_H__ */
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+index 374b0e8..ed636f1 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+@@ -14,6 +14,7 @@
+ 
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_file.h>
++#include <drm/drm_vblank.h>
+ 
+ #include "msm_drv.h"
+ #include "msm_mmu.h"
+@@ -1020,6 +1021,10 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
+ 	 */
+ 	dev->mode_config.allow_fb_modifiers = true;
+ 
++	dev->max_vblank_count = 0xffffffff;
++	/* Disable vblank irqs aggressively for power-saving */
++	dev->vblank_disable_immediate = true;
++
+ 	/*
+ 	 * _dpu_kms_drm_obj_init should create the DRM related objects
+ 	 * i.e. CRTCs, planes, encoders, connectors and so forth
 -- 
-2.25.0.rc1.19.g042ed3e048af
+2.7.4
 
