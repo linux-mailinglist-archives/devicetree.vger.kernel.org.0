@@ -2,436 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C80B31A20E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 16:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D74031A2BC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 17:34:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbhBLPsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 10:48:05 -0500
-Received: from foss.arm.com ([217.140.110.172]:39086 "EHLO foss.arm.com"
+        id S229773AbhBLQb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 11:31:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36382 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230515AbhBLPsC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Feb 2021 10:48:02 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2044A1476;
-        Fri, 12 Feb 2021 07:46:36 -0800 (PST)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 82F583F73B;
-        Fri, 12 Feb 2021 07:46:34 -0800 (PST)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>
-Subject: [PATCH v4 7/7] firmware: arm_ffa: Add support for MEM_* interfaces
-Date:   Fri, 12 Feb 2021 15:46:14 +0000
-Message-Id: <20210212154614.38604-8-sudeep.holla@arm.com>
+        id S230089AbhBLQ3W (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Feb 2021 11:29:22 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D922F61490;
+        Fri, 12 Feb 2021 16:28:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613147320;
+        bh=czPSaj8fKA6bbzkVvi8hwsv/gBRa8U5bexlofw0Qygs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gPYeKl0tTxVUd9/4hsSDoLXqxodFpzp3ZUlle2AlnAXDYfJaUiVoKb3mGiTsfn2b6
+         be5yDof39jsOOkMNoEujheitJFFwefohql5ZBnVKjNMKFgowq8s0TpfsFWfbzAkp8e
+         O9zdSAVPrXtv01RKx/5Dc6l0YAuDs441kT2rdmvjkflvHZv33bVKqNtB3QRSzeSqjt
+         qMCESuE573l6vC62UoKnX56WQSkCt6y6arG2jItpFfXd/Ro//4woRl82dqX6cRdV7K
+         2sQzq78XSy2e6XdGry37qI2PyiSVvKKKzaN39cTIRy/onvyFvRF6w+6BD3PylHSNXD
+         ExsrDt3HlbuRQ==
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [RESEND PATCH] dt-bindings: writing-schema: install from PyPI repository
+Date:   Fri, 12 Feb 2021 17:28:36 +0100
+Message-Id: <20210212162836.67393-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210212154614.38604-1-sudeep.holla@arm.com>
-References: <20210212154614.38604-1-sudeep.holla@arm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Most of the MEM_* APIs share the same parameters, so they can be
-generalised. Currently only MEM_SHARE is implemented and the user space
-interface for that is not added yet.
+Installing dtschema from github.com/devicetree-org is not needed anymore
+because dtschema is now part of regular PyPI repository.  In certain
+cases it might cause some troubles as it brings latest master version,
+not the stable release:
 
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+    $ pip3 show dtschema
+    Version: 2020.8.2.dev4+g341f3e3
+    $ make dt_binding_check
+    ERROR: dtschema minimum version is v2020.8.1
+
+Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- drivers/firmware/arm_ffa/driver.c | 184 ++++++++++++++++++++++++++++++
- include/linux/arm_ffa.h           | 150 ++++++++++++++++++++++++
- 2 files changed, 334 insertions(+)
+ Documentation/devicetree/writing-schema.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
-index ad5df6b0eb68..85e60bba40fd 100644
---- a/drivers/firmware/arm_ffa/driver.c
-+++ b/drivers/firmware/arm_ffa/driver.c
-@@ -28,7 +28,9 @@
- #include <linux/io.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/mm.h>
- #include <linux/of.h>
-+#include <linux/scatterlist.h>
- #include <linux/slab.h>
- #include <linux/uuid.h>
+diff --git a/Documentation/devicetree/writing-schema.rst b/Documentation/devicetree/writing-schema.rst
+index 16f21e182ff6..b3cccb7e2059 100644
+--- a/Documentation/devicetree/writing-schema.rst
++++ b/Documentation/devicetree/writing-schema.rst
+@@ -115,7 +115,7 @@ The DT schema project must be installed in order to validate the DT schema
+ binding documents and validate DTS files using the DT schema. The DT schema
+ project can be installed with pip::
  
-@@ -318,6 +320,177 @@ static int ffa_msg_send_direct_req(u16 src_id, u16 dst_id, bool mode_32bit,
- 	return 0;
- }
+-    pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
++    pip3 install dtschema
  
-+static int ffa_mem_first_frag(u32 func_id, phys_addr_t buf, u32 buf_sz,
-+			      u32 frag_len, u32 len, u64 *handle)
-+{
-+	ffa_res_t ret;
-+
-+	ret = invoke_ffa_fn(func_id, len, frag_len, buf, buf_sz, 0, 0, 0);
-+
-+	while (ret.a0 == FFA_MEM_OP_PAUSE)
-+		ret = invoke_ffa_fn(FFA_MEM_OP_RESUME, ret.a1, ret.a2,
-+				    0, 0, 0, 0, 0);
-+	if (ret.a0 == FFA_ERROR)
-+		return ffa_to_linux_errno((int)ret.a2);
-+
-+	if (ret.a0 != FFA_SUCCESS)
-+		return -EOPNOTSUPP;
-+
-+	if (handle)
-+		*handle = PACK_HANDLE(ret.a2, ret.a3);
-+
-+	return frag_len;
-+}
-+
-+static int ffa_mem_next_frag(u64 handle, u32 frag_len)
-+{
-+	ffa_res_t ret;
-+
-+	ret = invoke_ffa_fn(FFA_MEM_FRAG_TX, HANDLE_LOW(handle),
-+			    HANDLE_HIGH(handle), frag_len, 0, 0, 0, 0);
-+
-+	while (ret.a0 == FFA_MEM_OP_PAUSE)
-+		ret = invoke_ffa_fn(FFA_MEM_OP_RESUME, ret.a1, ret.a2,
-+				    0, 0, 0, 0, 0);
-+	if (ret.a0 == FFA_ERROR)
-+		return ffa_to_linux_errno((int)ret.a2);
-+
-+	if (ret.a0 != FFA_MEM_FRAG_RX)
-+		return -EOPNOTSUPP;
-+
-+	return ret.a3;
-+}
-+
-+static int
-+ffa_transmit_fragment(u32 func_id, phys_addr_t buf, u32 buf_sz, u32 frag_len,
-+		      u32 len, u64 *handle, bool first)
-+{
-+	if (!first)
-+		return ffa_mem_next_frag(*handle, frag_len);
-+
-+	return ffa_mem_first_frag(func_id, buf, buf_sz, frag_len, len, handle);
-+}
-+
-+static u32 ffa_get_num_pages_sg(struct scatterlist *sg)
-+{
-+	u32 num_pages = 0;
-+
-+	do {
-+		num_pages += sg->length / FFA_PAGE_SIZE;
-+	} while ((sg = sg_next(sg)));
-+
-+	return num_pages;
-+}
-+
-+static int
-+ffa_setup_and_transmit(u32 func_id, void *buffer, u32 max_fragsize,
-+		       struct ffa_mem_ops_args *args)
-+{
-+	int rc = 0;
-+	bool first = true;
-+	phys_addr_t addr = 0;
-+	struct ffa_composite_mem_region *composite;
-+	struct ffa_mem_region_addr_range *constituents;
-+	struct ffa_mem_region_attributes *ep_mem_access;
-+	struct ffa_mem_region *mem_region = buffer;
-+	u32 idx, frag_len, length, buf_sz = 0, num_entries = sg_nents(args->sg);
-+
-+	mem_region->tag = args->tag;
-+	mem_region->flags = args->flags;
-+	mem_region->sender_id = drv_info->vm_id;
-+	mem_region->attributes = FFA_MEM_NORMAL | FFA_MEM_WRITE_BACK |
-+				 FFA_MEM_INNER_SHAREABLE;
-+	ep_mem_access = &mem_region->ep_mem_access[0];
-+
-+	for (idx = 0; idx < args->nattrs; idx++, ep_mem_access++) {
-+		ep_mem_access->receiver = args->attrs[idx].receiver;
-+		ep_mem_access->attrs = args->attrs[idx].attrs;
-+		ep_mem_access->composite_off = COMPOSITE_OFFSET(args->nattrs);
-+	}
-+	mem_region->ep_count = args->nattrs;
-+
-+	composite = buffer + COMPOSITE_OFFSET(args->nattrs);
-+	composite->total_pg_cnt = ffa_get_num_pages_sg(args->sg);
-+	composite->addr_range_cnt = num_entries;
-+
-+	length = COMPOSITE_CONSTITUENTS_OFFSET(args->nattrs, num_entries);
-+	frag_len = COMPOSITE_CONSTITUENTS_OFFSET(args->nattrs, 0);
-+	if (frag_len > max_fragsize)
-+		return -ENXIO;
-+
-+	if (!args->use_txbuf) {
-+		addr = virt_to_phys(buffer);
-+		buf_sz = max_fragsize / FFA_PAGE_SIZE;
-+	}
-+
-+	constituents = buffer + frag_len;
-+	idx = 0;
-+	do {
-+		if (frag_len == max_fragsize) {
-+			rc = ffa_transmit_fragment(func_id, addr, buf_sz,
-+						   frag_len, length,
-+						   &args->g_handle, first);
-+			if (rc < 0)
-+				return -ENXIO;
-+
-+			first = false;
-+			idx = 0;
-+			frag_len = 0;
-+			constituents = buffer;
-+		}
-+
-+		if ((void *)constituents - buffer > max_fragsize) {
-+			pr_err("Memory Region Fragment > Tx Buffer size\n");
-+			return -EFAULT;
-+		}
-+
-+		constituents->address = sg_phys(args->sg);
-+		constituents->pg_cnt = args->sg->length / FFA_PAGE_SIZE;
-+		constituents++;
-+		frag_len += sizeof(struct ffa_mem_region_addr_range);
-+	} while ((args->sg = sg_next(args->sg)));
-+
-+	return ffa_transmit_fragment(func_id, addr, buf_sz, frag_len,
-+				     length, &args->g_handle, first);
-+}
-+
-+static int ffa_memory_ops(u32 func_id, struct ffa_mem_ops_args *args)
-+{
-+	int ret;
-+	void *buffer;
-+
-+	if (!args->use_txbuf) {
-+		buffer = alloc_pages_exact(RXTX_BUFFER_SIZE, GFP_KERNEL);
-+		if (!buffer)
-+			return -ENOMEM;
-+	} else {
-+		buffer = drv_info->tx_buffer;
-+		mutex_lock(&drv_info->tx_lock);
-+	}
-+
-+	ret = ffa_setup_and_transmit(func_id, buffer, RXTX_BUFFER_SIZE, args);
-+
-+	if (args->use_txbuf)
-+		mutex_unlock(&drv_info->tx_lock);
-+	else
-+		free_pages_exact(buffer, RXTX_BUFFER_SIZE);
-+
-+	return ret < 0 ? ret : 0;
-+}
-+
-+static int ffa_memory_reclaim(u64 g_handle, u32 flags)
-+{
-+	ffa_res_t ret;
-+
-+	ret = invoke_ffa_fn(FFA_MEM_RECLAIM, HANDLE_LOW(g_handle),
-+			    HANDLE_HIGH(g_handle), flags, 0, 0, 0, 0);
-+
-+	if (ret.a0 == FFA_ERROR)
-+		return ffa_to_linux_errno((int)ret.a2);
-+
-+	return 0;
-+}
-+
- static u32 ffa_api_version_get(void)
- {
- 	return drv_info->version;
-@@ -343,11 +516,22 @@ static int ffa_sync_send_receive(struct ffa_device *dev,
- 				       dev->mode_32bit, data);
- }
- 
-+static int
-+ffa_memory_share(struct ffa_device *dev, struct ffa_mem_ops_args *args)
-+{
-+	if (dev->mode_32bit)
-+		return ffa_memory_ops(FFA_MEM_SHARE, args);
-+
-+	return ffa_memory_ops(FFA_FN_NATIVE(MEM_SHARE), args);
-+}
-+
- static const struct ffa_dev_ops ffa_ops = {
- 	.api_version_get = ffa_api_version_get,
- 	.partition_info_get = ffa_partition_info_get,
- 	.mode_32bit_set = ffa_mode_32bit_set,
- 	.sync_send_receive = ffa_sync_send_receive,
-+	.memory_reclaim = ffa_memory_reclaim,
-+	.memory_share = ffa_memory_share,
- };
- 
- const struct ffa_dev_ops *ffa_dev_ops_get(struct ffa_device *dev)
-diff --git a/include/linux/arm_ffa.h b/include/linux/arm_ffa.h
-index f0c68f3f1c6a..9d7a5a3eac75 100644
---- a/include/linux/arm_ffa.h
-+++ b/include/linux/arm_ffa.h
-@@ -115,6 +115,153 @@ struct ffa_send_direct_data {
- 	unsigned long data4; /* w7/x7 */
- };
- 
-+struct ffa_mem_region_addr_range {
-+	/* The base IPA of the constituent memory region, aligned to 4 kiB */
-+	u64 address;
-+	/* The number of 4 kiB pages in the constituent memory region. */
-+	u32 pg_cnt;
-+	u32 reserved;
-+};
-+
-+struct ffa_composite_mem_region {
-+	/*
-+	 * The total number of 4 kiB pages included in this memory region. This
-+	 * must be equal to the sum of page counts specified in each
-+	 * `struct ffa_mem_region_addr_range`.
-+	 */
-+	u32 total_pg_cnt;
-+	/* The number of constituents included in this memory region range */
-+	u32 addr_range_cnt;
-+	u64 reserved;
-+	/** An array of `addr_range_cnt` memory region constituents. */
-+	struct ffa_mem_region_addr_range constituents[];
-+};
-+
-+struct ffa_mem_region_attributes {
-+	/* The ID of the VM to which the memory is being given or shared. */
-+	u16 receiver;
-+	/*
-+	 * The permissions with which the memory region should be mapped in the
-+	 * receiver's page table.
-+	 */
-+#define FFA_MEM_EXEC	BIT(3)
-+#define FFA_MEM_NO_EXEC	BIT(2)
-+#define FFA_MEM_RW		BIT(1)
-+#define FFA_MEM_RO		BIT(0)
-+	u8 attrs;
-+	/*
-+	 * Flags used during FFA_MEM_RETRIEVE_REQ and FFA_MEM_RETRIEVE_RESP
-+	 * for memory regions with multiple borrowers.
-+	 */
-+#define FFA_MEM_RETRIEVE_SELF_BORROWER	BIT(0)
-+	u8 flag;
-+	u32 composite_off;
-+	/*
-+	 * Offset in bytes from the start of the outer `ffa_memory_region` to
-+	 * an `struct ffa_mem_region_addr_range`.
-+	 */
-+	u64 reserved;
-+};
-+
-+struct ffa_mem_region {
-+	/* The ID of the VM/owner which originally sent the memory region */
-+	u16 sender_id;
-+#define FFA_MEM_NORMAL		BIT(5)
-+#define FFA_MEM_DEVICE		BIT(4)
-+
-+#define FFA_MEM_WRITE_BACK	(3 << 2)
-+#define FFA_MEM_NON_CACHEABLE	(1 << 2)
-+
-+#define FFA_DEV_nGnRnE		(0 << 2)
-+#define FFA_DEV_nGnRE		(1 << 2)
-+#define FFA_DEV_nGRE		(2 << 2)
-+#define FFA_DEV_GRE		(3 << 2)
-+
-+#define FFA_MEM_NON_SHAREABLE	(0)
-+#define FFA_MEM_OUTER_SHAREABLE	(2)
-+#define FFA_MEM_INNER_SHAREABLE	(3)
-+	u8 attributes;
-+	u8 reserved_0;
-+/*
-+ * Clear memory region contents after unmapping it from the sender and
-+ * before mapping it for any receiver.
-+ */
-+#define FFA_MEM_CLEAR			BIT(0)
-+/*
-+ * Whether the hypervisor may time slice the memory sharing or retrieval
-+ * operation.
-+ */
-+#define FFA_TIME_SLICE_ENABLE		BIT(1)
-+
-+/*
-+ * Whether the hypervisor should clear the memory region before the receiver
-+ * relinquishes it or is aborted.
-+ */
-+#define FFA_MEM_CLEAR_BEFORE_RELINQUISH	BIT(0)
-+/*
-+ * Whether the hypervisor should clear the memory region after the receiver
-+ * relinquishes it or is aborted.
-+ */
-+#define FFA_MEM_CLEAR_AFTER_RELINQUISH	BIT(2)
-+
-+#define FFA_MEM_RETRIEVE_TYPE_IN_RESP	(0 << 3)
-+#define FFA_MEM_RETRIEVE_TYPE_SHARE	(1 << 3)
-+#define FFA_MEM_RETRIEVE_TYPE_LEND	(2 << 3)
-+#define FFA_MEM_RETRIEVE_TYPE_DONATE	(3 << 3)
-+
-+#define FFA_MEM_RETRIEVE_ADDR_ALIGN_HINT	BIT(9)
-+#define FFA_MEM_RETRIEVE_ADDR_ALIGN(x)		((x) << 5)
-+	/* Flags to control behaviour of the transaction. */
-+	u32 flags;
-+#define HANDLE_LOW_MASK		GENMASK_ULL(31, 0)
-+#define HANDLE_HIGH_MASK	GENMASK_ULL(63, 32)
-+#define HANDLE_LOW(x)		(u32)(FIELD_GET(HANDLE_LOW_MASK, (x)))
-+#define	HANDLE_HIGH(x)		(u32)(FIELD_GET(HANDLE_HIGH_MASK, (x)))
-+
-+#define PACK_HANDLE(l, h)		\
-+	(FIELD_PREP(HANDLE_LOW_MASK, (l)) | FIELD_PREP(HANDLE_HIGH_MASK, (h)))
-+	/*
-+	 * A globally-unique ID assigned by the hypervisor for a region
-+	 * of memory being sent between VMs.
-+	 */
-+	u64 handle;
-+	/*
-+	 * An implementation defined value associated with the receiver and the
-+	 * memory region.
-+	 */
-+	u64 tag;
-+	u32 reserved_1;
-+	/*
-+	 * The number of `ffa_mem_region_attributes` entries included in this
-+	 * transaction.
-+	 */
-+	u32 ep_count;
-+	/*
-+	 * An array of endpoint memory access descriptors.
-+	 * Each one specifies a memory region offset, an endpoint and the
-+	 * attributes with which this memory region should be mapped in that
-+	 * endpoint's page table.
-+	 */
-+	struct ffa_mem_region_attributes ep_mem_access[];
-+};
-+
-+#define	COMPOSITE_OFFSET(x)	\
-+	(offsetof(struct ffa_mem_region, ep_mem_access[x]))
-+#define CONSTITUENTS_OFFSET(x)	\
-+	(offsetof(struct ffa_composite_mem_region, constituents[x]))
-+#define COMPOSITE_CONSTITUENTS_OFFSET(x, y)	\
-+	(COMPOSITE_OFFSET(x) + CONSTITUENTS_OFFSET(y))
-+
-+struct ffa_mem_ops_args {
-+	bool use_txbuf;
-+	u32 nattrs;
-+	u32 flags;
-+	u64 tag;
-+	u64 g_handle;
-+	struct scatterlist *sg;
-+	struct ffa_mem_region_attributes *attrs;
-+};
-+
- struct ffa_dev_ops {
- 	u32 (*api_version_get)(void);
- 	int (*partition_info_get)(const char *uuid_str,
-@@ -122,6 +269,9 @@ struct ffa_dev_ops {
- 	void (*mode_32bit_set)(struct ffa_device *dev);
- 	int (*sync_send_receive)(struct ffa_device *dev,
- 				 struct ffa_send_direct_data *data);
-+	int (*memory_reclaim)(u64 g_handle, u32 flags);
-+	int (*memory_share)(struct ffa_device *dev,
-+			    struct ffa_mem_ops_args *args);
- };
- 
- #endif /* _LINUX_ARM_FFA_H */
+ Several executables (dt-doc-validate, dt-mk-schema, dt-validate) will be
+ installed. Ensure they are in your PATH (~/.local/bin by default).
 -- 
 2.25.1
 
