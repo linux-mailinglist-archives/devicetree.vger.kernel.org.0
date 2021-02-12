@@ -2,191 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 809923199E2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 07:15:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3411E319A07
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 07:47:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbhBLGO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 01:14:29 -0500
-Received: from mail-mw2nam10on2054.outbound.protection.outlook.com ([40.107.94.54]:7073
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229691AbhBLGO1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Feb 2021 01:14:27 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mAyhZLsiGJG6z2eXJRILyjeXzsymwvv5fxfrwjXwvloFh/U0Hc7TCJY6QQuIW2ZC5G1jVE3HQ66/URNpGmSRJnxrk+dOOMk7tTAxdMvkx5VGTJSlkpWbJehWWnhkn2e7EJ3hZT+TfP8QSYCnU4TZ2MZt+3MBEFibfdmyNVKQMpzyRLMxaAZOCFiVVnwlvU2lFQHGc6PO112HnDgTh1dG/cNXogOISlVd+Pa+ZdQdtxdvpiU/JPPCuKKVS/BSHx+PQT27XUXYYc94yuZZFff6M+fLBhepKmTNaMGMTYQJ/nKacZGfUpBK2Q7799ZVSgY0s9qVgfL9ugiFQ8kpeqc8yg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YO5mhGW2DxfMouFb6K8zEZFLpaTcHdS64772SifrLvw=;
- b=MxEy/rsBlHp6AULVKa8TWgAqJ3Xe3l5Uw17+1JkUgEnFR49r/PWabtw/IvjeI7ZMrj0IBK2/hK/umcwnd+BgxtODfuon24O5Ml+QG2CgJxkw+dmnc9ZwGUamKQSuk26/PUdrlXSX7F1o0Rrd6P48ESYNVJPustgmuSTdQEt8l8XFfUDwxAzgyOei49K4anmmyZWn9oaJdZQNLOH2aWTGYB5wdsgJb+Hy+VCFOHJ1EAGDOtEqnJ7CAmMbV2Rj+6PaozZZlegnf/HVyrOOk42WyC2Cwq16lY9FnpekxWhTSK1nTRIt9Uy577NzAz8cI0S3Zcsxp/1Ya5OlZJ66oX97rg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YO5mhGW2DxfMouFb6K8zEZFLpaTcHdS64772SifrLvw=;
- b=bsFGZd68WfnyQeaQl9KCLiMMyWl8YJrXJ20suT9ZzUwT31W6oMTiZlsHXsiFPMsIve+FDo4xVyxsvaxJQu8IZF7W6Y7A5rFZuWWdpoEIWqgiS5HiNEabZcF8GDTL8eDcB8LlZEt88iWrbF4pJRMHEtn7qgp8etFTO7ZyhDZ7FhY=
-Received: from MWHPR02MB2623.namprd02.prod.outlook.com (2603:10b6:300:44::9)
- by CO6PR02MB7602.namprd02.prod.outlook.com (2603:10b6:303:b0::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.27; Fri, 12 Feb
- 2021 06:13:33 +0000
-Received: from MWHPR02MB2623.namprd02.prod.outlook.com
- ([fe80::804d:5b7:ada6:2f4]) by MWHPR02MB2623.namprd02.prod.outlook.com
- ([fe80::804d:5b7:ada6:2f4%2]) with mapi id 15.20.3846.036; Fri, 12 Feb 2021
- 06:13:33 +0000
-From:   Nava kishore Manne <navam@xilinx.com>
+        id S229608AbhBLGrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Feb 2021 01:47:05 -0500
+Received: from mo-csw1114.securemx.jp ([210.130.202.156]:60510 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229457AbhBLGrE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Feb 2021 01:47:04 -0500
+Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 11C6ijka021042; Fri, 12 Feb 2021 15:44:46 +0900
+X-Iguazu-Qid: 2wGqhgW4xdcYh6o0w8
+X-Iguazu-QSIG: v=2; s=0; t=1613112285; q=2wGqhgW4xdcYh6o0w8; m=xuBx/1YAhJIgG+Ao+2XQamK3cXyfCAXjCXBDLa2TDbA=
+Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
+        by relay.securemx.jp (mx-mr1112) id 11C6ii5P016481;
+        Fri, 12 Feb 2021 15:44:44 +0900
+Received: from enc02.toshiba.co.jp ([61.202.160.51])
+        by imx12.toshiba.co.jp  with ESMTP id 11C6iiNi014961;
+        Fri, 12 Feb 2021 15:44:44 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 11C6ihk4018829;
+        Fri, 12 Feb 2021 15:44:44 +0900
+Date:   Fri, 12 Feb 2021 15:44:43 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 To:     Rob Herring <robh@kernel.org>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "mdf@kernel.org" <mdf@kernel.org>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        git <git@xilinx.com>,
-        Appana Durga Kedareswara Rao <appanad@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "trix@redhat.com" <trix@redhat.com>,
-        Michal Simek <michals@xilinx.com>
-Subject: RE: [PATCH v2 2/3] dt-bindings: fpga: Add binding doc for versal fpga
- manager
-Thread-Topic: [PATCH v2 2/3] dt-bindings: fpga: Add binding doc for versal
- fpga manager
-Thread-Index: AQHXADzdawePkZwClU6ZKWYEIAeZ9apTC6MAgAD5mzA=
-Date:   Fri, 12 Feb 2021 06:13:33 +0000
-Message-ID: <MWHPR02MB2623787A36B389BCF337D8EBC28B9@MWHPR02MB2623.namprd02.prod.outlook.com>
-References: <20210211060532.23662-1-nava.manne@xilinx.com>
- <20210211060532.23662-3-nava.manne@xilinx.com>
- <1613055380.699799.519684.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1613055380.699799.519684.nullmailer@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
-x-originating-ip: [149.199.50.128]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: a90d091c-491a-4ac7-5acf-08d8cf1d5377
-x-ms-traffictypediagnostic: CO6PR02MB7602:
-x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CO6PR02MB76026FB6816A6470D2E922DDC28B9@CO6PR02MB7602.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ELS2g8T2FoWMPHgj9FhhKoCeII/EXl7lMVOvRwWuG5RIHJwaqJswb1ISGTeyzcjNpf1K+MvEeLBClP9n27gHy6dXsA6ehen2c9Yy7VDX+bb/3GY/q1CKtOWeLQqUhFYTGSdD8rfpAYz8U0xbDFVKdZOtakiXhalFBTXsM83WZJqrojNcdIkLcriuXSY0ntiAGcaF9AQ/gPUaF98bzbXYbSncMAlV4BDMSinp8w/lKa+Apb2i3FOc0RXvTIpQxdxHMCrMvcqozcgYgtddlV1+tatJz660IJDobx8bcbue33xHSj7QRqrD9+uYr7uuPZXAE08psrNermHeRBklcOLfXzcPNUMRnOpZxuBb4fcKhbCDtbjrcFFoc6ZktyZEcD892V4xT+3fHde6R71Urx6XyephAQinR0DvPbaA3083EljBoYLjPCH/1Fdtuni9UK3qgeP5dGqopjugUheZtTjVEWpTJopLBcLSFwa0+/qzVQdaFBj+IssEAgC3GldSEZfiudLesZmaFcYdgtRmVL8+wys/q4tu+vF7yHL65KuljEIm3JNxdObeEgFwivtVuGZuI+foE7cYs5P7DAMC/v/m+CevgEs5zUbVv32WB39lUuI=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2623.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(39860400002)(376002)(346002)(136003)(86362001)(26005)(478600001)(186003)(5660300002)(7696005)(8936002)(66946007)(9686003)(6916009)(55016002)(966005)(316002)(53546011)(76116006)(52536014)(6506007)(8676002)(71200400001)(2906002)(4326008)(54906003)(66476007)(66556008)(33656002)(66446008)(83380400001)(7416002)(107886003)(64756008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?Eaqjbj+lipFWpzK4w16qqtmBJara4hOCxTnFdWqnJTQGCvUhSUncSVsnvVdQ?=
- =?us-ascii?Q?RGxfkQ1FCrIthgF7vaaYBSfDRtIYX+t+mu4K3QDovl2U25xXNa9iFHTWn3UO?=
- =?us-ascii?Q?rkwhYHL7BQlMoEM49x5HHu86dYyivgstURdz+g2rh7a2U0Jf5vgBRJUnTwYS?=
- =?us-ascii?Q?5l892Xl1nqar7nEEprYiUbZvFdNMePEjQl/rzaSRK/lzxFtjbL5YB9n5eN4Z?=
- =?us-ascii?Q?GjzQnGNSlFFv9Zm0lL3XDpuUnmgKTqhx5iWZ8MTsW6yWxsyTlvWXCbw9kJzK?=
- =?us-ascii?Q?YbMQHwmjCmxSLtZVBhQd09RgwdlM2FMqw+5+oSIKCuNyo8mffd7hqU8sDdMY?=
- =?us-ascii?Q?fJMrMpQCc6RtZL1Ic2hr5Bey/fYx/D84lTzg668jdTqmmSF6c5W/4aSLnd0x?=
- =?us-ascii?Q?stzXi0xFyfGQBfOt5mZGquE9n8N5i6f/a5F3XL9wV3D2iQYNzNUyRgxW47n4?=
- =?us-ascii?Q?PVoDSPJwQr80x13WRFu/BfKF8YFUaxQhKZwJAOnk8v5tYdEdLW1q8Rvt0c/K?=
- =?us-ascii?Q?kJZnxQoUty+d5Ehn8xDlikXvzBu99ijG242Xq+5v+bavak8edaWoSfqHF4vG?=
- =?us-ascii?Q?XGNTkG5qJhgw/GBYVAgcC8eK2Gix87V8lXjncEtCoy7qSLJZ8365JYndJVRp?=
- =?us-ascii?Q?yTCR3JXJ9SJCLbWztW4pQlcqZE3xjuQQzicP9NEIOP9MfP7MG/s/NcFUvZUC?=
- =?us-ascii?Q?sl/TnwoPHq+1atjswi17WLoo7yhw7hlP/1H5VLZtvc1TI87B7mPx21ThYWmJ?=
- =?us-ascii?Q?wTEmLyYs0zrORF/xK0lnLBd9Z3u3ftNmvHMzA7E/Y2k80d+rhhVX/QLyfgL0?=
- =?us-ascii?Q?QBbx1IA3fkDCrTyCC2mr3BjXQbCu9nVbTqnQMVjNxQdsVkicJe5FeEgXTNS7?=
- =?us-ascii?Q?zSu2eY8NEcq0U72uVIxEiqbXQuMOGlb+ACHtCjiHMGzkF4u1E3Eo8w4GTTV6?=
- =?us-ascii?Q?aKMN4903OIJXLyjEmD+aTzr5IX5SyYviNaGeHfO71PwyGZDe4wHIv4iN9Pe6?=
- =?us-ascii?Q?Pp8Bnht7UJcBg5vIpdj1eHahh0Wpf7jtGCIAjuxpOxiR+TqB3SKFDDOOt4s6?=
- =?us-ascii?Q?VNnS0sSRzt/LE3dpnj+RulxeKFkzdQa4QjQ+maTWUSF4m8/VvliwlqC6w7vK?=
- =?us-ascii?Q?4BYBDCzWnBrdjMUo5ln9PIYrS6xBjzeEdHUpk0+e6tfS37V5G99uodC77MeV?=
- =?us-ascii?Q?w/y9u/mqhNjGZqqpLQO3gV/i8AX7eqmzBgDRezBN/91siW1n13Ggjc5DQPlU?=
- =?us-ascii?Q?JiUVu3T97m5KKVHUWVDPvwmIFVxhm+QkCmkKvgywaFY7EoorLgo/M3XlKVCk?=
- =?us-ascii?Q?ywqt2VJWiq3JvZODil/5mHi7?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: Add bindings for Toshiba Visconti
+ PWM Controller
+X-TSB-HOP: ON
+Message-ID: <20210212064443.ahjoby4w3pdi65uu@toshiba.co.jp>
+References: <20200917223140.227542-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20200917223140.227542-2-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20200923203735.GA1257022@bogus>
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2623.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a90d091c-491a-4ac7-5acf-08d8cf1d5377
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Feb 2021 06:13:33.1478
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tnOJzMEkbxO0waPZqX/t60SqcQ1mvRz5La6YXvP/U10YeovIMlDieVmMEK4VZpEDdGOq62oT32NejmKFLua8zQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR02MB7602
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200923203735.GA1257022@bogus>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi,
 
-Please find my response inline.
+Thank for your review.
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Thursday, February 11, 2021 8:26 PM
-> To: Nava kishore Manne <navam@xilinx.com>
-> Cc: linux-arm-kernel@lists.infradead.org; mdf@kernel.org; linux-
-> fpga@vger.kernel.org; git <git@xilinx.com>; Appana Durga Kedareswara Rao
-> <appanad@xilinx.com>; devicetree@vger.kernel.org; robh+dt@kernel.org;
-> chinnikishore369@gmail.com; linux-kernel@vger.kernel.org;
-> trix@redhat.com; Michal Simek <michals@xilinx.com>
-> Subject: Re: [PATCH v2 2/3] dt-bindings: fpga: Add binding doc for versal=
- fpga
-> manager
->=20
-> On Thu, 11 Feb 2021 11:35:31 +0530, Nava kishore Manne wrote:
-> > From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-> >
-> > This patch adds binding doc for versal fpga manager driver.
-> >
-> > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> > Signed-off-by: Appana Durga Kedareswara rao
-> > <appana.durga.rao@xilinx.com>
+On Wed, Sep 23, 2020 at 02:37:35PM -0600, Rob Herring wrote:
+> On Fri, Sep 18, 2020 at 07:31:39AM +0900, Nobuhiro Iwamatsu wrote:
+> > Add bindings for the Toshiba Visconti PWM Controller.
+> > 
+> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 > > ---
-> > Changes for v2:
-> >                 -Fixed file format and syntax issues.
-> >
-> >  .../bindings/fpga/xlnx,versal-fpga.yaml       | 33 +++++++++++++++++++
-> >  1 file changed, 33 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
-> >
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml:12:14:
-> [warning] too many spaces after colon (colons)
-> ./Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml:20:9:
-> [warning] wrong indentation: expected 10 but found 8 (indentation)
->=20
-> dtschema/dtc warnings/errors:
->=20
-> See https://patchwork.ozlabs.org/patch/1439305
->=20
-> This check can fail if there are any dependencies. The base for a patch s=
-eries
-> is generally the most recent rc1.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above error=
-(s),
-> then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit.
+> >  .../bindings/pwm/toshiba,pwm-visconti.yaml    | 48 +++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml b/Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml
+> > new file mode 100644
+> > index 000000000000..9145e9478b41
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml
+> > @@ -0,0 +1,48 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> 
+> Dual license new bindings please.
+> 
+> (GPL-2.0-only OR BSD-2-Clause)
+> 
 
-Initially, I couldn't see any issue when I run.
-After installing yamllint and with upgraded dt-schema, I am able to reprodu=
-ce the above pointed issues.
-Is there any prerequisite(Other than yamllint) I need to follow to run dt-s=
-chema?
+OK, I will chnage to dual license.
 
-Regards,
-Navakishore.
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pwm/toshiba,pwm-visconti.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Toshiba Visconti PWM Controller
+> > +
+> > +maintainers:
+> > +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - toshiba,pwm-tmpv7708
+> 
+> The normal order is: vendor,soc-block
+> 
+> > +      - const: toshiba,pwm-visconti
+> 
+> Do you expect a lot of chips with the exact same version of the IP? If 
+> not drop. Future chips can always use toshiba,pwm-tmpv7708 as a 
+> fallback.
+
+
+Currently it still supports only one IP. Therefore, "toshiba, pwm-visconti"
+is enough for now. I will drop enum line..
+
+> 
+> > +
+> > +  reg:
+> > +    # base address and length of the registers block for the PWM.
+> 
+> Drop. No need to describe common properties.
+> 
+
+OK, I will drop this properties.
+
+> > +    maxItems: 1
+> > +
+> > +  '#pwm-cells':
+> > +    # should be 2. See pwm.yaml in this directory for a description of
+> > +    # the cells format.
+> 
+> Drop.
+
+OK, I will this comment lines.
+
+> 
+> > +    const: 2
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#pwm-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    soc {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <2>;
+> > +
+> > +        pwm: pwm@241c0000 {
+> > +            compatible = "toshiba,pwm-tmpv7708", "toshiba,pwm-visconti";
+> > +            reg = <0 0x241c0000 0 0x1000>;
+> > +            pinctrl-names = "default";
+> > +            pinctrl-0 = <&pwm_mux>;
+> > +            #pwm-cells = <2>;
+> > +        };
+> > +    };
+> > -- 
+> > 2.27.0
+> > 
+> 
+
+Best regards,
+  Nobuhiro
+
