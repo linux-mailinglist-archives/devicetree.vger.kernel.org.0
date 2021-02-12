@@ -2,137 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 572E53198CE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 04:33:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F38A3198F9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Feb 2021 05:10:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229672AbhBLDcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Feb 2021 22:32:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38456 "EHLO
+        id S229575AbhBLEJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Feb 2021 23:09:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbhBLDcE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 22:32:04 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D375EC061574;
-        Thu, 11 Feb 2021 19:31:22 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id f3so4891749oiw.13;
-        Thu, 11 Feb 2021 19:31:22 -0800 (PST)
+        with ESMTP id S229573AbhBLEJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Feb 2021 23:09:48 -0500
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DC48C061574;
+        Thu, 11 Feb 2021 20:09:08 -0800 (PST)
+Received: by mail-oo1-xc2f.google.com with SMTP id f1so1816822oou.0;
+        Thu, 11 Feb 2021 20:09:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition:user-agent;
-        bh=+fcy8eJ5qsF+LGswZ9B+o4Smfgq4c8zrBnmFiUW1EDY=;
-        b=io6VbF/7WjelBbLaVq2f2cYS3kaT1LEogyqcSdLj8nJWcVlaJWJf3SHIdwlyPRKnnC
-         7MBlntE+r+xRtbxH1MST7JWcnjSOq14eyDuf8SSlpstoNmS2q+nAcI9DD3tuXb9qgBbN
-         KLCKonALGHk0aEG3IIMnPKeyfb+w+80oEgDlqzxGxitehrY31WjDpv8dH/lgpUhYyoTt
-         ll4Sn7RvsxdP8ZTrNa6RY/ZVKivEdEZd7x3Rq87Up77wnL1Zv3CutmIYzLP5+B+iFJEe
-         Wet+Yoscm8vO6VQNFT3ADl3KlgouFxlx2rmk9WxDh+G1WGt76D9MINoRjEyqYcblgNQG
-         SIRw==
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=7W3mRwT9grc4RGioubCtLHsQp5n6wdQDrRVup7k8z+A=;
+        b=RoAB0/pnbw20TvgTsr/NWXsrlyf1wj2iLrjP1LDWjYfb0ulfgD2OYqtCLLVF6KWBGj
+         IXVfkYqHOV2ctX0CWy5g6ZgDmPKiu4w4NMIC0ZX4v0PXJSgGQxfYznhs1vLLGS5tGSx+
+         dmyMvRLisIqk/7LPo4+d1QeGspwVV6Ezo6klZM95T3zwskzVpYTqrJxnCHHtgttwh6Lp
+         ayk0/6zxL2XxUw/TXRS4R4pYJpJPicerneDhK9xIntMX67ZkGQF6ocBKmHIVcIwWvrzF
+         UddGEq1PnF8zPPuW/2XmZW+NXraROvVLFZ5yf+BLl8sg+TIM7s5rtqc+qVT/J8twWKcp
+         aKDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :mime-version:content-disposition:user-agent;
-        bh=+fcy8eJ5qsF+LGswZ9B+o4Smfgq4c8zrBnmFiUW1EDY=;
-        b=QcIlfDNOSmnHxkXo/GukWMy1uPBO4GtOisWBZwRMND9C7GIVfmz+8POaglLbqJS/pB
-         wTtasF0Nd5njxqQ43c0EhXBUdwqOlvMF8M6APniFNUqlavsIXJVZTsi4EjUZFYXI1tN7
-         QWmwGuvZLWHaxk5K6g6NbMP5ZtFLekee1keSYn4paC/j7INrBGx+YEEHx0V5rOkZ96hq
-         4sTJx2rOtOBCKPaL6M/g25z6/vuxRCWrdIefNLMDWTTZfoO8vajnSrw2Cqh+fnSSbQMQ
-         9Ezn/v/Dn80pf1lXJ77DCGdghPqECElZmZN0jLSARXIyBqDlAqhQ6Kobun78jDXMyOzU
-         CvhA==
-X-Gm-Message-State: AOAM533rhzCzaljsauJ02I/nr8BmEbc2rKuhGx7XinQ6g2nLi9Je3A2w
-        GNBU72F643RgVdLfoZqK21I=
-X-Google-Smtp-Source: ABdhPJxN0XcS3eVvS4uA1P2BHXY/lkdfO6aVXJk9tay2VEhnZ7aTxFX2q6Brhzsb7sQ7j73bV4wPpA==
-X-Received: by 2002:aca:3746:: with SMTP id e67mr586812oia.81.1613100682177;
-        Thu, 11 Feb 2021 19:31:22 -0800 (PST)
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7W3mRwT9grc4RGioubCtLHsQp5n6wdQDrRVup7k8z+A=;
+        b=b1D5H666JlwNT1vtBBG86MEBb7Lw7sl5wQ4NK7fVyKFPLteVJGqhFU46E8M1VY77Jj
+         Z7AQ6KK+gIcDAT0ZjH+Z06Ipw702UIkcosYBvKNCfetbecGUsXPJODGQJYnbWTH/Yj/J
+         OT5+m7pTZsEOZMOTh1BbTjvGnSgFw5XqrJzzr5kbkBmo2pV5DJKPEDQs1XAVuR0RtxNH
+         dQgt/bBaZ5KduRyRDgHApRy4dtPo5iGXnyExSy3syx3ExAR02InNjvC0nqKH0ZdGrDju
+         ie3Mtk0U7yl4SwM1cJEBo7OyDQkpoK4Dl1fktT7PMoVQuQoxjcSq6r870r1kupYL34OJ
+         j66A==
+X-Gm-Message-State: AOAM532NloXGsAetTEk0T6+I5MbDIqsed/gMezY65+hx67d/FUXz4hZV
+        LBb2g5JpEXImBmVIXUmtIB8=
+X-Google-Smtp-Source: ABdhPJwEEODRxUzSr9sTbfq+pfS8Cw9FUR1XCuSoEJV0NxDd7Q7Y+aZip70rzjdRmXqV85EVV/0Qjw==
+X-Received: by 2002:a4a:de94:: with SMTP id v20mr719711oou.90.1613102946497;
+        Thu, 11 Feb 2021 20:09:06 -0800 (PST)
 Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e14sm1335114oou.19.2021.02.11.19.31.21
+        by smtp.gmail.com with ESMTPSA id g14sm1346481oon.23.2021.02.11.20.09.05
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 11 Feb 2021 19:31:21 -0800 (PST)
+        Thu, 11 Feb 2021 20:09:05 -0800 (PST)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 11 Feb 2021 19:31:20 -0800
+Date:   Thu, 11 Feb 2021 20:09:04 -0800
 From:   Guenter Roeck <linux@roeck-us.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
+To:     Kyle Tso <kyletso@google.com>
+Cc:     heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        hdegoede@redhat.com, robh+dt@kernel.org, badhri@google.com,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH] scripts/dtc: Update to upstream version
- v1.6.0-51-g183df9e9c2b9
-Message-ID: <20210212033120.GA100407@roeck-us.net>
+Subject: Re: [PATCHi v6 1/7] usb: typec: Manage SVDM version
+Message-ID: <20210212040904.GA103223@roeck-us.net>
+References: <20210205033415.3320439-1-kyletso@google.com>
+ <20210205033415.3320439-2-kyletso@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20210205033415.3320439-2-kyletso@google.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Wed, Feb 03, 2021 at 03:26:03PM -0600, Rob Herring wrote:
-> This adds the following commits from upstream:
+On Fri, Feb 05, 2021 at 11:34:09AM +0800, Kyle Tso wrote:
+> PD Spec Revision 3.0 Version 2.0 + ECNs 2020-12-10
+>   6.4.4.2.3 Structured VDM Version
+>   "The Structured VDM Version field of the Discover Identity Command
+>   sent and received during VDM discovery Shall be used to determine the
+>   lowest common Structured VDM Version supported by the Port Partners or
+>   Cable Plug and Shall continue to operate using this Specification
+>   Revision until they are Detached."
 > 
-> 183df9e9c2b9 gitignore: Ignore the swp files
-> 0db6d09584e1 gitignore: Add cscope files
-> 307afa1a7be8 Update Jon Loeliger's email
-> ca16a723fa9d fdtdump: Fix gcc11 warning
-> 64990a272e8f srcpos: increase MAX_SRCFILE_DEPTH
-> 163f0469bf2e dtc: Allow overlays to have .dtbo extension
-> 3b01518e688d Set last_comp_version correctly in new dtb and fix potential version issues in fdt_open_into
-> f7e5737f26aa tests: Fix overlay_overlay_nosugar test case
-> 7cd5d5fe43d5 libfdt: Tweak description of assume-aligned load helpers
-> a7c404099349 libfdt: Internally perform potentially unaligned loads
-> bab85e48a6f4 meson: increase default timeout for tests
-> f8b46098824d meson: do not assume python is installed, skip tests
-> 30a56bce4f0b meson: fix -Wall warning
-> 5e735860c478 libfdt: Check for 8-byte address alignment in fdt_ro_probe_()
-> 67849a327927 build-sys: add meson build
-> 05874d08212d pylibfdt: allow build out of tree
-> 3bc3a6b9fe0c dtc: Fix signedness comparisons warnings: Wrap (-1)
-> e1147b159e92 dtc: Fix signedness comparisons warnings: change types
-> 04cf1fdc0fcf convert-dtsv0: Fix signedness comparisons warning
-> b30013edb878 libfdt: Fix kernel-doc comments
+> Add a variable in typec_capability to specify the highest SVDM version
+> supported by the port and another variable in typec_partner to cache the
+> negotiated SVDM version between the port and the partner.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Also add setter/getter functions for the negotiated SVDM version.
+> 
+> Signed-off-by: Kyle Tso <kyletso@google.com>
 
-This patch causes my little-endian microblaze qemu emulations to fail
-silently (no console output) in next-20210211. Reverting this patch
-together with "scripts: dtc: Build fdtoverlay tool" fixes the problem.
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Big endian microblaze emulations are not affected. I can't say if other
-emulations are affected because I see too many boot failures in -next
-to be able to track down all individual problems.
-
-Guenter
-
----
-Bisect log:
-
-# bad: [671176b0016c80b3943cb5387312c886aba3308d] Add linux-next specific files for 20210211
-# good: [92bf22614b21a2706f4993b278017e437f7785b3] Linux 5.11-rc7
-git bisect start 'HEAD' 'v5.11-rc7'
-# good: [d69fe59127a072f06e51bf101b82413056859ddc] Merge remote-tracking branch 'crypto/master'
-git bisect good d69fe59127a072f06e51bf101b82413056859ddc
-# bad: [9cbf23a8700e40ce348e5dc83c95add50c8689d3] Merge remote-tracking branch 'spi/for-next'
-git bisect bad 9cbf23a8700e40ce348e5dc83c95add50c8689d3
-# good: [635a8e981a1f34802668307e0b7bb8834d850a66] Merge remote-tracking branch 'drm-misc/for-linux-next'
-git bisect good 635a8e981a1f34802668307e0b7bb8834d850a66
-# good: [dbb24458a99eed64fdcc88630e8ac38376720f96] Merge remote-tracking branch 'block/for-next'
-git bisect good dbb24458a99eed64fdcc88630e8ac38376720f96
-# good: [f82648f1c7dd4709ff34cae8a98978fbf8e47d33] Merge remote-tracking branch 'integrity/next-integrity'
-git bisect good f82648f1c7dd4709ff34cae8a98978fbf8e47d33
-# good: [b18e8865643e421fc3537d7eb446f1eb9edfdf1b] Merge remote-tracking branch 'iommu/next'
-git bisect good b18e8865643e421fc3537d7eb446f1eb9edfdf1b
-# good: [6589daf8bb98c75ad1065edad87c099ffb9f5d87] dt-bindings: spi: sunxi: Add H616 compatible string
-git bisect good 6589daf8bb98c75ad1065edad87c099ffb9f5d87
-# bad: [322322d15b9b912bc8710c367a95a7de62220a72] dt-bindings: ethernet-controller: fix fixed-link specification
-git bisect bad 322322d15b9b912bc8710c367a95a7de62220a72
-# good: [6e09d75513d2670b7ab91ab3584fc5bcf2675a75] hwmon: (lm70) Use device_get_match_data()
-git bisect good 6e09d75513d2670b7ab91ab3584fc5bcf2675a75
-# good: [9183908e70e913d2db052588172968da55d82af5] dt-bindings: Fix errors in 'if' schemas
-git bisect good 9183908e70e913d2db052588172968da55d82af5
-# bad: [59b48a715107d5719b75250059864fa775837425] scripts: dtc: Remove the unused fdtdump.c file
-git bisect bad 59b48a715107d5719b75250059864fa775837425
-# bad: [79edff12060fe7772af08607eff50c0e2486c5ba] scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9
-git bisect bad 79edff12060fe7772af08607eff50c0e2486c5ba
-# good: [b775f49fbc8b07b0c3a4079e6f09f192eaf6e92f] scripts: dtc: Fetch fdtoverlay.c from external DTC project
-git bisect good b775f49fbc8b07b0c3a4079e6f09f192eaf6e92f
-# first bad commit: [79edff12060fe7772af08607eff50c0e2486c5ba] scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9
+> ---
+> Changes since v5
+> - !! most changes are from Heikki
+> - location of the negotiated SVDM version is changed. Now the variable
+>   resides in typec_partner
+> - The setter and getter functions were modified according to the above
+>   changes
+> - the default SVDM version is stored upon calling to
+>   typec_register_partner
+> 
+>  drivers/usb/typec/class.c         | 43 +++++++++++++++++++++++++++++++
+>  include/linux/usb/typec.h         | 12 +++++++++
+>  include/linux/usb/typec_altmode.h | 10 +++++++
+>  3 files changed, 65 insertions(+)
+> 
+> diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
+> index b4a5d9d4564f..45f0bf65e9ab 100644
+> --- a/drivers/usb/typec/class.c
+> +++ b/drivers/usb/typec/class.c
+> @@ -38,6 +38,7 @@ struct typec_partner {
+>  	struct ida			mode_ids;
+>  	int				num_altmodes;
+>  	u16				pd_revision; /* 0300H = "3.0" */
+> +	enum usb_pd_svdm_ver		svdm_version;
+>  };
+>  
+>  struct typec_port {
+> @@ -824,6 +825,20 @@ typec_partner_register_altmode(struct typec_partner *partner,
+>  }
+>  EXPORT_SYMBOL_GPL(typec_partner_register_altmode);
+>  
+> +/**
+> + * typec_partner_set_svdm_version - Set negotiated Structured VDM (SVDM) Version
+> + * @partner: USB Type-C Partner that supports SVDM
+> + * @svdm_version: Negotiated SVDM Version
+> + *
+> + * This routine is used to save the negotiated SVDM Version.
+> + */
+> +void typec_partner_set_svdm_version(struct typec_partner *partner,
+> +				   enum usb_pd_svdm_ver svdm_version)
+> +{
+> +	partner->svdm_version = svdm_version;
+> +}
+> +EXPORT_SYMBOL_GPL(typec_partner_set_svdm_version);
+> +
+>  /**
+>   * typec_register_partner - Register a USB Type-C Partner
+>   * @port: The USB Type-C Port the partner is connected to
+> @@ -848,6 +863,7 @@ struct typec_partner *typec_register_partner(struct typec_port *port,
+>  	partner->accessory = desc->accessory;
+>  	partner->num_altmodes = -1;
+>  	partner->pd_revision = desc->pd_revision;
+> +	partner->svdm_version = port->cap->svdm_version;
+>  
+>  	if (desc->identity) {
+>  		/*
+> @@ -1894,6 +1910,33 @@ EXPORT_SYMBOL_GPL(typec_set_mode);
+>  
+>  /* --------------------------------------- */
+>  
+> +/**
+> + * typec_get_negotiated_svdm_version - Get negotiated SVDM Version
+> + * @port: USB Type-C Port.
+> + *
+> + * Get the negotiated SVDM Version. The Version is set to the port default
+> + * value stored in typec_capability on partner registration, and updated after
+> + * a successful Discover Identity if the negotiated value is less than the
+> + * default value.
+> + *
+> + * Returns usb_pd_svdm_ver if the partner has been registered otherwise -ENODEV.
+> + */
+> +int typec_get_negotiated_svdm_version(struct typec_port *port)
+> +{
+> +	enum usb_pd_svdm_ver svdm_version;
+> +	struct device *partner_dev;
+> +
+> +	partner_dev = device_find_child(&port->dev, NULL, partner_match);
+> +	if (!partner_dev)
+> +		return -ENODEV;
+> +
+> +	svdm_version = to_typec_partner(partner_dev)->svdm_version;
+> +	put_device(partner_dev);
+> +
+> +	return svdm_version;
+> +}
+> +EXPORT_SYMBOL_GPL(typec_get_negotiated_svdm_version);
+> +
+>  /**
+>   * typec_get_drvdata - Return private driver data pointer
+>   * @port: USB Type-C port
+> diff --git a/include/linux/usb/typec.h b/include/linux/usb/typec.h
+> index a94df82ab62f..91b4303ca305 100644
+> --- a/include/linux/usb/typec.h
+> +++ b/include/linux/usb/typec.h
+> @@ -217,12 +217,19 @@ struct typec_operations {
+>  			     enum typec_port_type type);
+>  };
+>  
+> +enum usb_pd_svdm_ver {
+> +	SVDM_VER_1_0 = 0,
+> +	SVDM_VER_2_0 = 1,
+> +	SVDM_VER_MAX = SVDM_VER_2_0,
+> +};
+> +
+>  /*
+>   * struct typec_capability - USB Type-C Port Capabilities
+>   * @type: Supported power role of the port
+>   * @data: Supported data role of the port
+>   * @revision: USB Type-C Specification release. Binary coded decimal
+>   * @pd_revision: USB Power Delivery Specification revision if supported
+> + * @svdm_version: USB PD Structured VDM version if supported
+>   * @prefer_role: Initial role preference (DRP ports).
+>   * @accessory: Supported Accessory Modes
+>   * @fwnode: Optional fwnode of the port
+> @@ -236,6 +243,7 @@ struct typec_capability {
+>  	enum typec_port_data	data;
+>  	u16			revision; /* 0120H = "1.2" */
+>  	u16			pd_revision; /* 0300H = "3.0" */
+> +	enum usb_pd_svdm_ver	svdm_version;
+>  	int			prefer_role;
+>  	enum typec_accessory	accessory[TYPEC_MAX_ACCESSORY];
+>  	unsigned int		orientation_aware:1;
+> @@ -286,4 +294,8 @@ int typec_find_orientation(const char *name);
+>  int typec_find_port_power_role(const char *name);
+>  int typec_find_power_role(const char *name);
+>  int typec_find_port_data_role(const char *name);
+> +
+> +void typec_partner_set_svdm_version(struct typec_partner *partner,
+> +				    enum usb_pd_svdm_ver svdm_version);
+> +int typec_get_negotiated_svdm_version(struct typec_port *port);
+>  #endif /* __LINUX_USB_TYPEC_H */
+> diff --git a/include/linux/usb/typec_altmode.h b/include/linux/usb/typec_altmode.h
+> index 5e0a7b7647c3..65933cbe9129 100644
+> --- a/include/linux/usb/typec_altmode.h
+> +++ b/include/linux/usb/typec_altmode.h
+> @@ -132,6 +132,16 @@ typec_altmode_get_orientation(struct typec_altmode *altmode)
+>  	return typec_get_orientation(typec_altmode2port(altmode));
+>  }
+>  
+> +/**
+> + * typec_altmode_get_svdm_version - Get negotiated SVDM version
+> + * @altmode: Handle to the alternate mode
+> + */
+> +static inline int
+> +typec_altmode_get_svdm_version(struct typec_altmode *altmode)
+> +{
+> +	return typec_get_negotiated_svdm_version(typec_altmode2port(altmode));
+> +}
+> +
+>  /**
+>   * struct typec_altmode_driver - USB Type-C alternate mode device driver
+>   * @id_table: Null terminated array of SVIDs
+> -- 
+> 2.30.0.365.g02bc693789-goog
+> 
