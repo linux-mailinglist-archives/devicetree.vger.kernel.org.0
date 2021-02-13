@@ -2,79 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 578D131ACEC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 17:13:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5734E31AD31
+	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 17:44:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbhBMQMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Feb 2021 11:12:37 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:35980 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229829AbhBMQMS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Feb 2021 11:12:18 -0500
-Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 0B50B20B57A9;
-        Sat, 13 Feb 2021 08:11:02 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 0B50B20B57A9
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1613232662;
-        bh=Q5qP/oeHF3QsP6y24A/ceFIZlcYedcKYuPJE/HPeXkM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=aByCp+7x7S0YEyDj2ZH7lhS1HjbqHNIx4kABNUpWngvKeq0k1G3ZPnG6ydpQxGiku
-         Yj+Xn1xfrJIRPl+iAyi00VBDsHmOeGLuD9R5Ayb61GL03YCcUViShvX+TdAKjth/zN
-         Ji/0zc5C2Bo6CAdLuTsFPRU8pv3Qnuq30O/lxs8c=
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
-        mpe@ellerman.id.au
-Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
-        paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
-        tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH v18 11/11] arm64: Enable passing IMA log to next kernel on kexec
-Date:   Sat, 13 Feb 2021 08:10:49 -0800
-Message-Id: <20210213161049.6190-12-nramas@linux.microsoft.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210213161049.6190-1-nramas@linux.microsoft.com>
-References: <20210213161049.6190-1-nramas@linux.microsoft.com>
+        id S229649AbhBMQoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Feb 2021 11:44:20 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:39218 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229592AbhBMQoP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 13 Feb 2021 11:44:15 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lAy11-0064bW-U0; Sat, 13 Feb 2021 17:43:27 +0100
+Date:   Sat, 13 Feb 2021 17:43:27 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Robert Hancock <robert.hancock@calian.com>
+Cc:     davem@davemloft.net, kuba@kernel.org,
+        radhey.shyam.pandey@xilinx.com, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 3/3] net: axienet: Support dynamic switching
+ between 1000BaseX and SGMII
+Message-ID: <YCgBrycpH+TNqhBy@lunn.ch>
+References: <20210213002356.2557207-1-robert.hancock@calian.com>
+ <20210213002356.2557207-4-robert.hancock@calian.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210213002356.2557207-4-robert.hancock@calian.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC, if CONFIG_IMA
-is enabled, to indicate that the IMA measurement log information is
-present in the device tree for ARM64.
+On Fri, Feb 12, 2021 at 06:23:56PM -0600, Robert Hancock wrote:
+> Newer versions of the Xilinx AXI Ethernet core (specifically version 7.2 or
+> later) allow the core to be configured with a PHY interface mode of "Both",
 
-Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Suggested-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
-Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
----
- arch/arm64/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+Hi Robert
 
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 05e17351e4f3..8a93573cebb6 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -1093,6 +1093,7 @@ config KEXEC
- config KEXEC_FILE
- 	bool "kexec file based system call"
- 	select KEXEC_CORE
-+	select HAVE_IMA_KEXEC if IMA
- 	help
- 	  This is new version of kexec system call. This system call is
- 	  file based and takes file descriptors as system call argument
--- 
-2.30.0
+Is it possible to read the version of the core from a register? Is it
+possible to synthesizer a version 7.2 or > without this feature? I'm
+just wondering if the DT property is actually needed?
 
+>  /**
+>   * struct axidma_bd - Axi Dma buffer descriptor layout
+>   * @next:         MM2S/S2MM Next Descriptor Pointer
+> @@ -377,22 +381,29 @@ struct axidma_bd {
+>   * @ndev:	Pointer for net_device to which it will be attached.
+>   * @dev:	Pointer to device structure
+>   * @phy_node:	Pointer to device node structure
+> + * @phylink:	Pointer to phylink instance
+> + * @phylink_config: phylink configuration settings
+> + * @pcs_phy:	Reference to PCS/PMA PHY if used
+> + * @switch_x_sgmii: Whether switchable 1000BaseX/SGMII mode is enabled in the core
+> + * @clk:	Clock for AXI bus
+>   * @mii_bus:	Pointer to MII bus structure
+>   * @mii_clk_div: MII bus clock divider value
+>   * @regs_start: Resource start for axienet device addresses
+>   * @regs:	Base address for the axienet_local device address space
+>   * @dma_regs:	Base address for the axidma device address space
+> - * @dma_err_tasklet: Tasklet structure to process Axi DMA errors
+> + * @dma_err_task: Work structure to process Axi DMA errors
+>   * @tx_irq:	Axidma TX IRQ number
+>   * @rx_irq:	Axidma RX IRQ number
+> + * @eth_irq:	Ethernet core IRQ number
+>   * @phy_mode:	Phy type to identify between MII/GMII/RGMII/SGMII/1000 Base-X
+>   * @options:	AxiEthernet option word
+> - * @last_link:	Phy link state in which the PHY was negotiated earlier
+>   * @features:	Stores the extended features supported by the axienet hw
+>   * @tx_bd_v:	Virtual address of the TX buffer descriptor ring
+>   * @tx_bd_p:	Physical address(start address) of the TX buffer descr. ring
+> + * @tx_bd_num:	Size of TX buffer descriptor ring
+>   * @rx_bd_v:	Virtual address of the RX buffer descriptor ring
+>   * @rx_bd_p:	Physical address(start address) of the RX buffer descr. ring
+> + * @rx_bd_num:	Size of RX buffer descriptor ring
+>   * @tx_bd_ci:	Stores the index of the Tx buffer descriptor in the ring being
+>   *		accessed currently. Used while alloc. BDs before a TX starts
+>   * @tx_bd_tail:	Stores the index of the Tx buffer descriptor in the ring being
+> @@ -414,23 +425,20 @@ struct axienet_local {
+>  	struct net_device *ndev;
+>  	struct device *dev;
+>  
+> -	/* Connection to PHY device */
+>  	struct device_node *phy_node;
+>  
+>  	struct phylink *phylink;
+>  	struct phylink_config phylink_config;
+>  
+> -	/* Reference to PCS/PMA PHY if used */
+>  	struct mdio_device *pcs_phy;
+
+This really should of been two patches. One moving the comments
+around, and a second one adding the new fields.
+
+> +static int axienet_mac_prepare(struct phylink_config *config, unsigned int mode,
+> +			       phy_interface_t iface)
+> +{
+> +	struct net_device *ndev = to_net_dev(config->dev);
+> +	struct axienet_local *lp = netdev_priv(ndev);
+> +	int ret;
+> +
+> +	switch (iface) {
+> +	case PHY_INTERFACE_MODE_SGMII:
+> +	case PHY_INTERFACE_MODE_1000BASEX:
+> +		if (!lp->switch_x_sgmii)
+> +			return 0;
+
+Maybe -EOPNOTSUPP would be better?
+
+      Andrew
