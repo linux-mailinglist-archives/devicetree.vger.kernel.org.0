@@ -2,150 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FB0C31AC52
-	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 15:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 531BA31ACE1
+	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 17:12:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbhBMOft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Feb 2021 09:35:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35808 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbhBMOfo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Feb 2021 09:35:44 -0500
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EA7DC061574
-        for <devicetree@vger.kernel.org>; Sat, 13 Feb 2021 06:35:03 -0800 (PST)
-Received: by mail-vs1-xe2d.google.com with SMTP id z3so1133666vsn.9
-        for <devicetree@vger.kernel.org>; Sat, 13 Feb 2021 06:35:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JOR9IfKzh/aAizYitDZAhS1BYlLKD2WQaQZDVSqy5Lc=;
-        b=XdYg5H9pL7KUN8K68Y+z5M210rVlu9kiD9RbDbB25+aBZbIkegIMvNIpeeK6Uu4mHP
-         5BbANhxXsDIvzXxcTGbTyenpeNNf7cSLsNiW/YNoHvMv3+1ZVMcPxVqKZqMz+Zq59hY2
-         e3kN1AMUdfAgcFBeF5r7OPQ4I1vE1KHxHiYwE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JOR9IfKzh/aAizYitDZAhS1BYlLKD2WQaQZDVSqy5Lc=;
-        b=k34lk2QOwyj1/qRnysdHrKfZqyHbd5Xtta9jIBQE8+oB1u2jYL+OIv/56sYwnicbjx
-         +ctySU6AByrDpmSU33SeAL/y9qovAPYIeMUrJoYyjlaLZORpwDA5/gngm30hkwkp+Sye
-         Whp9rvkIxy/aDCoBKityM/tXxkDnbVNZ9HKhLpGK3lRhF3MRB2WDk2AfTVSdVDHFPRrQ
-         rWQTBRUInodaGO2c5M8oNvmIHLcU0uxsNAr0NskIU063jV6C81bDWreUHknnsgqsmNNP
-         ospVUZUPcAqX5umObloAlrGz9WntDIvGvcUUdsMYYrc89LZj3wR4brDlrqi+dfwxYFGA
-         ly8g==
-X-Gm-Message-State: AOAM531Mq8xRyAb/Q3FUbgYuvb6/l/mU0nOP5hhuaZngXW15NOnj6Da6
-        FlOGAj8YJK8SR4Q/ZPcGABmpHDFjh4ORxVV99Y8Gdg==
-X-Google-Smtp-Source: ABdhPJyk4HyZZcnu7E233puNxgMJ3TX4LD6d+a/RN/+Gh5/K+LPRHVkshJy2ck1e3TKMLuVZdSM8SnsIPQJuc3sCiH0=
-X-Received: by 2002:a67:e119:: with SMTP id d25mr4747759vsl.16.1613226902062;
- Sat, 13 Feb 2021 06:35:02 -0800 (PST)
+        id S229742AbhBMQLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Feb 2021 11:11:44 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:35450 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229531AbhBMQLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Feb 2021 11:11:36 -0500
+Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 5366120B6C40;
+        Sat, 13 Feb 2021 08:10:54 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 5366120B6C40
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1613232655;
+        bh=nLRNcXM3BZMYZawkZoagD6rEsGMbmJOFuCYHih9jBFo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=CS1zxtMgoDS3c3No5K8QdQJsrGWKLpbWWX7vncUtzYqAts8yPkls+UvH+r2e4DIIN
+         xfQ8BoppEBUEAroRcBqFRlZRnQkj4t0wuKbOTn4rbEO0AQuiVdoqGNI0M+njmXGOdM
+         XQjvaEl8qhXQUzdgbQUcdBCfFusSAseiiY/XsFHg=
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+To:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
+        mpe@ellerman.id.au
+Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
+        tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH v18 00/10] Carry forward IMA measurement log on kexec on ARM64
+Date:   Sat, 13 Feb 2021 08:10:38 -0800
+Message-Id: <20210213161049.6190-1-nramas@linux.microsoft.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-References: <20210208014221.196584-1-jitao.shi@mediatek.com> <20210208014221.196584-2-jitao.shi@mediatek.com>
-In-Reply-To: <20210208014221.196584-2-jitao.shi@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Sat, 13 Feb 2021 22:34:51 +0800
-Message-ID: <CANMq1KD7upJarxXJsX0ue4doT3=P_n+tcTyS7o6E-XvXGyRe1A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] drm/mediatek: mtk_dpi: Add check for max clock
- rate in mode_valid
-To:     Jitao Shi <jitao.shi@mediatek.com>,
-        Pi-Hsun Shih <pihsun@chromium.org>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        shuijing.li@mediatek.com, David Airlie <airlied@linux.ie>,
-        huijuan.xie@mediatek.com, stonea168@163.com,
-        lkml <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Pi-Hsun Shih
+On kexec file load Integrity Measurement Architecture (IMA) subsystem
+may verify the IMA signature of the kernel and initramfs, and measure
+it.  The command line parameters passed to the kernel in the kexec call
+may also be measured by IMA.  A remote attestation service can verify
+a TPM quote based on the TPM event log, the IMA measurement list, and
+the TPM PCR data.  This can be achieved only if the IMA measurement log
+is carried over from the current kernel to the next kernel across
+the kexec call.
 
-On Mon, Feb 8, 2021 at 9:42 AM Jitao Shi <jitao.shi@mediatek.com> wrote:
->
-> Add per-platform max clock rate check in mtk_dpi_bridge_mode_valid.
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+powerpc already supports carrying forward the IMA measurement log on
+kexec.  This patch set adds support for carrying forward the IMA
+measurement log on kexec on ARM64.
 
-I believe this patch (and the following) were actually authored by
-Pi-Hsun: https://crrev.com/c/2628812 . Would be best to keep the
-author information (unless I'm missing something of course).
+This patch set moves the platform independent code defined for powerpc
+such that it can be reused for other platforms as well.  A chosen node
+"linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
+the address and the size of the memory reserved to carry
+the IMA measurement log.
 
+This patch set has been tested for ARM64 platform using QEMU.
+I would like help from the community for testing this change on powerpc.
+Thanks.
 
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index 52f11a63a330..ffa4a0f1989f 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -118,6 +118,7 @@ struct mtk_dpi_yc_limit {
->  struct mtk_dpi_conf {
->         unsigned int (*cal_factor)(int clock);
->         u32 reg_h_fre_con;
-> +       u32 max_clock_khz;
->         bool edge_sel_en;
->  };
->
-> @@ -555,9 +556,22 @@ static void mtk_dpi_bridge_enable(struct drm_bridge *bridge)
->         mtk_dpi_set_display_mode(dpi, &dpi->mode);
->  }
->
-> +static enum drm_mode_status
-> +mtk_dpi_bridge_mode_valid(struct drm_bridge *bridge,
-> +                         const struct drm_display_mode *mode)
-> +{
-> +       struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-> +
-> +       if (dpi->conf->max_clock_khz && mode->clock > dpi->conf->max_clock_khz)
-> +               return MODE_CLOCK_HIGH;
-> +
-> +       return MODE_OK;
-> +}
-> +
->  static const struct drm_bridge_funcs mtk_dpi_bridge_funcs = {
->         .attach = mtk_dpi_bridge_attach,
->         .mode_set = mtk_dpi_bridge_mode_set,
-> +       .mode_valid = mtk_dpi_bridge_mode_valid,
->         .disable = mtk_dpi_bridge_disable,
->         .enable = mtk_dpi_bridge_enable,
->  };
-> @@ -673,17 +687,20 @@ static unsigned int mt8183_calculate_factor(int clock)
->  static const struct mtk_dpi_conf mt8173_conf = {
->         .cal_factor = mt8173_calculate_factor,
->         .reg_h_fre_con = 0xe0,
-> +       .max_clock_khz = 300000,
->  };
->
->  static const struct mtk_dpi_conf mt2701_conf = {
->         .cal_factor = mt2701_calculate_factor,
->         .reg_h_fre_con = 0xb0,
->         .edge_sel_en = true,
-> +       .max_clock_khz = 150000,
->  };
->
->  static const struct mtk_dpi_conf mt8183_conf = {
->         .cal_factor = mt8183_calculate_factor,
->         .reg_h_fre_con = 0xe0,
-> +       .max_clock_khz = 100000,
->  };
->
->  static int mtk_dpi_probe(struct platform_device *pdev)
-> --
-> 2.25.1
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+This patch set is based on
+commit f31e3386a4e9 ("ima: Free IMA measurement buffer after kexec syscall")
+in https://git.kernel.org/pub/scm/linux/kernel/git/zohar/linux-integrity.git
+"ima-kexec-fixes" branch.
+
+Changelog:
+
+v18
+  - Added a parameter to of_kexec_alloc_and_setup_fdt() for the caller
+    to specify additional space needed for the FDT buffer
+  - Renamed arm64 and powerpc ELF buffer address field in
+    "struct kimage_arch" to elf_load_addr to match x86_64 name.
+  - Removed of_ima_add_kexec_buffer() and instead directly set
+    ima_buffer_addr and ima_buffer_size in ima_add_kexec_buffer()
+  - Moved FDT_EXTRA_SPACE definition from include/linux/of.h to
+    drivers/of/kexec.c
+
+v17
+  - Renamed of_kexec_setup_new_fdt() to of_kexec_alloc_and_setup_fdt(),
+    and moved memory allocation for the new FDT to this function.
+
+v16
+  - Defined functions to allocate and free buffer for FDT for powerpc
+    and arm64.
+  - Moved ima_buffer_addr and ima_buffer_size fields from
+    "struct kimage_arch" in powerpc to "struct kimage"
+v15
+  - Included Rob's patches in the patch set, and rebased
+    the changes to "next-integrity" branch.
+  - Allocate memory for DTB, on arm64, using kmalloc() instead of
+    vmalloc() to keep it consistent with powerpc implementation.
+  - Call of_kexec_setup_new_fdt() from setup_new_fdt_ppc64() and
+    remove setup_new_fdt() in the same patch to keep it bisect safe.
+
+v14
+  - Select CONFIG_HAVE_IMA_KEXEC for CONFIG_KEXEC_FILE, for powerpc
+    and arm64, if CONFIG_IMA is enabled.
+  - Use IS_ENABLED() macro instead of "#ifdef" in remove_ima_buffer(),
+    ima_get_kexec_buffer(), and ima_free_kexec_buffer().
+  - Call of_kexec_setup_new_fdt() from setup_new_fdt_ppc64() and
+    remove setup_new_fdt() in "arch/powerpc/kexec/file_load.c".
+
+v13
+  - Moved the arch independent functions to drivers/of/kexec.c
+    and then refactored the code.
+  - Moved arch_ima_add_kexec_buffer() to
+    security/integrity/ima/ima_kexec.c
+
+v12
+  - Use fdt_appendprop_addrrange() in setup_ima_buffer()
+    to setup the IMA measurement list property in
+    the device tree.
+  - Moved architecture independent functions from
+    "arch/powerpc/kexec/ima.c" to "drivers/of/kexec."
+  - Deleted "arch/powerpc/kexec/ima.c" and
+    "arch/powerpc/include/asm/ima.h".
+
+v11
+  - Rebased the changes on the kexec code refactoring done by
+    Rob Herring in his "dt/kexec" branch
+  - Removed "extern" keyword in function declarations
+  - Removed unnecessary header files included in C files
+  - Updated patch descriptions per Thiago's comments
+
+v10
+  - Moved delete_fdt_mem_rsv(), remove_ima_buffer(),
+    get_ima_kexec_buffer, and get_root_addr_size_cells()
+    to drivers/of/kexec.c
+  - Moved arch_ima_add_kexec_buffer() to
+    security/integrity/ima/ima_kexec.c
+  - Conditionally define IMA buffer fields in struct kimage_arch
+
+v9
+  - Moved delete_fdt_mem_rsv() to drivers/of/kexec_fdt.c
+  - Defined a new function get_ima_kexec_buffer() in
+    drivers/of/ima_kexec.c to replace do_get_kexec_buffer()
+  - Changed remove_ima_kexec_buffer() to the original function name
+    remove_ima_buffer()
+  - Moved remove_ima_buffer() to drivers/of/ima_kexec.c
+  - Moved ima_get_kexec_buffer() and ima_free_kexec_buffer()
+    to security/integrity/ima/ima_kexec.c
+
+v8:
+  - Moved remove_ima_kexec_buffer(), do_get_kexec_buffer(), and
+    delete_fdt_mem_rsv() to drivers/of/fdt.c
+  - Moved ima_dump_measurement_list() and ima_add_kexec_buffer()
+    back to security/integrity/ima/ima_kexec.c
+
+v7:
+  - Renamed remove_ima_buffer() to remove_ima_kexec_buffer() and moved
+    this function definition to kernel.
+  - Moved delete_fdt_mem_rsv() definition to kernel
+  - Moved ima_dump_measurement_list() and ima_add_kexec_buffer() to
+    a new file namely ima_kexec_fdt.c in IMA
+
+v6:
+  - Remove any existing FDT_PROP_IMA_KEXEC_BUFFER property in the device
+    tree and also its corresponding memory reservation in the currently
+    running kernel.
+  - Moved the function remove_ima_buffer() defined for powerpc to IMA
+    and renamed the function to ima_remove_kexec_buffer(). Also, moved
+    delete_fdt_mem_rsv() from powerpc to IMA.
+
+v5:
+  - Merged get_addr_size_cells() and do_get_kexec_buffer() into a single
+    function when moving the arch independent code from powerpc to IMA
+  - Reverted the change to use FDT functions in powerpc code and added
+    back the original code in get_addr_size_cells() and
+    do_get_kexec_buffer() for powerpc.
+  - Added fdt_add_mem_rsv() for ARM64 to reserve the memory for
+    the IMA log buffer during kexec.
+  - Fixed the warning reported by kernel test bot for ARM64
+    arch_ima_add_kexec_buffer() - moved this function to a new file
+    namely arch/arm64/kernel/ima_kexec.c
+
+v4:
+  - Submitting the patch series on behalf of the original author
+    Prakhar Srivastava <prsriva@linux.microsoft.com>
+  - Moved FDT_PROP_IMA_KEXEC_BUFFER ("linux,ima-kexec-buffer") to
+    libfdt.h so that it can be shared by multiple platforms.
+
+v3:
+Breakup patches further into separate patches.
+  - Refactoring non architecture specific code out of powerpc
+  - Update powerpc related code to use fdt functions
+  - Update IMA buffer read related code to use of functions
+  - Add support to store the memory information of the IMA
+    measurement logs to be carried forward.
+  - Update the property strings to align with documented nodes
+    https://github.com/devicetree-org/dt-schema/pull/46
+
+v2:
+  Break patches into separate patches.
+  - Powerpc related Refactoring
+  - Updating the docuemntation for chosen node
+  - Updating arm64 to support IMA buffer pass
+
+v1:
+  Refactoring carrying over IMA measuremnet logs over Kexec. This patch
+    moves the non-architecture specific code out of powerpc and adds to
+    security/ima.(Suggested by Thiago)
+  Add Documentation regarding the ima-kexec-buffer node in the chosen
+    node documentation
+
+v0:
+  Add a layer of abstraction to use the memory reserved by device tree
+    for ima buffer pass.
+  Add support for ima buffer pass using reserved memory for arm64 kexec.
+    Update the arch sepcific code path in kexec file load to store the
+    ima buffer in the reserved memory. The same reserved memory is read
+    on kexec or cold boot.
+
+Lakshmi Ramasubramanian (7):
+  arm64: Rename kexec elf_headers_mem to elf_load_addr
+  powerpc: Move ima buffer fields to struct kimage
+  powerpc: Enable passing IMA log to next kernel on kexec
+  powerpc: Move arch independent ima kexec functions to
+    drivers/of/kexec.c
+  kexec: Use fdt_appendprop_addrrange() to add ima buffer to FDT
+  powerpc: Delete unused function delete_fdt_mem_rsv()
+  arm64: Enable passing IMA log to next kernel on kexec
+
+Rob Herring (4):
+  powerpc: Rename kexec elfcorehdr_addr to elf_load_addr
+  of: Add a common kexec FDT setup function
+  arm64: Use common of_kexec_alloc_and_setup_fdt()
+  powerpc: Use common of_kexec_alloc_and_setup_fdt()
+
+ arch/arm64/Kconfig                     |   1 +
+ arch/arm64/include/asm/kexec.h         |   2 +-
+ arch/arm64/kernel/machine_kexec_file.c | 184 +---------
+ arch/powerpc/Kconfig                   |   2 +-
+ arch/powerpc/include/asm/ima.h         |  30 --
+ arch/powerpc/include/asm/kexec.h       |  12 +-
+ arch/powerpc/kexec/Makefile            |   7 -
+ arch/powerpc/kexec/elf_64.c            |  30 +-
+ arch/powerpc/kexec/file_load.c         | 183 +---------
+ arch/powerpc/kexec/file_load_64.c      |  11 +-
+ arch/powerpc/kexec/ima.c               | 219 ------------
+ drivers/of/Makefile                    |   6 +
+ drivers/of/kexec.c                     | 458 +++++++++++++++++++++++++
+ include/linux/kexec.h                  |   3 +
+ include/linux/of.h                     |   7 +
+ security/integrity/ima/ima.h           |   4 -
+ security/integrity/ima/ima_kexec.c     |   9 +-
+ 17 files changed, 516 insertions(+), 652 deletions(-)
+ delete mode 100644 arch/powerpc/include/asm/ima.h
+ delete mode 100644 arch/powerpc/kexec/ima.c
+ create mode 100644 drivers/of/kexec.c
+
+-- 
+2.30.0
+
