@@ -2,292 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF1C131AAFC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 12:21:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7CEE31AB04
+	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 12:28:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229592AbhBMLVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Feb 2021 06:21:00 -0500
-Received: from mout01.posteo.de ([185.67.36.65]:57632 "EHLO mout01.posteo.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229531AbhBMLU7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 13 Feb 2021 06:20:59 -0500
-Received: from submission (posteo.de [89.146.220.130]) 
-        by mout01.posteo.de (Postfix) with ESMTPS id AFCAE16006A
-        for <devicetree@vger.kernel.org>; Sat, 13 Feb 2021 12:20:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-        t=1613215200; bh=LdSMwsAk/xXFN+Y8P4/lPu3FFkk8ht3k2CuANxWxN+o=;
-        h=Date:From:To:Cc:Subject:From;
-        b=REgD1Z/6HIAXxfkkCD9uJi50/Qx2znnMo2p9QMqd9C5hfHNcVFgcjZ326b0XvTBWG
-         tu5Pdr473MU09lsG99AVsyxfpdP+kTxozhrj8e4+gcik4HtBiSagVMyFvYQ1E+hZTk
-         x2UCMVEOQ81FH27eP62yAT2Oa1itUA8ZLchFGrDkYrXk6B5P7BE/QAAFIOg8d1XGJL
-         BcnexzWu0ZTSxDUqlVoPd99TypQxQGOKUwXUCkhzQ90Q6DD3It21ff1Or6Uzu2AY8V
-         SNREdaEbvIQa1RhgAsw+ilu581s58f+IzlGTxmGJShq2vKSCW6G32kTJjdch/8pAqm
-         pIGNJc1QTZddw==
-Received: from customer (localhost [127.0.0.1])
-        by submission (posteo.de) with ESMTPSA id 4Dd7FB123Zz6tmJ;
-        Sat, 13 Feb 2021 12:19:58 +0100 (CET)
-Date:   Sat, 13 Feb 2021 12:19:57 +0100
-From:   Sebastian Fricke <sebastian.fricke@posteo.net>
-To:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        hjc@rock-chips.com, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, dafna.hirschfeld@collabora.com,
-        helen.koike@collabora.com, ezequiel@collabora.com,
-        cmuellner@linux.com
-Subject: Re: [PATCH 0/6] Support second Image Signal Processor on rk3399
-Message-ID: <20210213111957.3ocxgcyno6ent4vt@basti-TUXEDO-Book-XA1510>
-References: <20210202145632.1263136-1-heiko@sntech.de>
- <808992741.0ifERbkFSE@diego>
- <20210211052515.qdqe256cipdwwrz6@basti-TUXEDO-Book-XA1510>
- <16789691.tv2OnDr8pf@diego>
+        id S229671AbhBML1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Feb 2021 06:27:14 -0500
+Received: from mail-eopbgr80070.outbound.protection.outlook.com ([40.107.8.70]:10049
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229512AbhBML1L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 13 Feb 2021 06:27:11 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IqeKZnjvF9z50u8uDJOu58exi1JW569LespziAFWOYXKAxfLoMR39v5nW4pUX4c15fRFPOUe8/5K+T411lQq40Bzame2sjN/tThLgdxbcyAc5w0CxxQWSeA+x196EpylMMdg9NwH1DkP0BnKFrRGCfxpSK2vzMdVKSuWRirk35jpE5Zguoil0CgKfX8+BE9mFL0ePRGG9O0F2DFXnFvDOIwpW7jiMpGh0wv2dDVAFO3xtvYWQrug7nv0m8b6EFjvd1w7ZLgCe0RjNuD/RjlmSmuLWRJ2v8y19KlHG3LvvNEkkzqDpUZPEcsetvpphYQWmIz7q46AerXHN42U9LeWBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Mw2BLd++O6UA8T22gDTHRo5WOn1n/rGGDwUEuIoiVxE=;
+ b=YlVFrvN/sJRWinstCO/CsQBPND8Wa9w2HtgyjuAj5EFTdxMcWq9KOVR7qHG1u5Xyri7nJBJ8kMbTo/5mBAZUaVnmQ+IdPUDts+dtL3Ela9yPiGqUVWhwM8rKqylGnHNtb3rMhsjbNfQG8kYrrHNUqo342hSDVEyvDes9YUc+G6oVDAJs2n8SX6T5ZPxA8ZryAQwXmCNEB+3XypThm4EAWHqKf6RLPGacRNGQNFwaNopfKJov06g9y3twyP3e+Tns7/Qj24Iq8m6W4waNQcoXfT29yxYikiLH597GqhhHBBFlUvASZ7FVGSDrMoChIYsounWCivh61Y0kb0HQT8yLBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Mw2BLd++O6UA8T22gDTHRo5WOn1n/rGGDwUEuIoiVxE=;
+ b=oUQnrXm51kePLtZXSY72MyKDcDSVtxX+x9g6s2g2hkemFG8113mbi+YNRg+gLgEEjr6uPz7X52HT/95BKkVIhwqzoGVDquxLLbzhHxEsM5dTfp/NibNX9G3c+i2F/vsRVbsenss0YTdaHYOkWnQKLMXX5UwPLC7SL5+8aWMPIvo=
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB7PR04MB4235.eurprd04.prod.outlook.com (2603:10a6:5:22::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.25; Sat, 13 Feb
+ 2021 11:26:21 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d58c:d479:d094:43d0]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d58c:d479:d094:43d0%9]) with mapi id 15.20.3846.027; Sat, 13 Feb 2021
+ 11:26:21 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Rob Herring <robh@kernel.org>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+CC:     "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "paul@crapouillou.net" <paul@crapouillou.net>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "patrice.chotard@st.com" <patrice.chotard@st.com>
+Subject: RE: [PATCH V10 01/10] dt-bindings: remoteproc: convert imx rproc
+ bindings to json-schema
+Thread-Topic: [PATCH V10 01/10] dt-bindings: remoteproc: convert imx rproc
+ bindings to json-schema
+Thread-Index: AQHW/fncK4xdZs5SjUmixVnbxfum2KpRqumAgARO5TA=
+Date:   Sat, 13 Feb 2021 11:26:20 +0000
+Message-ID: <DB6PR0402MB276019999EC404A06EB9B887888A9@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+References: <1612774571-6134-1-git-send-email-peng.fan@oss.nxp.com>
+ <1612774571-6134-2-git-send-email-peng.fan@oss.nxp.com>
+ <20210210173741.GA2378005@robh.at.kernel.org>
+In-Reply-To: <20210210173741.GA2378005@robh.at.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [92.121.68.129]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 8a65573e-8438-4234-f372-08d8d0123042
+x-ms-traffictypediagnostic: DB7PR04MB4235:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB7PR04MB42353E1397411EFFBC1BFBEB888A9@DB7PR04MB4235.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jH4xvuZcZqDrehKEHT9+YlQJmb0PG9LXpgL7mfQ4IUp8w4jaRp8QfjSiZgaGjSbf1pSReez4s36yfh0mgzikc5cEcnsD0h5BqLqEk0HIOoQUvFJPBQvg9H/5mW/IF6inZ0Lw+NDeXlXbfDbPw47DQBBVFKPn1aZkYUIhhrFX9RRi4qGcfUydZGQzoFQWHKFcZzBdKfasR706cjeM4WcG3TRKd4gQyKomt+V5KqrC+93vWbS3R32MqsHzKzB/jnt1QhwTGrd01F17eO1iIyBg4ZoiGd0S7+FfeKVXuGecDSVUNq8laPSvZUEmu/NMiKJo/J/vt0AOMObTlYzlGmQXAQ5J3RuqSpo/vlaP4HWV/JSdyHL2fUFE1gR73isC2kwnV72GTAq5XvSvr/TNG7PYPQZRcjWmI7Cer0hAbDFum/RuAsocQ1N8Tuc/1sWLecnUN31ONFBrjrnc4zkk3kRHm7qlolaCJLd/FzEItOw/vYbKeipGE4TYl2wdILaFqAHigcvUit0nTDXSIC6jvpsEDLZGhoxAEVTVtfrmuNW3xx/KIRGsv13TPd0BYarEiQ7GVUL5DuYnGJxWob4O52cnF7W6shBPYOfO+t8+XlXRoRQ=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(136003)(376002)(366004)(346002)(26005)(186003)(7696005)(86362001)(5660300002)(66446008)(44832011)(7416002)(45080400002)(8936002)(9686003)(55016002)(316002)(110136005)(64756008)(66556008)(478600001)(76116006)(66476007)(54906003)(52536014)(4326008)(2906002)(71200400001)(8676002)(6506007)(33656002)(83380400001)(66946007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?qnROe4Q46yYLu8YI4UE9GkToER10cyo7weYjsovbaZ6L/GZB8QdFwQq0qXch?=
+ =?us-ascii?Q?pu7NGZkAjjNpiLofUfkVJyO2eN5vMu73grKJZde2rekFFM7az5UCKCc2cSSj?=
+ =?us-ascii?Q?6ul/iCqGLk5HdIRO6vnLOKo9XgVM1P0vkE5eTR3k58yAZZYkTSErRCb6MXFj?=
+ =?us-ascii?Q?E52uMQB/ZNZ130NMshg5rQWeu6Ksc500e4+HUtRnnFmthiffSmXsOoOjhq6u?=
+ =?us-ascii?Q?Ewd0WoW7Aw60SekEc+J+O+/vPRrO2ryNZhWr6vd0xzyv2Bc8fwFB/S8xE4sa?=
+ =?us-ascii?Q?4BExtLjZ3OAqMTEKMnFEumr0pxadk+qUcVa/6lcWzkfEyC0rBR4fcTUFFsG/?=
+ =?us-ascii?Q?oX4Catv2c8X2HZ7umfdn6tE5G4/SCMdTerYmZPbWPqCFvFIJapzq3C+X/3iz?=
+ =?us-ascii?Q?mVnjajflgYmqFq+sEopFjFQJvwP8cu6WRuZiODQ+pR1UjaWwgBI4jOfAPnVH?=
+ =?us-ascii?Q?JXmAY6lvpYR8JWrIIpV6jKBjOD3pA5OLsda86n2WcOFV8DNMdE4EGzUNMBK0?=
+ =?us-ascii?Q?v0CHYbweQCEbytQ/izYVF+7pzcaC0+s1C+Cle8i9szPl3TP0gzLlmoBCfIXB?=
+ =?us-ascii?Q?1gQ8H84Cbcnj5JjlPCLL/1+GWceIbkAV42+Kh3JXIf6aWtTWdVXMPBlaqV4z?=
+ =?us-ascii?Q?MBWljKZ2CoDjkA/tdzpDiABAa+yCRFqr9rK3i9VyCNwda2dSLCdlk/bhZxRS?=
+ =?us-ascii?Q?DKQMW8vEIwfVhV4bJ0ZkAZqJ5Q4sJ+7TTJsH/oVbXZRwSd+Xu/uAX0/w8aH/?=
+ =?us-ascii?Q?3hYQJjn3MvcX5OpyEjRCFHyg1tvRIWhkbzO8AA3iF9yt+DqUc+fDvPKrBw3E?=
+ =?us-ascii?Q?94MqN6BDR0i5IQQB7Xi09I9SVm/ebnDXo56wpK/Oc9IqGsnAmWYgs1B52AvM?=
+ =?us-ascii?Q?UICUmS3fqcpMwgBmUUN6Rc7Xl4fBlG69qScjMyaAGaCOSEkOCnscu25KQ3sr?=
+ =?us-ascii?Q?QJ6Nlachl+8gAtAFxlwpH82U5jVrF7Gi+5runnWfJLD9uR5wysFF878bBJrS?=
+ =?us-ascii?Q?OZ0I4SSTQdjYFnacm05SiGp84mSPFbwMlu2anmGx2v8jFfmcKmslP3PLbbL0?=
+ =?us-ascii?Q?lNmavK1Yvd++iGGWpu4Utz9XUz7lphHFd1c9VftqwNqmloIWtfCxN2SFL981?=
+ =?us-ascii?Q?MlZOc80mPwap25JyQs5WcOfNMzeGEOubSuwtm2GPoW+YWxbEIyinWTdBiPBl?=
+ =?us-ascii?Q?ZReQah8Z6GgVxcYo0V54H1otnh4wpIHgGJH/9Ezg5QHuvh/lxyHm2RPqr78N?=
+ =?us-ascii?Q?c94DV8/4gH6mRYdBLCvJUy4SYdYcSY09FZx1QqIo25UMZvgpESWGVjfXlTPb?=
+ =?us-ascii?Q?sTNbfHY57nIrnxcVokYrDNVc?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <16789691.tv2OnDr8pf@diego>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a65573e-8438-4234-f372-08d8d0123042
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Feb 2021 11:26:20.9458
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1oQtFEPPS2xdRH1pNcSJ5E9DbRmeDD1DQYl99flpMCsZBAfoopzw1lbBIs3kaphxtOYRloSHGWKOaOrLL/di9Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4235
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Heiko,
+> Subject: Re: [PATCH V10 01/10] dt-bindings: remoteproc: convert imx rproc
+> bindings to json-schema
+>=20
+> On Mon, Feb 08, 2021 at 04:56:02PM +0800, peng.fan@oss.nxp.com wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > Convert the imx rproc binding to DT schema format using json-schema.
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 59
+> +++++++++++++++++++
+> >  .../bindings/remoteproc/imx-rproc.txt         | 33 -----------
+> >  2 files changed, 59 insertions(+), 33 deletions(-)  create mode
+> > 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> >  delete mode 100644
+> > Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> > b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> > new file mode 100644
+> > index 000000000000..5e906fa6a39d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> > @@ -0,0 +1,59 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
+> "https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevic=
+e
+> tree.org%2Fschemas%2Fremoteproc%2Ffsl%2Cimx-rproc.yaml%23&amp;dat
+> a=3D04%7C01%7Cpeng.fan%40nxp.com%7Cd1b06ffd889240a45f8308d8cdea93
+> 40%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6374857546682
+> 06133%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2l
+> uMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DjTnFLISLpjJN
+> vV4euhlqUvnj9YMk9YoDZWoxQi97kdc%3D&amp;reserved=3D0"
+> > +$schema:
+> "https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevic=
+e
+> tree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=3D04%7C01%7Cpeng.f
+> an%40nxp.com%7Cd1b06ffd889240a45f8308d8cdea9340%7C686ea1d3bc2b
+> 4c6fa92cd99c5c301635%7C0%7C0%7C637485754668206133%7CUnknown
+> %7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
+> WwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D98u0FLfvAhOiYoT7Vvbqg6yW5
+> wVEmLVrhLvCz83VRiM%3D&amp;reserved=3D0"
+> > +
+> > +title: NXP iMX6SX/iMX7D Co-Processor Bindings
+> > +
+> > +description:
+> > +  This binding provides support for ARM Cortex M4 Co-processor found o=
+n
+> some NXP iMX SoCs.
+> > +
+> > +maintainers:
+> > +  - Peng Fan <peng.fan@nxp.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - fsl,imx7d-cm4
+> > +      - fsl,imx6sx-cm4
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  syscon:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      Phandle to syscon block which provide access to System Reset
+> > + Controller
+> > +
+> > +  memory-region:
+> > +    description:
+> > +      If present, a phandle for a reserved memory area that used for
+> vdev buffer,
+> > +      resource table, vring region and others used by remote processor=
+.
+>=20
+> You need to define what each one is as a schema. How does the driver know
+> which one is the vring region for example? Minimally, it's:
+>=20
+> items:
+>   - description: ...
+>   - description: ...
+>   - description: ...
+>=20
+> But if what's present is variable, then it gets more complicated. If the =
+OS side
+> doesn't need to know what each region is, then you can do just:
+>=20
+> minItems: N
+> maxItems: M
 
-On 11.02.2021 15:42, Heiko Stübner wrote:
->Hi Sebastian,
->
->Am Donnerstag, 11. Februar 2021, 06:25:15 CET schrieb Sebastian Fricke:
->> Hey Heiko,
->>
->> On 10.02.2021 12:15, Heiko Stübner wrote:
->> >Hi Sebastian,
->> >
->> >Am Freitag, 5. Februar 2021, 15:55:56 CET schrieb Heiko Stübner:
->> >> Hi Sebastian,
->> >>
->> >> I did some tests myself today as well and can confirm your
->> >> hdmi related finding - at least when plugged in on boot.
->> >>
->> >> I tried some combinations of camera vs. hdmi and it seems
->> >> really only when hdmi is plugged in on boot
->> >
->> >as you can see in v2, it should work now even with hdmi
->> >connected on boot. My patch ignored the grf-clock when
->> >doing the grf-based init.
->> >
->> >All clocks are on during boot and I guess the hdmi-driver
->> >did disable it after its probe. The phy_power_on functions
->> >did handle it correctly already, so it was only happening
->> >with hdmi connected on boot.
->>
->> Thank you very much for solving that problem, I've tested the scenarios
->> described below and it works like a charm. (With your V2)
->> >
->> >
->> >Btw. do you plan on submitting your ov13850 driver
->> >soonish?
->>
->> Actually, I have posted the patch already see here:
->> https://patchwork.kernel.org/project/linux-media/patch/20210130182313.32903-2-sebastian.fricke@posteo.net/
->
->very cool to see
->
->> I currently review the requested changes and questions and will soon
->> post a second version, but I expect quite some time until it is actually
->> merged.
->
->could you Cc me on future versions?
+I'll use minItems: 1, no maxItems.
 
-Sure will do :)
+Thanks,
+Peng.
 
->
->
->Thanks
->Heiko
-
-Sebastian
->>
->> Greetings,
->> Sebastian
->>
->> >
->> >
->> >>
->> >> (1)
->> >> - boot
->> >> - camera
->> >> --> works
->> >>
->> >> (2)
->> >> - boot
->> >> - camera
->> >> - hdmi plugged in
->> >> - hdmi works
->> >> - camera
->> >> --> works
->> >>
->> >> (3)
->> >> - hdmi plugged in
->> >> - boot
->> >> - hdmi works
->> >> - camera
->> >> --> camera doesn't work
->> >>
->> >> (4)
->> >> - boot
->> >> - hdmi plugged in
->> >> - hdmi works
->> >> - camera
->> >> -> camera works
->> >>
->> >>
->> >> With a bit of brute-force [0] it seems the camera also works again even
->> >> with hdmi connected on boot. So conclusion would be that some clock
->> >> is misbehaving.
->> >>
->> >> Now we'll "only" need to find out which one that is.
->> >>
->> >>
->> >> Heiko
->> >>
->> >>
->> >> [0]
->> >> Don't disable any clock gates
->> >>
->> >> diff --git a/drivers/clk/clk-gate.c b/drivers/clk/clk-gate.c
->> >> index 070dc47e95a1..8daf1fc3388c 100644
->> >> --- a/drivers/clk/clk-gate.c
->> >> +++ b/drivers/clk/clk-gate.c
->> >> @@ -61,6 +61,9 @@ static void clk_gate_endisable(struct clk_hw *hw, int enable)
->> >>
->> >>         set ^= enable;
->> >>
->> >> +if (!enable)
->> >> +return;
->> >> +
->> >>         if (gate->lock)
->> >>                 spin_lock_irqsave(gate->lock, flags);
->> >>         else
->> >>
->> >>
->> >>
->> >> Am Freitag, 5. Februar 2021, 09:15:47 CET schrieb Heiko Stübner:
->> >> > Hi Sebastian,
->> >> >
->> >> > Am Freitag, 5. Februar 2021, 07:43:35 CET schrieb Sebastian Fricke:
->> >> > > On 03.02.2021 20:54, Heiko Stübner wrote:
->> >> > > >Am Mittwoch, 3. Februar 2021, 19:14:22 CET schrieb Sebastian Fricke:
->> >> > > >> I have tested your patch set on my nanoPC-T4, here is a complete log
->> >> > > >> with:
->> >> > > >> - relevant kernel log entries
->> >> > > >> - system information
->> >> > > >> - media ctl output
->> >> > > >> - sysfs entry information
->> >> > > >>
->> >> > > >> https://paste.debian.net/1183874/
->> >> > > >>
->> >> > > >> Additionally, to your patchset I have applied the following patches:
->> >> > > >> https://github.com/initBasti/Linux_kernel_media_tree_fork/commits/dual_cam_setup
->> >> > > >>
->> >> > > >> And just to not cause confusion the `media_dev` entries come from this
->> >> > > >> unmerged series:
->> >> > > >> https://patchwork.kernel.org/project/linux-media/list/?series=426269
->> >> > > >>
->> >> > > >> I have actually been able to stream with both of my cameras at the same
->> >> > > >> time using the libcamera cam command.
->> >> > > >> I would like to thank you a lot for making this possible.
->> >> > > >
->> >> > > >Thanks for testing a dual camera setup. On my board I could only test
->> >> > > >the second ISP. And really glad it works for you tool :-) .
->> >> > > >
->> >> > > >Out of curiosity, do you also see that green tint in the images the cameras
->> >> > > >produce?
->> >> > >
->> >> > > Yes, I do. Actually, I currently have two forms of a green tint, on my
->> >> > > OV13850 everything is quite dark and greenish, which is caused by the
->> >> > > missing 3A algorithms. On my OV4689, I have big patches of the image
->> >> > > with bright green color and flickering, I investigated if this is
->> >> > > connected to the 2nd ISP instance, but that doesn't seem to be the case
->> >> > > as I have the same results when I switch the CSI ports of the cameras.
->> >> > >
->> >> > > I have found another issue, while testing I discovered following
->> >> > > issue:
->> >> > > When I start the system with an HDMI monitor connected, then the camera
->> >> > > on the 2nd port doesn't work. This is probably because the RX/TX is
->> >> > > reserved as a TX.
->> >> > > But it made me wonder because if the system has an RX, a TX, and
->> >> > > an RX/TX, why isn't the pure TX used by the monitor and the
->> >> > > cameras take RX and RX/TX?
->> >> > > Or do you think that this is maybe a malfunction of this patch?
->> >> >
->> >> > I don't think it is an issue with this specific series, but still puzzling.
->> >> >
->> >> > I.e. the DPHYs are actually only relevant to the DSI controllers,
->> >> > with TX0 being connected to DSI0 and TX1RX1 being connected
->> >> > to DSI1. So having an hdmi display _in theory_ shouldn't matter at all.
->> >> >
->> >> > Out of curiosity what happens, when you boot without hdmi connected
->> >> > turn on the cameras, connect the hdmi after this, try the cameras again?
->> >> >
->> >> >
->> >> > Heiko
->> >> >
->> >> > >
->> >> > > >
->> >> > > >Thanks
->> >> > > >Heiko
->> >> > >
->> >> > > Greetings,
->> >> > > Sebastian
->> >> > >
->> >> > > >
->> >> > > >
->> >> > > >> If you like to you can add:
->> >> > > >> Tested-by: Sebastian Fricke <sebastian.fricke@posteo.net>
->> >> > > >>
->> >> > > >> On 02.02.2021 15:56, Heiko Stuebner wrote:
->> >> > > >> >The rk3399 has two ISPs and right now only the first one is usable.
->> >> > > >> >The second ISP is connected to the TXRX dphy on the soc.
->> >> > > >> >
->> >> > > >> >The phy of ISP1 is only accessible through the DSI controller's
->> >> > > >> >io-memory, so this series adds support for simply using the dsi
->> >> > > >> >controller is a phy if needed.
->> >> > > >> >
->> >> > > >> >That solution is needed at least on rk3399 and rk3288 but no-one
->> >> > > >> >has looked at camera support on rk3288 at all, so right now
->> >> > > >> >only implement the rk3399 specifics.
->> >> > > >> >
->> >> > > >> >
->> >> > > >> >Heiko Stuebner (6):
->> >> > > >> >  drm/rockchip: dsi: add own additional pclk handling
->> >> > > >> >  dt-bindings: display: rockchip-dsi: add optional #phy-cells property
->> >> > > >> >  drm/rockchip: dsi: add ability to work as a phy instead of full dsi
->> >> > > >> >  arm64: dts: rockchip: add #phy-cells to mipi-dsi1
->> >> > > >> >  arm64: dts: rockchip: add cif clk-control pinctrl for rk3399
->> >> > > >> >  arm64: dts: rockchip: add isp1 node on rk3399
->> >> > > >> >
->> >> > > >> > .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
->> >> > > >> > arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  39 ++
->> >> > > >> > drivers/gpu/drm/rockchip/Kconfig              |   2 +
->> >> > > >> > .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 342 ++++++++++++++++++
->> >> > > >> > 4 files changed, 384 insertions(+)
->> >> > > >> >
->> >> > > >>
->> >> > > >
->> >> > > >
->> >> > > >
->> >> > > >
->> >> > >
->> >> >
->> >> >
->> >>
->> >>
->> >
->> >
->> >
->> >
->>
->
->
->
->
+>=20
+> Rob
+>=20
+>=20
+>=20
+> > +
+> > +required:
+> > +  - compatible
+> > +  - clocks
+> > +  - syscon
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/imx7d-clock.h>
+> > +    m4_reserved_sysmem1: cm4@80000000 {
+> > +      reg =3D <0x80000000 0x80000>;
+> > +    };
+> > +
+> > +    m4_reserved_sysmem2: cm4@81000000 {
+> > +      reg =3D <0x81000000 0x80000>;
+> > +    };
+> > +
+> > +    imx7d-cm4 {
+> > +      compatible	=3D "fsl,imx7d-cm4";
+> > +      memory-region	=3D <&m4_reserved_sysmem1>,
+> <&m4_reserved_sysmem2>;
+> > +      syscon		=3D <&src>;
+> > +      clocks		=3D <&clks IMX7D_ARM_M4_ROOT_CLK>;
+> > +    };
+> > +
+> > +...
+> > diff --git
+> > a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> > b/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> > deleted file mode 100644
+> > index fbcefd965dc4..000000000000
+> > --- a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> > +++ /dev/null
+> > @@ -1,33 +0,0 @@
+> > -NXP iMX6SX/iMX7D Co-Processor Bindings
+> > -----------------------------------------
+> > -
+> > -This binding provides support for ARM Cortex M4 Co-processor found on
+> > some -NXP iMX SoCs.
+> > -
+> > -Required properties:
+> > -- compatible		Should be one of:
+> > -				"fsl,imx7d-cm4"
+> > -				"fsl,imx6sx-cm4"
+> > -- clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
+> > -- syscon		Phandle to syscon block which provide access to
+> > -			System Reset Controller
+> > -
+> > -Optional properties:
+> > -- memory-region		list of phandels to the reserved memory regions.
+> > -			(See: ../reserved-memory/reserved-memory.txt)
+> > -
+> > -Example:
+> > -	m4_reserved_sysmem1: cm4@80000000 {
+> > -		reg =3D <0x80000000 0x80000>;
+> > -	};
+> > -
+> > -	m4_reserved_sysmem2: cm4@81000000 {
+> > -		reg =3D <0x81000000 0x80000>;
+> > -	};
+> > -
+> > -	imx7d-cm4 {
+> > -		compatible	=3D "fsl,imx7d-cm4";
+> > -		memory-region	=3D <&m4_reserved_sysmem1>,
+> <&m4_reserved_sysmem2>;
+> > -		syscon		=3D <&src>;
+> > -		clocks		=3D <&clks IMX7D_ARM_M4_ROOT_CLK>;
+> > -	};
+> > --
+> > 2.30.0
+> >
