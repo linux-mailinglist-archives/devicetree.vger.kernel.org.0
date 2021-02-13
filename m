@@ -2,118 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDA3531AA81
-	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 09:27:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C52531AA8E
+	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 09:52:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbhBMI1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Feb 2021 03:27:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41666 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229469AbhBMI1X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 13 Feb 2021 03:27:23 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 64A0164E12;
-        Sat, 13 Feb 2021 08:26:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1613204803;
-        bh=Hx2lvOO3U9lYskzR0Wudu5H3Pog0MfYpZs0Ec1Ipnuc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qJGBRk7B5CmmdyjhBy8Ds4gW+j0vhYFeWuzjJmZ/wpBT4ROdtjJZhBWs7w9+NqCgh
-         DkeSnaAU+Agk6wPBpl6ls/vGET9YgxvCrIFJCrTDUxQhghyv1DUL16N0Dao9tycGLl
-         O+Ak5oHlV258P+ItDh5WGL5A9QDZzoXJFYhcwob4=
-Date:   Sat, 13 Feb 2021 09:26:40 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Al Cooper <alcooperx@gmail.com>, linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 2/2] serial: 8250: Add new 8250-core based Broadcom
- STB driver
-Message-ID: <YCeNQERg1wm34lDE@kroah.com>
-References: <20210212195736.45328-1-alcooperx@gmail.com>
- <20210212195736.45328-3-alcooperx@gmail.com>
- <8cb4bae6-5617-8dd5-4c0f-4c81cb4d741b@gmail.com>
+        id S229478AbhBMIwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Feb 2021 03:52:02 -0500
+Received: from mailoutvs48.siol.net ([185.57.226.239]:33970 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229475AbhBMIwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Feb 2021 03:52:01 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id C8BCA52134F;
+        Sat, 13 Feb 2021 09:51:18 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id sbJZ5JLDUEdE; Sat, 13 Feb 2021 09:51:18 +0100 (CET)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 70AFA5214FE;
+        Sat, 13 Feb 2021 09:51:18 +0100 (CET)
+Received: from jernej-laptop.localnet (89-212-178-211.dynamic.t-2.net [89.212.178.211])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id 1573352134F;
+        Sat, 13 Feb 2021 09:51:17 +0100 (CET)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Maxime Ripard <maxime@cerno.tech>,
+        "B.R. Oake" <broake@mailfence.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chen-Yu Tsai <wens@kernel.org>, linux-sunxi@googlegroups.com,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY mode
+Date:   Sat, 13 Feb 2021 09:51:17 +0100
+Message-ID: <6612268.HtAl026vyE@jernej-laptop>
+In-Reply-To: <1719200956.433094.1613199092092@ichabod.co-bxl>
+References: <1243888060.510560.1612783497400@ichabod.co-bxl> <20210210150118.ly252i37eykayrcb@gilmour> <1719200956.433094.1613199092092@ichabod.co-bxl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8cb4bae6-5617-8dd5-4c0f-4c81cb4d741b@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 12, 2021 at 12:47:02PM -0800, Florian Fainelli wrote:
-> 
-> 
-> On 2/12/2021 11:57 AM, Al Cooper wrote:
-> > Add a UART driver for the new Broadcom 8250 based STB UART. The new
-> > UART is backward compatible with the standard 8250, but has some
-> > additional features. The new features include a high accuracy baud
-> > rate clock system and DMA support.
-> > 
-> > The driver will use the new optional BAUD MUX clock to select the best
-> > one of the four master clocks (81MHz, 108MHz, 64MHz and 48MHz) to feed
-> > the baud rate selection logic for any requested baud rate.  This allows
-> > for more accurate BAUD rates when high speed baud rates are selected.
-> > 
-> > The driver will use the new UART DMA hardware if the UART DMA registers
-> > are specified in Device Tree "reg" property.
-> > 
-> > The driver also sets the UPSTAT_AUTOCTS flag when hardware flow control
-> > is enabled. This flag is needed for UARTs that don't assert a CTS
-> > changed interrupt when CTS changes and AFE (Hardware Flow Control) is
-> > enabled.
-> > 
-> > The driver also contains a workaround for a bug in the Synopsis 8250
-> > core. The problem is that at high baud rates, the RX partial FIFO
-> > timeout interrupt can occur but there is no RX data (DR not set in
-> > the LSR register). In this case the driver will not read the Receive
-> > Buffer Register, which clears the interrupt, and the system will get
-> > continuous UART interrupts until the next RX character arrives. The
-> > fix originally suggested by Synopsis was to read the Receive Buffer
-> > Register and discard the character when the DR bit in the LSR was
-> > not set, to clear the interrupt. The problem was that occasionally
-> > a character would arrive just after the DR bit check and a valid
-> > character would be discarded. The fix that was added will clear
-> > receive interrupts to stop the interrupt, deassert RTS to insure
-> > that no new data can arrive, wait for 1.5 character times for the
-> > sender to react to RTS and then check for data and either do a dummy
-> > read or a valid read. Sysfs error counters were also added and were
-> > used to help create test software that would cause the error condition.
-> > The counters can be found at:
-> > /sys/devices/platform/rdb/*serial/rx_bad_timeout_late_char
-> > /sys/devices/platform/rdb/*serial/rx_bad_timeout_no_char
-> > 
-> > Signed-off-by: Al Cooper <alcooperx@gmail.com>
-> > ---
-> >  MAINTAINERS                            |    8 +
-> >  drivers/tty/serial/8250/8250_bcm7271.c | 1099 ++++++++++++++++++++++++
-> >  drivers/tty/serial/8250/Kconfig        |   11 +
-> >  drivers/tty/serial/8250/Makefile       |    1 +
-> >  drivers/tty/serial/8250/bcm7271_uart.h |  158 ++++
-> >  5 files changed, 1277 insertions(+)
-> >  create mode 100644 drivers/tty/serial/8250/8250_bcm7271.c
-> >  create mode 100644 drivers/tty/serial/8250/bcm7271_uart.h
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 64c7169db617..bb6ad2fc4376 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -3582,6 +3582,14 @@ S:	Supported
-> >  F:	Documentation/devicetree/bindings/i2c/brcm,brcmstb-i2c.yaml
-> >  F:	drivers/i2c/busses/i2c-brcmstb.c
-> >  
-> > +BROADCOM BRCMSTB UART DRIVER
-> > +M:	Al Cooper <alcooperx@gmail.com>
-> > +L:	linux-usb@vger.kernel.org
-> 
-> This should probably be linux-serial, copy pasted from the USB entry
-> down below presumably.
+Hi!
 
-Yes, it should not be linux-usb, and that explains why these
-serial-driver patches were cc:ed to that list :(
+Let me first explain that it was oversight on my side not noticing initials in 
+your SoB tag. But since the issue was raised by Maxime, I didn't follow up.
 
-thanks,
+Dne sobota, 13. februar 2021 ob 07:51:32 CET je B.R. Oake napisal(a):
+> On Wed Feb 10 at 16:01:18 CET 2021, Maxime Ripard wrote:
+> > Unfortunately we can't take this patch as is, this needs to be your real
+> > name, see:
+> > https://www.kernel.org/doc/html/latest/process/submitting-patches.html#de
+> > veloper-s-certificate-of-origin-1-1
+> Dear Maxime,
+> 
+> Thank you very much for considering my contribution and for all your
+> work on supporting sunxi-based hardware; I appreciate it.
+> 
+> Thank you for referring me to the Developer's Certificate of Origin, but
+> I had already read it before submitting (I had to do so in order to know
+> what I was saying by "Signed-off-by:") and I do certify what it says.
+> 
+> Looking through recent entries in the commit log of the mainline kernel,
+> I see several patches from authors such as:
+> 
+>   H.J. Lu <hjl.tools@gmail.com>
+>   B K Karthik <karthik.bk2000@live.com>
+>   JC Kuo <jckuo@nvidia.com>
+>   EJ Hsu <ejh@nvidia.com>
+>   LH Lin <lh.lin@mediatek.com>
+>   KP Singh <kpsingh@kernel.org>
+>   Karthik B S <karthik.b.s@intel.com>
+>   Shreyas NC <shreyas.nc@intel.com>
+>   Vandana BN <bnvandana@gmail.com>
+> 
+> so I believe names of this form are in fact acceptable, even if the
+> style might seem a little old-fashioned to some.
 
-greg k-h
+Speaking generally, not only for this case, prior art arguments rarely hold, 
+because:
+- it might be oversight,
+- it might be a bad practice, which should not be followed in new 
+contributions,
+- different maintainers have different point of view on same thing,
+- maintainer wants to adapt new practice or steer subsystem in new direction
+
+> 
+> I would like to add that I have met many people with names such as C.J.,
+> A A, TC, MG, etc. That is what everybody calls them and it would be
+> natural for them to sign themselves that way. Some of them might want to
+> contribute to Linux some day, and I think it would be a great shame and
+> a loss to all of us if they were discouraged from doing so by reading
+> our conversation in the archives and concluding that any contribution
+> from them, however small, would be summarily refused simply because of
+> their name. Please could you ensure that does not happen?
+
+The link you posted says following:
+"using your real name (sorry, no pseudonyms or anonymous contributions.)"
+
+I believe that real name means no initials, no matter what people are 
+accustomed to. From my point of view, CJ is pseudonym derived from real name.
+
+This is not the first time that fix of SoB tag was requested, you can find such 
+requests in ML archives.
+
+Best regards,
+Jernej
+
+> 
+> Thank you again for your consideration.
+> 
+> Yours sincerely,
+> B.R. Oake.
+
+
+
+
