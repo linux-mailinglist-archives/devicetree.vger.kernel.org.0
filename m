@@ -2,74 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF2DA31A987
-	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 02:46:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A15B731AA50
+	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 07:53:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231663AbhBMBqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Feb 2021 20:46:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33946 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231317AbhBMBqd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Feb 2021 20:46:33 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPS id E7D8264EA6;
-        Sat, 13 Feb 2021 01:45:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613180753;
-        bh=oecdGOLPRrsX8igQNwWvTsveOUTJxIoetxhi9npHSzQ=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=auwaITTXuhsh5gKEtnA8f9O9+quDOsGRxc40QICTQWE1Ekm4Q7zx73AF4wzSLPxYx
-         y6psMhYrKept5Lh1Sf6EOeeNCw/xizOfxDrYLM+I1mB3yWc7cYPCJPozKRca10fwRt
-         xXsP46rjB8torhXRgErnV05Pv/3uMNnmBIJre3OslIn6qj6NcnCca3b7mg9N6wb/XQ
-         ph13DaWSwikR8mfPQnuPN01AVZMItWu1W/w8r9W1N643BdohxE94t68CyLfjaMN4Bv
-         ExSw0Ey+NQtF1E5Jg6lK6GhXiTNhVwWrlyErgwI20KnGr7xPTJqlunniPkAjpcMjgF
-         ODEh2WhZZ0uFw==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id D816D60A2A;
-        Sat, 13 Feb 2021 01:45:52 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S229574AbhBMGwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Feb 2021 01:52:18 -0500
+Received: from wilbur.contactoffice.com ([212.3.242.68]:56712 "EHLO
+        wilbur.contactoffice.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229469AbhBMGwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Feb 2021 01:52:17 -0500
+Received: from ichabod.co-bxl (ichabod.co-bxl [10.2.0.36])
+        by wilbur.contactoffice.com (Postfix) with ESMTP id C5F80827;
+        Sat, 13 Feb 2021 07:51:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailfence.com;
+        s=20160819-nLV10XS2; t=1613199094;
+        bh=c7eHNOeudtFYB2ia1pCjZOnK2D0HGHskQSrZBEiyRZA=;
+        h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From;
+        b=n3zxpQcBif6MD7GWsE6xsAt54uBoHMOtgRrnnbnt1t8MObHLQhJmqHZxLMOKvURMd
+         P5mcTW2OmdcYJavjSQJngJRGWjQ2Ligb7QDr/YQqbXC0ZI99TejVnld0m/U6yQsXsE
+         6tRsCqayWn8WU5hHXxkMgEUALtjv8ZK3cvA9EMAMnIvMRuADyh+YAj5hM8Z3jymGzs
+         UTV1G4JDGHMetoISGdc+Mt9zU01EakFxNFusNRk/1GnWC3Dc0sa/Zk9imOhbc51yhH
+         PlMotha88JKufV7XefyY4JJoaaA2CJe5+K45v0YbITekCJUgn3TopQwVVLHQqkVTQG
+         JkSR4CbXdEi9Q==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1613199094;
+        s=20210208-e7xh; d=mailfence.com; i=broake@mailfence.com;
+        h=Date:From:Reply-To:To:Cc:Message-ID:In-Reply-To:References:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding;
+        l=1807; bh=c7eHNOeudtFYB2ia1pCjZOnK2D0HGHskQSrZBEiyRZA=;
+        b=haxJ6a6w2Puj2RiKYXykGyc/9dmbEeuWX4ddxFSCX45AlIr+Boz02pJNdCInMINK
+        vLB7IBx3lRMjROH2Y37loSnfGn/SVxkKtujtfXyZaKp3M8Qw3rSmnIyGDqOl2SeYw3J
+        WqMwrBI/k0qHfaSEh3zvMANOfw962a8e7QRQojVwPWbqVD1zG/VimTRCOHYu5QRebmX
+        1XVBI/621PvJrCtw2sW03zRy6HQ8NsNJdLCuOvdrRozqEzlfsOQAyknjHPW4eF3Tu75
+        fADMNIKDhGzC4761+2Sse6kroe/1NdB+o9BaUwFnLcUEq2e9qGtBCwJch/xH0iLQk1H
+        93npB9bBOA==
+Date:   Sat, 13 Feb 2021 07:51:32 +0100 (CET)
+From:   "B.R. Oake" <broake@mailfence.com>
+Reply-To: "B.R. Oake" <broake@mailfence.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-kernel@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-arm-kernel@lists.infradead.org,
+        Chen-Yu Tsai <wens@kernel.org>, linux-sunxi@googlegroups.com,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Message-ID: <1719200956.433094.1613199092092@ichabod.co-bxl>
+In-Reply-To: <20210210150118.ly252i37eykayrcb@gilmour>
+References: <1243888060.510560.1612783497400@ichabod.co-bxl> <20210210150118.ly252i37eykayrcb@gilmour>
+Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY
+ mode
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next 0/3] Xilinx axienet updates
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161318075288.24767.11331993680228001755.git-patchwork-notify@kernel.org>
-Date:   Sat, 13 Feb 2021 01:45:52 +0000
-References: <20210213002356.2557207-1-robert.hancock@calian.com>
-In-Reply-To: <20210213002356.2557207-1-robert.hancock@calian.com>
-To:     Robert Hancock <robert.hancock@calian.com>
-Cc:     davem@davemloft.net, kuba@kernel.org,
-        radhey.shyam.pandey@xilinx.com, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-Mailer: ContactOffice Mail
+X-ContactOffice-Account: com:276068926
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On Wed Feb 10 at 16:01:18 CET 2021, Maxime Ripard wrote:
+> Unfortunately we can't take this patch as is, this needs to be your real name, see:
+> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#developer-s-certificate-of-origin-1-1
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+Dear Maxime,
 
-On Fri, 12 Feb 2021 18:23:53 -0600 you wrote:
-> Updates to the Xilinx AXI Ethernet driver to add support for an additional
-> ethtool operation, and to support dynamic switching between 1000BaseX and
-> SGMII interface modes.
-> 
-> Robert Hancock (3):
->   net: axienet: hook up nway_reset ethtool operation
->   dt-bindings: net: xilinx_axienet: add xlnx,switch-x-sgmii attribute
->   net: axienet: Support dynamic switching between 1000BaseX and SGMII
-> 
-> [...]
+Thank you very much for considering my contribution and for all your 
+work on supporting sunxi-based hardware; I appreciate it.
 
-Here is the summary with links:
-  - [net-next,1/3] net: axienet: hook up nway_reset ethtool operation
-    https://git.kernel.org/netdev/net-next/c/66b51663cdd0
-  - [net-next,2/3] dt-bindings: net: xilinx_axienet: add xlnx,switch-x-sgmii attribute
-    https://git.kernel.org/netdev/net-next/c/eceac9d2590b
-  - [net-next,3/3] net: axienet: Support dynamic switching between 1000BaseX and SGMII
-    https://git.kernel.org/netdev/net-next/c/6c8f06bb2e51
+Thank you for referring me to the Developer's Certificate of Origin, but 
+I had already read it before submitting (I had to do so in order to know 
+what I was saying by "Signed-off-by:") and I do certify what it says.
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Looking through recent entries in the commit log of the mainline kernel, 
+I see several patches from authors such as:
 
+  H.J. Lu <hjl.tools@gmail.com>
+  B K Karthik <karthik.bk2000@live.com>
+  JC Kuo <jckuo@nvidia.com>
+  EJ Hsu <ejh@nvidia.com>
+  LH Lin <lh.lin@mediatek.com>
+  KP Singh <kpsingh@kernel.org>
+  Karthik B S <karthik.b.s@intel.com>
+  Shreyas NC <shreyas.nc@intel.com>
+  Vandana BN <bnvandana@gmail.com>
 
+so I believe names of this form are in fact acceptable, even if the 
+style might seem a little old-fashioned to some.
+
+I would like to add that I have met many people with names such as C.J., 
+A A, TC, MG, etc. That is what everybody calls them and it would be 
+natural for them to sign themselves that way. Some of them might want to 
+contribute to Linux some day, and I think it would be a great shame and 
+a loss to all of us if they were discouraged from doing so by reading 
+our conversation in the archives and concluding that any contribution 
+from them, however small, would be summarily refused simply because of 
+their name. Please could you ensure that does not happen?
+
+Thank you again for your consideration.
+
+Yours sincerely,
+B.R. Oake.
