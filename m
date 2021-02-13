@@ -2,119 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C52531AA8E
-	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 09:52:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36C6B31AABE
+	for <lists+devicetree@lfdr.de>; Sat, 13 Feb 2021 11:16:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229478AbhBMIwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Feb 2021 03:52:02 -0500
-Received: from mailoutvs48.siol.net ([185.57.226.239]:33970 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229475AbhBMIwB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Feb 2021 03:52:01 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id C8BCA52134F;
-        Sat, 13 Feb 2021 09:51:18 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id sbJZ5JLDUEdE; Sat, 13 Feb 2021 09:51:18 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 70AFA5214FE;
-        Sat, 13 Feb 2021 09:51:18 +0100 (CET)
-Received: from jernej-laptop.localnet (89-212-178-211.dynamic.t-2.net [89.212.178.211])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id 1573352134F;
-        Sat, 13 Feb 2021 09:51:17 +0100 (CET)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Maxime Ripard <maxime@cerno.tech>,
-        "B.R. Oake" <broake@mailfence.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chen-Yu Tsai <wens@kernel.org>, linux-sunxi@googlegroups.com,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix Ethernet PHY mode
-Date:   Sat, 13 Feb 2021 09:51:17 +0100
-Message-ID: <6612268.HtAl026vyE@jernej-laptop>
-In-Reply-To: <1719200956.433094.1613199092092@ichabod.co-bxl>
-References: <1243888060.510560.1612783497400@ichabod.co-bxl> <20210210150118.ly252i37eykayrcb@gilmour> <1719200956.433094.1613199092092@ichabod.co-bxl>
+        id S229517AbhBMKQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Feb 2021 05:16:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37102 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229531AbhBMKQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Feb 2021 05:16:27 -0500
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E541FC061786;
+        Sat, 13 Feb 2021 02:15:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=h92k4q5NK3A1mAHN1IEA82rrBkvDURzcbgM6vUKFL9o=; b=K+2hAeZp5qVJnc8RM0udxjoxEC
+        /f0hZGO7jl9c2SghvB2lqSjLUPJV5YD4P3LHpqryth0at7AHGkxXHv0FeaQbuz28n8jIfdhqgbvYT
+        C27uDRVc2XuN0cxPClTKVL6wa0yfNv0P2dbChVodY6xPDGwzA9HWCp26haGAsYWwVL/l+z6yjmVVO
+        +IOyhTspWHOrkhRL8D21AAAlBkCBPVmsKtIJ2YiwXcTzA2FP2DEL8wB2ami0/IfBAGyrOZf78jMzJ
+        g/vbyEF9cDGFK6BUcByF3o+kHP3WiQ2Av1aW6RFvJiNzp4odr8P5wiRIsizwtphSAbehO9rYWXLZV
+        LuSm3H8g==;
+Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <mperttunen@nvidia.com>)
+        id 1lArxe-0002D2-JH; Sat, 13 Feb 2021 12:15:34 +0200
+From:   Mikko Perttunen <mperttunen@nvidia.com>
+To:     thierry.reding@gmail.com, jonathanh@nvidia.com, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org
+Cc:     dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [PATCH 0/3] NVIDIA Tegra NVDEC support
+Date:   Sat, 13 Feb 2021 12:15:09 +0200
+Message-Id: <20210213101512.3275069-1-mperttunen@nvidia.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 84.249.134.236
+X-SA-Exim-Mail-From: mperttunen@nvidia.com
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Hi all,
 
-Let me first explain that it was oversight on my side not noticing initials in 
-your SoB tag. But since the issue was raised by Maxime, I didn't follow up.
+with the release of documentation headers for Tegra multimedia engines
+(NVDEC, NVENC, NVJPG) [1], I have started working on the corresponding
+implementations. Here's the first one, NVDEC.
 
-Dne sobota, 13. februar 2021 ob 07:51:32 CET je B.R. Oake napisal(a):
-> On Wed Feb 10 at 16:01:18 CET 2021, Maxime Ripard wrote:
-> > Unfortunately we can't take this patch as is, this needs to be your real
-> > name, see:
-> > https://www.kernel.org/doc/html/latest/process/submitting-patches.html#de
-> > veloper-s-certificate-of-origin-1-1
-> Dear Maxime,
-> 
-> Thank you very much for considering my contribution and for all your
-> work on supporting sunxi-based hardware; I appreciate it.
-> 
-> Thank you for referring me to the Developer's Certificate of Origin, but
-> I had already read it before submitting (I had to do so in order to know
-> what I was saying by "Signed-off-by:") and I do certify what it says.
-> 
-> Looking through recent entries in the commit log of the mainline kernel,
-> I see several patches from authors such as:
-> 
->   H.J. Lu <hjl.tools@gmail.com>
->   B K Karthik <karthik.bk2000@live.com>
->   JC Kuo <jckuo@nvidia.com>
->   EJ Hsu <ejh@nvidia.com>
->   LH Lin <lh.lin@mediatek.com>
->   KP Singh <kpsingh@kernel.org>
->   Karthik B S <karthik.b.s@intel.com>
->   Shreyas NC <shreyas.nc@intel.com>
->   Vandana BN <bnvandana@gmail.com>
-> 
-> so I believe names of this form are in fact acceptable, even if the
-> style might seem a little old-fashioned to some.
+The kernel driver is a simple Falcon boot driver based on the VIC
+driver. Some code sharing should be considered there in the future.
+The userspace driver to accompany this is a bit more complicated -
+I have expanded vaapi-tegra-driver[2] to support MPEG2 decoding.
+It should be noted that the implementation is still very clunky
+and has poor performance, but it's a start.
 
-Speaking generally, not only for this case, prior art arguments rarely hold, 
-because:
-- it might be oversight,
-- it might be a bad practice, which should not be followed in new 
-contributions,
-- different maintainers have different point of view on same thing,
-- maintainer wants to adapt new practice or steer subsystem in new direction
+This series is based on top of the "Host1x/TegraDRM UAPI" series.
+For testing, appropriate firmware should be obtained from a
+Linux for Tegra distribution for now; the GPU should also be
+enabled in the device tree.
 
-> 
-> I would like to add that I have met many people with names such as C.J.,
-> A A, TC, MG, etc. That is what everybody calls them and it would be
-> natural for them to sign themselves that way. Some of them might want to
-> contribute to Linux some day, and I think it would be a great shame and
-> a loss to all of us if they were discouraged from doing so by reading
-> our conversation in the archives and concluding that any contribution
-> from them, however small, would be summarily refused simply because of
-> their name. Please could you ensure that does not happen?
+Series was tested on Tegra186.
 
-The link you posted says following:
-"using your real name (sorry, no pseudonyms or anonymous contributions.)"
+Thanks!
 
-I believe that real name means no initials, no matter what people are 
-accustomed to. From my point of view, CJ is pseudonym derived from real name.
+Mikko
 
-This is not the first time that fix of SoB tag was requested, you can find such 
-requests in ML archives.
+[1] https://github.com/NVIDIA/open-gpu-doc/tree/master/classes/video
+[2] https://github.com/cyndis/vaapi-tegra-driver
 
-Best regards,
-Jernej
+Mikko Perttunen (3):
+  dt-bindings: Add YAML bindings for Host1x and NVDEC
+  arm64: tegra: Add NVDEC to Tegra186 device tree
+  drm/tegra: Add NVDEC driver
 
-> 
-> Thank you again for your consideration.
-> 
-> Yours sincerely,
-> B.R. Oake.
+ .../gpu/host1x/nvidia,tegra20-host1x.yaml     | 129 +++++
+ .../gpu/host1x/nvidia,tegra210-nvdec.yaml     |  90 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  15 +
+ drivers/gpu/drm/tegra/Makefile                |   3 +-
+ drivers/gpu/drm/tegra/drm.c                   |   4 +
+ drivers/gpu/drm/tegra/drm.h                   |   1 +
+ drivers/gpu/drm/tegra/nvdec.c                 | 497 ++++++++++++++++++
+ drivers/gpu/host1x/dev.c                      |  12 +
+ include/linux/host1x.h                        |   1 +
+ 10 files changed, 752 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra20-host1x.yaml
+ create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+ create mode 100644 drivers/gpu/drm/tegra/nvdec.c
 
-
-
+-- 
+2.30.0
 
