@@ -2,110 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 976DD31B285
-	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 21:50:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C91C31B2AB
+	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 22:16:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbhBNUtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Feb 2021 15:49:05 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49660 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229772AbhBNUtC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Feb 2021 15:49:02 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9DAB064E10;
-        Sun, 14 Feb 2021 20:48:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613335701;
-        bh=YCDgrMmMEQRKaIw3p1f9TDxO94Yx2dVNQ1+mCo/Ju2I=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=Cgbhi/lKIiv2sKGb6wTfEPgjH8dxoTn51df3rOt0+ph6mvQNabv6TRicNnbr2iQwZ
-         6dH5FmlfPDQTjWT5j68DWyYUZ208ijSsrN3DqnGXEgeK8ZmAHA86hrFs90b4IORpkL
-         8PhKpLwdJpBRsoQcnBKAviEAEvCAMfOCbxgHTsr1eUUjzVurxzcvhmRaGUuKaA+dFc
-         WDG6/CNp2bKCcqnfaA2gUWXIgWBai+eJWgdOG8T69FTzgOD0JQI377hQCSS0tpPlD8
-         Mux5KZrVCSa5dsJkOGZy1ymm9XRnpb0lsM4jUV8WSeQQmCnq3S22VCAkkgfpoBQqnL
-         VL1GCrQJosh4w==
-Content-Type: text/plain; charset="utf-8"
+        id S229924AbhBNVOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Feb 2021 16:14:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58974 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229928AbhBNVOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Feb 2021 16:14:04 -0500
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34FB7C061786
+        for <devicetree@vger.kernel.org>; Sun, 14 Feb 2021 13:13:24 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id k4so5283339ybp.6
+        for <devicetree@vger.kernel.org>; Sun, 14 Feb 2021 13:13:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WvjJzLdrfTNVytek6OA/yzvCxUAi6JyBGqJZAjWc790=;
+        b=BPVv9GCW9JBBTThvFGFu80shYejZoNiIxs5sFBVAkxMPWhdr8AYvAxiSzhcvjD3//I
+         QvJ7QHHWLoCVn9FfNc8DQpxsbeQp/1xys1AMcIPV43ijiT2d/lSHsMrgLIuqWgugQlKr
+         8h6AnxL81n7PN3aAouTYt3Qrx36qy6jLtRUYoH5FcRCgZQ4BYnkVNp9aLDF2i+Vx/976
+         LOSjGKg+ZRU1T/svdqYKcM0W+BZNbSnWh4k+dcYzswZh5xFZ+4GWFH7jiyMYtf4GLtd5
+         53z0LfVL5jhk2qSj951kL3wzx514c+EWrRD/7RRVzN7DOhT0ywea5ezFlrP+7P4HZ3UH
+         29Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WvjJzLdrfTNVytek6OA/yzvCxUAi6JyBGqJZAjWc790=;
+        b=li5j/P5IHazrELJIcM6FJr6Kvrw/das/x/CyjMoEFT4RUrnbpzUoRQT5/4cBOcV2so
+         K/iivwuzVg2aPlW/qkebx8yHn8apHreYh1VWl8kg+LdFFAEvdmuPkpPHVMv0ylIzAwvv
+         EyRvFDVuKmBwImnPKKWn9vIHRRSNCD5gKvXg1E5tgi1YtGzPCkwt5k/gpEEDShxX3jZq
+         20+xW88WVAaHAaLzsG699gCCqFGyHomuF16Zu1LejBg/Ut+RLkWZUIlwVMPds2XKCW+H
+         /MH+XTp3P/lh9TfsnPYoE6ZW8HcW/RFv9A8ctjoVSB9gU25x/6GZNIMf68U0n9bRFxWB
+         5dwA==
+X-Gm-Message-State: AOAM53378PjiXEknGUgcBif0eIuAe0n2r469d6vTDqOTiKdyBupr4RGB
+        loM6/CCVFpzaVtRt+J/PVuJA8z+aAeFBpRx5VbB7Ew==
+X-Google-Smtp-Source: ABdhPJyUsPIdF34SP1gQ0z27oD+oRK3myuuGBxHGMDWZh5CzBhPa1mrUg68HjExfJcg9REyzdOFtzEe8DEo8FkV4guE=
+X-Received: by 2002:a25:aa43:: with SMTP id s61mr19670000ybi.32.1613337203292;
+ Sun, 14 Feb 2021 13:13:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210211052206.2955988-5-daniel@0x0f.com>
-References: <20210211052206.2955988-1-daniel@0x0f.com> <20210211052206.2955988-5-daniel@0x0f.com>
-Subject: Re: [PATCH v2 4/7] clk: mstar: MStar/SigmaStar MPLL driver
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     w@1wt.eu, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Palmer <daniel@0x0f.com>
-To:     Daniel Palmer <daniel@0x0f.com>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Date:   Sun, 14 Feb 2021 12:48:20 -0800
-Message-ID: <161333570036.1254594.12678747655338761485@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+References: <20210121225712.1118239-1-saravanak@google.com>
+ <20210121225712.1118239-3-saravanak@google.com> <20210213185422.GA195733@roeck-us.net>
+In-Reply-To: <20210213185422.GA195733@roeck-us.net>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Sun, 14 Feb 2021 13:12:47 -0800
+Message-ID: <CAGETcx_RpG45Fwhty1Uj34Mv01qkH5vFv0J6jVtJgTBFQinOBA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Daniel Palmer (2021-02-10 21:22:03)
-> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> index 85856cff506c..a29c15444d0e 100644
-> --- a/drivers/clk/Kconfig
-> +++ b/drivers/clk/Kconfig
-> @@ -379,6 +379,7 @@ source "drivers/clk/ingenic/Kconfig"
->  source "drivers/clk/keystone/Kconfig"
->  source "drivers/clk/mediatek/Kconfig"
->  source "drivers/clk/meson/Kconfig"
-> +source "drivers/clk/mstar/Kconfig"
->  source "drivers/clk/mvebu/Kconfig"
->  source "drivers/clk/qcom/Kconfig"
->  source "drivers/clk/renesas/Kconfig"
-> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> index dbdc590e7de3..7fed7e5944cd 100644
-> --- a/drivers/clk/Makefile
-> +++ b/drivers/clk/Makefile
-> @@ -95,6 +95,7 @@ obj-$(CONFIG_MACH_PIC32)              +=3D microchip/
->  ifeq ($(CONFIG_COMMON_CLK), y)
->  obj-$(CONFIG_ARCH_MMP)                 +=3D mmp/
->  endif
-> +obj-$(CONFIG_ARCH_MSTARV7)             +=3D mstar/
->  obj-y                                  +=3D mvebu/
->  obj-$(CONFIG_ARCH_MXS)                 +=3D mxs/
->  obj-$(CONFIG_COMMON_CLK_NXP)           +=3D nxp/
-> diff --git a/drivers/clk/mstar/Kconfig b/drivers/clk/mstar/Kconfig
-> new file mode 100644
-> index 000000000000..23765edde3af
-> --- /dev/null
-> +++ b/drivers/clk/mstar/Kconfig
-> @@ -0,0 +1,5 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config MSTAR_MSC313_MPLL
-> +       bool
-> +       select REGMAP
-> +       select REGMAP_MMIO
+On Sat, Feb 13, 2021 at 10:54 AM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> Hi,
+>
+> On Thu, Jan 21, 2021 at 02:57:12PM -0800, Saravana Kannan wrote:
+> > This allows fw_devlink to create device links between consumers of an
+> > interrupt and the supplier of the interrupt.
+> >
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > Cc: Kevin Hilman <khilman@baylibre.com>
+> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Reviewed-by: Thierry Reding <treding@nvidia.com>
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+>
+> This patch causes all ppc64:powernv qemu emulations to fail.
+> The problem is always the same: The root file system can not be mounted.
+>
+> Example:
+>
+> [   14.245672][    T1] VFS: Cannot open root device "sda" or unknown-block(0,0): error -6
+> [   14.246063][    T1] Please append a correct "root=" boot option; here are the available partitions:
+> [   14.246609][    T1] 1f00          131072 mtdblock0
+> [   14.246648][    T1]  (driver?)
+> [   14.247137][    T1] Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
+> [   14.247631][    T1] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.11.0-rc7-next-20210212 #1
+> [   14.248166][    T1] Call Trace:
+> [   14.248344][    T1] [c000000002c07a70] [c0000000008f052c] dump_stack+0x100/0x174 (unreliable)
+> [   14.248780][    T1] [c000000002c07ab0] [c00000000010d0e0] panic+0x190/0x450
+> [   14.249097][    T1] [c000000002c07b50] [c0000000014d1af8] mount_block_root+0x320/0x430
+> [   14.249442][    T1] [c000000002c07c50] [c0000000014d1e64] prepare_namespace+0x1b0/0x204
+> [   14.249798][    T1] [c000000002c07cc0] [c0000000014d1544] kernel_init_freeable+0x3dc/0x438
+> [   14.250145][    T1] [c000000002c07da0] [c000000000012b7c] kernel_init+0x2c/0x170
+> [   14.250466][    T1] [c000000002c07e10] [c00000000000d56c] ret_from_kernel_thread+0x5c/0x70
+> [   28.068945385,5] OPAL: Reboot request...
+>
+> Another:
+>
+> [   14.273398][    T1] md: Autodetecting RAID arrays.
+> [   14.273665][    T1] md: autorun ...
+> [   14.273860][    T1] md: ... autorun DONE.
+> [   14.275078][    T1] Waiting for root device /dev/mmcblk0...
+>
+> [ waits until terminated ]
+>
+> Key difference seems to be that PCI devices are no longer instantiated
+> with this patch applied. Specifically, I see
+>
+> [    1.153780][    T1] pci 0005:01     : [PE# fd] Setting up window#0 0..7fffffff pg=10000^M
+> [    1.154475][    T1] pci 0005:01     : [PE# fd] Enabling 64-bit DMA bypass^M
+> [    1.155749][    T1] pci 0005:01:00.0: Adding to iommu group 0^M
+> [    1.160543][    T1] pci 0005:00:00.0: enabling device (0105 -> 0107)^M
+>
+> in both cases, but (exmple nvme) I don't see
+>
+> [   13.520561][   T11] nvme nvme0: pci function 0005:01:00.0^M
+> [   13.521747][   T45] nvme 0005:01:00.0: enabling device (0100 -> 0102)^M
+>
+> after this patch has been applied.
+>
+> Reverting th patch plus its fix resolves the problem.
+>
+> Bisect log attached.
 
-BTW, it would be nice to expose this driver to compile testing instead
-of putting it behind ARCH_MSTARTV7. Can we have this patch?
+Hi Guenter,
 
----8<---
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 7fed7e5944cd..e5e23a44fbe9 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -95,7 +95,7 @@ obj-$(CONFIG_MACH_PIC32)		+=3D microchip/
- ifeq ($(CONFIG_COMMON_CLK), y)
- obj-$(CONFIG_ARCH_MMP)			+=3D mmp/
- endif
--obj-$(CONFIG_ARCH_MSTARV7)		+=3D mstar/
-+obj-y					+=3D mstar/
- obj-y					+=3D mvebu/
- obj-$(CONFIG_ARCH_MXS)			+=3D mxs/
- obj-$(CONFIG_COMMON_CLK_NXP)		+=3D nxp/
-diff --git a/drivers/clk/mstar/Kconfig b/drivers/clk/mstar/Kconfig
-index 23765edde3af..adac76f60f3e 100644
---- a/drivers/clk/mstar/Kconfig
-+++ b/drivers/clk/mstar/Kconfig
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config MSTAR_MSC313_MPLL
--	bool
--	select REGMAP
-+	bool "MStar MPLL driver"
-+	depends on ARCH_MSTARV7 || COMPILE_TEST
-+	default ARCH_MSTARV7
- 	select REGMAP_MMIO
+Thanks for the report.
+
+Can you please give me the following details:
+* The DTS file for the board (not the SoC).
+* A boot log with the logs enabled in device_links_check_suppliers()
+and device_link_add()
+
+That should help me debug this.
+
+Rob,
+
+Looks like Guenter has this patch[1] too. What PPC specific IRQ hack
+am I missing? Any ideas?
+
+[1] - https://lore.kernel.org/lkml/20210209010439.3529036-1-saravanak@google.com/
+
+Thanks,
+Saravana
