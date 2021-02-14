@@ -2,368 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6405B31B1B3
-	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 18:54:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEA3231B1BA
+	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 19:01:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbhBNRy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Feb 2021 12:54:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44884 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229913AbhBNRyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Feb 2021 12:54:24 -0500
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 036F8C061574
-        for <devicetree@vger.kernel.org>; Sun, 14 Feb 2021 09:53:44 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id u143so2816366pfc.7
-        for <devicetree@vger.kernel.org>; Sun, 14 Feb 2021 09:53:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MNj6o7RtmTcqCaf1dh/S3Z73kTB3kvzGPRyE3Y/HMtg=;
-        b=fg/jXMmwngxsIWcQzg1hiDeVMN8PL6AakNw+3+/xIQieuco1Xco4kDy6aaF70fSrG2
-         JCx10pglNUQL77Bc3zGCp9qqbfYo+FsdygTInxsHEo/Z6NSfobT6YqjbT6KWIiZkaifm
-         JO/rGuySHSjcOZdAkI5gzNQSMTjT3K41AeIN4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MNj6o7RtmTcqCaf1dh/S3Z73kTB3kvzGPRyE3Y/HMtg=;
-        b=W60drCgA6DWPNZMYaLf7eR4gOSkeWb7WdRb9Dq0cXPdG1sAmXRU18luTvL1F4QJAbo
-         FEd57PW2zt3JcbCtLB5VYarYqG66Zo1TNan1/ke3d5kFqYkYfEYgCxR2Sgi7ht45dB9q
-         r3yn5NPH19Y9bzwWq5QWY1ahNVl1z53iJfcFDje4BJRbBIz9PPU9kDpWiJG4UigAMIOK
-         RfJnuq+vUUhihhXnwaA4BE2BV2BqHG7+c4fH7I1sPHQvLxDW303OcLlqB3LHXo9D/src
-         EUzs3kuZUf6pZFaYfZo5EsGGCaPzVsITqf8dHtunPVu4IcJnW4PCc4f1Yy7UJMKGZ6lr
-         BTew==
-X-Gm-Message-State: AOAM530KXHp4nt0A5RoRE8/pslB5nPbn34qHoGKnNLUyJez2ggTSZnRg
-        wHMfEKtapKuNerOkOZr/fSoXmA==
-X-Google-Smtp-Source: ABdhPJzsD44xxYkWxPSIXtK590P+rYTRtkZwjfq5GMBJZByPxa/cb1jTM4m0IbhlCuOvP+XHcxQJHA==
-X-Received: by 2002:aa7:8d0d:0:b029:1d7:3c52:e1f6 with SMTP id j13-20020aa78d0d0000b02901d73c52e1f6mr12272527pfe.39.1613325223568;
-        Sun, 14 Feb 2021 09:53:43 -0800 (PST)
-Received: from ub-XPS-13-9350.domain.name ([45.249.78.214])
-        by smtp.gmail.com with ESMTPSA id h17sm15094443pfr.200.2021.02.14.09.53.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Feb 2021 09:53:43 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v3 2/2] drm: bridge: Add Chipone ICN6211 MIPI-DSI to RGB bridge
-Date:   Sun, 14 Feb 2021 23:22:11 +0530
-Message-Id: <20210214175211.105107-2-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210214175211.105107-1-jagan@amarulasolutions.com>
-References: <20210214175211.105107-1-jagan@amarulasolutions.com>
+        id S229758AbhBNR5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Feb 2021 12:57:24 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:19737 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229741AbhBNR5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Feb 2021 12:57:23 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B6029645b0000>; Sun, 14 Feb 2021 09:56:43 -0800
+Received: from [10.25.100.251] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 14 Feb
+ 2021 17:56:39 +0000
+Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+CC:     <broonie@kernel.org>, <robh@kernel.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sharadg@nvidia.com>
+References: <1612939421-19900-1-git-send-email-spujar@nvidia.com>
+ <1612939421-19900-2-git-send-email-spujar@nvidia.com>
+ <87im6y5fv8.wl-kuninori.morimoto.gx@renesas.com>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <93c9d656-8379-b463-e724-e48ce486c17d@nvidia.com>
+Date:   Sun, 14 Feb 2021 23:26:36 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <87im6y5fv8.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1613325403; bh=5r+No4EM/ChCUa5jbPRUAONV8A4MOJSJyXrLuV1AsSI=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=LgHZ5qdLHsWmzU8DMrRQI6N8CM/TDMWra1cBp9axNMkO15oMKK9fdcirGuNbg6/C6
+         WI6uZMclf0l1Fd9gvdZZ/nI/v5VxPq9jDrbe4k970Ze/l9qXAtpYx4KwmEP4oXYT+k
+         qElLpuyLYZEV+DC8KNnbPTgdRRakSyq1htNqmtHxsTtlU/oChBrYBJTTb1fw8UxtUs
+         U3KUDBs80FMqIigdNfQjZW97n+Fj3IvaZGuPZGMBeSs9kAlx2bB09tj9zonEXZfd7w
+         oIvtZsIWhgigqPR2PSLLJ/dWPCnIPaJVUNDiCmCl7PRgROK14uzQ9QOKlmpnWrLksW
+         dL2KABFKD4bhw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ICN6211 is MIPI-DSI to RGB Convertor bridge from Chipone.
+Hi Morimoto-san,
 
-It has a flexible configuration of MIPI DSI signal input and
-produce RGB565, RGB666, RGB888 output format.
 
-Add bridge driver for it.
+On 2/12/2021 5:14 AM, Kuninori Morimoto wrote:
+>> diff --git a/sound/soc/generic/simple-card-utils.c b/sound/soc/generic/simple-card-utils.c
+>> index bc0b62e..0754d70 100644
+>> --- a/sound/soc/generic/simple-card-utils.c
+>> +++ b/sound/soc/generic/simple-card-utils.c
+>> @@ -173,16 +173,15 @@ int asoc_simple_parse_clk(struct device *dev,
+>>         *  or device's module clock.
+>>         */
+>>        clk = devm_get_clk_from_child(dev, node, NULL);
+>> -     if (!IS_ERR(clk)) {
+>> -             simple_dai->sysclk = clk_get_rate(clk);
+>> +     if (IS_ERR(clk))
+>> +             clk = devm_get_clk_from_child(dev, dlc->of_node, NULL);
+>>
+>> +     if (!IS_ERR(clk)) {
+>>                simple_dai->clk = clk;
+>> -     } else if (!of_property_read_u32(node, "system-clock-frequency", &val)) {
+>> +             simple_dai->sysclk = clk_get_rate(clk);
+>> +     } else if (!of_property_read_u32(node, "system-clock-frequency",
+>> +                                      &val)) {
+>>                simple_dai->sysclk = val;
+>> -     } else {
+>> -             clk = devm_get_clk_from_child(dev, dlc->of_node, NULL);
+>> -             if (!IS_ERR(clk))
+>> -                     simple_dai->sysclk = clk_get_rate(clk);
+>>        }
+> The comment is indicating that that the clock parsing order,
+> but this patch exchanges it.
+> This comment also should be updated, I think.
+>
+>          /*
+>           * Parse dai->sysclk come from "clocks = <&xxx>"
+>           * (if system has common clock)
+>           *  or "system-clock-frequency = <xxx>"
+>           *  or device's module clock.
+>           */
 
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
-Changes for v3:
-- updated the driver to inline with new drm bridge style
+Yes, this can be rephrased now.
 
- MAINTAINERS                              |   6 +
- drivers/gpu/drm/bridge/Kconfig           |  11 ++
- drivers/gpu/drm/bridge/Makefile          |   1 +
- drivers/gpu/drm/bridge/chipone-icn6211.c | 222 +++++++++++++++++++++++
- 4 files changed, 240 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/chipone-icn6211.c
+> asoc_simple_set_clk_rate() will be called if it has simple_dai->clk.
+> CPU or Codec component clock rate will be exchanged by this patch, I think.
+> I'm not sure the effect of this patch to existing boards.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9d241b832aae..4f1084aae50d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5529,6 +5529,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/display/panel/boe,himax8279d.yaml
- F:	drivers/gpu/drm/panel/panel-boe-himax8279d.c
- 
-+DRM DRIVER FOR CHIPONE ICN6211 MIPI-DSI to RGB CONVERTOR BRIDGE
-+M:	Jagan Teki <jagan@amarulasolutions.com>
-+S:	Maintained
-+F:	drivers/gpu/drm/bridge/chipone-icn6211.c
-+F:	Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-+
- DRM DRIVER FOR FARADAY TVE200 TV ENCODER
- M:	Linus Walleij <linus.walleij@linaro.org>
- S:	Maintained
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index e4110d6ca7b3..49d1565b7f25 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -27,6 +27,17 @@ config DRM_CDNS_DSI
- 	  Support Cadence DPI to DSI bridge. This is an internal
- 	  bridge and is meant to be directly embedded in a SoC.
- 
-+config DRM_CHIPONE_ICN6211
-+	tristate "Chipone ICN6211 MIPI-DSI/RGB Convertor bridge"
-+	depends on OF
-+	select DRM_MIPI_DSI
-+	select DRM_PANEL_BRIDGE
-+	help
-+	  ICN6211 is MIPI-DSI/RGB Convertor bridge from chipone.
-+
-+	  It has a flexible configuration of MIPI DSI signal input
-+	  and produce RGB565, RGB666, RGB888 output format.
-+
- config DRM_CHRONTEL_CH7033
- 	tristate "Chrontel CH7033 Video Encoder"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index 86e7acc76f8d..3eb84b638988 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
-+obj-$(CONFIG_DRM_CHIPONE_ICN6211) += chipone-icn6211.o
- obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
- obj-$(CONFIG_DRM_DISPLAY_CONNECTOR) += display-connector.o
- obj-$(CONFIG_DRM_LONTIUM_LT9611) += lontium-lt9611.o
-diff --git a/drivers/gpu/drm/bridge/chipone-icn6211.c b/drivers/gpu/drm/bridge/chipone-icn6211.c
-new file mode 100644
-index 000000000000..3f478f21a4a5
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/chipone-icn6211.c
-@@ -0,0 +1,222 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2020 Amarula Solutions(India)
-+ * Author: Jagan Teki <jagan@amarulasolutions.com>
-+ */
-+
-+#include <drm/drm_of.h>
-+#include <drm/drm_print.h>
-+#include <drm/drm_mipi_dsi.h>
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+
-+#include <video/mipi_display.h>
-+
-+struct chipone {
-+	struct device *dev;
-+	struct drm_bridge bridge;
-+	struct drm_bridge *panel_bridge;
-+	struct gpio_desc *reset_gpio;
-+};
-+
-+static inline struct chipone *bridge_to_chipone(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct chipone, bridge);
-+}
-+
-+static struct drm_display_mode *bridge_to_mode(struct drm_bridge *bridge)
-+{
-+	return &bridge->encoder->crtc->state->adjusted_mode;
-+}
-+
-+static void chipone_post_disable(struct drm_bridge *bridge)
-+{
-+	struct chipone *icn = bridge_to_chipone(bridge);
-+
-+	gpiod_set_value(icn->reset_gpio, 0);
-+
-+	msleep(50);
-+}
-+
-+static inline int chipone_dsi_write(struct chipone *icn,  const void *seq,
-+				    size_t len)
-+{
-+	struct mipi_dsi_device *dsi = to_mipi_dsi_device(icn->dev);
-+
-+	return mipi_dsi_generic_write(dsi, seq, len);
-+}
-+
-+#define CHIPONE_DSI(icn, seq...)				\
-+	{							\
-+		const u8 d[] = { seq };				\
-+		chipone_dsi_write(icn, d, ARRAY_SIZE(d));	\
-+	}
-+
-+static void chipone_enable(struct drm_bridge *bridge)
-+{
-+	struct chipone *icn = bridge_to_chipone(bridge);
-+	struct drm_display_mode *mode = bridge_to_mode(bridge);
-+
-+	CHIPONE_DSI(icn, 0x7A, 0xC1);
-+
-+	/* lower 8 bits of hdisplay */
-+	CHIPONE_DSI(icn, 0x20, mode->hdisplay & 0xff);
-+
-+	/* lower 8 bits of vdisplay */
-+	CHIPONE_DSI(icn, 0x21, mode->vdisplay & 0xff);
-+
-+	/**
-+	 * lsb nibble: 2nd nibble of hdisplay
-+	 * msb nibble: 2nd nibble of vdisplay
-+	 */
-+	CHIPONE_DSI(icn, 0x22, (((mode->hdisplay >> 8) & 0xf) |
-+		    (((mode->vdisplay >> 8) & 0xf) << 4)));
-+
-+	/* HFP */
-+	CHIPONE_DSI(icn, 0x23, mode->hsync_start - mode->hdisplay);
-+
-+	/* HSYNC */
-+	CHIPONE_DSI(icn, 0x24, mode->hsync_end - mode->hsync_start);
-+
-+	/* HBP */
-+	CHIPONE_DSI(icn, 0x25, mode->htotal - mode->hsync_end);
-+
-+	CHIPONE_DSI(icn, 0x26, 0x00);
-+
-+	/* VFP */
-+	CHIPONE_DSI(icn, 0x27, mode->vsync_start - mode->vdisplay);
-+
-+	/* VSYNC */
-+	CHIPONE_DSI(icn, 0x28, mode->vsync_end - mode->vsync_start);
-+
-+	/* VBP */
-+	CHIPONE_DSI(icn, 0x29, mode->vtotal - mode->vsync_end);
-+
-+	/* dsi specific sequence */
-+	CHIPONE_DSI(icn, MIPI_DCS_SET_TEAR_OFF, 0x80);
-+	CHIPONE_DSI(icn, MIPI_DCS_SET_ADDRESS_MODE, 0x28);
-+	CHIPONE_DSI(icn, 0xB5, 0xA0);
-+	CHIPONE_DSI(icn, 0x5C, 0xFF);
-+	CHIPONE_DSI(icn, MIPI_DCS_SET_COLUMN_ADDRESS, 0x01);
-+	CHIPONE_DSI(icn, MIPI_DCS_GET_POWER_SAVE, 0x92);
-+	CHIPONE_DSI(icn, 0x6B, 0x71);
-+	CHIPONE_DSI(icn, 0x69, 0x2B);
-+	CHIPONE_DSI(icn, MIPI_DCS_ENTER_SLEEP_MODE, 0x40);
-+	CHIPONE_DSI(icn, MIPI_DCS_EXIT_SLEEP_MODE, 0x98);
-+
-+	/* icn6211 specific sequence */
-+	CHIPONE_DSI(icn, 0xB6, 0x20);
-+	CHIPONE_DSI(icn, 0x51, 0x20);
-+	CHIPONE_DSI(icn, 0x09, 0x10);
-+
-+	msleep(120);
-+}
-+
-+static void chipone_pre_enable(struct drm_bridge *bridge)
-+{
-+	struct chipone *icn = bridge_to_chipone(bridge);
-+
-+	gpiod_set_value(icn->reset_gpio, 1);
-+	msleep(20);
-+
-+	gpiod_set_value(icn->reset_gpio, 0);
-+	msleep(20);
-+
-+	gpiod_set_value(icn->reset_gpio, 1);
-+	msleep(50);
-+}
-+
-+static int chipone_attach(struct drm_bridge *bridge, enum drm_bridge_attach_flags flags)
-+{
-+	struct chipone *icn = bridge_to_chipone(bridge);
-+
-+	return drm_bridge_attach(bridge->encoder, icn->panel_bridge, bridge, flags);
-+}
-+
-+static const struct drm_bridge_funcs chipone_bridge_funcs = {
-+	.post_disable = chipone_post_disable,
-+	.enable = chipone_enable,
-+	.pre_enable = chipone_pre_enable,
-+	.attach = chipone_attach,
-+};
-+
-+static int chipone_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct drm_panel *panel;
-+	struct chipone *icn;
-+	int ret;
-+
-+	icn = devm_kzalloc(dev, sizeof(struct chipone), GFP_KERNEL);
-+	if (!icn)
-+		return -ENOMEM;
-+
-+	mipi_dsi_set_drvdata(dsi, icn);
-+	icn->dev = dev;
-+
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_SYNC_PULSE;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->lanes = 4;
-+
-+	icn->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(icn->reset_gpio)) {
-+		DRM_DEV_ERROR(dev, "failed to get reset GPIO\n");
-+		return PTR_ERR(icn->reset_gpio);
-+	}
-+
-+	ret = drm_of_find_panel_or_bridge(dev->of_node, 1, 0, &panel, NULL);
-+	if (ret)
-+		return ret;
-+
-+	icn->panel_bridge = devm_drm_panel_bridge_add(dev, panel);
-+	if (IS_ERR(icn->panel_bridge))
-+		return PTR_ERR(icn->panel_bridge);
-+
-+	icn->bridge.funcs = &chipone_bridge_funcs;
-+	icn->bridge.type = DRM_MODE_CONNECTOR_DPI;
-+	icn->bridge.of_node = dev->of_node;
-+
-+	drm_bridge_add(&icn->bridge);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		drm_bridge_remove(&icn->bridge);
-+		dev_err(dev, "failed to attach dsi\n");
-+	}
-+
-+	return ret;
-+}
-+
-+static int chipone_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct chipone *icn = mipi_dsi_get_drvdata(dsi);
-+
-+	mipi_dsi_detach(dsi);
-+	drm_bridge_remove(&icn->bridge);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id chipone_of_match[] = {
-+	{ .compatible = "chipone,icn6211", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, chipone_of_match);
-+
-+static struct mipi_dsi_driver chipone_driver = {
-+	.probe = chipone_probe,
-+	.remove = chipone_remove,
-+	.driver = {
-+		.name = "chipone-icn6211",
-+		.owner = THIS_MODULE,
-+		.of_match_table = chipone_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(chipone_driver);
-+
-+MODULE_AUTHOR("Jagan Teki <jagan@amarulasolutions.com>");
-+MODULE_DESCRIPTION("Chipone ICN6211 MIPI-DSI to RGB Convertor Bridge");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
+If CPU or Codec node does not specifiy "mclk-fs" factor, 
+asoc_simple_set_clk_rate() won't be called. So I don't think there would 
+be any effect w.r.t clock rate. With this patch clocks would get 
+enabled/disabled.
 
+>
+> And also, this patch has too many unneeded exchange,
+> thus it was difficult to read for me.
+> I think it can be simply like this ?
+> It is understandable what it want to do.
+
+I think the patch does exactly the same thing as what you are suggesting 
+below. Am I missing anything?
+
+>
+> diff --git a/sound/soc/generic/simple-card-utils.c b/sound/soc/generic/simple-card-utils.c
+> index 8c423afb9d2e..d441890de4dc 100644
+> --- a/sound/soc/generic/simple-card-utils.c
+> +++ b/sound/soc/generic/simple-card-utils.c
+> @@ -168,16 +168,14 @@ int asoc_simple_parse_clk(struct device *dev,
+>           *  or device's module clock.
+>           */
+>          clk = devm_get_clk_from_child(dev, node, NULL);
+> +       if (IS_ERR(clk))
+> +               clk = devm_get_clk_from_child(dev, dlc->of_node, NULL);
+> +
+>          if (!IS_ERR(clk)) {
+>                  simple_dai->sysclk = clk_get_rate(clk);
+> -
+>                  simple_dai->clk = clk;
+>          } else if (!of_property_read_u32(node, "system-clock-frequency", &val)) {
+>                  simple_dai->sysclk = val;
+> -       } else {
+> -               clk = devm_get_clk_from_child(dev, dlc->of_node, NULL);
+> -               if (!IS_ERR(clk))
+> -                       simple_dai->sysclk = clk_get_rate(clk);
+>          }
+>
+>          if (of_property_read_bool(node, "system-clock-direction-out"))
