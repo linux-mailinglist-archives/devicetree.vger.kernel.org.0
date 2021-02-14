@@ -2,94 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ACE531B261
-	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 21:18:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1817B31B26B
+	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 21:36:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbhBNUSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Feb 2021 15:18:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47230 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbhBNUSd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Feb 2021 15:18:33 -0500
-Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B666AC061574;
-        Sun, 14 Feb 2021 12:17:53 -0800 (PST)
-Received: by mail-il1-x12d.google.com with SMTP id q9so3912634ilo.1;
-        Sun, 14 Feb 2021 12:17:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UtL4Z7oV84D0lqSajYeR5hxfxbfYpsIfNN/c8hJ+Ehk=;
-        b=iS3oxrVSiC849d7n6oYw9555IAEPtpeVSMTrLenLnUDhtNsHsGU6ZDG5XNL5T557Gj
-         OmXz0z5EWSYCTgd/v5bHYXYc7MFy8i/c7D6bu6zTuLauDyF+IQ+h9zGRIh8ZHbykZVd9
-         vljhIKdpGKX+de/tLBklNZp/oZc4EHVIXieyGJaMT5kQUA74Jbw4BeGCO5LD0aS9yRmK
-         TGQXqIIfe+N8vgfXyq2HptzqpJzo4pSYpUX/Wn/aVLX1YVaWfL3QmmX71U7xn3ekmEfU
-         +ytKIDgUgy7mQm/umL7sAY03vf0Vy6bwcWM63s0fPcXnG2TXXoRfNSssftMW14A7CKxa
-         +oTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UtL4Z7oV84D0lqSajYeR5hxfxbfYpsIfNN/c8hJ+Ehk=;
-        b=fOV/hlaIUY534bkgXZ3VbDmdkW0rNwEY7RPt/KKZWUNIbJY8kUF0KMlqRMNAqBkrI4
-         cO3MbIFCxrP5urYCdoa2JbIoZvKlXU5yf6eoKY+u/a49QjKarcEEopYBuhTugGbB26D3
-         bzLKGASLKTcLmkKdk2jev44Nsrjxgg+H1P3HYtk6GrlkKSbMTeDe3/yngiIWMhEivccM
-         I5FBUZnEzlLMOQuNndjQD4ujz0hbsG7tLlive2Djwm6ypvgHNlUuXs3zeSrJmPYcQtB6
-         RaGWpnlc8pdjrjd5kfsFePL4EigqFTFEikspkNavKhAxvsDqhbBMDhPsM4mEItdbAg8t
-         147w==
-X-Gm-Message-State: AOAM533Z1XT0A0PK9wyB34x++yZlkZgSHR/zy2ouD+Xez21k9mIvg41p
-        HXx69sZxBDTe5qpLeB47Yh8=
-X-Google-Smtp-Source: ABdhPJwxr8/B5f8+wJqTLPlZtDF0nFduROoaSQ6kx511pu6OMbZFLI60S7DlgVU4t6hOPou85iR4Hg==
-X-Received: by 2002:a05:6e02:144d:: with SMTP id p13mr10186654ilo.41.1613333872866;
-        Sun, 14 Feb 2021 12:17:52 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:76d1:e2bd:f122:8b2a])
-        by smtp.gmail.com with ESMTPSA id f14sm8286506ilr.14.2021.02.14.12.17.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Feb 2021 12:17:52 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mn-beacon: Enable SDR104 on WiFi SDIO interface
-Date:   Sun, 14 Feb 2021 14:17:42 -0600
-Message-Id: <20210214201742.300344-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S229961AbhBNUdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Feb 2021 15:33:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45506 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229642AbhBNU3x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Feb 2021 15:29:53 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9B83C64D9A;
+        Sun, 14 Feb 2021 20:31:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613334711;
+        bh=PwrzKQcoivbaeM1UVeBtvD/eD8kSXoahIkWv4pBcuZI=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=ak1SUAEhGzRZz13/YQwUNrafym8xdZw/7qKQUJxltNWKdsvaXC4BccWruvBatJ8rD
+         PXBbn4PuxZ7n/F34lMkYuEGySueWNlryUZP3Wi5sKVSLMUMubyfgRKi3qUOgxaJ/B5
+         Rx6KRlmD2YLKS0SI1brolGk5FLzYnq56Vc2KWDENXtn34Z0O+jIMRLA5k97Fc+7776
+         07p5lUQbYyc3fKR5pXSyUDehNPOpHFt/0hPbzG9zbMeaLtBhkCVGRdXmKhneuT6fQr
+         g0j+Ue31dhm1giW4SZml1lgsqLSkHv8DjqcKY/59yErZRKlhYelv12ab5NgO+EVNVm
+         JN4r5n4IQCm5A==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210211052206.2955988-2-daniel@0x0f.com>
+References: <20210211052206.2955988-1-daniel@0x0f.com> <20210211052206.2955988-2-daniel@0x0f.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: clk: mstar msc313 mpll binding header
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     w@1wt.eu, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Palmer <daniel@0x0f.com>, Rob Herring <robh@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Date:   Sun, 14 Feb 2021 12:31:50 -0800
+Message-ID: <161333471028.1254594.13093277561501616603@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable 100Mhz and 200MHz pinmux and corrsesponding voltage supplies
-to enable SDR104 on usdhc1 connecting the WiFi chip.
+Quoting Daniel Palmer (2021-02-10 21:22:00)
+> Simple header to document the relationship between the MPLL outputs
+> and which divider they come from.
+>=20
+> Output 0 is missing because it should not be consumed.
+>=20
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi
-index de2cd0e3201c..c35eeaff958f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi
-@@ -262,8 +262,12 @@ bluetooth {
- &usdhc1 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
- 	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-+	vmmc-supply = <&buck4_reg>;
-+	vqmmc-supply = <&buck5_reg>;
- 	bus-width = <4>;
- 	non-removable;
- 	cap-power-off-card;
--- 
-2.25.1
-
+Applied to clk-next
