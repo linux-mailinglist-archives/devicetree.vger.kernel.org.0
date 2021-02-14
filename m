@@ -2,100 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07FAB31B08E
-	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 14:37:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B44231B116
+	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 17:03:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbhBNNhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Feb 2021 08:37:41 -0500
-Received: from smtp-17.italiaonline.it ([213.209.10.17]:39466 "EHLO libero.it"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229730AbhBNNhk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Feb 2021 08:37:40 -0500
-Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
- ([87.20.116.197])
-        by smtp-17.iol.local with ESMTPA
-        id BHTnlH3C4lChfBHTtlSRDk; Sun, 14 Feb 2021 14:30:38 +0100
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2014;
-        t=1613309438; bh=qkWp20AtpEuGNqbGNTXPOIoWBZsHRc1VmZLJjjdccCM=;
-        h=From;
-        b=XVsEKVyyYAbYU9CDwJwEr+FHvB2BJfOQo73SesfUCYaSvT24CYHNKPrjsmzlfHcCQ
-         x6I/5u2b7x5i8Y+WfmIvrnrf37YzZMQ3/cbJNMMPrhBzArhS2Fh2eNp1ZC0hPTCnlD
-         LD9ig1IXU1bQOomzizIvK+cIrzLCOpkojIqflAd6bgJRU0v9s+3xSFL4sSDa37GvLg
-         gEP/72awy9pZLDgiUZpUwK1i2sUw1JvRrNtn9bOAast6CcRJNICxXycspNfH1tqC0U
-         3pV5+HYIQNt97D/SxXxCP2xRERXB6CdbwN2qrCp0lRh5JoOUbLZvVd0vrSQAYYAbbA
-         4tBdpQmtv+CVA==
-X-CNFS-Analysis: v=2.4 cv=S6McfKgP c=1 sm=1 tr=0 ts=602925fe cx=a_exe
- a=AVqmXbCQpuNSdJmApS5GbQ==:117 a=AVqmXbCQpuNSdJmApS5GbQ==:17
- a=hN1Y6PlX_eMEyabRrE4A:9
-From:   Dario Binacchi <dariobin@libero.it>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dario Binacchi <dariobin@libero.it>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: [PATCH] ARM: dts: am33xx-l4: fix tscadc@0 node indentation
-Date:   Sun, 14 Feb 2021 14:30:20 +0100
-Message-Id: <20210214133020.10766-1-dariobin@libero.it>
+        id S229637AbhBNQC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Feb 2021 11:02:28 -0500
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:43904 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229818AbhBNQC1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Feb 2021 11:02:27 -0500
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11EG1GEU021788;
+        Sun, 14 Feb 2021 08:01:16 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=ogSuRtTToDxm0KLDyCBxSkm64HdwCCcJDDXpIYcxEww=;
+ b=CP2jAmYtexe057KcyKfykr1152lXqdloEw1u3qjJnMo0s2xSgp6GhzU0uiX8S8oWIch7
+ jVDuiZhv5bkE2bWghOWIaNPOh7RY2p4NddKycZOFfWgtg9OAziWApKYrdh03qG7J6kd2
+ rCrWcCqhw+yJryEXn+lnXGA4l7P/ETuXIHgOd+e0FZXGXtP48IbF759BksQ9QEdF6vcs
+ j1qH7b59jWsKBH3nJhMuTs6WcOgnV1Qr0j0dVUY+Sxz0M4D7Epx5BgjErxGKNcAApIh9
+ Ak5JSvwOINrDHEeqZT4KEiHsOC/ZQX88UK6QtGbuvFd0daPF+/y+oInA/V0ELEcTKO4w ng== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+        by mx0a-0016f401.pphosted.com with ESMTP id 36pd0vj6g4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Sun, 14 Feb 2021 08:01:16 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 14 Feb
+ 2021 08:01:14 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 14 Feb 2021 08:01:14 -0800
+Received: from octopus.marvell.com (octopus.marvell.com [10.5.24.3])
+        by maili.marvell.com (Postfix) with ESMTP id A24073F703F;
+        Sun, 14 Feb 2021 08:01:10 -0800 (PST)
+From:   <kostap@marvell.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <lkundrak@v3.sk>, <linux@armlinux.org.uk>,
+        <sebastian.hesselbarth@gmail.com>, <gregory.clement@bootlin.com>,
+        <andrew@lunn.ch>, <robh+dt@kernel.org>, <vkoul@kernel.org>,
+        <kishon@ti.com>, <miquel.raynal@bootlin.com>, <mw@semihalf.com>,
+        <jaz@semihalf.com>, <nadavh@marvell.com>, <stefanc@marvell.com>,
+        <bpeled@marvell.com>, "Konstantin Porotchkin" <kostap@marvell.com>
+Subject: [PATCH v2 0/4] Add support for CP110 UTMI PHY
+Date:   Sun, 14 Feb 2021 18:01:04 +0200
+Message-ID: <20210214160108.3879-1-kostap@marvell.com>
 X-Mailer: git-send-email 2.17.1
-X-CMAE-Envelope: MS4xfGRUyz5EcWl8espVBbAuyJvbtjfyN4d/vmBdG5u7dVSesdkJ5jVuuTqypRY98NQr81Cxk9LQYWBMloEipwPyL9sF4jHk3Eq2bmtVrvuu7Z166WRDyI/l
- 5NFmXwl36vu4b/uevefFott5Grrppzu7dynghN8xm+8TiTQ1HradeGIgDp7yRyAydyExVYz41xCrl39fdBqax784emFBvlhqZTZBxAuAr7MPi1xI/5ix4FyT
- +7wSgclfCl/o1iE5lFIP5BCqSkX9uxKBig+YCB8DCVIRdt/bw+idrllDfvpBZW+siKY1+gVeSA45fphaeEDYhnbLBhWRz45KvAZXxFnNpPfSLEFNOK3D02U1
- ugVdCcXSVhtmm0WgKNc2qIvJXWhXEclkHPzapKrnd2PXCgsXOMd56PiwLwA3vzQzYNNve9onW0xABQwh+rnzWaUggU1OTA==
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-14_04:2021-02-12,2021-02-14 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the broken indentation of tscadc@0 node.
+From: Konstantin Porotchkin <kostap@marvell.com>
 
-Signed-off-by: Dario Binacchi <dariobin@libero.it>
----
+This series of patches adds a new PHY driver for supporting CP110 UTMI
+PHY in Linux. Currently the functionality of USB ports connected to
+this PHY depends on boot loader setup.
+The new driver eliminates kernel configuration dependency from the boot
+loader. 
 
- arch/arm/boot/dts/am33xx-l4.dtsi | 28 ++++++++++++++--------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+v2:
+- extend the comment about reference clock 
+- fix driver probe function, add some prints
+- move to usage of dr_mode from connected USB controller instead of
+  dedicated device tree property
 
-diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
-index 78088506d25b..9963eeb57f69 100644
---- a/arch/arm/boot/dts/am33xx-l4.dtsi
-+++ b/arch/arm/boot/dts/am33xx-l4.dtsi
-@@ -259,22 +259,22 @@
- 			ranges = <0x00000000 0x0000d000 0x00001000>,
- 				 <0x00001000 0x0000e000 0x00001000>;
- 
--				tscadc: tscadc@0 {
--					compatible = "ti,am3359-tscadc";
--					reg = <0x0 0x1000>;
--					interrupts = <16>;
--					status = "disabled";
--					dmas = <&edma 53 0>, <&edma 57 0>;
--					dma-names = "fifo0", "fifo1";
-+			tscadc: tscadc@0 {
-+				compatible = "ti,am3359-tscadc";
-+				reg = <0x0 0x1000>;
-+				interrupts = <16>;
-+				status = "disabled";
-+				dmas = <&edma 53 0>, <&edma 57 0>;
-+				dma-names = "fifo0", "fifo1";
- 
--					tsc {
--						compatible = "ti,am3359-tsc";
--					};
--					am335x_adc: adc {
--						#io-channel-cells = <1>;
--						compatible = "ti,am3359-adc";
--					};
-+				tsc {
-+					compatible = "ti,am3359-tsc";
-+				};
-+				am335x_adc: adc {
-+					#io-channel-cells = <1>;
-+					compatible = "ti,am3359-adc";
- 				};
-+			};
- 		};
- 
- 		target-module@10000 {			/* 0x44e10000, ap 22 0c.0 */
+Konstantin Porotchkin (4):
+  drivers: phy: add support for Armada CP110 UTMI PHY
+  devicetree/bindings: add support for CP110 UTMI driver
+  arch/arm64: dts: add support for Marvell CP110 UTMI driver
+  arch/arm64: dts: enable CP110 UTMI driver
+
+ .../bindings/phy/phy-mvebu-utmi.txt           |  78 +++-
+ .../arm64/boot/dts/marvell/armada-7040-db.dts |  14 +-
+ .../arm64/boot/dts/marvell/armada-8040-db.dts |  21 +-
+ .../boot/dts/marvell/armada-8040-mcbin.dtsi   |  19 +-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |  19 +
+ arch/arm64/boot/dts/marvell/cn9130-db.dts     |  12 +-
+ arch/arm64/boot/dts/marvell/cn9131-db.dts     |   9 +-
+ arch/arm64/boot/dts/marvell/cn9132-db.dts     |  11 +-
+ drivers/phy/marvell/Kconfig                   |   8 +
+ drivers/phy/marvell/Makefile                  |   1 +
+ drivers/phy/marvell/phy-mvebu-cp110-utmi.c    | 384 ++++++++++++++++++
+ 11 files changed, 556 insertions(+), 20 deletions(-)
+ create mode 100644 drivers/phy/marvell/phy-mvebu-cp110-utmi.c
+
 -- 
 2.17.1
 
