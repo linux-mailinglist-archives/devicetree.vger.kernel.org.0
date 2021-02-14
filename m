@@ -2,475 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C87531AFC5
-	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 09:56:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD23D31AFD3
+	for <lists+devicetree@lfdr.de>; Sun, 14 Feb 2021 10:22:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229563AbhBNIzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Feb 2021 03:55:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43340 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbhBNIzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Feb 2021 03:55:10 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5583C061574;
-        Sun, 14 Feb 2021 00:54:29 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id ba1so2083872plb.1;
-        Sun, 14 Feb 2021 00:54:29 -0800 (PST)
+        id S229575AbhBNJVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Feb 2021 04:21:50 -0500
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:20142 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229528AbhBNJVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Feb 2021 04:21:46 -0500
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11E9Grir032054;
+        Sun, 14 Feb 2021 01:20:46 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pfpt0220;
+ bh=tRmAjHb5Mb5gN+msBFpNKJln6/xsEXGcPtHSl28PPfg=;
+ b=lSz9UEktxdKeJqvuQ5Epm3dhry6JIWqJvo7vErcQB1Q3Gc67Tqt/fDsL0OwK6fOcEDQr
+ QCbhGagNwYqD+NH6SY+KHCVmoB7E1/kso0Go5fiWIaVfapPBJsd+tjxHGKldiYK8Gb2U
+ RlouwWpTtjurgiJgntUPc9+jB03AqTjCBugf6lGYbBVbnBEVnEAW9Xpi4LSq8Ax01Us3
+ 64E8Tvfe4WzgWdzUmmeRB+eyFP3bnVCE4c8G8skbCo/I9H1VCSJkrr1Pa4cegXrve9UM
+ BCb4C4L5O4IxfB99+/L2F5ND9M0aNFUG34xWoE9rXdujLOBn7s4FDu9UR9cL8xYF0y11 NQ== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+        by mx0a-0016f401.pphosted.com with ESMTP id 36pd0vhm0c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Sun, 14 Feb 2021 01:20:46 -0800
+Received: from SC-EXCH01.marvell.com (10.93.176.81) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 14 Feb
+ 2021 01:20:44 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by SC-EXCH01.marvell.com
+ (10.93.176.81) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 14 Feb
+ 2021 01:20:44 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by DC5-EXCH02.marvell.com (10.69.176.39) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2 via Frontend Transport; Sun, 14 Feb 2021 01:20:44 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NLsneREWNsKW/P6nUXDdrJcOLFvoeywPLDNDo4NdZqfV7aJndrOXjv+M5BFrRWCNBvuwsdrXNEOX4TqLsML0s0JfyH9wmxuF5lYPbnBZPNGAuNvnNhAWHl44ljjEA89Fls4UgvVA4+kdae9qMRhXE8t0A5NM104mQZt0+9bok2k0+xYKXv9Bq0D2b5IFiz147U0PQ5g0e+r96djQ6Tqquwfz4C8GwrEOMbLOb0Hq011A/c/KF+BBI6kSDELeVL1dkbhkn+/Wr76OQocTLNDncda98U/zffR5B9NnvpyfkzS40ed7MRXMrUl9hxD6DuZj13Pgee484wGuv1ut26r81g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tRmAjHb5Mb5gN+msBFpNKJln6/xsEXGcPtHSl28PPfg=;
+ b=alaovPVI4d1DlbFq97hEHy5CVP9cmQJxqXwrqD28eL6d4kQxviQAaakcc9OMVfQxOJBrDLWPVt6SievhPw7Q0SFkHo+uUsiQXBiNDOStick3sxtKoDzZV7qoLQeRCHonYpWIKUsoTxkUThAqzYaysbMTNUQ5WIY2pK15/g/MibfPcqx+ZaAFUzMd5R2yLYu5fC7NAh+qNqzKcox1Gd2M7y5ipbQL7OIwonbceomQNgIDcqKE5Kp9Sm+sjYvpYkIvfErJnyqK1K+KnTdsfyeF7+KTQ7u3Z9+hLQ0ETDG3DTbBBTONMv1awxsF0aqABFoQWhQdZtFC3DGRm+dntrmtvQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=QYuS9JOp9cmIEb3fMdH3acyVbHUll4sIDvPh/OFGunU=;
-        b=AaUzBsy8VhqfiCC23nAs3dOmbkC9iK/nyRujBPJ7eXdeW7ZmhG5tX26uRt3aHgk3vN
-         HN53vZofETUAhudw2oi7Lk36ELsiondWxx7M9Dk/zrGcQ0j1ATo5FzaIXtrWJn2LOiIR
-         Vw2GkuSVhOfDLRprxaX/+67L4RfTfOHVxgYHOLX6aPv1bApxGuX3xLp9ddjuAqhGFyBv
-         jZXa2VeeMFOP8hgLbCFhxbfSaMBHXBaCaZx8tdAe19oxpyfVrmHiBG4e80TF6lSpDeKe
-         KjLgfLI0SEHCu6A4KzTC4Vdvvj8OmHfcLXUNbY3MJFhTxd5m9lkbGXDmnUMnOeGPzPkD
-         rEBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QYuS9JOp9cmIEb3fMdH3acyVbHUll4sIDvPh/OFGunU=;
-        b=nkrSx217N8oPlGpi815YD45d2fu0gF5vuTPp2/GtRfHwr5Rw+e3e2zANfexeEPv+9a
-         aGAWF2JHpf7Voh0ecS5Qm2taR3mDkXiKjwYkaqYoy1DbVg5zHoysrfOGehv4MXxu4ae+
-         Q58AisToG7zCrdC8nLDzNl+//8zW6JPdwUgMiE4Snh45C2krjToOfIkgyur1FV7Qkvzd
-         ncadG7euUwMv2+Cq+76MZ64P5T/rcrxD9HA9DYFKh5kybOv5c8Anjuehcw2Cn6OZXduE
-         Se0jW5ozitrjNaWTP5/ARetj2LYPIZuFxCvPIuNwlNBXTH5K2Lqvb3xkVPfs1obx+0US
-         SA3g==
-X-Gm-Message-State: AOAM531GcSzy1JsDrrvw6hsXIpq/MMjQtoMpbIvMMHHTqOmJRzlsdpWG
-        N8lBXQX9sMjgTvqc+FIeh58=
-X-Google-Smtp-Source: ABdhPJyxvG0gxPuzig7x2t42kU7U/jNEV5mx4lehV46WY1lkVeU2fIvdOfx7PsmrJZm5xpiy0lIbwQ==
-X-Received: by 2002:a17:90a:4882:: with SMTP id b2mr10994420pjh.69.1613292869234;
-        Sun, 14 Feb 2021 00:54:29 -0800 (PST)
-Received: from shinobu ([156.146.35.76])
-        by smtp.gmail.com with ESMTPSA id o21sm12618153pjp.42.2021.02.14.00.54.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Feb 2021 00:54:28 -0800 (PST)
-Date:   Sun, 14 Feb 2021 17:54:22 +0900
-From:   William Breathitt Gray <vilhelm.gray@gmail.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v5 2/2] counter: add IRQ or GPIO based event counter
-Message-ID: <YCjlPhEtyH+vfSi4@shinobu>
-References: <20210208135347.18494-1-o.rempel@pengutronix.de>
- <20210208135347.18494-3-o.rempel@pengutronix.de>
+ d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tRmAjHb5Mb5gN+msBFpNKJln6/xsEXGcPtHSl28PPfg=;
+ b=ZlxhoiS3rRO9pUb6rAMMiS5awrrvz7RgXdM5pzT0mQ6JnWSDTtZeZwis1YJswGFyNfakKPCR4cGQ6RKjR2RM2x036zI+uo4ulMuEnDbpvn5J1yn6eZkcDShzQci/BQ4HJfGyG5k6e7hO8mhart2iguBmkpRuS2Ualhw7PrdKwAs=
+Received: from CO6PR18MB3873.namprd18.prod.outlook.com (2603:10b6:5:350::23)
+ by MW3PR18MB3596.namprd18.prod.outlook.com (2603:10b6:303:5a::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.25; Sun, 14 Feb
+ 2021 09:20:43 +0000
+Received: from CO6PR18MB3873.namprd18.prod.outlook.com
+ ([fe80::c041:1c61:e57:349a]) by CO6PR18MB3873.namprd18.prod.outlook.com
+ ([fe80::c041:1c61:e57:349a%3]) with mapi id 15.20.3846.038; Sun, 14 Feb 2021
+ 09:20:43 +0000
+From:   Stefan Chulski <stefanc@marvell.com>
+To:     Andrew Lunn <andrew@lunn.ch>, Marcin Wojtas <mw@semihalf.com>
+CC:     David Miller <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        "Yan Markman" <ymarkman@marvell.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "rmk+kernel@armlinux.org.uk" <rmk+kernel@armlinux.org.uk>,
+        "atenart@kernel.org" <atenart@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH v12 net-next 12/15] net: mvpp2: add BM
+ protection underrun feature support
+Thread-Topic: [EXT] Re: [PATCH v12 net-next 12/15] net: mvpp2: add BM
+ protection underrun feature support
+Thread-Index: AQHW/5KjZ/qb5CtVhkWHSjiCzfBYLqpSCfwAgACUjBCAAGQcgIAAUiYAgAE4xwCAAtBfYA==
+Date:   Sun, 14 Feb 2021 09:20:43 +0000
+Message-ID: <CO6PR18MB3873E319FA08ADBC3B682828B0899@CO6PR18MB3873.namprd18.prod.outlook.com>
+References: <1612950500-9682-1-git-send-email-stefanc@marvell.com>
+ <1612950500-9682-13-git-send-email-stefanc@marvell.com>
+ <20210210.152924.767175240247395907.davem@davemloft.net>
+ <CO6PR18MB3873D8B7BE3AE28A1407C05BB08C9@CO6PR18MB3873.namprd18.prod.outlook.com>
+ <YCU864+AH6UioNwQ@lunn.ch>
+ <CAPv3WKd48fiZmdnP+NN_FRCT1h6xmu9zO4BWAz_pgTXW2fQt9w@mail.gmail.com>
+ <YCaINEHqrz2QDGJb@lunn.ch>
+In-Reply-To: <YCaINEHqrz2QDGJb@lunn.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lunn.ch; dkim=none (message not signed)
+ header.d=none;lunn.ch; dmarc=none action=none header.from=marvell.com;
+x-originating-ip: [80.230.25.16]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a0d9738f-73e1-4b21-421d-08d8d0c9cdfd
+x-ms-traffictypediagnostic: MW3PR18MB3596:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MW3PR18MB3596BC21EABAD448D99C89CCB0899@MW3PR18MB3596.namprd18.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Y0PkylKMDZVFnPHJXrmP5ZKKL8srjn4y4ISXzjyXGB7Bql/vLvr+9pb6UH3uGgi8lp4cCjHgHF9vLIkgkrINx2zaR32L8zrGDCnW6kDpzYXLCwf5tbZ+pfmFA3MWzSBj7R0Cfq7bbrRCI15ksghVaPL4rO8r2jERYlFFAeSb5pnuoRMITWbzD0CiNNPST9ZSAwyTfmDkoXGUd+exj71UtfV5MUDH7h3QKkK9TlewxrNFYoFZ3WBXNu21vQxybfcrogi5WsZZ/Af5sqb7uuRiwGV9WSY2WN9s+IFxzSGUUny9azYzGIZXAkNR0Yv/3PresCDX+rItNS9tsL9yCCcHTsW+0DLVUzTplooZQWoohntyQ+oWa4ntPrZpY5gb1NcdYKNgEj/2u+y90IxZ+Gt4SZ63Eaa69uuv4IsHRfOihJ6xppjP4XQApCxmovK0yKzDxOnP7T1rqnvpKbv9kvhsMtR86isyq9Rb7fCS+9s8CoIaAvL80CAr036Vfzob4BZx0+Mid7It1NDkQtoHSkChNg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR18MB3873.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(136003)(396003)(366004)(346002)(376002)(4326008)(478600001)(66946007)(2906002)(66556008)(66446008)(8676002)(7696005)(83380400001)(66476007)(76116006)(64756008)(71200400001)(26005)(54906003)(7416002)(186003)(55016002)(52536014)(8936002)(33656002)(5660300002)(110136005)(9686003)(316002)(6506007)(86362001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?o5yKqGKoAoxYJfSwIzSnanQStAoA3THW1pGlk0CqPHVbS/8AcAcroNJFCC?=
+ =?iso-8859-1?Q?5stxiNXwu2DWngcSXrTbWYM2SAojFvMJYMM3SM16XVp+goNeclahUFLTIm?=
+ =?iso-8859-1?Q?jS4hSgE0BXsm7J1YiSBQuXoLAwFbUnS7DR2Z0WLX+2KfC1bQCTq7tCI7YZ?=
+ =?iso-8859-1?Q?AEwSZ7N2R7DE7JR3BhkeGPXiO3n9B/Ttrf3yUQynuY//qoFA/EKcAr3dVr?=
+ =?iso-8859-1?Q?NC6CvkHHet4WzBp2Q5bfnY5aAs+qe2I0kuRyBzJ48WP/bIcMGNUtWJZUrK?=
+ =?iso-8859-1?Q?urZGS/TTGjugpTgm2nkTK1qd5EIsW/eZFU+Vf95RuCQhjqwyaQG/MMYM7F?=
+ =?iso-8859-1?Q?6pPsVbAowo5XavkjPt/+CVXmB/bxjaGUTmU5MpnEC32hGv3mzPW6kEdUW9?=
+ =?iso-8859-1?Q?Gw4rudxL7DMxOveBGRoyPhB0I+iB7gvNNXluNJMwshSX8O2W+DXmduq665?=
+ =?iso-8859-1?Q?rRi49FS004k7P9WLajvBDNRuEPu7CNBY1nJsmbnJyKwY5IVQFHI7ydnOJu?=
+ =?iso-8859-1?Q?a0EhbfhOMKJiNtoc8iO5+PomjlzwQEvySylBUlJ8LBd6BgdE6A+3rSGZ2I?=
+ =?iso-8859-1?Q?trzjVMsbJaCruRWi4K+PNUFoQr9OBKCjsUjeuSAtjVMCSwklhTD1bUYZJ0?=
+ =?iso-8859-1?Q?BLQ5a1ZkPf+yj5wnR09xXuR8d++vMqIVqwhxEUfwzFMED5XlxPEu1vkaX1?=
+ =?iso-8859-1?Q?eTGyHqcDiiP292Lq11hpdDymbPtN3E4EFiXy477TPsAruD7UAPj6WOTy64?=
+ =?iso-8859-1?Q?oxPyvveWzftp5GMZATm1H8pBVmh5eqeNjAiPNdBNigxxsmHY09soYmwuLD?=
+ =?iso-8859-1?Q?yjBNEkwiL4Nr9hedKoejT+G9th+aW1V3nCV412eVPeKT0t5fR54PeV+UaH?=
+ =?iso-8859-1?Q?vzmstJN3ybJ13kHbhQC95uyrZK2/yK7RFLrKMg7t+dSazLDkjRNp1A1RT0?=
+ =?iso-8859-1?Q?6xEaHkYxdO8/IpEp0OOnnkZfIrQFdmoWpobz1sDoAPraH5Af99EgpkfkGh?=
+ =?iso-8859-1?Q?TvnhYHMVZ5e3ObJ99ROnQks99jtXF6z5gHd709DNL0a0Xdm4l+qd8+NA75?=
+ =?iso-8859-1?Q?6AsmrRN+ELULxp5eB/mjZKitVWBuMwlVJzT8i+8P7ih02suAPyQ/zc9/Bp?=
+ =?iso-8859-1?Q?8KdIblTs+CjVEhtH9KIi/YZLvhl+mRnait1U+F79Kobkx7zxCBTfKXAFob?=
+ =?iso-8859-1?Q?FOYQBIVsYj7dT+bVWhX4FQ8xw8yANTZM2ed1GPZmp4EB+jjxrMxCcnM2N/?=
+ =?iso-8859-1?Q?JAtmjG74waqNVWPjYIwgcLjbbjuCEatpF6Kxs0SE0MEOlW0x9zQTzrODFY?=
+ =?iso-8859-1?Q?pXt/19But2WVn40VwkTh/LIzjHe0jyFbAKkHVY20cGTZhRY=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="PZUh/e7p+iwgzS79"
-Content-Disposition: inline
-In-Reply-To: <20210208135347.18494-3-o.rempel@pengutronix.de>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR18MB3873.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0d9738f-73e1-4b21-421d-08d8d0c9cdfd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2021 09:20:43.4860
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4FPXm834ExiUr0EUP56f3PSfJkuAeNIgtUyT6aRPkRiE9WVShaluCogRSOxw1c58L7+HdaCZQ+zoe4F4YF4rIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR18MB3596
+X-OriginatorOrg: marvell.com
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.737
+ definitions=2021-02-13_02:2021-02-12,2021-02-13 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---PZUh/e7p+iwgzS79
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Feb 08, 2021 at 02:53:47PM +0100, Oleksij Rempel wrote:
-> Add simple IRQ or GPIO base event counter. This device is used to measure
-> rotation speed of some agricultural devices, so no high frequency on the
-> counter pin is expected.
+> > > Or we have also found out, that pushing back on parameters like
+> > > this, the developers goes back and looks at the code, and sometimes
+> > > figures out a way to automatically do the right thing, removing the
+> > > configuration knob, and just making it all simpler for the user to
+> > > use.
+> >
+> > I think of 2 alternatives:
+> > * `ethtool --set-priv-flags` - in such case there is a question if
+> > switching this particular feature in runtime is a good idea.
+> > * New DT/ACPI property - it is a hardware feature after all, so maybe
+> > let the user decide whether to enable it on the platform description
+> > level.
 >=20
-> The maximal measurement frequency depends on the CPU and system load. On
-> the idle iMX6S I was able to measure up to 20kHz without count drops.
+> Does this even need to be configurable? What is the cost of turning it on=
+?
+> How does having less pools affect the system? Does average latency go up?
+> When would i consider an underrun actually a good thing?
 >=20
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-
-Hi Oleksij,
-
-You're adding a new driver here so I'd like to see a new entry added to
-the MAINTAINERS file so users know who to contact when they have
-questions or want to submit patches.
-
-> ---
->  drivers/counter/Kconfig     |  10 ++
->  drivers/counter/Makefile    |   1 +
->  drivers/counter/event-cnt.c | 250 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 261 insertions(+)
->  create mode 100644 drivers/counter/event-cnt.c
+> Maybe it should just be hard coded on? Or we should try to detect when
+> underruns are happening a lot, and dynamically turn it on for a while?
 >=20
-> diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
-> index 2de53ab0dd25..3284987e070a 100644
-> --- a/drivers/counter/Kconfig
-> +++ b/drivers/counter/Kconfig
-> @@ -29,6 +29,16 @@ config 104_QUAD_8
->  	  The base port addresses for the devices may be configured via the base
->  	  array module parameter.
-> =20
-> +config EVENT_CNT
-> +	tristate "Event counter driver"
-> +	depends on GPIOLIB
-> +	help
-> +	  Select this option to enable event counter driver. Any interrupt sour=
-ce
-> +	  can be used by this driver as the event source.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called gpio-pulse-cnt.
-> +
->  config STM32_TIMER_CNT
->  	tristate "STM32 Timer encoder counter driver"
->  	depends on MFD_STM32_TIMERS || COMPILE_TEST
-> diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
-> index 0a393f71e481..6626900468f6 100644
-> --- a/drivers/counter/Makefile
-> +++ b/drivers/counter/Makefile
-> @@ -6,6 +6,7 @@
->  obj-$(CONFIG_COUNTER) +=3D counter.o
-> =20
->  obj-$(CONFIG_104_QUAD_8)	+=3D 104-quad-8.o
-> +obj-$(CONFIG_EVENT_CNT)		+=3D event-cnt.o
->  obj-$(CONFIG_STM32_TIMER_CNT)	+=3D stm32-timer-cnt.o
->  obj-$(CONFIG_STM32_LPTIMER_CNT)	+=3D stm32-lptimer-cnt.o
->  obj-$(CONFIG_TI_EQEP)		+=3D ti-eqep.o
-> diff --git a/drivers/counter/event-cnt.c b/drivers/counter/event-cnt.c
-> new file mode 100644
-> index 000000000000..a394fe72c4e4
-> --- /dev/null
-> +++ b/drivers/counter/event-cnt.c
-> @@ -0,0 +1,250 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2021 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-> + */
-> +
-> +#include <linux/counter.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irq.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define EVENT_CNT_NAME		"event-cnt"
-> +
-> +struct event_cnt_priv {
-> +	struct counter_device counter;
-> +	struct counter_ops ops;
-> +	struct gpio_desc *gpio;
-> +	int irq;
-> +	bool enabled;
-> +	atomic_t count;
-> +};
-> +
-> +static irqreturn_t event_cnt_isr(int irq, void *dev_id)
-> +{
-> +	struct event_cnt_priv *priv =3D dev_id;
-> +
-> +	atomic_inc(&priv->count);
+> 	  Andrew
 
-This is just used to count the number of interrupts right? I wonder if
-we can do this smarter. For example, the kernel already keeps track of
-number of interrupts that has occurred for any particular IRQ line on a
-CPU (see the 'kstat_irqs' member of struct irq_desc, and the
-show_interrupts() function in kernel/irq/proc.c). Would it make sense to
-simply store the initial interrupt count on driver load or enablement,
-and then return the difference during a count_read() callback?
+The cost of this change is that=A0the number of pools reduced from 16 to 8.
+The current driver uses only 4pools, but some future features like QoS can =
+use over 4 pools.=A0
 
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static ssize_t event_cnt_enable_read(struct counter_device *counter,
-> +				     struct counter_count *count, void *private,
-> +				     char *buf)
-> +{
-> +	struct event_cnt_priv *priv =3D counter->priv;
-> +
-> +	return sysfs_emit(buf, "%d\n", priv->enabled);
-> +}
-> +
-> +static ssize_t event_cnt_enable_write(struct counter_device *counter,
-> +				      struct counter_count *count,
-> +				      void *private, const char *buf,
-> +				      size_t len)
-> +{
-> +	struct event_cnt_priv *priv =3D counter->priv;
-> +	bool enable;
-> +	ssize_t ret;
-> +
-> +	ret =3D kstrtobool(buf, &enable);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (priv->enabled =3D=3D enable)
-> +		return len;
-> +
-> +	if (enable) {
-> +		priv->enabled =3D enable;
-> +		enable_irq(priv->irq);
-> +	} else {
-> +		disable_irq(priv->irq);
-> +		priv->enabled =3D enable;
-> +	}
-
-Given the conditional path we know the value "enable" will hold here.
-it'll be good to set priv->enabled explicitly here so there's no
-confusion to a future reviewer:
-
-	if (enable) {
-		priv->enabled =3D 1;
-		enable_irq(priv->irq);
-	} else {
-		disable_irq(priv->irq);
-		priv->enabled =3D 0;
-	}
-
-> +
-> +	return len;
-> +}
-> +
-> +static const struct counter_count_ext event_cnt_ext[] =3D {
-> +	{
-> +		.name =3D "enable",
-> +		.read =3D event_cnt_enable_read,
-> +		.write =3D event_cnt_enable_write,
-> +	},
-> +};
-> +
-> +static enum counter_synapse_action event_cnt_synapse_actionss[] =3D {
-> +	COUNTER_SYNAPSE_ACTION_RISING_EDGE,
-> +};
-> +
-> +static int event_cnt_action_get(struct counter_device *counter,
-> +			    struct counter_count *count,
-> +			    struct counter_synapse *synapse,
-> +			    size_t *action)
-> +{
-> +	*action =3D COUNTER_SYNAPSE_ACTION_RISING_EDGE;
-
-Fix this as mentioned in my earlier reply:
-https://lore.kernel.org/linux-iio/YCFHRGbiVxpNgkQS@shinobu/
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int event_cnt_read(struct counter_device *counter,
-> +				 struct counter_count *count,
-> +				 unsigned long *val)
-> +{
-> +	struct event_cnt_priv *priv =3D counter->priv;
-> +
-> +	*val =3D atomic_read(&priv->count);
-> +
-> +	return 0;
-> +}
-> +
-> +static int event_cnt_write(struct counter_device *counter,
-> +				  struct counter_count *count,
-> +				  const unsigned long val)
-> +{
-> +	struct event_cnt_priv *priv =3D counter->priv;
-> +
-> +	atomic_set(&priv->count, val);
-> +
-> +	return 0;
-> +}
-> +
-> +static int event_cnt_function_get(struct counter_device *counter,
-> +				  struct counter_count *count, size_t *function)
-> +{
-> +	*function =3D COUNTER_COUNT_FUNCTION_INCREASE;
-
-Fix this as mentioned in my earlier reply:
-https://lore.kernel.org/linux-iio/YCFHRGbiVxpNgkQS@shinobu/
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int event_cnt_signal_read(struct counter_device *counter,
-> +				 struct counter_signal *signal,
-> +				 enum counter_signal_value *val)
-> +{
-> +	struct event_cnt_priv *priv =3D counter->priv;
-> +	int ret;
-> +
-> +	ret =3D gpiod_get_value(priv->gpio);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	*val =3D ret ? COUNTER_SIGNAL_HIGH : COUNTER_SIGNAL_LOW;
-> +
-> +	return 0;
-> +}
-> +
-> +static struct counter_signal event_cnt_signals[] =3D {
-> +	{
-> +		.id =3D 0,
-> +		.name =3D "Channel 0 signal",
-
-You should choose a more description name for this Signal;
-"Channel 0 signal" isn't very useful information for the user. Is this
-signal the respective GPIO line state?
-
-> +	},
-> +};
-> +
-> +static struct counter_synapse event_cnt_synapses[] =3D {
-> +	{
-> +		.actions_list =3D event_cnt_synapse_actionss,
-> +		.num_actions =3D ARRAY_SIZE(event_cnt_synapse_actionss),
-> +		.signal =3D &event_cnt_signals[0]
-> +	},
-> +};
-> +
-> +static enum counter_count_function event_cnt_functions[] =3D {
-> +	COUNTER_COUNT_FUNCTION_INCREASE,
-> +};
-> +
-> +static struct counter_count event_cnts[] =3D {
-> +	{
-> +		.id =3D 0,
-> +		.name =3D "Channel 1 Count",
-> +		.functions_list =3D event_cnt_functions,
-> +		.num_functions =3D ARRAY_SIZE(event_cnt_functions),
-> +		.synapses =3D event_cnt_synapses,
-> +		.num_synapses =3D ARRAY_SIZE(event_cnt_synapses),
-> +		.ext =3D event_cnt_ext,
-> +		.num_ext =3D ARRAY_SIZE(event_cnt_ext),
-> +	},
-> +};
-> +
-> +static int event_cnt_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct event_cnt_priv *priv;
-> +	int ret;
-> +
-> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->irq =3D platform_get_irq_optional(pdev,  0);
-> +	if (priv->irq =3D=3D -ENXIO)
-> +		priv->irq =3D 0;
-> +	else if (priv->irq < 0)
-> +		return dev_err_probe(dev, priv->irq, "failed to get IRQ\n");
-> +
-> +	priv->gpio =3D devm_gpiod_get_optional(dev, NULL, GPIOD_IN);
-> +	if (IS_ERR(priv->gpio))
-> +		return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get GPIO\n");
-> +
-> +	if (!priv->irq && !priv->gpio) {
-> +		dev_err(dev, "IRQ and GPIO are not found. At least one source should b=
-e provided\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (!priv->irq) {
-> +		int irq =3D gpiod_to_irq(priv->gpio);
-> +
-> +		if (irq < 0)
-> +			return dev_err_probe(dev, irq, "failed to get IRQ from GPIO\n");
-> +
-> +		priv->irq =3D irq;
-> +	}
-> +
-> +	priv->ops.action_get =3D event_cnt_action_get;
-> +	priv->ops.count_read =3D event_cnt_read;
-> +	priv->ops.count_write =3D event_cnt_write;
-> +	priv->ops.function_get =3D event_cnt_function_get;
-> +	if (priv->gpio)
-> +		priv->ops.signal_read  =3D event_cnt_signal_read;
-
-Move ops out of priv and make it static const. You can get rid of this
-priv->gpio conditional here and instead perform it for num_signals
-as I explain inline below.
-
-> +
-> +	priv->counter.name =3D dev_name(dev);
-> +	priv->counter.parent =3D dev;
-> +	priv->counter.ops =3D &priv->ops;
-> +	priv->counter.counts =3D event_cnts;
-> +	priv->counter.num_counts =3D ARRAY_SIZE(event_cnts);
-> +	priv->counter.signals =3D event_cnt_signals;
-> +	priv->counter.num_signals =3D ARRAY_SIZE(event_cnt_signals);
-
-If the Signal provided is only valid for GPIO sources, then you should
-add a conditional check here. Simply setting num_signals to 0 should be
-enough to disable the creation of the Signal attribute for non-GPIO
-sources:
-
-	priv->counter.num_signals =3D priv->gpio ?
-				    ARRAY_SIZE(event_cnt_signals) : 0;
-
-
-> +	priv->counter.priv =3D priv;
-> +
-> +	irq_set_status_flags(priv->irq, IRQ_NOAUTOEN);
-> +	ret =3D devm_request_irq(dev, priv->irq, event_cnt_isr,
-> +			       IRQF_TRIGGER_RISING | IRQF_NO_THREAD,
-> +			       EVENT_CNT_NAME, priv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, priv);
-
-This line isn't needed; you don't ever deal with struct device directly
-do you?
-
-William Breathitt Gray
-
-> +
-> +	return devm_counter_register(dev, &priv->counter);
-> +}
-> +
-> +static const struct of_device_id event_cnt_of_match[] =3D {
-> +	{ .compatible =3D "event-counter", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, event_cnt_of_match);
-> +
-> +static struct platform_driver event_cnt_driver =3D {
-> +	.probe =3D event_cnt_probe,
-> +	.driver =3D {
-> +		.name =3D EVENT_CNT_NAME,
-> +		.of_match_table =3D event_cnt_of_match,
-> +	},
-> +};
-> +module_platform_driver(event_cnt_driver);
-> +
-> +MODULE_ALIAS("platform:event-counter");
-> +MODULE_AUTHOR("Oleksij Rempel <o.rempel@pengutronix.de>");
-> +MODULE_DESCRIPTION("Event counter driver");
-> +MODULE_LICENSE("GPL v2");
-> --=20
-> 2.30.0
->=20
-
---PZUh/e7p+iwgzS79
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEk5I4PDJ2w1cDf/bghvpINdm7VJIFAmAo5TMACgkQhvpINdm7
-VJL/ghAAup+oOZSH/ro88Xs7Gnc+CqsE/TYwvgYbOCABtOG8FXFc09q2RB1gTWH9
-5gYtNSAhHDBGL/Wbv55TtUkHUk3Qcq82LUMrWI/4jaBoZ1M9+aVq9m5tUd464E3J
-KeD0D5FXKqZxk+DfTRaJgOqVFxha7KWwBkLgB3BI8pmoPhLXPYLqHcCuSJIleTqk
-5CQFma894uu/FBx05IZTheLDqE1ZD9mKaelB1AW82HyjXWC2M76t982yNgm5avUN
-ogg3KPd3SCNwBDYcbJHktCQw+n2fEQpclcmCTXUMe4Z6VpFndQSCOojUHFhwkkL+
-kKDr7WIdVlv2ROTskX9C06iBBm1Vbdy1Is7T9WHCgL9uD3BaFHtSFQ8saLFT0jz5
-8CVmSIiIBLa7NFkElzlGOau6EyrvqAhWPCKeqfjWvXiF2cCLW9CYqiKtu7XjQxmO
-sMJeU3boyU80ZzvZgiophVPCDZdJ5t/LxZlIqHx+aJv5bz28dq1IudpD89pMBPaw
-ZpJmGHpeEkFNk/XiS0u1yief+tKfae6oCZR6AHF4c6Bs+cJCsrDp7bCkvNUKPUuu
-h/Pn+73rbf/pwr4VmxK+vhVV3DhU4VsOTs9S40/9Ilmaa94ELy8H6cQTRozMwoNs
-JTwSz56SE2+CNf725tqz7N+eKXei2vjJ+adb5hDCYkpYK0B5KrI=
-=xaBy
------END PGP SIGNATURE-----
-
---PZUh/e7p+iwgzS79--
+Regards,
+Stefan.=A0
