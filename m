@@ -2,122 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F61F31C323
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 21:42:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07AB631C35B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 22:02:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbhBOUmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 15:42:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48942 "EHLO
+        id S229811AbhBOVBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 16:01:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbhBOUmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 15:42:15 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D680CC06178A
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 12:41:26 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id r23so9467107ljh.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 12:41:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=f2vud9FYihwZwBcd0ZX7QXrGZwYrdLQaFuR8oz36xRk=;
-        b=cdFUw2aJ8h7PK6ZIUQdLV9l9o37oN3/uOqSMbUUgH9HnxJO/Q+/Gh8rwr61BU+LaZA
-         g9ms/udrxOz682iYhtlR2XF7xY44LHtbGzMJVxIvJijH7LN6Xlzrw1gVwthrwml+VKLB
-         CpoHpygSQl92kGPMQPmgXncg4s1+RA6ycb4wweTzBiXu/6TkzO/m3fpHje3GVXpcUmuO
-         eFLDAbUAXjaATsWeN+11o+RSrtippM3A+jEXKU7xnKaM0auneclUsr/18EDMs1zwj5yQ
-         CvQLyUcg//8sIZ3aPgWY43PKon7Ce+9jPhwNfO+kI2L+1ggklyTvQSRWdFSP9A/MdL6n
-         Zf+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=f2vud9FYihwZwBcd0ZX7QXrGZwYrdLQaFuR8oz36xRk=;
-        b=Qdlf5amKEVj7EI7HvVU/9v/LGIyoGVhvo4m5uTDDiiPhBY8VGVpfkA3F5+HaH781bN
-         Fx8C9nljxp4ycwOgkF1GfKuX7pV2kUOaPOKrfC5C1zMqtZWJkvKblShkZZh8ZvtoZzZt
-         W0bjLSol/Gkvl9c3rgPlY+B6vlEun7N77RNj9tqs3djs3dsdis8B6A2vEcBoMR8uTK6b
-         FFtegHk6iwUFrBoaKEExCvawHa2RF8ujnLycBSEzr9el3INBS/lTDqPQ4BCwQZvawsYz
-         /SgCmV/0jbky3i8FQ7va3L0CryFcucTXkBkdZjdkTzkL0Ot0nh+8SjCWilMa1khTu3B/
-         x+TA==
-X-Gm-Message-State: AOAM530GFef1/RtLL27D66+Wi5NH9Wt4xkJnb9hgOnfKArfj7DputwZf
-        K5vLwdZfMSmKCrBXSnywaHo=
-X-Google-Smtp-Source: ABdhPJwl062O/s0YSouyZUL6H4gHZ6idDZh7neDOFFwmufxUHrxGQOw3oPgrkF9BuT9AH7BTVUmLnA==
-X-Received: by 2002:a2e:a487:: with SMTP id h7mr10559672lji.59.1613421685393;
-        Mon, 15 Feb 2021 12:41:25 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id x36sm2922841lfu.129.2021.02.15.12.41.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Feb 2021 12:41:25 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 5/5] arm64: dts: broadcom: bcm4908: describe firmware partitions
-Date:   Mon, 15 Feb 2021 21:41:05 +0100
-Message-Id: <20210215204105.27830-5-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210215204105.27830-1-zajec5@gmail.com>
-References: <20210215204105.27830-1-zajec5@gmail.com>
+        with ESMTP id S229782AbhBOVBw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 16:01:52 -0500
+Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1231::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27B54C061574;
+        Mon, 15 Feb 2021 13:01:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description;
+        bh=bkf1wtr5hHvAMJ6KcVEaAvu26TZYq3kxwEwKiBWYxdg=; b=rDy/0sCwM5eJKU6XpTzrxv7ZbS
+        XScDIGSRWRhANlq4WHbdMaYT566UEAoclzz9B90k0o3cYFCzqH+miOm+Ifrd77106zEZTT34HQUs3
+        s0ZtxFcxFGhlOegqrj400UaRuXsZExbyz/xi55fUmLIzXwW/dzZlSXYlS/OR9kqBm1GRGHGI1Gqq7
+        UIlrS8nZZauZAfLVZ62HhvhCI847eav4MHa99QKsA3Xpp0q7wgtx3SXmM8t1uSA7OwapJgCoOaRJr
+        xjIDhlmxE7jGGaMIyHPWZMufS3ExQkEZsgknK6vzhZY0URuXXcK/0Mkd6PSoqR3fIEELBD7y8LYe0
+        cKsls3JA==;
+Received: from [2601:1c0:6280:3f0::b669]
+        by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1lBkzS-0008Se-LS; Mon, 15 Feb 2021 21:01:06 +0000
+Subject: Re: [PATCH v2 25/25] arm64: apple: Add initial Mac Mini 2020 (M1)
+ devicetree
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Hector Martin <marcan@marcan.st>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210215121713.57687-1-marcan@marcan.st>
+ <20210215121713.57687-26-marcan@marcan.st>
+ <20210215192906.7k3unuhph5wnkj5g@kozik-lap>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <9dd4731c-7826-c1f5-3ce4-831d5186d270@infradead.org>
+Date:   Mon, 15 Feb 2021 13:00:58 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210215192906.7k3unuhph5wnkj5g@kozik-lap>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 2/15/21 11:29 AM, Krzysztof Kozlowski wrote:
+>> diff --git a/arch/arm64/boot/dts/apple/apple-j274.dts b/arch/arm64/boot/dts/apple/apple-j274.dts
+>> new file mode 100644
+>> index 000000000000..9a1be91a2cf0
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/apple/apple-j274.dts
+>> @@ -0,0 +1,41 @@
+>> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> () around licenses, so:
+> (GPL-2.0+ OR MIT)
 
-BCM4908 bootloader supports multiple firmware partitions and has its own
-bindings defined for them.
+Hi,
+When/where does that "() around licenses" apply, please?
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts  |  1 +
- .../dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts  | 12 +++++++++++-
- 2 files changed, 12 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
-index 0d02986c80ab..7b24ad365a3c 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
-@@ -135,6 +135,7 @@ partition@0 {
- 		};
- 
- 		partition@100000 {
-+			compatible = "brcm,bcm4908-firmware";
- 			label = "firmware";
- 			reg = <0x100000 0x4400000>;
- 		};
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
-index bb06683d6acf..7240a9ee9812 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
-@@ -122,7 +122,7 @@ &nandcs {
- 	#size-cells = <0>;
- 
- 	partitions {
--		compatible = "fixed-partitions";
-+		compatible = "brcm,bcm4908-partitions";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 
-@@ -130,5 +130,15 @@ partition@0 {
- 			label = "cferom";
- 			reg = <0x0 0x100000>;
- 		};
-+
-+		partition@100000 {
-+			compatible = "brcm,bcm4908-firmware";
-+			reg = <0x100000 0x5700000>;
-+		};
-+
-+		partition@5800000 {
-+			compatible = "brcm,bcm4908-firmware";
-+			reg = <0x5800000 0x5700000>;
-+		};
- 	};
- };
+thanks.
 -- 
-2.26.2
+~Randy
 
