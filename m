@@ -2,125 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BF2331C3E3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 23:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A289031C403
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 23:26:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229718AbhBOWAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 17:00:13 -0500
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:40310 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229662AbhBOWAM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Feb 2021 17:00:12 -0500
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 11FLgr0N062512;
-        Mon, 15 Feb 2021 16:58:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
- cc : subject : in-reply-to : date : message-id : mime-version :
- content-type; s=pp1; bh=/oRTogH8po3yrn0yk1VD9C6sW7iDA6T0y17mhJA1WJo=;
- b=IqHTfUVme3a04JuafM75XANvIB90U3EKdFBBMX+qzHAUatGh5sWkpEz1B/i+oLiLtErk
- j2NJ/Xc3oxJyVb32NMNhFhIeMXkRENqauQAWcInw4o7qOdjcHIcArXqzO6ismtWmQ/Br
- 28fOnQMoSe1e1Z2KDylxsK7fPN6JHn2rDKDNs3qLYdgsmreKiLq2uOABGDee+lPn9xrY
- 4kKf/jZaK5mQ1W+Q+K8N0xhBSoWOnUdMmDTrK5t2SeIkYKbJTuEn/pZmSiKLLX++rTzJ
- faU3mZK9Cpg6Bppn0Cvy2criJ5FmwGUMG54b4Zx/YmTdvKQrGkP691UsqGgLgrpxtU+Y Sg== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 36r13w8994-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 Feb 2021 16:58:54 -0500
-Received: from m0098409.ppops.net (m0098409.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 11FLk07d070184;
-        Mon, 15 Feb 2021 16:58:53 -0500
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 36r13w898k-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 Feb 2021 16:58:53 -0500
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-        by ppma01wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 11FLtFlC032460;
-        Mon, 15 Feb 2021 21:58:52 GMT
-Received: from b03cxnp07027.gho.boulder.ibm.com (b03cxnp07027.gho.boulder.ibm.com [9.17.130.14])
-        by ppma01wdc.us.ibm.com with ESMTP id 36p6d8hxcb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 Feb 2021 21:58:52 +0000
-Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
-        by b03cxnp07027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 11FLwn8L21692706
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 15 Feb 2021 21:58:49 GMT
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id B8224C605D;
-        Mon, 15 Feb 2021 21:58:49 +0000 (GMT)
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 7983FC6055;
-        Mon, 15 Feb 2021 21:58:41 +0000 (GMT)
-Received: from manicouagan.localdomain (unknown [9.85.173.121])
-        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTPS;
-        Mon, 15 Feb 2021 21:58:41 +0000 (GMT)
-References: <20210213161049.6190-1-nramas@linux.microsoft.com>
- <20210213161049.6190-7-nramas@linux.microsoft.com>
-User-agent: mu4e 1.4.10; emacs 27.1
-From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
-        gregkh@linuxfoundation.org, will@kernel.org, joe@perches.com,
-        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
-        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
-        frowand.list@gmail.com, vincenzo.frascino@arm.com,
-        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
-        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
-        tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v18 06/11] powerpc: Move ima buffer fields to struct kimage
-In-reply-to: <20210213161049.6190-7-nramas@linux.microsoft.com>
-Date:   Mon, 15 Feb 2021 18:58:37 -0300
-Message-ID: <87r1lhq9gy.fsf@manicouagan.localdomain>
+        id S229721AbhBOW0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 17:26:16 -0500
+Received: from mail-yb1-f169.google.com ([209.85.219.169]:44617 "EHLO
+        mail-yb1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229668AbhBOW0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 17:26:14 -0500
+Received: by mail-yb1-f169.google.com with SMTP id f4so8584746ybk.11
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 14:25:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WCYjBj19j1mBgoUgFAPx3GRqxMEDCFPUmgnbsB//gL4=;
+        b=oiEC2/2OMUPQ8FofQhJj5TF/v8RcIGyWdLp1COtoqmIUZpcsb99BTkmkTNjpXe/+PH
+         fCiBLptsPUMudu8VwUaiAy0MkQTJesz/DpSmZKJfoQjJvTkDNPWQKpnrJOZdehsLTOQF
+         CWK8lzVhk8AHmdLWFVYkzi9VxSEkwUmZffCzjJUv0PbFFPuEa3s5oTvFF4d/Nd3BrRMT
+         yCYdC5SsDF82ZYxyYWLDu6FoWsqDLNn7M3FexUKFLdBgW6pJfPCd5Y4wTL5HvqvNWWfr
+         n05M+aDh4i7y5RqdqnbxaF4fdVl5iZHeUFX5zdHoD3XG2mXWzWNjucMPlGOX/whAamFY
+         Kx6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WCYjBj19j1mBgoUgFAPx3GRqxMEDCFPUmgnbsB//gL4=;
+        b=IuESxW2ZtF6aBm2NkzzaLxLp9s0FYw7bHcueWX8nEA8q9FVXvs1eIDQXLoMZQ69D6n
+         cnjV3BIIa/8vzXLAxPtGu8Y5qqoMUfCooWxsNSV8SsI544gAcbB2TXs3Qw/iYHmPPPIf
+         aDejrTmCzFs79OtsgLDutNoZstTaCX23hoZOJKGAkMgf9d/0AVUlTDjikKeqrIJY9eNH
+         aNCFCz+vDEv6YLsEUD06tsdpwQ8JuGlpGVNjuGfcwCLlc/aXTFCWzS+aKH35WMnfLfJK
+         EZKD7CKzFuXhiboz81908SOTpId3YB9sPix4o1w4Gb1YEdJ4cRkhYc8de2kOJ6dgo0om
+         LUyg==
+X-Gm-Message-State: AOAM532kd0U5ZlcR9C28grXiRxgeb9VbwLzoI9aEJy0GCgYDLdeDOg5r
+        I5Rkdi2YjKbMz17ivJffTeSdPflrSXi+O+IohhlN7Q==
+X-Google-Smtp-Source: ABdhPJzI25brqTRNPiKDbaw8zxs/3dnPSzw2CkyA2hA+yWam9mqbXj74HyGpnIFgah+oTmvic3SS4tAP2Nj47L0hJvw=
+X-Received: by 2002:a25:dc94:: with SMTP id y142mr15188087ybe.346.1613427873211;
+ Mon, 15 Feb 2021 14:24:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-02-15_16:2021-02-12,2021-02-15 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- bulkscore=0 phishscore=0 impostorscore=0 suspectscore=0 priorityscore=1501
- adultscore=0 spamscore=0 mlxlogscore=889 malwarescore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2102150160
+References: <20210121225712.1118239-1-saravanak@google.com>
+ <20210121225712.1118239-3-saravanak@google.com> <20210213185422.GA195733@roeck-us.net>
+ <CAGETcx_RpG45Fwhty1Uj34Mv01qkH5vFv0J6jVtJgTBFQinOBA@mail.gmail.com>
+ <a76a73e4-f7ba-4893-14b8-01d21943241a@roeck-us.net> <CAGETcx9mzYbujVW8ALrNvs1FabvuUpZpChxBb0Tp8q7w+TY4=A@mail.gmail.com>
+ <87v9atpujb.wl-maz@kernel.org>
+In-Reply-To: <87v9atpujb.wl-maz@kernel.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 15 Feb 2021 14:23:57 -0800
+Message-ID: <CAGETcx8msCsFnPk2SV-r2QfVDPBY2RvJQumd9RzbrFCvVUxCXA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-
-> The fields ima_buffer_addr and ima_buffer_size in "struct kimage_arch"
-> for powerpc are used to carry forward the IMA measurement list across
-> kexec system call.  These fields are not architecture specific, but are
-> currently limited to powerpc.
+On Mon, Feb 15, 2021 at 1:09 AM Marc Zyngier <maz@kernel.org> wrote:
 >
-> arch_ima_add_kexec_buffer() defined in "arch/powerpc/kexec/ima.c"
-> sets ima_buffer_addr and ima_buffer_size for the kexec system call.
-> This function does not have architecture specific code, but is
-> currently limited to powerpc.
+> Hi Saravana,
 >
-> Move ima_buffer_addr and ima_buffer_size to "struct kimage".
-> Set ima_buffer_addr and ima_buffer_size in ima_add_kexec_buffer()
-> in security/integrity/ima/ima_kexec.c.
+> On Mon, 15 Feb 2021 08:29:53 +0000,
+> Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Sun, Feb 14, 2021 at 7:58 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> > >
+> > > On 2/14/21 1:12 PM, Saravana Kannan wrote:
+> > > [ ... ]
+> > > >
+> > > > Can you please give me the following details:
+> > > > * The DTS file for the board (not the SoC).
+> > >
+> > > The devicetree file extracted from the running system is attached.
+> > > Hope it helps.
+> >
+> > Hi Guenter,
+> >
+> > Thanks for the DTS file and logs. That helps a lot.
+> >
+> > Looking at the attachment and this line from the earlier email:
+> > [   14.084606][   T11] pci 0005:01:00.0: probe deferral - wait for
+> > supplier interrupt-controller@0
+> >
+> > It's clear the PCI node is waiting on:
+> >         interrupt-controller@0 {
+> >                 #address-cells = <0x00>;
+> >                 device_type = "PowerPC-Interrupt-Source-Controller";
+> >                 compatible = "ibm,opal-xive-vc\0IBM,opal-xics";
+> >                 #interrupt-cells = <0x02>;
+> >                 reg = <0x00 0x00 0x00 0x00>;
+> >                 phandle = <0x804b>;
+> >                 interrupt-controller;
+> >         };
+> >
+> > If I grep for "ibm,opal-xive-vc", I see only one instance of it in the
+> > code. And that eventually ends up getting called like this:
+> > irq_find_matching_fwspec() -> xive_irq_domain_match() -> xive_native_match()
+> >
+> > static bool xive_native_match(struct device_node *node)
+> > {
+> >         return of_device_is_compatible(node, "ibm,opal-xive-vc");
+> > }
+> >
+> > However, when the IRQ domain are first registered, in xive_init_host()
+> > the "np" passed in is NOT the same node that xive_native_match() would
+> > match.
+> > static void __init xive_init_host(struct device_node *np)
+> > {
+> >         xive_irq_domain = irq_domain_add_nomap(np, XIVE_MAX_IRQ,
+> >                                                &xive_irq_domain_ops, NULL);
+> >         if (WARN_ON(xive_irq_domain == NULL))
+> >                 return;
+> >         irq_set_default_host(xive_irq_domain);
+> > }
+> >
+> > Instead, the "np" here is:
+> >         interrupt-controller@6030203180000 {
+> >                 ibm,xive-provision-page-size = <0x10000>;
+> >                 ibm,xive-eq-sizes = <0x0c 0x10 0x15 0x18>;
+> >                 single-escalation-support;
+> >                 ibm,xive-provision-chips = <0x00>;
+> >                 ibm,xive-#priorities = <0x08>;
+> >                 compatible = "ibm,opal-xive-pe\0ibm,opal-intc";
+> >                 reg = <0x60302 0x3180000 0x00 0x10000 0x60302
+> > 0x3190000 0x00 0x10000 0x60302 0x31a0000 0x00 0x10000 0x60302
+> > 0x31b0000 0x00 0x10000>;
+> >                 phandle = <0x8051>;
+> >         };
+> >
+> > There are many ways to fix this, but I first want to make sure this is
+> > a valid way to register irqdomains before trying to fix it. I just
+> > find it weird that the node that's registered is unrelated (not a
+> > parent/child) of the node that matches.
+> >
+> > Marc,
+> >
+> > Is this a valid way to register irqdomains? Just registering
+> > interrupt-controller@6030203180000 DT node where there are multiple
+> > interrupt controllers?
 >
-> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> Suggested-by: Will Deacon <will@kernel.org>
-> ---
->  arch/powerpc/include/asm/ima.h     |  3 ---
->  arch/powerpc/include/asm/kexec.h   |  5 -----
->  arch/powerpc/kexec/ima.c           | 29 ++++++-----------------------
->  include/linux/kexec.h              |  3 +++
->  security/integrity/ima/ima_kexec.c |  8 ++------
->  5 files changed, 11 insertions(+), 37 deletions(-)
+> Absolutely.
+>
+> The node is only one of the many possible ways to retrieve a
+> domain. In general, what you pass as the of_node/fwnode_handle can be
+> anything you want. It doesn't have to represent anything in the system
+> (we even create then ex-nihilo in some cases), and the match/select
+> callbacks are authoritative when they exist.
+>
+> There is also the use of a default domain, which is used as a fallback
+> when no domain is found via the normal matching procedure.
+>
+> PPC has established a way of dealing with domains long before ARM did,
+> closer to the board files of old than what we would do today (code
+> driven rather than data structure driven).
+>
+> Strictly mapping domains onto HW blocks is a desirable property, but
+> that is all it is. That doesn't affect the very purpose of the IRQ
+> domains, which is to translate numbers from one context into another.
+>
+> I'd be all for rationalising this, but it is pretty hard to introduce
+> semantic where there is none.
 
-Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+Ok, I'm going to disable parsing "interrupts" for PPC. It doesn't look
+like any of the irq drivers are even remotely ready to be converted to
+a proper device driver anyway.
 
--- 
-Thiago Jung Bauermann
-IBM Linux Technology Center
+And if this continues for other properties, I'll just disable
+fw_devlink for PPC entirely.
+
+-Saravana
