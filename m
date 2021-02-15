@@ -2,89 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5060831B7F6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 12:26:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD7B631B888
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 13:00:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbhBOL0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 06:26:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
+        id S229670AbhBOL7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 06:59:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229908AbhBOL03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 06:26:29 -0500
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DD3C061574
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 03:25:48 -0800 (PST)
-Received: by mail-qk1-x72b.google.com with SMTP id f17so6035868qkl.5
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 03:25:48 -0800 (PST)
+        with ESMTP id S229977AbhBOL67 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 06:58:59 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00936C061574
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 03:58:18 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id s15so3603125plr.9
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 03:58:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=V5p/Ptpd8Lzv5tKkYHxJzAd/BlFt3ePQF/VhO0/xQ9g=;
-        b=XmjNHDNIuHF1fDcddYwkbuTllthAII7JSKOm/beY3HBLxAKdzSsi3l5Q835js8OMK2
-         HOR1GMNG08PkRKVk7WtQaMwJjgDkjLG8X9BWtcGBJar/AzjDknMicSc2rLeO6fznCycZ
-         P+AjBlz7/i7XZR/xYwn14nBCfEIoWAW549gVg=
+        bh=STe5WvrkatZVjS+sJ4Z+wGsil/9GokGdjFMxGOL/bOc=;
+        b=rOy7yc79FkXAeqXnzqAOUPdOnDZamQGVPBA3hpVjZCIQU/goE5UEQfXd5mUXQao5UK
+         m/DJbTklI8pDUuwioaLXSTNLUlDP3Nckrp8NInNDSueIPnE5pKxgjeLKa6aIFQZFwT9Z
+         0dovhEJUhwovJVGEJotPI6D8SdsVCI1eCxCU2s4Xi6ggw5jZv3AkjXAjTM1s90QEhQRk
+         vAkJQcvh/MBgkmAOwoDqPewoTjYiMgnTAeMNa0mx2lFJWiJCoeBvd+CZ1O6w3Ikjh9vc
+         WzoRoJXkiATMuEVpISR7/1ELUjlmCJbExQk60m1SgfTjVIEhTi7yRf7nFeys00egz/nD
+         e9yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=V5p/Ptpd8Lzv5tKkYHxJzAd/BlFt3ePQF/VhO0/xQ9g=;
-        b=GcaHYQ4xWBixVqe4F+1wYyGUSDD+jKTUHzRwH0xeAqwk24IPqPlVRZWX/R6Us3y5k5
-         kuAtPIWvxv3WqGy/kAuqJRxt7fGIv2ov7K+8J1Tl5PG8bsbTY9oGNJtEw/nLqF3jYJrG
-         vYYCumTYoHD/k0a0SF7rMzAFvBjyuy+wOjSJoHDS7UxzxB4ZTV6TA0glGLtCuFIH7IcZ
-         QN+EwZBNFpFxjVmRg8+EBvNcrpSd73TxPvbjlFniG6iZhHfoq5ivgcrO47OfPwTigfMa
-         LU8sRBauLTNylSRZvaBMT3iH9OI2CkKpSvuLQnAbWUufSBqUJe/t5AyPMRd/8G3VCh/K
-         vQXQ==
-X-Gm-Message-State: AOAM531V02mpcXJcj2dFbR0XAHFhgihtCQa56AIc/AYBHzO3GjTbK27T
-        QCccjAsnZ/TSSCmZJfXdd//7GOVDH2khGA8YzioC6Q==
-X-Google-Smtp-Source: ABdhPJxZm8ADvBSIVcrG9NDd4A2KXUR9+do9fxfPHlIi8CcMPRNY15cK/Vy9v+E/aC/pTUGVGQRBQQAN9JbJefmfiBI=
-X-Received: by 2002:a37:bcc6:: with SMTP id m189mr14108089qkf.88.1613388348069;
- Mon, 15 Feb 2021 03:25:48 -0800 (PST)
+        bh=STe5WvrkatZVjS+sJ4Z+wGsil/9GokGdjFMxGOL/bOc=;
+        b=PsStMv3KYPcqrKKp/yER2p2BklQzZlXqOZL2xqg0KI3gwW3SIHhFKIJzjoJC6jK0AS
+         T9Ry9+KrBMmmHXFk755JAO/wWJDs7Tcqpuk2irLIkjm1+cWaBsvDyeHdIdpNS6gUEq7v
+         PAXLhQtXAYiPojvhlUkpNCjHdH0WD1SZK3ypGlQeTzR5CK36XKRfDXepsnitilETAbNx
+         0bOO/2nPNlQBgkueOgzUpy38kd9KmA+vRstBT8HkrtdWAIUwzZzmzxmmu7QvCqAieXVw
+         94fPU4bDzsXmVk0A/rKryiEsWJvC+hEkjk/PS+HAVBW8GPflN6SOhS4M+ZCpap/YFT/3
+         qB4Q==
+X-Gm-Message-State: AOAM531IiybQ8Qd/OYu2/9HNmaql7C4Aqa4hstL3ygaFaZQFhVYi6D4u
+        aTKF5CEbPK+rrc4yX3rVdmEJQ9krx6LFSC6UCRr0Bw==
+X-Google-Smtp-Source: ABdhPJzjaKl4tw8H7uvDqKaROVYcze200koH64YBlRr2JiPQ8jGf9Eev6HGBZKF5irx2c5L89qBvK4Hn3stNj2Ilz8k=
+X-Received: by 2002:a17:90a:70c1:: with SMTP id a1mr592704pjm.19.1613390298541;
+ Mon, 15 Feb 2021 03:58:18 -0800 (PST)
 MIME-Version: 1.0
-References: <20210214174453.104616-1-jagan@amarulasolutions.com> <8330126a-b2f4-5991-a2fa-37776cb412d0@baylibre.com>
-In-Reply-To: <8330126a-b2f4-5991-a2fa-37776cb412d0@baylibre.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Mon, 15 Feb 2021 16:55:36 +0530
-Message-ID: <CAMty3ZAgKPXpkiWuG3cGFs4sZPd182hBNaTbveL9USLj8o=ZxQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for SN65DSI83/84/85
-To:     Neil Armstrong <narmstrong@baylibre.com>
+References: <20210214175211.105107-1-jagan@amarulasolutions.com>
+In-Reply-To: <20210214175211.105107-1-jagan@amarulasolutions.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Mon, 15 Feb 2021 12:58:07 +0100
+Message-ID: <CAG3jFysAq0rSVRgjDSu6gF4kHcqOGAZt+b0Rz_reHgQr3Scy6A@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for
+ Chipone ICN6211
+To:     Jagan Teki <jagan@amarulasolutions.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
         Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
         Jonas Karlman <jonas@kwiboo.se>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         Sam Ravnborg <sam@ravnborg.org>,
         dri-devel <dri-devel@lists.freedesktop.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Marek Vasut <marex@denx.de>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-amarula@amarulasolutions.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 2:32 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi,
->
-> On 14/02/2021 18:44, Jagan Teki wrote:
-> > SN65DSI83/84/85 devices are MIPI DSI to LVDS based bridge
-> > controller IC's from Texas Instruments.
-> >
-> > SN65DSI83 - Single Channel DSI to Single-link LVDS bridge
-> > SN65DSI84 - Single Channel DSI to Dual-link LVDS bridge
-> > SN65DSI85 - Dual Channel DSI to Dual-link LVDS bridge
-> >
-> > Right now the bridge driver is supporting Channel A with single
-> > link, so dt-bindings documented according to it.
->
-> Shouldn't it describe Dual-link LVDS already for SN65DSI84/85 and Dual Channel DSI for SN65DSI85 even if not implemented in the driver ?
+Hey Jagan,
 
-Patch documented only Single link LVDS as it only supported by driver.
-Single link LVDS with Channel A configuration is common across all 3
-variant chips. I have SN65DSI84 with Single link LVDS which is routed
-in Channel A. Idea is to go with Single link and add double link later
-and document the same.
+Thanks for submitting this.
 
-Jagan.
+checkpatch.pl threw some typ-o warnings, and I listed them below. I
+think either spelling is correct, but 'spelling.txt' does list this as
+a typ-o explicitly, so I would suggest conforming to that just to
+silence the checkpatch warning.
+
+This patch also passes 'dt_binding_check' and 'dtbs_check', but I
+think I'd like to defer to Rob Herring for an actual r-b.
+
+On Sun, 14 Feb 2021 at 18:55, Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> ICN6211 is MIPI-DSI to RGB Convertor bridge from Chipone.
+>
+> It has a flexible configuration of MIPI DSI signal input and
+> produce RGB565, RGB666, RGB888 output format.
+>
+> Add dt-bingings for it.
+>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> Changes for v3:
+> - updated to new dt-bindings style
+>
+>  .../display/bridge/chipone,icn6211.yaml       | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> new file mode 100644
+> index 000000000000..13764f13fe46
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/chipone,icn6211.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Chipone ICN6211 MIPI-DSI to RGB Converter bridge
+
+$ scripts/checkpatch.pl --git HEAD~0
+WARNING: 'Convertor' may be misspelled - perhaps 'Converter'?
+#7:
+ICN6211 is MIPI-DSI to RGB Convertor bridge from Chipone.
+                           ^^^^^^^^^
+
+> +
+> +maintainers:
+> +  - Jagan Teki <jagan@amarulasolutions.com>
+> +
+> +description: |
+> +  ICN6211 is MIPI-DSI to RGB Convertor bridge from chipone.
+
+WARNING: 'Convertor' may be misspelled - perhaps 'Converter'?
+#38: FILE: Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml:13:
++  ICN6211 is MIPI-DSI to RGB Convertor bridge from chipone.
+                              ^^^^^^^^^
+
+
+> +
+> +  It has a flexible configuration of MIPI DSI signal input and
+> +  produce RGB565, RGB666, RGB888 output format.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - chipone,icn6211
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: virtual channel number of a DSI peripheral
+> +
+> +  reset-gpios:
+> +    description: GPIO connected for the reset pin
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Video port for MIPI DSI input
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Video port for MIPI DPI output (panel or connector).
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      bridge@0 {
+> +        compatible = "chipone,icn6211";
+> +        reg = <0>;
+> +        reset-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* LCD-RST: PL5 */
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          bridge_in: port@0 {
+> +            reg = <0>;
+> +
+> +            bridge_out_dsi: endpoint {
+> +              remote-endpoint = <&dsi_out_bridge>;
+> +            };
+> +          };
+> +
+> +          bridge_out: port@1 {
+> +            reg = <1>;
+> +
+> +            bridge_out_panel: endpoint {
+> +              remote-endpoint = <&panel_out_bridge>;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+> --
+> 2.25.1
+>
