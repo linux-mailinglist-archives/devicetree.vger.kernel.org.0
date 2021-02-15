@@ -2,213 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D3831C274
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 20:30:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E2A531C2F8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 21:28:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbhBOT3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 14:29:52 -0500
-Received: from mail-wm1-f51.google.com ([209.85.128.51]:55819 "EHLO
-        mail-wm1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbhBOT3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 14:29:51 -0500
-Received: by mail-wm1-f51.google.com with SMTP id o15so7066846wmq.5;
-        Mon, 15 Feb 2021 11:29:34 -0800 (PST)
+        id S229806AbhBOU0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 15:26:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45454 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229796AbhBOU0I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 15:26:08 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8598C06178A
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 12:25:22 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id x4so10480791wmi.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 12:25:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jDZtnEWOf82ehEYa4p3dFHkPyYl0MUvWn4LAUrQcIyQ=;
+        b=TXBbY9fwjA05K6LxSreuUsHBAGr3qqHUmmhq/w6txO+FUV3t9a+6jsR+SPvyczGU1w
+         Rwxn+usXimzVEtlOdoCIy5RU9N0bwmGHp9sfdx4T97SRNK63xPPZbRE8wK4J88yBmE0d
+         yT0BNVxRnE0O9F/QjLZsIwwZFzJflO9TVUSdJLLWMAVX3ICGcsOl6WohQKR/fCZMDqfk
+         kWUdwHqqbSehSwPONMSpoOvCcknZ7Yjbrq9s8CUNpqaxFtYNVWBNrjq6vTrR2+MJslBu
+         06rKPlX2BQgeRXfRTTw0bMEywXh1thd/KegRo5Kz8pIYOI6GRjgfXuxHd7bBSDvMXcBs
+         4uGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2lp9Aq2D4MoBftdOs5M770eBIHydvgoiWpAn4VIL1kc=;
-        b=BJPwROOC2497yd2VA/qnAr5XX9I30ocDoCihP/+kV/GIyigiFOMe4vSZxvnEhpbHPz
-         9PwAhWbZARNxykAoz2yow2X/UCutiQFutX2oUSLVgQVvoiczyq3w6oWpXG2cUlFDpm3T
-         FWurC+e0szFx9DKmoM1+1tPCGalBvL33ujiASKX71jn5uaWEdQU/g43VjfoR19pvludw
-         jpam94wFD5RdqhGosKK2BPcmpKR/r7B5LwZByZUyHCgLYODHZ1CFp8oHR1PtWtbT19Ul
-         MXxwg+Y3SutkW4TnKw3iXc1rVIFUQ43XdVAoeiV/CADToe6BRf8SGrmeDsgFxZse+IQ/
-         D46Q==
-X-Gm-Message-State: AOAM5332t65sbfPkfR9pPQx4FcTpwPuCc+r1a2U0YJwS2EbCPBziTBD+
-        677Sajbrdo0Itp9bIso2TF0=
-X-Google-Smtp-Source: ABdhPJyWhB/a8bczdLa3D9lA7fMvaTLZGHadDzpEngNC2B6nbD0EiuZvGHab9XCVOWL6VxNrEtVgGQ==
-X-Received: by 2002:a1c:4b05:: with SMTP id y5mr316326wma.37.1613417348734;
-        Mon, 15 Feb 2021 11:29:08 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id r17sm3262947wrx.82.2021.02.15.11.29.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Feb 2021 11:29:07 -0800 (PST)
-Date:   Mon, 15 Feb 2021 20:29:06 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 25/25] arm64: apple: Add initial Mac Mini 2020 (M1)
- devicetree
-Message-ID: <20210215192906.7k3unuhph5wnkj5g@kozik-lap>
-References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-26-marcan@marcan.st>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jDZtnEWOf82ehEYa4p3dFHkPyYl0MUvWn4LAUrQcIyQ=;
+        b=ObARP3kmuHZRwrt6vr0IaH1DyPZfXoCatpwheYFhYWOxUEVJigY8G5t4puJATD3J24
+         lWE+4Ml/4sAj1Ir82eowG8RmZ7QLLsEJ59wbTbdSXx8LZ+5YEngugx+tGBeIXb0ulJ2X
+         WWA5l7h179+cvL0LjahuLt8LiUZSlrOa5kD1wnv0IX1Calu2bZ+gK7LMl19VxKSzedEA
+         tJI1PhC3O99Mo/KKngt4ys/+magiqwPn2znJjI5VZ6IYsCRf9CK7wljfvS5T6kgBzs3U
+         2R7JrmWklplGY4tykdeznI1BqOAGGtFo6DVw0ATMmxI1f+/xOTT2qtL+qUr5xvaNJO8v
+         zq5g==
+X-Gm-Message-State: AOAM530Zph6oKIh5e4s6n/ShowpL75eBRauTckQI5h/gS7/MFkPeYpR3
+        Re46p6o5Xj3KPuan+Mmz1X9vOQ==
+X-Google-Smtp-Source: ABdhPJz9/WbE1uEWKoaEcjNs+ultQA6IqlcWbxOwm/+rUXxB4dupMetnCFtRYey8q2YLHMaaybyTaw==
+X-Received: by 2002:a1c:6a02:: with SMTP id f2mr518688wmc.36.1613420720969;
+        Mon, 15 Feb 2021 12:25:20 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:1c0d:1b29:8630:3df5? ([2a01:e34:ed2f:f020:1c0d:1b29:8630:3df5])
+        by smtp.googlemail.com with ESMTPSA id h15sm8800051wrh.13.2021.02.15.12.25.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Feb 2021 12:25:20 -0800 (PST)
+Subject: Re: [PATCH v9 1/8] drivers: thermal: tsens: Add VER_0 tsens version
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Amit Kucheria <amitk@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210122145558.4982-1-ansuelsmth@gmail.com>
+ <20210122145558.4982-2-ansuelsmth@gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <84a44ce8-163a-5c31-ddd3-c4cf0247bc46@linaro.org>
+Date:   Mon, 15 Feb 2021 21:25:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20210122145558.4982-2-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210215121713.57687-26-marcan@marcan.st>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 09:17:13PM +0900, Hector Martin wrote:
-> This currently supports:
+On 22/01/2021 15:55, Ansuel Smith wrote:
+> VER_0 is used to describe device based on tsens version before v0.1.
+> These device are devices based on msm8960 for example apq8064 or
+> ipq806x.
 > 
-> * SMP (via spin-tables)
-> * AIC IRQs
-> * Serial (with earlycon)
-> * Framebuffer
-> 
-> A number of properties are dynamic, and based on system firmware
-> decisions that vary from version to version. These are expected
-> to be filled in by the loader.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+
+At the first glance, this series sounds ok but there is no ack from the
+maintainers of this driver so I'm uncomfortable picking these changes.
+
+Bjorn ? Amit ?
+
 > ---
->  MAINTAINERS                              |   1 +
->  arch/arm64/boot/dts/Makefile             |   1 +
->  arch/arm64/boot/dts/apple/Makefile       |   2 +
->  arch/arm64/boot/dts/apple/apple-j274.dts |  41 ++++++++
->  arch/arm64/boot/dts/apple/apple-m1.dtsi  | 124 +++++++++++++++++++++++
->  5 files changed, 169 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/apple/Makefile
->  create mode 100644 arch/arm64/boot/dts/apple/apple-j274.dts
->  create mode 100644 arch/arm64/boot/dts/apple/apple-m1.dtsi
+>  drivers/thermal/qcom/tsens.c | 171 +++++++++++++++++++++++++++++------
+>  drivers/thermal/qcom/tsens.h |   4 +-
+>  2 files changed, 147 insertions(+), 28 deletions(-)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a8f258fbb5f1..87db1c947f45 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1635,6 +1635,7 @@ C:	irc://chat.freenode.net/asahi-dev
->  T:	git https://github.com/AsahiLinux/linux.git
->  F:	Documentation/devicetree/bindings/arm/apple.yaml
->  F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
-> +F:	arch/arm64/boot/dts/apple/
->  F:	arch/arm64/include/asm/sysreg_apple.h
->  F:	drivers/irqchip/irq-apple-aic.c
->  F:	include/dt-bindings/interrupt-controller/apple-aic.h
-> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-> index 9b1170658d60..64f055d94948 100644
-> --- a/arch/arm64/boot/dts/Makefile
-> +++ b/arch/arm64/boot/dts/Makefile
-> @@ -6,6 +6,7 @@ subdir-y += amazon
->  subdir-y += amd
->  subdir-y += amlogic
->  subdir-y += apm
-> +subdir-y += apple
->  subdir-y += arm
->  subdir-y += bitmain
->  subdir-y += broadcom
-> diff --git a/arch/arm64/boot/dts/apple/Makefile b/arch/arm64/boot/dts/apple/Makefile
-> new file mode 100644
-> index 000000000000..ec03c474efd4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/apple/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_APPLE) += apple-j274.dtb
-> diff --git a/arch/arm64/boot/dts/apple/apple-j274.dts b/arch/arm64/boot/dts/apple/apple-j274.dts
-> new file mode 100644
-> index 000000000000..9a1be91a2cf0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/apple/apple-j274.dts
-> @@ -0,0 +1,41 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> index d8ce3a687b80..eaeaa1d69d92 100644
+> --- a/drivers/thermal/qcom/tsens.c
+> +++ b/drivers/thermal/qcom/tsens.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_platform.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm.h>
+>  #include <linux/regmap.h>
+> @@ -515,6 +516,15 @@ static irqreturn_t tsens_irq_thread(int irq, void *data)
+>  			dev_dbg(priv->dev, "[%u] %s: no violation:  %d\n",
+>  				hw_id, __func__, temp);
+>  		}
+> +
+> +		if (tsens_version(priv) < VER_0_1) {
+> +			/* Constraint: There is only 1 interrupt control register for all
+> +			 * 11 temperature sensor. So monitoring more than 1 sensor based
+> +			 * on interrupts will yield inconsistent result. To overcome this
+> +			 * issue we will monitor only sensor 0 which is the master sensor.
+> +			 */
+> +			break;
+> +		}
+>  	}
+>  
+>  	return IRQ_HANDLED;
+> @@ -530,6 +540,13 @@ static int tsens_set_trips(void *_sensor, int low, int high)
+>  	int high_val, low_val, cl_high, cl_low;
+>  	u32 hw_id = s->hw_id;
+>  
+> +	if (tsens_version(priv) < VER_0_1) {
+> +		/* Pre v0.1 IP had a single register for each type of interrupt
+> +		 * and thresholds
+> +		 */
+> +		hw_id = 0;
+> +	}
+> +
+>  	dev_dbg(dev, "[%u] %s: proposed thresholds: (%d:%d)\n",
+>  		hw_id, __func__, low, high);
+>  
+> @@ -584,18 +601,21 @@ int get_temp_tsens_valid(const struct tsens_sensor *s, int *temp)
+>  	u32 valid;
+>  	int ret;
+>  
+> -	ret = regmap_field_read(priv->rf[valid_idx], &valid);
+> -	if (ret)
+> -		return ret;
+> -	while (!valid) {
+> -		/* Valid bit is 0 for 6 AHB clock cycles.
+> -		 * At 19.2MHz, 1 AHB clock is ~60ns.
+> -		 * We should enter this loop very, very rarely.
+> -		 */
+> -		ndelay(400);
+> +	/* VER_0 doesn't have VALID bit */
+> +	if (tsens_version(priv) >= VER_0_1) {
+>  		ret = regmap_field_read(priv->rf[valid_idx], &valid);
+>  		if (ret)
+>  			return ret;
+> +		while (!valid) {
+> +			/* Valid bit is 0 for 6 AHB clock cycles.
+> +			 * At 19.2MHz, 1 AHB clock is ~60ns.
+> +			 * We should enter this loop very, very rarely.
+> +			 */
+> +			ndelay(400);
+> +			ret = regmap_field_read(priv->rf[valid_idx], &valid);
+> +			if (ret)
+> +				return ret;
+> +		}
+>  	}
+>  
+>  	/* Valid bit is set, OK to read the temperature */
+> @@ -608,15 +628,29 @@ int get_temp_common(const struct tsens_sensor *s, int *temp)
+>  {
+>  	struct tsens_priv *priv = s->priv;
+>  	int hw_id = s->hw_id;
+> -	int last_temp = 0, ret;
+> +	int last_temp = 0, ret, trdy;
+> +	unsigned long timeout;
+>  
+> -	ret = regmap_field_read(priv->rf[LAST_TEMP_0 + hw_id], &last_temp);
+> -	if (ret)
+> -		return ret;
+> +	timeout = jiffies + usecs_to_jiffies(TIMEOUT_US);
+> +	do {
+> +		if (priv->rf[TRDY]) {
+> +			ret = regmap_field_read(priv->rf[TRDY], &trdy);
+> +			if (ret)
+> +				return ret;
+> +			if (!trdy)
+> +				continue;
+> +		}
+> +
+> +		ret = regmap_field_read(priv->rf[LAST_TEMP_0 + hw_id], &last_temp);
+> +		if (ret)
+> +			return ret;
+>  
+> -	*temp = code_to_degc(last_temp, s) * 1000;
+> +		*temp = code_to_degc(last_temp, s) * 1000;
+>  
+> -	return 0;
+> +		return 0;
+> +	} while (time_before(jiffies, timeout));
+> +
+> +	return -ETIMEDOUT;
+>  }
+>  
+>  #ifdef CONFIG_DEBUG_FS
+> @@ -738,19 +772,31 @@ int __init init_common(struct tsens_priv *priv)
+>  		priv->tm_offset = 0x1000;
+>  	}
+>  
+> -	res = platform_get_resource(op, IORESOURCE_MEM, 0);
+> -	tm_base = devm_ioremap_resource(dev, res);
+> -	if (IS_ERR(tm_base)) {
+> -		ret = PTR_ERR(tm_base);
+> -		goto err_put_device;
+> +	if (tsens_version(priv) >= VER_0_1) {
+> +		res = platform_get_resource(op, IORESOURCE_MEM, 0);
+> +		tm_base = devm_ioremap_resource(dev, res);
+> +		if (IS_ERR(tm_base)) {
+> +			ret = PTR_ERR(tm_base);
+> +			goto err_put_device;
+> +		}
+> +
+> +		priv->tm_map = devm_regmap_init_mmio(dev, tm_base, &tsens_config);
+> +	} else { /* VER_0 share the same gcc regs using a syscon */
+> +		struct device *parent = priv->dev->parent;
+> +
+> +		if (parent)
+> +			priv->tm_map = syscon_node_to_regmap(parent->of_node);
+>  	}
+>  
+> -	priv->tm_map = devm_regmap_init_mmio(dev, tm_base, &tsens_config);
+> -	if (IS_ERR(priv->tm_map)) {
+> +	if (IS_ERR_OR_NULL(priv->tm_map)) {
+>  		ret = PTR_ERR(priv->tm_map);
+>  		goto err_put_device;
+>  	}
+>  
+> +	/* VER_0 have only tm_map */
+> +	if (!priv->srot_map)
+> +		priv->srot_map = priv->tm_map;
+> +
+>  	if (tsens_version(priv) > VER_0_1) {
+>  		for (i = VER_MAJOR; i <= VER_STEP; i++) {
+>  			priv->rf[i] = devm_regmap_field_alloc(dev, priv->srot_map,
+> @@ -769,6 +815,10 @@ int __init init_common(struct tsens_priv *priv)
+>  		ret = PTR_ERR(priv->rf[TSENS_EN]);
+>  		goto err_put_device;
+>  	}
+> +	/* in VER_0 TSENS need to be explicitly enabled */
+> +	if (tsens_version(priv) == VER_0)
+> +		regmap_field_write(priv->rf[TSENS_EN], 1);
+> +
+>  	ret = regmap_field_read(priv->rf[TSENS_EN], &enabled);
+>  	if (ret)
+>  		goto err_put_device;
+> @@ -791,6 +841,66 @@ int __init init_common(struct tsens_priv *priv)
+>  		goto err_put_device;
+>  	}
+>  
+> +	priv->rf[TSENS_EN] = devm_regmap_field_alloc(dev, priv->tm_map,
+> +						     priv->fields[TSENS_EN]);
+> +	if (IS_ERR(priv->rf[TSENS_EN])) {
+> +		ret = PTR_ERR(priv->rf[TSENS_EN]);
+> +		goto err_put_device;
+> +	}
+> +
+> +	priv->rf[TSENS_SW_RST] = devm_regmap_field_alloc(
+> +		dev, priv->tm_map, priv->fields[TSENS_EN]);
+> +	if (IS_ERR(priv->rf[TSENS_EN])) {
+> +		ret = PTR_ERR(priv->rf[TSENS_EN]);
+> +		goto err_put_device;
+> +	}
+> +
+> +	priv->rf[LOW_INT_CLEAR_0] = devm_regmap_field_alloc(
+> +		dev, priv->tm_map, priv->fields[LOW_INT_CLEAR_0]);
+> +	if (IS_ERR(priv->rf[LOW_INT_CLEAR_0])) {
+> +		ret = PTR_ERR(priv->rf[LOW_INT_CLEAR_0]);
+> +		goto err_put_device;
+> +	}
+> +
+> +	priv->rf[UP_INT_CLEAR_0] = devm_regmap_field_alloc(
+> +		dev, priv->tm_map, priv->fields[UP_INT_CLEAR_0]);
+> +	if (IS_ERR(priv->rf[UP_INT_CLEAR_0])) {
+> +		ret = PTR_ERR(priv->rf[UP_INT_CLEAR_0]);
+> +		goto err_put_device;
+> +	}
+> +
+> +	/* VER_0 require to set MIN and MAX THRESH
+> +	 * These 2 regs are set using the:
+> +	 * - CRIT_THRESH_0 for MAX THRESH hardcoded to 120°C
+> +	 * - CRIT_THRESH_1 for MIN THRESH hardcoded to   0°C
+> +	 */
+> +	if (tsens_version(priv) < VER_0_1) {
+> +		priv->rf[CRIT_THRESH_0] = devm_regmap_field_alloc(
+> +			dev, priv->tm_map, priv->fields[CRIT_THRESH_0]);
+> +		if (IS_ERR(priv->rf[CRIT_THRESH_0])) {
+> +			ret = PTR_ERR(priv->rf[CRIT_THRESH_0]);
+> +			goto err_put_device;
+> +		}
+> +		regmap_field_write(priv->rf[CRIT_THRESH_0],
+> +				   tsens_mC_to_hw(priv->sensor, 120000));
+> +
+> +		priv->rf[CRIT_THRESH_1] = devm_regmap_field_alloc(
+> +			dev, priv->tm_map, priv->fields[CRIT_THRESH_1]);
+> +		if (IS_ERR(priv->rf[CRIT_THRESH_1])) {
+> +			ret = PTR_ERR(priv->rf[CRIT_THRESH_1]);
+> +			goto err_put_device;
+> +		}
+> +		regmap_field_write(priv->rf[CRIT_THRESH_1],
+> +				   tsens_mC_to_hw(priv->sensor, 0));
+> +	}
+> +
+> +	priv->rf[TRDY] =
+> +		devm_regmap_field_alloc(dev, priv->tm_map, priv->fields[TRDY]);
+> +	if (IS_ERR(priv->rf[TRDY])) {
+> +		ret = PTR_ERR(priv->rf[TRDY]);
+> +		goto err_put_device;
+> +	}
+> +
+>  	/* This loop might need changes if enum regfield_ids is reordered */
+>  	for (j = LAST_TEMP_0; j <= UP_THRESH_15; j += 16) {
+>  		for (i = 0; i < priv->feat->max_sensors; i++) {
+> @@ -844,7 +954,11 @@ int __init init_common(struct tsens_priv *priv)
+>  	}
+>  
+>  	spin_lock_init(&priv->ul_lock);
+> -	tsens_enable_irq(priv);
+> +
+> +	/* VER_0 interrupt doesn't need to be enabled */
+> +	if (tsens_version(priv) >= VER_0_1)
+> +		tsens_enable_irq(priv);
+> +
+>  	tsens_debug_init(op);
+>  
+>  err_put_device:
+> @@ -930,7 +1044,7 @@ static int tsens_register_irq(struct tsens_priv *priv, char *irqname,
+>  			      irq_handler_t thread_fn)
+>  {
+>  	struct platform_device *pdev;
+> -	int ret, irq;
+> +	int ret, irq, irq_type = IRQF_ONESHOT;
+>  
+>  	pdev = of_find_device_by_node(priv->dev->of_node);
+>  	if (!pdev)
+> @@ -943,9 +1057,12 @@ static int tsens_register_irq(struct tsens_priv *priv, char *irqname,
+>  		if (irq == -ENXIO)
+>  			ret = 0;
+>  	} else {
+> -		ret = devm_request_threaded_irq(&pdev->dev, irq,
+> -						NULL, thread_fn,
+> -						IRQF_ONESHOT,
+> +		/* VER_0 interrupt is TRIGGER_RISING, VER_0_1 and up is ONESHOT */
+> +		if (tsens_version(priv) == VER_0)
+> +			irq_type = IRQF_TRIGGER_RISING;
+> +
+> +		ret = devm_request_threaded_irq(&pdev->dev, irq, thread_fn,
+> +						NULL, irq_type,
+>  						dev_name(&pdev->dev), priv);
+>  		if (ret)
+>  			dev_err(&pdev->dev, "%s: failed to get irq\n",
+> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
+> index f40b625f897e..8e6c1fd3ccf5 100644
+> --- a/drivers/thermal/qcom/tsens.h
+> +++ b/drivers/thermal/qcom/tsens.h
+> @@ -13,6 +13,7 @@
+>  #define CAL_DEGC_PT2		120
+>  #define SLOPE_FACTOR		1000
+>  #define SLOPE_DEFAULT		3200
+> +#define TIMEOUT_US		100
+>  #define THRESHOLD_MAX_ADC_CODE	0x3ff
+>  #define THRESHOLD_MIN_ADC_CODE	0x0
+>  
+> @@ -25,7 +26,8 @@ struct tsens_priv;
+>  
+>  /* IP version numbers in ascending order */
+>  enum tsens_ver {
+> -	VER_0_1 = 0,
+> +	VER_0 = 0,
+> +	VER_0_1,
+>  	VER_1_X,
+>  	VER_2_X,
+>  };
+> 
 
-() around licenses, so:
-(GPL-2.0+ OR MIT)
 
-> +/*
-> + * Copyright The Asahi Linux Contributors
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "apple-m1.dtsi"
-> +
-> +/ {
-> +	compatible = "apple,j274", "apple,m1", "apple,arm-platform";
-> +	model = "Apple Mac Mini M1 2020";
-> +
-> +	aliases {
-> +		serial0 = &serial0;
-> +	};
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		stdout-path = "serial0:1500000";
-> +
-> +		framebuffer0: framebuffer@0 {
-> +			compatible = "apple,simple-framebuffer", "simple-framebuffer";
-> +			reg = <0 0 0 0>; /* To be filled by loader */
-> +			/* Format properties will be added by loader */
-> +			status = "disabled";
-> +		};
-> +	};
-> +
-> +	memory@800000000 {
-> +		device_type = "memory";
-> +		reg = <0 0 0 0>; /* To be filled by loader */
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-dtc and dtschema might complain, so could you set here fake memory
-address 0x800000000? Would that work for your bootloader?
-
-> +	};
-> +};
-> +
-> +&serial0 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/apple/apple-m1.dtsi b/arch/arm64/boot/dts/apple/apple-m1.dtsi
-> new file mode 100644
-> index 000000000000..45c87771b057
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/apple/apple-m1.dtsi
-> @@ -0,0 +1,124 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +/*
-> + * Copyright The Asahi Linux Contributors
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/apple-aic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	compatible = "apple,m1", "apple,arm-platform";
-> +
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			compatible = "apple,icestorm";
-> +			device_type = "cpu";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0 0>; /* To be filled by loader */
-> +		};
-
-New line after every device node, please.
-
-With this minor changes, fine for me:
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
