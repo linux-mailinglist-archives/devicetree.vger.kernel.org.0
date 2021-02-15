@@ -2,105 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B205631C41D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 23:43:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8677D31C432
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 00:11:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbhBOWn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 17:43:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229720AbhBOWn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 17:43:56 -0500
-Received: from mail-qt1-x84a.google.com (mail-qt1-x84a.google.com [IPv6:2607:f8b0:4864:20::84a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1BB9C061574
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 14:43:15 -0800 (PST)
-Received: by mail-qt1-x84a.google.com with SMTP id l63so6381332qtd.12
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 14:43:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:message-id:mime-version:subject:from:to:cc;
-        bh=0wElvRgNTl0iDIYef+iukzJo48+l2BEb5QT2NVP8CrY=;
-        b=R9JsApEa0SQDiBumN9hoKMpVMQaoyNOjHHcp1DZk4bsrhZ1emx9arNfVLpj8DhQrLM
-         ek6kmHUUvj6vWQJv2Xk83fTgTDtQXSyxtLwzJmjrxZ21ZhUXN/k31o38BAc2aTHafvu8
-         7DSy0xoFlkTDYm+TldQX2gjqKSE5PZ8CLsIuD9+1G8Zk7bi+fuf2cY3QToQZ/5+GT7Jj
-         pw2xqvY9X7ukMUfdyqZVtuU2dVhRB55YnhPQqQWhrmTGyRZWWDe/RUeYWDQHSs8JDwON
-         ZFqCrbEJ6m83B/Wu6rf2A5ltLj1bRSaCSmT6ke7sLDPokH4bkDNXOqd5oJUdvDbdKe8z
-         ieOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
-         :to:cc;
-        bh=0wElvRgNTl0iDIYef+iukzJo48+l2BEb5QT2NVP8CrY=;
-        b=RrnCfWAKyu9wl7yAOTO4eipnLfeCYuNSpYnl/XfTsLTJvTFH8MJnmTHkiLU8gkcg6h
-         l7z7RxR8o7DgrtgaB000+bMUBswgO4xCk7fjziJg42q9/+Y5VpsUf5D4QM66p03HyVSC
-         y+zSXHetrUd5jnjqPOQ2FltiI2gaIY1frN4pwNlSljjiDFlmrOLm8cX0HRN3+IuJQXSX
-         9cDNYe4hf0MXFMuGSarQzesFWBvzpm5Qo7MJxrgIeK4fGANkDpB26+wpCB8ovf44B5f6
-         TzMqzGARootZyx7XHcyLYg5s6c2o/J+uh6gF4CMSnUL68k4+T/pGlVSWBFxu087Jl8nk
-         2jCw==
-X-Gm-Message-State: AOAM532DbR7RfzG55DwG9mxtXX+tV5hYw06ALrS9xLsB/nWFTQq2+fxZ
-        1NHhNeVNu4zQcZjIL7eVXx1BdpuIBwqtEGs=
-X-Google-Smtp-Source: ABdhPJxXr8yZQALiMRqZkVXhcR2VUKse9BYWISgiYswf+oHn/FP2CkcZi7tYR2K7xI5bwKLb4KbW8tKfKTMmJ7c=
-Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:909c:cac6:3bbe:67a9])
- (user=saravanak job=sendgmr) by 2002:a0c:b49f:: with SMTP id
- c31mr16885605qve.35.1613428993272; Mon, 15 Feb 2021 14:43:13 -0800 (PST)
-Date:   Mon, 15 Feb 2021 14:42:58 -0800
-Message-Id: <20210215224258.1231449-1-saravanak@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.30.0.478.g8a0d178c01-goog
-Subject: [PATCH] of: property: fw_devlink: Ignore interrupts property for some configs
-From:   Saravana Kannan <saravanak@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thierry Reding <treding@nvidia.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S229668AbhBOXKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 18:10:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57828 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229646AbhBOXKs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Feb 2021 18:10:48 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPS id A17E964DF0;
+        Mon, 15 Feb 2021 23:10:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613430607;
+        bh=Cb4cKOI0sapXrrl14zPFqj5ElqW4HGuxtbxed4hTgpo=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=LwKAukORbwsDhlRDbFbwLuae9bpidylacR+WrCTVyBrqj5apizuoeb2dThJjLcCap
+         eXjgDl5rr1wdukW2zEhHoAgJh9yt5/QKL4Heibi0zNYiYy/gGgXzJRBN4WCnpDWpsV
+         wh3A/tO1gclISwLoVF9nt/XDh34bNvHzcttoAaJ0Y82k58atmKqTSFhKSsAj9BLFAm
+         6MIA+Z7YRGNZS5vpb+MTbzkXPo61jQKI/XA6q/O84NhHTw2wgKyBKQgHqrZgYHPkXo
+         01pp7oew6up8eJ7bkynkDCdaOLz6QBanXllK1QI/Nx72F1lz4Pe+GYI+MeDG2jzuLu
+         Qs+a5iVzRMGWg==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 8ED41609D9;
+        Mon, 15 Feb 2021 23:10:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 0/4] net: stmmac: Add Toshiba Visconti SoCs glue driver
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161343060758.5525.7785837246002682841.git-patchwork-notify@kernel.org>
+Date:   Mon, 15 Feb 2021 23:10:07 +0000
+References: <20210215152438.4318-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+In-Reply-To: <20210215152438.4318-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        peppe.cavallaro@st.com, alexandre.torgue@st.com,
+        joabreu@synopsys.com, leon@kernel.org, arnd@kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When CONFIG_OF_IRQ is not defined, it doesn't make sense to parse
-interrupts property.
+Hello:
 
-Also, parsing and tracking interrupts property breaks some PPC
-devices[1].  But none of the IRQ drivers in PPC seem ready to be
-converted to a proper platform (or any bus) driver. So, there's not much
-of a point in tracking the interrupts property for CONFIG_PPC. So, let's
-stop parsing interrupts for CONFIG_PPC.
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-[1] - https://lore.kernel.org/lkml/20210213185422.GA195733@roeck-us.net/
-Fixes: 4104ca776ba3 ("of: property: Add fw_devlink support for interrupts")
-Reported-by: Guenter Roeck <linux@roeck-us.net>
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
-Greg/Rob,
+On Tue, 16 Feb 2021 00:24:34 +0900 you wrote:
+> Hi,
+> 
+> This series is the ethernet driver for Toshiba's ARM SoC, Visconti[0].
+> This provides DT binding documentation, device driver, MAINTAINER files,
+> and updates to DT files.
+> 
+> Best regards,
+>   Nobuhiro
+> 
+> [...]
 
-I believe this needs to land on driver-core-next.
+Here is the summary with links:
+  - [v4,1/4] dt-bindings: net: Add DT bindings for Toshiba Visconti TMPV7700 SoC
+    https://git.kernel.org/netdev/net-next/c/e6a395061c3e
+  - [v4,2/4] net: stmmac: Add Toshiba Visconti SoCs glue driver
+    https://git.kernel.org/netdev/net-next/c/b38dd98ff8d0
+  - [v4,3/4] MAINTAINERS: Add entries for Toshiba Visconti ethernet controller
+    https://git.kernel.org/netdev/net-next/c/df53e4f48e8d
+  - [v4,4/4] arm: dts: visconti: Add DT support for Toshiba Visconti5 ethernet controller
+    https://git.kernel.org/netdev/net-next/c/ec8a42e73432
 
--Saravana
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
- drivers/of/property.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 79b68519fe30..5036a362f52e 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1300,6 +1300,9 @@ static struct device_node *parse_interrupts(struct device_node *np,
- {
- 	struct of_phandle_args sup_args;
- 
-+	if (!IS_ENABLED(CONFIG_OF_IRQ) || IS_ENABLED(CONFIG_PPC))
-+		return NULL;
-+
- 	if (strcmp(prop_name, "interrupts") &&
- 	    strcmp(prop_name, "interrupts-extended"))
- 		return NULL;
--- 
-2.30.0.478.g8a0d178c01-goog
 
