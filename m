@@ -2,124 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD0A31B4CD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 05:39:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2ED831B4E1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 05:53:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbhBOEjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Feb 2021 23:39:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40688 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbhBOEjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Feb 2021 23:39:17 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E89C061574;
-        Sun, 14 Feb 2021 20:38:36 -0800 (PST)
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7E678B23;
-        Mon, 15 Feb 2021 05:28:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1613363339;
-        bh=dkUcbSASE8kKdW5tAslf11E3bkk57qh8CaJdS74b7O4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=r+o1xIm3ddW1R80UgkY2F5hv9ViV5b57W2KbM8TqROz8pjr0K5HUZzjM0jNqLETSe
-         W5rHsAVpK1KI4eXvZG6AsK4VqY958FXW2FyrfZzVlW7bYSlQniGGImjURZSlzm2w/r
-         YBfRPH+m8jg2eCIMTJ+rAh7gLoWdRZ+NZGVicYG0=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     linux-media@vger.kernel.org
-Cc:     Rui Miguel Silva <rmfrfs@gmail.com>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 61/77] dt-bindings: media: nxp,imx7-mipi-csi2: Expand descriptions
-Date:   Mon, 15 Feb 2021 06:27:25 +0200
-Message-Id: <20210215042741.28850-62-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20210215042741.28850-1-laurent.pinchart@ideasonboard.com>
-References: <20210215042741.28850-1-laurent.pinchart@ideasonboard.com>
+        id S229873AbhBOEw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Feb 2021 23:52:26 -0500
+Received: from mo-csw1114.securemx.jp ([210.130.202.156]:42956 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229783AbhBOEwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Feb 2021 23:52:25 -0500
+Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 11F4o2iF008575; Mon, 15 Feb 2021 13:50:02 +0900
+X-Iguazu-Qid: 2wGqsXjpwITRbgu6E9
+X-Iguazu-QSIG: v=2; s=0; t=1613364601; q=2wGqsXjpwITRbgu6E9; m=SFm3NhKjBkIuojeahLC/t1YyOdGciL7xA5U48TQkS6w=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1113) id 11F4nxxr027709;
+        Mon, 15 Feb 2021 13:50:00 +0900
+Received: from enc01.toshiba.co.jp ([106.186.93.100])
+        by imx2.toshiba.co.jp  with ESMTP id 11F4nx2A005861;
+        Mon, 15 Feb 2021 13:49:59 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc01.toshiba.co.jp  with ESMTP id 11F4nxWi016628;
+        Mon, 15 Feb 2021 13:49:59 +0900
+Date:   Mon, 15 Feb 2021 13:49:57 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Leon Romanovsky <leon@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] net: stmmac: Add Toshiba Visconti SoCs glue driver
+X-TSB-HOP: ON
+Message-ID: <20210215044957.kdrmzgpqfiblermc@toshiba.co.jp>
+References: <20210212025806.556217-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210212025806.556217-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <YCjB3btP5+h4pISJ@unreal>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YCjB3btP5+h4pISJ@unreal>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Expand the description of the binding itself and of individual
-properties to include additional information that may not be immediately
-appartent from reading the reference manual. Drop the last sentence of
-the phy-supply description that refers to the driver's implementation.
+Hi,
 
-While at it, fix the capitalization of MIPI CSI-2 in the title.
+On Sun, Feb 14, 2021 at 08:23:25AM +0200, Leon Romanovsky wrote:
+> On Fri, Feb 12, 2021 at 11:58:04AM +0900, Nobuhiro Iwamatsu wrote:
+> > Add dwmac-visconti to the stmmac driver in Toshiba Visconti ARM SoCs.
+> > This patch contains only the basic function of the device. There is no
+> > clock control, PM, etc. yet. These will be added in the future.
+> >
+> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > ---
+> >  drivers/net/ethernet/stmicro/stmmac/Kconfig   |   8 +
+> >  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+> >  .../ethernet/stmicro/stmmac/dwmac-visconti.c  | 288 ++++++++++++++++++
+> >  3 files changed, 297 insertions(+)
+> >  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-visconti.c
+> >
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> > index 53f14c5a9e02..55ba67a550b9 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> > @@ -219,6 +219,14 @@ config DWMAC_INTEL_PLAT
+> >  	  This selects the Intel platform specific glue layer support for
+> >  	  the stmmac device driver. This driver is used for the Intel Keem Bay
+> >  	  SoC.
+> > +
+> > +config DWMAC_VISCONTI
+> > +	bool "Toshiba Visconti DWMAC support"
+> > +	def_bool y
+> 
+> Doesn't it need to be "default y"?
+> 
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 29 +++++++++++--------
- 1 file changed, 17 insertions(+), 12 deletions(-)
+Indeed. I will remove this.
 
-diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-index 76fcc8d80ee3..471a5bf7eb76 100644
---- a/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-+++ b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-@@ -4,14 +4,19 @@
- $id: http://devicetree.org/schemas/media/nxp,imx7-mipi-csi2.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: NXP i.MX7 Mipi CSI2
-+title: NXP i.MX7 MIPI CSI-2 receiver
- 
- maintainers:
-   - Rui Miguel Silva <rmfrfs@gmail.com>
- 
--description: |
--  This is the device node for the MIPI CSI-2 receiver core in i.MX7 soc. It is
--  compatible with previous version of samsung d-phy.
-+description: |-
-+  The NXP i.MX7 SoC family includes a MIPI CSI-2 receiver IP core, documented
-+  as "CSIS V3.3". The IP core seems to originate from Samsung, and may be
-+  compatible with some of the Exynos4 ad S5P SoCs.
-+
-+  While the CSI-2 receiver is separate from the MIPI D-PHY IP core, the PHY is
-+  completely wrapped by the CSIS and doesn't expose a control interface of its
-+  own. This binding thus covers both IP cores.
- 
- properties:
-   compatible:
-@@ -24,8 +29,10 @@ properties:
-     maxItems: 1
- 
-   clocks:
--    minItems: 3
--    maxItems: 3
-+    items:
-+      - description: The peripheral clock (a.k.a. APB clock)
-+      - description: The external clock (optionally used as the pixel clock)
-+      - description: The MIPI D-PHY clock
- 
-   clock-names:
-     items:
-@@ -37,16 +44,14 @@ properties:
-     maxItems: 1
- 
-   phy-supply:
--    description:
--      Phandle to a regulator that provides power to the PHY. This
--      regulator will be managed during the PHY power on/off sequence.
-+    description: The MIPI D-PHY digital power supply
- 
-   resets:
--    maxItems: 1
-+    items:
-+      - description: MIPI D-PHY slave reset
- 
-   clock-frequency:
--    description:
--      The IP main (system bus) clock frequency in Hertz
-+    description: The desired external clock ("wrap") frequency, in Hz
-     default: 166000000
- 
-   ports:
--- 
-Regards,
+Thanks.
 
-Laurent Pinchart
-
+Best regards,
+  Nobuhiro
