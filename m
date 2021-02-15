@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24F8E31C0E7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 18:45:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50A1731C0FB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 18:50:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbhBORp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 12:45:28 -0500
-Received: from mail-wm1-f52.google.com ([209.85.128.52]:40397 "EHLO
-        mail-wm1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232288AbhBORpV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 12:45:21 -0500
-Received: by mail-wm1-f52.google.com with SMTP id o24so10040328wmh.5;
-        Mon, 15 Feb 2021 09:45:05 -0800 (PST)
+        id S231173AbhBORto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 12:49:44 -0500
+Received: from mail-wr1-f47.google.com ([209.85.221.47]:34529 "EHLO
+        mail-wr1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231897AbhBORss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 12:48:48 -0500
+Received: by mail-wr1-f47.google.com with SMTP id n4so6986710wrx.1;
+        Mon, 15 Feb 2021 09:48:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=PnA3I4tNzKQkmDNsKQRjhd/8+Vk4a9EnP1XaMm5fKQ8=;
-        b=PSFeeUA1EQVH0I5PaKYP+LuYafA7uvQSMxp4kwEDl4vL5Giczx2+oojAoOJUwGrleS
-         EsCZZW8aEHVhqW/uYlyaz9dnnPg5mC8orUNPatMbM9SNr3VIHmeaA2xxIGejKs8O+JxZ
-         23tnfTxFJHNU1x3s2fgtwUkk7eLnRgHOfYi8N8goPbvcQoX4MHJ/CNn16AjPupz8Rzjv
-         RcTAhevA8rvubW5uk5I/F9tfL7+M2bmzRKemOgt/vrhpb6rCfcVxlc9ScUYDhYWjhIX6
-         YWDggDm4cxtIACRHAA/38jeRSY77hG4s+goBl/sk9zWiIxlq7OJA5ta0wQHyDNLaKsKi
-         CqkQ==
-X-Gm-Message-State: AOAM530mJTAAD34YpAdDpn5P2PKBDnpLv29bsRJLp/3zu3fnH2oXjrSm
-        7X1MtAm+LFlbdS19/VKNl+Y=
-X-Google-Smtp-Source: ABdhPJw1TLASUhuhatOOQUpk+ZB7iEl8DLP1WzOMmJV1LOPG7BUTtHEWBR2KXSvTcq+Aa379IZtToA==
-X-Received: by 2002:a1c:25c2:: with SMTP id l185mr43489wml.62.1613411079487;
-        Mon, 15 Feb 2021 09:44:39 -0800 (PST)
+        bh=cBlt8hdnbwWrMTzBbUx3g2G//xWNymm1S1ZIj4DF+7s=;
+        b=I6QpNdPk2y5lzQFiOMHkfdvIlMNobzaNc1jVw86MBcdLzzEgcXhcLEMtH0FT1qZDfs
+         2bRpTHKR1sPebtCAOqH680u/NIDi4YHPC+OZPvfZTFVC125yKK26IdAsDAtyLDFo9gFZ
+         F0/YXw24aEaEv+jDfaaKgXeegZ6SN71SR74/y3eUUstACINmihXjVUIEu02xzAQLDjYp
+         qo35brL+JuSbKIvJ75irc1lRcqTA1L9bNkhHYzZtBwqj2YAN1VlDHmhD7OGZjo8gBDcf
+         rmbQvJt1uQGvLBuHzmUneGVzS03n/qCqqtwEPE7g0QW7LkfVreYaPwLDmASTke3bmFlH
+         2UkQ==
+X-Gm-Message-State: AOAM532x/rvDalZyxU6J9Ze2Y/iZh7eLVsvS4PEargYpeDrBXuVWfYpe
+        xGph0yVWcw29eNVa1tIc2Jo=
+X-Google-Smtp-Source: ABdhPJx+KHSEChy4DVPIQ1LyHCjxJyXMIRlU9RF+1H1jXZX0zpJkXNxd3aSuklgB10SNpAht51Ev7Q==
+X-Received: by 2002:a5d:460f:: with SMTP id t15mr19219757wrq.417.1613411285858;
+        Mon, 15 Feb 2021 09:48:05 -0800 (PST)
 Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id n187sm29953wmf.29.2021.02.15.09.44.38
+        by smtp.googlemail.com with ESMTPSA id 17sm52584wmf.32.2021.02.15.09.48.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Feb 2021 09:44:38 -0800 (PST)
-Date:   Mon, 15 Feb 2021 18:44:37 +0100
+        Mon, 15 Feb 2021 09:48:04 -0800 (PST)
+Date:   Mon, 15 Feb 2021 18:48:03 +0100
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Hector Martin <marcan@marcan.st>
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -49,29 +49,61 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Linus Walleij <linus.walleij@linaro.org>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 01/25] dt-bindings: vendor-prefixes: Add apple prefix
-Message-ID: <20210215174437.5bly3owzhxweudwt@kozik-lap>
+Subject: Re: [PATCH v2 02/25] dt-bindings: arm: apple: Add bindings for Apple
+ ARM platforms
+Message-ID: <20210215174803.5oalkkmotpc7d7vm@kozik-lap>
 References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-2-marcan@marcan.st>
+ <20210215121713.57687-3-marcan@marcan.st>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210215121713.57687-2-marcan@marcan.st>
+In-Reply-To: <20210215121713.57687-3-marcan@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 09:16:49PM +0900, Hector Martin wrote:
-> This is different from the legacy AAPL prefix used on PPC, but
-> consensus is that we prefer `apple` for these new platforms.
+On Mon, Feb 15, 2021 at 09:16:50PM +0900, Hector Martin wrote:
+> This introduces bindings for all three 2020 Apple M1 devices:
+> 
+> * apple,j274 - Mac mini (M1, 2020)
+> * apple,j293 - MacBook Pro (13-inch, M1, 2020)
+> * apple,j313 - MacBook Air (M1, 2020)
 > 
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/arm/apple.yaml        | 36 +++++++++++++++++++
+>  MAINTAINERS                                   | 10 ++++++
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/apple.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/arm/apple.yaml b/Documentation/devicetree/bindings/arm/apple.yaml
+> new file mode 100644
+> index 000000000000..e44d308d6bde
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/apple.yaml
+> @@ -0,0 +1,36 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/apple.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple ARM Machine Device Tree Bindings
+> +
+> +maintainers:
+> +  - Hector Martin <marcan@marcan.st>
+> +
+> +description: |
+> +  Apple ARM ("Apple Silicon") platforms should contain compatible strings
+> +  in the following format:
+> +
+> +  - apple,j274 (board/device ID)
+> +  - apple,m1 (SoC name)
+> +  - apple,arm-platform (Apple Silicon)
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+This description is irrelevant because the rules come from schema below.
+Maybe instead write few words about the platform? Or describe how to get
+the board/device ID if it is not obvious?
 
 Best regards,
 Krzysztof
