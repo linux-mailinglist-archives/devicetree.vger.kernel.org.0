@@ -2,186 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A289031C403
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 23:26:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B205631C41D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 23:43:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbhBOW0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 17:26:16 -0500
-Received: from mail-yb1-f169.google.com ([209.85.219.169]:44617 "EHLO
-        mail-yb1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbhBOW0O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 17:26:14 -0500
-Received: by mail-yb1-f169.google.com with SMTP id f4so8584746ybk.11
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 14:25:58 -0800 (PST)
+        id S229777AbhBOWn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 17:43:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46732 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229720AbhBOWn4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 17:43:56 -0500
+Received: from mail-qt1-x84a.google.com (mail-qt1-x84a.google.com [IPv6:2607:f8b0:4864:20::84a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1BB9C061574
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 14:43:15 -0800 (PST)
+Received: by mail-qt1-x84a.google.com with SMTP id l63so6381332qtd.12
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 14:43:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WCYjBj19j1mBgoUgFAPx3GRqxMEDCFPUmgnbsB//gL4=;
-        b=oiEC2/2OMUPQ8FofQhJj5TF/v8RcIGyWdLp1COtoqmIUZpcsb99BTkmkTNjpXe/+PH
-         fCiBLptsPUMudu8VwUaiAy0MkQTJesz/DpSmZKJfoQjJvTkDNPWQKpnrJOZdehsLTOQF
-         CWK8lzVhk8AHmdLWFVYkzi9VxSEkwUmZffCzjJUv0PbFFPuEa3s5oTvFF4d/Nd3BrRMT
-         yCYdC5SsDF82ZYxyYWLDu6FoWsqDLNn7M3FexUKFLdBgW6pJfPCd5Y4wTL5HvqvNWWfr
-         n05M+aDh4i7y5RqdqnbxaF4fdVl5iZHeUFX5zdHoD3XG2mXWzWNjucMPlGOX/whAamFY
-         Kx6Q==
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=0wElvRgNTl0iDIYef+iukzJo48+l2BEb5QT2NVP8CrY=;
+        b=R9JsApEa0SQDiBumN9hoKMpVMQaoyNOjHHcp1DZk4bsrhZ1emx9arNfVLpj8DhQrLM
+         ek6kmHUUvj6vWQJv2Xk83fTgTDtQXSyxtLwzJmjrxZ21ZhUXN/k31o38BAc2aTHafvu8
+         7DSy0xoFlkTDYm+TldQX2gjqKSE5PZ8CLsIuD9+1G8Zk7bi+fuf2cY3QToQZ/5+GT7Jj
+         pw2xqvY9X7ukMUfdyqZVtuU2dVhRB55YnhPQqQWhrmTGyRZWWDe/RUeYWDQHSs8JDwON
+         ZFqCrbEJ6m83B/Wu6rf2A5ltLj1bRSaCSmT6ke7sLDPokH4bkDNXOqd5oJUdvDbdKe8z
+         ieOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WCYjBj19j1mBgoUgFAPx3GRqxMEDCFPUmgnbsB//gL4=;
-        b=IuESxW2ZtF6aBm2NkzzaLxLp9s0FYw7bHcueWX8nEA8q9FVXvs1eIDQXLoMZQ69D6n
-         cnjV3BIIa/8vzXLAxPtGu8Y5qqoMUfCooWxsNSV8SsI544gAcbB2TXs3Qw/iYHmPPPIf
-         aDejrTmCzFs79OtsgLDutNoZstTaCX23hoZOJKGAkMgf9d/0AVUlTDjikKeqrIJY9eNH
-         aNCFCz+vDEv6YLsEUD06tsdpwQ8JuGlpGVNjuGfcwCLlc/aXTFCWzS+aKH35WMnfLfJK
-         EZKD7CKzFuXhiboz81908SOTpId3YB9sPix4o1w4Gb1YEdJ4cRkhYc8de2kOJ6dgo0om
-         LUyg==
-X-Gm-Message-State: AOAM532kd0U5ZlcR9C28grXiRxgeb9VbwLzoI9aEJy0GCgYDLdeDOg5r
-        I5Rkdi2YjKbMz17ivJffTeSdPflrSXi+O+IohhlN7Q==
-X-Google-Smtp-Source: ABdhPJzI25brqTRNPiKDbaw8zxs/3dnPSzw2CkyA2hA+yWam9mqbXj74HyGpnIFgah+oTmvic3SS4tAP2Nj47L0hJvw=
-X-Received: by 2002:a25:dc94:: with SMTP id y142mr15188087ybe.346.1613427873211;
- Mon, 15 Feb 2021 14:24:33 -0800 (PST)
-MIME-Version: 1.0
-References: <20210121225712.1118239-1-saravanak@google.com>
- <20210121225712.1118239-3-saravanak@google.com> <20210213185422.GA195733@roeck-us.net>
- <CAGETcx_RpG45Fwhty1Uj34Mv01qkH5vFv0J6jVtJgTBFQinOBA@mail.gmail.com>
- <a76a73e4-f7ba-4893-14b8-01d21943241a@roeck-us.net> <CAGETcx9mzYbujVW8ALrNvs1FabvuUpZpChxBb0Tp8q7w+TY4=A@mail.gmail.com>
- <87v9atpujb.wl-maz@kernel.org>
-In-Reply-To: <87v9atpujb.wl-maz@kernel.org>
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=0wElvRgNTl0iDIYef+iukzJo48+l2BEb5QT2NVP8CrY=;
+        b=RrnCfWAKyu9wl7yAOTO4eipnLfeCYuNSpYnl/XfTsLTJvTFH8MJnmTHkiLU8gkcg6h
+         l7z7RxR8o7DgrtgaB000+bMUBswgO4xCk7fjziJg42q9/+Y5VpsUf5D4QM66p03HyVSC
+         y+zSXHetrUd5jnjqPOQ2FltiI2gaIY1frN4pwNlSljjiDFlmrOLm8cX0HRN3+IuJQXSX
+         9cDNYe4hf0MXFMuGSarQzesFWBvzpm5Qo7MJxrgIeK4fGANkDpB26+wpCB8ovf44B5f6
+         TzMqzGARootZyx7XHcyLYg5s6c2o/J+uh6gF4CMSnUL68k4+T/pGlVSWBFxu087Jl8nk
+         2jCw==
+X-Gm-Message-State: AOAM532DbR7RfzG55DwG9mxtXX+tV5hYw06ALrS9xLsB/nWFTQq2+fxZ
+        1NHhNeVNu4zQcZjIL7eVXx1BdpuIBwqtEGs=
+X-Google-Smtp-Source: ABdhPJxXr8yZQALiMRqZkVXhcR2VUKse9BYWISgiYswf+oHn/FP2CkcZi7tYR2K7xI5bwKLb4KbW8tKfKTMmJ7c=
+Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:909c:cac6:3bbe:67a9])
+ (user=saravanak job=sendgmr) by 2002:a0c:b49f:: with SMTP id
+ c31mr16885605qve.35.1613428993272; Mon, 15 Feb 2021 14:43:13 -0800 (PST)
+Date:   Mon, 15 Feb 2021 14:42:58 -0800
+Message-Id: <20210215224258.1231449-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.30.0.478.g8a0d178c01-goog
+Subject: [PATCH] of: property: fw_devlink: Ignore interrupts property for some configs
 From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 15 Feb 2021 14:23:57 -0800
-Message-ID: <CAGETcx8msCsFnPk2SV-r2QfVDPBY2RvJQumd9RzbrFCvVUxCXA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Thierry Reding <treding@nvidia.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 1:09 AM Marc Zyngier <maz@kernel.org> wrote:
->
-> Hi Saravana,
->
-> On Mon, 15 Feb 2021 08:29:53 +0000,
-> Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > On Sun, Feb 14, 2021 at 7:58 PM Guenter Roeck <linux@roeck-us.net> wrote:
-> > >
-> > > On 2/14/21 1:12 PM, Saravana Kannan wrote:
-> > > [ ... ]
-> > > >
-> > > > Can you please give me the following details:
-> > > > * The DTS file for the board (not the SoC).
-> > >
-> > > The devicetree file extracted from the running system is attached.
-> > > Hope it helps.
-> >
-> > Hi Guenter,
-> >
-> > Thanks for the DTS file and logs. That helps a lot.
-> >
-> > Looking at the attachment and this line from the earlier email:
-> > [   14.084606][   T11] pci 0005:01:00.0: probe deferral - wait for
-> > supplier interrupt-controller@0
-> >
-> > It's clear the PCI node is waiting on:
-> >         interrupt-controller@0 {
-> >                 #address-cells = <0x00>;
-> >                 device_type = "PowerPC-Interrupt-Source-Controller";
-> >                 compatible = "ibm,opal-xive-vc\0IBM,opal-xics";
-> >                 #interrupt-cells = <0x02>;
-> >                 reg = <0x00 0x00 0x00 0x00>;
-> >                 phandle = <0x804b>;
-> >                 interrupt-controller;
-> >         };
-> >
-> > If I grep for "ibm,opal-xive-vc", I see only one instance of it in the
-> > code. And that eventually ends up getting called like this:
-> > irq_find_matching_fwspec() -> xive_irq_domain_match() -> xive_native_match()
-> >
-> > static bool xive_native_match(struct device_node *node)
-> > {
-> >         return of_device_is_compatible(node, "ibm,opal-xive-vc");
-> > }
-> >
-> > However, when the IRQ domain are first registered, in xive_init_host()
-> > the "np" passed in is NOT the same node that xive_native_match() would
-> > match.
-> > static void __init xive_init_host(struct device_node *np)
-> > {
-> >         xive_irq_domain = irq_domain_add_nomap(np, XIVE_MAX_IRQ,
-> >                                                &xive_irq_domain_ops, NULL);
-> >         if (WARN_ON(xive_irq_domain == NULL))
-> >                 return;
-> >         irq_set_default_host(xive_irq_domain);
-> > }
-> >
-> > Instead, the "np" here is:
-> >         interrupt-controller@6030203180000 {
-> >                 ibm,xive-provision-page-size = <0x10000>;
-> >                 ibm,xive-eq-sizes = <0x0c 0x10 0x15 0x18>;
-> >                 single-escalation-support;
-> >                 ibm,xive-provision-chips = <0x00>;
-> >                 ibm,xive-#priorities = <0x08>;
-> >                 compatible = "ibm,opal-xive-pe\0ibm,opal-intc";
-> >                 reg = <0x60302 0x3180000 0x00 0x10000 0x60302
-> > 0x3190000 0x00 0x10000 0x60302 0x31a0000 0x00 0x10000 0x60302
-> > 0x31b0000 0x00 0x10000>;
-> >                 phandle = <0x8051>;
-> >         };
-> >
-> > There are many ways to fix this, but I first want to make sure this is
-> > a valid way to register irqdomains before trying to fix it. I just
-> > find it weird that the node that's registered is unrelated (not a
-> > parent/child) of the node that matches.
-> >
-> > Marc,
-> >
-> > Is this a valid way to register irqdomains? Just registering
-> > interrupt-controller@6030203180000 DT node where there are multiple
-> > interrupt controllers?
->
-> Absolutely.
->
-> The node is only one of the many possible ways to retrieve a
-> domain. In general, what you pass as the of_node/fwnode_handle can be
-> anything you want. It doesn't have to represent anything in the system
-> (we even create then ex-nihilo in some cases), and the match/select
-> callbacks are authoritative when they exist.
->
-> There is also the use of a default domain, which is used as a fallback
-> when no domain is found via the normal matching procedure.
->
-> PPC has established a way of dealing with domains long before ARM did,
-> closer to the board files of old than what we would do today (code
-> driven rather than data structure driven).
->
-> Strictly mapping domains onto HW blocks is a desirable property, but
-> that is all it is. That doesn't affect the very purpose of the IRQ
-> domains, which is to translate numbers from one context into another.
->
-> I'd be all for rationalising this, but it is pretty hard to introduce
-> semantic where there is none.
+When CONFIG_OF_IRQ is not defined, it doesn't make sense to parse
+interrupts property.
 
-Ok, I'm going to disable parsing "interrupts" for PPC. It doesn't look
-like any of the irq drivers are even remotely ready to be converted to
-a proper device driver anyway.
+Also, parsing and tracking interrupts property breaks some PPC
+devices[1].  But none of the IRQ drivers in PPC seem ready to be
+converted to a proper platform (or any bus) driver. So, there's not much
+of a point in tracking the interrupts property for CONFIG_PPC. So, let's
+stop parsing interrupts for CONFIG_PPC.
 
-And if this continues for other properties, I'll just disable
-fw_devlink for PPC entirely.
+[1] - https://lore.kernel.org/lkml/20210213185422.GA195733@roeck-us.net/
+Fixes: 4104ca776ba3 ("of: property: Add fw_devlink support for interrupts")
+Reported-by: Guenter Roeck <linux@roeck-us.net>
+Signed-off-by: Saravana Kannan <saravanak@google.com>
+---
+Greg/Rob,
+
+I believe this needs to land on driver-core-next.
 
 -Saravana
+
+ drivers/of/property.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 79b68519fe30..5036a362f52e 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1300,6 +1300,9 @@ static struct device_node *parse_interrupts(struct device_node *np,
+ {
+ 	struct of_phandle_args sup_args;
+ 
++	if (!IS_ENABLED(CONFIG_OF_IRQ) || IS_ENABLED(CONFIG_PPC))
++		return NULL;
++
+ 	if (strcmp(prop_name, "interrupts") &&
+ 	    strcmp(prop_name, "interrupts-extended"))
+ 		return NULL;
+-- 
+2.30.0.478.g8a0d178c01-goog
+
