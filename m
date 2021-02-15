@@ -2,118 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76AA831C3CE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 22:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E0BC31C3D5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 22:58:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229713AbhBOVwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 16:52:35 -0500
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:59300 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229662AbhBOVwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Feb 2021 16:52:34 -0500
-Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 11FLhE3W062034;
-        Mon, 15 Feb 2021 16:51:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
- cc : subject : in-reply-to : date : message-id : mime-version :
- content-type; s=pp1; bh=KjcWjrzpVphFTO5FFSUfC3u1TkMq+mBtwaNHZAkSXQw=;
- b=fkZfmzXSSGZ1pLt7nIAqKdphiTx2RX00y4U/2m31Ar6nmC5/jsP7RohDhhlOKWhVtwcv
- 1Z8xKf/BuE26k4Bvl6ZaZIYsXQdl2PmWG+vbM6Je/qMv7C5/ROnHkAIzv9KEPMKmRlwk
- nUB91Ib8QhrLDQUb+ATEYDuVtz/tTfWURZiaB7YVrgH8omfRqX7dbwx9KfjwTQ4pUFGm
- 9ZSCUQXybu7qoQLtCEAsmC7NO5Rz+6ijnnIQotqQ6QWcANG6fWTd83BhxDSKOguh7Et+
- 8iAyh98kj2SNEJdawkae24ypkcRkTA3ayDo9JTSBWjJe6PsqfOFM2f8I6N09kr/5aQyW gQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 36r1470487-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 Feb 2021 16:51:07 -0500
-Received: from m0098416.ppops.net (m0098416.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 11FLjZcl066428;
-        Mon, 15 Feb 2021 16:51:06 -0500
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 36r147047q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 Feb 2021 16:51:06 -0500
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-        by ppma01wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 11FLmABZ026281;
-        Mon, 15 Feb 2021 21:51:05 GMT
-Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
-        by ppma01wdc.us.ibm.com with ESMTP id 36p6d8hwjd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 Feb 2021 21:51:05 +0000
-Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
-        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 11FLp4TZ7537262
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 15 Feb 2021 21:51:04 GMT
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id F4072C6059;
-        Mon, 15 Feb 2021 21:51:03 +0000 (GMT)
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id AC117C6057;
-        Mon, 15 Feb 2021 21:50:55 +0000 (GMT)
-Received: from manicouagan.localdomain (unknown [9.85.173.121])
-        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTPS;
-        Mon, 15 Feb 2021 21:50:55 +0000 (GMT)
-References: <20210213161049.6190-1-nramas@linux.microsoft.com>
- <20210213161049.6190-6-nramas@linux.microsoft.com>
-User-agent: mu4e 1.4.10; emacs 27.1
-From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
-        gregkh@linuxfoundation.org, will@kernel.org, joe@perches.com,
-        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
-        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
-        frowand.list@gmail.com, vincenzo.frascino@arm.com,
-        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
-        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, mbrugger@suse.com, hsinyi@chromium.org,
-        tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v18 05/11] powerpc: Use common
- of_kexec_alloc_and_setup_fdt()
-In-reply-to: <20210213161049.6190-6-nramas@linux.microsoft.com>
-Date:   Mon, 15 Feb 2021 18:50:53 -0300
-Message-ID: <87tuqdq9tu.fsf@manicouagan.localdomain>
+        id S229710AbhBOV6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 16:58:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37084 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229520AbhBOV6S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 16:58:18 -0500
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18FEDC0613D6
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 13:57:38 -0800 (PST)
+Received: by mail-yb1-xb35.google.com with SMTP id l8so8527751ybe.12
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 13:57:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6sRa/U5Kzs1JI5RnyoYklyv1NRbU9v8LrTPHarr/PE8=;
+        b=gJEho7HAFjs40VouEGob2eg5Oy9aEdcZUBjHihE6mZQzi6czZHwv0m73BpYkXKdo5q
+         68ZV+goSq9Fae1dld8Dj2zZYLuDTZktAzE0ZwFkpES3da8W1hs5RObUljgUwwZubEMQR
+         Ca4nrFf96n+Kq21fygN6AVWqtnC1b+1lh90Ad/OFDLwRqlp57eBni+kkmVmwYsQmfAjJ
+         NcDt4L5//G6ue+WDbsA4Z4M/o7lFxOzbQQJ4D6/zpk72I1HGrEAZGi0vXqowaDBLiSCa
+         tPx3s6gkUPD/Kyv6NGu1ljv+0hfUIqhnOIrU799/0jGVFl7RUVlE+Da+9mHdD+VFVUH6
+         Lj/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6sRa/U5Kzs1JI5RnyoYklyv1NRbU9v8LrTPHarr/PE8=;
+        b=GJuwdeYu6WvHfDHLJwqOPkIh4MOKupq6aAEqgwtuU9R4zokXjfq+UMvq5uVQ6vQ6+4
+         TCD/TyGkwvwCQAMo4GOxGdDVhBZL+CXSyKuua6kYCvmoCQwBXwMysDSxFPKoQa/vWF/L
+         8Dp5pVk5NUmcnUo85EWrPqZdbUknsrg0yWDvOLbsmCxL5wZGNHKfxu0rhXMUMMp15+Y/
+         Hdt4wywF9785vuT3bfL/dkea8tZ8HRRDVY+WguqBgcVHR3pXHjyI9QLdPs8UvM1x2Ka7
+         Pta+Bvgvl81pvM1A/gZUAE51qjAB7uS3sLm5pdTH7NL5kZzoEJU302gA7ulA2rAqO/8I
+         tYow==
+X-Gm-Message-State: AOAM533VhKfuckwUlenroYrXe7U0Xere1s26DFyjNkjjiltUMjiKqgwE
+        /rec8GrRmA7DbqX885NS4MVOdzGQnv12/QGOMP5sQw==
+X-Google-Smtp-Source: ABdhPJwKttGJ/WSxMO3AOYN0BMrFeAFmWmg7rlKUzB3nt2oaOmB07PQ56EVlNxhui2daNXPCPW1sMy0iGvA9c5ZrRD4=
+X-Received: by 2002:a25:aa43:: with SMTP id s61mr27067882ybi.32.1613426257227;
+ Mon, 15 Feb 2021 13:57:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-02-15_16:2021-02-12,2021-02-15 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 mlxlogscore=999 malwarescore=0
- impostorscore=0 priorityscore=1501 spamscore=0 mlxscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2102150160
+References: <20210205222644.2357303-1-saravanak@google.com>
+ <CAMuHMdVL-1RKJ5u-HDVA4F4w_+8yGvQQuJQBcZMsdV4yXzzfcw@mail.gmail.com>
+ <CAGETcx-668+uGigaOMcsvv00mo6o_eGPcH0YyD28OCVEyVbw+w@mail.gmail.com> <CAMuHMdWFp_teT5Lgxe6BOpOb4UMM2_4FrKJm-2C6kuCH2YUMrw@mail.gmail.com>
+In-Reply-To: <CAMuHMdWFp_teT5Lgxe6BOpOb4UMM2_4FrKJm-2C6kuCH2YUMrw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 15 Feb 2021 13:57:00 -0800
+Message-ID: <CAGETcx9AZct4h0AdjbNzF5vjoYxT+M+zJ2ddsEN5SV9ALqV48A@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Geert,
 
-Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-
-> From: Rob Herring <robh@kernel.org>
+On Mon, Feb 15, 2021 at 7:16 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> The code for setting up the /chosen node in the device tree
-> and updating the memory reservation for the next kernel has been
-> moved to of_kexec_alloc_and_setup_fdt() defined in "drivers/of/kexec.c".
+> Hi Saravana,
 >
-> Use the common of_kexec_alloc_and_setup_fdt() to setup the device tree
-> and update the memory reservation for kexec for powerpc.
+> On Fri, Feb 12, 2021 at 4:00 AM Saravana Kannan <saravanak@google.com> wrote:
+> > On Thu, Feb 11, 2021 at 5:00 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > >   1. R-Car Gen2 (Koelsch), R-Car Gen3 (Salvator-X(S), Ebisu).
+> > >
+> > >       - Commit 2dfc564bda4a31bc ("soc: renesas: rcar-sysc: Mark device
+> > >         node OF_POPULATED after init") is no longer needed (but already
+> > >         queued for v5.12 anyway)
+> >
+> > Rob doesn't like the proliferation of OF_POPULATED and we don't need
+> > it anymore, so maybe work it out with him? It's a balance between some
+> > wasted memory (struct device(s)) vs not proliferating OF_POPULATED.
 >
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> ---
->  arch/powerpc/include/asm/kexec.h  |   1 +
->  arch/powerpc/kexec/elf_64.c       |  30 ++++---
->  arch/powerpc/kexec/file_load.c    | 132 +-----------------------------
->  arch/powerpc/kexec/file_load_64.c |   3 +
->  4 files changed, 26 insertions(+), 140 deletions(-)
+> > >   2. SH/R-Mobile AG5 (kzm9g), APE6 (ape6evm), A1 (armadillo800-eva)
+> > >
+> > >       - "PATCH] soc: renesas: rmobile-sysc: Set OF_POPULATED and absorb
+> > >         reset handling" is no longer needed
+> > >         https://lore.kernel.org/linux-arm-kernel/20210205133319.1921108-1-geert+renesas@glider.be/
+> >
+> > Good to see more evidence that this series is fixing things at a more
+> > generic level.
+>
+> I spoke too soon: if CONFIG_POWER_RESET_RMOBILE=n,
+> booting fails again, as everything is waiting on the system controller,
+> which never becomes available.
+> Rcar-sysc doesn't suffer from this problem, cfr. above.
+> Perhaps because the rmobile-sysc bindings use a hierarchical instead
+> of a linear PM domain description, and thus consumers point to the
+> children of the system controller node?
+> Cfr. system-controller@e6180000 in arch/arm/boot/dts/r8a7740.dtsi.
 
-Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+Ok, I see what's going on. The problem is that the "power domain"
+fwnode being registered is not the node that contains the "compatible"
+property and becomes a device. So this patch[1] is not helping here.
+Fix is to do something like this (to avoid using OF_POPULATED flag and
+breaking reset):
 
--- 
-Thiago Jung Bauermann
-IBM Linux Technology Center
+diff --git a/drivers/soc/renesas/rmobile-sysc.c
+b/drivers/soc/renesas/rmobile-sysc.c
+index 9046b8c933cb..b7e66139ef7d 100644
+--- a/drivers/soc/renesas/rmobile-sysc.c
++++ b/drivers/soc/renesas/rmobile-sysc.c
+@@ -344,6 +344,7 @@ static int __init rmobile_init_pm_domains(void)
+                        of_node_put(np);
+                        break;
+                }
++               fwnode_dev_initialized(&np->fwnode, true);
+        }
+
+        put_special_pds();
+
+Can you give it a shot?
+
+[1] - https://lore.kernel.org/lkml/20210205222644.2357303-8-saravanak@google.com/
+
+> > >       - On R-Mobile A1, I get a BUG and a memory leak:
+> > >
+> > >             BUG: spinlock bad magic on CPU#0, swapper/1
+> > >              lock: lcdc0_device+0x10c/0x308, .magic: 00000000, .owner:
+> > > <none>/-1, .owner_cpu: 0
+> > >             CPU: 0 PID: 1 Comm: swapper Not tainted
+> > > 5.11.0-rc5-armadillo-00032-gf0a85c26907e #266
+> > >             Hardware name: Generic R8A7740 (Flattened Device Tree)
+> > >             [<c010c3c8>] (unwind_backtrace) from [<c010a49c>]
+> > > (show_stack+0x10/0x14)
+> > >             [<c010a49c>] (show_stack) from [<c0159534>]
+> > > (do_raw_spin_lock+0x20/0x94)
+> > >             [<c0159534>] (do_raw_spin_lock) from [<c04089d8>]
+> > > (dev_pm_get_subsys_data+0x30/0xa0)
+> > >             [<c04089d8>] (dev_pm_get_subsys_data) from [<c0413698>]
+> > > (genpd_add_device+0x34/0x1c0)
+> > >             [<c0413698>] (genpd_add_device) from [<c041389c>]
+> > > (of_genpd_add_device+0x34/0x4c)
+> > >             [<c041389c>] (of_genpd_add_device) from [<c0a1e9bc>]
+> > > (board_staging_register_device+0xf8/0x118)
+> > >             [<c0a1e9bc>] (board_staging_register_device) from
+>
+> This is indeed a pre-existing problem.
+> of_genpd_add_device() is called before platform_device_register(),
+> as it needs to attach the genpd before the device is probed.
+> But the spinlock is only initialized when the device is registered.
+> This was masked before due to an unrelated wait context check failure,
+> which disabled any further spinlock checks, and exposed by fw_devlinks
+> changing probe order.
+> Patch sent.
+> "[PATCH] staging: board: Fix uninitialized spinlock when attaching genpd"
+> https://lore.kernel.org/r/20210215151405.2551143-1-geert+renesas@glider.be
+>
+
+Great!
+
+Thanks,
+Saravana
