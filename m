@@ -2,133 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C04B131C0B1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 18:35:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2EAF31C0E5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 18:45:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230223AbhBORdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 12:33:49 -0500
-Received: from relay11.mail.gandi.net ([217.70.178.231]:45605 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232733AbhBORd2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 12:33:28 -0500
-Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 0C6B3100002;
-        Mon, 15 Feb 2021 17:32:32 +0000 (UTC)
-Date:   Mon, 15 Feb 2021 18:32:32 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Steen Hegelund <steen.hegelund@microchip.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: reset: microchip sparx5 reset driver
- bindings
-Message-ID: <20210215173232.GM6798@piout.net>
-References: <20210210091952.2013027-1-steen.hegelund@microchip.com>
- <20210210091952.2013027-2-steen.hegelund@microchip.com>
+        id S230497AbhBORpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 12:45:15 -0500
+Received: from mail-wm1-f43.google.com ([209.85.128.43]:52074 "EHLO
+        mail-wm1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232142AbhBORoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 12:44:44 -0500
+Received: by mail-wm1-f43.google.com with SMTP id r5so3648053wmp.1;
+        Mon, 15 Feb 2021 09:44:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=gARK4EEPw8QHG4zORj2hJXRDBS8ikj+RA2aSSrZNdyw=;
+        b=fSaU32mrNkPfA/X/5OqMtM8c1wEFv4/cGBngY/E7jYQvJQFn4pHtU1TZ0ZKZPTCkM4
+         ZAIdUt/uYR0PuYKWauI/6XvvW4I5LG1wOnxl02yWuks08q+/c4b9Rkf2c27HdFqCmu/C
+         giFdnr+Kxd3FmfuBUjzTlZokSIWL09ieLe+30UMEtjUTkKDi8BxTYTeHkGYVcgdA9uv/
+         Kor6kva/oaFmRoqu/y3jN9w5v7yCYk0TkYgYj3I/220wxLeeHgpdoJuWIEnkKS/vvYkI
+         t0hJtqoxObqvmyj7LqJ/BOOeFVxxac6W3DzSAv3augNT6GmyeyRsp33hcuvDQWeUI3hn
+         lGuw==
+X-Gm-Message-State: AOAM530RTASD3r1o5qdTzq98QWEYdXF+oegHC/JBjC7o7e+6kh1T7nVB
+        0mnayHxQOeQ5upXuD/T3J0A=
+X-Google-Smtp-Source: ABdhPJyyv4oPKKxUPnIqfN5TLl844GoE0VrsKXomIWtJSnpWlVA7um4n62TF0QDSN19XH1mtdBWtVQ==
+X-Received: by 2002:a1c:48d6:: with SMTP id v205mr25021wma.146.1613411042349;
+        Mon, 15 Feb 2021 09:44:02 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id q2sm18201546wrx.79.2021.02.15.09.44.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Feb 2021 09:44:01 -0800 (PST)
+Date:   Mon, 15 Feb 2021 18:43:59 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     gregkh <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Alexander Graf <graf@amazon.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Olof Johansson <olof@lixom.net>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Will Deacon <will@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Stan Skowronek <stan@corellium.com>
+Subject: Re: [PATCH v2 00/25] Apple M1 SoC platform bring-up
+Message-ID: <20210215174359.hrqlz2je54qggvf7@kozik-lap>
+References: <20210215121713.57687-1-marcan@marcan.st>
+ <CAK8P3a1bXiWcieqTSZARN+to=J5RjC2cwbn_8ZOCYw2hhyyBYw@mail.gmail.com>
+ <YCp1p1tRHF6OyR0C@kroah.com>
+ <7c8bcf79-233b-7ea8-4fea-2fb29ca430ef@marcan.st>
+ <YCqdi/5TSlbt0w/2@kroah.com>
+ <e77a02eb-8493-14f0-f71c-a15646324d19@marcan.st>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210210091952.2013027-2-steen.hegelund@microchip.com>
+In-Reply-To: <e77a02eb-8493-14f0-f71c-a15646324d19@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2021 10:19:50+0100, Steen Hegelund wrote:
-> Document the Sparx5 reset device driver bindings
+On Tue, Feb 16, 2021 at 01:54:25AM +0900, Hector Martin wrote:
+> On 16/02/2021 01.12, gregkh wrote:
+> > On Tue, Feb 16, 2021 at 12:57:27AM +0900, Hector Martin wrote:
+> > > On 15/02/2021 22.22, gregkh wrote:
+> > > > On Mon, Feb 15, 2021 at 01:57:39PM +0100, Arnd Bergmann wrote:
+> > > > > (adding maintainers for the serial/irqchip/clocksource drivers and
+> > > > > arch/arm64 to cc)
+> > > > > 
+> > > > > I would suggest merging it together as a series through the soc tree for
+> > > > > v5.13, once each patch has been reviewed by the respective subsystem
+> > > > > maintainers, with possible add-on patches on the same branch for
+> > > > > additional drivers that may become ready during the 5.12-rc cycle.
+> > > > > After the initial merge, driver patches will of course go through subsystem
+> > > > > trees as normal.
+> > > > > 
+> > > > > Let me know if that works for everyone.
+> > > > 
+> > > > Sure, as long as the maintainers get to see the patches, I don't think
+> > > > I've seen the serial ones at all...
+> > > 
+> > > Sorry, I figured Krzysztof would take a look at it first and I didn't want
+> > > to spam too much. I'm still getting used to figuring out who to CC...
+> > 
+> > scripts/get_maintainer.pl is your friend.
 > 
-> The driver uses two IO ranges on sparx5 for access to
-> the reset control and the reset status.
+> It's the additional step of figuring out who to include from
+> get_maintainer.pl output, and whether any subsetting is warranted at all,
+> that I'm finding less well documented... :-)
 > 
-> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-> ---
->  .../bindings/reset/microchip,rst.yaml         | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> new file mode 100644
-> index 000000000000..80046172c9f8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Microchip Sparx5 Switch Reset Controller
-> +
-> +maintainers:
-> +  - Steen Hegelund <steen.hegelund@microchip.com>
-> +  - Lars Povlsen <lars.povlsen@microchip.com>
-> +
-> +description: |
-> +  The Microchip Sparx5 Switch provides reset control and implements the following
-> +  functions
-> +    - One Time Switch Core Reset (Soft Reset)
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^reset-controller@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    const: microchip,sparx5-switch-reset
-> +
-> +  reg:
-> +    items:
-> +      - description: cpu block registers
-> +      - description: global control block registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: cpu
-> +      - const: gcb
-> +
+> (In particular for a bring-up series such as this one, where most people are
+> only concerned with a few patches... but maybe I'm just overthinking things)
 
-I still think this is not right because then you will be mapping the
-same set of register using multiple drivers without any form of
-synchronisation which will work because you are mapping the region
-without requesting it. But this may lead to issues later.
+For bigger patchsets, you should combine get_maintainer.pl with sending
+emails so individual patches will go to all role-based entries from
+get_maintainer.pl and to all mailing lists. You can (and sometimes even
+worth to) skip proposals based on git-history.
 
-At least, you should make cpu start at 0x80 and of size 4. Else, you
-won't be able to define and use the GPRs that are in front of
-CPU_REGS:RESET.
+Then the cover letter which should go to everyone... or most of people
+and linked from individual patches.
 
-I would still keep DEVCPU_GCB:CHIP_REGS as a syscon, especially since
-you are mapping the whole set of registers.
+For example the easiest I think:
+1. Put all folks and lists as "Cc:" in cover letter.
+2. Send everything:
+   git send-email --cc-cmd "scripts/get_maintainer.pl --no-git --no-roles --no-rolestats" --to linux-kernel@vger.kernel.org 0*
 
+Optionally you could add --no-git-fallback to get_maintainer if it
+proposes some irrelevant addresses.
 
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    reset: reset-controller@0 {
-> +        compatible = "microchip,sparx5-switch-reset";
-> +        #reset-cells = <1>;
-> +        reg = <0x0 0xd0>,
-> +              <0x11010000 0x10000>;
-> +        reg-names = "cpu", "gcb";
-> +    };
-> +
-> -- 
-> 2.30.0
-> 
+Other way is to send first cover letter and then reference it via
+in-reply-to:
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+1. To get everyone for cover letter:
+   scripts/get_maintainer.pl --no-multiline --interactive --separator=\'' --to '\' --no-git --no-roles --no-rolestats 00*
+
+2. git send-email --cc linux-kernel@vger.kernel.org ... 0000*
+
+3. Finally all patches with in-reply-to:
+   git send-email --cc-cmd "scripts/get_maintainer.pl --no-git --no-roles --no-rolestats" --to linux-kernel@vger.kernel.org --no-thread --in-reply-to='foo-bar-xxxxxxx' 000[123456789]-* 00[123456789]*-*
+
+Best regards,
+Krzysztof
