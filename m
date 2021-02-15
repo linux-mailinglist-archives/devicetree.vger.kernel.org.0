@@ -2,78 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C83331C1FD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 19:54:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B82831C242
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 20:12:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbhBOSyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 13:54:17 -0500
-Received: from mail-wm1-f48.google.com ([209.85.128.48]:40293 "EHLO
-        mail-wm1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230105AbhBOSyO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 13:54:14 -0500
-Received: by mail-wm1-f48.google.com with SMTP id o24so10232094wmh.5;
-        Mon, 15 Feb 2021 10:53:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ubEzZWPze3/t5GrzMOvVGOpAzPZ7obyaNgcvcyBuo8A=;
-        b=M7tjkOXElhfcQUHFY5KrX96UkYdy6AJYPbf2QeiYx63OXaVZt/s8wurzEXXYQSs/QI
-         UffG7UaM0LHBciNuHXBIN89SDG0l8As3L55STDLod1RR2XIcSIM1C8+5wRoIIXG8wcDE
-         DRZu8OLjIIgA1Y5IQMt/ZzroPCZYb/BkahnVPWv0xcb2IwbamJ7pWp/T9EIWRJs7N7k4
-         Y5rvlCbzPuTJTQFHEWHggTz2Rco5hzPJcoCrdg24b8x0tm+Q48tlwqV/L2w4KPu/3sQ4
-         J63UqcTpee1+MfsIf6DPSshev/UmDLXwWsmNz0vjtPBUARHfe84+Jc36Y/8bJKC0xDFK
-         59dg==
-X-Gm-Message-State: AOAM530xbRmYkaka1+Dg40JiqgcFSK4+aO6PePgNIzNSRDUvj4WvsYjL
-        4V83yrKGu8PnoDtsU+Ply1Q=
-X-Google-Smtp-Source: ABdhPJy9COcGz38P5XVPC0HZXAmcQ+bCFmYwqlVFdqpT8meiVLJQp2DpRGh1bPel5XIBV0papONmdw==
-X-Received: by 2002:a1c:7f4a:: with SMTP id a71mr238538wmd.92.1613415212103;
-        Mon, 15 Feb 2021 10:53:32 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id i10sm32631340wrp.0.2021.02.15.10.53.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Feb 2021 10:53:31 -0800 (PST)
-Date:   Mon, 15 Feb 2021 19:53:29 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        id S230120AbhBOTMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 14:12:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39980 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229981AbhBOTMN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Feb 2021 14:12:13 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4ED1664DA5;
+        Mon, 15 Feb 2021 19:11:31 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lBjHN-00EKYW-60; Mon, 15 Feb 2021 19:11:29 +0000
+Date:   Mon, 15 Feb 2021 19:11:28 +0000
+Message-ID: <87r1lhp2n3.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        gregkh <gregkh@linuxfoundation.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 21/25] dt-bindings: serial: samsung: Add
- apple,s5l-uart compatible
-Message-ID: <20210215185329.raxlgso6q5hcrijm@kozik-lap>
+        Rob Herring <robh@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Alexander Graf <graf@amazon.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Olof Johansson <olof@lixom.net>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Will Deacon <will@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Stan Skowronek <stan@corellium.com>
+Subject: Re: [PATCH v2 00/25] Apple M1 SoC platform bring-up
+In-Reply-To: <20210215174359.hrqlz2je54qggvf7@kozik-lap>
 References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-22-marcan@marcan.st>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210215121713.57687-22-marcan@marcan.st>
+        <CAK8P3a1bXiWcieqTSZARN+to=J5RjC2cwbn_8ZOCYw2hhyyBYw@mail.gmail.com>
+        <YCp1p1tRHF6OyR0C@kroah.com>
+        <7c8bcf79-233b-7ea8-4fea-2fb29ca430ef@marcan.st>
+        <YCqdi/5TSlbt0w/2@kroah.com>
+        <e77a02eb-8493-14f0-f71c-a15646324d19@marcan.st>
+        <20210215174359.hrqlz2je54qggvf7@kozik-lap>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: krzk@kernel.org, marcan@marcan.st, gregkh@linuxfoundation.org, mark.rutland@arm.com, robh@kernel.org, devicetree@vger.kernel.org, tony@atomide.com, linus.walleij@linaro.org, daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org, arnd@kernel.org, graf@amazon.com, catalin.marinas@arm.com, olof@lixom.net, mohamed.mediouni@caramail.com, tglx@linutronix.de, mark.kettenis@xs4all.nl, will@kernel.org, linux-arm-kernel@lists.infradead.org, stan@corellium.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 09:17:09PM +0900, Hector Martin wrote:
-> Apple mobile devices originally used Samsung SoCs (starting with the
-> S5L8900), and their current in-house SoCs continue to use compatible
-> UART peripherals. We'll call this UART variant apple,s5l-uart.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+On Mon, 15 Feb 2021 17:43:59 +0000,
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> For bigger patchsets, you should combine get_maintainer.pl with sending
+> emails so individual patches will go to all role-based entries from
+> get_maintainer.pl and to all mailing lists. You can (and sometimes even
+> worth to) skip proposals based on git-history.
+> 
+> Then the cover letter which should go to everyone... or most of people
+> and linked from individual patches.
+> 
+> For example the easiest I think:
+> 1. Put all folks and lists as "Cc:" in cover letter.
+> 2. Send everything:
+>    git send-email --cc-cmd "scripts/get_maintainer.pl --no-git --no-roles --no-rolestats" --to linux-kernel@vger.kernel.org 0*
+> 
+> Optionally you could add --no-git-fallback to get_maintainer if it
+> proposes some irrelevant addresses.
+> 
+> Other way is to send first cover letter and then reference it via
+> in-reply-to:
+> 
+> 1. To get everyone for cover letter:
+>    scripts/get_maintainer.pl --no-multiline --interactive --separator=\'' --to '\' --no-git --no-roles --no-rolestats 00*
+> 
+> 2. git send-email --cc linux-kernel@vger.kernel.org ... 0000*
+> 
+> 3. Finally all patches with in-reply-to:
+>    git send-email --cc-cmd "scripts/get_maintainer.pl --no-git --no-roles --no-rolestats" --to linux-kernel@vger.kernel.org --no-thread --in-reply-to='foo-bar-xxxxxxx' 000[123456789]-* 00[123456789]*-*
 
-Best regards,
-Krzysztof
+I personally dislike this method as a recipient. Context matters, and
+seeing how an isolated patch fits in a bigger series is pretty
+important. I can mark the patches I don't care about quicker than you
+can say "Don't care", and it saves me having to drag the mbox via lore
+and import it.
+
+That's only me, but I suspect I'm not the only one with that
+particular flow.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
