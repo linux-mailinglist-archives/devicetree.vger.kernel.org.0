@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9898531BE7A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 17:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CD4A31BEB2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 17:19:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232618AbhBOQK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 11:10:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45004 "EHLO
+        id S232110AbhBOQQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 11:16:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232242AbhBOQCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 11:02:36 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67DBC061788
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 08:01:40 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id v15so9523804wrx.4
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 08:01:40 -0800 (PST)
+        with ESMTP id S232692AbhBOQCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 11:02:42 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70531C061225
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 08:01:42 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id n8so9492519wrm.10
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 08:01:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=SIR8kxlA4Jty9/otffAphB5/jPhHJK1wsDSo+IREMHg=;
-        b=xAUHUH2ZGTK9itsUvPnViiXQnYk2p/FdoaR+mxhqrVTnKd5ialKAionRBo3hhxAsGV
-         /hoc4W3bhajapFNiS+JVgjy5o4u+1cLwo0tLqJcqrYvwQeIGrFt1pijroCfMihJGia/S
-         1eTUmEvzA4TH+DyU8Ii0eRjofSXgKo5jnli2HSDBKjdS7vmyGAR1PHK8CFCjizyeXr7c
-         myM+sbEP9w30bzgRRwSPF/F3GlHW4IaymBsO3Qk5GGw4c0autgcgxaXcbtNIEe0P1HZL
-         GAxZovG64fPEaHY8aC22YUTt2cdKAnkiToC53kfgkja28dxun/oZQYIPILT/cv6FB+0O
-         AEpw==
+        bh=JxRZlErNXPjnpC+yN0itO0sslWLEquDG/p8f0PT1wRA=;
+        b=sLI2bR231U91KLt3ANmrRMnWDsYMaa4YwuNRarrmXaGrn7f/zb4lh5/iFepp5xzWk7
+         84Ej47LtyFUOI2SdQkXcd4Qb7HsDhNZ8NeSfq8zMfnJvM8uUqwXFbPHmY5wG6s++0Yu1
+         AgkcJV7xRy9eTOHcESkGhqmD0IXES7EiO0kg/5k9rMlhAtRejMbeWs3021r6xCrIqfl4
+         ZYIoOI7n8dlNrvIMMOyqCVBEQwffJOFvcako3Y8pSFQxKX5gzkKGb5YDRQV8NYcjPWXB
+         VeshivIcEHf5JVUznrGbROwx+TZUoujHPsk2rniwOtBfa3Q1+arI8UQlzytPZWSXMTJ1
+         CjdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SIR8kxlA4Jty9/otffAphB5/jPhHJK1wsDSo+IREMHg=;
-        b=m/QX37x0NB9OflLNkzk0ro+eeZjrOpiBB+xUSJEh19qsuu1ZHUTvbvBtdlurx5EZCH
-         ETCcTdpR7AgNo/SR2wB2MQQ7vkj9fg6LMHlUowR8S8Ma9sHqsZ8IkMceAXWR9OCxe5gF
-         gEmOsA3yjWK2AppT5cxoM6CqnNSQAtFtQOaWUjyfxK0YTxrCnGSfKGfIyZLCgn97zOBP
-         Szr5nXGwF/BDsjsdYaQLo5fVcetsKEKZfpDNifteP8Vnurd03HS/xtsB2Srr5OLgW4L2
-         I5D4Av9kJwHzdlRzsMN7pa5iCt75GU7Fbv1tTyzGIXXywYpP82AbywTplNWLv8fMcNoB
-         AJkw==
-X-Gm-Message-State: AOAM532umXxk+1dx1jhmi29wDmbA813jSFcj/RQTWWCoE0QkvT/UAIX3
-        AQsjBtC+wyYZYZLV1y0d8p995A==
-X-Google-Smtp-Source: ABdhPJxfJajEcL7wyvjJiHAxOyj00f/iUHnAV6kOd/ACwpwuqYrfHNuFh6oAV4p6EvVHv81pPBZNlQ==
-X-Received: by 2002:adf:ef4b:: with SMTP id c11mr13862618wrp.0.1613404899634;
-        Mon, 15 Feb 2021 08:01:39 -0800 (PST)
+        bh=JxRZlErNXPjnpC+yN0itO0sslWLEquDG/p8f0PT1wRA=;
+        b=RF0PglkqN1EMNvpGYC11QGPoypB4NAT7YTsZKKCJpetBouMmg9h8+GddcmY/Mp6d/4
+         eDATOTh7lfUqni+CJ6zbZ++IBZVz3Gt4QORrbCB1OAtm2sXkekIWn9DL+9TFreV7Po+a
+         XAD35xBcjP2IbTSrVDWGhKOGz9cW+S6WbCq2fQLjfDEbPX3f7ZCFFG5tdRkX5SLCe6YG
+         U9UEik80Lk1KqG43TWBRyx9ba1aicLD9i5SDg0yF/bQ6oQWM14DZWgEYIwNzVk7TU8RC
+         cHuRfqFallaXIRenil9otd91gq8KIylU3ZOq2Rmy9H6YCLHhjH6w0aQrimvOlgVxVZ/g
+         ZSYA==
+X-Gm-Message-State: AOAM533c1VM2E8Tz8tfTCxvUAO8DEATpcg3J7xokpwIjJYN0pwtH19bT
+        LJCOyd4HrW2PZ2Vkaf6jJS9F+A==
+X-Google-Smtp-Source: ABdhPJwmv2o468vUPS0CZWoSUulA0lCoZoLy1GOuleln2dj7CJ1XkjTZ+N+IZLV4lZij9fSPpHl5Wg==
+X-Received: by 2002:adf:80c3:: with SMTP id 61mr19256425wrl.100.1613404901155;
+        Mon, 15 Feb 2021 08:01:41 -0800 (PST)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id 101sm14698659wrk.4.2021.02.15.08.01.38
+        by smtp.gmail.com with ESMTPSA id 101sm14698659wrk.4.2021.02.15.08.01.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Feb 2021 08:01:39 -0800 (PST)
+        Mon, 15 Feb 2021 08:01:40 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, stanimir.varbanov@linaro.org,
         agross@kernel.org, bjorn.andersson@linaro.org
 Cc:     bryan.odonoghue@linaro.org
-Subject: [PATCH v2 1/2] dt-bindings: clock: Add missing SM8250 videoc clock indices
-Date:   Mon, 15 Feb 2021 16:02:53 +0000
-Message-Id: <20210215160254.1572615-2-bryan.odonoghue@linaro.org>
+Subject: [PATCH v2 2/2] dt-bindings: media: venus: Add sm8250 dt schema
+Date:   Mon, 15 Feb 2021 16:02:54 +0000
+Message-Id: <20210215160254.1572615-3-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210215160254.1572615-1-bryan.odonoghue@linaro.org>
 References: <20210215160254.1572615-1-bryan.odonoghue@linaro.org>
@@ -64,28 +64,187 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two indexes need to be added to videocc-sm8250.h for venus to function
-properly. Rather than adding the missing indexes when used we add them
-separately here to keep checkpatch.pl happy.
+Add a schema description for the venus video encoder/decoder on the sm8250.
 
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- include/dt-bindings/clock/qcom,videocc-sm8250.h | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/media/qcom,sm8250-venus.yaml     | 167 ++++++++++++++++++
+ 1 file changed, 167 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
 
-diff --git a/include/dt-bindings/clock/qcom,videocc-sm8250.h b/include/dt-bindings/clock/qcom,videocc-sm8250.h
-index 2b2b3867af25..8d321ac3b1fa 100644
---- a/include/dt-bindings/clock/qcom,videocc-sm8250.h
-+++ b/include/dt-bindings/clock/qcom,videocc-sm8250.h
-@@ -16,6 +16,8 @@
- #define VIDEO_CC_MVS1C_DIV2_DIV_CLK_SRC	6
- #define VIDEO_CC_PLL0			7
- #define VIDEO_CC_PLL1			8
-+#define VIDEO_CC_MVS0_DIV_CLK_SRC	9
-+#define VIDEO_CC_MVS0_CLK		10
- 
- /* VIDEO_CC resets */
- #define VIDEO_CC_CVP_INTERFACE_BCR	0
+diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
+new file mode 100644
+index 000000000000..7b81bd7f2399
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
+@@ -0,0 +1,167 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/media/qcom,sm8250-venus.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Venus video encode and decode accelerators
++
++maintainers:
++  - Stanimir Varbanov <stanimir.varbanov@linaro.org>
++
++description: |
++  The Venus IP is a video encode and decode accelerator present
++  on Qualcomm platforms
++
++properties:
++  compatible:
++    const: qcom,sm8250-venus
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  power-domains:
++    minItems: 2
++    maxItems: 3
++
++  power-domain-names:
++    minItems: 2
++    maxItems: 3
++    items:
++      - const: venus
++      - const: vcodec0
++      - const: mx
++
++  clocks:
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: iface
++      - const: core
++      - const: vcodec0_core
++
++  iommus:
++    maxItems: 1
++
++  memory-region:
++    maxItems: 1
++
++  interconnects:
++    maxItems: 2
++
++  interconnect-names:
++    items:
++      - const: cpu-cfg
++      - const: video-mem
++
++  resets:
++    maxItems: 2
++
++  reset-names:
++    items:
++      - const: bus
++      - const: core
++
++  video-decoder:
++    type: object
++
++    properties:
++      compatible:
++        const: venus-decoder
++
++    required:
++      - compatible
++
++    additionalProperties: false
++
++  video-encoder:
++    type: object
++
++    properties:
++      compatible:
++        const: venus-encoder
++
++    required:
++      - compatible
++
++    additionalProperties: false
++
++  video-firmware:
++    type: object
++
++    description: |
++      Firmware subnode is needed when the platform does not
++      have TrustZone.
++
++    properties:
++      iommus:
++        maxItems: 1
++
++    required:
++      - iommus
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - power-domains
++  - power-domain-names
++  - clocks
++  - clock-names
++  - interconnects
++  - interconnect-names
++  - iommus
++  - memory-region
++  - resets
++  - reset-names
++  - video-decoder
++  - video-encoder
++
++additionalProperties: false
++
++examples:
++  - |
++        #include <dt-bindings/interrupt-controller/arm-gic.h>
++        #include <dt-bindings/clock/qcom,videocc-sm8250.h>
++        #include <dt-bindings/interconnect/qcom,sm8250.h>
++        #include <dt-bindings/clock/qcom,gcc-sm8250.h>
++        #include <dt-bindings/power/qcom-rpmpd.h>
++
++        venus: video-codec@aa00000 {
++            compatible = "qcom,sm8250-venus";
++            reg = <0x0aa00000 0xff000>;
++            interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
++            power-domains = <&videocc MVS0C_GDSC>,
++                            <&videocc MVS0_GDSC>,
++                            <&rpmhpd SM8250_MX>;
++            power-domain-names = "venus", "vcodec0", "mx";
++
++            clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
++                     <&videocc VIDEO_CC_MVS0C_CLK>,
++                     <&videocc VIDEO_CC_MVS0_CLK>;
++            clock-names = "iface", "core", "vcodec0_core";
++
++            interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_VENUS_CFG>,
++                            <&mmss_noc MASTER_VIDEO_P0 &mc_virt SLAVE_EBI_CH0>;
++            interconnect-names = "cpu-cfg", "video-mem";
++
++            iommus = <&apps_smmu 0x2100 0x0400>;
++            memory-region = <&video_mem>;
++
++            resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
++                     <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
++            reset-names = "bus", "core";
++
++            video-decoder {
++                compatible = "venus-decoder";
++            };
++
++            video-encoder {
++                compatible = "venus-encoder";
++            };
++        };
 -- 
 2.29.2
 
