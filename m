@@ -2,288 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78F4631B627
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 10:07:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7239931B639
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 10:12:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230023AbhBOJE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 04:04:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40374 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230052AbhBOJEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 04:04:00 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 420C3C061574
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 01:02:56 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id 7so8013832wrz.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 01:02:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:autocrypt:organization:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=oxng+iLTqqX8u5ivqtnCjUwXLDUqWJ1hcpwFjRoA3VA=;
-        b=ac688awfA3FPRyNpqL3gz2V/rX+S8U5zTQRtMRo6icLd2KKc2Q0vJRIGoh9eutOswf
-         Yrq3HZUkcs8iv8oiCGSfcXjYNE+/SNK8A9RMz72KvK/2uv7PvOxRBIXriw8ojqK43u5O
-         MxFLuwhOzZFa2Asy6mJXPBHp5Ry+81qdM1G/uF//ca4CQU66Sm49He6efgMffWH2wzV9
-         d3F82w2n4q6TW+eYGN6j433Jb/E0RZAGD48o56/Rw42ewbPl30JJZz48qystNsggrNm3
-         c0w0cj1ZRzEJIcZw/paHy0IUgb+FAPWAJBBuhKOGGho/yYY5A2AAf4RKZ1pvK8CsDLBQ
-         H99w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=oxng+iLTqqX8u5ivqtnCjUwXLDUqWJ1hcpwFjRoA3VA=;
-        b=fMDbN6/yRIIdUSdoSGAWffvWQEu/5zM0IsGQCZDTxJBsqHcQVwVZHgSlCh8HFJikwJ
-         U5cgr6ovSZTwBmTJ7F8tmpSZvfSUZ9TAm2ICXpsphhkQrdgTItf5YVwNHC6FGJAlRmxX
-         tA9legUqbh6D1XZVlVzgKUeJbcMXS4PFPwRtVRU1oJcUqodc2QldWwEdzQOEg4thWRHl
-         gyDYdEGRJyoe+8NEF8wNGxCbilnIPd2svfRLQabTdEE0TZPr1tLdovroYxjIU1Z/wPg1
-         TaQ3oqHeJsijk1hkvYXNBHzq/YTpRsjJjyeUdjQKrl9mKvLb1Ig2dUdHK7C6unEMXgZ2
-         R0BA==
-X-Gm-Message-State: AOAM531laPP0UJQiXuJy/cgsy//r9XAZM54chayisKRhD5UN3PHfDVo2
-        KJtalgB4GumC5B7Dt0YrnQ4iEg==
-X-Google-Smtp-Source: ABdhPJw9V7cNWKzDbfSUv8B57NHph44XaDLrcPA6q6O1NqcDCMjI2y8gkBhlh76py+jkM/KamN5Dsw==
-X-Received: by 2002:a5d:4651:: with SMTP id j17mr17448450wrs.64.1613379774832;
-        Mon, 15 Feb 2021 01:02:54 -0800 (PST)
-Received: from ?IPv6:2a01:e0a:90c:e290:3627:e500:c425:5f5c? ([2a01:e0a:90c:e290:3627:e500:c425:5f5c])
-        by smtp.gmail.com with ESMTPSA id t9sm18140381wrw.76.2021.02.15.01.02.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Feb 2021 01:02:54 -0800 (PST)
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for
- SN65DSI83/84/85
-To:     Jagan Teki <jagan@amarulasolutions.com>,
+        id S230056AbhBOJJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 04:09:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43426 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229595AbhBOJJu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Feb 2021 04:09:50 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 83D8F64E51;
+        Mon, 15 Feb 2021 09:09:09 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lBZsR-00EEeT-7d; Mon, 15 Feb 2021 09:09:07 +0000
+Date:   Mon, 15 Feb 2021 09:08:56 +0000
+Message-ID: <87v9atpujb.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
-        Marek Vasut <marex@denx.de>
-References: <20210214174453.104616-1-jagan@amarulasolutions.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <8330126a-b2f4-5991-a2fa-37776cb412d0@baylibre.com>
-Date:   Mon, 15 Feb 2021 10:02:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210214174453.104616-1-jagan@amarulasolutions.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
+Subject: Re: [PATCH v2 2/2] of: property: Add fw_devlink support for interrupts
+In-Reply-To: <CAGETcx9mzYbujVW8ALrNvs1FabvuUpZpChxBb0Tp8q7w+TY4=A@mail.gmail.com>
+References: <20210121225712.1118239-1-saravanak@google.com>
+        <20210121225712.1118239-3-saravanak@google.com>
+        <20210213185422.GA195733@roeck-us.net>
+        <CAGETcx_RpG45Fwhty1Uj34Mv01qkH5vFv0J6jVtJgTBFQinOBA@mail.gmail.com>
+        <a76a73e4-f7ba-4893-14b8-01d21943241a@roeck-us.net>
+        <CAGETcx9mzYbujVW8ALrNvs1FabvuUpZpChxBb0Tp8q7w+TY4=A@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: saravanak@google.com, linux@roeck-us.net, robh+dt@kernel.org, frowand.list@gmail.com, gregkh@linuxfoundation.org, linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linus.walleij@linaro.org, bgolaszewski@baylibre.com, geert@linux-m68k.org, jonathanh@nvidia.com, khilman@baylibre.com, kernel-team@android.com, robh@kernel.org, treding@nvidia.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Saravana,
 
-On 14/02/2021 18:44, Jagan Teki wrote:
-> SN65DSI83/84/85 devices are MIPI DSI to LVDS based bridge
-> controller IC's from Texas Instruments.
+On Mon, 15 Feb 2021 08:29:53 +0000,
+Saravana Kannan <saravanak@google.com> wrote:
 > 
-> SN65DSI83 - Single Channel DSI to Single-link LVDS bridge
-> SN65DSI84 - Single Channel DSI to Dual-link LVDS bridge
-> SN65DSI85 - Dual Channel DSI to Dual-link LVDS bridge
+> On Sun, Feb 14, 2021 at 7:58 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> >
+> > On 2/14/21 1:12 PM, Saravana Kannan wrote:
+> > [ ... ]
+> > >
+> > > Can you please give me the following details:
+> > > * The DTS file for the board (not the SoC).
+> >
+> > The devicetree file extracted from the running system is attached.
+> > Hope it helps.
 > 
-> Right now the bridge driver is supporting Channel A with single
-> link, so dt-bindings documented according to it.
+> Hi Guenter,
+> 
+> Thanks for the DTS file and logs. That helps a lot.
+> 
+> Looking at the attachment and this line from the earlier email:
+> [   14.084606][   T11] pci 0005:01:00.0: probe deferral - wait for
+> supplier interrupt-controller@0
+> 
+> It's clear the PCI node is waiting on:
+>         interrupt-controller@0 {
+>                 #address-cells = <0x00>;
+>                 device_type = "PowerPC-Interrupt-Source-Controller";
+>                 compatible = "ibm,opal-xive-vc\0IBM,opal-xics";
+>                 #interrupt-cells = <0x02>;
+>                 reg = <0x00 0x00 0x00 0x00>;
+>                 phandle = <0x804b>;
+>                 interrupt-controller;
+>         };
+> 
+> If I grep for "ibm,opal-xive-vc", I see only one instance of it in the
+> code. And that eventually ends up getting called like this:
+> irq_find_matching_fwspec() -> xive_irq_domain_match() -> xive_native_match()
+> 
+> static bool xive_native_match(struct device_node *node)
+> {
+>         return of_device_is_compatible(node, "ibm,opal-xive-vc");
+> }
+> 
+> However, when the IRQ domain are first registered, in xive_init_host()
+> the "np" passed in is NOT the same node that xive_native_match() would
+> match.
+> static void __init xive_init_host(struct device_node *np)
+> {
+>         xive_irq_domain = irq_domain_add_nomap(np, XIVE_MAX_IRQ,
+>                                                &xive_irq_domain_ops, NULL);
+>         if (WARN_ON(xive_irq_domain == NULL))
+>                 return;
+>         irq_set_default_host(xive_irq_domain);
+> }
+> 
+> Instead, the "np" here is:
+>         interrupt-controller@6030203180000 {
+>                 ibm,xive-provision-page-size = <0x10000>;
+>                 ibm,xive-eq-sizes = <0x0c 0x10 0x15 0x18>;
+>                 single-escalation-support;
+>                 ibm,xive-provision-chips = <0x00>;
+>                 ibm,xive-#priorities = <0x08>;
+>                 compatible = "ibm,opal-xive-pe\0ibm,opal-intc";
+>                 reg = <0x60302 0x3180000 0x00 0x10000 0x60302
+> 0x3190000 0x00 0x10000 0x60302 0x31a0000 0x00 0x10000 0x60302
+> 0x31b0000 0x00 0x10000>;
+>                 phandle = <0x8051>;
+>         };
+> 
+> There are many ways to fix this, but I first want to make sure this is
+> a valid way to register irqdomains before trying to fix it. I just
+> find it weird that the node that's registered is unrelated (not a
+> parent/child) of the node that matches.
+> 
+> Marc,
+> 
+> Is this a valid way to register irqdomains? Just registering
+> interrupt-controller@6030203180000 DT node where there are multiple
+> interrupt controllers?
 
-Shouldn't it describe Dual-link LVDS already for SN65DSI84/85 and Dual Channel DSI for SN65DSI85 even if not implemented in the driver ?
+Absolutely.
 
-Neil
+The node is only one of the many possible ways to retrieve a
+domain. In general, what you pass as the of_node/fwnode_handle can be
+anything you want. It doesn't have to represent anything in the system
+(we even create then ex-nihilo in some cases), and the match/select
+callbacks are authoritative when they exist.
 
-> 
-> Cc: Marek Vasut <marex@denx.de>
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
-> Changes for v3:
-> - fixed Rob comments
-> - updated commit message and file name to support all chip variants 
-> Changes for v2:
-> - none
-> 
->  .../bindings/display/bridge/ti,sn65dsi8x.yaml | 122 ++++++++++++++++++
->  1 file changed, 122 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi8x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi8x.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi8x.yaml
-> new file mode 100644
-> index 000000000000..7f9f8cd6e786
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi8x.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi8x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI SN65DSI83/84/85 MIPI DSI to LVDS bridge bindings
-> +
-> +maintainers:
-> +  - Jagan Teki <jagan@amarulasolutions.com>
-> +
-> +description: |
-> +  SN65DSI83/84/85 devices are MIPI DSI to LVDS based bridge controller
-> +  IC's from Texas Instruments.
-> +
-> +  SN65DSI83 - Single Channel DSI to Single-link LVDS bridge
-> +  SN65DSI84 - Single Channel DSI to Dual-link LVDS bridge
-> +  SN65DSI85 - Dual Channel DSI to Dual-link LVDS bridge
-> +
-> +  Bridge decodes MIPI DSI 18bpp RGB666 and 240bpp RG888 packets and
-> +  converts the formatted video data stream to a FlatLink compatible
-> +  LVDS output operating at pixel clocks operating from 25 MHx to
-> +  154 MHz.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,sn65dsi83
-> +      - ti,sn65dsi84
-> +
-> +  reg:
-> +    const: 0x2c
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description: GPIO specifier for bridge enable pin (active high).
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: |
-> +          DSI Input. The remote endpoint phandle should be a
-> +          reference to a valid mipi_dsi_host device node.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: |
-> +          Video port for LVDS output (panel or connector).
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - enable-gpios
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi {
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +
-> +       ports {
-> +           #address-cells = <1>;
-> +           #size-cells = <0>;
-> +
-> +           port@0 {
-> +               reg = <0>;
-> +               dsi_in: endpoint {
-> +                   remote-endpoint = <&ltdc_ep0_out>;
-> +               };
-> +           };
-> +
-> +           port@1 {
-> +               reg = <1>;
-> +               dsi_out: endpoint {
-> +                   remote-endpoint = <&bridge_in>;
-> +                   data-lanes = <0 1>;
-> +               };
-> +           };
-> +       };
-> +    };
-> +
-> +    i2c6 {
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +
-> +       bridge@2c {
-> +           compatible = "ti,sn65dsi84";
-> +           reg = <0x2c>;
-> +           enable-gpios = <&gpiof 15 GPIO_ACTIVE_HIGH>;
-> +
-> +           ports {
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               port@0 {
-> +                   reg = <0>;
-> +                   bridge_in: endpoint {
-> +                        remote-endpoint = <&dsi_out>;
-> +                   };
-> +               };
-> +
-> +               port@1 {
-> +                   reg = <1>;
-> +                   bridge_out: endpoint {
-> +                        remote-endpoint = <&panel_in_lvds>;
-> +                   };
-> +               };
-> +           };
-> +       };
-> +    };
-> 
+There is also the use of a default domain, which is used as a fallback
+when no domain is found via the normal matching procedure.
 
+PPC has established a way of dealing with domains long before ARM did,
+closer to the board files of old than what we would do today (code
+driven rather than data structure driven).
+
+Strictly mapping domains onto HW blocks is a desirable property, but
+that is all it is. That doesn't affect the very purpose of the IRQ
+domains, which is to translate numbers from one context into another.
+
+I'd be all for rationalising this, but it is pretty hard to introduce
+semantic where there is none.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
