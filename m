@@ -2,131 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B208C31B7E4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 12:21:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5060831B7F6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 12:26:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbhBOLUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 06:20:31 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:39330 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbhBOLUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 06:20:25 -0500
-Received: by mail-oi1-f173.google.com with SMTP id l19so7380179oih.6;
-        Mon, 15 Feb 2021 03:20:09 -0800 (PST)
+        id S229917AbhBOL0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 06:26:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229908AbhBOL03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 06:26:29 -0500
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DD3C061574
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 03:25:48 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id f17so6035868qkl.5
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 03:25:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=V5p/Ptpd8Lzv5tKkYHxJzAd/BlFt3ePQF/VhO0/xQ9g=;
+        b=XmjNHDNIuHF1fDcddYwkbuTllthAII7JSKOm/beY3HBLxAKdzSsi3l5Q835js8OMK2
+         HOR1GMNG08PkRKVk7WtQaMwJjgDkjLG8X9BWtcGBJar/AzjDknMicSc2rLeO6fznCycZ
+         P+AjBlz7/i7XZR/xYwn14nBCfEIoWAW549gVg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=g+2l6KM1UP6n61yvg+ftleSaZOAPmTS96UBlT5bgVOw=;
-        b=EQX1VzOfpryADedahZgHDQ/na8KZ5NFdG8eGPrKMAjbAhkaibs/wx9FsgtbVTBrjh/
-         jFTxZYUORcw23zr8hRa6LVJBq9CRTVWOM2tQbcF3Oifqy9bPEfIOBLJKoLRpOz77xcad
-         YQ3PsgccOH96XkLEE3u8qvVEQum1CEeiq5VjZbxrS0eRdjQnz0ROIgptVGECQNHkGjHn
-         Kqw/PshVAswVrq0dktl3YuDwOARSvR9BAjoKR9r80tt74Ey9oEgJnQBf/hPspsPXFARM
-         GDYahSsuWANpZdTBuTDFLBwz24kO4g6Cdvv6tJHUnuM7UD9oXeRNb4XzPGrsDskAiNJA
-         0lLA==
-X-Gm-Message-State: AOAM5326cj/POgmd+sUbJmRp7UgbMeJFeqIosFN1FEAlLqLXZ5QXuWyB
-        3xGF4LAvNl1kxNBIZ9tFWzTmTkGaWBmuNdcJKOg=
-X-Google-Smtp-Source: ABdhPJzMI39m+KunbmWjRc0zXWvqEeHuECgd3ZsHjx+5rhHkVKdfXJ1QGr9mXD/zemLpBd0PNc0mqgI1Ax9YA4EUGXE=
-X-Received: by 2002:aca:d8c6:: with SMTP id p189mr8141707oig.54.1613387983592;
- Mon, 15 Feb 2021 03:19:43 -0800 (PST)
+        bh=V5p/Ptpd8Lzv5tKkYHxJzAd/BlFt3ePQF/VhO0/xQ9g=;
+        b=GcaHYQ4xWBixVqe4F+1wYyGUSDD+jKTUHzRwH0xeAqwk24IPqPlVRZWX/R6Us3y5k5
+         kuAtPIWvxv3WqGy/kAuqJRxt7fGIv2ov7K+8J1Tl5PG8bsbTY9oGNJtEw/nLqF3jYJrG
+         vYYCumTYoHD/k0a0SF7rMzAFvBjyuy+wOjSJoHDS7UxzxB4ZTV6TA0glGLtCuFIH7IcZ
+         QN+EwZBNFpFxjVmRg8+EBvNcrpSd73TxPvbjlFniG6iZhHfoq5ivgcrO47OfPwTigfMa
+         LU8sRBauLTNylSRZvaBMT3iH9OI2CkKpSvuLQnAbWUufSBqUJe/t5AyPMRd/8G3VCh/K
+         vQXQ==
+X-Gm-Message-State: AOAM531V02mpcXJcj2dFbR0XAHFhgihtCQa56AIc/AYBHzO3GjTbK27T
+        QCccjAsnZ/TSSCmZJfXdd//7GOVDH2khGA8YzioC6Q==
+X-Google-Smtp-Source: ABdhPJxZm8ADvBSIVcrG9NDd4A2KXUR9+do9fxfPHlIi8CcMPRNY15cK/Vy9v+E/aC/pTUGVGQRBQQAN9JbJefmfiBI=
+X-Received: by 2002:a37:bcc6:: with SMTP id m189mr14108089qkf.88.1613388348069;
+ Mon, 15 Feb 2021 03:25:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20210205222644.2357303-1-saravanak@google.com> <CAMuHMdVL-1RKJ5u-HDVA4F4w_+8yGvQQuJQBcZMsdV4yXzzfcw@mail.gmail.com>
-In-Reply-To: <CAMuHMdVL-1RKJ5u-HDVA4F4w_+8yGvQQuJQBcZMsdV4yXzzfcw@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 15 Feb 2021 12:19:32 +0100
-Message-ID: <CAMuHMdUi-_LJBB7fYB9ugpcj0J+FWXrqn2u44n7MemmvwiWQWw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20210214174453.104616-1-jagan@amarulasolutions.com> <8330126a-b2f4-5991-a2fa-37776cb412d0@baylibre.com>
+In-Reply-To: <8330126a-b2f4-5991-a2fa-37776cb412d0@baylibre.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Mon, 15 Feb 2021 16:55:36 +0530
+Message-ID: <CAMty3ZAgKPXpkiWuG3cGFs4sZPd182hBNaTbveL9USLj8o=ZxQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for SN65DSI83/84/85
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Marek Vasut <marex@denx.de>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 11, 2021 at 2:00 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Fri, Feb 5, 2021 at 11:26 PM Saravana Kannan <saravanak@google.com> wrote:
-> > There are a lot of devices/drivers where they never have a struct device
-> > created for them or the driver initializes the hardware without ever
-> > binding to the struct device.
+On Mon, Feb 15, 2021 at 2:32 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi,
+>
+> On 14/02/2021 18:44, Jagan Teki wrote:
+> > SN65DSI83/84/85 devices are MIPI DSI to LVDS based bridge
+> > controller IC's from Texas Instruments.
 > >
-> > This series is intended to avoid any boot regressions due to such
-> > devices/drivers when fw_devlink=on and also address the handling of
-> > optional suppliers.
-
->       - Some devices are reprobed, despite their drivers returning
->         a real error code, and not -EPROBE_DEFER:
+> > SN65DSI83 - Single Channel DSI to Single-link LVDS bridge
+> > SN65DSI84 - Single Channel DSI to Dual-link LVDS bridge
+> > SN65DSI85 - Dual Channel DSI to Dual-link LVDS bridge
+> >
+> > Right now the bridge driver is supporting Channel A with single
+> > link, so dt-bindings documented according to it.
 >
->             renesas_wdt e6020000.watchdog: Watchdog blacklisted on r8a7791 ES1.*
->             (rwdt_probe() returns -ENODEV)
->
->             sh-pfc e6060000.pinctrl: pin GP_7_23 already requested by
-> ee090000.pci; cannot claim for e6590000.usb
->             sh-pfc e6060000.pinctrl: pin-247 (e6590000.usb) status -22
->             sh-pfc e6060000.pinctrl: could not request pin 247
-> (GP_7_23) from group usb0  on device sh-pfc
->             renesas_usbhs e6590000.usb: Error applying setting,
-> reverse things back
->             renesas_usbhs: probe of e6590000.usb failed with error -22
->
->             rcar-pcie fe000000.pcie: host bridge /soc/pcie@fe000000 ranges:
->             rcar-pcie fe000000.pcie:       IO
-> 0x00fe100000..0x00fe1fffff -> 0x0000000000
->             rcar-pcie fe000000.pcie:      MEM
-> 0x00fe200000..0x00fe3fffff -> 0x00fe200000
->             rcar-pcie fe000000.pcie:      MEM
-> 0x0030000000..0x0037ffffff -> 0x0030000000
->             rcar-pcie fe000000.pcie:      MEM
-> 0x0038000000..0x003fffffff -> 0x0038000000
->             rcar-pcie fe000000.pcie:   IB MEM
-> 0x0040000000..0x00bfffffff -> 0x0040000000
->             rcar-pcie fe000000.pcie:   IB MEM
-> 0x0200000000..0x02ffffffff -> 0x0200000000
->             rcar-pcie fe000000.pcie: PCIe link down
->             (rcar_pcie_probe() returns -ENODEV)
->
->             xhci-hcd ee000000.usb: xHCI Host Controller
->             xhci-hcd ee000000.usb: new USB bus registered, assigned bus number 7
->             xhci-hcd ee000000.usb: Direct firmware load for
-> r8a779x_usb3_v3.dlmem failed with error -2
->             xhci-hcd ee000000.usb: can't setup: -2
->             xhci-hcd ee000000.usb: USB bus 7 deregistered
->             xhci-hcd: probe of ee000000.usb failed with error -2
+> Shouldn't it describe Dual-link LVDS already for SN65DSI84/85 and Dual Channel DSI for SN65DSI85 even if not implemented in the driver ?
 
-Consumers are added to the deferred probe pending list before
-they are probed, but not removed on probe failure.
-Patch sent
-"[PATCH] driver core: Fix double failed probing with fw_devlink=on"
-https://lore.kernel.org/linux-renesas-soc/20210215111619.2385030-1-geert+renesas@glider.be/
+Patch documented only Single link LVDS as it only supported by driver.
+Single link LVDS with Channel A configuration is common across all 3
+variant chips. I have SN65DSI84 with Single link LVDS which is routed
+in Channel A. Idea is to go with Single link and add double link later
+and document the same.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Jagan.
