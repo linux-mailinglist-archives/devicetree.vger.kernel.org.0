@@ -2,111 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3570F31B4FD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 06:17:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DDEB31B559
+	for <lists+devicetree@lfdr.de>; Mon, 15 Feb 2021 07:08:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbhBOFRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 00:17:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbhBOFRE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 00:17:04 -0500
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6FDC061574;
-        Sun, 14 Feb 2021 21:16:24 -0800 (PST)
-Received: by mail-pg1-x535.google.com with SMTP id z68so3600213pgz.0;
-        Sun, 14 Feb 2021 21:16:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TBkqrZBLcfDTB0/M+9n3lElFVq72Vy5NJAtkuckTGN4=;
-        b=pm4fNvBwXWCxUC5cgUyImGLfR4w/yKZ/pflBxno08azXdHVjNAF7N/TiLY6z306gz/
-         NwT40nkx/FTz+vU0BOctZuzk/kvqILDE4t19NPsl6Ny9Z7uIyTkIR9JcQevyZX/WlPso
-         dlOleXIZSuXw82L96wMXWZUd9NvG8+qzzVBYdpFCPzJJflFd0uJaRuMlVBMGJ2JebX/G
-         Qsu5+rhqLnv3pDiAVLF/86KcPk5OFYdMSGyqseOouuZHe0XxiFsKO9rjFl3bxkFJfC1R
-         Lvh4o7KXBD+YBQLwSczpEhhLc1c0oP1BcrnMlNQ4x2yYjMZybNxD8GuFAaL3mTPjkB2Z
-         oOxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TBkqrZBLcfDTB0/M+9n3lElFVq72Vy5NJAtkuckTGN4=;
-        b=o8SxHp1C5BmaGNf5NdqX3vpB1XZXChDswolNPhq/2FtW0xfo42IkESDQXIRQSfmsNh
-         57cfdLlTa7TCsenFtKBBASMveDIUXTb3T2kR3E9HhmK1Ytob72TFlN0r+EQDzel37+yR
-         lZESblLnYNNK91vwKSEfc7z+zz8280oF0eqa/1ImrvZLD07a2kSyUTD45BZrdiShL5Wk
-         3t9T3lZ0JWcJPsl9tqs496b6kyBIz1uAvDNr3zw9Pg4NQKa1rcEKrt4qvOxphwVnZoNY
-         oyoIwMDT2sUAqKglOr9fgwo119iL6yA24vAV01GUZiiJ9EnIvOKARYAP6HQfSpE6xdSr
-         eOvA==
-X-Gm-Message-State: AOAM531rlJj69SCUXoVK7NBPMcci3NGJoYE53vCySdxDIF4CEKoAK4Ws
-        7+kHkDiFrasmsekGrouRgQI2VY2CCyNrWU9B57o=
-X-Google-Smtp-Source: ABdhPJwOiZw4Qqqmjkha2m3NiVtY90y2KGeUq38HkrELdAMi1GmyuchWJQIojbLcrd0WcqkoeEZZMy7VUEb0HVASvmM=
-X-Received: by 2002:a63:1519:: with SMTP id v25mr13584867pgl.217.1613366183592;
- Sun, 14 Feb 2021 21:16:23 -0800 (PST)
-MIME-Version: 1.0
-References: <1608712499-24956-1-git-send-email-yongqiang.niu@mediatek.com>
- <1608712499-24956-2-git-send-email-yongqiang.niu@mediatek.com> <1610070485.1574.10.camel@mhfsdcap03>
-In-Reply-To: <1610070485.1574.10.camel@mhfsdcap03>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Sun, 14 Feb 2021 23:16:13 -0600
-Message-ID: <CABb+yY3JQUYf8b-mU_01eYR-4nswFRbBE42WS9fS8aSmk2rjmw@mail.gmail.com>
-Subject: Re: [PATCH v2] soc: mediatek: cmdq: add address shift in jump
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        id S229595AbhBOGIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 01:08:07 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60382 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229591AbhBOGIG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Feb 2021 01:08:06 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8C814600EF;
+        Mon, 15 Feb 2021 06:07:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613369245;
+        bh=CVEnXyLzFoecXT0I4kiqQUOnpqR8iRGl2uwpQ7E675E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=d5+bDjC3P3EGQ13F5uheGen04hti1B0Kh6rM3RUu2pXmAOPKZcEjAyCJX7SoaeCaY
+         YPJYYeASF6FOerTiOE8hAzC5ona5+A7brJTI3rBqP6wVxZtRg1b7C0VFkQRYKHUPAc
+         ycLGtBXzARi0bhdgqGUR4onPekPYhY7wJYhYh82WRyx0UfC5DVAnwqWfR+eSX3Py3o
+         EYS1VRhC3DASjKAN1fIk3K3W3iU7/8ZNWg38a3rbv5QHInPb5N/eRdIMpzSl9SxD+1
+         49tKg7ojMujHafBBvsUL+JbqpiFm2Z0z9acglFuzR7mDobuFfqpnOslK1e6ts5jocZ
+         iYYdfnKnhNO7A==
+Date:   Mon, 15 Feb 2021 08:07:21 +0200
+From:   Leon Romanovsky <leon@kernel.org>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Damon Chu <damon.chu@mediatek.com>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>, arnd@kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] net: stmmac: Add Toshiba Visconti SoCs glue driver
+Message-ID: <YCoPmfunGmu0E8IT@unreal>
+References: <20210215050655.2532-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210215050655.2532-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210215050655.2532-3-nobuhiro1.iwamatsu@toshiba.co.jp>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 7, 2021 at 7:48 PM Yongqiang Niu <yongqiang.niu@mediatek.com> wrote:
+On Mon, Feb 15, 2021 at 02:06:53PM +0900, Nobuhiro Iwamatsu wrote:
+> Add dwmac-visconti to the stmmac driver in Toshiba Visconti ARM SoCs.
+> This patch contains only the basic function of the device. There is no
+> clock control, PM, etc. yet. These will be added in the future.
 >
-> On Wed, 2020-12-23 at 16:34 +0800, Yongqiang Niu wrote:
-> > Add address shift when compose jump instruction
-> > to compatible with 35bit format.
-> >
-> > Fixes: 0858fde496f8 ("mailbox: cmdq: variablize address shift in platform")
-> >
-> > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
-> > ---
-> >  drivers/mailbox/mtk-cmdq-mailbox.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-> > index 5665b6e..75378e3 100644
-> > --- a/drivers/mailbox/mtk-cmdq-mailbox.c
-> > +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-> > @@ -168,7 +168,8 @@ static void cmdq_task_insert_into_thread(struct cmdq_task *task)
-> >       dma_sync_single_for_cpu(dev, prev_task->pa_base,
-> >                               prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
-> >       prev_task_base[CMDQ_NUM_CMD(prev_task->pkt) - 1] =
-> > -             (u64)CMDQ_JUMP_BY_PA << 32 | task->pa_base;
-> > +             (u64)CMDQ_JUMP_BY_PA << 32 |
-> > +             (task->pa_base >> task->cmdq->shift_pa);
-> >       dma_sync_single_for_device(dev, prev_task->pa_base,
-> >                                  prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
-> >
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/Kconfig   |   8 +
+>  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+>  .../ethernet/stmicro/stmmac/dwmac-visconti.c  | 285 ++++++++++++++++++
+>  3 files changed, 294 insertions(+)
+>  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-visconti.c
 >
-> hi jassi
->
-> please confirm is there any question about this patch.
-> if not, please apply this into next version, tks
->
-I can't locate this patch in my inbox. And I can't fwd it from lkml to
-myself. Please resend.
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> index 53f14c5a9e02..55ba67a550b9 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> @@ -219,6 +219,14 @@ config DWMAC_INTEL_PLAT
+>  	  This selects the Intel platform specific glue layer support for
+>  	  the stmmac device driver. This driver is used for the Intel Keem Bay
+>  	  SoC.
+> +
+> +config DWMAC_VISCONTI
+> +	bool "Toshiba Visconti DWMAC support"
+> +	def_bool y
 
-thnks.
+I asked it before, but never received an answer.
+Why did you use "def_bool y" and not "default y"? Isn't it supposed to be
+"depends on STMMAC_ETH"? And probably it shouldn't be set as a default as "y".
+
+Thanks
