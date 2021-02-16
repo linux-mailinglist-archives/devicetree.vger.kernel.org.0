@@ -2,188 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09BF531C762
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 09:34:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 824DE31C7BF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 10:06:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbhBPIdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 03:33:50 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:1071 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbhBPIdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 03:33:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1613464430; x=1645000430;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=UsAM3OgOF88PKPJUrS6PF+V4H++1+TNlVsxMRqoaP3U=;
-  b=E/rZpzYQpvgCbr8j0VEG5ys2RklMfs0YIMm9x1T+L1OmmgqB5u+Y7BTs
-   CN/41+9pvI5KThBxAY9WJakzFWSB0T3TKDQANTerGo5BDN3wkOQskVftg
-   AQ58fQm6kSp2e+oeOiwjeU5Rr4nHNt7cr0lvUPTovh9ORzhaACKqxizUa
-   5T5QMfUbc/53mn+lyQwIqfkJNY/c6CGjWWmA9m/meQ+yTjvhzxFK2JHsE
-   Fit14a+vQRqIXFF/kD86HpXZXkEXjbpcpCWUQvuTssLJA9jMx7alUS7qR
-   P5JUZGIYBjj4XuF1vtdw5i16EJ5ZG1dClybL5kJPniB12IGbELoNsfVpU
-   A==;
-IronPort-SDR: Gbl2FOFsSdbLZdQpxDwOMALTZtbt5uA9Byb67ABYppXv6QKWsV3YLh31nXPct9ZolxlaMQq4Km
- SfiOXkF49KMFd7tIhCglqO93X8tq8j9mYDKld09z3uJkXY6RDuA/+kGwoy2t7dXVDku9Weo8Bp
- jIbM4TDysPdaOyAMKZ4cJImvae0DhGLsmve/CiDpXXLgnf1qqb2rGGPeec3VPk56SMnM3dfUJL
- M2qaKV4xHA7iVFMrI4pPKzegXtWiR1SQfvKV/q64zRRe7o4eZ/KMcA7hBZM37uGbRVeLRi3Deo
- /5I=
-X-IronPort-AV: E=Sophos;i="5.81,183,1610434800"; 
-   d="scan'208";a="109335444"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Feb 2021 01:32:32 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 16 Feb 2021 01:32:30 -0700
-Received: from tyr.hegelund-hansen.dk (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Tue, 16 Feb 2021 01:32:28 -0700
-Message-ID: <f4d3c144326ce2984acfbc0e4b04c7f3edd6c4e8.camel@microchip.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: reset: microchip sparx5 reset
- driver bindings
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Date:   Tue, 16 Feb 2021 09:32:28 +0100
-In-Reply-To: <20210215173232.GM6798@piout.net>
-References: <20210210091952.2013027-1-steen.hegelund@microchip.com>
-         <20210210091952.2013027-2-steen.hegelund@microchip.com>
-         <20210215173232.GM6798@piout.net>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 
+        id S229894AbhBPJFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 04:05:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229890AbhBPJE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 04:04:56 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438C9C061786
+        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 01:03:59 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id p186so9800793ybg.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 01:03:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9ad5fJQsjFqBClERhvuISieSOy+7o471fO8R0Iulcc0=;
+        b=tI1AQ4QUYL9AKy2+hFDhM63f4PhTt6pzL4oPEXi8AP1xAAO7W6+34oR+1eZwLIvWKu
+         q4SOZf8TqlpZVj9kV/08KQkoQDElVe18yoga8MerOz5ebDwvFeSHeRFeLdeub2RyC40V
+         akatORZ3e+EvviH5abGtlz8jLWpNY0+WdvAxJ5RMUIyPU/Zu38Ik4rW8ryV4iySD3g7V
+         0UzDEhP+4v28eMLMSvu+ROWAC7C6omAeytlQeqMx0i+uVo3blhgosYqb0BQ2/3eVgdFC
+         eFpe9NFQZ9fEATlkNUxJBQWbeted93hWgvv5G8EEjuPCN2nsdiu6DsJ4KVnZ+nzu7bUJ
+         qraQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9ad5fJQsjFqBClERhvuISieSOy+7o471fO8R0Iulcc0=;
+        b=DjhDDqreu1Y6BZTua6eTw0Xnyn6wzfdybaHxxETc+R3gNB0hKI/zHYPgzYZOFyO8AV
+         YLT5u3FR1FRySNnkTl7MTW89rpzgkiVlaECX1hs9wCkJAEMaWYuKILDYSIzVElSLZWWe
+         /fSSdsYXS4CXEtdRClUh+9L20qLMb1LDAPqpZv1DKLxMNprS4jc82W1o3PfS88jtarCm
+         iveAO7D1ynJkYy1mvB4qGCueZO4vK8Zd/F8SNV3zTnK0QmBMi11/LYXzje5xexZJrzJQ
+         RN78sqrdCzYNpmeqDHxzGwivHMkn1RT0Q/J8CXms2Sz8dmFaS285zOzqBUBz0rjJgXlG
+         dWUw==
+X-Gm-Message-State: AOAM531mLSFNRGIVZRasr+AvAXNaZbh+nfMnIfIcJfdGCLddFa8fBz9C
+        oFIUvg8p8yZ0uEePZ+hkJcjlMZ5XNg4F14XQXC2hoA==
+X-Google-Smtp-Source: ABdhPJwammnRdHCaAXy66yT+gsk2paFjDZX3yE3axqzSh4Thxpdsqj+jmOe3mzLIcD9v1AUhX1gtYvtxzp3lPE+IObs=
+X-Received: by 2002:a25:68cf:: with SMTP id d198mr29003255ybc.258.1613466237931;
+ Tue, 16 Feb 2021 01:03:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1612945128-23174-1-git-send-email-amit.pundir@linaro.org>
+ <13bd5e9d-3f3b-0b97-aa48-9a7bc551ddf6@somainline.org> <CAMi1Hd3d8krtQHv-3LuiCcgCWSgL1L0UeSYWJp27KToyW338gw@mail.gmail.com>
+ <b8618ac4-85aa-5f7f-8550-07f7eec6cc08@somainline.org>
+In-Reply-To: <b8618ac4-85aa-5f7f-8550-07f7eec6cc08@somainline.org>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Tue, 16 Feb 2021 14:33:22 +0530
+Message-ID: <CAMi1Hd0jb_BrXzZp=L_qZ39wBYc7iFHQbzPa_nQaQ44SohvcQg@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and
+ panel bits
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alex,
+Hi,
 
-On Mon, 2021-02-15 at 18:32 +0100, Alexandre Belloni wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you
-> know the content is safe
-> 
-> On 10/02/2021 10:19:50+0100, Steen Hegelund wrote:
-> > Document the Sparx5 reset device driver bindings
-> > 
-> > The driver uses two IO ranges on sparx5 for access to
-> > the reset control and the reset status.
-> > 
-> > Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-> > ---
-> >  .../bindings/reset/microchip,rst.yaml         | 55
-> > +++++++++++++++++++
-> >  1 file changed, 55 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > new file mode 100644
-> > index 000000000000..80046172c9f8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > @@ -0,0 +1,55 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Microchip Sparx5 Switch Reset Controller
-> > +
-> > +maintainers:
-> > +  - Steen Hegelund <steen.hegelund@microchip.com>
-> > +  - Lars Povlsen <lars.povlsen@microchip.com>
-> > +
-> > +description: |
-> > +  The Microchip Sparx5 Switch provides reset control and
-> > implements the following
-> > +  functions
-> > +    - One Time Switch Core Reset (Soft Reset)
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^reset-controller@[0-9a-f]+$"
-> > +
-> > +  compatible:
-> > +    const: microchip,sparx5-switch-reset
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: cpu block registers
-> > +      - description: global control block registers
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: cpu
-> > +      - const: gcb
-> > +
-> 
-> I still think this is not right because then you will be mapping the
-> same set of register using multiple drivers without any form of
-> synchronisation which will work because you are mapping the region
-> without requesting it. But this may lead to issues later.
-> 
-> At least, you should make cpu start at 0x80 and of size 4. Else, you
-> won't be able to define and use the GPRs that are in front of
-> CPU_REGS:RESET.
-> 
-> I would still keep DEVCPU_GCB:CHIP_REGS as a syscon, especially since
-> you are mapping the whole set of registers.
+On Fri, 12 Feb 2021 at 23:11, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@somainline.org> wrote:
+>
+> Il 12/02/21 10:24, Amit Pundir ha scritto:
+> > Hi,
+> >
+> > On Thu, 11 Feb 2021 at 00:25, AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@somainline.org> wrote:
+> >>
+> >> Il 10/02/21 09:18, Amit Pundir ha scritto:
+> >>> From: Sumit Semwal <sumit.semwal@linaro.org>
+> >>>
+> >>> Enabling the Display panel for beryllium requires DSI
+> >>> labibb regulators and panel dts nodes to be added.
+> >>> It is also required to keep some of the regulators as
+> >>> always-on.
+> >>>
+> >>> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+> >>> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> >>> ---
+> >>
+> >> Hello!
+> >> Your patch looks good, however, I have a few concerns...
+> >>
+> >>> v3: Addressed Konrad's concerns. Configured labibb regulators
+> >>>       explicitly based on downstream microvolt values. Display
+> >>>       comes up fine with default discharge-resistor-kohms and
+> >>>       soft-start-us properties, so didn't touch them.
+> >>>       Smoke tested on next-20210209.
+> >>> v2: Rebased to mainline (v5.11-rc6) and fixed build warnings.
+> >>>
+> >>>    .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts      | 64 ++++++++++++++++++++++
+> >>>    1 file changed, 64 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> >>> index 86cbae63eaf7..5ac049a247e1 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> >>> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> >>> @@ -157,6 +157,14 @@
+> >>>                        regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> >>>                };
+> >>>
+> >>> +             vreg_l14a_1p8: ldo14 {
+> >>> +                     regulator-min-microvolt = <1800000>;
+> >>> +                     regulator-max-microvolt = <1800000>;
+> >>> +                     regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> >>> +                     regulator-boot-on;
+> >>> +                     regulator-always-on;
+> >>> +             };
+> >>> +
+> >>>                vreg_l17a_1p3: ldo17 {
+> >>>                        regulator-min-microvolt = <1304000>;
+> >>>                        regulator-max-microvolt = <1304000>;
+> >>> @@ -191,6 +199,7 @@
+> >>>                        regulator-min-microvolt = <1200000>;
+> >>>                        regulator-max-microvolt = <1200000>;
+> >>>                        regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> >>> +                     regulator-boot-on;
+> >>>                };
+> >>>        };
+> >>>    };
+> >>> @@ -200,6 +209,43 @@
+> >>>        firmware-name = "qcom/sdm845/cdsp.mdt";
+> >>>    };
+> >>>
+> >>> +&dsi0 {
+> >>> +     status = "okay";
+> >>> +     vdda-supply = <&vreg_l26a_1p2>;
+> >>> +
+> >>> +     #address-cells = <1>;
+> >>> +     #size-cells = <0>;
+> >>> +
+> >>> +     panel@0 {
+> >>> +             compatible = "tianma,fhd-video";
+> >>> +             reg = <0>;
+> >>> +             vddi0-supply = <&vreg_l14a_1p8>;
+> >>> +             vddpos-supply = <&lab>;
+> >>> +             vddneg-supply = <&ibb>;
+> >>> +
+> >>> +             #address-cells = <1>;
+> >>> +             #size-cells = <0>;
+> >>> +
+> >>> +             reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+> >>> +
+> >>> +             port {
+> >>> +                     tianma_nt36672a_in_0: endpoint {
+> >>> +                             remote-endpoint = <&dsi0_out>;
+> >>> +                     };
+> >>> +             };
+> >>> +     };
+> >>> +};
+> >>> +
+> >>> +&dsi0_out {
+> >>> +     remote-endpoint = <&tianma_nt36672a_in_0>;
+> >>> +     data-lanes = <0 1 2 3>;
+> >>> +};
+> >>> +
+> >>> +&dsi0_phy {
+> >>> +     status = "okay";
+> >>> +     vdds-supply = <&vreg_l1a_0p875>;
+> >>> +};
+> >>> +
+> >>>    &gcc {
+> >>>        protected-clocks = <GCC_QSPI_CORE_CLK>,
+> >>>                           <GCC_QSPI_CORE_CLK_SRC>,
+> >>> @@ -215,6 +261,24 @@
+> >>>        };
+> >>>    };
+> >>>
+> >>> +&ibb {
+> >>> +     regulator-min-microvolt = <4600000>;
+> >>> +     regulator-max-microvolt = <6000000>;
+> >>> +};
+> >>> +
+> >>
+> >> I think you want to also configure overvoltage and overcurrent
+> >> protection values for both LAB and IBB, as these regulators may be a bit
+> >> dangerous if used without.
+> >
+> > Can you point me to the relevant DT properties please. I didn't find
+> > any DT properties which set the over voltage/current protection
+> > properties explicitly in upstream as well as in downstream kernel.
+> > Plus I also do not see "regulator-min/max-microamp" values set
+> > downstream, otherwise I'd have used that as well atleast.
+> >
+>
+> The regulator-{min/max}-microamp is the equivalent of the downstream
+> "qcom,qpnp-lab-limit-maximum-current" and
+> "qcom,qpnp-ibb-limit-maximum-current.
 
-Ok.  I will use a syscon for the General Control Block and a very small
-range for the CPU Reset register, to minimize the register footprint.
+Thank you for the information.
 
-> 
-> 
-> > +  "#reset-cells":
-> > +    const: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - "#reset-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    reset: reset-controller@0 {
-> > +        compatible = "microchip,sparx5-switch-reset";
-> > +        #reset-cells = <1>;
-> > +        reg = <0x0 0xd0>,
-> > +              <0x11010000 0x10000>;
-> > +        reg-names = "cpu", "gcb";
-> > +    };
-> > +
-> > --
-> > 2.30.0
-> > 
-> 
-> --
-> Alexandre Belloni, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+>
+> I am sorry if we haven't sent our patch series that will introduce the
+> Sony MSM8998 Yoshino and SDM630/636 Nile and Ganges platforms, which
+> are actually using the driver that I've sent fully, as these would have
+> been a nice reference for you.
+>
+> In any case, I can point you at our public repositories and their
+> downstream equivalents...
+>
+> Here you find the downstream configuration for LAB/IBB:
+> https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.7.1.r1/arch/arm64/boot/dts/qcom/msm8998-yoshino-common.dtsi#L3158
+>
+> ...And here you find the SoMainline upstream stuff for the same:
+> https://github.com/SoMainline/linux/blob/SoMainline/v5.11-rc4/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi#L332
+>
+> https://github.com/SoMainline/linux/blob/SoMainline/v5.11-rc4/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dts#L50
+>
+> I hope that clears out your doubts and difficulties about implementing
+> the protections on labibb.
 
+Exactly what I was looking for. Thanks again.
 
-Thanks for your comments
-
-
--- 
-BR
-Steen
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=
-steen.hegelund@microchip.com
-
+>
+> Yours,
+> -- Angelo
+>
+> > Regards,
+> > Amit Pundir
+> >
+> >> Besides that, even if it wouldn't be that dangerous, since the
+> >> protection features are present, it would be nice to configure them
+> >> properly as in the rare event that something bad happens, you would be
+> >> able to save the hardware (or at least have a chance to!).
+> >>
+> >>> +&lab {
+> >>> +     regulator-min-microvolt = <4600000>;
+> >>> +     regulator-max-microvolt = <6000000>;
+> >>> +};
+> >>> +
+> >>
+> >> Same here.
+> >>
+> >> Yours,
+> >> -- Angelo
+> >>
+> >>> +&mdss {
+> >>> +     status = "okay";
+> >>> +};
+> >>> +
+> >>> +&mdss_mdp {
+> >>> +     status = "okay";
+> >>> +};
+> >>> +
+> >>>    &mss_pil {
+> >>>        status = "okay";
+> >>>        firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
+> >>>
+> >>
+>
