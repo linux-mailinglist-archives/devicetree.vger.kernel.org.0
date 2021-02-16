@@ -2,377 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 758CA31C730
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 09:17:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09BF531C762
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 09:34:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229806AbhBPIPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 03:15:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229809AbhBPIPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 03:15:07 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C33C9C0613D6
-        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 00:14:23 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lBvUw-0000SL-MI; Tue, 16 Feb 2021 09:14:18 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lBvUv-0000xN-Gi; Tue, 16 Feb 2021 09:14:17 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: [PATCH v6 2/2] counter: add IRQ or GPIO based event counter
-Date:   Tue, 16 Feb 2021 09:13:56 +0100
-Message-Id: <20210216081356.3577-3-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210216081356.3577-1-o.rempel@pengutronix.de>
-References: <20210216081356.3577-1-o.rempel@pengutronix.de>
+        id S229803AbhBPIdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 03:33:50 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:1071 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229744AbhBPIdt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 03:33:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1613464430; x=1645000430;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=UsAM3OgOF88PKPJUrS6PF+V4H++1+TNlVsxMRqoaP3U=;
+  b=E/rZpzYQpvgCbr8j0VEG5ys2RklMfs0YIMm9x1T+L1OmmgqB5u+Y7BTs
+   CN/41+9pvI5KThBxAY9WJakzFWSB0T3TKDQANTerGo5BDN3wkOQskVftg
+   AQ58fQm6kSp2e+oeOiwjeU5Rr4nHNt7cr0lvUPTovh9ORzhaACKqxizUa
+   5T5QMfUbc/53mn+lyQwIqfkJNY/c6CGjWWmA9m/meQ+yTjvhzxFK2JHsE
+   Fit14a+vQRqIXFF/kD86HpXZXkEXjbpcpCWUQvuTssLJA9jMx7alUS7qR
+   P5JUZGIYBjj4XuF1vtdw5i16EJ5ZG1dClybL5kJPniB12IGbELoNsfVpU
+   A==;
+IronPort-SDR: Gbl2FOFsSdbLZdQpxDwOMALTZtbt5uA9Byb67ABYppXv6QKWsV3YLh31nXPct9ZolxlaMQq4Km
+ SfiOXkF49KMFd7tIhCglqO93X8tq8j9mYDKld09z3uJkXY6RDuA/+kGwoy2t7dXVDku9Weo8Bp
+ jIbM4TDysPdaOyAMKZ4cJImvae0DhGLsmve/CiDpXXLgnf1qqb2rGGPeec3VPk56SMnM3dfUJL
+ M2qaKV4xHA7iVFMrI4pPKzegXtWiR1SQfvKV/q64zRRe7o4eZ/KMcA7hBZM37uGbRVeLRi3Deo
+ /5I=
+X-IronPort-AV: E=Sophos;i="5.81,183,1610434800"; 
+   d="scan'208";a="109335444"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Feb 2021 01:32:32 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 16 Feb 2021 01:32:30 -0700
+Received: from tyr.hegelund-hansen.dk (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Tue, 16 Feb 2021 01:32:28 -0700
+Message-ID: <f4d3c144326ce2984acfbc0e4b04c7f3edd6c4e8.camel@microchip.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: reset: microchip sparx5 reset
+ driver bindings
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Date:   Tue, 16 Feb 2021 09:32:28 +0100
+In-Reply-To: <20210215173232.GM6798@piout.net>
+References: <20210210091952.2013027-1-steen.hegelund@microchip.com>
+         <20210210091952.2013027-2-steen.hegelund@microchip.com>
+         <20210215173232.GM6798@piout.net>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add simple IRQ or GPIO base event counter. This device is used to measure
-rotation speed of some agricultural devices, so no high frequency on the
-counter pin is expected.
+Hi Alex,
 
-The maximal measurement frequency depends on the CPU and system load. On
-the idle iMX6S I was able to measure up to 20kHz without count drops.
+On Mon, 2021-02-15 at 18:32 +0100, Alexandre Belloni wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you
+> know the content is safe
+> 
+> On 10/02/2021 10:19:50+0100, Steen Hegelund wrote:
+> > Document the Sparx5 reset device driver bindings
+> > 
+> > The driver uses two IO ranges on sparx5 for access to
+> > the reset control and the reset status.
+> > 
+> > Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+> > ---
+> >  .../bindings/reset/microchip,rst.yaml         | 55
+> > +++++++++++++++++++
+> >  1 file changed, 55 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > new file mode 100644
+> > index 000000000000..80046172c9f8
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > @@ -0,0 +1,55 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Microchip Sparx5 Switch Reset Controller
+> > +
+> > +maintainers:
+> > +  - Steen Hegelund <steen.hegelund@microchip.com>
+> > +  - Lars Povlsen <lars.povlsen@microchip.com>
+> > +
+> > +description: |
+> > +  The Microchip Sparx5 Switch provides reset control and
+> > implements the following
+> > +  functions
+> > +    - One Time Switch Core Reset (Soft Reset)
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^reset-controller@[0-9a-f]+$"
+> > +
+> > +  compatible:
+> > +    const: microchip,sparx5-switch-reset
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: cpu block registers
+> > +      - description: global control block registers
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: cpu
+> > +      - const: gcb
+> > +
+> 
+> I still think this is not right because then you will be mapping the
+> same set of register using multiple drivers without any form of
+> synchronisation which will work because you are mapping the region
+> without requesting it. But this may lead to issues later.
+> 
+> At least, you should make cpu start at 0x80 and of size 4. Else, you
+> won't be able to define and use the GPRs that are in front of
+> CPU_REGS:RESET.
+> 
+> I would still keep DEVCPU_GCB:CHIP_REGS as a syscon, especially since
+> you are mapping the whole set of registers.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
----
- MAINTAINERS                     |   7 +
- drivers/counter/Kconfig         |  10 ++
- drivers/counter/Makefile        |   1 +
- drivers/counter/interrupt-cnt.c | 249 ++++++++++++++++++++++++++++++++
- 4 files changed, 267 insertions(+)
- create mode 100644 drivers/counter/interrupt-cnt.c
+Ok.  I will use a syscon for the General Control Block and a very small
+range for the CPU Reset register, to minimize the register footprint.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 00836f6452f0..9cf87af41d7d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9246,6 +9246,13 @@ F:	include/dt-bindings/interconnect/
- F:	include/linux/interconnect-provider.h
- F:	include/linux/interconnect.h
- 
-+INTERRUPT COUNTER DRIVER
-+M:	Oleksij Rempel <o.rempel@pengutronix.de>
-+R:	Pengutronix Kernel Team <kernel@pengutronix.de>
-+L:	linux-iio@vger.kernel.org
-+F:	Documentation/devicetree/bindings/counter/interrupt-counter.yaml
-+F:	drivers/counter/interrupt-cnt.c
-+
- INVENSENSE ICM-426xx IMU DRIVER
- M:	Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
- L:	linux-iio@vger.kernel.org
-diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
-index 2de53ab0dd25..dcad13229134 100644
---- a/drivers/counter/Kconfig
-+++ b/drivers/counter/Kconfig
-@@ -29,6 +29,16 @@ config 104_QUAD_8
- 	  The base port addresses for the devices may be configured via the base
- 	  array module parameter.
- 
-+config INTERRUPT_CNT
-+	tristate "Interrupt counter driver"
-+	depends on GPIOLIB
-+	help
-+	  Select this option to enable interrupt counter driver. Any interrupt
-+	  source can be used by this driver as the event source.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called interrupt-cnt.
-+
- config STM32_TIMER_CNT
- 	tristate "STM32 Timer encoder counter driver"
- 	depends on MFD_STM32_TIMERS || COMPILE_TEST
-diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
-index 0a393f71e481..cb646ed2f039 100644
---- a/drivers/counter/Makefile
-+++ b/drivers/counter/Makefile
-@@ -6,6 +6,7 @@
- obj-$(CONFIG_COUNTER) += counter.o
- 
- obj-$(CONFIG_104_QUAD_8)	+= 104-quad-8.o
-+obj-$(CONFIG_INTERRUPT_CNT)		+= interrupt-cnt.o
- obj-$(CONFIG_STM32_TIMER_CNT)	+= stm32-timer-cnt.o
- obj-$(CONFIG_STM32_LPTIMER_CNT)	+= stm32-lptimer-cnt.o
- obj-$(CONFIG_TI_EQEP)		+= ti-eqep.o
-diff --git a/drivers/counter/interrupt-cnt.c b/drivers/counter/interrupt-cnt.c
-new file mode 100644
-index 000000000000..16669924cdfa
---- /dev/null
-+++ b/drivers/counter/interrupt-cnt.c
-@@ -0,0 +1,249 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-+ */
-+
-+#include <linux/counter.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/irq.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#define INTERRUPT_CNT_NAME "interrupt-cnt"
-+
-+struct interrupt_cnt_priv {
-+	atomic_t count;
-+	struct counter_device counter;
-+	struct gpio_desc *gpio;
-+	int irq;
-+	bool enabled;
-+};
-+
-+static irqreturn_t interrupt_cnt_isr(int irq, void *dev_id)
-+{
-+	struct interrupt_cnt_priv *priv = dev_id;
-+
-+	atomic_inc(&priv->count);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static ssize_t interrupt_cnt_enable_read(struct counter_device *counter,
-+					 struct counter_count *count,
-+					 void *private, char *buf)
-+{
-+	struct interrupt_cnt_priv *priv = counter->priv;
-+
-+	return sysfs_emit(buf, "%d\n", priv->enabled);
-+}
-+
-+static ssize_t interrupt_cnt_enable_write(struct counter_device *counter,
-+					  struct counter_count *count,
-+					  void *private, const char *buf,
-+					  size_t len)
-+{
-+	struct interrupt_cnt_priv *priv = counter->priv;
-+	bool enable;
-+	ssize_t ret;
-+
-+	ret = kstrtobool(buf, &enable);
-+	if (ret)
-+		return ret;
-+
-+	if (priv->enabled == enable)
-+		return len;
-+
-+	if (enable) {
-+		priv->enabled = true;
-+		enable_irq(priv->irq);
-+	} else {
-+		disable_irq(priv->irq);
-+		priv->enabled = false;
-+	}
-+
-+	return len;
-+}
-+
-+static const struct counter_count_ext interrupt_cnt_ext[] = {
-+	{
-+		.name = "enable",
-+		.read = interrupt_cnt_enable_read,
-+		.write = interrupt_cnt_enable_write,
-+	},
-+};
-+
-+static enum counter_synapse_action interrupt_cnt_synapse_actionss[] = {
-+	COUNTER_SYNAPSE_ACTION_RISING_EDGE,
-+};
-+
-+static int interrupt_cnt_action_get(struct counter_device *counter,
-+				    struct counter_count *count,
-+				    struct counter_synapse *synapse,
-+				    size_t *action)
-+{
-+	*action = interrupt_cnt_synapse_actionss[0];
-+
-+	return 0;
-+}
-+
-+static int interrupt_cnt_read(struct counter_device *counter,
-+			      struct counter_count *count, unsigned long *val)
-+{
-+	struct interrupt_cnt_priv *priv = counter->priv;
-+
-+	*val = atomic_read(&priv->count);
-+
-+	return 0;
-+}
-+
-+static int interrupt_cnt_write(struct counter_device *counter,
-+			       struct counter_count *count,
-+			       const unsigned long val)
-+{
-+	struct interrupt_cnt_priv *priv = counter->priv;
-+
-+	atomic_set(&priv->count, val);
-+
-+	return 0;
-+}
-+
-+static enum counter_count_function interrupt_cnt_functions[] = {
-+	COUNTER_COUNT_FUNCTION_INCREASE,
-+};
-+
-+static int interrupt_cnt_function_get(struct counter_device *counter,
-+				      struct counter_count *count,
-+				      size_t *function)
-+{
-+	*function = interrupt_cnt_functions[0];
-+
-+	return 0;
-+}
-+
-+static int interrupt_cnt_signal_read(struct counter_device *counter,
-+				     struct counter_signal *signal,
-+				     enum counter_signal_value *val)
-+{
-+	struct interrupt_cnt_priv *priv = counter->priv;
-+	int ret;
-+
-+	ret = gpiod_get_value(priv->gpio);
-+	if (ret < 0)
-+		return ret;
-+
-+	*val = ret ? COUNTER_SIGNAL_HIGH : COUNTER_SIGNAL_LOW;
-+
-+	return 0;
-+}
-+
-+static struct counter_signal interrupt_cnt_signals[] = {
-+	{
-+		.id = 0,
-+		.name = "Channel 0, GPIO line state",
-+	},
-+};
-+
-+static struct counter_synapse interrupt_cnt_synapses[] = {
-+	{
-+		.actions_list = interrupt_cnt_synapse_actionss,
-+		.num_actions = ARRAY_SIZE(interrupt_cnt_synapse_actionss),
-+		.signal = &interrupt_cnt_signals[0]
-+	},
-+};
-+
-+static struct counter_count interrupt_cnts[] = {
-+	{
-+		.id = 0,
-+		.name = "Channel 0 Count",
-+		.functions_list = interrupt_cnt_functions,
-+		.num_functions = ARRAY_SIZE(interrupt_cnt_functions),
-+		.synapses = interrupt_cnt_synapses,
-+		.num_synapses = ARRAY_SIZE(interrupt_cnt_synapses),
-+		.ext = interrupt_cnt_ext,
-+		.num_ext = ARRAY_SIZE(interrupt_cnt_ext),
-+	},
-+};
-+
-+static const struct counter_ops interrupt_cnt_ops = {
-+	.action_get = interrupt_cnt_action_get,
-+	.count_read = interrupt_cnt_read,
-+	.count_write = interrupt_cnt_write,
-+	.function_get = interrupt_cnt_function_get,
-+	.signal_read  = interrupt_cnt_signal_read,
-+};
-+
-+static int interrupt_cnt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct interrupt_cnt_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->irq = platform_get_irq_optional(pdev,  0);
-+	if (priv->irq == -ENXIO)
-+		priv->irq = 0;
-+	else if (priv->irq < 0)
-+		return dev_err_probe(dev, priv->irq, "failed to get IRQ\n");
-+
-+	priv->gpio = devm_gpiod_get_optional(dev, NULL, GPIOD_IN);
-+	if (IS_ERR(priv->gpio))
-+		return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get GPIO\n");
-+
-+	if (!priv->irq && !priv->gpio) {
-+		dev_err(dev, "IRQ and GPIO are not found. At least one source should be provided\n");
-+		return -ENODEV;
-+	}
-+
-+	if (!priv->irq) {
-+		int irq = gpiod_to_irq(priv->gpio);
-+
-+		if (irq < 0)
-+			return dev_err_probe(dev, irq, "failed to get IRQ from GPIO\n");
-+
-+		priv->irq = irq;
-+	}
-+
-+	priv->counter.priv = priv;
-+	priv->counter.name = dev_name(dev);
-+	priv->counter.parent = dev;
-+	priv->counter.ops = &interrupt_cnt_ops;
-+	priv->counter.counts = interrupt_cnts;
-+	priv->counter.num_counts = ARRAY_SIZE(interrupt_cnts);
-+	priv->counter.signals = interrupt_cnt_signals;
-+	priv->counter.num_signals = priv->gpio ?
-+				    ARRAY_SIZE(interrupt_cnt_signals) : 0;
-+
-+	irq_set_status_flags(priv->irq, IRQ_NOAUTOEN);
-+	ret = devm_request_irq(dev, priv->irq, interrupt_cnt_isr,
-+			       IRQF_TRIGGER_RISING | IRQF_NO_THREAD,
-+			       INTERRUPT_CNT_NAME, priv);
-+	if (ret)
-+		return ret;
-+
-+	return devm_counter_register(dev, &priv->counter);
-+}
-+
-+static const struct of_device_id interrupt_cnt_of_match[] = {
-+	{ .compatible = "interrupt-counter", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, interrupt_cnt_of_match);
-+
-+static struct platform_driver interrupt_cnt_driver = {
-+	.probe = interrupt_cnt_probe,
-+	.driver = {
-+		.name = INTERRUPT_CNT_NAME,
-+		.of_match_table = interrupt_cnt_of_match,
-+	},
-+};
-+module_platform_driver(interrupt_cnt_driver);
-+
-+MODULE_ALIAS("platform:interrupt-counter");
-+MODULE_AUTHOR("Oleksij Rempel <o.rempel@pengutronix.de>");
-+MODULE_DESCRIPTION("Interrupt counter driver");
-+MODULE_LICENSE("GPL v2");
+> 
+> 
+> > +  "#reset-cells":
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - "#reset-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    reset: reset-controller@0 {
+> > +        compatible = "microchip,sparx5-switch-reset";
+> > +        #reset-cells = <1>;
+> > +        reg = <0x0 0xd0>,
+> > +              <0x11010000 0x10000>;
+> > +        reg-names = "cpu", "gcb";
+> > +    };
+> > +
+> > --
+> > 2.30.0
+> > 
+> 
+> --
+> Alexandre Belloni, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+
+
+Thanks for your comments
+
+
 -- 
-2.29.2
+BR
+Steen
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+steen.hegelund@microchip.com
 
