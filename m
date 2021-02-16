@@ -2,45 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F02D31C8AC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 11:23:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5133131C8D2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 11:31:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbhBPKV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 05:21:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57342 "EHLO mail.kernel.org"
+        id S229790AbhBPKaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 05:30:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59142 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230073AbhBPKVl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Feb 2021 05:21:41 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F2DA264DE0;
-        Tue, 16 Feb 2021 10:21:00 +0000 (UTC)
+        id S229771AbhBPKaO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 05:30:14 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5634064E08;
+        Tue, 16 Feb 2021 10:29:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613470861;
-        bh=ELgcIQXALPguJaOZgn++Pynu3kfkRH1G8GoAn1mqJ7I=;
+        s=k20201202; t=1613471372;
+        bh=hWGJmDQWT8XgcDBQ7FWNZP9vnjZM2snhaJfPI32QkRc=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dUNelPnuuhmu96bj6fTNcSfGg47UQELco9Wybizd4fEB1Y/c4kFxMzMXmOpiTvjap
-         dhzMWT3ffyy863iy2K1oUy5JCvgwb3+ohpz/xFE6/t1KwKJ4Dh65Q5NDKSsA7LWwYc
-         IAOv468qpJQ7/a8lOkiFljTzalBE/tAHpFnhXTfz/4LZSo0i6i2Iqh/UKdXizawoXC
-         eC19rg+pFzrgWQ4paUI8i5vfujOENcw2lhsJ59zC98szkP65I/e42JCxIHAd1QkGu+
-         jcfslsRYBk49+SuyxdPTBc1pQqqTkv78BiIQ2EI6+zMpWfP7EIPnzwH3EBdZk4d6Sd
-         iQSx67iLfrylg==
-Received: by mail-ej1-f49.google.com with SMTP id g5so12149426ejt.2;
-        Tue, 16 Feb 2021 02:21:00 -0800 (PST)
-X-Gm-Message-State: AOAM531DwpUExM21556kTFZS4pbhoqIWtIpPkBpPEhB0yqDnAdyFsf9r
-        F+vUj0DxavsJ0DCASmULWLwWpxQTjMrQATktoKY=
-X-Google-Smtp-Source: ABdhPJxX5NZv34e/hqZBU7CvR8NWGRl3k9oSuP8v63dIVVtzMYfS1vLWWxVVIDu5jyJywxm+62+AJJnAl0q6bab3aBM=
-X-Received: by 2002:a17:906:2898:: with SMTP id o24mr19293928ejd.215.1613470859401;
- Tue, 16 Feb 2021 02:20:59 -0800 (PST)
+        b=h9KXzI+VQK8eKmwWqRrnq3PhV8yv3jLCPH9kG4q5pjmm1Lz1ejBNgrfEKqh7m+9cJ
+         QDvDnNyYYoFl0N4Gnz8gHV2/n2+AedJBtShvMhSN1PFNRaKky1Uv+sqPGHFYHiRJ2X
+         jSpDta2pTJn61wx29CEpNdP9fvnQ59LE9Ehulvk/jDDWsQiBTNIwgK2BGFwlEFzhA7
+         sTL5llVU+0UKv4K0+359uJKDamyucH+YWWE4Pj+TM6A8581pmqALdJ0rb5Mjn6yhQF
+         5YX13knYFdSFX00M/6WSQh7VkVKjN6i3z9RAqLAGz01/ZvM8pjD4AIN4LW4DB7rjyW
+         5KUKJUrRnXo/w==
+Received: by mail-oi1-f179.google.com with SMTP id y199so10723708oia.4;
+        Tue, 16 Feb 2021 02:29:32 -0800 (PST)
+X-Gm-Message-State: AOAM533IjMiM8d6IQ+SdixLgOsEE0GhLII4KOPo0WoJcRKzMe7wfNNbu
+        m9qQfuLs3xm8TzErcqHTuSQAT7ZuQRwrKnQcnP4=
+X-Google-Smtp-Source: ABdhPJzLU0yXwpa8zo0VJ9pnLMzT5igdBQF/kLq0nZ5rs/I3kZXxM3I1bGcFbavHO/jgFFGo6VIGqtHL1dM1HGNJFLc=
+X-Received: by 2002:aca:2117:: with SMTP id 23mr2141331oiz.4.1613471371347;
+ Tue, 16 Feb 2021 02:29:31 -0800 (PST)
 MIME-Version: 1.0
 References: <20210215121713.57687-1-marcan@marcan.st> <20210215121713.57687-24-marcan@marcan.st>
  <20210215191748.uhus2e6gclkwgjo5@kozik-lap> <CAK8P3a0YzRVa+fa_7xFxR8f+pwSCo5w5kuaPsSSQscR10jwPww@mail.gmail.com>
-In-Reply-To: <CAK8P3a0YzRVa+fa_7xFxR8f+pwSCo5w5kuaPsSSQscR10jwPww@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 16 Feb 2021 11:20:46 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPc+j9F_TVq2ir0ehVvph96UgkjRRCK7Df4KR0tVgWOAng@mail.gmail.com>
-Message-ID: <CAJKOXPc+j9F_TVq2ir0ehVvph96UgkjRRCK7Df4KR0tVgWOAng@mail.gmail.com>
+ <CAJKOXPc+j9F_TVq2ir0ehVvph96UgkjRRCK7Df4KR0tVgWOAng@mail.gmail.com>
+In-Reply-To: <CAJKOXPc+j9F_TVq2ir0ehVvph96UgkjRRCK7Df4KR0tVgWOAng@mail.gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Tue, 16 Feb 2021 11:29:15 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2mOCfVhR3aeey38sDudJovfz23OOMMHREd8bmy=9-5yw@mail.gmail.com>
+Message-ID: <CAK8P3a2mOCfVhR3aeey38sDudJovfz23OOMMHREd8bmy=9-5yw@mail.gmail.com>
 Subject: Re: [PATCH v2 23/25] tty: serial: samsung_tty: Add earlycon support
  for Apple UARTs
-To:     Arnd Bergmann <arnd@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     Hector Martin <marcan@marcan.st>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -61,16 +62,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Feb 2021 at 11:19, Arnd Bergmann <arnd@kernel.org> wrote:
-> > > +     return samsung_early_console_setup(device, opt);
-> >
-> > Don't you need to handle the error code - set PROT_DEFAULT() or whatever
-> > was there before?
+On Tue, Feb 16, 2021 at 11:20 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> __set_fixmap() has no return value, it just writes a page table entry and
-> does not fail.
+> On Tue, 16 Feb 2021 at 11:19, Arnd Bergmann <arnd@kernel.org> wrote:
+> > > > +     return samsung_early_console_setup(device, opt);
+> > >
+> > > Don't you need to handle the error code - set PROT_DEFAULT() or whatever
+> > > was there before?
+> >
+> > __set_fixmap() has no return value, it just writes a page table entry and
+> > does not fail.
+>
+> I meant, handle samsung_early_console_setup() error code (NULL).
 
-I meant, handle samsung_early_console_setup() error code (NULL).
+Ah, I see.
 
-Best regards,
-Krzysztof
+I don't think it makes a difference -- if ->setup() fails, the page table entry
+is just left in place unused, and the type of the unused mapping doesn't
+matter. If earlycon tried to unmap the page, the type also would not
+change anything.
+
+With earlycon, I'd generally lean towards keeping things as simple as possible,
+in order to increase the chance of seeing anything at all. It clearly wouldn't
+hurt to try to add minimal error handling here.
+
+       Arnd
