@@ -2,190 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B92FF31D1EF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 22:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8CB831D209
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 22:28:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbhBPVQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 16:16:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54256 "EHLO
+        id S229734AbhBPV1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 16:27:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230106AbhBPVQv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 16:16:51 -0500
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76B2CC061574
-        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 13:16:11 -0800 (PST)
-Received: by mail-qk1-x734.google.com with SMTP id v206so10888347qkb.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 13:16:11 -0800 (PST)
+        with ESMTP id S229946AbhBPV13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 16:27:29 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 608E2C061756;
+        Tue, 16 Feb 2021 13:26:49 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id 7so15125823wrz.0;
+        Tue, 16 Feb 2021 13:26:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4rk2wwMnoEYPma2xWk6NuZcb3jVPhgKDLBkofVU2y60=;
-        b=R+8pOfYFLSejFXP4jPbZWyn2LCtTqjsa107yazeTQYzIiH+LeuXV8YusgV1w2LW7Gj
-         IWuN/sQJoxWt9kjU2m1A0IEY/6wlvACZVnyqcaPH2km5k9LUt8ts3M4OHj1XvYTTZZkW
-         rjW38aeg7HxP9QhTVv54x2qt3u/WscEX2iM4yrYjSBhupKyYIaqkdMFpaqnoJFYmXprV
-         I1zgweu48q+ye18tY0/BN4DBJsh6ih3x8VrOP9uPC0i1KXV2RJOFuixu9mdTmoQ7YBIn
-         GrOIyR0KjHr0uLL9E/aZBqPOXAQgTx/K0/q/9ZXIgZ1bQe7IAfzyHzIn4DlXmhcrZm82
-         xH+Q==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kxwOUxUdnljLW686/SnZ2RHKtLcEjcyiO3FyMtlRrN4=;
+        b=X4RzOuaEh/2mkJifv7IpFpIYZYQduaATcsKxtcHnSPyjRTfUTJhNhcnFZYWBVLmYM5
+         pQIqvQnT5pEAFMv+79lSHPfGziI0Omjfqa+xQspACVzEQ+kMxrB3NTGDfavIRevZZxIp
+         0XkOMufMufIXbAA9xYkax5DN96SkZkcQpMtjZxvtCBzdeqZEm8ShRRjSP3G0o2bVA9Z3
+         2lBAVZAYpPkHUr6CeOKlEvTuSEy/7ef5/5OdvW6CtFi9ul3pF6FdG8PX1clegt/GObn4
+         jnQtQ+QsKNTymM+YK9qVm7TsiD9zoPHeY7hffKgUvyNsiI2JuISyHdZ24gYaSvH9zW3m
+         EWBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4rk2wwMnoEYPma2xWk6NuZcb3jVPhgKDLBkofVU2y60=;
-        b=CAPVoYI4hBsRObPQNs8LmKFLEN7vpXlKRp0uE8Z+5TwwKj/DBj/ePSY8oRdraPFMM5
-         1k8RCM8XYWo8HLUYdh9ZCX2QokmhUvNBEQEwuLYm+paTrTR7Ubmtxb/bLoTSyO7tAMoW
-         SxuhznfLCftGOiJwg5doZMVhym5IBy6koFPMtWT5p3Sfd1XOeQ1I5zYn0ZESXmcD9B7/
-         o5jHdUSdPIc55INaZYZ1YSYQbX65zr1aoZortmSp1QZcGOT7hPLBPNRe74nhvFwV5APg
-         tEiKdfyCEzSt5YDTvrjUeuIvh1RAXc20usnzoKSkDFH9UeVzWGM2wWz9zI5CXqF3durM
-         L5Sw==
-X-Gm-Message-State: AOAM5301NHbpolz31SGsOatMJ6/YxmaOuqsWzsomrq/tB6NvAJWJ7jAJ
-        LVn+DFmKCVcIWwV+rHz9AoeEdmezjdq2CXlVPnLyvQ==
-X-Google-Smtp-Source: ABdhPJw7adO/lfGbSQKSW3fwASRPbVhGElhbv5piVyBRNIk/XQd9cjcJFShG12gleW/Aq/SWUeiZazbBtAYlBzPhYXo=
-X-Received: by 2002:a37:a9d6:: with SMTP id s205mr22217992qke.162.1613510170667;
- Tue, 16 Feb 2021 13:16:10 -0800 (PST)
-MIME-Version: 1.0
-References: <20210215161537.14696-1-jonathan@marek.ca> <20210215161537.14696-2-jonathan@marek.ca>
- <CAA8EJpo_Fs8Wj6zjH6BQqm=mG=qcGt3_JMj4nK-vsKCzr8tn1g@mail.gmail.com> <29231c68-0cc4-9d8a-8cb1-791511780bcd@marek.ca>
-In-Reply-To: <29231c68-0cc4-9d8a-8cb1-791511780bcd@marek.ca>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 17 Feb 2021 00:15:59 +0300
-Message-ID: <CAA8EJpq27u54eusDEgkLBfkWd0Cp+rQq6Jh-LOYYG3CXM2U3Gw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] drm/msm: add compatibles for sm8150/sm8250 display
-To:     Jonathan Marek <jonathan@marek.ca>
-Cc:     "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kxwOUxUdnljLW686/SnZ2RHKtLcEjcyiO3FyMtlRrN4=;
+        b=rJ5ps1Ezj7R/cEDvRzJi+zt1GXreXiuhU02c7o3CBayLOZmMBAGCAr/ZPD8BTHqkXN
+         wSty9rj0Bf4ccVw42ehFWbJaEMbNV3WQKNNJzsoa95gz8pDd4Turj3NAV8s3Sfqp+TJA
+         4R4yz6HKHXPfpw2UUKhlgCgkTAOd1tSFhHk7vPYtBRpV7ne04WnIpUdLkcK/fAlVqT4k
+         tzd8vX2D7fry6/3rDGI2hF6sS+WhDpR92ZHSNscQk6CBgwc6AOZNtjJ0kat0127NLRnU
+         i2Xt8WRJbYy/tuAiKvhQ6tMbIcfPf99nka9ewgiF4uRVHogvLD66/bya8TURqWMmb5b8
+         HK3g==
+X-Gm-Message-State: AOAM532OVH0Gkzj3kJPS0fhYjiqQkv+kuPDXxjsDpXbvGVsNuFZxEzzf
+        PQHDEG16T+7pAmpmLhK/1/8=
+X-Google-Smtp-Source: ABdhPJzfGdlWuTpldxnRFP/xLQ4u1aqaj7Itud+leVccJg6SM6qHcMUDfY+0Eed4Iw8uv2LwuE5m7A==
+X-Received: by 2002:adf:bac8:: with SMTP id w8mr7510534wrg.68.1613510808010;
+        Tue, 16 Feb 2021 13:26:48 -0800 (PST)
+Received: from Ansuel-xps.localdomain (host-87-6-252-11.retail.telecomitalia.it. [87.6.252.11])
+        by smtp.googlemail.com with ESMTPSA id s14sm7132182wmj.23.2021.02.16.13.26.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Feb 2021 13:26:47 -0800 (PST)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Richard Weinberger <richard@nod.at>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        Eric Anholt <eric@anholt.net>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Drew Davenport <ddavenport@chromium.org>,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        tongtiangen <tongtiangen@huawei.com>,
-        Qinglang Miao <miaoqinglang@huawei.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Boris Brezillon <bbrezillon@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Implement nvmem support for mtd
+Date:   Tue, 16 Feb 2021 22:26:25 +0100
+Message-Id: <20210216212638.28382-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Feb 2021 at 21:06, Jonathan Marek <jonathan@marek.ca> wrote:
->
-> On 2/16/21 11:54 AM, Dmitry Baryshkov wrote:
-> > On Mon, 15 Feb 2021 at 19:25, Jonathan Marek <jonathan@marek.ca> wrote:
-> >>
-> >> The driver already has support for sm8150/sm8250, but the compatibles were
-> >> never added.
-> >>
-> >> Also inverse the non-mdp4 condition in add_display_components() to avoid
-> >> having to check every new compatible in the condition.
-> >>
-> >> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> >> ---
-> >>   Documentation/devicetree/bindings/display/msm/dpu.txt | 4 ++--
-> >>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c               | 2 ++
-> >>   drivers/gpu/drm/msm/msm_drv.c                         | 6 +++---
-> >>   3 files changed, 7 insertions(+), 5 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/display/msm/dpu.txt b/Documentation/devicetree/bindings/display/msm/dpu.txt
-> >> index 551ae26f60da..5763f43200a0 100644
-> >> --- a/Documentation/devicetree/bindings/display/msm/dpu.txt
-> >> +++ b/Documentation/devicetree/bindings/display/msm/dpu.txt
-> >> @@ -8,7 +8,7 @@ The DPU display controller is found in SDM845 SoC.
-> >>
-> >>   MDSS:
-> >>   Required properties:
-> >> -- compatible:  "qcom,sdm845-mdss", "qcom,sc7180-mdss"
-> >> +- compatible:  "qcom,sdm845-mdss", "qcom,sc7180-mdss", "qcom,sm8150-mdss", "qcom,sm8250-mdss"
-> >>   - reg: physical base address and length of contoller's registers.
-> >>   - reg-names: register region names. The following region is required:
-> >>     * "mdss"
-> >> @@ -41,7 +41,7 @@ Optional properties:
-> >>
-> >>   MDP:
-> >>   Required properties:
-> >> -- compatible: "qcom,sdm845-dpu", "qcom,sc7180-dpu"
-> >> +- compatible: "qcom,sdm845-dpu", "qcom,sc7180-dpu", "qcom,sm8150-dpu", "qcom,sm8250-dpu"
-> >>   - reg: physical base address and length of controller's registers.
-> >>   - reg-names : register region names. The following region is required:
-> >>     * "mdp"
-> >
-> > These two chunks should probably go to the separate patch 'dt-bindings:...'.
-> >
->
-> In this case I think its better to have this change in the same patch,
-> but maybe one of the Robs will disagree.
->
-> > Also, could you please pinpoint the reason for adding more
-> > compatibility strings, while they map to the same internal data?
-> > I think we might want instead to use some generic name for the dpu
-> > block, like "qcom,dpu" or "qcom,mdp-dpu" instead of specifying the
-> > platform name.
-> >
->
-> sdm845 and sc7180 aren't using generic compatibles, this is just being
-> consistent with that.
+The mtd support for the nvmem api has been stalled from 2018 with a patch
+half pushed hoping that a scheme is found for the mtd name later. This
+patchset try to address this.
 
-Well, I suppose the common case is to use the 'first compatible' entry
-if the entities are compatible. The generic compatibles is a proposal,
-not an affirmation. Please excuse me if it sounded in a different way.
+The solution is simple.
+New partitions scheme should always have the partitions {} structure and 
+declare subnodes as partitions is deprecated and should not be used anymore.
+Fixed-partitions parser is changed to parse direct subnode as partitions
+only if the appropriate compatible is used. This change make possible
+the use of nvmem-partitions compatible and the entire partition node can
+be parsed by the nvmem of framework.
+The current code register the partition to the nvmem framework every time
+but skip actually of_node parting. The new nvmem-partitions compatible is
+used to enable of_node parsing on the desired partitions.
 
->
-> >
-> >> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> >> index 5a8e3e1fc48c..fff12a4c8bfc 100644
-> >> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> >> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> >> @@ -1219,6 +1219,8 @@ static const struct dev_pm_ops dpu_pm_ops = {
-> >>   static const struct of_device_id dpu_dt_match[] = {
-> >>          { .compatible = "qcom,sdm845-dpu", },
-> >>          { .compatible = "qcom,sc7180-dpu", },
-> >> +       { .compatible = "qcom,sm8150-dpu", },
-> >> +       { .compatible = "qcom,sm8250-dpu", },
-> >>          {}
-> >>   };
-> >>   MODULE_DEVICE_TABLE(of, dpu_dt_match);
-> >> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
-> >> index 94525ac76d4e..928f13d4bfbc 100644
-> >> --- a/drivers/gpu/drm/msm/msm_drv.c
-> >> +++ b/drivers/gpu/drm/msm/msm_drv.c
-> >> @@ -1185,9 +1185,7 @@ static int add_display_components(struct device *dev,
-> >>           * Populate the children devices, find the MDP5/DPU node, and then add
-> >>           * the interfaces to our components list.
-> >>           */
-> >> -       if (of_device_is_compatible(dev->of_node, "qcom,mdss") ||
-> >> -           of_device_is_compatible(dev->of_node, "qcom,sdm845-mdss") ||
-> >> -           of_device_is_compatible(dev->of_node, "qcom,sc7180-mdss")) {
-> >> +       if (!of_device_is_compatible(dev->of_node, "qcom,mdp4")) {
-> >>                  ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
-> >>                  if (ret) {
-> >>                          DRM_DEV_ERROR(dev, "failed to populate children devices\n");
-> >> @@ -1320,6 +1318,8 @@ static const struct of_device_id dt_match[] = {
-> >>          { .compatible = "qcom,mdss", .data = (void *)KMS_MDP5 },
-> >>          { .compatible = "qcom,sdm845-mdss", .data = (void *)KMS_DPU },
-> >>          { .compatible = "qcom,sc7180-mdss", .data = (void *)KMS_DPU },
-> >> +       { .compatible = "qcom,sm8150-mdss", .data = (void *)KMS_DPU },
-> >> +       { .compatible = "qcom,sm8250-mdss", .data = (void *)KMS_DPU },
-> >>          {}
-> >>   };
-> >>   MODULE_DEVICE_TABLE(of, dt_match);
-> >> --
-> >> 2.26.1
-> >>
-> >
-> >
+Ansuel Smith (3):
+  mtd: partitions: ofpart: skip subnodes parse with compatible
+  mtd: core: add nvmem-partitions compatible to parse mtd as nvmem cells
+  dt-bindings: mtd: Document use of nvmem-partitions compatible
 
-
+ .../mtd/partitions/nvmem-partitions.yaml      | 105 ++++++++++++++++++
+ drivers/mtd/mtdcore.c                         |   3 +-
+ drivers/mtd/parsers/ofpart.c                  |   5 +
+ 3 files changed, 112 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/nvmem-partitions.yaml
 
 -- 
-With best wishes
-Dmitry
+2.30.0
+
