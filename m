@@ -2,120 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F4CF31C5AD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 03:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0EEF31C5C1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 04:16:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbhBPCvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 21:51:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43144 "EHLO
+        id S229694AbhBPDQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Feb 2021 22:16:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbhBPCvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 21:51:05 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C984C061574
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 18:50:25 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id a9so2601984plh.8
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 18:50:25 -0800 (PST)
+        with ESMTP id S229702AbhBPDQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 22:16:33 -0500
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFB03C061574;
+        Mon, 15 Feb 2021 19:15:52 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id l19so9853655oih.6;
+        Mon, 15 Feb 2021 19:15:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=qT6Qv4UO7iY9weRE2pinF3cQtgAQDH67e9aE6oV7US8=;
-        b=VTw5bnwgM46SmQHugcyDBnaVKnlvjtWxo+FwmCCiP4lm70NYZENdCq3jMlcy33R1sf
-         GmO1FPmVGB2/nSdbUYaBQ+QVLcdLnne4Bdhp5VNe1m+RwgDyX7+Vjw8ymv9350QVGGXN
-         IN/bgnvde8D1HfCJmb2iRIAo7F78IZyiG3fAiAS0mRrDGs0TtEriOBmNazHstJMsHT2V
-         eEx3S5kwSBw1w3z8kx5QP1ZNGpGi78Q4XWnZFZWpJbx/azuPeLgbrdx8sButYaLpMFhs
-         uKQabhX8JIXHYvifSg9FPz1aelWvsnnQQ0g+c2PDsLebn92oDsL89QW2TMotIM6ImD8c
-         MOGg==
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=szrd6fjGa7a8xlDzEIxDF4hM7gM94SDDBcXujbMgw6Y=;
+        b=EjyQDfj7m8h7bRu7bd+qVtP4Hezfp9GX75HtOSUqaL9GZRATxl9/MWdpDzbG0fhMWW
+         kbO4TvLHJJO65Dl6WHPtWZkMChZIdh7XEGNjiWa+aborH9GmSDPeM5DAiXbPnq1rB1eP
+         LKBPIPD+H4xWoJeKjESaDono/tuXH8p91BQAldq4OWrtCvtqKfMeLdT5cII0ZmSNajBz
+         dn8mYV8cwAMi2LYt620IJwKH8xuqz57oiX6FGQyKPOnxvg8mgjCjMD8l3pzzUxzEJGFQ
+         pzfgg75Dvv+sC+cN7ROWjuYhBZfQeJo02uBnzPr3iRlThw1t19S5e9dQmik8uf2S3xAG
+         N4pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=qT6Qv4UO7iY9weRE2pinF3cQtgAQDH67e9aE6oV7US8=;
-        b=feOzchtmH3tkzBOXmba1Qnh/pUVLUftdb4ubkedArrYgemkrsaulFCS5q7fOyO1Vsw
-         QhUJp4Kgl8/lpIjFGq+iBKAcqy1iQaInffJl0TZtIl/zBhN6Rrdn2iuaK3s5m59cACmY
-         1ZHpwjZOaGsZ5U7oVo/mRSnLQa5WAnYn6XCTfy439lkwF7tBqasZUyodVtUSlRm8/4qf
-         fvWonyhoyMcHfn6d18WzSLVrY/F83zMkuO+FdnPYJrU3lvfmE3uvgvLo0zPJ3XlsEdwb
-         iBChWzXgFTh2t0NSvAjwas1S0S4emik5UvyGKItJOKzgK/6cfpmGD0QNnsVboQJbU9qL
-         3gFg==
-X-Gm-Message-State: AOAM5310gumO3s/QMwfRA0fgmdmsgSXIoX8xE5IFnEVfrsH9j3JZcQb5
-        ay25esuu//JPmENBn+7rEFw=
-X-Google-Smtp-Source: ABdhPJwMY+WRg7dPTHvkttI/R5UVWGhD5gnVavDrd4ldSiaK1lwa3RDLCSckOSt9k2GLnxToVenJ0w==
-X-Received: by 2002:a17:90a:62c1:: with SMTP id k1mr1891994pjs.79.1613443824866;
-        Mon, 15 Feb 2021 18:50:24 -0800 (PST)
-Received: from [10.230.29.30] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id x20sm18994562pfi.115.2021.02.15.18.50.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Feb 2021 18:50:24 -0800 (PST)
-Subject: Re: [PATCH 2/5] arm64: dts: broadcom: bcm4908: describe Ethernet
- controller
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=szrd6fjGa7a8xlDzEIxDF4hM7gM94SDDBcXujbMgw6Y=;
+        b=QXfFdTzLLDkHPUT314eE+78XZPCf4yzdAx1blg0AMG2ooJE9vOw+S0ljOPUYjVY4uU
+         YYX/v54FEspMQ4FqWWjZw8Dtr2ggc3ysMHq+a2Ihnt2Ap5GedpT1I4qKjjtatC73BecI
+         IFUD9hb8wh90jPU2RapRTgWJvGs98SGaLEe0jAEjx89AHiECQXmGjNrAfjWsuToDTOZM
+         An/x+l7WYtQuXp8eoJS1OC6ajmXExUaB9lnPs8+TIysNpKhBlaG/vYxSN/MVUzJXfJk6
+         VYBFJ+6WqOUltyFNPlVgJWZF+nywoorlx6PLe0/jK28ReAVLVbkVtAMmQm1um4gdjFsX
+         mhtQ==
+X-Gm-Message-State: AOAM531of5s8z6d9Gtn+XQD5OzYMVX7nHfFZ6fr6gLTb86K0LGlmF14N
+        yhbYEpUYUCHzT8z+BHSXk8A=
+X-Google-Smtp-Source: ABdhPJxWzxLZK73aMP4dkFgri3O8ylpOE1ECdzAV+I1P39j2G1J9HSVq8WQ161CwBwfUNwjOFDe8Kw==
+X-Received: by 2002:a05:6808:4ce:: with SMTP id a14mr1321181oie.49.1613445352155;
+        Mon, 15 Feb 2021 19:15:52 -0800 (PST)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id f13sm1709393oto.75.2021.02.15.19.15.50
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 15 Feb 2021 19:15:51 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 15 Feb 2021 19:15:50 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Saravana Kannan <saravanak@google.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20210215204105.27830-1-zajec5@gmail.com>
- <20210215204105.27830-2-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <4b586f2c-851c-e4ea-6507-b9d9b7c08850@gmail.com>
-Date:   Mon, 15 Feb 2021 18:50:17 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.7.1
+        Frank Rowand <frowand.list@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thierry Reding <treding@nvidia.com>, kernel-team@android.com,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: property: fw_devlink: Ignore interrupts property for
+ some configs
+Message-ID: <20210216031550.GA62919@roeck-us.net>
+References: <20210215224258.1231449-1-saravanak@google.com>
 MIME-Version: 1.0
-In-Reply-To: <20210215204105.27830-2-zajec5@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210215224258.1231449-1-saravanak@google.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2/15/2021 12:41 PM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, Feb 15, 2021 at 02:42:58PM -0800, Saravana Kannan wrote:
+> When CONFIG_OF_IRQ is not defined, it doesn't make sense to parse
+> interrupts property.
 > 
-> BCM4908 SoCs have an integrated Ethernet controller.
+> Also, parsing and tracking interrupts property breaks some PPC
+> devices[1].  But none of the IRQ drivers in PPC seem ready to be
+> converted to a proper platform (or any bus) driver. So, there's not much
+> of a point in tracking the interrupts property for CONFIG_PPC. So, let's
+> stop parsing interrupts for CONFIG_PPC.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> [1] - https://lore.kernel.org/lkml/20210213185422.GA195733@roeck-us.net/
+> Fixes: 4104ca776ba3 ("of: property: Add fw_devlink support for interrupts")
+> Reported-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+
+That does the trick, at least for my test cases.
+
+Tested-by: Guenter Roeck <linux@roeck-us.net>
+
+Guenter
+
 > ---
->  .../boot/dts/broadcom/bcm4908/bcm4908.dtsi    | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> Greg/Rob,
 > 
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-> index 358958105337..2d2c23292508 100644
-> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-> @@ -112,6 +112,14 @@ soc {
->  		#size-cells = <1>;
->  		ranges = <0x00 0x00 0x80000000 0x281000>;
+> I believe this needs to land on driver-core-next.
+> 
+> -Saravana
+> 
+>  drivers/of/property.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 79b68519fe30..5036a362f52e 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1300,6 +1300,9 @@ static struct device_node *parse_interrupts(struct device_node *np,
+>  {
+>  	struct of_phandle_args sup_args;
 >  
-> +		enet: ethernet@2000 {
-> +			compatible = "brcm,bcm4908-enet";
-> +			reg = <0x2000 0x1000>;
+> +	if (!IS_ENABLED(CONFIG_OF_IRQ) || IS_ENABLED(CONFIG_PPC))
+> +		return NULL;
 > +
-> +			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "rx";
-> +		};
-> +
->  		usb_phy: usb-phy@c200 {
->  			compatible = "brcm,bcm4908-usb-phy";
->  			reg = <0xc200 0x100>;
-> @@ -199,6 +207,18 @@ port@3 {
->  						phy-mode = "internal";
->  						phy-handle = <&phy11>;
->  					};
-> +
-> +					port@8 {
-> +						reg = <8>;
-> +						phy-mode = "internal";
-> +						ethernet = <&enet>;
-> +						brcm,use-bcm-hdr;
-
-This looks redundant, because we have an "ethernet" phandle property
-here this will become the CPU port for DSA and so we would enable
-Broadcom tags on that port. Did you somehow need that for the switch
-driver to work?
--- 
-Florian
+>  	if (strcmp(prop_name, "interrupts") &&
+>  	    strcmp(prop_name, "interrupts-extended"))
+>  		return NULL;
+> -- 
+> 2.30.0.478.g8a0d178c01-goog
+> 
