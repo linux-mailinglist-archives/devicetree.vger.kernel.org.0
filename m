@@ -2,87 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A514931CC5D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 15:49:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C144531CCB1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 16:12:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbhBPOr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 09:47:57 -0500
-Received: from mta-02.yadro.com ([89.207.88.252]:36566 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230364AbhBPOrx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Feb 2021 09:47:53 -0500
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 8C66441203;
-        Tue, 16 Feb 2021 14:47:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-type:content-type:content-transfer-encoding:mime-version
-        :references:in-reply-to:x-mailer:message-id:date:date:subject
-        :subject:from:from:received:received:received; s=mta-01; t=
-        1613486829; x=1615301230; bh=GFQD4WNDs7Ml/44CSx878qcQ5bEC1vFEtyW
-        z0Zks8Gc=; b=G27qyYRL9vMrxU5VbZEiRb3FtJQ9G28HwqK2DM1l/z8uZCNeGbX
-        HlUucwi+dwmHXkURJiMERzqawPFxF9S0EslfJTfzXjabkvrDsXFtin/eHuH61Fqe
-        Z0JZnpewZVakcvqNvB/IMl2VCKDvzRl2FVcZ2ygjR7Zb9q/nNmK+DMto=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 0K7pSKg-Yg8q; Tue, 16 Feb 2021 17:47:09 +0300 (MSK)
-Received: from T-EXCH-03.corp.yadro.com (t-exch-03.corp.yadro.com [172.17.100.103])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id 97F5541280;
-        Tue, 16 Feb 2021 17:47:09 +0300 (MSK)
-Received: from localhost.dev.yadro.com (10.199.0.29) by
- T-EXCH-03.corp.yadro.com (172.17.100.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.669.32; Tue, 16 Feb 2021 17:47:09 +0300
-From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Ivan Mikhaylov <i.mikhaylov@yadro.com>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH 2/2] dt-bindings: vcnl3020: add proximity rate in hz
-Date:   Tue, 16 Feb 2021 17:53:46 +0300
-Message-ID: <20210216145346.18304-3-i.mikhaylov@yadro.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210216145346.18304-1-i.mikhaylov@yadro.com>
-References: <20210216145346.18304-1-i.mikhaylov@yadro.com>
+        id S230179AbhBPPL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 10:11:28 -0500
+Received: from foss.arm.com ([217.140.110.172]:37116 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230190AbhBPPLT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 10:11:19 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23AB831B;
+        Tue, 16 Feb 2021 07:10:34 -0800 (PST)
+Received: from [10.57.48.219] (unknown [10.57.48.219])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6293C3F694;
+        Tue, 16 Feb 2021 07:10:32 -0800 (PST)
+Subject: Re: [PATCH v3 1/2] dt-bindings: iommu: add bindings for sprd iommu
+To:     Rob Herring <robh@kernel.org>, Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+References: <20210203090727.789939-1-zhang.lyra@gmail.com>
+ <20210203090727.789939-2-zhang.lyra@gmail.com>
+ <20210204232549.GA1305874@robh.at.kernel.org>
+ <CAAfSe-tQ+7GuO1PgYa=9wqrpVf3N4br=bn8gJcaEJmnYpc1sxA@mail.gmail.com>
+ <CAL_JsqLi3vJ2tDrwa3YL1rdxtAYWnA72rxCRNPtz_EzvWhTn7w@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <4b88182c-f3fb-20d5-de6f-7fd6eddbcba7@arm.com>
+Date:   Tue, 16 Feb 2021 15:10:27 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.199.0.29]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-03.corp.yadro.com (172.17.100.103)
+In-Reply-To: <CAL_JsqLi3vJ2tDrwa3YL1rdxtAYWnA72rxCRNPtz_EzvWhTn7w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the possible proximity values in herzes for vcnl3020.
+On 2021-02-10 19:21, Rob Herring wrote:
+> On Fri, Feb 5, 2021 at 1:21 AM Chunyan Zhang <zhang.lyra@gmail.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> On Fri, 5 Feb 2021 at 07:25, Rob Herring <robh@kernel.org> wrote:
+>>>
+>>> On Wed, Feb 03, 2021 at 05:07:26PM +0800, Chunyan Zhang wrote:
+>>>> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+>>>>
+>>>> This iommu module can be used by Unisoc's multimedia devices, such as
+>>>> display, Image codec(jpeg) and a few signal processors, including
+>>>> VSP(video), GSP(graphic), ISP(image), and CPP(camera pixel processor), etc.
+>>>>
+>>>> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+>>>> ---
+>>>>   .../devicetree/bindings/iommu/sprd,iommu.yaml | 72 +++++++++++++++++++
+>>>>   1 file changed, 72 insertions(+)
+>>>>   create mode 100644 Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..4fc99e81fa66
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+>>>> @@ -0,0 +1,72 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +# Copyright 2020 Unisoc Inc.
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/iommu/sprd,iommu.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Unisoc IOMMU and Multi-media MMU
+>>>> +
+>>>> +maintainers:
+>>>> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - sprd,iommu-v1
+>>>> +
+>>>> +  "#iommu-cells":
+>>>> +    const: 0
+>>>> +    description:
+>>>> +      Unisoc IOMMUs are all single-master IOMMU devices, therefore no
+>>>> +      additional information needs to associate with its master device.
+>>>> +      Please refer to the generic bindings document for more details,
+>>>> +      Documentation/devicetree/bindings/iommu/iommu.txt
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +    description:
+>>>> +      Not required if 'sprd,iommu-regs' is defined.
+>>>> +
+>>>> +  clocks:
+>>>> +    description:
+>>>> +      Reference to a gate clock phandle, since access to some of IOMMUs are
+>>>> +      controlled by gate clock, but this is not required.
+>>>> +
+>>>> +  sprd,iommu-regs:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>> +    description:
+>>>> +      Reference to a syscon phandle plus 1 cell, the syscon defines the
+>>>> +      register range used by the iommu and the media device, the cell
+>>>> +      defines the offset for iommu registers. Since iommu module shares
+>>>> +      the same register range with the media device which uses it.
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - "#iommu-cells"
 
-Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
----
- .../devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml  | 6 ++++++
- 1 file changed, 6 insertions(+)
+OK, so apparently the hardware is not quite as trivial as my initial 
+impression, and you should have interrupts as well.
 
-diff --git a/Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml b/Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml
-index fbd3a2e32280..1bb6ca1770f3 100644
---- a/Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml
-+++ b/Documentation/devicetree/bindings/iio/proximity/vishay,vcnl3020.yaml
-@@ -43,6 +43,12 @@ properties:
-            180000, 190000, 200000]
-     default: 20000
- 
-+  vishay,proximity-rate-hz:
-+    description:
-+      The rate of proximity measurement.
-+    enum: [1, 3, 7, 16, 31, 62, 125, 500]
-+    default: 1
-+
- required:
-   - compatible
-   - reg
--- 
-2.26.2
+>>>> +
+>>>> +oneOf:
+>>>> +  - required:
+>>>> +      - reg
+>>>> +  - required:
+>>>> +      - sprd,iommu-regs
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    iommu_disp: iommu-disp {
+>>>> +      compatible = "sprd,iommu-v1";
+>>>> +      sprd,iommu-regs = <&dpu_regs 0x800>;
+>>>
+>>> If the IOMMU is contained within another device, then it should just be
+>>> a child node of that device.
+>>
+>> Yes, actually IOMMU can be seen as a child of multimedia devices, I
+>> considered moving IOMMU under into multimedia device node, but
+>> multimedia devices need IOMMU when probe[1], so I dropped that idea.
+> 
+> Don't design your binding around working-around linux issues.
 
+Having stumbled across the DRM driver patches the other day, I now see 
+where this is coming from, and it's even worse than that - this whole 
+binding seems to be largely working around bad driver design.
+
+>> And they share the same register base, e.g.
+>>
+>> +               mm {
+>> +                       compatible = "simple-bus";
+>> +                       #address-cells = <2>;
+>> +                       #size-cells = <2>;
+>> +                       ranges;
+>> +
+>> +                       dpu_regs: syscon@63000000 {
+> 
+> Drop this node.
+> 
+>> +                               compatible = "sprd,sc9863a-dpuregs", "syscon";
+>> +                               reg = <0 0x63000000 0 0x1000>;
+>> +                       };
+>> +
+>> +                       dpu: dpu@63000000 {
+>> +                               compatible = "sprd,sharkl3-dpu";
+>> +                               sprd,disp-regs = <&dpu_regs>;
+> 
+> reg = <0 0x63000000 0 0x800>;
+
+In fact judging by the other driver it looks like the length only needs 
+to be 0x200 here (but maybe there's more to come in future).
+
+>> +                               iommus = <&iommu_dispc>;
+>> +                       };
+>> +
+>> +                       iommu_dispc: iommu@63000000 {
+>> +                               compatible = "sprd,iommu-v1";
+>> +                               sprd,iommu-regs = <&dpu_regs 0x800>;
+> 
+> reg = <0 0x63000800 0 0x800>;
+
+...and this one looks to need less than 0x80, even :)
+
+> 
+>> +                               #iommu-cells = <0>;
+> 
+> Though given it seems there is only 1 client and this might really be
+> just 1 h/w block, you don't really need to use the iommu binding at
+> all. The DPU should be able to instantiate it's own IOMMU device.
+> There's other examples of this such as mali GPU though that is all one
+> driver, but that's a Linux implementation detail.
+
+FWIW that's really a very different situation - the MMUs in a Mali GPU 
+are fundamental parts of its internal pipelines and would never make 
+sense to handle as separate devices (if it were even feasible to try). 
+An IOMMU like this one is typically a logically-distinct block stuck to 
+the external bus interface of any old device, rewriting transactions 
+that said device has already issued - it's telling that it needs to 
+allocate the prot_page scratchpad for "faulting" transactions to still 
+flow somewhere, implying that it's not even involved enough to be able 
+to terminate them.
+
+As such I think it *does* make complete sense to describe even 
+"dedicated" IOMMUs like this one, Rockchip, Exynos, etc. in DT. 
+Otherwise you'd be effectively forcing OSes to turn half their 
+display/media drivers into mini board files with secret knowledge of 
+which blocks are integrated with IOMMUs on which SoCs.
+
+Robin.
