@@ -2,99 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D500731C9B6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 12:32:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B21A031CA1C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 12:49:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbhBPLcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 06:32:36 -0500
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:60574 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230187AbhBPLcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Feb 2021 06:32:24 -0500
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11GBUR4U003803;
-        Tue, 16 Feb 2021 03:31:37 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=Ygij6HNrABKU1KYvy0RHLUzIehSmfOxrnyfacbENG+w=;
- b=MmVsnsAfE64w/NamTF6cEr99C+TfpEd5kKJjOXHliVXvmHNTOfDMSVxlWuvNJ9XGZR2m
- hL7NUJkwtWK4DmDYAzSxxcgvz4YLnkfD4B1s43zBTsKZSZdgP6kkqXK5t80se44Yw5Mj
- WSnZOgAyzEoUMLVxinfHXy0bNxxlg6N+ziIipd1wYIPgKea0l43yikdVzBcta3jv6kgV
- hJWgONFD/4uaIlD/KelsvRNuHoKCRDIkNRitFHlrL2RZ+x+qbNvjxlrkRp2n82Vf7vxy
- ioHTaxIGAHROsZnHq1a9UBQVPzycylYmnB4Gbvh8ApWSZ8dKPm/+frRjcECefUuDHUWx AQ== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0b-0016f401.pphosted.com with ESMTP id 36pf5txsfb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Tue, 16 Feb 2021 03:31:37 -0800
-Received: from SC-EXCH01.marvell.com (10.93.176.81) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 16 Feb
- 2021 03:31:35 -0800
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by SC-EXCH01.marvell.com
- (10.93.176.81) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 16 Feb
- 2021 03:31:34 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 16 Feb 2021 03:31:34 -0800
-Received: from octopus.marvell.com (octopus.marvell.com [10.5.24.3])
-        by maili.marvell.com (Postfix) with ESMTP id 66EAE3F703F;
-        Tue, 16 Feb 2021 03:31:30 -0800 (PST)
-From:   <kostap@marvell.com>
-To:     <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <daniel.lezcano@linaro.org>, <amit.kucheria@linaro.org>,
-        <viresh.kumar@linaro.org>, <linus.walleij@linaro.org>,
-        <sebastian.hesselbarth@gmail.com>, <gregory.clement@bootlin.com>,
-        <andrew@lunn.ch>, <robh+dt@kernel.org>, <mw@semihalf.com>,
-        <jaz@semihalf.com>, <nadavh@marvell.com>, <stefanc@marvell.com>,
-        <bpeled@marvell.com>, Konstantin Porotchkin <kostap@marvell.com>
-Subject: [PATCH 2/2] drivers/pinctrl: armada-cp110 - fix MPP54/MPP55 functions
-Date:   Tue, 16 Feb 2021 13:31:18 +0200
-Message-ID: <20210216113118.17484-3-kostap@marvell.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210216113118.17484-1-kostap@marvell.com>
-References: <20210216113118.17484-1-kostap@marvell.com>
+        id S230209AbhBPLsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 06:48:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42672 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230520AbhBPLqA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 06:46:00 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 163BD64E04;
+        Tue, 16 Feb 2021 11:45:13 +0000 (UTC)
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lBymz-00EQ0O-Rt; Tue, 16 Feb 2021 11:45:09 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-02-16_01:2021-02-16,2021-02-15 signatures=0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 16 Feb 2021 11:45:09 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 14/25] dt-bindings: interrupt-controller: Add DT
+ bindings for apple-aic
+In-Reply-To: <CAK8P3a3rGurSQBubZ8i4+OHpDgM8mOfXiC6UhDYmL0MSQK4BRA@mail.gmail.com>
+References: <20210215121713.57687-1-marcan@marcan.st>
+ <20210215121713.57687-15-marcan@marcan.st>
+ <CAK8P3a3rGurSQBubZ8i4+OHpDgM8mOfXiC6UhDYmL0MSQK4BRA@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <bba8e6790f4fc24fc2e9ecaa5d9eeabe@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: arnd@kernel.org, marcan@marcan.st, linux-arm-kernel@lists.infradead.org, robh@kernel.org, olof@lixom.net, krzk@kernel.org, mark.kettenis@xs4all.nl, tony@atomide.com, mohamed.mediouni@caramail.com, stan@corellium.com, graf@amazon.com, will@kernel.org, linus.walleij@linaro.org, mark.rutland@arm.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Konstantin Porotchkin <kostap@marvell.com>
+On 2021-02-16 09:41, Arnd Bergmann wrote:
+> On Mon, Feb 15, 2021 at 1:17 PM Hector Martin <marcan@marcan.st> wrote:
+>> +
+>> +      The 2nd cell contains the interrupt number.
+>> +        - HW IRQs: interrupt number
+>> +        - FIQs:
+>> +          - 0: physical HV timer
+>> +          - 1: virtual HV timer
+>> +          - 2: physical guest timer
+>> +          - 3: virtual guest timer
+> 
+> I wonder if you could just model the FIQ as a single shared level 
+> interrupt
+> (which is essentially what it is), and have every driver that uses it 
+> do a
+> request_irq() on the same IRQ number.
 
-The function name is used for selecting MPP functionality and
-should be unique within function names of the same pin.
-This patch fixes function names for MPP54 and MPP55 that
-have two different functions named the same.
+And every driver would simply fail, because we don't allow sharing of
+per-CPU interrupts.
 
-Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
----
- drivers/pinctrl/mvebu/pinctrl-armada-cp110.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/pinctrl/mvebu/pinctrl-armada-cp110.c b/drivers/pinctrl/mvebu/pinctrl-armada-cp110.c
-index 17491b27e487..8ba8f3e9121f 100644
---- a/drivers/pinctrl/mvebu/pinctrl-armada-cp110.c
-+++ b/drivers/pinctrl/mvebu/pinctrl-armada-cp110.c
-@@ -519,13 +519,13 @@ static struct mvebu_mpp_mode armada_cp110_mpp_modes[] = {
- 		 MPP_FUNCTION(4,	"synce1",	"clk"),
- 		 MPP_FUNCTION(8,	"led",		"data"),
- 		 MPP_FUNCTION(10,	"sdio",		"hw_rst"),
--		 MPP_FUNCTION(11,	"sdio",		"wr_protect")),
-+		 MPP_FUNCTION(11,	"sdio_wp",	"wr_protect")),
- 	MPP_MODE(55,
- 		 MPP_FUNCTION(0,	"gpio",		NULL),
- 		 MPP_FUNCTION(1,	"ge1",		"rxctl_rxdv"),
- 		 MPP_FUNCTION(3,	"ptp",		"pulse"),
- 		 MPP_FUNCTION(10,	"sdio",		"led"),
--		 MPP_FUNCTION(11,	"sdio",		"card_detect")),
-+		 MPP_FUNCTION(11,	"sdio_cd",	"card_detect")),
- 	MPP_MODE(56,
- 		 MPP_FUNCTION(0,	"gpio",		NULL),
- 		 MPP_FUNCTION(4,	"tdm",		"drx"),
+         M.
 -- 
-2.17.1
-
+Jazz is not dead. It just smells funny...
