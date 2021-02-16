@@ -2,120 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0EEF31C5C1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 04:16:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 459C031C69B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 07:47:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbhBPDQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Feb 2021 22:16:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
+        id S229695AbhBPGpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 01:45:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbhBPDQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Feb 2021 22:16:33 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFB03C061574;
-        Mon, 15 Feb 2021 19:15:52 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id l19so9853655oih.6;
-        Mon, 15 Feb 2021 19:15:52 -0800 (PST)
+        with ESMTP id S230080AbhBPGpK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 01:45:10 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B26B6C061574
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 22:44:29 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id y10so5998278edt.12
+        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 22:44:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=szrd6fjGa7a8xlDzEIxDF4hM7gM94SDDBcXujbMgw6Y=;
-        b=EjyQDfj7m8h7bRu7bd+qVtP4Hezfp9GX75HtOSUqaL9GZRATxl9/MWdpDzbG0fhMWW
-         kbO4TvLHJJO65Dl6WHPtWZkMChZIdh7XEGNjiWa+aborH9GmSDPeM5DAiXbPnq1rB1eP
-         LKBPIPD+H4xWoJeKjESaDono/tuXH8p91BQAldq4OWrtCvtqKfMeLdT5cII0ZmSNajBz
-         dn8mYV8cwAMi2LYt620IJwKH8xuqz57oiX6FGQyKPOnxvg8mgjCjMD8l3pzzUxzEJGFQ
-         pzfgg75Dvv+sC+cN7ROWjuYhBZfQeJo02uBnzPr3iRlThw1t19S5e9dQmik8uf2S3xAG
-         N4pg==
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=48W9PPwDT7qNo2BI9hgweydmutdBVYuB+eG3wiusPHM=;
+        b=dKf02EAeoUczIIJyWbhyidTEeSgVhdR3xEqnypt33xVMFGlSVqzIvbIx8Gy7LELvvy
+         NkcpJKhvodub7fKkebXowi+2BldQevYdWr8mNyBwOtW8RV3YzO3Ww2TmTaXf8MaNAqlp
+         9fHihFFoJwhXpSIXl9iCDDju0yFKbulZ95cJOsj+NA1nutFza6vzWA5Cf/lNAsMbsk9m
+         Fd2iW51nCikjzTymBfWrpwUCGJ4xVxuyk7eKh1PUTNWHxg7lrsT3o/2Mye+9GtJeUUTb
+         ewMW73znjvet/0c4dLD255lwdWflzT9tLObigVPGrCAG83+FOBIOMDYsYIuGU5PUpF+2
+         agfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=szrd6fjGa7a8xlDzEIxDF4hM7gM94SDDBcXujbMgw6Y=;
-        b=QXfFdTzLLDkHPUT314eE+78XZPCf4yzdAx1blg0AMG2ooJE9vOw+S0ljOPUYjVY4uU
-         YYX/v54FEspMQ4FqWWjZw8Dtr2ggc3ysMHq+a2Ihnt2Ap5GedpT1I4qKjjtatC73BecI
-         IFUD9hb8wh90jPU2RapRTgWJvGs98SGaLEe0jAEjx89AHiECQXmGjNrAfjWsuToDTOZM
-         An/x+l7WYtQuXp8eoJS1OC6ajmXExUaB9lnPs8+TIysNpKhBlaG/vYxSN/MVUzJXfJk6
-         VYBFJ+6WqOUltyFNPlVgJWZF+nywoorlx6PLe0/jK28ReAVLVbkVtAMmQm1um4gdjFsX
-         mhtQ==
-X-Gm-Message-State: AOAM531of5s8z6d9Gtn+XQD5OzYMVX7nHfFZ6fr6gLTb86K0LGlmF14N
-        yhbYEpUYUCHzT8z+BHSXk8A=
-X-Google-Smtp-Source: ABdhPJxWzxLZK73aMP4dkFgri3O8ylpOE1ECdzAV+I1P39j2G1J9HSVq8WQ161CwBwfUNwjOFDe8Kw==
-X-Received: by 2002:a05:6808:4ce:: with SMTP id a14mr1321181oie.49.1613445352155;
-        Mon, 15 Feb 2021 19:15:52 -0800 (PST)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f13sm1709393oto.75.2021.02.15.19.15.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 15 Feb 2021 19:15:51 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 15 Feb 2021 19:15:50 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thierry Reding <treding@nvidia.com>, kernel-team@android.com,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: property: fw_devlink: Ignore interrupts property for
- some configs
-Message-ID: <20210216031550.GA62919@roeck-us.net>
-References: <20210215224258.1231449-1-saravanak@google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=48W9PPwDT7qNo2BI9hgweydmutdBVYuB+eG3wiusPHM=;
+        b=EhjRIwk0KVoAyDgKLMu3Cw1Z0LLad+v2FwNOQK0sYiGnTcOaXRjpp3eExkJYH6upfe
+         WGjK5+bTdXGw1YghmP1QONaOJXo06AoM6/LOeypqk+SqsJzov1IYMVWDu6B/6vulZ1K6
+         SUSgyF2unuuQy2EvfjC9fmyjNS8NeeOKfKZ/viAovXVZqNIxvtYsOwg0SjIQUc1L06vP
+         aZpgUyOju8Hm9LUXwbfkMSID5HYNNdx4bXi8Xvp7RcSBrlz+m4s5a6dMSky8w+aCbpY/
+         /q7PxDwi0Iwj7tCgNRjfvPJMqWF4Kdhuiez8gB6adtupkNt5djUu5CwIvZiY7ypd+Z5w
+         yoPg==
+X-Gm-Message-State: AOAM530XIThjNid252hISv1WfWjicPBNhKnEKcZLH/gMSvJnzpDUHKNq
+        Xx9DVV9lbe/63nuMevvSBWOYmKfwZr8BF8UEQcq8Zw==
+X-Google-Smtp-Source: ABdhPJzVRpEHdfhWd3rahxm+UmGMzS80naaxtJBhjXraCX1dKGfB6QQ2HEzZbB8cG+1QKn+vghD0Yrsp52yJHLLKvOI=
+X-Received: by 2002:aa7:d98e:: with SMTP id u14mr4610127eds.88.1613457868461;
+ Mon, 15 Feb 2021 22:44:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210215224258.1231449-1-saravanak@google.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20210213011624.251838-1-robh@kernel.org>
+In-Reply-To: <20210213011624.251838-1-robh@kernel.org>
+From:   Michal Simek <monstr@monstr.eu>
+Date:   Tue, 16 Feb 2021 07:44:17 +0100
+Message-ID: <CAHTX3dJfQffgPt5odNrCnJ2MFd=GVK+NcGsdjbGA_ED_LAwWuw@mail.gmail.com>
+Subject: Re: [PATCH] microblaze: Fix built-in DTB alignment to be 8-byte aligned
+To:     Rob Herring <robh@kernel.org>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 02:42:58PM -0800, Saravana Kannan wrote:
-> When CONFIG_OF_IRQ is not defined, it doesn't make sense to parse
-> interrupts property.
-> 
-> Also, parsing and tracking interrupts property breaks some PPC
-> devices[1].  But none of the IRQ drivers in PPC seem ready to be
-> converted to a proper platform (or any bus) driver. So, there's not much
-> of a point in tracking the interrupts property for CONFIG_PPC. So, let's
-> stop parsing interrupts for CONFIG_PPC.
-> 
-> [1] - https://lore.kernel.org/lkml/20210213185422.GA195733@roeck-us.net/
-> Fixes: 4104ca776ba3 ("of: property: Add fw_devlink support for interrupts")
+so 13. 2. 2021 v 2:16 odes=C3=ADlatel Rob Herring <robh@kernel.org> napsal:
+>
+> Commit 79edff12060f ("scripts/dtc: Update to upstream version
+> v1.6.0-51-g183df9e9c2b9") broke booting on Microblaze systems depending o=
+n
+> the build. The problem is libfdt gained an 8-byte starting alignment chec=
+k,
+> but the Microblaze built-in DTB area is only 4-byte aligned. This affecte=
+d
+> not just built-in DTBs as bootloader passed DTBs are copied into the
+> built-in DTB region.
+>
+> Other arches using built-in DTBs use a common linker macro which has
+> sufficient alignment.
+>
+> Fixes: 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g=
+183df9e9c2b9")
 > Reported-by: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-
-That does the trick, at least for my test cases.
-
-Tested-by: Guenter Roeck <linux@roeck-us.net>
-
-Guenter
-
+> Tested-by: Guenter Roeck <linux@roeck-us.net>
+> Cc: Michal Simek <monstr@monstr.eu>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> Greg/Rob,
-> 
-> I believe this needs to land on driver-core-next.
-> 
-> -Saravana
-> 
->  drivers/of/property.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 79b68519fe30..5036a362f52e 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1300,6 +1300,9 @@ static struct device_node *parse_interrupts(struct device_node *np,
->  {
->  	struct of_phandle_args sup_args;
->  
-> +	if (!IS_ENABLED(CONFIG_OF_IRQ) || IS_ENABLED(CONFIG_PPC))
-> +		return NULL;
-> +
->  	if (strcmp(prop_name, "interrupts") &&
->  	    strcmp(prop_name, "interrupts-extended"))
->  		return NULL;
-> -- 
-> 2.30.0.478.g8a0d178c01-goog
-> 
+> As the commit is in my tree, I'll take this via the DT tree.
+>
+>  arch/microblaze/kernel/vmlinux.lds.S | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/microblaze/kernel/vmlinux.lds.S b/arch/microblaze/kerne=
+l/vmlinux.lds.S
+> index df07b3d06cd6..fb31747ec092 100644
+> --- a/arch/microblaze/kernel/vmlinux.lds.S
+> +++ b/arch/microblaze/kernel/vmlinux.lds.S
+> @@ -45,7 +45,7 @@ SECTIONS {
+>                 _etext =3D . ;
+>         }
+>
+> -       . =3D ALIGN (4) ;
+> +       . =3D ALIGN (8) ;
+>         __fdt_blob : AT(ADDR(__fdt_blob) - LOAD_OFFSET) {
+>                 _fdt_start =3D . ;                /* place for fdt blob *=
+/
+>                 *(__fdt_blob) ;                 /* Any link-placed DTB */
+> --
+> 2.27.0
+>
+
+Applied.
+
+Thanks,
+Michal
+
+
+--=20
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
