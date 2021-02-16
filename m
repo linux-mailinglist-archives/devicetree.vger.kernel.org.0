@@ -2,538 +2,1096 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20B8931D019
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 19:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D01B531D066
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 19:49:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230227AbhBPSSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 13:18:35 -0500
-Received: from mga06.intel.com ([134.134.136.31]:16491 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230015AbhBPSSd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Feb 2021 13:18:33 -0500
-IronPort-SDR: xbyN+s4TDCVoum6dJB3SCots//xd5Qaa9w+KARpc/5t2yKpPrmbH6C/vtm4npjx2IaPk/Nginx
- JkT88eCpTVXA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="244445825"
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; 
-   d="scan'208";a="244445825"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2021 10:15:32 -0800
-IronPort-SDR: n1bdBO7d8l5CWqRaNlcAlRpLh9B2mdDSvs4raZx4/lfvdUrC5F3TcBw39KStAaBr7lXzNT0Ogg
- GRE3lsLGdQGQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; 
-   d="scan'208";a="493376179"
-Received: from maru.jf.intel.com ([10.54.51.77])
-  by fmsmga001.fm.intel.com with ESMTP; 16 Feb 2021 10:15:32 -0800
-From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
-        Cedric Le Goater <clg@kaod.org>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Subject: [PATCH v3 4/4] i2c: aspeed: add DMA mode transfer support
-Date:   Tue, 16 Feb 2021 10:27:35 -0800
-Message-Id: <20210216182735.11639-5-jae.hyun.yoo@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210216182735.11639-1-jae.hyun.yoo@linux.intel.com>
-References: <20210216182735.11639-1-jae.hyun.yoo@linux.intel.com>
+        id S230505AbhBPSsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 13:48:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50746 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230438AbhBPSsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 13:48:51 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86F1C0613D6
+        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 10:48:10 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id n10so6799352pgl.10
+        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 10:48:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YKrUnHK99NO6dXZJHFV9NunxqQfBb0pV7zfZJqFDakw=;
+        b=t7JyODIa//QTHNywEwamOUNBmXXQxAt6JHj1spdqmO9vw+rlUkdaYcieBKaFU5p0Rg
+         s2yID8BkK43YZATLf96OI+sg5ZNSkh30O5ozRXfNy1kh5w3JQrx9bAaCgdkwpV4xi9bQ
+         JG9EtHKqAZ67OyIr3H71xFllA1Up/jWKJ1fpqRGtgel65n/8A2/16ASYXOMvd8BhpGpS
+         Hxes+wOTLE8OIfaO1/K28guS+5KQAkJH6AMolK7v5YnKg25PBC+wQiAr9Uj3+KtLfDQ7
+         PpYXhIRGhP7DBcRlPXTciyVywPYGsClA538OF4YNCFYgLaFxwPWQGM3tWEtu6aw5FjuD
+         XIMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YKrUnHK99NO6dXZJHFV9NunxqQfBb0pV7zfZJqFDakw=;
+        b=RT3Vev3CHe/WXQRX2KQptRKP7Q33PzIK+Qu1vQ1+FNIoKxrFQqV5/BGJ48lal3a2UD
+         FV5NwPijZVCb25zqQzAJ0gleOVlpSy6i4CN60a2jSMkRnJF7CGeIkogt3yj8IvQM5WRr
+         y2OTj3SrYGsttceYOdNc0BdKPU5dnpMZwOGEQ5SHZp8Bbry+Tn9Ja1+WYHdZdc6YJ23O
+         6TZVGPj4Cvs1ycqawHsNSLSOCkYCldvybK0SBKr0oGzPhx5Nf1FLlcg0krGke6qiZ9zX
+         l5HLDqgjv7/IAIBocUYhO2Zb5Qsd9N3FHruU9s10LCucIv2ilJlXYtfjZv3wNwCANTNl
+         6cTg==
+X-Gm-Message-State: AOAM532yS++YvC7P40RgMFXoyXhmqy9mTjjFA6Raeor62GIX3A7VmTGc
+        vWUL30AHAvtS+8VrNfMalmsFGQ==
+X-Google-Smtp-Source: ABdhPJxXcS+4x0wyytkE3PLch+a4m01a032NJRYWQXW1udypdsIrsr8pQP1q8TmU/Kp3SKU5N7RBcg==
+X-Received: by 2002:a05:6a00:1a03:b029:1d3:1fa3:4a5d with SMTP id g3-20020a056a001a03b02901d31fa34a5dmr20812830pfv.1.1613501289912;
+        Tue, 16 Feb 2021 10:48:09 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id 184sm13787173pgj.93.2021.02.16.10.48.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Feb 2021 10:48:09 -0800 (PST)
+Date:   Tue, 16 Feb 2021 11:48:07 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Ben Levinsky <ben.levinsky@xilinx.com>
+Cc:     devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        michal.simek@xilinx.com
+Subject: Re: [PATCH v25 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+Message-ID: <20210216184807.GB2771622@xps15>
+References: <20210111020250.6846-1-ben.levinsky@xilinx.com>
+ <20210111020250.6846-6-ben.levinsky@xilinx.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210111020250.6846-6-ben.levinsky@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds DMA mode transfer support.
+On Sun, Jan 10, 2021 at 06:02:50PM -0800, Ben Levinsky wrote:
+> R5 is included in Xilinx Zynq UltraScale MPSoC so by adding this
+> remotproc driver, we can boot the R5 sub-system in two different
+> configurations -
+> 	* Split
+> 	* Lockstep
+> 
+> The Xilinx R5 Remoteproc Driver boots the R5's via calls to the Xilinx
+> Platform Management Unit that handles the R5 configuration, memory access
+> and R5 lifecycle management. The interface to this manager is done in this
+> driver via zynqmp_pm_* function calls.
+> 
+> Signed-off-by: Wendy Liang <wendy.liang@xilinx.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Signed-off-by: Ed Mooring <ed.mooring@xilinx.com>
+> Signed-off-by: Jason Wu <j.wu@xilinx.com>
+> Signed-off-by: Ben Levinsky <ben.levinsky@xilinx.com>
+> ---
+> v25:
+> - reword error message for rpu configuration
+> - change char name[15] to 16 chars to have null terminated string
+>   in parse_mem_regions()
+> - reword comments in tcm_mem_alloc
+> - call xilinx platform cleanup in parse_tcm_banks() case of failure
+> - check value of mbox_send_message in all instances within this driver 
+> - indentation in zynqmp_r5_remoteproc driver
+> - update style of constructing carveouts to match convention in ST
+>   remoteproc drivers. No longer iterate through memory-region property
+>   using of_count_phandle_with_args. Instead use of_phandle_iterator
+> - use rproc_of_resm_mem_entry_init for vdev0buffer carveout as per feedback
+> - rework loop in zynqmp_r5_pm_request_sram as per feedback
+> - fix comment and linebreak in tcm_mem_alloc description
+> - add comments and remove extraneous devm_ioremap_wc call in tcm_mem_alloc
+> - in parse_tcm_banks remove check for bank not being available
+> - rework order of locals and remove else in zynqmp_r5_rproc_kick
+> - document and update logic for zynqmp_r5_parse_fw
+> - add dev_dbg output in event_notified_idr_cb if
+>   rproc_vq_interrupt(rproc, id) == IRQ_NONE
+> - add comment for handle_event_notified mbox_send_message function call
+> - add comment for zynqmp_r5_mb_rx_cb
+> - update zynqmp_r5_setup_mbox to match convention of mbox setup in ST
+>   remoteproc drivers
+> - change return in zynqmp_r5_setup_mbox to use PTR_ERR
+> - add zynqmp_r5_cleanup_mbox
+> - in zynqmp_r5_probe, reteurn zynqmp_r5_rproc instead of taking in as arg.
+> - in zynqmp_r5_probe use return of PTR_ERR and use zynqmp_r5_cleanup_mbox
+> - in zynqmp_r5_remoteproc_probe update use return value of zynqmp_r5_probe as
+>   either zynqmp_r5_rproc* or PTR_ERR
+> - update loop that cleans up cluster and mboxes in zynqmp_r5_remoteproc_probe
+> - update loop that cleans up cluster and mboxes in zynqmp_r5_remoteproc_remove
+> ---
+>  drivers/remoteproc/Kconfig                |   8 +
+>  drivers/remoteproc/Makefile               |   1 +
+>  drivers/remoteproc/zynqmp_r5_remoteproc.c | 898 ++++++++++++++++++++++
+>  3 files changed, 907 insertions(+)
+>  create mode 100644 drivers/remoteproc/zynqmp_r5_remoteproc.c
+> 
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index c6659dfea7c7..c2fe54b1d94f 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -275,6 +275,14 @@ config TI_K3_DSP_REMOTEPROC
+>  	  It's safe to say N here if you're not interested in utilizing
+>  	  the DSP slave processors.
+>  
+> +config ZYNQMP_R5_REMOTEPROC
+> +	tristate "ZynqMP R5 remoteproc support"
+> +	depends on PM && ARCH_ZYNQMP
+> +	select RPMSG_VIRTIO
+> +	select ZYNQMP_IPI_MBOX
+> +	help
+> +	  Say y or m here to support ZynqMP R5 remote processors via the remote
+> +	  processor framework.
+>  endif # REMOTEPROC
+>  
+>  endmenu
+> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+> index 3dfa28e6c701..ef1abff654c2 100644
+> --- a/drivers/remoteproc/Makefile
+> +++ b/drivers/remoteproc/Makefile
+> @@ -33,3 +33,4 @@ obj-$(CONFIG_ST_REMOTEPROC)		+= st_remoteproc.o
+>  obj-$(CONFIG_ST_SLIM_REMOTEPROC)	+= st_slim_rproc.o
+>  obj-$(CONFIG_STM32_RPROC)		+= stm32_rproc.o
+>  obj-$(CONFIG_TI_K3_DSP_REMOTEPROC)	+= ti_k3_dsp_remoteproc.o
+> +obj-$(CONFIG_ZYNQMP_R5_REMOTEPROC)	+= zynqmp_r5_remoteproc.o
+> diff --git a/drivers/remoteproc/zynqmp_r5_remoteproc.c b/drivers/remoteproc/zynqmp_r5_remoteproc.c
+> new file mode 100644
+> index 000000000000..9e228c9ecd43
+> --- /dev/null
+> +++ b/drivers/remoteproc/zynqmp_r5_remoteproc.c
+> @@ -0,0 +1,898 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Zynq R5 Remote Processor driver
+> + *
+> + * Based on origin OMAP and Zynq Remote Processor driver
+> + *
+> + */
+> +
+> +#include <linux/firmware/xlnx-zynqmp.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/list.h>
+> +#include <linux/mailbox_client.h>
+> +#include <linux/mailbox/zynqmp-ipi-message.h>
+> +#include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/of_reserved_mem.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/remoteproc.h>
+> +#include <linux/skbuff.h>
+> +#include <linux/sysfs.h>
+> +
+> +#include "remoteproc_internal.h"
+> +
+> +#define MAX_RPROCS	2 /* Support up to 2 RPU */
+> +#define MAX_MEM_PNODES	4 /* Max power nodes for one RPU memory instance */
+> +
+> +#define BANK_LIST_PROP	"sram"
+> +#define DDR_LIST_PROP	"memory-region"
+> +
+> +/* IPI buffer MAX length */
+> +#define IPI_BUF_LEN_MAX	32U
+> +/* RX mailbox client buffer max length */
+> +#define RX_MBOX_CLIENT_BUF_MAX	(IPI_BUF_LEN_MAX + \
+> +				 sizeof(struct zynqmp_ipi_message))
+> +
+> +/*
+> + * Map each Xilinx on-chip SRAM  Bank address to their own respective
+> + * pm_node_id.
+> + */
+> +struct sram_addr_data {
+> +	phys_addr_t addr;
+> +	enum pm_node_id id;
+> +};
+> +
+> +#define NUM_SRAMS 4U
+> +static const struct sram_addr_data zynqmp_banks[NUM_SRAMS] = {
+> +	{0xffe00000UL, NODE_TCM_0_A},
+> +	{0xffe20000UL, NODE_TCM_0_B},
+> +	{0xffe90000UL, NODE_TCM_1_A},
+> +	{0xffeb0000UL, NODE_TCM_1_B},
+> +};
+> +
+> +/**
+> + * struct zynqmp_r5_rproc - ZynqMP R5 core structure
+> + *
+> + * @rx_mc_buf: rx mailbox client buffer to save the rx message
+> + * @tx_mc: tx mailbox client
+> + * @rx_mc: rx mailbox client
+> + * @mbox_work: mbox_work for the RPU remoteproc
+> + * @tx_mc_skbs: socket buffers for tx mailbox client
+> + * @dev: device of RPU instance
+> + * @rproc: rproc handle
+> + * @tx_chan: tx mailbox channel
+> + * @rx_chan: rx mailbox channel
+> + * @pnode_id: RPU CPU power domain id
+> + * @elem: linked list item
+> + */
+> +struct zynqmp_r5_rproc {
+> +	unsigned char rx_mc_buf[RX_MBOX_CLIENT_BUF_MAX];
+> +	struct mbox_client tx_mc;
+> +	struct mbox_client rx_mc;
+> +	struct work_struct mbox_work;
+> +	struct sk_buff_head tx_mc_skbs;
+> +	struct device *dev;
+> +	struct rproc *rproc;
+> +	struct mbox_chan *tx_chan;
+> +	struct mbox_chan *rx_chan;
+> +	u32 pnode_id;
+> +	struct list_head elem;
+> +};
+> +
+> +/*
+> + * r5_set_mode - set RPU operation mode
+> + * @z_rproc: Remote processor private data
+> + * @rpu_mode: mode specified by device tree to configure the RPU to
+> + *
+> + * set RPU operation mode
+> + *
+> + * Return: 0 for success, negative value for failure
+> + */
+> +static int r5_set_mode(struct zynqmp_r5_rproc *z_rproc,
+> +		       enum rpu_oper_mode rpu_mode)
+> +{
+> +	enum rpu_tcm_comb tcm_mode;
+> +	enum rpu_oper_mode cur_rpu_mode;
+> +	int ret;
+> +
+> +	ret = zynqmp_pm_get_rpu_mode(z_rproc->pnode_id, &cur_rpu_mode);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (rpu_mode != cur_rpu_mode) {
+> +		ret = zynqmp_pm_set_rpu_mode(z_rproc->pnode_id, rpu_mode);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	tcm_mode = (rpu_mode == PM_RPU_MODE_LOCKSTEP) ?
+> +		    PM_RPU_TCM_COMB : PM_RPU_TCM_SPLIT;
+> +	return zynqmp_pm_set_tcm_config(z_rproc->pnode_id, tcm_mode);
+> +}
+> +
+> +/*
+> + * zynqmp_r5_rproc_mem_release
+> + * @rproc: single R5 core's corresponding rproc instance
+> + * @mem: mem entry to unmap
+> + *
+> + * Unmap TCM banks when powering down R5 core.
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int tcm_mem_release(struct rproc *rproc, struct rproc_mem_entry *mem)
+> +{
+> +	u32 pnode_id = (u64)mem->priv;
+> +
+> +	iounmap(mem->va);
+> +	return zynqmp_pm_release_node(pnode_id);
 
-Only AST2500 and later versions support DMA mode.
+Is the opposite of that call zynqmp_pm_request_node()?  If so doing the power up
+and down of the TCM banks at driver probe() and remove() is highly inefficient.
+Consider using rproc_ops::prepare() and rproc_ops::unprepare().
 
-AST2500 has these restrictions:
-  - If one of these controllers is enabled
-      * UHCI host controller
-      * MCTP controller
-    I2C has to use buffer mode or byte mode instead
-    since these controllers run only in DMA mode and
-    I2C is sharing the same DMA H/W with them.
-  - If one of these controllers uses DMA mode, I2C
-    can't use DMA mode
-      * SD/eMMC
-      * Port80 snoop
+> +}
 
-Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
----
-Changes since v2:
-- Refined SoC family dependent xfer mode configuration functions.
+Please move this just after tcm_mem_alloc()
 
-Changes since v1:
-- Updated commit message and comments.
-- Refined using abstract functions.
+> +
+> +/*
+> + * zynqmp_r5_rproc_start
+> + * @rproc: single R5 core's corresponding rproc instance
+> + *
+> + * Start R5 Core from designated boot address.
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int zynqmp_r5_rproc_start(struct rproc *rproc)
+> +{
+> +	struct zynqmp_r5_rproc *z_rproc = rproc->priv;
+> +	enum rpu_boot_mem bootmem;
+> +
+> +	bootmem = (rproc->bootaddr & 0xF0000000) == 0xF0000000 ?
+> +		   PM_RPU_BOOTMEM_HIVEC : PM_RPU_BOOTMEM_LOVEC;
+> +
+> +	dev_dbg(rproc->dev.parent, "RPU boot from %s.",
+> +		bootmem == PM_RPU_BOOTMEM_HIVEC ? "OCM" : "TCM");
+> +
+> +	return zynqmp_pm_request_wake(z_rproc->pnode_id, 1,
+> +				      bootmem, ZYNQMP_PM_REQUEST_ACK_NO);
+> +}
+> +
+> +/*
+> + * zynqmp_r5_rproc_stop
+> + * @rproc: single R5 core's corresponding rproc instance
+> + *
+> + * Power down  R5 Core.
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int zynqmp_r5_rproc_stop(struct rproc *rproc)
+> +{
+> +	struct zynqmp_r5_rproc *z_rproc = rproc->priv;
+> +
+> +	return zynqmp_pm_force_pwrdwn(z_rproc->pnode_id,
+> +				      ZYNQMP_PM_REQUEST_ACK_BLOCKING);
+> +}
+> +
+> +/*
+> + * zynqmp_r5_rproc_mem_alloc
+> + * @rproc: single R5 core's corresponding rproc instance
+> + * @mem: mem entry to map
+> + *
+> + * Callback to map va for memory-region's carveout.
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int zynqmp_r5_rproc_mem_alloc(struct rproc *rproc,
+> +				     struct rproc_mem_entry *mem)
+> +{
+> +	void *va;
+> +
+> +	va = ioremap_wc(mem->dma, mem->len);
+> +	if (IS_ERR_OR_NULL(va))
+> +		return -ENOMEM;
+> +
+> +	mem->va = va;
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * zynqmp_r5_rproc_mem_release
+> + * @rproc: single R5 core's corresponding rproc instance
+> + * @mem: mem entry to unmap
+> + *
+> + * Unmap memory-region carveout
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int zynqmp_r5_rproc_mem_release(struct rproc *rproc,
+> +				       struct rproc_mem_entry *mem)
+> +{
+> +	iounmap(mem->va);
+> +	return 0;
+> +}
+> +
+> +/*
+> + * parse_mem_regions
+> + * @rproc: single R5 core's corresponding rproc instance
+> + *
+> + * Construct rproc mem carveouts from carveout provided in
+> + * memory-region property
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int parse_mem_regions(struct rproc *rproc)
+> +{
+> +	struct zynqmp_r5_rproc *z_rproc = rproc->priv;
+> +	struct device_node *np = z_rproc->dev->of_node;
+> +	struct device *dev = &rproc->dev;
+> +	struct of_phandle_iterator it;
+> +	struct rproc_mem_entry *mem;
+> +	struct reserved_mem *rmem;
+> +	int index = 0;
+> +
+> +	/* Register associated reserved memory regions */
+> +	of_phandle_iterator_init(&it, np, DDR_LIST_PROP, NULL, 0);
+> +	while (of_phandle_iterator_next(&it) == 0) {
+> +		rmem = of_reserved_mem_lookup(it.node);
+> +		if (!rmem) {
+> +			dev_err(dev, "unable to acquire %s\n", DDR_LIST_PROP);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (strstr(it.node->name, "vdev0buffer")) {
+> +			mem = rproc_of_resm_mem_entry_init(dev, index,
+> +							   rmem->size,
+> +							   rmem->base,
+> +							   "vdev0buffer");
+> +		} else {
+> +			/*
+> +			 * The ensuing carveout is either for vring, which has
+> +			 * device tree node name of length 15 characters, or
+> +			 * firmware mem, where name is not used by remoteproc
+> +			 *  core later on. So default to vring length of 15.
 
- drivers/i2c/busses/i2c-aspeed.c | 257 ++++++++++++++++++++++++++------
- 1 file changed, 212 insertions(+), 45 deletions(-)
+s/"*  core"/"* core"
 
-diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
-index 343e621ff133..304d08011ca7 100644
---- a/drivers/i2c/busses/i2c-aspeed.c
-+++ b/drivers/i2c/busses/i2c-aspeed.c
-@@ -10,6 +10,8 @@
- #include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/completion.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/dmapool.h>
- #include <linux/err.h>
- #include <linux/errno.h>
- #include <linux/i2c.h>
-@@ -47,6 +49,8 @@
- #define ASPEED_I2C_DEV_ADDR_REG				0x18
- #define ASPEED_I2C_BUF_CTRL_REG				0x1c
- #define ASPEED_I2C_BYTE_BUF_REG				0x20
-+#define ASPEED_I2C_DMA_ADDR_REG				0x24
-+#define ASPEED_I2C_DMA_LEN_REG				0x28
- 
- /* Device Register Definition */
- /* 0x00 : I2CD Function Control Register  */
-@@ -111,6 +115,8 @@
- #define ASPEED_I2CD_BUS_RECOVER_CMD			BIT(11)
- 
- /* Command Bit */
-+#define ASPEED_I2CD_RX_DMA_ENABLE			BIT(9)
-+#define ASPEED_I2CD_TX_DMA_ENABLE			BIT(8)
- #define ASPEED_I2CD_RX_BUFF_ENABLE			BIT(7)
- #define ASPEED_I2CD_TX_BUFF_ENABLE			BIT(6)
- #define ASPEED_I2CD_M_STOP_CMD				BIT(5)
-@@ -136,6 +142,14 @@
- #define ASPEED_I2CD_BUF_TX_COUNT_MASK			GENMASK(15, 8)
- #define ASPEED_I2CD_BUF_OFFSET_MASK			GENMASK(5, 0)
- 
-+/* 0x24 : I2CD DMA Mode Buffer Address Register */
-+#define ASPEED_I2CD_DMA_ADDR_MASK			GENMASK(31, 2)
-+#define ASPEED_I2CD_DMA_ALIGN				4
-+
-+/* 0x28 : I2CD DMA Transfer Length Register */
-+#define ASPEED_I2CD_DMA_LEN_SHIFT			0
-+#define ASPEED_I2CD_DMA_LEN_MASK			GENMASK(11, 0)
-+
- enum aspeed_i2c_master_state {
- 	ASPEED_I2C_MASTER_INACTIVE,
- 	ASPEED_I2C_MASTER_PENDING,
-@@ -161,6 +175,7 @@ struct aspeed_i2c_config {
- 	u32 (*get_clk_reg_val)(struct device *dev, u32 divisor);
- 	int (*enable_sram)(void);
- 	int (*set_buf_xfer_mode)(struct device *dev);
-+	int (*set_dma_xfer_mode)(struct device *dev);
- };
- 
- struct aspeed_i2c_bus {
-@@ -190,6 +205,12 @@ struct aspeed_i2c_bus {
- 	void __iomem			*buf_base;
- 	u8				buf_offset;
- 	u8				buf_page;
-+	/* DMA mode */
-+	struct dma_pool			*dma_pool;
-+	dma_addr_t			dma_handle;
-+	u8				*dma_buf;
-+	size_t				dma_len;
-+	/* Buffer/DMA mode */
- 	size_t				buf_size;
- #if IS_ENABLED(CONFIG_I2C_SLAVE)
- 	struct i2c_client		*slave;
-@@ -272,9 +293,13 @@ static inline void
- aspeed_i2c_slave_handle_rx_done(struct aspeed_i2c_bus *bus, u32 irq_status,
- 				u8 *value)
- {
--	if (bus->buf_base &&
-+	if (bus->dma_buf &&
- 	    bus->slave_state == ASPEED_I2C_SLAVE_WRITE_RECEIVED &&
- 	    !(irq_status & ASPEED_I2CD_INTR_NORMAL_STOP))
-+		*value = bus->dma_buf[0];
-+	else if (bus->buf_base &&
-+		 bus->slave_state == ASPEED_I2C_SLAVE_WRITE_RECEIVED &&
-+		 !(irq_status & ASPEED_I2CD_INTR_NORMAL_STOP))
- 		*value = readb(bus->buf_base);
- 	else
- 		*value = readl(bus->base + ASPEED_I2C_BYTE_BUF_REG) >> 8;
-@@ -288,7 +313,18 @@ aspeed_i2c_slave_handle_normal_stop(struct aspeed_i2c_bus *bus, u32 irq_status,
- 
- 	if (bus->slave_state == ASPEED_I2C_SLAVE_WRITE_RECEIVED &&
- 	    irq_status & ASPEED_I2CD_INTR_RX_DONE) {
--		if (bus->buf_base) {
-+		if (bus->dma_buf) {
-+			len = bus->buf_size -
-+			      FIELD_GET(ASPEED_I2CD_DMA_LEN_MASK,
-+					readl(bus->base +
-+					      ASPEED_I2C_DMA_LEN_REG));
-+			for (i = 0; i < len; i++) {
-+				*value = bus->dma_buf[i];
-+				i2c_slave_event(bus->slave,
-+						I2C_SLAVE_WRITE_RECEIVED,
-+						value);
-+			}
-+		} else if (bus->buf_base) {
- 			len = FIELD_GET(ASPEED_I2CD_BUF_RX_COUNT_MASK,
- 					readl(bus->base +
- 					      ASPEED_I2C_BUF_CTRL_REG));
-@@ -305,7 +341,14 @@ aspeed_i2c_slave_handle_normal_stop(struct aspeed_i2c_bus *bus, u32 irq_status,
- static inline void
- aspeed_i2c_slave_handle_write_requested(struct aspeed_i2c_bus *bus, u8 *value)
- {
--	if (bus->buf_base) {
-+	if (bus->dma_buf) {
-+		writel(bus->dma_handle & ASPEED_I2CD_DMA_ADDR_MASK,
-+		       bus->base + ASPEED_I2C_DMA_ADDR_REG);
-+		writel(FIELD_PREP(ASPEED_I2CD_DMA_LEN_MASK, bus->buf_size),
-+		       bus->base + ASPEED_I2C_DMA_LEN_REG);
-+		writel(ASPEED_I2CD_RX_DMA_ENABLE,
-+		       bus->base + ASPEED_I2C_CMD_REG);
-+	} else if (bus->buf_base) {
- 		writel(FIELD_PREP(ASPEED_I2CD_BUF_RX_SIZE_MASK,
- 				  bus->buf_size - 1) |
- 		       FIELD_PREP(ASPEED_I2CD_BUF_OFFSET_MASK,
-@@ -321,7 +364,23 @@ aspeed_i2c_slave_handle_write_received(struct aspeed_i2c_bus *bus, u8 *value)
- {
- 	int i, len;
- 
--	if (bus->buf_base) {
-+	if (bus->dma_buf) {
-+		len = bus->buf_size -
-+		      FIELD_GET(ASPEED_I2CD_DMA_LEN_MASK,
-+				readl(bus->base +
-+				      ASPEED_I2C_DMA_LEN_REG));
-+		for (i = 1; i < len; i++) {
-+			*value = bus->dma_buf[i];
-+			i2c_slave_event(bus->slave, I2C_SLAVE_WRITE_RECEIVED,
-+					value);
-+		}
-+		writel(bus->dma_handle & ASPEED_I2CD_DMA_ADDR_MASK,
-+		       bus->base + ASPEED_I2C_DMA_ADDR_REG);
-+		writel(FIELD_PREP(ASPEED_I2CD_DMA_LEN_MASK, bus->buf_size),
-+		       bus->base + ASPEED_I2C_DMA_LEN_REG);
-+		writel(ASPEED_I2CD_RX_DMA_ENABLE,
-+		       bus->base + ASPEED_I2C_CMD_REG);
-+	} else if (bus->buf_base) {
- 		len = FIELD_GET(ASPEED_I2CD_BUF_RX_COUNT_MASK,
- 				readl(bus->base +
- 				      ASPEED_I2C_BUF_CTRL_REG));
-@@ -451,7 +510,15 @@ aspeed_i2c_prepare_rx_buf(struct aspeed_i2c_bus *bus, struct i2c_msg *msg)
- 		command |= ASPEED_I2CD_M_S_RX_CMD_LAST;
- 	}
- 
--	if (bus->buf_base) {
-+	if (bus->dma_buf) {
-+		command |= ASPEED_I2CD_RX_DMA_ENABLE;
-+
-+		writel(bus->dma_handle & ASPEED_I2CD_DMA_ADDR_MASK,
-+		       bus->base + ASPEED_I2C_DMA_ADDR_REG);
-+		writel(FIELD_PREP(ASPEED_I2CD_DMA_LEN_MASK, len),
-+		       bus->base + ASPEED_I2C_DMA_LEN_REG);
-+		bus->dma_len = len;
-+	} else {
- 		command |= ASPEED_I2CD_RX_BUFF_ENABLE;
- 
- 		writel(FIELD_PREP(ASPEED_I2CD_BUF_RX_SIZE_MASK, len - 1) |
-@@ -474,7 +541,18 @@ aspeed_i2c_prepare_tx_buf(struct aspeed_i2c_bus *bus, struct i2c_msg *msg)
- 	else
- 		len = msg->len + 1;
- 
--	if (bus->buf_base) {
-+	if (bus->dma_buf) {
-+		command |= ASPEED_I2CD_TX_DMA_ENABLE;
-+
-+		bus->dma_buf[0] = slave_addr;
-+		memcpy(bus->dma_buf + 1, msg->buf, len);
-+
-+		writel(bus->dma_handle & ASPEED_I2CD_DMA_ADDR_MASK,
-+		       bus->base + ASPEED_I2C_DMA_ADDR_REG);
-+		writel(FIELD_PREP(ASPEED_I2CD_DMA_LEN_MASK, len),
-+		       bus->base + ASPEED_I2C_DMA_LEN_REG);
-+		bus->dma_len = len;
-+	} else {
- 		u8 wbuf[4];
- 		int i;
- 
-@@ -527,18 +605,19 @@ static void aspeed_i2c_do_start(struct aspeed_i2c_bus *bus)
- 	if (msg->flags & I2C_M_RD) {
- 		command |= ASPEED_I2CD_M_RX_CMD;
- 		if (!(msg->flags & I2C_M_RECV_LEN)) {
--			if (msg->len && bus->buf_base)
-+			if (msg->len && (bus->dma_buf || bus->buf_base))
- 				command |= aspeed_i2c_prepare_rx_buf(bus, msg);
- 
- 			/* Need to let the hardware know to NACK after RX. */
- 			if (msg->len <= 1)
- 				command |= ASPEED_I2CD_M_S_RX_CMD_LAST;
- 		}
--	} else if (msg->len && bus->buf_base) {
-+	} else if (msg->len && (bus->dma_buf || bus->buf_base)) {
- 		command |= aspeed_i2c_prepare_tx_buf(bus, msg);
- 	}
- 
--	if (!(command & ASPEED_I2CD_TX_BUFF_ENABLE))
-+	if (!(command & (ASPEED_I2CD_TX_BUFF_ENABLE |
-+			 ASPEED_I2CD_TX_DMA_ENABLE)))
- 		writel(i2c_8bit_addr_from_msg(msg),
- 		       bus->base + ASPEED_I2C_BYTE_BUF_REG);
- 	writel(command, bus->base + ASPEED_I2C_CMD_REG);
-@@ -581,38 +660,51 @@ aspeed_i2c_master_handle_tx_first(struct aspeed_i2c_bus *bus,
- {
- 	u32 command = 0;
- 
--	if (bus->buf_base) {
--		u8 wbuf[4];
-+	if (bus->dma_buf || bus->buf_base) {
- 		int len;
--		int i;
- 
- 		if (msg->len - bus->buf_index > bus->buf_size)
- 			len = bus->buf_size;
- 		else
- 			len = msg->len - bus->buf_index;
- 
--		command |= ASPEED_I2CD_TX_BUFF_ENABLE;
-+		if (bus->dma_buf) {
-+			command |= ASPEED_I2CD_TX_DMA_ENABLE;
- 
--		if (msg->len - bus->buf_index > bus->buf_size)
--			len = bus->buf_size;
--		else
--			len = msg->len - bus->buf_index;
-+			memcpy(bus->dma_buf, msg->buf + bus->buf_index, len);
- 
--		for (i = 0; i < len; i++) {
--			wbuf[i % 4] = msg->buf[bus->buf_index + i];
--			if (i % 4 == 3)
-+			writel(bus->dma_handle & ASPEED_I2CD_DMA_ADDR_MASK,
-+			       bus->base + ASPEED_I2C_DMA_ADDR_REG);
-+			writel(FIELD_PREP(ASPEED_I2CD_DMA_LEN_MASK, len),
-+			       bus->base + ASPEED_I2C_DMA_LEN_REG);
-+			bus->dma_len = len;
-+		} else {
-+			u8 wbuf[4];
-+			int i;
-+
-+			command |= ASPEED_I2CD_TX_BUFF_ENABLE;
-+
-+			if (msg->len - bus->buf_index > bus->buf_size)
-+				len = bus->buf_size;
-+			else
-+				len = msg->len - bus->buf_index;
-+
-+			for (i = 0; i < len; i++) {
-+				wbuf[i % 4] = msg->buf[bus->buf_index + i];
-+				if (i % 4 == 3)
-+					writel(*(u32 *)wbuf,
-+					       bus->buf_base + i - 3);
-+			}
-+			if (--i % 4 != 3)
- 				writel(*(u32 *)wbuf,
--				       bus->buf_base + i - 3);
--		}
--		if (--i % 4 != 3)
--			writel(*(u32 *)wbuf,
--			       bus->buf_base + i - (i % 4));
-+				       bus->buf_base + i - (i % 4));
- 
--		writel(FIELD_PREP(ASPEED_I2CD_BUF_TX_COUNT_MASK,
--				  len - 1) |
--		       FIELD_PREP(ASPEED_I2CD_BUF_OFFSET_MASK,
--				  bus->buf_offset),
--		       bus->base + ASPEED_I2C_BUF_CTRL_REG);
-+			writel(FIELD_PREP(ASPEED_I2CD_BUF_TX_COUNT_MASK,
-+					  len - 1) |
-+			       FIELD_PREP(ASPEED_I2CD_BUF_OFFSET_MASK,
-+					  bus->buf_offset),
-+			       bus->base + ASPEED_I2C_BUF_CTRL_REG);
-+		}
- 
- 		bus->buf_index += len;
- 	} else {
-@@ -629,7 +721,14 @@ aspeed_i2c_master_handle_rx(struct aspeed_i2c_bus *bus, struct i2c_msg *msg)
- 	u8 recv_byte;
- 	int len;
- 
--	if (bus->buf_base) {
-+	if (bus->dma_buf) {
-+		len = bus->dma_len -
-+		      FIELD_GET(ASPEED_I2CD_DMA_LEN_MASK,
-+				readl(bus->base + ASPEED_I2C_DMA_LEN_REG));
-+
-+		memcpy(msg->buf + bus->buf_index, bus->dma_buf, len);
-+		bus->buf_index += len;
-+	} else if (bus->buf_base) {
- 		len = FIELD_GET(ASPEED_I2CD_BUF_RX_COUNT_MASK,
- 				readl(bus->base + ASPEED_I2C_BUF_CTRL_REG));
- 		memcpy_fromio(msg->buf + bus->buf_index, bus->buf_base, len);
-@@ -646,7 +745,7 @@ aspeed_i2c_master_handle_rx_next(struct aspeed_i2c_bus *bus,
- {
- 	u32 command = 0;
- 
--	if (bus->buf_base) {
-+	if (bus->dma_buf || bus->buf_base) {
- 		int len;
- 
- 		if (msg->len - bus->buf_index > bus->buf_size) {
-@@ -656,14 +755,24 @@ aspeed_i2c_master_handle_rx_next(struct aspeed_i2c_bus *bus,
- 			command |= ASPEED_I2CD_M_S_RX_CMD_LAST;
- 		}
- 
--		command |= ASPEED_I2CD_RX_BUFF_ENABLE;
-+		if (bus->dma_buf) {
-+			command |= ASPEED_I2CD_RX_DMA_ENABLE;
- 
--		writel(FIELD_PREP(ASPEED_I2CD_BUF_RX_SIZE_MASK,
--				  len - 1) |
--		       FIELD_PREP(ASPEED_I2CD_BUF_TX_COUNT_MASK, 0) |
--		       FIELD_PREP(ASPEED_I2CD_BUF_OFFSET_MASK,
--				  bus->buf_offset),
--		       bus->base + ASPEED_I2C_BUF_CTRL_REG);
-+			writel(bus->dma_handle & ASPEED_I2CD_DMA_ADDR_MASK,
-+			       bus->base + ASPEED_I2C_DMA_ADDR_REG);
-+			writel(FIELD_PREP(ASPEED_I2CD_DMA_LEN_MASK, len),
-+			       bus->base + ASPEED_I2C_DMA_LEN_REG);
-+			bus->dma_len = len;
-+		} else {
-+			command |= ASPEED_I2CD_RX_BUFF_ENABLE;
-+
-+			writel(FIELD_PREP(ASPEED_I2CD_BUF_RX_SIZE_MASK,
-+					  len - 1) |
-+			       FIELD_PREP(ASPEED_I2CD_BUF_TX_COUNT_MASK, 0) |
-+			       FIELD_PREP(ASPEED_I2CD_BUF_OFFSET_MASK,
-+					  bus->buf_offset),
-+			       bus->base + ASPEED_I2C_BUF_CTRL_REG);
-+		}
- 	} else {
- 		if (bus->buf_index + 1 == msg->len)
- 			command |= ASPEED_I2CD_M_S_RX_CMD_LAST;
-@@ -1283,22 +1392,63 @@ static int aspeed_i2c_25xx_set_buf_xfer_mode(struct device *dev)
- 	return bus->buf_size ? 0 : -EINVAL;
- }
- 
-+static int aspeed_i2c_24xx_set_dma_xfer_mode(struct device *dev)
-+{
-+	/* AST24xx doesn't support DMA mode */
-+
-+	return -EBADR;
-+}
-+
-+static int aspeed_i2c_25xx_set_dma_xfer_mode(struct device *dev)
-+{
-+	struct platform_device *pdev = to_platform_device(dev);
-+	struct aspeed_i2c_bus *bus = platform_get_drvdata(pdev);
-+	int ret;
-+
-+	ret = dma_set_mask(&pdev->dev, DMA_BIT_MASK(32));
-+	if (!ret) {
-+		bus->buf_size = ASPEED_I2CD_DMA_LEN_MASK >>
-+				ASPEED_I2CD_DMA_LEN_SHIFT;
-+		bus->dma_pool = dma_pool_create("i2c-aspeed",
-+						&pdev->dev,
-+						bus->buf_size,
-+						ASPEED_I2CD_DMA_ALIGN,
-+						0);
-+		if (bus->dma_pool)
-+			bus->dma_buf = dma_pool_alloc(bus->dma_pool,
-+						      GFP_KERNEL,
-+						      &bus->dma_handle);
-+
-+		if (!bus->dma_buf) {
-+			ret = -ENOMEM;
-+			bus->buf_size = 0;
-+			dev_dbg(&pdev->dev, "Cannot allocate DMA buffer\n");
-+			dma_pool_destroy(bus->dma_pool);
-+		}
-+	}
-+
-+	return ret;
-+}
-+
- static const struct aspeed_i2c_config ast24xx_config = {
- 	.get_clk_reg_val = aspeed_i2c_24xx_get_clk_reg_val,
- 	.enable_sram = aspeed_i2c_24xx_enable_sram,
- 	.set_buf_xfer_mode = aspeed_i2c_24xx_set_buf_xfer_mode,
-+	.set_dma_xfer_mode = aspeed_i2c_24xx_set_dma_xfer_mode,
- };
- 
- static const struct aspeed_i2c_config ast25xx_config = {
- 	.get_clk_reg_val = aspeed_i2c_25xx_get_clk_reg_val,
- 	.enable_sram = aspeed_i2c_25xx_enable_sram,
- 	.set_buf_xfer_mode = aspeed_i2c_25xx_set_buf_xfer_mode,
-+	.set_dma_xfer_mode = aspeed_i2c_25xx_set_dma_xfer_mode,
- };
- 
- static const struct aspeed_i2c_config ast26xx_config = {
- 	.get_clk_reg_val = aspeed_i2c_25xx_get_clk_reg_val,
- 	.enable_sram = aspeed_i2c_24xx_enable_sram,
- 	.set_buf_xfer_mode = aspeed_i2c_25xx_set_buf_xfer_mode,
-+	.set_dma_xfer_mode = aspeed_i2c_25xx_set_dma_xfer_mode,
- };
- 
- static const struct of_device_id aspeed_i2c_bus_of_table[] = {
-@@ -1320,8 +1470,12 @@ static void aspeed_i2c_set_xfer_mode(struct aspeed_i2c_bus *bus)
- 		return;
- 
- 	ret = bus->config->enable_sram();
--	if (!ret && !strncasecmp(mode, "buf", 3))
--		ret = bus->config->set_buf_xfer_mode(bus->dev);
-+	if (!ret) {
-+		if (!strncasecmp(mode, "buf", 3))
-+			ret = bus->config->set_buf_xfer_mode(bus->dev);
-+		else if (!strncasecmp(mode, "dma", 3))
-+			ret = bus->config->set_dma_xfer_mode(bus->dev);
-+	}
- 
- 	if (ret)
- 		dev_dbg(&pdev->dev, "Use default (byte) xfer mode\n");
-@@ -1396,22 +1550,31 @@ static int aspeed_i2c_probe_bus(struct platform_device *pdev)
- 	 */
- 	ret = aspeed_i2c_init(bus, pdev);
- 	if (ret < 0)
--		return ret;
-+		goto out_free_dma_buf;
- 
- 	irq = irq_of_parse_and_map(pdev->dev.of_node, 0);
- 	ret = devm_request_irq(&pdev->dev, irq, aspeed_i2c_bus_irq,
- 			       0, dev_name(&pdev->dev), bus);
- 	if (ret < 0)
--		return ret;
-+		goto out_free_dma_buf;
- 
- 	ret = i2c_add_adapter(&bus->adap);
- 	if (ret < 0)
--		return ret;
-+		goto out_free_dma_buf;
- 
- 	dev_info(bus->dev, "i2c bus %d registered (%s mode), irq %d\n",
--		 bus->adap.nr, bus->buf_base ? "buf" : "byte", irq);
-+		 bus->adap.nr, bus->dma_buf ? "dma" :
-+					      bus->buf_base ? "buf" : "byte",
-+		 irq);
- 
- 	return 0;
-+
-+out_free_dma_buf:
-+	if (bus->dma_buf)
-+		dma_pool_free(bus->dma_pool, bus->dma_buf, bus->dma_handle);
-+	dma_pool_destroy(bus->dma_pool);
-+
-+	return ret;
- }
- 
- static int aspeed_i2c_remove_bus(struct platform_device *pdev)
-@@ -1429,6 +1592,10 @@ static int aspeed_i2c_remove_bus(struct platform_device *pdev)
- 
- 	reset_control_assert(bus->rst);
- 
-+	if (bus->dma_buf)
-+		dma_pool_free(bus->dma_pool, bus->dma_buf, bus->dma_handle);
-+	dma_pool_destroy(bus->dma_pool);
-+
- 	i2c_del_adapter(&bus->adap);
- 
- 	return 0;
--- 
-2.17.1
+> +			 *
+> +			 * Extra char for null-terminated string.
+> +			 */
+> +			char name[16];
+> +
+> +			if (strstr(it.node->name, "vdev0vring")) {
+> +				int vring_id;
+> +
+> +				/*
+> +				 * Expect "rpuXvdev0vringX" as documented
+> +				 * in xilinx remoteproc device tree binding
+> +				 */
+> +				if (strlen(it.node->name) < 15) {
+> +					dev_err(dev, "%pOF is less than 15 chars",
+> +						it.node);
+> +					return -EINVAL;
+> +				}
+> +
+> +				/*
+> +				 * can be 1 of multiple vring IDs per IPC channel
+> +				 * e.g. 'vdev0vring0' and 'vdev0vring1'
+> +				 *
+> +				 * Here get vring ID from 15th char
+> +				 */
+> +				vring_id = it.node->name[14] - '0';
+> +				snprintf(name, sizeof(name), "vdev0vring%d", vring_id);
 
+Function strstr() returns a pointer to the beginning of the string being
+searched for.  As such you should be able to do something like:
+
+                        name = strstr(it.node->name, "vdev0vring");
+                        if (name) {
+                                ...
+
+and simply use @name when calling rproc_mem_entry_init().
+
+> +			} else {
+> +				strncpy(name, it.node->name, 16);
+> +			}
+> +
+> +			mem = rproc_mem_entry_init(dev, NULL,
+> +						   (dma_addr_t)rmem->base,
+> +						   rmem->size, rmem->base,
+> +						   zynqmp_r5_rproc_mem_alloc,
+> +						   zynqmp_r5_rproc_mem_release,
+> +						   name);
+> +		}
+> +
+> +		if (!mem)
+> +			return -ENOMEM;
+> +
+> +		rproc_add_carveout(rproc, mem);
+> +		index++;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * zynqmp_r5_pm_request_tcm
+> + * @addr: base address of mem provided in R5 core's sram property.
+> + *
+> + * Given sram base address, determine its corresponding Xilinx
+> + * Platform Management ID and then request access to this node
+> + * so that it can be power up.
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int zynqmp_r5_pm_request_sram(phys_addr_t addr)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < NUM_SRAMS; i++) {
+> +		if (zynqmp_banks[i].addr != addr)
+> +			continue;
+> +
+> +		return zynqmp_pm_request_node(zynqmp_banks[i].id,
+> +					      ZYNQMP_PM_CAPABILITY_ACCESS, 0,
+> +					      ZYNQMP_PM_REQUEST_ACK_BLOCKING);
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +/*
+> + * tcm_mem_alloc
+> + * @rproc: single R5 core's corresponding rproc instance
+> + * @mem: mem entry to initialize the va and da fields of
+> + *
+> + * Given TCM bank entry, this callback will set device address for R5
+> + * running on TCM and also setup virtual address for TCM bank
+> + * remoteproc carveout.
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int tcm_mem_alloc(struct rproc *rproc,
+> +			 struct rproc_mem_entry *mem)
+> +{
+> +	void *va;
+> +	struct device *dev = rproc->dev.parent;
+> +
+> +	va = ioremap_wc(mem->dma, mem->len);
+> +	if (IS_ERR_OR_NULL(va))
+> +		return -ENOMEM;
+> +
+> +	/* Update memory entry va */
+> +	mem->va = va;
+> +
+> +	/*
+> +	 * The R5s expect their TCM banks to be at address 0x0 and 0x2000,
+> +	 * while on the Linux side they are at 0xffexxxxx.
+> +	 *
+> +	 * Zero out the high 12 bits of the address. This will give
+> +	 * expected values for TCM Banks 0A and 0B (0x0 and 0x20000).
+> +	 */
+> +	mem->da &= 0x000fffff;
+> +
+> +	/*
+> +	 * TCM Banks 1A and 1B still have to be translated.
+> +	 *
+> +	 * Below handle these two banks' absolute addresses (0xffe90000 and
+> +	 * 0xffeb0000) and convert to the expected relative addresses
+> +	 * (0x0 and 0x20000).
+> +	 */
+> +	if (mem->da == 0x90000 || mem->da == 0xB0000)
+> +		mem->da -= 0x90000;
+> +
+> +	/* if translated TCM bank address is not valid report error */
+> +	if (mem->da != 0x0 && mem->da != 0x20000) {
+> +		dev_err(dev, "invalid TCM bank address: %x\n", mem->da);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * parse_tcm_banks()
+> + * @rproc: single R5 core's corresponding rproc instance
+> + *
+> + * Given R5 node in remoteproc instance
+> + * allocate remoteproc carveout for TCM memory
+> + * needed for firmware to be loaded
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int parse_tcm_banks(struct rproc *rproc)
+> +{
+> +	int i, num_banks;
+> +	struct zynqmp_r5_rproc *z_rproc = rproc->priv;
+> +	struct device *dev = &rproc->dev;
+> +	struct device_node *r5_node = z_rproc->dev->of_node;
+> +
+> +	/* go through TCM banks for r5 node */
+> +	num_banks = of_count_phandle_with_args(r5_node, BANK_LIST_PROP, NULL);
+> +	if (num_banks <= 0) {
+> +		dev_err(dev, "need to specify TCM banks\n");
+> +		return -EINVAL;
+> +	}
+> +	for (i = 0; i < num_banks; i++) {
+> +		struct resource rsc;
+> +		resource_size_t size;
+> +		struct device_node *dt_node;
+> +		struct rproc_mem_entry *mem;
+> +		int ret;
+> +		u32 pnode_id; /* zynqmp_pm* fn's expect u32 */
+> +
+> +		dt_node = of_parse_phandle(r5_node, BANK_LIST_PROP, i);
+> +		if (!dt_node)
+> +			return -EINVAL;
+> +
+> +		ret = of_address_to_resource(dt_node, 0, &rsc);
+> +		if (ret < 0) {
+> +			of_node_put(dt_node);
+> +			return ret;
+> +		}
+> +		of_node_put(dt_node);
+> +
+> +		ret = zynqmp_r5_pm_request_sram(rsc.start);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		/* add carveout */
+> +		size = resource_size(&rsc);
+> +		mem = rproc_mem_entry_init(dev, NULL, rsc.start,
+> +					   (size_t)size, rsc.start,
+> +					   tcm_mem_alloc,
+> +					   tcm_mem_release,
+> +					   rsc.name);
+> +		if (!mem) {
+> +			ret = zynqmp_pm_release_node(pnode_id);
+
+Where is @pnode_id initialised?
+
+> +			if (ret)
+> +				dev_warn(dev,
+> +					 "fail to release node: %x ret: %x\n",
+> +					 pnode_id, ret);
+> +			return -ENOMEM;
+> +		}
+> +
+> +		mem->priv = (void *)(u64)pnode_id;
+
+
+And here too - how does this work when you test things out on your side? 
+
+Please note that I will need a reply to these questions before I review another
+set.
+
+> +		rproc_add_carveout(rproc, mem);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * zynqmp_r5_parse_fw()
+> + * @rproc: single R5 core's corresponding rproc instance
+> + * @fw: ptr to firmware to be loaded onto r5 core
+> + *
+> + * When loading firmware, ensure the necessary carveouts are in remoteproc
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int zynqmp_r5_parse_fw(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	int ret;
+> +
+> +	ret = parse_tcm_banks(rproc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = parse_mem_regions(rproc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = rproc_elf_load_rsc_table(rproc, fw);
+> +	if (ret == -EINVAL) {
+> +		/*
+> +		 * resource table only required for IPC.
+> +		 * if not present, this is not necessarily an error;
+> +		 * for example, loading r5 hello world application
+> +		 * so simply inform user and keep going.
+> +		 */
+> +		dev_info(&rproc->dev, "no resource table found.\n");
+> +		ret = 0;
+> +	}
+> +	return ret;
+> +}
+> +
+> +/*
+> + * zynqmp_r5_rproc_kick() - kick a firmware if mbox is provided
+> + * @rproc: r5 core's corresponding rproc structure
+> + * @vqid: virtqueue ID
+> + */
+> +static void zynqmp_r5_rproc_kick(struct rproc *rproc, int vqid)
+> +{
+> +	struct zynqmp_r5_rproc *z_rproc = rproc->priv;
+> +	struct device *dev = rproc->dev.parent;
+> +	struct zynqmp_ipi_message *mb_msg = NULL;
+> +	unsigned int skb_len;
+> +	struct sk_buff *skb;
+> +	int ret;
+> +
+> +	/* If vqid is negative, do not pass the vqid to
+> +	 * mailbox as vqid is supposed to be 0 or positive.
+> +	 * It also gives a way to just kick instead but
+> +	 * not use the IPI buffer.
+> +	 *
+> +	 * For now use negative vqid to assume no message will be
+> +	 * passed with IPI buffer, but just raise interrupt.
+> +	 * This will be faster as it doesn't need to copy the
+> +	 * message to the ZynqMP/Versal IPI message buffer.
+> +	 */
+> +	if (vqid >= 0) {
+> +		skb_len = (unsigned int)(sizeof(vqid) + sizeof(mb_msg));
+> +		skb = alloc_skb(skb_len, GFP_KERNEL);
+> +		if (!skb)
+> +			return;
+> +
+> +		mb_msg = (struct zynqmp_ipi_message *)skb_put(skb, skb_len);
+> +		mb_msg->len = sizeof(vqid);
+> +		memcpy(mb_msg->data, &vqid, sizeof(vqid));
+> +
+> +		skb_queue_tail(&z_rproc->tx_mc_skbs, skb);
+> +	}
+> +
+> +	ret = mbox_send_message(z_rproc->tx_chan, mb_msg);
+> +	if (ret < 0) {
+> +		dev_warn(dev, "Failed to kick remote.\n");
+> +		if (mb_msg) {
+> +			skb_dequeue_tail(&z_rproc->tx_mc_skbs);
+> +			kfree_skb(skb);
+> +		}
+> +	}
+> +}
+> +
+
+I am done reviewing this set.
+
+Thanks,
+Mathieu
+
+> +static struct rproc_ops zynqmp_r5_rproc_ops = {
+> +	.start		= zynqmp_r5_rproc_start,
+> +	.stop		= zynqmp_r5_rproc_stop,
+> +	.load		= rproc_elf_load_segments,
+> +	.parse_fw	= zynqmp_r5_parse_fw,
+> +	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
+> +	.sanity_check	= rproc_elf_sanity_check,
+> +	.get_boot_addr	= rproc_elf_get_boot_addr,
+> +	.kick		= zynqmp_r5_rproc_kick,
+> +};
+> +
+> +/**
+> + * event_notified_idr_cb() - event notified idr callback
+> + * @id: idr id
+> + * @ptr: pointer to idr private data
+> + * @data: data passed to idr_for_each callback
+> + *
+> + * Pass notification to remoteproc virtio
+> + *
+> + * Return: 0. having return is to satisfy the idr_for_each() function
+> + *          pointer input argument requirement.
+> + **/
+> +static int event_notified_idr_cb(int id, void *ptr, void *data)
+> +{
+> +	struct rproc *rproc = data;
+> +
+> +	if (rproc_vq_interrupt(rproc, id) == IRQ_NONE)
+> +		dev_dbg(&rproc->dev, "no message was found in idr with id: %d\n", id);
+> +	return 0;
+> +}
+> +
+> +/**
+> + * handle_event_notified() - remoteproc notification work function
+> + * @work: pointer to the work structure
+> + *
+> + * It checks each registered remoteproc notify IDs.
+> + */
+> +static void handle_event_notified(struct work_struct *work)
+> +{
+> +	struct zynqmp_r5_rproc *z_rproc;
+> +	struct rproc *rproc;
+> +
+> +	z_rproc = container_of(work, struct zynqmp_r5_rproc, mbox_work);
+> +	rproc = z_rproc->rproc;
+> +
+> +	/*
+> +	 * This is to simply raise interrupt as ACK for remote.
+> +	 *
+> +	 * Xilinx mailbox, ATF and SoC specific IPI mapping will handle
+> +	 * mapping to remote processor.
+> +	 */
+> +	if (mbox_send_message(z_rproc->rx_chan, NULL) < 0)
+> +		dev_warn(rproc->dev.parent, "Failed to kick remote.\n");
+> +
+> +	/*
+> +	 * We only use IPI for interrupt. The firmware side may or may
+> +	 * not write the notifyid when it trigger IPI.
+> +	 * And thus, we scan through all the registered notifyids.
+> +	 */
+> +	idr_for_each(&rproc->notifyids, event_notified_idr_cb, rproc);
+> +}
+> +
+> +/**
+> + * zynqmp_r5_mb_rx_cb() - Receive channel mailbox callback
+> + * @cl: mailbox client
+> + * @msg: message pointer
+> + *
+> + * It will schedule the R5 notification work.
+> + */
+> +static void zynqmp_r5_mb_rx_cb(struct mbox_client *cl, void *msg)
+> +{
+> +	struct zynqmp_r5_rproc *z_rproc;
+> +
+> +	z_rproc = container_of(cl, struct zynqmp_r5_rproc, rx_mc);
+> +	/*
+> +	 * Notification can be received with message payload.
+> +	 * To handle this, check for message contents.
+> +	 * If there are contents, copy to ipi message buffer payload location.
+> +	 *
+> +	 * If message is empty, then that means that was simple raising
+> +	 * of interrupt. no payload to process.
+> +	 *
+> +	 * Note: enqueue work regardless of msg as kick may imply that remote
+> +	 * is waiting for ack.
+> +	 */
+> +	if (msg) {
+> +		struct zynqmp_ipi_message *ipi_msg, *buf_msg;
+> +		size_t len;
+> +
+> +		ipi_msg = (struct zynqmp_ipi_message *)msg;
+> +		buf_msg = (struct zynqmp_ipi_message *)z_rproc->rx_mc_buf;
+> +		len = (ipi_msg->len >= IPI_BUF_LEN_MAX) ?
+> +		      IPI_BUF_LEN_MAX : ipi_msg->len;
+> +		buf_msg->len = len;
+> +		memcpy(buf_msg->data, ipi_msg->data, len);
+> +	}
+> +	schedule_work(&z_rproc->mbox_work);
+> +}
+> +
+> +/**
+> + * zynqmp_r5_mb_tx_done() - Request has been sent to the remote
+> + * @cl: mailbox client
+> + * @msg: pointer to the message which has been sent
+> + * @r: status of last TX - OK or error
+> + *
+> + * It will be called by the mailbox framework when the last TX has done.
+> + */
+> +static void zynqmp_r5_mb_tx_done(struct mbox_client *cl, void *msg, int r)
+> +{
+> +	struct zynqmp_r5_rproc *z_rproc;
+> +	struct sk_buff *skb;
+> +
+> +	if (!msg)
+> +		return;
+> +	z_rproc = container_of(cl, struct zynqmp_r5_rproc, tx_mc);
+> +	skb = skb_dequeue(&z_rproc->tx_mc_skbs);
+> +	kfree_skb(skb);
+> +}
+> +
+> +/**
+> + * zynqmp_r5_setup_mbox() - Setup mailboxes
+> + *			    this is used for each individual R5 core
+> + *
+> + * @z_rproc: pointer to the ZynqMP R5 processor platform data
+> + * @node: pointer of the device node
+> + *
+> + * Function to setup mailboxes to talk to RPU.
+> + *
+> + * Return: 0 for success, negative value for failure.
+> + */
+> +static int zynqmp_r5_setup_mbox(struct zynqmp_r5_rproc *z_rproc,
+> +				struct device_node *node)
+> +{
+> +	struct mbox_client *mclient;
+> +
+> +	/* Setup TX mailbox channel client */
+> +	mclient			= &z_rproc->tx_mc;
+> +	mclient->dev		= z_rproc->dev;
+> +	mclient->tx_done	= zynqmp_r5_mb_tx_done;
+> +	mclient->tx_block	= false;
+> +	mclient->knows_txdone	= false;
+> +	mclient->rx_callback	= NULL;
+> +
+> +	/* Setup RX mailbox channel client */
+> +	mclient			= &z_rproc->rx_mc;
+> +	mclient->dev		= z_rproc->dev;
+> +	mclient->tx_done	= NULL;
+> +	mclient->tx_block	= false;
+> +	mclient->knows_txdone	= false;
+> +	mclient->rx_callback	= zynqmp_r5_mb_rx_cb;
+> +
+> +	INIT_WORK(&z_rproc->mbox_work, handle_event_notified);
+> +
+> +	/* Request TX and RX channels */
+> +	z_rproc->tx_chan = mbox_request_channel_byname(&z_rproc->tx_mc, "tx");
+> +	if (IS_ERR(z_rproc->tx_chan)) {
+> +		dev_err(z_rproc->dev, "failed to request mbox tx channel.\n");
+> +		return PTR_ERR(z_rproc->tx_chan);
+> +	}
+> +
+> +	z_rproc->rx_chan = mbox_request_channel_byname(&z_rproc->rx_mc, "rx");
+> +	if (IS_ERR(z_rproc->rx_chan)) {
+> +		dev_err(z_rproc->dev, "failed to request mbox rx channel.\n");
+> +		return PTR_ERR(z_rproc->rx_chan);
+> +	}
+> +	skb_queue_head_init(&z_rproc->tx_mc_skbs);
+> +
+> +	return 0;
+> +}
+> +
+> +static void zynqmp_r5_cleanup_mbox(struct zynqmp_r5_rproc *z_rproc)
+> +{
+> +	mbox_free_channel(z_rproc->tx_chan);
+> +	mbox_free_channel(z_rproc->rx_chan);
+> +}
+> +
+> +/**
+> + * zynqmp_r5_probe() - Probes ZynqMP R5 processor device node
+> + *		       this is called for each individual R5 core to
+> + *		       set up mailbox, Xilinx platform manager unique ID,
+> + *		       add to rproc core
+> + *
+> + * @pdev: domain platform device for current R5 core
+> + * @node: pointer of the device node for current R5 core
+> + * @rpu_mode: mode to configure RPU, split or lockstep
+> + *
+> + * Return: 0 for success, negative value for failure.
+> + */
+> +static struct zynqmp_r5_rproc *zynqmp_r5_probe(struct platform_device *pdev,
+> +					       struct device_node *node,
+> +					       enum rpu_oper_mode rpu_mode)
+> +{
+> +	int ret;
+> +	struct device *dev = &pdev->dev;
+> +	struct rproc *rproc_ptr;
+> +	struct zynqmp_r5_rproc *z_rproc;
+> +
+> +	/* Allocate remoteproc instance */
+> +	rproc_ptr = devm_rproc_alloc(dev, dev_name(dev), &zynqmp_r5_rproc_ops,
+> +				     NULL, sizeof(struct zynqmp_r5_rproc));
+> +	if (!rproc_ptr) {
+> +		ret = -ENOMEM;
+> +		goto error;
+> +	}
+> +
+> +	rproc_ptr->auto_boot = false;
+> +	z_rproc = rproc_ptr->priv;
+> +	z_rproc->rproc = rproc_ptr;
+> +	z_rproc->dev = dev;
+> +
+> +	/* Set up DMA mask */
+> +	ret = dma_set_coherent_mask(dev, DMA_BIT_MASK(32));
+> +	if (ret)
+> +		goto error;
+> +
+> +	/* Get R5 power domain node */
+> +	ret = of_property_read_u32(node, "power-domain", &z_rproc->pnode_id);
+> +	if (ret)
+> +		goto error;
+> +
+> +	ret = r5_set_mode(z_rproc, rpu_mode);
+> +	if (ret)
+> +		goto error;
+> +
+> +	if (of_property_read_bool(node, "mboxes")) {
+> +		ret = zynqmp_r5_setup_mbox(z_rproc, node);
+> +		if (ret)
+> +			goto error;
+> +	}
+> +
+> +	/* Add R5 remoteproc */
+> +	ret = devm_rproc_add(dev, rproc_ptr);
+> +	if (ret) {
+> +		zynqmp_r5_cleanup_mbox(z_rproc);
+> +		goto error;
+> +	}
+> +
+> +	return z_rproc;
+> +error:
+> +	return ERR_PTR(ret);
+> +}
+> +
+> +/*
+> + * zynqmp_r5_remoteproc_probe()
+> + *
+> + * @pdev: domain platform device for R5 cluster
+> + *
+> + * called when driver is probed, for each R5 core specified in DT,
+> + * setup as needed to do remoteproc-related operations
+> + *
+> + * Return: 0 for success, negative value for failure.
+> + */
+> +static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
+> +{
+> +	int ret, core_count;
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *nc;
+> +	enum rpu_oper_mode rpu_mode = PM_RPU_MODE_LOCKSTEP;
+> +	struct list_head *cluster; /* list to track each core's rproc */
+> +	struct zynqmp_r5_rproc *z_rproc;
+> +	struct platform_device *child_pdev;
+> +	struct list_head *pos;
+> +
+> +	ret = of_property_read_u32(dev->of_node, "xlnx,cluster-mode", &rpu_mode);
+> +	if (ret < 0 || (rpu_mode != PM_RPU_MODE_LOCKSTEP &&
+> +			rpu_mode != PM_RPU_MODE_SPLIT)) {
+> +		dev_err(dev, "invalid cluster mode: ret %d mode %x\n",
+> +			ret, rpu_mode);
+> +		return ret;
+> +	}
+> +
+> +	dev_dbg(dev, "RPU configuration: %s\n",
+> +		rpu_mode == PM_RPU_MODE_LOCKSTEP ? "lockstep" : "split");
+> +
+> +	/*
+> +	 * if 2 RPUs provided but one is lockstep, then we have an
+> +	 * invalid configuration.
+> +	 */
+> +
+> +	core_count = of_get_available_child_count(dev->of_node);
+> +	if ((rpu_mode == PM_RPU_MODE_LOCKSTEP && core_count != 1) ||
+> +	    core_count > MAX_RPROCS)
+> +		return -EINVAL;
+> +
+> +	cluster = devm_kzalloc(dev, sizeof(*cluster), GFP_KERNEL);
+> +	if (!cluster)
+> +		return -ENOMEM;
+> +	INIT_LIST_HEAD(cluster);
+> +
+> +	ret = devm_of_platform_populate(dev);
+> +	if (ret) {
+> +		dev_err(dev, "devm_of_platform_populate failed, ret = %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	/* probe each individual r5 core's remoteproc-related info */
+> +	for_each_available_child_of_node(dev->of_node, nc) {
+> +		child_pdev = of_find_device_by_node(nc);
+> +		if (!child_pdev) {
+> +			dev_err(dev, "could not get R5 core platform device\n");
+> +			ret = -ENODEV;
+> +			goto out;
+> +		}
+> +
+> +		z_rproc = zynqmp_r5_probe(child_pdev, nc, rpu_mode);
+> +		dev_dbg(dev, "%s to probe rpu %pOF\n",
+> +			ret ? "Failed" : "Able",
+> +			nc);
+> +		if (IS_ERR(z_rproc)) {
+> +			ret = PTR_ERR(z_rproc);
+> +			goto out;
+> +		}
+> +		list_add_tail(&z_rproc->elem, cluster);
+> +	}
+> +	/* wire in so each core can be cleaned up at driver remove */
+> +	platform_set_drvdata(pdev, cluster);
+> +	return 0;
+> +out:
+> +	/*
+> +	 * undo core0 upon any failures on core1 in split-mode
+> +	 *
+> +	 * in zynqmp_r5_probe z_rproc is set to null
+> +	 * and ret to non-zero value if error
+> +	 */
+> +	list_for_each(pos, cluster) {
+> +		z_rproc = list_entry(pos, struct zynqmp_r5_rproc, elem);
+> +		zynqmp_r5_cleanup_mbox(z_rproc);
+> +	}
+> +	return ret;
+> +}
+> +
+> +/*
+> + * zynqmp_r5_remoteproc_remove()
+> + *
+> + * @pdev: domain platform device for R5 cluster
+> + *
+> + * When the driver is unloaded, clean up the mailboxes for each
+> + * remoteproc that was initially probed.
+> + */
+> +static int zynqmp_r5_remoteproc_remove(struct platform_device *pdev)
+> +{
+> +	struct list_head *pos, *temp, *cluster = (struct list_head *)
+> +						 platform_get_drvdata(pdev);
+> +	struct zynqmp_r5_rproc *z_rproc = NULL;
+> +
+> +	list_for_each_safe(pos, temp, cluster) {
+> +		z_rproc = list_entry(pos, struct zynqmp_r5_rproc, elem);
+> +		zynqmp_r5_cleanup_mbox(z_rproc);
+> +		list_del(pos);
+> +	}
+> +	return 0;
+> +}
+> +
+> +/* Match table for OF platform binding */
+> +static const struct of_device_id zynqmp_r5_remoteproc_match[] = {
+> +	{ .compatible = "xlnx,zynqmp-r5-remoteproc", },
+> +	{ /* end of list */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
+> +
+> +static struct platform_driver zynqmp_r5_remoteproc_driver = {
+> +	.probe = zynqmp_r5_remoteproc_probe,
+> +	.remove = zynqmp_r5_remoteproc_remove,
+> +	.driver = {
+> +		.name = "zynqmp_r5_remoteproc",
+> +		.of_match_table = zynqmp_r5_remoteproc_match,
+> +	},
+> +};
+> +module_platform_driver(zynqmp_r5_remoteproc_driver);
+> +
+> +MODULE_AUTHOR("Ben Levinsky <ben.levinsky@xilinx.com>");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.17.1
+> 
