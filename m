@@ -2,59 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 843E131C94B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 12:03:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D566231C978
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 12:14:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbhBPLD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 06:03:29 -0500
-Received: from sibelius.xs4all.nl ([83.163.83.176]:64022 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230165AbhBPLBS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 06:01:18 -0500
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 397eb703;
-        Tue, 16 Feb 2021 12:00:32 +0100 (CET)
-Date:   Tue, 16 Feb 2021 12:00:32 +0100 (CET)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     marcan@marcan.st, linux-arm-kernel@lists.infradead.org,
-        maz@kernel.org, robh@kernel.org, olof@lixom.net, krzk@kernel.org,
-        tony@atomide.com, mohamed.mediouni@caramail.com,
-        stan@corellium.com, graf@amazon.com, will@kernel.org,
-        linus.walleij@linaro.org, mark.rutland@arm.com,
+        id S230018AbhBPLNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 06:13:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36392 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229958AbhBPLNl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 06:13:41 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D60B164DA1;
+        Tue, 16 Feb 2021 11:12:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613473981;
+        bh=U/9Xwrg8bAM2A5MgFUI0Cfy5+k8D9Ryv+uAjX8R5bJc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=EL9Vm+9ChSDdG5fjYVCPwkyPUDDjSSq5lq33Yb7r4Fgka+MaEcYgR9NcjdQkEH52a
+         E81VRuJsw7LAnC2ytlqxnIybr8vPtu23pUES+KN9WWRuXmOHlz1tbXLm5k0vz9j9TT
+         qZkfZUDo5P5H3UeMFAGbeuarm3CKzErWoLEl28piSh5who7BNxuu5BDrX39TVDyj0F
+         eRLwxkPaQNoYY6HwzwYOrKPCpWs2gThBrUdRQ6IY3Gg9qPBScEqAwoF4XD+0f7I4aS
+         yLSU1/89bMfyD1ep74tW1KypH3mKi8oWXBig+luvW5Z46RDOe0Us+rCJg25c40GAlU
+         a6EDbW2/PuFKA==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <CAK8P3a3rGurSQBubZ8i4+OHpDgM8mOfXiC6UhDYmL0MSQK4BRA@mail.gmail.com>
-        (message from Arnd Bergmann on Tue, 16 Feb 2021 10:41:11 +0100)
-Subject: Re: [PATCH v2 14/25] dt-bindings: interrupt-controller: Add DT
- bindings for apple-aic
-References: <20210215121713.57687-1-marcan@marcan.st> <20210215121713.57687-15-marcan@marcan.st> <CAK8P3a3rGurSQBubZ8i4+OHpDgM8mOfXiC6UhDYmL0MSQK4BRA@mail.gmail.com>
-Message-ID: <c1bc451789d233df@bloch.sibelius.xs4all.nl>
+Subject: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Document SM8350 CPUfreq compatible
+Date:   Tue, 16 Feb 2021 16:42:51 +0530
+Message-Id: <20210216111251.1838149-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Arnd Bergmann <arnd@kernel.org>
-> Date: Tue, 16 Feb 2021 10:41:11 +0100
-> 
-> On Mon, Feb 15, 2021 at 1:17 PM Hector Martin <marcan@marcan.st> wrote:
-> > +
-> > +      The 2nd cell contains the interrupt number.
-> > +        - HW IRQs: interrupt number
-> > +        - FIQs:
-> > +          - 0: physical HV timer
-> > +          - 1: virtual HV timer
-> > +          - 2: physical guest timer
-> > +          - 3: virtual guest timer
-> 
-> I wonder if you could just model the FIQ as a single shared level interrupt
-> (which is essentially what it is), and have every driver that uses it do a
-> request_irq() on the same IRQ number.
-> 
-> This would avoid having to come up with a fake binding for it, and simplify
-> the implementation that then no longer has to peek into each interrupt
-> source.
+Add the CPUfreq compatible for SM8350 SoC along with note for using the
+specific compatible for SoCs
 
-That would tie the binding more closely to the implementation as it
-would remove the option of peeking at the interrupt source.  And
-wouldn't it mean that the arch_timer driver would need to know whether
-the interrupt is shared or not?
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+index 9299028ee712..3eb3cee59d79 100644
+--- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
++++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+@@ -8,7 +8,9 @@ Properties:
+ - compatible
+ 	Usage:		required
+ 	Value type:	<string>
+-	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss".
++	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss"
++			along with SoC specific compatible:
++			  "qcom,sm8350-cpufreq-epss", "qcom,cpufreq-epss"
+ 
+ - clocks
+ 	Usage:		required
+-- 
+2.26.2
+
