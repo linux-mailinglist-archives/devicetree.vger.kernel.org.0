@@ -2,170 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0096531CE7E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 17:55:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1425C31CEB1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 18:12:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbhBPQzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 11:55:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54624 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230001AbhBPQzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 11:55:10 -0500
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FABCC06174A
-        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 08:54:30 -0800 (PST)
-Received: by mail-qk1-x730.google.com with SMTP id t63so10057601qkc.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 08:54:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3Zhyu+nC9+CPMV4JA3grDQ6Xc5qBaXkOYbaPkzmAlcg=;
-        b=gbFxfeL0ybh8TJ11CwDsF8YXkz5foMi6jC7WLCPgNjrHnNJyO5lsI0RR+hGTUzCstP
-         rfjAqDYTpnJgkHzoZUKAr+cKMf/vHLLDZ0OFL9+S2Xx4wbBQZxa8memc4+v1TgD/fFwE
-         k5rIpN3IMKkU6MsdR3u6USf51Vmse//UQHpEiyDVGd3FLPCsYtCwyNIjibsVRtmycboE
-         GNaMDoVw5rOEOa2yFK0wVy7iRy3T1kRSkN72kHwq80EFeXFYXVnBN7OjQo+PkK1fvkdA
-         los2vdAuCqT22DC3wS2OCGU4brNnY8sCSZo6qZ1bqTTRJE7oIR9HHzRQ+ciLfhJv1WT3
-         heVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3Zhyu+nC9+CPMV4JA3grDQ6Xc5qBaXkOYbaPkzmAlcg=;
-        b=RkurDZoRGZA97+mdgvcwddymeGZM6LRPCuM3ZOuJiF73sSDY290UoBo2QO53vaS6r2
-         hlqndHaEOIB6XER51wWYwaOMlJCugb0gM/xICV46SKWH2z6R8hp3e4gKrmbgXqLYbWjJ
-         D2wzDvp2m8aRNHKyvxHwJFI7vUPrLSQWYUIeG4Iv+symnyU2n4JeKFoOjN8wFIFuE5KI
-         2ChmFTPUwXz3s4GAIQkQYZtaM9iYImYYJ70TO7H3dzfOqSrTsgq7uT1kLSDGHWEK8fdX
-         re95lsImYIILgHsSij5tSxgaQb5+JrE9xe8fbkBfAaKO47ywvlm/ejgZXXhQ+godYZjK
-         LP7Q==
-X-Gm-Message-State: AOAM530zfjobb7YgF+P/5PaytLXUk3P8QLw/E6662iQXbV/C5qk5skxE
-        Co78WfVoKbP9fP/nkBI7eNP5lbt21sZg1b1Znh0PBw==
-X-Google-Smtp-Source: ABdhPJy5giYk3zchfxtQjLAyvp7G+emQEY5YPUBbkl2jA55BNYnMtVotkiP14rfgzioNsAOrXutaR1HTIJjckO8Gk78=
-X-Received: by 2002:a37:5702:: with SMTP id l2mr20738364qkb.486.1613494469361;
- Tue, 16 Feb 2021 08:54:29 -0800 (PST)
+        id S230398AbhBPRKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 12:10:17 -0500
+Received: from pmg02-out2.zxcs.nl ([185.104.28.196]:60371 "EHLO
+        pmg02-out2.zxcs.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230345AbhBPRKL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 12:10:11 -0500
+Received: from pmg02.zxcs.nl (localhost.localdomain [127.0.0.1])
+        by pmg02.zxcs.nl (ZXCS) with ESMTP id E010F82663;
+        Tue, 16 Feb 2021 18:00:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=pascalroeleven.nl; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id
+        :Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=CQp8a9bvhUdwKVBZ0N74gvncL9qmC+u/ZFHCgpEsS+o=; b=J50Nm06a0Q51h3t6vBefpAdhwE
+        qUU6PnVO0ETMQZWrfbYifiMV+K3vdb93a/bgcoI8JZ3JS1n0EaFeqJHVZgqq1g44DdRGCSMiE3rEo
+        EmY0rsoxnQslBiDKQlR25nZJCQPy++iz/NAbm0cHi3xHkDsnBDnUhGvQaEz4IHMw8YiAHnUk9ePCq
+        aJDftDN39WtTpjUSLRFiivUGO/yTCe2xEM2sYqExeJzRAC0bDnpKMNajz9oMh6mwhwsOcw5szbp/4
+        eUV4D77lwpxnlZuFEkxEtocsJrCNP6lKdnMQnTC1gu8qTY9gz1H3yTErRFzsgElA/tROBumk3Ovlm
+        lPXF4nAQ==;
+From:   Pascal Roeleven <dev@pascalroeleven.nl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Martin Cerveny <m.cerveny@computer.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     linux-sunxi@googlegroups.com,
+        Pascal Roeleven <dev@pascalroeleven.nl>
+Subject: [PATCH RESEND v3 0/2] Add support for Topwise A721 tablet
+Date:   Tue, 16 Feb 2021 17:59:52 +0100
+Message-Id: <20210216165954.43135-1-dev@pascalroeleven.nl>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20210215161537.14696-1-jonathan@marek.ca> <20210215161537.14696-2-jonathan@marek.ca>
-In-Reply-To: <20210215161537.14696-2-jonathan@marek.ca>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 16 Feb 2021 19:54:16 +0300
-Message-ID: <CAA8EJpo_Fs8Wj6zjH6BQqm=mG=qcGt3_JMj4nK-vsKCzr8tn1g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] drm/msm: add compatibles for sm8150/sm8250 display
-To:     Jonathan Marek <jonathan@marek.ca>
-Cc:     "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        Eric Anholt <eric@anholt.net>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Drew Davenport <ddavenport@chromium.org>,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        tongtiangen <tongtiangen@huawei.com>,
-        Qinglang Miao <miaoqinglang@huawei.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-AuthUser: dev@pascalroeleven.nl
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Feb 2021 at 19:25, Jonathan Marek <jonathan@marek.ca> wrote:
->
-> The driver already has support for sm8150/sm8250, but the compatibles were
-> never added.
->
-> Also inverse the non-mdp4 condition in add_display_components() to avoid
-> having to check every new compatible in the condition.
->
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> ---
->  Documentation/devicetree/bindings/display/msm/dpu.txt | 4 ++--
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c               | 2 ++
->  drivers/gpu/drm/msm/msm_drv.c                         | 6 +++---
->  3 files changed, 7 insertions(+), 5 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/display/msm/dpu.txt b/Documentation/devicetree/bindings/display/msm/dpu.txt
-> index 551ae26f60da..5763f43200a0 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dpu.txt
-> +++ b/Documentation/devicetree/bindings/display/msm/dpu.txt
-> @@ -8,7 +8,7 @@ The DPU display controller is found in SDM845 SoC.
->
->  MDSS:
->  Required properties:
-> -- compatible:  "qcom,sdm845-mdss", "qcom,sc7180-mdss"
-> +- compatible:  "qcom,sdm845-mdss", "qcom,sc7180-mdss", "qcom,sm8150-mdss", "qcom,sm8250-mdss"
->  - reg: physical base address and length of contoller's registers.
->  - reg-names: register region names. The following region is required:
->    * "mdss"
-> @@ -41,7 +41,7 @@ Optional properties:
->
->  MDP:
->  Required properties:
-> -- compatible: "qcom,sdm845-dpu", "qcom,sc7180-dpu"
-> +- compatible: "qcom,sdm845-dpu", "qcom,sc7180-dpu", "qcom,sm8150-dpu", "qcom,sm8250-dpu"
->  - reg: physical base address and length of controller's registers.
->  - reg-names : register region names. The following region is required:
->    * "mdp"
+On request I'm resending the last two patches from the Topwise A721 tablet
+series from a year ago as they weren't picked up. The other patches are
+already merged, so I didn't resend them. They still apply as-is, so no changes
+are made.
 
-These two chunks should probably go to the separate patch 'dt-bindings:...'.
+Changes from v2:
+* Collected acked-by.
 
-Also, could you please pinpoint the reason for adding more
-compatibility strings, while they map to the same internal data?
-I think we might want instead to use some generic name for the dpu
-block, like "qcom,dpu" or "qcom,mdp-dpu" instead of specifying the
-platform name.
+Original cover letter:
 
+This series add support for the Topwise A721 tablet and it's display.
+It is an old tablet (around 2012) but it might be useful as reference
+as the devicetree is pretty complete.
 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index 5a8e3e1fc48c..fff12a4c8bfc 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -1219,6 +1219,8 @@ static const struct dev_pm_ops dpu_pm_ops = {
->  static const struct of_device_id dpu_dt_match[] = {
->         { .compatible = "qcom,sdm845-dpu", },
->         { .compatible = "qcom,sc7180-dpu", },
-> +       { .compatible = "qcom,sm8150-dpu", },
-> +       { .compatible = "qcom,sm8250-dpu", },
->         {}
->  };
->  MODULE_DEVICE_TABLE(of, dpu_dt_match);
-> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
-> index 94525ac76d4e..928f13d4bfbc 100644
-> --- a/drivers/gpu/drm/msm/msm_drv.c
-> +++ b/drivers/gpu/drm/msm/msm_drv.c
-> @@ -1185,9 +1185,7 @@ static int add_display_components(struct device *dev,
->          * Populate the children devices, find the MDP5/DPU node, and then add
->          * the interfaces to our components list.
->          */
-> -       if (of_device_is_compatible(dev->of_node, "qcom,mdss") ||
-> -           of_device_is_compatible(dev->of_node, "qcom,sdm845-mdss") ||
-> -           of_device_is_compatible(dev->of_node, "qcom,sc7180-mdss")) {
-> +       if (!of_device_is_compatible(dev->of_node, "qcom,mdp4")) {
->                 ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
->                 if (ret) {
->                         DRM_DEV_ERROR(dev, "failed to populate children devices\n");
-> @@ -1320,6 +1318,8 @@ static const struct of_device_id dt_match[] = {
->         { .compatible = "qcom,mdss", .data = (void *)KMS_MDP5 },
->         { .compatible = "qcom,sdm845-mdss", .data = (void *)KMS_DPU },
->         { .compatible = "qcom,sc7180-mdss", .data = (void *)KMS_DPU },
-> +       { .compatible = "qcom,sm8150-mdss", .data = (void *)KMS_DPU },
-> +       { .compatible = "qcom,sm8250-mdss", .data = (void *)KMS_DPU },
->         {}
->  };
->  MODULE_DEVICE_TABLE(of, dt_match);
-> --
-> 2.26.1
->
+Changes from v1:
+* Split into multiple patches
+* dt-binding: use yaml instead of txt
+* dt-binding: add Topwise A721 to sunxi.yaml
+* dt-binding: add Topwise to vendor-prefixes
+* drm: Add bus_format, bus_flags and connector_type
+* dts: Use SPDX license identifier instead of boilerplate license text
+* dts: Remove pinctrl leftovers
 
+Pascal Roeleven (2):
+  dt-bindings: arm: Add Topwise A721
+  ARM: dts: sun4i: Add support for Topwise A721 tablet
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm/boot/dts/Makefile                    |   3 +-
+ arch/arm/boot/dts/sun4i-a10-topwise-a721.dts  | 242 ++++++++++++++++++
+ 3 files changed, 249 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/sun4i-a10-topwise-a721.dts
 
 -- 
-With best wishes
-Dmitry
+2.27.0
+
+
