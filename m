@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F41A31CC00
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 15:34:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC2E831CC59
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 15:49:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbhBPOe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 09:34:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230120AbhBPOeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 09:34:21 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE04CC06174A;
-        Tue, 16 Feb 2021 06:33:40 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        id S230253AbhBPOry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 09:47:54 -0500
+Received: from mta-02.yadro.com ([89.207.88.252]:36542 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230206AbhBPOrv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 09:47:51 -0500
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 6054E4127E;
+        Tue, 16 Feb 2021 14:47:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-type:content-type:content-transfer-encoding:mime-version
+        :x-mailer:message-id:date:date:subject:subject:from:from
+        :received:received:received; s=mta-01; t=1613486828; x=
+        1615301229; bh=nf2b9wfxjyOfai1zkXPhbl+RYtBYM2wtfQ24SUZRBGk=; b=o
+        7s6wAi9wjlUxr4fRFWQtHTUW8jK8yvAXsR9HrOcCBJx+JipzFZP2HrdrnX+/6tE5
+        AxM1CXHWCUNN+0USZXzV58QV5/1C5v2ZlEEvC/pcLCATMfe5XF8Vzg/xIDGUBvnj
+        poagwlErhPjqIteJRbKr032fmpD9RV8+c2st5oAsUc=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id Om9qyQABM0Ye; Tue, 16 Feb 2021 17:47:08 +0300 (MSK)
+Received: from T-EXCH-03.corp.yadro.com (t-exch-03.corp.yadro.com [172.17.100.103])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id E54DB42037;
-        Tue, 16 Feb 2021 14:33:34 +0000 (UTC)
-Subject: Re: [PATCH v2 06/25] arm64: arch_timer: implement support for
- interrupt-names
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-7-marcan@marcan.st> <YCq8Kl8KYQzpBEy0@atomide.com>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <f171b37d-1158-5592-807e-8f12ebc3585f@marcan.st>
-Date:   Tue, 16 Feb 2021 23:33:32 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        by mta-01.yadro.com (Postfix) with ESMTPS id 4DFD6412D1;
+        Tue, 16 Feb 2021 17:47:08 +0300 (MSK)
+Received: from localhost.dev.yadro.com (10.199.0.29) by
+ T-EXCH-03.corp.yadro.com (172.17.100.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.669.32; Tue, 16 Feb 2021 17:47:08 +0300
+From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Ivan Mikhaylov <i.mikhaylov@yadro.com>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH 0/2] add proximity rate option for vcnl3020
+Date:   Tue, 16 Feb 2021 17:53:44 +0300
+Message-ID: <20210216145346.18304-1-i.mikhaylov@yadro.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <YCq8Kl8KYQzpBEy0@atomide.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.199.0.29]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-03.corp.yadro.com (172.17.100.103)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2021 03.23, Tony Lindgren wrote:
-> * Hector Martin <marcan@marcan.st> [210215 12:18]:
->> This allows the devicetree to correctly represent the available set of
->> timers, which varies from device to device, without the need for fake
->> dummy interrupts for unavailable slots.
-> 
-> I like the idea of using interrupt-names property for mapping timers :)
-> 
-> Similar approach might help other SoCs too. And clocksources never really
-> had similar issues.
+Add the control of proximity rate from runtime and DTS for vcnl3020
+proximity sensor.
 
-Yeah, there are some SoCs using dummy IRQs right now for this reason, so 
-this should help with those too (though it's too late to introduce it 
-now into those DTs without breaking backwards-compat with older kernels, 
-sadly).
+Ivan Mikhaylov (2):
+  iio: proximity: vcnl3020: add proximity rate
+  dt-bindings: vcnl3020: add proximity rate in hz
 
-> With Marc's comments addressed, please feel free to add:
-> 
-> Reviewed-by: Tony Lindgren <tony@atomide.com>
-
-Thank you!
+ .../iio/proximity/vishay,vcnl3020.yaml        |   6 +
+ drivers/iio/proximity/vcnl3020.c              | 123 +++++++++++++++++-
+ 2 files changed, 126 insertions(+), 3 deletions(-)
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+2.26.2
+
