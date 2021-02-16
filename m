@@ -2,123 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBF2D31C70C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 08:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40F9131C71E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 09:06:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbhBPH5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 02:57:04 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:50869 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229796AbhBPH5C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Feb 2021 02:57:02 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 5FB7D580248;
-        Tue, 16 Feb 2021 02:55:55 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 16 Feb 2021 02:55:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=OgE+B+oYIxnbEc/wQ/LZmClawQt
-        IgqJ46vVdtsUhNXI=; b=fMiVYrjcYk9CH/Awu1GqkqmCLGes4PLTrvCh4EuQiCK
-        KG1NPuzfSttgEOSCHRzp6SERcMUaQ2cUT90wLZYHOJ+YV8o+lr6q+igOhtJ2hzoO
-        eskXTXPHpZNKZLk5E7SBuWd+o5dTgL38/eigGBu06ijeEwjzBuZu609Oes88mJYr
-        RS3ExWgmbman4kQgJc+7t6TlXHS/ZUTdHiCGoZqVXxdV4PYErzeiiUCPc0VOlAvq
-        q5Zf1/Z6NhEUI+K6O15514n4/pWXMxRBozR3x2QvSaNDfOfuG77OjXtgKsOiNYaE
-        PhNJQT0T+7cQxgs8N4M8uKoEAlgzY0k/EknhAB4DNAA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=OgE+B+
-        oYIxnbEc/wQ/LZmClawQtIgqJ46vVdtsUhNXI=; b=nfX/AACZEa5FjTMPGztF3S
-        wvaC+7RARDsQQm0PmaGGwZY5Cpkk5kcDlWiOnw7rjwAxaWaPNHp3qCgzEIbnT3Nc
-        PblA1kb+h0kml4a9tyYbIsoFQGaQ7FQcuXCdQd2XYHHz9Wh+0hYP8a5LQxnFkyc4
-        y/79wV6uJy1GtkLPjrEoBGHywd0D1vjIvgPZ4p5EvqIC/KkqxKm5p81AEBpRLHwk
-        PNWlY4DuyHIKXydIk5jeeKOJ4cbYne3yk/cRbZc8Et6H4jfE0EGoTzMJJWT6ZKke
-        B+25B7HCmlYCrcIBOSbMZMtYt1IRcFUudlNgv+3kCT8zzkeP0H3aoVJ7A837C7fg
-        ==
-X-ME-Sender: <xms:iHorYBVBGtp274OIDmFKHo3n07rbyIYuL4W3ZIzNH6fYM3oHSzFLSg>
-    <xme:iHorYBmw-PAUi-eQ6BfEQ2rEyTLVbY9ASvRB_DA_mWd1GGev41XeaMfnjdwY4EXf6
-    dKF9EHif3MnLyJnlcQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrieelgdduuddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:iHorYNbIhQQCs_6oNXVb_ggg_NV3zuhuhHUUVA_fiLHgc74a4ZaLlg>
-    <xmx:iHorYEUzkh1icnNBCqfzwaBzEYO41aX4FJqMATPCFaiBgEZpaqw-Yg>
-    <xmx:iHorYLmWL0e_Lq68nbrk50nYdaDFL-d8i6aCBQiZ182XDbn_AoaIUQ>
-    <xmx:i3orYFkRC-d10TG9p5HJM4A8z2vc55OEkSxFiQ7JjzhiBCzHw3mZlQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 38DEF24005C;
-        Tue, 16 Feb 2021 02:55:51 -0500 (EST)
-Date:   Tue, 16 Feb 2021 08:55:30 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        dave.stevenson@raspberrypi.com, maz@kernel.org, eric@anholt.net,
-        tzimmermann@suse.de, linux-rpi-kernel@lists.infradead.org,
-        hverkuil-cisco@xs4all.nl, nsaenzjulienne@suse.de,
-        mchehab@kernel.org, linux-media@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        id S229662AbhBPIGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 03:06:22 -0500
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:41934 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229635AbhBPIGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 03:06:21 -0500
+Received: by mail-oi1-f173.google.com with SMTP id v193so10377161oie.8;
+        Tue, 16 Feb 2021 00:06:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=83BrpC0oQ/cmeAj/lHKeDzK9StSyqlfuwywAdDjNejw=;
+        b=QBgBUBqgx1FN/5KM3VfFOpGjnuJqRT6RfKbqnFNNIUKXAxvOKKb6hhQNp6UoY2//d9
+         gH9b4zjKmunB8jgDTzJnHj5UkJ22QmdHCTgfoV4ubdn3MknMyfMZNmfTcLgyCH/mVZwz
+         wDgFAs0Uc89WRqE84ReBUia2b1YfWdQ2dHnmDfUbtXn2i71MQcgPyPEGmFwE09AwbpVn
+         moQ3RkGaBjggWRWfEZUeGiRSoqyPP2qKIVBAhFnOGtuIr4RvvBhVgSjpT84b5B0GXUXE
+         5e8BdVdVAxcJMt/Cz526LpfeyJA9AwH96YbaSfigvhtbwTe9Ql5Qa1RrBlepYly2ILPF
+         PKww==
+X-Gm-Message-State: AOAM533sr8FRE/LxLo2YI9f/zHqLnNj/hkQmACmwQPh1dC/tDUXsPSnY
+        zIyAN8KUIYNJ+vE+mSXdU8J2RS8R4Or1uz5LcrA=
+X-Google-Smtp-Source: ABdhPJzz+NpULZTIa3tjUW8686AiYK7eX+4Ie30gH/r1xHcs0vWPfv5qgwYUJGkxQKm1FzqrQsvfEXHLJ4R55M5RltI=
+X-Received: by 2002:aca:d8c6:: with SMTP id p189mr1857071oig.54.1613462740012;
+ Tue, 16 Feb 2021 00:05:40 -0800 (PST)
+MIME-Version: 1.0
+References: <20210205222644.2357303-1-saravanak@google.com>
+ <CAMuHMdVL-1RKJ5u-HDVA4F4w_+8yGvQQuJQBcZMsdV4yXzzfcw@mail.gmail.com>
+ <CAGETcx-668+uGigaOMcsvv00mo6o_eGPcH0YyD28OCVEyVbw+w@mail.gmail.com>
+ <CAMuHMdXduvBqjAqraXkEKErNJFyN6JNq5wqagc4yHHPpH5SPGQ@mail.gmail.com> <CAGETcx_4FGa-rzLp6bjXbm4F4R6H2W78+nM_kN=XPz5hswzANA@mail.gmail.com>
+In-Reply-To: <CAGETcx_4FGa-rzLp6bjXbm4F4R6H2W78+nM_kN=XPz5hswzANA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 16 Feb 2021 09:05:28 +0100
+Message-ID: <CAMuHMdVodauqBmLMxsfi0kQtAFT8ruJ36LJL9YuQgqwQNKwHHg@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] Revert "ARM: dts: bcm2711: Add the BSC interrupt
- controller"
-Message-ID: <20210216075530.knleci6sv4m667vv@gilmour>
-References: <20210212191104.2365912-1-f.fainelli@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="6bxcug5x2bcw2xf6"
-Content-Disposition: inline
-In-Reply-To: <20210212191104.2365912-1-f.fainelli@gmail.com>
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Saravana,
 
---6bxcug5x2bcw2xf6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Feb 15, 2021 at 10:27 PM Saravana Kannan <saravanak@google.com> wrote:
+> On Mon, Feb 15, 2021 at 4:38 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Fri, Feb 12, 2021 at 4:00 AM Saravana Kannan <saravanak@google.com> wrote:
+> > > On Thu, Feb 11, 2021 at 5:00 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > >       - I2C on R-Car Gen3 does not seem to use DMA, according to
+> > > >         /sys/kernel/debug/dmaengine/summary:
+> > > >
+> > > >             -dma4chan0    | e66d8000.i2c:tx
+> > > >             -dma4chan1    | e66d8000.i2c:rx
+> > > >             -dma5chan0    | e6510000.i2c:tx
+> > >
+> > > I think I need more context on the problem before I can try to fix it.
+> > > I'm also very unfamiliar with that file. With fw_devlink=permissive,
+> > > I2C was using DMA? If so, the next step is to see if the I2C relative
+> > > probe order with DMA is getting changed and if so, why.
+> >
+> > More detailed log:
+> >
+> >     platform e66d8000.i2c: Linked as a consumer to e6150000.clock-controller
+> >     platform e66d8000.i2c: Linked as a sync state only consumer to e6055400.gpio
+> >
+> > Why is e66d8000.i2c not linked as a consumer to e6700000.dma-controller?
+>
+> Because fw_devlink.strict=1 is not set and dma/iommu is considered an
+> "optional"/"driver decides" dependency.
 
-On Fri, Feb 12, 2021 at 11:11:04AM -0800, Florian Fainelli wrote:
-> As Dave reported:
->=20
-> This seems to have unintended side effects.  GIC interrupt 117 is shared
-> between the standard I2C controllers (i2c-bcm2835) and the l2-intc block
-> handling the HDMI I2C interrupts.
->=20
-> There is not a great way to share an interrupt between an interrupt
-> controller using the chained IRQ handler which is an interrupt flow and
-> another driver like i2c-bcm2835 which uses an interrupt handler
-> (although it specifies IRQF_SHARED).
->=20
-> Simply revert this change for now which will mean that HDMI I2C will be
-> polled, like it was before.
->=20
-> Reported-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Oh, I thought dma/iommu were considered mandatory initially,
+but dropped as dependencies in the late boot process?
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+>
+> >     platform e6700000.dma-controller: Linked as a consumer to
+> > e6150000.clock-controller
+>
+> Is this the only supplier of dma-controller?
 
-Thanks!
-Maxime
+No, e6180000.system-controller is also a supplier.
 
---6bxcug5x2bcw2xf6
-Content-Type: application/pgp-signature; name="signature.asc"
+> >     platform e66d8000.i2c: Added to deferred list
+> >     platform e6700000.dma-controller: Added to deferred list
+> >
+> >     bus: 'platform': driver_probe_device: matched device
+> > e6700000.dma-controller with driver rcar-dmac
+> >     bus: 'platform': really_probe: probing driver rcar-dmac with
+> > device e6700000.dma-controller
+> >     platform e6700000.dma-controller: Driver rcar-dmac requests probe deferral
+> >
+> >     bus: 'platform': driver_probe_device: matched device e66d8000.i2c
+> > with driver i2c-rcar
+> >     bus: 'platform': really_probe: probing driver i2c-rcar with device
+> > e66d8000.i2c
+> >
+> > I2C becomes available...
+> >
+> >     i2c-rcar e66d8000.i2c: request_channel failed for tx (-517)
+> >     [...]
+> >
+> > but DMA is not available yet, so the driver falls back to PIO.
+> >
+> >     driver: 'i2c-rcar': driver_bound: bound to device 'e66d8000.i2c'
+> >     bus: 'platform': really_probe: bound device e66d8000.i2c to driver i2c-rcar
+> >
+> >     platform e6700000.dma-controller: Retrying from deferred list
+> >     bus: 'platform': driver_probe_device: matched device
+> > e6700000.dma-controller with driver rcar-dmac
+> >     bus: 'platform': really_probe: probing driver rcar-dmac with
+> > device e6700000.dma-controller
+> >     platform e6700000.dma-controller: Driver rcar-dmac requests probe deferral
+> >     platform e6700000.dma-controller: Added to deferred list
+> >     platform e6700000.dma-controller: Retrying from deferred list
+> >     bus: 'platform': driver_probe_device: matched device
+> > e6700000.dma-controller with driver rcar-dmac
+> >     bus: 'platform': really_probe: probing driver rcar-dmac with
+> > device e6700000.dma-controller
+> >     driver: 'rcar-dmac': driver_bound: bound to device 'e6700000.dma-controller'
+> >     bus: 'platform': really_probe: bound device
+> > e6700000.dma-controller to driver rcar-dmac
+> >
+> > DMA becomes available.
+> >
+> > Here userspace is entered. /sys/kernel/debug/dmaengine/summary shows
+> > that the I2C controllers do not have DMA channels allocated, as the
+> > kernel has performed no more I2C transfers after DMA became available.
+> >
+> > Using i2cdetect shows that DMA is used, which is good:
+> >
+> >     i2c-rcar e66d8000.i2c: got DMA channel for rx
+> >
+> > With permissive devlinks, the clock controller consumers are not added
+> > to the deferred probing list, and probe order is slightly different.
+> > The I2C controllers are still probed before the DMA controllers.
+> > But DMA becomes available a bit earlier, before the probing of the last
+> > I2C slave driver.
+>
+> This seems like a race? I'm guessing it's two different threads
+> probing those two devices? And it just happens to work for
+> "permissive" assuming the boot timing doesn't change?
+>
+> > Hence /sys/kernel/debug/dmaengine/summary shows that
+> > some I2C transfers did use DMA.
+> >
+> > So the real issue is that e66d8000.i2c not linked as a consumer to
+> > e6700000.dma-controller.
+>
+> That's because fw_devlink.strict=1 isn't set. If you need DMA to be
+> treated as a mandatory supplier, you'll need to set the flag.
+>
+> Is fw_devlink=on really breaking anything here? It just seems like
+> "permissive" got lucky with the timing and it could break at any point
+> in the future. Thought?
 
------BEGIN PGP SIGNATURE-----
+I don't think there is a race.  fw_devlinks calling driver_deferred_probe_add()
+on all consumers has a big impact on probe order.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYCt6cgAKCRDj7w1vZxhR
-xcslAP9KUslpDXYO8/ygfAO7HvtHmi3uBgecVib764++4rZFsgD/SdzNpTEgfZSr
-dO28YRr8RYfy/OT6Y3dnkNhI0P1T9QU=
-=8p02
------END PGP SIGNATURE-----
+Gr{oetje,eeting}s,
 
---6bxcug5x2bcw2xf6--
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
