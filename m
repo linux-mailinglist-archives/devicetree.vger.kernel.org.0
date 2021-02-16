@@ -2,68 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D566231C978
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 12:14:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAEAE31C997
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 12:23:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230018AbhBPLNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 06:13:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36392 "EHLO mail.kernel.org"
+        id S229771AbhBPLWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 06:22:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38414 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229958AbhBPLNl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Feb 2021 06:13:41 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D60B164DA1;
-        Tue, 16 Feb 2021 11:12:57 +0000 (UTC)
+        id S229807AbhBPLWD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 06:22:03 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 586E964DEC;
+        Tue, 16 Feb 2021 11:21:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613473981;
-        bh=U/9Xwrg8bAM2A5MgFUI0Cfy5+k8D9Ryv+uAjX8R5bJc=;
-        h=From:To:Cc:Subject:Date:From;
-        b=EL9Vm+9ChSDdG5fjYVCPwkyPUDDjSSq5lq33Yb7r4Fgka+MaEcYgR9NcjdQkEH52a
-         E81VRuJsw7LAnC2ytlqxnIybr8vPtu23pUES+KN9WWRuXmOHlz1tbXLm5k0vz9j9TT
-         qZkfZUDo5P5H3UeMFAGbeuarm3CKzErWoLEl28piSh5who7BNxuu5BDrX39TVDyj0F
-         eRLwxkPaQNoYY6HwzwYOrKPCpWs2gThBrUdRQ6IY3Gg9qPBScEqAwoF4XD+0f7I4aS
-         yLSU1/89bMfyD1ep74tW1KypH3mKi8oWXBig+luvW5Z46RDOe0Us+rCJg25c40GAlU
-         a6EDbW2/PuFKA==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Document SM8350 CPUfreq compatible
-Date:   Tue, 16 Feb 2021 16:42:51 +0530
-Message-Id: <20210216111251.1838149-1-vkoul@kernel.org>
-X-Mailer: git-send-email 2.26.2
+        s=k20201202; t=1613474482;
+        bh=sGdysOLwQ/vMTi6/cVtKA8MKh2ozaYEspwLLEkybZGg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=TQYHRnVe7JndLjnuQU4eFOkLPlP7JYk78oQVaYcBjR7RNODDjKJyeAIgF5ahXUirA
+         ApKGzblkY79ikREmqs8iyMl5FJEsBZkoQJI62CSiLMinyqqYqMUQraS/A7jVm5TiLZ
+         lLyCWLoGhmOyF8Nexwqc+Cpwhb559ectSEdXwKP2wpjhIn2pFuct0MbkSdSHl04uKX
+         FJoXYjyJK+sSFBYdOzMVMwTRfWDS02gjazD8cGT3yDjG2Xtkt+BDZJRO+uiawXmPrf
+         3p4GIPNtBfuKs8MH3x3iEi4FEJZ5QYx2rjSYOI/vm6rqOGhB4aywkDNYne18WUPFk5
+         b23sB6xz2QV5w==
+Received: by mail-ot1-f51.google.com with SMTP id c16so8720140otp.0;
+        Tue, 16 Feb 2021 03:21:22 -0800 (PST)
+X-Gm-Message-State: AOAM530Y/CQy5G7fcilvMPQUGhWYYyz77PvQ71TKJcu5fB38IJ4zIWoy
+        Jn5CWsEBFYettoogq4kvR0admroSvVM7U2CzOcc=
+X-Google-Smtp-Source: ABdhPJyv2CYeHeZ1SBVRBNXR0A/V33lDQYMOTu+CjmWbeCC6//6Y/a53hTr8YDYVa3GMct6RQ8aW7uE7pDs+7W78NRw=
+X-Received: by 2002:a05:6830:18e6:: with SMTP id d6mr15005260otf.251.1613474481601;
+ Tue, 16 Feb 2021 03:21:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210215121713.57687-1-marcan@marcan.st> <20210215121713.57687-15-marcan@marcan.st>
+ <CAK8P3a3rGurSQBubZ8i4+OHpDgM8mOfXiC6UhDYmL0MSQK4BRA@mail.gmail.com> <c1bc451789d233df@bloch.sibelius.xs4all.nl>
+In-Reply-To: <c1bc451789d233df@bloch.sibelius.xs4all.nl>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Tue, 16 Feb 2021 12:21:05 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2pOUWqZjuk3PcBSsy9b3qv1D_1LiBH62bmTr7Uusp90A@mail.gmail.com>
+Message-ID: <CAK8P3a2pOUWqZjuk3PcBSsy9b3qv1D_1LiBH62bmTr7Uusp90A@mail.gmail.com>
+Subject: Re: [PATCH v2 14/25] dt-bindings: interrupt-controller: Add DT
+ bindings for apple-aic
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     Hector Martin <marcan@marcan.st>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the CPUfreq compatible for SM8350 SoC along with note for using the
-specific compatible for SoCs
+On Tue, Feb 16, 2021 at 12:00 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> > From: Arnd Bergmann <arnd@kernel.org>
+> > Date: Tue, 16 Feb 2021 10:41:11 +0100
+> >
+> > On Mon, Feb 15, 2021 at 1:17 PM Hector Martin <marcan@marcan.st> wrote:
+> > > +
+> > > +      The 2nd cell contains the interrupt number.
+> > > +        - HW IRQs: interrupt number
+> > > +        - FIQs:
+> > > +          - 0: physical HV timer
+> > > +          - 1: virtual HV timer
+> > > +          - 2: physical guest timer
+> > > +          - 3: virtual guest timer
+> >
+> > I wonder if you could just model the FIQ as a single shared level interrupt
+> > (which is essentially what it is), and have every driver that uses it do a
+> > request_irq() on the same IRQ number.
+> >
+> > This would avoid having to come up with a fake binding for it, and simplify
+> > the implementation that then no longer has to peek into each interrupt
+> > source.
+>
+> That would tie the binding more closely to the implementation as it
+> would remove the option of peeking at the interrupt source.
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+I don't think having the binding match the implementation is a bad thing ;-)
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-index 9299028ee712..3eb3cee59d79 100644
---- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-+++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-@@ -8,7 +8,9 @@ Properties:
- - compatible
- 	Usage:		required
- 	Value type:	<string>
--	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss".
-+	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss"
-+			along with SoC specific compatible:
-+			  "qcom,sm8350-cpufreq-epss", "qcom,cpufreq-epss"
- 
- - clocks
- 	Usage:		required
--- 
-2.26.2
+If a future SoC variant handles it differently, it will need a binding update
+anyway.
 
+> And wouldn't it mean that the arch_timer driver would need to know whether
+> the interrupt is shared or not?
+
+Indeed, it does require each driver to pass IRQF_SHARED, and be
+prepared to be called when no irq is pending (returning IRQ_NONE
+otherwise), so a downside would be that this requires changing the
+bindings for the timer and anything else that ends up using FIQ
+later. It may be possible to just always pass IRQF_SHARED when
+registering the arch timer handler, not sure if there are any downsides
+in case for the normal (non-shared) case.
+
+This is a drawback, but I still find it a little cleaner than having to
+encode information about the individual irq sources into the irqchip
+driver.
+
+      Arnd
