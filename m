@@ -2,88 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5133131C8D2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 11:31:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F2BE31C8F4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 11:41:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229790AbhBPKaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 05:30:19 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59142 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229771AbhBPKaO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Feb 2021 05:30:14 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5634064E08;
-        Tue, 16 Feb 2021 10:29:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613471372;
-        bh=hWGJmDQWT8XgcDBQ7FWNZP9vnjZM2snhaJfPI32QkRc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=h9KXzI+VQK8eKmwWqRrnq3PhV8yv3jLCPH9kG4q5pjmm1Lz1ejBNgrfEKqh7m+9cJ
-         QDvDnNyYYoFl0N4Gnz8gHV2/n2+AedJBtShvMhSN1PFNRaKky1Uv+sqPGHFYHiRJ2X
-         jSpDta2pTJn61wx29CEpNdP9fvnQ59LE9Ehulvk/jDDWsQiBTNIwgK2BGFwlEFzhA7
-         sTL5llVU+0UKv4K0+359uJKDamyucH+YWWE4Pj+TM6A8581pmqALdJ0rb5Mjn6yhQF
-         5YX13knYFdSFX00M/6WSQh7VkVKjN6i3z9RAqLAGz01/ZvM8pjD4AIN4LW4DB7rjyW
-         5KUKJUrRnXo/w==
-Received: by mail-oi1-f179.google.com with SMTP id y199so10723708oia.4;
-        Tue, 16 Feb 2021 02:29:32 -0800 (PST)
-X-Gm-Message-State: AOAM533IjMiM8d6IQ+SdixLgOsEE0GhLII4KOPo0WoJcRKzMe7wfNNbu
-        m9qQfuLs3xm8TzErcqHTuSQAT7ZuQRwrKnQcnP4=
-X-Google-Smtp-Source: ABdhPJzLU0yXwpa8zo0VJ9pnLMzT5igdBQF/kLq0nZ5rs/I3kZXxM3I1bGcFbavHO/jgFFGo6VIGqtHL1dM1HGNJFLc=
-X-Received: by 2002:aca:2117:: with SMTP id 23mr2141331oiz.4.1613471371347;
- Tue, 16 Feb 2021 02:29:31 -0800 (PST)
-MIME-Version: 1.0
-References: <20210215121713.57687-1-marcan@marcan.st> <20210215121713.57687-24-marcan@marcan.st>
- <20210215191748.uhus2e6gclkwgjo5@kozik-lap> <CAK8P3a0YzRVa+fa_7xFxR8f+pwSCo5w5kuaPsSSQscR10jwPww@mail.gmail.com>
- <CAJKOXPc+j9F_TVq2ir0ehVvph96UgkjRRCK7Df4KR0tVgWOAng@mail.gmail.com>
-In-Reply-To: <CAJKOXPc+j9F_TVq2ir0ehVvph96UgkjRRCK7Df4KR0tVgWOAng@mail.gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 16 Feb 2021 11:29:15 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2mOCfVhR3aeey38sDudJovfz23OOMMHREd8bmy=9-5yw@mail.gmail.com>
-Message-ID: <CAK8P3a2mOCfVhR3aeey38sDudJovfz23OOMMHREd8bmy=9-5yw@mail.gmail.com>
-Subject: Re: [PATCH v2 23/25] tty: serial: samsung_tty: Add earlycon support
- for Apple UARTs
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Hector Martin <marcan@marcan.st>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
+        id S229744AbhBPKks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 05:40:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59068 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230028AbhBPKkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 05:40:40 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D0C7C061756
+        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 02:40:00 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id t26so5976428pgv.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 02:40:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=C/UbC0p2B2OI8LGsLZ5ShRFwCgCZxw1TV90u+LaEK7g=;
+        b=JTUOJ6gupAdS0Uv1yclSHe2rmXAoZsRRWj/Omhc2ModEO0vU1Jksz+ZVkZ7FUBKuXf
+         QY+0aaMIc3YuYsjn2VgKxI/5oS2XF+ydjorVl2FiXl6vjoLHHIgY12ndG31LcErC6kIu
+         PVPGgTJ7kXdCHSJyIO304DK1B2XJLK8UXk5Cd20rjOhskehs/hvQuvyrh7boVhK3wIZx
+         M1+pkeP0NF3re8WFH9h3yELejoQImB6L6vp2qdMjyVU6c6gspt+9yk+Sl9ZpwcBtONqm
+         jIMQdda2R0VGdimnjKpRzgIfNvpIRsLXBp9NFIouIHN/e8gofvB0z9uyRxOlmQgMcb4J
+         SvGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=C/UbC0p2B2OI8LGsLZ5ShRFwCgCZxw1TV90u+LaEK7g=;
+        b=V66k2jTotRgSOY14Z+HyDuIgDDlmAK/TRf79SiRxbJ4pe+8ip+DWR55yEVT37VHZE9
+         5JDbj8lXRxlHkl4LLcQmVIlAW9GkcrY+nppP3/oj4OVqzqqZYbmgyUSljFqQxrURuxYt
+         nDfuN9R7hkqk1fEqA2Y0356mgMWJgr+jA9o1e+iiLReHEhpz1/nWW26eQkc4BPIEj0TG
+         g6I/pnj6OV8IZgyFvehxl6zbwK6n40s8oKxnzuY/szBg9uJluUM2+F+bNtkW4WLCokwL
+         46Hco4ZoB7vNP/BAPFshjse67q/04ttJl9+WSyc4epL4oMtXh2JMfw9gMLzF7GYmp62w
+         clUg==
+X-Gm-Message-State: AOAM532fYje0jdJEqHMTj7C4/q9Q0sVoxjms9K+CovU8xpCzrMKLCTb8
+        Y3suV6blnkYcQ/td5FCBFNr1kw==
+X-Google-Smtp-Source: ABdhPJzF6n1Bw76L8Mvt8EZfVrIA6aPEUV8Ln/oFyqMf3Kv8F8CJsSm2q+7jXG0KMkTrb4NOog9DlA==
+X-Received: by 2002:a63:5d59:: with SMTP id o25mr18241675pgm.322.1613471999788;
+        Tue, 16 Feb 2021 02:39:59 -0800 (PST)
+Received: from localhost ([122.172.59.240])
+        by smtp.gmail.com with ESMTPSA id l15sm2390356pjq.9.2021.02.16.02.39.58
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 16 Feb 2021 02:39:59 -0800 (PST)
+Date:   Tue, 16 Feb 2021 16:09:57 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Content-Type: text/plain; charset="UTF-8"
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        devicetree@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>
+Subject: Re: [PATCH V7 6/6] of: unittest: Statically apply overlays using
+ fdtoverlay
+Message-ID: <20210216103957.gwikizhtoxvb66le@vireshk-i7>
+References: <cover.1611904394.git.viresh.kumar@linaro.org>
+ <3683a542d4141cfcf9c2524a40a9ee75b657c1c2.1611904394.git.viresh.kumar@linaro.org>
+ <20210204015409.GA3150757@robh.at.kernel.org>
+ <20210208111813.oql6jmeaxuq3btz7@vireshk-i7>
+ <CAL_JsqK+eM_RrzXnbm2GJGJuVwAjEz1TeTux18Hc727vovbqDA@mail.gmail.com>
+ <20210209101058.kmqqjxfjz3alre55@vireshk-i7>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210209101058.kmqqjxfjz3alre55@vireshk-i7>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 16, 2021 at 11:20 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Tue, 16 Feb 2021 at 11:19, Arnd Bergmann <arnd@kernel.org> wrote:
-> > > > +     return samsung_early_console_setup(device, opt);
-> > >
-> > > Don't you need to handle the error code - set PROT_DEFAULT() or whatever
-> > > was there before?
-> >
-> > __set_fixmap() has no return value, it just writes a page table entry and
-> > does not fail.
->
-> I meant, handle samsung_early_console_setup() error code (NULL).
+On 09-02-21, 15:40, Viresh Kumar wrote:
+> And after decent amount of effort understanding how to do this, I
+> finally did it in a not so efficient way, I am sure you can help
+> improving it :)
 
-Ah, I see.
+Ping!
 
-I don't think it makes a difference -- if ->setup() fails, the page table entry
-is just left in place unused, and the type of the unused mapping doesn't
-matter. If earlycon tried to unmap the page, the type also would not
-change anything.
+Also, where do we send patches for dt-schema ? Which list ?
 
-With earlycon, I'd generally lean towards keeping things as simple as possible,
-in order to increase the chance of seeing anything at all. It clearly wouldn't
-hurt to try to add minimal error handling here.
+> Author: Viresh Kumar <viresh.kumar@linaro.org>
+> Date:   Tue Feb 9 12:19:50 2021 +0530
+> 
+>     dt-validate: Skip "required property" checks for overlays
+>     
+>     The overlays may not carry the required properties and would depend on
+>     the base dtb to carry those, there is no point raising those errors
+>     here.
+>     
+>     Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> ---
+>  tools/dt-validate | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/tools/dt-validate b/tools/dt-validate
+> index 410b0538ef47..c6117504f1d1 100755
+> --- a/tools/dt-validate
+> +++ b/tools/dt-validate
+> @@ -80,6 +80,23 @@ show_unmatched = False
+>                                    (filename, line, col, fullname, node['compatible']), file=sys.stderr)
+>                              continue
+>  
+> +                        if nodename == '/':
+> +                            is_fragment = False
+> +                            for name in node.items():
+> +                                if name[0] == 'fragment@0':
+> +                                    is_fragment = True
+> +                                    break;
+> +
+> +                            if is_fragment == True:
+> +                                if 'required property' in error.message:
+> +                                    continue
+> +                                elif error.context:
+> +                                    for e in error.context:
+> +                                        if not 'required property' in e.message:
+> +                                            break
+> +                                    else:
+> +                                        continue
+> +
+>                          print(dtschema.format_error(filename, error, nodename=nodename, verbose=verbose) +
+>                              '\n\tFrom schema: ' + schema['$filename'],
+>                              file=sys.stderr)
 
-       Arnd
+-- 
+viresh
