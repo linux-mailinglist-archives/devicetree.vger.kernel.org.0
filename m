@@ -2,187 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14BCC31CFDE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 19:07:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62CD931D00F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 19:18:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbhBPSHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 13:07:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41788 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbhBPSHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 13:07:03 -0500
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5DDDC06174A
-        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 10:06:23 -0800 (PST)
-Received: by mail-qt1-x836.google.com with SMTP id x3so1941661qti.5
-        for <devicetree@vger.kernel.org>; Tue, 16 Feb 2021 10:06:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jY9iK1+FYhqLlmeOaaKNMJnRWWpPl1FPPGfZFgnoHOA=;
-        b=J61crQvmK+qVVsBKTRgxh97TUx35Xd9UngcxEIQ/FyDCnqG3ntUYW6zNuklrBgg7x5
-         ShKstpDoEWs9PStyAOU+UKjYTs6+5LthtKz9Rg4OdVpGi0Zv3SkYd4HXkdhQvm/NfgdN
-         YprLyz0UaIbY8olus8ju7DrI7UfbrWx/hAZi2BXnPFnU3f2VZ0si/d2X/sfJdfLviiKA
-         1Euhj4lzODbXo/VEV3LvfmPFEY+nKCsAGI51foeMn1jiL289OS7qcCHVaz2+jPqSiPSx
-         MLnSqIDr8fokhb3RBdL+sZA+blwRG/leGdFtkBDxvvrvwBFPcR65/tRVe+4aKs9CI2Ai
-         JhSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=jY9iK1+FYhqLlmeOaaKNMJnRWWpPl1FPPGfZFgnoHOA=;
-        b=dDfERHmCqO6mD9Whi7HhweOJB9mnOFW2ROR2zd1uI9U0tNGoKqBWDkNOD/kAD53Yyx
-         aCl/RB0ESXgsQ24mD4oJnAVIZlC0y/5QYwNg9avQV3M1GncljtsQqvEea8WjciVdFFFY
-         PsPCh8RgAeSjoUie09FB8Xprio0gQDyvljFIuReiwSyuGBTIGOy5g/HuKq1p49NxWsya
-         LHOPxDF26HsaNAib1moA9PasoOnrd+krnDj+8KGwPNwQ6fSpWyUwVJtjL2+kuAhe41Y6
-         pHY/vZ8JAZAYenGTPWpXbLqUF0rvg93O8FWzm1vYZA5kpQs2FI/IhIwWh898zCcrLPA/
-         hnRg==
-X-Gm-Message-State: AOAM533ErykBviWB45btLaHWogEEbzDrMF10R1myF/RjM3z41PCdRcp1
-        H+MnJegrI27HodiY0KUYN4KlbA==
-X-Google-Smtp-Source: ABdhPJwokn1VAbBbWme8hbQKD48AY7keANjDwy6xiTFqQEmNtcyAGSGs2OgTmgYhB+BvFCvS44aLWw==
-X-Received: by 2002:a05:622a:216:: with SMTP id b22mr19554660qtx.163.1613498782789;
-        Tue, 16 Feb 2021 10:06:22 -0800 (PST)
-Received: from [192.168.0.189] (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id x6sm3255622qkj.118.2021.02.16.10.06.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Feb 2021 10:06:22 -0800 (PST)
-Subject: Re: [PATCH v2 1/2] drm/msm: add compatibles for sm8150/sm8250 display
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S230458AbhBPSQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 13:16:58 -0500
+Received: from mga06.intel.com ([134.134.136.31]:16470 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229889AbhBPSQ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 13:16:57 -0500
+IronPort-SDR: iMJ7zl6/2a4ys8OiYHIhQVNReliFpPxXVlnuJRGxCNzR6L5EL1KTI7G9Wno4oXWLmiSg8QH9Bg
+ vfVkx5hwfPwQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="244445772"
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; 
+   d="scan'208";a="244445772"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2021 10:15:24 -0800
+IronPort-SDR: 6pXYhCqPaIaxYtx0EOvaa965LEVjcd9ChuE5ozGOVd9YHcYUTUo89x5JgR4Yw+JjW759Ra+Xl5
+ tvtzLGj8ukpA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; 
+   d="scan'208";a="493375887"
+Received: from maru.jf.intel.com ([10.54.51.77])
+  by fmsmga001.fm.intel.com with ESMTP; 16 Feb 2021 10:15:23 -0800
+From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
         Rob Herring <robh+dt@kernel.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        Eric Anholt <eric@anholt.net>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Drew Davenport <ddavenport@chromium.org>,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        tongtiangen <tongtiangen@huawei.com>,
-        Qinglang Miao <miaoqinglang@huawei.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210215161537.14696-1-jonathan@marek.ca>
- <20210215161537.14696-2-jonathan@marek.ca>
- <CAA8EJpo_Fs8Wj6zjH6BQqm=mG=qcGt3_JMj4nK-vsKCzr8tn1g@mail.gmail.com>
-From:   Jonathan Marek <jonathan@marek.ca>
-Message-ID: <29231c68-0cc4-9d8a-8cb1-791511780bcd@marek.ca>
-Date:   Tue, 16 Feb 2021 13:05:34 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Subject: [PATCH v3 0/4] i2c: aspeed: Add buffer and DMA modes support
+Date:   Tue, 16 Feb 2021 10:27:31 -0800
+Message-Id: <20210216182735.11639-1-jae.hyun.yoo@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <CAA8EJpo_Fs8Wj6zjH6BQqm=mG=qcGt3_JMj4nK-vsKCzr8tn1g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/16/21 11:54 AM, Dmitry Baryshkov wrote:
-> On Mon, 15 Feb 2021 at 19:25, Jonathan Marek <jonathan@marek.ca> wrote:
->>
->> The driver already has support for sm8150/sm8250, but the compatibles were
->> never added.
->>
->> Also inverse the non-mdp4 condition in add_display_components() to avoid
->> having to check every new compatible in the condition.
->>
->> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
->> ---
->>   Documentation/devicetree/bindings/display/msm/dpu.txt | 4 ++--
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c               | 2 ++
->>   drivers/gpu/drm/msm/msm_drv.c                         | 6 +++---
->>   3 files changed, 7 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dpu.txt b/Documentation/devicetree/bindings/display/msm/dpu.txt
->> index 551ae26f60da..5763f43200a0 100644
->> --- a/Documentation/devicetree/bindings/display/msm/dpu.txt
->> +++ b/Documentation/devicetree/bindings/display/msm/dpu.txt
->> @@ -8,7 +8,7 @@ The DPU display controller is found in SDM845 SoC.
->>
->>   MDSS:
->>   Required properties:
->> -- compatible:  "qcom,sdm845-mdss", "qcom,sc7180-mdss"
->> +- compatible:  "qcom,sdm845-mdss", "qcom,sc7180-mdss", "qcom,sm8150-mdss", "qcom,sm8250-mdss"
->>   - reg: physical base address and length of contoller's registers.
->>   - reg-names: register region names. The following region is required:
->>     * "mdss"
->> @@ -41,7 +41,7 @@ Optional properties:
->>
->>   MDP:
->>   Required properties:
->> -- compatible: "qcom,sdm845-dpu", "qcom,sc7180-dpu"
->> +- compatible: "qcom,sdm845-dpu", "qcom,sc7180-dpu", "qcom,sm8150-dpu", "qcom,sm8250-dpu"
->>   - reg: physical base address and length of controller's registers.
->>   - reg-names : register region names. The following region is required:
->>     * "mdp"
-> 
-> These two chunks should probably go to the separate patch 'dt-bindings:...'.
-> 
+This patch series adds buffer mode and DMA mode transfer support for the
+Aspeed I2C driver. With this change, buffer mode and DMA mode can be
+selectively used depend on platform configuration.
 
-In this case I think its better to have this change in the same patch, 
-but maybe one of the Robs will disagree.
+* Buffer mode
+  AST2400:
+    It has 2 KBytes (256 Bytes x 8 pages) of I2C SRAM buffer pool from
+    0x1e78a800 to 0x1e78afff that can be used for all busses with
+    buffer pool manipulation. To simplify implementation for supporting
+    both AST2400 and AST2500, it assigns each 128 Bytes per bus without
+    using buffer pool manipulation so total 1792 Bytes of I2C SRAM
+    buffer will be used.
 
-> Also, could you please pinpoint the reason for adding more
-> compatibility strings, while they map to the same internal data?
-> I think we might want instead to use some generic name for the dpu
-> block, like "qcom,dpu" or "qcom,mdp-dpu" instead of specifying the
-> platform name.
-> 
+  AST2500:
+    It has 16 Bytes of individual I2C SRAM buffer per each bus and its
+    range is from 0x1e78a200 to 0x1e78a2df, so it doesn't have 'buffer
+    page selection' bit field in the Function control register, and
+    neither 'base address pointer' bit field in the Pool buffer control
+    register it has. To simplify implementation for supporting both
+    AST2400 and AST2500, it writes zeros on those register bit fields
+    but it's okay because it does nothing in AST2500.
 
-sdm845 and sc7180 aren't using generic compatibles, this is just being 
-consistent with that.
+  AST2600:
+    It has 32 Bytes of individual I2C SRAM buffer per each bus and its
+    range is from 0x1e78ac00 to 0x1e78adff. Works just like AST2500
+    does.
 
-> 
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> index 5a8e3e1fc48c..fff12a4c8bfc 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> @@ -1219,6 +1219,8 @@ static const struct dev_pm_ops dpu_pm_ops = {
->>   static const struct of_device_id dpu_dt_match[] = {
->>          { .compatible = "qcom,sdm845-dpu", },
->>          { .compatible = "qcom,sc7180-dpu", },
->> +       { .compatible = "qcom,sm8150-dpu", },
->> +       { .compatible = "qcom,sm8250-dpu", },
->>          {}
->>   };
->>   MODULE_DEVICE_TABLE(of, dpu_dt_match);
->> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
->> index 94525ac76d4e..928f13d4bfbc 100644
->> --- a/drivers/gpu/drm/msm/msm_drv.c
->> +++ b/drivers/gpu/drm/msm/msm_drv.c
->> @@ -1185,9 +1185,7 @@ static int add_display_components(struct device *dev,
->>           * Populate the children devices, find the MDP5/DPU node, and then add
->>           * the interfaces to our components list.
->>           */
->> -       if (of_device_is_compatible(dev->of_node, "qcom,mdss") ||
->> -           of_device_is_compatible(dev->of_node, "qcom,sdm845-mdss") ||
->> -           of_device_is_compatible(dev->of_node, "qcom,sc7180-mdss")) {
->> +       if (!of_device_is_compatible(dev->of_node, "qcom,mdp4")) {
->>                  ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
->>                  if (ret) {
->>                          DRM_DEV_ERROR(dev, "failed to populate children devices\n");
->> @@ -1320,6 +1318,8 @@ static const struct of_device_id dt_match[] = {
->>          { .compatible = "qcom,mdss", .data = (void *)KMS_MDP5 },
->>          { .compatible = "qcom,sdm845-mdss", .data = (void *)KMS_DPU },
->>          { .compatible = "qcom,sc7180-mdss", .data = (void *)KMS_DPU },
->> +       { .compatible = "qcom,sm8150-mdss", .data = (void *)KMS_DPU },
->> +       { .compatible = "qcom,sm8250-mdss", .data = (void *)KMS_DPU },
->>          {}
->>   };
->>   MODULE_DEVICE_TABLE(of, dt_match);
->> --
->> 2.26.1
->>
-> 
-> 
+* DMA mode
+  Only AST2500 and later versions support DMA mode under some limitations
+  in case of AST2500:
+    I2C is sharing the DMA H/W with UHCI host controller and MCTP
+    controller. Since those controllers operate with DMA mode only, I2C
+    has to use buffer mode or byte mode instead if one of those
+    controllers is enabled. Also make sure that if SD/eMMC or Port80
+    snoop uses DMA mode instead of PIO or FIFO respectively, I2C can't
+    use DMA mode.
+
+Please review it.
+
+Changes since v2:
+- Added SRAM resources back to default dtsi and added a mode selection
+  property.
+- Refined SoC family dependent xfer mode configuration functions.
+
+Changes since v1:
+V1: https://lore.kernel.org/linux-arm-kernel/20191007231313.4700-1-jae.hyun.yoo@linux.intel.com/
+- Removed a bug fix patch which was merged already from this patch series. 
+- Removed buffer reg settings from default device tree and added the settings
+  into bindings document to show the predefined buffer range per each bus.
+- Updated commit message and comments.
+- Refined driver code using abstract functions.
+
+Jae Hyun Yoo (4):
+  dt-bindings: i2c: aspeed: add transfer mode support
+  ARM: dts: aspeed: modify I2C node to support buffer mode
+  i2c: aspeed: add buffer mode transfer support
+  i2c: aspeed: add DMA mode transfer support
+
+ .../devicetree/bindings/i2c/i2c-aspeed.txt    |  37 +-
+ arch/arm/boot/dts/aspeed-g4.dtsi              |  47 +-
+ arch/arm/boot/dts/aspeed-g5.dtsi              |  47 +-
+ arch/arm/boot/dts/aspeed-g6.dtsi              |  32 +-
+ drivers/i2c/busses/i2c-aspeed.c               | 637 ++++++++++++++++--
+ 5 files changed, 684 insertions(+), 116 deletions(-)
+
+-- 
+2.17.1
+
