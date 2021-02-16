@@ -2,130 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9773D31C7DB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 10:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C118031C838
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 10:43:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbhBPJOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 04:14:14 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:38827 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbhBPJNv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 04:13:51 -0500
-Received: by mail-ot1-f45.google.com with SMTP id e4so8414789ote.5;
-        Tue, 16 Feb 2021 01:13:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ucaaQ1ADUQy4A317BM2Jn2gGmRvVOJrGQ3s1YQX0K0s=;
-        b=GmpzYCGDEdhAXW6JW0LrjmBkP/eb7mcB6Jz818kA6/nFK92+/8dFFFlYmr3BIxi+dy
-         l2Id8+AvvP7IA2hYt83NEg2ns8XknyO/k1bTfXJz8hdUJe3NiYUk424tkgDtL4w0pzT8
-         e3mlPcmSHpC4kLWRbVDGMrcIMP3WWRQivKNXef7+kHX180GKpjN7NXu2szGpLDSkLkuf
-         FWEJN7QUfCFreJsbb8KqNij3Tm69TyzbYN20yVpZi3GsyR6o5xslHmOLsboHy11Jd21o
-         r4x2s2bF3XucPiPFKkrHkt4bbt9WRrmmZI7u8SB2y4T8kHLagVUm4GOXXfG08T0+j88x
-         nN7A==
-X-Gm-Message-State: AOAM532krd5lP64kI8Lk0n/sa0cPQF82YsgVFtL4yEt1cd0PV5V/G8Gg
-        iAYUsQ1oJttLkUW9Ol2iafszJVPgv7CpHE7Lvz8=
-X-Google-Smtp-Source: ABdhPJzKXRD65Esy2e90FduDMQfkvF1Tp3lIJAEziXJuUt1F3lOaYzjpwDcyZY6EvWCmnJhfq5UPVT2eCePoy3fhcKI=
-X-Received: by 2002:a05:6830:148d:: with SMTP id s13mr13989286otq.250.1613466790398;
- Tue, 16 Feb 2021 01:13:10 -0800 (PST)
+        id S229771AbhBPJmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 04:42:12 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52836 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229713AbhBPJmL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 04:42:11 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7462C64E09;
+        Tue, 16 Feb 2021 09:41:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613468488;
+        bh=ymFlalVSZE6VvUvNX82uucfKhpqKL/xJZkolfuRFQfQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hrQ/XJ/UOFNn31C0IOXrJGDZckwsx3OL2WsDqb+T1bTQydlo8pzsTIbTTjoBQ7ib4
+         olZ7U43phHxWbKexly6xYaIC1xIKidezSkFY6LLLDynYO1Goc/QLNtK4leGgNoNNbA
+         N8/Ch9RXkQ5Ft2h5szM5LXeR6neqbzpsT+970sjg7BF007syqLH+J2wWmIlnBGRKUX
+         31+15m2RqN5uSKnYd+IuxVzaTFACpjCutYERYsESukRW0gv8E8xhOV/Rz0j2fLqvon
+         z8nQBENypfgPKEa/uNVunaWg38ce3mG+Y37AWFjOreyZ7onBoIRjaG+IZ0zSHu94bM
+         S1vpeCrz0fPLQ==
+Received: by mail-ot1-f50.google.com with SMTP id q4so8463433otm.9;
+        Tue, 16 Feb 2021 01:41:28 -0800 (PST)
+X-Gm-Message-State: AOAM531tjXGVgHRyEzrTs9uW0wjped0nf217lmbNpr/wwEOCd1fTuzr8
+        OFoJ/Ctm/TEX5+f8xV2kL3GFQ7IJe0rBDve4+w4=
+X-Google-Smtp-Source: ABdhPJxiaMAcH5KZayQiwUcYPr4wMM3nIbzsy3wljGGJAybFgS6PcvoGnnAHy1bNygzh3LOoHKqncABSes1Q8IbFeJs=
+X-Received: by 2002:a9d:6c11:: with SMTP id f17mr14126556otq.210.1613468487646;
+ Tue, 16 Feb 2021 01:41:27 -0800 (PST)
 MIME-Version: 1.0
-References: <20210202175340.3902494-1-robh@kernel.org>
-In-Reply-To: <20210202175340.3902494-1-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 16 Feb 2021 10:12:59 +0100
-Message-ID: <CAMuHMdWyTWqF=2fwAmkedMCrZ_owF9nhmGWYf6Xe=CRuOB1ZEQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mtd: spi-nor: Convert to DT schema format
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20210215121713.57687-1-marcan@marcan.st> <20210215121713.57687-15-marcan@marcan.st>
+In-Reply-To: <20210215121713.57687-15-marcan@marcan.st>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Tue, 16 Feb 2021 10:41:11 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a3rGurSQBubZ8i4+OHpDgM8mOfXiC6UhDYmL0MSQK4BRA@mail.gmail.com>
+Message-ID: <CAK8P3a3rGurSQBubZ8i4+OHpDgM8mOfXiC6UhDYmL0MSQK4BRA@mail.gmail.com>
+Subject: Re: [PATCH v2 14/25] dt-bindings: interrupt-controller: Add DT
+ bindings for apple-aic
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Tue, Feb 2, 2021 at 6:54 PM Rob Herring <robh@kernel.org> wrote:
-> Convert the SPI-NOR binding to DT schema format. Like other memory chips,
-> the compatible strings are a mess with vendor prefixes not being used
-> consistently and some compatibles not documented. The resulting schema
-> passes on 'compatible' checks for most in tree users with the exception
-> of some oddballs.
->
-> I dropped the 'm25p.*-nonjedec' compatible strings as these don't appear
-> to be used anywhere.
->
-> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> Cc: Richard Weinberger <richard@nod.at>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Cc: linux-mtd@lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-
-Thanks for your patch!
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/jedec,spi-nor.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Mon, Feb 15, 2021 at 1:17 PM Hector Martin <marcan@marcan.st> wrote:
 > +
-> +title: SPI NOR flash ST M25Pxx (and similar) serial flash chips
-> +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - pattern: "^((((micron|spansion|st),)?\
-> +              (m25p(40|80|16|32|64|128)|\
-> +              n25q(32b|064|128a11|128a13|256a|512a|164k)))|\
-> +              atmel,at25df(321a|641|081a)|\
-> +              everspin,mr25h(10|40|128|256)|\
-> +              (mxicy|macronix),mx25l(4005a|1606e|6405d|8005|12805d|25635e)|\
-> +              (mxicy|macronix),mx25u(4033|4035)|\
-> +              (spansion,)?s25fl(128s|256s1|512s|008k|064k|164k)|\
-> +              (sst|microchip),sst25vf(016b|032b|040b)|\
-> +              (sst,)?sst26wf016b|\
-> +              (sst,)?sst25wf(040b|080)|\
-> +              winbond,w25x(80|32)|\
-> +              (winbond,)?w25q(16|32(w|dw)?|64(dw)?|80bl|128(fw)?|256))$"
-> +          - const: jedec,spi-nor
-> +      - items:
-> +          - enum:
-> +              - issi,is25lp016d
-> +              - micron,mt25qu02g
-> +              - mxicy,mx25r1635f
-> +              - mxicy,mx25u6435f
-> +              - mxicy,mx25v8035f
-> +              - spansion,s25sl12801
-> +              - spansion,s25fs512s
-> +          - const: jedec,spi-nor
-> +      - const: jedec,spi-nor
-> +    description:
-> +      Must also include "jedec,spi-nor" for any SPI NOR flash that can be
-> +      identified by the JEDEC READ ID opcode (0x9F).
+> +      The 2nd cell contains the interrupt number.
+> +        - HW IRQs: interrupt number
+> +        - FIQs:
+> +          - 0: physical HV timer
+> +          - 1: virtual HV timer
+> +          - 2: physical guest timer
+> +          - 3: virtual guest timer
 
-Is there any value in keeping this paragraph?
-The schema already requires "jedec,spi-nor".
+I wonder if you could just model the FIQ as a single shared level interrupt
+(which is essentially what it is), and have every driver that uses it do a
+request_irq() on the same IRQ number.
 
-Gr{oetje,eeting}s,
+This would avoid having to come up with a fake binding for it, and simplify
+the implementation that then no longer has to peek into each interrupt
+source.
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+     Arnd
