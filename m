@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33E3631C89D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 11:20:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F02D31C8AC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 11:23:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbhBPKT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 05:19:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56818 "EHLO mail.kernel.org"
+        id S230111AbhBPKV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 05:21:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57342 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229717AbhBPKTy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Feb 2021 05:19:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4744164DE0;
-        Tue, 16 Feb 2021 10:19:13 +0000 (UTC)
+        id S230073AbhBPKVl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 05:21:41 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F2DA264DE0;
+        Tue, 16 Feb 2021 10:21:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613470753;
-        bh=eY3mTlj51VDYTzN/HdqXV4UVbM576klVPmjNaB7BtAE=;
+        s=k20201202; t=1613470861;
+        bh=ELgcIQXALPguJaOZgn++Pynu3kfkRH1G8GoAn1mqJ7I=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rh+goMEe6guEquXfbwF4p/banP+VlKviFUn9KeZpAkmv8y3GfNI82iVu6B1a0WUIE
-         yJXvBuYad7dsukXs4KvDRmvXIVsDfZ2sejfXfi6+ftkhGMG4DMhIPUAwPqwRBZRAJi
-         ebWB2ntvXZXlfawafzxB6dth2N7fvOd1RLc4p1UBmcX9mAw4yMy5Ti60xRd+kESDKV
-         eTOKRF3HYietQXaMe4/gAyeyoGuZ+sYPvKg1bvfg1nKDEURdM8dHeMcmbLM+Ee+dLY
-         u+/8w2/vM+CRK1ouUKeGOsAmYKxkQifPC9ZSdDVRPnP9JZsMRdP2eCXEpyVlHJkDHn
-         ugTurxEvzFh5g==
-Received: by mail-ot1-f43.google.com with SMTP id q4so8538998otm.9;
-        Tue, 16 Feb 2021 02:19:13 -0800 (PST)
-X-Gm-Message-State: AOAM533Cw8RUVddswmW23uki/i7swCFFjVZ4QejdSv+x+ih+PvJNQr2Q
-        sxno6rzhQQ0TSYvEb1DkUz+NULfZ2ORh9g9VzQk=
-X-Google-Smtp-Source: ABdhPJzeQJWVf1L+wYwbHinVXK9KvU0k5wankDGEsyl+37JLP8P0mp30rvYs7XPlpwchpnDqw4uCBBoiq7ecsbMHDRU=
-X-Received: by 2002:a9d:6c11:: with SMTP id f17mr14202610otq.210.1613470752538;
- Tue, 16 Feb 2021 02:19:12 -0800 (PST)
+        b=dUNelPnuuhmu96bj6fTNcSfGg47UQELco9Wybizd4fEB1Y/c4kFxMzMXmOpiTvjap
+         dhzMWT3ffyy863iy2K1oUy5JCvgwb3+ohpz/xFE6/t1KwKJ4Dh65Q5NDKSsA7LWwYc
+         IAOv468qpJQ7/a8lOkiFljTzalBE/tAHpFnhXTfz/4LZSo0i6i2Iqh/UKdXizawoXC
+         eC19rg+pFzrgWQ4paUI8i5vfujOENcw2lhsJ59zC98szkP65I/e42JCxIHAd1QkGu+
+         jcfslsRYBk49+SuyxdPTBc1pQqqTkv78BiIQ2EI6+zMpWfP7EIPnzwH3EBdZk4d6Sd
+         iQSx67iLfrylg==
+Received: by mail-ej1-f49.google.com with SMTP id g5so12149426ejt.2;
+        Tue, 16 Feb 2021 02:21:00 -0800 (PST)
+X-Gm-Message-State: AOAM531DwpUExM21556kTFZS4pbhoqIWtIpPkBpPEhB0yqDnAdyFsf9r
+        F+vUj0DxavsJ0DCASmULWLwWpxQTjMrQATktoKY=
+X-Google-Smtp-Source: ABdhPJxX5NZv34e/hqZBU7CvR8NWGRl3k9oSuP8v63dIVVtzMYfS1vLWWxVVIDu5jyJywxm+62+AJJnAl0q6bab3aBM=
+X-Received: by 2002:a17:906:2898:: with SMTP id o24mr19293928ejd.215.1613470859401;
+ Tue, 16 Feb 2021 02:20:59 -0800 (PST)
 MIME-Version: 1.0
 References: <20210215121713.57687-1-marcan@marcan.st> <20210215121713.57687-24-marcan@marcan.st>
- <20210215191748.uhus2e6gclkwgjo5@kozik-lap>
-In-Reply-To: <20210215191748.uhus2e6gclkwgjo5@kozik-lap>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 16 Feb 2021 11:18:56 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0YzRVa+fa_7xFxR8f+pwSCo5w5kuaPsSSQscR10jwPww@mail.gmail.com>
-Message-ID: <CAK8P3a0YzRVa+fa_7xFxR8f+pwSCo5w5kuaPsSSQscR10jwPww@mail.gmail.com>
+ <20210215191748.uhus2e6gclkwgjo5@kozik-lap> <CAK8P3a0YzRVa+fa_7xFxR8f+pwSCo5w5kuaPsSSQscR10jwPww@mail.gmail.com>
+In-Reply-To: <CAK8P3a0YzRVa+fa_7xFxR8f+pwSCo5w5kuaPsSSQscR10jwPww@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Tue, 16 Feb 2021 11:20:46 +0100
+X-Gmail-Original-Message-ID: <CAJKOXPc+j9F_TVq2ir0ehVvph96UgkjRRCK7Df4KR0tVgWOAng@mail.gmail.com>
+Message-ID: <CAJKOXPc+j9F_TVq2ir0ehVvph96UgkjRRCK7Df4KR0tVgWOAng@mail.gmail.com>
 Subject: Re: [PATCH v2 23/25] tty: serial: samsung_tty: Add earlycon support
  for Apple UARTs
-To:     Krzysztof Kozlowski <krzk@kernel.org>
+To:     Arnd Bergmann <arnd@kernel.org>
 Cc:     Hector Martin <marcan@marcan.st>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -61,39 +61,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 8:19 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> On Mon, Feb 15, 2021 at 09:17:11PM +0900, Hector Martin wrote:
-
-> > +
-> > +/* Apple S5L */
-> > +static int __init apple_s5l_early_console_setup(struct earlycon_device *device,
-> > +                                             const char *opt)
-> > +{
-> > +     /* Close enough to S3C2410 for earlycon... */
-> > +     device->port.private_data = &s3c2410_early_console_data;
-> > +
-> > +#ifdef CONFIG_ARM64
+On Tue, 16 Feb 2021 at 11:19, Arnd Bergmann <arnd@kernel.org> wrote:
+> > > +     return samsung_early_console_setup(device, opt);
+> >
+> > Don't you need to handle the error code - set PROT_DEFAULT() or whatever
+> > was there before?
 >
-> if IS_ENABLED()
-> (unless it cannot be used due to missing symbol?)
->
-> > +     /* ... but we need to override the existing fixmap entry as nGnRnE */
-> > +     __set_fixmap(FIX_EARLYCON_MEM_BASE, device->port.mapbase,
-> > +                  __pgprot(PROT_DEVICE_nGnRnE));
-> > +#endif
+> __set_fixmap() has no return value, it just writes a page table entry and
+> does not fail.
 
-It has to be a preprocessor conditional because PROT_DEVICE_nGnRnE
-is only defined on arm64. We could add a FIXMAP_PAGE_NONPOSTED
-alias for it that defaults to FIXMAP_PAGE_IO, but in the end this is
-really an architecture specific thing and I think leaving it guarded by
-the architecture is appropriate.
+I meant, handle samsung_early_console_setup() error code (NULL).
 
-> > +     return samsung_early_console_setup(device, opt);
->
-> Don't you need to handle the error code - set PROT_DEFAULT() or whatever
-> was there before?
-
-__set_fixmap() has no return value, it just writes a page table entry and
-does not fail.
-
-      Arnd
+Best regards,
+Krzysztof
