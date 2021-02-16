@@ -2,119 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 459C031C69B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 07:47:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3528331C6D7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 08:33:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbhBPGpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 01:45:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36926 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230080AbhBPGpK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 01:45:10 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B26B6C061574
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 22:44:29 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id y10so5998278edt.12
-        for <devicetree@vger.kernel.org>; Mon, 15 Feb 2021 22:44:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=48W9PPwDT7qNo2BI9hgweydmutdBVYuB+eG3wiusPHM=;
-        b=dKf02EAeoUczIIJyWbhyidTEeSgVhdR3xEqnypt33xVMFGlSVqzIvbIx8Gy7LELvvy
-         NkcpJKhvodub7fKkebXowi+2BldQevYdWr8mNyBwOtW8RV3YzO3Ww2TmTaXf8MaNAqlp
-         9fHihFFoJwhXpSIXl9iCDDju0yFKbulZ95cJOsj+NA1nutFza6vzWA5Cf/lNAsMbsk9m
-         Fd2iW51nCikjzTymBfWrpwUCGJ4xVxuyk7eKh1PUTNWHxg7lrsT3o/2Mye+9GtJeUUTb
-         ewMW73znjvet/0c4dLD255lwdWflzT9tLObigVPGrCAG83+FOBIOMDYsYIuGU5PUpF+2
-         agfg==
+        id S229695AbhBPHcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 02:32:05 -0500
+Received: from mail-wm1-f53.google.com ([209.85.128.53]:35022 "EHLO
+        mail-wm1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229662AbhBPHcE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 02:32:04 -0500
+Received: by mail-wm1-f53.google.com with SMTP id n10so13460112wmq.0;
+        Mon, 15 Feb 2021 23:31:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=48W9PPwDT7qNo2BI9hgweydmutdBVYuB+eG3wiusPHM=;
-        b=EhjRIwk0KVoAyDgKLMu3Cw1Z0LLad+v2FwNOQK0sYiGnTcOaXRjpp3eExkJYH6upfe
-         WGjK5+bTdXGw1YghmP1QONaOJXo06AoM6/LOeypqk+SqsJzov1IYMVWDu6B/6vulZ1K6
-         SUSgyF2unuuQy2EvfjC9fmyjNS8NeeOKfKZ/viAovXVZqNIxvtYsOwg0SjIQUc1L06vP
-         aZpgUyOju8Hm9LUXwbfkMSID5HYNNdx4bXi8Xvp7RcSBrlz+m4s5a6dMSky8w+aCbpY/
-         /q7PxDwi0Iwj7tCgNRjfvPJMqWF4Kdhuiez8gB6adtupkNt5djUu5CwIvZiY7ypd+Z5w
-         yoPg==
-X-Gm-Message-State: AOAM530XIThjNid252hISv1WfWjicPBNhKnEKcZLH/gMSvJnzpDUHKNq
-        Xx9DVV9lbe/63nuMevvSBWOYmKfwZr8BF8UEQcq8Zw==
-X-Google-Smtp-Source: ABdhPJzVRpEHdfhWd3rahxm+UmGMzS80naaxtJBhjXraCX1dKGfB6QQ2HEzZbB8cG+1QKn+vghD0Yrsp52yJHLLKvOI=
-X-Received: by 2002:aa7:d98e:: with SMTP id u14mr4610127eds.88.1613457868461;
- Mon, 15 Feb 2021 22:44:28 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xkypD+66j+JEykDAYhgusAW9iuLjXAf+rkAoljhHLHc=;
+        b=sQU72nrK6xwyxaH2gx1DH56kTWzlsnD5blu2sg/N0XeobVbtESykB5on4JPhqaRHWL
+         AsuFtaLn3LPiOKS4MwPdNzwgIEZ/QQt9IvJ+Kym5taH/2Y/i6yXSrWoXKMASstzRlwA1
+         WhozStcCj/FA7NwEOPKrEwbO/dSdLBT3U5T3rDs4Gr3IFEeYqziVYP8ApSujWK27RZmh
+         DaybeE/l9B9qHMRxAp0r24GHsqcXnhv7joO70lXCH4tI9HPIUL1hVT5R7pLBVXCfn3kH
+         /spcM4R4WuPxAOgF3Ld2hFxANStAXfhYbwq3iq0C372GNLuE2w71P6l7C5hN40cElT30
+         Upzg==
+X-Gm-Message-State: AOAM533NFm7txP8ysSzldK1i1u8TSHsB+KnErpjgAYwzopMTIr6KyLTd
+        sCpXWfcBoltkKA8IxoNbhic=
+X-Google-Smtp-Source: ABdhPJwtf7xxwxHb+TZe50BG+Ui9Gg4hfIal9+FHQtbwDPbzChwY23yzFA+XmAY9BiRlRr24mHdKIA==
+X-Received: by 2002:a1c:480a:: with SMTP id v10mr2063421wma.132.1613460682574;
+        Mon, 15 Feb 2021 23:31:22 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id 101sm17597897wrk.4.2021.02.15.23.31.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Feb 2021 23:31:21 -0800 (PST)
+Date:   Tue, 16 Feb 2021 08:31:20 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 25/25] arm64: apple: Add initial Mac Mini 2020 (M1)
+ devicetree
+Message-ID: <20210216073120.qmlaky43t6uelqc4@kozik-lap>
+References: <20210215121713.57687-1-marcan@marcan.st>
+ <20210215121713.57687-26-marcan@marcan.st>
+ <20210215192906.7k3unuhph5wnkj5g@kozik-lap>
+ <9dd4731c-7826-c1f5-3ce4-831d5186d270@infradead.org>
 MIME-Version: 1.0
-References: <20210213011624.251838-1-robh@kernel.org>
-In-Reply-To: <20210213011624.251838-1-robh@kernel.org>
-From:   Michal Simek <monstr@monstr.eu>
-Date:   Tue, 16 Feb 2021 07:44:17 +0100
-Message-ID: <CAHTX3dJfQffgPt5odNrCnJ2MFd=GVK+NcGsdjbGA_ED_LAwWuw@mail.gmail.com>
-Subject: Re: [PATCH] microblaze: Fix built-in DTB alignment to be 8-byte aligned
-To:     Rob Herring <robh@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <9dd4731c-7826-c1f5-3ce4-831d5186d270@infradead.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-so 13. 2. 2021 v 2:16 odes=C3=ADlatel Rob Herring <robh@kernel.org> napsal:
->
-> Commit 79edff12060f ("scripts/dtc: Update to upstream version
-> v1.6.0-51-g183df9e9c2b9") broke booting on Microblaze systems depending o=
-n
-> the build. The problem is libfdt gained an 8-byte starting alignment chec=
-k,
-> but the Microblaze built-in DTB area is only 4-byte aligned. This affecte=
-d
-> not just built-in DTBs as bootloader passed DTBs are copied into the
-> built-in DTB region.
->
-> Other arches using built-in DTBs use a common linker macro which has
-> sufficient alignment.
->
-> Fixes: 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g=
-183df9e9c2b9")
-> Reported-by: Guenter Roeck <linux@roeck-us.net>
-> Tested-by: Guenter Roeck <linux@roeck-us.net>
-> Cc: Michal Simek <monstr@monstr.eu>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> As the commit is in my tree, I'll take this via the DT tree.
->
->  arch/microblaze/kernel/vmlinux.lds.S | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/microblaze/kernel/vmlinux.lds.S b/arch/microblaze/kerne=
-l/vmlinux.lds.S
-> index df07b3d06cd6..fb31747ec092 100644
-> --- a/arch/microblaze/kernel/vmlinux.lds.S
-> +++ b/arch/microblaze/kernel/vmlinux.lds.S
-> @@ -45,7 +45,7 @@ SECTIONS {
->                 _etext =3D . ;
->         }
->
-> -       . =3D ALIGN (4) ;
-> +       . =3D ALIGN (8) ;
->         __fdt_blob : AT(ADDR(__fdt_blob) - LOAD_OFFSET) {
->                 _fdt_start =3D . ;                /* place for fdt blob *=
-/
->                 *(__fdt_blob) ;                 /* Any link-placed DTB */
-> --
-> 2.27.0
->
+On Mon, Feb 15, 2021 at 01:00:58PM -0800, Randy Dunlap wrote:
+> On 2/15/21 11:29 AM, Krzysztof Kozlowski wrote:
+> >> diff --git a/arch/arm64/boot/dts/apple/apple-j274.dts b/arch/arm64/boot/dts/apple/apple-j274.dts
+> >> new file mode 100644
+> >> index 000000000000..9a1be91a2cf0
+> >> --- /dev/null
+> >> +++ b/arch/arm64/boot/dts/apple/apple-j274.dts
+> >> @@ -0,0 +1,41 @@
+> >> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> > () around licenses, so:
+> > (GPL-2.0+ OR MIT)
+> 
+> Hi,
+> When/where does that "() around licenses" apply, please?
 
-Applied.
+Hmm, somehow this pattern got into me but now I checked on the spdx.dev
+and the preferred syntax is indeed without (). Skip this comment then.
 
-Thanks,
-Michal
-
-
---=20
-Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
-w: www.monstr.eu p: +42-0-721842854
-Maintainer of Linux kernel - Xilinx Microblaze
-Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
-U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
+Best regards,
+Krzysztof
