@@ -2,248 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8427B31CABA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 13:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C2A731CACB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 14:00:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbhBPMsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 07:48:37 -0500
-Received: from foss.arm.com ([217.140.110.172]:34628 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229713AbhBPMsg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Feb 2021 07:48:36 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 00B151FB;
-        Tue, 16 Feb 2021 04:47:50 -0800 (PST)
-Received: from [10.57.48.219] (unknown [10.57.48.219])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D7AED3F694;
-        Tue, 16 Feb 2021 04:47:47 -0800 (PST)
-Subject: Re: [RFC PATCH 1/8] of/device: Allow specifying a custom iommu_spec
- to of_dma_configure
-To:     Mikko Perttunen <mperttunen@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, joro@8bytes.org, will@kernel.org,
-        robh+dt@kernel.org, frowand.list@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20210208163848.2504291-1-mperttunen@nvidia.com>
- <20210208163848.2504291-2-mperttunen@nvidia.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <1c33f914-9109-42aa-01f3-04e50cf038c6@arm.com>
-Date:   Tue, 16 Feb 2021 12:47:43 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S229925AbhBPM7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 07:59:34 -0500
+Received: from mail-oo1-f44.google.com ([209.85.161.44]:33618 "EHLO
+        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229790AbhBPM7b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 07:59:31 -0500
+Received: by mail-oo1-f44.google.com with SMTP id f1so2260750oou.0;
+        Tue, 16 Feb 2021 04:59:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TVzLBkqKt0MyMwotNPEi8xMZ2SypGbVfWBR5eQRTmO0=;
+        b=TSrlLp/dLEvzVgYJtBCOI3GotDN81ZyYyNXCWTYNpHQgk7Li5hOwwdA5DI2aVSvN9u
+         QICOgn7PbSKOcD4TmUPyNR7oKuxBs3DRmjIHypg4EVgbNimg6pKuT5bwMw7moz4dwLlL
+         gjdt7k5aWaERMGI3+fJDXSrlHu2OJ9hawJ1IIJ519xcScgkh+VYkKXqvBJEeJYysa/jh
+         YXE+7Ldl1Zi4IScqJWUOTLySBilR7SJVmtB2c1olcSBMQ1p5so5ih9WB4v9f2GCIdtQX
+         90JznuDtxze58Ae7oSVog6crOzMwV4EJrKQef2q+3GOVSCtmHuJyt0kO8hHSu38Bx9ch
+         Kc3w==
+X-Gm-Message-State: AOAM533dFVUWMFTeNpqtYrlApLDE2W6QZi7whbG0yNmAx4DrvYCjd2vI
+        GNT/Gs4D//cYdXj1Xg9+ht5WAUkYOp5oeLp67ns=
+X-Google-Smtp-Source: ABdhPJxqORgG+iXS2MUSd76bl5TBZKlc/qcbt9O7R3tRFXJ0lESsAEHwXxj7DFW88YmAQPIcXwkV95yEjue34nqZXjY=
+X-Received: by 2002:a4a:ab08:: with SMTP id i8mr13952968oon.40.1613480328418;
+ Tue, 16 Feb 2021 04:58:48 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210208163848.2504291-2-mperttunen@nvidia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20210205222644.2357303-1-saravanak@google.com>
+ <CAMuHMdVL-1RKJ5u-HDVA4F4w_+8yGvQQuJQBcZMsdV4yXzzfcw@mail.gmail.com>
+ <CAGETcx-668+uGigaOMcsvv00mo6o_eGPcH0YyD28OCVEyVbw+w@mail.gmail.com>
+ <CAMuHMdWFp_teT5Lgxe6BOpOb4UMM2_4FrKJm-2C6kuCH2YUMrw@mail.gmail.com> <CAGETcx9AZct4h0AdjbNzF5vjoYxT+M+zJ2ddsEN5SV9ALqV48A@mail.gmail.com>
+In-Reply-To: <CAGETcx9AZct4h0AdjbNzF5vjoYxT+M+zJ2ddsEN5SV9ALqV48A@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 16 Feb 2021 13:58:37 +0100
+Message-ID: <CAMuHMdULCQrjba0sM3wUFdPDTB4Txh3LVY-8ACq6P_vFJvk+SA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mikko,
+Hi Saravana,
 
-On 2021-02-08 16:38, Mikko Perttunen wrote:
-> To allow for more customized device tree bindings that point to IOMMUs,
-> allow manual specification of iommu_spec to of_dma_configure.
-> 
-> The initial use case for this is with Host1x, where the driver manages
-> a set of device tree-defined IOMMU contexts that are dynamically
-> allocated to various users. These contexts don't correspond to
-> platform devices and are instead attached to dummy devices on a custom
-> software bus.
+On Mon, Feb 15, 2021 at 10:57 PM Saravana Kannan <saravanak@google.com> wrote:
+> On Mon, Feb 15, 2021 at 7:16 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Fri, Feb 12, 2021 at 4:00 AM Saravana Kannan <saravanak@google.com> wrote:
+> > > On Thu, Feb 11, 2021 at 5:00 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > >   1. R-Car Gen2 (Koelsch), R-Car Gen3 (Salvator-X(S), Ebisu).
+> > > >
+> > > >       - Commit 2dfc564bda4a31bc ("soc: renesas: rcar-sysc: Mark device
+> > > >         node OF_POPULATED after init") is no longer needed (but already
+> > > >         queued for v5.12 anyway)
+> > >
+> > > Rob doesn't like the proliferation of OF_POPULATED and we don't need
+> > > it anymore, so maybe work it out with him? It's a balance between some
+> > > wasted memory (struct device(s)) vs not proliferating OF_POPULATED.
+> >
+> > > >   2. SH/R-Mobile AG5 (kzm9g), APE6 (ape6evm), A1 (armadillo800-eva)
+> > > >
+> > > >       - "PATCH] soc: renesas: rmobile-sysc: Set OF_POPULATED and absorb
+> > > >         reset handling" is no longer needed
+> > > >         https://lore.kernel.org/linux-arm-kernel/20210205133319.1921108-1-geert+renesas@glider.be/
+> > >
+> > > Good to see more evidence that this series is fixing things at a more
+> > > generic level.
+> >
+> > I spoke too soon: if CONFIG_POWER_RESET_RMOBILE=n,
+> > booting fails again, as everything is waiting on the system controller,
+> > which never becomes available.
+> > Rcar-sysc doesn't suffer from this problem, cfr. above.
+> > Perhaps because the rmobile-sysc bindings use a hierarchical instead
+> > of a linear PM domain description, and thus consumers point to the
+> > children of the system controller node?
+> > Cfr. system-controller@e6180000 in arch/arm/boot/dts/r8a7740.dtsi.
+>
+> Ok, I see what's going on. The problem is that the "power domain"
+> fwnode being registered is not the node that contains the "compatible"
+> property and becomes a device. So this patch[1] is not helping here.
+> Fix is to do something like this (to avoid using OF_POPULATED flag and
+> breaking reset):
+>
+> diff --git a/drivers/soc/renesas/rmobile-sysc.c
+> b/drivers/soc/renesas/rmobile-sysc.c
+> index 9046b8c933cb..b7e66139ef7d 100644
+> --- a/drivers/soc/renesas/rmobile-sysc.c
+> +++ b/drivers/soc/renesas/rmobile-sysc.c
+> @@ -344,6 +344,7 @@ static int __init rmobile_init_pm_domains(void)
+>                         of_node_put(np);
+>                         break;
+>                 }
+> +               fwnode_dev_initialized(&np->fwnode, true);
+>         }
+>
+>         put_special_pds();
+>
+> Can you give it a shot?
 
-I'd suggest taking a closer look at the patches that made this 
-of_dma_configure_id() in the first place, and the corresponding bus code 
-in fsl-mc. At this level, Host1x sounds effectively identical to DPAA2 
-in terms of being a bus of logical devices composed from bits of 
-implicit behind-the-scenes hardware. I mean, compare your series title 
-to the fact that their identifiers are literally named "Isolation 
-Context ID" ;)
+Thanks, works.  Patch sent
+"[PATCH v2] soc: renesas: rmobile-sysc: Mark fwnode when PM domain is added"
+https://lore.kernel.org/linux-arm-kernel/20210216123958.3180014-1-geert+renesas@glider.be/
 
-Please just use the existing mechanisms to describe a mapping between 
-Host1x context IDs and SMMU Stream IDs, rather than what looks like a 
-giant hacky mess here.
+Gr{oetje,eeting}s,
 
-(This also reminds me I wanted to rip out all the PCI special-cases and 
-convert pci_dma_configure() over to passing its own IDs too, so thanks 
-for the memory-jog...)
+                        Geert
 
-Robin.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> ---
->   drivers/iommu/of_iommu.c  | 12 ++++++++----
->   drivers/of/device.c       |  9 +++++----
->   include/linux/of_device.h | 34 +++++++++++++++++++++++++++-------
->   include/linux/of_iommu.h  |  6 ++++--
->   4 files changed, 44 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> index e505b9130a1c..3fefa6c63863 100644
-> --- a/drivers/iommu/of_iommu.c
-> +++ b/drivers/iommu/of_iommu.c
-> @@ -87,8 +87,7 @@ int of_get_dma_window(struct device_node *dn, const char *prefix, int index,
->   }
->   EXPORT_SYMBOL_GPL(of_get_dma_window);
->   
-> -static int of_iommu_xlate(struct device *dev,
-> -			  struct of_phandle_args *iommu_spec)
-> +int of_iommu_xlate(struct device *dev, struct of_phandle_args *iommu_spec)
->   {
->   	const struct iommu_ops *ops;
->   	struct fwnode_handle *fwnode = &iommu_spec->np->fwnode;
-> @@ -117,6 +116,7 @@ static int of_iommu_xlate(struct device *dev,
->   	module_put(ops->owner);
->   	return ret;
->   }
-> +EXPORT_SYMBOL_GPL(of_iommu_xlate);
->   
->   static int of_iommu_configure_dev_id(struct device_node *master_np,
->   				     struct device *dev,
-> @@ -177,7 +177,8 @@ static int of_iommu_configure_device(struct device_node *master_np,
->   
->   const struct iommu_ops *of_iommu_configure(struct device *dev,
->   					   struct device_node *master_np,
-> -					   const u32 *id)
-> +					   const u32 *id,
-> +					   struct of_phandle_args *iommu_spec)
->   {
->   	const struct iommu_ops *ops = NULL;
->   	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-> @@ -209,7 +210,10 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
->   		err = pci_for_each_dma_alias(to_pci_dev(dev),
->   					     of_pci_iommu_init, &info);
->   	} else {
-> -		err = of_iommu_configure_device(master_np, dev, id);
-> +		if (iommu_spec)
-> +			err = of_iommu_xlate(dev, iommu_spec);
-> +		else
-> +			err = of_iommu_configure_device(master_np, dev, id);
->   
->   		fwspec = dev_iommu_fwspec_get(dev);
->   		if (!err && fwspec)
-> diff --git a/drivers/of/device.c b/drivers/of/device.c
-> index aedfaaafd3e7..84ada2110c5b 100644
-> --- a/drivers/of/device.c
-> +++ b/drivers/of/device.c
-> @@ -88,8 +88,9 @@ int of_device_add(struct platform_device *ofdev)
->    * can use a platform bus notifier and handle BUS_NOTIFY_ADD_DEVICE events
->    * to fix up DMA configuration.
->    */
-> -int of_dma_configure_id(struct device *dev, struct device_node *np,
-> -			bool force_dma, const u32 *id)
-> +int __of_dma_configure(struct device *dev, struct device_node *np,
-> +			bool force_dma, const u32 *id,
-> +			struct of_phandle_args *iommu_spec)
->   {
->   	const struct iommu_ops *iommu;
->   	const struct bus_dma_region *map = NULL;
-> @@ -170,7 +171,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
->   	dev_dbg(dev, "device is%sdma coherent\n",
->   		coherent ? " " : " not ");
->   
-> -	iommu = of_iommu_configure(dev, np, id);
-> +	iommu = of_iommu_configure(dev, np, id, iommu_spec);
->   	if (PTR_ERR(iommu) == -EPROBE_DEFER) {
->   		kfree(map);
->   		return -EPROBE_DEFER;
-> @@ -184,7 +185,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
->   	dev->dma_range_map = map;
->   	return 0;
->   }
-> -EXPORT_SYMBOL_GPL(of_dma_configure_id);
-> +EXPORT_SYMBOL_GPL(__of_dma_configure);
->   
->   int of_device_register(struct platform_device *pdev)
->   {
-> diff --git a/include/linux/of_device.h b/include/linux/of_device.h
-> index 07ca187fc5e4..40cc3e788cb9 100644
-> --- a/include/linux/of_device.h
-> +++ b/include/linux/of_device.h
-> @@ -55,14 +55,27 @@ static inline struct device_node *of_cpu_device_node_get(int cpu)
->   	return of_node_get(cpu_dev->of_node);
->   }
->   
-> -int of_dma_configure_id(struct device *dev,
-> +int __of_dma_configure(struct device *dev,
->   		     struct device_node *np,
-> -		     bool force_dma, const u32 *id);
-> +		     bool force_dma, const u32 *id,
-> +		     struct of_phandle_args *iommu_spec);
->   static inline int of_dma_configure(struct device *dev,
->   				   struct device_node *np,
->   				   bool force_dma)
->   {
-> -	return of_dma_configure_id(dev, np, force_dma, NULL);
-> +	return __of_dma_configure(dev, np, force_dma, NULL, NULL);
-> +}
-> +static inline int of_dma_configure_id(struct device *dev,
-> +				      struct device_node *np,
-> +				      bool force_dma, const u32 *id)
-> +{
-> +	return __of_dma_configure(dev, np, force_dma, id, NULL);
-> +}
-> +static inline int
-> +of_dma_configure_iommu_spec(struct device *dev, struct device_node *np,
-> +			    bool force_dma, struct of_phandle_args *iommu_spec)
-> +{
-> +	return __of_dma_configure(dev, np, force_dma, NULL, iommu_spec);
->   }
->   #else /* CONFIG_OF */
->   
-> @@ -112,18 +125,25 @@ static inline struct device_node *of_cpu_device_node_get(int cpu)
->   	return NULL;
->   }
->   
-> -static inline int of_dma_configure_id(struct device *dev,
-> +static inline int of_dma_configure(struct device *dev,
->   				   struct device_node *np,
->   				   bool force_dma)
->   {
->   	return 0;
->   }
-> -static inline int of_dma_configure(struct device *dev,
-> -				   struct device_node *np,
-> -				   bool force_dma)
-> +
-> +static inline int of_dma_configure_id(struct device *dev,
-> +				      struct device_node *np,
-> +				      bool force_dma, const u32 *id)
->   {
->   	return 0;
->   }
-> +
-> +static inline int
-> +of_dma_configure_iommu_spec(struct device *dev, struct device_node *np,
-> +			    bool force_dma, struct of_phandle_args *iommu_spec)
-> +{	return 0;
-> +}
->   #endif /* CONFIG_OF */
->   
->   #endif /* _LINUX_OF_DEVICE_H */
-> diff --git a/include/linux/of_iommu.h b/include/linux/of_iommu.h
-> index 16f4b3e87f20..e8d1e6d32d77 100644
-> --- a/include/linux/of_iommu.h
-> +++ b/include/linux/of_iommu.h
-> @@ -14,7 +14,8 @@ extern int of_get_dma_window(struct device_node *dn, const char *prefix,
->   
->   extern const struct iommu_ops *of_iommu_configure(struct device *dev,
->   					struct device_node *master_np,
-> -					const u32 *id);
-> +					const u32 *id,
-> +					struct of_phandle_args *iommu_spec);
->   
->   #else
->   
-> @@ -27,7 +28,8 @@ static inline int of_get_dma_window(struct device_node *dn, const char *prefix,
->   
->   static inline const struct iommu_ops *of_iommu_configure(struct device *dev,
->   					 struct device_node *master_np,
-> -					 const u32 *id)
-> +					 const u32 *id,
-> +					 struct of_phandle_args *iommu_spec);
->   {
->   	return NULL;
->   }
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
