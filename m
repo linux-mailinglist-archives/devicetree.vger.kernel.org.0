@@ -2,86 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3528331C6D7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 08:33:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBF2D31C70C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Feb 2021 08:57:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbhBPHcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Feb 2021 02:32:05 -0500
-Received: from mail-wm1-f53.google.com ([209.85.128.53]:35022 "EHLO
-        mail-wm1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229662AbhBPHcE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Feb 2021 02:32:04 -0500
-Received: by mail-wm1-f53.google.com with SMTP id n10so13460112wmq.0;
-        Mon, 15 Feb 2021 23:31:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xkypD+66j+JEykDAYhgusAW9iuLjXAf+rkAoljhHLHc=;
-        b=sQU72nrK6xwyxaH2gx1DH56kTWzlsnD5blu2sg/N0XeobVbtESykB5on4JPhqaRHWL
-         AsuFtaLn3LPiOKS4MwPdNzwgIEZ/QQt9IvJ+Kym5taH/2Y/i6yXSrWoXKMASstzRlwA1
-         WhozStcCj/FA7NwEOPKrEwbO/dSdLBT3U5T3rDs4Gr3IFEeYqziVYP8ApSujWK27RZmh
-         DaybeE/l9B9qHMRxAp0r24GHsqcXnhv7joO70lXCH4tI9HPIUL1hVT5R7pLBVXCfn3kH
-         /spcM4R4WuPxAOgF3Ld2hFxANStAXfhYbwq3iq0C372GNLuE2w71P6l7C5hN40cElT30
-         Upzg==
-X-Gm-Message-State: AOAM533NFm7txP8ysSzldK1i1u8TSHsB+KnErpjgAYwzopMTIr6KyLTd
-        sCpXWfcBoltkKA8IxoNbhic=
-X-Google-Smtp-Source: ABdhPJwtf7xxwxHb+TZe50BG+Ui9Gg4hfIal9+FHQtbwDPbzChwY23yzFA+XmAY9BiRlRr24mHdKIA==
-X-Received: by 2002:a1c:480a:: with SMTP id v10mr2063421wma.132.1613460682574;
-        Mon, 15 Feb 2021 23:31:22 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id 101sm17597897wrk.4.2021.02.15.23.31.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Feb 2021 23:31:21 -0800 (PST)
-Date:   Tue, 16 Feb 2021 08:31:20 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Randy Dunlap <rdunlap@infradead.org>
-Cc:     Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 25/25] arm64: apple: Add initial Mac Mini 2020 (M1)
- devicetree
-Message-ID: <20210216073120.qmlaky43t6uelqc4@kozik-lap>
-References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-26-marcan@marcan.st>
- <20210215192906.7k3unuhph5wnkj5g@kozik-lap>
- <9dd4731c-7826-c1f5-3ce4-831d5186d270@infradead.org>
+        id S229862AbhBPH5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Feb 2021 02:57:04 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:50869 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229796AbhBPH5C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Feb 2021 02:57:02 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 5FB7D580248;
+        Tue, 16 Feb 2021 02:55:55 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 16 Feb 2021 02:55:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=OgE+B+oYIxnbEc/wQ/LZmClawQt
+        IgqJ46vVdtsUhNXI=; b=fMiVYrjcYk9CH/Awu1GqkqmCLGes4PLTrvCh4EuQiCK
+        KG1NPuzfSttgEOSCHRzp6SERcMUaQ2cUT90wLZYHOJ+YV8o+lr6q+igOhtJ2hzoO
+        eskXTXPHpZNKZLk5E7SBuWd+o5dTgL38/eigGBu06ijeEwjzBuZu609Oes88mJYr
+        RS3ExWgmbman4kQgJc+7t6TlXHS/ZUTdHiCGoZqVXxdV4PYErzeiiUCPc0VOlAvq
+        q5Zf1/Z6NhEUI+K6O15514n4/pWXMxRBozR3x2QvSaNDfOfuG77OjXtgKsOiNYaE
+        PhNJQT0T+7cQxgs8N4M8uKoEAlgzY0k/EknhAB4DNAA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=OgE+B+
+        oYIxnbEc/wQ/LZmClawQtIgqJ46vVdtsUhNXI=; b=nfX/AACZEa5FjTMPGztF3S
+        wvaC+7RARDsQQm0PmaGGwZY5Cpkk5kcDlWiOnw7rjwAxaWaPNHp3qCgzEIbnT3Nc
+        PblA1kb+h0kml4a9tyYbIsoFQGaQ7FQcuXCdQd2XYHHz9Wh+0hYP8a5LQxnFkyc4
+        y/79wV6uJy1GtkLPjrEoBGHywd0D1vjIvgPZ4p5EvqIC/KkqxKm5p81AEBpRLHwk
+        PNWlY4DuyHIKXydIk5jeeKOJ4cbYne3yk/cRbZc8Et6H4jfE0EGoTzMJJWT6ZKke
+        B+25B7HCmlYCrcIBOSbMZMtYt1IRcFUudlNgv+3kCT8zzkeP0H3aoVJ7A837C7fg
+        ==
+X-ME-Sender: <xms:iHorYBVBGtp274OIDmFKHo3n07rbyIYuL4W3ZIzNH6fYM3oHSzFLSg>
+    <xme:iHorYBmw-PAUi-eQ6BfEQ2rEyTLVbY9ASvRB_DA_mWd1GGev41XeaMfnjdwY4EXf6
+    dKF9EHif3MnLyJnlcQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrieelgdduuddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:iHorYNbIhQQCs_6oNXVb_ggg_NV3zuhuhHUUVA_fiLHgc74a4ZaLlg>
+    <xmx:iHorYEUzkh1icnNBCqfzwaBzEYO41aX4FJqMATPCFaiBgEZpaqw-Yg>
+    <xmx:iHorYLmWL0e_Lq68nbrk50nYdaDFL-d8i6aCBQiZ182XDbn_AoaIUQ>
+    <xmx:i3orYFkRC-d10TG9p5HJM4A8z2vc55OEkSxFiQ7JjzhiBCzHw3mZlQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 38DEF24005C;
+        Tue, 16 Feb 2021 02:55:51 -0500 (EST)
+Date:   Tue, 16 Feb 2021 08:55:30 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        dave.stevenson@raspberrypi.com, maz@kernel.org, eric@anholt.net,
+        tzimmermann@suse.de, linux-rpi-kernel@lists.infradead.org,
+        hverkuil-cisco@xs4all.nl, nsaenzjulienne@suse.de,
+        mchehab@kernel.org, linux-media@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] Revert "ARM: dts: bcm2711: Add the BSC interrupt
+ controller"
+Message-ID: <20210216075530.knleci6sv4m667vv@gilmour>
+References: <20210212191104.2365912-1-f.fainelli@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6bxcug5x2bcw2xf6"
 Content-Disposition: inline
-In-Reply-To: <9dd4731c-7826-c1f5-3ce4-831d5186d270@infradead.org>
+In-Reply-To: <20210212191104.2365912-1-f.fainelli@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 01:00:58PM -0800, Randy Dunlap wrote:
-> On 2/15/21 11:29 AM, Krzysztof Kozlowski wrote:
-> >> diff --git a/arch/arm64/boot/dts/apple/apple-j274.dts b/arch/arm64/boot/dts/apple/apple-j274.dts
-> >> new file mode 100644
-> >> index 000000000000..9a1be91a2cf0
-> >> --- /dev/null
-> >> +++ b/arch/arm64/boot/dts/apple/apple-j274.dts
-> >> @@ -0,0 +1,41 @@
-> >> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> > () around licenses, so:
-> > (GPL-2.0+ OR MIT)
-> 
-> Hi,
-> When/where does that "() around licenses" apply, please?
 
-Hmm, somehow this pattern got into me but now I checked on the spdx.dev
-and the preferred syntax is indeed without (). Skip this comment then.
+--6bxcug5x2bcw2xf6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Fri, Feb 12, 2021 at 11:11:04AM -0800, Florian Fainelli wrote:
+> As Dave reported:
+>=20
+> This seems to have unintended side effects.  GIC interrupt 117 is shared
+> between the standard I2C controllers (i2c-bcm2835) and the l2-intc block
+> handling the HDMI I2C interrupts.
+>=20
+> There is not a great way to share an interrupt between an interrupt
+> controller using the chained IRQ handler which is an interrupt flow and
+> another driver like i2c-bcm2835 which uses an interrupt handler
+> (although it specifies IRQF_SHARED).
+>=20
+> Simply revert this change for now which will mean that HDMI I2C will be
+> polled, like it was before.
+>=20
+> Reported-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+
+Acked-by: Maxime Ripard <mripard@kernel.org>
+
+Thanks!
+Maxime
+
+--6bxcug5x2bcw2xf6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYCt6cgAKCRDj7w1vZxhR
+xcslAP9KUslpDXYO8/ygfAO7HvtHmi3uBgecVib764++4rZFsgD/SdzNpTEgfZSr
+dO28YRr8RYfy/OT6Y3dnkNhI0P1T9QU=
+=8p02
+-----END PGP SIGNATURE-----
+
+--6bxcug5x2bcw2xf6--
