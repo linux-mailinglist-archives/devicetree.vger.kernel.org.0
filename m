@@ -2,172 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C198331E0FE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 22:06:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CBB131E10C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 22:09:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232418AbhBQVFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 16:05:36 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:33881 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234709AbhBQVFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 16:05:25 -0500
-Received: by mail-oi1-f173.google.com with SMTP id j5so4276788oie.1;
-        Wed, 17 Feb 2021 13:05:09 -0800 (PST)
+        id S232413AbhBQVHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 16:07:38 -0500
+Received: from mail-oo1-f47.google.com ([209.85.161.47]:41650 "EHLO
+        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231710AbhBQVHh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 16:07:37 -0500
+Received: by mail-oo1-f47.google.com with SMTP id h38so3394526ooi.8;
+        Wed, 17 Feb 2021 13:07:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=QKAFux8XcEkNyoW3lOTVnQo4Rj14jUDRtsW9J/H/LJg=;
-        b=KJjk4+ST/0u1awn7YEo3bjd+H0pIXykUUaQbfzRUI9UROPMmylwX+fFuzdROBLSpaW
-         O3LI8vExRvOmYdaMbd/Md76YlUImRp+ehyWDu2I7kbfkcbXKI8T5BJQbeG7XVyjXZfXj
-         u1KkOQQu9RkH5ubKgjGgavQNWbbZXaOi598En+fsid8ksbCP7SKQHHpjqFJISOL6JGBZ
-         W2uEdpMOizS4w4KIhtcRAJOBMlLrHUC6v7pcgaTr1H6BfECKWnxbPL0cZ5TLXnkLa3Zi
-         yKlh+3Du94lXbTD/JTYySxRGY6pIMaaCvwDvj2nYggtR5EBXj1zlAQUKYza2IueI4rk2
-         7pKw==
-X-Gm-Message-State: AOAM5316oagBCBLkQ43fY/EhMutv4R+WKTb/v2Y2E4QBb6cuhGFKWHrP
-        Z7uEtjxnTuGA5L/BQO6fsg==
-X-Google-Smtp-Source: ABdhPJxh3dS23qtLfh7ls7pqVObEW5PGwbQ5egZFAPvIdN9ALx8kFVv2h6t+P8NvUL6Sf6mmMyx8oA==
-X-Received: by 2002:a05:6808:115:: with SMTP id b21mr476463oie.110.1613595883842;
-        Wed, 17 Feb 2021 13:04:43 -0800 (PST)
+        bh=hQwMs3U/95KY+I7ERg8afjmtvvQ8j6QtTF7kUMzLV2M=;
+        b=Xjc4nfv4WlgVJaENohief3mL6BTibw4hVugHlPXqxG94fdT0LyZ0KyfuOmYfmqC6te
+         u3K+h6tOoipBxsMWR4EFT1uTXgnOP4C5yQU1xIg2cKLstF8eiN+I6VcA7A/k7Le1du3t
+         FMJe9C6DXs6k9bvMEp8/DEyI1eT862qObfbKJeF4irXjOqzK1tpFtZkGzi2dqgXKMjU+
+         RgQlOZnRfM7TLt/yYnPy+X/UdZwCk4sR88gdZSpiAe+EoLxZ/w1htg6xKnP8DFRBids1
+         WJMBUwz9OL3DdGGt1pyHVGImoN1UnmxdhPQXe6ulPXbFV5UkUlCdlTIN/wediTZ6PJ2l
+         qqMg==
+X-Gm-Message-State: AOAM533AuzYLDkuzMFMxwBx+74EOddvi1JB1myBbJflGcCUipKswXagg
+        dRDD4AwATYC/BPoXTBXxOg==
+X-Google-Smtp-Source: ABdhPJyYBIFwNq4dbzmcj6krkSueeChW11Sp3wHQ9o9KLb/3qxt5qOqTk8DmnMZu4ifCffDXyWoeFw==
+X-Received: by 2002:a4a:b509:: with SMTP id r9mr683682ooo.21.1613596015798;
+        Wed, 17 Feb 2021 13:06:55 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 7sm622099oth.38.2021.02.17.13.04.42
+        by smtp.gmail.com with ESMTPSA id a28sm618420ook.24.2021.02.17.13.06.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Feb 2021 13:04:43 -0800 (PST)
-Received: (nullmailer pid 2752193 invoked by uid 1000);
-        Wed, 17 Feb 2021 21:04:41 -0000
-Date:   Wed, 17 Feb 2021 15:04:41 -0600
+        Wed, 17 Feb 2021 13:06:54 -0800 (PST)
+Received: (nullmailer pid 2756132 invoked by uid 1000);
+        Wed, 17 Feb 2021 21:06:53 -0000
+Date:   Wed, 17 Feb 2021 15:06:53 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v5 1/4] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20210217210441.GA2709172@robh.at.kernel.org>
-References: <20210210171040.684659-1-mka@chromium.org>
- <20210210091015.v5.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+To:     Nava kishore Manne <navam@xilinx.com>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "mdf@kernel.org" <mdf@kernel.org>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        git <git@xilinx.com>,
+        Appana Durga Kedareswara Rao <appanad@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "trix@redhat.com" <trix@redhat.com>,
+        Michal Simek <michals@xilinx.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: fpga: Add binding doc for versal
+ fpga manager
+Message-ID: <20210217210653.GA2752472@robh.at.kernel.org>
+References: <20210211060532.23662-1-nava.manne@xilinx.com>
+ <20210211060532.23662-3-nava.manne@xilinx.com>
+ <1613055380.699799.519684.nullmailer@robh.at.kernel.org>
+ <MWHPR02MB2623787A36B389BCF337D8EBC28B9@MWHPR02MB2623.namprd02.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210210091015.v5.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+In-Reply-To: <MWHPR02MB2623787A36B389BCF337D8EBC28B9@MWHPR02MB2623.namprd02.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 10, 2021 at 09:10:36AM -0800, Matthias Kaehlcke wrote:
-> Discrete onboard USB hubs (an example for such a hub is the Realtek
-> RTS5411) need to be powered and may require initialization of other
-> resources (like GPIOs or clocks) to work properly. This adds a device
-> tree binding for these hubs.
+On Fri, Feb 12, 2021 at 06:13:33AM +0000, Nava kishore Manne wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
+> Please find my response inline.
 > 
-> Changes in v5:
-> - updated 'title'
-> - only use standard USB compatible strings
-> - deleted 'usb_hub' node
-> - renamed 'usb_controller' node to 'usb-controller'
-> - removed labels from USB nodes
-> - added 'vdd-supply' to USB nodes
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Thursday, February 11, 2021 8:26 PM
+> > To: Nava kishore Manne <navam@xilinx.com>
+> > Cc: linux-arm-kernel@lists.infradead.org; mdf@kernel.org; linux-
+> > fpga@vger.kernel.org; git <git@xilinx.com>; Appana Durga Kedareswara Rao
+> > <appanad@xilinx.com>; devicetree@vger.kernel.org; robh+dt@kernel.org;
+> > chinnikishore369@gmail.com; linux-kernel@vger.kernel.org;
+> > trix@redhat.com; Michal Simek <michals@xilinx.com>
+> > Subject: Re: [PATCH v2 2/3] dt-bindings: fpga: Add binding doc for versal fpga
+> > manager
+> > 
+> > On Thu, 11 Feb 2021 11:35:31 +0530, Nava kishore Manne wrote:
+> > > From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+> > >
+> > > This patch adds binding doc for versal fpga manager driver.
+> > >
+> > > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> > > Signed-off-by: Appana Durga Kedareswara rao
+> > > <appana.durga.rao@xilinx.com>
+> > > ---
+> > > Changes for v2:
+> > >                 -Fixed file format and syntax issues.
+> > >
+> > >  .../bindings/fpga/xlnx,versal-fpga.yaml       | 33 +++++++++++++++++++
+> > >  1 file changed, 33 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
+> > >
+> > 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > ./Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml:12:14:
+> > [warning] too many spaces after colon (colons)
+> > ./Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml:20:9:
+> > [warning] wrong indentation: expected 10 but found 8 (indentation)
+> > 
+> > dtschema/dtc warnings/errors:
+> > 
+> > See https://patchwork.ozlabs.org/patch/1439305
+> > 
+> > This check can fail if there are any dependencies. The base for a patch series
+> > is generally the most recent rc1.
+> > 
+> > If you already ran 'make dt_binding_check' and didn't see the above error(s),
+> > then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> > 
+> > pip3 install dtschema --upgrade
+> > 
+> > Please check and re-submit.
 > 
-> Changes in v4:
-> - none
-> 
-> Changes in v3:
-> - updated commit message
-> - removed recursive reference to $self
-> - adjusted 'compatible' definition to support multiple entries
-> - changed USB controller phandle to be a node
-> 
-> Changes in v2:
-> - removed 'wakeup-source' and 'power-off-in-suspend' properties
-> - consistently use spaces for indentation in example
-> 
->  .../bindings/usb/onboard_usb_hub.yaml         | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> new file mode 100644
-> index 000000000000..bf4ec52e6c7b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/onboard_usb_hub.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Binding for discrete onboard USB hubs
+> Initially, I couldn't see any issue when I run.
+> After installing yamllint and with upgraded dt-schema, I am able to reproduce the above pointed issues.
+> Is there any prerequisite(Other than yamllint) I need to follow to run dt-schema?
 
-This isn't really generic. Maybe there's a set of hubs with only a 
-single supply much like 'simple-panel', but I kind of doubt that here. 
-There aren't hundreds of hub chips like panels. Though, we should put 
-this into bindings/usb/hub/ so we start collecting hub bindings in one 
-place.
+No, just keeping dtschema up to date.
 
-A generic driver doesn't have to have a generic binding. You can have a 
-specific device binding which is handled by a generic driver. Or not. 
-Who knows. Maybe a simple user like u-boot has a generic driver while 
-something more feature rich has a device specific binding.
-
-> +
-> +maintainers:
-> +  - Matthias Kaehlcke <mka@chromium.org>
-
-Now we have usb-device.yaml, you need:
-
-allOf:
-  - $ref: usb-device.yaml#
-
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - usbbda,5411
-> +        - usbbda,411
-> +
-> +  vdd-supply:
-> +    description:
-> +      phandle to the regulator that provides power to the hub.
-> +
-> +required:
-> +  - compatible
-> +  - vdd-supply
-> +
-> +examples:
-> +  - |
-> +    usb-controller {
-> +        dr_mode = "host";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        /* 2.0 hub on port 1 */
-> +        hub_2_0: hub@1 {
-> +            compatible = "usbbda,5411";
-> +            reg = <1>;
-> +            vdd-supply = <&pp3300_hub>;
-> +        };
-> +
-> +        /* 3.0 hub on port 2 */
-> +        hub_3_0: hub@2 {
-> +            compatible = "usbbda,411";
-> +            reg = <2>;
-> +            vdd-supply = <&pp3300_hub>;
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.30.0.478.g8a0d178c01-goog
-> 
+Rob
