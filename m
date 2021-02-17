@@ -2,30 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93AF631D8D2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 12:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FD9831D8D3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 12:51:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232385AbhBQLuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 06:50:11 -0500
-Received: from mx2.suse.de ([195.135.220.15]:33974 "EHLO mx2.suse.de"
+        id S231693AbhBQLuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 06:50:18 -0500
+Received: from mx2.suse.de ([195.135.220.15]:33980 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232301AbhBQLtq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Feb 2021 06:49:46 -0500
+        id S232431AbhBQLtr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Feb 2021 06:49:47 -0500
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 5C08EB804;
-        Wed, 17 Feb 2021 11:48:26 +0000 (UTC)
+        by mx2.suse.de (Postfix) with ESMTP id E1CCFB80A;
+        Wed, 17 Feb 2021 11:48:30 +0000 (UTC)
 From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Eric Anholt <eric@anholt.net>,
+        Saenz Julienne <nsaenzjulienne@suse.de>
 Cc:     f.fainelli@gmail.com, linux-rpi-kernel@lists.infradead.org,
         phil@raspberrypi.com, wahrenst@gmx.net,
         bcm-kernel-feedback-list@broadcom.com, mripard@kernel.org,
-        eric@anholt.net, robh@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 05/15] ARM: dts: bcm2711: Use proper compatible in PM/Watchdog node
-Date:   Wed, 17 Feb 2021 12:48:00 +0100
-Message-Id: <20210217114811.22069-6-nsaenzjulienne@suse.de>
+        robh@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 10/15] dt-bindings: gpu: v3d: Add BCM2711's compatible
+Date:   Wed, 17 Feb 2021 12:48:05 +0100
+Message-Id: <20210217114811.22069-11-nsaenzjulienne@suse.de>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210217114811.22069-1-nsaenzjulienne@suse.de>
 References: <20210217114811.22069-1-nsaenzjulienne@suse.de>
@@ -35,27 +37,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A new compatible string was introduced specifically for BCM2711, so make
-use of it.
+BCM2711, Raspberry Pi 4's SoC, contains a V3D core. So add its specific
+compatible to the bindings.
 
 Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm/boot/dts/bcm2711.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index e4bbc1a83452..e864974b10c9 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -107,7 +107,7 @@ dma: dma@7e007000 {
- 		};
+diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+index 9d72264fa90a..8401385bb33c 100644
+--- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
++++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+@@ -18,6 +18,7 @@ properties:
+     enum:
+       - brcm,7268-v3d
+       - brcm,7278-v3d
++      - brcm,bcm2711-v3d
  
- 		pm: watchdog@7e100000 {
--			compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
-+			compatible = "brcm,bcm2711-pm", "brcm,bcm2835-pm-wdt";
- 			#power-domain-cells = <1>;
- 			#reset-cells = <1>;
- 			reg = <0x7e100000 0x114>,
+   reg:
+     items:
 -- 
 2.30.0
 
