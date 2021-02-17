@@ -2,94 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEFCF31D8AB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 12:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC08031D8C3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 12:49:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231681AbhBQLnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 06:43:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41112 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231538AbhBQLnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 06:43:32 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 136A6C06178B;
-        Wed, 17 Feb 2021 03:40:11 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id v62so3333194wmg.4;
-        Wed, 17 Feb 2021 03:40:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jiX7X0M+t1Zm8HAFufsMGCFO60ftU2nIQxPg0v/LgAc=;
-        b=Ss506/A9nt5EKOBvaSCczz2B78J4fjW/sVk668oJ+QuvY95oROp0eklSyg9pr7JfKV
-         Mj7Hbwnd6wykfTZbiW1X70hvA4E+2/yCHGJIAcSu8539zp9rl42W0sFy7UpRb5IFzQkw
-         AK3rgwAq3LrU7FUCg7abR4XIE66up10sLZM+SGhcBBTCLGpKinGYHRq8goMmv+1yURqm
-         XaKHI9rVsnTw+4+nUXNDMALxNIWR2djiPa/6fWXNJIBDmPQ1JHYNuEgw9BJPZOIhN6Zu
-         8Wd9J29cCjg90v+a3nmb23HtngIW0mrVcf5TqZCmSz6MYCkoHYn20VMifX3Zwl4hwR92
-         73Lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jiX7X0M+t1Zm8HAFufsMGCFO60ftU2nIQxPg0v/LgAc=;
-        b=O4j37b/zkktBf3h5XtAmHPUs3dmneZTpwv4cm+c7PJ9W8ORqPt+SCSndUolH7gH5LR
-         4LhH6svtPwFpyPyormmKpCAKulu0R72CiSkVsymlmAjZKZl8Ocqz5XJC1Id58fGkHgny
-         siOcd1/IgfMIVcyXuF0blQx4/8o7GlK2JlIWJRtJWJQhXRk1D+pBXOZ2Xv+cntEYDPJc
-         alYA+mLYjovMLTirjzRbEffLQLBjbT1tEPkQU9g2ZQQUqq/Yzj8VEMUflZeqQuP++46d
-         VtQP0UQl+T29bhTKYkBO10XLlnxWl6tUmwjqVFhJ8aWAAvlo9LtLDqt+/G6KTAl13vyD
-         HWzQ==
-X-Gm-Message-State: AOAM5315jGMCPMVz/jbi5dtNXwb4thUT0yLwHKb8zJx8Uw+Y7QTKP41X
-        BdgDfs1fbOXEtI+UsB+tgV8=
-X-Google-Smtp-Source: ABdhPJzuePG01HjKt42jOlK+RehB6tXeB77Vpegn7SuiLtjx93WLKQvzB1N6h//7lhj7llHgXFcT8w==
-X-Received: by 2002:a1c:4903:: with SMTP id w3mr1982855wma.143.1613562009880;
-        Wed, 17 Feb 2021 03:40:09 -0800 (PST)
-Received: from localhost.localdomain (67.red-83-54-30.dynamicip.rima-tde.net. [83.54.30.67])
-        by smtp.gmail.com with ESMTPSA id q140sm3600813wme.0.2021.02.17.03.40.08
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 17 Feb 2021 03:40:09 -0800 (PST)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     sboyd@kernel.org
-Cc:     robh+dt@kernel.org, john@phrozen.org, tsbogend@alpha.franken.de,
-        gregkh@linuxfoundation.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        neil@brown.name
-Subject: [PATCH v7 6/6] MAINTAINERS: add MT7621 CLOCK maintainer
-Date:   Wed, 17 Feb 2021 12:40:00 +0100
-Message-Id: <20210217114000.19571-7-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210217114000.19571-1-sergio.paracuellos@gmail.com>
-References: <20210217114000.19571-1-sergio.paracuellos@gmail.com>
+        id S231696AbhBQLtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 06:49:05 -0500
+Received: from mx2.suse.de ([195.135.220.15]:33404 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231487AbhBQLtD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Feb 2021 06:49:03 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id D3881B7D9;
+        Wed, 17 Feb 2021 11:48:21 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     f.fainelli@gmail.com, linux-rpi-kernel@lists.infradead.org,
+        phil@raspberrypi.com, wahrenst@gmx.net,
+        bcm-kernel-feedback-list@broadcom.com, mripard@kernel.org,
+        eric@anholt.net, robh@kernel.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 00/15] Raspberry PI 4 V3D enablement
+Date:   Wed, 17 Feb 2021 12:47:55 +0100
+Message-Id: <20210217114811.22069-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding myself as maintainer for mt7621 clock driver.
+This series attempts to enable V3D on BCM2711, the SoC available on the
+Raspberry Pi 4 family of boards.
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Due to the lack of documentation some things are taken as it from
+testing/downstream implementation[1], which I'm hilighting here:
+
+- It's not clear that the following is 100% true, maybe someone can confirm:
+
+	"In BCM2711 the new ARGON ASB took over V3D. The old ASB is still
+	present with the ISP and H264 bits, and V3D is in the same place in the
+	new ASB as the old one."
+
+- Patch #9 ("soc: bcm: bcm2835-power: Bypass power_on/off() calls"), I
+  took as is from the downstream implementation, I can't really provide
+  an exact explanation on what changed HW wise.
+
+- Ultimately, I need confirmation from the Broadcom folks that they are alright
+  with patch #11 ("drm/v3d: Get rid of pm code")
+
+With all this, I get a more or less stable experience using mesa 20.3.4 and
+X11/Gnome.
+
+Regards,
+Nicolas
+
 ---
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 809a68af5efd..be5ada6b4309 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11288,6 +11288,12 @@ L:	linux-wireless@vger.kernel.org
- S:	Maintained
- F:	drivers/net/wireless/mediatek/mt7601u/
- 
-+MEDIATEK MT7621 CLOCK DRIVER
-+M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-+F:	drivers/clk/ralink/clk-mt7621.c
-+
- MEDIATEK MT7621/28/88 I2C DRIVER
- M:	Stefan Roese <sr@denx.de>
- L:	linux-i2c@vger.kernel.org
+Changes since v2:
+ - Correct ASB names
+ - Address dt-binding comments
+
+Changes since v1:
+ - Use 'reg-names'
+ - Correct ASB names
+ - Add missing binding patch for V3D
+ - Address Stefan's comments
+
+Nicolas Saenz Julienne (15):
+  dt-bindings: soc: bcm: bcm2835-pm: Convert bindings to DT schema
+  dt-bindings: soc: bcm: bcm2835-pm: Introduce reg-names
+  dt-bindings: soc: bcm: bcm2835-pm: Add support for bcm2711
+  ARM: dts: bcm2835/bcm2711: Introduce reg-names in watchdog node
+  ARM: dts: bcm2711: Use proper compatible in PM/Watchdog node
+  mfd: bcm2835-pm: Use 'reg-names' to get resources
+  mfd: bcm2835-pm: Add support for BCM2711
+  soc: bcm: bcm2835-power: Add support for BCM2711's RPiVid ASB
+  soc: bcm: bcm2835-power: Bypass power_on/off() calls
+  dt-bindings: gpu: v3d: Add BCM2711's compatible
+  drm/v3d: Get rid of pm code
+  drm/v3d: Add support for bcm2711
+  ARM: dts: bcm2711: Enable V3D
+  ARM: configs: Enable DRM_V3D
+  arm64: config: Enable DRM_V3D
+
+ .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml |  1 +
+ .../bindings/soc/bcm/brcm,bcm2835-pm.txt      | 46 ----------
+ .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 87 +++++++++++++++++++
+ arch/arm/boot/dts/bcm2711.dtsi                | 15 +++-
+ arch/arm/boot/dts/bcm2835-common.dtsi         |  1 +
+ arch/arm/configs/multi_v7_defconfig           |  1 +
+ arch/arm64/configs/defconfig                  |  1 +
+ drivers/gpu/drm/v3d/Kconfig                   |  2 +-
+ drivers/gpu/drm/v3d/v3d_debugfs.c             | 18 +---
+ drivers/gpu/drm/v3d/v3d_drv.c                 | 12 +--
+ drivers/gpu/drm/v3d/v3d_gem.c                 |  9 --
+ drivers/mfd/bcm2835-pm.c                      | 80 ++++++++++++-----
+ drivers/soc/bcm/bcm2835-power.c               | 74 ++++++++++------
+ include/linux/mfd/bcm2835-pm.h                |  1 +
+ 14 files changed, 217 insertions(+), 131 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+
 -- 
-2.25.1
+2.30.0
 
