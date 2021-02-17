@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78A1B31E1FC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 23:23:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F092131E28C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 23:40:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233549AbhBQWV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 17:21:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36760 "EHLO
+        id S233671AbhBQWhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 17:37:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232607AbhBQWVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 17:21:22 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7A5C061786
-        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 14:20:39 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id f3so16661052oiw.13
-        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 14:20:39 -0800 (PST)
+        with ESMTP id S233551AbhBQWex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 17:34:53 -0500
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E728EC061786
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 14:34:11 -0800 (PST)
+Received: by mail-ot1-x32b.google.com with SMTP id o10so124089ote.13
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 14:34:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=1p7xR+x/Ax3QtXp7hvf7+knlfVhECl9PbNNQU3Wa5CY=;
-        b=TFEYl9E2ZTFElf1eNyDDZQVG5utiIcCQZoQZpzqazKcomE0pvgDmX9ehhPAPthH0kL
-         eOrW4djT+f3uvJWG1IVolbo5/MfAf4MAPoAJfiixWxt0l10vgncALueCF6MXGO3/YIcJ
-         Ppb/0eoG/QV16TsDEXo+MX1zJiM2wpEPqpeDry8Y/rdWTF9E7klQ/9rriTOU3o0M+GsE
-         DIep3ZWbDimjvunJVihTONjhBJ4oE/UMkV9gLqShlMYN/3ryMvnMOQWAlJapxF+tfgaf
-         hp4tpBZSqEYH1HsguLIkESuUUs2OkggcxnWkqM6wbXjiIn3BR2ULmxvcOtSCjlbQz6bo
-         /apw==
+        bh=J1qY5r9Z3a/mo/EMdt37YP9TIpp8gvqH0wcp8KFskVA=;
+        b=ypCbFUrXzJ9e7MwrAEKWLRFspEeuU/M2Rj2Dh+IJKNXw+HfWcyHOsJwCX7JdRTKFwI
+         xuebPqyQzADc92+qBvp9YCL9SWCOFm8CCJiB7nugTvc3SV2LSq9sWYcHyoKC4lTqqo/V
+         E5eGFzNJ1SxSgvQmyX3kqaoCcwY1YUGGANkWGc8uBdHc9XlW9fpV7QRihBXCTxMpSDiF
+         imnUO5WJc4z0gyA03kZn0IFMjzwRMbR4d6IeZu0QwpZznJDEOLdTiRa5wpPEQg5GIfIs
+         usOSdF4oi8NckD+sptnEGs1LpOC+3AzkfROhO2p5g7gAn9sKF5JNjYFr4oefsDaw2PpO
+         G6qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=1p7xR+x/Ax3QtXp7hvf7+knlfVhECl9PbNNQU3Wa5CY=;
-        b=C9RJNzGaPfDOwhEhq+8nLq3cS/Y28FyHYhF8hlVo5EqDSTKFTEsuwrLvDMEHE1ekbk
-         VCY0lbMFRmKxRAX02FiP1jHvcY5B/mCf5NdJPd2K7bhi6oOhIOCLt/Pa79IH3vPi0/4S
-         vs/gxWAWjZFGa3tLIHoz5FRu+4mftNS7QvzQmSFmcAhv0J9z+T3x/QYb2dL/vo6ZF3ge
-         awzr56Qt4M9Y7yPEJPjSf7hOfahMfXaOn79UGQYsYRusRtRy5WmLaXSKNgJ90kmy+Osl
-         AJYUzqEj7qbRt7jYoaI1Xx8eZHuIhEEj9vSSQGXGFzNobN0t+/2OH8+6Z4knmmFTubwF
-         ghag==
-X-Gm-Message-State: AOAM530P0ysssoD7dNWHo7ydkSTTp7kODvsiiX96pfEjJ+Oc2MkFZb8n
-        Yknl/+mCNNQpPCarJU9z0wVg2g==
-X-Google-Smtp-Source: ABdhPJz9Tp7sfz49yJeFgIVsuHF6V75Yrbkk3I0fz/SY85kLex9Fdy3o3FOxKrkkqD8QeVWuBwCzUw==
-X-Received: by 2002:a05:6808:30e:: with SMTP id i14mr706537oie.50.1613600438791;
-        Wed, 17 Feb 2021 14:20:38 -0800 (PST)
+        bh=J1qY5r9Z3a/mo/EMdt37YP9TIpp8gvqH0wcp8KFskVA=;
+        b=SZ0Re3F6fnkB0Q4Dcfsgej55GL725SN+vgtWULQYtfL1XTGo3NoBrGHueV98CSQRA6
+         xtZ/Kx36QGnjHY0D7TSLlYksBAnjttTZzNp0px3+oV9ysT7P9RkYWTr52nMstN8el/Pt
+         ACtLCHH9vaxpX+c4nBpkLBBAD9YnmPXwcz74E6vUqIZnKxwz3L8z8pGjfYvGt/Ou0iVT
+         Ejih/G+fWe7uXG2s0B6t2R8jg/2MSRw2y+L7geuOeJRw0jahKLRiNTxur0eVyvu225ZL
+         oYD3GQm2CcLY/JGiMviqw5b0rL6ox+rAdQlLMXOWkx2XMxGZssepFXDVoteBiSo9nbIU
+         orig==
+X-Gm-Message-State: AOAM533Ljcv5qU/6zrXNYP8kSr9dIFty8RdgLQPH/Nl3DzxIIgizi2in
+        lm3/85IfbjMQU9rHn6BErLsnSQ==
+X-Google-Smtp-Source: ABdhPJw5Drm2g1d7LBICt7NWdPD4P2Qi6i3UPteyalyiWVgvxGKB4FWlsp2JvgNWSGVPMFgfeZrU6Q==
+X-Received: by 2002:a9d:6016:: with SMTP id h22mr942346otj.63.1613601251160;
+        Wed, 17 Feb 2021 14:34:11 -0800 (PST)
 Received: from blackbox.Home ([2806:10b7:2:8299::3])
-        by smtp.gmail.com with ESMTPSA id f22sm669028otl.10.2021.02.17.14.20.37
+        by smtp.gmail.com with ESMTPSA id q2sm686232otc.28.2021.02.17.14.34.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Feb 2021 14:20:38 -0800 (PST)
+        Wed, 17 Feb 2021 14:34:10 -0800 (PST)
 From:   =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linaro.org>
 To:     bjorn.andersson@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        mark.rutland@arm.com, ohad@wizery.com, robh+dt@kernel.org,
+Cc:     agross@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>,
         =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linaro.org>
-Subject: [PATCH] remoteproc: qcom: wcnss: Allow specifying firmware-name
-Date:   Wed, 17 Feb 2021 16:20:06 -0600
-Message-Id: <20210217222006.1419164-1-anibal.limon@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: db410c: Update firmware-name for wcnss and mpss
+Date:   Wed, 17 Feb 2021 16:34:06 -0600
+Message-Id: <20210217223406.1422005-1-anibal.limon@linaro.org>
 X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20200108055252.639791-1-bjorn.andersson@linaro.org>
-References: <20200108055252.639791-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20200108055735.660475-1-bjorn.andersson@linaro.org>
+References: <20200108055735.660475-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,61 +68,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Introduce a firmware-name property, in order to be able to support
-device/platform specific firmware for the wireless connectivity
-subsystem; in line with other Qualcomm remoteproc drivers.
+Enable the mpss remoteproc node and specify the firmware-name for this
+and the wcnss remoteproc on the Dragonboard 410c.
 
+Link: https://lore.kernel.org/r/20200108055735.660475-1-bjorn.andersson@linaro.org
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+[rebased and moved to use pronto label]
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
 Tested-by: Aníbal Limón <anibal.limon@linaro.org>
 ---
- .../devicetree/bindings/remoteproc/qcom,wcnss-pil.txt     | 6 ++++++
- drivers/remoteproc/qcom_wcnss.c                           | 8 +++++++-
- 2 files changed, 13 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
-index d420f84ddfb0..00844a5d2ccf 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
-@@ -34,6 +34,12 @@ on the Qualcomm WCNSS core.
- 	Definition: should be "wdog", "fatal", optionally followed by "ready",
- 		    "handover", "stop-ack"
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+index 3c7f97539390..8f1ada75d3ed 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+@@ -301,6 +301,11 @@ &lpass {
+ 	status = "okay";
+ };
  
-+- firmware-name:
-+	Usage: optional
-+	Value type: <string>
-+	Definition: must list the relative firmware image path for the
-+		    WCNSS core.
++&mpss {
++	status = "okay";
++	firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mdt";
++};
 +
- - vddmx-supply:
- - vddcx-supply:
- - vddpx-supply:
-diff --git a/drivers/remoteproc/qcom_wcnss.c b/drivers/remoteproc/qcom_wcnss.c
-index e2573f79a137..ef80f5b8f20b 100644
---- a/drivers/remoteproc/qcom_wcnss.c
-+++ b/drivers/remoteproc/qcom_wcnss.c
-@@ -465,6 +465,7 @@ static int wcnss_alloc_memory_region(struct qcom_wcnss *wcnss)
+ &pm8916_resin {
+ 	status = "okay";
+ 	linux,code = <KEY_VOLUMEDOWN>;
+@@ -308,6 +313,7 @@ &pm8916_resin {
  
- static int wcnss_probe(struct platform_device *pdev)
- {
-+	const char *fw_name = WCNSS_FIRMWARE_NAME;
- 	const struct wcnss_data *data;
- 	struct qcom_wcnss *wcnss;
- 	struct resource *res;
-@@ -482,8 +483,13 @@ static int wcnss_probe(struct platform_device *pdev)
- 		return -ENXIO;
- 	}
+ &pronto {
+ 	status = "okay";
++	firmware-name = "qcom/msm8916/wcnss.mdt";
+ };
  
-+	ret = of_property_read_string(pdev->dev.of_node, "firmware-name",
-+				      &fw_name);
-+	if (ret < 0 && ret != -EINVAL)
-+		return ret;
-+
- 	rproc = rproc_alloc(&pdev->dev, pdev->name, &wcnss_ops,
--			    WCNSS_FIRMWARE_NAME, sizeof(*wcnss));
-+			    fw_name, sizeof(*wcnss));
- 	if (!rproc) {
- 		dev_err(&pdev->dev, "unable to allocate remoteproc\n");
- 		return -ENOMEM;
+ &sdhc_1 {
 -- 
 2.30.0
 
