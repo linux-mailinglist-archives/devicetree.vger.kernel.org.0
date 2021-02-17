@@ -2,162 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C68531E0B6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 21:47:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2C231E0F2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 22:01:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234600AbhBQUqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 15:46:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44684 "EHLO
+        id S233536AbhBQVAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 16:00:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234509AbhBQUqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 15:46:42 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83206C061574;
-        Wed, 17 Feb 2021 12:46:02 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id D62C51F45620
-Message-ID: <bb410fde0a2f50cc34840e091c3d9c1395601514.camel@collabora.com>
-Subject: Re: [PATCH v1 13/18] media: hantro: Introduce G2/HEVC decoder
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, krzk@kernel.org, shengjiu.wang@nxp.com,
-        adrian.ratiu@collabora.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
-        Anson.Huang@nxp.com, hverkuil-cisco@xs4all.nl
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com
-Date:   Wed, 17 Feb 2021 17:45:48 -0300
-In-Reply-To: <20210217080306.157876-14-benjamin.gaignard@collabora.com>
-References: <20210217080306.157876-1-benjamin.gaignard@collabora.com>
-         <20210217080306.157876-14-benjamin.gaignard@collabora.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        with ESMTP id S231766AbhBQVAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 16:00:44 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB66DC0613D6
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 13:00:03 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id n10so5126077wmq.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 13:00:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HvaxP01fXW2011ehS9LhieDsJ7uIvVK/63xeZZP7Nq4=;
+        b=dayfpS1ux0p+igYf4Zk1yTMOllrNLO8ZCTwTQ58p/4DKftJpBGledA0yS/1t+4PInP
+         D4B3TD5BsTNUqumlY0NanLZJqnFNTksfM4SEE5IfyoqDhVTDool0AqneCHVEwB3vZ7gd
+         bUlR478TF6GowcHnF5D9Lh0zdAe8KDs6sky7MOc5M9Nk83qvAAd1nh3573fSxJ5WKc7A
+         7vobl7dTQiP092+d2fL1CHO469jDmoHfwaPPkOedIF80yTF76dOYtyX2JJofDEK7dusS
+         9zq5D4yqV9Mt3HqpxqmGun3+3FJBfvrbisumg6j3lUOqdaVfD5/PUxZHQwElVM+xmmMf
+         DoLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HvaxP01fXW2011ehS9LhieDsJ7uIvVK/63xeZZP7Nq4=;
+        b=BCjCp2qJWo0bkur4sVwm6MCt2zPDQDLSFaUzYI/R12IRYdpJxLkJVChevr1JEXQDcW
+         2F4hbgbIAuMuxHhUE8sAfIC8o266YV+IXV7GH3yKKfIULhSioIQZAD5pmyNc9fC0aZ73
+         5WmVgpNlSrg8x6vce8MmDa+RST/vIoqwtZfVC6d9+9VOjBTAtNf16B5iP7LzFiwXesTe
+         4PTVtTQU3Y+DEyqOJ9rcce9Ve/0mj6jac3VV9NTxygfeNMAax8m2oD5bWRXYrZhSPzHE
+         KP+4N5KmMOA0V6yE9DM3DFJy0+YlKVmGB+mNVThsZhAez08n1QA6Rr+o6VHFJbhQ5sCe
+         qW3Q==
+X-Gm-Message-State: AOAM532oUCyK+zRFEPOTH10TqEv1Zs4J9LhpLCFgz3CWcgmzFWM1A4QM
+        T9GcCPwr4T0ifiaOLXYK/Cb8pItxDhg0QGIx
+X-Google-Smtp-Source: ABdhPJxt/AxJFjVbv2FOJHM7b+QucXIKyT6iLc6VNmIhtakJ96SDtbVYTAi/dltJPvblGoY+aUmpSA==
+X-Received: by 2002:a1c:7301:: with SMTP id d1mr597667wmb.33.1613595602384;
+        Wed, 17 Feb 2021 13:00:02 -0800 (PST)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id m2sm4140264wml.34.2021.02.17.13.00.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Feb 2021 13:00:01 -0800 (PST)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH 1/2] dt-bindings: arm64: dts: mediatek: Add mt8183-pumpkin board
+Date:   Wed, 17 Feb 2021 21:59:43 +0100
+Message-Id: <20210217205945.830006-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benjamin,
+Add binding documentation for the MT8183 Pumpkin board.
 
-Before I review the implementation in detail,
-there's one thing that looks suspicious.
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-On Wed, 2021-02-17 at 09:03 +0100, Benjamin Gaignard wrote:
-> Implement all the logic to get G2 hardware decoding HEVC frames.
-> It support up level 5.1 HEVC stream.
-> It doesn't support yet 10 bits formats or scaling feature.
-> 
-> Add HANTRO HEVC dedicated control to skip some bits at the beginning
-> of the slice header. That is very specific to this hardware so can't
-> go into uapi structures. Compute the needed value is complex and require
-> information from the stream that only the userland knows so let it
-> provide the correct value to the driver.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
-> ---
->  drivers/staging/media/hantro/Makefile         |   2 +
->  drivers/staging/media/hantro/hantro_drv.c     |  41 ++
->  .../staging/media/hantro/hantro_g2_hevc_dec.c | 637 ++++++++++++++++++
->  drivers/staging/media/hantro/hantro_g2_regs.h | 198 ++++++
->  drivers/staging/media/hantro/hantro_hevc.c    | 274 ++++++++
->  drivers/staging/media/hantro/hantro_hw.h      |  14 +
->  6 files changed, 1166 insertions(+)
->  create mode 100644 drivers/staging/media/hantro/hantro_g2_hevc_dec.c
->  create mode 100644 drivers/staging/media/hantro/hantro_g2_regs.h
->  create mode 100644 drivers/staging/media/hantro/hantro_hevc.c
-> 
-> diff --git a/drivers/staging/media/hantro/Makefile b/drivers/staging/media/hantro/Makefile
-> index 743ce08eb184..0357f1772267 100644
-> --- a/drivers/staging/media/hantro/Makefile
-> +++ b/drivers/staging/media/hantro/Makefile
-> @@ -9,12 +9,14 @@ hantro-vpu-y += \
->                 hantro_h1_jpeg_enc.o \
->                 hantro_g1_h264_dec.o \
->                 hantro_g1_mpeg2_dec.o \
-> +               hantro_g2_hevc_dec.o \
->                 hantro_g1_vp8_dec.o \
->                 rk3399_vpu_hw_jpeg_enc.o \
->                 rk3399_vpu_hw_mpeg2_dec.o \
->                 rk3399_vpu_hw_vp8_dec.o \
->                 hantro_jpeg.o \
->                 hantro_h264.o \
-> +               hantro_hevc.o \
->                 hantro_mpeg2.o \
->                 hantro_vp8.o
->  
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index e1443c394f62..d171fb80876a 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -280,6 +280,20 @@ static int hantro_jpeg_s_ctrl(struct v4l2_ctrl *ctrl)
->         return 0;
->  }
->  
-> +static int hantro_extra_s_ctrl(struct v4l2_ctrl *ctrl)
-> +{
-> +       const struct hantro_hevc_extra_decode_params *extra_params;
-> +       struct hantro_ctx *ctx;
-> +
-> +       ctx = container_of(ctrl->handler,
-> +                          struct hantro_ctx, ctrl_handler);
-> +       extra_params = &ctx->hevc_dec.ctrls.extra_params;
-> +
-> +       memcpy((void *)extra_params, ctrl->p_new.p_u8, sizeof(extra_params));
-> +
-> +       return 0;
-> +}
-> +
->  static const struct v4l2_ctrl_ops hantro_ctrl_ops = {
->         .try_ctrl = hantro_try_ctrl,
->  };
-> @@ -288,6 +302,10 @@ static const struct v4l2_ctrl_ops hantro_jpeg_ctrl_ops = {
->         .s_ctrl = hantro_jpeg_s_ctrl,
->  };
->  
-> +static const struct v4l2_ctrl_ops hantro_extra_ctrl_ops = {
-> +       .s_ctrl = hantro_extra_s_ctrl,
-> +};
-> +
->  static const struct hantro_ctrl controls[] = {
->         {
->                 .codec = HANTRO_JPEG_ENCODER,
-> @@ -413,6 +431,29 @@ static const struct hantro_ctrl controls[] = {
->                 .cfg = {
->                         .id = V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS,
->                 },
-> +       }, {
-> +               .codec = HANTRO_HEVC_DECODER,
-> +               .cfg = {
-> +                       .id = V4L2_CID_HANTRO_HEVC_EXTRA_DECODE_PARAMS,
-> +                       .name = "HANTRO extra decode params",
-> +                       .type = V4L2_CTRL_TYPE_U8,
-> +                       .min = 0,
-> +                       .def = 0,
-> +                       .max = 255,
-> +                       .step = 1,
-> +                       .dims = { sizeof(struct hantro_hevc_extra_decode_params) },
-> +                       .ops = &hantro_extra_ctrl_ops,
-> +               },
-> +       }, {
-> +               .codec = HANTRO_JPEG_ENCODER | HANTRO_MPEG2_DECODER |
-> +                        HANTRO_VP8_DECODER | HANTRO_H264_DECODER |
-> +                        HANTRO_HEVC_DECODER,
-> +               .cfg = {
-> +                       .id = V4L2_CID_USER_CLASS,
-
-Are you sure you need to expose the V4L2_CID_USER_CLASS?
-Maybe I'm missing something, but this looks odd.
-
-Thanks,
-Ezequiel
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 53f0d4e3ea98..8f5a625cfb3d 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -123,6 +123,10 @@ properties:
+           - const: google,krane-sku176
+           - const: google,krane
+           - const: mediatek,mt8183
++      - items:
++          - enum:
++              - mediatek,mt8183-pumpkin
++          - const: mediatek,mt8183
+ 
+ additionalProperties: true
+ 
+-- 
+2.30.0
 
