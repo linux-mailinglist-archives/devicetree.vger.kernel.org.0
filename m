@@ -2,105 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE36531E014
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 21:16:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 495D031E02E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 21:26:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234292AbhBQUQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 15:16:21 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59538 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233561AbhBQUQV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 15:16:21 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id E92FB1F40F2C
-Message-ID: <9d0ddec3cc244e36483abb28b54053fa02babb5c.camel@collabora.com>
-Subject: Re: [PATCH v1 07/18] media: hantro: Add a field to distinguish the
- hardware versions
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, krzk@kernel.org, shengjiu.wang@nxp.com,
-        adrian.ratiu@collabora.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
-        Anson.Huang@nxp.com, hverkuil-cisco@xs4all.nl
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com
-Date:   Wed, 17 Feb 2021 17:15:27 -0300
-In-Reply-To: <20210217080306.157876-8-benjamin.gaignard@collabora.com>
-References: <20210217080306.157876-1-benjamin.gaignard@collabora.com>
-         <20210217080306.157876-8-benjamin.gaignard@collabora.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S234002AbhBQUZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 15:25:37 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:37451 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233971AbhBQUZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 15:25:35 -0500
+Received: by mail-ot1-f42.google.com with SMTP id s6so5562009otk.4;
+        Wed, 17 Feb 2021 12:25:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=s6+jiEiqCZSmw0WMNbsaPBiNOtVW1ybg9lWNP/Vo0aY=;
+        b=oSOIcVfVGd/x+WiId7bHOv8SzzztYtnyqPTcsNPU2muKhmZtzJlChm3Royx2nYMBP/
+         iblNePpTNu0bk7bohChRA39athvuCaLnZurPeC06Fmo+TFTTPhtkTI6ibcIU6Ia1YI2d
+         ip6fR5JEcnhJ1+sKve06UqQCh3qI9doLJufAhpOGYwoBNaZ1McnTAa8AojmDI0LK4hkR
+         9LiCPdQFaaqQeGiXxzwGpn35Pq7czn/a445bzqsQ+chj4yJgZ4fZVtnQlmIfe31clWBJ
+         Bwv5944FHv980uTw3K8LLg2eqfM5OjjjmZncMyOYKJWTGwFZ4CA7mLf8t6xb7GBuaSC4
+         Sk/g==
+X-Gm-Message-State: AOAM532rHEYD+Zt7FXD8L93Gi/vTnSn8CzDnDMzpElp3q0IR+tSpNLmv
+        cFePFivRuJVS+R3aHfYmtg==
+X-Google-Smtp-Source: ABdhPJxb/kwWM+0rGGbP7NNjMiSRCWUIh9XpWfTxKh8s9XYiNqqRpDWijLxBslAleJdVs5vdjhmLww==
+X-Received: by 2002:a9d:6c4c:: with SMTP id g12mr647306otq.53.1613593493067;
+        Wed, 17 Feb 2021 12:24:53 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t2sm619827otj.47.2021.02.17.12.24.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Feb 2021 12:24:52 -0800 (PST)
+Received: (nullmailer pid 2681056 invoked by uid 1000);
+        Wed, 17 Feb 2021 20:24:51 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     daniel@ffwll.ch, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, airlied@linux.ie
+In-Reply-To: <20210213101512.3275069-2-mperttunen@nvidia.com>
+References: <20210213101512.3275069-1-mperttunen@nvidia.com> <20210213101512.3275069-2-mperttunen@nvidia.com>
+Subject: Re: [PATCH 1/3] dt-bindings: Add YAML bindings for Host1x and NVDEC
+Date:   Wed, 17 Feb 2021 14:24:51 -0600
+Message-Id: <1613593491.434667.2681055.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-02-17 at 09:02 +0100, Benjamin Gaignard wrote:
-> Decoders hardware blocks could exist in multiple versions: add
-> a field to distinguish them at runtime.
-> Keep the default behavoir to be G1 hardware.
+On Sat, 13 Feb 2021 12:15:10 +0200, Mikko Perttunen wrote:
+> Convert the original Host1x bindings to YAML and add new bindings for
+> NVDEC, now in a more appropriate location. The old text bindings
+> for Host1x and engines are still kept at display/tegra/ since they
+> encompass a lot more engines that haven't been converted over yet.
 > 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
+> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
 > ---
->  drivers/staging/media/hantro/hantro.h     | 5 +++++
->  drivers/staging/media/hantro/hantro_drv.c | 2 ++
->  2 files changed, 7 insertions(+)
+>  .../gpu/host1x/nvidia,tegra20-host1x.yaml     | 129 ++++++++++++++++++
+>  .../gpu/host1x/nvidia,tegra210-nvdec.yaml     |  90 ++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 220 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra20-host1x.yaml
+>  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
 > 
-> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> index bde65231f22f..2a566dfc2fe3 100644
-> --- a/drivers/staging/media/hantro/hantro.h
-> +++ b/drivers/staging/media/hantro/hantro.h
-> @@ -36,6 +36,9 @@ struct hantro_codec_ops;
->  #define HANTRO_H264_DECODER    BIT(18)
->  #define HANTRO_DECODERS                0xffff0000
->  
-> +#define HANTRO_G1_REV          0x6731
-> +#define HANTRO_G2_REV          0x6732
-> +
->  /**
->   * struct hantro_irq - irq handler and name
->   *
-> @@ -170,6 +173,7 @@ hantro_vdev_to_func(struct video_device *vdev)
->   * @enc_base:          Mapped address of VPU encoder register for convenience.
->   * @dec_base:          Mapped address of VPU decoder register for convenience.
->   * @ctrl_base:         Mapped address of VPU control block.
-> + * @core_hw_dec_rev    Runtime detected HW decoder core revision
->   * @vpu_mutex:         Mutex to synchronize V4L2 calls.
->   * @irqlock:           Spinlock to synchronize access to data structures
->   *                     shared with interrupt handlers.
-> @@ -189,6 +193,7 @@ struct hantro_dev {
->         void __iomem *enc_base;
->         void __iomem *dec_base;
->         void __iomem *ctrl_base;
-> +       u32 core_hw_dec_rev;
->  
->         struct mutex vpu_mutex; /* video_device lock */
->         spinlock_t irqlock;
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index 0570047c7fa0..e1443c394f62 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -840,6 +840,8 @@ static int hantro_probe(struct platform_device *pdev)
->         }
->         vpu->enc_base = vpu->reg_bases[0] + vpu->variant->enc_offset;
->         vpu->dec_base = vpu->reg_bases[0] + vpu->variant->dec_offset;
-> +       /* by default decoder is G1 */
-> +       vpu->core_hw_dec_rev = HANTRO_G1_REV;
->  
 
-What's the use of this field? Can't we simply rely on the compatible string?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Thanks,
-Ezequiel
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml:90:1: [warning] too many blank lines (2 > 1) (empty-lines)
 
+dtschema/dtc warnings/errors:
+
+See https://patchwork.ozlabs.org/patch/1440164
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
