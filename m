@@ -2,94 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDA7E31DB3A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 15:12:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F25C031DB56
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 15:22:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233373AbhBQOJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 09:09:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43972 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233356AbhBQOJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 09:09:18 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18572C06178B;
-        Wed, 17 Feb 2021 06:08:03 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id o15so2220363wmq.5;
-        Wed, 17 Feb 2021 06:08:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jiX7X0M+t1Zm8HAFufsMGCFO60ftU2nIQxPg0v/LgAc=;
-        b=S7/rTx9uAE7nU43FzuKk4H4CEBU2du4dQVIjNNGuhZzRe3ta2fmRfgVY2JwNELBVpc
-         nmjY59xfSPvmggrQQdhyHjLb69F900As5dBIdVkRCvc6YSfCi49sZ2t/gWGpJtPr6Z61
-         dFRBkLrEK8go2QKkf4qpt6cO//DDHepKvQrFMTPSmqziYTbOauD4H8R5q/GfcQpMVQYz
-         5m+OeZUokF7aPHrKSTArIryuaMAUH3YxlJAP7JcnODmEc+7lbi3p7Fm6gBxWJD80yIV6
-         Smh32aTK51ql+vCZzFyXfNZB6GgBCmgvG64iLeYBC7lsJ3lqn4949MsLRVsC5s/4oklG
-         /5BQ==
+        id S233416AbhBQOVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 09:21:04 -0500
+Received: from mail-wr1-f53.google.com ([209.85.221.53]:46426 "EHLO
+        mail-wr1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233314AbhBQOU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 09:20:58 -0500
+Received: by mail-wr1-f53.google.com with SMTP id t15so17521667wrx.13;
+        Wed, 17 Feb 2021 06:20:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jiX7X0M+t1Zm8HAFufsMGCFO60ftU2nIQxPg0v/LgAc=;
-        b=TXj48SoHhQ3EBog0Y1NtiJf46Lih4x0iMgn9q6Z1QSREtNEl6rf1O4sWokZm8gxLmv
-         t0KUfzZMMllhl9eXOX76fsKPJ8rUVpZabmXr9pDfZKVCDsWOgS+WfT+O1ZYB5qzNVlnH
-         whWqL0pzrzM3AU+hOUPsm7lkEKSW3BO2NTagStqAkYBzipHVdhlmJIKmVqFkk2XQ5YK5
-         tFAyh/gnPUrWrRwLJySYHARK+KcSAcnVy7tbDcTEcA8pAckXIFYwI2hL6xBiZ5s74TI4
-         Ar7xMjE0dPsG3YohWqtVYAH3RL+pqss8kvJqTrgvw/cthuqGLLBUPxvlx4d4IwrgWXYY
-         NMUQ==
-X-Gm-Message-State: AOAM5331XSpcrT84PfzzjjBm+r0U/D/Yqx1n5F+VOGcaWTHZH/v0L70B
-        fuTXD8iPiJwqJL3qj5GZ4l8aj+onw4Ming==
-X-Google-Smtp-Source: ABdhPJxXd+xHoijDXHWXCpESq3QScnr52RJTaYoIeNrrPXha9fSumedEDetlZ8LG7s+FBw7CiQ3N9Q==
-X-Received: by 2002:a05:600c:2351:: with SMTP id 17mr7340043wmq.2.1613570881854;
-        Wed, 17 Feb 2021 06:08:01 -0800 (PST)
-Received: from localhost.localdomain (67.red-83-54-30.dynamicip.rima-tde.net. [83.54.30.67])
-        by smtp.gmail.com with ESMTPSA id n66sm3274099wmn.25.2021.02.17.06.08.00
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 17 Feb 2021 06:08:01 -0800 (PST)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     sboyd@kernel.org
-Cc:     robh+dt@kernel.org, john@phrozen.org, tsbogend@alpha.franken.de,
-        gregkh@linuxfoundation.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        devel@driverdev.osuosl.org, neil@brown.name,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SpFoReJdNEGD86El5ZXTEJu+pV2heWh3CZI0tQJ5pzI=;
+        b=a6KgTvzwKYQhAP1gQKbkRWZ1lk3yWg3hLe0f5qVRb9/z1RAlfs44Hqav823XZjsZGa
+         fdC8ZUfi98F0Vi2oD7yGsEkdQ0iAGsZc0hcPLqp+15Ks+/KB0DCo5xR8MIQ54cVjP7rI
+         PqBw+i/Bs6ZLXsc4m7yl0E4C3QdErlWXjB16yYwbCwdDM5K1cLGXA1utxNWaq98QE75Q
+         sZa6n8Gau3IGm955C1xq59CZxNLyPalns4Ig2mIn0KWAvk0TNfV+FeyKBpSiLZhcbIai
+         VCMwK2ob0+tUtlAcrlgP6jVJUuLlfABxDvurO/4sssdFSyfx7wuu0XHgtApUHVW7C+HI
+         mKtg==
+X-Gm-Message-State: AOAM530TQkIJTv3TxqCvJTWyxBgnyvaTLq6vp4XXe2eesnkfft66h9nx
+        2udxXlnyPH2AZEp0i57d8HLJZBb7HTs=
+X-Google-Smtp-Source: ABdhPJxWfdk5xDNsMEj2STtorO7DZ5dmBde+V6Ge+bEcalLZHHorzva/0+IiwgL/O+lP4I4aKPbSFA==
+X-Received: by 2002:a05:6000:146:: with SMTP id r6mr29086998wrx.239.1613571616770;
+        Wed, 17 Feb 2021 06:20:16 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id p1sm3806388wru.86.2021.02.17.06.20.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Feb 2021 06:20:15 -0800 (PST)
+Date:   Wed, 17 Feb 2021 15:20:13 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        catalin.marinas@arm.com, will@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v8 6/6] MAINTAINERS: add MT7621 CLOCK maintainer
-Date:   Wed, 17 Feb 2021 15:07:52 +0100
-Message-Id: <20210217140752.15712-7-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210217140752.15712-1-sergio.paracuellos@gmail.com>
-References: <20210217140752.15712-1-sergio.paracuellos@gmail.com>
+Subject: Re: [PATCH 3/8] arm64: dts: imx8mm-nitrogen-r2: add espi2 support
+Message-ID: <20210217142013.vofplwopvpwfbdwc@kozik-lap>
+References: <20210215231943.36910-1-adrien.grassein@gmail.com>
+ <20210215231943.36910-4-adrien.grassein@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210215231943.36910-4-adrien.grassein@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding myself as maintainer for mt7621 clock driver.
+On Tue, Feb 16, 2021 at 12:19:38AM +0100, Adrien Grassein wrote:
+> Add the description for espi support.
+> 
+> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+> ---
+>  .../boot/dts/freescale/imx8mm-nitrogen-r2.dts | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
+> index 1b29d8a12d04..22acde0f3ba8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
+> @@ -10,6 +10,14 @@ / {
+>  	model = "Boundary Devices i.MX8MMini Nitrogen8MM Rev2";
+>  	compatible = "boundary,imx8mm-nitrogen8mm", "fsl,imx8mm";
+>  
+> +	clocks {
+> +		clk16m: clk16m {
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Node name: clock or clock-16m.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 809a68af5efd..be5ada6b4309 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11288,6 +11288,12 @@ L:	linux-wireless@vger.kernel.org
- S:	Maintained
- F:	drivers/net/wireless/mediatek/mt7601u/
- 
-+MEDIATEK MT7621 CLOCK DRIVER
-+M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-+F:	drivers/clk/ralink/clk-mt7621.c
-+
- MEDIATEK MT7621/28/88 I2C DRIVER
- M:	Stefan Roese <sr@denx.de>
- L:	linux-i2c@vger.kernel.org
--- 
-2.25.1
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
+Best regards,
+Krzysztof
