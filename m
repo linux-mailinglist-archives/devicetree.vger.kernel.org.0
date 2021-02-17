@@ -2,69 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E2D31D50F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 06:35:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C64931D525
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 06:52:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231351AbhBQFet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 00:34:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231446AbhBQFeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 00:34:07 -0500
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9F8AC061574;
-        Tue, 16 Feb 2021 21:33:26 -0800 (PST)
-Received: by mail-qk1-x730.google.com with SMTP id r77so11737145qka.12;
-        Tue, 16 Feb 2021 21:33:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=G7oEC+eTJ+ELbOjqhGFXJgcF60fpnjm1ejAxDJwpCHM=;
-        b=WlMKZ5hlrfOmRvznzBxnUU/mks2XIk1591CeNiGAyG5zeL4WBNFsz38hwwMfPeMXPY
-         5JRNxB0k/Ox1Zso50f3VM9y+vARWP5F4fOTPwrlwt2BWJbu0+g4exxzS35XBvdCOxLu0
-         b2H9Djtf6SVxN25cyTlbxSwYSHZnEh7Lz/jbKp+OaJMdj3R9x2pDzgBzv5xHN/sERL6R
-         mxZl8PlZMqTg6rWiJIEMp3aTwkfZfweUU7BP3DPUryupczW8vt/FjJRwTj6bkYfz8zoq
-         84p6jtMxlaO5WzIvanBIE+JBp2EXZ0lQzie44wsVXHGOd1SXzIjG0E2m0Ek0lp+TQooo
-         ES2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=G7oEC+eTJ+ELbOjqhGFXJgcF60fpnjm1ejAxDJwpCHM=;
-        b=eiPT8Imn6QCnf5O05yJu5OdJYKrOwSfQd1n1qV4Xed8d8kQXYZk8NTBjw+erFLj+MS
-         EyyxMiNYbgS5nqSfqp5TPo159rS6uUwW9DQK3+48pq7QfaQDefo6nnR6kk/ENIfR8nZj
-         w0SlUtsaOlblEbOgog7tk30bZWY8KTNMp4si4euvwLJHJ+m+tDjfw+p35BZ1OvZOesdT
-         TEjCs3NasdrbYmJQ3vd7ygQrkTjgrrQu+8dK/KyZ8inpPQFFRv6T4VDSAIDuIWmpdnl3
-         W33qpKLK1fH79MkB6SCvNMKa9RFi0Cb+hA6iBfxP1Kydz2ub07bqepCwVcGF0WAMYRoC
-         urjA==
-X-Gm-Message-State: AOAM533YS4zbpSQOaLAh12mSmTB1EN5eBise9kZlLREEB4Pou7YuXkm7
-        xEgU7XTi4G1ugWMe0qpzybs=
-X-Google-Smtp-Source: ABdhPJxydVvaF0xz2a74Yr+1br9CohCN1SxZFBEJ6l+F7HF64UE3c6NLI+FJbN1HKUCcJEncTGjlPg==
-X-Received: by 2002:ae9:f309:: with SMTP id p9mr19189000qkg.111.1613540005565;
-        Tue, 16 Feb 2021 21:33:25 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id s14sm535960qtq.97.2021.02.16.21.33.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Feb 2021 21:33:25 -0800 (PST)
-Subject: Re: DT overlay applied via pinctrl description
-To:     Michal Simek <michal.simek@xilinx.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <63d610ba-5f63-2be1-6215-f44bd88d94d2@xilinx.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <929190e9-1195-4381-ae18-b71d17444569@gmail.com>
-Date:   Tue, 16 Feb 2021 23:33:23 -0600
+        id S230255AbhBQFrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 00:47:42 -0500
+Received: from mga09.intel.com ([134.134.136.24]:33725 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230231AbhBQFrl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Feb 2021 00:47:41 -0500
+IronPort-SDR: 3n9NNd0n43PN78i0TMntCKOGPHAB0HLUuXzDi4Zc95zIy6h2MWm3XpFOcNryli1JJ1sq9lGSCT
+ HfgfQh12YuFA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="183240869"
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; 
+   d="scan'208";a="183240869"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2021 21:47:00 -0800
+IronPort-SDR: ud/keKpLGbgL5aGlJAIoxTmzJj+x2hg4aaCz4SH7RtiWEyB636m0BaEsv9XXQJxG1GMgl7I+P8
+ cxATzZ6c0nbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; 
+   d="scan'208";a="439234342"
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.149]) ([10.237.72.149])
+  by orsmga001.jf.intel.com with ESMTP; 16 Feb 2021 21:46:55 -0800
+Subject: Re: [PATCH 2/2] mmc: core: Add no single read retries
+To:     DooHyun Hwang <dh0421.hwang@samsung.com>,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, axboe@kernel.dk, satyat@google.com,
+        ebiggers@google.com, gustavoars@kernel.org
+Cc:     grant.jung@samsung.com, jt77.jang@samsung.com,
+        junwoo80.lee@samsung.com, jangsub.yi@samsung.com,
+        sh043.lee@samsung.com, cw9316.lee@samsung.com,
+        sh8267.baek@samsung.com, wkon.kim@samsung.com
+References: <20210217052239.13780-1-dh0421.hwang@samsung.com>
+ <CGME20210217053521epcas1p2aa80cae5d52f30c8c8882f44abe8045c@epcas1p2.samsung.com>
+ <20210217052239.13780-3-dh0421.hwang@samsung.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <4035139d-7850-8460-f069-06fc61d13039@intel.com>
+Date:   Wed, 17 Feb 2021 07:46:54 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <63d610ba-5f63-2be1-6215-f44bd88d94d2@xilinx.com>
+In-Reply-To: <20210217052239.13780-3-dh0421.hwang@samsung.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,69 +54,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Frank, Rob, devicetree list
+On 17/02/21 7:22 am, DooHyun Hwang wrote:
+> This makes to handle read errors faster by not retrying
+> multiple block read(CMD18) errors with single block reads(CMD17).
+> 
+> On some bad SD Cards that have problem with read operations,
+> it is not helpful to retry multiple block read errors with
+> several single block reads, and it is delayed to treat read
+> operations as I/O error as much as retrying single block reads.
 
-On 2/16/21 9:35 AM, Michal Simek wrote:
-> Hi,
-> 
-> I have a question about expectations when pinctrl setting is applied. In
-> DTS all nodes are described in the order available in DT.
-> 
-> uart-default {
-> 	mux {
-> 		...
-> 	};
-> 
-> 	conf {
-> 		...
-> 	};
-> };
-> 
-> I don't know if this standard description or not. I definitely see other
-> pinctrl drivers which are using different structure.
-> 
-> Anyway when overlay is applied the order has changed to
-> uart-default {
-> 	conf {
-> 		...
-> 	};
-> 
-> 	mux {
-> 		...
-> 	};
-> };
-> 
-> which is causing issue because pin is configured first via conf node
-> before it is requested via mux. This is something what firmware is
-> checking and error out.
-> 
-> That's why I want to check with you if this is issue with DT binding
-> description we use in zynqmp pinctrl driver posted here
-> https://lore.kernel.org/linux-arm-kernel/1613131643-60062-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com/
-> 
-> I have also tried to use init and default configuration where init is
-> called just with mux setting and then default is called just with config
-> but the issue is there as well because in pinctrl_commit_state()
-> previous state is checked and for MUXes pinmux_disable_setting() is
-> called which release a pin. And then configuration in default is called
-> but without requesting pin which fails for the same reason as above.
-> 
-> That's why my questions are:
-> Are we using incorrect DT description?
-> And is there a need sort subnodes in a way that mux should be called
-> first by core before configuration?
-> Or is there any different way how to do it?
-
-Node ordering and property ordering within a node are not defined
-in the Linux kernel.  If a subsystem or property is depending upon
-a certain order, they must implement a method other than the
-order as accessed by of_* functions.  And as you noted, use of an
-overlay may also change ordering.
-
--Frank
+If the issue is that it takes too long, then maybe it would be better to get
+mmc_blk_read_single() to give up after a certain amount of time.
 
 > 
-> Thanks,
-> Michal
+> Signed-off-by: DooHyun Hwang <dh0421.hwang@samsung.com>
+> ---
+>  drivers/mmc/core/block.c | 3 ++-
+>  drivers/mmc/core/host.c  | 6 ++++++
+>  include/linux/mmc/host.h | 3 +++
+>  3 files changed, 11 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mmc/core/block.c b/drivers/mmc/core/block.c
+> index d666e24fbe0e..e25aaf8fca34 100644
+> --- a/drivers/mmc/core/block.c
+> +++ b/drivers/mmc/core/block.c
+> @@ -1809,7 +1809,8 @@ static void mmc_blk_mq_rw_recovery(struct mmc_queue *mq, struct request *req)
+>  
+>  	/* FIXME: Missing single sector read for large sector size */
+>  	if (!mmc_large_sector(card) && rq_data_dir(req) == READ &&
+> -	    brq->data.blocks > 1) {
+> +	    brq->data.blocks > 1 &&
+> +	    !card->host->no_single_read_retry) {
+>  		/* Read one sector at a time */
+>  		mmc_blk_read_single(mq, req);
+>  		return;
+> diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
+> index 9b89a91b6b47..3bf5b2fc111b 100644
+> --- a/drivers/mmc/core/host.c
+> +++ b/drivers/mmc/core/host.c
+> @@ -352,6 +352,12 @@ int mmc_of_parse(struct mmc_host *host)
+>  	if (device_property_read_bool(dev, "no-mmc"))
+>  		host->caps2 |= MMC_CAP2_NO_MMC;
+>  
+> +	if (device_property_read_bool(dev, "no-single-read-retry")) {
+> +		dev_info(host->parent,
+> +			"Single block read retrying is not supported\n");
+> +		host->no_single_read_retry = true;
+> +	}
+> +
+>  	/* Must be after "non-removable" check */
+>  	if (device_property_read_u32(dev, "fixed-emmc-driver-type", &drv_type) == 0) {
+>  		if (host->caps & MMC_CAP_NONREMOVABLE)
+> diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
+> index 26a3c7bc29ae..faec55035a63 100644
+> --- a/include/linux/mmc/host.h
+> +++ b/include/linux/mmc/host.h
+> @@ -502,6 +502,9 @@ struct mmc_host {
+>  	/* Host Software Queue support */
+>  	bool			hsq_enabled;
+>  
+> +	/* Do not retry multi block read as single block read */
+> +	bool			no_single_read_retry;
+> +
+>  	unsigned long		private[] ____cacheline_aligned;
+>  };
+>  
 > 
 
