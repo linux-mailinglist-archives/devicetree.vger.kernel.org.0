@@ -2,71 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4346631E036
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 21:26:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4629431E02C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 21:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234996AbhBQUZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 15:25:55 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:38307 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234892AbhBQUZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 15:25:43 -0500
-Received: by mail-oi1-f172.google.com with SMTP id h17so12461833oih.5;
-        Wed, 17 Feb 2021 12:25:28 -0800 (PST)
+        id S234056AbhBQUZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 15:25:36 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:43586 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234002AbhBQUZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 15:25:35 -0500
+Received: by mail-ot1-f47.google.com with SMTP id l23so13207179otn.10;
+        Wed, 17 Feb 2021 12:25:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=X84kn+m8PD2g56rNTnDBUymM8FTLFEWtGBoF8GpNpws=;
-        b=kN2DUdpDDxbcRBmxh8vUFeY8XR4JxDcGOevxVvkByZDHyRMYxVU9/KDj5+KRTgflnW
-         MOJVJsj7Io3FcFa8vP652Y/NsuMV0nXRcQPkLgEyPT7CB0U99n4oinbTREIR9cC3I4hf
-         z/reojHEw44LvdZ8z07Tpbwa4preZigFtkqQk7XAV7xil0nnBAAMxbA8W/lITswzxnAJ
-         MQ2RrkdcSxJtyLicbVBLc2amTdpWPmNdXCh6rZQMe8keTF+Ufkb8r8RhRNYFCxb/mtV5
-         JU6UCpb/Kno+7cnl1VdrKYhj7yhJVJiL4LgyEriYya6DApaQUaLEf0oVNMTiiRBI5H7N
-         KeCw==
-X-Gm-Message-State: AOAM532qmScnuV69HGHm/IsyKhE+HsTCGraAfLMhdNGAGf62FSSgnLoa
-        qwE9TDtkTU7re2tq5vz++A==
-X-Google-Smtp-Source: ABdhPJwa5MKkDhdfIWEO2KRh67mm2XhCNo7bPMDnPfDKOrVmMBHafwwaDf+/p8SAE+K86gmJjNHKLA==
-X-Received: by 2002:a54:4108:: with SMTP id l8mr393780oic.177.1613593502704;
-        Wed, 17 Feb 2021 12:25:02 -0800 (PST)
+        bh=Uld+x1RRhvGducDSCqzBqnBqxjyypyGBIFsh5LfxpwQ=;
+        b=o1Crgoxpv53j0MnF2ZQcPwqEcTCTAGAWDztlfcnib5DMJ81iO9Q7RcfmuJ+6gbKw5T
+         1mhzZbyAywsC8mUqpqozlVA2X5UmAYM18novL1xbecd5qH5IwS/18ppdjm533RP1+OpP
+         t0M9EKiLxGfVewRimZA0Lcs9q6u8fW8rfu8Rr8me/20d18x1btQOmI6cYJt+M2QiSuw1
+         i2scE4YUiPcZfRI16G20g1t6GfCrgYF8RcRida487eS1sr/PzJfkQEJA2rowMLhP8LZG
+         ua5vgBG8k6j56niiPMRUOjCXDi1Hm9qVRfLVbUezNeD27tVUJcJ4+1FHOGBo97BvAKNF
+         A00A==
+X-Gm-Message-State: AOAM5339ZYQsQ1Ki8Hs6D1idTax+lsGRH/WgcyzSG7cazUmcL8gpUmLs
+        uAgv/kcgrb8RM8FB9OGHJw==
+X-Google-Smtp-Source: ABdhPJym6m1ydxfrcWw1M5K9w/FGTRkxucBEwnnYd++RyoPNdmnRBnfMKukqYyTZ/Gwkf6MnkY9phQ==
+X-Received: by 2002:a9d:151:: with SMTP id 75mr614290otu.279.1613593494808;
+        Wed, 17 Feb 2021 12:24:54 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r1sm605549otp.34.2021.02.17.12.25.00
+        by smtp.gmail.com with ESMTPSA id i22sm606786oot.3.2021.02.17.12.24.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Feb 2021 12:25:01 -0800 (PST)
-Received: (nullmailer pid 2681063 invoked by uid 1000);
+        Wed, 17 Feb 2021 12:24:53 -0800 (PST)
+Received: (nullmailer pid 2681065 invoked by uid 1000);
         Wed, 17 Feb 2021 20:24:51 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     peng.fan@oss.nxp.com
-Cc:     shawnguo@kernel.org, linux-imx@nxp.com, agross@kernel.org,
-        festevam@gmail.com, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, mathieu.poirier@linaro.org,
-        Peng Fan <peng.fan@nxp.com>, bjorn.andersson@linaro.org,
-        kernel@pengutronix.de, paul@crapouillou.net,
-        devicetree@vger.kernel.org, ohad@wizery.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org, patrice.chotard@st.com,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        o.rempel@pengutronix.de
-In-Reply-To: <1613392463-9676-2-git-send-email-peng.fan@oss.nxp.com>
-References: <1613392463-9676-1-git-send-email-peng.fan@oss.nxp.com> <1613392463-9676-2-git-send-email-peng.fan@oss.nxp.com>
-Subject: Re: [PATCH V10 01/10] dt-bindings: remoteproc: convert imx rproc bindings to json-schema
+To:     Joe Hung <joe_hung@ilitek.com>
+Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+        linux-input@vger.kernel.org, robh+dt@kernel.org,
+        luca_hsu@ilitek.com
+In-Reply-To: <20210217064155.126173-1-joe_hung@ilitek.com>
+References: <20210217064155.126173-1-joe_hung@ilitek.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: ilitek_ts_i2c: Add bindings
 Date:   Wed, 17 Feb 2021 14:24:51 -0600
-Message-Id: <1613593491.473466.2681062.nullmailer@robh.at.kernel.org>
+Message-Id: <1613593491.484171.2681064.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Feb 2021 20:34:14 +0800, peng.fan@oss.nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Wed, 17 Feb 2021 14:41:54 +0800, Joe Hung wrote:
+> Add binding documentation for ILITEK touch devices.
 > 
-> Convert the imx rproc binding to DT schema format using json-schema.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Joe Hung <joe_hung@ilitek.com>
 > ---
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 60 +++++++++++++++++++
->  .../bindings/remoteproc/imx-rproc.txt         | 33 ----------
->  2 files changed, 60 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> Changes in v2:
+>   - Convert bindings file to DT schema format
+>   - Using interrupts instead of irq-gpios
+> 
+>  .../input/touchscreen/ilitek_ts_i2c.yaml      | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -74,10 +68,12 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.example.dt.yaml: imx7d-cm4: memory-region: [[1], [2]] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+Error: Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.example.dts:28.45-46 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.example.dt.yaml] Error 1
+make: *** [Makefile:1370: dt_binding_check] Error 2
 
-See https://patchwork.ozlabs.org/patch/1440522
+See https://patchwork.ozlabs.org/patch/1441181
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
