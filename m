@@ -2,100 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98F3431DB90
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 15:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 018B231DBAD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 15:45:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233256AbhBQOj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 09:39:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45806 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233044AbhBQOjY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Feb 2021 09:39:24 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3F82A64DFF;
-        Wed, 17 Feb 2021 14:38:44 +0000 (UTC)
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1lCNyR-00Ec2r-CW; Wed, 17 Feb 2021 14:38:42 +0000
-Date:   Wed, 17 Feb 2021 14:38:27 +0000
-Message-ID: <87h7mapxng.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Mark Rutland <mark.rutland@arm.com>
-Cc:     Hector Martin <marcan@marcan.st>,
+        id S233476AbhBQOoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 09:44:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51420 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233453AbhBQOoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 09:44:19 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0887EC061574;
+        Wed, 17 Feb 2021 06:43:39 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id v22so1381937edx.13;
+        Wed, 17 Feb 2021 06:43:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=TpDThfztLQKczc6Q821rns/OCQX7B0FVsYhPx4xk8RM=;
+        b=GnU7hZ3tlGqCZQ/mw1pmbs3J94uU+pH5RJ3rTm9U8Hjh+NI6+1493pd+EuNJcRo9Zd
+         z43DeDsOcGzSVV+mj8euHupNnqlF2QkeSdBVhEtshsCAglEgPIOqdc1gN4QKlussvVHX
+         Gfkzh4nSdSKw1NDGYBnO/9Hr6qIOZPJdDaBdl1H7wXWAKOvoY76IPF08g50NlU2GkAWN
+         CBQaa+RheBgDAPPl/DUQvsbNy+LiAWJs0Cm/22V63eWCaCnTMZnPwqF9P0L6BExoRm3Q
+         54VLPOyyb6sI7PzavxpA7TL7FOLsThVlHqkuNUTBiB5ELk8yhfZ7mYeN4k7CkFJO2BI+
+         vPDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=TpDThfztLQKczc6Q821rns/OCQX7B0FVsYhPx4xk8RM=;
+        b=VuHWQmxiQrOHk4XgrptEBnevWC1cbMt703NQ9ZlcQ87b12dA5JGtAkpQZHtBi3hFsB
+         rAeObOAFvt97wLlvMMvSfiwwF1VzRyiGTwokFqYvO82LDsz2Bokenmbpz8r0z7CYv4dG
+         O/zD6vO6jIBJ+blCfxMZJfDZAOWx7vMVZVfvVXFvRNwiJc4XjryNssC1Yon1lawL2qhE
+         ysdB7hclNGqu9QpJmc3m0NzSKunS2SPQE2SH2v9MfE0+LzxfDcGmb+JWRju2Jk6kkvap
+         RHaYeVkMWEcoZ0kYbSNSkfLV72Dn2AF/oM6SDxxhLhsj9feVgnxgL7lCr5nE/8QjYW9c
+         zUMw==
+X-Gm-Message-State: AOAM533q+OdOK7jQa6Xg18Kh/KdFLxqxdmksWO/xYPl/ILzuyAtzUjl8
+        pDmM+BoFOnDGwg84/u+5MBj6NciDNAzaVH9mzww=
+X-Google-Smtp-Source: ABdhPJxFS84AzKvCp09lAImICSP3HGykH+N0PyDA/sQY8yMWfym6+So+btt+AsW8qqxJ6emcGQ+ZhaON0KeldrcRF28=
+X-Received: by 2002:a50:ef0f:: with SMTP id m15mr27709575eds.175.1613573017535;
+ Wed, 17 Feb 2021 06:43:37 -0800 (PST)
+MIME-Version: 1.0
+References: <20210215231943.36910-1-adrien.grassein@gmail.com>
+ <20210215231943.36910-2-adrien.grassein@gmail.com> <20210217115814.zfwhd5fwb2ibygt3@kozik-lap>
+In-Reply-To: <20210217115814.zfwhd5fwb2ibygt3@kozik-lap>
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Date:   Wed, 17 Feb 2021 15:43:26 +0100
+Message-ID: <CABkfQAGyushYbaYkmfGdNjw3Ssaw7DgLJ5iomJPtRdHS0Rbobg@mail.gmail.com>
+Subject: Re: [PATCH 1/8] arm64: dts: imx8mm-nitrogen-r2: add wifi/bt chip
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>, catalin.marinas@arm.com,
+        will@kernel.org, DTML <devicetree@vger.kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 09/25] arm64: entry: Map the FIQ vector to IRQ on NEEDS_FIQ platforms
-In-Reply-To: <20210217114923.GB5556@C02TD0UTHF1T.local>
-References: <20210215121713.57687-1-marcan@marcan.st>
-        <20210215121713.57687-10-marcan@marcan.st>
-        <20210217114923.GB5556@C02TD0UTHF1T.local>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: mark.rutland@arm.com, marcan@marcan.st, linux-arm-kernel@lists.infradead.org, robh@kernel.org, arnd@kernel.org, olof@lixom.net, krzk@kernel.org, mark.kettenis@xs4all.nl, tony@atomide.com, mohamed.mediouni@caramail.com, stan@corellium.com, graf@amazon.com, will@kernel.org, linus.walleij@linaro.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 Feb 2021 11:49:23 +0000,
-Mark Rutland <mark.rutland@arm.com> wrote:
-> 
-> Hi Hector,
-> 
-> On Mon, Feb 15, 2021 at 09:16:57PM +0900, Hector Martin wrote:
-> > From: Marc Zyngier <maz@kernel.org>
-> > 
-> > By default, FIQ exceptions trigger a panic. On platforms that need to
-> > deliver interrupts via FIQ, this gets redirected via an alternative to
-> > instead handle FIQ the same way as IRQ. It is up to the irqchip handler
-> > to discriminate between the two.
-> > 
-> > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > Signed-off-by: Hector Martin <marcan@marcan.st>
-> 
-> Since the use of FIQ is a platform integration detail rather than a CPU
-> implementation detail (and e.g. can differ across bare-metal and VM),
-> I'd prefer to always have separate registered handlers for IRQ/FIQ (also
-> avoiding the need for patching). That way we can explicitly opt-in to
-> FIQ when required, and avoid edge-cases where an unexpected FIQ could
-> livelock an unaware IRQ handler.
-> 
-> Marc and I had a quick play with that, and I have a series of patches
-> I've pushed to:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/mark/linux.git/log/?h=arm64/fiq
-> git://git.kernel.org/pub/scm/linux/kernel/git/mark/linux.git arm64/fiq
-> 
-> ... which I'll post out shortly.
+Hello,
 
-FWIW, I've just posted a more complete version of the first patch in
-this series[1], which you may want to use directly (though I plan to
-take it as a fix for 5.12).
+Thanks for your review and your time.
 
-Thanks,
+Le mer. 17 f=C3=A9vr. 2021 =C3=A0 12:58, Krzysztof Kozlowski <krzk@kernel.o=
+rg> a =C3=A9crit :
+>
+> On Tue, Feb 16, 2021 at 12:19:36AM +0100, Adrien Grassein wrote:
+> > Add usdhc3 description which corresponds to the wifi/bt chip
+> >
+> > Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+> > ---
+> >  .../boot/dts/freescale/imx8mm-nitrogen-r2.dts | 31 +++++++++++++++++++
+> >  1 file changed, 31 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts b/arc=
+h/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
+> > index c0c384d76147..bf20a40bcda0 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
+> > @@ -9,6 +9,18 @@
+> >  / {
+> >       model =3D "Boundary Devices i.MX8MMini Nitrogen8MM Rev2";
+> >       compatible =3D "boundary,imx8mm-nitrogen8mm", "fsl,imx8mm";
+> > +
+> > +     reg_wlan_vmmc: regulator-wlan-vmmc {
+> > +             compatible =3D "regulator-fixed";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_reg_wlan_vmmc>;
+> > +             regulator-name =3D "reg_wlan_vmmc";
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             gpio =3D <&gpio3 20 GPIO_ACTIVE_HIGH>;
+> > +             enable-active-high;
+> > +             startup-delay-us =3D <70000>;
+>
+> That's quite a startup time... and it happens is the same as in bindings
+> example. Do you really need it or it was just copied?
+>
+> I actually don't mind it, just poking at various things. :)
+>
 
-	M.
+It was a copy/paste. I've just retested without this, it works.
 
-[1] https://lore.kernel.org/r/20210217142800.2547737-1-maz@kernel.org
+> > +     };
+> >  };
+> >
+> >  &A53_0 {
+> > @@ -206,6 +218,19 @@ &usdhc2 {
+> >       status =3D "okay";
+> >  };
+> >
+> > +/* wlan */
+> > +&usdhc3 {
+> > +     bus-width =3D <4>;
+> > +     sdhci-caps-mask =3D <0x2 0x0>;
+> > +     non-removable;
+> > +     pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
+> > +     pinctrl-0 =3D <&pinctrl_usdhc3>;
+> > +     pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
+> > +     pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
+> > +     vmmc-supply =3D <&reg_wlan_vmmc>;
+>
+> What about vqmmc?
+>
 
--- 
-Without deviation from the norm, progress is not possible.
+It was missing, thanks,
+
+> Best regards,
+> Krzysztof
+
+Best regards,
+Adrien
