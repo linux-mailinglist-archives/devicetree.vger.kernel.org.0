@@ -2,149 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA1E31D6D3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 10:14:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0BA531D6EA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 10:22:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231814AbhBQJLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 04:11:32 -0500
-Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:55779 "EHLO
-        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231542AbhBQJLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Feb 2021 04:11:31 -0500
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id CIqxl7UkCZvk6CIr0l6rUq; Wed, 17 Feb 2021 10:10:46 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1613553046; bh=uSxzPPyVvXNWM+WQDeaRwP48PE6c7mphNoRppLem0rY=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=e3CJEEyAjmSERDt8Inx1KHZ0hF2Wo0JERbLmD7awKrEGqC+gkG1qYyw55ux8La0kO
-         W6n3lTXO50JP00pI115gXNMncz2Z+YMN+zXSZ22YZCp2FsQJVsgq3gbff/SjH9NGPk
-         1pJlCIa5jgFg9unlqFvjRiAYzXrbpsYd8SK96Kd69YzIiOhyEF3pyj/VZnJFS7a1UH
-         7Fs/cE2nO5OGBuC4zN+/mQQVBx8i5Kfp+25nT/MIVwypToL5iiJRaqNTX/P3k6wdPD
-         FrQPLSm0Krod9bbO5pQvL9De7DBvsipUJFp4tJVajwmAiWKhs5q660PaAjBDP0crNg
-         0MTl7iH9ZtVzA==
-Subject: Re: [PATCH v1 00/18] Add HANTRO G2/HEVC decoder support for IMX8MQ
-To:     Greg KH <gregkh@linuxfoundation.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc:     peng.fan@nxp.com, kernel@collabora.com, devel@driverdev.osuosl.org,
-        Anson.Huang@nxp.com, krzk@kernel.org,
-        linux-rockchip@lists.infradead.org, wens@csie.org,
-        linux-imx@nxp.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
-        s.hauer@pengutronix.de, mripard@kernel.org, robh+dt@kernel.org,
-        mchehab@kernel.org, ezequiel@collabora.com,
-        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com,
-        jernej.skrabec@siol.net, adrian.ratiu@collabora.com,
-        linux-kernel@vger.kernel.org, paul.kocialkowski@bootlin.com,
-        kernel@pengutronix.de, shawnguo@kernel.org, shengjiu.wang@nxp.com
-References: <20210217080306.157876-1-benjamin.gaignard@collabora.com>
- <YCzO7SRmBKzGeMUS@kroah.com>
- <04dfae0b-92e5-e02d-c687-ba4d28b7aaf2@collabora.com>
- <YCzVmRVL79KMkxXQ@kroah.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <63b62e9e-b95f-59a4-b830-c56d2cb9e4f8@xs4all.nl>
-Date:   Wed, 17 Feb 2021 10:10:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.7.0
+        id S230303AbhBQJWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 04:22:33 -0500
+Received: from fallback16.mail.ru ([94.100.177.128]:43636 "EHLO
+        fallback16.mail.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229553AbhBQJWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 04:22:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
+        h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From; bh=EjB+5VqWLyWmjemoi1Psrq7kjjSi0B7hGL5GqtStktU=;
+        b=w2M4pDvJnO76KqGHrtdkVCRbrYiLnaWLY5PHTH8lZdxyk1WArmR5ckcXVceGLwu+KQgxTo459eJ9IFEjm7JjoOTmn9+rt19gJaoBWFuTO1bs1KeLySEbK1Ovc6mgG81o5v+iv+s/UuiMzll/YurjAOkmY4LkXupXoucSHs7XUtY=;
+Received: from [10.161.22.27] (port=42574 helo=smtp57.i.mail.ru)
+        by fallback16.i with esmtp (envelope-from <shc_work@mail.ru>)
+        id 1lCJ1l-00036Z-AG; Wed, 17 Feb 2021 12:21:45 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
+        h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=EjB+5VqWLyWmjemoi1Psrq7kjjSi0B7hGL5GqtStktU=;
+        b=GLT65rykfwXJtlTSBSdSgNwe6M2/59A3Wn9z4auleVvnF4Oqsk3RwiwzilKszWh+f4WvqEPOYG8W2L2itc23p4ZWb49amEnQdQ2fxXhyGNgVSitwQOEeaQ/NbIsEooM700jeMFxt3TGUD00oM+Wd2tG70rpV9efFQLAfVCras74=;
+Received: by smtp57.i.mail.ru with esmtpa (envelope-from <shc_work@mail.ru>)
+        id 1lCJ0z-0003lw-Ez; Wed, 17 Feb 2021 12:20:58 +0300
+From:   Alexander Shiyan <shc_work@mail.ru>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexander Shiyan <shc_work@mail.ru>
+Subject: [PATCH 1/5] ARM: dts: clps711x: Add SYSCON nodes where it is used
+Date:   Wed, 17 Feb 2021 12:20:20 +0300
+Message-Id: <20210217092024.1568-1-shc_work@mail.ru>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <YCzVmRVL79KMkxXQ@kroah.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfCWTvvS3ntp+Ze+ND5twq3FMCVE1sSa/yxM9eKULJNJNKc944I4NbpFvKDCdcH0V3BJX+oU7FTwzESJgXnCwL77Ih7EB0zX0uU5PzaBLnRI9R34LXBgd
- zrERyF1rcsEuHD8tIo3a/zrZt3UKpKGOIRrhjSgachV2bh2GtGg0coYnosYcgp4hFp19eDpk7JOzbBEBv/X6IafM3sfhJ8HRNe8VJJBtJN0K/3Dj7Oz7KrIt
- 9p96GxBx56YG3x9fF4JSrMs56oXPz/47sMw/RWnptfoUPtQp1og8S8Ot9ZgYgsYTxu8fMZlcwxR/FDSAjoWZMjrXQT1A0Jl2dlR1cQFx8qvyY0fvHOJNg5D9
- Xc7DBRcN1PAplu7kW3gBTE2PG+fczJEsvL4D274Rvzc8RW2PjcvGfvaUkmIpniCljdI8ulw8s4KEMEOVUoxBLowsYcZW7+rlBflkkRGTBGFlu1Wg2hhfpkKX
- SDYJBx+xlR8GQDQ+KiP5ACFgmAlp0rTazN0fVEylVdiQpAVNb5OwNLXH9Zx9hKooOx3RoHR+EVkXbcuN+RXrGavzcEMTc57e/cXOcPEAxTagUSVakKKjPdb9
- Qb3YjD+Ei02mNV22HyYJKc35N7RjJsqjMVHIsrmkAhETKdf9d0EcNfak/03J5poePHe/Z34EGlNCJPKx6NCXUymZ+Uq/1cTuknrzBNfzBI7tQV1E17N7WAed
- TU2+X66uywWoAkmwNDUG2DL8yEfZcxl8utD1JLcaflcPqJ2+xqgkn/XugDGZrw1SOjhEv2aqWZo45b1yIPvrim6FAfod8J7pu2LAXaKZgYxH+XEQu58OdsFK
- 3GCh+CHxbluTV8FThcw2AybhlCuBA2tF3p1on9HIoIhmu7sen7TQLidyHl2SSz3pnDD5uwA+hsclFq0z6BPpt4s7Tip35a3/A1d+Lp6jMUqjXYqhfW6wmfQL
- 14tRqoyYAqkj1ODAACQ70Q0pMXUBxpy5weS2QLm3HdQUYTMJ5QuvXBkDPIu1G79dDRnWNWRt2rHvQhM+5Vp0qRFajwvRSOE1TRlyXlKUMegPOp+OanOGF1P0
- o55OSHtLD1cW+cIAyA4FEkSpQ99E0StnZ9jTLY68N/ZwXgc253cpprT8
+X-7564579A: B8F34718100C35BD
+X-77F55803: 4F1203BC0FB41BD975C3EC174F56692243410BA6471F01668A37AB103014B813182A05F5380850409EE827FB635F08B1507516BB920420BC21CA316B94D806DE04AE5D08790AC34A
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7A3DED2DACB82E709C2099A533E45F2D0395957E7521B51C2CFCAF695D4D8E9FCEA1F7E6F0F101C6778DA827A17800CE7BC08626EA5717D14EA1F7E6F0F101C674E70A05D1297E1BBC6CDE5D1141D2B1C08A5F5A1D2C2A955BC73F900414B057C189AD40ABAB17D3A9FA2833FD35BB23D9E625A9149C048EE33AC447995A7AD18618001F51B5FD3F9D2E47CDBA5A96583BD4B6F7A4D31EC0BC014FD901B82EE079FA2833FD35BB23D27C277FBC8AE2E8BF80095D1E57F4578A471835C12D1D977C4224003CC836476EB9C4185024447017B076A6E789B0E975F5C1EE8F4F765FC451FDA88ED5A5A9C3AA81AA40904B5D9CF19DD082D7633A078D18283394535A93AA81AA40904B5D98AA50765F790063742A7A319716989A3D81D268191BDAD3D698AB9A7B718F8C442539A7722CA490C13377AFFFEAFD26923F8577A6DFFEA7CAA44A86D94E7BBB093EC92FD9297F6715571747095F342E857739F23D657EF2BD5E8D9A59859A8B630C12C51E7AE69A2089D37D7C0E48F6C5571747095F342E857739F23D657EF2B6825BDBE14D8E702ABEDDA51113D120200306258E7E6ABB4E4A6367B16DE6309
+X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8186998911F362727C414F749A5E30D975CF81F587C2CCB193372F0DCD57F728C2278E5581508C49C739C2B6934AE262D3EE7EAB7254005DCED556CBE7F905700A49510FB958DCE06DB6ED91DBE5ABE359AC8952F428387DEC05E4DBAB5AF249FA793EDB24507CE13387DFF0A840B692CF8
+X-C8649E89: 4E36BF7865823D7055A7F0CF078B5EC49A30900B95165D346B1FF97F6D0959A2D2AE2BD3BA7D8EDC73089C49D28AB9A71F61D99F6115901BDC460778C12749FB1D7E09C32AA3244C682B8721DB637102EC217AC01A63E89A85803964308724808D5DD81C2BAB7D1D
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojJkVkVdRHm//I9+q+miAZ0Q==
+X-Mailru-Sender: 8261CADE3D3FA0B4C2F1292954F703E98D9BA45B4A66CD89EEE751E438F48B11CF13FF9A0E77555C6B3B2BD4812BFD4DC77752E0C033A69E93554C27080790AB3B25A7FBAAF806F0AE208404248635DF
+X-Mras: Ok
+X-7564579A: B8F34718100C35BD
+X-77F55803: 6242723A09DB00B4EBFCE21E1429DC4DC729172D244F6EB0C1AE57799A0D0A59049FFFDB7839CE9ECACF5275A6186BFCF659E5C1DB78CD72D3EBCA0CDDFE2633E1092D4293D97D37
+X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8186998911F362727C414F749A5E30D975CF81F587C2CCB1933CEBDE45C104A994C8C04538298E205E39C2B6934AE262D3EE7EAB7254005DCED89C3600D1690B433699F904B3F4130E343918A1A30D5E7FCCB5012B2E24CD356
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5xhPKz0ZEsZ5k6NOOPWz5QAiZSCXKGQRq3/7KxbCLSB2ESzQkaOXqCBFZPLWFrEGlV1shfWe2EVcxl5toh0c/aCGOghz/frdRhzMe95NxDFdiyxR52CEJyX2ZIFXq8Vq2A==
+X-Mailru-MI: 800
+X-Mras: Ok
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2021 09:36, Greg KH wrote:
-> On Wed, Feb 17, 2021 at 09:28:09AM +0100, Benjamin Gaignard wrote:
->>
->> Le 17/02/2021 à 09:08, Greg KH a écrit :
->>> On Wed, Feb 17, 2021 at 09:02:48AM +0100, Benjamin Gaignard wrote:
->>>> The IMX8MQ got two VPUs but until now only G1 has been enabled.
->>>> This series aim to add the second VPU (aka G2) and provide basic
->>>> HEVC decoding support.
->>> Why are you adding this directly to drivers/staging/media/ and not
->>> drivers/media/?  Why can't this just go to the main location and not
->>> live in staging?
->>
->> G2/HEVC is added inside the already exiting Hantro driver, it is "just"
->> an other codec from Hantro driver point of view.
->> In addition of that v4l2-hevc uAPI is still unstable.
->> One goal of this series is to have one more consumer of this v4l2-hevc
->> uAPI so maybe we can claim it to be stable enough to move away from staging
->> and then do the same for Hantro driver. That would be a great achievement !
-> 
-> I know I do not like seeing new additions/features/whatever being added
-> to staging drivers as that encourages people to do new stuff on them
-> without doing the real work needed to get them out of staging.
+This patch adds SYSCON descriptors to framebuffer, SPI, DAI
+and modem control GPIO nodes to further rework these drivers
+to remove the call to the syscon_regmap_lookup_by_compatible() function.
 
-In order to support a specific codec (MPEG-2, H.264, HEVC, VP8, etc.) for
-stateless codec hardware like the hantro, V4L2 controls need to be defined.
-The contents of these controls is derived directly from the underlying codec
-standards, but it is quite difficult to get this right with the first attempt,
-since these standards are very complex.
+Signed-off-by: Alexander Shiyan <shc_work@mail.ru>
+---
+ arch/arm/boot/dts/ep7209.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-So we went for the strategy of keeping these drivers in staging to make it
-easy to work on, while keeping the APIs for each codec private (i.e., they are
-not exposed in include/uapi/linux).
+diff --git a/arch/arm/boot/dts/ep7209.dtsi b/arch/arm/boot/dts/ep7209.dtsi
+index 365931f8b48d..dacbe0d8e67a 100644
+--- a/arch/arm/boot/dts/ep7209.dtsi
++++ b/arch/arm/boot/dts/ep7209.dtsi
+@@ -108,6 +108,7 @@ fb: fb@800002c0 {
+ 			compatible = "cirrus,ep7209-fb";
+ 			reg = <0x800002c0 0xd44>, <0x60000000 0xc000>;
+ 			clocks = <&clks CLPS711X_CLK_BUS>;
++			syscon = <&syscon1>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -147,6 +148,7 @@ spi: spi@80000500 {
+ 			reg = <0x80000500 0x4>;
+ 			interrupts = <15>;
+ 			clocks = <&clks CLPS711X_CLK_SPI>;
++			syscon = <&syscon3>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -170,6 +172,7 @@ dai: dai@80002000 {
+ 			clocks = <&clks CLPS711X_CLK_PLL>;
+ 			clock-names = "pll";
+ 			interrupts = <32>;
++			syscon = <&syscon3>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -181,6 +184,7 @@ syscon3: syscon@80002200 {
+ 
+ 	mctrl: mctrl {
+ 		compatible = "cirrus,ep7209-mctrl-gpio";
++		gpio,syscon-dev = <&syscon1 0 0>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 	};
+-- 
+2.26.2
 
-Once we have sufficient confidence in the API for a specific codec we move
-it to uapi and thus fix the API. We also renumber the control IDs at that
-time to avoid any confusion between the staging version and the final version.
-
-We did that for H.264 and I hope we can soon do the same for MPEG-2 and VP8.
-
-HEVC is definitely not ready for that yet.
-
-The key phrase is 'sufficient confidence': one requirement is that it is supported
-by at least two drivers to be reasonably certain the API doesn't contain any HW
-specific stuff, and it passes test suites and review by codec experts.
-
-All this is actively being worked on, so this is very much alive, but it is
-complex and time consuming.
-
-> So what is preventing the existing driver from getting out of staging
-> now?
-
-Once MPEG-2 and VP8 are finalized it is probably time to move these drivers
-out of staging, while still keeping the HEVC API part private.
-
-> 
-> And how are you all creating new userspace apis for staging drivers to
-> the v4l layer?  What happens when you export something new and then
-> userspace starts to rely on it and then you change it?
-
-Nothing is exported. So if userspace want to use it they have to manually
-copy headers from include/media to their application.
-
-> 
-> Anyway, the media staging drivers are on their own, I don't touch them,
-> it just feels odd to me...
-
-It's an unusual situation. But putting the drivers in staging and keeping
-the codec API headers private turns out to be the most effective way to
-develop this.
-
-Regards,
-
-	Hans
-
-PS: stateful vs stateless decoders: stateful decoders are fully supported
-today: you just feed the decoder the compressed stream and the decoded frames
-are produced by the firmware/hardware. I.e. the HW takes care of the decoder
-state. Stateless decoders require you to pass the compressed frame + decoder
-state to the hardware, so they do not keep track of the decoder state, that
-needs to be done in software. And that requires structures to be created that
-store the state, which luckily can be derived from the codec standards.
