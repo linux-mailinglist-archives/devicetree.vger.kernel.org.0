@@ -2,164 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C66631D8D6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 12:51:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10CF231D8E3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 12:56:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232328AbhBQLu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 06:50:59 -0500
-Received: from foss.arm.com ([217.140.110.172]:57052 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230389AbhBQLuR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Feb 2021 06:50:17 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A999531B;
-        Wed, 17 Feb 2021 03:49:29 -0800 (PST)
-Received: from C02TD0UTHF1T.local (unknown [10.57.46.232])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 623163F694;
-        Wed, 17 Feb 2021 03:49:26 -0800 (PST)
-Date:   Wed, 17 Feb 2021 11:49:23 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Hector Martin <marcan@marcan.st>, Marc Zyngier <maz@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 09/25] arm64: entry: Map the FIQ vector to IRQ on
- NEEDS_FIQ platforms
-Message-ID: <20210217114923.GB5556@C02TD0UTHF1T.local>
-References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-10-marcan@marcan.st>
+        id S231603AbhBQLyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 06:54:50 -0500
+Received: from mail-ej1-f42.google.com ([209.85.218.42]:46886 "EHLO
+        mail-ej1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232054AbhBQLxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 06:53:33 -0500
+Received: by mail-ej1-f42.google.com with SMTP id ly28so1666025ejb.13;
+        Wed, 17 Feb 2021 03:53:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tpzgM7DwrHm/I77e3idiEKwStb99IJkjqQ/VL9hmTWo=;
+        b=Vg+pXxDjYxSP09AhCDW74eaLJaR7Yv+Z61cJXgYwX5Vm38WLubHgVMOSwPZt8bCuj4
+         1AI3IOGZYeoTkoGz4B4VgWbJlPjEkMspNCvbMnN55B6eywDBtuxhoVR7mvMfZxnPTbj6
+         sRUtuVZUbVwI6iuptRf0b1x7xI4rWjek77tD1i+mnOumXmC1BneslT0Rsnm92zj7PVbX
+         Xwrv7EV4Z4dz/oLlkRySDmEhk8b0KZI5qsVOorXHFJpX0SqurRDUsnH7hOgn9OqgyK/L
+         9qYOqmulVMr9ZbAJ/8DTjAX0dHOYTjNnKV2DeB0dIABk5NOOvEmwtcsG4PilftpUQBQt
+         2uFg==
+X-Gm-Message-State: AOAM532sMqeqM/PQRLHmblS+MkvDMGhrvHo3J8qJL/0kHsT4pxfb+uKo
+        fCdLcfUZP676QookGUnPV4A=
+X-Google-Smtp-Source: ABdhPJw06of3Fmyf6zbfkdm6PQ8KqMgb8iuOWXimYxThESWkgIlvy6rYUgIt1Zk0SnvDVIieydKISQ==
+X-Received: by 2002:a17:907:aa9:: with SMTP id bz9mr24376522ejc.528.1613562771138;
+        Wed, 17 Feb 2021 03:52:51 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id z2sm898600ejd.44.2021.02.17.03.52.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Feb 2021 03:52:50 -0800 (PST)
+Date:   Wed, 17 Feb 2021 12:52:48 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com, kernel@puri.sm,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Angus Ainslie <angus@akkea.ca>
+Subject: Re: [PATCH v2 4/5] arm64: dts: librem5: protect some partitions of
+ the nor-flash
+Message-ID: <20210217115248.7t5b64jorzfzbd7h@kozik-lap>
+References: <20210217111944.1416-1-martin.kepplinger@puri.sm>
+ <20210217111944.1416-5-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210215121713.57687-10-marcan@marcan.st>
+In-Reply-To: <20210217111944.1416-5-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hector,
-
-On Mon, Feb 15, 2021 at 09:16:57PM +0900, Hector Martin wrote:
-> From: Marc Zyngier <maz@kernel.org>
+On Wed, Feb 17, 2021 at 12:19:43PM +0100, Martin Kepplinger wrote:
+> From: Angus Ainslie <angus@akkea.ca>
 > 
-> By default, FIQ exceptions trigger a panic. On platforms that need to
-> deliver interrupts via FIQ, this gets redirected via an alternative to
-> instead handle FIQ the same way as IRQ. It is up to the irqchip handler
-> to discriminate between the two.
+> These sections should be read only as they contain important data.
 > 
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-
-Since the use of FIQ is a platform integration detail rather than a CPU
-implementation detail (and e.g. can differ across bare-metal and VM),
-I'd prefer to always have separate registered handlers for IRQ/FIQ (also
-avoiding the need for patching). That way we can explicitly opt-in to
-FIQ when required, and avoid edge-cases where an unexpected FIQ could
-livelock an unaware IRQ handler.
-
-Marc and I had a quick play with that, and I have a series of patches
-I've pushed to:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/mark/linux.git/log/?h=arm64/fiq
-git://git.kernel.org/pub/scm/linux/kernel/git/mark/linux.git arm64/fiq
-
-... which I'll post out shortly.
-
-Thanks,
-Mark.
-
+> Signed-off-by: Angus Ainslie <angus@akkea.ca>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 > ---
->  arch/arm64/kernel/entry.S | 21 ++++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
+>  .../arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/arch/arm64/kernel/entry.S b/arch/arm64/kernel/entry.S
-> index ba5f9aa379ce..bcfd1ac72636 100644
-> --- a/arch/arm64/kernel/entry.S
-> +++ b/arch/arm64/kernel/entry.S
-> @@ -547,18 +547,18 @@ SYM_CODE_START(vectors)
->  
->  	kernel_ventry	1, sync				// Synchronous EL1h
->  	kernel_ventry	1, irq				// IRQ EL1h
-> -	kernel_ventry	1, fiq_invalid			// FIQ EL1h
-> +	kernel_ventry	1, fiq				// FIQ EL1h
->  	kernel_ventry	1, error			// Error EL1h
->  
->  	kernel_ventry	0, sync				// Synchronous 64-bit EL0
->  	kernel_ventry	0, irq				// IRQ 64-bit EL0
-> -	kernel_ventry	0, fiq_invalid			// FIQ 64-bit EL0
-> +	kernel_ventry	0, fiq				// FIQ 64-bit EL0
->  	kernel_ventry	0, error			// Error 64-bit EL0
->  
->  #ifdef CONFIG_COMPAT
->  	kernel_ventry	0, sync_compat, 32		// Synchronous 32-bit EL0
->  	kernel_ventry	0, irq_compat, 32		// IRQ 32-bit EL0
-> -	kernel_ventry	0, fiq_invalid_compat, 32	// FIQ 32-bit EL0
-> +	kernel_ventry	0, fiq_compat, 32		// FIQ 32-bit EL0
->  	kernel_ventry	0, error_compat, 32		// Error 32-bit EL0
->  #else
->  	kernel_ventry	0, sync_invalid, 32		// Synchronous 32-bit EL0
-> @@ -658,6 +658,10 @@ SYM_CODE_START_LOCAL_NOALIGN(el1_sync)
->  SYM_CODE_END(el1_sync)
->  
->  	.align	6
-> +SYM_CODE_START_LOCAL_NOALIGN(el1_fiq)
-> +alternative_if_not ARM64_NEEDS_FIQ
-> +	b	el1_fiq_invalid
-> +alternative_else_nop_endif
->  SYM_CODE_START_LOCAL_NOALIGN(el1_irq)
->  	kernel_entry 1
->  	gic_prio_irq_setup pmr=x20, tmp=x1
-> @@ -688,6 +692,7 @@ alternative_else_nop_endif
->  
->  	kernel_exit 1
->  SYM_CODE_END(el1_irq)
-> +SYM_CODE_END(el1_fiq)
->  
->  /*
->   * EL0 mode handlers.
-> @@ -710,10 +715,15 @@ SYM_CODE_START_LOCAL_NOALIGN(el0_sync_compat)
->  SYM_CODE_END(el0_sync_compat)
->  
->  	.align	6
-> +SYM_CODE_START_LOCAL_NOALIGN(el0_fiq_compat)
-> +alternative_if_not ARM64_NEEDS_FIQ
-> +	b	el0_fiq_invalid_compat
-> +alternative_else_nop_endif
->  SYM_CODE_START_LOCAL_NOALIGN(el0_irq_compat)
->  	kernel_entry 0, 32
->  	b	el0_irq_naked
->  SYM_CODE_END(el0_irq_compat)
-> +SYM_CODE_END(el0_fiq_compat)
->  
->  SYM_CODE_START_LOCAL_NOALIGN(el0_error_compat)
->  	kernel_entry 0, 32
-> @@ -722,6 +732,10 @@ SYM_CODE_END(el0_error_compat)
->  #endif
->  
->  	.align	6
-> +SYM_CODE_START_LOCAL_NOALIGN(el0_fiq)
-> +alternative_if_not ARM64_NEEDS_FIQ
-> +	b	el0_fiq_invalid
-> +alternative_else_nop_endif
->  SYM_CODE_START_LOCAL_NOALIGN(el0_irq)
->  	kernel_entry 0
->  el0_irq_naked:
-> @@ -736,6 +750,7 @@ el0_irq_naked:
->  
->  	b	ret_to_user
->  SYM_CODE_END(el0_irq)
-> +SYM_CODE_END(el0_fiq)
->  
->  SYM_CODE_START_LOCAL(el1_error)
->  	kernel_entry 1
-> -- 
-> 2.30.0
-> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+> index c2bbbdeb93e3..3c0462f81b3a 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+> @@ -258,6 +258,22 @@
+>  		compatible = "jedec,spi-nor";
+>  		reg = <0>;
+>  		spi-max-frequency = <1000000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+
+Still a line break here is needed.
+
+> +		partition@0 {
+> +			label = "protected0";
+> +			reg = <0x00000000 0x00030000>;
+> +			read-only;
+> +		};
+> +		partition@30000 {
+> +			label = "protected1";
+> +			reg = <0x00030000 0x00010000>;
+
+Drop the leading 0 in address and size. I saw some DTS using it but it's
+not the common format. All nodes don't lead with 0 so why partitions are
+different?
+
+Best regards,
+Krzysztof
