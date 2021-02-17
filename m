@@ -2,309 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32F1131D6BE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 09:47:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AA1E31D6D3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 10:14:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231965AbhBQIq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 03:46:59 -0500
-Received: from mailout1.samsung.com ([203.254.224.24]:28962 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231894AbhBQIq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 03:46:56 -0500
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20210217084610epoutp01a5670164e94a1dfabbd06be332f9747e~kfJrGV_Hk1272912729epoutp01d
-        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 08:46:10 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20210217084610epoutp01a5670164e94a1dfabbd06be332f9747e~kfJrGV_Hk1272912729epoutp01d
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1613551570;
-        bh=QzQEUPOs0m0/D4bKY3yGwrtaY9o7KDAxLXgD3ubbjOc=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=E45TUlJevFAmcx6oW3pQPpdPWY5Er89cEf4LBTElEuE+oBB/OMI7phaxv5Dk+fnLC
-         g+TYOKzEaWmWvfjlG5AzFKxPMeC/f01/LI9Gi6Y0QC6bO7ffZZBQa+5Jb0ob1w2CnH
-         aK5nB5JQFrT+kLmNQhq2cz3jC1au+qwYKBfJyD8k=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20210217084610epcas1p20237493d8cf4048e0a989d87f87277c9~kfJqkL4471601616016epcas1p27;
-        Wed, 17 Feb 2021 08:46:10 +0000 (GMT)
-Received: from epsmges1p5.samsung.com (unknown [182.195.40.163]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4DgWdq5Wy1z4x9Q9; Wed, 17 Feb
-        2021 08:46:07 +0000 (GMT)
-Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
-        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
-        03.84.09577.FC7DC206; Wed, 17 Feb 2021 17:46:07 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
-        20210217084606epcas1p36eaf03e53ac20def83db4c01aeb888d7~kfJnftVlG0091100911epcas1p3V;
-        Wed, 17 Feb 2021 08:46:06 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20210217084606epsmtrp16e7c67ac19bf0fc9606395cfabe7bfb2~kfJnestto0764807648epsmtrp1Z;
-        Wed, 17 Feb 2021 08:46:06 +0000 (GMT)
-X-AuditID: b6c32a39-c13ff70000002569-1c-602cd7cf9a2f
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        B5.37.13470.EC7DC206; Wed, 17 Feb 2021 17:46:06 +0900 (KST)
-Received: from dh0421hwang01 (unknown [10.253.101.58]) by
-        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20210217084606epsmtip166ca59926bece66b09fe33dcc30a91be~kfJnJWGZ52398323983epsmtip1B;
-        Wed, 17 Feb 2021 08:46:06 +0000 (GMT)
-From:   "DooHyun Hwang" <dh0421.hwang@samsung.com>
-To:     "'Adrian Hunter'" <adrian.hunter@intel.com>,
-        <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <ulf.hansson@linaro.org>,
-        <robh+dt@kernel.org>, <axboe@kernel.dk>, <satyat@google.com>,
-        <ebiggers@google.com>, <gustavoars@kernel.org>
-Cc:     <grant.jung@samsung.com>, <jt77.jang@samsung.com>,
-        <junwoo80.lee@samsung.com>, <jangsub.yi@samsung.com>,
-        <sh043.lee@samsung.com>, <cw9316.lee@samsung.com>,
-        <sh8267.baek@samsung.com>, <wkon.kim@samsung.com>
-In-Reply-To: <3e6525b5-9cd7-e632-800a-1066c5fa3581@intel.com>
-Subject: RE: [PATCH 2/2] mmc: core: Add no single read retries
-Date:   Wed, 17 Feb 2021 17:46:06 +0900
-Message-ID: <000001d70509$54bf59b0$fe3e0d10$@samsung.com>
+        id S231814AbhBQJLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 04:11:32 -0500
+Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:55779 "EHLO
+        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231542AbhBQJLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Feb 2021 04:11:31 -0500
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id CIqxl7UkCZvk6CIr0l6rUq; Wed, 17 Feb 2021 10:10:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1613553046; bh=uSxzPPyVvXNWM+WQDeaRwP48PE6c7mphNoRppLem0rY=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=e3CJEEyAjmSERDt8Inx1KHZ0hF2Wo0JERbLmD7awKrEGqC+gkG1qYyw55ux8La0kO
+         W6n3lTXO50JP00pI115gXNMncz2Z+YMN+zXSZ22YZCp2FsQJVsgq3gbff/SjH9NGPk
+         1pJlCIa5jgFg9unlqFvjRiAYzXrbpsYd8SK96Kd69YzIiOhyEF3pyj/VZnJFS7a1UH
+         7Fs/cE2nO5OGBuC4zN+/mQQVBx8i5Kfp+25nT/MIVwypToL5iiJRaqNTX/P3k6wdPD
+         FrQPLSm0Krod9bbO5pQvL9De7DBvsipUJFp4tJVajwmAiWKhs5q660PaAjBDP0crNg
+         0MTl7iH9ZtVzA==
+Subject: Re: [PATCH v1 00/18] Add HANTRO G2/HEVC decoder support for IMX8MQ
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     peng.fan@nxp.com, kernel@collabora.com, devel@driverdev.osuosl.org,
+        Anson.Huang@nxp.com, krzk@kernel.org,
+        linux-rockchip@lists.infradead.org, wens@csie.org,
+        linux-imx@nxp.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
+        s.hauer@pengutronix.de, mripard@kernel.org, robh+dt@kernel.org,
+        mchehab@kernel.org, ezequiel@collabora.com,
+        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com,
+        jernej.skrabec@siol.net, adrian.ratiu@collabora.com,
+        linux-kernel@vger.kernel.org, paul.kocialkowski@bootlin.com,
+        kernel@pengutronix.de, shawnguo@kernel.org, shengjiu.wang@nxp.com
+References: <20210217080306.157876-1-benjamin.gaignard@collabora.com>
+ <YCzO7SRmBKzGeMUS@kroah.com>
+ <04dfae0b-92e5-e02d-c687-ba4d28b7aaf2@collabora.com>
+ <YCzVmRVL79KMkxXQ@kroah.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <63b62e9e-b95f-59a4-b830-c56d2cb9e4f8@xs4all.nl>
+Date:   Wed, 17 Feb 2021 10:10:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKbcqji5gRWP8GQW9gJDYiZCoQNwAIslWD0AVH7PXAC/RaiVwHbTEKIqJBOSmA=
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xbVRzHPbftbWHrclceO6lz1huHAwdt6QqnG+Bjk9XokKAZZiqlgzvA
-        9WVvS5xTw2NWXqEgYW4diyiMGN4pjBUcJhbGQykLIkXHthCCmxuVERB0CMyWyyL/fc/vfL7n
-        d77nwWMJ3LiQl6UzUUadWkPi/uyOntCI8Ovje1Ml3zbuQYPTjThquGXF0bkfLRz0Ve8wB400
-        nOGg5dUWLloeOctBBZcrMOS4O8RFXav5GBrtqsJR7yMrQJ9193KRteEWjvJWvmcj99AAB/U3
-        JaO2n5fYLwqU1XazsubqPUw56jIr7fWFuPKm+yquLG2vB8oF+65E7jFNTCalTqeMIkqXpk/P
-        0mXEkq+9qTqokkdJpOFSBYomRTq1loolD72eGB6fpfGGIEXZao3ZW0pU0zQpjosx6s0mSpSp
-        p02xJGVI1xikEkMErdbSZl1GRJpeu18qkUTKvWSqJrN7xo0ZOuM/nFlsw3OAExUBPx4k9sHJ
-        kTFOEfDnCQgHgGNf9HCZwTyA9vFrXB8lIJYArB6Lf+yo7agEDNQN4KMrlzbsMwBOzLXhPgon
-        JLCiz4P7JgIJGwYLXBPr67KIcQAf3v4L81F+RCxsdN1k+3QAEQc9d+q8EI/HJnbDsukUX5lP
-        KODSH6s4o7fDwfPT6ziLeB7WfT3DYrYkgg9/r+P4dCCRACeujGIMEwgvFFpYvr6Q+IcHu87k
-        4YzhEByeK2UzOgDe72/nMloI71ktG7oYQKszjjGXATjaX7JhlsH5hQXg2yiLCIUtXWKm/Azs
-        /PciYBpvg7OLJRwfAgk+LLAIGCQE1qz97UW4Xr0T5m4pA6RtUzDbpmC2TQFs/7eqBux6EEwZ
-        aG0GRUsN8s2XbQfrDzxM4QBf/jkX4QQYDzgB5LHIQD53ISxVwE9Xn/qIMupVRrOGop1A7j3p
-        cpYwKE3v/SE6k0oqj5TJZGhfVHSUXEbu4B+XTKoERIbaRJ2kKANlfOzDeH7CHKzYY2OH9GR7
-        nnPMfvrx5aPLryxryU5Fc0I+P14cLgv+vCpWRB9mPbl9cu3lnpdCa7DRmtBnayqzVMM//XCD
-        c7rouwsrWwnzuKXjTp48UqyYsuT2HsjZFVG74/5kVWt1YkrM1vYga/la68Lb8mNv1B490By/
-        FHit2XUk9QgnYJCjNc32OW+8867pt8okN5x/z34ixbPH78EHfS7HtvqhSwmH5Unm5LiTwcmO
-        aFPZL61Pv7W3OOn22d1bKhTo7vtNU0RL/hP8ujB3snLnr1h2SIL9dKH4oHhiIElY+oKw4Pir
-        NPA0tVkGnvqmxJ25/+KKucd/IPf6qRPlvZLwxdx06dSDoE9cJJvOVEvDWEZa/R+3c6NAaQQA
-        AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIIsWRmVeSWpSXmKPExsWy7bCSnO656zoJBr2r1SxOPlnDZrH6bj+b
-        xYxTbawW84+cY7W4uLqF1eLX3/XsFr8uTmO16Ng6mclix/Mz7Ba7/jYzWVzeNYfN4sj/fkaL
-        1r1H2C36V99ls2j6s4/F4tqZE6wWx9eGW2y+9I3FQchjwaZSj8V7XjJ5XD5b6rFpVSebx51r
-        e9g8+rasYvT4vEkugD2KyyYlNSezLLVI3y6BK2PXvz+MBZ+cKtr/NLM3MP406WLk5JAQMJFY
-        sm0qYxcjF4eQwG5GidU9T5kgEjIS3ff3sncxcgDZwhKHDxdD1LxklPj9rY0ZpIZNwEBi8rE3
-        bCAJEYElTBJnLh9nBXGYBe4zSizaNpUdpEpIYDGTxNsuWRCbU8BWYs3ZOywgtrCAncSbZ8vA
-        NrAIqEpMeBIHEuYVsJT49uIvG4QtKHFy5hOwcmYBbYmnN5/C2csWvmaGOFRB4ufTZawgtoiA
-        n8Tt7ZeZIGpEJGZ3tjFPYBSehWTULCSjZiEZNQtJywJGllWMkqkFxbnpucWGBYZ5qeV6xYm5
-        xaV56XrJ+bmbGMGxrKW5g3H7qg96hxiZOBgPMUpwMCuJ8LJ/1koQ4k1JrKxKLcqPLyrNSS0+
-        xCjNwaIkznuh62S8kEB6YklqdmpqQWoRTJaJg1Oqgal+4R6d2xe8mEzqFN5dUXNZ/vn3VanT
-        Jr+jmicnzmaO+ztj1nee/CdvdE9cfR7TeWnWrjXrw7PunT6bs8anVnjqVvtJlx7f+Zn+dt3d
-        xx4PObrU43nk2CMn6d/SWfWx+mFWj4mS2h/b6mdXTpZIv3VauNCZeTm/bOTb7+ZVz+9c83v4
-        wkE3tX11rFTKet741BUJ57UWR4r/dFTavbjudL4cy75T3T9ftGxpNmE+N5Gtb0p7R5LRotL+
-        f+3mTx91z0zVX9div0TI/OSsMJbPMnd+CP642/1RvOZ9Wi2D3pyvW3wXnj104/BKP/FstgfM
-        El+LJqi9iEn5xr3jUurzN0+T59+Y22a1wFpztURmaLeeEktxRqKhFnNRcSIAV5+MT1QDAAA=
-X-CMS-MailID: 20210217084606epcas1p36eaf03e53ac20def83db4c01aeb888d7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20210217053521epcas1p2aa80cae5d52f30c8c8882f44abe8045c
-References: <20210217052239.13780-1-dh0421.hwang@samsung.com>
-        <CGME20210217053521epcas1p2aa80cae5d52f30c8c8882f44abe8045c@epcas1p2.samsung.com>
-        <20210217052239.13780-3-dh0421.hwang@samsung.com>
-        <4035139d-7850-8460-f069-06fc61d13039@intel.com>
-        <3e6525b5-9cd7-e632-800a-1066c5fa3581@intel.com>
+In-Reply-To: <YCzVmRVL79KMkxXQ@kroah.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfCWTvvS3ntp+Ze+ND5twq3FMCVE1sSa/yxM9eKULJNJNKc944I4NbpFvKDCdcH0V3BJX+oU7FTwzESJgXnCwL77Ih7EB0zX0uU5PzaBLnRI9R34LXBgd
+ zrERyF1rcsEuHD8tIo3a/zrZt3UKpKGOIRrhjSgachV2bh2GtGg0coYnosYcgp4hFp19eDpk7JOzbBEBv/X6IafM3sfhJ8HRNe8VJJBtJN0K/3Dj7Oz7KrIt
+ 9p96GxBx56YG3x9fF4JSrMs56oXPz/47sMw/RWnptfoUPtQp1og8S8Ot9ZgYgsYTxu8fMZlcwxR/FDSAjoWZMjrXQT1A0Jl2dlR1cQFx8qvyY0fvHOJNg5D9
+ Xc7DBRcN1PAplu7kW3gBTE2PG+fczJEsvL4D274Rvzc8RW2PjcvGfvaUkmIpniCljdI8ulw8s4KEMEOVUoxBLowsYcZW7+rlBflkkRGTBGFlu1Wg2hhfpkKX
+ SDYJBx+xlR8GQDQ+KiP5ACFgmAlp0rTazN0fVEylVdiQpAVNb5OwNLXH9Zx9hKooOx3RoHR+EVkXbcuN+RXrGavzcEMTc57e/cXOcPEAxTagUSVakKKjPdb9
+ Qb3YjD+Ei02mNV22HyYJKc35N7RjJsqjMVHIsrmkAhETKdf9d0EcNfak/03J5poePHe/Z34EGlNCJPKx6NCXUymZ+Uq/1cTuknrzBNfzBI7tQV1E17N7WAed
+ TU2+X66uywWoAkmwNDUG2DL8yEfZcxl8utD1JLcaflcPqJ2+xqgkn/XugDGZrw1SOjhEv2aqWZo45b1yIPvrim6FAfod8J7pu2LAXaKZgYxH+XEQu58OdsFK
+ 3GCh+CHxbluTV8FThcw2AybhlCuBA2tF3p1on9HIoIhmu7sen7TQLidyHl2SSz3pnDD5uwA+hsclFq0z6BPpt4s7Tip35a3/A1d+Lp6jMUqjXYqhfW6wmfQL
+ 14tRqoyYAqkj1ODAACQ70Q0pMXUBxpy5weS2QLm3HdQUYTMJ5QuvXBkDPIu1G79dDRnWNWRt2rHvQhM+5Vp0qRFajwvRSOE1TRlyXlKUMegPOp+OanOGF1P0
+ o55OSHtLD1cW+cIAyA4FEkSpQ99E0StnZ9jTLY68N/ZwXgc253cpprT8
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 17/02/21 8:00 am, Adrian Hunter wrote:
->On 17/02/21 7:46 am, Adrian Hunter wrote:
->> On 17/02/21 7:22 am, DooHyun Hwang wrote:
->>> This makes to handle read errors faster by not retrying multiple
->>> block read(CMD18) errors with single block reads(CMD17).
->>>
->>> On some bad SD Cards that have problem with read operations, it is
->>> not helpful to retry multiple block read errors with several single
->>> block reads, and it is delayed to treat read operations as I/O error
->>> as much as retrying single block reads.
+On 17/02/2021 09:36, Greg KH wrote:
+> On Wed, Feb 17, 2021 at 09:28:09AM +0100, Benjamin Gaignard wrote:
 >>
->> If the issue is that it takes too long, then maybe it would be better
->> to get
->> mmc_blk_read_single() to give up after a certain amount of time.
+>> Le 17/02/2021 à 09:08, Greg KH a écrit :
+>>> On Wed, Feb 17, 2021 at 09:02:48AM +0100, Benjamin Gaignard wrote:
+>>>> The IMX8MQ got two VPUs but until now only G1 has been enabled.
+>>>> This series aim to add the second VPU (aka G2) and provide basic
+>>>> HEVC decoding support.
+>>> Why are you adding this directly to drivers/staging/media/ and not
+>>> drivers/media/?  Why can't this just go to the main location and not
+>>> live in staging?
 >>
->
->So that a device property would not be needed I mean.  Then everyone would
->benefit.
+>> G2/HEVC is added inside the already exiting Hantro driver, it is "just"
+>> an other codec from Hantro driver point of view.
+>> In addition of that v4l2-hevc uAPI is still unstable.
+>> One goal of this series is to have one more consumer of this v4l2-hevc
+>> uAPI so maybe we can claim it to be stable enough to move away from staging
+>> and then do the same for Hantro driver. That would be a great achievement !
+> 
+> I know I do not like seeing new additions/features/whatever being added
+> to staging drivers as that encourages people to do new stuff on them
+> without doing the real work needed to get them out of staging.
 
-Thank you for reviewing this.
+In order to support a specific codec (MPEG-2, H.264, HEVC, VP8, etc.) for
+stateless codec hardware like the hantro, V4L2 controls need to be defined.
+The contents of these controls is derived directly from the underlying codec
+standards, but it is quite difficult to get this right with the first attempt,
+since these standards are very complex.
 
-mmc_blk_read_single() takes a different time depending on the number of
-sectors to read and the timeout value for each CMD.
+So we went for the strategy of keeping these drivers in staging to make it
+easy to work on, while keeping the APIs for each codec private (i.e., they are
+not exposed in include/uapi/linux).
 
-I think it's difficult to set the criteria for =22a certain amount of time=
-=22
-you talked about.
-And it's harder to proceed with any errors caused by giving up in
-mmc_blk_read_single() than no retrying.
+Once we have sufficient confidence in the API for a specific codec we move
+it to uapi and thus fix the API. We also renumber the control IDs at that
+time to avoid any confusion between the staging version and the final version.
 
-So, I would like to add a configurable property to skip the single block
-read retrying because if multiple block read error occurs, single block
-read retrying doesn't help for some bad SD cards.
+We did that for H.264 and I hope we can soon do the same for MPEG-2 and VP8.
 
-This is the log to check for this patch.
-=230. time difference is about 2.37s for 8 sectors between with(=231) and w=
-ithout(=232)
-     single block read retrying
-     This is a test for just one CMD18.
-     When there are many I/O requests, it takes too long to handle the erro=
-rs.
+HEVC is definitely not ready for that yet.
 
-=231. retry multiple block read (8 sectors) error with single block reads
-// It takes about 3.585671s for the I/O error.
-// issue CMD23 (+ arg 0x8)
-// issue CMD18 (+ arg 0x000320e0) and error occurs
-<7>=5B  316.657115=5D  =5B5:   kworker/5:1H:  324=5D <mmc0: starting CMD23 =
-arg 00000008 flags 00000015>
-<7>=5B  316.657124=5D  =5B5:   kworker/5:1H:  324=5D mmc0: starting CMD18 a=
-rg 000320e0 flags 000000b5
-<7>=5B  316.826302=5D I=5B0:      swapper/0:    0=5D mmc0: req done <CMD23>=
-: 0: 00000000 00000000 00000000 00000000
-<7>=5B  316.826327=5D I=5B0:      swapper/0:    0=5D mmc0: req done (CMD18)=
-: 0: 00000900 00000000 00000000 00000000
-<7>=5B  316.826362=5D I=5B0:      swapper/0:    0=5D mmc0:     0 bytes tran=
-sferred: -110
-<7>=5B  316.826389=5D I=5B0:      swapper/0:    0=5D mmc0:     (CMD12): 0: =
-00000b00 00000000 00000000 00000000
-<7>=5B  316.826516=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD13 a=
-rg 00010000 flags 00000195
-<7>=5B  316.826621=5D I=5B0:   kworker/0:1H:  338=5D mmc0: req done (CMD13)=
-: 0: 00000900 00000000 00000000 00000000
-// retry CMD18 (+ arg 0x000320e0) and error occurs again. Same as above.
-<7>=5B  316.829224=5D  =5B5:   kworker/5:1H:  324=5D <mmc0: starting CMD23 =
-arg 00000008 flags 00000015>
-<7>=5B  316.829237=5D  =5B5:   kworker/5:1H:  324=5D mmc0: starting CMD18 a=
-rg 000320e0 flags 000000b5
-<7>=5B  316.999588=5D I=5B0:      swapper/0:    0=5D mmc0: req done <CMD23>=
-: 0: 00000000 00000000 00000000 00000000
-<7>=5B  316.999653=5D I=5B0:      swapper/0:    0=5D mmc0: req done (CMD18)=
-: 0: 00000900 00000000 00000000 00000000
-<7>=5B  316.999725=5D I=5B0:      swapper/0:    0=5D mmc0:     0 bytes tran=
-sferred: -110
-<7>=5B  316.999789=5D I=5B0:      swapper/0:    0=5D mmc0:     (CMD12): 0: =
-00000b00 00000000 00000000 00000000
-<7>=5B  317.000034=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD13 a=
-rg 00010000 flags 00000195
-<7>=5B  317.000370=5D I=5B0:   kworker/0:1H:  338=5D mmc0: req done (CMD13)=
-: 0: 00000900 00000000 00000000 00000000
-// mmc_blk_reset() and it's completed
-<7>=5B  317.000523=5D  =5B0:   kworker/0:1H:  338=5D mmc0: clock 0Hz busmod=
-e 2 powermode 0 cs 0 Vdd 0 width 1 timing 0
-...
-// mmc_blk_read_single() : CMD17, CMD13 and CMD12 repeats 8 times (for retr=
-ying multiple block read with 8 sectors)
-// CMD17 (+ arg 0x000320e0 =7E 0x000320e7) and timeout errors occur
-// It takes about 1.351s
-<7>=5B  317.200351=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD17 a=
-rg 000320e0 flags 000000b5
-<7>=5B  317.368748=5D I=5B0:      swapper/0:    0=5D mmc0: req done (CMD17)=
-: 0: 00000900 00000000 00000000 00000000
-<7>=5B  317.368776=5D I=5B0:      swapper/0:    0=5D mmc0:     0 bytes tran=
-sferred: -110
-<7>=5B  317.368871=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD13 a=
-rg 00010000 flags 00000195
-<7>=5B  317.368932=5D I=5B0:   kworker/0:1H:  338=5D mmc0: sdhci: IRQ statu=
-s 0x00000001
-<7>=5B  317.368970=5D I=5B0:   kworker/0:1H:  338=5D mmc0: req done (CMD13)=
-: 0: 00000b00 00000000 00000000 00000000
-<7>=5B  317.369020=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD12 a=
-rg 00000000 flags 00000095
-<7>=5B  317.369070=5D I=5B0:   kworker/0:1H:  338=5D mmc0: sdhci: IRQ statu=
-s 0x00000001
-<7>=5B  317.369108=5D I=5B0:   kworker/0:1H:  338=5D mmc0: req done (CMD12)=
-: 0: 00000b00 00000000 00000000 00000000
-<7>=5B  317.369155=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD13 a=
-rg 00010000 flags 00000195
-<7>=5B  317.369204=5D I=5B0:   kworker/0:1H:  338=5D mmc0: sdhci: IRQ statu=
-s 0x00000001
-<7>=5B  317.369245=5D I=5B0:   kworker/0:1H:  338=5D mmc0: req done (CMD13)=
-: 0: 00000900 00000000 00000000 00000000
-<3>=5B  317.369298=5D  =5B0:   kworker/0:1H:  338=5D print_req_error: I/O e=
-rror, dev mmcblk0, sector 205024
-<7>=5B  317.369342=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD17 a=
-rg 000320e1 flags 000000b5
-...
-<7>=5B  318.382668=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD17 a=
-rg 000320e7 flags 000000b5
-<3>=5B  318.551568=5D  =5B0:   kworker/0:1H:  338=5D print_req_error: I/O e=
-rror, dev mmcblk0, sector 205031
-// retry CMD18 (+ arg 0x000320e0) and error occurs again.
-<7>=5B  318.551850=5D  =5B5:   kworker/5:1H:  324=5D <mmc0: starting CMD23 =
-arg 00000008 flags 00000015>
-<7>=5B  318.551867=5D  =5B5:   kworker/5:1H:  324=5D mmc0: starting CMD18 a=
-rg 000320e0 flags 000000b5
-...
-// retry CMD18 (+ arg 0x000320e0) and error occurs again.
-<7>=5B  318.721767=5D  =5B5:   kworker/5:1H:  324=5D mmc0: starting CMD18 a=
-rg 000320e0 flags 000000b5
-// CMD17 (+ arg 0x000320e0 =7E 0x000320e7)
-<7>=5B  318.891054=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD17 a=
-rg 000320e0 flags 000000b5
-...
-<7>=5B  320.073861=5D  =5B0:   kworker/0:1H:  338=5D mmc0: starting CMD17 a=
-rg 000320e7 flags 000000b5
-// Return I/O error for read operation finally
-<3>=5B  320.242786=5D  =5B0:   kworker/0:1H:  338=5D Buffer I/O error on de=
-v mmcblk0, logical block 25628, async page read
+The key phrase is 'sufficient confidence': one requirement is that it is supported
+by at least two drivers to be reasonably certain the API doesn't contain any HW
+specific stuff, and it passes test suites and review by codec experts.
 
-=232. retry multiple block read (8 sectors) error without single block read=
-s
-// It takes about 1.205941s for the I/O error.
-// issue CMD23 (+ arg 0x8)
-// issue CMD18 (+ arg 0x000320e0) and error occurs
-<7>=5B  126.467114=5D  =5B7:   kworker/7:2H: 8887=5D <mmc0: starting CMD23 =
-arg 00000008 flags 00000015>
-<7>=5B  126.467125=5D  =5B7:   kworker/7:2H: 8887=5D mmc0: starting CMD18 a=
-rg 000320e0 flags 000000b5
-<7>=5B  126.636188=5D I=5B0:Measurement Wor: 9074=5D mmc0: req done <CMD23>=
-: 0: 00000000 00000000 00000000 00000000
-<7>=5B  126.636213=5D I=5B0:Measurement Wor: 9074=5D mmc0: req done (CMD18)=
-: 0: 00000900 00000000 00000000 00000000
-<7>=5B  126.636241=5D I=5B0:Measurement Wor: 9074=5D mmc0:     0 bytes tran=
-sferred: -110
-<7>=5B  126.636265=5D I=5B0:Measurement Wor: 9074=5D mmc0:     (CMD12): 0: =
-00000b00 00000000 00000000 00000000
-<7>=5B  126.636379=5D  =5B0:   kworker/0:1H:  336=5D mmc0: starting CMD13 a=
-rg 00010000 flags 00000195
-<7>=5B  126.636495=5D I=5B0:   kworker/0:1H:  336=5D mmc0: req done (CMD13)=
-: 0: 00000900 00000000 00000000 00000000
-// retry CMD18 (+ arg 0x000320e0) and error occurs again. Same as above.
-<7>=5B  126.638284=5D  =5B7:   kworker/7:2H: 8887=5D <mmc0: starting CMD23 =
-arg 00000008 flags 00000015>
-<7>=5B  126.638298=5D  =5B7:   kworker/7:2H: 8887=5D mmc0: starting CMD18 a=
-rg 000320e0 flags 000000b5
-// mmc_blk_reset() and it's completed
-<7>=5B  126.807645=5D  =5B0:   kworker/0:1H:  336=5D mmc0: clock 0Hz busmod=
-e 2 powermode 0 cs 0 Vdd 0 width 1 timing 0
-...
-// no mmc_blk_read_single() calling
-// retry CMD18 (+ arg 0x000320e0) and error occurs again.
-<7>=5B  126.993628=5D  =5B7:   kworker/7:2H: 8887=5D <mmc0: starting CMD23 =
-arg 00000008 flags 00000015>
-<7>=5B  126.993643=5D  =5B7:   kworker/7:2H: 8887=5D mmc0: starting CMD18 a=
-rg 000320e0 flags 000000b5
-// retry CMD18 (+ arg 0x000320e0) and error occurs again.
-<7>=5B  127.164836=5D  =5B7:   kworker/7:2H: 8887=5D <mmc0: starting CMD23 =
-arg 00000008 flags 00000015>
-<7>=5B  127.164848=5D  =5B7:   kworker/7:2H: 8887=5D mmc0: starting CMD18 a=
-rg 000320e0 flags 000000b5
-...
-// Return I/O error for read operation finally
-<3>=5B  127.673055=5D I=5B7:      swapper/7:    0=5D Buffer I/O error on de=
-v mmcblk0, logical block 25628, async page read
+All this is actively being worked on, so this is very much alive, but it is
+complex and time consuming.
 
+> So what is preventing the existing driver from getting out of staging
+> now?
 
-Thank you.
+Once MPEG-2 and VP8 are finalized it is probably time to move these drivers
+out of staging, while still keeping the HEVC API part private.
 
+> 
+> And how are you all creating new userspace apis for staging drivers to
+> the v4l layer?  What happens when you export something new and then
+> userspace starts to rely on it and then you change it?
+
+Nothing is exported. So if userspace want to use it they have to manually
+copy headers from include/media to their application.
+
+> 
+> Anyway, the media staging drivers are on their own, I don't touch them,
+> it just feels odd to me...
+
+It's an unusual situation. But putting the drivers in staging and keeping
+the codec API headers private turns out to be the most effective way to
+develop this.
+
+Regards,
+
+	Hans
+
+PS: stateful vs stateless decoders: stateful decoders are fully supported
+today: you just feed the decoder the compressed stream and the decoded frames
+are produced by the firmware/hardware. I.e. the HW takes care of the decoder
+state. Stateless decoders require you to pass the compressed frame + decoder
+state to the hardware, so they do not keep track of the decoder state, that
+needs to be done in software. And that requires structures to be created that
+store the state, which luckily can be derived from the codec standards.
