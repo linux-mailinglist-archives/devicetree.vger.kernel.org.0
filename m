@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A4A031D82A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 12:26:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8DF31D82E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 12:26:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231640AbhBQLYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 06:24:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36786 "EHLO
+        id S231303AbhBQLZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 06:25:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231663AbhBQLYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 06:24:00 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F7CAC061356
-        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 03:22:01 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id o3so13797976edv.4
-        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 03:22:01 -0800 (PST)
+        with ESMTP id S231792AbhBQLYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 06:24:06 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33BB3C06121D
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 03:22:03 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id f14so21438839ejc.8
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 03:22:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=nrHbWWbk2rn4IgAeIJ5AADSHdSvYjEee+qi1skngB4w=;
-        b=wi3Vn+F/Dy9291Ae5vqGlad1VjtNnqArapfUeVTKnZonu3StWp+o5fkfgyyKIpl8a2
-         G3QyFAjEVWT+iGFno5mOQwwWHnGvAwbkknvHN2xRLvLuSzAR4PF2CLRffaVihW1jlkM+
-         bj1oU/KdXxngIuNf0dWdoYvG3B7MrgZCh8mBLabiNEVReNJvHyl0JgIJGwnj+tJuz4qN
-         hqJ8mgIwunqKE5ahQ31kSOhCgwlMPBFdQqOJ6JqjzjUn6C631MLb8h2MP0CxBriIG+by
-         esaYgqHRQrlZwg5Bg5tUh5MC4C/A3BHzhPvnb0yI72ozjPJppORXE98+AE3n8RTfChYR
-         V8ag==
+        bh=PC2sXSUCVtuCTR4UN7c8iTkNydyknx8hb/BTqhYKVYU=;
+        b=fA2o/EGvzGEv1haSdBLug/QROXSJaSrsvxNNtvQBM11DM0HRPoc0FWOAnAIU2NFaYs
+         JNXGZay9NTTk7xxwhIDOdBrxsXKlromxzlEcV/T9kNDidxqOUf/GXjQVuDfEOlY9nJFW
+         1tLF0j1Rs8PgfzIxW5t7kGSl/yrOCKBGpp7T+OqZ91gsTaXMTmZy4uSWWvg268vttzBR
+         4F/cxsYx/h8s3kZN+OZeR5l1kYvuOfzO4B9J6PT2ICkheHICRTNNhImTwxS2pqV8nFOF
+         9aNiyU+Df32OOQc4smGlqxKtac+3mWpf3TWMoxVd3VbvZ3nOUd+Mt3GnFV3IzSoNBkk6
+         b73Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=nrHbWWbk2rn4IgAeIJ5AADSHdSvYjEee+qi1skngB4w=;
-        b=VVIedGkJDfwPx5tqtOzeBwNDmGiXxdJzgBNa648hQZVS70yTDAHTfgpkZQxn4P1lel
-         um1meiV17NJQmvxANfuhENFg6KDynXFSiQUmCpyXDd4Q1QIV6QlhsxhjLhmvx0vYFD/2
-         y2IeXcUFueQgM3gn6she4pgQtlqsUgFU56ABFBVLVBZkJ5HWcdPbX3xqfA7Noz/HeCYE
-         pr++yL97rywBe1E5Rtl/W7H4Tgg2LHDSjOeohHUDMjUOYx4+/800ufWuhQgXxg5ixLjC
-         3/0syxuo46LMah1E44f33vSjM8lmGut44DXpYuDMvKh7f+RW5vPnjsBVoBGYXidKh7Lu
-         aT1w==
-X-Gm-Message-State: AOAM531rTlAhNlK5ephmkQMHHBon/rUU1aknsGJQPMNsy85nNbk4AChP
-        WtNAMIaRhtLkvK4ms9PkA9yu1A==
-X-Google-Smtp-Source: ABdhPJzhdttO5wMrvTWdZ7JsrvGMzIM1OSMmoxQijsQM3/rkYH62jhNow+MectoAHczZAkRiscBa0Q==
-X-Received: by 2002:a50:ee10:: with SMTP id g16mr25760918eds.62.1613560920427;
-        Wed, 17 Feb 2021 03:22:00 -0800 (PST)
+        bh=PC2sXSUCVtuCTR4UN7c8iTkNydyknx8hb/BTqhYKVYU=;
+        b=mXt5exFJBtSE1JI6QnIbtPsMQb13g02OdMN3WrMOLCYNaTUGoEEYbJ2IKU/BDiMEvz
+         eDGi1nuTw2YRGNtYm+C+g445eV6A1nmnZ6pzZVdASf68G7CxHDr5GJWseaRRSytQ+l7U
+         +FX3+9kzrTmVlR8g8BPc69th0+ubUenILVua3nh+uAQ+8Oh9t/iUx24e+0IfK3yAv32g
+         XvZyhJyScFl/ySdVgP8hh7KJwlwaHfxUKfC8JmA00Zb+uhru7O+4uMDaFgcs/bqWLYqL
+         fF4zA7SmBrrssJpVt49/PNq60/naPnooQa/FhBRgI8POq/eVG9EV3TbSZ5DEy1K6jfi3
+         6/YA==
+X-Gm-Message-State: AOAM5324rPR8TouSBlYZxTzJBoldp1v0YtCPIE95Ofl1tcfdS1eONAFc
+        TEjGDcFavgtPEJe69oatKztMDA==
+X-Google-Smtp-Source: ABdhPJzCpAG+pfsL0jU+csUD84apNmwleNPkPZr9jH34OCoQ15BY/eJseJ/2/x+yJqgiipg7FFVzRg==
+X-Received: by 2002:a17:906:d10c:: with SMTP id b12mr15898979ejz.477.1613560921948;
+        Wed, 17 Feb 2021 03:22:01 -0800 (PST)
 Received: from localhost.localdomain ([2a02:2450:102f:d6a:4815:d4dc:ff5a:704a])
-        by smtp.gmail.com with ESMTPSA id h10sm934344edk.45.2021.02.17.03.21.59
+        by smtp.gmail.com with ESMTPSA id h10sm934344edk.45.2021.02.17.03.22.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Feb 2021 03:22:00 -0800 (PST)
+        Wed, 17 Feb 2021 03:22:01 -0800 (PST)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         robert.foss@linaro.org, todor.too@gmail.com, mchehab@kernel.org,
@@ -62,9 +62,9 @@ Cc:     Rob Herring <robh@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
         Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Jonathan Marek <jonathan@marek.ca>
-Subject: [PATCH v5 03/22] media: camss: Replace trace_printk() with dev_dbg()
-Date:   Wed, 17 Feb 2021 12:21:03 +0100
-Message-Id: <20210217112122.424236-4-robert.foss@linaro.org>
+Subject: [PATCH v5 04/22] media: camss: Add CAMSS_845 camss version
+Date:   Wed, 17 Feb 2021 12:21:04 +0100
+Message-Id: <20210217112122.424236-5-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210217112122.424236-1-robert.foss@linaro.org>
 References: <20210217112122.424236-1-robert.foss@linaro.org>
@@ -74,75 +74,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-trace_printk() should not be used in production code,
-since extra memory is used for special buffers whenever
-trace_puts() is used.
-
-Replace it with dev_dbg() which provides all of the desired
-debugging functionality.
+Add enum representing the SDM845 SOC, which incorporates version
+170 of the Titan architecture ISP.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
-Suggested-by: Nicolas Boichat <drinkcat@chromium.org>
-Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
 ---
+ drivers/media/platform/qcom/camss/camss.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes since v3:
- - Nicolas: Create this patch
-
-Changes since v4:
- - Nicolas: Added r-b
-
-
- drivers/media/platform/qcom/camss/camss-vfe-4-1.c | 5 +++--
- drivers/media/platform/qcom/camss/camss-vfe-4-7.c | 5 +++--
- 2 files changed, 6 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/media/platform/qcom/camss/camss-vfe-4-1.c b/drivers/media/platform/qcom/camss/camss-vfe-4-1.c
-index a1b56b89130d..85b9bcbc7321 100644
---- a/drivers/media/platform/qcom/camss/camss-vfe-4-1.c
-+++ b/drivers/media/platform/qcom/camss/camss-vfe-4-1.c
-@@ -12,6 +12,7 @@
- #include <linux/io.h>
- #include <linux/iopoll.h>
+diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
+index 3a0484683cd6..46e986452824 100644
+--- a/drivers/media/platform/qcom/camss/camss.h
++++ b/drivers/media/platform/qcom/camss/camss.h
+@@ -66,6 +66,7 @@ enum camss_version {
+ 	CAMSS_8x16,
+ 	CAMSS_8x96,
+ 	CAMSS_660,
++	CAMSS_845,
+ };
  
-+#include "camss.h"
- #include "camss-vfe.h"
- 
- #define VFE_0_HW_VERSION		0x000
-@@ -936,8 +937,8 @@ static irqreturn_t vfe_isr(int irq, void *dev)
- 
- 	vfe->ops->isr_read(vfe, &value0, &value1);
- 
--	trace_printk("VFE: status0 = 0x%08x, status1 = 0x%08x\n",
--		     value0, value1);
-+	dev_dbg(vfe->camss->dev, "VFE: status0 = 0x%08x, status1 = 0x%08x\n",
-+		value0, value1);
- 
- 	if (value0 & VFE_0_IRQ_STATUS_0_RESET_ACK)
- 		vfe->isr_ops.reset_ack(vfe);
-diff --git a/drivers/media/platform/qcom/camss/camss-vfe-4-7.c b/drivers/media/platform/qcom/camss/camss-vfe-4-7.c
-index 84c33b8f9fe3..f7e00a2de393 100644
---- a/drivers/media/platform/qcom/camss/camss-vfe-4-7.c
-+++ b/drivers/media/platform/qcom/camss/camss-vfe-4-7.c
-@@ -12,6 +12,7 @@
- #include <linux/io.h>
- #include <linux/iopoll.h>
- 
-+#include "camss.h"
- #include "camss-vfe.h"
- 
- #define VFE_0_HW_VERSION		0x000
-@@ -1069,8 +1070,8 @@ static irqreturn_t vfe_isr(int irq, void *dev)
- 
- 	vfe->ops->isr_read(vfe, &value0, &value1);
- 
--	trace_printk("VFE: status0 = 0x%08x, status1 = 0x%08x\n",
--		     value0, value1);
-+	dev_dbg(vfe->camss->dev, "VFE: status0 = 0x%08x, status1 = 0x%08x\n",
-+		value0, value1);
- 
- 	if (value0 & VFE_0_IRQ_STATUS_0_RESET_ACK)
- 		vfe->isr_ops.reset_ack(vfe);
+ struct camss {
 -- 
 2.27.0
 
