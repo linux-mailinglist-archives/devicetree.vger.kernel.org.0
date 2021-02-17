@@ -2,70 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C49F31E1ED
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 23:17:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A1B31E1FC
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 23:23:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233440AbhBQWQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 17:16:46 -0500
-Received: from mail-oo1-f44.google.com ([209.85.161.44]:36147 "EHLO
-        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233406AbhBQWQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 17:16:44 -0500
-Received: by mail-oo1-f44.google.com with SMTP id x10so3448266oor.3;
-        Wed, 17 Feb 2021 14:16:29 -0800 (PST)
+        id S233549AbhBQWV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 17:21:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232607AbhBQWVW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 17:21:22 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7A5C061786
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 14:20:39 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id f3so16661052oiw.13
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 14:20:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=1p7xR+x/Ax3QtXp7hvf7+knlfVhECl9PbNNQU3Wa5CY=;
+        b=TFEYl9E2ZTFElf1eNyDDZQVG5utiIcCQZoQZpzqazKcomE0pvgDmX9ehhPAPthH0kL
+         eOrW4djT+f3uvJWG1IVolbo5/MfAf4MAPoAJfiixWxt0l10vgncALueCF6MXGO3/YIcJ
+         Ppb/0eoG/QV16TsDEXo+MX1zJiM2wpEPqpeDry8Y/rdWTF9E7klQ/9rriTOU3o0M+GsE
+         DIep3ZWbDimjvunJVihTONjhBJ4oE/UMkV9gLqShlMYN/3ryMvnMOQWAlJapxF+tfgaf
+         hp4tpBZSqEYH1HsguLIkESuUUs2OkggcxnWkqM6wbXjiIn3BR2ULmxvcOtSCjlbQz6bo
+         /apw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XKet1JbM+aJWADXeIYWLp2l1i6qo86WODE/HKMEcGRM=;
-        b=JrmB2jHIH2C+krYfLgMd7V8uOR6GS41EYH5FI1l7hLAbkD1kx02n9oigdBe/4ucf18
-         FDjcYsWRNrN8mFeL+lkKNy6CEPadMseKmj83NPHUR4FwSkx9Rc5yBUmJaj8VO+RHEACv
-         A55NcxAicVelYPyectjti7sNSVuzcaOOdcnNdFBLcbmWyvVu6ZqghAfEs2yRfSfJEhVz
-         Np42IEW6BFd8I1XEwfldWoX2s7byED9FxqrVwnlWffSLYB98GB41ZRgBNdB3mEDCWA6G
-         fb8cyzuMZfbayf9xu1U/ZOaYujK9RSklCJ5AI7FIJInV1jQcscrZo9sHUKqA9K2e0VWB
-         ib7Q==
-X-Gm-Message-State: AOAM530WQ2kDCesZSuLtxoXKM39PKQ6en3cjObTqcURw9YyI/ukLTReE
-        TmgdxptTLHZvuY9qmGFoOQ==
-X-Google-Smtp-Source: ABdhPJzeCJN1pl29elqGMNL4gAn3VJZ+rgOoSIImtIilty1e0pKS5JtbIVKZ/wYBq0EXkODORBV37w==
-X-Received: by 2002:a4a:98a3:: with SMTP id a32mr836135ooj.51.1613600163894;
-        Wed, 17 Feb 2021 14:16:03 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 69sm660528otc.76.2021.02.17.14.16.02
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=1p7xR+x/Ax3QtXp7hvf7+knlfVhECl9PbNNQU3Wa5CY=;
+        b=C9RJNzGaPfDOwhEhq+8nLq3cS/Y28FyHYhF8hlVo5EqDSTKFTEsuwrLvDMEHE1ekbk
+         VCY0lbMFRmKxRAX02FiP1jHvcY5B/mCf5NdJPd2K7bhi6oOhIOCLt/Pa79IH3vPi0/4S
+         vs/gxWAWjZFGa3tLIHoz5FRu+4mftNS7QvzQmSFmcAhv0J9z+T3x/QYb2dL/vo6ZF3ge
+         awzr56Qt4M9Y7yPEJPjSf7hOfahMfXaOn79UGQYsYRusRtRy5WmLaXSKNgJ90kmy+Osl
+         AJYUzqEj7qbRt7jYoaI1Xx8eZHuIhEEj9vSSQGXGFzNobN0t+/2OH8+6Z4knmmFTubwF
+         ghag==
+X-Gm-Message-State: AOAM530P0ysssoD7dNWHo7ydkSTTp7kODvsiiX96pfEjJ+Oc2MkFZb8n
+        Yknl/+mCNNQpPCarJU9z0wVg2g==
+X-Google-Smtp-Source: ABdhPJz9Tp7sfz49yJeFgIVsuHF6V75Yrbkk3I0fz/SY85kLex9Fdy3o3FOxKrkkqD8QeVWuBwCzUw==
+X-Received: by 2002:a05:6808:30e:: with SMTP id i14mr706537oie.50.1613600438791;
+        Wed, 17 Feb 2021 14:20:38 -0800 (PST)
+Received: from blackbox.Home ([2806:10b7:2:8299::3])
+        by smtp.gmail.com with ESMTPSA id f22sm669028otl.10.2021.02.17.14.20.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Feb 2021 14:16:02 -0800 (PST)
-Received: (nullmailer pid 2878020 invoked by uid 1000);
-        Wed, 17 Feb 2021 22:16:01 -0000
-Date:   Wed, 17 Feb 2021 16:16:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     airlied@linux.ie, daniel@ffwll.ch, a.hajda@samsung.com,
-        narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@siol.net,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Add documentation
- for LT8912
-Message-ID: <20210217221601.GA2872814@robh.at.kernel.org>
-References: <20210214232904.1142706-1-adrien.grassein@gmail.com>
- <20210214232904.1142706-2-adrien.grassein@gmail.com>
+        Wed, 17 Feb 2021 14:20:38 -0800 (PST)
+From:   =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linaro.org>
+To:     bjorn.andersson@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        mark.rutland@arm.com, ohad@wizery.com, robh+dt@kernel.org,
+        =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linaro.org>
+Subject: [PATCH] remoteproc: qcom: wcnss: Allow specifying firmware-name
+Date:   Wed, 17 Feb 2021 16:20:06 -0600
+Message-Id: <20210217222006.1419164-1-anibal.limon@linaro.org>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20200108055252.639791-1-bjorn.andersson@linaro.org>
+References: <20200108055252.639791-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210214232904.1142706-2-adrien.grassein@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 12:29:03AM +0100, Adrien Grassein wrote:
-> Lontium LT8912 is a DSI to HDMI bridge.
-> 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> ---
->  .../display/bridge/lontium,lt8912.yaml        | 102 ++++++++++++++++++
->  MAINTAINERS                                   |   5 +
->  2 files changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt8912.yaml
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Other than needing to wait for 5.12-rc1 to be merged into drm-misc,
+Introduce a firmware-name property, in order to be able to support
+device/platform specific firmware for the wireless connectivity
+subsystem; in line with other Qualcomm remoteproc drivers.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Tested-by: Aníbal Limón <anibal.limon@linaro.org>
+---
+ .../devicetree/bindings/remoteproc/qcom,wcnss-pil.txt     | 6 ++++++
+ drivers/remoteproc/qcom_wcnss.c                           | 8 +++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
+index d420f84ddfb0..00844a5d2ccf 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
+@@ -34,6 +34,12 @@ on the Qualcomm WCNSS core.
+ 	Definition: should be "wdog", "fatal", optionally followed by "ready",
+ 		    "handover", "stop-ack"
+ 
++- firmware-name:
++	Usage: optional
++	Value type: <string>
++	Definition: must list the relative firmware image path for the
++		    WCNSS core.
++
+ - vddmx-supply:
+ - vddcx-supply:
+ - vddpx-supply:
+diff --git a/drivers/remoteproc/qcom_wcnss.c b/drivers/remoteproc/qcom_wcnss.c
+index e2573f79a137..ef80f5b8f20b 100644
+--- a/drivers/remoteproc/qcom_wcnss.c
++++ b/drivers/remoteproc/qcom_wcnss.c
+@@ -465,6 +465,7 @@ static int wcnss_alloc_memory_region(struct qcom_wcnss *wcnss)
+ 
+ static int wcnss_probe(struct platform_device *pdev)
+ {
++	const char *fw_name = WCNSS_FIRMWARE_NAME;
+ 	const struct wcnss_data *data;
+ 	struct qcom_wcnss *wcnss;
+ 	struct resource *res;
+@@ -482,8 +483,13 @@ static int wcnss_probe(struct platform_device *pdev)
+ 		return -ENXIO;
+ 	}
+ 
++	ret = of_property_read_string(pdev->dev.of_node, "firmware-name",
++				      &fw_name);
++	if (ret < 0 && ret != -EINVAL)
++		return ret;
++
+ 	rproc = rproc_alloc(&pdev->dev, pdev->name, &wcnss_ops,
+-			    WCNSS_FIRMWARE_NAME, sizeof(*wcnss));
++			    fw_name, sizeof(*wcnss));
+ 	if (!rproc) {
+ 		dev_err(&pdev->dev, "unable to allocate remoteproc\n");
+ 		return -ENOMEM;
+-- 
+2.30.0
+
