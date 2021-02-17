@@ -2,64 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3EF931E031
+	by mail.lfdr.de (Postfix) with ESMTP id 428EF31E030
 	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 21:26:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234339AbhBQUZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 15:25:40 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:42372 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234169AbhBQUZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 15:25:39 -0500
-Received: by mail-oi1-f175.google.com with SMTP id 6so6432946ois.9;
-        Wed, 17 Feb 2021 12:25:23 -0800 (PST)
+        id S234087AbhBQUZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 15:25:38 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:43489 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234071AbhBQUZh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 15:25:37 -0500
+Received: by mail-oi1-f177.google.com with SMTP id d20so16330815oiw.10;
+        Wed, 17 Feb 2021 12:25:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=fFAIBJRtS8lz4sWBKvSYwdMKZETWELFgP9KEyHLr6qo=;
-        b=W0gHTdtIG2HRo7QcSxoReBKKp88/Y/n6T8hsw0/+z7U96Y2uoSJyCjKH8Bgd5c8RS2
-         xh3vf5/tsVyEZxH4mcJs72NLqvw3DQ92aFAj/Bfyy9oaXZZguMGT4sTX2/j4rKGZG2d+
-         hq/XVR6mnS9o80F6ZqxrkZcFOnkYzYuNBVMeKkUFLlBRaUmDodO1tnGV5PTg5VzH7OdA
-         KOz9Zd3nEecwhwxvH3JYaPtakDukOGnuutvG6c/kOZ9BzAL56MVOQ4BLj+DkfbPNiF5G
-         IqJJ0tSXsYxglCVofY9ONpA5UL9jso5F7grNPS+GtFaLjzEQ0KOE3nR58hdMh1dI+Igk
-         LenA==
-X-Gm-Message-State: AOAM530mxLBUFffVCP4y71fkaNeXosqmO03nHJzg0pE+U5m4+vd+2p1H
-        4Qs+aPkYNB1nNTTInN8G1XmkiIRUaQ==
-X-Google-Smtp-Source: ABdhPJzYhqCcG+yX3Uzd3OscwPiULaH/YhQfG5nIUHIFUlKV3wM7OO7MID/izmLtsM8b3f8nwgSy/g==
-X-Received: by 2002:aca:d0b:: with SMTP id 11mr401379oin.35.1613593498317;
-        Wed, 17 Feb 2021 12:24:58 -0800 (PST)
+        bh=I8XE64YH4B5ARsvI9j7IP7fE+KgkyF493Mcep8TBBTw=;
+        b=HdRJ7+qQCHh2ujUnQ/gz4mltXNkVNZyzY7y2B9shf6DcN6aqWRnpMojrPAyQZvNaBL
+         FAbp684i/ODKPkssewxn6WtstkckHVnunqwPIC2DNgm5Hr2gnPZQRYYirBgrUHt+6VuO
+         +Jtg/ExRtH851FpTW8rNPnNxd1UHauXAIylDEGl6FLWPJpcwaX51Be//a5UWxHusXvDh
+         r6cGy5yhdNof7l0UZRipq9lavw5apzj/AIW+Po3X6EUfDeyQ0qowLkbGlEP3VR055GGK
+         kyX8ScTEiJYsZidLzH5Tr0cE+dYgnnYqrm1qlUdOHPGOqTLs0m5KzXEZvR1Cy9MSdYPO
+         9Wvg==
+X-Gm-Message-State: AOAM530yV7zAZDUW3bUZfxh5IZM1LGwaKQaC4AI3YrF1YcSzCKJYafip
+        147aZV0P0hKE+vDxsaAiLsvjNBIITA==
+X-Google-Smtp-Source: ABdhPJzm39MAB6GLlVqrHXSGYEnoN9W0dHfOkDBrpaOnmqMSq9THGamrYDZU1kwqwGa7z5l47CSYWA==
+X-Received: by 2002:aca:5d04:: with SMTP id r4mr411811oib.43.1613593496513;
+        Wed, 17 Feb 2021 12:24:56 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w124sm659788oiw.40.2021.02.17.12.24.56
+        by smtp.gmail.com with ESMTPSA id v10sm685915oiv.13.2021.02.17.12.24.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Feb 2021 12:24:57 -0800 (PST)
-Received: (nullmailer pid 2681061 invoked by uid 1000);
+        Wed, 17 Feb 2021 12:24:55 -0800 (PST)
+Received: (nullmailer pid 2681059 invoked by uid 1000);
         Wed, 17 Feb 2021 20:24:51 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, jonas@kwiboo.se,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, narmstrong@baylibre.com,
-        jernej.skrabec@siol.net, a.hajda@samsung.com,
-        Laurent.pinchart@ideasonboard.com, airlied@linux.ie
-In-Reply-To: <20210214232904.1142706-2-adrien.grassein@gmail.com>
-References: <20210214232904.1142706-1-adrien.grassein@gmail.com> <20210214232904.1142706-2-adrien.grassein@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Add documentation for LT8912
+To:     Joe Sandom <joe.g.sandom@gmail.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>, jic23@kernel.org,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20210213132241.15808-1-joe.g.sandom@gmail.com>
+References: <20210213132241.15808-1-joe.g.sandom@gmail.com>
+Subject: Re: [PATCH v3 RESEND] Added AMS tsl2591 driver implementation
 Date:   Wed, 17 Feb 2021 14:24:51 -0600
-Message-Id: <1613593491.462326.2681060.nullmailer@robh.at.kernel.org>
+Message-Id: <1613593491.450980.2681058.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Feb 2021 00:29:03 +0100, Adrien Grassein wrote:
-> Lontium LT8912 is a DSI to HDMI bridge.
+On Sat, 13 Feb 2021 13:22:41 +0000, Joe Sandom wrote:
+> Driver implementation for AMS/TAOS tsl2591 ambient light sensor.
 > 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+> This driver supports configuration via device tree and sysfs.
+> Supported channels for raw infrared light, raw visible light,
+> raw combined light and combined lux value.
+> The driver additionally supports iio events on lower and
+> upper thresholds.
+> 
+> This is a very-high sensitivity light-to-digital converter that
+> transforms light intensity into a digital signal.
+> 
+> Datasheet Available at: https://ams.com/tsl25911
+> 
+> Signed-off-by: Joe Sandom <joe.g.sandom@gmail.com>
 > ---
->  .../display/bridge/lontium,lt8912.yaml        | 102 ++++++++++++++++++
->  MAINTAINERS                                   |   5 +
->  2 files changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt8912.yaml
+> Changes in v3:
+> - Cleaned up descriptions in binding file and Kconfig
+> - Changed macros to be uppercase
+> - Cleaned up comment formatting for capitalisation and block comments
+> - Changed tsl2591_settings to tsl2591_als_settings as settings only
+>   related to als
+> - Return -EINVAL directly in default case to save some lines
+> - Consistent use of const in "compatible" check functions
+> - Removed mutex use in _show functions as not necessary
+> - Removed print's which contribute little value/have little meaning
+> 
+> NOTES;
+> - Where spaces are seen at the end of some lines, it looks like gmail
+>   has mangled things slightly.
+> - checkpatch.pl --strict remarks that mutex definition should have a
+>   comment above it. I agree it has little meaning, but just added it to
+>   satisfy checkpatch.pl :)
+> - For sysfs functions e.g. "in_illuminance_*", they're not currently
+>   prefixed with "tsl2591" because I wanted to keep things consistent
+>   with the other light drivers. Is this something we're looking to
+>   change with the other drivers too?
+> 
+> REASON FOR RESEND;
+> - Mailing lists were rejecting my outlook email, so switched to gmail as
+>   mailing lists seem to accept without issues.
+> 
+>  .../bindings/iio/light/amstaos,tsl2591.yaml   |   50 +
+>  drivers/iio/light/Kconfig                     |   11 +
+>  drivers/iio/light/Makefile                    |    1 +
+>  drivers/iio/light/tsl2591.c                   | 1220 +++++++++++++++++
+>  4 files changed, 1282 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
+>  create mode 100644 drivers/iio/light/tsl2591.c
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -67,12 +106,10 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/display/bridge/lontium,lt8912.example.dt.yaml'
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/media/video-interfaces.yaml'
-make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/display/bridge/lontium,lt8912.example.dt.yaml] Error 255
-make: *** [Makefile:1370: dt_binding_check] Error 2
+./Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/iio/light/amstaos,tsl2591.yaml#
 
-See https://patchwork.ozlabs.org/patch/1440379
+See https://patchwork.ozlabs.org/patch/1440199
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
