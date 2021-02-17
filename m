@@ -2,94 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EBBD31DFBB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 20:41:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 280BB31DFCB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 20:44:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232373AbhBQTkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 14:40:52 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59160 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233314AbhBQTkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 14:40:49 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id E062B1F45845
-Message-ID: <ab14f5a0bde2bdcd4bb0128f76e5a3ba8e7b0894.camel@collabora.com>
-Subject: Re: [PATCH v1 03/18] arm64: dts: imx8mq-evk: add reserve memory
- node for CMA region
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, krzk@kernel.org, shengjiu.wang@nxp.com,
-        adrian.ratiu@collabora.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
-        Anson.Huang@nxp.com, hverkuil-cisco@xs4all.nl
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com
-Date:   Wed, 17 Feb 2021 16:39:49 -0300
-In-Reply-To: <20210217080306.157876-4-benjamin.gaignard@collabora.com>
-References: <20210217080306.157876-1-benjamin.gaignard@collabora.com>
-         <20210217080306.157876-4-benjamin.gaignard@collabora.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        id S233607AbhBQTno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 14:43:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58244 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233314AbhBQTnm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Feb 2021 14:43:42 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9658464E45;
+        Wed, 17 Feb 2021 19:43:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613590981;
+        bh=LlwTiP8/hl3yvWK78ty94eQWzvbMMEBmhJXYr7fFCGw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LeXPpXW9sSFaAMYkPWATCI2c1AmR8XraBwEzu5gLRubwCcRT9TpTY5pdqFijlZ6cS
+         sNYSONm5cxfkGtWN6CCBpsMNab/3Y9Jkkna3UoBYjbVUm6xU2OyKzHdkydxAE6G+Uu
+         z7+jerCAAEivb+o496+evKQQTz3YGqqTAHvJtJkEtiS0IzVKfq8tNm5kdC1LgQRiIQ
+         PsXfC+u33/sKbcm7fzUsnaWVWzJ/yYEhjahbNpE6EwUdjmXQM3dVHFemrJpGaSqfFV
+         Gibb4YwNeyZStStpMRIIPS99PbQ+x7YjBmwAbjZ+hzRItz8MLJqCZiLoi9nitzKnjk
+         hKBUCFah2uQSA==
+Received: by mail-ej1-f54.google.com with SMTP id f14so24334673ejc.8;
+        Wed, 17 Feb 2021 11:43:01 -0800 (PST)
+X-Gm-Message-State: AOAM531s01eQyS4tnsrN+EU1SxiYMRuzy9973VLuoLnDuBkH2sFPGn2w
+        4zAhEDHpuE537cLPD6iEIC3Nm7o6vTGeq99POw==
+X-Google-Smtp-Source: ABdhPJzAMNa126EXLIevgRQHmZuiDRjOGeslDBdTqUCA1s4KD+K8imQWfogzr0YaUNopBqs64UbcpGOwQFT9y0JO5q8=
+X-Received: by 2002:a17:906:d1d0:: with SMTP id bs16mr553549ejb.468.1613590980184;
+ Wed, 17 Feb 2021 11:43:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210215224258.1231449-1-saravanak@google.com>
+In-Reply-To: <20210215224258.1231449-1-saravanak@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 17 Feb 2021 13:42:47 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKQ=J2KnUL3EN16p5uPLnF3kHqUU_82FMt9g_yWYBrm_Q@mail.gmail.com>
+Message-ID: <CAL_JsqKQ=J2KnUL3EN16p5uPLnF3kHqUU_82FMt9g_yWYBrm_Q@mail.gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Ignore interrupts property for
+ some configs
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thierry Reding <treding@nvidia.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Android Kernel Team <kernel-team@android.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benjamin,
-
-On Wed, 2021-02-17 at 09:02 +0100, Benjamin Gaignard wrote:
-> Define allocation range for the default CMA region.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-
-Despite it seems like I signed-off this one...
-
-> Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
+On Mon, Feb 15, 2021 at 4:43 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> When CONFIG_OF_IRQ is not defined, it doesn't make sense to parse
+> interrupts property.
+>
+> Also, parsing and tracking interrupts property breaks some PPC
+> devices[1].  But none of the IRQ drivers in PPC seem ready to be
+> converted to a proper platform (or any bus) driver. So, there's not much
+> of a point in tracking the interrupts property for CONFIG_PPC. So, let's
+> stop parsing interrupts for CONFIG_PPC.
+>
+> [1] - https://lore.kernel.org/lkml/20210213185422.GA195733@roeck-us.net/
+> Fixes: 4104ca776ba3 ("of: property: Add fw_devlink support for interrupts")
+> Reported-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> index 85b045253a0e..047dfd4a1ffd 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> @@ -21,6 +21,21 @@ memory@40000000 {
->                 reg = <0x00000000 0x40000000 0 0xc0000000>;
->         };
-> 
->  
-> +       resmem: reserved-memory {
-> +               #address-cells = <2>;
-> +               #size-cells = <2>;
-> +               ranges;
-> +
-> +               /* global autoconfigured region for contiguous allocations */
-> +               linux,cma {
-> +                       compatible = "shared-dma-pool";
-> +                       reusable;
-> +                       size = <0 0x3c000000>;
-> +                       alloc-ranges = <0 0x40000000 0 0x40000000>;
-> +                       linux,cma-default;
-> +               };
+> Greg/Rob,
+>
+> I believe this needs to land on driver-core-next.
 
-... I'm not a fan of the change :)
-
-Hopefully someone from NXP can provide some insight here?
-
-If it's absolutely needed for the VPU, then I guess it should
-be 1) very well documented and 2) moved to the top-lovel dtsi.
-
-But if we can drop it, that'd be nicer.
-
-Thanks,
-Ezequiel
-
+Acked-by: Rob Herring <robh@kernel.org>
