@@ -2,47 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9654531DC95
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 16:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A65731DCA3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 16:46:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233631AbhBQPnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 10:43:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52936 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233476AbhBQPnR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Feb 2021 10:43:17 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2A92364DE0;
-        Wed, 17 Feb 2021 15:42:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613576556;
-        bh=TsRYdKmcgIcJeD9Rxfij6XeL5DVRBITf0FR0jdJTYzQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=eohf6q++f0NJZN7Pq+D3NhZBWxVxkydi9/WrHPHx00Ppnaf7pcUgCL3j2DG301l28
-         m+e+uwesNElrIC0wjmhLjJXvXxQOLsokWSd47ZjP/EMTSr8HBVULxd0r1ZIB2ioAPX
-         5oYb/UQ2uWD/9wQcnQKdY6+SaPHLf6EnOaWhjSB/06rGWVKcTDMjfz+huS+rzGLMGa
-         IlIdY2jwSv026851TIhlo54sUoV0w4j2mqzNTPL0jFuoINAykHtWjgFVmrUfNu50bA
-         xVWwQcupXWRdfZ0t5B11J/0+uk6U+//6QvLeZN2DkABi91V/HAEVZtDK2/jX5WFRf0
-         SWLpvvMlUL+Dg==
-Date:   Wed, 17 Feb 2021 16:42:32 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Rui Salvaterra <rsalvaterra@gmail.com>
+        id S233793AbhBQPpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 10:45:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36482 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233666AbhBQPpu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 10:45:50 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8801FC061574;
+        Wed, 17 Feb 2021 07:45:10 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id f14so22978520ejc.8;
+        Wed, 17 Feb 2021 07:45:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=JTQlVM4uXKEOAQPyXsr5kAcKMvA9e+zle4Kor02Y7h8=;
+        b=Nuhy6hYzuAiQOnomYxdGYbrbWlYoW7/P4jQuK4BPBxQltQmj+9tGWXP1HuQuZlWXsV
+         OvHLRdqqxon9FrSZbzvH7hS4tcFcc7XJKljDZzzH8BDyTKHun0erMJNpgcQi0FoK1mCF
+         iW9/pedtnZGZ9lcuNNPXujGH1zHALMMLGyK4mD5JfqauTkiJV8p7RNhpqE/etvZUjY3W
+         EERl1dqkRxr6CAXjUGo2KW3HZU1uT2880VhWHafyU1+ldqZngPwBcdvJwScyfyBP33nF
+         MU65LgPtSd/UL0hbxAhrf+RlfAGfLQc5sfHiaxNujrB55+m2AEVfgCu9ohhxxE+6ZKmZ
+         4JbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=JTQlVM4uXKEOAQPyXsr5kAcKMvA9e+zle4Kor02Y7h8=;
+        b=qR2hjeZF+H5G5yUf9+LV/Twn4g2Sw55SQY8Gwa9mx6wKDoFICdkv67zE1nIg6hdLpY
+         kOWy6MR+pvBZix5tNWeRnEEKfKJ+PhQYQrh80hkIwE2mIeeYNvttlW7Q20Y6zWXTFPbT
+         MRs8WsBs4pQulKDtFlmpoBDsv9msDVAgJmk3qsar6st+o9VRMeEvJaw68+Ultj9uM0X7
+         /HJn1B3ZvPM53B/OQBrbY7R9BQDXQ8ZSm2THkoXulQ6PEcllj6U++7I+es0FFXgU2kXw
+         sgwRxx3BSesZYoTto4ym5/lyZ2kloyTyP1dcQ+Py/i5isw8e5aPni5qVqXy7a3F+XLiw
+         rRWA==
+X-Gm-Message-State: AOAM532+VvpLPYXQNu97psK/G5khjohM321R3QaKDBEOkDZLYUBh7pc4
+        wVGu2jyLnCB285H6Rlgkt9Xt0zPLkgziq46Bx3EUFpJ3uv2S
+X-Google-Smtp-Source: ABdhPJzdbvNfFEEPXUuuzV3Lxev7vgQL/8WBf/2UmefHgSzXMCW4dYDmV3jL0VZUhrSw879Q+fEQz1DG4EcceMUsknM=
+X-Received: by 2002:a17:906:a948:: with SMTP id hh8mr26554611ejb.226.1613576709212;
+ Wed, 17 Feb 2021 07:45:09 -0800 (PST)
+MIME-Version: 1.0
+References: <20210217153038.1068170-1-rsalvaterra@gmail.com> <20210217164232.25a7765c@kernel.org>
+In-Reply-To: <20210217164232.25a7765c@kernel.org>
+From:   Rui Salvaterra <rsalvaterra@gmail.com>
+Date:   Wed, 17 Feb 2021 15:44:58 +0000
+Message-ID: <CALjTZvaZdvMU-gjF=h88A_yS-fiVVdHGL_iyYc30z0Qm82yjLA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: turris-omnia: fix hardware buffer management
+To:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
 Cc:     andrew@lunn.ch, gregory.clement@bootlin.com,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: turris-omnia: fix hardware buffer management
-Message-ID: <20210217164232.25a7765c@kernel.org>
-In-Reply-To: <20210217153038.1068170-1-rsalvaterra@gmail.com>
-References: <20210217153038.1068170-1-rsalvaterra@gmail.com>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-/o\ How did I manage to miss this?
+Hi, Marek,
 
-Please wait a few minutes I am just going to do a fast compile and test.
+On Wed, 17 Feb 2021 at 15:42, Marek Beh=C3=BAn <kabel@kernel.org> wrote:
+>
+> /o\ How did I manage to miss this?
 
-Marek
+Heh=E2=80=A6 it happens. :)
+
+> Please wait a few minutes I am just going to do a fast compile and test.
+
+No worries. I'm going to cook a backport for OpenWrt.
+
+Cheers,
+Rui
