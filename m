@@ -2,147 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E87031D954
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 13:24:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBF7C31D9FC
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 14:11:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbhBQMXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 07:23:02 -0500
-Received: from foss.arm.com ([217.140.110.172]:57836 "EHLO foss.arm.com"
+        id S231755AbhBQNLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 08:11:17 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:62300 "EHLO m42-2.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232385AbhBQMWx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Feb 2021 07:22:53 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 246671042;
-        Wed, 17 Feb 2021 04:22:07 -0800 (PST)
-Received: from C02TD0UTHF1T.local (unknown [10.57.46.232])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 630103F694;
-        Wed, 17 Feb 2021 04:22:03 -0800 (PST)
-Date:   Wed, 17 Feb 2021 12:22:00 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 08/25] arm64: Always keep DAIF.[IF] in sync
-Message-ID: <20210217122200.GC5556@C02TD0UTHF1T.local>
-References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-9-marcan@marcan.st>
+        id S231764AbhBQNLQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Feb 2021 08:11:16 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1613567459; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=B3QRxLJ6gJmRoLswKWrB0gcSQ+YQnvw7f1kZhRUjVzs=;
+ b=dvWK1JjV3aXnHwy2Hwu9YebLXOpZUXGYPc+5gRMVKMhS9ppyY659mRV2klXEVZZKiBXjzGRb
+ o8q5j6f0fusXJifHPUwvh/tYiPam2D4IZMSW8JYoALRIIstF/vO+/fHnvssrVH/3Y6uF8awR
+ Yz1dsOTG6Qd5A7zI9bFh6TKTX/A=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 602d15bf98fd902dc20aa0de (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 17 Feb 2021 13:10:23
+ GMT
+Sender: schowdhu=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5A7F8C43464; Wed, 17 Feb 2021 13:10:23 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: schowdhu)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B633AC433CA;
+        Wed, 17 Feb 2021 13:10:22 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210215121713.57687-9-marcan@marcan.st>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 17 Feb 2021 18:40:22 +0530
+From:   schowdhu@codeaurora.org
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Subject: Re: [PATCH V0 2/6] arm64: dts: qcom: sm8150: Add Data Capture and
+ Compare(DCC) support node
+In-Reply-To: <20210217110331.GS2774@vkoul-mobl.Dlink>
+References: <cover.1613541226.git.schowdhu@codeaurora.org>
+ <893022aecd4ba354adb57bd463206dd93fc19886.1613541226.git.schowdhu@codeaurora.org>
+ <20210217110331.GS2774@vkoul-mobl.Dlink>
+Message-ID: <10001950e73eb5e322fda6359103ebda@codeaurora.org>
+X-Sender: schowdhu@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hector,
+Hi,
 
-On Mon, Feb 15, 2021 at 09:16:56PM +0900, Hector Martin wrote:
-> Apple SoCs (A11 and newer) have some interrupt sources hardwired to the
-> FIQ line. We implement support for this by simply treating IRQs and FIQs
-> the same way in the interrupt vectors.
+Please find the replies inline.
+
+
+On 2021-02-17 16:33, Vinod Koul wrote:
+> On 17-02-21, 12:18, Souradeep Chowdhury wrote:
+>> Add the DCC(Data Capture and Compare) device tree node entry along 
+>> with
+>> the addresses for register regions.
 > 
-> To support these systems, the FIQ mask bit needs to be kept in sync with
-> the IRQ mask bit, so both kinds of exceptions are masked together. No
-> other platforms should be delivering FIQ exceptions right now, and we
-> already unmask FIQ in normal process context, so this should not have an
-> effect on other systems - if spurious FIQs were arriving, they would
-> already panic the kernel.
+> This should be last patch..
 
-Keeping these in sync sounds fine to me, FWIW.
+Ack
 
-> Root irqchip drivers can discriminate between IRQs and FIQs by checking
-> the ISR_EL1 system register.
+> 
+>> 
+>> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sm8150.dtsi | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+>> index e5bb17b..3198bd3 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+>> @@ -654,6 +654,13 @@
+>>  			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+>>  		};
+>> 
+>> +		dcc@010a2000{
+> 
+> no leading zero here and space before {
 
-I think we can remove this note for now. If we go with seperate handlers
-this won't be necessary, and if not this would be better placed on a
-commit adding the FIQ handling capability.
+Ack
 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  arch/arm64/include/asm/assembler.h |  6 +++---
->  arch/arm64/include/asm/daifflags.h |  4 ++--
->  arch/arm64/include/asm/irqflags.h  | 19 +++++++++++--------
->  arch/arm64/kernel/entry.S          |  6 +++---
->  4 files changed, 19 insertions(+), 16 deletions(-)
+> 
+>> +			compatible = "qcom,sm8150-dcc", "qcom,dcc";
+>> +			reg = <0x0 0x010a2000 0x0 0x1000>,
+>> +				<0x0 0x010ad000 0x0 0x3000>;
+> 
+> pls align this to preceding line
 
-Judging by `git grep -Wi daif -- arch/arm64`, with this patch applied,
-we'll also need fixups in:
+Ack
 
-* gic_arch_enable_irqs() in arch/arm64/include/asm/arch_gicv3.h
-* save_and_disable_irq() in arch/arm64/include/asm/assembler.h (noted below)
-* local_daif_save_flags() in arch/arm64/include/asm/daifflags.h
-  (the fake DAIF should have F set too)
-* __cpu_do_idle_irqprio() in arch/arm64/kernel/process.c
-
-> diff --git a/arch/arm64/include/asm/assembler.h b/arch/arm64/include/asm/assembler.h
-> index bf125c591116..ac4c823bf2b6 100644
-> --- a/arch/arm64/include/asm/assembler.h
-> +++ b/arch/arm64/include/asm/assembler.h
-> @@ -40,9 +40,9 @@
->  	msr	daif, \flags
->  	.endm
->  
-> -	/* IRQ is the lowest priority flag, unconditionally unmask the rest. */
-> -	.macro enable_da_f
-> -	msr	daifclr, #(8 | 4 | 1)
-> +	/* IRQ/FIQ are the lowest priority flags, unconditionally unmask the rest. */
-> +	.macro enable_da
-> +	msr	daifclr, #(8 | 4)
->  	.endm
-
-I think save_and_diable_irq below needs to be updated too, since it
-only sets DAIF.I and leaves DAIF.F as-is.
-
-[...]
-
-> diff --git a/arch/arm64/include/asm/irqflags.h b/arch/arm64/include/asm/irqflags.h
-> index ff328e5bbb75..125201dced5f 100644
-> --- a/arch/arm64/include/asm/irqflags.h
-> +++ b/arch/arm64/include/asm/irqflags.h
-> @@ -12,15 +12,18 @@
->  
->  /*
->   * Aarch64 has flags for masking: Debug, Asynchronous (serror), Interrupts and
-> - * FIQ exceptions, in the 'daif' register. We mask and unmask them in 'dai'
-> + * FIQ exceptions, in the 'daif' register. We mask and unmask them in 'daif'
->   * order:
->   * Masking debug exceptions causes all other exceptions to be masked too/
-> - * Masking SError masks irq, but not debug exceptions. Masking irqs has no
-> - * side effects for other flags. Keeping to this order makes it easier for
-> - * entry.S to know which exceptions should be unmasked.
-> + * Masking SError masks IRQ/FIQ, but not debug exceptions. IRQ and FIQ are
-> + * always masked and unmasked together, and have no side effects for other
-> + * flags. Keeping to this order makes it easier for entry.S to know which
-> + * exceptions should be unmasked.
->   *
-
-This sounds good.
-
-> - * FIQ is never expected, but we mask it when we disable debug exceptions, and
-> - * unmask it at all other times.
-> + * FIQ is never expected on most platforms, but we keep it synchronized
-> + * with the IRQ mask status. On platforms that do not expect FIQ, that vector
-> + * triggers a kernel panic. On platforms that do, the FIQ vector is unified
-> + * with the IRQ vector.
->   */
-
-Can we please delete this bit, though? Now that we say IRQ and FIQ are
-masked/unmasked together, I don't think the rest is necessary to
-understand the masking logic, and it's one less thing to keep in sync
-with changes to the entry code.
-
-Otherwise this looks good to me.
-
-Thanks,
-Mark.
+> 
+>> +			reg-names = "dcc-base", "dcc-ram-base";
+>> +		};
+>> +
+>>  		ufs_mem_hc: ufshc@1d84000 {
+>>  			compatible = "qcom,sm8150-ufshc", "qcom,ufshc",
+>>  				     "jedec,ufs-2.0";
+>> --
+>> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+>> member
+>> of Code Aurora Forum, hosted by The Linux Foundation
