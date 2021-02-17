@@ -2,180 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E38431E2C7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 23:50:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EB6F31E356
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 00:59:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232666AbhBQWto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 17:49:44 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:43271 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233304AbhBQWtY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 17:49:24 -0500
-Received: by mail-oi1-f179.google.com with SMTP id d20so16748770oiw.10;
-        Wed, 17 Feb 2021 14:49:08 -0800 (PST)
+        id S230064AbhBQX7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 18:59:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57648 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229943AbhBQX7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Feb 2021 18:59:16 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF2DC06178A
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 15:57:56 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id n195so392661ybg.9
+        for <devicetree@vger.kernel.org>; Wed, 17 Feb 2021 15:57:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gyyd+fg6rE1jikDjwjComYSD9NHlv04HXSqrgjKmU18=;
+        b=g74HmmdJSYKVCHRbytSRkHgd4z3jdETXm4uDfSzCa6DrvZZX/JtQKKxBIabrkWOhUx
+         JzLhYIdmK9+4a+TIIIpgQpcTPa10bFzsd5Obcs+85Zd2729d+a79LfumiVXstLdfaFeX
+         3PmgDObTOtKT2+StqbGtYMqk/V2b7H2RjvrEJZE8xbEFQvimTrlbT1Juz9HtX3utvtrx
+         2tMaWKn9BEQ2GIPCsLDcVVnRIXv31H00A2I2ET5OzWRD0nJe1PzwB1JZPL3YCssCVygf
+         7HuR5fDQf9DNuu2M8Ow1OdqHHmgf9NFSWIRYWIqVn9YTIynb5OGRcisVQcnO3WBoRasl
+         1T+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iwFEJ3kjWH7byU1Bj+qTU+zAIBp4rtQWtPBYut/wBEM=;
-        b=T6YBFhb+pWt+f3ejys6q4pjLctaOJOrb2RItftMWmaG1PZYUaje+ln0kG3QFiDLUJa
-         CxRtN4Y0atuKfBqyeoG3xqJCtz/uaK2rCrXm8f/pa8MRZw3FYVUAaH/AcPtDbRJr3tBR
-         aDqf2jw6QiIj6MAAxVvSrp+PopjvfXNwb07bIq8FGL5rPh6b1tJI8lLrMMMKsYlIBdjw
-         QEKVA0vpQMNhTJlvNl/lnA5hYbmxhaR/G1p9iXUaL2m56nYdFxIA+GKzmwBzgIiDq2a/
-         WN+Ced2/vyIftkYbIQEEQgWtBH1H/jOF3KGFSzqokzGhOdraaKojUrbCPFU+GQVHiW2+
-         Rc7w==
-X-Gm-Message-State: AOAM5308IYXUy4RLV7unpjDk2SA30fDHCsJNfseoiX/hiSJBH+xG/GWF
-        RuEcpwpnMcGYvJyKCp9tSg==
-X-Google-Smtp-Source: ABdhPJyf/6sqkBW6AkNJ46Z+XYd5SPLiqxsxxEvUsHVT9KbgLtYtbIRNM/9Zyv8yIyOIeh47JrRsXA==
-X-Received: by 2002:a05:6808:8da:: with SMTP id k26mr704298oij.165.1613602122708;
-        Wed, 17 Feb 2021 14:48:42 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 20sm166385oiz.14.2021.02.17.14.48.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Feb 2021 14:48:41 -0800 (PST)
-Received: (nullmailer pid 2937635 invoked by uid 1000);
-        Wed, 17 Feb 2021 22:48:39 -0000
-Date:   Wed, 17 Feb 2021 16:48:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, krzk@kernel.org, shengjiu.wang@nxp.com,
-        adrian.ratiu@collabora.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
-        Anson.Huang@nxp.com, hverkuil-cisco@xs4all.nl,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v1 17/18] dt-bindings: media: nxp,imx8mq-vpu: Update
- bindings
-Message-ID: <20210217224839.GA2888647@robh.at.kernel.org>
-References: <20210217080306.157876-1-benjamin.gaignard@collabora.com>
- <20210217080306.157876-18-benjamin.gaignard@collabora.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gyyd+fg6rE1jikDjwjComYSD9NHlv04HXSqrgjKmU18=;
+        b=bvS1KiDdPZeHfYrRUfMeT1hLaeq3gYAPqBrJ7cSQsPc+8HnKh9MtKsU845DcDQ7bCj
+         eS/Qd5PT5+192/OQtkV1+qPgSf/TT7ThjFqSZhZbByPMUYSPVfI3QMJRJyruWgiED8Zz
+         91JVLRlq0rM0YTMQagz31T7j7FQZdg2WSdh9NrMUY7slWIholp9Zui05M6ucGA0DRwsB
+         WZezZAApP7JmA7AR4UO0t0U7RTjUtJ99tWaXkwF7rlkKzvAdaTageeluAvO+MN56z0iS
+         rurg09X8JaztWf8FEAPrYJUBhsLiBE/3Fc1CMDC0ZtLURpar/oxP7NAZdStgxlc+J98j
+         f4wg==
+X-Gm-Message-State: AOAM530N18ZDThWRJ3Izc5UxJjrY4+o5PM9ZOBFKBA6Tdtpib+LpRXQf
+        gk1zPr1SZzINk7OzXfMzXfsHNZRTXFtBC13z7/Yhng==
+X-Google-Smtp-Source: ABdhPJyOSQa4Jj9rh8MYWVVAqAFPqUPnVtB1UzPtZJ/GyByZHitchaJCswelIanrPLQJ+P5TzrwtxVaA8GlnZr7rWrE=
+X-Received: by 2002:a25:8b8b:: with SMTP id j11mr2655973ybl.310.1613606274746;
+ Wed, 17 Feb 2021 15:57:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210217080306.157876-18-benjamin.gaignard@collabora.com>
+References: <20210205222644.2357303-1-saravanak@google.com>
+ <CAMuHMdVL-1RKJ5u-HDVA4F4w_+8yGvQQuJQBcZMsdV4yXzzfcw@mail.gmail.com>
+ <CAGETcx-668+uGigaOMcsvv00mo6o_eGPcH0YyD28OCVEyVbw+w@mail.gmail.com>
+ <CAMuHMdXduvBqjAqraXkEKErNJFyN6JNq5wqagc4yHHPpH5SPGQ@mail.gmail.com>
+ <CAGETcx_4FGa-rzLp6bjXbm4F4R6H2W78+nM_kN=XPz5hswzANA@mail.gmail.com>
+ <CAMuHMdVodauqBmLMxsfi0kQtAFT8ruJ36LJL9YuQgqwQNKwHHg@mail.gmail.com>
+ <CAGETcx_-yBvhXDPtOiKjenvx83oMNr32UvpMN0Dt-qz5ToXEbw@mail.gmail.com> <CAMuHMdXTO8wQ3=woLMjDaf9g3tTr-dRB3Nu_XvZUrr+wGSXyeg@mail.gmail.com>
+In-Reply-To: <CAMuHMdXTO8wQ3=woLMjDaf9g3tTr-dRB3Nu_XvZUrr+wGSXyeg@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 17 Feb 2021 15:57:18 -0800
+Message-ID: <CAGETcx8jXkbtdgMCr6KGT4ScoaoP=AwaW6MQeEv-gsDySiY35A@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 17, 2021 at 09:03:05AM +0100, Benjamin Gaignard wrote:
-> The introduction on HEVC decoder lead to update the bindings
-> to support it.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
-> ---
->  .../bindings/media/nxp,imx8mq-vpu.yaml        | 54 ++++++++++++-------
->  1 file changed, 36 insertions(+), 18 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> index 762be3f96ce9..468435c70eef 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> @@ -15,24 +15,25 @@ description:
->  
->  properties:
->    compatible:
-> -    const: nxp,imx8mq-vpu
-> +    enum:
-> +      - nxp,imx8mq-vpu
-> +      - nxp,imx8mq-vpu-g2
->  
->    reg:
-> -    maxItems: 3
-> +    maxItems: 1
->  
->    reg-names:
-> -    items:
-> -      - const: g1
-> -      - const: g2
-> -      - const: ctrl
-> +    enum:
-> +      - g1
-> +      - g2
+On Tue, Feb 16, 2021 at 12:31 PM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Saravana,
+>
+> On Tue, Feb 16, 2021 at 7:49 PM Saravana Kannan <saravanak@google.com> wrote:
+> > On Tue, Feb 16, 2021 at 12:05 AM Geert Uytterhoeven
+> > <geert@linux-m68k.org> wrote:
+> > > On Mon, Feb 15, 2021 at 10:27 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > > On Mon, Feb 15, 2021 at 4:38 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > On Fri, Feb 12, 2021 at 4:00 AM Saravana Kannan <saravanak@google.com> wrote:
+> > > > > > On Thu, Feb 11, 2021 at 5:00 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > > >       - I2C on R-Car Gen3 does not seem to use DMA, according to
+> > > > > > >         /sys/kernel/debug/dmaengine/summary:
+> > > > > > >
+> > > > > > >             -dma4chan0    | e66d8000.i2c:tx
+> > > > > > >             -dma4chan1    | e66d8000.i2c:rx
+> > > > > > >             -dma5chan0    | e6510000.i2c:tx
+> > > > > >
+> > > > > > I think I need more context on the problem before I can try to fix it.
+> > > > > > I'm also very unfamiliar with that file. With fw_devlink=permissive,
+> > > > > > I2C was using DMA? If so, the next step is to see if the I2C relative
+> > > > > > probe order with DMA is getting changed and if so, why.
+> > > > >
+> > > > > More detailed log:
+> > > > >
+> > > > >     platform e66d8000.i2c: Linked as a consumer to e6150000.clock-controller
+> > > > >     platform e66d8000.i2c: Linked as a sync state only consumer to e6055400.gpio
+> > > > >
+> > > > > Why is e66d8000.i2c not linked as a consumer to e6700000.dma-controller?
+> > > >
+> > > > Because fw_devlink.strict=1 is not set and dma/iommu is considered an
+> > > > "optional"/"driver decides" dependency.
+> > >
+> > > Oh, I thought dma/iommu were considered mandatory initially,
+> > > but dropped as dependencies in the late boot process?
+> >
+> > No, I didn't do that in case the drivers that didn't need the
+> > IOMMU/DMA were sensitive to probe order.
+> >
+> > My goal was for fw_devlink=on to not affect probe order for devices
+> > that currently don't need to defer probe. But see below...
+> >
+> > >
+> > > >
+> > > > >     platform e6700000.dma-controller: Linked as a consumer to
+> > > > > e6150000.clock-controller
+> > > >
+> > > > Is this the only supplier of dma-controller?
+> > >
+> > > No, e6180000.system-controller is also a supplier.
+> > >
+> > > > >     platform e66d8000.i2c: Added to deferred list
+> > > > >     platform e6700000.dma-controller: Added to deferred list
+> > > > >
+> > > > >     bus: 'platform': driver_probe_device: matched device
+> > > > > e6700000.dma-controller with driver rcar-dmac
+> > > > >     bus: 'platform': really_probe: probing driver rcar-dmac with
+> > > > > device e6700000.dma-controller
+> > > > >     platform e6700000.dma-controller: Driver rcar-dmac requests probe deferral
+> > > > >
+> > > > >     bus: 'platform': driver_probe_device: matched device e66d8000.i2c
+> > > > > with driver i2c-rcar
+> > > > >     bus: 'platform': really_probe: probing driver i2c-rcar with device
+> > > > > e66d8000.i2c
+> > > > >
+> > > > > I2C becomes available...
+> > > > >
+> > > > >     i2c-rcar e66d8000.i2c: request_channel failed for tx (-517)
+> > > > >     [...]
+> > > > >
+> > > > > but DMA is not available yet, so the driver falls back to PIO.
+> > > > >
+> > > > >     driver: 'i2c-rcar': driver_bound: bound to device 'e66d8000.i2c'
+> > > > >     bus: 'platform': really_probe: bound device e66d8000.i2c to driver i2c-rcar
+> > > > >
+> > > > >     platform e6700000.dma-controller: Retrying from deferred list
+> > > > >     bus: 'platform': driver_probe_device: matched device
+> > > > > e6700000.dma-controller with driver rcar-dmac
+> > > > >     bus: 'platform': really_probe: probing driver rcar-dmac with
+> > > > > device e6700000.dma-controller
+> > > > >     platform e6700000.dma-controller: Driver rcar-dmac requests probe deferral
+> > > > >     platform e6700000.dma-controller: Added to deferred list
+> > > > >     platform e6700000.dma-controller: Retrying from deferred list
+> > > > >     bus: 'platform': driver_probe_device: matched device
+> > > > > e6700000.dma-controller with driver rcar-dmac
+> > > > >     bus: 'platform': really_probe: probing driver rcar-dmac with
+> > > > > device e6700000.dma-controller
+> > > > >     driver: 'rcar-dmac': driver_bound: bound to device 'e6700000.dma-controller'
+> > > > >     bus: 'platform': really_probe: bound device
+> > > > > e6700000.dma-controller to driver rcar-dmac
+> > > > >
+> > > > > DMA becomes available.
+> > > > >
+> > > > > Here userspace is entered. /sys/kernel/debug/dmaengine/summary shows
+> > > > > that the I2C controllers do not have DMA channels allocated, as the
+> > > > > kernel has performed no more I2C transfers after DMA became available.
+> > > > >
+> > > > > Using i2cdetect shows that DMA is used, which is good:
+> > > > >
+> > > > >     i2c-rcar e66d8000.i2c: got DMA channel for rx
+> > > > >
+> > > > > With permissive devlinks, the clock controller consumers are not added
+> > > > > to the deferred probing list, and probe order is slightly different.
+> > > > > The I2C controllers are still probed before the DMA controllers.
+> > > > > But DMA becomes available a bit earlier, before the probing of the last
+> > > > > I2C slave driver.
+> > > >
+> > > > This seems like a race? I'm guessing it's two different threads
+> > > > probing those two devices? And it just happens to work for
+> > > > "permissive" assuming the boot timing doesn't change?
+> > > >
+> > > > > Hence /sys/kernel/debug/dmaengine/summary shows that
+> > > > > some I2C transfers did use DMA.
+> > > > >
+> > > > > So the real issue is that e66d8000.i2c not linked as a consumer to
+> > > > > e6700000.dma-controller.
+> > > >
+> > > > That's because fw_devlink.strict=1 isn't set. If you need DMA to be
+> > > > treated as a mandatory supplier, you'll need to set the flag.
+> > > >
+> > > > Is fw_devlink=on really breaking anything here? It just seems like
+> > > > "permissive" got lucky with the timing and it could break at any point
+> > > > in the future. Thought?
+> > >
+> > > I don't think there is a race.
+> >
+> > Can you explain more please? This below makes it sound like DMA just
+> > sneaks in at the last minute.
+>
+> Yes it does, as the DMAC also has a consumer link to the IOMMU.
+> If you ignore the consumer link from I2C to DMAC, the I2C device has
+> less dependencies than the DMAC, so the I2C device, and the
+> devices on the I2C bus, are probed much earlier than the DMAC.
 
-This isn't a compatible change. You need to state why that's okay if it 
-is okay.
+Can you give this a shot?
+https://lore.kernel.org/lkml/20210217235130.1744843-1-saravanak@google.com/T/#u
 
->  
->    interrupts:
-> -    maxItems: 2
-> +    maxItems: 1
->  
->    interrupt-names:
-> -    items:
-> -      - const: g1
-> -      - const: g2
-> +    enum:
-> +      - g1
-> +      - g2
->  
->    clocks:
->      maxItems: 3
-> @@ -46,6 +47,9 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  resets:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> @@ -54,6 +58,7 @@ required:
->    - interrupt-names
->    - clocks
->    - clock-names
-> +  - resets
->  
->  additionalProperties: false
->  
-> @@ -61,19 +66,32 @@ examples:
->    - |
->          #include <dt-bindings/clock/imx8mq-clock.h>
->          #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        #include <dt-bindings/reset/imx8mq-vpu-reset.h>
->  
-> -        vpu: video-codec@38300000 {
-> +        vpu_g1: video-codec@38300000 {
->                  compatible = "nxp,imx8mq-vpu";
-> -                reg = <0x38300000 0x10000>,
-> -                      <0x38310000 0x10000>,
-> -                      <0x38320000 0x10000>;
-> -                reg-names = "g1", "g2", "ctrl";
-> -                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> -                             <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> -                interrupt-names = "g1", "g2";
-> +                reg = <0x38300000 0x10000>;
-> +                reg-names = "g1";
-> +                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +                interrupt-names = "g1";
-> +                clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
-> +                         <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
-> +                         <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-> +                clock-names = "g1", "g2", "bus";
-> +                power-domains = <&pgc_vpu>;
-> +                resets = <&vpu_reset IMX8MQ_RESET_VPU_RESET_G1>;
-> +        };
-> +
-> +        vpu_g2: video-codec@38310000 {
-> +                compatible = "nxp,imx8mq-vpu-g2";
-> +                reg = <0x38310000 0x10000>;
-> +                reg-names = "g2";
-> +                interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> +                interrupt-names = "g2";
->                  clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
->                           <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
->                           <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
->                  clock-names = "g1", "g2", "bus";
->                  power-domains = <&pgc_vpu>;
-> +                resets = <&vpu_reset IMX8MQ_RESET_VPU_RESET_G2>;
->          };
-> -- 
-> 2.25.1
-> 
+It should make sure fw_devlink doesn't add a device to the deferred
+probe list too soon and change the probe ordering unnecessarily.
+
+-Saravana
