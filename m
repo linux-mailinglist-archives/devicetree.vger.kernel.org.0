@@ -2,128 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C490F31D6F4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 10:24:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A040931D7D1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 12:04:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231704AbhBQJYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 04:24:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52204 "EHLO mail.kernel.org"
+        id S230219AbhBQLDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 06:03:05 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34298 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231667AbhBQJYk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Feb 2021 04:24:40 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9CD2664E33;
-        Wed, 17 Feb 2021 09:23:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1613553839;
-        bh=FD7WhxzDm+JDUfR6hgpEBF+USlSpiOrjLGWZu2X98cI=;
+        id S230444AbhBQLDA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Feb 2021 06:03:00 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B203164E63;
+        Wed, 17 Feb 2021 11:02:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613559738;
+        bh=VKyIbFRc2eRMDzPVwV+4rFtGgbGbQz+r8iYjbPVnKIQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jF0NlVSCU9pO4orJwFctgDl16Qz2q2xtNLtJz1DaP0buysksSPJFRfQZaeyvNHuJC
-         bWg6BJByx2Um/j+t1QKHcL4nCqILFeEcl0KBWCZ0NTtWvCyVZbQCHShrxjkS/D1663
-         kEFHpQqChcLhQHnuNstCKZ+Z5w5oZm7MHbJhrH2I=
-Date:   Wed, 17 Feb 2021 10:23:56 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        peng.fan@nxp.com, kernel@collabora.com, devel@driverdev.osuosl.org,
-        Anson.Huang@nxp.com, krzk@kernel.org,
-        linux-rockchip@lists.infradead.org, wens@csie.org,
-        linux-imx@nxp.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        s.hauer@pengutronix.de, mripard@kernel.org, robh+dt@kernel.org,
-        mchehab@kernel.org, ezequiel@collabora.com,
-        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com,
-        jernej.skrabec@siol.net, adrian.ratiu@collabora.com,
-        linux-kernel@vger.kernel.org, paul.kocialkowski@bootlin.com,
-        p.zabel@pengutronix.de, shawnguo@kernel.org, shengjiu.wang@nxp.com
-Subject: Re: [PATCH v1 00/18] Add HANTRO G2/HEVC decoder support for IMX8MQ
-Message-ID: <YCzgrGr8JpUYcQ+L@kroah.com>
-References: <20210217080306.157876-1-benjamin.gaignard@collabora.com>
- <YCzO7SRmBKzGeMUS@kroah.com>
- <04dfae0b-92e5-e02d-c687-ba4d28b7aaf2@collabora.com>
- <YCzVmRVL79KMkxXQ@kroah.com>
- <63b62e9e-b95f-59a4-b830-c56d2cb9e4f8@xs4all.nl>
+        b=ll3On1PSyQwT2bKpok2cp2JLZucNXIEfjZsFQ/p3RgmB8VAIrRd70Y154Kai6KN5E
+         KfElVRCno8frJh57FSjVIjCdReYHY10VvZsDRDoopIKO108qQm0Wm38K67JDCB+K+m
+         xMTgZr6m6T4UlwC1o1Ly//RlT9yegVNskhlCo5qxG6c+Rn6YtnsZvLqGO8/CEi5obc
+         34UVmZyPjVfM3tGD1u+BDfaaybGXKvmh3IyDyTqyf4qBihr/4KgqIx7UjIvdm1h8Mx
+         VetisXY9V2rnnfBSEafQbCUpsGPYjjfoPNeY2mg3HaGkgdBO+kZDSSzeJOVo5OXzy1
+         12KBVzC1ymoPw==
+Date:   Wed, 17 Feb 2021 16:32:14 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Souradeep Chowdhury <schowdhu@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Subject: Re: [PATCH V0 1/6] dt-bindings: Added the yaml bindings for DCC
+Message-ID: <20210217110214.GR2774@vkoul-mobl.Dlink>
+References: <cover.1613541226.git.schowdhu@codeaurora.org>
+ <5da43657817066e0ffe1e24cfb17104138515452.1613541226.git.schowdhu@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <63b62e9e-b95f-59a4-b830-c56d2cb9e4f8@xs4all.nl>
+In-Reply-To: <5da43657817066e0ffe1e24cfb17104138515452.1613541226.git.schowdhu@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 17, 2021 at 10:10:35AM +0100, Hans Verkuil wrote:
-> On 17/02/2021 09:36, Greg KH wrote:
-> > On Wed, Feb 17, 2021 at 09:28:09AM +0100, Benjamin Gaignard wrote:
-> >>
-> >> Le 17/02/2021 à 09:08, Greg KH a écrit :
-> >>> On Wed, Feb 17, 2021 at 09:02:48AM +0100, Benjamin Gaignard wrote:
-> >>>> The IMX8MQ got two VPUs but until now only G1 has been enabled.
-> >>>> This series aim to add the second VPU (aka G2) and provide basic
-> >>>> HEVC decoding support.
-> >>> Why are you adding this directly to drivers/staging/media/ and not
-> >>> drivers/media/?  Why can't this just go to the main location and not
-> >>> live in staging?
-> >>
-> >> G2/HEVC is added inside the already exiting Hantro driver, it is "just"
-> >> an other codec from Hantro driver point of view.
-> >> In addition of that v4l2-hevc uAPI is still unstable.
-> >> One goal of this series is to have one more consumer of this v4l2-hevc
-> >> uAPI so maybe we can claim it to be stable enough to move away from staging
-> >> and then do the same for Hantro driver. That would be a great achievement !
-> > 
-> > I know I do not like seeing new additions/features/whatever being added
-> > to staging drivers as that encourages people to do new stuff on them
-> > without doing the real work needed to get them out of staging.
+On 17-02-21, 12:18, Souradeep Chowdhury wrote:
+> Documentation for Data Capture and Compare(DCC) device tree bindings
+> in yaml format.
 > 
-> In order to support a specific codec (MPEG-2, H.264, HEVC, VP8, etc.) for
-> stateless codec hardware like the hantro, V4L2 controls need to be defined.
-> The contents of these controls is derived directly from the underlying codec
-> standards, but it is quite difficult to get this right with the first attempt,
-> since these standards are very complex.
+> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+> ---
+>  .../devicetree/bindings/arm/msm/qcom,dcc.yaml      | 49 ++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
 > 
-> So we went for the strategy of keeping these drivers in staging to make it
-> easy to work on, while keeping the APIs for each codec private (i.e., they are
-> not exposed in include/uapi/linux).
-> 
-> Once we have sufficient confidence in the API for a specific codec we move
-> it to uapi and thus fix the API. We also renumber the control IDs at that
-> time to avoid any confusion between the staging version and the final version.
-> 
-> We did that for H.264 and I hope we can soon do the same for MPEG-2 and VP8.
-> 
-> HEVC is definitely not ready for that yet.
-> 
-> The key phrase is 'sufficient confidence': one requirement is that it is supported
-> by at least two drivers to be reasonably certain the API doesn't contain any HW
-> specific stuff, and it passes test suites and review by codec experts.
-> 
-> All this is actively being worked on, so this is very much alive, but it is
-> complex and time consuming.
-> 
-> > So what is preventing the existing driver from getting out of staging
-> > now?
-> 
-> Once MPEG-2 and VP8 are finalized it is probably time to move these drivers
-> out of staging, while still keeping the HEVC API part private.
-> 
-> > 
-> > And how are you all creating new userspace apis for staging drivers to
-> > the v4l layer?  What happens when you export something new and then
-> > userspace starts to rely on it and then you change it?
-> 
-> Nothing is exported. So if userspace want to use it they have to manually
-> copy headers from include/media to their application.
-> 
-> > 
-> > Anyway, the media staging drivers are on their own, I don't touch them,
-> > it just feels odd to me...
-> 
-> It's an unusual situation. But putting the drivers in staging and keeping
-> the codec API headers private turns out to be the most effective way to
-> develop this.
+> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+> new file mode 100644
+> index 0000000..8f09578
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/msm/qcom,dcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Data Capture and Compare
+> +
+> +maintainers:
+> +  - Souradeep Chowdhury <schowdhu@codeaurora.org>
+> +
+> +description: |
+> +    DCC (Data Capture and Compare) is a DMA engine which is used to save
+> +    configuration data or system memory contents during catastrophic failure
+> +    or SW trigger.DCC is used to capture and store data for debugging purpose
 
-Ah, ok, thanks for the explaination, makes sense.
+space after .
 
-good luck!
+> +
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +    - enum:
+> +      - qcom,sm8150-dcc
+> +    - const: qcom,dcc
+> +
+> +  reg:
+> +    items:
+> +      - description: DCC base register region
+> +      - description: DCC RAM base register region
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dcc-base
+> +      - const: dcc-ram-base
 
-greg k-h
+drop dcc from names
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dcc@010a2000{
+> +                compatible = "qcom,sm8150-dcc";
+
+should this not be:
+                compatible = "qcom,sm8150-dcc", "qcom,dcc";
+
+> +                reg = <0 0x010a2000 0  0x1000>,
+> +                      <0 0x010ae000 0  0x2000>;
+> +                reg-names = "dcc-base", "dcc-ram-base";
+> +    };
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+
+-- 
+~Vinod
