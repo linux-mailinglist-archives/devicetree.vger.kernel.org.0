@@ -2,96 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD0431D587
-	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 07:53:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBCB931D5D5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Feb 2021 08:43:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231640AbhBQGut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 01:50:49 -0500
-Received: from m42-2.mailgun.net ([69.72.42.2]:14481 "EHLO m42-2.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231628AbhBQGuZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Feb 2021 01:50:25 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1613544599; h=References: In-Reply-To: References:
- In-Reply-To: Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=iVPlDtA3cYmRcNPsiuCDEl0x5PWDq4z0g6exuU4Nous=; b=NpdVSLH5UHjLsMyCb6j8m3iyT4j9chq746p5PvMy05m9x7VWDDxWlwOXJrBK09A1vTWhTISG
- kuRRql9kp75IPcaJm9fMUr6iiTAFSqkmF8yitBo9+imQJ5c74WSmaExpACTOLV0A4lSEZzWm
- LIVkOIlUK10H4X1QMwk5ornWAq0=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 602cbc7806bddda9df67636f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 17 Feb 2021 06:49:28
- GMT
-Sender: schowdhu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 49EE3C433C6; Wed, 17 Feb 2021 06:49:27 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-525.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: schowdhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9E2CAC433ED;
-        Wed, 17 Feb 2021 06:49:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9E2CAC433ED
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=schowdhu@codeaurora.org
-From:   Souradeep Chowdhury <schowdhu@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Souradeep Chowdhury <schowdhu@codeaurora.org>
-Subject: [PATCH V0 6/6] MAINTAINERS:Added the entry for DCC(Data Capture and Compare) driver support
-Date:   Wed, 17 Feb 2021 12:18:27 +0530
-Message-Id: <051dbb5f446de9b89af2a6b4c6e19673d32cca6f.1613541226.git.schowdhu@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1613541226.git.schowdhu@codeaurora.org>
-References: <cover.1613541226.git.schowdhu@codeaurora.org>
-In-Reply-To: <cover.1613541226.git.schowdhu@codeaurora.org>
-References: <cover.1613541226.git.schowdhu@codeaurora.org>
+        id S231697AbhBQHm5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 17 Feb 2021 02:42:57 -0500
+Received: from mail-eopbgr1320121.outbound.protection.outlook.com ([40.107.132.121]:36304
+        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231835AbhBQHlz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Feb 2021 02:41:55 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=M3ukMJaK4cjbe4/JXw1JGdn9Qa123tnROdnGyKaAuMjpczPpFlhYoDwwlGMd8iUH/sgMQEVb4S/P51qWxIL9q1Q7sm2qqictNGkbKHKnZUKgEWfhtQH4ONDqIfjByPalL2CROzZaVg9tMf2U+HAcadG086dAQh18lHJuKZtKELQS+IsYfCLmpCit9IHOP8F14EOn49zDCJmPunRwF98zP/viLpllHQe7O5+ejq5EBI4QBBBU88R+s3xlwfVFVtymvQckHKOgxVVg00OaDVj1f08GRvxNhGXnFpacmc67eqneH+MabgXs+H6WxKvyM34ZbJx72ViitHq1EsFis+0h6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r9B3hux1IxS7FYEurOjBLzeegi7kYuStTT0ETlYnE0E=;
+ b=OQZsgNxX0mtVKtGJ1AqvdTyElvjRzKJAmvfuIg6dz5cjf3w8Qs+6N8ryeCp6CIbC87biusd3Y8b3lM38EOYWZ+tWhDxn3S6Mdb78gsYOXQAkrkkD52CJlLOIea8x17692TTJBqwFW9nGiJ87pMkFxngDW0UCI0EkXK6lPDQPgMAESjKBNJpbx4uPAVgbaQreibbvO62G+P8ig6zyw2ozRcXkObUvE9CdfV4Rf5kbprE2QJYlA1iXFSL/2gCO86ADmB7QXtSXy1N42DUH4hn6qJf2/gG1sIk3Hj2Pc26I7RfUExHNHE1O+5HJ8Gi8OoSvEbl/IhuRYTXWIJzPYswcxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (52.132.237.202) by
+ HK0PR06MB2819.apcprd06.prod.outlook.com (20.177.24.85) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3868.27; Wed, 17 Feb 2021 07:40:17 +0000
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::394c:29f2:cb4c:55ed]) by HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::394c:29f2:cb4c:55ed%3]) with mapi id 15.20.3846.041; Wed, 17 Feb 2021
+ 07:40:16 +0000
+From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
+To:     Andrew Jeffery <andrew@aj.id.au>, Lee Jones <lee.jones@linaro.org>
+CC:     BMC-SW <BMC-SW@aspeedtech.com>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        Robert Lippert <rlippert@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Corey Minyard <minyard@acm.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
+Subject: RE: [PATCH v5 1/5] dt-bindings: aspeed-lpc: Remove LPC partitioning
+Thread-Topic: [PATCH v5 1/5] dt-bindings: aspeed-lpc: Remove LPC partitioning
+Thread-Index: AQHW6ndtLpV90qI+i0aaOeinwbKhAKo6sL2AgCF0F+A=
+Date:   Wed, 17 Feb 2021 07:40:15 +0000
+Message-ID: <HK0PR06MB3779B25984A461E4A1ADEF1191869@HK0PR06MB3779.apcprd06.prod.outlook.com>
+References: <20210114131622.8951-1-chiawei_wang@aspeedtech.com>
+ <20210114131622.8951-2-chiawei_wang@aspeedtech.com>
+ <85f00459-4a39-441e-8119-8e12f8132cfe@www.fastmail.com>
+In-Reply-To: <85f00459-4a39-441e-8119-8e12f8132cfe@www.fastmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: aj.id.au; dkim=none (message not signed)
+ header.d=none;aj.id.au; dmarc=none action=none header.from=aspeedtech.com;
+x-originating-ip: [211.20.114.70]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6cee2f67-245f-4575-509b-08d8d3174492
+x-ms-traffictypediagnostic: HK0PR06MB2819:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HK0PR06MB28194DA48E205F9EFCC719E191869@HK0PR06MB2819.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: upFmur1U1rXrvRla/oUuG+AF6Vmd40/2tnBmg/pC++1ClR8gcuBOkP9vPY5c4k3x8nWhEt7pydbTA7AZKO7gZtZTOwa5aIMg/geMsh4IRmICzxw7pxFuakON5lUAbKk2Sl3Wz0sFPifDqg4Ld50RGI6W3ydn6SPeeKIhEDZgV0ucvWfDoRuGTUkZsT3pxQKE9FKO1IjaYhWzSAVGP7Vj9nC+keER0Pkud2Lft5CQaKC0zkLoAjueNxF2sKuvqZGHQ9HV/HuWOiBiEkCb3aWK9TmKsF+SGr+u48U7He1KEydWnZTlYzEkpgVOkXWetCCiTTGESNtg2b6Px7zQ3wR7hQ61dS/4sKepSJv3iW69RNHFnZvDkgHA2beKldSte5OGCblbvVgP9ZY+cKTp+y/9cBtsLCP7wGW3AYYEdgBrjEvCoslUTmeKVLu+XD3PdxkJ+lZTL5r+K3XwpRxD5T2fup/9la6ybkrePxQPxcpjsvLuMj6ur0LbY34OqyfYxnffHcGwD1NdEmocrS/QR7LNng==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(136003)(366004)(39850400004)(376002)(346002)(55016002)(54906003)(7416002)(110136005)(33656002)(478600001)(9686003)(316002)(86362001)(6506007)(53546011)(83380400001)(4326008)(26005)(7696005)(186003)(55236004)(71200400001)(4744005)(64756008)(66476007)(66946007)(66446008)(76116006)(8936002)(2906002)(66556008)(52536014)(5660300002)(8676002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?SiyHhbJzaOA4MJCpflgj0CEifAstmD34AQJjY6OpLpwbys2kYo3xEXtrQAlA?=
+ =?us-ascii?Q?eSMK40nMqrNT+UhhBNCb5tuyvSdzC8K8LfPixzb/m2YOacvPxV/9aSo4mgcq?=
+ =?us-ascii?Q?p+gVzvzVtiL5z/LpIhZmdhljNogsgMwvZgp31QEMq4Nto1D1NfK+JOJ1epmM?=
+ =?us-ascii?Q?la9kj13TZBeRr3hy/dA/KqRWxPkduN3/58qGec08gYbN5lvfzLGP2fzD9FZl?=
+ =?us-ascii?Q?5Nyr743GsRNwtOOGWVuKipp7/8VLB4NdBgqf72Jhc7DRu0xMPHOnS3iJ2pz5?=
+ =?us-ascii?Q?4KQrGZiGMKGle/lmPwdJR75+5uOYYULxuyJQIcHt9a/AOxzyiA58GmP85G5x?=
+ =?us-ascii?Q?YYxGHccpMSF3VmnyuDjtNTXUwjd7TjpdmTXEYS8B+R/Q4tzXybnWgSNE1aeV?=
+ =?us-ascii?Q?TzAvAcEQDgYzh5dCu99qlvsIY5fyw5iZ7Evlwm+uLb8Syhud4EEY6qO6rh13?=
+ =?us-ascii?Q?znrLHc0JqnXPD2gNqqfLYZQrt19JzPEWoliPfDbjPX1TFVVZC0Vj/P6W1NWh?=
+ =?us-ascii?Q?lUk5HFfHu/4jV+CseQ6nAlU4xxmUcl2HVoGX7CV3H1aw+UcvpEtcOv1Om9fd?=
+ =?us-ascii?Q?Za3GkI1e/9tUrf8DBj1wMg+T25t0X3GgzBeWykY8/y43VwXf1OAqUTwBbYfh?=
+ =?us-ascii?Q?0MbeEgW7zeb8eYqGmHmkjSrqxHKEXKbLn2j0yiIEG6ITtvis/6UBl4YdHvT3?=
+ =?us-ascii?Q?zFs32ouL2aVoIfYTRcNiYZiAATOUMhTp55+45cTH34hrgVwKlfMuFNknNysZ?=
+ =?us-ascii?Q?apYwBjutUBLyMtj+GmjjWk/C/8SUrbeVTZx1wPywHHv2pJm/+1kX8pZe8O9e?=
+ =?us-ascii?Q?bS0BL6iUDyvluViGt4Nn+/H4dKkc0SIhwUuwVjsO/o6mJWU0JcbkUK1DolgU?=
+ =?us-ascii?Q?uwF2o1mdj59NhScgCPR/OTfEsh7HS+ok2Vs9qP4pXu+fDMn99nWgdNU07Nr6?=
+ =?us-ascii?Q?wPm+aXZuloTl7OXGtQOh2u+CDRomyzzLdK9VUji/YIfU33wGKdFw+Ni3gULk?=
+ =?us-ascii?Q?KTh/0OjfmRSm6GQp0L8Z9Ek17Tpx2hjWa+fSt4c7RkA5kzKSgQtNQljrhMGs?=
+ =?us-ascii?Q?U4lohfyfW3tKxi+Cdbd71op7b6eBSgnwSm43eCR9rOSxe344zoPnP5vFK+es?=
+ =?us-ascii?Q?E8jvJdGikRFIMi7QrnmLo6ioAtNEDI1PwwITmzk7F/vMZblefxFY3u5eR72R?=
+ =?us-ascii?Q?WiIZapHraokFDpZjBoEbIyoMH7RuJPn6aCh0441+loOU8etFk/GLJgHrtUJo?=
+ =?us-ascii?Q?W0jrxfz0LPejpbz1eiet662wV1CKFN9ShyooEzx6fFyPPSJrzT4IVstty5DL?=
+ =?us-ascii?Q?HNY3A5XMXqcxc94zCNh5FTqv?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
+MIME-Version: 1.0
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6cee2f67-245f-4575-509b-08d8d3174492
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2021 07:40:15.6725
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VMNjQXz+qtD5Y3OaH6KcXs63vgs0S0ZTrIJcCOEC7LFDr6AE1ggXyrdffkVwUomao82P9Lk2m7+V4JmF0j6TskRIg2v+iaMCSQg2pOqQOOM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB2819
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added the entries for all the files added as a part of driver support for
-DCC(Data Capture and Compare).
+Hi All,
 
-Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Do you have update on this patch series?
+Aspeed has subsequent LPC module upstream plan.
+We hope that the following patches can be on the basis of the fixed LPC layout.
+Thanks.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 546aa66..f0d208a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4931,6 +4931,14 @@ F:	include/linux/tfrc.h
- F:	include/uapi/linux/dccp.h
- F:	net/dccp/
- 
-+QUALCOMM DCC DRIVER
-+M:	Souradeep Chowdhury <schowdhu@codeaurora.org>
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/ABI/testing/sysfs-driver-dcc
-+F:	Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
-+F:	drivers/soc/qcom/dcc.c
-+
- DECnet NETWORK LAYER
- L:	linux-decnet-user@lists.sourceforge.net
- S:	Orphan
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Chiawei
 
+> -----Original Message-----
+> From: Andrew Jeffery <andrew@aj.id.au>
+> Sent: Wednesday, January 27, 2021 8:25 AM
+> To: Lee Jones <lee.jones@linaro.org>
+> Subject: Re: [PATCH v5 1/5] dt-bindings: aspeed-lpc: Remove LPC partitioning
+> 
+> 
+> 
+> On Thu, 14 Jan 2021, at 23:46, Chia-Wei, Wang wrote:
+> > The LPC controller has no concept of the BMC and the Host partitions.
+> > This patch fixes the documentation by removing the description on LPC
+> > partitions. The register offsets illustrated in the DTS node examples
+> > are also fixed to adapt to the LPC DTS change.
+> >
+> > Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+> 
+> Any thoughts Lee? If you ack it would you be happy for the patch to go through
+> the Aspeed tree?
+> 
+> Andrew
