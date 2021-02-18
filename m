@@ -2,94 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A9231E6CC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 08:19:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1428A31E6F5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 08:37:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbhBRHQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 02:16:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36936 "EHLO
+        id S231124AbhBRH3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 02:29:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230361AbhBRHNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 02:13:44 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0254C06178C;
-        Wed, 17 Feb 2021 23:07:19 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id l12so1637646wry.2;
-        Wed, 17 Feb 2021 23:07:19 -0800 (PST)
+        with ESMTP id S230414AbhBRHWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 02:22:03 -0500
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBCD4C061756;
+        Wed, 17 Feb 2021 23:21:22 -0800 (PST)
+Received: by mail-qt1-x831.google.com with SMTP id e15so733040qte.9;
+        Wed, 17 Feb 2021 23:21:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jiX7X0M+t1Zm8HAFufsMGCFO60ftU2nIQxPg0v/LgAc=;
-        b=lF85QSD+vYfT7DlSOt6Lh41R38GeGRS80DlSfvCEsrAPEM+asxWsbIPISJseavuhlY
-         zsSCFytWTgoKlDwQfqEGEunVSsm4NPDAdiqaHaJhsm768AK3xAOXZgcufiRv8aj9tgnR
-         DcvS2PhlLweBIVytmX6DUdg7RvEU9ZsNfSHiKJ1BKrQE1bc5FDxQd3bjOW4KLtORohox
-         ypZaqFAtqe4mxX4RMSQivJ16sMxWE+aASBgKTaK7LJvUQwXllBuFMbgUNl+v4FaMCo/P
-         34RSz3M/PTYv4UJlatoLLXTP2jsp/2K8bEXoj3+SNM2aZ3Yv4lc89MdQBPoLg7f3zk0a
-         8LWw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W4CuVJp6htN2y1/Vp8LtCaaMfaPH0Jo1ezQEtxgh7bk=;
+        b=mdpH+6FobMXsdaZB85IHeW3r64Vs5Sg4rYLQ5bmOIOqagsYGgBIxrwD41jtF37xVZF
+         BtJs+dLUNcu6JAbX1j9/qbszuIFb+yz8ZASbPKX3n89Fxf/rGShVkZWuBJBoV1a/qRKZ
+         7N4Xfd/uaDo/51xC71PTE3rkOhCDmEcPCr+f5zHLqrMgICVf1fRFTzEY8XYaIJDNx6NL
+         myjNbOtCm0jUeSJAyy4Uh47OoUEYGT/gUVX+24Iir1s6t1nRjUD2OLQGNHhqvzVxMrlh
+         E3kqYoqHSH3tjsuk480W9oiBvOxuQ2wPk8Eil28J4j32OUTZSmZVQDhU7M5GAU9KJ2LP
+         IG+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jiX7X0M+t1Zm8HAFufsMGCFO60ftU2nIQxPg0v/LgAc=;
-        b=akOQuQLa3+DqEUOfQxqGgtpuKqZZc82/Pj2NbEFsZDQbhM+WQngZAB+yvUv3GSz5fs
-         NHjsQ4DNRzdaOOjSbDsG3SoorUVbvbgrqWHTGvb9pfasWtbAZTASzKt+hl25gHlApBQ2
-         dq3aNif5tND4dJ6lB1+ZNcMHO+GdyoYLh0pe6WwDfoNrGKu5fA9F0A7IdV0NEv9C4JcJ
-         nfG8zhGXH+4KQAx9GLFu219gOePAzmcHrJlzhwWglbB50jB1rq92BzLSndxdkEQhyVzz
-         gE2V+Gm2+E0EqdkR1xopK3mBSFUohEFbF7AdV24i1j3o2e3NYC13yBc5h8XoupfynPiC
-         Bdqw==
-X-Gm-Message-State: AOAM532clVLFdDNNv6TgBVGTYf4DFNcT2/N9aegvsz8JIYH5s6YqX9nO
-        ZYqQcs0MPQ5FqkfFV6+ZERM=
-X-Google-Smtp-Source: ABdhPJzTOnJ2x02hqakckgGgFn+4lopjhaB9yCEKqRGzMSs12Rw6Xn/SU5cQxXjIf3qICSbhlK5vKQ==
-X-Received: by 2002:adf:d20c:: with SMTP id j12mr2872975wrh.76.1613632038781;
-        Wed, 17 Feb 2021 23:07:18 -0800 (PST)
-Received: from localhost.localdomain (67.red-83-54-30.dynamicip.rima-tde.net. [83.54.30.67])
-        by smtp.gmail.com with ESMTPSA id 4sm6136555wma.0.2021.02.17.23.07.17
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 17 Feb 2021 23:07:18 -0800 (PST)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     sboyd@kernel.org
-Cc:     robh+dt@kernel.org, john@phrozen.org, tsbogend@alpha.franken.de,
-        gregkh@linuxfoundation.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        devel@driverdev.osuosl.org, neil@brown.name,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v9 6/6] MAINTAINERS: add MT7621 CLOCK maintainer
-Date:   Thu, 18 Feb 2021 08:07:09 +0100
-Message-Id: <20210218070709.11932-7-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210218070709.11932-1-sergio.paracuellos@gmail.com>
-References: <20210218070709.11932-1-sergio.paracuellos@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W4CuVJp6htN2y1/Vp8LtCaaMfaPH0Jo1ezQEtxgh7bk=;
+        b=uOPscJnFcIZbIL7VhopymcSvHJ4Pp0YVSHKh1mk+yuMcKymWmF6WFQWdrVS1clGeCD
+         E9TZp4ceWH1OrGOvGWcE4qPt9ryf6jPIU2ICQTjfDtoxZA3Xq65wbNPhDxVs00JQzvmy
+         1zEEkLdOOEQLljdg92F9Newautx/aj99hTfAGcYTZx1cDKcMAijtjaskB4TT6DfvEtib
+         RYhw3e2KNFS6yG/YwNTxJs6KO/s6IQjOja0IIL6LKOcIColxsXIJmRIRju5p7PPd+/d2
+         19AkHuQqyFJvk6TcPaiCh+ennFFeoObP/7TnFGqOVnQ2sgD0SfZL9NjG1tOZDeNMS7X4
+         c0iQ==
+X-Gm-Message-State: AOAM531wTHObiZM4ReNDUnapqF7CyEj6hIyJs6+PD5CmyFMGLbWp5rBh
+        ju/apcyxyHPdQlNefS93oJ8btUzL2jFcFAkS0HY=
+X-Google-Smtp-Source: ABdhPJxYDxHIpH8R50b3lmetoPOD5LNUh7FIOIlLGHYseOIxe+kTql8AAKWjI5pZkC7bn2hCVj6VeG0ssJUHibmXYYY=
+X-Received: by 2002:ac8:7b43:: with SMTP id m3mr2919646qtu.121.1613632881637;
+ Wed, 17 Feb 2021 23:21:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1612693435-31418-1-git-send-email-shengjiu.wang@nxp.com>
+ <1612693435-31418-4-git-send-email-shengjiu.wang@nxp.com> <20210210221252.GA2885308@robh.at.kernel.org>
+In-Reply-To: <20210210221252.GA2885308@robh.at.kernel.org>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Thu, 18 Feb 2021 15:21:10 +0800
+Message-ID: <CAA+D8APfd8trC8cFsT8k8G54nhrYDrwXxECx9RpDAgw3rco9DQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/7] ASoC: dt-bindings: fsl_rpmsg: Add binding doc for
+ rpmsg cpu dai driver
+To:     Rob Herring <robh@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
+        Timur Tabi <timur@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org, Xiubo Li <Xiubo.Lee@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding myself as maintainer for mt7621 clock driver.
+On Thu, Feb 11, 2021 at 6:13 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Sun, Feb 07, 2021 at 06:23:51PM +0800, Shengjiu Wang wrote:
+> > fsl_rpmsg cpu dai driver is driver for rpmsg audio, which is mainly used
+> > for getting the user's configuration from device tree and configure the
+> > clocks which is used by Cortex-M core. So in this document define the
+> > needed property.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> >  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 80 +++++++++++++++++++
+> >  1 file changed, 80 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> > new file mode 100644
+> > index 000000000000..2d3ce10d42fc
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> > @@ -0,0 +1,80 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/sound/fsl,rpmsg.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP Audio RPMSG CPU DAI Controller
+> > +
+> > +maintainers:
+> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - fsl,imx7ulp-rpmsg
+> > +      - fsl,imx8mn-rpmsg
+> > +      - fsl,imx8mm-rpmsg
+> > +      - fsl,imx8mp-rpmsg
+>
+> rpmsg is a protocol. What's the h/w block?
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Linux side this driver is a virtual driver, it is running
+on Arm Cortex-A core. The h/w block is controlled by
+another core (cortex-M core). so this driver actually
+doesn't touch any hardware, it just does configuration
+for rpmsg channel.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 809a68af5efd..be5ada6b4309 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11288,6 +11288,12 @@ L:	linux-wireless@vger.kernel.org
- S:	Maintained
- F:	drivers/net/wireless/mediatek/mt7601u/
- 
-+MEDIATEK MT7621 CLOCK DRIVER
-+M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-+F:	drivers/clk/ralink/clk-mt7621.c
-+
- MEDIATEK MT7621/28/88 I2C DRIVER
- M:	Stefan Roese <sr@denx.de>
- L:	linux-i2c@vger.kernel.org
--- 
-2.25.1
+>
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Peripheral clock for register access
+> > +      - description: Master clock
+> > +      - description: DMA clock for DMA register access
+> > +      - description: Parent clock for multiple of 8kHz sample rates
+> > +      - description: Parent clock for multiple of 11kHz sample rates
+> > +    minItems: 5
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: ipg
+> > +      - const: mclk
+> > +      - const: dma
+> > +      - const: pll8k
+> > +      - const: pll11k
+> > +    minItems: 5
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  fsl,audioindex:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: instance index for rpmsg image
+> > +
+> > +  fsl,version:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: rpmsg image version index
+>
+> What are these 2 used for?
 
+fsl,audioindex: As we may support multiple instance, for example
+two sound card with one rpmsg channel, this is the instance index.
+
+fsl,version: There are maybe different image running on M core, this
+is the image version, different image has different function.
+
+
+>
+> > +
+> > +  fsl,buffer-size:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: pre allocate dma buffer size
+> > +
+> > +  fsl,enable-lpa:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: enable low power audio path.
+> > +
+> > +  fsl,codec-type:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Sometimes the codec is registered by
+> > +                 driver not the device tree, this items
+> > +                 can be used to distinguish codecs
+>
+> 0-2^32 are valid values?
+
+I should add range for it.
+
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - fsl,audioindex
+> > +  - fsl,version
+> > +  - fsl,buffer-size
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    rpmsg_audio: rpmsg_audio {
+> > +        compatible = "fsl,imx8mn-rpmsg";
+> > +        fsl,audioindex = <0> ;
+> > +        fsl,version = <2>;
+> > +        fsl,buffer-size = <0x6000000>;
+> > +        fsl,enable-lpa;
+> > +        status = "okay";
+>
+> Don't show status in examples.
+
+ok, will remove it.
+
+>
+> > +    };
+> > --
+> > 2.27.0
+> >
