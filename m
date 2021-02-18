@@ -2,187 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F31B231EE2F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 19:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 629EC31EE31
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 19:24:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232214AbhBRSXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 13:23:22 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:14295 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233085AbhBRQQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 11:16:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1613664984; x=1645200984;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=V30xAsGypzCvyHxMwzLUE/9K9QPg42uq4qpA4eaiTis=;
-  b=I9ALa+m3GP+s4k1gfXBJ/8uMSLdN8mLjBCXhlzgVm8It3F8iGFydZUSP
-   +j89F6lt6c9kt0IECNqenQACaxqks+/binbJhdLxXZE8bqPt13IYV822X
-   lGIen7JTONRtAC1UFpI1PqXjWs9cNAb3e4uAqgjc6hRzVyYeIB/3fLgpq
-   wHrB6NKs0zh8zvH6KkfWAtqXWLNFwlC7eykOqiu+xR1dH4ksfLOyq4Dsu
-   qplsxU6NCURPNzbQCfAV0QhYmS+afArHn3/1sqnr2BI6bnQMwMd7O+azt
-   +mSVeGjAmGmGSHTGYxq8O+kONNCKrwLMsa2evJzTez45nBrIBEpjcZOu6
-   A==;
-IronPort-SDR: BgtG8KZP+4hJt7C3AX/0qLmdqdR0L6F3TZliI2IYblgReme8I3Oe1ohxeSbUzgkDshNcMN5Dwi
- nfTD16nOEeIpqpVhm7c8/vOJNmDUk2lw4lVNbIpMhLsfMN0tHrwL6omSfc/jCALa4hs/xwBmnq
- NjbtXERV5at7bZoDyM/3NxlKxOCl2E4cSd+Be9eeGq+u8xgKegVPWlVsQUByTWbBHT1oOhJf5g
- 1v2jAzD4XTMcFRLRuwwedCpyei1GmK7HiQJiukaT7m9TUJsX7kK187MX7e+9NTVY0/T1Tuk/50
- LaI=
-X-IronPort-AV: E=Sophos;i="5.81,187,1610434800"; 
-   d="scan'208";a="109772705"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Feb 2021 09:15:03 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 18 Feb 2021 09:15:02 -0700
-Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 18 Feb 2021 09:14:59 -0700
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>
-CC:     Steen Hegelund <steen.hegelund@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
-        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH v15 1/4] dt-bindings: phy: Add sparx5-serdes bindings
-Date:   Thu, 18 Feb 2021 17:14:48 +0100
-Message-ID: <20210218161451.3489955-2-steen.hegelund@microchip.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210218161451.3489955-1-steen.hegelund@microchip.com>
-References: <20210218161451.3489955-1-steen.hegelund@microchip.com>
+        id S231676AbhBRSXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 13:23:45 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59680 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229879AbhBRQrZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Feb 2021 11:47:25 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 99C9F64EDC;
+        Thu, 18 Feb 2021 16:45:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613666715;
+        bh=jDSsxhHhJQLjYvRcW7R89rFyId6lOBeirV5E6VbIGXw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Qdtn2vnXIAtkwB8ZWBGCgpSoRGr9T7059zLwBcRgY85RV2BfoDH1+QpiwKrBzu52p
+         h0xYt3P5XWUSR1jMZeL3rHhrdct6AnpNMefjllybFvm8SGlXXTvrfd5N6REnsTUBZ+
+         13FJbrn/y/mPiEdJJtPop2/k23pzofmlJ9BN07n+ZKWcSY4peJP9LkxulPG8E+LIZx
+         F0IQZYvxjtX6s9d4VFqcvux4lH7q0ShWoqWssrtzoOj2LyUmV3nXM9yTTAxDCVNy0v
+         C3gB2c5WEii1+tqqC+PLvVgMUVImN6wgxWS+oxU8UkMlxLqxz9FVyJfu43agR51x0L
+         M4It0EobXBYvw==
+Received: by mail-ed1-f46.google.com with SMTP id o3so5193078edv.4;
+        Thu, 18 Feb 2021 08:45:15 -0800 (PST)
+X-Gm-Message-State: AOAM532repfYSZlKObGuH9XzxMrnqcXy0Ndk6Kzzaxy4pZi3yLeEqcPK
+        shpM6fvq+VzzT6NUb3nrhP3Zy6ixD1LP7Nko2Q==
+X-Google-Smtp-Source: ABdhPJzcR7G8p/C+KLX15Pa4+7UbxRXGkJr8RrCBFGB5NAS+BPryBN+SzFQLQGBlF82UdD7UBNzMWizKS/iLFZ2s82I=
+X-Received: by 2002:aa7:cd51:: with SMTP id v17mr5100382edw.194.1613666713964;
+ Thu, 18 Feb 2021 08:45:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20210213101512.3275069-1-mperttunen@nvidia.com>
+ <20210213101512.3275069-2-mperttunen@nvidia.com> <20210217214935.GA2804400@robh.at.kernel.org>
+ <9f0152cc-ca9a-5b45-df5d-e61a79c87ea4@kapsi.fi>
+In-Reply-To: <9f0152cc-ca9a-5b45-df5d-e61a79c87ea4@kapsi.fi>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 18 Feb 2021 10:45:00 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKpUChquFh9zz0Ec8eTeL6KdGAY+eJyW3wTBDm06w13-A@mail.gmail.com>
+Message-ID: <CAL_JsqKpUChquFh9zz0Ec8eTeL6KdGAY+eJyW3wTBDm06w13-A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: Add YAML bindings for Host1x and NVDEC
+To:     Mikko Perttunen <cyndis@kapsi.fi>
+Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the Sparx5 ethernet serdes phy driver bindings.
+On Thu, Feb 18, 2021 at 5:04 AM Mikko Perttunen <cyndis@kapsi.fi> wrote:
+>
+> On 2/17/21 11:49 PM, Rob Herring wrote:
+> > On Sat, Feb 13, 2021 at 12:15:10PM +0200, Mikko Perttunen wrote:
+> >> Convert the original Host1x bindings to YAML and add new bindings for
+> >> NVDEC, now in a more appropriate location. The old text bindings
+> >> for Host1x and engines are still kept at display/tegra/ since they
+> >> encompass a lot more engines that haven't been converted over yet.
+> >>
+> >> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> >> ---
+> >>   .../gpu/host1x/nvidia,tegra20-host1x.yaml     | 129 ++++++++++++++++++
+> >>   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     |  90 ++++++++++++
+> >>   MAINTAINERS                                   |   1 +
+> >>   3 files changed, 220 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra20-host1x.yaml
+> >>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra20-host1x.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra20-host1x.yaml
+> >> new file mode 100644
+> >> index 000000000000..613c6601f0f1
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra20-host1x.yaml
+> >> @@ -0,0 +1,129 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra20-host1x.yaml#"
+> >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> >> +
+> >> +title: Device tree binding for NVIDIA Host1x
+> >> +
+> >> +maintainers:
+> >> +  - Thierry Reding <treding@gmail.com>
+> >> +  - Mikko Perttunen <mperttunen@nvidia.com>
+> >> +
+> >> +properties:
+> >> +  $nodename:
+> >> +    pattern: "^host1x@[0-9a-f]*$"
+> >> +
+> >> +  compatible:
+> >> +    oneOf:
+> >> +      - const: nvidia,tegra20-host1x
+> >> +      - const: nvidia,tegra30-host1x
+> >> +      - const: nvidia,tegra114-host1x
+> >> +      - const: nvidia,tegra124-host1x
+> >> +      - items:
+> >> +          - const: nvidia,tegra132-host1x
+> >> +          - const: nvidia,tegra124-host1x
+> >> +      - const: nvidia,tegra210-host1x
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  interrupts:
+> >> +    items:
+> >> +      - description: Syncpoint threshold interrupt
+> >> +      - description: General interrupt
+> >> +
+> >> +  interrupt-names:
+> >> +    items:
+> >> +      - const: syncpt
+> >> +      - const: host1x
+> >> +
+> >> +  clocks:
+> >> +    maxItems: 1
+> >> +
+> >> +  clock-names:
+> >> +    items:
+> >> +      - const: host1x
+> >> +
+> >> +  resets:
+> >> +    maxItems: 1
+> >> +
+> >> +  reset-names:
+> >> +    items:
+> >> +      - const: host1x
+> >> +
+> >> +  iommus:
+> >> +    maxItems: 1
+> >> +
+> >> +  interconnects:
+> >> +    maxItems: 1
+> >> +
+> >> +  interconnect-names:
+> >> +    items:
+> >> +      - const: dma-mem
+> >> +
+> >> +  '#address-cells':
+> >> +    const: 1
+> >> +
+> >> +  '#size-cells':
+> >> +    const: 1
+> >> +
+> >> +  ranges: true
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +  - interrupts
+> >> +  - interrupt-names
+> >> +  - clocks
+> >> +  - clock-names
+> >> +  - resets
+> >> +  - reset-names
+> >> +  - '#address-cells'
+> >> +  - '#size-cells'
+> >> +  - ranges
+> >> +
+> >> +additionalProperties:
+> >> +  type: object
+> >> +
+> >> +if:
+> >> +  properties:
+> >> +    compatible:
+> >> +      contains:
+> >> +        anyOf:
+> >> +          - const: nvidia,tegra186-host1x
+> >> +          - const: nvidia,tegra194-host1x
+> >
+> > Just use 'enum' instead of 'anyOf' and 'const'.
+>
+> Yep, will fix.
+>
+> >
+> >> +then:
+> >> +  properties:
+> >> +    reg:
+> >> +      items:
+> >> +        - description: Hypervisor-accessible register area
+> >> +        - description: VM-accessible register area
+> >
+> > If you test this, it will fail due to the 'maxItems: 1' above. The main
+> > section has to pass for all conditions and then if/them schema add
+> > constraints.
+>
+> Interesting, I did run the schema check and DTB check but I didn't see
+> issues there. In any case, will fix.
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
----
- .../bindings/phy/microchip,sparx5-serdes.yaml | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+It may pass if you had 'reg = <base1 size1 base2 size2>' rather than
+'reg = <base1 size1>, <base2 size2>'. While the bracketing doesn't
+matter for dtbs, it does currently for the schema.
 
-diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-new file mode 100644
-index 000000000000..bdbdb3bbddbe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip Sparx5 Serdes controller
-+
-+maintainers:
-+  - Steen Hegelund <steen.hegelund@microchip.com>
-+
-+description: |
-+  The Sparx5 SERDES interfaces share the same basic functionality, but
-+  support different operating modes and line rates.
-+
-+  The following list lists the SERDES features:
-+
-+  * RX Adaptive Decision Feedback Equalizer (DFE)
-+  * Programmable continuous time linear equalizer (CTLE)
-+  * Rx variable gain control
-+  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
-+  * Adjustable tx de-emphasis (FFE)
-+  * Tx output amplitude control
-+  * Supports rx eye monitor
-+  * Multiple loopback modes
-+  * Prbs generator and checker
-+  * Polarity inversion control
-+
-+  SERDES6G:
-+
-+  The SERDES6G is a high-speed SERDES interface, which can operate at
-+  the following data rates:
-+
-+  * 100 Mbps (100BASE-FX)
-+  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-+  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-+  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-+
-+  SERDES10G
-+
-+  The SERDES10G is a high-speed SERDES interface, which can operate at
-+  the following data rates:
-+
-+  * 100 Mbps (100BASE-FX)
-+  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-+  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-+  * 5 Gbps (QSGMII/USGMII)
-+  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-+  * 10 Gbps (10G-USGMII)
-+  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-+
-+  SERDES25G
-+
-+  The SERDES25G is a high-speed SERDES interface, which can operate at
-+  the following data rates:
-+
-+  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-+  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-+  * 5 Gbps (QSGMII/USGMII)
-+  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-+  * 10 Gbps (10G-USGMII)
-+  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-+  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
-+
-+properties:
-+  $nodename:
-+    pattern: "^serdes@[0-9a-f]+$"
-+
-+  compatible:
-+    const: microchip,sparx5-serdes
-+
-+  reg:
-+    minItems: 1
-+
-+  '#phy-cells':
-+    const: 1
-+    description: |
-+      - The main serdes input port
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#phy-cells'
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    serdes: serdes@10808000 {
-+      compatible = "microchip,sparx5-serdes";
-+      #phy-cells = <1>;
-+      clocks = <&sys_clk>;
-+      reg = <0x10808000 0x5d0000>;
-+    };
-+
-+...
--- 
-2.30.0
-
+Rob
