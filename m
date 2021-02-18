@@ -2,31 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DFE931E77F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 09:35:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C17D231E7AD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 09:55:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbhBRId2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 18 Feb 2021 03:33:28 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:60735 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230158AbhBRIa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 03:30:28 -0500
+        id S230510AbhBRIyA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 18 Feb 2021 03:54:00 -0500
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:38097 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230334AbhBRIu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 03:50:56 -0500
+Received: from relay2-d.mail.gandi.net (unknown [217.70.183.194])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id AF5D83AC661;
+        Thu, 18 Feb 2021 08:38:19 +0000 (UTC)
 X-Originating-IP: 86.210.203.113
 Received: from xps13 (lfbn-tou-1-972-113.w86-210.abo.wanadoo.fr [86.210.203.113])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 3C26BC0007;
-        Thu, 18 Feb 2021 08:29:36 +0000 (UTC)
-Date:   Thu, 18 Feb 2021 09:29:36 +0100
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 6DADB4000F;
+        Thu, 18 Feb 2021 08:35:11 +0000 (UTC)
+Date:   Thu, 18 Feb 2021 09:35:10 +0100
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 Cc:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <gregkh@linuxfoundation.org>, <shubhrajyoti.datta@gmail.com>
-Subject: Re: [PATCH v9 3/7] clk: clock-wizard: Fix kernel-doc warning
-Message-ID: <20210218092936.44108d1d@xps13>
-In-Reply-To: <1613623791-4598-4-git-send-email-shubhrajyoti.datta@xilinx.com>
+        <gregkh@linuxfoundation.org>, <shubhrajyoti.datta@gmail.com>,
+        Chirag Parekh <chirag.parekh@xilinx.com>
+Subject: Re: [PATCH v9 4/7] clk: clock-wizard: Add support for dynamic
+ reconfiguration
+Message-ID: <20210218093510.1ea35ac3@xps13>
+In-Reply-To: <1613623791-4598-5-git-send-email-shubhrajyoti.datta@xilinx.com>
 References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com>
-        <1613623791-4598-4-git-send-email-shubhrajyoti.datta@xilinx.com>
+        <1613623791-4598-5-git-send-email-shubhrajyoti.datta@xilinx.com>
 Organization: Bootlin
 X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
@@ -39,33 +44,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hi Shubhrajyoti,
 
 Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com> wrote on Thu, 18 Feb
-2021 10:19:47 +0530:
+2021 10:19:48 +0530:
 
-> Update description for the clocking wizard structure
-
-"Fix the clocking wizard main structure kernel documentation." ?
-
+> The patch adds support for dynamic reconfiguration of clock output rate.
+> Output clocks are registered as dividers and set rate callback function
+> is used for dynamic reconfiguration.
 > 
+> Based on the initial work from Chirag.
+> 
+> Signed-off-by: Chirag Parekh <chirag.parekh@xilinx.com>
+
+The first SoB should match the author.
+
+Either your just did minor changes and keep Chirag's Authorship + SoB
+and add your SoB as you already did below, or either use the
+Codevelopped tag or if you really change a lot of things you can keep
+the authorship and give Chirag credit with a Suggested-by or something
+like this.
+
 > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 > ---
->  drivers/clk/clk-xlnx-clock-wizard.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/clk-xlnx-clock-wizard.c b/drivers/clk/clk-xlnx-clock-wizard.c
-> index 1bab68e..fb2d555 100644
-> --- a/drivers/clk/clk-xlnx-clock-wizard.c
-> +++ b/drivers/clk/clk-xlnx-clock-wizard.c
-> @@ -40,7 +40,8 @@ enum clk_wzrd_int_clks {
->  };
->  
->  /**
-> - * struct clk_wzrd:
-> + * struct clk_wzrd - Clock wizard private data structure
-> + *
->   * @clk_data:		Clock data
->   * @nb:			Notifier block
->   * @base:		Memory base
-
 
 Thanks,
 Miquèl
