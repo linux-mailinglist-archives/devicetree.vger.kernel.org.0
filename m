@@ -2,94 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 196BE31EBD7
+	by mail.lfdr.de (Postfix) with ESMTP id 8A95531EBD8
 	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:53:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232592AbhBRPv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 10:51:59 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:44077 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232409AbhBRP3k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Feb 2021 10:29:40 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id EFCBA5C0132;
-        Thu, 18 Feb 2021 10:28:42 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 18 Feb 2021 10:28:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm2; bh=mxFRI+cWdk8WklSGGLFckdS73t
-        sssa4vjL8IylY+Fk4=; b=k4jzGWj+gPIwpi6iVtt8z/UIwKkiUE8a3OuW321F4s
-        K5pIXISIGHGikDS0sVSV+tzmYr9drxDEKbiMhUZEVBQnKh9AkPCD257ja4NL/uV4
-        cC4cwPimFx89w3L0Sy22Kc6YRI/pqMAeyqi+j24l4G4bVO347InTcCMTpTAFgFJm
-        JTGczO75NWHnzOXjgKg0mZ7Om6GDKQbEd0+PpV76jiryTgmFXxbj4wic+EOy4FOR
-        qrXg0L+/itr929WknLO0ERYJdDLbUZMXAe9W1YYk0kgKyw2HO8cnuXX36BIR7iRG
-        Yp3BiWVs36cmCL2VG5W9wFAA2WatAf2RmnMM8ZYIyl8g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=mxFRI+cWdk8WklSGG
-        LFckdS73tsssa4vjL8IylY+Fk4=; b=mCryC8hBzZW2P47UoriXxaCzDkaRVjSfz
-        Pz0eax4APgN+IMRIzjAhfinfhWzdgHDcmevt+DcIgzzZfn6ozH4CUTZ6Cwf+E1CA
-        GRjPSwgiciIS29Ms7udj0kav4h5yRZgJgcBM5qcvkBYxgVbhzIpYKYD6WS4++jRX
-        GKBCkkCX3epQRqOHxjs8i86dkB18IH3bcWmo6+LJpO+7xbBjzo1vIWoGbQ+Zgl26
-        ONyEujiDuwCGbcpGA+lfD4O2ng3fzk03QXba5FuObL/jKDRJim89i78Dwvb0pQYy
-        c/bdSMXIlb0bPVnOzcYZ86P5KzWnnlkO134BMNvqwKjz/dTYfU16w==
-X-ME-Sender: <xms:qYcuYN_OiUuv20vOeRPCdBF6KsrcfdkiYlF7PN5VEB3M_ZbYGpig8g>
-    <xme:qYcuYBuLE1lsE5Qw2dtBMU9mmfnAPgVzrk80mchsToWF3-HDqIxFqXxRajPVrsBWV
-    nlSDiOyOUaRSZfJtVg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjeeggdejgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
-    dtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhho
-    rdhtvggthheqnecuggftrfgrthhtvghrnhepjeffheduvddvvdelhfegleelfffgieejvd
-    ehgfeijedtieeuteejteefueekjeegnecukfhppeeltddrkeelrdeikedrjeeinecuvehl
-    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvse
-    gtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:qYcuYLDUkBotX9H8kIfBbEFqY9DK9qDfSCxCmdsx1Ud8hAuvwarPWQ>
-    <xmx:qYcuYBcb5GULwONVHnE2GDjsN0yiwokTaZkbr3RtTuIYt5z4U4KE2g>
-    <xmx:qYcuYCP37XlDjpuDYW6aYm3YsCBVP_2wDa3Yt4gu4z-eFu6RWDHtFw>
-    <xmx:qocuYE3S5B2QRa011SIP8J50TkR3tAX5sNDjIkT2NOybYNed_SwMSg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 26B0E1080069;
-        Thu, 18 Feb 2021 10:28:41 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH] dt-bindings: bcm2711-hdmi: Fix broken schema
-Date:   Thu, 18 Feb 2021 16:28:37 +0100
-Message-Id: <20210218152837.1080819-1-maxime@cerno.tech>
-X-Mailer: git-send-email 2.29.2
+        id S229952AbhBRPwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 10:52:18 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:52464 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232457AbhBRPaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 10:30:07 -0500
+Date:   Thu, 18 Feb 2021 18:29:04 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 1/3] usb: dwc3: qcom: Add missing DWC3 OF node
+ refcount decrement
+Message-ID: <20210218152904.75bg2v6uh5ool5h3@mobilestation>
+References: <20210212205521.14280-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210212205521.14280-1-Sergey.Semin@baikalelectronics.ru>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For some reason, unevaluatedProperties doesn't work and
-additionalProperties is required. Fix it by switching to
-additionalProperties.
+Bjorn, Greg, Felippe, Andy,
+Any comments on this series? Bjorn, Greg you asked me to resend the
+patches related with the DW USB3 node name change. I did as you said,
+but no news since then. I'd be glad to have this patch accepted in
+some -next repo and forget about it.
 
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- .../devicetree/bindings/display/brcm,bcm2711-hdmi.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+-Sergey
 
-diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-index 57324a5f0271..a1d5a32660e0 100644
---- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-@@ -109,7 +109,7 @@ required:
-   - resets
-   - ddc
- 
--unevaluatedProperties: false
-+additionalProperties: false
- 
- examples:
-   - |
--- 
-2.29.2
-
+On Fri, Feb 12, 2021 at 11:55:19PM +0300, Serge Semin wrote:
+> of_get_child_by_name() increments the reference counter of the OF node it
+> managed to find. So after the code is done using the device node, the
+> refcount must be decremented. Add missing of_node_put() invocation then
+> to the dwc3_qcom_of_register_core() method, since DWC3 OF node is being
+> used only there.
+> 
+> Fixes: a4333c3a6ba9 ("usb: dwc3: Add Qualcomm DWC3 glue driver")
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Note the patch will get cleanly applied on the commit 2bc02355f8ba ("usb:
+> dwc3: qcom: Add support for booting with ACPI"), while the bug has been
+> there since the Qualcomm DWC3 glue driver was submitted.
+> 
+> Changelog v7:
+> - This is a new patch. Please drop it If I missed something and the OF
+>   node refcount decrement wasn't supposed to be there.
+> ---
+>  drivers/usb/dwc3/dwc3-qcom.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+> index c703d552bbcf..3564d00cdce3 100644
+> --- a/drivers/usb/dwc3/dwc3-qcom.c
+> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+> @@ -639,16 +639,19 @@ static int dwc3_qcom_of_register_core(struct platform_device *pdev)
+>  	ret = of_platform_populate(np, NULL, NULL, dev);
+>  	if (ret) {
+>  		dev_err(dev, "failed to register dwc3 core - %d\n", ret);
+> -		return ret;
+> +		goto node_put;
+>  	}
+>  
+>  	qcom->dwc3 = of_find_device_by_node(dwc3_np);
+>  	if (!qcom->dwc3) {
+> +		ret = -ENODEV;
+>  		dev_err(dev, "failed to get dwc3 platform device\n");
+> -		return -ENODEV;
+>  	}
+>  
+> -	return 0;
+> +node_put:
+> +	of_node_put(dwc3_np);
+> +
+> +	return ret;
+>  }
+>  
+>  static int dwc3_qcom_probe(struct platform_device *pdev)
+> -- 
+> 2.30.0
+> 
