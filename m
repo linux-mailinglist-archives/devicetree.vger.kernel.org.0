@@ -2,31 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EEEC31EBBD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:52:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3142C31EBBF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:52:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232480AbhBRPqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 10:46:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57108 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233418AbhBRNJh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 08:09:37 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6553AC061786;
-        Thu, 18 Feb 2021 05:08:45 -0800 (PST)
+        id S231582AbhBRPrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 10:47:31 -0500
+Received: from marcansoft.com ([212.63.210.85]:39040 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230483AbhBRN13 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Feb 2021 08:27:29 -0500
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 805D9419B4;
-        Thu, 18 Feb 2021 13:08:37 +0000 (UTC)
-To:     Christoph Hellwig <hch@infradead.org>
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 5984A3FA55;
+        Thu, 18 Feb 2021 13:24:58 +0000 (UTC)
+To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     linux-arm-kernel@lists.infradead.org,
         Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
         Arnd Bergmann <arnd@kernel.org>,
         Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
         Mark Kettenis <mark.kettenis@xs4all.nl>,
         Tony Lindgren <tony@atomide.com>,
         Mohamed Mediouni <mohamed.mediouni@caramail.com>,
@@ -37,17 +33,17 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-11-marcan@marcan.st>
- <20210216105307.GA3996646@infradead.org>
+ <20210215121713.57687-18-marcan@marcan.st>
+ <20210215180652.tbccd5dhsfjpdayp@kozik-lap>
 From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 10/25] asm-generic/io.h: Add a non-posted variant of
- ioremap()
-Message-ID: <894bb92d-eb32-97a8-8dce-84248a48a5f0@marcan.st>
-Date:   Thu, 18 Feb 2021 22:08:32 +0900
+Subject: Re: [PATCH v2 17/25] tty: serial: samsung_tty: Separate S3C64XX ops
+ structure
+Message-ID: <4475513e-ffe5-6064-d37e-8dbc16805dc7@marcan.st>
+Date:   Thu, 18 Feb 2021 22:24:55 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <20210216105307.GA3996646@infradead.org>
+In-Reply-To: <20210215180652.tbccd5dhsfjpdayp@kozik-lap>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
@@ -55,13 +51,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2021 19.53, Christoph Hellwig wrote:
-> Your new iomremap variant needs proper documentation explaining the
-> semantics in detail.
+On 16/02/2021 03.06, Krzysztof Kozlowski wrote:
+> On Mon, Feb 15, 2021 at 09:17:05PM +0900, Hector Martin wrote:
+>> +static void s3c64xx_serial_shutdown(struct uart_port *port)
+>> +{
+>> +	struct s3c24xx_uart_port *ourport = to_ourport(port);
+>> +
+>> +	free_irq(port->irq, ourport);
+>> +
+>> +	wr_regl(port, S3C64XX_UINTP, 0xf);
+>> +	wr_regl(port, S3C64XX_UINTM, 0xf);
+>> +
+>> +	ourport->tx_enabled = 0;
+>> +	ourport->tx_mode = 0;
+>> +	ourport->rx_enabled = 0;
+> 
+> For S3C64xx type this is not equivalent: the assignments were
+> happening before free_irq() and wr_regl(). Honestly I don't know whether
+> it matters (except some barriers coming from these functions) but please
+> do not change the order of code in this patch. If needed, the
+> re-ordering should be a patch on its own. With explanation why.
 
-What's the right place for this? I haven't found any generic ioremap 
-documentation page in the tree yet. I suppose I could write an 
-ARM64-specific blurb on IO mapping modes, much like x86 has one...
+Honestly, I think if anything the masking should happen first (to make 
+sure no IRQs go off), but at this point it's probably better to play it 
+safe and not introduce any logic changes, so I've moved the assignments 
+first to retain the old behavior.
+
+> Make the s3c24xx_serial_ops const as well.
+
+Done for v3, thanks.
 
 -- 
 Hector Martin (marcan@marcan.st)
