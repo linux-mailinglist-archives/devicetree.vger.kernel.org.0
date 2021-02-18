@@ -2,152 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B951031E4C6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 04:57:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26AF331E51E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 05:20:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230356AbhBRD5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Feb 2021 22:57:06 -0500
-Received: from mail-db8eur05on2045.outbound.protection.outlook.com ([40.107.20.45]:36480
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230321AbhBRD4x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Feb 2021 22:56:53 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CuAIJJS75Hm22IH2w382XBqlYDLC2SYqcgh9j2nrsr38wUlUcBmFLlzf38huAECjVS6MDwt1Ja9CjDNOEXtHIhnMw7ZQFnpKkwq6TYGAaaXnU1dE9/ryC7SeHdbFnw093Qw034o3t8uHCFi+nY5d7bWhQ3in1AP6slnJrmSmfGDZPQ4osht2kfgtO2c0u/FE3Lry/6TOZ9sgyvnYuBH3NpTpQMc693dJnTKkVMVqFGEghNwQgz4fGrXnaWc2aF5me+JfjKQCU6RkUtdVRphm/5bRleBWR4XUMxuqLbL4MsamnBCqqZ5WoV4y/M/zdGl8mjJjYzTwV3QWyCS/EyZrBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c1FAawTRS5//5BJvZYZ0c0B8mPY4+tNQeamXe5zvyTk=;
- b=jNQl2rwSjNYAoVd9NXrjw0EJ6GjnIxFDl7qOq/5rdYIXHBRa2nCQGcWsjFEiO6Vjy6bLM2Gl6u5G5DafWjmMOXq1wiLg/1KbWkZz0zrdQWhblbI2BerUnr3BI4pohYQm/gwb3KxvulBaK+6Gj7IrvfeBzOhPq5aKNzJ/8gsQ6usEDZOskegLcDgadACG0ODR/kXmkzIrKTdp+im9kU7CPIe2ygvKhNE5kW9C/YfIctYDQnbE96bapll//evhWji3TWRm/41qaUSTwi5v46PJJsytVjAcX/nMlFKbH4QCWrC110CqhPJQNPHqViyXXpGUy0vlB4/JeZ7/4nI7ZDxsbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c1FAawTRS5//5BJvZYZ0c0B8mPY4+tNQeamXe5zvyTk=;
- b=L+qM+EAUkeursmQkI9gy57rDNwMGdEI5Xv53MbB6i5Gm6XtBzyS3H0nH3prRqttmxCa5NKIg51GMcpHHmoLznM9uZ7FQ6+o+ctZbhCPPx7qs174MBXs4d057Yhghq/cM8vb7nNhQg07oIUakzMSOUsDtRxIxQlnQwlps/ex7B/s=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=none action=none
- header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR04MB5709.eurprd04.prod.outlook.com (2603:10a6:803:e3::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.27; Thu, 18 Feb
- 2021 03:55:32 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::2564:cacc:2da5:52d0]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::2564:cacc:2da5:52d0%5]) with mapi id 15.20.3868.027; Thu, 18 Feb 2021
- 03:55:32 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
-        a.hajda@samsung.com, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@siol.net, kishon@ti.com, vkoul@kernel.org
-Subject: [PATCH v4 14/14] MAINTAINERS: add maintainer for DRM bridge drivers for i.MX SoCs
-Date:   Thu, 18 Feb 2021 11:41:55 +0800
-Message-Id: <1613619715-28785-15-git-send-email-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1613619715-28785-1-git-send-email-victor.liu@nxp.com>
-References: <1613619715-28785-1-git-send-email-victor.liu@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR06CA0144.apcprd06.prod.outlook.com
- (2603:1096:1:1f::22) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+        id S229864AbhBREUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Feb 2021 23:20:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48542 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229752AbhBREUV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Feb 2021 23:20:21 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 32B2E64E28;
+        Thu, 18 Feb 2021 04:19:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613621981;
+        bh=GFaBtKmcknpiGdoo8JBOGy+CIuH6tMaUPNstbP+H9zA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Y2DUNduYpbRZIzO/Ltb7rfB+SOSLd+hh30GKWbyqDQagaHGMa5pXT7C+ov7vws064
+         c6x2I6eA6vgaH0736X8YZpGVOC9HNvV0CihcdKRdSk8X4xaOdosCJbV64Ay/i4FwIV
+         +K5Kd5sm1LH8wSYFQPTkl/XJTlfSZ5aie6FXv9V6zXmPHyBFwaGpAOPWM0Glz2E1cY
+         qrESh82cMYliyy+IWkNp0EsPq+jr2mxHw7kbIoukOyMMRx3kG1ZwetE9cxpIyl9xPw
+         sCYCt0JGbojFTM13Q7S6wFdwFT8J494soDpbt7GPiTYaIo6bRkyw+KlOQv5eo2DBLh
+         r+mSWBabv41Kw==
+Date:   Thu, 18 Feb 2021 09:49:37 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     =?iso-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linaro.org>
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: db410c: Update firmware-name for wcnss
+ and mpss
+Message-ID: <20210218041937.GU2774@vkoul-mobl.Dlink>
+References: <20200108055735.660475-1-bjorn.andersson@linaro.org>
+ <20210217223406.1422005-1-anibal.limon@linaro.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SG2PR06CA0144.apcprd06.prod.outlook.com (2603:1096:1:1f::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3868.27 via Frontend Transport; Thu, 18 Feb 2021 03:55:26 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: fe0dd624-7f5e-4dfb-670e-08d8d3c109b7
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5709:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB5709A053062AB1F9DC2C48E098859@VI1PR04MB5709.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2582;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ntflbRiHFVok3O8faSADbQNDOogmfVcu0xzU9spsqLYX/vAyYkfxjdQ1/FTlySEpXTLTJl7aEJUX2o4qdmB851RmxK+5N0fTlcYSVXS6PmnobCdZS6W6MI4VrAujZqu7GRihV8TQAhK6EYx8Cy1L+7GUuldlSy/uHd+DI6MH7/7CFabpswWS4kGbCa7Y9+Y+Y86L3DXud9C1vv1/OXKw9QthQRTb8I0pIxm8ORe5hrSpc/1UA6wQyl+Akfb/4Sa7VmU1015x1LQTqiYRH43p1cczfCw3JD0fzwNiUzNtzRtkj5zt6BbWil3zEG1HVxJ1/1swBQgYhjfStQkaoDl+MsAM1SfJT3K/RoYeJk/Z0D4DhwfuL+54on3lRTdIS441JiVeNdEhkTkrfgaco8lYtcSEj4pYMdYim7vCdOdFkN9HaJbjDUfKaU0RxCX4GeXfdff2ZFHjHmS7YiboowT3X3qpYAr8ZHNek8HSOYjALQlhUicAQ36sbpJWHj7cxl3TWnmpFduiVUCdZXrlbEBFmm0FYDJAhsnCf3qP3HseTaaEHbw5cbzM1fFimTP69VJ4L4xZxkeyyipuSs+j7sG4FA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(4636009)(396003)(346002)(366004)(39860400002)(376002)(136003)(7416002)(956004)(2616005)(6666004)(52116002)(5660300002)(316002)(6506007)(2906002)(66946007)(6486002)(6512007)(66556008)(186003)(16526019)(26005)(66476007)(69590400012)(86362001)(478600001)(36756003)(4326008)(8676002)(8936002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?l8oTLrGoQq2MaEiCCA2JL7tK9dAlIeBsRY2g3SPd1/Yp/lMXY9EdYcsNUGMq?=
- =?us-ascii?Q?2maC6Y8Db+gmSKkI7w1PGJ2JQP4In2IRkWaC1tMGiQKIVnhjfZbdZVyj1M6M?=
- =?us-ascii?Q?0b7VAvUgYaMtLI60Jai8wTsB0z8w9wAAtT0mhkNuxUceK9HsC6a3fZPZ2PK3?=
- =?us-ascii?Q?FgCxoM8Tw3ZZwp41knSppB2j2kT/jkgcgKina6tbTgnPVVpU3EI4ZKTYjlzK?=
- =?us-ascii?Q?wjYeP7Zb+r4IFBNh67xN38RJXsHlPKcw3OpfSJmFy+QTm2GPKZfROAWAKOAM?=
- =?us-ascii?Q?5DgIyhqjJuGOadCf9LwuHzPKsNRQEcmaLElO8AiM59iZxPQeSyZKMKPdTVxG?=
- =?us-ascii?Q?tzDbwu6xDqQBu+MiiY79DO6OHbyN3ALBRlb9O/hzVgpEGS3dMIQwOtZvh0v5?=
- =?us-ascii?Q?AoU3TD1UdNfyR2EK1xCkFL33rKohadxI8nf4UMTl8mc4JjDRETHbL2LvzHyS?=
- =?us-ascii?Q?VaM+v+WxP6/FZrPWTyEytLJ7Ouxs9iWQCuxS8H5R3yCT0J8LoVlksJ1jhfP2?=
- =?us-ascii?Q?oXyVEcu6o/WhxpNkoQipNYtjAwdQ2JwWAZPO+Q6+S0bPyke/H0o3LRFo6c7Q?=
- =?us-ascii?Q?w6Lpxmd91Q4565JPyteII8Mg+ujfQinGT3uPo5dkTvdzshAnZwcWZPBKdZ+d?=
- =?us-ascii?Q?VhiTJfar5Zx2wI9WcsKx46BtVrf+2lTo0H3qZ3GszC92P0F70DzLCbOEsTWx?=
- =?us-ascii?Q?/swX30BlPleTtG/ugQkwphs+Kl//VKBrLZHokydL9DAFnzP4QB7Vv8lyW1cm?=
- =?us-ascii?Q?CV9YTrq9pQpr7wiYfWgoFtEMYUC835xNQoG3EQSWRSBKFRpps+Y4kT1bfql9?=
- =?us-ascii?Q?SFVbGE4VsSb66jbfnPMc0yu7zA/N71ACfcr2QIpq9CPPxaC6n9H85VAfLqV7?=
- =?us-ascii?Q?IR6Z9C27n5XkQGn9IxIlAYZMwJzQ9Szu3zaGmyXnmJrAMQn1k3Rj/6o9WBw/?=
- =?us-ascii?Q?7b2bqKYeVBmwA/1BZiBqrJ4LzpGatAd43/nH/vskWpOF7MAGR2Y1eDGvD31F?=
- =?us-ascii?Q?/9j/p8R7mjo4xzICH9Byvu2ruoAH1T6hGXw4XTXE7xsd23Ed32uKl9E2TBmL?=
- =?us-ascii?Q?lwOgORVFhj1AzJPsR/+f/IALj4AsdsLWAop4ydVhylbegvvGmxIJEDhBdtLm?=
- =?us-ascii?Q?JAsuXbKjumQ6mRu+uH7KroV9LVSXm4/rAp0gCou9LMe6fu1KJvzHBC7pxJm8?=
- =?us-ascii?Q?pjHvgCQp7/SDv2mVLuwvCgNhBmBqgaqXUL5Wod1HmtOBorh7k3T20vBmwdV+?=
- =?us-ascii?Q?uHqWp57xQBHpbaOoEYujZpz1sl1ckhDHjElOBRdDtZ/jbSVIXqA9B++8OFkl?=
- =?us-ascii?Q?XfmBQDfZQOjv7OjA81fjLFTY?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe0dd624-7f5e-4dfb-670e-08d8d3c109b7
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2021 03:55:32.1746
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4vRJfo0iicJ6OZYeU9HG4oH0AK/n5n2DRCAp6mvfGR7Yn0LbndGDuZmOxrRcvsMnIyc0RUHhhZbM6bkK1aNRQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5709
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210217223406.1422005-1-anibal.limon@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as the maintainer of DRM bridge drivers for i.MX SoCs.
+On 17-02-21, 16:34, Aníbal Limón wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> Enable the mpss remoteproc node and specify the firmware-name for this
+> and the wcnss remoteproc on the Dragonboard 410c.
+> 
+> Link: https://lore.kernel.org/r/20200108055735.660475-1-bjorn.andersson@linaro.org
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> [rebased and moved to use pronto label]
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Tested-by: Aníbal Limón <anibal.limon@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> index 3c7f97539390..8f1ada75d3ed 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> @@ -301,6 +301,11 @@ &lpass {
+>  	status = "okay";
+>  };
+>  
+> +&mpss {
+> +	status = "okay";
+> +	firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mdt";
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v3->v4:
-* No change.
+Shouldn't this one be mba.mdt?
 
-v2->v3:
-* No change.
+> +};
+> +
+>  &pm8916_resin {
+>  	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> @@ -308,6 +313,7 @@ &pm8916_resin {
+>  
+>  &pronto {
+>  	status = "okay";
+> +	firmware-name = "qcom/msm8916/wcnss.mdt";
+>  };
+>  
+>  &sdhc_1 {
+> -- 
+> 2.30.0
 
-v1->v2:
-* No change.
-
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9d241b8..d96c917 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5892,6 +5892,16 @@ F:	Documentation/devicetree/bindings/display/imx/
- F:	drivers/gpu/drm/imx/
- F:	drivers/gpu/ipu-v3/
- 
-+DRM DRIVERS FOR FREESCALE IMX BRIDGE
-+M:	Liu Ying <victor.liu@nxp.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-combiner.yaml
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-link.yaml
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.yaml
-+F:	drivers/gpu/drm/bridge/imx/
-+
- DRM DRIVERS FOR GMA500 (Poulsbo, Moorestown and derivative chipsets)
- M:	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
- L:	dri-devel@lists.freedesktop.org
 -- 
-2.7.4
-
+~Vinod
