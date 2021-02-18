@@ -2,114 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2325431EBE2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:55:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF0D531EE2C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 19:24:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232659AbhBRPx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 10:53:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34688 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232693AbhBRPtQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 10:49:16 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959DDC06178C
-        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 07:48:24 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id s16so1457738plr.9
-        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 07:48:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=5mSfxBVOBRi8bFJ8AYZZL4d/aLlm22/JZaKwGPrt9j0=;
-        b=JA7rzsD5N+KAByAnY3zLVeBOz6mJmi6OxbPaVhkgubiURsywlbrD4mT4gLNrxjkqn0
-         CnM5eHHDy7ZnvvTLu3KvSB2PAnxLms7rMnm5wRR3XyIsGfwwQl2vlqPUndXBfhL/n0AQ
-         q/wwUBtvq3wwQ1kCA9AQa1Vp3sdgzR0CO/GqDhqRhh8VBUHiHRuRELCpExKdTh4GuBO/
-         0aS3fiYlfpHW3+qa1Xi63c2XmJkQDSB6YmNgz4ezKjar0RFC19X1jbpGH7oErcBsMjH1
-         F5GaaWkj/y0C8HVnCuy0ioIWQGZ0LIZpTvAXBG9x0ZU7UFcnFFNpCWoL+cjH0GlaTXAf
-         rvXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5mSfxBVOBRi8bFJ8AYZZL4d/aLlm22/JZaKwGPrt9j0=;
-        b=UME/a5qN8WXlssX6fA74JqThYpTUB1SlnieBEZZUBWqXT2ZqE/Lr4v+L96w/cKfnA6
-         W3dGzsix0xQN+2oKQzee4Yo5dwzaJL0/73BpinvSxQ3V9XzxwtB82gvVEpjzl9Ap3Uxd
-         VtFQ+cHiClFfNGd9AyIPzzgELbCGGvLAPHv9AnkQgJa87kextLEuzy2u/JsXu53/6DT7
-         NlURRp2vSCzPryiLELbxb21bsrbcWqbwHCA299er8bXRrPDeFsS8lcdkXItbgAoNhlqy
-         b0qV8QuzUmTo3rnRCkNss909JKINbc1pjAtLKaiWwOuvJr6RNPsVDbn+ISzE1pIF9x7A
-         vDxw==
-X-Gm-Message-State: AOAM533bq6tK1m/lmigAy6d29rOrJpUTYZQa4pdX+U07DFEVkx6KiZqq
-        5aK20RjksUEeacwj3hd07Yu9ug==
-X-Google-Smtp-Source: ABdhPJxdSuV3c8mgl+2RGLWQJpA00YGVg4kYZ0W+FXCpcFGoA2E9jl8z0IOGc+JTMSxOXJBmJSyWBw==
-X-Received: by 2002:a17:902:403:b029:e3:6b9b:9fd6 with SMTP id 3-20020a1709020403b02900e36b9b9fd6mr4563585ple.54.1613663303995;
-        Thu, 18 Feb 2021 07:48:23 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id g6sm6618819pfi.15.2021.02.18.07.48.23
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 18 Feb 2021 07:48:23 -0800 (PST)
-Date:   Thu, 18 Feb 2021 21:18:20 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Document SM8350
- CPUfreq compatible
-Message-ID: <20210218154820.lkcut7a657s6aqeg@vireshk-i7>
-References: <20210216111251.1838149-1-vkoul@kernel.org>
- <20210217044955.qmbpd43wis7xtjoj@vireshk-i7>
- <20210218124457.GW2774@vkoul-mobl.Dlink>
+        id S231200AbhBRSW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 13:22:58 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:52550 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230169AbhBRPxU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 10:53:20 -0500
+Date:   Thu, 18 Feb 2021 18:52:31 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Vyacheslav Mitrofanov 
+        <Vyacheslav.Mitrofanov@baikalelectronics.ru>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 01/16] dt-bindings: net: dwmac: Add DW GMAC GPIOs
+ properties
+Message-ID: <20210218155231.cftvlzjuweumxarv@mobilestation>
+References: <20210208140820.10410-1-Sergey.Semin@baikalelectronics.ru>
+ <20210208140820.10410-2-Sergey.Semin@baikalelectronics.ru>
+ <20210209231352.GA402351@robh.at.kernel.org>
+ <20210210222805.upoioue7uc6cat2v@mobilestation>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210218124457.GW2774@vkoul-mobl.Dlink>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20210210222805.upoioue7uc6cat2v@mobilestation>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-02-21, 18:14, Vinod Koul wrote:
-> On 17-02-21, 10:19, Viresh Kumar wrote:
-> > On 16-02-21, 16:42, Vinod Koul wrote:
-> > > Add the CPUfreq compatible for SM8350 SoC along with note for using the
-> > > specific compatible for SoCs
+On Thu, Feb 11, 2021 at 01:28:06AM +0300, Serge Semin wrote:
+> On Tue, Feb 09, 2021 at 05:13:52PM -0600, Rob Herring wrote:
+> > On Mon, Feb 08, 2021 at 05:08:05PM +0300, Serge Semin wrote:
+> > > Synopsys DesignWare Ethernet controllers can be synthesized with
+> > > General-Purpose IOs support. GPIOs can work either as inputs or as outputs
+> > > thus belong to the gpi_i and gpo_o ports respectively. The ports width
+> > > (number of possible inputs/outputs) and the configuration registers layout
+> > > depend on the IP-core version. For instance, DW GMAC can have from 0 to 4
+> > > GPIs and from 0 to 4 GPOs, while DW xGMAC have a wider ports width up to
+> > > 16 pins of each one.
 > > > 
-> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > So the DW MAC DT-node can be equipped with "ngpios" property, which can't
+> > > have a value greater than 32, standard GPIO-related properties like
+> > > "gpio-controller" and "#gpio-cells", and, if GPIs are supposed to be
+> > > detected, IRQ-controller related properties.
+> > > 
+> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > > > ---
-> > >  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 4 +++-
-> > >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > >  .../devicetree/bindings/net/snps,dwmac.yaml     | 17 +++++++++++++++++
+> > >  1 file changed, 17 insertions(+)
 > > > 
-> > > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> > > index 9299028ee712..3eb3cee59d79 100644
-> > > --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> > > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> > > @@ -8,7 +8,9 @@ Properties:
-> > >  - compatible
-> > >  	Usage:		required
-> > >  	Value type:	<string>
-> > > -	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss".
-> > > +	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss"
-> > > +			along with SoC specific compatible:
-> > > +			  "qcom,sm8350-cpufreq-epss", "qcom,cpufreq-epss"
+> > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > index bdc437b14878..fcca23d3727e 100644
+> > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > @@ -110,6 +110,23 @@ properties:
+> > >    reset-names:
+> > >      const: stmmaceth
+> > >  
+> > > +  ngpios:
+> > > +    description:
+> > > +      Total number of GPIOs the MAC supports. The property shall include both
+> > > +      the GPI and GPO ports width.
+> > > +    minimum: 1
+> > > +    maximum: 32
 > > 
-> > And why is SoC specific compatible required here ? Is the implementation on
-> > sm8350 any different than the ones using "qcom,cpufreq-epss" compatible ?
-> > 
-> > FWIW, the same compatible string must be reused until the time there is
-> > difference in the hardware. The compatible string must be considered as a marker
-> > for a particular version of the hardware.
 > 
-> Rob has indicated that we should use a SoC specific compatible and I
-> agree with that. We are using both soc and generic one here and driver
-> will be loaded for generic one.
 
-I am not sure of the context, lets see what Rob has to say on this. I
-believe we only need 1 compatible string here (whatever it is), as
-this is just one version of the hardware we are talking about. We
-already have 2 somehow and you are trying to add one more and I don't
-fell good about it. :(
+> > Does the driver actually need this? I'd omit it if just to validate 
+> > consumers are in range.
+> 
+> I can't say for all possible DW MAC IP-cores (I've got manuals for
+> GMAC and xGMAC only), but at least DW GMAC can't have more than four
+> GPIs and four GPOs, while XGMACs can be synthesized with up to 16
+> each. That's why I've set the upper boundary here as 32. But the
+> driver uses the ngpios property do determine the total number GPIOs
+> the core has been synthesized. Th number of GPIs and GPOs will be
+> auto-detected then (by writing-reading to-from the GPI type field of
+> the GPIO control register).
+> 
+> > 
+> > Are GPI and GPO counts independent? If so, this isn't really sufficient.
+> 
+> Yeap, they are independent. What do you suggest then? Define some
+> vendor-specific properties like snps,ngpis and snps,ngpos? If so then
+> they seem more generic than vendor-specific, because the separated
+> GPI and GPO space isn't an unique feature of the DW MAC GPIOs. Do we
+> need to create a generic version of such properties then? (That much
+> more changes then introduced here. We'd need to fix the dt-schema tool
+> too then.)
+> 
+> -Sergey
 
--- 
-viresh
+Rob, any comment on my questions above? As the kernel is in
+merge-window now, I just hope this part won't get pushed back in the
+emails log out of your sight.
+
+-Sergey
+
+> 
+> > 
+> > Rob
