@@ -2,115 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9698331E9C6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 13:31:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AAB731E9C7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 13:31:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232457AbhBRM11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 07:27:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48338 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232063AbhBRKQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 05:16:22 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83309C061574
-        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 02:15:36 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1lCgL8-0002zv-7T; Thu, 18 Feb 2021 11:15:18 +0100
-Message-ID: <c029c980937ab50847bd0fcf86501e85bdb91fd3.camel@pengutronix.de>
-Subject: Re: [PATCH v1 03/18] arm64: dts: imx8mq-evk: add reserve memory
- node for CMA region
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, krzk@kernel.org, shengjiu.wang@nxp.com,
-        adrian.ratiu@collabora.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
-        Anson.Huang@nxp.com, hverkuil-cisco@xs4all.nl
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
-        linux-media@vger.kernel.org
-Date:   Thu, 18 Feb 2021 11:15:13 +0100
-In-Reply-To: <ab14f5a0bde2bdcd4bb0128f76e5a3ba8e7b0894.camel@collabora.com>
-References: <20210217080306.157876-1-benjamin.gaignard@collabora.com>
-         <20210217080306.157876-4-benjamin.gaignard@collabora.com>
-         <ab14f5a0bde2bdcd4bb0128f76e5a3ba8e7b0894.camel@collabora.com>
+        id S232798AbhBRM1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 07:27:55 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39931 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232854AbhBRKcG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 05:32:06 -0500
+X-UUID: 471a6bc633954277bbe2f8199d179daf-20210218
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=eON87UBh4F9YZE2o4i+l3IiN/mJ3GXZV1FRvjVbIqC0=;
+        b=LeXI2DTFzLPmSm8dn0aEv8G3MR1FHCVy3J+TAPwJyGosZyEUlAvfKpceh74+twkU1H5CwhWcQgzSw9sso83EyCIvSrS+QYsUGTIHbP7Xb8DwnLP1DA5kLPougo3iFFURIkT9p/nveibo2Df8HyBwAZ7LYkkKLwPt6g+SqKkTpwQ=;
+X-UUID: 471a6bc633954277bbe2f8199d179daf-20210218
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <weiyi.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2003067634; Thu, 18 Feb 2021 18:31:05 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 18 Feb 2021 18:31:03 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 18 Feb 2021 18:31:03 +0800
+Message-ID: <1613644263.10586.8.camel@mtksdaap41>
+Subject: Re: [PATCH v3] arm64: dts: mediatek: Add mt8192 power domains
+ controller
+From:   Weiyi Lu <weiyi.lu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>
+CC:     Rob Herring <robh@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 18 Feb 2021 18:31:03 +0800
+In-Reply-To: <1606734983.24689.1.camel@mtksdaap41>
+References: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
+         <CAFqH_522NuGY9c-_XWhHxoa3QkrdoM92qTOLxgM8PpOU=-ttbw@mail.gmail.com>
+         <1605791419.19819.4.camel@mtksdaap41>
+         <CAFqH_51m5Pg9ny4HWt1iwf8wtsGSdShpDCVaGwac=v9BBDj2vg@mail.gmail.com>
+         <1f25cc3f-324a-0020-7bf2-e5a915291522@gmail.com>
+         <1606734983.24689.1.camel@mtksdaap41>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 17.02.2021 um 16:39 -0300 schrieb Ezequiel Garcia:
-> Hi Benjamin,
-> 
-> On Wed, 2021-02-17 at 09:02 +0100, Benjamin Gaignard wrote:
-> > Define allocation range for the default CMA region.
-> > 
-> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> 
-> Despite it seems like I signed-off this one...
-> 
-> > Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> > index 85b045253a0e..047dfd4a1ffd 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-> > @@ -21,6 +21,21 @@ memory@40000000 {
-> >                 reg = <0x00000000 0x40000000 0 0xc0000000>;
-> >         };
-> > 
-> >  
-> > +       resmem: reserved-memory {
-> > +               #address-cells = <2>;
-> > +               #size-cells = <2>;
-> > +               ranges;
-> > +
-> > +               /* global autoconfigured region for contiguous allocations */
-> > +               linux,cma {
-> > +                       compatible = "shared-dma-pool";
-> > +                       reusable;
-> > +                       size = <0 0x3c000000>;
-> > +                       alloc-ranges = <0 0x40000000 0 0x40000000>;
-> > +                       linux,cma-default;
-> > +               };
-> 
-> ... I'm not a fan of the change :)
-> 
-> Hopefully someone from NXP can provide some insight here?
-> 
-> If it's absolutely needed for the VPU, then I guess it should
-> be 1) very well documented and 2) moved to the top-lovel dtsi.
-> 
-> But if we can drop it, that'd be nicer.
-
-What's the justification for this CMA area?
-
-I could only imagine the DMA addressing restrictions on the platform.
-DMA masters on the i.MX8MQ can not access memory beyond the 4GB mark
-and 1GB of address space is reserved for MMIO, so if you have 4GB
-installed the upper 1GB of DRAM is only accessible to the CPU. But this
-restriction is already properly communicated to the Linux DMA framework
-by the dma-ranges in the top level SoC bus node in the DT, so I don't
-think this CMA setup is necessary.
-
-Regards,
-Lucas
+T24gTW9uLCAyMDIwLTExLTMwIGF0IDE5OjE2ICswODAwLCBXZWl5aSBMdSB3cm90ZToNCj4gT24g
+RnJpLCAyMDIwLTExLTI3IGF0IDEzOjQyICswMTAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3RlOg0K
+PiA+IA0KPiA+IE9uIDE5LzExLzIwMjAgMTU6MTMsIEVucmljIEJhbGxldGJvIFNlcnJhIHdyb3Rl
+Og0KPiA+ID4gSGkgV2VpeWksDQo+ID4gPiANCj4gPiA+IE1pc3NhdGdlIGRlIFdlaXlpIEx1IDx3
+ZWl5aS5sdUBtZWRpYXRlay5jb20+IGRlbCBkaWEgZGouLCAxOSBkZSBub3YuDQo+ID4gPiAyMDIw
+IGEgbGVzIDE0OjEwOg0KPiA+ID4+DQo+ID4gPj4gT24gVGh1LCAyMDIwLTExLTE5IGF0IDEzOjEz
+ICswMTAwLCBFbnJpYyBCYWxsZXRibyBTZXJyYSB3cm90ZToNCj4gPiA+Pj4gSGkgV2VpeWksDQo+
+ID4gPj4+DQo+ID4gPj4+IFRoYW5rIHlvdSBmb3IgdGhlIHBhdGNoDQo+ID4gPj4+DQo+ID4gPj4+
+IE1pc3NhdGdlIGRlIFdlaXlpIEx1IDx3ZWl5aS5sdUBtZWRpYXRlay5jb20+IGRlbCBkaWEgZGou
+LCAxOSBkZSBub3YuDQo+ID4gPj4+IDIwMjAgYSBsZXMgMTE6NDg6DQo+ID4gPj4+Pg0KPiA+ID4+
+Pj4gQWRkIHBvd2VyIGRvbWFpbnMgY29udHJvbGxlciBub2RlIGZvciBTb0MgbXQ4MTkyDQo+ID4g
+Pj4+Pg0KPiA+ID4+Pj4gU2lnbmVkLW9mZi1ieTogV2VpeWkgTHUgPHdlaXlpLmx1QG1lZGlhdGVr
+LmNvbT4NCj4gPiA+Pj4+IC0tLQ0KPiA+IFsuLi5dDQo+ID4gPj4+PiArICAgICAgICAgICAgICAg
+ICAgICAgICAvKiBTeXN0ZW0gUG93ZXIgTWFuYWdlciAqLw0KPiA+ID4+Pj4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgc3BtOiBwb3dlci1jb250cm9sbGVyIHsNCj4gPiA+Pj4+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxOTItcG93ZXIt
+Y29udHJvbGxlciI7DQo+ID4gPj4+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICNh
+ZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiA+ID4+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAjc2l6ZS1jZWxscyA9IDwwPjsNCj4gPiA+Pj4+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgI3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwxPjsNCj4gPiA+Pj4+ICsNCj4gPiA+Pj4+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLyogcG93ZXIgZG9tYWluIG9mIHRoZSBT
+b0MgKi8NCj4gPiA+Pj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYXVkaW9ATVQ4
+MTkyX1BPV0VSX0RPTUFJTl9BVURJTyB7DQo+ID4gPj4+DQo+ID4gPj4+IElmIHlvdSBydW4gdGhl
+IGR0X2JpbmRpbmdzX2NoZWNrIGl0IHNob3VsZCByZXR1cm4gc29tZSBlcnJvcnMsIGFzIGFsbA0K
+PiA+ID4+PiB0aGVzZSBub2RlIG5hbWVzIHNob3VsZCBiZSAncG93ZXItZG9tYWluQCcuIFdoaWNo
+IGlzIGEgYml0IGFubm95aW5nDQo+ID4gPj4+IGJlY2F1c2UgdGhlbiB5b3Ugd2lsbCBnZXQgYSBi
+dW5jaCBvZiBlcnJvcnMgbGlrZSB0aGlzOg0KPiA+ID4+Pg0KPiA+ID4+PiBbICAgIDEuOTY5MTEw
+XSBkZWJ1Z2ZzOiBEaXJlY3RvcnkgJ3Bvd2VyLWRvbWFpbicgd2l0aCBwYXJlbnQNCj4gPiA+Pj4g
+J3BtX2dlbnBkJyBhbHJlYWR5IHByZXNlbnQhDQo+ID4gPj4+IFsgICAgMS45NzY5OTddIGRlYnVn
+ZnM6IERpcmVjdG9yeSAncG93ZXItZG9tYWluJyB3aXRoIHBhcmVudA0KPiA+ID4+PiAncG1fZ2Vu
+cGQnIGFscmVhZHkgcHJlc2VudCENCj4gPiA+Pj4gWyAgICAxLjk4NDgyOF0gZGVidWdmczogRGly
+ZWN0b3J5ICdwb3dlci1kb21haW4nIHdpdGggcGFyZW50DQo+ID4gPj4+ICdwbV9nZW5wZCcgYWxy
+ZWFkeSBwcmVzZW50IQ0KPiA+ID4+PiBbICAgIDEuOTkyNjU3XSBkZWJ1Z2ZzOiBEaXJlY3Rvcnkg
+J3Bvd2VyLWRvbWFpbicgd2l0aCBwYXJlbnQNCj4gPiA+Pj4gJ3BtX2dlbnBkJyBhbHJlYWR5IHBy
+ZXNlbnQhDQo+ID4gPj4+IFsgICAgMi4wMDA2ODVdIGRlYnVnZnM6IERpcmVjdG9yeSAncG93ZXIt
+ZG9tYWluJyB3aXRoIHBhcmVudA0KPiA+ID4+PiAncG1fZ2VucGQnIGFscmVhZHkgcHJlc2VudCEN
+Cj4gPiA+Pj4gWyAgICAyLjAwODU2Nl0gZGVidWdmczogRGlyZWN0b3J5ICdwb3dlci1kb21haW4n
+IHdpdGggcGFyZW50DQo+ID4gPj4+ICdwbV9nZW5wZCcgYWxyZWFkeSBwcmVzZW50IQ0KPiA+ID4+
+PiBbICAgIDIuMDE2Mzk1XSBkZWJ1Z2ZzOiBEaXJlY3RvcnkgJ3Bvd2VyLWRvbWFpbicgd2l0aCBw
+YXJlbnQNCj4gPiA+Pj4gJ3BtX2dlbnBkJyBhbHJlYWR5IHByZXNlbnQhDQo+ID4gPj4+IFsgICAg
+Mi4wMjQyMjFdIGRlYnVnZnM6IERpcmVjdG9yeSAncG93ZXItZG9tYWluJyB3aXRoIHBhcmVudA0K
+PiA+ID4+PiAncG1fZ2VucGQnIGFscmVhZHkgcHJlc2VudCENCj4gPiA+Pj4gWyAgICAyLjAzMjA0
+OV0gZGVidWdmczogRGlyZWN0b3J5ICdwb3dlci1kb21haW4nIHdpdGggcGFyZW50DQo+ID4gPj4+
+ICdwbV9nZW5wZCcgYWxyZWFkeSBwcmVzZW50IQ0KPiA+ID4+PiBbICAgIDIuMDM5ODc0XSBkZWJ1
+Z2ZzOiBEaXJlY3RvcnkgJ3Bvd2VyLWRvbWFpbicgd2l0aCBwYXJlbnQNCj4gPiA+Pj4gJ3BtX2dl
+bnBkJyBhbHJlYWR5IHByZXNlbnQhDQo+ID4gPj4+IFsgICAgMi4wNDc2OTldIGRlYnVnZnM6IERp
+cmVjdG9yeSAncG93ZXItZG9tYWluJyB3aXRoIHBhcmVudA0KPiA+ID4+PiAncG1fZ2VucGQnIGFs
+cmVhZHkgcHJlc2VudCENCj4gPiA+Pj4gWyAgICAyLjA1NTUyNF0gZGVidWdmczogRGlyZWN0b3J5
+ICdwb3dlci1kb21haW4nIHdpdGggcGFyZW50DQo+ID4gPj4+ICdwbV9nZW5wZCcgYWxyZWFkeSBw
+cmVzZW50IQ0KPiA+ID4+PiBbICAgIDIuMDYzMzUyXSBkZWJ1Z2ZzOiBEaXJlY3RvcnkgJ3Bvd2Vy
+LWRvbWFpbicgd2l0aCBwYXJlbnQNCj4gPiA+Pj4gJ3BtX2dlbnBkJyBhbHJlYWR5IHByZXNlbnQh
+DQo+ID4gPj4+IFsgICAgMi4wNzExNzZdIGRlYnVnZnM6IERpcmVjdG9yeSAncG93ZXItZG9tYWlu
+JyB3aXRoIHBhcmVudA0KPiA+ID4+PiAncG1fZ2VucGQnIGFscmVhZHkgcHJlc2VudCENCj4gPiA+
+Pj4NCj4gPiA+Pj4gQnV0IHRoYXQncyBhbm90aGVyIHByb2JsZW0gdGhhdCBzaG91bGQgYmUgaGFu
+ZGxlZCBpbiBkZWJ1Z2ZzIHN5c3RlbS4NCj4gPiA+Pj4NCj4gPiA+Pg0KPiA+ID4+IEluZGVlZC4u
+LnNvIEkgY2hvc2UgdG8gdXNlIGRpZmZlcmVudCBuYW1lIGluIGR0cyB0byBhdm9pZCBwcm9ibGVt
+cyBpbg0KPiA+ID4+IGRlYnVnZnMuIEl0IGRvZXMgdmlvbGF0ZSB0aGUgbmFtaW5nIHJ1bGVzLg0K
+PiA+ID4+DQo+ID4gPiANCj4gPiA+IEJ1dCB5b3VyIGJpbmRpbmcgd2lsbCBub3QgcGFzcyAob3Ig
+dHJpZ2dlciB3YXJuaW5ncykgdGhlIGR0YiBjaGVjaw0KPiA+ID4gdGhlbi4gUm9iIHdhcyBjbGVh
+ciB0aGF0IG5hbWVzIHNob3VsZCBiZSBnZW5lcmljLiBQcm9wZXIgZml4IGlzIGZpeA0KPiA+ID4g
+ZGVidWdmcyBub3QgdGhlIGJpbmRpbmcuDQo+ID4gPiANCj4gPiANCj4gPiBCeSB0aGUgd2F5LCBp
+cyBhbnlib2R5IHdvcmtpbmcgb24gdGhpcyBkZWJ1Z2ZzIGlzc3VlPw0KPiA+IA0KPiANCj4gSSB0
+aGluayB3ZSBjYW4gc29sdmUgdGhpcyBwcm9ibGVtIGJ5IGFkZGluZyAibmFtZSIgdG8gdGhlIHN0
+cnVjdA0KPiBzY3BzeXNfZG9tYWluX2RhdGEgYW5kIHVzZSB0aGlzIGRvbWFpbl9kYXRhLT5uYW1l
+IGFzIHRoZSBnZW5wZC5uYW1lLg0KPiBUaGlzIGlzIHZlcnkgc2ltcGxlLiBCdXQgSSB3YW50IHRv
+IGtub3cgaWYgeW91IGJvdGggbGlrZSBpdD8NCj4gDQoNCkhpIEVucmljIGFuZCBNYXR0aGlhcywN
+Cg0KTWF5IEkgaGF2ZSB5b3VyIG9waW5pb25zIG9uIGhvdyB5b3UgbWlnaHQgdG8gZml4IHRoaXMg
+aXNzdWU/DQpJJ2xsIHRyeSB0byBnaXZlIGFub3RoZXIgbmFtZSB0byBlYWNoIHBvd2VyIGRvbWFp
+biBpbiB0aGUNCnNjcHN5c19kb21haW5fZGF0YSBhbmQgcmVnaXN0ZXIgcG93ZXIgZG9tYWluIHdp
+dGggdGhpcyBuYW1lIGxpa2UgYmVsb3cNCg0Kc3RydWN0IHNjcHN5c19kb21haW5fZGF0YSB7DQog
+CS4uLg0KKwljaGFyICpuYW1lOw0KIH07DQoNCg0KLQlwZC0+Z2VucGQubmFtZSA9IG5vZGUtPm5h
+bWU7DQorCXBkLT5nZW5wZC5uYW1lID0gcGQtPmRhdGEtPm5hbWUgPzogbm9kZS0+bmFtZTsNCg0K
+DQpEb2VzIGl0IHZpb2xhdGUgdGhlIG5hbWluZyBydWxlcyB0byBzb21lIGV4dGVudD8gb3IgaXQn
+cyBhY2NlcHRhYmxlPw0KDQo+ID4gUmVnYXJkcywNCj4gPiBNYXR0aGlhcw0KPiANCj4gDQo+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IExpbnV4LW1l
+ZGlhdGVrIG1haWxpbmcgbGlzdA0KPiBMaW51eC1tZWRpYXRla0BsaXN0cy5pbmZyYWRlYWQub3Jn
+DQo+IGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtbWVk
+aWF0ZWsNCg0K
 
