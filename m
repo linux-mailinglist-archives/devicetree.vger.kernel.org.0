@@ -2,106 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E19F031EE2E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 19:24:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F31B231EE2F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 19:24:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231719AbhBRSXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 13:23:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233152AbhBRQMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 11:12:41 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D98C0613D6
-        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 08:12:01 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id s107so2322334otb.8
-        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 08:12:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=B7l8LVEXNX+LsLdNN9PcLRixCEk1Cd2ioBVfM3iW1e0=;
-        b=OjrGLq8xMGMZIayxpLYfrcI/b88ii2Ee2zYaEQWqoZ60KnqH9j/v4T4r5d64JHdl33
-         DXmiunwNPaISEVJmeuNplr3nohcftRGvK8mi3iMwlf215EJQyqBRC4ay3zIwL9GfAfut
-         YoFlF9Q8t30/XfjI7qUCOFGf+bBWpGxUWtAg/vhclOaa4G4PjBBqC+WijMXuMG3R9qOF
-         /u/DefnLY0nKdcPXh8rPMi5AwlAqwr1wPjQefqn9eiOJjknEIerw0s7SKx++Y4AOAS3P
-         8Rqrn44FhrWHLQ3DO5GAORvwjGkjd0xeZ/THvvE1QbLa5y2oGNKX0r5ZA7KOcWKEGq24
-         /Dug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=B7l8LVEXNX+LsLdNN9PcLRixCEk1Cd2ioBVfM3iW1e0=;
-        b=qWSx/032HLz5rtWRfNPXUNQixwCSTaB5IaEDxl/q4JsGxUnShiJGTSs69FD02mU/NJ
-         5P3KjJkyI1STfRt9eogmBiyuj9BQAg3Vmqpkus2shmBFy/xqPBUAOgnddgVd/43m2i0L
-         ImZTzlJ76zR6qsRJf8K0lVt1HFRH4WMTU8ofcXqA8bfTMNmlRDB6FkD0Yf8eS4ijjCxO
-         /V9mJa8Z1Ap+ZKKjT+a+99QJwVSE7LSKlwnjm5DIwFRN1V6C8T2v7F3GbXrALLGIE3yl
-         P0sQGTj+P2az6GFj8TQriLeSYWbmlCHgSySS8N4F9Kwrwmt10e7EdEFRuuLa3UZiBoYC
-         Ngkw==
-X-Gm-Message-State: AOAM531iQs77TvQt6EnOz3IbgklI6Fn8sca0kGmmipHRs8EFl7H01G+8
-        R/+1sEY0v9oNDB5p9rBV5Op9Og==
-X-Google-Smtp-Source: ABdhPJwIR2A5cmmzQYQ3k1zr3bcK12whb0GxoacSqSwyuVGJU4bQQvV8JP++fTbS6Mv1yTvkl5ekNg==
-X-Received: by 2002:a05:6830:19ea:: with SMTP id t10mr3539166ott.61.1613664720740;
-        Thu, 18 Feb 2021 08:12:00 -0800 (PST)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 97sm1138988oty.48.2021.02.18.08.11.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Feb 2021 08:12:00 -0800 (PST)
-Date:   Thu, 18 Feb 2021 10:11:58 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Document SM8350
- CPUfreq compatible
-Message-ID: <20210218161158.GC5254@yoga>
-References: <20210216111251.1838149-1-vkoul@kernel.org>
+        id S232214AbhBRSXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 13:23:22 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:14295 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233085AbhBRQQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 11:16:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1613664984; x=1645200984;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=V30xAsGypzCvyHxMwzLUE/9K9QPg42uq4qpA4eaiTis=;
+  b=I9ALa+m3GP+s4k1gfXBJ/8uMSLdN8mLjBCXhlzgVm8It3F8iGFydZUSP
+   +j89F6lt6c9kt0IECNqenQACaxqks+/binbJhdLxXZE8bqPt13IYV822X
+   lGIen7JTONRtAC1UFpI1PqXjWs9cNAb3e4uAqgjc6hRzVyYeIB/3fLgpq
+   wHrB6NKs0zh8zvH6KkfWAtqXWLNFwlC7eykOqiu+xR1dH4ksfLOyq4Dsu
+   qplsxU6NCURPNzbQCfAV0QhYmS+afArHn3/1sqnr2BI6bnQMwMd7O+azt
+   +mSVeGjAmGmGSHTGYxq8O+kONNCKrwLMsa2evJzTez45nBrIBEpjcZOu6
+   A==;
+IronPort-SDR: BgtG8KZP+4hJt7C3AX/0qLmdqdR0L6F3TZliI2IYblgReme8I3Oe1ohxeSbUzgkDshNcMN5Dwi
+ nfTD16nOEeIpqpVhm7c8/vOJNmDUk2lw4lVNbIpMhLsfMN0tHrwL6omSfc/jCALa4hs/xwBmnq
+ NjbtXERV5at7bZoDyM/3NxlKxOCl2E4cSd+Be9eeGq+u8xgKegVPWlVsQUByTWbBHT1oOhJf5g
+ 1v2jAzD4XTMcFRLRuwwedCpyei1GmK7HiQJiukaT7m9TUJsX7kK187MX7e+9NTVY0/T1Tuk/50
+ LaI=
+X-IronPort-AV: E=Sophos;i="5.81,187,1610434800"; 
+   d="scan'208";a="109772705"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Feb 2021 09:15:03 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Thu, 18 Feb 2021 09:15:02 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Thu, 18 Feb 2021 09:14:59 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Device Tree List <devicetree@vger.kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>
+Subject: [PATCH v15 1/4] dt-bindings: phy: Add sparx5-serdes bindings
+Date:   Thu, 18 Feb 2021 17:14:48 +0100
+Message-ID: <20210218161451.3489955-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210218161451.3489955-1-steen.hegelund@microchip.com>
+References: <20210218161451.3489955-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210216111251.1838149-1-vkoul@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 16 Feb 05:12 CST 2021, Vinod Koul wrote:
+Document the Sparx5 ethernet serdes phy driver bindings.
 
-> Add the CPUfreq compatible for SM8350 SoC along with note for using the
-> specific compatible for SoCs
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> index 9299028ee712..3eb3cee59d79 100644
-> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> @@ -8,7 +8,9 @@ Properties:
->  - compatible
->  	Usage:		required
->  	Value type:	<string>
-> -	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss".
-> +	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss"
-> +			along with SoC specific compatible:
-> +			  "qcom,sm8350-cpufreq-epss", "qcom,cpufreq-epss"
+Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+---
+ .../bindings/phy/microchip,sparx5-serdes.yaml | 100 ++++++++++++++++++
+ 1 file changed, 100 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
 
-Can you please extend this to add all the platforms that we currently
-support?
+diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+new file mode 100644
+index 000000000000..bdbdb3bbddbe
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip Sparx5 Serdes controller
++
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++
++description: |
++  The Sparx5 SERDES interfaces share the same basic functionality, but
++  support different operating modes and line rates.
++
++  The following list lists the SERDES features:
++
++  * RX Adaptive Decision Feedback Equalizer (DFE)
++  * Programmable continuous time linear equalizer (CTLE)
++  * Rx variable gain control
++  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
++  * Adjustable tx de-emphasis (FFE)
++  * Tx output amplitude control
++  * Supports rx eye monitor
++  * Multiple loopback modes
++  * Prbs generator and checker
++  * Polarity inversion control
++
++  SERDES6G:
++
++  The SERDES6G is a high-speed SERDES interface, which can operate at
++  the following data rates:
++
++  * 100 Mbps (100BASE-FX)
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++
++  SERDES10G
++
++  The SERDES10G is a high-speed SERDES interface, which can operate at
++  the following data rates:
++
++  * 100 Mbps (100BASE-FX)
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5 Gbps (QSGMII/USGMII)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++  * 10 Gbps (10G-USGMII)
++  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
++
++  SERDES25G
++
++  The SERDES25G is a high-speed SERDES interface, which can operate at
++  the following data rates:
++
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5 Gbps (QSGMII/USGMII)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++  * 10 Gbps (10G-USGMII)
++  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
++  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
++
++properties:
++  $nodename:
++    pattern: "^serdes@[0-9a-f]+$"
++
++  compatible:
++    const: microchip,sparx5-serdes
++
++  reg:
++    minItems: 1
++
++  '#phy-cells':
++    const: 1
++    description: |
++      - The main serdes input port
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - '#phy-cells'
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    serdes: serdes@10808000 {
++      compatible = "microchip,sparx5-serdes";
++      #phy-cells = <1>;
++      clocks = <&sys_clk>;
++      reg = <0x10808000 0x5d0000>;
++    };
++
++...
+-- 
+2.30.0
 
-
-PS. Didn't we have someone working on converting this to yaml?
-
-Regards,
-Bjorn
-
->  
->  - clocks
->  	Usage:		required
-> -- 
-> 2.26.2
-> 
