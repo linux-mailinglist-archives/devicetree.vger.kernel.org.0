@@ -2,688 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7926F31E9D9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 13:31:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5C4431E9E8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 13:47:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232869AbhBRMas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 07:30:48 -0500
-Received: from m42-2.mailgun.net ([69.72.42.2]:49322 "EHLO m42-2.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230466AbhBRLxC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Feb 2021 06:53:02 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1613649146; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=0BpJCvNz5u2Fsr5nrvwowLd7MOweWhUjizn/9vy9guk=;
- b=feGieDGJnnFBZ9qRnJjHExqSpvvu6ysJT9MYWykeajH0I8PbL0YS9ceDJ8ZXucbRKAtPfw/f
- /b1ZL3i6E5+vHiXIlXQC3nDImU6AnKx+jQ52XR1Tnc+Ipr1i+D8JVO+v/P8NSf6/Kois211B
- FQmKfnNt6RvTZpL+jKMIr0fsqbI=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 602e54d9eb4f89cdf8be5ee1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Feb 2021 11:51:53
- GMT
-Sender: schowdhu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id CF4ECC433CA; Thu, 18 Feb 2021 11:51:52 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: schowdhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 00604C433CA;
-        Thu, 18 Feb 2021 11:51:50 +0000 (UTC)
+        id S232356AbhBRMbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 07:31:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43940 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232171AbhBRMIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 07:08:22 -0500
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00EFC061574;
+        Thu, 18 Feb 2021 04:07:24 -0800 (PST)
+Received: by mail-ot1-x32e.google.com with SMTP id 80so1648149oty.2;
+        Thu, 18 Feb 2021 04:07:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UAF+AYB5tpUpq4+oyyh6f/zszxtQc2PJSl9KiMzzdLg=;
+        b=nEORJ1zq5KEJsx/O+mUTUsGzEV58pXDCdz1GlwQUXjqtzU5Wb6ahDmbRFpnNxX3Ep1
+         RuikxdpjNAM72y8iMky12EesUVKvF9XPaM6TsEvwJMiOqSsCeVbDvAYYo/fFfrrcTAJW
+         nGEF2VVjrJ86uD/RO1f4dqqAtxYLfRzFIRA4pAfaYf5LUTJnyxL4n+yEqUq6FvBUrRok
+         +WsrnCnf4aWFzfkNKsYmM6jdcmoWzLKq3RpnbSqrijGS8oNR8o4irvXSw7Q1dv6EaVBC
+         bS/a1GJnsWAieHNkO+Z4d7nJl/Sih6Rk7GkR9JroLHF0XAb2D+0fiVQiWJqfna5bzfgF
+         8epg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UAF+AYB5tpUpq4+oyyh6f/zszxtQc2PJSl9KiMzzdLg=;
+        b=J6WQkoZHt1WlQLyXowZFwOMsAfjuF2TYrm6zqWDvBXUsSwI1zUIfE+jFURHUMpag0k
+         /NeT+drdMbvNaHiDFTGp+Z3+0fSPfXWLDO8Fcv4UtdClA85lPAl5hMfUFoDLrLzU0C8s
+         3/0CC1rSw9qgsQ8Hxio2sgSN77i/napoyGQv+NlJr7JsWgHwM5stqBDcWixNZqvKwo5k
+         KmkyhGwY5nSJo+HoPd7dpGZLm/rI8B4Qsj4jzw+MTVSo+27SWsIeOmURw0mReFEcwCND
+         VWnFc1nbwvGx2sFQzjcmFGW+U+ccuYQA8ZKrea949WwdBWBEpf6fqnMy/k/2zbOB3yVJ
+         3fKQ==
+X-Gm-Message-State: AOAM531kZJkqK3XxdcM0SpXJ6dKp3eiVXsILYBAhrPx1MMcr0Sw0PVNj
+        Co72eqVy92Gy27GMGXCj/YZJD71hDnq9z9LPy+A=
+X-Google-Smtp-Source: ABdhPJz5rL4/7PZwcbf5yGJPgwmcBEWoqsceFCttMg03TwgGMRqsXPc8r/vT9J0fTR7KBMJfbwI4SyTD54AeKCGVPmE=
+X-Received: by 2002:a9d:7f86:: with SMTP id t6mr2664690otp.362.1613650044026;
+ Thu, 18 Feb 2021 04:07:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 18 Feb 2021 17:21:50 +0530
-From:   schowdhu@codeaurora.org
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Subject: Re: [PATCH V0 3/6] soc: qcom: dcc:Add driver support for Data Capture
- and Compare unit(DCC)
-In-Reply-To: <20210218065912.GV2774@vkoul-mobl.Dlink>
-References: <cover.1613541226.git.schowdhu@codeaurora.org>
- <f182b10f318db7cb09216c0176a5b26656d9ef49.1613541226.git.schowdhu@codeaurora.org>
- <20210218065912.GV2774@vkoul-mobl.Dlink>
-Message-ID: <80a0bc496ede7c55893ad3eb41837bef@codeaurora.org>
-X-Sender: schowdhu@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
+ <CAFqH_522NuGY9c-_XWhHxoa3QkrdoM92qTOLxgM8PpOU=-ttbw@mail.gmail.com>
+ <1605791419.19819.4.camel@mtksdaap41> <CAFqH_51m5Pg9ny4HWt1iwf8wtsGSdShpDCVaGwac=v9BBDj2vg@mail.gmail.com>
+ <1f25cc3f-324a-0020-7bf2-e5a915291522@gmail.com> <1606734983.24689.1.camel@mtksdaap41>
+ <1613644263.10586.8.camel@mtksdaap41>
+In-Reply-To: <1613644263.10586.8.camel@mtksdaap41>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Thu, 18 Feb 2021 13:07:12 +0100
+Message-ID: <CAFqH_51m7zXQ1G-KxhKxH0dPXrgfi=2JgmnncON_XqthpF9U0g@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: mediatek: Add mt8192 power domains controller
+To:     Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-02-18 12:29, Vinod Koul wrote:
-> On 17-02-21, 12:18, Souradeep Chowdhury wrote:
->> The DCC is a DMA Engine designed to capture and store data
->> during system crash or software triggers.The DCC operates
->                                         ^^^
-> Space after . (quite a few here, pls fix them)
+Hi Weiyi,
 
-Ack
+Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 18 de febr.
+2021 a les 11:31:
+>
+> On Mon, 2020-11-30 at 19:16 +0800, Weiyi Lu wrote:
+> > On Fri, 2020-11-27 at 13:42 +0100, Matthias Brugger wrote:
+> > >
+> > > On 19/11/2020 15:13, Enric Balletbo Serra wrote:
+> > > > Hi Weiyi,
+> > > >
+> > > > Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 19 de nov.
+> > > > 2020 a les 14:10:
+> > > >>
+> > > >> On Thu, 2020-11-19 at 13:13 +0100, Enric Balletbo Serra wrote:
+> > > >>> Hi Weiyi,
+> > > >>>
+> > > >>> Thank you for the patch
+> > > >>>
+> > > >>> Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 19 de nov.
+> > > >>> 2020 a les 11:48:
+> > > >>>>
+> > > >>>> Add power domains controller node for SoC mt8192
+> > > >>>>
+> > > >>>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+> > > >>>> ---
+> > > [...]
+> > > >>>> +                       /* System Power Manager */
+> > > >>>> +                       spm: power-controller {
+> > > >>>> +                               compatible = "mediatek,mt8192-power-controller";
+> > > >>>> +                               #address-cells = <1>;
+> > > >>>> +                               #size-cells = <0>;
+> > > >>>> +                               #power-domain-cells = <1>;
+> > > >>>> +
+> > > >>>> +                               /* power domain of the SoC */
+> > > >>>> +                               audio@MT8192_POWER_DOMAIN_AUDIO {
+> > > >>>
+> > > >>> If you run the dt_bindings_check it should return some errors, as all
+> > > >>> these node names should be 'power-domain@'. Which is a bit annoying
+> > > >>> because then you will get a bunch of errors like this:
+> > > >>>
+> > > >>> [    1.969110] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    1.976997] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    1.984828] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    1.992657] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.000685] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.008566] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.016395] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.024221] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.032049] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.039874] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.047699] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.055524] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.063352] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>> [    2.071176] debugfs: Directory 'power-domain' with parent
+> > > >>> 'pm_genpd' already present!
+> > > >>>
+> > > >>> But that's another problem that should be handled in debugfs system.
+> > > >>>
+> > > >>
+> > > >> Indeed...so I chose to use different name in dts to avoid problems in
+> > > >> debugfs. It does violate the naming rules.
+> > > >>
+> > > >
+> > > > But your binding will not pass (or trigger warnings) the dtb check
+> > > > then. Rob was clear that names should be generic. Proper fix is fix
+> > > > debugfs not the binding.
+> > > >
+> > >
+> > > By the way, is anybody working on this debugfs issue?
+> > >
+> >
+> > I think we can solve this problem by adding "name" to the struct
+> > scpsys_domain_data and use this domain_data->name as the genpd.name.
+> > This is very simple. But I want to know if you both like it?
+> >
+>
+> Hi Enric and Matthias,
+>
+> May I have your opinions on how you might to fix this issue?
+> I'll try to give another name to each power domain in the
+> scpsys_domain_data and register power domain with this name like below
+>
+> struct scpsys_domain_data {
+>         ...
+> +       char *name;
+>  };
+>
+>
+> -       pd->genpd.name = node->name;
+> +       pd->genpd.name = pd->data->name ?: node->name;
+>
+>
+> Does it violate the naming rules to some extent? or it's acceptable?
+>
 
-> 
->> based on link list entries which provides it with data and
->> addresses and the function it needs to perform.These functions
->> are read,write and loop.Added the basic driver in this patch
->> which contains a probe method which instantiates all the link
->> list data specific to a SoC.Methods have also been added to
->> handle all the functionalities specific to a linked list.Each
->> DCC has it's own SRAM which needs to be instantiated at probe
->> time as well.
-> 
-> So help me understand, in case of system crash how will this be used..?
+I think it could be acceptable, I think doesn't violate any rule. My
+doubt here is we should name in a generic way in the form
+'power-domain@addr' getting the last part of the full node name to
+avoid conflicts or if the name should be driver-specific. I think it
+makes sense to be driver-specific as is more helpful for debugging
+purposes. If we do driver-specific (with data->name) I'd fail if is
+not supplied.
 
-In case of system crashes like secure WDog bite, the DCC hardware 
-captures
-and stores the values at the configured register addresses in it's 
-dedicated SRAM.
-The driver only enables the DCC hardware during probe time and 
-configures
-register addresses via user space.
+Thanks,
+  Enric
 
-> 
->> 
->> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
->> ---
->>  drivers/soc/qcom/Kconfig  |    8 +
->>  drivers/soc/qcom/Makefile |    1 +
->>  drivers/soc/qcom/dcc.c    | 1055 
->> +++++++++++++++++++++++++++++++++++++++++++++
->>  3 files changed, 1064 insertions(+)
->>  create mode 100644 drivers/soc/qcom/dcc.c
->> 
->> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
->> index 79b568f..8819e0b 100644
->> --- a/drivers/soc/qcom/Kconfig
->> +++ b/drivers/soc/qcom/Kconfig
->> @@ -69,6 +69,14 @@ config QCOM_LLCC
->>  	  SDM845. This provides interfaces to clients that use the LLCC.
->>  	  Say yes here to enable LLCC slice driver.
->> 
->> +config QCOM_DCC
->> +	tristate "Qualcomm Technologies, Inc. Data Capture and Compare 
->> engine driver"
->> +	depends on ARCH_QCOM || COMPILE_TEST
->> +	help
->> +	  This option enables driver for Data Capture and Compare engine. 
->> DCC
->> +	  driver provides interface to configure DCC block and read back
->> +	  captured data from DCC's internal SRAM.
->> +
->>  config QCOM_KRYO_L2_ACCESSORS
->>  	bool
->>  	depends on ARCH_QCOM && ARM64 || COMPILE_TEST
->> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
->> index ad675a6..1b00870 100644
->> --- a/drivers/soc/qcom/Makefile
->> +++ b/drivers/soc/qcom/Makefile
->> @@ -26,3 +26,4 @@ obj-$(CONFIG_QCOM_LLCC) += llcc-qcom.o
->>  obj-$(CONFIG_QCOM_RPMHPD) += rpmhpd.o
->>  obj-$(CONFIG_QCOM_RPMPD) += rpmpd.o
->>  obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) +=	kryo-l2-accessors.o
->> +obj-$(CONFIG_QCOM_DCC) += dcc.o
->> diff --git a/drivers/soc/qcom/dcc.c b/drivers/soc/qcom/dcc.c
->> new file mode 100644
->> index 0000000..d67452b
->> --- /dev/null
->> +++ b/drivers/soc/qcom/dcc.c
->> @@ -0,0 +1,1055 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2015-2021, The Linux Foundation. All rights 
->> reserved.
->> + */
->> +
->> +#include <linux/bitops.h>
->> +#include <linux/cdev.h>
->> +#include <linux/delay.h>
->> +#include <linux/fs.h>
->> +#include <linux/io.h>
->> +#include <linux/iopoll.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_device.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/slab.h>
->> +#include <linux/uaccess.h>
->> +
->> +#define TIMEOUT_US		100
->> +
->> +#define BM(lsb, msb)		((BIT(msb) - BIT(lsb)) + BIT(msb))
->> +#define BMVAL(val, lsb, msb)	((val & BM(lsb, msb)) >> lsb)
->> +#define BVAL(val, n)		((val & BIT(n)) >> n)
-> 
-> Pls use macros available in bitfield.h rather than inventing your own..
-
-Ack
-
-> 
->> +
->> +#define dcc_writel(drvdata, val, off)					\
->> +	writel((val), drvdata->base + dcc_offset_conv(drvdata, off))
->> +#define dcc_readl(drvdata, off)						\
->> +	readl(drvdata->base + dcc_offset_conv(drvdata, off))
->> +
->> +#define dcc_sram_readl(drvdata, off)					\
->> +	readl(drvdata->ram_base + off)
->> +
->> +/* DCC registers */
->> +#define DCC_HW_INFO					0x04
->> +#define DCC_LL_NUM_INFO					0x10
->> +#define DCC_STATUS					0x1C
->> +#define DCC_LL_LOCK(m)					(0x34 + 0x80 * m)
->> +#define DCC_LL_CFG(m)					(0x38 + 0x80 * m)
->> +#define DCC_LL_BASE(m)					(0x3c + 0x80 * m)
->> +#define DCC_FD_BASE(m)					(0x40 + 0x80 * m)
->> +#define DCC_LL_TIMEOUT(m)				(0x44 + 0x80 * m)
->> +#define DCC_LL_INT_ENABLE(m)				(0x4C + 0x80 * m)
->> +#define DCC_LL_INT_STATUS(m)				(0x50 + 0x80 * m)
->> +#define DCC_LL_SW_TRIGGER(m)				(0x60 + 0x80 * m)
->> +#define DCC_LL_BUS_ACCESS_STATUS(m)			(0x64 + 0x80 * m)
->> +
->> +#define DCC_MAP_LEVEL1			0x18
->> +#define DCC_MAP_LEVEL2			0x34
->> +#define DCC_MAP_LEVEL3			0x4C
->> +
->> +#define DCC_MAP_OFFSET1			0x10
->> +#define DCC_MAP_OFFSET2			0x18
->> +#define DCC_MAP_OFFSET3			0x1C
->> +#define DCC_MAP_OFFSET4			0x8
->> +
->> +#define DCC_FIX_LOOP_OFFSET		16
->> +#define DCC_VER_INFO_BIT		9
->> +
->> +#define DCC_READ        0
->> +#define DCC_WRITE       1
->> +#define DCC_LOOP        2
->> +#define DCC_READ_WRITE  3
->> +
->> +#define MAX_DCC_OFFSET				(0xFF * 4)
->> +#define MAX_DCC_LEN				0x7F
->> +#define MAX_LOOP_CNT				0xFF
->> +
->> +#define DCC_ADDR_DESCRIPTOR			0x00
->> +#define DCC_LOOP_DESCRIPTOR			(BIT(30))
->> +#define DCC_RD_MOD_WR_DESCRIPTOR		(BIT(31))
->> +#define DCC_LINK_DESCRIPTOR			(BIT(31) | BIT(30))
-> 
-> we have GENMASK() for this
-
-Ack
-
-> 
->> +
->> +#define DCC_READ_IND				0x00
->> +#define DCC_WRITE_IND				(BIT(28))
->> +
->> +#define DCC_AHB_IND				0x00
->> +#define DCC_APB_IND				BIT(29)
->> +
->> +#define DCC_MAX_LINK_LIST			8
->> +#define DCC_INVALID_LINK_LIST			0xFF
->> +
->> +#define DCC_VER_MASK1				0x7F
->> +#define DCC_VER_MASK2				0x3F
-> 
-> Genmask for these too...
-
-Ack
-
-> 
->> +
->> +#define DCC_RD_MOD_WR_ADDR                      0xC105E
->> +
->> +struct qcom_dcc_config {
->> +	const int dcc_ram_offset;
->> +};
->> +
->> +static const struct qcom_dcc_config sm8150_cfg = {
->> +	.dcc_ram_offset				= 0x5000,
->> +};
-> 
-> maybe move it down near compatible table?
-
-Ack
-
-> 
->> +
->> +enum dcc_descriptor_type {
->> +	DCC_ADDR_TYPE,
->> +	DCC_LOOP_TYPE,
->> +	DCC_READ_WRITE_TYPE,
->> +	DCC_WRITE_TYPE
->> +};
->> +
->> +enum dcc_mem_map_ver {
->> +	DCC_MEM_MAP_VER1,
->> +	DCC_MEM_MAP_VER2,
->> +	DCC_MEM_MAP_VER3
->> +};
->> +
->> +struct dcc_config_entry {
->> +	u32				base;
->> +	u32				offset;
->> +	u32				len;
->> +	u32				index;
->> +	u32				loop_cnt;
->> +	u32				write_val;
->> +	u32				mask;
->> +	bool				apb_bus;
->> +	enum dcc_descriptor_type	desc_type;
->> +	struct list_head		list;
->> +};
->> +
->> +struct dcc_drvdata {
->> +	void __iomem		*base;
->> +	u32			reg_size;
->> +	struct device		*dev;
->> +	struct mutex		mutex;
->> +	void __iomem		*ram_base;
->> +	u32			ram_size;
->> +	u32			ram_offset;
->> +	enum dcc_mem_map_ver	mem_map_ver;
->> +	u32			ram_cfg;
->> +	u32			ram_start;
->> +	bool			*enable;
->> +	bool			*configured;
->> +	bool			interrupt_disable;
->> +	char			*sram_node;
->> +	struct cdev		sram_dev;
->> +	struct class		*sram_class;
->> +	struct list_head	*cfg_head;
->> +	u32			*nr_config;
->> +	u32			nr_link_list;
->> +	u8			curr_list;
->> +	u8			loopoff;
->> +};
->> +
->> +struct dcc_cfg_attr {
->> +	u32	addr;
->> +	u32	prev_addr;
->> +	u32	prev_off;
->> +	u32	link;
->> +	u32	sram_offset;
->> +};
->> +
->> +struct dcc_cfg_loop_attr {
->> +	u32	loop;
->> +	bool	loop_start;
->> +	u32	loop_cnt;
->> +	u32	loop_len;
->> +	u32	loop_off;
->> +};
->> +
->> +static u32 dcc_offset_conv(struct dcc_drvdata *drvdata, u32 off)
->> +{
->> +	if (drvdata->mem_map_ver == DCC_MEM_MAP_VER1) {
->> +		if ((off & DCC_VER_MASK1) >= DCC_MAP_LEVEL3)
->> +			return (off - DCC_MAP_OFFSET3);
->> +		if ((off & DCC_VER_MASK1) >= DCC_MAP_LEVEL2)
->> +			return (off - DCC_MAP_OFFSET2);
->> +		else if ((off & DCC_VER_MASK1) >= DCC_MAP_LEVEL1)
->> +			return (off - DCC_MAP_OFFSET1);
->> +	} else if (drvdata->mem_map_ver == DCC_MEM_MAP_VER2) {
->> +		if ((off & DCC_VER_MASK1) >= DCC_MAP_LEVEL2)
->> +			return (off - DCC_MAP_OFFSET4);
->> +	}
->> +	return off;
->> +}
->> +
->> +static int dcc_sram_writel(struct dcc_drvdata *drvdata,
->> +					u32 val, u32 off)
->> +{
->> +	if (unlikely(off > (drvdata->ram_size - 4)))
->> +		return -EINVAL;
->> +
->> +	writel((val), drvdata->ram_base + off);
->> +
->> +	return 0;
->> +}
->> +
->> +static int _dcc_ll_cfg_read_write(struct dcc_drvdata *drvdata,
->> +struct dcc_config_entry *entry, struct dcc_cfg_attr *cfg)
-> 
-> this looks a bit hard to read, can you make it better (also you can go
-> upto 100 chars now), do you checkpatch with --strict option to get
-> better alignment of code
-
-Ack
-
-> 
-> 
->> +{
->> +	int ret = 0;
-> 
-> Superfluous init?
-
-Ack
-
-> 
->> +
->> +	if (cfg->link) {
->> +		/* write new offset = 1 to continue
->> +		 * processing the list
-> 
-> kernel uses:
->         /*
->          * this is a
->          * multi line comment style
->          */
-
-Ack
-
-> 
->> +		 */
->> +
->> +		ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
->> +		if (ret)
->> +			return ret;
->> +		cfg->sram_offset += 4;
->> +		/* Reset link and prev_off */
->> +		cfg->addr = 0x00;
->> +		cfg->link = 0;
->> +		cfg->prev_off = 0;
-> 
-> memset cfg first?
-
-Ack
-
-> 
->> +		cfg->prev_addr = cfg->addr;
->> +	}
->> +
->> +	cfg->addr = DCC_RD_MOD_WR_DESCRIPTOR;
->> +
->> +	ret = dcc_sram_writel(drvdata, cfg->addr, cfg->sram_offset);
->> +
-> 
-> drop this empty line
-
-Ack
-
-> 
->> +	if (ret)
->> +		return ret;
->> +
->> +	cfg->sram_offset += 4;
->> +
->> +	ret = dcc_sram_writel(drvdata, entry->mask, cfg->sram_offset);
->> +
->> +	if (ret)
->> +		return ret;
->> +
->> +	cfg->sram_offset += 4;
->> +
->> +	ret = dcc_sram_writel(drvdata, entry->write_val, cfg->sram_offset);
->> +
->> +	if (ret)
->> +		return ret;
->> +
->> +	cfg->sram_offset += 4;
->> +
->> +	cfg->addr = 0;
->> +
->> +	return ret;
->> +}
->> +
->> +static int _dcc_ll_cfg_loop(struct dcc_drvdata *drvdata, struct 
->> dcc_config_entry *entry,
->> +struct dcc_cfg_attr *cfg, struct dcc_cfg_loop_attr *cfg_loop, u32 
->> *total_len)
-> 
-> here as well
-
-Ack
-
-> 
->> +{
->> +
->> +	int ret = 0;
->> +
->> +	/* Check if we need to write link of prev entry */
->> +	if (cfg->link) {
->> +		ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
->> +		if (ret)
->> +			return ret;
->> +		cfg->sram_offset += 4;
->> +	}
->> +
->> +	if (cfg_loop->loop_start) {
->> +		cfg_loop->loop = (cfg->sram_offset - cfg_loop->loop_off) / 4;
->> +		cfg_loop->loop |= (cfg_loop->loop_cnt << drvdata->loopoff) &
->> +		BM(drvdata->loopoff, 27);
->> +		cfg_loop->loop |= DCC_LOOP_DESCRIPTOR;
->> +		*total_len += (*total_len - cfg_loop->loop_len) * 
->> cfg_loop->loop_cnt;
->> +
->> +		ret = dcc_sram_writel(drvdata, cfg_loop->loop, cfg->sram_offset);
->> +
->> +		if (ret)
->> +			return ret;
->> +		cfg->sram_offset += 4;
->> +
->> +		cfg_loop->loop_start = false;
->> +		cfg_loop->loop_len = 0;
->> +		cfg_loop->loop_off = 0;
-> 
-> seems quite similar to last one..? Maybe a helper for common code
-
-Ack
-
-> 
->> +	} else {
->> +		cfg_loop->loop_start = true;
->> +		cfg_loop->loop_cnt = entry->loop_cnt - 1;
->> +		cfg_loop->loop_len = *total_len;
->> +		cfg_loop->loop_off = cfg->sram_offset;
->> +	}
->> +
->> +	/* Reset link and prev_off */
->> +
->> +	cfg->addr = 0x00;
->> +	cfg->link = 0;
->> +	cfg->prev_off = 0;
->> +	cfg->prev_addr = cfg->addr;
->> +
->> +	return ret;
->> +}
->> +
->> +static int _dcc_ll_cfg_write(struct dcc_drvdata *drvdata,
->> +struct dcc_config_entry *entry, struct dcc_cfg_attr *cfg, u32 
->> *total_len)
->> +{
->> +	u32 off;
->> +	int ret = 0;
->> +
->> +	if (cfg->link) {
->> +		/* write new offset = 1 to continue
->> +		 * processing the list
->> +		 */
->> +		ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
->> +
->> +		if (ret)
->> +			return ret;
->> +
->> +		cfg->sram_offset += 4;
->> +		/* Reset link and prev_off */
->> +		cfg->addr = 0x00;
->> +		cfg->prev_off = 0;
->> +		cfg->prev_addr = cfg->addr;
->> +	}
->> +
->> +	off = entry->offset/4;
->> +	/* write new offset-length pair to correct position */
->> +	cfg->link |= ((off & BM(0, 7)) | BIT(15) | ((entry->len << 8) & 
->> BM(8, 14)));
->> +	cfg->link |= DCC_LINK_DESCRIPTOR;
->> +
->> +	/* Address type */
->> +	cfg->addr = (entry->base >> 4) & BM(0, 27);
->> +	if (entry->apb_bus)
->> +		cfg->addr |= DCC_ADDR_DESCRIPTOR | DCC_WRITE_IND | DCC_APB_IND;
->> +	else
->> +		cfg->addr |= DCC_ADDR_DESCRIPTOR | DCC_WRITE_IND | DCC_AHB_IND;
->> +	ret = dcc_sram_writel(drvdata, cfg->addr, cfg->sram_offset);
->> +
->> +	if (ret)
->> +		return ret;
->> +	cfg->sram_offset += 4;
->> +
->> +	ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
->> +	if (ret)
->> +		return ret;
->> +	cfg->sram_offset += 4;
->> +
->> +	ret = dcc_sram_writel(drvdata, entry->write_val, cfg->sram_offset);
->> +
->> +	if (ret)
->> +		return ret;
->> +
->> +	cfg->sram_offset += 4;
->> +	cfg->addr = 0x00;
->> +	cfg->link = 0;
->> +	return ret;
->> +}
->> +
->> +static int _dcc_ll_cfg_default(struct dcc_drvdata *drvdata,
->> +struct dcc_config_entry *entry, struct dcc_cfg_attr *cfg, u32 *pos, 
->> u32 *total_len)
->> +{
->> +	int ret = 0;
->> +	u32 off;
->> +
->> +	cfg->addr = (entry->base >> 4) & BM(0, 27);
->> +
->> +	if (entry->apb_bus)
->> +		cfg->addr |= DCC_ADDR_DESCRIPTOR | DCC_READ_IND | DCC_APB_IND;
->> +	else
->> +		cfg->addr |= DCC_ADDR_DESCRIPTOR | DCC_READ_IND | DCC_AHB_IND;
->> +
->> +	off = entry->offset/4;
->> +
->> +	*total_len += entry->len * 4;
->> +
->> +	if (!cfg->prev_addr || cfg->prev_addr != cfg->addr || cfg->prev_off 
->> > off) {
->> +		/* Check if we need to write prev link entry */
->> +		if (cfg->link) {
->> +			ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
->> +			if (ret)
->> +				return ret;
->> +				cfg->sram_offset += 4;
->> +		}
->> +		dev_dbg(drvdata->dev, "DCC: sram address 0x%x\n", 
->> cfg->sram_offset);
->> +
->> +		/* Write address */
->> +		ret = dcc_sram_writel(drvdata, cfg->addr, cfg->sram_offset);
->> +
->> +		if (ret)
->> +			return ret;
->> +
->> +		cfg->sram_offset += 4;
->> +
->> +		/* Reset link and prev_off */
->> +		cfg->link = 0;
->> +		cfg->prev_off = 0;
->> +	}
->> +
->> +	if ((off - cfg->prev_off) > 0xFF || entry->len > MAX_DCC_LEN) {
->> +		dev_err(drvdata->dev, "DCC: Programming error Base: 0x%x, offset 
->> 0x%x\n",
->> +		entry->base, entry->offset);
->> +		ret = -EINVAL;
->> +		return ret;
->> +	}
->> +
->> +	if (cfg->link) {
->> +		/*
->> +		 * link already has one offset-length so new
->> +		 * offset-length needs to be placed at
->> +		 * bits [29:15]
->> +		 */
->> +		*pos = 15;
->> +
->> +		/* Clear bits [31:16] */
->> +		cfg->link &= BM(0, 14);
->> +	} else {
->> +		/*
->> +		 * link is empty, so new offset-length needs
->> +		 * to be placed at bits [15:0]
->> +		 */
->> +		*pos = 0;
->> +		cfg->link = 1 << 15;
->> +	}
->> +
->> +	/* write new offset-length pair to correct position */
->> +	cfg->link |= (((off-cfg->prev_off) & BM(0, 7)) | ((entry->len << 8) 
->> & BM(8, 14))) << *pos;
->> +
->> +	cfg->link |= DCC_LINK_DESCRIPTOR;
->> +
->> +	if (*pos) {
->> +		ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
->> +		if (ret)
->> +			return ret;
->> +		cfg->sram_offset += 4;
->> +		cfg->link = 0;
->> +	}
->> +
->> +	cfg->prev_off  = off + entry->len - 1;
->> +	cfg->prev_addr = cfg->addr;
->> +	return ret;
->> +}
->> +
->> +static int __dcc_ll_cfg(struct dcc_drvdata *drvdata, int curr_list)
->> +{
->> +	int ret = 0;
->> +	u32 total_len, pos;
->> +	struct dcc_config_entry *entry;
->> +	struct dcc_cfg_attr cfg;
->> +	struct dcc_cfg_loop_attr cfg_loop;
->> +
->> +	cfg.sram_offset = drvdata->ram_cfg * 4;
->> +	cfg.prev_off = 0;
->> +	cfg_loop.loop_off = 0;
->> +	total_len = 0;
->> +	cfg_loop.loop_len = 0;
->> +	cfg_loop.loop_cnt = 0;
->> +	cfg_loop.loop_start = false;
->> +	cfg.prev_addr = 0;
->> +	cfg.addr = 0;
->> +	cfg.link = 0;
-> 
-> again use memset for these
-
-Ack
-
-> 
->> +
->> +	list_for_each_entry(entry, &drvdata->cfg_head[curr_list], list) {
->> +		switch (entry->desc_type) {
->> +		case DCC_READ_WRITE_TYPE:
->> +		{
-> 
-> checkpatch should have told you this is not typical kernel style, pls
-> fix this and many other things before we process further
-
-Checkpatch with --strict option has been run for these patches but it 
-seems to
-be not detecting these. They have been fixed now.
-
+> > > Regards,
+> > > Matthias
+> >
+> >
+> > _______________________________________________
+> > Linux-mediatek mailing list
+> > Linux-mediatek@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
+>
