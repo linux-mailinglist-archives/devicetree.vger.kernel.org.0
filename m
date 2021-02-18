@@ -2,199 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5C4431E9E8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 13:47:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3E0F31EBB2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:46:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232356AbhBRMbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 07:31:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232171AbhBRMIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 07:08:22 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00EFC061574;
-        Thu, 18 Feb 2021 04:07:24 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id 80so1648149oty.2;
-        Thu, 18 Feb 2021 04:07:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UAF+AYB5tpUpq4+oyyh6f/zszxtQc2PJSl9KiMzzdLg=;
-        b=nEORJ1zq5KEJsx/O+mUTUsGzEV58pXDCdz1GlwQUXjqtzU5Wb6ahDmbRFpnNxX3Ep1
-         RuikxdpjNAM72y8iMky12EesUVKvF9XPaM6TsEvwJMiOqSsCeVbDvAYYo/fFfrrcTAJW
-         nGEF2VVjrJ86uD/RO1f4dqqAtxYLfRzFIRA4pAfaYf5LUTJnyxL4n+yEqUq6FvBUrRok
-         +WsrnCnf4aWFzfkNKsYmM6jdcmoWzLKq3RpnbSqrijGS8oNR8o4irvXSw7Q1dv6EaVBC
-         bS/a1GJnsWAieHNkO+Z4d7nJl/Sih6Rk7GkR9JroLHF0XAb2D+0fiVQiWJqfna5bzfgF
-         8epg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UAF+AYB5tpUpq4+oyyh6f/zszxtQc2PJSl9KiMzzdLg=;
-        b=J6WQkoZHt1WlQLyXowZFwOMsAfjuF2TYrm6zqWDvBXUsSwI1zUIfE+jFURHUMpag0k
-         /NeT+drdMbvNaHiDFTGp+Z3+0fSPfXWLDO8Fcv4UtdClA85lPAl5hMfUFoDLrLzU0C8s
-         3/0CC1rSw9qgsQ8Hxio2sgSN77i/napoyGQv+NlJr7JsWgHwM5stqBDcWixNZqvKwo5k
-         KmkyhGwY5nSJo+HoPd7dpGZLm/rI8B4Qsj4jzw+MTVSo+27SWsIeOmURw0mReFEcwCND
-         VWnFc1nbwvGx2sFQzjcmFGW+U+ccuYQA8ZKrea949WwdBWBEpf6fqnMy/k/2zbOB3yVJ
-         3fKQ==
-X-Gm-Message-State: AOAM531kZJkqK3XxdcM0SpXJ6dKp3eiVXsILYBAhrPx1MMcr0Sw0PVNj
-        Co72eqVy92Gy27GMGXCj/YZJD71hDnq9z9LPy+A=
-X-Google-Smtp-Source: ABdhPJz5rL4/7PZwcbf5yGJPgwmcBEWoqsceFCttMg03TwgGMRqsXPc8r/vT9J0fTR7KBMJfbwI4SyTD54AeKCGVPmE=
-X-Received: by 2002:a9d:7f86:: with SMTP id t6mr2664690otp.362.1613650044026;
- Thu, 18 Feb 2021 04:07:24 -0800 (PST)
+        id S229952AbhBRPpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 10:45:06 -0500
+Received: from mout.kundenserver.de ([217.72.192.73]:45147 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233075AbhBRMgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 07:36:15 -0500
+Received: from [192.168.1.155] ([95.115.65.253]) by mrelayeu.kundenserver.de
+ (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MuluP-1m3Ih90fXX-00rq93; Thu, 18 Feb 2021 13:19:12 +0100
+Subject: Re: of overlay: how to insert new nodes with references to it
+From:   "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <9b5a8e1f-6359-7658-4851-00d77d1cb8e5@metux.net>
+Message-ID: <dddc18ad-24c3-013a-800a-b93ef1d679e6@metux.net>
+Date:   Thu, 18 Feb 2021 13:19:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
- <CAFqH_522NuGY9c-_XWhHxoa3QkrdoM92qTOLxgM8PpOU=-ttbw@mail.gmail.com>
- <1605791419.19819.4.camel@mtksdaap41> <CAFqH_51m5Pg9ny4HWt1iwf8wtsGSdShpDCVaGwac=v9BBDj2vg@mail.gmail.com>
- <1f25cc3f-324a-0020-7bf2-e5a915291522@gmail.com> <1606734983.24689.1.camel@mtksdaap41>
- <1613644263.10586.8.camel@mtksdaap41>
-In-Reply-To: <1613644263.10586.8.camel@mtksdaap41>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Thu, 18 Feb 2021 13:07:12 +0100
-Message-ID: <CAFqH_51m7zXQ1G-KxhKxH0dPXrgfi=2JgmnncON_XqthpF9U0g@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: mediatek: Add mt8192 power domains controller
-To:     Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <9b5a8e1f-6359-7658-4851-00d77d1cb8e5@metux.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: tl
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:njEP9Y5KHZEd3a3joGYTYv+kI/TM1vVwJlRu2otXvWJHCebakCM
+ 2bzS79nvzubTFthEkHGN+r6gZt9r56FqoO5N8KI/hOWWwlMO8vOXT8fMu1AuoDK4BBqkI+2
+ BgWT5Z5GLo2Cz39XxGLfZNNmxLfnJxYS5yQlh/IRBFZu6l/my52OtyjagcvVkPm0xx/I/vi
+ 7f9J1z7pHdh9fcGN17NOA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dEWE6eukdEA=:vo42R/bKJjssMIE8s5lFrS
+ 4Pex5jHHNdLw1XX0w3wCrAP5jRS/4GVTsAYLOVDYCR+OY/5Xs2d13cxFyyJsjMwZMTcwO6fxG
+ ozdGYMFDc4cNh7tUoxA33ygh39WSrL1waBZkOYj4GOaWci4WxxH8CsRhueDP8VwZeME5/HJSq
+ LgBcDOLICXnyy1iWYFSXHgS+V48C2a+6krqbi9u+zolBFbwnFuPbc1McWOu6OiLz9vAb5QoFK
+ XOVlHNBp8iJUlOJZ1SCxYaHCnxz7dsb1KfwXnpnNCf8USyDIPuWbTXX2skpeOBSU4FrrqOUsn
+ /Wejnzs43aEunxT+dSMrmyuvWxN6TlV2bpzjywixG4+hu7mnS2nqKbg368XpeeF5jQY3aFelA
+ MZqAbYSefmiBHFM9K797x33vHJUrfR+JtjtGo5qJLrjN0Z1vF7tGbSB9usP+V
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Weiyi,
+On 18.02.21 10:14, Enrico Weigelt, metux IT consult wrote:
 
-Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 18 de febr.
-2021 a les 11:31:
->
-> On Mon, 2020-11-30 at 19:16 +0800, Weiyi Lu wrote:
-> > On Fri, 2020-11-27 at 13:42 +0100, Matthias Brugger wrote:
-> > >
-> > > On 19/11/2020 15:13, Enric Balletbo Serra wrote:
-> > > > Hi Weiyi,
-> > > >
-> > > > Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 19 de nov.
-> > > > 2020 a les 14:10:
-> > > >>
-> > > >> On Thu, 2020-11-19 at 13:13 +0100, Enric Balletbo Serra wrote:
-> > > >>> Hi Weiyi,
-> > > >>>
-> > > >>> Thank you for the patch
-> > > >>>
-> > > >>> Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 19 de nov.
-> > > >>> 2020 a les 11:48:
-> > > >>>>
-> > > >>>> Add power domains controller node for SoC mt8192
-> > > >>>>
-> > > >>>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
-> > > >>>> ---
-> > > [...]
-> > > >>>> +                       /* System Power Manager */
-> > > >>>> +                       spm: power-controller {
-> > > >>>> +                               compatible = "mediatek,mt8192-power-controller";
-> > > >>>> +                               #address-cells = <1>;
-> > > >>>> +                               #size-cells = <0>;
-> > > >>>> +                               #power-domain-cells = <1>;
-> > > >>>> +
-> > > >>>> +                               /* power domain of the SoC */
-> > > >>>> +                               audio@MT8192_POWER_DOMAIN_AUDIO {
-> > > >>>
-> > > >>> If you run the dt_bindings_check it should return some errors, as all
-> > > >>> these node names should be 'power-domain@'. Which is a bit annoying
-> > > >>> because then you will get a bunch of errors like this:
-> > > >>>
-> > > >>> [    1.969110] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    1.976997] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    1.984828] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    1.992657] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.000685] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.008566] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.016395] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.024221] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.032049] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.039874] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.047699] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.055524] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.063352] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>> [    2.071176] debugfs: Directory 'power-domain' with parent
-> > > >>> 'pm_genpd' already present!
-> > > >>>
-> > > >>> But that's another problem that should be handled in debugfs system.
-> > > >>>
-> > > >>
-> > > >> Indeed...so I chose to use different name in dts to avoid problems in
-> > > >> debugfs. It does violate the naming rules.
-> > > >>
-> > > >
-> > > > But your binding will not pass (or trigger warnings) the dtb check
-> > > > then. Rob was clear that names should be generic. Proper fix is fix
-> > > > debugfs not the binding.
-> > > >
-> > >
-> > > By the way, is anybody working on this debugfs issue?
-> > >
-> >
-> > I think we can solve this problem by adding "name" to the struct
-> > scpsys_domain_data and use this domain_data->name as the genpd.name.
-> > This is very simple. But I want to know if you both like it?
-> >
->
-> Hi Enric and Matthias,
->
-> May I have your opinions on how you might to fix this issue?
-> I'll try to give another name to each power domain in the
-> scpsys_domain_data and register power domain with this name like below
->
-> struct scpsys_domain_data {
->         ...
-> +       char *name;
->  };
->
->
-> -       pd->genpd.name = node->name;
-> +       pd->genpd.name = pd->data->name ?: node->name;
->
->
-> Does it violate the naming rules to some extent? or it's acceptable?
->
+Hi folks,
 
-I think it could be acceptable, I think doesn't violate any rule. My
-doubt here is we should name in a generic way in the form
-'power-domain@addr' getting the last part of the full node name to
-avoid conflicts or if the name should be driver-specific. I think it
-makes sense to be driver-specific as is more helpful for debugging
-purposes. If we do driver-specific (with data->name) I'd fail if is
-not supplied.
 
-Thanks,
-  Enric
+answering myself ;-)
 
-> > > Regards,
-> > > Matthias
-> >
-> >
-> > _______________________________________________
-> > Linux-mediatek mailing list
-> > Linux-mediatek@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
->
+> Problem: dtc adds my new 'gpio1' node to the __fixups__ list, which is
+> used for resolving symbols against the live tree - obviously it can't
+> exist there, since it's added by the overlay. Therefore applying the
+> overlay fails:
+> 
+>      "OF: resolver: node label 'gpio1' not found in live devicetree
+>       symbols table"
+> 
+> Shouldn't the symbol be added to __local_fixups__ instead of __fixups__
+> ?
+> How can I force dtc to do that ?
+
+after playing around a while, found out that I need to use full path
+references instead of labels or just node names, eg.
+
+     gpios = <&{/fragment@0/__overlay__/gpio1} 0 GPIO_ACTIVE_HIGH>;
+
+
+--mtx
+
+-- 
+---
+Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
+werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
+GPG/PGP-Schlüssel zu.
+---
+Enrico Weigelt, metux IT consult
+Free software and Linux embedded engineering
+info@metux.net -- +49-151-27565287
