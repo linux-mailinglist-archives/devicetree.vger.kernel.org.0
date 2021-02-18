@@ -2,124 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5B3831EBBA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:51:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 390ED31EBB0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:45:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231815AbhBRPq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 10:46:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53744 "EHLO
+        id S232073AbhBRPo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 10:44:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232954AbhBRMyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 07:54:19 -0500
-Received: from mail-wm1-x349.google.com (mail-wm1-x349.google.com [IPv6:2a00:1450:4864:20::349])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF80DC0617AA
-        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 04:42:33 -0800 (PST)
-Received: by mail-wm1-x349.google.com with SMTP id q24so1146840wmc.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 04:42:33 -0800 (PST)
+        with ESMTP id S232984AbhBRMfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 07:35:02 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC85C061574;
+        Thu, 18 Feb 2021 04:33:45 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id n10so3563343wmq.0;
+        Thu, 18 Feb 2021 04:33:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:message-id:mime-version:subject:from:to:cc;
-        bh=12xH3yyVOIuqoskf7QIx7KU01U1JfoKfQv8+ls70s5Y=;
-        b=CyA8njneqzwx2QyxmhsXyAbAj6GktuUw2eXrjvynifGNMjgoD6ihUmf5ciLkaJelpg
-         8mU2Ld78RXoaSrF3pl11AKBVFMldWipzz14CMefIocrk+nzHOz3kvIAlu6UZh3W5mhZW
-         us1wcIyJUZYkYnOcALoaoe9FOu5MPpV7GEC5owLBDvv3iEgcXzCXtaycTIYttQZbkFww
-         Ku2MIfXssrHvrBFmQkNrcglySF9UBK+jcKeXwC9pSNxV0ifpLnaQn2bubwfrWnXI2ZDz
-         K8WJ8O+3KFZuA3Y9i+eyIdvLdTjrHlr7NZ69eSGjI/xIhuqgQEU3hJBu5VQ4GTQ5kinU
-         ySLw==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zc+bBISyXXpr0HLyGKIPaYDYfH+oSojiNj1Qu7o39ZE=;
+        b=jv0bgLLDQQB/8FmHplWu56DUPCGVJSfgXxtduuEOPINd+TolnxhB1RV7ILRD00+KNW
+         S8BfxxeR8ni+l53vJAP8mxqPSDEqPf8/G0S92slYW1+KWEYPqzUPfza2AkmaOzcZ3N0r
+         eb8G4pMx43ImFCyJyAiI1rcz1iHCQOMxZXMqva8E1w9kLP8Fasqg+7Tc4hUnzF0Dh7E3
+         wdsNnCneQIHN+dljVmTRa4FmZOyw6TVveDIlHB6c33cghed3l71iWlSEVSReUhNs6nP4
+         DZg3K73oYDcFRxe9Sn0Ke5XV90Lu8JYWsqVzV8WeuFq2xorsV/JU4GigHbDYULs3WU17
+         x/rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
-         :to:cc;
-        bh=12xH3yyVOIuqoskf7QIx7KU01U1JfoKfQv8+ls70s5Y=;
-        b=jQkhgmMa6pxtTGFUPQdbByaBLdzeO5m10M/5tetVCRKIdpNttDEUowqqswyeArhVbK
-         cdJIjIbzFNPnfhIr2pRJ2gslxIkpNKcgcPjZsjuXbKGWN/gaTAK7Q/cd6ykLeB/YYUpO
-         cpis3e3HnmwwK3+BEmn+lAAwzT6iP7hKS/OtNJtXQCrbeuMJtAUAK89C/hbw5qaeYn2l
-         3UbRoqdDqC68LarHntshBLRzjb4fSYdGpWgcPW9WwTry9+n7UkRn3QqN0r88/tQKWFh5
-         n2+Ph7mnetSQA7lMuIRzZqbUTwYGyXr+edept14Y5i1VOxOW8kKgYtpwvq5N5L1oZ/2s
-         hR3w==
-X-Gm-Message-State: AOAM531sbMZMMbchCmbUZY+4ogu0ORMYlDeK6SUBYs/a+Fzw0HKshWtP
-        HWYDvjNVjGsF+vCXtWumOlRfos+Exwc=
-X-Google-Smtp-Source: ABdhPJyiVzxI0YDISQjX2JBs62xB/E9eeIJjHXfwdsQddnhZzCp5OUmTVJXXsb4k3DDzpTQSBkI+6N7B50k=
-Sender: "gmouse via sendgmr" <gmouse@gmouse.zrh.corp.google.com>
-X-Received: from gmouse.zrh.corp.google.com ([2a00:79e0:42:200:f532:e78:dab6:4447])
- (user=gmouse job=sendgmr) by 2002:adf:ec82:: with SMTP id z2mr4277790wrn.16.1613652152566;
- Thu, 18 Feb 2021 04:42:32 -0800 (PST)
-Date:   Thu, 18 Feb 2021 13:25:46 +0100
-Message-Id: <20210218122546.3546582-1-gmouse@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.30.0.478.g8a0d178c01-goog
-Subject: [PATCH] ARM: dts: nuvoton: Fix flash layout
-From:   gmouse@google.com
-To:     Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     "Anton D. Kachalov" <gmouse@google.com>, openbmc@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zc+bBISyXXpr0HLyGKIPaYDYfH+oSojiNj1Qu7o39ZE=;
+        b=F4eK9dZDT2P8Iex2tE7b7Td0V+f9DlaJVevOc/EKt6VFFmaXuWx/r39ONiGJX3XMI6
+         AO7w0/g8zHhYJ+tL3XO62FV8945lPici2mRpBBkApMZzXp1cFxeAh1z60MtoD4kR8h8m
+         +5w3Rn30QPF5QlDquwatyzOs0dCaEM1di8qdZVYsKSjm/CH6qI1wUDR1KJo7DSBv5jrv
+         VnUzP2e/KE2VRkDVvkDCVoq98ggK2f1jOrfMdFI0s/SwieyI2Wy6MUWI+rnnQIYABGLb
+         jut2f6IgPORU/bkDpSnU1hQUDhb21iNKcSeDDOlM2+x81/xRmJzFTqWFgXpmyY4yHeoM
+         udVw==
+X-Gm-Message-State: AOAM5306h8Jf1PE1pbyG6rTegd7JtdZKsrbjn6oRzP+GBWZ18GR9UeY6
+        Umkp51tD+QFr5ZclGHNfRHE=
+X-Google-Smtp-Source: ABdhPJyZtXtl5M9bLxhQKmtVvEcbzbZexycq/sh/mxaRkLjyUH0Ok2XKwob1WsM7N3Lw3wPxhcdwsg==
+X-Received: by 2002:a7b:c308:: with SMTP id k8mr3414935wmj.54.1613651624439;
+        Thu, 18 Feb 2021 04:33:44 -0800 (PST)
+Received: from hthiery.fritz.box (ip1f1322f8.dynamic.kabel-deutschland.de. [31.19.34.248])
+        by smtp.gmail.com with ESMTPSA id z2sm7110818wmf.46.2021.02.18.04.33.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Feb 2021 04:33:43 -0800 (PST)
+From:   Heiko Thiery <heiko.thiery@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>,
+        Heiko Thiery <heiko.thiery@gmail.com>
+Subject: [PATCH 0/2] add Kontron pITX-imx8m board
+Date:   Thu, 18 Feb 2021 13:33:25 +0100
+Message-Id: <20210218123327.25486-1-heiko.thiery@gmail.com>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Anton D. Kachalov" <gmouse@google.com>
+This patch series adds support for the Kontron pITX-imx8m board:
 
-This change satisfy OpenBMC requirements for flash layout.
+https://www.kontron.com/products/boards-and-standard-form-factors/single-board-computer/pitx-imx8m.html
 
-Signed-off-by: Anton D. Kachalov <gmouse@google.com>
----
- arch/arm/boot/dts/nuvoton-npcm750-evb.dts | 28 +++++++----------------
- 1 file changed, 8 insertions(+), 20 deletions(-)
+Heiko Thiery (2):
+  dt-bindings: arm: fsl: add Kontron pITX-imx8m board
+  arm64: dts: fsl: add support for Kontron pitx-imx8m board
 
-diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-index bd1eb6ee380f..741c1fee8552 100644
---- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-+++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-@@ -182,8 +182,8 @@ bbuboot2@80000 {
- 				reg = <0x0080000 0x80000>;
- 				read-only;
- 				};
--			envparam@100000 {
--				label = "env-param";
-+			ubootenv@100000 {
-+				label = "u-boot-env";
- 				reg = <0x0100000 0x40000>;
- 				read-only;
- 				};
-@@ -195,25 +195,13 @@ kernel@200000 {
- 				label = "kernel";
- 				reg = <0x0200000 0x400000>;
- 				};
--			rootfs@600000 {
--				label = "rootfs";
--				reg = <0x0600000 0x700000>;
-+			rofs@780000 {
-+				label = "rofs";
-+				reg = <0x0780000 0x1680000>;
- 				};
--			spare1@D00000 {
--				label = "spare1";
--				reg = <0x0D00000 0x200000>;
--				};
--			spare2@0F00000 {
--				label = "spare2";
--				reg = <0x0F00000 0x200000>;
--				};
--			spare3@1100000 {
--				label = "spare3";
--				reg = <0x1100000 0x200000>;
--				};
--			spare4@1300000 {
--				label = "spare4";
--				reg = <0x1300000 0x0>;
-+			rwfs@1e00000 {
-+				label = "rwfs";
-+				reg = <0x1e00000 0x200000>;
- 			};
- 		};
- 	};
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx8mq-kontron-pitx-imx8m.dts   | 675 ++++++++++++++++++
+ 3 files changed, 677 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+
 -- 
-2.30.0.478.g8a0d178c01-goog
+2.30.0
 
