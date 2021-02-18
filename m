@@ -2,96 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B1F731EE33
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 19:24:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1ABB31EFB4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 20:24:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232098AbhBRSYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 13:24:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231735AbhBRSKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 13:10:23 -0500
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [IPv6:2001:67c:2050::465:102])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBF4C061756
-        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 10:09:40 -0800 (PST)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4DhN5Y3LpYzQk8g;
-        Thu, 18 Feb 2021 19:09:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
-        content-type:content-type:content-transfer-encoding:mime-version
-        :references:in-reply-to:message-id:date:date:subject:subject
-        :from:from:received; s=mail20150812; t=1613671773; bh=W/Dls4BBn0
-        cZBu0J1HB0GO9lXeKTSNrYr87sAw81zvc=; b=ENGz48t9l3y4/vBYGldpgWmr+y
-        nONQUabzsiW2uW3eRVexRkteGu46ZE1l4KefYDfbKI/pKNOiReaJ7C84PMQ9/hsU
-        ZA5TOCEJFxKGsFOwfDwtwW06AQZ440HiKBNdrvKR+FTpHYzT5oSHybaxkYxXVC+q
-        9HzwYXtWX3xy2NL6sT2QbqX+pNL65gbBxLGYbJCkZDQaFB//78I4UTzc4U2glZ5e
-        PMgZ2WqOmFTnEMQYL9q+fya/vZGyNcTkf65OQ4VAhP6AmsLki/X9UTSL9/lQRCbv
-        NaG410FYx4yyjANiDY08Q6tMXrJOUMnoYMO/sPLsGGfDPwibHy4DXCwzF7xg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1613671775;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9ZCc8BafT07k/uY7SVF+4P/8ZypzbJUznZWOpeKSXpQ=;
-        b=X2d5YBZmnZgIn6wfcC64zps2sccljYASZfY9eiXvoSZY8yMt/aBSYqCBuX2BUntMSEDX4O
-        tCB86ubvH2Yj7J+VUwjr4y09iVshlGpDMXaW+ikVLczFs1JYK0gfRjb8OGUH8O7zTYSQQr
-        vkkMWknB/c5rg7CuIyhzQ5qz4rzOZcRBi3lLYkiHHfT46/568JR/pS56Iro9yH2lj5fSF5
-        RY3/Q2qPjJq8kw4/Y6TR4g9tQ5qZd8AR2MqvT06o3GKs62tQU5eQa4RAmn5puGxm/HJy5q
-        PZt2OKAxZRrPk9m949c6M1lJFA8zc7BxU1517sqKVyHOlaB/AidH3U0TP6sykg==
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp2.mailbox.org ([80.241.60.241])
-        by spamfilter01.heinlein-hosting.de (spamfilter01.heinlein-hosting.de [80.241.56.115]) (amavisd-new, port 10030)
-        with ESMTP id xu8EzBvS0Qa0; Thu, 18 Feb 2021 19:09:33 +0100 (CET)
-From:   Alexander Stein <alexander.stein@mailbox.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/1] arm64: dts: amlogic: Assign a fixed index to mmc devices
-Date:   Thu, 18 Feb 2021 19:09:30 +0100
-Message-ID: <2921197.CJbAp5Dgou@natsu>
-In-Reply-To: <20210203192824.854491-1-alexander.stein@mailbox.org>
-References: <20210127230852.66686-1-alexander.stein@mailbox.org> <20210203192824.854491-1-alexander.stein@mailbox.org>
+        id S230153AbhBRTWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 14:22:22 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:45367 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231713AbhBRSeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 13:34:22 -0500
+Received: by mail-ot1-f48.google.com with SMTP id v16so2734330ote.12;
+        Thu, 18 Feb 2021 10:34:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Fj+E6ZYsKNOutdOovZVamZYGG7ykgokFczWsXUFVYwU=;
+        b=Ntz3WGOlp+8becDHcOXf4Ib9cbj+H4hPhwBM8r2lgQzsCgS6RjLFYCRRNBEnglk5uA
+         G8sD6l+eDY32GJBlcOFos98YitCCdFqZDC0I8kTNCp1PSwWu3fqOfQdxmmvM7lriI5ry
+         E+Yg9AlBWkXhSmAynI7UWf3WCF/HIrjmzFdeDv+dk+f1+IJj6YzvVpM2+MqjCTyJbZ9J
+         g9g6CEBH6/mTD6E3c2+bpD0dur2j9NaoWrKugEB9AA/BHYT94gwvZfAq2/TBmC/xXRMs
+         ZQIVnkO6lizTICInweobI3BX2XNJKLqp5fZpFUUECxAne/WEk+/5liPqzAsUvxv5cGZS
+         l8Ig==
+X-Gm-Message-State: AOAM530CkLn1p4VIZX6wrcDygqn2eP+1xbTlq5y0sSbM3bu5pjnraGbO
+        ewkqpmioxWWjJbqzb8h4jg==
+X-Google-Smtp-Source: ABdhPJw78VYgYSaLhJeA0oFrTBqgHf0s2kBZJI3jHRXX0u57q5JQs1Q7ivvuWHEVEBbVuWjXKf3rhQ==
+X-Received: by 2002:a05:6830:4129:: with SMTP id w41mr4036327ott.332.1613673217418;
+        Thu, 18 Feb 2021 10:33:37 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a10sm1339470oie.39.2021.02.18.10.33.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Feb 2021 10:33:36 -0800 (PST)
+Received: (nullmailer pid 929727 invoked by uid 1000);
+        Thu, 18 Feb 2021 18:33:35 -0000
+Date:   Thu, 18 Feb 2021 12:33:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     Anshuman Khandual <anshuman.khandual@arm.com>,
+        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
+        coresight@lists.linaro.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, lcherian@marvell.com,
+        mike.leach@linaro.org
+Subject: Re: [PATCH V3 06/14] dts: bindings: Document device tree bindings
+ for ETE
+Message-ID: <20210218183335.GA915713@robh.at.kernel.org>
+References: <1611737738-1493-1-git-send-email-anshuman.khandual@arm.com>
+ <1611737738-1493-7-git-send-email-anshuman.khandual@arm.com>
+ <20210209190031.GA4102836@robh.at.kernel.org>
+ <4d0e6b88-72c2-be23-f43a-3f541f9ebb86@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-MBO-SPAM-Probability: 
-X-Rspamd-Score: -3.39 / 15.00 / 15.00
-X-Rspamd-Queue-Id: 1A87917D1
-X-Rspamd-UID: 48e893
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4d0e6b88-72c2-be23-f43a-3f541f9ebb86@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 3. Februar 2021, 20:28:24 CET schrieb Alexander Stein:
-> Recently introduced async probe on mmc devices can shuffle block IDs.
-> Pin them to fixed values to ease booting in environments where UUIDs
-> are not practical. Use newly introduced aliases for mmcblk devices from [1].
-> [1]
-> https://patchwork.kernel.org/patch/11747669/
+On Wed, Feb 10, 2021 at 12:33:44PM +0000, Suzuki K Poulose wrote:
+> Hi Rob
 > 
-> Commit message taken from commit 0011c6d18277 ("arm64: dts: rockchip: Assign
-> a fixed index to mmc devices on rk3399 boards.")
+> On 2/9/21 7:00 PM, Rob Herring wrote:
+> > On Wed, Jan 27, 2021 at 02:25:30PM +0530, Anshuman Khandual wrote:
+> > > From: Suzuki K Poulose <suzuki.poulose@arm.com>
+> > > 
+> > > Document the device tree bindings for Embedded Trace Extensions.
+> > > ETE can be connected to legacy coresight components and thus
+> > > could optionally contain a connection graph as described by
+> > > the CoreSight bindings.
+> > > 
+> > > Cc: devicetree@vger.kernel.org
+> > > Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > > Cc: Mike Leach <mike.leach@linaro.org>
+> > > Cc: Rob Herring <robh@kernel.org>
+> > > Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> > > Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+> > > ---
+> > > Changes in V3:
+> > > 
+> > > - Fixed all DT yaml semantics problems
+> > > 
+> > >   Documentation/devicetree/bindings/arm/ete.yaml | 74 ++++++++++++++++++++++++++
+> > >   1 file changed, 74 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
+> > > new file mode 100644
+> > > index 0000000..edc1fe2
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/arm/ete.yaml
+> > > @@ -0,0 +1,74 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> > > +# Copyright 2021, Arm Ltd
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: "http://devicetree.org/schemas/arm/ete.yaml#"
+> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > > +
+> > > +title: ARM Embedded Trace Extensions
+> > > +
+> > > +maintainers:
+> > > +  - Suzuki K Poulose <suzuki.poulose@arm.com>
+> > > +  - Mathieu Poirier <mathieu.poirier@linaro.org>
+> > > +
+> > > +description: |
+> > > +  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
+> > > +  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
+> > > +  architecture and has extended support for future architecture changes.
+> > > +  The trace generated by the ETE could be stored via legacy CoreSight
+> > > +  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
+> > > +  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
+> > > +  legacy CoreSight components, a node must be listed per instance, along
+> > > +  with any optional connection graph as per the coresight bindings.
+> > > +  See bindings/arm/coresight.txt.
+> > > +
+> > > +properties:
+> > > +  $nodename:
+> > > +    pattern: "^ete([0-9a-f]+)$"
+> > > +  compatible:
+> > > +    items:
+> > > +      - const: arm,embedded-trace-extension
+> > > +
+> > > +  cpu:
+> > 
+> > We've already established 'cpus' for this purpose.
+> > 
 > 
-> The unconventional order (B, C, A) is due to the fact that sd_emmc_a is
-> (according to the comments) only used for SDIO.
+> Please see : https://lkml.kernel.org/r/9417218b-6eda-373b-a2cb-869089ffc7cd@arm.com
+> for my response in the previous version to this and the one with out-ports.
+
+Okay, fair enough.
+
 > 
-> AFAICS all boards either have both sd_emmc_b and sd_emmc_c or only one of
-> them enabled. So the alias order should match the previous non-async order
-> for all of them.
+> > > +    description: |
+> > > +      Handle to the cpu this ETE is bound to.
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +
+> > > +  out-ports:
+> > > +    type: object
+> > 
+> > Replace with: $ref: /schemas/graph.yaml#/properties/ports
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> So, just to confirm again :
+> The CoreSight graph bindings expect the input ports and output ports
+> grouped under in-ports{} and out-ports{} respectively to avoid having
+> to specify the direction of the ports in the individual "port" nodes.
+> i.e
+> 
+> in-ports {
+> 
+> 	property: ports
+> 	  OR
+> 	property: port
+> 
+> 	required:
+> 		OneOf:
+> 			ports
+> 			port
 
-Any feedback on this?
+No, 'ports' as a child of in-ports is not correct. There should only be 
+'port(@[0-9a-f]+)?' nodes. That's why you need the above $ref added. The 
+$ref doesn't define the node name is 'ports', but what a 'ports' or 
+'foo-ports' contains.
 
-Best regards,
-Alexander
+> }
+> 
+> out-ports {
+> 
+> 	# same as above
+> }
+> 
+> So thats why I added out-ports as a new object, where the ports/port
+> could be a child node.
+> 
+> Ideally the definition of out-ports /in-ports should go to a common schema
+> for CoreSight bindings, when we move to Yaml for the existing bindings,
+> which will follow in a separate series, later.
 
+Yes, maybe, but I'm not sure something common is going to help here. 
+You'll still have to describe what each 'port' node does in each device 
+specific binding.
 
+Rob
