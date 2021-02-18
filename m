@@ -2,80 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E502F31EBB4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:46:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA62031EBBE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:52:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230330AbhBRPpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 10:45:47 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:37675 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232773AbhBRMmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 07:42:16 -0500
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 8C02A2223A;
-        Thu, 18 Feb 2021 13:40:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1613652010;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xMaI1JCs8AyzPhsR0chT2qUINg/FBYO4QSkEtbiKpPQ=;
-        b=vYRL9aAXDB3M0i7FcITA5HXA7XBdknvKc0lIvYFtoHI2Ip7vCBT7vEUe/32jjS6pSA3cs7
-        8GoKEURza0Ir305ZxP+iaHwE8epI8zkn2XpOx/+n2utCGC6BVAa8EIzSy2NkbP5y72sH6z
-        1YLiSdqqLr81OofeT1AfoSWl8xj5fBs=
+        id S232249AbhBRPrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 10:47:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55486 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231582AbhBRNQA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Feb 2021 08:16:00 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CC97C6023C;
+        Thu, 18 Feb 2021 12:45:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613652301;
+        bh=s7m6e8MgvP5IaBe7fZhQQGsTvRr9vg/yYbEFLpbXV7s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=s9Jl/A+S2ZuncLL1pzR7Lvw2456VeI3RGhpA4xY+EBOt0IGBOneKFoSkoWAHxj+k0
+         hTvkpIylKTCaa9sJA2sfJzh3SRQdk3+N1XSyklDc5lwfT6ZQDs1AqbfUXZXhpByBWB
+         3lQMiuDiQxEAUeQpHAsd/x1roLMS8qtzAms9wneeTY06jaZd25nRXPSiafwsQMrBQa
+         3WC3Yud/+qGFt4LNQEH7hWJwBA31YtyJxyai0w24482/pn6WbLhOqQDQbFXfLDDtSC
+         R7YvESO1GpFNx9GqNZItCHNA/Xvsn4yVUuENgSB911WbnA4ua62ta+Ywvr/MHpXH5K
+         zicQ2Z/oFnz/w==
+Date:   Thu, 18 Feb 2021 18:14:57 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Document SM8350
+ CPUfreq compatible
+Message-ID: <20210218124457.GW2774@vkoul-mobl.Dlink>
+References: <20210216111251.1838149-1-vkoul@kernel.org>
+ <20210217044955.qmbpd43wis7xtjoj@vireshk-i7>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 18 Feb 2021 13:40:10 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Heiko Thiery <heiko.thiery@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: add Kontron pITX-imx8m board
-In-Reply-To: <20210218123327.25486-2-heiko.thiery@gmail.com>
-References: <20210218123327.25486-1-heiko.thiery@gmail.com>
- <20210218123327.25486-2-heiko.thiery@gmail.com>
-User-Agent: Roundcube Webmail/1.4.10
-Message-ID: <41a82ef512928b3b88a62c16e252441d@walle.cc>
-X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210217044955.qmbpd43wis7xtjoj@vireshk-i7>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-02-18 13:33, schrieb Heiko Thiery:
-> Add the Kontron pITX-imx8m board compatibles binding.
+On 17-02-21, 10:19, Viresh Kumar wrote:
+> On 16-02-21, 16:42, Vinod Koul wrote:
+> > Add the CPUfreq compatible for SM8350 SoC along with note for using the
+> > specific compatible for SoCs
+> > 
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+> > index 9299028ee712..3eb3cee59d79 100644
+> > --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+> > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+> > @@ -8,7 +8,9 @@ Properties:
+> >  - compatible
+> >  	Usage:		required
+> >  	Value type:	<string>
+> > -	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss".
+> > +	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss"
+> > +			along with SoC specific compatible:
+> > +			  "qcom,sm8350-cpufreq-epss", "qcom,cpufreq-epss"
 > 
-> Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> And why is SoC specific compatible required here ? Is the implementation on
+> sm8350 any different than the ones using "qcom,cpufreq-epss" compatible ?
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
-> b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 297c87f45db8..0a0d03dd5e31 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -734,6 +734,7 @@ properties:
->                - fsl,imx8mq-evk            # i.MX8MQ EVK Board
->                - google,imx8mq-phanbell    # Google Coral Edge TPU
->                - purism,librem5-devkit     # Purism Librem5 devkit
-> +              - kontron,pitx-imx8m        # Kontron pITX-imx8m Board
+> FWIW, the same compatible string must be reused until the time there is
+> difference in the hardware. The compatible string must be considered as a marker
+> for a particular version of the hardware.
 
-Looks like it should be sorted alphabetically.
+Rob has indicated that we should use a SoC specific compatible and I
+agree with that. We are using both soc and generic one here and driver
+will be loaded for generic one.
 
->                - solidrun,hummingboard-pulse # SolidRun Hummingboard 
-> Pulse
->                - technexion,pico-pi-imx8m  # TechNexion PICO-PI-8M evk
->            - const: fsl,imx8mq
-
--michael
+Thanks
+-- 
+~Vinod
