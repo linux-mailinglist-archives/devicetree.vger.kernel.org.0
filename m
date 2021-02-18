@@ -2,602 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D10AF31E6AB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 08:10:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C22ED31E6C0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 08:15:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230303AbhBRHEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 02:04:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35510 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230505AbhBRG76 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Feb 2021 01:59:58 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B752660238;
-        Thu, 18 Feb 2021 06:59:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613631556;
-        bh=ULroDYjopHH3X1qFlwku0gkTGwFkf/bvd2t3OW5RdiA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=W5/bbDrqSvIrLK4rvzC4FDzd0vK9te10nBEiJdnGrbMOK9tA7C09fS95nLEEBAWpL
-         M9eHMT2/xxAKjwHWP3azrp07g9b4oLldy6CIH7LOxuOHSiqo/wmYhJ+IVRpqqLnncl
-         v+rhfLjDtYRTT4ZWN5YZL/zGt2DKG40iPTC8luccj6tcBYYRPG2a8aZZj2dE+pz5NQ
-         c2N7W5pUIUxFsNqeMcFhprg/7svwjA4jUJKkYOYv7g4CAOm6ekvFZa9OxR3qSNK8CX
-         TfCGo1wdncw5qHuZpfB1+nmdSV7lDjyEzAnq/RnSpagpW+HILHReXTK1VcxvVQtcGd
-         4tibseg5ZQFsw==
-Date:   Thu, 18 Feb 2021 12:29:12 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Souradeep Chowdhury <schowdhu@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Subject: Re: [PATCH V0 3/6] soc: qcom: dcc:Add driver support for Data
- Capture and Compare unit(DCC)
-Message-ID: <20210218065912.GV2774@vkoul-mobl.Dlink>
-References: <cover.1613541226.git.schowdhu@codeaurora.org>
- <f182b10f318db7cb09216c0176a5b26656d9ef49.1613541226.git.schowdhu@codeaurora.org>
+        id S229769AbhBRHLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 02:11:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36336 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230496AbhBRHH4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 02:07:56 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D4AC061574;
+        Wed, 17 Feb 2021 23:07:13 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id 7so1651130wrz.0;
+        Wed, 17 Feb 2021 23:07:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HCsHr4I3hIN4gOCYA0pW5IG4lzNO6qCah6pO30Bz2Z8=;
+        b=Gh1tKC+NF42UDHJQsF8Dw8s+1IY2UqClm8YwCnRD1FxN+old2JhUtPXypBNZQjmHe5
+         QOdPUBK8epjj+sAZK4oyUNlvb6V2N5Loy9Kya+fiLfxEtZzXTuKQK0Nb3XA+wKGSGLWY
+         nBS1K672B1XckixIegifUNxEmBw39LqN6QuzqWNHPH16Bd6rZ50EvKAf4jGDSQ8GIlLj
+         DxnjwP5Bfz2OvxmKQGb67vc9fKShSKv0SgfpTiOLkyxBH9t0HxXz3n4fzVz4s3jlDOcQ
+         qWZukQxi2bBEfoDynwJBA1QDiaDeStqtbYU/o3mEGol0OQZwOjy5wp0jRXhGx8sZp51D
+         5+Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HCsHr4I3hIN4gOCYA0pW5IG4lzNO6qCah6pO30Bz2Z8=;
+        b=YnZD/bbaOZ8Zg6obLpOCkb8AxSDSYPhymKNnxyt4dD0JIh6Fvn/remiH/Wz4OsipQh
+         q5iVsDVp+yVkHKtkWeEPa5N7c1nEkKEthEVs2A1U9Ikg/E2Ss+ruwr1pC6ZZzzYa4MBu
+         ZoXSyIbL3DjN1aN0w4Z4wz3h90vYpumlVdH7tPjyR70ye3HdNfLB0lQIB8M/0DiWLces
+         ZC+E9p44bXooRDBGpPa24zTLWOP7NeFAz1icpbYdSonaMeqBfAgfOa6sc/pO1x+nys1m
+         OxM0y4C+hXBhRa753AL67cceUqXZe0n04PmBOA6cPeNVhKdC2S1G63XN8lxIa4cnBeBs
+         5BFg==
+X-Gm-Message-State: AOAM532zN4Kt67r6aZINCSmHsBJ4TY+8VopHVSnfqfu8uXdbFpFUnUBQ
+        PupzwJQBfD/s+9dqTtiXbGt+V4uNt5LQ9w==
+X-Google-Smtp-Source: ABdhPJy+eOFABBncRu3jJoj6ZMxGPGIVbQKHlKXsapj6b0j0GWYv8lTxN/J156QiJdSd6ME7FvC6uw==
+X-Received: by 2002:adf:e4c3:: with SMTP id v3mr2941444wrm.210.1613632032553;
+        Wed, 17 Feb 2021 23:07:12 -0800 (PST)
+Received: from localhost.localdomain (67.red-83-54-30.dynamicip.rima-tde.net. [83.54.30.67])
+        by smtp.gmail.com with ESMTPSA id 4sm6136555wma.0.2021.02.17.23.07.10
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 17 Feb 2021 23:07:12 -0800 (PST)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     sboyd@kernel.org
+Cc:     robh+dt@kernel.org, john@phrozen.org, tsbogend@alpha.franken.de,
+        gregkh@linuxfoundation.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        devel@driverdev.osuosl.org, neil@brown.name,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v9 0/6] MIPS: ralink: add CPU clock detection and clock driver for MT7621
+Date:   Thu, 18 Feb 2021 08:07:03 +0100
+Message-Id: <20210218070709.11932-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f182b10f318db7cb09216c0176a5b26656d9ef49.1613541226.git.schowdhu@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-02-21, 12:18, Souradeep Chowdhury wrote:
-> The DCC is a DMA Engine designed to capture and store data
-> during system crash or software triggers.The DCC operates
-                                        ^^^
-Space after . (quite a few here, pls fix them)
+This patchset ports CPU clock detection for MT7621 from OpenWrt
+and adds a complete clock plan for the mt7621 SOC.
 
-> based on link list entries which provides it with data and
-> addresses and the function it needs to perform.These functions
-> are read,write and loop.Added the basic driver in this patch
-> which contains a probe method which instantiates all the link
-> list data specific to a SoC.Methods have also been added to
-> handle all the functionalities specific to a linked list.Each
-> DCC has it's own SRAM which needs to be instantiated at probe
-> time as well.
+The documentation for this SOC only talks about two registers
+regarding to the clocks:
+* SYSC_REG_CPLL_CLKCFG0 - provides some information about boostrapped
+refclock. PLL and dividers used for CPU and some sort of BUS (AHB?).
+* SYSC_REG_CPLL_CLKCFG1 - a banch of gates to enable/disable clocks for
+all or some ip cores.
 
-So help me understand, in case of system crash how will this be used..?
+Registers needed for this driver to work are in two already mapped areas
+in its platform's device tree. These are 'sysc' and 'memc' nodes. Most
+of other drivers just make use of platform operations defined in
+'asm/mach-ralink/ralink_regs.h' but this can be avoided declaring this
+two nodes to be accesible through syscon. Since these are the only two
+needed control interfaces for this clock driver that seems to be the
+correct thing to do.
 
-> 
-> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
-> ---
->  drivers/soc/qcom/Kconfig  |    8 +
->  drivers/soc/qcom/Makefile |    1 +
->  drivers/soc/qcom/dcc.c    | 1055 +++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 1064 insertions(+)
->  create mode 100644 drivers/soc/qcom/dcc.c
-> 
-> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-> index 79b568f..8819e0b 100644
-> --- a/drivers/soc/qcom/Kconfig
-> +++ b/drivers/soc/qcom/Kconfig
-> @@ -69,6 +69,14 @@ config QCOM_LLCC
->  	  SDM845. This provides interfaces to clients that use the LLCC.
->  	  Say yes here to enable LLCC slice driver.
->  
-> +config QCOM_DCC
-> +	tristate "Qualcomm Technologies, Inc. Data Capture and Compare engine driver"
-> +	depends on ARCH_QCOM || COMPILE_TEST
-> +	help
-> +	  This option enables driver for Data Capture and Compare engine. DCC
-> +	  driver provides interface to configure DCC block and read back
-> +	  captured data from DCC's internal SRAM.
-> +
->  config QCOM_KRYO_L2_ACCESSORS
->  	bool
->  	depends on ARCH_QCOM && ARM64 || COMPILE_TEST
-> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-> index ad675a6..1b00870 100644
-> --- a/drivers/soc/qcom/Makefile
-> +++ b/drivers/soc/qcom/Makefile
-> @@ -26,3 +26,4 @@ obj-$(CONFIG_QCOM_LLCC) += llcc-qcom.o
->  obj-$(CONFIG_QCOM_RPMHPD) += rpmhpd.o
->  obj-$(CONFIG_QCOM_RPMPD) += rpmpd.o
->  obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) +=	kryo-l2-accessors.o
-> +obj-$(CONFIG_QCOM_DCC) += dcc.o
-> diff --git a/drivers/soc/qcom/dcc.c b/drivers/soc/qcom/dcc.c
-> new file mode 100644
-> index 0000000..d67452b
-> --- /dev/null
-> +++ b/drivers/soc/qcom/dcc.c
-> @@ -0,0 +1,1055 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2015-2021, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/cdev.h>
-> +#include <linux/delay.h>
-> +#include <linux/fs.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +#include <linux/uaccess.h>
-> +
-> +#define TIMEOUT_US		100
-> +
-> +#define BM(lsb, msb)		((BIT(msb) - BIT(lsb)) + BIT(msb))
-> +#define BMVAL(val, lsb, msb)	((val & BM(lsb, msb)) >> lsb)
-> +#define BVAL(val, n)		((val & BIT(n)) >> n)
+No documentation about a probably existent set of dividers for each ip
+core is included in the datasheets. So we cannot make anything better,
+AFAICT.
 
-Pls use macros available in bitfield.h rather than inventing your own..
+Looking into driver code, and some openWRT patched there are
+another frequences which are used in some drivers (uart, sd...).
+According to all of this information the clock plan for this
+SoC is set as follows:
+ - Main top clock "xtal" from where all the rest of the world is
+   derived.
+ - CPU clock "cpu" derived from "xtal" frequencies and a bunch of
+   register reads and predividers.
+ - BUS clock "bus" derived from "cpu" and with (cpu / 4) MHz.
+ - Fixed clocks from "xtal":
+    * "50m": 50 MHz.
+    * "125m": 125 MHz.
+    * "150m": 150 MHz.
+    * "250m": 250 MHz.
+    * "270m": 270 MHz.
 
-> +
-> +#define dcc_writel(drvdata, val, off)					\
-> +	writel((val), drvdata->base + dcc_offset_conv(drvdata, off))
-> +#define dcc_readl(drvdata, off)						\
-> +	readl(drvdata->base + dcc_offset_conv(drvdata, off))
-> +
-> +#define dcc_sram_readl(drvdata, off)					\
-> +	readl(drvdata->ram_base + off)
-> +
-> +/* DCC registers */
-> +#define DCC_HW_INFO					0x04
-> +#define DCC_LL_NUM_INFO					0x10
-> +#define DCC_STATUS					0x1C
-> +#define DCC_LL_LOCK(m)					(0x34 + 0x80 * m)
-> +#define DCC_LL_CFG(m)					(0x38 + 0x80 * m)
-> +#define DCC_LL_BASE(m)					(0x3c + 0x80 * m)
-> +#define DCC_FD_BASE(m)					(0x40 + 0x80 * m)
-> +#define DCC_LL_TIMEOUT(m)				(0x44 + 0x80 * m)
-> +#define DCC_LL_INT_ENABLE(m)				(0x4C + 0x80 * m)
-> +#define DCC_LL_INT_STATUS(m)				(0x50 + 0x80 * m)
-> +#define DCC_LL_SW_TRIGGER(m)				(0x60 + 0x80 * m)
-> +#define DCC_LL_BUS_ACCESS_STATUS(m)			(0x64 + 0x80 * m)
-> +
-> +#define DCC_MAP_LEVEL1			0x18
-> +#define DCC_MAP_LEVEL2			0x34
-> +#define DCC_MAP_LEVEL3			0x4C
-> +
-> +#define DCC_MAP_OFFSET1			0x10
-> +#define DCC_MAP_OFFSET2			0x18
-> +#define DCC_MAP_OFFSET3			0x1C
-> +#define DCC_MAP_OFFSET4			0x8
-> +
-> +#define DCC_FIX_LOOP_OFFSET		16
-> +#define DCC_VER_INFO_BIT		9
-> +
-> +#define DCC_READ        0
-> +#define DCC_WRITE       1
-> +#define DCC_LOOP        2
-> +#define DCC_READ_WRITE  3
-> +
-> +#define MAX_DCC_OFFSET				(0xFF * 4)
-> +#define MAX_DCC_LEN				0x7F
-> +#define MAX_LOOP_CNT				0xFF
-> +
-> +#define DCC_ADDR_DESCRIPTOR			0x00
-> +#define DCC_LOOP_DESCRIPTOR			(BIT(30))
-> +#define DCC_RD_MOD_WR_DESCRIPTOR		(BIT(31))
-> +#define DCC_LINK_DESCRIPTOR			(BIT(31) | BIT(30))
+We also have a buch of gate clocks with their parents:
+ - "hsdma": "150m"
+ - "fe": "250m"
+ - "sp_divtx": "270m"
+ - "timer": "50m"
+ - "pcm": "270m"
+ - "pio": "50m"
+ - "gdma": "bus"
+ - "nand": "125m"
+ - "i2c": "50m"
+ - "i2s": "270m"
+ - "spi": "bus"
+ - "uart1": "50m"
+ - "uart2": "50m"
+ - "uart3": "50m"
+ - "eth": "50m"
+ - "pcie0": "125m"
+ - "pcie1": "125m"
+ - "pcie2": "125m"
+ - "crypto": "250m"
+ - "shxc": "50m"
 
-we have GENMASK() for this
+There was a previous attempt of doing this here[0] but the author
+(Chuanhong Guo) did not wanted to make assumptions of a clock plan
+for the platform that time. It seems that now he has a better idea of
+how the clocks are dispossed for this SoC so he share code[1] where
+some frequencies and clock parents for the gates are coded from a
+real mediatek private clock plan.
+                                                
+I do really want this to be upstreamed so according to the comments
+in previous attempt[0] from Oleksij Rempel and the frequencies in
+code[1] I have tried to do this by myself.
 
-> +
-> +#define DCC_READ_IND				0x00
-> +#define DCC_WRITE_IND				(BIT(28))
-> +
-> +#define DCC_AHB_IND				0x00
-> +#define DCC_APB_IND				BIT(29)
-> +
-> +#define DCC_MAX_LINK_LIST			8
-> +#define DCC_INVALID_LINK_LIST			0xFF
-> +
-> +#define DCC_VER_MASK1				0x7F
-> +#define DCC_VER_MASK2				0x3F
+All of this patches have been tested in a GNUBee PC1 resulting in a
+working platform.
 
-Genmask for these too...
+Changes in v9:
+ - Set two missing ret values to its related PTR_ERR in function
+   'mt7621_clk_probe' (also related with [3]).
+ - Select MFC_SYSCON in Kconfig.
 
-> +
-> +#define DCC_RD_MOD_WR_ADDR                      0xC105E
-> +
-> +struct qcom_dcc_config {
-> +	const int dcc_ram_offset;
-> +};
-> +
-> +static const struct qcom_dcc_config sm8150_cfg = {
-> +	.dcc_ram_offset				= 0x5000,
-> +};
+Changes in v8:
+ - Fix kernel test robot complain about the use of 'ret' variable
+   initialized: see [3]
 
-maybe move it down near compatible table?
+Changes in v7:
+ - Make use of CLK_OF_DECLARE_DRIVER instead of CLK_OF_DECLARE and
+   register there only the top clocks that are needed in 'of_clk_init'.
+   The rest of the clocks (fixed and gates) are now registered using
+   a platform driver. Because we have avoid architecture dependent stuff
+   now this has sense because we can enable this driver for COMPILE_TEST.
+ - Convert fixed clocks and gates related function to receive a 'struct
+   device' pointer instead of 'struct device_node' one.
+ - Make use of dev_ APIS in stuff related with platform driver instead
+   of use device_node related stuff. 
+ - Add new static global 'mt7621_clk_early' to store pointers to clk_hw
+   registered at 'of_clk_init' stage. Make use of this in platform device
+   probe function to properly copy this into the new required 'clk_data'
+   to provide a properly hierarchy clock structure.
+ - Rename 'mt7621_register_top_clocks' function into a more accurate 
+   name now which is 'mt7621_register_early_clocks'.
+ - Enable driver for COMPILE_TEST.
 
-> +
-> +enum dcc_descriptor_type {
-> +	DCC_ADDR_TYPE,
-> +	DCC_LOOP_TYPE,
-> +	DCC_READ_WRITE_TYPE,
-> +	DCC_WRITE_TYPE
-> +};
-> +
-> +enum dcc_mem_map_ver {
-> +	DCC_MEM_MAP_VER1,
-> +	DCC_MEM_MAP_VER2,
-> +	DCC_MEM_MAP_VER3
-> +};
-> +
-> +struct dcc_config_entry {
-> +	u32				base;
-> +	u32				offset;
-> +	u32				len;
-> +	u32				index;
-> +	u32				loop_cnt;
-> +	u32				write_val;
-> +	u32				mask;
-> +	bool				apb_bus;
-> +	enum dcc_descriptor_type	desc_type;
-> +	struct list_head		list;
-> +};
-> +
-> +struct dcc_drvdata {
-> +	void __iomem		*base;
-> +	u32			reg_size;
-> +	struct device		*dev;
-> +	struct mutex		mutex;
-> +	void __iomem		*ram_base;
-> +	u32			ram_size;
-> +	u32			ram_offset;
-> +	enum dcc_mem_map_ver	mem_map_ver;
-> +	u32			ram_cfg;
-> +	u32			ram_start;
-> +	bool			*enable;
-> +	bool			*configured;
-> +	bool			interrupt_disable;
-> +	char			*sram_node;
-> +	struct cdev		sram_dev;
-> +	struct class		*sram_class;
-> +	struct list_head	*cfg_head;
-> +	u32			*nr_config;
-> +	u32			nr_link_list;
-> +	u8			curr_list;
-> +	u8			loopoff;
-> +};
-> +
-> +struct dcc_cfg_attr {
-> +	u32	addr;
-> +	u32	prev_addr;
-> +	u32	prev_off;
-> +	u32	link;
-> +	u32	sram_offset;
-> +};
-> +
-> +struct dcc_cfg_loop_attr {
-> +	u32	loop;
-> +	bool	loop_start;
-> +	u32	loop_cnt;
-> +	u32	loop_len;
-> +	u32	loop_off;
-> +};
-> +
-> +static u32 dcc_offset_conv(struct dcc_drvdata *drvdata, u32 off)
-> +{
-> +	if (drvdata->mem_map_ver == DCC_MEM_MAP_VER1) {
-> +		if ((off & DCC_VER_MASK1) >= DCC_MAP_LEVEL3)
-> +			return (off - DCC_MAP_OFFSET3);
-> +		if ((off & DCC_VER_MASK1) >= DCC_MAP_LEVEL2)
-> +			return (off - DCC_MAP_OFFSET2);
-> +		else if ((off & DCC_VER_MASK1) >= DCC_MAP_LEVEL1)
-> +			return (off - DCC_MAP_OFFSET1);
-> +	} else if (drvdata->mem_map_ver == DCC_MEM_MAP_VER2) {
-> +		if ((off & DCC_VER_MASK1) >= DCC_MAP_LEVEL2)
-> +			return (off - DCC_MAP_OFFSET4);
-> +	}
-> +	return off;
-> +}
-> +
-> +static int dcc_sram_writel(struct dcc_drvdata *drvdata,
-> +					u32 val, u32 off)
-> +{
-> +	if (unlikely(off > (drvdata->ram_size - 4)))
-> +		return -EINVAL;
-> +
-> +	writel((val), drvdata->ram_base + off);
-> +
-> +	return 0;
-> +}
-> +
-> +static int _dcc_ll_cfg_read_write(struct dcc_drvdata *drvdata,
-> +struct dcc_config_entry *entry, struct dcc_cfg_attr *cfg)
+Changes in v6:
+ - Rewrite bindings to properly access the registers needed for the driver
+   making use of syscon for two different areas: 'sysc' and 'memc'. With
+   this changes architecture dependent include 'asm/mach-ralink/ralink_regs.h'
+   is not needed anymore because we access this two syscons using a phandle
+   through kernel's regmap APIs. Explanation of this two areas is in [2].
+ - Add new 'mt7621_clk_priv' struct to store there pointers to regmap handlers
+   to be able to use regmap operations from normal clock api functions. Add
+   this pointer in 'mt7621_clk' and 'mt7621_clk_gate' before register its
+   related clocks to make things work.
+ - Add Greg's Acked-by in patches 4 and 5.
+ - Rebase this series on the top of linux-next tag 'next-20210215'.
 
-this looks a bit hard to read, can you make it better (also you can go
-upto 100 chars now), do you checkpatch with --strict option to get
-better alignment of code
+v5 RESEND notes:
+ - I am resending this as I was told to do that.
+ - Please, take into account Rob's comments to DT node patch and my
+   reply with explanation about how are the current device tree nodes
+   for this architecture being used in [2].
 
+Changes in v5:
+ - Avoid the use of syscon. All drivers of this platform are just using
+   platform operations defined in 'asm/mach-ralink/ralink_regs.h'. We also
+   need them for some PLL registers that are not in the sys control area.
+   Hence, since we must use this dependency avoid to define clock driver
+   as a child of the sysc node in the device tree and follow current
+   platform code style.
+ - Update bindings documentation to don't refer the syscon and make
+   remove 'clock-output-names' property from required ones.
+ - Use 'asm/mach-ralink/ralink_regs.h' platform read and write operations
+   instead of regmap from the syscon node.
+ - Remove 'mt7621_clk_provider' and directly declare 'clk_hw_onecell_data'
+   pointer in 'mt7621_clk_init' and pass from there into different register
+   functions. Remove pointers to 'mt7621_clk_provider' in the rest fo structs
+   used in this driver.
+ - Remove MHZ macro and just pass values directly in hertzs.
+ - Avoid 'CLK_IGNORE_UNUSED' flag for gates and add a new function called
+   'mt7621_prepare_enable_clocks' to prepare all of them to make clocks
+   referenced and don't affect current driver code.
+ - Remove COMPILE_TEST from Kconfig because of the use of especific arch
+   stuff.
+ - Fix commit message where a typo for "frequencies" word was present.
+ - Make use of parent_clk_data in 'CLK_BASE' macro.
+ - Remove MODULE_* macros from code since this is not a module.
+ - Remove not needed includes.
+ - Hardcode "xtal" as parent in FIXED macro.
+ - Change 'else if' clause into 'if' clause since a return statement was
+   being used in 'mt7621_xtal_recalc_rate'.
 
-> +{
-> +	int ret = 0;
+ NOTES:
+   - Driver is still being declared using 'CLK_OF_DECLARE' for all the  
+     clocks. I have explored the possibility to make some of them available
+     afterwards using 'CLK_OF_DECLARE_DRIVER' for top clocks and the rest
+     using a platform driver. The resulting code was uglier since we only want
+     to use the same device tree node and the top clocks must be copied again
+     for the new platform register stuff to properly have a good hierarchy.
+     New globals needs to be introduced and in this particular case I don't
+     really see the benefits of doing in this way. I am totally ok to have all
+     the clocks registered at early stage since from other drivers perspective
+     we only really need to enable gates. So, I prefer to have them in that
+     way if it is not a real problem, of course.
 
-Superfluous init?
+Changes in v4:
+ - Add Acked-by from Rob Herring for binding headers (PATCH 1/6).
+ - Convert bindings to not use syscon phandle and declare clock as
+   a child of the syscon node. Update device tree and binding doc
+   accordly.
+ - Make use of 'syscon_node_to_regmap' in driver code instead of
+   get this using the phandle function.
+ - Properly unregister clocks for the error path of the function
+   'mt7621_clk_init'.
+ - Include ARRAY_SIZE of fixed clocks in the 'count' to kzalloc
+   of 'clk_data'.
+ - Add new patch changing invalid vendor 'mtk' in favour of 'mediatek'
+   which is the one listed in 'vendor-prefixes.yaml'. Update mt7621 code
+   accordly. I have added this patch inside this series because clk
+   binding is referring syscon node and the string for that node was
+   with not listed vendor. Hence update and have all of this correct
+   in the same series.
 
-> +
-> +	if (cfg->link) {
-> +		/* write new offset = 1 to continue
-> +		 * processing the list
+Changes in v3:
+ - Fix compilation warnings reported by kernel test robot because of
+   ignoring return values of 'of_clk_hw_register' in functions
+   'mt7621_register_top_clocks' and 'mt7621_gate_ops_init'.
+ - Fix dts file and binding documentation 'clock-output-names'.
 
-kernel uses:
-        /*
-         * this is a 
-         * multi line comment style
-         */
+Changes in v2:
+ - Remove the following patches:
+   * dt: bindings: add mt7621-pll device tree binding documentation.
+   * MIPS: ralink: add clock device providing cpu/ahb/apb clock for mt7621.
+ - Move all relevant clock code to 'drivers/clk/ralink/clk-mt7621.c' and
+   unify there previous 'mt7621-pll' and 'mt7621-clk' into a unique driver
+   and binding 'mt7621-clk'.
+ - Driver is not a platform driver anymore and now make use of 'CLK_OF_DECLARE'
+   because we need clocks available in 'plat_time_init' before setting up
+   the timer for the GIC.
+ - Use new fixed clocks as parents for different gates and deriving from 'xtal'
+   using frequencies in[1].
+ - Adapt dts file and bindings header and documentation for new changes.
+ - Change MAINTAINERS file to only contains clk-mt7621.c code and
+   mediatek,mt7621-clk.yaml file.
 
-> +		 */
-> +
-> +		ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
-> +		if (ret)
-> +			return ret;
-> +		cfg->sram_offset += 4;
-> +		/* Reset link and prev_off */
-> +		cfg->addr = 0x00;
-> +		cfg->link = 0;
-> +		cfg->prev_off = 0;
+[0]: https://www.lkml.org/lkml/2019/7/23/1044
+[1]: https://github.com/981213/linux/commit/2eca1f045e4c3db18c941135464c0d7422ad8133
+[2]: https://lkml.org/lkml/2020/12/20/47
+[3]: http://driverdev.linuxdriverproject.org/pipermail/driverdev-devel/2021-February/150772.html
 
-memset cfg first?
+Sergio Paracuellos (6):
+  dt-bindings: clock: add dt binding header for mt7621 clocks
+  dt: bindings: add mt7621-clk device tree binding documentation
+  clk: ralink: add clock driver for mt7621 SoC
+  staging: mt7621-dts: make use of new 'mt7621-clk'
+  staging: mt7621-dts: use valid vendor 'mediatek' instead of invalid
+    'mtk'
+  MAINTAINERS: add MT7621 CLOCK maintainer
 
-> +		cfg->prev_addr = cfg->addr;
-> +	}
-> +
-> +	cfg->addr = DCC_RD_MOD_WR_DESCRIPTOR;
-> +
-> +	ret = dcc_sram_writel(drvdata, cfg->addr, cfg->sram_offset);
-> +
-
-drop this empty line
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg->sram_offset += 4;
-> +
-> +	ret = dcc_sram_writel(drvdata, entry->mask, cfg->sram_offset);
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg->sram_offset += 4;
-> +
-> +	ret = dcc_sram_writel(drvdata, entry->write_val, cfg->sram_offset);
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg->sram_offset += 4;
-> +
-> +	cfg->addr = 0;
-> +
-> +	return ret;
-> +}
-> +
-> +static int _dcc_ll_cfg_loop(struct dcc_drvdata *drvdata, struct dcc_config_entry *entry,
-> +struct dcc_cfg_attr *cfg, struct dcc_cfg_loop_attr *cfg_loop, u32 *total_len)
-
-here as well
-
-> +{
-> +
-> +	int ret = 0;
-> +
-> +	/* Check if we need to write link of prev entry */
-> +	if (cfg->link) {
-> +		ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
-> +		if (ret)
-> +			return ret;
-> +		cfg->sram_offset += 4;
-> +	}
-> +
-> +	if (cfg_loop->loop_start) {
-> +		cfg_loop->loop = (cfg->sram_offset - cfg_loop->loop_off) / 4;
-> +		cfg_loop->loop |= (cfg_loop->loop_cnt << drvdata->loopoff) &
-> +		BM(drvdata->loopoff, 27);
-> +		cfg_loop->loop |= DCC_LOOP_DESCRIPTOR;
-> +		*total_len += (*total_len - cfg_loop->loop_len) * cfg_loop->loop_cnt;
-> +
-> +		ret = dcc_sram_writel(drvdata, cfg_loop->loop, cfg->sram_offset);
-> +
-> +		if (ret)
-> +			return ret;
-> +		cfg->sram_offset += 4;
-> +
-> +		cfg_loop->loop_start = false;
-> +		cfg_loop->loop_len = 0;
-> +		cfg_loop->loop_off = 0;
-
-seems quite similar to last one..? Maybe a helper for common code
-
-> +	} else {
-> +		cfg_loop->loop_start = true;
-> +		cfg_loop->loop_cnt = entry->loop_cnt - 1;
-> +		cfg_loop->loop_len = *total_len;
-> +		cfg_loop->loop_off = cfg->sram_offset;
-> +	}
-> +
-> +	/* Reset link and prev_off */
-> +
-> +	cfg->addr = 0x00;
-> +	cfg->link = 0;
-> +	cfg->prev_off = 0;
-> +	cfg->prev_addr = cfg->addr;
-> +
-> +	return ret;
-> +}
-> +
-> +static int _dcc_ll_cfg_write(struct dcc_drvdata *drvdata,
-> +struct dcc_config_entry *entry, struct dcc_cfg_attr *cfg, u32 *total_len)
-> +{
-> +	u32 off;
-> +	int ret = 0;
-> +
-> +	if (cfg->link) {
-> +		/* write new offset = 1 to continue
-> +		 * processing the list
-> +		 */
-> +		ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
-> +
-> +		if (ret)
-> +			return ret;
-> +
-> +		cfg->sram_offset += 4;
-> +		/* Reset link and prev_off */
-> +		cfg->addr = 0x00;
-> +		cfg->prev_off = 0;
-> +		cfg->prev_addr = cfg->addr;
-> +	}
-> +
-> +	off = entry->offset/4;
-> +	/* write new offset-length pair to correct position */
-> +	cfg->link |= ((off & BM(0, 7)) | BIT(15) | ((entry->len << 8) & BM(8, 14)));
-> +	cfg->link |= DCC_LINK_DESCRIPTOR;
-> +
-> +	/* Address type */
-> +	cfg->addr = (entry->base >> 4) & BM(0, 27);
-> +	if (entry->apb_bus)
-> +		cfg->addr |= DCC_ADDR_DESCRIPTOR | DCC_WRITE_IND | DCC_APB_IND;
-> +	else
-> +		cfg->addr |= DCC_ADDR_DESCRIPTOR | DCC_WRITE_IND | DCC_AHB_IND;
-> +	ret = dcc_sram_writel(drvdata, cfg->addr, cfg->sram_offset);
-> +
-> +	if (ret)
-> +		return ret;
-> +	cfg->sram_offset += 4;
-> +
-> +	ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
-> +	if (ret)
-> +		return ret;
-> +	cfg->sram_offset += 4;
-> +
-> +	ret = dcc_sram_writel(drvdata, entry->write_val, cfg->sram_offset);
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg->sram_offset += 4;
-> +	cfg->addr = 0x00;
-> +	cfg->link = 0;
-> +	return ret;
-> +}
-> +
-> +static int _dcc_ll_cfg_default(struct dcc_drvdata *drvdata,
-> +struct dcc_config_entry *entry, struct dcc_cfg_attr *cfg, u32 *pos, u32 *total_len)
-> +{
-> +	int ret = 0;
-> +	u32 off;
-> +
-> +	cfg->addr = (entry->base >> 4) & BM(0, 27);
-> +
-> +	if (entry->apb_bus)
-> +		cfg->addr |= DCC_ADDR_DESCRIPTOR | DCC_READ_IND | DCC_APB_IND;
-> +	else
-> +		cfg->addr |= DCC_ADDR_DESCRIPTOR | DCC_READ_IND | DCC_AHB_IND;
-> +
-> +	off = entry->offset/4;
-> +
-> +	*total_len += entry->len * 4;
-> +
-> +	if (!cfg->prev_addr || cfg->prev_addr != cfg->addr || cfg->prev_off > off) {
-> +		/* Check if we need to write prev link entry */
-> +		if (cfg->link) {
-> +			ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
-> +			if (ret)
-> +				return ret;
-> +				cfg->sram_offset += 4;
-> +		}
-> +		dev_dbg(drvdata->dev, "DCC: sram address 0x%x\n", cfg->sram_offset);
-> +
-> +		/* Write address */
-> +		ret = dcc_sram_writel(drvdata, cfg->addr, cfg->sram_offset);
-> +
-> +		if (ret)
-> +			return ret;
-> +
-> +		cfg->sram_offset += 4;
-> +
-> +		/* Reset link and prev_off */
-> +		cfg->link = 0;
-> +		cfg->prev_off = 0;
-> +	}
-> +
-> +	if ((off - cfg->prev_off) > 0xFF || entry->len > MAX_DCC_LEN) {
-> +		dev_err(drvdata->dev, "DCC: Programming error Base: 0x%x, offset 0x%x\n",
-> +		entry->base, entry->offset);
-> +		ret = -EINVAL;
-> +		return ret;
-> +	}
-> +
-> +	if (cfg->link) {
-> +		/*
-> +		 * link already has one offset-length so new
-> +		 * offset-length needs to be placed at
-> +		 * bits [29:15]
-> +		 */
-> +		*pos = 15;
-> +
-> +		/* Clear bits [31:16] */
-> +		cfg->link &= BM(0, 14);
-> +	} else {
-> +		/*
-> +		 * link is empty, so new offset-length needs
-> +		 * to be placed at bits [15:0]
-> +		 */
-> +		*pos = 0;
-> +		cfg->link = 1 << 15;
-> +	}
-> +
-> +	/* write new offset-length pair to correct position */
-> +	cfg->link |= (((off-cfg->prev_off) & BM(0, 7)) | ((entry->len << 8) & BM(8, 14))) << *pos;
-> +
-> +	cfg->link |= DCC_LINK_DESCRIPTOR;
-> +
-> +	if (*pos) {
-> +		ret = dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
-> +		if (ret)
-> +			return ret;
-> +		cfg->sram_offset += 4;
-> +		cfg->link = 0;
-> +	}
-> +
-> +	cfg->prev_off  = off + entry->len - 1;
-> +	cfg->prev_addr = cfg->addr;
-> +	return ret;
-> +}
-> +
-> +static int __dcc_ll_cfg(struct dcc_drvdata *drvdata, int curr_list)
-> +{
-> +	int ret = 0;
-> +	u32 total_len, pos;
-> +	struct dcc_config_entry *entry;
-> +	struct dcc_cfg_attr cfg;
-> +	struct dcc_cfg_loop_attr cfg_loop;
-> +
-> +	cfg.sram_offset = drvdata->ram_cfg * 4;
-> +	cfg.prev_off = 0;
-> +	cfg_loop.loop_off = 0;
-> +	total_len = 0;
-> +	cfg_loop.loop_len = 0;
-> +	cfg_loop.loop_cnt = 0;
-> +	cfg_loop.loop_start = false;
-> +	cfg.prev_addr = 0;
-> +	cfg.addr = 0;
-> +	cfg.link = 0;
-
-again use memset for these
-
-> +
-> +	list_for_each_entry(entry, &drvdata->cfg_head[curr_list], list) {
-> +		switch (entry->desc_type) {
-> +		case DCC_READ_WRITE_TYPE:
-> +		{
-
-checkpatch should have told you this is not typical kernel style, pls
-fix this and many other things before we process further
+ .../bindings/clock/mediatek,mt7621-clk.yaml   |  66 +++
+ MAINTAINERS                                   |   6 +
+ arch/mips/ralink/mt7621.c                     |   6 +-
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/ralink/Kconfig                    |  15 +
+ drivers/clk/ralink/Makefile                   |   2 +
+ drivers/clk/ralink/clk-mt7621.c               | 536 ++++++++++++++++++
+ drivers/staging/mt7621-dts/gbpc1.dts          |  11 -
+ drivers/staging/mt7621-dts/mt7621.dtsi        |  87 ++-
+ include/dt-bindings/clock/mt7621-clk.h        |  41 ++
+ 11 files changed, 713 insertions(+), 59 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
+ create mode 100644 drivers/clk/ralink/Kconfig
+ create mode 100644 drivers/clk/ralink/Makefile
+ create mode 100644 drivers/clk/ralink/clk-mt7621.c
+ create mode 100644 include/dt-bindings/clock/mt7621-clk.h
 
 -- 
-~Vinod
+2.25.1
+
