@@ -2,76 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7741931EBC6
+	by mail.lfdr.de (Postfix) with ESMTP id E810831EBC7
 	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:52:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232663AbhBRPsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 10:48:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40098 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232915AbhBROCT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 09:02:19 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6B64C061574;
-        Thu, 18 Feb 2021 06:01:32 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id B9663419B4;
-        Thu, 18 Feb 2021 14:01:23 +0000 (UTC)
-Subject: Re: [PATCH v2 20/25] tty: serial: samsung_tty: Use
- devm_ioremap_resource
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-21-marcan@marcan.st>
- <20210215185135.onivzktfscv5myh2@kozik-lap>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <20274436-7275-9734-5a07-d6da46b45c5f@marcan.st>
-Date:   Thu, 18 Feb 2021 23:01:21 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
-MIME-Version: 1.0
-In-Reply-To: <20210215185135.onivzktfscv5myh2@kozik-lap>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+        id S232667AbhBRPsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 10:48:45 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:45534 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233090AbhBROGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 09:06:11 -0500
+Received: by mail-oi1-f170.google.com with SMTP id q186so2028828oig.12;
+        Thu, 18 Feb 2021 06:05:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=KtcEmPpSnPlXNJYI0QW3bJNLsG24V6cHzjJN8cs0kfI=;
+        b=gFx8lYL8NGfsatWYCrgCsISbxom5hRWoOw+cDi7iCDIrEFjj9DrBQJK668d14Sm/DK
+         /HzLcF0AGNXSJEaLcRpICX1Eos4mnaPzeeBXRvhZa5OMdMYRWpX3XPgvDQfzdFP1/1YY
+         XY3NDPecHqtIEsskIjfglNcqQGaN9fNv6JGtfbvcoJ/L9JLFAR/GIAd1nFPH3zKOfPH+
+         5A051V8kQ14dHoy5G40BtfvOB3cAxWN1l31a/arfShLOwxS2/VE/rgJqR5I7P7H/slzy
+         C/xtjZli+V1KZcIwbqO7CORKGw/1bcP6opksV9/JEHzd6OsU5NzFWz50W/HX6oEv/+UC
+         aG7A==
+X-Gm-Message-State: AOAM532e8+J27JOr++ckhCj08A3Cw5UlCKIBJjZQASs/EbNQHJzjBIn8
+        2SHRMGsZ3pcH4qEDaBaXVg==
+X-Google-Smtp-Source: ABdhPJyL0Gv0XnbWpigry+S1fDQBquHwFmfpE9RiS9yj7XKQCJTwdVK3sajDPl9U1FyJto3CUCxrPg==
+X-Received: by 2002:aca:5bd7:: with SMTP id p206mr2700528oib.66.1613657103101;
+        Thu, 18 Feb 2021 06:05:03 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x201sm1182163oix.2.2021.02.18.06.05.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Feb 2021 06:05:02 -0800 (PST)
+Received: (nullmailer pid 524584 invoked by uid 1000);
+        Thu, 18 Feb 2021 14:05:01 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Cc:     linux-clk@vger.kernel.org, shubhrajyoti.datta@gmail.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        gregkh@linuxfoundation.org, miquel.raynal@bootlin.com,
+        devicetree@vger.kernel.org
+In-Reply-To: <1613623791-4598-2-git-send-email-shubhrajyoti.datta@xilinx.com>
+References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com> <1613623791-4598-2-git-send-email-shubhrajyoti.datta@xilinx.com>
+Subject: Re: [PATCH v9 1/7] dt-bindings: add documentation of xilinx clocking wizard
+Date:   Thu, 18 Feb 2021 08:05:01 -0600
+Message-Id: <1613657101.302670.524583.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2021 03.51, Krzysztof Kozlowski wrote:
->> Also fix a bug checking the return value, which should use IS_ERR().
+On Thu, 18 Feb 2021 10:19:45 +0530, Shubhrajyoti Datta wrote:
+> Add the devicetree binding for the xilinx clocking wizard.
 > 
-> No, no, no. We never, never combine fixing bugs with some rework.
-> However devm_ioremap() returns NULL so where is the error?
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> ---
+> v6:
+> Fix a yaml warning
+> v7:
+> Add vendor prefix speed-grade
+> v8:
+> Fix the warnings
+> v9:
+> Fix the warnings
+> 
+>  .../bindings/clock/xlnx,clocking-wizard.yaml       | 65 ++++++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+> 
 
-Sorry, this was a commit message mistake. The code is correct and so is 
-the patch: just the NULL check is correct for the previous variant and 
-IS_ERR is correct for devm_ioremap_resource. I confused myself while 
-writing the commit message after the fact.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> Did you test your patches on existing platforms? If not, please mark all
-> of them as RFT on next submission, so Greg does not pick them too fast.
+yamllint warnings/errors:
 
-I unfortunately don't have any Exynos devices where I could test the 
-code (I have a couple but no serial connections, and I have no idea if 
-mailine would run on them). I'll mark v3 as RFT.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.example.dts:19.26-26.11: Warning (unit_address_vs_reg): /example-0/clock-controller: node has a reg or ranges property, but no unit name
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+See https://patchwork.ozlabs.org/patch/1441521
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
