@@ -2,80 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE5E331EBD4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:52:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 196BE31EBD7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:53:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232272AbhBRPvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 10:51:44 -0500
-Received: from foss.arm.com ([217.140.110.172]:52464 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232284AbhBRP1R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Feb 2021 10:27:17 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E8F81ED1;
-        Thu, 18 Feb 2021 07:26:27 -0800 (PST)
-Received: from C02TD0UTHF1T.local (unknown [10.57.48.237])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8DAA73F73D;
-        Thu, 18 Feb 2021 07:26:24 -0800 (PST)
-Date:   Thu, 18 Feb 2021 15:26:18 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Arnd Bergmann <arnd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, Alexander Graf <graf@amazon.com>,
-        Olof Johansson <olof@lixom.net>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Kettenis <mark.kettenis@xs4all.nl>
-Subject: Re: [PATCH v2 08/25] arm64: Always keep DAIF.[IF] in sync
-Message-ID: <20210218152618.GA91307@C02TD0UTHF1T.local>
-References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-9-marcan@marcan.st>
- <20210217122200.GC5556@C02TD0UTHF1T.local>
- <e88fa913-e2ae-35d0-056f-2a5079babbc2@marcan.st>
- <20210218142205.GB89209@C02TD0UTHF1T.local>
- <e66a9d0d-1127-c755-8bd7-7deedca1f3f3@marcan.st>
+        id S232592AbhBRPv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 10:51:59 -0500
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:44077 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232409AbhBRP3k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Feb 2021 10:29:40 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id EFCBA5C0132;
+        Thu, 18 Feb 2021 10:28:42 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Thu, 18 Feb 2021 10:28:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=mxFRI+cWdk8WklSGGLFckdS73t
+        sssa4vjL8IylY+Fk4=; b=k4jzGWj+gPIwpi6iVtt8z/UIwKkiUE8a3OuW321F4s
+        K5pIXISIGHGikDS0sVSV+tzmYr9drxDEKbiMhUZEVBQnKh9AkPCD257ja4NL/uV4
+        cC4cwPimFx89w3L0Sy22Kc6YRI/pqMAeyqi+j24l4G4bVO347InTcCMTpTAFgFJm
+        JTGczO75NWHnzOXjgKg0mZ7Om6GDKQbEd0+PpV76jiryTgmFXxbj4wic+EOy4FOR
+        qrXg0L+/itr929WknLO0ERYJdDLbUZMXAe9W1YYk0kgKyw2HO8cnuXX36BIR7iRG
+        Yp3BiWVs36cmCL2VG5W9wFAA2WatAf2RmnMM8ZYIyl8g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=mxFRI+cWdk8WklSGG
+        LFckdS73tsssa4vjL8IylY+Fk4=; b=mCryC8hBzZW2P47UoriXxaCzDkaRVjSfz
+        Pz0eax4APgN+IMRIzjAhfinfhWzdgHDcmevt+DcIgzzZfn6ozH4CUTZ6Cwf+E1CA
+        GRjPSwgiciIS29Ms7udj0kav4h5yRZgJgcBM5qcvkBYxgVbhzIpYKYD6WS4++jRX
+        GKBCkkCX3epQRqOHxjs8i86dkB18IH3bcWmo6+LJpO+7xbBjzo1vIWoGbQ+Zgl26
+        ONyEujiDuwCGbcpGA+lfD4O2ng3fzk03QXba5FuObL/jKDRJim89i78Dwvb0pQYy
+        c/bdSMXIlb0bPVnOzcYZ86P5KzWnnlkO134BMNvqwKjz/dTYfU16w==
+X-ME-Sender: <xms:qYcuYN_OiUuv20vOeRPCdBF6KsrcfdkiYlF7PN5VEB3M_ZbYGpig8g>
+    <xme:qYcuYBuLE1lsE5Qw2dtBMU9mmfnAPgVzrk80mchsToWF3-HDqIxFqXxRajPVrsBWV
+    nlSDiOyOUaRSZfJtVg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjeeggdejgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhho
+    rdhtvggthheqnecuggftrfgrthhtvghrnhepjeffheduvddvvdelhfegleelfffgieejvd
+    ehgfeijedtieeuteejteefueekjeegnecukfhppeeltddrkeelrdeikedrjeeinecuvehl
+    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvse
+    gtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:qYcuYLDUkBotX9H8kIfBbEFqY9DK9qDfSCxCmdsx1Ud8hAuvwarPWQ>
+    <xmx:qYcuYBcb5GULwONVHnE2GDjsN0yiwokTaZkbr3RtTuIYt5z4U4KE2g>
+    <xmx:qYcuYCP37XlDjpuDYW6aYm3YsCBVP_2wDa3Yt4gu4z-eFu6RWDHtFw>
+    <xmx:qocuYE3S5B2QRa011SIP8J50TkR3tAX5sNDjIkT2NOybYNed_SwMSg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 26B0E1080069;
+        Thu, 18 Feb 2021 10:28:41 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, Maxime Ripard <maxime@cerno.tech>
+Subject: [PATCH] dt-bindings: bcm2711-hdmi: Fix broken schema
+Date:   Thu, 18 Feb 2021 16:28:37 +0100
+Message-Id: <20210218152837.1080819-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e66a9d0d-1127-c755-8bd7-7deedca1f3f3@marcan.st>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 18, 2021 at 11:42:01PM +0900, Hector Martin wrote:
-> On 18/02/2021 23.22, Mark Rutland wrote:
-> > I think that for consistency we always want to keep IRQ and FIQ in-sync,
-> > even when using GIC priorities. So when handling a pseudo-NMI we should
-> > unmask DAIF.DA and leave DAIF.IF masked.
-> 
-> In that case there's one more, in daifflags.h:local_daif_restore():
-> 
-> 			/*
-> 			 * If interrupts are disabled but we can take
-> 			 * asynchronous errors, we can take NMIs
-> 			 */
-> 			flags &= PSR_I_BIT;
-> 			pmr = GIC_PRIO_IRQOFF;
+For some reason, unevaluatedProperties doesn't work and
+additionalProperties is required. Fix it by switching to
+additionalProperties.
 
-Good spot, yes!
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ .../devicetree/bindings/display/brcm,bcm2711-hdmi.yaml          | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I did a quick scan with `git grep 'PSR_[IF]_BIT' -- arch/arm64`, and
-AFAICT that's the last one.
+diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+index 57324a5f0271..a1d5a32660e0 100644
+--- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+@@ -109,7 +109,7 @@ required:
+   - resets
+   - ddc
+ 
+-unevaluatedProperties: false
++additionalProperties: false
+ 
+ examples:
+   - |
+-- 
+2.29.2
 
-> > > And a minor related one: should init_gic_priority_masking() WARN if FIQ is
-> > > masked too? This probably goes with the above.
-> > 
-> > I think it should, yes.
-> 
-> Done for v3 then. Thanks!
-
-Cool!
-
-Mark.
