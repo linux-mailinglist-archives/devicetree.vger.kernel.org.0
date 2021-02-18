@@ -2,81 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3E0F31EBB2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5B3831EBBA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:51:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbhBRPpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 10:45:06 -0500
-Received: from mout.kundenserver.de ([217.72.192.73]:45147 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233075AbhBRMgP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 07:36:15 -0500
-Received: from [192.168.1.155] ([95.115.65.253]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MuluP-1m3Ih90fXX-00rq93; Thu, 18 Feb 2021 13:19:12 +0100
-Subject: Re: of overlay: how to insert new nodes with references to it
-From:   "Enrico Weigelt, metux IT consult" <lkml@metux.net>
-To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <9b5a8e1f-6359-7658-4851-00d77d1cb8e5@metux.net>
-Message-ID: <dddc18ad-24c3-013a-800a-b93ef1d679e6@metux.net>
-Date:   Thu, 18 Feb 2021 13:19:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
-MIME-Version: 1.0
-In-Reply-To: <9b5a8e1f-6359-7658-4851-00d77d1cb8e5@metux.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: tl
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:njEP9Y5KHZEd3a3joGYTYv+kI/TM1vVwJlRu2otXvWJHCebakCM
- 2bzS79nvzubTFthEkHGN+r6gZt9r56FqoO5N8KI/hOWWwlMO8vOXT8fMu1AuoDK4BBqkI+2
- BgWT5Z5GLo2Cz39XxGLfZNNmxLfnJxYS5yQlh/IRBFZu6l/my52OtyjagcvVkPm0xx/I/vi
- 7f9J1z7pHdh9fcGN17NOA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dEWE6eukdEA=:vo42R/bKJjssMIE8s5lFrS
- 4Pex5jHHNdLw1XX0w3wCrAP5jRS/4GVTsAYLOVDYCR+OY/5Xs2d13cxFyyJsjMwZMTcwO6fxG
- ozdGYMFDc4cNh7tUoxA33ygh39WSrL1waBZkOYj4GOaWci4WxxH8CsRhueDP8VwZeME5/HJSq
- LgBcDOLICXnyy1iWYFSXHgS+V48C2a+6krqbi9u+zolBFbwnFuPbc1McWOu6OiLz9vAb5QoFK
- XOVlHNBp8iJUlOJZ1SCxYaHCnxz7dsb1KfwXnpnNCf8USyDIPuWbTXX2skpeOBSU4FrrqOUsn
- /Wejnzs43aEunxT+dSMrmyuvWxN6TlV2bpzjywixG4+hu7mnS2nqKbg368XpeeF5jQY3aFelA
- MZqAbYSefmiBHFM9K797x33vHJUrfR+JtjtGo5qJLrjN0Z1vF7tGbSB9usP+V
+        id S231815AbhBRPq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 10:46:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53744 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232954AbhBRMyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 07:54:19 -0500
+Received: from mail-wm1-x349.google.com (mail-wm1-x349.google.com [IPv6:2a00:1450:4864:20::349])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF80DC0617AA
+        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 04:42:33 -0800 (PST)
+Received: by mail-wm1-x349.google.com with SMTP id q24so1146840wmc.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 04:42:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=12xH3yyVOIuqoskf7QIx7KU01U1JfoKfQv8+ls70s5Y=;
+        b=CyA8njneqzwx2QyxmhsXyAbAj6GktuUw2eXrjvynifGNMjgoD6ihUmf5ciLkaJelpg
+         8mU2Ld78RXoaSrF3pl11AKBVFMldWipzz14CMefIocrk+nzHOz3kvIAlu6UZh3W5mhZW
+         us1wcIyJUZYkYnOcALoaoe9FOu5MPpV7GEC5owLBDvv3iEgcXzCXtaycTIYttQZbkFww
+         Ku2MIfXssrHvrBFmQkNrcglySF9UBK+jcKeXwC9pSNxV0ifpLnaQn2bubwfrWnXI2ZDz
+         K8WJ8O+3KFZuA3Y9i+eyIdvLdTjrHlr7NZ69eSGjI/xIhuqgQEU3hJBu5VQ4GTQ5kinU
+         ySLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=12xH3yyVOIuqoskf7QIx7KU01U1JfoKfQv8+ls70s5Y=;
+        b=jQkhgmMa6pxtTGFUPQdbByaBLdzeO5m10M/5tetVCRKIdpNttDEUowqqswyeArhVbK
+         cdJIjIbzFNPnfhIr2pRJ2gslxIkpNKcgcPjZsjuXbKGWN/gaTAK7Q/cd6ykLeB/YYUpO
+         cpis3e3HnmwwK3+BEmn+lAAwzT6iP7hKS/OtNJtXQCrbeuMJtAUAK89C/hbw5qaeYn2l
+         3UbRoqdDqC68LarHntshBLRzjb4fSYdGpWgcPW9WwTry9+n7UkRn3QqN0r88/tQKWFh5
+         n2+Ph7mnetSQA7lMuIRzZqbUTwYGyXr+edept14Y5i1VOxOW8kKgYtpwvq5N5L1oZ/2s
+         hR3w==
+X-Gm-Message-State: AOAM531sbMZMMbchCmbUZY+4ogu0ORMYlDeK6SUBYs/a+Fzw0HKshWtP
+        HWYDvjNVjGsF+vCXtWumOlRfos+Exwc=
+X-Google-Smtp-Source: ABdhPJyiVzxI0YDISQjX2JBs62xB/E9eeIJjHXfwdsQddnhZzCp5OUmTVJXXsb4k3DDzpTQSBkI+6N7B50k=
+Sender: "gmouse via sendgmr" <gmouse@gmouse.zrh.corp.google.com>
+X-Received: from gmouse.zrh.corp.google.com ([2a00:79e0:42:200:f532:e78:dab6:4447])
+ (user=gmouse job=sendgmr) by 2002:adf:ec82:: with SMTP id z2mr4277790wrn.16.1613652152566;
+ Thu, 18 Feb 2021 04:42:32 -0800 (PST)
+Date:   Thu, 18 Feb 2021 13:25:46 +0100
+Message-Id: <20210218122546.3546582-1-gmouse@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.30.0.478.g8a0d178c01-goog
+Subject: [PATCH] ARM: dts: nuvoton: Fix flash layout
+From:   gmouse@google.com
+To:     Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     "Anton D. Kachalov" <gmouse@google.com>, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.02.21 10:14, Enrico Weigelt, metux IT consult wrote:
+From: "Anton D. Kachalov" <gmouse@google.com>
 
-Hi folks,
+This change satisfy OpenBMC requirements for flash layout.
 
+Signed-off-by: Anton D. Kachalov <gmouse@google.com>
+---
+ arch/arm/boot/dts/nuvoton-npcm750-evb.dts | 28 +++++++----------------
+ 1 file changed, 8 insertions(+), 20 deletions(-)
 
-answering myself ;-)
-
-> Problem: dtc adds my new 'gpio1' node to the __fixups__ list, which is
-> used for resolving symbols against the live tree - obviously it can't
-> exist there, since it's added by the overlay. Therefore applying the
-> overlay fails:
-> 
->      "OF: resolver: node label 'gpio1' not found in live devicetree
->       symbols table"
-> 
-> Shouldn't the symbol be added to __local_fixups__ instead of __fixups__
-> ?
-> How can I force dtc to do that ?
-
-after playing around a while, found out that I need to use full path
-references instead of labels or just node names, eg.
-
-     gpios = <&{/fragment@0/__overlay__/gpio1} 0 GPIO_ACTIVE_HIGH>;
-
-
---mtx
-
+diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+index bd1eb6ee380f..741c1fee8552 100644
+--- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
++++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+@@ -182,8 +182,8 @@ bbuboot2@80000 {
+ 				reg = <0x0080000 0x80000>;
+ 				read-only;
+ 				};
+-			envparam@100000 {
+-				label = "env-param";
++			ubootenv@100000 {
++				label = "u-boot-env";
+ 				reg = <0x0100000 0x40000>;
+ 				read-only;
+ 				};
+@@ -195,25 +195,13 @@ kernel@200000 {
+ 				label = "kernel";
+ 				reg = <0x0200000 0x400000>;
+ 				};
+-			rootfs@600000 {
+-				label = "rootfs";
+-				reg = <0x0600000 0x700000>;
++			rofs@780000 {
++				label = "rofs";
++				reg = <0x0780000 0x1680000>;
+ 				};
+-			spare1@D00000 {
+-				label = "spare1";
+-				reg = <0x0D00000 0x200000>;
+-				};
+-			spare2@0F00000 {
+-				label = "spare2";
+-				reg = <0x0F00000 0x200000>;
+-				};
+-			spare3@1100000 {
+-				label = "spare3";
+-				reg = <0x1100000 0x200000>;
+-				};
+-			spare4@1300000 {
+-				label = "spare4";
+-				reg = <0x1300000 0x0>;
++			rwfs@1e00000 {
++				label = "rwfs";
++				reg = <0x1e00000 0x200000>;
+ 			};
+ 		};
+ 	};
 -- 
----
-Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
-werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
-GPG/PGP-Schlüssel zu.
----
-Enrico Weigelt, metux IT consult
-Free software and Linux embedded engineering
-info@metux.net -- +49-151-27565287
+2.30.0.478.g8a0d178c01-goog
+
