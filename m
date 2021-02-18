@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1616731E77C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 09:35:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DFE931E77F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 09:35:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230223AbhBRIbZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 18 Feb 2021 03:31:25 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:52267 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230493AbhBRI2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 03:28:52 -0500
+        id S229767AbhBRId2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 18 Feb 2021 03:33:28 -0500
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:60735 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230158AbhBRIa2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 03:30:28 -0500
+X-Originating-IP: 86.210.203.113
 Received: from xps13 (lfbn-tou-1-972-113.w86-210.abo.wanadoo.fr [86.210.203.113])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id D65AB240013;
-        Thu, 18 Feb 2021 08:28:05 +0000 (UTC)
-Date:   Thu, 18 Feb 2021 09:28:04 +0100
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 3C26BC0007;
+        Thu, 18 Feb 2021 08:29:36 +0000 (UTC)
+Date:   Thu, 18 Feb 2021 09:29:36 +0100
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 Cc:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <mturquette@baylibre.com>, <sboyd@kernel.org>,
         <gregkh@linuxfoundation.org>, <shubhrajyoti.datta@gmail.com>
-Subject: Re: [PATCH v9 1/7] dt-bindings: add documentation of xilinx
- clocking wizard
-Message-ID: <20210218092804.6c78c99c@xps13>
-In-Reply-To: <1613623791-4598-2-git-send-email-shubhrajyoti.datta@xilinx.com>
+Subject: Re: [PATCH v9 3/7] clk: clock-wizard: Fix kernel-doc warning
+Message-ID: <20210218092936.44108d1d@xps13>
+In-Reply-To: <1613623791-4598-4-git-send-email-shubhrajyoti.datta@xilinx.com>
 References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com>
-        <1613623791-4598-2-git-send-email-shubhrajyoti.datta@xilinx.com>
+        <1613623791-4598-4-git-send-email-shubhrajyoti.datta@xilinx.com>
 Organization: Bootlin
 X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
@@ -39,102 +39,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hi Shubhrajyoti,
 
 Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com> wrote on Thu, 18 Feb
-2021 10:19:45 +0530:
+2021 10:19:47 +0530:
 
-> Add the devicetree binding for the xilinx clocking wizard.
+> Update description for the clocking wizard structure
+
+"Fix the clocking wizard main structure kernel documentation." ?
+
 > 
 > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 > ---
-> v6:
-> Fix a yaml warning
-> v7:
-> Add vendor prefix speed-grade
-> v8:
-> Fix the warnings
-> v9:
-> Fix the warnings
+>  drivers/clk/clk-xlnx-clock-wizard.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
->  .../bindings/clock/xlnx,clocking-wizard.yaml       | 65 ++++++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> new file mode 100644
-> index 0000000..d209140
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/clock/xlnx,clocking-wizard.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Xilinx clocking wizard
-> +
-> +maintainers:
-> +  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> +
-> +description:
-> +  The clocking wizard is a soft ip clocking block of Xilinx versal. It
-> +  reads required input clock frequencies from the devicetree and acts as clock
-> +  clock output.
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,clocking-wizard
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: clock input
-> +      - description: axi clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: clk_in1
-> +      - const: s_axi_aclk
-> +
-> +  clock-output-names: true
-> +
-> +  xlnx,speed-grade:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 3]
-> +    description:
-> +      Speed grade of the device.
+> diff --git a/drivers/clk/clk-xlnx-clock-wizard.c b/drivers/clk/clk-xlnx-clock-wizard.c
+> index 1bab68e..fb2d555 100644
+> --- a/drivers/clk/clk-xlnx-clock-wizard.c
+> +++ b/drivers/clk/clk-xlnx-clock-wizard.c
+> @@ -40,7 +40,8 @@ enum clk_wzrd_int_clks {
+>  };
+>  
+>  /**
+> - * struct clk_wzrd:
+> + * struct clk_wzrd - Clock wizard private data structure
+> + *
+>   * @clk_data:		Clock data
+>   * @nb:			Notifier block
+>   * @base:		Memory base
 
-A bit of explanation of what this describes would be welcome.
-
-Don't forget that binding are not tied to any driver implementation,
-these are supposed to be hardware description properties.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - clocks
-> +  - clock-names
-> +  - xlnx,speed-grade
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller  {
-> +        compatible = "xlnx,clocking-wizard";
-> +        reg = <0xb0000000 0x10000>;
-> +        #clock-cells = <1>;
-> +        xlnx,speed-grade = <1>;
-> +        clock-names = "clk_in1", "s_axi_aclk";
-> +        clocks = <&clkc 15>, <&clkc 15>;
-> +    };
-> +...
 
 Thanks,
 Miquèl
