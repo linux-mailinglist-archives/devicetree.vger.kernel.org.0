@@ -2,184 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1ABB31EFB4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 20:24:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F80D31EFB5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 20:24:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbhBRTWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 14:22:22 -0500
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:45367 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231713AbhBRSeW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 13:34:22 -0500
-Received: by mail-ot1-f48.google.com with SMTP id v16so2734330ote.12;
-        Thu, 18 Feb 2021 10:34:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Fj+E6ZYsKNOutdOovZVamZYGG7ykgokFczWsXUFVYwU=;
-        b=Ntz3WGOlp+8becDHcOXf4Ib9cbj+H4hPhwBM8r2lgQzsCgS6RjLFYCRRNBEnglk5uA
-         G8sD6l+eDY32GJBlcOFos98YitCCdFqZDC0I8kTNCp1PSwWu3fqOfQdxmmvM7lriI5ry
-         E+Yg9AlBWkXhSmAynI7UWf3WCF/HIrjmzFdeDv+dk+f1+IJj6YzvVpM2+MqjCTyJbZ9J
-         g9g6CEBH6/mTD6E3c2+bpD0dur2j9NaoWrKugEB9AA/BHYT94gwvZfAq2/TBmC/xXRMs
-         ZQIVnkO6lizTICInweobI3BX2XNJKLqp5fZpFUUECxAne/WEk+/5liPqzAsUvxv5cGZS
-         l8Ig==
-X-Gm-Message-State: AOAM530CkLn1p4VIZX6wrcDygqn2eP+1xbTlq5y0sSbM3bu5pjnraGbO
-        ewkqpmioxWWjJbqzb8h4jg==
-X-Google-Smtp-Source: ABdhPJw78VYgYSaLhJeA0oFrTBqgHf0s2kBZJI3jHRXX0u57q5JQs1Q7ivvuWHEVEBbVuWjXKf3rhQ==
-X-Received: by 2002:a05:6830:4129:: with SMTP id w41mr4036327ott.332.1613673217418;
-        Thu, 18 Feb 2021 10:33:37 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a10sm1339470oie.39.2021.02.18.10.33.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Feb 2021 10:33:36 -0800 (PST)
-Received: (nullmailer pid 929727 invoked by uid 1000);
-        Thu, 18 Feb 2021 18:33:35 -0000
-Date:   Thu, 18 Feb 2021 12:33:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     Anshuman Khandual <anshuman.khandual@arm.com>,
-        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
-        coresight@lists.linaro.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, lcherian@marvell.com,
-        mike.leach@linaro.org
-Subject: Re: [PATCH V3 06/14] dts: bindings: Document device tree bindings
- for ETE
-Message-ID: <20210218183335.GA915713@robh.at.kernel.org>
-References: <1611737738-1493-1-git-send-email-anshuman.khandual@arm.com>
- <1611737738-1493-7-git-send-email-anshuman.khandual@arm.com>
- <20210209190031.GA4102836@robh.at.kernel.org>
- <4d0e6b88-72c2-be23-f43a-3f541f9ebb86@arm.com>
+        id S231691AbhBRTWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 14:22:25 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:42418 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234286AbhBRTTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 14:19:39 -0500
+Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:4cb:a870:851a:1dfb:a143:80e])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id D94251F417F7;
+        Thu, 18 Feb 2021 19:18:52 +0000 (GMT)
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, peng.fan@nxp.com,
+        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH v2 0/9] Add HANTRO G2/HEVC decoder support for IMX8MQ
+Date:   Thu, 18 Feb 2021 20:18:35 +0100
+Message-Id: <20210218191844.297869-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4d0e6b88-72c2-be23-f43a-3f541f9ebb86@arm.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 10, 2021 at 12:33:44PM +0000, Suzuki K Poulose wrote:
-> Hi Rob
-> 
-> On 2/9/21 7:00 PM, Rob Herring wrote:
-> > On Wed, Jan 27, 2021 at 02:25:30PM +0530, Anshuman Khandual wrote:
-> > > From: Suzuki K Poulose <suzuki.poulose@arm.com>
-> > > 
-> > > Document the device tree bindings for Embedded Trace Extensions.
-> > > ETE can be connected to legacy coresight components and thus
-> > > could optionally contain a connection graph as described by
-> > > the CoreSight bindings.
-> > > 
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > > Cc: Mike Leach <mike.leach@linaro.org>
-> > > Cc: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> > > Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> > > ---
-> > > Changes in V3:
-> > > 
-> > > - Fixed all DT yaml semantics problems
-> > > 
-> > >   Documentation/devicetree/bindings/arm/ete.yaml | 74 ++++++++++++++++++++++++++
-> > >   1 file changed, 74 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
-> > > new file mode 100644
-> > > index 0000000..edc1fe2
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/arm/ete.yaml
-> > > @@ -0,0 +1,74 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> > > +# Copyright 2021, Arm Ltd
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/arm/ete.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: ARM Embedded Trace Extensions
-> > > +
-> > > +maintainers:
-> > > +  - Suzuki K Poulose <suzuki.poulose@arm.com>
-> > > +  - Mathieu Poirier <mathieu.poirier@linaro.org>
-> > > +
-> > > +description: |
-> > > +  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
-> > > +  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
-> > > +  architecture and has extended support for future architecture changes.
-> > > +  The trace generated by the ETE could be stored via legacy CoreSight
-> > > +  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
-> > > +  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
-> > > +  legacy CoreSight components, a node must be listed per instance, along
-> > > +  with any optional connection graph as per the coresight bindings.
-> > > +  See bindings/arm/coresight.txt.
-> > > +
-> > > +properties:
-> > > +  $nodename:
-> > > +    pattern: "^ete([0-9a-f]+)$"
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: arm,embedded-trace-extension
-> > > +
-> > > +  cpu:
-> > 
-> > We've already established 'cpus' for this purpose.
-> > 
-> 
-> Please see : https://lkml.kernel.org/r/9417218b-6eda-373b-a2cb-869089ffc7cd@arm.com
-> for my response in the previous version to this and the one with out-ports.
+The IMX8MQ got two VPUs but until now only G1 has been enabled.
+This series aim to add the second VPU (aka G2) and provide basic 
+HEVC decoding support.
 
-Okay, fair enough.
+To be able to decode HEVC it is needed to add/update some of the
+structures in the uapi. In addition of them one HANTRO dedicated
+control is required to inform the driver of the numbre of bits to skip
+at the beginning of the slice header.
+The hardware require to allocate few auxiliary buffers to store the
+references frame or tile size data.
 
-> 
-> > > +    description: |
-> > > +      Handle to the cpu this ETE is bound to.
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +
-> > > +  out-ports:
-> > > +    type: object
-> > 
-> > Replace with: $ref: /schemas/graph.yaml#/properties/ports
-> 
-> So, just to confirm again :
-> The CoreSight graph bindings expect the input ports and output ports
-> grouped under in-ports{} and out-ports{} respectively to avoid having
-> to specify the direction of the ports in the individual "port" nodes.
-> i.e
-> 
-> in-ports {
-> 
-> 	property: ports
-> 	  OR
-> 	property: port
-> 
-> 	required:
-> 		OneOf:
-> 			ports
-> 			port
+The driver has been tested with fluster test suite stream.
+For example with this command: ./fluster.py run -ts JCT-VC-HEVC_V1 -d GStreamer-H.265-V4L2SL-Gst1.0
+ 
+This series depends of the reset rework posted here: https://www.spinics.net/lists/arm-kernel/msg875766.html
 
-No, 'ports' as a child of in-ports is not correct. There should only be 
-'port(@[0-9a-f]+)?' nodes. That's why you need the above $ref added. The 
-$ref doesn't define the node name is 'ports', but what a 'ports' or 
-'foo-ports' contains.
+Finally the both VPUs will have a node the device-tree and be
+independent from v4l2 point of view.
 
-> }
-> 
-> out-ports {
-> 
-> 	# same as above
-> }
-> 
-> So thats why I added out-ports as a new object, where the ports/port
-> could be a child node.
-> 
-> Ideally the definition of out-ports /in-ports should go to a common schema
-> for CoreSight bindings, when we move to Yaml for the existing bindings,
-> which will follow in a separate series, later.
+A branch with all the dev is available here:
+https://gitlab.collabora.com/benjamin.gaignard/for-upstream/-/commits/upstream_g2_v2
 
-Yes, maybe, but I'm not sure something common is going to help here. 
-You'll still have to describe what each 'port' node does in each device 
-specific binding.
+version 2:
+- remove all change related to scaling
+- squash commits to a coherent split
+- be more verbose about the added fields
+- fix the comments done by Ezequiel about dma_alloc_coherent usage
+- fix Dan's comments about control copy, reverse the test logic
+in tile_buffer_reallocate, rework some goto and return cases.
+- be more verbose about why I change the bindings
+- remove all sign-off expect mime since it is confusing
+- remove useless clocks in VPUs nodes
 
-Rob
+Benjamin
+
+Benjamin Gaignard (9):
+  media: hevc: Modify structures to follow H265 ITU spec
+  media: hantro: Define HEVC codec profiles and supported features
+  media: hantro: Add a field to distinguish the hardware versions
+  media: uapi: Add a control for HANTRO driver
+  media: hantro: Introduce G2/HEVC decoder
+  media: hantro: handle V4L2_PIX_FMT_HEVC_SLICE control
+  media: hantro: IMX8M: add variant for G2/HEVC codec
+  dt-bindings: media: nxp,imx8mq-vpu: Update bindings
+  arm64: dts: imx8mq: Add node to G2 hardware
+
+ .../bindings/media/nxp,imx8mq-vpu.yaml        |  54 +-
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  41 +-
+ drivers/media/v4l2-core/v4l2-ctrls.c          |  26 +-
+ drivers/staging/media/hantro/Makefile         |   2 +
+ drivers/staging/media/hantro/hantro.h         |  34 +-
+ drivers/staging/media/hantro/hantro_drv.c     | 103 +++
+ .../staging/media/hantro/hantro_g2_hevc_dec.c | 587 ++++++++++++++++++
+ drivers/staging/media/hantro/hantro_g2_regs.h | 198 ++++++
+ drivers/staging/media/hantro/hantro_hevc.c    | 321 ++++++++++
+ drivers/staging/media/hantro/hantro_hw.h      |  48 ++
+ .../staging/media/hantro/hantro_postproc.c    |  17 +
+ drivers/staging/media/hantro/hantro_v4l2.c    |   1 +
+ drivers/staging/media/hantro/imx8m_vpu_hw.c   |  95 ++-
+ drivers/staging/media/sunxi/cedrus/cedrus.c   |   6 +
+ drivers/staging/media/sunxi/cedrus/cedrus.h   |   1 +
+ .../staging/media/sunxi/cedrus/cedrus_dec.c   |   2 +
+ .../staging/media/sunxi/cedrus/cedrus_h265.c  |   6 +-
+ include/media/hevc-ctrls.h                    |  45 +-
+ include/uapi/linux/hantro-v4l2-controls.h     |  20 +
+ include/uapi/linux/v4l2-controls.h            |   5 +
+ 20 files changed, 1557 insertions(+), 55 deletions(-)
+ create mode 100644 drivers/staging/media/hantro/hantro_g2_hevc_dec.c
+ create mode 100644 drivers/staging/media/hantro/hantro_g2_regs.h
+ create mode 100644 drivers/staging/media/hantro/hantro_hevc.c
+ create mode 100644 include/uapi/linux/hantro-v4l2-controls.h
+
+-- 
+2.25.1
+
