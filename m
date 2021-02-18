@@ -2,22 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05E1D31EBC5
+	by mail.lfdr.de (Postfix) with ESMTP id 7741931EBC6
 	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 16:52:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232657AbhBRPsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 10:48:42 -0500
-Received: from marcansoft.com ([212.63.210.85]:46214 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230464AbhBRNzY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Feb 2021 08:55:24 -0500
+        id S232663AbhBRPsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 10:48:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40098 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232915AbhBROCT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 09:02:19 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6B64C061574;
+        Thu, 18 Feb 2021 06:01:32 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id C0AB541E96;
-        Thu, 18 Feb 2021 13:53:12 +0000 (UTC)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id B9663419B4;
+        Thu, 18 Feb 2021 14:01:23 +0000 (UTC)
+Subject: Re: [PATCH v2 20/25] tty: serial: samsung_tty: Use
+ devm_ioremap_resource
 To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     linux-arm-kernel@lists.infradead.org,
         Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -33,95 +38,39 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-20-marcan@marcan.st>
- <20210215184012.sf6p6dbk5c25phdm@kozik-lap>
+ <20210215121713.57687-21-marcan@marcan.st>
+ <20210215185135.onivzktfscv5myh2@kozik-lap>
 From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 19/25] tty: serial: samsung_tty: IRQ rework
-Message-ID: <31068a51-736b-08f6-6c00-1779734465ea@marcan.st>
-Date:   Thu, 18 Feb 2021 22:53:10 +0900
+Message-ID: <20274436-7275-9734-5a07-d6da46b45c5f@marcan.st>
+Date:   Thu, 18 Feb 2021 23:01:21 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <20210215184012.sf6p6dbk5c25phdm@kozik-lap>
+In-Reply-To: <20210215185135.onivzktfscv5myh2@kozik-lap>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2021 03.40, Krzysztof Kozlowski wrote:
-> On Mon, Feb 15, 2021 at 09:17:07PM +0900, Hector Martin wrote:
->> * Split out s3c24xx_serial_tx_chars from s3c24xx_serial_tx_irq,
->>    where only the latter acquires the port lock.
+On 16/02/2021 03.51, Krzysztof Kozlowski wrote:
+>> Also fix a bug checking the return value, which should use IS_ERR().
 > 
-> I miss here information why you do all this.
+> No, no, no. We never, never combine fixing bugs with some rework.
+> However devm_ioremap() returns NULL so where is the error?
 
-Added an explanation for v3. This is used by a subsequent patch in the 
-series.
+Sorry, this was a commit message mistake. The code is correct and so is 
+the patch: just the NULL check is correct for the previous variant and 
+IS_ERR is correct for devm_ioremap_resource. I confused myself while 
+writing the commit message after the fact.
 
->>
->> * For S3C64xx, return IRQ_NONE if no flag bits were set, so the
->>    interrupt core can detect IRQ storms. Note that both IRQ handlers
->>    always return IRQ_HANDLED anyway, so 'or' logic isn't necessary here,
->>    if either handler ran we are always going to return IRQ_HANDLED.
-> 
-> It looks like separate patch. Your patches should do only one thing at
-> once. The fact that you have here three bullet points is a warning
-> sign. This is even more important if you do some refactorings and
-> cleanups which should not affect functionality. Hiding there changes
-> which could affect functionality is a no-go.
+> Did you test your patches on existing platforms? If not, please mark all
+> of them as RFT on next submission, so Greg does not pick them too fast.
 
-I've reverted this one. I don't think it should affect functionality, 
-but I don't have any way to test on these devices, so I'll leave it to 
-someone else to be safe :)
-
->>
->> * Rename s3c24xx_serial_rx_chars to s3c24xx_serial_rx_irq for
->>    consistency with the above. All it does now is call two other
->>    functions anyway.
-> 
-> Separate patch for trivial renaming.
-
-I think it makes sense to do this rename together with the first change 
-above, as it keeps both functions symmetric. Otherwise we end up with an 
-inconsistent function naming between both patches. If you really want it 
-separate though, I can do that.
-
-> 
->>
->> Signed-off-by: Hector Martin <marcan@marcan.st>
->> ---
->>   drivers/tty/serial/samsung_tty.c | 41 +++++++++++++++++++-------------
->>   1 file changed, 24 insertions(+), 17 deletions(-)
->>
->> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
->> index 21955be680a4..821cd0e4f870 100644
->> --- a/drivers/tty/serial/samsung_tty.c
->> +++ b/drivers/tty/serial/samsung_tty.c
->> @@ -151,6 +151,9 @@ struct s3c24xx_uart_port {
->>   #endif
->>   };
->>   
->> +static void s3c24xx_serial_start_next_tx(struct s3c24xx_uart_port *ourport);
->> +static void s3c24xx_serial_tx_chars(struct s3c24xx_uart_port *ourport);
->> +
->>   /* conversion functions */
->>   
->>   #define s3c24xx_dev_to_port(__dev) dev_get_drvdata(__dev)
->> @@ -316,8 +319,6 @@ static void s3c24xx_serial_stop_tx(struct uart_port *port)
->>   	ourport->tx_mode = 0;
->>   }
->>   
->> -static void s3c24xx_serial_start_next_tx(struct s3c24xx_uart_port *ourport);
->> -
-> 
-> Why moving this? Why adding s3c24xx_serial_tx_chars() forward
-> declaration?
-
-This should've gone in the next patch. A previous reviewer told me to 
-put declarations at the top of the file, so I put it there and moved 
-this one along with it, but I'll keep it to the additon only for v3.
+I unfortunately don't have any Exynos devices where I could test the 
+code (I have a couple but no serial connections, and I have no idea if 
+mailine would run on them). I'll mark v3 as RFT.
 
 -- 
 Hector Martin (marcan@marcan.st)
