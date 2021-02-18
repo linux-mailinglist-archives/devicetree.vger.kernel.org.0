@@ -2,199 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB7E31F292
-	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 23:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E8C631F29E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Feb 2021 23:56:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbhBRWw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 17:52:57 -0500
-Received: from foss.arm.com ([217.140.110.172]:56576 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229990AbhBRWw4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Feb 2021 17:52:56 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 791EEED1;
-        Thu, 18 Feb 2021 14:52:05 -0800 (PST)
-Received: from [10.57.61.241] (unknown [10.57.61.241])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D9D4A3F73D;
-        Thu, 18 Feb 2021 14:52:03 -0800 (PST)
-Subject: Re: [PATCH V3 06/14] dts: bindings: Document device tree bindings for
- ETE
-To:     Rob Herring <robh@kernel.org>
-Cc:     Anshuman Khandual <anshuman.khandual@arm.com>,
-        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
-        coresight@lists.linaro.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, lcherian@marvell.com,
-        mike.leach@linaro.org
-References: <1611737738-1493-1-git-send-email-anshuman.khandual@arm.com>
- <1611737738-1493-7-git-send-email-anshuman.khandual@arm.com>
- <20210209190031.GA4102836@robh.at.kernel.org>
- <4d0e6b88-72c2-be23-f43a-3f541f9ebb86@arm.com>
- <20210218183335.GA915713@robh.at.kernel.org>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-Message-ID: <952f91ef-7fd2-a3d4-06d8-b7f433aa4c76@arm.com>
-Date:   Thu, 18 Feb 2021 22:51:56 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S229535AbhBRW4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 17:56:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229752AbhBRW4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 17:56:11 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 893E9C061756
+        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 14:55:31 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id kr16so2393127pjb.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 14:55:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mJsWZPsjAvkS9M4UJZDTVheggzJRLXODUCXr3rDhMIc=;
+        b=mBtZCpmyFyj/HF1O+hiWaHTGDHtbjFm/eK7texjxvjVDQl/gGnW2sAY580Tcj1p0hC
+         OkM4uMIHAY5i3KlmV5I7oVdR/anPUeSbeBoqkDSknnB/S35Og858yCBZwvfLH6qYfQqt
+         peraHOGjdEpScSwHFV/ZboaiHeyteolD8z7TA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mJsWZPsjAvkS9M4UJZDTVheggzJRLXODUCXr3rDhMIc=;
+        b=nsZnmFhyNyvGaN74DfSbC7SvhCW0I685hkIKCHD56Eu0tNwcNoGSRaQULKI0NMn8NE
+         gyUfLRQI3rRl3MsOE7dpNCGlrE5IfHmeK8U4l3adLr0FbCBKGSaAXjomIkHDLWLzHmje
+         T+ncGVtGkf8ImUDzxcLVxdpcBloBGjirG61XAG/m1Hml/ICoCIDAehKXDl8aLuCh+Vui
+         GTW7h2RsKiQWgIRNUIABz1cweqs5OUVcyoRoggH1U5mNP3rMeYByfUzIiGJgMTuJJVq8
+         7l8qdXXDSTnRff9HGby7uAKJqbOT1Q/8gDCvmI5axub5gp+avr+qrW/o6oj1S8YL4xXo
+         FLcA==
+X-Gm-Message-State: AOAM532yMEoCzsNmCHKAozC6qOb/7KaJmiCVJoHciFbdKK6s3f0Pseky
+        +to4cXdKOeC5QdDV2LpmHncGyIWEZ8V0cBZm
+X-Google-Smtp-Source: ABdhPJxrFexxJr1zX/X/iHVI3+f5tp6DY/SUfCp54QUf91xqTsVNxyqry+UTpv3W1GOZGtk/H85PJQ==
+X-Received: by 2002:a17:90a:654a:: with SMTP id f10mr6027043pjs.202.1613688931007;
+        Thu, 18 Feb 2021 14:55:31 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:91a:d4d0:d2d0:9d1c])
+        by smtp.gmail.com with ESMTPSA id x15sm6483563pjq.47.2021.02.18.14.55.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Feb 2021 14:55:30 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        swboyd@chromium.org, Douglas Anderson <dianders@chromium.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7180: Avoid glitching SPI CS at bootup on trogdor
+Date:   Thu, 18 Feb 2021 14:55:09 -0800
+Message-Id: <20210218145456.1.I1da01a075dd86e005152f993b2d5d82dd9686238@changeid>
+X-Mailer: git-send-email 2.30.0.617.g56c4b15f3c-goog
 MIME-Version: 1.0
-In-Reply-To: <20210218183335.GA915713@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/18/21 6:33 PM, Rob Herring wrote:
-> On Wed, Feb 10, 2021 at 12:33:44PM +0000, Suzuki K Poulose wrote:
->> Hi Rob
->>
->> On 2/9/21 7:00 PM, Rob Herring wrote:
->>> On Wed, Jan 27, 2021 at 02:25:30PM +0530, Anshuman Khandual wrote:
->>>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>>>
->>>> Document the device tree bindings for Embedded Trace Extensions.
->>>> ETE can be connected to legacy coresight components and thus
->>>> could optionally contain a connection graph as described by
->>>> the CoreSight bindings.
->>>>
->>>> Cc: devicetree@vger.kernel.org
->>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->>>> Cc: Mike Leach <mike.leach@linaro.org>
->>>> Cc: Rob Herring <robh@kernel.org>
->>>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->>>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->>>> ---
->>>> Changes in V3:
->>>>
->>>> - Fixed all DT yaml semantics problems
->>>>
->>>>    Documentation/devicetree/bindings/arm/ete.yaml | 74 ++++++++++++++++++++++++++
->>>>    1 file changed, 74 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
->>>> new file mode 100644
->>>> index 0000000..edc1fe2
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/arm/ete.yaml
->>>> @@ -0,0 +1,74 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->>>> +# Copyright 2021, Arm Ltd
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: "http://devicetree.org/schemas/arm/ete.yaml#"
->>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>>> +
->>>> +title: ARM Embedded Trace Extensions
->>>> +
->>>> +maintainers:
->>>> +  - Suzuki K Poulose <suzuki.poulose@arm.com>
->>>> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
->>>> +
->>>> +description: |
->>>> +  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
->>>> +  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
->>>> +  architecture and has extended support for future architecture changes.
->>>> +  The trace generated by the ETE could be stored via legacy CoreSight
->>>> +  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
->>>> +  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
->>>> +  legacy CoreSight components, a node must be listed per instance, along
->>>> +  with any optional connection graph as per the coresight bindings.
->>>> +  See bindings/arm/coresight.txt.
->>>> +
->>>> +properties:
->>>> +  $nodename:
->>>> +    pattern: "^ete([0-9a-f]+)$"
->>>> +  compatible:
->>>> +    items:
->>>> +      - const: arm,embedded-trace-extension
->>>> +
->>>> +  cpu:
->>>
->>> We've already established 'cpus' for this purpose.
->>>
->>
->> Please see : https://lkml.kernel.org/r/9417218b-6eda-373b-a2cb-869089ffc7cd@arm.com
->> for my response in the previous version to this and the one with out-ports.
-> 
-> Okay, fair enough.
-> 
->>
->>>> +    description: |
->>>> +      Handle to the cpu this ETE is bound to.
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>> +
->>>> +  out-ports:
->>>> +    type: object
->>>
->>> Replace with: $ref: /schemas/graph.yaml#/properties/ports
->>
->> So, just to confirm again :
->> The CoreSight graph bindings expect the input ports and output ports
->> grouped under in-ports{} and out-ports{} respectively to avoid having
->> to specify the direction of the ports in the individual "port" nodes.
->> i.e
->>
->> in-ports {
->>
->> 	property: ports
->> 	  OR
->> 	property: port
->>
->> 	required:
->> 		OneOf:
->> 			ports
->> 			port
-> 
-> No, 'ports' as a child of in-ports is not correct. There should only be
-> 'port(@[0-9a-f]+)?' nodes. That's why you need the above $ref added. The
-> $ref doesn't define the node name is 'ports', but what a 'ports' or
-> 'foo-ports' contains.
+At boot time the following happens:
+1. Device core gets ready to probe our SPI driver.
+2. Device core applies SPI controller's "default" pinctrl.
+3. Device core calls the SPI driver's probe() function which will
+   eventually setup the chip select GPIO as "unasserted".
 
-Sorry, it is my bad. We don't expect ports{} under in-ports. So your
-suggestion is the accurate one. I will respin.
+Thinking about the above, we can find:
+a) For SPI devices that the BIOS inits (Cr50 and EC), the BIOS would
+   have had them configured as "GENI" pins and not as "GPIO" pins.
+b) It turns out that our BIOS also happens to init these pins as
+   "output" (even though it doesn't need to since they're not muxed as
+   GPIO) but leaves them at the default state of "low".
+c) As soon as we apply the "default" chip select it'll switch the
+   function to GPIO and stop driving the chip select high (which is
+   how "GENI" was driving it) and start driving it low.
+d) As of commit 9378f46040be ("UPSTREAM: spi: spi-geni-qcom: Use the
+   new method of gpio CS control"), when the SPI core inits things it
+   inits the GPIO to be "deasserted".  Prior to that commit the GPIO
+   was left untouched until first use.
+e) When the first transaction happens we'll assert the chip select and
+   then deassert it after done.
 
+So before the commit to change us to use gpio descriptors we used to
+have a _really long_ assertion of chip select before our first
+transaction (because it got pulled down and then the first "assert"
+was a no-op).  That wasn't great but (apparently) didn't cause any
+real harm.
 
+After the commit to change us to use gpio descriptors we end up
+glitching the chip select line during probe.  It would go low and then
+high with no data transferred.  The other side ought to be robust
+against this, but it certainly could cause some confusion.  It's known
+to at least cause an error message on the EC console and it's believed
+that, under certain timing conditions, it could be getting the EC into
+a confused state causing the EC driver to fail to probe.
 
-> 
->> }
->>
->> out-ports {
->>
->> 	# same as above
->> }
->>
->> So thats why I added out-ports as a new object, where the ports/port
->> could be a child node.
->>
->> Ideally the definition of out-ports /in-ports should go to a common schema
->> for CoreSight bindings, when we move to Yaml for the existing bindings,
->> which will follow in a separate series, later.
-> 
-> Yes, maybe, but I'm not sure something common is going to help here.
-> You'll still have to describe what each 'port' node does in each device
-> specific binding.
+Let's fix things to avoid the glitch.  We'll add an extra pinctrl
+entry that sets the value of the pin to output high (CS deasserted)
+before doing anything else.  We'll do this in its own pinctrl node
+that comes before the normal pinctrl entries to ensure that the order
+is correct and that this gets applied before the mux change.
 
-For CoreSight components the end-point of the ports are system specific.
-i.e, it could be anything on the other end. There is no fixed end-point
-connection.
+This change is in the trogdor board file rather than in the SoC dtsi
+file because chip select polarity can be different depending on what's
+hooked up and it doesn't feel worth it to spam the SoC dtsi file with
+both options.  The board file would need to pick the right one anyway.
 
-e.g, ETM could be connected to a Replicator or a Funnel. Same as here
-above for ETE. Thus the driver must parse the endpoints and make
-the connection path from devices to other devices.
+Fixes: cfbb97fde694 ("arm64: dts: qcom: Switch sc7180-trogdor to control SPI CS via GPIO")
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
 
-Anyways, will come to that in a different series.
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 27 +++++++++++++++++---
+ 1 file changed, 24 insertions(+), 3 deletions(-)
 
-I will fix the in-ports/out-ports for the next version.
-
-Thanks for your guidance.
-
-Cheers
-Suzuki
-
-
-
-> 
-> Rob
-> 
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 07c8b2c926c0..e6c58d12dacd 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -768,17 +768,17 @@ &sdhc_2 {
+ };
+ 
+ &spi0 {
+-	pinctrl-0 = <&qup_spi0_cs_gpio>;
++	pinctrl-0 = <&qup_spi0_cs_gpio_init_high>, <&qup_spi0_cs_gpio>;
+ 	cs-gpios = <&tlmm 37 GPIO_ACTIVE_LOW>;
+ };
+ 
+ &spi6 {
+-	pinctrl-0 = <&qup_spi6_cs_gpio>;
++	pinctrl-0 = <&qup_spi6_cs_gpio_init_high>, <&qup_spi6_cs_gpio>;
+ 	cs-gpios = <&tlmm 62 GPIO_ACTIVE_LOW>;
+ };
+ 
+ ap_spi_fp: &spi10 {
+-	pinctrl-0 = <&qup_spi10_cs_gpio>;
++	pinctrl-0 = <&qup_spi10_cs_gpio_init_high>, <&qup_spi10_cs_gpio>;
+ 	cs-gpios = <&tlmm 89 GPIO_ACTIVE_LOW>;
+ 
+ 	cros_ec_fp: ec@0 {
+@@ -1339,6 +1339,27 @@ pinconf {
+ 		};
+ 	};
+ 
++	qup_spi0_cs_gpio_init_high: qup-spi0-cs-gpio-init-high {
++		pinconf {
++			pins = "gpio37";
++			output-high;
++		};
++	};
++
++	qup_spi6_cs_gpio_init_high: qup-spi6-cs-gpio-init-high {
++		pinconf {
++			pins = "gpio62";
++			output-high;
++		};
++	};
++
++	qup_spi10_cs_gpio_init_high: qup-spi10-cs-gpio-init-high {
++		pinconf {
++			pins = "gpio89";
++			output-high;
++		};
++	};
++
+ 	qup_uart3_sleep: qup-uart3-sleep {
+ 		pinmux {
+ 			pins = "gpio38", "gpio39",
+-- 
+2.30.0.617.g56c4b15f3c-goog
 
