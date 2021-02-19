@@ -2,149 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A42031FED1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 19:34:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 219F031FEEB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 19:45:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229725AbhBSSdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Feb 2021 13:33:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39262 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbhBSSdr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Feb 2021 13:33:47 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5818BC061756
-        for <devicetree@vger.kernel.org>; Fri, 19 Feb 2021 10:33:07 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id ba1so3844692plb.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Feb 2021 10:33:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=apaYLCgpKww0D9oOCdL1/leTpd02z3P4w+UfyB0qUtE=;
-        b=cNzmU6RwCi2M7zc1iN6kXALpuF4Dr3p9TUe2IZrVSxDRNZxj43w4OZN9GBVNUyVoGY
-         H1RXDjVYIy/K8yNu7pM4zNUC+X8IPbISNDZkI7CMRH6NW31SInd7dD92i1llEAJIpNl9
-         iWbI8rgOSf7uQmj0SebJ6NcX/Ooy0yvSHYo1XyOoSpU19UIDftAZr4ACUicBtUMeLzOs
-         JxUyV+lfMm+gr31mLh9yWgpO+USuw7r8q/XR26xRmrLSWdm95R71UclAbHcjdoD9mUVg
-         /RXbSkNXY3aLx0dVZoac6BkHs3HET/aQxjW2WzpvO3e5JjAUaXvXTBmMVyOyA+7Xdb05
-         6Cfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=apaYLCgpKww0D9oOCdL1/leTpd02z3P4w+UfyB0qUtE=;
-        b=Arlfn0EuvTbSctGwUbh5LLF1FyIYADfJFmXMCZH/IbvFThSs4Mi4U87K2cQZF+zikf
-         WMU782X13fto3xJ1X/FBIfde0VEqZgwzNJjrPevqNdvmjf59nXaMTxGRLS40cuzvc+hM
-         se5UNeGNws/0fnDYx1ubE8wh/oRgipu4abFW64YSiixLW43alPaCnlQrvNwaJm16pWZc
-         oLGEnggpYTAgdxxvueykpdifIEtgVGISVfa1ElXmHEnp/ndh7AVZpiBPYzord/nMrqHu
-         ug/oJQD6YkoTUdRbKnGYH97qxm4geIOnXdoLeYiWjnOe8l/r7ji0gzL0wbIM3bp5H2Ag
-         VY3g==
-X-Gm-Message-State: AOAM531Zmp+oAXdSBAXgE03XRe6+RhJVmrgLDSD6ZQOIB/6gYVW6+pED
-        Zncbz1ssDyZI1Kl8QJDyeizm/A==
-X-Google-Smtp-Source: ABdhPJzGsluCsG7fkC2FvoTQGUbPeiWB8QuireUSeDuRRKhKexRWjsorjPjofN2X3s0CAIhvLZ+5ZQ==
-X-Received: by 2002:a17:902:9894:b029:e3:7aa3:a499 with SMTP id s20-20020a1709029894b02900e37aa3a499mr3088340plp.11.1613759586653;
-        Fri, 19 Feb 2021 10:33:06 -0800 (PST)
-Received: from google.com ([2620:15c:f:10:fc4d:e9c3:d7d:9cb3])
-        by smtp.gmail.com with ESMTPSA id 3sm9467713pjk.26.2021.02.19.10.33.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Feb 2021 10:33:06 -0800 (PST)
-Date:   Fri, 19 Feb 2021 10:32:58 -0800
-From:   Sean Christopherson <seanjc@google.com>
-To:     Will Deacon <will@kernel.org>
-Cc:     Quentin Perret <qperret@google.com>,
+        id S229819AbhBSSo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Feb 2021 13:44:26 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:48768 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229766AbhBSSoZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Feb 2021 13:44:25 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id E64C320B6C40;
+        Fri, 19 Feb 2021 10:43:43 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E64C320B6C40
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1613760224;
+        bh=RpoWA2PbFDErkfUWKl6VSFbD3TUWfdKkFK+7BkYE/ys=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=FlbyhI2Xx5mSUqc+dtPCr1ZNHjpTO6Tn25jhljruSYMaU/5beEb3QGpF/DTglDlmI
+         wyLj1wEGIGBXSeFWRo4d74jYBlp7L96wnIZoy2aKaM3fVfYCQe0V06BYJO1kd51IOO
+         DL8EvziJi44wvruN+qwLNb1clHef+A/MMP5m7XCg=
+Subject: Re: [PATCH] of: error: 'const struct kimage' has no member named
+ 'arch'
+To:     Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Mimi Zohar <zohar@linux.ibm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
         Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
         James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 16/26] KVM: arm64: Prepare Hyp memory protection
-Message-ID: <YDAEWu7RkG1OBFed@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-17-qperret@google.com>
- <20210203143709.GA18907@willie-the-truck>
+        Sasha Levin <sashal@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        linux-integrity@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+References: <20210218223305.2044-1-nramas@linux.microsoft.com>
+ <c6490f6a126a2f10e3e3445b51ea552a26f896a9.camel@linux.ibm.com>
+ <8b8c0b70-c7ab-33f3-b66c-9ea03388497b@linux.microsoft.com>
+ <87k0r4yi4s.fsf@manicouagan.localdomain>
+ <3ca0aa87-ca83-8024-4067-c2382a360db9@linux.microsoft.com>
+ <CAL_JsqJiRV5xShOgso0PH2pFhv-yozay58i1uGQC0dJCVxkJPA@mail.gmail.com>
+ <98a061d1-05ea-eff2-5c5c-a59f491fe924@linux.microsoft.com>
+ <CAL_Jsq+R-zOT581_W0Ar5H58rfPnGiWeetoF_b+BaW7er22bPA@mail.gmail.com>
+ <6a197963deb8e44c71384ea9b89d7f3f13c947bf.camel@linux.ibm.com>
+ <87blcgx72l.fsf@manicouagan.localdomain>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <a683ac0e-5717-d419-7ae2-7cd9f2ec2ffb@linux.microsoft.com>
+Date:   Fri, 19 Feb 2021 10:43:43 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210203143709.GA18907@willie-the-truck>
+In-Reply-To: <87blcgx72l.fsf@manicouagan.localdomain>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 03, 2021, Will Deacon wrote:
-> On Fri, Jan 08, 2021 at 12:15:14PM +0000, Quentin Perret wrote:
-
-...
-
-> > +static inline unsigned long hyp_s1_pgtable_size(void)
-> > +{
-
-...
-
-> > +		res += nr_pages << PAGE_SHIFT;
-> > +	}
-> > +
-> > +	/* Allow 1 GiB for private mappings */
-> > +	nr_pages = (1 << 30) >> PAGE_SHIFT;
+On 2/19/21 10:09 AM, Thiago Jung Bauermann wrote:
 > 
-> SZ_1G >> PAGE_SHIFT
+> Mimi Zohar <zohar@linux.ibm.com> writes:
+> 
+>> On Fri, 2021-02-19 at 11:43 -0600, Rob Herring wrote:
+>>> On Fri, Feb 19, 2021 at 10:57 AM Lakshmi Ramasubramanian
+>>> <nramas@linux.microsoft.com> wrote:
+>>>>
+>>>> On 2/19/21 6:16 AM, Rob Herring wrote:
+>>>>> On Thu, Feb 18, 2021 at 8:53 PM Lakshmi Ramasubramanian
+>>>>> <nramas@linux.microsoft.com> wrote:
+>>>>>>
+>>>>>> On 2/18/21 5:13 PM, Thiago Jung Bauermann wrote:
+>>>>>>>
+>>>>>>> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+>>>>>>>
+>>>>>>>> On 2/18/21 4:07 PM, Mimi Zohar wrote:
+>>>>>>>>
+>>>>>>>> Hi Mimi,
+>>>>>>>>
+>>>>>>>>> On Thu, 2021-02-18 at 14:33 -0800, Lakshmi Ramasubramanian wrote:
+>>>>>>>>>> of_kexec_alloc_and_setup_fdt() defined in drivers/of/kexec.c builds
+>>>>>>>>>> a new device tree object that includes architecture specific data
+>>>>>>>>>> for kexec system call.  This should be defined only if the architecture
+>>>>>>>>>> being built defines kexec architecture structure "struct kimage_arch".
+>>>>>>>>>>
+>>>>>>>>>> Define a new boolean config OF_KEXEC that is enabled if
+>>>>>>>>>> CONFIG_KEXEC_FILE and CONFIG_OF_FLATTREE are enabled, and
+>>>>>>>>>> the architecture is arm64 or powerpc64.  Build drivers/of/kexec.c
+>>>>>>>>>> if CONFIG_OF_KEXEC is enabled.
+>>>>>>>>>>
+>>>>>>>>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>>>>>>>>>> Fixes: 33488dc4d61f ("of: Add a common kexec FDT setup function")
+>>>>>>>>>> Reported-by: kernel test robot <lkp@intel.com>
+>>>>>>>>>> ---
+>>>>>>>>>>      drivers/of/Kconfig  | 6 ++++++
+>>>>>>>>>>      drivers/of/Makefile | 7 +------
+>>>>>>>>>>      2 files changed, 7 insertions(+), 6 deletions(-)
+>>>>>>>>>>
+>>>>>>>>>> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+>>>>>>>>>> index 18450437d5d5..f2e8fa54862a 100644
+>>>>>>>>>> --- a/drivers/of/Kconfig
+>>>>>>>>>> +++ b/drivers/of/Kconfig
+>>>>>>>>>> @@ -100,4 +100,10 @@ config OF_DMA_DEFAULT_COHERENT
+>>>>>>>>>>              # arches should select this if DMA is coherent by default for OF devices
+>>>>>>>>>>              bool
+>>>>>>>>>>      +config OF_KEXEC
+>>>>>>>>>> +  bool
+>>>>>>>>>> +  depends on KEXEC_FILE
+>>>>>>>>>> +  depends on OF_FLATTREE
+>>>>>>>>>> +  default y if ARM64 || PPC64
+>>>>>>>>>> +
+>>>>>>>>>>      endif # OF
+>>>>>>>>>> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+>>>>>>>>>> index c13b982084a3..287579dd1695 100644
+>>>>>>>>>> --- a/drivers/of/Makefile
+>>>>>>>>>> +++ b/drivers/of/Makefile
+>>>>>>>>>> @@ -13,11 +13,6 @@ obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
+>>>>>>>>>>      obj-$(CONFIG_OF_RESOLVE)  += resolver.o
+>>>>>>>>>>      obj-$(CONFIG_OF_OVERLAY) += overlay.o
+>>>>>>>>>>      obj-$(CONFIG_OF_NUMA) += of_numa.o
+>>>>>>>>>> -
+>>>>>>>>>> -ifdef CONFIG_KEXEC_FILE
+>>>>>>>>>> -ifdef CONFIG_OF_FLATTREE
+>>>>>>>>>> -obj-y     += kexec.o
+>>>>>>>>>> -endif
+>>>>>>>>>> -endif
+>>>>>>>>>> +obj-$(CONFIG_OF_KEXEC) += kexec.o
+>>>>>>>>>>        obj-$(CONFIG_OF_UNITTEST) += unittest-data/
+>>>>>>>>> Is it possible to reuse CONFIG_HAVE_IMA_KEXEC here?
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>> For ppc64 CONFIG_HAVE_IMA_KEXEC is selected when CONFIG_KEXEC_FILE is enabled.
+>>>>>>>> So I don't see a problem in reusing CONFIG_HAVE_IMA_KEXEC for ppc.
+>>>>>>>>
+>>>>>>>> But for arm64, CONFIG_HAVE_IMA_KEXEC is enabled in the final patch in the patch
+>>>>>>>> set (the one for carrying forward IMA log across kexec for arm64). arm64 calls
+>>>>>>>> of_kexec_alloc_and_setup_fdt() prior to enabling CONFIG_HAVE_IMA_KEXEC and hence
+>>>>>>>> breaks the build for arm64.
+>>>>>>>
+>>>>>>> One problem is that I believe that this patch won't placate the robot,
+>>>>>>> because IIUC it generates config files at random and this change still
+>>>>>>> allows hppa and s390 to enable CONFIG_OF_KEXEC.
+>>>>>>
+>>>>>> I enabled CONFIG_OF_KEXEC for s390. With my patch applied,
+>>>>>> CONFIG_OF_KEXEC is removed. So I think the robot enabling this config
+>>>>>> would not be a problem.
+>>>>>>
+>>>>>>>
+>>>>>>> Perhaps a new CONFIG_HAVE_KIMAGE_ARCH option? Not having that option
+>>>>>>> would still allow building kexec.o, but would be used inside kexec.c to
+>>>>>>> avoid accessing kimage.arch members.
+>>>>>>>
+>>>>>>
+>>>>>> I think this is a good idea - a new CONFIG_HAVE_KIMAGE_ARCH, which will
+>>>>>> be selected by arm64 and ppc for now. I tried this, and it fixes the
+>>>>>> build issue.
+>>>>>>
+>>>>>> Although, the name for the new config can be misleading since PARISC,
+>>>>>> for instance, also defines "struct kimage_arch". Perhaps,
+>>>>>> CONFIG_HAVE_ELF_KIMAGE_ARCH since of_kexec_alloc_and_setup_fdt() is
+>>>>>> accessing ELF specific fields in "struct kimage_arch"?
+>>>>>>
+>>>>>> Rob/Mimi - please let us know which approach you think is better.
+>>>>>
+>>>>> I'd just move the fields to kimage.
+>>>>>
+>>>>
+>>>> I think Mimi's suggestion to use CONFIG_HAVE_IMA_KEXEC for building
+>>>> drivers/of/kexec.c would work and also avoid the bisect issue if we do
+>>>> the following:
+>>>
+>>> That seems wrong given only a portion of the file depends on IMA. And
+>>> it reduces our compile coverage.
+>>   
+>> I agree with you this is the wrong solution.  Lakshmi's patch
+>> introduced a new option to prevent other arch's from including kexec.o,
+>> which is the same functionality as CONFIG_HAVE_IMA_KEXEC.  I'm just not
+>> sure what the right solution would be.
+> 
+> I think Rob's suggestion of just moving the elf_load_addr,
+> elf_headers_sz fields (and for consistency, elf_headers as well even though it
+> isn't used in tihs file) from kimage_arch to kimage.
+> 
+> The downside is that these fields will go unused on a number of
+> architectures, but it's not worth complicating the code just because of
+> it.
+> 
+> The patch to do that would have to go before "of: Add a common kexec FDT
+> setup function". That should be enough to preserve bisectability for all arches.
+> 
 
-Where does the 1gb magic number come from?  IIUC, this is calculating the number
-of pages needed for the hypervisor's Stage-1 page tables.  The amount of memory
-needed for those page tables should be easily calculated, and assuming huge
-pages can be used, should be far less the 1gb.
- 
-> > +	nr_pages = __hyp_pgtable_max_pages(nr_pages);
-> > +	res += nr_pages << PAGE_SHIFT;
-> > +
-> > +	return res;
+Agreed. I'll make this change and update.
 
-...
-
-> > +void __init kvm_hyp_reserve(void)
-> > +{
-> > +	u64 nr_pages, prev;
-> > +
-> > +	if (!is_hyp_mode_available() || is_kernel_in_hyp_mode())
-> > +		return;
-> > +
-> > +	if (kvm_get_mode() != KVM_MODE_PROTECTED)
-> > +		return;
-> > +
-> > +	if (kvm_nvhe_sym(hyp_memblock_nr) < 0) {
-> > +		kvm_err("Failed to register hyp memblocks\n");
-> > +		return;
-> > +	}
-> > +
-> > +	sort_memblock_regions();
-> > +
-> > +	/*
-> > +	 * We don't know the number of possible CPUs yet, so allocate for the
-> > +	 * worst case.
-> > +	 */
-> > +	hyp_mem_size += NR_CPUS << PAGE_SHIFT;
-
-Is this for per-cpu stack?
-
-If so, what guarantees a single page is sufficient?  Mostly a curiosity question,
-since it looks like this is an existing assumption by init_hyp_mode().  Shouldn't
-the required stack size be defined in bytes and converted to pages, or is there a
-guarantee that 64kb pages will be used?
-
-> There was a recent patch bumping NR_CPUs to 512, so this would be 32MB
-> with 64k pages. Is it possible to return memory to the host later on once
-> we have a better handle on the number of CPUs in the system?
-
-Does kvm_hyp_reserve() really need to be called during bootmem_init()?  What
-prevents doing the reservation during init_hyp_mode()?  If the problem is that
-pKVM needs a single contiguous chunk of memory, then it might be worth solving
-_that_ problem, e.g. letting the host donate memory in N-byte chunks instead of
-requiring a single huge blob of memory.
- 
-> > +	hyp_mem_size += hyp_s1_pgtable_size();
+  -lakshmi
