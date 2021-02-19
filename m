@@ -2,132 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43DC431FC1B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 16:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3022C31FC88
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 17:01:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbhBSPf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Feb 2021 10:35:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57576 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbhBSPfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Feb 2021 10:35:52 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E14C061574;
-        Fri, 19 Feb 2021 07:35:11 -0800 (PST)
-Received: from [IPv6:2a01:e0a:4cb:a870:9157:afa6:f219:3c2c] (unknown [IPv6:2a01:e0a:4cb:a870:9157:afa6:f219:3c2c])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id D16F01F46406;
-        Fri, 19 Feb 2021 15:34:54 +0000 (GMT)
-Subject: Re: [PATCH v2 4/9] media: uapi: Add a control for HANTRO driver
-To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@siol.net>,
-        ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org, peng.fan@nxp.com,
-        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        id S229812AbhBSQBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Feb 2021 11:01:48 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:55588 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229746AbhBSQBr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Feb 2021 11:01:47 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 527112000AA;
+        Fri, 19 Feb 2021 17:00:57 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 413E72000E5;
+        Fri, 19 Feb 2021 17:00:57 +0100 (CET)
+Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 9DCC22042F;
+        Fri, 19 Feb 2021 17:00:56 +0100 (CET)
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Georgi Djakov <djakov@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Martin Kepplinger <martink@posteo.de>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20210218191844.297869-1-benjamin.gaignard@collabora.com>
- <20210218191844.297869-5-benjamin.gaignard@collabora.com>
- <2850677.34AhzSeaHW@kista>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Message-ID: <3ec0c7ba-7492-02d1-8beb-fe692ba7d265@collabora.com>
-Date:   Fri, 19 Feb 2021 16:34:52 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <2850677.34AhzSeaHW@kista>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+        linux-clk@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Cc:     NXP Linux Team <linux-imx@nxp.com>, Abel Vesa <abel.vesa@nxp.com>
+Subject: [RFC 00/19] Rework support for i.MX8MQ interconnect with devfreq
+Date:   Fri, 19 Feb 2021 17:59:57 +0200
+Message-Id: <1613750416-11901-1-git-send-email-abel.vesa@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This has been on my queue for quite some time now. It is more of a
+proof-of-concept.
 
-Le 18/02/2021 à 22:34, Jernej Škrabec a écrit :
-> Hi!
->
-> Dne četrtek, 18. februar 2021 ob 20:18:39 CET je Benjamin Gaignard napisal(a):
->> The HEVC HANTRO driver needs to know the number of bits to skip at
->> the beginning of the slice header.
->> That is a hardware specific requirement so create a dedicated control
->> that this purpose.
->>
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->>   include/uapi/linux/hantro-v4l2-controls.h | 20 ++++++++++++++++++++
->>   include/uapi/linux/v4l2-controls.h        |  5 +++++
->>   2 files changed, 25 insertions(+)
->>   create mode 100644 include/uapi/linux/hantro-v4l2-controls.h
->>
->> diff --git a/include/uapi/linux/hantro-v4l2-controls.h b/include/uapi/linux/
-> hantro-v4l2-controls.h
->> new file mode 100644
->> index 000000000000..30b1999b7af3
->> --- /dev/null
->> +++ b/include/uapi/linux/hantro-v4l2-controls.h
->> @@ -0,0 +1,20 @@
->> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
->> +
->> +#ifndef __UAPI_HANTRO_V4L2_CONYTROLS_H__
->> +#define __UAPI_HANTRO_V4L2_CONYTROLS_H__
->> +
->> +#include <linux/v4l2-controls.h>
->> +#include <media/hevc-ctrls.h>
->> +
->> +#define V4L2_CID_HANTRO_HEVC_EXTRA_DECODE_PARAMS	
-> (V4L2_CID_USER_HANTRO_BASE + 0)
->> +
->> +/**
->> + * struct hantro_hevc_extra_decode_params - extra decode parameters for
-> hantro driver
->> + * @hevc_hdr_skip_lenght:	header first bits offset
->> + */
->> +struct hantro_hevc_extra_decode_params {
->> +	__u32	hevc_hdr_skip_lenght;
-> typo: lenght -> length
->
-> Same mistake in description above.
+This rework is done with the compatibility of future i.MX platforms in
+mind. For example, the i.MX8MP platform has multiple NoCs. This
+patchsets prepares the imx interconnect and imx devfreq for that too.
 
-Thanks I will fix that in v3
+As of now, none of the drivers involved are being used and there is no
+icc consumer on any off the i.MX platforms.
 
-Benjamin
+Basically, the steps taken here are the following:
 
->
-> Best regards,
-> Jernej
->
->> +	__u8	padding[4];
->> +};
->> +
->> +#endif
->> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-
-> controls.h
->> index 039c0d7add1b..ced7486c7f46 100644
->> --- a/include/uapi/linux/v4l2-controls.h
->> +++ b/include/uapi/linux/v4l2-controls.h
->> @@ -209,6 +209,11 @@ enum v4l2_colorfx {
->>    * We reserve 128 controls for this driver.
->>    */
->>   #define V4L2_CID_USER_CCS_BASE			(V4L2_CID_USER_BASE +
-> 0x10f0)
->> +/*
->> + * The base for HANTRO driver controls.
->> + * We reserve 32 controls for this driver.
->> + */
->> +#define V4L2_CID_USER_HANTRO_BASE		(V4L2_CID_USER_BASE +
-> 0x1170)
->>   
->>   /* MPEG-class control IDs */
->>   /* The MPEG controls are applicable to all codec controls
->> -- 
->> 2.25.1
->>
->>
->
->
+1. Make the dram_apb clock "reparantable" from kernel.
+This is needed in order to keep track of the actual parent of the 
+dram_apb clock in the kernel clock hierarchy. Note that the actual
+switch is done EL3 (TF-A).
+
+2. Rework the imx-bus so the actual link between the icc and the 
+NoCs or the pl301s is not tightly coupled. This allows us to have
+as many NoCs as necessary but also allows as to use the same driver
+for the pl301s. The pl301s have their own clocks too, so we need to
+reduce their rates too.
+
+3. Rework the imx8m-ddrc driver. Remove the support for dts defined
+OPPs. The EL3 provides those. So instead of havingi to keep the OPP table in
+both EL3 and kernel in sync, we rely on what the EL3 gives us.
+Also, when the platform suspends, the bus needs to be running at highest
+rate, otherwise there is a chance it might not resume anymore.
+By adding the late system sleep PM ops we can handle that easily.
+
+4. Rework the imx interconnect driver to use the fsl,icc-id instead
+of the robust imx_icc_node_adj_desc for linking with the target node.
+By adding the fsl,icc-id property to all the NoC and pl301 dts nodes,
+we can link each icc node to their corresponding NoC, pl301 or dram.
+Basically, when the imx interconnect platform specific driver probes,
+it will take each node defined for that platform and look-up the
+corresponding dts node based on the id and add that as the qos device.
+
+5. Added the fec and usdhc as icc consumers. This is just as an example.
+All the other consumers can be added later. Basically, each consumer
+will add a path to their device node and in the driver will have to
+handle that icc path accordingly.
+
+Abel Vesa (19):
+  clk: imx8mq: Replace critical with ignore_unused flag for dram_apb
+    clock
+  dt-bindings: interconnect: imx8mq: Add missing pl301 and SAI ids
+  devfreq: imx-bus: Switch governor to powersave
+  devfreq: imx-bus: Decouple imx-bus from icc made
+  devfreq: imx8m-ddrc: Change governor to powersave
+  devfreq: imx8m-ddrc: Use the opps acquired from EL3
+  devfreq: imx8m-ddrc: Add late system sleep PM ops
+  interconnect: imx: Switch from imx_icc_node_adj_desc to fsl,icc-id
+    node assignment
+  interconnect: imx8: Remove the imx_icc_node_adj_desc
+  interconnect: imx8mq: Add the pl301_per_m and pl301_wakeup nodes and
+    subnodes
+  interconnect: imx8mq: Add of_match_table
+  interconnect: imx: Add imx_icc_get_bw and imx_icc_aggregate functions
+  arm64: dts: imx8mq: Add fsl,icc-id property to ddrc node
+  arm64: dts: imx8mq: Add fsl,icc-id to noc node
+  arm64: dts: imx8mq: Add all pl301 nodes
+  arm64: dts: imx8mq: Add the interconnect node
+  arm64: dts: imx8mq: Add interconnect properties to icc consumer nodes
+  net: ethernet: fec_main: Add interconnect support
+  mmc: sdhci-esdhc-imx: Add interconnect support
+
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 200 +++++++++++++++++++++-
+ drivers/clk/imx/clk-imx8mq.c              |   2 +-
+ drivers/devfreq/imx-bus.c                 |  42 +----
+ drivers/devfreq/imx8m-ddrc.c              |  75 +++-----
+ drivers/interconnect/imx/imx.c            |  92 +++++-----
+ drivers/interconnect/imx/imx.h            |  19 +-
+ drivers/interconnect/imx/imx8mm.c         |  32 ++--
+ drivers/interconnect/imx/imx8mn.c         |  28 +--
+ drivers/interconnect/imx/imx8mq.c         |  59 ++++---
+ drivers/mmc/host/sdhci-esdhc-imx.c        |  26 +++
+ drivers/net/ethernet/freescale/fec.h      |   3 +
+ drivers/net/ethernet/freescale/fec_main.c |  19 ++
+ include/dt-bindings/interconnect/imx8mq.h |   9 +
+ scripts/dtc/fdtoverlay                    | Bin 0 -> 61280 bytes
+ 14 files changed, 393 insertions(+), 213 deletions(-)
+ create mode 100755 scripts/dtc/fdtoverlay
+
+-- 
+2.29.2
+
