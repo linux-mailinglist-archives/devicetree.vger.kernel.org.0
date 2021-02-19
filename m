@@ -2,159 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B68731F38B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 02:14:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E337A31F394
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 02:25:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbhBSBOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 20:14:37 -0500
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:15696 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229535AbhBSBOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Feb 2021 20:14:37 -0500
-Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 11J13XDI040538;
-        Thu, 18 Feb 2021 20:13:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
- cc : subject : in-reply-to : date : message-id : mime-version :
- content-type; s=pp1; bh=Ol+KgWWKRtwuv1OC4+AQN+FF1AU19KJg+Ck4dmIKSDI=;
- b=CAziGYVZMQVAWN2zL50PRtEUhCVQt13b00RPNlJbvpkc0sg8U62G1edPNACJtZt/pmTd
- afJJeUDoIjyZkVoBlXgKo9WGKNPe1HIaBaYMoCl6UYFuv3bDK5yPPHwDPHnTFRJcJuIy
- 82szrLrwYleH2LLiCVGGjHhkjqvhsMD9NvNzGgggMt30dxy1Tk1HbD1MYXgFeLQh6qEf
- 5IjAJNZnlkiVA4Zcg13B2EhfWCILRwjQqZuktiBNptCUrOj3zSgJO07kVBLH6WRPQ1Fk
- FUm9JZGTryprxGMztZB6oWCkbYI7Q8D3Z4jN29Wv1GAfYvS4w9XkDZvgEFWaRj3qF1Cr yQ== 
-Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 36t2899qee-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 18 Feb 2021 20:13:31 -0500
-Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
-        by ppma03wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 11J0vnvh015090;
-        Fri, 19 Feb 2021 01:13:30 GMT
-Received: from b01cxnp22034.gho.pok.ibm.com (b01cxnp22034.gho.pok.ibm.com [9.57.198.24])
-        by ppma03wdc.us.ibm.com with ESMTP id 36p6d9j2d1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 19 Feb 2021 01:13:30 +0000
-Received: from b01ledav006.gho.pok.ibm.com (b01ledav006.gho.pok.ibm.com [9.57.199.111])
-        by b01cxnp22034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 11J1DTxe16056632
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 19 Feb 2021 01:13:29 GMT
-Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 9C267AC059;
-        Fri, 19 Feb 2021 01:13:29 +0000 (GMT)
-Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 6177CAC05B;
-        Fri, 19 Feb 2021 01:13:25 +0000 (GMT)
-Received: from manicouagan.localdomain (unknown [9.85.141.141])
-        by b01ledav006.gho.pok.ibm.com (Postfix) with ESMTPS;
-        Fri, 19 Feb 2021 01:13:25 +0000 (GMT)
-References: <20210218223305.2044-1-nramas@linux.microsoft.com>
- <c6490f6a126a2f10e3e3445b51ea552a26f896a9.camel@linux.ibm.com>
- <8b8c0b70-c7ab-33f3-b66c-9ea03388497b@linux.microsoft.com>
-User-agent: mu4e 1.4.10; emacs 27.1
-From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     Mimi Zohar <zohar@linux.ibm.com>, robh@kernel.org,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
-        mpe@ellerman.id.au, sfr@canb.auug.org.au, james.morse@arm.com,
-        sashal@kernel.org, benh@kernel.crashing.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH] of: error: 'const struct kimage' has no member named
- 'arch'
-In-reply-to: <8b8c0b70-c7ab-33f3-b66c-9ea03388497b@linux.microsoft.com>
-Date:   Thu, 18 Feb 2021 22:13:23 -0300
-Message-ID: <87k0r4yi4s.fsf@manicouagan.localdomain>
+        id S229471AbhBSBY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 20:24:58 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41338 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229468AbhBSBY5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Feb 2021 20:24:57 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0FE0A64E44;
+        Fri, 19 Feb 2021 01:24:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613697857;
+        bh=+unYTifO0TGH/0BCByaFUkWR19TSyWyG4C8bxvnjEvQ=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=XNY9RgvnEaMZUPaOtBMPBSBy3ZIedSZdoZKehp5mYho1TPfMPFVgJauJzJlxsAebg
+         +o2IR2SQs8H/cXUNTDjSbVLHExfZwcTUcNrOTlHgEC1B62KBBFJmjA2MvowY0+Te/i
+         5UoOADNzAmQpiEnQFxB293ZHYHXXHUGMctTYNA331nQWocd1EiydIfPOC1xIYPjrGg
+         Az2s2hpdVROiuwM+z6ADdg+SinXNVnpfMDb8cN2XKwhSAlg1zkpKfmY43h6kl40HbU
+         ox/T9Wgnn44rtYGODHxhc6+931aAsmeTSxKALITNBIMfe2TtLewXXPzB7tR60pP5BX
+         5B18ZLHIWqrTQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-02-18_14:2021-02-18,2021-02-18 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- bulkscore=0 adultscore=0 mlxlogscore=999 spamscore=0 suspectscore=0
- lowpriorityscore=0 phishscore=0 clxscore=1011 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2102190004
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210218092804.6c78c99c@xps13>
+References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com> <1613623791-4598-2-git-send-email-shubhrajyoti.datta@xilinx.com> <20210218092804.6c78c99c@xps13>
+Subject: Re: [PATCH v9 1/7] dt-bindings: add documentation of xilinx clocking wizard
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        mturquette@baylibre.com, gregkh@linuxfoundation.org,
+        shubhrajyoti.datta@gmail.com
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Date:   Thu, 18 Feb 2021 17:24:15 -0800
+Message-ID: <161369785558.1254594.14662342386099652001@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Miquel Raynal (2021-02-18 00:28:04)
+> Hi Shubhrajyoti,
+>=20
+> Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com> wrote on Thu, 18 Feb
+> 2021 10:19:45 +0530:
+>=20
+> > Add the devicetree binding for the xilinx clocking wizard.
+> >=20
+> > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> > ---
+> > v6:
+> > Fix a yaml warning
+> > v7:
+> > Add vendor prefix speed-grade
+> > v8:
+> > Fix the warnings
+> > v9:
+> > Fix the warnings
+> >=20
+> >  .../bindings/clock/xlnx,clocking-wizard.yaml       | 65 ++++++++++++++=
+++++++++
+> >  1 file changed, 65 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocki=
+ng-wizard.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wiza=
+rd.yaml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+> > new file mode 100644
+> > index 0000000..d209140
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+> > @@ -0,0 +1,65 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/clock/xlnx,clocking-wizard.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Xilinx clocking wizard
+> > +
+> > +maintainers:
+> > +  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> > +
+> > +description:
+> > +  The clocking wizard is a soft ip clocking block of Xilinx versal. It
+> > +  reads required input clock frequencies from the devicetree and acts =
+as clock
+> > +  clock output.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: xlnx,clocking-wizard
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#clock-cells":
+> > +    const: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: clock input
+> > +      - description: axi clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: clk_in1
+> > +      - const: s_axi_aclk
+> > +
+> > +  clock-output-names: true
+> > +
+> > +  xlnx,speed-grade:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [1, 2, 3]
+> > +    description:
+> > +      Speed grade of the device.
+>=20
+> A bit of explanation of what this describes would be welcome.
+>=20
+> Don't forget that binding are not tied to any driver implementation,
+> these are supposed to be hardware description properties.
 
-Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-
-> On 2/18/21 4:07 PM, Mimi Zohar wrote:
->
-> Hi Mimi,
->
->> On Thu, 2021-02-18 at 14:33 -0800, Lakshmi Ramasubramanian wrote:
->>> of_kexec_alloc_and_setup_fdt() defined in drivers/of/kexec.c builds
->>> a new device tree object that includes architecture specific data
->>> for kexec system call.  This should be defined only if the architecture
->>> being built defines kexec architecture structure "struct kimage_arch".
->>>
->>> Define a new boolean config OF_KEXEC that is enabled if
->>> CONFIG_KEXEC_FILE and CONFIG_OF_FLATTREE are enabled, and
->>> the architecture is arm64 or powerpc64.  Build drivers/of/kexec.c
->>> if CONFIG_OF_KEXEC is enabled.
->>>
->>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
->>> Fixes: 33488dc4d61f ("of: Add a common kexec FDT setup function")
->>> Reported-by: kernel test robot <lkp@intel.com>
->>> ---
->>>   drivers/of/Kconfig  | 6 ++++++
->>>   drivers/of/Makefile | 7 +------
->>>   2 files changed, 7 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
->>> index 18450437d5d5..f2e8fa54862a 100644
->>> --- a/drivers/of/Kconfig
->>> +++ b/drivers/of/Kconfig
->>> @@ -100,4 +100,10 @@ config OF_DMA_DEFAULT_COHERENT
->>>   	# arches should select this if DMA is coherent by default for OF devices
->>>   	bool
->>>   +config OF_KEXEC
->>> +	bool
->>> +	depends on KEXEC_FILE
->>> +	depends on OF_FLATTREE
->>> +	default y if ARM64 || PPC64
->>> +
->>>   endif # OF
->>> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
->>> index c13b982084a3..287579dd1695 100644
->>> --- a/drivers/of/Makefile
->>> +++ b/drivers/of/Makefile
->>> @@ -13,11 +13,6 @@ obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
->>>   obj-$(CONFIG_OF_RESOLVE)  += resolver.o
->>>   obj-$(CONFIG_OF_OVERLAY) += overlay.o
->>>   obj-$(CONFIG_OF_NUMA) += of_numa.o
->>> -
->>> -ifdef CONFIG_KEXEC_FILE
->>> -ifdef CONFIG_OF_FLATTREE
->>> -obj-y	+= kexec.o
->>> -endif
->>> -endif
->>> +obj-$(CONFIG_OF_KEXEC) += kexec.o
->>>     obj-$(CONFIG_OF_UNITTEST) += unittest-data/
->> Is it possible to reuse CONFIG_HAVE_IMA_KEXEC here?
->> 
->
-> For ppc64 CONFIG_HAVE_IMA_KEXEC is selected when CONFIG_KEXEC_FILE is enabled.
-> So I don't see a problem in reusing CONFIG_HAVE_IMA_KEXEC for ppc.
->
-> But for arm64, CONFIG_HAVE_IMA_KEXEC is enabled in the final patch in the patch
-> set (the one for carrying forward IMA log across kexec for arm64). arm64 calls
-> of_kexec_alloc_and_setup_fdt() prior to enabling CONFIG_HAVE_IMA_KEXEC and hence
-> breaks the build for arm64.
-
-One problem is that I believe that this patch won't placate the robot,
-because IIUC it generates config files at random and this change still
-allows hppa and s390 to enable CONFIG_OF_KEXEC.
-
-Perhaps a new CONFIG_HAVE_KIMAGE_ARCH option? Not having that option
-would still allow building kexec.o, but would be used inside kexec.c to
-avoid accessing kimage.arch members.
-
--- 
-Thiago Jung Bauermann
-IBM Linux Technology Center
+Would opp tables work for this?
