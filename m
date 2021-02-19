@@ -2,743 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C2B231F5D8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 09:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92C8631F671
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 10:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229944AbhBSI1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Feb 2021 03:27:04 -0500
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:35023 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229913AbhBSI04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Feb 2021 03:26:56 -0500
-Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 15C9B3BE9C7;
-        Fri, 19 Feb 2021 08:16:24 +0000 (UTC)
-X-Originating-IP: 90.55.106.192
-Received: from pc-2.home (atoulouse-258-1-35-192.w90-55.abo.wanadoo.fr [90.55.106.192])
-        (Authenticated sender: maxime.chevallier@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 42E7AFF81A;
-        Fri, 19 Feb 2021 08:15:21 +0000 (UTC)
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH v4 3/3] media: i2c: Introduce a driver for the Techwell TW9900 decoder
-Date:   Fri, 19 Feb 2021 09:15:14 +0100
-Message-Id: <20210219081514.1592033-4-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210219081514.1592033-1-maxime.chevallier@bootlin.com>
-References: <20210219081514.1592033-1-maxime.chevallier@bootlin.com>
+        id S229625AbhBSJUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Feb 2021 04:20:53 -0500
+Received: from mail-db8eur05on2050.outbound.protection.outlook.com ([40.107.20.50]:45362
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229527AbhBSJUt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Feb 2021 04:20:49 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RkEfSE3Z1BVjZpBGo1+3sx2lx17O7YVfhw/WaNzxBwToEPBpox25x0YMvnv9iwAYGgFD50mdBYMjTBNDjIf7Uba2IoMNRPr7gasTb9/rUeIxgiOx5w6o+aeQXPEKYnhu3x4icsdMENAgF3+upIzxYnMs4Quck92v8MdG4l6mfS6jwVtPKTnyNZKaiOW6y1Tev5hu9G9o+r/QlkGyhsXY8PqEAzbTRLatsWDSKpgWes04AAEUGP9NmUnslLRwkwJVV8AYhBfkrVCQuVSVU5/y/2L0bcy6gBSAwqCNem/ygU1L5zNECwXVP2KJZtadZluVUkbC1bXEEzHDJyWVM8yR4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=J3hRf7g8i9gtGcvis3Fn4kxmQ6pxSOnudiiqc6+QEnk=;
+ b=GIq2arOKHA86+nedChntmpx6ukzSqlPtin2d4EqHwjt55nlCM6JpHPFMQHnYarQwP27JjY3e40+xElRiRl3KL0kfseLTsevAy4o+t/1dOVmIW0wjGHVlo+QjSsVaBx/Auw4NXWrH4hDQprtKUFYjoRZc2bafW5Vdr0qk2OlFZRyEyr+9Vr49hPd7dMdn24CW8LvP7JxCB7BTW+V2HTqaihd/qdv1bN2OVPhjXHe+3wkMaO1TVLNy1vPifPNOimP1nLaFmXXRDSwh1OEAFP4nMvgXry7Rpph4X8CHQt8QGFdFZRTOGTqmgiGeyRaB6RFk+xYRV1fdVk6zFKuFHgPkIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=J3hRf7g8i9gtGcvis3Fn4kxmQ6pxSOnudiiqc6+QEnk=;
+ b=JYukrAG7K4mWcxlqgct+LKq3r0dZPloMoF224XrvrZs+C9PXfNulksx/20rBR12DhKvTSfq7rnhHi/6UehTwLDgjF7yGtvicaHhGJQfz6OGqbkbC8DZfAZG472rWRcJblyVeknvVjd9RhIjAU5Qua/r3tG7te3o2LVhHVL/2v1E=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR04MB7086.eurprd04.prod.outlook.com (2603:10a6:800:121::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.29; Fri, 19 Feb
+ 2021 09:19:57 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0%5]) with mapi id 15.20.3868.027; Fri, 19 Feb 2021
+ 09:19:57 +0000
+Message-ID: <a89d5c08c9f0793acfb9d056d5748e4a3cf16c2f.camel@nxp.com>
+Subject: Re: [PATCH v3 0/5] phy: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS
+ PHY mode support
+From:   Liu Ying <victor.liu@nxp.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        a.hajda@samsung.com, narmstrong@baylibre.com,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, agx@sigxcpu.org,
+        robert.chiras@nxp.com, martin.kepplinger@puri.sm
+Date:   Fri, 19 Feb 2021 17:18:18 +0800
+In-Reply-To: <1607651182-12307-1-git-send-email-victor.liu@nxp.com>
+References: <1607651182-12307-1-git-send-email-victor.liu@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.4-0ubuntu1 
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR02CA0105.apcprd02.prod.outlook.com
+ (2603:1096:4:92::21) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR02CA0105.apcprd02.prod.outlook.com (2603:1096:4:92::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.27 via Frontend Transport; Fri, 19 Feb 2021 09:19:51 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: c0c03831-4fc0-4eb2-77f2-08d8d4b7866f
+X-MS-TrafficTypeDiagnostic: VI1PR04MB7086:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB70869DB3ACB3157E3565F88A98849@VI1PR04MB7086.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RxVK+d8lXvf9W3fJ0wDtRk/+f8eWneW3s6/6YLMABPQDVIRAwxqI1I6e/DJqr6Yjyp+lttF8FnhMIbaSNI5fgCJtAjNFOE4F+K4nSJNw9wvEfTlxC7Z4bN10tfFeTaJpChewT0G+FrFfmDqRVKsPBcfFGpwujL6UMv60RO5O6pjzcd52TdmJYlpThkestDMjwDGNpfr47UZkHNyXOcrCfpcUuUKyuFGjCijMYHW7dvdzReLxVZ7qZQSDkv7Vfqo10ePhUNWuz6K1Zk2rW01bcwqFvfI+DfAHdRcB9QQEzNplJRUI2MKvOglt8bQV6zdtw4FZ67vA/dxsohwaRfA8KG+noac3vdv+0GqylGZMPTuuINfOj9CXfumNIf8ZTXN9PJYYiFhcNpPHTJPQRw1HA/DvKlqlh0bl75HE6fNoffOzpF3FsE+UvFT4n4bQhYEzwz2lrBJ8QYBK0KEd60u7Qx3LbMI9cLB4FkDaOGC76yPi7sGYe88b5bgfCN+ynchgZ9WU1ZE8bbUzMzi3s9W3Wg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(136003)(346002)(376002)(39860400002)(2616005)(478600001)(8676002)(5660300002)(6486002)(26005)(956004)(52116002)(66946007)(16526019)(186003)(66556008)(66476007)(7416002)(6512007)(316002)(6506007)(8936002)(83380400001)(4001150100001)(86362001)(2906002)(36756003)(4326008)(6666004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?KzdpRGdsYy90cEwvcklMZDMxbHlQV25ZN215V3JQcmkzcW0zeWNOSnlLODVa?=
+ =?utf-8?B?NVpqeE9TeGQ4MW9RYWh4aFpMVWZ6SkgvdlhnQklzYm9RNFhNZnZoQTNwOHZQ?=
+ =?utf-8?B?ejljSi9yR29XS0N5WTcycTNkd2lUQUtFeXZTTWhlTEJEVUNvcEphQzV0ZU83?=
+ =?utf-8?B?aTlHR0gydzYvckdRT0pXTkRtYVpoVGNsRWgzTmIyZCtNZXlHZGJDNkhxSFZR?=
+ =?utf-8?B?OG1Dc2pBN3hqb3I2d2w2MUdvMEpWTExBSFk3V1BPcTZFdjlJbUpBbVhFUStS?=
+ =?utf-8?B?OExGcnMwY2NqQVpBU3IwaURQRjhxTlVZSlBnL24yM3lhRnZMcitBRHpUeUo1?=
+ =?utf-8?B?MU9vbmhMNzV0OHFOUGQ5MEhMT1NYejBNL2hiQUpqQjFMdTk1djkwYkdtMkdJ?=
+ =?utf-8?B?Wmh1aEpRK3UzZVlBRUNGMm5VSGRqdFEvN1lHa2dqdVRQZC9zTElXSjh4RVZW?=
+ =?utf-8?B?S2kvRDFzVjk3ZjRyOEFvWmpBL2pBOGRWZE1FTXZ0VXlMd3htZUIyYU4xR2lh?=
+ =?utf-8?B?K0lWcTA4ek1ZWGRIT2pVTzV1RjJMWnJkTXN6b202MnVyV1RTN2FnR0FiZnlY?=
+ =?utf-8?B?ZHhEaDJqL1RDaW5ZcVNVaTBmSDZFa3lBd0JXbjJmUUl3NkVvb1lCY21jRytl?=
+ =?utf-8?B?dU40N1BXRjFuMWcrTURUbjJRYW1ZSGpYTTcrSHhiR1EvbFc0L0VGbXhYZnlZ?=
+ =?utf-8?B?RmVlaUVUK2NUVnhQVjV5UFBiakhWb1NCYjAxaWdyVTVzN1lNcXlHMXRsb0Nr?=
+ =?utf-8?B?TWFEUEFrNDRNbU9HYjFhd0dkQ29OWmlwd2pUQU1SK3lKZUlJOEhpbWx5cXd5?=
+ =?utf-8?B?UDVXN3hSQzZEWUl5OVJvcCtUVXp1RkVmQWdlUkJENjVYK0hiMitDNncvbjE3?=
+ =?utf-8?B?WmVaMFc5RU9OeUdjaS9pRkdrYlNvMUhPUTZ2WlVZRnJFYzV4SldYb0R3ajBo?=
+ =?utf-8?B?MWJ2YjBkYkJlaUpuNVJqMVUzRllEbmpmNVRQRmVYVlVka3JIeWQwODFHQWRj?=
+ =?utf-8?B?bXJpL2Y1bGZFS2twZCtNWW0yYXVacFFCbWxSczZNSmYwVDdKS1JtdGxaSXlD?=
+ =?utf-8?B?d0lLS2hMZ0JhOFp1THhxYk5uVmVzQWFCQkN1UW9UVzh5bks4eHYzU0w1aEkz?=
+ =?utf-8?B?b0ZYeWVWL1Mzc0t3YThJVXJ2OEVkdnpnOFZWeHkwbUJoWWFrVW42RE5nLzU3?=
+ =?utf-8?B?Y3hxSEtBdnlzWUxQQnJqQlBRYTJzUG9odW8rL3QxSEE5bjBHTFNiNmZSUDNx?=
+ =?utf-8?B?S1dCdHVCOWNXNWJ6ZVF1dStZUlJRbHRZdHVnREpZSGVlNklwMm1xNGVkU2Rq?=
+ =?utf-8?B?d2lhWkp1aGFpMzYrQ0Rydm5EWExCOFdSd005Y3dva3hsdWpUZE1mekgxUVZ6?=
+ =?utf-8?B?N3Y1VlRRR3hBUU5XOStweCtFUU00NVh6WXJScWdxb3FqemFPOTZZTFZkRFpk?=
+ =?utf-8?B?akduTHdQRDBHdmpvMk82RWtiTEpQWTZOL2ppdFVKVkkvNGZJa1pWVVdPSkxI?=
+ =?utf-8?B?eE1UdWtrckVCUTFicm5LWS9SQzFIU3pyRDViU3hVZWRhS1gxRlZEMUlHUHNK?=
+ =?utf-8?B?MFRsTTJsaTIrUVQ4NVlFR0k1K3pGcVNqT1VJelpjVGdDTC9jRm55V2o3UlVH?=
+ =?utf-8?B?RjFlRi8rcWFPNk92dS9wUzAzN3FQd0o1VHd2b3pWeVRrTFkxVEpYZ2JlYXh0?=
+ =?utf-8?B?bmJmeGpSeU1Ec0VVc1FlQzh6NFhqMTVkK2VxRGN0VXBqUjBNdVFUcnd3anRT?=
+ =?utf-8?Q?Nt2krgbHt00YIGR27j3Ch55oOcdMgKjiHYDhP4O?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0c03831-4fc0-4eb2-77f2-08d8d4b7866f
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2021 09:19:57.6728
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4kiIKSASNkO6aoNpGW42GjrFNbVFSR2Ua+hKsVdpjYFXrrkeF9NzBRtXADMcI9Qfr6Zrc8gLitS2zzp7sJEkJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7086
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Techwell video decoder supports PAL, NTSC and SECAM input formats,
-and outputs a BT.656 signal.
+A gentle ping.
 
-This commit adds support for this device, with basic support for NTSC
-and PAL, along with brightness and contrast controls.
+Vinod, Kishon, it would be nice if you may help review this.
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-v1 -> v2: Set the media entity type to decoder, and implement the
-s_std/g_std ops
+Thanks,
+Liu Ying
 
-V2 ->V3 : Fix coding-style issues, and remove the use of the bulk API
-for regulators. Make the driver select the media-controller and
-V4L2-subdev APIs.
-
-V3->V4: Fix a warning about an uninitialized ret variable in probe()
-
- MAINTAINERS                |   6 +
- drivers/media/i2c/Kconfig  |  11 +
- drivers/media/i2c/Makefile |   1 +
- drivers/media/i2c/tw9900.c | 617 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 635 insertions(+)
- create mode 100644 drivers/media/i2c/tw9900.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bfc1b86e3e73..dde9f7bdd720 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17425,6 +17425,12 @@ L:	linux-media@vger.kernel.org
- S:	Maintained
- F:	drivers/media/rc/ttusbir.c
- 
-+TECHWELL TW9900 VIDEO DECODER
-+M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	drivers/media/i2c/tw9900.c
-+
- TECHWELL TW9910 VIDEO DECODER
- L:	linux-media@vger.kernel.org
- S:	Orphan
-diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-index 2b9d81e4794a..5f902557c8e5 100644
---- a/drivers/media/i2c/Kconfig
-+++ b/drivers/media/i2c/Kconfig
-@@ -426,6 +426,17 @@ config VIDEO_TW2804
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called tw2804.
- 
-+config VIDEO_TW9900
-+	tristate "Techwell TW9900 video decoder"
-+	depends on VIDEO_V4L2 && I2C
-+	select MEDIA_CONTROLLER
-+	select VIDEO_V4L2_SUBDEV_API
-+	help
-+	  Support for the Techwell tw9900 multi-standard video decoder.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called tw9900.
-+
- config VIDEO_TW9903
- 	tristate "Techwell TW9903 video decoder"
- 	depends on VIDEO_V4L2 && I2C
-diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-index a3149dce21bb..9e7df99201c6 100644
---- a/drivers/media/i2c/Makefile
-+++ b/drivers/media/i2c/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_VIDEO_TVP5150) += tvp5150.o
- obj-$(CONFIG_VIDEO_TVP514X) += tvp514x.o
- obj-$(CONFIG_VIDEO_TVP7002) += tvp7002.o
- obj-$(CONFIG_VIDEO_TW2804) += tw2804.o
-+obj-$(CONFIG_VIDEO_TW9900) += tw9900.o
- obj-$(CONFIG_VIDEO_TW9903) += tw9903.o
- obj-$(CONFIG_VIDEO_TW9906) += tw9906.o
- obj-$(CONFIG_VIDEO_TW9910) += tw9910.o
-diff --git a/drivers/media/i2c/tw9900.c b/drivers/media/i2c/tw9900.c
-new file mode 100644
-index 000000000000..635268211982
---- /dev/null
-+++ b/drivers/media/i2c/tw9900.c
-@@ -0,0 +1,617 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for the Techwell TW9900 multi-standard video decoder.
-+ *
-+ * Copyright (C) 2018 Fuzhou Rockchip Electronics Co., Ltd.
-+ * Copyright (C) 2020 Maxime Chevallier <maxime.chevallier@bootlin.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/sysfs.h>
-+#include <linux/timer.h>
-+#include <linux/delay.h>
-+#include <media/media-entity.h>
-+#include <media/v4l2-async.h>
-+#include <media/v4l2-ctrls.h>
-+#include <media/v4l2-event.h>
-+#include <media/v4l2-subdev.h>
-+
-+#define TW9900_REG_CHIP_ID	0x00
-+#define TW9900_REG_CHIP_STATUS	0x01
-+#define TW9900_REG_CHIP_STATUS_VLOCK	0x08
-+#define TW9900_REG_CHIP_STATUS_VDLOSS	0x80
-+#define TW9900_REG_OUT_FMT_CTL	0x03
-+#define TW9900_REG_OUT_FMT_CTL_STANDBY	0xA7
-+#define TW9900_REG_OUT_FMT_CTL_STREAMING	0xA0
-+#define TW9900_REG_CKHY_HSDLY	0x04
-+#define TW9900_REG_OUT_CTRL_I	0x05
-+#define TW9900_REG_ANALOG_CTL	0x06
-+#define TW9900_REG_CROP_HI	0x07
-+#define TW9900_REG_VDELAY_LO	0x08
-+#define TW9900_REG_VACTIVE_LO	0x09
-+#define TW9900_REG_HACTIVE_LO	0x0B
-+#define TW9900_REG_CNTRL1	0x0C
-+#define TW9900_REG_BRIGHT_CTL	0x10
-+#define TW9900_REG_CONTRAST_CTL	0x11
-+#define TW9900_REG_VBI_CNTL	0x19
-+#define TW9900_REG_ANAL_CTL_II	0x1A
-+#define TW9900_REG_OUT_CTRL_II	0x1B
-+#define TW9900_REG_STD_SEL	0x1C
-+#define TW9900_REG_MISSCNT	0x26
-+#define TW9900_REG_MISC_CTL_II	0x2F
-+#define TW9900_REG_VVBI		0x55
-+
-+#define TW9900_CHIP_ID		0x00
-+
-+#define VSYNC_POLL_INTERVAL_MS	20
-+#define VSYNC_WAIT_MAX_POLLS	50
-+
-+struct regval {
-+	u8 addr;
-+	u8 val;
-+};
-+
-+struct tw9900_mode {
-+	u32 width;
-+	u32 height;
-+	u32 skip_top;
-+	u32 std;
-+	u32 field;
-+	const struct regval *reg_list;
-+	int n_regs;
-+};
-+
-+struct tw9900 {
-+	struct i2c_client *client;
-+	struct gpio_desc *reset_gpio;
-+	struct regulator *regulator;
-+
-+	bool streaming;
-+
-+	struct v4l2_subdev subdev;
-+	struct v4l2_ctrl_handler hdl;
-+	struct media_pad pad;
-+
-+	struct timer_list timer;
-+	struct work_struct work_i2c_poll;
-+
-+	const struct tw9900_mode *cur_mode;
-+};
-+
-+#define to_tw9900(sd) container_of(sd, struct tw9900, subdev)
-+
-+static const struct regval tw9900_init_regs[] = {
-+	{ TW9900_REG_MISC_CTL_II,	0xE6 },
-+	{ TW9900_REG_MISSCNT,		0x24 },
-+	{ TW9900_REG_OUT_FMT_CTL,	0xA7 },
-+	{ TW9900_REG_ANAL_CTL_II,	0x0A },
-+	{ TW9900_REG_VDELAY_LO,		0x19 },
-+	{ TW9900_REG_STD_SEL,		0x00 },
-+	{ TW9900_REG_VACTIVE_LO,	0xF0 },
-+	{ TW9900_REG_STD_SEL,		0x07 },
-+	{ TW9900_REG_CKHY_HSDLY,	0x40 },
-+	{ TW9900_REG_ANALOG_CTL,	0x80 },
-+	{ TW9900_REG_CNTRL1,		0xDC },
-+	{ TW9900_REG_OUT_CTRL_I,	0x98 },
-+};
-+
-+static const struct regval tw9900_pal_regs[] = {
-+	{ TW9900_REG_STD_SEL,		0x01 },
-+};
-+
-+static const struct regval tw9900_ntsc_regs[] = {
-+	{ TW9900_REG_OUT_FMT_CTL,	0xA4 },
-+	{ TW9900_REG_VDELAY_LO,		0x12 },
-+	{ TW9900_REG_VACTIVE_LO,	0xF0 },
-+	{ TW9900_REG_CROP_HI,		0x02 },
-+	{ TW9900_REG_HACTIVE_LO,	0xD0 },
-+	{ TW9900_REG_VBI_CNTL,		0x01 },
-+	{ TW9900_REG_STD_SEL,		0x00 },
-+};
-+
-+static const struct tw9900_mode supported_modes[] = {
-+	{
-+		.width = 720,
-+		.height = 576,
-+		.skip_top = 0,
-+		.std = V4L2_STD_PAL,
-+		.field = V4L2_FIELD_NONE,
-+		.reg_list = tw9900_pal_regs,
-+		.n_regs = ARRAY_SIZE(tw9900_pal_regs),
-+	},
-+	{
-+		.width = 720,
-+		.height = 480,
-+		.skip_top = 0,
-+		.std = V4L2_STD_NTSC,
-+		.field = V4L2_FIELD_NONE,
-+		.reg_list = tw9900_ntsc_regs,
-+		.n_regs = ARRAY_SIZE(tw9900_ntsc_regs),
-+	},
-+};
-+
-+static int tw9900_write_reg(struct i2c_client *client, u8 reg, u8 val)
-+{
-+	int ret;
-+
-+	ret = i2c_smbus_write_byte_data(client, reg, val);
-+
-+	if (ret < 0)
-+		dev_err(&client->dev, "write reg error: %d\n", ret);
-+
-+	return ret;
-+}
-+
-+static int tw9900_write_array(struct i2c_client *client,
-+			      const struct regval *regs, int n_regs)
-+{
-+	int i, ret = 0;
-+
-+	for (i = 0; ret == 0 && i <= n_regs; i++)
-+		ret = tw9900_write_reg(client, regs[i].addr, regs[i].val);
-+
-+	return ret;
-+}
-+
-+static inline u8 tw9900_read_reg(struct i2c_client *client, u8 reg)
-+{
-+	return i2c_smbus_read_byte_data(client, reg);
-+}
-+
-+static void tw9900_fill_fmt(const struct tw9900_mode *mode,
-+			    struct v4l2_mbus_framefmt *fmt)
-+{
-+	fmt->code = MEDIA_BUS_FMT_UYVY8_2X8;
-+	fmt->width = mode->width;
-+	fmt->height = mode->height;
-+	fmt->field = mode->field;
-+	fmt->colorspace = V4L2_COLORSPACE_SMPTE170M;
-+}
-+
-+static int tw9900_set_fmt(struct v4l2_subdev *sd,
-+			  struct v4l2_subdev_pad_config *cfg,
-+			  struct v4l2_subdev_format *fmt)
-+{
-+	struct tw9900 *tw9900 = to_tw9900(sd);
-+	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
-+
-+	tw9900_fill_fmt(tw9900->cur_mode, mbus_fmt);
-+
-+	mbus_fmt->width = tw9900->cur_mode->width;
-+	mbus_fmt->height = tw9900->cur_mode->height;
-+
-+	return 0;
-+}
-+
-+static int tw9900_get_fmt(struct v4l2_subdev *sd,
-+			  struct v4l2_subdev_pad_config *cfg,
-+			  struct v4l2_subdev_format *fmt)
-+{
-+	struct tw9900 *tw9900 = to_tw9900(sd);
-+	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
-+
-+	tw9900_fill_fmt(tw9900->cur_mode, mbus_fmt);
-+
-+	return 0;
-+}
-+
-+static int tw9900_enum_mbus_code(struct v4l2_subdev *sd,
-+				 struct v4l2_subdev_pad_config *cfg,
-+				 struct v4l2_subdev_mbus_code_enum *code)
-+{
-+	if (code->index >= 1)
-+		return -EINVAL;
-+
-+	code->code = MEDIA_BUS_FMT_UYVY8_2X8;
-+
-+	return 0;
-+}
-+
-+static int tw9900_enum_frame_sizes(struct v4l2_subdev *sd,
-+				   struct v4l2_subdev_pad_config *cfg,
-+				   struct v4l2_subdev_frame_size_enum *fse)
-+{
-+	u32 index = fse->index;
-+
-+	if (index >= 1)
-+		return -EINVAL;
-+
-+	fse->code = MEDIA_BUS_FMT_UYVY8_2X8;
-+
-+	fse->min_width  = supported_modes[index].width;
-+	fse->max_width  = supported_modes[index].width;
-+	fse->max_height = supported_modes[index].height;
-+	fse->min_height = supported_modes[index].height;
-+
-+	return 0;
-+}
-+
-+static int tw9900_power_on(struct tw9900 *tw9900)
-+{
-+	int ret;
-+	struct device *dev = &tw9900->client->dev;
-+
-+	if (tw9900->reset_gpio)
-+		gpiod_set_value_cansleep(tw9900->reset_gpio, 1);
-+
-+	ret = regulator_enable(tw9900->regulator);
-+	if (ret < 0)
-+		goto error;
-+
-+	usleep_range(50000, 52000);
-+
-+	if (tw9900->reset_gpio)
-+		gpiod_set_value_cansleep(tw9900->reset_gpio, 0);
-+
-+	usleep_range(1000, 2000);
-+
-+	ret = tw9900_write_array(tw9900->client, tw9900_init_regs,
-+				 ARRAY_SIZE(tw9900_init_regs));
-+	if (ret) {
-+		dev_err(dev, "Failed to init tw9900\n");
-+		goto error;
-+	}
-+
-+	return 0;
-+
-+error:
-+
-+	return ret;
-+}
-+
-+static void tw9900_power_off(struct tw9900 *tw9900)
-+{
-+	if (tw9900->reset_gpio)
-+		gpiod_set_value_cansleep(tw9900->reset_gpio, 1);
-+
-+	regulator_disable(tw9900->regulator);
-+}
-+
-+static int tw9900_s_ctrl(struct v4l2_ctrl *ctrl)
-+{
-+	struct tw9900 *tw9900 = container_of(ctrl->handler, struct tw9900, hdl);
-+
-+	if (pm_runtime_suspended(&tw9900->client->dev))
-+		return 0;
-+
-+	switch (ctrl->id) {
-+	case V4L2_CID_BRIGHTNESS:
-+		tw9900_write_reg(tw9900->client, 0x10, (u8)ctrl->val);
-+		break;
-+	case V4L2_CID_CONTRAST:
-+		tw9900_write_reg(tw9900->client, 0x11, (u8)ctrl->val);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+	return 0;
-+}
-+
-+static int tw9900_s_stream(struct v4l2_subdev *sd, int on)
-+{
-+	struct tw9900 *tw9900 = to_tw9900(sd);
-+	struct i2c_client *client = tw9900->client;
-+	int i, ret = 0;
-+
-+	on = !!on;
-+	if (on == tw9900->streaming)
-+		return 0;
-+
-+	if (on) {
-+		ret = pm_runtime_get_sync(&tw9900->client->dev);
-+		if (ret < 0) {
-+			pm_runtime_put_noidle(&client->dev);
-+			return ret;
-+		}
-+
-+		ret = v4l2_ctrl_handler_setup(sd->ctrl_handler);
-+		if (ret)
-+			goto put_and_return;
-+
-+		ret = tw9900_write_array(tw9900->client,
-+					 tw9900->cur_mode->reg_list,
-+					 tw9900->cur_mode->n_regs);
-+		if (ret)
-+			goto put_and_return;
-+
-+		/* Wait for VSync lock */
-+		for (i = 0; i < VSYNC_WAIT_MAX_POLLS; i++) {
-+			u8 status = tw9900_read_reg(tw9900->client,
-+						    TW9900_REG_CHIP_STATUS);
-+			if (!(status & TW9900_REG_CHIP_STATUS_VDLOSS) &&
-+			    (status & TW9900_REG_CHIP_STATUS_VLOCK))
-+				break;
-+
-+			msleep(VSYNC_POLL_INTERVAL_MS);
-+		}
-+
-+		ret = tw9900_write_reg(client, TW9900_REG_OUT_FMT_CTL,
-+				       TW9900_REG_OUT_FMT_CTL_STREAMING);
-+		if (ret)
-+			goto put_and_return;
-+
-+	} else {
-+		tw9900_write_reg(client, TW9900_REG_OUT_FMT_CTL,
-+				 TW9900_REG_OUT_FMT_CTL_STANDBY);
-+		pm_runtime_put(&client->dev);
-+	}
-+
-+	tw9900->streaming = on;
-+
-+	return ret;
-+
-+put_and_return:
-+	pm_runtime_put(&client->dev);
-+
-+	return ret;
-+}
-+
-+static int tw9900_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
-+{
-+	struct tw9900 *tw9900 = to_tw9900(sd);
-+	struct v4l2_mbus_framefmt *try_fmt;
-+
-+	try_fmt = v4l2_subdev_get_try_format(sd, fh->pad, 0);
-+
-+	/* Initialize try_fmt */
-+	tw9900_fill_fmt(tw9900->cur_mode, try_fmt);
-+
-+	return 0;
-+}
-+
-+static int tw9900_runtime_resume(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-+	struct tw9900 *tw9900 = to_tw9900(sd);
-+
-+	return tw9900_power_on(tw9900);
-+}
-+
-+static int tw9900_runtime_suspend(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-+	struct tw9900 *tw9900 = to_tw9900(sd);
-+
-+	tw9900_power_off(tw9900);
-+
-+	return 0;
-+}
-+
-+static int tw9900_subscribe_event(struct v4l2_subdev *sd,
-+				  struct v4l2_fh *fh,
-+				  struct v4l2_event_subscription *sub)
-+{
-+	switch (sub->type) {
-+	case V4L2_EVENT_SOURCE_CHANGE:
-+		return v4l2_src_change_event_subdev_subscribe(sd, fh, sub);
-+	case V4L2_EVENT_CTRL:
-+		return v4l2_ctrl_subdev_subscribe_event(sd, fh, sub);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct tw9900_mode *tw9900_get_mode_from_std(v4l2_std_id std)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(supported_modes); i++)
-+		if (supported_modes[i].std == std)
-+			return &supported_modes[i];
-+
-+	return NULL;
-+}
-+
-+static int tw9900_s_std(struct v4l2_subdev *sd, v4l2_std_id norm)
-+{
-+	struct tw9900 *tw9900 = to_tw9900(sd);
-+	const struct tw9900_mode *mode;
-+	int ret;
-+
-+	if (!(norm & (V4L2_STD_NTSC | V4L2_STD_PAL)))
-+		return -EINVAL;
-+
-+	mode = tw9900_get_mode_from_std(norm);
-+	if (!mode)
-+		return -EINVAL;
-+
-+	ret = tw9900_write_array(tw9900->client, mode->reg_list, mode->n_regs);
-+	if (ret)
-+		return ret;
-+
-+	tw9900->cur_mode = mode;
-+
-+	return 0;
-+}
-+
-+static int tw9900_g_std(struct v4l2_subdev *sd, v4l2_std_id *norm)
-+{
-+	struct tw9900 *tw9900 = to_tw9900(sd);
-+
-+	*norm = tw9900->cur_mode->std;
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops tw9900_pm_ops = {
-+	SET_RUNTIME_PM_OPS(tw9900_runtime_suspend,
-+			   tw9900_runtime_resume, NULL)
-+};
-+
-+static const struct v4l2_subdev_core_ops tw9900_core_ops = {
-+	.subscribe_event	= tw9900_subscribe_event,
-+	.unsubscribe_event	= v4l2_event_subdev_unsubscribe,
-+};
-+
-+static const struct v4l2_subdev_video_ops tw9900_video_ops = {
-+	.s_std		= tw9900_s_std,
-+	.g_std		= tw9900_g_std,
-+	.s_stream	= tw9900_s_stream,
-+};
-+
-+static const struct v4l2_subdev_pad_ops tw9900_pad_ops = {
-+	.enum_mbus_code		= tw9900_enum_mbus_code,
-+	.enum_frame_size	= tw9900_enum_frame_sizes,
-+	.get_fmt		= tw9900_get_fmt,
-+	.set_fmt		= tw9900_set_fmt,
-+};
-+
-+static const struct v4l2_subdev_ops tw9900_subdev_ops = {
-+	.core	= &tw9900_core_ops,
-+	.video	= &tw9900_video_ops,
-+	.pad	= &tw9900_pad_ops,
-+};
-+
-+static const struct v4l2_ctrl_ops tw9900_ctrl_ops = {
-+	.s_ctrl	= tw9900_s_ctrl,
-+};
-+
-+static const struct v4l2_subdev_internal_ops tw9900_internal_ops = {
-+	.open	= tw9900_open,
-+};
-+
-+static int tw9900_check_id(struct tw9900 *tw9900,
-+			   struct i2c_client *client)
-+{
-+	struct device *dev = &tw9900->client->dev;
-+	u8 id;
-+
-+	id = tw9900_read_reg(client, TW9900_CHIP_ID);
-+
-+	if (id != TW9900_CHIP_ID) {
-+		dev_err(dev, "Unexpected decoder id(%04x)\n", id);
-+		return -EINVAL;
-+	}
-+
-+	dev_info(dev, "Detected TW9900 (%04x) decoder\n", TW9900_CHIP_ID);
-+
-+	return 0;
-+}
-+
-+static int tw9900_probe(struct i2c_client *client,
-+			const struct i2c_device_id *id)
-+{
-+	struct device *dev = &client->dev;
-+	struct v4l2_ctrl_handler *hdl;
-+	struct tw9900 *tw9900;
-+	int ret = 0;
-+
-+	tw9900 = devm_kzalloc(dev, sizeof(*tw9900), GFP_KERNEL);
-+	if (!tw9900)
-+		return -ENOMEM;
-+
-+	tw9900->client = client;
-+	tw9900->cur_mode = &supported_modes[0];
-+
-+	tw9900->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(tw9900->reset_gpio))
-+		tw9900->reset_gpio = NULL;
-+
-+	tw9900->regulator = devm_regulator_get(&tw9900->client->dev, "vdd");
-+	if (IS_ERR(tw9900->regulator)) {
-+		dev_err(dev, "Failed to get power regulator\n");
-+		return ret;
-+	}
-+
-+	v4l2_i2c_subdev_init(&tw9900->subdev, client, &tw9900_subdev_ops);
-+	tw9900->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
-+				V4L2_SUBDEV_FL_HAS_EVENTS;
-+
-+	hdl = &tw9900->hdl;
-+
-+	v4l2_ctrl_handler_init(hdl, 2);
-+
-+	v4l2_ctrl_new_std(hdl, &tw9900_ctrl_ops, V4L2_CID_BRIGHTNESS,
-+			  -128, 127, 1, 0);
-+	v4l2_ctrl_new_std(hdl, &tw9900_ctrl_ops, V4L2_CID_CONTRAST,
-+			  0, 255, 1, 0x60);
-+
-+	tw9900->subdev.ctrl_handler = hdl;
-+	if (hdl->error) {
-+		int err = hdl->error;
-+
-+		v4l2_ctrl_handler_free(hdl);
-+		return err;
-+	}
-+
-+	ret = tw9900_power_on(tw9900);
-+	if (ret)
-+		return ret;
-+
-+	ret = tw9900_check_id(tw9900, client);
-+	if (ret)
-+		goto err_power_off;
-+
-+	tw9900->subdev.internal_ops = &tw9900_internal_ops;
-+	tw9900->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-+	tw9900->pad.flags = MEDIA_PAD_FL_SOURCE;
-+	tw9900->subdev.entity.function = MEDIA_ENT_F_DV_DECODER;
-+
-+	ret = media_entity_pads_init(&tw9900->subdev.entity, 1, &tw9900->pad);
-+	if (ret < 0)
-+		goto err_power_off;
-+
-+	ret = v4l2_async_register_subdev(&tw9900->subdev);
-+	if (ret) {
-+		dev_err(dev, "v4l2 async register subdev failed\n");
-+		goto err_clean_entity;
-+	}
-+
-+	pm_runtime_set_active(dev);
-+	pm_runtime_enable(dev);
-+	pm_runtime_idle(dev);
-+
-+	return 0;
-+
-+err_clean_entity:
-+	media_entity_cleanup(&tw9900->subdev.entity);
-+err_power_off:
-+	tw9900_power_off(tw9900);
-+
-+	return ret;
-+}
-+
-+static int tw9900_remove(struct i2c_client *client)
-+{
-+	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-+	struct tw9900 *tw9900 = to_tw9900(sd);
-+
-+	v4l2_async_unregister_subdev(sd);
-+	media_entity_cleanup(&sd->entity);
-+
-+	pm_runtime_disable(&client->dev);
-+	if (!pm_runtime_status_suspended(&client->dev))
-+		tw9900_power_off(tw9900);
-+	pm_runtime_set_suspended(&client->dev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id tw9900_of_match[] = {
-+	{ .compatible = "techwell,tw9900" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, tw9900_of_match);
-+
-+static struct i2c_driver tw9900_i2c_driver = {
-+	.driver = {
-+		.name		= "tw9900",
-+		.pm		= &tw9900_pm_ops,
-+		.of_match_table	= tw9900_of_match
-+	},
-+	.probe	= tw9900_probe,
-+	.remove	= tw9900_remove,
-+};
-+
-+module_i2c_driver(tw9900_i2c_driver);
-+
-+MODULE_DESCRIPTION("tw9900 decoder driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.25.4
+On Fri, 2020-12-11 at 09:46 +0800, Liu Ying wrote:
+> Hi,
+> 
+> This series adds i.MX8qxp LVDS PHY mode support for the Mixel PHY in the
+> Freescale i.MX8qxp SoC.
+> 
+> The Mixel PHY is MIPI DPHY + LVDS PHY combo, which can works in either
+> MIPI DPHY mode or LVDS PHY mode.  The PHY mode is controlled by i.MX8qxp
+> SCU firmware.  The PHY driver would call a SCU function to configure the
+> mode.
+> 
+> The PHY driver is already supporting the Mixel MIPI DPHY in i.MX8mq SoC,
+> where it appears to be a single MIPI DPHY.
+> 
+> 
+> Patch 1/5 sets PHY mode in the Northwest Logic MIPI DSI host controller
+> bridge driver, since i.MX8qxp SoC embeds this controller IP to support
+> MIPI DSI displays together with the Mixel PHY.
+> 
+> Patch 2/5 allows LVDS PHYs to be configured through the generic PHY functions
+> and through a custom structure added to the generic PHY configuration union.
+> 
+> Patch 3/5 converts mixel,mipi-dsi-phy plain text dt binding to json-schema.
+> 
+> Patch 4/5 adds dt binding support for the Mixel combo PHY in i.MX8qxp SoC.
+> 
+> Patch 5/5 adds the i.MX8qxp LVDS PHY mode support in the Mixel PHY driver.
+> 
+> 
+> Welcome comments, thanks.
+> 
+> v2->v3:
+> * Improve readability of mixel_dphy_set_mode() in the Mixel PHY driver. (Guido)
+> * Improve the 'clock-names' property in the PHY dt binding.
+> 
+> v1->v2:
+> * Convert mixel,mipi-dsi-phy plain text dt binding to json-schema. (Guido)
+> * Print invalid PHY mode in dmesg from the Mixel PHY driver. (Guido)
+> * Add Guido's R-b tag on the patch for the nwl-dsi drm bridge driver.
+> 
+> Liu Ying (5):
+>   drm/bridge: nwl-dsi: Set PHY mode in nwl_dsi_enable()
+>   phy: Add LVDS configuration options
+>   dt-bindings: phy: Convert mixel,mipi-dsi-phy to json-schema
+>   dt-bindings: phy: mixel: mipi-dsi-phy: Add Mixel combo PHY support for
+>     i.MX8qxp
+>   phy: freescale: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY mode
+>     support
+> 
+>  .../devicetree/bindings/phy/mixel,mipi-dsi-phy.txt |  29 ---
+>  .../bindings/phy/mixel,mipi-dsi-phy.yaml           | 107 ++++++++
+>  drivers/gpu/drm/bridge/nwl-dsi.c                   |   6 +
+>  drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c     | 269 ++++++++++++++++++++-
+>  include/linux/phy/phy-lvds.h                       |  48 ++++
+>  include/linux/phy/phy.h                            |   4 +
+>  6 files changed, 423 insertions(+), 40 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+>  create mode 100644 include/linux/phy/phy-lvds.h
+> 
 
