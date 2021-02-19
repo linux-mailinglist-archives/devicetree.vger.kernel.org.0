@@ -2,80 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDDDE31F7E2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 12:06:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9345931F8A6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 12:52:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbhBSLFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Feb 2021 06:05:19 -0500
-Received: from jabberwock.ucw.cz ([46.255.230.98]:48302 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229998AbhBSLFP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Feb 2021 06:05:15 -0500
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 282181C0B80; Fri, 19 Feb 2021 12:04:17 +0100 (CET)
-Date:   Fri, 19 Feb 2021 12:04:16 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
-        <nfraprado@protonmail.com>
-Cc:     Dan Murphy <dmurphy@ti.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Brian Masney <masneyb@onstation.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Russell King <linux@armlinux.org.uk>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        lkcamp@lists.libreplanetbr.org, andrealmeid@collabora.com
-Subject: Re: [PATCH v2 0/4] Add support for QCOM SPMI Flash LEDs
-Message-ID: <20210219110416.GH19207@duo.ucw.cz>
-References: <20210126140240.1517044-1-nfraprado@protonmail.com>
+        id S230213AbhBSLwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Feb 2021 06:52:17 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:33693 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230144AbhBSLwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Feb 2021 06:52:16 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id BF72858017B;
+        Fri, 19 Feb 2021 06:51:29 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Fri, 19 Feb 2021 06:51:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=aZern2yKBkAYfT9tSyK4y/aYiC2
+        GCcYVc0aQT81xeHw=; b=UK68A0rIVZrH6G9Y+0w0XT5pM0OV8NE+quAmg0XT6qA
+        3Olbig5PU39gxOg/MdZZHlBbIeHLKlrFn3sX6WbhE0OpPVuF24phUoXcyHYag6s0
+        cDP3WWaEYlddDtmGdJCEV96i+WM9kFHMR8I65cRgRxBlX3cHhvnp7GZdu+MtPmma
+        6rdMqw9T4sAKwvz2HmFLGV9U/twe0pb4aurl5zhfL9AVRICzbKEkmLxurTXRM9L+
+        3LlEEoPVtD3muv9TDV8X2TwI+D6+ApdGM6YD3tFoNb6MejRWlnLD98KPPrKudE8h
+        Bj6IFe8ExUvPgUKjTadcWd7zOb/RED4lz+WOdoqE0Uw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=aZern2
+        yKBkAYfT9tSyK4y/aYiC2GCcYVc0aQT81xeHw=; b=kzkNuBxBlDx3vpbYeGVS4T
+        BD3XNKpE7df0iyskfEECt2uxZl9C4z8HMJaGJ1fyBQsOh5eQZHUaCfQVCg2EllV4
+        cBKSbpCnkD9Csl4zGzd2YAFQoygUdoYF5OmY+4pNjUkhqo4TIyEx9Vp192HAcnNt
+        oSZqJJcdy13eZXtQwCKOFwZfUOtSiYIGRuR2P7uLu3oJqofZ2zb/0Mh/Um6mhFM5
+        xUOyD8vnMtsgvt6azDuxvAGbuJP6xlQbjp6jTh61g/pK6/8yRYhFjiSlwLZ466z7
+        eCMobWqp6krep6rK19IH/pS42uMadQXFP5npr9opRPIh6drBylbDvHcIziEslPIw
+        ==
+X-ME-Sender: <xms:P6YvYId7T8bQfzfqvs6n-7yaEM0dBaHmLLzoFIy0aMfmxSjbROEJ1Q>
+    <xme:P6YvYKP-PBO_RAqwATVDJcpoHlDZgmFTF2Czggr4S5LTe6WwYNvlK0psXT5q_Y9hG
+    bi1OTmrZPEQAgz43WQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjeeigdefvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:P6YvYJg1Yw3wyzosPbX-VRDn2CSO8pePHe3a9qH-bQ_UGgt_6kOoXQ>
+    <xmx:P6YvYN_NZ1KpyII-3Pd_jHFNOOMVfYDXekemSbYHmJ7OEz3Zeh2UiQ>
+    <xmx:P6YvYEvGAMFlHhWwe-ulbLpsGOaxHLO-lCasCIUQnV7UYyC2SsaTgA>
+    <xmx:QaYvYEERBNKaC-HgmSNQvfVkK-GzGBldl2y1gJ_WneIfaEjrQgH6mA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 6A68E240065;
+        Fri, 19 Feb 2021 06:51:27 -0500 (EST)
+Date:   Fri, 19 Feb 2021 12:51:24 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Pascal Roeleven <dev@pascalroeleven.nl>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org,
+        =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Martin Cerveny <m.cerveny@computer.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH RESEND v3 2/2] ARM: dts: sun4i: Add support for Topwise
+ A721 tablet
+Message-ID: <20210219115124.lneiioiksjflbsuo@gilmour>
+References: <20210216165954.43135-1-dev@pascalroeleven.nl>
+ <20210216165954.43135-3-dev@pascalroeleven.nl>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="+QwZB9vYiNIzNXIj"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="mtxopajle64dkerr"
 Content-Disposition: inline
-In-Reply-To: <20210126140240.1517044-1-nfraprado@protonmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210216165954.43135-3-dev@pascalroeleven.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---+QwZB9vYiNIzNXIj
+--mtxopajle64dkerr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi!
+Hi,
 
-> Another thing worth mentioning: for v1 the dt nodes were added in hammerh=
-ead's
-> dts (just to simplify testing), but I have now moved them to pm8941's dts=
-i,
-> since it was like that in downstream. So if folks using devices based on
-> PM8941/MSM8974 other than the Nexus 5 could test it, that would be great,=
- since
-> I have only tested on the Nexus 5.
+On Tue, Feb 16, 2021 at 05:59:54PM +0100, Pascal Roeleven wrote:
+> The Topwise A721/LY-F1 tablet is a tablet sold around 2012 under
+> different brands. The mainboard mentions A721 clearly, so this tablet
+> is best known under this name.
+>=20
+> Signed-off-by: Pascal Roeleven <dev@pascalroeleven.nl>
+> ---
+>  arch/arm/boot/dts/Makefile                   |   3 +-
+>  arch/arm/boot/dts/sun4i-a10-topwise-a721.dts | 242 +++++++++++++++++++
+>  2 files changed, 244 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/sun4i-a10-topwise-a721.dts
+>=20
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 3d1ea0b251..ba25b4235a 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1103,7 +1103,8 @@ dtb-$(CONFIG_MACH_SUN4I) +=3D \
+>  	sun4i-a10-olinuxino-lime.dtb \
+>  	sun4i-a10-pcduino.dtb \
+>  	sun4i-a10-pcduino2.dtb \
+> -	sun4i-a10-pov-protab2-ips9.dtb
+> +	sun4i-a10-pov-protab2-ips9.dtb \
+> +	sun4i-a10-topwise-a721.dtb
+>  dtb-$(CONFIG_MACH_SUN5I) +=3D \
+>  	sun5i-a10s-auxtek-t003.dtb \
+>  	sun5i-a10s-auxtek-t004.dtb \
+> diff --git a/arch/arm/boot/dts/sun4i-a10-topwise-a721.dts b/arch/arm/boot=
+/dts/sun4i-a10-topwise-a721.dts
+> new file mode 100644
+> index 0000000000..936171d30b
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sun4i-a10-topwise-a721.dts
+> @@ -0,0 +1,242 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright 2020 Pascal Roeleven <dev@pascalroeleven.nl>
+> + */
+> +
+> +/dts-v1/;
+> +#include "sun4i-a10.dtsi"
+> +#include "sunxi-common-regulators.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pwm/pwm.h>
+> +
+> +/ {
+> +	model =3D "Topwise A721";
+> +	compatible =3D "topwise,a721", "allwinner,sun4i-a10";
+> +
+> +	aliases {
+> +		serial0 =3D &uart0;
+> +	};
+> +
+> +	backlight: backlight {
+> +		compatible =3D "pwm-backlight";
+> +		pwms =3D <&pwm 0 100000 PWM_POLARITY_INVERTED>;
+> +		power-supply =3D <&reg_vbat>;
+> +		enable-gpios =3D <&pio 7 7 GPIO_ACTIVE_HIGH>; /* PH7 */
+> +		brightness-levels =3D <0 30 40 50 60 70 80 90 100>;
+> +		default-brightness-level =3D <8>;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path =3D "serial0:115200n8";
+> +	};
+> +
+> +	panel: panel {
+> +		compatible =3D "starry,kr070pe2t";
+> +		backlight =3D <&backlight>;
+> +		power-supply =3D <&reg_lcd_power>;
+> +
+> +		port {
+> +			panel_input: endpoint {
+> +				remote-endpoint =3D <&tcon0_out_panel>;
+> +			};
+> +		};
+> +	};
+> +
+> +	reg_lcd_power: reg-lcd-power {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "reg-lcd-power";
+> +		gpio =3D <&pio 7 8 GPIO_ACTIVE_HIGH>; /* PH8 */
+> +		enable-active-high;
+> +	};
+> +
+> +	reg_vbat: reg-vbat {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "vbat";
+> +		regulator-min-microvolt =3D <3700000>;
+> +		regulator-max-microvolt =3D <3700000>;
+> +	};
+> +
+> +};
+> +
+> +&codec {
+> +	status =3D "okay";
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply =3D <&reg_dcdc2>;
+> +};
+> +
+> +&de {
+> +	status =3D "okay";
+> +};
+> +
+> +&ehci0 {
+> +	status =3D "okay";
+> +};
+> +
+> +&ehci1 {
+> +	status =3D "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status =3D "okay";
+> +
+> +	axp209: pmic@34 {
+> +		reg =3D <0x34>;
+> +		interrupts =3D <0>;
+> +	};
+> +};
+> +
+> +#include "axp209.dtsi"
+> +
+> +&ac_power_supply {
+> +	status =3D "okay";
+> +};
+> +
+> +&battery_power_supply {
+> +	status =3D "okay";
+> +};
+> +
+> +&i2c1 {
+> +	status =3D "okay";
+> +
+> +	mma7660: accelerometer@4c {
 
-Please cc phone-devel, there may be people there to help with testing.
+Chances are you don't need that label?
 
-Best regards,
-								Pavel
+> +		compatible =3D "fsl,mma7660";
+> +		reg =3D <0x4c>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	status =3D "okay";
+> +
+> +	ft5406ee8: touchscreen@38 {
 
---=20
-http://www.livejournal.com/~pavelmachek
+Ditto
 
---+QwZB9vYiNIzNXIj
+> +		compatible =3D "edt,edt-ft5406";
+> +		reg =3D <0x38>;
+> +		interrupt-parent =3D <&pio>;
+> +		interrupts =3D <7 21 IRQ_TYPE_EDGE_FALLING>;
+> +		touchscreen-size-x =3D <800>;
+> +		touchscreen-size-y =3D <480>;
+> +		vcc-supply =3D <&reg_vcc3v3>;
+> +	};
+> +};
+> +
+> +&lradc {
+> +	vref-supply =3D <&reg_ldo2>;
+> +	status =3D "okay";
+> +
+> +	button-vol-down {
+> +		label =3D "Volume Down";
+> +		linux,code =3D <KEY_VOLUMEDOWN>;
+> +		channel =3D <0>;
+> +		voltage =3D <761904>;
+> +	};
+> +
+> +	button-vol-up {
+> +		label =3D "Volume Up";
+> +		linux,code =3D <KEY_VOLUMEUP>;
+> +		channel =3D <0>;
+> +		voltage =3D <571428>;
+> +	};
+
+Those two nodes will raise a warning during the DT validation, please
+make sure it doesn't have any warning.
+
+Maxime
+
+--mtxopajle64dkerr
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYC+bMAAKCRAw5/Bqldv6
-8olzAKCoQLoFBHp501DOXkylS/RTtXUV1wCeOqmjK+tmPNLtN2m8imxPj2Zgz20=
-=rFph
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYC+mPAAKCRDj7w1vZxhR
+xZGnAQCn/7v3lF2ukZHZeOJUN81E9GDut370DPQCWW3XFzAnEwD8DuS7ICW8HSoa
+UWbbNcjkHUaCL1O/dw/JXnUCvEkL5gQ=
+=oAqU
 -----END PGP SIGNATURE-----
 
---+QwZB9vYiNIzNXIj--
+--mtxopajle64dkerr--
