@@ -2,1078 +2,1089 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C7B320067
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 22:48:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60E4532015D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 23:29:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbhBSVsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Feb 2021 16:48:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52530 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbhBSVss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Feb 2021 16:48:48 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1C18C061574;
-        Fri, 19 Feb 2021 13:48:07 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id gg8so4917778ejb.13;
-        Fri, 19 Feb 2021 13:48:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=vl7OddxFZRFxwTsW4ls2ptkMoCfulvPlhmQnRecMkzM=;
-        b=eRe81/NMKLlSfZiLSInLkOBR1NsU2o6rW5aya3senqZ1n3DUhTGoXwuB0Ua/9OGZnt
-         Q+L83kW6RSQMEMvvJlqVnuSnqha2JtNYI/b6jWCwgReHclwY7SqEOFNUh2hYbjzqsHiv
-         lYX2eVmB1Y8Xu+gaXf7PPqhCvH6iisaM6iFJfvDVaAWFzCVaI2RoOCOBLxKKj1eVzAgw
-         y+MJSNytaAhBHPff6e9PdHvX7mcj1hIDiL3UtIGYUxI/O9AFbP8eL+IvmaGCHiS6vU2M
-         qOWnMWqb24ak5UBtXMpG8BkPIh9qezAR63tZv/dj6yecr24CQqBVNh9vtb+dQifc/+Vv
-         gvZQ==
+        id S229774AbhBSW1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Feb 2021 17:27:43 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:35516 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229725AbhBSW1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Feb 2021 17:27:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1613773570;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=booiSpwr312i4Xe7EpLAR4Y/+Mr5Af8dcnoiunOkOh4=;
+        b=ZdKH9ouBMVbrsbDgz87EVD6mkpVX+iK7djB2sY1WYgjV6mjXi5PHId+9ZtBC0xGzP/r0Hp
+        wgp2RK0EH08mJ/y08UVlNmUgb4kIhppWmZMRd3RA5maKlrBvb/Rr8DDUIn8V/CFUkzvlzu
+        wm71NZMb/VIHL1kbQcec7I7ImbeMDPs=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-385-n04dQej3Ok-7NdoedAWdHA-1; Fri, 19 Feb 2021 17:26:08 -0500
+X-MC-Unique: n04dQej3Ok-7NdoedAWdHA-1
+Received: by mail-qt1-f199.google.com with SMTP id h13so333783qti.21
+        for <devicetree@vger.kernel.org>; Fri, 19 Feb 2021 14:26:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=vl7OddxFZRFxwTsW4ls2ptkMoCfulvPlhmQnRecMkzM=;
-        b=Uzgkwh0WbDsGxS6NfDifTakKeHT//PM8DfSD9T0UBiA9LEDADGzUxlnPjjRJ61KKWy
-         H8hX+E+y+7rHBtIFRfeYUEpj9euVkokkjTd+JqGpYfB/SrwQNFG2nwvoSMOnJmvVWnwX
-         1WjoEXvsk1zS01PXXZLzylYkDskuEB4VcN1cyFsd2VVVgwuF43u91wmvrzAHC3tRd2h0
-         HD+7ooNAmqLGCWruIInU75xUNt5OAYyV7MJpRbhQPgM/2KB3ybbuFEJN6CvG+uh79M4z
-         jm0J02c+SN+wcGGQel8boure5uktT5TbakXhokZ90IFUb+KzfusoUqHtzDMLbo1nfSXq
-         ZRPg==
-X-Gm-Message-State: AOAM530dkScu7JeqBbORqeOP/XgjTIqxkNAC6KB6AQ/lYkmlUI5zHdXT
-        6aW+BJ63Tl5Vc/2TE65fOLGPGYPDPqeiNLsOl5Y=
-X-Google-Smtp-Source: ABdhPJxwCfzNB9xl2MOKGxD3nahGJVkmyXCHSdZDXq91j3ECWmLspNuQ2bKBGjI6CaabpciCvglhIvWhXpYhaEmqDCA=
-X-Received: by 2002:a17:906:c1c1:: with SMTP id bw1mr10822755ejb.86.1613771286297;
- Fri, 19 Feb 2021 13:48:06 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=booiSpwr312i4Xe7EpLAR4Y/+Mr5Af8dcnoiunOkOh4=;
+        b=MKtpEe4ggKvmd6RIhaHICc5/rwZ/z3MYxPRsacjrNTmOZgfZnJcCqS0jDS0N/heHtg
+         8QwK07tQa4rjyG5z0zdNjeMZQJvbuMLTmxPr906Cv4zgwryuxUOBceQzehywE3tTXVcT
+         oS/POxk1A/CDoEYRrsOk4lLdKn3poYPdUKnJGjyBNP7+xlQ4ePyYVLhbo/sI9jmmWAIa
+         B5TGuMoR+etOpIu5aMRz5JYR6GEkhMV/sv0OYJcMy0saWN8buHKXElRnGnYqFSZfrdLH
+         TWa8UpL6d7uBUvQC9J6Rq+cF5wsKDXCAtFRIKUx0ZKDzIGG8k7u9W9ao+lBy+X7Yg4VD
+         3mMQ==
+X-Gm-Message-State: AOAM531YY/QMiVF26710DoEcRhReQsp1PatTSHVSsF5jcmH7sX3oKJot
+        3shmimN/DsEeBtWqBG88B83Qvca8TDccVWUu0KBVLw1/DF9H4Z1Bgu8V2vPk7t4w2Bi4Bxw9CWV
+        o/GkmQWoUhWtoTHLgRm7vrQ==
+X-Received: by 2002:ac8:58c5:: with SMTP id u5mr11106299qta.94.1613773566916;
+        Fri, 19 Feb 2021 14:26:06 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwQr0BSBKhofEo4sPMfEwNwSDANrnUdNzcfodgyXAK2amwE3pIm4x/YD9knkJUjNeApIhV8hA==
+X-Received: by 2002:ac8:58c5:: with SMTP id u5mr11106260qta.94.1613773566319;
+        Fri, 19 Feb 2021 14:26:06 -0800 (PST)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id 6sm7408876qkv.24.2021.02.19.14.26.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Feb 2021 14:26:05 -0800 (PST)
+Subject: Re: [PATCH V3 XRT Alveo 01/18] Documentation: fpga: Add a document
+ describing XRT Alveo drivers
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     Lizhi Hou <lizhih@xilinx.com>, linux-fpga@vger.kernel.org,
+        maxz@xilinx.com, sonal.santan@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
+References: <20210218064019.29189-1-lizhih@xilinx.com>
+ <20210218064019.29189-2-lizhih@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <3d3028aa-163f-7e5c-8730-1eb94ebf61c5@redhat.com>
+Date:   Fri, 19 Feb 2021 14:26:03 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <20210218210504.375752-1-adrien.grassein@gmail.com>
- <20210218210504.375752-3-adrien.grassein@gmail.com> <CAG3jFyuQHxS9mc2k=1GSgwR40r8xbZ9wYguBYhQy8Sb4ma3gxA@mail.gmail.com>
- <CABkfQAFRC7AP8qXHu=OCHWVR0+OAeVr+eXH+qprubroq9DiVDg@mail.gmail.com> <CAG3jFyv1HW_zKeL+wjZgmBvxAa__Y1X6-GgrC_W=0808hF-t5g@mail.gmail.com>
-In-Reply-To: <CAG3jFyv1HW_zKeL+wjZgmBvxAa__Y1X6-GgrC_W=0808hF-t5g@mail.gmail.com>
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Fri, 19 Feb 2021 22:47:55 +0100
-Message-ID: <CABkfQAHuVtiy3PfyWhBxbA-BTSAsY6OAVYPiz942VvEb6k=gWw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] drm/bridge: Introduce LT8912 DSI to HDMI bridge
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210218064019.29189-2-lizhih@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le ven. 19 f=C3=A9vr. 2021 =C3=A0 22:28, Robert Foss <robert.foss@linaro.or=
-g> a =C3=A9crit :
->
-> On Fri, 19 Feb 2021 at 16:01, Adrien Grassein <adrien.grassein@gmail.com>=
- wrote:
-> >
-> > Hey Robert,
-> >
-> > Le ven. 19 f=C3=A9vr. 2021 =C3=A0 14:27, Robert Foss <robert.foss@linar=
-o.org> a =C3=A9crit :
-> > >
-> > > Hey Adrien,
-> > >
-> > >
-> > > Thanks for the quick update.
-> > No problem, I have some free time at the moment.
-> > >
-> > > On Thu, 18 Feb 2021 at 22:05, Adrien Grassein <adrien.grassein@gmail.=
-com> wrote:
-> > > >
-> > > > Lontium Lt8912 is a DSI to HDMI bridge.
-> > > >
-> > > > Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> > > > ---
-> > > >  MAINTAINERS                             |   1 +
-> > > >  drivers/gpu/drm/bridge/Kconfig          |  14 +
-> > > >  drivers/gpu/drm/bridge/Makefile         |   1 +
-> > > >  drivers/gpu/drm/bridge/lontium-lt8912.c | 760 ++++++++++++++++++++=
-++++
-> > > >  4 files changed, 776 insertions(+)
-> > > >  create mode 100644 drivers/gpu/drm/bridge/lontium-lt8912.c
-> > > >
-> > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > index 5d1ed281cd41..58f8f45a7c86 100644
-> > > > --- a/MAINTAINERS
-> > > > +++ b/MAINTAINERS
-> > > > @@ -10462,6 +10462,7 @@ LONTIUM LT8912 MIPI TO HDMI BRIDGE
-> > > >  M:     Adrien Grassein <adrien.grassein@gmail.com>
-> > > >  S:     Maintained
-> > > >  F:     Documentation/devicetree/bindings/display/bridge/lontium,lt=
-8912.yaml
-> > > > +F:     drivers/gpu/drm/bridge/lontium-lt8912.c
-> > > >
-> > > >  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
-> > > >  M:     Sathya Prakash <sathya.prakash@broadcom.com>
-> > > > diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridg=
-e/Kconfig
-> > > > index e4110d6ca7b3..5b36d4b86e3c 100644
-> > > > --- a/drivers/gpu/drm/bridge/Kconfig
-> > > > +++ b/drivers/gpu/drm/bridge/Kconfig
-> > > > @@ -48,6 +48,20 @@ config DRM_DISPLAY_CONNECTOR
-> > > >           on ARM-based platforms. Saying Y here when this driver is=
- not needed
-> > > >           will not cause any issue.
-> > > >
-> > > > +config DRM_LONTIUM_LT8912
-> > > > +       tristate "Lontium LT8912 DSI/HDMI bridge"
-> > > > +       depends on OF
-> > > > +       select DRM_PANEL_BRIDGE
-> > > > +       select DRM_KMS_HELPER
-> > > > +       select REGMAP_I2C
-> > > > +       help
-> > > > +         Driver for Lontium LT8912 DSI to HDMI bridge
-> > > > +         chip driver.
-> > > > +         Please say Y if you have such hardware.
-> > > > +
-> > > > +         Say M here if you want to support this hardware as a modu=
-le.
-> > > > +         The module will be named "lontium-lt8912".
-> > > > +
-> > > >  config DRM_LONTIUM_LT9611
-> > > >         tristate "Lontium LT9611 DSI/HDMI bridge"
-> > > >         select SND_SOC_HDMI_CODEC if SND_SOC
-> > > > diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/brid=
-ge/Makefile
-> > > > index 86e7acc76f8d..5a1b201cea1f 100644
-> > > > --- a/drivers/gpu/drm/bridge/Makefile
-> > > > +++ b/drivers/gpu/drm/bridge/Makefile
-> > > > @@ -2,6 +2,7 @@
-> > > >  obj-$(CONFIG_DRM_CDNS_DSI) +=3D cdns-dsi.o
-> > > >  obj-$(CONFIG_DRM_CHRONTEL_CH7033) +=3D chrontel-ch7033.o
-> > > >  obj-$(CONFIG_DRM_DISPLAY_CONNECTOR) +=3D display-connector.o
-> > > > +obj-$(CONFIG_DRM_LONTIUM_LT8912) +=3D lontium-lt8912.o
-> > > >  obj-$(CONFIG_DRM_LONTIUM_LT9611) +=3D lontium-lt9611.o
-> > > >  obj-$(CONFIG_DRM_LONTIUM_LT9611UXC) +=3D lontium-lt9611uxc.o
-> > > >  obj-$(CONFIG_DRM_LVDS_CODEC) +=3D lvds-codec.o
-> > > > diff --git a/drivers/gpu/drm/bridge/lontium-lt8912.c b/drivers/gpu/=
-drm/bridge/lontium-lt8912.c
-> > > > new file mode 100644
-> > > > index 000000000000..8bdb584d22ce
-> > > > --- /dev/null
-> > > > +++ b/drivers/gpu/drm/bridge/lontium-lt8912.c
-> > > > @@ -0,0 +1,760 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > +/*
-> > > > + * Copyright (c) 2018, The Linux Foundation. All rights reserved.
-> > > > + */
-> > > > +
-> > > > +#include <linux/device.h>
-> > > > +#include <linux/delay.h>
-> > > > +#include <linux/i2c.h>
-> > > > +#include <linux/gpio.h>
-> > > > +#include <linux/of_gpio.h>
-> > > > +#include <linux/regmap.h>
-> > > > +
-> > > > +#include <drm/drm_probe_helper.h>
-> > > > +#include <drm/drm_atomic_helper.h>
-> > > > +#include <drm/drm_mipi_dsi.h>
-> > > > +#include <drm/drm_of.h>
-> > > > +
-> > > > +#include <video/videomode.h>
-> > > > +
-> > > > +#define I2C_MAIN 0
-> > > > +#define I2C_ADDR_MAIN 0x48
-> > > > +
-> > > > +#define I2C_CEC_DSI 1
-> > > > +#define I2C_ADDR_CEC_DSI 0x49
-> > > > +
-> > > > +#define I2C_MAX_IDX 2
-> > > > +
-> > > > +struct lt8912 {
-> > > > +       struct device *dev;
-> > > > +       struct drm_bridge bridge;
-> > > > +       struct drm_connector connector;
-> > > > +
-> > > > +       struct i2c_client *i2c_client[I2C_MAX_IDX];
-> > > > +       struct regmap *regmap[I2C_MAX_IDX];
-> > > > +
-> > > > +       struct device_node *host_node;
-> > > > +       struct drm_bridge *hdmi_port;
-> > > > +
-> > > > +       struct mipi_dsi_device *dsi;
-> > > > +
-> > > > +       struct gpio_desc *gp_reset;
-> > > > +
-> > > > +       struct videomode mode;
-> > > > +
-> > > > +       u8 data_lanes;
-> > > > +       bool is_power_on;
-> > > > +       bool is_attached;
-> > > > +};
-> > > > +
-> > > > +static int lt8912_write_init_config(struct lt8912 *lt)
-> > > > +{
-> > > > +       const struct reg_sequence seq[] =3D {
-> > > > +               /* Digital clock en*/
-> > > > +               {0x08, 0xff},
-> > > > +               {0x09, 0xff},
-> > > > +               {0x0a, 0xff},
-> > > > +               {0x0b, 0x7c},
-> > > > +               {0x0c, 0xff},
-> > > > +               {0x42, 0x04},
-> > > > +
-> > > > +               /*Tx Analog*/
-> > > > +               {0x31, 0xb1},
-> > > > +               {0x32, 0xb1},
-> > > > +               {0x33, 0x0e},
-> > > > +               {0x37, 0x00},
-> > > > +               {0x38, 0x22},
-> > > > +               {0x60, 0x82},
-> > > > +
-> > > > +               /*Cbus Analog*/
-> > > > +               {0x39, 0x45},
-> > > > +               {0x3a, 0x00},
-> > > > +               {0x3b, 0x00},
-> > > > +
-> > > > +               /*HDMI Pll Analog*/
-> > > > +               {0x44, 0x31},
-> > > > +               {0x55, 0x44},
-> > > > +               {0x57, 0x01},
-> > > > +               {0x5a, 0x02},
-> > > > +
-> > > > +               /*MIPI Analog*/
-> > > > +               {0x3e, 0xd6},
-> > > > +               {0x3f, 0xd4},
-> > > > +               {0x41, 0x3c},
-> > > > +               {0xB2, 0x00},
-> > > > +       };
-> > > > +
-> > > > +       return regmap_multi_reg_write(lt->regmap[I2C_MAIN], seq, AR=
-RAY_SIZE(seq));
-> > > > +}
-> > > > +
-> > > > +static int lt8912_write_mipi_basic_config(struct lt8912 *lt)
-> > > > +{
-> > > > +       const struct reg_sequence seq[] =3D {
-> > > > +               {0x12, 0x04},
-> > > > +               {0x14, 0x00},
-> > > > +               {0x15, 0x00},
-> > > > +               {0x1a, 0x03},
-> > > > +               {0x1b, 0x03},
-> > > > +       };
-> > > > +
-> > > > +       return regmap_multi_reg_write(lt->regmap[I2C_CEC_DSI], seq,=
- ARRAY_SIZE(seq));
-> > > > +};
-> > > > +
-> > > > +static int lt8912_write_dds_config(struct lt8912 *lt)
-> > > > +{
-> > > > +       const struct reg_sequence seq[] =3D {
-> > > > +               {0x4e, 0xff},
-> > > > +               {0x4f, 0x56},
-> > > > +               {0x50, 0x69},
-> > > > +               {0x51, 0x80},
-> > > > +               {0x1f, 0x5e},
-> > > > +               {0x20, 0x01},
-> > > > +               {0x21, 0x2c},
-> > > > +               {0x22, 0x01},
-> > > > +               {0x23, 0xfa},
-> > > > +               {0x24, 0x00},
-> > > > +               {0x25, 0xc8},
-> > > > +               {0x26, 0x00},
-> > > > +               {0x27, 0x5e},
-> > > > +               {0x28, 0x01},
-> > > > +               {0x29, 0x2c},
-> > > > +               {0x2a, 0x01},
-> > > > +               {0x2b, 0xfa},
-> > > > +               {0x2c, 0x00},
-> > > > +               {0x2d, 0xc8},
-> > > > +               {0x2e, 0x00},
-> > > > +               {0x42, 0x64},
-> > > > +               {0x43, 0x00},
-> > > > +               {0x44, 0x04},
-> > > > +               {0x45, 0x00},
-> > > > +               {0x46, 0x59},
-> > > > +               {0x47, 0x00},
-> > > > +               {0x48, 0xf2},
-> > > > +               {0x49, 0x06},
-> > > > +               {0x4a, 0x00},
-> > > > +               {0x4b, 0x72},
-> > > > +               {0x4c, 0x45},
-> > > > +               {0x4d, 0x00},
-> > > > +               {0x52, 0x08},
-> > > > +               {0x53, 0x00},
-> > > > +               {0x54, 0xb2},
-> > > > +               {0x55, 0x00},
-> > > > +               {0x56, 0xe4},
-> > > > +               {0x57, 0x0d},
-> > > > +               {0x58, 0x00},
-> > > > +               {0x59, 0xe4},
-> > > > +               {0x5a, 0x8a},
-> > > > +               {0x5b, 0x00},
-> > > > +               {0x5c, 0x34},
-> > > > +               {0x1e, 0x4f},
-> > > > +               {0x51, 0x00},
-> > > > +       };
-> > > > +
-> > > > +       return regmap_multi_reg_write(lt->regmap[I2C_CEC_DSI], seq,=
- ARRAY_SIZE(seq));
-> > > > +}
-> > > > +
-> > > > +static int lt8912_write_rxlogicres_config(struct lt8912 *lt)
-> > > > +{
-> > > > +       int ret;
-> > > > +
-> > > > +       ret =3D regmap_write(lt->regmap[I2C_MAIN], 0x03, 0x7f);
-> > > > +       usleep_range(10000, 20000);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_MAIN], 0x03, 0xff);
-> > > > +
-> > > > +       return ret;
-> > > > +};
-> > > > +
-> > > > +static int lt8912_write_lvds_config(struct lt8912 *lt)
-> > > > +{
-> > > > +       const struct reg_sequence seq[] =3D {
-> > > > +               {0x44, 0x30},
-> > > > +               {0x51, 0x05},
-> > > > +               {0x50, 0x24},
-> > > > +               {0x51, 0x2d},
-> > > > +               {0x52, 0x04},
-> > > > +               {0x69, 0x0e},
-> > > > +               {0x69, 0x8e},
-> > > > +               {0x6a, 0x00},
-> > > > +               {0x6c, 0xb8},
-> > > > +               {0x6b, 0x51},
-> > > > +               {0x04, 0xfb},
-> > > > +               {0x04, 0xff},
-> > > > +               {0x7f, 0x00},
-> > > > +               {0xa8, 0x13},
-> > > > +               {0x02, 0xf7},
-> > > > +               {0x02, 0xff},
-> > > > +               {0x03, 0xcf},
-> > > > +               {0x03, 0xff},
-> > > > +       };
-> > > > +
-> > > > +       return regmap_multi_reg_write(lt->regmap[I2C_CEC_DSI], seq,=
- ARRAY_SIZE(seq));
-> > > > +};
-> > > > +
-> > > > +static inline struct lt8912 *bridge_to_lt8912(struct drm_bridge *b=
-)
-> > > > +{
-> > > > +       return container_of(b, struct lt8912, bridge);
-> > > > +}
-> > > > +
-> > > > +static inline struct lt8912 *connector_to_lt8912(struct drm_connec=
-tor *c)
-> > > > +{
-> > > > +       return container_of(c, struct lt8912, connector);
-> > > > +}
-> > > > +
-> > > > +static const struct regmap_config lt8912_regmap_config =3D {
-> > > > +       .reg_bits =3D 8,
-> > > > +       .val_bits =3D 8,
-> > > > +       .max_register =3D 0xff,
-> > > > +};
-> > > > +
-> > > > +static int lt8912_init_i2c(struct lt8912 *lt)
-> > > > +{
-> > > > +       unsigned int i;
-> > > > +       int ret;
-> > > > +       /*
-> > > > +        * At this time we only initialize 2 chips, but the lt8912 =
-provides
-> > > > +        * a third interface for the audio over HDMI configuration.
-> > > > +        */
-> > > > +       struct i2c_board_info info[] =3D {
-> > > > +               { I2C_BOARD_INFO("lt8912p0", I2C_ADDR_MAIN), },
-> > > > +               { I2C_BOARD_INFO("lt8912p1", I2C_ADDR_CEC_DSI), },
-> > > > +       };
-> > > > +
-> > > > +       if (!lt)
-> > > > +               return -ENODEV;
-> > > > +
-> > > > +       for (i =3D 0; i < ARRAY_SIZE(info); i++) {
-> > > > +               /*
-> > > > +                * lt->i2c_client[0] was already allocated earlier =
-by the
-> > > > +                * kernel (via DT).
-> > > > +                */
-> > > > +               if (i > 0) {
-> > > > +                       lt->i2c_client[i] =3D i2c_new_dummy_device(=
-lt->i2c_client[0]->adapter,
-> > > > +                                                                in=
-fo[i].addr);
-> > > > +                       if (!lt->i2c_client[i])
-> > > > +                               return -ENODEV;
-> > > > +               }
-> > > > +               lt->regmap[i] =3D devm_regmap_init_i2c(lt->i2c_clie=
-nt[i],
-> > > > +                                                    &lt8912_regmap=
-_config);
-> > > > +               if (IS_ERR(lt->regmap[i])) {
-> > > > +                       ret =3D PTR_ERR(lt->regmap[i]);
-> > > > +                       return ret;
-> > > > +               }
-> > > > +       }
-> > > > +       return 0;
-> > > > +}
-> > >
-> > > I had a 2nd look at prior art for bridges with multiple I2C addresses=
-,
-> > > and I think I prefer the implementation in anx7625. Instead of having
-> > > one I2C address provided by the DT and one by the driver, all are
-> > > provided by the driver. If you have any even better suggestions, I'd
-> > > be curious to hear them.
-> > >
-> > > https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/bridge/=
-analogix/anx7625.c#L1646
-> > >
-> >
-> > I check this implementation. I am not a kernel expert (nor a kernel
-> > dev) but I think that
->
-> Well, now you're a kernel dev :p
->
+From the documentation, there are a couple of big questions and a bunch of word smithing.
 
-AhAh ^^
+pseudo-bus : do we need a bus ?
 
-> > one i2c device is allocated twice (one is provided via DTB, via the
-> > reg property).
->
-> Yeah. So let's ignore the one returned by probe() and configure two
-> i2c clients using addresses defined in the driver.
->
-> >
-> > I can alloc all the devices on the driver (it is what I did before I
-> > publish my patch set, and so
-> > that was the aim of the for loop).
->
-> Thanks, and sorry about the churn around this topic.
->
+xrt-lib real platform devices that aren't fpga, do they need to move to another subsystem ?
 
-No problem, I'm here to learn, and I consider it as a lesson :).
-> >
-> > > > +
-> > > > +static int lt8912_free_i2c(struct lt8912 *lt)
-> > > > +{
-> > > > +       unsigned int i;
-> > > > +
-> > > > +       for (i =3D 1; i < I2C_MAX_IDX; i++)
-> > > > +               i2c_unregister_device(lt->i2c_client[i]);
-> > > > +
-> > > > +       return 0;
-> > > > +}
-> > > > +
-> > > > +static int lt8912_hard_power_on(struct lt8912 *lt)
-> > > > +{
-> > > > +       gpiod_set_value_cansleep(lt->gp_reset, 0);
-> > > > +       msleep(20);
-> > > > +
-> > > > +       return 0;
-> > > > +}
-> > > > +
-> > > > +static void lt8912_hard_power_off(struct lt8912 *lt)
-> > > > +{
-> > > > +       gpiod_set_value_cansleep(lt->gp_reset, 1);
-> > > > +       msleep(20);
-> > > > +       lt->is_power_on =3D false;
-> > > > +}
-> > > > +
-> > > > +static int lt8912_video_setup(struct lt8912 *lt)
-> > > > +{
-> > > > +       u32 hactive, h_total, hpw, hfp, hbp;
-> > > > +       u32 vactive, v_total, vpw, vfp, vbp;
-> > > > +       u8 settle =3D 0x08;
-> > > > +       int ret;
-> > > > +
-> > > > +       if (!lt)
-> > > > +               return -EINVAL;
-> > > > +
-> > > > +       hactive =3D lt->mode.hactive;
-> > > > +       hfp =3D lt->mode.hfront_porch;
-> > > > +       hpw =3D lt->mode.hsync_len;
-> > > > +       hbp =3D lt->mode.hback_porch;
-> > > > +       h_total =3D hactive + hfp + hpw + hbp;
-> > > > +
-> > > > +       vactive =3D lt->mode.vactive;
-> > > > +       vfp =3D lt->mode.vfront_porch;
-> > > > +       vpw =3D lt->mode.vsync_len;
-> > > > +       vbp =3D lt->mode.vback_porch;
-> > > > +       v_total =3D vactive + vfp + vpw + vbp;
-> > > > +
-> > > > +       if (vactive <=3D 600)
-> > > > +               settle =3D 0x04;
-> > > > +       else if (vactive =3D=3D 1080)
-> > > > +               settle =3D 0x0a;
-> > > > +
-> > > > +       ret =3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x10, 0x01);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x11, settle=
-);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x18, hpw);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x19, vpw);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x1c, hactiv=
-e & 0xff);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x1d, hactiv=
-e >> 8);
-> > > > +
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x2f, 0x0c);
-> > > > +
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x34, h_tota=
-l & 0xff);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x35, h_tota=
-l >> 8);
-> > > > +
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x36, v_tota=
-l & 0xff);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x37, v_tota=
-l >> 8);
-> > > > +
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x38, vbp & =
-0xff);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x39, vbp >>=
- 8);
-> > > > +
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3a, vfp & =
-0xff);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3b, vfp >>=
- 8);
-> > > > +
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3c, hbp & =
-0xff);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3d, hbp >>=
- 8);
-> > > > +
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3e, hfp & =
-0xff);
-> > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3f, hfp >>=
- 8);
-> > > > +
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static int lt8912_soft_power_on(struct lt8912 *lt)
-> > > > +{
-> > > > +       if (!lt->is_power_on) {
-> > > > +               u32 lanes =3D lt->data_lanes;
-> > > > +
-> > > > +               lt8912_write_init_config(lt);
-> > > > +               regmap_write(lt->regmap[I2C_CEC_DSI], 0x13, lanes &=
- 3);
-> > > > +
-> > > > +               lt8912_write_mipi_basic_config(lt);
-> > > > +
-> > > > +               lt->is_power_on =3D true;
-> > > > +       }
-> > > > +
-> > > > +       return 0;
-> > > > +}
-> > > > +
-> > > > +static int lt8912_video_on(struct lt8912 *lt)
-> > > > +{
-> > > > +       int ret;
-> > > > +
-> > > > +       ret =3D lt8912_video_setup(lt);
-> > > > +       if (ret < 0)
-> > > > +               goto end;
-> > > > +
-> > > > +       ret =3D lt8912_write_dds_config(lt);
-> > > > +       if (ret < 0)
-> > > > +               goto end;
-> > > > +
-> > > > +       ret =3D lt8912_write_rxlogicres_config(lt);
-> > > > +       if (ret < 0)
-> > > > +               goto end;
-> > > > +
-> > > > +       ret =3D lt8912_write_lvds_config(lt);
-> > > > +       if (ret < 0)
-> > > > +               goto end;
-> > > > +
-> > > > +end:
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static enum drm_connector_status
-> > > > +lt8912_connector_detect(struct drm_connector *connector, bool forc=
-e)
-> > > > +{
-> > > > +       struct lt8912 *lt =3D connector_to_lt8912(connector);
-> > > > +
-> > > > +       return drm_bridge_detect(lt->hdmi_port);
-> > > > +}
-> > > > +
-> > > > +static const struct drm_connector_funcs lt8912_connector_funcs =3D=
- {
-> > > > +       .detect =3D lt8912_connector_detect,
-> > > > +       .fill_modes =3D drm_helper_probe_single_connector_modes,
-> > > > +       .destroy =3D drm_connector_cleanup,
-> > > > +       .reset =3D drm_atomic_helper_connector_reset,
-> > > > +       .atomic_duplicate_state =3D drm_atomic_helper_connector_dup=
-licate_state,
-> > > > +       .atomic_destroy_state =3D drm_atomic_helper_connector_destr=
-oy_state,
-> > > > +};
-> > > > +
-> > > > +static enum drm_mode_status
-> > > > +lt8912_connector_mode_valid(struct drm_connector *connector,
-> > > > +                           struct drm_display_mode *mode)
-> > > > +{
-> > > > +       if (mode->clock > 150000)
-> > > > +               return MODE_CLOCK_HIGH;
-> > > > +
-> > > > +       if (mode->hdisplay > 1920)
-> > > > +               return MODE_BAD_HVALUE;
-> > > > +
-> > > > +       if (mode->vdisplay > 1080)
-> > > > +               return MODE_BAD_VVALUE;
-> > > > +
-> > > > +       return MODE_OK;
-> > > > +}
-> > > > +
-> > > > +static int lt8912_connector_get_modes(struct drm_connector *connec=
-tor)
-> > > > +{
-> > > > +       struct edid *edid;
-> > > > +       int ret, num =3D 0;
-> > > > +       struct lt8912 *lt =3D connector_to_lt8912(connector);
-> > > > +       u32 bus_format =3D MEDIA_BUS_FMT_RGB888_1X24;
-> > > > +
-> > > > +       edid =3D drm_bridge_get_edid(lt->hdmi_port, connector);
-> > > > +       if (edid) {
-> > > > +               drm_connector_update_edid_property(connector, edid)=
-;
-> > > > +               num =3D drm_add_edid_modes(connector, edid);
-> > > > +       } else
-> > > > +               return ret;
-> > > > +
-> > > > +       ret =3D drm_display_info_set_bus_formats(&connector->displa=
-y_info,
-> > > > +                                              &bus_format, 1);
-> > > > +       if (ret)
-> > > > +               num =3D ret;
-> > > > +
-> > > > +       kfree(edid);
-> > > > +       return num;
-> > > > +}
-> > > > +
-> > > > +static const struct drm_connector_helper_funcs lt8912_connector_he=
-lper_funcs =3D {
-> > > > +       .get_modes =3D lt8912_connector_get_modes,
-> > > > +       .mode_valid =3D lt8912_connector_mode_valid,
-> > > > +};
-> > > > +
-> > > > +static void lt8912_bridge_mode_set(struct drm_bridge *bridge,
-> > > > +                                  const struct drm_display_mode *m=
-ode,
-> > > > +                                  const struct drm_display_mode *a=
-dj)
-> > > > +{
-> > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > +
-> > > > +       drm_display_mode_to_videomode(adj, &lt->mode);
-> > > > +}
-> > > > +
-> > > > +static void lt8912_bridge_enable(struct drm_bridge *bridge)
-> > > > +{
-> > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > +
-> > > > +       lt8912_video_on(lt);
-> > > > +}
-> > > > +
-> > > > +static int lt8912_attach_dsi(struct lt8912 *lt)
-> > > > +{
-> > > > +       struct device *dev =3D lt->dev;
-> > > > +       struct mipi_dsi_host *host;
-> > > > +       struct mipi_dsi_device *dsi;
-> > > > +       int ret =3D -1;
-> > > > +       const struct mipi_dsi_device_info info =3D { .type =3D "lt8=
-912",
-> > > > +                                                  .channel =3D 0,
-> > > > +                                                  .node =3D NULL,
-> > > > +                                                };
-> > > > +
-> > > > +       host =3D of_find_mipi_dsi_host_by_node(lt->host_node);
-> > > > +       if (!host) {
-> > > > +               dev_err(dev, "failed to find dsi host\n");
-> > > > +               return -EPROBE_DEFER;
-> > > > +       }
-> > > > +
-> > > > +       dsi =3D mipi_dsi_device_register_full(host, &info);
-> > > > +       if (IS_ERR(dsi)) {
-> > > > +               ret =3D PTR_ERR(dsi);
-> > > > +               dev_err(dev, "failed to create dsi device (%d)\n", =
-ret);
-> > > > +               goto err_dsi_device;
-> > > > +       }
-> > > > +
-> > > > +       lt->dsi =3D dsi;
-> > > > +
-> > > > +       dsi->lanes =3D lt->data_lanes;
-> > > > +       dsi->format =3D MIPI_DSI_FMT_RGB888;
-> > > > +
-> > > > +       dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO |
-> > > > +                         MIPI_DSI_MODE_VIDEO_BURST |
-> > > > +                         MIPI_DSI_MODE_LPM |
-> > > > +                         MIPI_DSI_MODE_EOT_PACKET;
-> > > > +
-> > > > +       ret =3D mipi_dsi_attach(dsi);
-> > > > +       if (ret < 0) {
-> > > > +               dev_err(dev, "failed to attach dsi to host\n");
-> > > > +               goto err_dsi_attach;
-> > > > +       }
-> > > > +
-> > > > +       return 0;
-> > > > +
-> > > > +err_dsi_attach:
-> > > > +       mipi_dsi_device_unregister(dsi);
-> > > > +err_dsi_device:
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static void lt8912_detach_dsi(struct lt8912 *lt)
-> > > > +{
-> > > > +       mipi_dsi_detach(lt->dsi);
-> > > > +       mipi_dsi_device_unregister(lt->dsi);
-> > > > +}
-> > > > +
-> > > > +static void lt8912_bridge_connector_hpd_event(void *arg,
-> > > > +                                             enum drm_connector_st=
-atus status)
-> > > > +{
-> > > > +       struct lt8912 *lt =3D arg;
-> > > > +
-> > > > +       if (lt->hdmi_port->dev)
-> > > > +               drm_helper_hpd_irq_event(lt->hdmi_port->dev);
-> > > > +}
-> > > > +
-> > > > +static int lt8912_bridge_connector_init(struct drm_bridge *bridge)
-> > > > +{
-> > > > +       int ret;
-> > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > +       struct drm_connector *connector =3D &lt->connector;
-> > > > +
-> > > > +       if (lt->hdmi_port->ops & DRM_BRIDGE_OP_DETECT) {
-> > > > +               connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> > > > +       } else {
-> > > > +               connector->polled =3D DRM_CONNECTOR_POLL_CONNECT |
-> > > > +                                   DRM_CONNECTOR_POLL_DISCONNECT;
-> > > > +       }
-> > > > +
-> > > > +       if (lt->hdmi_port->ops & DRM_BRIDGE_OP_HPD) {
-> > > > +               drm_bridge_hpd_enable(lt->hdmi_port,
-> > > > +                                     lt8912_bridge_connector_hpd_e=
-vent,
-> > > > +                                     lt);
-> > > > +       }
-> > > > +
-> > > > +       ret =3D drm_connector_init(bridge->dev, connector,
-> > > > +                                &lt8912_connector_funcs,
-> > > > +                                lt->hdmi_port->type);
-> > > > +       if (ret)
-> > > > +               goto exit;
-> > > > +
-> > > > +       drm_connector_helper_add(connector, &lt8912_connector_helpe=
-r_funcs);
-> > > > +
-> > > > +       connector->dpms =3D DRM_MODE_DPMS_OFF;
-> > > > +       drm_connector_attach_encoder(connector, bridge->encoder);
-> > > > +exit:
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static int lt8912_bridge_attach(struct drm_bridge *bridge,
-> > > > +                               enum drm_bridge_attach_flags flags)
-> > > > +{
-> > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > +       int ret;
-> > > > +
-> > > > +       if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
-> > > > +               ret =3D lt8912_bridge_connector_init(bridge);
-> > > > +               if (ret) {
-> > > > +                       dev_err(lt->dev, "Failed to init bridge ! (=
-%d)\n", ret);
-> > > > +                       return ret;
-> > > > +               }
-> > > > +       }
-> > > > +
-> > > > +
-> > > > +       ret =3D lt8912_hard_power_on(lt);
-> > > > +       if (ret)
-> > > > +               return ret;
-> > > > +
-> > > > +       ret =3D lt8912_soft_power_on(lt);
-> > > > +       if (ret)
-> > > > +               goto error;
-> > > > +
-> > > > +       ret =3D lt8912_attach_dsi(lt);
-> > > > +       if (ret)
-> > > > +               goto error;
-> > > > +
-> > > > +       lt->is_attached =3D true;
-> > > > +
-> > > > +       return 0;
-> > > > +
-> > > > +error:
-> > > > +       lt8912_hard_power_off(lt);
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static void lt8912_bridge_detach(struct drm_bridge *bridge)
-> > > > +{
-> > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > +
-> > > > +       if (lt->is_attached) {
-> > > > +               if (lt->hdmi_port->ops & DRM_BRIDGE_OP_HPD)
-> > > > +                       drm_bridge_hpd_disable(lt->hdmi_port);
-> > > > +               lt8912_detach_dsi(lt);
-> > > > +               lt8912_hard_power_off(lt);
-> > > > +       }
-> > > > +}
-> > > > +
-> > > > +static enum drm_connector_status
-> > > > +lt8912_bridge_detect(struct drm_bridge *bridge)
-> > > > +{
-> > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > +
-> > > > +       return drm_bridge_detect(lt->hdmi_port);
-> > > > +}
-> > > > +
-> > > > +static struct edid *lt8912_bridge_get_edid(struct drm_bridge *brid=
-ge,
-> > > > +                                              struct drm_connector=
- *connector)
-> > > > +{
-> > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > +
-> > > > +       return drm_bridge_get_edid(lt->hdmi_port, connector);
-> > > > +}
-> > > > +
-> > > > +static const struct drm_bridge_funcs lt8912_bridge_funcs =3D {
-> > > > +       .attach =3D lt8912_bridge_attach,
-> > > > +       .detach =3D lt8912_bridge_detach,
-> > > > +       .mode_set =3D lt8912_bridge_mode_set,
-> > > > +       .enable =3D lt8912_bridge_enable,
-> > > > +       .detect =3D lt8912_bridge_detect,
-> > > > +       .get_edid =3D lt8912_bridge_get_edid,
-> > > > +};
-> > > > +
-> > > > +static int lt8912_parse_dt(struct lt8912 *lt)
-> > > > +{
-> > > > +       struct gpio_desc *gp_reset;
-> > > > +       struct device *dev =3D lt->dev;
-> > > > +       int ret =3D 0;
-> > > > +       struct device_node *port_node;
-> > > > +       struct device_node *endpoint;
-> > > > +
-> > > > +       gp_reset =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OU=
-T_HIGH);
-> > > > +       if (IS_ERR(gp_reset)) {
-> > > > +               ret =3D PTR_ERR(gp_reset);
-> > > > +               if (ret !=3D -EPROBE_DEFER)
-> > > > +                       dev_err(dev, "Failed to get reset gpio: %d\=
-n", ret);
-> > > > +               return ret;
-> > > > +       }
-> > > > +       lt->gp_reset =3D gp_reset;
-> > > > +
-> > > > +
-> > > > +       endpoint =3D of_graph_get_endpoint_by_regs(dev->of_node, 0,=
- -1);
-> > > > +       if (IS_ERR(endpoint)) {
-> > > > +               ret =3D PTR_ERR(endpoint);
-> > > > +               goto end;
-> > > > +       }
-> > > > +
-> > > > +       lt->data_lanes =3D of_property_count_u32_elems(endpoint, "d=
-ata-lanes");
-> > > > +       of_node_put(endpoint);
-> > > > +
-> > > > +       lt->host_node =3D of_graph_get_remote_node(dev->of_node, 0,=
- -1);
-> > > > +       if (!lt->host_node) {
-> > > > +               dev_err(lt->dev, "%s: Failed to get remote port\n",=
- __func__);
-> > > > +               ret =3D -ENODEV;
-> > > > +               goto end;
-> > > > +       }
-> > > > +
-> > > > +       port_node =3D of_graph_get_remote_node(dev->of_node, 1, -1)=
-;
-> > > > +       if (!port_node) {
-> > > > +               dev_err(lt->dev, "%s: Failed to get connector port\=
-n", __func__);
-> > > > +               ret =3D -ENODEV;
-> > > > +               goto err_free_host_node;
-> > > > +       }
-> > > > +
-> > > > +       lt->hdmi_port =3D of_drm_find_bridge(port_node);
-> > > > +       if (IS_ERR(lt->hdmi_port)) {
-> > > > +               dev_err(lt->dev, "%s: Failed to get hdmi port\n", _=
-_func__);
-> > > > +               ret =3D PTR_ERR(lt->hdmi_port);
-> > > > +               of_node_put(lt->host_node);
-> > > > +               goto end;
-> > > > +       }
-> > > > +
-> > > > +       if (!of_device_is_compatible(port_node, "hdmi-connector")) =
-{
-> > > > +               dev_err(lt->dev, "%s: Failed to get hdmi port\n", _=
-_func__);
-> > > > +               ret =3D -EINVAL;
-> > > > +       }
-> > > > +
-> > > > +       of_node_put(port_node);
-> > > > +
-> > > > +end:
-> > > > +       return ret;
-> > > > +
-> > > > +err_free_host_node:
-> > > > +       of_node_put(lt->host_node);
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static int lt8912_put_dt(struct lt8912 *lt)
-> > > > +{
-> > > > +       of_node_put(lt->host_node);
-> > > > +       return 0;
-> > > > +}
-> > > > +
-> > > > +static int lt8912_probe(struct i2c_client *client,
-> > > > +        const struct i2c_device_id *id)
-> > > > +{
-> > > > +       static struct lt8912 *lt;
-> > > > +       int ret =3D 0;
-> > > > +       struct device *dev =3D &client->dev;
-> > > > +
-> > > > +       lt =3D devm_kzalloc(dev, sizeof(struct lt8912), GFP_KERNEL)=
-;
-> > > > +       if (!lt)
-> > > > +               return -ENOMEM;
-> > > > +
-> > > > +       lt->dev =3D dev;
-> > > > +       lt->i2c_client[0] =3D client;
-> > > > +
-> > > > +       ret =3D lt8912_parse_dt(lt);
-> > > > +       if (ret)
-> > > > +               goto err_dt_parse;
-> > > > +
-> > > > +       ret =3D lt8912_init_i2c(lt);
-> > > > +       if (ret)
-> > > > +               goto err_i2c;
-> > > > +
-> > > > +       i2c_set_clientdata(client, lt);
-> > > > +
-> > > > +       lt->bridge.funcs =3D &lt8912_bridge_funcs;
-> > > > +       lt->bridge.of_node =3D dev->of_node;
-> > > > +       lt->bridge.ops =3D lt->hdmi_port->ops;
-> > >
-> > > This is not entirely kosher, bridge.ops should mirror what is
-> > > implemented by bridge.funcs.
-> > >
-> > > I would expect DRM_BRIDGE_OP_HPD and possibly DRM_BRIDGE_OP_DETECT to
-> > > be enabled, since the hardware brief mentions supporting hot plug
-> > > detection.
-> > > drm_bridge_funcs.hpd_enable & drm_bridge_funcs.hpd_disable should bot=
-h
-> > > also be implemented. If the hardware supports HPD, the driver is
-> > > required to support it as well.
-> > >
-> > > lt8912_product_brief.pdf: https://allg.one/0R71
-> > >
-> > > Have you seen the lt8912 driver in the Toradex tree? It mentions HPD
-> > > and the relevant registers, but doesn't implement support for it
-> > >
-> > > http://git.toradex.com/cgit/linux-toradex.git/tree/drivers/gpu/drm/br=
-idge/lt8912.c?h=3Dcolibri&id=3D331ac1cf6e09d90e7d9ab39445bc8812ff33f178#n24=
-8
-> > >
-> >
-> > Yes I read the product brief and I know that this chip can do HPD. The
-> > problem is that it is not working (so far) on my board.
-> > Second point, my driver uses an "hdmi-connector" that does HPD and DDC
-> > (for EDID=C3=A0 for me (to avoid duplicating some code).
-> > It's why I rely on the bridge (hdmi-connector) ops for my own ops.
->
-> So I think there are a few issues with what we've got now
->
-> 1) lt->bridge.ops =3D lt->hdmi_port->ops does not guarantee that the
-> functionality we're advertising in .ops is what we have implemented in
-> .funcs
->
-> 2) The documentation is pretty clear about bridge drivers being
-> required to implement support for all connector related operations
-> that are supported by the hardware.[1]
->
->
-> [1] https://dri.freedesktop.org/docs/drm/gpu/drm-kms-helpers.html#bridges
->
+Overall looks good, love the ascii art!
 
-OK. I think I can do something like
+On 2/17/21 10:40 PM, Lizhi Hou wrote:
+> Describe XRT driver architecture and provide basic overview of
+> Xilinx Alveo platform.
+>
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhih@xilinx.com>
+> ---
+>  Documentation/fpga/index.rst |   1 +
+>  Documentation/fpga/xrt.rst   | 842 +++++++++++++++++++++++++++++++++++
+>  2 files changed, 843 insertions(+)
+>  create mode 100644 Documentation/fpga/xrt.rst
+>
+> diff --git a/Documentation/fpga/index.rst b/Documentation/fpga/index.rst
+> index f80f95667ca2..30134357b70d 100644
+> --- a/Documentation/fpga/index.rst
+> +++ b/Documentation/fpga/index.rst
+> @@ -8,6 +8,7 @@ fpga
+>      :maxdepth: 1
+>  
+>      dfl
+> +    xrt
+>  
+>  .. only::  subproject and html
+>  
+> diff --git a/Documentation/fpga/xrt.rst b/Documentation/fpga/xrt.rst
+> new file mode 100644
+> index 000000000000..9bc2d2785cb9
+> --- /dev/null
+> +++ b/Documentation/fpga/xrt.rst
+> @@ -0,0 +1,842 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +==================================
+> +XRTV2 Linux Kernel Driver Overview
+> +==================================
+> +
+> +Authors:
+> +
+> +* Sonal Santan <sonal.santan@xilinx.com>
+> +* Max Zhen <max.zhen@xilinx.com>
+> +* Lizhi Hou <lizhi.hou@xilinx.com>
+> +
+> +XRTV2 drivers are second generation `XRT <https://github.com/Xilinx/XRT>`_
+> +drivers which support `Alveo <https://www.xilinx.com/products/boards-and-kits/alveo.html>`_
+> +PCIe platforms from Xilinx.
+> +
+> +XRTV2 drivers support *subsystem* style data driven platforms where driver's
+where the driver's
+> +configuration and behavior is determined by meta data provided by the platform
+> +(in *device tree* format). Primary management physical function (MPF) driver
+> +is called **xmgmt**. Primary user physical function (UPF) driver is called
+> +**xuser** and is under development. xrt driver framework and HW subsystem
+> +drivers are packaged into a library module called **xrt-lib**, which is
+> +shared by **xmgmt** and **xuser** (under development). The xrt driver framework
+xuser still under development ?
+> +implements a pseudo-bus which is used to discover HW subsystems and facilitate
 
-"lt->bridge.ops =3D lt->hdmi_port->ops & (DRM_BRIDGE_OP_EDID |
-DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_HPD);"
+A pseudo-bus.
 
-With this, we can assume that all advertised fun are available.
-What are you thinking about this solution?
+It would be good if this was close to what was done for dfl here
 
-> >
-> > > > +
-> > > > +       drm_bridge_add(&lt->bridge);
-> > > > +
-> > > > +       return 0;
-> > > > +
-> > > > +err_i2c:
-> > > > +       lt8912_put_dt(lt);
-> > > > +err_dt_parse:
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static int lt8912_remove(struct i2c_client *client)
-> > > > +{
-> > > > +       struct lt8912 *lt =3D i2c_get_clientdata(client);
-> > > > +
-> > > > +       lt8912_bridge_detach(&lt->bridge);
-> > > > +       drm_bridge_remove(&lt->bridge);
-> > > > +       lt8912_free_i2c(lt);
-> > > > +       lt8912_put_dt(lt);
-> > > > +
-> > > > +       return 0;
-> > > > +}
-> > > > +
-> > > > +static const struct of_device_id lt8912_dt_match[] =3D {
-> > > > +       {.compatible =3D "lontium,lt8912"},
-> > > > +       {}
-> > > > +};
-> > > > +MODULE_DEVICE_TABLE(of, lt8912_dt_match);
-> > > > +
-> > > > +static const struct i2c_device_id lt8912_id[] =3D {
-> > > > +       {"lt8912", 0},
-> > > > +       {},
-> > > > +};
-> > > > +MODULE_DEVICE_TABLE(i2c, lt8912_id);
-> > > > +
-> > > > +static struct i2c_driver lt8912_i2c_driver =3D {
-> > > > +       .driver =3D {
-> > > > +               .name =3D "lt8912",
-> > > > +               .of_match_table =3D lt8912_dt_match,
-> > > > +               .owner =3D THIS_MODULE,
-> > > > +       },
-> > > > +       .probe =3D lt8912_probe,
-> > > > +       .remove =3D lt8912_remove,
-> > > > +       .id_table =3D lt8912_id,
-> > > > +};
-> > > > +module_i2c_driver(lt8912_i2c_driver);
-> > > > +
-> > > > +MODULE_AUTHOR("Adrien Grassein <adrien.grassein@gmail.com>");
-> > > > +MODULE_DESCRIPTION("lt8912 drm driver");
-> > > > +MODULE_LICENSE("GPL v2");
-> > > > --
-> > > > 2.25.1
-> > > >
-> >
-> > Thanks,
-> > Adrien
+https://lore.kernel.org/linux-fpga/1605159759-3439-1-git-send-email-yilun.xu@intel.com/
+
+> +inter HW subsystem interaction.
+> +
+> +Driver Modules
+> +==============
+> +
+> +xrt-lib.ko
+> +----------
+> +
+> +Repository of all subsystem drivers and pure software modules that can potentially
+
+subsystem drivers
+
+drivers in fpga/ should be for managing just the fpganess of the fpga.
+
+soft devices ex/ a soft tty should go to their respective subsystem location
+
+Are there any in this patchset you think might move ?
+
+Maybe we can defer reviewing those now.
+
+> +be shared between xmgmt and xuser. All these drivers are structured as Linux
+> +*platform driver* and are instantiated by xmgmt (or xuser under development) based
+> +on meta data associated with hardware. The metadata is in the form of device tree
+
+with the hardware
+
+form of a device tree
+
+> +as mentioned before. Each platform driver statically defines a subsystem node
+> +array by using node name or a string in its ``compatible`` property. And this
+> +array is eventually translated to IOMEM resources of the platform device.
+> +
+> +The xrt-lib core infrastructure provides hooks to platform drivers for device node
+> +management, user file operations and ioctl callbacks. The core also provides pseudo-bus
+> +functionality for platform driver registration, discovery and inter platform driver
+> +ioctl calls.
+
+core infrastructure.
+
+The interfaces to the infrastructure are not in include/linux/fpga/
+
+Maybe this needs to change.
+
+> +
+> +.. note::
+> +   See code in ``include/xleaf.h``
+> +
+> +
+> +xmgmt.ko
+> +--------
+> +
+> +The xmgmt driver is a PCIe device driver driving MPF found on Xilinx's Alveo
+> +PCIE device. It consists of one *root* driver, one or more *group* drivers
+> +and one or more *xleaf* drivers. The root and MPF specific xleaf drivers are
+> +in xmgmt.ko. The group driver and other xleaf drivers are in xrt-lib.ko.
+I am not sure if *.ko is correct, these will also be intree.
+> +
+> +The instantiation of specific group driver or xleaf driver is completely data
+of a specific
+> +driven based on meta data (mostly in device tree format) found through VSEC
+mostly ? what is the deviation from device tree ?
+> +capability and inside firmware files, such as platform xsabin or user xclbin file.
+> +The root driver manages life cycle of multiple group drivers, which, in turn,
+the life cycle
+> +manages multiple xleaf drivers. This allows a single set of driver code to support
+
+set of drivers
+
+drop 'code'
+
+> +all kinds of subsystems exposed by different shells. The difference among all
+> +these subsystems will be handled in xleaf drivers with root and group drivers
+> +being part of the infrastructure and provide common services for all leaves
+> +found on all platforms.
+> +
+> +The driver object model looks like the following::
+> +
+> +                    +-----------+
+> +                    |   xroot   |
+> +                    +-----+-----+
+> +                          |
+> +              +-----------+-----------+
+> +              |                       |
+> +              v                       v
+> +        +-----------+          +-----------+
+> +        |   group   |    ...   |   group   |
+> +        +-----+-----+          +------+----+
+> +              |                       |
+> +              |                       |
+> +        +-----+----+            +-----+----+
+> +        |          |            |          |
+> +        v          v            v          v
+> +    +-------+  +-------+    +-------+  +-------+
+> +    | xleaf |..| xleaf |    | xleaf |..| xleaf |
+> +    +-------+  +-------+    +-------+  +-------+
+> +
+> +As an example for Xilinx Alveo U50 before user xclbin download, the tree
+> +looks like the following::
+> +
+> +                                +-----------+
+> +                                |   xmgmt   |
+> +                                +-----+-----+
+> +                                      |
+> +            +-------------------------+--------------------+
+> +            |                         |                    |
+> +            v                         v                    v
+> +       +--------+                +--------+            +--------+
+> +       | group0 |                | group1 |            | group2 |
+> +       +----+---+                +----+---+            +---+----+
+> +            |                         |                    |
+> +            |                         |                    |
+> +      +-----+-----+        +----+-----+---+    +-----+-----+----+--------+
+> +      |           |        |    |         |    |     |          |        |
+> +      v           v        |    v         v    |     v          v        |
+> + +------------+  +------+  | +------+ +------+ |  +------+ +-----------+ |
+> + | xmgmt_main |  | VSEC |  | | GPIO | | QSPI | |  |  CMC | | AXI-GATE0 | |
+> + +------------+  +------+  | +------+ +------+ |  +------+ +-----------+ |
+> +                           | +---------+       |  +------+ +-----------+ |
+> +                           +>| MAILBOX |       +->| ICAP | | AXI-GATE1 |<+
+> +                             +---------+       |  +------+ +-----------+
+> +                                               |  +-------+
+> +                                               +->| CALIB |
+> +                                                  +-------+
+> +
+Nice ascii art!
+> +After an xclbin is download, group3 will be added and the tree looks like the
+> +following::
+> +
+> +                                +-----------+
+> +                                |   xmgmt   |
+> +                                +-----+-----+
+> +                                      |
+> +            +-------------------------+--------------------+-----------------+
+> +            |                         |                    |                 |
+> +            v                         v                    v                 |
+> +       +--------+                +--------+            +--------+            |
+> +       | group0 |                | group1 |            | group2 |            |
+> +       +----+---+                +----+---+            +---+----+            |
+> +            |                         |                    |                 |
+> +            |                         |                    |                 |
+> +      +-----+-----+       +-----+-----+---+    +-----+-----+----+--------+   |
+> +      |           |       |     |         |    |     |          |        |   |
+> +      v           v       |     v         v    |     v          v        |   |
+> + +------------+  +------+ | +------+ +------+  |  +------+ +-----------+ |   |
+> + | xmgmt_main |  | VSEC | | | GPIO | | QSPI |  |  |  CMC | | AXI-GATE0 | |   |
+> + +------------+  +------+ | +------+ +------+  |  +------+ +-----------+ |   |
+> +                          | +---------+        |  +------+ +-----------+ |   |
+> +                          +>| MAILBOX |        +->| ICAP | | AXI-GATE1 |<+   |
+> +                            +---------+        |  +------+ +-----------+     |
+> +                                               |  +-------+                  |
+> +                                               +->| CALIB |                  |
+> +                                                  +-------+                  |
+> +                      +---+----+                                             |
+> +                      | group3 |<--------------------------------------------+
+> +                      +--------+
+> +                          |
+> +                          |
+> +     +-------+--------+---+--+--------+------+-------+
+> +     |       |        |      |        |      |       |
+> +     v       |        v      |        v      |       v
+> + +--------+  |   +--------+  |   +--------+  |    +-----+
+> + | CLOCK0 |  |   | CLOCK1 |  |   | CLOCK2 |  |    | UCS |
+> + +--------+  v   +--------+  v   +--------+  v    +-----+
+> + +-------------+ +-------------+ +-------------+
+> + | CLOCK-FREQ0 | | CLOCK-FREQ1 | | CLOCK-FREQ2 |
+> + +-------------+ +-------------+ +-------------+
+> +
+> +
+> +xmgmt-root
+> +^^^^^^^^^^
+> +
+> +The xmgmt-root driver is a PCIe device driver attached to MPF. It's part of the
+> +infrastructure of the MPF driver and resides in xmgmt.ko. This driver
+> +
+> +* manages one or more group drivers
+> +* provides access to functionalities that requires pci_dev, such as PCIE config
+> +  space access, to other xleaf drivers through root calls
+> +* together with group driver, facilities event callbacks for other xleaf drivers
+> +* together with group driver, facilities inter-leaf driver calls for other xleaf
+Maybe drop 'together with group driver'
+> +  drivers
+> +
+> +When root driver starts, it will explicitly create an initial group instance,
+> +which contains xleaf drivers that will trigger the creation of other group
+> +instances. The root driver will wait for all group and leaves to be created
+> +before it returns from it's probe routine and claim success of the
+> +initialization of the entire xmgmt driver.
+What happens if there a failure in one leaf ? Does the whole board go down ?
+> +
+> +.. note::
+> +   See code in ``lib/xroot.c`` and ``mgmt/root.c``
+> +
+> +
+> +group
+> +^^^^^
+> +
+> +The group driver is a platform device driver whose life cycle is managed by
+Maybe call this a 'pseudo device'
+> +root and does not have real IO mem or IRQ resources. It's part of the
+> +infrastructure of the MPF driver and resides in xrt-lib.ko. This driver
+> +
+> +* manages one or more xleaf drivers so that multiple leaves can be managed as a
+> +  group
+can drop 'so that multiple leaves can be managed as a group' to me, this is the same as 'one or more'
+> +* provides access to root from leaves, so that root calls, event notifications
+> +  and inter-leaf calls can happen
+> +
+> +In xmgmt, an initial group driver instance will be created by root, which
+by the root
+> +contains leaves that will trigger group instances to be created to manage
+> +groups of leaves found on different partitions on hardware, such as VSEC, Shell,
+> +and User.
+> +
+> +Every *fpga_region* has a group object associated with it. The group is
+> +created when xclbin image is loaded on the fpga_region. The existing group
+> +is destroyed when a new xclbin image is loaded. The fpga_region persists
+> +across xclbin downloads.
+The connection of a 'group' node to a fpga region region is fairly important, maybe move this section earlier. 'group' as an fpganess thing would be kept in fpga/ subsystem.
+> +
+> +.. note::
+> +   See code in ``lib/group.c``
+> +
+> +
+> +xleaf
+> +^^^^^
+> +
+> +The xleaf driver is a platform device driver whose life cycle is managed by
+> +a group driver and may or may not have real IO mem or IRQ resources. They
+> +are the real meat of xmgmt and contains platform specific code to Shell and
+> +User found on a MPF.
+> +
+
+Maybe a split is pseudo device leaves, those without real IO mem, stay in fpga/  others go ?
+
+> +A xleaf driver may not have real hardware resources when it merely acts as a
+> +driver that manages certain in-memory states for xmgmt. These in-memory states
+> +could be shared by multiple other leaves.
+> +
+This implies locking and some message passing.
+> +Leaf drivers assigned to specific hardware resources drive specific subsystem in
+drive a specific
+> +the device. To manipulate the subsystem or carry out a task, a xleaf driver may
+> +ask help from root via root calls and/or from other leaves via inter-leaf calls.
+> +
+> +A xleaf can also broadcast events through infrastructure code for other leaves
+> +to process. It can also receive event notification from infrastructure about
+> +certain events, such as post-creation or pre-exit of a particular xleaf.
+I would like to see some examples of how the inter node communications work.
+> +
+> +.. note::
+> +   See code in ``lib/xleaf/*.c``
+> +
+> +
+> +FPGA Manager Interaction
+> +========================
+> +
+> +fpga_manager
+> +------------
+> +
+> +An instance of fpga_manager is created by xmgmt_main and is used for xclbin
+for the xclbin
+> +image download. fpga_manager requires the full xclbin image before it can
+> +start programming the FPGA configuration engine via ICAP platform driver.
+
+via the ICAP
+
+what is ICAP ?
+
+> +
+> +fpga_region
+> +-----------
+> +
+> +For every interface exposed by currently loaded xclbin/xsabin in the *parent*
+by the currently
+> +fpga_region a new instance of fpga_region is created like a *child* region.
+fpga_region,
+> +The device tree of the *parent* fpga_region defines the
+> +resources for a new instance of fpga_bridge which isolates the parent from
+and isolates
+> +child fpga_region. This new instance of fpga_bridge will be used when a
+> +xclbin image is loaded on the child fpga_region. After the xclbin image is
+> +downloaded to the fpga_region, an instance of group is created for the
+> +fpga_region using the device tree obtained as part of xclbin. If this device
+of the xclbin
+> +tree defines any child interfaces then it can trigger the creation of
+interfaces, then
+> +fpga_bridge and fpga_region for the next region in the chain.
+a fpga_bridge and a fpga_region
+> +
+> +fpga_bridge
+> +-----------
+> +
+> +Like fpga_region, matching fpga_bridge is also created by walking the device
+Like the fpga_region, a matchin
+> +tree of the parent group.
+> +
+> +Driver Interfaces
+> +=================
+> +
+> +xmgmt Driver Ioctls
+> +-------------------
+> +
+> +Ioctls exposed by xmgmt driver to user space are enumerated in the following
+> +table:
+> +
+> +== ===================== ============================ ==========================
+> +#  Functionality         ioctl request code            data format
+> +== ===================== ============================ ==========================
+> +1  FPGA image download   XMGMT_IOCICAPDOWNLOAD_AXLF    xmgmt_ioc_bitstream_axlf
+> +== ===================== ============================ ==========================
+
+This data format is described below, maybe swap this section with that so
+
+folks will know what xmgmnt_ioc_bitstream_axlf is before this section.
+
+> +
+> +User xclbin can be downloaded by using xbmgmt tool from XRT open source suite. See
+
+A user xclbin
+
+using the xbmgmt
+
+from the XRT
+
+> +example usage below::
+> +
+> +  xbmgmt partition --program --path /lib/firmware/xilinx/862c7020a250293e32036f19956669e5/test/verify.xclbin --force
+> +
+> +xmgmt Driver Sysfs
+> +------------------
+> +
+> +xmgmt driver exposes a rich set of sysfs interfaces. Subsystem platform
+> +drivers export sysfs node for every platform instance.
+> +
+> +Every partition also exports its UUIDs. See below for examples::
+> +
+> +  /sys/bus/pci/devices/0000:06:00.0/xmgmt_main.0/interface_uuids
+> +  /sys/bus/pci/devices/0000:06:00.0/xmgmt_main.0/logic_uuids
+> +
+> +
+> +hwmon
+> +-----
+> +
+> +xmgmt driver exposes standard hwmon interface to report voltage, current,
+> +temperature, power, etc. These can easily be viewed using *sensors* command
+> +line utility.
+> +
+> +Alveo Platform Overview
+> +=======================
+> +
+> +Alveo platforms are architected as two physical FPGA partitions: *Shell* and
+> +*User*. The Shell provides basic infrastructure for the Alveo platform like
+> +PCIe connectivity, board management, Dynamic Function Exchange (DFX), sensors,
+> +clocking, reset, and security. User partition contains user compiled FPGA
+the user compiled
+> +binary which is loaded by a process called DFX also known as partial
+> +reconfiguration.
+> +
+> +Physical partitions require strict HW compatibility with each other for DFX to
+> +work properly. 
+
+swap order
+
+For DFX to work properly physical partitions ..
 
 
-Thanks,
+> Every physical partition has two interface UUIDs: *parent* UUID
+> +and *child* UUID. For simple single stage platforms, Shell → User forms parent
+> +child relationship. For complex two stage platforms, Base → Shell → User forms
+> +the parent child relationship chain.
+this bit is confusing. is this related to uuid?
+> +
+> +.. note::
+> +   Partition compatibility matching is key design component of Alveo platforms
+> +   and XRT. Partitions have child and parent relationship. A loaded partition
+have a child
+> +   exposes child partition UUID to advertise its compatibility requirement for
+
+the child's
+
+can drop 'for child partition'
+
+> +   child partition. When loading a child partition the xmgmt management driver
+When loading a child partition,
+> +   matches parent UUID of the child partition against child UUID exported by
+> +   the parent. Parent and child partition UUIDs are stored in the *xclbin*
+> +   (for user) or *xsabin* (for base and shell).
+
+this is confusing, is this part of the file image format ?
+
+Maybe save/move till the image layout.
+
+>  Except for root UUID, VSEC,
+> +   hardware itself does not know about UUIDs. UUIDs are stored in xsabin and
+> +   xclbin.
+This is confusing too, not sure how to untangle.
+> +
+> +
+> +The physical partitions and their loading is illustrated below::
+> +
+> +           SHELL                               USER
+> +        +-----------+                  +-------------------+
+> +        |           |                  |                   |
+> +        | VSEC UUID | CHILD     PARENT |    LOGIC UUID     |
+> +        |           o------->|<--------o                   |
+> +        |           | UUID       UUID  |                   |
+> +        +-----+-----+                  +--------+----------+
+> +              |                                 |
+> +              .                                 .
+> +              |                                 |
+> +          +---+---+                      +------+--------+
+> +          |  POR  |                      | USER COMPILED |
+> +          | FLASH |                      |    XCLBIN     |
+> +          +-------+                      +---------------+
+> +
+> +
+> +Loading Sequence
+> +----------------
+> +
+> +The Shell partition is loaded from flash at system boot time. It establishes the
+> +PCIe link and exposes two physical functions to the BIOS. After OS boot, xmgmt
+the OS boots, the xmgmt
+> +driver attaches to PCIe physical function 0 exposed by the Shell and then looks
+> +for VSEC in PCIe extended configuration space. Using VSEC it determines the logic
+
+the PCIe
+
+The driver uses VSEC to determine the UUID of Shell.  The UUID is also used to load a matching ...
+
+> +UUID of Shell and uses the UUID to load matching *xsabin* file from Linux firmware
+> +directory. The xsabin file contains metadata to discover peripherals that are part
+> +of Shell and firmware(s) for any embedded soft processors in Shell.
+the firmware needed for any ...
+> +
+> +The Shell exports child interface UUID which is used for compatibility check when
+
+export a child
+
+for a compatibility check
+
+> +loading user compiled xclbin over the User partition as part of DFX. When a user
+> +requests loading of a specific xclbin the xmgmt management driver reads the parent
+xclbin, the
+> +interface UUID specified in the xclbin and matches it with child interface UUID
+> +exported by Shell to determine if xclbin is compatible with the Shell. If match
+> +fails loading of xclbin is denied.
+> +
+> +xclbin loading is requested using ICAP_DOWNLOAD_AXLF ioctl command. When loading
+> +xclbin, xmgmt driver performs the following *logical* operations:
+> +
+> +1. Copy xclbin from user to kernel memory
+> +2. Sanity check the xclbin contents
+> +3. Isolate the User partition
+> +4. Download the bitstream using the FPGA config engine (ICAP)
+> +5. De-isolate the User partition
+> +6. Program the clocks (ClockWiz) driving the User partition
+maybe drop '(ClockWiz)'
+> +7. Wait for memory controller (MIG) calibration
+for the
+> +8. Return the loading status back to the caller
+> +
+> +`Platform Loading Overview <https://xilinx.github.io/XRT/master/html/platforms_partitions.html>`_
+> +provides more detailed information on platform loading.
+> +
+the link works.
+> +
+> +xsabin
+> +------
+> +
+> +Each Alveo platform comes packaged with its own xsabin. The xsabin is trusted
+is a trusted
+> +component of the platform. For format details refer to :ref:`xsabin_xclbin_container_format`
+> +below. xsabin contains basic information like UUIDs, platform name and metadata in the
+> +form of device tree. See :ref:`device_tree_usage` below for details and example.
+of a device
+> +
+> +xclbin
+> +------
+> +
+> +xclbin is compiled by end user using
+> +`Vitis <https://www.xilinx.com/products/design-tools/vitis/vitis-platform.html>`_
+this link works, seems reasonable landing
+> +tool set from Xilinx. The xclbin contains sections describing user compiled
+> +acceleration engines/kernels, memory subsystems, clocking information etc. It also
+> +contains bitstream for the user partition, UUIDs, platform name, etc. xclbin uses
+bitstreams
+> +the same container format as xsabin which is described below.
+> +
+> +
+> +.. _xsabin_xclbin_container_format:
+> +
+> +xsabin/xclbin Container Format
+> +------------------------------
+> +
+> +xclbin/xsabin is ELF-like binary container format. It is structured as series of
+> +sections. There is a file header followed by several section headers which is
+> +followed by sections. A section header points to an actual section. There is an
+> +optional signature at the end. The format is defined by header file ``xclbin.h``.
+> +The following figure illustrates a typical xclbin::
+> +
+> +
+> +           +---------------------+
+> +           |                     |
+> +           |       HEADER        |
+> +           +---------------------+
+> +           |   SECTION  HEADER   |
+> +           |                     |
+> +           +---------------------+
+> +           |         ...         |
+> +           |                     |
+> +           +---------------------+
+> +           |   SECTION  HEADER   |
+> +           |                     |
+> +           +---------------------+
+> +           |       SECTION       |
+> +           |                     |
+> +           +---------------------+
+> +           |         ...         |
+> +           |                     |
+> +           +---------------------+
+> +           |       SECTION       |
+> +           |                     |
+> +           +---------------------+
+> +           |      SIGNATURE      |
+> +           |      (OPTIONAL)     |
+> +           +---------------------+
+> +
+> +
+> +xclbin/xsabin files can be packaged, un-packaged and inspected using XRT utility
+> +called **xclbinutil**. xclbinutil is part of XRT open source software stack. The
+> +source code for xclbinutil can be found at
+> +https://github.com/Xilinx/XRT/tree/master/src/runtime_src/tools/xclbinutil
+> +
+Works, but maybe the location of a manpage or doc would be better.
+> +For example to enumerate the contents of a xclbin/xsabin use the *--info* switch
+> +as shown below::
+> +
+> +
+> +  xclbinutil --info --input /opt/xilinx/firmware/u50/gen3x16-xdma/blp/test/bandwidth.xclbin
+> +  xclbinutil --info --input /lib/firmware/xilinx/862c7020a250293e32036f19956669e5/partition.xsabin
+> +
+> +
+> +.. _device_tree_usage:
+> +
+> +Device Tree Usage
+> +-----------------
+> +
+> +As mentioned previously xsabin stores metadata which advertise HW subsystems present
+> +in a partition. The metadata is stored in device tree format with well defined schema.
+> +XRT management driver uses this information to bind *platform drivers* to the subsystem
+> +instantiations. The platform drivers are found in **xrt-lib.ko** kernel module defined
+> +later.
+> +
+> +Logic UUID
+> +^^^^^^^^^^
+> +A partition is identified uniquely through ``logic_uuid`` property::
+> +
+> +  /dts-v1/;
+> +  / {
+> +      logic_uuid = "0123456789abcdef0123456789abcdef";
+> +      ...
+> +    }
+> +
+> +Schema Version
+> +^^^^^^^^^^^^^^
+> +Schema version is defined through ``schema_version`` node. And it contains ``major``
+> +and ``minor`` properties as below::
+> +
+> +  /dts-v1/;
+> +  / {
+> +       schema_version {
+> +           major = <0x01>;
+> +           minor = <0x00>;
+> +       };
+> +       ...
+> +    }
+> +
+> +Partition UUIDs
+> +^^^^^^^^^^^^^^^
+> +As said earlier, each partition may have parent and child UUIDs. These UUIDs are
+> +defined by ``interfaces`` node and ``interface_uuid`` property::
+> +
+> +  /dts-v1/;
+> +  / {
+> +       interfaces {
+> +           @0 {
+> +                  interface_uuid = "0123456789abcdef0123456789abcdef";
+> +           };
+> +           @1 {
+> +                  interface_uuid = "fedcba9876543210fedcba9876543210";
+> +           };
+> +           ...
+> +        };
+> +       ...
+> +    }
+> +
+> +
+> +Subsystem Instantiations
+> +^^^^^^^^^^^^^^^^^^^^^^^^
+> +Subsystem instantiations are captured as children of ``addressable_endpoints``
+> +node::
+> +
+> +  /dts-v1/;
+> +  / {
+> +       addressable_endpoints {
+> +           abc {
+> +               ...
+> +           };
+> +           def {
+> +               ...
+> +           };
+> +           ...
+> +       }
+> +  }
+> +
+> +Subnode 'abc' and 'def' are the name of subsystem nodes
+> +
+> +Subsystem Node
+> +^^^^^^^^^^^^^^
+> +Each subsystem node and its properties define a hardware instance::
+> +
+> +
+> +  addressable_endpoints {
+> +      abc {
+> +          reg = <0xa 0xb>
+> +          pcie_physical_function = <0x0>;
+> +          pcie_bar_mapping = <0x2>;
+> +          compatible = "abc def";
+> +          firmware {
+> +              firmware_product_name = "abc"
+> +              firmware_branch_name = "def"
+> +              firmware_version_major = <1>
+> +              firmware_version_minor = <2>
+> +          };
+> +      }
+> +      ...
+> +  }
+> +
+> +:reg:
+> + Property defines address range. '<0xa 0xb>' is BAR offset and length pair, both
+> + are 64-bit integer.
+> +:pcie_physical_function:
+> + Property specifies which PCIe physical function the subsystem node resides.
+> +:pcie_bar_mapping:
+> + Property specifies which PCIe BAR the subsystem node resides. '<0x2>' is BAR
+> + index and it is 0 if this property is not defined.
+> +:compatible:
+> + Property is a list of strings. The first string in the list specifies the exact
+> + subsystem node. The following strings represent other devices that the device
+> + is compatible with.
+> +:firmware:
+> + Subnode defines the firmware required by this subsystem node.
+> +
+> +Alveo U50 Platform Example
+> +^^^^^^^^^^^^^^^^^^^^^^^^^^
+> +::
+> +
+> +  /dts-v1/;
+> +
+> +  /{
+> +        logic_uuid = "f465b0a3ae8c64f619bc150384ace69b";
+> +
+> +        schema_version {
+> +                major = <0x01>;
+> +                minor = <0x00>;
+> +        };
+> +
+> +        interfaces {
+> +
+> +                @0 {
+> +                        interface_uuid = "862c7020a250293e32036f19956669e5";
+> +                };
+> +        };
+> +
+> +        addressable_endpoints {
+> +
+> +                ep_blp_rom_00 {
+> +                        reg = <0x00 0x1f04000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +                };
+> +
+> +                ep_card_flash_program_00 {
+> +                        reg = <0x00 0x1f06000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_quad_spi-1.0\0axi_quad_spi";
+> +                        interrupts = <0x03 0x03>;
+> +                };
+> +
+> +                ep_cmc_firmware_mem_00 {
+> +                        reg = <0x00 0x1e20000 0x00 0x20000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +
+> +                        firmware {
+> +                                firmware_product_name = "cmc";
+> +                                firmware_branch_name = "u50";
+> +                                firmware_version_major = <0x01>;
+> +                                firmware_version_minor = <0x00>;
+> +                        };
+> +                };
+> +
+> +                ep_cmc_intc_00 {
+> +                        reg = <0x00 0x1e03000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_intc-1.0\0axi_intc";
+> +                        interrupts = <0x04 0x04>;
+> +                };
+> +
+> +                ep_cmc_mutex_00 {
+> +                        reg = <0x00 0x1e02000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_cmc_regmap_00 {
+> +                        reg = <0x00 0x1e08000 0x00 0x2000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +
+> +                        firmware {
+> +                                firmware_product_name = "sc-fw";
+> +                                firmware_branch_name = "u50";
+> +                                firmware_version_major = <0x05>;
+> +                        };
+> +                };
+> +
+> +                ep_cmc_reset_00 {
+> +                        reg = <0x00 0x1e01000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_ddr_mem_calib_00 {
+> +                        reg = <0x00 0x63000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_debug_bscan_mgmt_00 {
+> +                        reg = <0x00 0x1e90000 0x00 0x10000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-debug_bridge-1.0\0debug_bridge";
+> +                };
+> +
+> +                ep_ert_base_address_00 {
+> +                        reg = <0x00 0x21000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_ert_command_queue_mgmt_00 {
+> +                        reg = <0x00 0x40000 0x00 0x10000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-ert_command_queue-1.0\0ert_command_queue";
+> +                };
+> +
+> +                ep_ert_command_queue_user_00 {
+> +                        reg = <0x00 0x40000 0x00 0x10000>;
+> +                        pcie_physical_function = <0x01>;
+> +                        compatible = "xilinx.com,reg_abs-ert_command_queue-1.0\0ert_command_queue";
+> +                };
+> +
+> +                ep_ert_firmware_mem_00 {
+> +                        reg = <0x00 0x30000 0x00 0x8000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +
+> +                        firmware {
+> +                                firmware_product_name = "ert";
+> +                                firmware_branch_name = "v20";
+> +                                firmware_version_major = <0x01>;
+> +                        };
+> +                };
+> +
+> +                ep_ert_intc_00 {
+> +                        reg = <0x00 0x23000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_intc-1.0\0axi_intc";
+> +                        interrupts = <0x05 0x05>;
+> +                };
+> +
+> +                ep_ert_reset_00 {
+> +                        reg = <0x00 0x22000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_ert_sched_00 {
+> +                        reg = <0x00 0x50000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x01>;
+> +                        compatible = "xilinx.com,reg_abs-ert_sched-1.0\0ert_sched";
+> +                        interrupts = <0x09 0x0c>;
+> +                };
+> +
+> +                ep_fpga_configuration_00 {
+> +                        reg = <0x00 0x1e88000 0x00 0x8000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_hwicap-1.0\0axi_hwicap";
+> +                        interrupts = <0x02 0x02>;
+> +                };
+> +
+> +                ep_icap_reset_00 {
+> +                        reg = <0x00 0x1f07000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_msix_00 {
+> +                        reg = <0x00 0x00 0x00 0x20000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-msix-1.0\0msix";
+> +                        pcie_bar_mapping = <0x02>;
+> +                };
+> +
+> +                ep_pcie_link_mon_00 {
+> +                        reg = <0x00 0x1f05000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_pr_isolate_plp_00 {
+> +                        reg = <0x00 0x1f01000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_pr_isolate_ulp_00 {
+> +                        reg = <0x00 0x1000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_uuid_rom_00 {
+> +                        reg = <0x00 0x64000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +                };
+> +
+> +                ep_xdma_00 {
+> +                        reg = <0x00 0x00 0x00 0x10000>;
+> +                        pcie_physical_function = <0x01>;
+> +                        compatible = "xilinx.com,reg_abs-xdma-1.0\0xdma";
+> +                        pcie_bar_mapping = <0x02>;
+> +                };
+> +        };
+> +
+> +  }
+> +
+> +
+> +
+> +Deployment Models
+> +=================
+> +
+> +Baremetal
+> +---------
+> +
+> +In bare-metal deployments both MPF and UPF are visible and accessible. xmgmt
+In bare-meta deployments,
+> +driver binds to MPF. xmgmt driver operations are privileged and available to
+> +system administrator. The full stack is illustrated below::
+> +
+> +                            HOST
+> +
+> +                 [XMGMT]            [XUSER]
+> +                    |                  |
+> +                    |                  |
+> +                 +-----+            +-----+
+> +                 | MPF |            | UPF |
+> +                 |     |            |     |
+> +                 | PF0 |            | PF1 |
+> +                 +--+--+            +--+--+
+> +          ......... ^................. ^..........
+> +                    |                  |
+> +                    |   PCIe DEVICE    |
+> +                    |                  |
+> +                 +--+------------------+--+
+> +                 |         SHELL          |
+> +                 |                        |
+> +                 +------------------------+
+> +                 |         USER           |
+> +                 |                        |
+> +                 |                        |
+> +                 |                        |
+> +                 |                        |
+> +                 +------------------------+
+> +
+> +
+> +
+> +Virtualized
+> +-----------
+> +
+> +In virtualized deployments privileged MPF is assigned to host but unprivileged
+In virtualized deployments, the
+> +UPF is assigned to guest VM via PCIe pass-through. xmgmt driver in host binds
+in the host
+> +to MPF. xmgmt driver operations are privileged and only accessible by hosting
+to the MPF
+> +service provider. The full stack is illustrated below::
+> +
+> +
+> +                                 .............
+> +                  HOST           .    VM     .
+> +                                 .           .
+> +                 [XMGMT]         .  [XUSER]  .
+> +                    |            .     |     .
+> +                    |            .     |     .
+> +                 +-----+         .  +-----+  .
+> +                 | MPF |         .  | UPF |  .
+> +                 |     |         .  |     |  .
+> +                 | PF0 |         .  | PF1 |  .
+> +                 +--+--+         .  +--+--+  .
+> +          ......... ^................. ^..........
+> +                    |                  |
+> +                    |   PCIe DEVICE    |
+> +                    |                  |
+> +                 +--+------------------+--+
+> +                 |         SHELL          |
+> +                 |                        |
+> +                 +------------------------+
+> +                 |         USER           |
+> +                 |                        |
+> +                 |                        |
+> +                 |                        |
+> +                 |                        |
+> +                 +------------------------+
+> +
+> +
+> +
+> +
+> +
+> +Platform Security Considerations
+> +================================
+> +
+> +`Security of Alveo Platform <https://xilinx.github.io/XRT/master/html/security.html>`_
+> +discusses the deployment options and security implications in great detail.
+
+This link works and looks great.
+
+Tom
+
