@@ -2,163 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D298831FA75
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 15:18:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 281D431FA85
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 15:26:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbhBSORx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Feb 2021 09:17:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57854 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229808AbhBSORw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Feb 2021 09:17:52 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5D2AC64E46;
-        Fri, 19 Feb 2021 14:17:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613744231;
-        bh=/+2b2FPgpVlufmh4ou91Mqrxg25dANUoad9GzuPY3QM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hpkdWLkXS4r9zMnMbRgfiAqJUL/KX6NZRfDUz5f24bqhOJAvuNQpG2eR3cqSV4FPP
-         X0+GeMRwnTShjEsTP3+zqR1wrAXn1CNjRGFjK1/zI+wJc3UGOX54Pxat+7NKkWxuUS
-         Ms2w+MsTo3JMUtRhZll9QYsSTorsSO7MOoT4l6DTGTRc+sYLiO3suZYOmK8ktSRz4i
-         9JcuWqm6WZwELL56dxvs54v7F9+UGjNl4nvuy4AlHsgCi18iFryaiBbHaiVK3VuDq1
-         xl8uf2dwcNNrgMNtZ5NpC7Z6bNyqdcSZa24H9G5LXRygMG+ZcaDbgvb5Omvc7rUKIY
-         Yr4w6lIhJdMAQ==
-Received: by mail-ed1-f53.google.com with SMTP id c6so10310845ede.0;
-        Fri, 19 Feb 2021 06:17:11 -0800 (PST)
-X-Gm-Message-State: AOAM530L6OwA0vnSAU//a6Ie5eEQigsoEdLrARfX6ECwk5NnYyi8IBEn
-        km2zkVhTAvLb1Ozkk4/wfXHuDD3NrkAlnwuZvA==
-X-Google-Smtp-Source: ABdhPJy5YMi65AggF+97f34pmKOko3c6auf7j3NtKv4xgM4ETK+XS7z2sblhE2YkPD2nLGwZdf6zqpXv2RkL4KtPM0Y=
-X-Received: by 2002:aa7:c7c8:: with SMTP id o8mr9390177eds.137.1613744229946;
- Fri, 19 Feb 2021 06:17:09 -0800 (PST)
+        id S229681AbhBSO0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Feb 2021 09:26:34 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:57041 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229636AbhBSO0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Feb 2021 09:26:30 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 31E68580342;
+        Fri, 19 Feb 2021 09:25:44 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 19 Feb 2021 09:25:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=FsrzPsv6OPy2s0HzNgRya7RFf2
+        dKgOCEMkjhAogzc4Q=; b=UFpwJQswCMtAG9CPQyWnimBuOsUKGXxK/OvHOc5228
+        ykTtbpchX2ftZE3Seq9NLdH9lPtpGLn6oyR6dn9tf1A9DfqBOsmy67Ryzc9/tUFB
+        OCCFGFv8Tt6fQd/vRc3FQ1vE/H/GVC3l1o7NmVXzJmE3trq+65qvwYGglXijuJ2D
+        OxG57HFsYNScFaFNqjT71YkbwL+Nh1Mx7zTXXmAGvDMRZbnQVhQiCrobJqERyDnd
+        /uBYKvKIdYSleWdy6AKCqksG4vXlsl7adKqL1y2Fk+4OpDfokA9lsZ96PLE3ymkP
+        BE9+0FiWA3OG21EbjOAYslo4J0Yt71cDKTQMB9RS3SfA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=FsrzPsv6OPy2s0HzN
+        gRya7RFf2dKgOCEMkjhAogzc4Q=; b=FoLOrDxhBbp9a0vOd1lxrfuWfjuBmf8m2
+        0IvMCil+cxA7AGG2mdFoZ7c0ZuScCF8NTpjJz1E99jMZKUIlHuFaFuGxhj4eD7r4
+        7wDQ7CKwkFhf/yqwfYUMrlxnO9aErp+xofXV+K950oE9i58But3yZcKFMHQom9lV
+        VDGwAA2iYn0+NhEz8G8yWF9k3mPgaaWzuFeJPt6JaL60cyFINgRbtbAB6nTSDYAI
+        8n4s/McgI7DN+hm9L4ciAiMVOgs2JS0dPuUNBdcAUI8MqhfXN02QLwQ8gX/ifQQJ
+        Pz+r2xqBkVQoX9g+Yofd1PGSfqP9LVwYXKRy0Pu94oSctM7LQHVPQ==
+X-ME-Sender: <xms:ZsovYDuP-ybKSjMmdXyd93-DYDIMxkwrZU_TLpyf-5bkjgacXO3L4g>
+    <xme:ZsovYEcaJRgGaaEVw4c9SRZMN4KsDoVpNkSnHgR6FEwHxXidXRw1NJmNLedfAgxpF
+    Cfxr9bUtlVdkt-YfA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjeeigdeigecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghjrdhi
+    ugdrrghuqeenucggtffrrghtthgvrhhnpeejgffffedvveekudfhheduffeuudethefhhe
+    egvefhlefggfffudefffduteffudenucffohhmrghinhepihhnthgvlhdrtghomhdpghhi
+    thhhuhgsrdgtohhmpdgumhhtfhdrohhrghenucfkphepudegrddvrdeluddrfeejnecuve
+    hluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgif
+    segrjhdrihgurdgruh
+X-ME-Proxy: <xmx:ZsovYGxSPGDtr989h1CfmmdiV91s6HL_p5FT7fBxxGtdOnBrUMvePw>
+    <xmx:ZsovYCOMLxSmL_8SfvpgP5GOMfC5HQcxRJCRl1dOY6nn0r9Z51RMxw>
+    <xmx:ZsovYD_hrRbrjyjHFF4mhYkAvM7xQOfFSgd65nTm51xQ5eFb65ZsYA>
+    <xmx:aMovYLNiH3Wqj8d2yMrBjUvZM4g1uyIHh9nwomtoM1DCWQ4-tLT-9Q>
+Received: from localhost.localdomain (ppp14-2-91-37.adl-apt-pir-bras31.tpg.internode.on.net [14.2.91.37])
+        by mail.messagingengine.com (Postfix) with ESMTPA id A2EEE24005D;
+        Fri, 19 Feb 2021 09:25:35 -0500 (EST)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     openipmi-developer@lists.sourceforge.net, openbmc@lists.ozlabs.org,
+        minyard@acm.org
+Cc:     robh+dt@kernel.org, joel@jms.id.au, lee.jones@linaro.org,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        linus.walleij@linaro.org, chiawei_wang@aspeedtech.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-gpio@vger.kernel.org
+Subject: [PATCH 00/19] ipmi: Allow raw access to KCS devices
+Date:   Sat, 20 Feb 2021 00:55:04 +1030
+Message-Id: <20210219142523.3464540-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20210218223305.2044-1-nramas@linux.microsoft.com>
- <c6490f6a126a2f10e3e3445b51ea552a26f896a9.camel@linux.ibm.com>
- <8b8c0b70-c7ab-33f3-b66c-9ea03388497b@linux.microsoft.com>
- <87k0r4yi4s.fsf@manicouagan.localdomain> <3ca0aa87-ca83-8024-4067-c2382a360db9@linux.microsoft.com>
-In-Reply-To: <3ca0aa87-ca83-8024-4067-c2382a360db9@linux.microsoft.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 19 Feb 2021 08:16:46 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJiRV5xShOgso0PH2pFhv-yozay58i1uGQC0dJCVxkJPA@mail.gmail.com>
-Message-ID: <CAL_JsqJiRV5xShOgso0PH2pFhv-yozay58i1uGQC0dJCVxkJPA@mail.gmail.com>
-Subject: Re: [PATCH] of: error: 'const struct kimage' has no member named 'arch'
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        James Morse <james.morse@arm.com>,
-        Sasha Levin <sashal@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        linux-integrity@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 18, 2021 at 8:53 PM Lakshmi Ramasubramanian
-<nramas@linux.microsoft.com> wrote:
->
-> On 2/18/21 5:13 PM, Thiago Jung Bauermann wrote:
-> >
-> > Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-> >
-> >> On 2/18/21 4:07 PM, Mimi Zohar wrote:
-> >>
-> >> Hi Mimi,
-> >>
-> >>> On Thu, 2021-02-18 at 14:33 -0800, Lakshmi Ramasubramanian wrote:
-> >>>> of_kexec_alloc_and_setup_fdt() defined in drivers/of/kexec.c builds
-> >>>> a new device tree object that includes architecture specific data
-> >>>> for kexec system call.  This should be defined only if the architecture
-> >>>> being built defines kexec architecture structure "struct kimage_arch".
-> >>>>
-> >>>> Define a new boolean config OF_KEXEC that is enabled if
-> >>>> CONFIG_KEXEC_FILE and CONFIG_OF_FLATTREE are enabled, and
-> >>>> the architecture is arm64 or powerpc64.  Build drivers/of/kexec.c
-> >>>> if CONFIG_OF_KEXEC is enabled.
-> >>>>
-> >>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> >>>> Fixes: 33488dc4d61f ("of: Add a common kexec FDT setup function")
-> >>>> Reported-by: kernel test robot <lkp@intel.com>
-> >>>> ---
-> >>>>    drivers/of/Kconfig  | 6 ++++++
-> >>>>    drivers/of/Makefile | 7 +------
-> >>>>    2 files changed, 7 insertions(+), 6 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> >>>> index 18450437d5d5..f2e8fa54862a 100644
-> >>>> --- a/drivers/of/Kconfig
-> >>>> +++ b/drivers/of/Kconfig
-> >>>> @@ -100,4 +100,10 @@ config OF_DMA_DEFAULT_COHERENT
-> >>>>            # arches should select this if DMA is coherent by default for OF devices
-> >>>>            bool
-> >>>>    +config OF_KEXEC
-> >>>> +  bool
-> >>>> +  depends on KEXEC_FILE
-> >>>> +  depends on OF_FLATTREE
-> >>>> +  default y if ARM64 || PPC64
-> >>>> +
-> >>>>    endif # OF
-> >>>> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
-> >>>> index c13b982084a3..287579dd1695 100644
-> >>>> --- a/drivers/of/Makefile
-> >>>> +++ b/drivers/of/Makefile
-> >>>> @@ -13,11 +13,6 @@ obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
-> >>>>    obj-$(CONFIG_OF_RESOLVE)  += resolver.o
-> >>>>    obj-$(CONFIG_OF_OVERLAY) += overlay.o
-> >>>>    obj-$(CONFIG_OF_NUMA) += of_numa.o
-> >>>> -
-> >>>> -ifdef CONFIG_KEXEC_FILE
-> >>>> -ifdef CONFIG_OF_FLATTREE
-> >>>> -obj-y     += kexec.o
-> >>>> -endif
-> >>>> -endif
-> >>>> +obj-$(CONFIG_OF_KEXEC) += kexec.o
-> >>>>      obj-$(CONFIG_OF_UNITTEST) += unittest-data/
-> >>> Is it possible to reuse CONFIG_HAVE_IMA_KEXEC here?
-> >>>
-> >>
-> >> For ppc64 CONFIG_HAVE_IMA_KEXEC is selected when CONFIG_KEXEC_FILE is enabled.
-> >> So I don't see a problem in reusing CONFIG_HAVE_IMA_KEXEC for ppc.
-> >>
-> >> But for arm64, CONFIG_HAVE_IMA_KEXEC is enabled in the final patch in the patch
-> >> set (the one for carrying forward IMA log across kexec for arm64). arm64 calls
-> >> of_kexec_alloc_and_setup_fdt() prior to enabling CONFIG_HAVE_IMA_KEXEC and hence
-> >> breaks the build for arm64.
-> >
-> > One problem is that I believe that this patch won't placate the robot,
-> > because IIUC it generates config files at random and this change still
-> > allows hppa and s390 to enable CONFIG_OF_KEXEC.
->
-> I enabled CONFIG_OF_KEXEC for s390. With my patch applied,
-> CONFIG_OF_KEXEC is removed. So I think the robot enabling this config
-> would not be a problem.
->
-> >
-> > Perhaps a new CONFIG_HAVE_KIMAGE_ARCH option? Not having that option
-> > would still allow building kexec.o, but would be used inside kexec.c to
-> > avoid accessing kimage.arch members.
-> >
->
-> I think this is a good idea - a new CONFIG_HAVE_KIMAGE_ARCH, which will
-> be selected by arm64 and ppc for now. I tried this, and it fixes the
-> build issue.
->
-> Although, the name for the new config can be misleading since PARISC,
-> for instance, also defines "struct kimage_arch". Perhaps,
-> CONFIG_HAVE_ELF_KIMAGE_ARCH since of_kexec_alloc_and_setup_fdt() is
-> accessing ELF specific fields in "struct kimage_arch"?
->
-> Rob/Mimi - please let us know which approach you think is better.
+Hello,
 
-I'd just move the fields to kimage.
+This series is a bit of a mix of things, but its primary purpose is to
+expose BMC KCS IPMI devices to userspace in a way that enables userspace
+to talk to host firmware using protocols that are not IPMI.  The new
+chardev implementation exposes the Input Data Register (IDR), Output
+Data Register (ODR) and Status Register (STR) via read() and write(),
+and implements poll() for event monitoring.
 
-Rob
+The existing /dev/ipmi-kcs* chardev interface exposes the KCS devices in
+a way which encoded the IPMI protocol in its behaviour. However, as
+LPC[0] KCS devices give us bi-directional interrupts between the host
+and a BMC with both a data and status byte, they are useful for purposes
+beyond IPMI.
+
+As a concrete example, libmctp[1] implements a vendor-defined
+host-interface MCTP[2] binding using a combination of LPC Firmware
+cycles for bulk data transfer and a KCS device via LPC IO cycles for
+out-of-band protocol control messages[3]. This gives a throughput
+improvement over the standard KCS binding[4] while continuing to exploit
+the ease of setup of the LPC bus for early boot firmware on the host
+processor.
+
+The series takes a bit of a winding path to achieve its aim:
+
+1. It begins with patches 1-5 put together by Chia-Wei, which I've
+rebased on v5.11. These fix the ASPEED LPC bindings and other non-KCS
+LPC-related ASPEED device drivers in a way that enables the SerIRQ
+patches at the end of the series. With Joel's review I'm hoping these 5
+can go through the aspeed tree, and that the rest can go through the
+IPMI tree.
+
+2. Next, patches 6-13 fairly heavily refactor the KCS support in the
+IPMI part of the tree, re-architecting things such that it's possible to
+support multiple chardev implementations sitting on top of the ASPEED
+and Nuvoton device drivers. However, the KCS code didn't really have
+great separation of concerns as it stood, so even if we disregard the
+multiple-chardev support I think the cleanups are worthwhile.
+
+3. Patch 14 adds some interrupt management capabilities to the KCS
+device drivers in preparation for patch 15, which introduces the new
+"raw" KCS device interface. I'm not stoked about the device name/path,
+so if people are looking to bikeshed something then feel free to lay
+into that.
+
+4. The remaining patches switch the ASPEED KCS devicetree binding to
+dt-schema, add a new interrupt property to describe the SerIRQ behaviour
+of the device and finally clean up Serial IRQ support in the ASPEED KCS
+driver.
+
+Rob: The dt-binding patches still come before the relevant driver
+changes, I tried to keep the two close together in the series, hence the
+bindings changes not being patches 1 and 2.
+
+I've exercised the series under qemu with the rainier-bmc machine plus
+some preliminary KCS support[5]. I've also substituted this series in
+place of a hacky out-of-tree driver that we've been using for the
+libmctp stack and successfully booted the host processor under our
+internal full-platform simulation tools for a Rainier system.
+
+Note that this work touches the Nuvoton driver as well as ASPEED's, but
+I don't have the capability to test those changes or the IPMI chardev
+path. Tested-by tags would be much appreciated if you can exercise one
+or both.
+
+Please review!
+
+Andrew
+
+[0] https://www.intel.com/content/dam/www/program/design/us/en/documents/low-pin-count-interface-specification.pdf
+[1] https://github.com/openbmc/libmctp/
+[2] https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.1.pdf
+[3] https://github.com/openbmc/libmctp/blob/master/docs/bindings/vendor-astlpc.md
+[4] https://www.dmtf.org/sites/default/files/standards/documents/DSP0254_1.0.0.pdf
+[5] https://github.com/amboar/qemu/tree/kcs
+
+Andrew Jeffery (14):
+  ipmi: kcs_bmc_aspeed: Use of match data to extract KCS properties
+  ipmi: kcs_bmc: Make status update atomic
+  ipmi: kcs_bmc: Rename {read,write}_{status,data}() functions
+  ipmi: kcs_bmc: Split out kcs_bmc_cdev_ipmi
+  ipmi: kcs_bmc: Turn the driver data-structures inside-out
+  ipmi: kcs_bmc: Split headers into device and client
+  ipmi: kcs_bmc: Strip private client data from struct kcs_bmc
+  ipmi: kcs_bmc: Decouple the IPMI chardev from the core
+  ipmi: kcs_bmc: Allow clients to control KCS IRQ state
+  ipmi: kcs_bmc: Add a "raw" character device interface
+  dt-bindings: ipmi: Convert ASPEED KCS binding to schema
+  dt-bindings: ipmi: Add optional SerIRQ property to ASPEED KCS devices
+  ipmi: kcs_bmc_aspeed: Implement KCS SerIRQ configuration
+  ipmi: kcs_bmc_aspeed: Fix IBFIE typo from datasheet
+
+Chia-Wei, Wang (5):
+  dt-bindings: aspeed-lpc: Remove LPC partitioning
+  ARM: dts: Remove LPC BMC and Host partitions
+  ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+  pinctrl: aspeed-g5: Adapt to new LPC device tree layout
+  soc: aspeed: Adapt to new LPC device tree layout
+
+ Documentation/ABI/testing/dev-raw-kcs         |  25 +
+ .../bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml | 106 ++++
+ .../bindings/ipmi/aspeed-kcs-bmc.txt          |  33 -
+ .../devicetree/bindings/mfd/aspeed-lpc.txt    | 100 +--
+ arch/arm/boot/dts/aspeed-g4.dtsi              |  68 +--
+ arch/arm/boot/dts/aspeed-g5.dtsi              | 119 ++--
+ arch/arm/boot/dts/aspeed-g6.dtsi              | 121 ++--
+ drivers/char/ipmi/Kconfig                     |  30 +
+ drivers/char/ipmi/Makefile                    |   2 +
+ drivers/char/ipmi/kcs_bmc.c                   | 532 +++++-----------
+ drivers/char/ipmi/kcs_bmc.h                   |  94 +--
+ drivers/char/ipmi/kcs_bmc_aspeed.c            | 536 ++++++++++------
+ drivers/char/ipmi/kcs_bmc_cdev_ipmi.c         | 570 ++++++++++++++++++
+ drivers/char/ipmi/kcs_bmc_cdev_raw.c          | 442 ++++++++++++++
+ drivers/char/ipmi/kcs_bmc_client.h            |  47 ++
+ drivers/char/ipmi/kcs_bmc_device.h            |  20 +
+ drivers/char/ipmi/kcs_bmc_npcm7xx.c           |  98 ++-
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c    |  17 +-
+ drivers/soc/aspeed/aspeed-lpc-ctrl.c          |  20 +-
+ drivers/soc/aspeed/aspeed-lpc-snoop.c         |  23 +-
+ 20 files changed, 2021 insertions(+), 982 deletions(-)
+ create mode 100644 Documentation/ABI/testing/dev-raw-kcs
+ create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/ipmi/aspeed-kcs-bmc.txt
+ create mode 100644 drivers/char/ipmi/kcs_bmc_cdev_ipmi.c
+ create mode 100644 drivers/char/ipmi/kcs_bmc_cdev_raw.c
+ create mode 100644 drivers/char/ipmi/kcs_bmc_client.h
+ create mode 100644 drivers/char/ipmi/kcs_bmc_device.h
+
+-- 
+2.27.0
+
