@@ -2,90 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F8FC31FE70
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 18:58:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64A3631FE75
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 19:00:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbhBSR6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Feb 2021 12:58:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59830 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbhBSR6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Feb 2021 12:58:01 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB04C061786
-        for <devicetree@vger.kernel.org>; Fri, 19 Feb 2021 09:57:21 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id o15so7763492wmq.5
-        for <devicetree@vger.kernel.org>; Fri, 19 Feb 2021 09:57:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=wSDGwoocflGRIUHKyKkTZr409vUlF3AWV+fTAIOXUPE=;
-        b=AbfIdFqm4xyNtnKCriEj3ztzc1Gjd0MbqggKgNzwhkA6aOPx4NDOMFXEbkrYmINjj+
-         OQJPGkY1UUu8x/fxguDXcyrrmF49OM/RHXgd6Sx3aZHa+CJl4T/2OnbwQ5L7ekAc6M1O
-         IfRGreUXZxsoxJV/XuAcGQ5c12V3pS5+ymb4O66tkz8SnvrOu2D2h3sp4vwdnkn8oEMK
-         bPmvFRBOLUC1OospurDh44uj/mV8ZMWnixELHFmVBA6m46hKDa389j7U9f2+T3BROkpm
-         lj+fo31DFiEsNYIWeNVM0CIqFRZj4Kv5LO2Ngx2paI/QjR7ITufSwvouov6dBeZcBdQU
-         Lhyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wSDGwoocflGRIUHKyKkTZr409vUlF3AWV+fTAIOXUPE=;
-        b=reXlCNgXlum8ycZRVvLaSPq9gJqRwna+xvCDFK61MOZ5251RWkCcMCOl5P9oQw5ktq
-         F74BmBtUSHnsn7Htdqw9OY267pqfcDhnl+VB7rW0opffha/1NRzVOx+jJegVA/FOoZyP
-         xh7b/SZRfvClMAfEO/kP2yQqQHy4AlyKa3tKnIAnpwm2cF5bwLJJxOGvEp3Qd0F2XMy3
-         umR+1TiN9WaDvJFri91+FwtVIQafkyrbJLW4txeZKOpJYo+aqJclyZOyjh7s9BwKRoTj
-         s16VYHaFa85CKOJrx7pMsvP1i0YPzoxFEtKRoW6OEjaAiLLy+2PYBIgo516s/mXZhkIn
-         OnaA==
-X-Gm-Message-State: AOAM531cZCzHdks10HofyzEaSI2/viXySbcZKaACojrT3kDzZJlGwlyG
-        qQf9wvjoJXoslmOqdtw1mrHULQ==
-X-Google-Smtp-Source: ABdhPJxsiiByL8wUUfnZSNR07gNAM/FJ7VrbvCTpRolHBc5LKfAskVcQmZEzfpvfHkY0MiFCvM+Z4Q==
-X-Received: by 2002:a05:600c:48a8:: with SMTP id j40mr9105297wmp.57.1613757439910;
-        Fri, 19 Feb 2021 09:57:19 -0800 (PST)
-Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
-        by smtp.gmail.com with ESMTPSA id c2sm14302124wrx.70.2021.02.19.09.57.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Feb 2021 09:57:19 -0800 (PST)
-Date:   Fri, 19 Feb 2021 17:57:17 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Sean Christopherson <seanjc@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 00/26] KVM/arm64: A stage 2 for the host
-Message-ID: <YC/7/fOJ7IAfo61D@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <YC/7XuB30N8C3sNx@google.com>
+        id S229612AbhBSSAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Feb 2021 13:00:43 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42204 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229527AbhBSSAm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Feb 2021 13:00:42 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 54ECE64DED;
+        Fri, 19 Feb 2021 18:00:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1613757602;
+        bh=kqVxXeKoanAaf4lKZCg0WZf+Os3oG4slsz+NXtiCX9k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VdH47edSAw+qcJPQl5fzToN0GK+9trQofhHiKj41c6KvQSUZnc4arcx5N5g5KUkX/
+         I6bWcxpi9j22wzGIC3ORCifeIHFRZ2PONF885XFhlQnTpCt2yKVYIn3xxVDYa50qmy
+         SKsbR5BcmwN0naa7cXzyDRvf6rq/9qhm5ma4a2beS00wldWSwul3801FpmhGTiVJ7c
+         4kK/MPOD/J4JS5GxsR1x7Op6BryCLY4q0jsT60vQM5271pEQn5lAKVPyS9uURsi4Vg
+         jqV5xklrKu4iI/sxFBNQ9SfsT5f8HzvyFXUzohNR7rE8z/LGEmdwDTrXKg8vBNreED
+         16Njh25CrntwQ==
+Date:   Fri, 19 Feb 2021 23:29:58 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>, mani@kernel.org
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        linux-arm-msm@vger.kernel.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Document SM8350
+ CPUfreq compatible
+Message-ID: <20210219175958.GZ2774@vkoul-mobl.Dlink>
+References: <20210216111251.1838149-1-vkoul@kernel.org>
+ <20210218161158.GC5254@yoga>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YC/7XuB30N8C3sNx@google.com>
+In-Reply-To: <20210218161158.GC5254@yoga>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 19 Feb 2021 at 09:54:38 (-0800), Sean Christopherson wrote:
-> On Fri, Jan 08, 2021, Quentin Perret wrote:
-> > [2] https://kvmforum2020.sched.com/event/eE24/virtualization-for-the-masses-exposing-kvm-on-android-will-deacon-google
+On 18-02-21, 10:11, Bjorn Andersson wrote:
+> On Tue 16 Feb 05:12 CST 2021, Vinod Koul wrote:
 > 
-> I couldn't find any slides on the official KVM forum site linked above.  I was
-> able to track down a mirror[1] and the recorded presentation[2].
+> > Add the CPUfreq compatible for SM8350 SoC along with note for using the
+> > specific compatible for SoCs
+> > 
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+> > index 9299028ee712..3eb3cee59d79 100644
+> > --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+> > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
+> > @@ -8,7 +8,9 @@ Properties:
+> >  - compatible
+> >  	Usage:		required
+> >  	Value type:	<string>
+> > -	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss".
+> > +	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss"
+> > +			along with SoC specific compatible:
+> > +			  "qcom,sm8350-cpufreq-epss", "qcom,cpufreq-epss"
 > 
-> [1] https://mirrors.edge.kernel.org/pub/linux/kernel/people/will/slides/kvmforum-2020-edited.pdf
-> [2] https://youtu.be/wY-u6n75iXc
+> Can you please extend this to add all the platforms that we currently
+> support?
+> 
+> PS. Didn't we have someone working on converting this to yaml?
 
-Much nicer, I'll make sure to link those in the next cover letter.
+Yep, Mani seems to have done that, I will wait for that to get merged
+and update this.. Thanks
 
-Thanks Sean!
-Quentin
+-- 
+~Vinod
