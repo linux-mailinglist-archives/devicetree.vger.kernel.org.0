@@ -2,138 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A8631F340
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 01:11:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C68C31F378
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 01:57:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbhBSAJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 19:09:05 -0500
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:21872 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229535AbhBSAJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Feb 2021 19:09:04 -0500
-Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 11J04edt137194;
-        Thu, 18 Feb 2021 19:07:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
- from : to : cc : date : in-reply-to : references : content-type :
- mime-version : content-transfer-encoding; s=pp1;
- bh=Hc7iP0dSCjCglGy8CL0I7K1Mp2bmFJnmdPntjscntUw=;
- b=PHIUdKmmbrq3yFv6zQJdZqijTiJOtkqsmCwwDHsDFGWnX3OW2ooy8J4NExhd4A6+/kd3
- 4rvDVpDk7TnlMgazxPv9bW1iujhHifrALZ6J9jZAQk3b63yYTV9L2YqtlA6hHSCEd4B4
- J4UjA5fgGAdlHaNOk4XvYBS1fhzFuePHfxx/SdKwAppg1mC7NlxTYiIS7HfYiFgDk9jb
- rLOgVOmFdZMf7N3d4YO0+DXyuKuVG5S9k/jD/bIwE9TvNLmnaVn2ULXnU6v+TbPZDz0q
- ljCGQweIddjonRkud2pi9DDCXKy9szN7aILJdisbSrVb7lGBEs9J3NfEBglGXE9i75bm lw== 
-Received: from ppma02fra.de.ibm.com (47.49.7a9f.ip4.static.sl-reverse.com [159.122.73.71])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 36sy3aw41b-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 18 Feb 2021 19:07:54 -0500
-Received: from pps.filterd (ppma02fra.de.ibm.com [127.0.0.1])
-        by ppma02fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 11J07qIc004692;
-        Fri, 19 Feb 2021 00:07:52 GMT
-Received: from b06cxnps3074.portsmouth.uk.ibm.com (d06relay09.portsmouth.uk.ibm.com [9.149.109.194])
-        by ppma02fra.de.ibm.com with ESMTP id 36p6d8jp3f-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 19 Feb 2021 00:07:52 +0000
-Received: from d06av25.portsmouth.uk.ibm.com (d06av25.portsmouth.uk.ibm.com [9.149.105.61])
-        by b06cxnps3074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 11J07nYa18809186
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 19 Feb 2021 00:07:49 GMT
-Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id ABC4611C04C;
-        Fri, 19 Feb 2021 00:07:49 +0000 (GMT)
-Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 8011511C04A;
-        Fri, 19 Feb 2021 00:07:45 +0000 (GMT)
-Received: from li-f45666cc-3089-11b2-a85c-c57d1a57929f.ibm.com (unknown [9.211.66.70])
-        by d06av25.portsmouth.uk.ibm.com (Postfix) with ESMTP;
-        Fri, 19 Feb 2021 00:07:45 +0000 (GMT)
-Message-ID: <c6490f6a126a2f10e3e3445b51ea552a26f896a9.camel@linux.ibm.com>
-Subject: Re: [PATCH] of: error: 'const struct kimage' has no member named
- 'arch'
-From:   Mimi Zohar <zohar@linux.ibm.com>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        bauerman@linux.ibm.com, robh@kernel.org,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
-        mpe@ellerman.id.au, sfr@canb.auug.org.au
-Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Date:   Thu, 18 Feb 2021 19:07:44 -0500
-In-Reply-To: <20210218223305.2044-1-nramas@linux.microsoft.com>
-References: <20210218223305.2044-1-nramas@linux.microsoft.com>
-Content-Type: text/plain; charset="ISO-8859-15"
-X-Mailer: Evolution 3.28.5 (3.28.5-14.el8) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-02-18_14:2021-02-18,2021-02-18 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- adultscore=0 spamscore=0 mlxscore=0 mlxlogscore=999 priorityscore=1501
- clxscore=1011 impostorscore=0 suspectscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2102180203
+        id S229553AbhBSA4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 19:56:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39254 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229678AbhBSA42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 19:56:28 -0500
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 652C7C0613D6
+        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 16:55:48 -0800 (PST)
+Received: by mail-qk1-x731.google.com with SMTP id 81so4142621qkf.4
+        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 16:55:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=apjhumUat3NAbjLhxDf0sfvDj5HYfNoWzUP7Ib3pj2w=;
+        b=NNzBm8KEm527LO5xCGrc89inWBErH3vti2O/scd9JQfr4RVY/LeJBzHUByDjYNxzoi
+         e23cAEeErnY5SK0FknxEM28oWILkuJpsMX6f5Npqea6xND5MUOrdisuDmS4rOzLeQCUW
+         T9E6YAI9b5Qi3FPkXPoV/fakGz/MDW5PFv+QI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=apjhumUat3NAbjLhxDf0sfvDj5HYfNoWzUP7Ib3pj2w=;
+        b=OcTEqQi/IIYLR0ebGBFX4OiIXqa1J6qU5fqmzjuXBxchYFABlU+drpnnlSV8ZxbW4w
+         lK0oDHPqCZ+3kgOjs8lxglkQtMmrkiJLV7BK7HfL44D4K+jUE6d7tB4+i37TteNM/J2r
+         7fUaIoYSOS0rTf1PXounZRoLqu00gn1QDtrT6yKTcouZ7TdgkSqQs1k5vZeWwQJk1lI2
+         zyxSaUT8/HllQ57k9m118WlQaaqJsTjHJfAEl9sSOx2WvfGArqEX8Jh0xh8CxnwqzL37
+         IaN7LzTEQwXvuix2cIT5uMi4jYEpaC/nBe4+6Ij8gWHidfayQzxvg2Uo/dukkbB/6udN
+         SgZQ==
+X-Gm-Message-State: AOAM5304uUoqGjNz6EdevegJG09C+JSgFar4BXBaRF+DkkP7Mg0m8Uda
+        0w3jrfsPYkGoWUWbdRuGtrCLorr9ri08/g==
+X-Google-Smtp-Source: ABdhPJy21cW+NjmWrN5gvF9/dMQ0pW0215SnZwby15JHXZo+wTRaZa7vDmXzzMWhDAnDTXNDobscWw==
+X-Received: by 2002:a37:5a47:: with SMTP id o68mr7193082qkb.423.1613696147367;
+        Thu, 18 Feb 2021 16:55:47 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id t71sm5165393qka.86.2021.02.18.16.55.46
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Feb 2021 16:55:46 -0800 (PST)
+Received: by mail-yb1-f177.google.com with SMTP id p193so4034713yba.4
+        for <devicetree@vger.kernel.org>; Thu, 18 Feb 2021 16:55:46 -0800 (PST)
+X-Received: by 2002:a25:b74d:: with SMTP id e13mr10284347ybm.405.1613696146315;
+ Thu, 18 Feb 2021 16:55:46 -0800 (PST)
+MIME-Version: 1.0
+References: <20210218145456.1.I1da01a075dd86e005152f993b2d5d82dd9686238@changeid>
+In-Reply-To: <20210218145456.1.I1da01a075dd86e005152f993b2d5d82dd9686238@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 18 Feb 2021 16:55:33 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Xh5foM_RYCneVUJZmX39KPt22guopVyZpzLWHSt4T+Ww@mail.gmail.com>
+Message-ID: <CAD=FV=Xh5foM_RYCneVUJZmX39KPt22guopVyZpzLWHSt4T+Ww@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Avoid glitching SPI CS at
+ bootup on trogdor
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-02-18 at 14:33 -0800, Lakshmi Ramasubramanian wrote:
-> of_kexec_alloc_and_setup_fdt() defined in drivers/of/kexec.c builds
-> a new device tree object that includes architecture specific data
-> for kexec system call.  This should be defined only if the architecture
-> being built defines kexec architecture structure "struct kimage_arch".
-> 
-> Define a new boolean config OF_KEXEC that is enabled if
-> CONFIG_KEXEC_FILE and CONFIG_OF_FLATTREE are enabled, and
-> the architecture is arm64 or powerpc64.  Build drivers/of/kexec.c
-> if CONFIG_OF_KEXEC is enabled.
-> 
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> Fixes: 33488dc4d61f ("of: Add a common kexec FDT setup function")
-> Reported-by: kernel test robot <lkp@intel.com>
-> ---
->  drivers/of/Kconfig  | 6 ++++++
->  drivers/of/Makefile | 7 +------
->  2 files changed, 7 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> index 18450437d5d5..f2e8fa54862a 100644
-> --- a/drivers/of/Kconfig
-> +++ b/drivers/of/Kconfig
-> @@ -100,4 +100,10 @@ config OF_DMA_DEFAULT_COHERENT
->  	# arches should select this if DMA is coherent by default for OF devices
->  	bool
->  
-> +config OF_KEXEC
-> +	bool
-> +	depends on KEXEC_FILE
-> +	depends on OF_FLATTREE
-> +	default y if ARM64 || PPC64
-> +
->  endif # OF
-> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
-> index c13b982084a3..287579dd1695 100644
-> --- a/drivers/of/Makefile
-> +++ b/drivers/of/Makefile
-> @@ -13,11 +13,6 @@ obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
->  obj-$(CONFIG_OF_RESOLVE)  += resolver.o
->  obj-$(CONFIG_OF_OVERLAY) += overlay.o
->  obj-$(CONFIG_OF_NUMA) += of_numa.o
-> -
-> -ifdef CONFIG_KEXEC_FILE
-> -ifdef CONFIG_OF_FLATTREE
-> -obj-y	+= kexec.o
-> -endif
-> -endif
-> +obj-$(CONFIG_OF_KEXEC) += kexec.o
->  
->  obj-$(CONFIG_OF_UNITTEST) += unittest-data/
+Hi,
 
-Is it possible to reuse CONFIG_HAVE_IMA_KEXEC here?
+On Thu, Feb 18, 2021 at 2:55 PM Douglas Anderson <dianders@chromium.org> wrote:
+>
+> it's believed
+> that, under certain timing conditions, it could be getting the EC into
+> a confused state causing the EC driver to fail to probe.
 
-Mimi
+Believed => confirmed
 
+I _think_ <https://issuetracker.google.com/180655198> is public.  It
+explains why this was causing the EC driver to fail to prove.  In
+short: it turns out that when we glitched the EC it printed to its
+console.  If the EC's uptime was long enough then it would spend
+enough time printing the timestamp for this error message (a bunch of
+64-bit divide by 10) that it wouldn't be ready for the message we sent
+to it.  Doh!
 
+-Doug
