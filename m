@@ -2,90 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A81831F39C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 02:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AFCE31F415
+	for <lists+devicetree@lfdr.de>; Fri, 19 Feb 2021 03:54:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbhBSB0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Feb 2021 20:26:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43160 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229468AbhBSB0k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Feb 2021 20:26:40 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3E94664E44;
-        Fri, 19 Feb 2021 01:25:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613697959;
-        bh=42x/LKbzJxEUPanyTDGHE4i4CEWQkTuN5dQZZslOgFk=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=HJmJGYzyp5/V+0D+eI0Zd+pf8+2dpsReIQYSD+fl41S2QvyCm6YULtaO/RvuSzCt8
-         V8p3UG7VlY7yvFSmAsaNrfjjl1IoUq6pBf4YnBU1aghCx1C8XcxMgpsJfNWVHQ9+2W
-         wrrFzUFm8HooUwmNErq1uK6n4RNIvHgcAA/Oh52nrMlCPi8QTQy+WES4pM2/AKZt+y
-         aVQHlg4wJReedq69nfRJeVLZS+rT7iTemzfduFrWEk4KsxcCDmNsXzn/EjHctIIFe7
-         /ZXh1gw3OvN/zeeG3IyplHUpywyj55RLWNBMKPQXmxFbPqbvj4OJ0cv0ry6vYgVzhE
-         kDsulqiKpKk5Q==
-Content-Type: text/plain; charset="utf-8"
+        id S229474AbhBSCyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Feb 2021 21:54:08 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:46946 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229468AbhBSCyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Feb 2021 21:54:08 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id EC32F20B6C40;
+        Thu, 18 Feb 2021 18:53:26 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com EC32F20B6C40
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1613703207;
+        bh=rCbOOt9TGbdpIdg/NY4OSQmhLeB26YL8cZjJbICdaAc=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=i2QNptUyIxtzMh1vzNftJJSIDqPg/Rh8WEDNFdN06ErcAtos6xWdOmUlFKoURpATp
+         KA8dtdlqYXaLfnfAHE3i8qpeURTGNoV9Hh98K2MwZhCzywlFMNZPZWRi702dTjwl6S
+         L3LHxZqzFfjG37gk2b8QJikgab6sr51LHF4dw+Lk=
+Subject: Re: [PATCH] of: error: 'const struct kimage' has no member named
+ 'arch'
+To:     Thiago Jung Bauermann <bauerman@linux.ibm.com>
+Cc:     Mimi Zohar <zohar@linux.ibm.com>, robh@kernel.org,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, joe@perches.com, catalin.marinas@arm.com,
+        mpe@ellerman.id.au, sfr@canb.auug.org.au, james.morse@arm.com,
+        sashal@kernel.org, benh@kernel.crashing.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+References: <20210218223305.2044-1-nramas@linux.microsoft.com>
+ <c6490f6a126a2f10e3e3445b51ea552a26f896a9.camel@linux.ibm.com>
+ <8b8c0b70-c7ab-33f3-b66c-9ea03388497b@linux.microsoft.com>
+ <87k0r4yi4s.fsf@manicouagan.localdomain>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <3ca0aa87-ca83-8024-4067-c2382a360db9@linux.microsoft.com>
+Date:   Thu, 18 Feb 2021 18:53:26 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210218093715.7fdc27ee@xps13>
-References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com> <1613623791-4598-7-git-send-email-shubhrajyoti.datta@xilinx.com> <20210218093715.7fdc27ee@xps13>
-Subject: Re: [PATCH v9 6/7] clk: clock-wizard: Remove the hardcoding of the clock outputs
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        mturquette@baylibre.com, gregkh@linuxfoundation.org,
-        shubhrajyoti.datta@gmail.com
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Date:   Thu, 18 Feb 2021 17:25:57 -0800
-Message-ID: <161369795774.1254594.6203789110347055936@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <87k0r4yi4s.fsf@manicouagan.localdomain>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Miquel Raynal (2021-02-18 00:37:15)
-> Hi Shubhrajyoti,
->=20
-> Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com> wrote on Thu, 18 Feb
-> 2021 10:19:50 +0530:
->=20
-> > The number of output clocks are configurable in the hardware.
-> > Currently the driver registers the maximum number of outputs.
-> > Fix the same by registering only the outputs that are there.
-> >=20
-> > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> > ---
-> > v4:
-> > Assign output in this patch
-> >=20
-> >  drivers/clk/clk-xlnx-clock-wizard.c | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/clk/clk-xlnx-clock-wizard.c b/drivers/clk/clk-xlnx=
--clock-wizard.c
-> > index ed3b0ef..d403a74 100644
-> > --- a/drivers/clk/clk-xlnx-clock-wizard.c
-> > +++ b/drivers/clk/clk-xlnx-clock-wizard.c
-> > @@ -473,6 +473,7 @@ static int clk_wzrd_probe(struct platform_device *p=
-dev)
-> >       unsigned long rate;
-> >       const char *clk_name;
-> >       struct clk_wzrd *clk_wzrd;
-> > +     int outputs;
-> >       struct device_node *np =3D pdev->dev.of_node;
-> > =20
-> >       clk_wzrd =3D devm_kzalloc(&pdev->dev, sizeof(*clk_wzrd), GFP_KERN=
-EL);
-> > @@ -541,6 +542,7 @@ static int clk_wzrd_probe(struct platform_device *p=
-dev)
-> >               goto err_disable_clk;
-> >       }
-> > =20
-> > +     outputs =3D of_property_count_strings(np, "clock-output-names");
->=20
-> A check on outputs validity is probably welcome.
->=20
-> Also I usually prefer noutputs or nb_outputs for such variable name,
-> which implies a number rather than an array, but this is personal taste.
+On 2/18/21 5:13 PM, Thiago Jung Bauermann wrote:
+> 
+> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+> 
+>> On 2/18/21 4:07 PM, Mimi Zohar wrote:
+>>
+>> Hi Mimi,
+>>
+>>> On Thu, 2021-02-18 at 14:33 -0800, Lakshmi Ramasubramanian wrote:
+>>>> of_kexec_alloc_and_setup_fdt() defined in drivers/of/kexec.c builds
+>>>> a new device tree object that includes architecture specific data
+>>>> for kexec system call.  This should be defined only if the architecture
+>>>> being built defines kexec architecture structure "struct kimage_arch".
+>>>>
+>>>> Define a new boolean config OF_KEXEC that is enabled if
+>>>> CONFIG_KEXEC_FILE and CONFIG_OF_FLATTREE are enabled, and
+>>>> the architecture is arm64 or powerpc64.  Build drivers/of/kexec.c
+>>>> if CONFIG_OF_KEXEC is enabled.
+>>>>
+>>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>>>> Fixes: 33488dc4d61f ("of: Add a common kexec FDT setup function")
+>>>> Reported-by: kernel test robot <lkp@intel.com>
+>>>> ---
+>>>>    drivers/of/Kconfig  | 6 ++++++
+>>>>    drivers/of/Makefile | 7 +------
+>>>>    2 files changed, 7 insertions(+), 6 deletions(-)
+>>>>
+>>>> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+>>>> index 18450437d5d5..f2e8fa54862a 100644
+>>>> --- a/drivers/of/Kconfig
+>>>> +++ b/drivers/of/Kconfig
+>>>> @@ -100,4 +100,10 @@ config OF_DMA_DEFAULT_COHERENT
+>>>>    	# arches should select this if DMA is coherent by default for OF devices
+>>>>    	bool
+>>>>    +config OF_KEXEC
+>>>> +	bool
+>>>> +	depends on KEXEC_FILE
+>>>> +	depends on OF_FLATTREE
+>>>> +	default y if ARM64 || PPC64
+>>>> +
+>>>>    endif # OF
+>>>> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+>>>> index c13b982084a3..287579dd1695 100644
+>>>> --- a/drivers/of/Makefile
+>>>> +++ b/drivers/of/Makefile
+>>>> @@ -13,11 +13,6 @@ obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
+>>>>    obj-$(CONFIG_OF_RESOLVE)  += resolver.o
+>>>>    obj-$(CONFIG_OF_OVERLAY) += overlay.o
+>>>>    obj-$(CONFIG_OF_NUMA) += of_numa.o
+>>>> -
+>>>> -ifdef CONFIG_KEXEC_FILE
+>>>> -ifdef CONFIG_OF_FLATTREE
+>>>> -obj-y	+= kexec.o
+>>>> -endif
+>>>> -endif
+>>>> +obj-$(CONFIG_OF_KEXEC) += kexec.o
+>>>>      obj-$(CONFIG_OF_UNITTEST) += unittest-data/
+>>> Is it possible to reuse CONFIG_HAVE_IMA_KEXEC here?
+>>>
+>>
+>> For ppc64 CONFIG_HAVE_IMA_KEXEC is selected when CONFIG_KEXEC_FILE is enabled.
+>> So I don't see a problem in reusing CONFIG_HAVE_IMA_KEXEC for ppc.
+>>
+>> But for arm64, CONFIG_HAVE_IMA_KEXEC is enabled in the final patch in the patch
+>> set (the one for carrying forward IMA log across kexec for arm64). arm64 calls
+>> of_kexec_alloc_and_setup_fdt() prior to enabling CONFIG_HAVE_IMA_KEXEC and hence
+>> breaks the build for arm64.
+> 
+> One problem is that I believe that this patch won't placate the robot,
+> because IIUC it generates config files at random and this change still
+> allows hppa and s390 to enable CONFIG_OF_KEXEC.
 
-Ideally we get rid of clock-output-names and generate them at runtime
-instead based on some combination of device name and something else.
+I enabled CONFIG_OF_KEXEC for s390. With my patch applied, 
+CONFIG_OF_KEXEC is removed. So I think the robot enabling this config 
+would not be a problem.
+
+> 
+> Perhaps a new CONFIG_HAVE_KIMAGE_ARCH option? Not having that option
+> would still allow building kexec.o, but would be used inside kexec.c to
+> avoid accessing kimage.arch members.
+> 
+
+I think this is a good idea - a new CONFIG_HAVE_KIMAGE_ARCH, which will 
+be selected by arm64 and ppc for now. I tried this, and it fixes the 
+build issue.
+
+Although, the name for the new config can be misleading since PARISC, 
+for instance, also defines "struct kimage_arch". Perhaps, 
+CONFIG_HAVE_ELF_KIMAGE_ARCH since of_kexec_alloc_and_setup_fdt() is 
+accessing ELF specific fields in "struct kimage_arch"?
+
+Rob/Mimi - please let us know which approach you think is better.
+
+thanks,
+  -lakshmi
