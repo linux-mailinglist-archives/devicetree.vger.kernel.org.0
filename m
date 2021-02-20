@@ -2,97 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA90E320578
-	for <lists+devicetree@lfdr.de>; Sat, 20 Feb 2021 13:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B9F1320605
+	for <lists+devicetree@lfdr.de>; Sat, 20 Feb 2021 16:57:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbhBTM7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Feb 2021 07:59:55 -0500
-Received: from mout.web.de ([212.227.17.12]:54189 "EHLO mout.web.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229490AbhBTM7z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Feb 2021 07:59:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
-        s=dbaedf251592; t=1613825880;
-        bh=jbIaYmFaOqq0clqt0lvEdAqigbIkxFOQTe0r7vbPqKA=;
-        h=X-UI-Sender-Class:From:Subject:To:Cc:Date;
-        b=dTufpZboUv8d2v3DM8Xe2kUPNItkFZ+hevfRErL/TFZn648JdayFElAHsogGwclig
-         JIBSiNoBTptJTSc05SrPjFrcxhh5MDUhpuX3PLjvnLbd0e/76w/fPoWUHPkSCEwhzJ
-         2eDsL5bkrrRCaE3wfY9pY6TlZpDEnUSw04F6tRgo=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.10.10] ([88.215.87.53]) by smtp.web.de (mrweb102
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0M8zSL-1l7i0M0bN7-00CPCE; Sat, 20
- Feb 2021 13:49:55 +0100
-From:   Jan Kiszka <jan.kiszka@web.de>
-Subject: [PATCH] arm64: dts: ti: k3-am65-mcu: Add RTI watchdog entry
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Message-ID: <279c20fa-6e5e-4f88-9cd1-f76297a28a19@web.de>
-Date:   Sat, 20 Feb 2021 13:49:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S229920AbhBTP5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Feb 2021 10:57:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57914 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229905AbhBTP5S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Feb 2021 10:57:18 -0500
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CFF0C061574
+        for <devicetree@vger.kernel.org>; Sat, 20 Feb 2021 07:56:38 -0800 (PST)
+Received: from localhost.localdomain (abab236.neoplus.adsl.tpnet.pl [83.6.165.236])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id C05381F5FA;
+        Sat, 20 Feb 2021 16:56:31 +0100 (CET)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Craig Tatlor <ctatlor97@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/6] clk: qcom: gcc-sdm660: Fix hmss_gpll0_clk_src parent_map
+Date:   Sat, 20 Feb 2021 16:56:12 +0100
+Message-Id: <20210220155618.176559-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:jIVLv6c7lrDzDxsW6xCEDy+iQKWCdOtQcWp0reorhUE8T9V9i8h
- bWJ12B1tnUeHC8qT8U70s8PzbJZHFCMfJ/ga/V2yR9ndA1sHsgchpXbaDBsYhYCxlnVwEB8
- 7EUa6E9V5fKmk1R9prfitiPbpxrLeRuF7Axct11XnXzb/cGTDQjLgFStx4m5HsiYdSNgj1N
- kIpt7hqIBkEkO7Iu40UWw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:T91gGQkcBlY=:i2CYnlzEYoO0ShILacv0Dw
- gqvLd9EPNVqanltvKMplTFrlQK8Bek6WwVMSTzRA+gBaxLJz1eVq8s4Ypyxo5smxM/z/UAoNP
- BjZkd+hMmcVgtPZIVMK37jpsQJD24hbUmqqZrL+WCWQQ6GHsMsHIdR91fSU7ltVPvOFsNdQEL
- 1UXIpXtPCzZX3XvYFbAXGK2yD7DBsGfwheNsyN+ryqE8vc2ooey6OzqV1QunBAlefUedXvcK8
- hQfYiHWUr01XliI56ryf8u+LRN3JxWbnVvCtDwNaf5AKEO8arN0Xc5fS97wWxqn9fIpG9iPMw
- bllOi92ZSCNX3Sl5dNnLMYZffByjw1LxYt09aluu8W4F9JrrOnOQteG23s3LdsmfEpHtHQGyz
- n3KEwiDd4XWLxKfvPisk7hL5jFBEMhiqfbR8fbaQmpPeyqVj4gafyCc+pw94UgWLEP+UbYqlB
- avRlZXgFRhGO/7p4NhEXzz6x4SyzFwAAaQW6GDKDh/77vfrkNbZDbKEwIcjduPDnGZDIDUQkl
- phQmZWXbwmDjOl8TdgRvtfp7cO3ur9sKGPMyIrRr4fHXGAuacie7yGoEoAlvGNyVcif3YUFcw
- gAx0nkATp9LtWNRvP99G0xUiflcHOPF+S6qUiOtkEuwPU/dDLnDDp6npOtro3ZPhKOSIYfSUa
- b3vq+nL9zflM3J/tBls3P5BsaZlzWs7EQh0Pp1flQzsMJPdvSeoQLYijtkh9tdiikKoXMD1kR
- rUZVVogXPQdwQbPp27YKrLnhYvtonnGDXlg4/W0MmmyTfpduOM9Wgmz/58z4L5dg4BtlmVq3D
- L3+78INT0HFPcdzRC6o7IUBgzdJC7JkokBgdejYoLU2Mo7kyEsyTGV0QevymyElu9GHZs+xJJ
- 3dMLChfM/Rrx2cPmc5ww==
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
+The correct one is gcc_parent_map_xo_gpll0.
 
-Add the DT entry for a watchdog based on RTI1.
+Fixes: f2a76a2955c0 ("clk: qcom: Add Global Clock controller (GCC) driver for SDM660")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ drivers/clk/qcom/gcc-sdm660.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-On SR1.0 silicon, it requires additional firmware on the MCU R5F cores
-to handle the expiry, e.g. https://github.com/siemens/k3-rti-wdt. As
-this firmware will also lock the power domain to protect it against
-premature shutdown, mark it shared.
-
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-=2D--
- arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts=
-/ti/k3-am65-mcu.dtsi
-index 7454c8cec0cc..903796bf7d64 100644
-=2D-- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-@@ -308,4 +308,13 @@ mcu_r5fss0_core1: r5f@41400000 {
- 			ti,loczrama =3D <1>;
- 		};
- 	};
-+
-+	mcu_rti1: rti@40610000 {
-+		compatible =3D "ti,j7-rti-wdt";
-+		reg =3D <0x0 0x40610000 0x0 0x100>;
-+		clocks =3D <&k3_clks 135 0>;
-+		power-domains =3D <&k3_pds 135 TI_SCI_PD_SHARED>;
-+		assigned-clocks =3D <&k3_clks 135 0>;
-+		assigned-clock-parents =3D <&k3_clks 135 4>;
-+	};
+diff --git a/drivers/clk/qcom/gcc-sdm660.c b/drivers/clk/qcom/gcc-sdm660.c
+index 6394257ca8c0..597800ce1bdf 100644
+--- a/drivers/clk/qcom/gcc-sdm660.c
++++ b/drivers/clk/qcom/gcc-sdm660.c
+@@ -626,12 +626,12 @@ static struct clk_rcg2 hmss_gpll0_clk_src = {
+ 	.cmd_rcgr = 0x4805c,
+ 	.mnd_width = 0,
+ 	.hid_width = 5,
+-	.parent_map = gcc_parent_map_xo_gpll0_gpll0_early_div,
++	.parent_map = gcc_parent_map_xo_gpll0,
+ 	.freq_tbl = ftbl_hmss_gpll0_clk_src,
+ 	.clkr.hw.init = &(struct clk_init_data){
+ 		.name = "hmss_gpll0_clk_src",
+-		.parent_names = gcc_parent_names_xo_gpll0_gpll0_early_div,
+-		.num_parents = 3,
++		.parent_names = gcc_parent_names_xo_gpll0,
++		.num_parents = 2,
+ 		.ops = &clk_rcg2_ops,
+ 	},
  };
-=2D-
-2.26.2
+-- 
+2.30.1
 
