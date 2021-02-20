@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB74D3206B0
-	for <lists+devicetree@lfdr.de>; Sat, 20 Feb 2021 19:43:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D6483206B5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Feb 2021 19:45:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbhBTSnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Feb 2021 13:43:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36702 "EHLO
+        id S229889AbhBTSot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Feb 2021 13:44:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbhBTSnK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Feb 2021 13:43:10 -0500
+        with ESMTP id S229819AbhBTSos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Feb 2021 13:44:48 -0500
 Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C909CC061574
-        for <devicetree@vger.kernel.org>; Sat, 20 Feb 2021 10:42:29 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id e8so3847956ljj.5
-        for <devicetree@vger.kernel.org>; Sat, 20 Feb 2021 10:42:29 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C20FC061786
+        for <devicetree@vger.kernel.org>; Sat, 20 Feb 2021 10:44:08 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id e17so42675621ljl.8
+        for <devicetree@vger.kernel.org>; Sat, 20 Feb 2021 10:44:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=LS5gwKcMHR9sdDFFvyyOOfE/sEKmvwhv6AyHy6Ue0Eg=;
-        b=CxRwsvrkffeovIBHK7QTB89JlhPdqIfqw+OlXY+dk1cV4IBWxveisxrcUXMAzaouwX
-         fCV67iU6F7wX58CSAB5bIhAZryiPW4kLYNGaSHKwHyZfiC3BJaxC8F8KyC//7Sr9kedd
-         k/1Z1c5M9zpDpPUVPZTbt3wjaCQILE4AU3eRYQr9gUWqgLvDhdPANHX6twqvn52BSM9d
-         /XVXHjsqNzgP19683zUFeWOvXII9YAEt77lIPj9EDecTQ2EJZTbTZwboEFHJFWKYWFO2
-         Yw/69e/r8XLUYqeR2buSTRgqQGY5iAHXuDqg9R3jh1hm9KKUmurs62Vy6ubPsfD2xqan
-         T5fw==
+        bh=tykDSNBQyBWy4Y86qvV5HFG7OJitL0SuiJFGnG8I3rM=;
+        b=r0EPXWZGv4/NlyMklT9yopa3l5vE9pVO1jbbfvz27OK0kq234TDt/DfTzaH+LOQaN2
+         CN+24t2KAstxrkNR+SSTdp7+hoaYdVpP8VOVDFW5JJR59j2WegQBkjOw5cyx+O6mHOLp
+         Hzbej3lEYuv/5z8XS8enXoet42DgdO09GmkwUDNmIp7jovpmqM3oKExc4IZhIXDVEbYD
+         oHXzjfWIzDQWwX/HLUg1m5NRdj9I3xkLoaWbvaCWd8jBgwcGdtEijkL6DtPRlfh0xsDc
+         t3avfZSrtRBY/13tAQzixddlA+PG5Ka3hMzSlHW6gxPvhzTivscvTMEjQurfN9tlJIdy
+         sY8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=LS5gwKcMHR9sdDFFvyyOOfE/sEKmvwhv6AyHy6Ue0Eg=;
-        b=lo9wagIxEatiiJjI0lopoKnSsGgJp4ZotWsnfsJYgMY1mfo51jrw7Fa76UA+FQqjZj
-         qHiC8R42pG7nq0dom3upnnY7FRsZuPoJXYSvEk9PQydDo4p1KmUg4TpF2HNQO8900h58
-         gPRfih4KPinHWbf3yhDzNlKQ11H2nou23BqCY2KXimTMSVKfA37CanWpCh2qGN0I2yer
-         V1fshAttqU8voo11/g5muGDPjqf959t12zzBkZW4E39bByrqdUiuz0mKzi1tzfBFiMOP
-         CLdDtE8r2nWQbVR6UNVW1FFC98VGb+mbr25ZfecwhBHbBOnF8PopCeg2bojZkZYr5YVH
-         zvhg==
-X-Gm-Message-State: AOAM531+KISBApZZ3Cv2fvMDmYOKPV+cPuyhRf2pNK3nxBcaj0iXjHCg
-        3VlEUHeUp98HruoBKoGTy6EKiA==
-X-Google-Smtp-Source: ABdhPJy4Ons8DzOVQF9Alozjt1JiZgxRKMkzCccYD/nKdhBwPokycuN7WiTTNWnzO+LvOxU2rXYJ4g==
-X-Received: by 2002:a2e:9707:: with SMTP id r7mr575046lji.359.1613846548141;
-        Sat, 20 Feb 2021 10:42:28 -0800 (PST)
+        bh=tykDSNBQyBWy4Y86qvV5HFG7OJitL0SuiJFGnG8I3rM=;
+        b=kBde6K1BzCGEbSXAah1KDefzNj9QDqPIM0oHj/OmtqK+Y4y1beFEYo6hHnDpvZ6oU6
+         NCGP6kzc5A3a2Emmuk4DCrkDZUKbjXa++mfTGLea+RpTpODrQDoeJw+WfG31RnaRDriI
+         KmkcmAD9RT/2uxWhe75kc1aHc4UEKn4KG8gjkF/TxTncsgqqAS8wPPsLJw5x/moHyl5F
+         slybOyb3dNrPytLAn+pDl0Rb4V4PDn/rYMbiumMdUoks3iYB1/VIn1+dns/SvDVPcJTC
+         OL5YISbLHzjrQK+/s/OfiFsKl1RTmTwvHHtDK+Ca2fxwbhkHxEmUPmjgxOfROYHkM5U7
+         e1Jg==
+X-Gm-Message-State: AOAM533DfQVW82aYKusOL2EwlEMEfC5EbKeSP5q5MVPVIhe7IPp1145/
+        4sRJhQCHhPmwroHsP+f5Rc11wQ==
+X-Google-Smtp-Source: ABdhPJzzCOoRpf3qhkAYfl757QlNomIJ3iDADZ5FbjXc75O1jpMKdr61UWhI1bU8+vRk9vhkonwT5Q==
+X-Received: by 2002:a2e:948:: with SMTP id 69mr2098073ljj.480.1613846646623;
+        Sat, 20 Feb 2021 10:44:06 -0800 (PST)
 Received: from [192.168.118.216] ([85.249.43.69])
-        by smtp.gmail.com with ESMTPSA id i30sm1316467lfc.154.2021.02.20.10.42.26
+        by smtp.gmail.com with ESMTPSA id x31sm1353093lfu.10.2021.02.20.10.44.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 Feb 2021 10:42:27 -0800 (PST)
-Subject: Re: [PATCH v5 04/22] media: camss: Add CAMSS_845 camss version
+        Sat, 20 Feb 2021 10:44:05 -0800 (PST)
+Subject: Re: [PATCH v5 01/22] media: camss: Fix vfe_isr_comp_done()
+ documentation
 To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
         bjorn.andersson@linaro.org, todor.too@gmail.com,
         mchehab@kernel.org, robh+dt@kernel.org,
@@ -64,14 +65,14 @@ Cc:     Rob Herring <robh@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Jonathan Marek <jonathan@marek.ca>
 References: <20210217112122.424236-1-robert.foss@linaro.org>
- <20210217112122.424236-5-robert.foss@linaro.org>
+ <20210217112122.424236-2-robert.foss@linaro.org>
 From:   Andrey Konovalov <andrey.konovalov@linaro.org>
-Message-ID: <17de547b-a473-129e-62a1-f453d5f9881b@linaro.org>
-Date:   Sat, 20 Feb 2021 21:42:25 +0300
+Message-ID: <69de93cd-8dee-56f2-12f8-317093c462f0@linaro.org>
+Date:   Sat, 20 Feb 2021 21:44:04 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210217112122.424236-5-robert.foss@linaro.org>
+In-Reply-To: <20210217112122.424236-2-robert.foss@linaro.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -87,24 +88,34 @@ Thanks,
 Andrey
 
 On 17.02.2021 14:21, Robert Foss wrote:
-> Add enum representing the SDM845 SOC, which incorporates version
-> 170 of the Titan architecture ISP.
+> Function name is comment is wrong, and was changed to be
+> the same as the actual function name.
+> 
+> The comment was changed to kerneldoc format.
 > 
 > Signed-off-by: Robert Foss <robert.foss@linaro.org>
 > ---
->   drivers/media/platform/qcom/camss/camss.h | 1 +
->   1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
-> index 3a0484683cd6..46e986452824 100644
-> --- a/drivers/media/platform/qcom/camss/camss.h
-> +++ b/drivers/media/platform/qcom/camss/camss.h
-> @@ -66,6 +66,7 @@ enum camss_version {
->   	CAMSS_8x16,
->   	CAMSS_8x96,
->   	CAMSS_660,
-> +	CAMSS_845,
->   };
+> Changes since v1
+>   - Bjorn: Fix function doc name & use kerneldoc format
+> 
+> 
+>   drivers/media/platform/qcom/camss/camss-vfe.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
+> index fae2b513b2f9..94c9ca7d5cbb 100644
+> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
+> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
+> @@ -1076,8 +1076,8 @@ static void vfe_isr_wm_done(struct vfe_device *vfe, u8 wm)
+>   	spin_unlock_irqrestore(&vfe->output_lock, flags);
+>   }
 >   
->   struct camss {
+> -/*
+> - * vfe_isr_wm_done - Process composite image done interrupt
+> +/**
+> + * vfe_isr_comp_done() - Process composite image done interrupt
+>    * @vfe: VFE Device
+>    * @comp: Composite image id
+>    */
 > 
