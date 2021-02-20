@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA0E3206CB
-	for <lists+devicetree@lfdr.de>; Sat, 20 Feb 2021 20:12:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B9C53206D4
+	for <lists+devicetree@lfdr.de>; Sat, 20 Feb 2021 20:15:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbhBTTML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Feb 2021 14:12:11 -0500
-Received: from mail-wr1-f54.google.com ([209.85.221.54]:46492 "EHLO
-        mail-wr1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbhBTTMJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Feb 2021 14:12:09 -0500
-Received: by mail-wr1-f54.google.com with SMTP id t15so14485737wrx.13;
-        Sat, 20 Feb 2021 11:11:52 -0800 (PST)
+        id S229934AbhBTTOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Feb 2021 14:14:09 -0500
+Received: from mail-wm1-f46.google.com ([209.85.128.46]:38318 "EHLO
+        mail-wm1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229868AbhBTTOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Feb 2021 14:14:08 -0500
+Received: by mail-wm1-f46.google.com with SMTP id m25so1268746wmi.3;
+        Sat, 20 Feb 2021 11:13:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AP8Qz4CyqLCo3NhHxc8oaozrdLe2+NNTf4O5yIMTDZs=;
-        b=MmkqC0XOCQPGR0+zzhT1p2L+eW2eYFkDOiwJ7c4+ibr1SwHVQzwxdOdtUescP2FZIH
-         f57rdgIiI9sNRduGkhE95IuUFFP5QYKM9Chv5sd/pihbZ5xvf0KKOvM4Wz50e8w3KAAV
-         QATWHjK1IMRp49DMRLNs/fvpaWjZxT91zMTzi+HNGWt63qYA1JGQ3EjDZXMdnd9i/PBx
-         3ZCRMlxY3dMVHefmw6MmtWJeKOh3pvd7vRB7VK4G3vvt6Iffhk82BkwQ5NBsfYequHYM
-         c2zCMtMYxYMf7ZLfdN2Uis5dyluh9OmDrk5Qr2rU4VJYaJ/BfuXFN0EQfHlAfa4jVvhv
-         gbYA==
-X-Gm-Message-State: AOAM5317w8kHSos0Uu/PA+JXemLYpQDYhYVEJI+F7JoiK6I6OS8Y8Cbo
-        nx7XxROJjPyggvf26HY0evQ=
-X-Google-Smtp-Source: ABdhPJxBMP1FyAVRPUHU97bTnL2Py6n86AFr2ysvpg9k2xugwJ1xH2BjBMPhVY/EduC0v8exbqtj+g==
-X-Received: by 2002:adf:818a:: with SMTP id 10mr11367651wra.31.1613848287129;
-        Sat, 20 Feb 2021 11:11:27 -0800 (PST)
+        bh=VF3s9s8dD+8FgMnQzEnFyHG1q1prhIJgjdP8jQ0Kb/E=;
+        b=UfHKLMARmIa6ApDFpt8RQj3yF7my2W8MSWSXMWNAu3+ibB4l/IQsqrrmNuBJ6kM/7c
+         otg8+GxDQp/BQ2qqkU3Kt5ix6Aq2luJ6MXhxMHgiHg5mch0cw/xWIEbk5qmxeq8rTeDj
+         IVSWxc4qWTMQ/3bVjjK+LlLLzFywiAy4Ck98klJD2QSWswAT00jz1PRekCXVPZPddRW+
+         7cZYSXxGzgsDQEcoQXI+ymJ86dif1BSBzoAFvBkneWEINNS1x/VBwWAMRyh+ZdsEt4G6
+         ZTOygK3JQn7Qc3+tqJ2f5nCKkbanYakofcNWJoLwvS14fvIwwfyPQtY8mYZH+Xr/w++d
+         Es0w==
+X-Gm-Message-State: AOAM532A5r6rAde+UV6l1uJIAMNLHwBw3IwrvymVBjuOn/DmQwJ/xYxt
+        Xd+Zhc1FgRcnmFaLj7bRM1w=
+X-Google-Smtp-Source: ABdhPJw9s3IjvIxVsPN1AfNRpwIaxtgvmFES1CWbXCIdbkt8xArpUI6D3W0a2jIIJOy8C9bd/VV77g==
+X-Received: by 2002:a1c:d7:: with SMTP id 206mr13505454wma.68.1613848406537;
+        Sat, 20 Feb 2021 11:13:26 -0800 (PST)
 Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id q140sm22790571wme.0.2021.02.20.11.11.25
+        by smtp.googlemail.com with ESMTPSA id x18sm10044772wrr.10.2021.02.20.11.13.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Feb 2021 11:11:26 -0800 (PST)
-Date:   Sat, 20 Feb 2021 20:11:24 +0100
+        Sat, 20 Feb 2021 11:13:25 -0800 (PST)
+Date:   Sat, 20 Feb 2021 20:13:23 +0100
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Hector Martin <marcan@marcan.st>
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -49,66 +49,44 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Linus Walleij <linus.walleij@linaro.org>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 19/25] tty: serial: samsung_tty: IRQ rework
-Message-ID: <20210220191124.wjkkqz2boxsdkf2b@kozik-lap>
+Subject: Re: [PATCH v2 20/25] tty: serial: samsung_tty: Use
+ devm_ioremap_resource
+Message-ID: <20210220191323.ugmzrtkvcxyqqolj@kozik-lap>
 References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-20-marcan@marcan.st>
- <20210215184012.sf6p6dbk5c25phdm@kozik-lap>
- <31068a51-736b-08f6-6c00-1779734465ea@marcan.st>
+ <20210215121713.57687-21-marcan@marcan.st>
+ <20210215185135.onivzktfscv5myh2@kozik-lap>
+ <20274436-7275-9734-5a07-d6da46b45c5f@marcan.st>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <31068a51-736b-08f6-6c00-1779734465ea@marcan.st>
+In-Reply-To: <20274436-7275-9734-5a07-d6da46b45c5f@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 18, 2021 at 10:53:10PM +0900, Hector Martin wrote:
-> > Separate patch for trivial renaming.
-> 
-> I think it makes sense to do this rename together with the first change
-> above, as it keeps both functions symmetric. Otherwise we end up with an
-> inconsistent function naming between both patches. If you really want it
-> separate though, I can do that.
-
-OK, keep your version.
-
-> 
+On Thu, Feb 18, 2021 at 11:01:21PM +0900, Hector Martin wrote:
+> On 16/02/2021 03.51, Krzysztof Kozlowski wrote:
+> > > Also fix a bug checking the return value, which should use IS_ERR().
 > > 
-> > > 
-> > > Signed-off-by: Hector Martin <marcan@marcan.st>
-> > > ---
-> > >   drivers/tty/serial/samsung_tty.c | 41 +++++++++++++++++++-------------
-> > >   1 file changed, 24 insertions(+), 17 deletions(-)
-> > > 
-> > > diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-> > > index 21955be680a4..821cd0e4f870 100644
-> > > --- a/drivers/tty/serial/samsung_tty.c
-> > > +++ b/drivers/tty/serial/samsung_tty.c
-> > > @@ -151,6 +151,9 @@ struct s3c24xx_uart_port {
-> > >   #endif
-> > >   };
-> > > +static void s3c24xx_serial_start_next_tx(struct s3c24xx_uart_port *ourport);
-> > > +static void s3c24xx_serial_tx_chars(struct s3c24xx_uart_port *ourport);
-> > > +
-> > >   /* conversion functions */
-> > >   #define s3c24xx_dev_to_port(__dev) dev_get_drvdata(__dev)
-> > > @@ -316,8 +319,6 @@ static void s3c24xx_serial_stop_tx(struct uart_port *port)
-> > >   	ourport->tx_mode = 0;
-> > >   }
-> > > -static void s3c24xx_serial_start_next_tx(struct s3c24xx_uart_port *ourport);
-> > > -
-> > 
-> > Why moving this? Why adding s3c24xx_serial_tx_chars() forward
-> > declaration?
+> > No, no, no. We never, never combine fixing bugs with some rework.
+> > However devm_ioremap() returns NULL so where is the error?
 > 
-> This should've gone in the next patch. A previous reviewer told me to put
-> declarations at the top of the file, so I put it there and moved this one
-> along with it, but I'll keep it to the additon only for v3.
+> Sorry, this was a commit message mistake. The code is correct and so is the
+> patch: just the NULL check is correct for the previous variant and IS_ERR is
+> correct for devm_ioremap_resource. I confused myself while writing the
+> commit message after the fact.
+> 
+> > Did you test your patches on existing platforms? If not, please mark all
+> > of them as RFT on next submission, so Greg does not pick them too fast.
+> 
+> I unfortunately don't have any Exynos devices where I could test the code (I
+> have a couple but no serial connections, and I have no idea if mailine would
+> run on them). I'll mark v3 as RFT.
 
-Maybe I missed something in the context but it looked like
-forward declaration s3c24xx_serial_tx_chars() was not needed? In such
-case no need to move it.
+If you have one of Odroid boards with Exynos, then you can nicely test
+Exynos. Others - depends, on board.
+Anyway I can test them for you. I just want to be sure that Greg waits
+for this testing.
 
 Best regards,
 Krzysztof
