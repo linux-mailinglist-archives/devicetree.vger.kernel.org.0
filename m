@@ -2,24 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E5DA3209D7
-	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 12:24:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 414C63209D2
+	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 12:24:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229844AbhBULS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Feb 2021 06:18:59 -0500
-Received: from honk.sigxcpu.org ([24.134.29.49]:60378 "EHLO honk.sigxcpu.org"
+        id S229866AbhBULSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Feb 2021 06:18:15 -0500
+Received: from honk.sigxcpu.org ([24.134.29.49]:60350 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229863AbhBULS6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Feb 2021 06:18:58 -0500
+        id S229540AbhBULSO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Feb 2021 06:18:14 -0500
+X-Greylist: delayed 615 seconds by postgrey-1.27 at vger.kernel.org; Sun, 21 Feb 2021 06:18:14 EST
 Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 4454AFB05;
-        Sun, 21 Feb 2021 12:07:19 +0100 (CET)
+        by honk.sigxcpu.org (Postfix) with ESMTP id 91556FB06;
+        Sun, 21 Feb 2021 12:07:20 +0100 (CET)
 X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
 Received: from honk.sigxcpu.org ([127.0.0.1])
         by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id KTp4EHo6F5rE; Sun, 21 Feb 2021 12:07:16 +0100 (CET)
+        with ESMTP id e9_xkOK1HW2I; Sun, 21 Feb 2021 12:07:17 +0100 (CET)
 Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id C0D19403FB; Sun, 21 Feb 2021 12:07:11 +0100 (CET)
+        id C741B403F6; Sun, 21 Feb 2021 12:07:11 +0100 (CET)
 From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -39,9 +40,9 @@ To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Max Krummenacher <max.oss.09@gmail.com>,
         Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/6] arm64: dts: librem5-devkit: "Drop Line In Jack"
-Date:   Sun, 21 Feb 2021 12:07:08 +0100
-Message-Id: <2a64c0083f2024d14e08d1351f8a14888a549160.1613905397.git.agx@sigxcpu.org>
+Subject: [PATCH v1 4/6] arm64: defconfig: Enable asoc simple mux
+Date:   Sun, 21 Feb 2021 12:07:09 +0100
+Message-Id: <0879920c99ad17136d9ceee2183959c07d7087f5.1613905397.git.agx@sigxcpu.org>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <cover.1613905396.git.agx@sigxcpu.org>
 References: <cover.1613905396.git.agx@sigxcpu.org>
@@ -52,31 +53,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SGTL500s LINEINL and LINEINR are N/C.
+This is needed to model the mic input mux on the Librem 5 devkit.
 
 Signed-off-by: Guido Günther <agx@sigxcpu.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-index d01bed5eb9e0..aac05bbaa001 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-@@ -171,12 +171,10 @@ sound {
- 		simple-audio-card,widgets =
- 			"Microphone", "Microphone Jack",
- 			"Headphone", "Headphone Jack",
--			"Speaker", "Builtin Speaker",
--			"Line", "Line In Jack";
-+			"Speaker", "Builtin Speaker";
- 		simple-audio-card,routing =
- 			"MIC_IN", "Microphone Jack",
- 			"Microphone Jack", "Mic Bias",
--			"LINE_IN", "Line In Jack",
- 			"Headphone Jack", "HP_OUT",
- 			"Builtin Speaker", "Speaker Amp OUTR",
- 			"Speaker Amp INR", "LINE_OUT";
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index e830d1be6f27..762fb6a132df 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -790,6 +790,7 @@ CONFIG_SND_SOC_GTM601=m
+ CONFIG_SND_SOC_PCM3168A_I2C=m
+ CONFIG_SND_SOC_RT5659=m
+ CONFIG_SND_SOC_SIMPLE_AMPLIFIER=m
++CONFIG_SND_SOC_SIMPLE_MUX=m
+ CONFIG_SND_SOC_TAS571X=m
+ CONFIG_SND_SOC_WCD934X=m
+ CONFIG_SND_SOC_WM8904=m
 -- 
 2.30.0
 
