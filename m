@@ -2,1126 +2,860 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B570320BF6
-	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 18:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD70E320BFC
+	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 18:15:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbhBUROR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Feb 2021 12:14:17 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:57261 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229985AbhBUROM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Feb 2021 12:14:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1613927563;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=KxBlKfrt1x0wZ31in/ErLK3hWFS9EYwmLoaoSU/r00g=;
-        b=dvKQl2OpTIZhFDWFKEaZsD25oAxwp7VTEuydKmr6MahrAs109Fs4uDuSPUk9iw1agrmXPD
-        xUb/8rZORPJ5OJtIFu/LybCVyhuSrYBzcyregcgyUIYc8T335N6D+FsHMJ+lpnpFvi2AZI
-        LMeY1Zi9b8uOl9YEl48X3EL4dqMA/v8=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-92-ce_27SzqMq-l6omIpDMMTg-1; Sun, 21 Feb 2021 12:12:41 -0500
-X-MC-Unique: ce_27SzqMq-l6omIpDMMTg-1
-Received: by mail-qk1-f198.google.com with SMTP id 124so7432646qkg.6
-        for <devicetree@vger.kernel.org>; Sun, 21 Feb 2021 09:12:41 -0800 (PST)
+        id S230154AbhBURPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Feb 2021 12:15:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41210 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230074AbhBURPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Feb 2021 12:15:16 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 308D4C06178A
+        for <devicetree@vger.kernel.org>; Sun, 21 Feb 2021 09:14:35 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id u4so5913973lja.3
+        for <devicetree@vger.kernel.org>; Sun, 21 Feb 2021 09:14:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=mJbNzQ1++ygcqTBiBISf70R0q2Zt/pkDdRuihAuauFs=;
+        b=Io7SeJFfw83eTiYYMeQUivJ14bAPK3sBDbay5o0ysc8aOUFx6xgxaIDS5aSmvqllfa
+         dRLImERzrcz+XAES1Qbx3G/L2FGPQymzDOerAec5BdLoX6NQ1TdXXFN9VluE6ZRo1ZJz
+         G0RiAUOXlwOdP9RTgOcRueoCp4gZrXD7/jrgYXH2j9QjhpHxQHSwGUIJ0/yDc5LlWHm3
+         Zi1GWRb9H1eBh+zasoRaeDBvVxxwy/U4CN4gBtQN7XItqp8zIehBh+WfS8k8MZPZfGAi
+         pDtFBoIAhQ1JEi6DK2CCr7U434nl7+UO8++j2u6YflHzFM1y1qxsnp2kRvRQhsS+lF9m
+         SjCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=KxBlKfrt1x0wZ31in/ErLK3hWFS9EYwmLoaoSU/r00g=;
-        b=GR5lSnwlvdIbNsfXYhnKoMx8rjFqWqQTS76EclAleT4+vpBoFt03bfnCHlCDwAWBFQ
-         Ne8XpCPuhOyb7RONjlC7/xGRagJ7Od8lVDKGJjz/D3dWs16LeuB+CjE414fEwx2a1foL
-         TsG6VqpAy6tt48M02z5IIT4ptp1/2pWjPERaj39n7TCnJAsg2KAaUi3XLfbOVwEQ+3Qj
-         CUXOEmARlKZdFkq/COYZSO3iQcMI+NN9dZt5jfQYz8Vki9FowwxnM6j1Ce9deaL9XF1X
-         U4MZoZxenMjajQ8haYOBTfpJYJ7V9R13eNKIJ5EIYfwHeJjkK/2vCMVggdN5pXwo21h2
-         R1tg==
-X-Gm-Message-State: AOAM533moLk50hN4rL+BXJsP8IY2qVH67exIaVLmCWsO4VMkMReWJtZn
-        4KtCtlgprMEPww907O7nVRwBIKutl0ZJYzxtwVqFUU1uJDWjgFZzQ3rTTUTbUTLgk7Ulw1eO8mC
-        CJxOHnn6iG+ij7Q47fx8MiA==
-X-Received: by 2002:a05:622a:390:: with SMTP id j16mr16959202qtx.206.1613927560787;
-        Sun, 21 Feb 2021 09:12:40 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwSdrGqGtvexX+M09FE56gAk73ite0JDJ6IOvwbBSppJimF8GOlZhxN0n8KBG32vKopSuu68w==
-X-Received: by 2002:a05:622a:390:: with SMTP id j16mr16959155qtx.206.1613927560157;
-        Sun, 21 Feb 2021 09:12:40 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id a186sm11013316qkd.63.2021.02.21.09.12.37
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=mJbNzQ1++ygcqTBiBISf70R0q2Zt/pkDdRuihAuauFs=;
+        b=XTqwprLgsTkJ72xwVBRM/hrSjNUC5bfP9KsTOLgoqSfmqeZpxgHlx3F2hchhMTpiJ9
+         ZUNWJXlZAduCBoO8KXoC2lv788LgNdTmVeSDDgoRySVeXRG8xCb4VLAXp4v9u4PLFF0e
+         051w8xCXJW2cKosgihL92eFvBAiPslue9xy7QbJ0jwrcAr979ZXxaP52i/FxzXTPETOF
+         u8CDsLxDyby+P2rrCOsdGWcHGLXKKoRwdHuuQkplh76KQVL8Bg2Z+In4ysWn2z6CnBkx
+         ud8SqxLV3J6VuMjejwaRq+n6nPBy2FQwskzY8CM5CiXIrc7gTsMqdKsTWp2uSk5cP1wT
+         +Oew==
+X-Gm-Message-State: AOAM530QnlTjnYRknREkALtvWJmAmSZ45RMXTx8pPLqGRVs6/OeSpcWN
+        zwYyFvZgLlGbiCM4cVs+fo/TsA==
+X-Google-Smtp-Source: ABdhPJwWn4Q5cOpUV5As4uGMoPTjhpoKFu0swg40ixTa08peSmT1+sDpwY1JZTD5Bnk9y6EzE5ur7A==
+X-Received: by 2002:a2e:7202:: with SMTP id n2mr2033036ljc.17.1613927673392;
+        Sun, 21 Feb 2021 09:14:33 -0800 (PST)
+Received: from [192.168.118.216] ([85.249.43.69])
+        by smtp.gmail.com with ESMTPSA id y9sm1772691ljm.88.2021.02.21.09.14.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Feb 2021 09:12:39 -0800 (PST)
-Subject: Re: [PATCH V3 XRT Alveo 03/18] fpga: xrt: xclbin file helper
- functions
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
-Cc:     Lizhi Hou <lizhih@xilinx.com>, linux-fpga@vger.kernel.org,
-        maxz@xilinx.com, sonal.santan@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
-        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
-References: <20210218064019.29189-1-lizhih@xilinx.com>
- <20210218064019.29189-4-lizhih@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <4628ef05-27d1-b92f-9126-27a1f810c608@redhat.com>
-Date:   Sun, 21 Feb 2021 09:12:37 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        Sun, 21 Feb 2021 09:14:32 -0800 (PST)
+Subject: Re: [PATCH v5 10/22] media: camss: Add support for CSID hardware
+ version Titan 170
+To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, todor.too@gmail.com,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        angelogioacchino.delregno@somainline.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+References: <20210217112122.424236-1-robert.foss@linaro.org>
+ <20210217112122.424236-11-robert.foss@linaro.org>
+From:   Andrey Konovalov <andrey.konovalov@linaro.org>
+Message-ID: <fc2b25e0-3032-5d0d-58c6-f919e25c624d@linaro.org>
+Date:   Sun, 21 Feb 2021 20:14:30 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210218064019.29189-4-lizhih@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210217112122.424236-11-robert.foss@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Robert,
 
-On 2/17/21 10:40 PM, Lizhi Hou wrote:
-> Alveo FPGA firmware and partial reconfigure file are in xclbin format.
-This code enumerates and extracts
->  Add
-> code to enumerate and extract sections from xclbin files. xclbin.h is cross
-> platform and used across all platforms and OS
->
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhih@xilinx.com>
+Thank you for your patch!
+
+On 17.02.2021 14:21, Robert Foss wrote:
+> Add register definitions for version 170 of the Titan architecture
+> and implement support for the CSID subdevice.
+> 
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
 > ---
->  drivers/fpga/xrt/include/xclbin-helper.h |  52 +++
->  drivers/fpga/xrt/lib/xclbin.c            | 394 ++++++++++++++++++++++
->  include/uapi/linux/xrt/xclbin.h          | 408 +++++++++++++++++++++++
->  3 files changed, 854 insertions(+)
->  create mode 100644 drivers/fpga/xrt/include/xclbin-helper.h
->  create mode 100644 drivers/fpga/xrt/lib/xclbin.c
->  create mode 100644 include/uapi/linux/xrt/xclbin.h
->
-> diff --git a/drivers/fpga/xrt/include/xclbin-helper.h b/drivers/fpga/xrt/include/xclbin-helper.h
+>   drivers/media/platform/qcom/camss/Makefile    |   1 +
+>   .../platform/qcom/camss/camss-csid-170.c      | 602 ++++++++++++++++++
+>   .../media/platform/qcom/camss/camss-csid.c    |   4 +
+>   .../media/platform/qcom/camss/camss-csid.h    |   2 +
+>   .../media/platform/qcom/camss/camss-vfe-170.c |   1 -
+>   drivers/media/platform/qcom/camss/camss.c     |  62 ++
+>   6 files changed, 671 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/media/platform/qcom/camss/camss-csid-170.c
+> 
+> diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
+> index cff388b653ba..0752c46ea37b 100644
+> --- a/drivers/media/platform/qcom/camss/Makefile
+> +++ b/drivers/media/platform/qcom/camss/Makefile
+> @@ -6,6 +6,7 @@ qcom-camss-objs += \
+>   		camss-csid.o \
+>   		camss-csid-4-1.o \
+>   		camss-csid-4-7.o \
+> +		camss-csid-170.o \
+>   		camss-csiphy-2ph-1-0.o \
+>   		camss-csiphy-3ph-1-0.o \
+>   		camss-csiphy.o \
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid-170.c b/drivers/media/platform/qcom/camss/camss-csid-170.c
 > new file mode 100644
-> index 000000000000..68218efc9d0b
+> index 000000000000..0e9b08ed38c2
 > --- /dev/null
-> +++ b/drivers/fpga/xrt/include/xclbin-helper.h
-> @@ -0,0 +1,52 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Header file for Xilinx Runtime (XRT) driver
-> + *
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *    David Zhang <davidzha@xilinx.com>
-> + *    Sonal Santan <sonal.santan@xilinx.com>
-> + */
-> +
-> +#ifndef _XRT_XCLBIN_H
-> +#define _XRT_XCLBIN_H
-
-The header guard should match the filename.
-
-> +
-> +#include <linux/types.h>
-> +#include <linux/device.h>
-> +#include <linux/xrt/xclbin.h>
-> +
-> +#define ICAP_XCLBIN_V2	"xclbin2"
-> +#define DMA_HWICAP_BITFILE_BUFFER_SIZE 1024
-> +#define MAX_XCLBIN_SIZE (1024 * 1024 * 1024) /* Assuming xclbin <= 1G, always */
-#defines should have a prefix, maybe XRT_ or XCLBIN_
-> +
-> +enum axlf_section_kind;
-> +struct axlf;
-> +
-> +/**
-> + * Bitstream header information as defined by Xilinx tools.
-> + * Please note that this struct definition is not owned by the driver.
-> + */
-> +struct hw_icap_bit_header {
-
-File headers usually have fixed length fields like uint32_t
-
-Is this a structure the real header is converted into ?
-
-> +	unsigned int header_length;     /* Length of header in 32 bit words */
-> +	unsigned int bitstream_length;  /* Length of bitstream to read in bytes*/
-> +	unsigned char *design_name;     /* Design name get from bitstream */
-> +	unsigned char *part_name;       /* Part name read from bitstream */
-> +	unsigned char *date;           /* Date read from bitstream header */
-> +	unsigned char *time;           /* Bitstream creation time */
-> +	unsigned int magic_length;      /* Length of the magic numbers */
-> +	unsigned char *version;		/* Version string */
-> +};
-> +
-> +const char *xrt_xclbin_kind_to_string(enum axlf_section_kind kind);
-
-Only add decl's that are using in multiple files.
-
-This is only defined in xclbin.c, why does it need to be in the header ?
-
-> +int xrt_xclbin_get_section(const struct axlf *xclbin,
-> +			   enum axlf_section_kind kind, void **data,
-> +			   uint64_t *len);
-> +int xrt_xclbin_get_metadata(struct device *dev, const struct axlf *xclbin, char **dtb);
-> +int xrt_xclbin_parse_bitstream_header(const unsigned char *data,
-> +				      unsigned int size,
-> +				      struct hw_icap_bit_header *header);
-> +void xrt_xclbin_free_header(struct hw_icap_bit_header *header);
-> +const char *xrt_clock_type2epname(enum CLOCK_TYPE type);
-CLOCK_TYPE needs a prefix, something like XCLBIN_CLOCK_TYPE
-> +
-> +#endif /* _XRT_XCLBIN_H */
-> diff --git a/drivers/fpga/xrt/lib/xclbin.c b/drivers/fpga/xrt/lib/xclbin.c
-> new file mode 100644
-> index 000000000000..47dc6ca25c1b
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/lib/xclbin.c
-> @@ -0,0 +1,394 @@
+> +++ b/drivers/media/platform/qcom/camss/camss-csid-170.c
+> @@ -0,0 +1,602 @@
 > +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * Xilinx Alveo FPGA Driver XCLBIN parser
+> + * camss-csid-4-7.c
 > + *
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
+> + * Qualcomm MSM Camera Subsystem - CSID (CSI Decoder) Module
 > + *
-> + * Authors: David Zhang <davidzha@xilinx.com>
+> + * Copyright (C) 2020 Linaro Ltd.
 > + */
+> +#include <linux/completion.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/of.h>
 > +
-> +#include <asm/errno.h>
-> +#include <linux/vmalloc.h>
-> +#include <linux/device.h>
-> +#include "xclbin-helper.h"
-> +#include "metadata.h"
+> +#include "camss-csid.h"
+> +#include "camss.h"
 > +
-What is XHI ?  Maybe expand this, at the lease should comment
-> +/* Used for parsing bitstream header */
-> +#define XHI_EVEN_MAGIC_BYTE     0x0f
-> +#define XHI_ODD_MAGIC_BYTE      0xf0
+> +/* The CSID 2 IP-block is different from the others,
+> + * and is of a bare-bones Lite version, with no PIX
+> + * interface support. As a result of that it has an
+> + * alternate register layout.
+> + */
+> +#define IS_LITE		(csid->id == 2 ? 1 : 0)
 > +
-> +/* Extra mode for IDLE */
-> +#define XHI_OP_IDLE  -1
-> +#define XHI_BIT_HEADER_FAILURE -1
+> +#define CSID_HW_VERSION		0x0
+> +#define		HW_VERSION_STEPPING	0
+> +#define		HW_VERSION_REVISION	16
+> +#define		HW_VERSION_GENERATION	28
 > +
-> +/* The imaginary module length register */
-> +#define XHI_MLR                  15
+> +#define CSID_RST_STROBES	0x10
+> +#define		RST_STROBES	0
 > +
-> +static inline unsigned char xhi_data_and_inc(const unsigned char *d, int *i, int sz)
-could move to the *.h
-> +{_
-> +	unsigned char data;
+> +#define CSID_CSI2_RX_IRQ_STATUS	0x20
+> +#define	CSID_CSI2_RX_IRQ_MASK	0x24
+> +#define CSID_CSI2_RX_IRQ_CLEAR	0x28
 > +
-> +	if (*i >= sz)
-> +		return -1;
-The return value of this funtion is not always checked, at the least add a dev_err here
+> +#define CSID_CSI2_RDIN_IRQ_STATUS(rdi)		((IS_LITE ? 0x30 : 0x40) \
+> +						 + 0x10 * (rdi))
+> +#define CSID_CSI2_RDIN_IRQ_MASK(rdi)		((IS_LITE ? 0x34 : 0x44) \
+> +						 + 0x10 * (rdi))
+> +#define CSID_CSI2_RDIN_IRQ_CLEAR(rdi)		((IS_LITE ? 0x38 : 0x48) \
+> +						 + 0x10 * (rdi))
+> +#define CSID_CSI2_RDIN_IRQ_SET(rdi)		((IS_LITE ? 0x3C : 0x4C) \
+> +						 + 0x10 * (rdi))
 > +
-> +	data = d[*i];
-> +	(*i)++;
+> +#define CSID_TOP_IRQ_STATUS	0x70
+> +#define		TOP_IRQ_STATUS_RESET_DONE 0
+> +#define CSID_TOP_IRQ_MASK	0x74
+> +#define CSID_TOP_IRQ_CLEAR	0x78
+> +#define CSID_TOP_IRQ_SET	0x7C
+> +#define CSID_IRQ_CMD		0x80
+> +#define		IRQ_CMD_CLEAR	0
+> +#define		IRQ_CMD_SET	4
 > +
-> +	return data;
-> +}
+> +#define CSID_CSI2_RX_CFG0	0x100
+> +#define		CSI2_RX_CFG0_NUM_ACTIVE_LANES	0
+> +#define		CSI2_RX_CFG0_DL0_INPUT_SEL	4
+> +#define		CSI2_RX_CFG0_DL1_INPUT_SEL	8
+> +#define		CSI2_RX_CFG0_DL2_INPUT_SEL	12
+> +#define		CSI2_RX_CFG0_DL3_INPUT_SEL	16
+> +#define		CSI2_RX_CFG0_PHY_NUM_SEL	20
+> +#define		CSI2_RX_CFG0_PHY_TYPE_SEL	24
 > +
-> +static const struct axlf_section_header *
-> +xrt_xclbin_get_section_hdr(const struct axlf *xclbin,
-> +			   enum axlf_section_kind kind)
-> +{
-> +	int i = 0;
+> +#define CSID_CSI2_RX_CFG1	0x104
+> +#define		CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN		0
+> +#define		CSI2_RX_CFG1_DE_SCRAMBLE_EN			1
+> +#define		CSI2_RX_CFG1_VC_MODE				2
+> +#define		CSI2_RX_CFG1_COMPLETE_STREAM_EN			4
+> +#define		CSI2_RX_CFG1_COMPLETE_STREAM_FRAME_TIMING	5
+> +#define		CSI2_RX_CFG1_MISR_EN				6
+> +#define		CSI2_RX_CFG1_CGC_MODE				7
+> +#define			CGC_MODE_DYNAMIC_GATING		0
+> +#define			CGC_MODE_ALWAYS_ON		1
 > +
-> +	for (i = 0; i < xclbin->m_header.m_numSections; i++) {
-> +		if (xclbin->m_sections[i].m_sectionKind == kind)
-> +			return &xclbin->m_sections[i];
-> +	}
+> +#define CSID_RDI_CFG0(rdi)			((IS_LITE ? 0x200 : 0x300) \
+> +						 + 0x100 * (rdi))
+> +#define		RDI_CFG0_BYTE_CNTR_EN		0
+> +#define		RDI_CFG0_FORMAT_MEASURE_EN	1
+> +#define		RDI_CFG0_TIMESTAMP_EN		2
+> +#define		RDI_CFG0_DROP_H_EN		3
+> +#define		RDI_CFG0_DROP_V_EN		4
+> +#define		RDI_CFG0_CROP_H_EN		5
+> +#define		RDI_CFG0_CROP_V_EN		6
+> +#define		RDI_CFG0_MISR_EN		7
+> +#define		RDI_CFG0_CGC_MODE		8
+> +#define			CGC_MODE_DYNAMIC	0
+> +#define			CGC_MODE_ALWAYS_ON	1
+> +#define		RDI_CFG0_PLAIN_ALIGNMENT	9
+> +#define			PLAIN_ALIGNMENT_LSB	0
+> +#define			PLAIN_ALIGNMENT_MSB	1
+> +#define		RDI_CFG0_PLAIN_FORMAT		10
+> +#define		RDI_CFG0_DECODE_FORMAT		12
+> +#define		RDI_CFG0_DATA_TYPE		16
+> +#define		RDI_CFG0_VIRTUAL_CHANNEL	22
+> +#define		RDI_CFG0_DT_ID			27
+> +#define		RDI_CFG0_EARLY_EOF_EN		29
+> +#define		RDI_CFG0_PACKING_FORMAT		30
+> +#define		RDI_CFG0_ENABLE			31
 > +
-> +	return NULL;
-> +}
+> +#define CSID_RDI_CFG1(rdi)			((IS_LITE ? 0x204 : 0x304)\
+> +						+ 0x100 * (rdi))
+> +#define		RDI_CFG1_TIMESTAMP_STB_SEL	0
 > +
-> +static int
-> +xrt_xclbin_check_section_hdr(const struct axlf_section_header *header,
-> +			     u64 xclbin_len)
-> +{
-> +	int ret;
+> +#define CSID_RDI_CTRL(rdi)			((IS_LITE ? 0x208 : 0x308)\
+> +						+ 0x100 * (rdi))
+> +#define		RDI_CTRL_HALT_CMD		0
+> +#define			ALT_CMD_RESUME_AT_FRAME_BOUNDARY	1
+> +#define		RDI_CTRL_HALT_MODE		2
 > +
-> +	ret = (header->m_sectionOffset + header->m_sectionSize) > xclbin_len ? -EINVAL : 0;
-
-Tristate is harder to read, consider replacing with if()
-
-int ret = 0
-
-if ()
-
-  ret =
-
-
+> +#define CSID_RDI_FRM_DROP_PATTERN(rdi)			((IS_LITE ? 0x20C : 0x30C)\
+> +							+ 0x100 * (rdi))
+> +#define CSID_RDI_FRM_DROP_PERIOD(rdi)			((IS_LITE ? 0x210 : 0x310)\
+> +							+ 0x100 * (rdi))
+> +#define CSID_RDI_IRQ_SUBSAMPLE_PATTERN(rdi)		((IS_LITE ? 0x214 : 0x314)\
+> +							+ 0x100 * (rdi))
+> +#define CSID_RDI_IRQ_SUBSAMPLE_PERIOD(rdi)		((IS_LITE ? 0x218 : 0x318)\
+> +							+ 0x100 * (rdi))
+> +#define CSID_RDI_RPP_PIX_DROP_PATTERN(rdi)		((IS_LITE ? 0x224 : 0x324)\
+> +							+ 0x100 * (rdi))
+> +#define CSID_RDI_RPP_PIX_DROP_PERIOD(rdi)		((IS_LITE ? 0x228 : 0x328)\
+> +							+ 0x100 * (rdi))
+> +#define CSID_RDI_RPP_LINE_DROP_PATTERN(rdi)		((IS_LITE ? 0x22C : 0x32C)\
+> +							+ 0x100 * (rdi))
+> +#define CSID_RDI_RPP_LINE_DROP_PERIOD(rdi)		((IS_LITE ? 0x230 : 0x330)\
+> +							+ 0x100 * (rdi))
 > +
-> +	return ret;
-> +}
+> +#define CSID_TPG_CTRL		0x600
+> +#define		TPG_CTRL_TEST_EN		0
+> +#define		TPG_CTRL_FS_PKT_EN		1
+> +#define		TPG_CTRL_FE_PKT_EN		2
+> +#define		TPG_CTRL_NUM_ACTIVE_LANES	4
+> +#define		TPG_CTRL_CYCLES_BETWEEN_PKTS	8
+> +#define		TPG_CTRL_NUM_TRAIL_BYTES	20
 > +
-> +static int xrt_xclbin_section_info(const struct axlf *xclbin,
-> +				   enum axlf_section_kind kind,
-> +				   u64 *offset, u64 *size)
-> +{
-> +	const struct axlf_section_header *mem_header = NULL;
-> +	u64 xclbin_len;
-> +	int err = 0;
+> +#define CSID_TPG_VC_CFG0	0x604
+> +#define		TPG_VC_CFG0_VC_NUM			0
+> +#define		TPG_VC_CFG0_NUM_ACTIVE_SLOTS		8
+> +#define			NUM_ACTIVE_SLOTS_0_ENABLED	0
+> +#define			NUM_ACTIVE_SLOTS_0_1_ENABLED	1
+> +#define			NUM_ACTIVE_SLOTS_0_1_2_ENABLED	2
+> +#define			NUM_ACTIVE_SLOTS_0_1_3_ENABLED	3
+> +#define		TPG_VC_CFG0_LINE_INTERLEAVING_MODE	10
+> +#define			INTELEAVING_MODE_INTERLEAVED	0
+> +#define			INTELEAVING_MODE_ONE_SHOT	1
+> +#define		TPG_VC_CFG0_NUM_FRAMES			16
 > +
-> +	mem_header = xrt_xclbin_get_section_hdr(xclbin, kind);
-> +	if (!mem_header)
-> +		return -EINVAL;
+> +#define CSID_TPG_VC_CFG1	0x608
+> +#define		TPG_VC_CFG1_H_BLANKING_COUNT		0
+> +#define		TPG_VC_CFG1_V_BLANKING_COUNT		12
+> +#define		TPG_VC_CFG1_V_BLANK_FRAME_WIDTH_SEL	24
 > +
-> +	xclbin_len = xclbin->m_header.m_length;
-> +	if (xclbin_len > MAX_XCLBIN_SIZE)
-> +		return -EINVAL;
-
-This check can be added to the function call..
-
-or the sanity checking added to the earier call to *get_section_hdr
-
-There a number of small functions that can be combined.
-
+> +#define CSID_TPG_LFSR_SEED	0x60C
 > +
-> +	err = xrt_xclbin_check_section_hdr(mem_header, xclbin_len);
-> +	if (err)
-> +		return err;
+> +#define CSID_TPG_DT_n_CFG_0(n)	(0x610 + (n) * 0xC)
+> +#define		TPG_DT_n_CFG_0_FRAME_HEIGHT	0
+> +#define		TPG_DT_n_CFG_0_FRAME_WIDTH	16
 > +
-> +	*offset = mem_header->m_sectionOffset;
-> +	*size = mem_header->m_sectionSize;
+> +#define CSID_TPG_DT_n_CFG_1(n)	(0x614 + (n) * 0xC)
+> +#define		TPG_DT_n_CFG_1_DATA_TYPE	0
+> +#define		TPG_DT_n_CFG_1_ECC_XOR_MASK	8
+> +#define		TPG_DT_n_CFG_1_CRC_XOR_MASK	16
 > +
-> +	return 0;
-> +}
+> +#define CSID_TPG_DT_n_CFG_2(n)	(0x618 + (n) * 0xC)
+> +#define		TPG_DT_n_CFG_2_PAYLOAD_MODE		0
+> +#define		TPG_DT_n_CFG_2_USER_SPECIFIED_PAYLOAD	4
+> +#define		TPG_DT_n_CFG_2_ENCODE_FORMAT		16
 > +
-> +/* caller should free the allocated memory for **data */
-
-must free
-
-This comment also needs to be with the *.h decl
-
-> +int xrt_xclbin_get_section(const struct axlf *buf,
-> +			   enum axlf_section_kind kind,
-> +			   void **data, u64 *len)
-> +{
-> +	const struct axlf *xclbin = (const struct axlf *)buf;
-> +	void *section = NULL;
-> +	int err = 0;
-> +	u64 offset = 0;
-> +	u64 size = 0;
+> +#define CSID_TPG_COLOR_BARS_CFG	0x640
+> +#define		TPG_COLOR_BARS_CFG_UNICOLOR_BAR_EN	0
+> +#define		TPG_COLOR_BARS_CFG_UNICOLOR_BAR_SEL	4
+> +#define		TPG_COLOR_BARS_CFG_SPLIT_EN		5
+> +#define		TPG_COLOR_BARS_CFG_ROTATE_PERIOD	8
 > +
-> +	err = xrt_xclbin_section_info(xclbin, kind, &offset, &size);
-> +	if (err)
-> +		return err;
+> +#define CSID_TPG_COLOR_BOX_CFG	0x644
+> +#define		TPG_COLOR_BOX_CFG_MODE		0
+> +#define		TPG_COLOR_BOX_PATTERN_SEL	2
 > +
-> +	section = vmalloc(size);
-> +	if (!section)
-> +		return -ENOMEM;
 > +
-> +	memcpy(section, ((const char *)xclbin) + offset, size);
-> +
-> +	*data = section;
-
-a general comment
-
-for exported function checking the validity of the inputs in more important.
-
-here you assume **data is valid, really you should check.
-
-> +	if (len)
-> +		*len = size;
-len setting being optional, needs to be in the *.h comment
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_xclbin_get_section);
-> +
-Instead of allocating new memory and making copies of bits of *data
-
-why not have the points reference data ?
-
-The size operations look like translating big endian data to little endian.
-
-This will break on a big endian host.
-
-> +/* parse bitstream header */
-> +int xrt_xclbin_parse_bitstream_header(const unsigned char *data,
-> +				      unsigned int size,
-> +				      struct hw_icap_bit_header *header)
-> +{
-> +	unsigned int index;
-> +	unsigned int len;
-> +	unsigned int tmp;
-> +	unsigned int i;
-> +
-> +	memset(header, 0, sizeof(*header));
-> +	/* Start Index at start of bitstream */
-> +	index = 0;
-> +
-> +	/* Initialize HeaderLength.  If header returned early inidicates
-> +	 * failure.
-
-This side effect should be documented in the *.h comment.
-
-Also the multi line comment is a bit weird, not sure if it is ok
-
-> +	 */
-> +	header->header_length = XHI_BIT_HEADER_FAILURE;
-> +
-> +	/* Get "Magic" length */
-> +	header->magic_length = xhi_data_and_inc(data, &index, size);
-> +	header->magic_length = (header->magic_length << 8) | xhi_data_and_inc(data, &index, size);
-> +
-> +	/* Read in "magic" */
-> +	for (i = 0; i < header->magic_length - 1; i++) {
-> +		tmp = xhi_data_and_inc(data, &index, size);
-> +		if (i % 2 == 0 && tmp != XHI_EVEN_MAGIC_BYTE)
-> +			return -1;	/* INVALID_FILE_HEADER_ERROR */
-> +
-> +		if (i % 2 == 1 && tmp != XHI_ODD_MAGIC_BYTE)
-> +			return -1;	/* INVALID_FILE_HEADER_ERROR */
-> +	}
-> +
-> +	/* Read null end of magic data. */
-> +	tmp = xhi_data_and_inc(data, &index, size);
-> +
-> +	/* Read 0x01 (short) */
-> +	tmp = xhi_data_and_inc(data, &index, size);
-> +	tmp = (tmp << 8) | xhi_data_and_inc(data, &index, size);
-> +
-> +	/* Check the "0x01" half word */
-> +	if (tmp != 0x01)
-> +		return -1;	/* INVALID_FILE_HEADER_ERROR */
-> +
-> +	/* Read 'a' */
-> +	tmp = xhi_data_and_inc(data, &index, size);
-> +	if (tmp != 'a')
-> +		return -1;	/* INVALID_FILE_HEADER_ERROR	*/
-> +
-> +	/* Get Design Name length */
-> +	len = xhi_data_and_inc(data, &index, size);
-> +	len = (len << 8) | xhi_data_and_inc(data, &index, size);
-> +
-> +	/* allocate space for design name and final null character. */
-> +	header->design_name = vmalloc(len);
-> +	if (!header->design_name)
-> +		return -ENOMEM;
-> +
-> +	/* Read in Design Name */
-> +	for (i = 0; i < len; i++)
-> +		header->design_name[i] = xhi_data_and_inc(data, &index, size);
-> +
-> +	if (header->design_name[len - 1] != '\0')
-> +		return -1;
-> +
-> +	header->version = strstr(header->design_name, "Version=") + strlen("Version=");
-> +
-> +	/* Read 'b' */
-> +	tmp = xhi_data_and_inc(data, &index, size);
-> +	if (tmp != 'b')
-> +		return -1;	/* INVALID_FILE_HEADER_ERROR */
-> +
-> +	/* Get Part Name length */
-> +	len = xhi_data_and_inc(data, &index, size);
-> +	len = (len << 8) | xhi_data_and_inc(data, &index, size);
-> +
-> +	/* allocate space for part name and final null character. */
-> +	header->part_name = vmalloc(len);
-> +	if (!header->part_name)
-> +		return -ENOMEM;
-> +
-> +	/* Read in part name */
-> +	for (i = 0; i < len; i++)
-> +		header->part_name[i] = xhi_data_and_inc(data, &index, size);
-> +
-> +	if (header->part_name[len - 1] != '\0')
-> +		return -1;
-> +
-> +	/* Read 'c' */
-> +	tmp = xhi_data_and_inc(data, &index, size);
-> +	if (tmp != 'c')
-> +		return -1;	/* INVALID_FILE_HEADER_ERROR */
-> +
-> +	/* Get date length */
-> +	len = xhi_data_and_inc(data, &index, size);
-> +	len = (len << 8) | xhi_data_and_inc(data, &index, size);
-> +
-> +	/* allocate space for date and final null character. */
-> +	header->date = vmalloc(len);
-> +	if (!header->date)
-> +		return -ENOMEM;
-> +
-> +	/* Read in date name */
-> +	for (i = 0; i < len; i++)
-> +		header->date[i] = xhi_data_and_inc(data, &index, size);
-> +
-> +	if (header->date[len - 1] != '\0')
-> +		return -1;
-generally -EINVAL is more meaningful than -1
-> +
-> +	/* Read 'd' */
-> +	tmp = xhi_data_and_inc(data, &index, size);
-> +	if (tmp != 'd')
-> +		return -1;	/* INVALID_FILE_HEADER_ERROR  */
-> +
-> +	/* Get time length */
-> +	len = xhi_data_and_inc(data, &index, size);
-> +	len = (len << 8) | xhi_data_and_inc(data, &index, size);
-> +
-> +	/* allocate space for time and final null character. */
-> +	header->time = vmalloc(len);
-> +	if (!header->time)
-> +		return -ENOMEM;
-> +
-> +	/* Read in time name */
-> +	for (i = 0; i < len; i++)
-> +		header->time[i] = xhi_data_and_inc(data, &index, size);
-> +
-> +	if (header->time[len - 1] != '\0')
-> +		return -1;
-> +
-> +	/* Read 'e' */
-> +	tmp = xhi_data_and_inc(data, &index, size);
-> +	if (tmp != 'e')
-> +		return -1;	/* INVALID_FILE_HEADER_ERROR */
-> +
-> +	/* Get byte length of bitstream */
-> +	header->bitstream_length = xhi_data_and_inc(data, &index, size);
-> +	header->bitstream_length = (header->bitstream_length << 8) |
-> +		xhi_data_and_inc(data, &index, size);
-> +	header->bitstream_length = (header->bitstream_length << 8) |
-> +		xhi_data_and_inc(data, &index, size);
-> +	header->bitstream_length = (header->bitstream_length << 8) |
-> +		xhi_data_and_inc(data, &index, size);
-
-generally a problem
-
-This is confusing, collect the bytes in a temp[] and construct the header->bitstream_length in on statement.
-
-This is a case where xhi_data_and_inc return is not checked and if it failed could blow up later.
-
-> +
-> +	header->header_length = index;
-
-index is not a good variable name if it going to be stored as a length.
-
-consider changing it to something like current_length.
-
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_xclbin_parse_bitstream_header);
-> +
-> +void xrt_xclbin_free_header(struct hw_icap_bit_header *header)
-> +{
-> +	vfree(header->design_name);
-> +	vfree(header->part_name);
-> +	vfree(header->date);
-> +	vfree(header->time);
-missing header->version
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_xclbin_free_header);
-> +
-> +struct xrt_clock_desc {
-> +	char	*clock_ep_name;
-> +	u32	clock_xclbin_type;
-> +	char	*clkfreq_ep_name;
-> +} clock_desc[] = {
+> +static const struct csid_format csid_formats[] = {
 > +	{
-> +		.clock_ep_name = XRT_MD_NODE_CLK_KERNEL1,
-> +		.clock_xclbin_type = CT_DATA,
-> +		.clkfreq_ep_name = XRT_MD_NODE_CLKFREQ_K1,
+> +		MEDIA_BUS_FMT_UYVY8_2X8,
+> +		DATA_TYPE_YUV422_8BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_8_BIT,
+> +		8,
+> +		2,
 > +	},
 > +	{
-> +		.clock_ep_name = XRT_MD_NODE_CLK_KERNEL2,
-> +		.clock_xclbin_type = CT_KERNEL,
-> +		.clkfreq_ep_name = XRT_MD_NODE_CLKFREQ_K2,
+> +		MEDIA_BUS_FMT_VYUY8_2X8,
+> +		DATA_TYPE_YUV422_8BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_8_BIT,
+> +		8,
+> +		2,
 > +	},
 > +	{
-> +		.clock_ep_name = XRT_MD_NODE_CLK_KERNEL3,
-> +		.clock_xclbin_type = CT_SYSTEM,
-> +		.clkfreq_ep_name = XRT_MD_NODE_CLKFREQ_HBM,
+> +		MEDIA_BUS_FMT_YUYV8_2X8,
+> +		DATA_TYPE_YUV422_8BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_8_BIT,
+> +		8,
+> +		2,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_YVYU8_2X8,
+> +		DATA_TYPE_YUV422_8BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_8_BIT,
+> +		8,
+> +		2,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SBGGR8_1X8,
+> +		DATA_TYPE_RAW_8BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_8_BIT,
+> +		8,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SGBRG8_1X8,
+> +		DATA_TYPE_RAW_8BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_8_BIT,
+> +		8,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SGRBG8_1X8,
+> +		DATA_TYPE_RAW_8BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_8_BIT,
+> +		8,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SRGGB8_1X8,
+> +		DATA_TYPE_RAW_8BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_8_BIT,
+> +		8,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SBGGR10_1X10,
+> +		DATA_TYPE_RAW_10BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_10_BIT,
+> +		10,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SGBRG10_1X10,
+> +		DATA_TYPE_RAW_10BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_10_BIT,
+> +		10,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SGRBG10_1X10,
+> +		DATA_TYPE_RAW_10BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_10_BIT,
+> +		10,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SRGGB10_1X10,
+> +		DATA_TYPE_RAW_10BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_10_BIT,
+> +		10,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_Y10_1X10,
+> +		DATA_TYPE_RAW_10BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_10_BIT,
+> +		10,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SBGGR12_1X12,
+> +		DATA_TYPE_RAW_12BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_12_BIT,
+> +		12,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SGBRG12_1X12,
+> +		DATA_TYPE_RAW_12BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_12_BIT,
+> +		12,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SGRBG12_1X12,
+> +		DATA_TYPE_RAW_12BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_12_BIT,
+> +		12,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SRGGB12_1X12,
+> +		DATA_TYPE_RAW_12BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_12_BIT,
+> +		12,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SBGGR14_1X14,
+> +		DATA_TYPE_RAW_14BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_14_BIT,
+> +		14,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SGBRG14_1X14,
+> +		DATA_TYPE_RAW_14BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_14_BIT,
+> +		14,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SGRBG14_1X14,
+> +		DATA_TYPE_RAW_14BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_14_BIT,
+> +		14,
+> +		1,
+> +	},
+> +	{
+> +		MEDIA_BUS_FMT_SRGGB14_1X14,
+> +		DATA_TYPE_RAW_14BIT,
+> +		DECODE_FORMAT_UNCOMPRESSED_14_BIT,
+> +		14,
+> +		1,
 > +	},
 > +};
 > +
-> +const char *xrt_clock_type2epname(enum CLOCK_TYPE type)
+> +static void csid_configure_stream(struct csid_device *csid, u8 enable)
 > +{
-> +	int i;
+> +	struct csid_testgen_config *tg = &csid->testgen;
+> +	u32 val;
+> +	u32 phy_sel = 0;
+> +	u8 lane_cnt = csid->phy.lane_cnt;
+> +	struct v4l2_mbus_framefmt *input_format =
+> +			&csid->fmt[MSM_CSID_PAD_SRC];
+> +	const struct csid_format *format = csid_get_fmt_entry(
+> +			csid->formats, csid->nformats, input_format->code);
+> +	if (!lane_cnt)
+> +		lane_cnt = 4;
 > +
-> +	for (i = 0; i < ARRAY_SIZE(clock_desc); i++) {
-> +		if (clock_desc[i].clock_xclbin_type == type)
-> +			return clock_desc[i].clock_ep_name;
+> +	if (!tg->enabled)
+> +		phy_sel = csid->phy.csiphy_id;
+> +
+> +	if (enable) {
+> +		u8 vc = 0; /* Virtual Channel 0 */
+> +		u8 dt_id = vc * 4;
+> +
+> +		if (tg->enabled) {
+> +			/* Config Test Generator */
+> +			vc = 0xa;
+> +
+> +			/* configure one DT, infinite frames */
+> +			val = vc << TPG_VC_CFG0_VC_NUM;
+> +			val |= INTELEAVING_MODE_ONE_SHOT << TPG_VC_CFG0_LINE_INTERLEAVING_MODE;
+> +			val |= 0 << TPG_VC_CFG0_NUM_FRAMES;
+> +			writel_relaxed(val, csid->base + CSID_TPG_VC_CFG0);
+> +
+> +			val = 0x740 << TPG_VC_CFG1_H_BLANKING_COUNT;
+> +			val |= 0x3ff << TPG_VC_CFG1_V_BLANKING_COUNT;
+> +			writel_relaxed(val, csid->base + CSID_TPG_VC_CFG1);
+> +
+> +			writel_relaxed(0x12345678, csid->base + CSID_TPG_LFSR_SEED);
+> +
+> +			val = input_format->height & 0x1fff << TPG_DT_n_CFG_0_FRAME_HEIGHT;
+> +			val |= input_format->width & 0x1fff << TPG_DT_n_CFG_0_FRAME_WIDTH;
+> +			writel_relaxed(val, csid->base + CSID_TPG_DT_n_CFG_0(0));
+> +
+> +			val = DATA_TYPE_RAW_10BIT << TPG_DT_n_CFG_1_DATA_TYPE;
+> +			writel_relaxed(val, csid->base + CSID_TPG_DT_n_CFG_1(0));
+> +
+> +			val = tg->mode << TPG_DT_n_CFG_2_PAYLOAD_MODE;
+> +			val |= 0xBE << TPG_DT_n_CFG_2_USER_SPECIFIED_PAYLOAD;
+> +			val |= format->decode_format << TPG_DT_n_CFG_2_ENCODE_FORMAT;
+> +			writel_relaxed(val, csid->base + CSID_TPG_DT_n_CFG_2(0));
+> +
+> +			writel_relaxed(0, csid->base + CSID_TPG_COLOR_BARS_CFG);
+> +
+> +			writel_relaxed(0, csid->base + CSID_TPG_COLOR_BOX_CFG);
+> +		}
+> +
+> +		val = 1 << RDI_CFG0_BYTE_CNTR_EN;
+> +		val |= 1 << RDI_CFG0_FORMAT_MEASURE_EN;
+> +		val |= 1 << RDI_CFG0_TIMESTAMP_EN;
+> +		val |= DECODE_FORMAT_PAYLOAD_ONLY << RDI_CFG0_DECODE_FORMAT;
+> +		val |= DATA_TYPE_RAW_10BIT << RDI_CFG0_DATA_TYPE;
+> +		val |= vc << RDI_CFG0_VIRTUAL_CHANNEL;
+> +		val |= dt_id << RDI_CFG0_DT_ID;
+> +		writel_relaxed(val, csid->base + CSID_RDI_CFG0(0));
+> +
+> +		/* CSID_TIMESTAMP_STB_POST_IRQ */
+> +		val = 2 << RDI_CFG1_TIMESTAMP_STB_SEL;
+> +		writel_relaxed(val, csid->base + CSID_RDI_CFG1(0));
+> +
+> +		val = 1;
+> +		writel_relaxed(val, csid->base + CSID_RDI_FRM_DROP_PERIOD(0));
+> +
+> +		val = 0;
+> +		writel_relaxed(0, csid->base + CSID_RDI_FRM_DROP_PATTERN(0));
+> +
+> +		val = 1;
+> +		writel_relaxed(val, csid->base + CSID_RDI_IRQ_SUBSAMPLE_PERIOD(0));
+> +
+> +		val = 0;
+> +		writel_relaxed(val, csid->base + CSID_RDI_IRQ_SUBSAMPLE_PATTERN(0));
+> +
+> +		val = 1;
+> +		writel_relaxed(val, csid->base + CSID_RDI_RPP_PIX_DROP_PERIOD(0));
+> +
+> +		val = 0;
+> +		writel_relaxed(val, csid->base + CSID_RDI_RPP_PIX_DROP_PATTERN(0));
+> +
+> +		val = 1;
+> +		writel_relaxed(val, csid->base + CSID_RDI_RPP_LINE_DROP_PERIOD(0));
+> +
+> +		val = 0;
+> +		writel_relaxed(val, csid->base + CSID_RDI_RPP_LINE_DROP_PATTERN(0));
+> +
+> +		val = 0;
+> +		writel_relaxed(val, csid->base + CSID_RDI_CTRL(0));
+> +
+> +		val = readl_relaxed(csid->base + CSID_RDI_CFG0(0));
+> +		val |=  1 << RDI_CFG0_ENABLE;
+> +		writel_relaxed(val, csid->base + CSID_RDI_CFG0(0));
 > +	}
-> +	return NULL;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_clock_type2epname);
-
-What is clock stuff doing in xclbin ?
-
-I think clock needs its own file
-
 > +
-> +static const char *clock_type2clkfreq_name(u32 type)
+> +	if (tg->enabled) {
+> +		val = enable << TPG_CTRL_TEST_EN;
+> +		val |= 1 << TPG_CTRL_FS_PKT_EN;
+> +		val |= 1 << TPG_CTRL_FE_PKT_EN;
+> +		val |= (lane_cnt - 1) << TPG_CTRL_NUM_ACTIVE_LANES;
+> +		val |= 0x64 << TPG_CTRL_CYCLES_BETWEEN_PKTS;
+> +		val |= 0xA << TPG_CTRL_NUM_TRAIL_BYTES;
+> +		writel_relaxed(val, csid->base + CSID_TPG_CTRL);
+> +	}
+> +
+> +	val = (lane_cnt - 1) << CSI2_RX_CFG0_NUM_ACTIVE_LANES;
+> +	val |= csid->phy.lane_assign << CSI2_RX_CFG0_DL0_INPUT_SEL;
+> +	val |= phy_sel << CSI2_RX_CFG0_PHY_NUM_SEL;
+> +	writel_relaxed(val, csid->base + CSID_CSI2_RX_CFG0);
+> +
+> +
+> +	val = 1 << CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN;
+> +	val |= 1 << CSI2_RX_CFG1_MISR_EN;
+> +	writel_relaxed(val, csid->base + CSID_CSI2_RX_CFG1); // csi2_vc_mode_shift_val ?
+> +
+> +	/* error irqs start at BIT(11) */
+> +	writel_relaxed(~0u, csid->base + CSID_CSI2_RX_IRQ_MASK);
+> +
+> +	/* RDI irq */
+> +	writel_relaxed(~0u, csid->base + CSID_TOP_IRQ_MASK);
+> +
+> +	val = 1 << RDI_CTRL_HALT_CMD;
+> +	writel_relaxed(val, csid->base + CSID_RDI_CTRL(0));
+> +}
+> +
+> +static int csid_configure_testgen_pattern(struct csid_device *csid, s32 val)
+
+Here (val == 0) means "testgen disabled", and (val >= 1) selects the test
+pattern: (val == 1) corresponds to CSID_PAYLOAD_MODE_INCREMENTING etc.
+
 > +{
-> +	int i;
+> +	s32 regval = val - 1;
+
+- now regval contains the zero-based test pattern mode number
+
+> +	if (regval > 0 || regval <= CSID_PAYLOAD_MODE_MAX_SUPPORTED_170)
+
+- by excluding regval of zero you made it impossible to select
+   CSID_PAYLOAD_MODE_INCREMENTING, didn't you?
+   It looks like the above line of code should be:
+
+	if (regval >= 0 || regval <= CSID_PAYLOAD_MODE_MAX_SUPPORTED_170)
+
+With this sorted out,
+
+Reviewed-by: Andrey Konovalov <andrey.konovalov@linaro.org>
+
+Thanks,
+Andrey
+
+> +		csid->testgen.mode = regval;
 > +
-> +	for (i = 0; i < ARRAY_SIZE(clock_desc); i++) {
-> +		if (clock_desc[i].clock_xclbin_type == type)
-> +			return clock_desc[i].clkfreq_ep_name;
-> +	}
-> +	return NULL;
+> +	return 0;
 > +}
 > +
-> +static int xrt_xclbin_add_clock_metadata(struct device *dev,
-> +					 const struct axlf *xclbin,
-> +					 char *dtb)
-> +{
-> +	int i;
-> +	u16 freq;
-> +	struct clock_freq_topology *clock_topo;
-> +	int rc = xrt_xclbin_get_section(xclbin, CLOCK_FREQ_TOPOLOGY,
-> +					(void **)&clock_topo, NULL);
-> +
-> +	if (rc)
-> +		return 0;
-failing is ok ?
-> +
-> +	for (i = 0; i < clock_topo->m_count; i++) {
-> +		u8 type = clock_topo->m_clock_freq[i].m_type;
-> +		const char *ep_name = xrt_clock_type2epname(type);
-> +		const char *counter_name = clock_type2clkfreq_name(type);
-> +
-> +		if (!ep_name || !counter_name)
-> +			continue;
-> +
-> +		freq = cpu_to_be16(clock_topo->m_clock_freq[i].m_freq_Mhz);
-> +		rc = xrt_md_set_prop(dev, dtb, ep_name, NULL, XRT_MD_PROP_CLK_FREQ,
-> +				     &freq, sizeof(freq));
-> +		if (rc)
-> +			break;
-> +
-> +		rc = xrt_md_set_prop(dev, dtb, ep_name, NULL, XRT_MD_PROP_CLK_CNT,
-> +				     counter_name, strlen(counter_name) + 1);
-> +		if (rc)
-> +			break;
-Failing in a loop, why isn't there some cleanup of the *set_prop() calls ?
-> +	}
-> +
-> +	vfree(clock_topo);
-> +
-> +	return rc;
-> +}
-> +
-> +int xrt_xclbin_get_metadata(struct device *dev, const struct axlf *xclbin, char **dtb)
-> +{
-> +	char *md = NULL, *newmd = NULL;
-> +	u64 len;
-*dtb = NULL;
-> +	int rc = xrt_xclbin_get_section(xclbin, PARTITION_METADATA,
-> +					(void **)&md, &len);
-> +
-> +	if (rc)
-> +		goto done;
-> +
-> +	/* Sanity check the dtb section. */
-> +	if (xrt_md_size(dev, md) > len) {
-> +		rc = -EINVAL;
-> +		goto done;
-> +	}
-> +
-> +	newmd = xrt_md_dup(dev, md);
-> +	if (!newmd) {
-> +		rc = -EFAULT;
-> +		goto done;
-> +	}
-> +	/* Convert various needed xclbin sections into dtb. */
-> +	rc = xrt_xclbin_add_clock_metadata(dev, xclbin, newmd);
-
-newmd is only valid here, but the above error handling jump here. change this to
-
-if (!rc)
-
-  *dtb = newmd
-
-else
-
-   vfree(newmd)
-
-done:
-
-  vfree(md)
-
-  return rc;
-
-> +
-> +done:
-> +	if (rc == 0)
-> +		*dtb = newmd;
-> +	else
-> +		vfree(newmd);
-> +	vfree(md);
-> +	return rc;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_xclbin_get_metadata);
-> diff --git a/include/uapi/linux/xrt/xclbin.h b/include/uapi/linux/xrt/xclbin.h
-> new file mode 100644
-> index 000000000000..53f140123ef1
-> --- /dev/null
-> +++ b/include/uapi/linux/xrt/xclbin.h
-> @@ -0,0 +1,408 @@
-> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
 > +/*
-> + *  Xilinx FPGA compiled binary container format
+> + * csid_hw_version - CSID hardware version query
+> + * @csid: CSID device
 > + *
-> + *  Copyright (C) 2015-2021, Xilinx Inc
+> + * Return HW version or error
 > + */
+> +static u32 csid_hw_version(struct csid_device *csid)
+> +{
+> +	u32 hw_version;
+> +	u32 hw_gen;
+> +	u32 hw_rev;
+> +	u32 hw_step;
 > +
-> +#ifndef _XCLBIN_H_
-> +#define _XCLBIN_H_
+> +	hw_version = readl_relaxed(csid->base + CSID_HW_VERSION);
+> +	hw_gen = (hw_version >> HW_VERSION_GENERATION) & 0xF;
+> +	hw_rev = (hw_version >> HW_VERSION_REVISION) & 0xFFF;
+> +	hw_step = (hw_version >> HW_VERSION_STEPPING) & 0xFFFF;
+> +	dev_dbg(csid->camss->dev, "CSID HW Version = %u.%u.%u\n",
+> +		hw_gen, hw_rev, hw_step);
 > +
-> +#ifdef _WIN32
-
-WIN32 ?
-
-Only 1 other header has this ifdef
-
-> +  #include <cstdint>
-> +  #include <algorithm>
-c++ is being assumed for windows
-> +  #include "windows/uuid.h"
-thank you for not including windows.h ;)
-> +#else
-> +  #if defined(__KERNEL__)
-> +    #include <linux/types.h>
-> +    #include <linux/uuid.h>
-> +    #include <linux/version.h>
-> +  #elif defined(__cplusplus)
-> +    #include <cstdlib>
-> +    #include <cstdint>
-> +    #include <algorithm>
-> +    #include <uuid/uuid.h>
-> +  #else
-> +    #include <stdlib.h>
-> +    #include <stdint.h>
-> +    #include <uuid/uuid.h>
-> +  #endif
-> +#endif
-> +
-
-Review these includes, some could be convenience includes.
-
-ex/ linux/version.h with no obvious use of version macros.
-
-struct axlf_header {
-+	uint64_t m_length;		    /* Total size of the xclbin file */
-.. snip ..
-+	union {
-+		char m_next_axlf[16];		/* Name of next xclbin file */
-+						/* in the daisy chain */
-+		uuid_t uuid;			/* uuid of this xclbin*/
-+	};
-
-As mentioned in an earlier patch, if uuid_t is larger than 16 bytes, axlf_header breaks.
-while it is convenient to have this type here, it would be better this access was handled in another way.
-Maybe a host specific function.
-
-I also do not see a pragma pack, usually this is set of 1 so the compiler does not shuffle elements, increase size etc.
-
-> +#ifdef __cplusplus
-> +extern "C" {
-> +#endif
-> +
-> +/**
-> + * DOC: Container format for Xilinx FPGA images
-> + * The container stores bitstreams, metadata and firmware images.
-> + * xclbin/xsabin is ELF-like binary container format. It is structured
-is an ELF-like file format.  It is a structured
-> + * series of sections. There is a file header followed by several section
-> + * headers which is followed by sections. A section header points to an
-> + * actual section. There is an optional signature at the end. The
-> + * following figure illustrates a typical xclbin:
-> + *
-> + *     +---------------------+
-> + *     |		     |
-> + *     |       HEADER	     |
-> + *     +---------------------+
-> + *     |   SECTION  HEADER   |
-> + *     |		     |
-> + *     +---------------------+
-> + *     |	 ...	     |
-> + *     |		     |
-> + *     +---------------------+
-> + *     |   SECTION  HEADER   |
-> + *     |		     |
-> + *     +---------------------+
-> + *     |       SECTION	     |
-> + *     |		     |
-> + *     +---------------------+
-> + *     |	 ...	     |
-> + *     |		     |
-> + *     +---------------------+
-> + *     |       SECTION	     |
-> + *     |		     |
-> + *     +---------------------+
-> + *     |      SIGNATURE	     |
-> + *     |      (OPTIONAL)     |
-> + *     +---------------------+
-
-This ascii art is a mixture of tabs and spaces, for someone with tab = 2 spaces, this will look messed up.
-
-convert the tabs to spaces
-
-> + */
-> +
-> +enum XCLBIN_MODE {
-> +	XCLBIN_FLAT,
-
-generally
-
-all enums used in a file format should be initialized.
-
-This likely should be
-
-XCLBIN_FLAT = 0,
-
-> +	XCLBIN_PR,
-> +	XCLBIN_TANDEM_STAGE2,
-> +	XCLBIN_TANDEM_STAGE2_WITH_PR,
-> +	XCLBIN_HW_EMU,
-> +	XCLBIN_SW_EMU,
-> +	XCLBIN_MODE_MAX
-> +};
-> +
-> +enum axlf_section_kind {
-> +	BITSTREAM = 0,
-> +	CLEARING_BITSTREAM,
-> +	EMBEDDED_METADATA,
-> +	FIRMWARE,
-> +	DEBUG_DATA,
-> +	SCHED_FIRMWARE,
-> +	MEM_TOPOLOGY,
-> +	CONNECTIVITY,
-> +	IP_LAYOUT,
-> +	DEBUG_IP_LAYOUT,
-> +	DESIGN_CHECK_POINT,
-> +	CLOCK_FREQ_TOPOLOGY,
-> +	MCS,
-> +	BMC,
-> +	BUILD_METADATA,
-> +	KEYVALUE_METADATA,
-> +	USER_METADATA,
-> +	DNA_CERTIFICATE,
-> +	PDI,
-> +	BITSTREAM_PARTIAL_PDI,
-> +	PARTITION_METADATA,
-> +	EMULATION_DATA,
-> +	SYSTEM_METADATA,
-> +	SOFT_KERNEL,
-> +	ASK_FLASH,
-> +	AIE_METADATA,
-> +	ASK_GROUP_TOPOLOGY,
-> +	ASK_GROUP_CONNECTIVITY
-> +};
-> +
-> +enum MEM_TYPE {
-> +	MEM_DDR3,
-> +	MEM_DDR4,
-> +	MEM_DRAM,
-> +	MEM_STREAMING,
-> +	MEM_PREALLOCATED_GLOB,
-> +	MEM_ARE,
-> +	MEM_HBM,
-> +	MEM_BRAM,
-> +	MEM_URAM,
-> +	MEM_STREAMING_CONNECTION
-> +};
-> +
-> +enum IP_TYPE {
-> +	IP_MB = 0,
-> +	IP_KERNEL,
-> +	IP_DNASC,
-> +	IP_DDR4_CONTROLLER,
-> +	IP_MEM_DDR4,
-> +	IP_MEM_HBM
-> +};
-> +
-> +struct axlf_section_header {
-> +	uint32_t m_sectionKind;		    /* Section type */
-> +	char m_sectionName[16];		    /* Examples: "stage2", "clear1", */
-> +					    /* "clear2", "ocl1", "ocl2, */
-> +					    /* "ublaze", "sched" */
-> +	uint64_t m_sectionOffset;	    /* File offset of section data */
-> +	uint64_t m_sectionSize;		    /* Size of section data */
-> +};
-> +
-> +struct axlf_header {
-> +	uint64_t m_length;		    /* Total size of the xclbin file */
-> +	uint64_t m_timeStamp;		    /* Number of seconds since epoch */
-> +					    /* when xclbin was created */
-> +	uint64_t m_featureRomTimeStamp;	    /* TimeSinceEpoch of the featureRom */
-> +	uint16_t m_versionPatch;	    /* Patch Version */
-> +	uint8_t m_versionMajor;		    /* Major Version - Version: 2.1.0*/
-i did not see the version checked earlier, which one is expected ?
-> +	uint8_t m_versionMinor;		    /* Minor Version */
-> +	uint32_t m_mode;		    /* XCLBIN_MODE */
-> +	union {
-> +		struct {
-> +			uint64_t m_platformId;	/* 64 bit platform ID: */
-> +					/* vendor-device-subvendor-subdev */
-> +			uint64_t m_featureId;	/* 64 bit feature id */
-> +		} rom;
-> +		unsigned char rom_uuid[16];	/* feature ROM UUID for which */
-> +						/* this xclbin was generated */
-> +	};
-> +	unsigned char m_platformVBNV[64];	/* e.g. */
-what is VBNV?
-> +		/* xilinx:xil-accel-rd-ku115:4ddr-xpr:3.4: null terminated */
-> +	union {
-> +		char m_next_axlf[16];		/* Name of next xclbin file */
-> +						/* in the daisy chain */
-> +		uuid_t uuid;			/* uuid of this xclbin*/
-> +	};
-> +	char m_debug_bin[16];			/* Name of binary with debug */
-> +						/* information */
-> +	uint32_t m_numSections;			/* Number of section headers */
-> +};
-> +
-> +struct axlf {
-> +	char m_magic[8];			/* Should be "xclbin2\0"  */
-> +	int32_t m_signature_length;		/* Length of the signature. */
-> +						/* -1 indicates no signature */
-> +	unsigned char reserved[28];		/* Note: Initialized to 0xFFs */
-> +
-> +	unsigned char m_keyBlock[256];		/* Signature for validation */
-> +						/* of binary */
-> +	uint64_t m_uniqueId;			/* axlf's uniqueId, use it to */
-> +						/* skip redownload etc */
-> +	struct axlf_header m_header;		/* Inline header */
-> +	struct axlf_section_header m_sections[1];   /* One or more section */
-> +						    /* headers follow */
-> +};
-> +
-> +/* bitstream information */
-> +struct xlnx_bitstream {
-> +	uint8_t m_freq[8];
-> +	char bits[1];
-> +};
-> +
-> +/****	MEMORY TOPOLOGY SECTION ****/
-> +struct mem_data {
-> +	uint8_t m_type; /* enum corresponding to mem_type. */
-> +	uint8_t m_used; /* if 0 this bank is not present */
-> +	union {
-> +		uint64_t m_size; /* if mem_type DDR, then size in KB; */
-> +		uint64_t route_id; /* if streaming then "route_id" */
-> +	};
-> +	union {
-> +		uint64_t m_base_address;/* if DDR then the base address; */
-> +		uint64_t flow_id; /* if streaming then "flow id" */
-> +	};
-> +	unsigned char m_tag[16]; /* DDR: BANK0,1,2,3, has to be null */
-> +			/* terminated; if streaming then stream0, 1 etc */
-> +};
-> +
-> +struct mem_topology {
-> +	int32_t m_count; /* Number of mem_data */
-> +	struct mem_data m_mem_data[1]; /* Should be sorted on mem_type */
-> +};
-> +
-> +/****	CONNECTIVITY SECTION ****/
-> +/* Connectivity of each argument of Kernel. It will be in terms of argument
-
-This section does not make sense.
-
-Likely you mean some algorithm kernel, rather than the linux kernel.
-
-> + * index associated. For associating kernel instances with arguments and
-> + * banks, start at the connectivity section. Using the m_ip_layout_index
-> + * access the ip_data.m_name. Now we can associate this kernel instance
-> + * with its original kernel name and get the connectivity as well. This
-> + * enables us to form related groups of kernel instances.
-> + */
-> +
-> +struct connection {
-> +	int32_t arg_index; /* From 0 to n, may not be contiguous as scalars */
-> +			   /* skipped */
-> +	int32_t m_ip_layout_index; /* index into the ip_layout section. */
-> +			   /* ip_layout.m_ip_data[index].m_type == IP_KERNEL */
-> +	int32_t mem_data_index; /* index of the m_mem_data . Flag error is */
-> +				/* m_used false. */
-> +};
-> +
-> +struct connectivity {
-> +	int32_t m_count;
-> +	struct connection m_connection[1];
-> +};
-> +
-> +/****	IP_LAYOUT SECTION ****/
-> +
-> +/* IP Kernel */
-> +#define IP_INT_ENABLE_MASK	  0x0001
-> +#define IP_INTERRUPT_ID_MASK  0x00FE
-> +#define IP_INTERRUPT_ID_SHIFT 0x1
-> +
-> +enum IP_CONTROL {
-> +	AP_CTRL_HS = 0,
-> +	AP_CTRL_CHAIN = 1,
-> +	AP_CTRL_NONE = 2,
-> +	AP_CTRL_ME = 3,
-> +	ACCEL_ADAPTER = 4
-assigning beyond the first is not necessary unless there are dups or gaps
-> +};
-> +
-> +#define IP_CONTROL_MASK	 0xFF00
-> +#define IP_CONTROL_SHIFT 0x8
-> +
-> +/* IPs on AXI lite - their types, names, and base addresses.*/
-> +struct ip_data {
-> +	uint32_t m_type; /* map to IP_TYPE enum */
-> +	union {
-> +		uint32_t properties; /* Default: 32-bits to indicate ip */
-> +				     /* specific property. */
-> +		/* m_type: IP_KERNEL
-> +		 *	    m_int_enable   : Bit  - 0x0000_0001;
-> +		 *	    m_interrupt_id : Bits - 0x0000_00FE;
-> +		 *	    m_ip_control   : Bits = 0x0000_FF00;
-> +		 */
-> +		struct {		 /* m_type: IP_MEM_* */
-> +			uint16_t m_index;
-> +			uint8_t m_pc_index;
-> +			uint8_t unused;
-> +		} indices;
-> +	};
-> +	uint64_t m_base_address;
-> +	uint8_t m_name[64]; /* eg Kernel name corresponding to KERNEL */
-> +			    /* instance, can embed CU name in future. */
-> +};
-> +
-> +struct ip_layout {
-> +	int32_t m_count;
-> +	struct ip_data m_ip_data[1]; /* All the ip_data needs to be sorted */
-> +				     /* by m_base_address. */
-
-general
-
-doing the bla[1] for c++ ?
-
-Tom
-
-> +};
-> +
-> +/*** Debug IP section layout ****/
-> +enum DEBUG_IP_TYPE {
-> +	UNDEFINED = 0,
-> +	LAPC,
-> +	ILA,
-> +	AXI_MM_MONITOR,
-> +	AXI_TRACE_FUNNEL,
-> +	AXI_MONITOR_FIFO_LITE,
-> +	AXI_MONITOR_FIFO_FULL,
-> +	ACCEL_MONITOR,
-> +	AXI_STREAM_MONITOR,
-> +	AXI_STREAM_PROTOCOL_CHECKER,
-> +	TRACE_S2MM,
-> +	AXI_DMA,
-> +	TRACE_S2MM_FULL
-> +};
-> +
-> +struct debug_ip_data {
-> +	uint8_t m_type; /* type of enum DEBUG_IP_TYPE */
-> +	uint8_t m_index_lowbyte;
-> +	uint8_t m_properties;
-> +	uint8_t m_major;
-> +	uint8_t m_minor;
-> +	uint8_t m_index_highbyte;
-> +	uint8_t m_reserved[2];
-> +	uint64_t m_base_address;
-> +	char	m_name[128];
-> +};
-> +
-> +struct debug_ip_layout {
-> +	uint16_t m_count;
-> +	struct debug_ip_data m_debug_ip_data[1];
-> +};
-> +
-> +/* Supported clock frequency types */
-> +enum CLOCK_TYPE {
-> +	CT_UNUSED = 0,			   /* Initialized value */
-> +	CT_DATA	  = 1,			   /* Data clock */
-> +	CT_KERNEL = 2,			   /* Kernel clock */
-> +	CT_SYSTEM = 3			   /* System Clock */
-> +};
-> +
-> +/* Clock Frequency Entry */
-> +struct clock_freq {
-> +	uint16_t m_freq_Mhz;		   /* Frequency in MHz */
-> +	uint8_t m_type;			   /* Clock type (enum CLOCK_TYPE) */
-> +	uint8_t m_unused[5];		   /* Not used - padding */
-> +	char m_name[128];		   /* Clock Name */
-> +};
-> +
-> +/* Clock frequency section */
-> +struct clock_freq_topology {
-> +	int16_t m_count;		   /* Number of entries */
-> +	struct clock_freq m_clock_freq[1]; /* Clock array */
-> +};
-> +
-> +/* Supported MCS file types */
-> +enum MCS_TYPE {
-> +	MCS_UNKNOWN = 0,		   /* Initialized value */
-> +	MCS_PRIMARY = 1,		   /* The primary mcs file data */
-> +	MCS_SECONDARY = 2,		   /* The secondary mcs file data */
-> +};
-> +
-> +/* One chunk of MCS data */
-> +struct mcs_chunk {
-> +	uint8_t m_type;			   /* MCS data type */
-> +	uint8_t m_unused[7];		   /* padding */
-> +	uint64_t m_offset;		   /* data offset from the start of */
-> +					   /* the section */
-> +	uint64_t m_size;		   /* data size */
-> +};
-> +
-> +/* MCS data section */
-> +struct mcs {
-> +	int8_t m_count;			   /* Number of chunks */
-> +	int8_t m_unused[7];		   /* padding */
-> +	struct mcs_chunk m_chunk[1];	   /* MCS chunks followed by data */
-> +};
-> +
-> +/* bmc data section */
-> +struct bmc {
-> +	uint64_t m_offset;		   /* data offset from the start of */
-> +					   /* the section */
-> +	uint64_t m_size;		   /* data size (bytes) */
-> +	char m_image_name[64];		   /* Name of the image */
-> +					   /* (e.g., MSP432P401R) */
-> +	char m_device_name[64];		   /* Device ID	(e.g., VCU1525)	 */
-> +	char m_version[64];
-> +	char m_md5value[33];		   /* MD5 Expected Value */
-> +				/* (e.g., 56027182079c0bd621761b7dab5a27ca)*/
-> +	char m_padding[7];		   /* Padding */
-> +};
-> +
-> +/* soft kernel data section, used by classic driver */
-> +struct soft_kernel {
-> +	/** Prefix Syntax:
-> +	 *  mpo - member, pointer, offset
-> +	 *  This variable represents a zero terminated string
-> +	 *  that is offseted from the beginning of the section.
-> +	 *  The pointer to access the string is initialized as follows:
-> +	 *  char * pCharString = (address_of_section) + (mpo value)
-> +	 */
-> +	uint32_t mpo_name;	   /* Name of the soft kernel */
-> +	uint32_t m_image_offset;   /* Image offset */
-> +	uint32_t m_image_size;	   /* Image size */
-> +	uint32_t mpo_version;	   /* Version */
-> +	uint32_t mpo_md5_value;	   /* MD5 checksum */
-> +	uint32_t mpo_symbol_name;  /* Symbol name */
-> +	uint32_t m_num_instances;  /* Number of instances */
-> +	uint8_t padding[36];	   /* Reserved for future use */
-> +	uint8_t reservedExt[16];   /* Reserved for future extended data */
-> +};
-> +
-> +enum CHECKSUM_TYPE {
-> +	CST_UNKNOWN = 0,
-> +	CST_SDBM = 1,
-> +	CST_LAST
-> +};
-> +
-> +#ifdef __cplusplus
+> +	return hw_version;
 > +}
-> +#endif
 > +
-> +#endif
-
+> +/*
+> + * csid_isr - CSID module interrupt service routine
+> + * @irq: Interrupt line
+> + * @dev: CSID device
+> + *
+> + * Return IRQ_HANDLED on success
+> + */
+> +static irqreturn_t csid_isr(int irq, void *dev)
+> +{
+> +	struct csid_device *csid = dev;
+> +	u32 val;
+> +	u8 reset_done;
+> +
+> +	val = readl_relaxed(csid->base + CSID_TOP_IRQ_STATUS);
+> +	writel_relaxed(val, csid->base + CSID_TOP_IRQ_CLEAR);
+> +	reset_done = val & BIT(TOP_IRQ_STATUS_RESET_DONE);
+> +
+> +	val = readl_relaxed(csid->base + CSID_CSI2_RX_IRQ_STATUS);
+> +	writel_relaxed(val, csid->base + CSID_CSI2_RX_IRQ_CLEAR);
+> +
+> +	val = readl_relaxed(csid->base + CSID_CSI2_RDIN_IRQ_STATUS(0));
+> +	writel_relaxed(val, csid->base + CSID_CSI2_RDIN_IRQ_CLEAR(0));
+> +
+> +	val = 1 << IRQ_CMD_CLEAR;
+> +	writel_relaxed(val, csid->base + CSID_IRQ_CMD);
+> +
+> +	if (reset_done)
+> +		complete(&csid->reset_complete);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +/*
+> + * csid_reset - Trigger reset on CSID module and wait to complete
+> + * @csid: CSID device
+> + *
+> + * Return 0 on success or a negative error code otherwise
+> + */
+> +static int csid_reset(struct csid_device *csid)
+> +{
+> +	unsigned long time;
+> +	u32 val;
+> +
+> +	reinit_completion(&csid->reset_complete);
+> +
+> +	writel_relaxed(1, csid->base + CSID_TOP_IRQ_CLEAR);
+> +	writel_relaxed(1, csid->base + CSID_IRQ_CMD);
+> +	writel_relaxed(1, csid->base + CSID_TOP_IRQ_MASK);
+> +	writel_relaxed(1, csid->base + CSID_IRQ_CMD);
+> +
+> +	/* preserve registers */
+> +	val = 0x1e << RST_STROBES;
+> +	writel_relaxed(val, csid->base + CSID_RST_STROBES);
+> +
+> +	time = wait_for_completion_timeout(&csid->reset_complete,
+> +		msecs_to_jiffies(CSID_RESET_TIMEOUT_MS));
+> +	if (!time) {
+> +		dev_err(csid->camss->dev, "CSID reset timeout\n");
+> +		return -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static u32 csid_src_pad_code(struct csid_device *csid, u32 sink_code,
+> +			     unsigned int match_format_idx, u32 match_code)
+> +{
+> +	switch (sink_code) {
+> +	case MEDIA_BUS_FMT_SBGGR10_1X10:
+> +	{
+> +		u32 src_code[] = {
+> +			MEDIA_BUS_FMT_SBGGR10_1X10,
+> +			MEDIA_BUS_FMT_SBGGR10_2X8_PADHI_LE,
+> +		};
+> +
+> +		return csid_find_code(src_code, ARRAY_SIZE(src_code),
+> +				      match_format_idx, match_code);
+> +	}
+> +	case MEDIA_BUS_FMT_Y10_1X10:
+> +	{
+> +		u32 src_code[] = {
+> +			MEDIA_BUS_FMT_Y10_1X10,
+> +			MEDIA_BUS_FMT_Y10_2X8_PADHI_LE,
+> +		};
+> +
+> +		return csid_find_code(src_code, ARRAY_SIZE(src_code),
+> +				      match_format_idx, match_code);
+> +	}
+> +	default:
+> +		if (match_format_idx > 0)
+> +			return 0;
+> +
+> +		return sink_code;
+> +	}
+> +}
+> +
+> +static void csid_subdev_init(struct csid_device *csid)
+> +{
+> +	csid->formats = csid_formats;
+> +	csid->nformats = ARRAY_SIZE(csid_formats);
+> +	csid->testgen.modes = csid_testgen_modes;
+> +	csid->testgen.nmodes = CSID_PAYLOAD_MODE_MAX_SUPPORTED_170;
+> +}
+> +
+> +const struct csid_hw_ops csid_ops_170 = {
+> +	.configure_stream = csid_configure_stream,
+> +	.configure_testgen_pattern = csid_configure_testgen_pattern,
+> +	.hw_version = csid_hw_version,
+> +	.isr = csid_isr,
+> +	.reset = csid_reset,
+> +	.src_pad_code = csid_src_pad_code,
+> +	.subdev_init = csid_subdev_init,
+> +};
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid.c b/drivers/media/platform/qcom/camss/camss-csid.c
+> index 601bd810f2b0..294a0a9e4dfa 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csid.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csid.c
+> @@ -123,6 +123,8 @@ static int csid_set_clock_rates(struct csid_device *csid)
+>   				dev_err(dev, "clk set rate failed: %d\n", ret);
+>   				return ret;
+>   			}
+> +		} else if (clock->nfreqs) {
+> +			clk_set_rate(clock->clk, clock->freq[0]);
+>   		}
+>   	}
+>   
+> @@ -544,6 +546,8 @@ int msm_csid_subdev_init(struct camss *camss, struct csid_device *csid,
+>   	} else if (camss->version == CAMSS_8x96 ||
+>   		   camss->version == CAMSS_660) {
+>   		csid->ops = &csid_ops_4_7;
+> +	} else if (camss->version == CAMSS_845) {
+> +		csid->ops = &csid_ops_170;
+>   	} else {
+>   		return -EINVAL;
+>   	}
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid.h b/drivers/media/platform/qcom/camss/camss-csid.h
+> index d40194e2bed3..49a6b5492403 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csid.h
+> +++ b/drivers/media/platform/qcom/camss/camss-csid.h
+> @@ -245,5 +245,7 @@ void msm_csid_get_csid_id(struct media_entity *entity, u8 *id);
+>   
+>   extern const struct csid_hw_ops csid_ops_4_1;
+>   extern const struct csid_hw_ops csid_ops_4_7;
+> +extern const struct csid_hw_ops csid_ops_170;
+> +
+>   
+>   #endif /* QC_MSM_CAMSS_CSID_H */
+> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-170.c b/drivers/media/platform/qcom/camss/camss-vfe-170.c
+> index c4991b1f22f8..9ddc30a73868 100644
+> --- a/drivers/media/platform/qcom/camss/camss-vfe-170.c
+> +++ b/drivers/media/platform/qcom/camss/camss-vfe-170.c
+> @@ -274,7 +274,6 @@ static void vfe_wm_start(struct vfe_device *vfe, u8 wm, struct vfe_line *line)
+>   	writel_relaxed(val, vfe->base + VFE_BUS_WM_PACKER_CFG(wm)); // XXX 1 for PLAIN8?
+>   
+>   	/* Configure stride for RDIs */
+> -	//val = pix->plane_fmt[0].bytesperline;
+>   	val = WM_STRIDE_DEFAULT_STRIDE;
+>   	writel_relaxed(val, vfe->base + VFE_BUS_WM_STRIDE(wm));
+>   
+> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+> index 0e006def1996..0b1693c34fbc 100644
+> --- a/drivers/media/platform/qcom/camss/camss.c
+> +++ b/drivers/media/platform/qcom/camss/camss.c
+> @@ -465,6 +465,68 @@ static const struct resources vfe_res_660[] = {
+>   	}
+>   };
+>   
+> +static const struct resources csid_res_845[] = {
+> +	/* CSID0 */
+> +	{
+> +		.regulator = { "vdda-csi0" },
+> +		.clock = { "cpas_ahb", "cphy_rx_src", "slow_ahb_src",
+> +				"soc_ahb", "vfe0", "vfe0_src",
+> +				"vfe0_cphy_rx", "csi0",
+> +				"csi0_src" },
+> +		.clock_rate = { { 0 },
+> +				{ 384000000 },
+> +				{ 80000000 },
+> +				{ 0 },
+> +				{ 19200000, 100000000, 320000000, 404000000, 480000000, 600000000 },
+> +				{ 320000000 },
+> +				{ 0 },
+> +				{ 19200000, 75000000, 384000000, 538666667 },
+> +				{ 384000000 } },
+> +		.reg = { "csid0" },
+> +		.interrupt = { "csid0" }
+> +	},
+> +
+> +	/* CSID1 */
+> +	{
+> +		.regulator = { "vdda-csi1" },
+> +		.clock = { "cpas_ahb", "cphy_rx_src", "slow_ahb_src",
+> +				"soc_ahb", "vfe1", "vfe1_src",
+> +				"vfe1_cphy_rx", "csi1",
+> +				"csi1_src" },
+> +		.clock_rate = { { 0 },
+> +				{ 384000000 },
+> +				{ 80000000 },
+> +				{ 0 },
+> +				{ 19200000, 100000000, 320000000, 404000000, 480000000, 600000000 },
+> +				{ 320000000 },
+> +				{ 0 },
+> +				{ 19200000, 75000000, 384000000, 538666667 },
+> +				{ 384000000 } },
+> +		.reg = { "csid1" },
+> +		.interrupt = { "csid1" }
+> +	},
+> +
+> +	/* CSID2 */
+> +	{
+> +		.regulator = { "vdda-csi2" },
+> +		.clock = { "cpas_ahb", "cphy_rx_src", "slow_ahb_src",
+> +				"soc_ahb", "vfe_lite", "vfe_lite_src",
+> +				"vfe_lite_cphy_rx", "csi2",
+> +				"csi2_src" },
+> +		.clock_rate = { { 0 },
+> +				{ 384000000 },
+> +				{ 80000000 },
+> +				{ 0 },
+> +				{ 19200000, 100000000, 320000000, 404000000, 480000000, 600000000 },
+> +				{ 320000000 },
+> +				{ 0 },
+> +				{ 19200000, 75000000, 384000000, 538666667 },
+> +				{ 384000000 } },
+> +		.reg = { "csid2" },
+> +		.interrupt = { "csid2" }
+> +	}
+> +};
+> +
+>   static const struct resources vfe_res_845[] = {
+>   	/* VFE0 */
+>   	{
+> 
