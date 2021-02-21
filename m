@@ -2,88 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D802E320B8A
-	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 16:49:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E51F320B9C
+	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 17:00:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbhBUPsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Feb 2021 10:48:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42948 "EHLO mail.kernel.org"
+        id S229884AbhBUQAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Feb 2021 11:00:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46452 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229974AbhBUPsy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Feb 2021 10:48:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9321564F06;
-        Sun, 21 Feb 2021 15:48:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1613922492;
-        bh=jcWCoBwWx2HnSC/EBefOB99kQ2ZXLE7HTEG/sXIXKog=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qquIW9v/tVu4EORzsxrDLsva3f/tNw/QNj5R3UeooTpAeXX3KNXGE+M9v6YrLWiSk
-         CX+tU/SLV7vtuIoP1+PygFsBpGidFYgeTbDkDtFnchBIhmUCw4p0yBoWz2app5T0S1
-         9hGMZYaChoGyqQZ9zRPXzlfQcPH/ugSzCtxy5oppeu/iWebWxay1VpB1z/HmnG4atw
-         ZFR1MQpufrjahC2LvVZ2m8jNwdTLczR6u1n6dcIVJDuM3nu6MPb054hWPfOfTlODzp
-         pH14Y8fSMOGHPibWx1X8fZA5f+WwXIdTgYFLKjXHUCoEbZSJW6ZE6xNdGdY3LAh4ZG
-         X3tMmOMMHpl5A==
-Received: by mail-ej1-f54.google.com with SMTP id hs11so25266976ejc.1;
-        Sun, 21 Feb 2021 07:48:12 -0800 (PST)
-X-Gm-Message-State: AOAM5309OKVyrGbzfurxoODzOLeAbhXS3O8RK+cg+A7NEAS8g9z14oDZ
-        /UlQhD57H9pF08NIXDQKvMLp6EZjIkdtAKWFn98=
-X-Google-Smtp-Source: ABdhPJyP+b6iCRU0oPc1IlpU3m6/5pCUO3+cOICburAsl7GU24805l8o9tUdORtu3NiHyRXBuySfbjnBtOKawO2nvE4=
-X-Received: by 2002:a17:906:1c4f:: with SMTP id l15mr6507034ejg.148.1613922491110;
- Sun, 21 Feb 2021 07:48:11 -0800 (PST)
+        id S229817AbhBUQAP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Feb 2021 11:00:15 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E3B9764E04;
+        Sun, 21 Feb 2021 15:59:33 +0000 (UTC)
+Date:   Sun, 21 Feb 2021 15:59:30 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     linux-iio@vger.kernel.org
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        song.bao.hua@hisilicon.com, robh+dt@kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 21/24] dt-bindings:iio:cdc:adi,ad7150 binding doc
+Message-ID: <20210221155930.31df57f1@archlinux>
+In-Reply-To: <20210207154623.433442-22-jic23@kernel.org>
+References: <20210207154623.433442-1-jic23@kernel.org>
+        <20210207154623.433442-22-jic23@kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <1613750416-11901-1-git-send-email-abel.vesa@nxp.com> <1613750416-11901-16-git-send-email-abel.vesa@nxp.com>
-In-Reply-To: <1613750416-11901-16-git-send-email-abel.vesa@nxp.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Sun, 21 Feb 2021 16:47:59 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPdNx7LSpNS7VmwpGXyNSUSZjEVDMmVpz1T3nmqWWuqH=g@mail.gmail.com>
-Message-ID: <CAJKOXPdNx7LSpNS7VmwpGXyNSUSZjEVDMmVpz1T3nmqWWuqH=g@mail.gmail.com>
-Subject: Re: [RFC 15/19] arm64: dts: imx8mq: Add all pl301 nodes
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Martin Kepplinger <martink@posteo.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Feb 2021 at 17:04, Abel Vesa <abel.vesa@nxp.com> wrote:
->
-> Add all the pl301s found on i.MX8MQ, according to the bus diagram.
-> Each pl301 has its own clock, icc id and opp table. They are probed
-> by the imx-bus driver.
->
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+On Sun,  7 Feb 2021 15:46:20 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
+
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> Binding covering the ad7150, ad7151 and ad7156 capacitance to digital
+> convertors.  The only difference between these is how many channels they
+> have (1 or 2)
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Robh+dt@kernel.org
+> Cc: devicetree@vger.kernel.org
+@Rob,
+
+Any comments on this?  Lars requested that I use symbolic values
+for the irq flags which I can do whilst applying - but otherwise
+I don't plan to change anything else in here.
+
+It's the only patch that needs tweaking and I don't really
+want to repost all 24 just for that.
+
+Thanks,
+
+Jonathan
+
 > ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 180 ++++++++++++++++++++++
->  1 file changed, 180 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index e30e948648e9..5f9ffa465d6c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -1447,5 +1447,185 @@ ddr-pmu@3d800000 {
->                         interrupt-parent = <&gic>;
->                         interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
->                 };
+>  .../bindings/iio/cdc/adi,ad7150.yaml          | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml b/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml
+> new file mode 100644
+> index 000000000000..2155d3f5666c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/cdc/adi,ad7150.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/cdc/adi,ad7150.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +               pl301_main: pl301@0 {
-> +                       compatible = "fsl,imx8m-nic";
+> +title: Analog device AD7150 and similar capacitance to digital convertors.
+> +
+> +maintainers:
+> +  - Jonathan Cameron <jic23@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7150
+> +      - adi,ad7151
+> +      - adi,ad7156
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +  interrupts: true
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,ad7150
+> +              - adi,ad7156
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 2
+> +          maxItems: 2
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,ad7151
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 1
+> +          maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        cdc@48 {
+> +            compatible = "adi,ad7150";
+> +            reg = <0x48>;
+> +            interrupts = <25 2>, <26 2>;
+> +            interrupt-parent = <&gpio>;
+> +        };
+> +    };
+> +...
 
-Does it pass dtc W=1 and dtbs_check without the "reg" property?
-
-Please also name the node in a generic way (see for example  DT spec
-"2.2.2 Generic Names Recommendation").
-
-Best regards,
-Krzysztof
