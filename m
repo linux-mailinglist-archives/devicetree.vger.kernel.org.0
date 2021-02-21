@@ -2,136 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41BEA320B70
-	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 16:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA53F320B81
+	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 16:42:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230125AbhBUPd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Feb 2021 10:33:26 -0500
-Received: from mail-ed1-f50.google.com ([209.85.208.50]:46470 "EHLO
-        mail-ed1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbhBUPdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Feb 2021 10:33:19 -0500
-Received: by mail-ed1-f50.google.com with SMTP id v22so18705888edx.13;
-        Sun, 21 Feb 2021 07:33:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TfagOgmuT7ZsUir5cXfHGD0aeDi2irBLm09CyFx4hkE=;
-        b=JP5lSOfHAitm04+G+muqTFqIkowmL5/EYLYFVz3f8xTTVwCEEnrI3IW7yGkv2RW/mp
-         mr2n2eToJDyd8X05sQxC67RkIqZ1rMFqTp6A4y1xCROcYZQsD2rNecCE8K9iBPY2Ln3T
-         DZeIdj4e9JGHCrS34r0y/n17o2ntc5aGWnPyLtSUJ4joaif39rTUXwjLpk9nROVnoiYp
-         dVj+coje/5iUwBA0FsbCwncpBqXxeJrLJ2yc+CQaZzv7ClU1ZG4skpfAlqZfrTw5oUYZ
-         mcVs+hilv0XMZbExA8S09x8PVlZqSmxkiH60OxATr170f3A2b9UoyYexq0yDApI3Xx6r
-         ZxZg==
-X-Gm-Message-State: AOAM5312+jBlOBJQ+omaY4N/k69JfSHq8jDOHpRNocxS7wCQiR87Y77Y
-        ZtyH8vMD/ACVkzUNWvjbA6c=
-X-Google-Smtp-Source: ABdhPJxmUQhJSNqH30uOkPEd8cLojkOVSnDSJese7hRZubAABebHxRd/Br8X7uMa1IVHKdZx5CAj9A==
-X-Received: by 2002:aa7:c80e:: with SMTP id a14mr5156078edt.295.1613921556480;
-        Sun, 21 Feb 2021 07:32:36 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id s12sm9734668edu.28.2021.02.21.07.32.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Feb 2021 07:32:35 -0800 (PST)
-Date:   Sun, 21 Feb 2021 16:32:34 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 25/25] arm64: apple: Add initial Mac Mini 2020 (M1)
- devicetree
-Message-ID: <20210221153234.h4qx7cxxgiy5lsw3@kozik-lap>
-References: <20210215121713.57687-1-marcan@marcan.st>
- <20210215121713.57687-26-marcan@marcan.st>
- <20210215192906.7k3unuhph5wnkj5g@kozik-lap>
- <2e10f1e6-c86f-33ad-0c7b-4fefe4f28163@marcan.st>
+        id S229974AbhBUPmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Feb 2021 10:42:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40892 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229926AbhBUPmS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Feb 2021 10:42:18 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8196564DA8;
+        Sun, 21 Feb 2021 15:41:35 +0000 (UTC)
+Date:   Sun, 21 Feb 2021 15:41:32 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v6 2/2] counter: add IRQ or GPIO based event counter
+Message-ID: <20210221154132.037100ff@archlinux>
+In-Reply-To: <20210216081356.3577-3-o.rempel@pengutronix.de>
+References: <20210216081356.3577-1-o.rempel@pengutronix.de>
+        <20210216081356.3577-3-o.rempel@pengutronix.de>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <2e10f1e6-c86f-33ad-0c7b-4fefe4f28163@marcan.st>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 21, 2021 at 11:43:52PM +0900, Hector Martin wrote:
-> On 16/02/2021 04.29, Krzysztof Kozlowski wrote:
-> > On Mon, Feb 15, 2021 at 09:17:13PM +0900, Hector Martin wrote:
-> > > +	memory@800000000 {
-> > > +		device_type = "memory";
-> > > +		reg = <0 0 0 0>; /* To be filled by loader */
-> > 
-> > dtc and dtschema might complain, so could you set here fake memory
-> > address 0x800000000? Would that work for your bootloader?
-> 
-> Yeah, the bootloader just replaces the entire property anyway. I'll fill in
-> some dummy values (the real usable memory range is to some extent dynamic
-> and depends on firmware).
-> 
-> > > +	};
-> > > +};
-> > > +
-> > > +&serial0 {
-> > > +	status = "okay";
-> > > +};
-> > > diff --git a/arch/arm64/boot/dts/apple/apple-m1.dtsi b/arch/arm64/boot/dts/apple/apple-m1.dtsi
-> > > new file mode 100644
-> > > index 000000000000..45c87771b057
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/apple/apple-m1.dtsi
-> > > @@ -0,0 +1,124 @@
-> > > +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> > > +/*
-> > > + * Copyright The Asahi Linux Contributors
-> > > + */
-> > > +
-> > > +#include <dt-bindings/interrupt-controller/apple-aic.h>
-> > > +#include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +/ {
-> > > +	compatible = "apple,m1", "apple,arm-platform";
-> > > +
-> > > +	#address-cells = <2>;
-> > > +	#size-cells = <2>;
-> > > +
-> > > +	cpus {
-> > > +		#address-cells = <2>;
-> > > +		#size-cells = <0>;
-> > > +
-> > > +		cpu0: cpu@0 {
-> > > +			compatible = "apple,icestorm";
-> > > +			device_type = "cpu";
-> > > +			reg = <0x0 0x0>;
-> > > +			enable-method = "spin-table";
-> > > +			cpu-release-addr = <0 0>; /* To be filled by loader */
-> > > +		};
-> > 
-> > New line after every device node, please.
-> 
-> Added newlines after all the CPU nodes.
-> 
-> > With this minor changes, fine for me:
-> > Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> Thanks!
-> 
-> v3 will rename this file to apple/t8103.dtsi and the board file to
-> t8103-j274.dts to better match other platforms (and to use the proper SoC ID
-> for the M1); please let me know if you're okay keeping the Reviewed-by for
-> that.
+On Tue, 16 Feb 2021 09:13:56 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-It's fine, keep my review tag.
+> Add simple IRQ or GPIO base event counter. This device is used to measure
+> rotation speed of some agricultural devices, so no high frequency on the
+> counter pin is expected.
+> 
+> The maximal measurement frequency depends on the CPU and system load. On
+> the idle iMX6S I was able to measure up to 20kHz without count drops.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+A FYI note inline.
 
-Best regards,
-Krzysztof
+Driver looks good to me.
 
+Jonathan
+
+> ---
+>  MAINTAINERS                     |   7 +
+>  drivers/counter/Kconfig         |  10 ++
+>  drivers/counter/Makefile        |   1 +
+>  drivers/counter/interrupt-cnt.c | 249 ++++++++++++++++++++++++++++++++
+>  4 files changed, 267 insertions(+)
+>  create mode 100644 drivers/counter/interrupt-cnt.c
+> 
+...
+
+> +static int interrupt_cnt_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct interrupt_cnt_priv *priv;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->irq = platform_get_irq_optional(pdev,  0);
+> +	if (priv->irq == -ENXIO)
+> +		priv->irq = 0;
+> +	else if (priv->irq < 0)
+> +		return dev_err_probe(dev, priv->irq, "failed to get IRQ\n");
+> +
+> +	priv->gpio = devm_gpiod_get_optional(dev, NULL, GPIOD_IN);
+> +	if (IS_ERR(priv->gpio))
+> +		return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get GPIO\n");
+> +
+> +	if (!priv->irq && !priv->gpio) {
+> +		dev_err(dev, "IRQ and GPIO are not found. At least one source should be provided\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (!priv->irq) {
+> +		int irq = gpiod_to_irq(priv->gpio);
+> +
+> +		if (irq < 0)
+> +			return dev_err_probe(dev, irq, "failed to get IRQ from GPIO\n");
+> +
+> +		priv->irq = irq;
+> +	}
+> +
+> +	priv->counter.priv = priv;
+> +	priv->counter.name = dev_name(dev);
+> +	priv->counter.parent = dev;
+> +	priv->counter.ops = &interrupt_cnt_ops;
+> +	priv->counter.counts = interrupt_cnts;
+> +	priv->counter.num_counts = ARRAY_SIZE(interrupt_cnts);
+> +	priv->counter.signals = interrupt_cnt_signals;
+> +	priv->counter.num_signals = priv->gpio ?
+> +				    ARRAY_SIZE(interrupt_cnt_signals) : 0;
+> +
+> +	irq_set_status_flags(priv->irq, IRQ_NOAUTOEN);
+
+Just as a side note, there is a series that cleans up this case, though no
+idea if it will make the merge window or not.
+
+https://lore.kernel.org/linux-input/aefbe49321b845c98e505518314a93cc@hisilicon.com/
+
+If it does we can tidy this up then.
+
+> +	ret = devm_request_irq(dev, priv->irq, interrupt_cnt_isr,
+> +			       IRQF_TRIGGER_RISING | IRQF_NO_THREAD,
+> +			       INTERRUPT_CNT_NAME, priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_counter_register(dev, &priv->counter);
+> +}
+> +
+...
