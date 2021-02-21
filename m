@@ -2,132 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7FE53209D5
-	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 12:24:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEF5F3209F1
+	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 12:29:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbhBULSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Feb 2021 06:18:17 -0500
-Received: from honk.sigxcpu.org ([24.134.29.49]:60356 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229817AbhBULSP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Feb 2021 06:18:15 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 83C6DFB08;
-        Sun, 21 Feb 2021 12:07:23 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id xhnrK9k1cf-W; Sun, 21 Feb 2021 12:07:22 +0100 (CET)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id E2D35403FF; Sun, 21 Feb 2021 12:07:11 +0100 (CET)
-From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-        Martin Kepplinger <martink@posteo.de>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        id S229897AbhBUL3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Feb 2021 06:29:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52404 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229540AbhBUL3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Feb 2021 06:29:00 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C99C061574;
+        Sun, 21 Feb 2021 03:28:20 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id u4so1178757lja.3;
+        Sun, 21 Feb 2021 03:28:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=XailET+Iz0kS61iHBGbLnnT1v04j2RILsJcsZVq8qik=;
+        b=lh/3mdQ+xAZKSuK5gv22xNPa6GEkldcs0lgL5hVKw0TgzXphO7b2Fu6fUZrprxNk7H
+         H/zP2VmHVFQkLwyy3T30wksKBWug+vwowuGfAateyeM+RpoJrH6TjD7WNyDxLGip3bAc
+         lNvYfSR92evbcGDK3SiWwwsypGyU+7Dbk2gp60tJx5fUMJAAQoky26xlpq0YiiXLcseq
+         V/hBgDuxM5bih1GG6nyvhtdKSTXDgRuQw7QSJXi1AFQ7zNx1/SeySh19Ujz9rZg8Bqzb
+         brDdYuSEYnSZ90eeNZHWIA1IxWpc5SGuu0inRmdcj0k3WG3pIwX0Bj8nyt/hl5cPrp0L
+         /X3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=XailET+Iz0kS61iHBGbLnnT1v04j2RILsJcsZVq8qik=;
+        b=JrH22rABg50wKykm2/aQOVthDsYAHKUev/1Fh5OseYx6QayOY02sfEs6NDfwkxC+S8
+         bLU9n98x//Idw4Lf3k67yA/oL5IJSe3TiBXAy2We/s/pMoMeL//nHR5zUSk/0iJo3W8o
+         kyUBycikllEFYc6Z8y609Ii//AUIqeMgGhsIQAkep3fC/r8r45qFrCtF05E46BZb+XBW
+         DjTiceZNJBM19jY/lcUNrKdc8y7BB8Mi7fMbJxyik5EK3Zb98OuGVDzm1yK262nekW1I
+         jhPDPnJ/njTI1mjR9/wnunmSXv8mFiDGSYESPZ3ddC8gru4waEKkeolNJX5ldInqjTWG
+         bk1Q==
+X-Gm-Message-State: AOAM530FtvJmV/98SluCuX0DJKvXKclHY6qe1QUKri5q2lQuGyFXzz3Q
+        E4Yi5iZy7sEIZeXQDveWz04=
+X-Google-Smtp-Source: ABdhPJwiJy5T8cZv/11xeat3V6sbW5pu72MNEX6NOIO6KFTr9udo0S9iL6GikugUnw2/EdfL7/ypQQ==
+X-Received: by 2002:a05:6512:11d1:: with SMTP id h17mr10792421lfr.116.1613906898546;
+        Sun, 21 Feb 2021 03:28:18 -0800 (PST)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id g24sm273950ljl.122.2021.02.21.03.28.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 21 Feb 2021 03:28:18 -0800 (PST)
+Subject: Re: [PATCH v2 2/4] leds: Add driver for QCOM SPMI Flash LEDs
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@protonmail.com>, Dan Murphy <dmurphy@ti.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Walle <michael@walle.cc>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 6/6] arm64: dts: librem5-devkit: Move headphone detection to sound card
-Date:   Sun, 21 Feb 2021 12:07:11 +0100
-Message-Id: <4c16b2bc0f0d1e3cd2beaf0edb8dd017b8ee62d7.1613905397.git.agx@sigxcpu.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <cover.1613905396.git.agx@sigxcpu.org>
-References: <cover.1613905396.git.agx@sigxcpu.org>
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Brian Masney <masneyb@onstation.org>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Russell King <linux@armlinux.org.uk>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        lkcamp@lists.libreplanetbr.org, andrealmeid@collabora.com
+References: <20210126140240.1517044-1-nfraprado@protonmail.com>
+ <20210126140240.1517044-3-nfraprado@protonmail.com>
+ <a26a1d40-1c7c-b97c-2970-58a2fda8f1cf@gmail.com>
+ <20210219110227.GG19207@duo.ucw.cz>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <7bb757c7-55af-66a4-aa12-fe646a19fcf6@gmail.com>
+Date:   Sun, 21 Feb 2021 12:28:16 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210219110227.GG19207@duo.ucw.cz>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This allows for automatic output source switching in userspace. Enable
-the pullup on the GPIO to actually make it trigger and mark it as
-active-high since detection is reversed otherwise.
+On 2/19/21 12:02 PM, Pavel Machek wrote:
+> Hi!
+> 
+>>> + */
+>>> +
+>>> +#include <linux/kernel.h>
+>>> +#include <linux/module.h>
+>>> +#include <linux/spmi.h>
+>>> +#include <linux/of_device.h>
+>>> +#include <linux/device.h>
+>>> +#include <linux/types.h>
+>>> +#include <linux/string.h>
+>>> +#include <linux/mutex.h>
+>>> +#include <linux/sysfs.h>
+>>> +#include <linux/led-class-flash.h>
+>>> +#include <linux/regulator/consumer.h>
+>>> +#include <linux/delay.h>
+>>> +#include <linux/regmap.h>
+>>> +#include <dt-bindings/leds/leds-qcom-spmi-flash.h>
+>>
+>> Please sort includes alphabetically.
+> 
+> No need to do that.
 
-Signed-off-by: Guido Günther <agx@sigxcpu.org>
----
- .../dts/freescale/imx8mq-librem5-devkit.dts   | 21 ++++++++++---------
- 1 file changed, 11 insertions(+), 10 deletions(-)
+Keeping the includes sorted eliminates the risk of introducing 
+duplicates and allows for faster lookup.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-index f818af592046..e3bfef98090a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-@@ -50,13 +50,6 @@ btn2 {
- 			linux,code = <KEY_VOLUMEDOWN>;
- 		};
- 
--		hp-det {
--			label = "HP_DET";
--			gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
--			wakeup-source;
--			linux,code = <KEY_HP>;
--		};
--
- 		wwan-wake {
- 			label = "WWAN_WAKE";
- 			gpios = <&gpio3 8 GPIO_ACTIVE_LOW>;
-@@ -173,22 +166,25 @@ mic_mux: mic-mux {
- 
- 	sound {
- 		compatible = "simple-audio-card";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_hpdet>;
- 		simple-audio-card,aux-devs = <&speaker_amp>, <&mic_mux>;
- 		simple-audio-card,name = "Librem 5 Devkit";
- 		simple-audio-card,format = "i2s";
- 		simple-audio-card,widgets =
- 			"Microphone", "Builtin Microphone",
- 			"Microphone", "Headset Microphone",
--			"Headphone", "Headphone Jack",
-+			"Headphone", "Headphones",
- 			"Speaker", "Builtin Speaker";
- 		simple-audio-card,routing =
- 			"MIC_IN", "Mic Mux OUT",
- 			"Mic Mux IN1", "Headset Microphone",
- 			"Mic Mux IN2", "Builtin Microphone",
- 			"Mic Mux OUT", "Mic Bias",
--			"Headphone Jack", "HP_OUT",
-+			"Headphones", "HP_OUT",
- 			"Builtin Speaker", "Speaker Amp OUTR",
- 			"Speaker Amp INR", "LINE_OUT";
-+		simple-audio-card,hp-det-gpio = <&gpio3 20 GPIO_ACTIVE_HIGH>;
- 
- 		simple-audio-card,cpu {
- 			sound-dai = <&sai2>;
-@@ -630,7 +626,6 @@ pinctrl_gpio_keys: gpiokeygrp {
- 		fsl,pins = <
- 			MX8MQ_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x16
- 			MX8MQ_IOMUXC_SAI2_RXC_GPIO4_IO22	0x16
--			MX8MQ_IOMUXC_SAI5_RXC_GPIO3_IO20	0x180  /* HP_DET */
- 			MX8MQ_IOMUXC_NAND_DATA02_GPIO3_IO8	0x80   /* nWoWWAN */
- 		>;
- 	};
-@@ -641,6 +636,12 @@ MX8MQ_IOMUXC_SPDIF_RX_GPIO5_IO4		0xc6   /* nHAPTIC */
- 		>;
- 	};
- 
-+	pinctrl_hpdet: hpdetgrp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SAI5_RXC_GPIO3_IO20	0xC0   /* HP_DET */
-+		>;
-+	};
-+
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
- 			MX8MQ_IOMUXC_I2C1_SCL_I2C1_SCL		0x4000001f
+What gain is in having them unsorted?
+
+>>> +#define FLASH_SAFETY_TIMER		0x40
+>>
+>> Namespacing prefix is needed for macros, e.g. QCOM_FLASH*.
+> 
+> No need for that in .c files.
+
+In general it eliminates the risk of name clash with other subsystems
+headers.
+
+And actually the prefix here should be QCOM_LED_FLASH to avoid ambiguity
+with flash memory. If you dropped the vendor prefix then you'd get
+possible name clash with led-class-flash.h namespace prefix.
+
 -- 
-2.30.0
-
+Best regards,
+Jacek Anaszewski
