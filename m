@@ -2,258 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60E38320BBF
-	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 17:34:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37DC0320BC4
+	for <lists+devicetree@lfdr.de>; Sun, 21 Feb 2021 17:37:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229844AbhBUQec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Feb 2021 11:34:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56030 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229826AbhBUQec (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Feb 2021 11:34:32 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 97DF564DA5;
-        Sun, 21 Feb 2021 16:33:49 +0000 (UTC)
-Date:   Sun, 21 Feb 2021 16:33:45 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Sean Nyekjaer <sean.nyekjaer@prevas.dk>
-Subject: Re: [PATCH 39/46] dt-bindings:iio:dac:ad5755: txt to yaml format
- conversion.
-Message-ID: <20210221163345.6a174531@archlinux>
-In-Reply-To: <20201122184052.141efda6@archlinux>
-References: <20201031184854.745828-1-jic23@kernel.org>
-        <20201031184854.745828-40-jic23@kernel.org>
-        <20201103163237.GF1754553@bogus>
-        <20201122184052.141efda6@archlinux>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S230044AbhBUQgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Feb 2021 11:36:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33024 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229844AbhBUQgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Feb 2021 11:36:50 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5F3C061574;
+        Sun, 21 Feb 2021 08:36:09 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id u20so24655059ejb.7;
+        Sun, 21 Feb 2021 08:36:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Vz0D2hb8azzFA/YJrEwh/eM9FqM4vxUQYz4qe31Suc4=;
+        b=HT+MyzO4wdYIJXrvhLU2zCsTdoCIv0J+fvIhJKN7OfHJVu7qPGD57EHEjWRsQLpFVE
+         SNoFMBK8ZmdV3cyoZEFnytfXblaUil1F4JXddiiqS/y4Y1Ri5EHcMrkuWPawemFvqG9v
+         uf6eGhHVLHB9SefTiJfiPwlbSJN8SU4BhR7gMPcW7eunZQUW66ittno3G7XraoFmg40C
+         40RnPog9F2vQMcbqB0Z2D6STP/HsaJmYNmDMF7+pxlOkpRsveDIVJdecpRdGnf5Ze+47
+         ap2OMRY6Tenm2jx+jLUL6E56WnoM75M0c+91OyXAIfG+zGF3yohzvK0jP3GqkeFK1YzK
+         AZkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Vz0D2hb8azzFA/YJrEwh/eM9FqM4vxUQYz4qe31Suc4=;
+        b=lUYWVrvYaC4x5/IwOVrgFf2dWqpARkx9hbvi+MMw4R7QKtvNPAcZ/cAd8uKxVoKQE0
+         qCu0DWv4soY0ZRp6J7CVIq+tTK5p+z38DK+IgehVj7dhfK5Mu1IxlU8y1t4DUPK/8kle
+         5Dphk3TfCwGUWMV0RCDoYYTUfZOdgMHlRTZg3lqlLb08mYMFmnbMYBpJ4yZ2GRjfGMk+
+         xIChEyikiHvFyRK5USNWIgIjAocS/Qc0rgDxDr8N44NICfbBn4N+KzDbGx45dXsGx3Z1
+         8+CPmEeKGB/sFMMsFHI31U+4EpxJBFylllZM4ysXuD6ice8TRvKhVF9FngHLTcU+s7Ck
+         Qeyw==
+X-Gm-Message-State: AOAM5302AwfACEyMO+zHyu1tfgTwrMZrOe7ZiuPPIFSQf2NEWczRYChX
+        1OGUfskOw/WI8tW4ROrMxjs=
+X-Google-Smtp-Source: ABdhPJwoCiaTcah2Byf/IKaVAcO0yCymSQZWTCh7JF3iWtSHBloeCIoqZnEUJ5JGMPNrNqpwiqAqQg==
+X-Received: by 2002:a17:906:6942:: with SMTP id c2mr2538412ejs.425.1613925366269;
+        Sun, 21 Feb 2021 08:36:06 -0800 (PST)
+Received: from BV030612LT ([81.18.95.223])
+        by smtp.gmail.com with ESMTPSA id t19sm8406046ejc.62.2021.02.21.08.36.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Feb 2021 08:36:05 -0800 (PST)
+Date:   Sun, 21 Feb 2021 18:36:02 +0200
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 0/5] Add initial support for ATC260x PMICs
+Message-ID: <20210221163602.GA297639@BV030612LT>
+References: <cover.1611653995.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1611653995.git.cristian.ciocaltea@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Lee,
 
-Hi Rob,
+I have just noticed your mfd-next tag for 5.12 doesn't include the
+support for the ATC260x PMICs.
 
-I still have an open question below on this one.
+I assumed the patchset is ready for merging.. Did I miss something?
 
-If you have a chance to take a look that would be great.
+Thanks,
+Cristi
 
-Jonathan
-
-
-> > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5755.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5755.yaml
-> > > new file mode 100644
-> > > index 000000000000..74edff3e8408
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5755.yaml
-> > > @@ -0,0 +1,178 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iio/dac/adi,ad5755.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Analog Devices AD5755 Multi-Channel DAC
-> > > +
-> > > +maintainers:
-> > > +  - Sean Nyekjaer <sean.nyekjaer@prevas.dk>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - adi,ad5755
-> > > +      - adi,ad5755-1
-> > > +      - adi,ad5757
-> > > +      - adi,ad5735
-> > > +      - adi,ad5737
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  spi-cpha:
-> > > +    description: Either this or spi-cpol but not both.
-> > > +  spi-cpol: true
-> > > +
-> > > +  spi-max-frequency: true
-> > > +
-> > > +  adi,ext-dc-dc-compenstation-resistor:
-> > > +    $ref: /schemas/types.yaml#/definitions/flag
-> > > +    description:
-> > > +      Set if the hardware have an external resistor and thereby bypasses
-> > > +      the internal compensation resistor.
-> > > +
-> > > +  adi,dc-dc-phase:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [0, 1, 2, 3]
-> > > +    description: |
-> > > +      Valid values for DC DC Phase control is:
-> > > +      0: All dc-to-dc converters clock on the same edge.
-> > > +      1: Channel A and Channel B clock on the same edge,
-> > > +         Channel C and Channel D clock on opposite edges.
-> > > +      2: Channel A and Channel C clock on the same edge,
-> > > +         Channel B and Channel D clock on opposite edges.
-> > > +      3: Channel A, Channel B, Channel C, and Channel D
-> > > +         clock 90 degrees out of phase from each other.
-> > > +
-> > > +  adi,dc-dc-freq-hz:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [250000, 410000, 650000]
-> > > +
-> > > +  adi,dc-dc-max-microvolt:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description:
-> > > +      Maximum allowed Vboost voltage supplied by the dc-to-dc converter.
-> > > +    enum: [23000000, 24500000, 27000000, 29500000]
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 0
-> > > +
-> > > +  "#io-channel-cells":
-> > > +    const: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +patternProperties:
-> > > +  "^(channel@)[0-7]$":
-> > > +    type: object
-> > > +    description: Child node to describe a channel
-> > > +    properties:
-> > > +      reg:
-> > > +        maxItems: 1
-> > > +
-> > > +      adi,mode:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > +        minimum: 0
-> > > +        maximum: 6
-> > > +        description: |
-> > > +          Valid values for DAC modes is:
-> > > +          0: 0 V to 5 V voltage range.
-> > > +          1: 0 V to 10 V voltage range.
-> > > +          2: Plus minus 5 V voltage range.
-> > > +          3: Plus minus 10 V voltage range.
-> > > +          4: 4 mA to 20 mA current range.
-> > > +          5: 0 mA to 20 mA current range.
-> > > +          6: 0 mA to 24 mA current range.
-> > > +
-> > > +      adi,ext-current-sense-resistor:
-> > > +        $ref: /schemas/types.yaml#/definitions/flag
-> > > +        description:
-> > > +          Set if the hardware has an external current sense resistor
-> > > +
-> > > +      adi,enable-voltage-overrange:
-> > > +        $ref: /schemas/types.yaml#/definitions/flag
-> > > +        description: Enable voltage overrange
-> > > +
-> > > +      adi,slew:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +        description: |
-> > > +          Array of slewrate settings should contain 3 fields:
-> > > +          1: Should be either 0 or 1 in order to enable or disable slewrate.
-> > > +          2: Slew rate update frequency
-> > > +          3: Slew step size
-> > > +        items:
-> > > +          - enum: [0, 1]
-> > > +          - enum: [64000, 32000, 16000, 8000, 4000, 2000, 1000, 500, 250, 125, 64, 32, 16, 8, 4, 0]
-> > > +          - enum: [1, 2, 4, 16, 32, 64, 128, 256]
-> > > +
-> > > +    required:
-> > > +      - reg
-> > > +
-> > > +    additionalProperties: false
-> > > +
-> > > +allOf:
-> > > +  - $ref: '#/definitions/cpolXORcpha'
-> > > +
-> > > +definitions:
-> > > +  cpolXORcpha:    
-> > 
-> > Like the other one, you can drop 'definitions'.  
+On Tue, Jan 26, 2021 at 11:55:56AM +0200, Cristian Ciocaltea wrote:
+> The ATC260x family of PMICs integrates Audio Codec, Power management,
+> Clock generation and GPIO controller blocks. There are currently 3
+> variants: ATC2603A, ATC2603C and ATC2609A.
 > 
-> As replied to the other one I can't figure out a syntax that allows me to
-> do that.
+> This is re-spin of the v1 patch series submitted some time ago by
+> Mani, who provided the MFD and regulator drivers for ATC2609A:
+> https://lore.kernel.org/lkml/20190617155011.15376-1-manivannan.sadhasivam@linaro.org/
 > 
-> Get an issues along the lines of
+> Since v2, I added support for ATC2603C, together with some new
+> functionalities for both chips: power controller and onkey input.
+> The ATC2603A chip type remains unsupported for the moment.
 > 
-> ... iio/dac/ti,dac082s085.yaml: allOf:0: 'not' is not one of ['$ref', 'if', 'then', 'else']
+> This has been tested on RoseapplePi, a SBC based on the Actions Semi S500
+> SoC, which integrates the ATC2603C variant of the PMIC.
 > 
-> (obviously that's form the other driver that does this).
+> Note that enabling the ATC260x PMICs on compatible Actions Semi Owl SoC
+> based boards depends on:
 > 
-> Any suggestions much appreciated!
+> * the Actions Semi SIRQ driver (for PMIC DTS setup), merged in v5.10:
+>   https://lore.kernel.org/lkml/cover.1600114378.git.cristian.ciocaltea@gmail.com/
+> 
+> * the atomic transfers in Owl I2C driver (for power controller), merged in v5.11:
+>   https://lore.kernel.org/lkml/cover.1602190168.git.cristian.ciocaltea@gmail.com/
+> 
+> Additionally, please note that I have taken the authorship for the MFD
+> and regulator drivers patches, considering the original code has been
+> modified to a large extent.
 > 
 > Thanks,
+> Cristi
 > 
-> Jonathan
+> Changes in v7:
+> - Dropped the patches already queued for merging:
+>   * regulator: Add regulator driver for ATC260x PMICs
+>   * power: reset: Add poweroff driver for ATC260x PMICs
+> - Rebased patchset on v5.11-rc5
 > 
+> Changes in v6 - MFD driver updates as indicated by Lee:
+> - Defined a magic number for max chip revision
+> - Adjusted code formatting around i2c_driver struct initialization
+> - Dropped the device initialization callback in struct atc260x and instead 
+>   provided a generic function making use of a new member structure to hold
+>   the hardware specific register information
 > 
-> >   
-> > > +    not:
-> > > +      required: [spi-cpha, spi-cpol]
-> > > +    oneOf:
-> > > +      - required:
-> > > +          - spi-cpha
-> > > +      - required:
-> > > +          - spi-cpol
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/iio/adi,ad5592r.h>
-> > > +    spi {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        dac@0 {
-> > > +            #address-cells = <1>;
-> > > +            #size-cells = <0>;
-> > > +            compatible = "adi,ad5755";
-> > > +            reg = <0>;
-> > > +            spi-max-frequency = <1000000>;
-> > > +            spi-cpha;
-> > > +            adi,dc-dc-phase = <0>;
-> > > +            adi,dc-dc-freq-hz = <410000>;
-> > > +            adi,dc-dc-max-microvolt = <23000000>;
-> > > +            channel@0 {
-> > > +                reg = <0>;
-> > > +                adi,mode = <4>;
-> > > +                adi,ext-current-sense-resistor;
-> > > +                adi,slew = <0 64000 1>;
-> > > +            };
-> > > +            channel@1 {
-> > > +                reg = <1>;
-> > > +                adi,mode = <4>;
-> > > +                adi,ext-current-sense-resistor;
-> > > +                adi,slew = <0 64000 1>;
-> > > +            };
-> > > +            channel@2 {
-> > > +                reg = <2>;
-> > > +                adi,mode = <4>;
-> > > +                adi,ext-current-sense-resistor;
-> > > +                adi,slew = <0 64000 1>;
-> > > +            };
-> > > +            channel@3 {
-> > > +                reg = <3>;
-> > > +                adi,mode = <4>;
-> > > +                adi,ext-current-sense-resistor;
-> > > +                adi,slew = <0 64000 1>;
-> > > +            };
-> > > +        };
-> > > +    };
-> > > +...
-> > > -- 
-> > > 2.28.0
-> > >     
+> Changes in v5:
+> - Removed an unnecessary '#include' line in the power-off driver,
+>   as noticed by Sebastian
+> - Rebased patchset on v5.11-rc3
 > 
-
+> Changes in v4:
+> - Updated MFD driver according to Lee's review
+> - Handled ATC2603C's LDO12 fixed regulator per Mark's suggestion
+> - Rebased patchset on v5.11-rc1
+> 
+> Changes in v3:
+> - Integrated feedback from Mani, Rob, Mark, Sebastian, Dmitry
+> - Fixed issues reported by Lee's kernel test robot
+> - Added new patch for 'reset-time-sec' DT binding property
+> - Rebased patchset on v5.10-rc6
+> 
+> Changes in v2:
+> - Reworked MFD core & I2C driver
+>   * Integrated Lee's feedback
+>   * Added support for using the regmap within atomic contexts
+>   * Added support for ATC2603C chip variant
+>   * Reorganized KConfig entries
+> - Improved regulator driver
+>   * Added support for ATC2603C variant
+>   * Used helper macros for more compact specification of regulator_desc items
+>   * Added more regulator capabilities
+> - Added power controller driver
+>   * Provides system poweroff/reboot functionalities
+>   * Depends on atomic transfers in the Owl I2C driver
+> - Added onkey driver: exposes the power button as an input device
+> - Added yaml binding doc
+> - Rebased patchset on kernel v5.9-rc1
+> 
+> Cristian Ciocaltea (4):
+>   dt-bindings: input: Add reset-time-sec common property
+>   dt-bindings: mfd: Add Actions Semi ATC260x PMIC binding
+>   mfd: Add MFD driver for ATC260x PMICs
+>   input: atc260x: Add onkey driver for ATC260x PMICs
+> 
+> Manivannan Sadhasivam (1):
+>   MAINTAINERS: Add entry for ATC260x PMIC
+> 
+>  .../devicetree/bindings/input/input.yaml      |   7 +
+>  .../bindings/mfd/actions,atc260x.yaml         | 183 +++++++++++
+>  MAINTAINERS                                   |  12 +
+>  drivers/input/misc/Kconfig                    |  11 +
+>  drivers/input/misc/Makefile                   |   2 +-
+>  drivers/input/misc/atc260x-onkey.c            | 305 +++++++++++++++++
+>  drivers/mfd/Kconfig                           |  18 +
+>  drivers/mfd/Makefile                          |   3 +
+>  drivers/mfd/atc260x-core.c                    | 310 ++++++++++++++++++
+>  drivers/mfd/atc260x-i2c.c                     |  64 ++++
+>  include/linux/mfd/atc260x/atc2603c.h          | 281 ++++++++++++++++
+>  include/linux/mfd/atc260x/atc2609a.h          | 308 +++++++++++++++++
+>  include/linux/mfd/atc260x/core.h              |  58 ++++
+>  13 files changed, 1561 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+>  create mode 100644 drivers/input/misc/atc260x-onkey.c
+>  create mode 100644 drivers/mfd/atc260x-core.c
+>  create mode 100644 drivers/mfd/atc260x-i2c.c
+>  create mode 100644 include/linux/mfd/atc260x/atc2603c.h
+>  create mode 100644 include/linux/mfd/atc260x/atc2609a.h
+>  create mode 100644 include/linux/mfd/atc260x/core.h
+> 
+> -- 
+> 2.30.0
+> 
