@@ -2,91 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFC85321BD0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 16:48:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA20A321C47
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 17:07:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231336AbhBVPsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 10:48:12 -0500
-Received: from mx2.suse.de ([195.135.220.15]:55658 "EHLO mx2.suse.de"
+        id S231556AbhBVQFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 11:05:12 -0500
+Received: from mout01.posteo.de ([185.67.36.65]:42338 "EHLO mout01.posteo.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231500AbhBVPsH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Feb 2021 10:48:07 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id DA433AD73;
-        Mon, 22 Feb 2021 15:47:23 +0000 (UTC)
-Message-ID: <c188698ca0de3ed6c56a0cf7880e1578aa753077.camel@suse.de>
-Subject: RPi4 can't deal with 64 bit PCI accesses
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     linux-pci <linux-pci@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Robin Murphy <robin.murphy@arm.con>
-Date:   Mon, 22 Feb 2021 16:47:22 +0100
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-2vObhEbCJZFrLJMv1iYe"
-User-Agent: Evolution 3.38.4 
+        id S230428AbhBVQEj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Feb 2021 11:04:39 -0500
+Received: from submission (posteo.de [89.146.220.130]) 
+        by mout01.posteo.de (Postfix) with ESMTPS id B71F7160061
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 17:03:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+        t=1614009798; bh=LvquAM2J5zLig8UiWE7YNNTosNOEsZkwWbtbd26zOZI=;
+        h=To:Cc:From:Subject:Date:From;
+        b=nEFtYiWgLTqI2pE9oY4HiC/P8e+FKC2JOkaB2eSDla3UN8OPQN8IO2+k0zJ8XGWFD
+         B+wR7IcgewkASzWqfYvbc25hYRIPKEBQ5+Ku2q0TxurcAtoSWivfPJLVAGtcMOTubh
+         pRSBIjAURv0BCxR/0F6wlS5g15j4LyziablLUk3fbCLEui/oIBYBkkgGRgun4e87wc
+         yzwaMNtavzd+Afqslh51OvxndxLwC+1y8vUwbZzWY/Ko9t1aa8KnWHXZQDBi+0B76d
+         0w7JFHsWs1wpt8HplU9cvTCIKqldow8jvXYj/dyBsIVZlFfLCaTM9mHnTpFb2Wqi7o
+         5w/h/Elt2zVLA==
+Received: from customer (localhost [127.0.0.1])
+        by submission (posteo.de) with ESMTPSA id 4Dkn5s6W55z9rxp;
+        Mon, 22 Feb 2021 17:03:13 +0100 (CET)
+To:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Georgi Djakov <djakov@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "kernel@puri.sm" <kernel@puri.sm>
+Cc:     NXP Linux Team <linux-imx@nxp.com>
+References: <1613750416-11901-1-git-send-email-abel.vesa@nxp.com>
+From:   Martin Kepplinger <martink@posteo.de>
+Subject: Re: [RFC 00/19] Rework support for i.MX8MQ interconnect with devfreq
+Message-ID: <a2b651de-77a7-2a40-7e51-d0098e4b804b@posteo.de>
+Date:   Mon, 22 Feb 2021 17:03:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
+In-Reply-To: <1613750416-11901-1-git-send-email-abel.vesa@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19.02.21 16:59, Abel Vesa wrote:
+> This has been on my queue for quite some time now. It is more of a
+> proof-of-concept.
+> 
+> This rework is done with the compatibility of future i.MX platforms in
+> mind. For example, the i.MX8MP platform has multiple NoCs. This
+> patchsets prepares the imx interconnect and imx devfreq for that too.
+> 
+> As of now, none of the drivers involved are being used and there is no
+> icc consumer on any off the i.MX platforms.
+> 
+> Basically, the steps taken here are the following:
+> 
+> 1. Make the dram_apb clock "reparantable" from kernel.
+> This is needed in order to keep track of the actual parent of the
+> dram_apb clock in the kernel clock hierarchy. Note that the actual
+> switch is done EL3 (TF-A).
+> 
+> 2. Rework the imx-bus so the actual link between the icc and the
+> NoCs or the pl301s is not tightly coupled. This allows us to have
+> as many NoCs as necessary but also allows as to use the same driver
+> for the pl301s. The pl301s have their own clocks too, so we need to
+> reduce their rates too.
+> 
+> 3. Rework the imx8m-ddrc driver. Remove the support for dts defined
+> OPPs. The EL3 provides those. So instead of havingi to keep the OPP table in
+> both EL3 and kernel in sync, we rely on what the EL3 gives us.
+> Also, when the platform suspends, the bus needs to be running at highest
+> rate, otherwise there is a chance it might not resume anymore.
+> By adding the late system sleep PM ops we can handle that easily.
+> 
+> 4. Rework the imx interconnect driver to use the fsl,icc-id instead
+> of the robust imx_icc_node_adj_desc for linking with the target node.
+> By adding the fsl,icc-id property to all the NoC and pl301 dts nodes,
+> we can link each icc node to their corresponding NoC, pl301 or dram.
+> Basically, when the imx interconnect platform specific driver probes,
+> it will take each node defined for that platform and look-up the
+> corresponding dts node based on the id and add that as the qos device.
+> 
+> 5. Added the fec and usdhc as icc consumers. This is just as an example.
+> All the other consumers can be added later. Basically, each consumer
+> will add a path to their device node and in the driver will have to
+> handle that icc path accordingly.
+> 
 
---=-2vObhEbCJZFrLJMv1iYe
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+thanks for working on this Abel,
 
-Hi everyone,
-Raspberry Pi 4, a 64bit arm system on chip, contains a PCIe bus that can't
-handle 64bit accesses to its MMIO address space, in other words, writeq() h=
-as
-to be split into two distinct writel() operations. This isn't ideal, as it
-misrepresents PCI's promise of being able to treat device memory as regular
-memory, ultimately breaking a bunch of PCI device drivers[1].
+It looks like the icc path requests don't work for me:
 
-I'd like to have a go at fixing this in a way that can be distributed in a
-generic distro without prejudice to other users.
+when applying this onto v5.11 (without any other workaround in that 
+area, but some out-of-tree icc-requests like in mxsfb) my rootfs isn't 
+being mounted anymore. Since you add icc requests to the usdhc driver, 
+there could be something wrong.
 
-AFAIK there is no way to detect this limitation through generic PCIe
-capabilities, so one solution would be to expose it through firmware
-(devicetree in this case), and pass the limitations through 'struct device'=
- so
-as for the drivers to choose the right access method in a way that doesn't
-affect performance much[2]. All in all, most of this doesn't need to be
-PCI-centric as the property could be applied to any MMIO bus.
+So I revert 19/19 ("mmc: sdhci-esdhc-imx: Add interconnect support") and 
+then my imx8mq (Librem 5) rootfs system boots, but all frequencies stay 
+at the minimum (despite the icc request like this: 
+https://source.puri.sm/martin.kepplinger/linux-next/-/commit/1692de27d1475c53574dd7359c68ba613e0fea10 
+so I can't use the display).
 
-Thoughts? Opinions? Is it overkill just for a single SoC?
+What could be missing? As I said I'm trying on top of v5.11, (at least I 
+have the NOC node described: 
+https://source.puri.sm/martin.kepplinger/linux-next/-/commit/1d74a24c9944d1bf618abdd57d24101368cc8df0 
+and (with the revert from 
+https://lore.kernel.org/linux-arm-kernel/20210104120512.gmi2zjz7dzhjussp@fsr-ub1664-175/ 
+devfreq works without your patchset ) Is there anything I'm missing that 
+is not yet merged in v5.11?
 
-Regards,
-Nicolas
+Can I test anything else that would help?
 
-[1] https://github.com/raspberrypi/linux/issues/4158#issuecomment-782351510
-[2] Things might get even weirder as the order in which the 32bit operation=
-s
-    are performed might matter (low/high vs high/low).
+/sys/class/devfreq# cat */cur_freq
+133333334
+25000000
+25641026
+25000000
+800000000
+25000000
+0
+25000000
+25000000
+25000000
+0
 
+the available freqs look ok (opp table removed from device dts, but you 
+don't read that anymore anyway):
 
---=-2vObhEbCJZFrLJMv1iYe
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+cat */available_frequencies
+133333333 400000000 800000000
+25000000 100000000 800000000
+25000000 133333333 333333333
+25000000 266666666
+25000000 800000000
+25000000 800000000
+25000000 333333333
+25000000 500000000
+25000000 500000000
+25000000 128000000 500000000
+25000000 133333333
 
------BEGIN PGP SIGNATURE-----
+where ls is:
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmAz0goACgkQlfZmHno8
-x/51WAf+P4m0o3Zf4MyAwnKhuvCKj1FZALj/AdsWETPKfnW0w+kzUentV+8JAqQ9
-isR5mzRZTQ2650jCgSKHotdAeizmj5aVRjcp7e8crzOSd/QHcUo+CdLX4JObp22P
-/KdbwttMLn5GkbDhQ3shBY/TQS52YXTjigdTIDrOhfqVgqBeP0rlZFCYDT2fM0L0
-QNU9wbpx6ybgFhJWjPX0NeZfbGl64ZMJBEb3hYWklIqKV2Ut9cbQ/a+P69AG3VZv
-D0l4w5ix5Ee5BJT9xYT6yqBlAUvnszm346MF8hKY8aMZHGnIHheFl2UddOUUmhI4
-WrxqeVOw9A3zLOJEfC4xrq4dgYTQ6g==
-=hCqg
------END PGP SIGNATURE-----
+32700000.noc 
 
---=-2vObhEbCJZFrLJMv1iYe--
+3d400000.memory-controller 
 
+soc@0:pl301@0 
+
+soc@0:pl301@1 
+
+soc@0:pl301@2 
+
+soc@0:pl301@3 
+
+soc@0:pl301@4 
+
+soc@0:pl301@5 
+
+soc@0:pl301@6 
+
+soc@0:pl301@7 
+
+soc@0:pl301@8
+
+thanks,
+                                 martin
