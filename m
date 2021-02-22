@@ -2,1434 +2,1349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1A86321DD7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 18:15:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E7A321DF9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 18:23:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230147AbhBVROF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 12:14:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37790 "EHLO
+        id S229991AbhBVRWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 12:22:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231161AbhBVRNr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 12:13:47 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8106FC06178A;
-        Mon, 22 Feb 2021 09:13:07 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 6A39A1F451F6
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id 5E3FA4800E0; Mon, 22 Feb 2021 18:12:51 +0100 (CET)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        kernel@collabora.com
-Subject: [PATCHv1 6/6] ARM: dts: imx6: Add GE B1x5v2
-Date:   Mon, 22 Feb 2021 18:12:47 +0100
-Message-Id: <20210222171247.97609-7-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210222171247.97609-1-sebastian.reichel@collabora.com>
-References: <20210222171247.97609-1-sebastian.reichel@collabora.com>
+        with ESMTP id S230139AbhBVRWQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 12:22:16 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80933C061574
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 09:21:36 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id kr16so9040905pjb.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 09:21:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vWqHoHkMHiqejV+DAddVA/D2PBdiMYooTSbWRuBaPqw=;
+        b=m5MitLBkd4/FND9SJ1A02DeQdDymH7/OEmccJHBw/acPQCK/Ko5VaxA884fl838qM+
+         o9MDwajDg/iCXMf6rAGIi1NgRgnM6seFuTZad23g4IyevdeE/5bheCs8AMYBv9LhiYKg
+         +dY2kurwmHqD+5W8VmcmRloR8IyUFYyzWuWS7/v39AkCHHs5TMKQ7eib1ZUKBbNqk1qL
+         zwiZZreykIWdmbNW3HeTRvEXYkN8thXRzH1d75mobJnq0mo7AkyLFu2j0FHQrwwy66+F
+         jlFPS6Ko7V1b7hwfQJkf03khMDoyNO5ChvnJZJUKWhVdP9GfqdDVDZ9P1KwPS0KV6KPv
+         i6pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vWqHoHkMHiqejV+DAddVA/D2PBdiMYooTSbWRuBaPqw=;
+        b=WnjrWD6McGV1Qas3r5TVZMY4nEt0UTZlYyEtSdTHFVTpIfytBRGq0CB8Rgpd4Vz3es
+         vzAAEqsYNYnzrdi0EDE6065KAe7x4NJ+UdFYZnkWAMXEV00C7OVBYVpgAx+zQx4wy0N8
+         E9qfvLeWBNkzQJfqIyt8BJzUPffCgmTzBQ1P50a348Qg34FAvZKxfL0/qEac8xwNRvj/
+         bEKFVgEkDOL1FtIhH8R3JGt03QzJz26K9nSFEPrUxPvBUDHEZYvTmC7OndkcdYkcwRLs
+         qo0ObsmYxT698qu5J6PGvLn6qiNpS7RsLVT9k3NXWJYo9k2eNHU46VRj/foEuZIqEmFb
+         CQ7Q==
+X-Gm-Message-State: AOAM531yY9rclqdrmZrJhmAoeXElllwwg2CY6NIdlgJ1mihXjRx38rhB
+        5bpmIkJSjCTgvQEICOOGNqZWz/gkQM9dMvEl9asDfw==
+X-Google-Smtp-Source: ABdhPJxA7BvGLDGPgh59HbEKsvGIrBCbh23TI4izulrnfeGVB8bR3jk6LWHXIxi2gkDLWmMVg5g926GBeY92uv4fvB8=
+X-Received: by 2002:a17:90a:7b88:: with SMTP id z8mr19004705pjc.19.1614014495525;
+ Mon, 22 Feb 2021 09:21:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20210217112122.424236-1-robert.foss@linaro.org>
+ <20210217112122.424236-8-robert.foss@linaro.org> <06986a1f-3043-38c3-038e-512cd101e19c@linaro.org>
+ <CAG3jFytnqMd_rnTUhGwpejA+yoSEtheXyPa0yinjU0NbCYzk_g@mail.gmail.com> <d456ceec-97bf-abbf-b0c5-4fd99e9c00d9@linaro.org>
+In-Reply-To: <d456ceec-97bf-abbf-b0c5-4fd99e9c00d9@linaro.org>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Mon, 22 Feb 2021 18:21:24 +0100
+Message-ID: <CAG3jFyu+i+5YDZnNtSyt-1dYY+LUh4c7OLCsLoTpVis2_D79Cw@mail.gmail.com>
+Subject: Re: [PATCH v5 07/22] media: camss: Add support for VFE hardware
+ version Titan 170
+To:     Andrey Konovalov <andrey.konovalov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        angelogioacchino.delregno@somainline.org,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Rob Herring <robh@kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree files for the General Electric Healthcare
-(GEHC) B1x5v2 series. All models make use of Congatec's QMX6 module,
-which is described in its own device tree include, so that it can
-also be used by other boards.
+On Mon, 22 Feb 2021 at 18:06, Andrey Konovalov
+<andrey.konovalov@linaro.org> wrote:
+>
+> Hi Robert,
+>
+> On 22.02.2021 19:37, Robert Foss wrote:
+> > On Sat, 20 Feb 2021 at 22:40, Andrey Konovalov
+> > <andrey.konovalov@linaro.org> wrote:
+> >>
+> >> Hi Robert,
+> >>
+> >> Thank you for your patch!
+> >>
+> >> On 17.02.2021 14:21, Robert Foss wrote:
+> >>> Add register definitions for version 170 of the Titan architecture
+> >>> and implement support for the RDI output mode.
+> >>>
+> >>> The RDI mode as opposed to the PIX output mode for the VFE unit does
+> >>> not support any ISP functionality. This means essentially only
+> >>> supporting dumping the output of the whatever the CSI decoder receives
+> >>> from the sensor.
+> >>>
+> >>> For example will a sensor outputting YUV pixel format frames, only
+> >>> allow the VFE to dump those frames as they are received by the ISP
+> >>> to memory through the RDI interface.
+> >>>
+> >>> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> >>> ---
+> >>>
+> >>>
+> >>> Changes since v1:
+> >>>    - Andrey: Remove commented out chunk
+> >>>    - Remove left over WIP comments
+> >>>
+> >>> Changes since v4:
+> >>>    - Andrey: Remove traces of PIX support
+> >>>    - Andrey: Fix vfe_global_reset() overwriting reset command
+> >>>    - Remove unused variable
+> >>>
+> >>>
+> >>>
+> >>>    drivers/media/platform/qcom/camss/Makefile    |   1 +
+> >>>    .../media/platform/qcom/camss/camss-vfe-170.c | 790 ++++++++++++++++++
+> >>>    drivers/media/platform/qcom/camss/camss-vfe.c |  47 +-
+> >>>    drivers/media/platform/qcom/camss/camss-vfe.h |  26 +-
+> >>>    .../media/platform/qcom/camss/camss-video.c   |  52 ++
+> >>>    drivers/media/platform/qcom/camss/camss.c     |  61 ++
+> >>>    6 files changed, 957 insertions(+), 20 deletions(-)
+> >>>    create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-170.c
+> >>>
+> >>> diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
+> >>> index 940c0ae3e003..052c4f405fa3 100644
+> >>> --- a/drivers/media/platform/qcom/camss/Makefile
+> >>> +++ b/drivers/media/platform/qcom/camss/Makefile
+> >>> @@ -11,6 +11,7 @@ qcom-camss-objs += \
+> >>>                camss-vfe-4-1.o \
+> >>>                camss-vfe-4-7.o \
+> >>>                camss-vfe-4-8.o \
+> >>> +             camss-vfe-170.o \
+> >>>                camss-vfe-gen1.o \
+> >>>                camss-vfe.o \
+> >>>                camss-video.o \
+> >>> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-170.c b/drivers/media/platform/qcom/camss/camss-vfe-170.c
+> >>> new file mode 100644
+> >>> index 000000000000..c4991b1f22f8
+> >>> --- /dev/null
+> >>> +++ b/drivers/media/platform/qcom/camss/camss-vfe-170.c
+> >>> @@ -0,0 +1,790 @@
+> >>> +// SPDX-License-Identifier: GPL-2.0
+> >>> +/*
+> >>> + * camss-vfe-4-7.c
+> >>> + *
+> >>> + * Qualcomm MSM Camera Subsystem - VFE (Video Front End) Module v4.7
+> >>> + *
+> >>> + * Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+> >>> + * Copyright (C) 2015-2018 Linaro Ltd.
+> >>
+> >> - it looks like the header comes from v4.7 without updating to Titan 170
+> >
+> > Gotcha, thanks!
+> >
+> >>
+> >>> + */
+> >>> +
+> >>> +#include <linux/delay.h>
+> >>> +#include <linux/interrupt.h>
+> >>> +#include <linux/io.h>
+> >>> +#include <linux/iopoll.h>
+> >>> +
+> >>> +#include "camss.h"
+> >>> +#include "camss-vfe.h"
+> >>> +
+> >>> +#define VFE_HW_VERSION                               (0x000)
+> >>> +
+> >>> +#define VFE_GLOBAL_RESET_CMD                 (0x018)
+> >>> +#define              GLOBAL_RESET_CMD_CORE           BIT(0)
+> >>> +#define              GLOBAL_RESET_CMD_CAMIF          BIT(1)
+> >>> +#define              GLOBAL_RESET_CMD_BUS            BIT(2)
+> >>> +#define              GLOBAL_RESET_CMD_BUS_BDG        BIT(3)
+> >>> +#define              GLOBAL_RESET_CMD_REGISTER       BIT(4)
+> >>> +#define              GLOBAL_RESET_CMD_PM             BIT(5)
+> >>> +#define              GLOBAL_RESET_CMD_BUS_MISR       BIT(6)
+> >>> +#define              GLOBAL_RESET_CMD_TESTGEN        BIT(7)
+> >>> +#define              GLOBAL_RESET_CMD_DSP            BIT(8)
+> >>> +#define              GLOBAL_RESET_CMD_IDLE_CGC       BIT(9)
+> >>> +#define              GLOBAL_RESET_CMD_RDI0           BIT(10)
+> >>> +#define              GLOBAL_RESET_CMD_RDI1           BIT(11)
+> >>> +#define              GLOBAL_RESET_CMD_RDI2           BIT(12)
+> >>> +#define              GLOBAL_RESET_CMD_RDI3           BIT(13)
+> >>> +#define              GLOBAL_RESET_CMD_VFE_DOMAIN     BIT(30)
+> >>> +#define              GLOBAL_RESET_CMD_RESET_BYPASS   BIT(31)
+> >>> +
+> >>> +
+> >>> +#define VFE_CORE_CFG                         (0x050)
+> >>> +#define              CFG_PIXEL_PATTERN_YCBYCR        (0x4)
+> >>> +#define              CFG_PIXEL_PATTERN_YCRYCB        (0x5)
+> >>> +#define              CFG_PIXEL_PATTERN_CBYCRY        (0x6)
+> >>> +#define              CFG_PIXEL_PATTERN_CRYCBY        (0x7)
+> >>> +#define              CFG_COMPOSITE_REG_UPDATE_EN     BIT(4)
+> >>> +
+> >>> +#define VFE_IRQ_CMD                          (0x058)
+> >>> +#define              CMD_GLOBAL_CLEAR                BIT(0)
+> >>> +
+> >>> +#define VFE_IRQ_MASK_0                                       (0x05c)
+> >>> +#define              MASK_0_CAMIF_SOF                        BIT(0)
+> >>> +#define              MASK_0_CAMIF_EOF                        BIT(1)
+> >>> +#define              MASK_0_RDI_REG_UPDATE(n)                BIT((n) + 5)
+> >>> +#define              MASK_0_IMAGE_MASTER_n_PING_PONG(n)      BIT((n) + 8)
+> >>> +#define              MASK_0_IMAGE_COMPOSITE_DONE_n(n)        BIT((n) + 25)
+> >>> +#define              MASK_0_RESET_ACK                        BIT(31)
+> >>> +
+> >>> +#define VFE_IRQ_MASK_1                                       (0x060)
+> >>> +#define              MASK_1_CAMIF_ERROR                      BIT(0)
+> >>> +#define              MASK_1_VIOLATION                        BIT(7)
+> >>> +#define              MASK_1_BUS_BDG_HALT_ACK                 BIT(8)
+> >>> +#define              MASK_1_IMAGE_MASTER_n_BUS_OVERFLOW(n)   BIT((n) + 9)
+> >>> +#define              MASK_1_RDI_SOF(n)                       BIT((n) + 29)
+> >>> +
+> >>> +#define VFE_IRQ_CLEAR_0                                      (0x064)
+> >>> +#define VFE_IRQ_CLEAR_1                                      (0x068)
+> >>> +
+> >>> +#define VFE_IRQ_STATUS_0                             (0x06c)
+> >>> +#define              STATUS_0_CAMIF_SOF                      BIT(0)
+> >>> +#define              STATUS_0_RDI_REG_UPDATE(n)              BIT((n) + 5)
+> >>> +#define              STATUS_0_IMAGE_MASTER_PING_PONG(n)      BIT((n) + 8)
+> >>> +#define              STATUS_0_IMAGE_COMPOSITE_DONE(n)        BIT((n) + 25)
+> >>> +#define              STATUS_0_RESET_ACK                      BIT(31)
+> >>> +
+> >>> +#define VFE_IRQ_STATUS_1                             (0x070)
+> >>> +#define              STATUS_1_VIOLATION                      BIT(7)
+> >>> +#define              STATUS_1_BUS_BDG_HALT_ACK               BIT(8)
+> >>> +#define              STATUS_1_RDI_SOF(n)                     BIT((n) + 27)
+> >>> +
+> >>> +#define VFE_VIOLATION_STATUS                 (0x07c)
+> >>> +
+> >>> +#define VFE_CAMIF_CMD                                (0x478)
+> >>> +#define              CMD_CLEAR_CAMIF_STATUS          BIT(2)
+> >>> +
+> >>> +#define VFE_CAMIF_CFG                                (0x47c)
+> >>> +#define              CFG_VSYNC_SYNC_EDGE             (0)
+> >>> +#define                      VSYNC_ACTIVE_HIGH       (0)
+> >>> +#define                      VSYNC_ACTIVE_LOW        (1)
+> >>> +#define              CFG_HSYNC_SYNC_EDGE             (1)
+> >>> +#define                      HSYNC_ACTIVE_HIGH       (0)
+> >>> +#define                      HSYNC_ACTIVE_LOW        (1)
+> >>> +#define              CFG_VFE_SUBSAMPLE_ENABLE        BIT(4)
+> >>> +#define              CFG_BUS_SUBSAMPLE_ENABLE        BIT(5)
+> >>> +#define              CFG_VFE_OUTPUT_EN               BIT(6)
+> >>> +#define              CFG_BUS_OUTPUT_EN               BIT(7)
+> >>> +#define              CFG_BINNING_EN                  BIT(9)
+> >>> +#define              CFG_FRAME_BASED_EN              BIT(10)
+> >>> +#define              CFG_RAW_CROP_EN                 BIT(22)
+> >>> +
+> >>> +// XXX different, don't exist in TITAN register docs
+> >>> +#define VFE_0_CAMIF_FRAME_CFG                        0x484
+> >>> +#define VFE_0_CAMIF_WINDOW_WIDTH_CFG         0x488
+> >>> +#define VFE_0_CAMIF_WINDOW_HEIGHT_CFG                0x48c
+> >>> +#define VFE_0_CAMIF_SUBSAMPLE_CFG            0x490
+> >>> +#define VFE_0_CAMIF_IRQ_FRAMEDROP_PATTERN    0x498
+> >>> +#define VFE_0_CAMIF_IRQ_SUBSAMPLE_PATTERN    0x49c
+> >>> +#define VFE_0_CAMIF_STATUS                   0x4a4
+> >>> +#define VFE_0_CAMIF_STATUS_HALT                      BIT(31)
+> >>> +#define CAMIF_TIMEOUT_SLEEP_US 1000
+> >>> +#define CAMIF_TIMEOUT_ALL_US 1000000
+> >>> +
+> >>> +#define VFE_REG_UPDATE_CMD                   (0x4ac)
+> >>> +#define              REG_UPDATE_RDI(n)               BIT(1 + (n))
+> >>> +
+> >>> +
+> >>> +#define VFE_BUS_IRQ_MASK(n)          (0x2044 + (n) * 4)
+> >>> +#define VFE_BUS_IRQ_CLEAR(n)         (0x2050 + (n) * 4)
+> >>> +
+> >>> +#define VFE_BUS_IRQ_STATUS(n)                (0x205c + (n) * 4)
+> >>> +#define              STATUS0_COMP_RESET_DONE         BIT(0)
+> >>> +#define              STATUS0_COMP_REG_UPDATE0_DONE   BIT(1)
+> >>> +#define              STATUS0_COMP_REG_UPDATE1_DONE   BIT(2)
+> >>> +#define              STATUS0_COMP_REG_UPDATE2_DONE   BIT(3)
+> >>> +#define              STATUS0_COMP_REG_UPDATE3_DONE   BIT(4)
+> >>> +#define              STATUS0_COMP_REG_UPDATE_DONE(n) BIT(n + 1)
+> >>> +#define              STATUS0_COMP0_BUF_DONE          BIT(5)
+> >>> +#define              STATUS0_COMP1_BUF_DONE          BIT(6)
+> >>> +#define              STATUS0_COMP2_BUF_DONE          BIT(7)
+> >>> +#define              STATUS0_COMP3_BUF_DONE          BIT(8)
+> >>> +#define              STATUS0_COMP4_BUF_DONE          BIT(9)
+> >>> +#define              STATUS0_COMP5_BUF_DONE          BIT(10)
+> >>> +#define              STATUS0_COMP_BUF_DONE(n)        BIT(n + 5)
+> >>> +#define              STATUS0_COMP_ERROR              BIT(11)
+> >>> +#define              STATUS0_COMP_OVERWRITE          BIT(12)
+> >>> +#define              STATUS0_OVERFLOW                BIT(13)
+> >>> +#define              STATUS0_VIOLATION               BIT(14)
+> >>> +/* WM_CLIENT_BUF_DONE defined for buffers 0:19 */
+> >>> +#define              STATUS1_WM_CLIENT_BUF_DONE(n)           BIT(n)
+> >>> +#define              STATUS1_EARLY_DONE                      BIT(24)
+> >>> +#define              STATUS2_DUAL_COMP0_BUF_DONE             BIT(0)
+> >>> +#define              STATUS2_DUAL_COMP1_BUF_DONE             BIT(1)
+> >>> +#define              STATUS2_DUAL_COMP2_BUF_DONE             BIT(2)
+> >>> +#define              STATUS2_DUAL_COMP3_BUF_DONE             BIT(3)
+> >>> +#define              STATUS2_DUAL_COMP4_BUF_DONE             BIT(4)
+> >>> +#define              STATUS2_DUAL_COMP5_BUF_DONE             BIT(5)
+> >>> +#define              STATUS2_DUAL_COMP_BUF_DONE(n)           BIT(n)
+> >>> +#define              STATUS2_DUAL_COMP_ERROR                 BIT(6)
+> >>> +#define              STATUS2_DUAL_COMP_OVERWRITE             BIT(7)
+> >>> +
+> >>> +#define VFE_BUS_IRQ_CLEAR_GLOBAL             (0x2068)
+> >>> +
+> >>> +#define VFE_BUS_WM_DEBUG_STATUS_CFG          (0x226c)
+> >>> +#define              DEBUG_STATUS_CFG_STATUS0(n)     BIT(n)
+> >>> +#define              DEBUG_STATUS_CFG_STATUS1(n)     BIT(8+n)
+> >>> +
+> >>> +#define VFE_BUS_WM_ADDR_SYNC_FRAME_HEADER    (0x2080)
+> >>> +
+> >>> +#define VFE_BUS_WM_ADDR_SYNC_NO_SYNC         (0x2084)
+> >>> +#define              BUS_VER2_MAX_CLIENTS (24)
+> >>> +#define              WM_ADDR_NO_SYNC_DEFAULT_VAL \
+> >>> +                             ((1 << BUS_VER2_MAX_CLIENTS) - 1)
+> >>> +
+> >>> +#define VFE_BUS_WM_CGC_OVERRIDE                      (0x200c)
+> >>> +#define              WM_CGC_OVERRIDE_ALL             (0xFFFFF)
+> >>> +
+> >>> +#define VFE_BUS_WM_TEST_BUS_CTRL             (0x211c)
+> >>> +
+> >>> +#define VFE_BUS_WM_STATUS0(n)                        (0x2200 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_STATUS1(n)                        (0x2204 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_CFG(n)                    (0x2208 + (n) * 0x100)
+> >>> +#define              WM_CFG_EN                       (0)
+> >>> +#define              WM_CFG_MODE                     (1)
+> >>> +#define                      MODE_QCOM_PLAIN (0)
+> >>> +#define                      MODE_MIPI_RAW   (1)
+> >>> +#define              WM_CFG_VIRTUALFRAME             (2)
+> >>> +#define VFE_BUS_WM_HEADER_ADDR(n)            (0x220c + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_HEADER_CFG(n)             (0x2210 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_IMAGE_ADDR(n)             (0x2214 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_IMAGE_ADDR_OFFSET(n)              (0x2218 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_BUFFER_WIDTH_CFG(n)               (0x221c + (n) * 0x100)
+> >>> +#define              WM_BUFFER_DEFAULT_WIDTH         (0xFF01)
+> >>> +
+> >>> +#define VFE_BUS_WM_BUFFER_HEIGHT_CFG(n)              (0x2220 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_PACKER_CFG(n)             (0x2224 + (n) * 0x100)
+> >>> +
+> >>> +#define VFE_BUS_WM_STRIDE(n)                 (0x2228 + (n) * 0x100)
+> >>> +#define              WM_STRIDE_DEFAULT_STRIDE        (0xFF01)
+> >>> +
+> >>> +#define VFE_BUS_WM_IRQ_SUBSAMPLE_PERIOD(n)   (0x2248 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_IRQ_SUBSAMPLE_PATTERN(n)  (0x224c + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_FRAMEDROP_PERIOD(n)               (0x2250 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_FRAMEDROP_PATTERN(n)              (0x2254 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_FRAME_INC(n)                      (0x2258 + (n) * 0x100)
+> >>> +#define VFE_BUS_WM_BURST_LIMIT(n)            (0x225c + (n) * 0x100)
+> >>> +
+> >>> +
+> >>> +static void vfe_hw_version_read(struct vfe_device *vfe, struct device *dev)
+> >>> +{
+> >>> +     u32 hw_version = readl_relaxed(vfe->base + VFE_HW_VERSION);
+> >>> +
+> >>> +     u32 gen = (hw_version >> 28) & 0xF;
+> >>> +     u32 rev = (hw_version >> 16) & 0xFFF;
+> >>> +     u32 step = hw_version & 0xFFFF;
+> >>> +
+> >>> +     dev_err(dev, "VFE HW Version = %u.%u.%u\n", gen, rev, step);
+> >>> +}
+> >>> +
+> >>> +static inline void vfe_reg_clr(struct vfe_device *vfe, u32 reg, u32 clr_bits)
+> >>> +{
+> >>> +     u32 bits = readl_relaxed(vfe->base + reg);
+> >>> +
+> >>> +     writel_relaxed(bits & ~clr_bits, vfe->base + reg);
+> >>> +}
+> >>> +
+> >>> +static inline void vfe_reg_set(struct vfe_device *vfe, u32 reg, u32 set_bits)
+> >>> +{
+> >>> +     u32 bits = readl_relaxed(vfe->base + reg);
+> >>> +
+> >>> +     writel_relaxed(bits | set_bits, vfe->base + reg);
+> >>> +}
+> >>> +
+> >>> +static void vfe_global_reset(struct vfe_device *vfe)
+> >>> +{
+> >>> +     u32 reset_bits = GLOBAL_RESET_CMD_CORE          |
+> >>> +                      GLOBAL_RESET_CMD_CAMIF         |
+> >>> +                      GLOBAL_RESET_CMD_BUS           |
+> >>> +                      GLOBAL_RESET_CMD_REGISTER      |
+> >>> +                      GLOBAL_RESET_CMD_PM            |
+> >>> +                      GLOBAL_RESET_CMD_BUS_MISR      |
+> >>> +                      GLOBAL_RESET_CMD_IDLE_CGC      |
+> >>> +                      GLOBAL_RESET_CMD_RDI0          |
+> >>> +                      GLOBAL_RESET_CMD_RDI1          |
+> >>> +                      GLOBAL_RESET_CMD_RDI2;
+> >>
+> >> - so the reset_bits is set to 0x00001E77 in v5.
+> >>
+> >> In v4 the reset_bits was set to 0x00003F9F which corresponds to:
+> >>
+> >>          GLOBAL_RESET_CMD_CORE           |
+> >>          GLOBAL_RESET_CMD_CAMIF          |
+> >>          GLOBAL_RESET_CMD_BUS            |
+> >>          GLOBAL_RESET_CMD_BUS_BDG        |
+> >>          GLOBAL_RESET_CMD_REGISTER       |
+> >>          GLOBAL_RESET_CMD_TESTGEN        |
+> >>          GLOBAL_RESET_CMD_DSP            |
+> >>          GLOBAL_RESET_CMD_IDLE_CGC       |
+> >>          GLOBAL_RESET_CMD_RDI0           |
+> >>          GLOBAL_RESET_CMD_RDI1           |
+> >>          GLOBAL_RESET_CMD_RDI2           |
+> >>          GLOBAL_RESET_CMD_RDI3;
+> >>
+> >> So the difference between v4 and v5 is:
+> >>
+> >> reset in v4, not reset in v5:
+> >>          GLOBAL_RESET_CMD_BUS_BDG
+> >>          GLOBAL_RESET_CMD_TESTGEN
+> >>          GLOBAL_RESET_CMD_DSP
+> >>
+> >> reset in v5, not reset in v4:
+> >>          GLOBAL_RESET_CMD_PM
+> >>          GLOBAL_RESET_CMD_BUS_MISR
+> >>
+> >> - correct?
+> >>
+> >>     It is probably worth a few words in the v4 vs v5 changelog.
+> >>
+> >>     (dropping GLOBAL_RESET_CMD_RDI3 in v5 is clear - Titan 170 has only RDI0 to RDI2
+> >>     according to the driver code)
+> >>
+> >
+> > Great catch! I made a mistake with the bit-ordering after doing a
+> > hex->binary translation.
+> > I'll straighten this out in v6.
+> >
+> >>> +
+> >>> +     writel_relaxed(BIT(31), vfe->base + VFE_IRQ_MASK_0);
+> >>> +
+> >>> +     /* Make sure IRQ mask has been written before resetting */
+> >>> +     wmb();
+> >>> +
+> >>> +     writel_relaxed(reset_bits, vfe->base + VFE_GLOBAL_RESET_CMD);
+> >>> +}
+> >>> +
+> >>> +static void vfe_wm_start(struct vfe_device *vfe, u8 wm, struct vfe_line *line)
+> >>> +{
+> >>> +     u32 val;
+> >>> +
+> >>> +     /*Set Debug Registers*/
+> >>> +     val = DEBUG_STATUS_CFG_STATUS0(1) |
+> >>> +           DEBUG_STATUS_CFG_STATUS0(7);
+> >>> +     writel_relaxed(val, vfe->base + VFE_BUS_WM_DEBUG_STATUS_CFG);
+> >>> +
+> >>> +     /* BUS_WM_INPUT_IF_ADDR_SYNC_FRAME_HEADER */
+> >>> +     writel_relaxed(0, vfe->base + VFE_BUS_WM_ADDR_SYNC_FRAME_HEADER);
+> >>> +
+> >>> +     /* no clock gating at bus input */
+> >>> +     val = WM_CGC_OVERRIDE_ALL;
+> >>> +     writel_relaxed(val, vfe->base + VFE_BUS_WM_CGC_OVERRIDE);
+> >>> +
+> >>> +     writel_relaxed(0x0, vfe->base + VFE_BUS_WM_TEST_BUS_CTRL);
+> >>> +
+> >>> +     /* if addr_no_sync has default value then config the addr no sync reg */
+> >>> +     val = WM_ADDR_NO_SYNC_DEFAULT_VAL;
+> >>> +     writel_relaxed(val, vfe->base + VFE_BUS_WM_ADDR_SYNC_NO_SYNC);
+> >>> +
+> >>> +     writel_relaxed(0xf, vfe->base + VFE_BUS_WM_BURST_LIMIT(wm));
+> >>> +
+> >>> +     val = WM_BUFFER_DEFAULT_WIDTH;
+> >>> +     writel_relaxed(val, vfe->base + VFE_BUS_WM_BUFFER_WIDTH_CFG(wm));
+> >>> +
+> >>> +     val = 0;
+> >>> +     writel_relaxed(val, vfe->base + VFE_BUS_WM_BUFFER_HEIGHT_CFG(wm));
+> >>> +
+> >>> +     val = 0;
+> >>> +     writel_relaxed(val, vfe->base + VFE_BUS_WM_PACKER_CFG(wm)); // XXX 1 for PLAIN8?
+> >>> +
+> >>> +     /* Configure stride for RDIs */
+> >>> +     //val = pix->plane_fmt[0].bytesperline;
+> >>> +     val = WM_STRIDE_DEFAULT_STRIDE;
+> >>> +     writel_relaxed(val, vfe->base + VFE_BUS_WM_STRIDE(wm));
+> >>> +
+> >>> +     /* Enable WM */
+> >>> +     val = 1 << WM_CFG_EN |
+> >>> +           MODE_MIPI_RAW << WM_CFG_MODE;
+> >>> +     writel_relaxed(val, vfe->base + VFE_BUS_WM_CFG(wm));
+> >>> +}
+> >>> +
+> >>> +static void vfe_wm_stop(struct vfe_device *vfe, u8 wm)
+> >>> +{
+> >>> +     /* Disable WM */
+> >>> +     writel_relaxed(0, vfe->base + VFE_BUS_WM_CFG(wm));
+> >>> +}
+> >>> +
+> >>> +static void vfe_wm_update(struct vfe_device *vfe, u8 wm, u32 addr,
+> >>> +                       struct vfe_line *line)
+> >>> +{
+> >>> +     struct v4l2_pix_format_mplane *pix =
+> >>> +             &line->video_out.active_fmt.fmt.pix_mp;
+> >>> +     u32 stride = pix->plane_fmt[0].bytesperline;
+> >>> +
+> >>> +     writel_relaxed(addr, vfe->base + VFE_BUS_WM_IMAGE_ADDR(wm));
+> >>> +     writel_relaxed(stride * pix->height, vfe->base + VFE_BUS_WM_FRAME_INC(wm));
+> >>> +}
+> >>> +
+> >>> +static void vfe_reg_update(struct vfe_device *vfe, enum vfe_line_id line_id)
+> >>> +{
+> >>> +     vfe->reg_update |= REG_UPDATE_RDI(line_id);
+> >>> +
+> >>> +     /* Enforce ordering between previous reg writes and reg update */
+> >>> +     wmb();
+> >>> +
+> >>> +     writel_relaxed(vfe->reg_update, vfe->base + VFE_REG_UPDATE_CMD);
+> >>> +
+> >>> +     /* Enforce ordering between reg update and subsequent reg writes */
+> >>> +     wmb();
+> >>> +}
+> >>> +
+> >>> +static inline void vfe_reg_update_clear(struct vfe_device *vfe,
+> >>> +                                     enum vfe_line_id line_id)
+> >>> +{
+> >>> +     vfe->reg_update &= ~REG_UPDATE_RDI(line_id);
+> >>> +}
+> >>> +
+> >>> +static void vfe_enable_irq_common(struct vfe_device *vfe)
+> >>> +{
+> >>> +     vfe_reg_set(vfe, VFE_IRQ_MASK_0, ~0u);
+> >>> +     vfe_reg_set(vfe, VFE_IRQ_MASK_1, ~0u);
+> >>> +
+> >>> +     writel_relaxed(~0u, vfe->base + VFE_BUS_IRQ_MASK(0));
+> >>> +     writel_relaxed(~0u, vfe->base + VFE_BUS_IRQ_MASK(1));
+> >>> +     writel_relaxed(~0u, vfe->base + VFE_BUS_IRQ_MASK(2));
+> >>
+> >> Looking at the #defines in the beginning of this file, only part
+> >> of the IRQ sources (not the whole 32 per each register) are used
+> >> or defined.
+> >>
+> >> Is it safe to unmask the unused (reserved?) bits in the above 5
+> >> IRQ mask registers?
+> >
+> > Unfortunately this register is not defined at all in any documentation
+> > of the downstream[1] kernel, so I think the situation is actually a
+> > bit worse than what you've pointed out here.
+> > I'd like to remove the register defines above since I don't have a
+> > reliable source for them. But I would like to keep the register writes
+> > just as they are since that seems to work.
+> >
+> > What are your thoughts?
+>
+> Without having the documentation, using the known good writes is fine.
+> Removing the unused defines is also good.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm/boot/dts/Makefile            |   5 +
- arch/arm/boot/dts/imx6dl-b105pv2.dts  |  35 ++
- arch/arm/boot/dts/imx6dl-b105v2.dts   |  35 ++
- arch/arm/boot/dts/imx6dl-b125pv2.dts  |  33 ++
- arch/arm/boot/dts/imx6dl-b125v2.dts   |  33 ++
- arch/arm/boot/dts/imx6dl-b155v2.dts   |  36 ++
- arch/arm/boot/dts/imx6dl-b1x5pv2.dtsi | 434 ++++++++++++++++++
- arch/arm/boot/dts/imx6dl-b1x5v2.dtsi  |  61 +++
- arch/arm/boot/dts/imx6dl-qmx6.dtsi    | 623 ++++++++++++++++++++++++++
- 9 files changed, 1295 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-b105pv2.dts
- create mode 100644 arch/arm/boot/dts/imx6dl-b105v2.dts
- create mode 100644 arch/arm/boot/dts/imx6dl-b125pv2.dts
- create mode 100644 arch/arm/boot/dts/imx6dl-b125v2.dts
- create mode 100644 arch/arm/boot/dts/imx6dl-b155v2.dts
- create mode 100644 arch/arm/boot/dts/imx6dl-b1x5pv2.dtsi
- create mode 100644 arch/arm/boot/dts/imx6dl-b1x5v2.dtsi
- create mode 100644 arch/arm/boot/dts/imx6dl-qmx6.dtsi
+Some of the register definitions like STATUS0_COMP_BUF_DONE is used
+currently, and are documented for later generations of this hardware.
+But I'm not finding any traces for this generation. Chances are that
+they are the same, but I cant guarantee it. But at least some of them
+seem to be correct, and are indeed needed. I'm tempted to leave this
+exactly the way it is. Would that be ok for you?
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 3d1ea0b25168..cd6bf51d27ec 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -513,6 +513,11 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6q-dms-ba16.dtb \
- 	imx6q-emcon-avari.dtb \
- 	imx6q-evi.dtb \
-+	imx6dl-b105v2.dtb \
-+	imx6dl-b105pv2.dtb \
-+	imx6dl-b125v2.dtb \
-+	imx6dl-b125pv2.dtb \
-+	imx6dl-b155v2.dtb \
- 	imx6q-gk802.dtb \
- 	imx6q-gw51xx.dtb \
- 	imx6q-gw52xx.dtb \
-diff --git a/arch/arm/boot/dts/imx6dl-b105pv2.dts b/arch/arm/boot/dts/imx6dl-b105pv2.dts
-new file mode 100644
-index 000000000000..0d5be2f9471f
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-b105pv2.dts
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+//
-+// Device Tree Source for General Electric B105Pv2
-+//
-+// Copyright 2018-2021 General Electric Company
-+// Copyright 2018-2021 Collabora
-+
-+/dts-v1/;
-+#include "imx6dl-b1x5pv2.dtsi"
-+
-+/ {
-+	model = "General Electric B105Pv2";
-+	compatible = "ge,imx6dl-b105pv2", "congatec,qmx6", "fsl,imx6dl";
-+
-+	panel {
-+		compatible = "auo,g101evn010";
-+		status = "okay";
-+	};
-+};
-+
-+&i2c3 {
-+	touchscreen@41 {
-+		reg = <0x41>;
-+		compatible = "ilitek,ili251x";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 =<&pinctrl_q7_gpio0>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&tca6424a 21 GPIO_ACTIVE_LOW>;
-+
-+		touchscreen-size-x = <1280>;
-+		touchscreen-size-y = <800>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/imx6dl-b105v2.dts b/arch/arm/boot/dts/imx6dl-b105v2.dts
-new file mode 100644
-index 000000000000..72a085348304
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-b105v2.dts
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+//
-+// Device Tree Source for General Electric B105v2
-+//
-+// Copyright 2018-2021 General Electric Company
-+// Copyright 2018-2021 Collabora
-+
-+/dts-v1/;
-+#include "imx6dl-b1x5v2.dtsi"
-+
-+/ {
-+	model = "General Electric B105v2";
-+	compatible = "ge,imx6dl-b105v2", "congatec,qmx6", "fsl,imx6dl";
-+
-+	panel {
-+		compatible = "auo,g101evn010";
-+		status = "okay";
-+	};
-+};
-+
-+&i2c3 {
-+	touchscreen@41 {
-+		reg = <0x41>;
-+		compatible = "ilitek,ili251x";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 =<&pinctrl_q7_gpio0>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&tca6424a 21 GPIO_ACTIVE_LOW>;
-+
-+		touchscreen-size-x = <1280>;
-+		touchscreen-size-y = <800>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/imx6dl-b125pv2.dts b/arch/arm/boot/dts/imx6dl-b125pv2.dts
-new file mode 100644
-index 000000000000..8fd6c8ed6750
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-b125pv2.dts
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+//
-+// Device Tree Source for General Electric B125Pv2
-+//
-+// Copyright 2018-2021 General Electric Company
-+// Copyright 2018-2021 Collabora
-+
-+/dts-v1/;
-+#include "imx6dl-b1x5pv2.dtsi"
-+
-+/ {
-+	model = "General Electric B125Pv2";
-+	compatible = "ge,imx6dl-b125pv2", "congatec,qmx6", "fsl,imx6dl";
-+
-+	panel {
-+		compatible = "auo,g121ean01";
-+		status = "okay";
-+	};
-+};
-+
-+&i2c3 {
-+	touchscreen@2a {
-+		reg = <0x2a>;
-+		compatible = "eeti,exc80h60";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 =<&pinctrl_q7_gpio0>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&tca6424a 21 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/imx6dl-b125v2.dts b/arch/arm/boot/dts/imx6dl-b125v2.dts
-new file mode 100644
-index 000000000000..eb26ffde9f72
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-b125v2.dts
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+//
-+// Device Tree Source for General Electric B125v2
-+//
-+// Copyright 2018-2021 General Electric Company
-+// Copyright 2018-2021 Collabora
-+
-+/dts-v1/;
-+#include "imx6dl-b1x5v2.dtsi"
-+
-+/ {
-+	model = "General Electric B125v2";
-+	compatible = "ge,imx6dl-b125v2", "congatec,qmx6", "fsl,imx6dl";
-+
-+	panel {
-+		compatible = "auo,g121ean01";
-+		status = "okay";
-+	};
-+};
-+
-+&i2c3 {
-+	touchscreen@2a {
-+		reg = <0x2a>;
-+		compatible = "eeti,exc80h60";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 =<&pinctrl_q7_gpio0>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&tca6424a 21 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/imx6dl-b155v2.dts b/arch/arm/boot/dts/imx6dl-b155v2.dts
-new file mode 100644
-index 000000000000..620cd6f9da82
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-b155v2.dts
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+//
-+// Device Tree Source for General Electric B155v2
-+//
-+// Copyright 2018-2021 General Electric Company
-+// Copyright 2018-2021 Collabora
-+
-+/dts-v1/;
-+#include "imx6dl-b1x5v2.dtsi"
-+
-+/ {
-+	model = "General Electric B155v2";
-+	compatible = "ge,imx6dl-b155v2", "congatec,qmx6", "fsl,imx6dl";
-+
-+	panel {
-+		compatible = "auo,g156xtn01";
-+		status = "okay";
-+	};
-+};
-+
-+&i2c3 {
-+	touchscreen@2a {
-+		reg = <0x2a>;
-+		compatible = "eeti,exc80h84";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 =<&pinctrl_q7_gpio0>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-+
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+
-+		reset-gpios = <&tca6424a 21 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/imx6dl-b1x5pv2.dtsi b/arch/arm/boot/dts/imx6dl-b1x5pv2.dtsi
-new file mode 100644
-index 000000000000..1f9e66e1afc0
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-b1x5pv2.dtsi
-@@ -0,0 +1,434 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+//
-+// Device Tree Source for General Electric B1x5v2
-+//
-+// Copyright 2018-2021 General Electric Company
-+// Copyright 2018-2021 Collabora
-+
-+#include <dt-bindings/input/input.h>
-+#include "imx6dl-qmx6.dtsi"
-+
-+/ {
-+	chosen {
-+		stdout-path = &uart3;
-+	};
-+
-+	/* Do not allow frequencies above 800MHz */
-+	cpus {
-+		cpu@0 {
-+			operating-points = <
-+				/* kHz    uV */
-+				792000  1175000
-+				396000  1150000
-+			>;
-+			fsl,soc-operating-points = <
-+				/* ARM kHz	SOC-PU uV */
-+				792000	1175000
-+				396000	1175000
-+			>;
-+		};
-+
-+		cpu@1 {
-+			operating-points = <
-+				/* kHz    uV */
-+				792000  1175000
-+				396000  1150000
-+			>;
-+			fsl,soc-operating-points = <
-+				/* ARM kHz	SOC-PU uV */
-+				792000	1175000
-+				396000	1175000
-+			>;
-+		};
-+	};
-+
-+	reg_syspwr: regulator-12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SYS_PWR";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_5v_pmc: regulator-5v-pmc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V PMC";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_syspwr>;
-+	};
-+
-+	reg_5v: regulator-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_syspwr>;
-+	};
-+
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_syspwr>;
-+	};
-+
-+	reg_5v0_audio: regulator-5v0-audio {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V0_AUDIO";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_5v>;
-+
-+		gpio = <&tca6424a 16 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		/*
-+		 * This must be always-on for da7212, which has some not
-+		 * properly documented dependencies for it's speaker supply
-+		 * pin. The issue manifests as speaker volume being very low.
-+		 */
-+		regulator-always-on;
-+	};
-+
-+
-+	reg_3v3_audio: regulator-3v3-audio {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3V3_AUDIO";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&reg_3v3>;
-+
-+		pinctrl-0 = <&pinctrl_q7_hda_rst>;
-+		pinctrl-names = "default";
-+		gpio = <&gpio6 8 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_2v5_audio: regulator-2v5-audio {
-+		compatible = "regulator-fixed";
-+		regulator-name = "2V5_AUDIO";
-+		regulator-min-microvolt = <2500000>;
-+		regulator-max-microvolt = <2500000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_3v3_audio>;
-+
-+	};
-+
-+	reg_wlan: regulator-wlan {
-+		compatible = "regulator-fixed";
-+		regulator-name = "WLAN";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&reg_3v3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_q7_sdio_pwr>;
-+		gpio = <&gpio4 30 GPIO_ACTIVE_HIGH>;
-+
-+		startup-delay-us = <70000>;
-+		enable-active-high;
-+	};
-+
-+	reg_bl: regulator-backlight {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LED_VCC";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		vin-supply = <&reg_syspwr>;
-+
-+		pinctrl-0 = <&pinctrl_q7_lcd_power>;
-+		pinctrl-names = "default";
-+		gpio = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_lcd: regulator-lcd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LCD_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_5v>;
-+	};
-+
-+	usb_power: regulator-usb-power {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB POWER";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_5v>;
-+	};
-+
-+	charger: battery-charger {
-+		compatible = "gpio-charger"; /* ti,bq24172 */
-+
-+		charger-type = "mains";
-+		gpios = <&tca6424a 3 GPIO_ACTIVE_LOW>;
-+		charge-current-limit-gpios = <&tca6424a 11 GPIO_ACTIVE_HIGH>,
-+					     <&tca6424a 12 GPIO_ACTIVE_HIGH>;
-+		charge-current-limit-mapping = <1300000 0x0>,
-+					       <700000 0x1>,
-+					       <0 0x2>;
-+
-+		charge-status-gpios = <&tca6424a 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	poweroff {
-+		compatible = "gpio-poweroff";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_q7_spi_cs1>;
-+		gpios = <&gpio4 25 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	power-button-key {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_q7_slp_btn>;
-+
-+		power-button {
-+			label = "power button";
-+			gpios = <&gpio4 7 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_POWER>;
-+		};
-+	};
-+
-+	rotary-encoder-key {
-+		compatible = "gpio-keys";
-+
-+		rotary-encoder-press {
-+			label = "rotary-encoder press";
-+			gpios = <&tca6424a 0 GPIO_ACTIVE_HIGH>;
-+			linux,code = <KEY_ENTER>;
-+			linux,can-disable;
-+		};
-+	};
-+
-+	rotary-encoder {
-+		compatible = "rotary-encoder";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_q7_gpio2 &pinctrl_q7_gpio4>;
-+		gpios = <&gpio4 26 GPIO_ACTIVE_LOW>, <&gpio1 0 GPIO_ACTIVE_LOW>;
-+		rotary-encoder,relative-axis;
-+		rotary-encoder,steps-per-period = <2>;
-+		wakeup-source;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_q7_gpio1 &pinctrl_q7_gpio3 &pinctrl_q7_gpio5>;
-+
-+		alarm1 {
-+			label = "alarm:red";
-+			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		alarm2 {
-+			label = "alarm:yellow";
-+			gpios = <&gpio4 27 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		alarm3 {
-+			label = "alarm:blue";
-+			gpios = <&gpio4 15 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_q7_backlight_enable>;
-+		power-supply = <&reg_bl>;
-+		pwms = <&pwm4 0 5000000 0>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <255>;
-+		default-brightness-level = <179>;
-+		enable-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
-+		status = "okay";
-+	};
-+
-+	panel {
-+		backlight = <&backlight>;
-+		power-supply = <&reg_lcd>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&lvds0_out>;
-+			};
-+		};
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "audio-card";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&dailink_master>;
-+		simple-audio-card,frame-master = <&dailink_master>;
-+
-+		simple-audio-card,widgets = "Speaker", "Ext Spk";
-+		simple-audio-card,audio-routing = "Ext Spk", "LINE";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&ssi1>;
-+		};
-+
-+		dailink_master: simple-audio-card,codec {
-+			sound-dai = <&codec>;
-+		};
-+	};
-+
-+	clk_ext_audio_codec: clock-codec {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <12288000>;
-+	};
-+};
-+
-+&i2c1 {
-+	battery: battery@b {
-+		compatible = "ti,bq20z65", "sbs,sbs-battery";
-+		reg = <0x0b>;
-+
-+		sbs,battery-detect-gpios = <&tca6424a 5 GPIO_ACTIVE_LOW>;
-+		sbs,i2c-retry-count = <5>;
-+
-+		power-supplies = <&charger>;
-+	};
-+
-+	codec: audio-codec@1a {
-+		compatible = "dlg,da7212";
-+		reg = <0x1a>;
-+		#sound-dai-cells = <0>;
-+		VDDA-supply = <&reg_2v5_audio>;
-+		VDDSP-supply = <&reg_5v0_audio>;
-+		VDDMIC-supply = <&reg_3v3_audio>;
-+		VDDIO-supply = <&reg_3v3_audio>;
-+		clocks = <&clk_ext_audio_codec>;
-+		clock-names = "mclk";
-+	};
-+};
-+
-+&i2c5 {
-+	tmp75: temperature-sensor@48 {
-+		compatible = "ti,tmp75";
-+		reg = <0x48>;
-+		vs-supply = <&reg_3v3>;
-+		interrupt-parent = <&tca6424a>;
-+		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+
-+	tca6424a: gpio-controller@22 {
-+		compatible = "ti,tca6424";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		vcc-supply = <&reg_3v3>;
-+
-+		interrupt-parent = <&gpio7>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_q7_gpio6>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+
-+		gpio-line-names = "GPIO_ROTOR#", "ACM_IO_INT", "TMP_SENSOR_IRQ", "AC_IN",
-+				  "TF_S", "BATT_T", "LED_INC_CHAR", "ACM1_OCF",
-+				  "ACM2_OCF", "ACM_IO_RST", "USB1_POWER_EN", "EGPIO_CC_CTL0",
-+				  "EGPIO_CC_CTL1", "12V_OEMNBP_EN", "CP2105_RST", "",
-+				  "SPEAKER_PA_EN", "ARM7_UPI_RESET", "ARM7_PWR_RST", "NURSE_CALL",
-+				  "MARKER_EN", "EGPIO_TOUCH_RST", "PRESSURE_INT1", "PRESSURE_INT2";
-+
-+	};
-+};
-+
-+&fec {
-+	status = "okay";
-+};
-+
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&audmux {
-+	status = "okay";
-+};
-+
-+&ssi1 {
-+	fsl,mode = "i2s-slave";
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	vbus-supply = <&usb_power>;
-+	disable-over-current;
-+	dr_mode = "host";
-+	status = "okay";
-+
-+	/*
-+	 * TPS2051BDGN fault-gpio is connected to Q7[86] USB_0_1_OC_N.
-+	 * On QMX6 this is not connceted to the i.MX6, but to the USB Hub
-+	 * from &usbh1. This means, that we cannot easily detect and handle
-+	 * over-current events. Fortunately the regulator limits the current
-+	 * automatically, so the hardware is still protected.
-+	 */
-+};
-+
-+&pwm4 {
-+	status = "okay";
-+};
-+
-+&ldb {
-+	status = "okay";
-+
-+	lvds0: lvds-channel@0 {
-+		status = "okay";
-+		fsl,data-mapping = "spwg";
-+		fsl,data-width = <24>;
-+
-+		port@4 {
-+			reg = <4>;
-+			lvds0_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&usdhc4 {
-+	/* WiFi module */
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc4>;
-+
-+	bus-width = <4>;
-+	no-1-8-v;
-+	non-removable;
-+	wakeup-source;
-+	keep-power-in-suspend;
-+	cap-power-off-card;
-+	max-frequency = <25000000>;
-+	vmmc-supply = <&reg_wlan>;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	wlcore: wlcore@2 {
-+		compatible = "ti,wl1837";
-+		reg = <2>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_q7_gpio7>;
-+
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		tcxo-clock-frequency = <26000000>;
-+	};
-+
-+};
-diff --git a/arch/arm/boot/dts/imx6dl-b1x5v2.dtsi b/arch/arm/boot/dts/imx6dl-b1x5v2.dtsi
-new file mode 100644
-index 000000000000..b4c6fbd802fb
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-b1x5v2.dtsi
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+//
-+// Device Tree Source for General Electric B1x5v2
-+//
-+// Copyright 2018-2021 General Electric Company
-+// Copyright 2018-2021 Collabora
-+
-+#include <dt-bindings/input/input.h>
-+#include "imx6dl-b1x5pv2.dtsi"
-+
-+/ {
-+	reg_3v3_acm: regulator-3v3-acm {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3V3 ACM";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_3v3>;
-+	};
-+};
-+
-+&i2c1 {
-+	tca6416: gpio-controller@21 {
-+		compatible = "ti,tca6416";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		vcc-supply = <&reg_3v3_acm>;
-+
-+		/*
-+		 * TCA6424 cannot handle low type interrupts at the moment and
-+		 * it cannot be added without quite a few hacks. Since this
-+		 * controller does not have any input type GPIOs, pretend that
-+		 * the interrupt pin is unconnected.
-+		 */
-+		//interrupt-parent = <&tca6424a>;
-+		//interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
-+		//interrupt-controller;
-+		//#interrupt-cells = <2>;
-+
-+		reset-gpios = <&tca6424a 9 GPIO_ACTIVE_LOW>;
-+
-+		gpio-line-names = "ACM1_EN", "ACM1_CL0", "ACM1_CL1", "ACM1_CL2",
-+				  "", "ACM2_EN", "ACM2_CL0", "ACM2_CL1",
-+				  "ACM2_CL2", "", "", "",
-+				  "", "", "", "";
-+	};
-+};
-+
-+&i2c5 {
-+	mpl3115a2: pressure-sensor@60 {
-+		compatible = "fsl,mpl3115";
-+		reg = <0x60>;
-+
-+		vcc-supply = <&reg_3v3_acm>;
-+
-+		/* The MPL3115 binding does not yet support interrupts */
-+		//interrupt-parent = <&tca6424a>;
-+		//interrupts = <22 IRQ_TYPE_EDGE_RISING 23 IRQ_TYPE_EDGE_RISING>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/imx6dl-qmx6.dtsi b/arch/arm/boot/dts/imx6dl-qmx6.dtsi
-new file mode 100644
-index 000000000000..dbcca0b02792
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-qmx6.dtsi
-@@ -0,0 +1,623 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+//
-+// Device Tree Source for i.MX6DL based congatec QMX6
-+//
-+// Copyright 2018-2021 General Electric Company
-+// Copyright 2018-2021 Collabora
-+// Copyright 2016 congatec AG
-+
-+#include "imx6dl.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/sound/fsl-imx-audmux.h>
-+
-+/ {
-+	memory@10000000 {
-+		reg = <0x10000000 0x40000000>;
-+	};
-+
-+	reg_3p3v: 3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3P3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	i2cmux {
-+		compatible = "i2c-mux-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		mux-gpios = <&gpio6 9 GPIO_ACTIVE_HIGH>;
-+		i2c-parent = <&i2c2>;
-+
-+		i2c5: i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c6: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+};
-+
-+&ecspi1 {
-+	fsl,spi-num-chipselects = <1>;
-+	cs-gpios = <&gpio3 19 0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi1>;
-+	status = "okay";
-+
-+	flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "sst,sst25vf032b", "jedec,spi-nor";
-+		spi-max-frequency = <20000000>;
-+		reg = <0>;
-+
-+		partition@0 {
-+			label = "bootloader";
-+			reg = <0x0000000 0x100000>;
-+		};
-+
-+		partition@100000 {
-+			label = "user";
-+			reg = <0x0100000 0x2fc000>;
-+		};
-+
-+		partition@3fc000 {
-+			label = "reserved";
-+			reg = <0x03fc000 0x4000>;
-+			read-only;
-+		};
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet &pinctrl_phy_reset>;
-+	phy-mode = "rgmii-id";
-+	phy-reset-gpios = <&gpio3 23 GPIO_ACTIVE_LOW>;
-+	fsl,magic-packet;
-+	phy-handle = <&phy0>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		phy0: ethernet-phy@6 {
-+			reg = <6>;
-+			qca,clk-out-frequency = <125000000>;
-+		};
-+	};
-+};
-+
-+&i2c6 {
-+	pmic@8 {
-+		compatible = "fsl,pfuze100";
-+		reg = <0x08>;
-+
-+		regulators {
-+			sw1a_reg: sw1ab {
-+				regulator-min-microvolt = <300000>;
-+				regulator-max-microvolt = <1875000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			sw1c_reg: sw1c {
-+				regulator-min-microvolt = <300000>;
-+				regulator-max-microvolt = <1875000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			sw2_reg: sw2 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			sw3a_reg: sw3a {
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1975000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			sw3b_reg: sw3b {
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1975000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			sw4_reg: sw4 {
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			swbst_reg: swbst {
-+				regulator-min-microvolt = <5000000>;
-+				regulator-max-microvolt = <5150000>;
-+			};
-+
-+			snvs_reg: vsnvs {
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			vref_reg: vrefddr {
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/*
-+			 * keep VGEN3, VGEN4 and VGEN5 enabled in order to
-+			 * maintain backward compatibility with hw-rev. A.0
-+			 */
-+			vgen3_reg: vgen3 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vgen4_reg: vgen4 {
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <2500000>;
-+				regulator-always-on;
-+			};
-+
-+			vgen5_reg: vgen5 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			/* supply voltage for eMMC */
-+			vgen6_reg: vgen6 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
-+&pcie {
-+	reset-gpio = <&gpio1 20 0>;
-+};
-+
-+&audmux {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_audmux>;
-+
-+	audmux_ssi1 {
-+		fsl,audmux-port = <MX51_AUDMUX_PORT1_SSI0>;
-+		fsl,port-config = <
-+			(IMX_AUDMUX_V2_PTCR_TFSDIR |
-+			IMX_AUDMUX_V2_PTCR_TFSEL(MX51_AUDMUX_PORT6) |
-+			IMX_AUDMUX_V2_PTCR_TCLKDIR |
-+			IMX_AUDMUX_V2_PTCR_TCSEL(MX51_AUDMUX_PORT6) |
-+			IMX_AUDMUX_V2_PTCR_SYN)
-+			IMX_AUDMUX_V2_PDCR_RXDSEL(MX51_AUDMUX_PORT6)
-+		>;
-+	};
-+
-+	audmux_aud6 {
-+		fsl,audmux-port = <MX51_AUDMUX_PORT6>;
-+		fsl,port-config = <
-+			IMX_AUDMUX_V2_PTCR_SYN
-+			IMX_AUDMUX_V2_PDCR_RXDSEL(MX51_AUDMUX_PORT1_SSI0)
-+		>;
-+	};
-+};
-+
-+&clks {
-+	assigned-clocks = <&clks IMX6QDL_CLK_LDB_DI0_SEL>,
-+			  <&clks IMX6QDL_CLK_LDB_DI1_SEL>;
-+	assigned-clock-parents = <&clks IMX6QDL_CLK_PLL2_PFD0_352M>,
-+				 <&clks IMX6QDL_CLK_PLL2_PFD0_352M>;
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	scl-gpios = <&gpio3 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio3 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+	scl-gpios = <&gpio4 12 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio4 13 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	pinctrl-1 = <&pinctrl_i2c3_gpio>;
-+	scl-gpios = <&gpio1 3 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio1 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+
-+	status = "okay";
-+
-+	rtc: m41t62@68 {
-+		compatible = "st,m41t62";
-+		reg = <0x68>;
-+		#clocks-cells = <0>;
-+		/*
-+		 * RTC clock provides i.MX6 CKIL and must not be disabled.
-+		 * Properly describing this dependency in device-tree will
-+		 * result in a chicken-and-egg situation, since operating
-+		 * system cannot control the I2C RTC without CKIL. This
-+		 * hardware setup only works because the RTC enables the
-+		 * SQW with correct 32.768 kHz by default.
-+		 */
-+		protected-clocks;
-+	};
-+};
-+
-+&pwm4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm4>;
-+};
-+
-+&reg_arm {
-+	vin-supply = <&sw1a_reg>;
-+};
-+
-+&reg_pu {
-+	vin-supply = <&sw1c_reg>;
-+};
-+
-+&reg_soc {
-+	vin-supply = <&sw1c_reg>;
-+};
-+
-+&snvs_poweroff {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	/* MicroSD card slot */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	cd-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
-+	no-1-8-v;
-+	keep-power-in-suspend;
-+	wakeup-source;
-+	vmmc-supply = <&reg_3p3v>;
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	/* eMMC module */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	non-removable;
-+	bus-width = <8>;
-+	no-1-8-v;
-+	keep-power-in-suspend;
-+	wakeup-source;
-+	vmmc-supply = <&reg_3p3v>;
-+	status = "okay";
-+};
-+
-+&usbh1 {
-+	/* Connected to USB-Hub SMSC USB2514, provides P0, P2, P3, P4 on Qseven connector */
-+	vbus-supply = <&reg_5v>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg>;
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	qmx6mux: imx6qdl-qmx6 {
-+	};
-+};
-+
-+&qmx6mux {
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_2__GPIO1_IO02		0x80000000 /* PCIE_WAKE_B */
-+			MX6QDL_PAD_NANDF_WP_B__GPIO6_IO09	0x80000000 /* I2C multiplexer */
-+			MX6QDL_PAD_NANDF_D6__GPIO2_IO06		0x80000000 /* SD4_CD# */
-+			MX6QDL_PAD_NANDF_D7__GPIO2_IO07		0x80000000 /* SD4_WP */
-+			MX6QDL_PAD_CSI0_MCLK__CCM_CLKO1		0x80000000 /* Camera MCLK */
-+		>;
-+	};
-+
-+	/* Watchdog output signal */
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT8__WDOG1_B		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_q7_hda_rst: hdarstgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_NANDF_ALE__GPIO6_IO08	0x1b0b0 /* Q7[61] HDA_RST_N */
-+		>;
-+	};
-+
-+	pinctrl_q7_backlight_enable: blengrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_9__GPIO1_IO09		0x1b0b0 /* Q7[112] LVDS_BLEN */
-+		>;
-+	};
-+
-+	pinctrl_audmux: audmuxgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DI0_PIN2__AUD6_TXD		0x110b0 /* Q7[67] HDA_SDO */
-+			MX6QDL_PAD_DI0_PIN3__AUD6_TXFS		0x130b0 /* Q7[59] HDA_SYNC */
-+			MX6QDL_PAD_DI0_PIN4__AUD6_RXD		0x130b0 /* Q7[65] HDA_SDI */
-+			MX6QDL_PAD_DI0_PIN15__AUD6_TXC		0x130b0 /* Q7[63] HDA_BITCLK */
-+		>;
-+	};
-+
-+	/* SPI bus does not leave System on Module */
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D16__ECSPI1_SCLK		0x100b1
-+			MX6QDL_PAD_EIM_D17__ECSPI1_MISO		0x100b1
-+			MX6QDL_PAD_EIM_D18__ECSPI1_MOSI		0x100b1
-+			MX6QDL_PAD_EIM_D19__GPIO3_IO19		0x1b0b0
-+		>;
-+	};
-+
-+	/* PHY is on System on Module, Q7[3-15] have Ethernet lines */
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO		0x1b0b0
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC		0x1b0b0
-+			MX6QDL_PAD_RGMII_TXC__RGMII_TXC		0x1b030
-+			MX6QDL_PAD_RGMII_TD0__RGMII_TD0		0x1b030
-+			MX6QDL_PAD_RGMII_TD1__RGMII_TD1		0x1b030
-+			MX6QDL_PAD_RGMII_TD2__RGMII_TD2		0x1b030
-+			MX6QDL_PAD_RGMII_TD3__RGMII_TD3		0x1b030
-+			MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL	0x1b030
-+			MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK	0x1b0b0
-+			MX6QDL_PAD_RGMII_RXC__RGMII_RXC		0x1b030
-+			MX6QDL_PAD_RGMII_RD0__RGMII_RD0		0x1b030
-+			MX6QDL_PAD_RGMII_RD1__RGMII_RD1		0x1b030
-+			MX6QDL_PAD_RGMII_RD2__RGMII_RD2		0x1b030
-+			MX6QDL_PAD_RGMII_RD3__RGMII_RD3		0x1b030
-+			MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL	0x1b030
-+			MX6QDL_PAD_ENET_TX_EN__ENET_TX_EN	0x1b0b0
-+		>;
-+	};
-+
-+	/* RGMII Phy Reset */
-+	pinctrl_phy_reset: phyrstgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D23__GPIO3_IO23		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D21__I2C1_SCL		0x4001b8b1 /* Q7[66] I2C_CLK */
-+			MX6QDL_PAD_EIM_D28__I2C1_SDA		0x4001b8b1 /* Q7[68] I2C_DAT */
-+		>;
-+	};
-+
-+	pinctrl_i2c1_gpio: i2c1gpiogrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D21__GPIO3_IO21		0x1b0b0 /* Q7[66] I2C_CLK */
-+			MX6QDL_PAD_EIM_D28__GPIO3_IO28		0x1b0b0 /* Q7[68] I2C_DAT */
-+		>;
-+	};
-+
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL3__I2C2_SCL		0x4001b8b1 /* Q7[152] SDVO_CTRL_CLK */
-+			MX6QDL_PAD_KEY_ROW3__I2C2_SDA		0x4001b8b1 /* Q7[150] SDVO_CTRL_DAT */
-+		>;
-+	};
-+
-+	pinctrl_i2c2_gpio: i2c2gpiogrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL3__GPIO4_IO12		0x1b0b0 /* Q7[152] SDVO_CTRL_CLK */
-+			MX6QDL_PAD_KEY_ROW3__GPIO4_IO13		0x1b0b0 /* Q7[150] SDVO_CTRL_DAT */
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_3__I2C3_SCL		0x4001b8b1 /* Q7[60] SMB_CLK */
-+			MX6QDL_PAD_GPIO_6__I2C3_SDA		0x4001b8b1 /* Q7[62] SMB_DAT */
-+		>;
-+	};
-+
-+	pinctrl_i2c3_gpio: i2c3gpiogrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_3__GPIO1_IO03		0x1b0b0 /* Q7[60] SMB_CLK */
-+			MX6QDL_PAD_GPIO_6__GPIO1_IO06		0x1b0b0 /* Q7[62] SMB_DAT */
-+		>;
-+	};
-+
-+	pinctrl_pwm4: pwm4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_CMD__PWM4_OUT		0x1b0b1 /* Q7[123] LVDS_BLT_CTRL */
-+		>;
-+	};
-+
-+	/* Debug connector on Q7 module */
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D26__UART2_TX_DATA	0x1b0b1
-+			MX6QDL_PAD_EIM_D27__UART2_RX_DATA	0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D25__UART3_RX_DATA	0x1b0b1 /* Q7[177] UART0_RX */
-+			MX6QDL_PAD_EIM_D24__UART3_TX_DATA	0x1b0b1 /* Q7[171] UART0_TX */
-+		>;
-+	};
-+
-+	/* µSD card slot on Q7 module */
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD2_CMD__SD2_CMD		0x17059
-+			MX6QDL_PAD_SD2_CLK__SD2_CLK		0x10059
-+			MX6QDL_PAD_SD2_DAT0__SD2_DATA0		0x17059
-+			MX6QDL_PAD_SD2_DAT1__SD2_DATA1		0x17059
-+			MX6QDL_PAD_SD2_DAT2__SD2_DATA2		0x17059
-+			MX6QDL_PAD_SD2_DAT3__SD2_DATA3		0x17059
-+			MX6QDL_PAD_GPIO_4__GPIO1_IO04		0x1b0b0 /* SD2_CD */
-+		>;
-+	};
-+
-+	/* eMMC module on Q7 module */
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x17059
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x10059
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0		0x17059
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1		0x17059
-+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2		0x17059
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3		0x17059
-+			MX6QDL_PAD_SD3_DAT4__SD3_DATA4		0x17059
-+			MX6QDL_PAD_SD3_DAT5__SD3_DATA5		0x17059
-+			MX6QDL_PAD_SD3_DAT6__SD3_DATA6		0x17059
-+			MX6QDL_PAD_SD3_DAT7__SD3_DATA7		0x17059
-+		>;
-+	};
-+
-+
-+	pinctrl_usdhc4: usdhc4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD4_CMD__SD4_CMD		0x17059 /* Q7[45] SDIO_CMD */
-+			MX6QDL_PAD_SD4_CLK__SD4_CLK		0x17059 /* Q7[42] SDIO_CLK */
-+			MX6QDL_PAD_SD4_DAT1__SD4_DATA1		0x17059 /* Q7[48] SDIO_DAT1 */
-+			MX6QDL_PAD_SD4_DAT0__SD4_DATA0		0x17059 /* Q7[49] SDIO_DAT0 */
-+			MX6QDL_PAD_SD4_DAT3__SD4_DATA3		0x17059 /* Q7[50] SDIO_DAT3 */
-+			MX6QDL_PAD_SD4_DAT2__SD4_DATA2		0x17059 /* Q7[51] SDIO_DAT2 */
-+		>;
-+	};
-+
-+	pinctrl_q7_slp_btn: q7slpbtngrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW0__GPIO4_IO07		0x1b0b0 /* Q7[21] SLP_BTN# */
-+		>;
-+	};
-+
-+	pinctrl_q7_sdio_pwr: q7sdiopwrgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT9__GPIO4_IO30	0x1b0b0 /* Q7[47] SDIO_PWR# */
-+		>;
-+	};
-+
-+	pinctrl_q7_gpio0: q7gpio0grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_A25__GPIO5_IO02		0x1b0b0 /* Q7[185] GPIO0 */
-+		>;
-+	};
-+
-+	pinctrl_q7_gpio1: q7gpio1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_8__GPIO1_IO08		0x1b0b0 /* Q7[186] GPIO1 */
-+		>;
-+	};
-+
-+	pinctrl_q7_gpio2: q7gpio2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT5__GPIO4_IO26	0x1b0b0 /* Q7[187] GPIO2 */
-+		>;
-+	};
-+
-+	pinctrl_q7_gpio3: q7gpio3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT6__GPIO4_IO27	0x1b0b0 /* Q7[188] GPIO3 */
-+		>;
-+	};
-+
-+	pinctrl_q7_gpio4: q7gpio4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_0__GPIO1_IO00		0x1b0b0 /* Q7[189] GPIO4 */
-+		>;
-+	};
-+
-+	pinctrl_q7_gpio5: q7gpio5grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15		0x1b0b0 /* Q7[190] GPIO5 */
-+		>;
-+	};
-+
-+	pinctrl_q7_gpio6: q7gpio6grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_16__GPIO7_IO11		0x1b0b0 /* Q7[191] GPIO6 */
-+		>;
-+	};
-+
-+	pinctrl_q7_gpio7: q7gpio7grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL4__GPIO4_IO14		0x1b0b0 /* Q7[192] GPIO7 */
-+		>;
-+	};
-+
-+	pinctrl_usbotg: usbotggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_1__USB_OTG_ID		0x17059 /* Q7[92] USB_ID */
-+		>;
-+	};
-+
-+	pinctrl_q7_lcd_power: lcdpwrgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_7__GPIO1_IO07		0x1b0b0 /* Q7[111] LVDS_PPEN */
-+		>;
-+	};
-+
-+	pinctrl_q7_spi_cs1: spics1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT4__GPIO4_IO25	0x1b0b0 /* Q7[202] SPI_CS1# */
-+		>;
-+	};
-+};
--- 
-2.30.0
-
+>
+> Thanks,
+> Andrey
+>
+> > [1] https://git.linaro.org/people/robert.foss/linux.git/log/?h=msm_sdm845
+> >
+> >>
+> >>> +}
+> >>> +
+> >>> +static void vfe_isr_halt_ack(struct vfe_device *vfe)
+> >>> +{
+> >>> +     complete(&vfe->halt_complete);
+> >>> +}
+> >>> +
+> >>> +static void vfe_isr_read(struct vfe_device *vfe, u32 *status0, u32 *status1)
+> >>> +{
+> >>> +     *status0 = readl_relaxed(vfe->base + VFE_IRQ_STATUS_0);
+> >>> +     *status1 = readl_relaxed(vfe->base + VFE_IRQ_STATUS_1);
+> >>> +
+> >>> +     writel_relaxed(*status0, vfe->base + VFE_IRQ_CLEAR_0);
+> >>> +     writel_relaxed(*status1, vfe->base + VFE_IRQ_CLEAR_1);
+> >>> +
+> >>> +     /* Enforce ordering between IRQ Clear and Global IRQ Clear */
+> >>> +     wmb();
+> >>> +     writel_relaxed(CMD_GLOBAL_CLEAR, vfe->base + VFE_IRQ_CMD);
+> >>> +}
+> >>> +
+> >>> +static void vfe_violation_read(struct vfe_device *vfe)
+> >>> +{
+> >>> +     u32 violation = readl_relaxed(vfe->base + VFE_VIOLATION_STATUS);
+> >>> +
+> >>> +     pr_err_ratelimited("VFE: violation = 0x%08x\n", violation);
+> >>> +}
+> >>> +
+> >>> +/*
+> >>> + * vfe_isr - VFE module interrupt handler
+> >>> + * @irq: Interrupt line
+> >>> + * @dev: VFE device
+> >>> + *
+> >>> + * Return IRQ_HANDLED on success
+> >>> + */
+> >>> +static irqreturn_t vfe_isr(int irq, void *dev)
+> >>> +{
+> >>> +     struct vfe_device *vfe = dev;
+> >>> +     u32 status0, status1, vfe_bus_status[3];
+> >>> +     int i, wm;
+> >>> +
+> >>> +     status0 = readl_relaxed(vfe->base + VFE_IRQ_STATUS_0);
+> >>> +     status1 = readl_relaxed(vfe->base + VFE_IRQ_STATUS_1);
+> >>> +
+> >>> +     writel_relaxed(status0, vfe->base + VFE_IRQ_CLEAR_0);
+> >>> +     writel_relaxed(status1, vfe->base + VFE_IRQ_CLEAR_1);
+> >>> +
+> >>> +     for (i = VFE_LINE_RDI0; i <= VFE_LINE_RDI2; i++) {
+> >>> +             vfe_bus_status[i] = readl_relaxed(vfe->base + VFE_BUS_IRQ_STATUS(i));
+> >>> +             writel_relaxed(vfe_bus_status[i], vfe->base + VFE_BUS_IRQ_CLEAR(i));
+> >>> +     }
+> >>> +
+> >>> +     /* Enforce ordering between IRQ reading and interpretation */
+> >>> +     wmb();
+> >>> +
+> >>> +     writel_relaxed(CMD_GLOBAL_CLEAR, vfe->base + VFE_IRQ_CMD);
+> >>> +     writel_relaxed(1, vfe->base + VFE_BUS_IRQ_CLEAR_GLOBAL);
+> >>> +
+> >>> +     if (status0 & STATUS_0_RESET_ACK)
+> >>> +             vfe->isr_ops.reset_ack(vfe);
+> >>> +
+> >>> +     for (i = VFE_LINE_RDI0; i <= VFE_LINE_RDI2; i++)
+> >>> +             if (status0 & STATUS_0_RDI_REG_UPDATE(i))
+> >>> +                     vfe->isr_ops.reg_update(vfe, i);
+> >>> +
+> >>> +     for (i = VFE_LINE_RDI0; i <= VFE_LINE_RDI2; i++)
+> >>> +             if (status0 & STATUS_1_RDI_SOF(i))
+> >>> +                     vfe->isr_ops.sof(vfe, i);
+> >>> +
+> >>> +     for (i = 0; i < MSM_VFE_COMPOSITE_IRQ_NUM; i++)
+> >>> +             if (vfe_bus_status[0] & STATUS0_COMP_BUF_DONE(i))
+> >>> +                     vfe->isr_ops.comp_done(vfe, i);
+> >>> +
+> >>> +     for (wm = 0; wm < MSM_VFE_IMAGE_MASTERS_NUM; wm++)
+> >>> +             if (status0 & BIT(9))
+> >>> +                     if (vfe_bus_status[1] & STATUS1_WM_CLIENT_BUF_DONE(wm))
+> >>> +                             vfe->isr_ops.wm_done(vfe, wm);
+> >>> +
+> >>> +     return IRQ_HANDLED;
+> >>> +}
+> >>> +
+> >>> +/*
+> >>> + * vfe_halt - Trigger halt on VFE module and wait to complete
+> >>> + * @vfe: VFE device
+> >>> + *
+> >>> + * Return 0 on success or a negative error code otherwise
+> >>> + */
+> >>> +static int vfe_halt(struct vfe_device *vfe)
+> >>> +{
+> >>> +     unsigned long time;
+> >>> +
+> >>> +     return 0;
+> >>> +
+> >>> +     reinit_completion(&vfe->halt_complete);
+> >>> +
+> >>> +     time = wait_for_completion_timeout(&vfe->halt_complete,
+> >>> +             msecs_to_jiffies(VFE_HALT_TIMEOUT_MS));
+> >>> +     if (!time) {
+> >>> +             dev_err(vfe->camss->dev, "VFE halt timeout\n");
+> >>> +             return -EIO;
+> >>> +     }
+> >>> +
+> >>> +     return 0;
+> >>> +}
+> >>> +
+> >>> +static int vfe_get_output(struct vfe_line *line)
+> >>> +{
+> >>> +     struct vfe_device *vfe = to_vfe(line);
+> >>> +     struct vfe_output *output;
+> >>> +     unsigned long flags;
+> >>> +     int i;
+> >>> +     int wm_idx;
+> >>> +
+> >>> +     spin_lock_irqsave(&vfe->output_lock, flags);
+> >>> +
+> >>> +     output = &line->output;
+> >>> +     if (output->state != VFE_OUTPUT_OFF) {
+> >>> +             dev_err(vfe->camss->dev, "Output is running\n");
+> >>> +             goto error;
+> >>> +     }
+> >>> +
+> >>> +     output->wm_num = 1;
+> >>> +
+> >>> +     for (i = 0; i < output->wm_num; i++) {
+> >>
+> >> - this for loop can now be omitted ("for (i = 0; i < 1; i++)" is just one pass) ...
+> >
+> > Ack.
+> >
+> >>
+> >>> +             wm_idx = vfe_reserve_wm(vfe, line->id);
+> >>> +             if (wm_idx < 0) {
+> >>> +                     dev_err(vfe->camss->dev, "Can not reserve wm\n");
+> >>> +                     goto error_get_wm;
+> >>> +             }
+> >>> +             output->wm_idx[i] = wm_idx;
+> >>> +     }
+> >>> +
+> >>> +     output->drop_update_idx = 0;
+> >>> +
+> >>> +     spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +
+> >>> +     return 0;
+> >>> +
+> >>> +error_get_wm:
+> >>> +     for (i--; i >= 0; i--)
+> >>
+> >> - ... and this one too. And the "i" local var is no longer needed.
+> >
+> > Ack
+> >
+> >>
+> >> Thanks,
+> >> Andrey
+> >>
+> >>> +             vfe_release_wm(vfe, output->wm_idx[i]);
+> >>> +     output->state = VFE_OUTPUT_OFF;
+> >>> +error:
+> >>> +     spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +
+> >>> +     return -EINVAL;
+> >>> +}
+> >>> +
+> >>> +static int vfe_enable_output(struct vfe_line *line)
+> >>> +{
+> >>> +     struct vfe_device *vfe = to_vfe(line);
+> >>> +     struct vfe_output *output = &line->output;
+> >>> +     const struct vfe_hw_ops *ops = vfe->ops;
+> >>> +     struct media_entity *sensor;
+> >>> +     unsigned long flags;
+> >>> +     unsigned int frame_skip = 0;
+> >>> +     unsigned int i;
+> >>> +
+> >>> +     sensor = camss_find_sensor(&line->subdev.entity);
+> >>> +     if (sensor) {
+> >>> +             struct v4l2_subdev *subdev = media_entity_to_v4l2_subdev(sensor);
+> >>> +
+> >>> +             v4l2_subdev_call(subdev, sensor, g_skip_frames, &frame_skip);
+> >>> +             /* Max frame skip is 29 frames */
+> >>> +             if (frame_skip > VFE_FRAME_DROP_VAL - 1)
+> >>> +                     frame_skip = VFE_FRAME_DROP_VAL - 1;
+> >>> +     }
+> >>> +
+> >>> +     spin_lock_irqsave(&vfe->output_lock, flags);
+> >>> +
+> >>> +     ops->reg_update_clear(vfe, line->id);
+> >>> +
+> >>> +     if (output->state != VFE_OUTPUT_OFF) {
+> >>> +             dev_err(vfe->camss->dev, "Output is not in reserved state %d\n",
+> >>> +                     output->state);
+> >>> +             spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +             return -EINVAL;
+> >>> +     }
+> >>> +
+> >>> +     WARN_ON(output->gen2.active_num);
+> >>> +
+> >>> +     output->state = VFE_OUTPUT_ON;
+> >>> +
+> >>> +     output->sequence = 0;
+> >>> +     output->wait_reg_update = 0;
+> >>> +     reinit_completion(&output->reg_update);
+> >>> +
+> >>> +     vfe_wm_start(vfe, output->wm_idx[0], line);
+> >>> +
+> >>> +     for (i = 0; i < 2; i++) {
+> >>> +             output->buf[i] = vfe_buf_get_pending(output);
+> >>> +             if (!output->buf[i])
+> >>> +                     break;
+> >>> +             output->gen2.active_num++;
+> >>> +             vfe_wm_update(vfe, output->wm_idx[0], output->buf[i]->addr[0], line);
+> >>> +     }
+> >>> +
+> >>> +     ops->reg_update(vfe, line->id);
+> >>> +
+> >>> +     spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +
+> >>> +     return 0;
+> >>> +}
+> >>> +
+> >>> +static int vfe_disable_output(struct vfe_line *line)
+> >>> +{
+> >>> +     struct vfe_device *vfe = to_vfe(line);
+> >>> +     struct vfe_output *output = &line->output;
+> >>> +     unsigned long flags;
+> >>> +     unsigned int i;
+> >>> +     bool done;
+> >>> +     int timeout = 0;
+> >>> +
+> >>> +     do {
+> >>> +             spin_lock_irqsave(&vfe->output_lock, flags);
+> >>> +             done = !output->gen2.active_num;
+> >>> +             spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +             usleep_range(10000, 20000);
+> >>> +
+> >>> +             if (timeout++ == 100) {
+> >>> +                     dev_err(vfe->camss->dev, "VFE idle timeout - resetting\n");
+> >>> +                     vfe_reset(vfe);
+> >>> +                     output->gen2.active_num = 0;
+> >>> +                     return 0;
+> >>> +             }
+> >>> +     } while (!done);
+> >>> +
+> >>> +     spin_lock_irqsave(&vfe->output_lock, flags);
+> >>> +     for (i = 0; i < output->wm_num; i++)
+> >>> +             vfe_wm_stop(vfe, output->wm_idx[i]);
+> >>> +     spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +
+> >>> +     return 0;
+> >>> +}
+> >>> +
+> >>> +/*
+> >>> + * vfe_enable - Enable streaming on VFE line
+> >>> + * @line: VFE line
+> >>> + *
+> >>> + * Return 0 on success or a negative error code otherwise
+> >>> + */
+> >>> +static int vfe_enable(struct vfe_line *line)
+> >>> +{
+> >>> +     struct vfe_device *vfe = to_vfe(line);
+> >>> +     int ret;
+> >>> +
+> >>> +     mutex_lock(&vfe->stream_lock);
+> >>> +
+> >>> +     if (!vfe->stream_count)
+> >>> +             vfe_enable_irq_common(vfe);
+> >>> +
+> >>> +     vfe->stream_count++;
+> >>> +
+> >>> +     mutex_unlock(&vfe->stream_lock);
+> >>> +
+> >>> +     ret = vfe_get_output(line);
+> >>> +     if (ret < 0)
+> >>> +             goto error_get_output;
+> >>> +
+> >>> +     ret = vfe_enable_output(line);
+> >>> +     if (ret < 0)
+> >>> +             goto error_enable_output;
+> >>> +
+> >>> +     vfe->was_streaming = 1;
+> >>> +
+> >>> +     return 0;
+> >>> +
+> >>> +
+> >>> +error_enable_output:
+> >>> +     vfe_put_output(line);
+> >>> +
+> >>> +error_get_output:
+> >>> +     mutex_lock(&vfe->stream_lock);
+> >>> +
+> >>> +     vfe->stream_count--;
+> >>> +
+> >>> +     mutex_unlock(&vfe->stream_lock);
+> >>> +
+> >>> +     return ret;
+> >>> +}
+> >>> +
+> >>> +/*
+> >>> + * vfe_disable - Disable streaming on VFE line
+> >>> + * @line: VFE line
+> >>> + *
+> >>> + * Return 0 on success or a negative error code otherwise
+> >>> + */
+> >>> +static int vfe_disable(struct vfe_line *line)
+> >>> +{
+> >>> +     struct vfe_device *vfe = to_vfe(line);
+> >>> +
+> >>> +     vfe_disable_output(line);
+> >>> +
+> >>> +     vfe_put_output(line);
+> >>> +
+> >>> +     mutex_lock(&vfe->stream_lock);
+> >>> +
+> >>> +     vfe->stream_count--;
+> >>> +
+> >>> +     mutex_unlock(&vfe->stream_lock);
+> >>> +
+> >>> +     return 0;
+> >>> +}
+> >>> +
+> >>> +/*
+> >>> + * vfe_isr_sof - Process start of frame interrupt
+> >>> + * @vfe: VFE Device
+> >>> + * @line_id: VFE line
+> >>> + */
+> >>> +static void vfe_isr_sof(struct vfe_device *vfe, enum vfe_line_id line_id)
+> >>> +{
+> >>> +
+> >>> +}
+> >>> +
+> >>> +/*
+> >>> + * vfe_isr_reg_update - Process reg update interrupt
+> >>> + * @vfe: VFE Device
+> >>> + * @line_id: VFE line
+> >>> + */
+> >>> +static void vfe_isr_reg_update(struct vfe_device *vfe, enum vfe_line_id line_id)
+> >>> +{
+> >>> +     struct vfe_output *output;
+> >>> +     unsigned long flags;
+> >>> +
+> >>> +     spin_lock_irqsave(&vfe->output_lock, flags);
+> >>> +     vfe->ops->reg_update_clear(vfe, line_id);
+> >>> +
+> >>> +     output = &vfe->line[line_id].output;
+> >>> +
+> >>> +     if (output->wait_reg_update) {
+> >>> +             output->wait_reg_update = 0;
+> >>> +             complete(&output->reg_update);
+> >>> +     }
+> >>> +
+> >>> +     spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +}
+> >>> +
+> >>> +/*
+> >>> + * vfe_isr_wm_done - Process write master done interrupt
+> >>> + * @vfe: VFE Device
+> >>> + * @wm: Write master id
+> >>> + */
+> >>> +static void vfe_isr_wm_done(struct vfe_device *vfe, u8 wm)
+> >>> +{
+> >>> +     struct vfe_line *line = &vfe->line[vfe->wm_output_map[wm]];
+> >>> +     struct camss_buffer *ready_buf;
+> >>> +     struct vfe_output *output;
+> >>> +     unsigned long flags;
+> >>> +     u32 index;
+> >>> +     u64 ts = ktime_get_ns();
+> >>> +
+> >>> +     spin_lock_irqsave(&vfe->output_lock, flags);
+> >>> +
+> >>> +     if (vfe->wm_output_map[wm] == VFE_LINE_NONE) {
+> >>> +             dev_err_ratelimited(vfe->camss->dev,
+> >>> +                                 "Received wm done for unmapped index\n");
+> >>> +             goto out_unlock;
+> >>> +     }
+> >>> +     output = &vfe->line[vfe->wm_output_map[wm]].output;
+> >>> +
+> >>> +     ready_buf = output->buf[0];
+> >>> +     if (!ready_buf) {
+> >>> +             dev_err_ratelimited(vfe->camss->dev,
+> >>> +                                 "Missing ready buf %d!\n", output->state);
+> >>> +             goto out_unlock;
+> >>> +     }
+> >>> +
+> >>> +     ready_buf->vb.vb2_buf.timestamp = ts;
+> >>> +     ready_buf->vb.sequence = output->sequence++;
+> >>> +
+> >>> +     index = 0;
+> >>> +     output->buf[0] = output->buf[1];
+> >>> +     if (output->buf[0])
+> >>> +             index = 1;
+> >>> +
+> >>> +     output->buf[index] = vfe_buf_get_pending(output);
+> >>> +
+> >>> +     if (output->buf[index])
+> >>> +             vfe_wm_update(vfe, output->wm_idx[0], output->buf[index]->addr[0], line);
+> >>> +     else
+> >>> +             output->gen2.active_num--;
+> >>> +
+> >>> +     spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +
+> >>> +     vb2_buffer_done(&ready_buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
+> >>> +
+> >>> +     return;
+> >>> +
+> >>> +out_unlock:
+> >>> +     spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +}
+> >>> +
+> >>> +/*
+> >>> + * vfe_queue_buffer - Add empty buffer
+> >>> + * @vid: Video device structure
+> >>> + * @buf: Buffer to be enqueued
+> >>> + *
+> >>> + * Add an empty buffer - depending on the current number of buffers it will be
+> >>> + * put in pending buffer queue or directly given to the hardware to be filled.
+> >>> + *
+> >>> + * Return 0 on success or a negative error code otherwise
+> >>> + */
+> >>> +static int vfe_queue_buffer(struct camss_video *vid,
+> >>> +                         struct camss_buffer *buf)
+> >>> +{
+> >>> +     struct vfe_line *line = container_of(vid, struct vfe_line, video_out);
+> >>> +     struct vfe_device *vfe = to_vfe(line);
+> >>> +     struct vfe_output *output;
+> >>> +     unsigned long flags;
+> >>> +
+> >>> +     output = &line->output;
+> >>> +
+> >>> +     spin_lock_irqsave(&vfe->output_lock, flags);
+> >>> +
+> >>> +     if (output->state == VFE_OUTPUT_ON && output->gen2.active_num < 2) {
+> >>> +             output->buf[output->gen2.active_num++] = buf;
+> >>> +             vfe_wm_update(vfe, output->wm_idx[0], buf->addr[0], line);
+> >>> +     } else {
+> >>> +             vfe_buf_add_pending(output, buf);
+> >>> +     }
+> >>> +
+> >>> +     spin_unlock_irqrestore(&vfe->output_lock, flags);
+> >>> +
+> >>> +     return 0;
+> >>> +}
+> >>> +
+> >>> +const struct vfe_isr_ops vfe_isr_ops_170 = {
+> >>> +     .reset_ack = vfe_isr_reset_ack,
+> >>> +     .halt_ack = vfe_isr_halt_ack,
+> >>> +     .reg_update = vfe_isr_reg_update,
+> >>> +     .sof = vfe_isr_sof,
+> >>> +     .comp_done = vfe_isr_comp_done,
+> >>> +     .wm_done = vfe_isr_wm_done,
+> >>> +};
+> >>> +
+> >>> +static const struct camss_video_ops vfe_video_ops_170 = {
+> >>> +     .queue_buffer = vfe_queue_buffer,
+> >>> +     .flush_buffers = vfe_flush_buffers,
+> >>> +};
+> >>> +
+> >>> +static void vfe_subdev_init(struct device *dev, struct vfe_device *vfe)
+> >>> +{
+> >>> +     vfe->isr_ops = vfe_isr_ops_170;
+> >>> +     vfe->video_ops = vfe_video_ops_170;
+> >>> +
+> >>> +     vfe->line_num = VFE_LINE_NUM_GEN2;
+> >>> +}
+> >>> +
+> >>> +const struct vfe_hw_ops vfe_ops_170 = {
+> >>> +     .global_reset = vfe_global_reset,
+> >>> +     .hw_version_read = vfe_hw_version_read,
+> >>> +     .isr_read = vfe_isr_read,
+> >>> +     .isr = vfe_isr,
+> >>> +     .reg_update_clear = vfe_reg_update_clear,
+> >>> +     .reg_update = vfe_reg_update,
+> >>> +     .subdev_init = vfe_subdev_init,
+> >>> +     .vfe_disable = vfe_disable,
+> >>> +     .vfe_enable = vfe_enable,
+> >>> +     .vfe_halt = vfe_halt,
+> >>> +     .violation_read = vfe_violation_read,
+> >>> +};
+> >>> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
+> >>> index 375843bd16af..6fafeb8a5484 100644
+> >>> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
+> >>> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
+> >>> @@ -96,6 +96,32 @@ static const struct vfe_format formats_pix_8x96[] = {
+> >>>        { MEDIA_BUS_FMT_YVYU8_2X8, 8 },
+> >>>    };
+> >>>
+> >>> +static const struct vfe_format formats_rdi_845[] = {
+> >>> +     { MEDIA_BUS_FMT_UYVY8_2X8, 8 },
+> >>> +     { MEDIA_BUS_FMT_VYUY8_2X8, 8 },
+> >>> +     { MEDIA_BUS_FMT_YUYV8_2X8, 8 },
+> >>> +     { MEDIA_BUS_FMT_YVYU8_2X8, 8 },
+> >>> +     { MEDIA_BUS_FMT_SBGGR8_1X8, 8 },
+> >>> +     { MEDIA_BUS_FMT_SGBRG8_1X8, 8 },
+> >>> +     { MEDIA_BUS_FMT_SGRBG8_1X8, 8 },
+> >>> +     { MEDIA_BUS_FMT_SRGGB8_1X8, 8 },
+> >>> +     { MEDIA_BUS_FMT_SBGGR10_1X10, 10 },
+> >>> +     { MEDIA_BUS_FMT_SGBRG10_1X10, 10 },
+> >>> +     { MEDIA_BUS_FMT_SGRBG10_1X10, 10 },
+> >>> +     { MEDIA_BUS_FMT_SRGGB10_1X10, 10 },
+> >>> +     { MEDIA_BUS_FMT_SBGGR10_2X8_PADHI_LE, 16 },
+> >>> +     { MEDIA_BUS_FMT_SBGGR12_1X12, 12 },
+> >>> +     { MEDIA_BUS_FMT_SGBRG12_1X12, 12 },
+> >>> +     { MEDIA_BUS_FMT_SGRBG12_1X12, 12 },
+> >>> +     { MEDIA_BUS_FMT_SRGGB12_1X12, 12 },
+> >>> +     { MEDIA_BUS_FMT_SBGGR14_1X14, 14 },
+> >>> +     { MEDIA_BUS_FMT_SGBRG14_1X14, 14 },
+> >>> +     { MEDIA_BUS_FMT_SGRBG14_1X14, 14 },
+> >>> +     { MEDIA_BUS_FMT_SRGGB14_1X14, 14 },
+> >>> +     { MEDIA_BUS_FMT_Y10_1X10, 10 },
+> >>> +     { MEDIA_BUS_FMT_Y10_2X8_PADHI_LE, 16 },
+> >>> +};
+> >>> +
+> >>>    /*
+> >>>     * vfe_get_bpp - map media bus format to bits per pixel
+> >>>     * @formats: supported media bus formats array
+> >>> @@ -192,7 +218,8 @@ static u32 vfe_src_pad_code(struct vfe_line *line, u32 sink_code,
+> >>>                        return sink_code;
+> >>>                }
+> >>>        else if (vfe->camss->version == CAMSS_8x96 ||
+> >>> -              vfe->camss->version == CAMSS_660)
+> >>> +              vfe->camss->version == CAMSS_660 ||
+> >>> +              vfe->camss->version == CAMSS_845)
+> >>>                switch (sink_code) {
+> >>>                case MEDIA_BUS_FMT_YUYV8_2X8:
+> >>>                {
+> >>> @@ -256,13 +283,7 @@ static u32 vfe_src_pad_code(struct vfe_line *line, u32 sink_code,
+> >>>                return 0;
+> >>>    }
+> >>>
+> >>> -/*
+> >>> - * vfe_reset - Trigger reset on VFE module and wait to complete
+> >>> - * @vfe: VFE device
+> >>> - *
+> >>> - * Return 0 on success or a negative error code otherwise
+> >>> - */
+> >>> -static int vfe_reset(struct vfe_device *vfe)
+> >>> +int vfe_reset(struct vfe_device *vfe)
+> >>>    {
+> >>>        unsigned long time;
+> >>>
+> >>> @@ -429,7 +450,8 @@ static int vfe_set_clock_rates(struct vfe_device *vfe)
+> >>>                struct camss_clock *clock = &vfe->clock[i];
+> >>>
+> >>>                if (!strcmp(clock->name, "vfe0") ||
+> >>> -                 !strcmp(clock->name, "vfe1")) {
+> >>> +                 !strcmp(clock->name, "vfe1") ||
+> >>> +                 !strcmp(clock->name, "vfe_lite")) {
+> >>>                        u64 min_rate = 0;
+> >>>                        long rate;
+> >>>
+> >>> @@ -1268,6 +1290,10 @@ int msm_vfe_subdev_init(struct camss *camss, struct vfe_device *vfe,
+> >>>        case CAMSS_660:
+> >>>                vfe->ops = &vfe_ops_4_8;
+> >>>                break;
+> >>> +
+> >>> +     case CAMSS_845:
+> >>> +             vfe->ops = &vfe_ops_170;
+> >>> +             break;
+> >>>        default:
+> >>>                return -EINVAL;
+> >>>        }
+> >>> @@ -1379,6 +1405,9 @@ int msm_vfe_subdev_init(struct camss *camss, struct vfe_device *vfe,
+> >>>                                l->formats = formats_rdi_8x96;
+> >>>                                l->nformats = ARRAY_SIZE(formats_rdi_8x96);
+> >>>                        }
+> >>> +             } else if (camss->version == CAMSS_845) {
+> >>> +                     l->formats = formats_rdi_845;
+> >>> +                     l->nformats = ARRAY_SIZE(formats_rdi_845);
+> >>>                } else {
+> >>>                        return -EINVAL;
+> >>>                }
+> >>> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.h b/drivers/media/platform/qcom/camss/camss-vfe.h
+> >>> index aad5dc74c2c0..29b3d930ffc6 100644
+> >>> --- a/drivers/media/platform/qcom/camss/camss-vfe.h
+> >>> +++ b/drivers/media/platform/qcom/camss/camss-vfe.h
+> >>> @@ -19,7 +19,6 @@
+> >>>    #include "camss-video.h"
+> >>>    #include "camss-vfe-gen1.h"
+> >>>
+> >>> -
+> >>>    #define MSM_VFE_PAD_SINK 0
+> >>>    #define MSM_VFE_PAD_SRC 1
+> >>>    #define MSM_VFE_PADS_NUM 2
+> >>> @@ -38,14 +37,14 @@
+> >>>    #define to_vfe(ptr_line)    \
+> >>>        container_of(vfe_line_array(ptr_line), struct vfe_device, line)
+> >>>
+> >>> -
+> >>>    enum vfe_output_state {
+> >>>        VFE_OUTPUT_OFF,
+> >>>        VFE_OUTPUT_RESERVED,
+> >>>        VFE_OUTPUT_SINGLE,
+> >>>        VFE_OUTPUT_CONTINUOUS,
+> >>>        VFE_OUTPUT_IDLE,
+> >>> -     VFE_OUTPUT_STOPPING
+> >>> +     VFE_OUTPUT_STOPPING,
+> >>> +     VFE_OUTPUT_ON,
+> >>>    };
+> >>>
+> >>>    enum vfe_line_id {
+> >>> @@ -53,6 +52,7 @@ enum vfe_line_id {
+> >>>        VFE_LINE_RDI0 = 0,
+> >>>        VFE_LINE_RDI1 = 1,
+> >>>        VFE_LINE_RDI2 = 2,
+> >>> +     VFE_LINE_NUM_GEN2 = 3,
+> >>>        VFE_LINE_PIX = 3,
+> >>>        VFE_LINE_NUM_GEN1 = 4,
+> >>>        VFE_LINE_NUM_MAX = 4
+> >>> @@ -73,6 +73,9 @@ struct vfe_output {
+> >>>                        int active_buf;
+> >>>                        int wait_sof;
+> >>>                } gen1;
+> >>> +             struct {
+> >>> +                     int active_num;
+> >>> +             } gen2;
+> >>>        };
+> >>>        enum vfe_output_state state;
+> >>>        unsigned int sequence;
+> >>> @@ -171,14 +174,6 @@ void vfe_buf_add_pending(struct vfe_output *output, struct camss_buffer *buffer)
+> >>>
+> >>>    struct camss_buffer *vfe_buf_get_pending(struct vfe_output *output);
+> >>>
+> >>> -/*
+> >>> - * vfe_disable - Disable streaming on VFE line
+> >>> - * @line: VFE line
+> >>> - *
+> >>> - * Return 0 on success or a negative error code otherwise
+> >>> - */
+> >>> -int vfe_disable(struct vfe_line *line);
+> >>> -
+> >>>    int vfe_flush_buffers(struct camss_video *vid, enum vb2_buffer_state state);
+> >>>
+> >>>    /*
+> >>> @@ -193,8 +188,17 @@ int vfe_put_output(struct vfe_line *line);
+> >>>    int vfe_release_wm(struct vfe_device *vfe, u8 wm);
+> >>>    int vfe_reserve_wm(struct vfe_device *vfe, enum vfe_line_id line_id);
+> >>>
+> >>> +/*
+> >>> + * vfe_reset - Trigger reset on VFE module and wait to complete
+> >>> + * @vfe: VFE device
+> >>> + *
+> >>> + * Return 0 on success or a negative error code otherwise
+> >>> + */
+> >>> +int vfe_reset(struct vfe_device *vfe);
+> >>> +
+> >>>    extern const struct vfe_hw_ops vfe_ops_4_1;
+> >>>    extern const struct vfe_hw_ops vfe_ops_4_7;
+> >>>    extern const struct vfe_hw_ops vfe_ops_4_8;
+> >>> +extern const struct vfe_hw_ops vfe_ops_170;
+> >>>
+> >>>    #endif /* QC_MSM_CAMSS_VFE_H */
+> >>> diff --git a/drivers/media/platform/qcom/camss/camss-video.c b/drivers/media/platform/qcom/camss/camss-video.c
+> >>> index 97cea7c4d769..f282275af626 100644
+> >>> --- a/drivers/media/platform/qcom/camss/camss-video.c
+> >>> +++ b/drivers/media/platform/qcom/camss/camss-video.c
+> >>> @@ -133,6 +133,55 @@ static const struct camss_format_info formats_rdi_8x96[] = {
+> >>>          { { 1, 1 } }, { { 1, 1 } }, { 16 } },
+> >>>    };
+> >>>
+> >>> +static const struct camss_format_info formats_rdi_845[] = {
+> >>> +     { MEDIA_BUS_FMT_UYVY8_2X8, V4L2_PIX_FMT_UYVY, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 16 } },
+> >>> +     { MEDIA_BUS_FMT_VYUY8_2X8, V4L2_PIX_FMT_VYUY, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 16 } },
+> >>> +     { MEDIA_BUS_FMT_YUYV8_2X8, V4L2_PIX_FMT_YUYV, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 16 } },
+> >>> +     { MEDIA_BUS_FMT_YVYU8_2X8, V4L2_PIX_FMT_YVYU, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 16 } },
+> >>> +     { MEDIA_BUS_FMT_SBGGR8_1X8, V4L2_PIX_FMT_SBGGR8, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 8 } },
+> >>> +     { MEDIA_BUS_FMT_SGBRG8_1X8, V4L2_PIX_FMT_SGBRG8, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 8 } },
+> >>> +     { MEDIA_BUS_FMT_SGRBG8_1X8, V4L2_PIX_FMT_SGRBG8, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 8 } },
+> >>> +     { MEDIA_BUS_FMT_SRGGB8_1X8, V4L2_PIX_FMT_SRGGB8, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 8 } },
+> >>> +     { MEDIA_BUS_FMT_SBGGR10_1X10, V4L2_PIX_FMT_SBGGR10P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 10 } },
+> >>> +     { MEDIA_BUS_FMT_SGBRG10_1X10, V4L2_PIX_FMT_SGBRG10P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 10 } },
+> >>> +     { MEDIA_BUS_FMT_SGRBG10_1X10, V4L2_PIX_FMT_SGRBG10P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 10 } },
+> >>> +     { MEDIA_BUS_FMT_SRGGB10_1X10, V4L2_PIX_FMT_SRGGB10P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 10 } },
+> >>> +     { MEDIA_BUS_FMT_SBGGR10_2X8_PADHI_LE, V4L2_PIX_FMT_SBGGR10, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 16 } },
+> >>> +     { MEDIA_BUS_FMT_SBGGR12_1X12, V4L2_PIX_FMT_SBGGR12P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 12 } },
+> >>> +     { MEDIA_BUS_FMT_SGBRG12_1X12, V4L2_PIX_FMT_SGBRG12P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 12 } },
+> >>> +     { MEDIA_BUS_FMT_SGRBG12_1X12, V4L2_PIX_FMT_SGRBG12P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 12 } },
+> >>> +     { MEDIA_BUS_FMT_SRGGB12_1X12, V4L2_PIX_FMT_SRGGB12P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 12 } },
+> >>> +     { MEDIA_BUS_FMT_SBGGR14_1X14, V4L2_PIX_FMT_SBGGR14P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 14 } },
+> >>> +     { MEDIA_BUS_FMT_SGBRG14_1X14, V4L2_PIX_FMT_SGBRG14P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 14 } },
+> >>> +     { MEDIA_BUS_FMT_SGRBG14_1X14, V4L2_PIX_FMT_SGRBG14P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 14 } },
+> >>> +     { MEDIA_BUS_FMT_SRGGB14_1X14, V4L2_PIX_FMT_SRGGB14P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 14 } },
+> >>> +     { MEDIA_BUS_FMT_Y10_1X10, V4L2_PIX_FMT_Y10P, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 10 } },
+> >>> +     { MEDIA_BUS_FMT_Y10_2X8_PADHI_LE, V4L2_PIX_FMT_Y10, 1,
+> >>> +       { { 1, 1 } }, { { 1, 1 } }, { 16 } },
+> >>> +};
+> >>> +
+> >>>    static const struct camss_format_info formats_pix_8x16[] = {
+> >>>        { MEDIA_BUS_FMT_YUYV8_1_5X8, V4L2_PIX_FMT_NV12, 1,
+> >>>          { { 1, 1 } }, { { 2, 3 } }, { 8 } },
+> >>> @@ -960,6 +1009,9 @@ int msm_video_register(struct camss_video *video, struct v4l2_device *v4l2_dev,
+> >>>                        video->formats = formats_rdi_8x96;
+> >>>                        video->nformats = ARRAY_SIZE(formats_rdi_8x96);
+> >>>                }
+> >>> +     }  else if (video->camss->version == CAMSS_845) {
+> >>> +             video->formats = formats_rdi_845;
+> >>> +             video->nformats = ARRAY_SIZE(formats_rdi_845);
+> >>>        } else {
+> >>>                ret = -EINVAL;
+> >>>                goto error_video_register;
+> >>> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+> >>> index 6c6f1e59ccd8..0e006def1996 100644
+> >>> --- a/drivers/media/platform/qcom/camss/camss.c
+> >>> +++ b/drivers/media/platform/qcom/camss/camss.c
+> >>> @@ -465,6 +465,67 @@ static const struct resources vfe_res_660[] = {
+> >>>        }
+> >>>    };
+> >>>
+> >>> +static const struct resources vfe_res_845[] = {
+> >>> +     /* VFE0 */
+> >>> +     {
+> >>> +             .regulator = { NULL },
+> >>> +             .clock = { "camnoc_axi", "cpas_ahb", "slow_ahb_src",
+> >>> +                             "soc_ahb", "vfe0", "vfe0_axi",
+> >>> +                             "vfe0_src", "csi0",
+> >>> +                             "csi0_src"},
+> >>> +             .clock_rate = { { 0 },
+> >>> +                             { 0 },
+> >>> +                             { 80000000 },
+> >>> +                             { 0 },
+> >>> +                             { 19200000, 100000000, 320000000, 404000000, 480000000, 600000000 },
+> >>> +                             { 0 },
+> >>> +                             { 320000000 },
+> >>> +                             { 19200000, 75000000, 384000000, 538666667 },
+> >>> +                             { 384000000 } },
+> >>> +             .reg = { "vfe0" },
+> >>> +             .interrupt = { "vfe0" }
+> >>> +     },
+> >>> +
+> >>> +     /* VFE1 */
+> >>> +     {
+> >>> +             .regulator = { NULL },
+> >>> +             .clock = { "camnoc_axi", "cpas_ahb", "slow_ahb_src",
+> >>> +                             "soc_ahb", "vfe1", "vfe1_axi",
+> >>> +                             "vfe1_src", "csi1",
+> >>> +                             "csi1_src"},
+> >>> +             .clock_rate = { { 0 },
+> >>> +                             { 0 },
+> >>> +                             { 80000000 },
+> >>> +                             { 0 },
+> >>> +                             { 19200000, 100000000, 320000000, 404000000, 480000000, 600000000 },
+> >>> +                             { 0 },
+> >>> +                             { 320000000 },
+> >>> +                             { 19200000, 75000000, 384000000, 538666667 },
+> >>> +                             { 384000000 } },
+> >>> +             .reg = { "vfe1" },
+> >>> +             .interrupt = { "vfe1" }
+> >>> +     },
+> >>> +
+> >>> +     /* VFE-lite */
+> >>> +     {
+> >>> +             .regulator = { NULL },
+> >>> +             .clock = { "camnoc_axi", "cpas_ahb", "slow_ahb_src",
+> >>> +                             "soc_ahb", "vfe_lite",
+> >>> +                             "vfe_lite_src", "csi2",
+> >>> +                             "csi2_src"},
+> >>> +             .clock_rate = { { 0 },
+> >>> +                             { 0 },
+> >>> +                             { 80000000 },
+> >>> +                             { 0 },
+> >>> +                             { 19200000, 100000000, 320000000, 404000000, 480000000, 600000000 },
+> >>> +                             { 320000000 },
+> >>> +                             { 19200000, 75000000, 384000000, 538666667 },
+> >>> +                             { 384000000 } },
+> >>> +             .reg = { "vfe_lite" },
+> >>> +             .interrupt = { "vfe_lite" }
+> >>> +     }
+> >>> +};
+> >>> +
+> >>>    /*
+> >>>     * camss_add_clock_margin - Add margin to clock frequency rate
+> >>>     * @rate: Clock frequency rate
+> >>>
