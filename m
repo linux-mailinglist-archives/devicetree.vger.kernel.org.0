@@ -2,391 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66626321D39
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 17:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7344321D94
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 17:59:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231136AbhBVQkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 11:40:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231211AbhBVQkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 11:40:09 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B77C061574;
-        Mon, 22 Feb 2021 08:39:28 -0800 (PST)
-Received: from [IPv6:2a01:e0a:4cb:a870:5956:412c:4850:9073] (unknown [IPv6:2a01:e0a:4cb:a870:5956:412c:4850:9073])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id B178B1F44378;
-        Mon, 22 Feb 2021 16:39:25 +0000 (GMT)
-Subject: Re: [PATCH v2 1/9] media: hevc: Modify structures to follow H265 ITU
- spec
-To:     John Cox <jc@kynesim.co.uk>
-Cc:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, peng.fan@nxp.com,
-        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20210218191844.297869-1-benjamin.gaignard@collabora.com>
- <20210218191844.297869-2-benjamin.gaignard@collabora.com>
- <cam73g1am20fqav4bsoakml5natvtgq4qq@4ax.com>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Message-ID: <4cd4a009-9552-03a5-a49d-de16c55c63da@collabora.com>
-Date:   Mon, 22 Feb 2021 17:39:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231430AbhBVQ6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 11:58:06 -0500
+Received: from foss.arm.com ([217.140.110.172]:56828 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231683AbhBVQ5V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Feb 2021 11:57:21 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1EF9D1FB;
+        Mon, 22 Feb 2021 08:56:35 -0800 (PST)
+Received: from [10.57.48.219] (unknown [10.57.48.219])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 736DC3F73B;
+        Mon, 22 Feb 2021 08:56:33 -0800 (PST)
+Subject: Re: RPi4 can't deal with 64 bit PCI accesses
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Robin Murphy <robin.murphy@arm.con>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>
+References: <c188698ca0de3ed6c56a0cf7880e1578aa753077.camel@suse.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <2220c875-f327-586c-79c7-eadff87e4b4d@arm.com>
+Date:   Mon, 22 Feb 2021 16:56:27 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <cam73g1am20fqav4bsoakml5natvtgq4qq@4ax.com>
+In-Reply-To: <c188698ca0de3ed6c56a0cf7880e1578aa753077.camel@suse.de>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2021-02-22 15:47, Nicolas Saenz Julienne wrote:
+> Hi everyone,
+> Raspberry Pi 4, a 64bit arm system on chip, contains a PCIe bus that can't
+> handle 64bit accesses to its MMIO address space, in other words, writeq() has
+> to be split into two distinct writel() operations. This isn't ideal, as it
+> misrepresents PCI's promise of being able to treat device memory as regular
+> memory, ultimately breaking a bunch of PCI device drivers[1].
+> 
+> I'd like to have a go at fixing this in a way that can be distributed in a
+> generic distro without prejudice to other users.
+> 
+> AFAIK there is no way to detect this limitation through generic PCIe
+> capabilities, so one solution would be to expose it through firmware
+> (devicetree in this case), and pass the limitations through 'struct device' so
+> as for the drivers to choose the right access method in a way that doesn't
+> affect performance much[2]. All in all, most of this doesn't need to be
+> PCI-centric as the property could be applied to any MMIO bus.
 
-Le 22/02/2021 à 17:24, John Cox a écrit :
->> The H.265 ITU specification (section 7.4) define the general
->> slice segment header semantics.
->> Modified/added fields are:
->> - video_parameter_set_id: (7.4.3.1) identifies the VPS for
->> reference by other syntax elements.
->> - seq_parameter_set_id: (7.4.3.2.1) specifies the value of
->> the vps_video_parameter_set_id of the active VPS.
->> - chroma_format_idc: (7.4.3.2.1) specifies the chroma sampling
->> relative to the luma sampling
->> - pic_parameter_set_id: (7.4.3.3.1) identifies the PPS for
->> reference by other syntax elements
->> - num_ref_idx_l0_default_active_minus1: (7.4.3.3.1) specifies
->> the inferred value of num_ref_idx_l0_active_minus1
->> - num_ref_idx_l1_default_active_minus1: (7.4.3.3.1) specifies
->> the inferred value of num_ref_idx_l1_active_minus1
->> - slice_segment_addr: (7.4.7.1) specifies the address of
->> the first coding tree block in the slice segment
->> - num_entry_point_offsets: (7.4.7.1) specifies the number of
->> entry_point_offset_minus1[ i ] syntax elements in the slice header
->>
->> Add HEVC decode params contains the information used in section
->> "8.3 Slice decoding process" of the specification to let the hardware
->> perform decoding of a slices.
->>
->> Adapt Cedrus driver according to these changes.
->>
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->> version 2:
->> - remove all change related to scaling
->> - squash commits to a coherent split
->> - be more verbose about the added fields
->>
->> drivers/media/v4l2-core/v4l2-ctrls.c          | 26 ++++++++---
->> drivers/staging/media/sunxi/cedrus/cedrus.c   |  6 +++
->> drivers/staging/media/sunxi/cedrus/cedrus.h   |  1 +
->> .../staging/media/sunxi/cedrus/cedrus_dec.c   |  2 +
->> .../staging/media/sunxi/cedrus/cedrus_h265.c  |  6 ++-
->> include/media/hevc-ctrls.h                    | 45 +++++++++++++++----
->> 6 files changed, 69 insertions(+), 17 deletions(-)
->>
->> diff --git a/drivers/media/v4l2-core/v4l2-ctrls.c b/drivers/media/v4l2-core/v4l2-ctrls.c
->> index 016cf6204cbb..4060b5bcc3c0 100644
->> --- a/drivers/media/v4l2-core/v4l2-ctrls.c
->> +++ b/drivers/media/v4l2-core/v4l2-ctrls.c
->> @@ -1028,6 +1028,7 @@ const char *v4l2_ctrl_get_name(u32 id)
->> 	case V4L2_CID_MPEG_VIDEO_HEVC_SPS:			return "HEVC Sequence Parameter Set";
->> 	case V4L2_CID_MPEG_VIDEO_HEVC_PPS:			return "HEVC Picture Parameter Set";
->> 	case V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS:		return "HEVC Slice Parameters";
->> +	case V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS:		return "HEVC Decode Parameters";
->> 	case V4L2_CID_MPEG_VIDEO_HEVC_DECODE_MODE:		return "HEVC Decode Mode";
->> 	case V4L2_CID_MPEG_VIDEO_HEVC_START_CODE:		return "HEVC Start Code";
->>
->> @@ -1482,6 +1483,9 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
->> 	case V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS:
->> 		*type = V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS;
->> 		break;
->> +	case V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS:
->> +		*type = V4L2_CTRL_TYPE_HEVC_DECODE_PARAMS;
->> +		break;
->> 	case V4L2_CID_UNIT_CELL_SIZE:
->> 		*type = V4L2_CTRL_TYPE_AREA;
->> 		*flags |= V4L2_CTRL_FLAG_READ_ONLY;
->> @@ -1833,6 +1837,7 @@ static int std_validate_compound(const struct v4l2_ctrl *ctrl, u32 idx,
->> 	struct v4l2_ctrl_hevc_sps *p_hevc_sps;
->> 	struct v4l2_ctrl_hevc_pps *p_hevc_pps;
->> 	struct v4l2_ctrl_hevc_slice_params *p_hevc_slice_params;
->> +	struct v4l2_ctrl_hevc_decode_params *p_hevc_decode_params;
->> 	struct v4l2_area *area;
->> 	void *p = ptr.p + idx * ctrl->elem_size;
->> 	unsigned int i;
->> @@ -2108,23 +2113,27 @@ static int std_validate_compound(const struct v4l2_ctrl *ctrl, u32 idx,
->> 		zero_padding(*p_hevc_pps);
->> 		break;
->>
->> -	case V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS:
->> -		p_hevc_slice_params = p;
->> +	case V4L2_CTRL_TYPE_HEVC_DECODE_PARAMS:
->> +		p_hevc_decode_params = p;
->>
->> -		if (p_hevc_slice_params->num_active_dpb_entries >
->> +		if (p_hevc_decode_params->num_active_dpb_entries >
->> 		    V4L2_HEVC_DPB_ENTRIES_NUM_MAX)
->> 			return -EINVAL;
->>
->> -		zero_padding(p_hevc_slice_params->pred_weight_table);
->> -
->> -		for (i = 0; i < p_hevc_slice_params->num_active_dpb_entries;
->> +		for (i = 0; i < p_hevc_decode_params->num_active_dpb_entries;
->> 		     i++) {
->> 			struct v4l2_hevc_dpb_entry *dpb_entry =
->> -				&p_hevc_slice_params->dpb[i];
->> +				&p_hevc_decode_params->dpb[i];
->>
->> 			zero_padding(*dpb_entry);
->> 		}
->>
->> +		break;
->> +
->> +	case V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS:
->> +		p_hevc_slice_params = p;
->> +
->> +		zero_padding(p_hevc_slice_params->pred_weight_table);
->> 		zero_padding(*p_hevc_slice_params);
->> 		break;
->>
->> @@ -2821,6 +2830,9 @@ static struct v4l2_ctrl *v4l2_ctrl_new(struct v4l2_ctrl_handler *hdl,
->> 	case V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS:
->> 		elem_size = sizeof(struct v4l2_ctrl_hevc_slice_params);
->> 		break;
->> +	case V4L2_CTRL_TYPE_HEVC_DECODE_PARAMS:
->> +		elem_size = sizeof(struct v4l2_ctrl_hevc_decode_params);
->> +		break;
->> 	case V4L2_CTRL_TYPE_AREA:
->> 		elem_size = sizeof(struct v4l2_area);
->> 		break;
->> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus.c b/drivers/staging/media/sunxi/cedrus/cedrus.c
->> index 7bd9291c8d5f..4cd3cab1a257 100644
->> --- a/drivers/staging/media/sunxi/cedrus/cedrus.c
->> +++ b/drivers/staging/media/sunxi/cedrus/cedrus.c
->> @@ -151,6 +151,12 @@ static const struct cedrus_control cedrus_controls[] = {
->> 		},
->> 		.codec		= CEDRUS_CODEC_VP8,
->> 	},
->> +	{
->> +		.cfg = {
->> +			.id = V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS,
->> +		},
->> +		.codec		= CEDRUS_CODEC_H265,
->> +	},
->> };
->>
->> #define CEDRUS_CONTROLS_COUNT	ARRAY_SIZE(cedrus_controls)
->> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus.h b/drivers/staging/media/sunxi/cedrus/cedrus.h
->> index 251a6a660351..2ca33ac38b9a 100644
->> --- a/drivers/staging/media/sunxi/cedrus/cedrus.h
->> +++ b/drivers/staging/media/sunxi/cedrus/cedrus.h
->> @@ -76,6 +76,7 @@ struct cedrus_h265_run {
->> 	const struct v4l2_ctrl_hevc_sps			*sps;
->> 	const struct v4l2_ctrl_hevc_pps			*pps;
->> 	const struct v4l2_ctrl_hevc_slice_params	*slice_params;
->> +	const struct v4l2_ctrl_hevc_decode_params	*decode_params;
->> };
->>
->> struct cedrus_vp8_run {
->> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_dec.c b/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
->> index a9090daf626a..cd821f417a14 100644
->> --- a/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
->> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
->> @@ -68,6 +68,8 @@ void cedrus_device_run(void *priv)
->> 			V4L2_CID_MPEG_VIDEO_HEVC_PPS);
->> 		run.h265.slice_params = cedrus_find_control_data(ctx,
->> 			V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS);
->> +		run.h265.decode_params = cedrus_find_control_data(ctx,
->> +			V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS);
->> 		break;
->>
->> 	case V4L2_PIX_FMT_VP8_FRAME:
->> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_h265.c b/drivers/staging/media/sunxi/cedrus/cedrus_h265.c
->> index ce497d0197df..dce5db6be13a 100644
->> --- a/drivers/staging/media/sunxi/cedrus/cedrus_h265.c
->> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_h265.c
->> @@ -245,6 +245,7 @@ static void cedrus_h265_setup(struct cedrus_ctx *ctx,
->> 	const struct v4l2_ctrl_hevc_sps *sps;
->> 	const struct v4l2_ctrl_hevc_pps *pps;
->> 	const struct v4l2_ctrl_hevc_slice_params *slice_params;
->> +	const struct v4l2_ctrl_hevc_decode_params *decode_params;
->> 	const struct v4l2_hevc_pred_weight_table *pred_weight_table;
->> 	dma_addr_t src_buf_addr;
->> 	dma_addr_t src_buf_end_addr;
->> @@ -256,6 +257,7 @@ static void cedrus_h265_setup(struct cedrus_ctx *ctx,
->> 	sps = run->h265.sps;
->> 	pps = run->h265.pps;
->> 	slice_params = run->h265.slice_params;
->> +	decode_params = run->h265.decode_params;
->> 	pred_weight_table = &slice_params->pred_weight_table;
->>
->> 	/* MV column buffer size and allocation. */
->> @@ -487,7 +489,7 @@ static void cedrus_h265_setup(struct cedrus_ctx *ctx,
->>
->> 	reg = VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_TC_OFFSET_DIV2(slice_params->slice_tc_offset_div2) |
->> 	      VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_BETA_OFFSET_DIV2(slice_params->slice_beta_offset_div2) |
->> -	      VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_POC_BIGEST_IN_RPS_ST(slice_params->num_rps_poc_st_curr_after == 0) |
->> +	      VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_POC_BIGEST_IN_RPS_ST(decode_params->num_rps_poc_st_curr_after == 0) |
->> 	      VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_CR_QP_OFFSET(slice_params->slice_cr_qp_offset) |
->> 	      VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_CB_QP_OFFSET(slice_params->slice_cb_qp_offset) |
->> 	      VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_QP_DELTA(slice_params->slice_qp_delta);
->> @@ -528,7 +530,7 @@ static void cedrus_h265_setup(struct cedrus_ctx *ctx,
->>
->> 	/* Write decoded picture buffer in pic list. */
->> 	cedrus_h265_frame_info_write_dpb(ctx, slice_params->dpb,
->> -					 slice_params->num_active_dpb_entries);
->> +					 decode_params->num_active_dpb_entries);
->>
->> 	/* Output frame. */
->>
->> diff --git a/include/media/hevc-ctrls.h b/include/media/hevc-ctrls.h
->> index b4cb2ef02f17..7fe704a08f77 100644
->> --- a/include/media/hevc-ctrls.h
->> +++ b/include/media/hevc-ctrls.h
->> @@ -19,6 +19,7 @@
->> #define V4L2_CID_MPEG_VIDEO_HEVC_SPS		(V4L2_CID_CODEC_BASE + 1008)
->> #define V4L2_CID_MPEG_VIDEO_HEVC_PPS		(V4L2_CID_CODEC_BASE + 1009)
->> #define V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS	(V4L2_CID_CODEC_BASE + 1010)
->> +#define V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS	(V4L2_CID_CODEC_BASE + 1012)
->> #define V4L2_CID_MPEG_VIDEO_HEVC_DECODE_MODE	(V4L2_CID_CODEC_BASE + 1015)
->> #define V4L2_CID_MPEG_VIDEO_HEVC_START_CODE	(V4L2_CID_CODEC_BASE + 1016)
->>
->> @@ -26,6 +27,7 @@
->> #define V4L2_CTRL_TYPE_HEVC_SPS 0x0120
->> #define V4L2_CTRL_TYPE_HEVC_PPS 0x0121
->> #define V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS 0x0122
->> +#define V4L2_CTRL_TYPE_HEVC_DECODE_PARAMS 0x0124
->>
->> enum v4l2_mpeg_video_hevc_decode_mode {
->> 	V4L2_MPEG_VIDEO_HEVC_DECODE_MODE_SLICE_BASED,
->> @@ -54,6 +56,9 @@ enum v4l2_mpeg_video_hevc_start_code {
->> /* The controls are not stable at the moment and will likely be reworked. */
->> struct v4l2_ctrl_hevc_sps {
->> 	/* ISO/IEC 23008-2, ITU-T Rec. H.265: Sequence parameter set */
->> +	__u8	video_parameter_set_id;
-> Whilst I don't object to the addition of vps id why do we need
-> it if the VPS is never passed?
+It is indeed something that people can get wrong with internal buses as 
+well - for example commit f2d9848aeb9f is such a workaround, also 
+conveniently illustrating the case of significant functionality having 
+to be disabled where the device *does* require 64-bit atomicity for 
+correctness.
 
-You are right I could remove it.
+Working around kernel I/O accessors is all very well, but another 
+concern for PCI in particular is when things like framebuffer memory can 
+get mmap'ed into userspace (or even memremap'ed within the kernel). Even 
+in AArch32, compiled code may result in 64-bit accesses being generated 
+depending on how the CPU and interconnect handle LDRD/STRD/LDM/STM/etc., 
+so it's basically not safe to ever let that happen at all.
 
->
->> +	__u8	seq_parameter_set_id;
->> +	__u8	chroma_format_idc;
->> 	__u16	pic_width_in_luma_samples;
->> 	__u16	pic_height_in_luma_samples;
->> 	__u8	bit_depth_luma_minus8;
->> @@ -74,9 +79,9 @@ struct v4l2_ctrl_hevc_sps {
->> 	__u8	log2_diff_max_min_pcm_luma_coding_block_size;
->> 	__u8	num_short_term_ref_pic_sets;
->> 	__u8	num_long_term_ref_pics_sps;
->> -	__u8	chroma_format_idc;
->>
->> -	__u8	padding;
->> +	__u8	num_slices;
->> +	__u8	padding[6];
->>
->> 	__u64	flags;
->> };
->> @@ -100,10 +105,15 @@ struct v4l2_ctrl_hevc_sps {
->> #define V4L2_HEVC_PPS_FLAG_PPS_DISABLE_DEBLOCKING_FILTER	(1ULL << 16)
->> #define V4L2_HEVC_PPS_FLAG_LISTS_MODIFICATION_PRESENT		(1ULL << 17)
->> #define V4L2_HEVC_PPS_FLAG_SLICE_SEGMENT_HEADER_EXTENSION_PRESENT (1ULL << 18)
->> +#define V4L2_HEVC_PPS_FLAG_DEBLOCKING_FILTER_CONTROL_PRESENT	(1ULL << 19)
->> +#define V4L2_HEVC_PPS_FLAG_UNIFORM_SPACING			(1ULL << 20)
->>
->> struct v4l2_ctrl_hevc_pps {
->> 	/* ISO/IEC 23008-2, ITU-T Rec. H.265: Picture parameter set */
->> +	__u8	pic_parameter_set_id;
->> 	__u8	num_extra_slice_header_bits;
->> +	__u8	num_ref_idx_l0_default_active_minus1;
->> +	__u8	num_ref_idx_l1_default_active_minus1;
->> 	__s8	init_qp_minus26;
->> 	__u8	diff_cu_qp_delta_depth;
->> 	__s8	pps_cb_qp_offset;
->> @@ -116,7 +126,7 @@ struct v4l2_ctrl_hevc_pps {
->> 	__s8	pps_tc_offset_div2;
->> 	__u8	log2_parallel_merge_level_minus2;
->>
->> -	__u8	padding[4];
->> +	__u8	padding;
->> 	__u64	flags;
->> };
->>
->> @@ -165,6 +175,10 @@ struct v4l2_ctrl_hevc_slice_params {
->> 	__u32	bit_size;
->> 	__u32	data_bit_offset;
->>
->> +	/* ISO/IEC 23008-2, ITU-T Rec. H.265: General slice segment header */
->> +	__u32	slice_segment_addr;
->> +	__u32	num_entry_point_offsets;
->> +
->> 	/* ISO/IEC 23008-2, ITU-T Rec. H.265: NAL unit header */
->> 	__u8	nal_unit_type;
->> 	__u8	nuh_temporal_id_plus1;
->> @@ -190,15 +204,13 @@ struct v4l2_ctrl_hevc_slice_params {
->> 	__u8	pic_struct;
->>
->> 	/* ISO/IEC 23008-2, ITU-T Rec. H.265: General slice segment header */
->> -	__u8	num_active_dpb_entries;
->> 	__u8	ref_idx_l0[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
->> 	__u8	ref_idx_l1[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
->>
->> -	__u8	num_rps_poc_st_curr_before;
->> -	__u8	num_rps_poc_st_curr_after;
->> -	__u8	num_rps_poc_lt_curr;
->> +	__u16	short_term_ref_pic_set_size;
->> +	__u16	long_term_ref_pic_set_size;
->>
->> -	__u8	padding;
->> +	__u8	padding[5];
->>
->> 	/* ISO/IEC 23008-2, ITU-T Rec. H.265: General slice segment header */
->> 	struct v4l2_hevc_dpb_entry dpb[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
->> @@ -209,4 +221,21 @@ struct v4l2_ctrl_hevc_slice_params {
->> 	__u64	flags;
->> };
->>
->> +#define V4L2_HEVC_DECODE_PARAM_FLAG_IRAP_PIC		0x1
->> +#define V4L2_HEVC_DECODE_PARAM_FLAG_IDR_PIC		0x2
->> +#define V4L2_HEVC_DECODE_PARAM_FLAG_NO_OUTPUT_OF_PRIOR  0x4
->> +
->> +struct v4l2_ctrl_hevc_decode_params {
->> +	__s32	pic_order_cnt_val;
->> +	__u8	num_active_dpb_entries;
->> +	struct	v4l2_hevc_dpb_entry dpb[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
->> +	__u8	num_rps_poc_st_curr_before;
->> +	__u8	num_rps_poc_st_curr_after;
->> +	__u8	num_rps_poc_lt_curr;
->> +	__u8	rps_st_curr_before[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
->> +	__u8	rps_st_curr_after[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
->> +	__u8	rps_lt_curr[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
->> +	__u64	flags;
->> +};
->> +
->> #endif
-> While you are adding stuff is there any chance you could also add:
->
-> #define V4L2_HEVC_SLICE_PARAMS_FLAG_DEPENDENT_SLICE_SEGMENT	(1ULL << 9)
->
-> to the slice flags?  The rpi H265 decoder needs it to deal with
-> cases where dependant_slice_segment is set in the slice header.
+Robin.
 
-Remarks on previous versions suggest to only add what it is used by driver
-(like scaling feature) so I will wait to have an usage of this flag to introduce it.
-
-Benjamin
-
->
-> Thanks
->
-> John Cox
->
+> 
+> Thoughts? Opinions? Is it overkill just for a single SoC?
+> 
+> Regards,
+> Nicolas
+> 
+> [1] https://github.com/raspberrypi/linux/issues/4158#issuecomment-782351510
+> [2] Things might get even weirder as the order in which the 32bit operations
+>      are performed might matter (low/high vs high/low).
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
