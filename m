@@ -2,117 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B4CF321D06
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 17:33:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7C8F321D20
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 17:37:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231794AbhBVQax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 11:30:53 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59502 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231940AbhBVQ3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 11:29:20 -0500
-Received: from [IPv6:2a01:e0a:4cb:a870:5956:412c:4850:9073] (unknown [IPv6:2a01:e0a:4cb:a870:5956:412c:4850:9073])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id E845C1F450A3;
-        Mon, 22 Feb 2021 16:28:33 +0000 (GMT)
-Subject: Re: [PATCH v2 4/9] media: uapi: Add a control for HANTRO driver
-To:     John Cox <jc@kynesim.co.uk>
-Cc:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, peng.fan@nxp.com,
-        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20210218191844.297869-1-benjamin.gaignard@collabora.com>
- <20210218191844.297869-5-benjamin.gaignard@collabora.com>
- <9ql73glgbnjaqqsp8ulqenae5n82kfk0o3@4ax.com>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Message-ID: <6364fa8a-db6a-af43-3660-7f0a7a3e0b79@collabora.com>
-Date:   Mon, 22 Feb 2021 17:28:30 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231226AbhBVQhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 11:37:07 -0500
+Received: from mx2.suse.de ([195.135.220.15]:42228 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230371AbhBVQhF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Feb 2021 11:37:05 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id BCC89AD6B;
+        Mon, 22 Feb 2021 16:36:21 +0000 (UTC)
+Message-ID: <59614491333fde94da880aed328a22f9ca49171a.camel@suse.de>
+Subject: Re: RPi4 can't deal with 64 bit PCI accesses
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Ard Biesheuvel <ardb@kernel.org>
+Cc:     linux-pci <linux-pci@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Robin Murphy <robin.murphy@arm.con>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>
+Date:   Mon, 22 Feb 2021 17:36:20 +0100
+In-Reply-To: <CAMj1kXG9ALnJcdzgv9805A91x-decqS1eq9oWi7Bb+pa3f6ErQ@mail.gmail.com>
+References: <c188698ca0de3ed6c56a0cf7880e1578aa753077.camel@suse.de>
+         <CAMj1kXG9ALnJcdzgv9805A91x-decqS1eq9oWi7Bb+pa3f6ErQ@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-/3eUJ0qgyJIjoTnHixDm"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
-In-Reply-To: <9ql73glgbnjaqqsp8ulqenae5n82kfk0o3@4ax.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Le 22/02/2021 à 17:16, John Cox a écrit :
->> The HEVC HANTRO driver needs to know the number of bits to skip at
->> the beginning of the slice header.
->> That is a hardware specific requirement so create a dedicated control
->> that this purpose.
->>
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->> include/uapi/linux/hantro-v4l2-controls.h | 20 ++++++++++++++++++++
->> include/uapi/linux/v4l2-controls.h        |  5 +++++
->> 2 files changed, 25 insertions(+)
->> create mode 100644 include/uapi/linux/hantro-v4l2-controls.h
->>
->> diff --git a/include/uapi/linux/hantro-v4l2-controls.h b/include/uapi/linux/hantro-v4l2-controls.h
->> new file mode 100644
->> index 000000000000..30b1999b7af3
->> --- /dev/null
->> +++ b/include/uapi/linux/hantro-v4l2-controls.h
->> @@ -0,0 +1,20 @@
->> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
->> +
->> +#ifndef __UAPI_HANTRO_V4L2_CONYTROLS_H__
->> +#define __UAPI_HANTRO_V4L2_CONYTROLS_H__
->> +
->> +#include <linux/v4l2-controls.h>
->> +#include <media/hevc-ctrls.h>
->> +
->> +#define V4L2_CID_HANTRO_HEVC_EXTRA_DECODE_PARAMS	(V4L2_CID_USER_HANTRO_BASE + 0)
->> +
->> +/**
->> + * struct hantro_hevc_extra_decode_params - extra decode parameters for hantro driver
->> + * @hevc_hdr_skip_lenght:	header first bits offset
->> + */
->> +struct hantro_hevc_extra_decode_params {
->> +	__u32	hevc_hdr_skip_lenght;
->> +	__u8	padding[4];
->> +};
-> Can you clarify how hevc_hdr_skip_length differs from
-> v4l2_ctrl_hevc_slice_params.data_bit_offset?  At first sight they would
-> appear to be very similar.
+--=-/3eUJ0qgyJIjoTnHixDm
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-hevc_hdr_skip_length is the difference between the start positions of 2 nals.
-v4l2_ctrl_hevc_slice_params.data_bit_offset is the offset of the data in the nal.
+On Mon, 2021-02-22 at 17:18 +0100, Ard Biesheuvel wrote:
+> On Mon, 22 Feb 2021 at 16:48, Nicolas Saenz Julienne
+> <nsaenzjulienne@suse.de> wrote:
+> >=20
+> > Hi everyone,
+> > Raspberry Pi 4, a 64bit arm system on chip, contains a PCIe bus that ca=
+n't
+> > handle 64bit accesses to its MMIO address space, in other words, writeq=
+() has
+> > to be split into two distinct writel() operations. This isn't ideal, as=
+ it
+> > misrepresents PCI's promise of being able to treat device memory as reg=
+ular
+> > memory, ultimately breaking a bunch of PCI device drivers[1].
+> >=20
+> > I'd like to have a go at fixing this in a way that can be distributed i=
+n a
+> > generic distro without prejudice to other users.
+> >=20
+> > AFAIK there is no way to detect this limitation through generic PCIe
+> > capabilities, so one solution would be to expose it through firmware
+> > (devicetree in this case), and pass the limitations through 'struct dev=
+ice' so
+> > as for the drivers to choose the right access method in a way that does=
+n't
+> > affect performance much[2]. All in all, most of this doesn't need to be
+> > PCI-centric as the property could be applied to any MMIO bus.
+> >=20
+> > Thoughts? Opinions? Is it overkill just for a single SoC?
+> >=20
+>=20
+> Hi Nicolas,
+>=20
+> How does this issue manifest itself? There are other PCIe RC
+
+Only the low bits would get written/read, as for the high bits I can't reca=
+ll
+if they were corrupted or simply ignored (I experienced this some time ago
+while bringing up RPi's PCIe in u-boot).
+
+> implementations suffering from the same issue, and some of the drivers
+> in Linux already work around this, by using split accesses. Look at
+> this one, for instance:
+>=20
+> a310acd7a7ea ("NVMe: use split lo_hi_{read,write}q")
+>=20
+> which switches NVMe to lo_hi_readq, which appears to be used in quite
+> a few other places as well.
+
+Indeed, XHCI does this unanimously too. But I figured forcing the split on =
+all
+drivers woudln't be a very popular solution just for RPi's 'faulty' bus. Bu=
+t if
+it turns out to be a common problem, I guess it isn't such a bad idea.
+
+Regards,
+Nicolas
 
 
-Benjamin
+--=-/3eUJ0qgyJIjoTnHixDm
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
->
-> Regards
->
-> John Cox
->
->> +#endif
->> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
->> index 039c0d7add1b..ced7486c7f46 100644
->> --- a/include/uapi/linux/v4l2-controls.h
->> +++ b/include/uapi/linux/v4l2-controls.h
->> @@ -209,6 +209,11 @@ enum v4l2_colorfx {
->>   * We reserve 128 controls for this driver.
->>   */
->> #define V4L2_CID_USER_CCS_BASE			(V4L2_CID_USER_BASE + 0x10f0)
->> +/*
->> + * The base for HANTRO driver controls.
->> + * We reserve 32 controls for this driver.
->> + */
->> +#define V4L2_CID_USER_HANTRO_BASE		(V4L2_CID_USER_BASE + 0x1170)
->>
->> /* MPEG-class control IDs */
->> /* The MPEG controls are applicable to all codec controls
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmAz3YQACgkQlfZmHno8
+x/6+bwgAtQQB7BFFx626W9Zk5QszVH6YZxzZrDGwB2TG4Xkgh0ixcftzjjugP1ZD
+AVQ/i6vKhhSHkWi4iZTQZ6TVoH799j6+yc3B3UxPbbKvnz0Raz4VBnn+3MfvIdet
+IkiPada9iNO9PpiAayopcctVcXSm9Fy7joq9fecDNkf3ze6iBxU+0kawi+j2CLAW
+oTjTFCkoHoI0kh/EHAkjjbsVoouewn/J+p8x3UBJpkINv91xoao/FCslwkNuK+cn
+gKO6/MCzbUUFSsC/l3wMRSIwvZSPMNKaInv8f8Ly0Ur6zgbne4uhpSHe31MHMVFB
+rWUfPfsjzF9qXD2E0H9mw72AODji0A==
+=h3kV
+-----END PGP SIGNATURE-----
+
+--=-/3eUJ0qgyJIjoTnHixDm--
+
