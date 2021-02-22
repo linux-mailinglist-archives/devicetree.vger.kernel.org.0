@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 863333215A8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 13:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3533215AB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 13:04:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbhBVMDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 07:03:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55834 "EHLO
+        id S229991AbhBVMEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 07:04:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229863AbhBVMDw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 07:03:52 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D7BBC061786
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 04:03:12 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id p5so2728205plo.4
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 04:03:12 -0800 (PST)
+        with ESMTP id S229967AbhBVMD5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 07:03:57 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C49C06178B
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 04:03:17 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id c19so8371270pjq.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 04:03:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=RN+J/cQ3UYA8vDbFfio0gcTzGBY9lrHpdeKD2Fs7CY8=;
-        b=dnQirMY5XNWssjV5xFor/9+hdJe4/wfpv97ncukvlQAzGaPfy9ro0xc81E3lQEfqRX
-         nb/0G0CQ1GQFisu4YekJ+WITrBoTYF5V6CEXVo7tpB4/fUFxxcpKuHpJQhKoVr/QqoMt
-         PCbi01ymtzy4fT7/69m3M8rODxX9INJ+JLQsAkhMMQRBLx3UFXph733iUaJbEaKJaf4a
-         DpuUKoEWPcWTB5LMP6q7h2Sr1kOb5dVtP7lBIYy/9Bf+/ykXlmBZdTrh2PoF/7kMHepZ
-         1EbdWAuQ9qPelQQcHoQZ9O3m1p9JvhpqboG9ubF2GldaeFjrlOY9x4HcpSuKmn1Pw5Ih
-         Xm0A==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=bfZTeA+Jde84B+GicbEWi+k/3jsa4kFVqHGVsksw8n4=;
+        b=xX13pPVBHE1S3IpqseDa3UL5xHd8s9ggTbKjQ2G961QjAm6mIRpW6OX2akRooT5buT
+         RvQJpPtJAlRLfIBZZ703B0dzbr6Bs1e/WB3f52FqikZ4Wfb9syDPLIxUvTxgJEGCyOS3
+         yXAspeJvUcBdJv3Oe1jLl9GH6X9uVIE5swdJG4dSl61WEaT9z8Bfasac3J5NkVLGoRoN
+         bB/5dN9DUv5qIc1atatzwyYnsRPj3TIo0prmGZv18GI1D2O7ut1q8j8OKPpOMLvDsYKp
+         cSM7RzCmiN6bSLYnt6Dyihe/e7EiRMdmeiFiXscuIMEV71RrkDgc4f5JeEIk3J1SNU/2
+         sdDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=RN+J/cQ3UYA8vDbFfio0gcTzGBY9lrHpdeKD2Fs7CY8=;
-        b=Bzj+yksN8MCmBRT6qqsautZCe1i5BqjFuuqhVHKLfSFxHqh3p/Cq7CwBsHQIQX+DyL
-         7MLZ4L4bfMXx2CeyFvMqZNg0+AEDznF2GZHkFU3FRSTWSLL1c5t01a4jd+YmeS3GZ4Bm
-         h4gr6J2x1Tbpm/qRg0gXQ1T4smP34/5SuDpSxHDoRRnbjtluJ7vpYCrOG2eITX/Vd4iY
-         41t6mAraMqj3l1xfpG1savWaek2nqE2DuZNZSVNu0klb16mHbnD6+BcZtMz02WeU89oD
-         lOQOVASRUIzOp7OdpZ6/zqomNBm5qtTspKDXSbj3h/JRDUJGq5B16tRf4HWSzPCkHU8t
-         zOmg==
-X-Gm-Message-State: AOAM531BKo3yx38dAh7CtfaVwBEjfFT/pSh/cPRNlt5dijTivsQ8X2La
-        aMQBvXOVsUmsVYEi3/TwGwpg
-X-Google-Smtp-Source: ABdhPJxyO+GrVKVH43RmyAk94dqCfrZLr6eaBqYt8ot+9/AYZLVN3rjsFb2r8BHf3f9aIJetks2D1Q==
-X-Received: by 2002:a17:90a:b28a:: with SMTP id c10mr23173772pjr.39.1613995391573;
-        Mon, 22 Feb 2021 04:03:11 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=bfZTeA+Jde84B+GicbEWi+k/3jsa4kFVqHGVsksw8n4=;
+        b=kazMHEFYmMbYYGNeiHRU4dqEDvH6PxFx+H9diEI4jZmNTD6StYQUQbpB3chFUVsTxQ
+         RmEkBi/OWNBGyCYsVq7sVGRPp/X2zyEpfWbW/OUocaD074uuKDrGhq/iBfhYpV63kL5p
+         1fEawxFB4vlnP4kYszRljSfU77g8WlpDB4+U8FNVcZu5kCtTC7XR51rXx+0BXI2/xA76
+         LlgvHBFoGmUmHBYwN+1J6+v6HJSFM/BAeC2A57hTtMEeu5RGre6rNH2WZStJlg2a/miU
+         ZhepFh+VExDtNmZDPk22PkMsNnEo9bHipiIN1IaCXB2rgOYLNu74HwhbX+4enkI5dBWH
+         RtFQ==
+X-Gm-Message-State: AOAM5339cKYtw+SAu4Gd7S0TYZIcNkKvGCmk+P7QRLTNLfwCYqjsZOJ+
+        sh5g1FWt+95LHgvfy3gNTwfDmPqWks3m
+X-Google-Smtp-Source: ABdhPJw182LwYwQZ0ySOWWOa2L243+OZrXO8bVoORSOgu2R37DuZpYWvCRzucDGi6VAPpwBkGXtjWg==
+X-Received: by 2002:a17:90a:2c9:: with SMTP id d9mr23231254pjd.67.1613995396699;
+        Mon, 22 Feb 2021 04:03:16 -0800 (PST)
 Received: from localhost.localdomain ([2409:4072:6215:cc7b:cb8f:abf4:d1c9:3864])
-        by smtp.gmail.com with ESMTPSA id g17sm17017221pfh.14.2021.02.22.04.03.06
+        by smtp.gmail.com with ESMTPSA id g17sm17017221pfh.14.2021.02.22.04.03.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Feb 2021 04:03:10 -0800 (PST)
+        Mon, 22 Feb 2021 04:03:16 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
         robh+dt@kernel.org
@@ -54,42 +54,378 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         boris.brezillon@collabora.com,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 0/3] Add support for secure regions in Qcom NANDc driver
-Date:   Mon, 22 Feb 2021 17:32:56 +0530
-Message-Id: <20210222120259.94465-1-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: mtd: Convert Qcom NANDc binding to YAML
+Date:   Mon, 22 Feb 2021 17:32:57 +0530
+Message-Id: <20210222120259.94465-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210222120259.94465-1-manivannan.sadhasivam@linaro.org>
+References: <20210222120259.94465-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On a typical end product, a vendor may choose to secure some regions in
-the NAND memory which are supposed to stay intact between FW upgrades.
-The access to those regions will be blocked by a secure element like
-Trustzone. So the normal world software like Linux kernel should not
-touch these regions (including reading).
+Convert Qcom NANDc devicetree binding to YAML.
 
-So this series adds a property for declaring such secure regions in DT
-so that the driver can skip touching them. While at it, the DT binding
-is also converted to YAML format.
-
-Thanks,
-Mani
-
-Manivannan Sadhasivam (3):
-  dt-bindings: mtd: Convert Qcom NANDc binding to YAML
-  dt-bindings: mtd: Add a property to declare secure regions in Qcom
-    NANDc
-  mtd: rawnand: qcom: Add support for secure regions in NAND memory
-
- .../devicetree/bindings/mtd/qcom,nandc.yaml   | 203 ++++++++++++++++++
- .../devicetree/bindings/mtd/qcom_nandc.txt    | 142 ------------
- drivers/mtd/nand/raw/qcom_nandc.c             |  72 ++++++-
- 3 files changed, 266 insertions(+), 151 deletions(-)
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ .../devicetree/bindings/mtd/qcom,nandc.yaml   | 196 ++++++++++++++++++
+ .../devicetree/bindings/mtd/qcom_nandc.txt    | 142 -------------
+ 2 files changed, 196 insertions(+), 142 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
  delete mode 100644 Documentation/devicetree/bindings/mtd/qcom_nandc.txt
 
+diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+new file mode 100644
+index 000000000000..84ad7ff30121
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+@@ -0,0 +1,196 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/qcom,nandc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm NAND controller
++
++maintainers:
++  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
++
++properties:
++  compatible:
++    enum:
++      - qcom,ipq806x-nand
++      - qcom,ipq4019-nand
++      - qcom,ipq6018-nand
++      - qcom,ipq8074-nand
++      - qcom,sdx55-nand
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Core Clock
++      - description: Always ON Clock
++
++  clock-names:
++    items:
++      - const: core
++      - const: aon
++
++  "#address-cells": true
++  "#size-cells": true
++
++patternProperties:
++  "^nand@[a-f0-9]$":
++    type: object
++    properties:
++      nand-bus-width:
++        const: 8
++
++      nand-ecc-strength:
++        enum: [1, 4, 8]
++
++      nand-ecc-step-size:
++        enum:
++          - 512
++
++allOf:
++  - $ref: "nand-controller.yaml#"
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: qcom,ipq806x-nand
++    then:
++      properties:
++        dmas:
++          items:
++            - description: rxtx DMA channel
++
++        dma-names:
++          items:
++            - const: rxtx
++
++        qcom,cmd-crci:
++          $ref: /schemas/types.yaml#/definitions/uint32
++          description:
++            Must contain the ADM command type CRCI block instance number
++            specified for the NAND controller on the given platform
++
++        qcom,data-crci:
++          $ref: /schemas/types.yaml#/definitions/uint32
++          description:
++            Must contain the ADM data type CRCI block instance number
++            specified for the NAND controller on the given platform
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,ipq4019-nand
++              - qcom,ipq6018-nand
++              - qcom,ipq8074-nand
++              - qcom,sdx55-nand
++
++    then:
++      properties:
++        dmas:
++          items:
++            - description: tx DMA channel
++            - description: rx DMA channel
++            - description: cmd DMA channel
++
++        dma-names:
++          items:
++            - const: tx
++            - const: rx
++            - const: cmd
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
++    nand-controller@1ac00000 {
++      compatible = "qcom,ipq806x-nand";
++      reg = <0x1ac00000 0x800>;
++
++      clocks = <&gcc EBI2_CLK>,
++               <&gcc EBI2_AON_CLK>;
++      clock-names = "core", "aon";
++
++      dmas = <&adm_dma 3>;
++      dma-names = "rxtx";
++      qcom,cmd-crci = <15>;
++      qcom,data-crci = <3>;
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      nand@0 {
++        reg = <0>;
++
++        nand-ecc-strength = <4>;
++        nand-bus-width = <8>;
++
++        partitions {
++          compatible = "fixed-partitions";
++          #address-cells = <1>;
++          #size-cells = <1>;
++
++          partition@0 {
++            label = "boot-nand";
++            reg = <0 0x58a0000>;
++          };
++
++          partition@58a0000 {
++            label = "fs-nand";
++            reg = <0x58a0000 0x4000000>;
++          };
++        };
++      };
++    };
++
++    #include <dt-bindings/clock/qcom,gcc-ipq4019.h>
++    nand-controller@79b0000 {
++      compatible = "qcom,ipq4019-nand";
++      reg = <0x79b0000 0x1000>;
++
++      clocks = <&gcc GCC_QPIC_CLK>,
++               <&gcc GCC_QPIC_AHB_CLK>;
++      clock-names = "core", "aon";
++
++      dmas = <&qpicbam 0>,
++             <&qpicbam 1>,
++             <&qpicbam 2>;
++      dma-names = "tx", "rx", "cmd";
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      nand@0 {
++        reg = <0>;
++        nand-ecc-strength = <4>;
++        nand-bus-width = <8>;
++
++        partitions {
++          compatible = "fixed-partitions";
++          #address-cells = <1>;
++          #size-cells = <1>;
++
++          partition@0 {
++            label = "boot-nand";
++            reg = <0 0x58a0000>;
++          };
++
++          partition@58a0000 {
++            label = "fs-nand";
++            reg = <0x58a0000 0x4000000>;
++          };
++        };
++      };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/mtd/qcom_nandc.txt b/Documentation/devicetree/bindings/mtd/qcom_nandc.txt
+deleted file mode 100644
+index 5647913d8837..000000000000
+--- a/Documentation/devicetree/bindings/mtd/qcom_nandc.txt
++++ /dev/null
+@@ -1,142 +0,0 @@
+-* Qualcomm NAND controller
+-
+-Required properties:
+-- compatible:		must be one of the following:
+-    * "qcom,ipq806x-nand" - for EBI2 NAND controller being used in IPQ806x
+-			    SoC and it uses ADM DMA
+-    * "qcom,ipq4019-nand" - for QPIC NAND controller v1.4.0 being used in
+-                            IPQ4019 SoC and it uses BAM DMA
+-    * "qcom,ipq6018-nand" - for QPIC NAND controller v1.5.0 being used in
+-                            IPQ6018 SoC and it uses BAM DMA
+-    * "qcom,ipq8074-nand" - for QPIC NAND controller v1.5.0 being used in
+-                            IPQ8074 SoC and it uses BAM DMA
+-    * "qcom,sdx55-nand"   - for QPIC NAND controller v2.0.0 being used in
+-                            SDX55 SoC and it uses BAM DMA
+-
+-- reg:			MMIO address range
+-- clocks:		must contain core clock and always on clock
+-- clock-names:		must contain "core" for the core clock and "aon" for the
+-			always on clock
+-
+-EBI2 specific properties:
+-- dmas:			DMA specifier, consisting of a phandle to the ADM DMA
+-			controller node and the channel number to be used for
+-			NAND. Refer to dma.txt and qcom_adm.txt for more details
+-- dma-names:		must be "rxtx"
+-- qcom,cmd-crci:	must contain the ADM command type CRCI block instance
+-			number specified for the NAND controller on the given
+-			platform
+-- qcom,data-crci:	must contain the ADM data type CRCI block instance
+-			number specified for the NAND controller on the given
+-			platform
+-
+-QPIC specific properties:
+-- dmas:			DMA specifier, consisting of a phandle to the BAM DMA
+-			and the channel number to be used for NAND. Refer to
+-			dma.txt, qcom_bam_dma.txt for more details
+-- dma-names:		must contain all 3 channel names : "tx", "rx", "cmd"
+-- #address-cells:	<1> - subnodes give the chip-select number
+-- #size-cells:		<0>
+-
+-* NAND chip-select
+-
+-Each controller may contain one or more subnodes to represent enabled
+-chip-selects which (may) contain NAND flash chips. Their properties are as
+-follows.
+-
+-Required properties:
+-- reg:			a single integer representing the chip-select
+-			number (e.g., 0, 1, 2, etc.)
+-- #address-cells:	see partition.txt
+-- #size-cells:		see partition.txt
+-
+-Optional properties:
+-- nand-bus-width:	see nand-controller.yaml
+-- nand-ecc-strength:	see nand-controller.yaml. If not specified, then ECC strength will
+-			be used according to chip requirement and available
+-			OOB size.
+-
+-Each nandcs device node may optionally contain a 'partitions' sub-node, which
+-further contains sub-nodes describing the flash partition mapping. See
+-partition.txt for more detail.
+-
+-Example:
+-
+-nand-controller@1ac00000 {
+-	compatible = "qcom,ipq806x-nand";
+-	reg = <0x1ac00000 0x800>;
+-
+-	clocks = <&gcc EBI2_CLK>,
+-		 <&gcc EBI2_AON_CLK>;
+-	clock-names = "core", "aon";
+-
+-	dmas = <&adm_dma 3>;
+-	dma-names = "rxtx";
+-	qcom,cmd-crci = <15>;
+-	qcom,data-crci = <3>;
+-
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	nand@0 {
+-		reg = <0>;
+-
+-		nand-ecc-strength = <4>;
+-		nand-bus-width = <8>;
+-
+-		partitions {
+-			compatible = "fixed-partitions";
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-
+-			partition@0 {
+-				label = "boot-nand";
+-				reg = <0 0x58a0000>;
+-			};
+-
+-			partition@58a0000 {
+-				label = "fs-nand";
+-				reg = <0x58a0000 0x4000000>;
+-			};
+-		};
+-	};
+-};
+-
+-nand-controller@79b0000 {
+-	compatible = "qcom,ipq4019-nand";
+-	reg = <0x79b0000 0x1000>;
+-
+-	clocks = <&gcc GCC_QPIC_CLK>,
+-		<&gcc GCC_QPIC_AHB_CLK>;
+-	clock-names = "core", "aon";
+-
+-	dmas = <&qpicbam 0>,
+-		<&qpicbam 1>,
+-		<&qpicbam 2>;
+-	dma-names = "tx", "rx", "cmd";
+-
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	nand@0 {
+-		reg = <0>;
+-		nand-ecc-strength = <4>;
+-		nand-bus-width = <8>;
+-
+-		partitions {
+-			compatible = "fixed-partitions";
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-
+-			partition@0 {
+-				label = "boot-nand";
+-				reg = <0 0x58a0000>;
+-			};
+-
+-			partition@58a0000 {
+-				label = "fs-nand";
+-				reg = <0x58a0000 0x4000000>;
+-			};
+-		};
+-	};
+-};
 -- 
 2.25.1
 
