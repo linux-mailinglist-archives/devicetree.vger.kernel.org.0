@@ -2,129 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EEA232147F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 11:55:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0D103214B6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 12:05:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230430AbhBVKwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 05:52:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40502 "EHLO
+        id S230306AbhBVLFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 06:05:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230396AbhBVKwV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 05:52:21 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE63C061786
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 02:51:41 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id l18so8769023pji.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 02:51:41 -0800 (PST)
+        with ESMTP id S230270AbhBVLFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 06:05:02 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE45C06174A
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 03:04:22 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id n4so18621916wrx.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 03:04:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Lkr5dLB81IFIdhy/pc7K0qClWqgFlqG2/UfbKnqJ/Mc=;
-        b=QCiiwxLXYga89au9LkJdz/Is5odVu9UG1SSkl44ZNcl81AGd6NHHVgfaFFArnLlYHB
-         3F4uGoL/hy/wbnt1r+zpy6ZHJbooU2zRW3X9udEu2o4TnCA5pwAffx9DbCLEYuVKeKM6
-         Ejr53M0RaucEG8HWEs7aUCgO8i88X3atiDP5gx5ipextCj6TIi7vN8olyMC76OaLxbsA
-         ADl+tdz4hEIR5CZgqbwE52E99x11oPncRx+AbZRoiadhPeqAu3Bkb+JjyVG0j52Rfq3u
-         9dfgyvdYaEer/4Ll0SWOiF5FGoZfWG5vmlmql3pRw7ADgsX4pkS2HqdOjldRvOM1uxyl
-         /Fhw==
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=w6npELERY6rB3Dp9A7WDHsdNDwVeXG2MhW1a6MllviU=;
+        b=AGxhojrCDx89PT+ATbFNrC9o05X4CdmNDewjWlY4kRAotuz6K4g8lTe6F7MI7TAsd/
+         t1UhE4GmUc8UU2jRgOT0UAim4SDtwchNBcEbJ2sIByMB5Tz+tmZ+4ScgArPT/rJ8b4p3
+         ktA6fXbESdmdl6LnOCWbo/LB1Vwth9A4NTM7YLsuGSRnNz2GRmy1Xm4dL4KHhs/rNzzY
+         WwrSZ3pPjl4Jfc5qxHuPLE66PdyE5HIjrFQ18myghhwepi7VO5/ZOpnlmktzJrlhgp20
+         vR0P9zbdP1TmxvGqisnhieWerU/Zekskp/sE9zs/6zhpfmIcWerjSFCzxJMYQsLcOV+M
+         XCqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Lkr5dLB81IFIdhy/pc7K0qClWqgFlqG2/UfbKnqJ/Mc=;
-        b=jssk3FjBr7lgOI12unfRxbF85AHOzKQGrxLeX8brX7cO/8HcumXf9S1wuABY3Q6vuD
-         SjTrvK+ztffioT7r4az7ime5VIsC06uSdSNRjATGinkew+Mf9vn5B9b4J+gUitLMvasE
-         QGHVAU9PDcjY135QyvSPwGpJW2BYa74WOGALW6aUpRjyUjV2lEmcsTnAxbQ3lpiGVQ4f
-         PvDuS9doF8xu3lmpw8BvaZEGKVtEruCz0JOTKBMZRAZXoBmTiNImvyqSmSX26zzWfZX7
-         OuK+TVD+sW2v35sdgrpwBwBANDAfCxZ/ro4jHuhbvntsja0NePYu9MYd9XZgO6ltkiiY
-         3e5w==
-X-Gm-Message-State: AOAM532sEQF9geFZ/pWYPPhkboUwyl7FA6plDzU+WHVeVXy0h6t5KdUO
-        Kum+9cwB2iG5N5uIDleqfw2TEoOR18zFQHHse5shXw==
-X-Google-Smtp-Source: ABdhPJw4LMP0wd3rtHSJG+Yixa6wpQx6JYuOQu44s0vFN6qaW+pwWtVIYdWrY3lPccnJdJlaB4FpZ6rQLmMMhDM/DY4=
-X-Received: by 2002:a17:902:b610:b029:e3:2b1e:34ff with SMTP id
- b16-20020a170902b610b02900e32b1e34ffmr14279977pls.69.1613991100602; Mon, 22
- Feb 2021 02:51:40 -0800 (PST)
-MIME-Version: 1.0
-References: <20210217112122.424236-1-robert.foss@linaro.org>
- <20210217112122.424236-2-robert.foss@linaro.org> <39f17656195110cc5298f53840ca02f790d7e4af.camel@ndufresne.ca>
-In-Reply-To: <39f17656195110cc5298f53840ca02f790d7e4af.camel@ndufresne.ca>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Mon, 22 Feb 2021 11:51:29 +0100
-Message-ID: <CAG3jFyvNigAZrwAEQOvKac2Sdu5rjtBDWrMjwhXkMmDpZXBUDg@mail.gmail.com>
-Subject: Re: [PATCH v5 01/22] media: camss: Fix vfe_isr_comp_done() documentation
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=w6npELERY6rB3Dp9A7WDHsdNDwVeXG2MhW1a6MllviU=;
+        b=tGSRKS5Fc69+2ehubfrCatgm+jDR6jEs9w0gkAdgMqUE8A7wZm9uk2c75BEMn3N0at
+         rMOEujXWiKkK8a/FcTvaU48E5vw2efj4/CxhjjuaV06dUkNPnvS0Rvw/6q5VvLp178kT
+         wYiO4BWK1x2E4LhXkmmK02NutsnapRFlV7IA1LbcGrPtsNtLToW5IcH5cPCwePwZOICH
+         zkH2HkcOuAI4Z7+tb4E5Yc1MWqanLdI2kQPkxGcx5Kn1Vse2ztKLJMSrK02bKpNfEUdg
+         1xg3LErmxIDxDbPy7ufmc3iz4FtEcGGS7HZh2FtvMhkeI3Z9A2IPIdCT2fb+g6CUHJVD
+         kV8Q==
+X-Gm-Message-State: AOAM530IiEEPruKYpgLsBnb0yE5fYyYfCWl2knA1WoKEB/+WOsKISer1
+        AqXTLn18dqwzQNMtMjDoFV06jA==
+X-Google-Smtp-Source: ABdhPJxgFDcmq5dsILmm6KR9g+MsM/rBJTmBsyfH/l7oU2+CjNz1rIn8Osx2uhrrwoGXu4U3HE8c4w==
+X-Received: by 2002:a5d:6148:: with SMTP id y8mr21007272wrt.238.1613991859512;
+        Mon, 22 Feb 2021 03:04:19 -0800 (PST)
+Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
+        by smtp.gmail.com with ESMTPSA id z21sm20005568wma.29.2021.02.22.03.04.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Feb 2021 03:04:19 -0800 (PST)
+Date:   Mon, 22 Feb 2021 11:04:16 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Sean Christopherson <seanjc@google.com>
+Cc:     Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        angelogioacchino.delregno@somainline.org,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonathan Marek <jonathan@marek.ca>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, android-kvm@google.com,
+        linux-kernel@vger.kernel.org, kernel-team@android.com,
+        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
+        Fuad Tabba <tabba@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Brazdil <dbrazdil@google.com>
+Subject: Re: [RFC PATCH v2 16/26] KVM: arm64: Prepare Hyp memory protection
+Message-ID: <YDOPsBG7dPD2M3Xm@google.com>
+References: <20210108121524.656872-1-qperret@google.com>
+ <20210108121524.656872-17-qperret@google.com>
+ <20210203143709.GA18907@willie-the-truck>
+ <YDAEWu7RkG1OBFed@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YDAEWu7RkG1OBFed@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Feb 2021 at 22:05, Nicolas Dufresne <nicolas@ndufresne.ca> wrote=
-:
->
-> Hi Robert,
->
-> not really a review, but I noticed ....
->
-> Le mercredi 17 f=C3=A9vrier 2021 =C3=A0 12:21 +0100, Robert Foss a =C3=A9=
-crit :
-> > Function name is comment is wrong, and was changed to be
->
->                 in
+Hi Sean,
 
-Thanks bud!
+On Friday 19 Feb 2021 at 10:32:58 (-0800), Sean Christopherson wrote:
+> On Wed, Feb 03, 2021, Will Deacon wrote:
+> > On Fri, Jan 08, 2021 at 12:15:14PM +0000, Quentin Perret wrote:
+> 
+> ...
+> 
+> > > +static inline unsigned long hyp_s1_pgtable_size(void)
+> > > +{
+> 
+> ...
+> 
+> > > +		res += nr_pages << PAGE_SHIFT;
+> > > +	}
+> > > +
+> > > +	/* Allow 1 GiB for private mappings */
+> > > +	nr_pages = (1 << 30) >> PAGE_SHIFT;
+> > 
+> > SZ_1G >> PAGE_SHIFT
+> 
+> Where does the 1gb magic number come from?
 
->
-> > the same as the actual function name.
-> >
-> > The comment was changed to kerneldoc format.
-> >
-> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> > ---
-> >
-> > Changes since v1
-> >  - Bjorn: Fix function doc name & use kerneldoc format
-> >
-> >
-> >  drivers/media/platform/qcom/camss/camss-vfe.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c
-> > b/drivers/media/platform/qcom/camss/camss-vfe.c
-> > index fae2b513b2f9..94c9ca7d5cbb 100644
-> > --- a/drivers/media/platform/qcom/camss/camss-vfe.c
-> > +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
-> > @@ -1076,8 +1076,8 @@ static void vfe_isr_wm_done(struct vfe_device *vf=
-e, u8
-> > wm)
-> >         spin_unlock_irqrestore(&vfe->output_lock, flags);
-> >  }
-> >
-> > -/*
-> > - * vfe_isr_wm_done - Process composite image done interrupt
-> > +/**
-> > + * vfe_isr_comp_done() - Process composite image done interrupt
-> >   * @vfe: VFE Device
-> >   * @comp: Composite image id
-> >   */
->
->
+Admittedly it is arbitrary. It needs to be enough to cover all the
+so-called 'private' mappings that EL2 needs, and which can vary a little
+depending on the hardware.
+
+> IIUC, this is calculating the number
+> of pages needed for the hypervisor's Stage-1 page tables.
+
+Correct. The thing worth noting is that the hypervisor VA space is
+essentially split in half. One half is reserved to map portions of
+memory with a fixed offset, and the other half is used for a whole bunch
+of other things: we have a vmemmap, the 'private' mappings and the idmap
+page.
+
+> The amount of memory
+> needed for those page tables should be easily calculated
+
+As mentioned above, that is true for pretty much everything in the hyp
+VA space except the private mappings as that depends on e.g. the CPU
+uarch and such.
+
+> and assuming huge pages can be used, should be far less the 1gb.
+
+Ack, though this is no supported for the EL2 mappings yet. Historically
+the amount of contiguous portions of memory mapped at EL2 has been
+rather small, so there wasn't really a need, but we might want to
+revisit this at some point.
+
+> > > +	nr_pages = __hyp_pgtable_max_pages(nr_pages);
+> > > +	res += nr_pages << PAGE_SHIFT;
+> > > +
+> > > +	return res;
+> 
+> ...
+> 
+> > > +void __init kvm_hyp_reserve(void)
+> > > +{
+> > > +	u64 nr_pages, prev;
+> > > +
+> > > +	if (!is_hyp_mode_available() || is_kernel_in_hyp_mode())
+> > > +		return;
+> > > +
+> > > +	if (kvm_get_mode() != KVM_MODE_PROTECTED)
+> > > +		return;
+> > > +
+> > > +	if (kvm_nvhe_sym(hyp_memblock_nr) < 0) {
+> > > +		kvm_err("Failed to register hyp memblocks\n");
+> > > +		return;
+> > > +	}
+> > > +
+> > > +	sort_memblock_regions();
+> > > +
+> > > +	/*
+> > > +	 * We don't know the number of possible CPUs yet, so allocate for the
+> > > +	 * worst case.
+> > > +	 */
+> > > +	hyp_mem_size += NR_CPUS << PAGE_SHIFT;
+> 
+> Is this for per-cpu stack?
+
+Correct.
+
+> If so, what guarantees a single page is sufficient? Mostly a curiosity question,
+> since it looks like this is an existing assumption by init_hyp_mode().  Shouldn't
+> the required stack size be defined in bytes and converted to pages, or is there a
+> guarantee that 64kb pages will be used?
+
+Nope, we have no such guarantees, but 4K has been more than enough for
+EL2 so far. The hyp code doesn't use recursion much (I think the only
+occurence we have is Will's pgtable code, and that is architecturally
+limited to 4 levels of recursion for obvious reasons) and doesn't have
+use stack allocations.
+
+It's on my todo list to remap the stack pages in the 'private' range, to
+surround them with guard pages so we can at least run-time check this
+assumption, so stay tuned :)
+
+> > There was a recent patch bumping NR_CPUs to 512, so this would be 32MB
+> > with 64k pages. Is it possible to return memory to the host later on once
+> > we have a better handle on the number of CPUs in the system?
+> 
+> Does kvm_hyp_reserve() really need to be called during bootmem_init()?  What
+> prevents doing the reservation during init_hyp_mode()?  If the problem is that
+> pKVM needs a single contiguous chunk of memory, then it might be worth solving
+> _that_ problem, e.g. letting the host donate memory in N-byte chunks instead of
+> requiring a single huge blob of memory.
+
+Right, I've been thinking about this over the weekend and that might
+actually be fairly straightforward for stack pages. I'll try to move this
+allocation to init_hyp_mode() where it belongs (or better, re-use the
+existing one) in the nest version.
+
+Thanks,
+Quentin
