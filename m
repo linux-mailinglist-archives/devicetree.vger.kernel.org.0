@@ -2,174 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B8EC321316
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 10:29:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE31E3213FD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 11:20:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbhBVJ2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 04:28:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230001AbhBVJ1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 04:27:46 -0500
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B035C061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 01:27:05 -0800 (PST)
-Received: by mail-il1-x12b.google.com with SMTP id g9so10201676ilc.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 01:27:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hQLZEj9iN7V7Wa6Bf/Y6KrV0f8vrXo1b1Pd+1jqrTTY=;
-        b=m9IJv5LUsBLiek3p4/0pXkCoDxek1CFJEIhFiAs9dS4NrAyPYJDpWdoZ8v73t06+u3
-         Sj7KqGl8uu10Gl/C+inuFrTi0XWVzNTovOUG0gZRxiaqLiwjTn/qSJl/lRWq18ggfyQe
-         piZONMWqCkfHQOEG/tLO9mH/tL+n2o3kmoyLmdnBGUSL9drUtHTC438bAYt35/eSP5NA
-         lMpI5eH4hiAR8CZ0qsAk0LTwRgXUQxok2hMxWv7rKM8WqxWD83g73roCDx07/iygGXQq
-         S+o2ain0CMtQXNrj7IjEfuyqiIcXFYyKO7GvxaRYnfYHkNGk4wDD0BDuIxymwom7HS4i
-         8lsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hQLZEj9iN7V7Wa6Bf/Y6KrV0f8vrXo1b1Pd+1jqrTTY=;
-        b=It9tjvDoBS+vWqf75n49sFsMcq0twXa9xx72w/5+eNDN1DkBm6wYkDx96x4jZ99YQQ
-         ZS3sPxaDUFvbqgyL5JDZ/Cj8e9ozFucUsjdgHm8lQ+a5/OEi4OyycdrBI/TQbX+04aQb
-         YW7+fu3SdkLwswFzChl6hGsMFl305gXm5Dq+vdxVihXtw27smYVvRVfGB5D5fin3Fimc
-         +LewO2Nmt12nQRYJaLvYlHrGWGE1qKZJ29XnJ/jStEX8JqB80ZvFIt9lPylj8qEXGpaL
-         HwNHStU2ny1mfp7FoM234bpP7aLX3RPKRP6Krf5NmPUWUbdNdI53Lukyqc/OMDU1wOZw
-         rXqg==
-X-Gm-Message-State: AOAM530RJVrKqqRPpk4ZTvBrHLgvh+tk00NGgY8OfKGwbN9/gJHRxOB3
-        O8vbjoS3N04UqAZ7JlfGlWnDFvwoOyijdaCWrcxR5w==
-X-Google-Smtp-Source: ABdhPJzs2A/nEMFlFND/SeVe0D5DWStliCbQoJqwBN9p7Oh1CHppoRpTveljZF82RVoV9hd+QrKyEkDwDVqGpAf5PxQ=
-X-Received: by 2002:a05:6e02:1b0c:: with SMTP id i12mr14452264ilv.200.1613986024863;
- Mon, 22 Feb 2021 01:27:04 -0800 (PST)
+        id S230138AbhBVKUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 05:20:11 -0500
+Received: from pmg01-out2.zxcs.nl ([185.104.28.188]:38675 "EHLO
+        pmg01-out2.zxcs.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230083AbhBVKUL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 05:20:11 -0500
+Received: from pmg01.zxcs.nl (localhost.localdomain [127.0.0.1])
+        by pmg01.zxcs.nl (ZXCS) with ESMTP id 1507F10588A;
+        Mon, 22 Feb 2021 11:08:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=pascalroeleven.nl; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id
+        :Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=KsZvchTpxBaJoKjRefDrbL7JsiCBHcFRF62tHbfbg+M=; b=rW8nQmOyGEf23sfmBuBdWMBEqT
+        kAf96AdA1k4CPrRSCaKtgM0MgKoYx9hqOLUvo/eOpo/YzGZWxBeBBwKZm2NDBjo0BJ6yOYGLn+XcR
+        e9+z4UTFD+CWXodva1LfYJeQce/PGHkAsd+W9Xk7zPhf8DTDiWhcFXA43fbo8izXmjohltSFpjBxl
+        JWaF1IZ7+otoAzKTJzIpJgrJS3U6wZPCu4cXNQ8Lq95WXLUXL/5dHbQa+Un8zwGeuFyudHlTIGewp
+        /FaNtPgUFbqQugkOBzoqZpT67HN442/v5XblvEIqHxgUD8XZ0d2EsMRxaXrHzL9PeG48ZfRBbyaHp
+        jjxp1VCw==;
+From:   Pascal Roeleven <dev@pascalroeleven.nl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Martin Cerveny <m.cerveny@computer.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     linux-sunxi@googlegroups.com,
+        Pascal Roeleven <dev@pascalroeleven.nl>
+Subject: [PATCH v4 0/2] Add support for Topwise A721 tablet
+Date:   Mon, 22 Feb 2021 11:08:24 +0100
+Message-Id: <20210222100826.12478-1-dev@pascalroeleven.nl>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20210218122546.3546582-1-gmouse@google.com> <CADKL2t6P4gaSUZEFgk7y+TNBRw0Lhf8mXTxzLdbe3FhGs0WH+w@mail.gmail.com>
- <CAP6Zq1jf4-XAhLQxqNx3LM7-YzDr8zaVPb-jznn8o=frxTotdQ@mail.gmail.com>
-In-Reply-To: <CAP6Zq1jf4-XAhLQxqNx3LM7-YzDr8zaVPb-jznn8o=frxTotdQ@mail.gmail.com>
-From:   Anton Kachalov <gmouse@google.com>
-Date:   Mon, 22 Feb 2021 10:26:53 +0100
-Message-ID: <CADVsX89F6Tc0Zk6uB3CKRK0F8j_E+sVGHVb9FMAkHDQqJ+KBAQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: nuvoton: Fix flash layout
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Benjamin Fair <benjaminfair@google.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-AuthUser: dev@pascalroeleven.nl
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Tom.
+On request I'm resending the last two patches from the Topwise A721 tablet
+series from a year ago as they weren't picked up. The other patches are
+already merged, so I didn't resend them.
 
-Yes, I'm using it for testing on real hardware.
+Changes from v3:
+* Fix DT validation warnings
+* Remove leftover labels
 
-BTW. Recent u-boot doesn't work with SD cards. The card doesn't
-detect. The last working version was this one:
+Changes from v2:
+* Collected acked-by.
 
-https://github.com/Nuvoton-Israel/nuvoton-info/tree/master/npcm7xx-poleg/evaluation-board/sw_deliverables/npcm7xx_v2.3
+Original cover letter:
 
-However, u-boot from igps repo:
+This series add support for the Topwise A721 tablet and it's display.
+It is an old tablet (around 2012) but it might be useful as reference
+as the devicetree is pretty complete.
 
-https://github.com/Nuvoton-Israel/igps/tree/master/ImageGeneration/versions
+Changes from v1:
+* Split into multiple patches
+* dt-binding: use yaml instead of txt
+* dt-binding: add Topwise A721 to sunxi.yaml
+* dt-binding: add Topwise to vendor-prefixes
+* drm: Add bus_format, bus_flags and connector_type
+* dts: Use SPDX license identifier instead of boilerplate license text
+* dts: Remove pinctrl leftovers
 
-Has issues too. It doesn't allow me to read more than 4k bytes once at
-a time. Thus, to flash the stuff I have manually read chunks from the
-SD-card: fat load doesn't work at all and I write that data in raw
-partition.
+Pascal Roeleven (2):
+  dt-bindings: arm: Add Topwise A721
+  ARM: dts: sun4i: Add support for Topwise A721 tablet
 
-On Sun, 21 Feb 2021 at 17:40, Tomer Maimon <tmaimon77@gmail.com> wrote:
->
-> Hi Benjamin and Anton,
->
-> Sorry for the late reply,
->
-> The EVB FIU0-CS0 partitioning is used for testing the EVB and this is why it is different than the OpenBMC flash layout.
->
->
->
-> Are you using the NPCM7XX EVB for OpenBMC? if yes we can consider to modify the flash partition to OpenBMC use.
->
->
-> On Thu, 18 Feb 2021 at 19:11, Benjamin Fair <benjaminfair@google.com> wrote:
->>
->> On Thu, 18 Feb 2021 at 04:42, <gmouse@google.com> wrote:
->> >
->> > From: "Anton D. Kachalov" <gmouse@google.com>
->> >
->> > This change satisfy OpenBMC requirements for flash layout.
->> >
->> > Signed-off-by: Anton D. Kachalov <gmouse@google.com>
->> > ---
->> >  arch/arm/boot/dts/nuvoton-npcm750-evb.dts | 28 +++++++----------------
->> >  1 file changed, 8 insertions(+), 20 deletions(-)
->> >
->> > diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
->> > index bd1eb6ee380f..741c1fee8552 100644
->> > --- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
->> > +++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
->> > @@ -182,8 +182,8 @@ bbuboot2@80000 {
->> >                                 reg = <0x0080000 0x80000>;
->> >                                 read-only;
->> >                                 };
->> > -                       envparam@100000 {
->> > -                               label = "env-param";
->> > +                       ubootenv@100000 {
->> > +                               label = "u-boot-env";
->> >                                 reg = <0x0100000 0x40000>;
->> >                                 read-only;
->> >                                 };
->> > @@ -195,25 +195,13 @@ kernel@200000 {
->> >                                 label = "kernel";
->> >                                 reg = <0x0200000 0x400000>;
->> >                                 };
->> > -                       rootfs@600000 {
->> > -                               label = "rootfs";
->> > -                               reg = <0x0600000 0x700000>;
->> > +                       rofs@780000 {
->> > +                               label = "rofs";
->> > +                               reg = <0x0780000 0x1680000>;
->> >                                 };
->> > -                       spare1@D00000 {
->> > -                               label = "spare1";
->> > -                               reg = <0x0D00000 0x200000>;
->> > -                               };
->> > -                       spare2@0F00000 {
->> > -                               label = "spare2";
->> > -                               reg = <0x0F00000 0x200000>;
->> > -                               };
->> > -                       spare3@1100000 {
->> > -                               label = "spare3";
->> > -                               reg = <0x1100000 0x200000>;
->> > -                               };
->> > -                       spare4@1300000 {
->> > -                               label = "spare4";
->> > -                               reg = <0x1300000 0x0>;
->> > +                       rwfs@1e00000 {
->> > +                               label = "rwfs";
->> > +                               reg = <0x1e00000 0x200000>;
->> >                         };
->>
->> I recommend just including the openbmc-flash-layout.dtsi file here
->> instead since that contains the common flash layout for most OpenBMC
->> systems.
->>
-> Good solution,
-> Do you mean nuvoton-openbmc-flash-layout?
->>
->> >                 };
->> >         };
->> > --
->> > 2.30.0.478.g8a0d178c01-goog
->> >
->
->
-> Thanks,
->
-> Tomer
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm/boot/dts/Makefile                    |   3 +-
+ arch/arm/boot/dts/sun4i-a10-topwise-a721.dts  | 242 ++++++++++++++++++
+ 3 files changed, 249 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/sun4i-a10-topwise-a721.dts
+
+-- 
+2.27.0
+
+
