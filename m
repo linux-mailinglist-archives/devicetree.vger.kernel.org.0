@@ -2,447 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0356322090
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 21:02:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0154A3220AA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 21:13:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231531AbhBVUC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 15:02:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46196 "EHLO
+        id S232792AbhBVUNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 15:13:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231288AbhBVUCT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 15:02:19 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4745FC06174A;
-        Mon, 22 Feb 2021 12:01:39 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nicolas)
-        with ESMTPSA id 0BA431F45319
-Message-ID: <d2a75e4ec469ae168f00bba241ade09f77453446.camel@collabora.com>
-Subject: Re: [PATCH v2 1/9] media: hevc: Modify structures to follow H265
- ITU spec
-From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        John Cox <jc@kynesim.co.uk>
-Cc:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, peng.fan@nxp.com,
-        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Date:   Mon, 22 Feb 2021 15:01:25 -0500
-In-Reply-To: <4cd4a009-9552-03a5-a49d-de16c55c63da@collabora.com>
-References: <20210218191844.297869-1-benjamin.gaignard@collabora.com>
-         <20210218191844.297869-2-benjamin.gaignard@collabora.com>
-         <cam73g1am20fqav4bsoakml5natvtgq4qq@4ax.com>
-         <4cd4a009-9552-03a5-a49d-de16c55c63da@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3 (3.38.3-1.fc33) 
+        with ESMTP id S231463AbhBVUNE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 15:13:04 -0500
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D522C061786
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 12:12:24 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id d13so8448273plg.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 12:12:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=/t1EkBwfx/pSH+nOvj4yfjsbFaBNJI0vLgQjwLVgsl4=;
+        b=eu21+rDFYFj7UOsvEdcYCyS3xySoKOsn2qbez1BBhXeBjlZurXIjdiZyD1YSScPjmr
+         a3TyZcUzqHY6vmK25aKIJjtq/QzbmHiV+le9evtj9h1DF9GY5YShBh3bcKCcznxgk6az
+         kMt8M/LFYtT6lneAAPtuBeHWjQL0CSJ2p32Dw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=/t1EkBwfx/pSH+nOvj4yfjsbFaBNJI0vLgQjwLVgsl4=;
+        b=eQB5rXzdJ2dZymNckWRQKwhOQ2IT5s4ouJieE/6eP4ADkgA3DyveKDcVwtVwebQlH/
+         YsWLcQl4390TYhST5A+B88dKNDFbTfButhQD8tIpWgEQwktaEpY1axxu7tGRVbbcVjZ/
+         ZKlMDbRASNsUtbG7ZLz9H2DMFppdwjg+nMPnko9gtLvBTT8+HVE2o35TBT1SYb9u+cQu
+         mlNvda3rDKBMh6S9j4KUHeqi7yGyPxWVwFuwO3MCRDBSlHuj1RpgqbvvM9sO5ZHdcqDc
+         aDT6iL/egig1/ezAJp9lyu2kmTq7OJqY6f4Y/vJDlXWqiuUYSgotube63Kr0o/NXTg+z
+         t+pg==
+X-Gm-Message-State: AOAM53221tjdSEzoRK6b2q9XEYkJMolRPEBVkF3C5h+nVr/aPjsJFGgg
+        oGHRs7QDa5BumMhz5CiAcyJUreniH22QPQ==
+X-Google-Smtp-Source: ABdhPJzrM/fHZ464nADMtUVC9d4i6xvIxQQOEa/eT9bFqyCjKhWLaU9Ez0sc/2vyAdUHn8P/S2N4YQ==
+X-Received: by 2002:a17:90b:1a84:: with SMTP id ng4mr9437189pjb.59.1614024743980;
+        Mon, 22 Feb 2021 12:12:23 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:a878:327b:a10a:e189])
+        by smtp.gmail.com with ESMTPSA id k6sm19832974pgk.36.2021.02.22.12.12.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Feb 2021 12:12:23 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210218145456.1.I1da01a075dd86e005152f993b2d5d82dd9686238@changeid>
+References: <20210218145456.1.I1da01a075dd86e005152f993b2d5d82dd9686238@changeid>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Avoid glitching SPI CS at bootup on trogdor
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>
+Date:   Mon, 22 Feb 2021 12:12:21 -0800
+Message-ID: <161402474186.1254594.17467439637866262864@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi John,
+Quoting Douglas Anderson (2021-02-18 14:55:09)
+> At boot time the following happens:
+> 1. Device core gets ready to probe our SPI driver.
+> 2. Device core applies SPI controller's "default" pinctrl.
+> 3. Device core calls the SPI driver's probe() function which will
+>    eventually setup the chip select GPIO as "unasserted".
+>=20
+> Thinking about the above, we can find:
+> a) For SPI devices that the BIOS inits (Cr50 and EC), the BIOS would
+>    have had them configured as "GENI" pins and not as "GPIO" pins.
+> b) It turns out that our BIOS also happens to init these pins as
+>    "output" (even though it doesn't need to since they're not muxed as
+>    GPIO) but leaves them at the default state of "low".
+> c) As soon as we apply the "default" chip select it'll switch the
+>    function to GPIO and stop driving the chip select high (which is
+>    how "GENI" was driving it) and start driving it low.
+> d) As of commit 9378f46040be ("UPSTREAM: spi: spi-geni-qcom: Use the
+>    new method of gpio CS control"), when the SPI core inits things it
+>    inits the GPIO to be "deasserted".  Prior to that commit the GPIO
+>    was left untouched until first use.
+> e) When the first transaction happens we'll assert the chip select and
+>    then deassert it after done.
+>=20
+> So before the commit to change us to use gpio descriptors we used to
+> have a _really long_ assertion of chip select before our first
+> transaction (because it got pulled down and then the first "assert"
+> was a no-op).  That wasn't great but (apparently) didn't cause any
+> real harm.
+>=20
+> After the commit to change us to use gpio descriptors we end up
+> glitching the chip select line during probe.  It would go low and then
+> high with no data transferred.  The other side ought to be robust
+> against this, but it certainly could cause some confusion.  It's known
+> to at least cause an error message on the EC console and it's believed
+> that, under certain timing conditions, it could be getting the EC into
+> a confused state causing the EC driver to fail to probe.
+>=20
+> Let's fix things to avoid the glitch.  We'll add an extra pinctrl
+> entry that sets the value of the pin to output high (CS deasserted)
+> before doing anything else.  We'll do this in its own pinctrl node
+> that comes before the normal pinctrl entries to ensure that the order
+> is correct and that this gets applied before the mux change.
+>=20
+> This change is in the trogdor board file rather than in the SoC dtsi
+> file because chip select polarity can be different depending on what's
+> hooked up and it doesn't feel worth it to spam the SoC dtsi file with
+> both options.  The board file would need to pick the right one anyway.
+>=20
+> Fixes: cfbb97fde694 ("arm64: dts: qcom: Switch sc7180-trogdor to control =
+SPI CS via GPIO")
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
 
-Le lundi 22 février 2021 à 17:39 +0100, Benjamin Gaignard a écrit :
-> 
-> Le 22/02/2021 à 17:24, John Cox a écrit :
-> > > The H.265 ITU specification (section 7.4) define the general
-> > > slice segment header semantics.
-> > > Modified/added fields are:
-> > > - video_parameter_set_id: (7.4.3.1) identifies the VPS for
-> > > reference by other syntax elements.
-> > > - seq_parameter_set_id: (7.4.3.2.1) specifies the value of
-> > > the vps_video_parameter_set_id of the active VPS.
-> > > - chroma_format_idc: (7.4.3.2.1) specifies the chroma sampling
-> > > relative to the luma sampling
-> > > - pic_parameter_set_id: (7.4.3.3.1) identifies the PPS for
-> > > reference by other syntax elements
-> > > - num_ref_idx_l0_default_active_minus1: (7.4.3.3.1) specifies
-> > > the inferred value of num_ref_idx_l0_active_minus1
-> > > - num_ref_idx_l1_default_active_minus1: (7.4.3.3.1) specifies
-> > > the inferred value of num_ref_idx_l1_active_minus1
-> > > - slice_segment_addr: (7.4.7.1) specifies the address of
-> > > the first coding tree block in the slice segment
-> > > - num_entry_point_offsets: (7.4.7.1) specifies the number of
-> > > entry_point_offset_minus1[ i ] syntax elements in the slice header
-> > > 
-> > > Add HEVC decode params contains the information used in section
-> > > "8.3 Slice decoding process" of the specification to let the hardware
-> > > perform decoding of a slices.
-> > > 
-> > > Adapt Cedrus driver according to these changes.
-> > > 
-> > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > > ---
-> > > version 2:
-> > > - remove all change related to scaling
-> > > - squash commits to a coherent split
-> > > - be more verbose about the added fields
-> > > 
-> > > drivers/media/v4l2-core/v4l2-ctrls.c          | 26 ++++++++---
-> > > drivers/staging/media/sunxi/cedrus/cedrus.c   |  6 +++
-> > > drivers/staging/media/sunxi/cedrus/cedrus.h   |  1 +
-> > > .../staging/media/sunxi/cedrus/cedrus_dec.c   |  2 +
-> > > .../staging/media/sunxi/cedrus/cedrus_h265.c  |  6 ++-
-> > > include/media/hevc-ctrls.h                    | 45 +++++++++++++++----
-> > > 6 files changed, 69 insertions(+), 17 deletions(-)
-> > > 
-> > > diff --git a/drivers/media/v4l2-core/v4l2-ctrls.c b/drivers/media/v4l2-
-> > > core/v4l2-ctrls.c
-> > > index 016cf6204cbb..4060b5bcc3c0 100644
-> > > --- a/drivers/media/v4l2-core/v4l2-ctrls.c
-> > > +++ b/drivers/media/v4l2-core/v4l2-ctrls.c
-> > > @@ -1028,6 +1028,7 @@ const char *v4l2_ctrl_get_name(u32 id)
-> > >         case V4L2_CID_MPEG_VIDEO_HEVC_SPS:                      return
-> > > "HEVC Sequence Parameter Set";
-> > >         case V4L2_CID_MPEG_VIDEO_HEVC_PPS:                      return
-> > > "HEVC Picture Parameter Set";
-> > >         case V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS:             return
-> > > "HEVC Slice Parameters";
-> > > +       case V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS:            return
-> > > "HEVC Decode Parameters";
-> > >         case V4L2_CID_MPEG_VIDEO_HEVC_DECODE_MODE:              return
-> > > "HEVC Decode Mode";
-> > >         case V4L2_CID_MPEG_VIDEO_HEVC_START_CODE:               return
-> > > "HEVC Start Code";
-> > > 
-> > > @@ -1482,6 +1483,9 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum
-> > > v4l2_ctrl_type *type,
-> > >         case V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS:
-> > >                 *type = V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS;
-> > >                 break;
-> > > +       case V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS:
-> > > +               *type = V4L2_CTRL_TYPE_HEVC_DECODE_PARAMS;
-> > > +               break;
-> > >         case V4L2_CID_UNIT_CELL_SIZE:
-> > >                 *type = V4L2_CTRL_TYPE_AREA;
-> > >                 *flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> > > @@ -1833,6 +1837,7 @@ static int std_validate_compound(const struct
-> > > v4l2_ctrl *ctrl, u32 idx,
-> > >         struct v4l2_ctrl_hevc_sps *p_hevc_sps;
-> > >         struct v4l2_ctrl_hevc_pps *p_hevc_pps;
-> > >         struct v4l2_ctrl_hevc_slice_params *p_hevc_slice_params;
-> > > +       struct v4l2_ctrl_hevc_decode_params *p_hevc_decode_params;
-> > >         struct v4l2_area *area;
-> > >         void *p = ptr.p + idx * ctrl->elem_size;
-> > >         unsigned int i;
-> > > @@ -2108,23 +2113,27 @@ static int std_validate_compound(const struct
-> > > v4l2_ctrl *ctrl, u32 idx,
-> > >                 zero_padding(*p_hevc_pps);
-> > >                 break;
-> > > 
-> > > -       case V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS:
-> > > -               p_hevc_slice_params = p;
-> > > +       case V4L2_CTRL_TYPE_HEVC_DECODE_PARAMS:
-> > > +               p_hevc_decode_params = p;
-> > > 
-> > > -               if (p_hevc_slice_params->num_active_dpb_entries >
-> > > +               if (p_hevc_decode_params->num_active_dpb_entries >
-> > >                     V4L2_HEVC_DPB_ENTRIES_NUM_MAX)
-> > >                         return -EINVAL;
-> > > 
-> > > -               zero_padding(p_hevc_slice_params->pred_weight_table);
-> > > -
-> > > -               for (i = 0; i < p_hevc_slice_params-
-> > > >num_active_dpb_entries;
-> > > +               for (i = 0; i < p_hevc_decode_params-
-> > > >num_active_dpb_entries;
-> > >                      i++) {
-> > >                         struct v4l2_hevc_dpb_entry *dpb_entry =
-> > > -                               &p_hevc_slice_params->dpb[i];
-> > > +                               &p_hevc_decode_params->dpb[i];
-> > > 
-> > >                         zero_padding(*dpb_entry);
-> > >                 }
-> > > 
-> > > +               break;
-> > > +
-> > > +       case V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS:
-> > > +               p_hevc_slice_params = p;
-> > > +
-> > > +               zero_padding(p_hevc_slice_params->pred_weight_table);
-> > >                 zero_padding(*p_hevc_slice_params);
-> > >                 break;
-> > > 
-> > > @@ -2821,6 +2830,9 @@ static struct v4l2_ctrl *v4l2_ctrl_new(struct
-> > > v4l2_ctrl_handler *hdl,
-> > >         case V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS:
-> > >                 elem_size = sizeof(struct v4l2_ctrl_hevc_slice_params);
-> > >                 break;
-> > > +       case V4L2_CTRL_TYPE_HEVC_DECODE_PARAMS:
-> > > +               elem_size = sizeof(struct v4l2_ctrl_hevc_decode_params);
-> > > +               break;
-> > >         case V4L2_CTRL_TYPE_AREA:
-> > >                 elem_size = sizeof(struct v4l2_area);
-> > >                 break;
-> > > diff --git a/drivers/staging/media/sunxi/cedrus/cedrus.c
-> > > b/drivers/staging/media/sunxi/cedrus/cedrus.c
-> > > index 7bd9291c8d5f..4cd3cab1a257 100644
-> > > --- a/drivers/staging/media/sunxi/cedrus/cedrus.c
-> > > +++ b/drivers/staging/media/sunxi/cedrus/cedrus.c
-> > > @@ -151,6 +151,12 @@ static const struct cedrus_control cedrus_controls[]
-> > > = {
-> > >                 },
-> > >                 .codec          = CEDRUS_CODEC_VP8,
-> > >         },
-> > > +       {
-> > > +               .cfg = {
-> > > +                       .id = V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS,
-> > > +               },
-> > > +               .codec          = CEDRUS_CODEC_H265,
-> > > +       },
-> > > };
-> > > 
-> > > #define CEDRUS_CONTROLS_COUNT   ARRAY_SIZE(cedrus_controls)
-> > > diff --git a/drivers/staging/media/sunxi/cedrus/cedrus.h
-> > > b/drivers/staging/media/sunxi/cedrus/cedrus.h
-> > > index 251a6a660351..2ca33ac38b9a 100644
-> > > --- a/drivers/staging/media/sunxi/cedrus/cedrus.h
-> > > +++ b/drivers/staging/media/sunxi/cedrus/cedrus.h
-> > > @@ -76,6 +76,7 @@ struct cedrus_h265_run {
-> > >         const struct v4l2_ctrl_hevc_sps                 *sps;
-> > >         const struct v4l2_ctrl_hevc_pps                 *pps;
-> > >         const struct v4l2_ctrl_hevc_slice_params        *slice_params;
-> > > +       const struct v4l2_ctrl_hevc_decode_params       *decode_params;
-> > > };
-> > > 
-> > > struct cedrus_vp8_run {
-> > > diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
-> > > b/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
-> > > index a9090daf626a..cd821f417a14 100644
-> > > --- a/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
-> > > +++ b/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
-> > > @@ -68,6 +68,8 @@ void cedrus_device_run(void *priv)
-> > >                         V4L2_CID_MPEG_VIDEO_HEVC_PPS);
-> > >                 run.h265.slice_params = cedrus_find_control_data(ctx,
-> > >                         V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS);
-> > > +               run.h265.decode_params = cedrus_find_control_data(ctx,
-> > > +                       V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS);
-> > >                 break;
-> > > 
-> > >         case V4L2_PIX_FMT_VP8_FRAME:
-> > > diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_h265.c
-> > > b/drivers/staging/media/sunxi/cedrus/cedrus_h265.c
-> > > index ce497d0197df..dce5db6be13a 100644
-> > > --- a/drivers/staging/media/sunxi/cedrus/cedrus_h265.c
-> > > +++ b/drivers/staging/media/sunxi/cedrus/cedrus_h265.c
-> > > @@ -245,6 +245,7 @@ static void cedrus_h265_setup(struct cedrus_ctx *ctx,
-> > >         const struct v4l2_ctrl_hevc_sps *sps;
-> > >         const struct v4l2_ctrl_hevc_pps *pps;
-> > >         const struct v4l2_ctrl_hevc_slice_params *slice_params;
-> > > +       const struct v4l2_ctrl_hevc_decode_params *decode_params;
-> > >         const struct v4l2_hevc_pred_weight_table *pred_weight_table;
-> > >         dma_addr_t src_buf_addr;
-> > >         dma_addr_t src_buf_end_addr;
-> > > @@ -256,6 +257,7 @@ static void cedrus_h265_setup(struct cedrus_ctx *ctx,
-> > >         sps = run->h265.sps;
-> > >         pps = run->h265.pps;
-> > >         slice_params = run->h265.slice_params;
-> > > +       decode_params = run->h265.decode_params;
-> > >         pred_weight_table = &slice_params->pred_weight_table;
-> > > 
-> > >         /* MV column buffer size and allocation. */
-> > > @@ -487,7 +489,7 @@ static void cedrus_h265_setup(struct cedrus_ctx *ctx,
-> > > 
-> > >         reg =
-> > > VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_TC_OFFSET_DIV2(slice_params-
-> > > >slice_tc_offset_div2) |
-> > >              
-> > > VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_BETA_OFFSET_DIV2(slice_params-
-> > > >slice_beta_offset_div2) |
-> > > -            
-> > > VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_POC_BIGEST_IN_RPS_ST(slice_params-
-> > > >num_rps_poc_st_curr_after == 0) |
-> > > +            
-> > > VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_POC_BIGEST_IN_RPS_ST(decode_params-
-> > > >num_rps_poc_st_curr_after == 0) |
-> > >              
-> > > VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_CR_QP_OFFSET(slice_params-
-> > > >slice_cr_qp_offset) |
-> > >              
-> > > VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_CB_QP_OFFSET(slice_params-
-> > > >slice_cb_qp_offset) |
-> > >               VE_DEC_H265_DEC_SLICE_HDR_INFO1_SLICE_QP_DELTA(slice_params-
-> > > >slice_qp_delta);
-> > > @@ -528,7 +530,7 @@ static void cedrus_h265_setup(struct cedrus_ctx *ctx,
-> > > 
-> > >         /* Write decoded picture buffer in pic list. */
-> > >         cedrus_h265_frame_info_write_dpb(ctx, slice_params->dpb,
-> > > -                                        slice_params-
-> > > >num_active_dpb_entries);
-> > > +                                        decode_params-
-> > > >num_active_dpb_entries);
-> > > 
-> > >         /* Output frame. */
-> > > 
-> > > diff --git a/include/media/hevc-ctrls.h b/include/media/hevc-ctrls.h
-> > > index b4cb2ef02f17..7fe704a08f77 100644
-> > > --- a/include/media/hevc-ctrls.h
-> > > +++ b/include/media/hevc-ctrls.h
-> > > @@ -19,6 +19,7 @@
-> > > #define V4L2_CID_MPEG_VIDEO_HEVC_SPS            (V4L2_CID_CODEC_BASE +
-> > > 1008)
-> > > #define V4L2_CID_MPEG_VIDEO_HEVC_PPS            (V4L2_CID_CODEC_BASE +
-> > > 1009)
-> > > #define V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS   (V4L2_CID_CODEC_BASE +
-> > > 1010)
-> > > +#define V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS (V4L2_CID_CODEC_BASE +
-> > > 1012)
-> > > #define V4L2_CID_MPEG_VIDEO_HEVC_DECODE_MODE    (V4L2_CID_CODEC_BASE +
-> > > 1015)
-> > > #define V4L2_CID_MPEG_VIDEO_HEVC_START_CODE     (V4L2_CID_CODEC_BASE +
-> > > 1016)
-> > > 
-> > > @@ -26,6 +27,7 @@
-> > > #define V4L2_CTRL_TYPE_HEVC_SPS 0x0120
-> > > #define V4L2_CTRL_TYPE_HEVC_PPS 0x0121
-> > > #define V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS 0x0122
-> > > +#define V4L2_CTRL_TYPE_HEVC_DECODE_PARAMS 0x0124
-> > > 
-> > > enum v4l2_mpeg_video_hevc_decode_mode {
-> > >         V4L2_MPEG_VIDEO_HEVC_DECODE_MODE_SLICE_BASED,
-> > > @@ -54,6 +56,9 @@ enum v4l2_mpeg_video_hevc_start_code {
-> > > /* The controls are not stable at the moment and will likely be reworked.
-> > > */
-> > > struct v4l2_ctrl_hevc_sps {
-> > >         /* ISO/IEC 23008-2, ITU-T Rec. H.265: Sequence parameter set */
-> > > +       __u8    video_parameter_set_id;
-> > Whilst I don't object to the addition of vps id why do we need
-> > it if the VPS is never passed?
-> 
-> You are right I could remove it.
-> 
-> > 
-> > > +       __u8    seq_parameter_set_id;
-> > > +       __u8    chroma_format_idc;
-> > >         __u16   pic_width_in_luma_samples;
-> > >         __u16   pic_height_in_luma_samples;
-> > >         __u8    bit_depth_luma_minus8;
-> > > @@ -74,9 +79,9 @@ struct v4l2_ctrl_hevc_sps {
-> > >         __u8    log2_diff_max_min_pcm_luma_coding_block_size;
-> > >         __u8    num_short_term_ref_pic_sets;
-> > >         __u8    num_long_term_ref_pics_sps;
-> > > -       __u8    chroma_format_idc;
-> > > 
-> > > -       __u8    padding;
-> > > +       __u8    num_slices;
-> > > +       __u8    padding[6];
-> > > 
-> > >         __u64   flags;
-> > > };
-> > > @@ -100,10 +105,15 @@ struct v4l2_ctrl_hevc_sps {
-> > > #define V4L2_HEVC_PPS_FLAG_PPS_DISABLE_DEBLOCKING_FILTER        (1ULL <<
-> > > 16)
-> > > #define V4L2_HEVC_PPS_FLAG_LISTS_MODIFICATION_PRESENT           (1ULL <<
-> > > 17)
-> > > #define V4L2_HEVC_PPS_FLAG_SLICE_SEGMENT_HEADER_EXTENSION_PRESENT (1ULL <<
-> > > 18)
-> > > +#define V4L2_HEVC_PPS_FLAG_DEBLOCKING_FILTER_CONTROL_PRESENT   (1ULL <<
-> > > 19)
-> > > +#define V4L2_HEVC_PPS_FLAG_UNIFORM_SPACING                     (1ULL <<
-> > > 20)
-> > > 
-> > > struct v4l2_ctrl_hevc_pps {
-> > >         /* ISO/IEC 23008-2, ITU-T Rec. H.265: Picture parameter set */
-> > > +       __u8    pic_parameter_set_id;
-> > >         __u8    num_extra_slice_header_bits;
-> > > +       __u8    num_ref_idx_l0_default_active_minus1;
-> > > +       __u8    num_ref_idx_l1_default_active_minus1;
-> > >         __s8    init_qp_minus26;
-> > >         __u8    diff_cu_qp_delta_depth;
-> > >         __s8    pps_cb_qp_offset;
-> > > @@ -116,7 +126,7 @@ struct v4l2_ctrl_hevc_pps {
-> > >         __s8    pps_tc_offset_div2;
-> > >         __u8    log2_parallel_merge_level_minus2;
-> > > 
-> > > -       __u8    padding[4];
-> > > +       __u8    padding;
-> > >         __u64   flags;
-> > > };
-> > > 
-> > > @@ -165,6 +175,10 @@ struct v4l2_ctrl_hevc_slice_params {
-> > >         __u32   bit_size;
-> > >         __u32   data_bit_offset;
-> > > 
-> > > +       /* ISO/IEC 23008-2, ITU-T Rec. H.265: General slice segment header
-> > > */
-> > > +       __u32   slice_segment_addr;
-> > > +       __u32   num_entry_point_offsets;
-> > > +
-> > >         /* ISO/IEC 23008-2, ITU-T Rec. H.265: NAL unit header */
-> > >         __u8    nal_unit_type;
-> > >         __u8    nuh_temporal_id_plus1;
-> > > @@ -190,15 +204,13 @@ struct v4l2_ctrl_hevc_slice_params {
-> > >         __u8    pic_struct;
-> > > 
-> > >         /* ISO/IEC 23008-2, ITU-T Rec. H.265: General slice segment header
-> > > */
-> > > -       __u8    num_active_dpb_entries;
-> > >         __u8    ref_idx_l0[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
-> > >         __u8    ref_idx_l1[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
-> > > 
-> > > -       __u8    num_rps_poc_st_curr_before;
-> > > -       __u8    num_rps_poc_st_curr_after;
-> > > -       __u8    num_rps_poc_lt_curr;
-> > > +       __u16   short_term_ref_pic_set_size;
-> > > +       __u16   long_term_ref_pic_set_size;
-> > > 
-> > > -       __u8    padding;
-> > > +       __u8    padding[5];
-> > > 
-> > >         /* ISO/IEC 23008-2, ITU-T Rec. H.265: General slice segment header
-> > > */
-> > >         struct v4l2_hevc_dpb_entry dpb[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
-> > > @@ -209,4 +221,21 @@ struct v4l2_ctrl_hevc_slice_params {
-> > >         __u64   flags;
-> > > };
-> > > 
-> > > +#define V4L2_HEVC_DECODE_PARAM_FLAG_IRAP_PIC           0x1
-> > > +#define V4L2_HEVC_DECODE_PARAM_FLAG_IDR_PIC            0x2
-> > > +#define V4L2_HEVC_DECODE_PARAM_FLAG_NO_OUTPUT_OF_PRIOR  0x4
-> > > +
-> > > +struct v4l2_ctrl_hevc_decode_params {
-> > > +       __s32   pic_order_cnt_val;
-> > > +       __u8    num_active_dpb_entries;
-> > > +       struct  v4l2_hevc_dpb_entry dpb[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
-> > > +       __u8    num_rps_poc_st_curr_before;
-> > > +       __u8    num_rps_poc_st_curr_after;
-> > > +       __u8    num_rps_poc_lt_curr;
-> > > +       __u8    rps_st_curr_before[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
-> > > +       __u8    rps_st_curr_after[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
-> > > +       __u8    rps_lt_curr[V4L2_HEVC_DPB_ENTRIES_NUM_MAX];
-> > > +       __u64   flags;
-> > > +};
-> > > +
-> > > #endif
-> > While you are adding stuff is there any chance you could also add:
-> > 
-> > #define V4L2_HEVC_SLICE_PARAMS_FLAG_DEPENDENT_SLICE_SEGMENT     (1ULL << 9)
-> > 
-> > to the slice flags?  The rpi H265 decoder needs it to deal with
-> > cases where dependant_slice_segment is set in the slice header.
-> 
-> Remarks on previous versions suggest to only add what it is used by driver
-> (like scaling feature) so I will wait to have an usage of this flag to
-> introduce it.
-
-Any chance we can have a link to the related kernel code ? Userspace is already
-expected to fill the blank in the slice_params, but perhaps we missed something.
-
-> 
-> Benjamin
-> 
-> > 
-> > Thanks
-> > 
-> > John Cox
-> > 
-> 
-
-
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
