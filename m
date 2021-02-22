@@ -2,398 +2,689 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6D5632114F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 08:20:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CEE321193
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 08:48:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229886AbhBVHUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 02:20:55 -0500
-Received: from lucky1.263xmail.com ([211.157.147.131]:46268 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbhBVHUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 02:20:54 -0500
-Received: from localhost (unknown [192.168.167.32])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 2CCDAB7A43;
-        Mon, 22 Feb 2021 15:18:33 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from xxm-vm.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P27940T140460514129664S1613978310069861_;
-        Mon, 22 Feb 2021 15:18:32 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <fa12f2743453e366d2d0c8ad4503d3d4>
-X-RL-SENDER: xxm@rock-chips.com
-X-SENDER: xxm@rock-chips.com
-X-LOGIN-NAME: xxm@rock-chips.com
-X-FST-TO: bhelgaas@google.com
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Simon Xue <xxm@rock-chips.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Simon Xue <xxm@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH v5 2/2] PCI: rockchip: Add DesignWare based PCIe controller
-Date:   Mon, 22 Feb 2021 15:18:28 +0800
-Message-Id: <20210222071828.30120-1-xxm@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210222071721.30062-1-xxm@rock-chips.com>
-References: <20210222071721.30062-1-xxm@rock-chips.com>
+        id S230245AbhBVHrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 02:47:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57526 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230178AbhBVHro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 02:47:44 -0500
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59A2EC061786;
+        Sun, 21 Feb 2021 23:47:04 -0800 (PST)
+Received: by mail-il1-x129.google.com with SMTP id o1so3086324ila.11;
+        Sun, 21 Feb 2021 23:47:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gyyskUDPvUzZHFO0uv/nASr77IQId98W8ShZeT0xGZg=;
+        b=O5XGRELpzs2JWImimOPCCEmJ7Km580cT/ONehClZC0zjdHdk9QbbD1f3FniLP9hK+A
+         4ovikU1JO3MmfHU/RUMBD2WwT7Ewaxoy59wb1c3LX/brDAoXVJidSdWvwPXmHdgKAdIz
+         E8B07pa/0iuq0vfHcn2r4Yt095VxAdwEynVMfkMzEZcqgAI704utnNlTxRIb+YdEvP5l
+         /h6AhpbyrfqPtcwaTIGeNttbMXzE5XFprZ9lP63A+J2rlwCIh5iWk3CMnbdUcqVYF4wk
+         feBjiGX8BsjqyBowBGXTFT9CT0JeuWY2vdFTVY7dCCdVgR0uTsNXcRSHeLq38vtnSPlu
+         +BGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gyyskUDPvUzZHFO0uv/nASr77IQId98W8ShZeT0xGZg=;
+        b=g6Q6RdSfYbARH5aBVhIoE5udmDPAWtGAYV7J5aP8FOFArbCErguEf8xUNPohIHF6wc
+         Eu/LMI85pYeVFItUhNPijskP33O0MtYqgLyi8N+PQEEOnUNF16+dwtwu5UUNhYpDBBGy
+         lbKbuJNHwxM/lD8e0TnFLhnvz68+0P2yjRI4xPzm0+NF+khBzSjqrxZSgpcRZzCuKyZq
+         PHzIIwI/rrgm+/x+jsMfJwDpka+mO83Y2PWwQPZxYKYf1UTQQMTjmRYI3vBCYML1lHgg
+         n90q1sbzRJeYmvSm2p6Pk994hk9w/shRez2Iur0pUH+LwKYdjA/pCXDoLZCErGG13/Gq
+         B2sA==
+X-Gm-Message-State: AOAM531qklTPclxA7R0jNm1jQSm8n7nXy/mcgOXwGUIHT/sMwUy9UB6Z
+        vR16WA8kPBMg03j49BqJ87jyJC5oV8Vs06E4r8U=
+X-Google-Smtp-Source: ABdhPJzBxpPRYeR/arKoF0apdQ45bWpWj1K0oLZk2y9x7iVhiCc0MIfLIGwtpYuwJT2/WfqYfJXbNCRTksd7fxJ7Clk=
+X-Received: by 2002:a92:c265:: with SMTP id h5mr13031929ild.225.1613980023709;
+ Sun, 21 Feb 2021 23:47:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210218123327.25486-1-heiko.thiery@gmail.com>
+ <20210218123327.25486-3-heiko.thiery@gmail.com> <20210221121111.nsenzgenwb6pu3o7@kozik-lap>
+In-Reply-To: <20210221121111.nsenzgenwb6pu3o7@kozik-lap>
+From:   Heiko Thiery <heiko.thiery@gmail.com>
+Date:   Mon, 22 Feb 2021 08:46:52 +0100
+Message-ID: <CAEyMn7YN4xqcFxR0QHUDp8cc1QP62HgpGMCYAjh0RfWL-iRQCA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: fsl: add support for Kontron pitx-imx8m board
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for DesignWare based PCIe controller found on RK356X.
-The already existed driver pcie-rockchip-host is only used for
-Rockchip designed IP found on RK3399.
+Hi Krysztof,
 
-Signed-off-by: Simon Xue <xxm@rock-chips.com>
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
----
- drivers/pci/controller/dwc/Kconfig            |  10 +
- drivers/pci/controller/dwc/Makefile           |   1 +
- drivers/pci/controller/dwc/pcie-dw-rockchip.c | 288 ++++++++++++++++++
- 3 files changed, 299 insertions(+)
- create mode 100644 drivers/pci/controller/dwc/pcie-dw-rockchip.c
+Am So., 21. Feb. 2021 um 13:11 Uhr schrieb Krzysztof Kozlowski
+<krzk@kernel.org>:
+>
+> On Thu, Feb 18, 2021 at 01:33:29PM +0100, Heiko Thiery wrote:
+> > The Kontron pitx-imx8m board is based on an i.MX8MQ soc.
+> >
+> > Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+> >  .../freescale/imx8mq-kontron-pitx-imx8m.dts   | 675 ++++++++++++++++++
+> >  2 files changed, 676 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> > index 6438db3822f8..9fc2c6f64407 100644
+> > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > @@ -47,6 +47,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
+> > +dtb-$(CONFIG_ARCH_MXC) += imx8mq-kontron-pitx-imx8m.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r2.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r3.dtb
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> > new file mode 100644
+> > index 000000000000..79805928204e
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> > @@ -0,0 +1,675 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Device Tree File for the Kontron pitx-imx8m board.
+> > + *
+> > + * Copyright (C) 2021 Heiko Thiery <heiko.thiery@gmail.com>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "imx8mq.dtsi"
+> > +#include <dt-bindings/net/ti-dp83867.h>
+> > +
+> > +/ {
+> > +     model = "Kontron pITX-imx8m";
+> > +     compatible = "kontron,pitx-imx8m", "fsl,imx8mq";
+> > +
+> > +     aliases {
+> > +             i2c0 = &i2c1;
+> > +             i2c1 = &i2c2;
+> > +             i2c2 = &i2c3;
+> > +             mmc0 = &usdhc1;
+> > +             mmc1 = &usdhc2;
+> > +             serial0 = &uart1;
+> > +             serial1 = &uart2;
+> > +             serial2 = &uart3;
+> > +             spi0 = &qspi0;
+> > +             spi1 = &ecspi2;
+> > +     };
+> > +
+> > +     chosen {
+> > +             stdout-path = "serial2:115200n8";
+> > +     };
+> > +
+> > +     regulators {
+> > +             compatible = "simple-bus";
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+> > +
+> > +             reg_usdhc2_vmmc: regulator-v-3v3-sd {
+>
+> That's a messed unit addressing. You have here simple-bus but no unit
+> addresses. Move it out of regulators node and run make dtc W=1 (it would
+> point you this issue).
 
-diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index 22c5529e9a65..159791775cc6 100644
---- a/drivers/pci/controller/dwc/Kconfig
-+++ b/drivers/pci/controller/dwc/Kconfig
-@@ -214,6 +214,16 @@ config PCIE_ARTPEC6_EP
- 	  Enables support for the PCIe controller in the ARTPEC-6 SoC to work in
- 	  endpoint mode. This uses the DesignWare core.
- 
-+config PCIE_ROCKCHIP_DW_HOST
-+	bool "Rockchip DesignWare PCIe controller"
-+	select PCIE_DW
-+	select PCIE_DW_HOST
-+	depends on ARCH_ROCKCHIP || COMPILE_TEST
-+	depends on OF
-+	help
-+	  Enables support for the DesignWare PCIe controller in the
-+	  Rockchip SoC except RK3399.
-+
- config PCIE_INTEL_GW
- 	bool "Intel Gateway PCIe host controller support"
- 	depends on OF && (X86 || COMPILE_TEST)
-diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-index a751553fa0db..30eef8e9ee8a 100644
---- a/drivers/pci/controller/dwc/Makefile
-+++ b/drivers/pci/controller/dwc/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_PCI_LAYERSCAPE_EP) += pci-layerscape-ep.o
- obj-$(CONFIG_PCIE_QCOM) += pcie-qcom.o
- obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
- obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
-+obj-$(CONFIG_PCIE_ROCKCHIP_DW_HOST) += pcie-dw-rockchip.o
- obj-$(CONFIG_PCIE_INTEL_GW) += pcie-intel-gw.o
- obj-$(CONFIG_PCIE_KIRIN) += pcie-kirin.o
- obj-$(CONFIG_PCIE_HISI_STB) += pcie-histb.o
-diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-new file mode 100644
-index 000000000000..f0c40f0a7480
---- /dev/null
-+++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-@@ -0,0 +1,288 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * PCIe host controller driver for Rockchip SoCs.
-+ *
-+ * Copyright (C) 2021 Rockchip Electronics Co., Ltd.
-+ *		http://www.rock-chips.com
-+ *
-+ * Author: Simon Xue <xxm@rock-chips.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+
-+#include "pcie-designware.h"
-+
-+/*
-+ * The upper 16 bits of PCIE_CLIENT_CONFIG are a write
-+ * mask for the lower 16 bits.
-+ */
-+#define HIWORD_UPDATE(mask, val) (((mask) << 16) | (val))
-+#define HIWORD_UPDATE_BIT(val)	HIWORD_UPDATE(val, val)
-+
-+#define to_rockchip_pcie(x) dev_get_drvdata((x)->dev)
-+
-+#define PCIE_CLIENT_RC_MODE		HIWORD_UPDATE_BIT(0x40)
-+#define PCIE_CLIENT_ENABLE_LTSSM	HIWORD_UPDATE_BIT(0xc)
-+#define PCIE_SMLH_LINKUP		BIT(16)
-+#define PCIE_RDLH_LINKUP		BIT(17)
-+#define PCIE_LINKUP			(PCIE_SMLH_LINKUP | PCIE_RDLH_LINKUP)
-+#define PCIE_L0S_ENTRY			0x11
-+#define PCIE_CLIENT_GENERAL_CONTROL	0x0
-+#define PCIE_CLIENT_GENERAL_DEBUG	0x104
-+#define PCIE_CLIENT_HOT_RESET_CTRL      0x180
-+#define PCIE_CLIENT_LTSSM_STATUS	0x300
-+#define PCIE_LTSSM_ENABLE_ENHANCE       BIT(4)
-+
-+struct rockchip_pcie {
-+	struct dw_pcie			pci;
-+	void __iomem			*apb_base;
-+	struct phy			*phy;
-+	struct clk_bulk_data		*clks;
-+	unsigned int			clk_cnt;
-+	struct reset_control		*rst;
-+	struct gpio_desc		*rst_gpio;
-+	struct regulator                *vpcie3v3;
-+};
-+
-+static int rockchip_pcie_readl_apb(struct rockchip_pcie *rockchip,
-+					     u32 reg)
-+{
-+	return readl(rockchip->apb_base + reg);
-+}
-+
-+static void rockchip_pcie_writel_apb(struct rockchip_pcie *rockchip,
-+						u32 val, u32 reg)
-+{
-+	writel(val, rockchip->apb_base + reg);
-+}
-+
-+static void rockchip_pcie_enable_ltssm(struct rockchip_pcie *rockchip)
-+{
-+	rockchip_pcie_writel_apb(rockchip, PCIE_CLIENT_ENABLE_LTSSM,
-+				 PCIE_CLIENT_GENERAL_CONTROL);
-+}
-+
-+static int rockchip_pcie_link_up(struct dw_pcie *pci)
-+{
-+	struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
-+	u32 val = rockchip_pcie_readl_apb(rockchip, PCIE_CLIENT_LTSSM_STATUS);
-+
-+	if ((val & (PCIE_RDLH_LINKUP | PCIE_SMLH_LINKUP)) == PCIE_LINKUP &&
-+	    (val & GENMASK(5, 0)) == PCIE_L0S_ENTRY)
-+		return 1;
-+
-+	return 0;
-+}
-+
-+static int rockchip_pcie_start_link(struct dw_pcie *pci)
-+{
-+	struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
-+
-+	/* Reset device */
-+	gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
-+	msleep(100);
-+	gpiod_set_value_cansleep(rockchip->rst_gpio, 1);
-+
-+	rockchip_pcie_enable_ltssm(rockchip);
-+
-+	return 0;
-+}
-+
-+static void rockchip_pcie_fast_link_setup(struct rockchip_pcie *rockchip)
-+{
-+	u32 val;
-+
-+	/* LTSSM enable control mode */
-+	val = rockchip_pcie_readl_apb(rockchip, PCIE_CLIENT_HOT_RESET_CTRL);
-+	val |= PCIE_LTSSM_ENABLE_ENHANCE | (PCIE_LTSSM_ENABLE_ENHANCE << 16);
-+	rockchip_pcie_writel_apb(rockchip, val, PCIE_CLIENT_HOT_RESET_CTRL);
-+}
-+
-+static int rockchip_pcie_host_init(struct pcie_port *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
-+
-+	rockchip_pcie_fast_link_setup(rockchip);
-+
-+	rockchip_pcie_writel_apb(rockchip, PCIE_CLIENT_RC_MODE,
-+				 PCIE_CLIENT_GENERAL_CONTROL);
-+
-+	return 0;
-+}
-+
-+static const struct dw_pcie_host_ops rockchip_pcie_host_ops = {
-+	.host_init = rockchip_pcie_host_init,
-+};
-+
-+static int rockchip_pcie_clk_init(struct rockchip_pcie *rockchip)
-+{
-+	struct device *dev = rockchip->pci.dev;
-+	int ret;
-+
-+	ret = devm_clk_bulk_get_all(dev, &rockchip->clks);
-+	if (ret < 0)
-+		return ret;
-+
-+	rockchip->clk_cnt = ret;
-+
-+	ret = clk_bulk_prepare_enable(rockchip->clk_cnt, rockchip->clks);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int rockchip_pcie_resource_get(struct platform_device *pdev,
-+				      struct rockchip_pcie *rockchip)
-+{
-+	rockchip->apb_base = devm_platform_ioremap_resource_byname(pdev, "apb");
-+	if (IS_ERR(rockchip->apb_base))
-+		return PTR_ERR(rockchip->apb_base);
-+
-+	rockchip->rst_gpio = devm_gpiod_get_optional(&pdev->dev, "reset",
-+						     GPIOD_OUT_HIGH);
-+	if (IS_ERR(rockchip->rst_gpio))
-+		return PTR_ERR(rockchip->rst_gpio);
-+
-+	return 0;
-+}
-+
-+static int rockchip_pcie_phy_init(struct rockchip_pcie *rockchip)
-+{
-+	struct device *dev = rockchip->pci.dev;
-+	int ret;
-+
-+	rockchip->phy = devm_phy_get(dev, "pcie-phy");
-+	if (IS_ERR(rockchip->phy))
-+		return dev_err_probe(dev, PTR_ERR(rockchip->phy),
-+				     "missing PHY\n");
-+
-+	ret = phy_init(rockchip->phy);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = phy_power_on(rockchip->phy);
-+	if (ret)
-+		phy_exit(rockchip->phy);
-+
-+	return ret;
-+}
-+
-+static void rockchip_pcie_phy_deinit(struct rockchip_pcie *rockchip)
-+{
-+	phy_exit(rockchip->phy);
-+	phy_power_off(rockchip->phy);
-+}
-+
-+static int rockchip_pcie_reset_control_release(struct rockchip_pcie *rockchip)
-+{
-+	struct device *dev = rockchip->pci.dev;
-+	int ret;
-+
-+	rockchip->rst = devm_reset_control_array_get_exclusive(dev);
-+	if (IS_ERR(rockchip->rst))
-+		return dev_err_probe(dev, PTR_ERR(rockchip->rst),
-+				     "failed to get reset lines\n");
-+
-+	ret = reset_control_deassert(rockchip->rst);
-+
-+	return ret;
-+}
-+
-+static const struct dw_pcie_ops dw_pcie_ops = {
-+	.link_up = rockchip_pcie_link_up,
-+	.start_link = rockchip_pcie_start_link,
-+};
-+
-+static int rockchip_pcie_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct rockchip_pcie *rockchip;
-+	struct pcie_port *pp;
-+	int ret;
-+
-+	rockchip = devm_kzalloc(dev, sizeof(*rockchip), GFP_KERNEL);
-+	if (!rockchip)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, rockchip);
-+
-+	rockchip->pci.dev = dev;
-+	rockchip->pci.ops = &dw_pcie_ops;
-+
-+	pp = &rockchip->pci.pp;
-+	pp->ops = &rockchip_pcie_host_ops;
-+
-+	ret = rockchip_pcie_resource_get(pdev, rockchip);
-+	if (ret)
-+		return ret;
-+
-+	/* DON'T MOVE ME: must be enable before PHY init */
-+	rockchip->vpcie3v3 = devm_regulator_get_optional(dev, "vpcie3v3");
-+	if (IS_ERR(rockchip->vpcie3v3))
-+		return dev_err_probe(dev, PTR_ERR(rockchip->rst),
-+				     "failed to get vpcie3v3 regulator\n");
-+
-+	if (rockchip->vpcie3v3) {
-+		ret = regulator_enable(rockchip->vpcie3v3);
-+		if (ret) {
-+			dev_err(dev, "failed to enable vpcie3v3 regulator\n");
-+			return ret;
-+		}
-+	}
-+
-+	ret = rockchip_pcie_phy_init(rockchip);
-+	if (ret)
-+		goto disable_regulator;
-+
-+	ret = rockchip_pcie_reset_control_release(rockchip);
-+	if (ret)
-+		goto deinit_phy;
-+
-+	ret = rockchip_pcie_clk_init(rockchip);
-+	if (ret)
-+		goto deinit_phy;
-+
-+	ret = dw_pcie_host_init(pp);
-+	if (ret)
-+		goto deinit_clk;
-+
-+	return 0;
-+
-+deinit_clk:
-+	clk_bulk_disable_unprepare(rockchip->clk_cnt, rockchip->clks);
-+deinit_phy:
-+	rockchip_pcie_phy_deinit(rockchip);
-+disable_regulator:
-+	if (rockchip->vpcie3v3)
-+		regulator_disable(rockchip->vpcie3v3);
-+
-+	return ret;
-+}
-+
-+MODULE_DEVICE_TABLE(of, rockchip_pcie_of_match);
-+
-+static const struct of_device_id rockchip_pcie_of_match[] = {
-+	{ .compatible = "rockchip,rk3568-pcie", },
-+	{},
-+};
-+
-+static struct platform_driver rockchip_pcie_driver = {
-+	.driver = {
-+		.name	= "rockchip-dw-pcie",
-+		.of_match_table = rockchip_pcie_of_match,
-+		.suppress_bind_attrs = true,
-+	},
-+	.probe = rockchip_pcie_probe,
-+};
-+
-+builtin_platform_driver(rockchip_pcie_driver);
+Ok, I will change that.
+
+But I'm not able to run dtc on my dts. dtc throws an error.
+
+# dtc -I dts -O dtb imx8mq-kontron-pitx-imx8m.dts
+Error: imx8mq-kontron-pitx-imx8m.dts:10.1-9 syntax error
+FATAL ERROR: Unable to parse input tree
+
+It is about the includes. How can I run dtc for a intree dts to add
+the -W option?
+
+> > +                     compatible = "regulator-fixed";
+> > +                     regulator-name = "V_3V3_SD";
+> > +                     regulator-min-microvolt = <3300000>;
+> > +                     regulator-max-microvolt = <3300000>;
+> > +                     gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> > +                     off-on-delay-us = <20000>;
+> > +                     enable-active-high;
+> > +             };
+> > +     };
+> > +
+> > +     usb_hub_reset: usb-hub-reset {
+> > +             compatible = "gpio-reset";
+> > +             reset-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
+> > +             reset-delay-us = <3000>;
+> > +             reset-post-delay-ms = <50>;
+> > +             #reset-cells = <0>;
+> > +     };
+> > +
+> > +     tpm_reset: tpm-reset {
+> > +             compatible = "gpio-reset";
+> > +             reset-gpios = <&gpio3 2 GPIO_ACTIVE_LOW>;
+> > +             reset-delay-us = <2>;
+> > +             reset-post-delay-ms = <60>;
+> > +             #reset-cells = <0>;
+> > +     };
+> > +
+> > +     pcie0_refclk: pcie0-refclk {
+>
+> Generic node names (from the dt spec candidate is "clock").
+
+Should I simply set the node name to pcie0-clock? And pcie1-clock for
+the next one?
+
+> > +             compatible = "fixed-clock";
+> > +             #clock-cells = <0>;
+> > +             clock-frequency = <100000000>;
+> > +     };
+> > +
+> > +     pcie1_refclk: pcie1-refclk {
+>
+> Same.
+>
+> > +             compatible = "fixed-clock";
+> > +             #clock-cells = <0>;
+> > +             clock-frequency = <100000000>;
+> > +     };
+> > +
+> > +     gpio-keys {
+> > +             compatible = "gpio-keys";
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&pinctrl_gpio_keys>;
+> > +
+> > +             pciewake {
+> > +                     label = "PCIE_Wake";
+> > +                     gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
+> > +                     linux,input-type = <4>; /* EV_MSC */
+> > +                     linux,code = <3>; /* MSC_RAW */
+> > +                     gpio-key,wakeup;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&ecspi2 {
+> > +     #address-cells = <1>;
+> > +     #size-cells = <0>;
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_ecspi2 &pinctrl_ecspi2_cs>;
+> > +     cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+> > +     status = "okay";
+> > +
+> > +     slb9670@0 {
+>
+> This needs a generic node name.
+
+I will change to tpm@0.
+
+>
+> > +             compatible = "infineon,slb9670";
+> > +             reg = <0>;
+> > +             resets = <&tpm_reset>;
+> > +             spi-max-frequency = <43000000>;
+> > +     };
+> > +};
+> > +
+> > +&fec1 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_fec1>;
+> > +     phy-mode = "rgmii-id";
+> > +     phy-handle = <&ethphy0>;
+> > +     phy-reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
+> > +     fsl,magic-packet;
+> > +     status = "okay";
+> > +
+> > +     mdio {
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+> > +
+> > +             ethphy0: ethernet-phy@0 {
+> > +                     compatible = "ethernet-phy-ieee802.3-c22";
+> > +                     reg = <0>;
+> > +                     ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+> > +                     ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_75_NS>;
+> > +                     ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&i2c1 {
+> > +     clock-frequency = <400000>;
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_i2c1>;
+> > +     status = "okay";
+> > +
+> > +     pmic@8 {
+> > +             compatible = "fsl,pfuze100";
+> > +             fsl,pfuze-support-disable-sw;
+> > +             reg = <0x8>;
+> > +
+> > +             regulators {
+> > +                     sw1a_reg: sw1ab {
+> > +                             regulator-name = "V_0V9_GPU";
+> > +                             regulator-min-microvolt = <825000>;
+> > +                             regulator-max-microvolt = <1100000>;
+> > +                     };
+> > +
+> > +                     sw1c_reg: sw1c {
+> > +                             regulator-name = "V_0V9_VPU";
+> > +                             regulator-min-microvolt = <825000>;
+> > +                             regulator-max-microvolt = <1100000>;
+> > +                     };
+> > +
+> > +                     sw2_reg: sw2 {
+> > +                             regulator-name = "V_1V1_NVCC_DRAM";
+> > +                             regulator-min-microvolt = <1100000>;
+> > +                             regulator-max-microvolt = <1100000>;
+> > +                             regulator-always-on;
+> > +                     };
+> > +
+> > +                     sw3a_reg: sw3ab {
+> > +                             regulator-name = "V_1V0_DRAM";
+> > +                             regulator-min-microvolt = <825000>;
+> > +                             regulator-max-microvolt = <1100000>;
+> > +                             regulator-always-on;
+> > +                     };
+> > +
+> > +                     sw4_reg: sw4 {
+> > +                             regulator-name = "V_1V8_S0";
+> > +                             regulator-min-microvolt = <1800000>;
+> > +                             regulator-max-microvolt = <1800000>;
+> > +                             regulator-always-on;
+> > +                     };
+> > +
+> > +                     swbst_reg: swbst {
+> > +                             regulator-min-microvolt = <5000000>;
+> > +                             regulator-max-microvolt = <5150000>;
+> > +                     };
+> > +
+> > +                     snvs_reg: vsnvs {
+> > +                             regulator-name = "V_0V9_SNVS";
+> > +                             regulator-min-microvolt = <1000000>;
+> > +                             regulator-max-microvolt = <3000000>;
+> > +                             regulator-always-on;
+> > +                     };
+> > +
+> > +                     vref_reg: vrefddr {
+> > +                             regulator-name = "V_0V55_VREF_DDR";
+> > +                             regulator-always-on;
+> > +                     };
+> > +
+> > +                     vgen1_reg: vgen1 {
+> > +                             regulator-name = "V_1V5_CSI";
+> > +                             regulator-min-microvolt = <800000>;
+> > +                             regulator-max-microvolt = <1550000>;
+> > +                     };
+> > +
+> > +                     vgen2_reg: vgen2 {
+> > +                             regulator-name = "V_0V9_PHY";
+> > +                             regulator-min-microvolt = <850000>;
+> > +                             regulator-max-microvolt = <975000>;
+> > +                             regulator-always-on;
+> > +                     };
+> > +
+> > +                     vgen3_reg: vgen3 {
+> > +                             regulator-name = "V_1V8_PHY";
+> > +                             regulator-min-microvolt = <1675000>;
+> > +                             regulator-max-microvolt = <1975000>;
+> > +                             regulator-always-on;
+> > +                     };
+> > +
+> > +                     vgen4_reg: vgen4 {
+> > +                             regulator-name = "V_1V8_VDDA";
+> > +                             regulator-min-microvolt = <1625000>;
+> > +                             regulator-max-microvolt = <1875000>;
+> > +                             regulator-always-on;
+> > +                     };
+> > +
+> > +                     vgen5_reg: vgen5 {
+> > +                             regulator-name = "V_3V3_PHY";
+> > +                             regulator-min-microvolt = <3075000>;
+> > +                             regulator-max-microvolt = <3625000>;
+> > +                             regulator-always-on;
+> > +                     };
+> > +
+> > +                     vgen6_reg: vgen6 {
+> > +                             regulator-name = "V_2V8_CAM";
+> > +                             regulator-min-microvolt = <1800000>;
+> > +                             regulator-max-microvolt = <3300000>;
+> > +                             regulator-always-on;
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> > +     max6650@1b {
+>
+> Generic node name.
+
+I could not find a matching name like "fan" in the devicetree
+specification. What about using "fan-ctrl"?
+
+>
+> > +             compatible = "maxim,max6650";
+> > +             reg = <0x1b>;
+> > +             maxim,fan-microvolt = <5000000>;
+> > +     };
+> > +
+> > +     rtc@32 {
+> > +             compatible = "microcrystal,rv8803";
+> > +             reg = <0x32>;
+> > +     };
+> > +
+> > +     lm75@4b {
+>
+> Node name: sensor.
+
+Ok
+
+>
+> > +             compatible = "national,lm75b";
+> > +             reg = <0x4b>;
+> > +     };
+> > +
+> > +     eeprom@51 {
+> > +             compatible = "atmel,24c32";
+> > +             reg = <0x51>;
+> > +             pagesize = <32>;
+> > +     };
+> > +};
+> > +
+> > +&i2c2 {
+> > +     clock-frequency = <100000>;
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_i2c2>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&i2c3 {
+> > +     clock-frequency = <100000>;
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_i2c3>;
+> > +     status = "okay";
+> > +
+> > +     wm8904: audio-codec@1a {
+> > +             compatible = "wlf,wm8904";
+> > +             reg = <0x1a>;
+> > +             clocks = <&clk IMX8MQ_CLK_SAI2_ROOT>;
+> > +             clock-names = "mclk";
+> > +             clock-frequency = <24000000>;
+> > +     };
+> > +};
+> > +
+> > +/* M.2 B-key slot */
+> > +&pcie0 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_pcie0>;
+> > +     disable-gpio = <&gpio5 29 GPIO_ACTIVE_LOW>;
+> > +     reset-gpio = <&gpio1 9 GPIO_ACTIVE_LOW>;
+> > +     clocks = <&clk IMX8MQ_CLK_PCIE1_ROOT>,
+> > +              <&clk IMX8MQ_CLK_PCIE1_AUX>,
+> > +              <&clk IMX8MQ_CLK_PCIE1_PHY>,
+> > +              <&pcie0_refclk>;
+> > +     clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
+> > +     ext_osc = <1>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +/* Intel Ethernet Controller I210/I211 */
+> > +&pcie1 {
+> > +     clocks = <&clk IMX8MQ_CLK_PCIE2_ROOT>,
+> > +              <&clk IMX8MQ_CLK_PCIE2_AUX>,
+> > +              <&clk IMX8MQ_CLK_PCIE2_PHY>,
+> > +              <&pcie1_refclk>;
+> > +     clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
+> > +     ext_osc = <1>;
+> > +     fsl,max-link-speed = <1>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&pgc_gpu {
+> > +     power-supply = <&sw1a_reg>;
+> > +};
+> > +
+> > +&pgc_vpu {
+> > +     power-supply = <&sw1c_reg>;
+> > +};
+> > +
+> > +&qspi0 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_qspi>;
+> > +     status = "okay";
+> > +
+> > +     flash@0 {
+> > +             compatible = "jedec,spi-nor";
+> > +             #address-cells = <1>;
+> > +             #size-cells = <1>;
+> > +             reg = <0>;
+> > +             spi-tx-bus-width = <4>;
+> > +             spi-rx-bus-width = <4>;
+> > +             m25p,fast-read;
+> > +             spi-max-frequency = <50000000>;
+> > +     };
+> > +};
+> > +
+> > +&snvs_pwrkey {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&uart1 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_uart1>;
+> > +     assigned-clocks = <&clk IMX8MQ_CLK_UART1>;
+> > +     assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&uart2 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_uart2>;
+> > +     assigned-clocks = <&clk IMX8MQ_CLK_UART2>;
+> > +     assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&uart3 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_uart3>;
+> > +     fsl,uart-has-rtscts;
+> > +     assigned-clocks = <&clk IMX8MQ_CLK_UART3>;
+> > +     assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usb_dwc3_0 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_usb0>;
+> > +     dr_mode = "otg";
+> > +     hnp-disable;
+> > +     srp-disable;
+> > +     adp-disable;
+> > +     maximum-speed = "high-speed";
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usb3_phy0 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usb_dwc3_1 {
+> > +     resets = <&usb_hub_reset>;
+> > +     dr_mode = "host";
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usb3_phy1 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usdhc1 {
+> > +     assigned-clocks = <&clk IMX8MQ_CLK_USDHC1>;
+> > +     assigned-clock-rates = <400000000>;
+> > +     pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> > +     pinctrl-0 = <&pinctrl_usdhc1>;
+> > +     pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+> > +     pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+> > +     vqmmc-supply = <&sw4_reg>;
+> > +     bus-width = <8>;
+> > +     non-removable;
+> > +     no-sd;
+> > +     no-sdio;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usdhc2 {
+> > +     assigned-clocks = <&clk IMX8MQ_CLK_USDHC2>;
+> > +     assigned-clock-rates = <200000000>;
+> > +     pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> > +     pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
+> > +     pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
+> > +     pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
+> > +     bus-width = <4>;
+> > +     cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+> > +     wp-gpios = <&gpio2 20 GPIO_ACTIVE_HIGH>;
+> > +     vmmc-supply = <&reg_usdhc2_vmmc>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&wdog1 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_wdog>;
+> > +     fsl,ext-reset-output;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&iomuxc {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&pinctrl_hog>;
+> > +
+> > +     pinctrl_hog: hoggrp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_NAND_CE1_B_GPIO3_IO2               0x19 /* TPM Reset */
+> > +                     MX8MQ_IOMUXC_NAND_CE3_B_GPIO3_IO4               0x19 /* USB2 Hub Reset */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_gpio: gpiogrp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_NAND_CLE_GPIO3_IO5                 0x19 /* GPIO0 */
+> > +                     MX8MQ_IOMUXC_NAND_RE_B_GPIO3_IO15               0x19 /* GPIO1 */
+> > +                     MX8MQ_IOMUXC_NAND_WE_B_GPIO3_IO17               0x19 /* GPIO2 */
+> > +                     MX8MQ_IOMUXC_NAND_WP_B_GPIO3_IO18               0x19 /* GPIO3 */
+> > +                     MX8MQ_IOMUXC_NAND_READY_B_GPIO3_IO16            0x19 /* GPIO4 */
+> > +                     MX8MQ_IOMUXC_NAND_DATA04_GPIO3_IO10             0x19 /* GPIO5 */
+> > +                     MX8MQ_IOMUXC_NAND_DATA05_GPIO3_IO11             0x19 /* GPIO6 */
+> > +                     MX8MQ_IOMUXC_NAND_DATA06_GPIO3_IO12             0x19 /* GPIO7 */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_pcie0: pcie0grp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_GPIO1_IO09_GPIO1_IO9               0x16 /* PCIE_PERST */
+> > +                     MX8MQ_IOMUXC_UART4_TXD_GPIO5_IO29               0x16 /* W_DISABLE */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_gpio_keys: gpio-keysgrp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_GPIO1_IO08_GPIO1_IO8               0x16 /* PCIE_WAKE */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_fec1: fec1grp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_ENET_MDC_ENET1_MDC                 0x3
+> > +                     MX8MQ_IOMUXC_ENET_MDIO_ENET1_MDIO               0x23
+> > +                     MX8MQ_IOMUXC_ENET_TD3_ENET1_RGMII_TD3           0x1f
+> > +                     MX8MQ_IOMUXC_ENET_TD2_ENET1_RGMII_TD2           0x1f
+> > +                     MX8MQ_IOMUXC_ENET_TD1_ENET1_RGMII_TD1           0x1f
+> > +                     MX8MQ_IOMUXC_ENET_TD0_ENET1_RGMII_TD0           0x1f
+> > +                     MX8MQ_IOMUXC_ENET_RD3_ENET1_RGMII_RD3           0x91
+> > +                     MX8MQ_IOMUXC_ENET_RD2_ENET1_RGMII_RD2           0x91
+> > +                     MX8MQ_IOMUXC_ENET_RD1_ENET1_RGMII_RD1           0x91
+> > +                     MX8MQ_IOMUXC_ENET_RD0_ENET1_RGMII_RD0           0x91
+> > +                     MX8MQ_IOMUXC_ENET_TXC_ENET1_RGMII_TXC           0x1f
+> > +                     MX8MQ_IOMUXC_ENET_RXC_ENET1_RGMII_RXC           0x91
+> > +                     MX8MQ_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL     0x91
+> > +                     MX8MQ_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL     0x1f
+> > +                     MX8MQ_IOMUXC_GPIO1_IO11_GPIO1_IO11              0x16
+> > +                     MX8MQ_IOMUXC_GPIO1_IO15_GPIO1_IO15              0x16
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_i2c1: i2c1grp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_I2C1_SCL_I2C1_SCL                  0x4000007f
+> > +                     MX8MQ_IOMUXC_I2C1_SDA_I2C1_SDA                  0x4000007f
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_i2c2: i2c2grp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_I2C2_SCL_I2C2_SCL                  0x4000007f
+> > +                     MX8MQ_IOMUXC_I2C2_SDA_I2C2_SDA                  0x4000007f
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_i2c3: i2c3grp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_I2C3_SCL_I2C3_SCL                  0x4000007f
+> > +                     MX8MQ_IOMUXC_I2C3_SDA_I2C3_SDA                  0x4000007f
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_qspi: qspigrp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_NAND_ALE_QSPI_A_SCLK               0x82
+> > +                     MX8MQ_IOMUXC_NAND_CE0_B_QSPI_A_SS0_B            0x82
+> > +                     MX8MQ_IOMUXC_NAND_DATA00_QSPI_A_DATA0           0x82
+> > +                     MX8MQ_IOMUXC_NAND_DATA01_QSPI_A_DATA1           0x82
+> > +                     MX8MQ_IOMUXC_NAND_DATA02_QSPI_A_DATA2           0x82
+> > +                     MX8MQ_IOMUXC_NAND_DATA03_QSPI_A_DATA3           0x82
+> > +
+>
+> No need for empty line.
+
+Ok
+
+>
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_ecspi2: ecspi2grp {
+> > +             fsl,pins = <
+> > +                     MX8MQ_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI            0x19
+> > +                     MX8MQ_IOMUXC_ECSPI2_MISO_ECSPI2_MISO            0x19
+> > +                     MX8MQ_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK            0x19
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_ecspi2_cs: ecspi2cs {
+>
+> ecspi2csgrp to match schema
+
+Ok
+
+>
+> Please run dtbs_check on your DTS.
+
+When I run "make dtbs_check" it runs quite a long time and stops with
+an error. But as far as I can say there is an error coming from the
+included "imx8mq.dtsi".
+
+You can see the output here: https://pastebin.com/raw/iU2geBDh
+
+Thank you
 -- 
-2.25.1
-
-
-
+Heiko
