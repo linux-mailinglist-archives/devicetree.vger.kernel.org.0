@@ -2,438 +2,756 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FB78321AC7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 16:07:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 764E5321B2C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 16:18:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbhBVPHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 10:07:10 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:58334 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230205AbhBVPHG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Feb 2021 10:07:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1614006337;
+        id S230413AbhBVPSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 10:18:00 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:44309 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231360AbhBVPQr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 10:16:47 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 95CF322205;
+        Mon, 22 Feb 2021 16:15:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1614006957;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=jfLiXK853Af1kpeF/zm3Muk1EF9s40aEj3nT84zY5gY=;
-        b=H4pMhwx1Q0fTkrJPiNzOmYyRr4yNTQ1YRLSmj8vL+iNPYePruz2lkC8UXj8Uik3EJekZvi
-        p5VK47ZiRC2mW3NMJk/g4z8f3N79gXmx1zVHwc6zfsH0cr0Kk2B9WCb2akztQCv/X6y7cy
-        Or4zrOpcz5vloTLnVkwwV8SzG4S2W6o=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-325-16HGrBRmOcWF_8XvCnGrIQ-1; Mon, 22 Feb 2021 10:05:32 -0500
-X-MC-Unique: 16HGrBRmOcWF_8XvCnGrIQ-1
-Received: by mail-qt1-f200.google.com with SMTP id b7so2106172qtj.16
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 07:05:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=jfLiXK853Af1kpeF/zm3Muk1EF9s40aEj3nT84zY5gY=;
-        b=aQzmnqakZA59FfG2ijUOvovb7H+/ldJrSR6Ugc6nUqWNJb195ptRCTOIM/h+hs7PWT
-         wX33zV8vh8FB3lo/2G7GYCf6lVGP5ITt9IboFdlErv9LY5T34I+pJlKmtrtxyspGqOKM
-         nvexwEiRaxle+zKxaq9keim6DEYKdZeBCfLZmuPXJBmoPzg5hjo+2uaQH1x5m3on4a1o
-         ixRyhlny4wE1cHbE11gHU+IU48YIze5P1zaRnrQPF9MAGHeviAJYLYM0YqB5ET9eO9vO
-         DPqfUWqiHnaE7vBRHDs0TDZXp2mls5pw0VlyS41WHGc8ehKN8Uq6gQQqXvRabQ4Uij3R
-         buiQ==
-X-Gm-Message-State: AOAM533xG4YHd7sbXeT+au9SzVm/9NA6keiqTxsVeMMzMC2jOJjZdw+N
-        aoO4ce4Bgb0F7MO9Nj0cAZ6HG9nJx/BszoG+vQ+6Yue0fDVmCJQtnZWKNPPBFhN4i6uvsS6lmfA
-        k7giu35vBH6M940KZgSlYRw==
-X-Received: by 2002:a37:6348:: with SMTP id x69mr20862396qkb.254.1614006331991;
-        Mon, 22 Feb 2021 07:05:31 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzrq+L4B1BnH+O9XSPxa50MZXky4EblzpAR85A0xm+pmjp03ZouWKADpoR+8D6lvfa0Lu/eUQ==
-X-Received: by 2002:a37:6348:: with SMTP id x69mr20862361qkb.254.1614006331672;
-        Mon, 22 Feb 2021 07:05:31 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id v135sm12562346qka.98.2021.02.22.07.05.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Feb 2021 07:05:31 -0800 (PST)
-Subject: Re: [PATCH V3 XRT Alveo 04/18] fpga: xrt: xrt-lib platform driver
- manager
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
-Cc:     Lizhi Hou <lizhih@xilinx.com>, linux-fpga@vger.kernel.org,
-        maxz@xilinx.com, sonal.santan@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
-        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
-References: <20210218064019.29189-1-lizhih@xilinx.com>
- <20210218064019.29189-5-lizhih@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <b93fb3ad-bbde-81db-d448-72fb8049f323@redhat.com>
-Date:   Mon, 22 Feb 2021 07:05:29 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        bh=RQpaozK4a6bSh+tId/CGQ4U2NWE9UBxxT151Sp+78+s=;
+        b=XSI5OZqJxeaantQfOTNq/WSomCJXTEHk4OjGXaxfrvXAFzvm7grsiH4ieUtpW6fTypNSOr
+        4JQe5Q8jeWz8dD3e03BsDwsZDoHCrGJPmdsQtcPRhYb2ihKBvgj5j9/658kwumKN/Lcbca
+        V0ly8BGxa84VvcDAClgP7tEwcos9FE0=
 MIME-Version: 1.0
-In-Reply-To: <20210218064019.29189-5-lizhih@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 22 Feb 2021 16:15:53 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Heiko Thiery <heiko.thiery@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: fsl: add support for Kontron
+ pitx-imx8m board
+In-Reply-To: <20210222140756.713-3-heiko.thiery@gmail.com>
+References: <20210222140756.713-1-heiko.thiery@gmail.com>
+ <20210222140756.713-3-heiko.thiery@gmail.com>
+User-Agent: Roundcube Webmail/1.4.10
+Message-ID: <ec04d59d54a46b6711ebc54079466fa1@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 2/17/21 10:40 PM, Lizhi Hou wrote:
-> xrt-lib kernel module infrastructure code to register and manage all
-> leaf driver modules.
->
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhih@xilinx.com>
+Am 2021-02-22 15:07, schrieb Heiko Thiery:
+> The Kontron pitx-imx8m board is based on an i.MX8MQ soc.
+> 
+> Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
 > ---
->  drivers/fpga/xrt/lib/main.c | 274 ++++++++++++++++++++++++++++++++++++
->  drivers/fpga/xrt/lib/main.h |  17 +++
->  2 files changed, 291 insertions(+)
->  create mode 100644 drivers/fpga/xrt/lib/main.c
->  create mode 100644 drivers/fpga/xrt/lib/main.h
-
-Not sure if 'main' is a good base name for something going into a lib.
-
->
-> diff --git a/drivers/fpga/xrt/lib/main.c b/drivers/fpga/xrt/lib/main.c
+> v2:
+>  - bring root nodes in alphabetical order
+>  - remove pinctrl_gpio_keys for pciewake
+>  - remove pinctrl_sai2 and pinctrl_spdfif1 since it is not used yet
+> 
+>  Thanks to Michael Walle:
+>  - add pinctrl for regulator-v-3v3-sd
+>  - add name for regulator swbst
+>  - add comment about currently unused audio codec
+>  - put usb_phy entry in correct alphabetical order
+> 
+>  Thanks to Krzysztof Kozlowski:
+>  - use generic names for pcie-refclk, tpm, fan-controller, sensor
+>  - remove empty line
+>  - fix group name to match schema (ecspi2cs -> ecspi2csgrp)
+> 
+> 
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../freescale/imx8mq-kontron-pitx-imx8m.dts   | 641 ++++++++++++++++++
+>  2 files changed, 642 insertions(+)
+>  create mode 100644 
+> arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile
+> b/arch/arm64/boot/dts/freescale/Makefile
+> index 6438db3822f8..9fc2c6f64407 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -47,6 +47,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mq-kontron-pitx-imx8m.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r3.dtb
+> diff --git
+> a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
 > new file mode 100644
-> index 000000000000..36fb62710843
+> index 000000000000..82364e394ed2
 > --- /dev/null
-> +++ b/drivers/fpga/xrt/lib/main.c
-> @@ -0,0 +1,274 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> @@ -0,0 +1,641 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
-> + * Driver for Xilinx Alveo FPGA Support
+> + * Device Tree File for the Kontron pitx-imx8m board.
 > + *
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *	Cheng Zhen <maxz@xilinx.com>
+> + * Copyright (C) 2021 Heiko Thiery <heiko.thiery@gmail.com>
 > + */
 > +
-> +#include <linux/module.h>
-> +#include "xleaf.h"
-> +#include "xroot.h"
-> +#include "main.h"
+> +/dts-v1/;
 > +
-> +#define XRT_IPLIB_MODULE_NAME		"xrt-lib"
-> +#define XRT_IPLIB_MODULE_VERSION	"4.0.0"
-> +#define XRT_MAX_DEVICE_NODES		128
-> +#define XRT_DRVNAME(drv)		((drv)->driver.name)
+> +#include "imx8mq.dtsi"
+> +#include <dt-bindings/net/ti-dp83867.h>
 > +
-> +/*
-> + * Subdev driver is known by ID to others. We map the ID to it's
-by it's ID
-> + * struct platform_driver, which contains it's binding name and driver/file ops.
-> + * We also map it to the endpoint name in DTB as well, if it's different
-> + * than the driver's binding name.
-> + */
-> +struct xrt_drv_map {
-> +	struct list_head list;
-> +	enum xrt_subdev_id id;
-> +	struct platform_driver *drv;
-> +	struct xrt_subdev_endpoints *eps;
-> +	struct ida ida; /* manage driver instance and char dev minor */
+> +/ {
+> +	model = "Kontron pITX-imx8m";
+> +	compatible = "kontron,pitx-imx8m", "fsl,imx8mq";
+> +
+> +	aliases {
+> +		i2c0 = &i2c1;
+> +		i2c1 = &i2c2;
+> +		i2c2 = &i2c3;
+> +		mmc0 = &usdhc1;
+> +		mmc1 = &usdhc2;
+> +		serial0 = &uart1;
+> +		serial1 = &uart2;
+> +		serial2 = &uart3;
+> +		spi0 = &qspi0;
+> +		spi1 = &ecspi2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial2:115200n8";
+> +	};
+> +
+> +	pcie0_refclk: clock-pcie0-refclk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <100000000>;
+> +	};
+> +
+> +	pcie1_refclk: clock-pcie1-refclk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <100000000>;
+> +	};
+> +
+> +	reg_usdhc2_vmmc: regulator-v-3v3-sd {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_reg_usdhc2>;
+> +		compatible = "regulator-fixed";
+
+compatible comes first
+
+> +		regulator-name = "V_3V3_SD";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> +		off-on-delay-us = <20000>;
+> +		enable-active-high;
+> +	};
+> +
+> +	tpm_reset: tpm-reset {
+> +		compatible = "gpio-reset";
+> +		reset-gpios = <&gpio3 2 GPIO_ACTIVE_LOW>;
+> +		reset-delay-us = <2>;
+> +		reset-post-delay-ms = <60>;
+> +		#reset-cells = <0>;
+> +	};
+> +
+> +	usb_hub_reset: usb-hub-reset {
+> +		compatible = "gpio-reset";
+> +		reset-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
+> +		reset-delay-us = <3000>;
+> +		reset-post-delay-ms = <50>;
+> +		#reset-cells = <0>;
+> +	};
 > +};
 > +
-> +static DEFINE_MUTEX(xrt_lib_lock); /* global lock protecting xrt_drv_maps list */
-> +static LIST_HEAD(xrt_drv_maps);
-> +struct class *xrt_class;
+> +&ecspi2 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_ecspi2 &pinctrl_ecspi2_cs>;
+> +	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
 > +
-> +static inline struct xrt_subdev_drvdata *
-> +xrt_drv_map2drvdata(struct xrt_drv_map *map)
-> +{
-> +	return (struct xrt_subdev_drvdata *)map->drv->id_table[0].driver_data;
-> +}
-> +
-> +static struct xrt_drv_map *
-> +xrt_drv_find_map_by_id_nolock(enum xrt_subdev_id id)
-
-name could be by convention
-
-__xrt_drv_find_map_id
-
-> +{
-> +	const struct list_head *ptr;
-> +
-> +	list_for_each(ptr, &xrt_drv_maps) {
-> +		struct xrt_drv_map *tmap = list_entry(ptr, struct xrt_drv_map, list);
-> +
-> +		if (tmap->id == id)
-> +			return tmap;
-> +	}
-> +	return NULL;
-> +}
-> +
-> +static struct xrt_drv_map *
-> +xrt_drv_find_map_by_id(enum xrt_subdev_id id)
-> +{
-> +	struct xrt_drv_map *map;
-> +
-> +	mutex_lock(&xrt_lib_lock);
-> +	map = xrt_drv_find_map_by_id_nolock(id);
-> +	mutex_unlock(&xrt_lib_lock);
-> +	/*
-> +	 * map should remain valid even after lock is dropped since a registered
-even after the lock
-> +	 * driver should only be unregistered when driver module is being unloaded,
-> +	 * which means that the driver should not be used by then.
-> +	 */
-> +	return map;
-> +}
-> +
-> +static int xrt_drv_register_driver(struct xrt_drv_map *map)
-> +{
-> +	struct xrt_subdev_drvdata *drvdata;
-> +	int rc = 0;
-> +	const char *drvname = XRT_DRVNAME(map->drv);
-> +
-> +	rc = platform_driver_register(map->drv);
-> +	if (rc) {
-> +		pr_err("register %s platform driver failed\n", drvname);
-> +		return rc;
-> +	}
-> +
-> +	drvdata = xrt_drv_map2drvdata(map);
-> +	if (drvdata) {
-> +		/* Initialize dev_t for char dev node. */
-> +		if (xleaf_devnode_enabled(drvdata)) {
-> +			rc = alloc_chrdev_region(&drvdata->xsd_file_ops.xsf_dev_t, 0,
-> +						 XRT_MAX_DEVICE_NODES, drvname);
-> +			if (rc) {
-> +				platform_driver_unregister(map->drv);
-> +				pr_err("failed to alloc dev minor for %s: %d\n", drvname, rc);
-> +				return rc;
-> +			}
-> +		} else {
-> +			drvdata->xsd_file_ops.xsf_dev_t = (dev_t)-1;
-> +		}
-> +	}
-> +
-> +	ida_init(&map->ida);
-> +
-> +	pr_info("%s registered successfully\n", drvname);
-> +
-> +	return 0;
-> +}
-> +
-> +static void xrt_drv_unregister_driver(struct xrt_drv_map *map)
-> +{
-> +	const char *drvname = XRT_DRVNAME(map->drv);
-> +	struct xrt_subdev_drvdata *drvdata;
-> +
-> +	ida_destroy(&map->ida);
-> +
-> +	drvdata = xrt_drv_map2drvdata(map);
-> +	if (drvdata && drvdata->xsd_file_ops.xsf_dev_t != (dev_t)-1) {
-> +		unregister_chrdev_region(drvdata->xsd_file_ops.xsf_dev_t,
-> +					 XRT_MAX_DEVICE_NODES);
-> +	}
-> +
-> +	platform_driver_unregister(map->drv);
-> +
-> +	pr_info("%s unregistered successfully\n", drvname);
-> +}
-> +
-> +int xleaf_register_driver(enum xrt_subdev_id id,
-> +			  struct platform_driver *drv,
-> +			  struct xrt_subdev_endpoints *eps)
-> +{
-> +	struct xrt_drv_map *map;
-> +
-> +	mutex_lock(&xrt_lib_lock);
-
-Trying to minimize length of lock being held.
-
-Could holding this lock be split or the alloc moved above ?
-
-> +
-> +	map = xrt_drv_find_map_by_id_nolock(id);
-> +	if (map) {
-> +		mutex_unlock(&xrt_lib_lock);
-> +		pr_err("Id %d already has a registered driver, 0x%p\n",
-> +		       id, map->drv);
-> +		return -EEXIST;
-> +	}
-> +
-> +	map = vzalloc(sizeof(*map));
-
-general issue
-
-map is small, so kzalloc
-
-> +	if (!map) {
-> +		mutex_unlock(&xrt_lib_lock);
-> +		return -ENOMEM;
-> +	}
-> +	map->id = id;
-> +	map->drv = drv;
-> +	map->eps = eps;
-> +
-> +	xrt_drv_register_driver(map);
-
-xrt_drv_register_driver failure is unhandled.
-
-This is the only time xrt_drv_register_driver is called, consider expanding the function here and removing the call.
-
-> +
-> +	list_add(&map->list, &xrt_drv_maps);
-> +
-> +	mutex_unlock(&xrt_lib_lock);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(xleaf_register_driver);
-> +
-> +void xleaf_unregister_driver(enum xrt_subdev_id id)
-> +{
-> +	struct xrt_drv_map *map;
-> +
-> +	mutex_lock(&xrt_lib_lock);
-> +
-> +	map = xrt_drv_find_map_by_id_nolock(id);
-> +	if (!map) {
-> +		mutex_unlock(&xrt_lib_lock);
-> +		pr_err("Id %d has no registered driver\n", id);
-> +		return;
-> +	}
-> +
-> +	list_del(&map->list);
-> +
-> +	mutex_unlock(&xrt_lib_lock);
-> +
-> +	xrt_drv_unregister_driver(map);
-> +	vfree(map);
-> +}
-> +EXPORT_SYMBOL_GPL(xleaf_unregister_driver);
-> +
-> +const char *xrt_drv_name(enum xrt_subdev_id id)
-> +{
-> +	struct xrt_drv_map *map = xrt_drv_find_map_by_id(id);
-> +
-> +	if (map)
-> +		return XRT_DRVNAME(map->drv);
-> +	return NULL;
-> +}
-> +
-> +int xrt_drv_get_instance(enum xrt_subdev_id id)
-> +{
-> +	struct xrt_drv_map *map = xrt_drv_find_map_by_id(id);
-> +
-> +	return ida_alloc_range(&map->ida, 0, XRT_MAX_DEVICE_NODES, GFP_KERNEL);
-> +}
-> +
-> +void xrt_drv_put_instance(enum xrt_subdev_id id, int instance)
-> +{
-> +	struct xrt_drv_map *map = xrt_drv_find_map_by_id(id);
-> +
-> +	ida_free(&map->ida, instance);
-> +}
-> +
-> +struct xrt_subdev_endpoints *xrt_drv_get_endpoints(enum xrt_subdev_id id)
-> +{
-> +	struct xrt_drv_map *map = xrt_drv_find_map_by_id(id);
-> +	struct xrt_subdev_endpoints *eps;
-> +
-> +	eps = map ? map->eps : NULL;
-> +	return eps;
-> +}
-> +
-> +/* Leaf driver's module init/fini callbacks. */
-
-These constructor/destructor calls needs to be more dynamic.
-
-calls are made even if there are no subdevices to go with the id's.
-
-Also this list can not grow.  How would a new id be added by a module ?
-
-> +static void (*leaf_init_fini_cbs[])(bool) = {
-> +	group_leaf_init_fini,
-> +	vsec_leaf_init_fini,
-> +	devctl_leaf_init_fini,
-> +	axigate_leaf_init_fini,
-> +	icap_leaf_init_fini,
-> +	calib_leaf_init_fini,
-> +	clkfreq_leaf_init_fini,
-> +	clock_leaf_init_fini,
-> +	ucs_leaf_init_fini,
+> +	tpm@0 {
+> +		compatible = "infineon,slb9670";
+> +		reg = <0>;
+> +		resets = <&tpm_reset>;
+> +		spi-max-frequency = <43000000>;
+> +	};
 > +};
 > +
-> +static __init int xrt_lib_init(void)
-> +{
-> +	int i;
+> +&fec1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_fec1>;
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&ethphy0>;
+> +	phy-reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
+> +	fsl,magic-packet;
+> +	status = "okay";
 > +
-> +	xrt_class = class_create(THIS_MODULE, XRT_IPLIB_MODULE_NAME);
-> +	if (IS_ERR(xrt_class))
-> +		return PTR_ERR(xrt_class);
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 > +
-> +	for (i = 0; i < ARRAY_SIZE(leaf_init_fini_cbs); i++)
-> +		leaf_init_fini_cbs[i](true);
-> +	return 0;
-> +}
+> +		ethphy0: ethernet-phy@0 {
+> +			compatible = "ethernet-phy-ieee802.3-c22";
+> +			reg = <0>;
+> +			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+> +			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_75_NS>;
+> +			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		};
+> +	};
+> +};
 > +
-> +static __exit void xrt_lib_fini(void)
-> +{
-> +	struct xrt_drv_map *map;
-> +	int i;
+> +&i2c1 {
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c1>;
+> +	status = "okay";
 > +
-> +	for (i = 0; i < ARRAY_SIZE(leaf_init_fini_cbs); i++)
-> +		leaf_init_fini_cbs[i](false);
+> +	pmic@8 {
+> +		compatible = "fsl,pfuze100";
+> +		fsl,pfuze-support-disable-sw;
+> +		reg = <0x8>;
 > +
-> +	mutex_lock(&xrt_lib_lock);
+> +		regulators {
+> +			sw1a_reg: sw1ab {
+> +				regulator-name = "V_0V9_GPU";
+> +				regulator-min-microvolt = <825000>;
+> +				regulator-max-microvolt = <1100000>;
+> +			};
 > +
-> +	while (!list_empty(&xrt_drv_maps)) {
-> +		map = list_first_entry_or_null(&xrt_drv_maps, struct xrt_drv_map, list);
-> +		pr_err("Unloading module with %s still registered\n", XRT_DRVNAME(map->drv));
-> +		list_del(&map->list);
-> +		mutex_unlock(&xrt_lib_lock);
-> +		xrt_drv_unregister_driver(map);
-> +		vfree(map);
-> +		mutex_lock(&xrt_lib_lock);
-> +	}
+> +			sw1c_reg: sw1c {
+> +				regulator-name = "V_0V9_VPU";
+> +				regulator-min-microvolt = <825000>;
+> +				regulator-max-microvolt = <1100000>;
+> +			};
 > +
-> +	mutex_unlock(&xrt_lib_lock);
+> +			sw2_reg: sw2 {
+> +				regulator-name = "V_1V1_NVCC_DRAM";
+> +				regulator-min-microvolt = <1100000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-always-on;
+> +			};
 > +
-> +	class_destroy(xrt_class);
-> +}
+> +			sw3a_reg: sw3ab {
+> +				regulator-name = "V_1V0_DRAM";
+> +				regulator-min-microvolt = <825000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-always-on;
+> +			};
 > +
-> +module_init(xrt_lib_init);
-> +module_exit(xrt_lib_fini);
+> +			sw4_reg: sw4 {
+> +				regulator-name = "V_1V8_S0";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +			};
 > +
-> +MODULE_VERSION(XRT_IPLIB_MODULE_VERSION);
-> +MODULE_AUTHOR("XRT Team <runtime@xilinx.com>");
-> +MODULE_DESCRIPTION("Xilinx Alveo IP Lib driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/fpga/xrt/lib/main.h b/drivers/fpga/xrt/lib/main.h
-> new file mode 100644
-> index 000000000000..f3bfc87ee614
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/lib/main.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *	Cheng Zhen <maxz@xilinx.com>
-> + */
+> +			swbst_reg: swbst {
+> +				regulator-name = "NC";
+> +				regulator-min-microvolt = <5000000>;
+> +				regulator-max-microvolt = <5150000>;
+> +			};
 > +
-> +#ifndef _XRT_MAIN_H_
-> +#define _XRT_MAIN_H_
+> +			snvs_reg: vsnvs {
+> +				regulator-name = "V_0V9_SNVS";
+> +				regulator-min-microvolt = <1000000>;
+> +				regulator-max-microvolt = <3000000>;
+> +				regulator-always-on;
+> +			};
 > +
-> +const char *xrt_drv_name(enum xrt_subdev_id id);
+> +			vref_reg: vrefddr {
+> +				regulator-name = "V_0V55_VREF_DDR";
+> +				regulator-always-on;
+> +			};
+> +
+> +			vgen1_reg: vgen1 {
+> +				regulator-name = "V_1V5_CSI";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1550000>;
+> +			};
+> +
+> +			vgen2_reg: vgen2 {
+> +				regulator-name = "V_0V9_PHY";
+> +				regulator-min-microvolt = <850000>;
+> +				regulator-max-microvolt = <975000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			vgen3_reg: vgen3 {
+> +				regulator-name = "V_1V8_PHY";
+> +				regulator-min-microvolt = <1675000>;
+> +				regulator-max-microvolt = <1975000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			vgen4_reg: vgen4 {
+> +				regulator-name = "V_1V8_VDDA";
+> +				regulator-min-microvolt = <1625000>;
+> +				regulator-max-microvolt = <1875000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			vgen5_reg: vgen5 {
+> +				regulator-name = "V_3V3_PHY";
+> +				regulator-min-microvolt = <3075000>;
+> +				regulator-max-microvolt = <3625000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			vgen6_reg: vgen6 {
+> +				regulator-name = "V_2V8_CAM";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +
+> +	fan-controller@1b {
+> +		compatible = "maxim,max6650";
+> +		reg = <0x1b>;
+> +		maxim,fan-microvolt = <5000000>;
+> +	};
+> +
+> +	rtc@32 {
+> +		compatible = "microcrystal,rv8803";
+> +		reg = <0x32>;
+> +	};
+> +
+> +	sensor@4b {
+> +		compatible = "national,lm75b";
+> +		reg = <0x4b>;
+> +	};
+> +
+> +	eeprom@51 {
+> +		compatible = "atmel,24c32";
+> +		reg = <0x51>;
+> +		pagesize = <32>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c2>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c3 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +	status = "okay";
+> +
+> +	/* TODO: configure audio, as of now just put a placeholder */
 
-To be self contained, the header defining enum xrt_subdev_id should be included.
+wouldn't it make more sense to remove this node and introduce it
+together with sound support for this board, which I assume is the
+reason to have the audio codec.
 
-This is subdev_id.h which comes in with patch 6
+-michael
 
-A dependency on a future patch breaks bisectablity.
-
-It may make sense to collect these small headers into a single large header for the ip infra lib and bring them all in this patch.
-
-Tom
-
-> +int xrt_drv_get_instance(enum xrt_subdev_id id);
-> +void xrt_drv_put_instance(enum xrt_subdev_id id, int instance);
-> +struct xrt_subdev_endpoints *xrt_drv_get_endpoints(enum xrt_subdev_id id);
+> +	wm8904: audio-codec@1a {
+> +		compatible = "wlf,wm8904";
+> +		reg = <0x1a>;
+> +		clocks = <&clk IMX8MQ_CLK_SAI2_ROOT>;
+> +		clock-names = "mclk";
+> +		clock-frequency = <24000000>;
+> +	};
+> +};
 > +
-> +#endif	/* _XRT_MAIN_H_ */
-
+> +/* M.2 B-key slot */
+> +&pcie0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pcie0>;
+> +	disable-gpio = <&gpio5 29 GPIO_ACTIVE_LOW>;
+> +	reset-gpio = <&gpio1 9 GPIO_ACTIVE_LOW>;
+> +	clocks = <&clk IMX8MQ_CLK_PCIE1_ROOT>,
+> +		 <&clk IMX8MQ_CLK_PCIE1_AUX>,
+> +		 <&clk IMX8MQ_CLK_PCIE1_PHY>,
+> +		 <&pcie0_refclk>;
+> +	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
+> +	ext_osc = <1>;
+> +	status = "okay";
+> +};
+> +
+> +/* Intel Ethernet Controller I210/I211 */
+> +&pcie1 {
+> +	clocks = <&clk IMX8MQ_CLK_PCIE2_ROOT>,
+> +		 <&clk IMX8MQ_CLK_PCIE2_AUX>,
+> +		 <&clk IMX8MQ_CLK_PCIE2_PHY>,
+> +		 <&pcie1_refclk>;
+> +	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
+> +	ext_osc = <1>;
+> +	fsl,max-link-speed = <1>;
+> +	status = "okay";
+> +};
+> +
+> +&pgc_gpu {
+> +	power-supply = <&sw1a_reg>;
+> +};
+> +
+> +&pgc_vpu {
+> +	power-supply = <&sw1c_reg>;
+> +};
+> +
+> +&qspi0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_qspi>;
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		reg = <0>;
+> +		spi-tx-bus-width = <4>;
+> +		spi-rx-bus-width = <4>;
+> +		m25p,fast-read;
+> +		spi-max-frequency = <50000000>;
+> +	};
+> +};
+> +
+> +&snvs_pwrkey {
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart1>;
+> +	assigned-clocks = <&clk IMX8MQ_CLK_UART1>;
+> +	assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>;
+> +	status = "okay";
+> +};
+> +
+> +&uart2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart2>;
+> +	assigned-clocks = <&clk IMX8MQ_CLK_UART2>;
+> +	assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>;
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart3>;
+> +	fsl,uart-has-rtscts;
+> +	assigned-clocks = <&clk IMX8MQ_CLK_UART3>;
+> +	assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>;
+> +	status = "okay";
+> +};
+> +
+> +&usb3_phy0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb3_phy1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc3_0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usb0>;
+> +	dr_mode = "otg";
+> +	hnp-disable;
+> +	srp-disable;
+> +	adp-disable;
+> +	maximum-speed = "high-speed";
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc3_1 {
+> +	resets = <&usb_hub_reset>;
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +&usdhc1 {
+> +	assigned-clocks = <&clk IMX8MQ_CLK_USDHC1>;
+> +	assigned-clock-rates = <400000000>;
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc1>;
+> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+> +	vqmmc-supply = <&sw4_reg>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	no-sd;
+> +	no-sdio;
+> +	status = "okay";
+> +};
+> +
+> +&usdhc2 {
+> +	assigned-clocks = <&clk IMX8MQ_CLK_USDHC2>;
+> +	assigned-clock-rates = <200000000>;
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
+> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
+> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
+> +	bus-width = <4>;
+> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+> +	wp-gpios = <&gpio2 20 GPIO_ACTIVE_HIGH>;
+> +	vmmc-supply = <&reg_usdhc2_vmmc>;
+> +	status = "okay";
+> +};
+> +
+> +&wdog1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_wdog>;
+> +	fsl,ext-reset-output;
+> +	status = "okay";
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_hog>;
+> +
+> +	pinctrl_hog: hoggrp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_NAND_CE1_B_GPIO3_IO2		0x19 /* TPM Reset */
+> +			MX8MQ_IOMUXC_NAND_CE3_B_GPIO3_IO4		0x19 /* USB2 Hub Reset */
+> +		>;
+> +	};
+> +
+> +	pinctrl_gpio: gpiogrp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_NAND_CLE_GPIO3_IO5			0x19 /* GPIO0 */
+> +			MX8MQ_IOMUXC_NAND_RE_B_GPIO3_IO15		0x19 /* GPIO1 */
+> +			MX8MQ_IOMUXC_NAND_WE_B_GPIO3_IO17		0x19 /* GPIO2 */
+> +			MX8MQ_IOMUXC_NAND_WP_B_GPIO3_IO18		0x19 /* GPIO3 */
+> +			MX8MQ_IOMUXC_NAND_READY_B_GPIO3_IO16		0x19 /* GPIO4 */
+> +			MX8MQ_IOMUXC_NAND_DATA04_GPIO3_IO10		0x19 /* GPIO5 */
+> +			MX8MQ_IOMUXC_NAND_DATA05_GPIO3_IO11		0x19 /* GPIO6 */
+> +			MX8MQ_IOMUXC_NAND_DATA06_GPIO3_IO12		0x19 /* GPIO7 */
+> +		>;
+> +	};
+> +
+> +	pinctrl_pcie0: pcie0grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x16 /* PCIE_PERST */
+> +			MX8MQ_IOMUXC_UART4_TXD_GPIO5_IO29		0x16 /* W_DISABLE */
+> +		>;
+> +	};
+> +
+> +	pinctrl_reg_usdhc2: regusdhc2gpiogrp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_SD2_RESET_B_GPIO2_IO19		0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_fec1: fec1grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_ENET_MDC_ENET1_MDC			0x3
+> +			MX8MQ_IOMUXC_ENET_MDIO_ENET1_MDIO		0x23
+> +			MX8MQ_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f
+> +			MX8MQ_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f
+> +			MX8MQ_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f
+> +			MX8MQ_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f
+> +			MX8MQ_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91
+> +			MX8MQ_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91
+> +			MX8MQ_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91
+> +			MX8MQ_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91
+> +			MX8MQ_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f
+> +			MX8MQ_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
+> +			MX8MQ_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
+> +			MX8MQ_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
+> +			MX8MQ_IOMUXC_GPIO1_IO11_GPIO1_IO11		0x16
+> +			MX8MQ_IOMUXC_GPIO1_IO15_GPIO1_IO15		0x16
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c1: i2c1grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_I2C1_SCL_I2C1_SCL			0x4000007f
+> +			MX8MQ_IOMUXC_I2C1_SDA_I2C1_SDA			0x4000007f
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c2: i2c2grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_I2C2_SCL_I2C2_SCL			0x4000007f
+> +			MX8MQ_IOMUXC_I2C2_SDA_I2C2_SDA			0x4000007f
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c3: i2c3grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_I2C3_SCL_I2C3_SCL			0x4000007f
+> +			MX8MQ_IOMUXC_I2C3_SDA_I2C3_SDA			0x4000007f
+> +		>;
+> +	};
+> +
+> +	pinctrl_qspi: qspigrp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_NAND_ALE_QSPI_A_SCLK		0x82
+> +			MX8MQ_IOMUXC_NAND_CE0_B_QSPI_A_SS0_B		0x82
+> +			MX8MQ_IOMUXC_NAND_DATA00_QSPI_A_DATA0		0x82
+> +			MX8MQ_IOMUXC_NAND_DATA01_QSPI_A_DATA1		0x82
+> +			MX8MQ_IOMUXC_NAND_DATA02_QSPI_A_DATA2		0x82
+> +			MX8MQ_IOMUXC_NAND_DATA03_QSPI_A_DATA3		0x82
+> +		>;
+> +	};
+> +
+> +	pinctrl_ecspi2: ecspi2grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI		0x19
+> +			MX8MQ_IOMUXC_ECSPI2_MISO_ECSPI2_MISO		0x19
+> +			MX8MQ_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK		0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_ecspi2_cs: ecspi2csgrp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_ECSPI2_SS0_GPIO5_IO13		0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart1: uart1grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_UART1_TXD_UART1_DCE_TX		0x49
+> +			MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x49
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart2: uart2grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_UART2_TXD_UART2_DCE_TX		0x49
+> +			MX8MQ_IOMUXC_UART2_RXD_UART2_DCE_RX		0x49
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart3: uart3grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_UART3_TXD_UART3_DCE_TX		0x49
+> +			MX8MQ_IOMUXC_UART3_RXD_UART3_DCE_RX		0x49
+> +			MX8MQ_IOMUXC_ECSPI1_SS0_UART3_DCE_RTS_B		0x49
+> +			MX8MQ_IOMUXC_ECSPI1_MISO_UART3_DCE_CTS_B	0x49
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1: usdhc1grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x83
+> +			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc3
+> +			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc3
+> +			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc3
+> +			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc3
+> +			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc3
+> +			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc3
+> +			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc3
+> +			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc3
+> +			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc3
+> +			MX8MQ_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x83
+> +			MX8MQ_IOMUXC_SD1_RESET_B_USDHC1_RESET_B		0xc1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1_100mhz: usdhc1-100grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x8d
+> +			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xcd
+> +			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xcd
+> +			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xcd
+> +			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xcd
+> +			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xcd
+> +			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xcd
+> +			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xcd
+> +			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xcd
+> +			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xcd
+> +			MX8MQ_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x8d
+> +			MX8MQ_IOMUXC_SD1_RESET_B_USDHC1_RESET_B		0xc1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1_200mhz: usdhc1-200grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x9f
+> +			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xdf
+> +			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xdf
+> +			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xdf
+> +			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xdf
+> +			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xdf
+> +			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xdf
+> +			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xdf
+> +			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xdf
+> +			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xdf
+> +			MX8MQ_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x9f
+> +			MX8MQ_IOMUXC_SD1_RESET_B_USDHC1_RESET_B		0xc1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_SD2_CD_B_GPIO2_IO12		0x41
+> +			MX8MQ_IOMUXC_SD2_WP_GPIO2_IO20			0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2: usdhc2grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x83
+> +			MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc3
+> +			MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc3
+> +			MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc3
+> +			MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc3
+> +			MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc3
+> +			MX8MQ_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0xc1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_100mhz: usdhc2-100grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x8d
+> +			MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xcd
+> +			MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xcd
+> +			MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xcd
+> +			MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xcd
+> +			MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xcd
+> +			MX8MQ_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0xc1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_200mhz: usdhc2-200grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x9f
+> +			MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xdf
+> +			MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xdf
+> +			MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xdf
+> +			MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xdf
+> +			MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xdf
+> +			MX8MQ_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0xc1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usb0: usb0grp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_GPIO1_IO12_USB1_OTG_PWR		0x19
+> +			MX8MQ_IOMUXC_GPIO1_IO13_USB1_OTG_OC		0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_wdog: wdoggrp {
+> +		fsl,pins = <
+> +			MX8MQ_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
+> +		>;
+> +	};
+> +};
