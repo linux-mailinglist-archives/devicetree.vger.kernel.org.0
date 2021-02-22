@@ -2,155 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A11F632214B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 22:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E4BF322150
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 22:27:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbhBVVYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 16:24:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35478 "EHLO
+        id S229947AbhBVVZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 16:25:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231489AbhBVVYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 16:24:04 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1CA9C06174A;
-        Mon, 22 Feb 2021 13:23:23 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id n8so20518850wrm.10;
-        Mon, 22 Feb 2021 13:23:23 -0800 (PST)
+        with ESMTP id S231544AbhBVVZU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 16:25:20 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 304A0C06174A;
+        Mon, 22 Feb 2021 13:24:40 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id p3so560742wmc.2;
+        Mon, 22 Feb 2021 13:24:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=lLar19iHaupqecmjA2VUfAzq75h6j1/XaNyh9pqVsXg=;
-        b=Rqhj5LG9qxxNPPbOjd3QVlwThOXlC/eQuWmDnUnTaRquQwsIlgkPjCm5BzGnNaroIO
-         +NB1WF/KwKx73L4D0iWpWYsHG3uY8cYuZFL0uE+OlZ4tHbEIFYstRQ9Ch/yunJbGVU37
-         T2H68HpE0O0+REbA6v4PiAR9VA5+u/wvFPP5bzpNqhQH5ejrvdDrmvmjsiuCMKr6gR6F
-         s17LWzDCH7SNzs7KSQ0rNlnebeatznSTZ76l+vQekhzEUYLS4rpNKPCZAA4QaRmZ97rn
-         Mnf90hnGNiaBs89vQhVTZaqUS+oe7OJ8XgjyRtQS79RAr2Cyagr17a+Mpi07zTpsumRo
-         /8fQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=38e+U8k/6cZuOcCMlTvlYYecFoxJcJvt1vfIHMqNNTA=;
+        b=hiHr5OleGoQRG1+VZcGyJ+EPYOABsL65qLqJhJugiczONjNGl4+ixLvEt9rIDN0Tlm
+         gbpzgvypNvROuhii43U+FEr+Dfa09hPg50P4zt8D9Vu4lNCGnpRa2FznVc6bxd2BmnpA
+         FLea1eCvYlv55IMEsRefsUEjwZIH8Mxbv24gmqtOj8zY+7NVlArHC3Nhbc8ImGNHmFUp
+         MkUz66/FPxcyJT5VyrXqfpNTkI7pt1wbDXtzPcSTHOn+iZHPZkGZTcSDL3sP9xWcSglY
+         F3pFDjui+7c5EqNao6+po1XNQIXwnD+wi8JyTM2F3JekBuIn1QM4c2zzgpI3t8kEjS+b
+         R0XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=lLar19iHaupqecmjA2VUfAzq75h6j1/XaNyh9pqVsXg=;
-        b=WBpreW+kvWokyd8Ga2EjW5z6kW6zbiNmk1lIcnKSs3iZ5nqp38ILGXl3UFLwxyVjB4
-         hFnw2KL+zTJeMbSx8jKYV8WbbBCqElatcEOe6jg1M0VgftxKI0iuCAnVq74DxdSNEBCC
-         ajOUCzqsfiOFm52icFakosRb8hr43LafmZPaFXF6MIqNbFFO1UFnziRABbbp0tmL481H
-         rgEdi9yOyfFfYDEDD4VlDqFgX9X11UYsYjO4l4Wkwd86jAGkJS5tJ6ByktmKPuoRcxhG
-         P8waKBQ/sCZBVI1GvEe/4AF+caS9NDXBY9deBBApgvWrQDlUJRpT6i5ZS1VXwJ1HPfB/
-         kMVA==
-X-Gm-Message-State: AOAM532Qr61Zp1LT+C+7Bo3U7/fid/c1rtTTEhkfA6H8lesrbwfrCHrK
-        KrZfztrwfIeNfhelDSn6aurBx+w+4ZY=
-X-Google-Smtp-Source: ABdhPJwKAUQl3cl7EGfjOjaveWQdinhw338rdBKtU3x/hvuPKJaMnuX+YfbWFH6PW07t1RvC++QQSA==
-X-Received: by 2002:a5d:4c82:: with SMTP id z2mr23109270wrs.220.1614029002505;
-        Mon, 22 Feb 2021 13:23:22 -0800 (PST)
-Received: from pop-os.localdomain (cpc126866-lewi25-2-0-cust31.2-4.cable.virginm.net. [82.7.143.32])
-        by smtp.gmail.com with ESMTPSA id w4sm506164wmc.13.2021.02.22.13.23.21
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=38e+U8k/6cZuOcCMlTvlYYecFoxJcJvt1vfIHMqNNTA=;
+        b=PZOPsgxIL8TYVkE0blrjCLHNEnjonbTBrPheOqhUHuy1F3cd7XKBzOpvVJOBLSEeG4
+         pWw1zRcwjx6spUZpndlMpDUMtIGb14vRQ5mrYBNrWVzN/UD8oaIgo5aK36oeD77+hRCn
+         mVwC2yBW+O5S7jdC/Z9wpXCJDtoEA9mV/OgCVyazlMlRBPWzBcwB1naY6g1Z0jirsNSS
+         IwcupeHUfU/ph8rcVMQhthh+sUUnBwUtyCXaMNTbm9N6pu1ciCPYg1Vx/1XoLodxhOaH
+         OlPxt7ncHz7H3OEVkbpKJZ3BWlSsaGMjErjm2KN5taLA8RvK9KetEgBtKXBY4901YVcm
+         Sq3A==
+X-Gm-Message-State: AOAM530p5MR5M7k/bM7GWlmf+3ABvAh28y/Vdqu97a3Wd73mNbpqKMMy
+        sTfqvasfP9bRyOa0lIRjmzrODIlLvm7cCsMX
+X-Google-Smtp-Source: ABdhPJxSKD0ALa9pqAEpe0cc+MemrnUejENnMcREw74GQmBu1rdgC2CH9xosHbhkqmptFmVIm54g5A==
+X-Received: by 2002:a05:600c:1552:: with SMTP id f18mr22279684wmg.149.1614029078640;
+        Mon, 22 Feb 2021 13:24:38 -0800 (PST)
+Received: from hthiery.fritz.box (ip1f1322f8.dynamic.kabel-deutschland.de. [31.19.34.248])
+        by smtp.gmail.com with ESMTPSA id w25sm478582wmc.42.2021.02.22.13.24.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Feb 2021 13:23:22 -0800 (PST)
-From:   Joe Sandom <joe.g.sandom@gmail.com>
-To:     jic23@kernel.org
-Cc:     Joe Sandom <joe.g.sandom@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joe Sandom <joe.sandom@outlook.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RESEND][PATCH v4 2/2] Added AMS tsl2591 device tree binding
-Date:   Mon, 22 Feb 2021 21:23:13 +0000
-Message-Id: <20210222212313.29319-2-joe.g.sandom@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210222212313.29319-1-joe.g.sandom@gmail.com>
-References: <20210222212313.29319-1-joe.g.sandom@gmail.com>
+        Mon, 22 Feb 2021 13:24:38 -0800 (PST)
+From:   Heiko Thiery <heiko.thiery@gmail.com>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Heiko Thiery <heiko.thiery@gmail.com>
+Subject: [PATCH v3 0/2] add Kontron pITX-imx8m board
+Date:   Mon, 22 Feb 2021 22:24:17 +0100
+Message-Id: <20210222212419.25180-1-heiko.thiery@gmail.com>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Device tree binding for AMS/TAOS tsl2591 ambient light sensor.
+This patch series adds support for the Kontron pITX-imx8m board:
 
-This driver supports configuration via device tree and sysfs.
-Supported channels for raw infrared light intensity,
-raw combined light intensity and illuminance in lux.
-The driver additionally supports iio events on lower and
-upper thresholds.
+https://www.kontron.com/products/boards-and-standard-form-factors/single-board-computer/pitx-imx8m.html
 
-This is a very-high sensitivity light-to-digital converter that
-transforms light intensity into a digital signal.
+Heiko Thiery (2):
+  dt-bindings: arm: fsl: add Kontron pITX-imx8m board
+  arm64: dts: fsl: add support for Kontron pitx-imx8m board
 
-Datasheet Available at: https://ams.com/tsl25911
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx8mq-kontron-pitx-imx8m.dts   | 632 ++++++++++++++++++
+ 3 files changed, 634 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
 
-Signed-off-by: Joe Sandom <joe.g.sandom@gmail.com>
----
-Changes in v4:
-- Corrected id field to include vendor name in prefix
-
-Notes:
-- Previously incorrectly included binding in same patch as driver.
-  This was pointed out by the maintainer and has now been changed to
-  a patch series. Sorry for the confusion!
-
-Reason for re-send;
-- Maintainer email was outlook address, changed to gmail address as this
-  is the email the patch is being sent from.
- 
- .../bindings/iio/light/amstaos,tsl2591.yaml   | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml b/Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
-new file mode 100644
-index 000000000000..596a3bc770f4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/amstaos,tsl2591.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AMS/TAOS TSL2591 Ambient Light Sensor (ALS)
-+
-+maintainers:
-+  - Joe Sandom <joe.g.sandom@gmail.com>
-+
-+description: |
-+  AMS/TAOS TSL2591 is a very-high sensitivity
-+  light-to-digital converter that transforms light intensity into a digital
-+  signal.
-+
-+properties:
-+  compatible:
-+    const: amstaos,tsl2591
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Interrupt (INT:Pin 2) Active low. Should be set to IRQ_TYPE_EDGE_FALLING.
-+      interrupt is used to detect if the light intensity has fallen below
-+      or reached above the configured threshold values.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        tsl2591@29 {
-+            compatible = "amstaos,tsl2591";
-+            reg = <0x29>;
-+            interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
-+       };
-+    };
-+...
 -- 
-2.17.1
+2.30.0
 
