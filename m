@@ -2,60 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C47193221DE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 22:57:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60723322297
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 00:22:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230374AbhBVV44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 16:56:56 -0500
-Received: from mail.jvpinto.com ([65.49.11.60]:12183 "EHLO mail.JVPinto.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231376AbhBVV4j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Feb 2021 16:56:39 -0500
-Received: from RW-EXC1.JVPinto.com (2002:ac20:10d::ac20:10d) by
- RW-EXC1.JVPinto.com (2002:ac20:10d::ac20:10d) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Mon, 22 Feb 2021 13:55:54 -0800
-Received: from User (52.231.198.195) by RW-EXC1.JVPinto.com (172.32.1.13) with
- Microsoft SMTP Server id 15.0.1497.2 via Frontend Transport; Mon, 22 Feb 2021
- 13:55:40 -0800
-Reply-To: <ms.reem@yandex.com>
-From:   "Ms. Reem" <johnpinto@jvpinto.com>
-Subject: Hello okay
-Date:   Mon, 22 Feb 2021 21:55:53 +0000
+        id S230124AbhBVXVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 18:21:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60640 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230083AbhBVXVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 18:21:47 -0500
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6899CC06174A
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 15:21:07 -0800 (PST)
+Received: by mail-qt1-x831.google.com with SMTP id w1so3795625qto.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 15:21:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ybR/H+gUTqhJdpoNFGs25EuY0u+4Z7psGbVETIdp3Zw=;
+        b=WwY7R23PimrGZfgiernMgYsaxnGb7SMGCKSp9DIfZdWYP7geL+f52q5m/yUUhcLldL
+         0+rlDgGKDSqWkXb4akKNJYruzKwC9VD0eNybpo5jqdTZ4Cg0kZNNxIKI6oddIuLZd9e+
+         RRwYrSHQYsEauYTOlOop9qIoQvizpD1Yb9LCo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ybR/H+gUTqhJdpoNFGs25EuY0u+4Z7psGbVETIdp3Zw=;
+        b=UMPI8doDepYiT0I7bEcm/xNNy5BdR0sJj+6QgNr+S1tpwN6AMOwwG11TE9Oly6J2Hw
+         n3ONiSR46IXMHPTYNESSC9reBMMMDFwbQrOATV3Fq21J8fJh7x8aC0W/MVsR9Xxoly4v
+         t/OEk08PJnacZFVbc2V+2myPt7dWlk8f6+9B+ai4cw91UK1jPHVX8CgREDeo7p0yfB82
+         Y3Hfx+qdoA0yfBru0OU0I6pS9HcnycXRpd/dB53SDF5xofIf8K+Q6jFywn8Vu+8Hqev5
+         ECZklAZ0M0rGhD/v84aV/MaGtM8OQC2jRq3WBhC5vXV0ZjPfrFhFhcw7Hq9Q6BDseUHw
+         EuYg==
+X-Gm-Message-State: AOAM532JtssKUxJ1GrcRFWtia0+uwFb/JfMU1bymXMrWC0ABw+rnm/2g
+        /8IFD1RTMCO+7oRXKVBksptthdjtSH7zzA==
+X-Google-Smtp-Source: ABdhPJyD14wso18H2Ld9CcrT2EJLwsaQXM6zsCMRTzMay3SHg74rc96QH/m1J2Z6IiT3RlClA7qFLg==
+X-Received: by 2002:ac8:35dc:: with SMTP id l28mr1673126qtb.319.1614036066166;
+        Mon, 22 Feb 2021 15:21:06 -0800 (PST)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id v75sm13407040qkb.14.2021.02.22.15.21.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Feb 2021 15:21:05 -0800 (PST)
+Received: by mail-yb1-f174.google.com with SMTP id n195so14624429ybg.9
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 15:21:05 -0800 (PST)
+X-Received: by 2002:a5b:84f:: with SMTP id v15mr34421582ybq.79.1614036064956;
+ Mon, 22 Feb 2021 15:21:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="Windows-1251"
-Content-Transfer-Encoding: 7bit
-X-Priority: 3
-X-MSMail-Priority: Normal
-X-Mailer: Microsoft Outlook Express 6.00.2600.0000
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
-Message-ID: <f7c4968f0ca54b009a9911e5c41d44ee@RW-EXC1.JVPinto.com>
-To:     Undisclosed recipients:;
+References: <20210219181032.1.I23e12818c4a841ba9c37c60b3ba8cfeeb048285f@changeid>
+In-Reply-To: <20210219181032.1.I23e12818c4a841ba9c37c60b3ba8cfeeb048285f@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 22 Feb 2021 15:20:53 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Vcsu1JREUgtEH1zXB7Ph8QWWYMVO2ioqqVYj9Dd79JDg@mail.gmail.com>
+Message-ID: <CAD=FV=Vcsu1JREUgtEH1zXB7Ph8QWWYMVO2ioqqVYj9Dd79JDg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc7180: Add lazor rev4
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi,
 
-My name is Ms. Reem Ebrahim Al-Hashimi, I am the "Minister of state
-and Petroleum" also "Minister of State for International Cooperation"
-in UAE. I write to you on behalf of my other "three (3) colleagues"
-who has approved me to solicit for your "partnership in claiming of
-{us$47=Million}" from a Financial Home in Cambodia on their behalf and
-for our "Mutual Benefits".
+On Fri, Feb 19, 2021 at 6:11 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> Lazor rev3 and older are stuffed with a 47k NTC thermistor for the
+> charger temperature which currently isn't supported by the PM6150 ADC
+> driver. A supported thermistor is used in rev4 and later revisions.
+> Add rev4 .dts files to be able to account for this.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+>
+>  arch/arm64/boot/dts/qcom/Makefile             |  3 ++
+>  .../dts/qcom/sc7180-trogdor-lazor-r3-kb.dts   |  4 +--
+>  .../dts/qcom/sc7180-trogdor-lazor-r3-lte.dts  |  4 +--
+>  .../boot/dts/qcom/sc7180-trogdor-lazor-r3.dts |  4 +--
+>  .../dts/qcom/sc7180-trogdor-lazor-r4-kb.dts   | 20 +++++++++++++
+>  .../dts/qcom/sc7180-trogdor-lazor-r4-lte.dts  | 28 +++++++++++++++++++
+>  .../boot/dts/qcom/sc7180-trogdor-lazor-r4.dts | 16 +++++++++++
+>  7 files changed, 73 insertions(+), 6 deletions(-)
 
-The Fund {us$47=Million} is our share from the (over-invoiced) Oil/Gas
-deal with Cambodian/Vietnam Government within 2013/2014, however, we
-don't want our government to know about the fund. If this proposal
-interests you, let me know, by sending me an email and I will send to
-you detailed information on how this business would be successfully
-transacted. Be informed that nobody knows about the secret of this
-fund except us, and we know how to carry out the entire transaction.
-So I am compelled to ask, that you will stand on our behalf and
-receive this fund into any account that is solely controlled by you.
+From what I can see in the latest discussions -r4 _won't_ get stuffed
+with the 100K resistor.  Thus we can just treat -r4 as the same as all
+the other revisoins now, right?
 
-We will compensate you with 15% of the total amount involved as
-gratification for being our partner in this transaction. Reply to:
-ms.reem@yandex.com
-
-Regards,
-Ms. Reem.
+-Doug
