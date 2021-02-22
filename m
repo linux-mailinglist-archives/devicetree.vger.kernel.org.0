@@ -2,71 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E84D2321E9A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 18:58:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D8D7321EEF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 19:16:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231856AbhBVR4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 12:56:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47300 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231843AbhBVR4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 12:56:45 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7368FC061574;
-        Mon, 22 Feb 2021 09:56:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=pRxdkKM/shNOUrE0VDWVoit+UMzavwHlgZAAJDI4xN4=; b=UujCKQ+crZxVjqrN529v5vjJu
-        IKFneIJxGPv1feg6Hp0PTYC+iM7qla7kLEpYu2UIxbSqMpHW0+QjhfxBpfVrkY5lAjpieUVl+/LfA
-        8BmGqA22/5iUStJTFvT7acmbmsj4PxopuYW1Rqj9ztayoiVAR1w0BRcxvlE48eFuACp/crdzXR3Jm
-        8IXnXtIWmhXHos6KnV1x7dmYMTGMhTCRBiw7a5hSTYphslwkU4+ISXPTDZcFYHku4gwrB8zW7V8Bj
-        7w8k1h8EvrUr96EWUm/RAc8Ntbkc7vsB2LxNQy13In9lyz8vb2GyuJhIKru5Tx8s4iIepepI4dwXP
-        CwTFYFc4g==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46562)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1lEFR0-0006dz-Qy; Mon, 22 Feb 2021 17:55:50 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1lEFQz-0002Kn-Vb; Mon, 22 Feb 2021 17:55:50 +0000
-Date:   Mon, 22 Feb 2021 17:55:49 +0000
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     linux-pci <linux-pci@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        Robin Murphy <robin.murphy@arm.con>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>
-Subject: Re: RPi4 can't deal with 64 bit PCI accesses
-Message-ID: <20210222175549.GO1463@shell.armlinux.org.uk>
-References: <c188698ca0de3ed6c56a0cf7880e1578aa753077.camel@suse.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c188698ca0de3ed6c56a0cf7880e1578aa753077.camel@suse.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+        id S231848AbhBVSN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 13:13:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37800 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232001AbhBVSNY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Feb 2021 13:13:24 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPS id C77FD64F02;
+        Mon, 22 Feb 2021 18:12:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614017520;
+        bh=4xeKzHa5Q/ZD9MENNHHnqyfzFBUSrAjnTwFrj1tjBnU=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=ANzxqQhPxVk91KTYWNLfvThyB3KbyHcXmLfezDKFHv1KMZIueAlQQSUcVh6HYG3/B
+         84tKt34NBv83QC+vzD44oFugIdyWDgl1mlYHJ9h6izKIhP+xibyEjqTaAQNJR60O1I
+         3Bp0qqFIkVCzoF7zj8QlKTFIubtUTcNTDCiJqx+0i9D8u82g4eyg5E9hJIcNFkzGlP
+         4tZRY7aBFTmC98BMV+Vzesy1AdPImQhEpd+L/faYqZV/+M1SkQbv9yFQqonZ5UWXfW
+         4TgA0IEN7eyHo4qMbvcuX6WN0UDt5WNGS/3pjcwyOk63C2v3EixOwmyU+bet1KPdDk
+         ipfF4gznJyAtw==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id C2E2F60963;
+        Mon, 22 Feb 2021 18:12:00 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree updates for v5.12
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20210222173541.GA1677515@robh.at.kernel.org>
+References: <20210222173541.GA1677515@robh.at.kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20210222173541.GA1677515@robh.at.kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.12
+X-PR-Tracked-Commit-Id: cb8be8b4b27f6eea88268d6991175df1a27e557e
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: a99163e9e708d5d773b7de6da952fcddc341f977
+Message-Id: <161401752079.943.713445746324603541.pr-tracker-bot@kernel.org>
+Date:   Mon, 22 Feb 2021 18:12:00 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 22, 2021 at 04:47:22PM +0100, Nicolas Saenz Julienne wrote:
-> [2] Things might get even weirder as the order in which the 32bit operations
->     are performed might matter (low/high vs high/low).
+The pull request you sent on Mon, 22 Feb 2021 11:35:41 -0600:
 
-Note that arm32 does not provide writeq() very purposely because it
-is device specific whether writing high-then-low or low-then-high is
-the correct approach. See linux/io-64-nonatomic-*.h
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.12
+
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/a99163e9e708d5d773b7de6da952fcddc341f977
+
+Thank you!
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
