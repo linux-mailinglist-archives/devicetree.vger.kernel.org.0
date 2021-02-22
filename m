@@ -2,190 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 096663218D4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 14:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 644603218BD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 14:31:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230255AbhBVNbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 08:31:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45872 "EHLO
+        id S231364AbhBVN3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 08:29:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231783AbhBVN3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 08:29:15 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABBEDC061574;
-        Mon, 22 Feb 2021 05:28:29 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id s23so5773991pji.1;
-        Mon, 22 Feb 2021 05:28:29 -0800 (PST)
+        with ESMTP id S231971AbhBVN2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 08:28:01 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DBF3C0617A7
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 05:26:59 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id n8so19030820wrm.10
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 05:26:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=fgxTxUDILQKYpK+kkMjKu0FMVKszhc5oAFeDxdZLCpA=;
-        b=T5zmuUUUcSVap0ah8QOi0Ir1Ax80hEln5b0nRp6vC4ezQFbMVX9YHomqTMYO8ecCpt
-         OKOZlOHwzuSFV1EtUqDC/Whhl13HAnAYqYqn0O9rEg1n43JQrrUC2nm80UaC/wjnaPSg
-         EslscuTnCjvZeQfd+wCKyE0DoEhIjH1mMXbQEWvnF2yMXY63XRXLHQyoBSaQ8fmKzLCQ
-         RDnQSlRYRWPWqJhxclMXaXELrd8jJ28i0fx3mPQJZ41SLopobzg9yX0wxRu9ZzIkJBhR
-         /rfC85eM0qWa9WHGsautyVm1lkTAraToWrPSt6554cDQndGdHwBC6KDGebeP2YiMidHe
-         IMCw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=kRfV3hfQKkV0JmhY14xIQXKr8DaLA+3gSz4spFlJxTo=;
+        b=bdyAHoZFEtYAZMYMT7f7v+2NVLl6gqRn541+ejwo3t/AFjmO2iiyT8s1VAjmvMJguw
+         72jL77tHS4P5tZ4G6na07GQ8m8SqcU7t/7mi/O19EJzgcLwmONNAOVasx13m7XFTw7YQ
+         MWp+WpxSQbr8PIE0wsF+/jeDSgB4pTPx84DXg3vsFIUzNFQu61z1HT6HG2Y0tM3MqZDx
+         UCIWvtxQuhg4ML/RZPBbaoHON4BVQ+qjLUvOhFc9cNVj7f628P793jbb+KlBtorxT6Ru
+         Q5niSl+T6mYfDYjHtv+2mZKvQ+SCNrGc6gtWk+Yo/EEuOoUCDm2mHyBE2QB4k1uddTBD
+         RPCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=fgxTxUDILQKYpK+kkMjKu0FMVKszhc5oAFeDxdZLCpA=;
-        b=c5f5U5pXsiLflmy8OM1Q7zkTXeXlLcGE5IeoFAPLKfex5b2PeZbMcJNPTiYKDRgjj3
-         ZVGMRCw7EZLswZxD/r7RMR/xz6qRrymvl5XFbhvO8CKYFIE9fjGtzXA0mVnmCcxgBm7w
-         gMbpIqOydD32wVkS5/No9xtIKezv5T++Bb6rf3k9fJYSXBO2gnGuDwViMlyCrKPyKZdJ
-         VC+S5GJOT6Gh5zQApJGLxKnZxgeiEujqMo07JpheWx37/audtcseEppqPLqyl3MXGDLu
-         qPmQkWheZorGkbecB+9X5pjyjo8Lkn2bFC8P/QAMgxvPZLVHHXRMeBzr/q+lysmja/eZ
-         4Rww==
-X-Gm-Message-State: AOAM531yxxC08XUO1+PHy/S2Kr2j5MiiOSY9gbX6ncWt5smKATm8MKog
-        Z9VKyaKQCFMMZggHRxzXnE0=
-X-Google-Smtp-Source: ABdhPJzhjWiTQUvQuE/07p/XYGM0i2/2d8EqO84o/ZCU1084QpCRYN13zQZMt8EtBLfw09KJLYjrVQ==
-X-Received: by 2002:a17:90a:1b0d:: with SMTP id q13mr8618774pjq.211.1614000509220;
-        Mon, 22 Feb 2021 05:28:29 -0800 (PST)
-Received: from nj08008nbu.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id 141sm19585334pfa.65.2021.02.22.05.28.25
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 22 Feb 2021 05:28:28 -0800 (PST)
-From:   Kevin Tang <kevin3.tang@gmail.com>
-To:     maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, mark.rutland@arm.com, kevin3.tang@gmail.com
-Cc:     orsonzhai@gmail.com, zhang.lyra@gmail.com,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 0/6] Add Unisoc's drm kms module
-Date:   Mon, 22 Feb 2021 21:28:16 +0800
-Message-Id: <20210222132822.7830-1-kevin3.tang@gmail.com>
-X-Mailer: git-send-email 2.29.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=kRfV3hfQKkV0JmhY14xIQXKr8DaLA+3gSz4spFlJxTo=;
+        b=sX8xO92GfMabnmtdi/Qvy16IT7/MxGbElpL+6Ua0gPxund8bDIldw+Ao7Ehn1B3ULt
+         h/P6YTMF6FMGHajrKjEanqpz4HaoxA/tjzOYsoFJwnrhZq27dnQib+GYrT6vlAsX61Os
+         5DvPeR9aZYN8r8HztZFEbp1dpUO2ottkX5g7zOdZz81mrOhA0VyZISWbwDAkaOW4R/9t
+         zq5xE2D7546csITjCv3sx59aQrFxNrRfFnwRdGMfGxM6Ak5dXpQDskQ/6TI+H8O6TYC4
+         1IpEui0hqUaFAQXRyVbEXALF1HpMYqZ9E/mNyopz8lK3iY73FaziWGktGrFkAnBVpCEa
+         7nwA==
+X-Gm-Message-State: AOAM531XRI90I8crJ5y7TPXN4/xqb32PTDz6n8qW0rvUvLqdkfGZQUfW
+        XZ35H8hmho/IRjDv/DW6J1XKXw==
+X-Google-Smtp-Source: ABdhPJwbbLUhq3173hcjozPlKXo6kXjJD8FrRIuuP0n9/6v8Yt9ubx+xgkwWJFqMGkxCWdoeF+TXTg==
+X-Received: by 2002:adf:b611:: with SMTP id f17mr21010880wre.8.1614000417860;
+        Mon, 22 Feb 2021 05:26:57 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id t7sm3079918wmq.44.2021.02.22.05.26.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Feb 2021 05:26:57 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, stanimir.varbanov@linaro.org,
+        agross@kernel.org, bjorn.andersson@linaro.org
+Cc:     bryan.odonoghue@linaro.org, jonathan@marek.ca,
+        dikshita@qti.qualcomm.com
+Subject: [PATCH v2 3/3] arm64: dts: qcom: sm8250: Add venus DT node
+Date:   Mon, 22 Feb 2021 13:28:17 +0000
+Message-Id: <20210222132817.1807788-4-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210222132817.1807788-1-bryan.odonoghue@linaro.org>
+References: <20210222132817.1807788-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ChangeList:
-RFC v1:
-1. only upstream modeset and atomic at first commit. 
-2. remove some unused code;
-3. use alpha and blend_mode properties;
-3. add yaml support;
-4. remove auto-adaptive panel driver;
-5. bugfix
+Add DT entries for the sm8250 venus encoder/decoder.
 
-RFC v2:
-1. add sprd crtc and plane module for KMS, preparing for multi crtc&encoder
-2. remove gem drivers, use generic CMA handlers
-3. remove redundant "module_init", all the sub modules loading by KMS
+Co-developed-by: Jonathan Marek <jonathan@marek.ca>
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+Co-developed-by: Dikshita Agarwal <dikshita@qti.qualcomm.com>
+Signed-off-by: Dikshita Agarwal <dikshita@qti.qualcomm.com>
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 60 ++++++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
-RFC v3:
-1. multi crtc&encoder design have problem, so rollback to v1
-
-RFC v4:
-1. update to gcc-linaro-7.5.0
-2. update to Linux 5.6-rc3
-3. remove pm_runtime support
-4. add COMPILE_TEST, remove unused kconfig
-5. "drm_dev_put" on drm_unbind
-6. fix some naming convention issue
-7. remove semaphore lock for crtc flip
-8. remove static variables
-
-RFC v5:
-1. optimize encoder and connector code implementation
-2. use "platform_get_irq" and "platform_get_resource"
-3. drop useless function return type, drop unless debug log
-4. custom properties should be separate, so drop it
-5. use DRM_XXX replase pr_xxx
-6. drop dsi&dphy hal callback ops
-7. drop unless callback ops checking
-8. add comments for sprd dpu structure
-
-RFC v6:
-1. Access registers via readl/writel
-2. Checking for unsupported KMS properties (format, rotation, blend_mode, etc) on plane_check ops
-3. Remove always true checks for dpu core ops
-
-RFC v7:
-1. Fix DTC unit name warnings
-2. Fix the problem of maintainers
-3. Call drmm_mode_config_init to mode config init
-4. Embed drm_device in sprd_drm and use devm_drm_dev_alloc
-5. Replace DRM_XXX with drm_xxx on KMS module, but not suitable for other subsystems
-6. Remove plane_update stuff, dpu handles all the HW update in crtc->atomic_flush
-7. Dsi&Dphy Code structure adjustment, all move to "sprd/"
-
-v0:
-1. Remove dpu_core_ops stuff layer for sprd drtc driver, but dpu_layer need to keeping.
-   Because all the HW update in crtc->atomic_flush, we need temporary storage all layers for
-   the dpu pageflip of atomic_flush.
-2. Add ports subnode with port@X.
-
-v1:
-1. Remove dphy and dsi graph binding, merge the dphy driver into the dsi.
-2. Add commit messages for Unisoc's virtual nodes.
-
-v2:
-1. Use drm_xxx to replace all DRM_XXX.
-2. Use kzalloc to replace devm_kzalloc for sprd_dsi/sprd_dpu structure init.
-3. Remove dpu_core_ops midlayer.
-
-v3:
-1. Remove dpu_layer midlayer and commit layers by aotmic_update
-
-v4:
-1. Move the devm_drm_dev_alloc to master_ops->bind function.
-2. The managed drmm_mode_config_init() it is no longer necessary for drivers to explicitly call drm_mode_config_cleanup, so delete it.
-3. Use drmm_helpers to allocate crtc ,planes and encoder.
-4. Move allocate crtc ,planes, encoder to bind funtion.
-5. Move rotation enum definitions to crtc layer reg bitfields.
-
-Kevin Tang (6):
-  dt-bindings: display: add Unisoc's drm master bindings
-  drm/sprd: add Unisoc's drm kms master
-  dt-bindings: display: add Unisoc's dpu bindings
-  drm/sprd: add Unisoc's drm display controller driver
-  dt-bindings: display: add Unisoc's mipi dsi controller bindings
-  drm/sprd: add Unisoc's drm mipi dsi&dphy driver
-
- .../display/sprd/sprd,display-subsystem.yaml  |   64 +
- .../display/sprd/sprd,sharkl3-dpu.yaml        |   77 +
- .../display/sprd/sprd,sharkl3-dsi-host.yaml   |  102 ++
- drivers/gpu/drm/Kconfig                       |    2 +
- drivers/gpu/drm/Makefile                      |    1 +
- drivers/gpu/drm/sprd/Kconfig                  |   13 +
- drivers/gpu/drm/sprd/Makefile                 |    8 +
- drivers/gpu/drm/sprd/dw_dsi_ctrl.c            |  794 +++++++++
- drivers/gpu/drm/sprd/dw_dsi_ctrl.h            | 1475 +++++++++++++++++
- drivers/gpu/drm/sprd/dw_dsi_ctrl_ppi.c        |  157 ++
- drivers/gpu/drm/sprd/dw_dsi_ctrl_ppi.h        |   26 +
- drivers/gpu/drm/sprd/megacores_pll.c          |  317 ++++
- drivers/gpu/drm/sprd/megacores_pll.h          |  146 ++
- drivers/gpu/drm/sprd/sprd_dpu.c               |  964 +++++++++++
- drivers/gpu/drm/sprd/sprd_dpu.h               |  109 ++
- drivers/gpu/drm/sprd/sprd_drm.c               |  219 +++
- drivers/gpu/drm/sprd/sprd_drm.h               |   19 +
- drivers/gpu/drm/sprd/sprd_dsi.c               | 1132 +++++++++++++
- drivers/gpu/drm/sprd/sprd_dsi.h               |  104 ++
- 19 files changed, 5729 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,display-subsystem.yaml
- create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
- create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
- create mode 100644 drivers/gpu/drm/sprd/Kconfig
- create mode 100644 drivers/gpu/drm/sprd/Makefile
- create mode 100644 drivers/gpu/drm/sprd/dw_dsi_ctrl.c
- create mode 100644 drivers/gpu/drm/sprd/dw_dsi_ctrl.h
- create mode 100644 drivers/gpu/drm/sprd/dw_dsi_ctrl_ppi.c
- create mode 100644 drivers/gpu/drm/sprd/dw_dsi_ctrl_ppi.h
- create mode 100644 drivers/gpu/drm/sprd/megacores_pll.c
- create mode 100644 drivers/gpu/drm/sprd/megacores_pll.h
- create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.c
- create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.h
- create mode 100644 drivers/gpu/drm/sprd/sprd_drm.c
- create mode 100644 drivers/gpu/drm/sprd/sprd_drm.h
- create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.c
- create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.h
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 3639792411ce..6b6993995eca 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -14,6 +14,7 @@
+ #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+ #include <dt-bindings/thermal/thermal.h>
+ #include <dt-bindings/clock/qcom,videocc-sm8250.h>
++#include <dt-bindings/interconnect/qcom,sm8250.h>
+ 
+ / {
+ 	interrupt-parent = <&intc>;
+@@ -1811,6 +1812,65 @@ usb_2_dwc3: dwc3@a800000 {
+ 			};
+ 		};
+ 
++		venus: video-codec@aa00000 {
++			compatible = "qcom,sm8250-venus";
++			reg = <0 0x0aa00000 0 0x100000>;
++			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&videocc MVS0C_GDSC>,
++					<&videocc MVS0_GDSC>,
++					<&rpmhpd SM8250_MX>;
++			power-domain-names = "venus", "vcodec0", "mx";
++			operating-points-v2 = <&venus_opp_table>;
++
++			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
++				 <&videocc VIDEO_CC_MVS0C_CLK>,
++				 <&videocc VIDEO_CC_MVS0_CLK>;
++			clock-names = "iface", "core", "vcodec0_core";
++
++			interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_VENUS_CFG>,
++					<&mmss_noc MASTER_VIDEO_P0 &mc_virt SLAVE_EBI_CH0>;
++			interconnect-names = "cpu-cfg", "video-mem";
++
++			iommus = <&apps_smmu 0x2100 0x0400>;
++			memory-region = <&video_mem>;
++
++			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
++				 <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
++			reset-names = "bus", "core";
++
++			video-decoder {
++				compatible = "venus-decoder";
++			};
++
++			video-encoder {
++				compatible = "venus-encoder";
++			};
++
++			venus_opp_table: venus-opp-table {
++				compatible = "operating-points-v2";
++
++				opp-720000000 {
++					opp-hz = /bits/ 64 <720000000>;
++					required-opps = <&rpmhpd_opp_low_svs>;
++				};
++
++				opp-1014000000 {
++					opp-hz = /bits/ 64 <1014000000>;
++					required-opps = <&rpmhpd_opp_svs>;
++				};
++
++				opp-1098000000 {
++					opp-hz = /bits/ 64 <1098000000>;
++					required-opps = <&rpmhpd_opp_svs_l1>;
++				};
++
++				opp-1332000000 {
++					opp-hz = /bits/ 64 <1332000000>;
++					required-opps = <&rpmhpd_opp_nom>;
++				};
++			};
++		};
++
+ 		videocc: clock-controller@abf0000 {
+ 			compatible = "qcom,sm8250-videocc";
+ 			reg = <0 0x0abf0000 0 0x10000>;
 -- 
-2.29.0
+2.29.2
 
