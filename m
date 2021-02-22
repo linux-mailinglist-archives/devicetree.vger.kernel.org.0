@@ -2,140 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B386C321FFC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 20:21:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23911321F96
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 20:05:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233079AbhBVTUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 14:20:22 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51018 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233054AbhBVTQz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Feb 2021 14:16:55 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EF64165118;
-        Mon, 22 Feb 2021 18:40:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614019250;
-        bh=FGxvnhEiZdtEIFwNlh9p2vw8zFYiWQ8F2/ji5QGybDk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=o17vjMIXFmg1nNg4qhQE+0IC/W+SF9BzYFFEUmvUwgP0zNXSRmKykCORaHVF9p2ID
-         Y0cvnPSFS2W10mswB/fkK//RZA1SXmksgPZumWggr0p47PUk7RwSngMwxYB+6hWoN1
-         pXF/lek8rfwsuC9F3mtYpjxPqGMfx/Z0rB97SyxTtWBpsDn9YrX/xLgnYwg1v1yia9
-         dBKNCYWZoe44D2lY2CTOZC/ttQxt3Gp57E35elGco9kSrSrN7Gn6jNCL7mD4P7K4oB
-         F8xef9dQQH+ldpSJsimkTvn71Az6RI6VKziMhFMY2bqAQ0nOMDBZP5hbExskm+f08h
-         D+HUzf2CDuFvg==
-Received: by mail-ej1-f48.google.com with SMTP id r17so4618316ejy.13;
-        Mon, 22 Feb 2021 10:40:49 -0800 (PST)
-X-Gm-Message-State: AOAM5302cc43mlK/DVgTIqm/iIWxlj7L560dnLLbgKW/WQL91twsI/KA
-        0emxo2htF+drVSejNFJPJcF5W83eflnHtfATMeY=
-X-Google-Smtp-Source: ABdhPJzaXVC2DvM4oFpMDq0yZw6KQI4Xsck0Cs0vUHPzVa8d1nIi+XpW2/JXhZmYymgo3rcaQCLk2m5Ys9psM7Cohi0=
-X-Received: by 2002:a17:906:1c4f:: with SMTP id l15mr11249440ejg.148.1614019248445;
- Mon, 22 Feb 2021 10:40:48 -0800 (PST)
+        id S232699AbhBVTE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 14:04:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33514 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232574AbhBVTD1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 14:03:27 -0500
+Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5064EC061574;
+        Mon, 22 Feb 2021 11:02:40 -0800 (PST)
+Received: by mail-il1-x135.google.com with SMTP id e7so11803005ile.7;
+        Mon, 22 Feb 2021 11:02:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+e8UIztOcsKjrlTctjSMc1WY3nEzfs9k9bIVsJIkLwU=;
+        b=X+k64qx9S22kXdp3V9YOk+/i0xClR17rtxxYmkOaaGpG1SEEleI2gDY05YCqWQOxua
+         xtlYd8V9geaibnFZhbw6WwaINx6DQ/G0yrCiAjlR5an/5J6sr12diWGQJS8yGsLV1jDW
+         lSMVwO644zLsG7RM1XznYOifxadmxTLbLqTdgKBIC9hkPDg4AygDZD04j7P6RL7Yhrpv
+         usY8mVGMrlyCeBkW8x9vNtMQM/OWBbjd9TQxYlf72GFJWTfZdtyCMxKbectEPZlQzsjc
+         d7eIgCVB5nn2Ny/SUXXmp/+n2o0wAwePpPRLjVjkZT7azRghNOiyAFRli4eQP+NGF337
+         MqiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+e8UIztOcsKjrlTctjSMc1WY3nEzfs9k9bIVsJIkLwU=;
+        b=OxAKDjcyn8rVzpjwU3EwRT0LG54jzc7/ZxAkW6sWph+Z8+srzTTm9/sagNe1QO8Jg5
+         RXizmZaQtRtoCVA6xr0Yt41nNKdoTrS1ii6bR+M8Od1myUQ1nXohUolafBwmI7oplkUF
+         4Z8ROMTbjytMIM+FUjdTFVWNDOZNDoV+CnyU/39FBApJue3g7yO8ZEiO1ecGZ1egz0Re
+         N+ENnYzN/mxo0pjvHm13XgdvgXM5jP9C4DfAIG9foWuW1q/kwMYXHBEovHEPtTpN/sGZ
+         V3tNy0PrfpOa7+GrGcvFGspwn70Hw1Tp1G4zzwwBeA02ZXE6rhJfHGU95rQ7OYj4Ogng
+         rejg==
+X-Gm-Message-State: AOAM5333jJR5USJ4GEOmDYYRu9lN/k3+27xoE+mxevuEJH/slUSUfdnb
+        lbgWV/wXaPWzrWBGGQfm23wvOxdSUwT+c+To9vQ=
+X-Google-Smtp-Source: ABdhPJzRK+14O8IUP3faQtq2TM10OHznaqxvVqO4EmlQADeJMDJYsZDwQCaw1/nY/Rnk9RTgI83LkzHg+EvokccMGdA=
+X-Received: by 2002:a92:d201:: with SMTP id y1mr2582055ily.129.1614020559300;
+ Mon, 22 Feb 2021 11:02:39 -0800 (PST)
 MIME-Version: 1.0
-References: <20210217161052.877877-1-adrien.grassein@gmail.com>
- <20210217161052.877877-2-adrien.grassein@gmail.com> <20210219131825.niiftfm5r32qc6m3@kozik-lap>
- <CABkfQAH75N1k0bDEGzo0mRtoqP=-9p9hzBo43f6gQnSmGsXQUw@mail.gmail.com>
- <20210220191914.pir3ep3utz6uwyrb@kozik-lap> <CABkfQAGyr_ntKMR3Ht0CVZY7zLiBcRN3-WeWiZQ-BTzXHqSF3w@mail.gmail.com>
-In-Reply-To: <CABkfQAGyr_ntKMR3Ht0CVZY7zLiBcRN3-WeWiZQ-BTzXHqSF3w@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Mon, 22 Feb 2021 19:40:35 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPfb69J+r7WdJMPbMsqaJuKYxKy6BwtEhmPFrEiZz8L8LQ@mail.gmail.com>
-Message-ID: <CAJKOXPfb69J+r7WdJMPbMsqaJuKYxKy6BwtEhmPFrEiZz8L8LQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/8] arm64: dts: imx8mm-nitrogen-r2: add wifi/bt chip
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+References: <20210218123327.25486-1-heiko.thiery@gmail.com>
+ <20210218123327.25486-3-heiko.thiery@gmail.com> <20210221121111.nsenzgenwb6pu3o7@kozik-lap>
+ <CAEyMn7YN4xqcFxR0QHUDp8cc1QP62HgpGMCYAjh0RfWL-iRQCA@mail.gmail.com>
+ <20210222084027.jd3eop7j4czoqqim@kozik-lap> <CAEyMn7YPNRDbPH84wg2s+r2F6Fo=0DJOUd-R03Fg=6_CxgknSg@mail.gmail.com>
+ <CAJKOXPdhbwpEHA+h3706NXf0uRhyu8VVC++K8WpzA6h2=8PK8Q@mail.gmail.com>
+In-Reply-To: <CAJKOXPdhbwpEHA+h3706NXf0uRhyu8VVC++K8WpzA6h2=8PK8Q@mail.gmail.com>
+From:   Heiko Thiery <heiko.thiery@gmail.com>
+Date:   Mon, 22 Feb 2021 20:02:28 +0100
+Message-ID: <CAEyMn7YeKg2foozsoX4yJZyMkE_dRgxR5KncW6yixaY10NgjwA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: fsl: add support for Kontron pitx-imx8m board
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>, catalin.marinas@arm.com,
-        will@kernel.org, DTML <devicetree@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Feb 2021 at 00:47, Adrien Grassein <adrien.grassein@gmail.com> w=
-rote:
+Hi Krzysztof,
+
+Am Mo., 22. Feb. 2021 um 19:39 Uhr schrieb Krzysztof Kozlowski
+<krzk@kernel.org>:
 >
-> Le sam. 20 f=C3=A9vr. 2021 =C3=A0 20:19, Krzysztof Kozlowski <krzk@kernel=
-.org> a =C3=A9crit :
-> >
-> > On Fri, Feb 19, 2021 at 03:03:55PM +0100, Adrien Grassein wrote:
-> > > Le ven. 19 f=C3=A9vr. 2021 =C3=A0 14:18, Krzysztof Kozlowski <krzk@ke=
-rnel.org> a =C3=A9crit :
+> On Mon, 22 Feb 2021 at 10:09, Heiko Thiery <heiko.thiery@gmail.com> wrote:
+> > > > > > +
+> > > > > > +     pcie0_refclk: pcie0-refclk {
+> > > > >
+> > > > > Generic node names (from the dt spec candidate is "clock").
 > > > >
-> > > > On Wed, Feb 17, 2021 at 05:10:45PM +0100, Adrien Grassein wrote:
-> > > > > Add usdhc3 description which corresponds to the wifi/bt chip
-> > > > >
-> > > > > Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> > > > > ---
-> > > > >  .../boot/dts/freescale/imx8mm-nitrogen-r2.dts | 31 +++++++++++++=
-++++++
-> > > > >  1 file changed, 31 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts=
- b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
-> > > > > index c0c384d76147..212dc9e5e85d 100644
-> > > > > --- a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
-> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
-> > > > > @@ -9,6 +9,17 @@
-> > > > >  / {
-> > > > >       model =3D "Boundary Devices i.MX8MMini Nitrogen8MM Rev2";
-> > > > >       compatible =3D "boundary,imx8mm-nitrogen8mm", "fsl,imx8mm";
-> > > > > +
-> > > > > +     reg_wlan_vmmc: regulator-wlan-vmmc {
-> > > > > +             compatible =3D "regulator-fixed";
-> > > > > +             pinctrl-names =3D "default";
-> > > > > +             pinctrl-0 =3D <&pinctrl_reg_wlan_vmmc>;
-> > > > > +             regulator-name =3D "reg_wlan_vmmc";
-> > > > > +             regulator-min-microvolt =3D <3300000>;
-> > > > > +             regulator-max-microvolt =3D <3300000>;
-> > > > > +             gpio =3D <&gpio3 20 GPIO_ACTIVE_HIGH>;
-> > > > > +             enable-active-high;
-> > > > > +     };
-> > > > >  };
-> > > > >
-> > > > >  &A53_0 {
-> > > > > @@ -206,6 +217,20 @@ &usdhc2 {
-> > > > >       status =3D "okay";
-> > > > >  };
-> > > > >
-> > > > > +/* wlan */
-> > > > > +&usdhc3 {
-> > > > > +     bus-width =3D <4>;
-> > > > > +     sdhci-caps-mask =3D <0x2 0x0>;
-> > > > > +     non-removable;
-> > > > > +     pinctrl-names =3D "default", "state_100mhz", "state_200mhz"=
-;
-> > > > > +     pinctrl-0 =3D <&pinctrl_usdhc3>;
-> > > > > +     pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
-> > > > > +     pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
-> > > > > +     vmmc-supply =3D <&reg_wlan_vmmc>;
-> > > > > +     vqmmc-1-8-v;
-> > > >
-> > > > There is no such property in the bindings.
-> > > >
+> > > > Should I simply set the node name to pcie0-clock? And pcie1-clock for
+> > > > the next one?
 > > >
-> > > Sorry, I copied a property from the FSL kernel.
-> > > I will fix this with a "fixed-regulator".
+> > > I am fine with "pcie0-clock" or just "clock-0".
 > >
-> > I would assume this goes from PMIC, so check your schematics. There is
-> > little point in adding a fixed regulator which is non-controllable.
+> > I saw now that in "imx8mq-zii-ultra.dtsi" the name
+> > "clock-pcie0-refclk" is used. Can I use the same?
 >
-> No, the 1.8V is issued directly from the alimentation stage.
-> So we can't control it.
->
-> > I think bindings don't require it.
-> After reading some code, I can say that vqmmc is not mandatory but it
-> helped to find out
-> the caps of the mmc host. In this case, we only support 1.8V on vqmmc.
-> It avoids driver to guess it (and avoid bad behaviour on any future chang=
-e).
+> It's not that generic anymore - but specific, but it's also not that
+> important, so go ahead.
 
-If the supply (hardware) is really 1.8 V then indeed your approach is
-good. So let's keep that one.
+For me it is no problem to change this to pcie0-clock and pcie1-clock.
+I need to make a new version anyway.
 
-Best regards,
-Krzysztof
+-- 
+Heiko
