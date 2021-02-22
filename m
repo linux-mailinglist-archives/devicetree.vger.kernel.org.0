@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19393321F50
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 19:43:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26700321F59
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 19:47:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231821AbhBVSnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 13:43:53 -0500
-Received: from mail-wr1-f48.google.com ([209.85.221.48]:46479 "EHLO
-        mail-wr1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231515AbhBVSnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 13:43:00 -0500
-Received: by mail-wr1-f48.google.com with SMTP id t15so20086387wrx.13;
-        Mon, 22 Feb 2021 10:42:44 -0800 (PST)
+        id S231815AbhBVSqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 13:46:33 -0500
+Received: from mail-wr1-f44.google.com ([209.85.221.44]:34535 "EHLO
+        mail-wr1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231236AbhBVSpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 13:45:03 -0500
+Received: by mail-wr1-f44.google.com with SMTP id n4so20189556wrx.1;
+        Mon, 22 Feb 2021 10:44:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=BL77vM0HRpNmiBSiLpt5KYYRW16ZS0UDo7tk1GSutJ4=;
-        b=r0TuVrRdY+G++OyscIM6pZYZu/Yahr97LemJhuBN+rOWILzD3lk3EFafL8/3zOBFTj
-         XP3vySiO77VVfLCtPs9XjL47mD7NDA6424l9QI4eX80S11GqDMFkPKVjWmGbVpFsQuNW
-         8CPZgpibBreYeiaF0bIKwDgosjOp29RJ3lPZctzsq4JTzuQTAD+wp6Fz6oQqxaYBpmE5
-         eaDuOf4Ml3kKvahYvnxw98nQ8TRhiEQ4gu2Pt1HPoQmvwR/YEupmREuThMAj9hNw5gVB
-         3F9usYQfFPNsfKRU1NN3uyjtYR9RcVLTTEk/wCo0Ru2jioHkmRG9yUNHBU+XljlTINrh
-         2hVg==
-X-Gm-Message-State: AOAM533Hv6VFVm5N2nssv1LKjIxpQ5g4U6lnXPrRZoOwqqiP3Z8kucm4
-        Qv3jmpJUo909g7rJb/i4a5Q=
-X-Google-Smtp-Source: ABdhPJx2sRzIShTstWTJCCXXuKbdCUBysn8I6z7sTPvk7DtFY3RD05/lZtZwEDKTN/VB0ApdWoWW4A==
-X-Received: by 2002:adf:a31e:: with SMTP id c30mr17131667wrb.291.1614019338571;
-        Mon, 22 Feb 2021 10:42:18 -0800 (PST)
+        bh=WMwCTPqIvolvJ4k3GJnXnqsgpX6SITbYIGEcInJtsN8=;
+        b=ubvBOJjtJLT2EcuGWDYy2wZqbbLwqCJljkEzfHQIEw/taKKQECyLp4P3lkDoX1ZtRT
+         CWoMuhnDem42AI0oANasbqiCg/tPZKKvU4J//J1iA4Twlg5RQEsoKGtYYGFHr4DQ8M+I
+         amdixzkQsv19uHjhC9IVzgmMIoJH2HniJSQP1Y/c4kAYedHp/oT/ZtyiVb+egg9FnQBK
+         nTIjx6ElP0KOy5cEL0pIq2x1UNhnj5rkvKdQXFhWkhPQKYiCcCeVOcHcbsWVZTBBnNnh
+         Sj0Otd1wZI/0sgpnz/Ca+VsxgZrG74Sx+D7/LfNgfiGC+Rkbsrq5/Qaa9LQUdDUbe8wJ
+         W8WA==
+X-Gm-Message-State: AOAM532UgL+wgkaA3MzdvOG/DqH8YJa85RlwcpB92+xQm6unaA/Ub3K1
+        hKYonX4RiwgDuQeHrh/rLco=
+X-Google-Smtp-Source: ABdhPJyasyK+ldSeEjiN1NbKy1+letae1s/FCLPnubZtcS5+CTLcmogkhuR+mCLFSxbHRwTWwr+igw==
+X-Received: by 2002:a5d:618a:: with SMTP id j10mr11151064wru.264.1614019460131;
+        Mon, 22 Feb 2021 10:44:20 -0800 (PST)
 Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id 19sm207043wmg.2.2021.02.22.10.42.17
+        by smtp.googlemail.com with ESMTPSA id k15sm197869wmj.6.2021.02.22.10.44.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Feb 2021 10:42:17 -0800 (PST)
-Date:   Mon, 22 Feb 2021 19:42:16 +0100
+        Mon, 22 Feb 2021 10:44:19 -0800 (PST)
+Date:   Mon, 22 Feb 2021 19:44:17 +0100
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Heiko Thiery <heiko.thiery@gmail.com>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -45,30 +45,49 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: add Kontron pITX-imx8m
- board
-Message-ID: <20210222184216.vjj4qidb3zrei62r@kozik-lap>
+Subject: Re: [PATCH v2 2/2] arm64: dts: fsl: add support for Kontron
+ pitx-imx8m board
+Message-ID: <20210222184417.4nkmdjkgub73b2xd@kozik-lap>
 References: <20210222140756.713-1-heiko.thiery@gmail.com>
- <20210222140756.713-2-heiko.thiery@gmail.com>
+ <20210222140756.713-3-heiko.thiery@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210222140756.713-2-heiko.thiery@gmail.com>
+In-Reply-To: <20210222140756.713-3-heiko.thiery@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 22, 2021 at 03:07:55PM +0100, Heiko Thiery wrote:
-> Add the Kontron pITX-imx8m board.
+On Mon, Feb 22, 2021 at 03:07:56PM +0100, Heiko Thiery wrote:
+> The Kontron pitx-imx8m board is based on an i.MX8MQ soc.
 > 
 > Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
 > ---
 > v2:
->  - bring in correct alphabetical order
+>  - bring root nodes in alphabetical order
+>  - remove pinctrl_gpio_keys for pciewake
+>  - remove pinctrl_sai2 and pinctrl_spdfif1 since it is not used yet
 > 
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Thanks to Michael Walle:
+>  - add pinctrl for regulator-v-3v3-sd
+>  - add name for regulator swbst
+>  - add comment about currently unused audio codec
+>  - put usb_phy entry in correct alphabetical order
+> 
+>  Thanks to Krzysztof Kozlowski:
+>  - use generic names for pcie-refclk, tpm, fan-controller, sensor
+>  - remove empty line
+>  - fix group name to match schema (ecspi2cs -> ecspi2csgrp)
+> 
+> 
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../freescale/imx8mq-kontron-pitx-imx8m.dts   | 641 ++++++++++++++++++
+>  2 files changed, 642 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> 
 
+Looks fine to me, also with the changes pointed out by Micahel in other
+email in this thread:
 Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
