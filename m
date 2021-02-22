@@ -2,99 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 538B6321F75
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 19:56:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90342321F7F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 20:00:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232167AbhBVSyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 13:54:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59536 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231489AbhBVSxK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 13:53:10 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 833F1C061786
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 10:52:29 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id u4so7506697lfs.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 10:52:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linux-foundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=d1cztlrje5NbBmRurH/8h7VfCSrwP1g9XSZwlCeLi8Y=;
-        b=iBBmq/nIHfHcq9G8y27Mt3bk7XbyFS8LFxcMFQk55sGvFzNK7K5SEZlbiRcTnb6qqX
-         z4qYC1z51DwpClOU0u4CutVnG69lhauXToz55bHV7kcKvIydfWA5FOFDLKMxOIiRP2cN
-         YmqDBmRR94dhsNrbNy+ie34ZUPrtRz8ep/c64=
+        id S232173AbhBVS7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 13:59:36 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:38775 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232171AbhBVS7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 13:59:13 -0500
+Received: by mail-oi1-f169.google.com with SMTP id h17so15075156oih.5;
+        Mon, 22 Feb 2021 10:58:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=d1cztlrje5NbBmRurH/8h7VfCSrwP1g9XSZwlCeLi8Y=;
-        b=ttu826ID7LLgOxKsZpy1YWYJwHcHfy7fUu9xIkntnAxnckeBrIpA2ifH2zjdRfLdNh
-         nIIAYL/R/L72lppfHu5X1pgg2h/VDy58T+LciZnClSYrppElmFfScwp5A5Q9wHpopEhR
-         uugo7waKxAGLIYtF7IexHUh2KCfykwv++I5Z0O3VjVzwO7SvEAcJbHWf5ARIwz2RDHZv
-         uwEAQZU8F76pJvU8ooZvfo2pCGi2fXySQt0fMV03pEd7ZMZVQMUsWnQsw7sBYYFfySGD
-         ZqNn5Kfx1vZ57BxIbalfapEfs4/GypjP3uUnzmpOaeCilzA8uGfzzSaKpRTlmLbtWt5k
-         h1/w==
-X-Gm-Message-State: AOAM531Z4i727eSOMTF/JA7zf6egI+f3CErTmOW7bMJBYc8B8fCLHPtm
-        mEbn1iy6nRzWpXr2X+W5UKJiuznb6BsBig==
-X-Google-Smtp-Source: ABdhPJx5AyMCQySeXE30q9ikQ6bb9/Cnxi47cwyxowIeubv7WR/IGuSALMQXVfGDCAXSr6dFAlGoUg==
-X-Received: by 2002:a19:6d09:: with SMTP id i9mr14075945lfc.425.1614019946956;
-        Mon, 22 Feb 2021 10:52:26 -0800 (PST)
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com. [209.85.167.50])
-        by smtp.gmail.com with ESMTPSA id w4sm2060533lfe.81.2021.02.22.10.52.25
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Feb 2021 10:52:25 -0800 (PST)
-Received: by mail-lf1-f50.google.com with SMTP id e7so7482842lft.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 10:52:25 -0800 (PST)
-X-Received: by 2002:a05:6512:a8c:: with SMTP id m12mr14136524lfu.253.1614019945405;
- Mon, 22 Feb 2021 10:52:25 -0800 (PST)
-MIME-Version: 1.0
-References: <20210222173541.GA1677515@robh.at.kernel.org>
-In-Reply-To: <20210222173541.GA1677515@robh.at.kernel.org>
-From:   Linus Torvalds <torvalds@linux-foundation.org>
-Date:   Mon, 22 Feb 2021 10:52:09 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wi60wC2z0yTo+B81x8HNu2HVJ6mSFHJC3xpKJOW9_EV_g@mail.gmail.com>
-Message-ID: <CAHk-=wi60wC2z0yTo+B81x8HNu2HVJ6mSFHJC3xpKJOW9_EV_g@mail.gmail.com>
-Subject: Re: [GIT PULL] Devicetree updates for v5.12
-To:     Rob Herring <robh@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=k/Tr83e07kUDjV2mdPt8HHeG/axFkBtTveNJhvZFiaM=;
+        b=G4sJeLm1HKv0GiTd5ifD6QdcYrwirgnsohbMLQvHV87hIPaNQcBNgfsnPkYQwr86NE
+         Im8xaXErK09hz0bhYM6go6jm5ThCW85Gn5bT3iBVWoynG414dtr8k8tswfq34/BC+WR1
+         Sfj9lxtWC+/HEmCICCWRu0H8iCNywmhnMKRHFQVXKMZoDwccpbJcMc2AlZjXrdBtYl7f
+         MYii0/uUMxY73iKEpo9dvUOSQBNS2BJDwfwbITNMYaCnoVeZkBOJcOMVRFur140RIHk9
+         S8+0PTMbdy9xcEDaotppR3+V36DjCZJZUwLKtWCZwDVSx0M8Z2fEU+7de/iuTZXL/WMo
+         ee/w==
+X-Gm-Message-State: AOAM533MFhDVFM1Jo1Ul/mpg76ZZBFfz5a3xQQGziBGHq7QXbrZZ/qvM
+        JjO2qx5x186Hf50TORAqFTaWJfVDEw==
+X-Google-Smtp-Source: ABdhPJyItZocFcAaxt6taWYSRmGgSdWuWQwBBzMn5CanndOkqsRyk0swI5gSgKdbA3SNu9pvCqilZw==
+X-Received: by 2002:aca:b389:: with SMTP id c131mr16869006oif.99.1614020311162;
+        Mon, 22 Feb 2021 10:58:31 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a25sm2210235oos.6.2021.02.22.10.58.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Feb 2021 10:58:30 -0800 (PST)
+Received: (nullmailer pid 1828596 invoked by uid 1000);
+        Mon, 22 Feb 2021 18:58:29 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20210221194427.1184208-2-liambeguin@gmail.com>
+References: <20210221194427.1184208-1-liambeguin@gmail.com> <20210221194427.1184208-2-liambeguin@gmail.com>
+Subject: Re: [PATCH v2 1/2] clk: add support for the lmk04832
+Date:   Mon, 22 Feb 2021 12:58:29 -0600
+Message-Id: <1614020309.337925.1828595.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 22, 2021 at 9:35 AM Rob Herring <robh@kernel.org> wrote:
->
-> Please pull DT updates for v5.12.
+On Sun, 21 Feb 2021 14:44:26 -0500, Liam Beguin wrote:
+> From: Liam Beguin <lvb@xiphos.com>
+> 
+> The LMK04832 is an ultra-high performance clock conditioner with JEDEC
+> JESD204B support and is also pin compatible with the LMK0482x family of
+> devices.
+> 
+> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> ---
+>  .../bindings/clock/ti,lmk04832.yaml           |  201 +++
+>  drivers/clk/Kconfig                           |    7 +
+>  drivers/clk/Makefile                          |    1 +
+>  drivers/clk/clk-lmk04832.c                    | 1286 +++++++++++++++++
+>  4 files changed, 1495 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
+>  create mode 100644 drivers/clk/clk-lmk04832.c
+> 
 
-Ugh.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-This causes "git status" to be unhappy, because there's a new
-generated file (scripts/dtc/fdtoverlay) without a gitignore entry.
+yamllint warnings/errors:
 
-This was added by commit 79edff12060f ("scripts/dtc: Update to
-upstream version v1.6.0-51-g183df9e9c2b9"), and then enabled in commit
-0da6bcd9fcc0 ("scripts: dtc: Build fdtoverlay tool"). But it was
-already referenced before it was even added (by commit b775f49fbc8b:
-"scripts: dtc: Fetch fdtoverlay.c from external DTC project", which
-didn't actually fetch that thing at all!)
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/clock/ti,lmk04832.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 852, in _ruamel_yaml.CParser._compose_sequence_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.parser.ParserError: while parsing a block collection
+  in "<unicode string>", line 149, column 3
+did not find expected '-' indicator
+  in "<unicode string>", line 200, column 3
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/clock/ti,lmk04832.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Traceback (most recent call last):
+  File "/usr/bin/yamllint", line 11, in <module>
+    load_entry_point('yamllint==1.20.0', 'console_scripts', 'yamllint')()
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 184, in run
+    prob_level = show_problems(problems, file, args_format=args.format,
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 91, in show_problems
+    for problem in problems:
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 200, in _run
+    for problem in get_cosmetic_problems(buffer, conf, filepath):
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 137, in get_cosmetic_problems
+    for problem in rule.check(rule_conf,
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 570, in check
+    for problem in _check(conf, token, prev, next, nextnext, context):
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 336, in _check
+    'wrong indentation: expected %d but found %d' %
+TypeError: %d format: a number is required, not NoneType
+./Documentation/devicetree/bindings/clock/ti,lmk04832.yaml:  while parsing a block collection
+  in "<unicode string>", line 149, column 3
+did not find expected '-' indicator
+  in "<unicode string>", line 200, column 3
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
+make: *** [Makefile:1370: dt_binding_check] Error 2
 
-And that commit 79edff12060f is all kinds of strange anyway, in that
-it *claims* to have taken some (other) gitignore updates from the
-upstream dtc code, but it very clearly does no such thing.
+See https://patchwork.ozlabs.org/patch/1442868
 
-So I have to say - that whole thing was done very very badly. Actively
-incorrect commit messages, complete mess about when things were added,
-and the end result isn't great.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Sadly, I only noticed after I had pulled and pushed out.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Please fix. Not just the current mess with the incomplete .gitignore
-file, but the whole clearly broken workflow.
+pip3 install dtschema --upgrade
 
-               Linus
+Please check and re-submit.
+
