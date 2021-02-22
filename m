@@ -2,271 +2,438 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43671321A5D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 15:31:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FB78321AC7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 16:07:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231251AbhBVO3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 09:29:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57954 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231947AbhBVOZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 09:25:44 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9975C06174A
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 06:25:02 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id y202so13383054iof.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 06:25:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=juvEdxvqKlsBbe0kNmOCQgwG0HjLQ/hRQBwpyDMYnmo=;
-        b=fvokkzxsdTHfIYUj61qfUuDxsLNfBMQKlqji7FgUeScjfAdis8TZOyzE7TEXwpKx7S
-         oohO19+xYOg827rtjrhEe+FmUkmkUXg2xJRD32Zh3IyQUuSKDl9rHdGgCj412zT/Cryn
-         UhMvCHEI4Ppfyyj92dn8/yMYVd8jFQ+phi1j3M2k1oRzoUneP2BvnKReu564bvg+Nkph
-         CppDfFxt4RhnWMOgMsvsMq0k7dos70k6wqRunZGGOY7bMNX69oGx8DhSsKbClRHNBmNm
-         Gmy1Y0till1TQQc6pp6QQJbHoYb3RHyF6ncYD8BOIV7Tp7bOM5TOI3mUom3bPQI0cYua
-         LE2A==
+        id S231163AbhBVPHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 10:07:10 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:58334 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230205AbhBVPHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Feb 2021 10:07:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1614006337;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jfLiXK853Af1kpeF/zm3Muk1EF9s40aEj3nT84zY5gY=;
+        b=H4pMhwx1Q0fTkrJPiNzOmYyRr4yNTQ1YRLSmj8vL+iNPYePruz2lkC8UXj8Uik3EJekZvi
+        p5VK47ZiRC2mW3NMJk/g4z8f3N79gXmx1zVHwc6zfsH0cr0Kk2B9WCb2akztQCv/X6y7cy
+        Or4zrOpcz5vloTLnVkwwV8SzG4S2W6o=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-325-16HGrBRmOcWF_8XvCnGrIQ-1; Mon, 22 Feb 2021 10:05:32 -0500
+X-MC-Unique: 16HGrBRmOcWF_8XvCnGrIQ-1
+Received: by mail-qt1-f200.google.com with SMTP id b7so2106172qtj.16
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 07:05:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=juvEdxvqKlsBbe0kNmOCQgwG0HjLQ/hRQBwpyDMYnmo=;
-        b=ArwBwtpgnP4/VDnc8300mKtSQ+bSWj+jHCCyZF4M+baE0gbe3L8wKoCu2CUgIEtZaA
-         U9FARINfv/eXANYduU0WVO0i40PhbFkVwn3SJLNOtzHglt+YFsU5JJsyWeJ5M+1Tqz1U
-         HLMwlEQlUEGrRDVtaQ1NFL2eSomNHdrOd+jeJZ0JBXToWnsb+I/1JTiwEmBqx5eBfYrZ
-         4BBS2QLcMTbGqCj7IDsvzElqcTCo1Zanmm5/7g2JtPpUWxgU/O0s24bj6LhIG4pQRlAv
-         fICUPWi+k1rw8IIH0gsTM7o7X56spZQdHrbXFbfTHztdMCa8xSUANtvMvbBbW3/2shzs
-         btTQ==
-X-Gm-Message-State: AOAM5326ZwfiNT8h10qvZs3ct2c2cOfkrrlUdKmEUfM3f5YSE/jBSZOF
-        CHqH2taMQbwvWCoiXQuLPYG2iIr0yEumQf964KD6Sw==
-X-Google-Smtp-Source: ABdhPJy3M+h35T2uzDveX/x0hkvGAVdKHe5fATxRFSSA9XpiGViMrALwDqQ4Rf85oWU9lEbPKG0zBz8idgOhmIOL3jg=
-X-Received: by 2002:a5d:8490:: with SMTP id t16mr15471280iom.91.1614003901803;
- Mon, 22 Feb 2021 06:25:01 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=jfLiXK853Af1kpeF/zm3Muk1EF9s40aEj3nT84zY5gY=;
+        b=aQzmnqakZA59FfG2ijUOvovb7H+/ldJrSR6Ugc6nUqWNJb195ptRCTOIM/h+hs7PWT
+         wX33zV8vh8FB3lo/2G7GYCf6lVGP5ITt9IboFdlErv9LY5T34I+pJlKmtrtxyspGqOKM
+         nvexwEiRaxle+zKxaq9keim6DEYKdZeBCfLZmuPXJBmoPzg5hjo+2uaQH1x5m3on4a1o
+         ixRyhlny4wE1cHbE11gHU+IU48YIze5P1zaRnrQPF9MAGHeviAJYLYM0YqB5ET9eO9vO
+         DPqfUWqiHnaE7vBRHDs0TDZXp2mls5pw0VlyS41WHGc8ehKN8Uq6gQQqXvRabQ4Uij3R
+         buiQ==
+X-Gm-Message-State: AOAM533xG4YHd7sbXeT+au9SzVm/9NA6keiqTxsVeMMzMC2jOJjZdw+N
+        aoO4ce4Bgb0F7MO9Nj0cAZ6HG9nJx/BszoG+vQ+6Yue0fDVmCJQtnZWKNPPBFhN4i6uvsS6lmfA
+        k7giu35vBH6M940KZgSlYRw==
+X-Received: by 2002:a37:6348:: with SMTP id x69mr20862396qkb.254.1614006331991;
+        Mon, 22 Feb 2021 07:05:31 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzrq+L4B1BnH+O9XSPxa50MZXky4EblzpAR85A0xm+pmjp03ZouWKADpoR+8D6lvfa0Lu/eUQ==
+X-Received: by 2002:a37:6348:: with SMTP id x69mr20862361qkb.254.1614006331672;
+        Mon, 22 Feb 2021 07:05:31 -0800 (PST)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id v135sm12562346qka.98.2021.02.22.07.05.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Feb 2021 07:05:31 -0800 (PST)
+Subject: Re: [PATCH V3 XRT Alveo 04/18] fpga: xrt: xrt-lib platform driver
+ manager
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     Lizhi Hou <lizhih@xilinx.com>, linux-fpga@vger.kernel.org,
+        maxz@xilinx.com, sonal.santan@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
+References: <20210218064019.29189-1-lizhih@xilinx.com>
+ <20210218064019.29189-5-lizhih@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <b93fb3ad-bbde-81db-d448-72fb8049f323@redhat.com>
+Date:   Mon, 22 Feb 2021 07:05:29 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <20210218122546.3546582-1-gmouse@google.com> <CADKL2t6P4gaSUZEFgk7y+TNBRw0Lhf8mXTxzLdbe3FhGs0WH+w@mail.gmail.com>
- <CAP6Zq1jf4-XAhLQxqNx3LM7-YzDr8zaVPb-jznn8o=frxTotdQ@mail.gmail.com>
- <CADVsX89F6Tc0Zk6uB3CKRK0F8j_E+sVGHVb9FMAkHDQqJ+KBAQ@mail.gmail.com>
- <CAKKbWA7WL80C9h9xPcBNAHn-1=NBK9dh2Nqa1hO21hbdLEUbTw@mail.gmail.com> <KL1PR0302MB255112AE01C81FEA63472A6293819@KL1PR0302MB2551.apcprd03.prod.outlook.com>
-In-Reply-To: <KL1PR0302MB255112AE01C81FEA63472A6293819@KL1PR0302MB2551.apcprd03.prod.outlook.com>
-From:   Anton Kachalov <gmouse@google.com>
-Date:   Mon, 22 Feb 2021 15:24:49 +0100
-Message-ID: <CADVsX88Sk2PVomM6o4qeTk3EmDSXnDjFC6nixUt2Jn6dU7jOLQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: nuvoton: Fix flash layout
-To:     IS20 Ofer Eilon <ofer.eilon@nuvoton.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210218064019.29189-5-lizhih@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ofer,
 
-The oldest version from igps doesn't work as well as the latest
-version from u-boot github.
+On 2/17/21 10:40 PM, Lizhi Hou wrote:
+> xrt-lib kernel module infrastructure code to register and manage all
+> leaf driver modules.
+>
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhih@xilinx.com>
+> ---
+>  drivers/fpga/xrt/lib/main.c | 274 ++++++++++++++++++++++++++++++++++++
+>  drivers/fpga/xrt/lib/main.h |  17 +++
+>  2 files changed, 291 insertions(+)
+>  create mode 100644 drivers/fpga/xrt/lib/main.c
+>  create mode 100644 drivers/fpga/xrt/lib/main.h
 
-The only version that works for me is in software deliverables:
+Not sure if 'main' is a good base name for something going into a lib.
 
-https://github.com/Nuvoton-Israel/nuvoton-info/tree/master/npcm7xx-poleg/ev=
-aluation-board/sw_deliverables/npcm7xx_v2.3
+>
+> diff --git a/drivers/fpga/xrt/lib/main.c b/drivers/fpga/xrt/lib/main.c
+> new file mode 100644
+> index 000000000000..36fb62710843
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/main.c
+> @@ -0,0 +1,274 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Driver for Xilinx Alveo FPGA Support
+> + *
+> + * Copyright (C) 2020-2021 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *	Cheng Zhen <maxz@xilinx.com>
+> + */
+> +
+> +#include <linux/module.h>
+> +#include "xleaf.h"
+> +#include "xroot.h"
+> +#include "main.h"
+> +
+> +#define XRT_IPLIB_MODULE_NAME		"xrt-lib"
+> +#define XRT_IPLIB_MODULE_VERSION	"4.0.0"
+> +#define XRT_MAX_DEVICE_NODES		128
+> +#define XRT_DRVNAME(drv)		((drv)->driver.name)
+> +
+> +/*
+> + * Subdev driver is known by ID to others. We map the ID to it's
+by it's ID
+> + * struct platform_driver, which contains it's binding name and driver/file ops.
+> + * We also map it to the endpoint name in DTB as well, if it's different
+> + * than the driver's binding name.
+> + */
+> +struct xrt_drv_map {
+> +	struct list_head list;
+> +	enum xrt_subdev_id id;
+> +	struct platform_driver *drv;
+> +	struct xrt_subdev_endpoints *eps;
+> +	struct ida ida; /* manage driver instance and char dev minor */
+> +};
+> +
+> +static DEFINE_MUTEX(xrt_lib_lock); /* global lock protecting xrt_drv_maps list */
+> +static LIST_HEAD(xrt_drv_maps);
+> +struct class *xrt_class;
+> +
+> +static inline struct xrt_subdev_drvdata *
+> +xrt_drv_map2drvdata(struct xrt_drv_map *map)
+> +{
+> +	return (struct xrt_subdev_drvdata *)map->drv->id_table[0].driver_data;
+> +}
+> +
+> +static struct xrt_drv_map *
+> +xrt_drv_find_map_by_id_nolock(enum xrt_subdev_id id)
 
-On Mon, 22 Feb 2021 at 15:10, IS20 Ofer Eilon <ofer.eilon@nuvoton.com> wrot=
-e:
->
-> Hi Avi,
->
-> It seems an old version of uboot  u-boot_2019.01.7.5.bin  from igps below=
-:
->
-> > https://apc01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit=
-hub.com%2FNuvoton-Israel%2Figps%2Ftree%2Fmaster%2FImageGeneration%2Fversion=
-s&amp;data=3D04%7C01%7Cofer.eilon%40nuvoton.com%7Ce56881b8491d42e5ee4c08d8d=
-71bacd4%7Ca3f24931d4034b4a94f17d83ac638e07%7C0%7C0%7C637495861162860437%7CU=
-nknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLC=
-JXVCI6Mn0%3D%7C1000&amp;sdata=3D0%2BNzEv%2FSX9QTg0XumchRrU61uGbZ3CZXrtspXu2=
-560I%3D&amp;reserved=3D0
->
-> Please use latest from uboot.bin github.
->
-> Regards,
-> Ofer
->
->
-> -----Original Message-----
-> From: Avi Fishman <avifishman70@gmail.com>
-> Sent: Monday, February 22, 2021 12:21 PM
-> To: Anton Kachalov <gmouse@google.com>
-> Cc: Tomer Maimon <tmaimon77@gmail.com>; Benjamin Fair <benjaminfair@googl=
-e.com>; Tali Perry <tali.perry1@gmail.com>; Patrick Venture <venture@google=
-.com>; Nancy Yuen <yuenn@google.com>; Rob Herring <robh+dt@kernel.org>; Ope=
-nBMC Maillist <openbmc@lists.ozlabs.org>; devicetree <devicetree@vger.kerne=
-l.org>; Linux Kernel Mailing List <linux-kernel@vger.kernel.org>; IS20 Ofer=
- Eilon <ofer.eilon@nuvoton.com>
-> Subject: Re: [PATCH] ARM: dts: nuvoton: Fix flash layout
->
-> Ofer,
->
-> Can you check why u-boot doesn't work with SD cards?
->
-> On Mon, Feb 22, 2021 at 11:27 AM Anton Kachalov <gmouse@google.com> wrote=
-:
-> >
-> > Hi, Tom.
-> >
-> > Yes, I'm using it for testing on real hardware.
-> >
-> > BTW. Recent u-boot doesn't work with SD cards. The card doesn't
-> > detect. The last working version was this one:
-> >
-> > https://apc01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit=
-h
-> > ub.com%2FNuvoton-Israel%2Fnuvoton-info%2Ftree%2Fmaster%2Fnpcm7xx-poleg
-> > %2Fevaluation-board%2Fsw_deliverables%2Fnpcm7xx_v2.3&amp;data=3D04%7C01=
-%
-> > 7Cofer.eilon%40nuvoton.com%7Ce56881b8491d42e5ee4c08d8d71bacd4%7Ca3f249
-> > 31d4034b4a94f17d83ac638e07%7C0%7C0%7C637495861162860437%7CUnknown%7CTW
-> > FpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6
-> > Mn0%3D%7C1000&amp;sdata=3Df4t41g3CQaFTQNfwwNVBrIwQScndIGcfRTms0yrTn5o%3=
-D
-> > &amp;reserved=3D0
-> >
-> > However, u-boot from igps repo:
-> >
-> > https://apc01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit=
-h
-> > ub.com%2FNuvoton-Israel%2Figps%2Ftree%2Fmaster%2FImageGeneration%2Fver
-> > sions&amp;data=3D04%7C01%7Cofer.eilon%40nuvoton.com%7Ce56881b8491d42e5e=
-e
-> > 4c08d8d71bacd4%7Ca3f24931d4034b4a94f17d83ac638e07%7C0%7C0%7C6374958611
-> > 62860437%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL
-> > CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D0%2BNzEv%2FSX9QTg0Xumc=
-h
-> > RrU61uGbZ3CZXrtspXu2560I%3D&amp;reserved=3D0
-> >
-> > Has issues too. It doesn't allow me to read more than 4k bytes once at
-> > a time. Thus, to flash the stuff I have manually read chunks from the
-> > SD-card: fat load doesn't work at all and I write that data in raw
-> > partition.
-> >
-> > On Sun, 21 Feb 2021 at 17:40, Tomer Maimon <tmaimon77@gmail.com> wrote:
-> > >
-> > > Hi Benjamin and Anton,
-> > >
-> > > Sorry for the late reply,
-> > >
-> > > The EVB FIU0-CS0 partitioning is used for testing the EVB and this is=
- why it is different than the OpenBMC flash layout.
-> > >
-> > >
-> > >
-> > > Are you using the NPCM7XX EVB for OpenBMC? if yes we can consider to =
-modify the flash partition to OpenBMC use.
-> > >
-> > >
-> > > On Thu, 18 Feb 2021 at 19:11, Benjamin Fair <benjaminfair@google.com>=
- wrote:
-> > >>
-> > >> On Thu, 18 Feb 2021 at 04:42, <gmouse@google.com> wrote:
-> > >> >
-> > >> > From: "Anton D. Kachalov" <gmouse@google.com>
-> > >> >
-> > >> > This change satisfy OpenBMC requirements for flash layout.
-> > >> >
-> > >> > Signed-off-by: Anton D. Kachalov <gmouse@google.com>
-> > >> > ---
-> > >> >  arch/arm/boot/dts/nuvoton-npcm750-evb.dts | 28
-> > >> > +++++++----------------
-> > >> >  1 file changed, 8 insertions(+), 20 deletions(-)
-> > >> >
-> > >> > diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> > >> > b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> > >> > index bd1eb6ee380f..741c1fee8552 100644
-> > >> > --- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> > >> > +++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> > >> > @@ -182,8 +182,8 @@ bbuboot2@80000 {
-> > >> >                                 reg =3D <0x0080000 0x80000>;
-> > >> >                                 read-only;
-> > >> >                                 };
-> > >> > -                       envparam@100000 {
-> > >> > -                               label =3D "env-param";
-> > >> > +                       ubootenv@100000 {
-> > >> > +                               label =3D "u-boot-env";
-> > >> >                                 reg =3D <0x0100000 0x40000>;
-> > >> >                                 read-only;
-> > >> >                                 }; @@ -195,25 +195,13 @@
-> > >> > kernel@200000 {
-> > >> >                                 label =3D "kernel";
-> > >> >                                 reg =3D <0x0200000 0x400000>;
-> > >> >                                 };
-> > >> > -                       rootfs@600000 {
-> > >> > -                               label =3D "rootfs";
-> > >> > -                               reg =3D <0x0600000 0x700000>;
-> > >> > +                       rofs@780000 {
-> > >> > +                               label =3D "rofs";
-> > >> > +                               reg =3D <0x0780000 0x1680000>;
-> > >> >                                 };
-> > >> > -                       spare1@D00000 {
-> > >> > -                               label =3D "spare1";
-> > >> > -                               reg =3D <0x0D00000 0x200000>;
-> > >> > -                               };
-> > >> > -                       spare2@0F00000 {
-> > >> > -                               label =3D "spare2";
-> > >> > -                               reg =3D <0x0F00000 0x200000>;
-> > >> > -                               };
-> > >> > -                       spare3@1100000 {
-> > >> > -                               label =3D "spare3";
-> > >> > -                               reg =3D <0x1100000 0x200000>;
-> > >> > -                               };
-> > >> > -                       spare4@1300000 {
-> > >> > -                               label =3D "spare4";
-> > >> > -                               reg =3D <0x1300000 0x0>;
-> > >> > +                       rwfs@1e00000 {
-> > >> > +                               label =3D "rwfs";
-> > >> > +                               reg =3D <0x1e00000 0x200000>;
-> > >> >                         };
-> > >>
-> > >> I recommend just including the openbmc-flash-layout.dtsi file here
-> > >> instead since that contains the common flash layout for most
-> > >> OpenBMC systems.
-> > >>
-> > > Good solution,
-> > > Do you mean nuvoton-openbmc-flash-layout?
-> > >>
-> > >> >                 };
-> > >> >         };
-> > >> > --
-> > >> > 2.30.0.478.g8a0d178c01-goog
-> > >> >
-> > >
-> > >
-> > > Thanks,
-> > >
-> > > Tomer
->
->
->
-> --
-> Regards,
-> Avi
-> ________________________________
-> ________________________________
->  The privileged confidential information contained in this email is inten=
-ded for use only by the addressees as indicated by the original sender of t=
-his email. If you are not the addressee indicated in this email or are not =
-responsible for delivery of the email to such a person, please kindly reply=
- to the sender indicating this fact and delete all copies of it from your c=
-omputer and network server immediately. Your cooperation is highly apprecia=
-ted. It is advised that any unauthorized use of confidential information of=
- Nuvoton is strictly prohibited; and any information in this email irreleva=
-nt to the official business of Nuvoton shall be deemed as neither given nor=
- endorsed by Nuvoton.
+name could be by convention
+
+__xrt_drv_find_map_id
+
+> +{
+> +	const struct list_head *ptr;
+> +
+> +	list_for_each(ptr, &xrt_drv_maps) {
+> +		struct xrt_drv_map *tmap = list_entry(ptr, struct xrt_drv_map, list);
+> +
+> +		if (tmap->id == id)
+> +			return tmap;
+> +	}
+> +	return NULL;
+> +}
+> +
+> +static struct xrt_drv_map *
+> +xrt_drv_find_map_by_id(enum xrt_subdev_id id)
+> +{
+> +	struct xrt_drv_map *map;
+> +
+> +	mutex_lock(&xrt_lib_lock);
+> +	map = xrt_drv_find_map_by_id_nolock(id);
+> +	mutex_unlock(&xrt_lib_lock);
+> +	/*
+> +	 * map should remain valid even after lock is dropped since a registered
+even after the lock
+> +	 * driver should only be unregistered when driver module is being unloaded,
+> +	 * which means that the driver should not be used by then.
+> +	 */
+> +	return map;
+> +}
+> +
+> +static int xrt_drv_register_driver(struct xrt_drv_map *map)
+> +{
+> +	struct xrt_subdev_drvdata *drvdata;
+> +	int rc = 0;
+> +	const char *drvname = XRT_DRVNAME(map->drv);
+> +
+> +	rc = platform_driver_register(map->drv);
+> +	if (rc) {
+> +		pr_err("register %s platform driver failed\n", drvname);
+> +		return rc;
+> +	}
+> +
+> +	drvdata = xrt_drv_map2drvdata(map);
+> +	if (drvdata) {
+> +		/* Initialize dev_t for char dev node. */
+> +		if (xleaf_devnode_enabled(drvdata)) {
+> +			rc = alloc_chrdev_region(&drvdata->xsd_file_ops.xsf_dev_t, 0,
+> +						 XRT_MAX_DEVICE_NODES, drvname);
+> +			if (rc) {
+> +				platform_driver_unregister(map->drv);
+> +				pr_err("failed to alloc dev minor for %s: %d\n", drvname, rc);
+> +				return rc;
+> +			}
+> +		} else {
+> +			drvdata->xsd_file_ops.xsf_dev_t = (dev_t)-1;
+> +		}
+> +	}
+> +
+> +	ida_init(&map->ida);
+> +
+> +	pr_info("%s registered successfully\n", drvname);
+> +
+> +	return 0;
+> +}
+> +
+> +static void xrt_drv_unregister_driver(struct xrt_drv_map *map)
+> +{
+> +	const char *drvname = XRT_DRVNAME(map->drv);
+> +	struct xrt_subdev_drvdata *drvdata;
+> +
+> +	ida_destroy(&map->ida);
+> +
+> +	drvdata = xrt_drv_map2drvdata(map);
+> +	if (drvdata && drvdata->xsd_file_ops.xsf_dev_t != (dev_t)-1) {
+> +		unregister_chrdev_region(drvdata->xsd_file_ops.xsf_dev_t,
+> +					 XRT_MAX_DEVICE_NODES);
+> +	}
+> +
+> +	platform_driver_unregister(map->drv);
+> +
+> +	pr_info("%s unregistered successfully\n", drvname);
+> +}
+> +
+> +int xleaf_register_driver(enum xrt_subdev_id id,
+> +			  struct platform_driver *drv,
+> +			  struct xrt_subdev_endpoints *eps)
+> +{
+> +	struct xrt_drv_map *map;
+> +
+> +	mutex_lock(&xrt_lib_lock);
+
+Trying to minimize length of lock being held.
+
+Could holding this lock be split or the alloc moved above ?
+
+> +
+> +	map = xrt_drv_find_map_by_id_nolock(id);
+> +	if (map) {
+> +		mutex_unlock(&xrt_lib_lock);
+> +		pr_err("Id %d already has a registered driver, 0x%p\n",
+> +		       id, map->drv);
+> +		return -EEXIST;
+> +	}
+> +
+> +	map = vzalloc(sizeof(*map));
+
+general issue
+
+map is small, so kzalloc
+
+> +	if (!map) {
+> +		mutex_unlock(&xrt_lib_lock);
+> +		return -ENOMEM;
+> +	}
+> +	map->id = id;
+> +	map->drv = drv;
+> +	map->eps = eps;
+> +
+> +	xrt_drv_register_driver(map);
+
+xrt_drv_register_driver failure is unhandled.
+
+This is the only time xrt_drv_register_driver is called, consider expanding the function here and removing the call.
+
+> +
+> +	list_add(&map->list, &xrt_drv_maps);
+> +
+> +	mutex_unlock(&xrt_lib_lock);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(xleaf_register_driver);
+> +
+> +void xleaf_unregister_driver(enum xrt_subdev_id id)
+> +{
+> +	struct xrt_drv_map *map;
+> +
+> +	mutex_lock(&xrt_lib_lock);
+> +
+> +	map = xrt_drv_find_map_by_id_nolock(id);
+> +	if (!map) {
+> +		mutex_unlock(&xrt_lib_lock);
+> +		pr_err("Id %d has no registered driver\n", id);
+> +		return;
+> +	}
+> +
+> +	list_del(&map->list);
+> +
+> +	mutex_unlock(&xrt_lib_lock);
+> +
+> +	xrt_drv_unregister_driver(map);
+> +	vfree(map);
+> +}
+> +EXPORT_SYMBOL_GPL(xleaf_unregister_driver);
+> +
+> +const char *xrt_drv_name(enum xrt_subdev_id id)
+> +{
+> +	struct xrt_drv_map *map = xrt_drv_find_map_by_id(id);
+> +
+> +	if (map)
+> +		return XRT_DRVNAME(map->drv);
+> +	return NULL;
+> +}
+> +
+> +int xrt_drv_get_instance(enum xrt_subdev_id id)
+> +{
+> +	struct xrt_drv_map *map = xrt_drv_find_map_by_id(id);
+> +
+> +	return ida_alloc_range(&map->ida, 0, XRT_MAX_DEVICE_NODES, GFP_KERNEL);
+> +}
+> +
+> +void xrt_drv_put_instance(enum xrt_subdev_id id, int instance)
+> +{
+> +	struct xrt_drv_map *map = xrt_drv_find_map_by_id(id);
+> +
+> +	ida_free(&map->ida, instance);
+> +}
+> +
+> +struct xrt_subdev_endpoints *xrt_drv_get_endpoints(enum xrt_subdev_id id)
+> +{
+> +	struct xrt_drv_map *map = xrt_drv_find_map_by_id(id);
+> +	struct xrt_subdev_endpoints *eps;
+> +
+> +	eps = map ? map->eps : NULL;
+> +	return eps;
+> +}
+> +
+> +/* Leaf driver's module init/fini callbacks. */
+
+These constructor/destructor calls needs to be more dynamic.
+
+calls are made even if there are no subdevices to go with the id's.
+
+Also this list can not grow.  How would a new id be added by a module ?
+
+> +static void (*leaf_init_fini_cbs[])(bool) = {
+> +	group_leaf_init_fini,
+> +	vsec_leaf_init_fini,
+> +	devctl_leaf_init_fini,
+> +	axigate_leaf_init_fini,
+> +	icap_leaf_init_fini,
+> +	calib_leaf_init_fini,
+> +	clkfreq_leaf_init_fini,
+> +	clock_leaf_init_fini,
+> +	ucs_leaf_init_fini,
+> +};
+> +
+> +static __init int xrt_lib_init(void)
+> +{
+> +	int i;
+> +
+> +	xrt_class = class_create(THIS_MODULE, XRT_IPLIB_MODULE_NAME);
+> +	if (IS_ERR(xrt_class))
+> +		return PTR_ERR(xrt_class);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(leaf_init_fini_cbs); i++)
+> +		leaf_init_fini_cbs[i](true);
+> +	return 0;
+> +}
+> +
+> +static __exit void xrt_lib_fini(void)
+> +{
+> +	struct xrt_drv_map *map;
+> +	int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(leaf_init_fini_cbs); i++)
+> +		leaf_init_fini_cbs[i](false);
+> +
+> +	mutex_lock(&xrt_lib_lock);
+> +
+> +	while (!list_empty(&xrt_drv_maps)) {
+> +		map = list_first_entry_or_null(&xrt_drv_maps, struct xrt_drv_map, list);
+> +		pr_err("Unloading module with %s still registered\n", XRT_DRVNAME(map->drv));
+> +		list_del(&map->list);
+> +		mutex_unlock(&xrt_lib_lock);
+> +		xrt_drv_unregister_driver(map);
+> +		vfree(map);
+> +		mutex_lock(&xrt_lib_lock);
+> +	}
+> +
+> +	mutex_unlock(&xrt_lib_lock);
+> +
+> +	class_destroy(xrt_class);
+> +}
+> +
+> +module_init(xrt_lib_init);
+> +module_exit(xrt_lib_fini);
+> +
+> +MODULE_VERSION(XRT_IPLIB_MODULE_VERSION);
+> +MODULE_AUTHOR("XRT Team <runtime@xilinx.com>");
+> +MODULE_DESCRIPTION("Xilinx Alveo IP Lib driver");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/fpga/xrt/lib/main.h b/drivers/fpga/xrt/lib/main.h
+> new file mode 100644
+> index 000000000000..f3bfc87ee614
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/main.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2020-2021 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *	Cheng Zhen <maxz@xilinx.com>
+> + */
+> +
+> +#ifndef _XRT_MAIN_H_
+> +#define _XRT_MAIN_H_
+> +
+> +const char *xrt_drv_name(enum xrt_subdev_id id);
+
+To be self contained, the header defining enum xrt_subdev_id should be included.
+
+This is subdev_id.h which comes in with patch 6
+
+A dependency on a future patch breaks bisectablity.
+
+It may make sense to collect these small headers into a single large header for the ip infra lib and bring them all in this patch.
+
+Tom
+
+> +int xrt_drv_get_instance(enum xrt_subdev_id id);
+> +void xrt_drv_put_instance(enum xrt_subdev_id id, int instance);
+> +struct xrt_subdev_endpoints *xrt_drv_get_endpoints(enum xrt_subdev_id id);
+> +
+> +#endif	/* _XRT_MAIN_H_ */
+
