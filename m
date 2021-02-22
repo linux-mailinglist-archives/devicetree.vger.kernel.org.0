@@ -2,117 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2C9321105
-	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 07:48:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54B3D32114D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Feb 2021 08:20:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229913AbhBVGsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Feb 2021 01:48:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbhBVGsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 01:48:18 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 583F3C061786;
-        Sun, 21 Feb 2021 22:47:38 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id f20so12113606ioo.10;
-        Sun, 21 Feb 2021 22:47:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CzbwqBo7/54EtEOzwje3BHhr7xtEcrRjjyrnOowJ3RA=;
-        b=tZoM/ei03nNFQkhXPVPvquxs1T2YkAgjONYNooJYzDxSnoZqlnZoIUckliO56T/N0k
-         l8mInoPyoBFCdb5bdj2k3U9uVOBmCaOkBpZVZ8Mvx6i/j3zbxNhRzbbXd6yqFf9y+6xr
-         cwyD5aJhp9gxGob/g+RRmDDiIW+ZJ42u85L40NLxiFuS95YPZAYtSYb/ZJui+H/hjoUM
-         b7s1IRQn65x3MrublhdQI8DfAaohCWeMFwn0Ee5WHCNQGxsP4C14chRN52dEXqckWuCV
-         pcDl5z3GIcjorydEjOKOGc9K2KzSQE0lnut5KLvdUyuCRO+aFj5qhPQ3TA4TUWB7Fy0S
-         vHrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CzbwqBo7/54EtEOzwje3BHhr7xtEcrRjjyrnOowJ3RA=;
-        b=VzGF1P90KS0x21cSA8SV0hXID9zgIJRKpQVlSRCwBHjEUcEhGfQzpqyp0V7vkrIoQu
-         Ln/esvopcpIgrf4Hcfc9qCpFYgwCTozR9O8VUgkcOuYMZHM1kCBGF3TMHASCLHi4ssp7
-         oPMqmwMMhBoLtMJ2h6XPjnYdoWgV1sqMDFbTnC3QolKyVvsgaqZiqwCiBlPoY0YplyQn
-         BX5NfsKLdpmROq4Al/fwIiTETT/Ztu2w5O1jXHGOyw8w0GAsPqkDx5tGKPwz8nn20ZmV
-         cRTkzOqVOUjxIgyWOLfLLpUjY9M7cdkYEnr73DT241M+vr+keMiKiyqHbwMQANdQVSQ8
-         zhDw==
-X-Gm-Message-State: AOAM531M0T92nilIGI5xnuJOgvjXjGZrgOr6a4JNj3eG8PhIkzXgwXoY
-        9KE9edFPzvM2Z+5ycUjtiZcv0eMKhhykbzLhkKz/Hl9S
-X-Google-Smtp-Source: ABdhPJxYz88oi9/UfUiw4DjF5LrZyBs4jxg6vz1nOlTfxssQ6ydATcxoSxhI75o3Nxa+X9Vql47SZFLy9ytTVhiR6xw=
-X-Received: by 2002:a5e:980a:: with SMTP id s10mr14511315ioj.101.1613976457881;
- Sun, 21 Feb 2021 22:47:37 -0800 (PST)
+        id S229908AbhBVHUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Feb 2021 02:20:15 -0500
+Received: from lucky1.263xmail.com ([211.157.147.132]:53510 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229518AbhBVHUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Feb 2021 02:20:14 -0500
+Received: from localhost (unknown [192.168.167.235])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 1D734F1028;
+        Mon, 22 Feb 2021 15:17:39 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from xxm-vm.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P19727T140184712640256S1613978252812915_;
+        Mon, 22 Feb 2021 15:17:39 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <5d5bcd03c53fb4ad8b8c23ba5f330cab>
+X-RL-SENDER: xxm@rock-chips.com
+X-SENDER: xxm@rock-chips.com
+X-LOGIN-NAME: xxm@rock-chips.com
+X-FST-TO: bhelgaas@google.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Simon Xue <xxm@rock-chips.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Simon Xue <xxm@rock-chips.com>
+Subject: [PATCH v5 1/2] dt-bindings: rockchip: Add DesignWare based PCIe controller
+Date:   Mon, 22 Feb 2021 15:17:21 +0800
+Message-Id: <20210222071721.30062-1-xxm@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com>
- <1613623791-4598-7-git-send-email-shubhrajyoti.datta@xilinx.com>
- <20210218093715.7fdc27ee@xps13> <161369795774.1254594.6203789110347055936@swboyd.mtv.corp.google.com>
-In-Reply-To: <161369795774.1254594.6203789110347055936@swboyd.mtv.corp.google.com>
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
-Date:   Mon, 22 Feb 2021 12:17:26 +0530
-Message-ID: <CAKfKVtHVRT-8-yCwAt8+8RkS5Mi7v2RHSFg8wMNw75VkmUa+tQ@mail.gmail.com>
-Subject: Re: [PATCH v9 6/7] clk: clock-wizard: Remove the hardcoding of the
- clock outputs
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        linux-clk@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Document DT bindings for PCIe controller found on Rockchip SoC.
 
-On Fri, Feb 19, 2021 at 6:55 AM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Miquel Raynal (2021-02-18 00:37:15)
-> > Hi Shubhrajyoti,
-> >
-> > Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com> wrote on Thu, 18 Feb
-> > 2021 10:19:50 +0530:
-> >
-> > > The number of output clocks are configurable in the hardware.
-> > > Currently the driver registers the maximum number of outputs.
-> > > Fix the same by registering only the outputs that are there.
-> > >
-> > > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> > > ---
-> > > v4:
-> > > Assign output in this patch
-> > >
-> > >  drivers/clk/clk-xlnx-clock-wizard.c | 6 ++++--
-> > >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/clk/clk-xlnx-clock-wizard.c b/drivers/clk/clk-xlnx-clock-wizard.c
-> > > index ed3b0ef..d403a74 100644
-> > > --- a/drivers/clk/clk-xlnx-clock-wizard.c
-> > > +++ b/drivers/clk/clk-xlnx-clock-wizard.c
-> > > @@ -473,6 +473,7 @@ static int clk_wzrd_probe(struct platform_device *pdev)
-> > >       unsigned long rate;
-> > >       const char *clk_name;
-> > >       struct clk_wzrd *clk_wzrd;
-> > > +     int outputs;
-> > >       struct device_node *np = pdev->dev.of_node;
-> > >
-> > >       clk_wzrd = devm_kzalloc(&pdev->dev, sizeof(*clk_wzrd), GFP_KERNEL);
-> > > @@ -541,6 +542,7 @@ static int clk_wzrd_probe(struct platform_device *pdev)
-> > >               goto err_disable_clk;
-> > >       }
-> > >
-> > > +     outputs = of_property_count_strings(np, "clock-output-names");
-> >
-> > A check on outputs validity is probably welcome.
-> >
-> > Also I usually prefer noutputs or nb_outputs for such variable name,
-> > which implies a number rather than an array, but this is personal taste.
->
-> Ideally we get rid of clock-output-names and generate them at runtime
-> instead based on some combination of device name and something else.
+Signed-off-by: Simon Xue <xxm@rock-chips.com>
+---
+ .../bindings/pci/rockchip-dw-pcie.yaml        | 141 ++++++++++++++++++
+ 1 file changed, 141 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
 
-Makes sense. However it may break the current binding.
-Do you think that shoud be okay?
+diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+new file mode 100644
+index 000000000000..142bbe577763
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+@@ -0,0 +1,141 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: DesignWare based PCIe controller on Rockchip SoCs
++
++maintainers:
++  - Shawn Lin <shawn.lin@rock-chips.com>
++  - Simon Xue <xxm@rock-chips.com>
++  - Heiko Stuebner <heiko@sntech.de>
++
++description: |+
++  RK3568 SoC PCIe host controller is based on the Synopsys DesignWare
++  PCIe IP and thus inherits all the common properties defined in
++  designware-pcie.txt.
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++# We need a select here so we don't match all nodes with 'snps,dw-pcie'
++select:
++  properties:
++    compatible:
++      contains:
++        const: rockchip,rk3568-pcie
++  required:
++    - compatible
++
++properties:
++  compatible:
++    items:
++      - const: rockchip,rk3568-pcie
++      - const: snps,dw-pcie
++
++  reg:
++    items:
++      - description: Data Bus Interface (DBI) registers
++      - description: Rockchip designed configuration registers
++      - description: Config registers
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: apb
++      - const: config
++
++  clocks:
++    items:
++      - description: AHB clock for PCIe master
++      - description: AHB clock for PCIe slave
++      - description: AHB clock for PCIe dbi
++      - description: APB clock for PCIe
++      - description: Auxiliary clock for PCIe
++
++  clock-names:
++    items:
++      - const: aclk_mst
++      - const: aclk_slv
++      - const: aclk_dbi
++      - const: pclk
++      - const: aux
++
++  msi-map: true
++
++  num-lanes: true
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    const: pcie-phy
++
++  power-domains:
++    maxItems: 1
++
++  ranges:
++    maxItems: 2
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: pipe
++
++  vpcie3v3-supply: true
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - msi-map
++  - num-lanes
++  - phys
++  - phy-names
++  - power-domains
++  - resets
++  - reset-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++
++    bus {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        pcie3x2: pcie@fe280000 {
++            compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
++            reg = <0x3 0xc0800000 0x0 0x390000>,
++                  <0x0 0xfe280000 0x0 0x10000>,
++                  <0x3 0x80000000 0x0 0x100000>;
++            reg-names = "dbi", "apb", "config";
++            bus-range = <0x20 0x2f>;
++            clocks = <&cru 143>, <&cru 144>,
++                     <&cru 145>, <&cru 146>,
++                     <&cru 147>;
++            clock-names = "aclk_mst", "aclk_slv",
++                          "aclk_dbi", "pclk",
++                          "aux";
++            device_type = "pci";
++            linux,pci-domain = <2>;
++            max-link-speed = <2>;
++            msi-map = <0x2000 &its 0x2000 0x1000>;
++            num-lanes = <2>;
++            phys = <&pcie30phy>;
++            phy-names = "pcie-phy";
++            power-domains = <&power 15>;
++            ranges = <0x81000000 0x0 0x80800000 0x3 0x80800000 0x0 0x100000>,
++                     <0x83000000 0x0 0x80900000 0x3 0x80900000 0x0 0x3f700000>;
++            resets = <&cru 193>;
++            reset-names = "pipe";
++            #address-cells = <3>;
++            #size-cells = <2>;
++        };
++    };
++...
+-- 
+2.25.1
+
+
+
