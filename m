@@ -2,90 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 913BA322F12
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 17:51:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70B73322F2A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 17:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233570AbhBWQuR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 23 Feb 2021 11:50:17 -0500
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:60881 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232982AbhBWQuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 11:50:14 -0500
-X-Originating-IP: 86.210.203.113
-Received: from xps13 (lfbn-tou-1-972-113.w86-210.abo.wanadoo.fr [86.210.203.113])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id AEFDBFF808;
-        Tue, 23 Feb 2021 16:49:23 +0000 (UTC)
-Date:   Tue, 23 Feb 2021 17:49:22 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        id S233646AbhBWQ4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 11:56:09 -0500
+Received: from netrider.rowland.org ([192.131.102.5]:58705 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S233045AbhBWQ4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 11:56:04 -0500
+Received: (qmail 1267268 invoked by uid 1000); 23 Feb 2021 11:55:21 -0500
+Date:   Tue, 23 Feb 2021 11:55:21 -0500
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
+Cc:     f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Prisk <linux@prisktech.co.nz>, linux-usb@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        boris.brezillon@collabora.com
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add a property to declare secure
- regions in Qcom NANDc
-Message-ID: <20210223174922.052f9776@xps13>
-In-Reply-To: <20210222120259.94465-3-manivannan.sadhasivam@linaro.org>
-References: <20210222120259.94465-1-manivannan.sadhasivam@linaro.org>
-        <20210222120259.94465-3-manivannan.sadhasivam@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] usb: host: ehci-platform: add ignore_oc DT support
+Message-ID: <20210223165521.GE1261797@rowland.harvard.edu>
+References: <20210223155005.21712-1-noltari@gmail.com>
+ <20210223161644.6095-1-noltari@gmail.com>
+ <20210223161644.6095-3-noltari@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210223161644.6095-3-noltari@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manivannan,
-
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote on Mon,
-22 Feb 2021 17:32:58 +0530:
-
-> On a typical end product, a vendor may choose to secure some regions in
-> the NAND memory which are supposed to stay intact between FW upgrades.
-> The access to those regions will be blocked by a secure element like
-> Trustzone. So the normal world software like Linux kernel should not
-> touch these regions (including reading).
+On Tue, Feb 23, 2021 at 05:16:44PM +0100, ¡lvaro Fern·ndez Rojas wrote:
+> Over-current reporting isn't supported on some platforms such as bcm63xx.
+> These devices will incorrectly report over-current if this flag isn't properly
+> activated.
 > 
-> So let's add a property for declaring such secure regions so that the
-> driver can skip touching them.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: ¡lvaro Fern·ndez Rojas <noltari@gmail.com>
 > ---
->  Documentation/devicetree/bindings/mtd/qcom,nandc.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  v2: change flag name and improve documentation as suggested by Alan Stern.
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> index 84ad7ff30121..7500e20da9c1 100644
-> --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> @@ -48,6 +48,13 @@ patternProperties:
->          enum:
->            - 512
+>  drivers/usb/host/ehci-platform.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/usb/host/ehci-platform.c b/drivers/usb/host/ehci-platform.c
+> index a48dd3fac153..2c587e31d010 100644
+> --- a/drivers/usb/host/ehci-platform.c
+> +++ b/drivers/usb/host/ehci-platform.c
+> @@ -286,6 +286,9 @@ static int ehci_platform_probe(struct platform_device *dev)
+>  		if (of_property_read_bool(dev->dev.of_node, "big-endian"))
+>  			ehci->big_endian_mmio = ehci->big_endian_desc = 1;
 >  
-> +      qcom,secure-regions:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        description:
-> +          Regions in the NAND memory which are protected using a secure element
-> +          like Trustzone. This property contains the start address and size of
-> +          the secure regions present (optional).
-
-What does this "(optional)" means? If you mean the property is optional
-then it should be described accordingly in the yaml file, or am I
-missing something?
-
-I wonder if it wouldn't be better to make this a NAND chip node
-property. I don't think a qcom prefix is needed as potentially many
-other SoCs might have the same "feature".
-
-I'm fine adding support for it in the qcom driver only though.
-
+> +		if (of_property_read_bool(dev->dev.of_node, "spurious-oc"))
+> +			ehci->ignore_oc = 1;
 > +
->  allOf:
->    - $ref: "nand-controller.yaml#"
->  
+>  		if (of_property_read_bool(dev->dev.of_node,
+>  					  "needs-reset-on-resume"))
+>  			priv->reset_on_resume = true;
 
-Thanks,
-Miqu√®l
+Acked-by: Alan Stern <stern@rowland.harvard.edu>
