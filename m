@@ -2,158 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF40E322685
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 08:43:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5D3332268B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 08:43:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231904AbhBWHl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 02:41:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54636 "EHLO
+        id S231664AbhBWHnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 02:43:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230349AbhBWHlt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 02:41:49 -0500
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F086C06174A
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 23:41:09 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id cx11so1236793pjb.4
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 23:41:09 -0800 (PST)
+        with ESMTP id S231756AbhBWHnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 02:43:47 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4EF1C061574
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 23:43:07 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id c19so1244752pjq.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 23:43:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=QBmv3AC5xTk/Bz1QRlZ402i8IDq9hUClvPJlVeV/Z3o=;
-        b=j5c9cDPkQo7tLyWIAJOCWEsRws5QRDg0evVfT633jK6sWgwSyfaa4z9xwmuJ63I7R7
-         0igf/1HNjkQcG9McUM32oH53y32YZPOQ5M9/ruV6sTCiGYaATKJwwCDoCdXcDarl16p9
-         NHxeJivnrI/ABx3oJ47lOy5IUBqalsEPsTKgY=
+        bh=jgYUunnEsSTMGTnO2lLoEyfi+pNVZM1uOBDpNfC0CuU=;
+        b=dNC3TexIvk5/T+rxfc9bpWDzDFoPfU2wJCcHSPmX2pw8lg84+4Pbq/5zOBzWqtzs94
+         T3itGJSjEKp49eZJHwguL5Cp2vciAGg+eN9k3Rn0v+/3jAwUmQDFwdDBExoeE4uZP1F/
+         P81D3CL+/C2oc05G2nCo+vFUuHANI6zcROA3c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=QBmv3AC5xTk/Bz1QRlZ402i8IDq9hUClvPJlVeV/Z3o=;
-        b=c74C+lVSz+go62oDqklvBO3txWvgw1in0pgk3t4uCDB5s2TrYSc2HQPbsbUNuSxcvZ
-         CEuDSuTTqsYTkquN/FEQeXm04uVy4HNlPoUzv1S+reSzaV8wZ9CAgpSCOyINvpO2naMg
-         CmEeE/9mYFvopOMcE+cSMkFZ2sfA/CL9bQX5n/mCTKcuEOKIO1t4m5u3KZG+fVcHOt97
-         0t6wLBYQSBjvQjbuWSfETebMLJwf4TzDHM7VhL1BDDnIBdgWiVFkKrkkNkxZfOdpZ4BK
-         QEergEx8ohGMsmNIs809DQUAjLT5I1fuYTXniG5emhOgYeCZq4CdcT8j3jwa0eH5opiw
-         dF2w==
-X-Gm-Message-State: AOAM531syPvwChJ7Q5qZ7SsnmiO+T+3FVL3qN+K/kDgw/3ExPrmsOBD0
-        pz00TzvjkUW9WEWA3ctKMYSxyQ==
-X-Google-Smtp-Source: ABdhPJwFfg10EQ3syQ4vnhG4VwRgEemmfIEeZGu2JLF+B2GptDtsFUCxZCGGjHOTqM6n1nkFZMPvlQ==
-X-Received: by 2002:a17:90a:eb02:: with SMTP id j2mr28249436pjz.226.1614066069009;
-        Mon, 22 Feb 2021 23:41:09 -0800 (PST)
+        bh=jgYUunnEsSTMGTnO2lLoEyfi+pNVZM1uOBDpNfC0CuU=;
+        b=uLiaIOZvvhg7wsYRFendaZjyCvV+RL7yHsxapGfkPNBYBqWzg1aPtKaJxxPZG9gQYe
+         qn03sMUH8eh+U2R/AaRJEdk+V9bxEZ6quH+Q7GMjSWwB2dZbde6+pM7f6wvE60ZMr7Gi
+         fuuVAyGAIW/2JXD61KCqqj3cfxUT33exHBcWIy+rJahj5Z0S8fmdEHefg9DawCO4fsyU
+         ZRoC0i3kfCTybfOmBFnwk4QLfUl7b74sdIDn/Zp77PWqIWJhP8H5Kb6u1gcutRUny+hj
+         /oksw5nvGh1R+z10Ihg+WNsCTi1JrrT9bCFljFKtieUrc58y4DXeduhJ7Ys+HSIw+oJu
+         kAPg==
+X-Gm-Message-State: AOAM533MQoJ4yQNE5S1PpUkB4PjdxsEk3dxyNS9nX8nwSL7JXJup7dKm
+        DxBu9Ox71anw1KinP7fOrJb1Mr2UP7aJNA==
+X-Google-Smtp-Source: ABdhPJzfxC8VhnwCuDifpAYQIT/zUkjSKcjFglJatdwVJ+uOh1S/Ot3wAP+75n76KMAjSM7z0bMdVQ==
+X-Received: by 2002:a17:902:ec85:b029:e3:bde4:e06e with SMTP id x5-20020a170902ec85b02900e3bde4e06emr1391849plg.30.1614066187321;
+        Mon, 22 Feb 2021 23:43:07 -0800 (PST)
 Received: from chromium.org ([2620:15c:202:201:68e6:d68b:3887:f216])
-        by smtp.gmail.com with ESMTPSA id 14sm21777186pfy.55.2021.02.22.23.41.08
+        by smtp.gmail.com with ESMTPSA id p11sm2006564pjb.31.2021.02.22.23.43.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Feb 2021 23:41:08 -0800 (PST)
+        Mon, 22 Feb 2021 23:43:07 -0800 (PST)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1613114930-1661-6-git-send-email-rnayak@codeaurora.org>
-References: <1613114930-1661-1-git-send-email-rnayak@codeaurora.org> <1613114930-1661-6-git-send-email-rnayak@codeaurora.org>
-Subject: Re: [PATCH 05/13] arm64: dts: qcom: sc7280: Add RSC and PDC devices
+In-Reply-To: <1613114930-1661-7-git-send-email-rnayak@codeaurora.org>
+References: <1613114930-1661-1-git-send-email-rnayak@codeaurora.org> <1613114930-1661-7-git-send-email-rnayak@codeaurora.org>
+Subject: Re: [PATCH 06/13] arm64: dts: qcom: SC7280: Add rpmhcc clock controller node
 From:   Stephen Boyd <swboyd@chromium.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Maulik Shah <mkshah@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
+        linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Taniya Das <tdas@codeaurora.org>
 To:     Rajendra Nayak <rnayak@codeaurora.org>, agross@kernel.org,
         bjorn.andersson@linaro.org, robh+dt@kernel.org
-Date:   Mon, 22 Feb 2021 23:41:07 -0800
-Message-ID: <161406606714.1254594.8318028410661523068@swboyd.mtv.corp.google.com>
+Date:   Mon, 22 Feb 2021 23:43:05 -0800
+Message-ID: <161406618557.1254594.15985584772106947706@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajendra Nayak (2021-02-11 23:28:42)
+Quoting Rajendra Nayak (2021-02-11 23:28:43)
 > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/q=
 com/sc7280.dtsi
-> index 1fe2eba..7848e88 100644
+> index 7848e88..10851e7 100644
 > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -7,6 +7,7 @@
+> @@ -6,6 +6,7 @@
+>   */
 > =20
 >  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+> +#include <dt-bindings/clock/qcom,rpmh.h>
 >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 > =20
->  / {
->         interrupt-parent =3D <&intc>;
-> @@ -30,6 +31,18 @@
+> @@ -29,6 +30,42 @@
+>                         clock-frequency =3D <32000>;
+>                         #clock-cells =3D <0>;
 >                 };
+> +
+> +               pcie_0_pipe_clk: pcie-0-pipe-clk {
+> +                       compatible =3D "fixed-clock";
+> +                       clock-frequency =3D <1000>;
+> +                       #clock-cells =3D <0>;
+> +               };
+> +
+> +               pcie_1_pipe_clk: pcie-1-pipe-clk {
+> +                       compatible =3D "fixed-clock";
+> +                       clock-frequency =3D <1000>;
+> +                       #clock-cells =3D <0>;
+> +               };
+> +
+> +               ufs_phy_rx_symbol_0_clk: ufs-phy-rx-symbol-0-clk {
+> +                       compatible =3D "fixed-clock";
+> +                       clock-frequency =3D <1000>;
+> +                       #clock-cells =3D <0>;
+> +               };
+> +
+> +               ufs_phy_rx_symbol_1_clk: ufs-phy-rx-symbol-1-clk {
+> +                       compatible =3D "fixed-clock";
+> +                       clock-frequency =3D <1000>;
+> +                       #clock-cells =3D <0>;
+> +               };
+> +
+> +               ufs_phy_tx_symbol_0_clk: ufs-phy-tx-symbol-0-clk {
+> +                       compatible =3D "fixed-clock";
+> +                       clock-frequency =3D <1000>;
+> +                       #clock-cells =3D <0>;
+> +               };
+> +
+> +               usb3_phy_wrapper_gcc_usb30_pipe_clk: usb3-phy-wrapper-gcc=
+-usb30-pipe-clk {
+> +                       compatible =3D "fixed-clock";
+> +                       clock-frequency =3D <1000>;
+> +                       #clock-cells =3D <0>;
+> +               };
+
+Shouldn't these come from the phys? Why are they being added here?
+
 >         };
 > =20
-> +       reserved_memory: reserved-memory {
-> +               #address-cells =3D <2>;
-> +               #size-cells =3D <2>;
-> +               ranges;
+>         reserved_memory: reserved-memory {
+> @@ -174,6 +211,17 @@
+>                 gcc: clock-controller@100000 {
+>                         compatible =3D "qcom,gcc-sc7280";
+>                         reg =3D <0 0x00100000 0 0x1f0000>;
+> +                       clocks =3D <&rpmhcc RPMH_CXO_CLK>,
+> +                                <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
+> +                                <&pcie_0_pipe_clk>, <&pcie_1_pipe_clk>,
+> +                                <&ufs_phy_rx_symbol_0_clk>, <&ufs_phy_rx=
+_symbol_1_clk>,
+> +                                <&ufs_phy_tx_symbol_0_clk>,
+> +                                <&usb3_phy_wrapper_gcc_usb30_pipe_clk>;
+
+If the phys aren't ready then <0> should work. Unless something goes
+wrong?
+
+> +                       clock-names =3D "bi_tcxo", "bi_tcxo_ao", "sleep_c=
+lk",
+> +                                     "pcie_0_pipe_clk", "pcie_1_pipe-clk=
+",
+> +                                     "ufs_phy_rx_symbol_0_clk", "ufs_phy=
+_rx_symbol_1_clk",
+> +                                     "ufs_phy_tx_symbol_0_clk",
+> +                                     "usb3_phy_wrapper_gcc_usb30_pipe_cl=
+k";
+>                         #clock-cells =3D <1>;
+>                         #reset-cells =3D <1>;
+>                         #power-domain-cells =3D <1>;
+> @@ -325,6 +373,13 @@
+>                                           <SLEEP_TCS   3>,
+>                                           <WAKE_TCS    3>,
+>                                           <CONTROL_TCS 1>;
 > +
-> +               aop_cmd_db_mem: memory@80860000 {
-> +                       reg =3D <0x0 0x80860000 0x0 0x20000>;
-> +                       compatible =3D "qcom,cmd-db";
-> +                       no-map;
-> +               };
-> +       };
-> +
->         cpus {
->                 #address-cells =3D <2>;
->                 #size-cells =3D <0>;
-> @@ -189,6 +202,19 @@
->                         };
+> +                       rpmhcc: qcom,rpmhcc {
+
+rpmhcc: clock-controller {
+
+> +                               compatible =3D "qcom,sc7280-rpmh-clk";
+> +                               clocks =3D <&xo_board>;
+> +                               clock-names =3D "xo";
+> +                               #clock-cells =3D <1>;
+> +                       };
 >                 };
-> =20
-> +               pdc: interrupt-controller@b220000 {
-> +                       compatible =3D "qcom,sc7280-pdc", "qcom,pdc";
-> +                       reg =3D <0 0xb220000 0 0x30000>;
-
-Can you pad out reg to 8 digits? 0x0b220000
-
-> +                       qcom,pdc-ranges =3D <0 480 40>, <40 140 14>, <54 =
-263 1>,
-> +                                         <55 306 4>, <59 312 3>, <62 374=
- 2>,
-> +                                         <64 434 2>, <66 438 3>, <69 86 =
-1>,
-> +                                         <70 520 54>, <124 609 31>, <155=
- 63 1>,
-> +                                         <156 716 12>;
-> +                       #interrupt-cells =3D <2>;
-> +                       interrupt-parent =3D <&intc>;
-> +                       interrupt-controller;
-> +               };
-> +
->                 tlmm: pinctrl@f100000 {
->                         compatible =3D "qcom,sc7280-pinctrl";
->                         reg =3D <0 0xf100000 0 0x1000000>;
-
-The same applies to the previous patch. Sorry for missing that.
-
-> @@ -198,6 +224,7 @@
->                         interrupt-controller;
->                         #interrupt-cells =3D <2>;
->                         gpio-ranges =3D <&tlmm 0 0 175>;
-> +                       wakeup-parent =3D <&pdc>;
-> =20
->                         qup_uart5_default: qup-uart5-default {
->                                 pins =3D "gpio46", "gpio47";
-> @@ -282,6 +309,23 @@
->                                 status =3D "disabled";
->                         };
->                 };
-> +
-> +               apps_rsc: rsc@18200000 {
-> +                       compatible =3D "qcom,rpmh-rsc";
-> +                       reg =3D <0 0x18200000 0 0x10000>,
-> +                             <0 0x18210000 0 0x10000>,
-> +                             <0 0x18220000 0 0x10000>;
-> +                       reg-names =3D "drv-0", "drv-1", "drv-2";
-> +                       interrupts =3D <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-> +                       qcom,tcs-offset =3D <0xd00>;
-> +                       qcom,drv-id =3D <2>;
-> +                       qcom,tcs-config =3D <ACTIVE_TCS  2>,
-> +                                         <SLEEP_TCS   3>,
-> +                                         <WAKE_TCS    3>,
-> +                                         <CONTROL_TCS 1>;
-> +               };
 >         };
+>
