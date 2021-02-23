@@ -2,23 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 857A93230D3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 19:34:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87B843230CF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 19:34:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233900AbhBWSei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 13:34:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53628 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233843AbhBWSee (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 13:34:34 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69D64C06178A;
-        Tue, 23 Feb 2021 10:33:54 -0800 (PST)
+        id S233083AbhBWSed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 13:34:33 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:45636 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232986AbhBWSed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 13:34:33 -0500
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: sre)
-        with ESMTPSA id 95DAE1F448CF
+        with ESMTPSA id 8DE511F44730
 Received: by jupiter.universe (Postfix, from userid 1000)
-        id 2F7A34800D9; Tue, 23 Feb 2021 19:33:49 +0100 (CET)
+        id 3259A4800DC; Tue, 23 Feb 2021 19:33:49 +0100 (CET)
 From:   Sebastian Reichel <sebastian.reichel@collabora.com>
 To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
         Shawn Guo <shawnguo@kernel.org>,
@@ -29,9 +26,9 @@ To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
 Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         kernel@collabora.com
-Subject: [PATCHv1 1/4] ARM: dts: imx: ba16: add USB OTG VBUS enable GPIO
-Date:   Tue, 23 Feb 2021 19:33:43 +0100
-Message-Id: <20210223183346.138575-2-sebastian.reichel@collabora.com>
+Subject: [PATCHv1 2/4] ARM: dts: imx: ba16: improve PHY information
+Date:   Tue, 23 Feb 2021 19:33:44 +0100
+Message-Id: <20210223183346.138575-3-sebastian.reichel@collabora.com>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210223183346.138575-1-sebastian.reichel@collabora.com>
 References: <20210223183346.138575-1-sebastian.reichel@collabora.com>
@@ -41,42 +38,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add VBUS regulator GPIO information, so that USB OTG port can
-also be used in host mode.
+Add PHY voltage supply information fixing the following kernel message:
+
+2188000.ethernet supply phy not found, using dummy regulator
+
+Also add PHY clock information to avoid depending on the bootloader
+programming correct values.
+
+The bootloader also sets some reserved registers in the PHY as
+advised by Qualcomm, which is not supported by the bindings/kernel
+driver, so the reset GPIO has not been added intentionally.
 
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- arch/arm/boot/dts/imx6q-ba16.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/boot/dts/imx6q-ba16.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/arch/arm/boot/dts/imx6q-ba16.dtsi b/arch/arm/boot/dts/imx6q-ba16.dtsi
-index e4578ed3371e..4793ef5171aa 100644
+index 4793ef5171aa..a684d999e605 100644
 --- a/arch/arm/boot/dts/imx6q-ba16.dtsi
 +++ b/arch/arm/boot/dts/imx6q-ba16.dtsi
-@@ -124,6 +124,10 @@ reg_usb_otg_vbus: regulator-usbotgvbus {
- 		regulator-name = "usb_otg_vbus";
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
+@@ -177,6 +177,18 @@ &fec {
+ 	pinctrl-0 = <&pinctrl_enet>;
+ 	phy-mode = "rgmii-id";
+ 	status = "okay";
++	phy-supply = <&reg_3p3v>;
++	phy-handle = <&phy0>;
 +
-+		pinctrl-0 = <&pinctrl_usbotg_vbus>;
-+		gpio = <&gpio4 15 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
- 	};
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		phy0: ethernet-phy@4 {
++			reg = <4>;
++			qca,clk-out-frequency = <125000000>;
++		};
++	};
  };
  
-@@ -575,6 +579,12 @@ MX6QDL_PAD_ENET_RX_ER__USB_OTG_ID 0x17059
- 		>;
- 	};
- 
-+	pinctrl_usbotg_vbus: usbotgvbusgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15 0x000b0
-+		>;
-+	};
-+
- 	pinctrl_usdhc2: usdhc2grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD2_CMD__SD2_CMD	0x17059
+ &hdmi {
 -- 
 2.30.0
 
