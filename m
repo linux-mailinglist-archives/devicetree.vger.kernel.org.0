@@ -2,91 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A38C3233DB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 23:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DD1A323423
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 00:19:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231880AbhBWWla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 17:41:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49376 "EHLO
+        id S233625AbhBWXK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 18:10:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232787AbhBWWg7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 17:36:59 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1BFC06178B
-        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 14:36:18 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id v21so182096wml.4
-        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 14:36:18 -0800 (PST)
+        with ESMTP id S233994AbhBWXEn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 18:04:43 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA32C061786
+        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 15:03:27 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id v5so119250lft.13
+        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 15:03:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=xWiZLSlx41qOyR+/nqX4T5Ur2XiD0k9DldMS6oYp7uE=;
-        b=WcflAq5G527RWIltx4lf9nR42x/Y5RkgvppJAZKdUfAStRIR33E/zkZQDRf7TK2IPm
-         GO9JHJKjfcW5hmULQIkvV4D7xobIwGlwaTM2jw6SjfYHuwRPpSmOgo0v27sB/i9jSgiC
-         wgnTqTjaHhAIY1VWjhw/Ix5VwpyddRBKVm3THfDH+DJKPjb0oze2ZNMPi/C1ZtVLVyn2
-         ycK8oyBCIcPmXXvsTx79RuCvwbZv12M0fO08yb9EzfTgl4dIuHwNuSlwZtgxjXXEZ+Gt
-         WX7Pl7qGBHgMs3cCPd1Wr/t6iL5TgKxm4C0M9reopX+Y7KzH3qEOxJtYL8SE+duW539x
-         2eEg==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wRhAYey+svcGCwXyGWPv7V5X8SwkvAprp73I+85/pQc=;
+        b=EwIJLES+pr00B3Dj/+oItlJmVww8ftL2KnWVjRMnQaHEG7lVUwSd2+iiKPcjHW+/uF
+         kRgLBauqcCoAc97koaMrwcK6tUixzC39s8XbJ1Jn9fC0TuWt0ShAWxtlwQq2uW0Vmc64
+         PoYVSlGinQsHBMPvyFrp+iyn7sctUWm/IR0aplZ4FIRVCi4r0Kvu4bvA9nNJB+ttUk74
+         R/wnQOzJkJHXZhUCUyYk29X4vg2hOakJ3a/XPTt9aBTqhppn9SUzoOE+NtH8DMoi42qH
+         //rMBJ3/v2fi4rhaau8tQx8TwsyAzGl6ghZ3IAfsOcucycpbZHbwQ7TIsmnA55+pKYiZ
+         MNAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=xWiZLSlx41qOyR+/nqX4T5Ur2XiD0k9DldMS6oYp7uE=;
-        b=hXUssvSY8foox2roeQhHNevY/k1C/oV9xPqbkYULpejaHQAUGYM5fhKVnm9cq2PTjk
-         rXeR6U0mG9kOWc22/Om/oGV2cOXFF0W1OnVlrcW5Kltka0PIUHyNzWcltfTXwMuOQErl
-         l+u06aLXf3PWCkaocqrVVMUCXFI2c+dlqA4f0B1/ZkuUYruuNuis5UDK423Mllg+s7r2
-         C6UQ8S93hubws08aSpmLrWPEBfr3TnCntS5lezxYJf5Orvs+NzmOSAkVdefZV0TjV0Gz
-         2OjoQsHDr5RDphbGsRI8C2kKLUklgem3sMf02DpsR8S+t9gboogzd41p/IU756A2LPtr
-         15mA==
-X-Gm-Message-State: AOAM5315jQMqI8pqXdQzP3Vj+zABqYPGpVMRRHGhCPwtj1o1/+M7Z95F
-        cI5DG4AiBK9r/CZY4rZk6vJkaw==
-X-Google-Smtp-Source: ABdhPJzh6VL4qyqqFL28vsTeEqLT4ChCA6Pv8ysE1oNxHQHX0SfSIsjrnnzkfz/1qVxF66qxih3o0A==
-X-Received: by 2002:a05:600c:3551:: with SMTP id i17mr859597wmq.92.1614119777558;
-        Tue, 23 Feb 2021 14:36:17 -0800 (PST)
-Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id l22sm185508wrb.4.2021.02.23.14.36.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Feb 2021 14:36:17 -0800 (PST)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>
-Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: arm64: dts: mediatek: Add mt8516-pumpkin board
-Date:   Tue, 23 Feb 2021 23:36:13 +0100
-Message-Id: <20210223223613.2085827-1-fparent@baylibre.com>
-X-Mailer: git-send-email 2.30.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wRhAYey+svcGCwXyGWPv7V5X8SwkvAprp73I+85/pQc=;
+        b=e++FzyXdHZ0O/+BqGFoszV4xhxgn8MsWpAuYbU6Al1YTDIgLyNantm7Fnrd2+uGX4F
+         iOQD7rXo9joSmwcgt86LmgbASYNH8AGZGaPfpcG6QoLZzxmVlCtsBClr939tKD5Ijz0j
+         27ABHLQFxU7RTrYaOrsLBT9UvydY1quYRD059QG2TregdQhkXkS7mFxZtPkNkLWkXu5D
+         90nZIYipS8H20zQ/e/LnIuNh1lHTDdqL6CKIJkh6J4WVRX2E/p1MIrm2cqlZzXd5BwHw
+         L7cQ+LsAfLmpd1Pdh7Kuxqzk2HcxfclJ0WlykiYlAHz66ZamNFm/Nr/AuEe9EQ2udA3j
+         EwAw==
+X-Gm-Message-State: AOAM533W3ec08gV70o32t7Rw4Cp7UPxVz86mSmygDtuMLSaKfPY56U/d
+        VTZGirquHAn5ZdldAw6pwHAmFGxhXpTdy0cyeUH5iA==
+X-Google-Smtp-Source: ABdhPJzfYSmA9BfP+wP5v//IugfBYumbU1mW5LCBy8Jxvuc1gfBn/zeSpz5/3ST6REQJKCOhL/hkhkouT30tX4hi+hY=
+X-Received: by 2002:a05:6512:965:: with SMTP id v5mr7893451lft.446.1614121405073;
+ Tue, 23 Feb 2021 15:03:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210216182735.11639-1-jae.hyun.yoo@linux.intel.com> <20210216182735.11639-4-jae.hyun.yoo@linux.intel.com>
+In-Reply-To: <20210216182735.11639-4-jae.hyun.yoo@linux.intel.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 23 Feb 2021 15:03:13 -0800
+Message-ID: <CAFd5g47MBQ67S3XzaH9rDPSieihNJ_WPhUgw=Pkg1Vk1PK3AvQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] i2c: aspeed: add buffer mode transfer support
+To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Cc:     Wolfram Sang <wsa@the-dreams.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>, linux-i2c@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation for the MT8516 Pumpkin board.
+On Tue, Feb 16, 2021 at 10:15 AM Jae Hyun Yoo
+<jae.hyun.yoo@linux.intel.com> wrote:
+>
+> This driver uses byte mode that makes lots of interrupt calls
+> which isn't good for performance and it makes the driver very
+> timing sensitive. To improve performance of the driver, this commit
+> adds buffer mode transfer support which uses I2C SRAM buffer
+> instead of using a single byte buffer.
+>
+> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+> Tested-by: Tao Ren <taoren@fb.com>
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+Overall looks pretty good! There were just a couple bits of code which
+were not immediately obvious to me that I would like to see improved:
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 93b3bdf6eaeb..366a753f64ba 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -125,6 +125,10 @@ properties:
-               - google,krane-sku176
-           - const: google,krane
-           - const: mediatek,mt8183
-+      - items:
-+          - enum:
-+              - mediatek,mt8516-pumpkin
-+          - const: mediatek,mt8516
- 
- additionalProperties: true
- 
--- 
-2.30.1
+> ---
+> Changes since v2:
+> - Refined SoC family dependent xfer mode configuration functions.
+>
+> Changes since v1:
+> - Updated commit message.
+> - Refined using abstract functions.
+>
+>  drivers/i2c/busses/i2c-aspeed.c | 464 ++++++++++++++++++++++++++++----
+>  1 file changed, 412 insertions(+), 52 deletions(-)
+>
+> diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
+> index 724bf30600d6..343e621ff133 100644
+> --- a/drivers/i2c/busses/i2c-aspeed.c
+> +++ b/drivers/i2c/busses/i2c-aspeed.c
+[...]
+> +static inline u32
+> +aspeed_i2c_prepare_tx_buf(struct aspeed_i2c_bus *bus, struct i2c_msg *msg)
+> +{
+> +       u8 slave_addr = i2c_8bit_addr_from_msg(msg);
+> +       u32 command = 0;
+> +       int len;
+> +
+> +       if (msg->len + 1 > bus->buf_size)
+> +               len = bus->buf_size;
+> +       else
+> +               len = msg->len + 1;
+> +
+> +       if (bus->buf_base) {
+> +               u8 wbuf[4];
+> +               int i;
+> +
+> +               command |= ASPEED_I2CD_TX_BUFF_ENABLE;
+> +
+> +               /*
+> +                * Yeah, it looks bad but byte writing on remapped I2C SRAM
+> +                * causes corruption so use this way to make dword writings.
+> +                */
 
+Not surprised. It looks like you reuse this code in a couple of
+places, at the very least I think you should break this out into a
+helper function. Otherwise, please make a similar comment in the other
+locations.
+
+Also, why doesn't writesl()
+(https://elixir.bootlin.com/linux/v5.11/source/include/asm-generic/io.h#L413)
+work here?
+
+> +               wbuf[0] = slave_addr;
+> +               for (i = 1; i < len; i++) {
+> +                       wbuf[i % 4] = msg->buf[i - 1];
+> +                       if (i % 4 == 3)
+> +                               writel(*(u32 *)wbuf, bus->buf_base + i - 3);
+> +               }
+> +               if (--i % 4 != 3)
+> +                       writel(*(u32 *)wbuf, bus->buf_base + i - (i % 4));
+> +
+> +               writel(FIELD_PREP(ASPEED_I2CD_BUF_TX_COUNT_MASK, len - 1) |
+> +                      FIELD_PREP(ASPEED_I2CD_BUF_OFFSET_MASK, bus->buf_offset),
+> +                      bus->base + ASPEED_I2C_BUF_CTRL_REG);
+> +       }
+> +
+> +       bus->buf_index = len - 1;
+> +
+> +       return command;
+> +}
+> +
+[...]
