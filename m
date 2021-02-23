@@ -2,1143 +2,777 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C93FF322A3E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 13:12:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B886322A69
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 13:20:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232525AbhBWMFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 07:05:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232618AbhBWMCD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 07:02:03 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72984C06178C
-        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 04:01:23 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id q20so8626677pfu.8
-        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 04:01:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=xMp0af1CxKAaYJRIY+xC7Zz31OJbQu3cMUHQV/40Wd0=;
-        b=jZpyEW68zji7Gu/iajHbp18JKaF3Z+MLDR5HIZ8Y5eNbggFFM31mpB2rQ5fzhkHLOu
-         R5NsXkBR68fNHMKfuJLcwiLS+Lo+B4xdl/7PfI96Wjd/KQaxWncmLfebgFIiCHBQgfCC
-         A1Otr4W6Kq9GQ1805iSCq3weloBdpCOg5kKfH3Ri9KwOJz81wua9V1bLGNDNJxBqxg/y
-         TkBOe7vwU0Sr4ZnCcTLMJD+t6nXbPsuo4WU/nkMu2fz9d/ZHCfbmMq4yGa3zDt0CNaIF
-         2Bgr1Vl3gGoQSh6fzTuAJ46uU7WM38i3uXFKyg4HgnccErb1ns2ChE0xvANksUNmAUl0
-         G1Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=xMp0af1CxKAaYJRIY+xC7Zz31OJbQu3cMUHQV/40Wd0=;
-        b=h4Vp/41GQWM/SIUfZIyxS1Poigbbg/FjN2fSYpdvqZWP5sQpDAlcWMWZh/XgXcTQZ2
-         lxXxiAYWAt+4kWdGqdGUJIDjmPugBaLJWcA+Q/s2DO/HLdq92oHFVtB9tMmKHF5X4do5
-         JhqYYcqofwBYHssk0X0BAwB+w3koZuJ9EHWmVvYvt2LAt495LQnjoKCkztXgvXnARnEE
-         wKAWnvNO3cnyGntLFxMlfC3LXPqLTeJ+EeRXOYCx4b7N4aJiphvi2XOmxQtxN0qCHJZo
-         d++x7lD4vRlMEAWFtWb7j6oMnxXgJKaaTtGG/Fyz+xyVZ87ak8mAeZoc8s2H/pWx94IM
-         LM+w==
-X-Gm-Message-State: AOAM531m7pV5oE+qhJL8itiQ514hfeLcN5WPxEW937NE4dbeLnZRDOOY
-        ERXyEugOsOe8pZSuE+C4iWODj9UoSDoXVHLaWsqtZw==
-X-Google-Smtp-Source: ABdhPJwEFu9776GdDM+LGBBJlGi1GtKJdXhhniewEMYDru1zYMG4jutb5RR3BOTt8gCs/KxEB41IAM24FkkRyXw3NR8=
-X-Received: by 2002:a63:6547:: with SMTP id z68mr20834928pgb.120.1614081682596;
- Tue, 23 Feb 2021 04:01:22 -0800 (PST)
+        id S232466AbhBWMTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 07:19:48 -0500
+Received: from mail.ilitek.com.tw ([60.248.80.92]:43795 "EHLO cello.ilitek.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232454AbhBWMTn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Feb 2021 07:19:43 -0500
+X-UUID: 00a5f8289f324c569cdb089438677735-20210223
+X-UUID: 00a5f8289f324c569cdb089438677735-20210223
+Received: from ex1.ili.com.tw [(192.168.1.131)] by cello.ilitek.com
+        (envelope-from <joe_hung@ilitek.com>)
+        (Cellopoint E-mail Firewall v4.1.12 Build 0701 with TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 128/128)
+        with ESMTP id 1328145920; Tue, 23 Feb 2021 20:18:32 +0800
+Received: from EX2.ili.com.tw (192.168.1.132) by EX1.ili.com.tw
+ (192.168.1.131) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 23 Feb
+ 2021 20:18:31 +0800
+Received: from EX2.ili.com.tw ([fe80::89a8:5a29:1f3a:8b1f]) by EX2.ili.com.tw
+ ([fe80::89a8:5a29:1f3a:8b1f%4]) with mapi id 15.01.2176.002; Tue, 23 Feb 2021
+ 20:18:31 +0800
+From:   =?big5?B?Sm9lIEh1bmcgKKx4u8q2pyk=?= <joe_hung@ilitek.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        =?big5?B?THVjYSBIc3UgKK59ucXB5Sk=?= <luca_hsu@ilitek.com>
+Subject: RE: [PATCH v3 2/2] input: touchscreen: Add support for ILITEK Lego
+ Series
+Thread-Topic: [PATCH v3 2/2] input: touchscreen: Add support for ILITEK Lego
+ Series
+Thread-Index: AQHXBcGFMZWAxP5I60GjiTB9vp3IZKphmbUAgAHrrYA=
+Date:   Tue, 23 Feb 2021 12:18:31 +0000
+Message-ID: <3d8c4d2e56fd40cc859b393c292432ac@ilitek.com>
+References: <20210218064435.1360483-1-joe_hung@ilitek.com>
+ <20210218064435.1360483-2-joe_hung@ilitek.com> <YDH0/tSytUagrzKP@google.com>
+In-Reply-To: <YDH0/tSytUagrzKP@google.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.30.53]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210218210504.375752-1-adrien.grassein@gmail.com>
- <20210218210504.375752-3-adrien.grassein@gmail.com> <CAG3jFyuQHxS9mc2k=1GSgwR40r8xbZ9wYguBYhQy8Sb4ma3gxA@mail.gmail.com>
- <CABkfQAFRC7AP8qXHu=OCHWVR0+OAeVr+eXH+qprubroq9DiVDg@mail.gmail.com>
- <CAG3jFyv1HW_zKeL+wjZgmBvxAa__Y1X6-GgrC_W=0808hF-t5g@mail.gmail.com>
- <CABkfQAHuVtiy3PfyWhBxbA-BTSAsY6OAVYPiz942VvEb6k=gWw@mail.gmail.com> <CABkfQAFr_+uoQvG1XaCibQS7RpOjYz8TP0epSpRx1dLnBeysPg@mail.gmail.com>
-In-Reply-To: <CABkfQAFr_+uoQvG1XaCibQS7RpOjYz8TP0epSpRx1dLnBeysPg@mail.gmail.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 23 Feb 2021 13:01:11 +0100
-Message-ID: <CAG3jFyt2uMXnao9MzWHPA_ntC_FA0yFXLAo2k4Hd+yFi1wbNZA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] drm/bridge: Introduce LT8912 DSI to HDMI bridge
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Feb 2021 at 11:51, Adrien Grassein <adrien.grassein@gmail.com> w=
-rote:
->
-> Hey Robert,
->
-> Le ven. 19 f=C3=A9vr. 2021 =C3=A0 22:47, Adrien Grassein
-> <adrien.grassein@gmail.com> a =C3=A9crit :
-> >
-> > Le ven. 19 f=C3=A9vr. 2021 =C3=A0 22:28, Robert Foss <robert.foss@linar=
-o.org> a =C3=A9crit :
-> > >
-> > > On Fri, 19 Feb 2021 at 16:01, Adrien Grassein <adrien.grassein@gmail.=
-com> wrote:
-> > > >
-> > > > Hey Robert,
-> > > >
-> > > > Le ven. 19 f=C3=A9vr. 2021 =C3=A0 14:27, Robert Foss <robert.foss@l=
-inaro.org> a =C3=A9crit :
-> > > > >
-> > > > > Hey Adrien,
-> > > > >
-> > > > >
-> > > > > Thanks for the quick update.
-> > > > No problem, I have some free time at the moment.
-> > > > >
-> > > > > On Thu, 18 Feb 2021 at 22:05, Adrien Grassein <adrien.grassein@gm=
-ail.com> wrote:
-> > > > > >
-> > > > > > Lontium Lt8912 is a DSI to HDMI bridge.
-> > > > > >
-> > > > > > Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> > > > > > ---
-> > > > > >  MAINTAINERS                             |   1 +
-> > > > > >  drivers/gpu/drm/bridge/Kconfig          |  14 +
-> > > > > >  drivers/gpu/drm/bridge/Makefile         |   1 +
-> > > > > >  drivers/gpu/drm/bridge/lontium-lt8912.c | 760 ++++++++++++++++=
-++++++++
-> > > > > >  4 files changed, 776 insertions(+)
-> > > > > >  create mode 100644 drivers/gpu/drm/bridge/lontium-lt8912.c
-> > > > > >
-> > > > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > > > index 5d1ed281cd41..58f8f45a7c86 100644
-> > > > > > --- a/MAINTAINERS
-> > > > > > +++ b/MAINTAINERS
-> > > > > > @@ -10462,6 +10462,7 @@ LONTIUM LT8912 MIPI TO HDMI BRIDGE
-> > > > > >  M:     Adrien Grassein <adrien.grassein@gmail.com>
-> > > > > >  S:     Maintained
-> > > > > >  F:     Documentation/devicetree/bindings/display/bridge/lontiu=
-m,lt8912.yaml
-> > > > > > +F:     drivers/gpu/drm/bridge/lontium-lt8912.c
-> > > > > >
-> > > > > >  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
-> > > > > >  M:     Sathya Prakash <sathya.prakash@broadcom.com>
-> > > > > > diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/b=
-ridge/Kconfig
-> > > > > > index e4110d6ca7b3..5b36d4b86e3c 100644
-> > > > > > --- a/drivers/gpu/drm/bridge/Kconfig
-> > > > > > +++ b/drivers/gpu/drm/bridge/Kconfig
-> > > > > > @@ -48,6 +48,20 @@ config DRM_DISPLAY_CONNECTOR
-> > > > > >           on ARM-based platforms. Saying Y here when this drive=
-r is not needed
-> > > > > >           will not cause any issue.
-> > > > > >
-> > > > > > +config DRM_LONTIUM_LT8912
-> > > > > > +       tristate "Lontium LT8912 DSI/HDMI bridge"
-> > > > > > +       depends on OF
-> > > > > > +       select DRM_PANEL_BRIDGE
-> > > > > > +       select DRM_KMS_HELPER
-> > > > > > +       select REGMAP_I2C
-> > > > > > +       help
-> > > > > > +         Driver for Lontium LT8912 DSI to HDMI bridge
-> > > > > > +         chip driver.
-> > > > > > +         Please say Y if you have such hardware.
-> > > > > > +
-> > > > > > +         Say M here if you want to support this hardware as a =
-module.
-> > > > > > +         The module will be named "lontium-lt8912".
-> > > > > > +
-> > > > > >  config DRM_LONTIUM_LT9611
-> > > > > >         tristate "Lontium LT9611 DSI/HDMI bridge"
-> > > > > >         select SND_SOC_HDMI_CODEC if SND_SOC
-> > > > > > diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/=
-bridge/Makefile
-> > > > > > index 86e7acc76f8d..5a1b201cea1f 100644
-> > > > > > --- a/drivers/gpu/drm/bridge/Makefile
-> > > > > > +++ b/drivers/gpu/drm/bridge/Makefile
-> > > > > > @@ -2,6 +2,7 @@
-> > > > > >  obj-$(CONFIG_DRM_CDNS_DSI) +=3D cdns-dsi.o
-> > > > > >  obj-$(CONFIG_DRM_CHRONTEL_CH7033) +=3D chrontel-ch7033.o
-> > > > > >  obj-$(CONFIG_DRM_DISPLAY_CONNECTOR) +=3D display-connector.o
-> > > > > > +obj-$(CONFIG_DRM_LONTIUM_LT8912) +=3D lontium-lt8912.o
-> > > > > >  obj-$(CONFIG_DRM_LONTIUM_LT9611) +=3D lontium-lt9611.o
-> > > > > >  obj-$(CONFIG_DRM_LONTIUM_LT9611UXC) +=3D lontium-lt9611uxc.o
-> > > > > >  obj-$(CONFIG_DRM_LVDS_CODEC) +=3D lvds-codec.o
-> > > > > > diff --git a/drivers/gpu/drm/bridge/lontium-lt8912.c b/drivers/=
-gpu/drm/bridge/lontium-lt8912.c
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..8bdb584d22ce
-> > > > > > --- /dev/null
-> > > > > > +++ b/drivers/gpu/drm/bridge/lontium-lt8912.c
-> > > > > > @@ -0,0 +1,760 @@
-> > > > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > > > +/*
-> > > > > > + * Copyright (c) 2018, The Linux Foundation. All rights reserv=
-ed.
-> > > > > > + */
-> > > > > > +
-> > > > > > +#include <linux/device.h>
-> > > > > > +#include <linux/delay.h>
-> > > > > > +#include <linux/i2c.h>
-> > > > > > +#include <linux/gpio.h>
-> > > > > > +#include <linux/of_gpio.h>
-> > > > > > +#include <linux/regmap.h>
-> > > > > > +
-> > > > > > +#include <drm/drm_probe_helper.h>
-> > > > > > +#include <drm/drm_atomic_helper.h>
-> > > > > > +#include <drm/drm_mipi_dsi.h>
-> > > > > > +#include <drm/drm_of.h>
-> > > > > > +
-> > > > > > +#include <video/videomode.h>
-> > > > > > +
-> > > > > > +#define I2C_MAIN 0
-> > > > > > +#define I2C_ADDR_MAIN 0x48
-> > > > > > +
-> > > > > > +#define I2C_CEC_DSI 1
-> > > > > > +#define I2C_ADDR_CEC_DSI 0x49
-> > > > > > +
-> > > > > > +#define I2C_MAX_IDX 2
-> > > > > > +
-> > > > > > +struct lt8912 {
-> > > > > > +       struct device *dev;
-> > > > > > +       struct drm_bridge bridge;
-> > > > > > +       struct drm_connector connector;
-> > > > > > +
-> > > > > > +       struct i2c_client *i2c_client[I2C_MAX_IDX];
-> > > > > > +       struct regmap *regmap[I2C_MAX_IDX];
-> > > > > > +
-> > > > > > +       struct device_node *host_node;
-> > > > > > +       struct drm_bridge *hdmi_port;
-> > > > > > +
-> > > > > > +       struct mipi_dsi_device *dsi;
-> > > > > > +
-> > > > > > +       struct gpio_desc *gp_reset;
-> > > > > > +
-> > > > > > +       struct videomode mode;
-> > > > > > +
-> > > > > > +       u8 data_lanes;
-> > > > > > +       bool is_power_on;
-> > > > > > +       bool is_attached;
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int lt8912_write_init_config(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       const struct reg_sequence seq[] =3D {
-> > > > > > +               /* Digital clock en*/
-> > > > > > +               {0x08, 0xff},
-> > > > > > +               {0x09, 0xff},
-> > > > > > +               {0x0a, 0xff},
-> > > > > > +               {0x0b, 0x7c},
-> > > > > > +               {0x0c, 0xff},
-> > > > > > +               {0x42, 0x04},
-> > > > > > +
-> > > > > > +               /*Tx Analog*/
-> > > > > > +               {0x31, 0xb1},
-> > > > > > +               {0x32, 0xb1},
-> > > > > > +               {0x33, 0x0e},
-> > > > > > +               {0x37, 0x00},
-> > > > > > +               {0x38, 0x22},
-> > > > > > +               {0x60, 0x82},
-> > > > > > +
-> > > > > > +               /*Cbus Analog*/
-> > > > > > +               {0x39, 0x45},
-> > > > > > +               {0x3a, 0x00},
-> > > > > > +               {0x3b, 0x00},
-> > > > > > +
-> > > > > > +               /*HDMI Pll Analog*/
-> > > > > > +               {0x44, 0x31},
-> > > > > > +               {0x55, 0x44},
-> > > > > > +               {0x57, 0x01},
-> > > > > > +               {0x5a, 0x02},
-> > > > > > +
-> > > > > > +               /*MIPI Analog*/
-> > > > > > +               {0x3e, 0xd6},
-> > > > > > +               {0x3f, 0xd4},
-> > > > > > +               {0x41, 0x3c},
-> > > > > > +               {0xB2, 0x00},
-> > > > > > +       };
-> > > > > > +
-> > > > > > +       return regmap_multi_reg_write(lt->regmap[I2C_MAIN], seq=
-, ARRAY_SIZE(seq));
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_write_mipi_basic_config(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       const struct reg_sequence seq[] =3D {
-> > > > > > +               {0x12, 0x04},
-> > > > > > +               {0x14, 0x00},
-> > > > > > +               {0x15, 0x00},
-> > > > > > +               {0x1a, 0x03},
-> > > > > > +               {0x1b, 0x03},
-> > > > > > +       };
-> > > > > > +
-> > > > > > +       return regmap_multi_reg_write(lt->regmap[I2C_CEC_DSI], =
-seq, ARRAY_SIZE(seq));
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int lt8912_write_dds_config(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       const struct reg_sequence seq[] =3D {
-> > > > > > +               {0x4e, 0xff},
-> > > > > > +               {0x4f, 0x56},
-> > > > > > +               {0x50, 0x69},
-> > > > > > +               {0x51, 0x80},
-> > > > > > +               {0x1f, 0x5e},
-> > > > > > +               {0x20, 0x01},
-> > > > > > +               {0x21, 0x2c},
-> > > > > > +               {0x22, 0x01},
-> > > > > > +               {0x23, 0xfa},
-> > > > > > +               {0x24, 0x00},
-> > > > > > +               {0x25, 0xc8},
-> > > > > > +               {0x26, 0x00},
-> > > > > > +               {0x27, 0x5e},
-> > > > > > +               {0x28, 0x01},
-> > > > > > +               {0x29, 0x2c},
-> > > > > > +               {0x2a, 0x01},
-> > > > > > +               {0x2b, 0xfa},
-> > > > > > +               {0x2c, 0x00},
-> > > > > > +               {0x2d, 0xc8},
-> > > > > > +               {0x2e, 0x00},
-> > > > > > +               {0x42, 0x64},
-> > > > > > +               {0x43, 0x00},
-> > > > > > +               {0x44, 0x04},
-> > > > > > +               {0x45, 0x00},
-> > > > > > +               {0x46, 0x59},
-> > > > > > +               {0x47, 0x00},
-> > > > > > +               {0x48, 0xf2},
-> > > > > > +               {0x49, 0x06},
-> > > > > > +               {0x4a, 0x00},
-> > > > > > +               {0x4b, 0x72},
-> > > > > > +               {0x4c, 0x45},
-> > > > > > +               {0x4d, 0x00},
-> > > > > > +               {0x52, 0x08},
-> > > > > > +               {0x53, 0x00},
-> > > > > > +               {0x54, 0xb2},
-> > > > > > +               {0x55, 0x00},
-> > > > > > +               {0x56, 0xe4},
-> > > > > > +               {0x57, 0x0d},
-> > > > > > +               {0x58, 0x00},
-> > > > > > +               {0x59, 0xe4},
-> > > > > > +               {0x5a, 0x8a},
-> > > > > > +               {0x5b, 0x00},
-> > > > > > +               {0x5c, 0x34},
-> > > > > > +               {0x1e, 0x4f},
-> > > > > > +               {0x51, 0x00},
-> > > > > > +       };
-> > > > > > +
-> > > > > > +       return regmap_multi_reg_write(lt->regmap[I2C_CEC_DSI], =
-seq, ARRAY_SIZE(seq));
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_write_rxlogicres_config(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       int ret;
-> > > > > > +
-> > > > > > +       ret =3D regmap_write(lt->regmap[I2C_MAIN], 0x03, 0x7f);
-> > > > > > +       usleep_range(10000, 20000);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_MAIN], 0x03, 0xff)=
-;
-> > > > > > +
-> > > > > > +       return ret;
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int lt8912_write_lvds_config(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       const struct reg_sequence seq[] =3D {
-> > > > > > +               {0x44, 0x30},
-> > > > > > +               {0x51, 0x05},
-> > > > > > +               {0x50, 0x24},
-> > > > > > +               {0x51, 0x2d},
-> > > > > > +               {0x52, 0x04},
-> > > > > > +               {0x69, 0x0e},
-> > > > > > +               {0x69, 0x8e},
-> > > > > > +               {0x6a, 0x00},
-> > > > > > +               {0x6c, 0xb8},
-> > > > > > +               {0x6b, 0x51},
-> > > > > > +               {0x04, 0xfb},
-> > > > > > +               {0x04, 0xff},
-> > > > > > +               {0x7f, 0x00},
-> > > > > > +               {0xa8, 0x13},
-> > > > > > +               {0x02, 0xf7},
-> > > > > > +               {0x02, 0xff},
-> > > > > > +               {0x03, 0xcf},
-> > > > > > +               {0x03, 0xff},
-> > > > > > +       };
-> > > > > > +
-> > > > > > +       return regmap_multi_reg_write(lt->regmap[I2C_CEC_DSI], =
-seq, ARRAY_SIZE(seq));
-> > > > > > +};
-> > > > > > +
-> > > > > > +static inline struct lt8912 *bridge_to_lt8912(struct drm_bridg=
-e *b)
-> > > > > > +{
-> > > > > > +       return container_of(b, struct lt8912, bridge);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static inline struct lt8912 *connector_to_lt8912(struct drm_co=
-nnector *c)
-> > > > > > +{
-> > > > > > +       return container_of(c, struct lt8912, connector);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct regmap_config lt8912_regmap_config =3D {
-> > > > > > +       .reg_bits =3D 8,
-> > > > > > +       .val_bits =3D 8,
-> > > > > > +       .max_register =3D 0xff,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int lt8912_init_i2c(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       unsigned int i;
-> > > > > > +       int ret;
-> > > > > > +       /*
-> > > > > > +        * At this time we only initialize 2 chips, but the lt8=
-912 provides
-> > > > > > +        * a third interface for the audio over HDMI configurat=
-ion.
-> > > > > > +        */
-> > > > > > +       struct i2c_board_info info[] =3D {
-> > > > > > +               { I2C_BOARD_INFO("lt8912p0", I2C_ADDR_MAIN), },
-> > > > > > +               { I2C_BOARD_INFO("lt8912p1", I2C_ADDR_CEC_DSI),=
- },
-> > > > > > +       };
-> > > > > > +
-> > > > > > +       if (!lt)
-> > > > > > +               return -ENODEV;
-> > > > > > +
-> > > > > > +       for (i =3D 0; i < ARRAY_SIZE(info); i++) {
-> > > > > > +               /*
-> > > > > > +                * lt->i2c_client[0] was already allocated earl=
-ier by the
-> > > > > > +                * kernel (via DT).
-> > > > > > +                */
-> > > > > > +               if (i > 0) {
-> > > > > > +                       lt->i2c_client[i] =3D i2c_new_dummy_dev=
-ice(lt->i2c_client[0]->adapter,
-> > > > > > +                                                              =
-  info[i].addr);
-> > > > > > +                       if (!lt->i2c_client[i])
-> > > > > > +                               return -ENODEV;
-> > > > > > +               }
-> > > > > > +               lt->regmap[i] =3D devm_regmap_init_i2c(lt->i2c_=
-client[i],
-> > > > > > +                                                    &lt8912_re=
-gmap_config);
-> > > > > > +               if (IS_ERR(lt->regmap[i])) {
-> > > > > > +                       ret =3D PTR_ERR(lt->regmap[i]);
-> > > > > > +                       return ret;
-> > > > > > +               }
-> > > > > > +       }
-> > > > > > +       return 0;
-> > > > > > +}
-> > > > >
-> > > > > I had a 2nd look at prior art for bridges with multiple I2C addre=
-sses,
-> > > > > and I think I prefer the implementation in anx7625. Instead of ha=
-ving
-> > > > > one I2C address provided by the DT and one by the driver, all are
-> > > > > provided by the driver. If you have any even better suggestions, =
-I'd
-> > > > > be curious to hear them.
-> > > > >
-> > > > > https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/bri=
-dge/analogix/anx7625.c#L1646
-> > > > >
-> > > >
-> > > > I check this implementation. I am not a kernel expert (nor a kernel
-> > > > dev) but I think that
-> > >
-> > > Well, now you're a kernel dev :p
-> > >
-> >
-> > AhAh ^^
-> >
-> > > > one i2c device is allocated twice (one is provided via DTB, via the
-> > > > reg property).
-> > >
-> > > Yeah. So let's ignore the one returned by probe() and configure two
-> > > i2c clients using addresses defined in the driver.
-> > >
-> > > >
-> > > > I can alloc all the devices on the driver (it is what I did before =
-I
-> > > > publish my patch set, and so
-> > > > that was the aim of the for loop).
-> > >
-> > > Thanks, and sorry about the churn around this topic.
-> > >
-> >
-> > No problem, I'm here to learn, and I consider it as a lesson :).
->
-> After some test and code reading, I can't reallocate the i2c device
-> given by the DTB.
-> (I got a -EBUSY error when calling  "i2c_new_dummy_device"). When reading=
- the
-> anx7625 code, we can see that the i2c addr described in the DTB is
-> never used in the code.
+SGkgRG1pdHJ5LA0KDQpNYW55IHRoYW5rcyBmb3IgeW91ciBraW5kIHJldmlldywgbW9zdCBvZiBj
+b21tZW50cyBzb3VuZCBncmVhdCB0byBtZS4NClRoZXJlIHNvbWUgcXVlc3Rpb25zIHdpdGggIltR
+dWVzdGlvbl0iIHByZWZpeCwgcmVzcG9uc2UgYXMgYmVsb3cuDQoNCkxvb2tpbmcgZm9yd2FyZCB0
+byBmdXJ0aGVyIGRpc2N1c3Npb24uDQoNCk9uIFNhdCwgRmViIDIwLCAyMDIxIGF0IDIxOjUxOjU4
+UE0gLTA4MDAsIERtaXRyeSBUb3Jva2hvdiB3cm90ZToNCj4gSGkgSm9lLA0KPiANCj4gT24gVGh1
+LCBGZWIgMTgsIDIwMjEgYXQgMDI6NDQ6MzVQTSArMDgwMCwgSm9lIEh1bmcgd3JvdGU6DQo+ID4g
+QWRkIHN1cHBvcnQgZm9yIElMSVRFSyBMZWdvIHNlcmllcyBvZiB0b3VjaCBkZXZpY2VzLg0KPiA+
+IExlZ28gc2VyaWVzIGluY2x1ZGVzIElMSVRFSyAyMTNYLzIzMTYvMjMyWC8yNTJYLg0KPiA+IERl
+c2lnbmVkIGluIGNvbXBhdGlibGUgd2F5IGZvciBJTElURUsgMjNYWC8yNTFYIElDcy4NCj4gPiAN
+Cj4gPiBUZXN0ZWQgYW5kIHBhc3NlZCB3aXRoIGV2YWx1YXRpb24gYm9hcmQgd2l0aCBJTEkyNTIw
+IElDLg0KPiANCj4gVGhhbmsgeW91IGZvciB5b3VyIHN1Ym1pc3Npb24uDQo+IA0KPiA+IA0KPiA+
+IFNpZ25lZC1vZmYtYnk6IEpvZSBIdW5nIDxqb2VfaHVuZ0BpbGl0ZWsuY29tPg0KPiA+IC0tLQ0K
+PiA+IENoYW5nZXMgaW4gdjM6DQo+ID4gICAtIE5vbmUNCj4gPiANCj4gPiBDaGFuZ2VzIGluIHYy
+Og0KPiA+ICAgLSBSZW1vdmUgaXJxLWdwaW8gYW5kIHJlbGF0ZWQgZmxvdw0KPiA+IA0KPiA+ICBk
+cml2ZXJzL2lucHV0L3RvdWNoc2NyZWVuL0tjb25maWcgICAgICAgICB8ICAgMTIgKw0KPiA+ICBk
+cml2ZXJzL2lucHV0L3RvdWNoc2NyZWVuL01ha2VmaWxlICAgICAgICB8ICAgIDEgKw0KPiA+ICBk
+cml2ZXJzL2lucHV0L3RvdWNoc2NyZWVuL2lsaXRla190c19pMmMuYyB8IDEwMTAgKysrKysrKysr
+KysrKysrKysrKysrDQo+ID4gIDMgZmlsZXMgY2hhbmdlZCwgMTAyMyBpbnNlcnRpb25zKCspDQo+
+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2lucHV0L3RvdWNoc2NyZWVuL2lsaXRla190
+c19pMmMuYw0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2lucHV0L3RvdWNoc2NyZWVu
+L0tjb25maWcgYi9kcml2ZXJzL2lucHV0L3RvdWNoc2NyZWVuL0tjb25maWcNCj4gPiBpbmRleCBm
+MDEyZmU3NDZkZjAuLjlkZWE3ZmQwZDk0ZiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2lucHV0
+L3RvdWNoc2NyZWVuL0tjb25maWcNCj4gPiArKysgYi9kcml2ZXJzL2lucHV0L3RvdWNoc2NyZWVu
+L0tjb25maWcNCj4gPiBAQCAtMTMzNCw0ICsxMzM0LDE2IEBAIGNvbmZpZyBUT1VDSFNDUkVFTl9a
+SU5JVElYDQo+ID4gIAkgIFRvIGNvbXBpbGUgdGhpcyBkcml2ZXIgYXMgYSBtb2R1bGUsIGNob29z
+ZSBNIGhlcmU6IHRoZQ0KPiA+ICAJICBtb2R1bGUgd2lsbCBiZSBjYWxsZWQgemluaXRpeC4NCj4g
+PiANCj4gPiArY29uZmlnIFRPVUNIU0NSRUVOX0lMSVRFSw0KPiA+ICsJdHJpc3RhdGUgIklsaXRl
+ayBJMkMgMjNYWC8yNVhYL0xlZ28gU2VyaWVzIFRvdWNoIElDcyINCj4gPiArCWRlcGVuZHMgb24g
+STJDDQo+ID4gKwloZWxwDQo+ID4gKwkgIFNheSBZIGhlcmUgaWYgeW91IGhhdmUgdG91Y2hzY3Jl
+ZW4gd2l0aCBJTElURUsgdG91Y2ggSUMsDQo+ID4gKwkgIGl0IHN1cHBvcnRzIDIzWFgvMjVYWC9v
+dGhlciBMZWdvIHNlcmllcy4NCj4gPiArDQo+ID4gKwkgIElmIHVuc3VyZSwgc2F5IE4uDQo+ID4g
+Kw0KPiA+ICsJICBUbyBjb21waWxlIHRoaXMgZHJpdmVyIGFzIGEgbW9kdWxlLCBjaG9vc2UgTSBo
+ZXJlOiB0aGUNCj4gPiArCSAgbW9kdWxlIHdpbGwgYmUgY2FsbGVkIGlsaXRla190c19pMmMuDQo+
+ID4gKw0KPiA+ICBlbmRpZg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2lucHV0L3RvdWNoc2Ny
+ZWVuL01ha2VmaWxlIGIvZHJpdmVycy9pbnB1dC90b3VjaHNjcmVlbi9NYWtlZmlsZQ0KPiA+IGlu
+ZGV4IDYyMzM1NDFlOTE3My4uNjc0OWJkYzQyZjQxIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMv
+aW5wdXQvdG91Y2hzY3JlZW4vTWFrZWZpbGUNCj4gPiArKysgYi9kcml2ZXJzL2lucHV0L3RvdWNo
+c2NyZWVuL01ha2VmaWxlDQo+ID4gQEAgLTExMiwzICsxMTIsNCBAQCBvYmotJChDT05GSUdfVE9V
+Q0hTQ1JFRU5fUk9ITV9CVTIxMDIzKQkrPSByb2htX2J1MjEwMjMubw0KPiA+ICBvYmotJChDT05G
+SUdfVE9VQ0hTQ1JFRU5fUkFTUEJFUlJZUElfRlcpCSs9IHJhc3BiZXJyeXBpLXRzLm8NCj4gPiAg
+b2JqLSQoQ09ORklHX1RPVUNIU0NSRUVOX0lRUzVYWCkJKz0gaXFzNXh4Lm8NCj4gPiAgb2JqLSQo
+Q09ORklHX1RPVUNIU0NSRUVOX1pJTklUSVgpCSs9IHppbml0aXgubw0KPiA+ICtvYmotJChDT05G
+SUdfVE9VQ0hTQ1JFRU5fSUxJVEVLKSAgICAgICAgKz0gaWxpdGVrX3RzX2kyYy5vDQo+ID4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvaW5wdXQvdG91Y2hzY3JlZW4vaWxpdGVrX3RzX2kyYy5jIGIvZHJp
+dmVycy9pbnB1dC90b3VjaHNjcmVlbi9pbGl0ZWtfdHNfaTJjLmMNCj4gPiBuZXcgZmlsZSBtb2Rl
+IDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uNzJjYjdjODIxNzBjDQo+ID4gLS0tIC9k
+ZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvaW5wdXQvdG91Y2hzY3JlZW4vaWxpdGVrX3RzX2ky
+Yy5jDQo+ID4gQEAgLTAsMCArMSwxMDEwIEBADQo+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlm
+aWVyOiBHUEwtMi4wDQo+ID4gKy8qDQo+ID4gKyAqIElMSVRFSyBUb3VjaCBJQyBkcml2ZXIgZm9y
+IDIzWFgsIDI1WFggYW5kIExlZ28gc2VyaWVzDQo+ID4gKyAqDQo+ID4gKyAqIENvcHlyaWdodCAo
+QykgMjAxMSBJTEkgVGVjaG5vbG9neSBDb3Jwb3JhdGlvbi4NCj4gPiArICogQ29weXJpZ2h0IChD
+KSAyMDIwIEx1Y2EgSHN1IDxsdWNhX2hzdUBpbGl0ZWsuY29tPg0KPiA+ICsgKiBDb3B5cmlnaHQg
+KEMpIDIwMjEgSm9lIEh1bmcgPGpvZV9odW5nQGlsaXRlay5jb20+DQo+ID4gKyAqLw0KPiA+ICsN
+Cj4gPiArI2luY2x1ZGUgPGxpbnV4L2tlcm5lbC5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvbW9k
+dWxlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9pbnB1dC5oPg0KPiA+ICsjaW5jbHVkZSA8bGlu
+dXgvaW5wdXQvbXQuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L2kyYy5oPg0KPiA+ICsjaW5jbHVk
+ZSA8bGludXgvc2xhYi5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvdm1hbGxvYy5oPg0KPiA+ICsj
+aW5jbHVkZSA8bGludXgvZGVsYXkuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L2t0aHJlYWQuaD4N
+Cj4gDQo+IEFyZSB5b3Ugc3VyZSB5b3UgbmVlZCB0aGlzIGluY2x1ZGU/DQoNCkFncmVlZDsgd2ls
+bCByZW1vdmUgaXQgaW4gdjQuDQoNCj4gPiArI2luY2x1ZGUgPGxpbnV4L3NjaGVkLmg+DQo+ID4g
+KyNpbmNsdWRlIDxsaW51eC9pbnRlcnJ1cHQuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L2lycS5o
+Pg0KPiA+ICsjaW5jbHVkZSA8bGludXgvY2Rldi5oPg0KPiANCj4gWW91IGRvIG5vdCBjcmVhdGUg
+Y2hhcmFjdGVyIGRldmljZXMgaW4gdGhpcyBkcml2ZXIuDQoNCkFncmVlZDsgd2lsbCByZW1vdmUg
+aXQgaW4gdjQuDQoNCj4gPiArI2luY2x1ZGUgPGxpbnV4L3VhY2Nlc3MuaD4NCj4gPiArI2luY2x1
+ZGUgPGxpbnV4L3ZlcnNpb24uaD4NCj4gDQo+IFdoeSBkbyB5b3UgbmVlZCB0aGlzIGluY2x1ZGU/
+DQoNCkFncmVlZDsgd2lsbCByZW1vdmUgaXQgaW4gdjQuDQoNCj4gPiArI2luY2x1ZGUgPGxpbnV4
+L3J0Yy5oPg0KPiANCj4gSSBkbyBub3QgdGhpbmsgdGhpcyBkcml2ZXIgdXNlcyBydGMuDQoNCkFn
+cmVlZDsgd2lsbCByZW1vdmUgaXQgaW4gdjQuDQoNCj4gPiArI2luY2x1ZGUgPGxpbnV4L2dwaW8u
+aD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3JlZ3VsYXRvci9jb25zdW1lci5oPg0KPiA+ICsjaW5j
+bHVkZSA8bGludXgvcHJvY19mcy5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvZnMuaD4NCj4gPiAr
+I2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4NCj4gDQo+IEkgZG8gbm90IHRoaW5rIHlvdXIg
+ZHJpdmVyIHVzZXMgcnVudGltZSBQTS4NCj4gDQoNCkFncmVlZDsgd2lsbCByZW1vdmUgaXQgaW4g
+djQuDQoNCj4gPiArI2luY2x1ZGUgPGxpbnV4L2N0eXBlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51
+eC9lcnJuby5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvYWNwaS5oPg0KPiANCj4gUGxlYXNlIGRv
+dWJsZS1jaGVjayB0aGF0IHlvdSBpbmNsdWRlIG9ubHkgZmFjaWxpdGllcyB0aGF0IHRoZSBkcml2
+ZXINCj4gYWN0dWFsbHkgdXNlcy4NCg0KQWdyZWVkOyB3aWxsIGRvLg0KDQo+IA0KPiA+ICsNCj4g
+PiArI2RlZmluZSBJTElURUtfVFNfTkFNRQkJCQkJImlsaXRla190cyINCj4gPiArI2RlZmluZSBC
+TF9WMV84CQkJCQkJKDB4MTA4MDApDQo+ID4gKyNkZWZpbmUgQkxfVjFfNwkJCQkJCSgweDEwNzAw
+KQ0KPiA+ICsjZGVmaW5lIEJMX1YxXzYJCQkJCQkoMHgxMDYwMCkNCj4gPiArDQo+ID4gKyNkZWZp
+bmUgSUxJVEVLX1RQX0NNRF9HRVRfVFBfUkVTCQkJKDB4MjApDQo+ID4gKyNkZWZpbmUgSUxJVEVL
+X1RQX0NNRF9HRVRfU0NSTl9SRVMJCQkoMHgyMSkNCj4gPiArI2RlZmluZSBJTElURUtfVFBfQ01E
+X0dFVF9LRVlfSU5GTwkJCSgweDIyKQ0KPiA+ICsjZGVmaW5lIElMSVRFS19UUF9DTURfR0VUX0ZX
+X1ZFUgkJCSgweDQwKQ0KPiA+ICsjZGVmaW5lIElMSVRFS19UUF9DTURfR0VUX1BSTF9WRVIJCQko
+MHg0MikNCj4gPiArI2RlZmluZSBJTElURUtfVFBfQ01EX0dFVF9NQ1VfVkVSCQkJKDB4NjEpDQo+
+ID4gKyNkZWZpbmUgSUxJVEVLX1RQX0NNRF9HRVRfSUNfTU9ERQkJCSgweEMwKQ0KPiA+ICsNCj4g
+PiArI2RlZmluZSBSRVBPUlRfQUREUkVTU19DT1VOVAkJCQkoNjEpDQo+ID4gKyNkZWZpbmUgSUxJ
+VEVLX1NVUFBPUlRfTUFYX1BPSU5UCQkJKDQwKQ0KPiA+ICsjZGVmaW5lIElMSVRFS19TVVBQT1JU
+X01BWF9LRVlfQ05UCQkJKDUwKQ0KPiANCj4gTm8gbmVlZCB0byB1c2UgcGFyZW50aGVzaXMgZm9y
+IHNpbXBsZSBzY2FsYXIgdmFsdWVzLg0KPiANCg0KQWdyZWVkOyB3aWxsIG1vZGlmaWVkIGhlcmUg
+aW4gdjQuDQoNCj4gPiArDQo+ID4gKyNkZWZpbmUgQ0VJTChuLCBkKQkoKChuKSAlIChkKSkgPyAo
+KG4pIC8gKGQpICsgMSkgOiAoKG4pIC8gKGQpKSkNCj4gDQo+IEkgdGhpbmsgeW91IHdhbnQgc3Rh
+bmRhcmQgRElWX1JPVU5EX1VQKCkuDQoNCkFncmVlZDsgd2lsbCB1c2UgRElWX1JPVU5EX1VQIGRp
+cmVjdGx5IGluIHY0Lg0KDQo+IA0KPiA+ICsNCj4gPiArc3RydWN0IGlsaXRla19wcm90b2NvbF9p
+bmZvIHsNCj4gDQo+IExldCdzIHVzZSBpbGkyM3h4IGluc3RlYWQgb2YgaWxpdGVrIHByZWZpeCB0
+aHJvdWdob3V0IHRoZSBmaWxlLiBPcg0KPiB3aGF0ZXZlciB0aGUgZmlyc3QgZ2VuZXJhdGlvbiBv
+ZiB0aGUgcHJvZHVjdCBzdXBwb3J0ZWQgYnkgdGhpcyBkcml2ZXIuDQo+IA0KDQpUaGlzIGRyaXZl
+ciBpcyBwbGFubmVkIHRvIHN1cHBvcnQgMjEzWC8yM1hYLzI1WFguDQoNCltRdWVzdGlvbl0NCldh
+cyB3b25kZXJpbmcgd2h5IGlsaXRlayBwcmVmaXggaXMgbm90IGZlYXNpYmxlID8NCklzIGl0IGZp
+bmUgdGhhdCAyM1hYIHByZWZpeCB0aGF0IHN0aWxsIHN1cHBvcnQgMjVYWCBJQ3MgPw0KDQo+ID4g
+KwlzMzIgdmVyOw0KPiA+ICsJdTggdmVyX21ham9yOw0KPiA+ICsJdTggdmVyX21pZDsNCj4gPiAr
+CXU4IHZlcl9taW5vcjsNCj4gPiArfTsNCj4gPiArDQo+ID4gK3N0cnVjdCBpbGl0ZWtfa2V5X2lu
+Zm8gew0KPiA+ICsJczMyIGlkOw0KPiA+ICsJczMyIHg7DQo+ID4gKwlzMzIgeTsNCj4gPiArCXMz
+MiBzdGF0dXM7DQo+ID4gK307DQo+ID4gKw0KPiA+ICtzdHJ1Y3QgaWxpdGVrX3RvdWNoX2luZm8g
+ew0KPiA+ICsJdTE2IGlkOw0KPiA+ICsJdTE2IHg7DQo+ID4gKwl1MTYgeTsNCj4gPiArCXUxNiBw
+Ow0KPiA+ICsJdTE2IHc7DQo+ID4gKwl1MTYgaDsNCj4gPiArCXUxNiBzdGF0dXM7DQo+ID4gK307
+DQo+ID4gKw0KPiA+ICtzdHJ1Y3QgaWxpdGVrX3RzX2RhdGEgew0KPiA+ICsJc3RydWN0IGkyY19j
+bGllbnQJCSpjbGllbnQ7DQo+ID4gKwlzdHJ1Y3QgZ3Bpb19kZXNjCQkqcmVzZXRfZ3BpbzsNCj4g
+PiArCXN0cnVjdCBpbnB1dF9kZXYJCSppbnB1dF9kZXY7DQo+ID4gKw0KPiA+ICsJc3RydWN0IG11
+dGV4CQkJaWxpdGVrX211dGV4Ow0KPiA+ICsJc3BpbmxvY2tfdAkJCWlycV9sb2NrOw0KPiA+ICsJ
+Ym9vbAkJCQlpcnFfc3RhdHVzOw0KPiA+ICsJaW50ICgqcHJvY2Vzc19hbmRfcmVwb3J0KShzdHJ1
+Y3QgaWxpdGVrX3RzX2RhdGEgKmlsaXRla19kYXRhKTsNCj4gPiArDQo+ID4gKwlzdHJ1Y3QgUFJP
+VE9DT0xfTUFQCQkqcHRsX2NiX2Z1bmM7DQo+ID4gKwlzdHJ1Y3QgaWxpdGVrX3Byb3RvY29sX2lu
+Zm8JcHRsOw0KPiA+ICsNCj4gPiArDQo+ID4gKwlzdHJ1Y3QgaWxpdGVrX2tleV9pbmZvCQlrZXlp
+bmZvW0lMSVRFS19TVVBQT1JUX01BWF9LRVlfQ05UXTsNCj4gPiArCXN0cnVjdCBpbGl0ZWtfdG91
+Y2hfaW5mbwl0cGluZm9bSUxJVEVLX1NVUFBPUlRfTUFYX1BPSU5UXTsNCj4gPiArDQo+ID4gKwli
+b29sCQkJCWlzX3RvdWNoZWQ7DQo+ID4gKwlib29sCQkJCXRvdWNoX2tleV9ob2xkX3ByZXNzOw0K
+PiA+ICsNCj4gPiArCWJvb2wJCQkJaWxpdGVrX3JlcGVhdF9zdGFydDsNCj4gPiArDQo+ID4gKwlj
+aGFyCQkJCXByb2R1Y3RfaWRbMzBdOw0KPiA+ICsJdTgJCQkJbWN1X3ZlclsyXTsNCj4gPiArCXU4
+CQkJCWljX21vZGU7DQo+ID4gKwl1OAkJCQlmaXJtd2FyZV92ZXJbOF07DQo+ID4gKw0KPiA+ICsJ
+czMyCQkJCXJlc2V0X3RpbWU7DQo+ID4gKwlzMzIJCQkJdHBfbWF4X3g7DQo+ID4gKwlzMzIJCQkJ
+dHBfbWF4X3k7DQo+ID4gKwlzMzIJCQkJc2NyZWVuX21heF94Ow0KPiA+ICsJczMyCQkJCXNjcmVl
+bl9tYXhfeTsNCj4gPiArCXMzMgkJCQlzY3JlZW5fbWluX3g7DQo+ID4gKwlzMzIJCQkJc2NyZWVu
+X21pbl95Ow0KPiA+ICsJczMyCQkJCW1heF90cDsNCj4gPiArCXMzMgkJCQl4X2NoOw0KPiA+ICsJ
+czMyCQkJCXlfY2g7DQo+ID4gKwlzMzIJCQkJc2xhdmVfY291bnQ7DQo+IA0KPiBXaGF0IGlzIHRo
+ZSBpbXBvcnRhbmNlIG9mIHRoaXM/DQoNCnNsYXZlX2NvdW50IGlzIGRpZmZlcmVudCBhbW9uZyBk
+aWZmZXJlbnQgSUxJVEVLIHRvdWNoIElDcy4NCkl0IHdvdWxkIGJlIHVzZWQgZHVyaW5nIEZXIHVw
+Z3JhZGUuDQpXZSBuZWVkcyBGVyB1cGdyYWRlIHRvdWNoIElDJ3Mgc2xhdmUgYWxzby4NCg0KPiA+
+ICsJczMyCQkJCWZvcm1hdDsNCj4gPiArCXMzMgkJCQlrZXljb3VudDsNCj4gPiArCXMzMgkJCQlr
+ZXlfeGxlbjsNCj4gPiArCXMzMgkJCQlrZXlfeWxlbjsNCj4gPiArfTsNCj4gPiArDQo+ID4gK2Vu
+dW0gaWxpdGVrX2NtZHNfdjYgew0KPiA+ICsJR0VUX1BUTF9WRVIgPSAwLA0KPiA+ICsJR0VUX0ZX
+X1ZFUiwNCj4gPiArCUdFVF9TQ1JOX1JFUywNCj4gPiArCUdFVF9UUF9SRVMsDQo+ID4gKwlHRVRf
+SUNfTU9ERSwNCj4gPiArCUdFVF9NQ1VfVkVSLA0KPiA+ICsJR0VUX0tFWV9JTkZPLA0KPiA+ICsN
+Cj4gPiArCU1BWF9DTURfQ05UCS8qIEFMV0FZUyBrZWVwIGF0IHRoZSBlbmQgKi8NCj4gPiArfTsN
+Cj4gPiArDQo+ID4gK3R5cGVkZWYgaW50IHByb3RvY29sX2Z1bmMoc3RydWN0IGlsaXRla190c19k
+YXRhICppbGl0ZWtfZGF0YSwNCj4gPiArCQkJICB1MTYgY21kLCB1aW50OF90ICppbmJ1ZiwgdWlu
+dDhfdCAqb3V0YnVmKTsNCj4gDQo+IEluIGtlcm5lbCBwbGVhc2UgdXNlIHU4IGluc3RlYWQgb2Yg
+dWludDhfdCwgZXRjLg0KDQpBZ3JlZWQ7IHNob3VsZCBjb3JyZWN0IGl0IGluIHY0Lg0KDQo+IA0K
+PiA+ICsNCj4gPiArc3RydWN0IFBST1RPQ09MX01BUCB7DQo+ID4gKwl1MTYgY21kOw0KPiA+ICsJ
+Y29uc3QgY2hhciAqbmFtZTsNCj4gPiArCXByb3RvY29sX2Z1bmMgKmZ1bmM7DQo+ID4gK307DQo+
+ID4gKw0KPiA+ICsvKiBJTElURUsgSTJDIFIvVyBBUElzICovDQo+ID4gK3N0YXRpYyBpbnQgaWxp
+dGVrX2kyY190cmFuc2ZlcihzdHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50LA0KPiA+ICsJCQkgICAg
+ICAgc3RydWN0IGkyY19tc2cgKm1zZ3MsIGludCBjbnQpDQo+ID4gK3sNCj4gPiArCWludCByZXQg
+PSAwLCByZXRyeSA9IDQ7DQo+ID4gKw0KPiA+ICsJd2hpbGUgKHJldHJ5LS0pIHsNCj4gPiArCQly
+ZXQgPSBpMmNfdHJhbnNmZXIoY2xpZW50LT5hZGFwdGVyLCBtc2dzLCBjbnQpOw0KPiA+ICsJCWlm
+IChyZXQgPj0gMCkNCj4gPiArCQkJYnJlYWs7DQo+ID4gKwkJbWRlbGF5KDIwKTsNCj4gPiArCX0N
+Cj4gDQo+IFdoeSBkb2VzIGl0IHRoaXMgZGV2aWNlIG5lZWQgcmV0cmllcz8NCj4gDQoNCkkyQyB0
+cmFuc2ZlciBtYXkgZmFpbGVkIGNhdXNlIEZXIG5vdCByZWFkeSBmb3Igc29tZSByZWFzb24uDQpJ
+dCBzaG91bGQgYmUgZmluZSBmb3IgYmFzaWMgcHJvYmUvSVNSIGZsb3csIGFuZCByaXNreSBmb3Ig
+RlcgdXBkYXRlLg0KDQpbUXVlc3Rpb25dDQpTaG91bGQgaXQgYmUgcmVtb3ZlZCwgYW5kIHBhdGNo
+ZWQgd2l0aCBGVyB1cGRhdGUgcGF0Y2ggPw0KDQo+ID4gKw0KPiA+ICsJcmV0dXJuIHJldDsNCj4g
+PiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBpbGl0ZWtfaTJjX3dyaXRlX2FuZF9yZWFkKHN0
+cnVjdCBpbGl0ZWtfdHNfZGF0YSAqaWxpdGVrX2RhdGEsDQo+ID4gKwkJCQkgICAgIHU4ICpjbWQs
+IGludCB3cml0ZV9sZW4sIGludCBkZWxheSwNCj4gPiArCQkJCSAgICAgdTggKmRhdGEsIGludCBy
+ZWFkX2xlbikNCj4gPiArew0KPiA+ICsJaW50IHJldCA9IDA7DQo+ID4gKwlzdHJ1Y3QgaTJjX2Ns
+aWVudCAqY2xpZW50ID0gaWxpdGVrX2RhdGEtPmNsaWVudDsNCj4gPiArCXN0cnVjdCBpMmNfbXNn
+IG1zZ3NbMl0gPSB7DQo+ID4gKwkJey5hZGRyID0gY2xpZW50LT5hZGRyLCAuZmxhZ3MgPSAwLA0K
+PiA+ICsJCSAubGVuID0gd3JpdGVfbGVuLCAuYnVmID0gY21kLH0sDQo+ID4gKwkJey5hZGRyID0g
+Y2xpZW50LT5hZGRyLCAuZmxhZ3MgPSBJMkNfTV9SRCwNCj4gPiArCQkgLmxlbiA9IHJlYWRfbGVu
+LCAuYnVmID0gZGF0YSx9DQo+ID4gKwl9Ow0KPiA+ICsNCj4gPiArCWlmIChpbGl0ZWtfZGF0YS0+
+aWxpdGVrX3JlcGVhdF9zdGFydCAmJiBkZWxheSA9PSAwICYmDQo+IA0KPiBXaGVyZSBpcyB0aGlz
+IGJlaW5nIHNldD8gQXMgZmFyIGFzIEkgdW5kZXJzdGFuZCwgcmVwZWF0ZWQgc3RhcnQgaXMNCj4g
+cHJvcGVydHkgb2YgdGhlIGkyYyBjb250cm9sbGVyLCBub3QgcGVyaXBoZXJhbCBkZXZpY2UuDQo+
+IA0KPiBBbHNvLCBwbGVhc2Ugc2VlIGlmIHlvdSBjYW4gc3dpdGNoIHRvIHVzaW5nIHJlZ21hcCwg
+YXMgaXQgc2hvdWxkIHRha2UNCj4gY2FyZSBvZiBzZWxlY3RpbmcgcmlnaHQgbW9kZSwgZGVwZW5k
+aW5nIG9uIGNvbnRyb2xsZXIncyBjYXBhYmlsaXRpZXMuDQo+IA0KDQpTb21lIGlsaXRlayB0b3Vj
+aCBJQ3MgbWF5IG5vdCBzdXBwb3J0ICJJMkMgcmVwZWF0IHN0YXJ0Ii4NCkFuZCBhZ3JlZWQ7IGl0
+IHNob3VsZCBiZSByZW1vdmVkIGhlcmUgaW4gdjQuDQoNCj4gPiArCQl3cml0ZV9sZW4gPiAwICYm
+IHJlYWRfbGVuID4gMCkgew0KPiA+ICsJCXJldCA9IGlsaXRla19pMmNfdHJhbnNmZXIoY2xpZW50
+LCBtc2dzLCAyKTsNCj4gPiArCQlpZiAocmV0IDwgMCkNCj4gPiArCQkJcmV0dXJuIHJldDsNCj4g
+PiArCX0gZWxzZSB7DQo+ID4gKwkJaWYgKHdyaXRlX2xlbiA+IDApIHsNCj4gPiArCQkJcmV0ID0g
+aWxpdGVrX2kyY190cmFuc2ZlcihjbGllbnQsIG1zZ3MsIDEpOw0KPiA+ICsJCQlpZiAocmV0IDwg
+MCkNCj4gPiArCQkJCXJldHVybiByZXQ7DQo+ID4gKwkJfQ0KPiA+ICsJCWlmIChkZWxheSA+IDAp
+DQo+ID4gKwkJCW1kZWxheShkZWxheSk7DQo+ID4gKwkJaWYgKHJlYWRfbGVuID4gMCkgew0KPiA+
+ICsJCQlyZXQgPSBpbGl0ZWtfaTJjX3RyYW5zZmVyKGNsaWVudCwgbXNncyArIDEsIDEpOw0KPiA+
+ICsJCQlpZiAocmV0IDwgMCkNCj4gPiArCQkJCXJldHVybiByZXQ7DQo+ID4gKwkJfQ0KPiA+ICsJ
+fQ0KPiA+ICsNCj4gPiArCXJldHVybiAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgdm9p
+ZCBpbGl0ZWtfaXJxX2VuYWJsZShzdHJ1Y3QgaWxpdGVrX3RzX2RhdGEgKmlsaXRla19kYXRhKQ0K
+PiA+ICt7DQo+ID4gKwl1bnNpZ25lZCBsb25nIGlycWZsYWcgPSAwOw0KPiA+ICsNCj4gPiArCXNw
+aW5fbG9ja19pcnFzYXZlKCZpbGl0ZWtfZGF0YS0+aXJxX2xvY2ssIGlycWZsYWcpOw0KPiA+ICsJ
+aWYgKCFpbGl0ZWtfZGF0YS0+aXJxX3N0YXR1cykgew0KPiA+ICsJCWVuYWJsZV9pcnEoaWxpdGVr
+X2RhdGEtPmNsaWVudC0+aXJxKTsNCj4gPiArCQlpbGl0ZWtfZGF0YS0+aXJxX3N0YXR1cyA9IHRy
+dWU7DQo+ID4gKwl9DQo+ID4gKwlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZpbGl0ZWtfZGF0YS0+
+aXJxX2xvY2ssIGlycWZsYWcpOw0KPiANCj4gVGhlIGRyaXZlciBzaG91bGQga25vdyBhdCBhbnkg
+dGltZSB3aGV0aGVyIGludGVycnVwdHMgYXJlIGRpc2FibGVkIG9yDQo+IG5vdCwgc28gSSdkIHBy
+ZWZlciBpZiB3ZSBkaWQgbm90IGhhdmUgdGhpcyB3cmFwcGVyLCBhbmQgdGhlIG9uZSBiZWxvdy4N
+Cj4gDQoNCkFncmVlZDsgd2lsbCByZW1vdmUgaW4gdjQuDQoNCj4gPiArfQ0KPiA+ICsNCj4gPiAr
+c3RhdGljIHZvaWQgaWxpdGVrX2lycV9kaXNhYmxlKHN0cnVjdCBpbGl0ZWtfdHNfZGF0YSAqaWxp
+dGVrX2RhdGEpDQo+ID4gK3sNCj4gPiArCXVuc2lnbmVkIGxvbmcgaXJxZmxhZyA9IDA7DQo+ID4g
+Kw0KPiA+ICsJc3Bpbl9sb2NrX2lycXNhdmUoJmlsaXRla19kYXRhLT5pcnFfbG9jaywgaXJxZmxh
+Zyk7DQo+ID4gKwlpZiAoaWxpdGVrX2RhdGEtPmlycV9zdGF0dXMpIHsNCj4gPiArCQlkaXNhYmxl
+X2lycV9ub3N5bmMoaWxpdGVrX2RhdGEtPmNsaWVudC0+aXJxKTsNCj4gPiArCQlpbGl0ZWtfZGF0
+YS0+aXJxX3N0YXR1cyA9IGZhbHNlOw0KPiA+ICsJfQ0KPiA+ICsJc3Bpbl91bmxvY2tfaXJxcmVz
+dG9yZSgmaWxpdGVrX2RhdGEtPmlycV9sb2NrLCBpcnFmbGFnKTsNCj4gPiArfQ0KPiA+ICsNCj4g
+PiArLyogSUxJVEVLIElTUiBBUElzICovDQo+ID4gK3N0YXRpYyB2b2lkIGlsaXRla19rZXlfZG93
+bihzdHJ1Y3QgaWxpdGVrX3RzX2RhdGEgKmlsaXRla19kYXRhLA0KPiA+ICsJCQkgICAgaW50IHgs
+IGludCB5KQ0KPiA+ICt7DQo+ID4gKwlpbnQgaiA9IDA7DQo+ID4gKwlpbnQgeF9taW47DQo+ID4g
+KwlpbnQgeF9tYXg7DQo+ID4gKwlpbnQgeV9taW47DQo+ID4gKwlpbnQgeV9tYXg7DQo+ID4gKw0K
+PiA+ICsJZm9yIChqID0gMDsgaiA8IGlsaXRla19kYXRhLT5rZXljb3VudDsgaisrKSB7DQo+ID4g
+KwkJeF9taW4gPSBpbGl0ZWtfZGF0YS0+a2V5aW5mb1tqXS54Ow0KPiA+ICsJCXhfbWF4ID0gaWxp
+dGVrX2RhdGEtPmtleWluZm9bal0ueCArIGlsaXRla19kYXRhLT5rZXlfeGxlbjsNCj4gPiArCQl5
+X21pbiA9IGlsaXRla19kYXRhLT5rZXlpbmZvW2pdLnk7DQo+ID4gKwkJeV9tYXggPSBpbGl0ZWtf
+ZGF0YS0+a2V5aW5mb1tqXS55ICsgaWxpdGVrX2RhdGEtPmtleV95bGVuOw0KPiA+ICsNCj4gPiAr
+CQlpZiAoeCA+PSB4X21pbiAmJiB4IDw9IHhfbWF4ICYmIHkgPj0geV9taW4gJiYgeSA8PSB5X21h
+eCkgew0KPiA+ICsJCQlpbnB1dF9yZXBvcnRfa2V5KGlsaXRla19kYXRhLT5pbnB1dF9kZXYsDQo+
+ID4gKwkJCQkJIGlsaXRla19kYXRhLT5rZXlpbmZvW2pdLmlkLCAxKTsNCj4gPiArDQo+ID4gKwkJ
+CWlsaXRla19kYXRhLT5rZXlpbmZvW2pdLnN0YXR1cyA9IDE7DQo+ID4gKwkJCWlsaXRla19kYXRh
+LT50b3VjaF9rZXlfaG9sZF9wcmVzcyA9IHRydWU7DQo+ID4gKwkJCWlsaXRla19kYXRhLT5pc190
+b3VjaGVkID0gdHJ1ZTsNCj4gPiArCQkJYnJlYWs7DQo+ID4gKwkJfQ0KPiA+ICsJfQ0KPiA+ICt9
+DQo+IA0KPiBUaGlzIHNvdW5kcyBsaWtlIGhhbmRsaW5nIG9mICJzb2Z0IGtleXMiIHdoaWNoIGlz
+IGJldHRlciBsZWZ0IGZvcg0KPiB1c2Vyc3BhY2UuIE9UT0ggdGhlIExpbnV4IGtleWNvZGUgc2Vl
+bXMgdG8gYmUgY29taW5nIGZyb20gY29udHJvbGxlcg0KPiBmaXJtd2FyZS4gVGhpcyBpcyByZWFs
+bHkgd2VpcmQuDQoNCkl0IGhhbmRsZXMga2V5cyB3aGljaCBrZXkgSUQgYW5kIHJlZ2lvbiBhcmUg
+Z2V0IGZyb20gdG91Y2ggZGV2aWNlIGZpcm13YXJlLg0KVGhlbiBjaGVjayByZWdpb24gb2YgdG91
+Y2ggcG9pbnRzIHRvIHRyaWdnZXIga2V5IGV2ZW50Lg0KDQpbUXVlc3Rpb25dDQpJcyBpdCBub3Qg
+ZmVhc2libGUgZm9yIGEgdG91Y2hzY3JlZW4gZHJpdmVyIGRvIGtleSBoYW5kbGluZz8NCg0KPiA+
+ICsNCj4gPiArc3RhdGljIGludCBpbGl0ZWtfa2V5X3JlbGVhc2Uoc3RydWN0IGlsaXRla190c19k
+YXRhICppbGl0ZWtfZGF0YSwNCj4gPiArCQkJICAgICAgaW50IHgsIGludCB5LCBib29sIGNoZWNr
+X3BvaW50KQ0KPiA+ICt7DQo+ID4gKwlpbnQgaiA9IDA7DQo+ID4gKwlpbnQgeF9taW47DQo+ID4g
+KwlpbnQgeF9tYXg7DQo+ID4gKwlpbnQgeV9taW47DQo+ID4gKwlpbnQgeV9tYXg7DQo+ID4gKw0K
+PiA+ICsJZm9yIChqID0gMDsgaiA8IGlsaXRla19kYXRhLT5rZXljb3VudDsgaisrKSB7DQo+ID4g
+KwkJeF9taW4gPSBpbGl0ZWtfZGF0YS0+a2V5aW5mb1tqXS54Ow0KPiA+ICsJCXhfbWF4ID0gaWxp
+dGVrX2RhdGEtPmtleWluZm9bal0ueCArIGlsaXRla19kYXRhLT5rZXlfeGxlbjsNCj4gPiArCQl5
+X21pbiA9IGlsaXRla19kYXRhLT5rZXlpbmZvW2pdLnk7DQo+ID4gKwkJeV9tYXggPSBpbGl0ZWtf
+ZGF0YS0+a2V5aW5mb1tqXS55ICsgaWxpdGVrX2RhdGEtPmtleV95bGVuOw0KPiA+ICsNCj4gPiAr
+CQlpZiAoaWxpdGVrX2RhdGEtPmtleWluZm9bal0uc3RhdHVzID09IDEpIHsNCj4gPiArCQkJaWYg
+KCFjaGVja19wb2ludCB8fA0KPiA+ICsJCQkgICAgKHggPCB4X21pbiB8fCB4ID4geF9tYXggfHwN
+Cj4gPiArCQkJICAgICB5IDwgeV9taW4gfHwgeSA+IHlfbWF4KSkgew0KPiA+ICsJCQkJaW5wdXRf
+cmVwb3J0X2tleShpbGl0ZWtfZGF0YS0+aW5wdXRfZGV2LA0KPiA+ICsJCQkJCQkgaWxpdGVrX2Rh
+dGEtPmtleWluZm9bal0uaWQsIDApOw0KPiA+ICsJCQkJaWxpdGVrX2RhdGEtPmtleWluZm9bal0u
+c3RhdHVzID0gMDsNCj4gPiArCQkJCWlsaXRla19kYXRhLT50b3VjaF9rZXlfaG9sZF9wcmVzcyA9
+IGZhbHNlOw0KPiA+ICsJCQl9DQo+ID4gKwkJfQ0KPiA+ICsJfQ0KPiA+ICsJcmV0dXJuIDA7DQo+
+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyB2b2lkIGlsaXRla190b3VjaF9kb3duKHN0cnVjdCBp
+bGl0ZWtfdHNfZGF0YSAqaWxpdGVrX2RhdGEsDQo+ID4gKwkJCSAgICAgIGludCBpZCwgaW50IHgs
+IGludCB5LCBpbnQgcCwgaW50IGgsIGludCB3KQ0KPiA+ICt7DQo+ID4gKwlzdHJ1Y3QgaW5wdXRf
+ZGV2ICppbnB1dCA9IGlsaXRla19kYXRhLT5pbnB1dF9kZXY7DQo+ID4gKw0KPiA+ICsJaW5wdXRf
+cmVwb3J0X2tleShpbnB1dCwgQlROX1RPVUNILCAxKTsNCj4gPiArDQo+ID4gKwlpbnB1dF9tdF9z
+bG90KGlucHV0LCBpZCk7DQo+ID4gKwlpbnB1dF9tdF9yZXBvcnRfc2xvdF9zdGF0ZShpbnB1dCwg
+TVRfVE9PTF9GSU5HRVIsIHRydWUpOw0KPiA+ICsNCj4gPiArCWlucHV0X2V2ZW50KGlucHV0LCBF
+Vl9BQlMsIEFCU19NVF9QT1NJVElPTl9YLCB4KTsNCj4gPiArCWlucHV0X2V2ZW50KGlucHV0LCBF
+Vl9BQlMsIEFCU19NVF9QT1NJVElPTl9ZLCB5KTsNCj4gPiArDQo+ID4gKwlpbnB1dF9ldmVudChp
+bnB1dCwgRVZfQUJTLCBBQlNfTVRfVE9VQ0hfTUFKT1IsIGgpOw0KPiA+ICsJaW5wdXRfZXZlbnQo
+aW5wdXQsIEVWX0FCUywgQUJTX01UX1dJRFRIX01BSk9SLCB3KTsNCj4gPiArDQo+ID4gKwlpbGl0
+ZWtfZGF0YS0+dHBpbmZvW2lkXS5zdGF0dXMgPSAxOw0KPiA+ICsJaWxpdGVrX2RhdGEtPnRwaW5m
+b1tpZF0uaWQgPSBpZDsNCj4gPiArCWlsaXRla19kYXRhLT50cGluZm9baWRdLnggPSB4Ow0KPiA+
+ICsJaWxpdGVrX2RhdGEtPnRwaW5mb1tpZF0ueSA9IHk7DQo+ID4gKwlpbGl0ZWtfZGF0YS0+dHBp
+bmZvW2lkXS5wID0gcDsNCj4gPiArCWlsaXRla19kYXRhLT50cGluZm9baWRdLmggPSBoOw0KPiA+
+ICsJaWxpdGVrX2RhdGEtPnRwaW5mb1tpZF0udyA9IHc7DQo+ID4gKwlpbGl0ZWtfZGF0YS0+aXNf
+dG91Y2hlZCA9IHRydWU7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyB2b2lkIGlsaXRla190
+b3VjaF9yZWxlYXNlKHN0cnVjdCBpbGl0ZWtfdHNfZGF0YSAqaWxpdGVrX2RhdGEsIGludCBpZCkN
+Cj4gPiArew0KPiA+ICsJc3RydWN0IGlucHV0X2RldiAqaW5wdXQgPSBpbGl0ZWtfZGF0YS0+aW5w
+dXRfZGV2Ow0KPiA+ICsNCj4gPiArCWlmIChpbGl0ZWtfZGF0YS0+dHBpbmZvW2lkXS5zdGF0dXMg
+PT0gMSkgew0KPiA+ICsJCWlucHV0X210X3Nsb3QoaW5wdXQsIGlkKTsNCj4gPiArCQlpbnB1dF9t
+dF9yZXBvcnRfc2xvdF9zdGF0ZShpbnB1dCwgTVRfVE9PTF9GSU5HRVIsIGZhbHNlKTsNCj4gPiAr
+CQlpbGl0ZWtfZGF0YS0+dHBpbmZvW2lkXS5zdGF0dXMgPSAwOw0KPiA+ICsJfQ0KPiA+ICt9DQo+
+ID4gKw0KPiA+ICtzdGF0aWMgdm9pZCBpbGl0ZWtfdG91Y2hfcmVsZWFzZV9hbGwoc3RydWN0IGls
+aXRla190c19kYXRhICppbGl0ZWtfZGF0YSkNCj4gPiArew0KPiA+ICsJc3RydWN0IGlucHV0X2Rl
+diAqaW5wdXQgPSBpbGl0ZWtfZGF0YS0+aW5wdXRfZGV2Ow0KPiA+ICsJaW50IGkgPSAwOw0KPiA+
+ICsNCj4gPiArCWZvciAoaSA9IDA7IGkgPCBpbGl0ZWtfZGF0YS0+bWF4X3RwOyBpKyspDQo+ID4g
+KwkJaWxpdGVrX3RvdWNoX3JlbGVhc2UoaWxpdGVrX2RhdGEsIGkpOw0KPiA+ICsJaW5wdXRfcmVw
+b3J0X2tleShpbnB1dCwgQlROX1RPVUNILCAwKTsNCj4gPiArCWlucHV0X3N5bmMoaW5wdXQpOw0K
+PiA+ICsNCj4gPiArCWlsaXRla19kYXRhLT5pc190b3VjaGVkID0gZmFsc2U7DQo+ID4gK30NCj4g
+PiArDQo+ID4gK3N0YXRpYyBpbnQgaWxpdGVrX3Byb2Nlc3NfYW5kX3JlcG9ydF92NihzdHJ1Y3Qg
+aWxpdGVrX3RzX2RhdGEgKmlsaXRla19kYXRhKQ0KPiA+ICt7DQo+ID4gKwlpbnQgcmV0ID0gMDsN
+Cj4gPiArCXU4IGJ1Zls1MTJdID0gezB9Ow0KPiA+ICsJaW50IHBhY2tldF9sZW4gPSA1Ow0KPiA+
+ICsJaW50IHBhY2tldF9tYXhfcG9pbnQgPSAxMDsNCj4gPiArCWludCByZXBvcnRfbWF4X3BvaW50
+ID0gNjsNCj4gPiArCWludCByZWxlYXNlX3BvaW50ID0gMDsNCj4gPiArCWludCBpID0gMCwgY291
+bnQgPSAwOw0KPiA+ICsJc3RydWN0IGlucHV0X2RldiAqaW5wdXQgPSBpbGl0ZWtfZGF0YS0+aW5w
+dXRfZGV2Ow0KPiA+ICsJc3RydWN0IGRldmljZSAqZGV2ID0gJmlsaXRla19kYXRhLT5jbGllbnQt
+PmRldjsNCj4gPiArCXUxNiB4LCB5LCBwID0gMTAsIHcgPSAxMCwgaCA9IDEwLCBzdGF0dXMsIGlk
+Ow0KPiA+ICsNCj4gPiArCXJldCA9IGlsaXRla19pMmNfd3JpdGVfYW5kX3JlYWQoaWxpdGVrX2Rh
+dGEsIE5VTEwsIDAsIDAsIGJ1ZiwgNjQpOw0KPiA+ICsJaWYgKHJldCA8IDApIHsNCj4gPiArCQlk
+ZXZfZXJyKGRldiwgImdldCB0b3VjaCBpbmZvIGZhaWxlZCwgZXJyOiVkXG4iLCByZXQpOw0KPiA+
+ICsJCWdvdG8gZXJyX3JlbGVhc2VfdG91Y2hfYW5kX2tleTsNCj4gPiArCX0NCj4gPiArDQo+ID4g
+KwlyZXBvcnRfbWF4X3BvaW50ID0gYnVmW1JFUE9SVF9BRERSRVNTX0NPVU5UXTsNCj4gPiArCWlm
+IChyZXBvcnRfbWF4X3BvaW50ID4gaWxpdGVrX2RhdGEtPm1heF90cCkgew0KPiA+ICsJCWRldl9l
+cnIoZGV2LCAiRlcgcmVwb3J0IG1heCBwb2ludDolZCA+IHBhbmVsIGluZm8uIG1heDolZFxuIiwN
+Cj4gPiArCQkJcmVwb3J0X21heF9wb2ludCwgaWxpdGVrX2RhdGEtPm1heF90cCk7DQo+ID4gKwkJ
+cmV0dXJuIC1FSU5WQUw7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJY291bnQgPSBDRUlMKHJlcG9y
+dF9tYXhfcG9pbnQsIHBhY2tldF9tYXhfcG9pbnQpOw0KPiA+ICsJZm9yIChpID0gMTsgaSA8IGNv
+dW50OyBpKyspIHsNCj4gPiArCQlyZXQgPSBpbGl0ZWtfaTJjX3dyaXRlX2FuZF9yZWFkKGlsaXRl
+a19kYXRhLCBOVUxMLCAwLCAwLA0KPiA+ICsJCQlidWYgKyBpICogNjQsIDY0KTsNCj4gPiArCQlp
+ZiAocmV0IDwgMCkgew0KPiA+ICsJCQlkZXZfZXJyKGRldiwgImdldCB0b3VjaCBpbmZvLiBlcnIs
+IGNvdW50PSVkXG4iLCBjb3VudCk7DQo+ID4gKwkJCWdvdG8gZXJyX3JlbGVhc2VfdG91Y2hfYW5k
+X2tleTsNCj4gPiArCQl9DQo+ID4gKwl9DQo+IA0KPiBUaGlzIG1lYW5zIHlvdSBoYXZlIDEgKyBj
+b3VudCB0cmFuc2FjdGlvbnMgb24gaTJjIGJ1cy4gSGF2ZSB5b3UNCj4gY29uc2lkZXJlZCByZWFk
+aW5nIG1heCBudW1iZXIgb2YgYnl0ZXMgaW4gb25lIHRyYW5zYWN0aW9uLCBhbmQgdGhlbiBzb2Z0
+DQo+IG91dCBob3cgbXVjaCBvZiByZWNlaXZlZCBkYXRhIGlzIHZhbGlkPw0KPiANCg0KRHVlIHRv
+IGxpbWl0YXRpb24gb24gRlcgb2YgdG91Y2ggZGV2aWNlLCBkYXRhIGJ5dGUgZm9yIGVhY2ggSTJD
+IHRyYW5zYWN0aW9uDQppcyBsaW1pdGVkLiBJdCB3b3VsZCBsZWFkIHRvIEkyQyBjb21tdW5pY2F0
+aW9uIGlzc3VlIHdoZW4gbGFyZ2UgY291bnQgb2YgYnl0ZXMNCmFyZSByZXF1ZXN0Lg0KDQpBbHNv
+LCBmb3Igb25seSBhIGZldyB0b3VjaCBwb2ludHMsDQpJdCBzaG91bGQgYmUgbGVzcyBlZmZpY2ll
+bnQgdG8gcXVlcnkgbWF4IG51bWJlciBvZiBieXRlcy4NCg0KPiA+ICsNCj4gPiArCWZvciAoaSA9
+IDA7IGkgPCByZXBvcnRfbWF4X3BvaW50OyBpKyspIHsNCj4gPiArCQlzdGF0dXMgPSBidWZbaSAq
+IHBhY2tldF9sZW4gKyAxXSAmIDB4NDA7DQo+ID4gKwkJaWQgPSBidWZbaSAqIHBhY2tldF9sZW4g
+KyAxXSAmIDB4M0Y7DQo+ID4gKw0KPiA+ICsJCWlmICghc3RhdHVzKSB7DQo+ID4gKwkJCXJlbGVh
+c2VfcG9pbnQrKzsNCj4gPiArCQkJaWxpdGVrX3RvdWNoX3JlbGVhc2UoaWxpdGVrX2RhdGEsIGlk
+KTsNCj4gPiArCQkJY29udGludWU7DQo+ID4gKwkJfQ0KPiA+ICsNCj4gPiArCQl4ID0gKGJ1Zltp
+ICogcGFja2V0X2xlbiArIDNdIDw8IDgpICsgYnVmW2kgKiBwYWNrZXRfbGVuICsgMl07DQo+ID4g
+KwkJeSA9IChidWZbaSAqIHBhY2tldF9sZW4gKyA1XSA8PCA4KSArIGJ1ZltpICogcGFja2V0X2xl
+biArIDRdOw0KPiANCj4gCQl4ID0gbGUxNl90b19jcHVwKC4uLi4pOw0KPiANCj4gUGxlYXNlIGFk
+anVzdCBoZXJlIGFuZCBlbHNld2hlcmUuIEFsc28sIGlmIGRhdGEgbWF5IGJlIHVuYWxpZ25lZCwg
+cGxlYXNlDQo+IHVzZSBnZXRfdW5hbGlnbmVkX2xlMTYoKSBpbnN0ZWFkLg0KPiANCg0KQWdyZWVk
+OyB3aWxsIGNoZWNrIGFuZCB1cGRhdGUgZWxzZXdoZXJlIGluIHY0Lg0KDQo+ID4gKw0KPiA+ICsJ
+CWlmICghaWxpdGVrX2RhdGEtPmlzX3RvdWNoZWQpDQo+ID4gKwkJCWlsaXRla19rZXlfZG93bihp
+bGl0ZWtfZGF0YSwgeCwgeSk7DQo+ID4gKw0KPiA+ICsJCWlmICghaWxpdGVrX2RhdGEtPnRvdWNo
+X2tleV9ob2xkX3ByZXNzKSB7DQo+ID4gKwkJCWlmICh4ID4gaWxpdGVrX2RhdGEtPnNjcmVlbl9t
+YXhfeCB8fA0KPiA+ICsJCQkgICAgeSA+IGlsaXRla19kYXRhLT5zY3JlZW5fbWF4X3kgfHwNCj4g
+PiArCQkJICAgIHggPCBpbGl0ZWtfZGF0YS0+c2NyZWVuX21pbl94IHx8DQo+ID4gKwkJCSAgICB5
+IDwgaWxpdGVrX2RhdGEtPnNjcmVlbl9taW5feSkNCj4gPiArCQkJCWNvbnRpbnVlOw0KPiA+ICsN
+Cj4gPiArCQkJaWxpdGVrX3RvdWNoX2Rvd24oaWxpdGVrX2RhdGEsIGlkLCB4LCB5LCBwLCBoLCB3
+KTsNCj4gPiArCQl9IGVsc2Ugew0KPiA+ICsJCQlpbGl0ZWtfa2V5X3JlbGVhc2UoaWxpdGVrX2Rh
+dGEsIHgsIHksIDEpOw0KPiA+ICsJCX0NCj4gPiArCX0NCj4gPiArDQo+ID4gKwlpZiAocmVsZWFz
+ZV9wb2ludCA9PSByZXBvcnRfbWF4X3BvaW50KSB7DQo+ID4gKwkJaWxpdGVrX3RvdWNoX3JlbGVh
+c2VfYWxsKGlsaXRla19kYXRhKTsNCj4gPiArCQlpbGl0ZWtfa2V5X3JlbGVhc2UoaWxpdGVrX2Rh
+dGEsIDAsIDAsIDApOw0KPiA+ICsJCWlsaXRla19kYXRhLT5pc190b3VjaGVkID0gZmFsc2U7DQo+
+ID4gKwl9DQo+ID4gKwlpbnB1dF9zeW5jKGlucHV0KTsNCj4gPiArCXJldHVybiAwOw0KPiA+ICsN
+Cj4gPiArZXJyX3JlbGVhc2VfdG91Y2hfYW5kX2tleToNCj4gPiArCWlsaXRla190b3VjaF9yZWxl
+YXNlX2FsbChpbGl0ZWtfZGF0YSk7DQo+ID4gKwlpbGl0ZWtfa2V5X3JlbGVhc2UoaWxpdGVrX2Rh
+dGEsIDAsIDAsIDApOw0KPiA+ICsJaWxpdGVrX2RhdGEtPmlzX3RvdWNoZWQgPSBmYWxzZTsNCj4g
+PiArCWlucHV0X3N5bmMoaW5wdXQpOw0KPiA+ICsJcmV0dXJuIHJldDsNCj4gPiArfQ0KPiA+ICsN
+Cj4gPiArDQo+ID4gKy8qIEFQSXMgb2YgY21kcyBmb3IgSUxJVEVLIFRvdWNoIElDICovDQo+ID4g
+K3N0YXRpYyBpbnQgYXBpX3Byb3RvY29sX3NldF9jbWQoc3RydWN0IGlsaXRla190c19kYXRhICpp
+bGl0ZWtfZGF0YSwNCj4gPiArCQkJCXUxNiBpZHgsIHU4ICppbmJ1ZiwgdTggKm91dGJ1ZikNCj4g
+PiArew0KPiA+ICsJdTE2IGNtZDsNCj4gPiArCWludCByZXQgPSAwOw0KPiA+ICsNCj4gPiArCWlm
+ICghaWxpdGVrX2RhdGEgfHwgIWlsaXRla19kYXRhLT5wdGxfY2JfZnVuYykNCj4gPiArCQlyZXR1
+cm4gLUVJTlZBTDsNCj4gPiArDQo+ID4gKwlpZiAoaWR4ID49IE1BWF9DTURfQ05UKQ0KPiA+ICsJ
+CXJldHVybiAtRUlOVkFMOw0KPiA+ICsNCj4gPiArCWNtZCA9IGlsaXRla19kYXRhLT5wdGxfY2Jf
+ZnVuY1tpZHhdLmNtZDsNCj4gPiArCXJldCA9IGlsaXRla19kYXRhLT5wdGxfY2JfZnVuY1tpZHhd
+LmZ1bmMoaWxpdGVrX2RhdGEsIGNtZCwNCj4gPiArCQkJCQkJIGluYnVmLCBvdXRidWYpOw0KPiA+
+ICsJaWYgKHJldCA8IDApDQo+ID4gKwkJcmV0dXJuIHJldDsNCj4gPiArDQo+ID4gKwlyZXR1cm4g
+MDsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBhcGlfcHJvdG9jb2xfZ2V0X3B0bF92
+ZXIoc3RydWN0IGlsaXRla190c19kYXRhICppbGl0ZWtfZGF0YSwNCj4gPiArCQkJCSAgICB1MTYg
+Y21kLCB1OCAqaW5idWYsIHU4ICpvdXRidWYpDQo+ID4gK3sNCj4gPiArCWludCByZXQgPSAwOw0K
+PiA+ICsJdTggYnVmWzY0XSA9IHswfTsNCj4gPiArDQo+ID4gKwlpZiAoIWlsaXRla19kYXRhKQ0K
+PiA+ICsJCXJldHVybiAtRUlOVkFMOw0KPiA+ICsNCj4gPiArCWJ1ZlswXSA9IGNtZDsNCj4gPiAr
+CXJldCA9IGlsaXRla19pMmNfd3JpdGVfYW5kX3JlYWQoaWxpdGVrX2RhdGEsIGJ1ZiwgMSwgNSwg
+b3V0YnVmLCAzKTsNCj4gPiArCWlmIChyZXQgPCAwKQ0KPiA+ICsJCXJldHVybiByZXQ7DQo+ID4g
+Kw0KPiA+ICsJaWxpdGVrX2RhdGEtPnB0bC52ZXIgPSAob3V0YnVmWzBdIDw8IDE2KSArIChvdXRi
+dWZbMV0gPDwgOCk7DQo+ID4gKwlpbGl0ZWtfZGF0YS0+cHRsLnZlcl9tYWpvciA9IG91dGJ1Zlsw
+XTsNCj4gPiArCWlsaXRla19kYXRhLT5wdGwudmVyX21pZCA9IG91dGJ1ZlsxXTsNCj4gPiArCWls
+aXRla19kYXRhLT5wdGwudmVyX21pbm9yID0gb3V0YnVmWzJdOw0KPiA+ICsNCj4gPiArCXJldHVy
+biByZXQ7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgYXBpX3Byb3RvY29sX2dldF9t
+Y3VfdmVyKHN0cnVjdCBpbGl0ZWtfdHNfZGF0YSAqaWxpdGVrX2RhdGEsDQo+ID4gKwkJCQkgICAg
+dTE2IGNtZCwgdTggKmluYnVmLCB1OCAqb3V0YnVmKQ0KPiA+ICt7DQo+ID4gKwlpbnQgcmV0ID0g
+MDsNCj4gPiArCXU4IGJ1Zls2NF0gPSB7MH07DQo+ID4gKw0KPiA+ICsJaWYgKCFpbGl0ZWtfZGF0
+YSkNCj4gPiArCQlyZXR1cm4gLUVJTlZBTDsNCj4gPiArDQo+ID4gKwlidWZbMF0gPSBJTElURUtf
+VFBfQ01EX0dFVF9NQ1VfVkVSOw0KPiA+ICsJcmV0ID0gaWxpdGVrX2kyY193cml0ZV9hbmRfcmVh
+ZChpbGl0ZWtfZGF0YSwgYnVmLCAxLCA1LCBvdXRidWYsIDMyKTsNCj4gPiArCWlmIChyZXQgPCAw
+KQ0KPiA+ICsJCXJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsJbWVtY3B5KGlsaXRla19kYXRhLT5t
+Y3VfdmVyLCBvdXRidWYsIDIpOw0KPiA+ICsJbWVtc2V0KGlsaXRla19kYXRhLT5wcm9kdWN0X2lk
+LCAwLCBzaXplb2YoaWxpdGVrX2RhdGEtPnByb2R1Y3RfaWQpKTsNCj4gPiArCW1lbWNweShpbGl0
+ZWtfZGF0YS0+cHJvZHVjdF9pZCwgb3V0YnVmKzYsIDI2KTsNCj4gPiArDQo+ID4gKwlyZXR1cm4g
+cmV0Ow0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IGFwaV9wcm90b2NvbF9nZXRfZndf
+dmVyKHN0cnVjdCBpbGl0ZWtfdHNfZGF0YSAqaWxpdGVrX2RhdGEsDQo+ID4gKwkJCQkgICB1MTYg
+Y21kLCB1OCAqaW5idWYsIHU4ICpvdXRidWYpDQo+ID4gK3sNCj4gPiArCWludCByZXQgPSAwOw0K
+PiA+ICsJdTggYnVmWzY0XSA9IHswfTsNCj4gPiArDQo+ID4gKwlpZiAoIWlsaXRla19kYXRhKQ0K
+PiA+ICsJCXJldHVybiAtRUlOVkFMOw0KPiA+ICsNCj4gPiArCWJ1ZlswXSA9IElMSVRFS19UUF9D
+TURfR0VUX0ZXX1ZFUjsNCj4gPiArCXJldCA9IGlsaXRla19pMmNfd3JpdGVfYW5kX3JlYWQoaWxp
+dGVrX2RhdGEsIGJ1ZiwgMSwgNSwgb3V0YnVmLCA4KTsNCj4gPiArCWlmIChyZXQgPCAwKQ0KPiA+
+ICsJCXJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsJbWVtY3B5KGlsaXRla19kYXRhLT5maXJtd2Fy
+ZV92ZXIsIG91dGJ1ZiwgOCk7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIHJldDsNCj4gPiArfQ0KPiA+
+ICsNCj4gPiArc3RhdGljIGludCBhcGlfcHJvdG9jb2xfZ2V0X3Njcm5fcmVzKHN0cnVjdCBpbGl0
+ZWtfdHNfZGF0YSAqaWxpdGVrX2RhdGEsDQo+ID4gKwkJCQkgICAgIHUxNiBjbWQsIHU4ICppbmJ1
+ZiwgdTggKm91dGJ1ZikNCj4gPiArew0KPiA+ICsJaW50IHJldCA9IDA7DQo+ID4gKwl1OCBidWZb
+NjRdID0gezB9Ow0KPiA+ICsNCj4gPiArCWlmICghaWxpdGVrX2RhdGEpDQo+ID4gKwkJcmV0dXJu
+IC1FSU5WQUw7DQo+ID4gKw0KPiA+ICsJYnVmWzBdID0gSUxJVEVLX1RQX0NNRF9HRVRfU0NSTl9S
+RVM7DQo+ID4gKwlyZXQgPSBpbGl0ZWtfaTJjX3dyaXRlX2FuZF9yZWFkKGlsaXRla19kYXRhLCBi
+dWYsIDEsIDUsIG91dGJ1ZiwgOCk7DQo+ID4gKwlpZiAocmV0IDwgMCkNCj4gPiArCQlyZXR1cm4g
+cmV0Ow0KPiA+ICsNCj4gPiArCWlsaXRla19kYXRhLT5zY3JlZW5fbWluX3ggPSAob3V0YnVmWzFd
+IDw8IDgpICsgb3V0YnVmWzBdOw0KPiA+ICsJaWxpdGVrX2RhdGEtPnNjcmVlbl9taW5feSA9IChv
+dXRidWZbM10gPDwgOCkgKyBvdXRidWZbMl07DQo+ID4gKwlpbGl0ZWtfZGF0YS0+c2NyZWVuX21h
+eF94ID0gKG91dGJ1Zls1XSA8PCA4KSArIG91dGJ1Zls0XTsNCj4gPiArCWlsaXRla19kYXRhLT5z
+Y3JlZW5fbWF4X3kgPSAob3V0YnVmWzddIDw8IDgpICsgb3V0YnVmWzZdOw0KPiA+ICsNCj4gPiAr
+CXJldHVybiByZXQ7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgYXBpX3Byb3RvY29s
+X2dldF9rZXlfaW5mb192NihzdHJ1Y3QgaWxpdGVrX3RzX2RhdGEgKmlsaXRla19kYXRhLA0KPiA+
+ICsJCQkJCXUxNiBjbWQsIHU4ICppbmJ1ZiwgdTggKm91dGJ1ZikNCj4gPiArew0KPiA+ICsJaW50
+IHJldCA9IDAsIGkgPSAwOw0KPiA+ICsJdTggYnVmWzY0XSA9IHswfTsNCj4gPiArDQo+ID4gKwlp
+ZiAoIWlsaXRla19kYXRhKQ0KPiA+ICsJCXJldHVybiAtRUlOVkFMOw0KPiA+ICsNCj4gPiArCWlm
+IChpbGl0ZWtfZGF0YS0+a2V5Y291bnQgPiBJTElURUtfU1VQUE9SVF9NQVhfS0VZX0NOVCkNCj4g
+PiArCQlyZXR1cm4gLUVJTlZBTDsNCj4gPiArDQo+ID4gKwlidWZbMF0gPSBJTElURUtfVFBfQ01E
+X0dFVF9LRVlfSU5GTzsNCj4gPiArCXJldCA9IGlsaXRla19pMmNfd3JpdGVfYW5kX3JlYWQoaWxp
+dGVrX2RhdGEsIGJ1ZiwgMSwgMTAsDQo+ID4gKwkJCQkJb3V0YnVmLCBpbGl0ZWtfZGF0YS0+a2V5
+Y291bnQgKiA1ICsgNSk7DQo+ID4gKwlpZiAocmV0IDwgMCkNCj4gPiArCQlyZXR1cm4gcmV0Ow0K
+PiA+ICsNCj4gPiArCWlsaXRla19kYXRhLT5rZXlfeGxlbiA9IChvdXRidWZbMl0gPDwgOCkgKyBv
+dXRidWZbMV07DQo+ID4gKwlpbGl0ZWtfZGF0YS0+a2V5X3lsZW4gPSAob3V0YnVmWzRdIDw8IDgp
+ICsgb3V0YnVmWzNdOw0KPiA+ICsNCj4gPiArCWZvciAoaSA9IDA7IGkgPCBpbGl0ZWtfZGF0YS0+
+a2V5Y291bnQ7IGkrKykgew0KPiA+ICsJCWlsaXRla19kYXRhLT5rZXlpbmZvW2ldLmlkID0gb3V0
+YnVmW2kgKiA1ICsgNV07DQo+ID4gKwkJaWxpdGVrX2RhdGEtPmtleWluZm9baV0ueCA9IChvdXRi
+dWZbaSAqIDUgKyA3XSA8PCA4KSArDQo+ID4gKwkJCQkJICAgIG91dGJ1ZltpICogNSArIDZdOw0K
+PiA+ICsJCWlsaXRla19kYXRhLT5rZXlpbmZvW2ldLnkgPSAob3V0YnVmW2kgKiA1ICsgOV0gPDwg
+OCkgKw0KPiA+ICsJCQkJCSAgICBvdXRidWZbaSAqIDUgKyA4XTsNCj4gPiArCQlpbGl0ZWtfZGF0
+YS0+a2V5aW5mb1tpXS5zdGF0dXMgPSAwOw0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCXJldHVybiBy
+ZXQ7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgYXBpX3Byb3RvY29sX2dldF90cF9y
+ZXNfdjYoc3RydWN0IGlsaXRla190c19kYXRhICppbGl0ZWtfZGF0YSwNCj4gPiArCQkJCSAgICAg
+IHUxNiBjbWQsIHU4ICppbmJ1ZiwgdTggKm91dGJ1ZikNCj4gPiArew0KPiA+ICsJaW50IHJldCA9
+IDA7DQo+ID4gKwl1OCBidWZbNjRdID0gezB9Ow0KPiA+ICsNCj4gPiArCWlmICghaWxpdGVrX2Rh
+dGEpDQo+ID4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ID4gKw0KPiA+ICsJYnVmWzBdID0gSUxJVEVL
+X1RQX0NNRF9HRVRfVFBfUkVTOw0KPiA+ICsJcmV0ID0gaWxpdGVrX2kyY193cml0ZV9hbmRfcmVh
+ZChpbGl0ZWtfZGF0YSwgYnVmLCAxLCA1LCBvdXRidWYsIDE1KTsNCj4gPiArCWlmIChyZXQgPCAw
+KQ0KPiA+ICsJCXJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsJaWxpdGVrX2RhdGEtPnRwX21heF94
+ID0gKG91dGJ1ZlsxXSA8PCA4KSArIG91dGJ1ZlswXTsNCj4gPiArCWlsaXRla19kYXRhLT50cF9t
+YXhfeSA9IChvdXRidWZbM10gPDwgOCkgKyBvdXRidWZbMl07DQo+ID4gKwlpbGl0ZWtfZGF0YS0+
+eF9jaCA9IChvdXRidWZbNV0gPDwgOCkgKyBvdXRidWZbNF07DQo+ID4gKwlpbGl0ZWtfZGF0YS0+
+eV9jaCA9IChvdXRidWZbN10gPDwgOCkgKyBvdXRidWZbNl07DQo+ID4gKwlpbGl0ZWtfZGF0YS0+
+bWF4X3RwID0gb3V0YnVmWzhdOw0KPiA+ICsJaWxpdGVrX2RhdGEtPmtleWNvdW50ID0gb3V0YnVm
+WzldOw0KPiA+ICsJaWxpdGVrX2RhdGEtPnNsYXZlX2NvdW50ID0gb3V0YnVmWzEwXTsNCj4gPiAr
+CWlsaXRla19kYXRhLT5mb3JtYXQgPSBvdXRidWZbMTJdOw0KPiA+ICsNCj4gPiArCWlmIChpbGl0
+ZWtfZGF0YS0+a2V5Y291bnQgPiBJTElURUtfU1VQUE9SVF9NQVhfS0VZX0NOVCkgew0KPiA+ICsJ
+CWRldl9lcnIoJmlsaXRla19kYXRhLT5jbGllbnQtPmRldiwgIkludmFsaWQgS0VZIGNvdW50OiVk
+IGZyb20gRldcbiIsDQo+ID4gKwkJCWlsaXRla19kYXRhLT5rZXljb3VudCk7DQo+ID4gKwkJcmV0
+dXJuIC1FSU5WQUw7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJaWYgKGlsaXRla19kYXRhLT5rZXlj
+b3VudCA+IDApIHsNCj4gPiArCQlyZXQgPSBhcGlfcHJvdG9jb2xfc2V0X2NtZChpbGl0ZWtfZGF0
+YSwgR0VUX0tFWV9JTkZPLA0KPiA+ICsJCQkJCSAgIE5VTEwsIG91dGJ1Zik7DQo+ID4gKwkJaWYg
+KHJldCA8IDApDQo+ID4gKwkJCXJldHVybiByZXQ7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJaWYg
+KGlsaXRla19kYXRhLT5tYXhfdHAgPiBJTElURUtfU1VQUE9SVF9NQVhfUE9JTlQpIHsNCj4gPiAr
+CQlkZXZfZXJyKCZpbGl0ZWtfZGF0YS0+Y2xpZW50LT5kZXYsICJJbnZhbGlkIE1BWF9UUDolZCBm
+cm9tIEZXXG4iLA0KPiA+ICsJCQlpbGl0ZWtfZGF0YS0+bWF4X3RwKTsNCj4gPiArCQlyZXR1cm4g
+LUVJTlZBTDsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwlyZXR1cm4gcmV0Ow0KPiA+ICt9DQo+ID4g
+Kw0KPiA+ICtzdGF0aWMgaW50IGFwaV9wcm90b2NvbF9nZXRfaWNfbW9kZShzdHJ1Y3QgaWxpdGVr
+X3RzX2RhdGEgKmlsaXRla19kYXRhLA0KPiA+ICsJCQkJICAgIHUxNiBjbWQsIHU4ICppbmJ1Ziwg
+dTggKm91dGJ1ZikNCj4gPiArew0KPiA+ICsJaW50IHJldCA9IDA7DQo+ID4gKwl1OCBidWZbNjRd
+ID0gezB9Ow0KPiA+ICsNCj4gPiArCWlmICghaWxpdGVrX2RhdGEpDQo+ID4gKwkJcmV0dXJuIC1F
+SU5WQUw7DQo+ID4gKw0KPiA+ICsJYnVmWzBdID0gSUxJVEVLX1RQX0NNRF9HRVRfSUNfTU9ERTsN
+Cj4gPiArCXJldCA9IGlsaXRla19pMmNfd3JpdGVfYW5kX3JlYWQoaWxpdGVrX2RhdGEsIGJ1Ziwg
+MSwgNSwgb3V0YnVmLCAyKTsNCj4gPiArCWlmIChyZXQgPCAwKQ0KPiA+ICsJCXJldHVybiByZXQ7
+DQo+ID4gKw0KPiA+ICsJaWxpdGVrX2RhdGEtPmljX21vZGUgPSBvdXRidWZbMF07DQo+ID4gKwly
+ZXR1cm4gcmV0Ow0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdHJ1Y3QgUFJPVE9DT0xfTUFQIHB0bF9m
+dW5jX21hcF92M1tdID0gew0KPiA+ICsJeyAvKiBWMyBjbWRzICovfSwNCj4gPiArfTsNCj4gPiAr
+DQo+ID4gK3N0cnVjdCBQUk9UT0NPTF9NQVAgcHRsX2Z1bmNfbWFwX3Y2W10gPSB7DQo+ID4gKwlb
+R0VUX1BUTF9WRVJdCT0ge0lMSVRFS19UUF9DTURfR0VUX1BSTF9WRVIsICJHRVRfUFRMX1ZFUiIs
+DQo+ID4gKwkJCSAgIGFwaV9wcm90b2NvbF9nZXRfcHRsX3Zlcn0sDQo+ID4gKwlbR0VUX0ZXX1ZF
+Ul0JPSB7SUxJVEVLX1RQX0NNRF9HRVRfRldfVkVSLCAiR0VUX0ZXX1ZFUiIsDQo+ID4gKwkJCSAg
+IGFwaV9wcm90b2NvbF9nZXRfZndfdmVyfSwNCj4gPiArCVtHRVRfU0NSTl9SRVNdCT0ge0lMSVRF
+S19UUF9DTURfR0VUX1NDUk5fUkVTLCAiR0VUX1NDUk5fUkVTIiwNCj4gPiArCQkJICAgYXBpX3By
+b3RvY29sX2dldF9zY3JuX3Jlc30sDQo+ID4gKwlbR0VUX1RQX1JFU10JPSB7SUxJVEVLX1RQX0NN
+RF9HRVRfVFBfUkVTLCAiR0VUX1RQX1JFUyIsDQo+ID4gKwkJCSAgIGFwaV9wcm90b2NvbF9nZXRf
+dHBfcmVzX3Y2fSwNCj4gPiArCVtHRVRfSUNfTU9ERV0JPSB7SUxJVEVLX1RQX0NNRF9HRVRfSUNf
+TU9ERSwgIkdFVF9JQ19NT0RFIiwNCj4gPiArCQkJICAgYXBpX3Byb3RvY29sX2dldF9pY19tb2Rl
+fSwNCj4gPiArCVtHRVRfTUNVX1ZFUl0JPSB7SUxJVEVLX1RQX0NNRF9HRVRfTUNVX1ZFUiwgIkdF
+VF9NT0RfTkFNRSIsDQo+ID4gKwkJCSAgIGFwaV9wcm90b2NvbF9nZXRfbWN1X3Zlcn0sDQo+ID4g
+KwlbR0VUX0tFWV9JTkZPXQk9IHtJTElURUtfVFBfQ01EX0dFVF9LRVlfSU5GTywgIkdFVF9LRVlf
+SU5GTyIsDQo+ID4gKwkJCSAgIGFwaV9wcm90b2NvbF9nZXRfa2V5X2luZm9fdjZ9LA0KPiA+ICt9
+Ow0KPiA+ICsNCj4gPiArLyogUHJvYmUgQVBJcyAqLw0KPiA+ICtzdGF0aWMgaW50IGlsaXRla19y
+ZXF1ZXN0X2dwaW8oc3RydWN0IGRldmljZSAqZGV2LA0KPiA+ICsJCQkgICAgICAgc3RydWN0IGls
+aXRla190c19kYXRhICppbGl0ZWtfZGF0YSkNCj4gPiArew0KPiA+ICsJaW50IHJldCA9IDA7DQo+
+ID4gKw0KPiA+ICsJaWYgKCFkZXYgfHwgIWlsaXRla19kYXRhKQ0KPiA+ICsJCXJldHVybiAtRUlO
+VkFMOw0KPiA+ICsNCj4gPiArCWlsaXRla19kYXRhLT5yZXNldF9ncGlvID0gZ3Bpb2RfZ2V0KGRl
+diwgInJlc2V0IiwgR1BJT0RfT1VUX0hJR0gpOw0KPiA+ICsJaWYgKElTX0VSUihpbGl0ZWtfZGF0
+YS0+cmVzZXRfZ3BpbykpIHsNCj4gPiArCQlyZXQgPSBQVFJfRVJSKGlsaXRla19kYXRhLT5yZXNl
+dF9ncGlvKTsNCj4gPiArCQlyZXR1cm4gcmV0Ow0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCXJldHVy
+biAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgdm9pZCBpbGl0ZWtfcmVzZXQoc3RydWN0
+IGlsaXRla190c19kYXRhICppbGl0ZWtfZGF0YSwNCj4gPiArCQkJIGludCBkZWxheSwgYm9vbCBi
+b290KQ0KPiA+ICt7DQo+ID4gKwlib29sIGluaXRfc3RhdHMgPSBpbGl0ZWtfZGF0YS0+aXJxX3N0
+YXR1czsNCj4gPiArDQo+ID4gKwlpZiAoIWJvb3QpDQo+ID4gKwkJaWxpdGVrX2lycV9kaXNhYmxl
+KGlsaXRla19kYXRhKTsNCj4gPiArDQo+ID4gKwlpZiAoaWxpdGVrX2RhdGEtPnJlc2V0X2dwaW8p
+IHsNCj4gPiArCQlncGlvZF9zZXRfdmFsdWUoaWxpdGVrX2RhdGEtPnJlc2V0X2dwaW8sIDEpOw0K
+PiA+ICsJCW1kZWxheSgxMCk7DQo+ID4gKw0KPiA+ICsJCWdwaW9kX3NldF92YWx1ZShpbGl0ZWtf
+ZGF0YS0+cmVzZXRfZ3BpbywgMCk7DQo+ID4gKwkJbWRlbGF5KDEwKTsNCj4gPiArDQo+ID4gKwkJ
+Z3Bpb2Rfc2V0X3ZhbHVlKGlsaXRla19kYXRhLT5yZXNldF9ncGlvLCAxKTsNCj4gPiArCQltZGVs
+YXkoZGVsYXkpOw0KPiANCj4gSSBkbyBub3QgYmVsaWV2ZSB5b3UgbWVhbiB0byBsZWF2ZSByZXNl
+dCBsaW5lIGFjdGl2ZWkgaGVyZS4gUmVtZW1iZXIsDQo+IGdwaW9kIGlzIGxvZ2ljYWwgQVBJLCB3
+aXRoIDEgcmVwcmVzZW50aW5nIGxpbmUgYmVpbmcgYWN0aXZlLCBhbmQgMCAtDQo+IGluYWN0aXZl
+LiAgZ3Bpb2xpYiBpbnRlcm5hbGx5IHRha2VzIGludG8gYWNjb3VudCBsaW5lIHBvbGFyaXR5LCBz
+byBmb3INCj4gYWN0aXZlLWxvdyBHUElPcyBncGlvZF9zZXRfdmFsdWUoZ3BpbywgMSkgd2lsbCBk
+cml2ZSB0aGUgbGluZSBsb3cuDQoNCkFncmVlZDsgcmVzZXQgcGluIHNob3VsZCByZXNldCB0b3Vj
+aCBkZXZpY2Ugd2hlbiBwaW4gbG9naWNhbGx5IGJlIGxvdy4NClNob3VsZCBtb2RpZmllZCBiaW5k
+aW5ncyB0byBiZSBhY3RpdmUtbG93Lg0KVGhlbiBsZWF2ZSByZXNldCBsaW5lIGluYWN0aXZlIGhl
+cmUgYWZ0ZXIgcmVzZXQuDQpTaG91bGQgYmUgdXBkYXRlZCBpbiB2NC4NCg0KPiANCj4gPiArCX0N
+Cj4gPiArDQo+ID4gKwlpZiAoIWJvb3QgJiYgaW5pdF9zdGF0cykNCj4gPiArCQlpbGl0ZWtfaXJx
+X2VuYWJsZShpbGl0ZWtfZGF0YSk7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgaWxp
+dGVrX3Byb3RvY29sX2luaXQoc3RydWN0IGlsaXRla190c19kYXRhICppbGl0ZWtfZGF0YSkNCj4g
+PiArew0KPiA+ICsJaW50IHJldCA9IDA7DQo+ID4gKwl1OCBvdXRidWZbNjRdID0gezB9Ow0KPiA+
+ICsNCj4gPiArCWlmICghaWxpdGVrX2RhdGEpDQo+ID4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+IA0K
+PiBIb3cgY2FuIGl0IGJlIE5VTEw/DQoNCkl0IHNob3VsZCBub3QgYmUgTlVMTCBpbiBjdXJyZW50
+IHBhdGNoLg0KU2hvdWxkIGJlIHJlbW92ZWQgaXQgYW5kIGVsc2V3aGVyZSBiZWxvdyBpbiB2NC4N
+Cj4gDQo+ID4gKw0KPiA+ICsJaWxpdGVrX2RhdGEtPnB0bF9jYl9mdW5jID0gcHRsX2Z1bmNfbWFw
+X3Y2Ow0KPiA+ICsNCj4gPiArCXJldCA9IGFwaV9wcm90b2NvbF9zZXRfY21kKGlsaXRla19kYXRh
+LCBHRVRfUFRMX1ZFUiwgTlVMTCwgb3V0YnVmKTsNCj4gPiArCWlmIChyZXQgPCAwKQ0KPiA+ICsJ
+CXJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsJaWYgKGlsaXRla19kYXRhLT5wdGwudmVyX21ham9y
+ID09IDB4MyB8fA0KPiA+ICsJICAgIGlsaXRla19kYXRhLT5wdGwudmVyID09IEJMX1YxXzYgfHwN
+Cj4gPiArCSAgICBpbGl0ZWtfZGF0YS0+cHRsLnZlciA9PSBCTF9WMV83KSB7DQo+ID4gKwkJaWxp
+dGVrX2RhdGEtPnByb2Nlc3NfYW5kX3JlcG9ydCA9IE5VTEw7DQo+ID4gKwkJaWxpdGVrX2RhdGEt
+PnB0bF9jYl9mdW5jID0gTlVMTDsNCj4gPiArCQlpbGl0ZWtfZGF0YS0+cmVzZXRfdGltZSA9IDIw
+MDsNCj4gPiArCX0gZWxzZSB7DQo+ID4gKwkJaWxpdGVrX2RhdGEtPnByb2Nlc3NfYW5kX3JlcG9y
+dCA9IGlsaXRla19wcm9jZXNzX2FuZF9yZXBvcnRfdjY7DQo+ID4gKwkJaWxpdGVrX2RhdGEtPnB0
+bF9jYl9mdW5jID0gcHRsX2Z1bmNfbWFwX3Y2Ow0KPiA+ICsJCWlsaXRla19kYXRhLT5yZXNldF90
+aW1lID0gNjAwOw0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCXJldHVybiAwOw0KPiA+ICt9DQo+ID4g
+Kw0KPiA+ICtzdGF0aWMgaW50IGlsaXRla19yZWFkX3RwX2luZm8oc3RydWN0IGlsaXRla190c19k
+YXRhICppbGl0ZWtfZGF0YSwgYm9vbCBib290KQ0KPiA+ICt7DQo+ID4gKwl1OCBvdXRidWZbMjU2
+XSA9IHswfTsNCj4gPiArDQo+ID4gKwlpZiAoYXBpX3Byb3RvY29sX3NldF9jbWQoaWxpdGVrX2Rh
+dGEsIEdFVF9QVExfVkVSLCBOVUxMLCBvdXRidWYpIDwgMCkNCj4gPiArCQlyZXR1cm4gLUVGQVVM
+VDsNCj4gPiArCWlmIChhcGlfcHJvdG9jb2xfc2V0X2NtZChpbGl0ZWtfZGF0YSwgR0VUX01DVV9W
+RVIsIE5VTEwsIG91dGJ1ZikgPCAwKQ0KPiA+ICsJCXJldHVybiAtRUZBVUxUOw0KPiA+ICsJaWYg
+KGFwaV9wcm90b2NvbF9zZXRfY21kKGlsaXRla19kYXRhLCBHRVRfRldfVkVSLCBOVUxMLCBvdXRi
+dWYpIDwgMCkNCj4gPiArCQlyZXR1cm4gLUVGQVVMVDsNCj4gPiArCWlmIChib290ICYmIGFwaV9w
+cm90b2NvbF9zZXRfY21kKGlsaXRla19kYXRhLCBHRVRfU0NSTl9SRVMsIE5VTEwsDQo+ID4gKwkJ
+CQkJIG91dGJ1ZikgPCAwKQ0KPiA+ICsJCXJldHVybiAtRUZBVUxUOw0KPiA+ICsJaWYgKGFwaV9w
+cm90b2NvbF9zZXRfY21kKGlsaXRla19kYXRhLCBHRVRfVFBfUkVTLCBOVUxMLCBvdXRidWYpIDwg
+MCkNCj4gPiArCQlyZXR1cm4gLUVGQVVMVDsNCj4gPiArCWlmIChhcGlfcHJvdG9jb2xfc2V0X2Nt
+ZChpbGl0ZWtfZGF0YSwgR0VUX0lDX01PREUsIE5VTEwsIG91dGJ1ZikgPCAwKQ0KPiA+ICsJCXJl
+dHVybiAtRUZBVUxUOw0KPiANCj4gRUZBVUxUIGlzIHdlaXJkIGVycm9yIGNvZGUgdG8gYmUgdXNl
+ZCBoZXJlLCBtYXliZSBFSU8gb3IgRUlOVkFMPw0KDQpBZ3JlZWQ7IHdpbGwgcmVmYWN0b3IgaXQg
+YW5kIHJldHVybiBlcnJvciBjb2RlIGZyb20gYXBpXyogZnVuYy4gZGlyZWN0bHkuDQoNCj4gDQo+
+ID4gKw0KPiA+ICsJcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgaWxp
+dGVrX2lucHV0X2Rldl9pbml0KHN0cnVjdCBkZXZpY2UgKmRldiwNCj4gPiArCQkJCSBzdHJ1Y3Qg
+aWxpdGVrX3RzX2RhdGEgKmlsaXRla19kYXRhKQ0KPiA+ICt7DQo+ID4gKwlpbnQgcmV0ID0gMCwg
+aSA9IDA7DQo+ID4gKwlzdHJ1Y3QgaW5wdXRfZGV2ICppbnB1dCA9IE5VTEw7DQo+ID4gKw0KPiA+
+ICsJaWYgKCFkZXYgfHwgIWlsaXRla19kYXRhKQ0KPiA+ICsJCXJldHVybiAtRUlOVkFMOw0KPiAN
+Cj4gSG93IGNhbiBlaXRoZXIgdGhlc2UgMiBiZSBOVUxMPw0KDQpJdCBzaG91bGQgbm90IGJlIE5V
+TEwgaW4gY3VycmVudCBwYXRjaC4NClNob3VsZCBiZSByZW1vdmVkIGluIHY0Lg0KDQo+IA0KPiA+
+ICsNCj4gPiArCWlucHV0ICA9IGlucHV0X2FsbG9jYXRlX2RldmljZSgpOw0KPiA+ICsJaWYgKCFp
+bnB1dCkNCj4gPiArCQlyZXR1cm4gLUVOT01FTTsNCj4gPiArDQo+ID4gKwlpbnB1dC0+bmFtZSA9
+IElMSVRFS19UU19OQU1FOw0KPiA+ICsJaW5wdXQtPmlkLmJ1c3R5cGUgPSBCVVNfSTJDOw0KPiA+
+ICsNCj4gPiArCV9fc2V0X2JpdChJTlBVVF9QUk9QX0RJUkVDVCwgaW5wdXQtPnByb3BiaXQpOw0K
+PiA+ICsJaW5wdXQtPmV2Yml0WzBdID0gQklUX01BU0soRVZfS0VZKSB8IEJJVF9NQVNLKEVWX0FC
+Uyk7DQo+ID4gKwlpbnB1dC0+a2V5Yml0W0JJVF9XT1JEKEJUTl9UT1VDSCldID0gQklUX01BU0so
+QlROX1RPVUNIKTsNCj4gPiArDQo+ID4gKwlpbnB1dF9zZXRfYWJzX3BhcmFtcyhpbnB1dCwgQUJT
+X01UX1BPU0lUSU9OX1gsDQo+ID4gKwkJCSAgICAgaWxpdGVrX2RhdGEtPnNjcmVlbl9taW5feCwN
+Cj4gPiArCQkJICAgICBpbGl0ZWtfZGF0YS0+c2NyZWVuX21heF94LCAwLCAwKTsNCj4gPiArCWlu
+cHV0X3NldF9hYnNfcGFyYW1zKGlucHV0LCBBQlNfTVRfUE9TSVRJT05fWSwNCj4gPiArCQkJICAg
+ICBpbGl0ZWtfZGF0YS0+c2NyZWVuX21pbl95LA0KPiA+ICsJCQkgICAgIGlsaXRla19kYXRhLT5z
+Y3JlZW5fbWF4X3ksIDAsIDApOw0KPiA+ICsJaW5wdXRfc2V0X2Fic19wYXJhbXMoaW5wdXQsIEFC
+U19NVF9UT1VDSF9NQUpPUiwgMCwgMjU1LCAwLCAwKTsNCj4gPiArCWlucHV0X3NldF9hYnNfcGFy
+YW1zKGlucHV0LCBBQlNfTVRfV0lEVEhfTUFKT1IsIDAsIDI1NSwgMCwgMCk7DQo+IA0KPiBQbGVh
+c2Ugc3VwcG9ydCBjb21tb24gdG91Y2hzY3JlZW4gcHJvcGVydGllcyBieSB1c2luZw0KPiB0b3Vj
+aHNjcmVlbl9wYXJzZV9wcm9wZXJ0aWVzKCkgYW5kIHRoZW4gdG91Y2hzY3JlZW5fc2V0X210X3Bv
+cygpIGFuZC9vcg0KPiB0b3VjaHNjcmVlbl9yZXBvcnRfcG9zKCkgd2hlbiByZXBvcnRpbmcgY29u
+dGFjdHMuDQoNCkFncmVlZDsgc2hvdWxkIHVwZGF0ZSBkcml2ZXIgZmxvdyBhbmQgYmluZGluZ3Mg
+aW4gdjQuDQoNCj4gDQo+ID4gKw0KPiA+ICsJaW5wdXRfbXRfaW5pdF9zbG90cyhpbnB1dCwgaWxp
+dGVrX2RhdGEtPm1heF90cCwgSU5QVVRfTVRfRElSRUNUKTsNCj4gDQo+IFRoaXMgbmVlZHMgZXJy
+b3IgaGFuZGxpbmcuDQoNCkFncmVlZDsgd2lsbCB1cGRhdGUgaW4gdjQuDQoNCj4gDQo+ID4gKw0K
+PiA+ICsJZm9yIChpID0gMDsgaSA8IGlsaXRla19kYXRhLT5rZXljb3VudDsgaSsrKQ0KPiA+ICsJ
+CXNldF9iaXQoaWxpdGVrX2RhdGEtPmtleWluZm9baV0uaWQgJiBLRVlfTUFYLCBpbnB1dC0+a2V5
+Yml0KTsNCj4gDQo+IEFzIEkgbWVudGlvbmVkLCBzb2Z0IGtleXMgYXJlIGJldHRlciBoYW5kbGVk
+IGluIHVzZXJzcGFjZS4NCg0KQXMgcmVwbGllZCBhYm92ZSwgRlcgb2YgdG91Y2ggZGV2aWNlIGNv
+dWxkIHJlcG9ydCBrZXkgaWQgYW5kIHJlZ2lvbi4NCklzIGl0IG5vdCBmZWFzaWJsZSBmb3IgYSB0
+b3VjaHNjcmVlbiBkcml2ZXIgZG8ga2V5IGhhbmRsaW5nPw0KDQo+IA0KPiA+ICsNCj4gPiArCXJl
+dCA9IGlucHV0X3JlZ2lzdGVyX2RldmljZShpbnB1dCk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+ICsJ
+CWRldl9lcnIoZGV2LCAiZmFpbGVkIHRvIHJlZ2lzdGVyIGlucHV0IGRldmljZSwgZXJyOiVkXG4i
+LCByZXQpOw0KPiA+ICsNCj4gPiArCWlsaXRla19kYXRhLT5pbnB1dF9kZXYgPSBpbnB1dDsNCj4g
+PiArCXJldHVybiByZXQ7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpcnFyZXR1cm5fdCBp
+bGl0ZWtfaTJjX2lzcihpbnQgaXJxLCB2b2lkICpkZXZfaWQpDQo+ID4gK3sNCj4gPiArCXN0cnVj
+dCBpbGl0ZWtfdHNfZGF0YSAqaWxpdGVrX2RhdGEgPSBkZXZfaWQ7DQo+ID4gKwlpbnQgcmV0ID0g
+MDsNCj4gPiArDQo+ID4gKwlpZiAoIWlsaXRla19kYXRhLT5wcm9jZXNzX2FuZF9yZXBvcnQpIHsN
+Cj4gPiArCQlkZXZfZXJyKCZpbGl0ZWtfZGF0YS0+Y2xpZW50LT5kZXYsICJyZXBvcnQgdG91Y2gg
+Y2IgaXMgTlVMTFxuIik7DQo+IA0KPiBIb3cgY2FuIHRoaXMgaGFwcGVuPw0KDQpUaGlzIGRyaXZl
+ciBzaG91bGQgc3VwcG9ydCB0d28gZGlmZmVyZW50IHByb3RvY29sIGZvcm1hdHMuDQpPbmUgZm9y
+IDIzMVgvMjUxWCwgdGhlIG90aGVyIGZvciBMZWdvIDIxM1gvMjMxNi8yMzJYLzI1MlguDQpUaGlz
+IHBhdGNoIGN1cnJlbnRseSBzdXBwb3J0IExlZ28gc2VyaWVzLCBhc3NpZ25lZCBpbiBpbGl0ZWtf
+cHJvdG9jb2xfaW5pdCgpDQpUaGVuIGFzc2lnbiBudWxsIGZ1bmMuIHB0ciBmb3IgdGhlIG90aGVy
+IG9uZSBwcm90b2NvbCBmb3JtYXQuDQoNCj4gDQo+ID4gKwkJcmV0dXJuIElSUV9OT05FOw0KPiA+
+ICsJfQ0KPiA+ICsNCj4gPiArCWlsaXRla19pcnFfZGlzYWJsZShpbGl0ZWtfZGF0YSk7DQo+IA0K
+PiBZb3UgYXJlIGluIHRoZSBpbnRlcnJ1cHQgaGFuZGxlciwgd2h5IGRvIHlvdSBuZWVkIHRvIGRp
+c2FibGUgaW50ZXJydXB0cz8NCj4gQ3VycmVudCBvbmUgd2lsbCBub3QgYmUgYWNrbm93bGVkZ2Vk
+IHVudGlsIHlvdSByZXR1cm4gZnJvbSBJU1IuDQoNClRvIG1ha2Ugc3VyZSBJUlEgbnVtYmVyIGlz
+IGRpc2FibGVkIGR1cmluZyBJU1IgaGFuZGxpbmcgYW5kIGF2b2lkDQpJU1IgcmUtZW50cnksIGFu
+ZCB0aGUgSVJRIGlzIHJlcXVlc3RlZCBhcyBvbmUtc2hvdDsgdGhlcmUgc2hvdWxkIGJlDQpubyBu
+ZWVkIGZvciBpcnEgbnVtYmVyIGRpc2FibGUuDQoNCkFncmVlZDsgc2hvdWxkIHJlbW92ZSBpdCBh
+bmQgdXBkYXRlIGluIHY0Lg0KDQo+IA0KPiA+ICsJbXV0ZXhfbG9jaygmaWxpdGVrX2RhdGEtPmls
+aXRla19tdXRleCk7DQo+IA0KPiBXaGF0IGRvZXMgdGhpcyBtdXRleCBwcm90ZWN0Pw0KDQpNdXRl
+eCBwcm90ZWN0IEkyQyB3cml0ZSBjbWQgYW5kIHJlYWQgZGF0YSBpbiBjb25jdXJyZW50IHNpdHVh
+dGlvbi4NClN1Y2ggYXMgZ2V0dGluZyBYL1kgcG9zLiBkYXRhIGluIElSUSBoYW5kbGluZyBhbmQg
+cXVlcnlpbmcgRlcgaW5mby4NCkl0IG1heSByZXN1bHQgaW4gZG91YmxlIEkyQyB3cml0ZSBjbWRz
+LCB0aGVuIHJlYWQgdW5leHBlY3RlZCBkYXRhLg0KDQpIb3dldmVyLCBjdXJyZW50IHBhdGNoIHNo
+b3VsZCBub3QgZ2VuZXJhdGUgSTJDIGNvbmN1cnJlbnQgc2l0dWF0aW9uLg0KKGFscmVhZHkgcmVt
+b3ZlIHRoZSBxdWVyeWluZyBGVyB2ZXJzaW9tIGZyb20gSTJDIGNvbW0uKQ0KSSB0aGluayBpdCBj
+b3VsZCBiZSByZW1vdmVkLCBhbmQgcGF0Y2hlZCBpZiBuZWVkZWQgYWZ0ZXJ3YXJkLg0KV2lsbCB1
+cGRhdGUgaW4gdjQuDQoNCj4gDQo+ID4gKwlyZXQgPSBpbGl0ZWtfZGF0YS0+cHJvY2Vzc19hbmRf
+cmVwb3J0KGlsaXRla19kYXRhKTsNCj4gPiArCW11dGV4X3VubG9jaygmaWxpdGVrX2RhdGEtPmls
+aXRla19tdXRleCk7DQo+ID4gKwlpbGl0ZWtfaXJxX2VuYWJsZShpbGl0ZWtfZGF0YSk7DQo+ID4g
+Kw0KPiA+ICsJaWYgKHJldCA8IDApIHsNCj4gPiArCQlkZXZfZXJyKCZpbGl0ZWtfZGF0YS0+Y2xp
+ZW50LT5kZXYsICJwcm9jZXNzIGFuZCByZXBvcnQgcG9pbnQgZmFpbGVkLCBlcnI6JWRcbiIsDQo+
+ID4gKwkJCXJldCk7DQo+ID4gKwkJcmV0dXJuIElSUV9OT05FOw0KPiA+ICsJfQ0KPiA+ICsNCj4g
+PiArCXJldHVybiBJUlFfSEFORExFRDsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBp
+bGl0ZWtfcmVxdWVzdF9pcnEoc3RydWN0IGRldmljZSAqZGV2LA0KPiA+ICsJCQkgICAgICBzdHJ1
+Y3QgaWxpdGVrX3RzX2RhdGEgKmlsaXRla19kYXRhKQ0KPiA+ICt7DQo+ID4gKwlpbnQgcmV0ID0g
+MDsNCj4gPiArDQo+ID4gKwlzcGluX2xvY2tfaW5pdCgmaWxpdGVrX2RhdGEtPmlycV9sb2NrKTsN
+Cj4gPiArCWlsaXRla19kYXRhLT5pcnFfc3RhdHVzID0gdHJ1ZTsNCj4gPiArDQo+ID4gKwlyZXQg
+PSByZXF1ZXN0X3RocmVhZGVkX2lycShpbGl0ZWtfZGF0YS0+Y2xpZW50LT5pcnEsIE5VTEwsDQo+
+ID4gKwkJCQkgICBpbGl0ZWtfaTJjX2lzciwNCj4gPiArCQkJCSAgIElSUUZfVFJJR0dFUl9GQUxM
+SU5HIHwgSVJRRl9PTkVTSE9ULA0KPiANCj4gUGxlYXNlIHJlcGx5IG9uIHBsYXRmb3JtIChBQ1BJ
+LCBEVCwgZXRjKSB0byBzZXQgdXAgcHJvcGVyIHRyaWdnZXIgZm9yDQo+IHRoZSBpbnRlcnJ1cHQg
+bGluZS4gQWRkaXRpb25hbGx5LCB5b3Ugc2hvdWxkIHByZWZlciBoYXZpbmcgbGV2ZWwNCj4gaW50
+ZXJydXB0LCByYXRoZXIgdGhhbiBlZGdlLCBvciB5b3UgcmlzayBtaXNzaW5nIGludGVycnVwdHMu
+DQoNCkFncmVlZDsgd2lsbCB1cGRhdGUgaGVyZSBpbiB2NC4NCkFsc28sIGJpbmRpbmdzIHdpbGwg
+YmUgbW9kaWZpZWQgdG8gYWN0aXZlX2xldmVsX2xvdyBpbiB2NC4NCg0KPiA+ICsJCQkJICAgImls
+aXRla190b3VjaF9pcnEiLCBpbGl0ZWtfZGF0YSk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+ICsJCWRl
+dl9lcnIoZGV2LCAicmVxdWVzdCB0aHJlYWRlZCBpcnEgZmFpbGVkLCBlcnI6JWRcbiIsIHJldCk7
+DQo+IA0KPiBJIGFtIG5vdCBzdXJlIHdoYXQgaXMgdGhlIHZhbHVlIG9mIHRoaXMgd3JhcHBlci4N
+Cg0KSXQgcHV0IGlycS1yZWxhdGVkIG1hbmlwdWxhdGlvbiB0b2dldGhlciBmcm9tIHByb2JlIGZs
+b3cuDQpBbmQgYWdyZWVkOyBpdCdzIGxlc3MgbmVjZXNzYXJ5Lg0KV2lsbCByZW1vdmUgdGhpcyB3
+cmFwcGVyIGluIHY0Lg0KDQo+ID4gKw0KPiA+ICsJcmV0dXJuIHJldDsNCj4gPiArfQ0KPiA+ICsN
+Cj4gPiArc3RhdGljIHNzaXplX3QgZmlybXdhcmVfdmVyc2lvbl9zaG93KHN0cnVjdCBkZXZpY2Ug
+KmRldiwNCj4gPiArCQkJCSAgICAgc3RydWN0IGRldmljZV9hdHRyaWJ1dGUgKmF0dHIsIGNoYXIg
+KmJ1ZikNCj4gPiArew0KPiA+ICsJc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCA9IHRvX2kyY19j
+bGllbnQoZGV2KTsNCj4gPiArCXN0cnVjdCBpbGl0ZWtfdHNfZGF0YSAqaWxpdGVrX2RhdGEgPSBp
+MmNfZ2V0X2NsaWVudGRhdGEoY2xpZW50KTsNCj4gPiArCWludCByZXQgPSAwOw0KPiA+ICsJdTgg
+b3V0YnVmWzY0XSA9IHswfTsNCj4gPiArDQo+ID4gKwlpbGl0ZWtfaXJxX2Rpc2FibGUoaWxpdGVr
+X2RhdGEpOw0KPiA+ICsJbXV0ZXhfbG9jaygmaWxpdGVrX2RhdGEtPmlsaXRla19tdXRleCk7DQo+
+ID4gKwlyZXQgPSBhcGlfcHJvdG9jb2xfc2V0X2NtZChpbGl0ZWtfZGF0YSwgR0VUX0ZXX1ZFUiwg
+TlVMTCwgb3V0YnVmKTsNCj4gDQo+IERvIHlvdSBuZWVkIHRvIHF1ZXJ5IHRoaXMgYWxsIHRoZSB0
+aW1lPyBJcyBpdCBwb3NzaWJsZSB0byBjb2xsZWN0IHRoaXMNCj4gZGF0YSBhdCBib290IG9yIGFm
+dGVyIGZpcm13YXJlIGZsYXNoIGFuZCBzdG9yZSBmb3Igc3Vic2VxdWVudCB1c2U/DQoNCkFncmVl
+ZDsganVzdCByZXR1cm4gdGhlIHN0b3JlZCBGVyB2ZXJzaW9uIChxdWVyaWVkIGF0IGJvb3Qgb3Ig
+YWZ0ZXIgRlcgdXBkYXRlKS4NClRoZSBzYW1lIG1vZGlmaWNhdGlvbiBpbiBzaG93aW5nIHByb2R1
+Y3RfaWQgYmVsb3cuDQpXaWxsIHVwZGF0ZSBpbiB2NC4NCg0KW1F1ZXN0aW9uXQ0KSXMgaXQgYSBr
+aW5kIG9mIGNvbnNlbnN1cyB0aGF0IGRvbid0IGRvIEkyQyB0cmFuc2FjdGlvbiBmcm9tIHNob3cv
+cmVhZCBmdW5jdGlvbiB2aWEgImNhdCI/DQoNCj4gPiArCW11dGV4X3VubG9jaygmaWxpdGVrX2Rh
+dGEtPmlsaXRla19tdXRleCk7DQo+ID4gKwlpbGl0ZWtfaXJxX2VuYWJsZShpbGl0ZWtfZGF0YSk7
+DQo+ID4gKw0KPiA+ICsJaWYgKHJldCA8IDApIHsNCj4gPiArCQlkZXZfZXJyKGRldiwgImFwaSBz
+ZXQgY21kIGZhaWxlZCwgZXJyOiVkXG4iLCByZXQpOw0KPiA+ICsJCXJldHVybiByZXQ7DQo+ID4g
+Kwl9DQo+ID4gKw0KPiA+ICsJcmV0dXJuIHNjbnByaW50ZihidWYsIFBBR0VfU0laRSwNCj4gPiAr
+CQkJICJJTElURUsgRlcgdmVyOiAlZC4lZC4lZC4lZC4lZC4lZC4lZC4lZFxuIiwNCj4gPiArCQkJ
+IGlsaXRla19kYXRhLT5maXJtd2FyZV92ZXJbMF0sDQo+ID4gKwkJCSBpbGl0ZWtfZGF0YS0+Zmly
+bXdhcmVfdmVyWzFdLA0KPiA+ICsJCQkgaWxpdGVrX2RhdGEtPmZpcm13YXJlX3ZlclsyXSwNCj4g
+PiArCQkJIGlsaXRla19kYXRhLT5maXJtd2FyZV92ZXJbM10sDQo+ID4gKwkJCSBpbGl0ZWtfZGF0
+YS0+ZmlybXdhcmVfdmVyWzRdLA0KPiA+ICsJCQkgaWxpdGVrX2RhdGEtPmZpcm13YXJlX3Zlcls1
+XSwNCj4gPiArCQkJIGlsaXRla19kYXRhLT5maXJtd2FyZV92ZXJbNl0sDQo+ID4gKwkJCSBpbGl0
+ZWtfZGF0YS0+ZmlybXdhcmVfdmVyWzddKTsNCj4gPiArfQ0KPiA+ICtzdGF0aWMgREVWSUNFX0FU
+VFJfUk8oZmlybXdhcmVfdmVyc2lvbik7DQo+ID4gKw0KPiA+ICtzdGF0aWMgc3NpemVfdCBwcm9k
+dWN0X2lkX3Nob3coc3RydWN0IGRldmljZSAqZGV2LA0KPiA+ICsJCQkgICAgICAgc3RydWN0IGRl
+dmljZV9hdHRyaWJ1dGUgKmF0dHIsIGNoYXIgKmJ1ZikNCj4gPiArew0KPiA+ICsJc3RydWN0IGky
+Y19jbGllbnQgKmNsaWVudCA9IHRvX2kyY19jbGllbnQoZGV2KTsNCj4gPiArCXN0cnVjdCBpbGl0
+ZWtfdHNfZGF0YSAqaWxpdGVrX2RhdGEgPSBpMmNfZ2V0X2NsaWVudGRhdGEoY2xpZW50KTsNCj4g
+PiArCWludCByZXQgPSAwOw0KPiA+ICsJdTggb3V0YnVmWzY0XSA9IHswfTsNCj4gPiArDQo+ID4g
+KwlpbGl0ZWtfaXJxX2Rpc2FibGUoaWxpdGVrX2RhdGEpOw0KPiA+ICsJbXV0ZXhfbG9jaygmaWxp
+dGVrX2RhdGEtPmlsaXRla19tdXRleCk7DQo+ID4gKwlyZXQgPSBhcGlfcHJvdG9jb2xfc2V0X2Nt
+ZChpbGl0ZWtfZGF0YSwgR0VUX01DVV9WRVIsIE5VTEwsIG91dGJ1Zik7DQo+ID4gKwltdXRleF91
+bmxvY2soJmlsaXRla19kYXRhLT5pbGl0ZWtfbXV0ZXgpOw0KPiA+ICsJaWxpdGVrX2lycV9lbmFi
+bGUoaWxpdGVrX2RhdGEpOw0KPiA+ICsNCj4gPiArCWlmIChyZXQgPCAwKSB7DQo+ID4gKwkJZGV2
+X2VycihkZXYsICJhcGkgc2V0IGNtZCBmYWlsZWQsIGVycjolZFxuIiwgcmV0KTsNCj4gPiArCQly
+ZXR1cm4gcmV0Ow0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCXJldHVybiBzY25wcmludGYoYnVmLCBQ
+QUdFX1NJWkUsICJNQ1U6ICVzXG4iLCBpbGl0ZWtfZGF0YS0+cHJvZHVjdF9pZCk7DQo+ID4gK30N
+Cj4gPiArc3RhdGljIERFVklDRV9BVFRSX1JPKHByb2R1Y3RfaWQpOw0KPiA+ICsNCj4gPiArc3Rh
+dGljIHN0cnVjdCBhdHRyaWJ1dGUgKmlsaXRla19zeXNmc19hdHRyc1tdID0gew0KPiA+ICsJJmRl
+dl9hdHRyX2Zpcm13YXJlX3ZlcnNpb24uYXR0ciwNCj4gPiArCSZkZXZfYXR0cl9wcm9kdWN0X2lk
+LmF0dHIsDQo+ID4gKwlOVUxMDQo+ID4gK307DQo+ID4gKw0KPiA+ICtzdGF0aWMgc3RydWN0IGF0
+dHJpYnV0ZV9ncm91cCBpbGl0ZWtfYXR0cnNfZ3JvdXBbXSA9IHsNCj4gPiArCXsuYXR0cnMgPSBp
+bGl0ZWtfc3lzZnNfYXR0cnN9LA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArc3RhdGljIGludCBpbGl0
+ZWtfY3JlYXRlX3N5c2Zzbm9kZShzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ID4gK3sNCj4gPiArCWlu
+dCByZXQgPSAwOw0KPiA+ICsNCj4gPiArCXJldCA9IHN5c2ZzX2NyZWF0ZV9ncm91cCgmZGV2LT5r
+b2JqLCBpbGl0ZWtfYXR0cnNfZ3JvdXApOw0KPiA+ICsJaWYgKHJldCkNCj4gPiArCQlkZXZfZXJy
+KGRldiwgInN5c2ZzIGNyZWF0ZSBncm91cCBmYWlsZWQsIGVycjolZFxuIiwgcmV0KTsNCj4gPiAr
+DQo+ID4gKwlyZXR1cm4gcmV0Ow0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IGlsaXRl
+a190c19pMmNfcHJvYmUoc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCwNCj4gPiArCQkJICAgICAg
+IGNvbnN0IHN0cnVjdCBpMmNfZGV2aWNlX2lkICppZCkNCj4gPiArew0KPiA+ICsJc3RydWN0IGls
+aXRla190c19kYXRhICppbGl0ZWtfZGF0YSA9IE5VTEw7DQo+ID4gKwlzdHJ1Y3QgZGV2aWNlICpk
+ZXYgPSAmY2xpZW50LT5kZXY7DQo+ID4gKwlpbnQgcmV0ID0gMDsNCj4gPiArDQo+ID4gKwlpbGl0
+ZWtfZGF0YSA9IGt6YWxsb2Moc2l6ZW9mKCppbGl0ZWtfZGF0YSksIEdGUF9LRVJORUwpOw0KPiA+
+ICsJaWYgKCFpbGl0ZWtfZGF0YSkNCj4gPiArCQlyZXR1cm4gLUVOT01FTTsNCj4gDQo+IFBsZWFz
+ZSB1c2UgZGV2bSBBUElzIHRvIG1ha2Ugc3VyZSByZXNvdXJjZXMgYXJlIGZyZWVkIGF1dG9tYXRp
+Y2FsbHkNCj4gYWZ0ZXIgZXJyb3JzLiBJdCB3aWxsIGFsc28gYWxsb3cgeW91IHRvIGdldCByaWQg
+b2YNCj4gaWxpdGVrX3RzX2kyY19yZW1vdmUoKS4NCg0KQWdyZWVkOyB3aWxsIHVwZGF0ZSBwcm9i
+ZSBhbmQgcmVtb3ZlIGZ1bmN0aW9uIGluIHY0Lg0KDQo+ID4gKw0KPiA+ICsJaWxpdGVrX2RhdGEt
+PmNsaWVudCA9IGNsaWVudDsNCj4gPiArCWkyY19zZXRfY2xpZW50ZGF0YShjbGllbnQsIGlsaXRl
+a19kYXRhKTsNCj4gPiArDQo+ID4gKwltdXRleF9pbml0KCZpbGl0ZWtfZGF0YS0+aWxpdGVrX211
+dGV4KTsNCj4gPiArDQo+ID4gKwlyZXQgPSBpbGl0ZWtfcmVxdWVzdF9ncGlvKGRldiwgaWxpdGVr
+X2RhdGEpOw0KPiA+ICsJaWYgKHJldCA8IDApIHsNCj4gPiArCQlkZXZfZXJyKGRldiwgInJlcXVl
+c3QgZ3BpbyBmYWlsZWQsIGVycjolZCIsIHJldCk7DQo+ID4gKwkJZ290byBlcnJfcHV0X2dwaW9k
+Ow0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCWlsaXRla19yZXNldChpbGl0ZWtfZGF0YSwgMTAwMCwg
+dHJ1ZSk7DQo+ID4gKwlyZXQgPSBpbGl0ZWtfcHJvdG9jb2xfaW5pdChpbGl0ZWtfZGF0YSk7DQo+
+ID4gKwlpZiAocmV0IDwgMCkgew0KPiA+ICsJCWRldl9lcnIoZGV2LCAicHJvdG9jb2wgaW5pdCBm
+YWlsZWQsIGVycjolZCIsIHJldCk7DQo+ID4gKwkJZ290byBlcnJfcHV0X2dwaW9kOw0KPiA+ICsJ
+fQ0KPiA+ICsNCj4gPiArCXJldCA9IGlsaXRla19yZWFkX3RwX2luZm8oaWxpdGVrX2RhdGEsIHRy
+dWUpOw0KPiA+ICsJaWYgKHJldCA8IDApIHsNCj4gPiArCQlkZXZfZXJyKGRldiwgInJlYWQgdHAg
+aW5mbyBmYWlsZWQsIGVycjolZCIsIHJldCk7DQo+ID4gKwkJZ290byBlcnJfcHV0X2dwaW9kOw0K
+PiA+ICsJfQ0KPiA+ICsNCj4gPiArCXJldCA9IGlsaXRla19pbnB1dF9kZXZfaW5pdChkZXYsIGls
+aXRla19kYXRhKTsNCj4gPiArCWlmIChyZXQgPCAwKSB7DQo+ID4gKwkJZGV2X2VycihkZXYsICJp
+bnB1dCBkZXYgaW5pdCBmYWlsZWQsIGVycjolZCIsIHJldCk7DQo+ID4gKwkJZ290byBlcnJfZnJl
+ZV9pbnB1dF9kZXY7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJcmV0ID0gaWxpdGVrX3JlcXVlc3Rf
+aXJxKGRldiwgaWxpdGVrX2RhdGEpOw0KPiA+ICsJaWYgKHJldCA8IDApIHsNCj4gPiArCQlkZXZf
+ZXJyKGRldiwgInJlcXVlc3QgaXJxIGZhaWxlZCwgZXJyOiVkIiwgcmV0KTsNCj4gPiArCQlnb3Rv
+IGVycl9mcmVlX2lucHV0X2RldjsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwlyZXQgPSBpbGl0ZWtf
+Y3JlYXRlX3N5c2Zzbm9kZShkZXYpOw0KPiA+ICsJaWYgKHJldCA8IDApIHsNCj4gPiArCQlkZXZf
+ZXJyKGRldiwgImNyZWF0ZSBzeXNmcyBub2RlIGZhaWxlZCwgZXJyOiVkIiwgcmV0KTsNCj4gPiAr
+CQlnb3RvIGVycl9mcmVlX2lycTsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwlyZXR1cm4gMDsNCj4g
+PiArDQo+ID4gK2Vycl9mcmVlX2lycToNCj4gPiArCWZyZWVfaXJxKGlsaXRla19kYXRhLT5jbGll
+bnQtPmlycSwgaWxpdGVrX2RhdGEpOw0KPiA+ICsNCj4gPiArCWlucHV0X3VucmVnaXN0ZXJfZGV2
+aWNlKGlsaXRla19kYXRhLT5pbnB1dF9kZXYpOw0KPiA+ICtlcnJfZnJlZV9pbnB1dF9kZXY6DQo+
+ID4gKwlpZiAoaWxpdGVrX2RhdGEtPmlucHV0X2RldikNCj4gPiArCQlpbnB1dF9mcmVlX2Rldmlj
+ZShpbGl0ZWtfZGF0YS0+aW5wdXRfZGV2KTsNCj4gPiArZXJyX3B1dF9ncGlvZDoNCj4gPiArCWlm
+ICghSVNfRVJSKGlsaXRla19kYXRhLT5yZXNldF9ncGlvKSkNCj4gPiArCQlncGlvZF9wdXQoaWxp
+dGVrX2RhdGEtPnJlc2V0X2dwaW8pOw0KPiA+ICsJa2ZyZWUoaWxpdGVrX2RhdGEpOw0KPiA+ICsJ
+cmV0dXJuIHJldDsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBpbGl0ZWtfdHNfaTJj
+X3JlbW92ZShzdHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50KQ0KPiA+ICt7DQo+ID4gKwlzdHJ1Y3Qg
+ZGV2aWNlICpkZXYgPSAmY2xpZW50LT5kZXY7DQo+ID4gKwlzdHJ1Y3QgaWxpdGVrX3RzX2RhdGEg
+KmlsaXRla19kYXRhID0gaTJjX2dldF9jbGllbnRkYXRhKGNsaWVudCk7DQo+ID4gKw0KPiA+ICsJ
+c3lzZnNfcmVtb3ZlX2dyb3VwKCZkZXYtPmtvYmosIGlsaXRla19hdHRyc19ncm91cCk7DQo+ID4g
+Kw0KPiA+ICsJZnJlZV9pcnEoaWxpdGVrX2RhdGEtPmNsaWVudC0+aXJxLCBpbGl0ZWtfZGF0YSk7
+DQo+ID4gKw0KPiA+ICsJaW5wdXRfdW5yZWdpc3Rlcl9kZXZpY2UoaWxpdGVrX2RhdGEtPmlucHV0
+X2Rldik7DQo+ID4gKw0KPiA+ICsJaWYgKCFJU19FUlIoaWxpdGVrX2RhdGEtPnJlc2V0X2dwaW8p
+KQ0KPiA+ICsJCWdwaW9kX3B1dChpbGl0ZWtfZGF0YS0+cmVzZXRfZ3Bpbyk7DQo+ID4gKw0KPiA+
+ICsJa2ZyZWUoaWxpdGVrX2RhdGEpOw0KPiA+ICsNCj4gPiArCXJldHVybiAwOw0KPiA+ICt9DQo+
+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGkyY19kZXZpY2VfaWQgaWxpdGVrX3RzX2ky
+Y19pZFtdID0gew0KPiA+ICsJe0lMSVRFS19UU19OQU1FLCAwfSwNCj4gPiArCXsgLyogbm90IG9t
+aXR0ZWQgKi8gfSwNCj4gDQo+IFdoYXQgZG9lcyAibm90IG9taXR0ZWQiIG1lYW4gaW4gdGhpcyBj
+b250ZXh0Pw0KDQpJdCByZW1pbmRzIGRldmVsb3BlcnMgdGhhdCB0aGUgZW1wdHkgYnJhY2tldHMg
+c2hvdWxkIG5vdCBiZSByZW1vdmVkLg0KV2lsbCByZW1vdmUgdGhlIGNvbW1lbnQgaW4gdjQuDQoN
+Cj4gPiArfTsNCj4gPiArTU9EVUxFX0RFVklDRV9UQUJMRShpMmMsIGlsaXRla190c19pMmNfaWQp
+Ow0KPiA+ICsNCj4gPiArI2lmZGVmIENPTkZJR19BQ1BJDQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1
+Y3QgYWNwaV9kZXZpY2VfaWQgaWxpdGVrdHNfYWNwaV9pZFtdID0gew0KPiA+ICsJeyAiSUxUSzAw
+MDEiLCAwIH0sDQo+ID4gKwl7IC8qIG5vdCBvbWl0dGVkICovIH0sDQo+ID4gK307DQo+ID4gK01P
+RFVMRV9ERVZJQ0VfVEFCTEUoYWNwaSwgaWxpdGVrdHNfYWNwaV9pZCk7DQo+ID4gKyNlbmRpZg0K
+PiA+ICsNCj4gPiArI2lmZGVmIENPTkZJR19PRg0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG9m
+X2RldmljZV9pZCBpbGl0ZWtfdHNfaTJjX21hdGNoW10gPSB7DQo+ID4gKwl7LmNvbXBhdGlibGUg
+PSAiaWxpdGVrLGlsaTI1MjAiLH0sDQo+ID4gKwl7LmNvbXBhdGlibGUgPSAiaWxpdGVrLGlsaTI1
+MTAiLH0sDQo+ID4gKwl7IC8qIG5vdCBvbWl0dGVkICovIH0sDQo+ID4gK307DQo+ID4gK01PRFVM
+RV9ERVZJQ0VfVEFCTEUob2YsIGlsaXRla190c19pMmNfbWF0Y2gpOw0KPiA+ICsjZW5kaWYNCj4g
+PiArDQo+ID4gK3N0YXRpYyBzdHJ1Y3QgaTJjX2RyaXZlciBpbGl0ZWtfdHNfaTJjX2RyaXZlciA9
+IHsNCj4gPiArCS5kcml2ZXIgPSB7DQo+ID4gKwkJLm5hbWUgPSBJTElURUtfVFNfTkFNRSwNCj4g
+PiArCQkub3duZXIgPSBUSElTX01PRFVMRSwNCj4gDQo+IE5vIG5lZWQgdG8gc2V0IG93bmVyLg0K
+DQpBZ3JlZWQ7IHdpbGwgdXBkYXRlLg0KDQo+ID4gKwkJLm9mX21hdGNoX3RhYmxlID0gb2ZfbWF0
+Y2hfcHRyKGlsaXRla190c19pMmNfbWF0Y2gpLA0KPiA+ICsJCS5hY3BpX21hdGNoX3RhYmxlID0g
+QUNQSV9QVFIoaWxpdGVrdHNfYWNwaV9pZCksDQo+IA0KPiBZb3UgbmVlZCBwb3dlciBtYW5hZ2Vt
+ZW50IChzdXNwZW5kL3Jlc3VtZSkgaGFuZGxpbmcgdG9vLg0KPiANCg0KQWdyZWVkOyB3aWxsIHVw
+ZGF0ZS4NCg0KPiA+ICsJfSwNCj4gPiArCS5wcm9iZSA9IGlsaXRla190c19pMmNfcHJvYmUsDQo+
+ID4gKwkucmVtb3ZlID0gaWxpdGVrX3RzX2kyY19yZW1vdmUsDQo+ID4gKwkuaWRfdGFibGUgPSBp
+bGl0ZWtfdHNfaTJjX2lkLA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArbW9kdWxlX2kyY19kcml2ZXIo
+aWxpdGVrX3RzX2kyY19kcml2ZXIpOw0KPiA+ICsNCj4gPiArTU9EVUxFX0FVVEhPUigiSUxJVEVL
+Iik7DQo+ID4gK01PRFVMRV9ERVNDUklQVElPTigiSUxJVEVLIEkyQyBUb3VjaHNjcmVlbiBEcml2
+ZXIiKTsNCj4gPiArTU9EVUxFX0xJQ0VOU0UoIkdQTCIpOw0KPiA+IC0tDQo+ID4gMi4yNS4xDQo+
+ID4gDQo+ID4gDQo+IA0KPiBUaGFua3MuDQo+IA0KPiAtLSANCj4gRG1pdHJ5DQoNCk1hbnkgdGhh
+bmtzLA0KDQotLQ0KSm9lIEh1bmcNCg==
 
-Ah, I see. I didn't realize that.
-
-> So, I guess that my first proposal was good (use the DTB device and
-> allocate the other
-> ones).
->
-> But this experience allows me to find a bug in the error check ^^.
-> Thanks a lot.
-
-Ok, then I'm satisfied with this I2C business.
-
-> > > >
-> > > > > > +
-> > > > > > +static int lt8912_free_i2c(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       unsigned int i;
-> > > > > > +
-> > > > > > +       for (i =3D 1; i < I2C_MAX_IDX; i++)
-> > > > > > +               i2c_unregister_device(lt->i2c_client[i]);
-> > > > > > +
-> > > > > > +       return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_hard_power_on(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       gpiod_set_value_cansleep(lt->gp_reset, 0);
-> > > > > > +       msleep(20);
-> > > > > > +
-> > > > > > +       return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static void lt8912_hard_power_off(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       gpiod_set_value_cansleep(lt->gp_reset, 1);
-> > > > > > +       msleep(20);
-> > > > > > +       lt->is_power_on =3D false;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_video_setup(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       u32 hactive, h_total, hpw, hfp, hbp;
-> > > > > > +       u32 vactive, v_total, vpw, vfp, vbp;
-> > > > > > +       u8 settle =3D 0x08;
-> > > > > > +       int ret;
-> > > > > > +
-> > > > > > +       if (!lt)
-> > > > > > +               return -EINVAL;
-> > > > > > +
-> > > > > > +       hactive =3D lt->mode.hactive;
-> > > > > > +       hfp =3D lt->mode.hfront_porch;
-> > > > > > +       hpw =3D lt->mode.hsync_len;
-> > > > > > +       hbp =3D lt->mode.hback_porch;
-> > > > > > +       h_total =3D hactive + hfp + hpw + hbp;
-> > > > > > +
-> > > > > > +       vactive =3D lt->mode.vactive;
-> > > > > > +       vfp =3D lt->mode.vfront_porch;
-> > > > > > +       vpw =3D lt->mode.vsync_len;
-> > > > > > +       vbp =3D lt->mode.vback_porch;
-> > > > > > +       v_total =3D vactive + vfp + vpw + vbp;
-> > > > > > +
-> > > > > > +       if (vactive <=3D 600)
-> > > > > > +               settle =3D 0x04;
-> > > > > > +       else if (vactive =3D=3D 1080)
-> > > > > > +               settle =3D 0x0a;
-> > > > > > +
-> > > > > > +       ret =3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x10, 0x0=
-1);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x11, se=
-ttle);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x18, hp=
-w);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x19, vp=
-w);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x1c, ha=
-ctive & 0xff);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x1d, ha=
-ctive >> 8);
-> > > > > > +
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x2f, 0x=
-0c);
-> > > > > > +
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x34, h_=
-total & 0xff);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x35, h_=
-total >> 8);
-> > > > > > +
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x36, v_=
-total & 0xff);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x37, v_=
-total >> 8);
-> > > > > > +
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x38, vb=
-p & 0xff);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x39, vb=
-p >> 8);
-> > > > > > +
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3a, vf=
-p & 0xff);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3b, vf=
-p >> 8);
-> > > > > > +
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3c, hb=
-p & 0xff);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3d, hb=
-p >> 8);
-> > > > > > +
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3e, hf=
-p & 0xff);
-> > > > > > +       ret |=3D regmap_write(lt->regmap[I2C_CEC_DSI], 0x3f, hf=
-p >> 8);
-> > > > > > +
-> > > > > > +       return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_soft_power_on(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       if (!lt->is_power_on) {
-> > > > > > +               u32 lanes =3D lt->data_lanes;
-> > > > > > +
-> > > > > > +               lt8912_write_init_config(lt);
-> > > > > > +               regmap_write(lt->regmap[I2C_CEC_DSI], 0x13, lan=
-es & 3);
-> > > > > > +
-> > > > > > +               lt8912_write_mipi_basic_config(lt);
-> > > > > > +
-> > > > > > +               lt->is_power_on =3D true;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_video_on(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       int ret;
-> > > > > > +
-> > > > > > +       ret =3D lt8912_video_setup(lt);
-> > > > > > +       if (ret < 0)
-> > > > > > +               goto end;
-> > > > > > +
-> > > > > > +       ret =3D lt8912_write_dds_config(lt);
-> > > > > > +       if (ret < 0)
-> > > > > > +               goto end;
-> > > > > > +
-> > > > > > +       ret =3D lt8912_write_rxlogicres_config(lt);
-> > > > > > +       if (ret < 0)
-> > > > > > +               goto end;
-> > > > > > +
-> > > > > > +       ret =3D lt8912_write_lvds_config(lt);
-> > > > > > +       if (ret < 0)
-> > > > > > +               goto end;
-> > > > > > +
-> > > > > > +end:
-> > > > > > +       return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static enum drm_connector_status
-> > > > > > +lt8912_connector_detect(struct drm_connector *connector, bool =
-force)
-> > > > > > +{
-> > > > > > +       struct lt8912 *lt =3D connector_to_lt8912(connector);
-> > > > > > +
-> > > > > > +       return drm_bridge_detect(lt->hdmi_port);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct drm_connector_funcs lt8912_connector_funcs=
- =3D {
-> > > > > > +       .detect =3D lt8912_connector_detect,
-> > > > > > +       .fill_modes =3D drm_helper_probe_single_connector_modes=
-,
-> > > > > > +       .destroy =3D drm_connector_cleanup,
-> > > > > > +       .reset =3D drm_atomic_helper_connector_reset,
-> > > > > > +       .atomic_duplicate_state =3D drm_atomic_helper_connector=
-_duplicate_state,
-> > > > > > +       .atomic_destroy_state =3D drm_atomic_helper_connector_d=
-estroy_state,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static enum drm_mode_status
-> > > > > > +lt8912_connector_mode_valid(struct drm_connector *connector,
-> > > > > > +                           struct drm_display_mode *mode)
-> > > > > > +{
-> > > > > > +       if (mode->clock > 150000)
-> > > > > > +               return MODE_CLOCK_HIGH;
-> > > > > > +
-> > > > > > +       if (mode->hdisplay > 1920)
-> > > > > > +               return MODE_BAD_HVALUE;
-> > > > > > +
-> > > > > > +       if (mode->vdisplay > 1080)
-> > > > > > +               return MODE_BAD_VVALUE;
-> > > > > > +
-> > > > > > +       return MODE_OK;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_connector_get_modes(struct drm_connector *co=
-nnector)
-> > > > > > +{
-> > > > > > +       struct edid *edid;
-> > > > > > +       int ret, num =3D 0;
-> > > > > > +       struct lt8912 *lt =3D connector_to_lt8912(connector);
-> > > > > > +       u32 bus_format =3D MEDIA_BUS_FMT_RGB888_1X24;
-> > > > > > +
-> > > > > > +       edid =3D drm_bridge_get_edid(lt->hdmi_port, connector);
-> > > > > > +       if (edid) {
-> > > > > > +               drm_connector_update_edid_property(connector, e=
-did);
-> > > > > > +               num =3D drm_add_edid_modes(connector, edid);
-> > > > > > +       } else
-> > > > > > +               return ret;
-> > > > > > +
-> > > > > > +       ret =3D drm_display_info_set_bus_formats(&connector->di=
-splay_info,
-> > > > > > +                                              &bus_format, 1);
-> > > > > > +       if (ret)
-> > > > > > +               num =3D ret;
-> > > > > > +
-> > > > > > +       kfree(edid);
-> > > > > > +       return num;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct drm_connector_helper_funcs lt8912_connecto=
-r_helper_funcs =3D {
-> > > > > > +       .get_modes =3D lt8912_connector_get_modes,
-> > > > > > +       .mode_valid =3D lt8912_connector_mode_valid,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static void lt8912_bridge_mode_set(struct drm_bridge *bridge,
-> > > > > > +                                  const struct drm_display_mod=
-e *mode,
-> > > > > > +                                  const struct drm_display_mod=
-e *adj)
-> > > > > > +{
-> > > > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > > > +
-> > > > > > +       drm_display_mode_to_videomode(adj, &lt->mode);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static void lt8912_bridge_enable(struct drm_bridge *bridge)
-> > > > > > +{
-> > > > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > > > +
-> > > > > > +       lt8912_video_on(lt);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_attach_dsi(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       struct device *dev =3D lt->dev;
-> > > > > > +       struct mipi_dsi_host *host;
-> > > > > > +       struct mipi_dsi_device *dsi;
-> > > > > > +       int ret =3D -1;
-> > > > > > +       const struct mipi_dsi_device_info info =3D { .type =3D =
-"lt8912",
-> > > > > > +                                                  .channel =3D=
- 0,
-> > > > > > +                                                  .node =3D NU=
-LL,
-> > > > > > +                                                };
-> > > > > > +
-> > > > > > +       host =3D of_find_mipi_dsi_host_by_node(lt->host_node);
-> > > > > > +       if (!host) {
-> > > > > > +               dev_err(dev, "failed to find dsi host\n");
-> > > > > > +               return -EPROBE_DEFER;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       dsi =3D mipi_dsi_device_register_full(host, &info);
-> > > > > > +       if (IS_ERR(dsi)) {
-> > > > > > +               ret =3D PTR_ERR(dsi);
-> > > > > > +               dev_err(dev, "failed to create dsi device (%d)\=
-n", ret);
-> > > > > > +               goto err_dsi_device;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       lt->dsi =3D dsi;
-> > > > > > +
-> > > > > > +       dsi->lanes =3D lt->data_lanes;
-> > > > > > +       dsi->format =3D MIPI_DSI_FMT_RGB888;
-> > > > > > +
-> > > > > > +       dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO |
-> > > > > > +                         MIPI_DSI_MODE_VIDEO_BURST |
-> > > > > > +                         MIPI_DSI_MODE_LPM |
-> > > > > > +                         MIPI_DSI_MODE_EOT_PACKET;
-> > > > > > +
-> > > > > > +       ret =3D mipi_dsi_attach(dsi);
-> > > > > > +       if (ret < 0) {
-> > > > > > +               dev_err(dev, "failed to attach dsi to host\n");
-> > > > > > +               goto err_dsi_attach;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       return 0;
-> > > > > > +
-> > > > > > +err_dsi_attach:
-> > > > > > +       mipi_dsi_device_unregister(dsi);
-> > > > > > +err_dsi_device:
-> > > > > > +       return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static void lt8912_detach_dsi(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       mipi_dsi_detach(lt->dsi);
-> > > > > > +       mipi_dsi_device_unregister(lt->dsi);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static void lt8912_bridge_connector_hpd_event(void *arg,
-> > > > > > +                                             enum drm_connecto=
-r_status status)
-> > > > > > +{
-> > > > > > +       struct lt8912 *lt =3D arg;
-> > > > > > +
-> > > > > > +       if (lt->hdmi_port->dev)
-> > > > > > +               drm_helper_hpd_irq_event(lt->hdmi_port->dev);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_bridge_connector_init(struct drm_bridge *bri=
-dge)
-> > > > > > +{
-> > > > > > +       int ret;
-> > > > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > > > +       struct drm_connector *connector =3D &lt->connector;
-> > > > > > +
-> > > > > > +       if (lt->hdmi_port->ops & DRM_BRIDGE_OP_DETECT) {
-> > > > > > +               connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> > > > > > +       } else {
-> > > > > > +               connector->polled =3D DRM_CONNECTOR_POLL_CONNEC=
-T |
-> > > > > > +                                   DRM_CONNECTOR_POLL_DISCONNE=
-CT;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       if (lt->hdmi_port->ops & DRM_BRIDGE_OP_HPD) {
-> > > > > > +               drm_bridge_hpd_enable(lt->hdmi_port,
-> > > > > > +                                     lt8912_bridge_connector_h=
-pd_event,
-> > > > > > +                                     lt);
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       ret =3D drm_connector_init(bridge->dev, connector,
-> > > > > > +                                &lt8912_connector_funcs,
-> > > > > > +                                lt->hdmi_port->type);
-> > > > > > +       if (ret)
-> > > > > > +               goto exit;
-> > > > > > +
-> > > > > > +       drm_connector_helper_add(connector, &lt8912_connector_h=
-elper_funcs);
-> > > > > > +
-> > > > > > +       connector->dpms =3D DRM_MODE_DPMS_OFF;
-> > > > > > +       drm_connector_attach_encoder(connector, bridge->encoder=
-);
-> > > > > > +exit:
-> > > > > > +       return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_bridge_attach(struct drm_bridge *bridge,
-> > > > > > +                               enum drm_bridge_attach_flags fl=
-ags)
-> > > > > > +{
-> > > > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > > > +       int ret;
-> > > > > > +
-> > > > > > +       if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
-> > > > > > +               ret =3D lt8912_bridge_connector_init(bridge);
-> > > > > > +               if (ret) {
-> > > > > > +                       dev_err(lt->dev, "Failed to init bridge=
- ! (%d)\n", ret);
-> > > > > > +                       return ret;
-> > > > > > +               }
-> > > > > > +       }
-> > > > > > +
-> > > > > > +
-> > > > > > +       ret =3D lt8912_hard_power_on(lt);
-> > > > > > +       if (ret)
-> > > > > > +               return ret;
-> > > > > > +
-> > > > > > +       ret =3D lt8912_soft_power_on(lt);
-> > > > > > +       if (ret)
-> > > > > > +               goto error;
-> > > > > > +
-> > > > > > +       ret =3D lt8912_attach_dsi(lt);
-> > > > > > +       if (ret)
-> > > > > > +               goto error;
-> > > > > > +
-> > > > > > +       lt->is_attached =3D true;
-> > > > > > +
-> > > > > > +       return 0;
-> > > > > > +
-> > > > > > +error:
-> > > > > > +       lt8912_hard_power_off(lt);
-> > > > > > +       return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static void lt8912_bridge_detach(struct drm_bridge *bridge)
-> > > > > > +{
-> > > > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > > > +
-> > > > > > +       if (lt->is_attached) {
-> > > > > > +               if (lt->hdmi_port->ops & DRM_BRIDGE_OP_HPD)
-> > > > > > +                       drm_bridge_hpd_disable(lt->hdmi_port);
-> > > > > > +               lt8912_detach_dsi(lt);
-> > > > > > +               lt8912_hard_power_off(lt);
-> > > > > > +       }
-> > > > > > +}
-> > > > > > +
-> > > > > > +static enum drm_connector_status
-> > > > > > +lt8912_bridge_detect(struct drm_bridge *bridge)
-> > > > > > +{
-> > > > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > > > +
-> > > > > > +       return drm_bridge_detect(lt->hdmi_port);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static struct edid *lt8912_bridge_get_edid(struct drm_bridge *=
-bridge,
-> > > > > > +                                              struct drm_conne=
-ctor *connector)
-> > > > > > +{
-> > > > > > +       struct lt8912 *lt =3D bridge_to_lt8912(bridge);
-> > > > > > +
-> > > > > > +       return drm_bridge_get_edid(lt->hdmi_port, connector);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct drm_bridge_funcs lt8912_bridge_funcs =3D {
-> > > > > > +       .attach =3D lt8912_bridge_attach,
-> > > > > > +       .detach =3D lt8912_bridge_detach,
-> > > > > > +       .mode_set =3D lt8912_bridge_mode_set,
-> > > > > > +       .enable =3D lt8912_bridge_enable,
-> > > > > > +       .detect =3D lt8912_bridge_detect,
-> > > > > > +       .get_edid =3D lt8912_bridge_get_edid,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int lt8912_parse_dt(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       struct gpio_desc *gp_reset;
-> > > > > > +       struct device *dev =3D lt->dev;
-> > > > > > +       int ret =3D 0;
-> > > > > > +       struct device_node *port_node;
-> > > > > > +       struct device_node *endpoint;
-> > > > > > +
-> > > > > > +       gp_reset =3D devm_gpiod_get_optional(dev, "reset", GPIO=
-D_OUT_HIGH);
-> > > > > > +       if (IS_ERR(gp_reset)) {
-> > > > > > +               ret =3D PTR_ERR(gp_reset);
-> > > > > > +               if (ret !=3D -EPROBE_DEFER)
-> > > > > > +                       dev_err(dev, "Failed to get reset gpio:=
- %d\n", ret);
-> > > > > > +               return ret;
-> > > > > > +       }
-> > > > > > +       lt->gp_reset =3D gp_reset;
-> > > > > > +
-> > > > > > +
-> > > > > > +       endpoint =3D of_graph_get_endpoint_by_regs(dev->of_node=
-, 0, -1);
-> > > > > > +       if (IS_ERR(endpoint)) {
-> > > > > > +               ret =3D PTR_ERR(endpoint);
-> > > > > > +               goto end;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       lt->data_lanes =3D of_property_count_u32_elems(endpoint=
-, "data-lanes");
-> > > > > > +       of_node_put(endpoint);
-> > > > > > +
-> > > > > > +       lt->host_node =3D of_graph_get_remote_node(dev->of_node=
-, 0, -1);
-> > > > > > +       if (!lt->host_node) {
-> > > > > > +               dev_err(lt->dev, "%s: Failed to get remote port=
-\n", __func__);
-> > > > > > +               ret =3D -ENODEV;
-> > > > > > +               goto end;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       port_node =3D of_graph_get_remote_node(dev->of_node, 1,=
- -1);
-> > > > > > +       if (!port_node) {
-> > > > > > +               dev_err(lt->dev, "%s: Failed to get connector p=
-ort\n", __func__);
-> > > > > > +               ret =3D -ENODEV;
-> > > > > > +               goto err_free_host_node;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       lt->hdmi_port =3D of_drm_find_bridge(port_node);
-> > > > > > +       if (IS_ERR(lt->hdmi_port)) {
-> > > > > > +               dev_err(lt->dev, "%s: Failed to get hdmi port\n=
-", __func__);
-> > > > > > +               ret =3D PTR_ERR(lt->hdmi_port);
-> > > > > > +               of_node_put(lt->host_node);
-> > > > > > +               goto end;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       if (!of_device_is_compatible(port_node, "hdmi-connector=
-")) {
-> > > > > > +               dev_err(lt->dev, "%s: Failed to get hdmi port\n=
-", __func__);
-> > > > > > +               ret =3D -EINVAL;
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       of_node_put(port_node);
-> > > > > > +
-> > > > > > +end:
-> > > > > > +       return ret;
-> > > > > > +
-> > > > > > +err_free_host_node:
-> > > > > > +       of_node_put(lt->host_node);
-> > > > > > +       return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_put_dt(struct lt8912 *lt)
-> > > > > > +{
-> > > > > > +       of_node_put(lt->host_node);
-> > > > > > +       return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_probe(struct i2c_client *client,
-> > > > > > +        const struct i2c_device_id *id)
-> > > > > > +{
-> > > > > > +       static struct lt8912 *lt;
-> > > > > > +       int ret =3D 0;
-> > > > > > +       struct device *dev =3D &client->dev;
-> > > > > > +
-> > > > > > +       lt =3D devm_kzalloc(dev, sizeof(struct lt8912), GFP_KER=
-NEL);
-> > > > > > +       if (!lt)
-> > > > > > +               return -ENOMEM;
-> > > > > > +
-> > > > > > +       lt->dev =3D dev;
-> > > > > > +       lt->i2c_client[0] =3D client;
-> > > > > > +
-> > > > > > +       ret =3D lt8912_parse_dt(lt);
-> > > > > > +       if (ret)
-> > > > > > +               goto err_dt_parse;
-> > > > > > +
-> > > > > > +       ret =3D lt8912_init_i2c(lt);
-> > > > > > +       if (ret)
-> > > > > > +               goto err_i2c;
-> > > > > > +
-> > > > > > +       i2c_set_clientdata(client, lt);
-> > > > > > +
-> > > > > > +       lt->bridge.funcs =3D &lt8912_bridge_funcs;
-> > > > > > +       lt->bridge.of_node =3D dev->of_node;
-> > > > > > +       lt->bridge.ops =3D lt->hdmi_port->ops;
-> > > > >
-> > > > > This is not entirely kosher, bridge.ops should mirror what is
-> > > > > implemented by bridge.funcs.
-> > > > >
-> > > > > I would expect DRM_BRIDGE_OP_HPD and possibly DRM_BRIDGE_OP_DETEC=
-T to
-> > > > > be enabled, since the hardware brief mentions supporting hot plug
-> > > > > detection.
-> > > > > drm_bridge_funcs.hpd_enable & drm_bridge_funcs.hpd_disable should=
- both
-> > > > > also be implemented. If the hardware supports HPD, the driver is
-> > > > > required to support it as well.
-> > > > >
-> > > > > lt8912_product_brief.pdf: https://allg.one/0R71
-> > > > >
-> > > > > Have you seen the lt8912 driver in the Toradex tree? It mentions =
-HPD
-> > > > > and the relevant registers, but doesn't implement support for it
-> > > > >
-> > > > > http://git.toradex.com/cgit/linux-toradex.git/tree/drivers/gpu/dr=
-m/bridge/lt8912.c?h=3Dcolibri&id=3D331ac1cf6e09d90e7d9ab39445bc8812ff33f178=
-#n248
-> > > > >
-> > > >
-> > > > Yes I read the product brief and I know that this chip can do HPD. =
-The
-> > > > problem is that it is not working (so far) on my board.
-> > > > Second point, my driver uses an "hdmi-connector" that does HPD and =
-DDC
-> > > > (for EDID=C3=A0 for me (to avoid duplicating some code).
-> > > > It's why I rely on the bridge (hdmi-connector) ops for my own ops.
-> > >
-> > > So I think there are a few issues with what we've got now
-> > >
-> > > 1) lt->bridge.ops =3D lt->hdmi_port->ops does not guarantee that the
-> > > functionality we're advertising in .ops is what we have implemented i=
-n
-> > > .funcs
-> > >
-> > > 2) The documentation is pretty clear about bridge drivers being
-> > > required to implement support for all connector related operations
-> > > that are supported by the hardware.[1]
-> > >
-> > >
-> > > [1] https://dri.freedesktop.org/docs/drm/gpu/drm-kms-helpers.html#bri=
-dges
-> > >
-> >
-> > OK. I think I can do something like
-> >
-> > "lt->bridge.ops =3D lt->hdmi_port->ops & (DRM_BRIDGE_OP_EDID |
-> > DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_HPD);"
-> >
-> > With this, we can assume that all advertised fun are available.
-> > What are you thinking about this solution?
-
-The display drivers are responsible for sorting out how the bridge
-drivers are used. Therefore the bridge.ops defined in the bridge
-driver doesn't have to take into account the limitations of the
-connector. This means that 'lt->hdmi_port->ops' shouldn't be a part of
-the bridge.ops definition.
-
-> >
-> > > >
-> > > > > > +
-> > > > > > +       drm_bridge_add(&lt->bridge);
-> > > > > > +
-> > > > > > +       return 0;
-> > > > > > +
-> > > > > > +err_i2c:
-> > > > > > +       lt8912_put_dt(lt);
-> > > > > > +err_dt_parse:
-> > > > > > +       return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int lt8912_remove(struct i2c_client *client)
-> > > > > > +{
-> > > > > > +       struct lt8912 *lt =3D i2c_get_clientdata(client);
-> > > > > > +
-> > > > > > +       lt8912_bridge_detach(&lt->bridge);
-> > > > > > +       drm_bridge_remove(&lt->bridge);
-> > > > > > +       lt8912_free_i2c(lt);
-> > > > > > +       lt8912_put_dt(lt);
-> > > > > > +
-> > > > > > +       return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct of_device_id lt8912_dt_match[] =3D {
-> > > > > > +       {.compatible =3D "lontium,lt8912"},
-> > > > > > +       {}
-> > > > > > +};
-> > > > > > +MODULE_DEVICE_TABLE(of, lt8912_dt_match);
-> > > > > > +
-> > > > > > +static const struct i2c_device_id lt8912_id[] =3D {
-> > > > > > +       {"lt8912", 0},
-> > > > > > +       {},
-> > > > > > +};
-> > > > > > +MODULE_DEVICE_TABLE(i2c, lt8912_id);
-> > > > > > +
-> > > > > > +static struct i2c_driver lt8912_i2c_driver =3D {
-> > > > > > +       .driver =3D {
-> > > > > > +               .name =3D "lt8912",
-> > > > > > +               .of_match_table =3D lt8912_dt_match,
-> > > > > > +               .owner =3D THIS_MODULE,
-> > > > > > +       },
-> > > > > > +       .probe =3D lt8912_probe,
-> > > > > > +       .remove =3D lt8912_remove,
-> > > > > > +       .id_table =3D lt8912_id,
-> > > > > > +};
-> > > > > > +module_i2c_driver(lt8912_i2c_driver);
-> > > > > > +
-> > > > > > +MODULE_AUTHOR("Adrien Grassein <adrien.grassein@gmail.com>");
-> > > > > > +MODULE_DESCRIPTION("lt8912 drm driver");
-> > > > > > +MODULE_LICENSE("GPL v2");
-> > > > > > --
-> > > > > > 2.25.1
-> > > > > >
-> > > >
-> > > > Thanks,
-> > > > Adrien
-> >
-> >
-> > Thanks,
->
->
-> Best regards,
-> Adrien
