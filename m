@@ -2,174 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F10E5322ED7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 17:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E99E322EE2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 17:38:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231742AbhBWQfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 11:35:14 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:17018 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S233389AbhBWQfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Feb 2021 11:35:13 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11NGRP62029750;
-        Tue, 23 Feb 2021 17:34:15 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=qiJao0/ysEkLSzLZfmMgPEk3xL+/xnEzNXWUrVhuTVU=;
- b=ToHT2D+u0wDc4hioDucSyBWmV0zXH74Oh+UAjfRElR7m8WnM+Z3luTIglZ4USsw/qwwC
- vhHgjcJCoQEmvFjcAaD/bsCR5eGqa4iUgr9TVvyymD3Vy3KBkxUJJZZy0AB398ZIGgxk
- 1YLHBX6yCYHkP3Lhv05P/5ugdAYZH6oi3aP/3Iaw3A83hU2D1kp5mHJwYKj/lYeuX3+s
- qhq+jJrC/BNs29vExKQOPDFFDzGi4VJWY4/6xTTyxg8ZCjcBLMl3V8uHBa0z9RAVwbWI
- 87tPweZwHXNJJ2rM6/73Y/qovVRVzwoHuI0bFOWLmdFtlHgAYOJuvbWyYhR6HDvNNXnE SA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 36tree6a2n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 23 Feb 2021 17:34:15 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 67FA010002A;
-        Tue, 23 Feb 2021 17:34:13 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 41BC62252A5;
-        Tue, 23 Feb 2021 17:34:13 +0100 (CET)
-Received: from lmecxl0572.lme.st.com (10.75.127.47) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 23 Feb
- 2021 17:34:12 +0100
-Subject: Re: [PATCH v2 02/14] clk: stm32mp1: merge 'ck_hse_rtc' and 'ck_rtc'
- into one clock
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Etienne Carriere <etienne.carriere@st.com>,
-        "Maxime Coquelin" <mcoquelin.stm32@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
+        id S233575AbhBWQh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 11:37:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233570AbhBWQhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 11:37:25 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DB79C061574;
+        Tue, 23 Feb 2021 08:36:44 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id kr16so2181879pjb.2;
+        Tue, 23 Feb 2021 08:36:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=jCm2d3L5ztm5gNWKp8iMLVnKNDCN56Zh/hTZRK0Phyc=;
+        b=l2nVT8bm3BGfG8Ch7gFLdDuL9NxQKaHyXV2x9Et5MwOSmcpiCW7bGRdkmbbfEP41u5
+         oI7Z6alDO9dABx/qtmVe/OwTuYJawOszEXeMUQSUBYIbZLL3sPCeoo8Li12QHZKhve+8
+         /vZUkbcD3KTLQoVHEFeS0YQIp0bl/+dN44A0mv68dts/q/Ct+xueRrAmxO7tm98AB1Wh
+         R4p59h1ElTaqdC2y1kTU50NToiYxOvMyAMPT3DMSfUdI6vgiDsybj1fhxmfuUna7xg/Q
+         xc+K+ir4ufho8nRkSpcmbL9bhgQBoBVeDn3XfizOyfpMa7xD7us6KM66foVN6RsDMimu
+         pK1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jCm2d3L5ztm5gNWKp8iMLVnKNDCN56Zh/hTZRK0Phyc=;
+        b=FU4UZJCL9xSWCxzMhOEQeFCqb0KslxhxchJRFieQcbhn14ABs7kAFj3xkAM10DWn0x
+         a20warbDbpNz5TITFIwk39h4QhILba8SJjdQFjYK79/feQrUtM7ttPBTDAdxqOBgJv6L
+         1WziUyb1C95Ob2s1c05/b6zpKyPjA++Zd8cwddHfLIVcCId1KxmOYHy2k6/mAxBWSEen
+         RUW3jPevkc0/myPwM3947Oj1zKnI9LZthhoHFNGQ4qSCiO0+PbmjcZynHBg/ICly+Qua
+         JyXHtBkZ7N6PLIW1HPFjoQOkHvR1ikjphpy3r/55PHj3UudzFkmYX7Kk98sd+gBVBncX
+         ARUA==
+X-Gm-Message-State: AOAM533RL+I7iUyShgALTLavxzcl/cbRu5yzvWVhNOu6A9JY3bXHWvkO
+        cEItmgnfoEDOIZ00BTzvrXx7hRPaJfA=
+X-Google-Smtp-Source: ABdhPJzoisW/SI8uGhoOap1b4A1t7Rqs8Z0p7ao0J30ZnnzN8py2Zu4XLLOhuUOXMuMLo4ocWc+jrw==
+X-Received: by 2002:a17:90a:df12:: with SMTP id gp18mr27390877pjb.25.1614098203460;
+        Tue, 23 Feb 2021 08:36:43 -0800 (PST)
+Received: from [10.230.29.30] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id x184sm15689761pfx.2.2021.02.23.08.36.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Feb 2021 08:36:42 -0800 (PST)
+Subject: Re: [PATCH 1/2] dt-bindings: rng: bcm2835: document reset support
+To:     =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>, <marex@denx.de>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20210126090120.19900-1-gabriel.fernandez@foss.st.com>
- <20210126090120.19900-3-gabriel.fernandez@foss.st.com>
- <161285764074.418021.15522379930579131077@swboyd.mtv.corp.google.com>
- <5cc12945-0347-820c-1125-30ab4a947a00@foss.st.com>
- <161369805767.1254594.5233096495913117772@swboyd.mtv.corp.google.com>
-From:   "gabriel.fernandez@foss.st.com" <gabriel.fernandez@foss.st.com>
-Message-ID: <b66530be-2b01-0306-ad56-af00e8e1d0a5@foss.st.com>
-Date:   Tue, 23 Feb 2021 17:34:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@protonmail.com>,
+        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210222194510.14004-1-noltari@gmail.com>
+ <20210223160131.29053-1-noltari@gmail.com>
+ <20210223160131.29053-2-noltari@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <1b854f38-9322-71ee-5745-ee650ae92c9b@gmail.com>
+Date:   Tue, 23 Feb 2021 08:36:33 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <161369805767.1254594.5233096495913117772@swboyd.mtv.corp.google.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210223160131.29053-2-noltari@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-02-23_08:2021-02-23,2021-02-23 signatures=0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2/19/21 2:27 AM, Stephen Boyd wrote:
-> Quoting gabriel.fernandez@foss.st.com (2021-02-12 00:08:40)
->> On 2/9/21 9:00 AM, Stephen Boyd wrote:
->>> Quoting gabriel.fernandez@foss.st.com (2021-01-26 01:01:08)
->>>> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->>>>
->>>> 'ck_rtc' has multiple clocks as input (ck_hsi, ck_lsi, and ck_hse).
->>>> A divider is available only on the specific rtc input for ck_hse.
->>>> This Merge will facilitate to have a more coherent clock tree
->>>> in no trusted / trusted world.
->>>>
->>>> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->>>> ---
->>>>    drivers/clk/clk-stm32mp1.c | 49 +++++++++++++++++++++++++++++++++-----
->>>>    1 file changed, 43 insertions(+), 6 deletions(-)
->>>>
->>>> diff --git a/drivers/clk/clk-stm32mp1.c b/drivers/clk/clk-stm32mp1.c
->>>> index 35d5aee8f9b0..0e1d4427a8df 100644
->>>> --- a/drivers/clk/clk-stm32mp1.c
->>>> +++ b/drivers/clk/clk-stm32mp1.c
->>>> @@ -245,7 +245,7 @@ static const char * const dsi_src[] = {
->>>>    };
->>>>    
->>>>    static const char * const rtc_src[] = {
->>>> -       "off", "ck_lse", "ck_lsi", "ck_hse_rtc"
->>>> +       "off", "ck_lse", "ck_lsi", "ck_hse"
->>>>    };
->>>>    
->>>>    static const char * const mco1_src[] = {
->>>> @@ -1031,6 +1031,42 @@ static struct clk_hw *clk_register_cktim(struct device *dev, const char *name,
->>>>           return hw;
->>>>    }
->>>>    
->>>> +/* The divider of RTC clock concerns only ck_hse clock */
->>>> +#define HSE_RTC 3
->>>> +
->>>> +static unsigned long clk_divider_rtc_recalc_rate(struct clk_hw *hw,
->>>> +                                                unsigned long parent_rate)
->>>> +{
->>>> +       if (clk_hw_get_parent(hw) == clk_hw_get_parent_by_index(hw, HSE_RTC))
->>>> +               return clk_divider_ops.recalc_rate(hw, parent_rate);
->>>> +
->>>> +       return parent_rate;
->>>> +}
->>>> +
->>>> +static long clk_divider_rtc_round_rate(struct clk_hw *hw, unsigned long rate,
->>>> +                                      unsigned long *prate)
->>>> +{
->>>> +       if (clk_hw_get_parent(hw) == clk_hw_get_parent_by_index(hw, HSE_RTC))
->>> This clk op can be called at basically any time. Maybe this should use
->>> the determine rate op and then look to see what the parent is that comes
->>> in via the rate request structure? Or is the intention to keep this
->>> pinned to one particular parent? Looking at this right now it doesn't
->>> really make much sense why the current parent state should play into
->>> what rate the clk can round to, unless there is some more clk flags
->>> going on that constrain the ability to change this clk's parent.
->> Yes the intention is to keep this pinned for one particular parent.
->>
->> This divider is only applied on the 4th input of the MUX of the RTC and
->>
->> doesn't affect the HSE frequency for all the system.
->>
->>
->> Oscillators
->>    -----
->> | lse |----------------+----------------> ck_lse
->>    -----                 |
->>    -----                 |
->> | lsi |------------+--------------------> ck_lsi
->>    -----             |   |
->>                      |   |
->>    -----             |   |
->> | hse |----+-------|---|----------------> ck_hse
->>    -----     |       |   |
->>              |       |   |         |\ mux
->>              |       |   |  OFF -->| \
->>              |       |   |         |  \     gate
->>              |       |   --------->|  |     ---
->>              |       |             |  |--->|   |--> ck_rtc
->>              |       ------------->|  |     ---
->>              |    -----------      |  |
->>               ----| % 1 to 64 |--->| /
->>                    -----------     |/
->>                      divider
->>
->> I manage the RTC with a clock composite with a gate a mux and a specific
->> rate ops for hse input.
->>
->> That why i need to the parent state.
->>
-> So would using determine_rate op instead of round_rate op help here? That
-> will provide the current parent rate and hw pointer in the rate request
-> structure.
 
-yes u understand what you mean, i will send you a v3.
+On 2/23/2021 8:01 AM, Álvaro Fernández Rojas wrote:
+> Some devices may need to perform a reset before using the RNG, such as the
+> BCM6368.
+> 
+> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
 
-Many Thanks.
-
+Since the reset is unique to the 6368, you may want to make the property
+mandatory for the 6368 compatible string and optional otherwise.
+-- 
+Florian
