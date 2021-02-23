@@ -2,72 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6D23231B0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 20:58:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 538F33231B8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 21:02:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233997AbhBWT5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 14:57:30 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39404 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232812AbhBWT53 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Feb 2021 14:57:29 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2EFCF64DA1;
-        Tue, 23 Feb 2021 19:56:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614110208;
-        bh=jnaowvblzkFVedEmqXENoibtvZ/prZM4tJokMQaiz6k=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Ii9MufWXpX1DGlG/gkJMP4QvFFDQqcCzF6wRiCumPtuF13xA5zhngBxm4q2btulEV
-         ap0RUseG5jZG2cEv7B9Z81pnN8ifKCzgaABUFZOBuHF2qcdu2Yns+sZ78O8j8EZb4d
-         XjNOEL8eqw1pBjjQzO5o0DkiJG2orFedhlol+flLZDNNYhTRW3k9cQ4AOajwd0ra22
-         tATLL0K5vL8/w95RAiYY7vFxh7LtFofNy/uUnoaQm5+q8NpC6xRH6dKSUeoq38Gk/U
-         itFCJEmPyP1jV/e0Yg9tq8JxzO5+yvciOvqe0sygGdoonxmHkdDrO1BHJGJ7LgeR3A
-         zyuDASSgxPTcQ==
-Received: by mail-ot1-f51.google.com with SMTP id s6so16861401otk.4;
-        Tue, 23 Feb 2021 11:56:48 -0800 (PST)
-X-Gm-Message-State: AOAM5325BFx0Lzm5QnMajGdEba6eKX6NcsQUlGMjidie6NEddAX7KTu5
-        In3+9tfdPrtlIbPtJrOGgbf31tOMStyhCdFG7p0=
-X-Google-Smtp-Source: ABdhPJwLGnNsdpR0pNQXd8bGAoyvv4sECVmhfJu7doeBj9GJ655fYbpzHUgRmVn6VFTETi9lGa6N5Fs+HnSD/QUdPd4=
-X-Received: by 2002:a9d:3403:: with SMTP id v3mr21502180otb.305.1614110207527;
- Tue, 23 Feb 2021 11:56:47 -0800 (PST)
+        id S232173AbhBWUB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 15:01:59 -0500
+Received: from mail-wm1-f54.google.com ([209.85.128.54]:36811 "EHLO
+        mail-wm1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231719AbhBWUB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 15:01:57 -0500
+Received: by mail-wm1-f54.google.com with SMTP id k66so1176925wmf.1;
+        Tue, 23 Feb 2021 12:01:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=re9JuVE3j71DSjFtA55yc3sgj05t4h1URbbxhbt/bbE=;
+        b=kESVbfDOPLH8SOXAdPEvOyg8VACB+iKlRjf5aWgpulMA5A0PJXVGjCjiwPzBWVpAOl
+         TmdkTI3IprxCXPnZXmEgH+lQfkZMV44G88r5RmjX3Q9oJBzF629s+iGcTaAQ3wbZPrk/
+         iGM/XOQnbwOR4ahA59VvFDDwZygAcB3BfIUV1JuWwoNheVD0F3YRyUwHA3bsGhp5GUqF
+         nSU6uRI728OpDaAvaKqKmAmi20wr/iq75SwCOQMUy5zbINHe77qAlaKMpVP/lsO+1nwU
+         dXZlJErKY6hw91Uh7VMQ5/WcuEI1jLmQDoy8Vou/lAYN1110Pnw+jgDdlcCx0r4ntYGQ
+         75Rg==
+X-Gm-Message-State: AOAM532I+wyG/kA5AIIGho34e81H3JbWD0q2tyjguydmVh3RRB1TOAMG
+        xJ84v0+3nSNL7EwFuHYJ7fk=
+X-Google-Smtp-Source: ABdhPJxOgWxMSxnjjkz7SXbj50EvcRPZUt+XweL2uy5T0cXO2R6m5nTXeOUH+mbkGZoIghAj7OdLzw==
+X-Received: by 2002:a7b:c5c7:: with SMTP id n7mr364847wmk.63.1614110475669;
+        Tue, 23 Feb 2021 12:01:15 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id d23sm3742077wmd.11.2021.02.23.12.01.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Feb 2021 12:01:14 -0800 (PST)
+Date:   Tue, 23 Feb 2021 21:01:13 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Markus Reichl <m.reichl@fivetechno.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?B?7LWc7LCs7Jqw?= <cw00.choi@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "ARM: dts: exynos: Remove 'opp-shared' from
+ Exynos4412 bus OPP-tables"
+Message-ID: <20210223200113.3irrzt2kfnuk3l24@kozik-lap>
+References: <CGME20210222095419eucas1p2448e782d7df380425ab9bab5db75008d@eucas1p2.samsung.com>
+ <20210222095405.3109-1-m.reichl@fivetechno.de>
+ <1ed8fbd7-4aa6-f053-6627-0922420069ab@samsung.com>
 MIME-Version: 1.0
-References: <20210211052206.2955988-1-daniel@0x0f.com> <CAFr9PXkvJN2AwTFTXLoTFj988LD+53eW4Y28nJ2M+7YygBJ58g@mail.gmail.com>
-In-Reply-To: <CAFr9PXkvJN2AwTFTXLoTFj988LD+53eW4Y28nJ2M+7YygBJ58g@mail.gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 23 Feb 2021 20:56:31 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1Wgx=aq1bO+jfedBVh_690ZDq_gXoM_H3s9fZ+g5H8_g@mail.gmail.com>
-Message-ID: <CAK8P3a1Wgx=aq1bO+jfedBVh_690ZDq_gXoM_H3s9fZ+g5H8_g@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] ARM: mstar: Basic MPLL support
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Olof Johansson <olof@lixom.net>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Willy Tarreau <w@1wt.eu>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1ed8fbd7-4aa6-f053-6627-0922420069ab@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 23, 2021 at 2:44 AM Daniel Palmer <daniel@0x0f.com> wrote:
->
-> On Thu, 11 Feb 2021 at 14:22, Daniel Palmer <daniel@0x0f.com> wrote:
-> > Daniel Palmer (7):
-> >   dt-bindings: clk: mstar msc313 mpll binding header
-> >   dt-bindings: clk: mstar msc313 mpll binding description
-> >   clk: fixed: add devm helper for clk_hw_register_fixed_factor()
-> >   clk: mstar: MStar/SigmaStar MPLL driver
-> >   ARM: mstar: Select MSTAR_MSC313_MPLL
-> >   ARM: mstar: Add the external clocks to the base dsti
-> >   ARM: mstar: Add mpll to base dtsi
->
-> The first four patches have now been merged.
-> I forgot to send these to the soc patchwork so I think the last 3
-> didn't show up on your radar..
-> What do I need to do to get the last 3 merged?
+On Tue, Feb 23, 2021 at 10:24:41AM +0100, Marek Szyprowski wrote:
+> Hi Markus,
+> 
+> On 22.02.2021 10:54, Markus Reichl wrote:
+> > This reverts commit a23beead41a18c3be3ca409cb52f35bc02e601b9.
+> >
+> > I'm running an Odroid-X2 as headless 24/7 server.
+> > With plain stable 5.10.1 I had 54 up days without problems.
+> > With opp-shared removed on kernels before and now on 5.11
+> > my system freezes after some days on disk activity to eMMC
+> > (rsync, apt upgrade).
+> >
+> > The spontaneous hangs are not easy to reproduce but testing this
+> > for several months now I am quite confident that there is something
+> > wrong with this patch.
+> >
+> > Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+> 
+> Thanks for the report.
+> 
+> IMHO a straight revert is a bad idea. I would prefer to keep current opp 
+> definitions and disable the affected devfreq devices (probably right bus 
+> would be enough) or try to identify which transitions are responsible 
+> for that issue. I know that it would take some time to identify them, 
+> but that would be the best solution. Reverting leads to incorrect 
+> hardware description, what in turn confuses the driver and framework, 
+> what in turn hides a real problem.
 
-Let's merge them for the next merge window, please send them after
--rc1 is out.
+I agree with this approach. If devfreq is unusable on that platform,
+let's try disabling the exynos-bus nodes. It could be enough to help.
+The opp-shared does not look like proper fix for this problem, but
+rather a incorrect solution which achieves the same result - disabling
+frequency/voltage scaling on some buses.
 
-        Arnd
+> 
+> Another problem related to devfreq on Exynos4412 has been introduced 
+> recently by the commit 86ad9a24f21e ("PM / devfreq: Add required OPPs 
+> support to passive governor"). You can see lots of the messages like 
+> this one:
+> 
+> devfreq soc:bus-acp: failed to update devfreq using passive governor
+> 
+> I didn't have time to check what's wrong there, but I consider devfreq 
+> on Exynos a little bit broken, so another solution would be just to 
+> disable it in the exynos_defconfig.
+
+Yes, I saw it as well. However defconfig is only defconfig, so customers
+still would be affected and still might report bugs for it. Maybe better
+to disable all exynos-bus nodes?
+
+Best regards,
+Krzysztof
