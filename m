@@ -2,117 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C723D323016
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 18:59:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01B72323048
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 19:09:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233788AbhBWR5J convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 23 Feb 2021 12:57:09 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:38035 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233777AbhBWR46 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 12:56:58 -0500
-Received: from xps13 (lfbn-tou-1-972-113.w86-210.abo.wanadoo.fr [86.210.203.113])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 66CD2240006;
-        Tue, 23 Feb 2021 17:56:12 +0000 (UTC)
-Date:   Tue, 23 Feb 2021 18:56:10 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        boris.brezillon@collabora.com
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add a property to declare secure
- regions in Qcom NANDc
-Message-ID: <20210223185610.7f495406@xps13>
-In-Reply-To: <20210223174546.GA27945@work>
-References: <20210222120259.94465-1-manivannan.sadhasivam@linaro.org>
-        <20210222120259.94465-3-manivannan.sadhasivam@linaro.org>
-        <20210223174922.052f9776@xps13>
-        <20210223174546.GA27945@work>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S233813AbhBWSJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 13:09:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48240 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233005AbhBWSJZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 13:09:25 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD456C061574;
+        Tue, 23 Feb 2021 10:08:44 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id n4so23552057wrx.1;
+        Tue, 23 Feb 2021 10:08:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/iwA6k2udcIWazgsD7KMZFuIhReErgsHT2KV6vMPXjo=;
+        b=V1G0PHrhZ4UmnDBFdTXtlbCpNVJgqmsJS04GHQ91cYa7ZpBI6c8ozUaBWWpFovFLyW
+         jDt2W05JNdvV7a1DncElvDc7f9Kq2/FBkKk7Wdtfsa+6xJVSFYKQKoqVZVMAkC2RznWU
+         DZTbIhWi2jC1spqe+uonetd1mRHsrcPiA0mx951QUzXyvBxktXQydoguCpcc7EK2/gEH
+         Pbxri8Hgy0DsMjrlO65CYjGHBpwKaIsNAdM3MI47qoI8zwAKU502ZVfj2IoVvxJ5CJvC
+         hbm0gBlhqvyDvkdHxSLyBQDUIJgIoIaUxGQ9pqZZ0K/nrbeFCGYtAlONMrNwJOYn9Vv9
+         Xcog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/iwA6k2udcIWazgsD7KMZFuIhReErgsHT2KV6vMPXjo=;
+        b=csaQgBtp9XE6UWFAwnNymFDYjkxnhBqY5cXmWFzBARdvLqcoRPaKQCkKTyUyH3P1cj
+         50B5jooCxlC6drL+36UtXKMx+yaRjudye/3NMy5oebmP3Sr5RALBiV0IHOsrzOxfz7Ou
+         uLA4qi6FW0hNikqGGWXuGOBrDnqoMKWKLrmhUcA9Nix9Tn7uFdWnfgAuaUP+FUKp2OQ1
+         LsCXzCqnBjpZBYZco/WSGsXFYTgwu1d0UVZ4azfiumDSyfD7X24xdO4o/8uNVqxnwmv1
+         Q0TB8tr20gTYRrSasodkfAcFMU8SVxjvJ5Wcy7NQP1qlvDv622Q2VgTKU+60Z2n6Cp54
+         ZrDw==
+X-Gm-Message-State: AOAM533lgG4Dyz2Z1j5ONVHALuApCG1sPrJxcX1w4EnjhJmYv2E1/9H4
+        2EdfIAEAmwVxQfd1iEX627BWYhiFAA5tprft
+X-Google-Smtp-Source: ABdhPJxHhTl0o+4wyil5am89fRmV/YALN1F94lTErQk4gOAVwT/8YfUTMZw63LLPnarNlbJaPI0xWA==
+X-Received: by 2002:adf:dcd2:: with SMTP id x18mr3538693wrm.361.1614103723608;
+        Tue, 23 Feb 2021 10:08:43 -0800 (PST)
+Received: from skynet.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
+        by smtp.gmail.com with ESMTPSA id v18sm31101709wrf.75.2021.02.23.10.08.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Feb 2021 10:08:42 -0800 (PST)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org
+Subject: [PATCH 0/2] irqchip: add support for BCM6345 interrupt controller
+Date:   Tue, 23 Feb 2021 19:08:38 +0100
+Message-Id: <20210223180840.28771-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manivannan,
+This interrupt controller is present on bcm63xx SoCs in order to generate
+interrupts based on GPIO status changes.
 
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote on Tue,
-23 Feb 2021 23:15:46 +0530:
+Álvaro Fernández Rojas (2):
+  dt-bindings: interrupt-controller: document BCM6345 external interrupt
+    controller
+  irqchip: add support for BCM6345 interrupt controller
 
-> Hi Miquel,
-> 
-> On Tue, Feb 23, 2021 at 05:49:22PM +0100, Miquel Raynal wrote:
-> > Hi Manivannan,
-> > 
-> > Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote on Mon,
-> > 22 Feb 2021 17:32:58 +0530:
-> >   
-> > > On a typical end product, a vendor may choose to secure some regions in
-> > > the NAND memory which are supposed to stay intact between FW upgrades.
-> > > The access to those regions will be blocked by a secure element like
-> > > Trustzone. So the normal world software like Linux kernel should not
-> > > touch these regions (including reading).
-> > > 
-> > > So let's add a property for declaring such secure regions so that the
-> > > driver can skip touching them.
-> > > 
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/mtd/qcom,nandc.yaml | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > > index 84ad7ff30121..7500e20da9c1 100644
-> > > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > > @@ -48,6 +48,13 @@ patternProperties:
-> > >          enum:
-> > >            - 512
-> > >  
-> > > +      qcom,secure-regions:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +        description:
-> > > +          Regions in the NAND memory which are protected using a secure element
-> > > +          like Trustzone. This property contains the start address and size of
-> > > +          the secure regions present (optional).  
-> > 
-> > What does this "(optional)" means? If you mean the property is optional
-> > then it should be described accordingly in the yaml file, or am I
-> > missing something?
-> >   
-> 
-> IIUC, if a property is not listed under "required" section then it is
-> optional. But I've added the quote here to just make it explicit.
+ .../brcm,bcm6345-ext-intc.yaml                |  61 ++++
+ drivers/irqchip/Kconfig                       |   4 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-bcm6345-ext.c             | 271 ++++++++++++++++++
+ 4 files changed, 337 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm6345-ext-intc.yaml
+ create mode 100644 drivers/irqchip/irq-bcm6345-ext.c
 
-Absolutely, I was just wondering why you mentioned it here. I don't
-think it's useful, you can drop it.
+-- 
+2.20.1
 
-> 
-> > I wonder if it wouldn't be better to make this a NAND chip node
-> > property. I don't think a qcom prefix is needed as potentially many
-> > other SoCs might have the same "feature".
-> > 
-> > I'm fine adding support for it in the qcom driver only though.
-> >   
-> 
-> Hmm, sounds good to me.
-> 
-> Thanks,
-> Mani
-> 
-> > > +
-> > >  allOf:
-> > >    - $ref: "nand-controller.yaml#"
-> > >    
-> > 
-> > Thanks,
-> > Miquèl  
-
-
-Thanks,
-Miquèl
