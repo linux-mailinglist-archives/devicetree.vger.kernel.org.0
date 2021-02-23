@@ -2,67 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A8DB32332B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 22:21:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5994323332
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 22:24:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbhBWVVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 16:21:12 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:37698 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231514AbhBWVVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 16:21:09 -0500
-Received: by mail-ot1-f42.google.com with SMTP id s6so89103otk.4;
-        Tue, 23 Feb 2021 13:20:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QLDc40XgWd994geRO/ZckMMcOSU/AJw7iM92n9iT4cg=;
-        b=ACkkLF/f2zrpbBdjEvbVGx0hnCvMsTdPxwYxvYdGMB2kXlaD9hxxUP3ILgS4jafjJS
-         3M1BwuKNW7YWW6w/22X36q+SumXMKx7oL549gp7Us0lyCBGLqTzb18UQWa9rFqXaDWSP
-         iznWptg4ek+NtR3Og83p+ireO/hinXOPsgXG6QroizRLQH7taP/cYvF9EHEZS3SWAiKR
-         KFskzdi8Y9IkglCvuJNTvs4sQZ+xkm9kAPy5qNmELBpm7IfceMcZa3DInXGM+wsp0MU8
-         SQrRJ9AgYTtJOOkdWF9y4GDLmbmQ6pOlY5MfBjpqbudBl7hjbaCQ+zut1OgauLcUntEY
-         RoDA==
-X-Gm-Message-State: AOAM531Ikw32WyEUJoXYNlob3f+Z0o733jOQXAaBe+bK23DD23Xu9g46
-        f6V+Dynyg6FOKLz9MpIrCw==
-X-Google-Smtp-Source: ABdhPJwpIqi/EVgpwLtYI+f8VHMRyPi2oDXSVEqGQCIBglvOINYx6xTKUsAGj5jcQkVID1m46sp/cQ==
-X-Received: by 2002:a05:6830:1c75:: with SMTP id s21mr7282330otg.207.1614115228332;
-        Tue, 23 Feb 2021 13:20:28 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 94sm4652003otf.41.2021.02.23.13.20.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Feb 2021 13:20:28 -0800 (PST)
-Received: (nullmailer pid 81444 invoked by uid 1000);
-        Tue, 23 Feb 2021 21:20:27 -0000
-Date:   Tue, 23 Feb 2021 15:20:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michal Kubecek <mkubecek@suse.cz>
-Cc:     linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dts: drop dangling c6x symlink
-Message-ID: <20210223212027.GA79748@robh.at.kernel.org>
-References: <20210223204114.E7F55E0155@unicorn.suse.cz>
+        id S232443AbhBWVYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 16:24:20 -0500
+Received: from mga02.intel.com ([134.134.136.20]:49260 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231496AbhBWVYU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Feb 2021 16:24:20 -0500
+IronPort-SDR: YG4tvlyTlhMb9uB4m6hyqGxBHMY7A36dBe0SApzvS/pRW5WY626E3SVb4pbmSCfObW7yh98I0L
+ 1/eEQdF/F7qw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9904"; a="172089240"
+X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; 
+   d="scan'208";a="172089240"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2021 13:22:34 -0800
+IronPort-SDR: 8IQgTQ656Kc1v0ctmrRIZT+eBMfEjrReLzSEp3AL623OIO/RUlsb68fXv5XB5zaz3lcEIURCNP
+ KXLXplOXjypg==
+X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; 
+   d="scan'208";a="431097467"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2021 13:22:32 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id BA76C208F7;
+        Tue, 23 Feb 2021 23:22:29 +0200 (EET)
+Date:   Tue, 23 Feb 2021 23:22:29 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        "Paul J. Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: media: Use graph and video-interfaces
+ schemas, round 2
+Message-ID: <20210223212229.GI3@paasikivi.fi.intel.com>
+References: <20210223210127.55455-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210223204114.E7F55E0155@unicorn.suse.cz>
+In-Reply-To: <20210223210127.55455-1-robh@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Feb 2021 21:41:14 +0100, Michal Kubecek wrote:
-> With c6x architecture removal, scripts/dtc/include-prefixes/c6x symlink
-> lost its target. Drop the dangling symlink which triggers some distribution
-> check scripts.
-> 
-> Fixes: a579fcfa8e49 ("c6x: remove architecture")
-> Signed-off-by: Michal Kubecek <mkubecek@suse.cz>
-> ---
->  scripts/dtc/include-prefixes/c6x | 1 -
->  1 file changed, 1 deletion(-)
->  delete mode 120000 scripts/dtc/include-prefixes/c6x
-> 
+Hi Rob,
 
-Applied, thanks!
+On Tue, Feb 23, 2021 at 03:01:27PM -0600, Rob Herring wrote:
+> A couple of media schemas got applied without using or incorrectly
+> using the video-interfaces.yaml and graph.yaml schemas. Fix them up
+> before we have more copy-n-paste errors.
+> 
+> Fixes: 41b3e23376e9 ("media: dt-bindings: media: Add bindings for imx334")
+> Fixes: d899e5f1db7a ("media: dt-bindings: media: imx258: add bindings for IMX258 sensor")
+> Fixes: 918b866edfec ("media: dt-bindings: Remove old ov5647.yaml file, update ovti,ov5647.yaml")
+> Fixes: 22f2b47517a6 ("media: dt-bindings: media: i2c: Add OV8865 bindings documentation")
+> Fixes: 29a202fa7acc ("media: dt-bindings: media: i2c: Add OV5648 bindings documentation")
+> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Cc: Jacopo Mondi <jacopo@jmondi.org>
+> Cc: "Paul J. Murphy" <paul.j.murphy@intel.com>
+> Cc: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Cc: linux-media@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Please ack and I'll send to Linus for rc1.
+> 
+>  .../devicetree/bindings/media/i2c/imx258.yaml    | 14 +++++++-------
+>  .../bindings/media/i2c/ovti,ov5647.yaml          |  5 ++---
+>  .../bindings/media/i2c/ovti,ov5648.yaml          | 16 +++++-----------
+>  .../bindings/media/i2c/ovti,ov8865.yaml          | 16 +++++-----------
+>  .../bindings/media/i2c/sony,imx334.yaml          | 11 +++++------
+>  5 files changed, 24 insertions(+), 38 deletions(-)
+
+Thanks for addressing this.
+
+Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+
+-- 
+Kind regards,
+
+Sakari Ailus
