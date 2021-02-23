@@ -2,77 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A19322E16
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 16:56:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31307322E36
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 17:02:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233479AbhBWPzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 10:55:43 -0500
-Received: from netrider.rowland.org ([192.131.102.5]:54499 "HELO
-        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S233506AbhBWPzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 10:55:25 -0500
-Received: (qmail 1263861 invoked by uid 1000); 23 Feb 2021 10:54:43 -0500
-Date:   Tue, 23 Feb 2021 10:54:43 -0500
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
-Cc:     f.fainelli@gmail.com, jonas.gorski@gmail.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S232342AbhBWQCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 11:02:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49004 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233312AbhBWQCT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 11:02:19 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ED91C061574;
+        Tue, 23 Feb 2021 08:01:36 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id l13so2926735wmg.5;
+        Tue, 23 Feb 2021 08:01:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=8pId0GGCaDJbuNBJy+4MFY+EnRSRCwJYtg+gI5eOlnY=;
+        b=uuT/einVI9mfGQbfukEiKjNUIKnYFFSaSfL482AnCpMXPacg6LKp58PvUT/dz5Lt8e
+         SxffJ8NaceEE5A0uolBUirvPdqwJ5XRz60pWn8ctMBzALYpJ8HLbyV+ZP4jISuJ+HsdU
+         PJSWaE04Z+YCazqMsqf2QGw/duTNrMVj+uSjSSu79O1J9NZ4IuRvlWLvzQcjmcagAScn
+         Mt2uieOSzvGixC9vlXnYik2bHBtpzxOJT6YfnjYdujagPl8RgTqmaLQqSGsEq2uhUSdb
+         4WqHTgdoC7C5UlQCpzXOZPcUtIHT+Nf0SGsf9cW7RGZJ5sdP2xtvAMyCLsNSRPob5Hm5
+         8rKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=8pId0GGCaDJbuNBJy+4MFY+EnRSRCwJYtg+gI5eOlnY=;
+        b=EFpswKQtmjEkswosh/2rPNXRvcnWSaCjyoJmhVw8lLGNYxEGVrnV5rOsxEKBCWgM3x
+         paoHCCcEkKpFaPcuTXwtHaIvNMbrSPFpaeko5tLf3gdDaXyVMmqtUGqP954rhJT4ODaS
+         itKMYqYFRkL6vtL/eqyAC05XcxoiI9oTkWUGWoZNA4ivkQ45eWjytaML9CgUeGO+DQIO
+         mXQWD92ju3zWhZDh03N502/6CYeLKM7aR++tDnZtjMvSZOkKKciQ6RAV302XFAuc0mWb
+         vldoYZrctYqUcERg0QS783FJX+n4JIb+lZTjVueiImlD+BThYRL80sMuE3s2PZgC0y2f
+         HA1w==
+X-Gm-Message-State: AOAM533ajcIEyOOjedw2lxVZE/4lT0i13j67cINkastKs0LanfV89y3E
+        SHyISSfl5k82TZYtc5zls3Q=
+X-Google-Smtp-Source: ABdhPJxNxzbN1cZ3nt1lOUEhlhwxRBItAIvp+tgOfI3ePfkOMQDAXRZejsPegG1gryAOkXQl9qo11Q==
+X-Received: by 2002:a7b:c391:: with SMTP id s17mr7764852wmj.155.1614096095346;
+        Tue, 23 Feb 2021 08:01:35 -0800 (PST)
+Received: from skynet.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
+        by smtp.gmail.com with ESMTPSA id h15sm33999381wrh.13.2021.02.23.08.01.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Feb 2021 08:01:34 -0800 (PST)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
         Rob Herring <robh+dt@kernel.org>,
-        Tony Prisk <linux@prisktech.co.nz>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: usb: generic-ehci: document ignore-oc
- flag
-Message-ID: <20210223155443.GB1261797@rowland.harvard.edu>
-References: <20210223155005.21712-1-noltari@gmail.com>
- <20210223155005.21712-2-noltari@gmail.com>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@protonmail.com>,
+        =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>, Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] hwrng: bcm2835: add reset support
+Date:   Tue, 23 Feb 2021 17:01:29 +0100
+Message-Id: <20210223160131.29053-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210222194510.14004-1-noltari@gmail.com>
+References: <20210222194510.14004-1-noltari@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210223155005.21712-2-noltari@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 23, 2021 at 04:50:04PM +0100, Álvaro Fernández Rojas wrote:
-> Over-current reporting isn't supported on some platforms such as bcm63xx.
-> These devices will incorrectly report over-current if this flag isn't properly
-> activated.
-> 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-> ---
->  Documentation/devicetree/bindings/usb/generic-ehci.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> index cf83f2d9afac..294bbf02399e 100644
-> --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> @@ -117,6 +117,11 @@ properties:
->        Set this flag if EHCI has a Transaction Translator built into
->        the root hub.
->  
-> +  ignore-oc:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Set this flag for HCDs without over-current reporting support.
+Some devices may need to perform a reset before using the RNG, such as the
+BCM6368.
 
-This is not a good description of a device property.  DT entries are 
-supposed to described the hardware, not talk about how to use it.
+Ãlvaro FernÃ¡ndez Rojas (2):
+  dt-bindings: rng: bcm2835: document reset support
+  hwrng: bcm2835: add reset support
 
-When you say that the bcm63xx doesn't support over-current reporting, 
-what exactly do you mean?  Do you mean that sometimes the hardware turns 
-on the over-current bit when an over-current isn't actually present?  Or 
-do you mean something else?
+ .../devicetree/bindings/rng/brcm,bcm2835.yaml          |  5 +++++
+ drivers/char/hw_random/bcm2835-rng.c                   | 10 ++++++++++
+ 2 files changed, 15 insertions(+)
 
-Alan Stern
+-- 
+2.20.1
 
-> +
->    needs-reset-on-resume:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
-> -- 
-> 2.20.1
-> 
