@@ -2,82 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B40D232311D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 20:04:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 773A432313B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 20:18:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233956AbhBWTE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 14:04:29 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33250 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233933AbhBWTE2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Feb 2021 14:04:28 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C106A64E83;
-        Tue, 23 Feb 2021 19:03:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614107028;
-        bh=YWkkpozB3ER6IruxCaThzXsvEStNfh4WR48id4vPvlk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=I3VfJYSz+d2PtdJlnic12kT2Q/y4xcO5gOz0+qcXpMppnOysa9W2+6xuanEvh1hqo
-         RNf/I6Dyh2BV4fw78ZUyln/88t6ftQhXUh/52EtNU9d9VAdPkLh8qTV2plXQWYHCay
-         U+dlOQmDKP6o1+xDVhtnoRIAir6sB6YAUV0adqWrE5t2X4qoDjuozjvW3qdm8VJo8U
-         LQpVcaym+gnY/n+RzrvpWS66VDQPIn8GPiRhIlQongL6IExB6SB2KoYeYjrS69PjiT
-         AfASGaXF4mHtX4aP2Hm5HmXz6Qnu+HEAFefWnVaOb61JHeoLRfRVyGvPwqgAOM7uhi
-         pi5HD6iBxyEJw==
-Received: by mail-ed1-f46.google.com with SMTP id h10so27075630edl.6;
-        Tue, 23 Feb 2021 11:03:47 -0800 (PST)
-X-Gm-Message-State: AOAM531WdlYKzagWRmAio/ivpr/FAw6hGA1ehBMHRB2R7wkTwXzMiSsA
-        SXcSY//qijRGXjN3T7lNVSr8Ej1MVNzcNLfouJg=
-X-Google-Smtp-Source: ABdhPJxCB7joItWdqwy1g7sRqW0BGLBkMngXKcSUhXcgiqKN72zVLRKflxhCJ2MUcjjrIVCb9lGHBuJHupznfZLapDM=
-X-Received: by 2002:a05:6402:d05:: with SMTP id eb5mr29217861edb.143.1614107026414;
- Tue, 23 Feb 2021 11:03:46 -0800 (PST)
+        id S231313AbhBWTRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 14:17:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34656 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231287AbhBWTRi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 14:17:38 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB7AC061574;
+        Tue, 23 Feb 2021 11:16:57 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id j187so2880wmj.1;
+        Tue, 23 Feb 2021 11:16:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pG1hrGI3tg5yh8EByPc8OaP+tVeHcBRHYeO2MC7H+Nk=;
+        b=KyGq+uAdcglJDkaf/5t9VOPn1yUqgLR57hDD7msXYmsHrFQqLdshT4sFwyNNhm1R73
+         szf45gQpjhZbBtoXul2RCljh803iX+6XYX6ZcbGvNewehxBM7BUEeGOiR8VXKXHH/jHI
+         beMwb60KLsxeThzgtyLPszd1uVU+Hit8Allj//RlujEzwRsP7ZYSgmiug1xgfAY6cvGl
+         2VRT0DHpOsnlOIc7gs63Q+0qTyOlJvNAxiSb6F5G/KPVwl/+Q8K7GEHHzdEo6hIRFd93
+         fpbtYo+cP7X7YcUeu///TJhhX4o31zdvKdGXkAFzLOBTqfihv4mPbPH3Iti9MrHFuN/v
+         zriw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pG1hrGI3tg5yh8EByPc8OaP+tVeHcBRHYeO2MC7H+Nk=;
+        b=YH8cgAGJ2g4fZqejlycqoo1rNZS5yotY54zemWwGzj2SBj6npn2kEuZvEbK5S9Pq+N
+         rkNFmFqrjvJsaJWMRagZ3t75qGpchp52/X7Qz+vLD80rr/Co5/HGo2gXA+PdteHSNflK
+         +2CtpJrF6+D/yxSfZjCZKwKdgUgTq4atp/3rvrV0WBfWPHvPUAm5ZxaSifqO8O7g5U+/
+         R1d173nkz4l3FvIpJ0cp/GKJOsFLXgY1JWwgEULStwGX1iA694y1sk/CA1I7XaOcLlp9
+         dm56XlOLbLD+Md2q04MFciqzXeUKxVY3nvOYRVL2bcEKltCpqjL57P75uzEMf9I5S1lt
+         wkkw==
+X-Gm-Message-State: AOAM5321yK+01qbLZ70mdhKYm0n2jj24PYPAn4ukVSY2dFeHQNx7avWe
+        wfuR9dsVMdL4Fi+WSA5ti0Q=
+X-Google-Smtp-Source: ABdhPJwT0N8KoKbSWN3cOPyYFAaWXUaM1qOle/uZ7cDQs4Vxuo77IsqlHu6pYZrgwnoC4N1lfXnj0w==
+X-Received: by 2002:a1c:f002:: with SMTP id a2mr211090wmb.117.1614107816659;
+        Tue, 23 Feb 2021 11:16:56 -0800 (PST)
+Received: from localhost.localdomain (2a01cb0008bd270084c09ff22cc10cb2.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:84c0:9ff2:2cc1:cb2])
+        by smtp.gmail.com with ESMTPSA id a21sm3611413wmb.5.2021.02.23.11.16.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Feb 2021 11:16:56 -0800 (PST)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     krzk@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, catalin.marinas@arm.com, will@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH v4 00/10] Add peripheral support for imx8mm-nitrogen-r2 board
+Date:   Tue, 23 Feb 2021 20:16:43 +0100
+Message-Id: <20210223191652.436397-1-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210217161052.877877-1-adrien.grassein@gmail.com>
- <20210217161052.877877-2-adrien.grassein@gmail.com> <20210219131825.niiftfm5r32qc6m3@kozik-lap>
- <CABkfQAH75N1k0bDEGzo0mRtoqP=-9p9hzBo43f6gQnSmGsXQUw@mail.gmail.com>
- <20210220191914.pir3ep3utz6uwyrb@kozik-lap> <CABkfQAGyr_ntKMR3Ht0CVZY7zLiBcRN3-WeWiZQ-BTzXHqSF3w@mail.gmail.com>
- <CAJKOXPfb69J+r7WdJMPbMsqaJuKYxKy6BwtEhmPFrEiZz8L8LQ@mail.gmail.com> <CABkfQAG8n3AGdamKZbNx9Q5N_6SB5S4=+nj4zuLP_Xk7zxF-cw@mail.gmail.com>
-In-Reply-To: <CABkfQAG8n3AGdamKZbNx9Q5N_6SB5S4=+nj4zuLP_Xk7zxF-cw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 23 Feb 2021 20:03:34 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPf9fhsVFAQ+s+xhmuBFUk0=gVrv45JDRHM=WO9keZZwnA@mail.gmail.com>
-Message-ID: <CAJKOXPf9fhsVFAQ+s+xhmuBFUk0=gVrv45JDRHM=WO9keZZwnA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/8] arm64: dts: imx8mm-nitrogen-r2: add wifi/bt chip
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>, catalin.marinas@arm.com,
-        will@kernel.org, DTML <devicetree@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Feb 2021 at 11:45, Adrien Grassein <adrien.grassein@gmail.com> wrote:
-> > > >
-> > > > I would assume this goes from PMIC, so check your schematics. There is
-> > > > little point in adding a fixed regulator which is non-controllable.
-> > >
-> > > No, the 1.8V is issued directly from the alimentation stage.
-> > > So we can't control it.
-> > >
-> > > > I think bindings don't require it.
-> > > After reading some code, I can say that vqmmc is not mandatory but it
-> > > helped to find out
-> > > the caps of the mmc host. In this case, we only support 1.8V on vqmmc.
-> > > It avoids driver to guess it (and avoid bad behaviour on any future change).
-> >
-> > If the supply (hardware) is really 1.8 V then indeed your approach is
-> > good. So let's keep that one.
-> >
->
-> To be sure to understand well: should I keep the fixed regulator?
-> Thanks,
+Hi,
 
-Yes, keep it, at least I am fine with it.
+this patch set is to add several peripheral support for the
+imx8mm-nitrogen-r2 board.
 
-Best regards,
-Krzysztof
+Thanks,
+
+Update in v2:
+  - Fix some typo found in v1;
+  - Fix UART description
+
+Update in v3
+  - Fix wlan vqmcc regulator;
+  - Remove useless clock node;
+  - Split UART patch
+
+Update in v4
+  - Fix audio binding;
+  - Add a patch to fix eMMC binding.
+
+Thanks,
+
+Adrien Grassein (10):
+  arm64: dts: imx8mm-nitrogen-r2: add wifi/bt chip
+  arm64: dts: imx8mm-nitrogen-r2: rework USDHC1
+  arm64: dts: imx8mm-nitrogen-r2: add USB support
+  arm64: dts: imx8mm-nitrogen-r2: add espi2 support
+  arm64: dts: imx8mm-nitrogen-r2: add UARTs
+  arm64: dts: imx8mm-nitrogen-r2: rework UART 2
+  arm64: dts: imx8mm-nitrogen-r2: add PWMs
+  arm64: dts: imx8mm-nitrogen-r2: add FlexSPI
+  arm64: dts: imx8mm-nitrogen-r2: add audio
+  arm64: defconfig: Enable wm8960 audio driver.
+
+ .../boot/dts/freescale/imx8mm-nitrogen-r2.dts | 314 +++++++++++++++++-
+ arch/arm64/configs/defconfig                  |   1 +
+ 2 files changed, 313 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
+
