@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89E0D322678
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 08:40:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D4BF32267C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 08:40:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231812AbhBWHjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 02:39:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54064 "EHLO
+        id S231815AbhBWHkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 02:40:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231753AbhBWHjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 02:39:12 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C8E9C061786
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 23:38:32 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id t11so11849417pgu.8
-        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 23:38:32 -0800 (PST)
+        with ESMTP id S231828AbhBWHjq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 02:39:46 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33C14C06178B
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 23:39:06 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id w18so8249064pfu.9
+        for <devicetree@vger.kernel.org>; Mon, 22 Feb 2021 23:39:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=Uq7G+VtpoQoqq71TCIjSx9Y9sX/Ug87Got6NSD0YuxI=;
-        b=LzwLVnx8KjWDAsLm4xqzxKT3Poi8GdKTRa8S+7YQDV5NNCntisjIVrgX6BgeAwYOvB
-         5sm/YEGemxySQ7cyoLtaQ5DrH1ZccFbgA5PfIVT25r4t/xwlmnlW3oDpuemuESHguTaE
-         63nqwq4qbmRFrDpvuR39eGD8vFVZknZGt3IEg=
+        bh=PqsWXWoBSx5Wi6Oyza26MFUWfhTlkhSscZXRXQSmuUg=;
+        b=QH4OSIwgcJsrVdNFsRsrkN1wKjC13wDViH+Q0LrB80ka15RgbaLXPxo8B4NlCq38C1
+         1cgVzX9h/aynUE6CEs/viXqfnqh85tEweNWEAoB02zi+xley8zjmDA4/h6QYbG/BXpgD
+         ZYIugzzidDdhNhnqCM3fw+os7Ok9DSmYtoaEk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=Uq7G+VtpoQoqq71TCIjSx9Y9sX/Ug87Got6NSD0YuxI=;
-        b=UfTUfm91PufFcflFAoRgJGGaWxEqVzkoZHWkjdrbs2TYmZhO9+IS1ApJCKj6SvQ88M
-         VkZq2ZK7JJ9utBm7G0zkx7WX+9gNCOU2z+32Wljq6VHY1fxswSW3WWV+BuFQC/2KsCQz
-         LAdv+BNhHD09E/eHBz+riBvKZEJ84p//Pbre4pM/CygKXfiE9YKPse5YBj52mNbWgM5i
-         Zq40dycp0QqqdWOEGtL6YixRsqo+orZ+G7LoLAk0/LmaiRNb+wPN0fK+M20RCazZxPYp
-         uSf1uVIRMcGfh6bIOzoEaPnTH7a/voD5fgasqzoVYFI+MDlhL0elvjYmelZTLXyLPLoR
-         s6CA==
-X-Gm-Message-State: AOAM530RYZ/9XR/At6x0MqkCQg4Y1vVV2J0k3g9jD5JwzmPlo7W62hI9
-        YTsueAIRkSR71LuUJhGzKQY8aQ==
-X-Google-Smtp-Source: ABdhPJwLqtN8OE/Z3RkI+XzDBNdrUeDNeIBS+X4//zAsKSvkh8WqXsnQw460Q50eoopo+QLxJYvdhg==
-X-Received: by 2002:a63:181e:: with SMTP id y30mr22526423pgl.324.1614065911870;
-        Mon, 22 Feb 2021 23:38:31 -0800 (PST)
+        bh=PqsWXWoBSx5Wi6Oyza26MFUWfhTlkhSscZXRXQSmuUg=;
+        b=uMAkrQ5HW6e0SaqvarCw0tEHmpoVtsGEilZ/eZNN+R4FOcmEHoDu482il0DxzDZjaj
+         qZweWwO7vFuLY62YcwiiHSURcaZflMhrDKzbWiIYLb6w76n7DpIMJeexg7Q8bcUzrruM
+         1dZ1Qc5h71iuFP0ZJUQ2/x1qQL+5c4VLrMHW6DNIeyoNx9wVdsqiHqNIUhQa6c/pFmRD
+         R2+WfFMur03iEyXaGB7ZOlv1yEt67ET9BJrsib+Fpjt0dk924jj1noSAOKK6qHplpWJb
+         W0BrdWR+GmETHdBsmAtgDnKgzEmCWl7QTBeD9iqKklXcJEKoIoXuhHavz8VqlKTYY5yG
+         azQA==
+X-Gm-Message-State: AOAM532yy4bnXEcGNdVQ/nz7ispEx3tKDboW/HnTeC9w0H663jR0iuCR
+        Nam2r2P/98JeLI+4E3CqRyEFMQ==
+X-Google-Smtp-Source: ABdhPJyNE6eAdyPqp64lYpybwvGjFFdWufkbD62VWrX15AJvYmrvCAwsL29lBr7kQRiYVybm5qIt9g==
+X-Received: by 2002:a63:3602:: with SMTP id d2mr23296547pga.81.1614065945816;
+        Mon, 22 Feb 2021 23:39:05 -0800 (PST)
 Received: from chromium.org ([2620:15c:202:201:68e6:d68b:3887:f216])
-        by smtp.gmail.com with ESMTPSA id e15sm9520691pfl.59.2021.02.22.23.38.31
+        by smtp.gmail.com with ESMTPSA id f28sm23635100pfk.182.2021.02.22.23.39.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Feb 2021 23:38:31 -0800 (PST)
+        Mon, 22 Feb 2021 23:39:05 -0800 (PST)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -57,8 +57,8 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Rajendra Nayak <rnayak@codeaurora.org>
 To:     Rajendra Nayak <rnayak@codeaurora.org>, agross@kernel.org,
         bjorn.andersson@linaro.org, robh+dt@kernel.org
-Date:   Mon, 22 Feb 2021 23:38:30 -0800
-Message-ID: <161406591008.1254594.15135311472143997847@swboyd.mtv.corp.google.com>
+Date:   Mon, 22 Feb 2021 23:39:04 -0800
+Message-ID: <161406594410.1254594.17233726724785827971@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -69,5 +69,6 @@ Quoting Rajendra Nayak (2021-02-11 23:28:41)
 >=20
 > Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
 > ---
+>  Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt | 1 +
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Is this being YAML-ified at some point?
