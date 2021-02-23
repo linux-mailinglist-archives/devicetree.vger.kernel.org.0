@@ -2,93 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A64C32337B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 22:53:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36C193233A7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 23:19:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232338AbhBWVvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 16:51:45 -0500
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:41433 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230386AbhBWVvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 16:51:40 -0500
-Received: by mail-oi1-f182.google.com with SMTP id o3so246271oic.8;
-        Tue, 23 Feb 2021 13:51:25 -0800 (PST)
+        id S230010AbhBWWSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 17:18:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45460 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230088AbhBWWSu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 17:18:50 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E357C061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 14:18:35 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id v1so24112579wrd.6
+        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 14:18:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UOWr9d9lq0sjyNqrHH38BMtESbANjRbnbDGooX/xjQ8=;
+        b=MKwlftHyyZGE3othtgMueaRHkmaajvrUXsaVYoAx670mrzccorJhqLtyleUQAEYrCd
+         suzFsQeHhogqSKhfzYnaXilqXRfFPxFKLzFcTH733uTZc3yK29Ukwsw6laE5AJWZTlQL
+         UMyMB27jbFxhUDyJ6qor7SrKDMJXFhi2G7sTS+s6kcdUpWAbrbf5f7xF08IfVmBChJ1N
+         4MX1tPr1/5ZbXUl407mcoItffg5bXvEFp7UeIGh+KRMFngmZGL5hxlWjmbBLw3nnhQ92
+         UtTSais/T/XTcduQ/8HQur1E5xaNtKFgTsrXewtoN04/eaXGus6LK7aunjozLwx5c85p
+         a6WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=AsR9ipt+b1mHYtmLjiSKpblxqFVh4LbdCrUVluojW2Q=;
-        b=A8BydkdYx4OBqOBCkhZ0aE96xMlN+ai9tJxLFB73J6UFqv41FM3uWT1j7AGYsY9ZPP
-         7LkNdnVQBERTBZ/DhD1ed+ROFCIy83iyPRU2UO2uhJB+z7Hh3zbec5eQiIRKPe9YbPpO
-         juDRBeefSSQ+hRrCEyfEh4x63k3SAvuJXQ/oIpHpd1WokYSW+kXdqau99mhaFSQi8iqk
-         1f6LVG5JMSWVeR8yslNyKOIp2lA1VMahqRvU/mBraD97xW2UwqCpf3TTimPwR6rj68Gc
-         pAR3acvRedL6nChyWdqQX9W4y7Rw7oZbl3HEV2ZeyQiJZ+bJ8mB8yveX4gFLl77sCyGS
-         HmfQ==
-X-Gm-Message-State: AOAM533Q8709wmCMniN/1vrPv7V/NQ+P5lF8d7ZX75HyQnlrVagpVpZn
-        BIt4/RluRdfjJRThqkCzUe5goqA5Wg==
-X-Google-Smtp-Source: ABdhPJwy7fsmg2yVC2MxWgcLyRFaNJiQxfoU7ly52FmudKmJznM3YDMN6gBOsgvWng4cpxYEOHkXaQ==
-X-Received: by 2002:a05:6808:14d0:: with SMTP id f16mr601770oiw.56.1614117059629;
-        Tue, 23 Feb 2021 13:50:59 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id p26sm1444867ota.9.2021.02.23.13.50.58
+        bh=UOWr9d9lq0sjyNqrHH38BMtESbANjRbnbDGooX/xjQ8=;
+        b=YuUGGepfXCeYGDNK5Oev26qE16pz6VcxeEBejjRw7Am1D23FbY8hOtQiWWJke72yDl
+         J3IMMmD5AmbCinYYnjPWQae+qITo5IjNuF6IQDalzsVkO1FhN4/ZBo8HH1oUsfCv+Tem
+         YUy+5yhCYii6ur90JP7nJnCw9u5k9LIpZTF5H+g+SZaa/aLvAMXRiHpLJ6y68lP600sJ
+         4X4u2nw1pDtNPNw4TjzuUGiCyEeVqh3dE6CwT0Oiu+hZb9g31VVkrvnoXa3XZULt8hsj
+         E+2BgSzrswQ4gHtFLTSlNI8wPOth45+F8YHRRHx88EuCUFvHSXHfqjGblkYsKKLM0pKY
+         bl8Q==
+X-Gm-Message-State: AOAM530r/bElK3ESVCrkIH9HFU4A7DzLd3tsSnndAoTU1O6fk26kfJ4K
+        yxILS67wLqoSF+608/hOosV4gw==
+X-Google-Smtp-Source: ABdhPJyET+QxjGHr9GQWKV2tzcZtwrRpuGCUPQ0oFhxKbHTjMAg50XZI9bCQscPIpL6+/UkcI4ikHg==
+X-Received: by 2002:a5d:6a0b:: with SMTP id m11mr28305380wru.414.1614118713821;
+        Tue, 23 Feb 2021 14:18:33 -0800 (PST)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id o129sm4035934wme.21.2021.02.23.14.18.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Feb 2021 13:50:59 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-        dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: display: mediatek,dpi: Convert to use graph schema
-Date:   Tue, 23 Feb 2021 15:50:57 -0600
-Message-Id: <20210223215057.125708-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
+        Tue, 23 Feb 2021 14:18:33 -0800 (PST)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: mediatek: fix reset GPIO level on pumpkin
+Date:   Tue, 23 Feb 2021 23:18:26 +0100
+Message-Id: <20210223221826.2063911-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the mediatek,dpi binding to use the graph schema. Missed
-this one from the mass conversion since it's not part of drm-misc.
+The tca6416 chip is active low. Fix the reset-gpios value.
 
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: CK Hu <ck.hu@mediatek.com>
-Cc: Jitao shi <jitao.shi@mediatek.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-mediatek@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
+Fixes: e2a8fa1e0faa ("arm64: dts: mediatek: fix tca6416 reset GPIOs in pumpkin")
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 +++--------
- 1 file changed, 3 insertions(+), 8 deletions(-)
+ arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-index 6cdb734c91a9..eb84b53cabb1 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-@@ -50,15 +50,10 @@ properties:
-       - const: sleep
+diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+index 63fd70086bb8..9f27e7ed5e22 100644
+--- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
++++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+@@ -56,7 +56,7 @@ &i2c0 {
+ 	tca6416: gpio@20 {
+ 		compatible = "ti,tca6416";
+ 		reg = <0x20>;
+-		reset-gpios = <&pio 65 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&pio 65 GPIO_ACTIVE_LOW>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&tca6416_pins>;
  
-   port:
--    type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     description:
--      Output port node with endpoint definitions as described in
--      Documentation/devicetree/bindings/graph.txt. This port should be connected
--      to the input port of an attached HDMI or LVDS encoder chip.
--
--    properties:
--      endpoint:
--        type: object
-+      Output port node. This port should be connected to the input port of an
-+      attached HDMI or LVDS encoder chip.
- 
- required:
-   - compatible
 -- 
-2.27.0
+2.30.1
 
