@@ -2,79 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00DCB32250C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 06:08:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90994322576
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 06:40:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230429AbhBWFI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 00:08:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50104 "EHLO
+        id S230296AbhBWFj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 00:39:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230417AbhBWFIZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 00:08:25 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B907C061574;
-        Mon, 22 Feb 2021 21:07:45 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id p5so4250996plo.4;
-        Mon, 22 Feb 2021 21:07:44 -0800 (PST)
+        with ESMTP id S230486AbhBWFj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 00:39:58 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96724C061786;
+        Mon, 22 Feb 2021 21:39:18 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id o22so1066961pjs.1;
+        Mon, 22 Feb 2021 21:39:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=dAkQUG7Z9NTO7eCrWZ3ts0tI7vRJSQ9EpDPOXxmBG6I=;
-        b=EXs38H2lr1bu3uXmDZ/jToS+XJPhFd62xLdVPTu8hJsQjyJ99PY7YItBY7nCXOg+uR
-         PD+ZgVOj+yVFPBznHwaK+FVTtrRBm9oUQumh/ZB0PTExIfRD17PFgo2zP1W1YT/TvTLN
-         QGx70SrVu/si4EePOd8XgnCHfpXLb9tp+K6rMU/TOh4a80N1yKSBUEXsP76dSM1wrioL
-         awYoE7gWsJYyLCIAcybyyx+SuRZpj3BLzB4kkRMY5QS2dSrNcvtZOKNKVhWW8HPnHayi
-         idWJOmBuqlZzyrxRfXRafzvutueJNriI9YQvPjHPvNZTA7EAOR32Iy4Ft9CauCeOqzZ5
-         74vw==
+        bh=+pgIkSmPacT7tK3z5RxW7X3unjBRZp2VB0qS+al2HOM=;
+        b=txsM6ooGATBYuUkcmB84RsR3aIvzJGA7xLVJ7Jb6IeiNKTf/Z64J0hkpUSbGQy5hVi
+         FdJ/JUSzeOI0HZsGreiO5tyqu5M+JupA+H7kYqvI6Z37ITAMKzTym83f6tXZtr0hgkdt
+         +zYOVqSOLabsw7v0G1l9FoPanrYrDXBv3A4mrsOrgtfSF4zCnrgCjG0nBkljpNoz6Mpy
+         zGS8BX4elEkCtXMj68hANRnlpma8j6XJ2zKwaZz+nv8zigC3bv8l4GFIFUSmzO4FRjvD
+         QDBvGLTMXcE2F8xu6FJw8MQF2jqANwM+mMRf7CCuqpmufVkQHP38qFa6QG6d1EA3gtW/
+         DhAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dAkQUG7Z9NTO7eCrWZ3ts0tI7vRJSQ9EpDPOXxmBG6I=;
-        b=Uy5y7axEAVWclii6LFIn/xrn3cRdzqOs5OCu8N4TTQ73Mi1Sc1JrwKZC1My2rGx4gn
-         /h1uCTEkuQjDo2/yZ9uucMfNyeEI+/aZ2vcSgDxdz+rB0geVERc/r6dOgFaq8Bnhgw62
-         7huxNFV0E3YajD+hgMWxaPZP1Y11DjLvj4zQQCmWC5/shooJaSQCQgawh42myy/tEUL2
-         vCpueFy9vLssw6NOnA7JC8TrHv70GRPx2K4ZdpucmuSMFxMm8prRMD5w4rmiHPpVDZCf
-         CWKpsUE+Iw5T16u8Xy/APuBUUmgIA27sCfWrbKB6D6wAd6J2NAnGucqELmZ4YGvFSMvp
-         4PLw==
-X-Gm-Message-State: AOAM5328pHdV+ebJd0Cb8V01k09L5PySouhFmuYVXGxBo89CGxvcAPNo
-        Od+6oPWnWosg9gOGyi0FUoM=
-X-Google-Smtp-Source: ABdhPJz4FkkeIbSeyIV/5naXadDKYw+R/vDAr/qiPlb27jBJdq32r9+9SjUS7OEK6mBBHgrBjQUpeQ==
-X-Received: by 2002:a17:90b:1650:: with SMTP id il16mr26072559pjb.97.1614056864418;
-        Mon, 22 Feb 2021 21:07:44 -0800 (PST)
+        bh=+pgIkSmPacT7tK3z5RxW7X3unjBRZp2VB0qS+al2HOM=;
+        b=g19IQ6dPgEpY5/WPK81tBrKLMK0yQPUvaV4aYQ4mWSlfFSqaRGufo7RHxUedQqj2e+
+         fKf6b5qsQMYhhnggoBS6ffS4FME+VeewjTcytHLYHCkNiHdSzdutb9dza269dpbirb7F
+         ab4OBOaaSsTI5np26IlAu5/TlFx+uPb4gT1zt0y8MXoMxR9TqSO7FkR9BPARtFgyp+BO
+         rENzSgIfBsZN5k3aWUVljU17b4q3KX/b+TcaXmBDkmzourM9NH4bVntwn3iMptCqGv1i
+         khLktzsmA8YafA5gYiKnoH216zoEqBrJ3yd5HkJNWCeokC3plHdz0WWdvNtDS8qF75NA
+         z71Q==
+X-Gm-Message-State: AOAM532ldg3Rl5NXhoASCOSCssCXXWnUgvLCU084DTnrvd5BMB830tjl
+        NGopq1PoNtUXrIWvojSwaYc=
+X-Google-Smtp-Source: ABdhPJzlHIAGpaApCk7rh696nPwc1bFmhqCMXAm9kZle3hCKn9IpsO+gTy/dIXQToi0wy45HJrOFVA==
+X-Received: by 2002:a17:90a:7e08:: with SMTP id i8mr26745711pjl.225.1614058757993;
+        Mon, 22 Feb 2021 21:39:17 -0800 (PST)
 Received: from google.com ([2620:15c:202:201:bc19:4f46:855:edfc])
-        by smtp.gmail.com with ESMTPSA id u15sm11540638pfk.128.2021.02.22.21.07.42
+        by smtp.gmail.com with ESMTPSA id 14sm21224346pfy.55.2021.02.22.21.39.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Feb 2021 21:07:43 -0800 (PST)
-Date:   Mon, 22 Feb 2021 21:07:40 -0800
+        Mon, 22 Feb 2021 21:39:17 -0800 (PST)
+Date:   Mon, 22 Feb 2021 21:39:14 -0800
 From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
 To:     Philip Chen <philipchen@chromium.org>
 Cc:     LKML <linux-kernel@vger.kernel.org>, swboyd@chromium.org,
         dianders@chromium.org, Benson Leung <bleung@chromium.org>,
         Enric Balletbo i Serra <enric.balletbo@collabora.com>,
         Guenter Roeck <groeck@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH v7 1/2] dt-bindings: input: cros-ec-keyb: Add a new
- property
-Message-ID: <YDSNnGBWcKdSi7Rq@google.com>
-References: <20210115122412.v7.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: input: Create macros for cros-ec
+ keymap
+Message-ID: <YDSVAt9vxL5fYKhH@google.com>
+References: <20210115143555.v6.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210115122412.v7.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+In-Reply-To: <20210115143555.v6.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 12:24:29PM -0800, Philip Chen wrote:
-> Add a new property `function-row-physmap` to the
-> device tree for the custom keyboard top row design.
+On Fri, Jan 15, 2021 at 02:36:15PM -0800, Philip Chen wrote:
+> In Chrome OS, the keyboard matrix can be split to two groups:
 > 
-> The property describes the rows/columns of the top row keys
-> from left to right.
+> The keymap for the top row keys can be customized based on OEM
+> preference, while the keymap for the other keys is generic/fixed
+> across boards.
+> 
+> This patch creates marcos for the keymaps of these two groups, making
+> it easier to reuse the generic portion of keymap when we override the
+> keymap in the board-specific dts for custom top row design.
 > 
 > Signed-off-by: Philip Chen <philipchen@chromium.org>
 
