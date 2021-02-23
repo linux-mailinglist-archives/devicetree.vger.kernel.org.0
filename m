@@ -2,90 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36C193233A7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 23:19:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 862963233AD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 23:22:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230010AbhBWWSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 17:18:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45460 "EHLO
+        id S231942AbhBWWWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 17:22:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230088AbhBWWSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 17:18:50 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E357C061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 14:18:35 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id v1so24112579wrd.6
-        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 14:18:34 -0800 (PST)
+        with ESMTP id S231569AbhBWWWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 17:22:10 -0500
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B95FC061794
+        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 14:21:22 -0800 (PST)
+Received: by mail-il1-x136.google.com with SMTP id h18so7585491ils.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 14:21:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UOWr9d9lq0sjyNqrHH38BMtESbANjRbnbDGooX/xjQ8=;
-        b=MKwlftHyyZGE3othtgMueaRHkmaajvrUXsaVYoAx670mrzccorJhqLtyleUQAEYrCd
-         suzFsQeHhogqSKhfzYnaXilqXRfFPxFKLzFcTH733uTZc3yK29Ukwsw6laE5AJWZTlQL
-         UMyMB27jbFxhUDyJ6qor7SrKDMJXFhi2G7sTS+s6kcdUpWAbrbf5f7xF08IfVmBChJ1N
-         4MX1tPr1/5ZbXUl407mcoItffg5bXvEFp7UeIGh+KRMFngmZGL5hxlWjmbBLw3nnhQ92
-         UtTSais/T/XTcduQ/8HQur1E5xaNtKFgTsrXewtoN04/eaXGus6LK7aunjozLwx5c85p
-         a6WA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=LEcALUw+Ty7WADH2Iskbz7Ee6By7axHCN5qWv+9W+/I=;
+        b=E456ChIVK35vWmad5T2YGkGQ7KUKHuDky09HwMWP6Yz77TkwzKsi1qMLbHsqd3N+nm
+         atwPSjj9pwAcAz3yoXPCWO2ADl63NiYWVshwYCRwAl60Cn1GCBrJB2dEstLEmKjbkntG
+         Xc5ULLDqJpR5depbTcOc7zrpie7XgpFPny8boDXAdSqTSBH2KuATfy/EswPY4A4eMnrJ
+         a98hLwgxnV4t4o3S3b0wxV/h+XbzTqSj6LDvl+kzb2pQCH+oS+ELRax67EqdBs9hxtvT
+         aJDS6okh61l4d2SCFGB5nVo+YPkO/+JGrXrupbz0y/WuFZGOR9oHW+oyP72Xs7gLjsfu
+         nzPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UOWr9d9lq0sjyNqrHH38BMtESbANjRbnbDGooX/xjQ8=;
-        b=YuUGGepfXCeYGDNK5Oev26qE16pz6VcxeEBejjRw7Am1D23FbY8hOtQiWWJke72yDl
-         J3IMMmD5AmbCinYYnjPWQae+qITo5IjNuF6IQDalzsVkO1FhN4/ZBo8HH1oUsfCv+Tem
-         YUy+5yhCYii6ur90JP7nJnCw9u5k9LIpZTF5H+g+SZaa/aLvAMXRiHpLJ6y68lP600sJ
-         4X4u2nw1pDtNPNw4TjzuUGiCyEeVqh3dE6CwT0Oiu+hZb9g31VVkrvnoXa3XZULt8hsj
-         E+2BgSzrswQ4gHtFLTSlNI8wPOth45+F8YHRRHx88EuCUFvHSXHfqjGblkYsKKLM0pKY
-         bl8Q==
-X-Gm-Message-State: AOAM530r/bElK3ESVCrkIH9HFU4A7DzLd3tsSnndAoTU1O6fk26kfJ4K
-        yxILS67wLqoSF+608/hOosV4gw==
-X-Google-Smtp-Source: ABdhPJyET+QxjGHr9GQWKV2tzcZtwrRpuGCUPQ0oFhxKbHTjMAg50XZI9bCQscPIpL6+/UkcI4ikHg==
-X-Received: by 2002:a5d:6a0b:: with SMTP id m11mr28305380wru.414.1614118713821;
-        Tue, 23 Feb 2021 14:18:33 -0800 (PST)
-Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id o129sm4035934wme.21.2021.02.23.14.18.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Feb 2021 14:18:33 -0800 (PST)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: mediatek: fix reset GPIO level on pumpkin
-Date:   Tue, 23 Feb 2021 23:18:26 +0100
-Message-Id: <20210223221826.2063911-1-fparent@baylibre.com>
-X-Mailer: git-send-email 2.30.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=LEcALUw+Ty7WADH2Iskbz7Ee6By7axHCN5qWv+9W+/I=;
+        b=Dzt2cYrbWuht5Eau7GGLkT7VKTJZZScie/ckGBXrQDdGuQMzJsORjDrtSn4hYk4RcT
+         9uFoi04/qwUx+akYwoT4O/Ua9dU+vDYDMIDntVAd9oZmkKOGI3J1P7ngo+vbSl6so6+p
+         J3V+1+wovifG0pgpn16samILhKY1Qeg9/1EjM5UnPGfcqFu/10YZ5GPe+vVFj4OnObVZ
+         uxqu6+JZ35uma5VLSnGhTvT6NIVAJePDK/RhdtTfWiy6Poabin/dHOpDF0lkMhFHVQF4
+         h3lNdAkY/1z6p33b0DtV0Zz8wovdPRK2mGJH/Y2BHrRvjRuSIGj5LLm+eCEFkFW48ZR2
+         j9/g==
+X-Gm-Message-State: AOAM531L2cdB9kPnRLItf0+FEwT18As8EF0kfU/r0uDIsrqHGg5wM8y8
+        QWlROoo4tZQ6jSM/d0pjhQ9dDKHbSRHQ92V+seLMoA==
+X-Google-Smtp-Source: ABdhPJyUOVtj2PH6HPYVpWLVirmeiv0o+zvzSum7huMb/iyMDSQ9gsCDt50uMhWJ331RVrYvlXGupc5df9J51GgQhhI=
+X-Received: by 2002:a92:8711:: with SMTP id m17mr20891909ild.48.1614118881378;
+ Tue, 23 Feb 2021 14:21:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201027160631.608503-1-fparent@baylibre.com> <20201030191714.GA4171611@bogus>
+ <CAAOTY_8LwVDxZnSQAdK7mS8MAFZ1y_0EnSzj3UqeCxq-Tc5FuQ@mail.gmail.com>
+In-Reply-To: <CAAOTY_8LwVDxZnSQAdK7mS8MAFZ1y_0EnSzj3UqeCxq-Tc5FuQ@mail.gmail.com>
+From:   Fabien Parent <fparent@baylibre.com>
+Date:   Tue, 23 Feb 2021 23:21:10 +0100
+Message-ID: <CAOwMV_wWqCsVTmt-0DDeB-WHdQKiKqT63O6sX2nFM27t34Osug@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mediatek: mmsys: add mt1867 binding
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The tca6416 chip is active low. Fix the reset-gpios value.
+Hi Matthias,
 
-Fixes: e2a8fa1e0faa ("arm64: dts: mediatek: fix tca6416 reset GPIOs in pumpkin")
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Pinging you in case you didn't see @Chun-Kuang Hu's question for you.
 
-diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-index 63fd70086bb8..9f27e7ed5e22 100644
---- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-@@ -56,7 +56,7 @@ &i2c0 {
- 	tca6416: gpio@20 {
- 		compatible = "ti,tca6416";
- 		reg = <0x20>;
--		reset-gpios = <&pio 65 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&pio 65 GPIO_ACTIVE_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&tca6416_pins>;
- 
--- 
-2.30.1
+Thanks,
+Best regards,
+Fabien
 
+On Sun, Jan 10, 2021 at 12:18 AM Chun-Kuang Hu <chunkuang.hu@kernel.org> wr=
+ote:
+>
+> Hi, Matthias:
+>
+> Rob Herring <robh@kernel.org> =E6=96=BC 2020=E5=B9=B410=E6=9C=8831=E6=97=
+=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=883:17=E5=AF=AB=E9=81=93=EF=BC=9A
+> >
+> > On Tue, 27 Oct 2020 17:06:29 +0100, Fabien Parent wrote:
+> > > Add binding documentation for MT8167 SoC.
+>
+> Even though the title need to change to 'mt8167', this patch looks
+> good to me. How do you think about this patch? One drm patch [1]
+> depend on this patch, if you like this patch, could you applied this
+> patch first?
+>
+> [1] https://patchwork.kernel.org/project/linux-mediatek/patch/20201023133=
+130.194140-6-fparent@baylibre.com/
+>
+> Regards,
+> Chun-Kuang.
+>
+> > >
+> > > Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> > > ---
+> > >  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.txt          | 1=
+ +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> >
+> > Acked-by: Rob Herring <robh@kernel.org>
+> >
+> > _______________________________________________
+> > Linux-mediatek mailing list
+> > Linux-mediatek@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
