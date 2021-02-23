@@ -2,91 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A39F32331C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 22:17:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A8DB32332B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 22:21:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232986AbhBWVPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 16:15:43 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:39338 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233116AbhBWVNt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 16:13:49 -0500
-Received: by mail-ot1-f46.google.com with SMTP id h22so56371otr.6;
-        Tue, 23 Feb 2021 13:13:18 -0800 (PST)
+        id S230128AbhBWVVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 16:21:12 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:37698 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231514AbhBWVVJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 16:21:09 -0500
+Received: by mail-ot1-f42.google.com with SMTP id s6so89103otk.4;
+        Tue, 23 Feb 2021 13:20:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=eEgdrPzWNXGUH81pCWlP9U2+TPBwQBKgS6ObcqHLUQ4=;
-        b=iH/YBYqrzT8t2rH3J9zFrE2R9FkoQ6bR0lItjB6PGcuYEWAuvV/r/FzG1nWZ5I70Kt
-         37tlemYkItdNISgeHeyK7gkBLhx5Dwe4mGfPAT/Dvpw8qvHPwXw0D+KSvsmNfyr/Yxkw
-         M8d+b/gNUHj9KtTfRcGMRStBtE0H+j7IuN6SscVs435GxETZ/44GwPSeunOB0pE6VxdW
-         cTr0+JYTa7mX38P4IyXes4affHRzgIWeJp9bGYtoEYdUu8ygvrqWOnhiqtSyqe3aw7Rd
-         q1sJj8RBi4ale/oy/W/72X+osnyBVuOgDe4G+9pyZvkWvjBTFZoDTWl7Ix2K1SBVHVvh
-         oh/A==
-X-Gm-Message-State: AOAM5301AVqG0f1HHIZoBckCWZXldffekyXL9+a2RXFnFSxF++NrIn1n
-        NPzx+hwhR+qIJvETXezdew9UVEZExg==
-X-Google-Smtp-Source: ABdhPJymjGGvHGfyK+/ryr2N2x2BFG2Aet+SoL7SUf9PHTcORY9a+23OsqUKgYF0hyzCRareBer1IA==
-X-Received: by 2002:a05:6830:3495:: with SMTP id c21mr21786378otu.97.1614114773364;
-        Tue, 23 Feb 2021 13:12:53 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id j10sm235054oos.27.2021.02.23.13.12.52
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QLDc40XgWd994geRO/ZckMMcOSU/AJw7iM92n9iT4cg=;
+        b=ACkkLF/f2zrpbBdjEvbVGx0hnCvMsTdPxwYxvYdGMB2kXlaD9hxxUP3ILgS4jafjJS
+         3M1BwuKNW7YWW6w/22X36q+SumXMKx7oL549gp7Us0lyCBGLqTzb18UQWa9rFqXaDWSP
+         iznWptg4ek+NtR3Og83p+ireO/hinXOPsgXG6QroizRLQH7taP/cYvF9EHEZS3SWAiKR
+         KFskzdi8Y9IkglCvuJNTvs4sQZ+xkm9kAPy5qNmELBpm7IfceMcZa3DInXGM+wsp0MU8
+         SQrRJ9AgYTtJOOkdWF9y4GDLmbmQ6pOlY5MfBjpqbudBl7hjbaCQ+zut1OgauLcUntEY
+         RoDA==
+X-Gm-Message-State: AOAM531Ikw32WyEUJoXYNlob3f+Z0o733jOQXAaBe+bK23DD23Xu9g46
+        f6V+Dynyg6FOKLz9MpIrCw==
+X-Google-Smtp-Source: ABdhPJwpIqi/EVgpwLtYI+f8VHMRyPi2oDXSVEqGQCIBglvOINYx6xTKUsAGj5jcQkVID1m46sp/cQ==
+X-Received: by 2002:a05:6830:1c75:: with SMTP id s21mr7282330otg.207.1614115228332;
+        Tue, 23 Feb 2021 13:20:28 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 94sm4652003otf.41.2021.02.23.13.20.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Feb 2021 13:12:52 -0800 (PST)
+        Tue, 23 Feb 2021 13:20:28 -0800 (PST)
+Received: (nullmailer pid 81444 invoked by uid 1000);
+        Tue, 23 Feb 2021 21:20:27 -0000
+Date:   Tue, 23 Feb 2021 15:20:27 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Subject: [PATCH] scripts/dtc: Add missing fdtoverlay to gitignore
-Date:   Tue, 23 Feb 2021 15:12:52 -0600
-Message-Id: <20210223211252.66286-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
+To:     Michal Kubecek <mkubecek@suse.cz>
+Cc:     linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dts: drop dangling c6x symlink
+Message-ID: <20210223212027.GA79748@robh.at.kernel.org>
+References: <20210223204114.E7F55E0155@unicorn.suse.cz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210223204114.E7F55E0155@unicorn.suse.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 0da6bcd9fcc0 ("scripts: dtc: Build fdtoverlay tool") enabled
-building fdtoverlay, but failed to add it to .gitignore.
+On Tue, 23 Feb 2021 21:41:14 +0100, Michal Kubecek wrote:
+> With c6x architecture removal, scripts/dtc/include-prefixes/c6x symlink
+> lost its target. Drop the dangling symlink which triggers some distribution
+> check scripts.
+> 
+> Fixes: a579fcfa8e49 ("c6x: remove architecture")
+> Signed-off-by: Michal Kubecek <mkubecek@suse.cz>
+> ---
+>  scripts/dtc/include-prefixes/c6x | 1 -
+>  1 file changed, 1 deletion(-)
+>  delete mode 120000 scripts/dtc/include-prefixes/c6x
+> 
 
-Also add a note to keep hostprogs in sync with .gitignore.
-
-Fixes: 0da6bcd9fcc0 ("scripts: dtc: Build fdtoverlay tool")
-Reported-by: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Viresh Kumar <viresh.kumar@linaro.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-Linus, please pick this up directly if you want. I'm going to be offline
-most of the next couple of days, will have a few other DT fixes to send 
-you later this week.
-
-Rob
-
- scripts/dtc/.gitignore | 1 +
- scripts/dtc/Makefile   | 1 +
- 2 files changed, 2 insertions(+)
-
-diff --git a/scripts/dtc/.gitignore b/scripts/dtc/.gitignore
-index b814e6076bdb..8a8b62bf3d3c 100644
---- a/scripts/dtc/.gitignore
-+++ b/scripts/dtc/.gitignore
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0-only
- dtc
-+fdtoverlay
-diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-index c8c21e0f2531..95aaf7431bff 100644
---- a/scripts/dtc/Makefile
-+++ b/scripts/dtc/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- # scripts/dtc makefile
- 
-+# *** Also keep .gitignore in sync when changing ***
- hostprogs-always-$(CONFIG_DTC)		+= dtc fdtoverlay
- hostprogs-always-$(CHECK_DT_BINDING)	+= dtc
- 
--- 
-2.27.0
-
+Applied, thanks!
