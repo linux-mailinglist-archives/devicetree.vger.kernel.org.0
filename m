@@ -2,191 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9663322D6C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 16:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31EA6322DCC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 16:45:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233113AbhBWPYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 10:24:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232599AbhBWPYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 10:24:04 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB08C061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 07:23:21 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id e6so2911830pgk.5
-        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 07:23:21 -0800 (PST)
+        id S233331AbhBWPp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 10:45:58 -0500
+Received: from mail-dm6nam12on2081.outbound.protection.outlook.com ([40.107.243.81]:20848
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233311AbhBWPpr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Feb 2021 10:45:47 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K/WUn6HRAP2y4IUAi/ZnnRIbOK2irBEdORwf1jA2d+T0A0nk4P1U38lh2rBnIfbNOH4/icWKvwm6kEzNShX+yJTRp9jlui8fp0YBb56+o+Mhwq0N901Zfv6LxBVkL0OaYoP0IIn9iXjeMDc32meE6Rvum3nx4+1ZIAGRmi/X/pvfzwDRc/ew8vv5ZL2eAJuRJ9h/gpu/x3zMbTeySj0O0ION2WhjayXwGCAG+7wjk4L4MciWXuHJlKQxcsfx+/R40ab4jjrqzEpkeESq5Ajw6Zc8MuQXFn14xrg0vKpkSXtFX0fGG1SvqObi+n67TWb2IaTDTLNx1HA7uMGtBKAvDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mIYdrva6H9kIaRX0b2IF5a0nO4/e+Uw1FIKrnbv4lig=;
+ b=eOJA4KlIsExYA2nVWxbGPTUlS56E2X+ZYOA9b/iJszj44XPuU+hwKGI0tdvZOHPLfKyghlgawvpzaqQnLjuso8WMEZ5MPdZjZQ6geKFjdH1Dkb4m19L36fMIjZejYzC0mq2a8+3YxWzBJtZWYoBybB4+qozcqJ1jfXvCg3ma4inLeU9xeQzdyWk3rV6qUMamC6V/BaYAgCOpxdBaD8/Ybd7LO68SMb8DUFVsH5zO5I3WmTWGlPUS0dHff8GcNIwDhWrR2r/Z+9jBRKODUeHCPxTctpYLfIJsl9US5EZRuT69jhtY9GQrgB6yCvQ3MDUWQhauCPBMrxzpHVcQ0I5gdw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=linaro.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BS3pCRX5Z7JbSvWaVr5WdMtid9oF4IO16PyoAmTAdYs=;
-        b=umiXC0bwlKvnb4qm9BVVyHZqGMk6C4GQfUWno0FK4eLXjmZJ/JeTjWqxbWHsJHtn23
-         KlyxaDSGc3R+G4Xy+zMV5Vvsxl6xzRnpMbp5D5YAyk5xS0NOQvKvqwoVwlmKVxLN8XkY
-         0KD0xinoz5uDPczB/zl1Am4TwLFcFZR4L1zE/r61IBRfb/XTF808c8yffbvo03BKypcL
-         7Nr5zKRg5hulJXmVHEHCQH70gvHrCqpN7vBLIAc6PZPHeUbvRd0cEMVvlj4VPyfSb7gH
-         QJ0E48z1iFhd2gdHmwJNYzaUT2HHfPIuUuH303O9irfl4Xtl6uArkYi9EOKp3Rf6yQRY
-         BC1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BS3pCRX5Z7JbSvWaVr5WdMtid9oF4IO16PyoAmTAdYs=;
-        b=N5V4WECmfSXjyRqnNIwul0KJrn0VWNQNVu06L3MLm6MVtRy7TZTIDtnRJhkTXJLEco
-         miz6wRCTcpe6g7oMKgAhkqVrlkTleWFj3FJt1dUMTro5sVoWZWWc0T2cshsESi5NHxev
-         4mAFw1GN+PDqgqONzD04sv+vOkT7luK6ZRt3zKZlVwPVNSQmG8g2PVCGAP3CyeiVeg+O
-         eJQtywgaTzzkMJZWdnK5nQQJXmbxZOSGlUNXqQ1h9gqU5EPi8/yMOsh8X8bELfrS1to2
-         6qqex61ZhcsKwysrXoKDZ4LJdQQjvpGtJA24zqemEhlSu1wBBIRtpc2A2G++6OciV8NN
-         lDqA==
-X-Gm-Message-State: AOAM533T+HJqQd4jKyHITajMiH4gzpNXA82LNBg2MOrpbeMQ64A0Dt5Z
-        SmvEeo6hGEcKrkLeEQJWaD6h1Mg6gaIKMR2rs6h6gg==
-X-Google-Smtp-Source: ABdhPJybS9amQzmPHnSi0zL+AAlY+4Lgs5kmZTEVwWrd5xts9iyiJyU9q2MiRJdEbUzBM33b45DsnKD2LSIlUlSrzNY=
-X-Received: by 2002:aa7:9281:0:b029:1ec:48b2:811c with SMTP id
- j1-20020aa792810000b02901ec48b2811cmr27116567pfa.18.1614093801409; Tue, 23
- Feb 2021 07:23:21 -0800 (PST)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mIYdrva6H9kIaRX0b2IF5a0nO4/e+Uw1FIKrnbv4lig=;
+ b=Uoil20EyaP1TA4BDb57yTgJlZ0xtlFuY0c0fc7+tLwIDh6Qt5d5HnYumG89XrqeQOQbdZrRw5ZXFX2jDcYHZWhaDTgheQs2wl6oTzvwPc5k7CiJULPR/V1zlj7YiqKiSN4p1b7ECw9M2Cg/4luQ3YZGAGtS9i+wPcdG3yRzl/ug=
+Received: from MN2PR07CA0003.namprd07.prod.outlook.com (2603:10b6:208:1a0::13)
+ by BY5PR02MB6625.namprd02.prod.outlook.com (2603:10b6:a03:209::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.26; Tue, 23 Feb
+ 2021 15:44:51 +0000
+Received: from BL2NAM02FT020.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:208:1a0:cafe::df) by MN2PR07CA0003.outlook.office365.com
+ (2603:10b6:208:1a0::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19 via Frontend
+ Transport; Tue, 23 Feb 2021 15:44:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ BL2NAM02FT020.mail.protection.outlook.com (10.152.77.162) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3868.27 via Frontend Transport; Tue, 23 Feb 2021 15:44:51 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Tue, 23 Feb 2021 07:44:47 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Tue, 23 Feb 2021 07:44:47 -0800
+Envelope-to: michal.simek@xilinx.com,
+ mathieu.poirier@linaro.org,
+ devicetree@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Received: from [172.19.2.206] (port=40282 helo=xsjblevinsk50.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <ben.levinsky@xilinx.com>)
+        id 1lEZrj-0006uk-7n; Tue, 23 Feb 2021 07:44:47 -0800
+From:   Ben Levinsky <ben.levinsky@xilinx.com>
+To:     <mathieu.poirier@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <michal.simek@xilinx.com>
+Subject: [PATCH v26 0/5] Add initial zynqmp R5 remoteproc driver
+Date:   Tue, 23 Feb 2021 07:44:42 -0800
+Message-ID: <20210223154447.13247-1-ben.levinsky@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210115070250.2271571-1-hsinyi@chromium.org> <20210115070250.2271571-2-hsinyi@chromium.org>
-In-Reply-To: <20210115070250.2271571-2-hsinyi@chromium.org>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 23 Feb 2021 16:23:10 +0100
-Message-ID: <CAG3jFytPDLWygTGeyCYEqJYcwD=UDAe6hagL5zTjrSKXoN5aMA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] drm/bridge: anx7625: disable regulators when power off
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Xin Ji <xji@analogixsemi.com>, David Airlie <airlied@linux.ie>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8b627133-d693-4ea9-0b13-08d8d811f52f
+X-MS-TrafficTypeDiagnostic: BY5PR02MB6625:
+X-Microsoft-Antispam-PRVS: <BY5PR02MB6625755A0CE54CEDC0A44FABB5809@BY5PR02MB6625.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cW6qmwqe2hZDPAps0+OCFWnUH0K+29jjxmH3tWR+xADclMwtZcAY+RhGMXcDZenEJ86HarQN+VanlgGi10cpT7YB+UavuWGdfIWF9Smkh6fLqNUXDcEZDU+Ha/dZPBad+ywCY4n6P3/bW19fcml7NCqp5WLyPQru8YPtmcTNE2Pz27kfaFxqDK6siNfqPNKJ4ikPlFZhEqHeBH6pYTmcy/csOq/ZkRv6iX7QXKcGFb0osICGmBo3pEn4HODi0whFMLjG18Y0NV9l+xHVDpPkWTMxgXclLoTdVr1sLLti14ghZlCmZrhpVUuJYaDLGrOHkJ+Sn5wntjE1NlWGSh1CdfeMEJa+vN3eN25uSSFRSxHANH5hU+JW7j8ba8xntS6arhBc1w4BAGFjMLnS4crETxlU016CUo9s7a0d47bLvxEJPg078KGj1TvGcMgw1hXmg0RJX48+xvH1myjBl8RA5r5c5jMpzkkgVXZWFUAKMdnE4WTn2FAfqLDIUy4RI+9xv++6k6rs9o5OnCIzrYn+9oJjmZb4q/Kg15enZbeIu1E5uDAEXWNXFsVXkoAfu2QJXykQxHIVhSybLiI0IOsVthj+YpOIJYJFIBRZYzTVUAeFKCDuRRTJA1EPFQk+pMlxhF7jqzx/Ji2hS7OS3VO9tp456zcytNfeEqtPuoX5vkzU3x8FCHU0wLKdrDZAQhjEeLhgvjIu3Xmgwyo3os0BJ1iN1ZMr6kuG2i30mEJC/77oWl195C1IIgfAGdmEe/fmznSZDQ4wYolMQVqgz3iz7A==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(39860400002)(136003)(46966006)(36840700001)(36756003)(1076003)(8676002)(5660300002)(44832011)(7636003)(186003)(47076005)(6666004)(966005)(356005)(36906005)(70586007)(6916009)(316002)(9786002)(7696005)(4326008)(54906003)(36860700001)(426003)(83380400001)(70206006)(26005)(336012)(2906002)(2616005)(8936002)(82310400003)(82740400003)(107886003)(478600001)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2021 15:44:51.1060
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b627133-d693-4ea9-0b13-08d8d811f52f
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT020.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6625
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Hsin-Yi,
+R5 is included in Xilinx Zynq UltraScale MPSoC so by adding this
+remotproc driver, we can boot the R5 sub-system in two different
+configurations -
+	* Split
+	* Lockstep
 
-This patch looks good to me, feel free to add my r-b.
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
+The Xilinx R5 Remoteproc Driver boots the R5's via calls to the Xilinx
+Platform Management Unit that handles the R5 configuration, memory access
+and R5 lifecycle management. The interface to this manager is done in this
+driver via zynqmp_pm_* function calls.
 
-On Fri, 15 Jan 2021 at 08:05, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> When suspending the driver, anx7625_power_standby() will be called to
-> turn off reset-gpios and enable-gpios. However, power supplies are not
-> disabled. To save power, the driver can get the power supply regulators
-> and turn off them in anx7625_power_standby().
->
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
-> Change:
-> v3: add delays between regulators power on
-> ---
->  drivers/gpu/drm/bridge/analogix/anx7625.c | 34 +++++++++++++++++++++++
->  drivers/gpu/drm/bridge/analogix/anx7625.h |  1 +
->  2 files changed, 35 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> index 65cc05982f82..23283ba0c4f9 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> @@ -11,6 +11,7 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
->  #include <linux/types.h>
->  #include <linux/workqueue.h>
-> @@ -875,12 +876,25 @@ static int sp_tx_edid_read(struct anx7625_data *ctx,
->  static void anx7625_power_on(struct anx7625_data *ctx)
->  {
->         struct device *dev = &ctx->client->dev;
-> +       int ret, i;
->
->         if (!ctx->pdata.low_power_mode) {
->                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
->                 return;
->         }
->
-> +       for (i = 0; i < ARRAY_SIZE(ctx->pdata.supplies); i++) {
-> +               ret = regulator_enable(ctx->pdata.supplies[i].consumer);
-> +               if (ret < 0) {
-> +                       DRM_DEV_DEBUG_DRIVER(dev, "cannot enable supply %d: %d\n",
-> +                                            i, ret);
-> +                       goto reg_err;
-> +               }
-> +               usleep_range(2000, 2100);
-> +       }
-> +
-> +       usleep_range(4000, 4100);
-> +
->         /* Power on pin enable */
->         gpiod_set_value(ctx->pdata.gpio_p_on, 1);
->         usleep_range(10000, 11000);
-> @@ -889,11 +903,16 @@ static void anx7625_power_on(struct anx7625_data *ctx)
->         usleep_range(10000, 11000);
->
->         DRM_DEV_DEBUG_DRIVER(dev, "power on !\n");
-> +       return;
-> +reg_err:
-> +       for (--i; i >= 0; i--)
-> +               regulator_disable(ctx->pdata.supplies[i].consumer);
->  }
->
->  static void anx7625_power_standby(struct anx7625_data *ctx)
->  {
->         struct device *dev = &ctx->client->dev;
-> +       int ret;
->
->         if (!ctx->pdata.low_power_mode) {
->                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
-> @@ -904,6 +923,12 @@ static void anx7625_power_standby(struct anx7625_data *ctx)
->         usleep_range(1000, 1100);
->         gpiod_set_value(ctx->pdata.gpio_p_on, 0);
->         usleep_range(1000, 1100);
-> +
-> +       ret = regulator_bulk_disable(ARRAY_SIZE(ctx->pdata.supplies),
-> +                                    ctx->pdata.supplies);
-> +       if (ret < 0)
-> +               DRM_DEV_DEBUG_DRIVER(dev, "cannot disable supplies %d\n", ret);
-> +
->         DRM_DEV_DEBUG_DRIVER(dev, "power down\n");
->  }
->
-> @@ -1742,6 +1767,15 @@ static int anx7625_i2c_probe(struct i2c_client *client,
->         platform->client = client;
->         i2c_set_clientdata(client, platform);
->
-> +       pdata->supplies[0].supply = "vdd10";
-> +       pdata->supplies[1].supply = "vdd18";
-> +       pdata->supplies[2].supply = "vdd33";
-> +       ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(pdata->supplies),
-> +                                     pdata->supplies);
-> +       if (ret) {
-> +               DRM_DEV_ERROR(dev, "fail to get power supplies: %d\n", ret);
-> +               return ret;
-> +       }
->         anx7625_init_gpio(platform);
->
->         atomic_set(&platform->power_status, 0);
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
-> index 193ad86c5450..e4a086b3a3d7 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.h
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
-> @@ -350,6 +350,7 @@ struct s_edid_data {
->  struct anx7625_platform_data {
->         struct gpio_desc *gpio_p_on;
->         struct gpio_desc *gpio_reset;
-> +       struct regulator_bulk_data supplies[3];
->         struct drm_bridge *panel_bridge;
->         int intp_irq;
->         u32 low_power_mode;
-> --
-> 2.30.0.284.gd98b1dd5eaa7-goog
->
+v26:
+- add prepare and unprepare to handle Xilinx platform management's
+  request_node and release node using each core's list of srams
+  that is constructed in each core's zynqmp_r5_probe.
+- add new field sram to zynqmp_r5_rproc to store each core's srams
+  being used as described in device tree. This helps to reduce unneeded looping
+  of the sram prop in device tree. As now only zynqmp_r5_probe has to parse
+  and validate each core's sram property. The ensuing prepare, unprepare
+  and parse_fw logic are now much simpler.
+- similarly add 'size' field to struct sram_addr_data to simplify
+  prepare, unprepare and parse_fw.
+
+Previous version:
+https://patchwork.kernel.org/project/linux-remoteproc/list/?series=412083
+
+
+Ben Levinsky (5):
+  firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
+    configuration.
+  firmware: xilinx: Add shutdown/wakeup APIs
+  firmware: xilinx: Add RPU configuration APIs
+  dt-bindings: remoteproc: Add documentation for ZynqMP R5 rproc
+    bindings
+  remoteproc: Add initial zynqmp R5 remoteproc driver
+
+ .../xilinx,zynqmp-r5-remoteproc.yaml          | 223 ++++
+ drivers/firmware/xilinx/zynqmp.c              |  96 ++
+ drivers/remoteproc/Kconfig                    |   8 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/zynqmp_r5_remoteproc.c     | 954 ++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |  64 ++
+ 6 files changed, 1356 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+ create mode 100644 drivers/remoteproc/zynqmp_r5_remoteproc.c
+
+-- 
+2.17.1
+
