@@ -2,51 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA9E63232CA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 22:06:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A39F32331C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 22:17:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233670AbhBWVE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 16:04:56 -0500
-Received: from mail-oo1-f43.google.com ([209.85.161.43]:45847 "EHLO
-        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231274AbhBWVDF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 16:03:05 -0500
-Received: by mail-oo1-f43.google.com with SMTP id s23so4217828oot.12;
-        Tue, 23 Feb 2021 13:02:47 -0800 (PST)
+        id S232986AbhBWVPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 16:15:43 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:39338 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233116AbhBWVNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 16:13:49 -0500
+Received: by mail-ot1-f46.google.com with SMTP id h22so56371otr.6;
+        Tue, 23 Feb 2021 13:13:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=y8sBehCCNa+kbXPwMBE0R5HDgBSq8nEDv9KIRArwz1s=;
-        b=QBEK4XEHsQkbhZL14h1zkHTkEdRJh3y/U/BBKRBo4g5n1I6Ud95j1Aiogb/+BdsoKd
-         y1JKSK100J0RgeA37SXsF8jMHBz8C946NrJ5WlkvE/nCTvbonIj665YEp2wQnYR9+FAD
-         H8hvbrkDiGBsfngO/MlQ0INF+34e+ATPzyFywMQZq25uZ+KqSU5dQqRnVQxjNQIhvuiu
-         0n6NnWAleB5YsVd7zrD76Tesj+NVPV5j/EZWsphtUaLuC8Y4g4q7NgYM6sgsIzzZKXCt
-         S4e1oFmBtDNP+sSiYtd+qdl4mbR+jh+G6VpG2uhF0srUmUVpqnQdXBQQ05zDXFOED4Fb
-         KeBQ==
-X-Gm-Message-State: AOAM532A0hzCiYxDTSSD54740m+fqR3zJ2IfusVKEOWIXwXBu2Ds/9by
-        TYqeIoe36dCIU6LQWCrPhg==
-X-Google-Smtp-Source: ABdhPJyjMAT3lFx7Kt85Yh2ULfoiwnGWka6Q+1Mj60tLWZGKoQKaiWvTU9MV6obqvyr+uUNCqdOv/A==
-X-Received: by 2002:a4a:d018:: with SMTP id h24mr19830268oor.49.1614114141985;
-        Tue, 23 Feb 2021 13:02:21 -0800 (PST)
+        bh=eEgdrPzWNXGUH81pCWlP9U2+TPBwQBKgS6ObcqHLUQ4=;
+        b=iH/YBYqrzT8t2rH3J9zFrE2R9FkoQ6bR0lItjB6PGcuYEWAuvV/r/FzG1nWZ5I70Kt
+         37tlemYkItdNISgeHeyK7gkBLhx5Dwe4mGfPAT/Dvpw8qvHPwXw0D+KSvsmNfyr/Yxkw
+         M8d+b/gNUHj9KtTfRcGMRStBtE0H+j7IuN6SscVs435GxETZ/44GwPSeunOB0pE6VxdW
+         cTr0+JYTa7mX38P4IyXes4affHRzgIWeJp9bGYtoEYdUu8ygvrqWOnhiqtSyqe3aw7Rd
+         q1sJj8RBi4ale/oy/W/72X+osnyBVuOgDe4G+9pyZvkWvjBTFZoDTWl7Ix2K1SBVHVvh
+         oh/A==
+X-Gm-Message-State: AOAM5301AVqG0f1HHIZoBckCWZXldffekyXL9+a2RXFnFSxF++NrIn1n
+        NPzx+hwhR+qIJvETXezdew9UVEZExg==
+X-Google-Smtp-Source: ABdhPJymjGGvHGfyK+/ryr2N2x2BFG2Aet+SoL7SUf9PHTcORY9a+23OsqUKgYF0hyzCRareBer1IA==
+X-Received: by 2002:a05:6830:3495:: with SMTP id c21mr21786378otu.97.1614114773364;
+        Tue, 23 Feb 2021 13:12:53 -0800 (PST)
 Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id 7sm4531362oth.38.2021.02.23.13.01.33
+        by smtp.googlemail.com with ESMTPSA id j10sm235054oos.27.2021.02.23.13.12.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Feb 2021 13:01:49 -0800 (PST)
+        Tue, 23 Feb 2021 13:12:52 -0800 (PST)
 From:   Rob Herring <robh@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        "Paul J. Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media@vger.kernel.org
-Subject: [PATCH] dt-bindings: media: Use graph and video-interfaces schemas, round 2
-Date:   Tue, 23 Feb 2021 15:01:27 -0600
-Message-Id: <20210223210127.55455-1-robh@kernel.org>
+        Viresh Kumar <viresh.kumar@linaro.org>
+Subject: [PATCH] scripts/dtc: Add missing fdtoverlay to gitignore
+Date:   Tue, 23 Feb 2021 15:12:52 -0600
+Message-Id: <20210223211252.66286-1-robh@kernel.org>
 X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -54,200 +47,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A couple of media schemas got applied without using or incorrectly
-using the video-interfaces.yaml and graph.yaml schemas. Fix them up
-before we have more copy-n-paste errors.
+Commit 0da6bcd9fcc0 ("scripts: dtc: Build fdtoverlay tool") enabled
+building fdtoverlay, but failed to add it to .gitignore.
 
-Fixes: 41b3e23376e9 ("media: dt-bindings: media: Add bindings for imx334")
-Fixes: d899e5f1db7a ("media: dt-bindings: media: imx258: add bindings for IMX258 sensor")
-Fixes: 918b866edfec ("media: dt-bindings: Remove old ov5647.yaml file, update ovti,ov5647.yaml")
-Fixes: 22f2b47517a6 ("media: dt-bindings: media: i2c: Add OV8865 bindings documentation")
-Fixes: 29a202fa7acc ("media: dt-bindings: media: i2c: Add OV5648 bindings documentation")
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Jacopo Mondi <jacopo@jmondi.org>
-Cc: "Paul J. Murphy" <paul.j.murphy@intel.com>
-Cc: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc: linux-media@vger.kernel.org
+Also add a note to keep hostprogs in sync with .gitignore.
+
+Fixes: 0da6bcd9fcc0 ("scripts: dtc: Build fdtoverlay tool")
+Reported-by: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-Please ack and I'll send to Linus for rc1.
+Linus, please pick this up directly if you want. I'm going to be offline
+most of the next couple of days, will have a few other DT fixes to send 
+you later this week.
 
- .../devicetree/bindings/media/i2c/imx258.yaml    | 14 +++++++-------
- .../bindings/media/i2c/ovti,ov5647.yaml          |  5 ++---
- .../bindings/media/i2c/ovti,ov5648.yaml          | 16 +++++-----------
- .../bindings/media/i2c/ovti,ov8865.yaml          | 16 +++++-----------
- .../bindings/media/i2c/sony,imx334.yaml          | 11 +++++------
- 5 files changed, 24 insertions(+), 38 deletions(-)
+Rob
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/imx258.yaml b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
-index eaf77866ed9b..515317eff41a 100644
---- a/Documentation/devicetree/bindings/media/i2c/imx258.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
-@@ -49,10 +49,14 @@ properties:
+ scripts/dtc/.gitignore | 1 +
+ scripts/dtc/Makefile   | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/scripts/dtc/.gitignore b/scripts/dtc/.gitignore
+index b814e6076bdb..8a8b62bf3d3c 100644
+--- a/scripts/dtc/.gitignore
++++ b/scripts/dtc/.gitignore
+@@ -1,2 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ dtc
++fdtoverlay
+diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
+index c8c21e0f2531..95aaf7431bff 100644
+--- a/scripts/dtc/Makefile
++++ b/scripts/dtc/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ # scripts/dtc makefile
  
-   # See ../video-interfaces.txt for more details
-   port:
--    type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-+    additionalProperties: false
-+
-     properties:
-       endpoint:
--        type: object
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-         properties:
-           data-lanes:
-             oneOf:
-@@ -65,11 +69,7 @@ properties:
-                   - const: 1
-                   - const: 2
++# *** Also keep .gitignore in sync when changing ***
+ hostprogs-always-$(CONFIG_DTC)		+= dtc fdtoverlay
+ hostprogs-always-$(CHECK_DT_BINDING)	+= dtc
  
--          link-frequencies:
--            allOf:
--              - $ref: /schemas/types.yaml#/definitions/uint64-array
--            description:
--              Allowed data bus frequencies.
-+          link-frequencies: true
- 
-         required:
-           - data-lanes
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
-index 1ab22e75d3c6..3e5d82df90a2 100644
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
-@@ -31,7 +31,8 @@ properties:
-     maxItems: 1
- 
-   port:
--    $ref: /schemas/graph.yaml#/$defs/port-base
-+    $ref: /schemas/graph.yaml#/properties/port
-+    additionalProperties: false
- 
-     properties:
-       endpoint:
-@@ -41,8 +42,6 @@ properties:
-         properties:
-           clock-noncontinuous: true
- 
--    additionalProperties: false
--
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
-index f8783f77cc54..9149f5685688 100644
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
-@@ -44,19 +44,17 @@ properties:
-     description: Reset Pin GPIO Control (active low)
- 
-   port:
--    type: object
-     description: MIPI CSI-2 transmitter port
-+    $ref: /schemas/graph.yaml#/properties/port
-+    additionalProperties: false
- 
-     properties:
-       endpoint:
--        type: object
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
- 
-         properties:
--          remote-endpoint: true
--
--          link-frequencies:
--            $ref: /schemas/types.yaml#/definitions/uint64-array
--            description: Allowed MIPI CSI-2 link frequencies
-+          link-frequencies: true
- 
-           data-lanes:
-             minItems: 1
-@@ -65,10 +63,6 @@ properties:
-         required:
-           - data-lanes
-           - link-frequencies
--          - remote-endpoint
--
--    required:
--      - endpoint
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-index c0ba28aa30c4..0699c7e4fdeb 100644
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-@@ -44,19 +44,17 @@ properties:
-     description: Reset Pin GPIO Control (active low)
- 
-   port:
--    type: object
-     description: MIPI CSI-2 transmitter port
-+    $ref: /schemas/graph.yaml#/properties/port
-+    additionalProperties: false
- 
-     properties:
-       endpoint:
--        type: object
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
- 
-         properties:
--          remote-endpoint: true
--
--          link-frequencies:
--            $ref: /schemas/types.yaml#/definitions/uint64-array
--            description: Allowed MIPI CSI-2 link frequencies
-+          link-frequencies: true
- 
-           data-lanes:
-             minItems: 1
-@@ -65,10 +63,6 @@ properties:
-         required:
-           - data-lanes
-           - link-frequencies
--          - remote-endpoint
--
--    required:
--      - endpoint
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-index 24e689314bde..27cc5b7ff613 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
-@@ -36,18 +36,17 @@ properties:
-     description: Reference to the GPIO connected to the XCLR pin, if any.
- 
-   port:
--    type: object
-     additionalProperties: false
-     $ref: /schemas/graph.yaml#/properties/port
- 
-     properties:
-       endpoint:
--        type: object
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-         properties:
--          data-lanes:
--            $ref: ../video-interfaces.yaml#/properties/data-lanes
--          link-frequencies:
--            $ref: ../video-interfaces.yaml#/properties/link-frequencies
-+          data-lanes: true
-+          link-frequencies: true
- 
-         required:
-           - data-lanes
 -- 
 2.27.0
 
