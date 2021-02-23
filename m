@@ -2,100 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9E7D323179
-	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 20:36:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C9343231A8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Feb 2021 20:56:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234050AbhBWTe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 14:34:57 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:34324 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234041AbhBWTe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 14:34:56 -0500
-Received: by mail-ot1-f45.google.com with SMTP id b16so16819478otq.1;
-        Tue, 23 Feb 2021 11:34:40 -0800 (PST)
+        id S230001AbhBWTzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 14:55:11 -0500
+Received: from mail-wr1-f51.google.com ([209.85.221.51]:43632 "EHLO
+        mail-wr1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229999AbhBWTzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 14:55:10 -0500
+Received: by mail-wr1-f51.google.com with SMTP id w11so1136386wrr.10;
+        Tue, 23 Feb 2021 11:54:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=jzoiYbxpGL9e8WsQqrLwB9sTS+xjumdfM5quc7WjraA=;
-        b=JgZQFB/0HbPE4LIHjD2xvXj3RJ/8nMk0r0FsWiC2P0j9Gd04UYm4ARdvm6za/PGD5f
-         RIqm2qLxFppfb2okqG3VEV4Blzjjh/Ls33bocdzbw21myZ6kEYNcMT+w3snN4zWHNMdF
-         ecqAWmBvYw5Xu3cFss5Aw2U58SUvSne+dvCGgXc9vvLR2rO36m++vIFJdnXk5/mylNqf
-         I9XldAWuGHwP5ySwPJZsa4EkK2oKtp7Tu+9Cs944xNynmexNbnN3zB4Sp1vk31FmCPBN
-         4AiLfl1kTKRhwDlinBpmoeq8we+PDIJl0/u/KsNzSCBm91/aQcWf7qFSWJ+iymD2iGBQ
-         SqOg==
-X-Gm-Message-State: AOAM531ltxDrKsVnfZkD/YT/PCEDYxNu7p7QabJoajHWFk+Atnb7wili
-        ij9OppLDUWL0WQCEeFObEg==
-X-Google-Smtp-Source: ABdhPJwj76JeAWZQEdKJSqs6KXqu/e1xzLx2WR5ir1KgpkRjXIMDERCdN92Jr+TLNAQe0oqLmlaClw==
-X-Received: by 2002:a9d:618a:: with SMTP id g10mr20959934otk.34.1614108855332;
-        Tue, 23 Feb 2021 11:34:15 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j5sm4445295oij.48.2021.02.23.11.34.13
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=o1Hcd6QRdKXXlEYw6zHLnq2SBm16aJnAi+TIykLMZ1w=;
+        b=W2cHHPVlztbDon38vyGKbuZYO4mRggBrzXpZ2j9txcV8kJs8YbE6CjYtkUSirxVph+
+         N5B+s1W8EcX3igoBxllNm3kudqFZtptgahVkuwhuLoweGwFq75IZMQy0F89Oi3ZoCDHp
+         Aha+a1a1MkqrLzzObixbWA5xSoUAw3mDYKmYCaqqwEXKKSEKgQPand/CZgTVEV9+hNX8
+         VXZcFZhPT0/vdoGP2bsZlChHt6PkK+Iff8fnSRZ+yxngXe3t3CklD68KGawSdDvls2hQ
+         q46WZqfrREMQKOczJVwe7LUTUJtxwXx0Aqec+Gr0ifxzO9PvrT5W60cVUS1WrNAfnkPZ
+         3xxQ==
+X-Gm-Message-State: AOAM532R1DKx7sKruOAI8f/e9avGXhORSyD8+hnSMxslfnsbUwLpmbO5
+        RfggICoifRWo1b7Z3ZElHhU=
+X-Google-Smtp-Source: ABdhPJy7zTjADGpUaZXVMTOg3Dugy9wFFMQkD0vZ8NE/irXeTO7Ma/hyCsHc/R3XfqhumMZMU6LmIg==
+X-Received: by 2002:adf:818a:: with SMTP id 10mr24721411wra.31.1614110068917;
+        Tue, 23 Feb 2021 11:54:28 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id a186sm3847508wme.17.2021.02.23.11.54.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Feb 2021 11:34:14 -0800 (PST)
-Received: (nullmailer pid 4116107 invoked by uid 1000);
-        Tue, 23 Feb 2021 19:34:10 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        linux-rpi-kernel@lists.infradead.org,
-        Matt Mackall <mpm@selenic.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?utf-8?b?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@protonmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-crypto@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-kernel@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Scott Branden <sbranden@broadcom.com>,
-        Mark Brown <broonie@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <20210223170006.29558-2-noltari@gmail.com>
-References: <20210222194510.14004-1-noltari@gmail.com> <20210223170006.29558-1-noltari@gmail.com> <20210223170006.29558-2-noltari@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: rng: bcm2835: document reset support
-Date:   Tue, 23 Feb 2021 13:34:10 -0600
-Message-Id: <1614108850.556529.4116106.nullmailer@robh.at.kernel.org>
+        Tue, 23 Feb 2021 11:54:27 -0800 (PST)
+Date:   Tue, 23 Feb 2021 20:54:25 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        catalin.marinas@arm.com, will@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 01/10] arm64: dts: imx8mm-nitrogen-r2: add wifi/bt chip
+Message-ID: <20210223195425.zzzkupwqnwidz3rx@kozik-lap>
+References: <20210223191652.436397-1-adrien.grassein@gmail.com>
+ <20210223191652.436397-2-adrien.grassein@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210223191652.436397-2-adrien.grassein@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Feb 2021 18:00:05 +0100, Álvaro Fernández Rojas wrote:
-> Some devices may need to perform a reset before using the RNG, such as the
-> BCM6368.
+On Tue, Feb 23, 2021 at 08:16:44PM +0100, Adrien Grassein wrote:
+> Add usdhc3 description which corresponds to the wifi/bt chip
 > 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
+> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
 > ---
->  v3: make resets required if brcm,bcm6368-rng.
->  v2: document reset support.
-> 
->  .../devicetree/bindings/rng/brcm,bcm2835.yaml   | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+>  .../boot/dts/freescale/imx8mm-nitrogen-r2.dts | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rng/brcm,bcm2835.example.dt.yaml: rng@10004180: 'resets' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
-
-See https://patchwork.ozlabs.org/patch/1443582
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Best regards,
+Krzysztof
