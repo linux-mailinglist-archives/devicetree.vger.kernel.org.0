@@ -2,148 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C305323FCD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 16:21:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E6FD323FCC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 16:21:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236544AbhBXOWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 09:22:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51302 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234689AbhBXOLA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 09:11:00 -0500
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B61C06174A;
-        Wed, 24 Feb 2021 06:10:20 -0800 (PST)
-Received: by mail-io1-xd34.google.com with SMTP id f6so2082286iop.11;
-        Wed, 24 Feb 2021 06:10:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3D1Nudqra57iFYZkCqfpmz5q0clF1aW4HbVFHLjnaxY=;
-        b=EQ+9OxZiTAskxOz0HKXsoxtLBm2lGyksYANT3XCa7/nDtfckkPDWWruBrE8Bcsgg31
-         rl1NeWUzYWdtpYi+CWtgkJXAMs9ASVJQAZoIe5xqdRghB+X5XVTWcrhaBTtSaimR5gy+
-         Kyy/L5OulfCkOh+QNOfGEbd+E/kB7WVfp1ezapWcsNgWUKedG9grXuQZhdHibFlMo8q4
-         K2v05+5fmgqsCwP+U5rXcPiFCrUL8Rcm/I1uDQEccAM3f94sqwNoK+O/wc0pEFRmPRiN
-         Dh3KL52q9oTQpi8REfuOfASzbEcc9yVMWDIhDpWPcoTpC6G8I2ia3j56056RMZpV5Fvf
-         dN0g==
+        id S236056AbhBXOW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 09:22:26 -0500
+Received: from mail-lj1-f170.google.com ([209.85.208.170]:42600 "EHLO
+        mail-lj1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234674AbhBXOK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 09:10:57 -0500
+Received: by mail-lj1-f170.google.com with SMTP id v17so2516675ljj.9;
+        Wed, 24 Feb 2021 06:10:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3D1Nudqra57iFYZkCqfpmz5q0clF1aW4HbVFHLjnaxY=;
-        b=GIm9Yl899J/wGGFiLtKXjv7losrejj1L/goERzc87REdYfN8RAM5A36tDp5H+tEcYB
-         lNy74FYxMZhtD8w5Ww9GXk7t/JizTNo5WdRtaJ+5Jp4zjzWoJvk3QuvEDKYo4epFiEdQ
-         uJGLObK56F270IlM7TEOEooeSJORlCvGvWh2qVsBedwVscMfqPvRe73brU+zdEUbsLzS
-         Szlp/7gTfm7VdFxzHMRLhtuSJcHf9xAe1nKVbrnjhEG6ilgnblUXpQW6VimL4Q0EovJQ
-         DK3OyV3tQuwTI/qNfmE0W0bHF9RHTW+//TqpzjjSGh1GKBLnq9TW9XIdP6nIdB2avYcO
-         9Erg==
-X-Gm-Message-State: AOAM532D66fUWQEzHYAXaou8UOoJuhhLGjXZPGTHBTx1x/zHagJog8Fl
-        pK8txsyYuNnLp7/diLoh2/+M8/nCkOnbhUqeAZrVH520
-X-Google-Smtp-Source: ABdhPJzkVX6pcV17+6LbmSXRjVa/Z6jJDmMS+AyFdrrLr2g5CFJHPCLSAYmjJYj+yw4MZDtRAyMZOviOo40kz5Z7N88=
-X-Received: by 2002:a05:6602:2e93:: with SMTP id m19mr14230470iow.122.1614175819665;
- Wed, 24 Feb 2021 06:10:19 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rp6xFbMVcSNr3U+KePG0/i37RYbSH1lUEiS0Y/RzdOU=;
+        b=gLuRYKwqytwVlTdgWXXJZGidDRnz4Fq29+G/1/flO15N0gKUMgEgdtXga3QlbUdhdx
+         2nbXjOtv1bGb+REQO11xyYEq00wC3qRRZeHrND2lmlKF+sfsF+ZL9+7yrXDxejvX1AkO
+         JwTGbgeNI6JnjvwKp+L+YqUUb7BcHVmTNDukhLvtBK7QohEDbs2aDlsf4Jja4lJCfSuO
+         bDKE/xtVflpjc9OVBfdCSP53EQEntJfmWMCQ/8MsUrY1fzaoECuaws+yahPIH0vclkM/
+         /WPLOSYcRKKkEtf+insaqVgK+gah4whRrIgiqgM+Idpqr3aKlqCxkTn1yb9qevR5FoYO
+         2kQw==
+X-Gm-Message-State: AOAM531PS8BCMUWAQ1LAfbAyu4fBnwLHl1Rx+28OA4H1RJvdjuVxC1Pe
+        Jt4LUOmFsqmHRQCS45RY/iU=
+X-Google-Smtp-Source: ABdhPJw0MxwBtXUxHE7ZBUDyzNlLM4MxrrjRipAt6fYrgf8jDMdyN1rtiQm3NBCDC0X9YA8LNWW25A==
+X-Received: by 2002:a2e:7409:: with SMTP id p9mr19032678ljc.404.1614175815511;
+        Wed, 24 Feb 2021 06:10:15 -0800 (PST)
+Received: from rocinante ([95.155.85.46])
+        by smtp.gmail.com with ESMTPSA id n13sm509705lfu.265.2021.02.24.06.10.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Feb 2021 06:10:15 -0800 (PST)
+Date:   Wed, 24 Feb 2021 15:10:13 +0100
+From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, maz@kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
+        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
+        sin_jieyang@mediatek.com, drinkcat@chromium.org,
+        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
+Subject: Re: [v8,6/7] PCI: mediatek-gen3: Add system PM support
+Message-ID: <YDZeRc6CHV/WzyCm@rocinante>
+References: <20210224061132.26526-1-jianjun.wang@mediatek.com>
+ <20210224061132.26526-7-jianjun.wang@mediatek.com>
 MIME-Version: 1.0
-References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com>
- <1613623791-4598-2-git-send-email-shubhrajyoti.datta@xilinx.com>
- <20210218092804.6c78c99c@xps13> <161369785558.1254594.14662342386099652001@swboyd.mtv.corp.google.com>
-In-Reply-To: <161369785558.1254594.14662342386099652001@swboyd.mtv.corp.google.com>
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
-Date:   Wed, 24 Feb 2021 19:40:08 +0530
-Message-ID: <CAKfKVtH1rSc4d8MMZCegMNG8shNxgXfu6qTd9WxuaGGFMEJ6CA@mail.gmail.com>
-Subject: Re: [PATCH v9 1/7] dt-bindings: add documentation of xilinx clocking wizard
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        linux-clk@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210224061132.26526-7-jianjun.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 19, 2021 at 6:54 AM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Miquel Raynal (2021-02-18 00:28:04)
-> > Hi Shubhrajyoti,
-> >
-> > Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com> wrote on Thu, 18 Feb
-> > 2021 10:19:45 +0530:
-> >
-> > > Add the devicetree binding for the xilinx clocking wizard.
-> > >
-> > > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> > > ---
-> > > v6:
-> > > Fix a yaml warning
-> > > v7:
-> > > Add vendor prefix speed-grade
-> > > v8:
-> > > Fix the warnings
-> > > v9:
-> > > Fix the warnings
-> > >
-> > >  .../bindings/clock/xlnx,clocking-wizard.yaml       | 65 ++++++++++++++++++++++
-> > >  1 file changed, 65 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> > > new file mode 100644
-> > > index 0000000..d209140
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> > > @@ -0,0 +1,65 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/clock/xlnx,clocking-wizard.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: Xilinx clocking wizard
-> > > +
-> > > +maintainers:
-> > > +  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> > > +
-> > > +description:
-> > > +  The clocking wizard is a soft ip clocking block of Xilinx versal. It
-> > > +  reads required input clock frequencies from the devicetree and acts as clock
-> > > +  clock output.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: xlnx,clocking-wizard
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#clock-cells":
-> > > +    const: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: clock input
-> > > +      - description: axi clock
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: clk_in1
-> > > +      - const: s_axi_aclk
-> > > +
-> > > +  clock-output-names: true
-> > > +
-> > > +  xlnx,speed-grade:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [1, 2, 3]
-> > > +    description:
-> > > +      Speed grade of the device.
-> >
-> > A bit of explanation of what this describes would be welcome.
-> >
-> > Don't forget that binding are not tied to any driver implementation,
-> > these are supposed to be hardware description properties.
->
-> Would opp tables work for this?
-This is the parameter is for speed of the fabric.
+Hi Jianjun,
+
+> Add suspend_noirq and resume_noirq callback functions to implement
+> PM system suspend hooks for MediaTek Gen3 PCIe controller.
+
+So, "systems suspend" and "resume" hooks, correct?
+
+> When system suspend, trigger the PCIe link to L2 state and pull down
+
+It probably would be "the system suspends".
+
+[...]
+> When system resum, the PCIe link should be re-established and the
+> related control register values should be restored.
+
+Similarly to the above: "the system resumes".
+
+[...]
+> +	if (err) {
+> +		dev_err(port->dev, "can not enter L2 state\n");
+> +		return err;
+> +	}
+
+Most likely you want "cannot" or "can't" in the above error message.
+
+> +	/* Pull down the PERST# pin */
+> +	val = readl_relaxed(port->base + PCIE_RST_CTRL_REG);
+> +	val |= PCIE_PE_RSTB;
+> +	writel_relaxed(val, port->base + PCIE_RST_CTRL_REG);
+> +
+> +	dev_dbg(port->dev, "enter L2 state success");
+
+Just a nitpick.  What about "entered L2 states successfully"?
+
+[...]
+> +	if (err) {
+> +		dev_err(port->dev, "resume failed\n");
+> +		return err;
+> +	}
+
+This error message does not quite convey that the mtk_pcie_startup_port()
+was the function that failed, which is only a part of what you have to do
+to successfully resume.
+
+> +	dev_dbg(port->dev, "resume done\n");
+
+A nitpick.  Probably not needed, as lack of error message would mean
+that the device resumed successfully after being suspended.
+
+Krzysztof
