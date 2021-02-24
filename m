@@ -2,77 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC7DD323743
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 07:15:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7396D323747
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 07:17:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234189AbhBXGOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 01:14:16 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:34517 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234165AbhBXGOE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 01:14:04 -0500
-X-UUID: 0b74c10d8311491786bbf6c4f912f9fd-20210224
-X-UUID: 0b74c10d8311491786bbf6c4f912f9fd-20210224
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 931900137; Wed, 24 Feb 2021 14:12:37 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 24 Feb 2021 14:12:35 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 24 Feb 2021 14:12:34 +0800
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>, <maz@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
-        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>,
-        <drinkcat@chromium.org>, <Rex-BC.Chen@mediatek.com>,
-        <anson.chuang@mediatek.com>
-Subject: [v8,7/7] MAINTAINERS: Add Jianjun Wang as MediaTek PCI co-maintainer
-Date:   Wed, 24 Feb 2021 14:11:32 +0800
-Message-ID: <20210224061132.26526-8-jianjun.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210224061132.26526-1-jianjun.wang@mediatek.com>
-References: <20210224061132.26526-1-jianjun.wang@mediatek.com>
+        id S234210AbhBXGPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 01:15:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34162 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234198AbhBXGOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 01:14:55 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39758C061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 22:14:15 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id r5so636100pfh.13
+        for <devicetree@vger.kernel.org>; Tue, 23 Feb 2021 22:14:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yxOYlDcAmFrvsseVFQZnlbu4c+MCg9v+/OLc+k95JMI=;
+        b=h11vlpce4XGbBFbk13afoWc/iYSBMme7SCx6TA7PPG8goj0ZamXqmwYnchAylwh/kG
+         G334yWOoUrSCVEiaQ2b11Ns6QtNTs6lyIv0I/sP/H6R2B45KRaZjH4ftfQ11MHnI52wq
+         oq6Yme52ovnyQ1MJodGTN8XLzANyTf+v8UvSw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yxOYlDcAmFrvsseVFQZnlbu4c+MCg9v+/OLc+k95JMI=;
+        b=g4o1aVIkguPEBzMc1NxStZw8o3mwCmKq6i2JtB+dNVt3lDXDro1YspUOARF2lcLxvj
+         zuDIq4KetJF6PSV3SuQLwgtiU2ZAlBgYrZOqMyTUp+A/mEF9btwO6L2VqUngDnPTA3o8
+         CEMNWjyST51AD8y53Z95uO51kz8RNj+iZOkCdKXodFwkW95tFWNQ9AdD5Yee0kXiG+2P
+         YGtPqwLYIJT+v92HmlsAbT7WE5D6omys7wnPuPVTg+OWxu8BQWQqc5zCEFOjNC3FmD4N
+         zyMkQ5hmKqfKNnjxP93unNR83JHan/S5jl9JByJtm1pXsoydlTyD2+9NrSqUFQlSMBB/
+         whiA==
+X-Gm-Message-State: AOAM531v6ju97OpRD3DurU/tHKN1YK4teQdcxCKDOQi76yqwD31kkJdL
+        POZ4fzVJk+mj/wQvxPIIndCzSgVM6PdQRw==
+X-Google-Smtp-Source: ABdhPJxy2AVlk5Xq7aOvwN63bI6UesMrVz7TGyZ2uLn4UrK2JqH1Tv0V+HKRxOP7f5vWqaG+1ITTig==
+X-Received: by 2002:aa7:888b:0:b029:1ec:df4a:4da2 with SMTP id z11-20020aa7888b0000b02901ecdf4a4da2mr29828733pfe.66.1614147254429;
+        Tue, 23 Feb 2021 22:14:14 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:5003:b035:5243:160e])
+        by smtp.gmail.com with ESMTPSA id r13sm1266765pfg.37.2021.02.23.22.14.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Feb 2021 22:14:14 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Xin Ji <xji@analogixsemi.com>, dri-devel@lists.freedesktop.org
+Cc:     David Airlie <airlied@linux.ie>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v4 1/2] dt-bindings: drm/bridge: anx7625: Add power supplies
+Date:   Wed, 24 Feb 2021 14:14:08 +0800
+Message-Id: <20210224061409.3996755-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.30.1.766.gb4fecdf3b7-goog
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update entry for MediaTek PCIe controller, add Jianjun Wang
-as MediaTek PCI co-maintainer.
+anx7625 requires 3 power supply regulators.
 
-Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
 ---
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+v3->v4: rebase to drm-misc/for-linux-next
+---
+ .../bindings/display/bridge/analogix,anx7625.yaml | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 546aa66428c9..bef7f4017473 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13826,6 +13826,7 @@ F:	drivers/pci/controller/dwc/pcie-histb.c
+diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+index c789784efe306..ab48ab2f4240d 100644
+--- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+@@ -34,6 +34,15 @@ properties:
+     description: used for reset chip control, RESET_N pin B7.
+     maxItems: 1
  
- PCIE DRIVER FOR MEDIATEK
- M:	Ryder Lee <ryder.lee@mediatek.com>
-+M:	Jianjun Wang <jianjun.wang@mediatek.com>
- L:	linux-pci@vger.kernel.org
- L:	linux-mediatek@lists.infradead.org
- S:	Supported
++  vdd10-supply:
++    description: Regulator that provides the supply 1.0V power.
++
++  vdd18-supply:
++    description: Regulator that provides the supply 1.8V power.
++
++  vdd33-supply:
++    description: Regulator that provides the supply 3.3V power.
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+@@ -55,6 +64,9 @@ properties:
+ required:
+   - compatible
+   - reg
++  - vdd10-supply
++  - vdd18-supply
++  - vdd33-supply
+   - ports
+ 
+ additionalProperties: false
+@@ -72,6 +84,9 @@ examples:
+             reg = <0x58>;
+             enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
+             reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
++            vdd10-supply = <&pp1000_mipibrdg>;
++            vdd18-supply = <&pp1800_mipibrdg>;
++            vdd33-supply = <&pp3300_mipibrdg>;
+ 
+             ports {
+                 #address-cells = <1>;
 -- 
-2.25.1
+2.30.1.766.gb4fecdf3b7-goog
 
