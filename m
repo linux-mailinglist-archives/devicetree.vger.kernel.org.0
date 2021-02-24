@@ -2,96 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3819323B9A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 12:54:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E003C323BF5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 13:38:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235000AbhBXLxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 06:53:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50128 "EHLO
+        id S233364AbhBXMii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 07:38:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235187AbhBXLxW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 06:53:22 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02B3DC06178C;
-        Wed, 24 Feb 2021 03:52:12 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id u20so1669209iot.9;
-        Wed, 24 Feb 2021 03:52:11 -0800 (PST)
+        with ESMTP id S233299AbhBXMih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 07:38:37 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903D2C06174A
+        for <devicetree@vger.kernel.org>; Wed, 24 Feb 2021 04:37:56 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id v22so2239254edx.13
+        for <devicetree@vger.kernel.org>; Wed, 24 Feb 2021 04:37:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Vv8e+Q64O0YOnZPfFWuAU+JcY2c3un2uq0nf6BdI8TQ=;
-        b=WUHmJpGd4JhuzwHrZklF4hnBIt30FW+aVavOfZzmRidKN66gbK85O+iCO9OGeZCn5J
-         YHV0isOxRHoayg74DqGLs/GWDcKgbK6t2J6G5Nt29E91ILFf0HqMSmEUYhmpWAxB+puA
-         zbv2uShMy5NN/a4zorI2zEjDf+FThgiEOAw40qrmnFo47KWHNdzeWHHUMCXkH0VOjjQ2
-         NHAlPGKLkXcEoS1S+voO5lt2aVqaqQGh1rjgYZv4AgichI4jlJZhZKpa8b4RJpBtF8Kx
-         JirQu+CWF+s1lTvXW6+W3tUv5ZZQcGjFP0efAkDVZwCBlT7zkD8M1LdDQa1Li7UuZVQ7
-         sekg==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=g07oglWDP6MW/sT/0KORfHFay4I08yTBqKpnsZcOxR0=;
+        b=JkQw5OpKBkdZyh07F+JVOE82ubO8e/yH6drILRD6olCknp04OYbWD4oNqMHuM/UjK7
+         +zBfNqPxRal7XD1E0ebOlxQAfduFI6Nn9+JmjgCYDPZg4HrB9UR3emBLUwvTq68oONb0
+         9DnsGxRqNiIwUq3wwJU0Ww3mcInwW+P7LtdMY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Vv8e+Q64O0YOnZPfFWuAU+JcY2c3un2uq0nf6BdI8TQ=;
-        b=d3ZRd+b16KbI3/FCm6kQiKDZVefs+Pgla/dlTLT/cII73ufqQAdfn/JSKO7OE2yyU7
-         e0/yxpmtZCu+sgXCN0BgO2ldXEfjnQsoyTG7aHM/AvGaCAz6NIM3eIEk44rA9y+ko+HA
-         qVvuM9lOKB3hrDZLOHp5u6w2RY+p78ceUwKx8sOXgqGPt7aRoUMg2A61QcAs0hyrIlZE
-         Wu9hh0XEMHX5GEOG+5wJvQEPjRgmyXuVw0jVwjeBIFpeexe9j0qJ0Od3giWEkgjFS0aQ
-         MCBa2BOdF248YPwbh42k6/dGCAGPadMShaB/zNihwIeRrPDIiXG8CjJsXl1Vj96ujb9m
-         +2/w==
-X-Gm-Message-State: AOAM532aat3Yzk7966ZD8wmpNCwMaCELXuKh1/IJoyJ17Td2woXZx3eQ
-        sN571YccM5f4/ptLcGvWtCn2jVxKLUa+Fw==
-X-Google-Smtp-Source: ABdhPJzqMuYbUTFoFmYyOX4XzjuCRsBxFbouWEUNy31yHTK43kr8jwYdhgn296WX4/ec6XTGuNPzEA==
-X-Received: by 2002:a6b:b415:: with SMTP id d21mr1377811iof.149.1614167531229;
-        Wed, 24 Feb 2021 03:52:11 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:de9c:d296:189b:385a])
-        by smtp.gmail.com with ESMTPSA id l16sm1500001ils.11.2021.02.24.03.52.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Feb 2021 03:52:10 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     netdev@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V3 5/5] arm64: dts: renesas: beacon kits: Setup AVB refclk
-Date:   Wed, 24 Feb 2021 05:51:45 -0600
-Message-Id: <20210224115146.9131-5-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210224115146.9131-1-aford173@gmail.com>
-References: <20210224115146.9131-1-aford173@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=g07oglWDP6MW/sT/0KORfHFay4I08yTBqKpnsZcOxR0=;
+        b=hFRIHO3Tz6TwHgcIQqrgapzRcUNZXmvJ0tQMp5F3ohxgP24glBkcf+vdJGRpyi8/7L
+         NnxH/8TxxddvGeJmjX/BwpKOGGObe+Vhi37+FUv7k3Y7xkJTrZ4BwWDyxUsAB0dWP94Y
+         cbRoiLoN90JK0qkiUvleoP0bMBpqBOM3tLtw3QzwdQjBKJxKfU8zrHoSbyGG1EKMqhct
+         6b5iuTTbfznIMeJ7nTuF0d61rsU5KrVTHeudyUKY7fqp2D4+TozzpABjiFy4DREOOVmX
+         SQ3BLy60Vht05H37jFtN1KnaGd7q7UPV+lCF+2O3ajBKf38QOuAymJeNPaCy4eUwEOwI
+         aFpg==
+X-Gm-Message-State: AOAM532ZhrSnV6Zxux7dNvcNoGG7czAZlozFN2wI4YFLzFmJZjYYXnjF
+        0/F23DW9TEv6suTUEcKvEJ8WQLGNqXOo0NIeUXaGVA==
+X-Google-Smtp-Source: ABdhPJyVP8jYaoGikQdL4uI2tbLxt5QZyKSbb5dZCpNiGmPPFJtjCN7iayaf+Wq/05Dty7VWud+PoyKrDNCgfqwiU/c=
+X-Received: by 2002:a05:6402:33a:: with SMTP id q26mr28983732edw.150.1614170275198;
+ Wed, 24 Feb 2021 04:37:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210214175211.105107-1-jagan@amarulasolutions.com> <YCpmZWRoiWULiANx@pendragon.ideasonboard.com>
+In-Reply-To: <YCpmZWRoiWULiANx@pendragon.ideasonboard.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 24 Feb 2021 18:07:43 +0530
+Message-ID: <CAMty3ZDt2EDB8E2nNLx_jfqE7-ActVYVoeFo2Eso+nVuUfVL+w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for
+ Chipone ICN6211
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AVB refererence clock assumes an external clock that runs
-automatically.  Because the Versaclock is wired to provide the
-AVB refclock, the device tree needs to reference it in order for the
-driver to start the clock.
+Hi Laurent,
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V3:  New to series
+On Mon, Feb 15, 2021 at 5:48 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Jagan,
+>
+> Thank you for the patch.
+>
+> On Sun, Feb 14, 2021 at 11:22:10PM +0530, Jagan Teki wrote:
+> > ICN6211 is MIPI-DSI to RGB Convertor bridge from Chipone.
+> >
+> > It has a flexible configuration of MIPI DSI signal input and
+> > produce RGB565, RGB666, RGB888 output format.
+> >
+> > Add dt-bingings for it.
+> >
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> > Changes for v3:
+> > - updated to new dt-bindings style
+> >
+> >  .../display/bridge/chipone,icn6211.yaml       | 90 +++++++++++++++++++
+> >  1 file changed, 90 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> > new file mode 100644
+> > index 000000000000..13764f13fe46
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> > @@ -0,0 +1,90 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/bridge/chipone,icn6211.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Chipone ICN6211 MIPI-DSI to RGB Converter bridge
+> > +
+> > +maintainers:
+> > +  - Jagan Teki <jagan@amarulasolutions.com>
+> > +
+> > +description: |
+> > +  ICN6211 is MIPI-DSI to RGB Convertor bridge from chipone.
+> > +
+> > +  It has a flexible configuration of MIPI DSI signal input and
+> > +  produce RGB565, RGB666, RGB888 output format.
+>
+> How does one select between the output formats ? Should the output
+> connection option be described in the device tree ?
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-index 8d3a4d6ee885..75355c354c38 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-@@ -53,6 +53,8 @@ &avb {
- 	phy-handle = <&phy0>;
- 	rx-internal-delay-ps = <1800>;
- 	tx-internal-delay-ps = <2000>;
-+	clocks = <&cpg CPG_MOD 812>, <&versaclock5 4>;
-+	clock-names = "fck", "refclk";
- 	status = "okay";
- 
- 	phy0: ethernet-phy@0 {
--- 
-2.25.1
+I think that is a good option to select output formats via dts. what
+if it makes it a generic property like data-lanes? since it is common
+across many other bridges.
 
+>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - chipone,icn6211
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: virtual channel number of a DSI peripheral
+> > +
+> > +  reset-gpios:
+> > +    description: GPIO connected for the reset pin
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Video port for MIPI DSI input
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Video port for MIPI DPI output (panel or connector).
+> > +
+> > +    required:
+> > +      - port@0
+> > +      - port@1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reset-gpios
+> > +  - ports
+>
+> How about regulators ?
+
+Will add it in the next version.
+
+Jagan.
