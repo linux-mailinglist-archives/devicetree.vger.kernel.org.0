@@ -2,183 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 183A1323FBF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 16:21:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96110323FC4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 16:21:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232678AbhBXOTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 09:19:35 -0500
-Received: from mail-dm6nam10on2052.outbound.protection.outlook.com ([40.107.93.52]:42433
-        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236807AbhBXN0U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Feb 2021 08:26:20 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S7eeuWf4ykRgXzfd+jq97jTy7pdAOaXWc3SVwHUt9XRZK2Vo70ljFyoiMeyZLwMq+ng5tNOc+v9xMIWEv/LqU+yRdtDhox1kJxT+6Nq9y484orBr799O/iZhUpOrF72EXbTn1OkrFXoOjZmQqgOZcMHBXP0bByVGkfj20t4+d+aaJtgdzbLL+mtmpiwsqBei2WntXUjbf0OrglVQsmeouzt57aBHS0lqy1pn7DO9dTp8f6kDfrXzilaxULMJGnMi7GCdsjwqO6+TpBEMPIMlZrqLal97qi+C1aSCSNvMpWyOvV3KlCo/QFMUdmOxKJeD6pVIF8LVKPSlmhJn7y5tOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=llxU1S+43FCpVCliTg+lyiNWjCTYeaf/751Rmzfdnd8=;
- b=fQrBH3SIv3FktB1uuRE813rV/LMJQ4Cwr4CdfNg8MUVu2iVGmRQaAAkvi2IPDSLG5OMbBG7E9+0ncfXtxTnib4bbUZ7W19UZX45Cf1nPiU6ZYMYSLCQDkKqrr9rDhLdWTTgt8arX/W8aIjX8DUzIHLXU5N/d1NBviCTc0YJkHBC1he0XRpzjdxgEWtDLI5ythMlfvfhG0mH50z4FW3QcF2VIJRhpqIlVWkeiW/U6hUIQiQjH95wXC7IxgEcreE/avSvg5V3oX9wxIIcujYemRvLH/5eLres+iXUo+VMHeHTSaBQV6Z6E9sTdlz6foBxgmHme/X6rX9lGbTcf/fgplw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=llxU1S+43FCpVCliTg+lyiNWjCTYeaf/751Rmzfdnd8=;
- b=okgbDpeUbjSPWpqjHSMMx6p3e0moKz0BO+P3l6mPfatEY7LxFeixGWxFplwP+BVHRDHFTy0kdtUyW4vmLpzFdF9CdA+5GqEnX5ifeV7Qc0ELbIW4PnGmT4BtqDNWiMNONm5c+MYqk0iIpnrGjC6sHUQ6W+XdsSfnm0vCFfZDOXw=
-Received: from BL0PR02CA0024.namprd02.prod.outlook.com (2603:10b6:207:3c::37)
- by SJ0PR02MB7664.namprd02.prod.outlook.com (2603:10b6:a03:323::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.32; Wed, 24 Feb
- 2021 13:25:26 +0000
-Received: from BL2NAM02FT019.eop-nam02.prod.protection.outlook.com
- (2603:10b6:207:3c:cafe::8) by BL0PR02CA0024.outlook.office365.com
- (2603:10b6:207:3c::37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19 via Frontend
- Transport; Wed, 24 Feb 2021 13:25:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- BL2NAM02FT019.mail.protection.outlook.com (10.152.77.166) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3890.19 via Frontend Transport; Wed, 24 Feb 2021 13:25:25 +0000
-Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Wed, 24 Feb 2021 05:25:23 -0800
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Wed, 24 Feb 2021 05:25:23 -0800
-Envelope-to: michal.simek@xilinx.com,
- linux-arm-msm@vger.kernel.org,
- mathias.nyman@intel.com,
- masahiroy@kernel.org,
- bjorn.andersson@linaro.org,
- agross@kernel.org,
- grandmaster@al2klimov.de,
- alcooperx@gmail.com,
- krzk@kernel.org,
- linux-usb@vger.kernel.org,
- dianders@chromium.org,
- linux-kernel@vger.kernel.org,
- hadess@hadess.net,
- ravisadineni@chromium.org,
- stern@rowland.harvard.edu,
- swboyd@chromium.org,
- peter.chen@nxp.com,
- devicetree@vger.kernel.org,
- frowand.list@gmail.com,
- robh+dt@kernel.org,
- gregkh@linuxfoundation.org,
- mka@chromium.org
-Received: from [172.30.17.109] (port=45350)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1lEuAN-0003kA-7j; Wed, 24 Feb 2021 05:25:23 -0800
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-CC:     <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>,
-        "Stephen Boyd" <swboyd@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        "Ravi Chandra Sadineni" <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        <linux-usb@vger.kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
-        Al Cooper <alcooperx@gmail.com>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        "Mathias Nyman" <mathias.nyman@intel.com>,
-        <linux-arm-msm@vger.kernel.org>,
-        "Michal Simek" <michal.simek@xilinx.com>
-References: <20210210171040.684659-1-mka@chromium.org>
-From:   Michal Simek <michal.simek@xilinx.com>
-Subject: Re: [PATCH v5 0/4] USB: misc: Add onboard_usb_hub driver
-Message-ID: <64179b81-454c-0d26-5413-a8df2e292b05@xilinx.com>
-Date:   Wed, 24 Feb 2021 14:25:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S234186AbhBXOUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 09:20:11 -0500
+Received: from mail-lf1-f53.google.com ([209.85.167.53]:44933 "EHLO
+        mail-lf1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237729AbhBXNmq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 08:42:46 -0500
+Received: by mail-lf1-f53.google.com with SMTP id p21so3035465lfu.11;
+        Wed, 24 Feb 2021 05:42:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dq4qL90OCu8ib/iGkBDTsJu+uvHjzn/c/ym0u/ajUA0=;
+        b=k2bs7i9PURtQE7+MTG7SM9jVa6bKH+Y+0qyhPmHfxmzi70O1p7VJ2F+TseOW+ky8Zi
+         D/e8wAhcD5J7KpNWGlCWsZOkk4Gp6ROoQV0KALDiMMaf6zms34UT2iod6bJYWPDfZVe3
+         8EtnFTjri5B+mrziFi8mTrAAQCIJOPxzHBnIe2tOoWLupnNzQzIGczp5Avikw66OwMVM
+         fXBO1NlzFP4Fi6QyqPvNLkOGCAF0HghiOn4uYbk6y0uRKPJ9x6VtOpupliFiiBdmsnWn
+         ngm+9VuYforWNWPMMhWoafkFuhladcE7K9LK4y9zZHWlmEbVuJBJhdl/OOZSc+bC6bkK
+         5Dww==
+X-Gm-Message-State: AOAM53374yrswzPEazzWiSSGpVJwLTsP4NzyB9XfB68mOGw3yylRUw7K
+        LbNauP3UkLjbnizR5UxfQOf9Liw/22TFbg==
+X-Google-Smtp-Source: ABdhPJxhksCAGOk3JAcFq15JrepLPez2XrzSDA7b9WxJVd1Jzq2verZqIaVftogrwqD0KjajojtEsw==
+X-Received: by 2002:a5d:4a09:: with SMTP id m9mr26874209wrq.310.1614173779234;
+        Wed, 24 Feb 2021 05:36:19 -0800 (PST)
+Received: from rocinante ([95.155.85.46])
+        by smtp.gmail.com with ESMTPSA id j125sm3000640wmb.44.2021.02.24.05.36.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Feb 2021 05:36:18 -0800 (PST)
+Date:   Wed, 24 Feb 2021 14:36:16 +0100
+From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, maz@kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
+        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
+        sin_jieyang@mediatek.com, drinkcat@chromium.org,
+        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
+Subject: Re: [v8,3/7] PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
+Message-ID: <YDZWUGcKet/lNWlF@rocinante>
+References: <20210224061132.26526-1-jianjun.wang@mediatek.com>
+ <20210224061132.26526-4-jianjun.wang@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <20210210171040.684659-1-mka@chromium.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4644e484-fa00-4b77-c456-08d8d8c7a54c
-X-MS-TrafficTypeDiagnostic: SJ0PR02MB7664:
-X-Microsoft-Antispam-PRVS: <SJ0PR02MB766469612B164674C00D7D3EC69F9@SJ0PR02MB7664.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fKT/lORXJ29rpnQZdF0cISKLAMBCFHTC/pdNO81qwp9LveeF2GQ+ZFd2L9arPkmml9Hcle9qD02gvl38wUB63/U90c4A0CNHgtDC0K05gD8w1ho177Ec6zy0s+wXhAPPq/83fVBrWVygZ5zJvY1pbJz4Xw3nxqo/V6jdcQ7wpJX1QIYUaf+v+uOiYUTC6UitgvKzoP0BA6DsSsgbNFjDFezxzscWUM9WFtn7Tab2b3EGU38RJPCSHr8BzJnwVFtPZW208YuaccfXqED0I9b0SMEXdS2BV1fuv6KMI/2xYusityG0kkBip0XKOJmE5NmyASqIPjO/FICI4sLFwjAtpwBEbp7HvlPhInNLsPdlytKg/9BdEwaNDrPoouZeOGEkWy8vTMm2Mm927tKh8nAnzS5kzIEp9a7yI11pz/nvLBKNpxzTL8GAkLXetPN+zPDhRxKdRGrlTZhwklRu4Na4TXO6RlNjkUC3h+OpfLSa2Yw9p3VP0PpNsDH8ZFi80p33DtLnPsa/4QVX6WBZ5RVvbvYplbmBfUuOjA81rlWJmEofDLIRKtzYmiNUD/TE9deRQEDfaNcgB7e0sA503UX332y/841PLRV6GQIMnYKAuqSO0Q5OqXNE1o11HGS9rsrdfzGL62X57YG35Az8rNfbmxfUN9ezqDro3F6eK5KPCz5Rn4RRYE4NdlTYwTDJ2BKJHXu3dLbNiEPq+MGSGSpXXRTE44Uh26v9hcvKIsK2Cy+DSTeOk3jLAL0R3zgQbrBmxxszUTosWRKWeMVy73lJITmJdVTvyEr/Ks0251RIP+c=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(376002)(396003)(346002)(39860400002)(36840700001)(46966006)(5660300002)(31696002)(36860700001)(9786002)(47076005)(2906002)(70206006)(7636003)(6666004)(70586007)(7416002)(316002)(82740400003)(8936002)(2616005)(107886003)(36756003)(110136005)(966005)(478600001)(44832011)(53546011)(26005)(426003)(186003)(356005)(54906003)(336012)(31686004)(82310400003)(4326008)(83380400001)(8676002)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 13:25:25.4819
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4644e484-fa00-4b77-c456-08d8d8c7a54c
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT019.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR02MB7664
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210224061132.26526-4-jianjun.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Hi Jianjun,
 
-On 2/10/21 6:10 PM, Matthias Kaehlcke wrote:
-> This series adds the onboard_usb_hub_driver, the corresponding
-> device tree bindings and creation of onboard_usb_hub platform in
-> the xhci-plat driver during probe().
-> 
-> The main issue the driver addresses is that a USB hub needs to be
-> powered before it can be discovered. For discrete onboard hubs (an
-> example for such a hub is the Realtek RTS5411) this is often solved
-> by supplying the hub with an 'always-on' regulator, which is kind
-> of a hack. Some onboard hubs may require further initialization
-> steps, like changing the state of a GPIO or enabling a clock, which
-> requires even more hacks. This driver creates a platform device
-> representing the hub which performs the necessary initialization.
-> Currently it only supports switching on a single regulator, support
-> for multiple regulators or other actions can be added as needed.
-> Different initialization sequences can be supported based on the
-> compatible string.
-> 
-> Besides performing the initialization the driver can be configured
-> to power the hub off during system suspend. This can help to extend
-> battery life on battery powered devices which have no requirements
-> to keep the hub powered during suspend. The driver can also be
-> configured to leave the hub powered when a wakeup capable USB device
-> is connected when suspending, and power it off otherwise.
-> 
+Thank you for all the work here!
 
-Rob pointed me here at your series.
-http://lore.kernel.org/r/CAL_JsqJedhX6typpUKbnzV7CLK6UZVjq3CyG9iY_j5DLPqvVdw@mail.gmail.com
+[...]
+> + * struct mtk_pcie_port - PCIe port information
+> + * @dev: pointer to PCIe device
+> + * @base: IO mapped register base
+> + * @reg_base: Physical register base
+> + * @mac_reset: mac reset control
+> + * @phy_reset: phy reset control
+> + * @phy: PHY controller block
+> + * @clks: PCIe clocks
+> + * @num_clks: PCIe clocks count for this port
 
-And I have looked at RTS5411 datasheet and it looks very similar to
-Microchip usb5744 chip we use.
-Both have i2c/smbus and spi interfaces and also input clock.
-usb5744 has also external gpio reset.
+It would be "MAC" and "PHY" in the above.
 
-There are also usb3503 and others which should fit to this generic DT
-binding.
+[...]
+> + * mtk_pcie_config_tlp_header
+> + * @bus: PCI bus to query
+> + * @devfn: device/function number
+> + * @where: offset in config space
+> + * @size: data size in TLP header
+> + *
+> + * Set byte enable field and device information in configuration TLP header.
 
-Thanks,
-Michal
+The kernel-doc above might be missing brief function description.  See
+the following for more concrete example:
 
-That's why please keep me in the loop on v6 because I think
+  https://www.kernel.org/doc/html/latest/doc-guide/kernel-doc.html#function-documentation
+
+[...]
+> +static int mtk_pcie_set_trans_table(struct mtk_pcie_port *port,
+> +				    resource_size_t cpu_addr,
+> +				    resource_size_t pci_addr,
+> +				    resource_size_t size,
+> +				    unsigned long type, int num)
+> +{
+> +	void __iomem *table;
+> +	u32 val;
+> +
+> +	if (num >= PCIE_MAX_TRANS_TABLES) {
+> +		dev_err(port->dev, "not enough translate table[%d] for addr: %#llx, limited to [%d]\n",
+
+The wording of this error message is a little confusing.
+
+> +			num, (unsigned long long) cpu_addr,
+
+No space between the bracket and the variable name.
+
+[...]
+> +	err = phy_init(port->phy);
+> +	if (err) {
+> +		dev_err(dev, "failed to initialize PCIe phy\n");
+> +		goto err_phy_init;
+> +	}
+> +
+> +	err = phy_power_on(port->phy);
+> +	if (err) {
+> +		dev_err(dev, "failed to power on PCIe phy\n");
+> +		goto err_phy_on;
+> +	}
+[...]
+
+It would be "PHY" in the error messages above.
+
+[...]
+> +	if (err) {
+> +		dev_err(dev, "clock init failed\n");
+> +		goto err_clk_init;
+> +	}
+[...]
+
+A nitpick, so feel free to ignore it, of course.  What about "failed to
+initialize clock" to keep the style consistent.
+
+[...]
+> +	err = mtk_pcie_startup_port(port);
+> +	if (err) {
+> +		dev_err(dev, "PCIe startup failed\n");
+[...]
+
+Also a nitpick.  What about "failed to bring PCIe link up"?
+
+Krzysztof
