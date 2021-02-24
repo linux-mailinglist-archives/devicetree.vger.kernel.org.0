@@ -2,164 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E003C323BF5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 13:38:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F39C323FAE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 16:21:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233364AbhBXMii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 07:38:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59784 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233299AbhBXMih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 07:38:37 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903D2C06174A
-        for <devicetree@vger.kernel.org>; Wed, 24 Feb 2021 04:37:56 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id v22so2239254edx.13
-        for <devicetree@vger.kernel.org>; Wed, 24 Feb 2021 04:37:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g07oglWDP6MW/sT/0KORfHFay4I08yTBqKpnsZcOxR0=;
-        b=JkQw5OpKBkdZyh07F+JVOE82ubO8e/yH6drILRD6olCknp04OYbWD4oNqMHuM/UjK7
-         +zBfNqPxRal7XD1E0ebOlxQAfduFI6Nn9+JmjgCYDPZg4HrB9UR3emBLUwvTq68oONb0
-         9DnsGxRqNiIwUq3wwJU0Ww3mcInwW+P7LtdMY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g07oglWDP6MW/sT/0KORfHFay4I08yTBqKpnsZcOxR0=;
-        b=hFRIHO3Tz6TwHgcIQqrgapzRcUNZXmvJ0tQMp5F3ohxgP24glBkcf+vdJGRpyi8/7L
-         NnxH/8TxxddvGeJmjX/BwpKOGGObe+Vhi37+FUv7k3Y7xkJTrZ4BwWDyxUsAB0dWP94Y
-         cbRoiLoN90JK0qkiUvleoP0bMBpqBOM3tLtw3QzwdQjBKJxKfU8zrHoSbyGG1EKMqhct
-         6b5iuTTbfznIMeJ7nTuF0d61rsU5KrVTHeudyUKY7fqp2D4+TozzpABjiFy4DREOOVmX
-         SQ3BLy60Vht05H37jFtN1KnaGd7q7UPV+lCF+2O3ajBKf38QOuAymJeNPaCy4eUwEOwI
-         aFpg==
-X-Gm-Message-State: AOAM532ZhrSnV6Zxux7dNvcNoGG7czAZlozFN2wI4YFLzFmJZjYYXnjF
-        0/F23DW9TEv6suTUEcKvEJ8WQLGNqXOo0NIeUXaGVA==
-X-Google-Smtp-Source: ABdhPJyVP8jYaoGikQdL4uI2tbLxt5QZyKSbb5dZCpNiGmPPFJtjCN7iayaf+Wq/05Dty7VWud+PoyKrDNCgfqwiU/c=
-X-Received: by 2002:a05:6402:33a:: with SMTP id q26mr28983732edw.150.1614170275198;
- Wed, 24 Feb 2021 04:37:55 -0800 (PST)
+        id S231591AbhBXOQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 09:16:34 -0500
+Received: from mout.kundenserver.de ([212.227.126.133]:37341 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233093AbhBXNC6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 08:02:58 -0500
+Received: from [192.168.1.155] ([77.2.19.91]) by mrelayeu.kundenserver.de
+ (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MDyoW-1l51sv2CX6-009v7T; Wed, 24 Feb 2021 14:00:13 +0100
+Subject: Re: RFC: oftree based setup of composite board devices
+To:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org, Johan Hovold <johan@kernel.org>
+References: <20210208222203.22335-1-info@metux.net>
+ <CAL_JsqJ-bz35mUM3agYjq5x+Y+u9rL1RwesCaA-x=MW8uv5CrA@mail.gmail.com>
+ <76bf0f7c-9477-f370-8fbd-ce8ef15188b1@gmail.com>
+From:   "Enrico Weigelt, metux IT consult" <info@metux.net>
+Message-ID: <44b9b561-5e0d-6a1c-ca5d-4e9f6000884c@metux.net>
+Date:   Wed, 24 Feb 2021 14:00:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <20210214175211.105107-1-jagan@amarulasolutions.com> <YCpmZWRoiWULiANx@pendragon.ideasonboard.com>
-In-Reply-To: <YCpmZWRoiWULiANx@pendragon.ideasonboard.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 24 Feb 2021 18:07:43 +0530
-Message-ID: <CAMty3ZDt2EDB8E2nNLx_jfqE7-ActVYVoeFo2Eso+nVuUfVL+w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for
- Chipone ICN6211
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <76bf0f7c-9477-f370-8fbd-ce8ef15188b1@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: tl
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:S4Magus5iVB7A/3HjqzU9h7iO3+zDZz8Fom6lDp95WYIGBug4nN
+ 75Z+K0t6EoVgSE03r91wssD5swxiLRIKp4nL0Tvcv58a8NfUURZO48IDwJA5TpPanVEBY6U
+ lqRSvOBRVGYQHeUmlNJ7jf9x2yYLgD+CJbXOwCQCUx+bNTd6jBj3ubFPcouJw0X8NLOzgKC
+ Vl1v5LqB0Q1afibhnuR7g==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:YUfW6Jymwu0=:mWF+wApwLToD13uqyydVmw
+ yz0tjJoinmtzo4QIhnPsrrVq/xqVc9A+HNCgOLzb2LqtYsgzgc704Kj0XH8O3FCJblYa0A7BN
+ FMrWWjo/v76RpnKOd/RRNnjISy7mK3SIG3XEkHB4GaOdIPYrwVd8ar4+xLgoz/Ssoyx+1fMqQ
+ 9+aFLozd/3oApFaARTLL72FHJoW1mp7rDch9R4ua9Kg/6gPKgnyyvq+WZJj9YjKscLqrqZBaP
+ H98QtUMaAK3Yd7hMGH5NCndv6IDa2T/nxorz5RdTrLAP1aLE+sQMbq2u2OH5OBmcGf4Pq1CUB
+ 1bbpIqWno1/TNZ1+EkLTwYWhRc99d2QaLE0p8cPymTJWEdbhAtajlHRFGVo5BfJRhWRt8KhDc
+ KCJwjx8dlOLNmS36mvZPRs58+Clg9yyCDhcMBbWc1JQMQhAZK7CYIMy0TaaliYArvfPCnv04h
+ cAM9BcRwKI50mRc/sWfAkJgE0mOhtmYSlT4/+v/uVOlgfLqGwK4f
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On 15.02.21 02:12, Frank Rowand wrote:
 
-On Mon, Feb 15, 2021 at 5:48 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Jagan,
->
-> Thank you for the patch.
->
-> On Sun, Feb 14, 2021 at 11:22:10PM +0530, Jagan Teki wrote:
-> > ICN6211 is MIPI-DSI to RGB Convertor bridge from Chipone.
-> >
-> > It has a flexible configuration of MIPI DSI signal input and
-> > produce RGB565, RGB666, RGB888 output format.
-> >
-> > Add dt-bingings for it.
-> >
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > ---
-> > Changes for v3:
-> > - updated to new dt-bindings style
-> >
-> >  .../display/bridge/chipone,icn6211.yaml       | 90 +++++++++++++++++++
-> >  1 file changed, 90 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-> > new file mode 100644
-> > index 000000000000..13764f13fe46
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-> > @@ -0,0 +1,90 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/bridge/chipone,icn6211.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Chipone ICN6211 MIPI-DSI to RGB Converter bridge
-> > +
-> > +maintainers:
-> > +  - Jagan Teki <jagan@amarulasolutions.com>
-> > +
-> > +description: |
-> > +  ICN6211 is MIPI-DSI to RGB Convertor bridge from chipone.
-> > +
-> > +  It has a flexible configuration of MIPI DSI signal input and
-> > +  produce RGB565, RGB666, RGB888 output format.
->
-> How does one select between the output formats ? Should the output
-> connection option be described in the device tree ?
+> Why not compile in ACPI data (tables?) instead of devicetree description?
 
-I think that is a good option to select output formats via dts. what
-if it makes it a generic property like data-lanes? since it is common
-across many other bridges.
+The problem is a bit more complex than it might seem.
 
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - chipone,icn6211
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description: virtual channel number of a DSI peripheral
-> > +
-> > +  reset-gpios:
-> > +    description: GPIO connected for the reset pin
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Video port for MIPI DSI input
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Video port for MIPI DPI output (panel or connector).
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reset-gpios
-> > +  - ports
->
-> How about regulators ?
+Let's take the APU2/37/4 boards as an example. They've got some aux
+devices, eg. some gpio controller, and some things (leds, keys, reset
+lines, etc) attached to it.
 
-Will add it in the next version.
+Now we've got lots of different bios versions in the field,
+enumerating only some of the devices. For example, older ones didn't
+even contain the gpio, later ones added just gpio, other ones just
+added LEDs (with different names than the Linux driver already mainlined
+and field-deployed at that time), but still other lines unhandled, etc, 
+etc. etc.
 
-Jagan.
+A big mess :( And I can't ask everybody to do bios uprade on devices far
+out in the field (litterally open field, sometimes offshore, ...). So, I
+need a usable solution, that's also maintainable, w/o testing each
+single combination of board, bios, etc. IOW: without relying on bios
+(except for board identification)
+
+OTOH, I'm also looking for a solution get rid writing those kind of
+relatively huge board drivers, that pretty are much like old fashioned
+board files from pre-DT times - just made up of lots of tables and
+a few trivial register-something calls. Sounds pretty much like the
+original use case of oftree.
+
+The primary difference between classic oftree and this scanario:
+* this is additional to existing platform information, which is
+   incomplete or even incorrect (and that can't be fixed)
+* extra carrier boards that are detected by other means, but no
+   enumeration of the devices on it.
+
+>> This is something I've wanted to see for a while. There's use cases
+>> for DT based systems too. The example I'd like to see supported are
+>> USB serial adapters with downstream serdev, GPIO, I2C, SPI, etc. Then
+>> plug more than one of those in.
+> 
+> My understanding from the past is that the experts (those who understand both
+> devicetree and ACPI) regard trying to mix devicetree and ACPI in a single
+> running Linux kernel image is insanity, or at least likely to be confusing,
+> difficult, and problematic.
+
+Well, mixing different, overlapping data sources tends to be tricky. The
+same problem exists with the classic approach of hand-written board
+drivers. So there have to be clear border lines.
+
+In my case (eg. apu2+ boards), the overlap is only that some bios
+versions enumerate the gpio chip, others even some of the gpio-based
+devices. I'm attempting to solve this by just kicking out those
+duplicate devices, if they exist. The alternative could be leaving them
+in an trying to bind the missing ones to them. But that would be really
+complicatd and needs to be well crafted for lots of different board and
+bios versions - a kind of complexity we wanna avoid.
+
+My use cases are actually a bit easier than the average dt overlay
+cases, as I have almost no interactions with already existing devices
+(except that some specific devices have to be moved out of the way)
+
+The original DT overlay use case, arbitrary expansion boards (eg. on
+raspi), are trickier, if the overlays shall be generic over a wider
+range of base boards (eg. same overlay for any raspi or odroid).
+This is something calling for an own (pseudo-)bus type that handles
+the correct probing ... I've hacked up something similar for the APU2+'s
+combined msata/usb/mpcie ports.
+
+BTW: I've already been thinking of ways for internally transforming ACPI
+tables into DT data structures (struct device_node) at an early point,
+before probing. But that would be another research project with unknown
+outcome, and most likely a HUGE change. Not what I'm talking about now.
+
+> From the devicetree side, I expect nightmares for me if devicetree and ACPI
+> are mixed in a single running kernel image.
+
+Note that I'm not talking about arbitrary configurations. Just re-using
+existing device tree code to express things that are currently open
+coded C into DT.
+
+It's NOT trying to boot an ACPI-based machine with DT. (which would be
+yet another research project)
+
+> Multiple root nodes and disjoint trees both seem problematic.  Existing
+> subsystems and drivers expect a single cohesive tree.  Changing that
+> architecture looks to me to be a painful exercise.
+
+Yes, it's not entirely trivial, but managable. My experiments seemed to
+work so far, and I couldn't see general blockers yet. Drivers usually
+expect certain sub-nodes, but haven't found any that expect their node
+being embedded in some other one. (maybe there really are some, but the
+likehood that they're applicable in these use cases looks pretty low).
+
+
+--mtx
+
+-- 
+---
+Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
+werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
+GPG/PGP-Schlüssel zu.
+---
+Enrico Weigelt, metux IT consult
+Free software and Linux embedded engineering
+info@metux.net -- +49-151-27565287
