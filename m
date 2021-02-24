@@ -2,86 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E81F32413F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 17:05:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B6EA324140
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 17:05:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235730AbhBXPoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 10:44:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42896 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235344AbhBXOp5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Feb 2021 09:45:57 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5609964EF5;
-        Wed, 24 Feb 2021 14:33:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614177185;
-        bh=KZhGj6qe5j0syEVNI++CgqtBRU7J+USl4NFuEWBkjVA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QyIh+YMCwbpRAINMvFTccX47lNnfNUsdk+zCV4F4Qw9zcXd/+LXdVJfa4W0xKU1aN
-         QBOuEuJU1oMCpcTNeWcdgzhXTK0cJIsnG/8M+Ysxdo5BA2HMIcuA/wKjXjLaKu47iI
-         iuGobUvyTYJgXpSBwGpvFx7S2SPz9LCiI0qHPf5/WCDMSFdztk6tIkxXYEjY+BokIJ
-         LhbUkRWVf/IacrXFj8m0zsf/NTxlTfmRZiwRX7dHTvibWSRJ1UNwIf2S58RGqRW36g
-         snd8A6NHQ0IagRboGDJHZjD61tu3EIcyWDrjAoHXTkgjxRQGCLQgVFdPfD/Sfv+TpO
-         r5Py3qIDifz4g==
-Received: by mail-ed1-f54.google.com with SMTP id cf12so1945784edb.8;
-        Wed, 24 Feb 2021 06:33:05 -0800 (PST)
-X-Gm-Message-State: AOAM531K4Ayfmq4swkH5i5fGq9OeJ7qJy+8sldlhA+MQ9ZS9J22FExGo
-        XRYzBoEWpJzNhz5GoJaiwOFPZj4l4xOGziOlb7I=
-X-Google-Smtp-Source: ABdhPJyGdFxiQsQv4scJMUh5ZIZPJ9YHWxjHVyJ9CKEA66GBNayYBVB67ycSuwQRa6mGxkRNruowf8J2XkFZSRs3Z7c=
-X-Received: by 2002:a05:6402:1152:: with SMTP id g18mr34147943edw.18.1614177183720;
- Wed, 24 Feb 2021 06:33:03 -0800 (PST)
+        id S235997AbhBXPpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 10:45:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32820 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232700AbhBXOy0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 09:54:26 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39BBFC06178A
+        for <devicetree@vger.kernel.org>; Wed, 24 Feb 2021 06:53:46 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id q204so426201pfq.10
+        for <devicetree@vger.kernel.org>; Wed, 24 Feb 2021 06:53:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BI8tzk0bTa3w11ruMEPTU8t0ne9enBgfWEJ0ImBJsEA=;
+        b=TA1T8dIkRQrmL+2z52ArQzQ7YLPMbNMS4BPXwoDyQjWviLUJUKtXfvJGJ4XPCUBD8h
+         rH8V6ApP6uBZzAmVkSZ8jXs9X9htA7atNy2ULoie9NF/lIJq5+JHVlI9GiMexLgUdh5Z
+         sExX4j++PBMz/d+qA1BcquZniW252SvKL523Fsio6++OZjQ6GIZKJELdKA9qyYRq6uiH
+         UsblNSPu7hXwgPkWJgP4MIzg2oeBMuru4QF8OFhM6IJedYHUqiDrHW8qScPfyiqNvVOq
+         6uaxjXI4/SfKUpgmMmnt7bspJknb5Q49aHQktZRQ/hgjdYY6GBNO22DULKmaFt7cdH8K
+         fiqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BI8tzk0bTa3w11ruMEPTU8t0ne9enBgfWEJ0ImBJsEA=;
+        b=Np8foZcweDoPyd6Ejd6CMkpo8YuPGhZpWVItiyJTHRM3UZL2OsdA+tqNSaAwDD8t4S
+         SF5cmLwhFy0q0gR0emYTSm/cWAGQ9BEbVu7NvW/mAljoGW6tLw/dT8lLHOSE06uYikZD
+         fPmM0ePXjM1GQ+Y7nX6JnG2uyJ+IiPI4XuslD4K5NMpxlcMRiaR9JMKC424kuIL0ok4W
+         WlJgMe3tU7JgNJuFRSDbLCbAUQPaPLHmP3WQx54l7WJRyZxltC0WTT5iKThTr7qqertg
+         vO25ClYV9si0IpgLg6xTa2iSV0W44YEF5Flm2CR/N80SFy04lQsB7kbyDdWmWbJr9cRt
+         qvFA==
+X-Gm-Message-State: AOAM533CCWTjeMPnSpDtKNS47pMjxEQ3jO5k7lyUZFUalsoySXp3ktX/
+        PdBqHAmJDVGEm0AEMqHuwejWs0xc18iM8Mrj89aKsA==
+X-Google-Smtp-Source: ABdhPJwrgFEiH2Ascm/wxKiYFBShzYRAAgGfjnPMoJbqNsWJxHoZMh+ezqbCWJloaKg6y2qCJ+oWOWWROotNI+bu2WE=
+X-Received: by 2002:aa7:9281:0:b029:1ec:48b2:811c with SMTP id
+ j1-20020aa792810000b02901ec48b2811cmr32041815pfa.18.1614178425423; Wed, 24
+ Feb 2021 06:53:45 -0800 (PST)
 MIME-Version: 1.0
-References: <20210223210127.55455-1-robh@kernel.org>
-In-Reply-To: <20210223210127.55455-1-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 24 Feb 2021 15:32:52 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPds-Qh2Hvs2fAvrM59xgTWtYROwocTVuqFaBBd=JYwmow@mail.gmail.com>
-Message-ID: <CAJKOXPds-Qh2Hvs2fAvrM59xgTWtYROwocTVuqFaBBd=JYwmow@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: media: Use graph and video-interfaces
- schemas, round 2
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+References: <20210217112122.424236-1-robert.foss@linaro.org>
+ <20210217112122.424236-13-robert.foss@linaro.org> <32b2cd1d-e41a-4571-ac4f-4ec055b3f6cb@linaro.org>
+In-Reply-To: <32b2cd1d-e41a-4571-ac4f-4ec055b3f6cb@linaro.org>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Wed, 24 Feb 2021 15:53:34 +0100
+Message-ID: <CAG3jFysEkRNXsaXudXd9msLPU3RiFcPpAgS6ecbOjeVfdwpb4A@mail.gmail.com>
+Subject: Re: [PATCH v5 12/22] media: camss: Remove per VFE power domain toggling
+To:     Andrey Konovalov <andrey.konovalov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        "Paul J. Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media@vger.kernel.org
+        Rob Herring <robh+dt@kernel.org>,
+        angelogioacchino.delregno@somainline.org,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Feb 2021 at 22:02, Rob Herring <robh@kernel.org> wrote:
->
-> A couple of media schemas got applied without using or incorrectly
-> using the video-interfaces.yaml and graph.yaml schemas. Fix them up
-> before we have more copy-n-paste errors.
->
-> Fixes: 41b3e23376e9 ("media: dt-bindings: media: Add bindings for imx334")
-> Fixes: d899e5f1db7a ("media: dt-bindings: media: imx258: add bindings for IMX258 sensor")
-> Fixes: 918b866edfec ("media: dt-bindings: Remove old ov5647.yaml file, update ovti,ov5647.yaml")
-> Fixes: 22f2b47517a6 ("media: dt-bindings: media: i2c: Add OV8865 bindings documentation")
-> Fixes: 29a202fa7acc ("media: dt-bindings: media: i2c: Add OV5648 bindings documentation")
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> Cc: Jacopo Mondi <jacopo@jmondi.org>
-> Cc: "Paul J. Murphy" <paul.j.murphy@intel.com>
-> Cc: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Please ack and I'll send to Linus for rc1.
->
->  .../devicetree/bindings/media/i2c/imx258.yaml    | 14 +++++++-------
+Hey Andrey,
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+>
+> On 17.02.2021 14:21, Robert Foss wrote:
+> > For Titan ISPs clocks fail to re-enable during vfe_get()
+> > after any vfe has been halted and its corresponding power
+> > domain power has been detached.
+>
+> OK.
+>
+> > Since all of the clocks depend on all of the PDs, per
+> > VFE PD detaching is no option for this generation of HW.
+>
+> But this patch removes camss_pm_domain_on/off calls from
+> vfe_get/put() for all the SOCs, not only for sdm845.
+> And this looks like a regression (higher power consumption)
+> for all the generation1 devices.
 
-Best regards,
-Krzysztof
+Yeah, that is a serious problem with the approach I picked here. The
+power difference shouldn't be huge however, since the best case
+scenario savings of the previous implementation was being able to
+power down 1 VFE when the other one is working. If none of the VFEs is
+working, nothing is powered up both in the previous implementation &
+using this patch.
+
+>
+> Is it possible to handle gen1 and gen2 hardware differently,
+> so that gen1 continued to use camss_pm_domain_on/off as
+> before?
+
+I hesitated going down this gen1/gen2 split here, due to how deep into
+the common code some of this functionality is. Let me have another
+look at this though, not having a power regression for gen1 devices
+would definitely be preferable.
