@@ -2,112 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E6FD323FCC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 16:21:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFBEC323FCF
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 16:21:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236056AbhBXOW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 09:22:26 -0500
-Received: from mail-lj1-f170.google.com ([209.85.208.170]:42600 "EHLO
-        mail-lj1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234674AbhBXOK5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 09:10:57 -0500
-Received: by mail-lj1-f170.google.com with SMTP id v17so2516675ljj.9;
-        Wed, 24 Feb 2021 06:10:41 -0800 (PST)
+        id S236551AbhBXOWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 09:22:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51446 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234723AbhBXOLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 09:11:40 -0500
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5234BC061786;
+        Wed, 24 Feb 2021 06:11:00 -0800 (PST)
+Received: by mail-io1-xd2a.google.com with SMTP id i8so2098609iog.7;
+        Wed, 24 Feb 2021 06:11:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=i6v8HuEMEflSgVIW79gElwSlCrhe13NGKf2qOXVqqNA=;
+        b=oihNi3t/Fl1LPaXWmbvEF2yZI+1OwQGzgmGacIE6mnQlNvVXBcr6hlMG9YM3OzM8HQ
+         3f5nGmza96UwTJSkKfL1XiNpv5IAp1rPmVvK+3BSTnLoGfwrsvZeRloH5+1X+dtt+01z
+         pDEa5oT9meW7Tq3mo7Vc/JyjODb+xe4uC6atbdPBCLQwsa9blLsq+QkUVvXJu6/7BJki
+         BoOlF3QxZDvlwqNO/aTULCqywb/UpalQzBR9Oki0LKDvx5sE8o4kAE4S3esRDMEO+Fah
+         9k6O4KcYBmAE7Qij9QsmfjsirJYLXdMaIVuxGz0zwoDBoOGKBK9zUzWkkJp2eqk951tv
+         5qoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=rp6xFbMVcSNr3U+KePG0/i37RYbSH1lUEiS0Y/RzdOU=;
-        b=gLuRYKwqytwVlTdgWXXJZGidDRnz4Fq29+G/1/flO15N0gKUMgEgdtXga3QlbUdhdx
-         2nbXjOtv1bGb+REQO11xyYEq00wC3qRRZeHrND2lmlKF+sfsF+ZL9+7yrXDxejvX1AkO
-         JwTGbgeNI6JnjvwKp+L+YqUUb7BcHVmTNDukhLvtBK7QohEDbs2aDlsf4Jja4lJCfSuO
-         bDKE/xtVflpjc9OVBfdCSP53EQEntJfmWMCQ/8MsUrY1fzaoECuaws+yahPIH0vclkM/
-         /WPLOSYcRKKkEtf+insaqVgK+gah4whRrIgiqgM+Idpqr3aKlqCxkTn1yb9qevR5FoYO
-         2kQw==
-X-Gm-Message-State: AOAM531PS8BCMUWAQ1LAfbAyu4fBnwLHl1Rx+28OA4H1RJvdjuVxC1Pe
-        Jt4LUOmFsqmHRQCS45RY/iU=
-X-Google-Smtp-Source: ABdhPJw0MxwBtXUxHE7ZBUDyzNlLM4MxrrjRipAt6fYrgf8jDMdyN1rtiQm3NBCDC0X9YA8LNWW25A==
-X-Received: by 2002:a2e:7409:: with SMTP id p9mr19032678ljc.404.1614175815511;
-        Wed, 24 Feb 2021 06:10:15 -0800 (PST)
-Received: from rocinante ([95.155.85.46])
-        by smtp.gmail.com with ESMTPSA id n13sm509705lfu.265.2021.02.24.06.10.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Feb 2021 06:10:15 -0800 (PST)
-Date:   Wed, 24 Feb 2021 15:10:13 +0100
-From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, maz@kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
-        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
-        sin_jieyang@mediatek.com, drinkcat@chromium.org,
-        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
-Subject: Re: [v8,6/7] PCI: mediatek-gen3: Add system PM support
-Message-ID: <YDZeRc6CHV/WzyCm@rocinante>
-References: <20210224061132.26526-1-jianjun.wang@mediatek.com>
- <20210224061132.26526-7-jianjun.wang@mediatek.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=i6v8HuEMEflSgVIW79gElwSlCrhe13NGKf2qOXVqqNA=;
+        b=F1Pdpv6V5kQIEPR/OxOk8+Tx1yhQ0KFc4M0tL6tWLVORuAWphtTWl7pudD2jCH1DBP
+         MN13P49lMNKvrY28UEqb1fZYrGmOO+VP/XEp5Q9ThBWtEMbhKaUjlTIILJ3SW2DZcUiU
+         jy9HCrOKlNSitQOIpFekhKJcbLlXzT4YAMeRbq6DeuB3P8b+/tXImh33TYj3Udvv066K
+         EyBmfiOXEY+mjcztpZqoTupdl23H8Iz8ZlT64L0zEEq3AtNBvhUsD7jZWVINxncVio96
+         C/Eil8+rG7zqdaV1bttFnfQ/ctiDoP3L9ptHVid1nx3lPu11oq8DULES1f9vzvhArmnl
+         eoFw==
+X-Gm-Message-State: AOAM531GD2GlpF7MIE1OAUlKzUqKdlY0FgBb+u9XVDNYJCFBoE+2pZC2
+        LBiG6tlJyPU13OQNPfGme2FYfeSEibBkm9e1bjV2Fune
+X-Google-Smtp-Source: ABdhPJyxXqTjN7CHY4+vHVifMsGv0x2J4blcN/0e4/e8IgR1bVvT6F83zJczOuFkwUZrl9bRvi+dSDhBUILUXlbyX4M=
+X-Received: by 2002:a05:6638:5:: with SMTP id z5mr33899755jao.108.1614175858375;
+ Wed, 24 Feb 2021 06:10:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210224061132.26526-7-jianjun.wang@mediatek.com>
+References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com>
+ <1613623791-4598-4-git-send-email-shubhrajyoti.datta@xilinx.com> <20210218092936.44108d1d@xps13>
+In-Reply-To: <20210218092936.44108d1d@xps13>
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
+Date:   Wed, 24 Feb 2021 19:40:46 +0530
+Message-ID: <CAKfKVtG=9fZHYzw0htu1xPj3k4U6JLqGNE3u6yScuWrAKHRp0Q@mail.gmail.com>
+Subject: Re: [PATCH v9 3/7] clk: clock-wizard: Fix kernel-doc warning
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        linux-clk@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jianjun,
+On Thu, Feb 18, 2021 at 1:59 PM Miquel Raynal <miquel.raynal@bootlin.com> w=
+rote:
+>
+> Hi Shubhrajyoti,
+>
+> Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com> wrote on Thu, 18 Feb
+> 2021 10:19:47 +0530:
+>
+> > Update description for the clocking wizard structure
+>
+> "Fix the clocking wizard main structure kernel documentation." ?
+will update in next version.
 
-> Add suspend_noirq and resume_noirq callback functions to implement
-> PM system suspend hooks for MediaTek Gen3 PCIe controller.
-
-So, "systems suspend" and "resume" hooks, correct?
-
-> When system suspend, trigger the PCIe link to L2 state and pull down
-
-It probably would be "the system suspends".
-
-[...]
-> When system resum, the PCIe link should be re-established and the
-> related control register values should be restored.
-
-Similarly to the above: "the system resumes".
-
-[...]
-> +	if (err) {
-> +		dev_err(port->dev, "can not enter L2 state\n");
-> +		return err;
-> +	}
-
-Most likely you want "cannot" or "can't" in the above error message.
-
-> +	/* Pull down the PERST# pin */
-> +	val = readl_relaxed(port->base + PCIE_RST_CTRL_REG);
-> +	val |= PCIE_PE_RSTB;
-> +	writel_relaxed(val, port->base + PCIE_RST_CTRL_REG);
-> +
-> +	dev_dbg(port->dev, "enter L2 state success");
-
-Just a nitpick.  What about "entered L2 states successfully"?
-
-[...]
-> +	if (err) {
-> +		dev_err(port->dev, "resume failed\n");
-> +		return err;
-> +	}
-
-This error message does not quite convey that the mtk_pcie_startup_port()
-was the function that failed, which is only a part of what you have to do
-to successfully resume.
-
-> +	dev_dbg(port->dev, "resume done\n");
-
-A nitpick.  Probably not needed, as lack of error message would mean
-that the device resumed successfully after being suspended.
-
-Krzysztof
+>
+> >
+> > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> > ---
+> >  drivers/clk/clk-xlnx-clock-wizard.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/clk/clk-xlnx-clock-wizard.c b/drivers/clk/clk-xlnx=
+-clock-wizard.c
+> > index 1bab68e..fb2d555 100644
+> > --- a/drivers/clk/clk-xlnx-clock-wizard.c
+> > +++ b/drivers/clk/clk-xlnx-clock-wizard.c
+> > @@ -40,7 +40,8 @@ enum clk_wzrd_int_clks {
+> >  };
+> >
+> >  /**
+> > - * struct clk_wzrd:
+> > + * struct clk_wzrd - Clock wizard private data structure
+> > + *
+> >   * @clk_data:                Clock data
+> >   * @nb:                      Notifier block
+> >   * @base:            Memory base
+>
+>
+> Thanks,
+> Miqu=C3=A8l
