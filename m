@@ -2,167 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D72ED32388B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 09:23:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3BAB3238B6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 09:35:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234317AbhBXIX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 03:23:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33352 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234189AbhBXIXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 03:23:21 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C45CBC06178B;
-        Wed, 24 Feb 2021 00:22:40 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id 7so1000057wrz.0;
-        Wed, 24 Feb 2021 00:22:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=BAE1Kf2xIrmHE4CG7BguHd5TjWIGOPY8aBCToqo40i8=;
-        b=ON9GDxXWl4h3rVmqaA5nrpo6rfrokVBk8WnqQJNPuEJChQJMKxHMfMkDO/IPttlRmo
-         CG/KT7FuD0UYCnJMpvrUsAF8aozpxxuI23sH68noZOIHEk/hBeAsY32hfNtnkblkiIKL
-         cvzlrmMBFYpmqWK0nTnJiAy8gyWL59EhlJ/Jp/M0GMtMxEHV0+vDuUbEXPnzcFVe7UNo
-         el6+0Ifm2SWXhDhaqNOMmtm1mMp06Gf58D06eXh8nYdF0+0IFKMm6XAIEHpz1NvfbNkz
-         wQGmdQeW8dGnR/ON+XFCWVn3A46cCQ7y3/bRjqlAJh1uJ2NrtfHdZaOFsaM6WiqRR70V
-         dSLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BAE1Kf2xIrmHE4CG7BguHd5TjWIGOPY8aBCToqo40i8=;
-        b=Dosf9ZMZrHmlM/ewSIY9XOobtG+enggw2aDoYUtAdhZrw7Dg8BGzn0vgFOos9rhATB
-         U4WU0rw2GOVoxruXuJsHe37N44YLv6COBb4yua3Wc5/qyi25xQzLke2MxyUuh48ENYi1
-         AaXcXm2q5Rb6TnKEgDYgsry5Nm6XF7OdSZ1dP/aVv4jxyR0YpwVxcjChajUKaP96NuI2
-         Ewj0eC8gALZuvsSy2iTTNzJu7fp8CAS0npb4GBJDq45UbP9PP4Bj2DGPHMRJyJ0EJMgP
-         a8oSkOve9kBA5/winS61z1c2TUf7+j6RhK4UTPFyvYZfm1nKsh3a4uFX9f1l1x2ECokx
-         s+fg==
-X-Gm-Message-State: AOAM533+iACYvO1qGguuK6muCNZMJBUbIc7VTmZytExK/NSqwE7TMkpb
-        ysT2ucC8zqV7z9twAbFxcSA=
-X-Google-Smtp-Source: ABdhPJxch8/aZDZYHTx5t2OcR8JeSykfALOIoALHNOtek/GvbLq3PLOnVPo32xcrsVXe9UlVxg9OcQ==
-X-Received: by 2002:adf:d0c5:: with SMTP id z5mr8562622wrh.289.1614154959564;
-        Wed, 24 Feb 2021 00:22:39 -0800 (PST)
-Received: from skynet.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
-        by smtp.gmail.com with ESMTPSA id u19sm1501628wmm.46.2021.02.24.00.22.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Feb 2021 00:22:39 -0800 (PST)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        id S234454AbhBXIfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 03:35:16 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:47054 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234455AbhBXIfG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 03:35:06 -0500
+Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 24 Feb 2021 00:34:00 -0800
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 24 Feb 2021 00:33:58 -0800
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 24 Feb 2021 14:03:32 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 1BDC13C9C; Wed, 24 Feb 2021 14:03:31 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>, Guenter Roeck <linux@roeck-us.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@protonmail.com>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] hwrng: bcm2835: add reset support
-Date:   Wed, 24 Feb 2021 09:22:30 +0100
-Message-Id: <20210224082230.29015-3-noltari@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210224082230.29015-1-noltari@gmail.com>
-References: <20210223160131.29053-1-noltari@gmail.com>
- <20210224082230.29015-1-noltari@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Rob Herring <robh+dt@kernel.org>, rnayak@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org,
+        satya priya <skakit@codeaurora.org>
+Subject: [PATCH 0/7] Add PM7325/PM8350C/PMR735A regulator support
+Date:   Wed, 24 Feb 2021 14:03:05 +0530
+Message-Id: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCM6368 devices need to reset the in order to generate true random numbers.
-This is what BCM6368 produces without a reset:
-root@OpenWrt:/# cat /dev/hwrng | rngtest -c 1000
-rngtest 6.10
-Copyright (c) 2004 by Henrique de Moraes Holschuh
-This is free software; see the source for copying conditions.  There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+This series is dependent on below series which adds DT files for SC7280 SoC
+https://lore.kernel.org/patchwork/project/lkml/list/?series=484757
 
-rngtest: starting FIPS tests...
-rngtest: bits received from input: 20000032
-rngtest: FIPS 140-2 successes: 0
-rngtest: FIPS 140-2 failures: 1000
-rngtest: FIPS 140-2(2001-10-10) Monobit: 2
-rngtest: FIPS 140-2(2001-10-10) Poker: 1000
-rngtest: FIPS 140-2(2001-10-10) Runs: 1000
-rngtest: FIPS 140-2(2001-10-10) Long run: 30
-rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
-rngtest: input channel speed: (min=37.253; avg=320.827; max=635.783)Mibits/s
-rngtest: FIPS tests speed: (min=12.141; avg=15.034; max=16.428)Mibits/s
-rngtest: Program run time: 1336176 microseconds
+satya priya (7):
+  dt-bindings: regulator: Convert regulator bindings to YAML
+  dt-bindings: regulator: Add compatibles for PM7325/PMR735A
+  regulator: qcom-rpmh: Correct the pmic5_hfsmps515 buck
+  regulator: qcom-rpmh: Add pmic5_ftsmps520 buck
+  regulator: qcom-rpmh: Add PM7325/PMR735A regulator support
+  regulator: qcom-rpmh: Use correct buck for S1C regulator
+  arm64: dts: qcom: sc7280: Add RPMh regulators for sc7280-idp
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
----
- v4: add reset_control_rearm().
- v3: no changes.
- v2: no changes.
+ .../bindings/regulator/qcom,rpmh-regulator.txt     | 180 ------------------
+ .../bindings/regulator/qcom,rpmh-regulator.yaml    | 151 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            | 211 +++++++++++++++++++++
+ drivers/regulator/qcom-rpmh-regulator.c            |  68 ++++++-
+ 4 files changed, 426 insertions(+), 184 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
 
- drivers/char/hw_random/bcm2835-rng.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/drivers/char/hw_random/bcm2835-rng.c b/drivers/char/hw_random/bcm2835-rng.c
-index 1a7c43b43c6b..92658edaff22 100644
---- a/drivers/char/hw_random/bcm2835-rng.c
-+++ b/drivers/char/hw_random/bcm2835-rng.c
-@@ -13,6 +13,7 @@
- #include <linux/platform_device.h>
- #include <linux/printk.h>
- #include <linux/clk.h>
-+#include <linux/reset.h>
- 
- #define RNG_CTRL	0x0
- #define RNG_STATUS	0x4
-@@ -32,6 +33,7 @@ struct bcm2835_rng_priv {
- 	void __iomem *base;
- 	bool mask_interrupts;
- 	struct clk *clk;
-+	struct reset_control *reset;
- };
- 
- static inline struct bcm2835_rng_priv *to_rng_priv(struct hwrng *rng)
-@@ -94,6 +96,10 @@ static int bcm2835_rng_init(struct hwrng *rng)
- 			return ret;
- 	}
- 
-+	ret = reset_control_reset(priv->reset);
-+	if (ret)
-+		return ret;
-+
- 	if (priv->mask_interrupts) {
- 		/* mask the interrupt */
- 		val = rng_readl(priv, RNG_INT_MASK);
-@@ -115,6 +121,8 @@ static void bcm2835_rng_cleanup(struct hwrng *rng)
- 	/* disable rng hardware */
- 	rng_writel(priv, 0, RNG_CTRL);
- 
-+	reset_control_rearm(priv->reset);
-+
- 	if (!IS_ERR(priv->clk))
- 		clk_disable_unprepare(priv->clk);
- }
-@@ -159,6 +167,10 @@ static int bcm2835_rng_probe(struct platform_device *pdev)
- 	if (PTR_ERR(priv->clk) == -EPROBE_DEFER)
- 		return -EPROBE_DEFER;
- 
-+	priv->reset = devm_reset_control_get_optional_exclusive(dev, NULL);
-+	if (IS_ERR(priv->reset))
-+		return PTR_ERR(priv->reset);
-+
- 	priv->rng.name = pdev->name;
- 	priv->rng.init = bcm2835_rng_init;
- 	priv->rng.read = bcm2835_rng_read;
 -- 
-2.20.1
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
