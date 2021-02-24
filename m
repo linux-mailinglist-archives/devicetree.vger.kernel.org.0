@@ -2,109 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4FF323621
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 04:44:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA94632363A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 04:50:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233162AbhBXDoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Feb 2021 22:44:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58518 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232779AbhBXDoZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 22:44:25 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56C5CC061574;
-        Tue, 23 Feb 2021 19:43:45 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id d11so371885plo.8;
-        Tue, 23 Feb 2021 19:43:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=mBt9hQTkQ2cxkK5R0jCQwcHRCZkmatR1/Lom7M+wwuw=;
-        b=uX+b40Q0fD3rHFTk7H3c8mgoejQ+YTZReMZSKo0BQfJofnsQOa48YFG3hYBGOr8MnZ
-         Rc6OCKntoRsjvFln9DoJfWAeSlV5KrIy3LPJc0BnjVlMU323g2D594GsRfi7vnDbuvKo
-         rZTQ1bFxk3SNnW3TvaMi8zCNC3dX40HsWDkXfMhdP5G2bakOOqy9640KqCDNWTq+rlG1
-         XtJj7QdFEK5AI0TI1uohW1nCZfSl4QxTxnVvQSk5jVodEk1ELliOp3tQZp1L0yoRJhoy
-         FoVMdaWQZIHbnXKQcv8RHBc+R5TyBr0nqIOnh/m8FElsb3ARoseTGUOuJPrwnkGfwZnG
-         mN/Q==
+        id S233656AbhBXDtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Feb 2021 22:49:49 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:40994 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233635AbhBXDtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Feb 2021 22:49:46 -0500
+Received: by mail-ot1-f44.google.com with SMTP id s107so892979otb.8;
+        Tue, 23 Feb 2021 19:49:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=mBt9hQTkQ2cxkK5R0jCQwcHRCZkmatR1/Lom7M+wwuw=;
-        b=LU3Bj5c8DUTZXlykVUufJAH3+EnYD4V60TfPREFKamu3dkchwD6rkxVjl3bASr/FZ9
-         nMEtJsyvQJ7IbiuylKG85yKGf8CxmtnAC9XcLu7OW2hnmoi/CBGx7XPFdnZmuvdw9AFt
-         weK0hZ9tfbGpVhUw7CqDMJ8ILCgbwRkWXyIMUY5HrGqciDNot1hqg29R9X9HmvHO4wtY
-         jniCgu4De7kpUm4m5JsNHhWrRrc1APQT6HioqGBk+e/PC3skw5gn/HA+FLIZqAIuiOEI
-         GQPih6TbSpPJm1aGHYjA/M8CT1oiQhGgsd90Do4dUOQ66AZ9yhiv4BwTG+OIXt0FrM5I
-         +rMw==
-X-Gm-Message-State: AOAM530jg3pXbQPhF9Y8Q5Xf9Cz1+b5HKv+HrHYovwFO4MCqlPZmbZgk
-        ZrWVTfwLT5E12cKZN6sJFxn695bgerg=
-X-Google-Smtp-Source: ABdhPJw7TfQPjJUGfsPB/wnkKA039u2C/Rx7/iXpfDjnGLX+23V9icue3TzCPyBq6u3cTOgR+yNHlA==
-X-Received: by 2002:a17:90a:cf0e:: with SMTP id h14mr2125850pju.96.1614138224504;
-        Tue, 23 Feb 2021 19:43:44 -0800 (PST)
-Received: from [10.230.29.30] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id o20sm560518pjt.43.2021.02.23.19.43.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Feb 2021 19:43:44 -0800 (PST)
-Subject: Re: [PATCH v2 2/2] irqchip: add support for BCM6345 external
- interrupt controller
-To:     =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org
-References: <20210223180840.28771-1-noltari@gmail.com>
- <20210223204340.312-1-noltari@gmail.com>
- <20210223204340.312-3-noltari@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <7de8507d-82dd-291e-1f63-7c1460e6a6b2@gmail.com>
-Date:   Tue, 23 Feb 2021 19:43:29 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.7.1
-MIME-Version: 1.0
-In-Reply-To: <20210223204340.312-3-noltari@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Vj+GaDBHsdtJo8wsFzM49IM004p3o3LltrI7rg33ymk=;
+        b=h2OmakugkkKJidwiMrQpASCRIk/3et2jQYmLhfcXDbi1Vm4P+0V/rglZ9x1XuhQ0pL
+         wV4s/n4C6ixdzDSbDsJ0uS3ng2E8D61h2uEOUfjrjCDIloYOSyEPSMqU11ckZ6HYa/hj
+         YnZ88tjptGgm0TvveTAB7HaWtssHz+XDmEpqInQl2pbZLpDxegK/uIt0JVgVWZ919ksu
+         HqPegzAWrxuhFXT4U+tQ2XmEjawmRDB01SYttu4zvG1JCmNjf1XWErYUSQ+UU11bd6l9
+         Z0c3HtBP5oJ7w3Xk3vJMLLozvWm53yJe5RNrwBEZrKcvvI03R+CwAnDzDfGUg97WPQzQ
+         cGBw==
+X-Gm-Message-State: AOAM533WdOgcI/zCUpYx627BKwDyqpcbRBaaqNEO4w4zAlcLk8CBeb6A
+        lEW1pyjr0gcflscoNxDqgA==
+X-Google-Smtp-Source: ABdhPJzRQi+Pm9K3uybCnSzlInlPtQVeNYzmm8dCH+tCrWr5x3gTbhHM86QGMzaTXuCQjW5ugJlYSg==
+X-Received: by 2002:a05:6830:3152:: with SMTP id c18mr22963284ots.191.1614138545586;
+        Tue, 23 Feb 2021 19:49:05 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f19sm170665oiw.38.2021.02.23.19.49.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Feb 2021 19:49:04 -0800 (PST)
+Received: (nullmailer pid 735526 invoked by uid 1000);
+        Wed, 24 Feb 2021 03:49:02 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, sboyd@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org
+In-Reply-To: <20210224023116.571718-4-liambeguin@gmail.com>
+References: <20210224023116.571718-1-liambeguin@gmail.com> <20210224023116.571718-4-liambeguin@gmail.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: clock: add ti,lmk04832 bindings
+Date:   Tue, 23 Feb 2021 21:49:02 -0600
+Message-Id: <1614138542.304286.735525.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2/23/2021 12:43 PM, Álvaro Fernández Rojas wrote:
-> This interrupt controller is present on bcm63xx SoCs in order to generate
-> interrupts based on GPIO status changes.
+On Tue, 23 Feb 2021 21:31:16 -0500, Liam Beguin wrote:
+> From: Liam Beguin <lvb@xiphos.com>
 > 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
+> Document devicetree bindings for Texas Instruments' LMK04832.
+> The LMK04208 is a high performance clock conditioner with superior clock
+> jitter cleaning, generation, and distribution with JEDEC JESD204B
+> support.
+> 
+> Signed-off-by: Liam Beguin <lvb@xiphos.com>
 > ---
+>  .../bindings/clock/ti,lmk04832.yaml           | 198 ++++++++++++++++++
+>  1 file changed, 198 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
+> 
 
-[snip]
-> +static int __init bcm6345_ext_intc_of_init(struct device_node *node,
-> +					   struct device_node *parent)
-> +{
-> +	int num_irqs, ret = -EINVAL;
-> +	unsigned i;
-> +	void __iomem *base;
-> +	int irqs[MAX_IRQS] = { 0 };
-> +	u32 shift;
-> +	bool toggle_clear_on_ack = false;
-> +
-> +	num_irqs = of_irq_count(node);
-> +
-> +	if (!num_irqs || num_irqs > MAX_IRQS)
-> +		return -EINVAL;
-> +
-> +	if (of_property_read_u32(node, "brcm,field-width", &shift))
-> +		shift = 4;
+My bot found errors running 'make dt_binding_check' on your patch:
 
-This property is not documented in the binding, other than that:
+yamllint warnings/errors:
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/ti,lmk04832.example.dt.yaml: clock-controller@0: '#address-cells', '#size-cells', 'spi-max-frequency' do not match any of the regexes: '@[0-9a-d]+$', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
+
+See https://patchwork.ozlabs.org/patch/1443682
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
