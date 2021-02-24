@@ -2,104 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0A9E324217
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 17:31:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8899F324232
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 17:37:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233108AbhBXQaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 11:30:17 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33542 "EHLO mail.kernel.org"
+        id S234040AbhBXQfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 11:35:07 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34414 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233482AbhBXQ3Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Feb 2021 11:29:16 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CD72464DA3;
-        Wed, 24 Feb 2021 16:28:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1614184103;
-        bh=kKdB/WD5paalw9c2TAIpowxNthjQ5ojhimY95FmQYl8=;
+        id S234768AbhBXQdB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Feb 2021 11:33:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AC22564EF5;
+        Wed, 24 Feb 2021 16:32:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614184338;
+        bh=SgA6Prg5KGQu5C/rtNVzPT1pYsqKWIjCeo7TMpNMyCs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DnnYjOAQtG2XmL/p8DLOl0SJJbMuRxw1x+g3PIkVfd+LT83jAi7/Gy9nHnub5r9cj
-         8twtkgQcD2Ea9NAtHMgOLD4XtfiKOrs5fHi1Kom0+pJV5Mqf6y6wf8rtCkIpqPdb+n
-         bvdUPoD4gOi+PWt5fsJaTK3K1+Z3g03ZiaknmEd4=
-Date:   Wed, 24 Feb 2021 17:28:20 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     "Enrico Weigelt, metux IT consult" <info@metux.net>
-Cc:     linux-kernel@vger.kernel.org, rafael@kernel.org,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        pantelis.antoniou@konsulko.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 09/12] drivers: base: reintroduce find_bus()
-Message-ID: <YDZ+pEY3vJZ+GsvO@kroah.com>
-References: <20210208222203.22335-1-info@metux.net>
- <20210208222203.22335-10-info@metux.net>
- <YCen7uHqFJQ/U/5p@kroah.com>
- <da82c033-3a82-3420-4d06-f5c39c524ae9@metux.net>
- <YDYHhYRDBDKGSZ1r@kroah.com>
- <9db34ee4-30dc-9e69-6e82-00cbf4615ed5@metux.net>
+        b=lJF4CpDZw2ki/nHmeNIdQoH9RZ0e47IfJQA0yFDeWy+37zMeQQfg2F+OF6P3OVXld
+         +RXjMCDgbiDLGlsUaFYAOTgwtUoBieG1st2GgyAh029R97IIXJNQ9x2yeeRyusx4kg
+         2Pmwm+rYB2P+q9SGJoyPdbRAZeibU95NclfQXhcX9qKyMmmMA/+/b82BP4LdepWDn0
+         l3wyeOTkB9B8qTliZGr6t7qb/dgHjJOpL2J/tOxl9nwGl6VIdSTiXCVLwNN4kXk7x4
+         eEzo3uOCpfposC6NL2fE8/PLITY4lqKY4X3u1jNLB0g6w/Ltg6mJ/sXididVn8YLX/
+         2CuAbIr4aWXcA==
+Date:   Wed, 24 Feb 2021 16:31:14 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, rnayak@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH 6/7] regulator: qcom-rpmh: Use correct buck for S1C
+ regulator
+Message-ID: <20210224163114.GD4504@sirena.org.uk>
+References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
+ <1614155592-14060-7-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="osDK9TLjxFScVI/L"
 Content-Disposition: inline
-In-Reply-To: <9db34ee4-30dc-9e69-6e82-00cbf4615ed5@metux.net>
+In-Reply-To: <1614155592-14060-7-git-send-email-skakit@codeaurora.org>
+X-Cookie: He's dead, Jim.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 24, 2021 at 04:30:42PM +0100, Enrico Weigelt, metux IT consult wrote:
-> On 24.02.21 09:00, Greg KH wrote:
-> 
-> > Have the firmware code do it itself, do nto try to "reach across" like
-> > this.
-> 
-> By "firmware code" you mean Linux acpi core or the board's bios ?
 
-either.
+--osDK9TLjxFScVI/L
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> a) Fixing BIOS would be the cleanest solution, but we cant expect all
->    users to do field upgrades. Many of the devices (eg. the customer,
->    I've originally wrote the apu board driver for, deployed them in
->    really remote locations, sometimes even just reachable by ship,
->    heli or horse, litterally)
-> 
-> b) Explicit blacklisting somewhere in apci enumeration code could work,
->    but I really hate the idea of such board and bios version specific
->    quirks in a place, completely unrelated to the actual board driver.
+On Wed, Feb 24, 2021 at 02:03:11PM +0530, satya priya wrote:
+> Use correct buck, that is, pmic5_hfsmps515 for S1C regulator
+> of PM8350C PMIC.
 
-We have quirks all over the place, that's normal and how we handle
-broken hardware/bios al the time.
+Fixes like this and patch 3 should be at the start of the series, this
+ensures that they have no dependencies and can easily be sent to Linus
+as fixes.
 
-> Actually, I'm also hoping to find a proper way for having those things
-> in one file per board, in the future. (probably not applicable for
-> early stuff, or _OSI(Linux), etc)
+--osDK9TLjxFScVI/L
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I don't know what "things" you are referring to here at all.
+-----BEGIN PGP SIGNATURE-----
 
-> > And what problem are you really trying to solve here by doing this?
-> 
-> The problem is that *some* bios versions (that came much later, after
-> pcengines-apuv2 driver went into production) added a few things that
-> the driver is already doing - different versions doing it differently
-> (eg. even enumerating gpio connected leds with completely different
-> names, etc), and still some gpio connected devices missing. Some
-> versions (just forgot, which one it's been exactly) even enumerate
-> *some* gpios (and LEDs behind them) as a different device, whose Linux
-> driver just happens to work. Meanwhile I can't find any reference of
-> that in the coreboot source, anymore.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmA2f1IACgkQJNaLcl1U
+h9BmHwf7ByG+rddUNrtsKiDejXUO7IHX3n8fF3Hu4q9FgjW+FmZrPBeUx9TJdUId
+E0AkNmmZTlDBUf+2dM9tVWWsaOAuj1OzGXD8Ig7Sfya1MQhueKyiTYEVsKVhBH86
+vxF2vyko4oYpDFckwOjaUW+UK4cP9ih+ALMAYQf8P5vMs2zVE7mlPzGGIT/asS4D
+twLKn9vN6mmuypoZX0usIM7LixGEd2hTKuXCGX6PU3EcB/dSEaHRyk/ZxudBC3q4
+ydXjb4Er7/dirW7UD6JBQ9Kba29cuQYEapDXdVutXtMF4H1qmOwHapda6satXlbb
+YpJKhH+s5Za0tgovTNwYEUY1qvxDqw==
+=+k3T
+-----END PGP SIGNATURE-----
 
-I have no idea what you are talking about here, you did not describe a
-problem :(
-
-> As you can see: bios is anything but reliable on that platform.
-
-I do not understand.
-
-> What I'm trying to achieve: the kernel should behave exactly the
-> same, no matter what board revision, bios version, kernel version,
-> etc. (there should be especially no need to have special per-board
-> quirks in userland, depending on board rev, bios version, kernel
-> version).
-> 
-> If you've got a better solution, I'll be glad to hear it.
-
-I really do not understand the problem, sorry.
-
-greg k-h
+--osDK9TLjxFScVI/L--
