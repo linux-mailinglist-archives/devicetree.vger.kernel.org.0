@@ -2,161 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F39C323FAE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 16:21:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0798323FB3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 16:21:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231591AbhBXOQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 09:16:34 -0500
-Received: from mout.kundenserver.de ([212.227.126.133]:37341 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233093AbhBXNC6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 08:02:58 -0500
-Received: from [192.168.1.155] ([77.2.19.91]) by mrelayeu.kundenserver.de
- (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MDyoW-1l51sv2CX6-009v7T; Wed, 24 Feb 2021 14:00:13 +0100
-Subject: Re: RFC: oftree based setup of composite board devices
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org, Johan Hovold <johan@kernel.org>
-References: <20210208222203.22335-1-info@metux.net>
- <CAL_JsqJ-bz35mUM3agYjq5x+Y+u9rL1RwesCaA-x=MW8uv5CrA@mail.gmail.com>
- <76bf0f7c-9477-f370-8fbd-ce8ef15188b1@gmail.com>
-From:   "Enrico Weigelt, metux IT consult" <info@metux.net>
-Message-ID: <44b9b561-5e0d-6a1c-ca5d-4e9f6000884c@metux.net>
-Date:   Wed, 24 Feb 2021 14:00:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S232616AbhBXORQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 09:17:16 -0500
+Received: from mail-bn7nam10on2064.outbound.protection.outlook.com ([40.107.92.64]:21345
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236049AbhBXNNV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Feb 2021 08:13:21 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Pn4TpwY4GFmDI/6QtQryeGhutsTT0na97KNYE24i3OEew3mPgo2Ebo5Zku6omLLci9+yLRBFlFtOz5yAn2b4jqu0XxvOoNhY3q4LdM645MsbCXEGCdH8zHAOB3I2KPzSqV2ModGisTYJM0rzZULuyo3hc7p738uHxNE+zh5LrzNcdKpDnxPq8M5roKZsyVk8jxVSeNnSIu9aQHUWUuEDqbSuouCS2QD6O+16/FjilKkwFOLR54yMEmB1r0YNB02eOcnd5IcfzuOOQkO4BIflbJf2iGSGYjEgsaOb/XZneNi9MMHEnxSV94M56X9OBfrZQ5xvbZKT6A6v0FSYJhN8Bg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=X08dbfM/k8r1eKpvZpmfIzUzxhVmnp/s9B9xyGfC2TM=;
+ b=Ss2J2bOpO140JvMXpRV7cNVvz1eGPhz23b/c9t+ZpHmyTDRsk2A8y0+sAeerzkttw3iFBV7rkzO2nGm/1tN5wvGkbOy/cFT/gWfDMd10qtd5ix6CKVbUS9xD7IeiV5tog1AN1gS3qIc/hddZlEskGIf0Xi7TIR4W1DOigsRbPlKYLDqrY0gdFxgHqfNd0KRyiTO37Tg9LxTjepI87SsPuVBP+Kq4ATfknqbL3Y6iGu1Os+EQZFd49EEde9aJuZVAi4JWrHA/HfCZZ2C0XBwEooSHtVvHfhJwwG2gfTRlG4sLeT1x2YKerSfFBPeD8zHxyYCmc7w0yXe6XQ8OyHt5dg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=X08dbfM/k8r1eKpvZpmfIzUzxhVmnp/s9B9xyGfC2TM=;
+ b=neCz9FFcGTWbcESHUVUh12pvtRCsp0brf+6fhogtxvlq3UZvKinlqAsv287EGd4cOdaAhcC2fQBb1xONcAY2BfAxAcCHEKYJfuzA1PpqpNZOAOOHj5ClJyD4wuc4FU8UHmr0W/ao8sxMkO9dpdB74Gp8LLRAD4bjqWhz/aOTJN8=
+Received: from DM6PR02CA0167.namprd02.prod.outlook.com (2603:10b6:5:332::34)
+ by BY5PR02MB6372.namprd02.prod.outlook.com (2603:10b6:a03:1fb::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.31; Wed, 24 Feb
+ 2021 13:11:12 +0000
+Received: from CY1NAM02FT005.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:5:332:cafe::26) by DM6PR02CA0167.outlook.office365.com
+ (2603:10b6:5:332::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.27 via Frontend
+ Transport; Wed, 24 Feb 2021 13:11:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ CY1NAM02FT005.mail.protection.outlook.com (10.152.74.117) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3890.19 via Frontend Transport; Wed, 24 Feb 2021 13:11:11 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Wed, 24 Feb 2021 05:10:46 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Wed, 24 Feb 2021 05:10:46 -0800
+Envelope-to: git@xilinx.com,
+ devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org,
+ gregkh@linuxfoundation.org,
+ robh+dt@kernel.org,
+ sboyd@kernel.org,
+ mturquette@baylibre.com,
+ shubhrajyoti.datta@gmail.com,
+ miquel.raynal@bootlin.com,
+ devel@driverdev.osuosl.org
+Received: from [10.140.6.59] (port=34848 helo=xhdshubhraj40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1lEtwD-0001ry-MF; Wed, 24 Feb 2021 05:10:46 -0800
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+To:     <devicetree@vger.kernel.org>
+CC:     <linux-clk@vger.kernel.org>, <gregkh@linuxfoundation.org>,
+        <robh+dt@kernel.org>, <sboyd@kernel.org>,
+        <mturquette@baylibre.com>, <shubhrajyoti.datta@gmail.com>,
+        <git@xilinx.com>, <miquel.raynal@bootlin.com>,
+        <devel@driverdev.osuosl.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Subject: [PATCH v10 0/9] clk: clocking-wizard: driver updates
+Date:   Wed, 24 Feb 2021 18:40:32 +0530
+Message-ID: <1614172241-17326-1-git-send-email-shubhrajyoti.datta@xilinx.com>
+X-Mailer: git-send-email 2.1.1
 MIME-Version: 1.0
-In-Reply-To: <76bf0f7c-9477-f370-8fbd-ce8ef15188b1@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: tl
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:S4Magus5iVB7A/3HjqzU9h7iO3+zDZz8Fom6lDp95WYIGBug4nN
- 75Z+K0t6EoVgSE03r91wssD5swxiLRIKp4nL0Tvcv58a8NfUURZO48IDwJA5TpPanVEBY6U
- lqRSvOBRVGYQHeUmlNJ7jf9x2yYLgD+CJbXOwCQCUx+bNTd6jBj3ubFPcouJw0X8NLOzgKC
- Vl1v5LqB0Q1afibhnuR7g==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:YUfW6Jymwu0=:mWF+wApwLToD13uqyydVmw
- yz0tjJoinmtzo4QIhnPsrrVq/xqVc9A+HNCgOLzb2LqtYsgzgc704Kj0XH8O3FCJblYa0A7BN
- FMrWWjo/v76RpnKOd/RRNnjISy7mK3SIG3XEkHB4GaOdIPYrwVd8ar4+xLgoz/Ssoyx+1fMqQ
- 9+aFLozd/3oApFaARTLL72FHJoW1mp7rDch9R4ua9Kg/6gPKgnyyvq+WZJj9YjKscLqrqZBaP
- H98QtUMaAK3Yd7hMGH5NCndv6IDa2T/nxorz5RdTrLAP1aLE+sQMbq2u2OH5OBmcGf4Pq1CUB
- 1bbpIqWno1/TNZ1+EkLTwYWhRc99d2QaLE0p8cPymTJWEdbhAtajlHRFGVo5BfJRhWRt8KhDc
- KCJwjx8dlOLNmS36mvZPRs58+Clg9yyCDhcMBbWc1JQMQhAZK7CYIMy0TaaliYArvfPCnv04h
- cAM9BcRwKI50mRc/sWfAkJgE0mOhtmYSlT4/+v/uVOlgfLqGwK4f
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2fdd9d10-7f3f-4070-c36a-08d8d8c5a874
+X-MS-TrafficTypeDiagnostic: BY5PR02MB6372:
+X-Microsoft-Antispam-PRVS: <BY5PR02MB6372652B3508138C11F29A86AA9F9@BY5PR02MB6372.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:207;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: T4J4Yixd7UfHkZx5s4l/sBN0yPGQvvyzG4zJPxwH3oDL04o/PhwWpU/qS0mH3OCsMpb91vtLx1gRptDfAnPwlNesiveJ2tsmNkP7p7x4UmOdh4slYW1ABzGyMtFXacdYkTGQ98d0uk7AUgOson9l1dT0aMbKlpVri0y/xG+1qqdOop1N14ro3MEJcvSxOegz2uyc2PnSZTi37m9LIxcgwyfZsnEHqhAN0CHrIwpUfU9Ei7mIN5p7sAiTvBeP5M3xvWAkLBFnDpLCCTPeHa7N70SVJjKNlUy2VQaI9lRH6FSJjMMN/Ew4pDFksxWAV05efx97C46gLLoTQy4hyO7FicjTWt0eOQ1ALExy24e8Kvi1Zx7ZtGy1XtW5pugyP55w6gwJNJRkPeMigfWe2KlJKnc2nX2yDesRl74ThaRhnozdmlqZHjDp+Q1yDJc49Ix3NrYUA2CA7EdQ7hH+N/RWjNkO5uJwUi1tCUrRrT773mNc8rS5QGNhNnUcxJdlbf2YRUigSyFHyi4zwxuEm+BZhjC+yQgL0n6eF7SBCyWCHqultEK5m8LAOSHYV01gEnls69nLb8IwSHBn2KZjTS/r91AfOhKd7zP2Moh2v2+S4aR1cS+6sQgtn84Z4iBbiHkOMd47y90fX7peCwzCheUkuLf5UhT+HMENUPCnm9BHX9+q6T5bCoHjoOzp138uw1ORSh315porEb1BTT3PXI53BiRtLzG+4r8tkW1bNeZX+kNUOBSUl8ilhU5WaCV0IqRURqDYQdejMiEhxKWjFivGfQ==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(39860400002)(376002)(396003)(346002)(36840700001)(46966006)(7696005)(6916009)(426003)(82310400003)(7636003)(26005)(4326008)(478600001)(336012)(966005)(186003)(70586007)(70206006)(36756003)(356005)(83380400001)(44832011)(5660300002)(36860700001)(54906003)(8676002)(47076005)(9786002)(36906005)(8936002)(82740400003)(15650500001)(2906002)(6666004)(107886003)(316002)(2616005)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 13:11:11.8636
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2fdd9d10-7f3f-4070-c36a-08d8d8c5a874
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT005.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6372
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.02.21 02:12, Frank Rowand wrote:
+In the thread [1] Greg suggested that we move the driver
+to the clk from the staging.
+Add patches to address the concerns regarding the fractional and
+set rate support in the TODO.
 
-> Why not compile in ACPI data (tables?) instead of devicetree description?
+The patch set does the following
+- Trivial fixes for kernel doc.
+- Move the driver to the clk folder
+- Add capability to set rate.
+- Add fractional support.
+- Add support for configurable outputs.
+- Make the output names unique so that multiple instances
+do not crib.
 
-The problem is a bit more complex than it might seem.
+Changes in the v3:
+Added the cover-letter.
+Add patches for rate setting and fractional support
+Add patches for warning.
+Remove the driver from staging as suggested
 
-Let's take the APU2/37/4 boards as an example. They've got some aux
-devices, eg. some gpio controller, and some things (leds, keys, reset
-lines, etc) attached to it.
+v4:
+Reorder the patches.
+Merge the CLK_IS_BASIC patch.
+Add the yaml form of binding document
 
-Now we've got lots of different bios versions in the field,
-enumerating only some of the devices. For example, older ones didn't
-even contain the gpio, later ones added just gpio, other ones just
-added LEDs (with different names than the Linux driver already mainlined
-and field-deployed at that time), but still other lines unhandled, etc, 
-etc. etc.
+v5:
+Fix a mismerge
 
-A big mess :( And I can't ask everybody to do bios uprade on devices far
-out in the field (litterally open field, sometimes offshore, ...). So, I
-need a usable solution, that's also maintainable, w/o testing each
-single combination of board, bios, etc. IOW: without relying on bios
-(except for board identification)
+v6:
+Fix the yaml warning
+use poll timedout
 
-OTOH, I'm also looking for a solution get rid writing those kind of
-relatively huge board drivers, that pretty are much like old fashioned
-board files from pre-DT times - just made up of lots of tables and
-a few trivial register-something calls. Sounds pretty much like the
-original use case of oftree.
+v7:
+Binding doc updates
+Use common divisor function.
 
-The primary difference between classic oftree and this scanario:
-* this is additional to existing platform information, which is
-   incomplete or even incorrect (and that can't be fixed)
-* extra carrier boards that are detected by other means, but no
-   enumeration of the devices on it.
+v8:
+Fix Robs comments
 
->> This is something I've wanted to see for a while. There's use cases
->> for DT based systems too. The example I'd like to see supported are
->> USB serial adapters with downstream serdev, GPIO, I2C, SPI, etc. Then
->> plug more than one of those in.
-> 
-> My understanding from the past is that the experts (those who understand both
-> devicetree and ACPI) regard trying to mix devicetree and ACPI in a single
-> running Linux kernel image is insanity, or at least likely to be confusing,
-> difficult, and problematic.
+v9:
+Fix device tree warnings
 
-Well, mixing different, overlapping data sources tends to be tricky. The
-same problem exists with the classic approach of hand-written board
-drivers. So there have to be clear border lines.
+v10:
+Reorder the patches
+Update the speed grade description.
 
-In my case (eg. apu2+ boards), the overlap is only that some bios
-versions enumerate the gpio chip, others even some of the gpio-based
-devices. I'm attempting to solve this by just kicking out those
-duplicate devices, if they exist. The alternative could be leaving them
-in an trying to bind the missing ones to them. But that would be really
-complicatd and needs to be well crafted for lots of different board and
-bios versions - a kind of complexity we wanna avoid.
+[1] https://spinics.net/lists/linux-driver-devel/msg117326.html
 
-My use cases are actually a bit easier than the average dt overlay
-cases, as I have almost no interactions with already existing devices
-(except that some specific devices have to be moved out of the way)
+Shubhrajyoti Datta (9):
+  staging: clocking-wizard: Fix kernel-doc warning
+  staging: clocking-wizard: Rename speed-grade to xlnx,speed-grade
+  staging: clocking-wizard: Update the fixed factor divisors
+  staging: clocking-wizard: Allow changing of parent rate for single
+    output
+  staging: clocking-wizard: Add support for dynamic reconfiguration
+  staging: clocking-wizard: Add support for fractional support
+  staging: clocking-wizard: Remove the hardcoding of the clock outputs
+  dt-bindings: add documentation of xilinx clocking wizard
+  clk: clock-wizard: Add the clockwizard to clk directory
 
-The original DT overlay use case, arbitrary expansion boards (eg. on
-raspi), are trickier, if the overlays shall be generic over a wider
-range of base boards (eg. same overlay for any raspi or odroid).
-This is something calling for an own (pseudo-)bus type that handles
-the correct probing ... I've hacked up something similar for the APU2+'s
-combined msata/usb/mpcie ports.
-
-BTW: I've already been thinking of ways for internally transforming ACPI
-tables into DT data structures (struct device_node) at an early point,
-before probing. But that would be another research project with unknown
-outcome, and most likely a HUGE change. Not what I'm talking about now.
-
-> From the devicetree side, I expect nightmares for me if devicetree and ACPI
-> are mixed in a single running kernel image.
-
-Note that I'm not talking about arbitrary configurations. Just re-using
-existing device tree code to express things that are currently open
-coded C into DT.
-
-It's NOT trying to boot an ACPI-based machine with DT. (which would be
-yet another research project)
-
-> Multiple root nodes and disjoint trees both seem problematic.  Existing
-> subsystems and drivers expect a single cohesive tree.  Changing that
-> architecture looks to me to be a painful exercise.
-
-Yes, it's not entirely trivial, but managable. My experiments seemed to
-work so far, and I couldn't see general blockers yet. Drivers usually
-expect certain sub-nodes, but haven't found any that expect their node
-being embedded in some other one. (maybe there really are some, but the
-likehood that they're applicable in these use cases looks pretty low).
-
-
---mtx
+ .../bindings/clock/xlnx,clocking-wizard.yaml       |  72 +++
+ drivers/clk/Kconfig                                |   9 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/clk-xlnx-clock-wizard.c                | 636 +++++++++++++++++++++
+ drivers/staging/Kconfig                            |   2 -
+ drivers/staging/Makefile                           |   1 -
+ drivers/staging/clocking-wizard/Kconfig            |  10 -
+ drivers/staging/clocking-wizard/Makefile           |   2 -
+ drivers/staging/clocking-wizard/TODO               |  12 -
+ .../clocking-wizard/clk-xlnx-clock-wizard.c        | 333 -----------
+ drivers/staging/clocking-wizard/dt-binding.txt     |  30 -
+ 11 files changed, 718 insertions(+), 390 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+ create mode 100644 drivers/clk/clk-xlnx-clock-wizard.c
+ delete mode 100644 drivers/staging/clocking-wizard/Kconfig
+ delete mode 100644 drivers/staging/clocking-wizard/Makefile
+ delete mode 100644 drivers/staging/clocking-wizard/TODO
+ delete mode 100644 drivers/staging/clocking-wizard/clk-xlnx-clock-wizard.c
+ delete mode 100644 drivers/staging/clocking-wizard/dt-binding.txt
 
 -- 
----
-Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
-werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
-GPG/PGP-Schlüssel zu.
----
-Enrico Weigelt, metux IT consult
-Free software and Linux embedded engineering
-info@metux.net -- +49-151-27565287
+2.1.1
+
