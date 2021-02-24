@@ -2,332 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDCDE323ADF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 11:56:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83500323B2D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 12:18:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234754AbhBXKyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 05:54:23 -0500
-Received: from pmg01-out2.zxcs.nl ([185.104.28.188]:47281 "EHLO
-        pmg01-out2.zxcs.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234946AbhBXKyC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 05:54:02 -0500
-Received: from pmg01.zxcs.nl (localhost.localdomain [127.0.0.1])
-        by pmg01.zxcs.nl (ZXCS) with ESMTP id 26076106752;
-        Wed, 24 Feb 2021 11:53:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=pascalroeleven.nl; s=x; h=Content-Transfer-Encoding:MIME-Version:References
-        :In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=0ezqB/1a+OwcYabQdqNCgm+GNs+ai2gxOlbTrgpqe6Y=; b=OO0pN2wc9ZoYsoujfIJXXQ5B5O
-        vi0dyZLfo26hLB51fxZ9pkwGZWKC8vln1uKqeFnBywI2v7b829sPnBZ19Nw/wPwmpVY2+KFvyQM5x
-        g0oJ71DsgqPSbutdJJHGC0BsedPSmkUFOIUF0VbwfmPAotShU7fUre0pkuXdUQoxnIQCtAUZsZkGe
-        Oc6rV84QDCP/whRyqtA7p5DKhyR9gGkaJkW1rdayXnbZXIkr4VwrvlcTwlvfI9ln/zXHGJaJrdfnK
-        M0AXGxrHDacFcyQdp1rim1dSkvZUlRcEGHu9FwV4KIl476rrJzfU2O2c31YVUH8oeLBbOnyHmCVIA
-        mtxfZwZQ==;
-From:   Pascal Roeleven <dev@pascalroeleven.nl>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Martin Cerveny <m.cerveny@computer.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     linux-sunxi@googlegroups.com,
-        Pascal Roeleven <dev@pascalroeleven.nl>
-Subject: [PATCH v5 2/2] ARM: dts: sun4i: Add support for Topwise A721 tablet
-Date:   Wed, 24 Feb 2021 11:52:40 +0100
-Message-Id: <20210224105240.47754-3-dev@pascalroeleven.nl>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210224105240.47754-1-dev@pascalroeleven.nl>
-References: <20210224105240.47754-1-dev@pascalroeleven.nl>
+        id S235049AbhBXLR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 06:17:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42058 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234963AbhBXLP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 06:15:57 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B673CC06178A
+        for <devicetree@vger.kernel.org>; Wed, 24 Feb 2021 03:15:11 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id v15so1501468wrx.4
+        for <devicetree@vger.kernel.org>; Wed, 24 Feb 2021 03:15:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1Sa2i3Pn6JxJlmatuBNKl5Y5BjCnyJIbLhbxIWmo9lc=;
+        b=zw/BWEU0xhJRMzGN2rcc+fgUFZsCzZoDNy6lsWAB9x7tAbPp8i0CRbRm+YVcISXG9/
+         MWonpJ6Lf/XtDZsIX13obTjg2Uk0bCmlS8XbphLCPO54verJ0hAzuybYSQXno+ILB0We
+         mM7WMClnWxAyBbqqvKsdhr89PBbGPVcQORbkfnVxqmera39IlDNWIQbe5BLajOPOrUyk
+         MWW7RR+Q0BUMtqK/kOEGTtzZhyRqv4LSP8EdfvdABqevYVTR1bisEZoYvUM5U5Qgn9Iv
+         rdi0vFChJ89xJW7xqj28o+kDArTNRk1q2NVKWlkVKLkoqNOuihqJ0xyaHM8wTsk9RzZm
+         1Pew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1Sa2i3Pn6JxJlmatuBNKl5Y5BjCnyJIbLhbxIWmo9lc=;
+        b=HOF6Id9Yotk2ogom6ig7nL/bvtWJPnIgNs9czGPMsv5ooFv1fIgcY8CfFUwBsRKdJ+
+         2VsXA4J4yobrQEOAE0eBa+PrvG3ikh8h8a3zOamx1n4qX0CMXtMhXZ9EFWgbz/Y1TJgM
+         WxbEVJ3w4k/WTyQA7ku2fuhHH8Jyt1BMOci4kJ8afKS0YslGlhrR5jrYnP8zUDc1VNU2
+         sqVtj03jlbs1tf90vT83//R5Ees+9mf9P7yVyOMgAdNaaDH8jdi22Fuc/CeOrMe1M2y7
+         kPwynNhTGm1GyajLhSzOykDWfzM50m9gXtfKriyPuXBbU/wlvwW5xUgi0PWWUItVrDPb
+         y4/w==
+X-Gm-Message-State: AOAM533izbNg4ouB3D2bLmGkV1Llpmo+fIT9FIjp22L5+oYp+rrWR+O9
+        HxhYP/4tUKeu6mr24zOfKq7mRZjmTlgWxj3k
+X-Google-Smtp-Source: ABdhPJy47KpFwjh6a9va/BqTgn6xTBovOwYIYWXdTXCSHwrc0OG6hfQ8/1Yjz2BCbty1uAxRn957OQ==
+X-Received: by 2002:adf:cc88:: with SMTP id p8mr14587033wrj.169.1614165310424;
+        Wed, 24 Feb 2021 03:15:10 -0800 (PST)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id o20sm2176733wmq.30.2021.02.24.03.15.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Feb 2021 03:15:09 -0800 (PST)
+Date:   Wed, 24 Feb 2021 11:15:05 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Kiran Gunda <kgunda@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, jacek.anaszewski@gmail.com,
+        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        phone-devel@vger.kernel.org
+Subject: Re: [PATCH V1 1/2] backlight: qcom-wled: Fix FSC update issue for
+ WLED5
+Message-ID: <20210224111505.37t5aq25iszg23iv@maple.lan>
+References: <1614138648-2963-1-git-send-email-kgunda@codeaurora.org>
+ <1614138648-2963-2-git-send-email-kgunda@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AuthUser: dev@pascalroeleven.nl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1614138648-2963-2-git-send-email-kgunda@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Topwise A721/LY-F1 tablet is a tablet sold around 2012 under
-different brands. The mainboard mentions A721 clearly, so this tablet
-is best known under this name.
+On Wed, Feb 24, 2021 at 09:20:47AM +0530, Kiran Gunda wrote:
+> Currently, for WLED5, after FSC register update MOD_SYNC_BIT
+> is toggled instead of SYNC_BIT. MOD_SYNC_BIT has to be toggled
+> after the brightness update and SYNC_BIT has to be toggled after
+> FSC update for WLED5. Fix it.
 
-Signed-off-by: Pascal Roeleven <dev@pascalroeleven.nl>
----
- arch/arm/boot/dts/Makefile                   |   3 +-
- arch/arm/boot/dts/sun4i-a10-topwise-a721.dts | 242 +++++++++++++++++++
- 2 files changed, 244 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/sun4i-a10-topwise-a721.dts
+Code looks fine but the description is a difficult to read (which makes
+mining the history difficult).
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 8e5d4ab4e7..53b6e06bf1 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1105,7 +1105,8 @@ dtb-$(CONFIG_MACH_SUN4I) += \
- 	sun4i-a10-olinuxino-lime.dtb \
- 	sun4i-a10-pcduino.dtb \
- 	sun4i-a10-pcduino2.dtb \
--	sun4i-a10-pov-protab2-ips9.dtb
-+	sun4i-a10-pov-protab2-ips9.dtb \
-+	sun4i-a10-topwise-a721.dtb
- dtb-$(CONFIG_MACH_SUN5I) += \
- 	sun5i-a10s-auxtek-t003.dtb \
- 	sun5i-a10s-auxtek-t004.dtb \
-diff --git a/arch/arm/boot/dts/sun4i-a10-topwise-a721.dts b/arch/arm/boot/dts/sun4i-a10-topwise-a721.dts
-new file mode 100644
-index 0000000000..3628f12d25
---- /dev/null
-+++ b/arch/arm/boot/dts/sun4i-a10-topwise-a721.dts
-@@ -0,0 +1,242 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright 2020 Pascal Roeleven <dev@pascalroeleven.nl>
-+ */
-+
-+/dts-v1/;
-+#include "sun4i-a10.dtsi"
-+#include "sunxi-common-regulators.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+/ {
-+	model = "Topwise A721";
-+	compatible = "topwise,a721", "allwinner,sun4i-a10";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm 0 100000 PWM_POLARITY_INVERTED>;
-+		power-supply = <&reg_vbat>;
-+		enable-gpios = <&pio 7 7 GPIO_ACTIVE_HIGH>; /* PH7 */
-+		brightness-levels = <0 30 40 50 60 70 80 90 100>;
-+		default-brightness-level = <8>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	panel {
-+		compatible = "starry,kr070pe2t";
-+		backlight = <&backlight>;
-+		power-supply = <&reg_lcd_power>;
-+
-+		port {
-+			panel_input: endpoint {
-+				remote-endpoint = <&tcon0_out_panel>;
-+			};
-+		};
-+	};
-+
-+	reg_lcd_power: reg-lcd-power {
-+		compatible = "regulator-fixed";
-+		regulator-name = "reg-lcd-power";
-+		gpio = <&pio 7 8 GPIO_ACTIVE_HIGH>; /* PH8 */
-+		enable-active-high;
-+	};
-+
-+	reg_vbat: reg-vbat {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vbat";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+	};
-+
-+};
-+
-+&codec {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
-+&de {
-+	status = "okay";
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	axp209: pmic@34 {
-+		reg = <0x34>;
-+		interrupts = <0>;
-+	};
-+};
-+
-+#include "axp209.dtsi"
-+
-+&ac_power_supply {
-+	status = "okay";
-+};
-+
-+&battery_power_supply {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	accelerometer@4c {
-+		compatible = "fsl,mma7660";
-+		reg = <0x4c>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	touchscreen@38 {
-+		compatible = "edt,edt-ft5406";
-+		reg = <0x38>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <7 21 IRQ_TYPE_EDGE_FALLING>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		vcc-supply = <&reg_vcc3v3>;
-+	};
-+};
-+
-+&lradc {
-+	vref-supply = <&reg_ldo2>;
-+	status = "okay";
-+
-+	button-571 {
-+		label = "Volume Up";
-+		linux,code = <KEY_VOLUMEUP>;
-+		channel = <0>;
-+		voltage = <571428>;
-+	};
-+
-+	button-761 {
-+		label = "Volume Down";
-+		linux,code = <KEY_VOLUMEDOWN>;
-+		channel = <0>;
-+		voltage = <761904>;
-+	};
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 7 1 GPIO_ACTIVE_LOW>; /* PH01 */
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&otg_sram {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pb-supply = <&reg_vcc3v3>;
-+	vcc-pf-supply = <&reg_vcc3v3>;
-+	vcc-ph-supply = <&reg_vcc3v3>;
-+};
-+
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm0_pin>;
-+	status = "okay";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1000000>;
-+	regulator-max-microvolt = <1400000>;
-+	regulator-name = "vdd-cpu";
-+};
-+
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1250000>;
-+	regulator-max-microvolt = <1250000>;
-+	regulator-name = "vdd-int-dll";
-+};
-+
-+&reg_ldo1 {
-+	regulator-name = "vdd-rtc";
-+};
-+
-+&reg_ldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-name = "avcc";
-+};
-+
-+&reg_usb0_vbus {
-+	status = "okay";
-+};
-+
-+&reg_usb1_vbus {
-+	status = "okay";
-+};
-+
-+&reg_usb2_vbus {
-+	status = "okay";
-+};
-+
-+&tcon0_out {
-+	tcon0_out_panel: endpoint@0 {
-+		reg = <0>;
-+		remote-endpoint = <&panel_input>;
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usb_power_supply {
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 7 4 GPIO_ACTIVE_HIGH>; /* PH4 */
-+	usb0_vbus_det-gpios = <&pio 7 5 GPIO_ACTIVE_HIGH>; /* PH5 */
-+	usb0_vbus-supply = <&reg_usb0_vbus>;
-+	usb1_vbus-supply = <&reg_usb1_vbus>;
-+	usb2_vbus-supply = <&reg_usb2_vbus>;
-+	status = "okay";
-+};
--- 
-2.27.0
+Basically the descriptions here are very hard to read without the
+context in PATCH 0/2. Since PATCH 0/2 won't enter the version history
+that means these descriptions need to integrate some of the text from
+what is currently PATCH 0/2.
+
+I would expect this to be more like. It is basically joining together
+text from PATCH 0 and PATCH 1 (I also switched to plural form for SYNC
+bits... the code in the driver has mask generation based on the number
+of strings, is that right?):
+
+~~~
+Currently, for WLED5, the FSC (Full scale current) setting is not
+updated properly due to driver toggling the wrong register after an FSC
+update.
+
+On WLED5 we should only toggle the MOD_SYNC bit after a brightness
+update. For an FSC update we need to toggle the SYNC bits instead.
+
+Fix it by adopting the common wled3_sync_toggle() for WLED5 and
+introducing new code to the brightness update path to
+compensate.
+~~~
 
 
+Daniel.
+
+
+
+> 
+> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+> ---
+>  drivers/video/backlight/qcom-wled.c | 25 +++++++++++++++++++------
+>  1 file changed, 19 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
+> index 3bc7800..aef52b9 100644
+> --- a/drivers/video/backlight/qcom-wled.c
+> +++ b/drivers/video/backlight/qcom-wled.c
+> @@ -348,7 +348,7 @@ static int wled3_sync_toggle(struct wled *wled)
+>  	return rc;
+>  }
+>  
+> -static int wled5_sync_toggle(struct wled *wled)
+> +static int wled5_mod_sync_toggle(struct wled *wled)
+>  {
+>  	int rc;
+>  	u8 val;
+> @@ -445,10 +445,23 @@ static int wled_update_status(struct backlight_device *bl)
+>  			goto unlock_mutex;
+>  		}
+>  
+> -		rc = wled->wled_sync_toggle(wled);
+> -		if (rc < 0) {
+> -			dev_err(wled->dev, "wled sync failed rc:%d\n", rc);
+> -			goto unlock_mutex;
+> +		if (wled->version < 5) {
+> +			rc = wled->wled_sync_toggle(wled);
+> +			if (rc < 0) {
+> +				dev_err(wled->dev, "wled sync failed rc:%d\n", rc);
+> +				goto unlock_mutex;
+> +			}
+> +		} else {
+> +			/*
+> +			 * For WLED5 toggling the MOD_SYNC_BIT updates the
+> +			 * brightness
+> +			 */
+> +			rc = wled5_mod_sync_toggle(wled);
+> +			if (rc < 0) {
+> +				dev_err(wled->dev, "wled mod sync failed rc:%d\n",
+> +					rc);
+> +				goto unlock_mutex;
+> +			}
+>  		}
+>  	}
+>  
+> @@ -1459,7 +1472,7 @@ static int wled_configure(struct wled *wled)
+>  		size = ARRAY_SIZE(wled5_opts);
+>  		*cfg = wled5_config_defaults;
+>  		wled->wled_set_brightness = wled5_set_brightness;
+> -		wled->wled_sync_toggle = wled5_sync_toggle;
+> +		wled->wled_sync_toggle = wled3_sync_toggle;
+>  		wled->wled_cabc_config = wled5_cabc_config;
+>  		wled->wled_ovp_delay = wled5_ovp_delay;
+>  		wled->wled_auto_detection_required =
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+>  a Linux Foundation Collaborative Project
+> 
