@@ -2,169 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D84B324567
-	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 21:41:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CF7232476E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 00:16:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235480AbhBXUkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 15:40:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50554 "EHLO
+        id S236194AbhBXXOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 18:14:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235376AbhBXUkb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 15:40:31 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22047C061574;
-        Wed, 24 Feb 2021 12:39:51 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 887F61F457DE
-Message-ID: <807fbefd25e2e91e6d3dd47acfd9a596def9e7ea.camel@collabora.com>
-Subject: Re: [PATCH v3 2/9] media: hantro: Define HEVC codec profiles and
- supported features
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, peng.fan@nxp.com,
-        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Date:   Wed, 24 Feb 2021 17:39:37 -0300
-In-Reply-To: <20210222122406.41782-3-benjamin.gaignard@collabora.com>
-References: <20210222122406.41782-1-benjamin.gaignard@collabora.com>
-         <20210222122406.41782-3-benjamin.gaignard@collabora.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        with ESMTP id S234728AbhBXXOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Feb 2021 18:14:54 -0500
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07B68C061574;
+        Wed, 24 Feb 2021 15:14:14 -0800 (PST)
+Received: by mail-qv1-xf2f.google.com with SMTP id t1so871022qvj.8;
+        Wed, 24 Feb 2021 15:14:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=A3g1rPz4Z5wHrOBN/vss/tpJg+Tks75zY0bAsuzFhro=;
+        b=PzIo4dPGMVWTNOWmnpG1518sEWdaWNVd+7FrLobTTK7tQGFjV+bC6PPsoxmmTXzzoe
+         sr8A7DK9itHpE6DHM1av8OZzTu7O9/NsT2+wMajPfPELgrdCf9wBSTgx0AO/iuMJDXrP
+         ITFBcab6RrNFedl9T5/SxgC9FxudLIG4JeMxncLLzrxMTZi7V2MKjjGvCh78hEEHUYPv
+         2E0cgaS/OT6xG+QdX1/ZiGTN8gZZX7xc9PexJRPKv1h+q7/+RH2HRkm5I2a17Te2MUSW
+         hS5nRgW3eaksqn34WjNgTyivL1QxA0OR+M73blQb5sPK2pLZ8w9CSZDh3dghMK+uSSjN
+         Nh/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=A3g1rPz4Z5wHrOBN/vss/tpJg+Tks75zY0bAsuzFhro=;
+        b=ryd3X77i6tiDmtUb+o80hDQug5H7QxSJQKObkeLrtkxhjTySvBk8fjwqJ+Gm/fFj15
+         SRvTFV/WyJq7iihSJ8SzE5ibicbylUGF8dou9XEq+Xv6KuJWc94GTtJdX9B6QCZBsVfA
+         AhV6PD0Fn1GCLvYhMnjaaJZw4bnqFIqJ6xwpPgwVdwd/PZZ61woieO+PI+QZV/m53V/h
+         sdW4FAq1RemmW9gTJrqmiKTBlBW9Ubqd3Eew33osbt8JQsNu/kqQtqOHdx4mS3+swwfw
+         mNiNOvrRxJwShVXzXI+GbVm3Efg6mpHO2XJWoDA2rx5D/o/F8HBro/L333bwyd2idPLm
+         XM2Q==
+X-Gm-Message-State: AOAM531clVZHX3mB1AA5PxvnYryZw0PNQiGQAm5iqRtJHmk61Np8Qdrb
+        OvXPARyFrGP8DSRWtAB6fiA=
+X-Google-Smtp-Source: ABdhPJx4shiVFjCPZin6lyLQRhwTsIspvusBSy1Sie/3lT+KgN1KvXQS+y0LVNEzUv0xoIbLIOeJOA==
+X-Received: by 2002:a0c:ea87:: with SMTP id d7mr8985523qvp.27.1614208453271;
+        Wed, 24 Feb 2021 15:14:13 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id n82sm2650938qkn.114.2021.02.24.15.14.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Feb 2021 15:14:12 -0800 (PST)
+Subject: Re: RFC: oftree based setup of composite board devices
+To:     "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org, Johan Hovold <johan@kernel.org>
+References: <20210208222203.22335-1-info@metux.net>
+ <CAL_JsqJ-bz35mUM3agYjq5x+Y+u9rL1RwesCaA-x=MW8uv5CrA@mail.gmail.com>
+ <76bf0f7c-9477-f370-8fbd-ce8ef15188b1@gmail.com>
+ <44b9b561-5e0d-6a1c-ca5d-4e9f6000884c@metux.net>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <89086c87-c730-ff35-3865-4cf145883a95@gmail.com>
+Date:   Wed, 24 Feb 2021 17:14:10 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <44b9b561-5e0d-6a1c-ca5d-4e9f6000884c@metux.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-02-22 at 13:23 +0100, Benjamin Gaignard wrote:
-> Define which HEVC profiles (up to level 5.1) and features
-> (no scaling, no 10 bits) are supported by the driver.
+On 2/24/21 7:00 AM, Enrico Weigelt, metux IT consult wrote:
+> On 15.02.21 02:12, Frank Rowand wrote:
 > 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
->  drivers/staging/media/hantro/hantro.h     |  2 +
->  drivers/staging/media/hantro/hantro_drv.c | 58 +++++++++++++++++++++++
->  2 files changed, 60 insertions(+)
+>> Why not compile in ACPI data (tables?) instead of devicetree description?
 > 
-> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> index 65f9f7ea7dcf..bde65231f22f 100644
-> --- a/drivers/staging/media/hantro/hantro.h
-> +++ b/drivers/staging/media/hantro/hantro.h
-> @@ -99,6 +99,7 @@ struct hantro_variant {
->   * @HANTRO_MODE_H264_DEC: H264 decoder.
->   * @HANTRO_MODE_MPEG2_DEC: MPEG-2 decoder.
->   * @HANTRO_MODE_VP8_DEC: VP8 decoder.
-> + * @HANTRO_MODE_HEVC_DEC: HEVC decoder.
->   */
->  enum hantro_codec_mode {
->         HANTRO_MODE_NONE = -1,
-> @@ -106,6 +107,7 @@ enum hantro_codec_mode {
->         HANTRO_MODE_H264_DEC,
->         HANTRO_MODE_MPEG2_DEC,
->         HANTRO_MODE_VP8_DEC,
-> +       HANTRO_MODE_HEVC_DEC,
->  };
->  
->  /*
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index e5f200e64993..d86e322a5980 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -243,6 +243,18 @@ static int hantro_try_ctrl(struct v4l2_ctrl *ctrl)
->                 if (sps->bit_depth_luma_minus8 != 0)
->                         /* Only 8-bit is supported */
->                         return -EINVAL;
-> +       } else if (ctrl->id == V4L2_CID_MPEG_VIDEO_HEVC_SPS) {
-> +               const struct v4l2_ctrl_hevc_sps *sps = ctrl->p_new.p_hevc_sps;
-> +
-> +               if (sps->bit_depth_luma_minus8 != sps->bit_depth_chroma_minus8)
-> +                       /* Luma and chroma bit depth mismatch */
-> +                       return -EINVAL;
-> +               if (sps->bit_depth_luma_minus8 != 0)
-> +                       /* Only 8-bit is supported */
-> +                       return -EINVAL;
-> +               if (sps->flags & V4L2_HEVC_SPS_FLAG_SCALING_LIST_ENABLED)
-> +                       /* No scaling support */
-> +                       return -EINVAL;
->         }
->         return 0;
->  }
-> @@ -349,6 +361,52 @@ static const struct hantro_ctrl controls[] = {
->                         .def = V4L2_MPEG_VIDEO_H264_PROFILE_MAIN,
->                 }
->         }, {
-> +               .codec = HANTRO_HEVC_DECODER,
+> The problem is a bit more complex than it might seem.
+> 
+> Let's take the APU2/37/4 boards as an example. They've got some aux
+> devices, eg. some gpio controller, and some things (leds, keys, reset
+> lines, etc) attached to it.
+> 
+> Now we've got lots of different bios versions in the field,
+> enumerating only some of the devices. For example, older ones didn't
+> even contain the gpio, later ones added just gpio, other ones just
+> added LEDs (with different names than the Linux driver already mainlined
+> and field-deployed at that time), but still other lines unhandled, etc, etc. etc.
+> 
+> A big mess :( And I can't ask everybody to do bios uprade on devices far
+> out in the field (litterally open field, sometimes offshore, ...). So, I
+> need a usable solution, that's also maintainable, w/o testing each
+> single combination of board, bios, etc. IOW: without relying on bios
+> (except for board identification)
+> 
+> OTOH, I'm also looking for a solution get rid writing those kind of
+> relatively huge board drivers, that pretty are much like old fashioned
+> board files from pre-DT times - just made up of lots of tables and
+> a few trivial register-something calls. Sounds pretty much like the
+> original use case of oftree.
+> 
+> The primary difference between classic oftree and this scanario:
+> * this is additional to existing platform information, which is
+>   incomplete or even incorrect (and that can't be fixed)
+> * extra carrier boards that are detected by other means, but no
+>   enumeration of the devices on it.
+> 
+>>> This is something I've wanted to see for a while. There's use cases
+>>> for DT based systems too. The example I'd like to see supported are
+>>> USB serial adapters with downstream serdev, GPIO, I2C, SPI, etc. Then
+>>> plug more than one of those in.
+>>
+>> My understanding from the past is that the experts (those who understand both
+>> devicetree and ACPI) regard trying to mix devicetree and ACPI in a single
+>> running Linux kernel image is insanity, or at least likely to be confusing,
+>> difficult, and problematic.
 
-Silly nitpick. Looks like this is not defined yet?
+Since you have persisted, a more referenced and emphatic "no" to mixing ACPI
+and devicetree:
 
-I'm getting:
+  https://elinux.org/Device_Tree_Linux#mixing_devicetree_and_ACPI
 
-drivers/staging/media/hantro/hantro_drv.c:364:12: error: ‘HANTRO_HEVC_DECODER’ undeclared here (not in a function); did you mean
-‘HANTRO_H264_DECODER’?
-  364 |   .codec = HANTRO_HEVC_DECODER,
-      |            ^~~~~~~~~~~~~~~~~~~
-      |            HANTRO_H264_DECODER
 
-I'll review the G2 driver soon :-)
+> 
+> Well, mixing different, overlapping data sources tends to be tricky. The
+> same problem exists with the classic approach of hand-written board
+> drivers. So there have to be clear border lines.
+> 
+> In my case (eg. apu2+ boards), the overlap is only that some bios
+> versions enumerate the gpio chip, others even some of the gpio-based
+> devices. I'm attempting to solve this by just kicking out those
+> duplicate devices, if they exist. The alternative could be leaving them
+> in an trying to bind the missing ones to them. But that would be really
+> complicatd and needs to be well crafted for lots of different board and
+> bios versions - a kind of complexity we wanna avoid.
 
-Thanks,
-Ezequiel
+So you want to use devicetree data to fix broken ACPI data.
 
-> +               .cfg = {
-> +                       .id = V4L2_CID_MPEG_VIDEO_HEVC_DECODE_MODE,
-> +                       .min = V4L2_MPEG_VIDEO_HEVC_DECODE_MODE_FRAME_BASED,
-> +                       .max = V4L2_MPEG_VIDEO_HEVC_DECODE_MODE_FRAME_BASED,
-> +                       .def = V4L2_MPEG_VIDEO_HEVC_DECODE_MODE_FRAME_BASED,
-> +               },
-> +       }, {
-> +               .codec = HANTRO_HEVC_DECODER,
-> +               .cfg = {
-> +                       .id = V4L2_CID_MPEG_VIDEO_HEVC_START_CODE,
-> +                       .min = V4L2_MPEG_VIDEO_HEVC_START_CODE_ANNEX_B,
-> +                       .max = V4L2_MPEG_VIDEO_HEVC_START_CODE_ANNEX_B,
-> +                       .def = V4L2_MPEG_VIDEO_HEVC_START_CODE_ANNEX_B,
-> +               },
-> +       }, {
-> +               .codec = HANTRO_HEVC_DECODER,
-> +               .cfg = {
-> +                       .id = V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
-> +                       .min = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +                       .max = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
-> +                       .def = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +               },
-> +       }, {
-> +               .codec = HANTRO_HEVC_DECODER,
-> +               .cfg = {
-> +                       .id = V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
-> +                       .min = V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
-> +                       .max = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
-> +               },
-> +       }, {
-> +               .codec = HANTRO_HEVC_DECODER,
-> +               .cfg = {
-> +                       .id = V4L2_CID_MPEG_VIDEO_HEVC_SPS,
-> +                       .ops = &hantro_ctrl_ops,
-> +               },
-> +       }, {
-> +               .codec = HANTRO_HEVC_DECODER,
-> +               .cfg = {
-> +                       .id = V4L2_CID_MPEG_VIDEO_HEVC_PPS,
-> +               },
-> +       }, {
-> +               .codec = HANTRO_HEVC_DECODER,
-> +               .cfg = {
-> +                       .id = V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS,
-> +               },
->         },
->  };
->  
+Again, why don't you use data in an ACPI format to fix broken ACPI
+data?
 
+-Frank
+
+> 
+> My use cases are actually a bit easier than the average dt overlay
+> cases, as I have almost no interactions with already existing devices
+> (except that some specific devices have to be moved out of the way)
+> 
+> The original DT overlay use case, arbitrary expansion boards (eg. on
+> raspi), are trickier, if the overlays shall be generic over a wider
+> range of base boards (eg. same overlay for any raspi or odroid).
+> This is something calling for an own (pseudo-)bus type that handles
+> the correct probing ... I've hacked up something similar for the APU2+'s
+> combined msata/usb/mpcie ports.
+> 
+> BTW: I've already been thinking of ways for internally transforming ACPI
+> tables into DT data structures (struct device_node) at an early point,
+> before probing. But that would be another research project with unknown
+> outcome, and most likely a HUGE change. Not what I'm talking about now.
+> 
+>> From the devicetree side, I expect nightmares for me if devicetree and ACPI
+>> are mixed in a single running kernel image.
+> 
+> Note that I'm not talking about arbitrary configurations. Just re-using
+> existing device tree code to express things that are currently open
+> coded C into DT.
+> 
+> It's NOT trying to boot an ACPI-based machine with DT. (which would be
+> yet another research project)
+> 
+>> Multiple root nodes and disjoint trees both seem problematic.  Existing
+>> subsystems and drivers expect a single cohesive tree.  Changing that
+>> architecture looks to me to be a painful exercise.
+> 
+> Yes, it's not entirely trivial, but managable. My experiments seemed to
+> work so far, and I couldn't see general blockers yet. Drivers usually
+> expect certain sub-nodes, but haven't found any that expect their node
+> being embedded in some other one. (maybe there really are some, but the
+> likehood that they're applicable in these use cases looks pretty low).
+> 
+> 
+> --mtx
+> 
 
