@@ -2,74 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 151E33241D6
+	by mail.lfdr.de (Postfix) with ESMTP id 85F093241D7
 	for <lists+devicetree@lfdr.de>; Wed, 24 Feb 2021 17:19:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235219AbhBXQMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Feb 2021 11:12:17 -0500
-Received: from marcansoft.com ([212.63.210.85]:58396 "EHLO mail.marcansoft.com"
+        id S229769AbhBXQMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Feb 2021 11:12:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57082 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235182AbhBXP42 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Feb 2021 10:56:28 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 8DD9442463;
-        Wed, 24 Feb 2021 15:55:06 +0000 (UTC)
-From:   Hector Martin <marcan@marcan.st>
-To:     Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210215121713.57687-1-marcan@marcan.st>
- <20210218143644.GC89209@C02TD0UTHF1T.local>
- <add1937b-183b-17a9-94db-f384801a079e@marcan.st>
-Subject: Re: [PATCH v2 00/25] Apple M1 SoC platform bring-up
-Message-ID: <7d878de7-cfe8-ed32-ff7c-d1c3e61aa54f@marcan.st>
-Date:   Thu, 25 Feb 2021 00:55:04 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S234539AbhBXP73 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Feb 2021 10:59:29 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3843264ED4;
+        Wed, 24 Feb 2021 15:58:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614182326;
+        bh=V7rlcQhSLNnPVI2Ed7xp8A/0e5OvqYK14ITPfoiHp5s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tAsWIY4TrkTMO4kObyqGoIrvoteNKJUOvtXJ5QxwENEO/KpsmsyGySaeDWXANDc+C
+         pCFWrcPgWSonpPn8+ZZktgc6vXgGtEGVLoOUnT24zXoZqoM1p0aGYQ/IhDfEFo9IR1
+         2e+KvwYvHVGidOAUTIhOtTtPsWm2jPXz6XoIj6j8CPTgdrk2JEdVYcdFF87DqxhYs/
+         ssG/7+keU8c68P3kKg8FHDb1disLnBAxElQ4ddbk379/CYhNlPJnql4YEDuGRHx/HK
+         cv557H5AErdKJdqxfHxOidMeiuAHRyDA2Nsg1iK0yKSlsQg9oAt5pYYLQqtBGw4GwL
+         vuAaGWNj1UWXQ==
+Date:   Wed, 24 Feb 2021 15:57:43 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, rnayak@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH 1/7] dt-bindings: regulator: Convert regulator bindings
+ to YAML format
+Message-ID: <20210224155743.GC4504@sirena.org.uk>
+References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
+ <1614155592-14060-2-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <add1937b-183b-17a9-94db-f384801a079e@marcan.st>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="IpbVkmxF4tDyP/Kb"
+Content-Disposition: inline
+In-Reply-To: <1614155592-14060-2-git-send-email-skakit@codeaurora.org>
+X-Cookie: He's dead, Jim.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2021 00.20, Hector Martin wrote:
-> I haven't tested things at EL0 yet, but it looks like the stateful
-> instructions known to be usable in EL0 (AMX) already default to trap on
-> this platform, so we should be safe there. Everything else looks like it
-> probably either shouldn't work in EL0 (I sure hope the address
-> translation one doesn't...) or is probably stateless. I'll dig deeper
-> and test EL0 in the future, but so far things look OK (for some
-> questionable values of OK :) ).
 
-Follow-up: I have EL0 testing scaffolding now, and I found some more 
-mutable state (an IMP-DEF, pre-standard version of FEAT_AFP, using a 
-separate status register for the bits), but thankfully it traps at EL0 
-by default.
+--IpbVkmxF4tDyP/Kb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-And then I found some other mutable IMP-DEF state that does not trap at 
-EL0. And which is a 0-day CVE in macOS, because it doesn't 
-save/restore/clear it either, nor does it trap there.
+On Wed, Feb 24, 2021 at 02:03:06PM +0530, satya priya wrote:
+> Convert regulator bindings from .txt to .yaml format.
 
-E-mailing security@apple.com...
+Please place any conversions of DT bindings to YAML at the end of patch
+serieses, there is frequently a backlog on review of these conversions
+which can hold everything else up.
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+--IpbVkmxF4tDyP/Kb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmA2d3YACgkQJNaLcl1U
+h9BShAf/SgYMZ8WvLi8NXafZXp3KgmNvyITtP2zBMOwLUjPfA0nVpvCGe/MTGO9w
+f7NJjAztndQD9AsM2MBQmXHrsDqbLhl+QpqiNvv0k7yVvm1u4DbAQUFXP20GaV+6
+OZ3+grab+JgLiNwhNrwXSbnpSIG06dTChnMEQwaTD/7Xar6SM8go/QtBk5T6atYj
+xXGbF72jHV9OK7CFrHaRWMsrIstmVrkWLuN/5hHmPMgGxc3AjNjGS1PMRRaZj2G2
+LhVy1lz7xH/sl5eqDYauw7T6pX0Oam2wKbR5DMu7R3gG9kl4K+632fVqMoMzPjSy
+otunaBZ31wXGy5CBmAZVoloX08s68g==
+=g0Pe
+-----END PGP SIGNATURE-----
+
+--IpbVkmxF4tDyP/Kb--
