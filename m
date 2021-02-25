@@ -2,118 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8978B324C11
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 09:31:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE71324CB4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 10:24:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235903AbhBYI3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 03:29:24 -0500
-Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:42249 "EHLO
-        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235901AbhBYI3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Feb 2021 03:29:23 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.west.internal (Postfix) with ESMTP id 963C62C0;
-        Thu, 25 Feb 2021 03:28:34 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 25 Feb 2021 03:28:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=Y9Gv6iZZQ2bb0yIwpCDfsgvAtPi
-        Vd7qD5mlt0Bt0XeI=; b=iUj8SrA8pMuMSHzXqNfpdkRTv5LHEHrqNsUWJWPG92y
-        n5XX3wQPuxLyDYZe6diiXkxlpBNS7atD8ZlfLQ2imGuvYd9vjCHN+4356r85Ajb3
-        gIUtl3IHiUyTuiy9p763tQUV/N1s3GzXChAittz3oQ3Bt+O9MHzWREOpEmgcUO8C
-        PD7vWGsUUTjC5zp9oMutEEOUavv+kz7eMxplejGD8HohJCUw7E4Ix3B8634plLv2
-        hCMnnfz6cYtNOvc7VHtpJ1nYeHqTJr8tcDYtlXlO+VTXxK/Dc5n4HZiccohenDF/
-        NSYHx/EpU0OKFgCmB8wt7xV1YNvU6N7PmjmqDlnG69Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=Y9Gv6i
-        ZZQ2bb0yIwpCDfsgvAtPiVd7qD5mlt0Bt0XeI=; b=DiUUdZr5pBX9Vde/BYmOxx
-        +/ETiGbxbC/CblLDUmjZy8mfjTRN4+AiZk5Tx+opWp08we7QNZMs2w+8sxQpWQ8e
-        R+GVvzewIdzUVvVVE8tIGqv4VC8cPblVa6SQdXFW4l0qTW9R1B+Q2bytCE3B92B6
-        FPDdR/ZFsUMwNRUDCzzeCZvKeeofB+gKxsB7nWTJoAFpQ7U4uyNN4t5Z9cHV6G/F
-        pCnnxAqQtOEAMbfWJ+5cDmKXuCrTTh6k2Jc9DmA1LLrv9HoytvNwnfeMd6dZi8Fg
-        gY35vtcHs/Biv4iOnRYEXL44oawDk1ywo+IPrO79sa5YJ4lDTAOdRJBz4c02+XwA
-        ==
-X-ME-Sender: <xms:r183YDya3pr2fDcU8f1LWuHWaePm4yGPCxour8BSw8XOE1laBpw4fw>
-    <xme:r183YLSvn27zl5KP7GrNN_B9gR19cFPUPJEs8Urd3vd06On39SjJOVGbGLnBCOVhd
-    1zzwufSFViNigttRq4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrkeekgdduudekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:r183YNXfKZunF6ifUUEBA_9I_mLbW3AoHGkdVL-LTC8PzZhRiBcsvQ>
-    <xmx:r183YNgXLQPMiHwx-yI-Oxy2U5zGaZyF17Rj9gT6i2GW_A5Su1RqhQ>
-    <xmx:r183YFD7AmVyaBHAZ-8WF9L0ZbsafLJGz2FRY773L_YjWDVViN_8hg>
-    <xmx:sl83YJ6QDgf3_lrjxK0dkem5mx8a7y-5E3XdS9htJRKRaeePkoc9WVaM0i0>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id D1A281080068;
-        Thu, 25 Feb 2021 03:28:30 -0500 (EST)
-Date:   Thu, 25 Feb 2021 09:28:28 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Pascal Roeleven <dev@pascalroeleven.nl>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org,
-        =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Martin Cerveny <m.cerveny@computer.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v5 0/2] Add support for Topwise A721 tablet
-Message-ID: <20210225082828.orqttturwbt6ckov@gilmour>
-References: <20210224105240.47754-1-dev@pascalroeleven.nl>
+        id S236341AbhBYJYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 04:24:07 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:44576 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233451AbhBYJXI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 04:23:08 -0500
+Received: by mail-ot1-f53.google.com with SMTP id f33so5017649otf.11;
+        Thu, 25 Feb 2021 01:22:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Qn/i3Xq3eFPWh+oxu0OZHPlZ+USKUqVpHsfRFlr5yAs=;
+        b=IjQK1Jw32OSdFLTgEU6l9MEedPVJA/d+qPr8XLQR5AMYD6M8rG15HNANzI8MrVGQk5
+         +O8y6xZgPMbOpvL57cZavfOKuYynpb3G6eevo5oFbMyW7EOu7oSB0KwEJwYdXQXgtcX1
+         SxbsfYn3dhmejw+jM06zxA7CadUr5/WNosap5GPh4yhFtR6aVcCNnOqHaiS/7xKg+1Ba
+         7LNRULq7CGLaTs7i6kY/71FY47YoPcdRXKFoY33e114hOVnKJ43EJKu+y0IxAcdqfPes
+         cW5uw+LvDh/4eobtqZZdx3ryJn8VovUgAGHFhOKjEYNwC9SKM1p9epntoqc/T4xuXRLS
+         OdhA==
+X-Gm-Message-State: AOAM532CE1ikjqpZGszA/c85rFzeh5rjn+EL1XpdIkmLzhzWw9AWFCS7
+        KtqIqCCJIavT1ojaErdNy9q2oPI1wbhZxO6aFlg=
+X-Google-Smtp-Source: ABdhPJzA05EhCSKn+fa5olOgbUVwt4c5dphmMfcyJtaw5b2dV5HM2Ob4uwlqTZro9SBDH4FPxRWzTQvs6RjzGS5/u7c=
+X-Received: by 2002:a05:6830:119:: with SMTP id i25mr1515253otp.107.1614244927765;
+ Thu, 25 Feb 2021 01:22:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mddrviwckt3hjn4y"
-Content-Disposition: inline
-In-Reply-To: <20210224105240.47754-1-dev@pascalroeleven.nl>
+References: <20210205222644.2357303-1-saravanak@google.com>
+ <CAMuHMdVL-1RKJ5u-HDVA4F4w_+8yGvQQuJQBcZMsdV4yXzzfcw@mail.gmail.com>
+ <CAGETcx-668+uGigaOMcsvv00mo6o_eGPcH0YyD28OCVEyVbw+w@mail.gmail.com>
+ <CAMuHMdXduvBqjAqraXkEKErNJFyN6JNq5wqagc4yHHPpH5SPGQ@mail.gmail.com>
+ <CAGETcx_4FGa-rzLp6bjXbm4F4R6H2W78+nM_kN=XPz5hswzANA@mail.gmail.com>
+ <CAMuHMdVodauqBmLMxsfi0kQtAFT8ruJ36LJL9YuQgqwQNKwHHg@mail.gmail.com>
+ <CAGETcx_-yBvhXDPtOiKjenvx83oMNr32UvpMN0Dt-qz5ToXEbw@mail.gmail.com>
+ <CAMuHMdXTO8wQ3=woLMjDaf9g3tTr-dRB3Nu_XvZUrr+wGSXyeg@mail.gmail.com> <CAGETcx8jXkbtdgMCr6KGT4ScoaoP=AwaW6MQeEv-gsDySiY35A@mail.gmail.com>
+In-Reply-To: <CAGETcx8jXkbtdgMCr6KGT4ScoaoP=AwaW6MQeEv-gsDySiY35A@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 25 Feb 2021 10:21:56 +0100
+Message-ID: <CAMuHMdUVVr8jES51_8_yPoicr-nwad_2nKLYUKweY8mbxx9GJw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Make fw_devlink=on more forgiving
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Saravana,
 
---mddrviwckt3hjn4y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Feb 18, 2021 at 12:57 AM Saravana Kannan <saravanak@google.com> wrote:
+> On Tue, Feb 16, 2021 at 12:31 PM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Tue, Feb 16, 2021 at 7:49 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > On Tue, Feb 16, 2021 at 12:05 AM Geert Uytterhoeven
+> > > <geert@linux-m68k.org> wrote:
+> > > > On Mon, Feb 15, 2021 at 10:27 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > > > On Mon, Feb 15, 2021 at 4:38 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > > On Fri, Feb 12, 2021 at 4:00 AM Saravana Kannan <saravanak@google.com> wrote:
+> > > > > > > On Thu, Feb 11, 2021 at 5:00 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > > > >       - I2C on R-Car Gen3 does not seem to use DMA, according to
+> > > > > > > >         /sys/kernel/debug/dmaengine/summary:
+> > > > > > > >
+> > > > > > > >             -dma4chan0    | e66d8000.i2c:tx
+> > > > > > > >             -dma4chan1    | e66d8000.i2c:rx
+> > > > > > > >             -dma5chan0    | e6510000.i2c:tx
+> > > > > > >
+> > > > > > > I think I need more context on the problem before I can try to fix it.
+> > > > > > > I'm also very unfamiliar with that file. With fw_devlink=permissive,
+> > > > > > > I2C was using DMA? If so, the next step is to see if the I2C relative
+> > > > > > > probe order with DMA is getting changed and if so, why.
+> > > > > >
+> > > > > > More detailed log:
+> > > > > >
+> > > > > >     platform e66d8000.i2c: Linked as a consumer to e6150000.clock-controller
+> > > > > >     platform e66d8000.i2c: Linked as a sync state only consumer to e6055400.gpio
+> > > > > >
+> > > > > > Why is e66d8000.i2c not linked as a consumer to e6700000.dma-controller?
+> > > > >
+> > > > > Because fw_devlink.strict=1 is not set and dma/iommu is considered an
+> > > > > "optional"/"driver decides" dependency.
+> > > >
+> > > > Oh, I thought dma/iommu were considered mandatory initially,
+> > > > but dropped as dependencies in the late boot process?
+> > >
+> > > No, I didn't do that in case the drivers that didn't need the
+> > > IOMMU/DMA were sensitive to probe order.
+> > >
+> > > My goal was for fw_devlink=on to not affect probe order for devices
+> > > that currently don't need to defer probe. But see below...
+> > >
+> > > >
+> > > > >
+> > > > > >     platform e6700000.dma-controller: Linked as a consumer to
+> > > > > > e6150000.clock-controller
+> > > > >
+> > > > > Is this the only supplier of dma-controller?
+> > > >
+> > > > No, e6180000.system-controller is also a supplier.
+> > > >
+> > > > > >     platform e66d8000.i2c: Added to deferred list
+> > > > > >     platform e6700000.dma-controller: Added to deferred list
+> > > > > >
+> > > > > >     bus: 'platform': driver_probe_device: matched device
+> > > > > > e6700000.dma-controller with driver rcar-dmac
+> > > > > >     bus: 'platform': really_probe: probing driver rcar-dmac with
+> > > > > > device e6700000.dma-controller
+> > > > > >     platform e6700000.dma-controller: Driver rcar-dmac requests probe deferral
+> > > > > >
+> > > > > >     bus: 'platform': driver_probe_device: matched device e66d8000.i2c
+> > > > > > with driver i2c-rcar
+> > > > > >     bus: 'platform': really_probe: probing driver i2c-rcar with device
+> > > > > > e66d8000.i2c
+> > > > > >
+> > > > > > I2C becomes available...
+> > > > > >
+> > > > > >     i2c-rcar e66d8000.i2c: request_channel failed for tx (-517)
+> > > > > >     [...]
+> > > > > >
+> > > > > > but DMA is not available yet, so the driver falls back to PIO.
+> > > > > >
+> > > > > >     driver: 'i2c-rcar': driver_bound: bound to device 'e66d8000.i2c'
+> > > > > >     bus: 'platform': really_probe: bound device e66d8000.i2c to driver i2c-rcar
+> > > > > >
+> > > > > >     platform e6700000.dma-controller: Retrying from deferred list
+> > > > > >     bus: 'platform': driver_probe_device: matched device
+> > > > > > e6700000.dma-controller with driver rcar-dmac
+> > > > > >     bus: 'platform': really_probe: probing driver rcar-dmac with
+> > > > > > device e6700000.dma-controller
+> > > > > >     platform e6700000.dma-controller: Driver rcar-dmac requests probe deferral
+> > > > > >     platform e6700000.dma-controller: Added to deferred list
+> > > > > >     platform e6700000.dma-controller: Retrying from deferred list
+> > > > > >     bus: 'platform': driver_probe_device: matched device
+> > > > > > e6700000.dma-controller with driver rcar-dmac
+> > > > > >     bus: 'platform': really_probe: probing driver rcar-dmac with
+> > > > > > device e6700000.dma-controller
+> > > > > >     driver: 'rcar-dmac': driver_bound: bound to device 'e6700000.dma-controller'
+> > > > > >     bus: 'platform': really_probe: bound device
+> > > > > > e6700000.dma-controller to driver rcar-dmac
+> > > > > >
+> > > > > > DMA becomes available.
+> > > > > >
+> > > > > > Here userspace is entered. /sys/kernel/debug/dmaengine/summary shows
+> > > > > > that the I2C controllers do not have DMA channels allocated, as the
+> > > > > > kernel has performed no more I2C transfers after DMA became available.
+> > > > > >
+> > > > > > Using i2cdetect shows that DMA is used, which is good:
+> > > > > >
+> > > > > >     i2c-rcar e66d8000.i2c: got DMA channel for rx
+> > > > > >
+> > > > > > With permissive devlinks, the clock controller consumers are not added
+> > > > > > to the deferred probing list, and probe order is slightly different.
+> > > > > > The I2C controllers are still probed before the DMA controllers.
+> > > > > > But DMA becomes available a bit earlier, before the probing of the last
+> > > > > > I2C slave driver.
+> > > > >
+> > > > > This seems like a race? I'm guessing it's two different threads
+> > > > > probing those two devices? And it just happens to work for
+> > > > > "permissive" assuming the boot timing doesn't change?
+> > > > >
+> > > > > > Hence /sys/kernel/debug/dmaengine/summary shows that
+> > > > > > some I2C transfers did use DMA.
+> > > > > >
+> > > > > > So the real issue is that e66d8000.i2c not linked as a consumer to
+> > > > > > e6700000.dma-controller.
+> > > > >
+> > > > > That's because fw_devlink.strict=1 isn't set. If you need DMA to be
+> > > > > treated as a mandatory supplier, you'll need to set the flag.
+> > > > >
+> > > > > Is fw_devlink=on really breaking anything here? It just seems like
+> > > > > "permissive" got lucky with the timing and it could break at any point
+> > > > > in the future. Thought?
+> > > >
+> > > > I don't think there is a race.
+> > >
+> > > Can you explain more please? This below makes it sound like DMA just
+> > > sneaks in at the last minute.
+> >
+> > Yes it does, as the DMAC also has a consumer link to the IOMMU.
+> > If you ignore the consumer link from I2C to DMAC, the I2C device has
+> > less dependencies than the DMAC, so the I2C device, and the
+> > devices on the I2C bus, are probed much earlier than the DMAC.
+>
+> Can you give this a shot?
+> https://lore.kernel.org/lkml/20210217235130.1744843-1-saravanak@google.com/T/#u
+>
+> It should make sure fw_devlink doesn't add a device to the deferred
+> probe list too soon and change the probe ordering unnecessarily.
 
-On Wed, Feb 24, 2021 at 11:52:38AM +0100, Pascal Roeleven wrote:
-> On request I'm resending the last two patches from the Topwise A721 tablet
-> series from a year ago as they weren't picked up. The other patches are
-> already merged, so I didn't resend them.
->=20
-> Changes from v4:
-> * Reorder nodes alphabetically
->=20
-> Changes from v3:
-> * Fix DT validation warnings
-> * Remove leftover labels
->=20
-> Changes from v2:
-> * Collected acked-by.
+(FTR, to keep all info in this thread)
+Yes, this makes I2C use DMA again on Salvator-XS during kernel boot-up.
+I haven't run any more elaborate tests on other platforms.
 
+Gr{oetje,eeting}s,
 
-Queued for 5.13, thanks!
-Maxime
+                        Geert
 
---mddrviwckt3hjn4y
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYDdfrAAKCRDj7w1vZxhR
-xXolAQCEdwE59axZzlSV9vxCO+BA65ZY6hptY7stXyvrttkM8gD/YcZtMXvHoayg
-T/Vbe+6f7Wg1eadL4IzRckWcMm1S9wg=
-=lnHG
------END PGP SIGNATURE-----
-
---mddrviwckt3hjn4y--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
