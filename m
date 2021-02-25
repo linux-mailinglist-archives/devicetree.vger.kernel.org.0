@@ -2,98 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F52532592F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 23:03:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C94C32594E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 23:15:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233242AbhBYWBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 17:01:43 -0500
-Received: from mail-lf1-f52.google.com ([209.85.167.52]:40962 "EHLO
-        mail-lf1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234567AbhBYWBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 17:01:20 -0500
-Received: by mail-lf1-f52.google.com with SMTP id d24so10855222lfs.8;
-        Thu, 25 Feb 2021 14:01:03 -0800 (PST)
+        id S233242AbhBYWOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 17:14:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40532 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232113AbhBYWOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 17:14:17 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97569C06174A
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:13:37 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id u12so4184119pjr.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:13:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BGyHjBouNSnLUG2Lzfuc7WYlrAHiqSHJ6DI2sOQjym4=;
+        b=S4Vi4cVffwjxP1q3GBRpmePU3bNnosfOHW0493up4vtbefnaDjXNrkFPVOOc1kLROO
+         wTqoIXJGHgcH4ixg60PUwcK/Wjfuel0+BGx/ZQ1sY6Xg4upWMYLTdshYL+RaNFaOQggR
+         Dtsd3kLgKbPKNANEi48PZT4tdnwy/82fvgD/w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hwZzks7Q+wOWRhrZQ3mgFpMbrn31iT5NyLTYPPzf06c=;
-        b=dwYUkxZJcVcClAxL/wTopQTpUl16CZi8XH44rK7oWGM/+BLPoqsD1uEgNu+xd6XkZa
-         IjemA/8ZmB8WUqA+A2KbF35y+EzMCgzBmX37OTwIuyJBVKQmdw7TkOvChqsdbcilC1EX
-         dMoJyQXmiPWqZe0g5W+7qBMm/wV8632DRj66nSFGyayVpKylC2SoeglYnVR7XrSYEsxP
-         m9bBm/AcF3TS8YvEgZoSTwG98p5UWxZpTJcRqJzNZCp1Vo6/lIvHj2OaXfJtA6BHkbw1
-         vnJEa5n35Nfx9ZTDxa8KE5Tx0jD8p1xANlDEAvlK9VEo7roP8+N8W4IB76qRmMlDjfTL
-         N/8Q==
-X-Gm-Message-State: AOAM532//eOltAWY8uQacjVjuekEeVOAwj1Zi9YSoLoxxKcxTEbBTMLK
-        9qrXcBXySz9uJiJ0qZywaz8=
-X-Google-Smtp-Source: ABdhPJxQhSDTdjqQUt4Uhh4bJavdU7KNQTizh7/YRmYQ9PMRZYRbGObddOL6QGouxeeQ0cAjfwn15g==
-X-Received: by 2002:a19:b47:: with SMTP id 68mr2844434lfl.343.1614290436989;
-        Thu, 25 Feb 2021 14:00:36 -0800 (PST)
-Received: from rocinante ([95.155.85.46])
-        by smtp.gmail.com with ESMTPSA id r9sm1228682lfn.200.2021.02.25.14.00.35
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BGyHjBouNSnLUG2Lzfuc7WYlrAHiqSHJ6DI2sOQjym4=;
+        b=kAgf0pCU9zfmJAhK+B3juBk9w/7L7Y81Ay8X7WE0uToAnS1yLucutXpoOBtKi6UFDC
+         7YrSYLMZ/eUF5a0+o4jVldxh7as3Y1FYUuzW8hxTM6fQkjA3yV3iJISN+IbsB/hJUymO
+         ynDHHg9EY2RN+vOajRZ/CzdDkkLdtLyY8gzh2roG56k6sUv+e1zJ9Vf9lvLxxf6eSNIu
+         XW8M6VRyzO2ekvQZcScPucw2EbNPNaVLwFzjYwoetvdWokiJSpRT7c9XkF2c89LkD9y/
+         v17pJv6WgJRz2gY/FwH+b4kZ5Hi95/y0RhCzn8w1LEFIWK0QWT4Fah1p9pEKG/ytVjUU
+         L/GQ==
+X-Gm-Message-State: AOAM532a7g8eeyPCZ9GjExLAOjnds3LMDLfEajA2PWNbOMPPzYzd/afT
+        pBR81SVyqPtiLZR/OSoyqpaczg==
+X-Google-Smtp-Source: ABdhPJzRmpl0rRj+D2HGkH0+imXRHUlA3DDnhKov+B+ipXusLMCdPyxG853CyK9kQXZD/AfQjokxIA==
+X-Received: by 2002:a17:902:be06:b029:e3:7031:bef with SMTP id r6-20020a170902be06b02900e370310befmr178907pls.19.1614291217144;
+        Thu, 25 Feb 2021 14:13:37 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:8414:45a5:94c4:d35d])
+        by smtp.gmail.com with ESMTPSA id jt21sm6713301pjb.51.2021.02.25.14.13.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Feb 2021 14:00:36 -0800 (PST)
-Date:   Thu, 25 Feb 2021 23:00:34 +0100
-From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, maz@kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
-        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
-        sin_jieyang@mediatek.com, drinkcat@chromium.org,
-        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
-Subject: Re: [v8,6/7] PCI: mediatek-gen3: Add system PM support
-Message-ID: <YDgeAoYHgiAyU16a@rocinante>
-References: <20210224061132.26526-1-jianjun.wang@mediatek.com>
- <20210224061132.26526-7-jianjun.wang@mediatek.com>
- <YDZeRc6CHV/WzyCm@rocinante>
- <1614224089.25750.14.camel@mhfsdcap03>
+        Thu, 25 Feb 2021 14:13:36 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 00/13] arm64: dts: qcom: Update sc7180-trogdor variants from downstream
+Date:   Thu, 25 Feb 2021 14:12:57 -0800
+Message-Id: <20210225221310.1939599-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.30.1.766.gb4fecdf3b7-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1614224089.25750.14.camel@mhfsdcap03>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jianjun,
+The point of this series is to catch upstream up to what we have
+downstream in terms of sc7180-trogdor variants.  Notably:
+- It incorporates minor changes that snuck into the trogdor and lazor
+  device tree files since they were posted upstream.
+- It adds the "Limozeen" SKU variant of Lazor.
+- It adds support the Pompom and CoachZ type trogdor boards.
 
-[...]
-> Thanks for your review,
+This series was tested on mainline Linux instead of the Qualcomm tree
+since mainline has important bugfixes that are not in the current
+Qualcomm tree. Given the current state of the merge window mainline
+has all of the relevant Qualcomm device tree files anyway. For
+testing, I picked these atop mainline:
+- Commit fe7952c629da ("drm/msm: Add speed-bin support to a618 gpu")
+  to keep the GPU from crashing due to the fact that commit
+  20fd3b37285b ("arm64: dts: qcom: sc7180: Add support for gpu fuse")
+  is in mainline.  This commit is in msm-next.
+- The patch ("arm64: dts: qcom: sc7180: Use pdc interrupts for USB
+  instead of GIC interrupts") [1] just because it reduced diffs and
+  seemed ready to go.
+- The patch ("arm64: dts: qcom: sc7180: Avoid glitching SPI CS at
+  bootup on trogdor") [2] because that's an important bugfix.
 
-Thank YOU for all the work here!
- 
-[...]
-> > > Add suspend_noirq and resume_noirq callback functions to implement
-> > > PM system suspend hooks for MediaTek Gen3 PCIe controller.
-> > 
-> > So, "systems suspend" and "resume" hooks, correct?
-> 
-> The callback functions is suspend_noirq and resume_noirq, should I use
-> "systems suspend" and "resume" in the commit message?
-[...]
+With all these changes things are in pretty good shape. Looking at
+diffs compared to downstream w/ a few patches [3]:
+- I haven't tried to resolve "sound" with upstream, instead stripping
+  / leaving as-is any audio related nodes.  Someone with more
+  knowledge of the current state of audio needs to take a pass here.
+- I haven't tried to resolve DP with upstream.  It's basically not
+  there.  Someone who works on this: please help!
+- We have a downstream patch to manage power for USB hubs.  Without
+  that we have to keep power on all the time for USB.  Matthias is
+  still working on trying to get an agreement for how that should
+  work.
+- Downstream we have an early version of the "sleep stats" driver
+  landed.  I believe this is in Maulik's court to re-post.
+
+I have tested this series on "lazor", "lazor-limozeen", "pompom" and
+"coachz".  All of them boot to the web browser with this patch series.
+
+I have confirmed that Matthias's recent charger series [4] applies
+atop this with no conflicts, though I haven't looked at exactly which
+revs of coachz / pompom need a similar change.  It might be easiest to
+just follow up once both series land and we get final confirmation
+about exactly which revs will have exactly which thermistor.
+
+[1] https://lore.kernel.org/r/1594235417-23066-4-git-send-email-sanm@codeaurora.org
+[2] https://lore.kernel.org/r/20210218145456.1.I1da01a075dd86e005152f993b2d5d82dd9686238@changeid
+[3] https://chromium.googlesource.com/chromiumos/third_party/kernel/+log/refs/sandbox/dianders/210225-downstream-dts
+[4] https://lore.kernel.org/linux-arm-msm/20210225103330.v2.1.I6a426324db3d98d6cfae8adf2598831bb30bba74@changeid/
 
 
-What I meant was something along these lines:
+Abhishek Kumar (1):
+  arm64: dts: qcom: sc7180: add GO_LAZOR variant property for lazor
 
-  Add suspend_noirq and resume_noirq callback functions to implement PM
-  system suspend and resume hooks for the MediaTek Gen3 PCIe controller.
-  
-  When the system suspends, trigger the PCIe link to enter the L2 state
-  and pull down the PERST# pin, gating the clocks of the MAC layer, and
-  then power-off the physical layer to provide power-saving.
-  
-  When the system resumes, the PCIe link should be re-established and the
-  related control register values should be restored.
+Alexandru M Stan (1):
+  arm64: dts: qcom: sc7180-trogdor: Remove fp control pins in prep for
+    coachz
 
-The above is just a suggestion, thus feel tree to ignore it completely,
-and it's heavily based on your original commit message.
+Douglas Anderson (6):
+  arm64: dts: qcom: Move sc7180 MI2S config to board files and make
+    pulldown
+  arm64: dts: qcom: Prep sc7180-trogdor trackpad IRQ for new boards
+  arm64: dts: qcom: Unify the sc7180-trogdor panel nodes
+  arm64: dts: qcom: Add sc7180-lazor-limozeen skus
+  arm64: dts: qcom: Add sc7180-lazor-pompom skus
+  arm64: dts: qcom: Add sc7180-lazor-coachz skus
 
-Krzysztof
+Matthias Kaehlcke (1):
+  arm64: dts: qcom: sc7180: Set up lazor r3+ as sc7180-lite SKUs
+
+Stephen Boyd (3):
+  arm64: dts: qcom: sc7180: Update dts for DP phy inside QMP phy
+  arm64: dts: qcom: trogdor: Only wakeup from pen eject
+  arm64: dts: qcom: Disable camera clk on sc7180-trogdor devices by
+    default
+
+Venkata Lakshmi Narayana Gubba (1):
+  arm64: dts: qcom: sc7180: Remove clock for bluetooth on Trogdor
+
+ arch/arm64/boot/dts/qcom/Makefile             |  11 +
+ .../dts/qcom/sc7180-trogdor-coachz-r1-lte.dts |  18 ++
+ .../dts/qcom/sc7180-trogdor-coachz-r1.dts     | 154 ++++++++++
+ .../dts/qcom/sc7180-trogdor-coachz-r2-lte.dts |  18 ++
+ .../dts/qcom/sc7180-trogdor-coachz-r2.dts     |  15 +
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  | 249 +++++++++++++++
+ .../sc7180-trogdor-lazor-limozeen-nots-r4.dts |  34 +++
+ .../sc7180-trogdor-lazor-limozeen-nots.dts    |  26 ++
+ .../qcom/sc7180-trogdor-lazor-limozeen.dts    |  42 +++
+ .../dts/qcom/sc7180-trogdor-lazor-r3-kb.dts   |   5 +-
+ .../dts/qcom/sc7180-trogdor-lazor-r3-lte.dts  |   4 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r3.dts |   1 +
+ .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  39 +--
+ .../dts/qcom/sc7180-trogdor-pompom-r1-lte.dts |  14 +
+ .../dts/qcom/sc7180-trogdor-pompom-r1.dts     |  26 ++
+ .../dts/qcom/sc7180-trogdor-pompom-r2-lte.dts |  14 +
+ .../dts/qcom/sc7180-trogdor-pompom-r2.dts     |  44 +++
+ .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  | 288 ++++++++++++++++++
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  35 ++-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 105 +++----
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |  41 +--
+ 21 files changed, 1073 insertions(+), 110 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
+
+-- 
+2.30.1.766.gb4fecdf3b7-goog
+
