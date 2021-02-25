@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93AF2325962
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 23:17:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5BEE32596B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 23:17:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234403AbhBYWPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 17:15:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40570 "EHLO
+        id S234188AbhBYWQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 17:16:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234355AbhBYWO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 17:14:58 -0500
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D4B0C061223
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:13:46 -0800 (PST)
-Received: by mail-pf1-x42c.google.com with SMTP id b145so4568288pfb.4
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:13:46 -0800 (PST)
+        with ESMTP id S233234AbhBYWPZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 17:15:25 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9999C061224
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:13:47 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id g20so3991941plo.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:13:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=4zwBjkMJGS+IZy9ICNLfkk+HUIUBip1htcidFl5tiVI=;
-        b=I9rrQuSWljAocoj3aBTjQbt23RCc4NWStkE1NQQWHcvcOTMYCyqueUZpcAUTf+1oeM
-         TwERyBQxNaMYn8RGasiE4K38NXr1/3sd5hoC93g7jgAjCDssvI0Zrm8N+H/5ywoBd2Jf
-         SrxCEa7jtXwradokv9npIYFgQ+ZPLmQMHMFQM=
+        bh=arESgX5Z3N3iCGewREWU1o57veUfBdWu4eDQbMBYmaE=;
+        b=f2Eb/wdBJU97cr4GLNa72yl6kxGFeGYULoTkAitf08xsslOKMYQe5gJsE59tMFy4CJ
+         f5lZlrJnpM5aOiAxV7T8hoN/rVPNw+iMHSC76UILgVGoMTeDz1nwkWumRsVCuNuNPu16
+         iSZiAXrgnyfKANqttrgR6kD5RhN8Q82n4e2yo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=4zwBjkMJGS+IZy9ICNLfkk+HUIUBip1htcidFl5tiVI=;
-        b=CxEEYhnO8fzk5PbjQQeVbT/m3tFvnDl/AfaIvxB8LPsHFY7poMW7OUVyYlkL3HFpcJ
-         jxQ0j8KWrVJi5bDaENUAyBY/vj03YtrQ9O24fFiuIVFJ/KjkZ7mtC5wKiRpJIYL4JWCW
-         20vfAAyIQSx5+qZDHUqYjowfnu8qOsW4VCF1/ELgIQONM8f/mPFrYMJDfIRb2yVuZilC
-         oi6arpsYvW6uc/N2zY+owol69fnYXJd7TmR9BNVonYKhL7EnhmGtjEfT9q7sCVWREaqJ
-         IhYpfqNKbnw7wTIqW/bDfq+G0WQkQQ5Mi8tWaEwfZjHMpiQGpKkusCWUJ3c3TbwB0rtd
-         Fkyg==
-X-Gm-Message-State: AOAM532Tf12T0iBrp1m/kaMBWiClOue0rrTh+sM8ZxS2z89YWK8gbNTR
-        HePgSqyF0mnaTYBfa9ZqdTEyKg==
-X-Google-Smtp-Source: ABdhPJzPwuxhRV7o3IjGNASfZ9IF3YgqtfSTyEPkoaLmVLbNt7x4brgGIBQYDX75FCqFVH/8ItV5wA==
-X-Received: by 2002:a63:4761:: with SMTP id w33mr60066pgk.118.1614291225926;
-        Thu, 25 Feb 2021 14:13:45 -0800 (PST)
+        bh=arESgX5Z3N3iCGewREWU1o57veUfBdWu4eDQbMBYmaE=;
+        b=WWqTOZh7/KyG1gTt8DguKgE1X7kDJ32Fb/DyyhdLGJ4LTyiwyhX8O8orCBiZOtYEan
+         MV4+xyvN3wKFNEvBy9WFUQOQ/Fa+vfgMKzzpr2B9jBsJRinbErwpPOmDHPfJp2h+C/5i
+         xV/nRxzROOKYgMNjGJelj70LYr4Wla+6uXSTCUP8VhYAwayLCLzlSNPnvuOB1PrSR4r0
+         SVx52wRDmowqOzo2wH9j7ArhIlZqZJJ8Vq7eLKNK5wJcxWzG89PqT5pD9GR7Z30TjXfs
+         PtaJGfTN9b/bOg1tYiwnUWco2rNuEGnv68plqIRpwftfzTiHsv1egvyEQC4WMOiYHdeD
+         B8Qg==
+X-Gm-Message-State: AOAM531XwjvhuH3/1K/H9iCyE62HUbLjwsjU/mkE0NCNP41bkHYBbhZt
+        w15U1DmWN8qBPd7YUCwsxWhiAA==
+X-Google-Smtp-Source: ABdhPJxwduD+b8B7aNNHY3EIxZROzfMBEMQOBk6DwarGAGySDGt1Rpz5rRESwYqZKgBK6C4PaTGmSg==
+X-Received: by 2002:a17:90a:bb95:: with SMTP id v21mr68378pjr.30.1614291227294;
+        Thu, 25 Feb 2021 14:13:47 -0800 (PST)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:8414:45a5:94c4:d35d])
-        by smtp.gmail.com with ESMTPSA id jt21sm6713301pjb.51.2021.02.25.14.13.44
+        by smtp.gmail.com with ESMTPSA id jt21sm6713301pjb.51.2021.02.25.14.13.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Feb 2021 14:13:45 -0800 (PST)
+        Thu, 25 Feb 2021 14:13:46 -0800 (PST)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     Stephen Boyd <swboyd@chromium.org>,
         Alexandru M Stan <amstan@chromium.org>,
         Matthias Kaehlcke <mka@chromium.org>,
         Rob Clark <robdclark@chromium.org>,
-        Tomasz Figa <tfiga@chromium.org>,
+        Craig Hesling <hesling@chromium.org>,
         Douglas Anderson <dianders@chromium.org>,
         Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 06/13] arm64: dts: qcom: Disable camera clk on sc7180-trogdor devices by default
-Date:   Thu, 25 Feb 2021 14:13:03 -0800
-Message-Id: <20210225141022.6.I22522b0c9db505ee43ed08e8d5d9e8fe632e7447@changeid>
+Subject: [PATCH 07/13] arm64: dts: qcom: sc7180-trogdor: Remove fp control pins in prep for coachz
+Date:   Thu, 25 Feb 2021 14:13:04 -0800
+Message-Id: <20210225141022.7.Ifd7b86f826b18410eada75758a7bca1eebfa336d@changeid>
 X-Mailer: git-send-email 2.30.1.766.gb4fecdf3b7-goog
 In-Reply-To: <20210225221310.1939599-1-dianders@chromium.org>
 References: <20210225221310.1939599-1-dianders@chromium.org>
@@ -67,36 +67,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stephen Boyd <swboyd@chromium.org>
+From: Alexandru M Stan <amstan@chromium.org>
 
-We only want to use this clk driver on CoachZ devices. Disable it for
-all other Trogdor boards.  NOTE: CoachZ devices aren't yet supported
-upstream so until it is this is just disabled for all trogdor.
+Removed the pinctrl and pin{mux,conf} for the control pins because:
+1. The only need for them is for userspace control via flash_fp_mcu
+2. cros-ec doesn't know what to do with them, and even if it did,
+   it would interfere with flash_fp_mcu at the most inopportune times
 
-Cc: Tomasz Figa <tfiga@chromium.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-[dianders:adjusted since no coachz upstream yet]
+Since we're not using hogs, we rely on AP firmware to set all the
+control pins correctly.
+
+Cc: Stephen Boyd <swboyd@chromium.org>
+Cc: Craig Hesling <hesling@chromium.org>
+Signed-off-by: Alexandru M Stan <amstan@chromium.org>
+[dianders: adjusted since coachz isn't upstream yet]
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 45 +-------------------
+ 1 file changed, 1 insertion(+), 44 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index f3a99c801582..69bf600e1c9f 100644
+index 69bf600e1c9f..12397e31bef6 100644
 --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -568,6 +568,10 @@ cr50: tpm@0 {
+@@ -808,7 +808,7 @@ cros_ec_fp: ec@0 {
+ 		interrupt-parent = <&tlmm>;
+ 		interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&fp_to_ap_irq_l>, <&fp_rst_l>, <&fpmcu_boot0>, <&fpmcu_sel>;
++		pinctrl-0 = <&fp_to_ap_irq_l>;
+ 		spi-max-frequency = <3000000>;
  	};
  };
+@@ -1233,48 +1233,6 @@ pinconf {
+ 		};
+ 	};
  
-+&camcc {
-+	status = "disabled";
-+};
-+
- &dsi0 {
- 	status = "okay";
- 	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+-	fpmcu_boot0: fpmcu-boot0 {
+-		pinmux {
+-			pins = "gpio10";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio10";
+-			bias-disable;
+-			drive-strength = <2>;
+-			output-low;
+-		};
+-	};
+-
+-	fpmcu_sel: fpmcu-sel {
+-		pinmux {
+-			pins = "gpio22";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio22";
+-			bias-disable;
+-			drive-strength = <2>;
+-			output-high;
+-		};
+-	};
+-
+-	fp_rst_l: fp-rst-l {
+-		pinmux {
+-			pins = "gpio5";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio5";
+-			bias-disable;
+-			drive-strength = <2>;
+-			output-high;
+-		};
+-	};
+-
+ 	fp_to_ap_irq_l: fp-to-ap-irq-l {
+ 		pinmux {
+ 			pins = "gpio4";
+@@ -1290,7 +1248,6 @@ pinconf {
+ 		};
+ 	};
+ 
+-
+ 	h1_ap_int_odl: h1-ap-int-odl {
+ 		pinmux {
+ 			pins = "gpio42";
 -- 
 2.30.1.766.gb4fecdf3b7-goog
 
