@@ -2,266 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96ED0325402
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 17:52:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 833A6325445
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 18:04:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232137AbhBYQuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 11:50:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55182 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233077AbhBYQsf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 11:48:35 -0500
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8097DC061786;
-        Thu, 25 Feb 2021 08:47:54 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id i21so4400503oii.2;
-        Thu, 25 Feb 2021 08:47:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=az6/5sv7SGsBjh1i/c65JEKtmkb6vMifZ9O5uEmeCso=;
-        b=lJGOWRTwXqDp8SeQjTd1iuKQ4lPVeIuZsbUlwi71ZQVPgh8VfYTv2HK3wrY7rndb/J
-         MeYevG4HAIYx3z0G1dIYHKBvyZYPnQHKE0YgvbYfttPIICUM6VTbKKZ94PrAjaHSaIP8
-         lDHBLjWiEpK6RkhEM+T79WIv0YRq31YxgsrY+aPx5zDnS3v7Qnv5pdV3DsN+n8imGmeI
-         7YZpdasAEN+3Hu1O7R0qLCpi3DC3H7FIMkUISVBKbPPt9FusL3Qyvy41m8+T3qygJMeL
-         ivfnvtRZxbvNPJ0rUIyPScjoKwuulQgvlTJeJD1sYMKrOACdtwpNibjdmPvU2Exb5NkN
-         niJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=az6/5sv7SGsBjh1i/c65JEKtmkb6vMifZ9O5uEmeCso=;
-        b=V1VXfNJDomZ7e0tPhnq0toCDlktTzzM3N0y8p7Cu7MQORCDHWp3w+ZO6QAy4GZHUMp
-         YWJbJQV8SqP1ac1rDlreTsE+KUhl1a7t3s0XWoTts2pZl5hyj+/ivo31B+P3UOSlXT/1
-         wlznvlLIC4RcX/d0vkzZMzI/AHxPxWFo2nRsiJ5J3omvK1fLj/wtEV33ko94xCD5RCxM
-         808hOF3DRi4IsdLfmKjGQJ4lodxyUjc/JbudLlASvrU7S9B3xojtpqEdWPNbLXmJKQio
-         qqlnfK5I2pXBCfLNhvTnCnOadQkpgtTXZc0pvfYGvfQ5P2kMdF81bXhO1WidQWwhyOJY
-         7XpA==
-X-Gm-Message-State: AOAM5338hDSsBCCejqMmuxdoh8yf0IIvfSlutJJxPbuqI3x9vAt4b5IY
-        MqEB6ss94W2ddIm2DIw5QCk=
-X-Google-Smtp-Source: ABdhPJyNXhvv74P8RFan/9aB+RJmNZR+69bnq9a1MXWTFEExRveSpjRP0Y1ye2KazypNBk7g195gqg==
-X-Received: by 2002:aca:4bc5:: with SMTP id y188mr2560988oia.135.1614271673946;
-        Thu, 25 Feb 2021 08:47:53 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n1sm1165457oog.31.2021.02.25.08.47.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Feb 2021 08:47:53 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: Add bindings for Ampere Altra SMPro
- drivers
-To:     Quan Nguyen <quan@os.amperecomputing.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org
-Cc:     Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-References: <20210225101854.13896-1-quan@os.amperecomputing.com>
- <20210225101854.13896-2-quan@os.amperecomputing.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <9f3845c5-ee4b-76d6-82dd-fa838f8f44ba@roeck-us.net>
-Date:   Thu, 25 Feb 2021 08:47:51 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S233545AbhBYRDi convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 25 Feb 2021 12:03:38 -0500
+Received: from mailoutvs12.siol.net ([185.57.226.203]:53419 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233557AbhBYRCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 12:02:35 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 8CA8D524C64;
+        Thu, 25 Feb 2021 18:01:16 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id cXCKQYFHXqZo; Thu, 25 Feb 2021 18:01:16 +0100 (CET)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id D6A76524C6A;
+        Thu, 25 Feb 2021 18:01:15 +0100 (CET)
+Received: from kista.localnet (cpe-86-58-17-133.cable.triera.net [86.58.17.133])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id 96C83524C64;
+        Thu, 25 Feb 2021 18:01:14 +0100 (CET)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, gregkh@linuxfoundation.org,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
+        peng.fan@nxp.com, hverkuil-cisco@xs4all.nl,
+        dan.carpenter@oracle.com, Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: Re: [PATCH v3 1/9] media: hevc: Modify structures to follow H265 ITU spec
+Date:   Thu, 25 Feb 2021 18:01:14 +0100
+Message-ID: <233731323.ucs1DXFtIZ@kista>
+In-Reply-To: <2109948614dc0e3f253d69ca92a4b63fe8828bfb.camel@collabora.com>
+References: <20210222122406.41782-1-benjamin.gaignard@collabora.com> <20210222122406.41782-2-benjamin.gaignard@collabora.com> <2109948614dc0e3f253d69ca92a4b63fe8828bfb.camel@collabora.com>
 MIME-Version: 1.0
-In-Reply-To: <20210225101854.13896-2-quan@os.amperecomputing.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/25/21 2:18 AM, Quan Nguyen wrote:
-> Adds device tree bindings for SMPro drivers found on the Mt.Jade hardware
-> reference platform with Ampere's Altra Processor family.
-> 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> ---
->  .../bindings/hwmon/ampere,ac01-hwmon.yaml     | 27 ++++++
->  .../bindings/mfd/ampere,ac01-smpro.yaml       | 82 +++++++++++++++++++
->  2 files changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ampere,ac01-hwmon.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/ampere,ac01-smpro.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ampere,ac01-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/ampere,ac01-hwmon.yaml
-> new file mode 100644
-> index 000000000000..d13862ba646b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/ampere,ac01-hwmon.yaml
-> @@ -0,0 +1,27 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/ampere,ac01-hwmon.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Hardware monitoring driver for the Ampere Altra SMPro
-> +
-> +maintainers:
-> +  - Quan Nguyen <quan@os.amperecomputing.com>
-> +
-> +description: |
-> +  This module is part of the Ampere Altra SMPro multi-function device. For more
-> +  details see ../mfd/ampere,ac01-smpro.yaml.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ampere,ac01-hwmon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> diff --git a/Documentation/devicetree/bindings/mfd/ampere,ac01-smpro.yaml b/Documentation/devicetree/bindings/mfd/ampere,ac01-smpro.yaml
-> new file mode 100644
-> index 000000000000..06b0239413ae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ampere,ac01-smpro.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ampere,ac01-smpro.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ampere Altra SMPro firmware driver
-> +
-> +maintainers:
-> +  - Quan Nguyen <quan@os.amperecomputing.com>
-> +
-> +description: |
-> +  Ampere Altra SMPro firmware may contain different blocks like hardware
-> +  monitoring, error monitoring and other miscellaneous features.
-> +
-> +properties:
-> +  compatible:
-> +    const: ampere,ac01-smpro
+Hi Ezequiel,
 
-Is that the same as the "ampere,smpro" in
-arch/arm/boot/dts/nuvoton-npcm730-kudo.dts ?
-
-Guenter
-
-> +
-> +  reg:
-> +    description:
-> +      I2C device address.
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^hwmon(@[0-9a-f]+)?$":
-> +    $ref: ../hwmon/ampere,ac01-hwmon.yaml
-> +
-> +  "^misc(@[0-9a-f]+)?$":
-> +    type: object
-> +    description: Ampere Altra SMPro Misc driver
-> +    properties:
-> +      compatible:
-> +        const: "ampere,ac01-misc"
-> +
-> +  "^errmon(@[0-9a-f]+)?$":
-> +    type: object
-> +    description: Ampere Altra SMPro Error Monitor driver
-> +    properties:
-> +      compatible:
-> +        const: "ampere,ac01-errmon"
-> +
-> +required:
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        smpro@4f {
-> +            compatible = "ampere,ac01-smpro";
-> +            reg = <0x4f>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            hwmon {
-> +                compatible = "ampere,ac01-hwmon";
-> +            };
-> +
-> +            misc {
-> +                compatible = "ampere,ac01-misc";
-> +            };
-> +
-> +            errmon {
-> +                compatible = "ampere,ac01-errmon";
-> +            };
-> +
-> +        };
-> +    };
+Dne četrtek, 25. februar 2021 ob 14:09:52 CET je Ezequiel Garcia napisal(a):
+> Hi Benjamin,
 > 
+> Thanks for the good work.
+> 
+> On Mon, 2021-02-22 at 13:23 +0100, Benjamin Gaignard wrote:
+> > The H.265 ITU specification (section 7.4) define the general
+> > slice segment header semantics.
+> > Modified/added fields are:
+> > - video_parameter_set_id: (7.4.3.1) identifies the VPS for
+> > reference by other syntax elements.
+> > - seq_parameter_set_id: (7.4.3.2.1) specifies the value of
+> > the vps_video_parameter_set_id of the active VPS.
+> > - chroma_format_idc: (7.4.3.2.1) specifies the chroma sampling
+> >  relative to the luma sampling
+> > - pic_parameter_set_id: (7.4.3.3.1) identifies the PPS for
+> > reference by other syntax elements
+> > - num_ref_idx_l0_default_active_minus1: (7.4.3.3.1) specifies
+> > the inferred value of num_ref_idx_l0_active_minus1
+> > - num_ref_idx_l1_default_active_minus1: (7.4.3.3.1) specifies
+> > the inferred value of num_ref_idx_l1_active_minus1
+> > - slice_segment_addr: (7.4.7.1) specifies the address of
+> > the first coding tree block in the slice segment
+> > - num_entry_point_offsets: (7.4.7.1) specifies the number of
+> > entry_point_offset_minus1[ i ] syntax elements in the slice header
+> > 
+> > Add HEVC decode params contains the information used in section
+> > "8.3 Slice decoding process" of the specification to let the hardware
+> > perform decoding of a slices.
+> > 
+> > Adapt Cedrus driver according to these changes.
+> > 
+> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> > ---
+> > version 3:
+> > - Add documentation about the new structuers and fields.
+> > 
+> > version 2:
+> > - remove all change related to scaling
+> > - squash commits to a coherent split
+> > - be more verbose about the added fields
+> > 
+> >  .../media/v4l/ext-ctrls-codec.rst             | 126 +++++++++++++++---
+> >  .../media/v4l/vidioc-queryctrl.rst            |   6 +
+> >  drivers/media/v4l2-core/v4l2-ctrls.c          |  26 +++-
+> >  drivers/staging/media/sunxi/cedrus/cedrus.c   |   6 +
+> >  drivers/staging/media/sunxi/cedrus/cedrus.h   |   1 +
+> >  .../staging/media/sunxi/cedrus/cedrus_dec.c   |   2 +
+> >  .../staging/media/sunxi/cedrus/cedrus_h265.c  |   6 +-
+> >  include/media/hevc-ctrls.h                    |  45 +++++--
+> >  8 files changed, 186 insertions(+), 32 deletions(-)
+> > 
+> > diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst b/
+Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> > index 00944e97d638..5e6d77e858c0 100644
+> > --- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> > +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> > @@ -3109,6 +3109,15 @@ enum v4l2_mpeg_video_hevc_size_of_length_field -
+> >      :stub-columns: 0
+> >      :widths:       1 1 2
+> >  
+> > +    * - __u8
+> > +      - ``video_parameter_set_id``
+> > +      - Identifies the VPS for reference by other syntax elements
+> > +    * - __u8
+> > +      - ``seq_parameter_set_id̀``
+> > +      - Specifies the value of the vps_video_parameter_set_id of the 
+active VPS
+> > +    * - __u8
+> > +      - ``chroma_format_idc``
+> > +      - Specifies the chroma sampling relative to the luma sampling
+> 
+> None of these fields seem needed for the Hantro G2 driver,
+> so I suggest you drop them for now.
+> 
+> >      * - __u16
+> >        - ``pic_width_in_luma_samples``
+> >        -
+> > @@ -3172,6 +3181,9 @@ enum v4l2_mpeg_video_hevc_size_of_length_field -
+> >      * - __u8
+> >        - ``chroma_format_idc``
+> >        -
+> > +    * - __u8
+> > +      - ``num_slices``
+> > +
+> 
+> Not used, but also doesn't seem part of the SPS syntax. If we have to
+> pass the number of slices, we'll need another mechanism.
+> 
+> >       -
+> >      * - __u64
+> >        - ``flags``
+> >        - See :ref:`Sequence Parameter Set Flags <hevc_sps_flags>`
+> > @@ -3231,9 +3243,18 @@ enum v4l2_mpeg_video_hevc_size_of_length_field -
+> >      :stub-columns: 0
+> >      :widths:       1 1 2
+> >  
+> > +    * - __u8
+> > +      - ``pic_parameter_set_id``
+> > +      - Identifies the PPS for reference by other syntax elements
+> 
+> Not used.
+> 
+> >      * - __u8
+> >        - ``num_extra_slice_header_bits``
+> >        -
+> > +    * - __u8
+> > +      - ``num_ref_idx_l0_default_active_minus1``
+> > +      - Specifies the inferred value of num_ref_idx_l0_active_minus1
+> > +    * - __u8
+> > +      - ``num_ref_idx_l1_default_active_minus1``
+> > +      - Specifies the inferred value of num_ref_idx_l1_active_minus1
+> >      * - __s8
+> >        - ``init_qp_minus26``
+> >        -
+> > @@ -3342,6 +3363,12 @@ enum v4l2_mpeg_video_hevc_size_of_length_field -
+> >      * - ``V4L2_HEVC_PPS_FLAG_SLICE_SEGMENT_HEADER_EXTENSION_PRESENT``
+> >        - 0x00040000
+> >        -
+> > +    * - ``V4L2_HEVC_PPS_FLAG_DEBLOCKING_FILTER_CONTROL_PRESENT``
+> > +      - 0x00080000
+> > +      -
+> > +    * - ``V4L2_HEVC_PPS_FLAG_UNIFORM_SPACING``
+> > +      - 0x00100000
+> > +      -
+> >  
+> 
+> I suggest to do all the PPS control changes in a separate patch,
+> feels easier to review and cleaner as you can explain the
+> changes with more detail in the commit description.
+> 
+> Looking at the PPS syntax for tiles, I'm wondering if these
+> deserve their own control, which would be used if tiles are enabled,
+> i.e. V4L2_HEVC_PPS_FLAG_TILES_ENABLED is set.
+> 
+>         __u8    num_tile_columns_minus1;                                         
+>         __u8    num_tile_rows_minus1;                                            
+>         __u8    column_width_minus1[20];                                         
+>         __u8    row_height_minus1[22];    
+> 
+> Not something we necessarily have to tackle now.
+> 
+> >  ``V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS (struct)``
+> >      Specifies various slice-specific parameters, especially from the NAL 
+unit
+> > @@ -3366,6 +3393,12 @@ enum v4l2_mpeg_video_hevc_size_of_length_field -
+> >      * - __u32
+> >        - ``data_bit_offset``
+> >        - Offset (in bits) to the video data in the current slice data.
+> > +    * - __u32
+> > +      - ``slice_segment_addr``
+> > +      - Specifies the address of the first coding tree block in the slice 
+segment
+> 
+> Not used.
+> 
+> > +    * - __u32
+> > +      - ``num_entry_point_offsets``
+> > +      - Specifies the number of entry_point_offset_minus1[ i ] syntax 
+elements in the slice header
+> 
+> Not used.
+
+While above two fields may not be used in Hantro, they are for sure useful for 
+Cedrus and RPi4. I would like to keep them, otherwise with such approach HEVC 
+will stay in staging for a long time. I'm still baffled why scaling matrix 
+control was dropped. It would fit well in Cedrus and RPi4 driver and after a 
+quick look, it seems that it was used in driver in later patch.
+
+Best regards,
+Jernej
+
+> 
+> >      * - __u8
+> >        - ``nal_unit_type``
+> >        -
+> > @@ -3422,28 +3455,20 @@ enum v4l2_mpeg_video_hevc_size_of_length_field -
+> >      * - __u8
+> >        - ``pic_struct``
+> >        -
+> > -    * - __u8
+> > -      - ``num_active_dpb_entries``
+> > -      - The number of entries in ``dpb``.
+> 
+> Need to explain in the commit description why this field is moved.
+> 
+> >      * - __u8
+> >        - ``ref_idx_l0[V4L2_HEVC_DPB_ENTRIES_NUM_MAX]``
+> >        - The list of L0 reference elements as indices in the DPB.
+> >      * - __u8
+> >        - ``ref_idx_l1[V4L2_HEVC_DPB_ENTRIES_NUM_MAX]``
+> >        - The list of L1 reference elements as indices in the DPB.
+> > +    * - __u16
+> > +      - ``short_term_ref_pic_set_size``
+> > +
+> 
+> Not used.
+> 
+> >       -
+> > +    * - __u16
+> > +      - ``long_term_ref_pic_set_size``
+> > +      -
+> 
+> Not used.
+> 
+> >      * - __u8
+> > -      - ``num_rps_poc_st_curr_before``
+> > -      - The number of reference pictures in the short-term set that come 
+before
+> > -        the current frame.
+> 
+> If this matches NumPocStCurrBefore from section 8.3.2 "Decoding process for 
+reference picture set"
+> then I would document that. And perhaps rename it to num_poc_st_curr_before.
+> 
+> > -    * - __u8
+> > -      - ``num_rps_poc_st_curr_after``
+> > -      - The number of reference pictures in the short-term set that come 
+after
+> > -        the current frame.
+> 
+> Ditto.
+> 
+> > -    * - __u8
+> > -      - ``num_rps_poc_lt_curr``
+> > -      - The number of reference pictures in the long-term set.
+> 
+> Ditto.
+> 
+> Also, I'd like the changes that move fields from 
+V4L2_CID_MPEG_VIDEO_HEVC_SLICE_PARAMS
+> to the new V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS control, to be in their
+> patch.
+> 
+> That will allow us to put in the commit description a proper
+> explanation of why are fields being moved. Nothing fancy, simply
+> explaining that these variables come from section 8.3.2
+> "Decoding process for reference picture set", which describes
+> a process invoked once per picture, so they are not per-slice.
+> 
+> > -    * - __u8
+> > -      - ``padding[7]``
+> > +      - ``padding``
+> >        - Applications and drivers must set this to zero.
+> >      * - struct :c:type:`v4l2_hevc_dpb_entry`
+> >        - ``dpb[V4L2_HEVC_DPB_ENTRIES_NUM_MAX]``
+> > @@ -3646,3 +3671,74 @@ enum v4l2_mpeg_video_hevc_size_of_length_field -
+> >      so this has to come from client.
+> >      This is applicable to H264 and valid Range is from 0 to 63.
+> >      Source Rec. ITU-T H.264 (06/2019); G.7.4.1.1, G.8.8.1.
+> > +
+> > +``V4L2_CID_MPEG_VIDEO_HEVC_DECODE_PARAMS (struct)``
+> > +    Specifies various decode parameters, especially the references picture 
+order
+> > +    count (POC) for all the lists (short, long, before, current, after) 
+and the
+> > +    number of entries for each of them.
+> > +    These parameters are defined according to :ref:`hevc`.
+> > +    They are described in section 8.3 "Slice decoding process" of the
+> > +    specification.
+> > +
+> > +.. c:type:: v4l2_ctrl_hevc_decode_params
+> > +
+> > +.. cssclass:: longtable
+> > +
+> > +.. flat-table:: struct v4l2_ctrl_hevc_decode_params
+> > +    :header-rows:  0
+> > +    :stub-columns: 0
+> > +    :widths:       1 1 2
+> > +
+> > +    * - __s32
+> > +      - ``pic_order_cnt_val``
+> > +      -
+> 
+> Can be documented as:
+> 
+> """
+> PicOrderCntVal as described in section 8.3.1 "Decoding process
+> for picture order count" of the specification.
+> """
+> 
+> Note that snake case is used to match the kernel style,
+> but other than that we try to keep the HEVC spec variable
+> names.
+> 
+> > +    * - __u8
+> > +      - ``num_active_dpb_entries``
+> > +      - The number of entries in ``dpb``.
+> > +    * - struct :c:type:`v4l2_hevc_dpb_entry`
+> > +      - ``dpb[V4L2_HEVC_DPB_ENTRIES_NUM_MAX]``
+> > +      - The decoded picture buffer, for meta-data about reference frames.
+> 
+> The DPB is here, but it seems it's also in the slice control?
+> 
+> > +    * - __u8
+> > +      - ``num_rps_poc_st_curr_before``
+> > +      - The number of reference pictures in the short-term set that come 
+before
+> > +        the current frame.
+> > +    * - __u8
+> > +      - ``num_rps_poc_st_curr_after``
+> > +      - The number of reference pictures in the short-term set that come 
+after
+> > +        the current frame.
+> > +    * - __u8
+> > +      - ``num_rps_poc_lt_curr``
+> > +      - The number of reference pictures in the long-term set.
+> > +    * - __u8
+> > +      - ``rps_st_curr_before[V4L2_HEVC_DPB_ENTRIES_NUM_MAX]``
+> > +      -
+> > +    * - __u8
+> > +      - ``rps_st_curr_after[V4L2_HEVC_DPB_ENTRIES_NUM_MAX]``
+> > +      -
+> > +    * - __u8
+> > +      - ``rps_lt_curr[V4L2_HEVC_DPB_ENTRIES_NUM_MAX]``
+> > +      -
+> 
+> Could you document these as well?
+> 
+> Thanks a lot,
+> Ezequiel
+> 
+> 
+
 
