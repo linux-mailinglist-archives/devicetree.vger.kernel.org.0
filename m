@@ -2,120 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C37443259C3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 23:43:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5E73259CB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 23:48:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232014AbhBYWm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 17:42:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46758 "EHLO
+        id S230330AbhBYWsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 17:48:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231787AbhBYWm4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 17:42:56 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE431C061756
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:42:15 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id 17so4013698pli.10
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:42:15 -0800 (PST)
+        with ESMTP id S230010AbhBYWsH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 17:48:07 -0500
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD9CDC061756
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:47:26 -0800 (PST)
+Received: by mail-qk1-x733.google.com with SMTP id 136so1018463qkl.10
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:47:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=tstq3ZEyFA6o5XAzGatOdrYcukD0RQ27xs0uogdL8EU=;
-        b=NcxG44AIHls1ygwbjqAkAEBnbjkQj5Z89PZTe4WPAY2bBzuPUTtXvQs0kIPTHqrd7X
-         16eVpresHTY+q8R5r5uVqZHJBxtb+vuUYNyhHmmu60feo0HnAgdGZvmVFASV3Aw5aaft
-         g8YYM+6JBB7aso98sYZ15T6KA2k4I7CCDblvw=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i3sYXoLcesLS9Els77G1CR101OeDy0tTrMofvec1ABk=;
+        b=obFjMpH0gN/9LZsXrZ/mDhUy6SbZodXzAQ0MImC48CTEv/WBF8ZhSS/5nYOlgdGNiu
+         dry76yH2mQNJH4D/zyHfJoJylw47pjDS9kUfnx/aVwwbR8PUBiy+WRfw+XM7ejl97HA8
+         RwULEa1hr4sU1lhvVd28oC0Uavl6+JF7QfbYA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=tstq3ZEyFA6o5XAzGatOdrYcukD0RQ27xs0uogdL8EU=;
-        b=V9P7AtLdsCKVfzRk1kjEKrpFFEiZw5KzUNw7C0Oi4jrGFeidVFYqNl05x1u+cDc1Hc
-         lEHYPd29INBojg5KkSPzgfEQvDGbeNpMQyQvYgHcUBAyvYfZELsKSqLxr+il1dnZQVsy
-         L7v/5apIXhY6JYPfrRlCbpdHuLyl0a+zpeWXqLBrLSPAk3J1s6wguvDzD8Xw+aEj3hfv
-         ez4UTBVszSR4iqYIT64+H+U+PYVq5P7AHjuly52RfKt9wHe6DuCgWeuRGvjpAqQPqrQS
-         1yfTPZA43IDhA1AyKv4sXD1PeyU7FSOyHFXntVlwM2YHsXMnvEe0C4ArM/C/EwTcxiHc
-         stNA==
-X-Gm-Message-State: AOAM533G2jb5+eN8f+astpr7YT7WV85PXFzRN/1gyR/zMkg3N5yt51xG
-        71Pec6s6bLNfGa11YkMmWSAIRq+FezJhhg==
-X-Google-Smtp-Source: ABdhPJz4XPfgdF0Zdi38fMJeQ1lfxFPywN33YQx/K6YrJPnLgiWDEto9nsljHlSpcJ4mQH2Js3WZAQ==
-X-Received: by 2002:a17:902:e541:b029:df:df4f:2921 with SMTP id n1-20020a170902e541b02900dfdf4f2921mr300199plf.52.1614292935300;
-        Thu, 25 Feb 2021 14:42:15 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:b942:93a8:e68d:5a90])
-        by smtp.gmail.com with ESMTPSA id i10sm7908751pgo.75.2021.02.25.14.42.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Feb 2021 14:42:14 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i3sYXoLcesLS9Els77G1CR101OeDy0tTrMofvec1ABk=;
+        b=QsfIeQnCB6E7w7DoWWwBHPhjsvGkRTmdcrQg+bokpHH8QwnT83/OVFLr3iLqnE39FO
+         fCiH3GzbO7ET+x6ZZQkha6jXAddodi34SykhAPS+fgqvFZmOrPUJvEISWPYkHssOBe6f
+         +66cf667kyB59+8lWS7DKuCIXOf5PJ74V8P8AX6fGxgL6cDIPKO8rLSc0LfeRgYy3k4v
+         OSKX5KcPtqkJXS2PY/eg8BCB/QI0t90ni25jqhuslpIvDw+cTUvv2e/g4FiaHRvahWUA
+         BdwDctH95GGFln82NGcqHWVyDV19RADOnq+v53TGqQv9IMIMP34l0mp+Qd5QvQjK0MYe
+         uf+Q==
+X-Gm-Message-State: AOAM5316n38LnEe9l/fjoeEa+32GKaFBbCGqP/r65CeFJrViGn4OovQE
+        UzGxmN6ERR6pIuk/DCAxOyR9kQbPjP7Jww==
+X-Google-Smtp-Source: ABdhPJwPFqahuy6DsSB3jdmiE17jA8JubXWUOBeOqknIVfw6F4c+cXDwPCLRt0LtAN2oVZj4NXEzyA==
+X-Received: by 2002:a05:620a:1017:: with SMTP id z23mr5179700qkj.23.1614293245863;
+        Thu, 25 Feb 2021 14:47:25 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id q6sm4940516qkd.41.2021.02.25.14.47.24
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Feb 2021 14:47:25 -0800 (PST)
+Received: by mail-yb1-f177.google.com with SMTP id 133so7054398ybd.5
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 14:47:24 -0800 (PST)
+X-Received: by 2002:a25:d3c5:: with SMTP id e188mr181614ybf.345.1614293244387;
+ Thu, 25 Feb 2021 14:47:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210225103330.v2.4.I67e29f2854bad22e3581d6a6e1879b9fc8abbdea@changeid>
-References: <20210225103330.v2.1.I6a426324db3d98d6cfae8adf2598831bb30bba74@changeid> <20210225103330.v2.4.I67e29f2854bad22e3581d6a6e1879b9fc8abbdea@changeid>
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sc7180: trogdor: Use ADC TM channel 0 instead of 1 for charger temperature
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
+References: <20210225103330.v2.1.I6a426324db3d98d6cfae8adf2598831bb30bba74@changeid>
+ <20210225103330.v2.3.Ife7768b6b4765026c9d233ad4982da0e365ddbca@changeid>
+In-Reply-To: <20210225103330.v2.3.Ife7768b6b4765026c9d233ad4982da0e365ddbca@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 25 Feb 2021 14:47:12 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=UYZuoiFRCZS+L8aWJXfXHr5H8xDnzAN9xH07yZaoVRew@mail.gmail.com>
+Message-ID: <CAD=FV=UYZuoiFRCZS+L8aWJXfXHr5H8xDnzAN9xH07yZaoVRew@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sc7180: trogdor: Fix trip point
+ config of charger thermal zone
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 25 Feb 2021 14:42:13 -0800
-Message-ID: <161429293348.1254594.17006777195039771186@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Antony Wang <antony_wang@compal.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Matthias Kaehlcke (2021-02-25 10:33:37)
-> On trogdor the ADC thermal monitor is used for monitoring certain
-> device temperatures. All trogdor boards have at least a thermistor
-> for the charger temperature, optionally they may have others.
->=20
-> Currently the ADC thermal monitor is configured to use channel 1
-> for the charger temperature. Given that all trogdor boards have
-> the charger thermistor it makes more sense to use channel 0,
-> and then let boards with other thermistors use channels 1, 2, 3,
-> rather than 0, 2, 3.
->=20
+Hi,
+
+On Thu, Feb 25, 2021 at 10:33 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> The trip point configuration of the charger thermal zone for trogdor
+> is missing a node for the critical trip point. Add the missing node.
+>
+> Fixes: bb06eb3607e9 ("arm64: qcom: sc7180: trogdor: Add ADC nodes and thermal zone for charger thermistor")
 > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
-
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-
->=20
+>
 > Changes in v2:
 > - patch added to the series
->=20
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/bo=
-ot/dts/qcom/sc7180-trogdor.dtsi
-> index ab4efaece5cb..58e127b6ba1e 100644
+>
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index bda983da4eaf..ab4efaece5cb 100644
 > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -19,7 +19,7 @@ charger_thermal: charger-thermal {
->                         polling-delay-passive =3D <0>;
->                         polling-delay =3D <0>;
-> =20
-> -                       thermal-sensors =3D <&pm6150_adc_tm 1>;
-> +                       thermal-sensors =3D <&pm6150_adc_tm 0>;
-
-Too bad this can't point at the sensor "config" node itself. Looks error pr=
-one!
-
-> =20
+> @@ -22,9 +22,11 @@ charger_thermal: charger-thermal {
+>                         thermal-sensors = <&pm6150_adc_tm 1>;
+>
 >                         trips {
->                                 charger-crit {
-> @@ -718,8 +718,8 @@ charger-thermistor@4f {
->  &pm6150_adc_tm {
->         status =3D "okay";
-> =20
-> -       charger-thermistor@1 {
-> -               reg =3D <1>;
-> +       charger-thermistor@0 {
-> +               reg =3D <0>;
->                 io-channels =3D <&pm6150_adc ADC5_AMUX_THM3_100K_PU>;
->                 qcom,ratiometric;
->                 qcom,hw-settle-time-us =3D <200>;
+> -                               temperature = <125000>;
+> -                               hysteresis = <1000>;
+> -                               type = "critical";
+> +                               charger-crit {
+
+If you happen to spin for some other reason, it might not hurt to add
+a label to this node.  Best case it'll save a patch in the future when
+some OEM decides that they need to adjust this temperature and worst
+case it doesn't hurt.
+
+In any case:
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
