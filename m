@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC572325725
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 20:57:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13765325756
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 21:11:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233276AbhBYT4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 14:56:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38748 "EHLO
+        id S231895AbhBYULJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 15:11:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234274AbhBYTyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 14:54:41 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B45C06174A
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 11:54:01 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id o3so7297423oic.8
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 11:54:01 -0800 (PST)
+        with ESMTP id S233597AbhBYULD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 15:11:03 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D36C061756
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 12:10:23 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id d12so1821481pfo.7
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 12:10:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=ubftFICBe+xc2b6VsURDalW/YgMMEqag6pD4dPy9Cmk=;
-        b=V4g3JeNbnXeiPdrtVQSaYRHzjTOncjyBfnOH1o31pN7qa8HwCmU2xTayjnmZ4zFs4g
-         parcxDdm7uY2Ckg8WdE8nhgEa0ksJbGlCbQjIz1+7vtZDmYOBwxsxo4Nxe478LLusFWV
-         294g4R/cH1FJlYsTQNBMmzNu3LvO5nIgE+6Pw=
+        bh=swyMy5/0Rp9qCosdNVcZdjaUALxgy3MHRytEm+vRwrQ=;
+        b=VXOp7z900xqaqjf/pwL8dQdzm8m0TcozQ2K/c01FbS80t90yBrY/27ME8755vqgl72
+         BbdEsBi6x5d8RJf+NUMIY8B7ipJsyj6DyqqN6/nZ3vJWkjo3DFsbTZRkaMR4BiRdDTDO
+         tThdmBJec5ENzOg6Q4kiByjAP/BYre73vr/Mg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=ubftFICBe+xc2b6VsURDalW/YgMMEqag6pD4dPy9Cmk=;
-        b=A+t3ejv5nRYf2uXRA52nU109uRwiORX1Ex9/HC/WDl72zjlB075N+T4JyhsWZg0+NU
-         R4iH+NGciMy4ly5rgayiTwayGGd5H8our6J4id/UQdobMRiTCKiqg2YFSv/rTX4ODY9z
-         ZuWIWm+FvL+5wcR0uBnA1nOUieI963ESuB33ZTVJlpRgttiOHc6cciSW3UkcjhQbpFWb
-         SmpFlFGtrcpoe6sxJK0SRc7NIFLKj7I5ee+YwHJNA0T6m5SM6K0VypG+wmC72BHOVD3B
-         p1A4Cq0x5+Frn8+hkbbTlg+Edzu7IGMYqUqZqcBj48aIiDnBqBdbqWmTWaCDu4DTXOOB
-         nhdg==
-X-Gm-Message-State: AOAM533rnniG30ryQkdHPeGu5S1ryjx0ACwvC93NuKlN0inLY6XXgO4Q
-        W8NtUWCuwS2y5rugu3CS/hWF5rhQzAel8A==
-X-Google-Smtp-Source: ABdhPJxZl+EMCqOQe15CxSOuRIi5HkysaDzLib2jIeInqCJhPrGK1tbbURV3KCeOBZDlygJf+oL7Bw==
-X-Received: by 2002:a17:90b:350b:: with SMTP id ls11mr19398pjb.166.1614282342610;
-        Thu, 25 Feb 2021 11:45:42 -0800 (PST)
+        bh=swyMy5/0Rp9qCosdNVcZdjaUALxgy3MHRytEm+vRwrQ=;
+        b=QJUSNr0/sbZ4PaOK8EPmd1eaKtAVqa5cxdHkr3+jcRay7T9WDcnvhx7eGn7BKTYWh6
+         DRJmNSV8ufRLvvKaKXnuu4+QheV39J46y0c09KfzoD4b76cZzw8WYvRpz6n5TVVQ6PTi
+         3J/uf5zCthHQj17tij/IzVWLIH0vujL2abigZ5MpNOgZ0nevQ0h5Uf/ZHVuy+8PmzcFb
+         u0E/o2GhOaOxpHItjnkp5eVyGVbx249Rzjo6W5pZQqaMPtsamPko0ick6C6snZIgD2YA
+         Um/QrBpAF9WFCGlSmoehQelrgZREQlsqM17+LuFZIoGfwxZJCYzT+kbkq0XrcZ6mJ7M9
+         3O0A==
+X-Gm-Message-State: AOAM533rSrW37VlsHu0OHh/ghB9OlU/M1gEGZnsIkM2NeidFKXg1Ju8B
+        /NIDaTXBYHOh9I1o7nXkL+wHHUIGWriCZg==
+X-Google-Smtp-Source: ABdhPJylGmX26FSNU4yW9cKMW6aPGHiyhtycnQKq1zZKMV4KrnbPf4L5DcnAptWYIhgQLhVIH6kXmw==
+X-Received: by 2002:a63:d601:: with SMTP id q1mr4442742pgg.417.1614283822348;
+        Thu, 25 Feb 2021 12:10:22 -0800 (PST)
 Received: from chromium.org ([2620:15c:202:201:b942:93a8:e68d:5a90])
-        by smtp.gmail.com with ESMTPSA id n6sm7173925pfo.201.2021.02.25.11.45.42
+        by smtp.gmail.com with ESMTPSA id k11sm6629386pfc.22.2021.02.25.12.10.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Feb 2021 11:45:42 -0800 (PST)
+        Thu, 25 Feb 2021 12:10:22 -0800 (PST)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210225103330.v2.1.I6a426324db3d98d6cfae8adf2598831bb30bba74@changeid>
-References: <20210225103330.v2.1.I6a426324db3d98d6cfae8adf2598831bb30bba74@changeid>
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: sc7180: trogdor: Add label to charger thermal zone
+In-Reply-To: <20210225103330.v2.2.Ia4c1022191d09fe8c56a16486b77796b83ffcae4@changeid>
+References: <20210225103330.v2.1.I6a426324db3d98d6cfae8adf2598831bb30bba74@changeid> <20210225103330.v2.2.Ia4c1022191d09fe8c56a16486b77796b83ffcae4@changeid>
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sc7180: Disable charger thermal for lazor
 From:   Stephen Boyd <swboyd@chromium.org>
 Cc:     devicetree@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
@@ -60,22 +60,20 @@ To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Matthias Kaehlcke <mka@chromium.org>,
         Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 25 Feb 2021 11:45:40 -0800
-Message-ID: <161428234069.1254594.13177534882874278728@swboyd.mtv.corp.google.com>
+Date:   Thu, 25 Feb 2021 12:10:20 -0800
+Message-ID: <161428382042.1254594.15382294447104869744@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Matthias Kaehlcke (2021-02-25 10:33:34)
-> Some revisions of trogdor boards use a thermistor for the charger
+Quoting Matthias Kaehlcke (2021-02-25 10:33:35)
+> Lazor is stuffed with a 47k NTC as thermistor for the charger
 > temperature which currently isn't supported by the PM6150 ADC
-> driver. This results in bogus temperature readings. Add a label
-> to the charger thermal zone to facilitate disabling of the thermal
-> zone on affected boards.
+> driver. Disable the charger thermal zone to avoid the use of
+> bogus temperature values.
 >=20
 > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 > ---
 
 Reviewed-by: Stephen Boyd <swboyd@chromium.org>
