@@ -2,78 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13765325756
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 21:11:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 923DD32575D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 21:14:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231895AbhBYULJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 15:11:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
+        id S232770AbhBYUOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 15:14:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233597AbhBYULD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 15:11:03 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D36C061756
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 12:10:23 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id d12so1821481pfo.7
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 12:10:23 -0800 (PST)
+        with ESMTP id S232686AbhBYUOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 15:14:31 -0500
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC3AC061756
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 12:13:51 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id b8so1006162plh.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 12:13:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=swyMy5/0Rp9qCosdNVcZdjaUALxgy3MHRytEm+vRwrQ=;
-        b=VXOp7z900xqaqjf/pwL8dQdzm8m0TcozQ2K/c01FbS80t90yBrY/27ME8755vqgl72
-         BbdEsBi6x5d8RJf+NUMIY8B7ipJsyj6DyqqN6/nZ3vJWkjo3DFsbTZRkaMR4BiRdDTDO
-         tThdmBJec5ENzOg6Q4kiByjAP/BYre73vr/Mg=
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=nG+Je6ByEVPOO/bLpwPX3QVU1UNS3MoPZtywT4C/doM=;
+        b=cLOzkTVy2jxDbm9nJN91KcIrWUdgxF0xuBhDJ5ySeJluVIyJjw5Ykc36vOfvhcyglo
+         CV19lwZM3N8pKeLuLjz1DMo31d9vDMDzKSz8F4nx3v/1KT91PgGw4KRK0SLK4tmwVOP7
+         R4ou6dTXOy/aLHTNlLsgWbygeeFHYlZFWaa/Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=swyMy5/0Rp9qCosdNVcZdjaUALxgy3MHRytEm+vRwrQ=;
-        b=QJUSNr0/sbZ4PaOK8EPmd1eaKtAVqa5cxdHkr3+jcRay7T9WDcnvhx7eGn7BKTYWh6
-         DRJmNSV8ufRLvvKaKXnuu4+QheV39J46y0c09KfzoD4b76cZzw8WYvRpz6n5TVVQ6PTi
-         3J/uf5zCthHQj17tij/IzVWLIH0vujL2abigZ5MpNOgZ0nevQ0h5Uf/ZHVuy+8PmzcFb
-         u0E/o2GhOaOxpHItjnkp5eVyGVbx249Rzjo6W5pZQqaMPtsamPko0ick6C6snZIgD2YA
-         Um/QrBpAF9WFCGlSmoehQelrgZREQlsqM17+LuFZIoGfwxZJCYzT+kbkq0XrcZ6mJ7M9
-         3O0A==
-X-Gm-Message-State: AOAM533rSrW37VlsHu0OHh/ghB9OlU/M1gEGZnsIkM2NeidFKXg1Ju8B
-        /NIDaTXBYHOh9I1o7nXkL+wHHUIGWriCZg==
-X-Google-Smtp-Source: ABdhPJylGmX26FSNU4yW9cKMW6aPGHiyhtycnQKq1zZKMV4KrnbPf4L5DcnAptWYIhgQLhVIH6kXmw==
-X-Received: by 2002:a63:d601:: with SMTP id q1mr4442742pgg.417.1614283822348;
-        Thu, 25 Feb 2021 12:10:22 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:b942:93a8:e68d:5a90])
-        by smtp.gmail.com with ESMTPSA id k11sm6629386pfc.22.2021.02.25.12.10.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Feb 2021 12:10:22 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210225103330.v2.2.Ia4c1022191d09fe8c56a16486b77796b83ffcae4@changeid>
-References: <20210225103330.v2.1.I6a426324db3d98d6cfae8adf2598831bb30bba74@changeid> <20210225103330.v2.2.Ia4c1022191d09fe8c56a16486b77796b83ffcae4@changeid>
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sc7180: Disable charger thermal for lazor
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Kaehlcke <mka@chromium.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=nG+Je6ByEVPOO/bLpwPX3QVU1UNS3MoPZtywT4C/doM=;
+        b=dVE2/Csh8gmsg1Jps8JAeKWLFicflBIJH1WI3qpQIGzKU0ia/Vp8fIQ5AqtSDtw6N5
+         PsdmfA/IbnfMCfiTmDvULSxBjwZLX7qsNZgue7NxsAlpoU3v0Fqo/ZGjbdwGlNEt7Xlg
+         wtPn/pUBKs7zTo/CARRdgMbOR1pXxZbWGkmyZb0X3y1bTLH6Fc/zy6K1xHQLTspjCH7d
+         Om1P3r+FtGdb5THdtAQJ4hqpuM502aVaSrjt7T+Y0zyCsrI7CnyluKf+9ZmTnZ137IA6
+         CES4KfJdJG7YALvgiJ3inYdqM/Jy3PGn2guUoHYK09N/YM6VY6tYEEueg0BtGFgZDxFx
+         up2w==
+X-Gm-Message-State: AOAM533tBT8UKy6fExtnQTPo2wfH+zAugkjSdVC6NwhrykOmjri9WMR8
+        zceXm4AynQE5Kzxhi6eKFhQZFg==
+X-Google-Smtp-Source: ABdhPJzbTeh0e05VOvmXoSmTjAy0aL6OkuncOiPckuNxYHKPjIaufJVQ26CfYmpNmbisQZqS7JxmcA==
+X-Received: by 2002:a17:902:c211:b029:e3:88d6:3e0c with SMTP id 17-20020a170902c211b02900e388d63e0cmr4534784pll.68.1614284030943;
+        Thu, 25 Feb 2021 12:13:50 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:1d8:8d0c:f75e:edd8])
+        by smtp.gmail.com with UTF8SMTPSA id u22sm7081813pgh.20.2021.02.25.12.13.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Feb 2021 12:13:50 -0800 (PST)
+Date:   Thu, 25 Feb 2021 12:13:49 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
         Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 25 Feb 2021 12:10:20 -0800
-Message-ID: <161428382042.1254594.15382294447104869744@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Cc:     devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sc7180: Disable charger thermal
+ for lazor
+Message-ID: <YDgE/b2/IBkCdVml@google.com>
+References: <20210225103330.v2.1.I6a426324db3d98d6cfae8adf2598831bb30bba74@changeid>
+ <20210225103330.v2.2.Ia4c1022191d09fe8c56a16486b77796b83ffcae4@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210225103330.v2.2.Ia4c1022191d09fe8c56a16486b77796b83ffcae4@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Matthias Kaehlcke (2021-02-25 10:33:35)
+> Subject: [PATCH v2 2/4] arm64: dts: qcom: sc7180: Disable charger thermal for lazor
+
+Should be 'Disable charger thermal *zone* for lazor'
+
+Maybe Bjorn can fix this when applying if no respin is needed.
+
+On Thu, Feb 25, 2021 at 10:33:35AM -0800, Matthias Kaehlcke wrote:
 > Lazor is stuffed with a 47k NTC as thermistor for the charger
 > temperature which currently isn't supported by the PM6150 ADC
 > driver. Disable the charger thermal zone to avoid the use of
 > bogus temperature values.
->=20
+> 
 > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
-
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> 
+> Changes in v2:
+> - disable the thermal zone instead of deleting the zone and ADC nodes
+> - updated subject and commit message
+> 
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 9 +++++++++
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 9 +++++++++
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts | 9 +++++++++
+>  3 files changed, 27 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+> index 30e3e769d2b4..5c997cd90069 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+> @@ -14,6 +14,15 @@ / {
+>  	compatible = "google,lazor-rev0", "qcom,sc7180";
+>  };
+>  
+> +/*
+> + * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
+> + * not supported by the PM6150 ADC driver. Disable the charger thermal zone
+> + * to avoid using bogus temperature values.
+> + */
+> +&charger_thermal {
+> +	status = "disabled";
+> +};
+> +
+>  &pp3300_hub {
+>  	/* pp3300_l7c is used to power the USB hub */
+>  	/delete-property/regulator-always-on;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+> index c2ef06367baf..d9fbcc7bc5bd 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+> @@ -14,6 +14,15 @@ / {
+>  	compatible = "google,lazor-rev1", "google,lazor-rev2", "qcom,sc7180";
+>  };
+>  
+> +/*
+> + * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
+> + * not supported by the PM6150 ADC driver. Disable the charger thermal zone
+> + * to avoid using bogus temperature values.
+> + */
+> +&charger_thermal {
+> +	status = "disabled";
+> +};
+> +
+>  &pp3300_hub {
+>  	/* pp3300_l7c is used to power the USB hub */
+>  	/delete-property/regulator-always-on;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
+> index 1b9d2f46359e..19e69adb9e04 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
+> @@ -13,3 +13,12 @@ / {
+>  	model = "Google Lazor (rev3+)";
+>  	compatible = "google,lazor", "qcom,sc7180";
+>  };
+> +
+> +/*
+> + * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
+> + * not supported by the PM6150 ADC driver. Disable the charger thermal zone
+> + * to avoid using bogus temperature values.
+> + */
+> +&charger_thermal {
+> +	status = "disabled";
+> +};
+> -- 
+> 2.30.0.617.g56c4b15f3c-goog
+> 
