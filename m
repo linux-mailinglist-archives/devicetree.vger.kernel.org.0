@@ -2,169 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF219325136
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 15:07:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A842F325138
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 15:07:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230371AbhBYOFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 09:05:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45430 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229800AbhBYOFH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Feb 2021 09:05:07 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F026464F10;
-        Thu, 25 Feb 2021 14:04:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614261865;
-        bh=ZzbiSO0LdphYU9+gCAqnHrrBWjpkRFL5HzaqbcKijYQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ajwGja5mim9LQAOngcHGPFoYR/V0G1HRZdQ8UywAL2SZcAagocp47a/U8UbtT6uJz
-         SKEdR8zhLSmwNjFLAebeKLtzmRBq0MacIteXK2QHwEXDbejskT2HAnozZ9I/b/G7DO
-         mnHoX2cKReMMx6sIigZwGO+cIp8nE3bjxumR8HoDGK45WNzORNp6E98N8m3H/j+mXM
-         pbnseAzBHRQBcz7KVSluoYSRk82nxabkwq2CWGpHY8wt7ZbJLldWLXJADbpF8G68h5
-         daiF7AdsGff4sya4oMOdLxGaqvtlnFsKRe3P5zK8mM92btDshSc8ZgEHGjAiU6tpK4
-         SE+jSDXO0EpDQ==
-Date:   Thu, 25 Feb 2021 14:04:19 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Max Uvarov <muvarov@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Tyler Hicks <tyhicks@linux.microsoft.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        kernel-team@android.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: cpufeatures: Fix handling of CONFIG_CMDLINE
- for idreg overrides
-Message-ID: <20210225140419.GB13297@willie-the-truck>
-References: <20210225125921.13147-1-will@kernel.org>
- <20210225125921.13147-2-will@kernel.org>
- <87zgzsz217.wl-maz@kernel.org>
+        id S231414AbhBYOG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 09:06:29 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:43614 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231248AbhBYOG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 09:06:26 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 439961F4617B
+Message-ID: <3a2b4d06a363541c475dbc1bbf61d90b3a1b0cc0.camel@collabora.com>
+Subject: Re: [PATCH v3 4/9] media: uapi: Add a control for HANTRO driver
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, gregkh@linuxfoundation.org,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, peng.fan@nxp.com,
+        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Date:   Thu, 25 Feb 2021 11:05:32 -0300
+In-Reply-To: <20210222122406.41782-5-benjamin.gaignard@collabora.com>
+References: <20210222122406.41782-1-benjamin.gaignard@collabora.com>
+         <20210222122406.41782-5-benjamin.gaignard@collabora.com>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87zgzsz217.wl-maz@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 25, 2021 at 01:53:56PM +0000, Marc Zyngier wrote:
-> On Thu, 25 Feb 2021 12:59:20 +0000,
-> Will Deacon <will@kernel.org> wrote:
-> > 
-> > The built-in kernel commandline (CONFIG_CMDLINE) can be configured in
-> > three different ways:
-> > 
-> >   1. CMDLINE_FORCE: Use CONFIG_CMDLINE instead of any bootloader args
-> >   2. CMDLINE_EXTEND: Append the bootloader args to CONFIG_CMDLINE
-> >   3. CMDLINE_FROM_BOOTLOADER: Only use CONFIG_CMDLINE if there aren't
-> >      any bootloader args.
-> > 
-> > The early cmdline parsing to detect idreg overrides gets (2) and (3)
-> > slightly wrong: in the case of (2) the bootloader args are parsed first
-> > and in the case of (3) the CMDLINE is always parsed.
-> > 
-> > Fix these issues by moving the bootargs parsing out into a helper
-> > function and following the same logic as that used by the EFI stub.
-> > 
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > Fixes: 33200303553d ("arm64: cpufeature: Add an early command-line cpufeature override facility")
-> > Signed-off-by: Will Deacon <will@kernel.org>
-> > ---
-> >  arch/arm64/kernel/idreg-override.c | 44 +++++++++++++++++-------------
-> >  1 file changed, 25 insertions(+), 19 deletions(-)
-> > 
-> > diff --git a/arch/arm64/kernel/idreg-override.c b/arch/arm64/kernel/idreg-override.c
-> > index dffb16682330..cc071712c6f9 100644
-> > --- a/arch/arm64/kernel/idreg-override.c
-> > +++ b/arch/arm64/kernel/idreg-override.c
-> > @@ -163,33 +163,39 @@ static __init void __parse_cmdline(const char *cmdline, bool parse_aliases)
-> >  	} while (1);
-> >  }
-> >  
-> > -static __init void parse_cmdline(void)
-> > +static __init const u8 *get_bootargs_cmdline(void)
-> >  {
-> > -	if (!IS_ENABLED(CONFIG_CMDLINE_FORCE)) {
-> > -		const u8 *prop;
-> > -		void *fdt;
-> > -		int node;
-> > +	const u8 *prop;
-> > +	void *fdt;
-> > +	int node;
-> >  
-> > -		fdt = get_early_fdt_ptr();
-> > -		if (!fdt)
-> > -			goto out;
-> > +	fdt = get_early_fdt_ptr();
-> > +	if (!fdt)
-> > +		return NULL;
-> >  
-> > -		node = fdt_path_offset(fdt, "/chosen");
-> > -		if (node < 0)
-> > -			goto out;
-> > +	node = fdt_path_offset(fdt, "/chosen");
-> > +	if (node < 0)
-> > +		return NULL;
-> >  
-> > -		prop = fdt_getprop(fdt, node, "bootargs", NULL);
-> > -		if (!prop)
-> > -			goto out;
-> > +	prop = fdt_getprop(fdt, node, "bootargs", NULL);
-> > +	if (!prop)
-> > +		return NULL;
-> >  
-> > -		__parse_cmdline(prop, true);
-> > +	return strlen(prop) ? prop : NULL;
-> > +}
-> >  
-> > -		if (!IS_ENABLED(CONFIG_CMDLINE_EXTEND))
-> > -			return;
-> > +static __init void parse_cmdline(void)
-> > +{
-> > +	const u8 *prop = get_bootargs_cmdline();
-> > +
-> > +	if (IS_ENABLED(CONFIG_CMDLINE_EXTEND) ||
-> > +	    IS_ENABLED(CONFIG_CMDLINE_FORCE) ||
-> > +	    !prop) {
+Hi Benjamin,
+
+On Mon, 2021-02-22 at 13:24 +0100, Benjamin Gaignard wrote:
+> The HEVC HANTRO driver needs to know the number of bits to skip at
+
+s/HANTRO/Hantro
+
+> the beginning of the slice header.
+
+As discussed in a different thread, we should describe exactly
+what the hardware is expecting, so applications can parse that
+and pass a correct value.
+
+> That is a hardware specific requirement so create a dedicated control
+> that this purpose.
 > 
-> The logic hurts, but I think I grok it now. The last term is actually
-> a reduction of
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+> version 3:
+> - Fix typo in field name
 > 
-> 	(IS_ENABLED(CONFIG_CMDLINE_FROM_BOOTLOADER) && !prop)
+>  include/uapi/linux/hantro-v4l2-controls.h | 20 ++++++++++++++++++++
+>  include/uapi/linux/v4l2-controls.h        |  5 +++++
+>  2 files changed, 25 insertions(+)
+>  create mode 100644 include/uapi/linux/hantro-v4l2-controls.h
 > 
-> and we know for sure that if none of the other two terms are true,
-> then CMDLINE_FROM_BOOTLOADER *must* be enabled.
+> diff --git a/include/uapi/linux/hantro-v4l2-controls.h b/include/uapi/linux/hantro-v4l2-controls.h
+> new file mode 100644
+> index 000000000000..a8dfd6b1a2a9
+> --- /dev/null
+> +++ b/include/uapi/linux/hantro-v4l2-controls.h
+> @@ -0,0 +1,20 @@
+> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> +
+> +#ifndef __UAPI_HANTRO_V4L2_CONYTROLS_H__
+> +#define __UAPI_HANTRO_V4L2_CONYTROLS_H__
+> +
+> +#include <linux/v4l2-controls.h>
+> +#include <media/hevc-ctrls.h>
+> +
+> +#define V4L2_CID_HANTRO_HEVC_EXTRA_DECODE_PARAMS       (V4L2_CID_USER_HANTRO_BASE + 0)
+> +
+> +/**
+> + * struct hantro_hevc_extra_decode_params - extra decode parameters for hantro driver
+> + * @hevc_hdr_skip_length:      header first bits offset
+> + */
+> +struct hantro_hevc_extra_decode_params {
+> +       __u32   hevc_hdr_skip_length;
+> +       __u8    padding[4];
+> +};
+> +
 
-Yes, with one gotcha: when CONFIG_CMDLINE is "", I don't think any of the
-CONFIG_CMDLINE_* are set, but the behaviour ends up being the same as
-CMDLINE_FROM_BOOTLOADER.
+I think we can get away with a simpler solution. Since it's just one integer
+we need, there's no need for a compound control. Something like this:
 
-> 
-> > +		__parse_cmdline(CONFIG_CMDLINE, true);
-> >  	}
-> >  
-> > -out:
-> > -	__parse_cmdline(CONFIG_CMDLINE, true);
-> > +	if (!IS_ENABLED(CONFIG_CMDLINE_FORCE) && prop)
-> > +		__parse_cmdline(prop, true);
-> >  }
-> >  
-> >  /* Keep checkers quiet */
-> 
-> I don't think we need to backport anything to stable for the nokaslr
-> handling, do we?
+                .codec = HANTRO_HEVC_DECODER,                                    
+                .cfg = {                                                         
+                        .id = V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP,            
+                        .name = "Hantro HEVC slice header skip bytes",           
+                        .type = V4L2_CTRL_TYPE_INTEGER,                          
+                        .min = 0,                                                
+                        .max = 0x7fffffff,                                       
+                        .step = 1,                                               
+                },     
 
-No, I don't think so. There isn't a "kaslr" or "nonokaslr", so the ordering
-doesn't matter afaict.
+Also see V4L2_CID_CODA_MB_ERR_CNT which is defined in drivers/media/platform/coda/coda.h.
+The control is sufficiently special that it could be kept in an internal driver header.
 
-> Reviewed-by: Marc Zyngier <maz@kernel.org>
+> +#endif
+> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
+> index 039c0d7add1b..ced7486c7f46 100644
+> --- a/include/uapi/linux/v4l2-controls.h
+> +++ b/include/uapi/linux/v4l2-controls.h
+> @@ -209,6 +209,11 @@ enum v4l2_colorfx {
+>   * We reserve 128 controls for this driver.
+>   */
+>  #define V4L2_CID_USER_CCS_BASE                 (V4L2_CID_USER_BASE + 0x10f0)
+> +/*
+> + * The base for HANTRO driver controls.
+> + * We reserve 32 controls for this driver.
+> + */
+> +#define V4L2_CID_USER_HANTRO_BASE              (V4L2_CID_USER_BASE + 0x1170)
+>  
+>  /* MPEG-class control IDs */
+>  /* The MPEG controls are applicable to all codec controls
 
-Cheers!
+Thanks,
+Ezequiel
 
-Will
