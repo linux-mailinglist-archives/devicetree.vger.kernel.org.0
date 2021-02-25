@@ -2,75 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BFB43256D4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 20:39:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22F3B3256F2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 20:44:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230371AbhBYTiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 14:38:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34704 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234142AbhBYTgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 14:36:02 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1021CC06178A
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 11:35:21 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id t5so5499684pjd.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 11:35:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=r6wJvxB68vEymZci/szX9i/8klOR69G6A/W2Bpg+cp4=;
-        b=nR9lCpX8XpkcvjIOmCara3uYiZ0lbn61xFo4C6F0Bs7EEf4jYjCeW2+fnj5qI3G6qH
-         jGg2x/a4oChUVdBcmXH/Iwgjmglc+Hn8Czx8sSNYPr2jWYL94xZlsKLRwc3C0GIQdNpl
-         W2c8M3fwHo2htxJvsNVv0ORyIYh0rpoLp5jEI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=r6wJvxB68vEymZci/szX9i/8klOR69G6A/W2Bpg+cp4=;
-        b=q8obGNLJLQAxTutinfY36eqkiKHKRDbCpZFXNBjfl3FM0BE0XmMTRhOfp9G6SAlFSz
-         Jojq52ll3/EZ4HDgYEgsuBAWFS6hKZxLB0tu/qEvScvxpCksVTqxed9R1/+rshs00+F6
-         LVlYSzX5R3o+t6kl1H7OGFcAoXolRgy30BpQO1EXTYRdccSw28UfX9RbY4pyKix4xuOm
-         7lEiY1EXruPL8HHPNYnfX21Dzlo4LraKLjrBoaaVdNbKn1sKEqULULyfwV0/GCr1/mWa
-         yt2zcWV16Nrdh585gHB++wdAQOe/Oy8/cxHKr9os/DmtmxmLTyOS+DgjgWZxGBEBGSnn
-         hwUA==
-X-Gm-Message-State: AOAM5303YMVtYBQMRcoeDg41tZVCEtHeFtpm9Z6Rk4rl5lqsOM7tRp5r
-        aDGQTM6TXUHNUcR4C7tTEAdLiPh87canwQ==
-X-Google-Smtp-Source: ABdhPJyskkONjLaGupEVZE1oDumXRSl08agvlDUkTMsRlO97Qz2/uswJYrl8oGCMV8rpq45ys5GPiw==
-X-Received: by 2002:a17:902:ac82:b029:e3:bca2:cca7 with SMTP id h2-20020a170902ac82b02900e3bca2cca7mr4333204plr.43.1614281721158;
-        Thu, 25 Feb 2021 11:35:21 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:b942:93a8:e68d:5a90])
-        by smtp.gmail.com with ESMTPSA id g15sm6841549pfb.30.2021.02.25.11.35.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Feb 2021 11:35:20 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
+        id S234592AbhBYToN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 14:44:13 -0500
+Received: from foss.arm.com ([217.140.110.172]:48652 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234344AbhBYTmU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Feb 2021 14:42:20 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 435871480;
+        Thu, 25 Feb 2021 11:36:20 -0800 (PST)
+Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 0750C3F70D;
+        Thu, 25 Feb 2021 11:36:18 -0800 (PST)
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, mathieu.poirier@linaro.org,
+        mike.leach@linaro.org, anshuman.khandual@arm.com,
+        leo.yan@linaro.org, Suzuki K Poulose <suzuki.poulose@arm.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 15/19] dts: bindings: Document device tree bindings for ETE
+Date:   Thu, 25 Feb 2021 19:35:39 +0000
+Message-Id: <20210225193543.2920532-16-suzuki.poulose@arm.com>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20210225193543.2920532-1-suzuki.poulose@arm.com>
+References: <20210225193543.2920532-1-suzuki.poulose@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <f3b32d437d7c1165a74ceec2cd52ff56b496e5a3.1614244789.git.saiprakash.ranjan@codeaurora.org>
-References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org> <f3b32d437d7c1165a74ceec2cd52ff56b496e5a3.1614244789.git.saiprakash.ranjan@codeaurora.org>
-Subject: Re: [PATCH 1/9] dt-bindings: arm: msm: Add LLCC for SC7280
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Date:   Thu, 25 Feb 2021 11:35:18 -0800
-Message-ID: <161428171894.1254594.5730779825217339020@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sai Prakash Ranjan (2021-02-25 01:30:17)
-> Add LLCC compatible for SC7280 SoC.
->=20
-> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> ---
+Document the device tree bindings for Embedded Trace Extensions.
+ETE can be connected to legacy coresight components and thus
+could optionally contain a connection graph as described by
+the CoreSight bindings.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Cc: devicetree@vger.kernel.org
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Mike Leach <mike.leach@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+---
+Changes:
+ - Fix out-ports defintion
+---
+ .../devicetree/bindings/arm/ete.yaml          | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
+new file mode 100644
+index 000000000000..35a42d92bf97
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/ete.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# Copyright 2021, Arm Ltd
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/arm/ete.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: ARM Embedded Trace Extensions
++
++maintainers:
++  - Suzuki K Poulose <suzuki.poulose@arm.com>
++  - Mathieu Poirier <mathieu.poirier@linaro.org>
++
++description: |
++  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
++  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
++  architecture and has extended support for future architecture changes.
++  The trace generated by the ETE could be stored via legacy CoreSight
++  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
++  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
++  legacy CoreSight components, a node must be listed per instance, along
++  with any optional connection graph as per the coresight bindings.
++  See bindings/arm/coresight.txt.
++
++properties:
++  $nodename:
++    pattern: "^ete([0-9a-f]+)$"
++  compatible:
++    items:
++      - const: arm,embedded-trace-extension
++
++  cpu:
++    description: |
++      Handle to the cpu this ETE is bound to.
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  out-ports:
++    description: |
++      Output connections from the ETE to legacy CoreSight trace bus.
++    $ref: /schemas/graph.yaml#/properties/port
++
++required:
++  - compatible
++  - cpu
++
++additionalProperties: false
++
++examples:
++
++# An ETE node without legacy CoreSight connections
++  - |
++    ete0 {
++      compatible = "arm,embedded-trace-extension";
++      cpu = <&cpu_0>;
++    };
++# An ETE node with legacy CoreSight connections
++  - |
++   ete1 {
++      compatible = "arm,embedded-trace-extension";
++      cpu = <&cpu_1>;
++
++      out-ports {        /* legacy coresight connection */
++         port {
++             ete1_out_port: endpoint {
++                remote-endpoint = <&funnel_in_port0>;
++             };
++         };
++      };
++   };
++
++...
+-- 
+2.24.1
+
