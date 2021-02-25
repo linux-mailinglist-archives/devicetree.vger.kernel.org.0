@@ -2,247 +2,506 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AB7D324E17
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 11:31:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39131324E37
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 11:32:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235255AbhBYKZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 05:25:53 -0500
-Received: from mail-dm6nam12on2111.outbound.protection.outlook.com ([40.107.243.111]:52189
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S235383AbhBYKWG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Feb 2021 05:22:06 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e7ML6x8u55j0370K8o887xHft4qLwjOsE8Sg1iOYeJmUMc9bkS6ZTnq4F8pAopILEJf3BSEhc8CudJenAiBxgm/oZpxXdgldRkYo2Q2xcMHUUvXtm9d5BI9bYhLuPBveprOk4zD37uSRV0ZiINAe3uPCKSyGNFvffrtw70eIotoMh9+aa7QJ5ftTxteRJbZ7atV7RYkCW6qEHdRfhrwTlC4MsRnwrsnLWRGGe263jv62Sd8UTqgUm2NvJ8lhGTJlOv5R/yuc+WaNzBNCeermU44TGDAdrtxkq/fIaM3WjGCWBB2cJBC7BfWSvpnXzH2L2wGyTNH/3i+Bwo7rtjNm+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VkyHSHJRLQ6fQ93jdlCevffJIJ0yFPw8wMPrS9lW6e8=;
- b=n9g+gDmq53RgaouaTBi5YuWIkxLp/2A+OGE7zoPKpgKwNMYu8jkv7d4YtIS7FseHyKjE9DM4Qf9lC2934kap12whY1d7EPxKhACXySNbvn7rSiBz7H0SBM1iEL/H/w8PrVKpB/8Cx1d91EoOsrjDcfA2v/hRzIcjW/m/CspPA5KIuPH6T5NAUY5nu1O60jh6iIWxbya0Z4v1cfXRacZiLgTS6/4qpmXA+moU35hQtYrKPbE5gNYETap9uvhwg2bab0nb/tjgCtLXILxxMKg8LevUd9mIQiJHIShSsBvRgTW+pl2Vdj64247HmD7bodqy8GIBKLkJg77rlWtVEh+uHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VkyHSHJRLQ6fQ93jdlCevffJIJ0yFPw8wMPrS9lW6e8=;
- b=m9G7dRayJ5S9emXf/biTV89dqA5ymKHWoKZv4xggH8C0jRmAel3JUqI0fCaLn4O8TrWkCyWThxzXOcCbigq86NX2CeuMn93xffsjJJbM0Z38Neo3CYzRJN/jZaY2bCixTjIJ1z9NaZZzPV8Y3cA00sP3yfpfe3kTkeyhBZ/S0Ts=
-Authentication-Results: jms.id.au; dkim=none (message not signed)
- header.d=none;jms.id.au; dmarc=none action=none
- header.from=os.amperecomputing.com;
-Received: from MW2PR0102MB3482.prod.exchangelabs.com (2603:10b6:302:c::32) by
- MWHPR01MB2320.prod.exchangelabs.com (2603:10b6:300:26::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3890.19; Thu, 25 Feb 2021 10:19:48 +0000
-Received: from MW2PR0102MB3482.prod.exchangelabs.com
- ([fe80::682c:4e20:b53d:e660]) by MW2PR0102MB3482.prod.exchangelabs.com
- ([fe80::682c:4e20:b53d:e660%7]) with mapi id 15.20.3890.019; Thu, 25 Feb 2021
- 10:19:48 +0000
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-To:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org
-Cc:     Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: [PATCH 4/4] docs: hwmon: (smpro-hwmon) Add documentation
-Date:   Thu, 25 Feb 2021 17:18:54 +0700
-Message-Id: <20210225101854.13896-5-quan@os.amperecomputing.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20210225101854.13896-1-quan@os.amperecomputing.com>
-References: <20210225101854.13896-1-quan@os.amperecomputing.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [118.69.219.201]
-X-ClientProxiedBy: HK0PR01CA0061.apcprd01.prod.exchangelabs.com
- (2603:1096:203:a6::25) To MW2PR0102MB3482.prod.exchangelabs.com
- (2603:10b6:302:c::32)
+        id S233136AbhBYKa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 05:30:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58222 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232227AbhBYK1e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 05:27:34 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DBF1C06174A;
+        Thu, 25 Feb 2021 02:26:53 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 7B2FE1F455FE
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     dianders@chromium.org, heiko@sntech.de,
+        Collabora Kernel ML <kernel@collabora.com>,
+        jbx6244@gmail.com, Rob Herring <robh@kernel.org>,
+        Caesar Wang <wxt@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH v6] dt-bindings: power: rockchip: Convert to json-schema
+Date:   Thu, 25 Feb 2021 11:26:43 +0100
+Message-Id: <20210225102643.653095-1-enric.balletbo@collabora.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from hcm-sw-17.amperecomputing.com (118.69.219.201) by HK0PR01CA0061.apcprd01.prod.exchangelabs.com (2603:1096:203:a6::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19 via Frontend Transport; Thu, 25 Feb 2021 10:19:44 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1ab4e49c-b88b-4df0-449b-08d8d976e0e0
-X-MS-TrafficTypeDiagnostic: MWHPR01MB2320:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MWHPR01MB2320EC37841A6670C6E00E61F29E9@MWHPR01MB2320.prod.exchangelabs.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lUCuUvIM30g3mwLe1T9vaRHx6rptcuFQndXn4vE5Czaax2cSdQwItqX0wRcUVI9rOzJaT9zk/9Thk242RXc57rlrEIQw43X+H+FaYRdLF3mlUp7fLf1z4gQZfgjlQP/34Z1deN1dw8Tz5dIDBMLso9cjra2ZQwcACJznsDPfAaVoW4JdnCgaPRZbIm/TovHCujyR7T5XAenGibf3/Ek5o6I41XFCPv2op/F9tu3CFwGBu1LoTJ4D//VhLpYGa6xCs2/84xO/LhkVEVyrFRWvH1A2wwSWsa0nFe9O23J1VK9bfygRbp9c105vz7e9+V83Z0L94ZHM8QVJWqmnkkoCM0MRI9G4dZQ3SD5I2cmuZOxtnXO3Pthfikh3/AdJx4SQyLdJnan7CxfoOIUBWY6Ynkdv0J5VRFet9FB/HmBHX45YfTkpzJ9BRG9puUrQBYa/EOt70/IzKSiMBeqGDGLUMkhu9pKDm6gTjsUmWUcpXVSNeMzRaXAS+8Z2ryJkvttvnJBIc1WAJ1baBAQnKoCaRYWvmvNy6H0rhfYSNKGi7RyRc14qngXH0yQJDIHlXewZ
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR0102MB3482.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(396003)(346002)(136003)(39830400003)(366004)(956004)(2616005)(66556008)(6512007)(6666004)(107886003)(110136005)(66946007)(66476007)(52116002)(8936002)(921005)(316002)(86362001)(26005)(2906002)(1076003)(5660300002)(6486002)(186003)(4326008)(6506007)(16526019)(8676002)(7416002)(478600001)(54906003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?QXdLhvg9zUOq17n2zoeMrdvwz2RfE8hy56C9eAZDFcSYR7zxuZpbLG+Nkcun?=
- =?us-ascii?Q?i3T3j7SPk83aViPG8gUTv6Wyh2bkZzdtZaSS76pbDBWfPuzdLYi9U0X1RPzx?=
- =?us-ascii?Q?IMUiLQoKlYaAJsmtEQAMwzTwF1HQC9zBiyR8INBXzB++pP32cdot8JESV0LY?=
- =?us-ascii?Q?TQ72NBsiQxhnWtTCHmbRTq1c4t9OQc6a4k9P96bgqbzo1XxYsWTgWtuerARz?=
- =?us-ascii?Q?JOlZdyeYPVEHT7T7W8LcfBJA5ZEhSBEiVC0kvH+ST1aWYTzPqBQ8Q72016cT?=
- =?us-ascii?Q?X1B143s0hp7/1FosBj/Oa3r8H7ihiPU8qBDG3pZvD4+l4xS43DyOHr6bcKo1?=
- =?us-ascii?Q?8vBJaMlZYpPcb5hpaODTVuykOM5pBCvZxt9HSlUOpIb78hdgbkBHbPIhQnGM?=
- =?us-ascii?Q?nByR7q5ieFeK8COiQVUpYYj7OigfnZH3WttLOL/HhZDtZDLPzOf3ol6cwEV0?=
- =?us-ascii?Q?r2IlMj+Zf+ND8I8Bklyv61lYYxKL+gcLFtm8zAAU73OBHQjIGAs5KpqqPC1f?=
- =?us-ascii?Q?14yXk3DSkuV7p1n45nHcDjnZ5bMgTMHDZ1zV5IlQs0760G46HdJV57Ietrqf?=
- =?us-ascii?Q?iNJLvO2A6TFaxVQCkQcTF24NssZeRKFp4f+d17pYGfpUuaMMDpalkmHR9wUy?=
- =?us-ascii?Q?//SmXd1Qa/63su/q66aOaBMstvo7YmiLxijHFKEtOr5EMfqdcS2c0p2/WVIO?=
- =?us-ascii?Q?Pju3tZUtAg9z5J/+/EdHhkq0hzpzb8Al2a6MCzaPaX8rPPk83dGZyPFBhFqu?=
- =?us-ascii?Q?UjgjWaZL9b7hp/DmPlZxkMke3kH/aQn1KDQcr1N8xl8iuZMejsxcv5Ok3rOq?=
- =?us-ascii?Q?bisoCnvUlTlM/vTv9AyZbBAvUduEgKtAGvHHFX7xO8RKd+hJ+pk9UPcDPCrV?=
- =?us-ascii?Q?RghPLyMEnp1lmot4trU2VLf4EecbUoP2LaX6HUKcIcBwcWXD1hTuG+ME/sbq?=
- =?us-ascii?Q?oE4TA5K2R4ylLTEbWmoj+dnhyQHdT0423ZjIHaeVTW1fgnfKZbxHfZ1p5M8a?=
- =?us-ascii?Q?mjQJOQ368h0yQkRh1EPogSip0PshkMXpSVzaTx1lXJcMoMZMhbiGztAYmn0f?=
- =?us-ascii?Q?ad5lSJkVzwoq7ndOECFn6MAExZWzhflOusMu6KDFGBQjLeIOvpoFG1mpcRHJ?=
- =?us-ascii?Q?ZlcqItRjSDow7re/p2Q12iRh8quTgl8c9iE/sbRNEUJD0tGvNChQ9AYv2n7i?=
- =?us-ascii?Q?EZgvh0TDWiFiomp/T10CYwlDLOeL9g67MF9ONuhbOZcOUh7Ffa4T5Q8wf0xQ?=
- =?us-ascii?Q?zWF1rFrDHjIyx52JV28Ws/9quVXWVJrL9dc43gmeqA8d1IQdRqYYe8P26whi?=
- =?us-ascii?Q?AUPVO2+3G9tDQLIy+zx82Z5M?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ab4e49c-b88b-4df0-449b-08d8d976e0e0
-X-MS-Exchange-CrossTenant-AuthSource: MW2PR0102MB3482.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2021 10:19:48.0054
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Mi+jbV/dfW7UmwL4kLOazqWWtBh+R2g/WK7bBxqbeBWIJHAMk4n9ZcPCaOI10eMs1ABs3cwwsDUMot/gjQcL0BO/Md2Ny4P2kfqMvXTBSIQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR01MB2320
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the Ampere(R)'s Altra(R) SMpro hwmon driver.
+Convert the soc/rockchip/power_domain.txt binding document to json-schema
+and move to the power bindings directory.
 
-Signed-off-by: Thu Nguyen <thu@os.amperecomputing.com>
-Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/hwmon/index.rst       |   1 +
- Documentation/hwmon/smpro-hwmon.rst | 100 ++++++++++++++++++++++++++++
- 2 files changed, 101 insertions(+)
- create mode 100644 Documentation/hwmon/smpro-hwmon.rst
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 8d5a2df1ecb6..b48a980ed08b 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -164,6 +164,7 @@ Hardware Monitoring Kernel Drivers
-    sis5595
-    sl28cpld
-    smm665
-+   smpro-hwmon
-    smsc47b397
-    smsc47m192
-    smsc47m1
-diff --git a/Documentation/hwmon/smpro-hwmon.rst b/Documentation/hwmon/smpro-hwmon.rst
+Changes in v6:
+- Add "rockchip," prefix to the qos compatible name. (Johan Jonker)
+
+Changes in v5:
+- Fix space warnings reported by bot.
+- Add the Rob's Reviewed-by tag.
+- Fix license.
+
+Changes in v4:
+- Use hex for unit-addresses.
+- Use space between compatibles in the example.
+- Define child nodes for nested power domains even are duplicated but
+  more clear that adding a regex scaped to be a valid URI.
+
+Changes in v3:
+- Fixed tab errors found by bot
+
+Changes in v2:
+- Fixed a warning that says that 'syscon' should not be used alone.
+- Use patternProperties to define a new level for power-domains.
+- Add const values for power-domain-cells, address-cells, etc.
+
+ .../power/rockchip,power-controller.yaml      | 283 ++++++++++++++++++
+ .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
+ 2 files changed, 283 insertions(+), 136 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+
+diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
 new file mode 100644
-index 000000000000..d546b90982e5
+index 000000000000..3f4005be200b
 --- /dev/null
-+++ b/Documentation/hwmon/smpro-hwmon.rst
-@@ -0,0 +1,100 @@
-+.. SPDX-License-Identifier: GPL-2.0-or-later
++++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+@@ -0,0 +1,283 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/rockchip,power-controller.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+Kernel driver Ampere(R)'s Altra(R) SMpro hwmon
-+==============================================
++title: Rockchip Power Domains
 +
-+Supported chips:
++maintainers:
++  - Caesar Wang <wxt@rock-chips.com>
++  - Heiko Stuebner <heiko@sntech.de>
 +
-+  * Ampere(R) Altra(R)
++description: |
++  Rockchip processors include support for multiple power domains which can be
++  powered up/down by software based on different application scenes to save power.
 +
-+    Prefix: 'smpro'
++  Power domains contained within power-controller node are generic power domain
++  providers documented in Documentation/devicetree/bindings/power/power-domain.yaml.
 +
-+    Reference: Altra SoC BMC Interface Specification
++  IP cores belonging to a power domain should contain a 'power-domains'
++  property that is a phandle for the power domain node representing the domain.
 +
-+Author: Thu Nguyen <thu@os.amperecomputing.com>
++properties:
++  $nodename:
++    const: power-controller
 +
-+Description
-+-----------
-+This driver supports hardware monitoring for Ampere(R) Altra(R) SoC's based on the
-+SMpro co-processor (SMpro).
-+The following sensor types are supported by the driver:
++  compatible:
++    enum:
++      - rockchip,px30-power-controller
++      - rockchip,rk3036-power-controller
++      - rockchip,rk3066-power-controller
++      - rockchip,rk3128-power-controller
++      - rockchip,rk3188-power-controller
++      - rockchip,rk3228-power-controller
++      - rockchip,rk3288-power-controller
++      - rockchip,rk3328-power-controller
++      - rockchip,rk3366-power-controller
++      - rockchip,rk3368-power-controller
++      - rockchip,rk3399-power-controller
 +
-+  * temperature
-+  * voltage
-+  * current
-+  * power
++  '#power-domain-cells':
++    const: 1
 +
-+The SMpro interface provides the registers to query the various sensors and
-+their values which are then exported to userspace by this driver.
++  '#address-cells':
++    const: 1
 +
-+Usage Notes
-+-----------
++  '#size-cells':
++    const: 0
 +
-+SMpro hwmon driver creates two sysfs files for each sensor.
++patternProperties:
++  "^power-domain@[0-9a-f]+$":
++    type: object
++    description: |
++      Represents the power domains within the power controller node as documented
++      in Documentation/devicetree/bindings/power/power-domain.yaml.
 +
-+* File ``<sensor_type><idx>_label`` reports the sensor label.
-+* File ``<sensor_type><idx>_input`` returns the sensor value.
++    properties:
 +
-+The sysfs files are allocated in the SMpro root fs folder.
-+There is one root folder for each SMpro instance.
++      '#power-domain-cells':
++        description:
++          Must be 0 for nodes representing a single PM domain and 1 for nodes
++          providing multiple PM domains.
 +
-+When the SoC is turned off, the driver is failed to read the registers.
-+It returns TIMEDOUT Error(-110) for the read sensors.
++      '#address-cells':
++        const: 1
 +
-+Sysfs entries
-+-------------
++      '#size-cells':
++        const: 0
 +
-+The following sysfs files are supported:
++      reg:
++        description: |
++          Power domain index. Valid values are defined in:
++          "include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
++          "include/dt-bindings/power/rk3036-power.h" - for RK3036 type power domain.
++          "include/dt-bindings/power/rk3066-power.h" - for RK3066 type power domain.
++          "include/dt-bindings/power/rk3128-power.h" - for RK3128 type power domain.
++          "include/dt-bindings/power/rk3188-power.h" - for RK3188 type power domain.
++          "include/dt-bindings/power/rk3228-power.h" - for RK3228 type power domain.
++          "include/dt-bindings/power/rk3288-power.h" - for RK3288 type power domain.
++          "include/dt-bindings/power/rk3328-power.h" - for RK3328 type power domain.
++          "include/dt-bindings/power/rk3366-power.h" - for RK3366 type power domain.
++          "include/dt-bindings/power/rk3368-power.h" - for RK3368 type power domain.
++          "include/dt-bindings/power/rk3399-power.h" - for RK3399 type power domain.
++        maxItems: 1
 +
-+* Ampere(R) Altra(R):
++      clocks:
++        description: |
++          A number of phandles to clocks that need to be enabled while power domain
++          switches state.
 +
-+===============    =============   ======= ===============================================
-+Name        Unit        Perm    Description
-+temp1_input     mili Celsius     RO    SoC temperature
-+temp2_input     mili Celsius     RO    Highest temperature reported by the SoC VRDs
-+temp3_input     mili Celsius     RO    Highest temperature reported by the DIMM VRDs
-+temp4_input     mili Celsius     RO    Highest temperature reported by the Core VRDs
-+temp5_input     mili Celsius     RO    Highest temperature of DIMM Channel 0 to 3
-+temp6_input     mili Celsius     RO    Temperature of DIMM0 on CH0
-+temp7_input     mili Celsius     RO    Temperature of DIMM0 on CH1
-+temp8_input     mili Celsius     RO    Temperature of DIMM0 on CH2
-+temp9_input     mili Celsius     RO    Temperature of DIMM0 on CH3
-+temp10_input     mili Celsius     RO    Highest temperature of DIMM Channel 4 to 7
-+temp11_input     mili Celsius     RO    Temperature of DIMM0 on CH4
-+temp12_input     mili Celsius     RO    Temperature of DIMM0 on CH5
-+temp13_input     mili Celsius     RO    Temperature of DIMM0 on CH6
-+temp14_input     mili Celsius     RO    Temperature of DIMM0 on CH7
-+temp15_input     mili Celsius     RO    MEM HOT Threshold
-+temp16_input     mili Celsius     RO    SoC VRD HOT Threshold
-+temp17_input     mili Celsius     RO    Highest temperature reported by the RCA VRD
-+in0_input     mili Volt     RO    Core voltage
-+in1_input     mili Volt     RO    SoC voltage
-+in2_input     mili Volt     RO    DIMM VRD1 voltage
-+in3_input     mili Volt     RO    DIMM VRD2 voltage
-+in4_input     mili Volt     RO    Maximum voltage of DIMM VRD1 and VRD2
-+in5_input     mili Volt     RO    RCA VRD voltage
-+cur1_input     mili Ampere     RO    Core VRD current
-+cur2_input     mili Ampere     RO    SoC VRD current
-+cur3_input     mili Ampere     RO    DIMM VRD1 current
-+cur4_input     mili Ampere     RO    DIMM VRD2 current
-+cur5_input     mili Ampere     RO    RCA VRD current
-+power1_input     nano Wat     RO    Core VRD power
-+power2_input     nano Wat     RO    SoC VRD power
-+power3_input     nano Wat     RO    DIMM VRD1 power
-+power4_input     nano Wat     RO    DIMM VRD2 power
-+power5_input     nano Wat     RO    CPU VRD power, total of SoC and Core VRD power
-+power6_input     nano Wat     RO    Total of DIMM VRD1 and VRD2 power
-+power7_input     nano Wat     RO    RCA VRD power
-+power8_input     nano Wat     RO    Socket TDP
-+===============    =============   ======= ===============================================
++      pm_qos:
++        description: |
++          A number of phandles to qos blocks which need to be saved and restored
++          while power domain switches state.
 +
-+Example::
++    patternProperties:
++      "^power-domain@[0-9a-f]+$":
++        type: object
++        description: |
++          Represents a power domain child within a power domain parent node.
 +
-+    # cat in0_input
-+    830
-+    # cat temp1_input
-+    37000
-+    # cat curr1_input
-+    9000
-+    # cat power5_input
-+    19500000
++        properties:
++
++          '#power-domain-cells':
++            description:
++              Must be 0 for nodes representing a single PM domain and 1 for nodes
++              providing multiple PM domains.
++
++          '#address-cells':
++            const: 1
++
++          '#size-cells':
++            const: 0
++
++          reg:
++            maxItems: 1
++
++          clocks:
++            description: |
++              A number of phandles to clocks that need to be enabled while power domain
++              switches state.
++
++          pm_qos:
++            description: |
++              A number of phandles to qos blocks which need to be saved and restored
++              while power domain switches state.
++
++        patternProperties:
++          "^power-domain@[0-9a-f]+$":
++            type: object
++            description: |
++              Represents a power domain child within a power domain parent node.
++
++            properties:
++
++              '#power-domain-cells':
++                description:
++                  Must be 0 for nodes representing a single PM domain and 1 for nodes
++                  providing multiple PM domains.
++
++              '#address-cells':
++                const: 1
++
++              '#size-cells':
++                const: 0
++
++              reg:
++                maxItems: 1
++
++              clocks:
++                description: |
++                  A number of phandles to clocks that need to be enabled while power domain
++                  switches state.
++
++              pm_qos:
++                description: |
++                  A number of phandles to qos blocks which need to be saved and restored
++                  while power domain switches state.
++
++            required:
++              - reg
++
++            additionalProperties: false
++
++        required:
++          - reg
++
++        additionalProperties: false
++
++    required:
++      - reg
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rk3399-cru.h>
++    #include <dt-bindings/power/rk3399-power.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        qos_hdcp: qos@ffa90000 {
++            compatible = "rockchip,rk3399-qos", "syscon";
++            reg = <0x0 0xffa90000 0x0 0x20>;
++        };
++
++        qos_iep: qos@ffa98000 {
++            compatible = "rockchip,rk3399-qos", "syscon";
++            reg = <0x0 0xffa98000 0x0 0x20>;
++        };
++
++        qos_rga_r: qos@ffab0000 {
++            compatible = "rockchip,rk3399-qos", "syscon";
++            reg = <0x0 0xffab0000 0x0 0x20>;
++        };
++
++        qos_rga_w: qos@ffab0080 {
++            compatible = "rockchip,rk3399-qos", "syscon";
++            reg = <0x0 0xffab0080 0x0 0x20>;
++        };
++
++        qos_video_m0: qos@ffab8000 {
++            compatible = "rockchip,rk3399-qos", "syscon";
++            reg = <0x0 0xffab8000 0x0 0x20>;
++        };
++
++        qos_video_m1_r: qos@ffac0000 {
++            compatible = "rockchip,rk3399-qos", "syscon";
++            reg = <0x0 0xffac0000 0x0 0x20>;
++        };
++
++        qos_video_m1_w: qos@ffac0080 {
++            compatible = "rockchip,rk3399-qos", "syscon";
++            reg = <0x0 0xffac0080 0x0 0x20>;
++        };
++
++        power-management@ff310000 {
++            compatible = "rockchip,rk3399-pmu", "syscon", "simple-mfd";
++            reg = <0x0 0xff310000 0x0 0x1000>;
++
++            power-controller {
++                compatible = "rockchip,rk3399-power-controller";
++                #power-domain-cells = <1>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                /* These power domains are grouped by VD_CENTER */
++                power-domain@RK3399_PD_IEP {
++                    reg = <RK3399_PD_IEP>;
++                    clocks = <&cru ACLK_IEP>,
++                             <&cru HCLK_IEP>;
++                    pm_qos = <&qos_iep>;
++                    #power-domain-cells = <0>;
++                };
++                power-domain@RK3399_PD_RGA {
++                    reg = <RK3399_PD_RGA>;
++                    clocks = <&cru ACLK_RGA>,
++                             <&cru HCLK_RGA>;
++                    pm_qos = <&qos_rga_r>,
++                             <&qos_rga_w>;
++                    #power-domain-cells = <0>;
++                };
++                power-domain@RK3399_PD_VCODEC {
++                    reg = <RK3399_PD_VCODEC>;
++                    clocks = <&cru ACLK_VCODEC>,
++                             <&cru HCLK_VCODEC>;
++                    pm_qos = <&qos_video_m0>;
++                    #power-domain-cells = <0>;
++                };
++                power-domain@RK3399_PD_VDU {
++                    reg = <RK3399_PD_VDU>;
++                    clocks = <&cru ACLK_VDU>,
++                             <&cru HCLK_VDU>;
++                    pm_qos = <&qos_video_m1_r>,
++                             <&qos_video_m1_w>;
++                    #power-domain-cells = <0>;
++                };
++                power-domain@RK3399_PD_VIO {
++                    reg = <RK3399_PD_VIO>;
++                    #power-domain-cells = <1>;
++                    #address-cells = <1>;
++                    #size-cells = <0>;
++
++                    power-domain@RK3399_PD_HDCP {
++                        reg = <RK3399_PD_HDCP>;
++                        clocks = <&cru ACLK_HDCP>,
++                                 <&cru HCLK_HDCP>,
++                                 <&cru PCLK_HDCP>;
++                        pm_qos = <&qos_hdcp>;
++                        #power-domain-cells = <0>;
++                    };
++                };
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt b/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+deleted file mode 100644
+index 8304eceb62e4..000000000000
+--- a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
++++ /dev/null
+@@ -1,136 +0,0 @@
+-* Rockchip Power Domains
+-
+-Rockchip processors include support for multiple power domains which can be
+-powered up/down by software based on different application scenes to save power.
+-
+-Required properties for power domain controller:
+-- compatible: Should be one of the following.
+-	"rockchip,px30-power-controller" - for PX30 SoCs.
+-	"rockchip,rk3036-power-controller" - for RK3036 SoCs.
+-	"rockchip,rk3066-power-controller" - for RK3066 SoCs.
+-	"rockchip,rk3128-power-controller" - for RK3128 SoCs.
+-	"rockchip,rk3188-power-controller" - for RK3188 SoCs.
+-	"rockchip,rk3228-power-controller" - for RK3228 SoCs.
+-	"rockchip,rk3288-power-controller" - for RK3288 SoCs.
+-	"rockchip,rk3328-power-controller" - for RK3328 SoCs.
+-	"rockchip,rk3366-power-controller" - for RK3366 SoCs.
+-	"rockchip,rk3368-power-controller" - for RK3368 SoCs.
+-	"rockchip,rk3399-power-controller" - for RK3399 SoCs.
+-- #power-domain-cells: Number of cells in a power-domain specifier.
+-	Should be 1 for multiple PM domains.
+-- #address-cells: Should be 1.
+-- #size-cells: Should be 0.
+-
+-Required properties for power domain sub nodes:
+-- reg: index of the power domain, should use macros in:
+-	"include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
+-	"include/dt-bindings/power/rk3036-power.h" - for RK3036 type power domain.
+-	"include/dt-bindings/power/rk3066-power.h" - for RK3066 type power domain.
+-	"include/dt-bindings/power/rk3128-power.h" - for RK3128 type power domain.
+-	"include/dt-bindings/power/rk3188-power.h" - for RK3188 type power domain.
+-	"include/dt-bindings/power/rk3228-power.h" - for RK3228 type power domain.
+-	"include/dt-bindings/power/rk3288-power.h" - for RK3288 type power domain.
+-	"include/dt-bindings/power/rk3328-power.h" - for RK3328 type power domain.
+-	"include/dt-bindings/power/rk3366-power.h" - for RK3366 type power domain.
+-	"include/dt-bindings/power/rk3368-power.h" - for RK3368 type power domain.
+-	"include/dt-bindings/power/rk3399-power.h" - for RK3399 type power domain.
+-- clocks (optional): phandles to clocks which need to be enabled while power domain
+-	switches state.
+-- pm_qos (optional): phandles to qos blocks which need to be saved and restored
+-	while power domain switches state.
+-
+-Qos Example:
+-
+-	qos_gpu: qos_gpu@ffaf0000 {
+-		compatible ="syscon";
+-		reg = <0x0 0xffaf0000 0x0 0x20>;
+-	};
+-
+-Example:
+-
+-	power: power-controller {
+-		compatible = "rockchip,rk3288-power-controller";
+-		#power-domain-cells = <1>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		pd_gpu {
+-			reg = <RK3288_PD_GPU>;
+-			clocks = <&cru ACLK_GPU>;
+-			pm_qos = <&qos_gpu>;
+-		};
+-	};
+-
+-	 power: power-controller {
+-                compatible = "rockchip,rk3368-power-controller";
+-                #power-domain-cells = <1>;
+-                #address-cells = <1>;
+-                #size-cells = <0>;
+-
+-                pd_gpu_1 {
+-                        reg = <RK3368_PD_GPU_1>;
+-                        clocks = <&cru ACLK_GPU_CFG>;
+-                };
+-        };
+-
+-Example 2:
+-		power: power-controller {
+-			compatible = "rockchip,rk3399-power-controller";
+-			#power-domain-cells = <1>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			pd_vio {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				reg = <RK3399_PD_VIO>;
+-
+-				pd_vo {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-					reg = <RK3399_PD_VO>;
+-
+-					pd_vopb {
+-						reg = <RK3399_PD_VOPB>;
+-					};
+-
+-					pd_vopl {
+-						reg = <RK3399_PD_VOPL>;
+-					};
+-				};
+-			};
+-		};
+-
+-Node of a device using power domains must have a power-domains property,
+-containing a phandle to the power device node and an index specifying which
+-power domain to use.
+-The index should use macros in:
+-	"include/dt-bindings/power/px30-power.h" - for px30 type power domain.
+-	"include/dt-bindings/power/rk3036-power.h" - for rk3036 type power domain.
+-	"include/dt-bindings/power/rk3128-power.h" - for rk3128 type power domain.
+-	"include/dt-bindings/power/rk3128-power.h" - for rk3228 type power domain.
+-	"include/dt-bindings/power/rk3288-power.h" - for rk3288 type power domain.
+-	"include/dt-bindings/power/rk3328-power.h" - for rk3328 type power domain.
+-	"include/dt-bindings/power/rk3366-power.h" - for rk3366 type power domain.
+-	"include/dt-bindings/power/rk3368-power.h" - for rk3368 type power domain.
+-	"include/dt-bindings/power/rk3399-power.h" - for rk3399 type power domain.
+-
+-Example of the node using power domain:
+-
+-	node {
+-		/* ... */
+-		power-domains = <&power RK3288_PD_GPU>;
+-		/* ... */
+-	};
+-
+-	node {
+-                /* ... */
+-                power-domains = <&power RK3368_PD_GPU_1>;
+-                /* ... */
+-        };
+-
+-	node {
+-		/* ... */
+-		power-domains = <&power RK3399_PD_VOPB>;
+-		/* ... */
+-	};
 -- 
-2.28.0
+2.30.0
 
