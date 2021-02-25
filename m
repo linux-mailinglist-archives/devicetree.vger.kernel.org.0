@@ -2,134 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61F03325080
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 14:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22AA53250FD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 14:56:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233022AbhBYN33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 08:29:29 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:55864 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232791AbhBYN2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 08:28:42 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11PDRhXb060162;
-        Thu, 25 Feb 2021 07:27:43 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614259663;
-        bh=j6AteTgY898qRIiG4SBZmF5gu/hSrzpgAiVHsPughwM=;
-        h=From:To:CC:Subject:Date;
-        b=rBAaT1tR/b9RQqGxDSnE6Pg26hnscdnZZ+jDjnMr6uxeAyRJaDdGrHS/Si2pHoT24
-         3hcxTrcSapxDsV0uZ9Qs/fQhSObNOjsSLLOfoh9snhXRSwYdQbJ/lhjEB87U5Bhz3K
-         hdo3JqCna1wXbbMcuHzn1hnOkCtSN/rFiRk8n2So=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11PDRhNm090646
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 25 Feb 2021 07:27:43 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 25
- Feb 2021 07:27:43 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 25 Feb 2021 07:27:43 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11PDRcYD118288;
-        Thu, 25 Feb 2021 07:27:38 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems
-Date:   Thu, 25 Feb 2021 18:57:36 +0530
-Message-ID: <20210225132736.26429-1-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+        id S230386AbhBYNyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 08:54:43 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41110 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229961AbhBYNym (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Feb 2021 08:54:42 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3AD2D64F03;
+        Thu, 25 Feb 2021 13:54:00 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lFH5Z-00FrtX-Ro; Thu, 25 Feb 2021 13:53:58 +0000
+Date:   Thu, 25 Feb 2021 13:53:56 +0000
+Message-ID: <87zgzsz217.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Will Deacon <will@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Max Uvarov <muvarov@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Tyler Hicks <tyhicks@linux.microsoft.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        kernel-team@android.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: cpufeatures: Fix handling of CONFIG_CMDLINE for idreg overrides
+In-Reply-To: <20210225125921.13147-2-will@kernel.org>
+References: <20210225125921.13147-1-will@kernel.org>
+        <20210225125921.13147-2-will@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: will@kernel.org, linux-kernel@vger.kernel.org, muvarov@gmail.com, robh@kernel.org, ardb@kernel.org, dianders@chromium.org, tyhicks@linux.microsoft.com, frowand.list@gmail.com, arnd@arndb.de, palmer@dabbelt.com, gregkh@linuxfoundation.org, catalin.marinas@arm.com, kernel-team@android.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to latest errata of J721e [1], HS400 mode is not supported
-in MMCSD0 subsystem (i2024) and SDR104 mode is not supported in MMCSD1/2
-subsystems (i2090). Therefore, replace mmc-hs400-1_8v with mmc-hs200-1_8v
-in MMCSD0 subsystem and add a sdhci mask to disable SDR104 speed mode.
+On Thu, 25 Feb 2021 12:59:20 +0000,
+Will Deacon <will@kernel.org> wrote:
+> 
+> The built-in kernel commandline (CONFIG_CMDLINE) can be configured in
+> three different ways:
+> 
+>   1. CMDLINE_FORCE: Use CONFIG_CMDLINE instead of any bootloader args
+>   2. CMDLINE_EXTEND: Append the bootloader args to CONFIG_CMDLINE
+>   3. CMDLINE_FROM_BOOTLOADER: Only use CONFIG_CMDLINE if there aren't
+>      any bootloader args.
+> 
+> The early cmdline parsing to detect idreg overrides gets (2) and (3)
+> slightly wrong: in the case of (2) the bootloader args are parsed first
+> and in the case of (3) the CMDLINE is always parsed.
+> 
+> Fix these issues by moving the bootargs parsing out into a helper
+> function and following the same logic as that used by the EFI stub.
+> 
+> Cc: Marc Zyngier <maz@kernel.org>
+> Fixes: 33200303553d ("arm64: cpufeature: Add an early command-line cpufeature override facility")
+> Signed-off-by: Will Deacon <will@kernel.org>
+> ---
+>  arch/arm64/kernel/idreg-override.c | 44 +++++++++++++++++-------------
+>  1 file changed, 25 insertions(+), 19 deletions(-)
+> 
+> diff --git a/arch/arm64/kernel/idreg-override.c b/arch/arm64/kernel/idreg-override.c
+> index dffb16682330..cc071712c6f9 100644
+> --- a/arch/arm64/kernel/idreg-override.c
+> +++ b/arch/arm64/kernel/idreg-override.c
+> @@ -163,33 +163,39 @@ static __init void __parse_cmdline(const char *cmdline, bool parse_aliases)
+>  	} while (1);
+>  }
+>  
+> -static __init void parse_cmdline(void)
+> +static __init const u8 *get_bootargs_cmdline(void)
+>  {
+> -	if (!IS_ENABLED(CONFIG_CMDLINE_FORCE)) {
+> -		const u8 *prop;
+> -		void *fdt;
+> -		int node;
+> +	const u8 *prop;
+> +	void *fdt;
+> +	int node;
+>  
+> -		fdt = get_early_fdt_ptr();
+> -		if (!fdt)
+> -			goto out;
+> +	fdt = get_early_fdt_ptr();
+> +	if (!fdt)
+> +		return NULL;
+>  
+> -		node = fdt_path_offset(fdt, "/chosen");
+> -		if (node < 0)
+> -			goto out;
+> +	node = fdt_path_offset(fdt, "/chosen");
+> +	if (node < 0)
+> +		return NULL;
+>  
+> -		prop = fdt_getprop(fdt, node, "bootargs", NULL);
+> -		if (!prop)
+> -			goto out;
+> +	prop = fdt_getprop(fdt, node, "bootargs", NULL);
+> +	if (!prop)
+> +		return NULL;
+>  
+> -		__parse_cmdline(prop, true);
+> +	return strlen(prop) ? prop : NULL;
+> +}
+>  
+> -		if (!IS_ENABLED(CONFIG_CMDLINE_EXTEND))
+> -			return;
+> +static __init void parse_cmdline(void)
+> +{
+> +	const u8 *prop = get_bootargs_cmdline();
+> +
+> +	if (IS_ENABLED(CONFIG_CMDLINE_EXTEND) ||
+> +	    IS_ENABLED(CONFIG_CMDLINE_FORCE) ||
+> +	    !prop) {
 
-Also, update the itap delay values for all the MMCSD subsystems according
-the latest J721e data sheet[2]
+The logic hurts, but I think I grok it now. The last term is actually
+a reduction of
 
-[1] - https://www.ti.com/lit/er/sprz455/sprz455.pdf
-[2] - https://www.ti.com/lit/ds/symlink/tda4vm.pdf
+	(IS_ENABLED(CONFIG_CMDLINE_FROM_BOOTLOADER) && !prop)
 
-Fixes: e6dc10f200da ("arm64: dts: ti: j721e-main: Add SDHCI nodes")
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+and we know for sure that if none of the other two terms are true,
+then CMDLINE_FROM_BOOTLOADER *must* be enabled.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 8c84dafb7125..f1e7da3dfa27 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -1042,13 +1042,16 @@
- 		assigned-clocks = <&k3_clks 91 1>;
- 		assigned-clock-parents = <&k3_clks 91 2>;
- 		bus-width = <8>;
--		mmc-hs400-1_8v;
-+		mmc-hs200-1_8v;
- 		mmc-ddr-1_8v;
- 		ti,otap-del-sel-legacy = <0xf>;
- 		ti,otap-del-sel-mmc-hs = <0xf>;
- 		ti,otap-del-sel-ddr52 = <0x5>;
- 		ti,otap-del-sel-hs200 = <0x6>;
- 		ti,otap-del-sel-hs400 = <0x0>;
-+		ti,itap-del-sel-legacy = <0x10>;
-+		ti,itap-del-sel-mmc-hs = <0xa>;
-+		ti,itap-del-sel-ddr52 = <0x3>;
- 		ti,trm-icp = <0x8>;
- 		ti,strobe-sel = <0x77>;
- 		dma-coherent;
-@@ -1069,9 +1072,15 @@
- 		ti,otap-del-sel-sdr25 = <0xf>;
- 		ti,otap-del-sel-sdr50 = <0xc>;
- 		ti,otap-del-sel-ddr50 = <0xc>;
-+		ti,itap-del-sel-legacy = <0x0>;
-+		ti,itap-del-sel-sd-hs = <0x0>;
-+		ti,itap-del-sel-sdr12 = <0x0>;
-+		ti,itap-del-sel-sdr25 = <0x0>;
-+		ti,itap-del-sel-ddr50 = <0x2>;
- 		ti,trm-icp = <0x8>;
- 		ti,clkbuf-sel = <0x7>;
- 		dma-coherent;
-+		sdhci-caps-mask = <0x2 0x0>;
- 	};
- 
- 	main_sdhci2: mmc@4f98000 {
-@@ -1089,9 +1098,15 @@
- 		ti,otap-del-sel-sdr25 = <0xf>;
- 		ti,otap-del-sel-sdr50 = <0xc>;
- 		ti,otap-del-sel-ddr50 = <0xc>;
-+		ti,itap-del-sel-legacy = <0x0>;
-+		ti,itap-del-sel-sd-hs = <0x0>;
-+		ti,itap-del-sel-sdr12 = <0x0>;
-+		ti,itap-del-sel-sdr25 = <0x0>;
-+		ti,itap-del-sel-ddr50 = <0x2>;
- 		ti,trm-icp = <0x8>;
- 		ti,clkbuf-sel = <0x7>;
- 		dma-coherent;
-+		sdhci-caps-mask = <0x2 0x0>;
- 	};
- 
- 	usbss0: cdns-usb@4104000 {
+> +		__parse_cmdline(CONFIG_CMDLINE, true);
+>  	}
+>  
+> -out:
+> -	__parse_cmdline(CONFIG_CMDLINE, true);
+> +	if (!IS_ENABLED(CONFIG_CMDLINE_FORCE) && prop)
+> +		__parse_cmdline(prop, true);
+>  }
+>  
+>  /* Keep checkers quiet */
+
+I don't think we need to backport anything to stable for the nokaslr
+handling, do we?
+
+Otherwise,
+
+Reviewed-by: Marc Zyngier <maz@kernel.org>
+
+Thanks,
+
+	M.
+
 -- 
-2.17.1
-
+Without deviation from the norm, progress is not possible.
