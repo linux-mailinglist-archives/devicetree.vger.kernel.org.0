@@ -2,107 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 865F93256F0
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 20:44:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D0BC3256DB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 20:40:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234478AbhBYTno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 14:43:44 -0500
-Received: from foss.arm.com ([217.140.110.172]:48416 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234913AbhBYTlz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Feb 2021 14:41:55 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 926B11515;
-        Thu, 25 Feb 2021 11:36:25 -0800 (PST)
-Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 5C3B73F70D;
-        Thu, 25 Feb 2021 11:36:24 -0800 (PST)
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, mathieu.poirier@linaro.org,
-        mike.leach@linaro.org, anshuman.khandual@arm.com,
-        leo.yan@linaro.org, Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v4 19/19] dts: bindings: Document device tree bindings for Arm TRBE
-Date:   Thu, 25 Feb 2021 19:35:43 +0000
-Message-Id: <20210225193543.2920532-20-suzuki.poulose@arm.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20210225193543.2920532-1-suzuki.poulose@arm.com>
-References: <20210225193543.2920532-1-suzuki.poulose@arm.com>
+        id S232081AbhBYTkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 14:40:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35178 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233960AbhBYTiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 14:38:14 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35BE8C06178C
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 11:37:34 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id 201so4302063pfw.5
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 11:37:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=XOHcNIofRwvSB3gcnVVgijvZlcqRnOPyM4E4Yd9sOi4=;
+        b=bUGZ0X9gMDBqrvmAPT5fq9Kg9MLC8Hdvczlyir5R17UeuE1mhNrd9p+/X9S+hBsOVv
+         dl/tx/gOTlrN3iMRk7pQORAPFmhWlogYkfg30/4TMaevZayVpQiiCg7EVNppdnlUHfdr
+         3O3Jtg0hkI0OlamZ1RCsVbo2QmW8SN5RvyFdM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=XOHcNIofRwvSB3gcnVVgijvZlcqRnOPyM4E4Yd9sOi4=;
+        b=eZij7p5co/ZgEGAmettLfHmGabal8IEtWJN70IBwFcjNG7kZdDE5ncT4EJqi3s5p1h
+         1x4T6b482drbozJdpYg5VxnNHVZVDWKsBaN47Hq+F5pOvZvNXYf0JFc1Mk+HyoVRRJPu
+         i2G9lJaVfKJckuT16JH8ty1pT8YUY2prKKXvsxMpTjpL3VtPE2/ObB32pq2+1spOddnW
+         ULRvXtFpTv7a5YgfX+rH1FwlehVfByJaKPrp8g2IJ2Qs2zYkMosBtHxP7g2tonQSltNC
+         5j44X/lTxNTL+ygxCnGMxqVhCceCUj/73sLCrgOG25y7VfRxa/7I+AVwzbf8BvC7W+Wr
+         GcFQ==
+X-Gm-Message-State: AOAM533nB5TJTLq3I8itl5mKpTpbUUFfj+N81P+nwRLnYz4Z+qy4sPuf
+        dVCNXxa5AZMmzz/osUqZOJlbqvL97LwTvg==
+X-Google-Smtp-Source: ABdhPJwEbjhrK46+Vn8tAPouIhP77JPq9NOLpq6Nrj1LQCzfQz04Bu6+O8IxCxPLN1pbhCbhamtj6A==
+X-Received: by 2002:a63:1723:: with SMTP id x35mr4441170pgl.393.1614281853418;
+        Thu, 25 Feb 2021 11:37:33 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:b942:93a8:e68d:5a90])
+        by smtp.gmail.com with ESMTPSA id gg11sm6899868pjb.17.2021.02.25.11.37.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Feb 2021 11:37:32 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <c4b7ae4dd009f563e6786f4a41f09efa38636fb6.1614244789.git.saiprakash.ranjan@codeaurora.org>
+References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org> <c4b7ae4dd009f563e6786f4a41f09efa38636fb6.1614244789.git.saiprakash.ranjan@codeaurora.org>
+Subject: Re: [PATCH 3/9] arm64: dts: qcom: sc7280: Add device tree node for LLCC
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Date:   Thu, 25 Feb 2021 11:37:31 -0800
+Message-ID: <161428185152.1254594.1426736986245389798@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the device tree bindings for Trace Buffer Extension (TRBE).
+Quoting Sai Prakash Ranjan (2021-02-25 01:30:19)
+> Add a DT node for Last level cache (aka. system cache)
+> controller which provides control over the last level
+> cache present on SC7280 SoC.
+>=20
+> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> ---
 
-Cc: Anshuman Khandual <anshuman.khandual@arm.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
----
- .../devicetree/bindings/arm/trbe.yaml         | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/trbe.yaml
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-diff --git a/Documentation/devicetree/bindings/arm/trbe.yaml b/Documentation/devicetree/bindings/arm/trbe.yaml
-new file mode 100644
-index 000000000000..4402d7bfd1fc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/trbe.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# Copyright 2021, Arm Ltd
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/arm/trbe.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: ARM Trace Buffer Extensions
-+
-+maintainers:
-+  - Anshuman Khandual <anshuman.khandual@arm.com>
-+
-+description: |
-+  Arm Trace Buffer Extension (TRBE) is a per CPU component
-+  for storing trace generated on the CPU to memory. It is
-+  accessed via CPU system registers. The software can verify
-+  if it is permitted to use the component by checking the
-+  TRBIDR register.
-+
-+properties:
-+  $nodename:
-+    const: "trbe"
-+  compatible:
-+    items:
-+      - const: arm,trace-buffer-extension
-+
-+  interrupts:
-+    description: |
-+       Exactly 1 PPI must be listed. For heterogeneous systems where
-+       TRBE is only supported on a subset of the CPUs, please consult
-+       the arm,gic-v3 binding for details on describing a PPI partition.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+
-+  - |
-+   #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+   trbe {
-+     compatible = "arm,trace-buffer-extension";
-+     interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+   };
-+...
--- 
-2.24.1
-
+Should add system-cache-controller to the devicetree spec. Or just use
+cache-controller for the node name.
