@@ -2,131 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E800325374
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 17:27:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A43133253B8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 17:43:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233162AbhBYQ1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 11:27:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50604 "EHLO
+        id S232471AbhBYQnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 11:43:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232608AbhBYQ13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 11:27:29 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC949C061574;
-        Thu, 25 Feb 2021 08:26:48 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id l64so6600732oig.9;
-        Thu, 25 Feb 2021 08:26:48 -0800 (PST)
+        with ESMTP id S232203AbhBYQnC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 11:43:02 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17A0FC061574;
+        Thu, 25 Feb 2021 08:42:21 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id v1so5896373wrd.6;
+        Thu, 25 Feb 2021 08:42:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=c8+E3tKaHv1Iv53/dVuKP3IEuN3f05dgVCivKk8lejs=;
-        b=Ld7CmKY4g+LqZwjMLPC7wKVNJONL7SRRph4vaveM7ySisL+OKqrBMdG68Yzto++BJ0
-         wHct57jbHrgqf9LAnsS0Vwssu2eC2Vc/9HQRTt9I9HG8JlOlL8KWahMXGXEyRAhJwL9/
-         C3MdGp/YYttr/45wiDIuwtASeYuMkRoklERDQQhf+UAVTUC3jLagWccLuuEX8fHISyh4
-         5D1GsUBJzt1Oo0HC5JZN2syR+8Q9Ai2NyYjl9Ir1vrLWeyAqzEmt0V5yZO9LOXmlRU4G
-         UsjnARgzDfD5i/EhGp9amqmpg6rgikCuhSDATB+7HpSx4XAYwUi1DqpI66kIbkFRa16I
-         NoGg==
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Npwl672MiRQEKruxh4+PrenCbJvpjjs2CJMv5XpKxrg=;
+        b=pYDcqiUvzVyuuuMXd91U8RlkK/dNvkqB4Ob6OT53RGQ+hpu320NTN9K6sKWPHoKDhg
+         0lmjoEHsENDDkg8W14LboPkSQ7yevOhQCRITP+7Isu4yerB2JPXoVUXYa1WFJlgG0iY5
+         3U2j7Qa40PsQUpmm7fyQvk+ls51cvddMDwKXU1n8pYBKYFSmBxprKjpryzzpRukajn9H
+         USFD2bqriACfvHAJpwxqam0GVVuzoGS5uEqt+1DeeX3hajE5tRtNOFKJoD1bxo2syNoA
+         mLTA3Jce2zRSplZFnnFvp1mmpBCwUGVKQ4YaogMf5eTqNHGudmq4BVczSojsKGIvQ6my
+         Wc6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=c8+E3tKaHv1Iv53/dVuKP3IEuN3f05dgVCivKk8lejs=;
-        b=GLNtfD8I8v0g9wfpqEdP45IDeDE4IGODdVshdob3njhxkkHYSvYP44YvV7kaUT8vRt
-         xT8Yx0/3YEHwEdlnHL7rAooUr9xS2KecnWOn+Yu9ukqJsV1MOZTEir3BFmJiEBLcM2Lw
-         cl+12OB89GsAEWSzKrSaPD5uEDkghHAZo2eRGu8lSSYUTkHEfP7q2w1INBgbDRo2kSOa
-         pwjMtQc2V6lr/e9f/0RS0vbt1Y4OnBuO4I79KkUrb17TPHiXwHIlw3pkS8ugWZezLiL8
-         Y6KOIzNbwbo+stSRO37TFOtLz4IBsHnAh9Zd9aVxSUvLuMfwcuDHqyMzCeeVVnrIiOJR
-         AxeQ==
-X-Gm-Message-State: AOAM533TVaGCz4q/FukbMrnM9GXLWdqtGgYnVQYC0LDoNi4p103BCdbS
-        rpwEWV/qFsKAZcgJWLZ1b6+grl/NETgrH3wYqrM=
-X-Google-Smtp-Source: ABdhPJyybdAtq8H+CRG2egH1fCHK6WDlPZP8BO+1ULhZK5N6M93VYf5idc5ZE+VeG4G2rB1ittD60d81irmaVwM5Qi8=
-X-Received: by 2002:aca:4454:: with SMTP id r81mr2385686oia.129.1614270408226;
- Thu, 25 Feb 2021 08:26:48 -0800 (PST)
-MIME-Version: 1.0
-References: <20210201110447.383473-1-hsinyi@chromium.org>
-In-Reply-To: <20210201110447.383473-1-hsinyi@chromium.org>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Thu, 25 Feb 2021 17:26:36 +0100
-Message-ID: <CAFqH_50_SKgwgtV+8UX+4v=S9mY9tf0HCQaCKgGCQzWuBfQ7ug@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: Add gce client reg for display subcomponents
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Npwl672MiRQEKruxh4+PrenCbJvpjjs2CJMv5XpKxrg=;
+        b=qJoZXHxvzLRd58lk+KD/W2+TUTWpqmCjHoJqmYb3tyZ3GeurgygnS+EirwXZBmnEwh
+         4S4XsFlfHgp32bqxFTzPtYYxPAosQfWOs08YDt8aBLTrVC8lUXQYklYUx/26xbq4bAgk
+         MXH/WyR6cmmgxOTFp6YFYS7gqtHNV9P79XqY++T0sOXcxIk9GC1U5vbhE469ErX9b9a0
+         1LbP/Igc0ayxqX5hIJFQ0slSv9Z3i1doDq6mC8hjpnVpbiDHEtTU0ApHio74GnnXs9Nn
+         pmOVyD023gQQtIemq4m8oTKJ2n4l2eK/O6A+KJzQcv1gYO/1NQsIuHJd2rJoPuDvfNo7
+         XmYw==
+X-Gm-Message-State: AOAM531caDZSoe8teQQ+MN5EVE0+gjOjWHBykqe2eF6sQtahlwR68j3P
+        ikD34BCcBX48/owjuuStWsFqc4VukDm4Rw==
+X-Google-Smtp-Source: ABdhPJz0SBmMrSqawvmqhQZtg8Y287mT7VHL1G19RRIcnBE2g8teIXZFuvfxdvrCwoKFddOCrEfD+w==
+X-Received: by 2002:a5d:52c2:: with SMTP id r2mr4541406wrv.40.1614271339832;
+        Thu, 25 Feb 2021 08:42:19 -0800 (PST)
+Received: from skynet.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
+        by smtp.gmail.com with ESMTPSA id u4sm372779wrm.24.2021.02.25.08.42.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Feb 2021 08:42:19 -0800 (PST)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     f.fainelli@gmail.com, Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>, Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 00/12] pinctrl: add BCM63XX pincontrol support
+Date:   Thu, 25 Feb 2021 17:42:04 +0100
+Message-Id: <20210225164216.21124-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hsin-Yi,
+First of all, I've based this on the patches sent by Jonas Gorski back in
+2016:
+https://www.spinics.net/lists/linux-gpio/msg15983.html
+http://patchwork.ozlabs.org/project/linux-gpio/patch/1471604025-21575-2-git-send-email-jonas.gorski@gmail.com/
 
-Thank you for the patch.
+I've tried to address all coments from Linus Walleij, but I know that
+this may still need some other modifications
 
-Missatge de Hsin-Yi Wang <hsinyi@chromium.org> del dia dl., 1 de febr.
-2021 a les 12:05:
->
-> Add mediatek,gce-client-reg for ccorr, aal, gamma, dither.
->
-> Fixes: 91f9c963ce79 ("arm64: dts: mt8183: Add display nodes for MT8183")
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+This patchset adds appropriate binding documentation and drivers for
+pin controller cores found in the BCM63XX MIPS SoCs currently supported.
 
-FWIW this removes some errors from the boot log like this:
+While the GPIO part is always the same, the pinmux part varies quite a
+lot between different SoCs. Sometimes they have defined groups which
+can be muxed into different functions, sometimes each function has a
+different group. Sometimes you can mux individual pins. Often it is a
+combination of single pins and groups.
 
- platform 14010000.aal: error -2 can't parse gce-client-reg property (0)
+Some core versions require the GPIO direction to be set according to the
+function, most do not. Sometimes the mux register(s) contain bits for
+unrelated other functions.
 
-Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Álvaro Fernández Rojas (12):
+  Documentation: add BCM6328 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6328
+  Documentation: add BCM6358 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6358
+  Documentation: add BCM6362 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6362
+  Documentation: add BCM6368 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6368
+  Documentation: add BCM63268 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM63268
+  Documentation: add BCM6318 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6318
 
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index b3b8afec5ab9a..0ed37dd9d80b4 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -1058,6 +1058,7 @@ ccorr0: ccorr@1400f000 {
->                         interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_LOW>;
->                         power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
->                         clocks = <&mmsys CLK_MM_DISP_CCORR0>;
-> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
->                 };
->
->                 aal0: aal@14010000 {
-> @@ -1067,6 +1068,7 @@ aal0: aal@14010000 {
->                         interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_LOW>;
->                         power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
->                         clocks = <&mmsys CLK_MM_DISP_AAL0>;
-> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0 0x1000>;
->                 };
->
->                 gamma0: gamma@14011000 {
-> @@ -1075,6 +1077,7 @@ gamma0: gamma@14011000 {
->                         interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_LOW>;
->                         power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
->                         clocks = <&mmsys CLK_MM_DISP_GAMMA0>;
-> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
->                 };
->
->                 dither0: dither@14012000 {
-> @@ -1083,6 +1086,7 @@ dither0: dither@14012000 {
->                         interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_LOW>;
->                         power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
->                         clocks = <&mmsys CLK_MM_DISP_DITHER0>;
-> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x2000 0x1000>;
->                 };
->
->                 dsi0: dsi@14014000 {
-> --
-> 2.30.0.365.g02bc693789-goog
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+ .../pinctrl/brcm,bcm6318-pinctrl.yaml         | 173 ++++
+ .../pinctrl/brcm,bcm63268-pinctrl.yaml        | 198 +++++
+ .../pinctrl/brcm,bcm6328-pinctrl.yaml         | 161 ++++
+ .../pinctrl/brcm,bcm6358-pinctrl.yaml         | 131 +++
+ .../pinctrl/brcm,bcm6362-pinctrl.yaml         | 240 +++++
+ .../pinctrl/brcm,bcm6368-pinctrl.yaml         | 255 ++++++
+ drivers/pinctrl/bcm/Kconfig                   |  66 ++
+ drivers/pinctrl/bcm/Makefile                  |   6 +
+ drivers/pinctrl/bcm/pinctrl-bcm6318.c         | 674 ++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm63268.c        | 821 ++++++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6328.c         | 581 +++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6358.c         | 526 +++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6362.c         | 794 +++++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6368.c         | 679 +++++++++++++++
+ 14 files changed, 5305 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6318-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm63268-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6358-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6362-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6368-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6318.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm63268.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6328.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6358.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6362.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6368.c
+
+-- 
+2.20.1
+
