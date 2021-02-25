@@ -2,89 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DE5E324B89
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 08:53:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C60D2324BEC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 09:22:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235212AbhBYHwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 02:52:14 -0500
-Received: from mail-oo1-f54.google.com ([209.85.161.54]:44769 "EHLO
-        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235048AbhBYHwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 02:52:13 -0500
-Received: by mail-oo1-f54.google.com with SMTP id n19so1150373ooj.11;
-        Wed, 24 Feb 2021 23:51:58 -0800 (PST)
+        id S235680AbhBYIUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 03:20:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59154 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235669AbhBYIUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 03:20:54 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3671CC06174A
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 00:20:14 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id 2so926834ljr.5
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 00:20:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bVgkKmDOJctQH3otujX9JB1Xjbr7KeI7AJ4JMl2s8BA=;
+        b=UbNqlH2ttpldU2K3meSC3qRC5XfmqKcBXZhY0fW4Advycnss385laNwFBHb04qql5y
+         h8pR9SAMENNAAYYe0DD+d2Y50RaGbdv3VJjtTvrQp8SosqtH+AispUy6Xe7Nx6XPL9q1
+         S5XdDPQpK3gNxvJ44O6/754mB9z80qyGGaL/Owx1WR4fbKnkakf7ZrpYCh4O5ueEVTnW
+         uds1e/+j9Ih1+lM/wEJ9l7rfkCoe9EXw5syrBszoQO1aGSI5bGHPSmRMR6FmK52knx3T
+         Hpr8fHyfjIrmhfCBoZBinR6WMoNobqXVuFZqZCUT1ZKRKLrwAOFgPBi9MBZgN+oK4xRu
+         rnFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RNLIw+6yPNbCnrIrprnlWvk8nVCDAaT6F2Etp6AuKbo=;
-        b=tArbcnqG5WgFqsBXJblN+fM4qryy+7a5UH4M8NV9hllSdlZsaPtedmoTNDETpoOQDL
-         IrA9YNpc0k46BDQsGrxeJjbQLz5ifefOxJfm5m30y9M883SpyiYU0HQWassZ2ec0Za8c
-         /uJcibv8bsAkiCwtfw3CksWYwMUwGQ4o1L+GiZmDr4icztxIpNC39vZD9F1VLN/SyLkX
-         c5zkXfnWabcRHCwAynwPgG0vAHRZ30jKMiVjdt4a5DR+M9HA2lrwDuhVha4fDgnSnnf2
-         UcI3iwmFwsZS1ow0z+iW3YHc4S2/eBYpecIHz77poRTxJQBEgm5PG9WhZVGOszp7AzgA
-         hbkg==
-X-Gm-Message-State: AOAM533ZUg5W7xlahlLKsbCQOOTFUSXH1f9dUyjTTkeCZ79jn1316jLR
-        FQKD3sdGLvjmXkrSnrghcl9CiY3qQFaGHx1S0DI=
-X-Google-Smtp-Source: ABdhPJxhxQAEQR74fgvjCGW0q2q027/ixLOgKLwLKhZ3kkBzj8Rfq2dKWsBCVNAaiZsGgWbDQShUHxCurmowJTxRh8I=
-X-Received: by 2002:a4a:bb14:: with SMTP id f20mr1372910oop.1.1614239492696;
- Wed, 24 Feb 2021 23:51:32 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bVgkKmDOJctQH3otujX9JB1Xjbr7KeI7AJ4JMl2s8BA=;
+        b=hCe4Q2C41B3xdXB/8VQJf2C53SWQKTSyZGCZsoGhun49yPcTphDJuRyZBavnGGY5f/
+         rKFfFQ1cH5+BtFfL0yv7q3HkJ22e0aT1TWq8mneEP3V6m3Q0+NXCenw2cOLzXodWl0nz
+         MJilITn5ufZc8/X4X++LLMhpY7ABXbauM8Hw91KY5nZ0Vi7phUYCXMgoPYjS3rhGEaOv
+         NIbDI+UpU6YOZSN1YzQJpsNFkLQp0jcjPyq5KaOSnvi/+311W3fUBIwwNdWGQ9hGtRSh
+         qHwWT+MKwHeNxPlfoGYrK0Bbk9TrakLqGJ48ZiFT+ff6XcwPN0y6C1gOXdCmXZN8VlM0
+         WmRg==
+X-Gm-Message-State: AOAM5304wEM+9Z6gCu7N9mBPx2saC9y3hzCJrWz7TtVG8hZSvxg0bBMt
+        fuwGXZDUFzz8nbK/RIgV01wpo/Ozgydxpw==
+X-Google-Smtp-Source: ABdhPJwoLzma4ewTbqHGpBbZo15gbt9BhPpM21jSVDHCQ0aKfDx3LMwly+V/SRm1/iK3EC8CV2h/Ng==
+X-Received: by 2002:a2e:9158:: with SMTP id q24mr604668ljg.389.1614241212760;
+        Thu, 25 Feb 2021 00:20:12 -0800 (PST)
+Received: from localhost.localdomain ([2a02:a31a:4240:8000:564f:461f:3bb7:c60a])
+        by smtp.gmail.com with ESMTPSA id r8sm1017006lfc.207.2021.02.25.00.20.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Feb 2021 00:20:12 -0800 (PST)
+From:   Maciej Matuszczyk <maccraft123mc@gmail.com>
+To:     robh+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Cc:     Maciej Matuszczyk <maccraft123mc@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Add gpu opp nodes to px30 dtsi
+Date:   Thu, 25 Feb 2021 08:19:44 +0000
+Message-Id: <20210225081943.127714-1-maccraft123mc@gmail.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-References: <20210224115146.9131-1-aford173@gmail.com> <20210224115146.9131-2-aford173@gmail.com>
- <YDZYgEm+wBFFJgXW@lunn.ch>
-In-Reply-To: <YDZYgEm+wBFFJgXW@lunn.ch>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 25 Feb 2021 08:51:21 +0100
-Message-ID: <CAMuHMdWO8hA8td+636TLu7kD4zajDuW5ArWnaYZ-C_sfupF0XA@mail.gmail.com>
-Subject: Re: [PATCH V3 2/5] ARM: dts: renesas: Add fck to etheravb-rcar-gen2
- clock-names list
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Adam Ford <aford173@gmail.com>, netdev <netdev@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Signed-off-by: Maciej Matuszczyk <maccraft123mc@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/px30.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-On Wed, Feb 24, 2021 at 2:45 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> On Wed, Feb 24, 2021 at 05:51:42AM -0600, Adam Ford wrote:
-> > The bindings have been updated to support two clocks, but the
-> > original clock now requires the name fck.  Add a clock-names
-> > list in the device tree with fck in it.
->
-> I think requires is too strong. As far as i can see, you don't
-> introduce a change using the name 'fck'. So the name is optional,
-> which is good, because otherwise you would break backwards
-> compatibility with DT blobs.
->
-> Is the plan to merge this whole patchset via netdev? If so, you need
-> to repost anyway, once netdev reopens. So maybe you can change the
-> wording?
-
-The DTS patches should go in through the renesas and soc trees.
-I can apply them as soon as the DT binding patch has been accepted.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
+index c45b0cfcae09..235338927a10 100644
+--- a/arch/arm64/boot/dts/rockchip/px30.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
+@@ -984,6 +984,27 @@ nfc: nand-controller@ff3b0000 {
+ 		status = "disabled";
+ 	};
+ 
++	gpu_opp_table: opp-table2 {
++		compatible = "operating-points-v2";
++
++		opp-200000000 {
++			opp-hz = /bits/ 64 <200000000>;
++			opp-microvolt = <950000>;
++		};
++		opp-300000000 {
++			opp-hz = /bits/ 64 <300000000>;
++			opp-microvolt = <975000>;
++		};
++		opp-400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <1050000>;
++		};
++		opp-480000000 {
++			opp-hz = /bits/ 64 <480000000>;
++			opp-microvolt = <1125000>;
++		};
++	};
++
+ 	gpu: gpu@ff400000 {
+ 		compatible = "rockchip,px30-mali", "arm,mali-bifrost";
+ 		reg = <0x0 0xff400000 0x0 0x4000>;
+@@ -994,6 +1015,7 @@ gpu: gpu@ff400000 {
+ 		clocks = <&cru SCLK_GPU>;
+ 		#cooling-cells = <2>;
+ 		power-domains = <&power PX30_PD_GPU>;
++		operating-points-v2 = <&gpu_opp_table>;
+ 		status = "disabled";
+ 	};
+ 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
