@@ -2,113 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5B46325551
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 19:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95B86325599
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 19:36:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232447AbhBYSQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 13:16:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45760 "EHLO
+        id S233852AbhBYSfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 13:35:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232372AbhBYSQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 13:16:29 -0500
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C2FC061756
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 10:15:48 -0800 (PST)
-Received: by mail-qv1-xf2a.google.com with SMTP id dr7so3250784qvb.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 10:15:48 -0800 (PST)
+        with ESMTP id S232372AbhBYSe0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 13:34:26 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4DF8C061788
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 10:33:45 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id q20so4172329pfu.8
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 10:33:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=h3fwbXygeyIRtetl3DiiCp4YUNibdxC6uA+4PbTm8ew=;
-        b=iFa/j1SpISBk8SXub5LbKDZPN1y0LW0+uOxFmZ6XWwz/fGZFn//8rKYRpWk2HOdpw9
-         CUGvDRRDG+IRLZNpCBqP2Lzn4dv3Mgzx+3EvFFodEb9qD8B64OOpQ2taYkxeSueXJ2BE
-         aBHZkEiP6O471okysrdPd1mwM/fmzy2oGdons=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9poB+9UvCsAftg2exikJeHln2VIb8dM063unlt1wkfI=;
+        b=mgZP43UgZp7Mv0362cfeFUR5EQ0biY1rWtCq3oMV4iu1myOvda/j6Zbz8ZgNMcThKU
+         ZWjYx3ZhoRe4osSFp8i2uB5uT4+LfyP/BK58E1HyYvujCwxZUQJ/h7Nor2yjqqmdGuCy
+         VDkBLwXJPEjBluNdHGznEf8f+Mi5PapPxp9GA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=h3fwbXygeyIRtetl3DiiCp4YUNibdxC6uA+4PbTm8ew=;
-        b=A9lPWj5A82uGM4TJogmJ7yNn7D0nurZ8CVH3VWoTO/1CdSl5+WteyppWxTz6Bw/4Y0
-         fw7dVh1tTJRG6dMQy/VZbc5WIIFCP2BkMWAkS3Aa8CpWz4cVJISD2hZXdoo8h1gNbSfO
-         I/otXeb/tAHh4j6YiRZbzxbypKFqMeiunSTNN7zcvMs1XyzRw8hbMcjsE5K/U3SnXob8
-         MCSc5ypxBXxacK7fc6sGKoDglJ7rt1Ss+CHuJxgnPoHPA/t/2CmXQcXzPlOWtkP8p8X9
-         3rqvrBhgLJYcQrc6kPaF6uDOwvuomZ/bhUNyVl0wXg3aa4ac4BKWOppqjKtgci/AX3Ku
-         gN0w==
-X-Gm-Message-State: AOAM531JIyb2hq4eSL6hwJsF7NS8iE9jnPJwc0YmcdfHJLuqOdBfAPM8
-        16ngJhvgObw+FE3STafaTmZiuNMVP8nvnA==
-X-Google-Smtp-Source: ABdhPJxCNqo0fIzuaHiVuYJSlSkz93vNhIiAkpukhAeMWcnuYEliNQDXfkdjK9qSKhk8kHzeu2TSdA==
-X-Received: by 2002:ad4:59c7:: with SMTP id el7mr3808273qvb.16.1614276947532;
-        Thu, 25 Feb 2021 10:15:47 -0800 (PST)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id j20sm4646906qtl.36.2021.02.25.10.15.45
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9poB+9UvCsAftg2exikJeHln2VIb8dM063unlt1wkfI=;
+        b=VvT1hJ6Bh7LLytGey/MA5dTbWO63kxaA0Sh2hZDLCn84lH4fV9GK8XoECHtZrYSluO
+         zMLe3T4o7USfekkTSyn/59kD0IoTwYJFkehV+JUU3rkvCpRUSVZzdCD0uHdKXtUKctuI
+         WM08zfoRbJopAFUEJLbQKOiAqnlkRMzatTYOjOEa1x7DSj66ZSQoEO8R03sxMqaYwzE5
+         BtRMiC7th9dDsI5U3JMTjxhntH8DH+BHoPTBdWfTucMTNmKJf0XeGS04hxy+b+7rpcov
+         xKLsWIkvD4zQ1ic/fHLj1oFrdIjfaTBhi4IvGYQ58MZhUfc3zg4OzcIXWnh8aN3IILdQ
+         njTw==
+X-Gm-Message-State: AOAM530LChFSi4PA2VIBQ5VpEp6Inw8EwWP/OIYYUP840rzLANVEcmYW
+        WJz8wDZGG3oaVlaGFQaeYqp6aw==
+X-Google-Smtp-Source: ABdhPJyKnckjWKnAALD0HFPKl0cdT7zoyJqux+UOTjzVjpLDhGZx1TCNA98yXyiYzkPn+k1PgTJYjg==
+X-Received: by 2002:a65:4584:: with SMTP id o4mr4088843pgq.266.1614278025406;
+        Thu, 25 Feb 2021 10:33:45 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:1d8:8d0c:f75e:edd8])
+        by smtp.gmail.com with UTF8SMTPSA id l22sm6567782pjy.6.2021.02.25.10.33.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Feb 2021 10:15:46 -0800 (PST)
-Received: by mail-yb1-f180.google.com with SMTP id n195so6316456ybg.9
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 10:15:45 -0800 (PST)
-X-Received: by 2002:a25:d3c5:: with SMTP id e188mr5897553ybf.345.1614276945234;
- Thu, 25 Feb 2021 10:15:45 -0800 (PST)
-MIME-Version: 1.0
-References: <1603831083-2025-1-git-send-email-sanm@codeaurora.org> <1603831083-2025-5-git-send-email-sanm@codeaurora.org>
-In-Reply-To: <1603831083-2025-5-git-send-email-sanm@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 25 Feb 2021 10:15:33 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VFtWkfP30bPZB9SO5KLX_OLVNw0Fv3efZMHEzRg7PtVQ@mail.gmail.com>
-Message-ID: <CAD=FV=VFtWkfP30bPZB9SO5KLX_OLVNw0Fv3efZMHEzRg7PtVQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/5] arm64: dts: qcom: sc7180: Use pdc interrupts for
- USB instead of GIC interrupts
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        Thu, 25 Feb 2021 10:33:45 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Manu Gautam <mgautam@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v2 1/4] arm64: dts: qcom: sc7180: trogdor: Add label to charger thermal zone
+Date:   Thu, 25 Feb 2021 10:33:34 -0800
+Message-Id: <20210225103330.v2.1.I6a426324db3d98d6cfae8adf2598831bb30bba74@changeid>
+X-Mailer: git-send-email 2.30.0.617.g56c4b15f3c-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Some revisions of trogdor boards use a thermistor for the charger
+temperature which currently isn't supported by the PM6150 ADC
+driver. This results in bogus temperature readings. Add a label
+to the charger thermal zone to facilitate disabling of the thermal
+zone on affected boards.
 
-On Tue, Oct 27, 2020 at 1:38 PM Sandeep Maheswaram <sanm@codeaurora.org> wrote:
->
-> Using pdc interrupts for USB instead of GIC interrupts to
-> support wake up in case of XO shutdown.
->
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index a02776c..a2c56528 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -2687,10 +2687,10 @@
->                                           <&gcc GCC_USB30_PRIM_MASTER_CLK>;
->                         assigned-clock-rates = <19200000>, <150000000>;
->
-> -                       interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> -                                    <GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>,
-> -                                    <GIC_SPI 488 IRQ_TYPE_LEVEL_HIGH>,
-> -                                    <GIC_SPI 489 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupts-extended = <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> +                                             <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
-> +                                             <&pdc 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                                             <&pdc 9 IRQ_TYPE_LEVEL_HIGH>;
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+---
 
-Is there any reason that this patch can't land?  I'm not sure what the
-current status of everything is, but it should be fine to go through
-the PDC anyway, right?
+Changes in v2:
+- only add a label to the thermal zone
+- updated subject and commit message
 
--Doug
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 07c8b2c926c0..bda983da4eaf 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -15,7 +15,7 @@
+ 
+ / {
+ 	thermal-zones {
+-		charger-thermal {
++		charger_thermal: charger-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+ 
+-- 
+2.30.0.617.g56c4b15f3c-goog
+
