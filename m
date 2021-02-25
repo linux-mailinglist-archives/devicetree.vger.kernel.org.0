@@ -2,158 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8210F32504F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 14:23:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61F03325080
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 14:30:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230166AbhBYNUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 08:20:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38682 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232139AbhBYNUf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 08:20:35 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E502CC061786
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 05:19:54 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id o63so3766763pgo.6
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 05:19:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=MYaVOndqYqRzFcMWeHU+nKNr8k71qXO1KVOhfREMeAw=;
-        b=TO16avrGfx98ow4rMCnewYEHt/duYe8C4ZsmuaRCfuXDZU5M8WHcVoA5NHZGN1b9e8
-         h1NrZJUqYRL3L0EEnP5VqUN6CCaPsqGGW4J9wqtMS3dgtWdgmFeK/6JBtzy4MuGur0vh
-         oa6o9Oz4RiYbVF/AQXdSt0f+QOK0tAhkFA7AAuz2sNCxwkFUAxWcGNZI++hTZF2NzQV8
-         o7EmvbCRxJL87Pvobv/6V/xc/JYojRGw4FkxoYLVcTeXBGsCTEwkLpDKkLwK6p3fUYf8
-         ORCM/DfTmjjsR2jjGK2ww7PIXOyo90wrVj1BymRDtDpnIKFO1Yqzju8Zf6MtGDWlPvA8
-         Pp4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=MYaVOndqYqRzFcMWeHU+nKNr8k71qXO1KVOhfREMeAw=;
-        b=YNYSMf0pjg1XteTlUrzL+ca2Z/UfDziGPY3oEXfcCAOxTaK7zdGW0aK3wB29vFkhFx
-         8zxIJqPap4wnGh6Ps+qfOurbrXMo/MWbBBRp3fJ5ZCPRYky2UTOXp/C5XaXoNzJHH7iq
-         B60sIEDwyIzPYidxySbUkPKOaf0nksX9k6m8P4Mr9immivx1Zj/xzyrOJ8wgZlEouGuW
-         RQ/AUyl0VBvnd2rrS6s/XR243k0rxz2+ivzpZRsQM5HJ9MOTwKxk7EsJroV0r+c21DDQ
-         Equ6Pq8DHwjvro52PdK1R8JGBp3/+uZvuC9ifBWryHIUkPN1S00fG58VD9a/RuWwCMj2
-         reVg==
-X-Gm-Message-State: AOAM530MGHQWUAMZGI1HexN6y/BzylGJbw5ATCz7KmaaMvuwLHXfKyRj
-        Xk27k362WUMHwX6Ide324LG/
-X-Google-Smtp-Source: ABdhPJxhkEfI0s3psqqgzhaH4cXP4KgLt6o7iidjFzncNsP8Dp1PclPkXQbuZYx4j/xM1qSlVLce+Q==
-X-Received: by 2002:a62:e708:0:b029:1ed:f93d:e985 with SMTP id s8-20020a62e7080000b02901edf93de985mr3369536pfh.48.1614259194082;
-        Thu, 25 Feb 2021 05:19:54 -0800 (PST)
-Received: from work ([103.66.79.45])
-        by smtp.gmail.com with ESMTPSA id e129sm6561005pfh.87.2021.02.25.05.19.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 25 Feb 2021 05:19:53 -0800 (PST)
-Date:   Thu, 25 Feb 2021 18:49:48 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        boris.brezillon@collabora.com, Daniele.Palmas@telit.com,
-        bjorn.andersson@linaro.org
-Subject: Re: [PATCH v2 3/3] mtd: rawnand: qcom: Add support for secure
- regions in NAND memory
-Message-ID: <20210225131948.GA28614@work>
-References: <20210225041129.58576-1-manivannan.sadhasivam@linaro.org>
- <20210225041129.58576-4-manivannan.sadhasivam@linaro.org>
- <20210225084702.2c753b99@xps13>
+        id S233022AbhBYN33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 08:29:29 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55864 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232791AbhBYN2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 08:28:42 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11PDRhXb060162;
+        Thu, 25 Feb 2021 07:27:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1614259663;
+        bh=j6AteTgY898qRIiG4SBZmF5gu/hSrzpgAiVHsPughwM=;
+        h=From:To:CC:Subject:Date;
+        b=rBAaT1tR/b9RQqGxDSnE6Pg26hnscdnZZ+jDjnMr6uxeAyRJaDdGrHS/Si2pHoT24
+         3hcxTrcSapxDsV0uZ9Qs/fQhSObNOjsSLLOfoh9snhXRSwYdQbJ/lhjEB87U5Bhz3K
+         hdo3JqCna1wXbbMcuHzn1hnOkCtSN/rFiRk8n2So=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11PDRhNm090646
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 25 Feb 2021 07:27:43 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 25
+ Feb 2021 07:27:43 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 25 Feb 2021 07:27:43 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11PDRcYD118288;
+        Thu, 25 Feb 2021 07:27:38 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems
+Date:   Thu, 25 Feb 2021 18:57:36 +0530
+Message-ID: <20210225132736.26429-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210225084702.2c753b99@xps13>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+According to latest errata of J721e [1], HS400 mode is not supported
+in MMCSD0 subsystem (i2024) and SDR104 mode is not supported in MMCSD1/2
+subsystems (i2090). Therefore, replace mmc-hs400-1_8v with mmc-hs200-1_8v
+in MMCSD0 subsystem and add a sdhci mask to disable SDR104 speed mode.
 
-On Thu, Feb 25, 2021 at 08:47:02AM +0100, Miquel Raynal wrote:
-> Hi Manivannan,
-> 
-> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote on Thu,
-> 25 Feb 2021 09:41:29 +0530:
-> 
-> > On a typical end product, a vendor may choose to secure some regions in
-> > the NAND memory which are supposed to stay intact between FW upgrades.
-> > The access to those regions will be blocked by a secure element like
-> > Trustzone. So the normal world software like Linux kernel should not
-> > touch these regions (including reading).
-> > 
-> > The regions are declared using a NAND chip DT property,
-> > "nand-secure-regions". So let's make use of this property and skip
-> > access to the secure regions present in a system.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> 
-> [...]
-> 
-> >  	config_nand_page_write(nandc);
-> > @@ -2830,7 +2865,8 @@ static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
-> >  	struct nand_chip *chip = &host->chip;
-> >  	struct mtd_info *mtd = nand_to_mtd(chip);
-> >  	struct device *dev = nandc->dev;
-> > -	int ret;
-> > +	struct property *prop;
-> > +	int ret, length, nr_elem;
-> >  
-> >  	ret = of_property_read_u32(dn, "reg", &host->cs);
-> >  	if (ret) {
-> > @@ -2886,6 +2922,24 @@ static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
-> >  		}
-> >  	}
-> >  
-> > +	/*
-> > +	 * Look for secure regions in the NAND chip. These regions are supposed
-> > +	 * to be protected by a secure element like Trustzone. So the read/write
-> > +	 * accesses to these regions will be blocked in the runtime by this
-> > +	 * driver.
-> > +	 */
-> > +	prop = of_find_property(dn, "nand-secure-regions", &length);
-> 
-> I'm not sure the nand- prefix on this property is needed here, but
-> whatever.
-> 
+Also, update the itap delay values for all the MMCSD subsystems according
+the latest J721e data sheet[2]
 
-I was not sure either but added it since most of the other properties
-had it. But I can remove it.
+[1] - https://www.ti.com/lit/er/sprz455/sprz455.pdf
+[2] - https://www.ti.com/lit/ds/symlink/tda4vm.pdf
 
-> > +	if (prop) {
-> > +		nr_elem = length / sizeof(u32);
-> > +		host->nr_sec_regions = nr_elem / 2;
-> > +
-> > +		host->sec_regions = devm_kcalloc(dev, nr_elem, sizeof(u32), GFP_KERNEL);
-> > +		if (!host->sec_regions)
-> > +			return -ENOMEM;
-> > +
-> > +		of_property_read_u32_array(dn, "nand-secure-regions", host->sec_regions, nr_elem);
-> > +	}
-> > +
-> 
-> I would move this before nand_scan().
-> 
+Fixes: e6dc10f200da ("arm64: dts: ti: j721e-main: Add SDHCI nodes")
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
-Okay, I'll do it.
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index 8c84dafb7125..f1e7da3dfa27 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -1042,13 +1042,16 @@
+ 		assigned-clocks = <&k3_clks 91 1>;
+ 		assigned-clock-parents = <&k3_clks 91 2>;
+ 		bus-width = <8>;
+-		mmc-hs400-1_8v;
++		mmc-hs200-1_8v;
+ 		mmc-ddr-1_8v;
+ 		ti,otap-del-sel-legacy = <0xf>;
+ 		ti,otap-del-sel-mmc-hs = <0xf>;
+ 		ti,otap-del-sel-ddr52 = <0x5>;
+ 		ti,otap-del-sel-hs200 = <0x6>;
+ 		ti,otap-del-sel-hs400 = <0x0>;
++		ti,itap-del-sel-legacy = <0x10>;
++		ti,itap-del-sel-mmc-hs = <0xa>;
++		ti,itap-del-sel-ddr52 = <0x3>;
+ 		ti,trm-icp = <0x8>;
+ 		ti,strobe-sel = <0x77>;
+ 		dma-coherent;
+@@ -1069,9 +1072,15 @@
+ 		ti,otap-del-sel-sdr25 = <0xf>;
+ 		ti,otap-del-sel-sdr50 = <0xc>;
+ 		ti,otap-del-sel-ddr50 = <0xc>;
++		ti,itap-del-sel-legacy = <0x0>;
++		ti,itap-del-sel-sd-hs = <0x0>;
++		ti,itap-del-sel-sdr12 = <0x0>;
++		ti,itap-del-sel-sdr25 = <0x0>;
++		ti,itap-del-sel-ddr50 = <0x2>;
+ 		ti,trm-icp = <0x8>;
+ 		ti,clkbuf-sel = <0x7>;
+ 		dma-coherent;
++		sdhci-caps-mask = <0x2 0x0>;
+ 	};
+ 
+ 	main_sdhci2: mmc@4f98000 {
+@@ -1089,9 +1098,15 @@
+ 		ti,otap-del-sel-sdr25 = <0xf>;
+ 		ti,otap-del-sel-sdr50 = <0xc>;
+ 		ti,otap-del-sel-ddr50 = <0xc>;
++		ti,itap-del-sel-legacy = <0x0>;
++		ti,itap-del-sel-sd-hs = <0x0>;
++		ti,itap-del-sel-sdr12 = <0x0>;
++		ti,itap-del-sel-sdr25 = <0x0>;
++		ti,itap-del-sel-ddr50 = <0x2>;
+ 		ti,trm-icp = <0x8>;
+ 		ti,clkbuf-sel = <0x7>;
+ 		dma-coherent;
++		sdhci-caps-mask = <0x2 0x0>;
+ 	};
+ 
+ 	usbss0: cdns-usb@4104000 {
+-- 
+2.17.1
 
-Thanks,
-Mani
-
-> If you don't, you should bail out with a nand_cleanup() upon error.
-> 
-> >  	ret = mtd_device_parse_register(mtd, probes, NULL, NULL, 0);
-> >  	if (ret)
-> >  		nand_cleanup(chip);
-> 
-> 
-> Otherwise lgtm.
-> 
-> Thanks,
-> Miquèl
