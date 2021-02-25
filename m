@@ -2,72 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A150324ED8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 12:11:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EF1324EDF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Feb 2021 12:12:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233077AbhBYLLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 06:11:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39220 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232735AbhBYLKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 06:10:49 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7969C061786
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 03:10:06 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id w36so7975393lfu.4
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 03:10:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=KsVwr/SgHimLoekwI/bdVNURN0jFlKqAbUptmf67o5U=;
-        b=T+qkOHu3rv0PtEZuU2y0Q0dtYGNt03jhzNks4s/nDqX4r5pusHWu5T0vyQALvDt3lw
-         JOTdpdrh/udLx/V2gKWixcDpH0+g6pZrFvlzxP0kFY+JACin8njulDHIWFOI63Um8aD1
-         S7D1vZ4SoLhUIsgPvMOpCNJyeO68GMcsS84t7DyIV286ved6lDnFjzf9snYJMD/MfSxb
-         nQ3lKC6yPDYpP/xhJUef3KRlpIGcz9nyV38Xq0qT60tkxhsnIL6tf9Ag6JRgwjrzk6t4
-         gZpiB62aichJM3EiFmdnKuIWYxSkWxXCYMtHmqa0wW0HuCjLMNI2k+X669Y8UBmBvX5Q
-         P6Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=KsVwr/SgHimLoekwI/bdVNURN0jFlKqAbUptmf67o5U=;
-        b=TT2Ne48e2qwuEDSecgl0UuvN2e/H4xuec6FbtjZh5HSEm0KadDjcElZqS9saxmkcph
-         yqtoRrfS7wk2qg1NMTWR9QDlWL62275CloYvvtYX+qaT5Zjk2jxNLxsFYvV99q6yrZIX
-         wswdA5CC21AH5q9I/iSIpL58AFgziabHV6+fSJnybR3NebAtEr+PjGkD9GXBwTadd+JJ
-         s9gxh88XuaTyqcv5v3bWKorlpKu3r2a+HHwBxbt9sYvDHgT58/d1x+HooKw7lydguyM5
-         fUh2XPNZFwY9uzHrDSX+ZOTSat2EzdW5+GVt/fEHKH6L/co0MHoSzSlMIy5da5kMJXp5
-         HkVw==
-X-Gm-Message-State: AOAM531sf+/UT6CqOvL+uPlaCzwBmrHzBSDVq9u9PCIGo2j7r7OikjOm
-        YQK3tqIlPRiITKqJb8h1MJ7zyQ==
-X-Google-Smtp-Source: ABdhPJxO+31XRf9aeobSv/xOGy6tmP4FnGyIw4EYnd9nFbGUUaXei++utAw0Elga/21sjRzu79YSoA==
-X-Received: by 2002:a05:6512:2295:: with SMTP id f21mr1799266lfu.187.1614251399794;
-        Thu, 25 Feb 2021 03:09:59 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id y11sm198588ljc.18.2021.02.25.03.09.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Feb 2021 03:09:59 -0800 (PST)
-Subject: Re: [PATCH 3/7] regulator: qcom-rpmh: Correct the pmic5_hfsmps515
- buck
-To:     satya priya <skakit@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, rnayak@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
- <1614155592-14060-4-git-send-email-skakit@codeaurora.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <50151f4b-298c-f0ee-a88f-7bdd945ad249@linaro.org>
-Date:   Thu, 25 Feb 2021 14:09:58 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+        id S233440AbhBYLL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 06:11:28 -0500
+Received: from foss.arm.com ([217.140.110.172]:54176 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232735AbhBYLLY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Feb 2021 06:11:24 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 15C12D6E;
+        Thu, 25 Feb 2021 03:10:37 -0800 (PST)
+Received: from [10.57.48.219] (unknown [10.57.48.219])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 143143F73D;
+        Thu, 25 Feb 2021 03:10:34 -0800 (PST)
+Subject: Re: RPi4 can't deal with 64 bit PCI accesses
+To:     Neil Armstrong <narmstrong@baylibre.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Christoph Hellwig <hch@infradead.org>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Robin Murphy <robin.murphy@arm.con>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>
+References: <c188698ca0de3ed6c56a0cf7880e1578aa753077.camel@suse.de>
+ <2220c875-f327-586c-79c7-eadff87e4b4d@arm.com>
+ <6088038a-2366-2f63-0678-c65a0d2efabd@gmail.com>
+ <20210224202538.GA2346950@infradead.org>
+ <0142a12e-8637-5d8e-673a-20953807d0d4@gmail.com>
+ <0e52b124-e5a8-cdea-9f15-11be8c20af2a@baylibre.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <0cca5246-065b-b52e-7005-b1b5229922a7@arm.com>
+Date:   Thu, 25 Feb 2021 11:10:29 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <1614155592-14060-4-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <0e52b124-e5a8-cdea-9f15-11be8c20af2a@baylibre.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
@@ -75,42 +50,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/02/2021 11:33, satya priya wrote:
-> Correct the REGULATOR_LINEAR_RANGE and n_voltges for
-> pmic5_hfsmps515 buck.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
->   drivers/regulator/qcom-rpmh-regulator.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-> index 79a554f..36542c3 100644
-> --- a/drivers/regulator/qcom-rpmh-regulator.c
-> +++ b/drivers/regulator/qcom-rpmh-regulator.c
-> @@ -726,8 +726,8 @@ static const struct rpmh_vreg_hw_data pmic5_ftsmps510 = {
->   static const struct rpmh_vreg_hw_data pmic5_hfsmps515 = {
->   	.regulator_type = VRM,
->   	.ops = &rpmh_regulator_vrm_ops,
-> -	.voltage_range = REGULATOR_LINEAR_RANGE(2800000, 0, 4, 16000),
-> -	.n_voltages = 5,
-> +	.voltage_range = REGULATOR_LINEAR_RANGE(320000, 0, 235, 16000),
-> +	.n_voltages = 236,
+On 2021-02-25 10:29, Neil Armstrong wrote:
+> On 24/02/2021 21:35, Florian Fainelli wrote:
+>>
+>>
+>> On 2/24/2021 12:25 PM, Christoph Hellwig wrote:
+>>> On Wed, Feb 24, 2021 at 08:55:10AM -0800, Florian Fainelli wrote:
+>>>>> Working around kernel I/O accessors is all very well, but another
+>>>>> concern for PCI in particular is when things like framebuffer memory can
+>>>>> get mmap'ed into userspace (or even memremap'ed within the kernel). Even
+>>>>> in AArch32, compiled code may result in 64-bit accesses being generated
+>>>>> depending on how the CPU and interconnect handle LDRD/STRD/LDM/STM/etc.,
+>>>>> so it's basically not safe to ever let that happen at all.
+>>>>
+>>>> Agreed, this makes finding a generic solution a tiny bit harder. Do you
+>>>> have something in mind Nicolas?
+>>>
+>>> The only workable solution is a new
+>>>
+>>> bool 64bit_mmio_supported(void)
 
-I've checked the docs for pm8009, the chip which also uses hfsmps515 
-regulators. The pdf clearly states that the 'Output voltage operating 
-range' is from 2.8 V to 2.85 V.
+Note that to be sufficiently generic this would have to be a per-device 
+property - a system could have an affected PCIe root complex but still 
+have other devices elsewhere in the SoC that can, or even need to, use 
+64-bit accesses.
 
-So we'd probably need to define different versions of HFS515 regulator 
-data (like I had to create for pm8009-1).
+>>> check that is used like:
+>>>
+>>> 	if (64bit_mmio_supported())
+>>> 		readq(foodev->regs, REG_OFFSET);
+>>> 	else
+>>> 		lo_hi_readq(foodev->regs, REG_OFFSET);
+>>>
+>>> where 64bit_mmio_supported() return false for all 32-bit kernels,
+>>> true for all non-broken 64-bit kernels and is an actual function
+>>> for arm64 multiplatforms builds that include te RPi quirk.
+>>>
+>>> The above would then replace the existing magic from the
+>>> <linux/io-64-nonatomic-lo-hi.h> and <linux/io-64-nonatomic-hi-lo.h>
+>>> headers.
+>>
+>> That would work. The use case described by Robin is highly unlikely to
+>> exist on the Pi4 given that you cannot easily access the PCIe bus and
+>> plug an arbitrary GPU, so maybe there is nothing to do for framebuffer
+>> memory.
 
+Framebuffers are only the most obvious example - I don't feel the 
+inclination to audit every driver/subsystem that can possibly make a 
+non-iomem remapping or userspace mmap of a prefetchable BAR, but I'm 
+sure there are more.
 
->   	.pmic_mode_map = pmic_mode_map_pmic5_smps,
->   	.of_map_mode = rpmh_regulator_pmic4_smps_of_map_mode,
->   };
-> 
+> Erf, not really, with the compute module ATX/ITX boards are being designed with a full PCIe connector like:
+> https://www.indiegogo.com/projects/over-board-raspberry-pi-4-mini-itx-motherboard/#/
 
+Right, this whole thread looks to have come about due to random 
+endpoints getting connected to the exposed bus on compute modules. If it 
+was an issue at all for the XHCI on standard Pi 4 boards I don't think 
+people would just be starting to notice it now...
 
--- 
-With best wishes
-Dmitry
+Robin.
