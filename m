@@ -2,141 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2EE53263E9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 15:17:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDDFC326410
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 15:30:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbhBZOQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 09:16:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48656 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230105AbhBZOPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 09:15:46 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35955C061793
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 06:14:18 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id p1so6626293edy.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 06:14:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fiQu2oPApg5uagXMeqvolPXEApCItlWJFjBIgQNcT+U=;
-        b=J5pKGpp119dXassFAQHDedxcYd25QkctzzdK/xuhuJiTm3yxPt1cK8uG+fpwUUdGy+
-         IiimOncJrA+KsZtTxqnEaWqkr/ahi005229VXf7F+d02ok7m5USrYAvviwADS1Fxzuay
-         2l1WLWwav6JcD1uEa0BWutnySL0uDe5xzN7BU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fiQu2oPApg5uagXMeqvolPXEApCItlWJFjBIgQNcT+U=;
-        b=OOgSX/wsj0Dxxw4Q4tFWa1rPxRs5H+P/GKvq+VdLzmiCiXEIZk23y7DKnzASuUZx2q
-         AObV+ekgCAy6McEM2/e0iGnYVunjo1QMpvSqtu8wa2+QZ+PLv3PExdmZpWq4aeSz0VMY
-         dF2/eu/LczaUNRDzGkfJrwdIIbCBcLmyG7UTrsdoXL0kVTmEES8Yf0QDmrsUwkGzm82y
-         nZdsvUQEZjzVQn/BFBwtuiSitg6igW762aa7RtCtDDQmbjcf1704fvY6DGDGGz5w85vy
-         KYB1vTMnIfbSkqibWcG8OriCxCHARgaDuy+AoZg+nu1ktvBIYCupe/epXH5IcoJvbg1b
-         VAag==
-X-Gm-Message-State: AOAM531hx3aGRyapPEdlkBsR+HuT6IjOtHO/BuaLhroWqryBnMd0Mn78
-        8cE6E6aCNX/WWnqv5DDW/wUowg==
-X-Google-Smtp-Source: ABdhPJw/Q9UFfy0SlSake+cTOwjAruZIS7wv4RgEF5dEECeCFkfD0F584h7BRA9fzQUyQlAlUYBC7w==
-X-Received: by 2002:aa7:d451:: with SMTP id q17mr3483756edr.381.1614348856948;
-        Fri, 26 Feb 2021 06:14:16 -0800 (PST)
-Received: from prevas-ravi.prevas.se ([80.208.71.141])
-        by smtp.gmail.com with ESMTPSA id g3sm5316838ejz.91.2021.02.26.06.14.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Feb 2021 06:14:16 -0800 (PST)
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, linux-clk@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: [PATCH 2/2] drivers: misc: add ripple counter driver
-Date:   Fri, 26 Feb 2021 15:14:11 +0100
-Message-Id: <20210226141411.2517368-3-linux@rasmusvillemoes.dk>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
-References: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
+        id S229885AbhBZO3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 09:29:49 -0500
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:59147 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229622AbhBZO3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Feb 2021 09:29:45 -0500
+Received: from [77.244.183.192] (port=64786 helo=melee.dev.aim)
+        by hostingweb31.netsons.net with esmtpa (Exim 4.93)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1lFe73-001EWE-6N; Fri, 26 Feb 2021 15:29:01 +0100
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+To:     Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: mfd: lp875xx: add optional reset GPIO
+Date:   Fri, 26 Feb 2021 15:28:51 +0100
+Message-Id: <20210226142852.19632-1-luca@lucaceresoli.net>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The only purpose of this driver is to serve as a consumer of the input
-clock, to prevent it from being disabled by clk_disable_unused().
+Document the LP8756x-Q1 and LP87524-Q1 ICs reset pin.
 
-Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
 ---
- drivers/misc/Kconfig      |  7 +++++++
- drivers/misc/Makefile     |  1 +
- drivers/misc/ripple-ctr.c | 31 +++++++++++++++++++++++++++++++
- 3 files changed, 39 insertions(+)
- create mode 100644 drivers/misc/ripple-ctr.c
+ Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml | 4 ++++
+ Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml | 4 ++++
+ Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml | 4 ++++
+ 3 files changed, 12 insertions(+)
 
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index f532c59bb59b..44b0b6ce42df 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -445,6 +445,13 @@ config HISI_HIKEY_USB
- 	  switching between the dual-role USB-C port and the USB-A host ports
- 	  using only one USB controller.
+diff --git a/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml b/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
+index c4fc5345d38d..f6cac4b1079c 100644
+--- a/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
+@@ -17,6 +17,10 @@ properties:
+     description: I2C slave address
+     const: 0x60
  
-+config RIPPLE_CTR
-+	tristate "Trivial ripple counter driver"
-+	help
-+	  This provides a stub driver for a ripple counter, whose
-+	  only purpose is to request and enable the clock source
-+	  driving the counter.
++  reset-gpios:
++    description: GPIO connected to NRST pin (active low reset, pin 20)
++    maxItems: 1
 +
- source "drivers/misc/c2port/Kconfig"
- source "drivers/misc/eeprom/Kconfig"
- source "drivers/misc/cb710/Kconfig"
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 99b6f15a3c70..d560163068a9 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -56,3 +56,4 @@ obj-$(CONFIG_HABANA_AI)		+= habanalabs/
- obj-$(CONFIG_UACCE)		+= uacce/
- obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
- obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
-+obj-$(CONFIG_RIPPLE_CTR)	+= ripple-ctr.o
-diff --git a/drivers/misc/ripple-ctr.c b/drivers/misc/ripple-ctr.c
-new file mode 100644
-index 000000000000..f086eaf335df
---- /dev/null
-+++ b/drivers/misc/ripple-ctr.c
-@@ -0,0 +1,31 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
+   gpio-controller: true
+ 
+   '#gpio-cells':
+diff --git a/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml b/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml
+index a7e57c0913e1..dc5a29b5ef7d 100644
+--- a/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml
+@@ -17,6 +17,10 @@ properties:
+     description: I2C slave address
+     const: 0x60
+ 
++  reset-gpios:
++    description: GPIO connected to NRST pin (active low reset, pin 20)
++    maxItems: 1
 +
-+static int ripple_ctr_probe(struct platform_device *pdev)
-+{
-+	struct clk *clk;
+   gpio-controller: true
+ 
+   '#gpio-cells':
+diff --git a/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml b/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml
+index 1da6d6a958c9..48d4d53c25f9 100644
+--- a/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml
+@@ -19,6 +19,10 @@ properties:
+     description: I2C slave address
+     const: 0x60
+ 
++  reset-gpios:
++    description: GPIO connected to NRST pin (active low reset, pin 20)
++    maxItems: 1
 +
-+	clk = devm_clk_get(&pdev->dev, NULL);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+	return clk_prepare_enable(clk);
-+}
-+
-+static const struct of_device_id ripple_ctr_ids[] = {
-+	{ .compatible = "linux,ripple-counter", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ripple_ctr_ids);
-+
-+static struct platform_driver ripple_ctr_driver = {
-+	.driver	= {
-+		.name		= "ripple-counter",
-+		.of_match_table	= ripple_ctr_ids,
-+	},
-+	.probe	= ripple_ctr_probe,
-+};
-+module_platform_driver(ripple_ctr_driver);
+   gpio-controller: true
+ 
+   '#gpio-cells':
 -- 
-2.29.2
+2.30.0
 
