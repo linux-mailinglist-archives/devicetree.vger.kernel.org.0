@@ -2,157 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E10153265A5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 17:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C9583265E4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 17:54:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbhBZQhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 11:37:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50650 "EHLO
+        id S229823AbhBZQxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 11:53:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230104AbhBZQhD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 11:37:03 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1BF5C06174A
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 08:36:22 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id o63so6524491pgo.6
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 08:36:22 -0800 (PST)
+        with ESMTP id S229550AbhBZQxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 11:53:34 -0500
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6138C06174A;
+        Fri, 26 Feb 2021 08:52:51 -0800 (PST)
+Received: by mail-pf1-x429.google.com with SMTP id d12so4090252pfo.7;
+        Fri, 26 Feb 2021 08:52:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nsvOAu55FgLPhCToArkAdRGmd43y7a+b+sjefBpof74=;
-        b=wHthvJCA47mzp0GyO2hNpSjiMVwhSaeG1TJh+ToVxTuVf9I5588PEAwguEOImdCZmI
-         wGW/GXpmbaQ+7Uv3XCtiK6jhhbh95Wi0lJYG90FMHhwygxxdPlnOXHg4ofF2d++yXWth
-         WjKwVYBpxK6qjzjouT5YgFgy+6W4tLs0CfaOdh8FU0UItgLJw2qxGdTS8aVHlVWOhTEr
-         Qb5EmkbN8nbESoMM+J/16eQ8QAtT7Hkq33+n7HmdJoezAW3ZPm9j6LPalw1LFqBUUJNe
-         /KqUmeHKIkd8rbqW6jxSGsme7lsK6uUexa5cs35UOF0h7snhPF88CDu1TQUuCth4w0b/
-         uZGw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=caRvlzKeZCwZCXCDqu+48wHhGcclJlGyLeU2ooguUWk=;
+        b=YNXgbGQ88/iMEZR8HkZe53EcnGTDPVQe+AygraOZB+2C5EreOAAD6NGmMTGkhZCJS0
+         M64QCturuu3MlLQiOHRXGGLZI7XyowmhQE23hoOvFgq1+O4hZiD/ijaLy3n3CIITHg2i
+         uYSjK32s9c7JCKhJM93dTpEanbjPzL/UNi+2gD2EaAGFTRBuK/FYA2LxMy3Qtp3+oEn6
+         fqoTSx2wQ+pwqcLwXasEBE/sbtF0e9Qx7bFjTVhrpfByKkJG6nOPoVSrjNlhQXZXKO2T
+         FTcIoT9oyKRuGgQjCa2wqwejSU/GK7cm9Tgh2r5s3qiW+VoWnf6y3W1TBEOOnCN7UVb2
+         9J2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nsvOAu55FgLPhCToArkAdRGmd43y7a+b+sjefBpof74=;
-        b=Ltp4rvlTNVSF1WcWepI/KpOXZEfKtqHxUa/VwmPWR1EQTpbfXOu7FeluGEgnDKXUPx
-         WeWTuE4mGco+jPu40UvJo3OYTJzz0pAs2/0nchubokqQTHtIPizYpQbFMSx+4EDJ5Q9A
-         0sBVhhBqGfEQFY/7bgiTA48YNF5gm54YC7kMZ826HV+wHtlGpAeDGq1nTCodtqJ4/CM5
-         xs9X1pPuMIH3tF3sUrD4KHZiz5uZ7bqLJWUUBXYjqNsy6KU3ZE7K8nBvehYwiM+7jg8c
-         7e26fnIz/67ZhwhaQ8F+WhNh3PguIYPDRfAEM8tnlpW1WWQ1YAWKJIJRMAK3Y8dLmbCj
-         Pk7A==
-X-Gm-Message-State: AOAM532DNqffjuGC7ATuqOSYYaq/XZ6OiNrRv8oZV35TmPeFhB1U7Bqn
-        0ymqtTw/Q8Zv1yBJscBQZObiQc16Hm2m1mM8nJCbIQ==
-X-Google-Smtp-Source: ABdhPJzI5t1t6CVjbpJ/jYBjS/sGpFHq14yb4uuIzCsaZRWH5vV3GcNvACclb/rgNZRwFG9uqbl8nYuoLgHlhngXL5g=
-X-Received: by 2002:a63:ee4b:: with SMTP id n11mr3638677pgk.265.1614357382184;
- Fri, 26 Feb 2021 08:36:22 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=caRvlzKeZCwZCXCDqu+48wHhGcclJlGyLeU2ooguUWk=;
+        b=P7D3WA+cGkxJ3jd2labNJYh2IdEKqPRjNDrwyfTIbdFLtsKB8jr1qKx0I2Xr4ZTs/J
+         OnFi/fUURvPEnVYrNRS/UHbNgfhzHQ+Yv5g7wusg3d0gpmk2/fjnznb34ru7lZ8hrXPx
+         dqm/UqGVdS5I6mJ5SY8bxsY3G2BGEwClYMYLpaxQ4n79Kq8q90l5EgcodkstNPYPqPMb
+         0zGX7s8NfeQ3sWeiu0MGf97jlNZiBi79VghmpzloXE1F7BdRjCg3gWyKcWiXoAL4KPpQ
+         bbFrnQZTVAm07M97ORLyp7erDuRAUt0dmILjM1J6uNZhYPwRN/mCzy6KuumllvzhA3b+
+         6MNw==
+X-Gm-Message-State: AOAM53037iCLOWJSROtqWd1pjsus7YJnc01nhRkLcAJDs5Qzn8DlvHAO
+        004HvuDh9stiBmj4nxW5pFE=
+X-Google-Smtp-Source: ABdhPJy4TYujm2RcZnuPZrcZjoAOTPx53fJcRTB521JN8cVbqd/utfMS5jC3swp8eOHZWjkp5TJtFQ==
+X-Received: by 2002:a63:4207:: with SMTP id p7mr3695325pga.406.1614358371158;
+        Fri, 26 Feb 2021 08:52:51 -0800 (PST)
+Received: from [172.30.1.19] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id i2sm9363685pgs.82.2021.02.26.08.52.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Feb 2021 08:52:50 -0800 (PST)
+Subject: Re: [RFC 04/19] devfreq: imx-bus: Decouple imx-bus from icc made
+To:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Georgi Djakov <djakov@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Martin Kepplinger <martink@posteo.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Cc:     NXP Linux Team <linux-imx@nxp.com>
+References: <1613750416-11901-1-git-send-email-abel.vesa@nxp.com>
+ <1613750416-11901-5-git-send-email-abel.vesa@nxp.com>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Message-ID: <970ea39a-d371-6d17-3aa8-768ca4821809@gmail.com>
+Date:   Sat, 27 Feb 2021 01:52:42 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-References: <1614356086-19745-1-git-send-email-pthombar@cadence.com> <1614356118-21409-1-git-send-email-pthombar@cadence.com>
-In-Reply-To: <1614356118-21409-1-git-send-email-pthombar@cadence.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Fri, 26 Feb 2021 17:36:11 +0100
-Message-ID: <CAG3jFysryArs1DD3pgQAqO8AaW_+OH_Jpb4=o7uc93jaXFKF0Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: MHDP8546 bridge binding
- changes for HDCP
-To:     Parshuram Thombare <pthombar@cadence.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>, nikhil.nd@ti.com,
-        kishon@ti.com, sjakhade@cadence.com, mparab@cadence.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1613750416-11901-5-git-send-email-abel.vesa@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Parshuram,
-
-Thanks for submitting this.
-
-This series rebased on upstream-drm-misc/for-linux-next fails dt
-binding verification.
-$ make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
 
 
-On Fri, 26 Feb 2021 at 17:18, Parshuram Thombare <pthombar@cadence.com> wrote:
->
-> Add binding changes for HDCP in the MHDP8546 DPI/DP bridge binding.
->
-> Signed-off-by: Parshuram Thombare <pthombar@cadence.com>
+On 21. 2. 20. 오전 1:00, Abel Vesa wrote:
+> The link between an imx-bus device and its icc id will be done
+> through the fsl,icc-id property in each dts node. The imx
+> interconnect driver will pick up all the dts nodes that have that
+> property defined and will link them to the rightfull icc id.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 > ---
->  .../display/bridge/cdns,mhdp8546.yaml         | 20 +++++++++++++------
->  1 file changed, 14 insertions(+), 6 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> index 63427878715e..89b4bf783c53 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> @@ -18,7 +18,7 @@ properties:
->
->    reg:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
->      items:
->        - description:
->            Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
-> @@ -26,13 +26,16 @@ properties:
->            included in the associated PHY.
->        - description:
->            Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
-> +      - description:
-> +          Register block of mhdptx sapb registers.
->
->    reg-names:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
->      items:
->        - const: mhdptx
->        - const: j721e-intg
-> +      - const: mhdptx-sapb
+>   drivers/devfreq/imx-bus.c | 40 +++------------------------------------
+>   1 file changed, 3 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/devfreq/imx-bus.c b/drivers/devfreq/imx-bus.c
+> index 1c0c92d0eb08..9f0df88b29c1 100644
+> --- a/drivers/devfreq/imx-bus.c
+> +++ b/drivers/devfreq/imx-bus.c
+> @@ -65,36 +65,6 @@ static void imx_bus_exit(struct device *dev)
+>   	platform_device_unregister(priv->icc_pdev);
+>   }
+>   
+> -/* imx_bus_init_icc() - register matching icc provider if required */
+> -static int imx_bus_init_icc(struct device *dev)
+> -{
+> -	struct imx_bus *priv = dev_get_drvdata(dev);
+> -	const char *icc_driver_name;
+> -
+> -	if (!of_get_property(dev->of_node, "#interconnect-cells", 0))
+> -		return 0;
+> -	if (!IS_ENABLED(CONFIG_INTERCONNECT_IMX)) {
+> -		dev_warn(dev, "imx interconnect drivers disabled\n");
+> -		return 0;
+> -	}
+> -
+> -	icc_driver_name = of_device_get_match_data(dev);
+> -	if (!icc_driver_name) {
+> -		dev_err(dev, "unknown interconnect driver\n");
+> -		return 0;
+> -	}
+> -
+> -	priv->icc_pdev = platform_device_register_data(
+> -			dev, icc_driver_name, -1, NULL, 0);
+> -	if (IS_ERR(priv->icc_pdev)) {
+> -		dev_err(dev, "failed to register icc provider %s: %ld\n",
+> -				icc_driver_name, PTR_ERR(priv->icc_pdev));
+> -		return PTR_ERR(priv->icc_pdev);
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+>   static int imx_bus_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> @@ -144,10 +114,6 @@ static int imx_bus_probe(struct platform_device *pdev)
+>   		goto err;
+>   	}
+>   
+> -	ret = imx_bus_init_icc(dev);
+> -	if (ret)
+> -		goto err;
+> -
+>   	return 0;
+>   
+>   err:
+> @@ -156,9 +122,9 @@ static int imx_bus_probe(struct platform_device *pdev)
+>   }
+>   
+>   static const struct of_device_id imx_bus_of_match[] = {
+> -	{ .compatible = "fsl,imx8mq-noc", .data = "imx8mq-interconnect", },
+> -	{ .compatible = "fsl,imx8mm-noc", .data = "imx8mm-interconnect", },
+> -	{ .compatible = "fsl,imx8mn-noc", .data = "imx8mn-interconnect", },
+> +	{ .compatible = "fsl,imx8mq-noc",},
+> +	{ .compatible = "fsl,imx8mm-noc",},
+> +	{ .compatible = "fsl,imx8mn-noc",},
+>   	{ .compatible = "fsl,imx8m-noc", },
+>   	{ .compatible = "fsl,imx8m-nic", },
+>   	{ /* sentinel */ },
+> 
 
-The reg & reg-names changes appear to be introducing the failure.
+For this patch, you need to get the ack of use of new 'fsl,icc-id 
+property'. IMO, looks good to me.
 
->
->    clocks:
->      maxItems: 1
-> @@ -53,6 +56,11 @@ properties:
->    power-domains:
->      maxItems: 1
->
-> +  hdcp-config:
-> +    maxItems: 1
-> +    description:
-> +      HDCP version supported. Bit [0]:HDCP2.2 [1]:HDCP1.4.
-> +
->    interrupts:
->      maxItems: 1
->
-> @@ -98,15 +106,15 @@ allOf:
->      then:
->        properties:
->          reg:
-> -          minItems: 2
-> +          minItems: 3
->          reg-names:
-> -          minItems: 2
-> +          minItems: 3
->      else:
->        properties:
->          reg:
-> -          maxItems: 1
-> +          maxItems: 2
->          reg-names:
-> -          maxItems: 1
-> +          maxItems: 2
->
->  required:
->    - compatible
-> --
-> 2.25.1
->
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+
+
+And you must update the DT binding document.
+[1] Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
+
+Thanks,
+Chanwoo Choi
