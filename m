@@ -2,144 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD58D326591
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 17:30:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EFC732659A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 17:36:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbhBZQao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 11:30:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49284 "EHLO
+        id S229863AbhBZQgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 11:36:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230041AbhBZQan (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 11:30:43 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA98BC06174A
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 08:30:00 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id g11so4157804wmh.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 08:30:00 -0800 (PST)
+        with ESMTP id S229915AbhBZQgF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 11:36:05 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF418C06174A
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 08:35:22 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id d13so6717238edp.4
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 08:35:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YseGCzjDY6Y9V6UnbishTzBOzoHsbNnd9gsiT/rD4RA=;
-        b=tQLe1JHOEXTleWsdIuaOOPFqSVPu3mCeA6TcjLifl2wxU/KM4XGpZX8Yx0dCAHaW6d
-         mHtO5yeUCHv5fMJyKep3uAP8VRbo+AdHxyHU2nu2qrLU9zy83N57wRuJ9nvfuGbNsf1y
-         t3JncbHK4lR5phiBL8itjkJ0H5JhbuqwVFBf2z0jPSvxspjx1oU6V0a+l4QTveikN+vb
-         xxOoPYCFylLaPPwTTYRLg6ySIpLZbeQ+/AnNdVXf+9eBX7Aq52he62+DQQDDLb1z5n3t
-         Sc55bZX3Lj7xktY12gN9f4AAwH14wmJW9bb/7X23mqX4EeJGpeplhVSs8fjYrDliYMU4
-         gSAA==
+        d=rasmusvillemoes.dk; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=cOneb72+9BMDKFMeXHoHtH5MZRyiWygS1afzq3OOa+o=;
+        b=E4DbkXF/qcHn1t53N2ZY0ECGTpmXtZVoY6SFeeKj+vTG082gR2f+HYW/wmeBaK7HBp
+         4Snk/JOoGLiyEYKKMyvH6jjpQfHqHq2hdqW5M+sUcVlgLtybZXDdfYUr+SZDNtkfkvSb
+         JAK9hzKINrmqy5B8aGnMd6jvnlQo1FETWwF6U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YseGCzjDY6Y9V6UnbishTzBOzoHsbNnd9gsiT/rD4RA=;
-        b=Vu8XHpzl+2qAXw8rUG59MhmgAfb6c46ed1ONPEM9KV5QyU6UsNrSViErRG4v9EwWIC
-         Z95FJD784BFrVd9GxgVdzziiwGYb1JH4WmNgsHX7QisOKXnJJOPkUdMIoGV+8CnspfUm
-         Gubb8H1C5rzS6YEzLkL3lkw8P03bb4LEVyPBtNxb4WYDsBZhUm5S+jRL3budQVZ9AGVZ
-         v6pNlXf0NmY0m2mckSpgi8k3UgPL1m1OokyVUD6kBvL9uW4/9cMCsZ3HyugwElE7R2cX
-         bK50bLVqTpyhwUCieaiXYkwc3GH7IXEzNYYSHsex81SE7BNh7hr8cNu7dLogZESZVwXr
-         PjYw==
-X-Gm-Message-State: AOAM531xHJqfNlbtxYCwts9ndAbaeKVPGAEd94/oGJQi7O/ylZjKQPbT
-        NNzokVaLgf93N0Zjvd17q0uNSw==
-X-Google-Smtp-Source: ABdhPJznohOy8DU3GAcT3VQqrhXcbpg1fj10haa/AaOP7FATIiWNhrtlU7CTl34ihXGj7Pt2jEU/zw==
-X-Received: by 2002:a1c:9a47:: with SMTP id c68mr3610043wme.63.1614356999337;
-        Fri, 26 Feb 2021 08:29:59 -0800 (PST)
-Received: from myrica ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id m11sm1326750wrz.40.2021.02.26.08.29.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Feb 2021 08:29:58 -0800 (PST)
-Date:   Fri, 26 Feb 2021 17:29:38 +0100
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Zhou Wang <wangzhou1@hisilicon.com>
-Cc:     joro@8bytes.org, will@kernel.org, vivek.gautam@arm.com,
-        guohanjun@huawei.com, linux-acpi@vger.kernel.org,
-        zhangfei.gao@linaro.org, lenb@kernel.org,
-        devicetree@vger.kernel.org, kevin.tian@intel.com,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        rjw@rjwysocki.net, iommu@lists.linux-foundation.org,
-        sudeep.holla@arm.com, robin.murphy@arm.com,
-        linux-accelerators@lists.ozlabs.org
-Subject: Re: [PATCH v12 10/10] iommu/arm-smmu-v3: Add stall support for
- platform devices
-Message-ID: <YDkh8qR7csPB68sC@myrica>
-References: <20210127154322.3959196-1-jean-philippe@linaro.org>
- <20210127154322.3959196-11-jean-philippe@linaro.org>
- <8adc79cc-7afb-dfe8-4f7b-07fa6dc5b905@hisilicon.com>
- <YBfij71tyYvh8LhB@myrica>
- <fabffd28-7497-2758-c2bf-9d31aa562085@hisilicon.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cOneb72+9BMDKFMeXHoHtH5MZRyiWygS1afzq3OOa+o=;
+        b=gHlpNUzOCHH2hXuAU7T5gsK58SxbU7jJpjAuuAfRcyYykDQNreAFCx421x4dbuzSXu
+         pHMuNEBL9Iua+7C0tSvf/XwhaPqZjtrKA2L5x/wDVZSvuApZGX+dOs6q3NjaV6ejDdCd
+         UScB8mx+Y/Ll4s3ZvbHHpxYGyUKRFL48FRkde6boOo+UnrOzk9EbJv2WrZUXWfJdVtvM
+         6pFdr1ItON97so69N3je3MC6/6S8EqBASsYgmkt96oZ06jYI9hljg1NHUpftPIH+/hEw
+         dzbzr7yAKtZunvYxTnadWpTnZyBFrdom23rY7nJAvCPsfp7qYpMsZfXcFkb0KbITAXCc
+         6HsQ==
+X-Gm-Message-State: AOAM530/To73Uk5rogUezob4vu1VRc0bGEADfymaFKuOOWUwMA4+uiLe
+        BmwbzkRnMSO4U4JvVEMrXp7klw==
+X-Google-Smtp-Source: ABdhPJxgWKA9baDmnn7v/NyJDUc1IXanLiIYaaEflz+WN2lJxW3UHkfK6YObK8/eFA/ReW3JQLO+5g==
+X-Received: by 2002:aa7:c386:: with SMTP id k6mr1400939edq.224.1614357321498;
+        Fri, 26 Feb 2021 08:35:21 -0800 (PST)
+Received: from [192.168.1.149] ([80.208.71.141])
+        by smtp.gmail.com with ESMTPSA id u18sm5589671ejc.76.2021.02.26.08.35.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Feb 2021 08:35:21 -0800 (PST)
+Subject: Re: [PATCH 0/2] add ripple counter dt binding and driver
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
+References: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
+ <CAK8P3a2=nZ3bbeguXjbFrhz0nWeUOcLM7mRudhPDrcb+jZ4VvQ@mail.gmail.com>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Message-ID: <e5fd7ce3-3ba6-e5de-1cbc-fa31bd46942c@rasmusvillemoes.dk>
+Date:   Fri, 26 Feb 2021 17:35:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fabffd28-7497-2758-c2bf-9d31aa562085@hisilicon.com>
+In-Reply-To: <CAK8P3a2=nZ3bbeguXjbFrhz0nWeUOcLM7mRudhPDrcb+jZ4VvQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
-
-On Fri, Feb 26, 2021 at 05:43:27PM +0800, Zhou Wang wrote:
-> On 2021/2/1 19:14, Jean-Philippe Brucker wrote:
-> > Hi Zhou,
-> > 
-> > On Mon, Feb 01, 2021 at 09:18:42AM +0800, Zhou Wang wrote:
-> >>> @@ -1033,8 +1076,7 @@ int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain, int ssid,
-> >>>  			FIELD_PREP(CTXDESC_CD_0_ASID, cd->asid) |
-> >>>  			CTXDESC_CD_0_V;
-> >>>  
-> >>> -		/* STALL_MODEL==0b10 && CD.S==0 is ILLEGAL */
-> >>> -		if (smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
-> >>> +		if (smmu_domain->stall_enabled)
-> >>
-> >> Could we add ssid checking here? like: if (smmu_domain->stall_enabled && ssid).
-> >> The reason is if not CD.S will also be set when ssid is 0, which is not needed.
-> > 
-> > Some drivers may want to get stall events on SSID 0:
-> > https://lore.kernel.org/kvm/20210125090402.1429-1-lushenming@huawei.com/#t
-> > 
-> > Are you seeing an issue with stall events on ssid 0?  Normally there
-> > shouldn't be any fault on this context, but if they happen and no handler
-> > is registered, the SMMU driver will just abort them and report them like a
-> > non-stall event.
+On 26/02/2021 15.35, Arnd Bergmann wrote:
+> On Fri, Feb 26, 2021 at 3:14 PM Rasmus Villemoes
+> <linux@rasmusvillemoes.dk> wrote:
 > 
-> Hi Jean,
+>>
+>> So I'm thinking that the proper way to handle this is to be able to
+>> represent that ripple counter as a clock consumer in DT and have a
+>> driver do the clk_prepare_enable(), even if that driver doesn't and
+>> can't do anything else. But I'm certainly open to other suggestions.
 > 
-> I notice that there is problem. In my case, I expect that CD0 is for kernel
-> and other CDs are for user space. Normally there shouldn't be any fault in
-> kernel, however, we have RAS case which is for some reason there may has
-> invalid address access from hardware device.
-> 
-> So at least there are two different address access failures: 1. hardware RAS problem;
-> 2. software fault fail(e.g. kill process when doing DMA). Handlings for these
-> two are different: for 1, we should reset hardware device; for 2, stop related
-> DMA is enough.
+> How about adding support for the optional clock to the gpio_wdt driver,
+> would that work?
 
-Right, and in case 2 there should be no report printed since it can be
-triggered by user, while you probably want to be loud in case 1.
+I think it would _work_ (all I need is some piece of code doing the
+clock_prepare_enable(), and until now we've just stashed that in some
+otherwise unrelated out-of-tree driver, but we're trying to get rid of
+that one), but the watchdog chip isn't really the consumer of the clock
+signal, so in-so-far as DT is supposed to describe the hardware, I don't
+think it's appropriate.
 
-> Currently if SMMU returns the same signal(by SMMU resume abort), master device
-> driver can not tell these two kinds of cases.
+OTOH, one could argue that the watchdog chip and the ripple counter
+together constitute the watchdog circuit.
 
-This part I don't understand. So the SMMU sends a RESUME(abort) command,
-and then the master reports the DMA error to the device driver, which
-cannot differentiate 1 from 2?  (I guess there is no SSID in this report?)
-But how does disabling stall change this?  The invalid DMA access will
-still be aborted by the SMMU.
+Cc += watchdog maintainers. Context: I have a gpio-wdt which can
+unfortunately effectively be disabled by disabling a clock output, and
+that happens automatically unless the clock has a consumer in DT. But
+the actual consumer is not the gpio-wdt.
+Please see
+https://lore.kernel.org/lkml/20210226141411.2517368-1-linux@rasmusvillemoes.dk/
+for the original thread.
 
-Hypothetically, would it work if all stall events that could not be
-handled went to the device driver?  Those reports would contain the SSID
-(or lack thereof), so you could reset the device in case 1 and ignore case
-2. Though resetting the device in the middle of a stalled transaction
-probably comes with its own set of problems.
+Rasmus
 
-> From the basic concept, if a CD is used for kernel, its S bit should not be set.
-> How about we add iommu domain check here too, if DMA domain we do not set S bit for
-> CD0, if unmanaged domain we set S bit for all CDs?
-
-I think disabling stall for CD0 of a DMA domain makes sense in general,
-even though I don't really understand how that fixes your issue. But
-someone might come up with a good use-case for receiving stall events on
-DMA mappings, so I'm wondering whether the alternative solution where we
-report unhandled stall events to the device driver would also work for
-you.
-
-Thanks,
-Jean
