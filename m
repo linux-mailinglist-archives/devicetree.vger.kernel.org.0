@@ -2,121 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C2F325DD4
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 08:01:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C689325DEF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 08:07:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbhBZHAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 02:00:13 -0500
-Received: from m42-2.mailgun.net ([69.72.42.2]:20738 "EHLO m42-2.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229894AbhBZHAK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Feb 2021 02:00:10 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1614322792; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=hAhoz3D6d2Kk6jyvUqWPj14y7zKa/ypo+MS/MSezQXk=;
- b=k7LGf5VjQJ9Fyc3y/Ba6Nkq1KKPXk2zOcVOQk28Y3g374/sCrXDcxa9S4y1yvqfNH3YV4Klj
- pp/ZEWxXlxY9OwdkGoKEX7F3Ns20ndzGVB2P3CUQHFk4b3Suk2VFXGAzcpKo2aizrV0mZve2
- cchSYPpd7K0lAuVFsCvh0c2/Xe0=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 60389c5bba1dc157807a59fa (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 26 Feb 2021 06:59:39
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2BF95C43463; Fri, 26 Feb 2021 06:59:39 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4DB2EC433CA;
-        Fri, 26 Feb 2021 06:59:38 +0000 (UTC)
+        id S230040AbhBZHEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 02:04:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40666 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229949AbhBZHEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 02:04:05 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FCFC06174A
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 23:03:23 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id 201so5651731pfw.5
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 23:03:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+j5qJuOZSbQysXD/JvLKk0ZQswOeC5SGkz/d6BdcFcg=;
+        b=N2XLogZuLsxAgBn8YmeZBrAP87b2Ul4RMTTf5CT3klEH9Un+lFYDL8t2qz4GlaWOFP
+         TSBNgirKvPcQ0ttYcHMluSYqirsjgDJiPo7v4m6CL9Iwb4ZMp6l1I7QXGikpBenmvKvK
+         fE3ugSlT+/xBqvULXQLNlvp2rpaa8dk3BIChc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+j5qJuOZSbQysXD/JvLKk0ZQswOeC5SGkz/d6BdcFcg=;
+        b=GLxSXjAd+I/HeLmss3P478hW11Y15yKzooLXHovy3jZhA4FDYkcU6pNcb5K9FdIOk/
+         nZbZQVq04gTt4mLpvmMPRLPEhrTJj4NhvPzevNsHL6ZGfI8LYMGvNI7gwWSc1aTnsWLf
+         lgNIJiiGrsaPUgwEf41LLImMBc63qX2GODgEeIaSyxxih43NdpkEd6y/B1tWIpetIgjS
+         s3Fd4t9LJFkEaF6zINsuVVVUH8NbfcHSPC7a73lzVLX0xbuUU4FDxmxdTPP5AqWtIR2f
+         DqmCWBh+juzXskFQya8DRp0s+Jn2SHDvwiy5JFdMG7igVGKBEFPoKXqMN5shgtEaZOB8
+         dDdw==
+X-Gm-Message-State: AOAM5323YdM7aFnx5sv3KTqeoudSBptxhay90O/uu9bkcluEJaSpcl68
+        NP6NpeICy82Y7HgxR4nWJ5+a7Uw+bcQ+mw==
+X-Google-Smtp-Source: ABdhPJwYBClGgFC8cYKGWzWdFhfQORrre5aTlESCiZ/M7eXTZMRntwBrV1DvM3urLS5FLfHk1E5oow==
+X-Received: by 2002:a62:1e41:0:b029:1e6:fe13:b78e with SMTP id e62-20020a621e410000b02901e6fe13b78emr1911923pfe.26.1614323003138;
+        Thu, 25 Feb 2021 23:03:23 -0800 (PST)
+Received: from ub-XPS-13-9350.domain.name ([103.161.30.220])
+        by smtp.gmail.com with ESMTPSA id f7sm7592156pjh.45.2021.02.25.23.03.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Feb 2021 23:03:22 -0800 (PST)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH v2 00/10] ARM: dts: stm32: Add Engicam STM32MP1 SoM
+Date:   Fri, 26 Feb 2021 12:32:54 +0530
+Message-Id: <20210226070304.8028-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 26 Feb 2021 12:29:38 +0530
-From:   skakit@codeaurora.org
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, rnayak@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH 3/7] regulator: qcom-rpmh: Correct the pmic5_hfsmps515
- buck
-In-Reply-To: <50151f4b-298c-f0ee-a88f-7bdd945ad249@linaro.org>
-References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
- <1614155592-14060-4-git-send-email-skakit@codeaurora.org>
- <50151f4b-298c-f0ee-a88f-7bdd945ad249@linaro.org>
-Message-ID: <51390b828a5d534e308460098f1b9af0@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is the initial series to support Engicam MicroGEA STM32MP1 and
+i.Core STM32MP1 SoM and it's associated carrier board dts(i) support.
 
-On 2021-02-25 16:39, Dmitry Baryshkov wrote:
-> On 24/02/2021 11:33, satya priya wrote:
->> Correct the REGULATOR_LINEAR_RANGE and n_voltges for
->> pmic5_hfsmps515 buck.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> ---
->>   drivers/regulator/qcom-rpmh-regulator.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/regulator/qcom-rpmh-regulator.c 
->> b/drivers/regulator/qcom-rpmh-regulator.c
->> index 79a554f..36542c3 100644
->> --- a/drivers/regulator/qcom-rpmh-regulator.c
->> +++ b/drivers/regulator/qcom-rpmh-regulator.c
->> @@ -726,8 +726,8 @@ static const struct rpmh_vreg_hw_data 
->> pmic5_ftsmps510 = {
->>   static const struct rpmh_vreg_hw_data pmic5_hfsmps515 = {
->>   	.regulator_type = VRM,
->>   	.ops = &rpmh_regulator_vrm_ops,
->> -	.voltage_range = REGULATOR_LINEAR_RANGE(2800000, 0, 4, 16000),
->> -	.n_voltages = 5,
->> +	.voltage_range = REGULATOR_LINEAR_RANGE(320000, 0, 235, 16000),
->> +	.n_voltages = 236,
-> 
-> I've checked the docs for pm8009, the chip which also uses hfsmps515
-> regulators. The pdf clearly states that the 'Output voltage operating
-> range' is from 2.8 V to 2.85 V.
-> 
-> So we'd probably need to define different versions of HFS515 regulator
-> data (like I had to create for pm8009-1).
-> 
-> 
+Changes for v2:
+- fixed v1 comments
+- add i.Core STM32MP1 SoM 
 
-The min-max voltages for S1C (PM8350c) regulator are 2190000-2210000uV 
-for sc7280(kodiak), so we had to modify this buck to support this 
-regulator.
+Jagan Teki (10):
+  dt-bindings: arm: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0
+  ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 SoM
+  ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0 board
+  dt-bindings: arm: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0 7" OF
+  ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0 7" OF
+  dt-bindings: arm: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0
+  ARM: dts: stm32: Add Engicam i.Core STM32MP1 SoM
+  ARM: dts: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0
+  dt-bindings: arm: stm32: Add Engicam i.Core STM32MP1 EDIMM2.2 Starter Kit
+  ARM: dts: stm32: Add Engicam i.Core STM32MP1 EDIMM2.2 Starter Kit
 
-AFAIK, this struct defines the HW constraints of a regulator, but the 
-platform specific min-max values can be controlled from DT files. So, 
-can't we modify it like above instead of adding a new definition? the 
-new min_uV value (32000) is anyway not exceeding the old value (2800000) 
-right? please correct me if wrong.
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |  17 ++
+ arch/arm/boot/dts/Makefile                    |   4 +
+ .../stm32mp157a-icore-stm32mp1-ctouch2.dts    |  47 +++++
+ .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   |  47 +++++
+ .../boot/dts/stm32mp157a-icore-stm32mp1.dtsi  | 195 ++++++++++++++++++
+ ...157a-microgea-stm32mp1-microdev2.0-of7.dts | 154 ++++++++++++++
+ ...32mp157a-microgea-stm32mp1-microdev2.0.dts |  55 +++++
+ .../dts/stm32mp157a-microgea-stm32mp1.dtsi    | 147 +++++++++++++
+ 8 files changed, 666 insertions(+)
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1.dtsi
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
 
->>   	.pmic_mode_map = pmic_mode_map_pmic5_smps,
->>   	.of_map_mode = rpmh_regulator_pmic4_smps_of_map_mode,
->>   };
->> 
+-- 
+2.25.1
 
-Thanks,
-Satya Priya
