@@ -2,90 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98F2B325A9A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 01:15:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35A67325AA3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 01:20:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229966AbhBZAPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 19:15:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38246 "EHLO
+        id S231530AbhBZATn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 19:19:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbhBZAPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 19:15:07 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF2E2C06174A
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 16:14:26 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id u12so4465557pjr.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 16:14:26 -0800 (PST)
+        with ESMTP id S229966AbhBZATn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 19:19:43 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04AA1C061574
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 16:19:02 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id p21so5009391pgl.12
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 16:19:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=t5Tx8qzAGRdcQ2gmkEYPbKCMvJxAeBL6qgOAKP9fKGU=;
-        b=cWRh7XlrmQoiEK9V35F5Sighdgg1B6ZWBMYb8WOTqp6u/6ES+cWSpw45foFT/oC+SX
-         kRb5uLTxKYWP5m1B3Dl4LYFkggl6hXU6jYw8UmIy6f+BX0qYTyn+A19MSX3hAzAQIqt7
-         w0LPAXgsDksKAVS3WygptduHByMspBlf9TfCI=
+        bh=EpLLhisLnKlrh/KO9qG6Kmzca1e22HdLGOqsO0hQAnQ=;
+        b=fBWETq+7jgrQIAa83TLSvqi0KPX3lG6JPAJHk0fwJ4eH3Gu+mZPFs6265I5bcFUgxF
+         8p5gAelIvilquUp5H302B78kywoBrfgvFq6tU6ZpFOuupGbmxAqYwryUHL/WNiqW9OPv
+         dT5D5fTh+zlOdJloeJcKzeSGON15a4m3M9YcU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=t5Tx8qzAGRdcQ2gmkEYPbKCMvJxAeBL6qgOAKP9fKGU=;
-        b=ruwSyVnysJ8jnxaD4IMB7tpNUIQGNH5dm5a6VmMRGkEdxvP0S5UtuNuBNkpSnW4kfE
-         GoirRBTfKuIwGlOEnPHPXG1pBCNXSbOwGrmxnihw46eiWpW+n9o+Tmwc1unVC5o+5nxb
-         0SL/PNqoEWy1eGITX2jCfa75JJMOF6cNEyj9h/THwW5OBNo77yI60CC+0UqT1FsrHCom
-         dbS5xJwtHCVXU7wrOEG/GInCy/9E+d7CNaCVP2B26k/65Kljkiw9JLZrs5r1YlZfZbhJ
-         HUj1Pf4jQ5G9qw80kk2P0xntDutitph4bh57RoFxRRIQ9okd8v0fQvihcLX0claeInbQ
-         8MCw==
-X-Gm-Message-State: AOAM530Ek7yM/rOfmEJ3JI91xBmUNTeJuPiUdVg5wl0184jj8ifwvKbC
-        xzB2Nd+ZthiNfZleLtTto4rw6w==
-X-Google-Smtp-Source: ABdhPJx+9YFltAfwB23VYZRClbAzTjGptdp7e24cW6OWDX163Sic4V2g7sD4eTerWoNSlJVpseHqBA==
-X-Received: by 2002:a17:90a:3f10:: with SMTP id l16mr437327pjc.131.1614298466387;
-        Thu, 25 Feb 2021 16:14:26 -0800 (PST)
+        bh=EpLLhisLnKlrh/KO9qG6Kmzca1e22HdLGOqsO0hQAnQ=;
+        b=krmB+5hPLL7atm0YCtmparxq6th3JnbUkMfaRRaZq0UyX+LQHwoTYeYlmT+zQ1J9FM
+         t83mPETsXw5C9DdpWQGhW5RUf2I36TS9eTIdCs19E4S21YmGNd2qjCHF9YEfh3v6t1dt
+         bgn+Gfsp83O9qdrxANsyrKGV5KJ/ctopACY9kdC644C+mhWupJvgoAGVyma5HzOEecTU
+         8orXjD9/ke1CHsk4MXSScRIsWQxgwaWLDmjK3KZNQ9So33QPR4eRZRFSNw65X8ltpi82
+         6Qx6mFJLPnmmLJvYKTPFd1/DYsfhkhpAL+Tr99eZdM9+S42F1rIPnCMrGFgzjTQkIRHZ
+         jmVg==
+X-Gm-Message-State: AOAM533Pi6ohudXgkvyWFsyu5V7hT8ihoS+WdCSq94/eyqRx85x4c495
+        c2Nk+/8TIbv6uEGzCn0QT6faNA==
+X-Google-Smtp-Source: ABdhPJzd0qB647RFl4SgkXhkXemEci3xzGR+wupLWWkZdHLdouVqp6NgBRHSdXVEgyYNrl7nOKiaXA==
+X-Received: by 2002:a63:4c4e:: with SMTP id m14mr444952pgl.35.1614298742500;
+        Thu, 25 Feb 2021 16:19:02 -0800 (PST)
 Received: from localhost ([2620:15c:202:1:1d8:8d0c:f75e:edd8])
-        by smtp.gmail.com with UTF8SMTPSA id n4sm7360801pgg.68.2021.02.25.16.14.25
+        by smtp.gmail.com with UTF8SMTPSA id d16sm6700471pgb.12.2021.02.25.16.19.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Feb 2021 16:14:26 -0800 (PST)
-Date:   Thu, 25 Feb 2021 16:14:24 -0800
+        Thu, 25 Feb 2021 16:19:02 -0800 (PST)
+Date:   Thu, 25 Feb 2021 16:19:00 -0800
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Douglas Anderson <dianders@chromium.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Stephen Boyd <swboyd@chromium.org>,
         Alexandru M Stan <amstan@chromium.org>,
         Rob Clark <robdclark@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
+        Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>,
         Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 07/13] arm64: dts: qcom: sc7180-trogdor: Remove fp
- control pins in prep for coachz
-Message-ID: <YDg9YDMWSywwM5aS@google.com>
+Subject: Re: [PATCH 08/13] arm64: dts: qcom: sc7180: Remove clock for
+ bluetooth on Trogdor
+Message-ID: <YDg+dCuGd+v2z+3S@google.com>
 References: <20210225221310.1939599-1-dianders@chromium.org>
- <20210225141022.7.Ifd7b86f826b18410eada75758a7bca1eebfa336d@changeid>
+ <20210225141022.8.I80c268f163e6d49a70af1238be442b5de400c579@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210225141022.7.Ifd7b86f826b18410eada75758a7bca1eebfa336d@changeid>
+In-Reply-To: <20210225141022.8.I80c268f163e6d49a70af1238be442b5de400c579@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 25, 2021 at 02:13:04PM -0800, Douglas Anderson wrote:
-> From: Alexandru M Stan <amstan@chromium.org>
+On Thu, Feb 25, 2021 at 02:13:05PM -0800, Douglas Anderson wrote:
+> From: Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
 > 
-> Removed the pinctrl and pin{mux,conf} for the control pins because:
-> 1. The only need for them is for userspace control via flash_fp_mcu
-> 2. cros-ec doesn't know what to do with them, and even if it did,
->    it would interfere with flash_fp_mcu at the most inopportune times
+> Removed voting for RPMH_RF_CLK2 which is not required as it is
+> getting managed by BT SoC through SW_CTRL line.
 > 
-> Since we're not using hogs, we rely on AP firmware to set all the
-> control pins correctly.
-> 
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Cc: Craig Hesling <hesling@chromium.org>
-> Signed-off-by: Alexandru M Stan <amstan@chromium.org>
-> [dianders: adjusted since coachz isn't upstream yet]
+> Cc: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-We have essentially the same patch downstream, so I suppose the AP FW
-indeed takes care of configuring the FP pins as needed :)
-
-Reviewed-by; Matthias Kaehlcke <mka@chromium.org>
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
