@@ -2,216 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B7D432618A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 11:49:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C24CD3261BC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 12:05:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230210AbhBZKs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 05:48:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60530 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbhBZKs0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 05:48:26 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393FBC061574;
-        Fri, 26 Feb 2021 02:47:46 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id jt13so14080876ejb.0;
-        Fri, 26 Feb 2021 02:47:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=SptuCNRcrUMOBsIkdiojrMBwnefuMhsLcusFLvnTYHM=;
-        b=UgSKhLA/akkZKJAnrE3pT9d3/SWj3FfXTsU89UOw2ByYa5QnkTfotOA5ZGuVt9+iUH
-         Lrg7CvpMMJFShGGw2pKdbipBfggmG8uvRm8p/UNQfS5qU0h7F2f+L9rPosdyhthGtETn
-         Awm1eaMOGFK8XQc2JQCKqAYhaomkI1YOIMyMmzOGtEDOR32qunRy0D0HDB3raPKSP8G5
-         uKlyZc0ltu0yzY9ka1i45OLdpy3LrekHK4KQTMS3HOq10u4WuEHUqVZUuKlc5eD4Itti
-         elUUEeZtujxzrO678Hq+v5A7EPuVAvrFQzQaqAC225bjs51lf6H1pftHTqNuYVW0nvYK
-         EnHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=SptuCNRcrUMOBsIkdiojrMBwnefuMhsLcusFLvnTYHM=;
-        b=Bgzjijm6DvWkMvG6awdjwUL5EuND5LlqCMDpyMyNuXAqP8iTikcWkH2l76EjYyOgSw
-         IF8OFKi/T9JOdXmHBd/OPRNww6auhnABJwJru10OjjtAsGkWGniGKQvJdC5o9bXjqWNM
-         +s01RzvoHMPpiwBP4OaFqMU+zktudnEuR9FnzsOdIn9Z193RlRiRp/UJOAsz8ApDirh3
-         BoF8lNXdtprXuviX/wt6nr42kO4wV2tPQLgTtheYCSuEc9r0wJr4Igv9SYN/lgis/BZv
-         VwRHj/TxZ7KK+NngYr+OzB3LTlexSQTy65pf7V/RPhGVnkl0Xk/6lkFjti0Gn7vkaAc4
-         QPKQ==
-X-Gm-Message-State: AOAM531espbVf2eQDHp7TMpJkNyV0fErS8wXlVLhcJofa55JmnDdNDIn
-        DyPFi/+2q9Cm3Y2OBNqk+D8Y9EmYK7c=
-X-Google-Smtp-Source: ABdhPJyjvz1ZN0qOnMiud13/4Wv+lXyvHJx5mrK55lKgzUoPEYrCzOmGlSZWKFac1fz7+nrC6hCCfg==
-X-Received: by 2002:a17:906:63c2:: with SMTP id u2mr2604960ejk.346.1614336464970;
-        Fri, 26 Feb 2021 02:47:44 -0800 (PST)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id x21sm4892801eje.118.2021.02.26.02.47.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Feb 2021 02:47:44 -0800 (PST)
-Subject: Re: [PATCH v2 1/4] dt-binding: clock: Document rockchip, rk3568-cru
- bindings
-To:     Elaine Zhang <zhangqing@rock-chips.com>, mturquette@baylibre.com,
-        robh+dt@kernel.org, sboyd@kernel.org, heiko@sntech.de
-Cc:     huangtao@rock-chips.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kever.yang@rock-chips.com,
-        linux-rockchip@lists.infradead.org, tony.xie@rock-chips.com,
-        finley.xiao@rock-chips.com, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, cl@rock-chips.com
-References: <20210226082234.1733-1-zhangqing@rock-chips.com>
- <20210226082234.1733-2-zhangqing@rock-chips.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <04bca26f-080f-384a-11c5-6fc51f82e359@gmail.com>
-Date:   Fri, 26 Feb 2021 11:47:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S229953AbhBZLFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 06:05:00 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:40911 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230124AbhBZLE7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 06:04:59 -0500
+X-UUID: 5da5a6b81b214071a60b8bd7dac4e5bf-20210226
+X-UUID: 5da5a6b81b214071a60b8bd7dac4e5bf-20210226
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <mason.zhang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1273064039; Fri, 26 Feb 2021 19:04:14 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 26 Feb 2021 19:04:12 +0800
+Received: from localhost.localdomain (10.15.20.246) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 26 Feb 2021 19:04:12 +0800
+From:   Mason Zhang <Mason.Zhang@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <hanks.chen@mediateka.com>,
+        <wsd_upstream@mediatek.com>, Mason Zhang <Mason.Zhang@mediatek.com>
+Subject: [PATCH 1/2] arm64: dts: mediatek: add MT6779 spi master dts node
+Date:   Fri, 26 Feb 2021 18:59:19 +0800
+Message-ID: <20210226105918.3057-1-Mason.Zhang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20210226082234.1733-2-zhangqing@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 1871EBE782D026DD3F96E5E5D4AAD5E26076FF1531DC533642B4AA9181101B2E2000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Elaine,
+this patch add spi master dts node for mt6779 SOC.
 
-On 2/26/21 9:22 AM, Elaine Zhang wrote:
-> Document the device tree bindings of the rockchip Rk3568 SoC
-> clock driver in Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml.
-> 
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> ---
->  .../bindings/clock/rockchip,rk3568-cru.yaml   | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml
-> new file mode 100644
-> index 000000000000..612da341ea67
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml
-> @@ -0,0 +1,55 @@
+Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt6779.dtsi | 96 ++++++++++++++++++++++++
+ 1 file changed, 96 insertions(+)
 
-> +# SPDX-License-Identifier: GPL-2.0
-
-This is a new document.
-Use GPL-2.0 only for a conversion of an existing document in the main
-kernel.
-
-./scripts/checkpatch.pl --strict
-0001-dt-binding-clock-Document-rockchip-rk3568-cru-bindin.patch
-
-WARNING: DT binding documents should be licensed (GPL-2.0-only OR
-BSD-2-Clause)
-#21: FILE:
-Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml:1:
-+# SPDX-License-Identifier: GPL-2.0
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/rockchip,rk3568-cru.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ROCKCHIP rk3568 Family Clock Control Module Binding
-> +
-> +maintainers:
-
-> +  - Elaine Zhang <zhangqing@rock-chips.com>
-
-     - Heiko Stuebner <heiko@sntech.de>
-
-Add the maintainer of the clock drivers as well.
-
-> +
-> +description: |
-
-> +  The RK3568 clock controller generates and supplies clock to various
-
-supplies clock
-
-This phrase could be improved a bit.
-(?? generates the clocks signals for ??)
-
-> +  controllers within the SoC and also implements a reset controller for SoC
-> +  peripherals.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3568-cru
-> +      - rockchip,rk3568-pmucru
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Clock Control Module node:
-> +  - |
-> +    pmucru: clock-controller@fdd00000 {
-> +      compatible = "rockchip,rk3568-pmucru";
-
-> +      reg = <0x0 0xfdd00000 0x0 0x1000>;
-
-Method 1 (easier):
-
-reg = <0xfdd00000 0x1000>;
-
-This example is 64 bit.
-The dt_binding_check uses standard 32 bit.
-
-
-Method 2:
-
-Add both examples in a subnode.
-
-example {
-  #address-cells = <2>;
-  #size-cells = <2>;
-
-  pmucru {}
-
-  cru {}
-}
-
-make ARCH=arm64 dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml
-
-/Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.example.dt.yaml:
-example-1: clock-controller@fdd20000:reg:0: [0, 4258398208, 0, 4096] is
-too long
-	From schema: ~/.local/lib/python3.5/site-packages/dtschema/schemas/reg.yaml
-/Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.example.dt.yaml:
-example-0: clock-controller@fdd00000:reg:0: [0, 4258267136, 0, 4096] is
-too long
-	From schema: ~/.local/lib/python3.5/site-packages/dtschema/schemas/reg.yaml
-
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +    };
-> +  - |
-> +    cru: clock-controller@fdd20000 {
-> +      compatible = "rockchip,rk3568-cru";
-
-> +      reg = <0x0 0xfdd20000 0x0 0x1000>;
-
-dito
-
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +    };
-> 
+diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+index 370f309d32de..ca72eb09cff9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+@@ -219,6 +219,102 @@
+ 			status = "disabled";
+ 		};
+ 
++		spi0: spi0@1100a000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x1100a000 0 0x1000>;
++			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW 0>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				<&topckgen CLK_TOP_SPI>,
++				<&infracfg_ao CLK_INFRA_SPI0>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi1: spi1@11010000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11010000 0 0x1000>;
++			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW 0>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				<&topckgen CLK_TOP_SPI>,
++				<&infracfg_ao CLK_INFRA_SPI1>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi2: spi2@11012000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11012000 0 0x1000>;
++			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_LOW 0>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				<&infracfg_ao CLK_INFRA_SPI2>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi3: spi3@11013000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11013000 0 0x1000>;
++			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW 0>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				 <&infracfg_ao CLK_INFRA_SPI3>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi4: spi4@11018000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11018000 0 0x1000>;
++			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_LOW 0>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				 <&infracfg_ao CLK_INFRA_SPI4>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi5: spi5@11019000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11019000 0 0x1000>;
++			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_LOW 0>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				<&topckgen CLK_TOP_SPI>,
++				<&infracfg_ao CLK_INFRA_SPI5>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi6: spi6@1101d000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x1101d000 0 0x1000>;
++			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW 0>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				 <&infracfg_ao CLK_INFRA_SPI6>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi7: spi7@1101e000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x1101e000 0 0x1000>;
++			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW 0>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				 <&infracfg_ao CLK_INFRA_SPI7>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
+ 		audio: clock-controller@11210000 {
+ 			compatible = "mediatek,mt6779-audio", "syscon";
+ 			reg = <0 0x11210000 0 0x1000>;
+-- 
+2.18.0
 
