@@ -2,79 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9192C32603E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 10:40:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF75326064
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 10:46:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230391AbhBZJiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 04:38:50 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:39486 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230227AbhBZJir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 04:38:47 -0500
-Received: by mail-oi1-f176.google.com with SMTP id z126so9134695oiz.6;
-        Fri, 26 Feb 2021 01:38:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DkuhY/EUxoDeVMzsFcTd26eNVSql+rMcTBUd/NT1nv4=;
-        b=jhe5F7j891aJYZXWpPzR8qFadxOyQ+ykGBqDi336Txu3l48jg4o35xY2u0evGT0B3n
-         N/vrnR5lttuqQv8azgvr5f0k9Gu9OeJWc7IaAcI+cTzNjuGXjXk6ykATYIZQZM96jzLa
-         F9mgySpPTmCl/os8tQOa1ir7q7SSUc14zd6lKZOzPs1Maa7h1fHCx5WNHcdkH5Gca2lS
-         VUOqwgBpDp5ZmBdg3p6ipnZTapt5528wkon4d5xDL5ikSY8zbPeq9P/ipuw78UT7z+w6
-         5A97ssH0ZtLTNw+7LiMvyR96M2UNeS4O1ikLyVm75jdLsZFIMRLWSeuPrFp4tPmiFlyd
-         FHLw==
-X-Gm-Message-State: AOAM533OaHyVLxnNbNjXYTbG+u5khldQ72tgUQTsxO8BA0TYCsCsdGwO
-        pUrLxAgRLH4VJNO0K4zAnGkXUU+fIZkpVvLpQF8=
-X-Google-Smtp-Source: ABdhPJy+JyA1kvEoQU+0VvVPRZFnnnWRxQWKrSAqIPkqqvAzcS50e5p3t16qlS2f0gKqo05KgYgx6MIhs5OytiS81g8=
-X-Received: by 2002:aca:d908:: with SMTP id q8mr1394693oig.148.1614332286142;
- Fri, 26 Feb 2021 01:38:06 -0800 (PST)
+        id S230423AbhBZJou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 04:44:50 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:13092 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230406AbhBZJoX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 04:44:23 -0500
+Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.58])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Dn4S81Wj2z16D0R;
+        Fri, 26 Feb 2021 17:42:00 +0800 (CST)
+Received: from [127.0.0.1] (10.40.188.87) by DGGEMS413-HUB.china.huawei.com
+ (10.3.19.213) with Microsoft SMTP Server id 14.3.498.0; Fri, 26 Feb 2021
+ 17:43:27 +0800
+Subject: Re: [PATCH v12 10/10] iommu/arm-smmu-v3: Add stall support for
+ platform devices
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+References: <20210127154322.3959196-1-jean-philippe@linaro.org>
+ <20210127154322.3959196-11-jean-philippe@linaro.org>
+ <8adc79cc-7afb-dfe8-4f7b-07fa6dc5b905@hisilicon.com>
+ <YBfij71tyYvh8LhB@myrica>
+CC:     <joro@8bytes.org>, <will@kernel.org>, <vivek.gautam@arm.com>,
+        <guohanjun@huawei.com>, <linux-acpi@vger.kernel.org>,
+        <zhangfei.gao@linaro.org>, <lenb@kernel.org>,
+        <devicetree@vger.kernel.org>, <kevin.tian@intel.com>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <rjw@rjwysocki.net>, <iommu@lists.linux-foundation.org>,
+        <sudeep.holla@arm.com>, <robin.murphy@arm.com>,
+        <linux-accelerators@lists.ozlabs.org>
+From:   Zhou Wang <wangzhou1@hisilicon.com>
+Message-ID: <fabffd28-7497-2758-c2bf-9d31aa562085@hisilicon.com>
+Date:   Fri, 26 Feb 2021 17:43:27 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.7.1
 MIME-Version: 1.0
-References: <20210225225147.29920-1-fabrizio.castro.jz@renesas.com> <20210225225147.29920-6-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20210225225147.29920-6-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 26 Feb 2021 10:37:54 +0100
-Message-ID: <CAMuHMdVg-BwAxBZ3ts4BpMMWPc88BG8TkD5JOosRg7O57EB33Q@mail.gmail.com>
-Subject: Re: [PATCH 5/7] arm64: dts: renesas: r8a77990: Add DAB support
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux API <linux-api@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Dirk Behme <Dirk.Behme@de.bosch.com>,
-        Peter Erben <Peter.Erben@de.bosch.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YBfij71tyYvh8LhB@myrica>
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.40.188.87]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 25, 2021 at 11:53 PM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> R-Car E3 (a.k.a. r8a77990) comes with the DAB hardware accelerator.
-> This patch adds SoC specific support.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+On 2021/2/1 19:14, Jean-Philippe Brucker wrote:
+> Hi Zhou,
+> 
+> On Mon, Feb 01, 2021 at 09:18:42AM +0800, Zhou Wang wrote:
+>>> @@ -1033,8 +1076,7 @@ int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain, int ssid,
+>>>  			FIELD_PREP(CTXDESC_CD_0_ASID, cd->asid) |
+>>>  			CTXDESC_CD_0_V;
+>>>  
+>>> -		/* STALL_MODEL==0b10 && CD.S==0 is ILLEGAL */
+>>> -		if (smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
+>>> +		if (smmu_domain->stall_enabled)
+>>
+>> Could we add ssid checking here? like: if (smmu_domain->stall_enabled && ssid).
+>> The reason is if not CD.S will also be set when ssid is 0, which is not needed.
+> 
+> Some drivers may want to get stall events on SSID 0:
+> https://lore.kernel.org/kvm/20210125090402.1429-1-lushenming@huawei.com/#t
+> 
+> Are you seeing an issue with stall events on ssid 0?  Normally there
+> shouldn't be any fault on this context, but if they happen and no handler
+> is registered, the SMMU driver will just abort them and report them like a
+> non-stall event.
 
-LGTM (ignoring clock-names bikeshedding)
+Hi Jean,
 
-Gr{oetje,eeting}s,
+I notice that there is problem. In my case, I expect that CD0 is for kernel
+and other CDs are for user space. Normally there shouldn't be any fault in
+kernel, however, we have RAS case which is for some reason there may has
+invalid address access from hardware device.
 
-                        Geert
+So at least there are two different address access failures: 1. hardware RAS problem;
+2. software fault fail(e.g. kill process when doing DMA). Handlings for these
+two are different: for 1, we should reset hardware device; for 2, stop related
+DMA is enough.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Currently if SMMU returns the same signal(by SMMU resume abort), master device
+driver can not tell these two kinds of cases.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+From the basic concept, if a CD is used for kernel, its S bit should not be set.
+How about we add iommu domain check here too, if DMA domain we do not set S bit for
+CD0, if unmanaged domain we set S bit for all CDs?
+
+Thanks,
+Zhou
+
+> 
+> Thanks,
+> Jean
+> 
+> .
+> 
+
