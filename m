@@ -2,104 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A023262A8
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 13:22:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7755F3262D3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 13:42:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229989AbhBZMV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 07:21:59 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:48842 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbhBZMV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 07:21:58 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 73C2C580;
-        Fri, 26 Feb 2021 13:21:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1614342075;
-        bh=nWbkyCTRl2N2loenx0RpKhmqgsTqWZeI/+24sE7lDhU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TcSjq8cDB3hjPdLb7dogNwqtilbbkVTw7X/DrsU17Nz9vFs3rx7+oez0CY5jLi9Ec
-         fMxcT0nUdoyjfSX1ngWRDP/xDrdl7tjSaqoYZY0ARG5pHHlrSSGv09J/8Kr+QU59Ij
-         r1ntDap30ZQLLhMtaGisDIueCD1Qw7F2yCzYFczY=
-Date:   Fri, 26 Feb 2021 14:20:48 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-api@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Dirk Behme <Dirk.Behme@de.bosch.com>,
-        Peter Erben <Peter.Erben@de.bosch.com>
-Subject: Re: [PATCH 0/7] Add FFT Support for R-Car Gen3 devices
-Message-ID: <YDjnoGDOCXm86ffW@pendragon.ideasonboard.com>
-References: <20210225225147.29920-1-fabrizio.castro.jz@renesas.com>
+        id S229845AbhBZMmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 07:42:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56708 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229618AbhBZMmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 07:42:01 -0500
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47ABBC061574;
+        Fri, 26 Feb 2021 04:41:20 -0800 (PST)
+Received: by mail-ua1-x936.google.com with SMTP id o31so3020152uae.2;
+        Fri, 26 Feb 2021 04:41:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=GwcTLQq3H5c2UK+OWGZKD2GMY78k6FaSogjGLTzQit8=;
+        b=M9p/Cwg3Hk2dvA+4WL3gl2+aEcE0ue3aBk9SU7aQbc2qmuL+BX36vV0xKLLTJh9tJa
+         Fh/WU8GsgK8dL6w8baYWFT9ZeSmeFOTWpjdVZ86huewZfkSyqnR4RwJjnVJwK3kfN4PN
+         Sxnhv9Eh8vIkdIqcrD7ub5yRDWZcioX3dtXpRrX/jO74RH/yzV3SccMxIpQVDlf1jetu
+         RudRuCpW+8QISOsEu8ydsbrq46FpZIE0vTtthLsoBIU2oH3TDYNsqtHgYZJoe1aHFjQb
+         UyQMkIpRyUTTwGaghKdb/6vmqmECC8xainPpgSLLjRWDUPOCO/PJZg4WAKzt+VXriyew
+         Nf4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GwcTLQq3H5c2UK+OWGZKD2GMY78k6FaSogjGLTzQit8=;
+        b=PoL+5vcGGMX5ftaeL6Z8Qx2vd7e3NW6MLm5RGtPIiUNe9HuD8iKPYrS6SaY3cCwKpb
+         ZUPJRcGXh2Or0QS+MgMQ1JPjMU1hRAxMDRPwgBFiCsG0sEFmw7nzszmCYvSsLWFfIq7Z
+         3TjKG9m11ue4WnBz0kganmzLxB5CWMDXr4eV7AoQkLKZ4T6gikT4YDk0FT7wtUFgQJxW
+         CrcgOBZhTi+5vsWkBfUfF1Q9NUyQFKySdgWYR6LD/rUOPTThZx7OBdjYomy98+pUu4Rk
+         uErPJVk6/rfFDqxVZROpyFf2px4PWsvxyhaKnFqpOmLaPVmbjbDCDLFolJddyF8ENiyY
+         dkpg==
+X-Gm-Message-State: AOAM531MYrz5LYvYm3oTWmHBqugCJPOXu6k2T4tw1hXW1YUGHxpxeSXW
+        5LGQOt4HWleyvB+fc58ZRok=
+X-Google-Smtp-Source: ABdhPJzMFEgfXaU6K+NKWQQKLNJlmLF00kHu1fORscS0i96AsC2HhFP+MQfxEHsi96P69E1a6IMneA==
+X-Received: by 2002:ab0:1c1b:: with SMTP id a27mr1457614uaj.62.1614343279413;
+        Fri, 26 Feb 2021 04:41:19 -0800 (PST)
+Received: from shinobu ([193.27.12.132])
+        by smtp.gmail.com with ESMTPSA id e128sm1062680vkg.1.2021.02.26.04.41.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Feb 2021 04:41:18 -0800 (PST)
+Date:   Fri, 26 Feb 2021 21:41:11 +0900
+From:   William Breathitt Gray <vilhelm.gray@gmail.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v7 2/2] counter: add IRQ or GPIO based counter
+Message-ID: <YDjsZ8hyETN0VpCM@shinobu>
+References: <20210226090830.10927-1-o.rempel@pengutronix.de>
+ <20210226090830.10927-3-o.rempel@pengutronix.de>
+ <YDjDMBfWwdImiZxY@shinobu>
+ <20210226121455.t7kz4cxtganzt2xz@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zDZZKf6/pb+UPY5C"
 Content-Disposition: inline
-In-Reply-To: <20210225225147.29920-1-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20210226121455.t7kz4cxtganzt2xz@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
 
-On Thu, Feb 25, 2021 at 10:51:40PM +0000, Fabrizio Castro wrote:
-> The DAB hardware accelerator found on R-Car E3 (a.k.a. r8a77990)
-> and R-Car M3-N (a.k.a. r8a77965) devices is a hardware accelerator
-> for software DAB demodulators.
-> It consists of one FFT (Fast Fourier Transform) module and one
-> decoder module, compatible with DAB specification (ETSI EN 300 401
-> and ETSI TS 102 563).
-> The decoder module can perform FIC decoding and MSC decoding
-> processing from de-puncture to final decoded result.
-> 
-> This series adds FFT support only for R-Car E3 and R-Car M3-N,
-> FIC and MSC support will be added later on.
+--zDZZKf6/pb+UPY5C
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Out of curiosity, could the FFT module be used as an accelerator for 2D
-FFT on images ?
+On Fri, Feb 26, 2021 at 01:14:55PM +0100, Oleksij Rempel wrote:
+> On Fri, Feb 26, 2021 at 06:45:20PM +0900, William Breathitt Gray wrote:
+> > On Fri, Feb 26, 2021 at 10:08:30AM +0100, Oleksij Rempel wrote:
+> > > +static int interrupt_cnt_signal_read(struct counter_device *counter,
+> > > +				     struct counter_signal *signal,
+> > > +				     enum counter_signal_value *val)
+> > > +{
+> > > +	struct interrupt_cnt_priv *priv =3D counter->priv;
+> > > +	int ret;
 
-> Fabrizio Castro (7):
->   clk: renesas: r8a77990: Add DAB clock
->   clk: renesas: r8a77965: Add DAB clock
->   dt-bindings: misc: Add binding for R-Car DAB
->   misc: Add driver for DAB IP found on Renesas R-Car devices
->   arm64: dts: renesas: r8a77990: Add DAB support
->   arm64: dts: renesas: r8a77965: Add DAB support
->   arm64: configs: Add R-Car DAB support
-> 
->  .../devicetree/bindings/misc/renesas,dab.yaml |  75 ++++++++
->  MAINTAINERS                                   |   7 +
->  arch/arm64/boot/dts/renesas/r8a77965.dtsi     |  12 ++
->  arch/arm64/boot/dts/renesas/r8a77990.dtsi     |  12 ++
->  arch/arm64/configs/defconfig                  |   1 +
->  drivers/clk/renesas/r8a77965-cpg-mssr.c       |   1 +
->  drivers/clk/renesas/r8a77990-cpg-mssr.c       |   1 +
->  drivers/misc/Kconfig                          |   1 +
->  drivers/misc/Makefile                         |   1 +
->  drivers/misc/rcar_dab/Kconfig                 |  11 ++
->  drivers/misc/rcar_dab/Makefile                |   8 +
->  drivers/misc/rcar_dab/rcar_dev.c              | 176 ++++++++++++++++++
->  drivers/misc/rcar_dab/rcar_dev.h              | 116 ++++++++++++
->  drivers/misc/rcar_dab/rcar_fft.c              | 160 ++++++++++++++++
->  include/uapi/linux/rcar_dab.h                 |  35 ++++
->  15 files changed, 617 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/renesas,dab.yaml
->  create mode 100644 drivers/misc/rcar_dab/Kconfig
->  create mode 100644 drivers/misc/rcar_dab/Makefile
->  create mode 100644 drivers/misc/rcar_dab/rcar_dev.c
->  create mode 100644 drivers/misc/rcar_dab/rcar_dev.h
->  create mode 100644 drivers/misc/rcar_dab/rcar_fft.c
->  create mode 100644 include/uapi/linux/rcar_dab.h
+I forgot about this function. Add a check here to return -EINVAL if
+we're not dealing with a GPIO:
 
--- 
-Regards,
+	if (!priv->gpio)
+		return -EINVAL;
 
-Laurent Pinchart
+> > > +
+> > > +	ret =3D gpiod_get_value(priv->gpio);
+> > > +	if (ret < 0)
+> > > +		return ret;
+> > > +
+> > > +	*val =3D ret ? COUNTER_SIGNAL_HIGH : COUNTER_SIGNAL_LOW;
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static const struct counter_ops interrupt_cnt_ops =3D {
+> > > +	.action_get =3D interrupt_cnt_action_get,
+> > > +	.count_read =3D interrupt_cnt_read,
+> > > +	.count_write =3D interrupt_cnt_write,
+> > > +	.function_get =3D interrupt_cnt_function_get,
+> > > +	.signal_read  =3D interrupt_cnt_signal_read,
+> > > +};
+> > > +
+> > > +static int interrupt_cnt_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct device *dev =3D &pdev->dev;
+> > > +	struct interrupt_cnt_priv *priv;
+> > > +	int ret;
+> > > +
+> > > +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > > +	if (!priv)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	priv->irq =3D platform_get_irq_optional(pdev,  0);
+> > > +	if (priv->irq =3D=3D -ENXIO)
+> > > +		priv->irq =3D 0;
+> > > +	else if (priv->irq < 0)
+> > > +		return dev_err_probe(dev, priv->irq, "failed to get IRQ\n");
+> > > +
+> > > +	priv->gpio =3D devm_gpiod_get_optional(dev, NULL, GPIOD_IN);
+> > > +	if (IS_ERR(priv->gpio))
+> > > +		return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get GPIO=
+\n");
+> > > +
+> > > +	if (!priv->irq && !priv->gpio) {
+> > > +		dev_err(dev, "IRQ and GPIO are not found. At least one source shou=
+ld be provided\n");
+> > > +		return -ENODEV;
+> > > +	}
+> > > +
+> > > +	if (!priv->irq) {
+> > > +		int irq =3D gpiod_to_irq(priv->gpio);
+> > > +
+> > > +		if (irq < 0)
+> > > +			return dev_err_probe(dev, irq, "failed to get IRQ from GPIO\n");
+> > > +
+> > > +		priv->irq =3D irq;
+> > > +	}
+> > > +
+> > > +	if (priv->gpio) {
+> >=20
+> > This if statement can be removed. There's no need to restrict this to
+> > just GPIO because we're always dealing with an IRQ, so allocate the
+> > "IRQ #" name unconditionally and set signals/num_signals.
+>=20
+> Your previous suggestion was to no assign signals if there is no gpios.
+> What should I do?
+>=20
+> Regards,
+> Oleksij
+> --=20
+> Pengutronix e.K.                           |                             |
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
+I'm sorry for not being clear. I'm saying there is no need to
+differentiate here because there will always be a respective IRQ line
+whether there is a GPIO line or not. So removing the if statement is all
+you need to do.
+
+Instead of:
+
+	if (priv->gpio) {
+		priv->signals.name =3D devm_kasprintf(dev, GFP_KERNEL, "IRQ %d",
+					    priv->irq);
+		if (!priv->signals.name)
+			return -ENOMEM;
+
+		priv->counter.signals =3D &priv->signals;
+		priv->counter.num_signals =3D 1;
+	}
+=09
+	priv->synapses.actions_list =3D interrupt_cnt_synapse_actionss;
+	priv->synapses.num_actions =3D ARRAY_SIZE(interrupt_cnt_synapse_actionss);
+	priv->synapses.signal =3D &priv->signals;
+	...
+
+You can just have those lines execute unconditionally even if there are
+no gpios:
+
+	priv->signals.name =3D devm_kasprintf(dev, GFP_KERNEL, "IRQ %d",
+				    priv->irq);
+	if (!priv->signals.name)
+		return -ENOMEM;
+
+	priv->counter.signals =3D &priv->signals;
+	priv->counter.num_signals =3D 1;
+=09
+	priv->synapses.actions_list =3D interrupt_cnt_synapse_actionss;
+	priv->synapses.num_actions =3D ARRAY_SIZE(interrupt_cnt_synapse_actionss);
+	priv->synapses.signal =3D &priv->signals;
+	...
+
+William Breathitt Gray
+
+--zDZZKf6/pb+UPY5C
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEk5I4PDJ2w1cDf/bghvpINdm7VJIFAmA47EQACgkQhvpINdm7
+VJL2OxAAw+LYMNXAWMCpkG64pnB+bM+4rXT547BrG7UkDPr7qvDHgVHY5cx+jTwR
+Uaisl3EGDMLID45fIiDXkZ74WYJB16xrVGTi8/4msfoJFINgKR7AzQ90wUqSx1VF
+3GOTy/kKTokzJQ41Hv1sJtGX5rh+5+bzt62nTpEuY4lc3lQAlgZk3/03IoR33zoX
+eAQ0eQFxyjIdakF3HYlGodS8Vz5dSviBNmmtElvaGRgEdBFiz6fxaKMGHV15nWO/
+BfhIf78TyPCq+KqhQLJb+L7Hvz4cv2bqLHxPOCkmXODBrylYd7TbmVA0JEl8prGM
+OlwPazjT+5a8/yNh/CM09G2xiUUzwunB61Hiny64MWPeWRNM3M4W0ErxQqmp3sgz
+k8QJJ+swppHzC/pLeZTJAEySwQk/eGGu9x3TL2r+GVpegsDkbeaiXqmFRy2+EiIx
+royJZVa6/7HJ0xTrCO8gUHSMFIK4dwAUpQaPeyXaJ/zEdlgdYxy5a9TugNVyVaez
+Zs2UtajmVUNHvqIVkbZUt8oQ6ZghMaHwZ2ffDMqG2249umcC7/RkmvpMH97XEDIj
+MqKCer2gVLqkLAGOV++7MiWLNgjBtCvDkH8atWPCNPny6mcUHE9bfWF1h8/Ckhn3
+5jU/aboI6HYWBfEwnmmMM7KE4J12jZeWZ/gzcFulV3j/JesOY2c=
+=lFTA
+-----END PGP SIGNATURE-----
+
+--zDZZKf6/pb+UPY5C--
