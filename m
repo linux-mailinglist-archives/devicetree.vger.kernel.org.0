@@ -2,134 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 058C432623F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 13:01:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FD02326264
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 13:14:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229886AbhBZMAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 07:00:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47834 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbhBZMAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 07:00:48 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4560C061786
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 04:00:07 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id u12so5719238pjr.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 04:00:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OTt+hzwUzbEnNK6etaUVSe6BNGtkKbiycN/jXlNteq0=;
-        b=asNZJiY/ZN5/+Dh0isecfCCWU4RODpQNusNjrlECjqzWIL/uwWIBOBPJCh5a8J+icW
-         58k9I4EH5I4J8AuSpTqnnQcatHcS4FICl89ylMgE79cPJMPQlwoD4Z/p7k5XYUTnrJ9i
-         DBGfYfLLHS7jSrrdepRYAYw2f2QJMR6adyYDSKAMy3Mx/V2f7O3VJO1n4oyhEBPiNSeX
-         L3u7OGk5NKdOPy6L05PUQtw8Fz6ksdNKiN25JGwnR/7D9ujyhoiPYkrB63j8RRydcs/W
-         LnXCfsNq7zfQLv/doZ4JHMDtMK2LOK9POnSS9qDubVbq2SgAs0KoG9BWMjrMktcCJ+gf
-         PUPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OTt+hzwUzbEnNK6etaUVSe6BNGtkKbiycN/jXlNteq0=;
-        b=gg/znuHapxCHU5ssJIrBlZmU9MNMLIxxUncZCQTOUZMoglFCJ4LyLMGi8chWu56x/+
-         0GsMlD2WQey7kBX21vb/UYg4w+bMYUAjLI/NbYpY73hLdC9XKyrPVW6u2wyYlbV0ICso
-         TxJwvRrfrWapWX0OGohflfwyl4sxfeBmjnbIof5RurCNOFK5nsj+2czLiSfyApMRoxm7
-         36WNE3MXeRcI8wXsaJM5tp2jwCZ4UggYpMwWmnJY9OvX2u5dLeFY7q2A7972wJ0IYp/J
-         24cF9LOUr4/gAS0ld3HY5WFrk6/3tA+8ZR8TyuTZVfwzsDAT5IkZnSMHzUMcNhTecqfs
-         pZQA==
-X-Gm-Message-State: AOAM533iflwHKUKhXT9PRcgxfuW+zhJK2OcG/4kTw6jO2yrkYVwUj1FL
-        xRk/bVop+hEpsC3yV6f5uwuYuaIqwaJdI75vBHJL3A==
-X-Google-Smtp-Source: ABdhPJyfnocGVGubk0og9fBr+6c+QqVcyum8wyer3OWW0BX2xL+xddU+EDj2PYGrP8++GK2VEYgewJ7knmtQVGv/4t0=
-X-Received: by 2002:a17:90a:8b83:: with SMTP id z3mr3182942pjn.75.1614340807377;
- Fri, 26 Feb 2021 04:00:07 -0800 (PST)
-MIME-Version: 1.0
-References: <1613619715-28785-1-git-send-email-victor.liu@nxp.com> <1613619715-28785-3-git-send-email-victor.liu@nxp.com>
-In-Reply-To: <1613619715-28785-3-git-send-email-victor.liu@nxp.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Fri, 26 Feb 2021 12:59:56 +0100
-Message-ID: <CAG3jFysoPCDW5RQeDLa3b97UrH0yKi=K=tJLFuXK6YZHZm+T+g@mail.gmail.com>
-Subject: Re: [PATCH v4 02/14] media: uapi: Add some RGB bus formats for
- i.MX8qm/qxp pixel combiner
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>, kishon@ti.com,
-        Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S230083AbhBZMNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 07:13:45 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:31718 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229989AbhBZMNo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Feb 2021 07:13:44 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1614341605; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=Cmqghx6zhcQDDabwf+FgyE0f9AAgFN3Iix4YVts5sgY=; b=SUBRs4TM3fX8MivTVWL0psLyWi1kO/UqF87KPeKtQ2hlIxqHeEXQzPJUjDNbI4ZXqDeF+9MX
+ T7Bxb4ZrHAbQ0UiPPmq+UOUBp/R9NsYArCIF5YpSt8GtartZ8h3OJO5dkezN0BUbERXwRmWm
+ 5Wx67FScq7AIXVDH5kDMiPCbpf4=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 6038e5c59a7cefa92a6a6f30 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 26 Feb 2021 12:12:53
+ GMT
+Sender: kgunda=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 8635AC43463; Fri, 26 Feb 2021 12:12:52 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from kgunda-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kgunda)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3F910C433CA;
+        Fri, 26 Feb 2021 12:12:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3F910C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kgunda@codeaurora.org
+From:   Kiran Gunda <kgunda@codeaurora.org>
+To:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        Kiran Gunda <kgunda@codeaurora.org>
+Subject: [PATCH V2 0/2]  Fix WLED FSC Sync and brightness Sync settings
+Date:   Fri, 26 Feb 2021 17:42:22 +0530
+Message-Id: <1614341544-5306-1-git-send-email-kgunda@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Liu,
+This patch series has the following two WLED fixes
+ 1. As per the current implementation, for WLED5, after
+    the FSC (Full Scale Current) update the driver is incorrectly
+    toggling the MOD_SYNC register instead of toggling the SYNC register.
+    The patch 1/2 fixes this by toggling the SYNC register after
+    FSC update.
 
-This patch looks good to me
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
+ 2. Currently, the sync bits are transitioned from 1 to 0
+    after FSC and brightness update. As per hardware team recommendation
+    the FSC and brightness sync takes place from 0 to 1 transition.
+    The patch 2/2 fies this issue.
 
-On Thu, 18 Feb 2021 at 04:56, Liu Ying <victor.liu@nxp.com> wrote:
->
-> This patch adds RGB666_1X30_CPADLO, RGB888_1X30_CPADLO, RGB666_1X36_CPADLO
-> and RGB888_1X36_CPADLO bus formats used by i.MX8qm/qxp pixel combiner.
-> The RGB pixels with padding low per component are transmitted on a 30-bit
-> input bus(10-bit per component) from a display controller or a 36-bit
-> output bus(12-bit per component) to a pixel link.
->
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v3->v4:
-> * No change.
->
-> v2->v3:
-> * No change.
->
-> v1->v2:
-> * No change.
->
->  include/uapi/linux/media-bus-format.h | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->
-> diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
-> index 0dfc11e..ec3323d 100644
-> --- a/include/uapi/linux/media-bus-format.h
-> +++ b/include/uapi/linux/media-bus-format.h
-> @@ -34,7 +34,7 @@
->
->  #define MEDIA_BUS_FMT_FIXED                    0x0001
->
-> -/* RGB - next is       0x101e */
-> +/* RGB - next is       0x1022 */
->  #define MEDIA_BUS_FMT_RGB444_1X12              0x1016
->  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE      0x1001
->  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE      0x1002
-> @@ -59,9 +59,13 @@
->  #define MEDIA_BUS_FMT_RGB888_3X8_DELTA         0x101d
->  #define MEDIA_BUS_FMT_RGB888_1X7X4_SPWG                0x1011
->  #define MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA       0x1012
-> +#define MEDIA_BUS_FMT_RGB666_1X30_CPADLO       0x101e
-> +#define MEDIA_BUS_FMT_RGB888_1X30_CPADLO       0x101f
->  #define MEDIA_BUS_FMT_ARGB8888_1X32            0x100d
->  #define MEDIA_BUS_FMT_RGB888_1X32_PADHI                0x100f
->  #define MEDIA_BUS_FMT_RGB101010_1X30           0x1018
-> +#define MEDIA_BUS_FMT_RGB666_1X36_CPADLO       0x1020
-> +#define MEDIA_BUS_FMT_RGB888_1X36_CPADLO       0x1021
->  #define MEDIA_BUS_FMT_RGB121212_1X36           0x1019
->  #define MEDIA_BUS_FMT_RGB161616_1X48           0x101a
->
-> --
-> 2.7.4
->
+
+Changes from V1:
+   1. Updated the cover letter.
+   2. Updated the description of the patches as per Daniel's suggestion.
+
+
+Kiran Gunda (2):
+  backlight: qcom-wled: Fix FSC update issue for WLED5
+  backlight: qcom-wled: Correct the sync_toggle sequence
+
+ drivers/video/backlight/qcom-wled.c | 37 +++++++++++++++++++++++++------------
+ 1 file changed, 25 insertions(+), 12 deletions(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+ a Linux Foundation Collaborative Project
+
