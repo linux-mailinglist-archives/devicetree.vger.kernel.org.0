@@ -2,281 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1998D326708
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 19:44:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1DB832670A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 19:45:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230148AbhBZSor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 13:44:47 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:59984 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbhBZSop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 13:44:45 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11QIh3j3113538;
-        Fri, 26 Feb 2021 12:43:03 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614364983;
-        bh=XpU4+ZjsER7UUce9qvUVh/KBWqnRRXd0vaHxr4Ro5To=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=KRjzScf7knCM6URD+ql0HKsRXvJACmsr1allHNxf4kmPRRFypMfeTGsx16TLrra5e
-         ajYm4epgOhwNaklpQu/mvYGkf7NZDgOEKOjl3qmx778XCUHcNG7LWLZBmvTMlOFcbT
-         l/qfbgXzrJ5IuaeDxnFhbnCzz4+5TP/Jcp2Ykin4=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11QIh3DY009689
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 26 Feb 2021 12:43:03 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 26
- Feb 2021 12:43:03 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 26 Feb 2021 12:43:03 -0600
-Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11QIgq43103387;
-        Fri, 26 Feb 2021 12:43:00 -0600
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
-CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v3 2/2] arm64: dts: ti: Add support for AM642 SK
-Date:   Sat, 27 Feb 2021 00:12:51 +0530
-Message-ID: <20210226184251.26451-3-lokeshvutla@ti.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210226184251.26451-1-lokeshvutla@ti.com>
-References: <20210226184251.26451-1-lokeshvutla@ti.com>
+        id S229745AbhBZSps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 13:45:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49934 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229598AbhBZSpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 13:45:47 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC1DAC061756
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:45:06 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id j12so6814367pfj.12
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:45:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=4hDbemyw0HDex76Hp+5hflo0c5crmBoyAwM2bUl3AVc=;
+        b=HAyiI6JBL04RTZTPFOsONaE8F5JHgIEVyKqWeQuW0CaK76LWjKAKIEt2HPeacIKZIl
+         ErD974IQtIlAQ4K8zEpmtwJlYkcsnZybDjI4Kk/CYgh4RCqfXn7MVCZ8QjlG4fnHXDC7
+         zqYPZPgvOLrWYjcRIudHgr6xqZ+vQ2ITPqA3I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=4hDbemyw0HDex76Hp+5hflo0c5crmBoyAwM2bUl3AVc=;
+        b=XiXDtiN0MfplSMHCnz66qtmu/cMjdWqJPPfwrC1TwNE3JuAXRNqIAksr/pxviAAe7Q
+         92e4x3Ho4Yhil6rnondKHoo0gZazMRuPFb+Ugt9YkZQKTXE6b+E1lvO7iwubRRuQ4pC8
+         L92L4cg53AYKedpgfN5DEezdMtWllm7HFoGOE2+tJP0NKIHW45KZkKZwd6XVniyEIVCI
+         qau4mr+mUW3bafnf8vfOnAD47tNpti/vvIVfkxg2Yp/Qcr4YcT0pccwt+G1q9J+Ekv5R
+         IePW797pajMtTOlkMg+h/Ov2LUqsPz+D+OdoFJ7W18z0DprTs5WnxNJ0QgZjJ4WIPwan
+         265Q==
+X-Gm-Message-State: AOAM533IThtGDwcvQ1HGoKUOnjWxC2aGpiLnMOlcLQdtwZVOJ7LUlecF
+        /CldnsR7+GTXF43RfRNYHGuYbw==
+X-Google-Smtp-Source: ABdhPJyStxZ0/YWglvC7Art5F0mB7qtsccNWckgQDuHCF01MwhTiWNQKyRpE/pYs8XWUnjbDDjD3gQ==
+X-Received: by 2002:a62:43:0:b029:1cd:2de2:5a24 with SMTP id 64-20020a6200430000b02901cd2de25a24mr4576595pfa.27.1614365106146;
+        Fri, 26 Feb 2021 10:45:06 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:e8bb:5726:f58b:4e37])
+        by smtp.gmail.com with ESMTPSA id r123sm10329986pfc.211.2021.02.26.10.45.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Feb 2021 10:45:05 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210225141022.13.I3d1f5f8a3bf31e8014229df0d4cfdff20e9cc90f@changeid>
+References: <20210225221310.1939599-1-dianders@chromium.org> <20210225141022.13.I3d1f5f8a3bf31e8014229df0d4cfdff20e9cc90f@changeid>
+Subject: Re: [PATCH 13/13] arm64: dts: qcom: Add sc7180-lazor-coachz skus
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     Alexandru M Stan <amstan@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>
+Date:   Fri, 26 Feb 2021 10:45:04 -0800
+Message-ID: <161436510419.1254594.15131518424468767659@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM642 StarterKit (SK) board is a low cost, small form factor board
-designed for TI’s AM642 SoC. It supports the following interfaces:
-* 2 GB LPDDR4 RAM
-* x2 Gigabit Ethernet interfaces capable of working in switch and MAC mode
-* x1 USB 3.0 Type-A port
-* x1 UHS-1 capable µSD card slot
-* 2.4/5 GHz WLAN + Bluetooth 4.2 through WL1837
-* 512 Mbit OSPI flash
-* x2 UART through UART-USB bridge
-* XDS110 for onboard JTAG debug using USB
-* Temperature sensors, user push buttons and LEDs
-* 40-pin Raspberry Pi compatible GPIO header
-* 24-pin header for peripherals in MCU island (I2C, UART, SPI, IO)
-* 54-pin header for Programmable Realtime Unit (PRU) IO pins
-* Interface for remote automation. Includes:
-	* power measurement and reset control
-	* boot mode change
+Quoting Douglas Anderson (2021-02-25 14:13:10)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/a=
+rm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> new file mode 100644
+> index 000000000000..5def9953d82b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> @@ -0,0 +1,249 @@
+[...]
+> +
+> +/*
+> + * There's no SAR sensor, so i2c5 is re-purposed.  We leave the
+> + * proximity@28 node under i2c5 (from trogdor.dtsi) since it's "disabled"
+> + * and doesn't hurt.
+> + */
+> +i2c_wlc: &i2c5 {
+> +       /* Currently not connected to anything; see b/168652326 */
+> +};
 
-Add basic support for AM642 SK.
+Can we remove this? As far as I know this will always be this way and
+thus doesn't provide anything meaningful to leave this bug comment here
+that doesn't work for people.
 
-Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile        |   2 +
- arch/arm64/boot/dts/ti/k3-am642-sk.dts | 173 +++++++++++++++++++++++++
- 2 files changed, 175 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am642-sk.dts
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 596fc1092c6d..386ef98ccf7d 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -13,3 +13,5 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-+
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-new file mode 100644
-index 000000000000..aa6ca4c49153
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -0,0 +1,173 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-am642.dtsi"
-+
-+/ {
-+	compatible =  "ti,am642-sk", "ti,am642";
-+	model = "Texas Instruments AM642 SK";
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 2G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-+
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
-+
-+	vusb_main: fixed-regulator-vusb-main5v0 {
-+		/* USB MAIN INPUT 5V DC */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vusb_main5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_3v3_sys: fixedregulator-vcc-3v3-sys {
-+		/* output of LP8733xx */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_sys";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vusb_main>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: fixed-regulator-sd {
-+		/* TPS2051BD */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vcc_3v3_sys>;
-+		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0294, PIN_INPUT, 0) /* (J19) MMC1_CMD */
-+			AM64X_IOPAD(0x0290, PIN_INPUT, 0) /* (#N/A) MMC1_CLKLB */
-+			AM64X_IOPAD(0x028c, PIN_INPUT, 0) /* (L20) MMC1_CLK */
-+			AM64X_IOPAD(0x0288, PIN_INPUT, 0) /* (K21) MMC1_DAT0 */
-+			AM64X_IOPAD(0x0284, PIN_INPUT, 0) /* (L21) MMC1_DAT1 */
-+			AM64X_IOPAD(0x0280, PIN_INPUT, 0) /* (K19) MMC1_DAT2 */
-+			AM64X_IOPAD(0x027c, PIN_INPUT, 0) /* (K18) MMC1_DAT3 */
-+			AM64X_IOPAD(0x0298, PIN_INPUT, 0) /* (D19) MMC1_SDCD */
-+		>;
-+	};
-+
-+	main_i2c1_pins_default: main-i2c1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
-+			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
-+		>;
-+	};
-+};
-+
-+&mcu_uart0 {
-+	status = "disabled";
-+};
-+
-+&mcu_uart1 {
-+	status = "disabled";
-+};
-+
-+&main_uart1 {
-+	/* main_uart1 is reserved for firmware usage */
-+	status = "reserved";
-+};
-+
-+&main_uart2 {
-+	status = "disabled";
-+};
-+
-+&main_uart3 {
-+	status = "disabled";
-+};
-+
-+&main_uart4 {
-+	status = "disabled";
-+};
-+
-+&main_uart5 {
-+	status = "disabled";
-+};
-+
-+&main_uart6 {
-+	status = "disabled";
-+};
-+
-+&mcu_i2c0 {
-+	status = "disabled";
-+};
-+
-+&mcu_i2c1 {
-+	status = "disabled";
-+};
-+
-+&main_i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c1_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp1: gpio@70 {
-+		compatible = "nxp,pca9538";
-+		reg = <0x70>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "GPIO_CPSW2_RST", "GPIO_CPSW1_RST",
-+				  "PRU_DETECT", "MMC1_SD_EN",
-+				  "VPP_LDO_EN", "RPI_PS_3V3_En",
-+				  "RPI_PS_5V0_En", "RPI_HAT_DETECT";
-+	};
-+};
-+
-+&main_i2c3 {
-+	status = "disabled";
-+};
-+
-+&mcu_spi0 {
-+	status = "disabled";
-+};
-+
-+&mcu_spi1 {
-+	status = "disabled";
-+};
-+
-+&sdhci1 {
-+	/* SD/MMC */
-+	vmmc-supply = <&vdd_mmc1>;
-+	pinctrl-names = "default";
-+	bus-width = <4>;
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
--- 
-2.30.0
-
+> +
+> +&i2c7 {
+> +       status =3D "disabled";
+> +};
