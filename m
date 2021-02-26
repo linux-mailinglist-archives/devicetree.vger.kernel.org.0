@@ -2,92 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D7F43266B2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 19:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0379326709
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 19:45:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbhBZSHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 13:07:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52222 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229823AbhBZSHl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Feb 2021 13:07:41 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3327A64F17;
-        Fri, 26 Feb 2021 18:07:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614362821;
-        bh=MsTenNoyOnWmOLDR4TgPo35YUl2jpUyfq4i4eUjVLSY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Rh1bns5sUNNDacFR+rXol0byU633qLb3eJ3Fy/97VgbvaWXeP1X0Jbcgwdvc8LrG4
-         c42fkje7HR81HJlf03QcNz45JISLidxUahvGTS86gtQvmmlBU8aU000OwRtcyScAIU
-         f9ERBN0D/HrA/S0mjKWbHgM7l3qSz7ZMIC2O2dd6nTlP64d7zilQZZ3Qu6y66KDQnU
-         i2teBVtXx0kdoULktpCNWZfd89/LJSnroftYnGgaEfP7pKLxaY/pEpEQDr055SxYjP
-         Iz3HRLSvnxit637oMepDvYl+p0YF+iUB42doBLa2gvjtsiA5akdt8/QohTtV53Vh9g
-         Qk14gwmJi+D2w==
-Received: by mail-oi1-f177.google.com with SMTP id j1so10623639oiw.3;
-        Fri, 26 Feb 2021 10:07:01 -0800 (PST)
-X-Gm-Message-State: AOAM533CEkOq1J+isYDREutBBGn2CGE7MweNJPXUB4g3aIGaLgMnNGZl
-        6x0D1ck0MUd5gnBZsEhTkBdB34PmXcvlF9PXmJg=
-X-Google-Smtp-Source: ABdhPJyeZg3Pwe0jqw+NGo0qyDRNND7ksKo0FA7RNXG7z9WTLUgtfxlM+JIQEpOq+Q9tvDsGtU+39X1uraynmxH6nvs=
-X-Received: by 2002:aca:4fd3:: with SMTP id d202mr2839613oib.11.1614362820512;
- Fri, 26 Feb 2021 10:07:00 -0800 (PST)
+        id S230019AbhBZSon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 13:44:43 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:59982 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229949AbhBZSom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 13:44:42 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11QIgv88113498;
+        Fri, 26 Feb 2021 12:42:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1614364977;
+        bh=/Mv4YXsJOhfUictNm8Y/oGeFqih1zQ1MpyWsmLIfr0c=;
+        h=From:To:CC:Subject:Date;
+        b=CmM0fnLHqKePTdFUt9SKDZ28qW6/AkphUQm07TEiAaCLvxiaCYzovzY4GiINDcZYJ
+         MmX+DB/YSnR3LC7kfusYEzByWq6YkoPCIZ1l9ebC1VNmMGf5EQDjOjj5ejWM6XrGN4
+         SicjB/co6bNHllZLzKfDhXwpePX1+Nzu+CNXS6yw=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11QIgvl3076382
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 26 Feb 2021 12:42:57 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 26
+ Feb 2021 12:42:56 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 26 Feb 2021 12:42:57 -0600
+Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11QIgq41103387;
+        Fri, 26 Feb 2021 12:42:54 -0600
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
+CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v3 0/2] arm64: Initial support for Texas Instruments AM642 SK
+Date:   Sat, 27 Feb 2021 00:12:49 +0530
+Message-ID: <20210226184251.26451-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-References: <20210226140305.26356-1-nsaenzjulienne@suse.de>
- <20210226140305.26356-14-nsaenzjulienne@suse.de> <CAK8P3a1cDgSo7LTtBZpzBo3xu23_uDEux8=15Xyw6JTpXtGqhw@mail.gmail.com>
-In-Reply-To: <CAK8P3a1cDgSo7LTtBZpzBo3xu23_uDEux8=15Xyw6JTpXtGqhw@mail.gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Fri, 26 Feb 2021 19:06:43 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a03BcXZu+On885GaR547SHJYtiu3d_QHG0zOr2UiKn6qQ@mail.gmail.com>
-Message-ID: <CAK8P3a03BcXZu+On885GaR547SHJYtiu3d_QHG0zOr2UiKn6qQ@mail.gmail.com>
-Subject: Re: [RFC 13/13] scsi: megaraid: Make use of dev_64bit_mmio_supported()
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Christoph Hellwig <hch@infradead.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>, Will Deacon <will@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 26, 2021 at 3:30 PM Arnd Bergmann <arnd@kernel.org> wrote:
->
-> On Fri, Feb 26, 2021 at 3:03 PM Nicolas Saenz Julienne
-> <nsaenzjulienne@suse.de> wrote:
->
-> >         unsigned long flags;
-> > -       spin_lock_irqsave(&instance->hba_lock, flags);
-> > -       writel(le32_to_cpu(req_desc->u.low),
-> > -               &instance->reg_set->inbound_low_queue_port);
-> > -       writel(le32_to_cpu(req_desc->u.high),
-> > -               &instance->reg_set->inbound_high_queue_port);
-> > -       spin_unlock_irqrestore(&instance->hba_lock, flags);
->
-> > +
-> > +       if (dev_64bit_mmio_supported(&instance->pdev->dev)) {
-> > +               writeq(req_data, &instance->reg_set->inbound_low_queue_port);
-> > +       } else {
-> > +               spin_lock_irqsave(&instance->hba_lock, flags);
-> > +               lo_hi_writeq(req_data, &instance->reg_set->inbound_low_queue_port);
-> > +               spin_unlock_irqrestore(&instance->hba_lock, flags);
-> > +       }
->
-> I see your patch changes the code to the lo_hi_writeq() accessor,
-> and it also fixes the endianness bug (double byteswap on big-endian),
-> but it does not fix the spinlock bug (writel on pci leaks out of the lock
-> unless it's followed by a read).
+AM642 StarterKit (SK) board is a low cost, small form factor board
+designed for TI’s AM642 SoC. This series introduces basic support for
+AM642 SK.
 
-On second look, it seems your patch breaks the byteorder logic,
-rather than fixing it. It would seem better to leave it unchanged
-then, or to send a separate rework of the endianness conversion if
-you think it is wrong.
+* Depends on Dave's series for adding AM642 SoC:
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=439039
 
-       Arnd
+Boot log: https://pastebin.ubuntu.com/p/TKPbkwdBxH/
+
+Changes since v2:
+- Added Reviewed-by tag from Rob
+- Rebased on top of latest master 
+
+v2: https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210202081530.14984-1-lokeshvutla@ti.com/ 
+v1: https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210121143924.26213-1-lokeshvutla@ti.com/
+
+Lokesh Vutla (2):
+  dt-bindings: arm: ti: Add bindings for AM642 SK
+  arm64: dts: ti: Add support for AM642 SK
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        | 173 ++++++++++++++++++
+ 3 files changed, 176 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642-sk.dts
+
+-- 
+2.30.0
+
