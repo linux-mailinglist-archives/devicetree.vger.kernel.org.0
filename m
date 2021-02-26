@@ -2,355 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D49FE32644B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 15:44:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE54C326450
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 15:47:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbhBZOoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 09:44:13 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50422 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbhBZOoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 09:44:12 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11QEgwRv112854;
-        Fri, 26 Feb 2021 08:42:58 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614350578;
-        bh=wuNJdCQAK84t/N/U0tT/luwG2sGKnbo5DvjHlxS5TAM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=dXNCk51HKSu26OYf+rOLIZ2Q9wovZEFYWW8py5wQPUgkIwNFG3y31clMTqdNtNhB7
-         cMu0zED0tqEFSi9YvEZUMiyCH57IbWQZkyuRA1oo6/dujMSVTaZl8begORGYylVWMb
-         kIBFNf4f9PlZ8rzAjdshSfTgZeBWCwClu5pgi1VQ=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11QEgwYD011546
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 26 Feb 2021 08:42:58 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 26
- Feb 2021 08:42:58 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 26 Feb 2021 08:42:58 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11QEgvng019440;
-        Fri, 26 Feb 2021 08:42:58 -0600
-From:   Dave Gerlach <d-gerlach@ti.com>
-To:     Nishanth Menon <nm@ti.com>
-CC:     Dave Gerlach <d-gerlach@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH v4 5/5] arm64: dts: ti: Add support for AM642 EVM
-Date:   Fri, 26 Feb 2021 08:42:57 -0600
-Message-ID: <20210226144257.5470-6-d-gerlach@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20210226144257.5470-1-d-gerlach@ti.com>
-References: <20210226144257.5470-1-d-gerlach@ti.com>
+        id S229535AbhBZOrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 09:47:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55454 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229449AbhBZOrg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 09:47:36 -0500
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B049DC061574;
+        Fri, 26 Feb 2021 06:46:55 -0800 (PST)
+Received: by mail-pf1-x42d.google.com with SMTP id b145so6400706pfb.4;
+        Fri, 26 Feb 2021 06:46:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/TYKTW6vMSX34Lo/QP5TakGrXtS+bClWHXgI2d5DqyQ=;
+        b=L0lUCJp9XkmJVz3q6dE3tyoJFZkBu75c6aO0q/ToTIvSGxFld33n5Ki3ripOT3u172
+         XML3Uh3pAWpgpEA5SHslYde+YTLM+HhfAc+uSzDMn//XeTA8+igF+1Zxt7/fpCm5v967
+         H14LAaPaJs7qM8zITe3ua1sASnviAXJF+yAUCdGo/35muU+2RtPZxnUJHYwlJ2qT4v9m
+         nJlEsmd8VFfLAXoOHVevS/9XkczHKlg/yR91T/uxSl1+MjpzCV/TRD7UBBsaNg4tT5Jw
+         1S866zzQgslUPKpMk96TNC8y9tGjpS/rQQ/sZbotTvN0wbjc9uRP3ojXOCL+wZuTz4h3
+         RUqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/TYKTW6vMSX34Lo/QP5TakGrXtS+bClWHXgI2d5DqyQ=;
+        b=HB5fth3S2JDdYhWtNWOGFMGzLD7KRGM2gevgfg9L+veseg9Y51qSLLAM7H+nnJOWTQ
+         NtJE/uHGWUW/6gImayWudn0NK+JiSNIflHFKF7QIjAJh3A809Uyn60OWwmF+QGh3RDgl
+         we12+jiRKYOZK0jfY8JFwcrmKwdRhZ7WFVlm///XBZsShg3vexEgAWgmmIWIaZADo34P
+         ObdMTFIeps8D8MdJQxoNQT3G6LIQ5z2EF54YoyMdwNSi47c3Sfy7sL9TzwGdTjVxKvNp
+         pkS8oZqmUyEwCpAkzxwz7yj0GyEIao5NBnNLOVAnnIG86Uv7BNvlccGB0/fCsBm6yiSo
+         sY9g==
+X-Gm-Message-State: AOAM530l1BPVT3QWIpfK2nxLJqVip60RkaLmf+bVom4JeSbSk3Szwi5t
+        eu14vcPxOdfdChepZcY77Hc=
+X-Google-Smtp-Source: ABdhPJzgzMzZw142DhrijVdDEDJdI5Lzi3mX1asOgEN3CNBuneOFmrwmJ+sgVNSX00IM18o9PxP0ag==
+X-Received: by 2002:a62:2acf:0:b029:1ed:5dbb:717a with SMTP id q198-20020a622acf0000b02901ed5dbb717amr3632787pfq.39.1614350815072;
+        Fri, 26 Feb 2021 06:46:55 -0800 (PST)
+Received: from [172.30.1.19] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id r2sm9174176pgv.50.2021.02.26.06.46.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Feb 2021 06:46:54 -0800 (PST)
+Subject: Re: [RFC 03/19] devfreq: imx-bus: Switch governor to powersave
+To:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Georgi Djakov <djakov@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Martin Kepplinger <martink@posteo.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Cc:     NXP Linux Team <linux-imx@nxp.com>
+References: <1613750416-11901-1-git-send-email-abel.vesa@nxp.com>
+ <1613750416-11901-4-git-send-email-abel.vesa@nxp.com>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Message-ID: <d953245b-ebac-30bb-1887-1b97b921bade@gmail.com>
+Date:   Fri, 26 Feb 2021 23:46:46 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
+In-Reply-To: <1613750416-11901-4-git-send-email-abel.vesa@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AM642 EValuation Module (EVM) is a board that provides access to
-various peripherals available on the AM642 SoC, such as PCIe, USB 2.0,
-CPSW Ethernet, ADC, and more.
 
-Introduce support for the AM642 EVM to enable mmc boot, including
-enabling UART and I2C on the board.
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile         |   4 +-
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 246 ++++++++++++++++++++++++
- 2 files changed, 249 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm.dts
+On 21. 2. 20. 오전 1:00, Abel Vesa wrote:
+> By switching to powersave governor, we allow the imx-bus to always run
+> at minimum rate needed by all the running masters.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> ---
+>   drivers/devfreq/imx-bus.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/devfreq/imx-bus.c b/drivers/devfreq/imx-bus.c
+> index 4f38455ad742..1c0c92d0eb08 100644
+> --- a/drivers/devfreq/imx-bus.c
+> +++ b/drivers/devfreq/imx-bus.c
+> @@ -99,7 +99,7 @@ static int imx_bus_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct imx_bus *priv;
+> -	const char *gov = DEVFREQ_GOV_USERSPACE;
+> +	const char *gov = DEVFREQ_GOV_POWERSAVE;
+>   	int ret;
+>   
+>   	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> 
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 65506f21ba30..596fc1092c6d 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -3,7 +3,7 @@
- # Make file to build device tree binaries for boards based on
- # Texas Instruments Inc processors
- #
--# Copyright (C) 2016-2020 Texas Instruments Incorporated - https://www.ti.com/
-+# Copyright (C) 2016-2021 Texas Instruments Incorporated - https://www.ti.com/
- #
- 
- dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
-@@ -11,3 +11,5 @@ dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
-+
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-new file mode 100644
-index 000000000000..1f1787750fef
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -0,0 +1,246 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include "k3-am642.dtsi"
-+
-+/ {
-+	compatible =  "ti,am642-evm", "ti,am642";
-+	model = "Texas Instruments AM642 EVM";
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 2G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-+
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
-+
-+	evm_12v0: fixedregulator-evm12v0 {
-+		/* main DC jack */
-+		compatible = "regulator-fixed";
-+		regulator-name = "evm_12v0";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_5v0: fixedregulator-vsys5v0 {
-+		/* output of LM5140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&evm_12v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_3v3: fixedregulator-vsys3v3 {
-+		/* output of LM5140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&evm_12v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: fixed-regulator-sd {
-+		/* TPS2051BD */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vddb: fixedregulator-vddb {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vddb_3v3_display";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vsys_3v3>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "am64-evm:red:heartbeat";
-+			gpios = <&exp1 16 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+			default-state = "off";
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0294, PIN_INPUT_PULLUP, 0) /* (J19) MMC1_CMD */
-+			AM64X_IOPAD(0x028c, PIN_INPUT_PULLDOWN, 0) /* (L20) MMC1_CLK */
-+			AM64X_IOPAD(0x0288, PIN_INPUT_PULLUP, 0) /* (K21) MMC1_DAT0 */
-+			AM64X_IOPAD(0x0284, PIN_INPUT_PULLUP, 0) /* (L21) MMC1_DAT1 */
-+			AM64X_IOPAD(0x0280, PIN_INPUT_PULLUP, 0) /* (K19) MMC1_DAT2 */
-+			AM64X_IOPAD(0x027c, PIN_INPUT_PULLUP, 0) /* (K18) MMC1_DAT3 */
-+			AM64X_IOPAD(0x0298, PIN_INPUT_PULLUP, 0) /* (D19) MMC1_SDCD */
-+			AM64X_IOPAD(0x029c, PIN_INPUT, 0) /* (C20) MMC1_SDWP */
-+			AM64X_IOPAD(0x0290, PIN_INPUT, 0) /* MMC1_CLKLB */
-+		>;
-+	};
-+
-+	main_uart0_pins_default: main-uart0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0238, PIN_INPUT, 0) /* (B16) UART0_CTSn */
-+			AM64X_IOPAD(0x023c, PIN_OUTPUT, 0) /* (A16) UART0_RTSn */
-+			AM64X_IOPAD(0x0230, PIN_INPUT, 0) /* (D15) UART0_RXD */
-+			AM64X_IOPAD(0x0234, PIN_OUTPUT, 0) /* (C16) UART0_TXD */
-+		>;
-+	};
-+
-+	main_i2c1_pins_default: main-i2c1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
-+			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
-+		>;
-+	};
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+};
-+
-+/* main_uart1 is reserved for firmware usage */
-+&main_uart1 {
-+	status = "reserved";
-+};
-+
-+&main_uart2 {
-+	status = "disabled";
-+};
-+
-+&main_uart3 {
-+	status = "disabled";
-+};
-+
-+&main_uart4 {
-+	status = "disabled";
-+};
-+
-+&main_uart5 {
-+	status = "disabled";
-+};
-+
-+&main_uart6 {
-+	status = "disabled";
-+};
-+
-+&mcu_uart0 {
-+	status = "disabled";
-+};
-+
-+&mcu_uart1 {
-+	status = "disabled";
-+};
-+
-+&main_i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c1_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp1: gpio@22 {
-+		compatible = "ti,tca6424";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "GPIO_eMMC_RSTn", "CAN_MUX_SEL",
-+				  "GPIO_CPSW1_RST", "GPIO_RGMII1_RST",
-+				  "GPIO_RGMII2_RST", "GPIO_PCIe_RST_OUT",
-+				  "MMC1_SD_EN", "FSI_FET_SEL",
-+				  "MCAN0_STB_3V3", "MCAN1_STB_3V3",
-+				  "CPSW_FET_SEL", "CPSW_FET2_SEL",
-+				  "PRG1_RGMII2_FET_SEL", "TEST_GPIO2",
-+				  "GPIO_OLED_RESETn", "VPP_LDO_EN",
-+				  "TEST_LED1", "TP92", "TP90", "TP88",
-+				  "TP87", "TP86", "TP89", "TP91";
-+	};
-+
-+	/* osd9616p0899-10 */
-+	display@3c {
-+		compatible = "solomon,ssd1306fb-i2c";
-+		reg = <0x3c>;
-+		reset-gpios = <&exp1 14 GPIO_ACTIVE_LOW>;
-+		vbat-supply = <&vddb>;
-+		solomon,height = <16>;
-+		solomon,width = <96>;
-+		solomon,com-seq;
-+		solomon,com-invdir;
-+		solomon,page-offset = <0>;
-+		solomon,prechargep1 = <2>;
-+		solomon,prechargep2 = <13>;
-+	};
-+};
-+
-+&mcu_i2c0 {
-+	status = "disabled";
-+};
-+
-+&mcu_i2c1 {
-+	status = "disabled";
-+};
-+
-+&mcu_spi0 {
-+	status = "disabled";
-+};
-+
-+&mcu_spi1 {
-+	status = "disabled";
-+};
-+
-+&sdhci0 {
-+	/* emmc */
-+	bus-width = <8>;
-+	non-removable;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
-+
-+&sdhci1 {
-+	/* SD/MMC */
-+	vmmc-supply = <&vdd_mmc1>;
-+	pinctrl-names = "default";
-+	bus-width = <4>;
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
--- 
-2.28.0
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
+Thanks,
+Chanwoo Choi
