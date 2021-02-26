@@ -2,90 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF9DC3263BC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 15:06:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F5013263E0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 15:15:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbhBZOFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 09:05:38 -0500
-Received: from mx2.suse.de ([195.135.220.15]:55130 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230112AbhBZOFH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Feb 2021 09:05:07 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 87AABAFE2;
-        Fri, 26 Feb 2021 14:03:24 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     f.fainelli@gmail.com, robh+dt@kernel.org, robin.murphy@arm.com,
-        ardb@kernel.org, hch@infradead.org, narmstrong@baylibre.com,
-        dwmw2@infradead.org, linux@armlinux.org.uk,
-        catalin.marinas@arm.com, arnd@arndb.de, will@kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: [RFC 13/13] scsi: megaraid: Make use of dev_64bit_mmio_supported()
-Date:   Fri, 26 Feb 2021 15:03:05 +0100
-Message-Id: <20210226140305.26356-14-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210226140305.26356-1-nsaenzjulienne@suse.de>
-References: <20210226140305.26356-1-nsaenzjulienne@suse.de>
+        id S229946AbhBZOPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 09:15:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48474 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229991AbhBZOO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 09:14:57 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C88C06174A
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 06:14:16 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id cf12so10320815edb.8
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 06:14:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rasmusvillemoes.dk; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KoK826DVw45RSIr335dfSy5TyJSQwwkfzzkU1fu3OEk=;
+        b=cZkTHSJQ1r4p4PitkU+/vlDTzmJg/V9nX2WMHhQJxJoERKL9NFhitjzsc5EiUnHIup
+         oRr/wP47bDW4/E6DZ3P0aRDX2piGYfFtiIlzynodqk/4dzzLitA4hawc6gMGVrWWf6So
+         4foAsZlCzcrFpybhzSxYqAYHtxVK9TO0y+LTE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KoK826DVw45RSIr335dfSy5TyJSQwwkfzzkU1fu3OEk=;
+        b=fh5S3XDlqVrpwgaDTZcqGn5Vuk9C4pU/+xj5cla3E4QBmktuUsn/gH6AIh6BeOQ3hm
+         Ut2D/tVoNMelizbNFFSMTgumUY7sTqoszjT3061NJLiJSfdG1lPbvByL1N4FEIU96jKB
+         zi6tpMMaW5Dzh9Gy23Ups82xIkvE789hAKsWXLSsJ1H+470b95prPoKuCYQVsu9nOymf
+         Rz58yxch11+0Jd/GDyUtmx2cswDPY00huyooSdREJqREMYzCgrpuELhFy607LWRXH4cU
+         5A+CotSX6obNWz0csNjAMJEidpltfOVmMi/K85/xgNLFdEi6MIgVSci2NcH1KCWuwjQB
+         gNlw==
+X-Gm-Message-State: AOAM532qb4OvjULNo7PSx8NqCIh3jF56H+zLGC//eIOGKwkSRXATxNir
+        vIkFU9BnzecF0SOOw4EkR1h28A==
+X-Google-Smtp-Source: ABdhPJyQT4fNHYcSdyEohDne+SLW167qPUaA5ARIIc3MduU1I9qui5Ic3KhEBXHGpsBnUBhz2mxR9g==
+X-Received: by 2002:a05:6402:2054:: with SMTP id bc20mr3575708edb.190.1614348855092;
+        Fri, 26 Feb 2021 06:14:15 -0800 (PST)
+Received: from prevas-ravi.prevas.se ([80.208.71.141])
+        by smtp.gmail.com with ESMTPSA id g3sm5316838ejz.91.2021.02.26.06.14.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Feb 2021 06:14:14 -0800 (PST)
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, linux-clk@vger.kernel.org,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: [PATCH 0/2] add ripple counter dt binding and driver
+Date:   Fri, 26 Feb 2021 15:14:09 +0100
+Message-Id: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Instead of relying on defines use dev_64bit_mmio_supported(), which
-provides the same functionality. On top of that convert the
-implementation to lo_hi_writeq(), for a cleaner end result.
+What I'm trying to do:
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
----
- drivers/scsi/megaraid/megaraid_sas_fusion.c | 23 ++++++++++-----------
- 1 file changed, 11 insertions(+), 12 deletions(-)
+We have a board with an external watchdog circuit (the kind that is
+petted by flipping a gpio). The reset output of that is split in two:
+One gives an immediate interrupt, so software knows that a hard reset
+is imminent. The other half removes the "reset input" from a ripple
+counter, causing that to start counting at 32kHz, and after 64ms, the
+SOC's reset pin then gets pulled.
 
-diff --git a/drivers/scsi/megaraid/megaraid_sas_fusion.c b/drivers/scsi/megaraid/megaraid_sas_fusion.c
-index 38fc9467c625..d4933a591330 100644
---- a/drivers/scsi/megaraid/megaraid_sas_fusion.c
-+++ b/drivers/scsi/megaraid/megaraid_sas_fusion.c
-@@ -36,6 +36,7 @@
- #include <linux/vmalloc.h>
- #include <linux/workqueue.h>
- #include <linux/irq_poll.h>
-+#include <linux/io-64-nonatomic-lo-hi.h>
- 
- #include <scsi/scsi.h>
- #include <scsi/scsi_cmnd.h>
-@@ -259,19 +260,17 @@ static void
- megasas_write_64bit_req_desc(struct megasas_instance *instance,
- 		union MEGASAS_REQUEST_DESCRIPTOR_UNION *req_desc)
- {
--#if defined(writeq) && defined(CONFIG_64BIT)
--	u64 req_data = (((u64)le32_to_cpu(req_desc->u.high) << 32) |
--		le32_to_cpu(req_desc->u.low));
--	writeq(req_data, &instance->reg_set->inbound_low_queue_port);
--#else
-+	u64 req_data = ((u64)le32_to_cpu(req_desc->u.high) << 32) |
-+		       le32_to_cpu(req_desc->u.low);
- 	unsigned long flags;
--	spin_lock_irqsave(&instance->hba_lock, flags);
--	writel(le32_to_cpu(req_desc->u.low),
--		&instance->reg_set->inbound_low_queue_port);
--	writel(le32_to_cpu(req_desc->u.high),
--		&instance->reg_set->inbound_high_queue_port);
--	spin_unlock_irqrestore(&instance->hba_lock, flags);
--#endif
-+
-+	if (dev_64bit_mmio_supported(&instance->pdev->dev)) {
-+		writeq(req_data, &instance->reg_set->inbound_low_queue_port);
-+	} else {
-+		spin_lock_irqsave(&instance->hba_lock, flags);
-+		lo_hi_writeq(req_data, &instance->reg_set->inbound_low_queue_port);
-+		spin_unlock_irqrestore(&instance->hba_lock, flags);
-+	}
- }
- 
- /**
+Unfortunately, the board designer overlooked that the 32kHz output
+from the RTC can be disabled, which (since no other component uses
+it), is just what happens when clk_disable_unused() gets called. When
+the watchdog fires, we do get the interrupt, but the board does not
+get reset as it should, since the counter doesn't count.
+
+So I'm thinking that the proper way to handle this is to be able to
+represent that ripple counter as a clock consumer in DT and have a
+driver do the clk_prepare_enable(), even if that driver doesn't and
+can't do anything else. But I'm certainly open to other suggestions.
+
+The "clk_ignore_unused" kernel parameter is fine for debugging, but
+too big a hammer (since it applies to all "unused" clocks).
+
+
+Rasmus Villemoes (2):
+  dt-bindings: misc: add binding for generic ripple counter
+  drivers: misc: add ripple counter driver
+
+ .../devicetree/bindings/misc/ripple-ctr.txt   |  8 +++++
+ drivers/misc/Kconfig                          |  7 +++++
+ drivers/misc/Makefile                         |  1 +
+ drivers/misc/ripple-ctr.c                     | 31 +++++++++++++++++++
+ 4 files changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/ripple-ctr.txt
+ create mode 100644 drivers/misc/ripple-ctr.c
+
 -- 
-2.30.1
+2.29.2
 
