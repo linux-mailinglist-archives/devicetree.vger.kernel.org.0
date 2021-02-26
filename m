@@ -2,197 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6FA932621A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 12:47:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 094D332622E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 12:53:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229967AbhBZLq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 06:46:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44872 "EHLO
+        id S229947AbhBZLxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 06:53:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229863AbhBZLq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 06:46:56 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 843F4C061756;
-        Fri, 26 Feb 2021 03:46:15 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id v5so13355891lft.13;
-        Fri, 26 Feb 2021 03:46:15 -0800 (PST)
+        with ESMTP id S229618AbhBZLxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 06:53:30 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 592EFC061574
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 03:52:50 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id s23so5955851pji.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 03:52:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=O1KAv7OlWQlmHNtXqUJvuaSXGHvX/OsIn970Hsnpf/A=;
-        b=TxDS22rZnvG5L6X9kNeUp+/ZpGJTdLqvyhRwYy8QcqYkv1oD+suvQzXdFmIRy3Q3eN
-         ZsRUs0GgoiRFV04GQKbkTY03MWn9AuOfJjrpHAj9B1yWWKBQlg84Kh09woMEhHUU2cEa
-         KOY0kznD1wapAliNMasMGebofi/5C0eE2DqLp0l+EEt5mArBd2vy3Yo04ZM1kITLR6j/
-         wX70BqOd7Aib09yS32yfOwpCyHt31dLYwL1XDGBWU4s5le2psBDQrNVvQWjTKIiKMDoW
-         v5KEXKbA8t22moFlCgMbf7AdPqw5TNnmhnBjrgb9+VF5KcmOtRsc8X6SdQO2uMIT7bPk
-         OI+Q==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MboCJTnSVOsg8iDl/Ytx71C/vRtXv8vtcexDfc3Ue6Q=;
+        b=ciW/AiXB8i8nLGP934iHFFnQEtqDN6xDF/7p7P/mEe1/XJTnSNexLZkPm7joRF7lOY
+         cE0Cn3WHbKC1oskCjNIdD3Q/H/oWQt2cmsos27FAty4Wy+708ZaO2bywYURhJ4iZk5Cf
+         ChaYps5qpb7yT8MlORTSqv+Iopb920EhqN7aUJo0SxaXLb1OvvCp/pMuglMoEOKDwLGr
+         QuIqIrpUcduiuRCusADGM62Yu1pgizOs1+tM8TeFc40pirsqAg9i7tgVfF6V3zjNlckO
+         qPDssRfGEHO5OYRvqGw2PQazlGsdTR/IZDwqQ0aymVuO0tEfRZTyaleLAH78Tlpjkig/
+         YYbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=O1KAv7OlWQlmHNtXqUJvuaSXGHvX/OsIn970Hsnpf/A=;
-        b=seKcbOr2AMQd7cK3gZfNBrgnZC7yMdlxW8WlNsoR+0fJ4D3r/jou1TI93L+L/8qFMb
-         RDAWf7aV/j0oSJp1cpqxETdWxAx5tJrz8mRwUT3TkDzJQua9j5h41mJyXu5xRvHFxGLx
-         AYl/xbpz/PRVx48gbgpZb2pkLYlg+k12ENK1oVZu2WEYb71nQ8Fyt8U1BXYb8N0bppMq
-         Z/yUk6U7iQPbuuwRiHLu1VYLcq7vQDXGnhWr4Tn5kSCxu57wU9mBx7ZgtEbWEAnTzRX9
-         4jEXlYDSX9FpP9XOxG2m9Ru4p92kyLZK4/ePm8lJMyGXlggJur4L6H+R5hZcgGFD4oce
-         g1OQ==
-X-Gm-Message-State: AOAM530hk3afFrdcdzhQ30dxcBYs3gObR8o+LCq7vXNMG4+OZF9mpgnd
-        nmOn+nw11gESMcNuWmQDe+Y=
-X-Google-Smtp-Source: ABdhPJyAD3YAi46chdRHQnkcgsM2fnWQOQ78XpWL3XF36mWSn27sOIDySATkiTjsTMQ34bzXUYQ4sg==
-X-Received: by 2002:a05:6512:374c:: with SMTP id a12mr1611677lfs.34.1614339974026;
-        Fri, 26 Feb 2021 03:46:14 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id f16sm1380475lfk.217.2021.02.26.03.46.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Feb 2021 03:46:13 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] phy: bcm-ns-usb2: support updated single CRU reg DT binding
-Date:   Fri, 26 Feb 2021 12:45:01 +0100
-Message-Id: <20210226114501.31086-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210226114501.31086-1-zajec5@gmail.com>
-References: <20210226114501.31086-1-zajec5@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MboCJTnSVOsg8iDl/Ytx71C/vRtXv8vtcexDfc3Ue6Q=;
+        b=gchH0ED3qasc4nNO2BoBTFQ3tRHHL3T45eF1d8mU8F/qbFrs3oc25k8h/kl/mwoABd
+         EvP7bhhTP1sUt4qhmCGZqNCitDLVDb+6a77lJT+XHZTe5dgXIsnNK2juVdIqbh1lDcvY
+         xJO6MJNme2kBXEbECMPM0fIEjlFk6j4ybdVlpsiWKkJ507KdDgn0a5Hau1XgnjjDJ3lh
+         4gH4ymbxM1m8W03E4gtUj6Sfe/C5TrLVQI1IWVz0Z6v0h1iN/2n3H2xQUYC2PSVxaE5O
+         NzSpKSP61f9hzXqCMbpy319g9MM4bpdys4jeu7bD+EiDZCGgXIfxCvg0lwDiXdWn/E+R
+         nukQ==
+X-Gm-Message-State: AOAM533sGL9vrWgpCRazA8/TwiWCnzfKsmUd76ZxRW6mWkSSyO5gt/I3
+        aQpPAt1tQyXUTUE2TVGyoX/tanjXpDyzcNzzRbt3vg==
+X-Google-Smtp-Source: ABdhPJwXRb71oswV+DAkAJmkVpFsBDgs0LQFkzICKAIYFYSo49YWbwL95uo+mAX/yk0mnI/bxGguPfEj3sfTIkzCrdo=
+X-Received: by 2002:a17:90b:1b52:: with SMTP id nv18mr3187467pjb.19.1614340369882;
+ Fri, 26 Feb 2021 03:52:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1613619715-28785-1-git-send-email-victor.liu@nxp.com> <1613619715-28785-2-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <1613619715-28785-2-git-send-email-victor.liu@nxp.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Fri, 26 Feb 2021 12:52:39 +0100
+Message-ID: <CAG3jFyskt5ottSuGVe2VgR-rvbieauaFZFhXg5sYJxqwxgKawA@mail.gmail.com>
+Subject: Re: [PATCH v4 01/14] phy: Add LVDS configuration options
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>, kishon@ti.com,
+        Vinod Koul <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hey Liu,
 
-Updated DT binding maps a single CRU register that is directly used for
-the PHY control. Accessing common CRU reg is handled using syscon &
-regmap.
+Thanks for submitting this series.
 
-The old binding has been deprecated and stays as a fallback method.
+This patch looks good to me.
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-It's a reworked version of my abonded 2019 patch:
-[PATCH V2 2/2] phy: bcm-ns-usb2: support updated DT binding with the CRU syscon
-https://lore.kernel.org/patchwork/patch/1029863/
----
- drivers/phy/broadcom/phy-bcm-ns-usb2.c | 52 +++++++++++++++++++++-----
- 1 file changed, 43 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/phy/broadcom/phy-bcm-ns-usb2.c b/drivers/phy/broadcom/phy-bcm-ns-usb2.c
-index 4b015b8a71c3..98d32729a45d 100644
---- a/drivers/phy/broadcom/phy-bcm-ns-usb2.c
-+++ b/drivers/phy/broadcom/phy-bcm-ns-usb2.c
-@@ -9,17 +9,23 @@
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/err.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of_address.h>
- #include <linux/of_platform.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
-+#include <linux/regmap.h>
- #include <linux/slab.h>
- 
- struct bcm_ns_usb2 {
- 	struct device *dev;
- 	struct clk *ref_clk;
- 	struct phy *phy;
-+	struct regmap *clkset;
-+	void __iomem *base;
-+
-+	/* Deprecated binding */
- 	void __iomem *dmu;
- };
- 
-@@ -27,7 +33,6 @@ static int bcm_ns_usb2_phy_init(struct phy *phy)
- {
- 	struct bcm_ns_usb2 *usb2 = phy_get_drvdata(phy);
- 	struct device *dev = usb2->dev;
--	void __iomem *dmu = usb2->dmu;
- 	u32 ref_clk_rate, usb2ctl, usb_pll_ndiv, usb_pll_pdiv;
- 	int err = 0;
- 
-@@ -44,7 +49,10 @@ static int bcm_ns_usb2_phy_init(struct phy *phy)
- 		goto err_clk_off;
- 	}
- 
--	usb2ctl = readl(dmu + BCMA_DMU_CRU_USB2_CONTROL);
-+	if (usb2->base)
-+		usb2ctl = readl(usb2->base);
-+	else
-+		usb2ctl = readl(usb2->dmu + BCMA_DMU_CRU_USB2_CONTROL);
- 
- 	if (usb2ctl & BCMA_DMU_CRU_USB2_CONTROL_USB_PLL_PDIV_MASK) {
- 		usb_pll_pdiv = usb2ctl;
-@@ -58,15 +66,24 @@ static int bcm_ns_usb2_phy_init(struct phy *phy)
- 	usb_pll_ndiv = (1920000000 * usb_pll_pdiv) / ref_clk_rate;
- 
- 	/* Unlock DMU PLL settings with some magic value */
--	writel(0x0000ea68, dmu + BCMA_DMU_CRU_CLKSET_KEY);
-+	if (usb2->clkset)
-+		regmap_write(usb2->clkset, 0, 0x0000ea68);
-+	else
-+		writel(0x0000ea68, usb2->dmu + BCMA_DMU_CRU_CLKSET_KEY);
- 
- 	/* Write USB 2.0 PLL control setting */
- 	usb2ctl &= ~BCMA_DMU_CRU_USB2_CONTROL_USB_PLL_NDIV_MASK;
- 	usb2ctl |= usb_pll_ndiv << BCMA_DMU_CRU_USB2_CONTROL_USB_PLL_NDIV_SHIFT;
--	writel(usb2ctl, dmu + BCMA_DMU_CRU_USB2_CONTROL);
-+	if (usb2->base)
-+		writel(usb2ctl, usb2->base);
-+	else
-+		writel(usb2ctl, usb2->dmu + BCMA_DMU_CRU_USB2_CONTROL);
- 
- 	/* Lock DMU PLL settings */
--	writel(0x00000000, dmu + BCMA_DMU_CRU_CLKSET_KEY);
-+	if (usb2->clkset)
-+		regmap_write(usb2->clkset, 0, 0x00000000);
-+	else
-+		writel(0x00000000, usb2->dmu + BCMA_DMU_CRU_CLKSET_KEY);
- 
- err_clk_off:
- 	clk_disable_unprepare(usb2->ref_clk);
-@@ -90,10 +107,27 @@ static int bcm_ns_usb2_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	usb2->dev = dev;
- 
--	usb2->dmu = devm_platform_ioremap_resource_byname(pdev, "dmu");
--	if (IS_ERR(usb2->dmu)) {
--		dev_err(dev, "Failed to map DMU regs\n");
--		return PTR_ERR(usb2->dmu);
-+	if (of_find_property(dev->of_node, "brcm,syscon-clkset", NULL)) {
-+		usb2->base = devm_platform_ioremap_resource(pdev, 0);
-+		if (IS_ERR(usb2->base)) {
-+			dev_err(dev, "Failed to map control reg\n");
-+			return PTR_ERR(usb2->base);
-+		}
-+
-+		usb2->clkset = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							       "brcm,syscon-clkset");
-+		if (IS_ERR(usb2->clkset)) {
-+			dev_err(dev, "Failed to lookup clkset regmap\n");
-+			return PTR_ERR(usb2->clkset);
-+		}
-+	} else {
-+		usb2->dmu = devm_platform_ioremap_resource_byname(pdev, "dmu");
-+		if (IS_ERR(usb2->dmu)) {
-+			dev_err(dev, "Failed to map DMU regs\n");
-+			return PTR_ERR(usb2->dmu);
-+		}
-+
-+		dev_warn(dev, "using deprecated DT binding\n");
- 	}
- 
- 	usb2->ref_clk = devm_clk_get(dev, "phy-ref-clk");
--- 
-2.26.2
-
+On Thu, 18 Feb 2021 at 04:56, Liu Ying <victor.liu@nxp.com> wrote:
+>
+> This patch allows LVDS PHYs to be configured through
+> the generic functions and through a custom structure
+> added to the generic union.
+>
+> The parameters added here are based on common LVDS PHY
+> implementation practices.  The set of parameters
+> should cover all potential users.
+>
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v3->v4:
+> * No change.
+>
+> v2->v3:
+> * No change.
+>
+> v1->v2:
+> * No change.
+>
+>  include/linux/phy/phy-lvds.h | 48 ++++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/phy/phy.h      |  4 ++++
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 include/linux/phy/phy-lvds.h
+>
+> diff --git a/include/linux/phy/phy-lvds.h b/include/linux/phy/phy-lvds.h
+> new file mode 100644
+> index 00000000..1b5b9d6
+> --- /dev/null
+> +++ b/include/linux/phy/phy-lvds.h
+> @@ -0,0 +1,48 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2020 NXP
+> + */
+> +
+> +#ifndef __PHY_LVDS_H_
+> +#define __PHY_LVDS_H_
+> +
+> +/**
+> + * struct phy_configure_opts_lvds - LVDS configuration set
+> + *
+> + * This structure is used to represent the configuration state of a
+> + * LVDS phy.
+> + */
+> +struct phy_configure_opts_lvds {
+> +       /**
+> +        * @bits_per_lane_and_dclk_cycle:
+> +        *
+> +        * Number of bits per data lane and differential clock cycle.
+> +        */
+> +       unsigned int bits_per_lane_and_dclk_cycle;
+> +
+> +       /**
+> +        * @differential_clk_rate:
+> +        *
+> +        * Clock rate, in Hertz, of the LVDS differential clock.
+> +        */
+> +       unsigned long differential_clk_rate;
+> +
+> +       /**
+> +        * @lanes:
+> +        *
+> +        * Number of active, consecutive, data lanes, starting from
+> +        * lane 0, used for the transmissions.
+> +        */
+> +       unsigned int lanes;
+> +
+> +       /**
+> +        * @is_slave:
+> +        *
+> +        * Boolean, true if the phy is a slave which works together
+> +        * with a master phy to support dual link transmission,
+> +        * otherwise a regular phy or a master phy.
+> +        */
+> +       bool is_slave;
+> +};
+> +
+> +#endif /* __PHY_LVDS_H_ */
+> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+> index e435bdb..d450b44 100644
+> --- a/include/linux/phy/phy.h
+> +++ b/include/linux/phy/phy.h
+> @@ -17,6 +17,7 @@
+>  #include <linux/regulator/consumer.h>
+>
+>  #include <linux/phy/phy-dp.h>
+> +#include <linux/phy/phy-lvds.h>
+>  #include <linux/phy/phy-mipi-dphy.h>
+>
+>  struct phy;
+> @@ -51,10 +52,13 @@ enum phy_mode {
+>   *             the MIPI_DPHY phy mode.
+>   * @dp:                Configuration set applicable for phys supporting
+>   *             the DisplayPort protocol.
+> + * @lvds:      Configuration set applicable for phys supporting
+> + *             the LVDS phy mode.
+>   */
+>  union phy_configure_opts {
+>         struct phy_configure_opts_mipi_dphy     mipi_dphy;
+>         struct phy_configure_opts_dp            dp;
+> +       struct phy_configure_opts_lvds          lvds;
+>  };
+>
+>  /**
+> --
+> 2.7.4
+>
