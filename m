@@ -2,165 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E54313264A6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 16:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14CFF32654A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 17:13:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbhBZPX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 10:23:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34958 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbhBZPX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 10:23:56 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F1ACC061574;
-        Fri, 26 Feb 2021 07:23:15 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id a4so6376547pgc.11;
-        Fri, 26 Feb 2021 07:23:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=QHXSVsXuKx/MuCcoIzA9gGr9Kr4SzJ4/NTJV4xdPiLE=;
-        b=bg2stdC71+bgN8bhm92ZNYTejyoO/Gcm9LW4jOHsZ2ItE5nxs2BJnAiaSoBB+yaLx0
-         qMz2FO5paUx9R+OdJLJDkwAkw99qmGwHnV7lCP5ZC78zgCdy+XDjOEhqPHe25NXwZEQL
-         43hS5bYgP/onLPvgSaKObjgDKMRETB7fwPAEgHf0yRoVraHE2DO9c0gXmTpzwrsPyG7f
-         U2Pvkcz66BhlEcNMCeBZICL2xQU48D5ZNBrbR30jQYevLfZzLEfWgsQ/46HMpdp5npHJ
-         So18s9U6Wr5gz/JhiyuYdo/QyC4bObinEauEuwHJxauJTg0YGnWKJf+NgsuJ7tRAHKIz
-         Xq0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=QHXSVsXuKx/MuCcoIzA9gGr9Kr4SzJ4/NTJV4xdPiLE=;
-        b=rcqdKkKUZGexIH27+P2yNHTdS3V82bjdqE1JEDN2Jnpw01c10AYzcWmae0ptyUQmoR
-         4ppuu0ROpNO6b1yrodxAU+vBQp6cjtiF5AYMytNhT94zOoEv+5wWYTS5CoWVh3iP4rlo
-         Wb/VnnDOw1X8s3VoiGbHbRN8+DbjCnozkZghx3QLkN4KH4PwI4WdyCrvHfFYTjtVussQ
-         jUsiTP6X49MwkUk8+6zir/Wb3cxNQVSwmf4eUdvGbZ414XTNSrc66ksIEy+QqmsVb4jm
-         8N+/uhYBfpNEN+Ax7qk9hsf2SSh10ylxpB8tq4tpB7VoRKhvcMPU7zIucmTccm2/04au
-         E1HQ==
-X-Gm-Message-State: AOAM531H+U/zf5sYK1cDgMfSEEgvEfauLHLS3/Mr1qIB0DbGU5Bblwyr
-        VgDSglbnbBOwQfOvSsuqVCo=
-X-Google-Smtp-Source: ABdhPJzt8BF/doAkmZUR6YeiIzcrt84/ecWfGKljw82X+19oR9qeBhNWLtNCimzGQ+8smXNI/AMnIw==
-X-Received: by 2002:a63:724a:: with SMTP id c10mr3377749pgn.124.1614352994989;
-        Fri, 26 Feb 2021 07:23:14 -0800 (PST)
-Received: from [172.30.1.19] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id s27sm8854875pgk.77.2021.02.26.07.23.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Feb 2021 07:23:14 -0800 (PST)
-Subject: Re: [RFC 07/19] devfreq: imx8m-ddrc: Add late system sleep PM ops
-To:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Martin Kepplinger <martink@posteo.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Cc:     NXP Linux Team <linux-imx@nxp.com>
-References: <1613750416-11901-1-git-send-email-abel.vesa@nxp.com>
- <1613750416-11901-8-git-send-email-abel.vesa@nxp.com>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-Message-ID: <58c4b791-fe7c-6b34-0c13-9e41a6960c7f@gmail.com>
-Date:   Sat, 27 Feb 2021 00:23:07 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S229571AbhBZQND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 11:13:03 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:35692 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229545AbhBZQMz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Feb 2021 11:12:55 -0500
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11QGBT5J031134;
+        Fri, 26 Feb 2021 17:11:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=bKqtubj8V3HWEd3a42zfyuBRldvZminXSbviOOCrD6c=;
+ b=voN1q8Ax+cdgRvT4wESIZIVPayJ+PYEjsbe+ufus45iWAHjZlctpb4xxgSe/ycg/MpaC
+ Oev1duzmykG63n+qfVgaQ5oPPtx6kSf4sD/yErfJKzVUw0l5EE/HiIP0Vw9x0XUiB2U/
+ 8UZ1bp0ZP7a6FwvBLIM0maNsyOCpCXOopwtkc1NSz3oTJb+98pAXkb8V4DPIyytIx37/
+ BaVJl2R0Y2dQAtNkRSrbFieSfKSrs3nZXcBr40HsPiEI3qGzvrah4+V7rTJ2U+4mfxU1
+ QjCzcvGsZ6d3Q9l/EKZY4iwTC5eO6p2t60ATp2Kedpwkp804sCwsM1Ltc0FV1Ef1a2hO AQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 36w66cxqm4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 26 Feb 2021 17:11:58 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B5A9310002A;
+        Fri, 26 Feb 2021 17:11:57 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 89BC92A4D73;
+        Fri, 26 Feb 2021 17:11:57 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.44) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 26 Feb
+ 2021 17:11:56 +0100
+Subject: Re: [PATCH v2 02/10] ARM: dts: stm32: Add Engicam MicroGEA STM32MP1
+ SoM
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        "Rob Herring" <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Francesco Utel <francesco.utel@engicam.com>,
+        <linux-kernel@vger.kernel.org>,
+        Mirko Ardinghi <mirko.ardinghi@engicam.com>,
+        <linux-amarula@amarulasolutions.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210226070304.8028-1-jagan@amarulasolutions.com>
+ <20210226070304.8028-3-jagan@amarulasolutions.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <611bce6f-7adb-f0b5-0c9b-d5d7bb8b90fb@foss.st.com>
+Date:   Fri, 26 Feb 2021 17:11:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <1613750416-11901-8-git-send-email-abel.vesa@nxp.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210226070304.8028-3-jagan@amarulasolutions.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-02-26_05:2021-02-26,2021-02-26 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jagan
 
-
-On 21. 2. 20. 오전 1:00, Abel Vesa wrote:
-> Seems that, in order to be able to resume from suspend, the dram rate
-> needs to be the highest one available. Therefore, add the late system
-> suspend/resume PM ops which set the highest rate on suspend and the
-> latest one used before suspending on resume.
+On 2/26/21 8:02 AM, Jagan Teki wrote:
+> MicroGEA STM32MP1 is an EDIMM SoM based on STM32MP157A from Engicam.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> General features:
+> - STM32MP157AAC
+> - Up to 1GB DDR3L-800
+> - 512MB Nand flash
+> - I2S
+> 
+> MicroGEA STM32MP1 needs to mount on top of Engicam MicroDev carrier
+> boards for creating complete platform solutions.
+> 
+> Add support for it.
+> 
+> Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
+> Signed-off-by: Francesco Utel <francesco.utel@engicam.com>
+> Signed-off-by: Mirko Ardinghi <mirko.ardinghi@engicam.com>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+
+Minor question: if the stm32mp157 is soldered on Microdev boards why do 
+you mention it in this commit message ?
+
++ a minor comment bellow.
+
+thanks
+Alex
+
 > ---
->   drivers/devfreq/imx8m-ddrc.c | 26 ++++++++++++++++++++++++++
->   1 file changed, 26 insertions(+)
+> Changes for v2:
+> - none
 > 
-> diff --git a/drivers/devfreq/imx8m-ddrc.c b/drivers/devfreq/imx8m-ddrc.c
-> index 33de83acfd8b..04347dee781b 100644
-> --- a/drivers/devfreq/imx8m-ddrc.c
-> +++ b/drivers/devfreq/imx8m-ddrc.c
-> @@ -72,6 +72,8 @@ struct imx8m_ddrc {
->   	struct clk *dram_alt;
->   	struct clk *dram_apb;
->   
-> +	unsigned long suspend_rate;
-> +	unsigned long resume_rate;
->   	int freq_count;
->   	struct imx8m_ddrc_freq freq_table[IMX8M_DDRC_MAX_FREQ_COUNT];
->   };
-> @@ -271,6 +273,22 @@ static int imx8m_ddrc_target(struct device *dev, unsigned long *freq, u32 flags)
->   	return ret;
->   }
->   
-> +static int imx8m_ddrc_suspend(struct device *dev)
-> +{
-> +	struct imx8m_ddrc *priv = dev_get_drvdata(dev);
+>   .../dts/stm32mp157a-microgea-stm32mp1.dtsi    | 147 ++++++++++++++++++
+>   1 file changed, 147 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
+> new file mode 100644
+> index 000000000000..97d569107bfe
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
+> @@ -0,0 +1,147 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+> + * Copyright (c) 2020 Engicam srl
+> + * Copyright (c) 2020 Amarula Solutons(India)
+> + */
 > +
-> +	priv->resume_rate = clk_get_rate(priv->dram_core);
+> +/ {
+> +	compatible = "engicam,microgea-stm32mp1", "st,stm32mp157";
 > +
-> +	return imx8m_ddrc_target(dev, &priv->suspend_rate, 0);
-> +}
+> +	memory@c0000000 {
+
+you could add 		device_type = "memory";
+
+
+> +		reg = <0xc0000000 0x10000000>;
+> +	};
 > +
-> +static int imx8m_ddrc_resume(struct device *dev)
-> +{
-> +	struct imx8m_ddrc *priv = dev_get_drvdata(dev);
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
 > +
-> +	return imx8m_ddrc_target(dev, &priv->resume_rate, 0);
-> +}
+> +		mcuram2: mcuram2@10000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10000000 0x40000>;
+> +			no-map;
+> +		};
 > +
->   static int imx8m_ddrc_get_cur_freq(struct device *dev, unsigned long *freq)
->   {
->   	struct imx8m_ddrc *priv = dev_get_drvdata(dev);
-> @@ -336,6 +354,9 @@ static int imx8m_ddrc_init_freq_info(struct device *dev)
->   
->   		if (dev_pm_opp_add(dev, freq->rate * 250000, 0))
->   			return -ENODEV;
+> +		vdev0vring0: vdev0vring0@10040000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10040000 0x1000>;
+> +			no-map;
+> +		};
 > +
-> +		if (index ==  0)
-> +			priv->suspend_rate = freq->rate * 250000;
->   	}
->   
->   	return 0;
-> @@ -412,10 +433,15 @@ static const struct of_device_id imx8m_ddrc_of_match[] = {
->   };
->   MODULE_DEVICE_TABLE(of, imx8m_ddrc_of_match);
->   
-> +static const struct dev_pm_ops imx8m_ddrc_pm_ops = {
-> +	SET_LATE_SYSTEM_SLEEP_PM_OPS(imx8m_ddrc_suspend, imx8m_ddrc_resume)
+> +		vdev0vring1: vdev0vring1@10041000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10041000 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0buffer: vdev0buffer@10042000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10042000 0x4000>;
+> +			no-map;
+> +		};
+> +
+> +		mcuram: mcuram@30000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x30000000 0x40000>;
+> +			no-map;
+> +		};
+> +
+> +		retram: retram@38000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x38000000 0x10000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	vin: regulator-vin {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vin";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddcore: regulator-vddcore {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vddcore";
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vin>;
+> +	};
+> +
+> +	vdd: regulator-vdd {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdd";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vin>;
+> +	};
+> +
+> +	vddq_ddr: regulator-vddq-ddr {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vddq_ddr";
+> +		regulator-min-microvolt = <1350000>;
+> +		regulator-max-microvolt = <1350000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vin>;
+> +	};
 > +};
-
-Are there any reason to use suspend_late instead of suspend?
-Usually, it is enough to change the frequency on normal suspend() step.
-The devfreq supports the 'opp-suspend' property[1]. If you keep the OPP 
-entries on DT, you simply support your goal with 'opp-suspend'.
-
-[1] 
-https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/opp/opp.txt#L156
-
 > +
->   static struct platform_driver imx8m_ddrc_platdrv = {
->   	.probe		= imx8m_ddrc_probe,
->   	.driver = {
->   		.name	= "imx8m-ddrc-devfreq",
-> +		.pm = &imx8m_ddrc_pm_ops,
->   		.of_match_table = of_match_ptr(imx8m_ddrc_of_match),
->   	},
->   };
+> +&dts {
+> +	status = "okay";
+> +};
+> +
+> +&fmc {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&fmc_pins_a>;
+> +	pinctrl-1 = <&fmc_sleep_pins_a>;
+> +	status = "okay";
+> +
+> +	nand-controller@4,0 {
+> +		status = "okay";
+> +
+> +		nand@0 {
+> +			reg = <0>;
+> +			nand-on-flash-bbt;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +		};
+> +	};
+> +};
+> +
+> +&ipcc {
+> +	status = "okay";
+> +};
+> +
+> +&iwdg2{
+> +	timeout-sec = <32>;
+> +	status = "okay";
+> +};
+> +
+> +&m4_rproc{
+> +	memory-region = <&retram>, <&mcuram>, <&mcuram2>, <&vdev0vring0>,
+> +			<&vdev0vring1>, <&vdev0buffer>;
+> +	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
+> +	mbox-names = "vq0", "vq1", "shutdown";
+> +	interrupt-parent = <&exti>;
+> +	interrupts = <68 1>;
+> +	status = "okay";
+> +};
+> +
+> +&rng1 {
+> +	status = "okay";
+> +};
+> +
+> +&rtc{
+> +	status = "okay";
+> +};
+> +
+> +&vrefbuf {
+> +	regulator-min-microvolt = <2500000>;
+> +	regulator-max-microvolt = <2500000>;
+> +	vdda-supply = <&vdd>;
+> +	status = "okay";
+> +};
 > 
