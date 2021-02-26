@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8718B326831
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 21:21:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8042D326826
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 21:21:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230490AbhBZUMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 15:12:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40166 "EHLO
+        id S230473AbhBZULm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 15:11:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230450AbhBZULt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 15:11:49 -0500
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E54D4C0617A7
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 12:09:08 -0800 (PST)
+        with ESMTP id S230382AbhBZULZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 15:11:25 -0500
+Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [IPv6:2001:4b7a:2000:18::170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51CB5C0698C6
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 12:07:31 -0800 (PST)
 Received: from localhost.localdomain (abab236.neoplus.adsl.tpnet.pl [83.6.165.236])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id F2BBB1F63C;
-        Fri, 26 Feb 2021 21:07:23 +0100 (CET)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 0C9791F630;
+        Fri, 26 Feb 2021 21:07:27 +0100 (CET)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     phone-devel@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
@@ -31,9 +31,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 38/41] arm64: dts: qcom: sdm630-nile: Enable uSD card slot
-Date:   Fri, 26 Feb 2021 21:04:08 +0100
-Message-Id: <20210226200414.167762-39-konrad.dybcio@somainline.org>
+Subject: [PATCH 39/41] arm64: dts: qcom: sdm630-nile: Remove gpio-keys autorepeat
+Date:   Fri, 26 Feb 2021 21:04:09 +0100
+Message-Id: <20210226200414.167762-40-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210226200414.167762-1-konrad.dybcio@somainline.org>
 References: <20210226200414.167762-1-konrad.dybcio@somainline.org>
@@ -43,29 +43,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The autorepeat feature is not needed on gpio-keys.
+
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-index 433cfed574f1..ff74a8b24150 100644
+index ff74a8b24150..3589e806647f 100644
 --- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-@@ -575,6 +575,13 @@ &sdhc_1 {
- 	vqmmc-supply = <&vreg_l8a_1p8>;
- };
+@@ -93,7 +93,6 @@ gpio_keys {
+ 		input-name = "gpio-keys";
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		autorepeat;
  
-+&sdhc_2 {
-+	status = "okay";
-+
-+	vmmc-supply = <&vreg_l5b_29p5>;
-+	vqmmc-supply = <&vreg_l2b_2p95>;
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <8 4>;
- 
+ 		camera_focus {
+ 			label = "Camera Focus";
 -- 
 2.30.1
 
