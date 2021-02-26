@@ -2,99 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1DB832670A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 19:45:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCCA3326711
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 19:47:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbhBZSps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 13:45:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49934 "EHLO
+        id S230450AbhBZSqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 13:46:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbhBZSpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 13:45:47 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC1DAC061756
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:45:06 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id j12so6814367pfj.12
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:45:06 -0800 (PST)
+        with ESMTP id S230198AbhBZSq3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 13:46:29 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37231C06178C
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:45:45 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id p21so6723321pgl.12
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:45:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=4hDbemyw0HDex76Hp+5hflo0c5crmBoyAwM2bUl3AVc=;
-        b=HAyiI6JBL04RTZTPFOsONaE8F5JHgIEVyKqWeQuW0CaK76LWjKAKIEt2HPeacIKZIl
-         ErD974IQtIlAQ4K8zEpmtwJlYkcsnZybDjI4Kk/CYgh4RCqfXn7MVCZ8QjlG4fnHXDC7
-         zqYPZPgvOLrWYjcRIudHgr6xqZ+vQ2ITPqA3I=
+        bh=DBoA2He9SEqhdRcPOlTnH+Nc/7DBERZF0m92VCsk5jg=;
+        b=CzJVOB5XbthY815YrFZTz7okvWCudKfguVepSsM2rE3KYhtOgjo2ubtDOYd5wNc72k
+         XY6VCuLMoPa54b3C7TryZmXhSZ8X5audeV9KDQ//qkvVW1wKfoMxIYKafr6rUMh9ai1H
+         oohes+uH3rsg4+jHnrw+wqm+oySYwZiIIQWu0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=4hDbemyw0HDex76Hp+5hflo0c5crmBoyAwM2bUl3AVc=;
-        b=XiXDtiN0MfplSMHCnz66qtmu/cMjdWqJPPfwrC1TwNE3JuAXRNqIAksr/pxviAAe7Q
-         92e4x3Ho4Yhil6rnondKHoo0gZazMRuPFb+Ugt9YkZQKTXE6b+E1lvO7iwubRRuQ4pC8
-         L92L4cg53AYKedpgfN5DEezdMtWllm7HFoGOE2+tJP0NKIHW45KZkKZwd6XVniyEIVCI
-         qau4mr+mUW3bafnf8vfOnAD47tNpti/vvIVfkxg2Yp/Qcr4YcT0pccwt+G1q9J+Ekv5R
-         IePW797pajMtTOlkMg+h/Ov2LUqsPz+D+OdoFJ7W18z0DprTs5WnxNJ0QgZjJ4WIPwan
-         265Q==
-X-Gm-Message-State: AOAM533IThtGDwcvQ1HGoKUOnjWxC2aGpiLnMOlcLQdtwZVOJ7LUlecF
-        /CldnsR7+GTXF43RfRNYHGuYbw==
-X-Google-Smtp-Source: ABdhPJyStxZ0/YWglvC7Art5F0mB7qtsccNWckgQDuHCF01MwhTiWNQKyRpE/pYs8XWUnjbDDjD3gQ==
-X-Received: by 2002:a62:43:0:b029:1cd:2de2:5a24 with SMTP id 64-20020a6200430000b02901cd2de25a24mr4576595pfa.27.1614365106146;
-        Fri, 26 Feb 2021 10:45:06 -0800 (PST)
+        bh=DBoA2He9SEqhdRcPOlTnH+Nc/7DBERZF0m92VCsk5jg=;
+        b=ku5BI+WVQtA3Jk0qsC1wzssiA+980AOhtzfgjXf4zqFcqOMBCuqk75udSaI6gmnWmd
+         5YdSugPoATIgVHC0lFsGU0D+wy/rO54beGwG1VAqOxtirhk68nmf9JGRn5wWUs2CXjGE
+         KL2VB/S3G8CwFcPO3drW8OylXKVJEJMB3pCLzj4A2YztFmq4J+AESouqId3ao3TZvizN
+         Si3fiGoNybLRhRqcdgkkcu4MAHVZDTMVJ+Rs+ADDkMpiiYpGZRulGdJAkj3urArF8dP5
+         wZyQ5tvu+ixl9oam0Cgpc+dVh/5NgKZSX217B/auSB+Hb07DR7/IVGF1TD/XTYX9V+Ue
+         16/A==
+X-Gm-Message-State: AOAM532QPtiWR2LPWP0bXQtzfNqdHHqjdNEev7fHqlvxq64U72YBdtkZ
+        gM5sXEEfz20iQweKBCfJhMQZ7Q==
+X-Google-Smtp-Source: ABdhPJxpirRBN68cTs6BEm0/4bx76H7nG+Xarluh7zIVCuqEiGatxHFPfwy6XtpjUIQW3RvhGFHKFg==
+X-Received: by 2002:a62:6006:0:b029:1dd:3af9:965f with SMTP id u6-20020a6260060000b02901dd3af9965fmr4635727pfb.30.1614365144799;
+        Fri, 26 Feb 2021 10:45:44 -0800 (PST)
 Received: from chromium.org ([2620:15c:202:201:e8bb:5726:f58b:4e37])
-        by smtp.gmail.com with ESMTPSA id r123sm10329986pfc.211.2021.02.26.10.45.05
+        by smtp.gmail.com with ESMTPSA id 125sm10684127pfu.7.2021.02.26.10.45.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Feb 2021 10:45:05 -0800 (PST)
+        Fri, 26 Feb 2021 10:45:44 -0800 (PST)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210225141022.13.I3d1f5f8a3bf31e8014229df0d4cfdff20e9cc90f@changeid>
-References: <20210225221310.1939599-1-dianders@chromium.org> <20210225141022.13.I3d1f5f8a3bf31e8014229df0d4cfdff20e9cc90f@changeid>
-Subject: Re: [PATCH 13/13] arm64: dts: qcom: Add sc7180-lazor-coachz skus
+In-Reply-To: <a35e6dcba758be4af3d111fe92cfbcd6@codeaurora.org>
+References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org> <c4b7ae4dd009f563e6786f4a41f09efa38636fb6.1614244789.git.saiprakash.ranjan@codeaurora.org> <161428185152.1254594.1426736986245389798@swboyd.mtv.corp.google.com> <a35e6dcba758be4af3d111fe92cfbcd6@codeaurora.org>
+Subject: Re: [PATCH 3/9] arm64: dts: qcom: sc7280: Add device tree node for LLCC
 From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Alexandru M Stan <amstan@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>
-Date:   Fri, 26 Feb 2021 10:45:04 -0800
-Message-ID: <161436510419.1254594.15131518424468767659@swboyd.mtv.corp.google.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>
+To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Date:   Fri, 26 Feb 2021 10:45:42 -0800
+Message-ID: <161436514295.1254594.2789904935200051795@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2021-02-25 14:13:10)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/a=
-rm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> new file mode 100644
-> index 000000000000..5def9953d82b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> @@ -0,0 +1,249 @@
-[...]
-> +
-> +/*
-> + * There's no SAR sensor, so i2c5 is re-purposed.  We leave the
-> + * proximity@28 node under i2c5 (from trogdor.dtsi) since it's "disabled"
-> + * and doesn't hurt.
-> + */
-> +i2c_wlc: &i2c5 {
-> +       /* Currently not connected to anything; see b/168652326 */
-> +};
+Quoting Sai Prakash Ranjan (2021-02-26 00:04:27)
+> On 2021-02-26 01:07, Stephen Boyd wrote:
+> > Quoting Sai Prakash Ranjan (2021-02-25 01:30:19)
+> >> Add a DT node for Last level cache (aka. system cache)
+> >> controller which provides control over the last level
+> >> cache present on SC7280 SoC.
+> >>=20
+> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> >> ---
+> >=20
+> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> >=20
+> > Should add system-cache-controller to the devicetree spec. Or just use
+> > cache-controller for the node name.
+>=20
+> This was as per discussion in [1][2] where dt-schema throws an error
+> since it expects cache-level to be associated with cache-controller.
+>=20
 
-Can we remove this? As far as I know this will always be this way and
-thus doesn't provide anything meaningful to leave this bug comment here
-that doesn't work for people.
-
-> +
-> +&i2c7 {
-> +       status =3D "disabled";
-> +};
+Ah right. Can you add system-cache-controller to the dt spec?
