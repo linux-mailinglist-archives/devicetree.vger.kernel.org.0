@@ -2,629 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1D8732631E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 14:09:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEE1F326335
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 14:18:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229621AbhBZNIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 08:08:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbhBZNIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 08:08:41 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFCEDC061574
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 05:08:00 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id b145so6230098pfb.4
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 05:08:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tzbfgkTAyNzwu1QXGsyRHtE8D7jpqg1aWwO85PGpakc=;
-        b=A9d94NYl+JdoHez6IIUVoYYGGYyHeUdM5FtRFjY1lKwP5C8tQYyzgE3MLl4zoJ2CDO
-         Nk2uFJLcVmWYQVov5M3a5JWOb4yH0m0NKJrAECy3E34nEGFn5CAXmo2dlo3CqP6eYIYR
-         29cZI9Wixauz6rqXJD0ev+Con89z9cXYEvVKRkCjNutgaR8NhOJ6COVB1s3vhCUx4e5n
-         RoAboaaj+nqGw1Pa30VEk33bIbqtC3vAt7W+ZoUh3CV7WOliVWWPOpNmyJEcHEq2IUiO
-         BgJzV6CGmbnZiS1bnaAow0VgK+EZibXPcRIqLJjMjpTVDU2c3u8k2BCAaa41mZJ+ItO+
-         5kmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tzbfgkTAyNzwu1QXGsyRHtE8D7jpqg1aWwO85PGpakc=;
-        b=V4kZH2sPwiTpDEwQGcR5jCt4+reP2pRN8zU9shjDGQDWOn9nv9tb59wHcTQdxOWbR3
-         qYYGl3UB5hhAG1c/Ee/DSk0icMse2HyYZtAmp+cB8fF/vsJaRGrgKS2daGvZWEVwVX8c
-         OGxgjLlaQdHhYG0c2MnlN/lwp2CfMlZ/msBbfgv7ewtD7nRXkMf9/S7kxGyQUaZIDJuZ
-         GbxKtuUhJxtj8MlL51aVO6RXpljyVL2gPr6ntEXDMJmNsqjcCtmikLE9gVY0/STojLX3
-         9r++YafQdHdQWP0lLD8dhB6sairCpWQcbVPyXZ4Ba0wrJ8xwy24yTzSo4zmNDUbOl+lx
-         3XHg==
-X-Gm-Message-State: AOAM533mOyKhuT4YScX8D3srm5R3l9eFhLzSImLeBqxKeDNok7iAa9HJ
-        IwyPOI49qhggKxvC3IG69ChKdmezX80fn1DfPBa+6Q==
-X-Google-Smtp-Source: ABdhPJxlJqf6jsvBll/cK9x5MrNuv6EjLt4rwW1fXk5X7Tu0LGhY2490eYce6xhhWcmjTUCHwBH+Mbj68YpNfYWJ/a0=
-X-Received: by 2002:a62:7888:0:b029:1ed:cc30:923e with SMTP id
- t130-20020a6278880000b02901edcc30923emr3336731pfc.12.1614344880265; Fri, 26
- Feb 2021 05:08:00 -0800 (PST)
+        id S229727AbhBZNRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 08:17:21 -0500
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:34883 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229545AbhBZNRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 08:17:20 -0500
+X-Originating-IP: 81.185.174.212
+Received: from [192.168.43.237] (212.174.185.81.rev.sfr.net [81.185.174.212])
+        (Authenticated sender: alex@ghiti.fr)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id DA1281BF203;
+        Fri, 26 Feb 2021 13:16:15 +0000 (UTC)
+Subject: Re: [RFC PATCH 1/8] RISC-V: Enable CPU_IDLE drivers
+To:     Anup Patel <anup.patel@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>, linux-riscv@lists.infradead.org,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20210221093758.210981-1-anup.patel@wdc.com>
+ <20210221093758.210981-2-anup.patel@wdc.com>
+From:   Alex Ghiti <alex@ghiti.fr>
+Message-ID: <3a6e2af7-934d-078f-4e19-d4241809e7fb@ghiti.fr>
+Date:   Fri, 26 Feb 2021 08:16:15 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-References: <1613619715-28785-1-git-send-email-victor.liu@nxp.com> <1613619715-28785-6-git-send-email-victor.liu@nxp.com>
-In-Reply-To: <1613619715-28785-6-git-send-email-victor.liu@nxp.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Fri, 26 Feb 2021 14:07:49 +0100
-Message-ID: <CAG3jFyufawQ=0UNgfbTgzkbqCYQ7LS-BMq7mXruX470iYBXMOw@mail.gmail.com>
-Subject: Re: [PATCH v4 05/14] drm/bridge: imx: Add i.MX8qm/qxp pixel combiner support
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>, kishon@ti.com,
-        Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210221093758.210981-2-anup.patel@wdc.com>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Liu,
+Hi Anup,
 
-With the below nit straightened out, feel free to add my r-b.
-
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
-
-On Thu, 18 Feb 2021 at 04:58, Liu Ying <victor.liu@nxp.com> wrote:
->
-> This patch adds a drm bridge driver for i.MX8qm/qxp pixel combiner.
-> The pixel combiner takes two output streams from a single display
-> controller and manipulates the two streams to support a number
-> of modes(bypass, pixel combine, YUV444 to YUV422, split_RGB) configured
-> as either one screen, two screens, or virtual screens.  The pixel
-> combiner is also responsible for generating some of the control signals
-> for the pixel link output channel.  For now, the driver only supports
-> the bypass mode.
->
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+Le 2/21/21 à 4:37 AM, Anup Patel a écrit :
+> We force select CPU_PM and provide asm/cpuidle.h so that we can
+> use CPU IDLE drivers for Linux RISC-V kernel.
+> 
+> Signed-off-by: Anup Patel <anup.patel@wdc.com>
 > ---
-> v3->v4:
-> * No change.
->
-> v2->v3:
-> * No change.
->
-> v1->v2:
-> * No change.
->
->  drivers/gpu/drm/bridge/Kconfig                     |   2 +
->  drivers/gpu/drm/bridge/Makefile                    |   1 +
->  drivers/gpu/drm/bridge/imx/Kconfig                 |   8 +
->  drivers/gpu/drm/bridge/imx/Makefile                |   1 +
->  .../gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c    | 452 +++++++++++++++++++++
->  5 files changed, 464 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/imx/Kconfig
->  create mode 100644 drivers/gpu/drm/bridge/imx/Makefile
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c
->
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> index e4110d6c..84944e0 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -256,6 +256,8 @@ source "drivers/gpu/drm/bridge/adv7511/Kconfig"
->
->  source "drivers/gpu/drm/bridge/cadence/Kconfig"
->
-> +source "drivers/gpu/drm/bridge/imx/Kconfig"
+>   arch/riscv/Kconfig                |  7 +++++++
+>   arch/riscv/configs/defconfig      |  7 +++----
+>   arch/riscv/configs/rv32_defconfig |  4 ++--
+>   arch/riscv/include/asm/cpuidle.h  | 24 ++++++++++++++++++++++++
+>   arch/riscv/kernel/process.c       |  3 ++-
+>   5 files changed, 38 insertions(+), 7 deletions(-)
+>   create mode 100644 arch/riscv/include/asm/cpuidle.h
+> 
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index fe6862b06ead..4901200b6b6c 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -37,6 +37,7 @@ config RISCV
+>   	select CLONE_BACKWARDS
+>   	select CLINT_TIMER if !MMU
+>   	select COMMON_CLK
+> +	select CPU_PM if CPU_IDLE
+>   	select EDAC_SUPPORT
+>   	select GENERIC_ARCH_TOPOLOGY if SMP
+>   	select GENERIC_ATOMIC64 if !64BIT
+> @@ -430,4 +431,10 @@ source "kernel/power/Kconfig"
+>   
+>   endmenu
+>   
+> +menu "CPU Power Management"
 > +
->  source "drivers/gpu/drm/bridge/synopsys/Kconfig"
->
->  endmenu
-> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-> index 86e7acc..bc80cae 100644
-> --- a/drivers/gpu/drm/bridge/Makefile
-> +++ b/drivers/gpu/drm/bridge/Makefile
-> @@ -27,4 +27,5 @@ obj-$(CONFIG_DRM_NWL_MIPI_DSI) += nwl-dsi.o
->
->  obj-y += analogix/
->  obj-y += cadence/
-> +obj-y += imx/
->  obj-y += synopsys/
-> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-> new file mode 100644
-> index 00000000..f1c91b6
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> @@ -0,0 +1,8 @@
-> +config DRM_IMX8QXP_PIXEL_COMBINER
-> +       tristate "Freescale i.MX8QM/QXP pixel combiner"
-> +       depends on OF
-> +       depends on COMMON_CLK
-> +       select DRM_KMS_HELPER
-> +       help
-> +         Choose this to enable pixel combiner found in
-> +         Freescale i.MX8qm/qxp processors.
-> diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-> new file mode 100644
-> index 00000000..7d7c8d6
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/Makefile
-> @@ -0,0 +1 @@
-> +obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
-> diff --git a/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c
-> new file mode 100644
-> index 00000000..cd5b1be
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c
-> @@ -0,0 +1,452 @@
-> +// SPDX-License-Identifier: GPL-2.0+
+> +source "drivers/cpuidle/Kconfig"
 > +
+> +endmenu
+> +
+>   source "drivers/firmware/Kconfig"
+> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+> index 6c0625aa96c7..dc4927c0e44b 100644
+> --- a/arch/riscv/configs/defconfig
+> +++ b/arch/riscv/configs/defconfig
+> @@ -13,11 +13,13 @@ CONFIG_USER_NS=y
+>   CONFIG_CHECKPOINT_RESTORE=y
+>   CONFIG_BLK_DEV_INITRD=y
+>   CONFIG_EXPERT=y
+> +# CONFIG_SYSFS_SYSCALL is not set
+>   CONFIG_BPF_SYSCALL=y
+>   CONFIG_SOC_SIFIVE=y
+>   CONFIG_SOC_VIRT=y
+>   CONFIG_SMP=y
+>   CONFIG_HOTPLUG_CPU=y
+> +CONFIG_CPU_IDLE=y
+>   CONFIG_JUMP_LABEL=y
+>   CONFIG_MODULES=y
+>   CONFIG_MODULE_UNLOAD=y
+> @@ -65,10 +67,9 @@ CONFIG_HW_RANDOM=y
+>   CONFIG_HW_RANDOM_VIRTIO=y
+>   CONFIG_SPI=y
+>   CONFIG_SPI_SIFIVE=y
+> +# CONFIG_PTP_1588_CLOCK is not set
+>   CONFIG_GPIOLIB=y
+>   CONFIG_GPIO_SIFIVE=y
+> -# CONFIG_PTP_1588_CLOCK is not set
+> -CONFIG_POWER_RESET=y
+
+Why do you remove this config ?
+
+>   CONFIG_DRM=y
+>   CONFIG_DRM_RADEON=y
+>   CONFIG_DRM_VIRTIO_GPU=y
+> @@ -132,5 +133,3 @@ CONFIG_DEBUG_BLOCK_EXT_DEVT=y
+>   # CONFIG_FTRACE is not set
+>   # CONFIG_RUNTIME_TESTING_MENU is not set
+>   CONFIG_MEMTEST=y
+> -# CONFIG_SYSFS_SYSCALL is not set
+> -CONFIG_EFI=y
+
+And this is one too ? If those removals are intentional, maybe you can 
+add something about that in the commit description ?
+
+> diff --git a/arch/riscv/configs/rv32_defconfig b/arch/riscv/configs/rv32_defconfig
+> index 8dd02b842fef..332e43a4a2c3 100644
+> --- a/arch/riscv/configs/rv32_defconfig
+> +++ b/arch/riscv/configs/rv32_defconfig
+> @@ -13,12 +13,14 @@ CONFIG_USER_NS=y
+>   CONFIG_CHECKPOINT_RESTORE=y
+>   CONFIG_BLK_DEV_INITRD=y
+>   CONFIG_EXPERT=y
+> +# CONFIG_SYSFS_SYSCALL is not set
+>   CONFIG_BPF_SYSCALL=y
+>   CONFIG_SOC_SIFIVE=y
+>   CONFIG_SOC_VIRT=y
+>   CONFIG_ARCH_RV32I=y
+>   CONFIG_SMP=y
+>   CONFIG_HOTPLUG_CPU=y
+> +CONFIG_CPU_IDLE=y
+>   CONFIG_JUMP_LABEL=y
+>   CONFIG_MODULES=y
+>   CONFIG_MODULE_UNLOAD=y
+> @@ -67,7 +69,6 @@ CONFIG_HW_RANDOM_VIRTIO=y
+>   CONFIG_SPI=y
+>   CONFIG_SPI_SIFIVE=y
+>   # CONFIG_PTP_1588_CLOCK is not set
+> -CONFIG_POWER_RESET=y
+>   CONFIG_DRM=y
+>   CONFIG_DRM_RADEON=y
+>   CONFIG_DRM_VIRTIO_GPU=y
+> @@ -131,4 +132,3 @@ CONFIG_DEBUG_BLOCK_EXT_DEVT=y
+>   # CONFIG_FTRACE is not set
+>   # CONFIG_RUNTIME_TESTING_MENU is not set
+>   CONFIG_MEMTEST=y
+> -# CONFIG_SYSFS_SYSCALL is not set
+> diff --git a/arch/riscv/include/asm/cpuidle.h b/arch/riscv/include/asm/cpuidle.h
+> new file mode 100644
+> index 000000000000..1042d790e446
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/cpuidle.h
+> @@ -0,0 +1,24 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 > +/*
-> + * Copyright 2020 NXP
+> + * Copyright (C) 2021 Allwinner Ltd
+> + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
 > + */
 > +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_graph.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
+> +#ifndef _ASM_RISCV_CPUIDLE_H
+> +#define _ASM_RISCV_CPUIDLE_H
 > +
-> +#include <drm/drm_atomic_state_helper.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_print.h>
+> +#include <asm/barrier.h>
+> +#include <asm/processor.h>
 > +
-> +#define PC_CTRL_REG                    0x0
-> +#define  PC_COMBINE_ENABLE             BIT(0)
-> +#define  PC_DISP_BYPASS(n)             BIT(1 + 21 * (n))
-> +#define  PC_DISP_HSYNC_POLARITY(n)     BIT(2 + 11 * (n))
-> +#define  PC_DISP_HSYNC_POLARITY_POS(n) DISP_HSYNC_POLARITY(n)
-> +#define  PC_DISP_VSYNC_POLARITY(n)     BIT(3 + 11 * (n))
-> +#define  PC_DISP_VSYNC_POLARITY_POS(n) DISP_VSYNC_POLARITY(n)
-> +#define  PC_DISP_DVALID_POLARITY(n)    BIT(4 + 11 * (n))
-> +#define  PC_DISP_DVALID_POLARITY_POS(n)        DISP_DVALID_POLARITY(n)
-> +#define  PC_VSYNC_MASK_ENABLE          BIT(5)
-> +#define  PC_SKIP_MODE                  BIT(6)
-> +#define  PC_SKIP_NUMBER_MASK           GENMASK(12, 7)
-> +#define  PC_SKIP_NUMBER(n)             FIELD_PREP(PC_SKIP_NUMBER_MASK, (n))
-> +#define  PC_DISP0_PIX_DATA_FORMAT_MASK GENMASK(18, 16)
-> +#define  PC_DISP0_PIX_DATA_FORMAT(fmt) \
-> +                               FIELD_PREP(PC_DISP0_PIX_DATA_FORMAT_MASK, (fmt))
-> +#define  PC_DISP1_PIX_DATA_FORMAT_MASK GENMASK(21, 19)
-> +#define  PC_DISP1_PIX_DATA_FORMAT(fmt) \
-> +                               FIELD_PREP(PC_DISP1_PIX_DATA_FORMAT_MASK, (fmt))
-> +
-> +#define PC_BUF_PARA_REG                        0x10
+> +static inline void cpu_do_idle(void)
+> +{
+> +	/*
+> +	 * Add mb() here to ensure that all
+> +	 * IO/MEM access are completed prior
 
-This register is unused, keeping it in here to avoid future headaches
-seems like a good idea.
+accessES ?
 
-> +#define  PC_BUF_ACTIVE_DEPTH_MASK      GENMASK(10, 0)
-> +#define  PC_BUF_ACTIVE_DEPTH(n)                FIELD_PREP(PC_BUF_ACTIVE_DEPTH_MASK, (n))
-> +
-> +#define PC_SW_RESET_REG                        0x20
-> +#define  PC_SW_RESET_N                 BIT(0)
-> +#define  PC_DISP_SW_RESET_N(n)         BIT(1 + (n))
-> +#define  PC_FULL_RESET_N               (PC_SW_RESET_N |                \
-> +                                        PC_DISP_SW_RESET_N(0) |        \
-> +                                        PC_DISP_SW_RESET_N(1))
-> +
-> +#define PC_REG_SET                     0x4
-> +#define PC_REG_CLR                     0x8
-> +
-> +#define DRIVER_NAME                    "imx8qxp-pixel-combiner"
-> +
-> +enum imx8qxp_pc_pix_data_format {
-> +       RGB,
-> +       YUV444,
-> +       YUV422,
-> +       SPLIT_RGB,
-
-YUV444, YUV422 & SPLIT_RGB are also unused, but if their values are
-compatible with the PC_DISP0_PIX_DATA_FORMAT macro I think keeping
-them around for future reference is a good idea.
-
-> +};
-> +
-> +struct imx8qxp_pc_channel {
-> +       struct drm_bridge bridge;
-> +       struct drm_bridge *next_bridge;
-> +       struct imx8qxp_pc *pc;
-> +       unsigned int stream_id;
-> +       bool is_available;
-> +};
-> +
-> +struct imx8qxp_pc {
-> +       struct device *dev;
-> +       struct imx8qxp_pc_channel ch[2];
-> +       struct clk *clk_apb;
-> +       void __iomem *base;
-> +};
-> +
-> +static inline u32 imx8qxp_pc_read(struct imx8qxp_pc *pc, unsigned int offset)
-> +{
-> +       return readl(pc->base + offset);
+> +	 * to enter WFI.
+> +	 */
+> +	mb();
+> +	wait_for_interrupt();
 > +}
 > +
-> +static inline void
-> +imx8qxp_pc_write(struct imx8qxp_pc *pc, unsigned int offset, u32 value)
-> +{
-> +       writel(value, pc->base + offset);
-> +}
-> +
-> +static inline void
-> +imx8qxp_pc_write_set(struct imx8qxp_pc *pc, unsigned int offset, u32 value)
-> +{
-> +       imx8qxp_pc_write(pc, offset + PC_REG_SET, value);
-> +}
-> +
-> +static inline void
-> +imx8qxp_pc_write_clr(struct imx8qxp_pc *pc, unsigned int offset, u32 value)
-> +{
-> +       imx8qxp_pc_write(pc, offset + PC_REG_CLR, value);
-> +}
-> +
-> +static enum drm_mode_status
-> +imx8qxp_pc_bridge_mode_valid(struct drm_bridge *bridge,
-> +                            const struct drm_display_info *info,
-> +                            const struct drm_display_mode *mode)
-> +{
-> +       if (mode->hdisplay > 2560)
-> +               return MODE_BAD_HVALUE;
-> +
-> +       return MODE_OK;
-> +}
-> +
-> +static int imx8qxp_pc_bridge_attach(struct drm_bridge *bridge,
-> +                                   enum drm_bridge_attach_flags flags)
-> +{
-> +       struct imx8qxp_pc_channel *ch = bridge->driver_private;
-> +       struct imx8qxp_pc *pc = ch->pc;
-> +
-> +       if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
-> +               DRM_DEV_ERROR(pc->dev,
-> +                             "do not support creating a drm_connector\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       if (!bridge->encoder) {
-> +               DRM_DEV_ERROR(pc->dev, "missing encoder\n");
-> +               return -ENODEV;
-> +       }
-> +
-> +       return drm_bridge_attach(bridge->encoder,
-> +                                ch->next_bridge, bridge,
-> +                                DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-> +}
-> +
-> +static void
-> +imx8qxp_pc_bridge_mode_set(struct drm_bridge *bridge,
-> +                          const struct drm_display_mode *mode,
-> +                          const struct drm_display_mode *adjusted_mode)
-> +{
-> +       struct imx8qxp_pc_channel *ch = bridge->driver_private;
-> +       struct imx8qxp_pc *pc = ch->pc;
-> +       u32 val;
-> +       int ret;
-> +
-> +       ret = pm_runtime_get_sync(pc->dev);
-> +       if (ret < 0)
-> +               DRM_DEV_ERROR(pc->dev,
-> +                             "failed to get runtime PM sync: %d\n", ret);
-> +
-> +       ret = clk_prepare_enable(pc->clk_apb);
-> +       if (ret)
-> +               DRM_DEV_ERROR(pc->dev, "%s: failed to enable apb clock: %d\n",
-> +                                                               __func__,  ret);
-> +
-> +       /* HSYNC to pixel link is active low. */
-> +       imx8qxp_pc_write_clr(pc, PC_CTRL_REG,
-> +                               PC_DISP_HSYNC_POLARITY(ch->stream_id));
-> +
-> +       /* VSYNC to pixel link is active low. */
-> +       imx8qxp_pc_write_clr(pc, PC_CTRL_REG,
-> +                               PC_DISP_VSYNC_POLARITY(ch->stream_id));
-> +
-> +       /* Data enable to pixel link is active high. */
-> +       imx8qxp_pc_write_set(pc, PC_CTRL_REG,
-> +                               PC_DISP_DVALID_POLARITY(ch->stream_id));
-> +
-> +       /* Mask the first frame output which may be incomplete. */
-> +       imx8qxp_pc_write_set(pc, PC_CTRL_REG, PC_VSYNC_MASK_ENABLE);
-> +
-> +       /* Only support RGB currently. */
-> +       val = imx8qxp_pc_read(pc, PC_CTRL_REG);
-> +       if (ch->stream_id == 0) {
-> +               val &= ~PC_DISP0_PIX_DATA_FORMAT_MASK;
-> +               val |= PC_DISP0_PIX_DATA_FORMAT(RGB);
-> +       } else {
-> +               val &= ~PC_DISP1_PIX_DATA_FORMAT_MASK;
-> +               val |= PC_DISP1_PIX_DATA_FORMAT(RGB);
-> +       }
-> +       imx8qxp_pc_write(pc, PC_CTRL_REG, val);
-> +
-> +       /* Only support bypass mode currently. */
-> +       imx8qxp_pc_write_set(pc, PC_CTRL_REG, PC_DISP_BYPASS(ch->stream_id));
-> +
-> +       clk_disable_unprepare(pc->clk_apb);
-> +}
-> +
-> +static void imx8qxp_pc_bridge_atomic_disable(struct drm_bridge *bridge,
-> +                               struct drm_bridge_state *old_bridge_state)
-> +{
-> +       struct imx8qxp_pc_channel *ch = bridge->driver_private;
-> +       struct imx8qxp_pc *pc = ch->pc;
-> +       int ret;
-> +
-> +       ret = pm_runtime_put(pc->dev);
-> +       if (ret < 0)
-> +               DRM_DEV_ERROR(pc->dev, "failed to put runtime PM: %d\n", ret);
-> +}
-> +
-> +static const u32 imx8qxp_pc_bus_output_fmts[] = {
-> +       MEDIA_BUS_FMT_RGB888_1X36_CPADLO,
-> +       MEDIA_BUS_FMT_RGB666_1X36_CPADLO,
-> +};
-> +
-> +static bool imx8qxp_pc_bus_output_fmt_supported(u32 fmt)
-> +{
-> +       int i;
-> +
-> +       for (i = 0; i < ARRAY_SIZE(imx8qxp_pc_bus_output_fmts); i++) {
-> +               if (imx8qxp_pc_bus_output_fmts[i] == fmt)
-> +                       return true;
-> +       }
-> +
-> +       return false;
-> +}
-> +
-> +static u32 *
-> +imx8qxp_pc_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-> +                                       struct drm_bridge_state *bridge_state,
-> +                                       struct drm_crtc_state *crtc_state,
-> +                                       struct drm_connector_state *conn_state,
-> +                                       u32 output_fmt,
-> +                                       unsigned int *num_input_fmts)
-> +{
-> +       u32 *input_fmts;
-> +
-> +       if (!imx8qxp_pc_bus_output_fmt_supported(output_fmt))
-> +               return NULL;
-> +
-> +       *num_input_fmts = 1;
-> +
-> +       input_fmts = kmalloc(sizeof(*input_fmts), GFP_KERNEL);
-> +       if (!input_fmts)
-> +               return NULL;
-> +
-> +       switch (output_fmt) {
-> +       case MEDIA_BUS_FMT_RGB888_1X36_CPADLO:
-> +               input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X30_CPADLO;
-> +               break;
-> +       case MEDIA_BUS_FMT_RGB666_1X36_CPADLO:
-> +               input_fmts[0] = MEDIA_BUS_FMT_RGB666_1X30_CPADLO;
-> +               break;
-> +       default:
-> +               kfree(input_fmts);
-> +               input_fmts = NULL;
-> +               break;
-> +       }
-> +
-> +       return input_fmts;
-> +}
-> +
-> +static u32 *
-> +imx8qxp_pc_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
-> +                                       struct drm_bridge_state *bridge_state,
-> +                                       struct drm_crtc_state *crtc_state,
-> +                                       struct drm_connector_state *conn_state,
-> +                                       unsigned int *num_output_fmts)
-> +{
-> +       *num_output_fmts = ARRAY_SIZE(imx8qxp_pc_bus_output_fmts);
-> +       return kmemdup(imx8qxp_pc_bus_output_fmts,
-> +                       sizeof(imx8qxp_pc_bus_output_fmts), GFP_KERNEL);
-> +}
-> +
-> +static const struct drm_bridge_funcs imx8qxp_pc_bridge_funcs = {
-> +       .atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-> +       .atomic_destroy_state   = drm_atomic_helper_bridge_destroy_state,
-> +       .atomic_reset           = drm_atomic_helper_bridge_reset,
-> +       .mode_valid             = imx8qxp_pc_bridge_mode_valid,
-> +       .attach                 = imx8qxp_pc_bridge_attach,
-> +       .mode_set               = imx8qxp_pc_bridge_mode_set,
-> +       .atomic_disable         = imx8qxp_pc_bridge_atomic_disable,
-> +       .atomic_get_input_bus_fmts =
-> +                               imx8qxp_pc_bridge_atomic_get_input_bus_fmts,
-> +       .atomic_get_output_bus_fmts =
-> +                               imx8qxp_pc_bridge_atomic_get_output_bus_fmts,
-> +};
-> +
-> +static int imx8qxp_pc_bridge_probe(struct platform_device *pdev)
-> +{
-> +       struct imx8qxp_pc *pc;
-> +       struct imx8qxp_pc_channel *ch;
-> +       struct device *dev = &pdev->dev;
-> +       struct device_node *np = dev->of_node;
-> +       struct device_node *child, *remote;
-> +       u32 i;
-> +       int ret;
-> +
-> +       pc = devm_kzalloc(dev, sizeof(*pc), GFP_KERNEL);
-> +       if (!pc)
-> +               return -ENOMEM;
-> +
-> +       pc->base = devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(pc->base))
-> +               return PTR_ERR(pc->base);
-> +
-> +       pc->dev = dev;
-> +
-> +       pc->clk_apb = devm_clk_get(dev, "apb");
-> +       if (IS_ERR(pc->clk_apb)) {
-> +               ret = PTR_ERR(pc->clk_apb);
-> +               if (ret != -EPROBE_DEFER)
-> +                       DRM_DEV_ERROR(dev, "failed to get apb clock: %d\n",
-> +                                                                       ret);
-> +               return ret;
-> +       }
-> +
-> +       platform_set_drvdata(pdev, pc);
-> +       pm_runtime_enable(dev);
-> +
-> +       for_each_available_child_of_node(np, child) {
-> +               ret = of_property_read_u32(child, "reg", &i);
-> +               if (ret || i > 1) {
-> +                       ret = -EINVAL;
-> +                       DRM_DEV_ERROR(dev,
-> +                                     "invalid channel(%u) node address\n", i);
-> +                       goto free_child;
-> +               }
-> +
-> +               ch = &pc->ch[i];
-> +               ch->pc = pc;
-> +               ch->stream_id = i;
-> +
-> +               remote = of_graph_get_remote_node(child, 1, 0);
-> +               if (!remote) {
-> +                       ret = -ENODEV;
-> +                       DRM_DEV_ERROR(dev,
-> +                           "channel%u failed to get port1's remote node: %d\n",
-> +                                                                       i, ret);
-> +                       goto free_child;
-> +               }
-> +
-> +               ch->next_bridge = of_drm_find_bridge(remote);
-> +               if (!ch->next_bridge) {
-> +                       of_node_put(remote);
-> +                       ret = -EPROBE_DEFER;
-> +                       DRM_DEV_DEBUG_DRIVER(dev,
-> +                               "channel%u failed to find next bridge: %d\n",
-> +                                                                       i, ret);
-> +                       goto free_child;
-> +               }
-> +
-> +               of_node_put(remote);
-> +
-> +               ch->bridge.driver_private = ch;
-> +               ch->bridge.funcs = &imx8qxp_pc_bridge_funcs;
-> +               ch->bridge.of_node = child;
-> +               ch->is_available = true;
-> +
-> +               drm_bridge_add(&ch->bridge);
-> +       }
-> +
-> +       return 0;
-> +
-> +free_child:
-> +       of_node_put(child);
-> +
-> +       if (i == 1 && pc->ch[0].next_bridge)
-> +               drm_bridge_remove(&pc->ch[0].bridge);
-> +
-> +       pm_runtime_disable(dev);
-> +       return ret;
-> +}
-> +
-> +static int imx8qxp_pc_bridge_remove(struct platform_device *pdev)
-> +{
-> +       struct imx8qxp_pc *pc = platform_get_drvdata(pdev);
-> +       struct imx8qxp_pc_channel *ch;
-> +       int i;
-> +
-> +       for (i = 0; i < 2; i++) {
-> +               ch = &pc->ch[i];
-> +
-> +               if (!ch->is_available)
-> +                       continue;
-> +
-> +               drm_bridge_remove(&ch->bridge);
-> +               ch->is_available = false;
-> +       }
-> +
-> +       pm_runtime_disable(&pdev->dev);
-> +
-> +       return 0;
-> +}
-> +
-> +static int __maybe_unused imx8qxp_pc_runtime_suspend(struct device *dev)
-> +{
-> +       struct platform_device *pdev = to_platform_device(dev);
-> +       struct imx8qxp_pc *pc = platform_get_drvdata(pdev);
-> +       int ret;
-> +
-> +       ret = clk_prepare_enable(pc->clk_apb);
-> +       if (ret)
-> +               DRM_DEV_ERROR(pc->dev, "%s: failed to enable apb clock: %d\n",
-> +                                                               __func__,  ret);
-> +
-> +       /* Disable pixel combiner by full reset. */
-> +       imx8qxp_pc_write_clr(pc, PC_SW_RESET_REG, PC_FULL_RESET_N);
-> +
-> +       clk_disable_unprepare(pc->clk_apb);
-> +
-> +       /* Ensure the reset takes effect. */
-> +       usleep_range(10, 20);
-> +
-> +       return ret;
-> +}
-> +
-> +static int __maybe_unused imx8qxp_pc_runtime_resume(struct device *dev)
-> +{
-> +       struct platform_device *pdev = to_platform_device(dev);
-> +       struct imx8qxp_pc *pc = platform_get_drvdata(pdev);
-> +       int ret;
-> +
-> +       ret = clk_prepare_enable(pc->clk_apb);
-> +       if (ret) {
-> +               DRM_DEV_ERROR(pc->dev, "%s: failed to enable apb clock: %d\n",
-> +                                                               __func__, ret);
-> +               return ret;
-> +       }
-> +
-> +       /* out of reset */
-> +       imx8qxp_pc_write_set(pc, PC_SW_RESET_REG, PC_FULL_RESET_N);
-> +
-> +       clk_disable_unprepare(pc->clk_apb);
-> +
-> +       return ret;
-> +}
-> +
-> +static const struct dev_pm_ops imx8qxp_pc_pm_ops = {
-> +       SET_RUNTIME_PM_OPS(imx8qxp_pc_runtime_suspend,
-> +                          imx8qxp_pc_runtime_resume, NULL)
-> +};
-> +
-> +static const struct of_device_id imx8qxp_pc_dt_ids[] = {
-> +       { .compatible = "fsl,imx8qm-pixel-combiner", },
-> +       { .compatible = "fsl,imx8qxp-pixel-combiner", },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx8qxp_pc_dt_ids);
-> +
-> +static struct platform_driver imx8qxp_pc_bridge_driver = {
-> +       .probe  = imx8qxp_pc_bridge_probe,
-> +       .remove = imx8qxp_pc_bridge_remove,
-> +       .driver = {
-> +               .pm = &imx8qxp_pc_pm_ops,
-> +               .name = DRIVER_NAME,
-> +               .of_match_table = imx8qxp_pc_dt_ids,
-> +       },
-> +};
-> +module_platform_driver(imx8qxp_pc_bridge_driver);
-> +
-> +MODULE_DESCRIPTION("i.MX8QM/QXP pixel combiner bridge driver");
-> +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_ALIAS("platform:" DRIVER_NAME);
-> --
-> 2.7.4
->
+> +#endif
+> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+> index dd5f985b1f40..b5b51fd26624 100644
+> --- a/arch/riscv/kernel/process.c
+> +++ b/arch/riscv/kernel/process.c
+> @@ -21,6 +21,7 @@
+>   #include <asm/string.h>
+>   #include <asm/switch_to.h>
+>   #include <asm/thread_info.h>
+> +#include <asm/cpuidle.h>
+>   
+>   register unsigned long gp_in_global __asm__("gp");
+>   
+> @@ -35,7 +36,7 @@ extern asmlinkage void ret_from_kernel_thread(void);
+>   
+>   void arch_cpu_idle(void)
+>   {
+> -	wait_for_interrupt();
+> +	cpu_do_idle();
+>   	raw_local_irq_enable();
+>   }
+>   
+> 
