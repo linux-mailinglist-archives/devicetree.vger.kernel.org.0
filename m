@@ -2,215 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D1CB325D70
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 07:13:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9158325D8F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 07:33:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbhBZGNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 01:13:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbhBZGND (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 01:13:03 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3A1C061574;
-        Thu, 25 Feb 2021 22:12:22 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id n4so7466502wrx.1;
-        Thu, 25 Feb 2021 22:12:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9zo55mBo3m4Uke2mk+X1npLwGmzEk63Firuv6qer8Fw=;
-        b=mWSpZYZCWd7pJFziAgN9srzEloyViWSX8sX0gWYeY3XOzLdp4BeOL0ae4hFzdTUUse
-         Kv+UW1r3lwO8wYCXDHBoizeshtps2BJN1tEqE8PpOKWNN7AKffmNagOs/NQtTnZSJS6Z
-         rfuMMDszkeVe+sw2PFVc5sA7RKWfzHiTYpdoqCEVc2bK//A+NTWS5h9bH7M15YGRna9P
-         3uUiWbHR386Xt8fuEqPXDLrvkyL414K6rxE9rIuQyzTpfp74XgdCIOpJv0NVcvhaO8QS
-         Edvn/uocBRNM7AU2YcMklKhJHDUDVb5W2FTEFhtcgVad4kbphAp01+DRPt5BZ/clwSUm
-         rr2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9zo55mBo3m4Uke2mk+X1npLwGmzEk63Firuv6qer8Fw=;
-        b=Aay71jp0eA1yT4K0FKvBvefrv+tze7MTvqxk0W9gJ/2LA/lmnTaBEH9c9ryrIMt7AW
-         JsQyE5XtUEeu8PrsvpnHJetkbEyOWPt03GA+2qYl5zZp5NE6yssSGo675nDNW2JGlZ8X
-         qSlBY23vfY1jtqjbGbR14lVeXvkaaWrvryOaqKq2Im7Ovtbw0EjTiYRmbvPDJLFhVEST
-         NdrH8xhyk8++DAQUsfjrFgonIf+QlmHGvCYpy/zsdy5xvkogq+dA+5XqE/r1QkJ23+0s
-         Mk1gn5oTIi+J9ToCJ3i+E/Z19/Z/lHkvT7Bi3VSBLKe7l1BSlCUQkW/mtIgtp0H9D/5z
-         KS/Q==
-X-Gm-Message-State: AOAM532N6pvxFNSDL9EO5g/+e/t3Kw12pvavSGDaMD5A1pPc6+qEopIL
-        DQ2Xzt1PvZavCi8k74OyIyKxMAHtkZy8MP8imcc061SAVsYmrA==
-X-Google-Smtp-Source: ABdhPJxKzLEZ3xO/S2BzR5WJV668wwfXYZulkobX79JcXqbCAN5gDzPqlzOC3EGbvgC8deMTZ3JQPvzq3sO3C68B5wE=
-X-Received: by 2002:a5d:4905:: with SMTP id x5mr1365250wrq.201.1614319941250;
- Thu, 25 Feb 2021 22:12:21 -0800 (PST)
+        id S229598AbhBZGc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 01:32:29 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:57173 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229537AbhBZGc1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Feb 2021 01:32:27 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1614321126; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=hdl2zflkyzgnrN66H07L0bWdahCjua7YjvzKEgluVvI=;
+ b=OXnsZBaItR+W5N0a3NskU9Le9q/zXQ1vNTP6CPpXtQbS+TOhTnONRIylEaNnbBCG4VNwo5Jv
+ 9Wdsy80BdoWgeaeXfXOK7U0HbubPiosuELNHAVWCGC0oRvVDuk3Vs/z5od0LjUqoitUUdzhK
+ mJknKdwxOOyJDteEra3gdkw2E8Q=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 603895c16bec4e44c6a40308 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 26 Feb 2021 06:31:29
+ GMT
+Sender: kgunda=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D0CA3C433CA; Fri, 26 Feb 2021 06:31:29 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kgunda)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B790FC433ED;
+        Fri, 26 Feb 2021 06:31:28 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210203090727.789939-1-zhang.lyra@gmail.com> <20210203090727.789939-2-zhang.lyra@gmail.com>
- <20210204232549.GA1305874@robh.at.kernel.org> <CAAfSe-tQ+7GuO1PgYa=9wqrpVf3N4br=bn8gJcaEJmnYpc1sxA@mail.gmail.com>
- <CAL_JsqLi3vJ2tDrwa3YL1rdxtAYWnA72rxCRNPtz_EzvWhTn7w@mail.gmail.com>
-In-Reply-To: <CAL_JsqLi3vJ2tDrwa3YL1rdxtAYWnA72rxCRNPtz_EzvWhTn7w@mail.gmail.com>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Fri, 26 Feb 2021 14:11:44 +0800
-Message-ID: <CAAfSe-sDgrpzL+yo7KAXFeEfEh+9F22cbiUv8BqQTG7gtO5bzQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iommu: add bindings for sprd iommu
-To:     Rob Herring <robh@kernel.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Sheng Xu <sheng.xu@unisoc.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 26 Feb 2021 12:01:28 +0530
+From:   kgunda@codeaurora.org
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, jacek.anaszewski@gmail.com,
+        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        phone-devel@vger.kernel.org
+Subject: Re: [PATCH V1 1/2] backlight: qcom-wled: Fix FSC update issue for
+ WLED5
+In-Reply-To: <20210224111505.37t5aq25iszg23iv@maple.lan>
+References: <1614138648-2963-1-git-send-email-kgunda@codeaurora.org>
+ <1614138648-2963-2-git-send-email-kgunda@codeaurora.org>
+ <20210224111505.37t5aq25iszg23iv@maple.lan>
+Message-ID: <6ab55df25e193718c143964dda085d8c@codeaurora.org>
+X-Sender: kgunda@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Feb 2021 at 03:21, Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Feb 5, 2021 at 1:21 AM Chunyan Zhang <zhang.lyra@gmail.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Fri, 5 Feb 2021 at 07:25, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Wed, Feb 03, 2021 at 05:07:26PM +0800, Chunyan Zhang wrote:
-> > > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > > >
-> > > > This iommu module can be used by Unisoc's multimedia devices, such as
-> > > > display, Image codec(jpeg) and a few signal processors, including
-> > > > VSP(video), GSP(graphic), ISP(image), and CPP(camera pixel processor), etc.
-> > > >
-> > > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > > > ---
-> > > >  .../devicetree/bindings/iommu/sprd,iommu.yaml | 72 +++++++++++++++++++
-> > > >  1 file changed, 72 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..4fc99e81fa66
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
-> > > > @@ -0,0 +1,72 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +# Copyright 2020 Unisoc Inc.
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/iommu/sprd,iommu.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Unisoc IOMMU and Multi-media MMU
-> > > > +
-> > > > +maintainers:
-> > > > +  - Chunyan Zhang <zhang.lyra@gmail.com>
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - sprd,iommu-v1
-> > > > +
-> > > > +  "#iommu-cells":
-> > > > +    const: 0
-> > > > +    description:
-> > > > +      Unisoc IOMMUs are all single-master IOMMU devices, therefore no
-> > > > +      additional information needs to associate with its master device.
-> > > > +      Please refer to the generic bindings document for more details,
-> > > > +      Documentation/devicetree/bindings/iommu/iommu.txt
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +    description:
-> > > > +      Not required if 'sprd,iommu-regs' is defined.
-> > > > +
-> > > > +  clocks:
-> > > > +    description:
-> > > > +      Reference to a gate clock phandle, since access to some of IOMMUs are
-> > > > +      controlled by gate clock, but this is not required.
-> > > > +
-> > > > +  sprd,iommu-regs:
-> > > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > > +    description:
-> > > > +      Reference to a syscon phandle plus 1 cell, the syscon defines the
-> > > > +      register range used by the iommu and the media device, the cell
-> > > > +      defines the offset for iommu registers. Since iommu module shares
-> > > > +      the same register range with the media device which uses it.
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - "#iommu-cells"
-> > > > +
-> > > > +oneOf:
-> > > > +  - required:
-> > > > +      - reg
-> > > > +  - required:
-> > > > +      - sprd,iommu-regs
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    iommu_disp: iommu-disp {
-> > > > +      compatible = "sprd,iommu-v1";
-> > > > +      sprd,iommu-regs = <&dpu_regs 0x800>;
-> > >
-> > > If the IOMMU is contained within another device, then it should just be
-> > > a child node of that device.
-> >
-> > Yes, actually IOMMU can be seen as a child of multimedia devices, I
-> > considered moving IOMMU under into multimedia device node, but
-> > multimedia devices need IOMMU when probe[1], so I dropped that idea.
->
-> Don't design your binding around working-around linux issues.
->
-> > And they share the same register base, e.g.
-> >
-> > +               mm {
-> > +                       compatible = "simple-bus";
-> > +                       #address-cells = <2>;
-> > +                       #size-cells = <2>;
-> > +                       ranges;
-> > +
-> > +                       dpu_regs: syscon@63000000 {
->
-> Drop this node.
->
-> > +                               compatible = "sprd,sc9863a-dpuregs", "syscon";
-> > +                               reg = <0 0x63000000 0 0x1000>;
-> > +                       };
-> > +
-> > +                       dpu: dpu@63000000 {
-> > +                               compatible = "sprd,sharkl3-dpu";
-> > +                               sprd,disp-regs = <&dpu_regs>;
->
-> reg = <0 0x63000000 0 0x800>;
->
-> > +                               iommus = <&iommu_dispc>;
-> > +                       };
-> > +
-> > +                       iommu_dispc: iommu@63000000 {
-> > +                               compatible = "sprd,iommu-v1";
-> > +                               sprd,iommu-regs = <&dpu_regs 0x800>;
->
-> reg = <0 0x63000800 0 0x800>;
+On 2021-02-24 16:45, Daniel Thompson wrote:
+> On Wed, Feb 24, 2021 at 09:20:47AM +0530, Kiran Gunda wrote:
+>> Currently, for WLED5, after FSC register update MOD_SYNC_BIT
+>> is toggled instead of SYNC_BIT. MOD_SYNC_BIT has to be toggled
+>> after the brightness update and SYNC_BIT has to be toggled after
+>> FSC update for WLED5. Fix it.
+> 
+> Code looks fine but the description is a difficult to read (which makes
+> mining the history difficult).
+> 
+> Basically the descriptions here are very hard to read without the
+> context in PATCH 0/2. Since PATCH 0/2 won't enter the version history
+> that means these descriptions need to integrate some of the text from
+> what is currently PATCH 0/2.
+> 
+> I would expect this to be more like. It is basically joining together
+> text from PATCH 0 and PATCH 1 (I also switched to plural form for SYNC
+> bits... the code in the driver has mask generation based on the number
+> of strings, is that right?):
+Sorry for the trouble. Yes, you are correct. The mask generation is
+based on the number of strings defined in the device tree and only those
+strings are enabled. However, there is no issue if the SYNC bits of all
+the strings are cleared/set. The SYNC takes place only for enabled 
+strings.
 
-Alright, considering you deprecate using syscon to map registers here,
-I will drop that.
-But that would cause the same physical address to be mapped two times at least.
-And this is not a single case, since there are a few media devices and
-their IOMMUs which all have this issue.
-
-Thanks,
-Chunyan
-
->
-> > +                               #iommu-cells = <0>;
->
-> Though given it seems there is only 1 client and this might really be
-> just 1 h/w block, you don't really need to use the iommu binding at
-> all. The DPU should be able to instantiate it's own IOMMU device.
-> There's other examples of this such as mali GPU though that is all one
-> driver, but that's a Linux implementation detail.
->
-> Rob
+> ~~~
+> Currently, for WLED5, the FSC (Full scale current) setting is not
+> updated properly due to driver toggling the wrong register after an FSC
+> update.
+> 
+> On WLED5 we should only toggle the MOD_SYNC bit after a brightness
+> update. For an FSC update we need to toggle the SYNC bits instead.
+> 
+> Fix it by adopting the common wled3_sync_toggle() for WLED5 and
+> introducing new code to the brightness update path to
+> compensate.
+> ~~~
+> I will update the Documentation/patch description clearly
+as suggested.
+> 
+> Daniel.
+> 
+> 
+> 
+>> 
+>> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+>> ---
+>>  drivers/video/backlight/qcom-wled.c | 25 +++++++++++++++++++------
+>>  1 file changed, 19 insertions(+), 6 deletions(-)
+>> 
+>> diff --git a/drivers/video/backlight/qcom-wled.c 
+>> b/drivers/video/backlight/qcom-wled.c
+>> index 3bc7800..aef52b9 100644
+>> --- a/drivers/video/backlight/qcom-wled.c
+>> +++ b/drivers/video/backlight/qcom-wled.c
+>> @@ -348,7 +348,7 @@ static int wled3_sync_toggle(struct wled *wled)
+>>  	return rc;
+>>  }
+>> 
+>> -static int wled5_sync_toggle(struct wled *wled)
+>> +static int wled5_mod_sync_toggle(struct wled *wled)
+>>  {
+>>  	int rc;
+>>  	u8 val;
+>> @@ -445,10 +445,23 @@ static int wled_update_status(struct 
+>> backlight_device *bl)
+>>  			goto unlock_mutex;
+>>  		}
+>> 
+>> -		rc = wled->wled_sync_toggle(wled);
+>> -		if (rc < 0) {
+>> -			dev_err(wled->dev, "wled sync failed rc:%d\n", rc);
+>> -			goto unlock_mutex;
+>> +		if (wled->version < 5) {
+>> +			rc = wled->wled_sync_toggle(wled);
+>> +			if (rc < 0) {
+>> +				dev_err(wled->dev, "wled sync failed rc:%d\n", rc);
+>> +				goto unlock_mutex;
+>> +			}
+>> +		} else {
+>> +			/*
+>> +			 * For WLED5 toggling the MOD_SYNC_BIT updates the
+>> +			 * brightness
+>> +			 */
+>> +			rc = wled5_mod_sync_toggle(wled);
+>> +			if (rc < 0) {
+>> +				dev_err(wled->dev, "wled mod sync failed rc:%d\n",
+>> +					rc);
+>> +				goto unlock_mutex;
+>> +			}
+>>  		}
+>>  	}
+>> 
+>> @@ -1459,7 +1472,7 @@ static int wled_configure(struct wled *wled)
+>>  		size = ARRAY_SIZE(wled5_opts);
+>>  		*cfg = wled5_config_defaults;
+>>  		wled->wled_set_brightness = wled5_set_brightness;
+>> -		wled->wled_sync_toggle = wled5_sync_toggle;
+>> +		wled->wled_sync_toggle = wled3_sync_toggle;
+>>  		wled->wled_cabc_config = wled5_cabc_config;
+>>  		wled->wled_ovp_delay = wled5_ovp_delay;
+>>  		wled->wled_auto_detection_required =
+>> --
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+>> Forum,
+>>  a Linux Foundation Collaborative Project
+>> 
