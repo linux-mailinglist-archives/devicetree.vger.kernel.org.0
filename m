@@ -2,229 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7755F3262D3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 13:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D1043262DC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 13:45:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229845AbhBZMmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 07:42:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56708 "EHLO
+        id S230071AbhBZMpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 07:45:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbhBZMmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 07:42:01 -0500
-Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47ABBC061574;
-        Fri, 26 Feb 2021 04:41:20 -0800 (PST)
-Received: by mail-ua1-x936.google.com with SMTP id o31so3020152uae.2;
-        Fri, 26 Feb 2021 04:41:20 -0800 (PST)
+        with ESMTP id S229751AbhBZMpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 07:45:09 -0500
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5A7DC06174A
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 04:44:28 -0800 (PST)
+Received: by mail-pg1-x52a.google.com with SMTP id b21so6144150pgk.7
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 04:44:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=GwcTLQq3H5c2UK+OWGZKD2GMY78k6FaSogjGLTzQit8=;
-        b=M9p/Cwg3Hk2dvA+4WL3gl2+aEcE0ue3aBk9SU7aQbc2qmuL+BX36vV0xKLLTJh9tJa
-         Fh/WU8GsgK8dL6w8baYWFT9ZeSmeFOTWpjdVZ86huewZfkSyqnR4RwJjnVJwK3kfN4PN
-         Sxnhv9Eh8vIkdIqcrD7ub5yRDWZcioX3dtXpRrX/jO74RH/yzV3SccMxIpQVDlf1jetu
-         RudRuCpW+8QISOsEu8ydsbrq46FpZIE0vTtthLsoBIU2oH3TDYNsqtHgYZJoe1aHFjQb
-         UyQMkIpRyUTTwGaghKdb/6vmqmECC8xainPpgSLLjRWDUPOCO/PJZg4WAKzt+VXriyew
-         Nf4Q==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3RToDDj9t1WukrTixwLWcxGkVwEEocSrMyQzXbk3sVE=;
+        b=k0clAFjouDL7G4Qzgcy4jMb5iykmG0xTitLDNh4eq3muVbP87c91yNC8s/uzrm5X45
+         Zxc2eP2GueAiL0CawdsSg3BfN2tpFqiHDz+KmFDXwIO+uFI1VRiZRmia+m4V8NvPFdHj
+         gRc2j1nXbiJhqCJjAl5r2gFc4lCeDLu7PD4ZISNS1K3xeumxA+ZJ1E/9VLAXeyIZGGIJ
+         +p3zRkOJrYpHEfSPjqTnay3X0wo2D2DJ9VCid0lk3hZwqpb+18SCK0UeHvU6NPESNRHl
+         XKOLHAgY4+/sECTIg82bmVMgQX6tn+M9zNTpRjdeiQN+T/PzvJaaxNRZ6EM2BT7rHfqa
+         IWjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GwcTLQq3H5c2UK+OWGZKD2GMY78k6FaSogjGLTzQit8=;
-        b=PoL+5vcGGMX5ftaeL6Z8Qx2vd7e3NW6MLm5RGtPIiUNe9HuD8iKPYrS6SaY3cCwKpb
-         ZUPJRcGXh2Or0QS+MgMQ1JPjMU1hRAxMDRPwgBFiCsG0sEFmw7nzszmCYvSsLWFfIq7Z
-         3TjKG9m11ue4WnBz0kganmzLxB5CWMDXr4eV7AoQkLKZ4T6gikT4YDk0FT7wtUFgQJxW
-         CrcgOBZhTi+5vsWkBfUfF1Q9NUyQFKySdgWYR6LD/rUOPTThZx7OBdjYomy98+pUu4Rk
-         uErPJVk6/rfFDqxVZROpyFf2px4PWsvxyhaKnFqpOmLaPVmbjbDCDLFolJddyF8ENiyY
-         dkpg==
-X-Gm-Message-State: AOAM531MYrz5LYvYm3oTWmHBqugCJPOXu6k2T4tw1hXW1YUGHxpxeSXW
-        5LGQOt4HWleyvB+fc58ZRok=
-X-Google-Smtp-Source: ABdhPJzMFEgfXaU6K+NKWQQKLNJlmLF00kHu1fORscS0i96AsC2HhFP+MQfxEHsi96P69E1a6IMneA==
-X-Received: by 2002:ab0:1c1b:: with SMTP id a27mr1457614uaj.62.1614343279413;
-        Fri, 26 Feb 2021 04:41:19 -0800 (PST)
-Received: from shinobu ([193.27.12.132])
-        by smtp.gmail.com with ESMTPSA id e128sm1062680vkg.1.2021.02.26.04.41.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Feb 2021 04:41:18 -0800 (PST)
-Date:   Fri, 26 Feb 2021 21:41:11 +0900
-From:   William Breathitt Gray <vilhelm.gray@gmail.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v7 2/2] counter: add IRQ or GPIO based counter
-Message-ID: <YDjsZ8hyETN0VpCM@shinobu>
-References: <20210226090830.10927-1-o.rempel@pengutronix.de>
- <20210226090830.10927-3-o.rempel@pengutronix.de>
- <YDjDMBfWwdImiZxY@shinobu>
- <20210226121455.t7kz4cxtganzt2xz@pengutronix.de>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3RToDDj9t1WukrTixwLWcxGkVwEEocSrMyQzXbk3sVE=;
+        b=QkmebaouvuxJwRGi/0X49gx2qu6n2diLSzGJN3cxT1JVaodXxhHNnGNGu3AuJTLdEj
+         NFh9PpdcThUuqXSRD94czWA44n3q13ruDoV9wXifr0xZMMz5923qxE/79P3t0uJ8ekoy
+         s3QgQlp40mCQ0xCtMWYPUMm9nYrQ5yQBN2mByYyVazXUaA8ifnd1JIV8paTQiQBGfcRi
+         j+dySDasVGk6YOu/T5TBtHCiGvuhz1d5nHkiijGJzYeq3HuOuKy5YvnyDdLKmV7SygXu
+         Ifn9BJfa2SnQ7Jiih2CrV6BacBHSonyIaTrXCZHYykfZnz8tO7NKpRCI0LFCcYkvDEH+
+         SPhw==
+X-Gm-Message-State: AOAM533xw3mCIs2TYnTQPFW9CQXjIVLrdXOF8gNLZXCh1hdduAlQXCom
+        vlFqK7HPJ0sre3+3X/zC38PUaCfjzPAnixz4vt1Vyw==
+X-Google-Smtp-Source: ABdhPJy0t34lL7z1JpPxSn8yDzGP/55kmin97Q6FmWKl22jUKv+hYUQu90YkYuAA1aUsOu9GHrOkX8fU5azwppFjaHk=
+X-Received: by 2002:a62:7888:0:b029:1ed:cc30:923e with SMTP id
+ t130-20020a6278880000b02901edcc30923emr3251233pfc.12.1614343468239; Fri, 26
+ Feb 2021 04:44:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zDZZKf6/pb+UPY5C"
-Content-Disposition: inline
-In-Reply-To: <20210226121455.t7kz4cxtganzt2xz@pengutronix.de>
+References: <1613619715-28785-1-git-send-email-victor.liu@nxp.com> <1613619715-28785-4-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <1613619715-28785-4-git-send-email-victor.liu@nxp.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Fri, 26 Feb 2021 13:44:17 +0100
+Message-ID: <CAG3jFyvZfUoN7KXoodLrem5OFWERuoc4Avh8No4UdYk3c-GszQ@mail.gmail.com>
+Subject: Re: [PATCH v4 03/14] media: docs: Add some RGB bus formats for
+ i.MX8qm/qxp pixel combiner
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>, kishon@ti.com,
+        Vinod Koul <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hey Liu,
 
---zDZZKf6/pb+UPY5C
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch looks good to me.
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
-On Fri, Feb 26, 2021 at 01:14:55PM +0100, Oleksij Rempel wrote:
-> On Fri, Feb 26, 2021 at 06:45:20PM +0900, William Breathitt Gray wrote:
-> > On Fri, Feb 26, 2021 at 10:08:30AM +0100, Oleksij Rempel wrote:
-> > > +static int interrupt_cnt_signal_read(struct counter_device *counter,
-> > > +				     struct counter_signal *signal,
-> > > +				     enum counter_signal_value *val)
-> > > +{
-> > > +	struct interrupt_cnt_priv *priv =3D counter->priv;
-> > > +	int ret;
-
-I forgot about this function. Add a check here to return -EINVAL if
-we're not dealing with a GPIO:
-
-	if (!priv->gpio)
-		return -EINVAL;
-
-> > > +
-> > > +	ret =3D gpiod_get_value(priv->gpio);
-> > > +	if (ret < 0)
-> > > +		return ret;
-> > > +
-> > > +	*val =3D ret ? COUNTER_SIGNAL_HIGH : COUNTER_SIGNAL_LOW;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct counter_ops interrupt_cnt_ops =3D {
-> > > +	.action_get =3D interrupt_cnt_action_get,
-> > > +	.count_read =3D interrupt_cnt_read,
-> > > +	.count_write =3D interrupt_cnt_write,
-> > > +	.function_get =3D interrupt_cnt_function_get,
-> > > +	.signal_read  =3D interrupt_cnt_signal_read,
-> > > +};
-> > > +
-> > > +static int interrupt_cnt_probe(struct platform_device *pdev)
-> > > +{
-> > > +	struct device *dev =3D &pdev->dev;
-> > > +	struct interrupt_cnt_priv *priv;
-> > > +	int ret;
-> > > +
-> > > +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > > +	if (!priv)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	priv->irq =3D platform_get_irq_optional(pdev,  0);
-> > > +	if (priv->irq =3D=3D -ENXIO)
-> > > +		priv->irq =3D 0;
-> > > +	else if (priv->irq < 0)
-> > > +		return dev_err_probe(dev, priv->irq, "failed to get IRQ\n");
-> > > +
-> > > +	priv->gpio =3D devm_gpiod_get_optional(dev, NULL, GPIOD_IN);
-> > > +	if (IS_ERR(priv->gpio))
-> > > +		return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get GPIO=
-\n");
-> > > +
-> > > +	if (!priv->irq && !priv->gpio) {
-> > > +		dev_err(dev, "IRQ and GPIO are not found. At least one source shou=
-ld be provided\n");
-> > > +		return -ENODEV;
-> > > +	}
-> > > +
-> > > +	if (!priv->irq) {
-> > > +		int irq =3D gpiod_to_irq(priv->gpio);
-> > > +
-> > > +		if (irq < 0)
-> > > +			return dev_err_probe(dev, irq, "failed to get IRQ from GPIO\n");
-> > > +
-> > > +		priv->irq =3D irq;
-> > > +	}
-> > > +
-> > > +	if (priv->gpio) {
-> >=20
-> > This if statement can be removed. There's no need to restrict this to
-> > just GPIO because we're always dealing with an IRQ, so allocate the
-> > "IRQ #" name unconditionally and set signals/num_signals.
->=20
-> Your previous suggestion was to no assign signals if there is no gpios.
-> What should I do?
->=20
-> Regards,
-> Oleksij
-> --=20
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
-I'm sorry for not being clear. I'm saying there is no need to
-differentiate here because there will always be a respective IRQ line
-whether there is a GPIO line or not. So removing the if statement is all
-you need to do.
-
-Instead of:
-
-	if (priv->gpio) {
-		priv->signals.name =3D devm_kasprintf(dev, GFP_KERNEL, "IRQ %d",
-					    priv->irq);
-		if (!priv->signals.name)
-			return -ENOMEM;
-
-		priv->counter.signals =3D &priv->signals;
-		priv->counter.num_signals =3D 1;
-	}
-=09
-	priv->synapses.actions_list =3D interrupt_cnt_synapse_actionss;
-	priv->synapses.num_actions =3D ARRAY_SIZE(interrupt_cnt_synapse_actionss);
-	priv->synapses.signal =3D &priv->signals;
-	...
-
-You can just have those lines execute unconditionally even if there are
-no gpios:
-
-	priv->signals.name =3D devm_kasprintf(dev, GFP_KERNEL, "IRQ %d",
-				    priv->irq);
-	if (!priv->signals.name)
-		return -ENOMEM;
-
-	priv->counter.signals =3D &priv->signals;
-	priv->counter.num_signals =3D 1;
-=09
-	priv->synapses.actions_list =3D interrupt_cnt_synapse_actionss;
-	priv->synapses.num_actions =3D ARRAY_SIZE(interrupt_cnt_synapse_actionss);
-	priv->synapses.signal =3D &priv->signals;
-	...
-
-William Breathitt Gray
-
---zDZZKf6/pb+UPY5C
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEk5I4PDJ2w1cDf/bghvpINdm7VJIFAmA47EQACgkQhvpINdm7
-VJL2OxAAw+LYMNXAWMCpkG64pnB+bM+4rXT547BrG7UkDPr7qvDHgVHY5cx+jTwR
-Uaisl3EGDMLID45fIiDXkZ74WYJB16xrVGTi8/4msfoJFINgKR7AzQ90wUqSx1VF
-3GOTy/kKTokzJQ41Hv1sJtGX5rh+5+bzt62nTpEuY4lc3lQAlgZk3/03IoR33zoX
-eAQ0eQFxyjIdakF3HYlGodS8Vz5dSviBNmmtElvaGRgEdBFiz6fxaKMGHV15nWO/
-BfhIf78TyPCq+KqhQLJb+L7Hvz4cv2bqLHxPOCkmXODBrylYd7TbmVA0JEl8prGM
-OlwPazjT+5a8/yNh/CM09G2xiUUzwunB61Hiny64MWPeWRNM3M4W0ErxQqmp3sgz
-k8QJJ+swppHzC/pLeZTJAEySwQk/eGGu9x3TL2r+GVpegsDkbeaiXqmFRy2+EiIx
-royJZVa6/7HJ0xTrCO8gUHSMFIK4dwAUpQaPeyXaJ/zEdlgdYxy5a9TugNVyVaez
-Zs2UtajmVUNHvqIVkbZUt8oQ6ZghMaHwZ2ffDMqG2249umcC7/RkmvpMH97XEDIj
-MqKCer2gVLqkLAGOV++7MiWLNgjBtCvDkH8atWPCNPny6mcUHE9bfWF1h8/Ckhn3
-5jU/aboI6HYWBfEwnmmMM7KE4J12jZeWZ/gzcFulV3j/JesOY2c=
-=lFTA
------END PGP SIGNATURE-----
-
---zDZZKf6/pb+UPY5C--
+On Thu, 18 Feb 2021 at 04:56, Liu Ying <victor.liu@nxp.com> wrote:
+>
+> This patch adds documentations for RGB666_1X30_CPADLO, RGB888_1X30_CPADLO,
+> RGB666_1X36_CPADLO and RGB888_1X36_CPADLO bus formats used by i.MX8qm/qxp
+> pixel combiner.  The RGB pixels with padding low per component are
+> transmitted on a 30-bit input bus(10-bit per component) from a display
+> controller or a 36-bit output bus(12-bit per component) to a pixel link.
+>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v3->v4:
+> * No change.
+>
+> v2->v3:
+> * No change.
+>
+> v1->v2:
+> * No change.
+>
+>  .../userspace-api/media/v4l/subdev-formats.rst     | 156 +++++++++++++++++++++
+>  1 file changed, 156 insertions(+)
+>
+> diff --git a/Documentation/userspace-api/media/v4l/subdev-formats.rst b/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> index 7f16cbe..201c16d 100644
+> --- a/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> +++ b/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> @@ -1488,6 +1488,80 @@ The following tables list existing packed RGB formats.
+>        - b\ :sub:`2`
+>        - b\ :sub:`1`
+>        - b\ :sub:`0`
+> +    * .. _MEDIA-BUS-FMT-RGB666-1X30-CPADLO:
+> +
+> +      - MEDIA_BUS_FMT_RGB666_1X30-CPADLO
+> +      - 0x101e
+> +      -
+> +      - 0
+> +      - 0
+> +      - r\ :sub:`5`
+> +      - r\ :sub:`4`
+> +      - r\ :sub:`3`
+> +      - r\ :sub:`2`
+> +      - r\ :sub:`1`
+> +      - r\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - g\ :sub:`5`
+> +      - g\ :sub:`4`
+> +      - g\ :sub:`3`
+> +      - g\ :sub:`2`
+> +      - g\ :sub:`1`
+> +      - g\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - b\ :sub:`5`
+> +      - b\ :sub:`4`
+> +      - b\ :sub:`3`
+> +      - b\ :sub:`2`
+> +      - b\ :sub:`1`
+> +      - b\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +    * .. _MEDIA-BUS-FMT-RGB888-1X30-CPADLO:
+> +
+> +      - MEDIA_BUS_FMT_RGB888_1X30-CPADLO
+> +      - 0x101f
+> +      -
+> +      - 0
+> +      - 0
+> +      - r\ :sub:`7`
+> +      - r\ :sub:`6`
+> +      - r\ :sub:`5`
+> +      - r\ :sub:`4`
+> +      - r\ :sub:`3`
+> +      - r\ :sub:`2`
+> +      - r\ :sub:`1`
+> +      - r\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - g\ :sub:`7`
+> +      - g\ :sub:`6`
+> +      - g\ :sub:`5`
+> +      - g\ :sub:`4`
+> +      - g\ :sub:`3`
+> +      - g\ :sub:`2`
+> +      - g\ :sub:`1`
+> +      - g\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - b\ :sub:`7`
+> +      - b\ :sub:`6`
+> +      - b\ :sub:`5`
+> +      - b\ :sub:`4`
+> +      - b\ :sub:`3`
+> +      - b\ :sub:`2`
+> +      - b\ :sub:`1`
+> +      - b\ :sub:`0`
+> +      - 0
+> +      - 0
+>      * .. _MEDIA-BUS-FMT-ARGB888-1X32:
+>
+>        - MEDIA_BUS_FMT_ARGB888_1X32
+> @@ -1665,6 +1739,88 @@ The following table list existing packed 36bit wide RGB formats.
+>        - 2
+>        - 1
+>        - 0
+> +    * .. _MEDIA-BUS-FMT-RGB666-1X36-CPADLO:
+> +
+> +      - MEDIA_BUS_FMT_RGB666_1X36_CPADLO
+> +      - 0x1020
+> +      -
+> +      - r\ :sub:`5`
+> +      - r\ :sub:`4`
+> +      - r\ :sub:`3`
+> +      - r\ :sub:`2`
+> +      - r\ :sub:`1`
+> +      - r\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - g\ :sub:`5`
+> +      - g\ :sub:`4`
+> +      - g\ :sub:`3`
+> +      - g\ :sub:`2`
+> +      - g\ :sub:`1`
+> +      - g\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - b\ :sub:`5`
+> +      - b\ :sub:`4`
+> +      - b\ :sub:`3`
+> +      - b\ :sub:`2`
+> +      - b\ :sub:`1`
+> +      - b\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +    * .. _MEDIA-BUS-FMT-RGB888-1X36-CPADLO:
+> +
+> +      - MEDIA_BUS_FMT_RGB888_1X36_CPADLO
+> +      - 0x1021
+> +      -
+> +      - r\ :sub:`7`
+> +      - r\ :sub:`6`
+> +      - r\ :sub:`5`
+> +      - r\ :sub:`4`
+> +      - r\ :sub:`3`
+> +      - r\ :sub:`2`
+> +      - r\ :sub:`1`
+> +      - r\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - g\ :sub:`7`
+> +      - g\ :sub:`6`
+> +      - g\ :sub:`5`
+> +      - g\ :sub:`4`
+> +      - g\ :sub:`3`
+> +      - g\ :sub:`2`
+> +      - g\ :sub:`1`
+> +      - g\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - b\ :sub:`7`
+> +      - b\ :sub:`6`
+> +      - b\ :sub:`5`
+> +      - b\ :sub:`4`
+> +      - b\ :sub:`3`
+> +      - b\ :sub:`2`
+> +      - b\ :sub:`1`
+> +      - b\ :sub:`0`
+> +      - 0
+> +      - 0
+> +      - 0
+> +      - 0
+>      * .. _MEDIA-BUS-FMT-RGB121212-1X36:
+>
+>        - MEDIA_BUS_FMT_RGB121212_1X36
+> --
+> 2.7.4
+>
