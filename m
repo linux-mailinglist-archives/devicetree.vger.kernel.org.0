@@ -2,85 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3E2C3260FC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 11:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE3C632613B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 11:29:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231193AbhBZKJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 05:09:50 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:24657 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231208AbhBZKHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 05:07:44 -0500
-X-UUID: fc30d3fd80e648dda72a3f05d36f43bd-20210226
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=PVKSM4Lm1Un0eIRTe/LnvU17Suj/+2hi3zvhdZHUu3o=;
-        b=VNoxE7uO5d+hskiokRvh5NMeX97PSMud89+8mUkO5zowKa5zxj/WQPEjR3H34xXIKNvzQqao6xtHvSXTfyY2SCIvu9VEIB103OxdWhhjvz0IgIjdFbts6j9e7ZVkTLI46uA//I/RuAdGSZm4eQtFSqEWLWs2/ELmQL5fwpit21E=;
-X-UUID: fc30d3fd80e648dda72a3f05d36f43bd-20210226
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1566552519; Fri, 26 Feb 2021 18:06:52 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 26 Feb
- 2021 18:06:44 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 26 Feb 2021 18:06:43 +0800
-Message-ID: <1614334003.25750.17.camel@mhfsdcap03>
-Subject: Re: [v8,6/7] PCI: mediatek-gen3: Add system PM support
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-CC:     Bjorn Helgaas <helgaas@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <maz@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Sj Huang" <sj.huang@mediatek.com>, <youlin.pei@mediatek.com>,
-        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
-        <sin_jieyang@mediatek.com>, <drinkcat@chromium.org>,
-        <Rex-BC.Chen@mediatek.com>, <anson.chuang@mediatek.com>
-Date:   Fri, 26 Feb 2021 18:06:43 +0800
-In-Reply-To: <YDgeAoYHgiAyU16a@rocinante>
-References: <20210224061132.26526-1-jianjun.wang@mediatek.com>
-         <20210224061132.26526-7-jianjun.wang@mediatek.com>
-         <YDZeRc6CHV/WzyCm@rocinante> <1614224089.25750.14.camel@mhfsdcap03>
-         <YDgeAoYHgiAyU16a@rocinante>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S230409AbhBZK2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 05:28:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56248 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230134AbhBZK2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 05:28:32 -0500
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C163C061574
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 02:27:51 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id l132so7340351qke.7
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 02:27:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EWmVri0BM3myDebXpAYp1ijRGyFo55U7ydM4E7mFJ0k=;
+        b=v2Kwb2WwD+YvoHeRLIMfC61dwixKOIAXBU3uJMFwGbkLZh2iexFKtm/t8NmEsxPbJc
+         iurCNVQD6G1zbNTaFvlp90CSpZDjIYLQhSHV0Rv2FTpwfrtNkozRy/k+Xr/Siblmpdhe
+         tSh1ZDNNoYuqQsRJT90VSACZMq+pYe0ls2URPeNXTT8lhpKGDk8O4KPjkp6R5AgGuhol
+         3H5IdOeR4iCT/3UdwoBe++geiFY0KEWUgjYN9g9+L/OcycIr1VSoUgyj9YqesEyBpPNh
+         jz4tNvooSHXCbTI/YpWP/ekPymTNibhAo5V5Vj9Jn6OcdaU220c+4xoahLU02kYT8PuL
+         LLMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EWmVri0BM3myDebXpAYp1ijRGyFo55U7ydM4E7mFJ0k=;
+        b=FANXbQOSUjHwhNvEGupYV7CKEOlSAFNNBpe3OpVEPRkMaS/+QqrYwfFVL0XgwClwvK
+         xryIMAKP8IM+Tb1w8Vv6aq/X63FNZsTdEw+U3Qen5Cq9PW2Bp+PAipr62W0o4UcLu1wP
+         ZbAKlqKeHsrHfCrV8ZpNly5OYa0cmAQjztAPvhe76RixAACOCyTfjHOJsbPrhxaQNoUV
+         yogr8jXjvrAB3WRK8/LnzkD5y31Th0b30aaoWbcuG5Ce01SJ+Vv7iW8eZctM4wdhK6on
+         lXCcZzAcF1DVZD6kAgx4BQH7nCvEvMF5W4A2P9xYWDrAq0Fou7t/kPPfmPDD/rgrlfcG
+         i4WA==
+X-Gm-Message-State: AOAM530ZrmhhF1AIFomN7dJhaB4S/tNtSY15gRWfdLlthSLDkvZYPJxR
+        rLvXeaNXjSCRWnPQtrvJKwZfwR/4G8BakFfdxWQFHg==
+X-Google-Smtp-Source: ABdhPJyqx3pcqRAE5id8tr4/lTFNSI+nbFJme9UuHtmhVpblH2cb18Cof5PG89cVumYEavdFtBXQ5PvA/XB5qshSZ/4=
+X-Received: by 2002:a37:8cd:: with SMTP id 196mr1786072qki.434.1614335270436;
+ Fri, 26 Feb 2021 02:27:50 -0800 (PST)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 83325A2427D844602B40EF0F0B42549976481FE7C785EA4C1A7D7650DD31D3DD2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
+ <1614155592-14060-4-git-send-email-skakit@codeaurora.org> <50151f4b-298c-f0ee-a88f-7bdd945ad249@linaro.org>
+ <51390b828a5d534e308460098f1b9af0@codeaurora.org>
+In-Reply-To: <51390b828a5d534e308460098f1b9af0@codeaurora.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 26 Feb 2021 13:27:39 +0300
+Message-ID: <CAA8EJpqN-jb3b3yHTHwrQQj_h3M-yxAvX7Hz7bNSV3_NBCJEwQ@mail.gmail.com>
+Subject: Re: [PATCH 3/7] regulator: qcom-rpmh: Correct the pmic5_hfsmps515 buck
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, kgunda@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mLA0KDQpUaGFua3MgZm9yIHlvdXIgc3VnZ2VzdGlvbiwgSSB3aWxsIGZpeCBp
-dCBpbiB0aGUgbmV4dCB2ZXJzaW9uLg0KDQpPbiBUaHUsIDIwMjEtMDItMjUgYXQgMjM6MDAgKzAx
-MDAsIEtyenlzenRvZiBXaWxjennFhHNraSB3cm90ZToNCj4gSGkgSmlhbmp1biwNCj4gDQo+IFsu
-Li5dDQo+ID4gVGhhbmtzIGZvciB5b3VyIHJldmlldywNCj4gDQo+IFRoYW5rIFlPVSBmb3IgYWxs
-IHRoZSB3b3JrIGhlcmUhDQo+ICANCj4gWy4uLl0NCj4gPiA+ID4gQWRkIHN1c3BlbmRfbm9pcnEg
-YW5kIHJlc3VtZV9ub2lycSBjYWxsYmFjayBmdW5jdGlvbnMgdG8gaW1wbGVtZW50DQo+ID4gPiA+
-IFBNIHN5c3RlbSBzdXNwZW5kIGhvb2tzIGZvciBNZWRpYVRlayBHZW4zIFBDSWUgY29udHJvbGxl
-ci4NCj4gPiA+IA0KPiA+ID4gU28sICJzeXN0ZW1zIHN1c3BlbmQiIGFuZCAicmVzdW1lIiBob29r
-cywgY29ycmVjdD8NCj4gPiANCj4gPiBUaGUgY2FsbGJhY2sgZnVuY3Rpb25zIGlzIHN1c3BlbmRf
-bm9pcnEgYW5kIHJlc3VtZV9ub2lycSwgc2hvdWxkIEkgdXNlDQo+ID4gInN5c3RlbXMgc3VzcGVu
-ZCIgYW5kICJyZXN1bWUiIGluIHRoZSBjb21taXQgbWVzc2FnZT8NCj4gWy4uLl0NCj4gDQo+IA0K
-PiBXaGF0IEkgbWVhbnQgd2FzIHNvbWV0aGluZyBhbG9uZyB0aGVzZSBsaW5lczoNCj4gDQo+ICAg
-QWRkIHN1c3BlbmRfbm9pcnEgYW5kIHJlc3VtZV9ub2lycSBjYWxsYmFjayBmdW5jdGlvbnMgdG8g
-aW1wbGVtZW50IFBNDQo+ICAgc3lzdGVtIHN1c3BlbmQgYW5kIHJlc3VtZSBob29rcyBmb3IgdGhl
-IE1lZGlhVGVrIEdlbjMgUENJZSBjb250cm9sbGVyLg0KPiAgIA0KPiAgIFdoZW4gdGhlIHN5c3Rl
-bSBzdXNwZW5kcywgdHJpZ2dlciB0aGUgUENJZSBsaW5rIHRvIGVudGVyIHRoZSBMMiBzdGF0ZQ0K
-PiAgIGFuZCBwdWxsIGRvd24gdGhlIFBFUlNUIyBwaW4sIGdhdGluZyB0aGUgY2xvY2tzIG9mIHRo
-ZSBNQUMgbGF5ZXIsIGFuZA0KPiAgIHRoZW4gcG93ZXItb2ZmIHRoZSBwaHlzaWNhbCBsYXllciB0
-byBwcm92aWRlIHBvd2VyLXNhdmluZy4NCj4gICANCj4gICBXaGVuIHRoZSBzeXN0ZW0gcmVzdW1l
-cywgdGhlIFBDSWUgbGluayBzaG91bGQgYmUgcmUtZXN0YWJsaXNoZWQgYW5kIHRoZQ0KPiAgIHJl
-bGF0ZWQgY29udHJvbCByZWdpc3RlciB2YWx1ZXMgc2hvdWxkIGJlIHJlc3RvcmVkLg0KPiANCj4g
-VGhlIGFib3ZlIGlzIGp1c3QgYSBzdWdnZXN0aW9uLCB0aHVzIGZlZWwgdHJlZSB0byBpZ25vcmUg
-aXQgY29tcGxldGVseSwNCj4gYW5kIGl0J3MgaGVhdmlseSBiYXNlZCBvbiB5b3VyIG9yaWdpbmFs
-IGNvbW1pdCBtZXNzYWdlLg0KPiANCj4gS3J6eXN6dG9mDQoNClRoYW5rcy4NCg0K
+On Fri, 26 Feb 2021 at 09:59, <skakit@codeaurora.org> wrote:
+>
+> Hi,
+>
+> On 2021-02-25 16:39, Dmitry Baryshkov wrote:
+> > On 24/02/2021 11:33, satya priya wrote:
+> >> Correct the REGULATOR_LINEAR_RANGE and n_voltges for
+> >> pmic5_hfsmps515 buck.
+> >>
+> >> Signed-off-by: satya priya <skakit@codeaurora.org>
+> >> ---
+> >>   drivers/regulator/qcom-rpmh-regulator.c | 4 ++--
+> >>   1 file changed, 2 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/drivers/regulator/qcom-rpmh-regulator.c
+> >> b/drivers/regulator/qcom-rpmh-regulator.c
+> >> index 79a554f..36542c3 100644
+> >> --- a/drivers/regulator/qcom-rpmh-regulator.c
+> >> +++ b/drivers/regulator/qcom-rpmh-regulator.c
+> >> @@ -726,8 +726,8 @@ static const struct rpmh_vreg_hw_data
+> >> pmic5_ftsmps510 = {
+> >>   static const struct rpmh_vreg_hw_data pmic5_hfsmps515 = {
+> >>      .regulator_type = VRM,
+> >>      .ops = &rpmh_regulator_vrm_ops,
+> >> -    .voltage_range = REGULATOR_LINEAR_RANGE(2800000, 0, 4, 16000),
+> >> -    .n_voltages = 5,
+> >> +    .voltage_range = REGULATOR_LINEAR_RANGE(320000, 0, 235, 16000),
+> >> +    .n_voltages = 236,
+> >
+> > I've checked the docs for pm8009, the chip which also uses hfsmps515
+> > regulators. The pdf clearly states that the 'Output voltage operating
+> > range' is from 2.8 V to 2.85 V.
+> >
+> > So we'd probably need to define different versions of HFS515 regulator
+> > data (like I had to create for pm8009-1).
+> >
+> >
+>
+> The min-max voltages for S1C (PM8350c) regulator are 2190000-2210000uV
+> for sc7280(kodiak), so we had to modify this buck to support this
+> regulator.
+>
+> AFAIK, this struct defines the HW constraints of a regulator, but the
+> platform specific min-max values can be controlled from DT files. So,
+> can't we modify it like above instead of adding a new definition? the
+> new min_uV value (32000) is anyway not exceeding the old value (2800000)
+> right? please correct me if wrong.
 
+As far as I understand for other regulators we put 'output voltage
+limitations' from the docs into the regulator definition and further
+constrain it by the platform device tree. Please correct me if I'm
+wrong.
+For pm8009 the data from the datasheet matches the regulators defined
+in the source file. Unfortunately I don't have kodiak specs at hand.
+
+
+-- 
+With best wishes
+Dmitry
