@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E62BA325A76
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 00:59:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 559AC325A80
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 01:05:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbhBYX7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Feb 2021 18:59:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34858 "EHLO
+        id S232144AbhBZAD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Feb 2021 19:03:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbhBYX7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 18:59:16 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD6C7C061574
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 15:58:36 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id d11so4129646plo.8
-        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 15:58:36 -0800 (PST)
+        with ESMTP id S232113AbhBZAD1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Feb 2021 19:03:27 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04BD6C061574
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 16:02:46 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id q204so3718336pfq.10
+        for <devicetree@vger.kernel.org>; Thu, 25 Feb 2021 16:02:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=sgBcyKTrhWhBSDxd2pfjpBmd0inPEN16qGxTuTl1gKs=;
-        b=jD6mILYvID7wcz7/JVIoIPt4ZCjT8HfIU4oNBk9w/Sk/+cuLUbLfmwPRGpPB5+/sEO
-         YHLIpOUsl2CiyBsQZWc1q5WWOxQtN454hiL/sadVELadhN0N5HHmSflnPtSK+ZFWDtNR
-         N+piymA7D7yMk0iPW0LXemHRXmB1dWGnuB/1s=
+        bh=F1Xau9fAA+oyzsKfmbUBtrhsYSTeSRGLtf1MZ+LRpR0=;
+        b=DZw9d6dZ4dF3xXT6RmIl+a0Ro9P+0xvD2rgi9oON73SgRjq9xC8Tjo5WQVOKrAKEkf
+         K93lamErepifoCjQ+4M0WFoxWwL33gnAR2YxezXNNYi54n14/RJQb5l94BXhwgEHQgA1
+         rMrNr82bpeTGHC7qGqvIoZlAiZ4r1TP9swTEw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=sgBcyKTrhWhBSDxd2pfjpBmd0inPEN16qGxTuTl1gKs=;
-        b=CJMYbBo8QsQeBl5WOqk600fjvi9btiizfwBMD8Hp3KgCHekA19rurZiQs3klra7yni
-         lTXEaGNyfATWdqRR9pEw3fet6/57iCfzrK3vllS3iDq8IbyI4noFRsNUsy7a9rProT0F
-         5ndFg1Y+cOmPJbvcv65e0TX2nbGyDmyptsfHah0E0GuJE6ogzLvK7W/+L5UihK8DDukt
-         14jiXnGDh+OewJnSmZGBVD7oPxCwdeBxsbxIfCo4uKNIGxGDiRmSXWsepSHZ/rhxZdaG
-         9eErRNfhkg7ny6KmTBUOZv/1fj0KjfcRgICQ8hlGPEMhUPcAZu5zDZULawIREEqy+y6q
-         ueEQ==
-X-Gm-Message-State: AOAM533qOrDPhYV+q5AEPD1kWX4mvqqt/o16GnRY6qtCPORWKaD/vXd+
-        bfli2/gwgQEQse3HeGe1oqt0ug==
-X-Google-Smtp-Source: ABdhPJwfh2CP2/MqqEsSPEFdK2Ukd9rSzolqDzF9Onfxbe/Sl6cLWt12ziMOu5tatkEIMbtzB9S/+A==
-X-Received: by 2002:a17:90a:d585:: with SMTP id v5mr420027pju.206.1614297516053;
-        Thu, 25 Feb 2021 15:58:36 -0800 (PST)
+        bh=F1Xau9fAA+oyzsKfmbUBtrhsYSTeSRGLtf1MZ+LRpR0=;
+        b=hhUWZCOW6PfHDoqqNTfaFRl/ZipTIaSm7f4dhlr9WhkE49ZbQ1vmGxXvLuG+gajNZD
+         oqWeI+NlslYPuZzqFm7ehVLh56jR+dgIvVJtyjIeQ3Mw06YtI9BsHNYwS9nodRS1QIxz
+         x/WjpI3SDel3NhWcV4mtBr02P0gxZFSXJfXwa9LB8asVnZX7Sb7eGSF7gI6n+MBeQR5L
+         nC/ZQJePconRXCbb97ha3boF2wB8IR/w1s5mzSCeS4/Zgd8alSvXj9mGq7Crz7pHxZLB
+         7QvF5OCRFfjX3diUluqf98RKrH5joBv58EAggTc6gzuyEpan6/EFkkuaGwN9KlqS3cHK
+         ywqg==
+X-Gm-Message-State: AOAM530zx2gqEbYthrWgI0hSVG9mh9OtWmz5Xt9qqrql6Y6pWRCM383x
+        4+0rhTxNMe39C37MRpm32ORSQA==
+X-Google-Smtp-Source: ABdhPJz+xYeAGLx67OzoNPD6mZ2XdF3cVWL268Rop+nHNAENyKU1Kk3QYYIH5O8HNGslxXk4uci3Nw==
+X-Received: by 2002:aa7:90d3:0:b029:1ed:7eec:b031 with SMTP id k19-20020aa790d30000b02901ed7eecb031mr428837pfk.58.1614297766588;
+        Thu, 25 Feb 2021 16:02:46 -0800 (PST)
 Received: from localhost ([2620:15c:202:1:1d8:8d0c:f75e:edd8])
-        by smtp.gmail.com with UTF8SMTPSA id i2sm7031528pgs.82.2021.02.25.15.58.34
+        by smtp.gmail.com with UTF8SMTPSA id b7sm7163743pgh.37.2021.02.25.16.02.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Feb 2021 15:58:35 -0800 (PST)
-Date:   Thu, 25 Feb 2021 15:58:34 -0800
+        Thu, 25 Feb 2021 16:02:45 -0800 (PST)
+Date:   Thu, 25 Feb 2021 16:02:44 -0800
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Douglas Anderson <dianders@chromium.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -54,23 +54,27 @@ Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 04/13] arm64: dts: qcom: Unify the sc7180-trogdor panel
- nodes
-Message-ID: <YDg5qkFvEMtu+XUw@google.com>
+Subject: Re: [PATCH 05/13] arm64: dts: qcom: trogdor: Only wakeup from pen
+ eject
+Message-ID: <YDg6pK26XXDvRHgn@google.com>
 References: <20210225221310.1939599-1-dianders@chromium.org>
- <20210225141022.4.I1483fac4c5ae4b2d7660290ff85d69945292618f@changeid>
+ <20210225141022.5.Ib9672bfbe639c96c85408d6f0217a2609eb0b70f@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210225141022.4.I1483fac4c5ae4b2d7660290ff85d69945292618f@changeid>
+In-Reply-To: <20210225141022.5.Ib9672bfbe639c96c85408d6f0217a2609eb0b70f@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 25, 2021 at 02:13:01PM -0800, Douglas Anderson wrote:
-> Let's avoid a bit of duplication by pushing this up to the trogdor.dtsi
-> file.
+On Thu, Feb 25, 2021 at 02:13:02PM -0800, Douglas Anderson wrote:
+> From: Stephen Boyd <swboyd@chromium.org>
 > 
+> Configure the pen to be a wakeup source only when the pen is ejected
+> instead of both when the pen is ejected and inserted. This corresponds
+> to wake source requirements.
+> 
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
 Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
