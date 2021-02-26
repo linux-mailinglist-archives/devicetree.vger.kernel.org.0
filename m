@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCCA3326711
-	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 19:47:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB7E9326717
+	for <lists+devicetree@lfdr.de>; Fri, 26 Feb 2021 19:47:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230450AbhBZSqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 13:46:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50092 "EHLO
+        id S229622AbhBZSr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 13:47:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230198AbhBZSq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 13:46:29 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37231C06178C
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:45:45 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id p21so6723321pgl.12
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:45:45 -0800 (PST)
+        with ESMTP id S231197AbhBZSrZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 13:47:25 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D5B5C061756
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:46:45 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id b15so6520279pjb.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 10:46:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=DBoA2He9SEqhdRcPOlTnH+Nc/7DBERZF0m92VCsk5jg=;
-        b=CzJVOB5XbthY815YrFZTz7okvWCudKfguVepSsM2rE3KYhtOgjo2ubtDOYd5wNc72k
-         XY6VCuLMoPa54b3C7TryZmXhSZ8X5audeV9KDQ//qkvVW1wKfoMxIYKafr6rUMh9ai1H
-         oohes+uH3rsg4+jHnrw+wqm+oySYwZiIIQWu0=
+        bh=WTRxkaBkVRFH3msZClfA4ctqASFuiuF4nHoUGuxUFRw=;
+        b=DULndB44xMpW5FmQr3j59vwHz+xCcshyplfC2lmH8WZ+AYnQBJA7lB9Nc4TH6X/ZMe
+         dCQRelabv2/yLUu2HJdGB9kaLTk3NS2IvWdK0DuJ7bEh6FmwuLq8Jn+ZcXUxf2ng/qTG
+         flv0yORCbhtSGWxmFKwofCZk2f0i44JA4sLZU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=DBoA2He9SEqhdRcPOlTnH+Nc/7DBERZF0m92VCsk5jg=;
-        b=ku5BI+WVQtA3Jk0qsC1wzssiA+980AOhtzfgjXf4zqFcqOMBCuqk75udSaI6gmnWmd
-         5YdSugPoATIgVHC0lFsGU0D+wy/rO54beGwG1VAqOxtirhk68nmf9JGRn5wWUs2CXjGE
-         KL2VB/S3G8CwFcPO3drW8OylXKVJEJMB3pCLzj4A2YztFmq4J+AESouqId3ao3TZvizN
-         Si3fiGoNybLRhRqcdgkkcu4MAHVZDTMVJ+Rs+ADDkMpiiYpGZRulGdJAkj3urArF8dP5
-         wZyQ5tvu+ixl9oam0Cgpc+dVh/5NgKZSX217B/auSB+Hb07DR7/IVGF1TD/XTYX9V+Ue
-         16/A==
-X-Gm-Message-State: AOAM532QPtiWR2LPWP0bXQtzfNqdHHqjdNEev7fHqlvxq64U72YBdtkZ
-        gM5sXEEfz20iQweKBCfJhMQZ7Q==
-X-Google-Smtp-Source: ABdhPJxpirRBN68cTs6BEm0/4bx76H7nG+Xarluh7zIVCuqEiGatxHFPfwy6XtpjUIQW3RvhGFHKFg==
-X-Received: by 2002:a62:6006:0:b029:1dd:3af9:965f with SMTP id u6-20020a6260060000b02901dd3af9965fmr4635727pfb.30.1614365144799;
-        Fri, 26 Feb 2021 10:45:44 -0800 (PST)
+        bh=WTRxkaBkVRFH3msZClfA4ctqASFuiuF4nHoUGuxUFRw=;
+        b=MmVRHerUUOHXkN+HgtZkdYnm9h9OTLsJLDoqkSql4DYuDZ3v7yM1kAXjvvBSTv3WEG
+         34kuN8lilckiAvRzLuLdEj423oZo2H72n63Ee5pQHInBQbM5rwMQ+ILkTmnucDpSt/aF
+         qg+61qSVq3H+08jFI9G1PdQq+SXb8tdKL3/oHA6OHM8H3Y83hUY7nf5j9AAS8Hiqxafx
+         HBQDBLSY7JjRM6YCDSnOBcPWy0Rc9FTR8ncF5V9mFxv22T90hZTPE2qmeGv2NeG+B3vg
+         wwSDUBY7SXTRbYFFgi8l5G2oq3joXxRzjWZuOG70NowSQD6gpARyr+UDEAtq+JXXXaJu
+         tKlA==
+X-Gm-Message-State: AOAM531RF8hwaHky5KebtEeEZEhzTfgu6VxLhQC1v69V9Lxe+vsAV4pq
+        f+aafvgZ08SpfMTomQdJaWL1vcDYjt8zzw==
+X-Google-Smtp-Source: ABdhPJzjopObfqH49jbYa7PNj+ATiajhT4+w27fwpeYPVDXYz5jx3hEOIuldAgKaqba4R/bx4vzyMA==
+X-Received: by 2002:a17:902:b089:b029:e3:28:b8ee with SMTP id p9-20020a170902b089b02900e30028b8eemr4547538plr.84.1614365204929;
+        Fri, 26 Feb 2021 10:46:44 -0800 (PST)
 Received: from chromium.org ([2620:15c:202:201:e8bb:5726:f58b:4e37])
-        by smtp.gmail.com with ESMTPSA id 125sm10684127pfu.7.2021.02.26.10.45.44
+        by smtp.gmail.com with ESMTPSA id j125sm11024188pfd.27.2021.02.26.10.46.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Feb 2021 10:45:44 -0800 (PST)
+        Fri, 26 Feb 2021 10:46:44 -0800 (PST)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <a35e6dcba758be4af3d111fe92cfbcd6@codeaurora.org>
-References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org> <c4b7ae4dd009f563e6786f4a41f09efa38636fb6.1614244789.git.saiprakash.ranjan@codeaurora.org> <161428185152.1254594.1426736986245389798@swboyd.mtv.corp.google.com> <a35e6dcba758be4af3d111fe92cfbcd6@codeaurora.org>
-Subject: Re: [PATCH 3/9] arm64: dts: qcom: sc7280: Add device tree node for LLCC
+In-Reply-To: <dc3be32a3f8197d3138fe1ef6c24316a@codeaurora.org>
+References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org> <463a45f2c3e4a91430c006fa1637c7f4f124185e.1614244789.git.saiprakash.ranjan@codeaurora.org> <161428210272.1254594.16034240343090747878@swboyd.mtv.corp.google.com> <dc3be32a3f8197d3138fe1ef6c24316a@codeaurora.org>
+Subject: Re: [PATCH 8/9] arm64: dts: qcom: sc7280: Add AOSS QMP node
 From:   Stephen Boyd <swboyd@chromium.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,30 +59,49 @@ Cc:     Andy Gross <agross@kernel.org>,
         Rajendra Nayak <rnayak@codeaurora.org>,
         Sibi Sankar <sibis@codeaurora.org>
 To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Date:   Fri, 26 Feb 2021 10:45:42 -0800
-Message-ID: <161436514295.1254594.2789904935200051795@swboyd.mtv.corp.google.com>
+Date:   Fri, 26 Feb 2021 10:46:42 -0800
+Message-ID: <161436520297.1254594.4348845199981053890@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sai Prakash Ranjan (2021-02-26 00:04:27)
-> On 2021-02-26 01:07, Stephen Boyd wrote:
-> > Quoting Sai Prakash Ranjan (2021-02-25 01:30:19)
-> >> Add a DT node for Last level cache (aka. system cache)
-> >> controller which provides control over the last level
-> >> cache present on SC7280 SoC.
+Quoting Sai Prakash Ranjan (2021-02-25 23:51:00)
+> On 2021-02-26 01:11, Stephen Boyd wrote:
+> > Quoting Sai Prakash Ranjan (2021-02-25 01:30:24)
+> >> Add a DT node for the AOSS QMP on SC7280 SoC.
 > >>=20
 > >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
 > >> ---
+> >>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 14 ++++++++++++++
+> >>  1 file changed, 14 insertions(+)
+> >>=20
+> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi=20
+> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >> index 65c1e0f2fb56..cbd567ccc04e 100644
+> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >> @@ -9,6 +9,7 @@
+> >>  #include <dt-bindings/clock/qcom,rpmh.h>
+> >>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+> >> +#include <dt-bindings/power/qcom-aoss-qmp.h>
+> >>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> >>=20
+> >>  / {
+> >> @@ -368,6 +369,19 @@ pdc: interrupt-controller@b220000 {
+> >>                         interrupt-controller;
+> >>                 };
+> >>=20
+> >> +               aoss_qmp: qmp@c300000 {
 > >=20
-> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> > power-domain-controller@c300000? power-controller@c300000?
 > >=20
-> > Should add system-cache-controller to the devicetree spec. Or just use
-> > cache-controller for the node name.
 >=20
-> This was as per discussion in [1][2] where dt-schema throws an error
-> since it expects cache-level to be associated with cache-controller.
->=20
+> Its an AOSS message RAM and all other SM* SoCs have as qmp@
+> and the dt binding as well, I see only SM8150 with power-controller,
+> that should probably be fixed?
 
-Ah right. Can you add system-cache-controller to the dt spec?
+Node name should be generic while still being meaningful. Nobody knows
+what qmp is, but power-controller makes sense. Can you fix this and the
+others to be power-controller?
