@@ -2,954 +2,1418 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F257326DC5
-	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 17:14:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC0DF326E02
+	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 17:56:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbhB0QOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Feb 2021 11:14:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41540 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230164AbhB0QNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Feb 2021 11:13:19 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D962EC06178A;
-        Sat, 27 Feb 2021 08:12:35 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id a18so3340410wrc.13;
-        Sat, 27 Feb 2021 08:12:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Y/VQ0eTEmvDROcLsN3J4DFGFaKeWvhSUHOO2hNjZVsM=;
-        b=s1UBorq9Wh5Y8HuO5AqcVBzhCRDzCKQfQM04l21ZfrEaPgDURR7li6hDRN0iFV9Xls
-         hZU2rvWyJYQBlq5SdDC4one3kMuDt2LmGfJLzow0E0No+jDZRIYQQ/aULRcwvdOVzLEt
-         D9YPU5WjHBRE8qfS3V5E2vmvGi3mC7dwLBOtXcZUSoJVnTOVemzQqOsxUobMTxwtUhM2
-         rNA3jcxnddzemb1bRCXb3i356MhgS8xXQpWxgy93aQqKKwk0l42zGIlfpWlHHUoewXkk
-         SRisa3s6niho5Qn/ShkSw6ffzw7Pu8U30AyJ73nzVAW9/U7DAp83Jnbyes7rL6006+ea
-         cfQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Y/VQ0eTEmvDROcLsN3J4DFGFaKeWvhSUHOO2hNjZVsM=;
-        b=ptmbmMPXDCao5jn0YNPXgZxgB+0YerRHQoVp9XWqgFBFi/aiL1RaZB3tK1Uk88/fqC
-         bOHA8dVXU6f4M2gvQBBZrNg4FDz8TRCUnkyqd5rru61Vj6JKJvwSFrAVDIPrCCeLNkD4
-         b0cQi7Q0ukhRj9lC4YTT1DCGnougmdnZquqZJmHjyOU6zEvcYsSsSsJ7DBTWYf1IO1/M
-         xEhayeNvjrTJHqHZkruP9C6nUUtJA9/w2ItR8kpoWw6um2ZK3+38cMPQgO2V8qSan9GJ
-         jr2pB8u7dw/Tt2PGWjVxI5mkTQ34tpy6v2L6kIhuiNYSRe5YFIRmGeA1kUxhh2TfEf93
-         GDLw==
-X-Gm-Message-State: AOAM532UQaNzZgQfoPI1yqix/ty2B1UGLm7tUKYpnP2bPUqjFLMAUPDA
-        ygUTYTHKqoyZXMPl0hHnlUk=
-X-Google-Smtp-Source: ABdhPJzqJBzT0/N8ryVW7d7qh40Kq7RUrQdAXNLJizW0g7D4QE06jX2ze/aVDv5gGVVT1TTWRGn5VA==
-X-Received: by 2002:a5d:58c9:: with SMTP id o9mr8701740wrf.181.1614442354555;
-        Sat, 27 Feb 2021 08:12:34 -0800 (PST)
-Received: from adgra-XPS-15-9570.home (2a01cb0008bd2700289c166d32b9da85.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:289c:166d:32b9:da85])
-        by smtp.gmail.com with ESMTPSA id b15sm18390027wmd.41.2021.02.27.08.12.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Feb 2021 08:12:34 -0800 (PST)
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     robert.foss@linaro.org, airlied@linux.ie, daniel@ffwll.ch,
-        a.hajda@samsung.com, robh+dt@kernel.org, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@siol.net, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Adrien Grassein <adrien.grassein@gmail.com>
-Subject: [PATCH v5 2/2] drm/bridge: Introduce LT8912B DSI to HDMI bridge
-Date:   Sat, 27 Feb 2021 17:12:28 +0100
-Message-Id: <20210227161228.1632521-3-adrien.grassein@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210227161228.1632521-1-adrien.grassein@gmail.com>
-References: <20210227161228.1632521-1-adrien.grassein@gmail.com>
+        id S230010AbhB0Q4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Feb 2021 11:56:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40994 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230001AbhB0Q4N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Feb 2021 11:56:13 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DB69E61606;
+        Sat, 27 Feb 2021 16:55:29 +0000 (UTC)
+Date:   Sat, 27 Feb 2021 16:55:26 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Joe Sandom <joe.g.sandom@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joe Sandom <joe.sandom@outlook.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RESEND][PATCH v4 1/2] Added AMS tsl2591 driver implementation
+Message-ID: <20210227165526.0f8917c8@archlinux>
+In-Reply-To: <20210222212313.29319-1-joe.g.sandom@gmail.com>
+References: <20210222212313.29319-1-joe.g.sandom@gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lontium LT8912B is a DSI to HDMI bridge.
+On Mon, 22 Feb 2021 21:23:12 +0000
+Joe Sandom <joe.g.sandom@gmail.com> wrote:
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
----
- MAINTAINERS                              |   1 +
- drivers/gpu/drm/bridge/Kconfig           |  14 +
- drivers/gpu/drm/bridge/Makefile          |   1 +
- drivers/gpu/drm/bridge/lontium-lt8912b.c | 817 +++++++++++++++++++++++
- 4 files changed, 833 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/lontium-lt8912b.c
+> Driver implementation for AMS/TAOS tsl2591 ambient light sensor.
+> 
+> This driver supports configuration via device tree and sysfs.
+> Supported channels for raw infrared light intensity,
+> raw combined light intensity and illuminance in lux.
+> The driver additionally supports iio events on lower and
+> upper thresholds.
+> 
+> This is a very-high sensitivity light-to-digital converter that
+> transforms light intensity into a digital signal.
+> 
+> Datasheet Available at: https://ams.com/tsl25911
+> 
+> Signed-off-by: Joe Sandom <joe.g.sandom@gmail.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6366b8eac3f6..e075a74f57dd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10464,6 +10464,7 @@ LONTIUM LT8912B MIPI TO HDMI BRIDGE
- M:	Adrien Grassein <adrien.grassein@gmail.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml
-+F:	drivers/gpu/drm/bridge/lontium-lt8912b.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
- M:	Sathya Prakash <sathya.prakash@broadcom.com>
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index e4110d6ca7b3..f2c5ec75d2f5 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -48,6 +48,20 @@ config DRM_DISPLAY_CONNECTOR
- 	  on ARM-based platforms. Saying Y here when this driver is not needed
- 	  will not cause any issue.
- 
-+config DRM_LONTIUM_LT8912B
-+	tristate "Lontium LT8912B DSI/HDMI bridge"
-+	depends on OF
-+	select DRM_PANEL_BRIDGE
-+	select DRM_KMS_HELPER
-+	select REGMAP_I2C
-+	help
-+	  Driver for Lontium LT8912B DSI to HDMI bridge
-+	  chip driver.
-+	  Please say Y if you have such hardware.
-+
-+	  Say M here if you want to support this hardware as a module.
-+	  The module will be named "lontium-lt8912b".
-+
- config DRM_LONTIUM_LT9611
- 	tristate "Lontium LT9611 DSI/HDMI bridge"
- 	select SND_SOC_HDMI_CODEC if SND_SOC
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index 86e7acc76f8d..756ce401aad3 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -2,6 +2,7 @@
- obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
- obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
- obj-$(CONFIG_DRM_DISPLAY_CONNECTOR) += display-connector.o
-+obj-$(CONFIG_DRM_LONTIUM_LT8912B) += lontium-lt8912b.o
- obj-$(CONFIG_DRM_LONTIUM_LT9611) += lontium-lt9611.o
- obj-$(CONFIG_DRM_LONTIUM_LT9611UXC) += lontium-lt9611uxc.o
- obj-$(CONFIG_DRM_LVDS_CODEC) += lvds-codec.o
-diff --git a/drivers/gpu/drm/bridge/lontium-lt8912b.c b/drivers/gpu/drm/bridge/lontium-lt8912b.c
-new file mode 100644
-index 000000000000..f3ed8d8b7a64
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/lontium-lt8912b.c
-@@ -0,0 +1,817 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2018, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/gpio.h>
-+#include <linux/of_gpio.h>
-+#include <linux/regmap.h>
-+
-+#include <drm/drm_probe_helper.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_of.h>
-+
-+#include <video/videomode.h>
-+
-+#define I2C_MAIN 0
-+#define I2C_ADDR_MAIN 0x48
-+
-+#define I2C_CEC_DSI 1
-+#define I2C_ADDR_CEC_DSI 0x49
-+
-+#define I2C_MAX_IDX 2
-+
-+#define HPD_WORK_DELAY_MS 1000
-+
-+struct lt8912 {
-+	struct device *dev;
-+	struct drm_bridge bridge;
-+	struct drm_connector connector;
-+
-+	struct i2c_client *i2c_client[I2C_MAX_IDX];
-+	struct regmap *regmap[I2C_MAX_IDX];
-+
-+	struct device_node *host_node;
-+	struct drm_bridge *hdmi_port;
-+
-+	struct mipi_dsi_device *dsi;
-+
-+	struct gpio_desc *gp_reset;
-+
-+	struct videomode mode;
-+
-+	u8 data_lanes;
-+	bool is_power_on;
-+	bool is_attached;
-+
-+	enum drm_connector_status cable_status;
-+	struct workqueue_struct *workq;
-+	struct delayed_work lt8912_check_hpd_work_id;
-+};
-+
-+static int lt8912_write_init_config(struct lt8912 *lt)
-+{
-+	const struct reg_sequence seq[] = {
-+		/* Digital clock en*/
-+		{0x08, 0xff},
-+		{0x09, 0xff},
-+		{0x0a, 0xff},
-+		{0x0b, 0x7c},
-+		{0x0c, 0xff},
-+		{0x42, 0x04},
-+
-+		/*Tx Analog*/
-+		{0x31, 0xb1},
-+		{0x32, 0xb1},
-+		{0x33, 0x0e},
-+		{0x37, 0x00},
-+		{0x38, 0x22},
-+		{0x60, 0x82},
-+
-+		/*Cbus Analog*/
-+		{0x39, 0x45},
-+		{0x3a, 0x00},
-+		{0x3b, 0x00},
-+
-+		/*HDMI Pll Analog*/
-+		{0x44, 0x31},
-+		{0x55, 0x44},
-+		{0x57, 0x01},
-+		{0x5a, 0x02},
-+
-+		/*MIPI Analog*/
-+		{0x3e, 0xd6},
-+		{0x3f, 0xd4},
-+		{0x41, 0x3c},
-+		{0xB2, 0x00},
-+	};
-+
-+	return regmap_multi_reg_write(lt->regmap[I2C_MAIN], seq, ARRAY_SIZE(seq));
-+}
-+
-+static int lt8912_write_mipi_basic_config(struct lt8912 *lt)
-+{
-+	const struct reg_sequence seq[] = {
-+		{0x12, 0x04},
-+		{0x14, 0x00},
-+		{0x15, 0x00},
-+		{0x1a, 0x03},
-+		{0x1b, 0x03},
-+	};
-+
-+	return regmap_multi_reg_write(lt->regmap[I2C_CEC_DSI], seq, ARRAY_SIZE(seq));
-+};
-+
-+static int lt8912_write_dds_config(struct lt8912 *lt)
-+{
-+	const struct reg_sequence seq[] = {
-+		{0x4e, 0xff},
-+		{0x4f, 0x56},
-+		{0x50, 0x69},
-+		{0x51, 0x80},
-+		{0x1f, 0x5e},
-+		{0x20, 0x01},
-+		{0x21, 0x2c},
-+		{0x22, 0x01},
-+		{0x23, 0xfa},
-+		{0x24, 0x00},
-+		{0x25, 0xc8},
-+		{0x26, 0x00},
-+		{0x27, 0x5e},
-+		{0x28, 0x01},
-+		{0x29, 0x2c},
-+		{0x2a, 0x01},
-+		{0x2b, 0xfa},
-+		{0x2c, 0x00},
-+		{0x2d, 0xc8},
-+		{0x2e, 0x00},
-+		{0x42, 0x64},
-+		{0x43, 0x00},
-+		{0x44, 0x04},
-+		{0x45, 0x00},
-+		{0x46, 0x59},
-+		{0x47, 0x00},
-+		{0x48, 0xf2},
-+		{0x49, 0x06},
-+		{0x4a, 0x00},
-+		{0x4b, 0x72},
-+		{0x4c, 0x45},
-+		{0x4d, 0x00},
-+		{0x52, 0x08},
-+		{0x53, 0x00},
-+		{0x54, 0xb2},
-+		{0x55, 0x00},
-+		{0x56, 0xe4},
-+		{0x57, 0x0d},
-+		{0x58, 0x00},
-+		{0x59, 0xe4},
-+		{0x5a, 0x8a},
-+		{0x5b, 0x00},
-+		{0x5c, 0x34},
-+		{0x1e, 0x4f},
-+		{0x51, 0x00},
-+	};
-+
-+	return regmap_multi_reg_write(lt->regmap[I2C_CEC_DSI], seq, ARRAY_SIZE(seq));
-+}
-+
-+static int lt8912_write_rxlogicres_config(struct lt8912 *lt)
-+{
-+	int ret;
-+
-+	ret = regmap_write(lt->regmap[I2C_MAIN], 0x03, 0x7f);
-+	usleep_range(10000, 20000);
-+	ret |= regmap_write(lt->regmap[I2C_MAIN], 0x03, 0xff);
-+
-+	return ret;
-+};
-+
-+static int lt8912_write_lvds_config(struct lt8912 *lt)
-+{
-+	const struct reg_sequence seq[] = {
-+		{0x44, 0x30},
-+		{0x51, 0x05},
-+		{0x50, 0x24},
-+		{0x51, 0x2d},
-+		{0x52, 0x04},
-+		{0x69, 0x0e},
-+		{0x69, 0x8e},
-+		{0x6a, 0x00},
-+		{0x6c, 0xb8},
-+		{0x6b, 0x51},
-+		{0x04, 0xfb},
-+		{0x04, 0xff},
-+		{0x7f, 0x00},
-+		{0xa8, 0x13},
-+		{0x02, 0xf7},
-+		{0x02, 0xff},
-+		{0x03, 0xcf},
-+		{0x03, 0xff},
-+	};
-+
-+	return regmap_multi_reg_write(lt->regmap[I2C_CEC_DSI], seq, ARRAY_SIZE(seq));
-+};
-+
-+static inline struct lt8912 *bridge_to_lt8912(struct drm_bridge *b)
-+{
-+	return container_of(b, struct lt8912, bridge);
-+}
-+
-+static inline struct lt8912 *connector_to_lt8912(struct drm_connector *c)
-+{
-+	return container_of(c, struct lt8912, connector);
-+}
-+
-+static const struct regmap_config lt8912_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0xff,
-+};
-+
-+static int lt8912_init_i2c(struct lt8912 *lt, struct i2c_client *client)
-+{
-+	unsigned int i;
-+	/*
-+	 * At this time we only initialize 2 chips, but the lt8912 provides
-+	 * a third interface for the audio over HDMI configuration.
-+	 */
-+	struct i2c_board_info info[] = {
-+		{ I2C_BOARD_INFO("lt8912p0", I2C_ADDR_MAIN), },
-+		{ I2C_BOARD_INFO("lt8912p1", I2C_ADDR_CEC_DSI), },
-+	};
-+
-+	if (!lt)
-+		return -ENODEV;
-+
-+	for (i = 0; i < ARRAY_SIZE(info); i++) {
-+		if (i > 0) {
-+			lt->i2c_client[i] = i2c_new_dummy_device(client->adapter,
-+								 info[i].addr);
-+			if (IS_ERR(lt->i2c_client[i]))
-+				return PTR_ERR(lt->i2c_client[i]);
-+		}
-+
-+		lt->regmap[i] = devm_regmap_init_i2c(lt->i2c_client[i],
-+						     &lt8912_regmap_config);
-+		if (IS_ERR(lt->regmap[i]))
-+			return PTR_ERR(lt->regmap[i]);
-+	}
-+	return 0;
-+}
-+
-+static int lt8912_free_i2c(struct lt8912 *lt)
-+{
-+	unsigned int i;
-+
-+	for (i = 1; i < I2C_MAX_IDX; i++)
-+		i2c_unregister_device(lt->i2c_client[i]);
-+
-+	return 0;
-+}
-+
-+static int lt8912_hard_power_on(struct lt8912 *lt)
-+{
-+	gpiod_set_value_cansleep(lt->gp_reset, 0);
-+	msleep(20);
-+
-+	return 0;
-+}
-+
-+static void lt8912_hard_power_off(struct lt8912 *lt)
-+{
-+	gpiod_set_value_cansleep(lt->gp_reset, 1);
-+	msleep(20);
-+	lt->is_power_on = false;
-+}
-+
-+static int lt8912_video_setup(struct lt8912 *lt)
-+{
-+	u32 hactive, h_total, hpw, hfp, hbp;
-+	u32 vactive, v_total, vpw, vfp, vbp;
-+	u8 settle = 0x08;
-+	int ret;
-+
-+	if (!lt)
-+		return -EINVAL;
-+
-+	hactive = lt->mode.hactive;
-+	hfp = lt->mode.hfront_porch;
-+	hpw = lt->mode.hsync_len;
-+	hbp = lt->mode.hback_porch;
-+	h_total = hactive + hfp + hpw + hbp;
-+
-+	vactive = lt->mode.vactive;
-+	vfp = lt->mode.vfront_porch;
-+	vpw = lt->mode.vsync_len;
-+	vbp = lt->mode.vback_porch;
-+	v_total = vactive + vfp + vpw + vbp;
-+
-+	if (vactive <= 600)
-+		settle = 0x04;
-+	else if (vactive == 1080)
-+		settle = 0x0a;
-+
-+	ret = regmap_write(lt->regmap[I2C_CEC_DSI], 0x10, 0x01);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x11, settle);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x18, hpw);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x19, vpw);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x1c, hactive & 0xff);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x1d, hactive >> 8);
-+
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x2f, 0x0c);
-+
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x34, h_total & 0xff);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x35, h_total >> 8);
-+
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x36, v_total & 0xff);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x37, v_total >> 8);
-+
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x38, vbp & 0xff);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x39, vbp >> 8);
-+
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x3a, vfp & 0xff);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x3b, vfp >> 8);
-+
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x3c, hbp & 0xff);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x3d, hbp >> 8);
-+
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x3e, hfp & 0xff);
-+	ret |= regmap_write(lt->regmap[I2C_CEC_DSI], 0x3f, hfp >> 8);
-+
-+	return ret;
-+}
-+
-+static int lt8912_soft_power_on(struct lt8912 *lt)
-+{
-+	if (!lt->is_power_on) {
-+		u32 lanes = lt->data_lanes;
-+
-+		lt8912_write_init_config(lt);
-+		regmap_write(lt->regmap[I2C_CEC_DSI], 0x13, lanes & 3);
-+
-+		lt8912_write_mipi_basic_config(lt);
-+
-+		lt->is_power_on = true;
-+	}
-+
-+	return 0;
-+}
-+
-+static int lt8912_video_on(struct lt8912 *lt)
-+{
-+	int ret;
-+
-+	ret = lt8912_video_setup(lt);
-+	if (ret < 0)
-+		goto end;
-+
-+	ret = lt8912_write_dds_config(lt);
-+	if (ret < 0)
-+		goto end;
-+
-+	ret = lt8912_write_rxlogicres_config(lt);
-+	if (ret < 0)
-+		goto end;
-+
-+	ret = lt8912_write_lvds_config(lt);
-+	if (ret < 0)
-+		goto end;
-+
-+end:
-+	return ret;
-+}
-+
-+
-+static enum drm_connector_status lt8912_check_cable_status(struct lt8912 *lt)
-+{
-+	int ret;
-+	unsigned int reg_val;
-+
-+	ret = regmap_read(lt->regmap[I2C_MAIN], 0xC1, &reg_val);
-+	if (ret)
-+		return connector_status_unknown;
-+
-+	if (reg_val & BIT(7))
-+		return connector_status_connected;
-+
-+	return connector_status_disconnected;
-+}
-+
-+static void lt8912_check_hpd_work(struct work_struct *work)
-+{
-+	struct delayed_work *dw = to_delayed_work(work);
-+	struct lt8912 *lt = container_of(dw, struct lt8912,
-+					 lt8912_check_hpd_work_id);
-+	struct drm_connector *connector = &lt->connector;
-+
-+	enum drm_connector_status current_state = lt8912_check_cable_status(lt);
-+
-+	if (current_state != lt->cable_status) {
-+		drm_kms_helper_hotplug_event(connector->dev);
-+		lt->cable_status = current_state;
-+	}
-+
-+	queue_delayed_work(lt->workq,
-+			   &lt->lt8912_check_hpd_work_id,
-+			   msecs_to_jiffies(HPD_WORK_DELAY_MS));
-+}
-+
-+static void lt8912_setup_hpd(struct lt8912 *lt)
-+{
-+	INIT_DELAYED_WORK(&lt->lt8912_check_hpd_work_id,
-+			  lt8912_check_hpd_work);
-+	queue_delayed_work(lt->workq,
-+			   &lt->lt8912_check_hpd_work_id,
-+			   msecs_to_jiffies(HPD_WORK_DELAY_MS));
-+}
-+
-+
-+static enum drm_connector_status
-+lt8912_connector_detect(struct drm_connector *connector, bool force)
-+{
-+	struct lt8912 *lt = connector_to_lt8912(connector);
-+
-+	if (lt->hdmi_port->ops & DRM_BRIDGE_OP_DETECT)
-+		return drm_bridge_detect(lt->hdmi_port);
-+
-+	return lt8912_check_cable_status(lt);
-+}
-+
-+static const struct drm_connector_funcs lt8912_connector_funcs = {
-+	.detect = lt8912_connector_detect,
-+	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.destroy = drm_connector_cleanup,
-+	.reset = drm_atomic_helper_connector_reset,
-+	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+};
-+
-+static enum drm_mode_status
-+lt8912_connector_mode_valid(struct drm_connector *connector,
-+			    struct drm_display_mode *mode)
-+{
-+	if (mode->clock > 150000)
-+		return MODE_CLOCK_HIGH;
-+
-+	if (mode->hdisplay > 1920)
-+		return MODE_BAD_HVALUE;
-+
-+	if (mode->vdisplay > 1080)
-+		return MODE_BAD_VVALUE;
-+
-+	return MODE_OK;
-+}
-+
-+static int lt8912_connector_get_modes(struct drm_connector *connector)
-+{
-+	struct edid *edid;
-+	int ret, num = 0;
-+	struct lt8912 *lt = connector_to_lt8912(connector);
-+	u32 bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+
-+	edid = drm_bridge_get_edid(lt->hdmi_port, connector);
-+	if (edid) {
-+		drm_connector_update_edid_property(connector, edid);
-+		num = drm_add_edid_modes(connector, edid);
-+	} else
-+		return ret;
-+
-+	ret = drm_display_info_set_bus_formats(&connector->display_info,
-+					       &bus_format, 1);
-+	if (ret)
-+		num = ret;
-+
-+	kfree(edid);
-+	return num;
-+}
-+
-+static const struct drm_connector_helper_funcs lt8912_connector_helper_funcs = {
-+	.get_modes = lt8912_connector_get_modes,
-+	.mode_valid = lt8912_connector_mode_valid,
-+};
-+
-+static void lt8912_bridge_mode_set(struct drm_bridge *bridge,
-+				   const struct drm_display_mode *mode,
-+				   const struct drm_display_mode *adj)
-+{
-+	struct lt8912 *lt = bridge_to_lt8912(bridge);
-+
-+	drm_display_mode_to_videomode(adj, &lt->mode);
-+}
-+
-+static void lt8912_bridge_enable(struct drm_bridge *bridge)
-+{
-+	struct lt8912 *lt = bridge_to_lt8912(bridge);
-+
-+	lt8912_video_on(lt);
-+}
-+
-+static int lt8912_attach_dsi(struct lt8912 *lt)
-+{
-+	struct device *dev = lt->dev;
-+	struct mipi_dsi_host *host;
-+	struct mipi_dsi_device *dsi;
-+	int ret = -1;
-+	const struct mipi_dsi_device_info info = { .type = "lt8912",
-+						   .channel = 0,
-+						   .node = NULL,
-+						 };
-+
-+	host = of_find_mipi_dsi_host_by_node(lt->host_node);
-+	if (!host) {
-+		dev_err(dev, "failed to find dsi host\n");
-+		return -EPROBE_DEFER;
-+	}
-+
-+	dsi = mipi_dsi_device_register_full(host, &info);
-+	if (IS_ERR(dsi)) {
-+		ret = PTR_ERR(dsi);
-+		dev_err(dev, "failed to create dsi device (%d)\n", ret);
-+		goto err_dsi_device;
-+	}
-+
-+	lt->dsi = dsi;
-+
-+	dsi->lanes = lt->data_lanes;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO |
-+			  MIPI_DSI_MODE_VIDEO_BURST |
-+			  MIPI_DSI_MODE_LPM |
-+			  MIPI_DSI_MODE_EOT_PACKET;
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to attach dsi to host\n");
-+		goto err_dsi_attach;
-+	}
-+
-+	return 0;
-+
-+err_dsi_attach:
-+	mipi_dsi_device_unregister(dsi);
-+err_dsi_device:
-+	return ret;
-+}
-+
-+static void lt8912_detach_dsi(struct lt8912 *lt)
-+{
-+	mipi_dsi_detach(lt->dsi);
-+	mipi_dsi_device_unregister(lt->dsi);
-+}
-+
-+static int lt8912_bridge_connector_init(struct drm_bridge *bridge)
-+{
-+	int ret;
-+	struct lt8912 *lt = bridge_to_lt8912(bridge);
-+	struct drm_connector *connector = &lt->connector;
-+
-+	connector->polled = DRM_CONNECTOR_POLL_HPD;
-+
-+	ret = drm_connector_init(bridge->dev, connector,
-+				 &lt8912_connector_funcs,
-+				 lt->hdmi_port->type);
-+	if (ret)
-+		goto exit;
-+
-+	drm_connector_helper_add(connector, &lt8912_connector_helper_funcs);
-+
-+	connector->dpms = DRM_MODE_DPMS_OFF;
-+	drm_connector_attach_encoder(connector, bridge->encoder);
-+
-+	lt8912_setup_hpd(lt);
-+
-+exit:
-+	return ret;
-+}
-+
-+static int lt8912_bridge_attach(struct drm_bridge *bridge,
-+				enum drm_bridge_attach_flags flags)
-+{
-+	struct lt8912 *lt = bridge_to_lt8912(bridge);
-+	int ret;
-+
-+	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
-+		ret = lt8912_bridge_connector_init(bridge);
-+		if (ret) {
-+			dev_err(lt->dev, "Failed to init bridge ! (%d)\n", ret);
-+			return ret;
-+		}
-+	}
-+
-+
-+	ret = lt8912_hard_power_on(lt);
-+	if (ret)
-+		return ret;
-+
-+	ret = lt8912_soft_power_on(lt);
-+	if (ret)
-+		goto error;
-+
-+	ret = lt8912_attach_dsi(lt);
-+	if (ret)
-+		goto error;
-+
-+	lt->is_attached = true;
-+
-+	return 0;
-+
-+error:
-+	lt8912_hard_power_off(lt);
-+	return ret;
-+}
-+
-+static void lt8912_bridge_detach(struct drm_bridge *bridge)
-+{
-+	struct lt8912 *lt = bridge_to_lt8912(bridge);
-+
-+	if (lt->is_attached) {
-+		if (lt->hdmi_port->ops & DRM_BRIDGE_OP_HPD)
-+			drm_bridge_hpd_disable(lt->hdmi_port);
-+		lt8912_detach_dsi(lt);
-+		lt8912_hard_power_off(lt);
-+	}
-+
-+	cancel_delayed_work_sync(&lt->lt8912_check_hpd_work_id);
-+}
-+
-+static enum drm_connector_status
-+lt8912_bridge_detect(struct drm_bridge *bridge)
-+{
-+	struct lt8912 *lt = bridge_to_lt8912(bridge);
-+
-+	if (lt->hdmi_port->ops & DRM_BRIDGE_OP_DETECT)
-+		return drm_bridge_detect(lt->hdmi_port);
-+
-+	return lt8912_check_cable_status(lt);
-+}
-+
-+static struct edid *lt8912_bridge_get_edid(struct drm_bridge *bridge,
-+					    struct drm_connector *connector)
-+{
-+	struct lt8912 *lt = bridge_to_lt8912(bridge);
-+
-+	/*
-+	 * edid must be read through the ddc bus but it must be
-+	 * given to the hdmi connector node.
-+	 */
-+	if (lt->hdmi_port->ops & DRM_BRIDGE_OP_EDID)
-+		return drm_bridge_get_edid(lt->hdmi_port, connector);
-+
-+	dev_warn(lt->dev, "The connected bridge does not supports DRM_BRIDGE_OP_EDID\n");
-+	return NULL;
-+}
-+
-+static void lt8912_bridge_hpd_enable(struct drm_bridge *bridge)
-+{
-+	struct lt8912 *lt = bridge_to_lt8912(bridge);
-+
-+	if (!(lt->hdmi_port->ops & DRM_BRIDGE_OP_EDID))
-+		lt8912_setup_hpd(lt);
-+}
-+
-+static const struct drm_bridge_funcs lt8912_bridge_funcs = {
-+	.attach = lt8912_bridge_attach,
-+	.detach = lt8912_bridge_detach,
-+	.mode_set = lt8912_bridge_mode_set,
-+	.enable = lt8912_bridge_enable,
-+	.detect = lt8912_bridge_detect,
-+	.get_edid = lt8912_bridge_get_edid,
-+	.hpd_enable = lt8912_bridge_hpd_enable
-+};
-+
-+static int lt8912_parse_dt(struct lt8912 *lt)
-+{
-+	struct gpio_desc *gp_reset;
-+	struct device *dev = lt->dev;
-+	int ret = 0;
-+	struct device_node *port_node;
-+	struct device_node *endpoint;
-+
-+	gp_reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(gp_reset)) {
-+		ret = PTR_ERR(gp_reset);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "Failed to get reset gpio: %d\n", ret);
-+		return ret;
-+	}
-+	lt->gp_reset = gp_reset;
-+
-+
-+	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
-+	if (IS_ERR(endpoint)) {
-+		ret = PTR_ERR(endpoint);
-+		goto end;
-+	}
-+
-+	lt->data_lanes = of_property_count_u32_elems(endpoint, "data-lanes");
-+	of_node_put(endpoint);
-+
-+	lt->host_node = of_graph_get_remote_node(dev->of_node, 0, -1);
-+	if (!lt->host_node) {
-+		dev_err(lt->dev, "%s: Failed to get remote port\n", __func__);
-+		ret = -ENODEV;
-+		goto end;
-+	}
-+
-+	port_node = of_graph_get_remote_node(dev->of_node, 1, -1);
-+	if (!port_node) {
-+		dev_err(lt->dev, "%s: Failed to get connector port\n", __func__);
-+		ret = -ENODEV;
-+		goto err_free_host_node;
-+	}
-+
-+	lt->hdmi_port = of_drm_find_bridge(port_node);
-+	if (IS_ERR(lt->hdmi_port)) {
-+		dev_err(lt->dev, "%s: Failed to get hdmi port\n", __func__);
-+		ret = PTR_ERR(lt->hdmi_port);
-+		of_node_put(lt->host_node);
-+		goto end;
-+	}
-+
-+	if (!of_device_is_compatible(port_node, "hdmi-connector")) {
-+		dev_err(lt->dev, "%s: Failed to get hdmi port\n", __func__);
-+		ret = -EINVAL;
-+	}
-+
-+	of_node_put(port_node);
-+
-+end:
-+	return ret;
-+
-+err_free_host_node:
-+	of_node_put(lt->host_node);
-+	return ret;
-+}
-+
-+static int lt8912_put_dt(struct lt8912 *lt)
-+{
-+	of_node_put(lt->host_node);
-+	return 0;
-+}
-+
-+static int lt8912_probe(struct i2c_client *client,
-+	 const struct i2c_device_id *id)
-+{
-+	static struct lt8912 *lt;
-+	int ret = 0;
-+	struct device *dev = &client->dev;
-+
-+	lt = devm_kzalloc(dev, sizeof(struct lt8912), GFP_KERNEL);
-+	if (!lt)
-+		return -ENOMEM;
-+
-+	lt->dev = dev;
-+	lt->i2c_client[0] = client;
-+	lt->cable_status = connector_status_unknown;
-+	lt->workq = create_workqueue("lt8912_workq");
-+
-+	ret = lt8912_parse_dt(lt);
-+	if (ret)
-+		goto err_dt_parse;
-+
-+	ret = lt8912_init_i2c(lt, client);
-+	if (ret)
-+		goto err_i2c;
-+
-+	i2c_set_clientdata(client, lt);
-+
-+	lt->bridge.funcs = &lt8912_bridge_funcs;
-+	lt->bridge.of_node = dev->of_node;
-+	lt->bridge.ops = (DRM_BRIDGE_OP_EDID |
-+			  DRM_BRIDGE_OP_DETECT |
-+			  DRM_BRIDGE_OP_HPD);
-+
-+	drm_bridge_add(&lt->bridge);
-+
-+	return 0;
-+
-+err_i2c:
-+	lt8912_put_dt(lt);
-+err_dt_parse:
-+	return ret;
-+}
-+
-+static int lt8912_remove(struct i2c_client *client)
-+{
-+	struct lt8912 *lt = i2c_get_clientdata(client);
-+
-+	lt8912_bridge_detach(&lt->bridge);
-+	drm_bridge_remove(&lt->bridge);
-+	lt8912_free_i2c(lt);
-+	lt8912_put_dt(lt);
-+	destroy_workqueue(lt->workq);
-+	return 0;
-+}
-+
-+static const struct of_device_id lt8912_dt_match[] = {
-+	{.compatible = "lontium,lt8912b"},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, lt8912_dt_match);
-+
-+static const struct i2c_device_id lt8912_id[] = {
-+	{"lt8912", 0},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(i2c, lt8912_id);
-+
-+static struct i2c_driver lt8912_i2c_driver = {
-+	.driver = {
-+		.name = "lt8912",
-+		.of_match_table = lt8912_dt_match,
-+		.owner = THIS_MODULE,
-+	},
-+	.probe = lt8912_probe,
-+	.remove = lt8912_remove,
-+	.id_table = lt8912_id,
-+};
-+module_i2c_driver(lt8912_i2c_driver);
-+
-+MODULE_AUTHOR("Adrien Grassein <adrien.grassein@gmail.com>");
-+MODULE_DESCRIPTION("lt8912 drm driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.25.1
+Hi Joe,
+
+A few minor things left that I've comment on inline. Very nearly
+ready to merge I think.  We have lots of time until next merge
+window anyway so it is good to take the opportunity to clean these
+little things up.
+
+Jonathan
+
+> ---
+> 
+> Changes in v4:
+> - Moved binding document to a separate patch and is now formed as a patch series
+> - Ensure vendor prefix is included in macros and that macros have appropriate naming
+> - Made use of BIT, GENMASK and FIELD_GET where appropriate for improved readability
+> - Corrected data channels terminology to more appropriate data register naming
+> - Removed tsl2591_als_readings and return data directly depending on the channel being read. See tsl2591_read_channel_data.
+> - Add more detailed comment on mutex definition
+> - Read als data as a block read instead of 4 separate byte reads
+> - Reserve *_compatible functions for checking compatibility, not for assigning the setting value
+> - Enforce setting corresponding upper/lower threshold to avoid issues in ordering when modifying thresholds
+> - Remove tsl2591_sysfs_attrs_ctrl and use info_mask to handle sysfs configuration where applicable
+> - Use .read_avail callback for *_available functions
+> - In .write_event_value, clean up period calculation handling. Removed some redundant code.
+> - Cleaned up some debug prints
+> - Cleaned up mutex handling for improved readability
+> - Ensured not to swallow return code in if statements in function calls
+> 
+> Reason for re-send;
+> - Maintainer email was outlook address, changed to gmail address as this
+>   is the email the patch is being sent from.
+> 
+>  drivers/iio/light/Kconfig   |   11 +
+>  drivers/iio/light/Makefile  |    1 +
+>  drivers/iio/light/tsl2591.c | 1217 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 1229 insertions(+)
+>  create mode 100644 drivers/iio/light/tsl2591.c
+> 
+> diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
+> index 33ad4dd0b5c7..07550f1a1783 100644
+> --- a/drivers/iio/light/Kconfig
+> +++ b/drivers/iio/light/Kconfig
+> @@ -501,6 +501,17 @@ config TSL2583
+>  	  Provides support for the TAOS tsl2580, tsl2581 and tsl2583 devices.
+>  	  Access ALS data via iio, sysfs.
+>  
+> +config TSL2591
+> +        tristate "TAOS TSL2591 ambient light sensor"
+> +        depends on I2C
+> +        help
+> +          Select Y here for support of the AMS/TAOS TSL2591 ambient light sensor,
+> +          featuring channels for combined visible + IR intensity and lux illuminance.
+> +          Access als data via iio and sysfs. Supports iio_events.
+> +
+> +          To compile this driver as a module, select M: the
+> +          module will be called tsl2591.
+> +
+>  config TSL2772
+>  	tristate "TAOS TSL/TMD2x71 and TSL/TMD2x72 Family of light and proximity sensors"
+>  	depends on I2C
+> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
+> index ea376deaca54..d10912faf964 100644
+> --- a/drivers/iio/light/Makefile
+> +++ b/drivers/iio/light/Makefile
+> @@ -48,6 +48,7 @@ obj-$(CONFIG_ST_UVIS25_SPI)	+= st_uvis25_spi.o
+>  obj-$(CONFIG_TCS3414)		+= tcs3414.o
+>  obj-$(CONFIG_TCS3472)		+= tcs3472.o
+>  obj-$(CONFIG_TSL2583)		+= tsl2583.o
+> +obj-$(CONFIG_TSL2591)		+= tsl2591.o
+>  obj-$(CONFIG_TSL2772)		+= tsl2772.o
+>  obj-$(CONFIG_TSL4531)		+= tsl4531.o
+>  obj-$(CONFIG_US5182D)		+= us5182d.o
+> diff --git a/drivers/iio/light/tsl2591.c b/drivers/iio/light/tsl2591.c
+> new file mode 100644
+> index 000000000000..1124e9da5106
+> --- /dev/null
+> +++ b/drivers/iio/light/tsl2591.c
+> @@ -0,0 +1,1217 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2020 Joe Sandom <joe.g.sandom@gmail.com>
+> + *
+> + * Datasheet available at: https://ams.com/tsl25911
+> + *
+> + * Device driver for the TAOS TSL2591. This is a very-high sensitivity
+> + * light-to-digital converter that transforms light intensity into a digital
+> + * signal.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/debugfs.h>
+> +#include <linux/delay.h>
+> +#include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#include <linux/iio/events.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +
+> +/* ALS integration time field value to als time*/
+> +#define TSL2591_FVAL_TO_ATIME(x) (((x) + 1) * 100)
+> +
+> +/* TSL2591 register set */
+> +#define TSL2591_ENABLE      0x00
+> +#define TSL2591_CONTROL     0x01
+> +#define TSL2591_AILTL       0x04
+> +#define TSL2591_AILTH       0x05
+> +#define TSL2591_AIHTL       0x06
+> +#define TSL2591_AIHTH       0x07
+> +#define TSL2591_NP_AILTL    0x08
+> +#define TSL2591_NP_AILTH    0x09
+> +#define TSL2591_NP_AIHTL    0x0A
+> +#define TSL2591_NP_AIHTH    0x0B
+> +#define TSL2591_PERSIST     0x0C
+> +#define TSL2591_PACKAGE_ID  0x11
+> +#define TSL2591_DEVICE_ID   0x12
+> +#define TSL2591_STATUS      0x13
+> +#define TSL2591_C0_DATAL    0x14
+> +#define TSL2591_C0_DATAH    0x15
+> +#define TSL2591_C1_DATAL    0x16
+> +#define TSL2591_C1_DATAH    0x17
+> +
+> +/* TSL2591 command register definitions */
+> +#define TSL2591_CMD_NOP             (BIT(5) | BIT(7))
+> +#define TSL2591_CMD_SF_INTSET       (BIT(2) | GENMASK(7, 5))
+> +#define TSL2591_CMD_SF_CALS_I       (BIT(0) | BIT(2) | GENMASK(7, 5))
+> +#define TSL2591_CMD_SF_CALS_NPI     (GENMASK(2, 0) | GENMASK(7, 5))
+> +#define TSL2591_CMD_SF_CNP_ALSI     (BIT(1) | BIT(3) | GENMASK(7, 5))
+> +
+> +/* TSL2591 enable register definitions */
+> +#define TSL2591_PWR_ON              BIT(0)
+> +#define TSL2591_PWR_OFF             0x00
+> +#define TSL2591_ENABLE_ALS          BIT(1)
+> +#define TSL2591_ENABLE_ALS_INT      BIT(4)
+> +#define TSL2591_ENABLE_SLEEP_INT    BIT(6)
+> +#define TSL2591_ENABLE_NP_INT       BIT(7)
+> +
+> +/* TSL2591 control register definitions */
+> +#define TSL2591_CTRL_ALS_INTEGRATION_100MS  0x00
+> +#define TSL2591_CTRL_ALS_INTEGRATION_200MS  BIT(0)
+> +#define TSL2591_CTRL_ALS_INTEGRATION_300MS  BIT(1)
+> +#define TSL2591_CTRL_ALS_INTEGRATION_400MS  GENMASK(1, 0)
+> +#define TSL2591_CTRL_ALS_INTEGRATION_500MS  BIT(2)
+> +#define TSL2591_CTRL_ALS_INTEGRATION_600MS  (BIT(0) | BIT(2))
+> +#define TSL2591_CTRL_ALS_LOW_GAIN           0x00
+> +#define TSL2591_CTRL_ALS_MED_GAIN           BIT(4)
+> +#define TSL2591_CTRL_ALS_HIGH_GAIN          BIT(5)
+> +#define TSL2591_CTRL_ALS_MAX_GAIN           GENMASK(5, 4)
+> +#define TSL2591_CTRL_SYS_RESET              BIT(7)
+> +
+> +/* TSL2591 persist register definitions */
+> +#define TSL2591_PRST_ALS_INT_CYCLE_0        0x00
+> +#define TSL2591_PRST_ALS_INT_CYCLE_ANY      BIT(0)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_2        BIT(1)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_3        GENMASK(1, 0)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_5        BIT(2)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_10       (BIT(0) | BIT(2))
+> +#define TSL2591_PRST_ALS_INT_CYCLE_15       GENMASK(2, 1)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_20       GENMASK(2, 0)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_25       BIT(3)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_30       (BIT(0) | BIT(3))
+> +#define TSL2591_PRST_ALS_INT_CYCLE_35       (BIT(1) | BIT(3))
+> +#define TSL2591_PRST_ALS_INT_CYCLE_40       (GENMASK(1, 0) | BIT(3))
+> +#define TSL2591_PRST_ALS_INT_CYCLE_45       GENMASK(3, 2)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_50       (BIT(0) | GENMASK(3, 2))
+> +#define TSL2591_PRST_ALS_INT_CYCLE_55       GENMASK(3, 1)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_60       GENMASK(3, 0)
+> +#define TSL2591_PRST_ALS_INT_CYCLE_MAX      TSL2591_PRST_ALS_INT_CYCLE_60
+> +
+> +/* TSL2591 persist interrupt cycle literals */
+> +#define TSL2591_PRST_ALS_INT_CYCLE_1_LIT      1
+
+Why?  These just map a define with the number in it to the number.
+Hence not magic numbers, just put the values inline instead of the defines.
+
+> +#define TSL2591_PRST_ALS_INT_CYCLE_2_LIT      2
+> +#define TSL2591_PRST_ALS_INT_CYCLE_3_LIT      3
+> +#define TSL2591_PRST_ALS_INT_CYCLE_5_LIT      5
+> +#define TSL2591_PRST_ALS_INT_CYCLE_10_LIT     10
+> +#define TSL2591_PRST_ALS_INT_CYCLE_15_LIT     15
+> +#define TSL2591_PRST_ALS_INT_CYCLE_20_LIT     20
+> +#define TSL2591_PRST_ALS_INT_CYCLE_25_LIT     25
+> +#define TSL2591_PRST_ALS_INT_CYCLE_30_LIT     30
+> +#define TSL2591_PRST_ALS_INT_CYCLE_35_LIT     35
+> +#define TSL2591_PRST_ALS_INT_CYCLE_40_LIT     40
+> +#define TSL2591_PRST_ALS_INT_CYCLE_45_LIT     45
+> +#define TSL2591_PRST_ALS_INT_CYCLE_50_LIT     50
+> +#define TSL2591_PRST_ALS_INT_CYCLE_55_LIT     55
+> +#define TSL2591_PRST_ALS_INT_CYCLE_60_LIT     60
+> +
+> +/* TSL2591 PID register mask */
+> +#define TSL2591_PACKAGE_ID_MASK    GENMASK(5, 4)
+> +
+> +/* TSL2591 ID register mask */
+> +#define TSL2591_DEVICE_ID_MASK     GENMASK(7, 0)
+> +
+> +/* TSL2591 status register masks */
+> +#define TSL2591_STS_ALS_VALID_MASK   BIT(0)
+> +#define TSL2591_STS_ALS_INT_MASK     BIT(4)
+> +#define TSL2591_STS_NPERS_INT_MASK   BIT(5)
+> +#define TSL2591_STS_VAL_HIGH_MASK    BIT(0)
+> +
+> +/* TSL2591 constant values */
+> +#define TSL2591_PACKAGE_ID_VAL  0x00
+> +#define TSL2591_DEVICE_ID_VAL   0x50
+> +
+> +/* Power off suspend delay time MS */
+> +#define TSL2591_POWER_OFF_DELAY_MS   2000
+> +
+> +/* TSL2591 default values */
+> +#define TSL2591_DEFAULT_ALS_INT_TIME          TSL2591_CTRL_ALS_INTEGRATION_300MS
+> +#define TSL2591_DEFAULT_ALS_GAIN              TSL2591_CTRL_ALS_MED_GAIN
+> +#define TSL2591_DEFAULT_ALS_PERSIST           TSL2591_PRST_ALS_INT_CYCLE_ANY
+> +#define TSL2591_DEFAULT_ALS_LOWER_THRESH      100
+> +#define TSL2591_DEFAULT_ALS_UPPER_THRESH      1500
+> +
+> +/* TSL2591 number of data registers */
+> +#define TSL2591_NUM_DATA_REGISTERS     4
+> +
+> +/* TSL2591 number of valid status reads on ADC complete */
+> +#define TSL2591_ALS_STS_VALID_COUNT    10
+> +
+> +/* TSL2591 maximum values */
+> +#define TSL2591_MAX_ALS_INT_TIME_MS    600
+> +#define TSL2591_ALS_MAX_VALUE	       65535
+> +
+> +/*
+> + * LUX calculations;
+> + * AGAIN values from Adafruits TSL2591 Arduino library
+> + * https://github.com/adafruit/Adafruit_TSL2591_Library
+> + */
+> +#define TSL2591_CTRL_ALS_LOW_GAIN_MULTIPLIER   1
+> +#define TSL2591_CTRL_ALS_MED_GAIN_MULTIPLIER   25
+> +#define TSL2591_CTRL_ALS_HIGH_GAIN_MULTIPLIER  428
+> +#define TSL2591_CTRL_ALS_MAX_GAIN_MULTIPLIER   9876
+> +#define TSL2591_LUX_COEFFICIENT                408
+> +
+> +struct tsl2591_als_settings {
+> +	u8 als_int_time;
+> +	u8 als_gain;
+> +	u8 als_persist;
+> +	u16 als_lower_thresh;
+> +	u16 als_upper_thresh;
+> +};
+> +
+> +struct tsl2591_chip {
+> +	/*
+> +	 * Keep als_settings in sync with hardware state
+> +	 * and ensure multiple readers are serialized.
+> +	 */
+> +	struct mutex als_mutex;
+> +	struct i2c_client *client;
+> +	struct tsl2591_als_settings als_settings;
+> +
+> +	bool events_enabled;
+> +};
+> +
+> +/*
+> + * Period table is ALS persist cycle x integration time setting
+> + * Integration times: 100ms, 200ms, 300ms, 400ms, 500ms, 600ms
+> + * ALS cycles: 1, 2, 3, 5, 10, 20, 25, 30, 35, 40, 45, 50, 55, 60
+> + */
+> +static const char * const tsl2591_als_period_list[] = {
+> +	"0.1 0.2 0.3 0.5 1.0 2.0 2.5 3.0 3.5 4.0 4.5 5.0 5.5 6.0",
+> +	"0.2 0.4 0.6 1.0 2.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0",
+> +	"0.3 0.6 0.9 1.5 3.0 6.0 7.5 9.0 10.5 12.0 13.5 15.0 16.5 18.0",
+> +	"0.4 0.8 1.2 2.0 4.0 8.0 10.0 12.0 14.0 16.0 18.0 20.0 22.0 24.0",
+> +	"0.5 1.0 1.5 2.5 5.0 10.0 12.5 15.0 17.5 20.0 22.5 25.0 27.5 30.0",
+> +	"0.6 1.2 1.8 3.0 6.0 12.0 15.0 18.0 21.0 24.0 27.0 30.0 33.0 36.0",
+> +};
+> +
+> +static const int tsl2591_int_time_available[] = {
+> +	100, 200, 300, 400, 500, 600,
+> +};
+> +
+> +static const int tsl2591_calibscale_available[] = {
+> +	1, 25, 428, 9876,
+> +};
+> +
+> +static int tsl2591_gain_to_multiplier(const u8 als_gain)
+> +{
+> +	switch (als_gain) {
+> +	case TSL2591_CTRL_ALS_LOW_GAIN:
+> +		return TSL2591_CTRL_ALS_LOW_GAIN_MULTIPLIER;
+> +	case TSL2591_CTRL_ALS_MED_GAIN:
+> +		return TSL2591_CTRL_ALS_MED_GAIN_MULTIPLIER;
+> +	case TSL2591_CTRL_ALS_HIGH_GAIN:
+> +		return TSL2591_CTRL_ALS_HIGH_GAIN_MULTIPLIER;
+> +	case TSL2591_CTRL_ALS_MAX_GAIN:
+> +		return TSL2591_CTRL_ALS_MAX_GAIN_MULTIPLIER;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static u8 tsl2591_multiplier_to_gain(const u32 multiplier)
+> +{
+> +	switch (multiplier) {
+> +	case TSL2591_CTRL_ALS_LOW_GAIN_MULTIPLIER:
+> +		return TSL2591_CTRL_ALS_LOW_GAIN;
+> +	case TSL2591_CTRL_ALS_MED_GAIN_MULTIPLIER:
+> +		return TSL2591_CTRL_ALS_MED_GAIN;
+> +	case TSL2591_CTRL_ALS_HIGH_GAIN_MULTIPLIER:
+> +		return TSL2591_CTRL_ALS_HIGH_GAIN;
+> +	case TSL2591_CTRL_ALS_MAX_GAIN_MULTIPLIER:
+> +		return TSL2591_CTRL_ALS_MAX_GAIN;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int tsl2591_persist_cycle_to_lit(const u8 als_persist)
+> +{
+> +	switch (als_persist) {
+> +	case TSL2591_PRST_ALS_INT_CYCLE_ANY:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_1_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_2:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_2_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_3:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_3_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_5:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_5_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_10:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_10_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_15:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_15_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_20:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_20_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_25:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_25_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_30:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_30_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_35:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_35_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_40:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_40_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_45:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_45_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_50:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_50_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_55:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_55_LIT;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_60:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_60_LIT;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int tsl2591_persist_lit_to_cycle(const u8 als_persist)
+> +{
+> +	switch (als_persist) {
+> +	case TSL2591_PRST_ALS_INT_CYCLE_1_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_ANY;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_2_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_2;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_3_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_3;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_5_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_5;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_10_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_10;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_15_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_15;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_20_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_20;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_25_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_25;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_30_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_30;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_35_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_35;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_40_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_40;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_45_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_45;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_50_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_50;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_55_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_55;
+> +	case TSL2591_PRST_ALS_INT_CYCLE_60_LIT:
+> +		return TSL2591_PRST_ALS_INT_CYCLE_60;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int tsl2591_compatible_int_time(struct tsl2591_chip *chip,
+> +				       const u32 als_integration_time)
+> +{
+> +	switch (als_integration_time) {
+> +	case TSL2591_CTRL_ALS_INTEGRATION_100MS:
+> +	case TSL2591_CTRL_ALS_INTEGRATION_200MS:
+> +	case TSL2591_CTRL_ALS_INTEGRATION_300MS:
+> +	case TSL2591_CTRL_ALS_INTEGRATION_400MS:
+> +	case TSL2591_CTRL_ALS_INTEGRATION_500MS:
+> +	case TSL2591_CTRL_ALS_INTEGRATION_600MS:
+> +		return 0;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int tsl2591_als_time_to_fval(const u32 als_integration_time)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(tsl2591_int_time_available); ++i) {
+> +		if (als_integration_time == tsl2591_int_time_available[i])
+> +			return ((als_integration_time / 100) - 1);
+> +		if (i == (ARRAY_SIZE(tsl2591_int_time_available) - 1))
+> +			break;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int tsl2591_compatible_gain(struct tsl2591_chip *chip, const u8 als_gain)
+> +{
+> +	switch (als_gain) {
+> +	case TSL2591_CTRL_ALS_LOW_GAIN:
+> +	case TSL2591_CTRL_ALS_MED_GAIN:
+> +	case TSL2591_CTRL_ALS_HIGH_GAIN:
+> +	case TSL2591_CTRL_ALS_MAX_GAIN:
+> +		return 0;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int tsl2591_compatible_als_persist_cycle(struct tsl2591_chip *chip,
+> +						const u32 als_persist)
+> +{
+> +	switch (als_persist) {
+> +	case TSL2591_PRST_ALS_INT_CYCLE_ANY:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_2:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_3:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_5:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_10:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_15:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_20:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_25:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_30:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_35:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_40:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_45:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_50:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_55:
+> +	case TSL2591_PRST_ALS_INT_CYCLE_60:
+> +		return 0;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int tsl2591_wait_adc_complete(struct tsl2591_chip *chip)
+> +{
+> +	struct i2c_client *client = chip->client;
+> +	struct tsl2591_als_settings settings = chip->als_settings;
+> +	int delay = TSL2591_FVAL_TO_ATIME(settings.als_int_time);
+> +	int ret;
+> +	int i;
+> +
+> +	if (!delay)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Sleep for ALS integration time to allow enough time
+> +	 * for an ADC read cycle to complete. Check status after
+> +	 * delay for ALS valid
+> +	 */
+> +	msleep(delay);
+> +
+> +	/* Check for status ALS valid flag for up to 100ms */
+> +	for (i = 0; i < TSL2591_ALS_STS_VALID_COUNT; ++i) {
+> +		ret = i2c_smbus_read_byte_data(client,
+> +					       TSL2591_CMD_NOP | TSL2591_STATUS);
+> +		if (ret < 0) {
+> +			dev_err(&client->dev, "Failed to read register\n");
+> +			return -EINVAL;
+> +		}
+> +		ret = FIELD_GET(TSL2591_STS_ALS_VALID_MASK, ret);
+> +		if (ret == TSL2591_STS_VAL_HIGH_MASK)
+> +			break;
+> +
+> +		if (i == (TSL2591_ALS_STS_VALID_COUNT - 1))
+> +			return -ENODATA;
+> +
+> +		usleep_range(9000, 10000);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * tsl2591_read_channel_data - Reads raw channel data and calculates lux
+> + *
+> + * Formula for lux calculation;
+> + * Derived from Adafruit's TSL2591 library
+> + * Link: https://github.com/adafruit/Adafruit_TSL2591_Library
+> + * Counts Per Lux (CPL) = (ATIME_ms * AGAIN) / LUX DF
+> + * lux = ((C0DATA - C1DATA) * (1 - (C1DATA / C0DATA))) / CPL
+> + *
+> + * Scale values to get more representative value of lux i.e.
+> + * lux = ((C0DATA - C1DATA) * (1000 - ((C1DATA * 1000) / C0DATA))) / CPL
+> + *
+> + * Channel 0 = IR + Visible
+> + * Channel 1 = IR only
+> + *
+
+Blank line here doesn't add anything, so good to drop it.
+
+> + */
+> +static int tsl2591_read_channel_data(struct iio_dev *indio_dev,
+> +				     struct iio_chan_spec const *chan,
+> +				     int *val, int *val2)
+> +{
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	struct tsl2591_als_settings *settings = &chip->als_settings;
+> +	struct i2c_client *client = chip->client;
+> +	int ret;
+> +	u8 als_data[TSL2591_NUM_DATA_REGISTERS];
+> +
+> +	int counts_per_lux;
+> +	int lux;
+> +	int gain_multi;
+> +	int int_time_fval;
+> +
+> +	u16 als_ch0;
+> +	u16 als_ch1;
+> +
+> +	ret = tsl2591_wait_adc_complete(chip);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "No data available. Err: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = i2c_smbus_read_i2c_block_data(client,
+> +					    TSL2591_CMD_NOP | TSL2591_C0_DATAL,
+> +					    sizeof(als_data), als_data);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to read data bytes");
+> +			return ret;
+For comment below if (ret), that won't work on these calls because IIRC they
+return the number of bytes transferred.  However, you can move the check locally
+that this is the right length and ensure 0 is returned for the good path.
+> +	}
+> +
+> +	als_ch0 = le16_to_cpup((const __le16 *)&als_data[0]);
+> +	als_ch1 = le16_to_cpup((const __le16 *)&als_data[2]);
+> +
+> +	switch (chan->type) {
+> +	case IIO_INTENSITY:
+> +		if (chan->channel2 == IIO_MOD_LIGHT_BOTH)
+> +			*val = als_ch0;
+> +		else if (chan->channel2 == IIO_MOD_LIGHT_IR)
+> +			*val = als_ch1;
+> +		else
+> +			return -EINVAL;
+> +		break;
+> +	case IIO_LIGHT:
+> +		gain_multi = tsl2591_gain_to_multiplier(settings->als_gain);
+> +		if (gain_multi < 0) {
+> +			dev_err(&client->dev, "Invalid multiplier");
+> +			return gain_multi;
+> +		}
+> +
+> +		int_time_fval = TSL2591_FVAL_TO_ATIME(settings->als_int_time);
+> +		/* Calculate counts per lux value */
+> +		counts_per_lux =
+> +			(int_time_fval * gain_multi) / TSL2591_LUX_COEFFICIENT;
+> +
+> +		dev_dbg(&client->dev, "Counts Per Lux: %d\n", counts_per_lux);
+> +
+> +		/* Calculate lux value */
+> +		lux = ((als_ch0 - als_ch1) *
+> +		       (1000 - ((als_ch1 * 1000) / als_ch0))) / counts_per_lux;
+> +
+> +		dev_dbg(&client->dev, "Raw lux calculation: %d\n", lux);
+> +
+> +		/* Divide by 1000 to get real lux value before scaling */
+> +		*val = lux / 1000;
+> +
+> +		/* Get the decimal part of lux reading */
+> +		*val2 = ((lux - (*val * 1000)) * 1000);
+> +
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return ret;
+
+See above for why: I'd return 0 here
+
+> +}
+> +
+> +static int tsl2591_set_als_gain_int_time(struct tsl2591_chip *chip)
+> +{
+> +	struct i2c_client *client = chip->client;
+> +	struct tsl2591_als_settings als_settings = chip->als_settings;
+> +	int ret;
+> +
+> +	ret = i2c_smbus_write_byte_data(client,
+> +					TSL2591_CMD_NOP | TSL2591_CONTROL,
+> +					als_settings.als_int_time | als_settings.als_gain);
+> +	if (ret < 0)
+> +		dev_err(&client->dev, "Failed to set als gain & int time\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int tsl2591_set_als_thresholds(struct tsl2591_chip *chip)
+> +{
+> +	struct i2c_client *client = chip->client;
+> +	struct tsl2591_als_settings als_settings = chip->als_settings;
+> +	int ret;
+> +
+> +	u8 als_lower_l;
+> +	u8 als_lower_h;
+> +	u8 als_upper_l;
+> +	u8 als_upper_h;
+> +
+> +	if (als_settings.als_lower_thresh >= als_settings.als_upper_thresh)
+> +		return -EINVAL;
+> +
+> +	if (als_settings.als_upper_thresh > TSL2591_ALS_MAX_VALUE)
+> +		return -EINVAL;
+> +
+> +	if (als_settings.als_upper_thresh < als_settings.als_lower_thresh)
+> +		return -EINVAL;
+> +
+> +	als_lower_l = (als_settings.als_lower_thresh & 0x00FF);
+
+Given you are writing these into a byte field, probably better to express those
+masks as 0xFF.
+
+> +	als_lower_h = ((als_settings.als_lower_thresh >> 8) & 0x00FF);
+> +	als_upper_l = (als_settings.als_upper_thresh & 0x00FF);
+> +	als_upper_h = ((als_settings.als_upper_thresh >> 8) & 0x00FF);
+> +
+> +	ret = i2c_smbus_write_byte_data(client,
+> +					TSL2591_CMD_NOP | TSL2591_AILTL,
+> +					als_lower_l);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to set als lower threshold\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = i2c_smbus_write_byte_data(client,
+> +					TSL2591_CMD_NOP | TSL2591_AILTH,
+> +					als_lower_h);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to set als lower threshold\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = i2c_smbus_write_byte_data(client,
+> +					TSL2591_CMD_NOP | TSL2591_AIHTL,
+> +					als_upper_l);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to set als upper threshold\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = i2c_smbus_write_byte_data(client,
+> +					TSL2591_CMD_NOP | TSL2591_AIHTH,
+> +					als_upper_h);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to set als upper threshold\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int tsl2591_set_als_persist_cycle(struct tsl2591_chip *chip)
+> +{
+> +	struct i2c_client *client = chip->client;
+> +	struct tsl2591_als_settings als_settings = chip->als_settings;
+> +	int ret;
+> +
+> +	ret = i2c_smbus_write_byte_data(client,
+> +					TSL2591_CMD_NOP | TSL2591_PERSIST,
+> +					als_settings.als_persist);
+> +	if (ret < 0)
+> +		dev_err(&client->dev, "Failed to set als persist cycle\n");
+
+All of these can only return ret < 0 || ret == 0 so if you instead just check
+if (ret) 
+
+then that logic is clear to any callers.  The advantage is some of the control
+flow below becomes simpler because you can rely on ret never being greater than
+0 (which could be a non error value)
+
+> +
+> +	return ret;
+> +}
+> +
+> +static int tsl2591_set_power_state(struct tsl2591_chip *chip, u8 state)
+> +{
+> +	struct i2c_client *client = chip->client;
+> +	int ret;
+> +
+> +	ret = i2c_smbus_write_byte_data(client,
+> +					TSL2591_CMD_NOP | TSL2591_ENABLE,
+> +					state);
+> +	if (ret < 0)
+> +		dev_err(&client->dev,
+> +			"Failed to set the power state to %#04x\n", state);
+> +
+> +	return ret;
+> +}
+> +
+> +static ssize_t tsl2591_in_illuminance_period_available_show(struct device *dev,
+> +							    struct device_attribute *attr,
+> +							    char *buf)
+> +{
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +
+> +	return snprintf(buf, PAGE_SIZE, "%s\n",
+> +		       tsl2591_als_period_list[chip->als_settings.als_int_time]);
+> +}
+> +
+> +static IIO_DEVICE_ATTR_RO(tsl2591_in_illuminance_period_available, 0);
+> +
+> +static struct attribute *tsl2591_event_attrs_ctrl[] = {
+> +	&iio_dev_attr_tsl2591_in_illuminance_period_available.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group tsl2591_event_attribute_group = {
+> +	.attrs = tsl2591_event_attrs_ctrl,
+> +};
+> +
+> +static const struct iio_event_spec tsl2591_events[] = {
+> +	{
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_RISING,
+> +		.mask_separate = BIT(IIO_EV_INFO_VALUE),
+> +	}, {
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_FALLING,
+> +		.mask_separate = BIT(IIO_EV_INFO_VALUE),
+> +	}, {
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_EITHER,
+> +		.mask_separate = BIT(IIO_EV_INFO_PERIOD) |
+> +				BIT(IIO_EV_INFO_ENABLE),
+> +	},
+> +};
+> +
+> +static const struct iio_chan_spec tsl2591_channels[] = {
+> +	{
+> +		.type = IIO_INTENSITY,
+> +		.modified = 1,
+> +		.channel2 = IIO_MOD_LIGHT_IR,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
+> +						     BIT(IIO_CHAN_INFO_CALIBSCALE),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
+> +					   BIT(IIO_CHAN_INFO_CALIBSCALE)
+> +	},
+> +	{
+> +		.type = IIO_INTENSITY,
+> +		.modified = 1,
+> +		.channel2 = IIO_MOD_LIGHT_BOTH,
+> +		.event_spec = tsl2591_events,
+> +		.num_event_specs = ARRAY_SIZE(tsl2591_events),
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
+> +						     BIT(IIO_CHAN_INFO_CALIBSCALE),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
+> +					   BIT(IIO_CHAN_INFO_CALIBSCALE)
+> +	},
+> +	{
+> +		.type = IIO_LIGHT,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
+> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
+> +						     BIT(IIO_CHAN_INFO_CALIBSCALE),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
+> +					   BIT(IIO_CHAN_INFO_CALIBSCALE)
+> +	},
+> +};
+> +
+> +static int tsl2591_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val, int *val2, long mask)
+> +{
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	struct i2c_client *client = chip->client;
+> +	int ret;
+> +
+> +	pm_runtime_get_sync(&client->dev);
+> +
+> +	mutex_lock(&chip->als_mutex);
+> +
+> +	ret = -EINVAL;
+
+As below, better to move this into the places where the error occurs
+even if you need to repeat it a few times.
+
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		if (chan->type != IIO_INTENSITY)
+> +			break;
+> +
+> +		ret = tsl2591_read_channel_data(indio_dev, chan, val, val2);
+> +		if (ret < 0)
+> +			break;
+> +
+> +		ret = IIO_VAL_INT;
+> +		break;
+> +	case IIO_CHAN_INFO_PROCESSED:
+> +		if (chan->type != IIO_LIGHT)
+> +			break;
+> +
+> +		ret = tsl2591_read_channel_data(indio_dev, chan, val, val2);
+> +		if (ret < 0)
+> +			break;
+> +
+> +		ret = IIO_VAL_INT_PLUS_MICRO;
+> +		break;
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		if (chan->type != IIO_INTENSITY)
+> +			break;
+> +
+> +		*val = TSL2591_FVAL_TO_ATIME(chip->als_settings.als_int_time);
+> +		ret = IIO_VAL_INT;
+> +		break;
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		if (chan->type != IIO_INTENSITY)
+> +			break;
+> +
+> +		*val = tsl2591_gain_to_multiplier(chip->als_settings.als_gain);
+> +		ret = IIO_VAL_INT;
+> +		break;
+> +	}
+> +
+> +	mutex_unlock(&chip->als_mutex);
+> +
+> +	pm_runtime_mark_last_busy(&client->dev);
+> +	pm_runtime_put_autosuspend(&client->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int tsl2591_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     int val, int val2, long mask)
+> +{
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +
+> +	u8 gain;
+> +	u32 int_time;
+> +	int ret;
+> +
+> +	mutex_lock(&chip->als_mutex);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		int_time = tsl2591_als_time_to_fval(val);
+> +		if (int_time < 0) {
+> +			ret = int_time;
+> +			goto err;
+> +		}
+> +		ret = tsl2591_compatible_int_time(chip, int_time);
+> +		if (ret < 0)
+> +			goto err;
+> +
+> +		chip->als_settings.als_int_time = int_time;
+> +		break;
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		gain = tsl2591_multiplier_to_gain(val);
+> +		if (gain < 0) {
+> +			ret = gain;
+> +			goto err;
+> +		}
+> +		ret = tsl2591_compatible_gain(chip, gain);
+> +		if (ret < 0)
+> +			goto err;
+> +
+> +		chip->als_settings.als_gain = gain;
+> +		break;
+> +	default:
+> +		ret = -EINVAL;
+> +		goto err;
+> +	}
+> +
+> +	ret = tsl2591_set_als_gain_int_time(chip);
+> +	if (ret < 0)
+> +		goto err;
+> +
+> +	mutex_unlock(&chip->als_mutex);
+> +
+> +	return 0;
+> +err:
+
+Same as below.
+
+> +	mutex_unlock(&chip->als_mutex);
+> +	return ret;
+> +}
+> +
+> +static int tsl2591_read_available(struct iio_dev *indio_dev,
+> +				  struct iio_chan_spec const *chan,
+> +				  const int **vals, int *type, int *length,
+> +				  long mask)
+> +{
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		*length = ARRAY_SIZE(tsl2591_int_time_available);
+> +		*vals = tsl2591_int_time_available;
+> +		*type = IIO_VAL_INT;
+> +		return IIO_AVAIL_LIST;
+> +
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		*length = ARRAY_SIZE(tsl2591_calibscale_available);
+> +		*vals = tsl2591_calibscale_available;
+> +		*type = IIO_VAL_INT;
+> +		return IIO_AVAIL_LIST;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int tsl2591_read_event_value(struct iio_dev *indio_dev,
+> +				    const struct iio_chan_spec *chan,
+> +				    enum iio_event_type type,
+> +				    enum iio_event_direction dir,
+> +				    enum iio_event_info info, int *val,
+> +				    int *val2)
+> +{
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	struct i2c_client *client = chip->client;
+> +	int als_persist;
+> +	int period;
+> +	int ret;
+> +	int int_time;
+> +
+> +	mutex_lock(&chip->als_mutex);
+> +
+> +	switch (info) {
+> +	case IIO_EV_INFO_VALUE:
+> +		switch (dir) {
+> +		case IIO_EV_DIR_RISING:
+> +			*val = chip->als_settings.als_upper_thresh;
+> +			break;
+> +		case IIO_EV_DIR_FALLING:
+> +			*val = chip->als_settings.als_lower_thresh;
+> +			break;
+> +		default:
+> +			ret = -EINVAL;
+> +			goto err;
+> +		}
+> +		ret = IIO_VAL_INT;
+> +		break;
+> +	case IIO_EV_INFO_PERIOD:
+> +		ret = i2c_smbus_read_byte_data(client,
+> +					       TSL2591_CMD_NOP | TSL2591_PERSIST);
+> +		if (ret <= 0 || ret > TSL2591_PRST_ALS_INT_CYCLE_MAX)
+> +			goto err;
+> +
+> +		als_persist = tsl2591_persist_cycle_to_lit(ret);
+> +		int_time = TSL2591_FVAL_TO_ATIME(chip->als_settings.als_int_time);
+> +		period = als_persist * (int_time * MSEC_PER_SEC);
+> +
+> +		*val = period / USEC_PER_SEC;
+> +		*val2 = period % USEC_PER_SEC;
+> +
+> +		ret = IIO_VAL_INT_PLUS_MICRO;
+> +		break;
+> +	default:
+> +		ret = -EINVAL;
+> +		goto err;
+> +	}
+> +
+> +	mutex_unlock(&chip->als_mutex);
+> +
+> +	return ret;
+> +
+> +err:
+> +	mutex_unlock(&chip->als_mutex);
+
+As below, combine this and the good path by moving the label
+to before the unlock above.
+
+> +	return ret;
+> +}
+> +
+> +static int tsl2591_write_event_value(struct iio_dev *indio_dev,
+> +				     const struct iio_chan_spec *chan,
+> +				     enum iio_event_type type,
+> +				     enum iio_event_direction dir,
+> +				     enum iio_event_info info, int val,
+> +				     int val2)
+> +{
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	int period, int_time, als_persist;
+> +	int ret;
+> +
+> +	if (val < 0 || val2 < 0)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&chip->als_mutex);
+> +
+> +	ret = -EINVAL;
+
+Better to make this flow clearer by moving that to the default: element of
+the switch.  Obviously you'll have to repeat it a few times, but at least
+a reviewer doesn't need to look all the way up here to see it was set to
+the right thing.
+
+
+> +	switch (info) {
+> +	case IIO_EV_INFO_VALUE:
+> +		if (val > TSL2591_ALS_MAX_VALUE)
+> +			return -EINVAL;
+
+Lock is still held so you can't return directly here.
+
+> +
+> +		/*
+> +		 * Lower threshold should not be greater than upper. If this
+> +		 * is the case, then assert upper threshold to new lower
+> +		 * threshold + 1 to avoid ordering issues when setting
+> +		 * thresholds.
+> +		 */
+> +		if (dir == IIO_EV_DIR_FALLING)
+> +			if (val > chip->als_settings.als_upper_thresh)
+> +				chip->als_settings.als_upper_thresh = val + 1;
+> +
+> +		/*
+> +		 * Upper threshold should not be less than lower. If this
+> +		 * is the case, then assert lower threshold to new upper
+> +		 * threshold - 1 to avoid ordering issues when setting
+> +		 * thresholds.
+> +		 */
+> +		if (dir == IIO_EV_DIR_RISING)
+> +			if (val < chip->als_settings.als_lower_thresh)
+> +				chip->als_settings.als_lower_thresh = val - 1;
+> +
+> +		switch (dir) {
+> +		case IIO_EV_DIR_RISING:
+> +			chip->als_settings.als_upper_thresh = val;
+> +			ret = tsl2591_set_als_thresholds(chip);
+> +			if (ret < 0)
+> +				goto err;
+> +			break;
+> +		case IIO_EV_DIR_FALLING:
+> +			chip->als_settings.als_lower_thresh = val;
+> +			ret = tsl2591_set_als_thresholds(chip);
+> +			if (ret < 0)
+> +				goto err;
+> +			break;
+> +		default:
+> +			goto err;
+> +		}
+> +		break;
+> +	case IIO_EV_INFO_PERIOD:
+> +		int_time = TSL2591_FVAL_TO_ATIME(chip->als_settings.als_int_time);
+> +
+> +		period = ((val * MSEC_PER_SEC) +
+> +			 (val2 / MSEC_PER_SEC)) / int_time;
+> +
+> +		als_persist = tsl2591_persist_lit_to_cycle(period);
+> +		if (als_persist < 0)
+> +			goto err;
+> +
+> +		ret = tsl2591_compatible_als_persist_cycle(chip, als_persist);
+> +		if (ret < 0)
+> +			goto err;
+> +		chip->als_settings.als_persist = als_persist;
+> +		ret = tsl2591_set_als_persist_cycle(chip);
+> +		if (ret < 0)
+> +			goto err;
+> +		break;
+> +	default:
+> +		goto err;
+> +	}
+> +
+> +	mutex_unlock(&chip->als_mutex);
+> +
+> +	return 0;
+> +err:
+> +	mutex_unlock(&chip->als_mutex);
+> +	return ret;
+
+Normal kernel idiom for this would be to combine the two exit paths.
+That is move there err label to just after the switch and then return ret
+on all occasions.  It will be 0 anyway I think if no errors have occurred.
+
+> +}
+> +
+> +static int tsl2591_read_event_config(struct iio_dev *indio_dev,
+> +				     const struct iio_chan_spec *chan,
+> +				     enum iio_event_type type,
+> +				     enum iio_event_direction dir)
+> +{
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +
+> +	return chip->events_enabled;
+> +}
+> +
+> +static int tsl2591_write_event_config(struct iio_dev *indio_dev,
+> +				      const struct iio_chan_spec *chan,
+> +				      enum iio_event_type type,
+> +				      enum iio_event_direction dir,
+> +				      int state)
+> +{
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	struct i2c_client *client = chip->client;
+> +
+> +	if (state && !chip->events_enabled) {
+> +		chip->events_enabled = true;
+> +		pm_runtime_get_sync(&client->dev);
+> +	} else if (!state && chip->events_enabled) {
+> +		chip->events_enabled = false;
+> +		pm_runtime_mark_last_busy(&client->dev);
+> +		pm_runtime_put_autosuspend(&client->dev);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct iio_info tsl2591_info = {
+> +	.event_attrs = &tsl2591_event_attribute_group,
+> +	.read_raw = tsl2591_read_raw,
+> +	.write_raw = tsl2591_write_raw,
+> +	.read_avail = tsl2591_read_available,
+> +	.read_event_value = tsl2591_read_event_value,
+> +	.write_event_value = tsl2591_write_event_value,
+> +	.read_event_config = tsl2591_read_event_config,
+> +	.write_event_config = tsl2591_write_event_config,
+> +};
+> +
+> +static int __maybe_unused tsl2591_suspend(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	mutex_lock(&chip->als_mutex);
+> +	ret = tsl2591_set_power_state(chip, TSL2591_PWR_OFF);
+> +	mutex_unlock(&chip->als_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static int __maybe_unused tsl2591_resume(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	int ret;
+> +	int power_state;
+> +
+> +	if (chip->events_enabled)
+> +		power_state = TSL2591_PWR_ON |
+> +			      TSL2591_ENABLE_ALS_INT |
+> +			      TSL2591_ENABLE_ALS;
+> +	else
+> +		power_state = TSL2591_PWR_ON | TSL2591_ENABLE_ALS;
+> +
+> +	mutex_lock(&chip->als_mutex);
+> +	ret = tsl2591_set_power_state(chip, power_state);
+> +	mutex_unlock(&chip->als_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct dev_pm_ops tsl2591_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> +				pm_runtime_force_resume)
+> +	SET_RUNTIME_PM_OPS(tsl2591_suspend, tsl2591_resume, NULL)
+> +};
+> +
+> +static irqreturn_t tsl2591_event_handler(int irq, void *private)
+> +{
+> +	struct iio_dev *dev_info = private;
+> +	struct tsl2591_chip *chip = iio_priv(dev_info);
+> +	struct i2c_client *client = chip->client;
+> +	int ret;
+> +
+> +	if (!chip->events_enabled)
+> +		return IRQ_HANDLED;
+> +
+> +	iio_push_event(dev_info,
+> +		       IIO_UNMOD_EVENT_CODE(IIO_LIGHT, 0,
+> +					    IIO_EV_TYPE_THRESH,
+> +					    IIO_EV_DIR_EITHER),
+> +					    iio_get_time_ns(dev_info));
+> +
+> +	/* Clear ALS irq */
+> +	ret = i2c_smbus_write_byte(client, TSL2591_CMD_SF_CALS_NPI);
+> +	if (ret < 0)
+> +		dev_err(&client->dev, "Failed to clear als irq\n");
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int tsl2591_load_defaults(struct tsl2591_chip *chip)
+> +{
+> +	int ret;
+> +
+> +	chip->als_settings.als_int_time = TSL2591_DEFAULT_ALS_INT_TIME;
+> +	chip->als_settings.als_gain = TSL2591_DEFAULT_ALS_GAIN;
+> +	chip->als_settings.als_persist = TSL2591_DEFAULT_ALS_PERSIST;
+> +	chip->als_settings.als_lower_thresh = TSL2591_DEFAULT_ALS_LOWER_THRESH;
+> +	chip->als_settings.als_upper_thresh = TSL2591_DEFAULT_ALS_UPPER_THRESH;
+> +
+> +	ret = tsl2591_set_als_gain_int_time(chip);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = tsl2591_set_als_persist_cycle(chip);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = tsl2591_set_als_thresholds(chip);
+Trivial point, but these functions never return positive values, so you could
+do the cleaner
+
+return tsl2591_set_als_thresholds(chip);
+
+Doesn't really matter though if you prefer this form.
+
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static void tsl2591_chip_off(void *data)
+> +{
+> +	struct iio_dev *indio_dev = data;
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	struct i2c_client *client = chip->client;
+> +
+> +	pm_runtime_disable(&client->dev);
+> +	pm_runtime_set_suspended(&client->dev);
+> +	pm_runtime_put_noidle(&client->dev);
+> +
+> +	tsl2591_set_power_state(chip, TSL2591_PWR_OFF);
+> +}
+> +
+> +static int tsl2591_probe(struct i2c_client *client)
+> +{
+> +	struct tsl2591_chip *chip;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(client->adapter,
+> +				     I2C_FUNC_SMBUS_BYTE_DATA)) {
+> +		dev_err(&client->dev,
+> +			"I2C smbus byte data functionality is not supported\n");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	chip = iio_priv(indio_dev);
+> +	chip->client = client;
+> +	i2c_set_clientdata(client, indio_dev);
+> +
+> +	if (client->irq) {
+> +		ret = devm_request_threaded_irq(&client->dev, client->irq,
+> +						NULL, tsl2591_event_handler,
+> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+> +						"tsl2591_irq", indio_dev);
+> +		if (ret) {
+> +			dev_err(&client->dev, "IRQ request error %d\n", -ret);
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	mutex_init(&chip->als_mutex);
+> +
+> +	ret = i2c_smbus_read_byte_data(client,
+> +				       TSL2591_CMD_NOP | TSL2591_DEVICE_ID);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev,
+> +			"Failed to read the device ID register\n");
+> +		return ret;
+> +	}
+> +	ret = FIELD_GET(TSL2591_DEVICE_ID_MASK, ret);
+> +	if (ret != TSL2591_DEVICE_ID_VAL) {
+> +		dev_err(&client->dev, "Device ID: %#04x unknown\n", ret);
+> +		return -EINVAL;
+> +	}
+> +
+> +	indio_dev->info = &tsl2591_info;
+> +	indio_dev->channels = tsl2591_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(tsl2591_channels);
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->name = chip->client->name;
+> +	chip->events_enabled = false;
+> +
+> +	pm_runtime_enable(&client->dev);
+> +	pm_runtime_set_autosuspend_delay(&client->dev,
+> +					 TSL2591_POWER_OFF_DELAY_MS);
+> +	pm_runtime_use_autosuspend(&client->dev);
+> +
+> +	ret = tsl2591_load_defaults(chip);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to load sensor defaults\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = i2c_smbus_write_byte(client, TSL2591_CMD_SF_CALS_NPI);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to clear als irq\n");
+
+If we get a failure here or in the error path above, runtime pm is still enabeld
+because we won't be able to rely on the managed disable of it above.
+
+So you need to reorganise things a little.  Any runtime pm that is enabled
+in these two error handling paths should be provided via devm_add_action_or_reset()
+before these, and then register a second one to deal with what these functions
+have enabled (i.e disabling that).
+
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * Add chip off to automatically managed path and disable runtime
+> +	 * power management. This ensures that the chip power management
+> +	 * is handled correctly on driver remove.
+> +	 */
+> +	ret = devm_add_action_or_reset(&client->dev, tsl2591_chip_off,
+> +				       indio_dev);
+> +	if (ret < 0)
+> +		return -EINVAL;
+> +
+> +	return devm_iio_device_register(&client->dev, indio_dev);
+> +}
+> +
+> +static const struct of_device_id tsl2591_of_match[] = {
+> +	{ .compatible = "amstaos,tsl2591"},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, tsl2591_of_match);
+> +
+> +static struct i2c_driver tsl2591_driver = {
+> +	.driver = {
+> +		.name = "tsl2591",
+> +		.pm = &tsl2591_pm_ops,
+> +		.of_match_table = tsl2591_of_match,
+> +	},
+> +	.probe_new = tsl2591_probe,
+> +};
+> +module_i2c_driver(tsl2591_driver);
+> +
+> +MODULE_AUTHOR("Joe Sandom <joe.g.sandom@gmail.com>");
+> +MODULE_DESCRIPTION("TAOS tsl2591 ambient light sensor driver");
+> +MODULE_LICENSE("GPL");
 
