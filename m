@@ -2,113 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 441CE326D1E
-	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 14:21:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE65326D4C
+	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 14:57:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230053AbhB0NVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Feb 2021 08:21:20 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:41276 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbhB0NVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Feb 2021 08:21:19 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11RDKTl2033600;
-        Sat, 27 Feb 2021 07:20:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614432029;
-        bh=wBp27AmyBVyZhxBRGGDoMrwJNFH6LZH2cMDEnKwh5sE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Bt/cADFlZO5bnd3xWva8n/gq4Uuo7UBeGS8cZlefZqSJBuXvc3tWM2c/hm3kQ7A/0
-         TPGGxC9AoQMQpo3lo1+XpOLgtOFy33fq4eKt9iM9ViIRdZauiuxKKJ8td6/GBZA6Bx
-         +lZ6EofeyKUEkfchap2CG2WC2JXSKIliQOgOTDcM=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11RDKTsV126882
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 27 Feb 2021 07:20:29 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sat, 27
- Feb 2021 07:20:29 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Sat, 27 Feb 2021 07:20:29 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11RDKTi8117506;
-        Sat, 27 Feb 2021 07:20:29 -0600
-Date:   Sat, 27 Feb 2021 07:20:29 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Dave Gerlach <d-gerlach@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: Re: [PATCH v4 2/5] dt-bindings: pinctrl: k3: Introduce pinmux
- definitions for AM64
-Message-ID: <20210227132029.tiocrois267kmm66@sandbox>
-References: <20210226144257.5470-1-d-gerlach@ti.com>
- <20210226144257.5470-3-d-gerlach@ti.com>
+        id S230165AbhB0N43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Feb 2021 08:56:29 -0500
+Received: from z11.mailgun.us ([104.130.96.11]:25527 "EHLO z11.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230167AbhB0N41 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Feb 2021 08:56:27 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1614434164; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=EmDgNHN3ZYfCjkpOGYl55fojHvz/cYCq0lJ8kPRF08k=;
+ b=HioMYjLojwVCav/V0lTCuXppOOvcR01ZGAVL9lmuMElFY+I4NOAUPpNtYm9xd6JPsj3Akzjb
+ gDcWZzQSadPZo2KdgxYoPOSh1JorHDrAlKut6w10G3hONzI8ok3bfuF4D2s9sC+vZ9qAHQxx
+ n6Vkm4GksaOpQ5Yp30yZqPtR+6Q=
+X-Mailgun-Sending-Ip: 104.130.96.11
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 603a4f7416ba74520197a6d7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 27 Feb 2021 13:56:04
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 7D0C2C433C6; Sat, 27 Feb 2021 13:56:03 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B82DEC433CA;
+        Sat, 27 Feb 2021 13:56:02 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210226144257.5470-3-d-gerlach@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Sat, 27 Feb 2021 19:26:02 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     devicetree@vger.kernel.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 8/9] arm64: dts: qcom: sc7280: Add AOSS QMP node
+In-Reply-To: <161436520297.1254594.4348845199981053890@swboyd.mtv.corp.google.com>
+References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org>
+ <463a45f2c3e4a91430c006fa1637c7f4f124185e.1614244789.git.saiprakash.ranjan@codeaurora.org>
+ <161428210272.1254594.16034240343090747878@swboyd.mtv.corp.google.com>
+ <dc3be32a3f8197d3138fe1ef6c24316a@codeaurora.org>
+ <161436520297.1254594.4348845199981053890@swboyd.mtv.corp.google.com>
+Message-ID: <5cf5692ef7d348ec361081d0341f1254@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08:42-20210226, Dave Gerlach wrote:
-> Add pinctrl macros for AM64 SoC. These macro definitions are similar to
-> that of previous platforms, but adding new definitions to avoid any
-> naming confusions in the soc dts files.
+On 2021-02-27 00:16, Stephen Boyd wrote:
+> Quoting Sai Prakash Ranjan (2021-02-25 23:51:00)
+>> On 2021-02-26 01:11, Stephen Boyd wrote:
+>> > Quoting Sai Prakash Ranjan (2021-02-25 01:30:24)
+>> >> Add a DT node for the AOSS QMP on SC7280 SoC.
+>> >>
+>> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+>> >> ---
+>> >>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 14 ++++++++++++++
+>> >>  1 file changed, 14 insertions(+)
+>> >>
+>> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> >> index 65c1e0f2fb56..cbd567ccc04e 100644
+>> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> >> @@ -9,6 +9,7 @@
+>> >>  #include <dt-bindings/clock/qcom,rpmh.h>
+>> >>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> >>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+>> >> +#include <dt-bindings/power/qcom-aoss-qmp.h>
+>> >>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>> >>
+>> >>  / {
+>> >> @@ -368,6 +369,19 @@ pdc: interrupt-controller@b220000 {
+>> >>                         interrupt-controller;
+>> >>                 };
+>> >>
+>> >> +               aoss_qmp: qmp@c300000 {
+>> >
+>> > power-domain-controller@c300000? power-controller@c300000?
+>> >
+>> 
+>> Its an AOSS message RAM and all other SM* SoCs have as qmp@
+>> and the dt binding as well, I see only SM8150 with power-controller,
+>> that should probably be fixed?
 > 
-> Unlike what checkpatch insists, we do not need parentheses enclosing
-> the values for this macro as we do intend it to generate two separate
-> values as has been done for other similar platforms.
-> 
-> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-> Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> Reviewed-by: Suman Anna <s-anna@ti.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
->  include/dt-bindings/pinctrl/k3.h | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/include/dt-bindings/pinctrl/k3.h b/include/dt-bindings/pinctrl/k3.h
-> index b0eea7cc6e23..e085f102b283 100644
-> --- a/include/dt-bindings/pinctrl/k3.h
-> +++ b/include/dt-bindings/pinctrl/k3.h
-> @@ -3,7 +3,7 @@
->   * This header provides constants for pinctrl bindings for TI's K3 SoC
->   * family.
->   *
-> - * Copyright (C) 2018 Texas Instruments Incorporated - https://www.ti.com/
-> + * Copyright (C) 2018-2021 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  #ifndef _DT_BINDINGS_PINCTRL_TI_K3_H
->  #define _DT_BINDINGS_PINCTRL_TI_K3_H
-> @@ -35,4 +35,7 @@
->  #define J721E_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
->  #define J721E_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
->  
-> +#define AM64X_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
-> +#define AM64X_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
-> +
->  #endif
-> -- 
-> 2.28.0
+> Node name should be generic while still being meaningful. Nobody knows
+> what qmp is, but power-controller makes sense. Can you fix this and the
+> others to be power-controller?
 > 
 
-Just documenting for lore:
-https://lore.kernel.org/linux-arm-kernel/20210209023418.GA2564097@robh.at.kernel.org/#t
-is where the ack was picked up from.
+Ok makes sense, I will post changing others as well and see if we get
+any comments there.
+
+Thanks,
+Sai
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
