@@ -2,94 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC30D326D1C
-	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 14:21:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE179326D1F
+	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 14:22:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230014AbhB0NTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Feb 2021 08:19:16 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40910 "EHLO
+        id S230060AbhB0NVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Feb 2021 08:21:34 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:41166 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbhB0NTP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Feb 2021 08:19:15 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11RDIPNI033126;
-        Sat, 27 Feb 2021 07:18:25 -0600
+        with ESMTP id S229953AbhB0NVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Feb 2021 08:21:30 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11RDJo9W033424;
+        Sat, 27 Feb 2021 07:19:50 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614431905;
-        bh=/gMjoi5n/lOUsXf47I+g+3J3i82DoLKJoOthZsT+anU=;
+        s=ti-com-17Q1; t=1614431990;
+        bh=wJOcGz8PxCtDHZTUuSaEBsV673YdEJzFXKAAw+Z1+Ow=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=bhDFgJV+fnNZ4uzq6ob2Ij0GXB6AR8vGzO9RLFjQyqCwuofDQ7b3yeTcsN77OtXVo
-         jUrN8GoJaJ4GmZF2PjauGqcr3RUyD3MkGYCFEUqImw/EOCRhs9jXJM1Bqh5dkXNN/0
-         /vSDw7WikwquK2HT8USBX4dIsCo+vvoIQTY7jtK8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11RDIPuQ048722
+        b=y2laMulv1WWOvWMHuNYL5IAkznEzACiSkqawZanIueOO5ml/cheQRqHuw8bT0wjN3
+         zjzG5jVgT4gkLgf7YA3lDh8PKhYSuIotIwBc2xab/bI+dJy6ErJvs1zq0Lljtj/IYg
+         nLPZYTHVX13SzzpEL9+gJ7eGJsscpRufZAwh39+M=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11RDJoe5128802
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 27 Feb 2021 07:18:25 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+        Sat, 27 Feb 2021 07:19:50 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sat, 27
- Feb 2021 07:18:24 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2021 07:19:49 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Sat, 27 Feb 2021 07:18:24 -0600
+ Frontend Transport; Sat, 27 Feb 2021 07:19:50 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11RDIO1G058155;
-        Sat, 27 Feb 2021 07:18:24 -0600
-Date:   Sat, 27 Feb 2021 07:18:24 -0600
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11RDJnxr115607;
+        Sat, 27 Feb 2021 07:19:49 -0600
+Date:   Sat, 27 Feb 2021 07:19:49 -0600
 From:   Nishanth Menon <nm@ti.com>
-To:     Lokesh Vutla <lokeshvutla@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Dave Gerlach <d-gerlach@ti.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: ti: Add bindings for AM642 SK
-Message-ID: <20210227131824.42eyzttpopjdatqm@shallow>
-References: <20210226184251.26451-1-lokeshvutla@ti.com>
- <20210226184251.26451-2-lokeshvutla@ti.com>
+To:     Dave Gerlach <d-gerlach@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: arm: ti: Add bindings for AM642 SoC
+Message-ID: <20210227131949.54zyz4ick4sjjlif@borax>
+References: <20210226144257.5470-1-d-gerlach@ti.com>
+ <20210226144257.5470-2-d-gerlach@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210226184251.26451-2-lokeshvutla@ti.com>
+In-Reply-To: <20210226144257.5470-2-d-gerlach@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 00:12-20210227, Lokesh Vutla wrote:
-> AM642 StarterKit (SK) board is a low cost, small form factor board
-> designed for TI’s AM642 SoC.
-> Add DT binding documentation for AM642 SK.
+On 08:42-20210226, Dave Gerlach wrote:
+> The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
+> providing advanced system integration to enable applications such as
+> Motor Drives, PLC, Remote IO and IoT Gateways.
 > 
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+> Some highlights of this SoC are:
+> * Dual Cortex-A53s in a single cluster, two clusters of dual Cortex-R5F
+>   MCUs, and a single Cortex-M4F.
+> * Two Gigabit Industrial Communication Subsystems (ICSSG).
+> * Integrated Ethernet switch supporting up to a total of two external
+>   ports.
+> * PCIe-GEN2x1L, USB3/USB2, 2xCAN-FD, eMMC and SD, UFS, OSPI memory
+>   controller, QSPI, I2C, eCAP/eQEP, ePWM, ADC, among other
+>   peripherals.
+> * Centralized System Controller for Security, Power, and Resource
+>   Management (DMSC).
+> 
+> See AM64X Technical Reference Manual (SPRUIM2, Nov 2020)
+> for further details: https://www.ti.com/lit/pdf/spruim2
+> 
+> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
 > ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index 393f94a64f8d..a9e7f981631e 100644
+> index c6e1c1e63e43..393f94a64f8d 100644
 > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
 > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -37,6 +37,7 @@ properties:
+> @@ -33,6 +33,12 @@ properties:
 >          items:
->            - enum:
->                - ti,am642-evm
-> +              - ti,am642-sk
->            - const: ti,am642
+>            - const: ti,j7200
 >  
+> +      - description: K3 AM642 SoC
+> +        items:
+> +          - enum:
+> +              - ti,am642-evm
+> +          - const: ti,am642
+> +
 >  additionalProperties: true
+>  
+>  ...
 > -- 
-> 2.30.0
+> 2.28.0
 > 
 
 Just documenting for lore:
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210202081530.14984-2-lokeshvutla@ti.com/
-is the previous version with the Ack.
+https://lore.kernel.org/linux-arm-kernel/20210209023418.GA2564097@robh.at.kernel.org/
+is where we got the ack for the patch.
 
 -- 
 Regards,
