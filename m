@@ -2,101 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72417326D4E
-	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 14:59:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D340326D74
+	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 15:56:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230010AbhB0N6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Feb 2021 08:58:53 -0500
-Received: from z11.mailgun.us ([104.130.96.11]:44531 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229949AbhB0N6w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 27 Feb 2021 08:58:52 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1614434314; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=gTwquvFrx7AN37qAgtjT40H+hxoUXNtw3JF4EET/sGU=;
- b=psuuyP7fZB7Drl6RFZhH8+c/BVM81vABbnbjoDAXue5JOHL8fVvoyGpW4dBAtj/JQN2Sy2eN
- y4NFjMosb38GgV12eFI++1J4QOBZ80+VwkNQbcsnezpPuRlW3tCco0oAR9OSJUHaVhpP7meL
- 5+JXqFjb8tGpBLx7GsvIVDakzOE=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 603a50027aa94c52e7f1557f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 27 Feb 2021 13:58:26
- GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7159BC43463; Sat, 27 Feb 2021 13:58:26 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id ABA73C433C6;
-        Sat, 27 Feb 2021 13:58:25 +0000 (UTC)
+        id S230014AbhB0O45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Feb 2021 09:56:57 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59282 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229999AbhB0O45 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Feb 2021 09:56:57 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11REtDth062152;
+        Sat, 27 Feb 2021 08:55:13 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1614437713;
+        bh=qE17wORT8HC55BjuUHaeR2MnIFlbbjIcBnCb5vJHVnc=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=CxgkbBV2QeYjo4PQjbuQV40rxzNc0Cc0WaVw+RW7yHcDLmnhQLICBqnI+LyHvq/H3
+         xPQ72tClvbuMjQx0EtSOspvumyiDMl1HythGbu5mji+hslAxyniRe/ktkpdd63Qr3w
+         psYehOOhLFGM6BgN5PegCWVwAaFaeJ/rcGzPH2rw=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11REtD8J071642
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 27 Feb 2021 08:55:13 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sat, 27
+ Feb 2021 08:55:12 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Sat, 27 Feb 2021 08:55:12 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11REtCeV102943;
+        Sat, 27 Feb 2021 08:55:12 -0600
+Date:   Sat, 27 Feb 2021 08:55:12 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Dave Gerlach <d-gerlach@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: Re: [PATCH v4 0/5] arm64: Initial support for Texas Instruments
+ AM642 Platform
+Message-ID: <20210227145512.fyhxrgxzh7ucqe7e@floral>
+References: <20210226144257.5470-1-d-gerlach@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Sat, 27 Feb 2021 19:28:25 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>
-Subject: Re: [PATCH 3/9] arm64: dts: qcom: sc7280: Add device tree node for
- LLCC
-In-Reply-To: <161436514295.1254594.2789904935200051795@swboyd.mtv.corp.google.com>
-References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org>
- <c4b7ae4dd009f563e6786f4a41f09efa38636fb6.1614244789.git.saiprakash.ranjan@codeaurora.org>
- <161428185152.1254594.1426736986245389798@swboyd.mtv.corp.google.com>
- <a35e6dcba758be4af3d111fe92cfbcd6@codeaurora.org>
- <161436514295.1254594.2789904935200051795@swboyd.mtv.corp.google.com>
-Message-ID: <48278c3db41c3f46eac8892d1383444c@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210226144257.5470-1-d-gerlach@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-02-27 00:15, Stephen Boyd wrote:
-> Quoting Sai Prakash Ranjan (2021-02-26 00:04:27)
->> On 2021-02-26 01:07, Stephen Boyd wrote:
->> > Quoting Sai Prakash Ranjan (2021-02-25 01:30:19)
->> >> Add a DT node for Last level cache (aka. system cache)
->> >> controller which provides control over the last level
->> >> cache present on SC7280 SoC.
->> >>
->> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
->> >> ---
->> >
->> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->> >
->> > Should add system-cache-controller to the devicetree spec. Or just use
->> > cache-controller for the node name.
->> 
->> This was as per discussion in [1][2] where dt-schema throws an error
->> since it expects cache-level to be associated with cache-controller.
->> 
+On 08:42-20210226, Dave Gerlach wrote:
+> Hi,
+> This is v4 of the series to add initial support for the latest new SoC,
+> AM642, from Texas Instruments. Additional detail can be found in the
+> patch descriptions, also see AM64X Technical Reference Manual (SPRUIM2,
+> Nov 2020) for further details: https://www.ti.com/lit/pdf/spruim2
 > 
-> Ah right. Can you add system-cache-controller to the dt spec?
+> This version contains a few minor fixes from v3:
+> 
+> * Add Rob's Ack to patch 2
+> * Drop address-cells from interrupt controller node in patch 4 as [1] was dropped
+> * Add Suman's Signed-off-by to patch 3
+> * Fix date range in Makefile for TI dtbs in patch 5
+> * Include Reviewed-by from several people from v3 for multiple patches
+> 
+> v3: https://lore.kernel.org/linux-arm-kernel/20210120202532.9011-1-d-gerlach@ti.com/
+> v2: https://lore.kernel.org/linux-arm-kernel/20210119163927.774-1-d-gerlach@ti.com/
+> v1: https://lore.kernel.org/linux-arm-kernel/20201125052004.17823-1-d-gerlach@ti.com/
+> 
+> Regards,
+> Dave
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/161131973654.21299.8023411678794984222.b4-ty@ti.com/
 
-Sure, I'll add it. Hopefully that won't have to block this change?
-Because I might need some time to get permissions to add it there.
 
-Thanks,
-Sai
+I'd appreciate if you / team could provide a boot log on
+pastebin.ubuntu.com with just these patches on latest linux-next ?
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
