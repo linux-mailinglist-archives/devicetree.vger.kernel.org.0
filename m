@@ -2,154 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 862A3326B72
-	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 04:41:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 346B2326B83
+	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 05:00:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230084AbhB0Dkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 22:40:53 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:12214 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbhB0Dkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 22:40:52 -0500
-Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.58])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4DnXKn0znNzlQ5K;
-        Sat, 27 Feb 2021 11:38:05 +0800 (CST)
-Received: from [127.0.0.1] (10.40.188.87) by DGGEMS404-HUB.china.huawei.com
- (10.3.19.204) with Microsoft SMTP Server id 14.3.498.0; Sat, 27 Feb 2021
- 11:40:01 +0800
-Subject: Re: [PATCH v12 10/10] iommu/arm-smmu-v3: Add stall support for
- platform devices
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-References: <20210127154322.3959196-1-jean-philippe@linaro.org>
- <20210127154322.3959196-11-jean-philippe@linaro.org>
- <8adc79cc-7afb-dfe8-4f7b-07fa6dc5b905@hisilicon.com>
- <YBfij71tyYvh8LhB@myrica>
- <fabffd28-7497-2758-c2bf-9d31aa562085@hisilicon.com>
- <YDkh8qR7csPB68sC@myrica>
-CC:     <joro@8bytes.org>, <will@kernel.org>, <vivek.gautam@arm.com>,
-        <guohanjun@huawei.com>, <linux-acpi@vger.kernel.org>,
-        <zhangfei.gao@linaro.org>, <lenb@kernel.org>,
-        <devicetree@vger.kernel.org>, <kevin.tian@intel.com>,
-        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <rjw@rjwysocki.net>, <iommu@lists.linux-foundation.org>,
-        <sudeep.holla@arm.com>, <robin.murphy@arm.com>,
-        <linux-accelerators@lists.ozlabs.org>
-From:   Zhou Wang <wangzhou1@hisilicon.com>
-Message-ID: <22fa4120-eadf-20d5-0d0a-9935aa0f1fb5@hisilicon.com>
-Date:   Sat, 27 Feb 2021 11:40:01 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
- Thunderbird/45.7.1
+        id S230001AbhB0EAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 23:00:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55468 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229953AbhB0EAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 23:00:19 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77198C061786
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 19:59:38 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id r25so11967300ljk.11
+        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 19:59:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=IozGx7C0T19f0wHA2sRVJGAa+F8rFFKpX1D9A8YR8PU=;
+        b=HCQVZ5EjAhlPbe6PMaX7ZUJILWMltz2qOzxlQTW/cLhl4wTjGnAAFQ9DhlsKHlbPoh
+         uhreFWU/8syefOSG9GjCSk0NkbeHR5owmvGV6uHWbk4ij2eRQnsGu0Gp0OzBTtGBkRyN
+         22tqA9FjtcndeULj4onrEi3jcyHapzSrHghIwcup5y45alrBxDPasblkR4ddZytTmJzf
+         P9W2H1RygxjlfJ4KLdg+914UOoZnQeeeSEUbcd2ddMXmOZCXXhAUB/1R4TzwOta3TjRr
+         T/+00ElxyBnmBLV6Cx1a23XWFILvofLUstmlM/qyR0YPBisY03vE2xjKFIH8sq5Xb8z+
+         F3ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=IozGx7C0T19f0wHA2sRVJGAa+F8rFFKpX1D9A8YR8PU=;
+        b=ubcXoz2JUMSaXUELu11qP1d5K3gkZBpiQzsqRQXdT+cK/HqWT1Tw/WILBA2kRGH9+N
+         sZGaT9Kz6TkGi/4pvY9bV+iIDxLnOZL6RPKTcVgY3O9G8wsIRfwriMyLt4YDjZgERCGq
+         WXuQF9n0wPnmPaRNgJf24FtENI8crutNT0UfINmVaQCEAjgoRlnGQX4r88qRvOuHDHgV
+         r+V3IG1WSJ4/peqN9Pko/CAcDK9cz/ikgh7MrK7bqN9t1rqBsTtoUhK28FVUGK3NWxIl
+         vxJD66vMwW9bvlrlgo8Yb6zrRaYqcpSpOl36hvqjsKtg2RJv2M8luuUM8uKfZX4FBcKh
+         aoJg==
+X-Gm-Message-State: AOAM533dBkyxiZWp3jL4Eb62QtNa5eOyPNCM4BegyYlF3DHPZuoUxCQ8
+        gZ7qyhA3ifwD6pedNLbA441MS9Flo8Zi13O+uqUwKA==
+X-Google-Smtp-Source: ABdhPJyK8PaCQQvdm5VywGcJLUez1h6cE0BTHcn810vx1vEgoHXDoa8wi/rAtvi3X+Xex5Uedewqw0yV+4b4iaTOj1Y=
+X-Received: by 2002:a05:651c:15:: with SMTP id n21mr3539853lja.284.1614398376751;
+ Fri, 26 Feb 2021 19:59:36 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <YDkh8qR7csPB68sC@myrica>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.40.188.87]
-X-CFilter-Loop: Reflected
+References: <20210221093758.210981-1-anup.patel@wdc.com> <20210221093758.210981-2-anup.patel@wdc.com>
+ <3a6e2af7-934d-078f-4e19-d4241809e7fb@ghiti.fr>
+In-Reply-To: <3a6e2af7-934d-078f-4e19-d4241809e7fb@ghiti.fr>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Sat, 27 Feb 2021 09:29:24 +0530
+Message-ID: <CAAhSdy2VPQURW+rCkY7_dWbgqgOU9_MNN5gRurE_bVcjz1k9aQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/8] RISC-V: Enable CPU_IDLE drivers
+To:     Alexandre Ghiti <alex@ghiti.fr>
+Cc:     Anup Patel <anup.patel@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021/2/27 0:29, Jean-Philippe Brucker wrote:
-> Hi Zhou,
-> 
-> On Fri, Feb 26, 2021 at 05:43:27PM +0800, Zhou Wang wrote:
->> On 2021/2/1 19:14, Jean-Philippe Brucker wrote:
->>> Hi Zhou,
->>>
->>> On Mon, Feb 01, 2021 at 09:18:42AM +0800, Zhou Wang wrote:
->>>>> @@ -1033,8 +1076,7 @@ int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain, int ssid,
->>>>>  			FIELD_PREP(CTXDESC_CD_0_ASID, cd->asid) |
->>>>>  			CTXDESC_CD_0_V;
->>>>>  
->>>>> -		/* STALL_MODEL==0b10 && CD.S==0 is ILLEGAL */
->>>>> -		if (smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
->>>>> +		if (smmu_domain->stall_enabled)
->>>>
->>>> Could we add ssid checking here? like: if (smmu_domain->stall_enabled && ssid).
->>>> The reason is if not CD.S will also be set when ssid is 0, which is not needed.
->>>
->>> Some drivers may want to get stall events on SSID 0:
->>> https://lore.kernel.org/kvm/20210125090402.1429-1-lushenming@huawei.com/#t
->>>
->>> Are you seeing an issue with stall events on ssid 0?  Normally there
->>> shouldn't be any fault on this context, but if they happen and no handler
->>> is registered, the SMMU driver will just abort them and report them like a
->>> non-stall event.
->>
->> Hi Jean,
->>
->> I notice that there is problem. In my case, I expect that CD0 is for kernel
->> and other CDs are for user space. Normally there shouldn't be any fault in
->> kernel, however, we have RAS case which is for some reason there may has
->> invalid address access from hardware device.
->>
->> So at least there are two different address access failures: 1. hardware RAS problem;
->> 2. software fault fail(e.g. kill process when doing DMA). Handlings for these
->> two are different: for 1, we should reset hardware device; for 2, stop related
->> DMA is enough.
-> 
-> Right, and in case 2 there should be no report printed since it can be
-> triggered by user, while you probably want to be loud in case 1.
-> 
->> Currently if SMMU returns the same signal(by SMMU resume abort), master device
->> driver can not tell these two kinds of cases.
-> 
-> This part I don't understand. So the SMMU sends a RESUME(abort) command,
-> and then the master reports the DMA error to the device driver, which
-> cannot differentiate 1 from 2?  (I guess there is no SSID in this report?)
-> But how does disabling stall change this?  The invalid DMA access will
-> still be aborted by the SMMU.
+Hi Alex,
 
-This is about the hardware design. In D06 board, an invalid DMA access from
-accelerator devices will be aborted, and an hardware error signal will be
-returned to accelerator devices, which reports it as a RAS error irq.
-while for the stall case, error signal triggered by SMMU resume abort is
-also reported as same RAS error irq. This is problem in D60 board.
+On Fri, Feb 26, 2021 at 6:46 PM Alex Ghiti <alex@ghiti.fr> wrote:
+>
+> Hi Anup,
+>
+> Le 2/21/21 =C3=A0 4:37 AM, Anup Patel a =C3=A9crit :
+> > We force select CPU_PM and provide asm/cpuidle.h so that we can
+> > use CPU IDLE drivers for Linux RISC-V kernel.
+> >
+> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> > ---
+> >   arch/riscv/Kconfig                |  7 +++++++
+> >   arch/riscv/configs/defconfig      |  7 +++----
+> >   arch/riscv/configs/rv32_defconfig |  4 ++--
+> >   arch/riscv/include/asm/cpuidle.h  | 24 ++++++++++++++++++++++++
+> >   arch/riscv/kernel/process.c       |  3 ++-
+> >   5 files changed, 38 insertions(+), 7 deletions(-)
+> >   create mode 100644 arch/riscv/include/asm/cpuidle.h
+> >
+> > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> > index fe6862b06ead..4901200b6b6c 100644
+> > --- a/arch/riscv/Kconfig
+> > +++ b/arch/riscv/Kconfig
+> > @@ -37,6 +37,7 @@ config RISCV
+> >       select CLONE_BACKWARDS
+> >       select CLINT_TIMER if !MMU
+> >       select COMMON_CLK
+> > +     select CPU_PM if CPU_IDLE
+> >       select EDAC_SUPPORT
+> >       select GENERIC_ARCH_TOPOLOGY if SMP
+> >       select GENERIC_ATOMIC64 if !64BIT
+> > @@ -430,4 +431,10 @@ source "kernel/power/Kconfig"
+> >
+> >   endmenu
+> >
+> > +menu "CPU Power Management"
+> > +
+> > +source "drivers/cpuidle/Kconfig"
+> > +
+> > +endmenu
+> > +
+> >   source "drivers/firmware/Kconfig"
+> > diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfi=
+g
+> > index 6c0625aa96c7..dc4927c0e44b 100644
+> > --- a/arch/riscv/configs/defconfig
+> > +++ b/arch/riscv/configs/defconfig
+> > @@ -13,11 +13,13 @@ CONFIG_USER_NS=3Dy
+> >   CONFIG_CHECKPOINT_RESTORE=3Dy
+> >   CONFIG_BLK_DEV_INITRD=3Dy
+> >   CONFIG_EXPERT=3Dy
+> > +# CONFIG_SYSFS_SYSCALL is not set
+> >   CONFIG_BPF_SYSCALL=3Dy
+> >   CONFIG_SOC_SIFIVE=3Dy
+> >   CONFIG_SOC_VIRT=3Dy
+> >   CONFIG_SMP=3Dy
+> >   CONFIG_HOTPLUG_CPU=3Dy
+> > +CONFIG_CPU_IDLE=3Dy
+> >   CONFIG_JUMP_LABEL=3Dy
+> >   CONFIG_MODULES=3Dy
+> >   CONFIG_MODULE_UNLOAD=3Dy
+> > @@ -65,10 +67,9 @@ CONFIG_HW_RANDOM=3Dy
+> >   CONFIG_HW_RANDOM_VIRTIO=3Dy
+> >   CONFIG_SPI=3Dy
+> >   CONFIG_SPI_SIFIVE=3Dy
+> > +# CONFIG_PTP_1588_CLOCK is not set
+> >   CONFIG_GPIOLIB=3Dy
+> >   CONFIG_GPIO_SIFIVE=3Dy
+> > -# CONFIG_PTP_1588_CLOCK is not set
+> > -CONFIG_POWER_RESET=3Dy
+>
+> Why do you remove this config ?
 
-In next generation of hardware, a new irq will be added to report SMMU resume
-abort information, it works with related registers in accelerator devices to
-get related hardware queue, which need to be stopped.
+Argh, I don't know how this got here. I will remove
+this change in the next revision. Thanks for catching.
 
-So if CD0.S is 1, invalid DMA access in kernel will be reported into above
-new added irq, which has not enough information to tell RAS errors(there are 10+
-hardware RAS errors) from SMMU resume abort.
+>
+> >   CONFIG_DRM=3Dy
+> >   CONFIG_DRM_RADEON=3Dy
+> >   CONFIG_DRM_VIRTIO_GPU=3Dy
+> > @@ -132,5 +133,3 @@ CONFIG_DEBUG_BLOCK_EXT_DEVT=3Dy
+> >   # CONFIG_FTRACE is not set
+> >   # CONFIG_RUNTIME_TESTING_MENU is not set
+> >   CONFIG_MEMTEST=3Dy
+> > -# CONFIG_SYSFS_SYSCALL is not set
+> > -CONFIG_EFI=3Dy
+>
+> And this is one too ? If those removals are intentional, maybe you can
+> add something about that in the commit description ?
 
-> 
-> Hypothetically, would it work if all stall events that could not be
-> handled went to the device driver?  Those reports would contain the SSID
-> (or lack thereof), so you could reset the device in case 1 and ignore case
-> 2. Though resetting the device in the middle of a stalled transaction
+I will remove this change as well.
 
-As above, it is hard to tell RAS errors and SMMU resume abort in SMMU resume abort
-now :(
+>
+> > diff --git a/arch/riscv/configs/rv32_defconfig b/arch/riscv/configs/rv3=
+2_defconfig
+> > index 8dd02b842fef..332e43a4a2c3 100644
+> > --- a/arch/riscv/configs/rv32_defconfig
+> > +++ b/arch/riscv/configs/rv32_defconfig
+> > @@ -13,12 +13,14 @@ CONFIG_USER_NS=3Dy
+> >   CONFIG_CHECKPOINT_RESTORE=3Dy
+> >   CONFIG_BLK_DEV_INITRD=3Dy
+> >   CONFIG_EXPERT=3Dy
+> > +# CONFIG_SYSFS_SYSCALL is not set
+> >   CONFIG_BPF_SYSCALL=3Dy
+> >   CONFIG_SOC_SIFIVE=3Dy
+> >   CONFIG_SOC_VIRT=3Dy
+> >   CONFIG_ARCH_RV32I=3Dy
+> >   CONFIG_SMP=3Dy
+> >   CONFIG_HOTPLUG_CPU=3Dy
+> > +CONFIG_CPU_IDLE=3Dy
+> >   CONFIG_JUMP_LABEL=3Dy
+> >   CONFIG_MODULES=3Dy
+> >   CONFIG_MODULE_UNLOAD=3Dy
+> > @@ -67,7 +69,6 @@ CONFIG_HW_RANDOM_VIRTIO=3Dy
+> >   CONFIG_SPI=3Dy
+> >   CONFIG_SPI_SIFIVE=3Dy
+> >   # CONFIG_PTP_1588_CLOCK is not set
+> > -CONFIG_POWER_RESET=3Dy
+> >   CONFIG_DRM=3Dy
+> >   CONFIG_DRM_RADEON=3Dy
+> >   CONFIG_DRM_VIRTIO_GPU=3Dy
+> > @@ -131,4 +132,3 @@ CONFIG_DEBUG_BLOCK_EXT_DEVT=3Dy
+> >   # CONFIG_FTRACE is not set
+> >   # CONFIG_RUNTIME_TESTING_MENU is not set
+> >   CONFIG_MEMTEST=3Dy
+> > -# CONFIG_SYSFS_SYSCALL is not set
+> > diff --git a/arch/riscv/include/asm/cpuidle.h b/arch/riscv/include/asm/=
+cpuidle.h
+> > new file mode 100644
+> > index 000000000000..1042d790e446
+> > --- /dev/null
+> > +++ b/arch/riscv/include/asm/cpuidle.h
+> > @@ -0,0 +1,24 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Copyright (C) 2021 Allwinner Ltd
+> > + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
+> > + */
+> > +
+> > +#ifndef _ASM_RISCV_CPUIDLE_H
+> > +#define _ASM_RISCV_CPUIDLE_H
+> > +
+> > +#include <asm/barrier.h>
+> > +#include <asm/processor.h>
+> > +
+> > +static inline void cpu_do_idle(void)
+> > +{
+> > +     /*
+> > +      * Add mb() here to ensure that all
+> > +      * IO/MEM access are completed prior
+>
+> accessES ?
 
-> probably comes with its own set of problems.
-> 
->> From the basic concept, if a CD is used for kernel, its S bit should not be set.
->> How about we add iommu domain check here too, if DMA domain we do not set S bit for
->> CD0, if unmanaged domain we set S bit for all CDs?
-> 
-> I think disabling stall for CD0 of a DMA domain makes sense in general,
-> even though I don't really understand how that fixes your issue. But
+Okay will update.
 
-As above, if disabling stall for CD0, an invalid DMA access will be handled
-by RAS error irq.
+>
+> > +      * to enter WFI.
+> > +      */
+> > +     mb();
+> > +     wait_for_interrupt();
+> > +}
+> > +
+> > +#endif
+> > diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+> > index dd5f985b1f40..b5b51fd26624 100644
+> > --- a/arch/riscv/kernel/process.c
+> > +++ b/arch/riscv/kernel/process.c
+> > @@ -21,6 +21,7 @@
+> >   #include <asm/string.h>
+> >   #include <asm/switch_to.h>
+> >   #include <asm/thread_info.h>
+> > +#include <asm/cpuidle.h>
+> >
+> >   register unsigned long gp_in_global __asm__("gp");
+> >
+> > @@ -35,7 +36,7 @@ extern asmlinkage void ret_from_kernel_thread(void);
+> >
+> >   void arch_cpu_idle(void)
+> >   {
+> > -     wait_for_interrupt();
+> > +     cpu_do_idle();
+> >       raw_local_irq_enable();
+> >   }
+> >
+> >
 
-> someone might come up with a good use-case for receiving stall events on
-
-If A DMA access in kernel fails, I think there should be a RAS issue :)
-So better to disable CD0 stall for DMA domain.
-
-Best,
-Zhou
-
-> DMA mappings, so I'm wondering whether the alternative solution where we
-> report unhandled stall events to the device driver would also work for
-> you.
-> 
-> Thanks,
-> Jean
-> 
-> .
-> 
-
+Regards,
+Anup
