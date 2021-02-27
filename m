@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE179326D1F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 14:22:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 441CE326D1E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 14:21:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbhB0NVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Feb 2021 08:21:34 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:41166 "EHLO
+        id S230053AbhB0NVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Feb 2021 08:21:20 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:41276 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbhB0NVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Feb 2021 08:21:30 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11RDJo9W033424;
-        Sat, 27 Feb 2021 07:19:50 -0600
+        with ESMTP id S229953AbhB0NVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Feb 2021 08:21:19 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11RDKTl2033600;
+        Sat, 27 Feb 2021 07:20:29 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614431990;
-        bh=wJOcGz8PxCtDHZTUuSaEBsV673YdEJzFXKAAw+Z1+Ow=;
+        s=ti-com-17Q1; t=1614432029;
+        bh=wBp27AmyBVyZhxBRGGDoMrwJNFH6LZH2cMDEnKwh5sE=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=y2laMulv1WWOvWMHuNYL5IAkznEzACiSkqawZanIueOO5ml/cheQRqHuw8bT0wjN3
-         zjzG5jVgT4gkLgf7YA3lDh8PKhYSuIotIwBc2xab/bI+dJy6ErJvs1zq0Lljtj/IYg
-         nLPZYTHVX13SzzpEL9+gJ7eGJsscpRufZAwh39+M=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11RDJoe5128802
+        b=Bt/cADFlZO5bnd3xWva8n/gq4Uuo7UBeGS8cZlefZqSJBuXvc3tWM2c/hm3kQ7A/0
+         TPGGxC9AoQMQpo3lo1+XpOLgtOFy33fq4eKt9iM9ViIRdZauiuxKKJ8td6/GBZA6Bx
+         +lZ6EofeyKUEkfchap2CG2WC2JXSKIliQOgOTDcM=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11RDKTsV126882
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 27 Feb 2021 07:19:50 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+        Sat, 27 Feb 2021 07:20:29 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sat, 27
- Feb 2021 07:19:49 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2021 07:20:29 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Sat, 27 Feb 2021 07:19:50 -0600
+ Frontend Transport; Sat, 27 Feb 2021 07:20:29 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11RDJnxr115607;
-        Sat, 27 Feb 2021 07:19:49 -0600
-Date:   Sat, 27 Feb 2021 07:19:49 -0600
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11RDKTi8117506;
+        Sat, 27 Feb 2021 07:20:29 -0600
+Date:   Sat, 27 Feb 2021 07:20:29 -0600
 From:   Nishanth Menon <nm@ti.com>
 To:     Dave Gerlach <d-gerlach@ti.com>
 CC:     <linux-arm-kernel@lists.infradead.org>,
@@ -47,14 +47,15 @@ CC:     <linux-arm-kernel@lists.infradead.org>,
         Kishon Vijay Abraham <kishon@ti.com>,
         Lokesh Vutla <lokeshvutla@ti.com>,
         Aswath Govindraju <a-govindraju@ti.com>
-Subject: Re: [PATCH v4 1/5] dt-bindings: arm: ti: Add bindings for AM642 SoC
-Message-ID: <20210227131949.54zyz4ick4sjjlif@borax>
+Subject: Re: [PATCH v4 2/5] dt-bindings: pinctrl: k3: Introduce pinmux
+ definitions for AM64
+Message-ID: <20210227132029.tiocrois267kmm66@sandbox>
 References: <20210226144257.5470-1-d-gerlach@ti.com>
- <20210226144257.5470-2-d-gerlach@ti.com>
+ <20210226144257.5470-3-d-gerlach@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210226144257.5470-2-d-gerlach@ti.com>
+In-Reply-To: <20210226144257.5470-3-d-gerlach@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
@@ -62,56 +63,50 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08:42-20210226, Dave Gerlach wrote:
-> The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
-> providing advanced system integration to enable applications such as
-> Motor Drives, PLC, Remote IO and IoT Gateways.
+> Add pinctrl macros for AM64 SoC. These macro definitions are similar to
+> that of previous platforms, but adding new definitions to avoid any
+> naming confusions in the soc dts files.
 > 
-> Some highlights of this SoC are:
-> * Dual Cortex-A53s in a single cluster, two clusters of dual Cortex-R5F
->   MCUs, and a single Cortex-M4F.
-> * Two Gigabit Industrial Communication Subsystems (ICSSG).
-> * Integrated Ethernet switch supporting up to a total of two external
->   ports.
-> * PCIe-GEN2x1L, USB3/USB2, 2xCAN-FD, eMMC and SD, UFS, OSPI memory
->   controller, QSPI, I2C, eCAP/eQEP, ePWM, ADC, among other
->   peripherals.
-> * Centralized System Controller for Security, Power, and Resource
->   Management (DMSC).
-> 
-> See AM64X Technical Reference Manual (SPRUIM2, Nov 2020)
-> for further details: https://www.ti.com/lit/pdf/spruim2
+> Unlike what checkpatch insists, we do not need parentheses enclosing
+> the values for this macro as we do intend it to generate two separate
+> values as has been done for other similar platforms.
 > 
 > Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 > Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> Reviewed-by: Suman Anna <s-anna@ti.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  include/dt-bindings/pinctrl/k3.h | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index c6e1c1e63e43..393f94a64f8d 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -33,6 +33,12 @@ properties:
->          items:
->            - const: ti,j7200
+> diff --git a/include/dt-bindings/pinctrl/k3.h b/include/dt-bindings/pinctrl/k3.h
+> index b0eea7cc6e23..e085f102b283 100644
+> --- a/include/dt-bindings/pinctrl/k3.h
+> +++ b/include/dt-bindings/pinctrl/k3.h
+> @@ -3,7 +3,7 @@
+>   * This header provides constants for pinctrl bindings for TI's K3 SoC
+>   * family.
+>   *
+> - * Copyright (C) 2018 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2018-2021 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  #ifndef _DT_BINDINGS_PINCTRL_TI_K3_H
+>  #define _DT_BINDINGS_PINCTRL_TI_K3_H
+> @@ -35,4 +35,7 @@
+>  #define J721E_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+>  #define J721E_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
 >  
-> +      - description: K3 AM642 SoC
-> +        items:
-> +          - enum:
-> +              - ti,am642-evm
-> +          - const: ti,am642
+> +#define AM64X_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+> +#define AM64X_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
 > +
->  additionalProperties: true
->  
->  ...
+>  #endif
 > -- 
 > 2.28.0
 > 
 
 Just documenting for lore:
-https://lore.kernel.org/linux-arm-kernel/20210209023418.GA2564097@robh.at.kernel.org/
-is where we got the ack for the patch.
+https://lore.kernel.org/linux-arm-kernel/20210209023418.GA2564097@robh.at.kernel.org/#t
+is where the ack was picked up from.
 
 -- 
 Regards,
