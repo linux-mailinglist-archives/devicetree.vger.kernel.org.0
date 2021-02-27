@@ -2,114 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEE07326ADF
-	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 01:57:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 862A3326B72
+	for <lists+devicetree@lfdr.de>; Sat, 27 Feb 2021 04:41:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230040AbhB0A4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Feb 2021 19:56:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44698 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230012AbhB0A4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 19:56:32 -0500
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0363C061786
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 16:55:51 -0800 (PST)
-Received: by mail-qk1-x72e.google.com with SMTP id 204so11041553qke.11
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 16:55:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bywHDhST5zNkzuXBnTBeQymmsekGTUrywljUCs2Oamc=;
-        b=Rw4YISFFwe+LjUxCjTBgDRr2aGPIpxGGoRRgxoluknggQH5CORuC3Nu4O7iVH0GPD/
-         DowbrVCFxvJ6JFLhXi0fTaN6TzQ+MPjZ9qaEHXqnBhZwqFK5BwPNOkqyL7DXXXS6f5t0
-         srKF4tP15iLNeLUHkCgJwc3lIc62IHWMIpFhA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bywHDhST5zNkzuXBnTBeQymmsekGTUrywljUCs2Oamc=;
-        b=P0WenkzuueRIhAHWDQfjyiPX9lE2Bna1tfUd2zzmXVONvwe/7r+aB0ApNlyPcsnNkz
-         h8O/ybg20x1rbXGro200AL6dUH7hke2XpyeTJfrvPh9dpJ3xoYeD58y208Vt5Bb9qPUa
-         lFaMbBuWmkGXlxnHH9c01U7BLV1eyQd+I7Et0QXJw9zrtF9MD9Tr2oHiyA8A9jDl+R8r
-         HDUrg+4rxVI+KBfcfc8Zcspp8iRCYmulZpQ5C6mfXFx2X7nq0AhAMGGYJId4fQUVqzFO
-         7n/GRXvgr2f6OoKCVw3FXmp9OPnMxfKQfRTiPxSSZZjuwYpvZBF/5nDKLiugF8plZ6fo
-         7bbQ==
-X-Gm-Message-State: AOAM5327vlX7LjbsSbgmaWHAzlDrts/g2tQ0VcYNr6fR4KIuh2ADnel8
-        7DlNW7rr/L4IcKSCapA3OgZvmoinNAttnA==
-X-Google-Smtp-Source: ABdhPJxGXbimlRcb8o3yr3ZuEhHByIa1yROUJUjcv4ors4MLwRciHzc6YjIpR0PMz4rx5y7RFr4hxw==
-X-Received: by 2002:a05:620a:7:: with SMTP id j7mr5518793qki.161.1614387350917;
-        Fri, 26 Feb 2021 16:55:50 -0800 (PST)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id v35sm1712380qtb.20.2021.02.26.16.55.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Feb 2021 16:55:50 -0800 (PST)
-Received: by mail-yb1-f175.google.com with SMTP id c131so10696353ybf.7
-        for <devicetree@vger.kernel.org>; Fri, 26 Feb 2021 16:55:49 -0800 (PST)
-X-Received: by 2002:a5b:84f:: with SMTP id v15mr7682859ybq.79.1614387349119;
- Fri, 26 Feb 2021 16:55:49 -0800 (PST)
+        id S230084AbhB0Dkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Feb 2021 22:40:53 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:12214 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230081AbhB0Dkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Feb 2021 22:40:52 -0500
+Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.58])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4DnXKn0znNzlQ5K;
+        Sat, 27 Feb 2021 11:38:05 +0800 (CST)
+Received: from [127.0.0.1] (10.40.188.87) by DGGEMS404-HUB.china.huawei.com
+ (10.3.19.204) with Microsoft SMTP Server id 14.3.498.0; Sat, 27 Feb 2021
+ 11:40:01 +0800
+Subject: Re: [PATCH v12 10/10] iommu/arm-smmu-v3: Add stall support for
+ platform devices
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+References: <20210127154322.3959196-1-jean-philippe@linaro.org>
+ <20210127154322.3959196-11-jean-philippe@linaro.org>
+ <8adc79cc-7afb-dfe8-4f7b-07fa6dc5b905@hisilicon.com>
+ <YBfij71tyYvh8LhB@myrica>
+ <fabffd28-7497-2758-c2bf-9d31aa562085@hisilicon.com>
+ <YDkh8qR7csPB68sC@myrica>
+CC:     <joro@8bytes.org>, <will@kernel.org>, <vivek.gautam@arm.com>,
+        <guohanjun@huawei.com>, <linux-acpi@vger.kernel.org>,
+        <zhangfei.gao@linaro.org>, <lenb@kernel.org>,
+        <devicetree@vger.kernel.org>, <kevin.tian@intel.com>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <rjw@rjwysocki.net>, <iommu@lists.linux-foundation.org>,
+        <sudeep.holla@arm.com>, <robin.murphy@arm.com>,
+        <linux-accelerators@lists.ozlabs.org>
+From:   Zhou Wang <wangzhou1@hisilicon.com>
+Message-ID: <22fa4120-eadf-20d5-0d0a-9935aa0f1fb5@hisilicon.com>
+Date:   Sat, 27 Feb 2021 11:40:01 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.7.1
 MIME-Version: 1.0
-References: <20210225221310.1939599-1-dianders@chromium.org>
- <20210225141022.13.I3d1f5f8a3bf31e8014229df0d4cfdff20e9cc90f@changeid> <161436510419.1254594.15131518424468767659@swboyd.mtv.corp.google.com>
-In-Reply-To: <161436510419.1254594.15131518424468767659@swboyd.mtv.corp.google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 26 Feb 2021 16:55:37 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VY3V=8ii+E_Yva3i-HngKwFj9u8W_6pkLe-c2gG0Oz3A@mail.gmail.com>
-Message-ID: <CAD=FV=VY3V=8ii+E_Yva3i-HngKwFj9u8W_6pkLe-c2gG0Oz3A@mail.gmail.com>
-Subject: Re: [PATCH 13/13] arm64: dts: qcom: Add sc7180-lazor-coachz skus
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YDkh8qR7csPB68sC@myrica>
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.40.188.87]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2021/2/27 0:29, Jean-Philippe Brucker wrote:
+> Hi Zhou,
+> 
+> On Fri, Feb 26, 2021 at 05:43:27PM +0800, Zhou Wang wrote:
+>> On 2021/2/1 19:14, Jean-Philippe Brucker wrote:
+>>> Hi Zhou,
+>>>
+>>> On Mon, Feb 01, 2021 at 09:18:42AM +0800, Zhou Wang wrote:
+>>>>> @@ -1033,8 +1076,7 @@ int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain, int ssid,
+>>>>>  			FIELD_PREP(CTXDESC_CD_0_ASID, cd->asid) |
+>>>>>  			CTXDESC_CD_0_V;
+>>>>>  
+>>>>> -		/* STALL_MODEL==0b10 && CD.S==0 is ILLEGAL */
+>>>>> -		if (smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
+>>>>> +		if (smmu_domain->stall_enabled)
+>>>>
+>>>> Could we add ssid checking here? like: if (smmu_domain->stall_enabled && ssid).
+>>>> The reason is if not CD.S will also be set when ssid is 0, which is not needed.
+>>>
+>>> Some drivers may want to get stall events on SSID 0:
+>>> https://lore.kernel.org/kvm/20210125090402.1429-1-lushenming@huawei.com/#t
+>>>
+>>> Are you seeing an issue with stall events on ssid 0?  Normally there
+>>> shouldn't be any fault on this context, but if they happen and no handler
+>>> is registered, the SMMU driver will just abort them and report them like a
+>>> non-stall event.
+>>
+>> Hi Jean,
+>>
+>> I notice that there is problem. In my case, I expect that CD0 is for kernel
+>> and other CDs are for user space. Normally there shouldn't be any fault in
+>> kernel, however, we have RAS case which is for some reason there may has
+>> invalid address access from hardware device.
+>>
+>> So at least there are two different address access failures: 1. hardware RAS problem;
+>> 2. software fault fail(e.g. kill process when doing DMA). Handlings for these
+>> two are different: for 1, we should reset hardware device; for 2, stop related
+>> DMA is enough.
+> 
+> Right, and in case 2 there should be no report printed since it can be
+> triggered by user, while you probably want to be loud in case 1.
+> 
+>> Currently if SMMU returns the same signal(by SMMU resume abort), master device
+>> driver can not tell these two kinds of cases.
+> 
+> This part I don't understand. So the SMMU sends a RESUME(abort) command,
+> and then the master reports the DMA error to the device driver, which
+> cannot differentiate 1 from 2?  (I guess there is no SSID in this report?)
+> But how does disabling stall change this?  The invalid DMA access will
+> still be aborted by the SMMU.
 
-On Fri, Feb 26, 2021 at 10:45 AM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Douglas Anderson (2021-02-25 14:13:10)
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> > new file mode 100644
-> > index 000000000000..5def9953d82b
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> > @@ -0,0 +1,249 @@
-> [...]
-> > +
-> > +/*
-> > + * There's no SAR sensor, so i2c5 is re-purposed.  We leave the
-> > + * proximity@28 node under i2c5 (from trogdor.dtsi) since it's "disabled"
-> > + * and doesn't hurt.
-> > + */
-> > +i2c_wlc: &i2c5 {
-> > +       /* Currently not connected to anything; see b/168652326 */
-> > +};
->
-> Can we remove this? As far as I know this will always be this way and
-> thus doesn't provide anything meaningful to leave this bug comment here
-> that doesn't work for people.
+This is about the hardware design. In D06 board, an invalid DMA access from
+accelerator devices will be aborted, and an hardware error signal will be
+returned to accelerator devices, which reports it as a RAS error irq.
+while for the stall case, error signal triggered by SMMU resume abort is
+also reported as same RAS error irq. This is problem in D60 board.
 
-Yeah, that sounds good.  We just want to delete this whole comment and the node.
+In next generation of hardware, a new irq will be added to report SMMU resume
+abort information, it works with related registers in accelerator devices to
+get related hardware queue, which need to be stopped.
 
-That seems like enough reason to repost the series.  I'll plan to do
-it early next week.  Of course, I wouldn't object to any of these
-things:
-* This patch landing and having the node and I'll do a follow-up patch
-to remove it.
-* Bjorn removing the comment and node as he applies.
+So if CD0.S is 1, invalid DMA access in kernel will be reported into above
+new added irq, which has not enough information to tell RAS errors(there are 10+
+hardware RAS errors) from SMMU resume abort.
 
--Doug
+> 
+> Hypothetically, would it work if all stall events that could not be
+> handled went to the device driver?  Those reports would contain the SSID
+> (or lack thereof), so you could reset the device in case 1 and ignore case
+> 2. Though resetting the device in the middle of a stalled transaction
+
+As above, it is hard to tell RAS errors and SMMU resume abort in SMMU resume abort
+now :(
+
+> probably comes with its own set of problems.
+> 
+>> From the basic concept, if a CD is used for kernel, its S bit should not be set.
+>> How about we add iommu domain check here too, if DMA domain we do not set S bit for
+>> CD0, if unmanaged domain we set S bit for all CDs?
+> 
+> I think disabling stall for CD0 of a DMA domain makes sense in general,
+> even though I don't really understand how that fixes your issue. But
+
+As above, if disabling stall for CD0, an invalid DMA access will be handled
+by RAS error irq.
+
+> someone might come up with a good use-case for receiving stall events on
+
+If A DMA access in kernel fails, I think there should be a RAS issue :)
+So better to disable CD0 stall for DMA domain.
+
+Best,
+Zhou
+
+> DMA mappings, so I'm wondering whether the alternative solution where we
+> report unhandled stall events to the device driver would also work for
+> you.
+> 
+> Thanks,
+> Jean
+> 
+> .
+> 
+
