@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9114A32726A
-	for <lists+devicetree@lfdr.de>; Sun, 28 Feb 2021 14:12:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A75532726C
+	for <lists+devicetree@lfdr.de>; Sun, 28 Feb 2021 14:12:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230477AbhB1NKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Feb 2021 08:10:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53964 "EHLO
+        id S230433AbhB1NKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Feb 2021 08:10:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230481AbhB1NK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Feb 2021 08:10:29 -0500
+        with ESMTP id S230486AbhB1NKd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Feb 2021 08:10:33 -0500
 Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12B87C061793;
-        Sun, 28 Feb 2021 05:09:02 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3FC5C061797
+        for <devicetree@vger.kernel.org>; Sun, 28 Feb 2021 05:09:05 -0800 (PST)
 Received: from localhost.localdomain (abab236.neoplus.adsl.tpnet.pl [83.6.165.236])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id DC4BC1F570;
-        Sun, 28 Feb 2021 14:08:59 +0100 (CET)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id C044C1F578;
+        Sun, 28 Feb 2021 14:09:02 +0100 (CET)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     phone-devel@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
@@ -28,9 +28,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 09/11] arm64: dts: qcom: msm8996: Add DSI0 nodes
-Date:   Sun, 28 Feb 2021 14:08:27 +0100
-Message-Id: <20210228130831.203765-9-konrad.dybcio@somainline.org>
+Subject: [PATCH 10/11] arm64: dts: qcom: pmi8994: Add WLED node
+Date:   Sun, 28 Feb 2021 14:08:28 +0100
+Message-Id: <20210228130831.203765-10-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210228130831.203765-1-konrad.dybcio@somainline.org>
 References: <20210228130831.203765-1-konrad.dybcio@somainline.org>
@@ -40,113 +40,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add required nodes to support DSI displays connected to the
-primary interface.
+Add and configure WLED node to enable backlight
+control on WLED-enabled devices.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 78 +++++++++++++++++++++++++++
- 1 file changed, 78 insertions(+)
+ arch/arm64/boot/dts/qcom/pmi8994.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index d557fd5b9f82..75675fae0334 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -544,6 +544,11 @@ mdp: mdp@901000 {
- 
- 				iommus = <&mdp_smmu 0>;
- 
-+				assigned-clocks = <&mmcc MDSS_MDP_CLK>,
-+					 <&mmcc MDSS_VSYNC_CLK>;
-+				assigned-clock-rates = <300000000>,
-+					 <19200000>;
+diff --git a/arch/arm64/boot/dts/qcom/pmi8994.dtsi b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+index e5ed28ab9b2d..b21c01fea37a 100644
+--- a/arch/arm64/boot/dts/qcom/pmi8994.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
+@@ -32,5 +32,18 @@ pmi8994_spmi_regulators: regulators {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 		};
 +
- 				ports {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
-@@ -554,9 +559,82 @@ mdp5_intf3_out: endpoint {
- 							remote-endpoint = <&hdmi_in>;
- 						};
- 					};
-+
-+					port@1 {
-+						reg = <1>;
-+						mdp5_intf1_out: endpoint {
-+							remote-endpoint = <&dsi0_in>;
-+						};
-+					};
- 				};
- 			};
- 
-+			dsi0: dsi@994000 {
-+				compatible = "qcom,mdss-dsi-ctrl";
-+				reg = <0x00994000 0x400>;
-+				reg-names = "dsi_ctrl";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				clocks = <&mmcc MDSS_MDP_CLK>,
-+					 <&mmcc MDSS_BYTE0_CLK>,
-+					 <&mmcc MDSS_AHB_CLK>,
-+					 <&mmcc MDSS_AXI_CLK>,
-+					 <&mmcc MMSS_MISC_AHB_CLK>,
-+					 <&mmcc MDSS_PCLK0_CLK>,
-+					 <&mmcc MDSS_ESC0_CLK>;
-+				clock-names = "mdp_core",
-+					      "byte",
-+					      "iface",
-+					      "bus",
-+					      "core_mmss",
-+					      "pixel",
-+					      "core";
-+
-+				phys = <&dsi0_phy>;
-+				phy-names = "dsi";
-+				status = "disabled";
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						dsi0_in: endpoint {
-+							remote-endpoint = <&mdp5_intf1_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						dsi0_out: endpoint {
-+						};
-+					};
-+				};
-+			};
-+
-+			dsi0_phy: dsi-phy@994400 {
-+				compatible = "qcom,dsi-phy-14nm";
-+				reg = <0x00994400 0x100>,
-+				      <0x00994500 0x300>,
-+				      <0x00994800 0x188>;
-+				reg-names = "dsi_phy",
-+					    "dsi_phy_lane",
-+					    "dsi_pll";
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+
-+				clocks = <&mmcc MDSS_AHB_CLK>, <&xo_board>;
-+				clock-names = "iface", "ref";
-+				status = "disabled";
-+			};
-+
- 			hdmi: hdmi-tx@9a0000 {
- 				compatible = "qcom,hdmi-tx-8996";
- 				reg =	<0x009a0000 0x50c>,
++		pmi8994_wled: wled@d800 {
++			compatible = "qcom,pmi8994-wled";
++			reg = <0xd800 0xd900>;
++			interrupts = <3 0xd8 0x02 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "short";
++			qcom,num-strings = <3>;
++			/* Yes, all four strings *have to* be defined or things won't work. */
++			qcom,enabled-strings = <0 1 2 3>;
++			qcom,cabc;
++			qcom,eternal-pfet;
++			status = "disabled";
++		};
+ 	};
+ };
 -- 
 2.30.1
 
