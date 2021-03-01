@@ -2,148 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20DA83282B7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 16:43:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC4A32833F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 17:16:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237420AbhCAPmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 10:42:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55070 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237371AbhCAPmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 10:42:46 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1E98C061756;
-        Mon,  1 Mar 2021 07:42:03 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 544A541;
-        Mon,  1 Mar 2021 16:41:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1614613318;
-        bh=6k5y3m4IymgIJtPRDoiiX5wSgKRAQSjYdROeaIAxcnQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DZAoMNjchVA9b+5jgR6LObPIBvCh11KDFoWk3MFd/GLdASIcTbzYJTN9TBqc9gKCJ
-         xETTnXQf3DAkQ/RJMJz+xVgJ4MygnBHfGAPzgvbAI2d4KWFP6Utx+pJdQm9II6eAr2
-         Q/z1A2nVCmFuXJUZAIXRlW4Tw5v26HJrjPfgyrtY=
-Date:   Mon, 1 Mar 2021 17:41:30 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Parshuram Thombare <pthombar@cadence.com>
-Cc:     robert.foss@linaro.org, robh+dt@kernel.org, airlied@linux.ie,
-        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        a.hajda@samsung.com, narmstrong@baylibre.com, nikhil.nd@ti.com,
-        kishon@ti.com, sjakhade@cadence.com, mparab@cadence.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: MHDP8546 bridge binding
- changes for HDCP
-Message-ID: <YD0LKg3Jl5nauMqF@pendragon.ideasonboard.com>
-References: <1614597685-4192-1-git-send-email-pthombar@cadence.com>
- <1614597746-4563-1-git-send-email-pthombar@cadence.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1614597746-4563-1-git-send-email-pthombar@cadence.com>
+        id S237621AbhCAQOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 11:14:52 -0500
+Received: from z11.mailgun.us ([104.130.96.11]:34877 "EHLO z11.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237534AbhCAQLg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Mar 2021 11:11:36 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1614615081; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=o09V222UbtF+m7URYAndN7kvp3AxBbab4TCWrtmYtDo=; b=KAoGEq/W770x30B+6IZ4034iwmPQUpfVPN9ABt4eO+i1XfO3bXbrxgClss1gFINtkrVKJI/G
+ 5TKfQQ/6llStELpqIW7a69bhCPi6W77KiSZWeuLWMarNch4oLmfVVFt75RRXNj3YAbiyFQaj
+ 7a/0Yk2fMx9gZvjT0x9byOlemAM=
+X-Mailgun-Sending-Ip: 104.130.96.11
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 603d12076bfdd67a00fd4eba (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 01 Mar 2021 16:10:47
+ GMT
+Sender: kgunda=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 34096C43466; Mon,  1 Mar 2021 16:10:47 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from kgunda-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kgunda)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E958AC433C6;
+        Mon,  1 Mar 2021 16:10:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E958AC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kgunda@codeaurora.org
+From:   Kiran Gunda <kgunda@codeaurora.org>
+To:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        Kiran Gunda <kgunda@codeaurora.org>
+Subject: [PATCH V4 0/2] Fix WLED FSC Sync and brightness Sync settings
+Date:   Mon,  1 Mar 2021 21:40:28 +0530
+Message-Id: <1614615030-12703-1-git-send-email-kgunda@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Parshuram,
+This patch series has the following two WLED fixes
+ 1. As per the current implementation, for WLED5, after
+    the FSC (Full Scale Current) update the driver is incorrectly
+    toggling the MOD_SYNC register instead of toggling the SYNC register.
+    The patch 1/2 fixes this by toggling the SYNC register after
+    FSC update.
 
-Thank you for the patch.
+ 2. Currently, the sync bits are set-then-cleared after FSC and brightness
+    update. As per hardware team recommendation the FSC and brightness sync
+    takes place from clear-then-set transition of the sync bits.
+    The patch 2/2 fies this issue.
 
-On Mon, Mar 01, 2021 at 12:22:26PM +0100, Parshuram Thombare wrote:
-> Add binding changes for HDCP in the MHDP8546 DPI/DP bridge binding.
-> This binding is not used in any upstreamed DTS yet, so changing
-> index of property 'j721e-intg' should not affect anything.
-> 
-> Signed-off-by: Parshuram Thombare <pthombar@cadence.com>
-> ---
->  .../display/bridge/cdns,mhdp8546.yaml         | 29 ++++++++++++-------
->  1 file changed, 19 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> index 63427878715e..5fdadadaac16 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> @@ -17,21 +17,24 @@ properties:
->        - ti,j721e-mhdp8546
->  
->    reg:
-> -    minItems: 1
-> -    maxItems: 2
-> +    minItems: 2
-> +    maxItems: 3
->      items:
->        - description:
->            Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
->            The AUX and PMA registers are not part of this range, they are instead
->            included in the associated PHY.
-> +      - description:
-> +          Register block of mhdptx sapb registers.
->        - description:
->            Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
->  
->    reg-names:
-> -    minItems: 1
-> -    maxItems: 2
-> +    minItems: 2
-> +    maxItems: 3
->      items:
->        - const: mhdptx
-> +      - const: mhdptx-sapb
->        - const: j721e-intg
->  
->    clocks:
-> @@ -53,6 +56,11 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  hdcp-config:
-> +    maxItems: 1
-> +    description:
-> +      HDCP version supported. Bit [0]:HDCP2.2 [1]:HDCP1.4.
-> +
+Changes from V3:
+  1. Updated the patch description as per Daneil's suggestion.
+  2. Added Daniel's "Reviewed-by" tag for patch 2/2.
+  3. Updated the cover letter to use "set" and "clear" properly.
+ 
+Changes from V2:
+  1. Added Daniel's "Reviewed-by" tag for patch 1/2.
+  2. Updated the patch 2/2 description with "set" and "clear"
+     terminology instead of "1" and "0".
+  3. Updated the cover letter with "set" and "clear" terminology
+     instead of "1" and "0".
 
-Is this a property of the hardware, that is, are there multiple versions
-of this IP core covered by the same compatible string that support HDCP
-1.4 only, DHCP 2.2 only or both ? Or is it a way to select what a given
-system will offer ?
+Changes from V1:
+  1. Updated the cover letter.
+  2. Updated the description of the patches as per Daniel's suggestion.
 
->    interrupts:
->      maxItems: 1
->  
-> @@ -98,15 +106,15 @@ allOf:
->      then:
->        properties:
->          reg:
-> -          minItems: 2
-> +          minItems: 3
->          reg-names:
-> -          minItems: 2
-> +          minItems: 3
->      else:
->        properties:
->          reg:
-> -          maxItems: 1
-> +          maxItems: 2
->          reg-names:
-> -          maxItems: 1
-> +          maxItems: 2
->  
->  required:
->    - compatible
-> @@ -129,8 +137,9 @@ examples:
->  
->          mhdp: dp-bridge@f0fb000000 {
->              compatible = "cdns,mhdp8546";
-> -            reg = <0xf0 0xfb000000 0x0 0x1000000>;
-> -            reg-names = "mhdptx";
-> +            reg = <0xf0 0xfb000000 0x0 0x1000000>,
-> +                  <0x0 0x4f48000 0x0 0x74>;
-> +            reg-names = "mhdptx", "mhdptx-sapb";
->              clocks = <&mhdp_clock>;
->              phys = <&dp_phy>;
->              phy-names = "dpphy";
+Kiran Gunda (2):
+  backlight: qcom-wled: Fix FSC update issue for WLED5
+  backlight: qcom-wled: Correct the sync_toggle sequence
+
+ drivers/video/backlight/qcom-wled.c | 37 +++++++++++++++++++++++++------------
+ 1 file changed, 25 insertions(+), 12 deletions(-)
 
 -- 
-Regards,
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+ a Linux Foundation Collaborative Project
 
-Laurent Pinchart
