@@ -2,62 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BD2D328876
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 18:45:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 159E9328916
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 18:52:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234706AbhCARkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 12:40:14 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:37035 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238616AbhCAReY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 12:34:24 -0500
-Received: by mail-oi1-f181.google.com with SMTP id l133so18859319oib.4;
-        Mon, 01 Mar 2021 09:34:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SWoA/EVGe64a09ttKHxs6/Dq9zt4tqFzVWgiJaUUDGY=;
-        b=BMKOT0kCK7za39ZfRDlIvUIrA4eOyl90dAhH0vYWTjse9NdzMYpYtZlUShAFcDag0I
-         WuaAcZXsUgTK06uXADB0vc0aQZsFYfIa88FIfv3tA3k3nxQ6OGqPDWXetl59bePM3J5k
-         dk/AsFR2bxJYHGWGdeUMKD9fyjOeG+/NjiSsFe+GbNDKk2IyA8HtoPHHYsdroQH8E0jk
-         l8A2bLon0S50pTNFUhgyGewnKODVVeJD6snP2IPKX3qS7N3MYaoU60+xDtfHre7UARvK
-         G0uVItWUGCfSGZS8Vdo6DLKCpOGV5BtXdTwAKZjhEqrkqgOn7SaBdhAAejRrWR/Iakrv
-         6XLg==
-X-Gm-Message-State: AOAM532BD7zc1Q61NQ+kz1Mi6PERZNUfhT3vsN1dSrUqoRLJeNkJ1WEC
-        4wMs2Igi7oFm8P02BiGSYw==
-X-Google-Smtp-Source: ABdhPJzLaTyv/xQECBkGlZhg26tB4XjSM84gMKEG/XGmkko9nHReB3asuXl6qCGpYDa9RmpXn3JaOA==
-X-Received: by 2002:aca:3886:: with SMTP id f128mr11984722oia.127.1614620022393;
-        Mon, 01 Mar 2021 09:33:42 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y27sm3444219oix.37.2021.03.01.09.33.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Mar 2021 09:33:41 -0800 (PST)
-Received: (nullmailer pid 295304 invoked by uid 1000);
-        Mon, 01 Mar 2021 17:33:40 -0000
-Date:   Mon, 1 Mar 2021 11:33:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        andreas@kemnade.info, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] dt-bindings: mfd: ricoh, rn5t618: Trivial: Fix
- spelling mistake of 'additionally'
-Message-ID: <20210301173340.GA295251@robh.at.kernel.org>
-References: <20210301103309.2404426-1-lee.jones@linaro.org>
+        id S234741AbhCARtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 12:49:47 -0500
+Received: from pegase1.c-s.fr ([93.17.236.30]:7923 "EHLO pegase1.c-s.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238470AbhCARqq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Mar 2021 12:46:46 -0500
+Received: from localhost (mailhub1-int [192.168.12.234])
+        by localhost (Postfix) with ESMTP id 4Dq72b2Rzsz9txw5;
+        Mon,  1 Mar 2021 18:45:27 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
+        with ESMTP id itzHZIp104h4; Mon,  1 Mar 2021 18:45:27 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase1.c-s.fr (Postfix) with ESMTP id 4Dq72b18Hqz9txw4;
+        Mon,  1 Mar 2021 18:45:27 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id ECB8D8B7A9;
+        Mon,  1 Mar 2021 18:45:32 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id YA7oJihd7iq9; Mon,  1 Mar 2021 18:45:32 +0100 (CET)
+Received: from [192.168.4.90] (unknown [192.168.4.90])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id E373F8B7A3;
+        Mon,  1 Mar 2021 18:45:31 +0100 (CET)
+Subject: Re: [PATCH 0/2] Fix CMDLINE_EXTEND handling for FDT "bootargs"
+To:     Rob Herring <robh@kernel.org>, Will Deacon <will@kernel.org>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Daniel Walker <danielwa@cisco.com>
+Cc:     devicetree@vger.kernel.org,
+        Android Kernel Team <kernel-team@android.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Marc Zyngier <maz@kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        Doug Anderson <dianders@chromium.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Tyler Hicks <tyhicks@linux.microsoft.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Max Uvarov <muvarov@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20210225125921.13147-1-will@kernel.org>
+ <CAL_JsqJX=TCCs7=gg486r9TN4NYscMTCLNfqJF9crskKPq-bTg@mail.gmail.com>
+ <20210301144153.GA16716@willie-the-truck>
+ <CAL_JsqJ11D-7a3pwLTVd+rHjqDGBb=b8OU_a6h3Co-at+2qMtQ@mail.gmail.com>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+Message-ID: <bbbf5def-a168-9a4c-1106-b80883dfd389@csgroup.eu>
+Date:   Mon, 1 Mar 2021 18:45:28 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210301103309.2404426-1-lee.jones@linaro.org>
+In-Reply-To: <CAL_JsqJ11D-7a3pwLTVd+rHjqDGBb=b8OU_a6h3Co-at+2qMtQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 Mar 2021 10:33:09 +0000, Lee Jones wrote:
-> Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+
+
+Le 01/03/2021 à 18:26, Rob Herring a écrit :
+> +PPC folks and Daniel W
+> 
+> On Mon, Mar 1, 2021 at 8:42 AM Will Deacon <will@kernel.org> wrote:
+>>
+>> On Mon, Mar 01, 2021 at 08:19:32AM -0600, Rob Herring wrote:
+>>> On Thu, Feb 25, 2021 at 6:59 AM Will Deacon <will@kernel.org> wrote:
+>>>> We recently [1] enabled support for CMDLINE_EXTEND on arm64, however
+>>>> when I started looking at replacing Android's out-of-tree implementation [2]
+>>>
+>>> Did anyone go read the common, reworked version of all this I
+>>> referenced that supports prepend and append. Here it is again[1].
+>>> Maybe I should have been more assertive there and said 'extend' is
+>>> ambiguous.
+>>
+>> I tried reading that, but (a) most of the series is not in the mailing list
+>> archives and (b) the patch that _is_ doesn't touch CMDLINE_EXTEND at all.
+>> Right now the code in mainline does the opposite of what it's documented to
+>> do.
+> 
+> Actually, there is a newer version I found:
+> 
+> https://lore.kernel.org/linuxppc-dev/1551469472-53043-1-git-send-email-danielwa@cisco.com/
+> https://lore.kernel.org/linuxppc-dev/1551469472-53043-2-git-send-email-danielwa@cisco.com/
+> https://lore.kernel.org/linuxppc-dev/1551469472-53043-3-git-send-email-danielwa@cisco.com/
+
+This was seen as too much intrusive into powerpc.
+
+I proposed an alternative at 
+https://patchwork.ozlabs.org/project/linuxppc-dev/cover/cover.1554195798.git.christophe.leroy@c-s.fr/ but 
+never got any feedback.
+
+
+> 
+> (Once again, there's some weird threading going on)
+> 
+>>>> with the upstream version, I noticed that the two behave significantly
+>>>> differently: Android follows the Kconfig help text of appending the
+>>>> bootloader arguments to the kernel command line, whereas upstream appends
+>>>> the kernel command line to the bootloader arguments. That is, except for
+>>>> the EFI stub, which follows the documented behaviour.
+>>>>
+>>>> I think the documented behaviour is more useful, so this patch series
+>>>> reworks the FDT code to follow that and updates the very recently merged
+>>>> arm64 idreg early command-line parsing as well.
+>>>
+>>> I can just as easily argue that the kernel having the last say makes
+>>> sense.
+>>
+>> Dunno, I'd say that's what CMDLINE_FORCE is for. Plus you'd be arguing
+>> against both the documentation and the EFI stub implementation.
+> 
+> CMDLINE_FORCE is a complete override, not a merging of command lines.
+> 
+>>> Regardless, I'm pretty sure there's someone out there relying on current
+>>> behavior. What is the impact of this change to other arches?
+>>
+>> On arm64, I doubt it, as Android is the main user of this (where it's been
+>> supported for 9 years with the documented behaviour).
+>>
+>> The other option, then, is reverting CMDLINE_EXTEND from arm64 until this is
+>> figured out. I think that's preferable to having divergent behaviour.
+>>
+>> As for other architectures, I think the ATAGs-based solution on arch/arm/
+>> gets it right:
+>>
+>>    static int __init parse_tag_cmdline(const struct tag *tag)
+>>    {
+>>    #if defined(CONFIG_CMDLINE_EXTEND)
+>>            strlcat(default_command_line, " ", COMMAND_LINE_SIZE);
+>>            strlcat(default_command_line, tag->u.cmdline.cmdline,
+>>                    COMMAND_LINE_SIZE);
+> 
+> The question is really whether any arm32 DT based platform depends on
+> the current behavior. RiscV could also be relying on current behavior.
+> Powerpc also uses the current behavior (and the documentation is also
+> wrong there). Changing the behavior in the FDT code means the powerpc
+> early PROM code and the FDT code do the opposite.
+> 
+> Arm32 has had current behaviour for 5 years. Powerpc for 1.5 years and
+> Risc-V for 2 years. Then there's MIPS which has its own Kconfig
+> symbols for this and is its own kind of mess. Either we assume
+> existing users didn't really care about the order or we have to
+> support both prepend and append.
+> 
+>> For now I think we have two options for arm64: either fix the fdt code,
+>> or revert CMDLINE_EXTEND until the PREPEND/APPEND series is merged. Which
+>> do you prefer?
+> 
+> Like anything copied across arches, I want someone to look at this
+> across all architectures and make this common instead of just copying
+> to new arches. The prepend/append series is the closest we've come.
+> 
+> Rob
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Christophe
