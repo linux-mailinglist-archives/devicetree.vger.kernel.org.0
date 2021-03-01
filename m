@@ -2,80 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87826328263
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 16:25:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EEA532826A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 16:26:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236659AbhCAPYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 10:24:14 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:37924 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237103AbhCAPYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 10:24:06 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 121FMRk7006699;
-        Mon, 1 Mar 2021 09:22:27 -0600
+        id S236946AbhCAPZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 10:25:40 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:52222 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237064AbhCAPZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 10:25:35 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 121FNvvn092689;
+        Mon, 1 Mar 2021 09:23:57 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614612147;
-        bh=kFBMGy9uiWTxUTLAQVlkV8PT6CJ/OnQoLDqfYJV2bRk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=U6AX4WuDXbpLkpzKB/xnAEf4JRC4jO3fonzO3+I2eadJ7bYWAQAjIMVR/lx+JL09I
-         FeQ7TTrrb8zlyzUaaYv7b9aEfGEiDjYFY1+B8DT4r+PrrpTMcdiqrHPNs56mjCQk2r
-         uecTgyKYa9D615FEdQFTJ67jXS8lFmQVlAj+bj2c=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 121FMRTm055528
+        s=ti-com-17Q1; t=1614612237;
+        bh=RrsqEvry1fSgLfAcyynxOYub9w000fRlB5AlPwq0Eh0=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=pCOIcC2U5PbNvmUoXfAMKmHAd9FPTRkBKwoqKOqbFJzp4p33THFXrNcuxeLtzx6sr
+         vzbAS3c6/vTPF2XxHqN9GtAd0f4hho25/MoTkMrvZ7HX/U0UTlqGGpCZ2hXWXiLRaZ
+         Sr09x84ddBbcjLv50MiatX/7Wre6dAPkgqbcaorM=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 121FNv1e097262
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 1 Mar 2021 09:22:27 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 1 Mar 2021 09:23:57 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 1 Mar
- 2021 09:22:27 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 09:23:56 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 1 Mar 2021 09:22:27 -0600
+ Frontend Transport; Mon, 1 Mar 2021 09:23:56 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 121FMRxZ038823;
-        Mon, 1 Mar 2021 09:22:27 -0600
-Date:   Mon, 1 Mar 2021 09:22:27 -0600
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 121FNunj077985;
+        Mon, 1 Mar 2021 09:23:56 -0600
 From:   Nishanth Menon <nm@ti.com>
 To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+CC:     Nishanth Menon <nm@ti.com>, Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/2] AM64:  Add USB support
-Message-ID: <20210301152227.f6phla2m3rz457pj@passerby>
-References: <20210301055109.17626-1-a-govindraju@ti.com>
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        <devicetree@vger.kernel.org>, Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Faiz Abbas <faiz_abbas@ti.com>, <linux-kernel@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems
+Date:   Mon, 1 Mar 2021 09:23:55 -0600
+Message-ID: <161461221897.7789.9478370543564524622.b4-ty@ti.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210225132736.26429-1-a-govindraju@ti.com>
+References: <20210225132736.26429-1-a-govindraju@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210301055109.17626-1-a-govindraju@ti.com>
-User-Agent: NeoMutt/20171215
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11:21-20210301, Aswath Govindraju wrote:
-> The following series of patches, add USB support for AM64.
+On Thu, 25 Feb 2021 18:57:36 +0530, Aswath Govindraju wrote:
+> According to latest errata of J721e [1], HS400 mode is not supported
+> in MMCSD0 subsystem (i2024) and SDR104 mode is not supported in MMCSD1/2
+> subsystems (i2090). Therefore, replace mmc-hs400-1_8v with mmc-hs200-1_8v
+> in MMCSD0 subsystem and add a sdhci mask to disable SDR104 speed mode.
 > 
-> This series of patches depends on,
-> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=439039
+> Also, update the itap delay values for all the MMCSD subsystems according
+> the latest J721e data sheet[2]
 > 
-> Aswath Govindraju (2):
->   arm64: dts: ti: k3-am64-main: Add DT node for USB subsystem
->   arm64: dts: ti: k3-am642-evm: Add USB support
-> 
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 30 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 18 ++++++++++++++
->  2 files changed, 48 insertions(+)
+> [...]
 
-Please update the series to include SK as well.
+Hi Aswath Govindraju,
 
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/1] arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems
+      commit: 9e3faed4dc176d06dc2bed5f16a33085af10fb1c
+
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
 -- 
 Regards,
 Nishanth Menon
 Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
