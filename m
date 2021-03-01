@@ -2,107 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5050327BF5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 11:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99787327C19
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 11:29:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234186AbhCAKXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 05:23:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42794 "EHLO
+        id S234284AbhCAK2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 05:28:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234093AbhCAKX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 05:23:29 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E0C5C061786
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 02:22:00 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id h98so15480701wrh.11
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 02:22:00 -0800 (PST)
+        with ESMTP id S234519AbhCAK2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 05:28:01 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E1FC061756
+        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 02:27:21 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id e7so24632250lft.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 02:27:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=fO30ApwIwTZ6ViBN1Ge+IoLrpzbpt+XR3EbBXQz0Ao4=;
-        b=OCOdfFrla8ehIgwoRPFmxKWVA5obG0UC2lRwXNbMWzvuKfpxOkp5Bro5tWT0cE/w9w
-         x+bA+Czlt57JU6a42SkfptvC3JuGPA6StIHjWCY+RTvYQTW026gTUD5O4rbJHxolcIvX
-         6oZ09xRd0HxZxSSov7dwBlVVhAQExMpyZNo1z/MlMXkzP1CodP7I6cY+mJeBwcH/Aw89
-         6BG7KC7nt66322RaxL+SjLPIeBY8BWEPKjxGKwxkSugDprrUBSDKLLls5QlL9n84JSga
-         6PvlPLDGTxOh21g88Zkz772Y4umW317CuFDEnDR9obAYTK2Mcgbf9/9ACljkOOJc9MRf
-         iXMw==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=OtkBCF5ItQCMmag8TcrjWdLf8ZIEMli+zgdNDhzYtH0=;
+        b=ucCnugcTFAnaPBeF1TFZOap11wStmSeHhmrIa2W3vJVrpDB6HwAEu+0zJix1ctWnpB
+         SFhmTmctRxaldqVaiSn4EpXnhTssnhJRFmF61c3ToPAkkqmUtjyE49hjSACUPKFogFWs
+         LEGITSAbaI1tIgyN+vafx2cnxtJQHHpaC7/qQs2BtoSteliGGwJxjl1DoLanqM9OL3wt
+         xaUm6DCow/S6WqSE/LCB65zpa0kQxlh3SeyVfeX44K6IcI00WEuDVQSJ7QJdUzZrm62c
+         dtPsKW0qHnMy8l3okipinKGfd/5Yi0g7RZOrnBjj8X++n406WiXbg2Bzk++9OCceCwhi
+         URwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=fO30ApwIwTZ6ViBN1Ge+IoLrpzbpt+XR3EbBXQz0Ao4=;
-        b=CgfkQnUknIcTaS0ZmvLHs9gsHwxOtu30rRlp2UKpDoW/7s0URtWjxryhBH404eJUh8
-         wUYHofPZvCnhf4maPtCJwdE3Lv6B3eHWdZqgS10Nu0l3E47Zhv7xnPgYC/p1Z0TUWWDR
-         u668tu6MdrngaMpDC3RELSFoGMXvsAhD/awHFJwhaulaVr5/Fc4ecU0SSiJ+QafbdtaE
-         GlAUZZ38iopUH8s0rMMMok5fIgUGKQ75nMrtQ5h4oEMd3X+3l53Lu7FYQIF151h08wzh
-         1Ptt/5vj2rBMjqfp3yBinSbyji1PXTnZLi6T0jg79IvuGOwtMa3pwtVPf7EE3jedY5m9
-         l+Fg==
-X-Gm-Message-State: AOAM532US/yZAjVMQZ6s9BPn1PHIOBywsi0NRGeF3AxnZtmV3uY7RD51
-        /JTJFamx0AaBxpFsKJHbFG6yqw==
-X-Google-Smtp-Source: ABdhPJxAXiZUsHcR0Rc2xEpcKrMkbJ4gJn1n7JbYEm1p5PO/WxOTQnHJpHjB0WesA4oRThRvN58PLw==
-X-Received: by 2002:adf:d217:: with SMTP id j23mr2045527wrh.113.1614594118833;
-        Mon, 01 Mar 2021 02:21:58 -0800 (PST)
-Received: from dell ([91.110.221.155])
-        by smtp.gmail.com with ESMTPSA id m3sm7999205wmc.48.2021.03.01.02.21.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Mar 2021 02:21:58 -0800 (PST)
-Date:   Mon, 1 Mar 2021 10:21:56 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        Ran Bi <ran.bi@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH RESEND v5 7/8] regulator: mt6359: Add support for MT6359P
- regulator
-Message-ID: <20210301102156.GJ641347@dell>
-References: <1611913781-23460-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1611913781-23460-8-git-send-email-hsin-hsiung.wang@mediatek.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=OtkBCF5ItQCMmag8TcrjWdLf8ZIEMli+zgdNDhzYtH0=;
+        b=Nde+LThii4hTOKC/NEqtVQkORA6w+nU75d+7hNoeA5ktHHNajO6w0rrwxT09kRQ1Yp
+         epPgPh9lxQPybfaYASzs51Jw8LZsl1eaiuWklRus75booqurbtJRzS+G9K6Z12YbCZeE
+         J24uLyI98dWZY+X8b0NwZD+6VurxvkUHbla2iIcceU8587egTKA14etechhXCqlg57mW
+         uNlclL4lGTT0+w/apoWJmI8BGJ/iOP584+WN8ylJmnqhLA9aeorObcoUNtu5FPmF9g1Y
+         xf2G78gQ+lHjfyuL2ZnFszGVVUCguq2bKDOSEMi8kICUb+aRTwGx70+IuVImdFst2ho3
+         h6Ew==
+X-Gm-Message-State: AOAM530OItAnm7gX+XFlLZtIvFvqCzU1RxxjAmyaPI4pXvKMCAG1tPYx
+        3jZeqBKq5EmyRH0IfWhcLxanrXpCRWegMPjEQ9Y=
+X-Google-Smtp-Source: ABdhPJzm7PR+0bPw6QK8VB8T7n/vICXsf78YUxXqlIeeoK55FZdfDI6cnHiBqPZl0k9T0VsRolvpvI68PpPag6boAU0=
+X-Received: by 2002:a19:98a:: with SMTP id 132mr9319928lfj.139.1614594439882;
+ Mon, 01 Mar 2021 02:27:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1611913781-23460-8-git-send-email-hsin-hsiung.wang@mediatek.com>
+Received: by 2002:a9a:4e15:0:b029:c1:39ac:7224 with HTTP; Mon, 1 Mar 2021
+ 02:27:19 -0800 (PST)
+Reply-To: robinramphal34@gmail.com
+From:   "Mr.Robin Ramphal" <robinramphal53@gmail.com>
+Date:   Mon, 1 Mar 2021 10:27:19 +0000
+Message-ID: <CACr=nkpN2jYfzEuvR8sfqeTknhxPg6=LsKMyuR4NNJwGka48Gg@mail.gmail.com>
+Subject: Greetings
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Jan 2021, Hsin-Hsiung Wang wrote:
+PRIVATE AND URGENT.
 
-> The MT6359P is a eco version for MT6359 regulator.
-> We add support based on MT6359 regulator driver.
-> 
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> ---
-> changes since v4:
-> - add the regulators_node support.
-> ---
->  drivers/regulator/mt6359-regulator.c       | 379 ++++++++++++++++++++-
+I am Mr.Robin Ramphal, and I am contacting you on business transfer of
+a huge sum of money from a deceased account. Though I know that a
+transaction of this magnitude will make anyone apprehensive and
+worried, but I am assuring you that all will be well at the end of the
+day. I decided to contact you due to the urgency of this transaction.
 
->  include/linux/mfd/mt6359p/registers.h      | 249 ++++++++++++++
+PROPOSITION:
 
-Although the code is fine, just be aware that Linus can get grumpy
-having 100s and 100s of unused register defines in the kernel.
+I am an account manager with UBP Bank here in Jersey Channel Islands,
+in charge of all nonresident accounts. I have been in this capacity
+working with the bank for the last 15 years and I joined this
+institution in 1983 as a junior clerk and worked my way up through the
+ranks. On assumption of duty in November 2002 I discovered a dormant
+account in my branch that was opened in 1985 in the name of Karl
+Henning  and I have kept close tab on this very account for the last
+15 years and it has remained dormant even from the day the first
+deposit of USD($4.5 Million dollars) was made  to this moment, we have
+been investigating this account for the past 15 years and discovered
+that Karl Henning was used as Pseudonym Name to open the account while
+the original owner of the funds in question was the late president of
+Philippines Ferdinand Marcos. The next of kin part was left blank
+hence it was impossible for them to have claimed the funds these past
+years or they have forgotten the existence of the funds entirely, in
+agreement with my senior executive officer we have agreed to expunge
+the blank portion of the next of kin and fill it up with the name of a
+would be partner who we can insert his or her name and start the
+process of transferring the funds out of the account to the new would
+be beneficiary. I also have secured from the probate an order of
+mandamus to locate any member of deceased Karl Henning family to
+become beneficiary of this fund. Please acknowledge receipt of this
+message in acceptance of our mutual business Endeavour by furnishing
+me with the following:
 
->  include/linux/regulator/mt6359-regulator.h |   1 +
->  3 files changed, 623 insertions(+), 6 deletions(-)
->  create mode 100644 include/linux/mfd/mt6359p/registers.h
+1.Beneficiary name and address
+2.Identification documents
+3.Direct Telephone
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+These requirements will enable me make some internal re-adjustments
+and file your name in all the forms and other vital documents as next
+of kin to the Pseudonym Name Karl Henning which before now was left
+blank when the account was opened many years ago. Upon your reply, we
+shall then discuss the sharing ratio and advice you the detailed
+procedure to follow and achieve this once in a life time opportunity
+without any hitch. I must assure you that if you are serious and
+follow my lead religiously, these funds will be processed and released
+to you within 14-working-day period. If this proposal is acceptable by
+you, do not take undue advantage of the trust I have bestowed in you,
+I await your Immediate Reply.
+
+Regards,
+Mr.Robin Ramphal
