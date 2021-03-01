@@ -2,82 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ABDE328E73
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 20:32:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 787FE32904D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 21:08:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238923AbhCATcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 14:32:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49570 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241645AbhCAT2Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Mar 2021 14:28:24 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E7DB651B6;
-        Mon,  1 Mar 2021 17:16:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1614618971;
-        bh=BWw/+3s3qB6WDtgbbM87JhjXHEDv5DoECf3d4DUEVh4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=W8/+pZio2ONUYDbms/dlJw95beYfbU/JLdcUd1de5Mx79g0I9wSuZVxEu5OivaYjl
-         7KMuv750dkbmHdxyhLQ8rkiPWn7kjERsjPRQlqGJa3vj6AQR/bOLLBpwbslmPXujic
-         dIkIvwzztYkYXCQtdNyMU88nE0al0c6C02pVYUCw=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, KarimAllah Ahmed <karahmed@amazon.de>,
-        Quentin Perret <qperret@google.com>,
-        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.10 284/663] fdt: Properly handle "no-map" field in the memory region
-Date:   Mon,  1 Mar 2021 17:08:52 +0100
-Message-Id: <20210301161155.875119944@linuxfoundation.org>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210301161141.760350206@linuxfoundation.org>
-References: <20210301161141.760350206@linuxfoundation.org>
-User-Agent: quilt/0.66
+        id S236266AbhCAUF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 15:05:28 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44458 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242149AbhCAUA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 15:00:59 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 121Jws5E110901;
+        Mon, 1 Mar 2021 13:58:54 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1614628734;
+        bh=FE5CvE2+82CkKYFiC2JgYWZgdfsFTrA8dUETfRA41FY=;
+        h=From:To:CC:Subject:Date;
+        b=WT39sd1g7RkkHNL+pP5r/rATRZOtXKuN0+DklqVyKc3+SUTIb85gqEs5y6+l8a6m6
+         Th1e2t79BVfMTGrzdnWFcM8s3hHTvFZKKg1PeSZQbXUrZVezgIup1Hc3sY283/6jT7
+         26ZpT02jMPL2N+tDD9DGXmsUXUQjEBQb41U2D92A=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 121JwsX1100218
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 1 Mar 2021 13:58:54 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 1 Mar
+ 2021 13:58:54 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 1 Mar 2021 13:58:54 -0600
+Received: from pratyush-OptiPlex-790.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 121JwpIJ058503;
+        Mon, 1 Mar 2021 13:58:52 -0600
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Pratyush Yadav <p.yadav@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH 0/3] Enable 8D-8D-8D mode on J721E, J7200, AM654
+Date:   Tue, 2 Mar 2021 01:28:47 +0530
+Message-ID: <20210301195850.31868-1-p.yadav@ti.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: KarimAllah Ahmed <karahmed@amazon.de>
+Hi,
 
-[ Upstream commit 86588296acbfb1591e92ba60221e95677ecadb43 ]
+Now that the OSPI controller driver and the SPI NOR core have support
+for 8D-8D-8D mode, the device tree can be updated to allow Octal DTR
+transactions.
 
-Mark the memory region with NOMAP flag instead of completely removing it
-from the memory blocks. That makes the FDT handling consistent with the EFI
-memory map handling.
+Pratyush Yadav (3):
+  arm64: dts: ti: k3-j721e-som-p0: Enable 8D-8D-8D mode on OSPI
+  arm64: dts: ti: am654-base-board: Enable 8D-8D-8D mode on OSPI
+  arm64: dts: ti: k3-j7200-som-p0: Add nodes for OSPI0
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: KarimAllah Ahmed <karahmed@amazon.de>
-Signed-off-by: Quentin Perret <qperret@google.com>
-Link: https://lore.kernel.org/r/20210115114544.1830068-2-qperret@google.com
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/of/fdt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |  4 +--
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 17 +++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 36 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   |  4 +--
+ 4 files changed, 57 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 4602e467ca8b9..e4d4a1e7ef7e2 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1150,7 +1150,7 @@ int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
- 					phys_addr_t size, bool nomap)
- {
- 	if (nomap)
--		return memblock_remove(base, size);
-+		return memblock_mark_nomap(base, size);
- 	return memblock_reserve(base, size);
- }
- 
--- 
-2.27.0
-
-
+--
+2.30.0
 
