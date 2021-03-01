@@ -2,125 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E885327958
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 09:36:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D03933279D2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 09:49:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233170AbhCAIf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 03:35:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47706 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233155AbhCAIfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 03:35:21 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B595C061786
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 00:34:41 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id do6so26645724ejc.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 00:34:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lDAufuhpzrV03TMTLpI4rsJPdAs1FZA19H3Gjjzj/H8=;
-        b=hYd7SO61L3RSn8PhZEs9fr4+k0HyH5eQIyPA4fNHipymNkx7Cbq9/DYvGJwNXMhgCS
-         EzwIwbAP1UdNG5AzP5UvleA3yOTwvEwiOUEHiXPRfX7oYM7l7dqQ6CmPzqkceHbNO9uc
-         oAaKm3WYacHhtJpVMHvF2FVysEwB/nmVqdLPY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lDAufuhpzrV03TMTLpI4rsJPdAs1FZA19H3Gjjzj/H8=;
-        b=rJavbjP+8+OHpDUntJ+zVHamZpADv2RA04qRceMvY8yZl10BV7taDWmQI8XiY1r125
-         0VM4HP/DkN8mN9iKTIDUx+jVMV5Q1o7b+pAJzMLWTKHOCgoCQ+yhf3/ZGYPu8nfwFfck
-         GgSHSY1Klc9mP4FhYp3rsqDYIOWsoF0phHyFb3FXfbBirXODboP4Eyv5dkbgJw02Mww6
-         MsDxd8WGh6sjbJXfE1ndVam37MdvfXAh4QLeMY1FFAh4Onf+xoU+9+qJBjawAW7nHJjk
-         nQTZy+eMemC5w7wfZKfoujogS5FVeg7AhyW157sHP5rNzQW3A8y7cDWHWRV+2mRyEq1n
-         UpHw==
-X-Gm-Message-State: AOAM532TEkFV0OpqjkpjOwHl0QtSi5pmDYKr4VWV0lOg7rT0oarFkxrv
-        bAiTizv7h4BqivC6hScAKzztXA==
-X-Google-Smtp-Source: ABdhPJzyoWxnbcRLJyYqJf+BkrEk3Qke/unRo+Xvj2PJgrlnj5tnNDmHWXtHesVzhkIklMC0YVQ5+g==
-X-Received: by 2002:a17:906:35cf:: with SMTP id p15mr5227601ejb.379.1614587679738;
-        Mon, 01 Mar 2021 00:34:39 -0800 (PST)
-Received: from [192.168.1.149] ([80.208.71.141])
-        by smtp.gmail.com with ESMTPSA id p25sm13926890eds.55.2021.03.01.00.34.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Mar 2021 00:34:39 -0800 (PST)
-Subject: Re: [PATCH 0/2] add ripple counter dt binding and driver
-To:     Guenter Roeck <linux@roeck-us.net>, Arnd Bergmann <arnd@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
-References: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
- <CAK8P3a2=nZ3bbeguXjbFrhz0nWeUOcLM7mRudhPDrcb+jZ4VvQ@mail.gmail.com>
- <e5fd7ce3-3ba6-e5de-1cbc-fa31bd46942c@rasmusvillemoes.dk>
- <2208f466-e509-6bbe-0358-34effb965610@roeck-us.net>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Message-ID: <285d739a-b343-c411-5461-0fe1f44177a5@rasmusvillemoes.dk>
-Date:   Mon, 1 Mar 2021 09:34:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S233463AbhCAIrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 03:47:22 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:14754 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233394AbhCAIqO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Mar 2021 03:46:14 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1614588347; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Cey4WVl7LtaCP6MJNq4HJn9FVmHktZGEEAE5nLQ/M8A=;
+ b=uBFamxhHY9BavknriKXWXIh5ABCK8pfOGMaTvP2ZgDfhOpVg7hEytlSfTTECiHYsgYNKNwfs
+ eqUz+I8Cm1n2GQ+8RwFsXBdi7PTUC+F7f/PCyQ1nWXVNxIjEeWJYC8y/+42iDasAR6LDO8qK
+ GHNl3J+c1rHxyIsf6AqeaGcFXxs=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 603ca9997aa94c52e7f31701 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 01 Mar 2021 08:45:13
+ GMT
+Sender: kgunda=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C8F33C43463; Mon,  1 Mar 2021 08:45:13 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kgunda)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id EA03EC43462;
+        Mon,  1 Mar 2021 08:45:12 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <2208f466-e509-6bbe-0358-34effb965610@roeck-us.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date:   Mon, 01 Mar 2021 14:15:12 +0530
+From:   kgunda@codeaurora.org
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, jacek.anaszewski@gmail.com,
+        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        phone-devel@vger.kernel.org
+Subject: Re: [PATCH V2 2/2] backlight: qcom-wled: Correct the sync_toggle
+ sequence
+In-Reply-To: <20210226172601.aknj2d4hghkkqjol@maple.lan>
+References: <1614341544-5306-1-git-send-email-kgunda@codeaurora.org>
+ <1614341544-5306-3-git-send-email-kgunda@codeaurora.org>
+ <20210226172601.aknj2d4hghkkqjol@maple.lan>
+Message-ID: <0cca377c2a7648c5f1606e38ba1b7d4d@codeaurora.org>
+X-Sender: kgunda@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/02/2021 20.53, Guenter Roeck wrote:
-> On 2/26/21 8:35 AM, Rasmus Villemoes wrote:
->> On 26/02/2021 15.35, Arnd Bergmann wrote:
->>> On Fri, Feb 26, 2021 at 3:14 PM Rasmus Villemoes
->>> <linux@rasmusvillemoes.dk> wrote:
->>>
->>>>
->>>> So I'm thinking that the proper way to handle this is to be able to
->>>> represent that ripple counter as a clock consumer in DT and have a
->>>> driver do the clk_prepare_enable(), even if that driver doesn't and
->>>> can't do anything else. But I'm certainly open to other suggestions.
->>>
->>> How about adding support for the optional clock to the gpio_wdt driver,
->>> would that work?
->>
->> I think it would _work_ (all I need is some piece of code doing the
->> clock_prepare_enable(), and until now we've just stashed that in some
->> otherwise unrelated out-of-tree driver, but we're trying to get rid of
->> that one), but the watchdog chip isn't really the consumer of the clock
->> signal, so in-so-far as DT is supposed to describe the hardware, I don't
->> think it's appropriate.
->>
->> OTOH, one could argue that the watchdog chip and the ripple counter
->> together constitute the watchdog circuit.
->>
->> Cc += watchdog maintainers. Context: I have a gpio-wdt which can
->> unfortunately effectively be disabled by disabling a clock output, and
->> that happens automatically unless the clock has a consumer in DT. But
->> the actual consumer is not the gpio-wdt.
->> Please see
->> https://lore.kernel.org/lkml/20210226141411.2517368-1-linux@rasmusvillemoes.dk/
->> for the original thread.
->>
+On 2021-02-26 22:56, Daniel Thompson wrote:
+> On Fri, Feb 26, 2021 at 05:42:24PM +0530, Kiran Gunda wrote:
+>> As per the current implementation, after FSC (Full Scale Current)
+>> and brightness update the sync bits are transitioned from 1 to 0.
 > 
-> Sorry, I am missing something. If the watchdog is controlled by the clock,
-> it is a consumer of that clock.
+> This still seems to incorrectly describe the current behaviour.
+> 
+> Surely in most cases (i.e. every time except the first) the value of 
+> the
+> sync bit is 0 when the function is called and we get both a 0 to 1
+> and then a 1 to 0 transition.
+> 
+> That is why I recommended set-then-clear terminology to describe the
+> current behaviour. It is concise and correct.
+> 
+> 
+> Daniel.
+> 
+> 
+> 
+Okay. Actually I have mentioned the "clear-and-set" in explaining the 
+fix.
+Let me modify the same terminology in explaining the problem case also.
 
-But that's just it, the watchdog chip is _not_ a consumer of the clock -
-I don't think I've ever seen a gpio_wdt that is not internally clocked,
-but even if they exist, that's not the case for this board.
-
- What else does "consumer" mean ? And why
-> not just add optional clock support to the gpio_wdt driver ?
-
-Because, the consumer is a piece of electronics sitting _between_ the
-watchdog chip's reset output and the SOCs reset pin, namely the ripple
-counter that implements a 64 ms delay from the watchdog fires till the
-actual reset. (The watchdog's reset is also routed directly to an
-interrupt; so software gets a 64 ms warning that a hard reset is imminent).
-
-Rasmus
+>> But, the FSC and brightness sync takes place during a 0 to 1
+>> transition of the sync bits. So the hardware team recommends a
+>> clear-then-set approach in order to guarantee such a transition
+>> regardless of the previous register state.
+>> 
+>> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+>> ---
+>>  drivers/video/backlight/qcom-wled.c | 12 ++++++------
+>>  1 file changed, 6 insertions(+), 6 deletions(-)
+>> 
+>> diff --git a/drivers/video/backlight/qcom-wled.c 
+>> b/drivers/video/backlight/qcom-wled.c
+>> index aef52b9..19f83ac 100644
+>> --- a/drivers/video/backlight/qcom-wled.c
+>> +++ b/drivers/video/backlight/qcom-wled.c
+>> @@ -337,13 +337,13 @@ static int wled3_sync_toggle(struct wled *wled)
+>> 
+>>  	rc = regmap_update_bits(wled->regmap,
+>>  				wled->ctrl_addr + WLED3_SINK_REG_SYNC,
+>> -				mask, mask);
+>> +				mask, WLED3_SINK_REG_SYNC_CLEAR);
+>>  	if (rc < 0)
+>>  		return rc;
+>> 
+>>  	rc = regmap_update_bits(wled->regmap,
+>>  				wled->ctrl_addr + WLED3_SINK_REG_SYNC,
+>> -				mask, WLED3_SINK_REG_SYNC_CLEAR);
+>> +				mask, mask);
+>> 
+>>  	return rc;
+>>  }
+>> @@ -353,17 +353,17 @@ static int wled5_mod_sync_toggle(struct wled 
+>> *wled)
+>>  	int rc;
+>>  	u8 val;
+>> 
+>> -	val = (wled->cfg.mod_sel == MOD_A) ? WLED5_SINK_REG_SYNC_MOD_A_BIT :
+>> -					     WLED5_SINK_REG_SYNC_MOD_B_BIT;
+>>  	rc = regmap_update_bits(wled->regmap,
+>>  				wled->sink_addr + WLED5_SINK_REG_MOD_SYNC_BIT,
+>> -				WLED5_SINK_REG_SYNC_MASK, val);
+>> +				WLED5_SINK_REG_SYNC_MASK, 0);
+>>  	if (rc < 0)
+>>  		return rc;
+>> 
+>> +	val = (wled->cfg.mod_sel == MOD_A) ? WLED5_SINK_REG_SYNC_MOD_A_BIT :
+>> +					     WLED5_SINK_REG_SYNC_MOD_B_BIT;
+>>  	return regmap_update_bits(wled->regmap,
+>>  				  wled->sink_addr + WLED5_SINK_REG_MOD_SYNC_BIT,
+>> -				  WLED5_SINK_REG_SYNC_MASK, 0);
+>> +				  WLED5_SINK_REG_SYNC_MASK, val);
+>>  }
+>> 
+>>  static int wled_ovp_fault_status(struct wled *wled, bool *fault_set)
+>> --
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+>> Forum,
+>>  a Linux Foundation Collaborative Project
+>> 
