@@ -2,110 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99787327C19
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 11:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58DD1327C1F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 11:29:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234284AbhCAK2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 05:28:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43782 "EHLO
+        id S232664AbhCAK32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 05:29:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234519AbhCAK2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 05:28:01 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E1FC061756
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 02:27:21 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id e7so24632250lft.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 02:27:21 -0800 (PST)
+        with ESMTP id S234410AbhCAK3X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 05:29:23 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AFE3C061788
+        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 02:28:30 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id w7so13019731wmb.5
+        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 02:28:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=OtkBCF5ItQCMmag8TcrjWdLf8ZIEMli+zgdNDhzYtH0=;
-        b=ucCnugcTFAnaPBeF1TFZOap11wStmSeHhmrIa2W3vJVrpDB6HwAEu+0zJix1ctWnpB
-         SFhmTmctRxaldqVaiSn4EpXnhTssnhJRFmF61c3ToPAkkqmUtjyE49hjSACUPKFogFWs
-         LEGITSAbaI1tIgyN+vafx2cnxtJQHHpaC7/qQs2BtoSteliGGwJxjl1DoLanqM9OL3wt
-         xaUm6DCow/S6WqSE/LCB65zpa0kQxlh3SeyVfeX44K6IcI00WEuDVQSJ7QJdUzZrm62c
-         dtPsKW0qHnMy8l3okipinKGfd/5Yi0g7RZOrnBjj8X++n406WiXbg2Bzk++9OCceCwhi
-         URwg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=fEoK6sj6Vx64waeuaFZ7WzuyFiOIkvvvkXXAhuHJ6n0=;
+        b=CInzuD9yHUVVP/8k0kdY+Ubp/d8ztYs2RdGpZXm/Pov3aldb+lHMFxv+ESoM7LlBKr
+         bDf1GmA541rYTR7nYa21exMDiAbImp0KPPpLF5o/W3/faYxlIBTSvU89DPvH8kFsuEj4
+         caTrnXyj4Ju4lGk9y4Hzl5dpwR5izYha4XeLmVa0SWBR9RhU+SyMjM1wn6PW31IgIgZY
+         yVAoxrbskT/FMRHpyLLmacnTZkmCEUr089CoI9+SwvfI8WF4ssYWPSYzdSjNpsK6KAti
+         d2Ku44Ce3yXJ0yXSQQkMzDHLUoHVJZapYN6xgunsSVdHMLL/TaZVw5n2w9fQA72LbJiD
+         2vag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=OtkBCF5ItQCMmag8TcrjWdLf8ZIEMli+zgdNDhzYtH0=;
-        b=Nde+LThii4hTOKC/NEqtVQkORA6w+nU75d+7hNoeA5ktHHNajO6w0rrwxT09kRQ1Yp
-         epPgPh9lxQPybfaYASzs51Jw8LZsl1eaiuWklRus75booqurbtJRzS+G9K6Z12YbCZeE
-         J24uLyI98dWZY+X8b0NwZD+6VurxvkUHbla2iIcceU8587egTKA14etechhXCqlg57mW
-         uNlclL4lGTT0+w/apoWJmI8BGJ/iOP584+WN8ylJmnqhLA9aeorObcoUNtu5FPmF9g1Y
-         xf2G78gQ+lHjfyuL2ZnFszGVVUCguq2bKDOSEMi8kICUb+aRTwGx70+IuVImdFst2ho3
-         h6Ew==
-X-Gm-Message-State: AOAM530OItAnm7gX+XFlLZtIvFvqCzU1RxxjAmyaPI4pXvKMCAG1tPYx
-        3jZeqBKq5EmyRH0IfWhcLxanrXpCRWegMPjEQ9Y=
-X-Google-Smtp-Source: ABdhPJzm7PR+0bPw6QK8VB8T7n/vICXsf78YUxXqlIeeoK55FZdfDI6cnHiBqPZl0k9T0VsRolvpvI68PpPag6boAU0=
-X-Received: by 2002:a19:98a:: with SMTP id 132mr9319928lfj.139.1614594439882;
- Mon, 01 Mar 2021 02:27:19 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=fEoK6sj6Vx64waeuaFZ7WzuyFiOIkvvvkXXAhuHJ6n0=;
+        b=edx7t8QgNTS3BjjRictwYGy2KdSBpgqBNi6fp+T5PITunvwaHFQtOY6nVouOrvxvsj
+         PS+le1tZ9baQ7dSSoGnxhBbwF6CZ6g4U8FiLUDjveCsz5oCTvNCDx/sF0uA8I/jRFGSx
+         UZj1dksdzz4qyKg0QCbmfJ7ms0Y7v+W+qB7/aV+KVfmRaLZHtjv/FinKk12Kqma9R8nL
+         AX/c3jKpJuXSFxwlgEbqTjSRSCsR45Eu+S8NllFRftXPxOi7hbe6bffnBaS9tilDS/nG
+         mgppxImC8jKRPzdcNFYfxnevOYu/pbRW1XqAUbo2PT4c4+i71OT6qq+OTgjwJVM11mBW
+         h+uQ==
+X-Gm-Message-State: AOAM533nfOQcOzMTdzHKfLinPYkypH7NbxlG5bu1ZEdR6wgYzJiTo4ZZ
+        LyPsXhDEbeb1kl7wVRJvS29CEA==
+X-Google-Smtp-Source: ABdhPJzL/2dtfbTMhhuvxXFnJKC6c5bht+hdeQ08HlMI2CLPQiH+mxyTR+jtNBSYV/UdicarWzgLJw==
+X-Received: by 2002:a7b:cb58:: with SMTP id v24mr15225989wmj.182.1614594509069;
+        Mon, 01 Mar 2021 02:28:29 -0800 (PST)
+Received: from dell ([91.110.221.155])
+        by smtp.gmail.com with ESMTPSA id o9sm22331888wmc.8.2021.03.01.02.28.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Mar 2021 02:28:28 -0800 (PST)
+Date:   Mon, 1 Mar 2021 10:28:26 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: [GIT PULL] Immutable branch between MFD, PWM and RTC due for the
+ v5.13 merge window
+Message-ID: <20210301102826.GK641347@dell>
+References: <20210124214127.3631530-1-j.neuschaefer@gmx.net>
 MIME-Version: 1.0
-Received: by 2002:a9a:4e15:0:b029:c1:39ac:7224 with HTTP; Mon, 1 Mar 2021
- 02:27:19 -0800 (PST)
-Reply-To: robinramphal34@gmail.com
-From:   "Mr.Robin Ramphal" <robinramphal53@gmail.com>
-Date:   Mon, 1 Mar 2021 10:27:19 +0000
-Message-ID: <CACr=nkpN2jYfzEuvR8sfqeTknhxPg6=LsKMyuR4NNJwGka48Gg@mail.gmail.com>
-Subject: Greetings
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210124214127.3631530-1-j.neuschaefer@gmx.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PRIVATE AND URGENT.
+Enjoy!
 
-I am Mr.Robin Ramphal, and I am contacting you on business transfer of
-a huge sum of money from a deceased account. Though I know that a
-transaction of this magnitude will make anyone apprehensive and
-worried, but I am assuring you that all will be well at the end of the
-day. I decided to contact you due to the urgency of this transaction.
+The following changes since commit fe07bfda2fb9cdef8a4d4008a409bb02f35f1bd8:
 
-PROPOSITION:
+  Linux 5.12-rc1 (2021-02-28 16:05:19 -0800)
 
-I am an account manager with UBP Bank here in Jersey Channel Islands,
-in charge of all nonresident accounts. I have been in this capacity
-working with the bank for the last 15 years and I joined this
-institution in 1983 as a junior clerk and worked my way up through the
-ranks. On assumption of duty in November 2002 I discovered a dormant
-account in my branch that was opened in 1985 in the name of Karl
-Henning  and I have kept close tab on this very account for the last
-15 years and it has remained dormant even from the day the first
-deposit of USD($4.5 Million dollars) was made  to this moment, we have
-been investigating this account for the past 15 years and discovered
-that Karl Henning was used as Pseudonym Name to open the account while
-the original owner of the funds in question was the late president of
-Philippines Ferdinand Marcos. The next of kin part was left blank
-hence it was impossible for them to have claimed the funds these past
-years or they have forgotten the existence of the funds entirely, in
-agreement with my senior executive officer we have agreed to expunge
-the blank portion of the next of kin and fill it up with the name of a
-would be partner who we can insert his or her name and start the
-process of transferring the funds out of the account to the new would
-be beneficiary. I also have secured from the probate an order of
-mandamus to locate any member of deceased Karl Henning family to
-become beneficiary of this fund. Please acknowledge receipt of this
-message in acceptance of our mutual business Endeavour by furnishing
-me with the following:
+are available in the Git repository at:
 
-1.Beneficiary name and address
-2.Identification documents
-3.Direct Telephone
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-pwm-rtc-v5.13
 
-These requirements will enable me make some internal re-adjustments
-and file your name in all the forms and other vital documents as next
-of kin to the Pseudonym Name Karl Henning which before now was left
-blank when the account was opened many years ago. Upon your reply, we
-shall then discuss the sharing ratio and advice you the detailed
-procedure to follow and achieve this once in a life time opportunity
-without any hitch. I must assure you that if you are serious and
-follow my lead religiously, these funds will be processed and released
-to you within 14-working-day period. If this proposal is acceptable by
-you, do not take undue advantage of the trust I have bestowed in you,
-I await your Immediate Reply.
+for you to fetch changes up to 80629611215d1c5d52ed3cf723fd6d24a5872504:
 
-Regards,
-Mr.Robin Ramphal
+  MAINTAINERS: Add entry for Netronix embedded controller (2021-03-01 10:26:17 +0000)
+
+----------------------------------------------------------------
+Immutable branch between MFD, PWM and RTC due for the v5.13 merge window
+
+----------------------------------------------------------------
+Jonathan Neuschäfer (6):
+      dt-bindings: Add vendor prefix for Netronix, Inc.
+      dt-bindings: mfd: Add binding for Netronix embedded controller
+      mfd: Add base driver for Netronix embedded controller
+      pwm: ntxec: Add driver for PWM function in Netronix EC
+      rtc: New driver for RTC in Netronix embedded controller
+      MAINTAINERS: Add entry for Netronix embedded controller
+
+ .../devicetree/bindings/mfd/netronix,ntxec.yaml    |  76 +++++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ MAINTAINERS                                        |   9 +
+ drivers/mfd/Kconfig                                |  11 +
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/ntxec.c                                | 221 +++++++++++++++++++++
+ drivers/pwm/Kconfig                                |   8 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-ntxec.c                            | 184 +++++++++++++++++
+ drivers/rtc/Kconfig                                |   8 +
+ drivers/rtc/Makefile                               |   1 +
+ drivers/rtc/rtc-ntxec.c                            | 145 ++++++++++++++
+ include/linux/mfd/ntxec.h                          |  37 ++++
+ 13 files changed, 704 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+ create mode 100644 drivers/mfd/ntxec.c
+ create mode 100644 drivers/pwm/pwm-ntxec.c
+ create mode 100644 drivers/rtc/rtc-ntxec.c
+ create mode 100644 include/linux/mfd/ntxec.h
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
