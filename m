@@ -2,599 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4AA3329407
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 22:45:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D37F329948
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 11:20:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240410AbhCAVo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 16:44:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240538AbhCAVmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 16:42:46 -0500
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCC78C061D73
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 13:35:05 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id j12so12376139pfj.12
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 13:35:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=i66nQOCRTMm5enna8oj71EIaR0myji5BIfhqGdlTvaE=;
-        b=WO87xn/DLvTP+38ld0qhnQD0e37G4/g1mHhV4hGQbePl7PKbhpyHsK4NlJmX2qCs/9
-         8GFzb2HcVdX1CKY1t1ZAU8jzvTmKCg2Nm2aZxyl7ckGTc59/ErLS1myBFOvsl/b900jV
-         c1HxMXYdfz3UYrm7QGPpk9lgf8HtY3cDiNCiE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=i66nQOCRTMm5enna8oj71EIaR0myji5BIfhqGdlTvaE=;
-        b=sYa3Cj+ZcTgwbN1WgZqTF3t7dXG7nxiG+Y/ckiHPPiHyflCzSip3WKiVL9dNKwF3id
-         LXCKbisyfN/J5JiaokdtJ80HYQ1ybJm27fswLCk9Wn6oXBVWQvq5ru6/UpMXgrpKZWpy
-         /15fqMiXnHhGny8Xx0zi+Trzx7L9YpGnNtwfoOx31lHLQ16+K9dBBV/cF47OyY8ZmTn7
-         VBCjTTX5WBK/AgY7qov1q/zf7XKrFzT3yAUDYfBdP9Fr+WXTx40g41lEevGDP55i7YlG
-         fuUlUqJP8WhZmBU5JoutubqrpgxY8Gfu+JWPKkRzASmPro522hAwKY5D2+OjFolHbO8L
-         Wgmw==
-X-Gm-Message-State: AOAM531Ub1K/FLAhh+X6Dgtoopz+1n9mdiSMaAM87v1Qq1dlsmDp0sbd
-        t1q9Kd/jb4ukHpa8DdlZJkh1Lg==
-X-Google-Smtp-Source: ABdhPJwuhD1eJnOI82S4v7vh2FAlYRIAap+tFAMoF5vWFrai7MtNJP7UGAO0zymrOKhiIEkVIoTZcw==
-X-Received: by 2002:a63:fa02:: with SMTP id y2mr15294018pgh.412.1614634505458;
-        Mon, 01 Mar 2021 13:35:05 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:c086:5f6:85dd:98c8])
-        by smtp.gmail.com with ESMTPSA id f13sm790366pjj.1.2021.03.01.13.35.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Mar 2021 13:35:05 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Clark <robdclark@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 13/13] arm64: dts: qcom: Add sc7180-trogdor-coachz skus
-Date:   Mon,  1 Mar 2021 13:34:37 -0800
-Message-Id: <20210301133318.v2.13.I3d1f5f8a3bf31e8014229df0d4cfdff20e9cc90f@changeid>
-X-Mailer: git-send-email 2.30.1.766.gb4fecdf3b7-goog
-In-Reply-To: <20210301213437.4165775-1-dianders@chromium.org>
-References: <20210301213437.4165775-1-dianders@chromium.org>
+        id S234754AbhCBADg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 19:03:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40256 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1343602AbhCAWhF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Mar 2021 17:37:05 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F1A560202
+        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 22:29:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614637763;
+        bh=pB5wTMYfhSp9TOmeud0a0P2vbOUHab5Jn0zbF+13oYs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HYpKjNDQRss/KncUOOm4OPgMiGsIHiL9H7n9HmM9UduOwWDdrzZVCBZ0ej/W0pi8B
+         mCU71kDrJ5Ky+unAZqKTnYYbIpySyJWvtdqYA87YTrI0Rz0MEQHnsjwsn42TWVcu+i
+         eDU8EFBaHwR1+VRUjOoMBCblQ25LM4f6fC6WTP5aRMthX6YRkX+VFr8uVL2xKXvOhv
+         LJdTqiMhnoaryEWKHhed+UIuLuIeSqItwAQ0nBiPUCCJu8EE9vpRYiA663EOilHTOh
+         R444XNyerMEhHWudw2gQK0iSRiQFYLsa4sfPHTVc5TAos7Yfvs/oBWLI3hg3HITor0
+         wAqW6B9fEcO3w==
+Received: by mail-qv1-f49.google.com with SMTP id 15so8964053qvp.13
+        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 14:29:23 -0800 (PST)
+X-Gm-Message-State: AOAM533k1noQeaAhD0mPq9TFxdFOb9m4CVQ+rCI08/mjPusmU73zBTt9
+        sbsiAuPWCZ8pDY9g16/tz2T1VN4U7ehoLkbcIQ==
+X-Google-Smtp-Source: ABdhPJyOhJOrH5ir9TJ7YIrgjzyEzxcz9b59pC9cnP/b3K8seuUmwHfJ2xdXMfYiiesgJnUD77UGxgODlqvEyEMnhZ8=
+X-Received: by 2002:a0c:f092:: with SMTP id g18mr15916355qvk.11.1614637762418;
+ Mon, 01 Mar 2021 14:29:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210114111504.2adz4a7tfm3edmul@gilmour> <20210201095235.bfj7an4m47kom45n@gilmour>
+ <20210219092450.vmfqucvwbq2aq3fc@gilmour> <CAL_JsqL--8Bq7cRPs_BrmnCQkTF3DTeJ6nSkV6h_8dCcB0poVw@mail.gmail.com>
+ <20210224095439.rl6ublxl55nyvxs4@gilmour>
+In-Reply-To: <20210224095439.rl6ublxl55nyvxs4@gilmour>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 1 Mar 2021 16:29:10 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+wR6zov2FmEqjDFnydmoZd9WFqdbAqR-Tew3b3w50=HQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+wR6zov2FmEqjDFnydmoZd9WFqdbAqR-Tew3b3w50=HQ@mail.gmail.com>
+Subject: Re: led-gpios binding reporting a weird error
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a trogdor variant.  This is mostly a grab from the downstream
-tree with notable exceptions:
-- I skip -rev0.  This was a super early build and there's no advantage
-  of long term support.
-- I remove sound node since sound hasn't landed upstream yet.
+On Wed, Feb 24, 2021 at 3:54 AM Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> Hi Rob,
+>
+> On Fri, Feb 19, 2021 at 05:21:49PM -0600, Rob Herring wrote:
+> > On Fri, Feb 19, 2021 at 3:24 AM Maxime Ripard <maxime@cerno.tech> wrote:
+> > >
+> > > On Mon, Feb 01, 2021 at 10:52:35AM +0100, Maxime Ripard wrote:
+> > > > On Thu, Jan 14, 2021 at 12:15:04PM +0100, Maxime Ripard wrote:
+> > > > > Hi Rob,
+> > > > >
+> > > > > I just encountered a weird error with the led-gpios bindings.
+> >
+> > Sorry lost in the ether...
+> >
+> > > > >
+> > > > > Indeed, if we run, on today's next and the current master of the
+> > > > > dt-schema tools:
+> > > > >
+> > > > > DT_SCHEMA_FILES=Documentation/devicetree/bindings/leds/leds-gpio.yaml make -j18 dt_binding_check
+> > > > >
+> > > > > we end up with:
+> > > > >   CHECK   Documentation/devicetree/bindings/leds/leds-gpio.example.dt.yaml
+> > > > > /home/max/Work/allwinner/build/arm64/Documentation/devicetree/bindings/leds/leds-gpio.example.dt.yaml: leds: led-1:default-state:0: 'keep' is not of type 'array'
+> > > > >     From schema: /home/max/Work/repos/linux/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> > > > > /home/max/Work/allwinner/build/arm64/Documentation/devicetree/bindings/leds/leds-gpio.example.dt.yaml: run-control: led-0:default-state:0: 'off' is not of type 'array'
+> > > > >     From schema: /home/max/Work/repos/linux/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> > > > > /home/max/Work/allwinner/build/arm64/Documentation/devicetree/bindings/leds/leds-gpio.example.dt.yaml: run-control: led-1:default-state:0: 'on' is not of type 'array'
+> > > > >     From schema: /home/max/Work/repos/linux/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> > > > >
+> > > > > What's being especially weird is that linux,default-trigger has the
+> > > > > exact same definition than default-state in leds/common.yaml (aside from
+> > > > > the set of valid values), and just works fine.
+> > > > >
+> > > > > Changing the name of default-state to something else also doesn't change
+> > > > > anything, so it doesn't look like this is some other schema interfering.
+> > > > > Do you have an idea?
+> >
+> > What does processed-schema-examples.json (run thru json_pp) look like
+> > for 'default-state'?
+>
+> The whole file is here: https://paste.ack.tf/fd7597@raw
+>
+> But the default-state schema itself is:
+>
+>          "default-state" : {
+>             "additionalItems" : false,
+>             "allOf" : [
+>                {
+>                   "$ref" : "/schemas/types.yaml#/definitions/string"
+>                }
+>             ],
+>             "default" : false,
+>             "items" : [
+>                {
+>                   "additionalItems" : false,
+>                   "items" : [
+>                      {
+>                         "enum" : [
+>                            true,
+>                            false,
+>                            "keep"
+>                         ]
+>                      }
+>                   ],
+>                   "maxItems" : 1,
+>                   "minItems" : 1,
+>                   "type" : "array"
+>                }
+>             ],
+>             "maxItems" : 1,
+>             "minItems" : 1,
+>             "type" : "array"
+>          },
+>
+> It looks like the error comes from on and off being expanded to true and
+> false for some reason, instead of being considered as string
 
-Cc: Gwendal Grignou <gwendal@chromium.org>
-Cc: Matthias Kaehlcke <mka@chromium.org>
-Cc: Stephen Boyd <swboyd@chromium.org>
-Cc: Tzung-Bi Shih <tzungbi@chromium.org>
-Cc: Judy Hsiao <judyhsiao@chromium.org>
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
----
-NOTE: technically the "google,cros-ec-mkbp-proximity" binding hasn't
-landed upstream yet.  However it has a Reviewed-by from Rob and the
-series in general sounds about ready to land.  If necessary it can be
-removed / readded later.
+on/off was treated as boolean in YAML 1.1. While the files say 1.2,
+dtschema changes them to 1.1 because ruamel.yaml at one point didn't
+support 1.2 with the C parser. It looks like the C and python parsers
+have different behavior, and I think you don't have the C based parser
+installed. The patch below fixes the problem for me if I force using
+the Python parser. Really, we should probably ensure the C parser is
+installed.
 
-Changes in v2:
-- Removed "i2c_wlc" as Stephen suggested.
-- lazor => trogdor in subject
+I am confused now why I added this code a year ago, but 1.2 support
+was added back in 2018.
 
- arch/arm64/boot/dts/qcom/Makefile             |   4 +
- .../dts/qcom/sc7180-trogdor-coachz-r1-lte.dts |  18 ++
- .../dts/qcom/sc7180-trogdor-coachz-r1.dts     | 154 +++++++++++
- .../dts/qcom/sc7180-trogdor-coachz-r2-lte.dts |  18 ++
- .../dts/qcom/sc7180-trogdor-coachz-r2.dts     |  15 ++
- .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  | 240 ++++++++++++++++++
- 6 files changed, 449 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+8<---------------------------------------------------
+diff --git a/dtschema/lib.py b/dtschema/lib.py
+index b18eda43fb12..d51ace7fe14f 100644
+--- a/dtschema/lib.py
++++ b/dtschema/lib.py
+@@ -107,9 +107,7 @@ def do_load(filename):
+         if filename.endswith('.json'):
+             return json.load(f)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index d7cdff3dad98..a81966d59cf7 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -31,6 +31,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r2.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r2-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
-new file mode 100644
-index 000000000000..533c048903ea
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google CoachZ board device tree source
-+ *
-+ * Copyright 2020 Google LLC.
-+ */
-+
-+#include "sc7180-trogdor-coachz-r1.dts"
-+#include "sc7180-trogdor-lte-sku.dtsi"
-+
-+/ {
-+	model = "Google CoachZ (rev1) with LTE";
-+	compatible = "google,coachz-rev1-sku0", "qcom,sc7180";
-+};
-+
-+&cros_ec_proximity {
-+	label = "proximity-wifi-lte";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-new file mode 100644
-index 000000000000..86619f6c1134
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-@@ -0,0 +1,154 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google CoachZ board device tree source
-+ *
-+ * Copyright 2020 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor-coachz.dtsi"
-+
-+/ {
-+	model = "Google CoachZ (rev1)";
-+	compatible = "google,coachz-rev1", "qcom,sc7180";
-+};
-+
-+&tlmm {
-+	gpio-line-names = "HUB_RST_L",
-+			  "AP_RAM_ID0",
-+			  "AP_SKU_ID2",
-+			  "AP_RAM_ID1",
-+			  "FP_TO_AP_IRQ_L",
-+			  "AP_RAM_ID2",
-+			  "UF_CAM_EN",
-+			  "WF_CAM_EN",
-+			  "TS_RESET_L",
-+			  "TS_INT_L",
-+			  "FPMCU_BOOT0",
-+			  "EDP_BRIJ_IRQ",
-+			  "AP_EDP_BKLTEN",
-+			  "UF_CAM_MCLK",
-+			  "WF_CAM_CLK",
-+			  "EDP_BRIJ_I2C_SDA",
-+			  "EDP_BRIJ_I2C_SCL",
-+			  "UF_CAM_SDA",
-+			  "UF_CAM_SCL",
-+			  "WF_CAM_SDA",
-+			  "WF_CAM_SCL",
-+			  "WLC_IRQ",
-+			  "FP_RST_L",
-+			  "AMP_EN",
-+			  "WLC_NRST",
-+			  "AP_SAR_SENSOR_SDA",
-+			  "AP_SAR_SENSOR_SCL",
-+			  "",
-+			  "",
-+			  "WF_CAM_RST_L",
-+			  "UF_CAM_RST_L",
-+			  "AP_BRD_ID2",
-+			  "BRIJ_SUSPEND",
-+			  "AP_BRD_ID0",
-+			  "AP_H1_SPI_MISO",
-+			  "AP_H1_SPI_MOSI",
-+			  "AP_H1_SPI_CLK",
-+			  "AP_H1_SPI_CS_L",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "H1_AP_INT_ODL",
-+			  "",
-+			  "UART_AP_TX_DBG_RX",
-+			  "UART_DBG_TX_AP_RX",
-+			  "",
-+			  "",
-+			  "FORCED_USB_BOOT",
-+			  "AMP_BCLK",
-+			  "AMP_LRCLK",
-+			  "AMP_DIN",
-+			  "EN_PP3300_DX_EDP",
-+			  "HP_BCLK",
-+			  "HP_LRCLK",
-+			  "HP_DOUT",
-+			  "HP_DIN",
-+			  "HP_MCLK",
-+			  "AP_SKU_ID0",
-+			  "AP_EC_SPI_MISO",
-+			  "AP_EC_SPI_MOSI",
-+			  "AP_EC_SPI_CLK",
-+			  "AP_EC_SPI_CS_L",
-+			  "AP_SPI_CLK",
-+			  "AP_SPI_MOSI",
-+			  "AP_SPI_MISO",
-+			  /*
-+			   * AP_FLASH_WP_L is crossystem ABI. Schematics
-+			   * call it BIOS_FLASH_WP_L.
-+			   */
-+			  "AP_FLASH_WP_L",
-+			  "",
-+			  "AP_SPI_CS0_L",
-+			  "SD_CD_ODL",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "FPMCU_SEL",
-+			  "UIM2_DATA",
-+			  "UIM2_CLK",
-+			  "UIM2_RST",
-+			  "UIM2_PRESENT_L",
-+			  "UIM1_DATA",
-+			  "UIM1_CLK",
-+			  "UIM1_RST",
-+			  "",
-+			  "DMIC_CLK_EN",
-+			  "HUB_EN",
-+			  "",
-+			  "AP_SPI_FP_MISO",
-+			  "AP_SPI_FP_MOSI",
-+			  "AP_SPI_FP_CLK",
-+			  "AP_SPI_FP_CS_L",
-+			  "AP_SKU_ID1",
-+			  "AP_RST_REQ",
-+			  "",
-+			  "AP_BRD_ID1",
-+			  "AP_EC_INT_L",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_TS_PEN_I2C_SDA",
-+			  "AP_TS_PEN_I2C_SCL",
-+			  "DP_HOT_PLUG_DET",
-+			  "EC_IN_RW_ODL";
-+
-+	dmic_clk_en: dmic_clk_en {
-+		pinmux {
-+			pins = "gpio83";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio83";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts
-new file mode 100644
-index 000000000000..6e7745801fae
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google CoachZ board device tree source
-+ *
-+ * Copyright 2020 Google LLC.
-+ */
-+
-+#include "sc7180-trogdor-coachz-r2.dts"
-+#include "sc7180-trogdor-lte-sku.dtsi"
-+
-+/ {
-+	model = "Google CoachZ (rev2+) with LTE";
-+	compatible = "google,coachz-sku0", "qcom,sc7180";
-+};
-+
-+&cros_ec_proximity {
-+	label = "proximity-wifi-lte";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts
-new file mode 100644
-index 000000000000..4f69b6ba299f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google CoachZ board device tree source
-+ *
-+ * Copyright 2020 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor-coachz.dtsi"
-+
-+/ {
-+	model = "Google CoachZ (rev2+)";
-+	compatible = "google,coachz", "qcom,sc7180";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-new file mode 100644
-index 000000000000..4ad520f00485
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -0,0 +1,240 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google CoachZ board device tree source
-+ *
-+ * Copyright 2020 Google LLC.
-+ */
-+
-+#include "sc7180.dtsi"
-+
-+ap_ec_spi: &spi6 {};
-+ap_h1_spi: &spi0 {};
-+
-+#include "sc7180-trogdor.dtsi"
-+
-+/* Deleted nodes from trogdor.dtsi */
-+
-+/delete-node/ &alc5682;
-+/delete-node/ &pp3300_codec;
-+
-+/ {
-+	/* BOARD-SPECIFIC TOP LEVEL NODES */
-+
-+	adau7002: audio-codec-1 {
-+		compatible = "adi,adau7002";
-+		IOVDD-supply = <&pp1800_l15a>;
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+&ap_spi_fp {
-+	status = "okay";
-+};
-+
-+&backlight {
-+	pwms = <&cros_ec_pwm 0>;
-+};
-+
-+&camcc {
-+	status = "okay";
-+};
-+
-+&cros_ec {
-+	cros_ec_proximity: proximity {
-+		compatible = "google,cros-ec-mkbp-proximity";
-+		label = "proximity-wifi";
-+	};
-+};
-+
-+ap_ts_pen_1v8: &i2c4 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	ap_ts: touchscreen@5d {
-+		compatible = "goodix,gt7375p";
-+		reg = <0x5d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+
-+		vdd-supply = <&pp3300_ts>;
-+	};
-+};
-+
-+&i2c7 {
-+	status = "disabled";
-+};
-+
-+&i2c9 {
-+	status = "disabled";
-+};
-+
-+&panel {
-+	compatible = "boe,nv110wtm-n61";
-+};
-+
-+&pp3300_dx_edp {
-+	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&sdhc_2 {
-+	status = "okay";
-+};
-+
-+&sn65dsi86_out {
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+/* PINCTRL - modifications to sc7180-trogdor.dtsi */
-+
-+&en_pp3300_dx_edp {
-+	pinmux  {
-+		pins = "gpio67";
-+	};
-+
-+	pinconf {
-+		pins = "gpio67";
-+	};
-+};
-+
-+&ts_reset_l {
-+	pinconf {
-+		/*
-+		 * We want reset state by default and it will be up to the
-+		 * driver to disable this when it's ready.
-+		 */
-+		output-low;
-+	};
-+};
-+
-+/* PINCTRL - board-specific pinctrl */
-+
-+&tlmm {
-+	gpio-line-names = "HUB_RST_L",
-+			  "AP_RAM_ID0",
-+			  "AP_SKU_ID2",
-+			  "AP_RAM_ID1",
-+			  "FP_TO_AP_IRQ_L",
-+			  "AP_RAM_ID2",
-+			  "UF_CAM_EN",
-+			  "WF_CAM_EN",
-+			  "TS_RESET_L",
-+			  "TS_INT_L",
-+			  "FPMCU_BOOT0",
-+			  "EDP_BRIJ_IRQ",
-+			  "AP_EDP_BKLTEN",
-+			  "UF_CAM_MCLK",
-+			  "WF_CAM_CLK",
-+			  "EDP_BRIJ_I2C_SDA",
-+			  "EDP_BRIJ_I2C_SCL",
-+			  "UF_CAM_SDA",
-+			  "UF_CAM_SCL",
-+			  "WF_CAM_SDA",
-+			  "WF_CAM_SCL",
-+			  "WLC_IRQ",
-+			  "FP_RST_L",
-+			  "AMP_EN",
-+			  "WLC_NRST",
-+			  "AP_SAR_SENSOR_SDA",
-+			  "AP_SAR_SENSOR_SCL",
-+			  "",
-+			  "",
-+			  "WF_CAM_RST_L",
-+			  "UF_CAM_RST_L",
-+			  "AP_BRD_ID2",
-+			  "BRIJ_SUSPEND",
-+			  "AP_BRD_ID0",
-+			  "AP_H1_SPI_MISO",
-+			  "AP_H1_SPI_MOSI",
-+			  "AP_H1_SPI_CLK",
-+			  "AP_H1_SPI_CS_L",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "H1_AP_INT_ODL",
-+			  "",
-+			  "UART_AP_TX_DBG_RX",
-+			  "UART_DBG_TX_AP_RX",
-+			  "",
-+			  "",
-+			  "FORCED_USB_BOOT",
-+			  "AMP_BCLK",
-+			  "AMP_LRCLK",
-+			  "AMP_DIN",
-+			  "",
-+			  "HP_BCLK",
-+			  "HP_LRCLK",
-+			  "HP_DOUT",
-+			  "HP_DIN",
-+			  "HP_MCLK",
-+			  "AP_SKU_ID0",
-+			  "AP_EC_SPI_MISO",
-+			  "AP_EC_SPI_MOSI",
-+			  "AP_EC_SPI_CLK",
-+			  "AP_EC_SPI_CS_L",
-+			  "AP_SPI_CLK",
-+			  "AP_SPI_MOSI",
-+			  "AP_SPI_MISO",
-+			  /*
-+			   * AP_FLASH_WP_L is crossystem ABI. Schematics
-+			   * call it BIOS_FLASH_WP_L.
-+			   */
-+			  "AP_FLASH_WP_L",
-+			  "EN_PP3300_DX_EDP",
-+			  "AP_SPI_CS0_L",
-+			  "SD_CD_ODL",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "EN_FP_RAILS",
-+			  "UIM2_DATA",
-+			  "UIM2_CLK",
-+			  "UIM2_RST",
-+			  "UIM2_PRESENT_L",
-+			  "UIM1_DATA",
-+			  "UIM1_CLK",
-+			  "UIM1_RST",
-+			  "",
-+			  "",
-+			  "HUB_EN",
-+			  "",
-+			  "AP_SPI_FP_MISO",
-+			  "AP_SPI_FP_MOSI",
-+			  "AP_SPI_FP_CLK",
-+			  "AP_SPI_FP_CS_L",
-+			  "AP_SKU_ID1",
-+			  "AP_RST_REQ",
-+			  "",
-+			  "AP_BRD_ID1",
-+			  "AP_EC_INT_L",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_TS_PEN_I2C_SDA",
-+			  "AP_TS_PEN_I2C_SCL",
-+			  "DP_HOT_PLUG_DET",
-+			  "EC_IN_RW_ODL";
-+};
--- 
-2.30.1.766.gb4fecdf3b7-goog
+-        # ruamel C loader doesn't support 1.2, but 1.1 is good enough for us
+-        tmp = f.read().replace('YAML 1.2', 'YAML 1.1')
+-        return yaml.load(tmp)
++        return yaml.load(f.read())
 
+ def load_schema(schema):
+     for path in schema_user_paths:
