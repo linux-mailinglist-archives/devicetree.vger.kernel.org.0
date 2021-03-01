@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA25A328E7B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 20:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABDE328E73
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 20:32:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240891AbhCATcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 14:32:15 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48646 "EHLO mail.kernel.org"
+        id S238923AbhCATcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 14:32:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49570 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241873AbhCAT3f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Mar 2021 14:29:35 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C1C5C64F6C;
-        Mon,  1 Mar 2021 17:50:25 +0000 (UTC)
+        id S241645AbhCAT2Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Mar 2021 14:28:24 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E7DB651B6;
+        Mon,  1 Mar 2021 17:16:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1614621026;
-        bh=8cMgb4xGAjd8a8wRgt0wH4q4ZXANGpxicI9k8qjckxc=;
+        s=korg; t=1614618971;
+        bh=BWw/+3s3qB6WDtgbbM87JhjXHEDv5DoECf3d4DUEVh4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=EWLEMU3RB4l5HxIIrOeBfL5/H+/uso21E7YxNbVWR+eyv5y88C5BZnE3kE+7/H8V5
-         c8Vej24Uu/EtLmh+TS4kUufDi0+hfabzE2PT7135ptX2Ap+sJrLPbTgRw/37izK0C8
-         1dJyh8KxGQp5BCTkghmonMfisjPFX2qBGRbMzplU=
+        b=W8/+pZio2ONUYDbms/dlJw95beYfbU/JLdcUd1de5Mx79g0I9wSuZVxEu5OivaYjl
+         7KMuv750dkbmHdxyhLQ8rkiPWn7kjERsjPRQlqGJa3vj6AQR/bOLLBpwbslmPXujic
+         dIkIvwzztYkYXCQtdNyMU88nE0al0c6C02pVYUCw=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     linux-kernel@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -28,12 +28,12 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         devicetree@vger.kernel.org, KarimAllah Ahmed <karahmed@amazon.de>,
         Quentin Perret <qperret@google.com>,
         Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.11 336/775] fdt: Properly handle "no-map" field in the memory region
-Date:   Mon,  1 Mar 2021 17:08:24 +0100
-Message-Id: <20210301161218.225700513@linuxfoundation.org>
+Subject: [PATCH 5.10 284/663] fdt: Properly handle "no-map" field in the memory region
+Date:   Mon,  1 Mar 2021 17:08:52 +0100
+Message-Id: <20210301161155.875119944@linuxfoundation.org>
 X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210301161201.679371205@linuxfoundation.org>
-References: <20210301161201.679371205@linuxfoundation.org>
+In-Reply-To: <20210301161141.760350206@linuxfoundation.org>
+References: <20210301161141.760350206@linuxfoundation.org>
 User-Agent: quilt/0.66
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -64,10 +64,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index feb0f2d67fc5f..427b534d60d2d 100644
+index 4602e467ca8b9..e4d4a1e7ef7e2 100644
 --- a/drivers/of/fdt.c
 +++ b/drivers/of/fdt.c
-@@ -1147,7 +1147,7 @@ int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
+@@ -1150,7 +1150,7 @@ int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
  					phys_addr_t size, bool nomap)
  {
  	if (nomap)
