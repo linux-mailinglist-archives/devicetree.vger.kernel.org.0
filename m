@@ -2,66 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 673CA3280C7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 15:28:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 946BB3280F9
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 15:34:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236131AbhCAO15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 09:27:57 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55142 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233276AbhCAO1m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Mar 2021 09:27:42 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AD82F64DBA;
-        Mon,  1 Mar 2021 14:27:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614608822;
-        bh=8M4FaCN0qvAB4yk+5Lncsw5Suh6P5W99oBKoBpg0eiE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=EGZU7Ot88fhWPYwkkLhdHKdPvKcuYOoXJeH1PWnQtDop55xLQgN3iIYxGu2KpOR6W
-         WywGvbNaXYMDGYUpmw3kjN5x9wVGMF51+cmdqMfyL0dn1GD2U9CwXfUb7T1Jcx7QAQ
-         XiBV6Mc6P5dTEykE/UO4MGFqGINXDTVO8gY47C7nuBs5T3RtA+BvgunUfoh2emWEcz
-         Pu8iIRoI3zut5vpLOS5JIaHDUkd7OJ74CXWwklcYjRRTI1bOyPiL2HCmNax1MSwqwi
-         JPeyHyxRQolOgV9PxyuZYl0+euBeiUZgDWgX+ZGNCwPasSNgIVI3jglUZ137e7Wbbg
-         fQ0J83mMuZY2Q==
-Received: by mail-ej1-f44.google.com with SMTP id gt32so16996974ejc.6;
-        Mon, 01 Mar 2021 06:27:01 -0800 (PST)
-X-Gm-Message-State: AOAM5307qs3KvDprNqq7HeDkyEIP6xxFx+yfaquiNR9wHo+WNkL0cB/j
-        K+Ch0ZYScyRGPRUh+RzlKZO9Msx3hoewhJj+XQ==
-X-Google-Smtp-Source: ABdhPJzu7QL+eOUGB5L2CKvRu7NwYHNZej8b8+Ll+kUuhPh2uaPcMEK8SUVQEdQnDc6DW8LAH8qSU3dBRZncdvcga8s=
-X-Received: by 2002:a17:906:7f84:: with SMTP id f4mr1273068ejr.525.1614608820366;
- Mon, 01 Mar 2021 06:27:00 -0800 (PST)
+        id S236081AbhCAOee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 09:34:34 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:11387 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235227AbhCAOeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 09:34:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1614609271; x=1646145271;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=lmX5uso30/IFeq9qj4E8UhF0kNQHgFQ4na7mXouY9G8=;
+  b=bCX7pBaZxEPmDO0WDdGW5MtlZC3LzGak5S9tI0Y1FxwzqMs2VRf1kx8E
+   27O3H65GLUhTvSnBk+U1riTtH4IBsIrO3MxKdl0i7a6E0WcXAdUxeywGK
+   P/YV0/1C9J26aW9WYeTar2jwUL8PuzvlUgunTFuKDNm1u2di0YsG3uTLm
+   XeMpOpK2rUBUXKxChIBqTbJgxPnkB6/50O8nU8ShFTJ3I5KGXXmSa9PIO
+   gUry5ZiubRM9uBh1MAaSswE6e81pzP56i2nCORxjnfSa/PpUAp9adr+y7
+   jLkGd8J59g6TfNkP0Xb3hbHcPmUv3JYzRjXmBciIx20+X7kphrEdTKzR5
+   w==;
+IronPort-SDR: SUkXuwPyGIqWBVk58mvqCnLqM/plEdZNTsQd2l6esERSnSgBpKdan09r/f3nziXMLmxaLf9BD6
+ 2xIlSWfzbufa3Or6gd5hRT2ktd0+kUVZPbIB91J8/P34y0/ix5A9b5+Bnb8+iyeTit8MK9FYw2
+ 3hRBIjdBNlQLs1+9itlNn0C/e1Ytz6jtEwwdfwoupDEzYfqiXilX3U3HrHMPUqsVpKbij6hOCA
+ twOVVNaOlj9XPU9lYC3+w7eZfCzVNYE3NLgz+RlSYRdIIY8hAAORICLwQFiNoAGl+VMrT+bV4l
+ PwQ=
+X-IronPort-AV: E=Sophos;i="5.81,215,1610434800"; 
+   d="scan'208";a="45819020"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Mar 2021 07:33:14 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 1 Mar 2021 07:33:14 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Mon, 1 Mar 2021 07:33:12 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>
+CC:     <ludovic.desroches@microchip.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>
+Subject: [PATCH 0/4] iio: adc: at91-sama5d2: add support for sama7g5
+Date:   Mon, 1 Mar 2021 16:32:52 +0200
+Message-ID: <20210301143256.16502-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210301113920.3042-1-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20210301113920.3042-1-wsa+renesas@sang-engineering.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 1 Mar 2021 08:26:46 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJSFpJjnYPGATk1R3GBU33_b40iL8Tiwwwtt974ObteEQ@mail.gmail.com>
-Message-ID: <CAL_JsqJSFpJjnYPGATk1R3GBU33_b40iL8Tiwwwtt974ObteEQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dts: remove c6x dts link
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 1, 2021 at 5:41 AM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> The architecture has gone and indexing software like 'mkid' complains
-> about the broken link.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->
-> Arnd, will you pick it up?
+Hi Jonathan, all,
 
-Already have the same patch in my tree.
+This series adds support for sama7g5.
+The last patch (4/4) adds the support.
 
-Rob
+The sama7g5 is slightly different from sama5d2, but has the same basic
+operations. The register map is a bit different, so, I added some primitives
+to differentiate between the two classes of hardware blocks (sama5d2-sam9x60
+and sama7g5).
+
+Sama7g5 has 16 channels ADC, no resistive touch, and extra features
+(FIFOs, better oversampling , not implemented yet).
+
+I had to chop through the driver to add support for sama7g5, so, let me
+know what you think, if something would need changing.
+
+Thanks,
+Eugen
+
+Eugen Hristev (4):
+  dt-bindings: iio: adc: at91-sama5d2: add compatible for sama7g5-adc
+  iio: adc: at91-sama5d2: initialize hardware after clock is started
+  iio: adc: at91-sama5d2: remove unused definition
+  iio: adc: at91-sama5d2: add support for sama7g5 device
+
+ .../bindings/iio/adc/atmel,sama5d2-adc.yaml   |   1 +
+ drivers/iio/adc/at91-sama5d2_adc.c            | 293 ++++++++++++++----
+ 2 files changed, 237 insertions(+), 57 deletions(-)
+
+-- 
+2.25.1
+
