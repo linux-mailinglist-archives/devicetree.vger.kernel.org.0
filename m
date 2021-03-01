@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28AAF32793F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 09:31:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E885327958
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 09:36:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233061AbhCAIaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 03:30:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
+        id S233170AbhCAIf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 03:35:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233050AbhCAIaQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 03:30:16 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93FDDC06174A
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 00:29:35 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id gt32so15062130ejc.6
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 00:29:35 -0800 (PST)
+        with ESMTP id S233155AbhCAIfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 03:35:21 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B595C061786
+        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 00:34:41 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id do6so26645724ejc.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 00:34:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rasmusvillemoes.dk; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1OJW58i2V+qbpcJlxYwrqsB9da04RyZ9nHYnyVmXEZ4=;
-        b=IN2IxXXj3mi4wuOvmblnpYyJ8Sy6okMxYKI1FA3s0tFAVj8KMoiZufyIaLaApt4mTo
-         1zMF6+i12g717Lj1ofu1cdrxjzCX4cbatK1VpFWkayFwKwARz6GV49achfJSZ0SaoLu0
-         NWHiovKn+NgChneGJ3TxowVeCsUQb7O8/wHVc=
+        bh=lDAufuhpzrV03TMTLpI4rsJPdAs1FZA19H3Gjjzj/H8=;
+        b=hYd7SO61L3RSn8PhZEs9fr4+k0HyH5eQIyPA4fNHipymNkx7Cbq9/DYvGJwNXMhgCS
+         EzwIwbAP1UdNG5AzP5UvleA3yOTwvEwiOUEHiXPRfX7oYM7l7dqQ6CmPzqkceHbNO9uc
+         oAaKm3WYacHhtJpVMHvF2FVysEwB/nmVqdLPY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=1OJW58i2V+qbpcJlxYwrqsB9da04RyZ9nHYnyVmXEZ4=;
-        b=Tv5UpAAZTRxEXF44a+zD3VmxjssXQSUGQES2woAwr0+aEGcEIXu02cJ6za7CMwzjCu
-         ftEPD7kiSSYwdHUi45UHJkFGG360ELDLtbTwupum/IYZMzWvsA27EjnKitBEerMRejab
-         NuGgBEkS8SQDn+FTKCBpjvMMwfHR8DD/Tm9lja6VJm5Vfy6j2lQVr2VLAzgBJSMI9XnN
-         FRR4oXUMfC2k/1ttpcr17F1VfocA+K9VkjQsjpIHlFNMBX2wFAZ+MzOQyBK2Kv4APyEc
-         fPRdyfAvj8Q+3Du9gj0hBLTR0w4z2wvFcINkqvc6S8JFJnLsQoydeDpv7z0C7Bjz6suO
-         uYCQ==
-X-Gm-Message-State: AOAM532o9OglYWFCHtMaxyrWxcVB2YDXoe/tzAQNOME6WS8FZCa4x4kd
-        Fq0ypQc9TICxy6yhXQS2GBlsNw==
-X-Google-Smtp-Source: ABdhPJyPDKQI1BunkBsa0Zu3fCtVAm9ybd5PuYGF01XR9aAqoKQ2gWXYw+iQuJs114BFsQJPbFR5dg==
-X-Received: by 2002:a17:906:acb:: with SMTP id z11mr6463031ejf.193.1614587374363;
-        Mon, 01 Mar 2021 00:29:34 -0800 (PST)
+        bh=lDAufuhpzrV03TMTLpI4rsJPdAs1FZA19H3Gjjzj/H8=;
+        b=rJavbjP+8+OHpDUntJ+zVHamZpADv2RA04qRceMvY8yZl10BV7taDWmQI8XiY1r125
+         0VM4HP/DkN8mN9iKTIDUx+jVMV5Q1o7b+pAJzMLWTKHOCgoCQ+yhf3/ZGYPu8nfwFfck
+         GgSHSY1Klc9mP4FhYp3rsqDYIOWsoF0phHyFb3FXfbBirXODboP4Eyv5dkbgJw02Mww6
+         MsDxd8WGh6sjbJXfE1ndVam37MdvfXAh4QLeMY1FFAh4Onf+xoU+9+qJBjawAW7nHJjk
+         nQTZy+eMemC5w7wfZKfoujogS5FVeg7AhyW157sHP5rNzQW3A8y7cDWHWRV+2mRyEq1n
+         UpHw==
+X-Gm-Message-State: AOAM532TEkFV0OpqjkpjOwHl0QtSi5pmDYKr4VWV0lOg7rT0oarFkxrv
+        bAiTizv7h4BqivC6hScAKzztXA==
+X-Google-Smtp-Source: ABdhPJzyoWxnbcRLJyYqJf+BkrEk3Qke/unRo+Xvj2PJgrlnj5tnNDmHWXtHesVzhkIklMC0YVQ5+g==
+X-Received: by 2002:a17:906:35cf:: with SMTP id p15mr5227601ejb.379.1614587679738;
+        Mon, 01 Mar 2021 00:34:39 -0800 (PST)
 Received: from [192.168.1.149] ([80.208.71.141])
-        by smtp.gmail.com with ESMTPSA id y24sm12030495eds.23.2021.03.01.00.29.33
+        by smtp.gmail.com with ESMTPSA id p25sm13926890eds.55.2021.03.01.00.34.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Mar 2021 00:29:33 -0800 (PST)
-Subject: Re: [PATCH 2/2] drivers: misc: add ripple counter driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+        Mon, 01 Mar 2021 00:34:39 -0800 (PST)
+Subject: Re: [PATCH 0/2] add ripple counter dt binding and driver
+To:     Guenter Roeck <linux@roeck-us.net>, Arnd Bergmann <arnd@kernel.org>
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Arnd Bergmann <arnd@arndb.de>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+        linux-clk <linux-clk@vger.kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
 References: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
- <20210226141411.2517368-3-linux@rasmusvillemoes.dk>
- <CAHp75Vc8S2E0vWFcqK-jO9Nhd-Us_7t-aWNj-7k+fWDcqR1XkQ@mail.gmail.com>
- <CAHp75VfNHkJp-SMacKdaSuy3gDECs=u4BNMNe2KjYkrDiwb8jg@mail.gmail.com>
- <CAHp75Vdrsr8zJzuovUEd6RtSHOmdASrQa1--A6HBVmj8mx8+Kw@mail.gmail.com>
+ <CAK8P3a2=nZ3bbeguXjbFrhz0nWeUOcLM7mRudhPDrcb+jZ4VvQ@mail.gmail.com>
+ <e5fd7ce3-3ba6-e5de-1cbc-fa31bd46942c@rasmusvillemoes.dk>
+ <2208f466-e509-6bbe-0358-34effb965610@roeck-us.net>
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Message-ID: <2bdc6d5d-3739-1fd7-5864-b52cc3d90355@rasmusvillemoes.dk>
-Date:   Mon, 1 Mar 2021 09:29:32 +0100
+Message-ID: <285d739a-b343-c411-5461-0fe1f44177a5@rasmusvillemoes.dk>
+Date:   Mon, 1 Mar 2021 09:34:38 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAHp75Vdrsr8zJzuovUEd6RtSHOmdASrQa1--A6HBVmj8mx8+Kw@mail.gmail.com>
+In-Reply-To: <2208f466-e509-6bbe-0358-34effb965610@roeck-us.net>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,42 +73,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2021 10.33, Andy Shevchenko wrote:
-> On Sun, Feb 28, 2021 at 11:29 AM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
->>
->> On Sun, Feb 28, 2021 at 11:07 AM Andy Shevchenko
->> <andy.shevchenko@gmail.com> wrote:
->>> On Friday, February 26, 2021, Rasmus Villemoes <linux@rasmusvillemoes.dk> wrote:
->>>>
->>>> The only purpose of this driver is to serve as a consumer of the input
->>>> clock, to prevent it from being disabled by clk_disable_unused().
+On 26/02/2021 20.53, Guenter Roeck wrote:
+> On 2/26/21 8:35 AM, Rasmus Villemoes wrote:
+>> On 26/02/2021 15.35, Arnd Bergmann wrote:
+>>> On Fri, Feb 26, 2021 at 3:14 PM Rasmus Villemoes
+>>> <linux@rasmusvillemoes.dk> wrote:
 >>>
->>> We have a clock API to do the same (something like marking it used or so) why do you need a driver?
+>>>>
+>>>> So I'm thinking that the proper way to handle this is to be able to
+>>>> represent that ripple counter as a clock consumer in DT and have a
+>>>> driver do the clk_prepare_enable(), even if that driver doesn't and
+>>>> can't do anything else. But I'm certainly open to other suggestions.
+>>>
+>>> How about adding support for the optional clock to the gpio_wdt driver,
+>>> would that work?
 >>
->> Example:
->> https://elixir.bootlin.com/linux/latest/source/drivers/platform/x86/pmc_atom.c#L365
+>> I think it would _work_ (all I need is some piece of code doing the
+>> clock_prepare_enable(), and until now we've just stashed that in some
+>> otherwise unrelated out-of-tree driver, but we're trying to get rid of
+>> that one), but the watchdog chip isn't really the consumer of the clock
+>> signal, so in-so-far as DT is supposed to describe the hardware, I don't
+>> think it's appropriate.
 >>
->> If it's a DT based platform I think you can make it somehow work thru DT.
+>> OTOH, one could argue that the watchdog chip and the ripple counter
+>> together constitute the watchdog circuit.
+>>
+>> Cc += watchdog maintainers. Context: I have a gpio-wdt which can
+>> unfortunately effectively be disabled by disabling a clock output, and
+>> that happens automatically unless the clock has a consumer in DT. But
+>> the actual consumer is not the gpio-wdt.
+>> Please see
+>> https://lore.kernel.org/lkml/20210226141411.2517368-1-linux@rasmusvillemoes.dk/
+>> for the original thread.
+>>
 > 
-> Okay, briefly looking at the state of affairs [1] seems like you need
-> to hack it into clock provider.
-> 
-> [1]: https://elixir.bootlin.com/linux/latest/C/ident/CLK_IS_CRITICAL
-> 
+> Sorry, I am missing something. If the watchdog is controlled by the clock,
+> it is a consumer of that clock.
 
-I did find CLK_IS_CRITICAL and CLK_IGNORE_UNUSED while trying to figure
-out how to handle this. However, while CLK_IS_CRITICAL is in principle
-settable via DT, the comment above of_clk_detect_critical() seems to
-make it clear that adding a call of that from the RTC driver is a total
-no-no.
+But that's just it, the watchdog chip is _not_ a consumer of the clock -
+I don't think I've ever seen a gpio_wdt that is not internally clocked,
+but even if they exist, that's not the case for this board.
 
-CLK_IGNORE_UNUSED can't be set at all from DT, and wouldn't solve the
-problem fully - while we can and do make sure the bootloader sets the
-appropriate bit in the RTCs registers, it's more robust if we also
-ensure the kernel explicitly enables the clock.
+ What else does "consumer" mean ? And why
+> not just add optional clock support to the gpio_wdt driver ?
 
-But if there is some way to do this within the clk framework/existing
-bindings, I'm all ears - that's the reason I cc'ed the clk list.
+Because, the consumer is a piece of electronics sitting _between_ the
+watchdog chip's reset output and the SOCs reset pin, namely the ripple
+counter that implements a 64 ms delay from the watchdog fires till the
+actual reset. (The watchdog's reset is also routed directly to an
+interrupt; so software gets a 64 ms warning that a hard reset is imminent).
 
 Rasmus
