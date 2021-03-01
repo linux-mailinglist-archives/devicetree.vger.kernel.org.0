@@ -2,92 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E829327BBA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 11:16:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 475DE327BF2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 11:24:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231867AbhCAKQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 05:16:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
+        id S233335AbhCAKXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 05:23:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232571AbhCAKQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 05:16:06 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27390C061756
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 02:15:26 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id y22-20020a1c4b160000b029010b2094f5deso2700183wma.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 02:15:26 -0800 (PST)
+        with ESMTP id S234078AbhCAKXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 05:23:23 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47704C06121E
+        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 02:20:15 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id l22so3376602wme.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 02:20:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=crPUAdlFyPpfuaXxOqJsVVBomCDQLb56jxagBkQRnFM=;
-        b=jWjM5EehUeNVMVoB+4VKLb05JQrfbgTBrVeKrBaLYJyeeJHO3CQ7KaBarf7rJek9tl
-         R8F579g+wwY3RnA0CyQQ8WzvfIyF/BwLIIS5uMgNMSpduZwkuYmNbkJeMlnrMSkeCBsD
-         d/wDslMH+WOLU5Kk/k9ohI6zGkoD35nIIctGpAoHsUHeHcLyabOZ2hQZGW5MevjzTebx
-         UpdgENOY+mm5i3g5GBRB7wlt/26pVjn0KmCrvXIpKaZNwS/5yX7UzJOGRVNDVo3URsg7
-         aNNt5DMJhX47XzS6vL9NNCCjQb34TgToPHNY+EN+hW1hpFZPy+CuKj43OYgljNzZ7eKR
-         kQuw==
+        bh=2zLTscw7wOIHCKJsbv7EvXNjRvEZ5kz74UBnGjXVjTU=;
+        b=mFGrItjkvoJVrXpL5H/ZVBjEe7oWSGMKsJ1MYpIrrJJ5FnOb7ovdgJ1sSMRGqPrmy4
+         zbEx4RbJd/92AsEcVc5qnwnlIe2ggvgRv3CjU95bus8OkCh9b+ZXoc2dHJK+dUkqF3re
+         bVcZDKm75IGkVIbgk4aPThVgAWmVNUEH2PZ25GdTX/xOHloFP49SU1xlIRha1GuCLPDt
+         X9BzZnHOD2t1Tc/t1Rodhsg7TwwNV1nAzaw4OFM90nkwT+gAdLwKVCkRh0gqabAHwHIl
+         xxuNqHX/nsebxYm9ITkwxwIToKQD5ebSxv+jmTmV424wo2J/JZVYlxUJC/Hmk1lCSeo9
+         zpsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=crPUAdlFyPpfuaXxOqJsVVBomCDQLb56jxagBkQRnFM=;
-        b=VOUWxaDlmYoGZChNAWSyBofkRky7mxKuUGmdtez72n7YB0NULOkYAqhwqqaQRQtqKr
-         TWG4j321zMNnm7LGIRyb4vVJs8rVcQoeELp21XEhyksQXGiGtMlXDElekxM5cwQGX64z
-         4AYLFgztZGj8QhoxyQka4jgE/dU00ciacTeaqVD6sOUCKFa7gxa9yRU1yb3n3tB/g4B0
-         v7GU0WsAz6zraXz9QjxE+uVGJaxUuVqt76N4Bhh0ctnm1maj1MIGWvmDtmADqWxl2sNp
-         ySkG3nsdT4+c62gKfDPXRsDYlxbSi1a/yewjgh+67yDeYVNJJSx45AbEOnRYA4fKABRv
-         CPqg==
-X-Gm-Message-State: AOAM5319+dNfyBIpEy8iwRmco+3nW/QvISVFypsAXu4gArMukL7VVH0E
-        gi5D18h0FYEvnh7Kg/iQN8DbeA==
-X-Google-Smtp-Source: ABdhPJyemhH27fZmSE/DGIYaD/4JRppne9AD71z7T3Bzenw+2zecWpfTVjabFcnmwTRwcD/4cITr/w==
-X-Received: by 2002:a7b:c4d1:: with SMTP id g17mr15177227wmk.101.1614593724842;
-        Mon, 01 Mar 2021 02:15:24 -0800 (PST)
+        bh=2zLTscw7wOIHCKJsbv7EvXNjRvEZ5kz74UBnGjXVjTU=;
+        b=eeyFRY7/BPgimcXRomsbrg8jFUu2f5B5CyAyHgYrqUpbETGHIlb4qdVVZKED7iJOhx
+         bdOewiCrPGrmeojWu0TJj4alNpwMQTKfcXWELPV4kaifikoSKbjKx0U/HKfE0sAhorgE
+         d2PFHvN8XO2xxsZLOtYx2zVcWpc7eYeuSzhn16UGfRAmpYA9hlGxAJHXmQmGc29xkKkU
+         yoc3zptdnkFwHSKEsQVACYa9CvZN50rFa+tSE/Gew0q2ZDJiV07vvX3spRx/CHfAD4ME
+         JyaYF1ppWjaooxHUEw9QKnBPfm0/C2t9KlmVEu87KMeM2aZcfGweHMwlH65ou61Onam/
+         obsQ==
+X-Gm-Message-State: AOAM531XxdM4n+u8+9/PlK4p7U7kW2KlR0Ct3ahmNIQ2IqLFa8vwj1Ct
+        gmCL77mXeUGTi0kKClas4fjEeA==
+X-Google-Smtp-Source: ABdhPJyhXqlY4O4GpeMZwaqlIPN28woGucyJtnjtzDIPSmpD7EdSB3oh3HNgXIRS1kknZvDUkQxMPA==
+X-Received: by 2002:a1c:ed1a:: with SMTP id l26mr15533330wmh.114.1614594013863;
+        Mon, 01 Mar 2021 02:20:13 -0800 (PST)
 Received: from dell ([91.110.221.155])
-        by smtp.gmail.com with ESMTPSA id s11sm22750263wme.22.2021.03.01.02.15.23
+        by smtp.gmail.com with ESMTPSA id m17sm3837105wrx.92.2021.03.01.02.20.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Mar 2021 02:15:24 -0800 (PST)
-Date:   Mon, 1 Mar 2021 10:15:22 +0000
+        Mon, 01 Mar 2021 02:20:13 -0800 (PST)
+Date:   Mon, 1 Mar 2021 10:20:11 +0000
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, b.galvani@gmail.com, stefan@agner.ch,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH RESEND v2] dt-bindings: mfd: Convert rn5t618 to
- json-schema
-Message-ID: <20210301101522.GH641347@dell>
-References: <20210131215730.4647-1-andreas@kemnade.info>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Fei Shao <fshao@chromium.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Yuchen Huang <yuchen.huang@mediatek.com>,
+        Ran Bi <ran.bi@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH RESEND v5 5/8] mfd: Add support for the MediaTek MT6359
+ PMIC
+Message-ID: <20210301102011.GI641347@dell>
+References: <1611913781-23460-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1611913781-23460-6-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210131215730.4647-1-andreas@kemnade.info>
+In-Reply-To: <1611913781-23460-6-git-send-email-hsin-hsiung.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 31 Jan 2021, Andreas Kemnade wrote:
+On Fri, 29 Jan 2021, Hsin-Hsiung Wang wrote:
 
-> Convert the RN5T618 binding to DT schema format. Also
-> clearly state which regulators are available.
+> This adds support for the MediaTek MT6359 PMIC. This is a
+> multifunction device with the following sub modules:
 > 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> - Codec
+> - Interrupt
+> - Regulator
+> - RTC
+> 
+> It is interfaced to the host controller using SPI interface
+> by a proprietary hardware called PMIC wrapper or pwrap.
+> MT6359 MFD is a child device of the pwrap.
+> 
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 > ---
-> https://lore.kernel.org/lkml/CAL_JsqJWt91+aZwAWEUVjOBQgsYw6GBHqmoHwU_T5qZabxX+Aw@mail.gmail.com/
+> changes since v4:
+> - remove unused compatible name in the mt6359 mfd cells.
+> ---
+>  drivers/mfd/mt6358-irq.c             |  24 ++
+>  drivers/mfd/mt6397-core.c            |  26 ++
+>  include/linux/mfd/mt6359/core.h      | 133 +++++++
+>  include/linux/mfd/mt6359/registers.h | 529 +++++++++++++++++++++++++++
+>  include/linux/mfd/mt6397/core.h      |   1 +
+>  5 files changed, 713 insertions(+)
+>  create mode 100644 include/linux/mfd/mt6359/core.h
+>  create mode 100644 include/linux/mfd/mt6359/registers.h
 > 
-> Changes in v2:
-> - drop irq description
-> 
-> Due to its .txt-format history BSD license was not added.
->  .../bindings/mfd/ricoh,rn5t618.yaml           | 111 ++++++++++++++++++
->  .../devicetree/bindings/mfd/rn5t618.txt       |  52 --------
->  2 files changed, 111 insertions(+), 52 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mfd/rn5t618.txt
+> diff --git a/drivers/mfd/mt6358-irq.c b/drivers/mfd/mt6358-irq.c
+> index 4b094e5e51cc..83f3ffbdbb4c 100644
+> --- a/drivers/mfd/mt6358-irq.c
+> +++ b/drivers/mfd/mt6358-irq.c
+> @@ -5,6 +5,8 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/mfd/mt6358/core.h>
+>  #include <linux/mfd/mt6358/registers.h>
+> +#include <linux/mfd/mt6359/core.h>
+> +#include <linux/mfd/mt6359/registers.h>
+>  #include <linux/mfd/mt6397/core.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> @@ -26,6 +28,17 @@ static const struct irq_top_t mt6358_ints[] = {
+>  	MT6358_TOP_GEN(MISC),
+>  };
+>  
+> +static const struct irq_top_t mt6359_ints[] = {
+> +	MT6359_TOP_GEN(BUCK),
+> +	MT6359_TOP_GEN(LDO),
+> +	MT6359_TOP_GEN(PSC),
+> +	MT6359_TOP_GEN(SCK),
+> +	MT6359_TOP_GEN(BM),
+> +	MT6359_TOP_GEN(HK),
+> +	MT6359_TOP_GEN(AUD),
+> +	MT6359_TOP_GEN(MISC),
+> +};
+> +
+>  static struct pmic_irq_data mt6358_irqd = {
+>  	.num_top = ARRAY_SIZE(mt6358_ints),
+>  	.num_pmic_irqs = MT6358_IRQ_NR,
+> @@ -33,6 +46,13 @@ static struct pmic_irq_data mt6358_irqd = {
+>  	.pmic_ints = mt6358_ints,
+>  };
+>  
+> +static struct pmic_irq_data mt6359_irqd = {
+> +	.num_top = ARRAY_SIZE(mt6359_ints),
+> +	.num_pmic_irqs = MT6359_IRQ_NR,
+> +	.top_int_status_reg = MT6359_TOP_INT_STATUS0,
+> +	.pmic_ints = mt6359_ints,
+> +};
+> +
+>  static void pmic_irq_enable(struct irq_data *data)
+>  {
+>  	unsigned int hwirq = irqd_to_hwirq(data);
+> @@ -195,6 +215,10 @@ int mt6358_irq_init(struct mt6397_chip *chip)
+>  		chip->irq_data = &mt6358_irqd;
+>  		break;
+>  
+> +	case MT6359_CHIP_ID:
+> +		chip->irq_data = &mt6359_irqd;
+> +		break;
+> +
+>  	default:
+>  		dev_err(chip->dev, "unsupported chip: 0x%x\n", chip->chip_id);
+>  		return -ENODEV;
+> diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
+> index 7518d74c3b4c..617e4e4d5de0 100644
+> --- a/drivers/mfd/mt6397-core.c
+> +++ b/drivers/mfd/mt6397-core.c
+> @@ -13,9 +13,11 @@
+>  #include <linux/mfd/core.h>
+>  #include <linux/mfd/mt6323/core.h>
+>  #include <linux/mfd/mt6358/core.h>
+> +#include <linux/mfd/mt6359/core.h>
+>  #include <linux/mfd/mt6397/core.h>
+>  #include <linux/mfd/mt6323/registers.h>
+>  #include <linux/mfd/mt6358/registers.h>
+> +#include <linux/mfd/mt6359/registers.h>
+>  #include <linux/mfd/mt6397/registers.h>
+>  
+>  #define MT6323_RTC_BASE		0x8000
+> @@ -99,6 +101,19 @@ static const struct mfd_cell mt6358_devs[] = {
+>  	},
+>  };
+>  
+> +static const struct mfd_cell mt6359_devs[] = {
+> +	{
+> +		.name = "mt6359-regulator",
+> +	}, {
+> +		.name = "mt6359-rtc",
+> +		.num_resources = ARRAY_SIZE(mt6358_rtc_resources),
+> +		.resources = mt6358_rtc_resources,
+> +		.of_compatible = "mediatek,mt6358-rtc",
+> +	}, {
+> +		.name = "mt6359-sound",
+> +	},
+> +};
 
-Applied, thanks.
+Nit: Please put the single-line entries on one line.
+
+Like this:
+
+	{ .name = "mt6359-sound" },
+
+>  static const struct mfd_cell mt6397_devs[] = {
+>  	{
+>  		.name = "mt6397-rtc",
+> @@ -149,6 +164,14 @@ static const struct chip_data mt6358_core = {
+>  	.irq_init = mt6358_irq_init,
+>  };
+>  
+> +static const struct chip_data mt6359_core = {
+> +	.cid_addr = MT6359_SWCID,
+> +	.cid_shift = 8,
+> +	.cells = mt6359_devs,
+> +	.cell_size = ARRAY_SIZE(mt6359_devs),
+> +	.irq_init = mt6358_irq_init,
+> +};
+> +
+>  static const struct chip_data mt6397_core = {
+>  	.cid_addr = MT6397_CID,
+>  	.cid_shift = 0,
+> @@ -218,6 +241,9 @@ static const struct of_device_id mt6397_of_match[] = {
+>  	}, {
+>  		.compatible = "mediatek,mt6358",
+>  		.data = &mt6358_core,
+> +	}, {
+> +		.compatible = "mediatek,mt6359",
+> +		.data = &mt6359_core,
+>  	}, {
+>  		.compatible = "mediatek,mt6397",
+>  		.data = &mt6397_core,
+> diff --git a/include/linux/mfd/mt6359/core.h b/include/linux/mfd/mt6359/core.h
+> new file mode 100644
+> index 000000000000..61872f1ecbe4
+> --- /dev/null
+> +++ b/include/linux/mfd/mt6359/core.h
+> @@ -0,0 +1,133 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2020 MediaTek Inc.
+
+This is out of date.
+
+> + */
+> +
+> +#ifndef __MFD_MT6359_CORE_H__
+> +#define __MFD_MT6359_CORE_H__
+
+[...]
+
+> +#endif /* __MFD_MT6359_CORE_H__ */
+> diff --git a/include/linux/mfd/mt6359/registers.h b/include/linux/mfd/mt6359/registers.h
+> new file mode 100644
+> index 000000000000..4d72f0a7f2b0
+> --- /dev/null
+> +++ b/include/linux/mfd/mt6359/registers.h
+> @@ -0,0 +1,529 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2020 MediaTek Inc.
+
+This too.
+
+> + */
+> +
+> +#ifndef __MFD_MT6359_REGISTERS_H__
+> +#define __MFD_MT6359_REGISTERS_H__
+
+[...]
+
+> +#endif /* __MFD_MT6359_REGISTERS_H__ */
+> diff --git a/include/linux/mfd/mt6397/core.h b/include/linux/mfd/mt6397/core.h
+> index 949268581b36..56f210eebc54 100644
+> --- a/include/linux/mfd/mt6397/core.h
+> +++ b/include/linux/mfd/mt6397/core.h
+> @@ -13,6 +13,7 @@
+>  enum chip_id {
+>  	MT6323_CHIP_ID = 0x23,
+>  	MT6358_CHIP_ID = 0x58,
+> +	MT6359_CHIP_ID = 0x59,
+>  	MT6391_CHIP_ID = 0x91,
+>  	MT6397_CHIP_ID = 0x97,
+>  };
+
+Once you fixed those issues, feel free to add my:
+
+For my own reference (apply this as-is to your sign-off block):
+
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 
 -- 
 Lee Jones [李琼斯]
