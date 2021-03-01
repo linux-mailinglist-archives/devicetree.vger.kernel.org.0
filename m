@@ -2,82 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A92328468
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 17:37:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03B60328467
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 17:37:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231812AbhCAQfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 11:35:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36330 "EHLO mail.kernel.org"
+        id S232040AbhCAQfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 11:35:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60806 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234875AbhCAQ3M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Mar 2021 11:29:12 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F137964EEF;
-        Mon,  1 Mar 2021 16:22:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1614615770;
-        bh=pnj2q4mKwcEOetJykDtwV2xdO7Ak5cmiJLRktgJvHes=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=yrysth0XK2/k34ckjYO195UMK9NHw67Vm4p+Y8JX4zAF7gmfw+wSka2B5xVBcV8nP
-         QpskzNmjbbOaddSLlkxrnyQFBpLygC50a3wQqZWN2PP7VJf0QYSZUl/8LxdvQ2Qgaw
-         iS0WvLMjp/ctKFKvSdkqnzAM2Gpt4hqfiah565qQ=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, KarimAllah Ahmed <karahmed@amazon.de>,
-        Quentin Perret <qperret@google.com>,
-        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 4.9 053/134] fdt: Properly handle "no-map" field in the memory region
-Date:   Mon,  1 Mar 2021 17:12:34 +0100
-Message-Id: <20210301161016.171027994@linuxfoundation.org>
+        id S234788AbhCAQ3A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Mar 2021 11:29:00 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 61C5564E62;
+        Mon,  1 Mar 2021 16:23:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614615795;
+        bh=qy4o8aOaG+e/js/CS8OTDNQPLBMrdqSFXahX3iD8ALE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=WXhDQUVw44ZB6VY7h+dbRBbUVliiJxijCsEWdxBY77vV05dEl0CY4nF6LIVZieX+c
+         9UGl2zRY3GJbRRxZLcT8Ti6gyld1VnA0fM0w/jkes5fG0Ahupu/IKW/bLyVmRNTPty
+         GIw1eGHIYY5bb5kuSYzjVyX9lQCOVZJx+UHSBB6VLxam2R79aQx6ssOPlPK5/ewVKs
+         EzVBg8+VhiNaBmtnEP0vFWntsWXTCMWQ4eVMhb4SOYeoMvOzuVMtfKjhfAdQUTa+gN
+         VaHSLi0cfzMPZj1InGkMbIMHO5pkeiGQbO+P0S+VPsrOEpEG/sdVoTWiPPwu5rMmcR
+         VFX8h+ttClhMw==
+Received: by wens.tw (Postfix, from userid 1000)
+        id 8634D5FB7F; Tue,  2 Mar 2021 00:23:12 +0800 (CST)
+From:   Chen-Yu Tsai <wens@kernel.org>
+To:     Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: allwinner: h6: Switch to macros for RSB clock/reset indices
+Date:   Tue,  2 Mar 2021 00:23:09 +0800
+Message-Id: <20210301162309.1225-1-wens@kernel.org>
 X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210301161013.585393984@linuxfoundation.org>
-References: <20210301161013.585393984@linuxfoundation.org>
-User-Agent: quilt/0.66
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: KarimAllah Ahmed <karahmed@amazon.de>
+From: Chen-Yu Tsai <wens@csie.org>
 
-[ Upstream commit 86588296acbfb1591e92ba60221e95677ecadb43 ]
+The macros for the clock and reset indices for the RSB hardware block
+were replaced with raw numbers when the RSB controller node was added.
+This was done to avoid cross-tree dependencies.
 
-Mark the memory region with NOMAP flag instead of completely removing it
-from the memory blocks. That makes the FDT handling consistent with the EFI
-memory map handling.
+Now that both the clk and DT changes have been merged, we can switch
+back to using the macros.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: KarimAllah Ahmed <karahmed@amazon.de>
-Signed-off-by: Quentin Perret <qperret@google.com>
-Link: https://lore.kernel.org/r/20210115114544.1830068-2-qperret@google.com
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Fixes: aaad900757a6 ("arm64: dts: allwinner: h6: Add RSB controller node")
+Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 ---
- drivers/of/fdt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index e9360d5cbcbac..f90b626269ab6 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1159,7 +1159,7 @@ int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
- 					phys_addr_t size, bool nomap)
- {
- 	if (nomap)
--		return memblock_remove(base, size);
-+		return memblock_mark_nomap(base, size);
- 	return memblock_reserve(base, size);
- }
- 
+Small patch split out from the H6 RSB clock support patch.
+This should be merged for v5.12.
+
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+index 49e979794094..af8b7d0ef750 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+@@ -995,9 +995,9 @@ r_rsb: rsb@7083000 {
+ 			compatible = "allwinner,sun8i-a23-rsb";
+ 			reg = <0x07083000 0x400>;
+ 			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&r_ccu 13>;
++			clocks = <&r_ccu CLK_R_APB2_RSB>;
+ 			clock-frequency = <3000000>;
+-			resets = <&r_ccu 7>;
++			resets = <&r_ccu RST_R_APB2_RSB>;
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&r_rsb_pins>;
+ 			status = "disabled";
 -- 
-2.27.0
-
-
+2.30.1
 
