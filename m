@@ -2,102 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5850F327B00
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 10:42:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D10D6327B0F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 10:47:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234060AbhCAJki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 04:40:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33520 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234055AbhCAJkc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 04:40:32 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8F4C06178B
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 01:39:06 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id f12so11548278wrx.8
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 01:39:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=J67311LSdF6jMCXHcRsS2/P8YZ9lxrbt1gE7LzkRMqA=;
-        b=SMs8rt66hMrlsINChSzuMepk42PUx9iaAaZVEOxSK5UptMf+PE3E8AgBZceDSHggYx
-         QeZmp2FRQBjYAFj1sxNFwDfqGS9ubztYXljk92cv82I9ZwLgul4m/Grc3VYObKoiWoMO
-         KMvTIZrsdbJnKJJFaJy4Sd71NCUFDdBRW1VdSacudcF9zSWSc6WN21IcVxWh3HKKhYYS
-         Ls+ZZzj6fOJRag4C1A71591kdf5ekIvMr/VQrtU4lRhPVslxWWLzHKLXrglHsmS3Iohv
-         mV4JCnu/viNvjvDFt+VmPy3x65XQOEM2kZC/NjNapIkCKbkxZVcSbw/zUAkSw+OFoqEo
-         dz2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=J67311LSdF6jMCXHcRsS2/P8YZ9lxrbt1gE7LzkRMqA=;
-        b=CrfI5RtBfulTC4UIt14W2pqRZ7Bk75F2ESKBYDS1LgC894ZGTNTv+MjDDRkQ/mqceP
-         GzGTjSlgcT4tx3vxetRcXGiir0oKLwNx5MkBAg+AqxWfpwwqsCm+iLZMH975XsRuBoO1
-         upNzFTltrKPzPqLyfjrL001Z/ub6mv/Wm73ZF28gCJxsb8nzxxWGv7sPkMHWmh5H1Yhc
-         zkQ34oVz7kpYMqwVZ+Nvi/i62lbu/nvTKM6z7GukYs50TIwKLrnbkwW2OR0T7KnxGril
-         nEUIfxVERFTwdsgGIuEWjCFA5oCR+LeeY4jaLVKTdjEWPK1jf0GO3D+QUpl7oIXgmA5K
-         lQWg==
-X-Gm-Message-State: AOAM532B1WOqzER4xiL2zdE5nsrapk7pI8+5dIiBghMkF8Duf4lZOSdu
-        e+twvJE8DECpbFXTJKXsznvZcw==
-X-Google-Smtp-Source: ABdhPJxxyw54JaDpxLeGBz4c4r4o9AdpPCLIRhPUI4Ox+mvAHwMnh/sSozrOG5nOE2++xvSKYigwGg==
-X-Received: by 2002:a5d:6b89:: with SMTP id n9mr15695069wrx.74.1614591545301;
-        Mon, 01 Mar 2021 01:39:05 -0800 (PST)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id p12sm20328888wmq.1.2021.03.01.01.39.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Mar 2021 01:39:04 -0800 (PST)
-Date:   Mon, 1 Mar 2021 09:39:02 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     kgunda@codeaurora.org
-Cc:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
-        lee.jones@linaro.org, b.zolnierkie@samsung.com,
-        dri-devel@lists.freedesktop.org, jacek.anaszewski@gmail.com,
-        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH V2 2/2] backlight: qcom-wled: Correct the sync_toggle
- sequence
-Message-ID: <20210301093902.34mtfcouajc36y6t@maple.lan>
-References: <1614341544-5306-1-git-send-email-kgunda@codeaurora.org>
- <1614341544-5306-3-git-send-email-kgunda@codeaurora.org>
- <20210226172601.aknj2d4hghkkqjol@maple.lan>
- <0cca377c2a7648c5f1606e38ba1b7d4d@codeaurora.org>
+        id S234127AbhCAJqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 04:46:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49874 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234104AbhCAJpq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Mar 2021 04:45:46 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7292E601FE;
+        Mon,  1 Mar 2021 09:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614591905;
+        bh=+kVuRMmJFA3NeZk2H02s5z77HTpE92uBU8CQsiK21zs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LgMxrB4SnOanZzGeiI5celQIQV1vl6N9orOE5JGd/h5qiYvPQpkj/nr3ASZKtGnBj
+         cHO72uDzTQ0VVPkY6iUDCCPGDK1bEKT7rSXxZQ78tbrROe/sk1Tpxu3Jks8k2kHUBK
+         DWxtB6VmJWbtNoGI/q6E86+bd5PoUb8fLTuiPR6HFVVR6i7W7Yxw7iQC4FnSPmR5Eq
+         ggL8W6JNfRZT1rSlwtSXZnx5K6mVJx0gR5GFJwQ8JN+1Q/ADEyIBqVxA9StpE5o32Q
+         BZKximWs7IaSZjwOMFW5MEdd5sc9Pd7ZycWru39dYcFCby/rhegy1Y6j+FL7t0NaSf
+         2ksqojn0V+gnw==
+Received: by mail-ot1-f53.google.com with SMTP id h22so15858265otr.6;
+        Mon, 01 Mar 2021 01:45:05 -0800 (PST)
+X-Gm-Message-State: AOAM532E0dezNLa9zQCM9HAACx11SdCp86sH+6zjVXxmlTjL4cKrGQgJ
+        mQbO4kNc6BdcDxj7mRTplq1SHP//g8FweEbYzig=
+X-Google-Smtp-Source: ABdhPJxqvjLn6W5eFEMQcS7P3mahZ0tKYSfy6AiKZY4imuyX6VCPZwA1wKdoKFwqWARtFs6NqMB/I+f4BREMDuCxYOU=
+X-Received: by 2002:a9d:6b8b:: with SMTP id b11mr12801036otq.210.1614591904691;
+ Mon, 01 Mar 2021 01:45:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0cca377c2a7648c5f1606e38ba1b7d4d@codeaurora.org>
+References: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
+ <CAK8P3a2=nZ3bbeguXjbFrhz0nWeUOcLM7mRudhPDrcb+jZ4VvQ@mail.gmail.com>
+ <e5fd7ce3-3ba6-e5de-1cbc-fa31bd46942c@rasmusvillemoes.dk> <2208f466-e509-6bbe-0358-34effb965610@roeck-us.net>
+ <285d739a-b343-c411-5461-0fe1f44177a5@rasmusvillemoes.dk>
+In-Reply-To: <285d739a-b343-c411-5461-0fe1f44177a5@rasmusvillemoes.dk>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 1 Mar 2021 10:44:48 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0tTQKZ6=55yCQx=60iBt1L6RZzzSvSJMmfKYUkgiWjrQ@mail.gmail.com>
+Message-ID: <CAK8P3a0tTQKZ6=55yCQx=60iBt1L6RZzzSvSJMmfKYUkgiWjrQ@mail.gmail.com>
+Subject: Re: [PATCH 0/2] add ripple counter dt binding and driver
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 01, 2021 at 02:15:12PM +0530, kgunda@codeaurora.org wrote:
-> On 2021-02-26 22:56, Daniel Thompson wrote:
-> > On Fri, Feb 26, 2021 at 05:42:24PM +0530, Kiran Gunda wrote:
-> > > As per the current implementation, after FSC (Full Scale Current)
-> > > and brightness update the sync bits are transitioned from 1 to 0.
-> > 
-> > This still seems to incorrectly describe the current behaviour.
-> > 
-> > Surely in most cases (i.e. every time except the first) the value of the
-> > sync bit is 0 when the function is called and we get both a 0 to 1
-> > and then a 1 to 0 transition.
-> > 
-> > That is why I recommended set-then-clear terminology to describe the
-> > current behaviour. It is concise and correct.
+On Mon, Mar 1, 2021 at 9:34 AM Rasmus Villemoes
+<linux@rasmusvillemoes.dk> wrote:
+> On 26/02/2021 20.53, Guenter Roeck wrote:
+> >
+> > Sorry, I am missing something. If the watchdog is controlled by the clock,
+> > it is a consumer of that clock.
 >
-> Okay. Actually I have mentioned the "clear-and-set" in explaining the fix.
-> Let me modify the same terminology in explaining the problem case also.
+> But that's just it, the watchdog chip is _not_ a consumer of the clock -
+> I don't think I've ever seen a gpio_wdt that is not internally clocked,
+> but even if they exist, that's not the case for this board.
+>
+>  What else does "consumer" mean ? And why
+> > not just add optional clock support to the gpio_wdt driver ?
+>
+> Because, the consumer is a piece of electronics sitting _between_ the
+> watchdog chip's reset output and the SOCs reset pin, namely the ripple
+> counter that implements a 64 ms delay from the watchdog fires till the
+> actual reset. (The watchdog's reset is also routed directly to an
+> interrupt; so software gets a 64 ms warning that a hard reset is imminent).
 
-Yes please.
+I think it's  a question of how you look at what the gpio_wdt device is.
+While physical gpio chip is not a consumer of the clock, I agree with
+Guenter that the conceptual device is: The functionality of the watchdog
+in this case is provided by the combination of the external chip with the
+ripple counter. I think it is therefore appropriate to have the gpio_wdt
+and the driver refer to the clock as part of the watchdog.
 
-In my original review I took time to explain why patch descriptions
-require care and attention and, also, why expressing the original behaviour
-as 1 to 0 was inadequate. Based on the previous feedback (and reply) I
-was rather surprised that the problem was only half corrected in the
-next revision.
-
-
-Daniel.
+        Arnd
