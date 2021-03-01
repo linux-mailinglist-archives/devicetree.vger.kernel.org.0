@@ -2,121 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29E0C327AC5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 10:30:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F228327ADA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 10:34:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233932AbhCAJaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 04:30:01 -0500
-Received: from z11.mailgun.us ([104.130.96.11]:32793 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233920AbhCAJ37 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Mar 2021 04:29:59 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1614590980; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=2sWU5eZ7cISZC9fb9u+h6bDTob0QedHUYcyBKSNzW30=; b=sdw4HIr3puLBb7DCQR4WZeGO9QgrBpeQYU4mu2u7TSzzN15UffeftfWU9rPOVnlQPj+NtY9X
- sGG6GZgNCNefZuSqb9yoG4wbu7BVTInNOzr0Zwy5Xm6DuC+T/3Kbo+ylmNbNRrKlQyJnHyg8
- IlzkU+NqQ99nD423iCoQ4Ht38Ww=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 603cb3e08f0d5ba6c533728e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 01 Mar 2021 09:29:04
- GMT
-Sender: kgunda=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A1A7BC43464; Mon,  1 Mar 2021 09:29:04 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from kgunda-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kgunda)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 183C2C433CA;
-        Mon,  1 Mar 2021 09:28:58 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 183C2C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kgunda@codeaurora.org
-From:   Kiran Gunda <kgunda@codeaurora.org>
-To:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
-        lee.jones@linaro.org, b.zolnierkie@samsung.com,
-        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
-        jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-fbdev@vger.kernel.org
-Cc:     phone-devel@vger.kernel.org, Kiran Gunda <kgunda@codeaurora.org>
-Subject: [PATCH V3 2/2] backlight: qcom-wled: Correct the sync_toggle sequence
-Date:   Mon,  1 Mar 2021 14:58:36 +0530
-Message-Id: <1614590916-27070-3-git-send-email-kgunda@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1614590916-27070-1-git-send-email-kgunda@codeaurora.org>
-References: <1614590916-27070-1-git-send-email-kgunda@codeaurora.org>
+        id S233893AbhCAJeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 04:34:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60354 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233583AbhCAJeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 04:34:01 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A2BC06174A;
+        Mon,  1 Mar 2021 01:33:21 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id v15so15350760wrx.4;
+        Mon, 01 Mar 2021 01:33:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=f8ls8FrEzupGcztMPHQqtmAD5Dc6MGdA2sdReBfFtxU=;
+        b=HP/QF+wQ5I3XO4MXr6a04Awn7edvplSnAqpAl1loN7f6jrQOehkfTJK/hRV/DdR4Xv
+         p4XqQLgTc8w3kE7R0RVDZYpHw48UHJ6lUi4RfA+12APVWANE/PfIqG63Cjzpzl6mE0O8
+         oHaeyTelxiOWYSNhZuamqH/uJ3PVBfBUoeEI4SiBec2BbZVTdhlH3p+AeKLRIyW9O+KX
+         zWAH+P2bQoVTf3UwFSQGv2x5Y5xh1kZ6J6VohJRwbKIzy/u5YL3in/+BR1CagSXU2F5U
+         gK07sQ1Oe2DM3zggiqO1BZWLQ1XVOeIV0/S6X4s/KGSoUOHhn/DxalCmzREwv3YA1MyE
+         5y5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=f8ls8FrEzupGcztMPHQqtmAD5Dc6MGdA2sdReBfFtxU=;
+        b=GanX0NOpvd6QxhCpOIKH48EzgylXLbfbL0QghDCK3V/gqYYjQcQp77++bWh9n/jdP1
+         yjkFlqpMMauqd4jWAdr4gOVA+V/jOwvXYzgQWfDxJbl00qHjXNt7hskefdyXmjIBS/4l
+         1gckyGwbNEVeJtZGKuvSo/+DkFUGOpIPIrhbEXIJZauV+QONQfgndF10q7J4JpKHvifj
+         1plHhB39zEIHHC8O3eqo+KwyAOSIJYsY77+f6tQXfpekx24B3L933VzLF0mmMJXHRFzS
+         vyanSRs5cwJldJgNvN9DWk130iLei0DC1gpMtcgKiiYoiO9pi6ZuFbhyTu5QvDqn9H2I
+         Gp1g==
+X-Gm-Message-State: AOAM533OtidwC8IkH5LZiq3VENaQDSAuhnMEgqT+ALmSqUEX2QRmTKv9
+        zZrreFsSBjfTuqU3M/3Ofxc=
+X-Google-Smtp-Source: ABdhPJw+/YqH9CNZ1WcHejwyVQ7EHRPH6u57hTlGAOK3zyRtLWZS6crnOV0WUD238RwnFQ1lCulXKw==
+X-Received: by 2002:a05:6000:1ca:: with SMTP id t10mr15760881wrx.45.1614591200024;
+        Mon, 01 Mar 2021 01:33:20 -0800 (PST)
+Received: from arch-thunder.localdomain (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id b15sm24187809wrr.47.2021.03.01.01.33.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Mar 2021 01:33:19 -0800 (PST)
+Date:   Mon, 1 Mar 2021 09:33:17 +0000
+From:   Rui Miguel Silva <rmfrfs@gmail.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 60/77] dt-bindings: media: nxp,imx7-mipi-csi2: Indent
+ example with 4 spaces
+Message-ID: <20210301093317.e4s536d2v3dmooi4@arch-thunder.localdomain>
+References: <20210215042741.28850-1-laurent.pinchart@ideasonboard.com>
+ <20210215042741.28850-61-laurent.pinchart@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210215042741.28850-61-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per the current implementation, after FSC (Full Scale Current)
-and brightness update the sync bits are transitioned from set-then-clear.
-But, the FSC and brightness sync takes place during a clear-then-set
-transition of the sync bits. So the hardware team recommends a
-clear-then-set approach in order to guarantee such a transition
-regardless of the previous register state.
+Hi Laurent,
+Thanks.
 
-Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
----
- drivers/video/backlight/qcom-wled.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+On Mon, Feb 15, 2021 at 06:27:24AM +0200, Laurent Pinchart wrote:
+> DT bindings examples are customarily indented with 4 spaces.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-index aef52b9..19f83ac 100644
---- a/drivers/video/backlight/qcom-wled.c
-+++ b/drivers/video/backlight/qcom-wled.c
-@@ -337,13 +337,13 @@ static int wled3_sync_toggle(struct wled *wled)
- 
- 	rc = regmap_update_bits(wled->regmap,
- 				wled->ctrl_addr + WLED3_SINK_REG_SYNC,
--				mask, mask);
-+				mask, WLED3_SINK_REG_SYNC_CLEAR);
- 	if (rc < 0)
- 		return rc;
- 
- 	rc = regmap_update_bits(wled->regmap,
- 				wled->ctrl_addr + WLED3_SINK_REG_SYNC,
--				mask, WLED3_SINK_REG_SYNC_CLEAR);
-+				mask, mask);
- 
- 	return rc;
- }
-@@ -353,17 +353,17 @@ static int wled5_mod_sync_toggle(struct wled *wled)
- 	int rc;
- 	u8 val;
- 
--	val = (wled->cfg.mod_sel == MOD_A) ? WLED5_SINK_REG_SYNC_MOD_A_BIT :
--					     WLED5_SINK_REG_SYNC_MOD_B_BIT;
- 	rc = regmap_update_bits(wled->regmap,
- 				wled->sink_addr + WLED5_SINK_REG_MOD_SYNC_BIT,
--				WLED5_SINK_REG_SYNC_MASK, val);
-+				WLED5_SINK_REG_SYNC_MASK, 0);
- 	if (rc < 0)
- 		return rc;
- 
-+	val = (wled->cfg.mod_sel == MOD_A) ? WLED5_SINK_REG_SYNC_MOD_A_BIT :
-+					     WLED5_SINK_REG_SYNC_MOD_B_BIT;
- 	return regmap_update_bits(wled->regmap,
- 				  wled->sink_addr + WLED5_SINK_REG_MOD_SYNC_BIT,
--				  WLED5_SINK_REG_SYNC_MASK, 0);
-+				  WLED5_SINK_REG_SYNC_MASK, val);
- }
- 
- static int wled_ovp_fault_status(struct wled *wled, bool *fault_set)
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
- a Linux Foundation Collaborative Project
+Reviewed-by: Rui Miguel Silva <rmfrfs@gmail.com>
 
+------
+Cheers,
+     Rui
+> ---
+>  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 54 +++++++++----------
+>  1 file changed, 27 insertions(+), 27 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+> index 74ff92b5baa3..76fcc8d80ee3 100644
+> --- a/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
+> @@ -122,41 +122,41 @@ examples:
+>      #include <dt-bindings/reset/imx7-reset.h>
+>  
+>      mipi_csi: mipi-csi@30750000 {
+> -            compatible = "fsl,imx7-mipi-csi2";
+> -            reg = <0x30750000 0x10000>;
+> -            interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +        compatible = "fsl,imx7-mipi-csi2";
+> +        reg = <0x30750000 0x10000>;
+> +        interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+>  
+> -            clocks = <&clks IMX7D_IPG_ROOT_CLK>,
+> -                     <&clks IMX7D_MIPI_CSI_ROOT_CLK>,
+> -                     <&clks IMX7D_MIPI_DPHY_ROOT_CLK>;
+> -            clock-names = "pclk", "wrap", "phy";
+> -            clock-frequency = <166000000>;
+> +        clocks = <&clks IMX7D_IPG_ROOT_CLK>,
+> +                 <&clks IMX7D_MIPI_CSI_ROOT_CLK>,
+> +                 <&clks IMX7D_MIPI_DPHY_ROOT_CLK>;
+> +        clock-names = "pclk", "wrap", "phy";
+> +        clock-frequency = <166000000>;
+>  
+> -            power-domains = <&pgc_mipi_phy>;
+> -            phy-supply = <&reg_1p0d>;
+> -            resets = <&src IMX7_RESET_MIPI_PHY_MRST>;
+> +        power-domains = <&pgc_mipi_phy>;
+> +        phy-supply = <&reg_1p0d>;
+> +        resets = <&src IMX7_RESET_MIPI_PHY_MRST>;
+>  
+> -            ports {
+> -                    #address-cells = <1>;
+> -                    #size-cells = <0>;
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+>  
+> -                    port@0 {
+> -                            reg = <0>;
+> +            port@0 {
+> +                reg = <0>;
+>  
+> -                            mipi_from_sensor: endpoint {
+> -                                    remote-endpoint = <&ov2680_to_mipi>;
+> -                                    data-lanes = <1>;
+> -                            };
+> -                    };
+> +                mipi_from_sensor: endpoint {
+> +                    remote-endpoint = <&ov2680_to_mipi>;
+> +                    data-lanes = <1>;
+> +                };
+> +            };
+>  
+> -                    port@1 {
+> -                            reg = <1>;
+> +            port@1 {
+> +                reg = <1>;
+>  
+> -                            mipi_vc0_to_csi_mux: endpoint {
+> -                                    remote-endpoint = <&csi_mux_from_mipi_vc0>;
+> -                            };
+> -                    };
+> +                mipi_vc0_to_csi_mux: endpoint {
+> +                    remote-endpoint = <&csi_mux_from_mipi_vc0>;
+> +                };
+>              };
+> +        };
+>      };
+>  
+>  ...
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
