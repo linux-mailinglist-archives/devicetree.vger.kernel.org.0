@@ -2,96 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF2D03276A6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 05:23:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 609C7327720
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 06:26:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233283AbhCAEWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Feb 2021 23:22:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50280 "EHLO
+        id S233467AbhCAF0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 00:26:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233380AbhCAEWf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Feb 2021 23:22:35 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2CAFC061756
-        for <devicetree@vger.kernel.org>; Sun, 28 Feb 2021 20:21:54 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id d13-20020a17090abf8db02900c0590648b1so1763054pjs.1
-        for <devicetree@vger.kernel.org>; Sun, 28 Feb 2021 20:21:54 -0800 (PST)
+        with ESMTP id S231329AbhCAF0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 00:26:00 -0500
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E426C06174A;
+        Sun, 28 Feb 2021 21:25:19 -0800 (PST)
+Received: by mail-pg1-x52a.google.com with SMTP id e6so10763208pgk.5;
+        Sun, 28 Feb 2021 21:25:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=NjN8Uc4qcy6FksZqQ1QHgGaJrHny90tByxw9vbwCOUo=;
-        b=PfsZPlWhBn8pZsUVWOFcD20gH5ailRvQvDC6DSLnpucjO8Hn5TM6j7hAxblpnxh/ww
-         h19tg/qridAAO0JbIjYEqlPjlq1M2aUsyn5Xtx2azr7AZwaHOgP4D8t9TnL0gshPQprl
-         IVliQU0Wp2qRY0XqD+/6i8P0dUy5LqmFSGF/4=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=rfrjhWTiKdZwm1SmPC3mAg3sEQUbY4V7eBsT+TSRXqw=;
+        b=vgkE0PuMfE8yEXxONSMKhpFoahERgruB2gY5VdxDp/KgIIR+3zrDkfrkLkcKTQ6Xz+
+         KK0G84EuSCIK1Pl0FVjuMoG8CxSwh4H1fJjPpIeBOaa+tOBRgGNobcXNXwtLx56+5niF
+         LgzB7jKeq3QoRH9wEf5Pjl7fDUJ9dVDkmHyxyeJZJP/H3BjTbNbQG92QG888toI9arzg
+         SW4GfH45vDnVk9SMpxB1mq6/EQFww2+ZAVWzvGQbZAEKZDFD4EzooYHhfcfVRiX8cSd8
+         d+Fx2j0UlcsXuNZAyP903BTvrNxa0Eqv1Zi8OdpPwKxMcB0D/ya9ZHEyrhbAYNC9aIRw
+         rKKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=NjN8Uc4qcy6FksZqQ1QHgGaJrHny90tByxw9vbwCOUo=;
-        b=kxjoFcC4BNCqm3VSGBKKGxY/Xy1Gc/XAjrToQ4M2Tm3Rhg8sqxL3lF0hDkJSlWDXR2
-         e2UGgF5u1FRTOJ3BXH0ykPafIOvnJiaAl6q/swZ+DQYPR4StN9J9v8wzWaiMkhcpAt0N
-         6Dj1QVF3d3QUB/oJa8IFp4C1kBhA+zQmGuL1FPajms5hBuNdoGLHHSyDiXYcw9U6DjYj
-         rNEY5s4CGXuTjQCvHgup9VRjfXAm4J4KuXGIk4XXgfiBPhVmfjgYwDyp2c9JqKd5fvPb
-         5GAbiYgtoM5oRMKt3OFtQkn3SXHaXwxcEm/ee+XA6fodaqIkaFHVGlJZlGBXc+mYAQKT
-         Tl6g==
-X-Gm-Message-State: AOAM533zHjFb1OmORwUvExLmTEFPteFLXkz/6jHULiIsIcooD64G2VWg
-        R/iYF6fhTPN0w2Eav6C8GXWVmg==
-X-Google-Smtp-Source: ABdhPJwkJzEI6yu3W1UgBfWt0bhhbDNa9CtCsRIPj1jn7oK8x+Mt6RNsDO6AOQ4URYdLK9AzZjnIpg==
-X-Received: by 2002:a17:90a:31cf:: with SMTP id j15mr5674186pjf.41.1614572514205;
-        Sun, 28 Feb 2021 20:21:54 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:3c20:df33:e36:93df])
-        by smtp.gmail.com with ESMTPSA id i22sm8751971pjz.56.2021.02.28.20.21.53
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=rfrjhWTiKdZwm1SmPC3mAg3sEQUbY4V7eBsT+TSRXqw=;
+        b=jnFDYw0F/0gy4bAVLNYTO9olZbpq05mZA04A7mN2DcrqRTucYZ/1jxJrNdMLkGSi6R
+         Ssv7e+fA2SwEPzQa8SVxnKwB3Z77uc1ZLb4hZCYmMMYFtztwXT9GqQrQaxr0+3uknHEw
+         CIvDZaElV63QOZ2ruxFRAvnB91dQPWmY9o71mMO3ci7PAZf8+s8UCxun4zNSl/M4sfBR
+         gdUApn6tIf74ZfU1ciNCGQjLB5UddRGBbrQyS+XjwnZ/R3p3gTF81l7VD9wIqHQDde+e
+         77tayLCFgKXnqq7Vc4zUfeHSp+WYCyeJ49KONNd0DMjrOKNCeDon0lPS5vK8x43BulMr
+         Tw1g==
+X-Gm-Message-State: AOAM532lRmBH1kRj2tLMl3XcpaFFdIbJ8+FaLhr/c8B2xs7DbcKCUV5k
+        BQJ4AVrSQJfFox+IEXP5WRE=
+X-Google-Smtp-Source: ABdhPJzYV9b1Ay3uuQZIUCtsJVbvX1gxje81GHvBjfiv9/E16fMchHSbaSb0tcwKVD9NK1PMbkZCMg==
+X-Received: by 2002:a63:fd0a:: with SMTP id d10mr12263965pgh.345.1614576318646;
+        Sun, 28 Feb 2021 21:25:18 -0800 (PST)
+Received: from google.com ([2620:15c:202:201:bc4a:36c8:19a:eb9e])
+        by smtp.gmail.com with ESMTPSA id h75sm16627072pfe.162.2021.02.28.21.25.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Feb 2021 20:21:53 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
+        Sun, 28 Feb 2021 21:25:17 -0800 (PST)
+Date:   Sun, 28 Feb 2021 21:25:13 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Joe Hung =?utf-8?B?KOa0qumKmOmZvSk=?= <joe_hung@ilitek.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        Luca Hsu =?utf-8?B?KOW+kOWYiemNiik=?= <luca_hsu@ilitek.com>
+Subject: Re: [PATCH v3 2/2] input: touchscreen: Add support for ILITEK Lego
+ Series
+Message-ID: <YDx6udLZf6thd4KQ@google.com>
+References: <20210218064435.1360483-1-joe_hung@ilitek.com>
+ <20210218064435.1360483-2-joe_hung@ilitek.com>
+ <YDH0/tSytUagrzKP@google.com>
+ <3d8c4d2e56fd40cc859b393c292432ac@ilitek.com>
+ <YDdCZdRJAqBvVZFZ@google.com>
+ <4c0d711cd2f046938dbd34a1bf0d9661@ilitek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <48278c3db41c3f46eac8892d1383444c@codeaurora.org>
-References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org> <c4b7ae4dd009f563e6786f4a41f09efa38636fb6.1614244789.git.saiprakash.ranjan@codeaurora.org> <161428185152.1254594.1426736986245389798@swboyd.mtv.corp.google.com> <a35e6dcba758be4af3d111fe92cfbcd6@codeaurora.org> <161436514295.1254594.2789904935200051795@swboyd.mtv.corp.google.com> <48278c3db41c3f46eac8892d1383444c@codeaurora.org>
-Subject: Re: [PATCH 3/9] arm64: dts: qcom: sc7280: Add device tree node for LLCC
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>
-To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Date:   Sun, 28 Feb 2021 20:21:52 -0800
-Message-ID: <161457251211.1254594.17265407085456881480@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4c0d711cd2f046938dbd34a1bf0d9661@ilitek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sai Prakash Ranjan (2021-02-27 05:58:25)
-> On 2021-02-27 00:15, Stephen Boyd wrote:
-> > Quoting Sai Prakash Ranjan (2021-02-26 00:04:27)
-> >> On 2021-02-26 01:07, Stephen Boyd wrote:
-> >> > Quoting Sai Prakash Ranjan (2021-02-25 01:30:19)
-> >> >> Add a DT node for Last level cache (aka. system cache)
-> >> >> controller which provides control over the last level
-> >> >> cache present on SC7280 SoC.
-> >> >>
-> >> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> >> >> ---
-> >> >
-> >> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> >> >
-> >> > Should add system-cache-controller to the devicetree spec. Or just u=
-se
-> >> > cache-controller for the node name.
-> >>=20
-> >> This was as per discussion in [1][2] where dt-schema throws an error
-> >> since it expects cache-level to be associated with cache-controller.
-> >>=20
-> >=20
-> > Ah right. Can you add system-cache-controller to the dt spec?
->=20
-> Sure, I'll add it. Hopefully that won't have to block this change?
-> Because I might need some time to get permissions to add it there.
->=20
+Hi Joe,
 
-Doesn't block it for me.
+On Fri, Feb 26, 2021 at 08:30:25AM +0000, Joe Hung (洪銘陽) wrote:
+> Hello Dmitry,
+> 
+> Thank you for the quick response.
+> Understand and agreed on all your comments.
+> 
+> Little question about the name of prefix and this driver file,
+> could it be named according to different protocol version named by ILITEK internally
+> as ilitek_p6x.c (as protocol version 6 for Lego series, and ili210x.c should be protocol 2).
+> 
+> In addition, could we named it like how touchscreen/elants_i2c.c and eftf2127.c worked?
+
+So elants_i2c vs eftf2127 is historical artefact with elants_i2c being
+there first.
+
+> Is there a way that we could keep ilitek as prefix and driver file's name?
+
+OK, this is really a minor point as far as I am concerned and we spent
+way too much time debating it. You may keep ilitek file name and prefix
+if you would prefer. Just make sure you list supported
+controllers/protocols in Kconfig and that should be enough.
+
+Thanks.
+
+-- 
+Dmitry
