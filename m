@@ -2,125 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D24533275FD
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 03:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84D9832760C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 03:18:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231629AbhCACHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Feb 2021 21:07:40 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:59491 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230437AbhCACHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Feb 2021 21:07:40 -0500
-X-UUID: 290288d7fc084fa397ff6af7f637fb8c-20210301
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=iq6KbRmpHh0RlS6Vd/2SyyZnbYfXfE8UX2nKDApKuHk=;
-        b=gXad2h4N+Xf/Sml1Bkb9Xe+tm3wwNXwuxnxKw4NkhSTrqrL+XOl0/PEUoHp/SMdpI91c6g5YIG8PvhHCgyBQtGjnBWfqlZGO+kyxgY/M/x0DpByJpvnXsNYGkULa7Ti2ov+6pMhgKE+AUi0b72AO5Agr8flT2s25+TiSsL0di14=;
-X-UUID: 290288d7fc084fa397ff6af7f637fb8c-20210301
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <mason.zhang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1826180674; Mon, 01 Mar 2021 10:06:55 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 1 Mar 2021 10:06:54 +0800
-Received: from [10.15.20.246] (10.15.20.246) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 1 Mar 2021 10:06:53 +0800
-Message-ID: <1614564115.1578.8.camel@mbjsdccf07>
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: add MT6779 spi master dts node
-From:   Mason Zhang <mason.zhang@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>,
-        <wsd_upstream@mediatek.com>
-Date:   Mon, 1 Mar 2021 10:01:55 +0800
-In-Reply-To: <20210226105918.3057-1-Mason.Zhang@mediatek.com>
-References: <20210226105918.3057-1-Mason.Zhang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S231786AbhCACRs convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 28 Feb 2021 21:17:48 -0500
+Received: from szxga08-in.huawei.com ([45.249.212.255]:2853 "EHLO
+        szxga08-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231735AbhCACRq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Feb 2021 21:17:46 -0500
+Received: from dggeml405-hub.china.huawei.com (unknown [172.30.72.56])
+        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4DpkNH0z2rz140Vj;
+        Mon,  1 Mar 2021 10:14:23 +0800 (CST)
+Received: from DGGEML509-MBX.china.huawei.com ([169.254.1.252]) by
+ dggeml405-hub.china.huawei.com ([10.3.17.49]) with mapi id 14.03.0509.000;
+ Mon, 1 Mar 2021 10:16:55 +0800
+From:   "chenjun (AM)" <chenjun102@huawei.com>
+To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        "Benjamin Herrenschmidt" <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "Xiangrui (Euler)" <rui.xiang@huawei.com>
+Subject: [Reoprt] Some compile warning on ppc dts
+Thread-Topic: [Reoprt] Some compile warning on ppc dts
+Thread-Index: AdcOQPNGmFy3U3BrTyOQctVQlk5NMQ==
+Date:   Mon, 1 Mar 2021 02:16:55 +0000
+Message-ID: <CE1E7D7EFA066443B6454A6A5063B50220CCBBE4@dggeml509-mbx.china.huawei.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.174.178.53]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: ECC07B286A5E37B4595BB9229526A8B2527E20388219FC818C21766F690446BB2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIxLTAyLTI2IGF0IDE4OjU5ICswODAwLCBNYXNvbiBaaGFuZyB3cm90ZToNCj4g
-dGhpcyBwYXRjaCBhZGQgc3BpIG1hc3RlciBkdHMgbm9kZSBmb3IgbXQ2Nzc5IFNPQy4NCj4gDQo+
-IFNpZ25lZC1vZmYtYnk6IE1hc29uIFpoYW5nIDxNYXNvbi5aaGFuZ0BtZWRpYXRlay5jb20+DQo+
-IC0tLQ0KPiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSB8IDk2ICsr
-KysrKysrKysrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDk2IGluc2VydGlvbnMo
-KykNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3
-OS5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaQ0KPiBpbmRl
-eCAzNzBmMzA5ZDMyZGUuLmNhNzJlYjA5Y2ZmOSAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm02NC9i
-b290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRz
-L21lZGlhdGVrL210Njc3OS5kdHNpDQo+IEBAIC0yMTksNiArMjE5LDEwMiBAQA0KPiAgCQkJc3Rh
-dHVzID0gImRpc2FibGVkIjsNCj4gIAkJfTsNCj4gIA0KPiArCQlzcGkwOiBzcGkwQDExMDBhMDAw
-IHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAg
-ICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+
-Ow0KPiArCQkJcmVnID0gPDAgMHgxMTAwYTAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRz
-ID0gPEdJQ19TUEkgMTQzIElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCj4gKwkJCWNsb2NrcyA9IDwm
-dG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCj4gKwkJCQk8JnRvcGNrZ2VuIENMS19U
-T1BfU1BJPiwNCj4gKwkJCQk8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9TUEkwPjsNCj4gKwkJCWNs
-b2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCj4gKwkJfTsN
-Cj4gKw0KPiArCQlzcGkxOiBzcGkxQDExMDEwMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVk
-aWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+
-ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KPiArCQkJcmVnID0gPDAgMHgxMTAxMDAw
-MCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQ3IElSUV9UWVBFX0xF
-VkVMX0xPVyAwPjsNCj4gKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1
-X0QyPiwNCj4gKwkJCQk8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gKwkJCQk8JmluZnJhY2Zn
-X2FvIENMS19JTkZSQV9TUEkxPjsNCj4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAi
-c2VsLWNsayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4gKw0KPiArCQlzcGkyOiBzcGkyQDExMDEy
-MDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ICsJCQkJ
-ICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0g
-PDA+Ow0KPiArCQkJcmVnID0gPDAgMHgxMTAxMjAwMCAwIDB4MTAwMD47DQo+ICsJCQlpbnRlcnJ1
-cHRzID0gPEdJQ19TUEkgMTUyIElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCj4gKwkJCWNsb2NrcyA9
-IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCj4gKwkJCQkgPCZ0b3Bja2dlbiBD
-TEtfVE9QX1NQST4sDQo+ICsJCQkJPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJMj47DQo+ICsJ
-CQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQo+ICsJ
-CX07DQo+ICsNCj4gKwkJc3BpMzogc3BpM0AxMTAxMzAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0g
-Im1lZGlhdGVrLG10Njc3OS1zcGkiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGki
-Ow0KPiArCQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCj4gKwkJCXJlZyA9IDwwIDB4MTEw
-MTMwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1MyBJUlFfVFlQ
-RV9MRVZFTF9MT1cgMD47DQo+ICsJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBM
-TF9ENV9EMj4sDQo+ICsJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KPiArCQkJCSA8Jmlu
-ZnJhY2ZnX2FvIENMS19JTkZSQV9TUEkzPjsNCj4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1j
-bGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4gKw0KPiArCQlzcGk0OiBzcGk0
-QDExMDE4MDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+
-ICsJCQkJICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ICsJCQltZWRpYXRlayxwYWQtc2Vs
-ZWN0ID0gPDA+Ow0KPiArCQkJcmVnID0gPDAgMHgxMTAxODAwMCAwIDB4MTAwMD47DQo+ICsJCQlp
-bnRlcnJ1cHRzID0gPEdJQ19TUEkgMTU2IElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCj4gKwkJCWNs
-b2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCj4gKwkJCQkgPCZ0b3Bj
-a2dlbiBDTEtfVE9QX1NQST4sDQo+ICsJCQkJIDwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTQ+
-Ow0KPiArCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJzZWwtY2xrIiwgInNwaS1jbGsi
-Ow0KPiArCQl9Ow0KPiArDQo+ICsJCXNwaTU6IHNwaTVAMTEwMTkwMDAgew0KPiArCQkJY29tcGF0
-aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCj4gKwkJCQkgICAgICJtZWRpYXRlayxtdDY3
-NjUtc3BpIjsNCj4gKwkJCW1lZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQo+ICsJCQlyZWcgPSA8
-MCAweDExMDE5MDAwIDAgMHgxMDAwPjsNCj4gKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNTcg
-SVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KPiArCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9Q
-X01BSU5QTExfRDVfRDI+LA0KPiArCQkJCTwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KPiArCQkJ
-CTwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTU+Ow0KPiArCQkJY2xvY2stbmFtZXMgPSAicGFy
-ZW50LWNsayIsICJzZWwtY2xrIiwgInNwaS1jbGsiOw0KPiArCQl9Ow0KPiArDQo+ICsJCXNwaTY6
-IHNwaTZAMTEwMWQwMDAgew0KPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzktc3Bp
-IiwNCj4gKwkJCQkgICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCj4gKwkJCW1lZGlhdGVrLHBh
-ZC1zZWxlY3QgPSA8MD47DQo+ICsJCQlyZWcgPSA8MCAweDExMDFkMDAwIDAgMHgxMDAwPjsNCj4g
-KwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDQgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KPiAr
-CQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KPiArCQkJCSA8
-JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gKwkJCQkgPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFf
-U1BJNj47DQo+ICsJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3Bp
-LWNsayI7DQo+ICsJCX07DQo+ICsNCj4gKwkJc3BpNzogc3BpN0AxMTAxZTAwMCB7DQo+ICsJCQlj
-b21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVr
-LG10Njc2NS1zcGkiOw0KPiArCQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCj4gKwkJCXJl
-ZyA9IDwwIDB4MTEwMWUwMDAgMCAweDEwMDA+Ow0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJ
-IDE0NSBJUlFfVFlQRV9MRVZFTF9MT1cgMD47DQo+ICsJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENM
-S19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ICsJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0K
-PiArCQkJCSA8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9TUEk3PjsNCj4gKwkJCWNsb2NrLW5hbWVz
-ID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCj4gKwkJfTsNCj4gKw0KPiAg
-CQlhdWRpbzogY2xvY2stY29udHJvbGxlckAxMTIxMDAwMCB7DQo+ICAJCQljb21wYXRpYmxlID0g
-Im1lZGlhdGVrLG10Njc3OS1hdWRpbyIsICJzeXNjb24iOw0KPiAgCQkJcmVnID0gPDAgMHgxMTIx
-MDAwMCAwIDB4MTAwMD47DQoNCg==
+Hi
 
+After run the following commands
+make distclean
+make allmodconfig ARCH=powerpc CROSS_COMPILE=powerpc64-linux-gnu-
+make oldconfig ARCH=powerpc CROSS_COMPILE=powerpc64-linux-gnu-
+make -j64 ARCH=powerpc CROSS_COMPILE=powerpc64-linux-gnu-
+
+I get some warning:
+arch/powerpc/boot/dts/mpc5200b.dtsi:267.20-280.4: Warning (pci_bridge): 
+/pci@f0000d00: missing ranges for PCI bridg
+e (or not a bridge)
+arch/powerpc/boot/dts/o2dnt2.dtb: Warning (pci_device_bus_num): Failed 
+prerequisite 'pci_bridge'
+arch/powerpc/boot/dts/mpc5200b.dtsi:182.18-186.5: Warning 
+(spi_bus_bridge): /soc5200@f0000000/psc@2000: node name f
+or SPI buses should be 'spi'
+   also defined at arch/powerpc/boot/dts/o2d.dtsi:32.12-43.5
+arch/powerpc/boot/dts/o2dnt2.dtb: Warning (spi_bus_reg): Failed 
+prerequisite 'spi_bus_bridge'
+..
+
+For the problem about "node name for SPI buses should be 'spi'":
+Rename the psc@2000 to spi@2000 in arch/powerpc/boot/dts/o2d.dtsi can 
+fix it.
+diff --git a/arch/powerpc/boot/dts/o2d.dtsi b/arch/powerpc/boot/dts/o2d.dtsi
+index 6661955a2be4..cd3dc70cd72e 100644
+--- a/arch/powerpc/boot/dts/o2d.dtsi
++++ b/arch/powerpc/boot/dts/o2d.dtsi
+@@ -29,7 +29,7 @@ rtc@800 {
+  >------>------->-------status = "disabled";
+  >------>-------};
+-
+->------>-------psc@2000 {>----->-------// PSC1
++>------>-------spi@2000 {>----->-------// PSC1
+  >------>------->-------compatible = 
+"fsl,mpc5200b-psc-spi","fsl,mpc5200-psc-spi";
+  >------>------->-------#address-cells = <1>;
+  >------>------->-------#size-cells = <0>;
+---
+
+For the problem about "missing ranges for PCI bridge (or not a bridge)":
+Ranges should be add in arch/powerpc/boot/dts/mpc5200b.dtsi.
+ >-------pci: pci@f0000d00 {
+ >------->-------#interrupt-cells = <1>;
+ >------->-------#size-cells = <2>;
+ >------->-------#address-cells = <3>;
+ >------->-------device_type = "pci";
+ >------->-------compatible = "fsl,mpc5200b-pci","fsl,mpc5200-pci";
+ >------->-------reg = <0xf0000d00 0x100>;
+ >------->-------// interrupt-map-mask = need to add
+ >------->-------// interrupt-map = need to add
+ >------->-------clock-frequency = <0>; // From boot loader
+ >------->-------interrupts = <2 8 0 2 9 0 2 10 0>;
+ >------->-------bus-range = <0 0>;
+ >------->-------// ranges = need to add
+ >-------};
+I think the ranges should be add by someone who knows the mpc5200 better.
+
+Can anyone fix this?
+
+-- 
+Regards
+Chen Jun
