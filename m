@@ -2,758 +2,395 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76149328328
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 17:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BA80328394
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 17:22:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237566AbhCAQLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 11:11:00 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:29582 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237544AbhCAQIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 11:08:54 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 121G1TMH017011;
-        Mon, 1 Mar 2021 11:08:08 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 36ykv8rh1f-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 01 Mar 2021 11:08:07 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 121G86KM057578
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 1 Mar 2021 11:08:06 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.721.2; Mon, 1 Mar 2021
- 11:08:05 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.721.2 via Frontend Transport;
- Mon, 1 Mar 2021 11:08:05 -0500
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 121G82lt012423;
-        Mon, 1 Mar 2021 11:08:04 -0500
-From:   <alexandru.tachici@analog.com>
-To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>
-Subject: [PATCH v4 1/1] iio: adc: ad7124: allow more than 8 channels
-Date:   Mon, 1 Mar 2021 18:15:26 +0200
-Message-ID: <20210301161526.72884-2-alexandru.tachici@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210301161526.72884-1-alexandru.tachici@analog.com>
-References: <20210301161526.72884-1-alexandru.tachici@analog.com>
+        id S237255AbhCAQWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 11:22:07 -0500
+Received: from mail-eopbgr1410093.outbound.protection.outlook.com ([40.107.141.93]:16374
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237755AbhCAQUx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Mar 2021 11:20:53 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=juC79sIjfOCURr4mUIR9hGkSkE/i3qe9tRmWsjP/tGHA2bxGylQIR8h0PDjLCNJxGQE4jx0IXQBN9ij35ITg07fvGrFGge6FgKJ0LLiOqfpW2BOJvc2NnoBvOkLYcjcQsBj9wldPfMGQODH0G/uTFsdqxMS2r/0q5mAFEjsoR0fx3NiQccLMukJyysiSpqrwuN/oh0GIcXo9Z9e0q1YKsl/o4H/5BoF693Be96VxUP682MN/1aAK2vHo6UJTJXV9igegCiLyt50vXlIr1/WNgDO7FoqQmzdwAfyOXv/pW0FTPt/uVMrR5dXwSQ5nbIzOhzqhp3dZqikfBMhnfcVeZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4ftQl5G2/IApOGibu2S3QVjMCyyLgss/F0n9zh7LZW8=;
+ b=DVhXDiSolkBjL9koWUgNBhmYdVleskJGqc2wlr9Q9kQV1M3hJPM9lKUxRtcDaFMZIshltD1hFbkPAOcAC/Si4YEPph1X4oeekK7AUQrnKaBL12SSbZUGHppW7KFnWGfr8bHeuJDW94g642iWlhwtajETiuXsqsd3lrJk6wK07njAmzYLyR55ox6adSpKgbuyp9COCOQufMuoXzZ+8dWAk49ehwj4FFFOx07/raUwN4v+0kwF+d1e1K86Ac22DXi9uQeKqEr2VognUPUMB6dZKgvIxZTs8jC8VJCIz6rAIeoXK+XepC9FaZttMmMRbkLseYwF1N6Z/qfX+WM6SfbJ9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4ftQl5G2/IApOGibu2S3QVjMCyyLgss/F0n9zh7LZW8=;
+ b=RLbz73W8zgHDanDxHAUwjpvm26tzByOcHnph0YoU8eWe5EIArYg3/oJuDhOQ7nvhLU2ISS4kZZsIcPTf4ec2KT2TXZgqaa2q/H7lBqp7D7TYnvqrfIxHPIkAnW/0lW0K8SLQCOQ66MCYaSPIkvhW0bj/pt+poryXpqdb9Z3eUr8=
+Received: from OSAPR01MB2737.jpnprd01.prod.outlook.com (2603:1096:603:38::21)
+ by OSAPR01MB1763.jpnprd01.prod.outlook.com (2603:1096:603:31::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19; Mon, 1 Mar
+ 2021 16:19:26 +0000
+Received: from OSAPR01MB2737.jpnprd01.prod.outlook.com
+ ([fe80::4d2d:3155:768e:50e0]) by OSAPR01MB2737.jpnprd01.prod.outlook.com
+ ([fe80::4d2d:3155:768e:50e0%7]) with mapi id 15.20.3890.028; Mon, 1 Mar 2021
+ 16:19:25 +0000
+From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux API <linux-api@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        "REE dirk.behme@de.bosch.com" <dirk.behme@de.bosch.com>,
+        Peter Erben <Peter.Erben@de.bosch.com>
+Subject: RE: [PATCH 4/7] misc: Add driver for DAB IP found on Renesas R-Car
+ devices
+Thread-Topic: [PATCH 4/7] misc: Add driver for DAB IP found on Renesas R-Car
+ devices
+Thread-Index: AQHXC8kAUgvuEwTuE0CHH++Hj25LCKpqLYcAgAUWp7A=
+Date:   Mon, 1 Mar 2021 16:19:25 +0000
+Message-ID: <OSAPR01MB2737942444EC65E89A1F5FC9C29A9@OSAPR01MB2737.jpnprd01.prod.outlook.com>
+References: <20210225225147.29920-1-fabrizio.castro.jz@renesas.com>
+ <20210225225147.29920-5-fabrizio.castro.jz@renesas.com>
+ <CAMuHMdU1uTy_smaZGDcpRnDEUgKn-EYdpqEwP1qTN1=P5M073w@mail.gmail.com>
+In-Reply-To: <CAMuHMdU1uTy_smaZGDcpRnDEUgKn-EYdpqEwP1qTN1=P5M073w@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linux-m68k.org; dkim=none (message not signed)
+ header.d=none;linux-m68k.org; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [2.28.163.123]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 83638a35-0cf9-49c2-9a25-08d8dccdc83e
+x-ms-traffictypediagnostic: OSAPR01MB1763:
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <OSAPR01MB1763620C23CBC537076B8A0FC29A9@OSAPR01MB1763.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: dPoJLucEZSG7p+le4chwLdHeajRIruZlqDLgmKtRTBpfJ+834goxprkky1sITyjAqf1Fvq6/4b5lrjrol8wI51GO7XFWIS2cA/WMm1trKQIhvjw86Sqh3IZl6RY7VsQQjvH6rHwUbyg8h5PjSyhbQqH9PvKOAUiRFKiTyTGDVM8tC+KchS3Xss5Bn3ALCO+BFaWJJh4ZYt1WbEf6wIqn55u+X+3oRbukKcav0FrvjStwtGtqBqocqb7IflgtJAvAKkzqK1F72tjS+c5LTY/Bo3T1GNH84A1oKmkwJ6+CUd81+9KfVvRRrWMEqgdZISSY1kQpJknYEz3AONc9sSFO4H5U1M767lsk3iZpx4srLZ3A/Em6Bb/Gul1ivuUxjk5LICikbXX2TpMDnJnaK0zKK3WiaXzWagBI+1/oEPgT6hODwNk2Se02FAzp/FunlFxsRdgeAkyEBEUXQn+bpqnLE/VSAeNfvroU0Pjw+xw3Hjrucm90bRdlN6FuPUdHJo2j90Y8WEPwyFyrT5TYwXDCjw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB2737.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(376002)(366004)(39860400002)(346002)(26005)(6916009)(2906002)(186003)(8676002)(83380400001)(30864003)(107886003)(7416002)(71200400001)(4326008)(316002)(54906003)(76116006)(6506007)(64756008)(55016002)(8936002)(33656002)(52536014)(66946007)(9686003)(53546011)(66446008)(5660300002)(66476007)(86362001)(7696005)(66556008)(478600001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?ZjhvMEQ3NjF4VFRnMVN1VmlCZEFJbGxyai9aK0lKZUFYV0F2b1V2SHhPdnBC?=
+ =?utf-8?B?aGVha2QvdUFTQXp1T2pFZWREUkdQWHdpcmN0T1A0WTFoQWFKbHFyTW56cG1t?=
+ =?utf-8?B?aFluQXNRdy8zNTYzQlNOdmtDZjgzMmJ5QzJZY0JpVmJyR21YU0RnclpYa2J0?=
+ =?utf-8?B?Q0JINCtLdndVaUhzejliWUIwUE9BR1dEYlZhMjY0dit3bkhva2c1OXkzLzBD?=
+ =?utf-8?B?T1BSQ1pkcXdYYkU4cm5tUTFXbTFXUzdacDViYm9iSjZyZm1xOUhsanFMVlJk?=
+ =?utf-8?B?NlMvNTRhSVJMaFN6UG1UVU9kWEp6MUdZTDNQMkFkSHU3S3grdk9UbVlnOFZq?=
+ =?utf-8?B?REhrVTE2T3BLYVdNUjFwbXNLRkxOcGRIaE5ra0dXd1dseEhQZVp1eFhhRVd0?=
+ =?utf-8?B?REEwWEhnQTJHZStqUUo1MW4zM2p5VFZydUNveWsxei9qa29CcDBTa1VGb24v?=
+ =?utf-8?B?YWV2Q0trVjI4dytjWUZKbm5yTkZvblpwZ09ibmpNNkNUNmREUFRDSFpoSVFB?=
+ =?utf-8?B?djM3a1EzZlpZT1RPelIwRThpdElRdURJZDFzN2tpTFRTS2owb0NUSmNJOXdL?=
+ =?utf-8?B?WmFqN01qbmVDdlgwa3g2dXVGaWNvcXErTUM5U3FNNWtRbWVpWGNiLzVER3Bh?=
+ =?utf-8?B?UEduc0xlcUVkdDRsK2pvbVZtZFlSaUF2b083YWZYTFJSbk1DWEV5UkVyOURE?=
+ =?utf-8?B?LzNTMDNTelNLSFZKcU9OWGh0cUs3K2Y4NDlTTTBjSFlTTWNqbEIvQ3lTTUpq?=
+ =?utf-8?B?SXAvZHM0cTd4OXN1UGJiaGN4VXN2cWJ6cVFOWnhOTlVseW5xcWdEWHJMNEZO?=
+ =?utf-8?B?aTkxZ01tdkRLSzA2TFliZE50SS9hbkRtVGdXbTVSQnlnaUFZQ2oyL2pPRlFY?=
+ =?utf-8?B?NnR0cWZ1NE9HV0hFbnNlTWtmYS9mTFFoOFk1eGZnWVZpdHUrQURCZmVDQm9K?=
+ =?utf-8?B?QUloYzR0cW1lUnRCdjVhVlhkTlBFODNQR0RGOXRBeEJWd0FIckNRVTI2SEVW?=
+ =?utf-8?B?ZmdJSHByMThtTThPdmxaQ3ZiNXh6UTVPUTh6ZWUzSE5pVU0yRGRYaWFtNGlZ?=
+ =?utf-8?B?ejVjQ045OUZaUHhaYmh2djNPcHZxakppR1UyNmRWU3I1aGpzUEtxM01pNFRl?=
+ =?utf-8?B?L2JmQ1NtOE0zQ0pXWmV1YUY3b1ZPNkwzSDJ1ZjBqczZ0em5uYU9WSzh3dVZu?=
+ =?utf-8?B?V21hRDBtV1hwb2tod0dEdm01eGtCUGd2aW03cmFlRVNCS1JMbVYvdXhRcVNZ?=
+ =?utf-8?B?SXRULzJmUUpLUGNiUTIrZWlzc0djQ0JDUzRFUmVkdE9IZnVuZkF2RS9lYndG?=
+ =?utf-8?B?TThsNXI3cEtsRVoweFBFbVEwVWpOUjU3d3A2Y2R0bVl1RmJKVkNFWWZqNjhu?=
+ =?utf-8?B?Qk5CaGpuNWZ3SndFNDFPM1UzdmFiVzluajZxdDFvQmIzM05rcy9oZG1XN2lw?=
+ =?utf-8?B?UXZ4c3FEbnhZNmJ2U3RjdDVzZ29NcThpMnhiT0RFOHQvb2xQd1FuMjJlRTc0?=
+ =?utf-8?B?T3VmTWxST3BmYWlPdjhCblN5WlQxUTlVNndQTUNnVXYvRHFhYmpCVmZtS3ov?=
+ =?utf-8?B?MnIvVkRTejlCdTY3VHBhREZBd2R1UGxKQmVab3lFRzllZ3ZqSzlhNmFaYnlv?=
+ =?utf-8?B?MWw4aDgwbVpjdmZ2WkVGUjdyN1NQNGRzcEJiQzBZRGszMlNvMDJTUmpiTFR4?=
+ =?utf-8?B?WGF1NEJWb2NBV1d0T3FLNVVITlFrK3dIRldkZk1GUHpwNkFEejJjNFlNVjBn?=
+ =?utf-8?Q?YWsU46UGSPBlMHwnEOP7qping/PIv5eNJde4Khz?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-01_11:2021-03-01,2021-03-01 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
- mlxlogscore=999 clxscore=1015 mlxscore=0 suspectscore=0 phishscore=0
- impostorscore=0 lowpriorityscore=0 malwarescore=0 priorityscore=1501
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2103010132
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB2737.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83638a35-0cf9-49c2-9a25-08d8dccdc83e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Mar 2021 16:19:25.4170
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2aP8dGofWRI019Cwpl/8QYVhJ9Vy6fj0pwTp5z9JFfUqglgsfJhK98rzwIMOTvlbhMRnzWM33Gz5/g45nvPCVGa5cEhcUI+P41j7nxpVQeo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB1763
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandru Tachici <alexandru.tachici@analog.com>
-
-Currently AD7124-8 driver cannot use more than 8 IIO channels
-because it was assigning the channel configurations bijectively
-to channels specified in the device-tree. This is not possible
-to do when using more than 8 channels as AD7124-8 has only 8
-configuration registers.
-
-To allow the user to use all channels at once the driver
-will keep in memory configurations for all channels but
-will program only 8 of them at a time on the device.
-If multiple channels have the same configuration, only
-one configuration register will be used. If there
-are more configurations than available registers only
-the last 8 used configurations will be allowed to exist
-on the device in a LRU fashion.
-
-Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
----
- drivers/iio/adc/ad7124.c | 470 ++++++++++++++++++++++++++-------------
- 1 file changed, 313 insertions(+), 157 deletions(-)
-
-diff --git a/drivers/iio/adc/ad7124.c b/drivers/iio/adc/ad7124.c
-index 766c73333604..9588df981e4e 100644
---- a/drivers/iio/adc/ad7124.c
-+++ b/drivers/iio/adc/ad7124.c
-@@ -5,12 +5,14 @@
-  * Copyright 2018 Analog Devices Inc.
-  */
- #include <linux/bitfield.h>
-+#include <linux/bitops.h>
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/device.h>
- #include <linux/err.h>
- #include <linux/interrupt.h>
- #include <linux/kernel.h>
-+#include <linux/kfifo.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
- #include <linux/regulator/consumer.h>
-@@ -86,6 +88,10 @@
- #define AD7124_SINC3_FILTER 2
- #define AD7124_SINC4_FILTER 0
- 
-+#define AD7124_CONF_ADDR_OFFSET	20
-+#define AD7124_MAX_CONFIGS	8
-+#define AD7124_MAX_CHANNELS	16
-+
- enum ad7124_ids {
- 	ID_AD7124_4,
- 	ID_AD7124_8,
-@@ -136,25 +142,37 @@ struct ad7124_chip_info {
- };
- 
- struct ad7124_channel_config {
-+	bool live;
-+	unsigned int cfg_slot;
- 	enum ad7124_ref_sel refsel;
- 	bool bipolar;
- 	bool buf_positive;
- 	bool buf_negative;
--	unsigned int ain;
- 	unsigned int vref_mv;
- 	unsigned int pga_bits;
- 	unsigned int odr;
-+	unsigned int odr_sel_bits;
- 	unsigned int filter_type;
- };
- 
-+struct ad7124_channel {
-+	unsigned int nr;
-+	struct ad7124_channel_config cfg;
-+	unsigned int ain;
-+	unsigned int slot;
-+};
-+
- struct ad7124_state {
- 	const struct ad7124_chip_info *chip_info;
- 	struct ad_sigma_delta sd;
--	struct ad7124_channel_config *channel_config;
-+	struct ad7124_channel *channels;
- 	struct regulator *vref[4];
- 	struct clk *mclk;
- 	unsigned int adc_control;
- 	unsigned int num_channels;
-+	struct mutex cfgs_lock; /* lock for configs access */
-+	unsigned long cfg_slots_status; /* bitmap with slot status (1 means it is used) */
-+	DECLARE_KFIFO(live_cfgs_fifo, struct ad7124_channel_config *, AD7124_MAX_CONFIGS);
- };
- 
- static const struct iio_chan_spec ad7124_channel_template = {
-@@ -238,33 +256,9 @@ static int ad7124_set_mode(struct ad_sigma_delta *sd,
- 	return ad_sd_write_reg(&st->sd, AD7124_ADC_CONTROL, 2, st->adc_control);
- }
- 
--static int ad7124_set_channel(struct ad_sigma_delta *sd, unsigned int channel)
--{
--	struct ad7124_state *st = container_of(sd, struct ad7124_state, sd);
--	unsigned int val;
--
--	val = st->channel_config[channel].ain | AD7124_CHANNEL_EN(1) |
--	      AD7124_CHANNEL_SETUP(channel);
--
--	return ad_sd_write_reg(&st->sd, AD7124_CHANNEL(channel), 2, val);
--}
--
--static const struct ad_sigma_delta_info ad7124_sigma_delta_info = {
--	.set_channel = ad7124_set_channel,
--	.set_mode = ad7124_set_mode,
--	.has_registers = true,
--	.addr_shift = 0,
--	.read_mask = BIT(6),
--	.data_reg = AD7124_DATA,
--	.irq_flags = IRQF_TRIGGER_FALLING,
--};
--
--static int ad7124_set_channel_odr(struct ad7124_state *st,
--				  unsigned int channel,
--				  unsigned int odr)
-+static void ad7124_set_channel_odr(struct ad7124_state *st, unsigned int channel, unsigned int odr)
- {
- 	unsigned int fclk, odr_sel_bits;
--	int ret;
- 
- 	fclk = clk_get_rate(st->mclk);
- 	/*
-@@ -280,36 +274,12 @@ static int ad7124_set_channel_odr(struct ad7124_state *st,
- 	else if (odr_sel_bits > 2047)
- 		odr_sel_bits = 2047;
- 
--	ret = ad7124_spi_write_mask(st, AD7124_FILTER(channel),
--				    AD7124_FILTER_FS_MSK,
--				    AD7124_FILTER_FS(odr_sel_bits), 3);
--	if (ret < 0)
--		return ret;
--	/* fADC = fCLK / (FS[10:0] x 32) */
--	st->channel_config[channel].odr =
--		DIV_ROUND_CLOSEST(fclk, odr_sel_bits * 32);
--
--	return 0;
--}
--
--static int ad7124_set_channel_gain(struct ad7124_state *st,
--				   unsigned int channel,
--				   unsigned int gain)
--{
--	unsigned int res;
--	int ret;
-+	if (odr_sel_bits != st->channels[channel].cfg.odr_sel_bits)
-+		st->channels[channel].cfg.live = false;
- 
--	res = ad7124_find_closest_match(ad7124_gain,
--					ARRAY_SIZE(ad7124_gain), gain);
--	ret = ad7124_spi_write_mask(st, AD7124_CONFIG(channel),
--				    AD7124_CONFIG_PGA_MSK,
--				    AD7124_CONFIG_PGA(res), 2);
--	if (ret < 0)
--		return ret;
--
--	st->channel_config[channel].pga_bits = res;
--
--	return 0;
-+	/* fADC = fCLK / (FS[10:0] x 32) */
-+	st->channels[channel].cfg.odr = DIV_ROUND_CLOSEST(fclk, odr_sel_bits * 32);
-+	st->channels[channel].cfg.odr_sel_bits = odr_sel_bits;
- }
- 
- static int ad7124_get_3db_filter_freq(struct ad7124_state *st,
-@@ -317,9 +287,9 @@ static int ad7124_get_3db_filter_freq(struct ad7124_state *st,
- {
- 	unsigned int fadc;
- 
--	fadc = st->channel_config[channel].odr;
-+	fadc = st->channels[channel].cfg.odr;
- 
--	switch (st->channel_config[channel].filter_type) {
-+	switch (st->channels[channel].cfg.filter_type) {
- 	case AD7124_SINC3_FILTER:
- 		return DIV_ROUND_CLOSEST(fadc * 230, 1000);
- 	case AD7124_SINC4_FILTER:
-@@ -329,9 +299,8 @@ static int ad7124_get_3db_filter_freq(struct ad7124_state *st,
- 	}
- }
- 
--static int ad7124_set_3db_filter_freq(struct ad7124_state *st,
--				      unsigned int channel,
--				      unsigned int freq)
-+static void ad7124_set_3db_filter_freq(struct ad7124_state *st, unsigned int channel,
-+				       unsigned int freq)
- {
- 	unsigned int sinc4_3db_odr;
- 	unsigned int sinc3_3db_odr;
-@@ -349,21 +318,223 @@ static int ad7124_set_3db_filter_freq(struct ad7124_state *st,
- 		new_odr = sinc3_3db_odr;
- 	}
- 
--	if (st->channel_config[channel].filter_type != new_filter) {
--		int ret;
-+	if (new_odr != st->channels[channel].cfg.odr)
-+		st->channels[channel].cfg.live = false;
- 
--		st->channel_config[channel].filter_type = new_filter;
--		ret = ad7124_spi_write_mask(st, AD7124_FILTER(channel),
--					    AD7124_FILTER_TYPE_MSK,
--					    AD7124_FILTER_TYPE_SEL(new_filter),
--					    3);
--		if (ret < 0)
--			return ret;
-+	st->channels[channel].cfg.filter_type = new_filter;
-+	st->channels[channel].cfg.odr = new_odr;
-+}
-+
-+static bool ad7124_configs_equal(struct ad7124_channel_config *cfg1,
-+				 struct ad7124_channel_config *cfg2)
-+{
-+	return ((cfg1->refsel == cfg2->refsel) &&
-+		(cfg1->bipolar == cfg2->bipolar) &&
-+		(cfg1->buf_positive == cfg2->buf_positive) &&
-+		(cfg1->buf_negative == cfg2->buf_negative) &&
-+		(cfg1->vref_mv == cfg2->vref_mv) &&
-+		(cfg1->pga_bits == cfg2->pga_bits) &&
-+		(cfg1->odr == cfg2->odr) &&
-+		(cfg1->odr_sel_bits == cfg2->odr_sel_bits) &&
-+		(cfg1->filter_type == cfg2->filter_type));
-+}
-+
-+static struct ad7124_channel_config *ad7124_find_similar_live_cfg(struct ad7124_state *st,
-+								  struct ad7124_channel_config *cfg)
-+{
-+	struct ad7124_channel_config *cfg_aux;
-+	int i;
-+
-+	for (i = 0; i < st->num_channels; i++) {
-+		cfg_aux = &st->channels[i].cfg;
-+
-+		if (cfg_aux->live && ad7124_configs_equal(cfg, cfg_aux))
-+			return cfg_aux;
- 	}
- 
--	return ad7124_set_channel_odr(st, channel, new_odr);
-+	return NULL;
- }
- 
-+static int ad7124_find_free_config_slot(struct ad7124_state *st)
-+{
-+	unsigned int free_cfg_slot;
-+
-+	free_cfg_slot = find_next_zero_bit(&st->cfg_slots_status, AD7124_MAX_CONFIGS, 0);
-+	if (free_cfg_slot == AD7124_MAX_CONFIGS)
-+		return -1;
-+
-+	return free_cfg_slot;
-+}
-+
-+static int ad7124_init_config_vref(struct ad7124_state *st, struct ad7124_channel_config *cfg)
-+{
-+	unsigned int refsel = cfg->refsel;
-+
-+	switch (refsel) {
-+	case AD7124_REFIN1:
-+	case AD7124_REFIN2:
-+	case AD7124_AVDD_REF:
-+		if (IS_ERR(st->vref[refsel])) {
-+			dev_err(&st->sd.spi->dev,
-+				"Error, trying to use external voltage reference without a %s regulator.\n",
-+				ad7124_ref_names[refsel]);
-+				return PTR_ERR(st->vref[refsel]);
-+		}
-+		cfg->vref_mv = regulator_get_voltage(st->vref[refsel]);
-+		/* Conversion from uV to mV */
-+		cfg->vref_mv /= 1000;
-+		return 0;
-+	case AD7124_INT_REF:
-+		cfg->vref_mv = 2500;
-+		st->adc_control &= ~AD7124_ADC_CTRL_REF_EN_MSK;
-+		st->adc_control |= AD7124_ADC_CTRL_REF_EN(1);
-+		return ad_sd_write_reg(&st->sd, AD7124_ADC_CONTROL,
-+				      2, st->adc_control);
-+	default:
-+		dev_err(&st->sd.spi->dev, "Invalid reference %d\n", refsel);
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ad7124_write_config(struct ad7124_state *st, struct ad7124_channel_config *cfg,
-+			       unsigned int cfg_slot)
-+{
-+	unsigned int tmp;
-+	unsigned int val;
-+	int ret;
-+
-+	cfg->cfg_slot = cfg_slot;
-+
-+	tmp = (cfg->buf_positive << 1) + cfg->buf_negative;
-+	val = AD7124_CONFIG_BIPOLAR(cfg->bipolar) | AD7124_CONFIG_REF_SEL(cfg->refsel) |
-+	      AD7124_CONFIG_IN_BUFF(tmp);
-+	ret = ad_sd_write_reg(&st->sd, AD7124_CONFIG(cfg->cfg_slot), 2, val);
-+	if (ret < 0)
-+		return ret;
-+
-+	tmp = AD7124_FILTER_TYPE_SEL(cfg->filter_type);
-+	ret = ad7124_spi_write_mask(st, AD7124_FILTER(cfg->cfg_slot), AD7124_FILTER_TYPE_MSK,
-+				    tmp, 3);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = ad7124_spi_write_mask(st, AD7124_FILTER(cfg->cfg_slot), AD7124_FILTER_FS_MSK,
-+				    AD7124_FILTER_FS(cfg->odr_sel_bits), 3);
-+	if (ret < 0)
-+		return ret;
-+
-+	return ad7124_spi_write_mask(st, AD7124_CONFIG(cfg->cfg_slot), AD7124_CONFIG_PGA_MSK,
-+				     AD7124_CONFIG_PGA(cfg->pga_bits), 2);
-+}
-+
-+static struct ad7124_channel_config *ad7124_pop_config(struct ad7124_state *st)
-+{
-+	struct ad7124_channel_config *lru_cfg;
-+	struct ad7124_channel_config *cfg;
-+	int ret;
-+	int i;
-+
-+	/*
-+	 * Pop least recently used config from the fifo
-+	 * in order to make room for the new one
-+	 */
-+	ret = kfifo_get(&st->live_cfgs_fifo, &lru_cfg);
-+	if (ret <= 0)
-+		return NULL;
-+
-+	lru_cfg->live = false;
-+
-+	/* mark slot as free */
-+	assign_bit(lru_cfg->cfg_slot, &st->cfg_slots_status, 0);
-+
-+	/* invalidate all other configs that pointed to this one */
-+	for (i = 0; i < st->num_channels; i++) {
-+		cfg = &st->channels[i].cfg;
-+
-+		if (cfg->cfg_slot == lru_cfg->cfg_slot)
-+			cfg->live = false;
-+	}
-+
-+	return lru_cfg;
-+}
-+
-+static int ad7124_push_config(struct ad7124_state *st, struct ad7124_channel_config *cfg)
-+{
-+	struct ad7124_channel_config *lru_cfg;
-+	int free_cfg_slot;
-+
-+	free_cfg_slot = ad7124_find_free_config_slot(st);
-+	if (free_cfg_slot >= 0) {
-+		/* push the new config in configs queue */
-+		kfifo_put(&st->live_cfgs_fifo, cfg);
-+	} else {
-+		/* pop one config to make room for the new one */
-+		lru_cfg = ad7124_pop_config(st);
-+		if (!lru_cfg)
-+			return -EINVAL;
-+
-+		/* push the new config in configs queue */
-+		free_cfg_slot = lru_cfg->cfg_slot;
-+		kfifo_put(&st->live_cfgs_fifo, cfg);
-+	}
-+
-+	/* mark slot as used */
-+	assign_bit(free_cfg_slot, &st->cfg_slots_status, 1);
-+
-+	return ad7124_write_config(st, cfg, free_cfg_slot);
-+}
-+
-+static int ad7124_enable_channel(struct ad7124_state *st, struct ad7124_channel *ch)
-+{
-+	ch->cfg.live = true;
-+	return ad_sd_write_reg(&st->sd, AD7124_CHANNEL(ch->nr), 2, ch->ain |
-+			      AD7124_CHANNEL_SETUP(ch->cfg.cfg_slot) | AD7124_CHANNEL_EN(1));
-+}
-+
-+static int ad7124_prepare_read(struct ad7124_state *st, int address)
-+{
-+	struct ad7124_channel_config *cfg = &st->channels[address].cfg;
-+	struct ad7124_channel_config *live_cfg;
-+
-+	/*
-+	 * Before doing any reads assign the channel a configuration.
-+	 * Check if channel's config is on the device
-+	 */
-+	if (!cfg->live) {
-+		/* check if config matches another one */
-+		live_cfg = ad7124_find_similar_live_cfg(st, cfg);
-+		if (!live_cfg)
-+			ad7124_push_config(st, cfg);
-+		else
-+			cfg->cfg_slot = live_cfg->cfg_slot;
-+	}
-+
-+	/* point channel to the config slot and enable */
-+	return ad7124_enable_channel(st, &st->channels[address]);
-+}
-+
-+static int ad7124_set_channel(struct ad_sigma_delta *sd, unsigned int channel)
-+{
-+	struct ad7124_state *st = container_of(sd, struct ad7124_state, sd);
-+	int ret;
-+
-+	mutex_lock(&st->cfgs_lock);
-+	ret = ad7124_prepare_read(st, channel);
-+	mutex_unlock(&st->cfgs_lock);
-+
-+	return ret;
-+}
-+
-+static const struct ad_sigma_delta_info ad7124_sigma_delta_info = {
-+	.set_channel = ad7124_set_channel,
-+	.set_mode = ad7124_set_mode,
-+	.has_registers = true,
-+	.addr_shift = 0,
-+	.read_mask = BIT(6),
-+	.data_reg = AD7124_DATA,
-+	.irq_flags = IRQF_TRIGGER_FALLING
-+};
-+
- static int ad7124_read_raw(struct iio_dev *indio_dev,
- 			   struct iio_chan_spec const *chan,
- 			   int *val, int *val2, long info)
-@@ -378,36 +549,44 @@ static int ad7124_read_raw(struct iio_dev *indio_dev,
- 			return ret;
- 
- 		/* After the conversion is performed, disable the channel */
--		ret = ad_sd_write_reg(&st->sd,
--				      AD7124_CHANNEL(chan->address), 2,
--				      st->channel_config[chan->address].ain |
--				      AD7124_CHANNEL_EN(0));
-+		ret = ad_sd_write_reg(&st->sd, AD7124_CHANNEL(chan->address), 2,
-+				      st->channels[chan->address].ain | AD7124_CHANNEL_EN(0));
- 		if (ret < 0)
- 			return ret;
- 
- 		return IIO_VAL_INT;
- 	case IIO_CHAN_INFO_SCALE:
--		idx = st->channel_config[chan->address].pga_bits;
--		*val = st->channel_config[chan->address].vref_mv;
--		if (st->channel_config[chan->address].bipolar)
-+		mutex_lock(&st->cfgs_lock);
-+
-+		idx = st->channels[chan->address].cfg.pga_bits;
-+		*val = st->channels[chan->address].cfg.vref_mv;
-+		if (st->channels[chan->address].cfg.bipolar)
- 			*val2 = chan->scan_type.realbits - 1 + idx;
- 		else
- 			*val2 = chan->scan_type.realbits + idx;
- 
-+		mutex_unlock(&st->cfgs_lock);
- 		return IIO_VAL_FRACTIONAL_LOG2;
- 	case IIO_CHAN_INFO_OFFSET:
--		if (st->channel_config[chan->address].bipolar)
-+		mutex_lock(&st->cfgs_lock);
-+		if (st->channels[chan->address].cfg.bipolar)
- 			*val = -(1 << (chan->scan_type.realbits - 1));
- 		else
- 			*val = 0;
- 
-+		mutex_unlock(&st->cfgs_lock);
- 		return IIO_VAL_INT;
- 	case IIO_CHAN_INFO_SAMP_FREQ:
--		*val = st->channel_config[chan->address].odr;
-+		mutex_lock(&st->cfgs_lock);
-+		*val = st->channels[chan->address].cfg.odr;
-+		mutex_unlock(&st->cfgs_lock);
- 
- 		return IIO_VAL_INT;
- 	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-+		mutex_lock(&st->cfgs_lock);
- 		*val = ad7124_get_3db_filter_freq(st, chan->scan_index);
-+		mutex_unlock(&st->cfgs_lock);
-+
- 		return IIO_VAL_INT;
- 	default:
- 		return -EINVAL;
-@@ -420,35 +599,54 @@ static int ad7124_write_raw(struct iio_dev *indio_dev,
- {
- 	struct ad7124_state *st = iio_priv(indio_dev);
- 	unsigned int res, gain, full_scale, vref;
-+	int ret = 0;
-+
-+	mutex_lock(&st->cfgs_lock);
- 
- 	switch (info) {
- 	case IIO_CHAN_INFO_SAMP_FREQ:
--		if (val2 != 0)
--			return -EINVAL;
-+		if (val2 != 0) {
-+			ret = -EINVAL;
-+			break;
-+		}
- 
--		return ad7124_set_channel_odr(st, chan->address, val);
-+		ad7124_set_channel_odr(st, chan->address, val);
-+		break;
- 	case IIO_CHAN_INFO_SCALE:
--		if (val != 0)
--			return -EINVAL;
-+		if (val != 0) {
-+			ret = -EINVAL;
-+			break;
-+		}
- 
--		if (st->channel_config[chan->address].bipolar)
-+		if (st->channels[chan->address].cfg.bipolar)
- 			full_scale = 1 << (chan->scan_type.realbits - 1);
- 		else
- 			full_scale = 1 << chan->scan_type.realbits;
- 
--		vref = st->channel_config[chan->address].vref_mv * 1000000LL;
-+		vref = st->channels[chan->address].cfg.vref_mv * 1000000LL;
- 		res = DIV_ROUND_CLOSEST(vref, full_scale);
- 		gain = DIV_ROUND_CLOSEST(res, val2);
-+		res = ad7124_find_closest_match(ad7124_gain, ARRAY_SIZE(ad7124_gain), gain);
- 
--		return ad7124_set_channel_gain(st, chan->address, gain);
-+		if (st->channels[chan->address].cfg.pga_bits != res)
-+			st->channels[chan->address].cfg.live = false;
-+
-+		st->channels[chan->address].cfg.pga_bits = res;
-+		break;
- 	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
--		if (val2 != 0)
--			return -EINVAL;
-+		if (val2 != 0) {
-+			ret = -EINVAL;
-+			break;
-+		}
- 
--		return ad7124_set_3db_filter_freq(st, chan->address, val);
-+		ad7124_set_3db_filter_freq(st, chan->address, val);
-+		break;
- 	default:
--		return -EINVAL;
-+		ret =  -EINVAL;
- 	}
-+
-+	mutex_unlock(&st->cfgs_lock);
-+	return ret;
- }
- 
- static int ad7124_reg_access(struct iio_dev *indio_dev,
-@@ -547,47 +745,14 @@ static int ad7124_check_chip_id(struct ad7124_state *st)
- 	return 0;
- }
- 
--static int ad7124_init_channel_vref(struct ad7124_state *st,
--				    unsigned int channel_number)
--{
--	unsigned int refsel = st->channel_config[channel_number].refsel;
--
--	switch (refsel) {
--	case AD7124_REFIN1:
--	case AD7124_REFIN2:
--	case AD7124_AVDD_REF:
--		if (IS_ERR(st->vref[refsel])) {
--			dev_err(&st->sd.spi->dev,
--				"Error, trying to use external voltage reference without a %s regulator.\n",
--				ad7124_ref_names[refsel]);
--			return PTR_ERR(st->vref[refsel]);
--		}
--		st->channel_config[channel_number].vref_mv =
--			regulator_get_voltage(st->vref[refsel]);
--		/* Conversion from uV to mV */
--		st->channel_config[channel_number].vref_mv /= 1000;
--		break;
--	case AD7124_INT_REF:
--		st->channel_config[channel_number].vref_mv = 2500;
--		st->adc_control &= ~AD7124_ADC_CTRL_REF_EN_MSK;
--		st->adc_control |= AD7124_ADC_CTRL_REF_EN(1);
--		return ad_sd_write_reg(&st->sd, AD7124_ADC_CONTROL,
--				      2, st->adc_control);
--	default:
--		dev_err(&st->sd.spi->dev, "Invalid reference %d\n", refsel);
--		return -EINVAL;
--	}
--
--	return 0;
--}
--
- static int ad7124_of_parse_channel_config(struct iio_dev *indio_dev,
- 					  struct device_node *np)
- {
- 	struct ad7124_state *st = iio_priv(indio_dev);
-+	struct ad7124_channel_config *cfg;
-+	struct ad7124_channel *channels;
- 	struct device_node *child;
- 	struct iio_chan_spec *chan;
--	struct ad7124_channel_config *chan_config;
- 	unsigned int ain[2], channel = 0, tmp;
- 	int ret;
- 
-@@ -602,16 +767,18 @@ static int ad7124_of_parse_channel_config(struct iio_dev *indio_dev,
- 	if (!chan)
- 		return -ENOMEM;
- 
--	chan_config = devm_kcalloc(indio_dev->dev.parent, st->num_channels,
--				   sizeof(*chan_config), GFP_KERNEL);
--	if (!chan_config)
-+	channels = devm_kcalloc(indio_dev->dev.parent, st->num_channels, sizeof(*channels),
-+				GFP_KERNEL);
-+	if (!channels)
- 		return -ENOMEM;
- 
- 	indio_dev->channels = chan;
- 	indio_dev->num_channels = st->num_channels;
--	st->channel_config = chan_config;
-+	st->channels = channels;
- 
- 	for_each_available_child_of_node(np, child) {
-+		cfg = &st->channels[channel].cfg;
-+
- 		ret = of_property_read_u32(child, "reg", &channel);
- 		if (ret)
- 			goto err;
-@@ -621,21 +788,20 @@ static int ad7124_of_parse_channel_config(struct iio_dev *indio_dev,
- 		if (ret)
- 			goto err;
- 
--		st->channel_config[channel].ain = AD7124_CHANNEL_AINP(ain[0]) |
-+		st->channels[channel].nr = channel;
-+		st->channels[channel].ain = AD7124_CHANNEL_AINP(ain[0]) |
- 						  AD7124_CHANNEL_AINM(ain[1]);
--		st->channel_config[channel].bipolar =
--			of_property_read_bool(child, "bipolar");
-+
-+		cfg->bipolar = of_property_read_bool(child, "bipolar");
- 
- 		ret = of_property_read_u32(child, "adi,reference-select", &tmp);
- 		if (ret)
--			st->channel_config[channel].refsel = AD7124_INT_REF;
-+			cfg->refsel = AD7124_INT_REF;
- 		else
--			st->channel_config[channel].refsel = tmp;
-+			cfg->refsel = tmp;
- 
--		st->channel_config[channel].buf_positive =
--			of_property_read_bool(child, "adi,buffered-positive");
--		st->channel_config[channel].buf_negative =
--			of_property_read_bool(child, "adi,buffered-negative");
-+		cfg->buf_positive = of_property_read_bool(child, "adi,buffered-positive");
-+		cfg->buf_negative = of_property_read_bool(child, "adi,buffered-negative");
- 
- 		chan[channel] = ad7124_channel_template;
- 		chan[channel].address = channel;
-@@ -654,7 +820,7 @@ static int ad7124_of_parse_channel_config(struct iio_dev *indio_dev,
- static int ad7124_setup(struct ad7124_state *st)
- {
- 	unsigned int val, fclk, power_mode;
--	int i, ret, tmp;
-+	int i, ret;
- 
- 	fclk = clk_get_rate(st->mclk);
- 	if (!fclk)
-@@ -677,31 +843,21 @@ static int ad7124_setup(struct ad7124_state *st)
- 	if (ret < 0)
- 		return ret;
- 
-+	mutex_init(&st->cfgs_lock);
-+	INIT_KFIFO(st->live_cfgs_fifo);
- 	for (i = 0; i < st->num_channels; i++) {
--		val = st->channel_config[i].ain | AD7124_CHANNEL_SETUP(i);
--		ret = ad_sd_write_reg(&st->sd, AD7124_CHANNEL(i), 2, val);
--		if (ret < 0)
--			return ret;
-+		val = st->channels[i].ain;
- 
--		ret = ad7124_init_channel_vref(st, i);
-+		ret = ad7124_init_config_vref(st, &st->channels[i].cfg);
- 		if (ret < 0)
- 			return ret;
- 
--		tmp = (st->channel_config[i].buf_positive << 1)  +
--			st->channel_config[i].buf_negative;
--
--		val = AD7124_CONFIG_BIPOLAR(st->channel_config[i].bipolar) |
--		      AD7124_CONFIG_REF_SEL(st->channel_config[i].refsel) |
--		      AD7124_CONFIG_IN_BUFF(tmp);
--		ret = ad_sd_write_reg(&st->sd, AD7124_CONFIG(i), 2, val);
--		if (ret < 0)
--			return ret;
- 		/*
- 		 * 9.38 SPS is the minimum output data rate supported
- 		 * regardless of the selected power mode. Round it up to 10 and
--		 * set all the enabled channels to this default value.
-+		 * set all channels to this default value.
- 		 */
--		ret = ad7124_set_channel_odr(st, i, 10);
-+		ad7124_set_channel_odr(st, i, 10);
- 	}
- 
- 	return ret;
--- 
-2.20.1
-
+SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgeW91ciBmZWVkYmFjayENCg0KPiBGcm9tOiBHZWVydCBV
+eXR0ZXJob2V2ZW4gPGdlZXJ0QGxpbnV4LW02OGsub3JnPg0KPiBTZW50OiAyNiBGZWJydWFyeSAy
+MDIxIDA5OjM0DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggNC83XSBtaXNjOiBBZGQgZHJpdmVyIGZv
+ciBEQUIgSVAgZm91bmQgb24gUmVuZXNhcyBSLQ0KPiBDYXIgZGV2aWNlcw0KPiANCj4gSGkgRmFi
+cml6aW8sDQo+IA0KPiBPbiBUaHUsIEZlYiAyNSwgMjAyMSBhdCAxMTo1MyBQTSBGYWJyaXppbyBD
+YXN0cm8NCj4gPGZhYnJpemlvLmNhc3Ryby5qekByZW5lc2FzLmNvbT4gd3JvdGU6DQo+ID4gVGhl
+IERBQiBoYXJkd2FyZSBhY2NlbGVyYXRvciBmb3VuZCBvbiBSLUNhciBFMyBhbmQgUi1DYXIgTTMt
+TiBkZXZpY2VzIGlzDQo+ID4gYSBoYXJkd2FyZSBhY2NlbGVyYXRvciBmb3Igc29mdHdhcmUgREFC
+IGRlbW9kdWxhdG9ycy4NCj4gPiBJdCBjb25zaXN0cyBvZiBvbmUgRkZUIChGYXN0IEZvdXJpZXIg
+VHJhbnNmb3JtKSBtb2R1bGUgYW5kIG9uZSBkZWNvZGVyDQo+ID4gbW9kdWxlLCBjb21wYXRpYmxl
+IHdpdGggREFCIHNwZWNpZmljYXRpb24gKEVUU0kgRU4gMzAwIDQwMSBhbmQNCj4gPiBFVFNJIFRT
+IDEwMiA1NjMpLg0KPiA+IFRoZSBkZWNvZGVyIG1vZHVsZSBjYW4gcGVyZm9ybSBGSUMgZGVjb2Rp
+bmcgYW5kIE1TQyBkZWNvZGluZyBwcm9jZXNzaW5nDQo+ID4gZnJvbSBkZS1wdW5jdHVyZSB0byBm
+aW5hbCBkZWNvZGVkIHJlc3VsdC4NCj4gPg0KPiA+IFRoaXMgcGF0Y2ggYWRkcyBhIGRldmljZSBk
+cml2ZXIgdG8gc3VwcG9ydCB0aGUgRkZUIG1vZHVsZSBvbmx5Lg0KPiA+DQo+ID4gU2lnbmVkLW9m
+Zi1ieTogRmFicml6aW8gQ2FzdHJvIDxmYWJyaXppby5jYXN0cm8uanpAcmVuZXNhcy5jb20+DQo+
+IA0KPiBUaGFua3MgZm9yIHlvdXIgcGF0Y2ghDQo+IA0KPiA+IC0tLSBhL2RyaXZlcnMvbWlzYy9L
+Y29uZmlnDQo+ID4gKysrIGIvZHJpdmVycy9taXNjL0tjb25maWcNCj4gPiBAQCAtNDYxLDQgKzQ2
+MSw1IEBAIHNvdXJjZSAiZHJpdmVycy9taXNjL2JjbS12ay9LY29uZmlnIg0KPiA+ICBzb3VyY2Ug
+ImRyaXZlcnMvbWlzYy9jYXJkcmVhZGVyL0tjb25maWciDQo+ID4gIHNvdXJjZSAiZHJpdmVycy9t
+aXNjL2hhYmFuYWxhYnMvS2NvbmZpZyINCj4gPiAgc291cmNlICJkcml2ZXJzL21pc2MvdWFjY2Uv
+S2NvbmZpZyINCj4gPiArc291cmNlICJkcml2ZXJzL21pc2MvcmNhcl9kYWIvS2NvbmZpZyINCj4g
+DQo+IHJjYXItZGFiPw0KDQpJIHdpbGwgY2hhbmdlIHRoZSBkaXJlY3RvcnkgbmFtZQ0KDQo+IA0K
+PiANCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvZHJpdmVycy9taXNjL3JjYXJfZGFiL0tj
+b25maWcNCj4gPiBAQCAtMCwwICsxLDExIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZp
+ZXI6IEdQTC0yLjArDQo+ID4gKyMNCj4gPiArIyBSLUNhciBEQUIgSGFyZHdhcmUgQWNjZWxlcmF0
+b3INCj4gPiArIw0KPiA+ICsNCj4gPiArY29uZmlnIFJDQVJfREFCDQo+IA0KPiBEQUJfUkNBUj8N
+Cg0KQWdyZWVkDQoNCj4gDQo+ID4gKyAgICAgICB0cmlzdGF0ZSAiREFCIGFjY2VsZXJhdG9yIGZv
+ciBSZW5lc2FzIFItQ2FyIGRldmljZXMiDQo+ID4gKyAgICAgICBkZXBlbmRzIG9uIEFSQ0hfUjhB
+Nzc5OTAgfHwgQVJDSF9SOEE3Nzk2NQ0KPiANCj4gfHwgQ09NUElMRV9URVNUDQoNCldpbGwgZG8N
+Cg0KPiANCj4gPiArICAgICAgIGhlbHANCj4gPiArICAgICAgICAgU29tZSBSLUNhciBkZXZpY2Vz
+IGNvbWUgd2l0aCBhbiBJUCB0byBhY2NlbGVyYXRlIERBQiBkZWNvZGluZy4NCj4gPiArICAgICAg
+ICAgRW5hYmxlIHRoaXMgb3B0aW9uIHRvIGFkZCBkcml2ZXIgc3VwcG9ydC4NCj4gDQo+ID4gLS0t
+IC9kZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvbWlzYy9yY2FyX2RhYi9yY2FyX2Rldi5jDQo+
+ID4gQEAgLTAsMCArMSwxNzYgQEANCj4gPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQ
+TC0yLjArDQo+ID4gKy8qDQo+ID4gKyAqIFItQ2FyIEdlbjMgREFCIGhhcmR3YXJlIGFjY2VsZXJh
+dG9yIGRyaXZlcg0KPiA+ICsgKg0KPiA+ICsgKiBDb3B5cmlnaHQgKEMpIDIwMjEgUmVuZXNhcyBF
+bGVjdHJvbmljcyBDb3Jwb3JhdGlvbg0KPiA+ICsgKg0KPiA+ICsgKi8NCj4gPiArI2luY2x1ZGUg
+PGxpbnV4L2Nsay5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvaW50ZXJydXB0Lmg+DQo+ID4gKyNp
+bmNsdWRlIDxsaW51eC9rZXJuZWwuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPg0K
+PiA+ICsjaW5jbHVkZSA8bGludXgvbXV0ZXguaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L29mLmg+
+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9wbGF0Zm9ybV9kZXZpY2UuaD4NCj4gPiArI2luY2x1ZGUg
+PGxpbnV4L3VhY2Nlc3MuaD4NCj4gPiArDQo+ID4gKyNpbmNsdWRlIDx1YXBpL2xpbnV4L3JjYXJf
+ZGFiLmg+DQo+ID4gKyNpbmNsdWRlICJyY2FyX2Rldi5oIg0KPiA+ICsNCj4gPiAraXJxcmV0dXJu
+X3QgcmNhcl9kYWJfaXJxKGludCBpcnEsIHZvaWQgKmRldmlkKQ0KPiANCj4gc3RhdGljLCBhcyBk
+aXNjb3ZlcmVkIGJ5IHRoZSByb2JvdC4NCg0KWWVwDQoNCj4gDQo+ID4gK3sNCj4gPiArICAgICAg
+IHN0cnVjdCByY2FyX2RhYiAqZGFiID0gZGV2aWQ7DQo+ID4gKyAgICAgICB1MzIgaW50c3IsIGlu
+dGNyMTsNCj4gPiArDQo+ID4gKyAgICAgICBzcGluX2xvY2soJmRhYi0+c2hhcmVkX3JlZ3NfbG9j
+ayk7DQo+ID4gKw0KPiA+ICsgICAgICAgaW50Y3IxID0gcmNhcl9kYWJfcmVhZChkYWIsIFJDQVJf
+REFCX0lOVENSMSk7DQo+ID4gKyAgICAgICByY2FyX2RhYl93cml0ZShkYWIsIFJDQVJfREFCX0lO
+VENSMSwgMHgwMDAwMDNGRik7DQo+IA0KPiBNYWdpYyB2YWx1ZSAoc2V0dGluZyB1bmRvY3VtZW50
+ZWQgYml0cz8pLCBwbGVhc2UgdXNlIGEgZGVmaW5lLg0KDQpUaGUgZG9jdW1lbnRhdGlvbiAoU2Vj
+dGlvbiA0NEIuMi4yMSBvZiB0aGUgUi1DYXIgR2VuMyBIVyBVc2VyDQptYW51YWwpIHNheXMgdG8g
+d3JpdGUgKHJlc2VydmVkKSBiaXRzIDMxIHRvIDEwIGFzIDAsIHRvIHdyaXRlDQoocmVzZXJ2ZWQp
+IGJpdHMgOSB0byAzIGFzIDEsIGFuZCB0aGUgcmVtYWluaW5nIDMgYml0cyAoMiB0byAwKSwNCmFy
+ZSBpbnRlcnJ1cHQgbWFza2luZyBiaXRzIHNldCB0byAxIGluIHRoaXMgY2FzZSB0byB0ZW1wb3Jh
+cmlseQ0KZGlzYWJsZSBpbnRlcnJ1cHRzLg0KDQpJIGNhbiBvZiBjb3Vyc2UgYWRkIGEgZGVmaW5l
+IGZvciB0aGlzLg0KDQo+IA0KPiA+ICsNCj4gPiArICAgICAgIGludHNyID0gcmNhcl9kYWJfcmVh
+ZChkYWIsIFJDQVJfREFCX0lOVFNSKTsNCj4gPiArICAgICAgIGlmICghaW50c3IpIHsNCj4gPiAr
+ICAgICAgICAgICAgICAgcmNhcl9kYWJfd3JpdGUoZGFiLCBSQ0FSX0RBQl9JTlRDUjEsIGludGNy
+MSk7DQo+ID4gKyAgICAgICAgICAgICAgIHNwaW5fdW5sb2NrKCZkYWItPnNoYXJlZF9yZWdzX2xv
+Y2spOw0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gSVJRX05PTkU7DQo+ID4gKyAgICAgICB9
+DQo+ID4gKw0KPiA+ICsgICAgICAgLyogUmUtZW5hYmxlIGludGVycnVwdHMgdGhhdCBoYXZlbid0
+IGZpcmVkICovDQo+ID4gKyAgICAgICByY2FyX2RhYl93cml0ZShkYWIsIFJDQVJfREFCX0lOVENS
+MSwgMHgzRkYgJiAoaW50c3IgfCBpbnRjcjEpKTsNCj4gPiArICAgICAgIC8qIENsZWFyIGludGVy
+cnVwdHMgKi8NCj4gPiArICAgICAgIHJjYXJfZGFiX3dyaXRlKGRhYiwgUkNBUl9EQUJfSU5UU1Is
+IDB4NyAmIH5pbnRzcik7DQo+IA0KPiBNb3JlIG1hZ2ljIHZhbHVlcy4NCg0KQXMgcGVyIHNlY3Rp
+b24gNDRCLjIuMjAgZnJvbSB0aGUgUi1DYXIgR2VuMyBIVyBVc2VyIE1hbnVhbCwNCkJpdCAzMSB0
+byAzIGFyZSByZXNlcnZlZCBhbmQgcmVhZHMgYW5kIHdyaXRlcyBhcyAwLCBhbmQgYQ0KMCBoYXMg
+dG8gYmUgd3JpdHRlbiB0byBiaXRzIDIgdG8gMCB0byBjbGVhciB0aGUgaW50ZXJydXB0cy4NCg0K
+SSB3aWxsIHVzZSBhIGRlZmluZSBmb3IgdGhpcyBhcyB3ZWxsLg0KDQo+IA0KPiA+ICsNCj4gPiAr
+ICAgICAgIHNwaW5fdW5sb2NrKCZkYWItPnNoYXJlZF9yZWdzX2xvY2spOw0KPiA+ICsNCj4gPiAr
+ICAgICAgIGlmIChpbnRzciAmIFJDQVJfREFCX0lOVFNSX0ZGVF9ET05FKQ0KPiA+ICsgICAgICAg
+ICAgICAgICByY2FyX2RhYl9mZnRfaXJxKGRhYik7DQo+ID4gKw0KPiA+ICsgICAgICAgcmV0dXJu
+IElSUV9IQU5ETEVEOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgbG9uZyByY2FyX2RhYl91
+bmxvY2tlZF9pb2N0bChzdHJ1Y3QgZmlsZSAqZmlsZSwgdW5zaWduZWQgaW50DQo+IGNtZCwNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBsb25nIGFyZykN
+Cj4gPiArew0KPiA+ICsgICAgICAgdm9pZCBfX3VzZXIgKmFyZ3AgPSAodm9pZCBfX3VzZXIgKilh
+cmc7DQo+ID4gKyAgICAgICBzdHJ1Y3QgcmNhcl9kYWIgKmRhYjsNCj4gPiArICAgICAgIGludCBy
+ZXQ7DQo+ID4gKw0KPiA+ICsgICAgICAgZGFiID0gY29udGFpbmVyX29mKGZpbGUtPnByaXZhdGVf
+ZGF0YSwgc3RydWN0IHJjYXJfZGFiLCBtaXNjKTsNCj4gPiArDQo+ID4gKyAgICAgICBzd2l0Y2gg
+KGNtZCkgew0KPiA+ICsgICAgICAgY2FzZSBSQ0FSX0RBQl9JT0NfRkZUOg0KPiA+ICsgICAgICAg
+ICAgICAgICBpZiAoIWFjY2Vzc19vayhhcmdwLCBzaXplb2Yoc3RydWN0IHJjYXJfZGFiX2ZmdF9y
+ZXEpKSkNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gLUVGQVVMVDsNCj4gPiAr
+ICAgICAgICAgICAgICAgcmV0ID0gcmNhcl9kYWJfZmZ0KGRhYiwgYXJncCk7DQo+IA0KPiBEbyB5
+b3UgZW52aXNpb24gZXZlciB1c2luZyB0aGUgRkZUIG9wZXJhdGlvbiBmcm9tIGtlcm5lbCBzcGFj
+ZT8NCj4gTWlnaHQgYmUgZWFzaWVyIGlmIHlvdSBoYW5kbGUgdGhlIGNvcHlfe2Zyb20sdG99X3Vz
+ZXIoKSBoZXJlLg0KDQpCdWZmZXJzIGFyZSBwcmUtYWxsb2NhdGVkIGFuZCBzaGFyZWQgYW1vbmcg
+cmVxdWVzdHMsIHRoZXJlZm9yZSBhY2Nlc3MgdG8gdGhlDQpidWZmZXJzIGhhcyB0byBiZSBwcm90
+ZWN0ZWQgd2l0aCBhIG11dGV4LiBUbyBrZWVwIHRoaW5ncyB0aWR5IChhbGwgRkZUIHJlbGF0ZWQN
+CndvcmsgaW4gdGhlIEZGVCByZWxhdGVkIHNvdXJjZSBmaWxlKSBJIHByZWZlciB0byBrZWVwIHRo
+aXMgYXMgaXQgaXMsIGFzIEZJQw0KYW5kIE1TQyB3aWxsIGFkZCBtb3JlIHRvIHRoZSBpb2N0bC4N
+Cg0KPiANCj4gPiArICAgICAgICAgICAgICAgYnJlYWs7DQo+ID4gKyAgICAgICBkZWZhdWx0Og0K
+PiA+ICsgICAgICAgICAgICAgICByZXQgPSAtRU5PVFRZOw0KPiA+ICsgICAgICAgfQ0KPiA+ICsN
+Cj4gPiArICAgICAgIHJldHVybiByZXQ7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBjb25z
+dCBzdHJ1Y3QgZmlsZV9vcGVyYXRpb25zIHJjYXJfZGFiX2ZvcHMgPSB7DQo+ID4gKyAgICAgICAu
+b3duZXIgICAgICAgICAgPSBUSElTX01PRFVMRSwNCj4gPiArICAgICAgIC51bmxvY2tlZF9pb2N0
+bCA9IHJjYXJfZGFiX3VubG9ja2VkX2lvY3RsLA0KPiANCj4gRG9lcyB0aGlzIG5lZWQgY29tcGF0
+X2lvY3RsIGhhbmRsaW5nPw0KDQpXaWxsIGFkZA0KDQo+IA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAr
+c3RhdGljIGludCByY2FyX2RhYl9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0K
+PiA+ICt7DQo+ID4gKyAgICAgICBzdHJ1Y3QgZGV2aWNlICpkZXYgPSAmcGRldi0+ZGV2Ow0KPiA+
+ICsgICAgICAgc3RydWN0IHJjYXJfZGFiICpkYWI7DQo+ID4gKyAgICAgICBpbnQgcmV0LCBpcnE7
+DQo+ID4gKw0KPiA+ICsgICAgICAgZGFiID0gZGV2bV9remFsbG9jKGRldiwgc2l6ZW9mKCpkYWIp
+LCBHRlBfS0VSTkVMKTsNCj4gPiArICAgICAgIGlmICghZGFiKQ0KPiA+ICsgICAgICAgICAgICAg
+ICByZXR1cm4gLUVOT01FTTsNCj4gPiArICAgICAgIGRhYi0+cGRldiA9IHBkZXY7DQo+ID4gKw0K
+PiA+ICsgICAgICAgZGFiLT5iYXNlID0gZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291cmNlKHBk
+ZXYsIDApOw0KPiA+ICsgICAgICAgaWYgKElTX0VSUihkYWItPmJhc2UpKQ0KPiA+ICsgICAgICAg
+ICAgICAgICByZXR1cm4gUFRSX0VSUihkYWItPmJhc2UpOw0KPiA+ICsNCj4gPiArICAgICAgIGly
+cSA9IHBsYXRmb3JtX2dldF9pcnEocGRldiwgMCk7DQo+ID4gKyAgICAgICBpZiAoaXJxIDwgMCkg
+ew0KPiA+ICsgICAgICAgICAgICAgICBkZXZfZXJyKGRldiwgIkNhbid0IGdldCB0aGUgaXJxLlxu
+Iik7DQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOw0KPiA+ICsgICAgICAgfQ0K
+PiA+ICsNCj4gPiArICAgICAgIGRhYi0+Y2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJk
+YWIiKTsNCj4gPiArICAgICAgIGlmIChJU19FUlIoZGFiLT5jbGspKSB7DQo+ID4gKyAgICAgICAg
+ICAgICAgIHJldCA9IFBUUl9FUlIoZGFiLT5jbGspOw0KPiA+ICsgICAgICAgICAgICAgICBkZXZf
+ZXJyKGRldiwgIkNhbid0IGdldCB0aGUgY2xvY2sgKCVkKS5cbiIsIHJldCk7DQo+ID4gKyAgICAg
+ICAgICAgICAgIHJldHVybiByZXQ7DQo+ID4gKyAgICAgICB9DQo+ID4gKw0KPiA+ICsgICAgICAg
+c3Bpbl9sb2NrX2luaXQoJmRhYi0+c2hhcmVkX3JlZ3NfbG9jayk7DQo+ID4gKw0KPiA+ICsgICAg
+ICAgcmV0ID0gY2xrX3ByZXBhcmVfZW5hYmxlKGRhYi0+Y2xrKTsNCj4gDQo+IERvZXMgdGhlIG1v
+ZHVsZSBjbG9jayBuZWVkIHRvIGJlIGVuYWJsZWQgYWxsIHRoZSB0aW1lPw0KDQpObywgaXQgZG9l
+c24ndC4NCg0KPiBXaGF0IGFib3V0IHVzaW5nIFJ1bnRpbWUgUE0gaW5zdGVhZCBvZiBleHBsaWNp
+dCBjbG9jayBoYW5kbGluZywgc28geW91cg0KPiBkcml2ZXIgd2lsbCBrZWVwIG9uIHdvcmtpbmcg
+b24gZnV0dXJlIFNvQ3Mgd2hlcmUgdGhlIERBQiBibG9jayBpcyBwYXJ0IG9mDQo+IGEgcG93ZXIg
+ZG9tYWluPw0KDQpDYW4gZG8sIHdpbGwgc3dpdGNoIHRvIHVzaW5nIFJ1bnRpbWUgUE0uDQoNCj4g
+DQo+ID4gKyAgICAgICBpZiAocmV0KQ0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gcmV0Ow0K
+PiA+ICsNCj4gPiArICAgICAgIHJldCA9IHJjYXJfZGFiX2ZmdF9wcm9iZShkYWIpOw0KPiA+ICsg
+ICAgICAgaWYgKHJldCkNCj4gPiArICAgICAgICAgICAgICAgZ290byBlcnJvcl9jbG9ja19kaXNh
+YmxlOw0KPiA+ICsNCj4gPiArICAgICAgIHJldCA9IGRldm1fcmVxdWVzdF9pcnEoZGV2LCBpcnEs
+IHJjYXJfZGFiX2lycSwgMCwgZGV2X25hbWUoZGV2KSwNCj4gZGFiKTsNCj4gPiArICAgICAgIGlm
+IChyZXQpIHsNCj4gPiArICAgICAgICAgICAgICAgZGV2X2VycihkZXYsICJDYW4ndCByZXF1ZXN0
+IHRoZSBpcnEgKCVkKS5cbiIsIHJldCk7DQo+ID4gKyAgICAgICAgICAgICAgIGdvdG8gZXJyb3Jf
+cmVtb3ZlOw0KPiA+ICsgICAgICAgfQ0KPiA+ICsNCj4gPiArICAgICAgIHBsYXRmb3JtX3NldF9k
+cnZkYXRhKHBkZXYsIGRhYik7DQo+ID4gKw0KPiA+ICsgICAgICAgZGFiLT5taXNjLm1pbm9yID0g
+TUlTQ19EWU5BTUlDX01JTk9SOw0KPiA+ICsgICAgICAgZGFiLT5taXNjLm5hbWUgPSBSQ0FSX0RB
+Ql9EUlZfTkFNRTsNCj4gPiArICAgICAgIGRhYi0+bWlzYy5mb3BzID0gJnJjYXJfZGFiX2ZvcHM7
+DQo+ID4gKyAgICAgICByZXQgPSBtaXNjX3JlZ2lzdGVyKCZkYWItPm1pc2MpOw0KPiA+ICsgICAg
+ICAgaWYgKHJldCkgew0KPiA+ICsgICAgICAgICAgICAgICBkZXZfZXJyKGRldiwgIkNhbid0IHJl
+Z2lzdGVyIG1pc2MgZGV2aWNlICglZCkuXG4iLCByZXQpOw0KPiA+ICsgICAgICAgICAgICAgICBn
+b3RvIGVycm9yX3JlbW92ZTsNCj4gPiArICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICBkZXZf
+aW5mbyhkZXYsICJSLUNhciBHZW4zIERBQiBtaXNjIGRyaXZlciByZWFkeS5cbiIpOw0KPiA+ICsN
+Cj4gPiArICAgICAgIHJldHVybiAwOw0KPiA+ICsNCj4gPiArZXJyb3JfcmVtb3ZlOg0KPiA+ICsg
+ICAgICAgcmNhcl9kYWJfZmZ0X3JlbW92ZShkYWIpOw0KPiA+ICsNCj4gPiArZXJyb3JfY2xvY2tf
+ZGlzYWJsZToNCj4gPiArICAgICAgIGNsa19kaXNhYmxlX3VucHJlcGFyZShkYWItPmNsayk7DQo+
+ID4gKw0KPiA+ICsgICAgICAgcmV0dXJuIHJldDsNCj4gPiArfQ0KPiANCj4gPiAtLS0gL2Rldi9u
+dWxsDQo+ID4gKysrIGIvZHJpdmVycy9taXNjL3JjYXJfZGFiL3JjYXJfZGV2LmgNCj4gDQo+ID4g
+Ky8qIFJlZ2lzdGVyIERBQl9GRlRDUiAqLw0KPiA+ICsjZGVmaW5lIFJDQVJfREFCX0ZGVENSX0ZG
+VF9FTl9ESVNBQkxFRCAgICAgICAgIDANCj4gPiArI2RlZmluZSBSQ0FSX0RBQl9GRlRDUl9GRlRf
+RU5fRU5BQkxFRCAgICAgICAgICAxDQo+IA0KPiBEbyB5b3UgbmVlZCBib3RoPw0KDQpXZSBkb24n
+dCwgSSBoYXZlIGp1c3QgdGhvdWdodCBpdCBtYWRlIHRoaW5ncyBjbGVhcmVyLg0KDQo+IA0KPiAj
+ZGVmaW5lIFJDQVJfREFCX0ZGVENSX0ZGVF9FTiAgICAgICAgQklUKDApDQo+IA0KPiA+ICsNCj4g
+PiArLyogUmVnaXN0ZXIgREFCX0ZGVFJFUUNSICovDQo+ID4gKyNkZWZpbmUgUkNBUl9EQUJfRkZU
+UkVRQ1JfRkZUX1JFUV9JTkFDVElWRSAgICAgMA0KPiA+ICsjZGVmaW5lIFJDQVJfREFCX0ZGVFJF
+UUNSX0ZGVF9SRVFfQUNUSVZFICAgICAgIDENCj4gDQo+IERvIHlvdSBuZWVkIGJvdGg/DQoNCldl
+IGRvbid0LCBJIGhhdmUganVzdCB0aG91Z2h0IGl0IG1hZGUgdGhpbmdzIGNsZWFyZXIuDQoNCj4g
+DQo+ID4gKw0KPiA+ICsvKiBSZWdpc3RlciBEQUJfSU5UU1IgKi8NCj4gPiArI2RlZmluZSBSQ0FS
+X0RBQl9JTlRTUl9GRlRfRE9ORSAgICAgICAgICAgICAgICAgICAgICAgIDB4MQ0KPiANCj4gQklU
+KDApICh0aGVyZSBhcmUgbW9yZSBiaXRzIGZvciBGSUMgYW5kIE1TQykNCg0KV2lsbCBjaGFuZ2UN
+Cg0KPiANCj4gPiArDQo+ID4gKy8qIFJlZ2lzdGVyIERBQl9JTlRDUjEgKi8NCj4gPiArI2RlZmlu
+ZSBSQ0FSX0RBQl9JTlRDUjFfRkZUX0RPTkVfTUFTSyAgICAgICAgICAweDENCj4gDQo+IEJJVCgw
+KSAodGhlcmUgYXJlIG1vcmUgYml0cyBmb3IgRklDIGFuZCBNU0MpDQoNCldpbGwgY2hhbmdlDQoN
+Cj4gDQo+ID4gKyNkZWZpbmUgUkNBUl9EQUJfSU5UQ1IxX0ZGVF9ET05FX0lOVF9FTkFCTEVEICAg
+MA0KPiA+ICsjZGVmaW5lIFJDQVJfREFCX0lOVENSMV9GRlRfRE9ORV9JTlRfRElTQUJMRUQgIDEN
+Cj4gDQo+IERvIHlvdSBuZWVkIHRoZXNlPw0KPiBJJ2QganVzdCByZXRhaW4gUkNBUl9EQUJfSU5U
+Q1IxX0ZGVF9ET05FLg0KDQpBZ3JlZWQNCg0KPiANCj4gRm9yIGVuYWJsaW5nIGludGVycnVwdHM6
+DQo+IA0KPiAgICAgcmNhcl9kYWJfdXBkYXRlX2JpdHNfbG9ja2VkKGRhYiwgUkNBUl9EQUJfSU5U
+Q1IxLA0KPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFJDQVJfREFCX0lOVENSMV9G
+RlRfRE9ORSwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBSQ0FSX0RBQl9JTlRD
+UjFfRkZUX0RPTkUpOw0KPiANCj4gYW5kIGZvciBkaXNhYmxpbmc6DQo+IA0KPiAgICAgcmNhcl9k
+YWJfdXBkYXRlX2JpdHNfbG9ja2VkKGRhYiwgUkNBUl9EQUJfSU5UQ1IxLA0KPiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIENBUl9EQUJfSU5UQ1IxX0ZGVF9ET05FLCAwKTsNCg0KT2th
+eQ0KDQo+IA0KPiA+ICsNCj4gPiArc3RydWN0IHJjYXJfZGFiX2ZmdCB7DQo+ID4gKyAgICAgICBi
+b29sIGRvbmU7ICAgICAgICAgICAgICAgICAgICAgIC8qDQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAqIENvbmRpdGlvbiBmb3Igd2FraW5nIHVwIHRoZQ0KPiBw
+cm9jZXNzDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAqIHNs
+ZWVwaW5nIHdoaWxlIEZGVCBpcyBpbg0KPiBwcm9ncmVzcy4NCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICovDQo+IA0KPiBQbGVhc2UgdXNlIGtlcm5lbGRvYyBm
+b3IgZG9jdW1lbnRpbmcgc3RydWN0dXJlcy4NCg0KT2sNCg0KPiANCj4gPiArICAgICAgIHdhaXRf
+cXVldWVfaGVhZF90IHdhaXQ7ICAgICAgICAgLyogV2FpdCBxdWV1ZSBmb3IgRkZULiAqLw0KPiA+
+ICsgICAgICAgc3RydWN0IG11dGV4IGxvY2s7ICAgICAgICAgICAgICAvKiBNdXRleCBmb3IgRkZU
+LiAqLw0KPiA+ICsgICAgICAgZG1hX2FkZHJfdCBkbWFfaW5wdXRfYnVmOyAgICAgICAvKg0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKiBJbnB1dCBidWZmZXIg
+c2VlbiBieSB0aGUgRkZUDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAqIG1vZHVsZS4NCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICovDQo+ID4gKyAgICAgICBkbWFfYWRkcl90IGRtYV9vdXRwdXRfYnVmOyAgICAgIC8qDQo+
+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAqIE91dHB1dCBidWZm
+ZXIgc2VlbiBieSB0aGUgRkZUDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAqIG1vZHVsZS4NCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICovDQo+ID4gKyAgICAgICB2b2lkICppbnB1dF9idWZmZXI7ICAgICAgICAgICAgIC8q
+IElucHV0IGJ1ZmZlciBzZWVuIGJ5IHRoZSBDUFUNCj4gKi8NCj4gPiArICAgICAgIHZvaWQgKm91
+dHB1dF9idWZmZXI7ICAgICAgICAgICAgLyogT3V0cHV0IGJ1ZmZlciBzZWVuIGJ5IHRoZSBDUFUN
+Cj4gKi8NCj4gDQo+IFBsZWFzZSB1c2UgY29uc2lzdGVudCBuYW1pbmcgKGJ1ZiB2cyBidWZmZXIp
+Lg0KDQpPaw0KDQo+IA0KPiA+ICt9Ow0KPiANCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIv
+ZHJpdmVycy9taXNjL3JjYXJfZGFiL3JjYXJfZmZ0LmMNCj4gDQo+ID4gK2ludCByY2FyX2RhYl9m
+ZnQoc3RydWN0IHJjYXJfZGFiICpkYWIsIHN0cnVjdCByY2FyX2RhYl9mZnRfcmVxIF9fdXNlcg0K
+PiAqZmZ0X3JlcSkNCj4gPiArew0KPiA+ICsgICAgICAgaW50IGJ1ZmZlcl9zaXplLCByZXQ7DQo+
+ID4gKw0KPiA+ICsgICAgICAgYnVmZmVyX3NpemUgPSBmZnRfcmVxLT5wb2ludHMgKiA0Ow0KPiAN
+Cj4gTWlzc2luZyB2YWxpZGF0aW9uIG9mIGJ1ZmZlcl9zaXplPw0KDQpXaWxsIGFkZA0KDQo+IA0K
+PiA+ICsNCj4gPiArICAgICAgIG11dGV4X2xvY2soJmRhYi0+ZmZ0LmxvY2spOw0KPiA+ICsNCj4g
+PiArICAgICAgIGlmIChjb3B5X2Zyb21fdXNlcihkYWItPmZmdC5pbnB1dF9idWZmZXIsIGZmdF9y
+ZXEtDQo+ID5pbnB1dF9hZGRyZXNzLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgIGJ1
+ZmZlcl9zaXplKSkgew0KPiA+ICsgICAgICAgICAgICAgICBtdXRleF91bmxvY2soJmRhYi0+ZmZ0
+LmxvY2spOw0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gLUVGQVVMVDsNCj4gPiArICAgICAg
+IH0NCj4gPiArDQo+ID4gKyAgICAgICBkYWItPmZmdC5kb25lID0gZmFsc2U7DQo+IA0KPiBZb3Ug
+Y2FuIGluaXQgZG9uZSBpbiByY2FyX2RhYl9mZnRfaW5pdCgpLCB0b28uDQoNCldpbGwgbW92ZQ0K
+DQo+IA0KPiA+ICsgICAgICAgcmV0ID0gcmNhcl9kYWJfZmZ0X2luaXQoZGFiLCBmZnRfcmVxKTsN
+Cj4gPiArICAgICAgIGlmIChyZXQpIHsNCj4gPiArICAgICAgICAgICAgICAgbXV0ZXhfdW5sb2Nr
+KCZkYWItPmZmdC5sb2NrKTsNCj4gPiArICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiAr
+ICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICByY2FyX2RhYl9mZnRfZW5hYmxlKGRhYik7DQo+
+ID4gKyAgICAgICB3YWl0X2V2ZW50X2ludGVycnVwdGlibGVfdGltZW91dChkYWItPmZmdC53YWl0
+LCBkYWItPmZmdC5kb25lLA0KPiBIWik7DQo+ID4gKyAgICAgICBpZiAoIWRhYi0+ZmZ0LmRvbmUp
+IHsNCj4gDQo+IFlvdSBjYW4ganVzdCBjaGVjayB0aGUgcmV0dXJuIHZhbHVlIG9mIHdhaXRfZXZl
+bnRfaW50ZXJydXB0aWJsZV90aW1lb3V0KCkuDQoNCldpbGwgY2hhbmdlDQoNCj4gDQo+ID4gKyAg
+ICAgICAgICAgICAgIHJjYXJfZGFiX2ZmdF9kaXNhYmxlKGRhYik7DQo+ID4gKyAgICAgICAgICAg
+ICAgIHJldCA9IC1FRkFVTFQ7DQo+IA0KPiAtRVRJTUVPVVQ/DQoNClllYWgsIGJldHRlciwgdGhh
+bmtzDQoNCj4gDQo+ID4gKyAgICAgICB9IGVsc2UgaWYgKGNvcHlfdG9fdXNlcihmZnRfcmVxLT5v
+dXRwdXRfYWRkcmVzcywgZGFiLQ0KPiA+ZmZ0Lm91dHB1dF9idWZmZXIsDQo+ID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBidWZmZXJfc2l6ZSkpIHsNCj4gPiArICAgICAgICAgICAg
+ICAgcmV0ID0gLUVGQVVMVDsNCj4gPiArICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICBtdXRl
+eF91bmxvY2soJmRhYi0+ZmZ0LmxvY2spOw0KPiA+ICsNCj4gPiArICAgICAgIHJldHVybiByZXQ7
+DQo+ID4gK30NCj4gDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2luY2x1ZGUvdWFwaS9s
+aW51eC9yY2FyX2RhYi5oDQo+ID4gQEAgLTAsMCArMSwzNSBAQA0KPiA+ICsvKiBTUERYLUxpY2Vu
+c2UtSWRlbnRpZmllcjogR1BMLTIuMCsgV0lUSCBMaW51eC1zeXNjYWxsLW5vdGUgKi8NCj4gPiAr
+LyoNCj4gPiArICogUi1DYXIgR2VuMyBEQUIgdXNlciBzcGFjZSBpbnRlcmZhY2UgZGF0YSBzdHJ1
+Y3R1cmVzDQo+ID4gKyAqDQo+ID4gKyAqIENvcHlyaWdodCAoQykgMjAyMSBSZW5lc2FzIEVsZWN0
+cm9uaWNzIENvcnBvcmF0aW9uDQo+ID4gKyAqDQo+ID4gKyAqLw0KPiA+ICsjaWZuZGVmIF9SQ0FS
+X0RBQl9IXw0KPiA+ICsjZGVmaW5lIF9SQ0FSX0RBQl9IXw0KPiA+ICsNCj4gPiArc3RydWN0IHJj
+YXJfZGFiX2ZmdF9yZXEgew0KPiA+ICsgICAgICAgaW50IHBvaW50czsgICAgICAgICAgICAgICAg
+ICAgICAvKg0KPiANCj4gdW5zaWduZWQgaW50DQoNCldpbGwgY2hhbmdlDQoNCj4gDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAqIFRoZSBudW1iZXIgb2YgcG9p
+bnRzIHRvIHVzZS4NCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICogTGVnYWwgdmFsdWVzIGFyZSAyNTYsIDUxMiwNCj4gMTAyNCwgYW5kDQo+ID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAqIDIwNDguDQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAqLw0KPiANCj4gUGxlYXNlIHVzZSBrZXJuZWxk
+b2MgdG8gZG9jdW1lbnQgc3RydWN0IG1lbWJlcnMuDQoNCk9rDQoNCj4gDQo+ID4gKyAgICAgICB1
+bnNpZ25lZCBjaGFyIG9mZG1fbnVtYmVyOyAgICAgIC8qDQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAqIE9ydGhvZ29uYWwgRnJlcXVlbmN5IERpdmlzaW9uDQo+
+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAqIE11bHRpcGxleGlu
+ZyAoT0ZETSkuDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAq
+IE1pbmltdW0gdmFsdWUgaXMgMSwgbWF4aW11bQ0KPiB2YWx1ZSBpcw0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKiAyNTUuDQo+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAqLw0KPiANCj4gUGxlYXNlIG1ha2UgcGFkZGluZyBl
+eHBsaWNpdC4NCg0KT2theQ0KDQo+IEknZCBhbHNvIHNvcnQgdGhlIG1lbWJlcnMgYnkgZGVjcmVh
+c2luZyBzaXplLCBpLmUuIHBvaW50ZXJzIGZpcnN0Lg0KDQpPa2F5DQoNCj4gDQo+ID4gKyAgICAg
+ICB2b2lkIF9fdXNlciAqaW5wdXRfYWRkcmVzczsgICAgIC8qDQo+IA0KPiBpbnB1dF9idWY/DQoN
+ClN1cmUNCg0KPiANCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICogVXNlciBzcGFjZSBhZGRyZXNzIGZvciB0aGUNCj4gaW5wdXQNCj4gPiArICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICogYnVmZmVyLg0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgKi8NCj4gPiArICAgICAgIHZvaWQgX191c2VyICpv
+dXRwdXRfYWRkcmVzczsgICAgLyoNCj4gDQo+IG91dHB1dF9idWY/DQoNClN1cmUNCg0KPiANCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICogVXNlciBzcGFjZSBh
+ZGRyZXNzIGZvciB0aGUNCj4gb3V0cHV0DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAqIGJ1ZmZlci4NCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICovDQo+ID4gK307DQo+ID4gKw0KPiA+ICsjZGVmaW5lICAgICAgICBSQ0FS
+X0RBQl9JT0NfRkZUICAgICAgICAgICAgICAgIF9JT1dSKDB4OTAsIDEsIHN0cnVjdA0KPiByY2Fy
+X2RhYl9mZnRfcmVxICopDQo+ID4gKw0KPiA+ICsjZW5kaWYgLyogX1JDQVJfREFCX0hfICovDQoN
+ClRoYW5rcywNCkZhYg0KDQo+IA0KPiBHcntvZXRqZSxlZXRpbmd9cywNCj4gDQo+ICAgICAgICAg
+ICAgICAgICAgICAgICAgIEdlZXJ0DQo+IA0KPiAtLQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0g
+VGhlcmUncyBsb3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LQ0KPiBtNjhr
+Lm9yZw0KPiANCj4gSW4gcGVyc29uYWwgY29udmVyc2F0aW9ucyB3aXRoIHRlY2huaWNhbCBwZW9w
+bGUsIEkgY2FsbCBteXNlbGYgYSBoYWNrZXIuDQo+IEJ1dA0KPiB3aGVuIEknbSB0YWxraW5nIHRv
+IGpvdXJuYWxpc3RzIEkganVzdCBzYXkgInByb2dyYW1tZXIiIG9yIHNvbWV0aGluZyBsaWtlDQo+
+IHRoYXQuDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLS0gTGludXMgVG9ydmFs
+ZHMNCg==
