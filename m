@@ -2,82 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0895C328662
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 18:10:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B41943286CA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 18:17:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235648AbhCARJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 12:09:17 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35192 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237393AbhCARIP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Mar 2021 12:08:15 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 62E4364F83;
-        Mon,  1 Mar 2021 16:40:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1614616855;
-        bh=8wgMwc7LmJgtQd6NOmoMNzGIONIVgak4qsRa5KBJ08U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=La11i8yDHyKg/sJOqg0kK9q6S+i8dYLJrHQtBrkoyBrASE5IvsLlscJyz5irVhrxj
-         KumUth/zlJwzEpLx4sDvMU4QlDgv0nmtToe+Bp0Nh9AVFyuhbqMdJDB2X4rmZSqj72
-         rFQDPW6JYdd8EnTjkeV1tiRemINAV3456sV4PcbA=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, KarimAllah Ahmed <karahmed@amazon.de>,
-        Quentin Perret <qperret@google.com>,
-        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 4.19 118/247] fdt: Properly handle "no-map" field in the memory region
-Date:   Mon,  1 Mar 2021 17:12:18 +0100
-Message-Id: <20210301161037.451876670@linuxfoundation.org>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210301161031.684018251@linuxfoundation.org>
-References: <20210301161031.684018251@linuxfoundation.org>
-User-Agent: quilt/0.66
+        id S236050AbhCARPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 12:15:02 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:47431 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237271AbhCARLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 12:11:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1614618675; x=1646154675;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=knhW153OooCkMJTOHIu7Y0vxJPYJ6BQCSg+JmTykUSQ=;
+  b=lJ1MB21LNNhZkVed/ezgLUgFGErBFexrNnNwx2ZPLKM38Hd9ImhKP/Br
+   YAgtwjbpdOk+eoCq0DJidJ/aL1VSiYCs88VEqJXZYkVjwVZ0X8/dB0rSo
+   xzZIOpxgAh3KeAoa6lrJuUaYTOE3mPVULaeW1QOCDkoxu7AEyvEQWGuYv
+   aqEzZ8BkNViOLv26MhoJVc7vpXArn7L8O21gpOpLkaEO6GrRHpxeo+NsR
+   xmIgq92FA/HPaLk5Zh8zpSaMf+uZ0C39k9EykJycX9TtME7ei6GTxgyWa
+   i2DAEVA+aKuGDXaP728zeBl30to2biv8/30I9Gd7m2CFBLdNd3Rk7zjL8
+   g==;
+IronPort-SDR: 6jTzpMK+R9Uhc4uKLcNMv2ll++emto2GNdFi6/xdgoQwaGQ9qTBnOYzp2RBJdre4cVfB+4mg1F
+ 56BICthPf03UVqGb9q9rvO2eNx4q+jyfvs3Tc8kXd8tjBFARUfWGT6YcrPVKS5jkgpSRzPvw5k
+ u7rAW3nh+LYWiQ0adwu5uz8myUzf877wB6Md72mNTspUgxEi19ij1rC0eTcCbDp0EkHC6ta2gM
+ Pp6Ui/kkRxN6yPsWS3OQvqhzbbu2Lzkj0AFfEhwb97FeUtjIi5BrdoZQvE/iKkgxchKy/5kFjd
+ tXo=
+X-IronPort-AV: E=Sophos;i="5.81,215,1610434800"; 
+   d="scan'208";a="117058762"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Mar 2021 10:09:34 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 1 Mar 2021 10:09:34 -0700
+Received: from rob-ult-m19940.amer.actel.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Mon, 1 Mar 2021 10:09:31 -0700
+From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <perex@perex.cz>, <tiwai@suse.com>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>
+Subject: [PATCH v2 0/7] Add I2S-MCC support for Microchip's SAMA7G5
+Date:   Mon, 1 Mar 2021 19:08:58 +0200
+Message-ID: <20210301170905.835091-1-codrin.ciubotariu@microchip.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: KarimAllah Ahmed <karahmed@amazon.de>
+SAMA7G5 includes an updated version of I2S-MCC, found previously on
+SAM9X60. This controller includes 8 data pins, 4 for playback and 4 for
+capture. For I2S and LEFT_J formats, these pins can be used to
+send/receive up to 8 audio channels. For DSP_A, with TDM, any pins pair
+(DIN/DOUT) from these 4 can be selected to send/receive data. This
+version also includes 2 FIFOs (send and receive).
+This patch set starts by moving the driver's bindings to yaml and
+continues with adding a new compatible for the SAMA7G5 variant, followed
+by the changes needed for I2S/LEFT_J support, TDM pin pair selection and
+FIFO support, exclusively for SAMA7G5.
 
-[ Upstream commit 86588296acbfb1591e92ba60221e95677ecadb43 ]
+Changes in v2:
+- moved DT binding conversion patch from the beginning to the end of the
+  patch serieses
+- patches that update the DT binding are modified to change .txt file
+  instead of .yaml
 
-Mark the memory region with NOMAP flag instead of completely removing it
-from the memory blocks. That makes the FDT handling consistent with the EFI
-memory map handling.
+Codrin Ciubotariu (7):
+  dt-bindings: mchp,i2s-mcc: Add SAMA7G5 to binding
+  ASoC: mchp-i2s-mcc: Add compatible for SAMA7G5
+  ASoC: mchp-i2s-mcc: Add multi-channel support for I2S and LEFT_J
+    formats
+  dt-bindings: mchp,i2s-mcc: Add property to specify pin pair for TDM
+  ASoC: mchp-i2s-mcc: Add support to select TDM pins
+  ASoC: mchp-i2s-mcc: Add FIFOs support
+  ASoC: convert Microchip I2SMCC binding to yaml
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: KarimAllah Ahmed <karahmed@amazon.de>
-Signed-off-by: Quentin Perret <qperret@google.com>
-Link: https://lore.kernel.org/r/20210115114544.1830068-2-qperret@google.com
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/of/fdt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/sound/mchp,i2s-mcc.yaml          | 108 ++++++++++++
+ .../bindings/sound/mchp-i2s-mcc.txt           |  43 -----
+ sound/soc/atmel/Kconfig                       |   3 +
+ sound/soc/atmel/mchp-i2s-mcc.c                | 161 +++++++++++++++---
+ 4 files changed, 252 insertions(+), 63 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/mchp,i2s-mcc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/mchp-i2s-mcc.txt
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 800ad252cf9c6..aa15e5d183c18 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1173,7 +1173,7 @@ int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
- 					phys_addr_t size, bool nomap)
- {
- 	if (nomap)
--		return memblock_remove(base, size);
-+		return memblock_mark_nomap(base, size);
- 	return memblock_reserve(base, size);
- }
- 
 -- 
 2.27.0
-
-
 
