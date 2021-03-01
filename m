@@ -2,83 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2A3C327C48
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 11:36:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2833C327C53
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 11:37:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234544AbhCAKfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 05:35:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45068 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234585AbhCAKd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 05:33:57 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F1DC061786
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 02:33:17 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id l12so15542507wry.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 02:33:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Kbnph1EgCCLH/ZUBf6ushQsd4tna/Kgc6Gzslj73xqg=;
-        b=cWDsnU98vH2ApOyNibkem6GKZR0VtBIlcN4tmz85vBXntQid5CblUXICB76TEgzcES
-         d+fyDncdu8sc6MymQZlxr8vcIH6eI5ZX5Uib+Zzr6mDzOAe9nd8PqZw18RTAor/XZ9Zu
-         gqsAtMsoXn30hMQ6OuFcxRpXiaKsHsGzMee/joslOXBjiSyj+aB7uiagcZvJsExcShDj
-         qgZw/5KbH55INzEp27bOFfcAAOaNksH7YkZvVj+s21dyuDZPgy2xUCUIqRNMyo25DaZO
-         FopsJ9vujmuvKlf22rR9aJ/2UCqjNkbfiupCaskxdexUsVkn3NbBXK6uPaD7JUW7+AfC
-         sUGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Kbnph1EgCCLH/ZUBf6ushQsd4tna/Kgc6Gzslj73xqg=;
-        b=Sm9dDq5cV5XXQFjKN8lhk5GrxjljwM3RcQz4H0EEr/GnQMvQRpFTrZ4z0vnPc4DTqA
-         C1At1CRSZ+TbLVN4QHshMMXAscSRiHWPCGZ9wYLngjuMmaqWX2Muz7UmpxM4kSMZfgxy
-         cAdAyh3IbdYlS7GmkuWjiIJ4hB7T6GeToo/jCcAOtdAItWfxpZVVapDpbznmMWbVsNvh
-         yuqHOtOciklPvW2wFNqG2bSIYC4iKxRI3q/Ecy+J6yB/aJZAWusXiCruskz+ZhtXQ5Uy
-         7aoynXIijuH4gui8O0U2wTxLBnAfHq5lyI6N6nnbSUsARLU749IxpsqRZ4eH+go0A3Dv
-         BuUw==
-X-Gm-Message-State: AOAM532Xs0FB2AP7nPZJpYYqIyGtSTOlHlRNdBqSRJdTrXy/bt6jAGf5
-        R2VGzDWEtsVKhy87/R+RWAZ58g==
-X-Google-Smtp-Source: ABdhPJx7TX1Vb/WAmbpLxMUAg8GrEv61MnwbIOHCHBzra1kdALsnpwqHAJlbUCRrFUsXPjgxOwpWBg==
-X-Received: by 2002:adf:f90d:: with SMTP id b13mr16901223wrr.198.1614594795951;
-        Mon, 01 Mar 2021 02:33:15 -0800 (PST)
-Received: from dell.default ([91.110.221.155])
-        by smtp.gmail.com with ESMTPSA id m3sm8033651wmc.48.2021.03.01.02.33.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Mar 2021 02:33:15 -0800 (PST)
-From:   Lee Jones <lee.jones@linaro.org>
-To:     lee.jones@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        andreas@kemnade.info, devicetree@vger.kernel.org
-Subject: [PATCH 1/1] dt-bindings: mfd: ricoh,rn5t618: Trivial: Fix spelling mistake of 'additionally'
-Date:   Mon,  1 Mar 2021 10:33:09 +0000
-Message-Id: <20210301103309.2404426-1-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.27.0
+        id S234472AbhCAKhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 05:37:17 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:40515 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234531AbhCAKhP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 05:37:15 -0500
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 121AVgYH020544;
+        Mon, 1 Mar 2021 11:36:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=i63qanHvq06PqbvkfcT0nX7SZDJtNaIWa9wC1GqN/1g=;
+ b=UTWhfdYTlpHgopZiO+LUtNP+V5RR/XNoWjs1q7hmvdyeNqAyDzRdYj7JkCZRIoZW811C
+ xPWbHraa2tqB+Zen4IeVTL0iGQxHMhwPZE8DBW6I980t4IJjwDfB4I0VaJPh7/54CMWg
+ BwxxWaXujlhXGRVENLNRkTDk+xbUdviNH6qVZA1MN5nEcMoLB/vm2/uFTD3qmfdCJp5i
+ FWRX49w3xB2WHO84IfQaQ2c7JULqQ/AvpRI9s3d8Rn9va99vY5e1vAXaxogAb3tnmZ/u
+ dxuGr9IXIfdGwIQNNMDN8EX3DCh6iDHCZUxzZtuW6D4SmsCH/PWX+tubbvAJ6KEjNP9r Bg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 36yfc3k9tv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 01 Mar 2021 11:36:16 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1AEB3100034;
+        Mon,  1 Mar 2021 11:36:16 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 07CFA227E04;
+        Mon,  1 Mar 2021 11:36:16 +0100 (CET)
+Received: from [10.211.4.172] (10.75.127.48) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 1 Mar
+ 2021 11:36:14 +0100
+Subject: Re: [PATCH v2 2/2] dt-bindings: serial: Add rx-tx-swap to stm32-usart
+To:     Martin Devera <devik@eaxlabs.cz>, <linux-kernel@vger.kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <linux-serial@vger.kernel.org>, Jiri Slaby <jirislaby@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Le Ray <erwan.leray@st.com>
+References: <CAL_JsqK8+M=Vg0PiDXP2f1LrEp4hSVea6piAASMGu1H=pxme6Q@mail.gmail.com>
+ <20210227164157.30971-1-devik@eaxlabs.cz>
+ <20210227164157.30971-2-devik@eaxlabs.cz>
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Message-ID: <fecd3c15-7796-7c12-6aaa-d77c7407980d@foss.st.com>
+Date:   Mon, 1 Mar 2021 11:36:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210227164157.30971-2-devik@eaxlabs.cz>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-01_05:2021-02-26,2021-03-01 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
- Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-index d70e85a09c84e..032a7fb0b4a71 100644
---- a/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-@@ -15,7 +15,7 @@ description: |
-   GPIOs, and a watchdog timer. It can be controlled through an I2C interface.
-   The RN5T618/RC5T619 provides additionally a Li-ion battery charger,
-   fuel gauge, and an ADC.
--  The RC5T619 additionnally includes USB charger detection and an RTC.
-+  The RC5T619 additionally includes USB charger detection and an RTC.
- 
- allOf:
-   - if:
--- 
-2.27.0
 
+On 2/27/21 5:41 PM, Martin Devera wrote:
+> Add new rx-tx-swap property to allow for RX & TX pin swapping.
+> 
+> Signed-off-by: Martin Devera <devik@eaxlabs.cz>
+> ---
+>  Documentation/devicetree/bindings/serial/st,stm32-uart.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+> index 8631678283f9..45f2a19997da 100644
+> --- a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+> @@ -40,6 +40,10 @@ properties:
+>  
+>    uart-has-rtscts: true
+>  
+> +  rx-tx-swap:
+> +    type: boolean
+> +    maxItems: 1
+> +
+
+Hi Martin,
+
+This could be restricted to st,stm32f7-uart and st,stm32h7-uart
+compatibles. This option isn't available on stm32f4 (e.g. st,stm32-uart
+compatible)
+
+Thanks for your patch,
+Best Regards,
+Fabrice
+
+>    dmas:
+>      minItems: 1
+>      maxItems: 2
+> 
