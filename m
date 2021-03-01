@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 363DA327765
-	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 07:13:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86EC3327774
+	for <lists+devicetree@lfdr.de>; Mon,  1 Mar 2021 07:22:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231759AbhCAGH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Mar 2021 01:07:57 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:47282 "EHLO
+        id S229452AbhCAGUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Mar 2021 01:20:13 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50450 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231768AbhCAGHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 01:07:41 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12165UBb129615;
-        Mon, 1 Mar 2021 00:05:30 -0600
+        with ESMTP id S231545AbhCAGUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 01:20:09 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1216JKYc004146;
+        Mon, 1 Mar 2021 00:19:20 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614578730;
-        bh=eXn3m1eYJsCAwe2CGJZNEBs+NH+JX/pD6w/lNbuQh6Y=;
+        s=ti-com-17Q1; t=1614579560;
+        bh=mQ/6p0h0uwm5a2EORV+HAJPRwVcNMdJ91/BDQDYRnX4=;
         h=From:To:CC:Subject:Date;
-        b=PWuH4Ynn9c3B/GCH55jzXA51bp9Bixjg8ObyTd5aWFQr+QNPuei/c2/3Ty7s3y2yJ
-         mhSZLbB/T1KZJVn+y4kU5QvHumgasA+UNOX71T4jzerxftWuMaVwFoZ1DSYXB3s6jG
-         HKo5hmyJ10FfMxEenBCU7JCblDKgiUg1ZRbs1Zgs=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12165U4x022384
+        b=FJyDNPxE4pY4KiQnlUIKygLwaZ5BltfnZZystvk8YlKOWEDodMk6tBBj9tFacNKZ3
+         KbPoRQJF7+dT5II5+MdcqmNyqJfKX96gneA360zwIOGRFhqbDF7CVAgVK4aEuaiIMN
+         YdGtcuBwHzrQRsDONF3AzcJsaAyKGX7xznavXHP8=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1216JKjc071529
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 1 Mar 2021 00:05:30 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 1 Mar 2021 00:19:20 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 1 Mar
- 2021 00:05:30 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 00:19:19 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 1 Mar 2021 00:05:30 -0600
+ Frontend Transport; Mon, 1 Mar 2021 00:19:19 -0600
 Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12165LeV011507;
-        Mon, 1 Mar 2021 00:05:22 -0600
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1216JBXT123996;
+        Mon, 1 Mar 2021 00:19:13 -0600
 From:   Aswath Govindraju <a-govindraju@ti.com>
 CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         Lokesh Vutla <lokeshvutla@ti.com>,
@@ -45,9 +45,9 @@ CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: ti: k3-am642-evm: Add support for SPI EEPROM
-Date:   Mon, 1 Mar 2021 11:35:18 +0530
-Message-ID: <20210301060518.19550-1-a-govindraju@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am64-main: Add GPIO DT nodes
+Date:   Mon, 1 Mar 2021 11:49:08 +0530
+Message-ID: <20210301061908.22460-1-a-govindraju@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -57,58 +57,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pinmux details and device tree node for the EEPROM attached to SPI0
-module in main domain.
+Add device tree nodes for GPIO modules and interrupt controller in main
+domain.
 
 Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 ---
 
 This patch depends on,
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210301055109.17626-3-a-govindraju@ti.com/
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=439039
 
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index bfd849a29655..bc5bd7f896ab 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -139,6 +139,15 @@
- 			AM64X_IOPAD(0x02a8, PIN_OUTPUT, 0) /* (E19) USB0_DRVVBUS */
- 		>;
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 45 ++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index a36ebddf3a4c..8b4d76d83342 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -367,6 +367,51 @@
+ 		clocks = <&k3_clks 145 0>;
  	};
-+
-+	main_spi0_pins_default: main-spi0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0210, PIN_INPUT, 0) /* (D13) SPI0_CLK */
-+			AM64X_IOPAD(0x0208, PIN_OUTPUT, 0) /* (D12) SPI0_CS0 */
-+			AM64X_IOPAD(0x0214, PIN_OUTPUT, 0) /* (A13) SPI0_D0 */
-+			AM64X_IOPAD(0x0218, PIN_INPUT, 0) /* (A14) SPI0_D1 */
-+		>;
-+	};
- };
  
- &main_uart0 {
-@@ -245,6 +254,19 @@
- 	pinctrl-0 = <&main_usb0_pins_default>;
- };
- 
-+&main_spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_spi0_pins_default>;
-+	ti,pindir-d0-out-d1-in = <1>;
-+	eeprom@0 {
-+		compatible = "microchip,93lc46b";
-+		reg = <0>;
-+		spi-max-frequency = <1000000>;
-+		spi-cs-high;
-+		data-size = <16>;
++	main_gpio_intr: interrupt-controller0 {
++		compatible = "ti,sci-intr";
++		ti,intr-trigger-type = <1>;
++		interrupt-controller;
++		interrupt-parent = <&gic500>;
++		#interrupt-cells = <1>;
++		ti,sci = <&dmsc>;
++		ti,sci-dev-id = <3>;
++		ti,interrupt-ranges = <0 32 16>;
 +	};
-+};
 +
- &sdhci0 {
- 	/* emmc */
- 	bus-width = <8>;
++	main_gpio0: gpio@600000 {
++		compatible = "ti,am64-gpio", "ti,keystone-gpio";
++		reg = <0x0 0x00600000 0x0 0x100>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		interrupt-parent = <&main_gpio_intr>;
++		interrupts = <190>, <191>, <192>,
++			     <193>, <194>, <195>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		ti,ngpio = <87>;
++		ti,davinci-gpio-unbanked = <0>;
++		power-domains = <&k3_pds 77 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 77 0>;
++		clock-names = "gpio";
++	};
++
++	main_gpio1: gpio@601000 {
++		compatible = "ti,am64-gpio", "ti,keystone-gpio";
++		reg = <0x0 0x00601000 0x0 0x100>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		interrupt-parent = <&main_gpio_intr>;
++		interrupts = <180>, <181>, <182>,
++			     <183>, <184>, <185>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		ti,ngpio = <88>;
++		ti,davinci-gpio-unbanked = <0>;
++		power-domains = <&k3_pds 78 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 78 0>;
++		clock-names = "gpio";
++	};
++
+ 	sdhci0: mmc@fa10000 {
+ 		compatible = "ti,am64-sdhci-8bit";
+ 		reg = <0x00 0xfa10000 0x00 0x260>, <0x00 0xfa18000 0x00 0x134>;
 -- 
 2.17.1
 
