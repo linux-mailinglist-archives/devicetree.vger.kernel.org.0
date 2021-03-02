@@ -2,172 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6B2A32AB2C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:13:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F34932AB2E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:14:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836485AbhCBUI7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:08:59 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:35760 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1444086AbhCBMdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 07:33:38 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C1ED545D;
-        Tue,  2 Mar 2021 13:32:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1614688374;
-        bh=e/Y0M8qv9vPeCW6Q3y5Ln2XAzlf3D5bfRcvSEsOp8cs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZAmf/VxgFHsvT8vo5KLK5ZX+6pnTiQGE15b3PWyqR/lt9H5u+7BfsujtgZQCWuu2G
-         HMqOAL1DCcZJHDO3oClsWWjtw53u88Srm+2ohD9QghK4rc427HD9riXYtNMJxG98mW
-         XdGKPmQU613uCCrEy+eTuVPg3teyv2XYVoxdq8kU=
-Date:   Tue, 2 Mar 2021 14:32:25 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux API <linux-api@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        "REE dirk.behme@de.bosch.com" <dirk.behme@de.bosch.com>,
-        Peter Erben <Peter.Erben@de.bosch.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>
-Subject: Re: [PATCH 4/7] misc: Add driver for DAB IP found on Renesas R-Car
- devices
-Message-ID: <YD4wWYc7/pDucm3s@pendragon.ideasonboard.com>
-References: <20210225225147.29920-1-fabrizio.castro.jz@renesas.com>
- <20210225225147.29920-5-fabrizio.castro.jz@renesas.com>
- <CAK8P3a1+CZTAcR5T=gN565Q8=CdZnu5KYsAijKXLY8taofEpGg@mail.gmail.com>
- <OSAPR01MB2737666F47174B68A8EC8DD8C29A9@OSAPR01MB2737.jpnprd01.prod.outlook.com>
- <CAAEAJfDDhN4btecUzu=3ZYxP=amnOD=vq0bhhetx7voKdeMZ9Q@mail.gmail.com>
- <OSAPR01MB2737169C686080958657D65AC2999@OSAPR01MB2737.jpnprd01.prod.outlook.com>
+        id S1836487AbhCBUJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:09:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1446785AbhCBMk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 07:40:56 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E8EC061225;
+        Tue,  2 Mar 2021 04:40:30 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id d11so11953678plo.8;
+        Tue, 02 Mar 2021 04:40:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Qhkq6ZVcFSkgquOTN6392bAr78oIYtqIjK8IaKcASCU=;
+        b=glkkuPuWN6uFklXx46KOFJlIY8j0NJqskfrZbLsFWQz3DHGeyAj4fktfGkhQ/PCvKc
+         QL36F/2CNGFlhMxi86i8PNu7DSWQ7yPjGIBe7CyXgjsdoxe6OqWrxxoLATyy9GvjUTBH
+         2bXm0xsbDXJ3bWciU0GPIM1mVllKGBlMXD0DzzZlvlTCy/2JYHVZ6Rm736sJD0ED+Wq0
+         PEMcH9DHoN5KnEoHk2DPThZC94Oc1P1Tsn16Y8N7PMKkvm+keQvy1Hlp3jjMjJ45fnah
+         WGRWQkQ+4FDY4qVKWryU0NgZt2/E1aHELue12txVpLMzDKVrwgkk4GgG6iChvm1G3a/8
+         8LGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Qhkq6ZVcFSkgquOTN6392bAr78oIYtqIjK8IaKcASCU=;
+        b=belTmGWzHDNr36vH29GiB4tscGldMVtCrdE3/Fzp1XiqgwNsQXHz2zE1hr20P/tfPF
+         VFfpBSfbN7oN4X2qp3zetGwx29Nnn16Q7M2rZoGPoPPlazyQWPxg21+ty6BspcIYcqUZ
+         Iyg9ZE97UeZbCwtz+pOlw3oqPHkmMrz4GmAzi5pS/9NncIWyDmOrV2JGQ0uxX2LhQX44
+         vYQfuOomhzsIRW+AmUy8S/6Jb8v6m9xHVC4aTV6f6fo97nAThlm47AZarguBDR7OACJS
+         uYnGJI+fPwLUmsbvkWfSE6sXEbnpbLew/DEzJ2AbUiQtZWYJAYmA2SB0d1+M4n3S5phj
+         e0Zw==
+X-Gm-Message-State: AOAM533wvJC0UrMojK8Tpf5AG9T2yVNvYznZ5YqsOaMvih30FOzL5624
+        sfJ59Eg2/Mkk2C3tY6gPVanAAuvs7Q==
+X-Google-Smtp-Source: ABdhPJyBnHF0jEsF94l88b3zqhL5nSTi0rtSz3EAiVfaCdKkLH9nzDBJSg2ZUd50SCQLDTIDXt4ZTA==
+X-Received: by 2002:a17:90a:aa0d:: with SMTP id k13mr4474267pjq.210.1614688830525;
+        Tue, 02 Mar 2021 04:40:30 -0800 (PST)
+Received: from INTERNET-129.allwinnertech.com ([223.197.233.48])
+        by smtp.gmail.com with ESMTPSA id n10sm19778341pgk.91.2021.03.02.04.40.27
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Mar 2021 04:40:29 -0800 (PST)
+From:   Ban Tao <fengzheng923@gmail.com>
+X-Google-Original-From: Ban Tao
+To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        lee.jones@linaro.org, robh+dt@kernel.org, mripard@kernel.org,
+        wens@csie.org
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Ban Tao <fengzheng923@gmail.com>
+Subject: [PATCH v3 2/2] pwm: sun8i-v536: document device tree bindings
+Date:   Tue,  2 Mar 2021 20:40:23 +0800
+Message-Id: <20210302124023.1923-1-fengzheng923@gmail.com>
+X-Mailer: git-send-email 2.22.0.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <OSAPR01MB2737169C686080958657D65AC2999@OSAPR01MB2737.jpnprd01.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+From: Ban Tao <fengzheng923@gmail.com>
 
-On Tue, Mar 02, 2021 at 12:20:17PM +0000, Fabrizio Castro wrote:
-> On 02 March 2021 11:17, Ezequiel Garcia wrote:
-> > On Mon, 1 Mar 2021 at 14:36, Fabrizio Castro wrote:
-> > > On 26 February 2021 10:38, Arnd Bergmann wrote:
-> > > > On Thu, Feb 25, 2021 at 11:51 PM Fabrizio Castro wrote:
-> > > > >
-> > > > > The DAB hardware accelerator found on R-Car E3 and R-Car M3-N devices is
-> > > > > a hardware accelerator for software DAB demodulators.
-> > > > > It consists of one FFT (Fast Fourier Transform) module and one decoder
-> > > > > module, compatible with DAB specification (ETSI EN 300 401 and
-> > > > > ETSI TS 102 563).
-> > > > > The decoder module can perform FIC decoding and MSC decoding processing
-> > > > > from de-puncture to final decoded result.
-> > > > >
-> > > > > This patch adds a device driver to support the FFT module only.
-> > > > >
-> > > > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > > > > ---
-> > > > >  MAINTAINERS                      |   7 ++
-> > > > >  drivers/misc/Kconfig             |   1 +
-> > > > >  drivers/misc/Makefile            |   1 +
-> > > > >  drivers/misc/rcar_dab/Kconfig    |  11 ++
-> > > > >  drivers/misc/rcar_dab/Makefile   |   8 ++
-> > > > >  drivers/misc/rcar_dab/rcar_dev.c | 176 +++++++++++++++++++++++++++++++
-> > > > >  drivers/misc/rcar_dab/rcar_dev.h | 116 ++++++++++++++++++++
-> > > > >  drivers/misc/rcar_dab/rcar_fft.c | 160 ++++++++++++++++++++++++++++
-> > > > >  include/uapi/linux/rcar_dab.h    |  35 ++++++
-> > > >
-> > > > Can you explain why this is not in drivers/media/?
-> > >
-> > > I wasn't entirely sure were to put it to be honest as I couldn't find
-> > > anything similar, that's why "misc" for v1, to mainly get a feedback
-> > > and advice.
-> > >
-> > > > I don't think we want a custom ioctl interface for a device that
-> > > > implements
-> > > > a generic specification. My first feeling would be that this should not
-> > > > have a user-level API but instead get called by the DAB radio driver.
-> > >
-> > > I hear you, the trouble is that the modules of this IP should be seen
-> > > as part of a SW and HW processing pipeline.
-> > > Some of the SW components of the pipeline can be proprietary, and
-> > > unfortunately we don't have access (yet) to a framework that allows us to
-> > > test and demonstrate the whole pipeline, for the moment we can only test
-> > > things in isolation. It'll take us a while to come up with a full solution
-> > > (or to have access to one), and in the meantime our SoCs come with an IP
-> > > that can't be used because there is no driver for it (yet).
-> > >
-> > > After discussing things further with Geert and Laurent, I think they
-> > > are right in saying that the best path for this is probably to add this
-> > > driver under "drivers/staging" as an interim solution, so that the IP will
-> > > be accessible by developers, and when we have everything we need (a fully
-> > > fledged processing framework), we will able to integrate it better with
-> > > the other components (if possible).
-> > >
-> > > > What is the intended usage model here? I assume the idea is to
-> > > > use it in an application that receives audio or metadata from DAB.
-> > > > What driver do you use for that?
-> > >
-> > > This IP is similar to a DMA to some extent, in the sense that it takes
-> > > input data from a buffer in memory and it writes output data onto a buffer
-> > > in memory, and of course it does some processing in between.
-> > 
-> > That sounds like something that can fit V4L2 MEM2MEM driver.
-> > You queue two buffers and an operation, and then run a job.
-> 
-> V4L2 MEM2MEM seems good for this in general, however the DAB IP is going
-> to be shared by multiple processing pipelines (as usually we have several
-> DRIF interfaces, and only 1 DAB IP), and for what concerns FFT specifically
-> there is only 1 FFT module inside the DAB IP.
-> My understanding is that the capabilities of V4L2 MEM2MEM devices are
-> configured for the specific pipeline, but in the this context user space
-> would have to continuously switch the capabilities of the DAB IP (at the
-> right moment) to allow processing for data streams requiring different
-> capabilities.
-> 
-> Am I wrong?
+This adds binding documentation for sun8i-v536 SoC PWM driver.
 
-V4L2 M2M devices can be opened multiple times, but different processes,
-which can configure the device in different ways, and submit jobs that
-are then scheduled by the V4L2 M2M framework.
+Signed-off-by: Ban Tao <fengzheng923@gmail.com>
+---
+ .../bindings/pwm/pwm-sun8i-v536.txt           | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sun8i-v536.txt
 
-> > > It's not directly connected to any other Radio related IP.
-> > > The user space application can read DAB IQ samples from the R-Car DRIF
-> > > interface (via driver drivers/media/platform/rcar_drif.c, or from other
-> > > sources since this IP is decoupled from DRIF), and then when it's time
-> > > to accelerate FFT, FIC, or MSC, it can request services to the DAB IP, so
-> > > that the app can go on and use the processor to do some work, while the DAB
-> > > IP processes things.
-> > > A framework to connect and exchange processing blocks (either SW or HW) and
-> > > interfaces is therefore vital to properly place a kernel implementation
-> > > in the great scheme of things, in its absence a simple driver can help
-> > 
-> > I'm not entirely sure we are missing a framework. What's missing in
-> > V4L2 MEM2MEM?
-> 
-> I was referring to a user space framework (I should have been more specific
-> with my previous email).
-> 
-> > Before considering drivers/staging, it would be interesting to figure
-> > out if V4L2 can do it as-is, and if not, discuss what's missing.
-> 
-> I think an interim solution would allow us and users to evaluate things a
-> little bit better, so that we can integrate this IP with V4L2 later on.
-
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-sun8i-v536.txt b/Documentation/devicetree/bindings/pwm/pwm-sun8i-v536.txt
+new file mode 100644
+index 000000000000..ab3f4fe0560a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/pwm-sun8i-v536.txt
+@@ -0,0 +1,24 @@
++Allwinner sun8i-v536 SoC PWM controller
++
++Required properties:
++ - compatible: should be "allwinner,<name>-pwm"
++   "allwinner,sun8i-v833-pwm"
++   "allwinner,sun8i-v536-pwm"
++   "allwinner,sun50i-r818-pwm"
++   "allwinner,sun50i-a133-pwm"
++   "allwinner,sun50i-r329-pwm"
++ - reg: physical base address and length of the controller's registers
++ - #pwm-cells: should be 3. See pwm.txt in this directory for a description of
++   the cells format.
++ - clocks: From common clock binding, handle to the parent clock.
++ - resets: From reset clock binding, handle to the parent clock.
++
++Example:
++
++	pwm: pwm@300a0000 {
++		compatible = "allwinner,sun50i-r818-pwm";
++		reg = <0x0300a000 0x3ff>;
++		clocks = <&ccu CLK_BUS_PWM>;
++		resets = <&ccu RST_BUS_PWM>;
++		#pwm-cells = <3>;
++	};
 -- 
-Regards,
+2.29.0
 
-Laurent Pinchart
