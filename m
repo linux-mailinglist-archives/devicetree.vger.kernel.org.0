@@ -2,130 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BF5332AB19
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2D2832AB1C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:13:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836189AbhCBUIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:08:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49846 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380821AbhCBLFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 06:05:24 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B72C0611BC
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 02:59:51 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id e9so1691846pjs.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 02:59:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=Po2WnbeRcNxbdVRWP+uTe3ZxilZPtJNj+wNjess1Fqs=;
-        b=a5MyBXo6eov2ekIk8ZTfKHDNNdEoI4pKVri0SYc2F9SqYWibdQAXMjW3/w7FU/p/kg
-         c51InQz0krRao9T5zPLw59TMVGitBuCGxloOW2a6N2HxyYz+5D+BaKS6EexoelT6VG/F
-         cLhmS6GHKPR/R9pUBTpK+ZzLQq4r3k3u5M2k/oK8DNOa2g9pRU5In7tUGmZrN5oax8Gp
-         xtafybVddL4BjJoA01DR/QEKBy55T32hKD1PoSLSqD/4iLIQMuoV5gKApwWVSxk36oMa
-         7VrN6Rzarf0ceik8mxDudoNJSOkGYM6IgV9gBF765dqYhMGp5Cogl4ysmSY9NRz8K7qk
-         G77g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Po2WnbeRcNxbdVRWP+uTe3ZxilZPtJNj+wNjess1Fqs=;
-        b=inJJ0vk3773m1HDZXHH4cBO9ZvIp5uSS34X2B22ygH8obMI7PC8ZgUFm+E9pnC6mfF
-         VzXSZlvGDEjDJJ6Lau07wL8yRL/dETfgtoFHVoo9lmiDvIrC5wknjMdTA/WW9B7RtkCo
-         FiJRKKGtlr2SpSk3rvRMVN//VIn8cxspX2emuKVNB1TwQFlvboeqVm3LLRl9hRlnRXog
-         Kz6W62HN1c5qnnnlXaAPIKy81IqskpYiVuQTFH8eHGXtXtFiNH4OP83axZqN1F85+3bH
-         IWlcHKWH555LsnbU6osUngMJaZzPgMjS6hwBusDc509Fa/PL7XbeQF8RcrtuvKt1+KoG
-         aZhw==
-X-Gm-Message-State: AOAM531VCht0WS7UIZxo1C/GVIgO+15M+vYl5/VG4L9A/kbgy9+SfLq9
-        SQSuuacDzuh2d1xApnaFqE1Giw==
-X-Google-Smtp-Source: ABdhPJxJIJ3Tse6OxPoZISwk+LpR8TLSC6nbCdGBioVdI/phJeX6zkYJhK340UzKOl5FITpYzpeIZw==
-X-Received: by 2002:a17:90a:9905:: with SMTP id b5mr3711228pjp.195.1614682791332;
-        Tue, 02 Mar 2021 02:59:51 -0800 (PST)
-Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
-        by smtp.gmail.com with ESMTPSA id t26sm19500451pfq.208.2021.03.02.02.59.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Mar 2021 02:59:50 -0800 (PST)
-From:   Greentime Hu <greentime.hu@sifive.com>
-To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
-        erik.danie@sifive.com, zong.li@sifive.com, bhelgaas@google.com,
-        robh+dt@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        lorenzo.pieralisi@arm.com, p.zabel@pengutronix.de,
-        alex.dewar90@gmail.com, khilman@baylibre.com,
-        hayashi.kunihiko@socionext.com, vidyas@nvidia.com,
-        jh80.chung@samsung.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: [RFC PATCH 6/6] riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
-Date:   Tue,  2 Mar 2021 18:59:17 +0800
-Message-Id: <cd88f8d29ec2050a22eb31e94f9efc1adfc4db2d.1614681831.git.greentime.hu@sifive.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <cover.1614681831.git.greentime.hu@sifive.com>
-References: <cover.1614681831.git.greentime.hu@sifive.com>
+        id S1836197AbhCBUII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:08:08 -0500
+Received: from foss.arm.com ([217.140.110.172]:49570 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1383247AbhCBLIJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Mar 2021 06:08:09 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 27DBAED1;
+        Tue,  2 Mar 2021 03:07:23 -0800 (PST)
+Received: from [10.57.48.219] (unknown [10.57.48.219])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C9C703F73C;
+        Tue,  2 Mar 2021 03:07:20 -0800 (PST)
+Subject: Re: [RFC 09/13] iommu/arm-smmu: Make use of
+ dev_64bit_mmio_supported()
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     f.fainelli@gmail.com, robh+dt@kernel.org, ardb@kernel.org,
+        hch@infradead.org, narmstrong@baylibre.com, dwmw2@infradead.org,
+        linux@armlinux.org.uk, catalin.marinas@arm.com, arnd@arndb.de,
+        will@kernel.org
+References: <20210226140305.26356-1-nsaenzjulienne@suse.de>
+ <20210226140305.26356-10-nsaenzjulienne@suse.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <3a4cf13f-c098-9ff3-6c0e-2c94daae452b@arm.com>
+Date:   Tue, 2 Mar 2021 11:07:19 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210226140305.26356-10-nsaenzjulienne@suse.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
----
- arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 34 ++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+On 2021-02-26 14:03, Nicolas Saenz Julienne wrote:
+> Some arm SMMU implementations might sit on a bus that doesn't support
+> 64bit memory accesses. In that case default to using hi_lo_{readq,
+> writeq}() and BUG if such platform tries to use AArch64 formats as they
+> rely on writeq()'s atomicity.
+> 
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> ---
+>   drivers/iommu/arm/arm-smmu/arm-smmu.c | 9 +++++++++
+>   drivers/iommu/arm/arm-smmu/arm-smmu.h | 9 +++++++--
+>   2 files changed, 16 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
+> index d8c6bfde6a61..239ff42b20c3 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
+> @@ -1889,6 +1889,15 @@ static int arm_smmu_device_cfg_probe(struct arm_smmu_device *smmu)
+>   			smmu->features |= ARM_SMMU_FEAT_FMT_AARCH64_64K;
+>   	}
+>   
+> +	/*
+> +	 * 64bit accesses not possible through the interconnect, AArch64
+> +	 * formats depend on it.
+> +	 */
+> +	BUG_ON(!dev_64bit_mmio_supported(smmu->dev) &&
+> +	       smmu->features & (ARM_SMMU_FEAT_FMT_AARCH64_4K |
+> +				ARM_SMMU_FEAT_FMT_AARCH64_16K |
+> +				ARM_SMMU_FEAT_FMT_AARCH64_64K));
 
-diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-index d1bb22b11920..d0839739b425 100644
---- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-@@ -158,6 +158,7 @@ prci: clock-controller@10000000 {
- 			reg = <0x0 0x10000000 0x0 0x1000>;
- 			clocks = <&hfclk>, <&rtcclk>;
- 			#clock-cells = <1>;
-+			#reset-cells = <1>;
- 		};
- 		uart0: serial@10010000 {
- 			compatible = "sifive,fu740-c000-uart", "sifive,uart0";
-@@ -288,5 +289,38 @@ gpio: gpio@10060000 {
- 			clocks = <&prci PRCI_CLK_PCLK>;
- 			status = "disabled";
- 		};
-+		pcie@e00000000 {
-+			#address-cells = <3>;
-+			#interrupt-cells = <1>;
-+			#num-lanes = <8>;
-+			#size-cells = <2>;
-+			compatible = "sifive,fu740-pcie";
-+			reg = <0xe 0x00000000 0x1 0x0
-+			       0xd 0xf0000000 0x0 0x10000000
-+			       0x0 0x100d0000 0x0 0x1000>;
-+			reg-names = "dbi", "config", "mgmt";
-+			device_type = "pci";
-+			dma-coherent;
-+			bus-range = <0x0 0xff>;
-+			ranges = <0x81000000  0x0 0x60080000  0x0 0x60080000 0x0 0x10000        /* I/O */
-+				  0x82000000  0x0 0x60090000  0x0 0x60090000 0x0 0xff70000      /* mem */
-+				  0x82000000  0x0 0x70000000  0x0 0x70000000 0x0 0x1000000      /* mem */
-+				  0xc3000000 0x20 0x00000000 0x20 0x00000000 0x20 0x00000000>;  /* mem prefetchable */
-+			num-lanes = <0x8>;
-+			interrupts = <56 57 58 59 60 61 62 63 64>;
-+			interrupt-names = "msi", "inta", "intb", "intc", "intd";
-+			interrupt-parent = <&plic0>;
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0x0 0x0 0x0 0x1 &plic0 57>,
-+					<0x0 0x0 0x0 0x2 &plic0 58>,
-+					<0x0 0x0 0x0 0x3 &plic0 59>,
-+					<0x0 0x0 0x0 0x4 &plic0 60>;
-+			clock-names = "pcie_aux";
-+			clocks = <&prci PRCI_CLK_PCIE_AUX>;
-+			pwren-gpios = <&gpio 5 0>;
-+			perstn-gpios = <&gpio 8 0>;
-+			resets = <&prci 4>;
-+			status = "okay";
-+		};
- 	};
- };
--- 
-2.30.0
+No. Crashing the kernel in a probe routine which is free to fail is 
+unacceptable either way, but guaranteeing failure in the case that the 
+workaround *would* be required is doubly so.
 
+Basically, this logic is backwards - if you really wanted to handle it 
+generically, this would be the point at which you'd need to actively 
+suppress all the detected hardware features which depend on 64-bit 
+atomicity, not complain about them.
+
+> +
+>   	if (smmu->impl && smmu->impl->cfg_probe) {
+>   		ret = smmu->impl->cfg_probe(smmu);
+>   		if (ret)
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.h b/drivers/iommu/arm/arm-smmu/arm-smmu.h
+> index d2a2d1bc58ba..997d13a21717 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu.h
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.h
+> @@ -477,15 +477,20 @@ static inline void arm_smmu_writel(struct arm_smmu_device *smmu, int page,
+>   {
+>   	if (smmu->impl && unlikely(smmu->impl->write_reg))
+>   		smmu->impl->write_reg(smmu, page, offset, val);
+> -	else
+> +	else if (dev_64bit_mmio_supported(smmu->dev))
+>   		writel_relaxed(val, arm_smmu_page(smmu, page) + offset);
+> +	else
+> +		hi_lo_writeq_relaxed(val, arm_smmu_page(smmu, page) + offset);
+
+As Arnd pointed out, this is in completely the wrong place. Also, in 
+general it doesn't work if the implementation already needs a hook to 
+filter or override register accesses for any other reason. TBH I'm not 
+convinced that this isn't *more* of a mess than handling it on a 
+SoC-specific basis...
+
+Robin.
+
+>   }
+>   
+>   static inline u64 arm_smmu_readq(struct arm_smmu_device *smmu, int page, int offset)
+>   {
+>   	if (smmu->impl && unlikely(smmu->impl->read_reg64))
+>   		return smmu->impl->read_reg64(smmu, page, offset);
+> -	return readq_relaxed(arm_smmu_page(smmu, page) + offset);
+> +	else if (dev_64bit_mmio_supported(smmu->dev))
+> +		return readq_relaxed(arm_smmu_page(smmu, page) + offset);
+> +	else
+> +		return hi_lo_readq_relaxed(arm_smmu_page(smmu, page) + offset);
+>   }
+>   
+>   static inline void arm_smmu_writeq(struct arm_smmu_device *smmu, int page,
+> 
