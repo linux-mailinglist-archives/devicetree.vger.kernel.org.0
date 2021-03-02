@@ -2,82 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A89D732AACF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0145E32AAD1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1839889AbhCBTzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:55:22 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45100 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1837276AbhCBHlf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 02:41:35 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1227eaZu122777;
-        Tue, 2 Mar 2021 01:40:36 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614670836;
-        bh=/3dR3TQMt2XBwDBGIBCejpFAZ1Ni0mux4WP8rZfz1WI=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=gfSQ6dCLCoZBBUkEeB8XiPOAlCgUgqozxg8phTb4UeaXRFmE7oew7i9AQcKZlNSnw
-         eVVe3TJ+z1HJ7tz2k9/ddYALTNcQFUlSLJinezgskLv+DM9P5XBZBmcMm57Dhb2FXH
-         yZ27AoslXNjEdwDjJ1hK47ZkvRn9MHIkspj1PmAs=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1227eaJt129175
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 2 Mar 2021 01:40:36 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 2 Mar
- 2021 01:40:36 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 2 Mar 2021 01:40:36 -0600
-Received: from [10.250.234.120] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1227eX8c103798;
-        Tue, 2 Mar 2021 01:40:34 -0600
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j7200-som-p0: Add nodes for OSPI0
-To:     Pratyush Yadav <p.yadav@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210301195850.31868-1-p.yadav@ti.com>
- <20210301195850.31868-4-p.yadav@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <876caefd-b53e-0d1d-422c-cc3255774d88@ti.com>
-Date:   Tue, 2 Mar 2021 13:10:32 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1839897AbhCBTz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:55:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35548 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1376678AbhCBHsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 02:48:55 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB2AAC061788;
+        Mon,  1 Mar 2021 23:44:41 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id r25so21736735ljk.11;
+        Mon, 01 Mar 2021 23:44:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3TtSrnXBguUPTi71hdOlnm4h8qMyGVSuM0R08lOrQW4=;
+        b=uots3Sxm9SoiIi+QE2AQP6TZSdeyhTt/s5Xh/05aX+PTwfgq0Mm1+r1XygmqDKXg1v
+         aidObKrhOU7m/gSqHRqUjOcBYCbjrn8SQUlhIRKPehAaZmxR7phXvLt3XAYGwhciak5m
+         3rrbNzKEDtMxygnR+Nao6WjEd9Z3xyW8eQXz9oLuE0NGqphifmyVF2jd6fcT2Usom8kB
+         mYhRpgnGbB4oanr4KvJdBRxA/yoprN29gi7c8H3tMJRw20ONETkNSjRBeff/Inke4jWl
+         o5XpzcwvReYXJ0sjZmIjb1FermlSQX4tAdZ/b7CcyxlxgnGJwC30JCXMPKyWXcAZdsDA
+         gkyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3TtSrnXBguUPTi71hdOlnm4h8qMyGVSuM0R08lOrQW4=;
+        b=af7RAlnBp01/VPfLscy+GShMwDdCsAZKN4+H+xQcR1oF09EUInV4BARFoGvf6ViDDh
+         xJ0iK90s6MedkjWBqPE0vDSTg5DNPCEorl9EwkCxE+gzDv/Y1IxZpPlD6/E79HfFFO/A
+         G1vCi95XYVi0dA4O3mIzm1zzN3RO1VvCofqeGao9Xes69HN9YhZKnEviiZzCngr/Rcqj
+         BrsgMsr4eeiu009VD8nXgmcXV1dzIM7q6cuQm2hI96AKSYIa3C5IPX5chMARb0/FhfDo
+         8D/YcbeazpogLnfLP4PUPXEiYpNRZLNMocBVlrNCsefP7kVqXaB5uonJN0hDw/P6T+La
+         2W6A==
+X-Gm-Message-State: AOAM531DuDhuF20TXX33+zCj0Na17c6m+qpji2/rP9jTQ1e9ovI9ad5s
+        t2B8LO6i9F6wyZQQVXHLT4U=
+X-Google-Smtp-Source: ABdhPJzj5bJtO4TF9wl6Qz1I7getHrofm1x9Oh+YQo5fkpbR6AtYw3Jw8p0DBAzHIs5abIwxraiWwQ==
+X-Received: by 2002:a05:651c:1022:: with SMTP id w2mr10340293ljm.455.1614671080079;
+        Mon, 01 Mar 2021 23:44:40 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id e15sm2552600lfs.83.2021.03.01.23.44.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Mar 2021 23:44:39 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Vivek Unune <npcomplete13@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH stblinux.git 1/2] dt-bindings: firmware: add Broadcom's NVRAM memory mapping
+Date:   Tue,  2 Mar 2021 08:44:04 +0100
+Message-Id: <20210302074405.18998-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20210301195850.31868-4-p.yadav@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+NVRAM structure contains device data and can be accessed using MMIO.
 
-On 3/2/21 1:28 AM, Pratyush Yadav wrote:
-> +
-> +	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721E_WKUP_IOPAD(0x0000, PIN_OUTPUT, 0) /* MCU_OSPI0_CLK */
-> +			J721E_WKUP_IOPAD(0x002c, PIN_OUTPUT, 0) /* MCU_OSPI0_CSn0 */
-> +			J721E_WKUP_IOPAD(0x000c, PIN_INPUT, 0)  /* MCU_OSPI0_D0 */
-> +			J721E_WKUP_IOPAD(0x0010, PIN_INPUT, 0)  /* MCU_OSPI0_D1 */
-> +			J721E_WKUP_IOPAD(0x0014, PIN_INPUT, 0)  /* MCU_OSPI0_D2 */
-> +			J721E_WKUP_IOPAD(0x0018, PIN_INPUT, 0)  /* MCU_OSPI0_D3 */
-> +			J721E_WKUP_IOPAD(0x001c, PIN_INPUT, 0)  /* MCU_OSPI0_D4 */
-> +			J721E_WKUP_IOPAD(0x0020, PIN_INPUT, 0)  /* MCU_OSPI0_D5 */
-> +			J721E_WKUP_IOPAD(0x0024, PIN_INPUT, 0)  /* MCU_OSPI0_D6 */
-> +			J721E_WKUP_IOPAD(0x0028, PIN_INPUT, 0)  /* MCU_OSPI0_D7 */
-> +			J721E_WKUP_IOPAD(0x0008, PIN_INPUT_PULLDOWN, 0)  /* MCU_OSPI0_DQS */
-> +		>;
-> +	};
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bindings/firmware/brcm,nvram.yaml         | 41 +++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/brcm,nvram.yaml
 
-There is a pulldown resistor on the board right? So, internal pulldown
-is unnecessary and may even cause conflicts.
+diff --git a/Documentation/devicetree/bindings/firmware/brcm,nvram.yaml b/Documentation/devicetree/bindings/firmware/brcm,nvram.yaml
+new file mode 100644
+index 000000000000..12af8e2e7c9c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/firmware/brcm,nvram.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/firmware/brcm,nvram.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Broadcom's NVRAM
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++description: |
++  NVRAM is a structure containing device specific environment variables.
++  It is used for storing device configuration, booting parameters and
++  calibration data.
++
++  It's required very early in booting process and so is made available
++  using memory mapping.
++
++  NVRAM can be found on Broadcom BCM47xx MIPS, Northstar ARM Cortex-A9
++  and some more devices.
++
++properties:
++  compatible:
++    const: brcm,nvram
++
++  reg:
++    description: memory region with NVRAM data
++    maxItems: 1
++
++required:
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    nvram@1e000000 {
++         compatible = "brcm,nvram";
++         reg = <0x1e000000 0x10000>;
++    };
+-- 
+2.26.2
+
