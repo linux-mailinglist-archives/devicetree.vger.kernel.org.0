@@ -2,79 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58D8E32AA9A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:56:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE5D732AAA1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349195AbhCBTwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:52:18 -0500
-Received: from mail.ilitek.com ([60.248.80.92]:36293 "EHLO cello.ilitek.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S241515AbhCBCJS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Mar 2021 21:09:18 -0500
-X-UUID: a8cca4f7c214477da15ffb0ed0b3f805-20210302
-X-UUID: a8cca4f7c214477da15ffb0ed0b3f805-20210302
-Received: from ex1.ili.com.tw [(192.168.1.131)] by cello.ilitek.com
-        (envelope-from <joe_hung@ilitek.com>)
-        (Cellopoint E-mail Firewall v4.1.12 Build 0701 with TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 128/128)
-        with ESMTP id 549005813; Tue, 02 Mar 2021 10:06:36 +0800
-Received: from EX2.ili.com.tw (192.168.1.132) by EX1.ili.com.tw
- (192.168.1.131) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 2 Mar 2021
- 10:06:34 +0800
-Received: from EX2.ili.com.tw ([fe80::89a8:5a29:1f3a:8b1f]) by EX2.ili.com.tw
- ([fe80::89a8:5a29:1f3a:8b1f%4]) with mapi id 15.01.2176.002; Tue, 2 Mar 2021
- 10:06:34 +0800
-From:   =?utf-8?B?Sm9lIEh1bmcgKOa0qumKmOmZvSk=?= <joe_hung@ilitek.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        =?utf-8?B?THVjYSBIc3UgKOW+kOWYiemNiik=?= <luca_hsu@ilitek.com>
-Subject: RE: [PATCH v3 2/2] input: touchscreen: Add support for ILITEK Lego
- Series
-Thread-Topic: [PATCH v3 2/2] input: touchscreen: Add support for ILITEK Lego
- Series
-Thread-Index: AQHXBcGFMZWAxP5I60GjiTB9vp3IZKphmbUAgAHrrYCABGZ6gIAAsoEAgAWGhoCAAdoH4A==
-Date:   Tue, 2 Mar 2021 02:06:34 +0000
-Message-ID: <13ed84f1653144f384949fd04686368d@ilitek.com>
-References: <20210218064435.1360483-1-joe_hung@ilitek.com>
- <20210218064435.1360483-2-joe_hung@ilitek.com> <YDH0/tSytUagrzKP@google.com>
- <3d8c4d2e56fd40cc859b393c292432ac@ilitek.com> <YDdCZdRJAqBvVZFZ@google.com>
- <4c0d711cd2f046938dbd34a1bf0d9661@ilitek.com> <YDx6udLZf6thd4KQ@google.com>
-In-Reply-To: <YDx6udLZf6thd4KQ@google.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.30.38]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1350413AbhCBTxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:53:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49156 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1349111AbhCBCLq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Mar 2021 21:11:46 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BCC5361606;
+        Tue,  2 Mar 2021 02:11:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614651066;
+        bh=vwyUtDxwiNKk+ynoP3q+QLEEjbm/rJVYSWUVbdibiKU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rbKRB3kUrCgw5NeYHrpMgzimtGvCrWXkFsibJcBZjZ3NlolKoBurfLrbqEpwKjUg1
+         R3kpc1bIDqVJCviwFqlDOItVDd9kydfT5xsVQkEk0lc2lrLKY+p1xjm8ZFzxe+eTRP
+         Q6n4HpeWZb3ItmmT8bFNC92yxnAz55rcqxeuSqg/nQNGwuDbPBEkcXADYJjBS1GNDT
+         WQUGO3AvpyeOexLYUTAqM5PzsT5mp9XBYjZj0ObV82NVE0m4hnm8OrBBTwrHwanDYW
+         /BswQDCK3RgIBmWJkcrl7+5LM6xY7GGGfOiGwmtt84AF6Y9bizxyBs4Dle8/ap/xJd
+         aMqiGN5Thv79w==
+Received: by mail-ed1-f41.google.com with SMTP id p1so18849298edy.2;
+        Mon, 01 Mar 2021 18:11:05 -0800 (PST)
+X-Gm-Message-State: AOAM533mlzcgJYA5ZR/5ktUZR6kMBX24dJrifFDEyFC3vOTQAaMofQJE
+        9hCzB1OZTAi65tdV69rlKXXQnm66u9x+SrDh3Q==
+X-Google-Smtp-Source: ABdhPJyWebOHWQP7njU4m2dvQglQXnk4r5eZJ4pcMx2WhPXBWc0SlmoYi4n8+GWICYKhfnpGtYXlrCdIRZMY5g5sG20=
+X-Received: by 2002:aa7:c991:: with SMTP id c17mr18868381edt.165.1614651064202;
+ Mon, 01 Mar 2021 18:11:04 -0800 (PST)
 MIME-Version: 1.0
+References: <1614276364-13655-1-git-send-email-spujar@nvidia.com> <1614276364-13655-4-git-send-email-spujar@nvidia.com>
+In-Reply-To: <1614276364-13655-4-git-send-email-spujar@nvidia.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 1 Mar 2021 20:10:52 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+9esDGw7ZCLnZS_KLmLUFyVenz83ohgNKFK3bdPD2ouQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+9esDGw7ZCLnZS_KLmLUFyVenz83ohgNKFK3bdPD2ouQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 3/5] ASoC: audio-graph-card: Add bindings for sysclk
+ and pll
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     Mark Brown <broonie@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRG1pdHJ5LA0KDQpUaGFuayB5b3UgZm9yIHRoZSBxdWljayByZXNwb25zZS4NCldvdWxkIHVw
-ZGF0ZSBLY29uZmlnIGFsc28gaW4gdjQuDQoNCk9uIFN1biwgRmViIDI4LCAyMDIxIGF0IDIxOjI1
-OjEzUE0gLTA4MDAsIERtaXRyeSBUb3Jva2hvdiB3cm90ZToNCj4gSGkgSm9lLA0KPiANCj4gT24g
-RnJpLCBGZWIgMjYsIDIwMjEgYXQgMDg6MzA6MjVBTSArMDAwMCwgSm9lIEh1bmcgKOa0qumKmOmZ
-vSkgd3JvdGU6DQo+ID4gSGVsbG8gRG1pdHJ5LA0KPiA+IA0KPiA+IFRoYW5rIHlvdSBmb3IgdGhl
-IHF1aWNrIHJlc3BvbnNlLg0KPiA+IFVuZGVyc3RhbmQgYW5kIGFncmVlZCBvbiBhbGwgeW91ciBj
-b21tZW50cy4NCj4gPiANCj4gPiBMaXR0bGUgcXVlc3Rpb24gYWJvdXQgdGhlIG5hbWUgb2YgcHJl
-Zml4IGFuZCB0aGlzIGRyaXZlciBmaWxlLA0KPiA+IGNvdWxkIGl0IGJlIG5hbWVkIGFjY29yZGlu
-ZyB0byBkaWZmZXJlbnQgcHJvdG9jb2wgdmVyc2lvbiBuYW1lZCBieSBJTElURUsgaW50ZXJuYWxs
-eQ0KPiA+IGFzIGlsaXRla19wNnguYyAoYXMgcHJvdG9jb2wgdmVyc2lvbiA2IGZvciBMZWdvIHNl
-cmllcywgYW5kIGlsaTIxMHguYyBzaG91bGQgYmUgcHJvdG9jb2wgMikuDQo+ID4gDQo+ID4gSW4g
-YWRkaXRpb24sIGNvdWxkIHdlIG5hbWVkIGl0IGxpa2UgaG93IHRvdWNoc2NyZWVuL2VsYW50c19p
-MmMuYyBhbmQgZWZ0ZjIxMjcuYyB3b3JrZWQ/DQo+IA0KPiBTbyBlbGFudHNfaTJjIHZzIGVmdGYy
-MTI3IGlzIGhpc3RvcmljYWwgYXJ0ZWZhY3Qgd2l0aCBlbGFudHNfaTJjIGJlaW5nDQo+IHRoZXJl
-IGZpcnN0Lg0KPiANCj4gPiBJcyB0aGVyZSBhIHdheSB0aGF0IHdlIGNvdWxkIGtlZXAgaWxpdGVr
-IGFzIHByZWZpeCBhbmQgZHJpdmVyIGZpbGUncyBuYW1lPw0KPiANCj4gT0ssIHRoaXMgaXMgcmVh
-bGx5IGEgbWlub3IgcG9pbnQgYXMgZmFyIGFzIEkgYW0gY29uY2VybmVkIGFuZCB3ZSBzcGVudA0K
-PiB3YXkgdG9vIG11Y2ggdGltZSBkZWJhdGluZyBpdC4gWW91IG1heSBrZWVwIGlsaXRlayBmaWxl
-IG5hbWUgYW5kIHByZWZpeA0KPiBpZiB5b3Ugd291bGQgcHJlZmVyLiBKdXN0IG1ha2Ugc3VyZSB5
-b3UgbGlzdCBzdXBwb3J0ZWQNCj4gY29udHJvbGxlcnMvcHJvdG9jb2xzIGluIEtjb25maWcgYW5k
-IHRoYXQgc2hvdWxkIGJlIGVub3VnaC4NCg0KQWdyZWVkOyB0aGFuayB5b3UgdmVyeSBtdWNoLg0K
-DQo+IA0KPiBUaGFua3MuDQo+IA0KPiAtLSANCj4gRG1pdHJ5DQoNClRoYW5rIHlvdSB2ZXJ5IG11
-Y2guDQoNCi0tDQpKb2UgSHVuZw0K
+On Thu, Feb 25, 2021 at 12:06 PM Sameer Pujar <spujar@nvidia.com> wrote:
+>
+> ASoC core provides callbacks snd_soc_dai_set_sysclk() and
+> snd_soc_dai_set_pll() for system clock (sysclk) and pll configurations
+> respectively. Add bindings for flexible sysclk or pll configurations
+> which can be driven from CPU/Codec DAI or endpoint subnode from DT.
+> This in turn helps to avoid hard codings in driver and makes it more
+> generic.
+>
+> Also add system-clock related bindings, "system-clock-direction-out"
+> and "system-clock-frequency", which are already supported.
 
+This all looks like duplication of what the clock binding can provide.
+We don't need 2 ways to describe clocks in DT.
+
+Rob
