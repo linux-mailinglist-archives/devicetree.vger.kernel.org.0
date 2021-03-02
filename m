@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF1732AB6E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:31:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63AA132AB70
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:32:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446241AbhCBU2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:28:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50952 "EHLO
+        id S1446246AbhCBU2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:28:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1448649AbhCBPdm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:33:42 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD09CC0698C3
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 07:29:06 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id y12so11510682ljj.12
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 07:29:06 -0800 (PST)
+        with ESMTP id S1448657AbhCBPdo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:33:44 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9260C061A28
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 07:29:40 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id n16so14964707lfb.4
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 07:29:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=LCwQhqE9NkoRHlHwO6Fmc47EHLE3N6sGTOQ1yFKT36o=;
-        b=Px3dXxEpwKxyAHKEvzvnYWBM0KZXBnBuCM/BtUAWJBWMLnWk6lOZ8pi0Gz7Met1TId
-         aT57pJgcHmsiNh8w/Fq3eWCR56/3/dTM3OifHpMO5WuEGqk9ThWaAaAFK7aP7RkqfRrK
-         h4Dsj2Glvvoa+F8dJDS6xLK8jWTOLlRSK4qDLldlVEk5V2CJiXLhzru36Fv0IzGycuGT
-         a6T7hbeh0bwTZ+37RxzGJEjbDxhkqE/lJFK6+waZIspLxTjNlvBk9c/mARsveZoa9T8V
-         ofwVTxorf7zso/aVER27KBtJ5KZ2goi5SROzfGvlh4JtOyl8yQFLY1nuwRgfZWnrCJe3
-         Y4mQ==
+        bh=sWSzaWWbzyPyu6uykYAaJrqhSOJqXcp+xt3SDSKUiT4=;
+        b=qCx1lcWswuw5DoTlpkHcllQN1I0UiiKbKHGIch77U8NidsjWcZ/WYscKhg+8gJQk7b
+         A+Aw4T9iYXS+hD8ZWVr/ylo6w7TpxVpXDL0BVxQm8ZAAAifYYBKShIBeLghuVjbVE+MK
+         zSSd1Yd0kiXBRNNyRc6X900oPd18UrslVtJ506N4CFYk+dG2ealuCagpqV8sPZ4X6/82
+         oFgwvXoWtsRwzfksjLccHfJRHrLg5T9DpPZTfbQ8VtJgQAP8wAwK+fRRatbNxTzSTaid
+         OPtWLlfw7G4PomP2Y9Mawa3+sCs8d5TrczolOh1FyTHeXrRdZXzthYBTmF31G7m4gg2r
+         CyyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=LCwQhqE9NkoRHlHwO6Fmc47EHLE3N6sGTOQ1yFKT36o=;
-        b=qZg3MuFe5EHJX1rcxi9FEHJ+P8dF77k/SiHCOUx4hpy7vgBfD29WoHz7V05flYKG0i
-         2qKe9Au6pplUjxCWIj6of4SCOOBwn+JNmq8h9JFiPoqglhmbLHRwXV01vieyDDxx/7gc
-         A4rBa3ILJFRgT5FggAs22QBWn1ajeB81Fv5y6e03K6t9trWfX1/DlRuhl9awPKUqnvsF
-         l4Ke2kZo0lTuurwfN84s39ckNQ09laUHcOMw/YYJZNwmwg37l5H9LVBYqK20UUQHL1om
-         SXLSirLZb+doCbyhKN57d3xgJwDzpDfb5Z350zlltraAK+We7M5cCMEwSCnPdQeilUZo
-         wXMg==
-X-Gm-Message-State: AOAM530OXzYzNwKIIAiZSjy3g1v3j0uIHZbTkvHTeiaaCDfnDU5BXZaW
-        uSjha5f8svwRV9RU/1b1mY6n9Tgeo2Rmmvsw3yio2A==
-X-Google-Smtp-Source: ABdhPJy9mNgWIuNzMd1S+ztjRGu8pwsStRN881pmfjS/D9xzv0ch+hdfcQ/S4mujmCBVqvAyOFCFu5FSAgGrbuXhlEY=
-X-Received: by 2002:a2e:864a:: with SMTP id i10mr11926918ljj.467.1614698945418;
- Tue, 02 Mar 2021 07:29:05 -0800 (PST)
+        bh=sWSzaWWbzyPyu6uykYAaJrqhSOJqXcp+xt3SDSKUiT4=;
+        b=hNxxHxap79pS0z9xZhy5CTHbNffdKVPjSyiXLaMteULyS4qaOin7I1tfxnCc4abutk
+         774xF/R9psbOJgb96cY8TrxMM91rnxN7Otv20NOzxtrATYnLRJ+Ob2V1F4j7x+b5cCp8
+         f0+SgHlwR2PJ4ZXXPZ/LpTwjem2yyjzW/NOhHHbTAIhYEetU7h2fIygLCGItt/JUho1G
+         wDDWygQDUNH40Ame6K3mhF4ObtVjSgQB/EIQXzAY8tgt5No91PTCkuoBYwV909/Mjemx
+         1Rjx0taVWnYXJudBjT/UyTwH2iGBmGTQo+6APlYyjweDekPTk0Y2Tmsin/VQeeMvJ7ua
+         ryHQ==
+X-Gm-Message-State: AOAM5324SpL8b9u1m5sEc4V/xEv5wDCmLw/fZ2yrYohwzQb8YO19/2VQ
+        2KjRZHVnwVp8xZMPT2gFZhbbok1Vy44x98G4Xo7cmA==
+X-Google-Smtp-Source: ABdhPJyaRDfvOXcbXwWIQg1BVpvxTAXseyBY7XMxnAuyhRJ/4QjBxTR7Kl6thFN4h7FWAkpFrwbEtu+nWwX56vMBeBI=
+X-Received: by 2002:a05:6512:74a:: with SMTP id c10mr12813240lfs.586.1614698979488;
+ Tue, 02 Mar 2021 07:29:39 -0800 (PST)
 MIME-Version: 1.0
-References: <20210225164216.21124-1-noltari@gmail.com> <20210225164216.21124-11-noltari@gmail.com>
-In-Reply-To: <20210225164216.21124-11-noltari@gmail.com>
+References: <20210225164216.21124-1-noltari@gmail.com> <20210225164216.21124-12-noltari@gmail.com>
+In-Reply-To: <20210225164216.21124-12-noltari@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 2 Mar 2021 16:28:54 +0100
-Message-ID: <CACRpkdbuOJUjvmJ2STzfT+2JHCC9UpGnD4LuBYRFO3BEv=CsiQ@mail.gmail.com>
-Subject: Re: [PATCH 10/12] pinctrl: add a pincontrol driver for BCM63268
+Date:   Tue, 2 Mar 2021 16:29:28 +0100
+Message-ID: <CACRpkdbnNEE_c5VHv=42rvKzYz9rMw6JpnbWqnK0mLeAy656=g@mail.gmail.com>
+Subject: Re: [PATCH 11/12] Documentation: add BCM6318 pincontroller binding documentation
 To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
 Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -68,14 +68,20 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Thu, Feb 25, 2021 at 5:42 PM =C3=81lvaro Fern=C3=A1ndez Rojas
 <noltari@gmail.com> wrote:
 
-> Add a pincontrol driver for BCM63268. BCM63268 allows muxing GPIOs
-> to different functions. Depending on the mux, these are either single
-> pin configurations or whole pin groups.
+> Add binding documentation for the pincontrol core found in BCM6318 SoCs.
 >
 > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
 > Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
 
-Same comments as the other drivers :)
+> +  interrupts-extended:
+> +    description:
+> +      One interrupt per each of the 2 GPIO ports supported by the contro=
+ller,
+> +      sorted by port number ascending order.
+> +    minItems: 2
+> +    maxItems: 2
+
+Same comment, hierarchical.
 
 Yours,
 Linus Walleij
