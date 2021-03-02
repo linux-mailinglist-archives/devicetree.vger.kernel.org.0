@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC9332AAED
+	by mail.lfdr.de (Postfix) with ESMTP id 0AEA732AAEC
 	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:04:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1577448AbhCBUA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:00:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59878 "EHLO
+        id S1577381AbhCBUAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:00:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379048AbhCBJiz (ORCPT
+        with ESMTP id S1379045AbhCBJiz (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 04:38:55 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0534C0617A7
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 01:35:34 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id o7-20020a05600c4fc7b029010a0247d5f0so744177wmq.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 01:35:34 -0800 (PST)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 148F0C0617AA
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 01:35:36 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id w203-20020a1c49d40000b029010c706d0642so759391wma.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 01:35:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=UwcG/UbYxOwu/Rok4cktInfyw7lfwNLJYyuoJI7sKTg=;
-        b=vGsFqDqP3CHWV+Yt1menOPl3yoMGtirJWj2Zr9+MyVkCV7uKFvnywi7OQlvSvGy3RW
-         rUqU7p3fe+muXm5qv95Ab6t47/zFtZqZQIrBhkgmESkzZ7VmtiyQgtLPd6ipfJkcWGiR
-         6MkIb1JCZWTNjtNCGUd1S45kmqCIKsbwDrmq0ZvtyLP3ED42TK1HYt1RRpJRZF68XtQm
-         RqMax/jWgba5YRRKgtrUhISzlUhHNjRfbKMPZFVUUDgfT/5A9X7VLoYv3mF5t2phBix6
-         tE6f3/KB8GbwdBSzsU3+lmF0HXaqA9X/RzkPFERfSO8BJtcypuVS0MR0MOQfhVhr+Irt
-         DjsA==
+        bh=fAwFmceeI8PT69Qzv7BbL234cbzlwFiSG33CnDCXBuk=;
+        b=pVUo6Je1O9n09zMy7XzMnOeoxCf2gwvJSFjHsUpFlcN2ASmVQotVn/P3GJaA2vMsPG
+         5Oa73C/bPbSORaAchXIQza2ekIiLHAMzhiBZSlMfN6WbI9De+lb3VRTl3rQ2yQVlngcr
+         V2RHEDDpBUjaRbWMvhc/3ySgIrurqPttQruKNTQF2GytX5XdWxpKNvyRtIS3TzMszIvc
+         JBZB4CBm0UCJiSKiLxjvSyjWHHMuuOuEHyTWoD+ba6Xp8wX8IFgRMCwyw68DBIQ5z2iC
+         eWdpOaKbSD5yQITmiRYw1xTk99A7N0QY50S3SPObJAaXzoV7J2H4ZrpqEenmZmu1CZJM
+         pCiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=UwcG/UbYxOwu/Rok4cktInfyw7lfwNLJYyuoJI7sKTg=;
-        b=BUs1nse90wgyfeSHYwX9MOpMjhTriHKwqmPsxyYaXY++u9+J/pLVZQJW6h8+XH+RnJ
-         pfk522+s6fpp3u2sLSS4++BiVI7ih4xfIaqhUFtmCXqLHbkj7vFOX/2nfx2aqEzOAtpN
-         jK3PV5NFQeLd7dg6rWgbSJKggWzGOvNMOHdSSRO2CP4n7OG1kAb4w2p6nFsHUKyFXtrO
-         prjghTtCfcY0qq3bwSABFj7/icaOtiGuLu72vNXxgXGMd5AKy1vImVtNMU9n3MXgI1wr
-         u3BEpmryPMAHObiXRmDOC7exzh3YEQaSYtqZAvRfGVt5Gz8ALDHla3r34K2YCoubWgNJ
-         8eqg==
-X-Gm-Message-State: AOAM531CR/P2RQZo8ugYTD7p03ld93BUyzAAZkboTn0zCU8Gh/3M5P6s
-        BybpmL3ualIsZdILTzKOGTpdzA==
-X-Google-Smtp-Source: ABdhPJx3IarwrxvGVNUDDDTxKQdBz1ESv5vuEdngsYCCDXK+5PM6f0H2Y/ifeQTqAjmXHfnwbdzQBQ==
-X-Received: by 2002:a1c:ac86:: with SMTP id v128mr2993828wme.175.1614677733641;
-        Tue, 02 Mar 2021 01:35:33 -0800 (PST)
+        bh=fAwFmceeI8PT69Qzv7BbL234cbzlwFiSG33CnDCXBuk=;
+        b=LJtMZYm3Ly7EQKQnWyJu2DSohT3oGx5J86s8YWMUzzTr0vf3Bcf671FisMQDdIdakn
+         /m8p/b/R6Hr+qy7h/eCgRnXsmj3tMeLlhYP6M6/oW7OH+QPDi/1W/Dzw/vlPQeszJeTD
+         2fQW48+0nUkVST+a7OGwQ2MSUK0iO8hMYnnmtoBfGBmWw081XGj7GgLgNgPbQzooCdGR
+         /KjV3hXXmtobW4Y4GQUgIuN8naV+A89NVkul7U1armJmzIU0q2cdMcFjPPWMixpye9zJ
+         rL3XVBTK6Vxmd4m6WCfp9KbnAAzVzkQMZHXH/YqGOBmM33Jgp7osCoV2nELuO8tDpWf8
+         61Qg==
+X-Gm-Message-State: AOAM532UuRiSTDA/kww7oF7D6ku2BUN1TqRayTeMp5QTYKGQN1Gf/8sh
+        QqQimiYEagCsuMOqiG0m9++VEw==
+X-Google-Smtp-Source: ABdhPJwrpaQozpbifmdBMiCZvNYDUDCjs8CDLKRQmFMc/2Y3eNN20yvyuRxJXyxFUTgbOPqB1BFNww==
+X-Received: by 2002:a1c:a504:: with SMTP id o4mr3053405wme.174.1614677734793;
+        Tue, 02 Mar 2021 01:35:34 -0800 (PST)
 Received: from localhost.localdomain ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id w131sm1963818wmb.8.2021.03.02.01.35.32
+        by smtp.gmail.com with ESMTPSA id w131sm1963818wmb.8.2021.03.02.01.35.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Mar 2021 01:35:33 -0800 (PST)
+        Tue, 02 Mar 2021 01:35:34 -0800 (PST)
 From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
 To:     joro@8bytes.org, will@kernel.org
 Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
@@ -61,12 +61,10 @@ Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
         shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
         zhukeqian1@huawei.com, wangzhou1@hisilicon.com,
         Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: [PATCH v13 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from IOMMU_DEV_FEAT_SVA
-Date:   Tue,  2 Mar 2021 10:26:39 +0100
-Message-Id: <20210302092644.2553014-4-jean-philippe@linaro.org>
+        David Woodhouse <dwmw2@infradead.org>
+Subject: [PATCH v13 04/10] iommu/vt-d: Support IOMMU_DEV_FEAT_IOPF
+Date:   Tue,  2 Mar 2021 10:26:40 +0100
+Message-Id: <20210302092644.2553014-5-jean-philippe@linaro.org>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210302092644.2553014-1-jean-philippe@linaro.org>
 References: <20210302092644.2553014-1-jean-philippe@linaro.org>
@@ -76,60 +74,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some devices manage I/O Page Faults (IOPF) themselves instead of relying
-on PCIe PRI or Arm SMMU stall. Allow their drivers to enable SVA without
-mandating IOMMU-managed IOPF. The other device drivers now need to first
-enable IOMMU_DEV_FEAT_IOPF before enabling IOMMU_DEV_FEAT_SVA. Enabling
-IOMMU_DEV_FEAT_IOPF on its own doesn't have any effect visible to the
-device driver, it is used in combination with other features.
+Allow drivers to query and enable IOMMU_DEV_FEAT_IOPF, which amounts to
+checking whether PRI is enabled.
 
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
+Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
 Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 ---
-Cc: Arnd Bergmann <arnd@arndb.de>
 Cc: David Woodhouse <dwmw2@infradead.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Joerg Roedel <joro@8bytes.org>
 Cc: Lu Baolu <baolu.lu@linux.intel.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
-Cc: Zhou Wang <wangzhou1@hisilicon.com>
 ---
- include/linux/iommu.h | 20 +++++++++++++++++---
- 1 file changed, 17 insertions(+), 3 deletions(-)
+ drivers/iommu/intel/iommu.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-index 16ce75693d83..45c4eb372f56 100644
---- a/include/linux/iommu.h
-+++ b/include/linux/iommu.h
-@@ -156,10 +156,24 @@ struct iommu_resv_region {
- 	enum iommu_resv_type	type;
- };
+diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
+index ee0932307d64..c5c5fd444779 100644
+--- a/drivers/iommu/intel/iommu.c
++++ b/drivers/iommu/intel/iommu.c
+@@ -5343,6 +5343,8 @@ static int siov_find_pci_dvsec(struct pci_dev *pdev)
+ static bool
+ intel_iommu_dev_has_feat(struct device *dev, enum iommu_dev_features feat)
+ {
++	struct device_domain_info *info = get_domain_info(dev);
++
+ 	if (feat == IOMMU_DEV_FEAT_AUX) {
+ 		int ret;
  
--/* Per device IOMMU features */
-+/**
-+ * enum iommu_dev_features - Per device IOMMU features
-+ * @IOMMU_DEV_FEAT_AUX: Auxiliary domain feature
-+ * @IOMMU_DEV_FEAT_SVA: Shared Virtual Addresses
-+ * @IOMMU_DEV_FEAT_IOPF: I/O Page Faults such as PRI or Stall. Generally
-+ *			 enabling %IOMMU_DEV_FEAT_SVA requires
-+ *			 %IOMMU_DEV_FEAT_IOPF, but some devices manage I/O Page
-+ *			 Faults themselves instead of relying on the IOMMU. When
-+ *			 supported, this feature must be enabled before and
-+ *			 disabled after %IOMMU_DEV_FEAT_SVA.
-+ *
-+ * Device drivers query whether a feature is supported using
-+ * iommu_dev_has_feature(), and enable it using iommu_dev_enable_feature().
-+ */
- enum iommu_dev_features {
--	IOMMU_DEV_FEAT_AUX,	/* Aux-domain feature */
--	IOMMU_DEV_FEAT_SVA,	/* Shared Virtual Addresses */
-+	IOMMU_DEV_FEAT_AUX,
-+	IOMMU_DEV_FEAT_SVA,
-+	IOMMU_DEV_FEAT_IOPF,
- };
+@@ -5357,13 +5359,13 @@ intel_iommu_dev_has_feat(struct device *dev, enum iommu_dev_features feat)
+ 		return !!siov_find_pci_dvsec(to_pci_dev(dev));
+ 	}
  
- #define IOMMU_PASID_INVALID	(-1U)
+-	if (feat == IOMMU_DEV_FEAT_SVA) {
+-		struct device_domain_info *info = get_domain_info(dev);
++	if (feat == IOMMU_DEV_FEAT_IOPF)
++		return info && info->pri_supported;
+ 
++	if (feat == IOMMU_DEV_FEAT_SVA)
+ 		return info && (info->iommu->flags & VTD_FLAG_SVM_CAPABLE) &&
+ 			info->pasid_supported && info->pri_supported &&
+ 			info->ats_supported;
+-	}
+ 
+ 	return false;
+ }
+@@ -5374,6 +5376,9 @@ intel_iommu_dev_enable_feat(struct device *dev, enum iommu_dev_features feat)
+ 	if (feat == IOMMU_DEV_FEAT_AUX)
+ 		return intel_iommu_enable_auxd(dev);
+ 
++	if (feat == IOMMU_DEV_FEAT_IOPF)
++		return intel_iommu_dev_has_feat(dev, feat) ? 0 : -ENODEV;
++
+ 	if (feat == IOMMU_DEV_FEAT_SVA) {
+ 		struct device_domain_info *info = get_domain_info(dev);
+ 
 -- 
 2.30.1
 
