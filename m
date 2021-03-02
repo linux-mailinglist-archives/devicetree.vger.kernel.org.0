@@ -2,129 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3421332AB8D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:35:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B17F32AB8F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:35:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1837024AbhCBU3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:29:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47934 "EHLO
+        id S1837028AbhCBU3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:29:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1448132AbhCBRaZ (ORCPT
+        with ESMTP id S1446557AbhCBRaZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 12:30:25 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47437C061221;
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C89C061222;
         Tue,  2 Mar 2021 08:53:59 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id a17so24833909ljq.2;
+Received: by mail-wr1-x42b.google.com with SMTP id u16so2619486wrt.1;
         Tue, 02 Mar 2021 08:53:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=faWbq/WMv3ZR1gToxIr2aLjBRTdDNxo7+ThXJjNGaIo=;
-        b=hmBekdGUxUExGQJ6JMFq6hE1MDzFwReePVI8GOf5z4T/95msnW4QO3MIEmsO/NaKEZ
-         LQfdb7pOMUeCUrqJguC1IlMp+uzDJsrDME3ZJ4TsZsp8DARjnnLKhq2geD/GpRoRy+qk
-         cK4b3GUoy4msSiT31Kdapphy7vtzuw8gdONd1mdwu2R8etVGOFwIvxuofeUW0ov7Kxv2
-         +N+ERu2Szxo46lPTqNtzQbUcmsKEovWNcqH4YXgOc9MWnQmlPjDlE5Y1jvsqYLYljb7x
-         HmARZIYImzMPiiltdmcOdY6Jm7gSjKsYT2xwxXTTekQIGMZxxulQAND9KJOoHvar31hO
-         91uQ==
+        bh=kfPm/MmuHPyrXBT7pNFqsbQwaiDlFHhCn7fgYFeu560=;
+        b=hctPdJW/dPVgJ1xsTxJMTvAmcnNlhUGPfqNozV8+fE1LtQNVt1cRtFpPCPEu+6jwNH
+         K3jepAkAnz6keN5HcMJzFUdReqiJJhG+6/hqaoxsiGThlmB7/ofnfMZLBWvRuZts6Lda
+         Gcx5L6W79retykYR6Fa7uGVGu9HqDkxGPwhRhnaZy0GR1bu82botLt5GEYGdjO3g09Gc
+         ogRvtqFoUh/x6msYMc3pyCHc4lP5jC4tVSun7QhDh4cQM5s6xisILE+oseG2liqL4xlP
+         /rO+apF6MH0+kGNILspQVlL/dOsIp6jBamTzOQrC5d1kQ6VchuL66eoEGVtURFYUwoT1
+         dbmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=faWbq/WMv3ZR1gToxIr2aLjBRTdDNxo7+ThXJjNGaIo=;
-        b=AjMM2zPLZ0vA7OXF6y4anfSf53FrNJyWkGmrR6ptVFk2aOccYsbI+mTSmCaVcibxTr
-         3IVNoyVEGNGwdzCGps9EUD2NT7ElxWX5wZIAvGdqJaQBmMg2D4Hy77qgV2tRG/fIZNNJ
-         VYJqJ4SkrtVW7iDIPVWn1sEWw6w+wGRhUG/YFc+fQHmOgmS/HgHtOz6ECDx+d35oYGwO
-         BII8h+qoDWr7nZxJpOT3PJ/54Fg19ARzcA72XhsicGczuwka5iAwkGf6PLXLdNU+JjPv
-         3zAMPf+EpSSUbfNv2Nd58vZtivoe/M4Fi+kSXQwqoR83bRJp0GGA8LZqCnmimVVX96ZF
-         GXIw==
-X-Gm-Message-State: AOAM5304r+NFavhdWBDLKx/xSnbexHrUyspzRz/LrDZU9zEeA15LYcEv
-        1xO1Wr0FVazDFkhcLfF60vw=
-X-Google-Smtp-Source: ABdhPJw/W01gIjsqpMNr8JSw/9SiRbUKcitCde7eXbhpqsWpDs9pwVC/y07CdIyBdlketTmha75GtQ==
-X-Received: by 2002:a2e:2e19:: with SMTP id u25mr38659lju.487.1614704037798;
+        bh=kfPm/MmuHPyrXBT7pNFqsbQwaiDlFHhCn7fgYFeu560=;
+        b=hqV8XW7kVQhhMhBv2ENjyyST0p5RvOlb3jSZy0Dfz+BDZM3DTi4PrNpZMZ5eLcbjF5
+         mRGe+/68pwzqcbrjL1Bp6ytlPfMXTXT7eJR/o/ddLhDprgzrfcpJEzKqvZNiurgjJ5K7
+         /pyB/pgofzSm5v0kZST+XaAK0Im/UABsU8+Pe1z7IUwUFV0bRXCEGBeXMQwRnXRE7n1o
+         OgbOix10Fl1vG+Zfk4wk6osY3uViV3PR/jpwUUgqYucvbp7NYsyF7I/+ltlSS6wyeyXn
+         vtzWH8FO/p6KXegrZkAdCPFVuhXfBD226dnjRCKJXQUcPLC465gaApfn4vGKQl8jOZKh
+         v5dw==
+X-Gm-Message-State: AOAM530993iGVMUBwNZl9xs4nAtw9EuxaTyCWJOnNK3VJSlmDJGrwiYI
+        jxWmsREgDXI+ozhlHH0jXBDo7PHlILhy0Q==
+X-Google-Smtp-Source: ABdhPJxXElj6RcrAJn+xaBwYo7URkz5TdLX+KTvayClag0RjH5JFA0HXEoGf5v9LMODPagMEoQnqOg==
+X-Received: by 2002:a5d:6810:: with SMTP id w16mr9328385wru.333.1614704037903;
         Tue, 02 Mar 2021 08:53:57 -0800 (PST)
-Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id g2sm2894780ljk.15.2021.03.02.08.53.55
+Received: from [192.168.1.10] (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
+        by smtp.gmail.com with ESMTPSA id v6sm29753390wrx.32.2021.03.02.08.53.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Mar 2021 08:53:56 -0800 (PST)
-Subject: Re: [PATCH v2 1/3] mtd: partitions: ofpart: skip subnodes parse with
- compatible
-To:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Richard Weinberger <richard@nod.at>
-Cc:     devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20210216212638.28382-1-ansuelsmth@gmail.com>
- <20210216212638.28382-2-ansuelsmth@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <d504a4df-b1f7-b7c9-e62a-599d114d8a18@gmail.com>
-Date:   Tue, 2 Mar 2021 17:53:54 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        Tue, 02 Mar 2021 08:53:57 -0800 (PST)
+Subject: Re: [PATCH 01/12] Documentation: add BCM6328 pincontroller binding
+ documentation
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210225164216.21124-1-noltari@gmail.com>
+ <20210225164216.21124-2-noltari@gmail.com>
+ <CACRpkdbjhTfQ4EcjndgE_Y7_uCT2ohadTjj-rrQAFNm+c0whRg@mail.gmail.com>
+ <CACRpkdaN3pYMDiPkk109SwOKF56Oxe14_bC5edftGGG0PL7VsA@mail.gmail.com>
+From:   =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>
+Message-ID: <418daebd-b35b-2edc-6f33-591bd97ba1f9@gmail.com>
+Date:   Tue, 2 Mar 2021 17:53:56 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-In-Reply-To: <20210216212638.28382-2-ansuelsmth@gmail.com>
+In-Reply-To: <CACRpkdaN3pYMDiPkk109SwOKF56Oxe14_bC5edftGGG0PL7VsA@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.02.2021 22:26, Ansuel Smith wrote:
-> If a partitions structure is not used, parse direct subnodes as
-> fixed-partitions only if a compatible is not found or is of type
-> fixed-partition. A parser can be used directly on the subnode and
-> subnodes should not be parsed as fixed-partitions by default.
+Hi Linus,
+
+I think it's better if we leave the interrupts out for now.
+It's not critical and it can be added later.
+
+Best regards,
+Álvaro.
+
+El 02/03/2021 a las 16:23, Linus Walleij escribió:
+> On Tue, Mar 2, 2021 at 3:57 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>> On Thu, Feb 25, 2021 at 5:42 PM Álvaro Fernández Rojas
+>> <noltari@gmail.com> wrote:
+>>
+>>> Add binding documentation for the pincontrol core found in BCM6328 SoCs.
+>>>
+>>> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
+>>> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
+>> (...)
+>>> +  interrupts-extended:
+>>> +    description:
+>>> +      One interrupt per each of the 4 GPIO ports supported by the controller,
+>>> +      sorted by port number ascending order.
+>>> +    minItems: 4
+>>> +    maxItems: 4
+>>
+>> I don't know if this is advisable, there are different ways
+>> of specifying interrupts so this may become ambiguous,
+>> I think Rob will know how/if to do this though.
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> ---
->   drivers/mtd/parsers/ofpart.c | 5 +++++
->   1 file changed, 5 insertions(+)
+> After reading the code I conclude this gpiochip is hierarchical so this should
+> just be dropped, and we only need interrupt-parent assigned. The
+> driver will know the hardware offsets between the interrupt parent
+> and the GPIO block, this is generally the case for
+> hierarchical interrupt controllers.
 > 
-> diff --git a/drivers/mtd/parsers/ofpart.c b/drivers/mtd/parsers/ofpart.c
-> index daf507c123e6..4b363dd0311c 100644
-> --- a/drivers/mtd/parsers/ofpart.c
-> +++ b/drivers/mtd/parsers/ofpart.c
-> @@ -50,6 +50,11 @@ static int parse_fixed_partitions(struct mtd_info *master,
->   			 master->name, mtd_node);
->   		ofpart_node = mtd_node;
->   		dedicated = false;
-> +
-> +		/* Skip parsing direct subnodes if a compatible is found and is not fixed-partitions */
-> +		if (node_has_compatible(ofpart_node) &&
-> +		    !of_device_is_compatible(ofpart_node, "fixed-partitions"))
-> +			return 0;
->   	} else if (!of_device_is_compatible(ofpart_node, "fixed-partitions")) {
->   		/* The 'partitions' subnode might be used by another parser */
->   		return 0;
-
-I admit I'm not familiar with the old binding, so let me know if my
-understanding is incorrect.
-
-It seems to me however that your change will break parsing in cases
-like:
-
-spi-flash@0 {
-	compatible = "jedec,spi-nor";
-	reg = <0x0>;
-
-	partition@0 {
-		label = "bootloader";
-		reg = <0x0 0x100000>;
-	};
-};
-
-nandcs@0 {
-	compatible = "brcm,nandcs";
-	reg = <0>;
-
-	partition@0 {
-		label = "bootloader";
-		reg = <0x0000000 0x10000>;
-	};
-};
-
-Did we ever use "fixed-partitions" without partitions { } subnode?
+> Yours,
+> Linus Walleij
+> 
