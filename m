@@ -2,129 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D5032ABA5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:38:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D45CE32ABA7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:38:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350873AbhCBUgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:36:21 -0500
-Received: from ms9.eaxlabs.cz ([147.135.177.209]:50686 "EHLO ms9.eaxlabs.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1835437AbhCBTHp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Mar 2021 14:07:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=eaxlabs.cz; s=mail;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject; bh=qZKGz3W2e4Y6Uv/wOhPkXx90yaEZmGLymSnEX5ezPbw=;
-        b=pe+fT21PnkusIjFGGDZcXYQNIw0YEvWCIwTprKhgG+giPVS/wTju96qQV79ZdgqL6gFREGewGjkagf+Fb5rXHIVPGUNZ8muEwzQTfSmA8ZzzjvJy2d+pWGtTgqugoWN5Jod+DPhlWI+R+ooIOAsOkSVaA22PEzT/eKRGLZE+wIQ=;
-Received: from [82.99.129.6] (helo=[10.76.6.112])
-        by ms9.eaxlabs.cz with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.84_2)
-        (envelope-from <devik@eaxlabs.cz>)
-        id 1lHAMF-00035H-3H; Tue, 02 Mar 2021 20:07:01 +0100
-Subject: Re: [PATCH v3 2/2] tty/serial: Add rx-tx-swap OF option to
- stm32-usart
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S1350881AbhCBUhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:37:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43690 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1581706AbhCBTQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 14:16:58 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D08C061793;
+        Tue,  2 Mar 2021 11:16:18 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id u187so3154524wmg.4;
+        Tue, 02 Mar 2021 11:16:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0Ei0wx7aMgKdFu8tGo8KzY1/b9HCMezdr+Ds0iFU6RA=;
+        b=ZnK6LEexHWhlJgjJ3Szgrazaz9Mjhq6XnLE5/Ro1uJNitRNLL2wB4Li/aEiRZ4aEC2
+         ohitChQcGvgMb1rIT0uJZMMTi61UPgql0gFNH7y38rqkal4ZpqxzN09gjA0nsfo7yFkZ
+         RhcqSh8rT8lTaIyzrwNK+0Sy/gIJSPB/NEShoUfyn1PPWSuXiGQAGtdpa5iPj4LuDC+O
+         tZq7crf3Op9kVYKbJajOrIVUS7uTQ/EuZ2n+Mk5Nap9EUObDf3kdq4e4OtBJj7HcGWtI
+         A5IK+2/FqNizUYOQnQ6JS+EeROaOkGLbEce+z/+WNILyYUbJn+1b17z8lN0j4yx9GqSP
+         YnWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0Ei0wx7aMgKdFu8tGo8KzY1/b9HCMezdr+Ds0iFU6RA=;
+        b=O7TDsUbk8w1Dol3l8WC76oK/9/tSVSL/oUTmekVfHrJ1aHC6L+fyqwvk6dHuPuk5bY
+         4H3bRUAOAvivQbtIC5vnTp3OW5qmcsXHkqdPeJAY1FHJMj3PljJrp4gofCdyvaIxYt6d
+         yb/apjaZ7V0pkIZlXO0UuypszKz5z0L6m3YIhhDqRh8CvW6eK2G5nwLjKxTRv1jLvMDn
+         9QPq/Bu4auT9ALSXR9uiehyrFcZjMwWL0ENTp+F/LNte+B4D8HUFlMFO2BipI7vNDOMQ
+         OWVCBxgiH/VeLBjdCuSTg5wUVS/AuydCHaJmwjCmDQrzGth9W7ymgYjh84WoXQHp4ph6
+         aaGA==
+X-Gm-Message-State: AOAM530f/0Vv/FItBgZuwhsVrBrfd+t02qYJNLoMqn0+LmO09T/K29Pt
+        wiZbgGQswWcPXzW5/cZA9000UUe4eNcXtw==
+X-Google-Smtp-Source: ABdhPJxiSghn5fHNkZkuCU1ZRa7ubzIyNRTHD75bWl0D1lnPk1Mna9xUaMxHWoieDaJZD3liZS2Ftg==
+X-Received: by 2002:a1c:f203:: with SMTP id s3mr5438951wmc.152.1614712576915;
+        Tue, 02 Mar 2021 11:16:16 -0800 (PST)
+Received: from skynet.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
+        by smtp.gmail.com with ESMTPSA id l15sm3578862wmh.21.2021.03.02.11.16.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Mar 2021 11:16:15 -0800 (PST)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     Michael Walle <michael@walle.cc>, f.fainelli@gmail.com,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <439a0d7a-cc0e-764b-7ed8-668b5a85f4a7@foss.st.com>
- <20210302131558.19375-1-devik@eaxlabs.cz>
- <20210302131558.19375-2-devik@eaxlabs.cz>
- <aeefa74e-fa19-6c31-5240-0f14fca89298@foss.st.com>
-From:   Martin DEVERA <devik@eaxlabs.cz>
-Message-ID: <13416deb-2a37-dd8e-ed2a-50b74f204f52@eaxlabs.cz>
-Date:   Tue, 2 Mar 2021 20:06:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>, Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/12] pinctrl: add BCM63XX pincontrol support
+Date:   Tue,  2 Mar 2021 20:16:01 +0100
+Message-Id: <20210302191613.29476-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <aeefa74e-fa19-6c31-5240-0f14fca89298@foss.st.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/2/21 6:44 PM, Fabrice Gasnier wrote:
-> On 3/2/21 2:15 PM, Martin Devera wrote:
->> STM32 F7/H7 usarts supports RX & TX pin swapping.
->> Add option to turn it on.
->> Tested on STM32MP157.
->>
->> Signed-off-by: Martin Devera <devik@eaxlabs.cz>
->> ---
->>   drivers/tty/serial/stm32-usart.c | 11 ++++++++++-
->>   drivers/tty/serial/stm32-usart.h |  5 +++++
->>   2 files changed, 15 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/tty/serial/stm32-usart.c b/drivers/tty/serial/stm32-usart.c
->> index b3675cf25a69..d390f7da1441 100644
->> --- a/drivers/tty/serial/stm32-usart.c
->> +++ b/drivers/tty/serial/stm32-usart.c
->> @@ -644,6 +644,12 @@ static int stm32_usart_startup(struct uart_port *port)
->>   	if (ret)
->>   		return ret;
->>   
->> +	if (stm32_port->swap) {
->> +		val = readl_relaxed(port->membase + ofs->cr2);
->> +		val |= USART_CR2_SWAP;
->> +		writel_relaxed(val, port->membase + ofs->cr2);
->> +	}
->> +
->>   	/* RX FIFO Flush */
->>   	if (ofs->rqr != UNDEF_REG)
->>   		stm32_usart_set_bits(port, ofs->rqr, USART_RQR_RXFRQ);
->> @@ -758,7 +764,7 @@ static void stm32_usart_set_termios(struct uart_port *port,
->>   	cr1 = USART_CR1_TE | USART_CR1_RE;
->>   	if (stm32_port->fifoen)
->>   		cr1 |= USART_CR1_FIFOEN;
->> -	cr2 = 0;
->> +	cr2 = stm32_port->swap ? USART_CR2_SWAP : 0;
->>   	cr3 = readl_relaxed(port->membase + ofs->cr3);
->>   	cr3 &= USART_CR3_TXFTIE | USART_CR3_RXFTCFG_MASK | USART_CR3_RXFTIE
->>   		| USART_CR3_TXFTCFG_MASK;
->> @@ -1006,6 +1012,9 @@ static int stm32_usart_init_port(struct stm32_port *stm32port,
->>   			return stm32port->wakeirq ? : -ENODEV;
->>   	}
->>   
->> +	stm32port->swap = stm32port->info->cfg.has_swap &&
->> +		of_property_read_bool(pdev->dev.of_node, "rx-tx-swap");
->> +
->>   	stm32port->fifoen = stm32port->info->cfg.has_fifo;
->>   
->>   	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> diff --git a/drivers/tty/serial/stm32-usart.h b/drivers/tty/serial/stm32-usart.h
->> index cb4f327c46db..bd18dd1c1bcd 100644
->> --- a/drivers/tty/serial/stm32-usart.h
->> +++ b/drivers/tty/serial/stm32-usart.h
->> @@ -25,6 +25,7 @@ struct stm32_usart_offsets {
->>   struct stm32_usart_config {
->>   	u8 uart_enable_bit; /* USART_CR1_UE */
->>   	bool has_7bits_data;
->> +	bool has_swap;
->>   	bool has_wakeup;
->>   	bool has_fifo;
->>   	int fifosize;
->> @@ -55,6 +56,7 @@ struct stm32_usart_info stm32f4_info = {
->>   	.cfg = {
->>   		.uart_enable_bit = 13,
->>   		.has_7bits_data = false,
->> +		.has_swap = false,
-> Hi Martin,
->
-> Only one minor comment from me here. No need to add a false (zero)
-> initialization in this struct. I'm not sure why this is the case for the
-> has_7bits_data here...
->
-> With that fixed, you can add my:
-> Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
->
-The has_7bits_data was what made me a bit unsure. Ok fixed now.
-Thank you for your review.
+First of all, I've based this on the patches sent by Jonas Gorski back in
+2016:
+https://www.spinics.net/lists/linux-gpio/msg15983.html
+http://patchwork.ozlabs.org/project/linux-gpio/patch/1471604025-21575-2-git-send-email-jonas.gorski@gmail.com/
 
-Martin
+I've tried to address all coments from Linus Walleij, but I know that
+this may still need some other modifications
+
+This patchset adds appropriate binding documentation and drivers for
+pin controller cores found in the BCM63XX MIPS SoCs currently supported.
+
+While the GPIO part is always the same, the pinmux part varies quite a
+lot between different SoCs. Sometimes they have defined groups which
+can be muxed into different functions, sometimes each function has a
+different group. Sometimes you can mux individual pins. Often it is a
+combination of single pins and groups.
+
+Some core versions require the GPIO direction to be set according to the
+function, most do not. Sometimes the mux register(s) contain bits for
+unrelated other functions.
+
+v2: introduce changes suggested by Linus Walleij and remove interrupts
+ - In order to use GPIO_REGMAP, the need to get gpio_chip from gpio_regmap
+ and use it for pinctrl_add_gpio_range() and gpio_chip.direction_input()
+ and gpio_chip.direction_output().
+
+Álvaro Fernández Rojas (12):
+  Documentation: add BCM6328 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6328
+  Documentation: add BCM6358 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6358
+  Documentation: add BCM6362 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6362
+  Documentation: add BCM6368 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6368
+  Documentation: add BCM63268 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM63268
+  Documentation: add BCM6318 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6318
+
+ .../pinctrl/brcm,bcm6318-pinctrl.yaml         | 161 ++++
+ .../pinctrl/brcm,bcm63268-pinctrl.yaml        | 182 +++++
+ .../pinctrl/brcm,bcm6328-pinctrl.yaml         | 145 ++++
+ .../pinctrl/brcm,bcm6358-pinctrl.yaml         | 111 +++
+ .../pinctrl/brcm,bcm6362-pinctrl.yaml         | 224 ++++++
+ .../pinctrl/brcm,bcm6368-pinctrl.yaml         | 235 ++++++
+ drivers/pinctrl/bcm/Kconfig                   |  68 ++
+ drivers/pinctrl/bcm/Makefile                  |   6 +
+ drivers/pinctrl/bcm/pinctrl-bcm6318.c         | 574 ++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm63268.c        | 726 ++++++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6328.c         | 481 ++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6358.c         | 429 +++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6362.c         | 699 +++++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6368.c         | 587 ++++++++++++++
+ 14 files changed, 4628 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6318-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm63268-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6358-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6362-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6368-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6318.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm63268.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6328.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6358.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6362.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6368.c
+
+-- 
+2.20.1
 
