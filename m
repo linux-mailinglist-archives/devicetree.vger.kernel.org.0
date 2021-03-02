@@ -2,164 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B4032AB43
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:21:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2865E32AB44
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:21:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1582049AbhCBUSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:18:51 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45694 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1448383AbhCBOUP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Mar 2021 09:20:15 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B3A3964F0B
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 14:19:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614694773;
-        bh=JDQAz+I9eHAeU12zyKBtdKJChj5p222jOe4viTIAEjg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BF4fFlkgV8NkXYt5K2KgCgDLEhKm1PSe95iGzC0p6G9J7a4b1/gwi8xsiGal+Kby9
-         Pu+YHVxXc5tdK4rkGOQIdyTkoGeqHe50W8QNMjYvxZGoMWc9Q/AYWf+RLUm+Yh60gA
-         3Pnh5FPaBYrl4XlYtHHuPE4ZKRvsaZc6Rk4sE67LZ0tvEHbtNVxXvwCIioVtZadJ3u
-         jzNwfNlfESfDbMpBj4s28zDtNS5Du7KRxVKDFBMb+3eOQLNl+jEuUeKkWh5sxED+WE
-         yUL0PvPPpsT/pWGkQdtMnwVyYv/I7uIV8VMGg7LuIBwPlTOUrkvX2x9W/R0ICvFrLX
-         N3BU2A1+qbgGQ==
-Received: by mail-ej1-f42.google.com with SMTP id gt32so24001249ejc.6
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 06:19:32 -0800 (PST)
-X-Gm-Message-State: AOAM531oSMzGR401fE+rkWE09F91UKxqc/RB+yTZKZiP0mGae45TA6pB
-        f/NRKO8uJiH8BvZ4pcGW5EJXYfBVE1ztIc0U+w==
-X-Google-Smtp-Source: ABdhPJwXDbc8Rt/y5RQViqWImIKzjDkRQOw3ETP48pC5Tr87YH0R5I/nG3ZJefBWhC25JK8Wq2mo2oVp7Dp2QfpW5C4=
-X-Received: by 2002:a17:906:7f84:: with SMTP id f4mr5982042ejr.525.1614694771146;
- Tue, 02 Mar 2021 06:19:31 -0800 (PST)
+        id S1582052AbhCBUS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:18:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36230 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351398AbhCBOWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 09:22:36 -0500
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0600EC061794
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 06:21:44 -0800 (PST)
+Received: by mail-qk1-x730.google.com with SMTP id s7so10182096qkg.4
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 06:21:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=kee+UA5TXDxvMB3TFGxW28m2UMdaJ7A/2xkNq7z3cSI=;
+        b=e39Nchv77l+ynKsrYV05zsC5z6zsQblBBCkMmlCS0Nk+KaVDCB7xnU776iswNZ+lJA
+         KYt7RKxTtg9tW6RB8dcmff+/5t2frXj84KX4KVfcYsHAvRnn67wHMXFL2Aehc1ZUR37B
+         zho9/jeXrsuXN3M2c70W+Rz743MlIx81J6TuVip6IyC6KNC/GAeToDGubkFzNtJBJoBE
+         gDzfPEQBw/uOjc+RbxIJsb3OKomRA9ox20taLtf/blzILY0c8JLoMvSjuvt004rIF08p
+         MSycZQbp52LGriNe7wP3/hWWtcnrwP7QnltVP3CXMvxzcFBBAdJA2xrd5FrkMULrckDA
+         s7wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=kee+UA5TXDxvMB3TFGxW28m2UMdaJ7A/2xkNq7z3cSI=;
+        b=tOoA/LTAkXIvckLU3NLpYtF3aoBh9Lk3/h9frJsrVVyH/jEAwHriRc+gYrT8wk0ND1
+         9ujEk8iJ3n7lC7rvnBLMRlT3gtx3VYoljpfLCjiJOTEQJcwEVWw5YMczxn36gbjg0TEg
+         wtLNDL77ngb3NWAUhkpbLvnfxWUT9m6shVvrDPbL5Ufp77akE7dgIJ+Eh1u+rPFEBlnt
+         GwAcnjzywJ/jwz5ZZ3IW/DwzZwafez7V9cl9NBi8vCIqeuz3+Y48rodUMclbgZk4SP2N
+         GRtFKHZ1hGxaMA0qdmYtQ/3hdsr2ENnoBJNU2OTmiicnU+b+54gUO2yqa/6VJ+PanAt0
+         lT6A==
+X-Gm-Message-State: AOAM531VIMxfA3lYOQqynTcacmek2SlpRzEZuhbkFVKKTD8YPDeMwYxn
+        NHp4q3Z4m90y9E3EyIR0baD+49OOUhweLDo5MoQSqg==
+X-Google-Smtp-Source: ABdhPJxkenj6uB7tiL4OOSTfKwQtKOoFyq46EiVACTC79AgprGTPmFGiJwwVefp5vv8K8ecG7PXOoBsuXuElxXANK/U=
+X-Received: by 2002:a37:a016:: with SMTP id j22mr7975243qke.486.1614694903823;
+ Tue, 02 Mar 2021 06:21:43 -0800 (PST)
 MIME-Version: 1.0
-References: <20210114111504.2adz4a7tfm3edmul@gilmour> <20210201095235.bfj7an4m47kom45n@gilmour>
- <20210219092450.vmfqucvwbq2aq3fc@gilmour> <CAL_JsqL--8Bq7cRPs_BrmnCQkTF3DTeJ6nSkV6h_8dCcB0poVw@mail.gmail.com>
- <20210224095439.rl6ublxl55nyvxs4@gilmour> <CAL_Jsq+wR6zov2FmEqjDFnydmoZd9WFqdbAqR-Tew3b3w50=HQ@mail.gmail.com>
- <20210302102543.logemybkzqhebzxa@gilmour>
-In-Reply-To: <20210302102543.logemybkzqhebzxa@gilmour>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 2 Mar 2021 08:19:16 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+bqrvJ6MkLeutsjHX3+Qpah99mGhCOqR8rxwgcz=9aiQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+bqrvJ6MkLeutsjHX3+Qpah99mGhCOqR8rxwgcz=9aiQ@mail.gmail.com>
-Subject: Re: led-gpios binding reporting a weird error
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
+References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
+ <1614155592-14060-4-git-send-email-skakit@codeaurora.org> <50151f4b-298c-f0ee-a88f-7bdd945ad249@linaro.org>
+ <51390b828a5d534e308460098f1b9af0@codeaurora.org> <CAA8EJpqN-jb3b3yHTHwrQQj_h3M-yxAvX7Hz7bNSV3_NBCJEwQ@mail.gmail.com>
+ <da15c05877c345f2aeb51649c075a95c@codeaurora.org>
+In-Reply-To: <da15c05877c345f2aeb51649c075a95c@codeaurora.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 2 Mar 2021 17:21:32 +0300
+Message-ID: <CAA8EJprc24gTfLaffsrKeJ9MOv2m8B1L168VV4uNm=xsjnF5ZQ@mail.gmail.com>
+Subject: Re: [PATCH 3/7] regulator: qcom-rpmh: Correct the pmic5_hfsmps515 buck
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, kgunda@codeaurora.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 2, 2021 at 4:25 AM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Hi,
->
-> On Mon, Mar 01, 2021 at 04:29:10PM -0600, Rob Herring wrote:
-> > On Wed, Feb 24, 2021 at 3:54 AM Maxime Ripard <maxime@cerno.tech> wrote:
-> > >
-> > > Hi Rob,
-> > >
-> > > On Fri, Feb 19, 2021 at 05:21:49PM -0600, Rob Herring wrote:
-> > > > On Fri, Feb 19, 2021 at 3:24 AM Maxime Ripard <maxime@cerno.tech> wrote:
-> > > > >
-> > > > > On Mon, Feb 01, 2021 at 10:52:35AM +0100, Maxime Ripard wrote:
-> > > > > > On Thu, Jan 14, 2021 at 12:15:04PM +0100, Maxime Ripard wrote:
-> > > > > > > Hi Rob,
-> > > > > > >
-> > > > > > > I just encountered a weird error with the led-gpios bindings.
-> > > >
-> > > > Sorry lost in the ether...
-> > > >
-> > > > > > >
-> > > > > > > Indeed, if we run, on today's next and the current master of the
-> > > > > > > dt-schema tools:
-> > > > > > >
-> > > > > > > DT_SCHEMA_FILES=Documentation/devicetree/bindings/leds/leds-gpio.yaml make -j18 dt_binding_check
-> > > > > > >
-> > > > > > > we end up with:
-> > > > > > >   CHECK   Documentation/devicetree/bindings/leds/leds-gpio.example.dt.yaml
-> > > > > > > /home/max/Work/allwinner/build/arm64/Documentation/devicetree/bindings/leds/leds-gpio.example.dt.yaml: leds: led-1:default-state:0: 'keep' is not of type 'array'
-> > > > > > >     From schema: /home/max/Work/repos/linux/Documentation/devicetree/bindings/leds/leds-gpio.yaml
-> > > > > > > /home/max/Work/allwinner/build/arm64/Documentation/devicetree/bindings/leds/leds-gpio.example.dt.yaml: run-control: led-0:default-state:0: 'off' is not of type 'array'
-> > > > > > >     From schema: /home/max/Work/repos/linux/Documentation/devicetree/bindings/leds/leds-gpio.yaml
-> > > > > > > /home/max/Work/allwinner/build/arm64/Documentation/devicetree/bindings/leds/leds-gpio.example.dt.yaml: run-control: led-1:default-state:0: 'on' is not of type 'array'
-> > > > > > >     From schema: /home/max/Work/repos/linux/Documentation/devicetree/bindings/leds/leds-gpio.yaml
-> > > > > > >
-> > > > > > > What's being especially weird is that linux,default-trigger has the
-> > > > > > > exact same definition than default-state in leds/common.yaml (aside from
-> > > > > > > the set of valid values), and just works fine.
-> > > > > > >
-> > > > > > > Changing the name of default-state to something else also doesn't change
-> > > > > > > anything, so it doesn't look like this is some other schema interfering.
-> > > > > > > Do you have an idea?
-> > > >
-> > > > What does processed-schema-examples.json (run thru json_pp) look like
-> > > > for 'default-state'?
-> > >
-> > > The whole file is here: https://paste.ack.tf/fd7597@raw
-> > >
-> > > But the default-state schema itself is:
-> > >
-> > >          "default-state" : {
-> > >             "additionalItems" : false,
-> > >             "allOf" : [
-> > >                {
-> > >                   "$ref" : "/schemas/types.yaml#/definitions/string"
-> > >                }
-> > >             ],
-> > >             "default" : false,
-> > >             "items" : [
-> > >                {
-> > >                   "additionalItems" : false,
-> > >                   "items" : [
-> > >                      {
-> > >                         "enum" : [
-> > >                            true,
-> > >                            false,
-> > >                            "keep"
-> > >                         ]
-> > >                      }
-> > >                   ],
-> > >                   "maxItems" : 1,
-> > >                   "minItems" : 1,
-> > >                   "type" : "array"
-> > >                }
-> > >             ],
-> > >             "maxItems" : 1,
-> > >             "minItems" : 1,
-> > >             "type" : "array"
-> > >          },
-> > >
-> > > It looks like the error comes from on and off being expanded to true and
-> > > false for some reason, instead of being considered as string
-> >
-> > on/off was treated as boolean in YAML 1.1. While the files say 1.2,
-> > dtschema changes them to 1.1 because ruamel.yaml at one point didn't
-> > support 1.2 with the C parser. It looks like the C and python parsers
-> > have different behavior, and I think you don't have the C based parser
-> > installed. The patch below fixes the problem for me if I force using
-> > the Python parser. Really, we should probably ensure the C parser is
-> > installed.
-> >
-> > I am confused now why I added this code a year ago, but 1.2 support
-> > was added back in 2018.
-> >
-> > 8<---------------------------------------------------
-> > diff --git a/dtschema/lib.py b/dtschema/lib.py
-> > index b18eda43fb12..d51ace7fe14f 100644
-> > --- a/dtschema/lib.py
-> > +++ b/dtschema/lib.py
-> > @@ -107,9 +107,7 @@ def do_load(filename):
-> >          if filename.endswith('.json'):
-> >              return json.load(f)
-> >
-> > -        # ruamel C loader doesn't support 1.2, but 1.1 is good enough for us
-> > -        tmp = f.read().replace('YAML 1.2', 'YAML 1.1')
-> > -        return yaml.load(tmp)
-> > +        return yaml.load(f.read())
->
-> Yeah, that fixes things for me too (together with installing the C
-> version of ruamel)
+Hello,
 
-I'm curious how do you not have it? It's a dependency for ruamel at
-least with pip and ubuntu/debian.
+On Mon, 1 Mar 2021 at 13:37, <skakit@codeaurora.org> wrote:
+>
+> On 2021-02-26 15:57, Dmitry Baryshkov wrote:
+> > On Fri, 26 Feb 2021 at 09:59, <skakit@codeaurora.org> wrote:
+> >>
+> >> Hi,
+> >>
+> >> On 2021-02-25 16:39, Dmitry Baryshkov wrote:
+> >> > On 24/02/2021 11:33, satya priya wrote:
+> >> >> Correct the REGULATOR_LINEAR_RANGE and n_voltges for
+> >> >> pmic5_hfsmps515 buck.
+> >> >>
+> >> >> Signed-off-by: satya priya <skakit@codeaurora.org>
+> >> >> ---
+> >> >>   drivers/regulator/qcom-rpmh-regulator.c | 4 ++--
+> >> >>   1 file changed, 2 insertions(+), 2 deletions(-)
+> >> >>
+> >> >> diff --git a/drivers/regulator/qcom-rpmh-regulator.c
+> >> >> b/drivers/regulator/qcom-rpmh-regulator.c
+> >> >> index 79a554f..36542c3 100644
+> >> >> --- a/drivers/regulator/qcom-rpmh-regulator.c
+> >> >> +++ b/drivers/regulator/qcom-rpmh-regulator.c
+> >> >> @@ -726,8 +726,8 @@ static const struct rpmh_vreg_hw_data
+> >> >> pmic5_ftsmps510 =3D {
+> >> >>   static const struct rpmh_vreg_hw_data pmic5_hfsmps515 =3D {
+> >> >>      .regulator_type =3D VRM,
+> >> >>      .ops =3D &rpmh_regulator_vrm_ops,
+> >> >> -    .voltage_range =3D REGULATOR_LINEAR_RANGE(2800000, 0, 4, 16000=
+),
+> >> >> -    .n_voltages =3D 5,
+> >> >> +    .voltage_range =3D REGULATOR_LINEAR_RANGE(320000, 0, 235, 1600=
+0),
+> >> >> +    .n_voltages =3D 236,
+> >> >
+> >> > I've checked the docs for pm8009, the chip which also uses hfsmps515
+> >> > regulators. The pdf clearly states that the 'Output voltage operatin=
+g
+> >> > range' is from 2.8 V to 2.85 V.
+> >> >
+> >> > So we'd probably need to define different versions of HFS515 regulat=
+or
+> >> > data (like I had to create for pm8009-1).
+> >> >
+> >> >
+> >>
+> >> The min-max voltages for S1C (PM8350c) regulator are 2190000-2210000uV
+> >> for sc7280(kodiak), so we had to modify this buck to support this
+> >> regulator.
+> >>
+> >> AFAIK, this struct defines the HW constraints of a regulator, but the
+> >> platform specific min-max values can be controlled from DT files. So,
+> >> can't we modify it like above instead of adding a new definition? the
+> >> new min_uV value (32000) is anyway not exceeding the old value
+> >> (2800000)
+> >> right? please correct me if wrong.
+> >
+> > As far as I understand for other regulators we put 'output voltage
+> > limitations' from the docs into the regulator definition and further
+> > constrain it by the platform device tree. Please correct me if I'm
+> > wrong.
+>
+> I see that for most of the regulators, these specifications are specific
+> to regulator buck (like HFS515) but not chipset specific, we set the
+> chipset specific(like pm8009/pm8350c) requirements from DT files.
+>
+> For example:
+> pmic5_nldo regulator spec mentions LLIMIT=3D 0.32V and ULIMIT =3D1.304V w=
+ith
+> step 8mV
+>
+> .voltage_range =3D REGULATOR_LINEAR_RANGE(320000, 0, 123, 8000),
+> max output voltage supported by this regulator is 123*8000 + 320000 =3D
+> 1304000mV which is same as mentioned in the regulator spec.
+>
+> > For pm8009 the data from the datasheet matches the regulators defined
+> > in the source file. Unfortunately I don't have kodiak specs at hand.
+>
+>  From the HFS515 spec I got below info
+> "HFS510 and lower max output voltage is limited to 2.04V max, and
+> Yoda(pm8009) requirement was 2.4V for IOT PA and 2.85V for camera
+> application.  Hence, HFS515 added a new register and corresponding HW
+> changes to support the higher voltage.  Table 5=E2=80=9124 shows the new
+> FB_RANGE bit.  When configured to 0 the buck works as earlier where Vout
+> max =3D 2.04V in 8mV steps, but when configured to 1 the buck range
+> doubles and can now support a Vout max =3D 4.08V in 16mV steps."
+>
+> As per above, the max output voltage supported by HFS515 buck is 4.08V
+> (which is kodiak pm8350c pmic's requirement).
+> So, we have modified the buck data to support pm8350c(palani) along with
+> pm8009(yoda).
 
-Rob
+I'd still prefer to have two different regulator types (as we did for
+pm8009 P=3D0 and P=3D1 variants). However it's probably up to the
+maintainers to decide.
+
+
+--=20
+With best wishes
+Dmitry
