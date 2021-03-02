@@ -2,122 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2D2832AB1C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:13:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A32A832AB1B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:13:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836197AbhCBUII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:08:08 -0500
-Received: from foss.arm.com ([217.140.110.172]:49570 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1383247AbhCBLIJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Mar 2021 06:08:09 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 27DBAED1;
-        Tue,  2 Mar 2021 03:07:23 -0800 (PST)
-Received: from [10.57.48.219] (unknown [10.57.48.219])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C9C703F73C;
-        Tue,  2 Mar 2021 03:07:20 -0800 (PST)
-Subject: Re: [RFC 09/13] iommu/arm-smmu: Make use of
- dev_64bit_mmio_supported()
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     f.fainelli@gmail.com, robh+dt@kernel.org, ardb@kernel.org,
-        hch@infradead.org, narmstrong@baylibre.com, dwmw2@infradead.org,
-        linux@armlinux.org.uk, catalin.marinas@arm.com, arnd@arndb.de,
-        will@kernel.org
-References: <20210226140305.26356-1-nsaenzjulienne@suse.de>
- <20210226140305.26356-10-nsaenzjulienne@suse.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <3a4cf13f-c098-9ff3-6c0e-2c94daae452b@arm.com>
-Date:   Tue, 2 Mar 2021 11:07:19 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S1836221AbhCBUIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:08:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1442195AbhCBLR4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 06:17:56 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30BE1C06178A
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 03:16:43 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id jt13so34553445ejb.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 03:16:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RF8o3G0Xz1ovVmyTz0LE8nmr/a9IOJBCZQzOLkdGz5M=;
+        b=1M2npcI4L13+kb2WpBZyNmExW6Ysb2w1U5IU1t0e7n/59wjk+NVisOO0ZPmc+X+DRm
+         oRfkUSPQlL3XSV9HLg7IaSLcRZwvOXi51tiW/MQZtsnKbzKQqZyTV1DhASNJxfyDrnUM
+         /+XPe4D58LpQ0a5pqraIkIaicJx4USEK8SwMyu5unSPersA+EbDezjNlZWApb8gSh7ru
+         F+WPtdZ4W1C88AQQ6BdAy+cWxXhoG3Qa3nDShlxi7ESnSg23jCduGgpV3FVzvcS6YJcm
+         89dS8EekzRj6jNRTIuhV0AQySic9bPbuB2PRnB7OL9mYAN24TJFgfmnpIPR/qkAb54Yt
+         3Ocw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RF8o3G0Xz1ovVmyTz0LE8nmr/a9IOJBCZQzOLkdGz5M=;
+        b=RhhaceuPRIPtPpQByQzKS8e4sBP/Dfm93bZTuE4mLQ86jlhmyl8sCXwofVX+Kx2MtG
+         Ziw8Dhe+jDJGUsPF1RmRQ95wVwZgJKK1XcbOrDlN0WgqXyhODaafMHOE+srR5WVlJNMD
+         gNgLnKcgT+VUTjd4V1SZKBqLfMwGj18rjhPds6gALbnFaVb1ZfJcIWQ/C5J7voyoko/T
+         Fsu6o/CJHAuAAM9kpgmI2LMzEl16yuDxDrSX1ZsFy8jSGKuLHQc49jhtXhQq1ReL/Zqj
+         yEUkKZ1PCcnzn++WRNkdiAAMAu0jF4rSWW1iGnYkcQG7BA4yTzBHMmSejkpvwkBOEUi3
+         aspA==
+X-Gm-Message-State: AOAM531K9O6cgcg4aYFdjwemHHk9zGsOhpE7UTKMtfRXhMhsnRJupmfX
+        9FwoPLBdlXJf1OwcUidyeIOjQH1cjn48NxuCm0kiBQ==
+X-Google-Smtp-Source: ABdhPJz8/7tNah6b/MgRZScB2hUyILC3MI06tBMODCACw2hr59BzB0LAv71ny8kEnaP0SW9ATHxlZ92zkxlbY0Vp5cQ=
+X-Received: by 2002:a17:906:29c3:: with SMTP id y3mr19539341eje.430.1614683801754;
+ Tue, 02 Mar 2021 03:16:41 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210226140305.26356-10-nsaenzjulienne@suse.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20210225225147.29920-1-fabrizio.castro.jz@renesas.com>
+ <20210225225147.29920-5-fabrizio.castro.jz@renesas.com> <CAK8P3a1+CZTAcR5T=gN565Q8=CdZnu5KYsAijKXLY8taofEpGg@mail.gmail.com>
+ <OSAPR01MB2737666F47174B68A8EC8DD8C29A9@OSAPR01MB2737.jpnprd01.prod.outlook.com>
+In-Reply-To: <OSAPR01MB2737666F47174B68A8EC8DD8C29A9@OSAPR01MB2737.jpnprd01.prod.outlook.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Tue, 2 Mar 2021 08:16:30 -0300
+Message-ID: <CAAEAJfDDhN4btecUzu=3ZYxP=amnOD=vq0bhhetx7voKdeMZ9Q@mail.gmail.com>
+Subject: Re: [PATCH 4/7] misc: Add driver for DAB IP found on Renesas R-Car devices
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Arnd Bergmann <arnd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux API <linux-api@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        "REE dirk.behme@de.bosch.com" <dirk.behme@de.bosch.com>,
+        Peter Erben <Peter.Erben@de.bosch.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-02-26 14:03, Nicolas Saenz Julienne wrote:
-> Some arm SMMU implementations might sit on a bus that doesn't support
-> 64bit memory accesses. In that case default to using hi_lo_{readq,
-> writeq}() and BUG if such platform tries to use AArch64 formats as they
-> rely on writeq()'s atomicity.
-> 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> ---
->   drivers/iommu/arm/arm-smmu/arm-smmu.c | 9 +++++++++
->   drivers/iommu/arm/arm-smmu/arm-smmu.h | 9 +++++++--
->   2 files changed, 16 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> index d8c6bfde6a61..239ff42b20c3 100644
-> --- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-> @@ -1889,6 +1889,15 @@ static int arm_smmu_device_cfg_probe(struct arm_smmu_device *smmu)
->   			smmu->features |= ARM_SMMU_FEAT_FMT_AARCH64_64K;
->   	}
->   
-> +	/*
-> +	 * 64bit accesses not possible through the interconnect, AArch64
-> +	 * formats depend on it.
-> +	 */
-> +	BUG_ON(!dev_64bit_mmio_supported(smmu->dev) &&
-> +	       smmu->features & (ARM_SMMU_FEAT_FMT_AARCH64_4K |
-> +				ARM_SMMU_FEAT_FMT_AARCH64_16K |
-> +				ARM_SMMU_FEAT_FMT_AARCH64_64K));
+Hello everyone,
 
-No. Crashing the kernel in a probe routine which is free to fail is 
-unacceptable either way, but guaranteeing failure in the case that the 
-workaround *would* be required is doubly so.
+On Mon, 1 Mar 2021 at 14:36, Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+>
+> Hi Arnd,
+>
+> Thanks for your feedback!
+>
+> > From: Arnd Bergmann <arnd@kernel.org>
+> > Sent: 26 February 2021 10:38
+> > Subject: Re: [PATCH 4/7] misc: Add driver for DAB IP found on Renesas R-
+> > Car devices
+> >
+> > On Thu, Feb 25, 2021 at 11:51 PM Fabrizio Castro
+> > <fabrizio.castro.jz@renesas.com> wrote:
+> > >
+> > > The DAB hardware accelerator found on R-Car E3 and R-Car M3-N devices is
+> > > a hardware accelerator for software DAB demodulators.
+> > > It consists of one FFT (Fast Fourier Transform) module and one decoder
+> > > module, compatible with DAB specification (ETSI EN 300 401 and
+> > > ETSI TS 102 563).
+> > > The decoder module can perform FIC decoding and MSC decoding processing
+> > > from de-puncture to final decoded result.
+> > >
+> > > This patch adds a device driver to support the FFT module only.
+> > >
+> > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > > ---
+> > >  MAINTAINERS                      |   7 ++
+> > >  drivers/misc/Kconfig             |   1 +
+> > >  drivers/misc/Makefile            |   1 +
+> > >  drivers/misc/rcar_dab/Kconfig    |  11 ++
+> > >  drivers/misc/rcar_dab/Makefile   |   8 ++
+> > >  drivers/misc/rcar_dab/rcar_dev.c | 176 +++++++++++++++++++++++++++++++
+> > >  drivers/misc/rcar_dab/rcar_dev.h | 116 ++++++++++++++++++++
+> > >  drivers/misc/rcar_dab/rcar_fft.c | 160 ++++++++++++++++++++++++++++
+> > >  include/uapi/linux/rcar_dab.h    |  35 ++++++
+> >
+> > Can you explain why this is not in drivers/media/?
+>
+> I wasn't entirely sure were to put it to be honest as I couldn't find
+> anything similar, that's why "misc" for v1, to mainly get a feedback
+> and advice.
+>
+> >
+> > I don't think we want a custom ioctl interface for a device that
+> > implements
+> > a generic specification. My first feeling would be that this should not
+> > have a user-level API but instead get called by the DAB radio driver.
+>
+> I hear you, the trouble is that the modules of this IP should be seen
+> as part of a SW and HW processing pipeline.
+> Some of the SW components of the pipeline can be proprietary, and
+> unfortunately we don't have access (yet) to a framework that allows us to
+> test and demonstrate the whole pipeline, for the moment we can only test
+> things in isolation. It'll take us a while to come up with a full solution
+> (or to have access to one), and in the meantime our SoCs come with an IP
+> that can't be used because there is no driver for it (yet).
+>
+> After discussing things further with Geert and Laurent, I think they
+> are right in saying that the best path for this is probably to add this
+> driver under "drivers/staging" as an interim solution, so that the IP will
+> be accessible by developers, and when we have everything we need (a fully
+> fledged processing framework), we will able to integrate it better with
+> the other components (if possible).
+>
+> >
+> > What is the intended usage model here? I assume the idea is to
+> > use it in an application that receives audio or metadata from DAB.
+> > What driver do you use for that?
+>
+> This IP is similar to a DMA to some extent, in the sense that it takes
+> input data from a buffer in memory and it writes output data onto a buffer
+> in memory, and of course it does some processing in between.
 
-Basically, this logic is backwards - if you really wanted to handle it 
-generically, this would be the point at which you'd need to actively 
-suppress all the detected hardware features which depend on 64-bit 
-atomicity, not complain about them.
+That sounds like something that can fit V4L2 MEM2MEM driver.
+You queue two buffers and an operation, and then run a job.
 
-> +
->   	if (smmu->impl && smmu->impl->cfg_probe) {
->   		ret = smmu->impl->cfg_probe(smmu);
->   		if (ret)
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.h b/drivers/iommu/arm/arm-smmu/arm-smmu.h
-> index d2a2d1bc58ba..997d13a21717 100644
-> --- a/drivers/iommu/arm/arm-smmu/arm-smmu.h
-> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.h
-> @@ -477,15 +477,20 @@ static inline void arm_smmu_writel(struct arm_smmu_device *smmu, int page,
->   {
->   	if (smmu->impl && unlikely(smmu->impl->write_reg))
->   		smmu->impl->write_reg(smmu, page, offset, val);
-> -	else
-> +	else if (dev_64bit_mmio_supported(smmu->dev))
->   		writel_relaxed(val, arm_smmu_page(smmu, page) + offset);
-> +	else
-> +		hi_lo_writeq_relaxed(val, arm_smmu_page(smmu, page) + offset);
+> It's not directly connected to any other Radio related IP.
+> The user space application can read DAB IQ samples from the R-Car DRIF
+> interface (via driver drivers/media/platform/rcar_drif.c, or from other
+> sources since this IP is decoupled from DRIF), and then when it's time
+> to accelerate FFT, FIC, or MSC, it can request services to the DAB IP, so
+> that the app can go on and use the processor to do some work, while the DAB
+> IP processes things.
+> A framework to connect and exchange processing blocks (either SW or HW) and
+> interfaces is therefore vital to properly place a kernel implementation
+> in the great scheme of things, in its absence a simple driver can help
 
-As Arnd pointed out, this is in completely the wrong place. Also, in 
-general it doesn't work if the implementation already needs a hook to 
-filter or override register accesses for any other reason. TBH I'm not 
-convinced that this isn't *more* of a mess than handling it on a 
-SoC-specific basis...
+I'm not entirely sure we are missing a framework. What's missing in
+V4L2 MEM2MEM?
 
-Robin.
+Before considering drivers/staging, it would be interesting to figure
+out if V4L2 can do it as-is, and if not, discuss what's missing.
 
->   }
->   
->   static inline u64 arm_smmu_readq(struct arm_smmu_device *smmu, int page, int offset)
->   {
->   	if (smmu->impl && unlikely(smmu->impl->read_reg64))
->   		return smmu->impl->read_reg64(smmu, page, offset);
-> -	return readq_relaxed(arm_smmu_page(smmu, page) + offset);
-> +	else if (dev_64bit_mmio_supported(smmu->dev))
-> +		return readq_relaxed(arm_smmu_page(smmu, page) + offset);
-> +	else
-> +		return hi_lo_readq_relaxed(arm_smmu_page(smmu, page) + offset);
->   }
->   
->   static inline void arm_smmu_writeq(struct arm_smmu_device *smmu, int page,
-> 
+Thanks,
+Ezequiel
