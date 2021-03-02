@@ -2,260 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09BA332AABA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32E9732AAC5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836161AbhCBTy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:54:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50560 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344751AbhCBGnZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 01:43:25 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC584C06178A
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 22:42:38 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id h98so18606678wrh.11
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 22:42:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=tfd97WX1co/bA1GShyJOLBPAN41kKS3JMrc0KxlzgGU=;
-        b=X3HySQSox1FrvVZIqGKp3GG6HIrkQQVlWJxpD5Cco4Ge2nF0iwz+VlZzafhh+7M7kK
-         Ec3QuQX8AccyoXeXbACGA6WDmbvBYjKDKKH+UpLB01eR6ha3wPafBmLjBhmpY6qJiOqw
-         bK2kyAE5fEuIRwu+B6ITr7rrY30tatyMOpGz+8exxEsQP2enrIsMEIN27dRfsMvLplZx
-         nlH+uXvkTP0FbPoFiBFwLFeJVzY0lU+WxTi+Y3lnpg+eG+caUSBga2HP1cv0ixswGjec
-         VRhGC6ZRxaBRCEeJrksMHekp+Xah/I+GfxaeShSi7hK5InuZn7lg7zDRWsnbVXyGYh6R
-         IsFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=tfd97WX1co/bA1GShyJOLBPAN41kKS3JMrc0KxlzgGU=;
-        b=Q24XrxrLezM5sTdPC62EiPHhdVDY3rCl2vEJ8mqtt1r/4hF+9xDd5vHqb1oSQ3BVw8
-         CRVwuD0bJMaOVpYNbBmSg9q424/R4WWZBfXx2w0WrMwcuK0hTN++bCBgGj3qV8n83eV/
-         k6KAppmTsTFKQVRpoe+MEnLUFU8DVbX/c5FfS4qxZqKosCv2ntqF8x8mMRfIcSKgGx1e
-         BltFrHg8y3R5lDPIO0jqfWfpvM/XgJ/GgXEd5xUxZX5bHxDYAZKTNKyWVyBJk+LhABQW
-         dPFoHBGgjcSTDMdtvnL2z0BITm0JMImUnWdvzQlfHsUV6hrkzo3KbmIvA2DLc4BKAu9T
-         MLrg==
-X-Gm-Message-State: AOAM533eGsQTZ9z7jcfP6EiYUZI70ogVJAYv25jb/urEyYQsXbyJjrBh
-        9yJD/oYyQYlir8aLdVDJmlZrfZuZPBY2mWiuaReJGg==
-X-Google-Smtp-Source: ABdhPJz1mZd5y4d1mGFzB+y5OipFPnyMJbdA+7nb01Qbnev+st2N3Fi1s+PseO+OVJpZp0oP8W2X+LgHDA+7KkohnTo=
-X-Received: by 2002:a5d:464f:: with SMTP id j15mr21059836wrs.390.1614667357370;
- Mon, 01 Mar 2021 22:42:37 -0800 (PST)
+        id S1839853AbhCBTzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:55:04 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:19579 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1836485AbhCBHDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 02:03:52 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B603de32e0001>; Mon, 01 Mar 2021 23:03:10 -0800
+Received: from [10.25.103.152] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 2 Mar
+ 2021 07:03:07 +0000
+Subject: Re: [RFC PATCH 3/5] ASoC: audio-graph-card: Add bindings for sysclk
+ and pll
+To:     Rob Herring <robh@kernel.org>
+CC:     Mark Brown <broonie@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <1614276364-13655-1-git-send-email-spujar@nvidia.com>
+ <1614276364-13655-4-git-send-email-spujar@nvidia.com>
+ <CAL_Jsq+9esDGw7ZCLnZS_KLmLUFyVenz83ohgNKFK3bdPD2ouQ@mail.gmail.com>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <0ea5b885-2610-8f12-569d-15a8eff50c10@nvidia.com>
+Date:   Tue, 2 Mar 2021 12:33:04 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <20210221093758.210981-1-anup.patel@wdc.com> <20210221093758.210981-2-anup.patel@wdc.com>
- <3a6e2af7-934d-078f-4e19-d4241809e7fb@ghiti.fr>
-In-Reply-To: <3a6e2af7-934d-078f-4e19-d4241809e7fb@ghiti.fr>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Tue, 2 Mar 2021 12:12:26 +0530
-Message-ID: <CAAhSdy2cOoNK5f75e_mo5c-0-qo4zNWH+Lxoyg31br-+ZZ4n9w@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/8] RISC-V: Enable CPU_IDLE drivers
-To:     Alexandre Ghiti <alex@ghiti.fr>
-Cc:     Anup Patel <anup.patel@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAL_Jsq+9esDGw7ZCLnZS_KLmLUFyVenz83ohgNKFK3bdPD2ouQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1614668590; bh=mtH3d+wKblfOn6NGGlgdJ6FIympBFVhrzgmGLQmLWbs=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=LLRZtTv1H9RTl+yAYiBhRtJwAxwJ/aDjcHCbLRGLD9/OflQs4B/3Znyi1X+Uoxe9d
+         qeBFOdLIBMz6zVF0BCinxrZGh6L5MTdXnzTtILf0n7+xFkU6OyHhGf1rDXevCZ0wDH
+         RRi0r2+KGv09ATJ3lwlWt+wup6LDiaPMqNYbt65jnNkupzaxPV39S7+R3DvUeBtROx
+         iezCuNx2B36jlT+b3xqncuQgZMuEffxb5yUDntI7+RTOuEzC4oZZlM5zrQ8opkrntH
+         I5flCEmPFwZHRpdPbvxpVzjQWMRQPwzCw9j9trFnKMHXb1nVc1nV6otfYBLHdJY+HX
+         EXqMjJxKQ8Adw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 26, 2021 at 6:46 PM Alex Ghiti <alex@ghiti.fr> wrote:
->
-> Hi Anup,
->
-> Le 2/21/21 =C3=A0 4:37 AM, Anup Patel a =C3=A9crit :
-> > We force select CPU_PM and provide asm/cpuidle.h so that we can
-> > use CPU IDLE drivers for Linux RISC-V kernel.
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > ---
-> >   arch/riscv/Kconfig                |  7 +++++++
-> >   arch/riscv/configs/defconfig      |  7 +++----
-> >   arch/riscv/configs/rv32_defconfig |  4 ++--
-> >   arch/riscv/include/asm/cpuidle.h  | 24 ++++++++++++++++++++++++
-> >   arch/riscv/kernel/process.c       |  3 ++-
-> >   5 files changed, 38 insertions(+), 7 deletions(-)
-> >   create mode 100644 arch/riscv/include/asm/cpuidle.h
-> >
-> > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > index fe6862b06ead..4901200b6b6c 100644
-> > --- a/arch/riscv/Kconfig
-> > +++ b/arch/riscv/Kconfig
-> > @@ -37,6 +37,7 @@ config RISCV
-> >       select CLONE_BACKWARDS
-> >       select CLINT_TIMER if !MMU
-> >       select COMMON_CLK
-> > +     select CPU_PM if CPU_IDLE
-> >       select EDAC_SUPPORT
-> >       select GENERIC_ARCH_TOPOLOGY if SMP
-> >       select GENERIC_ATOMIC64 if !64BIT
-> > @@ -430,4 +431,10 @@ source "kernel/power/Kconfig"
-> >
-> >   endmenu
-> >
-> > +menu "CPU Power Management"
-> > +
-> > +source "drivers/cpuidle/Kconfig"
-> > +
-> > +endmenu
-> > +
-> >   source "drivers/firmware/Kconfig"
-> > diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfi=
-g
-> > index 6c0625aa96c7..dc4927c0e44b 100644
-> > --- a/arch/riscv/configs/defconfig
-> > +++ b/arch/riscv/configs/defconfig
-> > @@ -13,11 +13,13 @@ CONFIG_USER_NS=3Dy
-> >   CONFIG_CHECKPOINT_RESTORE=3Dy
-> >   CONFIG_BLK_DEV_INITRD=3Dy
-> >   CONFIG_EXPERT=3Dy
-> > +# CONFIG_SYSFS_SYSCALL is not set
-> >   CONFIG_BPF_SYSCALL=3Dy
-> >   CONFIG_SOC_SIFIVE=3Dy
-> >   CONFIG_SOC_VIRT=3Dy
-> >   CONFIG_SMP=3Dy
-> >   CONFIG_HOTPLUG_CPU=3Dy
-> > +CONFIG_CPU_IDLE=3Dy
-> >   CONFIG_JUMP_LABEL=3Dy
-> >   CONFIG_MODULES=3Dy
-> >   CONFIG_MODULE_UNLOAD=3Dy
-> > @@ -65,10 +67,9 @@ CONFIG_HW_RANDOM=3Dy
-> >   CONFIG_HW_RANDOM_VIRTIO=3Dy
-> >   CONFIG_SPI=3Dy
-> >   CONFIG_SPI_SIFIVE=3Dy
-> > +# CONFIG_PTP_1588_CLOCK is not set
-> >   CONFIG_GPIOLIB=3Dy
-> >   CONFIG_GPIO_SIFIVE=3Dy
-> > -# CONFIG_PTP_1588_CLOCK is not set
-> > -CONFIG_POWER_RESET=3Dy
->
-> Why do you remove this config ?
 
-This option is selected by CONFIG_SOC_VIRT so it is being
-removed from defconfig by savedefconfig.
 
+On 3/2/2021 7:40 AM, Rob Herring wrote:
+> External email: Use caution opening links or attachments
 >
-> >   CONFIG_DRM=3Dy
-> >   CONFIG_DRM_RADEON=3Dy
-> >   CONFIG_DRM_VIRTIO_GPU=3Dy
-> > @@ -132,5 +133,3 @@ CONFIG_DEBUG_BLOCK_EXT_DEVT=3Dy
-> >   # CONFIG_FTRACE is not set
-> >   # CONFIG_RUNTIME_TESTING_MENU is not set
-> >   CONFIG_MEMTEST=3Dy
-> > -# CONFIG_SYSFS_SYSCALL is not set
-> > -CONFIG_EFI=3Dy
 >
-> And this is one too ? If those removals are intentional, maybe you can
-> add something about that in the commit description ?
+> On Thu, Feb 25, 2021 at 12:06 PM Sameer Pujar <spujar@nvidia.com> wrote:
+>> ASoC core provides callbacks snd_soc_dai_set_sysclk() and
+>> snd_soc_dai_set_pll() for system clock (sysclk) and pll configurations
+>> respectively. Add bindings for flexible sysclk or pll configurations
+>> which can be driven from CPU/Codec DAI or endpoint subnode from DT.
+>> This in turn helps to avoid hard codings in driver and makes it more
+>> generic.
+>>
+>> Also add system-clock related bindings, "system-clock-direction-out"
+>> and "system-clock-frequency", which are already supported.
+> This all looks like duplication of what the clock binding can provide.
+> We don't need 2 ways to describe clocks in DT.
 
-This is enabled by default so savedefconfig removes it.
+This was targetted for external audio codecs. Their internal clock 
+management is not exposed with the clock framework. Instead ASoC 
+provides callbacks to set this up on Codec side. There are many 
+references where this is followed with some hardcoded settings in the 
+drivers.
 
->
-> > diff --git a/arch/riscv/configs/rv32_defconfig b/arch/riscv/configs/rv3=
-2_defconfig
-> > index 8dd02b842fef..332e43a4a2c3 100644
-> > --- a/arch/riscv/configs/rv32_defconfig
-> > +++ b/arch/riscv/configs/rv32_defconfig
-> > @@ -13,12 +13,14 @@ CONFIG_USER_NS=3Dy
-> >   CONFIG_CHECKPOINT_RESTORE=3Dy
-> >   CONFIG_BLK_DEV_INITRD=3Dy
-> >   CONFIG_EXPERT=3Dy
-> > +# CONFIG_SYSFS_SYSCALL is not set
-> >   CONFIG_BPF_SYSCALL=3Dy
-> >   CONFIG_SOC_SIFIVE=3Dy
-> >   CONFIG_SOC_VIRT=3Dy
-> >   CONFIG_ARCH_RV32I=3Dy
-> >   CONFIG_SMP=3Dy
-> >   CONFIG_HOTPLUG_CPU=3Dy
-> > +CONFIG_CPU_IDLE=3Dy
-> >   CONFIG_JUMP_LABEL=3Dy
-> >   CONFIG_MODULES=3Dy
-> >   CONFIG_MODULE_UNLOAD=3Dy
-> > @@ -67,7 +69,6 @@ CONFIG_HW_RANDOM_VIRTIO=3Dy
-> >   CONFIG_SPI=3Dy
-> >   CONFIG_SPI_SIFIVE=3Dy
-> >   # CONFIG_PTP_1588_CLOCK is not set
-> > -CONFIG_POWER_RESET=3Dy
-> >   CONFIG_DRM=3Dy
-> >   CONFIG_DRM_RADEON=3Dy
-> >   CONFIG_DRM_VIRTIO_GPU=3Dy
-> > @@ -131,4 +132,3 @@ CONFIG_DEBUG_BLOCK_EXT_DEVT=3Dy
-> >   # CONFIG_FTRACE is not set
-> >   # CONFIG_RUNTIME_TESTING_MENU is not set
-> >   CONFIG_MEMTEST=3Dy
-> > -# CONFIG_SYSFS_SYSCALL is not set
-> > diff --git a/arch/riscv/include/asm/cpuidle.h b/arch/riscv/include/asm/=
-cpuidle.h
-> > new file mode 100644
-> > index 000000000000..1042d790e446
-> > --- /dev/null
-> > +++ b/arch/riscv/include/asm/cpuidle.h
-> > @@ -0,0 +1,24 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * Copyright (C) 2021 Allwinner Ltd
-> > + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
-> > + */
-> > +
-> > +#ifndef _ASM_RISCV_CPUIDLE_H
-> > +#define _ASM_RISCV_CPUIDLE_H
-> > +
-> > +#include <asm/barrier.h>
-> > +#include <asm/processor.h>
-> > +
-> > +static inline void cpu_do_idle(void)
-> > +{
-> > +     /*
-> > +      * Add mb() here to ensure that all
-> > +      * IO/MEM access are completed prior
->
-> accessES ?
->
-> > +      * to enter WFI.
-> > +      */
-> > +     mb();
-> > +     wait_for_interrupt();
-> > +}
-> > +
-> > +#endif
-> > diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> > index dd5f985b1f40..b5b51fd26624 100644
-> > --- a/arch/riscv/kernel/process.c
-> > +++ b/arch/riscv/kernel/process.c
-> > @@ -21,6 +21,7 @@
-> >   #include <asm/string.h>
-> >   #include <asm/switch_to.h>
-> >   #include <asm/thread_info.h>
-> > +#include <asm/cpuidle.h>
-> >
-> >   register unsigned long gp_in_global __asm__("gp");
-> >
-> > @@ -35,7 +36,7 @@ extern asmlinkage void ret_from_kernel_thread(void);
-> >
-> >   void arch_cpu_idle(void)
-> >   {
-> > -     wait_for_interrupt();
-> > +     cpu_do_idle();
-> >       raw_local_irq_enable();
-> >   }
-> >
-> >
-
-Regards,
-Anup
+Are you suggesting to instead expose codec internal clocks and manage 
+via generic clock bindings? Would this mean each codec driver has to 
+implement these clock APIs (for ex: set_rate()) and program registers 
+accordingly?
+For a platform, different audio cards can be plugged in. In that case, 
+each codec has to be updated to follow this. Wouldn't it be simpler to 
+use available ASoC callbacks?
