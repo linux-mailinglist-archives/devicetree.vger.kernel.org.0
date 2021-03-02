@@ -2,125 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B279532AAE6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:03:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B12F332AAE7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:04:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446612AbhCBT75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:59:57 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:55848 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1838142AbhCBJ3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 04:29:15 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1229RZbM117601;
-        Tue, 2 Mar 2021 03:27:35 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614677255;
-        bh=VKa9ZLInAy2XzS1IUg7DGYoE6OxMM/zNE7tI2sgufOA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=nBxjVUfBlRsYk2MpVi97OJS/jowTlC6jCid6bRscRLGZNrHe9wRt63lIkr+MNtN2/
-         mqpHAEBGhvoT+ATAls/rEJsUrJKGrwFzUwUkHVVPQ772inAhNxvcin5ohos0G17bEg
-         fCGWJqE0kk3NsU8vEwXtP+cQ/zMx7skQSzb/+OpU=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1229RZtZ004151
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 2 Mar 2021 03:27:35 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 2 Mar
- 2021 03:27:34 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 2 Mar 2021 03:27:34 -0600
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1229RVZf054243;
-        Tue, 2 Mar 2021 03:27:32 -0600
-Subject: Re: [PATCH] gpio: omap: Honor "aliases" node
-To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        <linux-omap@vger.kernel.org>
-CC:     Santosh Shilimkar <ssantosh@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210302011813.2331879-1-alexander.sverdlin@gmail.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <eb34f303-4d05-4fcd-fb18-e304d06e6e2d@ti.com>
-Date:   Tue, 2 Mar 2021 11:27:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1574553AbhCBUAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:00:12 -0500
+Received: from mout.kundenserver.de ([212.227.126.187]:57169 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238168AbhCBJgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 04:36:20 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]) by
+ mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MZSJa-1lJswr442A-00WXqO; Tue, 02 Mar 2021 10:32:24 +0100
+Received: by mail-oi1-f175.google.com with SMTP id 21so11704221oiq.7;
+        Tue, 02 Mar 2021 01:32:23 -0800 (PST)
+X-Gm-Message-State: AOAM531hF36/sThj2owRkXrHWycqP6E58oQ72Gtd09/crl6sgULoNidy
+        xbqaI+a6gfGt6u3woA6Wy30SzN8uOAzTUeF4/IM=
+X-Google-Smtp-Source: ABdhPJx5XWp8Ki1644NUPJ6YSXBsqLQpbCENNWA/2WM/vGVPVyb7m95NYVRO672W5xEbCNFsN9VAYmGWDNBc6nbj8WI=
+X-Received: by 2002:aca:4fd3:: with SMTP id d202mr2418133oib.11.1614677542554;
+ Tue, 02 Mar 2021 01:32:22 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210302011813.2331879-1-alexander.sverdlin@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210226140305.26356-1-nsaenzjulienne@suse.de> <20210226140305.26356-10-nsaenzjulienne@suse.de>
+In-Reply-To: <20210226140305.26356-10-nsaenzjulienne@suse.de>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 2 Mar 2021 10:32:06 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1t3yCD4vXF803nL=n3Y3hD1MOPOAEZwZA+782N64PXTA@mail.gmail.com>
+Message-ID: <CAK8P3a1t3yCD4vXF803nL=n3Y3hD1MOPOAEZwZA+782N64PXTA@mail.gmail.com>
+Subject: Re: [RFC 09/13] iommu/arm-smmu: Make use of dev_64bit_mmio_supported()
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Christoph Hellwig <hch@infradead.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:legnmUJMED7xyeS16jB9arlUrQNnIgwgh0Z/SL2rsGfiqTRbTOf
+ NtLEy8RNEn3XAqm45/VVsbBmfEhlqKHUNMatEBQRFkw+fk/l4iQTqfr/y/pY660ApdUonl1
+ u5t9+H1J39ZVaEgGEudbaI6UPC19yGDsriGVsyDm7Jv2e8Raqqn+gjb4N3Y41W2xyPOVgZR
+ jUN3F9jgyIQY2/SHGhpBw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:0C2k/V7y7uE=:fNubMXZuJeLDiEayPIlmPO
+ T9mI1e+Jz0jaPmEc7aGXw1MNZbKVyXPCcVgIgdlodX4XiHJQsstiDKmhfoeJhgEGpqtiMEB0H
+ TEcW9tKynn5Bo3J6DUx+DqtEZyAA3o3KqkRxnC90+eCsZlgMuW9Q6/576B2gmtfPliJZ1LKhF
+ N5odR4H0+kEqMatbPIuOVMHO2pkigboCgPcjOe9b0J1J1R09+EYW/cQuFYGUrVkYxk4GUi7eR
+ xP4NycU9z8xkNpqw7mW5/9wEC/sbq89xg5KiG9sgsJlSg0qv+xiiGUypQ1bAah2JYf/m3/Obs
+ UTuDlVEWk2tq+Mltn1BIE8vgvBsGoYK2R2Wbs1kL08KSaw1nflMqLF/Vg4pSNeY1gPXBFNrCB
+ 7TYXVVMVYBNehSzpl7KJatUDVYtlxvZ7eRGZiV8v0Y0U77tLjNUWhayAY4n8WUZG5LrBXAY0v
+ DSr8r/vYhuWlpajUAqeL+86aMoqIr2Fx8i69ovGUcRR8bzs2UZTkf884XjzHPu1pQAZtoQRWD
+ bby7RVVLkA3/KzImJCypKlV5wsNhXNG7TxZSHRyMdMqPxHVeBLLaoNdMJgvXg6UkojOGZGows
+ ncSjhSEEcarsD+Vi6q82Y11V9578RYmeeQ
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Feb 26, 2021 at 3:03 PM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
+
+>         if (smmu->impl && unlikely(smmu->impl->write_reg))
+>                 smmu->impl->write_reg(smmu, page, offset, val);
+> -       else
+> +       else if (dev_64bit_mmio_supported(smmu->dev))
+>                 writel_relaxed(val, arm_smmu_page(smmu, page) + offset);
+> +       else
+> +               hi_lo_writeq_relaxed(val, arm_smmu_page(smmu, page) + offset);
+>  }
+
+This is a writel_relaxed(), not a writeq_relaxed(), so I suppose you don't
+have to change it at all.
+
+> +       else if (dev_64bit_mmio_supported(smmu->dev))
+> +               return readq_relaxed(arm_smmu_page(smmu, page) + offset);
+> +       else
+> +               return hi_lo_readq_relaxed(arm_smmu_page(smmu, page) + offset);
+> }
 
 
-On 02/03/2021 03:18, Alexander Sverdlin wrote:
-> Currently the naming of the GPIO chips depends on their order in the DT,
-> but also on the kernel version (I've noticed the change from v5.10.x to
-> v5.11). Honor the persistent enumeration in the "aliases" node like other
-> GPIO drivers do.
-> 
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> ---
-> Yes, I noticed checkpatch "WARNING: DT binding docs and includes should be
-> a separate patch."
-> However, the parts below are tiny and barely make sense separately.
-> 
->   Documentation/devicetree/bindings/gpio/gpio-omap.txt | 6 ++++++
->   drivers/gpio/gpio-omap.c                             | 5 +++++
->   2 files changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-omap.txt b/Documentation/devicetree/bindings/gpio/gpio-omap.txt
-> index e57b2cb28f6c..6050db3fd84e 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-omap.txt
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-omap.txt
-> @@ -30,9 +30,15 @@ OMAP specific properties:
->   - ti,gpio-always-on: 	Indicates if a GPIO bank is always powered and
->   			so will never lose its logic state.
->   
-> +Note: GPIO ports can have an alias correctly numbered in "aliases" node for
-> +persistent enumeration.
->   
->   Example:
->   
-> +aliases {
-> +	gpio0 = &gpio0;
-> +};
-> +
->   gpio0: gpio@44e07000 {
->       compatible = "ti,omap4-gpio";
->       reg = <0x44e07000 0x1000>;
-> diff --git a/drivers/gpio/gpio-omap.c b/drivers/gpio/gpio-omap.c
-> index 41952bb818ad..dd2a8f6d920f 100644
-> --- a/drivers/gpio/gpio-omap.c
-> +++ b/drivers/gpio/gpio-omap.c
-> @@ -1014,6 +1014,11 @@ static int omap_gpio_chip_init(struct gpio_bank *bank, struct irq_chip *irqc)
->   			bank->chip.parent = &omap_mpuio_device.dev;
->   		bank->chip.base = OMAP_MPUIO(0);
->   	} else {
-> +#ifdef CONFIG_OF_GPIO
-> +		ret = of_alias_get_id(bank->chip.of_node, "gpio");
-> +		if (ret >= 0)
-> +			gpio = ret * bank->width;
-> +#endif
->   		label = devm_kasprintf(bank->chip.parent, GFP_KERNEL, "gpio-%d-%d",
->   				       gpio, gpio + bank->width - 1);
->   		if (!label)
-> 
+I see this pattern repeat across multiple drivers. I think Christoph
+had originally
+suggested folding the if/else logic into the writel_relaxed() that is defined in
+include/linux/io-64-nonatomic-hi-lo.h, but of course that doesn't work if you
+need to pass a device pointer.
 
-You're not the first one, this was not accepted. See [1]
-[1] https://patchwork.kernel.org/project/linux-omap/patch/1465898604-16294-1-git-send-email-u.kleine-koenig@pengutronix.de/
+It might still make sense to have another wrapper in that same file though,
+something like
 
+static inline hi_lo_writeq_relaxed_if_possible(struct device *dev, __u64 val,
+                    volatile void __iomem *addr)
+{
+       if (dev_64bit_mmio_supported(smmu->dev)) {
+              readq_relaxed(arm_smmu_page(smmu, page) + offset);
+       } else {
+               writel_relaxed(val >> 32, addr + 4);
+               writel_relaxed(val, addr);
+       }
+}
 
--- 
-Best regards,
-grygorii
+         Arnd
