@@ -2,175 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A32A832AB1B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:13:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E4FD32AB21
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:13:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836221AbhCBUIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:08:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52916 "EHLO
+        id S1836451AbhCBUIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:08:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1442195AbhCBLR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 06:17:56 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30BE1C06178A
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 03:16:43 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id jt13so34553445ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 03:16:43 -0800 (PST)
+        with ESMTP id S243195AbhCBLZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 06:25:35 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3503C061788;
+        Tue,  2 Mar 2021 03:22:05 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id e7so30726912lft.2;
+        Tue, 02 Mar 2021 03:22:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RF8o3G0Xz1ovVmyTz0LE8nmr/a9IOJBCZQzOLkdGz5M=;
-        b=1M2npcI4L13+kb2WpBZyNmExW6Ysb2w1U5IU1t0e7n/59wjk+NVisOO0ZPmc+X+DRm
-         oRfkUSPQlL3XSV9HLg7IaSLcRZwvOXi51tiW/MQZtsnKbzKQqZyTV1DhASNJxfyDrnUM
-         /+XPe4D58LpQ0a5pqraIkIaicJx4USEK8SwMyu5unSPersA+EbDezjNlZWApb8gSh7ru
-         F+WPtdZ4W1C88AQQ6BdAy+cWxXhoG3Qa3nDShlxi7ESnSg23jCduGgpV3FVzvcS6YJcm
-         89dS8EekzRj6jNRTIuhV0AQySic9bPbuB2PRnB7OL9mYAN24TJFgfmnpIPR/qkAb54Yt
-         3Ocw==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UXsyTscw9zuLBva4U3+AGU7LQRHCPXqRCSzHFPwdbsg=;
+        b=MZO0fEml85aBPb+L0zZijvlr73xZelJgEhc1czmKIkPN1WA/Ao2bmG2eEpQn9/5Cnv
+         5gmNhukOhWRqrabru5ZLRuQIe19Ppw7xvec8e8WVtDNcFX2YXjsaC2KTFuDBS9V1HR8A
+         q2i1pBwu3M4Yx/RPucxQRLZb8JTWF/n+Sj3BAiypZKcIHbe/VxT6ElkveIjI5YIc+/Sq
+         95ldH1eekOw0jmoqo6CncpYd7lOJmwl+A2aFdkIzc4avBbz6tjukMFbxvrmgqU6g6YQp
+         p+7yRGMFPKujcTuilLJVt6o0YRGvr4xgMdYCwR/jU1wQP+aK3vfpkWUCxmjOo2tTyiVN
+         SMNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RF8o3G0Xz1ovVmyTz0LE8nmr/a9IOJBCZQzOLkdGz5M=;
-        b=RhhaceuPRIPtPpQByQzKS8e4sBP/Dfm93bZTuE4mLQ86jlhmyl8sCXwofVX+Kx2MtG
-         Ziw8Dhe+jDJGUsPF1RmRQ95wVwZgJKK1XcbOrDlN0WgqXyhODaafMHOE+srR5WVlJNMD
-         gNgLnKcgT+VUTjd4V1SZKBqLfMwGj18rjhPds6gALbnFaVb1ZfJcIWQ/C5J7voyoko/T
-         Fsu6o/CJHAuAAM9kpgmI2LMzEl16yuDxDrSX1ZsFy8jSGKuLHQc49jhtXhQq1ReL/Zqj
-         yEUkKZ1PCcnzn++WRNkdiAAMAu0jF4rSWW1iGnYkcQG7BA4yTzBHMmSejkpvwkBOEUi3
-         aspA==
-X-Gm-Message-State: AOAM531K9O6cgcg4aYFdjwemHHk9zGsOhpE7UTKMtfRXhMhsnRJupmfX
-        9FwoPLBdlXJf1OwcUidyeIOjQH1cjn48NxuCm0kiBQ==
-X-Google-Smtp-Source: ABdhPJz8/7tNah6b/MgRZScB2hUyILC3MI06tBMODCACw2hr59BzB0LAv71ny8kEnaP0SW9ATHxlZ92zkxlbY0Vp5cQ=
-X-Received: by 2002:a17:906:29c3:: with SMTP id y3mr19539341eje.430.1614683801754;
- Tue, 02 Mar 2021 03:16:41 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UXsyTscw9zuLBva4U3+AGU7LQRHCPXqRCSzHFPwdbsg=;
+        b=co4w4BK+tYPc7i3YlJwE5NmG0xa5CB9QDnaZtAyI5azSdmPpUxAk2mxj7wgVeusHhU
+         weg+DDy2gXh6+7a/kXcj+PGfES1fP+5iz5+JwtnBFp6z+K0W65t8rPfnew3ZBInvirPR
+         dMNfjyc0z516kdqQFLxSDFCG7yZ2cU9+RbLuSK9F4Q/AAKHZql4X7kUadAxsSucIQ2gm
+         VM5B6JB6fVeXoqoELrEbMZAfQmmqOjE3hQRwGd+nbtjSQrRB9npAtFqIfp0ve1D2As+B
+         j74y8wQwfozRpa6s7E0mhUAkLsQWa7zw2WeBFo+6nXRtzdSXGz3my7A+uMr2qT+V2RPn
+         upkA==
+X-Gm-Message-State: AOAM5335Xi1MJEgz0cV360dSZPFFZyvRS+uZ46tBujSRQkYXB4AWLvW9
+        HaDY8HHwUZmdnkBc5TIpnCo=
+X-Google-Smtp-Source: ABdhPJxRymJixfSpthjYFtxI7AlxBgvrcbqGsXaXA/6qsfInz7jYNSYRX1M8a7spc/pgycwZXoi9BQ==
+X-Received: by 2002:a05:6512:2356:: with SMTP id p22mr11522329lfu.3.1614684124467;
+        Tue, 02 Mar 2021 03:22:04 -0800 (PST)
+Received: from localhost.localdomain (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.gmail.com with ESMTPSA id w7sm2691078lft.0.2021.03.02.03.22.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Mar 2021 03:22:03 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Fertser <fercerpav@gmail.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/5] Add missing reset controls to NVIDIA Tegra ASoC drivers
+Date:   Tue,  2 Mar 2021 14:21:18 +0300
+Message-Id: <20210302112123.24161-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210225225147.29920-1-fabrizio.castro.jz@renesas.com>
- <20210225225147.29920-5-fabrizio.castro.jz@renesas.com> <CAK8P3a1+CZTAcR5T=gN565Q8=CdZnu5KYsAijKXLY8taofEpGg@mail.gmail.com>
- <OSAPR01MB2737666F47174B68A8EC8DD8C29A9@OSAPR01MB2737.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSAPR01MB2737666F47174B68A8EC8DD8C29A9@OSAPR01MB2737.jpnprd01.prod.outlook.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Tue, 2 Mar 2021 08:16:30 -0300
-Message-ID: <CAAEAJfDDhN4btecUzu=3ZYxP=amnOD=vq0bhhetx7voKdeMZ9Q@mail.gmail.com>
-Subject: Re: [PATCH 4/7] misc: Add driver for DAB IP found on Renesas R-Car devices
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Arnd Bergmann <arnd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux API <linux-api@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        "REE dirk.behme@de.bosch.com" <dirk.behme@de.bosch.com>,
-        Peter Erben <Peter.Erben@de.bosch.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello everyone,
+Hi,
 
-On Mon, 1 Mar 2021 at 14:36, Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
->
-> Hi Arnd,
->
-> Thanks for your feedback!
->
-> > From: Arnd Bergmann <arnd@kernel.org>
-> > Sent: 26 February 2021 10:38
-> > Subject: Re: [PATCH 4/7] misc: Add driver for DAB IP found on Renesas R-
-> > Car devices
-> >
-> > On Thu, Feb 25, 2021 at 11:51 PM Fabrizio Castro
-> > <fabrizio.castro.jz@renesas.com> wrote:
-> > >
-> > > The DAB hardware accelerator found on R-Car E3 and R-Car M3-N devices is
-> > > a hardware accelerator for software DAB demodulators.
-> > > It consists of one FFT (Fast Fourier Transform) module and one decoder
-> > > module, compatible with DAB specification (ETSI EN 300 401 and
-> > > ETSI TS 102 563).
-> > > The decoder module can perform FIC decoding and MSC decoding processing
-> > > from de-puncture to final decoded result.
-> > >
-> > > This patch adds a device driver to support the FFT module only.
-> > >
-> > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > > ---
-> > >  MAINTAINERS                      |   7 ++
-> > >  drivers/misc/Kconfig             |   1 +
-> > >  drivers/misc/Makefile            |   1 +
-> > >  drivers/misc/rcar_dab/Kconfig    |  11 ++
-> > >  drivers/misc/rcar_dab/Makefile   |   8 ++
-> > >  drivers/misc/rcar_dab/rcar_dev.c | 176 +++++++++++++++++++++++++++++++
-> > >  drivers/misc/rcar_dab/rcar_dev.h | 116 ++++++++++++++++++++
-> > >  drivers/misc/rcar_dab/rcar_fft.c | 160 ++++++++++++++++++++++++++++
-> > >  include/uapi/linux/rcar_dab.h    |  35 ++++++
-> >
-> > Can you explain why this is not in drivers/media/?
->
-> I wasn't entirely sure were to put it to be honest as I couldn't find
-> anything similar, that's why "misc" for v1, to mainly get a feedback
-> and advice.
->
-> >
-> > I don't think we want a custom ioctl interface for a device that
-> > implements
-> > a generic specification. My first feeling would be that this should not
-> > have a user-level API but instead get called by the DAB radio driver.
->
-> I hear you, the trouble is that the modules of this IP should be seen
-> as part of a SW and HW processing pipeline.
-> Some of the SW components of the pipeline can be proprietary, and
-> unfortunately we don't have access (yet) to a framework that allows us to
-> test and demonstrate the whole pipeline, for the moment we can only test
-> things in isolation. It'll take us a while to come up with a full solution
-> (or to have access to one), and in the meantime our SoCs come with an IP
-> that can't be used because there is no driver for it (yet).
->
-> After discussing things further with Geert and Laurent, I think they
-> are right in saying that the best path for this is probably to add this
-> driver under "drivers/staging" as an interim solution, so that the IP will
-> be accessible by developers, and when we have everything we need (a fully
-> fledged processing framework), we will able to integrate it better with
-> the other components (if possible).
->
-> >
-> > What is the intended usage model here? I assume the idea is to
-> > use it in an application that receives audio or metadata from DAB.
-> > What driver do you use for that?
->
-> This IP is similar to a DMA to some extent, in the sense that it takes
-> input data from a buffer in memory and it writes output data onto a buffer
-> in memory, and of course it does some processing in between.
+This series adds missing hardware reset controls to I2S and AC97 drivers.
+Currently drivers happen to work properly because reset is implicitly
+deasserted by tegra-clk driver, but clk driver shouldn't touch the resets
+and we need to fix it because this breaks other Tegra drivers. Previously
+we fixed the resets of the AHUB and HDMI codec drivers, but turned out
+that we missed the I2C and AC97 drivers.
 
-That sounds like something that can fit V4L2 MEM2MEM driver.
-You queue two buffers and an operation, and then run a job.
+Thanks to Paul Fertser for testing the pending clk patches and finding
+that audio got broken on Tegra20 AC100 netbook because of the missing I2S
+reset.
 
-> It's not directly connected to any other Radio related IP.
-> The user space application can read DAB IQ samples from the R-Car DRIF
-> interface (via driver drivers/media/platform/rcar_drif.c, or from other
-> sources since this IP is decoupled from DRIF), and then when it's time
-> to accelerate FFT, FIC, or MSC, it can request services to the DAB IP, so
-> that the app can go on and use the processor to do some work, while the DAB
-> IP processes things.
-> A framework to connect and exchange processing blocks (either SW or HW) and
-> interfaces is therefore vital to properly place a kernel implementation
-> in the great scheme of things, in its absence a simple driver can help
+Dmitry Osipenko (5):
+  reset: Allow devm_reset_control_array_get() to get resets in a
+    released state
+  reset: Add devm_reset_control_array_get_exclusive_released()
+  ASoC: tegra20: ac97: Add reset control
+  ASoC: tegra20: i2s: Add reset control
+  ASoC: tegra30: i2s: Add reset control
 
-I'm not entirely sure we are missing a framework. What's missing in
-V4L2 MEM2MEM?
+ drivers/reset/core.c           |  8 ++++++--
+ include/linux/reset.h          | 20 +++++++++++++------
+ sound/soc/tegra/tegra20_ac97.c | 21 ++++++++++++++++++++
+ sound/soc/tegra/tegra20_ac97.h |  1 +
+ sound/soc/tegra/tegra20_i2s.c  | 31 +++++++++++++++++++++++++++++
+ sound/soc/tegra/tegra20_i2s.h  |  1 +
+ sound/soc/tegra/tegra30_ahub.c | 14 ++++++++++---
+ sound/soc/tegra/tegra30_i2s.c  | 36 +++++++++++++++++++++++++++++++++-
+ sound/soc/tegra/tegra30_i2s.h  |  1 +
+ 9 files changed, 121 insertions(+), 12 deletions(-)
 
-Before considering drivers/staging, it would be interesting to figure
-out if V4L2 can do it as-is, and if not, discuss what's missing.
+-- 
+2.29.2
 
-Thanks,
-Ezequiel
