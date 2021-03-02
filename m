@@ -2,50 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E60BF32AA98
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5474E32AA9B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:56:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349277AbhCBTvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:51:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48394 "EHLO
+        id S1350380AbhCBTwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:52:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241546AbhCBCJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 21:09:18 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12D48C0617AB
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 18:05:05 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id u8so20018264ior.13
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 18:05:05 -0800 (PST)
+        with ESMTP id S241550AbhCBCJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 21:09:19 -0500
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 474C4C06121D
+        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 18:05:09 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id o9so5157441iow.6
+        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 18:05:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ieee.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lShKGzJkTzSpuSC/KuZ9tUSmtNjp0IXSW8EKOFz63GY=;
-        b=JQLqCtKm0J1NtDMqYPUP3AFphigmwPcsFkforr738h4L+vV7zy9PyTvRVKhJHM+mqJ
-         jQ98Yfw7gvOL4w515Xi+DsMT4RaiYJnW3JIXEiiLXFMFkixAkKBS5wsRzG+50gJhN5wB
-         w6OEVUdXYvY1vojHdKd/oVTyXyerWWjxZa/jM=
+        bh=YuUOZilAPqtQ1SZQR/vTqn0A0mCysPgz4pmCeU7TVwA=;
+        b=CSXUqM6rGhHKiQX2k8GL6zA4oMI4IxoVfDmGlYXBm2crqJfK0V5wqHl/US8WkpZ0Ak
+         F++JeQlUo36xDmY1/EAjeu6lPL9vMzW2hsEAb23KK7C/VpVEsyVCQY3SPE6xXISgEtT7
+         Px/dEzdrPFrlgENwv+uq4DE/Soj11T57VRLnA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=lShKGzJkTzSpuSC/KuZ9tUSmtNjp0IXSW8EKOFz63GY=;
-        b=YrKmNxTKFybPOIfXYckqG9TrDL6OPt4cgPygDByA8a75GFcMirxWYQ1hj98SBcC6xW
-         q3Kw5evlM2WagyRmBRLUJzxuAvMoeGu21MroD6tnSvwAgwhBLih4xALr9AM1GEPiJGC3
-         dQlLMv8UME6QYILamvKAOG27V7bmLdVhEbBqxQhF8womVylkps7Mvt5uyD+iTEL7mg3d
-         fDE2d6R5CiQXPGn1nYfGJxIp23779uCbuiOSA1nxhe/nhl6Hxgr0GjMAFQcnEpTj8jyS
-         EUuLHjWG9sT0RZeqasW9sdjhP5VOx8MPu7cOxCFSLKT/40tZNZD84LE9JxVVGk3Ud2Z2
-         5Y+A==
-X-Gm-Message-State: AOAM530rZXKf7SAct4pV4P6BeBwB2IBI9vvRb3/RejC8up8trx4R0ts9
-        uJgDFbbFL0O6IKCws1xyFcodzw==
-X-Google-Smtp-Source: ABdhPJyUL49sp6S9EK1ZvwtCMcYhEmHCmQNlOyGbNtRGezfLN8L0jawaBDPMHObtCHJG/CLOenrbtw==
-X-Received: by 2002:a5e:9612:: with SMTP id a18mr16035795ioq.209.1614650704475;
-        Mon, 01 Mar 2021 18:05:04 -0800 (PST)
+        bh=YuUOZilAPqtQ1SZQR/vTqn0A0mCysPgz4pmCeU7TVwA=;
+        b=R4YtUx20s6j3XE6FFGJsT4HwIZ0vAA4A0vIn5Ax7oLEMTv3k05e/NiVXGy1tEd7Nbb
+         QKzuK5pJ4stw4lebE5ox4pPMbt3Vos8GZsnFkCb/ly9mfCGYVR9M62hy9CZmgj9IPpfx
+         Z3qvXQ+sBpVpIkWP3QqThJulT83wmM9JIwd3rBknGkjipVYTn5MPc4UNQN9gNQ8aUcZg
+         b5yxEwo93wi9ZsSRpCOwmuCtnffHCy7ASv05kUqrIsmsfOeB1mfonxT/CB+azlvR1xsk
+         nGDJb9RzKrcoXTN9tJb3x1j1ea1kzyks2s2dOpE+QmBLxIOXbPeA6OPuj/UmkB40GtuW
+         pE5Q==
+X-Gm-Message-State: AOAM532IyWq+mv4p+VwdNb9Pt8ACy55wN6/RO38J1AwQyJ/rIHpBmab5
+        w0jFT5JBqpj4KM0ZnX23ZpKIAA==
+X-Google-Smtp-Source: ABdhPJwCRrdGCnsEA1cgycV1Nefbv3RWZiKM6W4aDW+mGlSmGj069gmdSe+Z46hECvP08Gsux5qADQ==
+X-Received: by 2002:a5e:cb4b:: with SMTP id h11mr16540014iok.108.1614650708781;
+        Mon, 01 Mar 2021 18:05:08 -0800 (PST)
 Received: from [172.22.22.26] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.googlemail.com with ESMTPSA id k14sm9306568iob.34.2021.03.01.18.05.03
+        by smtp.googlemail.com with ESMTPSA id h13sm10921008ioe.40.2021.03.01.18.05.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Mar 2021 18:05:03 -0800 (PST)
-Subject: Re: [PATCH v1 1/7] net: ipa: Add support for IPA v3.1 with GSI v1.0
+        Mon, 01 Mar 2021 18:05:08 -0800 (PST)
+Subject: Re: [PATCH v1 2/7] net: ipa: endpoint: Don't read unexistant register
+ on IPAv3.1
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>, elder@kernel.org
 Cc:     bjorn.andersson@linaro.org, agross@kernel.org, davem@davemloft.net,
@@ -54,14 +55,14 @@ Cc:     bjorn.andersson@linaro.org, agross@kernel.org, davem@davemloft.net,
         linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
         marijn.suijten@somainline.org, phone-devel@vger.kernel.org
 References: <20210211175015.200772-1-angelogioacchino.delregno@somainline.org>
- <20210211175015.200772-2-angelogioacchino.delregno@somainline.org>
+ <20210211175015.200772-3-angelogioacchino.delregno@somainline.org>
 From:   Alex Elder <elder@ieee.org>
-Message-ID: <7fdac2c4-b599-6db5-21e2-676c850edcf8@ieee.org>
-Date:   Mon, 1 Mar 2021 20:05:02 -0600
+Message-ID: <73d19c5a-fddb-05d8-4787-de613091cbeb@ieee.org>
+Date:   Mon, 1 Mar 2021 20:05:07 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210211175015.200772-2-angelogioacchino.delregno@somainline.org>
+In-Reply-To: <20210211175015.200772-3-angelogioacchino.delregno@somainline.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -70,99 +71,47 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 2/11/21 11:50 AM, AngeloGioacchino Del Regno wrote:
-> In preparation for adding support for the MSM8998 SoC's IPA,
-> add the necessary bits for IPA version 3.1 featuring GSI 1.0,
-> found on at least MSM8998.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> On IPAv3.1 there is no such FLAVOR_0 register so it is impossible
+> to read tx/rx channel masks and we have to rely on the correctness
+> on the provided configuration.
 
-Overall, this looks good.  As I mentioned, I've
-implemented a very similar set of changes in my
-private development tree.  It's part of a much
-larger set of changes intended to allow many
-IPA versions to be supported.
+This works, and is simple.
 
-A few minor comments, below.
+I think I would rather populate the available mask here
+with a mask containing the actual version-specific available
+endpoints.  On the other hand, looking at the downstream code,
+it looks like almost any of these endpoints could be used.
+
+So, while I don't know for sure the all-1's value here is
+*correct*, it's more of a validation check anyway, so it's
+probably fine
 
 					-Alex
 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > ---
->  drivers/net/ipa/gsi.c          |  8 ++++----
->  drivers/net/ipa/ipa_endpoint.c | 17 +++++++++--------
->  drivers/net/ipa/ipa_main.c     |  8 ++++++--
->  drivers/net/ipa/ipa_reg.h      |  3 +++
->  drivers/net/ipa/ipa_version.h  |  1 +
->  5 files changed, 23 insertions(+), 14 deletions(-)
+>  drivers/net/ipa/ipa_endpoint.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> diff --git a/drivers/net/ipa/gsi.c b/drivers/net/ipa/gsi.c
-> index 14d9a791924b..6315336b3ca8 100644
-> --- a/drivers/net/ipa/gsi.c
-> +++ b/drivers/net/ipa/gsi.c
-> @@ -794,14 +794,14 @@ static void gsi_channel_program(struct gsi_channel *channel, bool doorbell)
+> diff --git a/drivers/net/ipa/ipa_endpoint.c b/drivers/net/ipa/ipa_endpoint.c
+> index 06d8aa34276e..10c477e1bb90 100644
+> --- a/drivers/net/ipa/ipa_endpoint.c
+> +++ b/drivers/net/ipa/ipa_endpoint.c
+> @@ -1659,6 +1659,15 @@ int ipa_endpoint_config(struct ipa *ipa)
+>  	u32 max;
+>  	u32 val;
 >  
->  	/* Max prefetch is 1 segment (do not set MAX_PREFETCH_FMASK) */
->  
-> -	/* We enable the doorbell engine for IPA v3.5.1 */
-> -	if (gsi->version == IPA_VERSION_3_5_1 && doorbell)
-> +	/* We enable the doorbell engine for IPA v3.x */
-> +	if (gsi->version < IPA_VERSION_4_0 && doorbell)
-
-My version:
-        if (gsi->version < IPA_VERSION_4_0 && doorbell)
-
-So... You're doing the right thing.  Almost all changes I made
-like this were identical to yours; others were (I think all)
-equivalent.
-
->  		val |= USE_DB_ENG_FMASK;
->  
->  	/* v4.0 introduces an escape buffer for prefetch.  We use it
->  	 * on all but the AP command channel.
->  	 */
-> -	if (gsi->version != IPA_VERSION_3_5_1 && !channel->command) {
-> +	if (gsi->version >= IPA_VERSION_4_0 && !channel->command) {
->  		/* If not otherwise set, prefetch buffers are used */
->  		if (gsi->version < IPA_VERSION_4_5)
->  			val |= USE_ESCAPE_BUF_ONLY_FMASK;
-
-. . .
-
-> diff --git a/drivers/net/ipa/ipa_main.c b/drivers/net/ipa/ipa_main.c
-> index 84bb8ae92725..be191993fbec 100644
-> --- a/drivers/net/ipa/ipa_main.c
-> +++ b/drivers/net/ipa/ipa_main.c
-
-. . .
-
-> @@ -276,6 +276,7 @@ static void ipa_hardware_config_qsb(struct ipa *ipa)
->  
->  	max1 = 12;
->  	switch (version) {
-> +	case IPA_VERSION_3_1:
-
-I do this a little differently now.  These values will be
-found in the "ipa_data" file for the platform.
-
-Also I think you'd need different values for IPA v3.1 than
-for IPA v3.5.1.
-
->  	case IPA_VERSION_3_5_1:
->  		max0 = 8;
->  		break;
-> @@ -404,6 +405,9 @@ static void ipa_hardware_config(struct ipa *ipa)
->  		/* Enable open global clocks (not needed for IPA v4.5) */
->  		val = GLOBAL_FMASK;
->  		val |= GLOBAL_2X_CLK_FMASK;
-> +		if (version == IPA_VERSION_3_1)
-> +			val |= MISC_FMASK;
-
-I see this being set for a workaround or IPA v3.1 in the
-msm-4.4 tree, but the other two flags aren't set in that
-case.  So this might not be quite right.
-
+> +	/* Some IPA versions don't provide a FLAVOR register and we cannot
+> +	 * check the rx/tx masks hence we have to rely on the correctness
+> +	 * of the provided configuration.
+> +	 */
+> +	if (ipa->version == IPA_VERSION_3_1) {
+> +		ipa->available = U32_MAX;
+> +		return 0;
+> +	}
 > +
->  		iowrite32(val, ipa->reg_virt + IPA_REG_CLKON_CFG_OFFSET);
->  
->  		/* Disable PA mask to allow HOLB drop */
+>  	/* Find out about the endpoints supplied by the hardware, and ensure
+>  	 * the highest one doesn't exceed the number we support.
+>  	 */
+> 
 
-. . .
