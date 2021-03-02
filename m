@@ -2,89 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 226B032AADA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50E9732AAD9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:02:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378952AbhCBT4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:56:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49646 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240616AbhCBIve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 03:51:34 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AEADC0617A9
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 00:42:36 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id do6so33696007ejc.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 00:42:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cqj83OHH0uy6jXnn/6KBeppUvOHSpH1VsMfJDu/RtSk=;
-        b=vFLsMKKiZvzx63grS8/bVXFdMNv4fOLL4c6hkZiljW/H7KUmXzXu0TblXaRgN7HH0X
-         sRs278w+B9Rb9CUADc+tXJmc99YoEPc0ZR9rfxIxgMyQNt4y3G7x2aD67k/sNXjEZfhW
-         SGFg3mWcj6hrBADdf8mpl54LZxCOv3zNiWvHoXdhJh1EMjvyFGpE8PaOby5gGpPuOYgE
-         mZSyst99gu5zwfj7CGCF8sYoSrc6pocYzwx6R9208KKecfp4+/5tacG3ZkRyrpqFiHJa
-         U2pRkeernB6y465khfgeXxt6r4PwcofdmInvJF4RE5YbGQXDsWNqbO0oSzM+SD+6Pa3p
-         Se8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cqj83OHH0uy6jXnn/6KBeppUvOHSpH1VsMfJDu/RtSk=;
-        b=ES4+qKrNYgfH62GAqTzwsp2HEjYhGljsx9CwNQEd1Kfj5Z9NZJVuhah08C88oxqfyD
-         KU44oIgaXREi9GL3mnt09e4lG6GZbH2ijLrxmVT1ebO9N552/8YwIylU31LBIRBAGwKS
-         6iupoAxlcWyepq8SOCBqOHaDaqSGQ5lPkyz4XBqRclsqJP4XrBWRn93vG6/yw3qhucEr
-         M2zxmAHNEpvgEupBB0EJVtrMsvENoTIcwJF57u1nHvO8/PKsSd3hxepUp+it5b9DzYit
-         StsujNqPvBWk0uiaVJLdoJuo+CmJPxDZ8GMadkywwcOHC/FffoCS5H3ybadatDokN1JI
-         6hsQ==
-X-Gm-Message-State: AOAM530KrTgh5a5t5pDl4iN0z1h0aYQ3TpJDemEADHD6f5JlS9BIZsmo
-        mZ382vHoyv3eu8rTaTzQAgYGoRQ96tAGnmP8O0ks/w==
-X-Google-Smtp-Source: ABdhPJzGPey4/zJAweoL7NIyiBWG5j+JHefetxzo+d4UB+dkYOkVHlCSa1ueXoWOLvYaTHqorLcuIeAd2yR+S+Tvt6o=
-X-Received: by 2002:a17:906:ac6:: with SMTP id z6mr19121663ejf.505.1614674555172;
- Tue, 02 Mar 2021 00:42:35 -0800 (PST)
+        id S1839915AbhCBTzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:55:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59214 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237822AbhCBIve (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Mar 2021 03:51:34 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 706FA64D74;
+        Tue,  2 Mar 2021 08:49:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614675000;
+        bh=6PoieO/F7Ojbr986NziQvCx9nZ2RQqG2B6Pv7rnWSYo=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=FcppgVb7+T8LZSLKxYQdiRHnwCU7u+YKQ3DLgxamn/ln27zAQuNyuuZ2eUlwV93ra
+         0b8c13ZFVhkXSgv3Mynbd76PcUMlDDWqb3U2rpVKVvQO00vd3QZLSmF6fWSj15yH8e
+         8so+pbU8mG1rNXKCRD2e0MBi+gAmhXaxzOo4pOMy5+1Z5NzLMK8WUrBj+z87KWfQEQ
+         4xqN7zthF3J9SlbiCmQT1+wo/h7Kr5A9KO2++BGU52uDEdb74d+q5zqssIfU6SRR+c
+         48yppTfYDk7S48RTySonvuNRt6IZsNLm4I53pTSRpwPHUI11FhQJvEGEHnVFDkoCR/
+         DAKbpbo6s/JTA==
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>
+Subject: Re: (subset) [PATCH] arm64: dts: exynos: re-order Slim SSS clocks to match dtschema
+Date:   Tue,  2 Mar 2021 09:49:55 +0100
+Message-Id: <161467498711.12416.4141430353786896586.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210212163729.69882-1-krzk@kernel.org>
+References: <20210212163729.69882-1-krzk@kernel.org>
 MIME-Version: 1.0
-References: <20210216113118.17484-1-kostap@marvell.com>
-In-Reply-To: <20210216113118.17484-1-kostap@marvell.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 2 Mar 2021 09:42:24 +0100
-Message-ID: <CACRpkdb+ampUXg1qN6iH8aTagqvfJwosHD6c2WGLA3p_JCXa-g@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Fix Marvell CP110 pin control finction names
-To:     Kostya Porotchkin <kostap@marvell.com>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "(Exiting) Amit Kucheria" <amit.kucheria@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Grzegorz Jaszczyk <jaz@semihalf.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Stefan Chulski <stefanc@marvell.com>, bpeled@marvell.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 16, 2021 at 12:31 PM <kostap@marvell.com> wrote:
+On Fri, 12 Feb 2021 17:37:29 +0100, Krzysztof Kozlowski wrote:
+> The dtschema expects pclk (APB clock) followed by aclk (AXI/AHB clock):
+> 
+>   arch/arm64/boot/dts/exynos/exynos5433-tm2.dt.yaml:
+>     slim-sss@11140000: clock-names:0: 'pclk' was expected
+>   arch/arm64/boot/dts/exynos/exynos5433-tm2.dt.yaml:
+>     slim-sss@11140000: clock-names:1: 'aclk' was expected
 
-> From: Konstantin Porotchkin <kostap@marvell.com>
->
-> These patches are fixing the CP110 pin control driver and the related
-> documentation.
-> Current CP110 pin control driver uses two different MPP functions named
-> the same (sdio) in MPP54 and MPP55 definitions.
-> Since these names are used for the MPP functionality selection, all
-> function names within single MPP group should be unique.
-> This patches series fixes function names in MPP54 and MPP55 pin
-> definitions.
+Applied, thanks!
 
-Excellent fix, patches applied!
+[1/1] arm64: dts: exynos: re-order Slim SSS clocks to match dtschema
+      commit: 38f80dec08fe2b8101ae7401d2b44e4247aed8bf
 
-Yours,
-Linus Walleij
+Best regards,
+-- 
+Krzysztof Kozlowski <krzk@kernel.org>
