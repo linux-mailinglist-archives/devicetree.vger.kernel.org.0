@@ -2,105 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A702932AB28
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:13:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B4732AB29
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:13:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836463AbhCBUIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:08:38 -0500
-Received: from szxga06-in.huawei.com ([45.249.212.32]:13413 "EHLO
-        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383415AbhCBLfL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 06:35:11 -0500
-Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.58])
-        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4DqZkH5mttzjTQ9;
-        Tue,  2 Mar 2021 19:32:55 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.179.202) by
- DGGEMS401-HUB.china.huawei.com (10.3.19.201) with Microsoft SMTP Server id
- 14.3.498.0; Tue, 2 Mar 2021 19:34:07 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Wei Xu <xuwei5@hisilicon.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: [PATCH v4 1/1] arm64: dts: correct vendor prefix hisi to hisilicon
-Date:   Tue, 2 Mar 2021 19:33:51 +0800
-Message-ID: <20210302113351.1204-2-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20210302113351.1204-1-thunder.leizhen@huawei.com>
-References: <20210302113351.1204-1-thunder.leizhen@huawei.com>
+        id S1836472AbhCBUIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:08:40 -0500
+Received: from foss.arm.com ([217.140.110.172]:50148 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1350137AbhCBLx7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Mar 2021 06:53:59 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D0905106F;
+        Tue,  2 Mar 2021 03:41:00 -0800 (PST)
+Received: from [10.57.48.219] (unknown [10.57.48.219])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8C1933FA00;
+        Tue,  2 Mar 2021 03:40:58 -0800 (PST)
+Subject: Re: [RFC 10/13] iommu/arm-smmu-impl: Get rid of Marvell's
+ implementation details
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     f.fainelli@gmail.com, robh+dt@kernel.org, ardb@kernel.org,
+        hch@infradead.org, narmstrong@baylibre.com, dwmw2@infradead.org,
+        linux@armlinux.org.uk, catalin.marinas@arm.com, arnd@arndb.de,
+        will@kernel.org
+References: <20210226140305.26356-1-nsaenzjulienne@suse.de>
+ <20210226140305.26356-11-nsaenzjulienne@suse.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <96b6c3e4-d9d3-270e-6d8e-7c826ae11827@arm.com>
+Date:   Tue, 2 Mar 2021 11:40:53 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.179.202]
-X-CFilter-Loop: Reflected
+In-Reply-To: <20210226140305.26356-11-nsaenzjulienne@suse.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
-stated in "vendor-prefixes.yaml".
+On 2021-02-26 14:03, Nicolas Saenz Julienne wrote:
+> arm-smmu can now deal with integrations on buses that don't support
+> 64bit MMIO accesses. No need to create a special case for that on
+> Marvell's integration.
 
-Fixes: a4e36ae0fb33 ("arm64: dts: hi3660: add resources for clock and reset")
-Fixes: 757a4b2913eb ("arm64: dts: hisilicon: hi3670: Add reset controller support")
-Fixes: 305656e0989d ("arm64: dts: hisilicon: hi3670.dtsi: add iomcu_rst")
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+This breaks compatibility with existing DTs.
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-index cab89dc6f596121..8b8d3d07b67fe84 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-@@ -345,7 +345,7 @@
- 		crg_rst: crg_rst_controller {
- 			compatible = "hisilicon,hi3660-reset";
- 			#reset-cells = <2>;
--			hisi,rst-syscon = <&crg_ctrl>;
-+			hisilicon,rst-syscon = <&crg_ctrl>;
- 		};
- 
- 
-@@ -376,7 +376,7 @@
- 
- 		iomcu_rst: reset {
- 			compatible = "hisilicon,hi3660-reset";
--			hisi,rst-syscon = <&iomcu>;
-+			hisilicon,rst-syscon = <&iomcu>;
- 			#reset-cells = <2>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 8830795c8efc5a5..37409f0639628d0 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -155,7 +155,7 @@
- 			compatible = "hisilicon,hi3670-reset",
- 				     "hisilicon,hi3660-reset";
- 			#reset-cells = <2>;
--			hisi,rst-syscon = <&crg_ctrl>;
-+			hisilicon,rst-syscon = <&crg_ctrl>;
- 		};
- 
- 		pctrl: pctrl@e8a09000 {
-@@ -196,7 +196,7 @@
- 
- 		iomcu_rst: reset {
- 			compatible = "hisilicon,hi3660-reset";
--			hisi,rst-syscon = <&iomcu>;
-+			hisilicon,rst-syscon = <&iomcu>;
- 			#reset-cells = <2>;
- 		};
- 
--- 
-1.8.3
+Robin.
 
-
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> ---
+>   drivers/iommu/arm/arm-smmu/arm-smmu-impl.c | 21 ---------------------
+>   1 file changed, 21 deletions(-)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-impl.c b/drivers/iommu/arm/arm-smmu/arm-smmu-impl.c
+> index 136872e77195..55d40e37e144 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-impl.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-impl.c
+> @@ -145,25 +145,6 @@ static const struct arm_smmu_impl arm_mmu500_impl = {
+>   	.reset = arm_mmu500_reset,
+>   };
+>   
+> -static u64 mrvl_mmu500_readq(struct arm_smmu_device *smmu, int page, int off)
+> -{
+> -	/*
+> -	 * Marvell Armada-AP806 erratum #582743.
+> -	 * Split all the readq to double readl
+> -	 */
+> -	return hi_lo_readq_relaxed(arm_smmu_page(smmu, page) + off);
+> -}
+> -
+> -static void mrvl_mmu500_writeq(struct arm_smmu_device *smmu, int page, int off,
+> -			       u64 val)
+> -{
+> -	/*
+> -	 * Marvell Armada-AP806 erratum #582743.
+> -	 * Split all the writeq to double writel
+> -	 */
+> -	hi_lo_writeq_relaxed(val, arm_smmu_page(smmu, page) + off);
+> -}
+> -
+>   static int mrvl_mmu500_cfg_probe(struct arm_smmu_device *smmu)
+>   {
+>   
+> @@ -181,8 +162,6 @@ static int mrvl_mmu500_cfg_probe(struct arm_smmu_device *smmu)
+>   }
+>   
+>   static const struct arm_smmu_impl mrvl_mmu500_impl = {
+> -	.read_reg64 = mrvl_mmu500_readq,
+> -	.write_reg64 = mrvl_mmu500_writeq,
+>   	.cfg_probe = mrvl_mmu500_cfg_probe,
+>   	.reset = arm_mmu500_reset,
+>   };
+> 
