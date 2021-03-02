@@ -2,450 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D6DE32AB1A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:12:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF60532AB12
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:09:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836194AbhCBUIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:08:05 -0500
-Received: from mail.cognitivepilot.com ([91.218.251.140]:42875 "EHLO
-        mail.cognitivepilot.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383237AbhCBLFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 06:05:31 -0500
-X-Greylist: delayed 629 seconds by postgrey-1.27 at vger.kernel.org; Tue, 02 Mar 2021 06:05:28 EST
-Received: from mail.cognitivepilot.com (localhost [127.0.0.1])
-        by mail.cognitivepilot.com (Postfix) with ESMTP id 4DqYsj1NgsznP12c
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 13:54:17 +0300 (MSK)
-Authentication-Results: mail.cognitivepilot.com (amavisd-new);
-        dkim=pass (1024-bit key) reason="pass (just generated, assumed good)"
-        header.d=cognitivepilot.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        cognitivepilot.com; h=content-type:mime-version:user-agent:date
-        :message-id:subject:to:from; s=dkim; t=1614682455; x=1617274456;
-         bh=SotIZVPJhX+NNB3q6udIAe2AEULRs3GnzXImuPqbVfU=; b=udzyVaGMyQQk
-        4v+bp3/f1gwX+quTCTvB8Tz+RtTHgQ19peGrGnnc2D3uQ2+aXW4JbVW+TNQhKTab
-        kbo8monKbZYVN861y/sIWElsIPUNcri886k6rCJH31jbFkeTEBUiy47c+cL1DNTa
-        PvVrlTuSv/nSIRikkQVl/KJPQJbTKTg=
-X-Virus-Scanned: amavisd-new at cognitivepilot.com
-Received: from mail.cognitivepilot.com ([127.0.0.1])
-        by mail.cognitivepilot.com (mail.cognitivepilot.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id S4xhLu5cbtdT for <devicetree@vger.kernel.org>;
-        Tue,  2 Mar 2021 13:54:15 +0300 (MSK)
-Received: from [192.168.3.118] (unknown [185.68.147.27])
-        by mail.cognitivepilot.com (Postfix) with ESMTPSA id 4DqYsg4G2fznY37V;
-        Tue,  2 Mar 2021 13:54:15 +0300 (MSK)
-From:   Ivan Uvarov <i.uvarov@cognitivepilot.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
-Subject: [draft2 PATCH] ARM: dts: sun8i: r40: add devicetree for
- FETA40i-C/OKA40i-C
-Message-ID: <c4c13d63-e319-48b5-17e6-26d9967aa66f@cognitivepilot.com>
-Date:   Tue, 2 Mar 2021 13:54:15 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S1443178AbhCBUHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:07:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49198 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349642AbhCBLAY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 06:00:24 -0500
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51241C061756
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 02:59:28 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id c16so2345225ply.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 02:59:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bxei/8aDMCYKqmTkktTk9ZHLkhHxr5aG3PN4M0TW8C4=;
+        b=O5WIbc61G3ZDHjgS4F7URCW/4/U7Isq2Mu3Wvdscu+y5vjL7ou79cWwbkvEnMvSgxq
+         1hzCTP07F89/w9x4GCJYWoM72kALz0iJfAWEJmmpHI0lFed1eRkp2DDe9YzHvtaTIZOl
+         vOuYG5dMQg0TLfE7crXbgi98xIBLaAl2GJmy+UMx5vYLZ4Yz4T1h7SzQoa+RNw3iqJ1U
+         ssCHXncGsytBp7FBr2Py8/qa53OWNBYf5gFCJ1LdXz6IkNZBloB4hKeCMspdquSxmZxc
+         0Zp6zzcH9fJwVtBv1DoVoVh6h+AmcHOMV/EoCxHt4CgJuGoF+r2+VN0EhKGaRyOBJSu9
+         yyDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bxei/8aDMCYKqmTkktTk9ZHLkhHxr5aG3PN4M0TW8C4=;
+        b=WpQt7qli7WfM1uyJcqNsXh2JjL5AL/Pyoj4xQaKsQ7FGvnUwCE8X7KV57eNLJU828b
+         ZbmVqzudiUrNpHAc+gmTrocT6hNigNqJRD6XT6Zzkr+RwUGsdX5ndgV4b+6l1qsUM6vI
+         XfwBnKPIij3BnVyXYR+zPnibR4jQtsoqUjcgZL2jM8OF3yYf0ooG4in7azmPSK75akz2
+         mUaj7YFg7LE1twIQ911bvqxe431k5IIin595Q0V0rYpXmC2RDuQaqRU+0+xXDdeOQDJ7
+         ArM1Tfn/LDW0lCOZyg1ZhpDrAXpQW4LUOMceMWsPLzpclLSk1Cdiafmh5ptSTM5qwz5M
+         9vtA==
+X-Gm-Message-State: AOAM53200NB5UFXB5I9n3Xa+jX8Y+bxipptUhnSTFC2g5g84A61GtNEA
+        S7NowUI+kTGj5Un0s1Evd1JHopfPPSjawAzt
+X-Google-Smtp-Source: ABdhPJwIhIDCZFAmjDINOMpTIcq157qIxL63LYhmKeq117MzPFuyqWv2PhA0oDZBd4g793JCy1+/lQ==
+X-Received: by 2002:a17:90a:5d09:: with SMTP id s9mr3715808pji.172.1614682767885;
+        Tue, 02 Mar 2021 02:59:27 -0800 (PST)
+Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
+        by smtp.gmail.com with ESMTPSA id t26sm19500451pfq.208.2021.03.02.02.59.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Mar 2021 02:59:27 -0800 (PST)
+From:   Greentime Hu <greentime.hu@sifive.com>
+To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
+        erik.danie@sifive.com, zong.li@sifive.com, bhelgaas@google.com,
+        robh+dt@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        lorenzo.pieralisi@arm.com, p.zabel@pengutronix.de,
+        alex.dewar90@gmail.com, khilman@baylibre.com,
+        hayashi.kunihiko@socionext.com, vidyas@nvidia.com,
+        jh80.chung@samsung.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: [RFC PATCH 0/6] Add SiFive FU740 PCIe host controller driver support
+Date:   Tue,  2 Mar 2021 18:59:11 +0800
+Message-Id: <cover.1614681831.git.greentime.hu@sifive.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="kESZAWtLHy8j4xCXZhhuoJfcbhnm5LnLD"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---kESZAWtLHy8j4xCXZhhuoJfcbhnm5LnLD
-Content-Type: multipart/mixed; boundary="AtiGR84BiT5U1solkK8OCe5vv8wgfo8T1";
- protected-headers="v1"
-From: Ivan Uvarov <i.uvarov@cognitivepilot.com>
-To: Rob Herring <robh+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@siol.net>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc: =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
-Message-ID: <c4c13d63-e319-48b5-17e6-26d9967aa66f@cognitivepilot.com>
-Subject: [draft2 PATCH] ARM: dts: sun8i: r40: add devicetree for
- FETA40i-C/OKA40i-C
+This patchset includes SiFive FU740 PCIe host controller driver. We also
+add pcie_aux clock and pcie_power_on_reset controller to prci driver for
+PCIe driver to use it.
 
---AtiGR84BiT5U1solkK8OCe5vv8wgfo8T1
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+This is tested with e1000e: Intel(R) PRO/1000 Network Card and SP M.2 PCIe
+Gen 3 SSD in SiFive Unmatched.
 
-From: Ivan Uvarov <i.uvarov@cognitivepilot.com>
+Greentime Hu (5):
+  clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
+  clk: sifive: Use reset-simple in prci driver for PCIe driver
+  MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
+  dt-bindings: PCI: Add SiFive FU740 PCIe host controller
+  riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
 
-This patch adds support for the Forlinx FETA40i-C SoM and OKA40i-C
-devboard[1] that is based on it. The devicetree is split into a .dtsi=20
-which (hopefully) corresponds to the functions of the SoM itself and=20
-a .dts for the devboard.
+Paul Walmsley (1):
+  PCI: designware: Add SiFive FU740 PCIe host controller driver
 
-[1]:https://linux-sunxi.org/Forlinx_OKA40i-C
+ .../bindings/pci/sifive,fu740-pcie.yaml       | 119 +++++
+ MAINTAINERS                                   |   8 +
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  34 ++
+ drivers/clk/sifive/Kconfig                    |   2 +
+ drivers/clk/sifive/fu740-prci.c               |  11 +
+ drivers/clk/sifive/fu740-prci.h               |   2 +-
+ drivers/clk/sifive/sifive-prci.c              |  55 +++
+ drivers/clk/sifive/sifive-prci.h              |  13 +
+ drivers/pci/controller/dwc/Kconfig            |   9 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-fu740.c       | 455 ++++++++++++++++++
+ drivers/reset/Kconfig                         |   3 +-
+ include/dt-bindings/clock/sifive-fu740-prci.h |   1 +
+ 13 files changed, 711 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
 
-Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
----
- arch/arm/boot/dts/Makefile               |   1 +
- arch/arm/boot/dts/sun8i-r40-feta40i.dtsi |  68 +++++++
- arch/arm/boot/dts/sun8i-r40-oka40i-c.dts | 238 +++++++++++++++++++++++
- 3 files changed, 307 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
- create mode 100644 arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
+-- 
+2.30.0
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 8e5d4ab4e7..88aae9de95 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1222,6 +1222,7 @@ dtb-$(CONFIG_MACH_SUN8I) +=3D \
- 	sun8i-r16-nintendo-super-nes-classic.dtb \
- 	sun8i-r16-parrot.dtb \
- 	sun8i-r40-bananapi-m2-ultra.dtb \
-+	sun8i-r40-oka40i-c.dtb \
- 	sun8i-s3-elimo-initium.dtb \
- 	sun8i-s3-lichee-zero-plus.dtb \
- 	sun8i-s3-pinecube.dtb \
-diff --git a/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts=
-/sun8i-r40-feta40i.dtsi
-new file mode 100644
-index 0000000000..edfb846db1
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
-@@ -0,0 +1,68 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR MIT
-+// Copyright (C) 2021 Ivan Uvarov <i.uvarov@cognitivepilot.com>
-+// Based on the sun8i-r40-bananapi-m2-ultra.dts, which is:
-+//  Copyright (C) 2017 Chen-Yu Tsai <wens@csie.org>
-+//  Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-+
-+#include "sun8i-r40.dtsi"
-+
-+
-+&i2c0 {
-+	status =3D3D "okay";
-+
-+	axp22x: pmic@34 {
-+		compatible =3D3D "x-powers,axp221";
-+		reg =3D3D <0x34>;
-+		interrupt-parent =3D3D <&nmi_intc>;
-+		interrupts =3D3D <0 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+#include "axp22x.dtsi"
-+
-+&mmc2 {
-+	vmmc-supply =3D3D <&reg_dcdc1>;
-+	vqmmc-supply =3D3D <&reg_aldo2>;
-+	bus-width =3D3D <8>;
-+  non-removable;
-+	status =3D3D "okay";
-+};
-+
-+
-+&pio {
-+	pinctrl-names =3D3D "default";
-+	pinctrl-0 =3D3D <&clk_out_a_pin>;
-+	vcc-pa-supply =3D3D <&reg_dcdc1>;
-+	vcc-pc-supply =3D3D <&reg_aldo2>;
-+	vcc-pd-supply =3D3D <&reg_dcdc1>;
-+	vcc-pf-supply =3D3D <&reg_dldo4>;
-+	vcc-pg-supply =3D3D <&reg_dldo1>;
-+};
-+
-+&reg_aldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <1800000>;
-+	regulator-max-microvolt =3D3D <2500000>;
-+	regulator-name =3D3D "vcc-pa";
-+};//2500000uV reported by kernel
-+
-+&reg_dcdc1 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <3300000>;
-+	regulator-max-microvolt =3D3D <3300000>;
-+	regulator-name =3D3D "vcc-3v3";
-+};
-+
-+
-+//I don't know whether these really belong here
-+&reg_dldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <3300000>;
-+	regulator-max-microvolt =3D3D <3300000>;
-+	regulator-name =3D3D "vcc-wifi-io";
-+};
-+
-+&reg_dldo4 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <2500000>;
-+	regulator-max-microvolt =3D3D <2500000>;
-+	regulator-name =3D3D "vdd2v5-sata";
-diff --git a/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts b/arch/arm/boot/dts=
-/sun8i-r40-oka40i-c.dts
-new file mode 100644
-index 0000000000..7e47cf633e
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
-@@ -0,0 +1,238 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR MIT
-+// Copyright (C) 2021 Ivan Uvarov <i.uvarov@cognitivepilot.com>
-+// Based on the sun8i-r40-bananapi-m2-ultra.dts, which is:
-+//  Copyright (C) 2017 Chen-Yu Tsai <wens@csie.org>
-+//  Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-+
-+/dts-v1/;
-+#include "sun8i-r40-feta40i.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model =3D3D "Forlinx OKA40i-C";
-+	compatible =3D3D "forlinx,oka40i-c", "allwinner,sun8i-r40";
-+
-+	aliases {
-+		ethernet0 =3D3D &gmac;
-+		serial0 =3D3D &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path =3D3D "serial0:115200n8";
-+	};
-+
-+	connector {
-+		compatible =3D3D "hdmi-connector";
-+		type =3D3D "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint =3D3D <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible =3D3D "gpio-leds";
-+
-+		user-led-5 {
-+			label =3D3D "oka40i:led5:user";
-+			gpios =3D3D <&pio 7 26 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		user-led-6 {
-+			label =3D3D "oka40i:led6:user";
-+			gpios =3D3D <&pio 8 15 GPIO_ACTIVE_LOW>;
-+		};
-+
-+	};
-+
-+	reg_vcc5v0: vcc5v0 {
-+		compatible =3D3D "regulator-fixed";
-+		regulator-name =3D3D "vcc5v0";
-+		regulator-min-microvolt =3D3D <5000000>;
-+		regulator-max-microvolt =3D3D <5000000>;
-+		//gpio =3D3D <&pio 7 23 GPIO_ACTIVE_HIGH>; // PH23
-+		//enable-active-high;
-+	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible =3D3D "mmc-pwrseq-simple";
-+		reset-gpios =3D3D <&pio 1 10 GPIO_ACTIVE_LOW>; // PB10 WIFI_EN
-+		clocks =3D3D <&ccu CLK_OUTA>;
-+		clock-names =3D3D "ext_clock";
-+	};
-+};
-+
-+&ahci {
-+	ahci-supply =3D3D <&reg_dldo4>;
-+	phy-supply =3D3D <&reg_eldo2>;
-+	status =3D3D "okay";
-+};
-+
-+&de {
-+	status =3D3D "okay";
-+};
-+
-+&ehci1 {
-+	status =3D3D "okay";
-+};
-+
-+&ehci2 {
-+	status =3D3D "okay";
-+};
-+
-+&gmac {
-+	pinctrl-names =3D3D "default";
-+	pinctrl-0 =3D3D <&gmac_rgmii_pins>;
-+	phy-handle =3D3D <&phy1>;
-+	phy-mode =3D3D "rgmii-id";
-+	phy-supply =3D3D <&reg_dcdc1>;
-+	status =3D3D "okay";
-+};
-+
-+&gmac_mdio {
-+	phy1: ethernet-phy@1 {
-+		compatible =3D3D "ethernet-phy-ieee802.3-c22";
-+		reg =3D3D <1>;
-+	};
-+};
-+
-+&hdmi {
-+	status =3D3D "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint =3D3D <&hdmi_con_in>;
-+	};
-+};
-+
-+
-+&i2c2 {
-+	status =3D3D "okay";
-+};
-+
-+
-+&mmc0 {
-+	vmmc-supply =3D3D <&reg_dcdc1>;
-+	vqmmc-supply =3D3D <&reg_dcdc1>;
-+	bus-width =3D3D <4>;
-+	cd-gpios =3D3D <&pio 8 11 GPIO_ACTIVE_LOW>; // PI11
-+	status =3D3D "okay";
-+};
-+
-+&mmc1 {
-+	vmmc-supply =3D3D <&reg_dcdc1>;
-+	vqmmc-supply =3D3D <&reg_dcdc1>;
-+	mmc-pwrseq =3D3D <&wifi_pwrseq>;
-+	bus-width =3D3D <4>;
-+	status =3D3D "okay";
-+};
-+
-+&ohci1 {
-+	status =3D3D "okay";
-+};
-+
-+&ohci2 {
-+	status =3D3D "okay";
-+};
-+
-+&reg_aldo3 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <3000000>;
-+	regulator-max-microvolt =3D3D <3000000>;
-+	regulator-name =3D3D "avcc";
-+};
-+
-+&reg_dc1sw {
-+	regulator-min-microvolt =3D3D <3300000>;
-+	regulator-max-microvolt =3D3D <3300000>;
-+	regulator-name =3D3D "vcc-lcd";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <1100000>;
-+	regulator-max-microvolt =3D3D <1160000>;
-+	regulator-name =3D3D "vdd-cpu";
-+};//1100000uV reported by kernel
-+
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <1100000>;
-+	regulator-max-microvolt =3D3D <1200000>;
-+	regulator-name =3D3D "vdd-sys";
-+};//1100000uV reported by kernel
-+
-+
-+&reg_dcdc5 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <1500000>;
-+	regulator-max-microvolt =3D3D <1500000>;
-+	regulator-name =3D3D "vcc-dram";
-+};
-+
-+&reg_dldo2 {
-+	// regulator-always-on;
-+	regulator-min-microvolt =3D3D <3300000>;
-+	regulator-max-microvolt =3D3D <3300000>;
-+	regulator-name =3D3D "vcc-wifi";
-+};
-+
-+&reg_dldo3 { // possibly unneeded
-+	// regulator-always-on;
-+	regulator-min-microvolt =3D3D <3300000>;
-+	regulator-max-microvolt =3D3D <3300000>;
-+	regulator-name =3D3D "vcc-wifi-2";
-+};
-+
-+&reg_eldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <1200000>;
-+	regulator-max-microvolt =3D3D <1200000>;
-+	regulator-name =3D3D "vdd1v2-sata";
-+};
-+
-+&reg_eldo3 {
-+	regulator-always-on;
-+	regulator-min-microvolt =3D3D <2800000>;
-+	regulator-max-microvolt =3D3D <2800000>;
-+	regulator-name =3D3D "vcc-pe";
-+};
-+
-+&tcon_tv0 {
-+	status =3D3D "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names =3D3D "default";
-+	pinctrl-0 =3D3D <&uart0_pb_pins>;
-+	status =3D3D "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names =3D3D "default";
-+	pinctrl-0 =3D3D <&uart3_pg_pins>, <&uart3_rts_cts_pg_pins>;
-+	uart-has-rtscts;
-+	status =3D3D "okay";
-+
-+	bluetooth {
-+		compatible =3D3D "brcm,bcm43438-bt";
-+		clocks =3D3D <&ccu CLK_OUTA>;
-+		clock-names =3D3D "lpo";
-+		vbat-supply =3D3D <&reg_dldo2>;
-+		vddio-supply =3D3D <&reg_dldo1>;
-+		device-wakeup-gpios =3D3D <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 */
-+		/* TODO host wake line connected to PMIC GPIO pins */
-+		shutdown-gpios =3D3D <&pio 7 12 GPIO_ACTIVE_HIGH>; /* PH12 */
-+		max-speed =3D3D <1500000>;
-+	};
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply =3D3D <&reg_vcc5v0>;
-+	usb2_vbus-supply =3D3D <&reg_vcc5v0>;
-+	status =3D3D "okay";
-+};
---=20
-2.25.1
-
-
-
-
---AtiGR84BiT5U1solkK8OCe5vv8wgfo8T1--
-
---kESZAWtLHy8j4xCXZhhuoJfcbhnm5LnLD
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsD5BAABCAAjFiEE5IiZk/imGrpdzUidYclaKunLjxIFAmA+GVcFAwAAAAAACgkQYclaKunLjxJm
-pgv+KVMSNbGdS+lvPWe7HQC4StX5O99gRC/ROfMrJtXTueH3sV3G4veTzd7B7Spisfqhaei32Ft0
-OStuS3D1Y/uFFDW6isUl/L3Nm2wLKRuSzUTDhv+dVugVxLWloUFpwR1tdPpkoCFjW6/tVMEEioEz
-TLp33uur9QxheM6/YxJkxy9p94t73zh9sJz4vkUHRAv2SxwsaTK+moKdS5vfFaksl7rJeoAEg7J9
-m2RVHyhYutJf9jk1cOJijng7qX4w35aKigy1rmWwCSKZ8PWkwCo/jijXV28iNM2gxPw4bl64pMCM
-oNLzStEhGRx3UDVdvF4/SaaC/YpIQQHU1FMAxCF/ncGDLrTbFNfafubrk4cC/R7NZGeAf6F37r+5
-17oL9mQ4ceDiBiFYeBJd/jeODH5iadLtv4x70mj/BBR79SA44P076pzYXBeGkQNRXLCfkJ9EAQH3
-/zaN6rZv/hL2CiMOlYET/YMoZxSTYtLxVdm02BODgOH0D1AaXwrI7pimuf4/
-=ASA3
------END PGP SIGNATURE-----
-
---kESZAWtLHy8j4xCXZhhuoJfcbhnm5LnLD--
