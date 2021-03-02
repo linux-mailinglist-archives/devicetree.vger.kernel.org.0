@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF44632AB60
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29A2132AB63
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:31:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381246AbhCBU1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:27:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49904 "EHLO
+        id S1446150AbhCBU1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:27:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1578602AbhCBPZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:25:26 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFECEC06121D
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 07:20:47 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id v5so31811447lft.13
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 07:20:47 -0800 (PST)
+        with ESMTP id S1578808AbhCBP1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:27:19 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB2AC0611C0
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 07:22:13 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id q14so24408860ljp.4
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 07:22:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=cEfoHf83s/nppCpslFBm2JaQs5ooxd+wCNySTYqRLrg=;
-        b=ZJvvs7YpZ/v82uircBUdvlFwywAJ6JQXf6yaNLeLEx1ezcq4xouLe1KiOdpmq2WO+K
-         yQi5MUw3HpKmdjGCuYgV1N+z8daa6FmEwQiZyZk4fXbq1ygHmp71fIxcN6kPpnydM5PZ
-         2Y8RQPe6RexZGPlKsqkbrFT+y5Ky68ZqFnnU75jnh8IJyCUtuOuVUhHaFsb3GbjnUHye
-         TAmTMJ3NcUGrf1X359md9oPTRDV24QXbPhYpLP/nx0IoklMtgExYj1Il7aBxS3NQDver
-         5Fyp0QZijh5mr6qw8zQvVBOpczZzL4ETPy6ZqrGQTNaOUCWX8VnIpI2JrAgnh42rBLxV
-         0wPQ==
+        bh=f7QSrAX2oqY7QLjr4MxaIMFXX49EKilktcV2ECsEf50=;
+        b=cAq5Pz+8cNmAYm8ExEJ9vm+wSdHVgbjmay62d3tVTEqElC5eYgW2ldc3Gnk1x+fI/G
+         6GE+3goeGPkCEoXaLkGgz0MeJAfwzvSlC3K1+ne8sGjj/tS+KOZkuW1dksS6Q+0Vdld0
+         T2hMc7/1ANQIcr+avbf47sElOB5vcaHlu6XZFKvg6dSCMXsdbop34ABaKfUkdrs20tz+
+         IFR4GDsXNd9vq+8kUhiSrYOTYPSUp1bRo7JNEkd9Es+gqF2ZBgYlOqeffj4Kbu6/S9M4
+         pvwKsywYu7a/Xpr867+K70RoANlkA6ZHm/iA5DLFYfFRLECHLk02AtoJvo2MWbiLf2Iy
+         3rVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=cEfoHf83s/nppCpslFBm2JaQs5ooxd+wCNySTYqRLrg=;
-        b=VTAoQoFvQ+qUPHVM416T2+/JGnpeC9lXVEpZ5DC86CZnYcyBJxlESeGlWffKSH2jk2
-         LTUAbSihZO7hiHNnBU4RFQcKM/MBvNQRhvEekqxTDw91GGCaSOKRXVarRwfNo6SEEej8
-         +cAjGPajfjnkg78AJi+b7XjHSKtmo5hYGTPp0SaqvdY55t7R6gTjZJA9rVV3t9T00IQI
-         O7lNVnkrhiEguvhqR7IPeNoi333p1Iyvh2V03kqWhf/Ou1eZbgk9v9qXxAp+Lfh5c4Mr
-         Dqkq6PRU2SfU1Tfno+FY5+REMFfiUrjYiPXnu5GoWZKx2ZfIyluNKOl4DXKMeN811BpL
-         ocmQ==
-X-Gm-Message-State: AOAM530aa/rUXozPP0Wq+KwINd7sfR539j1AMJTYmoaJkOWilrchbbTi
-        xWRHzcW/rheKDc6G8+2wObfT307d2PFTQmthbw6I6w==
-X-Google-Smtp-Source: ABdhPJzevMNFMunFXoFZ2HXPdNU9EPe6ZLvEUgVA+ngmmU2uY8vloaBM7p1WkOCz4RiwZbRP0gmr+zQUAQo/hObUIWA=
-X-Received: by 2002:ac2:5d21:: with SMTP id i1mr12066700lfb.649.1614698446288;
- Tue, 02 Mar 2021 07:20:46 -0800 (PST)
+        bh=f7QSrAX2oqY7QLjr4MxaIMFXX49EKilktcV2ECsEf50=;
+        b=Wm6Joet3xToKIkFTkz9ecXWpivv7/lBYLQ7HcfjXJhzxG+D5OYuXJ5Z3HBdwUgOvbL
+         3PeLW+8z2sz/Jz1C8HNS8B8l//Rcb2kmBwYxNg3STd8NLAg0yMABNCU4jPqbF1BMTNqW
+         rDO93PnJBcr6SnXjx6NByVUNdPZZRwk95IZXh1G+0efd6wx/bxB+hGnkOyKe0y1EjBAT
+         rzGHjC3YDue/zMr1H9xZVR5yqUwV+3jUq8AMXUihazHSwNWvStgqM9sBIJ8Z0UWVuZcc
+         biRQsKlwxv64qRUkpo4K/37JkLTsfL7p7mv6SEimkWtHAPYoUJASgd1IYFWwrExFkmEM
+         Rrbw==
+X-Gm-Message-State: AOAM532Y9/IGVDIFkCjxBBxiGYgcyUfpzw6Vosjy7pHZxIJ+A4erOP+e
+        sd2lxh7+KYaugzSA6395yeT6xFZeu9iHFJh3YRWp6g==
+X-Google-Smtp-Source: ABdhPJx8R82A8WHsc3N/khCrQlVXn1aC5i8ZAMzKuDJ7RHWDwOiw3j2ZB3RZnLmIOBWiwevgGmCVy4o5lfwMV2nrjxc=
+X-Received: by 2002:a2e:9041:: with SMTP id n1mr12412389ljg.273.1614698532143;
+ Tue, 02 Mar 2021 07:22:12 -0800 (PST)
 MIME-Version: 1.0
-References: <20210225164216.21124-1-noltari@gmail.com> <20210225164216.21124-3-noltari@gmail.com>
-In-Reply-To: <20210225164216.21124-3-noltari@gmail.com>
+References: <20210225164216.21124-1-noltari@gmail.com> <20210225164216.21124-4-noltari@gmail.com>
+In-Reply-To: <20210225164216.21124-4-noltari@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 2 Mar 2021 16:20:35 +0100
-Message-ID: <CACRpkdbxAQTft8dapGqBDxM8nbkPvK4i95ND0JBFb_riafZSSg@mail.gmail.com>
-Subject: Re: [PATCH 02/12] pinctrl: add a pincontrol driver for BCM6328
+Date:   Tue, 2 Mar 2021 16:22:00 +0100
+Message-ID: <CACRpkdaL1-Mw85hrJNbKk0rY2txeQ3bYVS9TYpwQ=+R3Wvxpug@mail.gmail.com>
+Subject: Re: [PATCH 03/12] Documentation: add BCM6358 pincontroller binding documentation
 To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
 Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,141 +65,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi =C3=81lvaro,
-
-thanks for your patch!
-
 On Thu, Feb 25, 2021 at 5:42 PM =C3=81lvaro Fern=C3=A1ndez Rojas
 <noltari@gmail.com> wrote:
 
-> Add a pincontrol driver for BCM6328. BCM628 supports muxing 32 pins as
-> GPIOs, as LEDs for the integrated LED controller, or various other
-> functions. Its pincontrol mux registers also control other aspects, like
-> switching the second USB port between host and device mode.
+> Add binding documentation for the pincontrol core found in BCM6358 SoCs.
 >
 > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
 > Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
 
-Thanks for working on this. This SoC definitely need to come upstream.
-
-I think this driver can be simplified a bit and reuse some core infrastruct=
-ure
-to make it more maintainable. It might be a bit of challenge but definitely
-worth it!
-
-> +config PINCTRL_BCM6328
-> +       bool "Broadcom BCM6328 GPIO driver"
-> +       depends on OF_GPIO && (BMIPS_GENERIC || COMPILE_TEST)
-> +       select PINMUX
-> +       select PINCONF
-> +       select GENERIC_PINCONF
-> +       select MFD_SYSCON
-> +       default BMIPS_GENERIC
-> +       help
-> +          Say Y here to enable the Broadcom BCM6328 GPIO driver.
-
-I suggest
-
-select GPIO_REGMAP
-select GPIOLIB_IRQCHIP
-select IRQ_DOMAIN_HIERARCHY
-
-see below.
-
 (...)
-> +#include <linux/bitops.h>
+> +  interrupts-extended:
+> +    description:
+> +      One interrupt per each of the 4 GPIO ports supported by the contro=
+ller,
 
-Just <linux/bits.h> maybe, if you only use BIT() and GENMASK().
+4? Below says 6.
 
-> +#include <linux/gpio.h>
-> +#include <linux/of_gpio.h>
+> +      sorted by port number ascending order.
+> +    minItems: 6
+> +    maxItems: 6
 
-Do not include these, just:
-#include <linux/gpio/driver.h>
-
-> +#define BCM6328_DIROUT_REG     0x04
-> +#define BCM6328_DATA_REG       0x0c
-> +#define BCM6328_MODE_REG       0x18
-
-This looks very much like it could use GPIO_REGMAP.
-Can you look at:
-drivers/gpio/gpio-regmap.c
-drivers/gpio/gpio-sl28cpld.c
-
-And see if you can do what that driver is doing and reuse
-this core infrastructure?
-
-> +static inline unsigned int bcm6328_bank_pin(unsigned int pin)
-> +{
-> +       return pin % PINS_PER_BANK;
-> +}
-
-I am generally reluctant about registering several banks/instances
-of the GPIO if it is possible to just use more devices in the
-device tree, like one for each instance.
-
-> +static inline unsigned int bcm6328_reg_off(unsigned int reg, unsigned in=
-t pin)
-> +{
-> +       return reg - (pin / PINS_PER_BANK) * BANK_SIZE;
-> +}
-
-Because it leads to this kind of weirdness to split out the devices
-from the main device in practice.
-
-> +static int bcm6328_gpio_direction_input(struct gpio_chip *chip,
-> +                                       unsigned int pin)
-> +{
-(...)
-> +       /*
-> +        * Check with the pinctrl driver whether this pin is usable as
-> +        * an input GPIO
-> +        */
-> +       ret =3D pinctrl_gpio_direction_input(chip->base + pin);
-> +       if (ret)
-> +               return ret;
-
-This is very nice.
-
-> +static int bcm6328_gpio_to_irq(struct gpio_chip *chip, unsigned gpio)
-> +{
-> +       char irq_name[7];
-> +
-> +       sprintf(irq_name, "gpio%d", gpio);
-> +
-> +       return of_irq_get_byname(chip->of_node, irq_name);
-> +}
-
-This is a clear indication that we are dealing with a hierarchical irqchip.
-
-My assumption is that you have one IRQ per GPIO line, so each
-GPIO has a dedicated IRQ on the interrupt controller. Correct?
-
-This means:
-
-- Do not add all the interrupts into the device tree by name.
-
-- In Kconfig select GPIOLIB_IRQCHIP, select IRQ_DOMAIN_HIERARCHY
-
-- Populate a simple struct gpio_irq_chip, if no local registers need
-  updating on interrupts, just pass interrupts through
-        .irq_mask       =3D irq_chip_mask_parent,
-        .irq_unmask     =3D irq_chip_unmask_parent,
-  etc.
-
-- Implement bcm6328_gpio_child_to_parent_hwirq() for this chip
-  with hardcoded mappings between the hardware GPIO and interrupt
-  lines, using the parent interrupt controller hierarchically. This mapping
-  is determined from the compatible-string, and part of the property
-  of how the GPIO block is integrated with the SoC. If need be to
-  tell different chips apart, more precise compatible strings are needed.
-
-- Examples:
-  drivers/gpio/gpio-ixp4xx.c
-  drivers/gpio/gpio-sifive.c
-
-If you do this you will notice the core is more helpful to cut down on the
-code.
+As noted in the review I think this interrupt controller is hierarchical
+and this is not needed. All that is needed is for the chip to know
+its interrupt-parent.
 
 Yours,
 Linus Walleij
