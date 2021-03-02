@@ -2,91 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9350832AAD6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 226B032AADA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:02:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1839912AbhCBTzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:55:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49130 "EHLO
+        id S1378952AbhCBT4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:56:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382060AbhCBIsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 03:48:42 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6A9BC06178C
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 00:48:01 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id jt13so33740781ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 00:48:01 -0800 (PST)
+        with ESMTP id S240616AbhCBIve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 03:51:34 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AEADC0617A9
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 00:42:36 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id do6so33696007ejc.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 00:42:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=rZpA0b0nZ0oV8tIgjk1GgOPTpGQGWjc3SqFNlF/nAjg=;
-        b=bhpW9YjLtH6WxpffPKs4ftIdB6kEzlPYvMRE4w6u4+Ms/Ybfo4fznsNNQ6IGwkIX1e
-         TeTPAKgZVJ+R1PSMOdd+ehfeP8jW5rRKpVNDlDTv0Pra8HyXgVXz1CJY3EhymmTx2SHX
-         AYo3glejXTHqfpzbBFtBQBh6DTEO8RWbzf9CwJq0V8NMNPuRn2zTnHOlHNlLNGXseX6x
-         chYYJQgKqjiF5uHvxgJcAYb19ErSGKx86BIT5vzycz2u1wJM09USsRRIoKF5bDjM8vAQ
-         kHW8FHKI6s/X2Ftl/o/NqbRaEllxGM6y708QGzRkXjN+kcUuQDhPXLCelc18klyeuZ9h
-         QvuA==
+        bh=cqj83OHH0uy6jXnn/6KBeppUvOHSpH1VsMfJDu/RtSk=;
+        b=vFLsMKKiZvzx63grS8/bVXFdMNv4fOLL4c6hkZiljW/H7KUmXzXu0TblXaRgN7HH0X
+         sRs278w+B9Rb9CUADc+tXJmc99YoEPc0ZR9rfxIxgMyQNt4y3G7x2aD67k/sNXjEZfhW
+         SGFg3mWcj6hrBADdf8mpl54LZxCOv3zNiWvHoXdhJh1EMjvyFGpE8PaOby5gGpPuOYgE
+         mZSyst99gu5zwfj7CGCF8sYoSrc6pocYzwx6R9208KKecfp4+/5tacG3ZkRyrpqFiHJa
+         U2pRkeernB6y465khfgeXxt6r4PwcofdmInvJF4RE5YbGQXDsWNqbO0oSzM+SD+6Pa3p
+         Se8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=rZpA0b0nZ0oV8tIgjk1GgOPTpGQGWjc3SqFNlF/nAjg=;
-        b=A1BYl6EXJXSYJgSg61abySLC/+HgSb0MJrJ267xBpdSM2GfFkt2F7ZJexOpoQjDKQ9
-         zzCgQvogw+l8xbpwB3jI/jB86hy30sx2x1msAR/9msty6/KW64wAIQa0HkZrtGUqvU/V
-         0k5EyI7xPv9JqCqtsv3va60HPrT8jGque3OfbiFxQBwSUextLV3VeB1vPD5mbcriczu0
-         4hxQWso2yf7u8SpbXoLbgYokbnYtx9duTak+uhg/4X5lPsstJtX+EKtGEeS9QMyuIiwf
-         9gA6ZpY8Bkq8sZ8ir5l0VI0eBrTS2lgy9CM34D849q555eCcTVDAAvbHgSIWsNikPxpF
-         X6uQ==
-X-Gm-Message-State: AOAM533o9dZJwtXuFD17kKD9Ql8hFJohc5kfnzZh2KTQ2Sj+tQ8WQ9dk
-        EAeyFNXUsKDpx3eD6H0wlGOwHH1G4+vQi/FS7SQl2A==
-X-Google-Smtp-Source: ABdhPJxaIR8R0M2MhfB9/bK+Jw1y7uV2v5sZWjHNnGAWiYXUfoQDjviHdtbcOIZjTVeYqavg7ifapNqB3HMH9XgY9Gg=
-X-Received: by 2002:a17:906:2314:: with SMTP id l20mr20436562eja.178.1614674880504;
- Tue, 02 Mar 2021 00:48:00 -0800 (PST)
+        bh=cqj83OHH0uy6jXnn/6KBeppUvOHSpH1VsMfJDu/RtSk=;
+        b=ES4+qKrNYgfH62GAqTzwsp2HEjYhGljsx9CwNQEd1Kfj5Z9NZJVuhah08C88oxqfyD
+         KU44oIgaXREi9GL3mnt09e4lG6GZbH2ijLrxmVT1ebO9N552/8YwIylU31LBIRBAGwKS
+         6iupoAxlcWyepq8SOCBqOHaDaqSGQ5lPkyz4XBqRclsqJP4XrBWRn93vG6/yw3qhucEr
+         M2zxmAHNEpvgEupBB0EJVtrMsvENoTIcwJF57u1nHvO8/PKsSd3hxepUp+it5b9DzYit
+         StsujNqPvBWk0uiaVJLdoJuo+CmJPxDZ8GMadkywwcOHC/FffoCS5H3ybadatDokN1JI
+         6hsQ==
+X-Gm-Message-State: AOAM530KrTgh5a5t5pDl4iN0z1h0aYQ3TpJDemEADHD6f5JlS9BIZsmo
+        mZ382vHoyv3eu8rTaTzQAgYGoRQ96tAGnmP8O0ks/w==
+X-Google-Smtp-Source: ABdhPJzGPey4/zJAweoL7NIyiBWG5j+JHefetxzo+d4UB+dkYOkVHlCSa1ueXoWOLvYaTHqorLcuIeAd2yR+S+Tvt6o=
+X-Received: by 2002:a17:906:ac6:: with SMTP id z6mr19121663ejf.505.1614674555172;
+ Tue, 02 Mar 2021 00:42:35 -0800 (PST)
 MIME-Version: 1.0
-References: <20210215121713.57687-1-marcan@marcan.st> <20210215121713.57687-15-marcan@marcan.st>
-In-Reply-To: <20210215121713.57687-15-marcan@marcan.st>
+References: <20210216113118.17484-1-kostap@marvell.com>
+In-Reply-To: <20210216113118.17484-1-kostap@marvell.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 2 Mar 2021 09:47:49 +0100
-Message-ID: <CACRpkda_BdcvTamh-=O2ej+OHYVfNmRokCNJ_mJbF1Fr5Gr5wA@mail.gmail.com>
-Subject: Re: [PATCH v2 14/25] dt-bindings: interrupt-controller: Add DT
- bindings for apple-aic
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+Date:   Tue, 2 Mar 2021 09:42:24 +0100
+Message-ID: <CACRpkdb+ampUXg1qN6iH8aTagqvfJwosHD6c2WGLA3p_JCXa-g@mail.gmail.com>
+Subject: Re: [PATCH 0/2] Fix Marvell CP110 pin control finction names
+To:     Kostya Porotchkin <kostap@marvell.com>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "(Exiting) Amit Kucheria" <amit.kucheria@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Stefan Chulski <stefanc@marvell.com>, bpeled@marvell.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 1:18 PM Hector Martin <marcan@marcan.st> wrote:
+On Tue, Feb 16, 2021 at 12:31 PM <kostap@marvell.com> wrote:
 
-> AIC is the Apple Interrupt Controller found on Apple ARM SoCs, such as
-> the M1.
+> From: Konstantin Porotchkin <kostap@marvell.com>
 >
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+> These patches are fixing the CP110 pin control driver and the related
+> documentation.
+> Current CP110 pin control driver uses two different MPP functions named
+> the same (sdio) in MPP54 and MPP55 definitions.
+> Since these names are used for the MPP functionality selection, all
+> function names within single MPP group should be unique.
+> This patches series fixes function names in MPP54 and MPP55 pin
+> definitions.
 
-I think this looks good and makes for readable device trees
-and similar to how the GIC IRQs look so there is a
-consensus.
-
-I would maybe add an example interrupt consumer but
-no big deal.
-
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Excellent fix, patches applied!
 
 Yours,
 Linus Walleij
