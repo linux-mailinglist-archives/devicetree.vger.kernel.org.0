@@ -2,107 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B12F332AAE7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:04:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7252D32AAF5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:04:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1574553AbhCBUAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:00:12 -0500
-Received: from mout.kundenserver.de ([212.227.126.187]:57169 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238168AbhCBJgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 04:36:20 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MZSJa-1lJswr442A-00WXqO; Tue, 02 Mar 2021 10:32:24 +0100
-Received: by mail-oi1-f175.google.com with SMTP id 21so11704221oiq.7;
-        Tue, 02 Mar 2021 01:32:23 -0800 (PST)
-X-Gm-Message-State: AOAM531hF36/sThj2owRkXrHWycqP6E58oQ72Gtd09/crl6sgULoNidy
-        xbqaI+a6gfGt6u3woA6Wy30SzN8uOAzTUeF4/IM=
-X-Google-Smtp-Source: ABdhPJx5XWp8Ki1644NUPJ6YSXBsqLQpbCENNWA/2WM/vGVPVyb7m95NYVRO672W5xEbCNFsN9VAYmGWDNBc6nbj8WI=
-X-Received: by 2002:aca:4fd3:: with SMTP id d202mr2418133oib.11.1614677542554;
- Tue, 02 Mar 2021 01:32:22 -0800 (PST)
+        id S1581977AbhCBUBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:01:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48692 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1382694AbhCBJnj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Mar 2021 04:43:39 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4900564EF1;
+        Tue,  2 Mar 2021 09:42:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614678177;
+        bh=tCT8qwnYG4RkI1s3rfp8mZOoqjUkzArqaWnFSOdzjgY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bvi4gQkju7OOP4wP6KP74ZlBTL9XrgRf2/Vu/pIX+yBeHqPs0stx5mmow7Q3gxInG
+         ey464XI516MBW8I6jT+QriI1wMjVJL9tK7g0phCOqsqq0hZuKJVdPvaGNSfNS6Um2v
+         YQn+QF4b6kYIWBfIhGANLwKy493IeSj3hlxq4L09b9q7BQPNq8W50fjq+OPM9h4Yky
+         g/m+wiyEJGqnkMsSN6A394g7E83Y8nHuI02n+uIEeFkaW463TYrNHoRBPMMzak6EBl
+         N4AOBb98KUZvwjKAhYBr3pGiPa4vc+HmXv8d7MUrRMCZp9GJWK1yvZy/eeJIJrm9Ly
+         l84DEbTvfTpBQ==
+Date:   Tue, 2 Mar 2021 17:42:51 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Aisheng Dong <aisheng.dong@nxp.com>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        "dongas86@gmail.com" <dongas86@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH RESEND v4 00/18] arm64: dts: imx8: architecture
+ improvement and adding imx8qm support
+Message-ID: <20210302094250.GA15865@dragon>
+References: <20201126105900.26658-1-aisheng.dong@nxp.com>
+ <AM6PR04MB4966254794C77A1491252FF7809D9@AM6PR04MB4966.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20210226140305.26356-1-nsaenzjulienne@suse.de> <20210226140305.26356-10-nsaenzjulienne@suse.de>
-In-Reply-To: <20210226140305.26356-10-nsaenzjulienne@suse.de>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 2 Mar 2021 10:32:06 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1t3yCD4vXF803nL=n3Y3hD1MOPOAEZwZA+782N64PXTA@mail.gmail.com>
-Message-ID: <CAK8P3a1t3yCD4vXF803nL=n3Y3hD1MOPOAEZwZA+782N64PXTA@mail.gmail.com>
-Subject: Re: [RFC 09/13] iommu/arm-smmu: Make use of dev_64bit_mmio_supported()
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Christoph Hellwig <hch@infradead.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:legnmUJMED7xyeS16jB9arlUrQNnIgwgh0Z/SL2rsGfiqTRbTOf
- NtLEy8RNEn3XAqm45/VVsbBmfEhlqKHUNMatEBQRFkw+fk/l4iQTqfr/y/pY660ApdUonl1
- u5t9+H1J39ZVaEgGEudbaI6UPC19yGDsriGVsyDm7Jv2e8Raqqn+gjb4N3Y41W2xyPOVgZR
- jUN3F9jgyIQY2/SHGhpBw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:0C2k/V7y7uE=:fNubMXZuJeLDiEayPIlmPO
- T9mI1e+Jz0jaPmEc7aGXw1MNZbKVyXPCcVgIgdlodX4XiHJQsstiDKmhfoeJhgEGpqtiMEB0H
- TEcW9tKynn5Bo3J6DUx+DqtEZyAA3o3KqkRxnC90+eCsZlgMuW9Q6/576B2gmtfPliJZ1LKhF
- N5odR4H0+kEqMatbPIuOVMHO2pkigboCgPcjOe9b0J1J1R09+EYW/cQuFYGUrVkYxk4GUi7eR
- xP4NycU9z8xkNpqw7mW5/9wEC/sbq89xg5KiG9sgsJlSg0qv+xiiGUypQ1bAah2JYf/m3/Obs
- UTuDlVEWk2tq+Mltn1BIE8vgvBsGoYK2R2Wbs1kL08KSaw1nflMqLF/Vg4pSNeY1gPXBFNrCB
- 7TYXVVMVYBNehSzpl7KJatUDVYtlxvZ7eRGZiV8v0Y0U77tLjNUWhayAY4n8WUZG5LrBXAY0v
- DSr8r/vYhuWlpajUAqeL+86aMoqIr2Fx8i69ovGUcRR8bzs2UZTkf884XjzHPu1pQAZtoQRWD
- bby7RVVLkA3/KzImJCypKlV5wsNhXNG7TxZSHRyMdMqPxHVeBLLaoNdMJgvXg6UkojOGZGows
- ncSjhSEEcarsD+Vi6q82Y11V9578RYmeeQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM6PR04MB4966254794C77A1491252FF7809D9@AM6PR04MB4966.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 26, 2021 at 3:03 PM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
+On Fri, Feb 26, 2021 at 08:33:38AM +0000, Aisheng Dong wrote:
+> Hi Shawn,
+> 
+> Could you please help take a look at this patch series? It's been without comments for months.
+> Please let me know if you want me to resend now or I can resend later with new comments addressed if any.
 
->         if (smmu->impl && unlikely(smmu->impl->write_reg))
->                 smmu->impl->write_reg(smmu, page, offset, val);
-> -       else
-> +       else if (dev_64bit_mmio_supported(smmu->dev))
->                 writel_relaxed(val, arm_smmu_page(smmu, page) + offset);
-> +       else
-> +               hi_lo_writeq_relaxed(val, arm_smmu_page(smmu, page) + offset);
->  }
+I'm fine with the series, but there is a comment from Haibo on patch
+#13.  And yes, you need to rebase and resend the series.
 
-This is a writel_relaxed(), not a writeq_relaxed(), so I suppose you don't
-have to change it at all.
-
-> +       else if (dev_64bit_mmio_supported(smmu->dev))
-> +               return readq_relaxed(arm_smmu_page(smmu, page) + offset);
-> +       else
-> +               return hi_lo_readq_relaxed(arm_smmu_page(smmu, page) + offset);
-> }
-
-
-I see this pattern repeat across multiple drivers. I think Christoph
-had originally
-suggested folding the if/else logic into the writel_relaxed() that is defined in
-include/linux/io-64-nonatomic-hi-lo.h, but of course that doesn't work if you
-need to pass a device pointer.
-
-It might still make sense to have another wrapper in that same file though,
-something like
-
-static inline hi_lo_writeq_relaxed_if_possible(struct device *dev, __u64 val,
-                    volatile void __iomem *addr)
-{
-       if (dev_64bit_mmio_supported(smmu->dev)) {
-              readq_relaxed(arm_smmu_page(smmu, page) + offset);
-       } else {
-               writel_relaxed(val >> 32, addr + 4);
-               writel_relaxed(val, addr);
-       }
-}
-
-         Arnd
+Shawn
