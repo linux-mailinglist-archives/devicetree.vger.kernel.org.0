@@ -2,81 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E626232AAA9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:58:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEFC32AAB4
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:58:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1576158AbhCBTx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:53:58 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:40860 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1574608AbhCBDsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 22:48:22 -0500
-X-UUID: 75c8bf5ec316471fb5c99a883a7d4984-20210302
-X-UUID: 75c8bf5ec316471fb5c99a883a7d4984-20210302
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
-        (envelope-from <henryc.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1162331692; Tue, 02 Mar 2021 11:47:47 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 2 Mar 2021 11:47:46 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 2 Mar 2021 11:47:46 +0800
-From:   Henry Chen <henryc.chen@mediatek.com>
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        Arvin Wang <arvin.wang@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        Henry Chen <henryc.chen@mediatek.com>
-Subject: [PATCH V9 12/12] arm64: dts: mt8192: add dvfsrc regulator nodes
-Date:   Tue, 2 Mar 2021 11:47:43 +0800
-Message-ID: <1614656863-8530-13-git-send-email-henryc.chen@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1614656863-8530-1-git-send-email-henryc.chen@mediatek.com>
-References: <1614656863-8530-1-git-send-email-henryc.chen@mediatek.com>
+        id S1836143AbhCBTyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:54:19 -0500
+Received: from mail-02.mail-europe.com ([51.89.119.103]:47248 "EHLO
+        mail-02.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1575053AbhCBDwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 22:52:49 -0500
+Date:   Tue, 02 Mar 2021 03:51:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1614657077;
+        bh=6Lqc99WHAgZVxNlrSG4NdxKORMThqAvTsVgRaszZvUo=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=pow8k2LzpEfvSdv7fU6cmpTWqEofb0PWomerf42KjWf3J8T22fCLi8lmo4lWdxDAi
+         ZycHNc0ron5tWGsZzdiVy1eK/8AydwarBaJ5NviNecVV5jpx/79a8A1PQ13toUDY6Z
+         +8BZxztIVuYF7xqzg30eBqCxeV7axv0aWTngpjDE=
+To:     "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "phone-devel@vger.kernel.org" <phone-devel@vger.kernel.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     "agross@kernel.org" <agross@kernel.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "konrad.dybcio@somainline.org" <konrad.dybcio@somainline.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: [PATCH] arm64: dts: qcom: msm8996: Add usb3 interrupts
+Message-ID: <dvfyYKA9vnJdunbQ1CL-dgjXtv_1wYpRnezdc3PHoCyrgmfi5KP0Dn4MtaumQEpHIQAHL9tTdqcaCK7YJWyrdWXCrPeGd4uMh-nFeu7xQYw=@protonmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 2905025C958521C455DD09DA957E2F3777EFAA99BCDEBFED13A6A2CDE58D1FD82000:8
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dvfsrc regulator nodes which is for MT8192-based platforms
+Add hs_phy_irq and ss_phy_irq to usb3.
 
-Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 81d7d05..1cf91a4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -470,6 +470,12 @@
- 				     "mediatek,mt6873-dvfsrc";
- 			reg = <0 0x10012000 0 0x1000>;
- 			#interconnect-cells = <1>;
-+			dvfsrc_vcore: dvfsrc-vcore {
-+				regulator-name = "dvfsrc-vcore";
-+				regulator-min-microvolt = <575000>;
-+				regulator-max-microvolt = <725000>;
-+				regulator-always-on;
-+			};
- 		};
- 
- 		systimer: timer@10017000 {
--- 
-1.9.1
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qc=
+om/msm8996.dtsi
+index 7eef07e73e25..b4b8d6305a05 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -1754,6 +1754,10 @@ usb3: usb@6af8800 {
+ =09=09=09#size-cells =3D <1>;
+ =09=09=09ranges;
+
++=09=09=09interrupts =3D <GIC_SPI 347 IRQ_TYPE_LEVEL_HIGH>,
++=09=09=09=09     <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>;
++=09=09=09interrupt-names =3D "hs_phy_irq", "ss_phy_irq";
++
+ =09=09=09clocks =3D <&gcc GCC_SYS_NOC_USB3_AXI_CLK>,
+ =09=09=09=09<&gcc GCC_USB30_MASTER_CLK>,
+ =09=09=09=09<&gcc GCC_AGGRE2_USB3_AXI_CLK>,
+--
+2.30.1
 
