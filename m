@@ -2,112 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A002332AAB7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C7F232AAB8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836147AbhCBTyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:54:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235877AbhCBEFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Mar 2021 23:05:31 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41324C06178B
-        for <devicetree@vger.kernel.org>; Mon,  1 Mar 2021 20:03:01 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id s16so11237870plr.9
-        for <devicetree@vger.kernel.org>; Mon, 01 Mar 2021 20:03:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=we+6muhRQ5Jd0vJuVJtRUZjPyXgZhip/qNhUDmq8kc0=;
-        b=wQGCMj/TOD3Jm9OJXIr7m4RyMOvhHQddHsfcM6T4whYeEHhi9G1+uhyGVrQ/Kt3Nl8
-         HTdhniJp1r3v9sBfHQkOusHKxCK6T+njNkihr8H+1QfsxwZ2YUPyJWkpTz7Psx544+17
-         swrWD/4gSaGkrJ0FZiWHSDav9IKf36FpgHeWyKXd8gVF2/u9cFHZInlIFeppnfaxzdoG
-         HoApJp8+7xEsCPCBRe8jspYJrhK+LxC+RrQSor3ANW9X65SXdm9aPhVXmKdQk3K3tct+
-         PouOyLpPbRvHISLErzzCjCJ4//rLjbkkgth1Ry2P/Oqcn8XBtSO7xhk5TBYssm0WBRx1
-         uTVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=we+6muhRQ5Jd0vJuVJtRUZjPyXgZhip/qNhUDmq8kc0=;
-        b=Uv21bagi9trZhxh504WcX4IUANjgzFOMuKf1SONtyNhEPXR+3r9ekCKNG+sVkPJXiK
-         v4aVzlPtOzzFcIHcojovHU+vhmmJYOXepcWpy23rULUCOnfIIEp4Ns41V21D5kcd6nAD
-         9RrI3OQPZSkFtw8jfW6vc1w6JsSyCej0Rp0dktEdPv4Q+f9JUR/Pu2pz2wTrx7csKVtw
-         /u8bEgaPc4KzAuFKmUb8ca74tEMjuXKZBS+7jbXcOvZbWqVEGZTqxpOuVblnmyxSf8UC
-         loNXBvXSLxqaisoLkgyvzGH/il67rqPc28m6rEDY6K9jGqBEDlPv5QvG3nOAoa4za8UM
-         tuYg==
-X-Gm-Message-State: AOAM530IsqaC4BSV5mqOXuntXV6OlfiYyxBUpClQHsxN7mqKhEIc8lMY
-        kCdwKyYvbElhdnFM671PhJpqyw==
-X-Google-Smtp-Source: ABdhPJxuKVFvecRI3AMDHLr8sIeRCXCONYFtOdEpMyByy8BgkYUlETcfUtt/vsF0h2jNvhowd6KriA==
-X-Received: by 2002:a17:90b:3551:: with SMTP id lt17mr2270466pjb.89.1614657780744;
-        Mon, 01 Mar 2021 20:03:00 -0800 (PST)
-Received: from localhost ([122.171.124.15])
-        by smtp.gmail.com with ESMTPSA id z8sm1058557pjd.0.2021.03.01.20.02.59
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 Mar 2021 20:03:00 -0800 (PST)
-Date:   Tue, 2 Mar 2021 09:32:58 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V8 0/4] dt: Add fdtoverlay rule and statically build
- unittest
-Message-ID: <20210302040258.erg6mn4ykxvxhnqm@vireshk-i7>
-References: <cover.1613127681.git.viresh.kumar@linaro.org>
- <20210301065625.rgo2xvr7ol2vycyf@vireshk-i7>
- <31cbc900-fad2-4838-21d2-7204f1029a81@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <31cbc900-fad2-4838-21d2-7204f1029a81@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+        id S1836152AbhCBTyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:54:23 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:27918 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1347609AbhCBFtj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Mar 2021 00:49:39 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1614664146; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=yZsIaCfh8FbjzuiZo8LpdyLwybvUiHmG/8YEbRVzzB8=; b=U6FieYeBeauyet7U2Gc4WZjlzSbTCvssvSq7L01E5MRBzPcGFH/YGqnzt/tMmLF4c8VXRmBw
+ cPHXMePv8/n4C1b7i1c1Uxay10uSMKXuARwtNTKl2qlue0nMzFW1hXdNMjHzcI2ie988khBk
+ q94d+WyjnOd2LM8xjsrRKHyv8XY=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 603dd1b21d4da3b75ddb86c8 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Mar 2021 05:48:34
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D80F2C43462; Tue,  2 Mar 2021 05:48:33 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D5018C433CA;
+        Tue,  2 Mar 2021 05:48:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D5018C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH 1/2] dt-bindings: power: rpmpd: Add sc7280 to rpmpd binding
+Date:   Tue,  2 Mar 2021 11:18:11 +0530
+Message-Id: <1614664092-9394-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-03-21, 21:14, Frank Rowand wrote:
-> Hi Viresh,
-> 
-> On 3/1/21 12:56 AM, Viresh Kumar wrote:
-> > On 12-02-21, 16:48, Viresh Kumar wrote:
-> >> Hi,
-> >>
-> >> This patchset adds a generic rule for applying overlays using fdtoverlay
-> >> tool and then updates unittests to get built statically using the same.
-> >>
-> >> V7->V8:
-> >> - Patch 1 is new.
-> >> - Platforms need to use dtb-y += foo.dtb instead of overlay-y +=
-> >>   foo.dtb.
-> >> - Use multi_depend instead of .SECONDEXPANSION.
-> >> - Use dtb-y for unittest instead of overlay-y.
-> >> - Rename the commented dtb filess in unittest Makefile as .dtbo.
-> >> - Improved Makefile code (I am learning a lot every day :)
-> > 
-> > Ping!
-> > 
-> 
-> Please respin on 5.12-rc1, and pull in the change you said
-> you would make in response to my post v8 comment about the
-> v7 patches.
+Add compatible and constants for the power domains exposed by the RPMH
+in the Qualcomm Technologies Inc sc7280 platform.
 
-Yes, I will do that.
+Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+---
+ Documentation/devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
+ include/dt-bindings/power/qcom-rpmpd.h                  | 11 +++++++++++
+ 2 files changed, 12 insertions(+)
 
-I must have been more explicit about the Ping I believe. It was
-more for Masahiro and Rob to see if the kbuild stuff (which is
-relatively new) makes sense or not before I respin this..
-
+diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+index 1ea21ac..e2179a6 100644
+--- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
++++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+@@ -25,6 +25,7 @@ properties:
+       - qcom,qcs404-rpmpd
+       - qcom,sdm660-rpmpd
+       - qcom,sc7180-rpmhpd
++      - qcom,sc7280-rpmhpd
+       - qcom,sdm845-rpmhpd
+       - qcom,sdx55-rpmhpd
+       - qcom,sm8150-rpmhpd
+diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+index d711e25..0679fd1 100644
+--- a/include/dt-bindings/power/qcom-rpmpd.h
++++ b/include/dt-bindings/power/qcom-rpmpd.h
+@@ -55,6 +55,17 @@
+ #define SC7180_LCX	6
+ #define SC7180_MSS	7
+ 
++/* SC7280 Power Domain Indexes */
++#define SC7280_CX	0
++#define SC7280_CX_AO	1
++#define SC7280_EBI	2
++#define SC7280_GFX	3
++#define SC7280_MX	4
++#define SC7280_MX_AO	5
++#define SC7280_LMX	6
++#define SC7280_LCX	7
++#define SC7280_MSS	8
++
+ /* SDM845 Power Domain performance levels */
+ #define RPMH_REGULATOR_LEVEL_RETENTION	16
+ #define RPMH_REGULATOR_LEVEL_MIN_SVS	48
 -- 
-viresh
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
