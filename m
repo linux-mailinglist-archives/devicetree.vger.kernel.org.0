@@ -2,110 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12AA232AB39
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:20:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70AE232AB3C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:21:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836522AbhCBUJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:09:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54116 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351173AbhCBNeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 08:34:36 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8173C06178C
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 05:33:21 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id b1so20506336lfb.7
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 05:33:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iSy8XDFMp0a7WSm8SRUUoPZjrV8zT9TVzmc4W+YVnt0=;
-        b=muTIlCk5kkvjyji32omYwf+paO3hraugCWesSpuLQsEWurrOtv2LkuCl6kR08bkfvg
-         A6GnCuAbiavXpP6X+RWNX7lHIkfAB0M8pik4fuBcTkyX+KWS7eB9P4AK6fMy4PSjqHzF
-         5KnqjvDB2QI67xes/P70H8yoAXPOvpsDSCaT/bAAzGvwusGzda3XPI3AQOJyQi94scJI
-         iWF71bvf56zWzmx0LJMa9rlv1NqnmUgyPwP6B9pW9/y5uzP1wyMeFMFpdmE7RlmwwPKa
-         +ahhi2xIdYnuy0TnkKnyvj4yGAq+UjuJmNT5XjAaepghP6qYE+xKENxLMqwATj0/K4B+
-         fTFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iSy8XDFMp0a7WSm8SRUUoPZjrV8zT9TVzmc4W+YVnt0=;
-        b=WkPV2MKrM+tuON9FsqppwW32jtvi5+tL0Qzqv8iYMtJR9HzlUaUHaHUwr41GwMJcTz
-         UEki1nM9XpCn2I1xdmG+btzfRaHFzTANFNLcR59UvPcWk3g7nHQEV6EJeFOp0VVG4kva
-         J83FD1Vxst+QFgfi7WwJEs3N5Ov9UlxMr9/LfAgo1xhv1dlTQlACvqLKUTOOSUOHJUcB
-         HCpVPH5h2l0V3Lukee61owNSF4/T4MxSEUJHYZFGsh5eovN3ht+prbX8uMZWXz0++1Zv
-         F5j9U2ieMcfvVDhKrkBfMi4X6CbfRzDrj0ED1a3FWBsCej5q3OiXCOgc70R61ALsOM/m
-         T4Ug==
-X-Gm-Message-State: AOAM532fd4d1ZXamG+Fpde4/JsLWmEf7PbImIn1ejsdJrjcmEE5B4BLz
-        Te3moa21Noxt8DYKznfK08oFHNnRJgIf1Va3L9b15Q==
-X-Google-Smtp-Source: ABdhPJx92UylmzN7UzJit4KOHJg5xSFTK0EOobHZawkbLd9lf5/TSOXqApb0TItqvbUM4jSbHtr8kr6+qxcDjcviWwI=
-X-Received: by 2002:a05:6512:547:: with SMTP id h7mr12700579lfl.529.1614692000450;
- Tue, 02 Mar 2021 05:33:20 -0800 (PST)
+        id S1349327AbhCBUNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:13:13 -0500
+Received: from mx2.suse.de ([195.135.220.15]:45296 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1381426AbhCBNi7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Mar 2021 08:38:59 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id C33C4ACBC;
+        Tue,  2 Mar 2021 13:38:16 +0000 (UTC)
+Message-ID: <ad6361433104d703338d2005cd8f3714508bccbb.camel@suse.de>
+Subject: Re: [RFC 09/13] iommu/arm-smmu: Make use of
+ dev_64bit_mmio_supported()
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     f.fainelli@gmail.com, robh+dt@kernel.org, ardb@kernel.org,
+        hch@infradead.org, narmstrong@baylibre.com, dwmw2@infradead.org,
+        linux@armlinux.org.uk, catalin.marinas@arm.com, arnd@arndb.de,
+        will@kernel.org
+Date:   Tue, 02 Mar 2021 14:38:14 +0100
+In-Reply-To: <3a4cf13f-c098-9ff3-6c0e-2c94daae452b@arm.com>
+References: <20210226140305.26356-1-nsaenzjulienne@suse.de>
+         <20210226140305.26356-10-nsaenzjulienne@suse.de>
+         <3a4cf13f-c098-9ff3-6c0e-2c94daae452b@arm.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-wN85PY7iiGVDnz4rnxxC"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
-References: <20210208222203.22335-1-info@metux.net> <20210208222203.22335-12-info@metux.net>
- <CACRpkdYbOX_RDqwxaiugtYB4vSpSKChvKsPjcB_vv3Q74QeG2Q@mail.gmail.com> <c5ed2b27-21a2-5a07-8dd9-e080f9a6cd98@metux.net>
-In-Reply-To: <c5ed2b27-21a2-5a07-8dd9-e080f9a6cd98@metux.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 2 Mar 2021 14:33:09 +0100
-Message-ID: <CACRpkdZ1PvA6822YYPwzHNvVrvd+bNFRLwpQ=RRrXpitWmnrxQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 11/12] platform/x86: skeleton for oftree based board
- device initialization
-To:     "Enrico Weigelt, metux IT consult" <lkml@metux.net>
-Cc:     "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 12, 2021 at 12:54 PM Enrico Weigelt, metux IT consult
-<lkml@metux.net> wrote:
-> On 12.02.21 10:58, Linus Walleij wrote:
 
-> > If the usecase is to explicitly work around deployed firmware that cannot
-> > and will not be upgraded/fixed by describing the hardware using DT
-> > instead, based on just the DMI ID then we should spell that out
-> > explicitly.
->
-> Okay, maybe I should have stated this more clearly.
->
-> OTOH, the scope is also a little bit greater: certain external cards
-> that don't need much special handling for the card itself, just
-> enumerate devices (and connections between them) using existing drivers.
->
-> That's a pretty common scenario in industrial backplane systems, where
-> we have lots of different (even application specific) cards, usually
-> composed of standard chips, that can be identified by some ID, but
-> cannot describe themselves. We have to write lots of specific drivers
-> for them, usually just for instantiating existing drivers. (we rarely
-> see such code going towards mainline).
->
-> A similar case (mainlined) seems to be the RCAR display unit - they're
-> using dt overlays that are built into the driver and applied by it
-> based on the detected DU at runtime. RCAR seems to be a pure DT
-> platform, so that's an obvious move. APU2/3/4 is ACPI based, so I went
-> in a different direction - but I'm now investigating how to make DT
-> overlays work on an ACPI platform (eg. needs some initial nodes, ...)
-> In case that's successful, I'll rework my RFC to use overlays, and
-> it will become much smaller (my oftree core changes then won't be
-> necessary anymore).
+--=-wN85PY7iiGVDnz4rnxxC
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I understand. I have had the same problem with trying to fix 96boards
-mezzanines.
+Hi Robin, thanks for taking the time to look at this.
 
-I also tried to sidestep the DT overlays, and it was generally disliked.
-The DT people have made up their mind that overlays is what they
-want to use for this type of stuff.
+On Tue, 2021-03-02 at 11:07 +0000, Robin Murphy wrote:
+> On 2021-02-26 14:03, Nicolas Saenz Julienne wrote:
+> > Some arm SMMU implementations might sit on a bus that doesn't support
+> > 64bit memory accesses. In that case default to using hi_lo_{readq,
+> > writeq}() and BUG if such platform tries to use AArch64 formats as they
+> > rely on writeq()'s atomicity.
+> >=20
+> > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> > ---
+> > =C2=A0=C2=A0drivers/iommu/arm/arm-smmu/arm-smmu.c | 9 +++++++++
+> > =C2=A0=C2=A0drivers/iommu/arm/arm-smmu/arm-smmu.h | 9 +++++++--
+> > =C2=A0=C2=A02 files changed, 16 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/=
+arm-smmu/arm-smmu.c
+> > index d8c6bfde6a61..239ff42b20c3 100644
+> > --- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
+> > +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
+> > @@ -1889,6 +1889,15 @@ static int arm_smmu_device_cfg_probe(struct arm_=
+smmu_device *smmu)
+> > =C2=A0=C2=A0			smmu->features |=3D ARM_SMMU_FEAT_FMT_AARCH64_64K;
+> > =C2=A0=C2=A0	}
+> > =C2=A0=C2=A0
+> >=20
+> > +	/*
+> > +	 * 64bit accesses not possible through the interconnect, AArch64
+> > +	 * formats depend on it.
+> > +	 */
+> > +	BUG_ON(!dev_64bit_mmio_supported(smmu->dev) &&
+> > +	       smmu->features & (ARM_SMMU_FEAT_FMT_AARCH64_4K |
+> > +				ARM_SMMU_FEAT_FMT_AARCH64_16K |
+> > +				ARM_SMMU_FEAT_FMT_AARCH64_64K));
+>=20
+> No. Crashing the kernel in a probe routine which is free to fail is=20
+> unacceptable either way, but guaranteeing failure in the case that the=
+=20
+> workaround *would* be required is doubly so.
+>=20
+> Basically, this logic is backwards - if you really wanted to handle it=
+=20
+> generically, this would be the point at which you'd need to actively=20
+> suppress all the detected hardware features which depend on 64-bit=20
+> atomicity, not complain about them.
 
-Yours,
-Linus Walleij
+Understood.
+
+> > +
+> > =C2=A0=C2=A0	if (smmu->impl && smmu->impl->cfg_probe) {
+> > =C2=A0=C2=A0		ret =3D smmu->impl->cfg_probe(smmu);
+> > =C2=A0=C2=A0		if (ret)
+> > diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.h b/drivers/iommu/arm/=
+arm-smmu/arm-smmu.h
+> > index d2a2d1bc58ba..997d13a21717 100644
+> > --- a/drivers/iommu/arm/arm-smmu/arm-smmu.h
+> > +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.h
+> > @@ -477,15 +477,20 @@ static inline void arm_smmu_writel(struct arm_smm=
+u_device *smmu, int page,
+> > =C2=A0=C2=A0{
+> > =C2=A0=C2=A0	if (smmu->impl && unlikely(smmu->impl->write_reg))
+> > =C2=A0=C2=A0		smmu->impl->write_reg(smmu, page, offset, val);
+> > -	else
+> > +	else if (dev_64bit_mmio_supported(smmu->dev))
+> > =C2=A0=C2=A0		writel_relaxed(val, arm_smmu_page(smmu, page) + offset);
+> > +	else
+> > +		hi_lo_writeq_relaxed(val, arm_smmu_page(smmu, page) + offset);
+>=20
+> As Arnd pointed out, this is in completely the wrong place. Also, in=20
+
+Yes, sorry for that, not too proud of it.
+
+> general it doesn't work if the implementation already needs a hook to=20
+> filter or override register accesses for any other reason. TBH I'm not=
+=20
+
+I'm not sure I get your point here, 'smmu->impl' has precedence over the MM=
+IO
+capability check. Custom implementations would still get their callbacks.
+
+> convinced that this isn't *more* of a mess than handling it on a=20
+> SoC-specific basis...
+
+I see your point.
+
+Just to explain why I went to these lengths: my understanding is that the
+specifics of how to perform 32bit accesses to SMMU's 64bit registers is def=
+ined
+in spec. So it made sense to move it into the non implementation dependent =
+side
+of the driver.
+
+All in all, I'll think of something simpler.
+
+Regards,
+Nicolas
+
+
+--=-wN85PY7iiGVDnz4rnxxC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmA+P8YACgkQlfZmHno8
+x/4StQgAkLUKE6F/7yFab1Ti1xLuHnbi95BqA747fmb/x/LUnVKSRs05zbtCn10z
+M9gK+LYnbYRHIXrqL4GHWBJG/R+qF3XVKoNHAk5dfrctCaGnVujGrfxSTB4lkH/z
+gbbKlXo8UHkTk6QnIE5XgmGz+2RgLP2yCx7XtWvKRpLRgTP4fsbC7M0wxERzBIEn
+VFnoM2a/eKGP3j2spN6TVy2AdXaBu89kosJ50ytD8AwSTrD9eNx15fBzy5w1sqrw
+gZNA3lSp0VbqRSb1G2Efa/tSkHW38Rb7YWOdf6sY6fBIT9VXW2QpHxolv3DurPk4
+0JbQK4vEzXdARdgCN/rrhB9UgL8FdA==
+=teKv
+-----END PGP SIGNATURE-----
+
+--=-wN85PY7iiGVDnz4rnxxC--
+
