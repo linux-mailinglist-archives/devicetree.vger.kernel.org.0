@@ -2,94 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4072532AB7E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C33EC32AB7D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:35:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836961AbhCBU3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:29:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38228 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1839596AbhCBQhc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Mar 2021 11:37:32 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C071B64E7C;
-        Tue,  2 Mar 2021 16:13:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614701626;
-        bh=XcaDjWsURv/8uZujGdas5wp5M1JZxAMhhXQc0wmkd0Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PMdaxma/dPA8gQWX512Tik+zy7s5XhBA/c3U6rfgto/T+dowq5GR7QoNwNlgJtmt+
-         pRn42HIPQeCSPnqb+0ZGZfA+D4sTTN37fgPCB2+fFB+RBCsKt+O+SNkaGlWkMcORZ6
-         YcJBK6kC5WlqOP1WLs2urMyZLKwPVlhxjphw/wi/kpnSU7DWHQiRKhsCuUpjMMo/af
-         ibld2EvNF/AjyFkXJAhEIijJxJoEZg9vgBFdHsT9lBNTNn2t7HdAKPeqUWnzaAVhw8
-         rTIfSQAcYXobOMi96H7vpWqbCeSxvFoQFWm1Uwrv/i6BcKy4ahkt/oyK5U33ZCgBRv
-         WjAepb457Ne5Q==
-Date:   Tue, 2 Mar 2021 16:12:39 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     Rob Herring <robh@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 3/5] ASoC: audio-graph-card: Add bindings for sysclk
- and pll
-Message-ID: <20210302161239.GM4522@sirena.org.uk>
-References: <1614276364-13655-1-git-send-email-spujar@nvidia.com>
- <1614276364-13655-4-git-send-email-spujar@nvidia.com>
- <CAL_Jsq+9esDGw7ZCLnZS_KLmLUFyVenz83ohgNKFK3bdPD2ouQ@mail.gmail.com>
- <0ea5b885-2610-8f12-569d-15a8eff50c10@nvidia.com>
+        id S1836956AbhCBU3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:29:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36010 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347661AbhCBQc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 11:32:26 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DBC9C06178A
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 08:21:36 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id u4so24671060ljh.6
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 08:21:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dDtVuAUG8eYI5Eln5QS/TclUSCWz1TjGe2OhWQ2Hzok=;
+        b=if3nP/oZALnybjJAUkUtzqsvs3YK7lJTKnmGNAKAtkwkVzIB8mFHuhnw39Age4qxUS
+         UXw4iYbDW54LVkGsJpSlpCufhFpXSXWrspZnZVQvzvmbL4hoMK6k1yEd5RN5BV+l0zKp
+         tXtWk5HPWV2fweqJVtX8sHIWvuZWbxVoSpCFOUKgPtdFaCV2kH7EuRSveUN20qcFG1og
+         wyrqlkSN21mX7hX7xxtgzoot8V4HzSFxwkYFb/OJ+vf7aE1D4NJTbKYunNSiNEI9kP9y
+         s+wCBi42PEGQZkVQoauPMQTxxO1r/MHtP+jvcnpmfUsTbIdbT4RlvrpKFT5uBgM18SPw
+         Mw9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dDtVuAUG8eYI5Eln5QS/TclUSCWz1TjGe2OhWQ2Hzok=;
+        b=WGFENyhsGGqdAladeAJB2ZgBtlzTUDMwfoAzwNb1FO3kG1IkL3/Ai733n4FgUD9xTC
+         WOWivvjSJPUf/qglm1BWp0T6dyvvDKIPYaHJqE+Jk4stixJUo+N2/lwlPua5oQyAmYmP
+         kuEe6VASCbZuZ4mQOsYT0Z7qkwQ8RxtwwsT0pDP3t1hfLp83fNiZc8IS5eQQcK4nDAUl
+         qsXoGIg9nzHKH1Cv3LDetDmTK9XJDMPaE0TRCsD+GIGfdSqFjN/1RAGZ5hAIOZ93btUV
+         Saf8DUljLS0BHCHn/OJ709agac9/qr+9ucaLcCtz4j2zOQ9TbDo8hf4HNYWAWzk6yZ7w
+         7uSQ==
+X-Gm-Message-State: AOAM5314iFjow31DZb+7gIzE/a13uhyG/gpIvITApmPM9TCSEH5mpDV+
+        p9LW2GNhctvRAEu0wnsyfyLTB18toLw0arNfWs0/ag==
+X-Google-Smtp-Source: ABdhPJzXqrYBkkHlZel98Kbs7UOBikTi+iuddAEEWTpHvvJw+VnT+XciCztoznAVqXpZN+sKledBjpv4CVaTd6nqOkQ=
+X-Received: by 2002:a2e:9041:: with SMTP id n1mr12550220ljg.273.1614702094699;
+ Tue, 02 Mar 2021 08:21:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rCb8EA+9TsBVtA92"
-Content-Disposition: inline
-In-Reply-To: <0ea5b885-2610-8f12-569d-15a8eff50c10@nvidia.com>
-X-Cookie: Friction is a drag.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210302011813.2331879-1-alexander.sverdlin@gmail.com>
+In-Reply-To: <20210302011813.2331879-1-alexander.sverdlin@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 2 Mar 2021 17:21:23 +0100
+Message-ID: <CACRpkdYErJH5RUjL+jPC5vnaqGiOqBwHsr0E42wOWrpBGrpS3w@mail.gmail.com>
+Subject: Re: [PATCH] gpio: omap: Honor "aliases" node
+To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc:     Linux-OMAP <linux-omap@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Mar 2, 2021 at 2:18 AM Alexander Sverdlin
+<alexander.sverdlin@gmail.com> wrote:
 
---rCb8EA+9TsBVtA92
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Currently the naming of the GPIO chips depends on their order in the DT,
+> but also on the kernel version (I've noticed the change from v5.10.x to
+> v5.11). Honor the persistent enumeration in the "aliases" node like other
+> GPIO drivers do.
+>
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> ---
+> Yes, I noticed checkpatch "WARNING: DT binding docs and includes should be
+> a separate patch."
+> However, the parts below are tiny and barely make sense separately.
 
-On Tue, Mar 02, 2021 at 12:33:04PM +0530, Sameer Pujar wrote:
+I've shut it down in the past because the instance ordering is a
+linuxism and the needs are in the Linux userspace somehow.
+It is different from a UART for example, which always need to
+be at the same place on any operating system, hence it has an
+alias.
 
-> This was targetted for external audio codecs. Their internal clock
-> management is not exposed with the clock framework. Instead ASoC provides
-> callbacks to set this up on Codec side. There are many references where t=
-his
-> is followed with some hardcoded settings in the drivers.
+For kernelspace the instance order should not matter, since
+all resources are obtained from the device tree anyway
+by phandle.
 
-> Are you suggesting to instead expose codec internal clocks and manage via
-> generic clock bindings? Would this mean each codec driver has to implement
-> these clock APIs (for ex: set_rate()) and program registers accordingly?
+For userspace:
+The way to determine topology in Linux userspace is to use sysfs,
+and combined with the GPIO character device this provides a
+unique ID for each GPIO chip and line on the system.
 
-Yes, that's what we should be doing.
+/sys/bus/gpio/devices/gpiochip0/
+/sys/bus/gpio/devices/gpiochip1/
 
-> For a platform, different audio cards can be plugged in. In that case, ea=
-ch
-> codec has to be updated to follow this. Wouldn't it be simpler to use
-> available ASoC callbacks?
+etc can change, but these appear as PCI, I2C, SPI, platform
+etc nodes as well. On my PC:
 
-If we want to use standard DT to describe things we need to use standard
-bindings to do it. =20
+/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.5/1-1.5:1.0/gpiochip0
 
---rCb8EA+9TsBVtA92
-Content-Type: application/pgp-signature; name="signature.asc"
+It's pretty clear where that gpiochip sits.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmA+Y/YACgkQJNaLcl1U
-h9Dfkwf/VV5E+1E4QxiC9xMRf7CW6kQ6uOQUAIFgRWw7AeHnhEAPA0LxXX+G9DuH
-AYLLxx8/XoQDfbuG6WC+i7VomWK2rYpg4jo1G/f93iHFiG7AhXmr4crkEUXnKoUF
-6Qou31wOajsXqhh2SlOGM3EEcA73s6eMksiGFuvazFjRHQKk7V91PcAmlujX9qUA
-tsn+gsy6ebjriTqxMJ0atPeKsawOlaTYvDQkefn+3DV6RtjHA7i6x+0IKxdPhbV9
-ZVKc/q+sAdXJCjnGln9qDe1dRCoS3CYVvgZvteN4MH8+AC49Wm9DEIW+UNvS2XE4
-eWrZTbtnc4Fqg3WqfsVOAM70RK1+cw==
-=kyqj
------END PGP SIGNATURE-----
-
---rCb8EA+9TsBVtA92--
+Yours,
+Linus Walleij
