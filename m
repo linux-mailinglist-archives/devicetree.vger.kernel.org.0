@@ -2,143 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9EE032AB4A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 187B632AB46
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:21:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1582072AbhCBUTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:19:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47992 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1574432AbhCBPQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:16:43 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCBEC0617AB;
-        Tue,  2 Mar 2021 06:43:37 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id f1so31668460lfu.3;
-        Tue, 02 Mar 2021 06:43:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ehMk768PgaHXNDKEGxlTJz4HCadGsVKT4y8Pam5y8jk=;
-        b=Cak8Jo5viyKK52oOim0l23vqCN/enz9J0cwGAAUInxi1rHEVBI0dAVlJK/O6sqsR3W
-         vUZrISwpO6Kh57vR5nu1ZgeGsosQUXKiVHJFptxGlO1nY4VZsAveEJ5c+F1dwtUkCXwt
-         zFWp+s1woKTPqyH6AHkjvFODPnd4V4AhhtBQ0PkfMZW5n3Q1l1kKI+hK5gDZ6jfXov+c
-         MhKLiIfuCKiDMehNP/x9RkkbIvaHI1GcHP+ojdHO1jBLQ3N9++o82pQiCzyqJxj5BuAo
-         3TLSGEnvD8wdFv0osE93KeHWNlPg7HFkv8fuCQk1HCPExSp0wW6uQfjp6t8gzG24oa5/
-         KkkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ehMk768PgaHXNDKEGxlTJz4HCadGsVKT4y8Pam5y8jk=;
-        b=Z+E/77XmC9I8XgEcxB+F15GEpLX5E5m2jbgujdF0/7GHH76OZ1thrHfv6EHXQS0eSm
-         wTGWoAm21PjKTSMFjLpGo3hgvhpv67OUTEa+4KIil/ryijH2saKj2i75Gf35kiqTJOWA
-         qaRq3MWvans/yFmG0WPzJIs5IC9PMsxpAppkzk12RIkcgdAvpOUunltvxLZmv55qhJYg
-         lMRnYXVOMg5vJbvDqVqE12fpnKD0ggEBeY5w2fgCGKxF5LvVxbOaHksWBRezbg+YehRW
-         +7YCrBElJOzjpL0ThVQJe7I1bnrGeHtzS5eYIbPDjDBnKkJMRpGu6R9o1Wu8Y4xUO3dt
-         x5Xg==
-X-Gm-Message-State: AOAM533bExp2NylD6QSrxJduqQZJ60i/MBoHXVMYjFUjq6UJBxZTK4Rx
-        bdFGgDio2Mq3wHwVR37cLO0PW4LlyhVTK6M3Ssc=
-X-Google-Smtp-Source: ABdhPJzRI6Lp0cn6FbNf1ROo1ggRWQL+ogHxDx2OVGLxaKVt2gd8s0BKD4GnCwZMyEZvXDjvmnKudQ4aLaQ/9yR4t4Q=
-X-Received: by 2002:a05:6512:b0d:: with SMTP id w13mr8351771lfu.500.1614696215995;
- Tue, 02 Mar 2021 06:43:35 -0800 (PST)
+        id S1582063AbhCBUTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:19:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33140 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1448612AbhCBPHs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Mar 2021 10:07:48 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E11F764F42;
+        Tue,  2 Mar 2021 14:57:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614697022;
+        bh=OYRXFzNNuTlKILRI33Ey1i/DTxNtqM1YKXxKvQKx4N4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DfCbgKMqycOYqa6vkIArkKbgCfHn2Gb7ERiOJ8pppKXQRVy6oqjvTte6FY2XtVHS7
+         2YiagAevDAnM4tHoxxStF6A9HFw57amQCKUTprTeKP0z5p/Oj+9PcLS0J9ypUuI3gW
+         hu78OzUwNgOuHdvq0W2sXw3lM09NduxfGBAg1Y0S8W/tK9sgxUQ3WXmtNZi/TRZhAL
+         9gCJ3TBiU/EJIWvMwBptzVsvP9Nw8GBFPgiozuRKKiWlkLNRV0AkBmx5RqRMv08+VN
+         0vnky7Ni4d99cNTT6vwdU0x9PyGeUUQWy6djq+/j3395p2GRXxY8wkqIBXnH3hKa7n
+         gNOtCibozGmjA==
+Received: by mail-ed1-f53.google.com with SMTP id l12so25531792edt.3;
+        Tue, 02 Mar 2021 06:57:01 -0800 (PST)
+X-Gm-Message-State: AOAM531E2lDEaWszF+W+Tl+1cKE3sXjx8z7/ZIFN8eA2qPOKpg2ktVzD
+        uityBT1VFvgHvUvx2M8e8FZ2pkEFL/BEKgEbKA==
+X-Google-Smtp-Source: ABdhPJyOQjhu8QpzXxm3gjRgsjCtnH1S+FQjObTQigNPRVgE/zOQdHmeMC6USt0SikilodDuu3psdvaEg2aOTatDL9g=
+X-Received: by 2002:a05:6402:c0f:: with SMTP id co15mr2856893edb.373.1614697020164;
+ Tue, 02 Mar 2021 06:57:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20210222140756.713-1-heiko.thiery@gmail.com> <20210222140756.713-3-heiko.thiery@gmail.com>
-In-Reply-To: <20210222140756.713-3-heiko.thiery@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 2 Mar 2021 11:43:24 -0300
-Message-ID: <CAOMZO5C4bL72mksHG4GfikgLOxib-A659rac7VkpjGsm150O_A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: fsl: add support for Kontron
- pitx-imx8m board
-To:     Heiko Thiery <heiko.thiery@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Michael Walle <michael@walle.cc>
+References: <20210225125921.13147-1-will@kernel.org> <CAL_JsqJX=TCCs7=gg486r9TN4NYscMTCLNfqJF9crskKPq-bTg@mail.gmail.com>
+ <20210301144153.GA16716@willie-the-truck> <CAL_JsqJ11D-7a3pwLTVd+rHjqDGBb=b8OU_a6h3Co-at+2qMtQ@mail.gmail.com>
+ <bbbf5def-a168-9a4c-1106-b80883dfd389@csgroup.eu>
+In-Reply-To: <bbbf5def-a168-9a4c-1106-b80883dfd389@csgroup.eu>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 2 Mar 2021 08:56:47 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+Te5+kQzbAMCzuRCkmoZWBDKGhynUC8BfvOm=R5jT4Jg@mail.gmail.com>
+Message-ID: <CAL_Jsq+Te5+kQzbAMCzuRCkmoZWBDKGhynUC8BfvOm=R5jT4Jg@mail.gmail.com>
+Subject: Re: [PATCH 0/2] Fix CMDLINE_EXTEND handling for FDT "bootargs"
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Will Deacon <will@kernel.org>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Daniel Walker <danielwa@cisco.com>, devicetree@vger.kernel.org,
+        Android Kernel Team <kernel-team@android.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Marc Zyngier <maz@kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        Doug Anderson <dianders@chromium.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Tyler Hicks <tyhicks@linux.microsoft.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Max Uvarov <muvarov@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+On Mon, Mar 1, 2021 at 11:45 AM Christophe Leroy
+<christophe.leroy@csgroup.eu> wrote:
+>
+>
+>
+> Le 01/03/2021 =C3=A0 18:26, Rob Herring a =C3=A9crit :
+> > +PPC folks and Daniel W
+> >
+> > On Mon, Mar 1, 2021 at 8:42 AM Will Deacon <will@kernel.org> wrote:
+> >>
+> >> On Mon, Mar 01, 2021 at 08:19:32AM -0600, Rob Herring wrote:
+> >>> On Thu, Feb 25, 2021 at 6:59 AM Will Deacon <will@kernel.org> wrote:
+> >>>> We recently [1] enabled support for CMDLINE_EXTEND on arm64, however
+> >>>> when I started looking at replacing Android's out-of-tree implementa=
+tion [2]
+> >>>
+> >>> Did anyone go read the common, reworked version of all this I
+> >>> referenced that supports prepend and append. Here it is again[1].
+> >>> Maybe I should have been more assertive there and said 'extend' is
+> >>> ambiguous.
+> >>
+> >> I tried reading that, but (a) most of the series is not in the mailing=
+ list
+> >> archives and (b) the patch that _is_ doesn't touch CMDLINE_EXTEND at a=
+ll.
+> >> Right now the code in mainline does the opposite of what it's document=
+ed to
+> >> do.
+> >
+> > Actually, there is a newer version I found:
+> >
+> > https://lore.kernel.org/linuxppc-dev/1551469472-53043-1-git-send-email-=
+danielwa@cisco.com/
+> > https://lore.kernel.org/linuxppc-dev/1551469472-53043-2-git-send-email-=
+danielwa@cisco.com/
+> > https://lore.kernel.org/linuxppc-dev/1551469472-53043-3-git-send-email-=
+danielwa@cisco.com/
+>
+> This was seen as too much intrusive into powerpc.
 
-On Mon, Feb 22, 2021 at 11:08 AM Heiko Thiery <heiko.thiery@gmail.com> wrote:
+It looked like the main issue was string functions for KASAN?
 
-> +       reg_usdhc2_vmmc: regulator-v-3v3-sd {
+As far as being too complex, I think that will be needed if you look
+at all architectures and non-DT cases.
 
-reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+> I proposed an alternative at
+> https://patchwork.ozlabs.org/project/linuxppc-dev/cover/cover.1554195798.=
+git.christophe.leroy@c-s.fr/ but
+> never got any feedback.
 
-> +       tpm_reset: tpm-reset {
-> +               compatible = "gpio-reset";
+Didn't go to a list I subscribe to. In particular, if it had gone to
+DT list and into PW you would have gotten a reply from me.
 
-I don't see this compatible string documented.
-
-> +               reset-gpios = <&gpio3 2 GPIO_ACTIVE_LOW>;
-> +               reset-delay-us = <2>;
-> +               reset-post-delay-ms = <60>;
-> +               #reset-cells = <0>;
-> +       };
-> +
-> +       usb_hub_reset: usb-hub-reset {
-> +               compatible = "gpio-reset";
-
-Same here.
-
-> +&fec1 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_fec1>;
-> +       phy-mode = "rgmii-id";
-> +       phy-handle = <&ethphy0>;
-> +       phy-reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-
-This property is deprecated. Please consider using reset-gpios inside
-ethernet-phy instead.
-
-> +       /* TODO: configure audio, as of now just put a placeholder */
-> +       wm8904: audio-codec@1a {
-> +               compatible = "wlf,wm8904";
-> +               reg = <0x1a>;
-> +               clocks = <&clk IMX8MQ_CLK_SAI2_ROOT>;
-> +               clock-names = "mclk";
-> +               clock-frequency = <24000000>;
-
-Not a valid property.
-
-> +/* M.2 B-key slot */
-> +&pcie0 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_pcie0>;
-> +       disable-gpio = <&gpio5 29 GPIO_ACTIVE_LOW>;
-
-Not a valid property.
-
-> +       reset-gpio = <&gpio1 9 GPIO_ACTIVE_LOW>;
-> +       clocks = <&clk IMX8MQ_CLK_PCIE1_ROOT>,
-> +                <&clk IMX8MQ_CLK_PCIE1_AUX>,
-> +                <&clk IMX8MQ_CLK_PCIE1_PHY>,
-> +                <&pcie0_refclk>;
-> +       clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
-> +       ext_osc = <1>;
-
-Not a valid property.
-
-> +/* Intel Ethernet Controller I210/I211 */
-> +&pcie1 {
-> +       clocks = <&clk IMX8MQ_CLK_PCIE2_ROOT>,
-> +                <&clk IMX8MQ_CLK_PCIE2_AUX>,
-> +                <&clk IMX8MQ_CLK_PCIE2_PHY>,
-> +                <&pcie1_refclk>;
-> +       clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
-> +       ext_osc = <1>;
-
-Not a valid property.
+Rob
