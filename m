@@ -2,161 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2565F32AAD0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B89E832AAD2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1839892AbhCBTz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:55:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35564 "EHLO
+        id S1839900AbhCBTzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:55:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376680AbhCBHsT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 02:48:19 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F2A8C06178A;
-        Mon,  1 Mar 2021 23:44:45 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id k12so13708032ljg.9;
-        Mon, 01 Mar 2021 23:44:45 -0800 (PST)
+        with ESMTP id S1376890AbhCBIRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 03:17:12 -0500
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92186C061756
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 00:09:59 -0800 (PST)
+Received: by mail-ot1-x32f.google.com with SMTP id s3so19210810otg.5
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 00:09:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gZNTatbnHb+7B3cifLvu1nq4X6pcmEEmjpKFoMb/vdM=;
-        b=veyh53ntviSLpdEMoBgWaX81jpp5Z5M40bdVat+k0hrZxC1K7QftkvE5LYiCpZH4lO
-         HRaoEtTrY/yAe/gcoByU+9de1fYwZXVHvJ72j5hEr/10dL2FOj2spoG9fxfAj1uCZ3UU
-         iKHnmUrfVsKensHxhw8pM5aPC5WagNMRTZ3mAfZxZYppBGLh63T3CuYwxKGKBS+vdrJE
-         XUkzZyoa9RqbIPTjCj1hDMJNDcIkv60n1vusMsRVfqwnyCZzQP8QRssrauL5RSuy7m6N
-         368MAm97lWLGpQpZD4UPRC++8vJbOiLI7kZHmSjk15BxcW1s53rqECzyBdHjOTuxvN9V
-         kdpg==
+        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=9Yp6IMdjr+fqwidy7ap2X/QWUwpISs2GQo/1YVRp7Ac=;
+        b=qAkKQwplIRSYPFSBTkFqpPss5lNeOKxBF1YZUQSp7kYRXZUqWrVQsFn12dHZ+LogaK
+         Mh6A+iegnW9TEbkFcua6807by2HnlA6kjS5zv37AiSb3lBibMdSfCTGRZhE/+lJgpyF3
+         RUu0x8vhBF61bb1z4Dwh+hQ9zJplN9iQsrI6V3j8fI0JHMtQ0y0ulvjjAme22e8/p0AD
+         y8ka3wOHtS/9jpqITKNEQM76IymEaSgsgCNVHbgWwRpoCadfJ2zONKNgnkJ1xYV+dJmH
+         jBiZcEHBgQTauvhMo4xDyjUeFnNSRIYz9mgChPParMuLUa687M2RMGb6c1OzlMABG9YM
+         20pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gZNTatbnHb+7B3cifLvu1nq4X6pcmEEmjpKFoMb/vdM=;
-        b=JEt2WU9Wjw1gnVRYUtmuC7qr1xhiqDN8VM8A/6eJ/Re0VOARmkDFh89kt/6CL2gzGH
-         SPhV2tfG0AQWXSni/Rcbx6UbOtRa2O95tuUk3MacGum4FDlnO3J1bvwvkro5B3RZBwxB
-         LnwAWDhyFGSYpCz7CfQNgFSLAEaCHnV3TbHxtk3olKAGclmixjVPTWZI22mvrzOVh23r
-         Vm1LTpDofXqVJKapQs9B9SiAINi7v7sYYY2mwroWStK7EgpbeGrCvImW+kSkiNsvooPF
-         5qDPW+RBDfUmreh+0jt8nqC79S/LxXDEWXddfb/87D0huBmTvQBudUlrWnW2OdTik5yN
-         KoRw==
-X-Gm-Message-State: AOAM533NPR45NvAlH9l4aNMB/M/2yB+fC5NY+Tk0Tje8dSp1KiSDUq8e
-        MZfWpA382PjYse4PUmynHwE=
-X-Google-Smtp-Source: ABdhPJy5WZKx8Db12jFNbVaHP3Fz1Red+MdnyuyzuB4bQ3KfRZmKcM41nCu17nw2QIiZIENKiPhvqQ==
-X-Received: by 2002:a2e:140e:: with SMTP id u14mr11582726ljd.413.1614671083925;
-        Mon, 01 Mar 2021 23:44:43 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id e15sm2552600lfs.83.2021.03.01.23.44.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Mar 2021 23:44:43 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vivek Unune <npcomplete13@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH stblinux.git 2/2] firmware: bcm47xx_nvram: support platform device "brcm,nvram"
-Date:   Tue,  2 Mar 2021 08:44:05 +0100
-Message-Id: <20210302074405.18998-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210302074405.18998-1-zajec5@gmail.com>
-References: <20210302074405.18998-1-zajec5@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9Yp6IMdjr+fqwidy7ap2X/QWUwpISs2GQo/1YVRp7Ac=;
+        b=bLsu2+Voqv8TRP97oG9z6zmrc1nnpek1qLPj/+AO4zurERo91YkgnNrgujrgUD1XoZ
+         CzLo6VvXtmfCuLqTuJjdosLZ1SwOI0LEGbQxeND4LkJ+LiNtI/hI33HIuELaxJTUOXj0
+         tnQ3JnZRnhI8O4Va2sGDAgpegKxFNGm/p+Bf8SUjcZ1BjdIRicdHoiRYdJzVVylvqDjZ
+         KhCRt8A0RdMB3BL4tAbP+EhwQXWL63Z93t8IxteFHsgX4Mr+jdprgJ0mG0o9nSBRkrDd
+         4laGo4WnBtbwz6RpG+2PrhDRQ44YiFq8dHYL6VFqpWnlvPFe2meh7ryaG+osjQcUvkEM
+         KBew==
+X-Gm-Message-State: AOAM533UDSxyWKeYkwr3QyEOPAdJzglTUXb7Jrz6l7p9sxCI3TjhMzP7
+        rFxeEG4H3BWUmsclhV88H5rUyjG4iNkCnYR5WdS2
+X-Google-Smtp-Source: ABdhPJycQAU4H6nnBzd35FvJRpJes9uYQ1qv/FXAqvovHsqD1ff/W8fUGoryH984ghEAgEUX/l3Rc0jaCsNxcZcB5Xs=
+X-Received: by 2002:a9d:63ce:: with SMTP id e14mr16281721otl.347.1614672598987;
+ Tue, 02 Mar 2021 00:09:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1613131643-60062-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <1613131643-60062-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <CABMQnVJ+hQ_sdXMdLzhv2Y65QW8Vi01VAjV=SCeOei-zOZ5dwQ@mail.gmail.com> <ecef1943-fec3-9b35-a326-87764512c691@monstr.eu>
+In-Reply-To: <ecef1943-fec3-9b35-a326-87764512c691@monstr.eu>
+From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date:   Tue, 2 Mar 2021 17:09:33 +0900
+Message-ID: <CABMQnVJLRZ18iZH4oQbZSaC6Bw4do9GnrAVH1sHh6hLa+B2b+A@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] firmware: xilinx: Add pinctrl support
+To:     Michal Simek <monstr@monstr.eu>
+Cc:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        saikrishna12468@gmail.com, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        git@xilinx.com, linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi,
 
-Add support for platform device providing mapping resource. This allows
-reading NVRAM based on DT mapping binding. It's required for devices
-that boot depending on NVRAM stored setup and provides early access to
-NVRAM data.
+2021=E5=B9=B43=E6=9C=881=E6=97=A5(=E6=9C=88) 16:07 Michal Simek <monstr@mon=
+str.eu>:
+>
+> Hi Noburiho,
+>
+> On 2/28/21 1:17 AM, Nobuhiro Iwamatsu wrote:
+> > Hi,
+> >
+> > 2021=E5=B9=B42=E6=9C=8812=E6=97=A5(=E9=87=91) 21:10 Sai Krishna Potthur=
+i
+> > <lakshmi.sai.krishna.potthuri@xilinx.com>:
+> >>
+> >> Adding pinctrl support to query platform specific information (pins)
+> >> from firmware.
+> >>
+> >> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xili=
+nx.com>
+> >> Acked-by: Michal Simek <michal.simek@xilinx.com>
+> >> ---
+> >>  drivers/firmware/xilinx/zynqmp.c     | 114 ++++++++++++++++++++++++++=
++
+> >>  include/linux/firmware/xlnx-zynqmp.h |  90 +++++++++++++++++++++
+> >>  2 files changed, 204 insertions(+)
+> >>
+> >> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilin=
+x/zynqmp.c
+> >> index efb8a66efc68..299c3d5a9ebd 100644
+> >> --- a/drivers/firmware/xilinx/zynqmp.c
+> >> +++ b/drivers/firmware/xilinx/zynqmp.c
+> >> @@ -784,6 +784,120 @@ int zynqmp_pm_fpga_get_status(u32 *value)
+> >>  }
+> >>  EXPORT_SYMBOL_GPL(zynqmp_pm_fpga_get_status);
+> >>
+> >
+> > <snip>
+> >
+> >> @@ -125,6 +131,12 @@ enum pm_query_id {
+> >>         PM_QID_CLOCK_GET_FIXEDFACTOR_PARAMS,
+> >>         PM_QID_CLOCK_GET_PARENTS,
+> >>         PM_QID_CLOCK_GET_ATTRIBUTES,
+> >> +       PM_QID_PINCTRL_GET_NUM_PINS =3D 6,
+> >> +       PM_QID_PINCTRL_GET_NUM_FUNCTIONS =3D 7,
+> >> +       PM_QID_PINCTRL_GET_NUM_FUNCTION_GROUPS =3D 8,
+> >> +       PM_QID_PINCTRL_GET_FUNCTION_NAME =3D 9,
+> >> +       PM_QID_PINCTRL_GET_FUNCTION_GROUPS =3D 10,
+> >> +       PM_QID_PINCTRL_GET_PIN_GROUPS =3D 11,
+> >
+> > These do not have to have values, Because PM_QID_INVALID is 0.
+> >
+> >>         PM_QID_CLOCK_GET_NUM_CLOCKS =3D 12,
+> >
+> > And you can drop value from this.
+>
+> Please take a look at
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/include/linux/firmware/xlnx-zynqmp.h?h=3Dv5.12-rc1&id=3D1077d4367ab3b97f6d=
+b2f66c87289af863652215
+>
+> We are using explicit values as was recommended by Greg.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-bcm47xx_nvram driver was originally added through MIPS tree, but this
-change doesn't affect BCM47XX (MIPS) as it doesn't use DT. It targets
-ARCH_BCM_5301X so I suggest this goes through the stblinux.git tree.
----
- drivers/firmware/broadcom/bcm47xx_nvram.c | 55 +++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
+Oh, sorry.
+I didn't see this comment. Thank you for this information.
 
-diff --git a/drivers/firmware/broadcom/bcm47xx_nvram.c b/drivers/firmware/broadcom/bcm47xx_nvram.c
-index 835ece9c00f1..d5d19dd1b9e1 100644
---- a/drivers/firmware/broadcom/bcm47xx_nvram.c
-+++ b/drivers/firmware/broadcom/bcm47xx_nvram.c
-@@ -13,6 +13,7 @@
- #include <linux/kernel.h>
- #include <linux/string.h>
- #include <linux/mtd/mtd.h>
-+#include <linux/platform_device.h>
- #include <linux/bcm47xx_nvram.h>
- 
- #define NVRAM_MAGIC			0x48534C46	/* 'FLSH' */
-@@ -162,6 +163,60 @@ static int nvram_init(void)
- 	return -ENXIO;
- }
- 
-+static int brcm_nvram_probe(struct platform_device *pdev)
-+{
-+	struct nvram_header __iomem *header;
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	void __iomem *mmio;
-+	size_t copy_len;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res) {
-+		dev_err(dev, "Failed to get resource\n");
-+		return -ENODEV;
-+	}
-+
-+	mmio = ioremap(res->start, resource_size(res));
-+	if (!mmio)
-+		return -ENOMEM;
-+
-+	header = (struct nvram_header *)mmio;
-+	copy_len = DIV_ROUND_UP(sizeof(*header) + header->len, 4);
-+	if (header->magic != NVRAM_MAGIC) {
-+		dev_err(dev, "No NVRAM found at %pR\n", res);
-+		return -EPROTO;
-+	} else if (copy_len > resource_size(res)) {
-+		dev_err(dev, "NVRAM size exceeds %pR\n", res);
-+		return -ERANGE;
-+	} else if (copy_len >= NVRAM_SPACE) {
-+		dev_err(dev, "NVRAM size exceeds buffer size %d\n", NVRAM_SPACE);
-+		return -ENOMEM;
-+	}
-+
-+	__ioread32_copy(nvram_buf, mmio, copy_len);
-+	nvram_buf[NVRAM_SPACE - 1] = '\0';
-+
-+	iounmap(mmio);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id brcm_nvram_of_match[] = {
-+	{ .compatible = "brcm,nvram "},
-+	{},
-+};
-+
-+static struct platform_driver brcm_nvram_driver = {
-+	.driver = {
-+		.name = "brcm_nvram",
-+		.of_match_table = brcm_nvram_of_match,
-+	},
-+	.probe	= brcm_nvram_probe,
-+};
-+
-+module_platform_driver(brcm_nvram_driver);
-+
- int bcm47xx_nvram_getenv(const char *name, char *val, size_t val_len)
- {
- 	char *var, *value, *end, *eq;
--- 
-2.26.2
+>
+> Thanks,
+> Michal
+>
 
+Best regards,
+  Nobuhiro
+
+
+--=20
+Nobuhiro Iwamatsu
+   iwamatsu at {nigauri.org / debian.org}
+   GPG ID: 40AD1FA6
