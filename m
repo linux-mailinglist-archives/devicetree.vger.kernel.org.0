@@ -2,102 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4303E32AAB5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:58:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D1D632AAB9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836150AbhCBTyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:54:22 -0500
-Received: from z11.mailgun.us ([104.130.96.11]:30618 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1347611AbhCBFtj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Mar 2021 00:49:39 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1614664153; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=Ybi3GMTHSC3dMvQ1EPDjrYqQVz6WecFKeNUwjqK0ZuM=; b=vdJnUenMiJkpcCzyWIKGxzn+fwLUm/VVGvTfVKzdoGG+2UKc4KE2YH+FLbg5/XqObyUeuU27
- dFJfWPevOOYyhqgnDZ10mXMPT3sI4ZmD2bi7pwT75wZRUtfUrEGmLGKVniOu3aOv0GskydOZ
- GdlzL5oOMMrqLgO0nfNdfEiEvoU=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 603dd1b512935cdcee4da29d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Mar 2021 05:48:37
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A1B97C43463; Tue,  2 Mar 2021 05:48:36 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BB623C43461;
-        Tue,  2 Mar 2021 05:48:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BB623C43461
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Subject: [PATCH 2/2] soc: qcom: rpmhpd: Add sc7280 powerdomains
-Date:   Tue,  2 Mar 2021 11:18:12 +0530
-Message-Id: <1614664092-9394-2-git-send-email-rnayak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1614664092-9394-1-git-send-email-rnayak@codeaurora.org>
-References: <1614664092-9394-1-git-send-email-rnayak@codeaurora.org>
+        id S1836158AbhCBTy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:54:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43318 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1835644AbhCBGJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 01:09:08 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 187C8C061756;
+        Mon,  1 Mar 2021 22:08:28 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id z126so20876063oiz.6;
+        Mon, 01 Mar 2021 22:08:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=C19cOmvXJnbprBsxYo6fNevVqPz+le4Pn/VUf3uem0I=;
+        b=Kf8td8+mDqzkq/7SM8w4qjPMc1KK311qIsXMdPIYdmOMgBC8UQY7XzByFqs70585hC
+         iowVQmK4mlLCr2eXf5FvDUk+calrVOUsmVzUvIGfZolYMfqRS2VW0oDTqaK7fG9hjGM8
+         hFwPoYRycK0XVZN76fiHHmuuN/ZUfqMrWzHYl/oVOCRY1gOeqBx2IfO2PeB4sT6T/kS3
+         7eK27CO4mOLC0OAXXX6slJLssqTlr3MulWeYxeQVfmr97lDC4Hxwcpvdlj1SUYRvz8jH
+         4wOoD091V6jKlkiTd9y82rxmHlT75iepJZIf0ZSJc3UYJ88H4pHdzC/l0+VcjYZwAVz0
+         sxwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=C19cOmvXJnbprBsxYo6fNevVqPz+le4Pn/VUf3uem0I=;
+        b=F2PkhTDdwyyA637ZseVOBo/M8v2bRiu6puMrskho5jXpiTOksDjmu9DBKHlfK4V5g5
+         7ckHwOOSYYHNU41rzmLY3C5ZxV+PppPC3p23apttVkrR4SB1HjlbRVpApgPfbZ0D29XN
+         IauXoWZ8BujhIOTCZJlK9ZSdHwpQQrmeAsMsg+lQI8/1WtHMEkXk3zTfOJeFhSzLofaI
+         UdeUpFgkL1muCfkiEqQfktbZCiT0DURZIwkjP4ic4V5WXRoIrT6W9UlrLM2GGMpxziq6
+         jwP8/gKSyf9syWfpRstWQK+mg/F0NEqXgGGpguJ4YbGiSoYv6Xo/gc7bvR6bVMjJHvtC
+         Cjaw==
+X-Gm-Message-State: AOAM533qSlxk2RT8YbetppZxkg3/Wjw+5aRMBrqLciggI5jdCwm/buuu
+        ZQzoNTlmYQlDU/bWpdy4KwEiVQR/i1D+uyiWnAA=
+X-Google-Smtp-Source: ABdhPJy8wziwmYMPu/9/w+eXOxWojzCtW8JGO//mmOEQX/Ss1bf0j5WQzo4DDP/cRs89vYzM7K15EQqJuFgdnHDH40E=
+X-Received: by 2002:aca:4d55:: with SMTP id a82mr2086651oib.23.1614665307388;
+ Mon, 01 Mar 2021 22:08:27 -0800 (PST)
+MIME-Version: 1.0
+References: <1608547554-6602-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1608547554-6602-4-git-send-email-gene.chen.richtek@gmail.com> <20210219104724.GC19207@duo.ucw.cz>
+In-Reply-To: <20210219104724.GC19207@duo.ucw.cz>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Tue, 2 Mar 2021 14:08:18 +0800
+Message-ID: <CAE+NS36NvH-s_UOR8RUZA_gd+FUZ5oLqb=n0s41dSMYWDn9DnA@mail.gmail.com>
+Subject: Re: [PATCH v13 3/5] dt-bindings: leds: Add LED_FUNCTION_MOONLIGHT definitions
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, ChiYuan Huang <cy_huang@richtek.com>,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the power domains exposed by RPMH in the Qualcomm Technologies Inc
-sc7280 platform
+Pavel Machek <pavel@ucw.cz> =E6=96=BC 2021=E5=B9=B42=E6=9C=8819=E6=97=A5 =
+=E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=886:47=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Hi!
+>
+> > From: Gene Chen <gene_chen@richtek.com>
+> >
+> > Add LED_FUNCTION_MOONLIGHT definitions
+> >
+> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> > Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+>
+> No, sorry, I don't believe we need another define for flash/torch.
+>
 
-Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
----
- drivers/soc/qcom/rpmhpd.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+As previous discuss,
+> We use term "Moonlight" as reference says
+> "When you are trying to imitate moonlight you need to use low voltage,
+> softer lighting. You don=E2=80=99t want something that=E2=80=99s too brig=
+ht"
+> which is focus on brightness instead of color.
 
-diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
-index 7ce0635..2a0c55f 100644
---- a/drivers/soc/qcom/rpmhpd.c
-+++ b/drivers/soc/qcom/rpmhpd.c
-@@ -217,8 +217,27 @@ static const struct rpmhpd_desc sc7180_desc = {
- 	.num_pds = ARRAY_SIZE(sc7180_rpmhpds),
- };
- 
-+/* SC7280 RPMH powerdomains */
-+static struct rpmhpd *sc7280_rpmhpds[] = {
-+	[SC7280_CX] = &sdm845_cx,
-+	[SC7280_CX_AO] = &sdm845_cx_ao,
-+	[SC7280_EBI] = &sdm845_ebi,
-+	[SC7280_GFX] = &sdm845_gfx,
-+	[SC7280_MX] = &sdm845_mx,
-+	[SC7280_MX_AO] = &sdm845_mx_ao,
-+	[SC7280_LMX] = &sdm845_lmx,
-+	[SC7280_LCX] = &sdm845_lcx,
-+	[SC7280_MSS] = &sdm845_mss,
-+};
-+
-+static const struct rpmhpd_desc sc7280_desc = {
-+	.rpmhpds = sc7280_rpmhpds,
-+	.num_pds = ARRAY_SIZE(sc7280_rpmhpds),
-+};
-+
- static const struct of_device_id rpmhpd_match_table[] = {
- 	{ .compatible = "qcom,sc7180-rpmhpd", .data = &sc7180_desc },
-+	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
- 	{ .compatible = "qcom,sdm845-rpmhpd", .data = &sdm845_desc },
- 	{ .compatible = "qcom,sdx55-rpmhpd", .data = &sdx55_desc},
- 	{ .compatible = "qcom,sm8150-rpmhpd", .data = &sm8150_desc },
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+If any concern about this change, maybe we use LED_FUNCTION_INDICATOR inste=
+ad?
+(refs: https://lkml.org/lkml/2020/11/24/1267)
 
+
+> Best regards,
+>                                                                 Pavel
+> --
+> http://www.livejournal.com/~pavelmachek
