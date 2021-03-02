@@ -2,113 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF09B32AB75
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:33:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3351632AB78
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:33:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446375AbhCBU2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:28:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54472 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350741AbhCBPq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:46:27 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB504C061756
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 07:37:17 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id n16so15004900lfb.4
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 07:37:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4MgbZOgNW8uixaX7A/+b9oSIGLPsBpXoCjq0KvgA0Vs=;
-        b=Sh8OBszE7R3d8uy7nbh6mGISl/xCEmQuyh4gsiTAsNoq0BctI45bGAlwpUnecy1kA2
-         7IyIPkl7uPlD9RIGSpEwCItMHd4J1HSMUVEOIfFGWOb1iSQlyd8JBsrwTPeRYNYEwWIL
-         4F0Oiifpjpe4z0u4pT36uIJse9yGuU21a4gqFsTthZKHpVuqyyNxzCku3CVqOvhEgXoE
-         SEIoh2gDqqJBZHlPiZQgS3vgDgHjUakA1AcpsijE7EI52oMQTvx+0qKk0ZdjmFSwKnmk
-         APLEgSd+JFLMwGBh4Pbg5ePTydmtKuUTzi/U75LRZvA8luBff0oR7xz5+PzrwnIK3UAJ
-         Z6zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4MgbZOgNW8uixaX7A/+b9oSIGLPsBpXoCjq0KvgA0Vs=;
-        b=rxDSe926ELqZldqGW66WApLNXpZuntdNjN+dYDDcsevafro1/lVQeo/SHDKHRlJCjS
-         mU5n2lGxWjrurppQuqOFDMXfaC77EjS6Aa1pnk/2FIs0eADCITcdw7J4eggLYfBlsBKk
-         sCgD4puh/Q01ufmQ2do+RAfVsi3lgqmLsQNeZbhm+Ngz9O/JduVpRaFmttjkr0f3Uwa7
-         Zne4oKw4JTaoZi6S6UnIQ/xYM8XfQU7dQWLlqLqav6A2+66xENjl2APc5cQm2cPWBXTz
-         pmdD1ILZ68qRH0WDjEUCDgY5RJY9vnH7eV+mRsMZHk7rq3PRPyjgkhnsa06sdxEuqa6p
-         lE5Q==
-X-Gm-Message-State: AOAM532OhQ4yVZdaO1i1OmqLQpB7E8t1DVtzX1CMk+JbdYdVpE2RuKvf
-        4mH0G2weM3fMnAnSGC9QEoHLqKmaCKTJiZRozyO+gOxGvsbB9Q==
-X-Google-Smtp-Source: ABdhPJw4x/G20E257/e052t5Gg9ElQhvDjsYdCfPJESaXuqZZBAOAPdVPZrOW8Pyw0S1XLAm4uKTuwetVf8NZN0spvM=
-X-Received: by 2002:ac2:5d21:: with SMTP id i1mr12099756lfb.649.1614699436419;
- Tue, 02 Mar 2021 07:37:16 -0800 (PST)
-MIME-Version: 1.0
-References: <20210208135347.18494-1-o.rempel@pengutronix.de>
- <20210208135347.18494-3-o.rempel@pengutronix.de> <YCjlPhEtyH+vfSi4@shinobu>
- <20210215091737.fx6dwiz7tt56wbkr@pengutronix.de> <YDMMJJ985Zq9oEOv@shinobu>
- <20210223100656.efbshsh5bz66uhj5@pengutronix.de> <20210223174516.wjlh7hnrd5qe5s6w@pengutronix.de>
- <YDW7Hihg0gGQh8UR@shinobu>
-In-Reply-To: <YDW7Hihg0gGQh8UR@shinobu>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 2 Mar 2021 16:37:05 +0100
-Message-ID: <CACRpkdY7GSPiadVORECLcdK91AORY6LgtWi8BBLNK_Sj0Jc3LA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] counter: add IRQ or GPIO based event counter
-To:     William Breathitt Gray <vilhelm.gray@gmail.com>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        id S1836601AbhCBU27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:28:59 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:59214 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242769AbhCBQAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 11:00:17 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id D755D1C0B88; Tue,  2 Mar 2021 16:55:34 +0100 (CET)
+Date:   Tue, 2 Mar 2021 16:55:34 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        malliamireddy009@gmail.com, yixin.zhu@intel.com
+Subject: Re: [PATCH v3 2/2] leds: lgm: Add LED controller driver for LGM SoC
+Message-ID: <20210302155534.GA19849@duo.ucw.cz>
+References: <49ebc8e27958cb77cde36e5f95ad530803259907.1607591119.git.mallikarjunax.reddy@linux.intel.com>
+ <dfd39387b1f72eb22a29bad516398a47b20c47bc.1607591119.git.mallikarjunax.reddy@linux.intel.com>
+ <CAMuHMdW=M6wougrQMjBdTfFQzPbEQOM-Svq=DTQi8Rvzabxc_g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="KsGdsel6WgEHnImy"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdW=M6wougrQMjBdTfFQzPbEQOM-Svq=DTQi8Rvzabxc_g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 24, 2021 at 3:34 AM William Breathitt Gray
-<vilhelm.gray@gmail.com> wrote:
-> On Tue, Feb 23, 2021 at 06:45:16PM +0100, Oleksij Rempel wrote:
 
-> > > to make this possible, i would need hack gpiolib framework and add
-> > > name/label exporter. But after endless rounds of pingponging me for
-> > > renaming the driver and removing interrupt handler, i feel like we are
-> > > not having serious discussion for mainlining this driver.
-> >
-> > Probably for good reason, struct gpio_desc was made local and is located
-> > in the drivers/gpio/gpiolib.h. It feels like additional hack to include
-> > it. I assume, it should be done properly so there is a function to
-> > provide gpio name or label.
-> >
-> > @Linus Walleij are there any good way to get the GPIO name? And which
-> > name will be actually used? A label provided over devicetree?
->
-> Perhaps one of the GPIO subsystem maintainers can provide more guidance
-> here, but I was under the impression that this name was provided
-> statically by the respective GPIO driver via their struct gpio_chip. I
-> think you can see the array of names via priv->gpio->gdev->chip->names.
+--KsGdsel6WgEHnImy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-These names can be set either through device properties on the
-GPIO chip "line-names" such as through device tree, or as static
-names in the .names array on struct gpio_chip for chips that
-are e.g. hot-pluggable and does not have a hardware
-description associated. These names should be something
-like what the signal is called on the circuit board rail.
+Hi!
 
-gpiolib further has a function:
-gpiod_set_consumer_name() that can be used by consumers to
-set their use case for the line, which makes it appear in debugfs
-etc. The consumer name does not need to be unique.
+> > --- /dev/null
+> > +++ b/drivers/leds/blink/Kconfig
+> > @@ -0,0 +1,20 @@
+> > +menuconfig LEDS_BLINK
+> > +       bool "LED Blink support"
+> > +       depends on LEDS_CLASS
+> > +       help
+> > +         This option enables blink support for the leds class.
+> > +         If unsure, say Y.
+>=20
+> What is the purpose of the LEDS_BLINK config symbol?
+> Blink support for the leds class is always available, regardless of the
+> value of this symbol, and controlled for individual drivers by filling
+> in the led_classdev.blink_set() callback.
 
-These names have no practical use other than debugging or
-userspace representation.
+We don't really need the symbol.
 
-I hope this helps.
+> > +if LEDS_BLINK
+> > +
+> > +config LEDS_BLINK_LGM
+> > +       tristate "LED support for Intel LGM SoC series"
+> > +       depends on LEDS_CLASS
+> > +       depends on MFD_SYSCON
+> > +       depends on OF
+> > +       help
+> > +         Parallel to serial conversion, which is also called SSO contr=
+oller,
+> > +         can drive external shift register for LED outputs.
+> > +         This enables LED support for Serial Shift Output controller(S=
+SO).
+>=20
+> What's so special about this driver that it needs a new "blink" subdir?
+> Isn't it an ordinary LED driver?
+> Looking at the code filling in the .blink_set() callback, the hardware
+> blink feature seems to be even optional?
 
-Yours,
-Linus Walleij
+So idea is to start putting drivers into subdirectories, because we
+have too many of them at the moment.
+
+simple/blink/flash/rgb, or something like that.
+
+Best regards,
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--KsGdsel6WgEHnImy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYD5f9gAKCRAw5/Bqldv6
+8l5kAJ9h0LDI6czkDFin/4mLftjT1OgocACgh0SaQO7AXg+i11GYB3ZAl8Zzmrs=
+=brLz
+-----END PGP SIGNATURE-----
+
+--KsGdsel6WgEHnImy--
