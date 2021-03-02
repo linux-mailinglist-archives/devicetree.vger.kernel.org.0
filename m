@@ -2,88 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0728932AB48
+	by mail.lfdr.de (Postfix) with ESMTP id 782CE32AB49
 	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:21:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1582066AbhCBUT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:19:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45544 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1448624AbhCBPH7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:07:59 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F14DC061A31
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 06:57:54 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id m11so23430370lji.10
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 06:57:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Im5YPNvUkVcY2oDOFR/SwHL8vc7nQDBtJ/LXMfThDB8=;
-        b=zJRw+Yu3R85QSUpo38xDhIvT/Dlbhod/Qk8sxP5xeIFKLrbDE6H+QFkSfE3VIMjfRi
-         uUX+UgpxLbkrVNwQav+u2HlrDLdSwkSO0sM7pW+Ns2I8iuW+PK7m9rG3RMN1g8znvgo1
-         tX/gr5XA3vHh6KHbkjzdbiPCtOzksTCLXokDqeXps0UpNCDLBBaYZ9AIGFyKEpbLhzdz
-         9bOyxGMw+zYHQIW5XE/+h09N7bDyV721lSGKksvaFGKHmv8JtQNPhh1TiJs519AyeRGz
-         q0oVha9befOwiwClfUCaLUiW9f4LSe7LFipmeIA6Bg2k6Fhy0tRkbQ51fm7uRQa4mSjo
-         mfPA==
+        id S1582064AbhCBUTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:19:30 -0500
+Received: from mail-pl1-f174.google.com ([209.85.214.174]:41753 "EHLO
+        mail-pl1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1574370AbhCBPPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:15:35 -0500
+Received: by mail-pl1-f174.google.com with SMTP id d11so12197500plo.8;
+        Tue, 02 Mar 2021 07:15:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Im5YPNvUkVcY2oDOFR/SwHL8vc7nQDBtJ/LXMfThDB8=;
-        b=YHzYOCZXe1ztGh6c3LlYws2sMteRw/Lzi6QDdByskgyX6GepRFerdw1WfTusXGoI/W
-         3hd0SJl2nCleH25h4pCJymij8yu2DE4nanS10+ngaMusBO8Ym8NzDYz+kTKaXYFLaOlU
-         Y9FY6oTRd+7zI2YjLTTpHQAQ4kWfPJKuK7rwsYCnm1H2MhE7CEYTooUaW/3VyILi2HJO
-         uMD0ZHwbmvtw1sYH7RSbnFtg4cjx57eHomUEb51o3f8FeJo1+DOCh9Bl9DkKm14MQ0Mc
-         Qqt2VRUl3/c/cwhsi/PIZLmu79PjbXHCMy7c/LjV5ertpwEEfItN053QqAXKXiYh47UH
-         Mdrw==
-X-Gm-Message-State: AOAM531dKycvJpkWJ+g7Cv7ksk+VlCo0WFwN8fjwvos3TJ1uO3FbFxIr
-        N3OeQoG1IK/XDBYaBcWF0qNgekRstwBLbulvMyoaXw==
-X-Google-Smtp-Source: ABdhPJzwO7KakZJQ6OZLNilczG55ectEq/5Dfn1nJ9yzcfKIZ65wvA2Ybol6f5OZXAB+ObTRsQHYhjyHFwPVhl1ADkM=
-X-Received: by 2002:a2e:9041:: with SMTP id n1mr12349532ljg.273.1614697072434;
- Tue, 02 Mar 2021 06:57:52 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=uiSdTAX5fGCQWtRj6bGUy+pKt+qEdnwtHvd6uiLQ99g=;
+        b=JaxAsjWt8qighC4uUM4w7vJlNN8hu9UHndg2iRylsIiSLPGcN1kCZVWrFhwVsXn/eP
+         jpWLKr+XvMXFP2LfcPOIT67qLlCJB16fpemvMikXmbzrb078dvghUxlI/ZpQdbhRgrPF
+         4nU0kDZ/gOzikDDeNkzPE8h6tgcRQIwnHGJNBz+fbY9HFlYjXVN9iFOzrIVdfDlEC99X
+         2n5z1KuXhvh3Y/cz/qx3YdI4TgFi5+6UZ4WATXLWSU/vVoIXd1BXeOvnisqmvRS7BfiV
+         WuMaypGbbBa/E8pFVuG/dvU7EU0xoJMkKnGOtnKqGtPf6X7IZgKIEbo4bCn1zj0r8p19
+         QgGQ==
+X-Gm-Message-State: AOAM532vWqv71lsyv6Gs97+k+rGpWH3QPJTNKIw0MDeAU0QhhJe5dDIB
+        khzHd2fsaJITzhF9HQC4+3M=
+X-Google-Smtp-Source: ABdhPJzU3c39I247IewBAHksLi8DflbHJZy5CZGtmnHGh4s7HB5mLxx+SLrm2Xw/IsW8owJzyQ6opw==
+X-Received: by 2002:a17:90a:4a0a:: with SMTP id e10mr4640637pjh.112.1614698094479;
+        Tue, 02 Mar 2021 07:14:54 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
+        by smtp.gmail.com with ESMTPSA id d75sm18639178pfd.20.2021.03.02.07.14.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Mar 2021 07:14:53 -0800 (PST)
+Date:   Tue, 2 Mar 2021 07:14:52 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Lizhi Hou <lizhi.hou@xilinx.com>
+Cc:     Tom Rix <trix@redhat.com>, linux-kernel@vger.kernel.org,
+        linux-fpga@vger.kernel.org, maxz@xilinx.com,
+        sonal.santan@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
+Subject: Re: [PATCH V3 XRT Alveo 03/18] fpga: xrt: xclbin file helper
+ functions
+Message-ID: <YD5WbLCdCTBALQiI@epycbox.lan>
+References: <20210218064019.29189-1-lizhih@xilinx.com>
+ <20210218064019.29189-4-lizhih@xilinx.com>
+ <4628ef05-27d1-b92f-9126-27a1f810c608@redhat.com>
+ <3b73400c-cca1-60af-4eea-ed85de77a977@xilinx.com>
+ <c79176af-8d0c-2300-3e4a-dfa604f10a62@redhat.com>
+ <55ed0169-085c-9706-3b17-23ea582c43c3@xilinx.com>
 MIME-Version: 1.0
-References: <20210225164216.21124-1-noltari@gmail.com> <20210225164216.21124-2-noltari@gmail.com>
-In-Reply-To: <20210225164216.21124-2-noltari@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 2 Mar 2021 15:57:41 +0100
-Message-ID: <CACRpkdbjhTfQ4EcjndgE_Y7_uCT2ohadTjj-rrQAFNm+c0whRg@mail.gmail.com>
-Subject: Re: [PATCH 01/12] Documentation: add BCM6328 pincontroller binding documentation
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <55ed0169-085c-9706-3b17-23ea582c43c3@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 25, 2021 at 5:42 PM =C3=81lvaro Fern=C3=A1ndez Rojas
-<noltari@gmail.com> wrote:
+On Mon, Mar 01, 2021 at 04:25:37PM -0800, Lizhi Hou wrote:
+> Hi Tom，
+> 
+> 
+> On 02/28/2021 08:54 AM, Tom Rix wrote:
+> > CAUTION: This message has originated from an External Source. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
+> > 
+> > 
+> > On 2/26/21 1:23 PM, Lizhi Hou wrote:
+> > > Hi Tom,
+> > > 
+> > > 
+> > snip
+> > 
+> > > > I also do not see a pragma pack, usually this is set of 1 so the compiler does not shuffle elements, increase size etc.
+> > > This data structure is shared with other tools. And the structure is well defined with reasonable alignment. It is compatible with all compilers we have tested. So pragma pack is not necessary.
+> > You can not have possibly tested all the configurations since the kernel supports many arches and compilers.
+> > 
+> > If the tested existing alignment is ok, pragma pack should be a noop on your tested configurations.
+> > 
+> > And help cover the untested configurations.
+> Got it. I will add pragma pack(1).
 
-> Add binding documentation for the pincontrol core found in BCM6328 SoCs.
->
-> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
-(...)
-> +  interrupts-extended:
-> +    description:
-> +      One interrupt per each of the 4 GPIO ports supported by the contro=
-ller,
-> +      sorted by port number ascending order.
-> +    minItems: 4
-> +    maxItems: 4
+Please do not use pragma pack(), add __packed to the structs in
+question.
 
-I don't know if this is advisable, there are different ways
-of specifying interrupts so this may become ambiguous,
-I think Rob will know how/if to do this though.
-
-Yours,
-Linus Walleij
+- Moritz
