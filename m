@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EEE532AB11
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C9A132AB13
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:09:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379062AbhCBUHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:07:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49222 "EHLO
+        id S1582025AbhCBUHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:07:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349647AbhCBLAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 06:00:24 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F065C061794
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 02:59:32 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id i14so1686219pjz.4
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 02:59:32 -0800 (PST)
+        with ESMTP id S1349651AbhCBLA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 06:00:27 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A6CEC0617A9
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 02:59:36 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id q204so12530794pfq.10
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 02:59:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=PfSnh6VZnYLNCYZWrxu4Dq5GHP0C0hePVJDMZuOnMco=;
-        b=MVUDJWAqtXNs/jB1M4kP6cNQ2qZTGiTKCV/vO3tQYtFB5rorElbpE0zv+EXxTmOu7y
-         jeMQaNukBc5JAeD7m5UoFc70BfFVdHzX00ZpNimV8uUnZtUmgO8E4j0sKTOaIjEe3949
-         rYoAjYKikKndXxx2AKTG1PguHb2LDESOUPQ24mzFp8i1zP0+LUJYdYJqqtc1/OsMl04Z
-         e3Ggs/QCSxKQJOqIYJXncoVOdptm1QdhDbCQNrC5RZK4eVzqPbEqWD2CABVxyFWPetKv
-         IQA4GvtULmcQo1y2j6AMLQv93ouhZPJF9Fz53heFmIflD6oZ6ap2ZQaNWTv5d6w5AWSb
-         7Hjg==
+        bh=u6t/37IyVxin5Ht2dpG96JWylVJHChqoPdK9b3/r2Tk=;
+        b=dmHcDAYFKLLqTOsvf5p41tbZfMnkTkQbBAs8K9RFyRZ1BWqaviEUrW6MltF8u402OJ
+         qr9t7qF/MVuoxGJnduTffQKjYx8nbsFN6oaHDJuWZ3NOHX6NAkVsw3o4tKkX87+vLtVe
+         0TEQdBi7us9IB1SCjzNKuV1/CKNUv7q+xMwcqYYK4w9kr/Czggj89AE2v0Tve2wtnKZp
+         GlwZ9G6kBho4Ct0PUXMYzQ1JyYOBFLDAst2+fEIzQNwU+wpsadnfNYKVi0WQ8zjd5I1S
+         Kktrg+quS/UItfCItat+2Z65rMVvVrbVC11DhVqfjoaiWMYoPDZS1aXBjsTi4R2ymFjX
+         RnSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=PfSnh6VZnYLNCYZWrxu4Dq5GHP0C0hePVJDMZuOnMco=;
-        b=EXnM2vykxkzU5CXnHnixDdmGCWfeX91eIVz/qwKKCEZGP7s1ATIU6PEtHSIwlYCozA
-         h6aRyeLZjEg8fv6J5v9zPXFqbRi4o+ca8YXtg15hfoZOjtlTgm6nnOZqmg3npNQO7sMy
-         7r/5mmvxjzCtXvA3wpSmINe7IGLti+kziBBt4gzP/X4axSGg17qlieBzgPiujx7rDJ6D
-         ybo3gn1Hf2eOYOfDe9/8VgkHK/BnW5HmSJWZ4tIW5JeHfxDVRS9lNcxzK9hBg8i+478e
-         s3SEWBsXIVty7s4PjJ2IJaIMJ6sKJ+SyYDuOAdpnhbMYjqzhck3mm9p8VtkGi9y02RRw
-         0Evg==
-X-Gm-Message-State: AOAM532bmGxpIRgCbWES/Q0La8hv0bVBEkLkaMIgugi6t+sJ75ulvH58
-        Rmx+iotmBtzDbJ9iE6eviHUS2g==
-X-Google-Smtp-Source: ABdhPJxxOBD2qaCz1iOhr3Se5EKi1PgefKoHh7gmrsm0GCbJQCFbhHnOgqCrOb11uWpxfAadrSptIw==
-X-Received: by 2002:a17:90a:bd92:: with SMTP id z18mr3805618pjr.114.1614682771848;
-        Tue, 02 Mar 2021 02:59:31 -0800 (PST)
+        bh=u6t/37IyVxin5Ht2dpG96JWylVJHChqoPdK9b3/r2Tk=;
+        b=FIcbslwO6B1tNMlQa0zY00NttanL6If7/mMtPRkw+jIMjNfq/C7uIv2fVt1G9NQiEl
+         cfiBkzSXGL8EuJM+6mNam1hxaLArxP0duSxknRScGl35pEWfNJiQTEgNxQYW6ovc4rKc
+         bii8kUCNXO7s1wfTewLDwuZs1O2moLG6/4ana4/Hs1k3j16kRVqe16Vur5dIoIMS0NXS
+         +hrwPpdP9jmdVxKO94j7S1A1aqbm+5FwnALICiVKMnkpQ7DCbyrrh9rRKVMaKZgBGP0A
+         j2PyhDhZjMBIEFCZZEB2/f72ViRWBiYUVYm8wVH5iOGsBPu5ZIO0lKiDqCzKOTIkZA2x
+         VHlQ==
+X-Gm-Message-State: AOAM5337G/dBoAEpA7gFalIsNUrS0HQnDVrXUSVrSFG2yWF3yYbZBYeR
+        yreGJwxfn79kaiJ6E2fLK//CNA==
+X-Google-Smtp-Source: ABdhPJylvXar14N05xZmEcvHjUe6bk4TRJdURaXGBevBG2TJaWqrMkEom3Rr1QxWW0n0TwD/tl5mKA==
+X-Received: by 2002:a63:d451:: with SMTP id i17mr2445904pgj.391.1614682775713;
+        Tue, 02 Mar 2021 02:59:35 -0800 (PST)
 Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
-        by smtp.gmail.com with ESMTPSA id t26sm19500451pfq.208.2021.03.02.02.59.28
+        by smtp.gmail.com with ESMTPSA id t26sm19500451pfq.208.2021.03.02.02.59.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Mar 2021 02:59:31 -0800 (PST)
+        Tue, 02 Mar 2021 02:59:35 -0800 (PST)
 From:   Greentime Hu <greentime.hu@sifive.com>
 To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
         erik.danie@sifive.com, zong.li@sifive.com, bhelgaas@google.com,
@@ -58,9 +58,9 @@ To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
         jh80.chung@samsung.com, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: [RFC PATCH 1/6] clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
-Date:   Tue,  2 Mar 2021 18:59:12 +0800
-Message-Id: <bc351ba121b2c5315951ad2f5801a393d40bb574.1614681831.git.greentime.hu@sifive.com>
+Subject: [RFC PATCH 2/6] clk: sifive: Use reset-simple in prci driver for PCIe driver
+Date:   Tue,  2 Mar 2021 18:59:13 +0800
+Message-Id: <e2bd7db9db3c196b9b0399f0655a56939a0f3d62.1614681831.git.greentime.hu@sifive.com>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <cover.1614681831.git.greentime.hu@sifive.com>
 References: <cover.1614681831.git.greentime.hu@sifive.com>
@@ -70,147 +70,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We add pcie_aux clock in this patch so that pcie driver can use
-clk_prepare_enable() and clk_disable_unprepare() to enable and disable
-pcie_aux clock.
+We use reset-simple in this patch so that pcie driver can use
+devm_reset_control_get() to get this reset data structure and use
+reset_control_deassert() to deassert pcie_power_up_rst_n.
 
 Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
 ---
- drivers/clk/sifive/fu740-prci.c               | 11 +++++
- drivers/clk/sifive/fu740-prci.h               |  2 +-
- drivers/clk/sifive/sifive-prci.c              | 41 +++++++++++++++++++
- drivers/clk/sifive/sifive-prci.h              |  9 ++++
- include/dt-bindings/clock/sifive-fu740-prci.h |  1 +
- 5 files changed, 63 insertions(+), 1 deletion(-)
+ drivers/clk/sifive/Kconfig       |  2 ++
+ drivers/clk/sifive/sifive-prci.c | 14 ++++++++++++++
+ drivers/clk/sifive/sifive-prci.h |  4 ++++
+ drivers/reset/Kconfig            |  3 ++-
+ 4 files changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/sifive/fu740-prci.c b/drivers/clk/sifive/fu740-prci.c
-index 764d1097aa51..53f6e00a03b9 100644
---- a/drivers/clk/sifive/fu740-prci.c
-+++ b/drivers/clk/sifive/fu740-prci.c
-@@ -72,6 +72,12 @@ static const struct clk_ops sifive_fu740_prci_hfpclkplldiv_clk_ops = {
- 	.recalc_rate = sifive_prci_hfpclkplldiv_recalc_rate,
- };
+diff --git a/drivers/clk/sifive/Kconfig b/drivers/clk/sifive/Kconfig
+index 1c14eb20c066..9132c3c4aa86 100644
+--- a/drivers/clk/sifive/Kconfig
++++ b/drivers/clk/sifive/Kconfig
+@@ -10,6 +10,8 @@ if CLK_SIFIVE
  
-+static const struct clk_ops sifive_fu740_prci_pcie_aux_clk_ops = {
-+	.enable = sifive_prci_pcie_aux_clock_enable,
-+	.disable = sifive_prci_pcie_aux_clock_disable,
-+	.is_enabled = sifive_prci_pcie_aux_clock_is_enabled,
-+};
-+
- /* List of clock controls provided by the PRCI */
- struct __prci_clock __prci_init_clocks_fu740[] = {
- 	[PRCI_CLK_COREPLL] = {
-@@ -120,4 +126,9 @@ struct __prci_clock __prci_init_clocks_fu740[] = {
- 		.parent_name = "hfpclkpll",
- 		.ops = &sifive_fu740_prci_hfpclkplldiv_clk_ops,
- 	},
-+	[PRCI_CLK_PCIE_AUX] = {
-+		.name = "pcie_aux",
-+		.parent_name = "hfclk",
-+		.ops = &sifive_fu740_prci_pcie_aux_clk_ops,
-+	},
- };
-diff --git a/drivers/clk/sifive/fu740-prci.h b/drivers/clk/sifive/fu740-prci.h
-index 13ef971f7764..511a0bf7ba2b 100644
---- a/drivers/clk/sifive/fu740-prci.h
-+++ b/drivers/clk/sifive/fu740-prci.h
-@@ -9,7 +9,7 @@
- 
- #include "sifive-prci.h"
- 
--#define NUM_CLOCK_FU740	8
-+#define NUM_CLOCK_FU740	9
- 
- extern struct __prci_clock __prci_init_clocks_fu740[NUM_CLOCK_FU740];
- 
+ config CLK_SIFIVE_PRCI
+ 	bool "PRCI driver for SiFive SoCs"
++	select RESET_CONTROLLER
++	select RESET_SIMPLE
+ 	select CLK_ANALOGBITS_WRPLL_CLN28HPC
+ 	help
+ 	  Supports the Power Reset Clock interface (PRCI) IP block found in
 diff --git a/drivers/clk/sifive/sifive-prci.c b/drivers/clk/sifive/sifive-prci.c
-index c78b042750e2..baf7313dac92 100644
+index baf7313dac92..925affc6de55 100644
 --- a/drivers/clk/sifive/sifive-prci.c
 +++ b/drivers/clk/sifive/sifive-prci.c
-@@ -448,6 +448,47 @@ void sifive_prci_hfpclkpllsel_use_hfpclkpll(struct __prci_data *pd)
- 	r = __prci_readl(pd, PRCI_HFPCLKPLLSEL_OFFSET);	/* barrier */
- }
+@@ -583,7 +583,21 @@ static int sifive_prci_probe(struct platform_device *pdev)
+ 	if (IS_ERR(pd->va))
+ 		return PTR_ERR(pd->va);
  
-+/* PCIE AUX clock APIs for enable, disable. */
-+int sifive_prci_pcie_aux_clock_is_enabled(struct clk_hw *hw)
-+{
-+	struct __prci_clock *pc = clk_hw_to_prci_clock(hw);
-+	struct __prci_data *pd = pc->pd;
-+	u32 r;
++	pd->reset.rcdev.owner = THIS_MODULE;
++	pd->reset.rcdev.nr_resets = PRCI_RST_NR;
++	pd->reset.rcdev.ops = &reset_simple_ops;
++	pd->reset.rcdev.of_node = pdev->dev.of_node;
++	pd->reset.active_low = true;
++	pd->reset.membase = pd->va + PRCI_DEVICESRESETREG_OFFSET;
++	spin_lock_init(&pd->reset.lock);
 +
-+	r = __prci_readl(pd, PRCI_PCIE_AUX_OFFSET);
++	r = devm_reset_controller_register(&pdev->dev, &pd->reset.rcdev);
++	if (r) {
++		dev_err(dev, "could not register reset controller: %d\n", r);
++		return r;
++	}
+ 	r = __prci_register_clocks(dev, pd, desc);
 +
-+	if (r & PRCI_PCIE_AUX_EN_MASK)
-+		return 1;
-+	else
-+		return 0;
-+}
-+
-+int sifive_prci_pcie_aux_clock_enable(struct clk_hw *hw)
-+{
-+	struct __prci_clock *pc = clk_hw_to_prci_clock(hw);
-+	struct __prci_data *pd = pc->pd;
-+	u32 r;
-+
-+	if (sifive_prci_pcie_aux_clock_is_enabled(hw))
-+		return 0;
-+
-+	__prci_writel(1, PRCI_PCIE_AUX_OFFSET, pd);
-+	r = __prci_readl(pd, PRCI_PCIE_AUX_OFFSET);	/* barrier */
-+
-+	return 0;
-+}
-+
-+void sifive_prci_pcie_aux_clock_disable(struct clk_hw *hw)
-+{
-+	struct __prci_clock *pc = clk_hw_to_prci_clock(hw);
-+	struct __prci_data *pd = pc->pd;
-+	u32 r;
-+
-+	__prci_writel(0, PRCI_PCIE_AUX_OFFSET, pd);
-+	r = __prci_readl(pd, PRCI_PCIE_AUX_OFFSET);	/* barrier */
-+
-+}
-+
- /**
-  * __prci_register_clocks() - register clock controls in the PRCI
-  * @dev: Linux struct device
+ 	if (r) {
+ 		dev_err(dev, "could not register clocks: %d\n", r);
+ 		return r;
 diff --git a/drivers/clk/sifive/sifive-prci.h b/drivers/clk/sifive/sifive-prci.h
-index dbdbd1722688..022c67cf053c 100644
+index 022c67cf053c..91658a88af4e 100644
 --- a/drivers/clk/sifive/sifive-prci.h
 +++ b/drivers/clk/sifive/sifive-prci.h
-@@ -67,6 +67,11 @@
- #define PRCI_DDRPLLCFG1_CKE_SHIFT	31
- #define PRCI_DDRPLLCFG1_CKE_MASK	(0x1 << PRCI_DDRPLLCFG1_CKE_SHIFT)
+@@ -11,6 +11,7 @@
  
-+/* PCIEAUX */
-+#define PRCI_PCIE_AUX_OFFSET		0x14
-+#define PRCI_PCIE_AUX_EN_SHIFT		0
-+#define PRCI_PCIE_AUX_EN_MASK		(0x1 << PRCI_PCIE_AUX_EN_SHIFT)
+ #include <linux/clk/analogbits-wrpll-cln28hpc.h>
+ #include <linux/clk-provider.h>
++#include <linux/reset/reset-simple.h>
+ #include <linux/platform_device.h>
+ 
+ /*
+@@ -121,6 +122,8 @@
+ #define PRCI_DEVICESRESETREG_CHIPLINK_RST_N_MASK			\
+ 		(0x1 << PRCI_DEVICESRESETREG_CHIPLINK_RST_N_SHIFT)
+ 
++#define PRCI_RST_NR						7
 +
- /* GEMGXLPLLCFG0 */
- #define PRCI_GEMGXLPLLCFG0_OFFSET	0x1c
- #define PRCI_GEMGXLPLLCFG0_DIVR_SHIFT	0
-@@ -296,4 +301,8 @@ unsigned long sifive_prci_tlclksel_recalc_rate(struct clk_hw *hw,
- unsigned long sifive_prci_hfpclkplldiv_recalc_rate(struct clk_hw *hw,
- 						   unsigned long parent_rate);
+ /* CLKMUXSTATUSREG */
+ #define PRCI_CLKMUXSTATUSREG_OFFSET				0x2c
+ #define PRCI_CLKMUXSTATUSREG_TLCLKSEL_STATUS_SHIFT		1
+@@ -221,6 +224,7 @@
+  */
+ struct __prci_data {
+ 	void __iomem *va;
++	struct reset_simple_data reset;
+ 	struct clk_hw_onecell_data hw_clks;
+ };
  
-+int sifive_prci_pcie_aux_clock_is_enabled(struct clk_hw *hw);
-+int sifive_prci_pcie_aux_clock_enable(struct clk_hw *hw);
-+void sifive_prci_pcie_aux_clock_disable(struct clk_hw *hw);
-+
- #endif /* __SIFIVE_CLK_SIFIVE_PRCI_H */
-diff --git a/include/dt-bindings/clock/sifive-fu740-prci.h b/include/dt-bindings/clock/sifive-fu740-prci.h
-index cd7706ea5677..7899b7fee7db 100644
---- a/include/dt-bindings/clock/sifive-fu740-prci.h
-+++ b/include/dt-bindings/clock/sifive-fu740-prci.h
-@@ -19,5 +19,6 @@
- #define PRCI_CLK_CLTXPLL	       5
- #define PRCI_CLK_TLCLK		       6
- #define PRCI_CLK_PCLK		       7
-+#define PRCI_CLK_PCIE_AUX	       8
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 71ab75a46491..f094df93d911 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -173,7 +173,7 @@ config RESET_SCMI
  
- #endif	/* __DT_BINDINGS_CLOCK_SIFIVE_FU740_PRCI_H */
+ config RESET_SIMPLE
+ 	bool "Simple Reset Controller Driver" if COMPILE_TEST
+-	default ARCH_AGILEX || ARCH_ASPEED || ARCH_BITMAIN || ARCH_REALTEK || ARCH_STM32 || ARCH_STRATIX10 || ARCH_SUNXI || ARCH_ZX || ARC
++	default ARCH_AGILEX || ARCH_ASPEED || ARCH_BITMAIN || ARCH_REALTEK || ARCH_STM32 || ARCH_STRATIX10 || ARCH_SUNXI || ARCH_ZX || ARC || RISCV
+ 	help
+ 	  This enables a simple reset controller driver for reset lines that
+ 	  that can be asserted and deasserted by toggling bits in a contiguous,
+@@ -187,6 +187,7 @@ config RESET_SIMPLE
+ 	   - RCC reset controller in STM32 MCUs
+ 	   - Allwinner SoCs
+ 	   - ZTE's zx2967 family
++	   - SiFive FU740 SoCs
+ 
+ config RESET_STM32MP157
+ 	bool "STM32MP157 Reset Driver" if COMPILE_TEST
 -- 
 2.30.0
 
