@@ -2,99 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66B5E32AB67
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C7C232AB61
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:31:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1446160AbhCBU1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:27:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50430 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238703AbhCBP2W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:28:22 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD71C0611BE
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 07:23:49 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id m22so31890052lfg.5
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 07:23:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=phGkBVfIBc9N8/MYw3IsLowc0jNOtyQmeOezRPC5r6A=;
-        b=IxEHOA/EeqJE9XesCg+nCfa3QJs4ZoTXMJRRwtoaO1dsS8/djz+UWJbAs59nUIy3FV
-         K2RJk37iYNtFVVMwae8n2KqT6KXLsaMz+DupUwBbV3X/QoDQ3QmSZlw3bqnfXr7x0M9+
-         6Bh00Lr5x3pTcsF0kX9ES2A3AGs/6hVNMJgkt9DHcPtr2p6TBqiDz3+Q14EH3dVEQv15
-         PrI8M8O/MX6KRxLXecPHArez80P4gQQyHbwfXn1ItS3rQb840an7hPuiGWs44bUMI0qx
-         1KWBY+Jpl9RKhWAFucv/VKzCkBEdA3ykrcitpsdOQaBpyVqG7G7SMRpyjKYYMgDZ0Xxw
-         eXxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=phGkBVfIBc9N8/MYw3IsLowc0jNOtyQmeOezRPC5r6A=;
-        b=ATlelg5f1Z8NOrUzgab+HWWCuqxFxa0oyKnugBHXWcjjOh5bnukCc+s49hqk81na3X
-         hcV1ubYng97XVnzIAVLvo/DVkoa/ivDKBk1EGJm442GSH3E+RIqgrizo87bIiYaxKJJT
-         8aPruVNWc3Wc2AHyc+rNbyZN/14strnZGZXIetCEpFU1oFZhBrX9SyM4im7kfVqMsN4Q
-         xqZHFJkk1HjTdaq2zdru9jIkyYbIGg9BMqQmqtcEJ6c0bt4+2Fz4zQls2VfTaA5uJ6fE
-         fMZjdsZExkwYlcYnqS58FehAzm7AiwflmFjY6kH5GUxuQ41KmurL2vczrw9o0yCBQPAV
-         rZtw==
-X-Gm-Message-State: AOAM533YID2Zyo+064qGVXOQDV7p4H9sZsed0yvzxmI0X3Y4zlS/xjcC
-        ofWc4ZIfF85U6FP92Jmi9klhWdNGCoM0VXPQlkKknw==
-X-Google-Smtp-Source: ABdhPJyFEssv4TZ20RIixukIPx4G+ICtagjbJAX9g02ycgsPC8yvfaoZNRA54LDHGtijXLpyZkxVrklKXkjozmYype0=
-X-Received: by 2002:a05:6512:547:: with SMTP id h7mr12960505lfl.529.1614698627904;
- Tue, 02 Mar 2021 07:23:47 -0800 (PST)
+        id S1442213AbhCBU1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:27:14 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:56192 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1578708AbhCBP0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 10:26:45 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 9687820B83EA;
+        Tue,  2 Mar 2021 07:26:00 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9687820B83EA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1614698761;
+        bh=lwnEHkkImr8dT+pu5zA94ImzVDh1eaKp+2wplr8dTxw=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=pLLCBLu/Gt65UbzyLnL9BV31JdFvnxcEvpWZedW6aek9Fr7BAvJMq8pE7+I3D21HR
+         IhAQWA5ZLk63w0dE3FSSr4HbxcROs4K0Ok7obQWUOQTWh9PrLQWbwmnRiQ5oDBMNjX
+         vvxYK8ZzE4nI3spfi8YNiR8jeYbt6avdkMKdo2vQ=
+Subject: Re: [PATCH v19 00/13] Carry forward IMA measurement log on kexec on
+ ARM64
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mimi Zohar <zohar@linux.ibm.com>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        "AKASHI, Takahiro" <takahiro.akashi@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        James Morse <james.morse@arm.com>,
+        Sasha Levin <sashal@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        vincenzo.frascino@arm.com, Mark Rutland <mark.rutland@arm.com>,
+        dmitry.kasatkin@gmail.com, James Morris <jmorris@namei.org>,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        Pavel Tatashin <pasha.tatashin@soleen.com>,
+        Allison Randal <allison@lohutok.net>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        balajib@linux.microsoft.com, linux-integrity@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+References: <20210221174930.27324-1-nramas@linux.microsoft.com>
+ <CAL_JsqKiOVo2rDhstAA-jUkMJiajHM=uwfj3JQd64h_eEfSjTw@mail.gmail.com>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <7828ec90-a768-f96f-192f-d00dec2344af@linux.microsoft.com>
+Date:   Tue, 2 Mar 2021 07:25:29 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210225164216.21124-1-noltari@gmail.com> <20210225164216.21124-2-noltari@gmail.com>
- <CACRpkdbjhTfQ4EcjndgE_Y7_uCT2ohadTjj-rrQAFNm+c0whRg@mail.gmail.com>
-In-Reply-To: <CACRpkdbjhTfQ4EcjndgE_Y7_uCT2ohadTjj-rrQAFNm+c0whRg@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 2 Mar 2021 16:23:36 +0100
-Message-ID: <CACRpkdaN3pYMDiPkk109SwOKF56Oxe14_bC5edftGGG0PL7VsA@mail.gmail.com>
-Subject: Re: [PATCH 01/12] Documentation: add BCM6328 pincontroller binding documentation
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAL_JsqKiOVo2rDhstAA-jUkMJiajHM=uwfj3JQd64h_eEfSjTw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 2, 2021 at 3:57 PM Linus Walleij <linus.walleij@linaro.org> wro=
-te:
-> On Thu, Feb 25, 2021 at 5:42 PM =C3=81lvaro Fern=C3=A1ndez Rojas
-> <noltari@gmail.com> wrote:
->
-> > Add binding documentation for the pincontrol core found in BCM6328 SoCs=
-.
-> >
-> > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> > Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
-> (...)
-> > +  interrupts-extended:
-> > +    description:
-> > +      One interrupt per each of the 4 GPIO ports supported by the cont=
-roller,
-> > +      sorted by port number ascending order.
-> > +    minItems: 4
-> > +    maxItems: 4
->
-> I don't know if this is advisable, there are different ways
-> of specifying interrupts so this may become ambiguous,
-> I think Rob will know how/if to do this though.
+On 3/2/21 7:06 AM, Rob Herring wrote:
+> On Sun, Feb 21, 2021 at 11:49 AM Lakshmi Ramasubramanian
+> <nramas@linux.microsoft.com> wrote:
+>>
+>> On kexec file load Integrity Measurement Architecture (IMA) subsystem
+>> may verify the IMA signature of the kernel and initramfs, and measure
+>> it.  The command line parameters passed to the kernel in the kexec call
+>> may also be measured by IMA.  A remote attestation service can verify
+>> a TPM quote based on the TPM event log, the IMA measurement list, and
+>> the TPM PCR data.  This can be achieved only if the IMA measurement log
+>> is carried over from the current kernel to the next kernel across
+>> the kexec call.
+>>
+>> powerpc already supports carrying forward the IMA measurement log on
+>> kexec.  This patch set adds support for carrying forward the IMA
+>> measurement log on kexec on ARM64.
+>>
+>> This patch set moves the platform independent code defined for powerpc
+>> such that it can be reused for other platforms as well.  A chosen node
+>> "linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
+>> the address and the size of the memory reserved to carry
+>> the IMA measurement log.
+>>
+>> This patch set has been tested for ARM64 platform using QEMU.
+>> I would like help from the community for testing this change on powerpc.
+>> Thanks.
+>>
+>> This patch set is based on
+>> commit f31e3386a4e9 ("ima: Free IMA measurement buffer after kexec syscall")
+>> in https://git.kernel.org/pub/scm/linux/kernel/git/zohar/linux-integrity.git
+>> "ima-kexec-fixes" branch.
 
-After reading the code I conclude this gpiochip is hierarchical so this sho=
-uld
-just be dropped, and we only need interrupt-parent assigned. The
-driver will know the hardware offsets between the interrupt parent
-and the GPIO block, this is generally the case for
-hierarchical interrupt controllers.
+[...]
 
-Yours,
-Linus Walleij
+>>
+>> Lakshmi Ramasubramanian (10):
+>>    kexec: Move ELF fields to struct kimage
+>>    arm64: Use ELF fields defined in 'struct kimage'
+>>    powerpc: Use ELF fields defined in 'struct kimage'
+>>    x86: Use ELF fields defined in 'struct kimage'
+>>    powerpc: Move ima buffer fields to struct kimage
+>>    powerpc: Enable passing IMA log to next kernel on kexec
+>>    powerpc: Move arch independent ima kexec functions to
+>>      drivers/of/kexec.c
+>>    kexec: Use fdt_appendprop_addrrange() to add ima buffer to FDT
+>>    powerpc: Delete unused function delete_fdt_mem_rsv()
+>>    arm64: Enable passing IMA log to next kernel on kexec
+>>
+>> Rob Herring (3):
+>>    of: Add a common kexec FDT setup function
+>>    arm64: Use common of_kexec_alloc_and_setup_fdt()
+>>    powerpc: Use common of_kexec_alloc_and_setup_fdt()
+>>
+>>   arch/arm64/Kconfig                     |   1 +
+>>   arch/arm64/include/asm/kexec.h         |   4 -
+>>   arch/arm64/kernel/machine_kexec_file.c | 194 +----------
+>>   arch/powerpc/Kconfig                   |   2 +-
+>>   arch/powerpc/include/asm/ima.h         |  30 --
+>>   arch/powerpc/include/asm/kexec.h       |  14 +-
+>>   arch/powerpc/kexec/Makefile            |   7 -
+>>   arch/powerpc/kexec/elf_64.c            |  30 +-
+>>   arch/powerpc/kexec/file_load.c         | 183 +---------
+>>   arch/powerpc/kexec/file_load_64.c      |  21 +-
+>>   arch/powerpc/kexec/ima.c               | 219 ------------
+>>   arch/x86/include/asm/kexec.h           |   5 -
+>>   arch/x86/kernel/crash.c                |  14 +-
+>>   arch/x86/kernel/kexec-bzimage64.c      |   2 +-
+>>   arch/x86/kernel/machine_kexec_64.c     |   4 +-
+>>   drivers/of/Makefile                    |   6 +
+>>   drivers/of/kexec.c                     | 458 +++++++++++++++++++++++++
+>>   include/linux/kexec.h                  |   8 +
+>>   include/linux/of.h                     |   7 +
+>>   security/integrity/ima/ima.h           |   4 -
+>>   security/integrity/ima/ima_kexec.c     |   9 +-
+>>   21 files changed, 539 insertions(+), 683 deletions(-)
+>>   delete mode 100644 arch/powerpc/include/asm/ima.h
+>>   delete mode 100644 arch/powerpc/kexec/ima.c
+>>   create mode 100644 drivers/of/kexec.c
+> 
+> I fixed up the Fixes tags and applied for 5.13.
+> 
+
+Thanks a lot Rob.
+
+  -lakshmi
+
+
