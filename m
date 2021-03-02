@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3536E32AAD3
+	by mail.lfdr.de (Postfix) with ESMTP id A5F7532AAD4
 	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 20:59:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1839905AbhCBTzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 14:55:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43526 "EHLO
+        id S1839910AbhCBTzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 14:55:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240953AbhCBIXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 03:23:48 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F79C06178B
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 00:22:01 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id e2so15670679ljo.7
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 00:22:01 -0800 (PST)
+        with ESMTP id S1381737AbhCBIcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 03:32:20 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2EF8C06178C
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 00:31:39 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id r17so33566160ejy.13
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 00:31:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=TZiG9FUNsTtc9xJcNdP176kzLhfPZPzNMUWuHOZpK8w=;
-        b=gHWMhNFwzoaxoWpcJp6yjvQ7y+iou36IC0ueaijGcXCsg6iiBUKchjf+EXQmmlPpar
-         zXVMRxBZFBzDPfWohS+2dG+CfzhJz5kt7+YLk/ndTG9zW1K9thECTty+0Eb5kLmY5/Jp
-         xFdVKKifCm+gh2sGx/iusL+RvceHVKk/l+WDqyzTyBx+CsR+GN78NKUIxI/cuLAVsrvX
-         3aN5Qubd/YGSGOfU7XxmkVPT2mMThd4z5qiWLIEfqlnDNwTgGiJ6kz01tJpP3W9AQqxE
-         NMtOHC2fM9hMfpqsaMduG0400JuHt/vXPyTdhjiAGnupttHjff2DxzvUaXXHRt0A9j1g
-         Epng==
+        bh=Vofce9cg4If43flccFXJozuKUDopXjDd/VnmpQDiTuE=;
+        b=KtIbAa6zHDrkhlQLeR4CMC3GwzF1RsEG2IYJVT+dkS2rSg3SH4LMgKKKsujIB5jeub
+         avD3FgsDrk772cG2xDNbYxlai9uOVUyXo2lHisYm0eXBiKdX1rLLJLHJDC3YzBSS6L7V
+         YhiS8QDhXlvL9yF/P5wyUxc4XYUMyHxImSMM8qrUs9ZHpfZu54BZCKQsJ7JvzjKNYdFQ
+         Es8x/68pheGALs9Aci2vz+MB0txBE9sKSUMI559e7qWstfxbSckepur87y/pnk2SueET
+         E6wJsIIQb7X4NEFmzNeS3cL6aPq8mUoQk8tXl3VtPU0ECjDxZN2EONFu92jN606aYGm7
+         6srw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=TZiG9FUNsTtc9xJcNdP176kzLhfPZPzNMUWuHOZpK8w=;
-        b=Zha92ibWlKqoL3k6GLMTKKc/Lg/rin8N1A4V7Fv8tRCLcFaJ6e8TBVffybKLZBzzjC
-         wmaUtzvkCMC6/0VELlH96DlnTPtxLKCnYM4SdiBqSspA8rIMottOnZUvXxjGr5/NS5nH
-         NIyGas/kW8XR8tfMeZ63xThL4nI8y9Nsg9Y8nGg1sWuUAzKGsYrImTrlfpU+e/z+RVEg
-         Mm0B6MncD/RA3u+hH2oKrUBH0N2c18xbndE5sWAt41QZkV/7Q36cOgMjE6/GFOw93Llx
-         1Pjk50N8MSVPCePEMl/mRaEmUfXLrHislFBfjW7Ldwl7yqkt/zOcfFxKZdNfaInzUilr
-         5u1g==
-X-Gm-Message-State: AOAM533rOxE71wNJAWs/JBtBs2chuNHUPROhpPT/2DQzBqTwoT3P25bs
-        dI22klvIkm+LjgVOhtS34YuadKpTmnx0J+dzjp/1gw==
-X-Google-Smtp-Source: ABdhPJx8HGSb/7Z34+2VXUnmVlC+KJdL4zJXe6r7nEdMAuDE14JW4wngfpMeFsIXp7IYIQnkEi2H5zPVRMplMdLT208=
-X-Received: by 2002:a2e:864a:: with SMTP id i10mr11017005ljj.467.1614673319597;
- Tue, 02 Mar 2021 00:21:59 -0800 (PST)
+        bh=Vofce9cg4If43flccFXJozuKUDopXjDd/VnmpQDiTuE=;
+        b=boYXiuNzBhlhzaswZDXg9oD4iSJlQU2UsmGYLSBFoDU26st+B+M9vlA4pfyqRgpQWs
+         SAUg6Rf4Q4rpAhEpCmqwJA/lUhgOAQdu/oupngqiPNXmfN8rySYUl++5BAyR+lgOvHlD
+         nJni5cVtj0Fe3A2PyOCt6Zf8BfRBYDM/NNLOIdhbkLKPyQOQGAhI7rju7ZdFxTroT3OZ
+         yFcd+lsaAlbTNQHwpbw++sXR4JVbeLvXUA7LErjiZOF52+EsRdcTKLtWiSOKxrIi40v4
+         H/hFBBRjTJ2nU9hUvbqTO8R5ha54OJzFulAUrPIFSQ6K9lmPHP/FooqqvwYz7iRkDaAp
+         5okA==
+X-Gm-Message-State: AOAM530jn4/ZwFD+n5xlHblX08w+jpmei+0aahqkD7JL07Ebz2n/Zwjr
+        +dGVqYp6TYsaV4vfG1mjNXE04CeBR/YfQxPjgjez0w==
+X-Google-Smtp-Source: ABdhPJxHjmZUC5iRC5r/bT/DMEL0arKjzFzU9Z29V5ZobxNwHR/p3WN8QdJROWOyDjb+iEND+NMSKlLCXwzgIX4WqgU=
+X-Received: by 2002:a17:906:39d9:: with SMTP id i25mr20041528eje.226.1614673898323;
+ Tue, 02 Mar 2021 00:31:38 -0800 (PST)
 MIME-Version: 1.0
-References: <20210215121713.57687-1-marcan@marcan.st> <20210215121713.57687-2-marcan@marcan.st>
-In-Reply-To: <20210215121713.57687-2-marcan@marcan.st>
+References: <20210215121713.57687-1-marcan@marcan.st> <20210215121713.57687-22-marcan@marcan.st>
+In-Reply-To: <20210215121713.57687-22-marcan@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 2 Mar 2021 09:21:48 +0100
-Message-ID: <CACRpkdbk9yyzL+nG0KHrRmEw2FYTPfrozOxCTPYOLD9Mk7GZHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 01/25] dt-bindings: vendor-prefixes: Add apple prefix
+Date:   Tue, 2 Mar 2021 09:31:27 +0100
+Message-ID: <CACRpkdbSCGgFBxaTHQ2b_ZS24G3+fnhA11nEg5717C-Na5Dpgg@mail.gmail.com>
+Subject: Re: [PATCH v2 21/25] dt-bindings: serial: samsung: Add apple,s5l-uart compatible
 To:     Hector Martin <marcan@marcan.st>
 Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -71,13 +71,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 15, 2021 at 1:17 PM Hector Martin <marcan@marcan.st> wrote:
+On Mon, Feb 15, 2021 at 1:19 PM Hector Martin <marcan@marcan.st> wrote:
 
-> This is different from the legacy AAPL prefix used on PPC, but
-> consensus is that we prefer `apple` for these new platforms.
+> Apple mobile devices originally used Samsung SoCs (starting with the
+> S5L8900), and their current in-house SoCs continue to use compatible
+> UART peripherals. We'll call this UART variant apple,s5l-uart.
 >
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 
+Interesting IP-transfer story here! Too bad iPhone Linux was
+never upstreamed.
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
