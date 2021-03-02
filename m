@@ -2,105 +2,384 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3351632AB78
-	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:33:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E883332AB7A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Mar 2021 21:34:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1836601AbhCBU27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Mar 2021 15:28:59 -0500
-Received: from jabberwock.ucw.cz ([46.255.230.98]:59214 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242769AbhCBQAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 11:00:17 -0500
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id D755D1C0B88; Tue,  2 Mar 2021 16:55:34 +0100 (CET)
-Date:   Tue, 2 Mar 2021 16:55:34 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        Dan Murphy <dmurphy@ti.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        malliamireddy009@gmail.com, yixin.zhu@intel.com
-Subject: Re: [PATCH v3 2/2] leds: lgm: Add LED controller driver for LGM SoC
-Message-ID: <20210302155534.GA19849@duo.ucw.cz>
-References: <49ebc8e27958cb77cde36e5f95ad530803259907.1607591119.git.mallikarjunax.reddy@linux.intel.com>
- <dfd39387b1f72eb22a29bad516398a47b20c47bc.1607591119.git.mallikarjunax.reddy@linux.intel.com>
- <CAMuHMdW=M6wougrQMjBdTfFQzPbEQOM-Svq=DTQi8Rvzabxc_g@mail.gmail.com>
+        id S1836918AbhCBU3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Mar 2021 15:29:01 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:29041 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1449115AbhCBQPw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 11:15:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1614701604;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Xj617NCTkcQlVOBgs3nUDfsN/jKMhqs1NUx4EljorXw=;
+        b=NUTsKroQDTIqYViB7/mlLw0+TkfnK9Glf9jYubjcrM9Vb1ExYr3uHjTHey8CGZywB2VqZ8
+        7Bmd6XqbOauXIR1t7tJCjERiXzaUhMDcqYUSefsswLXzriTc2f0zRZBuVs0nFuyOIwBRhi
+        pwAcz9gdqK3cg/z1J34d7bWisko2aa8=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-106-e2XrLTF3OEufXXiou-LdaA-1; Tue, 02 Mar 2021 11:09:10 -0500
+X-MC-Unique: e2XrLTF3OEufXXiou-LdaA-1
+Received: by mail-qk1-f198.google.com with SMTP id t6so13091962qkt.14
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 08:09:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=Xj617NCTkcQlVOBgs3nUDfsN/jKMhqs1NUx4EljorXw=;
+        b=NPUTbHD7SDuKVNkou84bgelwWsB+rDuDZ1pzXJrhs9cqH9wQh7yaoRrIhQeTQbupAe
+         2S0/ErAPE8m92nGMH0um4bRE6+elALfs32yMpEJA2qz+eSGssvYXX1m4633bB1I+P7rj
+         M+T6JbL6TQvHdHgZJ8WmpL63dP0kukDpcIEcrYK3O6LB8tGTZoPUfmAkRmLp1vq4fBKT
+         DhcsQB+whhGATfnjm43DXo5l3PuZtO2sng0NptErcgI6SdeytarccILuT0jpLMyxV/zG
+         5lj4Ro/SgIMSJOQavLoXjls+5zB/jUR+a7Qsl/Q8xp5sNyuc8fKeNfDv2Z+MTTU2uRzX
+         j20g==
+X-Gm-Message-State: AOAM5318RNOBJVVnKPdXxJdrvio6HJ9RJf6QukhExqkIKlJCRgf5UJdx
+        XvLW+JSb3q1CL61hSEjEBnXToj2F9Fl5LeXDeKWF+axC1Z3wdHfDjY2qHGxuW5eXkiuQqWdI1qV
+        3kgouZHRQGC7tUNvyIYssOA==
+X-Received: by 2002:a05:622a:254:: with SMTP id c20mr19101081qtx.387.1614701350178;
+        Tue, 02 Mar 2021 08:09:10 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxPgp9285reKXXR5zjKwXh6Fk/hEiFPTHqxCo3e1OBX7LNY5TcUk/WK9fFTfyQiSgC4mCBgVw==
+X-Received: by 2002:a05:622a:254:: with SMTP id c20mr19101057qtx.387.1614701349880;
+        Tue, 02 Mar 2021 08:09:09 -0800 (PST)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id 79sm401850qki.37.2021.03.02.08.09.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Mar 2021 08:09:09 -0800 (PST)
+Subject: Re: [PATCH V3 XRT Alveo 11/18] fpga: xrt: UCS platform driver
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     Lizhi Hou <lizhih@xilinx.com>, linux-fpga@vger.kernel.org,
+        maxz@xilinx.com, sonal.santan@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
+References: <20210218064019.29189-1-lizhih@xilinx.com>
+ <20210218064019.29189-12-lizhih@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <3e4edfaa-e90d-1889-cd05-41107e730c18@redhat.com>
+Date:   Tue, 2 Mar 2021 08:09:07 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="KsGdsel6WgEHnImy"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdW=M6wougrQMjBdTfFQzPbEQOM-Svq=DTQi8Rvzabxc_g@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210218064019.29189-12-lizhih@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---KsGdsel6WgEHnImy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2/17/21 10:40 PM, Lizhi Hou wrote:
+> Add UCS driver. UCS is a hardware function discovered by walking xclbin
+What does UCS stand for ? add to commit log
+> metadata. A platform device node will be created for it.
+> UCS enables/disables the dynamic region clocks.
+>
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhih@xilinx.com>
+> ---
+>  drivers/fpga/xrt/include/xleaf/ucs.h |  24 +++
+>  drivers/fpga/xrt/lib/xleaf/ucs.c     | 235 +++++++++++++++++++++++++++
+>  2 files changed, 259 insertions(+)
+>  create mode 100644 drivers/fpga/xrt/include/xleaf/ucs.h
+>  create mode 100644 drivers/fpga/xrt/lib/xleaf/ucs.c
+>
+> diff --git a/drivers/fpga/xrt/include/xleaf/ucs.h b/drivers/fpga/xrt/include/xleaf/ucs.h
+> new file mode 100644
+> index 000000000000..a5ef0e100e12
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/include/xleaf/ucs.h
 
-Hi!
+This header is only used by ucs.c, so is it needed ?
 
-> > --- /dev/null
-> > +++ b/drivers/leds/blink/Kconfig
-> > @@ -0,0 +1,20 @@
-> > +menuconfig LEDS_BLINK
-> > +       bool "LED Blink support"
-> > +       depends on LEDS_CLASS
-> > +       help
-> > +         This option enables blink support for the leds class.
-> > +         If unsure, say Y.
->=20
-> What is the purpose of the LEDS_BLINK config symbol?
-> Blink support for the leds class is always available, regardless of the
-> value of this symbol, and controlled for individual drivers by filling
-> in the led_classdev.blink_set() callback.
+could the enum be defined in ucs.c ?
 
-We don't really need the symbol.
+> @@ -0,0 +1,24 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Header file for XRT UCS Leaf Driver
+> + *
+> + * Copyright (C) 2020-2021 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *	Lizhi Hou <Lizhi.Hou@xilinx.com>
+> + */
+> +
+> +#ifndef _XRT_UCS_H_
+> +#define _XRT_UCS_H_
+> +
+> +#include "xleaf.h"
+> +
+> +/*
+> + * UCS driver IOCTL calls.
+> + */
+> +enum xrt_ucs_ioctl_cmd {
+> +	XRT_UCS_CHECK = XRT_XLEAF_CUSTOM_BASE, /* See comments in xleaf.h */
+> +	XRT_UCS_ENABLE,
+no disable ?
+> +};
+> +
+> +#endif	/* _XRT_UCS_H_ */
+> diff --git a/drivers/fpga/xrt/lib/xleaf/ucs.c b/drivers/fpga/xrt/lib/xleaf/ucs.c
+> new file mode 100644
+> index 000000000000..ae762c8fddbb
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/xleaf/ucs.c
+> @@ -0,0 +1,235 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Xilinx Alveo FPGA UCS Driver
+> + *
+> + * Copyright (C) 2020-2021 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *      Lizhi Hou<Lizhi.Hou@xilinx.com>
+> + */
+> +
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include "metadata.h"
+> +#include "xleaf.h"
+> +#include "xleaf/ucs.h"
+> +#include "xleaf/clock.h"
+> +
+> +#define UCS_ERR(ucs, fmt, arg...)   \
+> +	xrt_err((ucs)->pdev, fmt "\n", ##arg)
+> +#define UCS_WARN(ucs, fmt, arg...)  \
+> +	xrt_warn((ucs)->pdev, fmt "\n", ##arg)
+> +#define UCS_INFO(ucs, fmt, arg...)  \
+> +	xrt_info((ucs)->pdev, fmt "\n", ##arg)
+> +#define UCS_DBG(ucs, fmt, arg...)   \
+> +	xrt_dbg((ucs)->pdev, fmt "\n", ##arg)
+> +
+> +#define XRT_UCS		"xrt_ucs"
+> +
+> +#define CHANNEL1_OFFSET			0
+> +#define CHANNEL2_OFFSET			8
+> +
+> +#define CLK_MAX_VALUE			6400
+> +
+> +struct ucs_control_status_ch1 {
+> +	unsigned int shutdown_clocks_latched:1;
+> +	unsigned int reserved1:15;
+> +	unsigned int clock_throttling_average:14;
+> +	unsigned int reserved2:2;
+> +};
+Likely needs to be packed and/or the unsigned int changed to u32
+> +
+> +struct xrt_ucs {
+> +	struct platform_device	*pdev;
+> +	void __iomem		*ucs_base;
+> +	struct mutex		ucs_lock; /* ucs dev lock */
+> +};
+> +
+> +static inline u32 reg_rd(struct xrt_ucs *ucs, u32 offset)
+> +{
+> +	return ioread32(ucs->ucs_base + offset);
+> +}
+> +
+> +static inline void reg_wr(struct xrt_ucs *ucs, u32 val, u32 offset)
+> +{
+> +	iowrite32(val, ucs->ucs_base + offset);
+> +}
+> +
+> +static void xrt_ucs_event_cb(struct platform_device *pdev, void *arg)
+> +{
+> +	struct platform_device	*leaf;
+> +	struct xrt_event *evt = (struct xrt_event *)arg;
+> +	enum xrt_events e = evt->xe_evt;
+> +	enum xrt_subdev_id id = evt->xe_subdev.xevt_subdev_id;
+> +	int instance = evt->xe_subdev.xevt_subdev_instance;
+> +
+> +	switch (e) {
+> +	case XRT_EVENT_POST_CREATION:
+> +		break;
+> +	default:
+> +		xrt_dbg(pdev, "ignored event %d", e);
+> +		return;
+> +	}
+this switch is a noop, remove
+> +
+> +	if (id != XRT_SUBDEV_CLOCK)
+> +		return;
+> +
+> +	leaf = xleaf_get_leaf_by_id(pdev, XRT_SUBDEV_CLOCK, instance);
+> +	if (!leaf) {
+> +		xrt_err(pdev, "does not get clock subdev");
+> +		return;
+> +	}
+> +
+> +	xleaf_ioctl(leaf, XRT_CLOCK_VERIFY, NULL);
+> +	xleaf_put_leaf(pdev, leaf);
+> +}
+> +
+> +static void ucs_check(struct xrt_ucs *ucs, bool *latched)
+> +{
 
-> > +if LEDS_BLINK
-> > +
-> > +config LEDS_BLINK_LGM
-> > +       tristate "LED support for Intel LGM SoC series"
-> > +       depends on LEDS_CLASS
-> > +       depends on MFD_SYSCON
-> > +       depends on OF
-> > +       help
-> > +         Parallel to serial conversion, which is also called SSO contr=
-oller,
-> > +         can drive external shift register for LED outputs.
-> > +         This enables LED support for Serial Shift Output controller(S=
-SO).
->=20
-> What's so special about this driver that it needs a new "blink" subdir?
-> Isn't it an ordinary LED driver?
-> Looking at the code filling in the .blink_set() callback, the hardware
-> blink feature seems to be even optional?
+checking but not returning status, change to returning int.
 
-So idea is to start putting drivers into subdirectories, because we
-have too many of them at the moment.
+this function is called but xrt_ucs_leaf_ioctl which does return status.
 
-simple/blink/flash/rgb, or something like that.
+> +	struct ucs_control_status_ch1 *ucs_status_ch1;
+> +	u32 status;
+> +
+> +	mutex_lock(&ucs->ucs_lock);
+> +	status = reg_rd(ucs, CHANNEL1_OFFSET);
+> +	ucs_status_ch1 = (struct ucs_control_status_ch1 *)&status;
+> +	if (ucs_status_ch1->shutdown_clocks_latched) {
+> +		UCS_ERR(ucs,
+> +			"Critical temperature or power event, kernel clocks have been stopped.");
+> +		UCS_ERR(ucs,
+> +			"run 'xbutil valiate -q' to continue. See AR 73398 for more details.");
+This error message does not seem like it would be useful, please review.
+> +		/* explicitly indicate reset should be latched */
+> +		*latched = true;
+> +	} else if (ucs_status_ch1->clock_throttling_average >
+> +	    CLK_MAX_VALUE) {
+> +		UCS_ERR(ucs, "kernel clocks %d exceeds expected maximum value %d.",
+> +			ucs_status_ch1->clock_throttling_average,
+> +			CLK_MAX_VALUE);
+> +	} else if (ucs_status_ch1->clock_throttling_average) {
+> +		UCS_ERR(ucs, "kernel clocks throttled at %d%%.",
+> +			(ucs_status_ch1->clock_throttling_average /
+> +			 (CLK_MAX_VALUE / 100)));
+> +	}
+> +	mutex_unlock(&ucs->ucs_lock);
+> +}
+> +
+> +static void ucs_enable(struct xrt_ucs *ucs)
+> +{
+> +	reg_wr(ucs, 1, CHANNEL2_OFFSET);
+lock ?
+> +}
+> +
+> +static int
+> +xrt_ucs_leaf_ioctl(struct platform_device *pdev, u32 cmd, void *arg)
+> +{
+> +	struct xrt_ucs		*ucs;
+> +	int			ret = 0;
+> +
+> +	ucs = platform_get_drvdata(pdev);
+> +
+> +	switch (cmd) {
+> +	case XRT_XLEAF_EVENT:
+> +		xrt_ucs_event_cb(pdev, arg);
+> +		break;
+> +	case XRT_UCS_CHECK: {
+brace not needed here
+> +		ucs_check(ucs, (bool *)arg);
+> +		break;
+> +	}
+> +	case XRT_UCS_ENABLE:
+> +		ucs_enable(ucs);
+> +		break;
+> +	default:
+> +		xrt_err(pdev, "unsupported cmd %d", cmd);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int ucs_remove(struct platform_device *pdev)
+> +{
+> +	struct xrt_ucs *ucs;
+> +
+> +	ucs = platform_get_drvdata(pdev);
+> +	if (!ucs) {
 
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
+is this possible ?
 
---KsGdsel6WgEHnImy
-Content-Type: application/pgp-signature; name="signature.asc"
+Tom
 
------BEGIN PGP SIGNATURE-----
+> +		xrt_err(pdev, "driver data is NULL");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (ucs->ucs_base)
+> +		iounmap(ucs->ucs_base);
+> +
+> +	platform_set_drvdata(pdev, NULL);
+> +	devm_kfree(&pdev->dev, ucs);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ucs_probe(struct platform_device *pdev)
+> +{
+> +	struct xrt_ucs *ucs = NULL;
+> +	struct resource *res;
+> +	int ret;
+> +
+> +	ucs = devm_kzalloc(&pdev->dev, sizeof(*ucs), GFP_KERNEL);
+> +	if (!ucs)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, ucs);
+> +	ucs->pdev = pdev;
+> +	mutex_init(&ucs->ucs_lock);
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	ucs->ucs_base = ioremap(res->start, res->end - res->start + 1);
+> +	if (!ucs->ucs_base) {
+> +		UCS_ERR(ucs, "map base %pR failed", res);
+> +		ret = -EFAULT;
+> +		goto failed;
+> +	}
+> +	ucs_enable(ucs);
+> +
+> +	return 0;
+> +
+> +failed:
+> +	ucs_remove(pdev);
+> +	return ret;
+> +}
+> +
+> +static struct xrt_subdev_endpoints xrt_ucs_endpoints[] = {
+> +	{
+> +		.xse_names = (struct xrt_subdev_ep_names[]) {
+> +			{ .ep_name = XRT_MD_NODE_UCS_CONTROL_STATUS },
+> +			{ NULL },
+> +		},
+> +		.xse_min_ep = 1,
+> +	},
+> +	{ 0 },
+> +};
+> +
+> +static struct xrt_subdev_drvdata xrt_ucs_data = {
+> +	.xsd_dev_ops = {
+> +		.xsd_ioctl = xrt_ucs_leaf_ioctl,
+> +	},
+> +};
+> +
+> +static const struct platform_device_id xrt_ucs_table[] = {
+> +	{ XRT_UCS, (kernel_ulong_t)&xrt_ucs_data },
+> +	{ },
+> +};
+> +
+> +static struct platform_driver xrt_ucs_driver = {
+> +	.driver = {
+> +		.name = XRT_UCS,
+> +	},
+> +	.probe = ucs_probe,
+> +	.remove = ucs_remove,
+> +	.id_table = xrt_ucs_table,
+> +};
+> +
+> +void ucs_leaf_init_fini(bool init)
+> +{
+> +	if (init)
+> +		xleaf_register_driver(XRT_SUBDEV_UCS, &xrt_ucs_driver, xrt_ucs_endpoints);
+> +	else
+> +		xleaf_unregister_driver(XRT_SUBDEV_UCS);
+> +}
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYD5f9gAKCRAw5/Bqldv6
-8l5kAJ9h0LDI6czkDFin/4mLftjT1OgocACgh0SaQO7AXg+i11GYB3ZAl8Zzmrs=
-=brLz
------END PGP SIGNATURE-----
-
---KsGdsel6WgEHnImy--
