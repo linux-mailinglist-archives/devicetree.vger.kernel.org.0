@@ -2,52 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CED6532C090
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B3E232C06D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579618AbhCCSbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:31:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53902 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231510AbhCCMcp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 07:32:45 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4175A64EE7;
-        Wed,  3 Mar 2021 09:57:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614765475;
-        bh=mJdUrPvBXGzIpDLQLBgzh53mg/qR4CPh9qbZvMfmU4Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=n/tlMuePzVTgcFya7fvbvgtDXVZ1+hJz7UF+ZuMWI3q8yi18DCwTE3OtXaTyYt4Og
-         uaPNlEAr9e5VBhFaIV3C54h4hjj2+VwxNoOgbKSk914j2w+y2n3AEHihY+uNxM5gWJ
-         /GbJ+OqFoqkqUfg9VJOzp2jpQ7Uhvb/5i6k+5xPuFL8vxettXvZZc86OwbS8GlaISg
-         N/UPOhTp5fg5w5LbieerJ1DzVUr6XaHD6sT9+BW4L1tXIwkLoP4x8cEFq/3jubK5mu
-         tsyAw5I7V5vSf0w6qwmI5KKSG2AdkKIS3kGWhgCqLf4CEpG1Dc5wf/9BRA/ERNodTo
-         G8MAzN7Oo9wsw==
-Date:   Wed, 3 Mar 2021 17:57:49 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        id S1379212AbhCCSo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:44:27 -0500
+Received: from 1.mo1.mail-out.ovh.net ([178.32.127.22]:58745 "EHLO
+        1.mo1.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236016AbhCCQGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 11:06:21 -0500
+X-Greylist: delayed 15633 seconds by postgrey-1.27 at vger.kernel.org; Wed, 03 Mar 2021 11:06:19 EST
+Received: from player739.ha.ovh.net (unknown [10.110.208.22])
+        by mo1.mail-out.ovh.net (Postfix) with ESMTP id 7DB821F7086
+        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 12:44:18 +0100 (CET)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player739.ha.ovh.net (Postfix) with ESMTPSA id 4FE5D1798D8E0;
+        Wed,  3 Mar 2021 11:44:07 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-103G0058af54b4d-f3b4-44dc-ac9e-34a2a880a68e,
+                    26C1B780A21ED05C344A0C24DEC46BA2B7EA0698) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Subject: Re: [PATCH stblinux.git 2/2] firmware: bcm47xx_nvram: support
+ platform device "brcm,nvram"
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 0/2] Add i.MX51/i.MX53 serial number support
-Message-ID: <20210303095748.GD15865@dragon>
-References: <20210127174024.170408-1-sebastian.reichel@collabora.com>
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Vivek Unune <npcomplete13@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org
+References: <20210302074405.18998-1-zajec5@gmail.com>
+ <20210302074405.18998-2-zajec5@gmail.com>
+ <8e17b978-a527-97df-3f31-1fb2123a23e9@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Message-ID: <d09c9e49-d7c7-cc71-1437-48d82e14843b@milecki.pl>
+Date:   Wed, 3 Mar 2021 12:44:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210127174024.170408-1-sebastian.reichel@collabora.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <8e17b978-a527-97df-3f31-1fb2123a23e9@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 8543891444003212823
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledruddtvddgfeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepvedttefgueffvefgvdejleeivddvjefhkeffgeeugeelieefteevffdvuedvgfefnecuffhomhgrihhnpehlkhhmlhdrohhrghenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefledrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 06:40:22PM +0100, Sebastian Reichel wrote:
-> Sebastian Reichel (2):
->   ARM: dts: imx: Mark IIM as syscon on i.MX51/i.MX53
->   soc: imx: add i.MX51/i.MX53 unique id support
+On 02.03.2021 17:59, Florian Fainelli wrote:
+> On 3/1/21 11:44 PM, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> Add support for platform device providing mapping resource. This allows
+>> reading NVRAM based on DT mapping binding. It's required for devices
+>> that boot depending on NVRAM stored setup and provides early access to
+>> NVRAM data.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>> bcm47xx_nvram driver was originally added through MIPS tree, but this
+>> change doesn't affect BCM47XX (MIPS) as it doesn't use DT. It targets
+>> ARCH_BCM_5301X so I suggest this goes through the stblinux.git tree.
+> 
+> Can you see if this change can be replaced by the nvmem-rmem work that
+> Nicolas recently did to support something similar for the Raspberry Pi 4:
+> 
+> https://lkml.org/lkml/2021/1/29/235
 
-Applied both, thanks.
+I don't think it fits my case.
+
+It's a reserved memory binding/driver which refers to the system memory.
+In NVRAM case we need to do a mapping. I think it's different?
+
+nvmem-rmem registers NVMEM device without providing any cells. It also
+doesn't understand NVRAM data structure. I guess nvmem-rmem only exposes
+NVMEM for user-space access. I need to access NVRAM to e.g. detect boot
+parameters in kernel code.
+
+I was thinking for a moment about treating NVRAM like a NVMEM but NVRAM
+doesn't seem to fit current design and kernel API. NVMEM assumes that
+every cell has a specific offset and size. Reading NVRAM should be
+based on string keys (nof offsets). See nvmem_reg_read_t for details.
+
+This won't make a huge difference I think, but for a slightly cleaner
+design I could probably have NVRAM devices without cells and make it
+setup NVRAM. Let me see if I can code that.
