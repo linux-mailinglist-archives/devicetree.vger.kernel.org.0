@@ -2,109 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B622B32BFEE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3448B32C01D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579289AbhCCSax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:30:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37814 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1842935AbhCCKWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 05:22:42 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0181BC061356;
-        Wed,  3 Mar 2021 00:28:46 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id d3so35729666lfg.10;
-        Wed, 03 Mar 2021 00:28:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Ib2TgD5LoGzEOYOzBLqBPjEaDbQedhA/DCVHfBWRCxM=;
-        b=h2ZFm53/uMkUZaIMF16VaaI22yjZ3lsf5bqyAoveT937pPEp2dj85/2eEFzK/+d/uT
-         NOkPQRKQZnnf+HmFa4HJeVolycoXP/cFFwI+SbCllFFuvhyU8uJYxVtg1gQSma703P/R
-         vBWG4WQvZ6f48lT9u00r6irJUSEcagE5pEoxOikqmUf5z9jKORZ36aKNbzly67hUSB1j
-         pji5kRLXK3bHo8CUFnpAM5OfGU10ws2zWaR2aZtTKfbpoi27MhOmhXT7PalZ+bFEG9GR
-         n02UkdnTaojXDKznDb65VfgO7SyPj0gC0EWZawtJMtFDfDqqqAFd87vNrFo5ZbW0QJ8E
-         n28A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Ib2TgD5LoGzEOYOzBLqBPjEaDbQedhA/DCVHfBWRCxM=;
-        b=D1zqVrsjNt7xJYJA1NLykIiz3lmld4KJaXGObqyhVi2SJRgNuzn1CbRy3BLLDxty6r
-         IbjrLUFDcRLwgbnxGPllA0JdrpetSeUeqBretyePy0NgY9Fxcb3CEHBkIDypK1SdR8y5
-         DbLGM6zYyYMziDBRkzU+fc6eJLZSsLMIU9wnSIczZW6UcMrABsfP8/O7GusXiSLZMrbB
-         l88tTZAPfP80Hax6zCzyJqsRn3/c/eSj1gVSpwp3mQ37XVrvMq9x8uNmr5AcrEBhIsd8
-         JIaOBlzFfl/CeYU9Ij08IVASTRN0Zas8tnaQJGr37ifTEI2XXSddt51PXe+5qpYp7nij
-         o7kQ==
-X-Gm-Message-State: AOAM5316PslROQs2AC5f9xOCPfsFwMsIE2iM7imdcPW/n+xjtjtUlotI
-        NaamdFq6JQD6KI44iIyM5q2Zv/f181Q=
-X-Google-Smtp-Source: ABdhPJzdo3EZD4OA6XpZETK1794bIMLnAyMAhAQ3I/atDvFI3Ud5c2mLqDPfih8Lyw8AbxoS403cRQ==
-X-Received: by 2002:a05:6512:a8e:: with SMTP id m14mr4917828lfu.641.1614760125381;
-        Wed, 03 Mar 2021 00:28:45 -0800 (PST)
-Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
-        by smtp.googlemail.com with ESMTPSA id p13sm3161447ljj.49.2021.03.03.00.28.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Mar 2021 00:28:44 -0800 (PST)
-Subject: Re: [PATCH v1 5/5] ASoC: tegra30: i2s: Add reset control
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Paul Fertser <fercerpav@gmail.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210302112123.24161-1-digetx@gmail.com>
- <20210302112123.24161-6-digetx@gmail.com>
-Message-ID: <cbb1f0d4-ddc5-733d-896d-dd76ce01ca69@gmail.com>
-Date:   Wed, 3 Mar 2021 11:28:44 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        id S1579374AbhCCSbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:08 -0500
+Received: from mout.kundenserver.de ([212.227.126.131]:35417 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1357955AbhCCLh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 06:37:29 -0500
+Received: from mail-oo1-f53.google.com ([209.85.161.53]) by
+ mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MhDIw-1llmG30Z06-00eLjx; Wed, 03 Mar 2021 09:44:25 +0100
+Received: by mail-oo1-f53.google.com with SMTP id n19so5480150ooj.11;
+        Wed, 03 Mar 2021 00:44:24 -0800 (PST)
+X-Gm-Message-State: AOAM531I5RlSxC1fMxpxwzkcsPAJpnaJFMGKoUsV2NBkaCYTCh1InN3k
+        qgP85DrGx8q+yk/Tr4YR5dK1btjxZ7onBt2pcZY=
+X-Google-Smtp-Source: ABdhPJx+y1mutrjVZMV70H7WGHtEMsbqS/b6Pacx4upesFv3Pu2rH/lMvNVNl6MT1UBcioMptZHIJHVRvTvRXobxOCo=
+X-Received: by 2002:a4a:304a:: with SMTP id z10mr20492940ooz.26.1614761063729;
+ Wed, 03 Mar 2021 00:44:23 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210302112123.24161-6-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210226140305.26356-1-nsaenzjulienne@suse.de>
+ <20210226140305.26356-10-nsaenzjulienne@suse.de> <3a4cf13f-c098-9ff3-6c0e-2c94daae452b@arm.com>
+In-Reply-To: <3a4cf13f-c098-9ff3-6c0e-2c94daae452b@arm.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 3 Mar 2021 09:44:07 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1px7aC92p+rZOYRV2npbHeMPP94fQz==UopHUrApE5Jw@mail.gmail.com>
+Message-ID: <CAK8P3a1px7aC92p+rZOYRV2npbHeMPP94fQz==UopHUrApE5Jw@mail.gmail.com>
+Subject: Re: [RFC 09/13] iommu/arm-smmu: Make use of dev_64bit_mmio_supported()
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Christoph Hellwig <hch@infradead.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:7g5UKd+vyI/Ln8q53XNHCBMONOXbq19hSutGtG8ohJvxzZ6ytkq
+ kDKPGw9czCqxBsRjWnuuxYuw9k2WHUYh7nCLZ9ZBl0Ewfxl7F8JE+wKMEALu8nxlviKb5TS
+ KBn1bzpxt9sMFEgJXzAhY0L7UaooMx4V2fmEWKLyYjfIvgS3p4wfZ5TiYTmektItVml2YY+
+ ToZTI/taz2+ShGdyjwbTg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:kZG0h7I6VUE=:ssp5mlwCOJ1kjmmq4zkPlT
+ 0gWoWVf4Gp4PKTzCrocK4x2LN239iQqXeSH+jY62zGYznlhXP6bQ/yBQbYDOkFbMYWwOUpRom
+ vtPoyCEuMXm2NFWn0URAtVN+Kfdjq2Ia1v1yfQNdJfNhQZ0uNSj4PC9k7nKs//X97rgTBzQUO
+ abzvvQkJrFnTK7bvrivTiMxiaseLAB1WYCeO26vtXQ3VXDyYdOcTeUsfbYxbeD7IiAQ9WyX2R
+ UoulpO+iJrXVTR7rjlHV43XyuhP/FeFHhjPDrsHnktpNXcQQBhHMM0r6Nm+vnZD2zYJ6uY1rm
+ aZ+hXa2qzNoAK9RIJPsI+LKg+UK2cRaVc6UAOlLvcGWGTbDwc+xm+tnGwm7IU0Mo+WcHjnF/B
+ TcsWeqdsqacoJz9oR3dX4U/yGzFy2Xn/pv+tcuqMBYi9GjKoWIuaXaE5cyZ4xtGESpAILNej2
+ GB+G9LY9pMbjsbsutKT6slvzywCsxq0QFj6y6aohdCXXAe8uiht6WeaIdLM6zIIhQlzlV51e0
+ Ph7h6MymUqoWz+kW3jI2JNZbDTMICYVrG99LRxkSxuP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-02.03.2021 14:21, Dmitry Osipenko пишет:
-> The I2S reset may be asserted at a boot time. Tegra30 I2S driver doesn't
-> manage the reset control and currently it happens to work because reset
-> is implicitly deasserted by the Tegra AHUB driver, but the reset of I2C
-> controller should be synchronous and I2S clock is disabled when AHUB is
-> reset. Add reset control to the Tegra30 I2S driver.
-> 
-> Note that I2S reset was always specified in Tegra30+ device-trees, hence
-> DTB ABI changes aren't required. Also note that AHUB touches I2S resets,
-> hence AHUB resets are now requested in a released state, allowing both
-> drivers to control the I2S resets together.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  sound/soc/tegra/tegra30_ahub.c | 14 ++++++++++---
->  sound/soc/tegra/tegra30_i2s.c  | 36 +++++++++++++++++++++++++++++++++-
->  sound/soc/tegra/tegra30_i2s.h  |  1 +
->  3 files changed, 47 insertions(+), 4 deletions(-)
+On Tue, Mar 2, 2021 at 12:07 PM Robin Murphy <robin.murphy@arm.com> wrote:
+> On 2021-02-26 14:03, Nicolas Saenz Julienne wrote:
 
-...
-> @@ -579,7 +587,7 @@ static int tegra30_ahub_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	ahub->reset = devm_reset_control_array_get_exclusive(&pdev->dev);
-> +	ahub->reset = devm_reset_control_array_get_exclusive_released(&pdev->dev);
+> > index d2a2d1bc58ba..997d13a21717 100644
+> > --- a/drivers/iommu/arm/arm-smmu/arm-smmu.h
+> > +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.h
+> > @@ -477,15 +477,20 @@ static inline void arm_smmu_writel(struct arm_smmu_device *smmu, int page,
+> >   {
+> >       if (smmu->impl && unlikely(smmu->impl->write_reg))
+> >               smmu->impl->write_reg(smmu, page, offset, val);
+> > -     else
+> > +     else if (dev_64bit_mmio_supported(smmu->dev))
+> >               writel_relaxed(val, arm_smmu_page(smmu, page) + offset);
+> > +     else
+> > +             hi_lo_writeq_relaxed(val, arm_smmu_page(smmu, page) + offset);
+>
+> As Arnd pointed out, this is in completely the wrong place. Also, in
+> general it doesn't work if the implementation already needs a hook to
+> filter or override register accesses for any other reason. TBH I'm not
+> convinced that this isn't *more* of a mess than handling it on a
+> SoC-specific basis...
 
-Thinking a bit more about this, it looks like we actually want something
-like:
+I think the main problem for handling it in a SoC specific way is that there is
+no device-independent way to do a 64-bit store as two 32-bit stores:
 
-	devm_reset_control_array_get_exclusive_released_named()
+- some devices need hi_lo_writeq_relaxed(), others need lo_hi_writeq_relaxed(),
+  and some absolutely require 64-bit stores and cannot work at all behind a
+  broken PCI bus.
 
-that will request resets by given names and in a given order, similarly
-to devm_clk_bulk_get(). This will be very handy for both Tegra audio and
-GPU drivers. I'll prepare a v2 if there are no objections.
+- if the driver requires the store to be atomic, it needs to use a spinlock
+  around the two writel(), but if the register is on a PCI bus or mapped
+  with page attributes that allow posted writes (like arm64 ioremap), then
+  you may need to read back the register before spin_unlock to serialize
+  them properly. However, reading back an mmio register is slow and can
+  have side-effects, so you can't put that in driver-independent code either.
+
+        Arnd
