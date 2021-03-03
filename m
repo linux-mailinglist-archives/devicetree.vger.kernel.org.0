@@ -2,120 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 166E932C0BB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28D5C32C0BD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237099AbhCCS0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:26:01 -0500
-Received: from mga01.intel.com ([192.55.52.88]:30805 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244025AbhCCFSJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 00:18:09 -0500
-IronPort-SDR: ma1Gl7BUMMUEkrdqYVlkPwc0O5va+3NllXxaxvuXJN7HSqKuhhEyG3p57wA/rvJvMLyRdlCMSh
- TwlEy3AWTxPQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9911"; a="206782342"
-X-IronPort-AV: E=Sophos;i="5.81,219,1610438400"; 
-   d="scan'208";a="206782342"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2021 21:13:56 -0800
-IronPort-SDR: W4v/nO9ltO4kt5+ahN8iBfKrHoekmqH21ZUT4l4BpgOpWZHofqqsHfhMkMGB1cDomKF9wWzHRs
- SGA9xegTO8/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,219,1610438400"; 
-   d="scan'208";a="428037288"
-Received: from allen-box.sh.intel.com (HELO [10.239.159.128]) ([10.239.159.128])
-  by fmsmga004.fm.intel.com with ESMTP; 02 Mar 2021 21:13:48 -0800
-Cc:     baolu.lu@linux.intel.com, lorenzo.pieralisi@arm.com,
-        robh+dt@kernel.org, guohanjun@huawei.com, sudeep.holla@arm.com,
-        rjw@rjwysocki.net, lenb@kernel.org, robin.murphy@arm.com,
-        Jonathan.Cameron@huawei.com, eric.auger@redhat.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-accelerators@lists.ozlabs.org, jacob.jun.pan@linux.intel.com,
-        kevin.tian@intel.com, vdumpa@nvidia.com, zhangfei.gao@linaro.org,
-        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
-        zhukeqian1@huawei.com, wangzhou1@hisilicon.com,
-        Arnd Bergmann <arnd@arndb.de>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v13 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from
- IOMMU_DEV_FEAT_SVA
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
-        will@kernel.org
-References: <20210302092644.2553014-1-jean-philippe@linaro.org>
- <20210302092644.2553014-4-jean-philippe@linaro.org>
-From:   Lu Baolu <baolu.lu@linux.intel.com>
-Message-ID: <93b369dc-2145-bebb-b20c-90018bcc69c3@linux.intel.com>
-Date:   Wed, 3 Mar 2021 13:04:53 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1349604AbhCCS0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:26:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60778 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235807AbhCCFWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 00:22:13 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0175C061788
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 21:21:28 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id t9so3418099pjl.5
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 21:21:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=jGdvbu0FrsOZa6Rq/Yom9taOBE4Ik/ZEHiXZKsv0uRI=;
+        b=GPNx/T4z+1ZeuJgxHzD53mXPB6Msnm9jX+CktVmXhjy5egAoDwYonMJ1t3b6OR/UQN
+         U77XRK8W3FACHStST2UYo+AqSHpHNJjmSJxKLRJ325itlIlVGxSJFX2JmxoRtZqMpsQt
+         wa2TZvE4gCI6E33DPEEa1NGcv1ecJxFDpZGIRWu5KjLMsYG7cWfONDYjewPgH0eBqqJK
+         SuhPtKHM7E/9HeavGZBmeIPh3iSDiFSDpCQ8a4A1qnjnWTIYdY/StT/QPmUxj36OWJi9
+         gmEDoBUXGY6QocgnfRw5aWsMmzDdLetJPUT3S9BC1sdx+W8UYXCP5PWIBovbu7hz8W3e
+         QF9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=jGdvbu0FrsOZa6Rq/Yom9taOBE4Ik/ZEHiXZKsv0uRI=;
+        b=JTXe1lvOPWEPyTPyX1qh7voWJrTnjIj/GQjljcVVjxBfj7Owku+YSCCU0TsQtTIEb7
+         e6Bh3nTWOggwMWL5CbSrna1Y2G3Pit1AdZkEfOU1rovLwLSQVAUBTIm0vxUQ745kxNmT
+         2QFsNAxSSbTfPEYKGa1DkV8RQolVtji8okczFmK11grR1KCu7SVGxgivbJClnpkJE8os
+         DV6Wz1Fs+y5N0TuNDD/lWw2LjhXugQjkK5+5ho/WVU3S+LlfEeMRMiXFCTPNefE+rTfn
+         Udx3e0FBzSJhH3XH1FzCzhp/sLhKm4ai5r7Q1o9Ovzi6uTPnFsD2jwWrsqBRFfeokfKO
+         bs3Q==
+X-Gm-Message-State: AOAM530PxbIPeBLXnuv3yB3iM/pwGVvxYh08LXbMa/zQ57SOTzfKWzJU
+        1vS9P6tKV13xeYqDjGHwWC2elQ==
+X-Google-Smtp-Source: ABdhPJw6GlpfyE7P8dvwW1CesEsCPrq8AC/kChySl3CPk8cQ1uYFOq6bzHsnWmMmpc+RdGAWqyi5sQ==
+X-Received: by 2002:a17:90a:6342:: with SMTP id v2mr7739878pjs.150.1614748888349;
+        Tue, 02 Mar 2021 21:21:28 -0800 (PST)
+Received: from localhost ([122.171.124.15])
+        by smtp.gmail.com with ESMTPSA id q95sm5314450pjq.20.2021.03.02.21.21.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Mar 2021 21:21:27 -0800 (PST)
+Date:   Wed, 3 Mar 2021 10:51:25 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kbuild <linux-kbuild@vger.kernel.org>
+Subject: Re: [PATCH V7 4/6] kbuild: Add support to build overlays (%.dtbo)
+Message-ID: <20210303052125.uh32ndnu5d6mem7c@vireshk-i7>
+References: <cover.1611904394.git.viresh.kumar@linaro.org>
+ <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
+ <CAMuHMdVp0vGMqoEoP9A7Y7-ph-DYUWdddtChdq_eZcROYTBMHg@mail.gmail.com>
+ <20210205092507.fdxotdjlq5rjs2yh@vireshk-i7>
+ <CAMuHMdWUMcMcJxnC+oML8P0+r72_+d6RWGY50dOWCUECdJGWPA@mail.gmail.com>
+ <20210205095545.woevnkxg3ar7ctys@vireshk-i7>
+ <CAMuHMdXKT3LD3ojMJEg-oHsEKO5TN5P1BTJMyf2fYkhnC8PU=Q@mail.gmail.com>
+ <20210205210814.GA3707622@robh.at.kernel.org>
+ <02728dac-5666-9c2b-bd46-9c2eabbb2ed8@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210302092644.2553014-4-jean-philippe@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <02728dac-5666-9c2b-bd46-9c2eabbb2ed8@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/2/21 5:26 PM, Jean-Philippe Brucker wrote:
-> Some devices manage I/O Page Faults (IOPF) themselves instead of relying
-> on PCIe PRI or Arm SMMU stall. Allow their drivers to enable SVA without
-> mandating IOMMU-managed IOPF. The other device drivers now need to first
-> enable IOMMU_DEV_FEAT_IOPF before enabling IOMMU_DEV_FEAT_SVA. Enabling
-> IOMMU_DEV_FEAT_IOPF on its own doesn't have any effect visible to the
-> device driver, it is used in combination with other features.
+On 24-02-21, 19:32, Frank Rowand wrote:
+> I overlooked this and mistakenly thought that the move to .dtbo also
+> involved changing to .dtso.  My bad.
 > 
-> Reviewed-by: Eric Auger <eric.auger@redhat.com>
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-> ---
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: David Woodhouse <dwmw2@infradead.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Lu Baolu <baolu.lu@linux.intel.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
-> Cc: Zhou Wang <wangzhou1@hisilicon.com>
-> ---
->   include/linux/iommu.h | 20 +++++++++++++++++---
->   1 file changed, 17 insertions(+), 3 deletions(-)
+> My favorite color here is to use .dtso for the source file that will
+> be compiled to create a .dtbo.
 > 
-> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-> index 16ce75693d83..45c4eb372f56 100644
-> --- a/include/linux/iommu.h
-> +++ b/include/linux/iommu.h
-> @@ -156,10 +156,24 @@ struct iommu_resv_region {
->   	enum iommu_resv_type	type;
->   };
->   
-> -/* Per device IOMMU features */
-> +/**
-> + * enum iommu_dev_features - Per device IOMMU features
-> + * @IOMMU_DEV_FEAT_AUX: Auxiliary domain feature
-> + * @IOMMU_DEV_FEAT_SVA: Shared Virtual Addresses
-> + * @IOMMU_DEV_FEAT_IOPF: I/O Page Faults such as PRI or Stall. Generally
-> + *			 enabling %IOMMU_DEV_FEAT_SVA requires
-> + *			 %IOMMU_DEV_FEAT_IOPF, but some devices manage I/O Page
-> + *			 Faults themselves instead of relying on the IOMMU. When
-> + *			 supported, this feature must be enabled before and
-> + *			 disabled after %IOMMU_DEV_FEAT_SVA.
-> + *
-> + * Device drivers query whether a feature is supported using
-> + * iommu_dev_has_feature(), and enable it using iommu_dev_enable_feature().
-> + */
->   enum iommu_dev_features {
-> -	IOMMU_DEV_FEAT_AUX,	/* Aux-domain feature */
-> -	IOMMU_DEV_FEAT_SVA,	/* Shared Virtual Addresses */
-> +	IOMMU_DEV_FEAT_AUX,
-> +	IOMMU_DEV_FEAT_SVA,
-> +	IOMMU_DEV_FEAT_IOPF,
->   };
->   
->   #define IOMMU_PASID_INVALID	(-1U)
-> 
+> Linus has already accepted patch 4/6 to 5.12-rc1, so changing to .dtso
+> will require another patch.
 
-Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
+Looks like this is what many people desire, lets do it and make it a
+standard even if it wasn't followed earlier.
 
-Best regards,
-baolu
+What about this ?
+
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index c430fbb36763..0dbedb61835f 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -337,7 +337,7 @@ $(obj)/%.dtb.S: $(obj)/%.dtb FORCE
+ 
+ quiet_cmd_dtc = DTC     $@
+ cmd_dtc = $(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
+-       $(DTC) -O $(patsubst .%,%,$(suffix $@)) -o $@ -b 0 \
++       $(DTC) -I dts -O $(patsubst .%,%,$(suffix $@)) -o $@ -b 0 \
+                $(addprefix -i,$(dir $<) $(DTC_INCLUDE)) $(DTC_FLAGS) \
+                -d $(depfile).dtc.tmp $(dtc-tmp) ; \
+        cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
+@@ -348,6 +348,9 @@ $(obj)/%.dtb: $(src)/%.dts $(DTC) FORCE
+ $(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
+        $(call if_changed_dep,dtc)
+ 
++$(obj)/%.dtbo: $(src)/%.dtso $(DTC) FORCE
++       $(call if_changed_dep,dtc)
++
+ overlay-y := $(addprefix $(obj)/, $(overlay-y))
+ 
+ quiet_cmd_fdtoverlay = DTOVL   $@
+@@ -373,6 +376,9 @@ endef
+ $(obj)/%.dt.yaml: $(src)/%.dts $(DTC) $(DT_TMP_SCHEMA) FORCE
+        $(call if_changed_rule,dtc,yaml)
+ 
++$(obj)/%.dt.yaml: $(src)/%.dtso $(DTC) $(DT_TMP_SCHEMA) FORCE
++       $(call if_changed_rule,dtc,yaml)
++
+ dtc-tmp = $(subst $(comma),_,$(dot-target).dts.tmp)
+ 
+ # Bzip2
+
+-------------------------8<-------------------------
+
+I had to keep the original line as is:
+
+ $(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
+
+to support the unittest stuff as there are no dtso files there. There
+are few things we can do here:
+
+- Don't follow the dtso/dtbo convention for unittest, build files as
+  dtb only and everything will continue to work I suppose as
+  fdtoverlay won't complain.
+
+- Keep the above line in Makefile, this doesn't sound right, isn't it
+  ?
+
+- Make .dts links for unittest file, maybe from the Makefile itself.
+
+- Something else ?
+
+-- 
+viresh
