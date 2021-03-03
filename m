@@ -2,175 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F5E632C0B8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 166E932C0BB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245740AbhCCSZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:25:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51636 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352986AbhCCEjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 23:39:35 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9998AC061224
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 20:36:47 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id t25so15413381pga.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 20:36:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wF13wHlH8AwN31lqAZwhyJR4x/IvJw4g38aibW4ph8w=;
-        b=kt2YVe8YhX1ZsL7P4NP4KZQedLpWHJSLePnLeWPtf4k+yvekh11Fs5NNtyozcBLBig
-         P4ID+DYf+5yacfbpwgbAWwH4twyXyVo9tNLQb1Ib1Hyb7CrnBO3mRIfIMFIsEsw07zxK
-         aQiFp+3ftVFz/JjmYfS0TiXZmtQATqx9QwQRU5TIJuALyco9h154weomM8uvJdgimyXP
-         OKgVxVJxVF1CCHPrjAwrHmpMGUzw53jGQJV+QQ7EcfRb2PmO/ezNRsGgmOpoCW4S26Z1
-         hxwvpoOaSFG3qRWqRjPliSJKdaJyYmjqGMo9z/wM4FB91G61852Zk/4gJvEBgO9gFa8g
-         0PNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wF13wHlH8AwN31lqAZwhyJR4x/IvJw4g38aibW4ph8w=;
-        b=CY/m0Ifv1B0dsukrFsm3XkWGImk2a8cGYApf7Xu+lL3On1JT5ymjD4Mqvglwx2z20p
-         EbB9xaj56c13LgfozRp3BV9XNNw20pnOzrNaAqtRHBSMnEGquFyuxGn7AkYVmmR3ked8
-         WH9HdjxDubiqH7M0elo9xyEe8i0lXyHPbxuR1vZ5cTdjth1Ia02Ixqn0KBQ0UzOfeMuo
-         o3ce4VON4Ha/pKyFjtdaP9Myxy9GbU5D6jqpeqgNn1NTJXMI18RmopZlHmLY2CxkWKyp
-         CuedIrEmJuyzKoud9w+dIYMOgH9QU9JN2l6PRhW2AbpGdyjDe6La6ruMoCfJ0pfEEJot
-         mCFg==
-X-Gm-Message-State: AOAM532TOUEkGvZ3iHn0lEjHKUY35xLkFZtm4Mj7IbU1qkvC1tKutJy8
-        i1sWyo8GKcKH2vICe7ezHHJ5uA==
-X-Google-Smtp-Source: ABdhPJyY+s+tcxkVcjp260Y9EL4cXwPl0cF7o9Gz3f6DxEkZbdJFmf6Lbu1EQsH+K+Y84DPlVGp2Lg==
-X-Received: by 2002:a63:fd0a:: with SMTP id d10mr21030930pgh.345.1614746207216;
-        Tue, 02 Mar 2021 20:36:47 -0800 (PST)
-Received: from localhost ([122.171.124.15])
-        by smtp.gmail.com with ESMTPSA id j125sm24146185pfd.27.2021.03.02.20.36.46
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 02 Mar 2021 20:36:46 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH V9 4/4] of: unittest: Statically apply overlays using fdtoverlay
-Date:   Wed,  3 Mar 2021 10:06:20 +0530
-Message-Id: <0eab8d7d6d1b1e296691c33ac7a6502ddcc814e6.1614745266.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <cover.1614745266.git.viresh.kumar@linaro.org>
-References: <cover.1614745266.git.viresh.kumar@linaro.org>
+        id S237099AbhCCS0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:26:01 -0500
+Received: from mga01.intel.com ([192.55.52.88]:30805 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S244025AbhCCFSJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 00:18:09 -0500
+IronPort-SDR: ma1Gl7BUMMUEkrdqYVlkPwc0O5va+3NllXxaxvuXJN7HSqKuhhEyG3p57wA/rvJvMLyRdlCMSh
+ TwlEy3AWTxPQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9911"; a="206782342"
+X-IronPort-AV: E=Sophos;i="5.81,219,1610438400"; 
+   d="scan'208";a="206782342"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2021 21:13:56 -0800
+IronPort-SDR: W4v/nO9ltO4kt5+ahN8iBfKrHoekmqH21ZUT4l4BpgOpWZHofqqsHfhMkMGB1cDomKF9wWzHRs
+ SGA9xegTO8/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,219,1610438400"; 
+   d="scan'208";a="428037288"
+Received: from allen-box.sh.intel.com (HELO [10.239.159.128]) ([10.239.159.128])
+  by fmsmga004.fm.intel.com with ESMTP; 02 Mar 2021 21:13:48 -0800
+Cc:     baolu.lu@linux.intel.com, lorenzo.pieralisi@arm.com,
+        robh+dt@kernel.org, guohanjun@huawei.com, sudeep.holla@arm.com,
+        rjw@rjwysocki.net, lenb@kernel.org, robin.murphy@arm.com,
+        Jonathan.Cameron@huawei.com, eric.auger@redhat.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, jacob.jun.pan@linux.intel.com,
+        kevin.tian@intel.com, vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
+        zhukeqian1@huawei.com, wangzhou1@hisilicon.com,
+        Arnd Bergmann <arnd@arndb.de>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v13 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from
+ IOMMU_DEV_FEAT_SVA
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
+        will@kernel.org
+References: <20210302092644.2553014-1-jean-philippe@linaro.org>
+ <20210302092644.2553014-4-jean-philippe@linaro.org>
+From:   Lu Baolu <baolu.lu@linux.intel.com>
+Message-ID: <93b369dc-2145-bebb-b20c-90018bcc69c3@linux.intel.com>
+Date:   Wed, 3 Mar 2021 13:04:53 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210302092644.2553014-4-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that fdtoverlay is part of the kernel build, start using it to test
-the unitest overlays we have by applying them statically. Create two new
-base files static_base_1.dts and static_base_2.dts which includes other
-.dtsi files.
+On 3/2/21 5:26 PM, Jean-Philippe Brucker wrote:
+> Some devices manage I/O Page Faults (IOPF) themselves instead of relying
+> on PCIe PRI or Arm SMMU stall. Allow their drivers to enable SVA without
+> mandating IOMMU-managed IOPF. The other device drivers now need to first
+> enable IOMMU_DEV_FEAT_IOPF before enabling IOMMU_DEV_FEAT_SVA. Enabling
+> IOMMU_DEV_FEAT_IOPF on its own doesn't have any effect visible to the
+> device driver, it is used in combination with other features.
+> 
+> Reviewed-by: Eric Auger <eric.auger@redhat.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> ---
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: David Woodhouse <dwmw2@infradead.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Lu Baolu <baolu.lu@linux.intel.com>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
+> Cc: Zhou Wang <wangzhou1@hisilicon.com>
+> ---
+>   include/linux/iommu.h | 20 +++++++++++++++++---
+>   1 file changed, 17 insertions(+), 3 deletions(-)
+> 
+> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+> index 16ce75693d83..45c4eb372f56 100644
+> --- a/include/linux/iommu.h
+> +++ b/include/linux/iommu.h
+> @@ -156,10 +156,24 @@ struct iommu_resv_region {
+>   	enum iommu_resv_type	type;
+>   };
+>   
+> -/* Per device IOMMU features */
+> +/**
+> + * enum iommu_dev_features - Per device IOMMU features
+> + * @IOMMU_DEV_FEAT_AUX: Auxiliary domain feature
+> + * @IOMMU_DEV_FEAT_SVA: Shared Virtual Addresses
+> + * @IOMMU_DEV_FEAT_IOPF: I/O Page Faults such as PRI or Stall. Generally
+> + *			 enabling %IOMMU_DEV_FEAT_SVA requires
+> + *			 %IOMMU_DEV_FEAT_IOPF, but some devices manage I/O Page
+> + *			 Faults themselves instead of relying on the IOMMU. When
+> + *			 supported, this feature must be enabled before and
+> + *			 disabled after %IOMMU_DEV_FEAT_SVA.
+> + *
+> + * Device drivers query whether a feature is supported using
+> + * iommu_dev_has_feature(), and enable it using iommu_dev_enable_feature().
+> + */
+>   enum iommu_dev_features {
+> -	IOMMU_DEV_FEAT_AUX,	/* Aux-domain feature */
+> -	IOMMU_DEV_FEAT_SVA,	/* Shared Virtual Addresses */
+> +	IOMMU_DEV_FEAT_AUX,
+> +	IOMMU_DEV_FEAT_SVA,
+> +	IOMMU_DEV_FEAT_IOPF,
+>   };
+>   
+>   #define IOMMU_PASID_INVALID	(-1U)
+> 
 
-Some unittest overlays deliberately contain errors that unittest checks
-for. These overlays will cause fdtoverlay to fail, and are thus not
-included for static builds.
+Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
----
- drivers/of/unittest-data/Makefile          | 50 ++++++++++++++++++++++
- drivers/of/unittest-data/static_base_1.dts |  4 ++
- drivers/of/unittest-data/static_base_2.dts |  4 ++
- 3 files changed, 58 insertions(+)
- create mode 100644 drivers/of/unittest-data/static_base_1.dts
- create mode 100644 drivers/of/unittest-data/static_base_2.dts
-
-diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
-index 009f4045c8e4..f88b2f48f172 100644
---- a/drivers/of/unittest-data/Makefile
-+++ b/drivers/of/unittest-data/Makefile
-@@ -34,7 +34,57 @@ DTC_FLAGS_overlay += -@
- DTC_FLAGS_overlay_bad_phandle += -@
- DTC_FLAGS_overlay_bad_symbol += -@
- DTC_FLAGS_overlay_base += -@
-+DTC_FLAGS_static_base_1 += -@
-+DTC_FLAGS_static_base_2 += -@
- DTC_FLAGS_testcases += -@
- 
- # suppress warnings about intentional errors
- DTC_FLAGS_testcases += -Wno-interrupts_property
-+
-+# Apply overlays statically with fdtoverlay.  This is a build time test that
-+# the overlays can be applied successfully by fdtoverlay.  This does not
-+# guarantee that the overlays can be applied successfully at run time by
-+# unittest, but it provides a bit of build time test coverage for those
-+# who do not execute unittest.
-+#
-+# The overlays are applied on top of static_base_1.dtb and static_base_2.dtb to
-+# create static_test_1.dtb and static_test_2.dtb.  If fdtoverlay detects an
-+# error than the kernel build will fail.  static_test_1.dtb and
-+# static_test_2.dtb are not consumed by unittest.
-+#
-+# Some unittest overlays deliberately contain errors that unittest checks for.
-+# These overlays will cause fdtoverlay to fail, and are thus not included
-+# in the static test:
-+#			  overlay_bad_add_dup_node.dtbo \
-+#			  overlay_bad_add_dup_prop.dtbo \
-+#			  overlay_bad_phandle.dtbo \
-+#			  overlay_bad_symbol.dtbo \
-+
-+apply_static_overlay_1 := overlay_0.dtbo \
-+			  overlay_1.dtbo \
-+			  overlay_2.dtbo \
-+			  overlay_3.dtbo \
-+			  overlay_4.dtbo \
-+			  overlay_5.dtbo \
-+			  overlay_6.dtbo \
-+			  overlay_7.dtbo \
-+			  overlay_8.dtbo \
-+			  overlay_9.dtbo \
-+			  overlay_10.dtbo \
-+			  overlay_11.dtbo \
-+			  overlay_12.dtbo \
-+			  overlay_13.dtbo \
-+			  overlay_15.dtbo \
-+			  overlay_gpio_01.dtbo \
-+			  overlay_gpio_02a.dtbo \
-+			  overlay_gpio_02b.dtbo \
-+			  overlay_gpio_03.dtbo \
-+			  overlay_gpio_04a.dtbo \
-+			  overlay_gpio_04b.dtbo
-+
-+apply_static_overlay_2 := overlay.dtbo
-+
-+static_test_1-dtbs := static_base_1.dtb $(apply_static_overlay_1)
-+static_test_2-dtbs := static_base_2.dtb $(apply_static_overlay_2)
-+
-+dtb-$(CONFIG_OF_OVERLAY) += static_test_1.dtb static_test_2.dtb
-diff --git a/drivers/of/unittest-data/static_base_1.dts b/drivers/of/unittest-data/static_base_1.dts
-new file mode 100644
-index 000000000000..10556cb3f01f
---- /dev/null
-+++ b/drivers/of/unittest-data/static_base_1.dts
-@@ -0,0 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "testcases_common.dtsi"
-diff --git a/drivers/of/unittest-data/static_base_2.dts b/drivers/of/unittest-data/static_base_2.dts
-new file mode 100644
-index 000000000000..b0ea9504d6f3
---- /dev/null
-+++ b/drivers/of/unittest-data/static_base_2.dts
-@@ -0,0 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "overlay_common.dtsi"
--- 
-2.25.0.rc1.19.g042ed3e048af
-
+Best regards,
+baolu
