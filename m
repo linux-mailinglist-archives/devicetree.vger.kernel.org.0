@@ -2,127 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA85B32C036
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 438B532C039
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236901AbhCCShl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:37:41 -0500
-Received: from z11.mailgun.us ([104.130.96.11]:18237 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244071AbhCCO4i (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 09:56:38 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1614783307; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=UILnfCywdfyeY6fqwhyeFBww/+wz+Ww4Bwere9bnWJs=;
- b=VFTywqUGKq/3+Pro0SpgrlVn0DwF/54cNVS13fiuZIMqiyzV3xkjai3pv5+JgMAmo3LU2vS+
- rB7fDU5iaPb2KJ78ax7EVclgsid6M6s65JQ9oYoIhBMhxcfZOoBSXfy3U0QOckvBut4X0/Vp
- tGMpMonzawP3hZVO/NH6I4KOHxA=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 603fa32d1a5c93533fb1fa68 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 03 Mar 2021 14:54:37
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D225EC433C6; Wed,  3 Mar 2021 14:54:36 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1E920C433CA;
-        Wed,  3 Mar 2021 14:54:36 +0000 (UTC)
+        id S237419AbhCCSiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:38:24 -0500
+Received: from mail.cognitivepilot.com ([91.218.251.140]:31302 "EHLO
+        mail.cognitivepilot.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244996AbhCCPN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 10:13:27 -0500
+Received: from mail.cognitivepilot.com (localhost [127.0.0.1])
+        by mail.cognitivepilot.com (Postfix) with ESMTP id 4DrHXV3FgnzltRYd
+        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 18:11:54 +0300 (MSK)
+X-Virus-Scanned: amavisd-new at cognitivepilot.com
+X-Spam-Flag: NO
+X-Spam-Score: 5.447
+X-Spam-Level: *****
+X-Spam-Status: No, score=5.447 tagged_above=2 required=6.2
+        tests=[FSL_HELO_NON_FQDN_1=0.001, HELO_NO_DOMAIN=3.199,
+        RDNS_NONE=1.274, SPF_SOFTFAIL=0.972, URIBL_BLOCKED=0.001]
+        autolearn=no autolearn_force=no
+Received: from mail.cognitivepilot.com ([127.0.0.1])
+        by mail.cognitivepilot.com (mail.cognitivepilot.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id S20hkBVqvHwx for <devicetree@vger.kernel.org>;
+        Wed,  3 Mar 2021 18:11:53 +0300 (MSK)
+Received: from NervousEnergy (unknown [185.68.147.27])
+        by mail.cognitivepilot.com (Postfix) with ESMTPS id 4DrHXT1xYmzltRYW;
+        Wed,  3 Mar 2021 18:11:53 +0300 (MSK)
+Date:   Wed, 3 Mar 2021 18:11:43 +0300
+From:   Ivan Uvarov <i.uvarov@cognitivepilot.com>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [draft2 PATCH] ARM: dts: sun8i: r40: add devicetree for
+ FETA40i-C/OKA40i-C
+Message-ID: <20210303181143.5b7f0c3f@NervousEnergy>
+In-Reply-To: <20210303130834.401cc50c@slackpad.fritz.box>
+References: <c4c13d63-e319-48b5-17e6-26d9967aa66f@cognitivepilot.com>
+        <20210303130834.401cc50c@slackpad.fritz.box>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Date:   Wed, 03 Mar 2021 20:24:36 +0530
-From:   skakit@codeaurora.org
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, kgunda@codeaurora.org,
-        rnayak@codeaurora.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: regulator: Convert regulator bindings to
- YAML format
-In-Reply-To: <1614609861.067266.37858.nullmailer@robh.at.kernel.org>
-References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
- <1614155592-14060-2-git-send-email-skakit@codeaurora.org>
- <1614609861.067266.37858.nullmailer@robh.at.kernel.org>
-Message-ID: <77f78569ccfea64842176ae19063ef88@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-01 20:14, Rob Herring wrote:
-> On Wed, 24 Feb 2021 14:03:06 +0530, satya priya wrote:
->> Convert regulator bindings from .txt to .yaml format.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> ---
->>  .../bindings/regulator/qcom,rpmh-regulator.txt     | 180 
->> ---------------------
->>  .../bindings/regulator/qcom,rpmh-regulator.yaml    | 147 
->> +++++++++++++++++
->>  2 files changed, 147 insertions(+), 180 deletions(-)
->>  delete mode 100644 
->> Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
->>  create mode 100644 
->> Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
->> 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml:13:5:
-> [warning] wrong indentation: expected 2 but found 4 (indentation)
-> ./Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml:48:5:
-> [warning] wrong indentation: expected 2 but found 4 (indentation)
-> ./Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml:49:9:
-> [warning] wrong indentation: expected 6 but found 8 (indentation)
-> ./Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml:50:13:
-> [warning] wrong indentation: expected 10 but found 12 (indentation)
-> ./Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml:64:9:
-> [warning] wrong indentation: expected 6 but found 8 (indentation)
-> ./Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml:69:9:
-> [warning] wrong indentation: expected 6 but found 8 (indentation)
-> ./Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml:83:6:
-> [warning] wrong indentation: expected 6 but found 5 (indentation)
-> ./Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml:89:6:
-> [warning] wrong indentation: expected 6 but found 5 (indentation)
-> ./Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml:95:2:
-> [warning] wrong indentation: expected 2 but found 1 (indentation)
-> 
-> dtschema/dtc warnings/errors:
-> 
-> See https://patchwork.ozlabs.org/patch/1443748
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+On Wed, 3 Mar 2021 13:08:34 +0000
+Andre Przywara <andre.przywara@arm.com> wrote:
 
-I've updated dt-schema, and also installed yamllint but I am not seeing 
-these errors, could you please let me know if I am missing anything 
-here.
+> On Tue, 2 Mar 2021 13:54:15 +0300
+> Ivan Uvarov <i.uvarov@cognitivepilot.com> wrote:
+> 
+> Hi Ivan,
+> 
+> many thanks for spending the time in piecing this together and caring
+> about upstreaming!
+> 
 
-Thanks,
-Satya Priya
+Many more thanks to you for helping me out with the process. I wouldn't
+have gotten anywhere near this far without your help.
+
+> 
+> Should be a TAB here.
+> 
+> And I don't know if this is just my client, but someone mangled equal
+> signs into "=3D" everywhere :-(
+> I am trying to ignore this for now ...
+> Can you force pure text email in Thunderbird? Or use git send-email?
+> 
+
+I was using Thunderbird's plain text mode when composing this; looks
+like it imposes its own modifications anyway. I've switched to
+Claws now, hopefully it'll handle the next iteration more
+gracefully.
+
+
+> > +&reg_dldo1 {
+> > +	regulator-always-on;
+> > +	regulator-min-microvolt =3D <3300000>;
+> > +	regulator-max-microvolt =3D <3300000>;
+> > +	regulator-name =3D "vcc-wifi-io";
+> > +};
+> > +
+> > +&reg_dldo4 {
+> > +	regulator-always-on;  
+> 
+> Does this really need to be always on? If it's just for SATA, I'd
+> expect this to be enabled by the driver when needed? As you correctly
+> do in the ahci node below.
+I'm not sure, to be honest. I haven't tested without it. I should
+probably try to.
+
+> > +	regulator-min-microvolt =3D <2500000>;
+> > +	regulator-max-microvolt =3D <2500000>;
+> > +	regulator-name =3D "vdd2v5-sata";  
+> 
+> Does this end prematurely here?
+
+It does. Looks like I deleted the last line of the file somehow while
+creating the patch. 
+
+
+> > +
+> > +&mmc0 {
+> > +	vmmc-supply =3D <&reg_dcdc1>;
+> > +	vqmmc-supply =3D <&reg_dcdc1>;
+> > +	bus-width =3D <4>;
+> > +	cd-gpios =3D <&pio 8 11 GPIO_ACTIVE_LOW>; // PI11
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&mmc1 {  
+> 
+> So this is the SDIO connector on the board, right? Which is just a set
+> of header pins? 
+Yes, that's it.
+
+> Not sure we should have it in here, then.
+OK.
+ 
+> What about MMC3, which is apparently connected to a microSD slot (TF
+> card in the schematic)?
+
+I never needed it, so never added it. Probably should.
+
+> 
+> > +	regulator-min-microvolt =3D <3300000>;
+> > +	regulator-max-microvolt =3D <3300000>;
+> > +	regulator-name =3D "vcc-wifi";
+> > +};
+> > +
+> > +&reg_dldo3 { // possibly unneeded  
+> 
+> If it's unneeded, you can drop it. If it turns out be needed later on,
+> we can always add it. Did the board work without it?
+> Did you try Wifi? We should not add untested features.
+
+WiFi does work without any hiccups on my board with this DTS. I haven't
+tested with the regulator disabled.
+
+> > +	// regulator-always-on;
+> > +	regulator-min-microvolt =3D <3300000>;
+> > +	regulator-max-microvolt =3D <3300000>;
+> > +	regulator-name =3D "vcc-wifi-2";
+> > +};
+> > +
+> > +&reg_eldo2 {
+> > +	regulator-always-on;  
+> 
+> This shouldn't be always on. I guess this AXP pin is connected to the
+> VDD-SATA pin on the SoC, so it just drives the integrated SATA PHY.
+> Which probably means that this node belong into the SoM .dtsi, as the
+> connection is on the SoM. You just reference it from the ahci node
+> here.
+> 
+> > +	regulator-min-microvolt =3D <1200000>;
+> > +	regulator-max-microvolt =3D <1200000>;
+> > +	regulator-name =3D "vdd1v2-sata";
+> > +};
+> > +
+> > +&reg_eldo3 {
+> > +	regulator-always-on;  
+> 
+> Again, why always on? Do you know where this is connected to?
+> If this is VCC_PE on the SoC, then I wonder if this should be moved to
+> the SoM .dtsi, with a range between 1.8V and 3.3V, since those are
+> valid input voltages for the VCC_PE pin. And then here you overwrite
+> this with 2.8V, as this is apparently used for the CSI connector on
+> the board, which seems to work on 2.8V.
+> But I am not sure if this is too much, and just having this node here
+> is sufficient.
+
+I'll look into both of those.
+
+> > +	regulator-min-microvolt =3D <2800000>;
+> > +	regulator-max-microvolt =3D <2800000>;
+> > +	regulator-name =3D "vcc-pe";
+> > +};
+> > +
+> > +&tcon_tv0 {
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&uart0 {
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&uart0_pb_pins>;
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&uart3 {  
+> 
+> Please add uart3 to the aliases section then.
+
+Sure. 
+
+I think I'll post a new version of the patch tomorrow, which should fix
+formatting and address the issues you've raised that can be fixed
+immediately without much further testing. It will also include the
+other uarts that are available on the devboard (2,4 and 7).
+
+
+Thank you for your assistance once more, you've been tremendously
+helpful. 
+
+
