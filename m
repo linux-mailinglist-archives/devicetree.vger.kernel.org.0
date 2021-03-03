@@ -2,91 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C9DC32C0A8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F33D732C0AB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386649AbhCCSpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:45:11 -0500
-Received: from mail-ej1-f42.google.com ([209.85.218.42]:42673 "EHLO
-        mail-ej1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1578002AbhCCSQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 13:16:15 -0500
-Received: by mail-ej1-f42.google.com with SMTP id c10so17551901ejx.9;
-        Wed, 03 Mar 2021 10:15:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=L75O0W+60sA8PCw5vctCVfCnPFx9Df6RaLcl8AjpdUk=;
-        b=KBTT0ez2c+18fHXUZ2+UWxOeMkeMa2GQ3BSjuMARJyu2Wl3wXelvn0g37uJwWuFbxq
-         40BW3YewtWd7oWmArWmVbOKxPkG2NKtAMBkwqfhgw7N9XYmXRZOb8WNMX66cVENpWfdP
-         ZqYIZAyIShYXnsks4tiAt2fpOwVtf+N7Xap3IJql/SgE2vcSE0ReInqJ8ndpMMDi/XAw
-         fAO5bK2SWOxkxysGrjTd/6rrrcWaeozHAV+lP7rz2t7YVXmL4c+BW0B5crUM7CT3jCVB
-         ymqxqg6NAInkqjR4/AYarA87mZ1icpSQDmW6sDAKZ2VMcayx+BtHiXdGlk/QFUBy6PFl
-         Q7CQ==
-X-Gm-Message-State: AOAM533LaoJ5IwhPEcsoEtk++OT6bVKjBkR3HoFRrMt0sIcSZ5UEWaYk
-        Ysd2rkmKXOac64A9mMs8S0E=
-X-Google-Smtp-Source: ABdhPJyv9ZHoKKrSfAYG3E0t2WiB0w2EQIFOB2iy2f5mHjXqT5rXzjkL15BWUuBoI/U9Tncs2D1Ixw==
-X-Received: by 2002:a17:906:4c56:: with SMTP id d22mr110677ejw.426.1614795332589;
-        Wed, 03 Mar 2021 10:15:32 -0800 (PST)
-Received: from [192.168.1.116] (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id t15sm19739654edc.34.2021.03.03.10.15.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Mar 2021 10:15:31 -0800 (PST)
-Subject: Re: [PATCH 03/11] arm64: dts: intel: socfpga: override clocks by
- label
-To:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>
-References: <20210210171823.333802-1-krzk@kernel.org>
- <20210210171823.333802-3-krzk@kernel.org>
-Cc:     devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        "Paul J. Murphy" <paul.j.murphy@intel.com>,
-        linux-kernel@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Message-ID: <e9a88bad-fb08-f028-bfe1-6d008dbfe1de@kernel.org>
-Date:   Wed, 3 Mar 2021 19:15:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S1386653AbhCCSpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:45:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51594 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1578569AbhCCSRi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 13:17:38 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6ABCE64EE4;
+        Wed,  3 Mar 2021 18:16:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614795417;
+        bh=AOrfOeNzmKqgCV3QhzN1PwHQin34TBisdVgEG/rfN5s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JU0c7LsMblIR5/z1TFN8se4jRW7FE3kakg1n9P4kbsLBCFjGXqHV6ug4bTktO4RZq
+         w4tNa3+4oSkml+MAwznFMbaNrrXyikantXWv7d0WndnhfhbVFat2dEfWC1yyU+Th5T
+         ynPRtt+JonwZAS21aGAn2OcTP4nOnvkC9KVlGBBKE88ckH7DJf6zkriAFHeM8ELNmp
+         MoxKjCIj/TEE7Rk18Z1fdbqXYEHy3TbfZGGq3uepxhxCjyOapHMi1sKuWjMelOiwEX
+         r51wZO44eldb++Q7itPvHz8IdYnuyt1fC7oPCkvnXp1nEcLPTvV2AHwnAAcfr6Qm18
+         JbEPWkrwnqRYQ==
+Date:   Wed, 3 Mar 2021 18:16:52 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Michael Ellerman <mpe@ellerman.id.au>, danielwa@cisco.com,
+        robh@kernel.org, daniel@gimpelevich.san-francisco.ca.us,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-arch@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] cmdline: Add generic function to build command
+ line.
+Message-ID: <20210303181651.GE19713@willie-the-truck>
+References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
+ <d8cf7979ad986de45301b39a757c268d9df19f35.1614705851.git.christophe.leroy@csgroup.eu>
+ <20210303172810.GA19713@willie-the-truck>
+ <a0cfef11-efba-2e5c-6f58-ed63a2c3bfa0@csgroup.eu>
+ <20210303174627.GC19713@willie-the-truck>
+ <dc6576ac-44ff-7db4-d718-7565b83f50b8@csgroup.eu>
 MIME-Version: 1.0
-In-Reply-To: <20210210171823.333802-3-krzk@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dc6576ac-44ff-7db4-d718-7565b83f50b8@csgroup.eu>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2021 18:18, Krzysztof Kozlowski wrote:
-> Using full paths to extend or override a device tree node is error
-> prone.  If there was a typo error, a new node will be created instead of
-> extending the existing node.  This will lead to run-time errors that
-> could be hard to detect.
+On Wed, Mar 03, 2021 at 06:57:09PM +0100, Christophe Leroy wrote:
+> Le 03/03/2021 à 18:46, Will Deacon a écrit :
+> > On Wed, Mar 03, 2021 at 06:38:16PM +0100, Christophe Leroy wrote:
+> > > Le 03/03/2021 à 18:28, Will Deacon a écrit :
+> > > > On Tue, Mar 02, 2021 at 05:25:17PM +0000, Christophe Leroy wrote:
+> > > > > This code provides architectures with a way to build command line
+> > > > > based on what is built in the kernel and what is handed over by the
+> > > > > bootloader, based on selected compile-time options.
+> > > > > 
+> > > > > Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> > > > > ---
+> > > > >    include/linux/cmdline.h | 62 +++++++++++++++++++++++++++++++++++++++++
+> > > > >    1 file changed, 62 insertions(+)
+> > > > >    create mode 100644 include/linux/cmdline.h
+> > > > > 
+> > > > > diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
+> > > > > new file mode 100644
+> > > > > index 000000000000..ae3610bb0ee2
+> > > > > --- /dev/null
+> > > > > +++ b/include/linux/cmdline.h
+> > > > > @@ -0,0 +1,62 @@
+> > > > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > > > > +#ifndef _LINUX_CMDLINE_H
+> > > > > +#define _LINUX_CMDLINE_H
+> > > > > +
+> > > > > +static __always_inline size_t cmdline_strlen(const char *s)
+> > > > > +{
+> > > > > +	const char *sc;
+> > > > > +
+> > > > > +	for (sc = s; *sc != '\0'; ++sc)
+> > > > > +		; /* nothing */
+> > > > > +	return sc - s;
+> > > > > +}
+> > > > > +
+> > > > > +static __always_inline size_t cmdline_strlcat(char *dest, const char *src, size_t count)
+> > > > > +{
+> > > > > +	size_t dsize = cmdline_strlen(dest);
+> > > > > +	size_t len = cmdline_strlen(src);
+> > > > > +	size_t res = dsize + len;
+> > > > > +
+> > > > > +	/* This would be a bug */
+> > > > > +	if (dsize >= count)
+> > > > > +		return count;
+> > > > > +
+> > > > > +	dest += dsize;
+> > > > > +	count -= dsize;
+> > > > > +	if (len >= count)
+> > > > > +		len = count - 1;
+> > > > > +	memcpy(dest, src, len);
+> > > > > +	dest[len] = 0;
+> > > > > +	return res;
+> > > > > +}
+> > > > 
+> > > > Why are these needed instead of using strlen and strlcat directly?
+> > > 
+> > > Because on powerpc (at least), it will be used in prom_init, it is very
+> > > early in the boot and KASAN shadow memory is not set up yet so calling
+> > > generic string functions would crash the board.
+> > 
+> > Hmm. We deliberately setup a _really_ early shadow on arm64 for this, can
+> > you not do something similar? Failing that, I think it would be better to
+> > offer the option for an arch to implement cmdline_*, but have then point to
+> > the normal library routines by default.
 > 
-> A mistyped label on the other hand, will cause a dtc compile error
-> (during build time).
+> I don't think it is possible to setup an earlier early shadow.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->   arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts   | 12 ++++--------
->   .../boot/dts/intel/socfpga_agilex_socdk_nand.dts     | 12 ++++--------
->   arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts      | 12 ++++--------
->   3 files changed, 12 insertions(+), 24 deletions(-)
+> At the point we are in prom_init, the code is not yet relocated at the
+> address it was linked for, and it is running with the MMU set by the
+> bootloader, I can't imagine being able to setup MMU entries for the early
+> shadow KASAN yet without breaking everything.
 
-Hi Arnd and Olof,
+That's very similar to us; we're not relocated, although we are at least
+in control of the MMU (which is using a temporary set of page-tables).
 
-There was no response from Intel SoCFPGA maintainers for the DTS 
-patches, so maybe you could take it directly? I can provide you pull 
-request with these, if that's preferred. They apply cleanly.
+> Is it really worth trying to point to the normal library routines by default
+> ? It is really only a few lines of code hence only not many bytes, and
+> anyway they are in __init section so they get discarded at the end.
 
-You could also take the dt-bindings 2/11 or it could go via Rob.
+I would prefer to use the normal routines by default and allow architectures
+to override them based on their needs, otherwise we'll end up trying to
+maintain a "lowest-common-dominator" set of string routines that can be
+safely run in whatever different constraints different architectures have.
 
-About the defconfig patch (1/11) I will work on it more and resend it 
-with your comments (you gave me review).
-
-Best regards,
-Krzysztof
+Will
