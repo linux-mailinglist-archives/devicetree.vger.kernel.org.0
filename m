@@ -2,134 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A389F32C081
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C93032C08C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579601AbhCCSbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:31:39 -0500
-Received: from m42-2.mailgun.net ([69.72.42.2]:16854 "EHLO m42-2.mailgun.net"
+        id S1579623AbhCCSbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34124 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1377849AbhCCMWp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 07:22:45 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1614774139; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=NfpLVRJ1cjniZUzy2hVNQJlJkBDYRURC6fUScWmDres=; b=jqLrsCm67syK9KhgewkilSlxJOcFDbL7pIeuteMByapOTVLIdLzDZcqbYo6wDwoB1pdAMAj5
- EpNJvHpS8E1uE2ZP/Tm1+iE2lywrh//ZbUFRvTIPW7ESoRFGv49GgVuOf1Phmn3Kb24nEzv2
- LT3yeZpqS2Et/qSVL3wrmpMN3dM=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 603f7f5a39ef3721140c3d18 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 03 Mar 2021 12:21:46
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 42200C433C6; Wed,  3 Mar 2021 12:21:46 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3BCC5C433C6;
-        Wed,  3 Mar 2021 12:21:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3BCC5C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Subject: [PATCH v2 14/14] arm64: dts: qcom: sc7280: Add rpmh power-domain node
-Date:   Wed,  3 Mar 2021 17:47:58 +0530
-Message-Id: <1614773878-8058-15-git-send-email-rnayak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1614773878-8058-1-git-send-email-rnayak@codeaurora.org>
-References: <1614773878-8058-1-git-send-email-rnayak@codeaurora.org>
+        id S234377AbhCCMsT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 07:48:19 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1396364ED4;
+        Wed,  3 Mar 2021 12:47:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614775651;
+        bh=nPhaVQlWGiOqRGSZBMc6cCnJ6Xmgmr0T0g4FiSqYVOw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tHXZnWwYrnXPKcd0bqnAPH+IaD4ICiamWSwHWTyJX5g0G0PMaVm35cWNrSsLw7UrI
+         H3sezHk9zAfc6BRNKGi8vrB7e+IrR0LurHXDNDX2MIyu5kFBifUU7raxel95aCVXM+
+         mN1VCZbKJSr2fmiy8DwHq9YeUl2+lz2Cf5i+oeedPlSO2NWMCGMHmPt32/FAm2XWcL
+         IXbpdfRdc9cUBcvKEgm44543hoZux9+DZH8e/uCeGiZTlOgr+kn1xgjtq580GzSri0
+         k1NmFXcHtet9nz32zyZss14XbWO2+XqgZbyUb+iQBjatlCE2Q8Giul/TnS5O83cufX
+         LrLu0fe15glEg==
+Date:   Wed, 3 Mar 2021 20:47:25 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Dima Azarkin <azdmg@outlook.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH] ARM: dts: imx6qdl-wandboard: add scl/sda gpios
+ definitions for i2c bus recovery
+Message-ID: <20210303124722.GF15865@dragon>
+References: <AM5PR0802MB2498F95537E1FF0E5DEB36BEA9B79@AM5PR0802MB2498.eurprd08.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM5PR0802MB2498F95537E1FF0E5DEB36BEA9B79@AM5PR0802MB2498.eurprd08.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT node for the rpmhpd power controller on SC7280 SoCs.
+On Sun, Jan 31, 2021 at 06:54:46PM +0300, Dima Azarkin wrote:
+> The i2c bus on imx6qdl-wandboard has intermittent issues where SDA can freeze
+> on low level at the end of transaction so the bus can no longer work. This
+> impacts reading of EDID data leading to incorrect TV resolution and no audio.
+> 
+> This scenario is improved by adding scl/sda gpios definitions to implement the
+> i2c bus recovery mechanism.
+> 
+> Signed-off-by: Dima Azarkin <azdmg@outlook.com>
 
-Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 47 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 06fbf2e..8af6d77 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/qcom,gcc-sc7280.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
- 
- / {
-@@ -543,6 +544,52 @@
- 					  <WAKE_TCS    3>,
- 					  <CONTROL_TCS 1>;
- 
-+			rpmhpd: power-controller {
-+				compatible = "qcom,sc7280-rpmhpd";
-+				#power-domain-cells = <1>;
-+				operating-points-v2 = <&rpmhpd_opp_table>;
-+
-+				rpmhpd_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					rpmhpd_opp_ret: opp1 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_RETENTION>;
-+					};
-+
-+					rpmhpd_opp_low_svs: opp2 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+					};
-+
-+					rpmhpd_opp_svs: opp3 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+					};
-+
-+					rpmhpd_opp_svs_l1: opp4 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+					};
-+
-+					rpmhpd_opp_svs_l2: opp5 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-+					};
-+
-+					rpmhpd_opp_nom: opp6 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-+					};
-+
-+					rpmhpd_opp_nom_l1: opp7 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-+					};
-+
-+					rpmhpd_opp_turbo: opp8 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
-+					};
-+
-+					rpmhpd_opp_turbo_l1: opp9 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
-+					};
-+				};
-+			};
-+
- 			rpmhcc: clock-controller {
- 				compatible = "qcom,sc7280-rpmh-clk";
- 				clocks = <&xo_board>;
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
-
+Applied, thanks.
