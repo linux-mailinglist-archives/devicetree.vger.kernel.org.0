@@ -2,139 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF0E232C00E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35A1332C022
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579352AbhCCSbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:31:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46164 "EHLO
+        id S1579386AbhCCSbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350426AbhCCLAh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 06:00:37 -0500
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 561FFC06178B;
-        Wed,  3 Mar 2021 02:59:56 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4Dr9qH5dqjz1rx7x;
-        Wed,  3 Mar 2021 11:54:19 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4Dr9qH326vz1qqkR;
-        Wed,  3 Mar 2021 11:54:19 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id v6gy5bSX7M2G; Wed,  3 Mar 2021 11:54:16 +0100 (CET)
-X-Auth-Info: roSn6tOU3w5pXrcc+IARpM25f0IDnV9/nFeCPIcD4aU=
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233578AbhCCLmu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 06:42:50 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC124C061756;
+        Wed,  3 Mar 2021 03:40:17 -0800 (PST)
+Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:4cb:a870:2035:1dcd:21c7:b3af])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed,  3 Mar 2021 11:54:16 +0100 (CET)
-Subject: Re: [PATCH v5 00/14] Add BLK_CTL support for i.MX8MP
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>, pete.zhang@nxp.com,
-        Claudius Heine <ch@denx.de>
-References: <1604402306-5348-1-git-send-email-abel.vesa@nxp.com>
- <20210303104719.74guq4bfm75dyzvj@fsr-ub1664-175>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <70bac3c5-4ccc-b9dd-05e8-a278a0650601@denx.de>
-Date:   Wed, 3 Mar 2021 11:54:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        (Authenticated sender: benjamin.gaignard)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 4D6FE1F45C0C;
+        Wed,  3 Mar 2021 11:40:02 +0000 (GMT)
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, peng.fan@nxp.com,
+        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH v4 00/11]  Add HANTRO G2/HEVC decoder support for IMX8MQ
+Date:   Wed,  3 Mar 2021 12:39:41 +0100
+Message-Id: <20210303113952.178519-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210303104719.74guq4bfm75dyzvj@fsr-ub1664-175>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/3/21 11:47 AM, Abel Vesa wrote:
-> On 20-11-03 13:18:12, Abel Vesa wrote:
->> The BLK_CTL according to HW design is basically the wrapper of the entire
->> function specific group of IPs and holds GPRs that usually cannot be placed
->> into one specific IP from that group. Some of these GPRs are used to control
->> some clocks, other some resets, others some very specific function that does
->> not fit into clocks or resets. Since the clocks are registered using the i.MX
->> clock subsystem API, the driver is placed into the clock subsystem, but it
->> also registers the resets. For the other functionalities that other GPRs might
->> have, the syscon is used.
->>
-> 
-> This approach seems to be introducing a possible ABBA deadlock due to
-> the core clock and genpd locking. Here is a backtrace I got from Pete
-> Zhang (he reported the issue on the internal mailing list):
-> 
-> [   11.667711][  T108] -> #1 (&genpd->mlock){+.+.}-{3:3}:
-> [   11.675041][  T108]        __lock_acquire+0xae4/0xef8
-> [   11.680093][  T108]        lock_acquire+0xfc/0x2f8
-> [   11.684888][  T108]        __mutex_lock+0x90/0x870
-> [   11.689685][  T108]        mutex_lock_nested+0x44/0x50
-> [   11.694826][  T108]        genpd_lock_mtx+0x18/0x24
-> [   11.699706][  T108]        genpd_runtime_resume+0x90/0x214 (hold genpd->mlock)
-> [   11.705194][  T108]        __rpm_callback+0x80/0x2c0
-> [   11.710160][  T108]        rpm_resume+0x468/0x650
-> [   11.714866][  T108]        __pm_runtime_resume+0x60/0x88
-> [   11.720180][  T108]        clk_pm_runtime_get+0x28/0x9c
-> [   11.725410][  T108]        clk_disable_unused_subtree+0x8c/0x144
-> [   11.731420][  T108]        clk_disable_unused_subtree+0x124/0x144
-> [   11.737518][  T108]        clk_disable_unused+0xa4/0x11c (hold prepare_lock)
-> [   11.742833][  T108]        do_one_initcall+0x98/0x178
-> [   11.747888][  T108]        do_initcall_level+0x9c/0xb8
-> [   11.753028][  T108]        do_initcalls+0x54/0x94
-> [   11.757736][  T108]        do_basic_setup+0x24/0x30
-> [   11.762614][  T108]        kernel_init_freeable+0x70/0xa4
-> [   11.768014][  T108]        kernel_init+0x14/0x18c
-> [   11.772722][  T108]        ret_from_fork+0x10/0x18
-> 
-> [   11.777512][  T108] -> #0 (prepare_lock){+.+.}-{3:3}:
-> [   11.784749][  T108]        check_noncircular+0x134/0x13c
-> [   11.790064][  T108]        validate_chain+0x590/0x2a04
-> [   11.795204][  T108]        __lock_acquire+0xae4/0xef8
-> [   11.800258][  T108]        lock_acquire+0xfc/0x2f8
-> [   11.805050][  T108]        __mutex_lock+0x90/0x870
-> [   11.809841][  T108]        mutex_lock_nested+0x44/0x50
-> [   11.814983][  T108]        clk_unprepare+0x5c/0x100 ((hold prepare_lock))
-> [   11.819864][  T108]        imx8m_pd_power_off+0xac/0x110
-> [   11.825179][  T108]        genpd_power_off+0x1b4/0x2dc
-> [   11.830318][  T108]        genpd_power_off_work_fn+0x38/0x58 (hold genpd->mlock)
-> [   11.835981][  T108]        process_one_work+0x270/0x444
-> [   11.841208][  T108]        worker_thread+0x280/0x4e4
-> [   11.846176][  T108]        kthread+0x13c/0x14
-> [   11.850621][  T108]        ret_from_fork+0x10/0x18
-> 
-> Now, this has been reproduced only on the NXP internal tree, but I think
-> it is pretty obvious this could happen in upstream too, with this
-> patchset applied.
-> 
-> First, my thought was to change the prepare_lock/enable_lock in clock
-> core, from a global approach to a per clock basis. But that doesn't
-> actually fix the issue.
-> 
-> The usecase seen above is due to clk_disable_unused, but the same could
-> happen when a clock consumer calls prepare/unprepare on a clock.
-> 
-> I guess the conclusion is that the current state of the clock core and
-> genpd implementation does not support a usecase where a clock controller
-> has a PD which in turn uses another clock (from another clock controller).
-> 
-> Jacky, Pete, did I miss anything here ?
+The IMX8MQ got two VPUs but until now only G1 has been enabled.
+This series aim to add the second VPU (aka G2) and provide basic 
+HEVC decoding support.
 
-Just for completeness, I have a feeling I already managed to trigger 
-this and discussed this with Lucas before, so this concern is certainly 
-valid.
+To be able to decode HEVC it is needed to add/update some of the
+structures in the uapi. In addition of them one HANTRO dedicated
+control is required to inform the driver of the numbre of bits to skip
+at the beginning of the slice header.
+The hardware require to allocate few auxiliary buffers to store the
+references frame or tile size data.
+
+The driver has been tested with fluster test suite stream.
+For example with this command: ./fluster.py run -ts JCT-VC-HEVC_V1 -d GStreamer-H.265-V4L2SL-Gst1.0
+ 
+This series depends of the reset rework posted here: https://www.spinics.net/lists/arm-kernel/msg878440.html
+
+Finally the both VPUs will have a node the device-tree and be
+independent from v4l2 point of view.
+
+A branch with all the dev is available here:
+https://gitlab.collabora.com/benjamin.gaignard/for-upstream/-/commits/upstream_g2_v4
+
+version 4:
+- Split the changes in hevc controls in 2 commits to make them easier to
+  review.
+- Change hantro_codec_ops run() prototype to return errors   
+- Hantro v4l2 dedicated control is now only an integer
+- rebase on top of VPU reset changes posted here:
+  https://www.spinics.net/lists/arm-kernel/msg878440.html
+- Various fix from previous remarks
+- Limit the modifications in API to what the driver needs
+
+version 3:
+- Fix typo in Hantro v4l2 dedicated control
+- Add documentation for the new structures and fields
+- Rebased on top of media_tree for-linus-5.12-rc1 tag
+
+version 2:
+- remove all change related to scaling
+- squash commits to a coherent split
+- be more verbose about the added fields
+- fix the comments done by Ezequiel about dma_alloc_coherent usage
+- fix Dan's comments about control copy, reverse the test logic
+in tile_buffer_reallocate, rework some goto and return cases.
+- be more verbose about why I change the bindings
+- remove all sign-off expect mime since it is confusing
+- remove useless clocks in VPUs nodes
+
+Benjamin
+
+Benjamin Gaignard (11):
+  media: hevc: Add fields and flags for hevc PPS
+  media: hevc: Add decode params control
+  media: hantro: change hantro_codec_ops run prototype to return errors
+  media: hantro: Define HEVC codec profiles and supported features
+  media: hantro: Add a field to distinguish the hardware versions
+  media: uapi: Add a control for HANTRO driver
+  media: hantro: Introduce G2/HEVC decoder
+  media: hantro: handle V4L2_PIX_FMT_HEVC_SLICE control
+  media: hantro: IMX8M: add variant for G2/HEVC codec
+  dt-bindings: media: nxp,imx8mq-vpu: Update bindings
+  arm64: dts: imx8mq: Add node to G2 hardware
+
+ .../bindings/media/nxp,imx8mq-vpu.yaml        |  46 +-
+ .../userspace-api/media/drivers/hantro.rst    |  10 +
+ .../userspace-api/media/drivers/index.rst     |   1 +
+ .../media/v4l/ext-ctrls-codec.rst             | 108 +++-
+ .../media/v4l/vidioc-queryctrl.rst            |   6 +
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  41 +-
+ drivers/media/v4l2-core/v4l2-ctrls.c          |  26 +-
+ drivers/staging/media/hantro/Makefile         |   2 +
+ drivers/staging/media/hantro/hantro.h         |  34 +-
+ drivers/staging/media/hantro/hantro_drv.c     | 118 +++-
+ .../staging/media/hantro/hantro_g1_h264_dec.c |   6 +-
+ .../media/hantro/hantro_g1_mpeg2_dec.c        |   4 +-
+ .../staging/media/hantro/hantro_g1_vp8_dec.c  |   6 +-
+ .../staging/media/hantro/hantro_g2_hevc_dec.c | 587 ++++++++++++++++++
+ drivers/staging/media/hantro/hantro_g2_regs.h | 198 ++++++
+ .../staging/media/hantro/hantro_h1_jpeg_enc.c |   4 +-
+ drivers/staging/media/hantro/hantro_hevc.c    | 321 ++++++++++
+ drivers/staging/media/hantro/hantro_hw.h      |  69 +-
+ .../staging/media/hantro/hantro_postproc.c    |  17 +
+ drivers/staging/media/hantro/hantro_v4l2.c    |   1 +
+ drivers/staging/media/hantro/imx8m_vpu_hw.c   |  95 ++-
+ .../media/hantro/rk3399_vpu_hw_jpeg_enc.c     |   4 +-
+ .../media/hantro/rk3399_vpu_hw_mpeg2_dec.c    |   4 +-
+ .../media/hantro/rk3399_vpu_hw_vp8_dec.c      |   6 +-
+ drivers/staging/media/sunxi/cedrus/cedrus.c   |   6 +
+ drivers/staging/media/sunxi/cedrus/cedrus.h   |   1 +
+ .../staging/media/sunxi/cedrus/cedrus_dec.c   |   2 +
+ .../staging/media/sunxi/cedrus/cedrus_h265.c  |   6 +-
+ include/media/hevc-ctrls.h                    |  33 +-
+ include/uapi/linux/v4l2-controls.h            |   5 +
+ 30 files changed, 1675 insertions(+), 92 deletions(-)
+ create mode 100644 Documentation/userspace-api/media/drivers/hantro.rst
+ create mode 100644 drivers/staging/media/hantro/hantro_g2_hevc_dec.c
+ create mode 100644 drivers/staging/media/hantro/hantro_g2_regs.h
+ create mode 100644 drivers/staging/media/hantro/hantro_hevc.c
+
+-- 
+2.25.1
+
