@@ -2,162 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77FAF32C00B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE4D32C018
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579345AbhCCSbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:31:04 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:59888 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1356705AbhCCKsJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 05:48:09 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A7E602004CE;
-        Wed,  3 Mar 2021 11:47:19 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 972D12004BC;
-        Wed,  3 Mar 2021 11:47:19 +0100 (CET)
-Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 815FA20308;
-        Wed,  3 Mar 2021 11:47:19 +0100 (CET)
-Date:   Wed, 3 Mar 2021 12:47:19 +0200
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>, pete.zhang@nxp.com,
-        marex@denx.de
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
+        id S1579368AbhCCSbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51674 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242079AbhCCL0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 06:26:22 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7A6C061794
+        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 02:54:08 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id d11so13818736plo.8
+        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 02:54:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=17qLkzVR4fDScPfY7vZjF5kcukiEHoAp19Fn4XkGuPo=;
+        b=u/CYVeOPKhDtW43/XVvuz7gk0ggCNlXYO/BohYk/i1Shlw8TnXQ8mPpl7cncGlo0qd
+         JH214uUjMbyZuFyBP/T3DsBTPOqdjdvZa445Nojt9SVx+7UwdW/pggOapqTesPf1RgTL
+         GB1916qdkRtWPfrOZ9JHRRHm6+Ri+rgizJzdsTtlnBS8SpM5C5eTxL97oa3m+uv6V6Cw
+         TYWNNPByPf5bP9t9Zj+WpQ7gl1H7up7IWrkzZZUaF4HMxl4/6UJ1Bv0wm7bT9piwN6UV
+         StCMWw0BGvH9f2WaQsnf40E6OUIzafuMudkNhgAzSM5cLh01ajDOwuE6Fk/NUJgnDfaF
+         zWQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=17qLkzVR4fDScPfY7vZjF5kcukiEHoAp19Fn4XkGuPo=;
+        b=tu3dSbQK8TUR2K4u7P5Zo+uH7DmYhVqCH/onebijV/hnCuUoI+srh7kb6nFUPdvbVX
+         fYuq/nJjIdj9Q/GgmaZgyK7xJ/JqhEmlGMYb0CEsB/pBCIK6UgOA9dBrmDX5b0MU60pQ
+         BXeFZCA+0Q4bla/Tc4GhcvB12VHJ6AVehjxkuZSN2E2Zdjqhmmi2leul8wXnmPoVne2i
+         cUXk0V+PcXInAnvOF9xtAhS/8785eEmP4CIEmND/JmWvWVUdS/+VJkZRzShMGrYW2ZO+
+         L6zpczeit+Mnfe8e9DbFqya+dqx4cYAHH/rorOpwy4mO3PndyVbaJvudl9sB4+y1i9a9
+         xS1Q==
+X-Gm-Message-State: AOAM5308Q2wh2p3GTEyp2n2gRI3s4JW7QEoh1QNu2lyzMxhcv3xxDzeI
+        t8oiyx4NQfgaGLFZU4DK4QI8zg==
+X-Google-Smtp-Source: ABdhPJzhVZkcz7rWsr6j7MUmAYxKMm1V1EPTGHBCQ6bpz6KHLvxj7xlfX+AsSykXzna+hQyUBcaAtA==
+X-Received: by 2002:a17:90a:be09:: with SMTP id a9mr9023080pjs.219.1614768847836;
+        Wed, 03 Mar 2021 02:54:07 -0800 (PST)
+Received: from localhost ([122.171.124.15])
+        by smtp.gmail.com with ESMTPSA id b26sm20454717pfo.1.2021.03.03.02.54.06
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Mar 2021 02:54:07 -0800 (PST)
+Date:   Wed, 3 Mar 2021 16:24:04 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v5 00/14] Add BLK_CTL support for i.MX8MP
-Message-ID: <20210303104719.74guq4bfm75dyzvj@fsr-ub1664-175>
-References: <1604402306-5348-1-git-send-email-abel.vesa@nxp.com>
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kbuild <linux-kbuild@vger.kernel.org>
+Subject: Re: [PATCH V7 4/6] kbuild: Add support to build overlays (%.dtbo)
+Message-ID: <20210303105404.w2nramurt5teuvpd@vireshk-i7>
+References: <434ba2467dd0cd011565625aeb3450650afe0aae.1611904394.git.viresh.kumar@linaro.org>
+ <CAMuHMdVp0vGMqoEoP9A7Y7-ph-DYUWdddtChdq_eZcROYTBMHg@mail.gmail.com>
+ <20210205092507.fdxotdjlq5rjs2yh@vireshk-i7>
+ <CAMuHMdWUMcMcJxnC+oML8P0+r72_+d6RWGY50dOWCUECdJGWPA@mail.gmail.com>
+ <20210205095545.woevnkxg3ar7ctys@vireshk-i7>
+ <CAMuHMdXKT3LD3ojMJEg-oHsEKO5TN5P1BTJMyf2fYkhnC8PU=Q@mail.gmail.com>
+ <20210205210814.GA3707622@robh.at.kernel.org>
+ <02728dac-5666-9c2b-bd46-9c2eabbb2ed8@gmail.com>
+ <20210303052125.uh32ndnu5d6mem7c@vireshk-i7>
+ <CAMuHMdVJYNf+QQNPSmBvt3njEECY1SJHA9jLAESrTnVuD0cfWA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1604402306-5348-1-git-send-email-abel.vesa@nxp.com>
-User-Agent: NeoMutt/20180622
-X-Virus-Scanned: ClamAV using ClamSMTP
+In-Reply-To: <CAMuHMdVJYNf+QQNPSmBvt3njEECY1SJHA9jLAESrTnVuD0cfWA@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-11-03 13:18:12, Abel Vesa wrote:
-> The BLK_CTL according to HW design is basically the wrapper of the entire
-> function specific group of IPs and holds GPRs that usually cannot be placed
-> into one specific IP from that group. Some of these GPRs are used to control
-> some clocks, other some resets, others some very specific function that does
-> not fit into clocks or resets. Since the clocks are registered using the i.MX
-> clock subsystem API, the driver is placed into the clock subsystem, but it
-> also registers the resets. For the other functionalities that other GPRs might
-> have, the syscon is used.
+On 03-03-21, 11:44, Geert Uytterhoeven wrote:
+> Hi Viresh,
 > 
-
-This approach seems to be introducing a possible ABBA deadlock due to
-the core clock and genpd locking. Here is a backtrace I got from Pete
-Zhang (he reported the issue on the internal mailing list):
-
-[   11.667711][  T108] -> #1 (&genpd->mlock){+.+.}-{3:3}:
-[   11.675041][  T108]        __lock_acquire+0xae4/0xef8
-[   11.680093][  T108]        lock_acquire+0xfc/0x2f8
-[   11.684888][  T108]        __mutex_lock+0x90/0x870
-[   11.689685][  T108]        mutex_lock_nested+0x44/0x50
-[   11.694826][  T108]        genpd_lock_mtx+0x18/0x24
-[   11.699706][  T108]        genpd_runtime_resume+0x90/0x214 (hold genpd->mlock)
-[   11.705194][  T108]        __rpm_callback+0x80/0x2c0
-[   11.710160][  T108]        rpm_resume+0x468/0x650
-[   11.714866][  T108]        __pm_runtime_resume+0x60/0x88
-[   11.720180][  T108]        clk_pm_runtime_get+0x28/0x9c
-[   11.725410][  T108]        clk_disable_unused_subtree+0x8c/0x144
-[   11.731420][  T108]        clk_disable_unused_subtree+0x124/0x144
-[   11.737518][  T108]        clk_disable_unused+0xa4/0x11c (hold prepare_lock)
-[   11.742833][  T108]        do_one_initcall+0x98/0x178
-[   11.747888][  T108]        do_initcall_level+0x9c/0xb8
-[   11.753028][  T108]        do_initcalls+0x54/0x94
-[   11.757736][  T108]        do_basic_setup+0x24/0x30
-[   11.762614][  T108]        kernel_init_freeable+0x70/0xa4
-[   11.768014][  T108]        kernel_init+0x14/0x18c
-[   11.772722][  T108]        ret_from_fork+0x10/0x18
-
-[   11.777512][  T108] -> #0 (prepare_lock){+.+.}-{3:3}:
-[   11.784749][  T108]        check_noncircular+0x134/0x13c
-[   11.790064][  T108]        validate_chain+0x590/0x2a04
-[   11.795204][  T108]        __lock_acquire+0xae4/0xef8
-[   11.800258][  T108]        lock_acquire+0xfc/0x2f8
-[   11.805050][  T108]        __mutex_lock+0x90/0x870
-[   11.809841][  T108]        mutex_lock_nested+0x44/0x50
-[   11.814983][  T108]        clk_unprepare+0x5c/0x100 ((hold prepare_lock))
-[   11.819864][  T108]        imx8m_pd_power_off+0xac/0x110
-[   11.825179][  T108]        genpd_power_off+0x1b4/0x2dc
-[   11.830318][  T108]        genpd_power_off_work_fn+0x38/0x58 (hold genpd->mlock)
-[   11.835981][  T108]        process_one_work+0x270/0x444
-[   11.841208][  T108]        worker_thread+0x280/0x4e4
-[   11.846176][  T108]        kthread+0x13c/0x14
-[   11.850621][  T108]        ret_from_fork+0x10/0x18
-
-Now, this has been reproduced only on the NXP internal tree, but I think
-it is pretty obvious this could happen in upstream too, with this
-patchset applied.
-
-First, my thought was to change the prepare_lock/enable_lock in clock
-core, from a global approach to a per clock basis. But that doesn't
-actually fix the issue.
-
-The usecase seen above is due to clk_disable_unused, but the same could
-happen when a clock consumer calls prepare/unprepare on a clock.
-
-I guess the conclusion is that the current state of the clock core and
-genpd implementation does not support a usecase where a clock controller
-has a PD which in turn uses another clock (from another clock controller).
-
-Jacky, Pete, did I miss anything here ?
-
-> Changes since v4:
->  * added back the bus_blk_clk in the imx8mp blk_ctl driver (media_blk_ctl)
->  * added the R-b tag from Rob to the documentation patch
+> On Wed, Mar 3, 2021 at 6:21 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > On 24-02-21, 19:32, Frank Rowand wrote:
+> > > I overlooked this and mistakenly thought that the move to .dtbo also
+> > > involved changing to .dtso.  My bad.
+> > >
+> > > My favorite color here is to use .dtso for the source file that will
+> > > be compiled to create a .dtbo.
+> > >
+> > > Linus has already accepted patch 4/6 to 5.12-rc1, so changing to .dtso
+> > > will require another patch.
+> >
+> > Looks like this is what many people desire, lets do it and make it a
+> > standard even if it wasn't followed earlier.
+> >
+> > What about this ?
 > 
-> Abel Vesa (14):
->   dt-bindings: clocks: imx8mp: Rename audiomix ids clocks to
->     audio_blk_ctl
->   dt-bindings: reset: imx8mp: Add audio blk_ctl reset IDs
->   dt-bindings: clock: imx8mp: Add ids for the audio shared gate
->   dt-bindings: clock: imx8mp: Add media blk_ctl clock IDs
->   dt-bindings: reset: imx8mp: Add media blk_ctl reset IDs
->   dt-bindings: clock: imx8mp: Add hdmi blk_ctl clock IDs
->   dt-bindings: reset: imx8mp: Add hdmi blk_ctl reset IDs
->   clk: imx8mp: Add audio shared gate
->   Documentation: bindings: clk: Add bindings for i.MX BLK_CTL
->   clk: imx: Add generic blk-ctl driver
->   clk: imx: Add blk-ctl driver for i.MX8MP
->   arm64: dts: imx8mp: Add audio_blk_ctl node
->   arm64: dts: imx8mp: Add media_blk_ctl node
->   arm64: dts: imx8mp: Add hdmi_blk_ctl node
+> Thanks, looks good to me, and works for me, so
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Thanks.
+
+> > --- a/scripts/Makefile.lib
+> > +++ b/scripts/Makefile.lib
+> > @@ -337,7 +337,7 @@ $(obj)/%.dtb.S: $(obj)/%.dtb FORCE
+> >
+> >  quiet_cmd_dtc = DTC     $@
+> >  cmd_dtc = $(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
+> > -       $(DTC) -O $(patsubst .%,%,$(suffix $@)) -o $@ -b 0 \
+> > +       $(DTC) -I dts -O $(patsubst .%,%,$(suffix $@)) -o $@ -b 0 \
+> >                 $(addprefix -i,$(dir $<) $(DTC_INCLUDE)) $(DTC_FLAGS) \
+> >                 -d $(depfile).dtc.tmp $(dtc-tmp) ; \
+> >         cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
+> > @@ -348,6 +348,9 @@ $(obj)/%.dtb: $(src)/%.dts $(DTC) FORCE
+> >  $(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
+> >         $(call if_changed_dep,dtc)
+> >
+> > +$(obj)/%.dtbo: $(src)/%.dtso $(DTC) FORCE
+> > +       $(call if_changed_dep,dtc)
+> > +
+> >  overlay-y := $(addprefix $(obj)/, $(overlay-y))
+> >
+> >  quiet_cmd_fdtoverlay = DTOVL   $@
+> > @@ -373,6 +376,9 @@ endef
+> >  $(obj)/%.dt.yaml: $(src)/%.dts $(DTC) $(DT_TMP_SCHEMA) FORCE
+> >         $(call if_changed_rule,dtc,yaml)
+> >
+> > +$(obj)/%.dt.yaml: $(src)/%.dtso $(DTC) $(DT_TMP_SCHEMA) FORCE
 > 
->  .../devicetree/bindings/clock/fsl,imx-blk-ctl.yaml |  60 ++++
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi          |  37 +++
->  drivers/clk/imx/Makefile                           |   2 +-
->  drivers/clk/imx/clk-blk-ctl-imx8mp.c               | 317 +++++++++++++++++++++
->  drivers/clk/imx/clk-blk-ctl.c                      | 302 ++++++++++++++++++++
->  drivers/clk/imx/clk-blk-ctl.h                      |  80 ++++++
->  drivers/clk/imx/clk-imx8mp.c                       |  12 +-
->  include/dt-bindings/clock/imx8mp-clock.h           | 200 +++++++++----
->  include/dt-bindings/reset/imx8mp-reset.h           |  45 +++
->  9 files changed, 992 insertions(+), 63 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml
->  create mode 100644 drivers/clk/imx/clk-blk-ctl-imx8mp.c
->  create mode 100644 drivers/clk/imx/clk-blk-ctl.c
->  create mode 100644 drivers/clk/imx/clk-blk-ctl.h
+> I'm wondering if "dt.yaml" should be changed to "dto.yaml" (here and in
+> the existing rule earlier in Makefile.lib), to avoid issues if both foo.dts and
+> foo.dtso exist? Unlikely, but it might happen...
+
+I will let Rob answer that :)
+
+> > I had to keep the original line as is:
+> >
+> >  $(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
+> >
+> > to support the unittest stuff as there are no dtso files there. There
+> > are few things we can do here:
+> >
+> > - Don't follow the dtso/dtbo convention for unittest, build files as
+> >   dtb only and everything will continue to work I suppose as
+> >   fdtoverlay won't complain.
+> >
+> > - Keep the above line in Makefile, this doesn't sound right, isn't it
+> >   ?
+> >
+> > - Make .dts links for unittest file, maybe from the Makefile itself.
+> >
+> > - Something else ?
 > 
-> -- 
-> 2.7.4
-> 
+> Rename unittest .dts files to .dtso where applicable?
+
+They are used for some runtime tests, we are reusing them to do this
+testing as well, so renaming them is out of the question I believe.
+
+-- 
+viresh
