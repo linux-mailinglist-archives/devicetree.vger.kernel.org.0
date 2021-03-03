@@ -2,111 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F8BA32BFF1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B622B32BFEE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579295AbhCCSay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:30:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37810 "EHLO
+        id S1579289AbhCCSax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:30:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1842954AbhCCKW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 05:22:59 -0500
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C63ADC06178A
-        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 00:21:28 -0800 (PST)
-Received: by mail-pg1-x534.google.com with SMTP id x29so7551106pgk.6
-        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 00:21:28 -0800 (PST)
+        with ESMTP id S1842935AbhCCKWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 05:22:42 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0181BC061356;
+        Wed,  3 Mar 2021 00:28:46 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id d3so35729666lfg.10;
+        Wed, 03 Mar 2021 00:28:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=5sgzs+e2k+RgTtqJplWFR6KEm78SgZsm88oW5JzXnRk=;
-        b=Gsh5aV+FHnmKZJ7JbbY6hJOLx1kU0QPS/64NpmYMgkKRUjfeKdK8rR7Tz03hZ4xIOe
-         WIsEzbhGzKOUdvlB8rscszrMSYgPhidSFK6E3q6aAods6EOnKRn2BLFGsaFmiJWU2GDK
-         +nRtEB8GzY9NirzzrljR/cWUXKjbduPs/18lE=
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Ib2TgD5LoGzEOYOzBLqBPjEaDbQedhA/DCVHfBWRCxM=;
+        b=h2ZFm53/uMkUZaIMF16VaaI22yjZ3lsf5bqyAoveT937pPEp2dj85/2eEFzK/+d/uT
+         NOkPQRKQZnnf+HmFa4HJeVolycoXP/cFFwI+SbCllFFuvhyU8uJYxVtg1gQSma703P/R
+         vBWG4WQvZ6f48lT9u00r6irJUSEcagE5pEoxOikqmUf5z9jKORZ36aKNbzly67hUSB1j
+         pji5kRLXK3bHo8CUFnpAM5OfGU10ws2zWaR2aZtTKfbpoi27MhOmhXT7PalZ+bFEG9GR
+         n02UkdnTaojXDKznDb65VfgO7SyPj0gC0EWZawtJMtFDfDqqqAFd87vNrFo5ZbW0QJ8E
+         n28A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=5sgzs+e2k+RgTtqJplWFR6KEm78SgZsm88oW5JzXnRk=;
-        b=X1bLpo/J6QtyujCNe3ZxOTx7V6QW6cfM4m22NWz7JOQQkQXU2CmONe8IndbTYzqv4o
-         X+oj7C1u+HBWHjHxl4N+SRqPNhDyPhpQ3rZfJrwpkWYqCRCV2S1c5yrZmK2uaugy46Al
-         xkDeMLkEJK/X83rZxsY6TQqeAkvFaoiv1wy1ML+QiTfOyCLKhiTXHkAFABHoMolnFPm5
-         lqVoXwpn8I0fd8t3jOxbnr4/pFHVnKZARu1b/OguwREIxV7TF9g7zESbGleFnzm8P4kH
-         tJjL4MvPClFNh5Kbey7eBUh30wNL7sFjcJLKiIFsSoUiYW8hq12pXATYhRDSSo7DBR3C
-         hMkw==
-X-Gm-Message-State: AOAM532UXEDbZkkvvW3RMFz3+OcegxOwtQS+zgiJxgstMw00mWZSx5Qt
-        ppTQOAdg8PBGbLIjlGm4uAQGRA==
-X-Google-Smtp-Source: ABdhPJzjVSYkQQnQXjf65ZJvtnHkb8n8lOPDn88s8QzhuX1Q+AGEXMCx5CKjZ7KQJh3JojpQLon70Q==
-X-Received: by 2002:a63:dc50:: with SMTP id f16mr6809504pgj.16.1614759688410;
-        Wed, 03 Mar 2021 00:21:28 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:2510:ab07:78a:7d78])
-        by smtp.gmail.com with ESMTPSA id q15sm6726694pje.28.2021.03.03.00.21.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 00:21:27 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Ib2TgD5LoGzEOYOzBLqBPjEaDbQedhA/DCVHfBWRCxM=;
+        b=D1zqVrsjNt7xJYJA1NLykIiz3lmld4KJaXGObqyhVi2SJRgNuzn1CbRy3BLLDxty6r
+         IbjrLUFDcRLwgbnxGPllA0JdrpetSeUeqBretyePy0NgY9Fxcb3CEHBkIDypK1SdR8y5
+         DbLGM6zYyYMziDBRkzU+fc6eJLZSsLMIU9wnSIczZW6UcMrABsfP8/O7GusXiSLZMrbB
+         l88tTZAPfP80Hax6zCzyJqsRn3/c/eSj1gVSpwp3mQ37XVrvMq9x8uNmr5AcrEBhIsd8
+         JIaOBlzFfl/CeYU9Ij08IVASTRN0Zas8tnaQJGr37ifTEI2XXSddt51PXe+5qpYp7nij
+         o7kQ==
+X-Gm-Message-State: AOAM5316PslROQs2AC5f9xOCPfsFwMsIE2iM7imdcPW/n+xjtjtUlotI
+        NaamdFq6JQD6KI44iIyM5q2Zv/f181Q=
+X-Google-Smtp-Source: ABdhPJzdo3EZD4OA6XpZETK1794bIMLnAyMAhAQ3I/atDvFI3Ud5c2mLqDPfih8Lyw8AbxoS403cRQ==
+X-Received: by 2002:a05:6512:a8e:: with SMTP id m14mr4917828lfu.641.1614760125381;
+        Wed, 03 Mar 2021 00:28:45 -0800 (PST)
+Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.googlemail.com with ESMTPSA id p13sm3161447ljj.49.2021.03.03.00.28.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Mar 2021 00:28:44 -0800 (PST)
+Subject: Re: [PATCH v1 5/5] ASoC: tegra30: i2s: Add reset control
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Fertser <fercerpav@gmail.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210302112123.24161-1-digetx@gmail.com>
+ <20210302112123.24161-6-digetx@gmail.com>
+Message-ID: <cbb1f0d4-ddc5-733d-896d-dd76ce01ca69@gmail.com>
+Date:   Wed, 3 Mar 2021 11:28:44 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <f58070ee-ff00-f8c5-6459-782562e903e5@codeaurora.org>
-References: <1613114930-1661-1-git-send-email-rnayak@codeaurora.org> <1613114930-1661-7-git-send-email-rnayak@codeaurora.org> <161406618557.1254594.15985584772106947706@swboyd.mtv.corp.google.com> <f58070ee-ff00-f8c5-6459-782562e903e5@codeaurora.org>
-Subject: Re: [PATCH 06/13] arm64: dts: qcom: SC7280: Add rpmhcc clock controller node
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-To:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Taniya Das <tdas@codeaurora.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org
-Date:   Wed, 03 Mar 2021 00:21:25 -0800
-Message-ID: <161475968509.1478170.5248506718236838205@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <20210302112123.24161-6-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Taniya Das (2021-03-01 09:27:06)
-> On 2/23/2021 1:13 PM, Stephen Boyd wrote:
-> > Quoting Rajendra Nayak (2021-02-11 23:28:43)
-> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dt=
-s/qcom/sc7280.dtsi
-> >> +               usb3_phy_wrapper_gcc_usb30_pipe_clk: usb3-phy-wrapper-=
-gcc-usb30-pipe-clk {
-> >> +                       compatible =3D "fixed-clock";
-> >> +                       clock-frequency =3D <1000>;
-> >> +                       #clock-cells =3D <0>;
-> >> +               };
-> >=20
-> > Shouldn't these come from the phys? Why are they being added here?
-> >=20
->=20
-> Once the phys are added, these could be replaced, that was the reason to =
+02.03.2021 14:21, Dmitry Osipenko пишет:
+> The I2S reset may be asserted at a boot time. Tegra30 I2S driver doesn't
+> manage the reset control and currently it happens to work because reset
+> is implicitly deasserted by the Tegra AHUB driver, but the reset of I2C
+> controller should be synchronous and I2S clock is disabled when AHUB is
+> reset. Add reset control to the Tegra30 I2S driver.
+> 
+> Note that I2S reset was always specified in Tegra30+ device-trees, hence
+> DTB ABI changes aren't required. Also note that AHUB touches I2S resets,
+> hence AHUB resets are now requested in a released state, allowing both
+> drivers to control the I2S resets together.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  sound/soc/tegra/tegra30_ahub.c | 14 ++++++++++---
+>  sound/soc/tegra/tegra30_i2s.c  | 36 +++++++++++++++++++++++++++++++++-
+>  sound/soc/tegra/tegra30_i2s.h  |  1 +
+>  3 files changed, 47 insertions(+), 4 deletions(-)
 
-> add them.
->=20
-> >>          };
-> >>  =20
-> >>          reserved_memory: reserved-memory {
-> >> @@ -174,6 +211,17 @@
-> >>                  gcc: clock-controller@100000 {
-> >>                          compatible =3D "qcom,gcc-sc7280";
-> >>                          reg =3D <0 0x00100000 0 0x1f0000>;
-> >> +                       clocks =3D <&rpmhcc RPMH_CXO_CLK>,
-> >> +                                <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk=
->,
-> >> +                                <&pcie_0_pipe_clk>, <&pcie_1_pipe_clk=
->,
-> >> +                                <&ufs_phy_rx_symbol_0_clk>, <&ufs_phy=
-_rx_symbol_1_clk>,
-> >> +                                <&ufs_phy_tx_symbol_0_clk>,
-> >> +                                <&usb3_phy_wrapper_gcc_usb30_pipe_clk=
->;
-> >=20
-> > If the phys aren't ready then <0> should work. Unless something goes
-> > wrong?
-> >
->=20
-> Nothing would go wrong if we add <0>, but wanted them to be replaced=20
-> once the support is added.
+...
+> @@ -579,7 +587,7 @@ static int tegra30_ahub_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	ahub->reset = devm_reset_control_array_get_exclusive(&pdev->dev);
+> +	ahub->reset = devm_reset_control_array_get_exclusive_released(&pdev->dev);
 
-Please use <0> to indicate that it's missing. Otherwise we may never
-realize that we should connect it up later.
+Thinking a bit more about this, it looks like we actually want something
+like:
+
+	devm_reset_control_array_get_exclusive_released_named()
+
+that will request resets by given names and in a given order, similarly
+to devm_clk_bulk_get(). This will be very handy for both Tegra audio and
+GPU drivers. I'll prepare a v2 if there are no objections.
