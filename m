@@ -2,101 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3448B32C01D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A728132BFDD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579374AbhCCSbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:31:08 -0500
-Received: from mout.kundenserver.de ([212.227.126.131]:35417 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357955AbhCCLh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 06:37:29 -0500
-Received: from mail-oo1-f53.google.com ([209.85.161.53]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MhDIw-1llmG30Z06-00eLjx; Wed, 03 Mar 2021 09:44:25 +0100
-Received: by mail-oo1-f53.google.com with SMTP id n19so5480150ooj.11;
-        Wed, 03 Mar 2021 00:44:24 -0800 (PST)
-X-Gm-Message-State: AOAM531I5RlSxC1fMxpxwzkcsPAJpnaJFMGKoUsV2NBkaCYTCh1InN3k
-        qgP85DrGx8q+yk/Tr4YR5dK1btjxZ7onBt2pcZY=
-X-Google-Smtp-Source: ABdhPJx+y1mutrjVZMV70H7WGHtEMsbqS/b6Pacx4upesFv3Pu2rH/lMvNVNl6MT1UBcioMptZHIJHVRvTvRXobxOCo=
-X-Received: by 2002:a4a:304a:: with SMTP id z10mr20492940ooz.26.1614761063729;
- Wed, 03 Mar 2021 00:44:23 -0800 (PST)
+        id S1579260AbhCCSat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:30:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37636 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1582430AbhCCKVL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 05:21:11 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E249EC035477
+        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 01:29:28 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id m11so26876804lji.10
+        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 01:29:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Pt7bwWLf4920jEAu2gq6f6qTSZz/ofLlHmtVgGdbwS0=;
+        b=OHCvDategtwfbq1t+iUQ3BUMIX/2u9CSxvhkjo6CHMesJuRzpXLXBCUJIAaN7ZW7hJ
+         QCmELwk+3bp/x8hr+45WHtBDIEeaRo15ff5vIA3y3HjHVu7Fanwx3CTkIiPGdAKMJkYx
+         LlzKJQ5dL/de23YEQr2LtK57p0bty2ozdNAjRqhSEgiBJYxbTwBtiRhvLZt/N4XiPFA4
+         qk3fABIHDrlEdcqit8hVuBLaF87XJhXrcYY7IvWsAWAFhsH3Rhvz/sqfJXaUMvfshTw0
+         W9Ohs9Ru8L+3PQKB64FxeYsQRdo8tdHIFr+1tJdgDlkKIS1t2HNLMvhJ75L3Wqt/CoUW
+         OP0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Pt7bwWLf4920jEAu2gq6f6qTSZz/ofLlHmtVgGdbwS0=;
+        b=RidbbRK5gG0SYJ0J50BdcAvkEeTBkq11bmWMfnnf0KLvWaopgfVIsYKOKXhauxjRWB
+         NwU7zU+01ZUqLTkHYa+gQ+0jbAntEBgP+QJBEa42ATyAFOTI9QLbs4kmBREZqjOGS3Bd
+         v7SXKa+iRB1zh/QJ5kAdwr1z+V2Y1UkZX00JnzANYcHU2gzSUVzA1cAFhDUdnnn1bZuK
+         WtwXOBaiTxVIGikH1kxGO4lJu1cXBeo3EnU0Wd5D7pj45rG8s3nGX/aCsIDLtpRLMOQT
+         HQJMRt83YkRUZwYP1LU1VtrtAdcMqP1dY2z8OktzzvamhMg2atuk81qXJrP0T7sHH6WW
+         Ndsw==
+X-Gm-Message-State: AOAM532ISwAbZWlsMB28RecrIcKFtOHGAQxWtwr5GOv8k2uSWE2SBIKx
+        oHDc8vnj7HjACJL+EbSN46PnMA+Qtqr01YpiULr/Dw==
+X-Google-Smtp-Source: ABdhPJyBXKG/RAzEp/BaFV38EdjMQqMd8P9lhGks+0u2avRFMf+e8fP+L9KmneeIp6ivnGu7W2B8pnAFWvKAFliInK4=
+X-Received: by 2002:a2e:9041:: with SMTP id n1mr14590765ljg.273.1614763767393;
+ Wed, 03 Mar 2021 01:29:27 -0800 (PST)
 MIME-Version: 1.0
-References: <20210226140305.26356-1-nsaenzjulienne@suse.de>
- <20210226140305.26356-10-nsaenzjulienne@suse.de> <3a4cf13f-c098-9ff3-6c0e-2c94daae452b@arm.com>
-In-Reply-To: <3a4cf13f-c098-9ff3-6c0e-2c94daae452b@arm.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 3 Mar 2021 09:44:07 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1px7aC92p+rZOYRV2npbHeMPP94fQz==UopHUrApE5Jw@mail.gmail.com>
-Message-ID: <CAK8P3a1px7aC92p+rZOYRV2npbHeMPP94fQz==UopHUrApE5Jw@mail.gmail.com>
-Subject: Re: [RFC 09/13] iommu/arm-smmu: Make use of dev_64bit_mmio_supported()
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+References: <20210302191613.29476-1-noltari@gmail.com>
+In-Reply-To: <20210302191613.29476-1-noltari@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 3 Mar 2021 10:29:16 +0100
+Message-ID: <CACRpkdZQRtTi75KMFDpM6eJ9hVuPLNJBBs6bHKMt7_PNW8gcFQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/12] pinctrl: add BCM63XX pincontrol support
+To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Cc:     Michael Walle <michael@walle.cc>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Christoph Hellwig <hch@infradead.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:7g5UKd+vyI/Ln8q53XNHCBMONOXbq19hSutGtG8ohJvxzZ6ytkq
- kDKPGw9czCqxBsRjWnuuxYuw9k2WHUYh7nCLZ9ZBl0Ewfxl7F8JE+wKMEALu8nxlviKb5TS
- KBn1bzpxt9sMFEgJXzAhY0L7UaooMx4V2fmEWKLyYjfIvgS3p4wfZ5TiYTmektItVml2YY+
- ToZTI/taz2+ShGdyjwbTg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:kZG0h7I6VUE=:ssp5mlwCOJ1kjmmq4zkPlT
- 0gWoWVf4Gp4PKTzCrocK4x2LN239iQqXeSH+jY62zGYznlhXP6bQ/yBQbYDOkFbMYWwOUpRom
- vtPoyCEuMXm2NFWn0URAtVN+Kfdjq2Ia1v1yfQNdJfNhQZ0uNSj4PC9k7nKs//X97rgTBzQUO
- abzvvQkJrFnTK7bvrivTiMxiaseLAB1WYCeO26vtXQ3VXDyYdOcTeUsfbYxbeD7IiAQ9WyX2R
- UoulpO+iJrXVTR7rjlHV43XyuhP/FeFHhjPDrsHnktpNXcQQBhHMM0r6Nm+vnZD2zYJ6uY1rm
- aZ+hXa2qzNoAK9RIJPsI+LKg+UK2cRaVc6UAOlLvcGWGTbDwc+xm+tnGwm7IU0Mo+WcHjnF/B
- TcsWeqdsqacoJz9oR3dX4U/yGzFy2Xn/pv+tcuqMBYi9GjKoWIuaXaE5cyZ4xtGESpAILNej2
- GB+G9LY9pMbjsbsutKT6slvzywCsxq0QFj6y6aohdCXXAe8uiht6WeaIdLM6zIIhQlzlV51e0
- Ph7h6MymUqoWz+kW3jI2JNZbDTMICYVrG99LRxkSxuP
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 2, 2021 at 12:07 PM Robin Murphy <robin.murphy@arm.com> wrote:
-> On 2021-02-26 14:03, Nicolas Saenz Julienne wrote:
+On Tue, Mar 2, 2021 at 8:16 PM =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gm=
+ail.com> wrote:
 
-> > index d2a2d1bc58ba..997d13a21717 100644
-> > --- a/drivers/iommu/arm/arm-smmu/arm-smmu.h
-> > +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.h
-> > @@ -477,15 +477,20 @@ static inline void arm_smmu_writel(struct arm_smmu_device *smmu, int page,
-> >   {
-> >       if (smmu->impl && unlikely(smmu->impl->write_reg))
-> >               smmu->impl->write_reg(smmu, page, offset, val);
-> > -     else
-> > +     else if (dev_64bit_mmio_supported(smmu->dev))
-> >               writel_relaxed(val, arm_smmu_page(smmu, page) + offset);
-> > +     else
-> > +             hi_lo_writeq_relaxed(val, arm_smmu_page(smmu, page) + offset);
->
-> As Arnd pointed out, this is in completely the wrong place. Also, in
-> general it doesn't work if the implementation already needs a hook to
-> filter or override register accesses for any other reason. TBH I'm not
-> convinced that this isn't *more* of a mess than handling it on a
-> SoC-specific basis...
+> v2: introduce changes suggested by Linus Walleij and remove interrupts
+>  - In order to use GPIO_REGMAP, the need to get gpio_chip from gpio_regma=
+p
+>  and use it for pinctrl_add_gpio_range() and gpio_chip.direction_input()
+>  and gpio_chip.direction_output().
 
-I think the main problem for handling it in a SoC specific way is that there is
-no device-independent way to do a 64-bit store as two 32-bit stores:
+Looking so much better don't you think? :)
 
-- some devices need hi_lo_writeq_relaxed(), others need lo_hi_writeq_relaxed(),
-  and some absolutely require 64-bit stores and cannot work at all behind a
-  broken PCI bus.
+If you also get rid of the exposed struct using DT gpio-ranges we are
+done I think, just need some DT review slack for the DT maintainers
+for the bindings.
 
-- if the driver requires the store to be atomic, it needs to use a spinlock
-  around the two writel(), but if the register is on a PCI bus or mapped
-  with page attributes that allow posted writes (like arm64 ioremap), then
-  you may need to read back the register before spin_unlock to serialize
-  them properly. However, reading back an mmio register is slow and can
-  have side-effects, so you can't put that in driver-independent code either.
-
-        Arnd
+Yours,
+Linus Walleij
