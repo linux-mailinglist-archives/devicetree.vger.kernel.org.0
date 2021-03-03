@@ -2,121 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6444C32C0BC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2DEF32C0C2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579697AbhCCSbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:31:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51364 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242292AbhCCNwT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 08:52:19 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4A97264EF6;
-        Wed,  3 Mar 2021 13:50:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614779426;
-        bh=tIrhVb/ofjnOXPTvsgUdD4zjBaJv0XaYt3PI0i9joPM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SNtG6zwhsVKE9fAwlN9Xx+gXfzg0hm1YdEmzIRm4pzA6cDO0TNHnfNNggu+dCHfTR
-         HM0j+JFTCmn73uyHaYIfFhLU9ERk1V+tu0rG9CohaEi/xlm8xHJlGAOt0P4BiS1gG1
-         nDmTOOun1AsloFImmRmK0yDMnV41/ZUJCrQ4YXHk+v1qkJJvir6KtxIs0eDyxj0EnO
-         nGmnY/TB4d0SpTV7WsuTawSOtQWuJ99Viai0v/MQn7vpGzsEVq9MPsmrqYKWSONis8
-         ZIrFKVu9RH+HyGfCnjyvrAZ7/zi2SAEMUeK+rN6gonGKFuki6hj48hEBfPWhMS/u24
-         a8xF5e16xw9CQ==
-From:   Will Deacon <will@kernel.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Will Deacon <will@kernel.org>, Max Uvarov <muvarov@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Tyler Hicks <tyhicks@linux.microsoft.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        kernel-team@android.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: Drop support for CMDLINE_EXTEND
-Date:   Wed,  3 Mar 2021 13:49:27 +0000
-Message-Id: <20210303134927.18975-3-will@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210303134927.18975-1-will@kernel.org>
-References: <20210303134927.18975-1-will@kernel.org>
+        id S1579702AbhCCSbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54188 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347868AbhCCNwm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 08:52:42 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB1AEC0617AA
+        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 05:51:59 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id t9so4181942pjl.5
+        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 05:51:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kernel-dk.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jBA6lvDJZn6Hk7j7FcS/mDbmGz22UkseO6S0MrRrj/A=;
+        b=uWyA/18bF5fExSwzcUitCKE6VMoHXZkwV8yl9K7oBG6OI5ETs/SWw5EAHgLfTNkFKw
+         tSVpLMWiJIs1opBBQwio8BFCfzzjUlASi7k7H2ESuJNl9wyTM4CQMq/MwIU/zmrsza7s
+         T1idj6JzBOk5J/gXaFzFhQgkHqjEQ9D3Zea2pKPMbs3DHyMJ9LqLnwsJtO07Af+AjYIr
+         qjIufhzvOLyEHQ91YsICLMpR0npmG0gOY1kUwUuMlS9YMvZ5uEhaO5h/qfATu/1i5tE0
+         EvlvJCwBvMqc6K/Ur0iXjXiNLSpiIMbc1Ol0Uqh4e4MomsETDaLC0AEPqaSxciGChnca
+         PLiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jBA6lvDJZn6Hk7j7FcS/mDbmGz22UkseO6S0MrRrj/A=;
+        b=gPfXYAuN0G71JiYNG4AX2Ojq6PkuHHIPZ/Jrp4yjAmQLqpUCbtOUlcFLzpQGqalll6
+         2Mm6jMQa6Gy5lSt0b0LT+fDtYfm5g/9NjuecCjx/W599c5BG6XwZIYK2qwbtObgcjsuo
+         8RrlmUI6C5A+3QrZoijLZdJm1IR+gP0eLt6fiUC2mC8wjnIPEh/5y2OM4c9aNfNzzbVT
+         HP15r5BBQ6pfZUvkLj4sU8zmBdtVn2RiLOZQhY5KYmn52Mjx86cYcQSL1a9GZH54quEm
+         Kz+0vV39pp8VHjJNFggt1AZvfXpeG041Q86bZHZwe1xJH9zeakXNRiClkeDfTIdl5QIS
+         DpTA==
+X-Gm-Message-State: AOAM530uX7zXkVxUTz0isGl9tojZ9/UltAJZnqVBQnzb3umEwz7x/LVv
+        jlyOH7Cn1H8Zf01n95E+RjzteA==
+X-Google-Smtp-Source: ABdhPJxxLdNOJCU50tvUDCfpMI/bbuWEVaFMJCu24ZJkLR7/JUJkZeTy+JfJNteiMYn6Mcv5Q+6xaQ==
+X-Received: by 2002:a17:903:1242:b029:e0:3263:1693 with SMTP id u2-20020a1709031242b02900e032631693mr2879573plh.33.1614779519172;
+        Wed, 03 Mar 2021 05:51:59 -0800 (PST)
+Received: from [192.168.1.134] ([66.219.217.173])
+        by smtp.gmail.com with ESMTPSA id s1sm5977065pju.7.2021.03.03.05.51.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Mar 2021 05:51:58 -0800 (PST)
+Subject: Re: [PATCH V3 0/2] ata: ahci: ceva: Update the driver to support
+ xilinx GT phy
+To:     Piyush Mehta <piyush.mehta@xilinx.com>, p.zabel@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, git@xilinx.com, sgoud@xilinx.com,
+        michal.simek@xilinx.com
+References: <1612807436-5238-1-git-send-email-piyush.mehta@xilinx.com>
+From:   Jens Axboe <axboe@kernel.dk>
+Message-ID: <5c765f1f-6a92-a9f8-43f4-c2924d5d752b@kernel.dk>
+Date:   Wed, 3 Mar 2021 06:51:58 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1612807436-5238-1-git-send-email-piyush.mehta@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The documented behaviour for CMDLINE_EXTEND is that the arguments from
-the bootloader are appended to the built-in kernel command line. This
-also matches the option parsing behaviour for the EFI stub and early ID
-register overrides.
+On 2/8/21 11:03 AM, Piyush Mehta wrote:
+> This patch series updates the ceva driver to add support for Xilinx GT phy.
+> This also updates the documentation with the device tree binding required
+> for working with Xilinx GT phy.
 
-Bizarrely, the fdt behaviour is the other way around: appending the
-built-in command line to the bootloader arguments, resulting in a
-command-line that doesn't necessarily line-up with the parsing order and
-definitely doesn't line-up with the documented behaviour.
+Applied for 5.13, thanks.
 
-As it turns out, there is a proposal [1] to replace CMDLINE_EXTEND with
-CMDLINE_PREPEND and CMDLINE_APPEND options which should hopefully make
-the intended behaviour much clearer. While we wait for those to land,
-drop CMDLINE_EXTEND for now as there appears to be little enthusiasm for
-changing the current FDT behaviour.
-
-[1] https://lore.kernel.org/lkml/20190319232448.45964-2-danielwa@cisco.com/
-
-Cc: Max Uvarov <muvarov@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Ard Biesheuvel <ardb@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>
-Cc: Doug Anderson <dianders@chromium.org>
-Cc: Tyler Hicks <tyhicks@linux.microsoft.com>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Link: https://lore.kernel.org/r/CAL_JsqJX=TCCs7=gg486r9TN4NYscMTCLNfqJF9crskKPq-bTg@mail.gmail.com
-Signed-off-by: Will Deacon <will@kernel.org>
----
- arch/arm64/Kconfig                 | 6 ------
- arch/arm64/kernel/idreg-override.c | 5 +----
- 2 files changed, 1 insertion(+), 10 deletions(-)
-
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 1f212b47a48a..f15418332d16 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -1855,12 +1855,6 @@ config CMDLINE_FROM_BOOTLOADER
- 	  the boot loader doesn't provide any, the default kernel command
- 	  string provided in CMDLINE will be used.
- 
--config CMDLINE_EXTEND
--	bool "Extend bootloader kernel arguments"
--	help
--	  The command-line arguments provided by the boot loader will be
--	  appended to the default kernel command string.
--
- config CMDLINE_FORCE
- 	bool "Always use the default kernel command string"
- 	help
-diff --git a/arch/arm64/kernel/idreg-override.c b/arch/arm64/kernel/idreg-override.c
-index cc071712c6f9..83f1c4b92095 100644
---- a/arch/arm64/kernel/idreg-override.c
-+++ b/arch/arm64/kernel/idreg-override.c
-@@ -188,11 +188,8 @@ static __init void parse_cmdline(void)
- {
- 	const u8 *prop = get_bootargs_cmdline();
- 
--	if (IS_ENABLED(CONFIG_CMDLINE_EXTEND) ||
--	    IS_ENABLED(CONFIG_CMDLINE_FORCE) ||
--	    !prop) {
-+	if (IS_ENABLED(CONFIG_CMDLINE_FORCE) || !prop)
- 		__parse_cmdline(CONFIG_CMDLINE, true);
--	}
- 
- 	if (!IS_ENABLED(CONFIG_CMDLINE_FORCE) && prop)
- 		__parse_cmdline(prop, true);
 -- 
-2.30.1.766.gb4fecdf3b7-goog
+Jens Axboe
 
