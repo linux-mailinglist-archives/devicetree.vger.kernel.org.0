@@ -2,76 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD67832BF9E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEC8232BFAC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579156AbhCCSaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:30:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41050 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1842792AbhCCINP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 03:13:15 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDD3EC0617A7
-        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 00:11:56 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id j12so15682414pfj.12
-        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 00:11:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=9n+Zinjl0qrRlhLQJ3kox3JVyOJ+LY+SQ8xy8eg7UZA=;
-        b=lrKSoM/fcC9FGDibhl4xmu9mx5VwViqMBDN+HmGwdrs8mWhaZajDhdAIOLtdWS0EuR
-         PAkmz3/djfhZbl4z2ZfpSrOoruedd3eXx33RisAfpW2FLyKWIWfmk6vQU8tAfvMsa13L
-         iboWrjJeLAp9OKb+AuYK7HoNsNVztJnIai1xw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=9n+Zinjl0qrRlhLQJ3kox3JVyOJ+LY+SQ8xy8eg7UZA=;
-        b=qytPWas8N4J0WsEVashVoz0oYyGWXS4Rw0EQt0s9OHmaH7ojqGmMGfYPRz48SeE4Y8
-         x7lMuZA1Y8f/IgfidgFXeMHJVJikGwcDO0KLQcnKXrgtJzol+BierDESiLz1MhfNQ8pF
-         oe7j5YANX44RYbfu/EBKcD3te8uvgBzLl6S7W916XkxrEreYMjV+NbSNOStXp0VDcEnW
-         /ER4ywKiTJoVRvm9ZIquoPD85S5+pgJAH87KIfFCFxx9x8j9mxC9MpW3iOIgKXDKBwp2
-         YJ7s2vecHVKcNhIB7dh4fqXeshESyrjp0xWsBdPwJB3jlswVBssVdhMJrJqtSnUZfbAf
-         oYbQ==
-X-Gm-Message-State: AOAM532d+nEzYrE+yVjIdcvDk+U5B8ChUHwfFPiOrkoN6E0OKzZ+Rybo
-        YsbZvz2r9a951QEJFCwtqjcnb1USpYIXjQ==
-X-Google-Smtp-Source: ABdhPJySgaqqAWmRHQaJcs0BJLHO5t09Z28N0vKpoEMrCLP47EYRMlmOCpX2BffXc3jemDYBicTTjg==
-X-Received: by 2002:a63:140b:: with SMTP id u11mr3329553pgl.436.1614759116376;
-        Wed, 03 Mar 2021 00:11:56 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:2510:ab07:78a:7d78])
-        by smtp.gmail.com with ESMTPSA id z137sm25279263pfc.172.2021.03.03.00.11.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 00:11:56 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
+        id S1579178AbhCCSag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:30:36 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:62731 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1842821AbhCCINp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 03:13:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1614759225; x=1646295225;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ZMP0RR3DfODg8HK1LLJY82GvxRtZDSQ6PcUVaezXGH8=;
+  b=dMGuKFUX9ydCs6FcMcWOc1EaeWscQn6nU945q0tcgdQ2XKAUjy6W/gR9
+   gH9qxtZlutMyb3ylH+rnhycFSHaUWG1RPBWs4+ga04dCsu2HsmaDVhzCx
+   pZLPIqmwxP+8J5ZBWWYD2Cbbt4ixtNsJG4x/124vDnJIYtACoCzjaBUTX
+   JX1oa8+rn3F7Of8YxLzhZEJvGkeCcF5wJlQakRs1Mi+zJRJ/AW4pLeFMn
+   8dkY55Ll0egMYX94Pm1TnVuvPvpDxcZQkEnf1zNW6j4wtsgnErB1zR79E
+   nkVQIQ/64vNUS+4a/ACYWdlJGczpYYVAwXyTlpkSvT3olIe7ilGA4lBnE
+   A==;
+IronPort-SDR: v2JYbKbUMSSPrPQTX4TtccihZaZ6+iCt9eaDV7iyFxqSrLFv2OzyhopjBDR49AXRT1IiPidZWv
+ kPMHgnl/Ysm0jt/3QURloWWkypnuOTh+k9FsbDwRM2A1d1ej4ZoXVprasjxLDEJuEtucoiCuDe
+ 0Y73KsGH6x3f8EdedDs+YkJNCw/4QBZRCTDD0ZzYzdqW/59oXu0KPqcicmqNvC4Ji4Acn1tDrV
+ KsdRssA4G9d8FzP/sZKUeTG1DxU8/GmbTcP42tCcn/jB/4Xh+hgRaLYz4hPaIDTkdgulaP69Z4
+ +L4=
+X-IronPort-AV: E=Sophos;i="5.81,219,1610434800"; 
+   d="scan'208";a="105779094"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Mar 2021 01:12:07 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Wed, 3 Mar 2021 01:12:07 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Wed, 3 Mar 2021 01:12:05 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v7 1/3] dt-bindings: reset: microchip sparx5 reset driver bindings
+Date:   Wed, 3 Mar 2021 09:11:56 +0100
+Message-ID: <20210303081158.684532-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.30.1
+In-Reply-To: <20210303081158.684532-1-steen.hegelund@microchip.com>
+References: <20210303081158.684532-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <55416e116dda4aad977bb050451d328b1f6b00d3.1614669585.git.saiprakash.ranjan@codeaurora.org>
-References: <cover.1614669585.git.saiprakash.ranjan@codeaurora.org> <55416e116dda4aad977bb050451d328b1f6b00d3.1614669585.git.saiprakash.ranjan@codeaurora.org>
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: sdm845: Rename the qmp node to power-controller
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Date:   Wed, 03 Mar 2021 00:11:54 -0800
-Message-ID: <161475911453.1478170.5422364146851783803@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sai Prakash Ranjan (2021-03-01 23:28:02)
-> Use the generic DT node name "power-controller" for AOSS message ram
-> instead of the protocol name QMP(Qualcomm Messaging Protocol) since
-> it is used for power management requests.
->=20
-> Suggested-by: Stephen Boyd <swboyd@chromium.org>
-> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> ---
+Document the Sparx5 reset device driver bindings
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+The driver uses a syscon and an IO range on sparx5 for access to
+the reset control and the reset status.
+
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+---
+ .../bindings/reset/microchip,rst.yaml         | 58 +++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/microchip,rst.yaml
+
+diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+new file mode 100644
+index 000000000000..370579aeeca1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Microchip Sparx5 Switch Reset Controller
++
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++  - Lars Povlsen <lars.povlsen@microchip.com>
++
++description: |
++  The Microchip Sparx5 Switch provides reset control and implements the following
++  functions
++    - One Time Switch Core Reset (Soft Reset)
++
++properties:
++  $nodename:
++    pattern: "^reset-controller@[0-9a-f]+$"
++
++  compatible:
++    const: microchip,sparx5-switch-reset
++
++  reg:
++    items:
++      - description: global control block registers
++
++  reg-names:
++    items:
++      - const: gcb
++
++  "#reset-cells":
++    const: 1
++
++  cpu-syscon:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: syscon used to access CPU reset
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - "#reset-cells"
++  - cpu-syscon
++
++additionalProperties: false
++
++examples:
++  - |
++    reset: reset-controller@11010008 {
++        compatible = "microchip,sparx5-switch-reset";
++        reg = <0x11010008 0x4>;
++        reg-names = "gcb";
++        #reset-cells = <1>;
++        cpu-syscon = <&cpu_ctrl>;
++    };
++
+-- 
+2.30.1
+
