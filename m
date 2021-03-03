@@ -2,108 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0A1B32C0AA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5975032C0B1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237408AbhCCSWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:22:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
+        id S239889AbhCCSXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:23:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352793AbhCCEPK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 23:15:10 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 930C0C061788;
-        Tue,  2 Mar 2021 20:14:25 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id o11so16335213iob.1;
-        Tue, 02 Mar 2021 20:14:25 -0800 (PST)
+        with ESMTP id S1352966AbhCCEjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 23:39:35 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A14DCC061356
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 20:36:33 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id n10so15392804pgl.10
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 20:36:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zo3gUJWs9393wYgyXzymuxSeQ7dueyNuYkM5wpdwoFc=;
-        b=MD552PY6y65xJrjhF29XV7iOg3/islIe+vIrmqoJmYDzIeMhb3J3GCX1PP6wiUYECp
-         thgKt0/GztI/M5vFWL7FzGq3RdZ4kxnV5GgLZrUFzq1v3ykoCHipGjNHu1MOmLsLKRay
-         P67sK1jFWaSZLQJ62O3l2GnlJz9k41+bF+4dEzsE2I7t3ocx/qE0v7D4miQrJOBOLS1E
-         Z91retAEUT+LWCOV3+tq8p4Hl8UvhWMf1F/LkVKvwUQgjobj1axJFNfsec1vR15aXrLC
-         PIZA1sAjI8xYS/9PIdqP6wtcLw1tUvI+r/RaA4hbMNLOPfXzgao3Ek4S9eKnLLqB2xCs
-         ujTQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+K+JVsQKi7Mi6myrR3iz/PWgj0Awrh+5TFM40EBt8aY=;
+        b=M5+mLUF5aSMVrz5Uiw8Zit0bKYxSc1fkgnLsFbYga2jGJJuQ02RiXfOY5vCccAKxgx
+         M19F8JwGyK62peIgmtye78cbK1nLh6cWGD6epC0B8TvecV8mdWVSAD+HVf5CUKTLXYKy
+         9B6MPonsDGw5gG4FFbO55y1nXkYpuX9uCh7JBKQwewT+QgUuHCj+VEN5YzWVkBj6K+Ij
+         Zmz8OsTiKNdKQK5C4xBKSM/XRVnzPclfFqrMBnlXddvLxaPBGxy3X3dbc5Sfv10Z7O51
+         pNP3nERW6krWBQL6P5ioH5/I509foVdJkC7CFSQhlvQ15DjAcW6Pgu3w+pb+l4useM9m
+         qAbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zo3gUJWs9393wYgyXzymuxSeQ7dueyNuYkM5wpdwoFc=;
-        b=dHw3CeoQxzKWW7rqt+NH5cJ19WTlhVu8CRp0irI1g4mOFBb9irmicXgyt7ejTmNVJH
-         YuTW7gVJEd8ObMnLj7yVyqMh2CzRYhytOJ4udrFzGD2aelQfgVYkZOv9XYaWzix10Q9J
-         PWCV5ZDBA9Op7LZAPOpLVe831FzdXTzzokBHDr1UodeavwtfiyU2FoIKs7/NClzeu+eP
-         a4eZDWueE6JzImogZaGKAxi+3KIN17vlx6fH6PEzkH/Cjh98afGGMocFC56J3cFTkyXU
-         S5i9sUQdi2QEvWDYngCh8YPaV6WSnZbZ3XAcs3rf8cqytt4wWSgIUUKtNhTtQmcUf5FW
-         DPpw==
-X-Gm-Message-State: AOAM53171sEV8Hs/jy3gSkLZryNozdADa4eUWFavxbgVDYVlMmvQJwBa
-        D9k43cveFR9UKGHuqvCAFjnac0HyVjx+fG31pO8=
-X-Google-Smtp-Source: ABdhPJzoKgmT7fYr2kid6o7rDtiDHt+lUnnHDYJTdjFjqvo6EX9gZlEDB1kVQp3jZgnUtq/0IqH1JIfqAQ/GqpxWl70=
-X-Received: by 2002:a6b:be86:: with SMTP id o128mr20008278iof.111.1614744865089;
- Tue, 02 Mar 2021 20:14:25 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+K+JVsQKi7Mi6myrR3iz/PWgj0Awrh+5TFM40EBt8aY=;
+        b=IQ38crHeAp7bUR0QOANVr+Ov6BQPN+zIxcQdIhEVB51n3k2NeBfh8NbfonpMsP3XK4
+         YG0z5ORNxyRxgjdLKeDpbBD//bZN+Slma9zKHKsLitgs+lC5PDL+8WwlHO5r3r451j1G
+         KZVZCB1RZbYun730zbew08FQ1ZLHnXN07LNDKXmH4g48nqpTz7qS+24Smiy3tGeOW02r
+         bJraIdOZnK5dCyWQGHv2q1CBk62VLpZBDg/6xsXoTqZIcBy8kWFcXO/s5vnRiTLPE7z6
+         486vDh73dRU3CIdrSA1d/UKRgpNdqcIfREGomuTD9vAFMkfZqCnVu2ff4VSYAPI/XISe
+         C/Tg==
+X-Gm-Message-State: AOAM531Azs9EMp7o/BBPohsH312k35ZjKUDrgVaLzY0DYq0DrRVxaJdw
+        5O5UpqC0hevCGV2alZvfXPTf6A==
+X-Google-Smtp-Source: ABdhPJwrFPTNFRhjHYLXGgAwPqdMGH/7/1mgirrESsjd3vWRq2aphgmsj6phJmEMtXRM25zfBp72DA==
+X-Received: by 2002:a65:480c:: with SMTP id h12mr21020612pgs.169.1614746193045;
+        Tue, 02 Mar 2021 20:36:33 -0800 (PST)
+Received: from localhost ([122.171.124.15])
+        by smtp.gmail.com with ESMTPSA id x9sm5004567pjp.29.2021.03.02.20.36.32
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Mar 2021 20:36:32 -0800 (PST)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Masahiro Yamada <masahiroy@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
+        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH V9 0/4] dt: Add fdtoverlay rule and statically build unittest
+Date:   Wed,  3 Mar 2021 10:06:16 +0530
+Message-Id: <cover.1614745266.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
 MIME-Version: 1.0
-References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com>
- <1613623791-4598-2-git-send-email-shubhrajyoti.datta@xilinx.com>
- <20210218092804.6c78c99c@xps13> <161369785558.1254594.14662342386099652001@swboyd.mtv.corp.google.com>
- <CAKfKVtH1rSc4d8MMZCegMNG8shNxgXfu6qTd9WxuaGGFMEJ6CA@mail.gmail.com> <161472644984.1478170.5535993198933302108@swboyd.mtv.corp.google.com>
-In-Reply-To: <161472644984.1478170.5535993198933302108@swboyd.mtv.corp.google.com>
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
-Date:   Wed, 3 Mar 2021 09:44:14 +0530
-Message-ID: <CAKfKVtEvmMq6YB_0a-P-R2WcHYF3Ri80WYSYo_PFtG_Vxw+cUA@mail.gmail.com>
-Subject: Re: [PATCH v9 1/7] dt-bindings: add documentation of xilinx clocking wizard
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        linux-clk@vger.kernel.org,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Hi,
 
-On Wed, Mar 3, 2021 at 4:37 AM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Shubhrajyoti Datta (2021-02-24 06:10:08)
-> > On Fri, Feb 19, 2021 at 6:54 AM Stephen Boyd <sboyd@kernel.org> wrote:
-> > >
-> > > > > +
-> > > > > +  xlnx,speed-grade:
-> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > +    enum: [1, 2, 3]
-> > > > > +    description:
-> > > > > +      Speed grade of the device.
-> > > >
-> > > > A bit of explanation of what this describes would be welcome.
-> > > >
-> > > > Don't forget that binding are not tied to any driver implementation,
-> > > > these are supposed to be hardware description properties.
-> > >
-> > > Would opp tables work for this?
-> > This is the parameter is for speed of the fabric.
->
-> Ok. Yes or no? Is it configuring the speed of the fabric? Sounds like
-> assigned-clock-rates or assigned-interconnect-bandwidth or something
-> like that.
+This patchset adds a generic rule for applying overlays using fdtoverlay
+tool and then updates unittests to get built statically using the same.
 
-I do not think we could use opp tables.
-Xilinx has products where we have partly FPGA and patrly PS(hardware
-is not programmable) so the ip could be in PL
-and the processor  in PS.
+V8->V9:
+- Added some comment in patch 3/4 based on Frank's suggestions.
 
-The speed grade influences a variety of timing parameters in the FPGA,
-including fabric (slice), multiplier/DSP48x, BlockRAM, I/O, and other
-resources parameters.
+V7->V8:
+- Patch 1 is new.
+- Platforms need to use dtb-y += foo.dtb instead of overlay-y +=
+  foo.dtb.
+- Use multi_depend instead of .SECONDEXPANSION.
+- Use dtb-y for unittest instead of overlay-y.
+- Rename the commented dtb filess in unittest Makefile as .dtbo.
+- Improved Makefile code (I am learning a lot every day :)
 
-Basically the timing of the fabric is determined by it. Also we are
-notifying the speed grade to the driver no configuration is done.
-We are telling which speed-grade fabric we are running on.
+V6->V7:
+- Dropped the first 4 patches, already merged.
+- Patch 1/3 is new, suggested by Rob and slightly modified by me.
+- Adapt Patch 3/3 to the new rule and name the overlay dtbs as .dtbo.
 
- There is no correlation between these numbers. It is really a
-relative metric of performance within a specific family.
+--
+Viresh
+
+Rob Herring (1):
+  kbuild: Add generic rule to apply fdtoverlay
+
+Viresh Kumar (3):
+  kbuild: Simplify builds with CONFIG_OF_ALL_DTBS
+  of: unittest: Create overlay_common.dtsi and testcases_common.dtsi
+  of: unittest: Statically apply overlays using fdtoverlay
+
+ drivers/of/unittest-data/Makefile             | 50 ++++++++++
+ drivers/of/unittest-data/overlay_base.dts     | 90 +-----------------
+ drivers/of/unittest-data/overlay_common.dtsi  | 91 +++++++++++++++++++
+ drivers/of/unittest-data/static_base_1.dts    |  4 +
+ drivers/of/unittest-data/static_base_2.dts    |  4 +
+ drivers/of/unittest-data/testcases.dts        | 23 ++---
+ .../of/unittest-data/testcases_common.dtsi    | 19 ++++
+ .../of/unittest-data/tests-interrupts.dtsi    | 11 +--
+ scripts/Makefile.lib                          | 29 +++++-
+ 9 files changed, 210 insertions(+), 111 deletions(-)
+ create mode 100644 drivers/of/unittest-data/overlay_common.dtsi
+ create mode 100644 drivers/of/unittest-data/static_base_1.dts
+ create mode 100644 drivers/of/unittest-data/static_base_2.dts
+ create mode 100644 drivers/of/unittest-data/testcases_common.dtsi
+
+
+base-commit: fe07bfda2fb9cdef8a4d4008a409bb02f35f1bd8
+-- 
+2.25.0.rc1.19.g042ed3e048af
+
