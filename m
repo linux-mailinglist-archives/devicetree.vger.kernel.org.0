@@ -2,111 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7372032BFE8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A43832C005
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579280AbhCCSav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:30:51 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:52980 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1582447AbhCCKWB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 05:22:01 -0500
-X-UUID: f7d82a628d8d41d49dc3aef8ee823e63-20210303
-X-UUID: f7d82a628d8d41d49dc3aef8ee823e63-20210303
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <vic.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 427815017; Wed, 03 Mar 2021 17:40:58 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 3 Mar 2021 17:40:48 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 3 Mar 2021 17:40:48 +0800
-From:   Vic Wu <vic.wu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Ryder Lee <ryder.lee@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Vic Wu <vic.wu@mediatek.com>
-Subject: [PATCH] crypto: mediatek - remove obsolete documentation
-Date:   Wed, 3 Mar 2021 17:39:50 +0800
-Message-ID: <20210303093950.20309-1-vic.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S1579325AbhCCSbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:02 -0500
+Received: from foss.arm.com ([217.140.110.172]:45036 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238857AbhCCK24 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 05:28:56 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F066A1FB;
+        Wed,  3 Mar 2021 01:52:01 -0800 (PST)
+Received: from [10.57.12.223] (unknown [10.57.12.223])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 33BFD3F73B;
+        Wed,  3 Mar 2021 01:52:00 -0800 (PST)
+Subject: Re: [PATCH 1/8] ARM: ARMv7-M: Fix register restore corrupt after svc
+ call
+To:     dillon.minfei@gmail.com, robh+dt@kernel.org,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux@armlinux.org.uk, afzal.mohd.ma@gmail.com
+References: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
+ <1614758717-18223-2-git-send-email-dillon.minfei@gmail.com>
+From:   Vladimir Murzin <vladimir.murzin@arm.com>
+Message-ID: <5284d390-c03a-4035-df5a-10d6cd60e47b@arm.com>
+Date:   Wed, 3 Mar 2021 09:52:07 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <1614758717-18223-2-git-send-email-dillon.minfei@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The crypto mediatek driver has been replaced by the inside-secure driver now.
-Remove DT bindings documentation and update crypto engine nodes to the mt7623.dtsi files.
+On 3/3/21 8:05 AM, dillon.minfei@gmail.com wrote:
+> From: dillon min <dillon.minfei@gmail.com>
+> 
+> For some case, kernel not boot by u-boot(single thread),
+> but by rtos , as most rtos use pendsv to do context switch.
 
-Signed-off-by: Vic Wu <vic.wu@mediatek.com>
-Acked-by: Ryder Lee <ryder.lee@mediatek.com>
----
- Documentation/devicetree/bindings/crypto/mediatek-crypto.txt       | 25 -------------------
- arch/arm/boot/dts/mt7623.dtsi                 |  8 +++---
- 2 files changed, 3 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/crypto/mediatek-crypto.txt
 
-diff --git a/Documentation/devicetree/bindings/crypto/mediatek-crypto.txt b/Documentation/devicetree/bindings/crypto/mediatek-crypto.txt
-deleted file mode 100644
-index 450da3661cad..000000000000
---- a/Documentation/devicetree/bindings/crypto/mediatek-crypto.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--MediaTek cryptographic accelerators
--
--Required properties:
--- compatible: Should be "mediatek,eip97-crypto"
--- reg: Address and length of the register set for the device
--- interrupts: Should contain the five crypto engines interrupts in numeric
--	order. These are global system and four descriptor rings.
--- clocks: the clock used by the core
--- clock-names: Must contain "cryp".
--- power-domains: Must contain a reference to the PM domain.
--
--
--Example:
--	crypto: crypto@1b240000 {
--		compatible = "mediatek,eip97-crypto";
--		reg = <0 0x1b240000 0 0x20000>;
--		interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 83 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 84 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 91 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 97 IRQ_TYPE_LEVEL_LOW>;
--		clocks = <&ethsys CLK_ETHSYS_CRYPTO>;
--		clock-names = "cryp";
--		power-domains = <&scpsys MT2701_POWER_DOMAIN_ETH>;
--	};
-diff --git a/arch/arm/boot/dts/mt7623.dtsi b/arch/arm/boot/dts/mt7623.dtsi
-index aea6809500d7..25e3f3b04123 100644
---- a/arch/arm/boot/dts/mt7623.dtsi
-+++ b/arch/arm/boot/dts/mt7623.dtsi
-@@ -949,16 +949,14 @@
- 	};
- 
- 	crypto: crypto@1b240000 {
--		compatible = "mediatek,eip97-crypto";
-+		compatible = "inside-secure,safexcel-eip97";
- 		reg = <0 0x1b240000 0 0x20000>;
- 		interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_SPI 83 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_SPI 84 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 91 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 97 IRQ_TYPE_LEVEL_LOW>;
-+			     <GIC_SPI 91 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-names = "ring0", "ring1", "ring2", "ring3";
- 		clocks = <&ethsys CLK_ETHSYS_CRYPTO>;
--		clock-names = "cryp";
--		power-domains = <&scpsys MT2701_POWER_DOMAIN_ETH>;
- 		status = "disabled";
- 	};
- 
--- 
-2.18.0
+Hmm, does it mean that it starts kernel from process context?
+
+I'd assume that it is not only kernel who expects MSP. So, what
+if RTOS you mentioned want to boot other RTOS (even itself)? What
+if you have no access to the source code for those RTOS(es) to
+patch MSP/PSP switch?
+
+I'd very much prefer to keep stack switching logic outside kernel,
+say, in some shim which RTOS/bootloader can maintain.
+
+Cheers
+Vladimir
+
+> 
+> So, we need add an lr check after svc call, to find out should
+> use psp or msp. else register restore after svc call might be
+> corrupted.
+> 
+> Fixes: b70cd406d7fe ("ARM: 8671/1: V7M: Preserve registers across switch from Thread to Handler mode")
+> Signed-off-by: dillon min <dillon.minfei@gmail.com>
+> ---
+>  arch/arm/mm/proc-v7m.S | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/mm/proc-v7m.S b/arch/arm/mm/proc-v7m.S
+> index 84459c1d31b8..c93d2757312d 100644
+> --- a/arch/arm/mm/proc-v7m.S
+> +++ b/arch/arm/mm/proc-v7m.S
+> @@ -137,7 +137,10 @@ __v7m_setup_cont:
+>  1:	cpsid	i
+>  	/* Calculate exc_ret */
+>  	orr	r10, lr, #EXC_RET_THREADMODE_PROCESSSTACK
+> -	ldmia	sp, {r0-r3, r12}
+> +	tst	lr, #EXC_RET_STACK_MASK
+> +	mrsne	r4, psp
+> +	moveq	r4, sp
+> +	ldmia	r4!, {r0-r3, r12}
+>  	str	r5, [r12, #11 * 4]	@ restore the original SVC vector entry
+>  	mov	lr, r6			@ restore LR
+>  
+> 
 
