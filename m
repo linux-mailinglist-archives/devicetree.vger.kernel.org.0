@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49AFA32C09F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 256D832C0A4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234007AbhCCSUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:20:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37088 "EHLO
+        id S234260AbhCCSVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:21:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343690AbhCCDcl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 22:32:41 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14263C061793
-        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 19:31:21 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id 18so429173pfo.6
-        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 19:31:21 -0800 (PST)
+        with ESMTP id S1343674AbhCCDcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Mar 2021 22:32:52 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51FA1C061797
+        for <devicetree@vger.kernel.org>; Tue,  2 Mar 2021 19:31:23 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id a23so5500168pga.8
+        for <devicetree@vger.kernel.org>; Tue, 02 Mar 2021 19:31:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=CX7nnUJDVRP42eJky/cZ0aCMDizljES0o4MdBwQ4CMk=;
-        b=gDz1yEByWLsYs+FakH5QYXl3lFXx/nNsv8zzvRVrSC5DKraer8E6LQHZ1nrxtHaZMf
-         aNBFHCc59ulsidmWvF5vMSrkQXVc30OToKjjOQWgKDvxX85yGexEZcJVgQvZVl5A75zC
-         UCn4dsjSYAH24tiiY+8jBgfda5qf6MofxPw5GI3+mA7sjkBfErqlyoE/hFTivbixch/e
-         3oCIcsGWNz23PTDwQbuEsMZ4SJG1ttid+5d2Gg0tzQTHKdUF9U6gQQll+6da81fBNm5Y
-         TW0lSuYiB1yq240WosvVhzmHY9cNKHHrUGJ+z4JS3AjOftXcQYOeOLo7ylmaA5rpNU2m
-         ek1Q==
+        bh=cn2nXibIzD0MkhidCs0pgueHS+0vk99rUID4aeq6w6Y=;
+        b=CLmmXpcEX5+Anb8wZZGcKGG/CeFLnu6I8e+fm741ocARS+TjchKVo2iDrMHSD1Nbt2
+         9fhwi1sVXOtwNX4OgQeeiwzsT+mEntWK6ZKWmPRKHtTazpXdvJiYa762vlCjezwteNxe
+         teSIaHPPAHFhMIUUqdFOE7CRcKi0cfyciqA0uaQyNF2vWt8bHKmarKsqFp+c/VBGhhwM
+         rbMG8ZK4MzApHOALD+oW588JmebnGEOvRE+InxBfw9mKdlVetpNymOIQGBDNmdKMBrz2
+         wBx+/7t+TKX3FnXqfW9/eEwKe53bT24W1eNohwIqXkv96aexuZLoPNF0pbrZcmaZM5sb
+         H5dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=CX7nnUJDVRP42eJky/cZ0aCMDizljES0o4MdBwQ4CMk=;
-        b=DYiZDuSr2a5NvNUDzqOVZIRl5VhlF6gkHXnGKRTAr3jaJa6/565XYM62I50MS8hCby
-         nz2NnOT2iMKCJQu6/WzsVqlK15gafLgO7okTkHws9QqZkPSaUMO3mVtjKhkeu41SZcR4
-         J6IM+tGt9mx7ZX/FCYfbV+bP7mhNIMP3Qe8cMx56xH9dEGdXAq4H+vP8o62zcLbji4BM
-         AW8xrDAAZ2OmZAqIkNsPBfJB3XHDwswfAfjgZEcanR5283PGmGCiENCbtu9vpsa9BDaM
-         qtBiYAnCm6b3GV8CUgrtzOV4mrGdjKIDAwG6qbGNh0QrvP4cFHXh7QFNi0PH9OfRwnhQ
-         2gGw==
-X-Gm-Message-State: AOAM5304gBKp799GNNvceTn1TSg8wOCLFMcmUWdtW9DtP3E/7+zAUMPo
-        FGRm0VOLOs8xXk9hyKrVh80CtA==
-X-Google-Smtp-Source: ABdhPJz54Js3NgB/rnRs/fbaJHzlKjghBfEkgYhhhwSk+5Pv1NyxIsdzCP8iJS8j/buOEXtGRU0shg==
-X-Received: by 2002:a62:6005:0:b029:1d9:ce00:26cf with SMTP id u5-20020a6260050000b02901d9ce0026cfmr1309226pfb.7.1614742280695;
-        Tue, 02 Mar 2021 19:31:20 -0800 (PST)
+        bh=cn2nXibIzD0MkhidCs0pgueHS+0vk99rUID4aeq6w6Y=;
+        b=Q6FpWwGyTAKzXJdCegNMynDqt4smEM7au11UT6KmqEIxvECdRFMoEB++di9McweHjQ
+         y5mQxJKqhqjszB9SNjfp0AsBHlwRr+76TFpuTHPz98dSXV8LpCVTX759Xu26r82ezr3r
+         T1BGxBOubl11vDTUHlaIQOAs/zr6Z206v1xR17hCSPyXqh8DJkv4SEvU6Yz/jMjXWCK/
+         9Lz9H84WqnkzTnjY5L62N8i2PJaA9KsAmHWwcoOva26AUf339aqP6rHSbQPRUwd48wxi
+         TnyWNwJnhPa5JLsA0DaFsFWsexnsetsGD5dcWXGFDub04xL0QSlm1yzl2BFvyIAOBsEo
+         Qh3g==
+X-Gm-Message-State: AOAM531Gaip59NlndTbqJXQ1gR1F63kSF5LyEhTE67omMIgOHOOf7D9U
+        4v4XKYepWABnMnMZwkbAcD3mMQ==
+X-Google-Smtp-Source: ABdhPJxUuYkhu4i6aduARS71TgXJShBmy+zKxt2isfiduxdLMnn1un8v+HreOtOXqf7YGR/bczwMLQ==
+X-Received: by 2002:a05:6a00:a95:b029:1ee:471f:e323 with SMTP id b21-20020a056a000a95b02901ee471fe323mr19528594pfl.69.1614742282903;
+        Tue, 02 Mar 2021 19:31:22 -0800 (PST)
 Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id c4sm16057511pfo.2.2021.03.02.19.31.18
+        by smtp.gmail.com with ESMTPSA id c4sm16057511pfo.2.2021.03.02.19.31.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Mar 2021 19:31:20 -0800 (PST)
+        Tue, 02 Mar 2021 19:31:22 -0800 (PST)
 From:   Shawn Guo <shawn.guo@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>,
-        Evan Green <evgreen@chromium.org>
-Subject: [PATCH 1/4] arm64: dts: qcom: sdm845: fix number of pins in 'gpio-ranges'
-Date:   Wed,  3 Mar 2021 11:31:03 +0800
-Message-Id: <20210303033106.549-2-shawn.guo@linaro.org>
+        Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH 2/4] arm64: dts: qcom: sm8150: fix number of pins in 'gpio-ranges'
+Date:   Wed,  3 Mar 2021 11:31:04 +0800
+Message-Id: <20210303033106.549-3-shawn.guo@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210303033106.549-1-shawn.guo@linaro.org>
 References: <20210303033106.549-1-shawn.guo@linaro.org>
@@ -73,26 +73,26 @@ configured with the following call sequence, it always fails with
         pinctrl_get_device_gpio_range()
             pinctrl_match_gpio_range()
 
-Fixes: bc2c806293c6 ("arm64: dts: qcom: sdm845: Add gpio-ranges to TLMM node")
-Cc: Evan Green <evgreen@chromium.org>
+Fixes: e13c6d144fa0 ("arm64: dts: qcom: sm8150: Add base dts file")
+Cc: Vinod Koul <vkoul@kernel.org>
 Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 454f794af547..6a2ed02d383d 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2382,7 +2382,7 @@
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index e5bb17bc2f46..778613d3410b 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -914,7 +914,7 @@
+ 			      <0x0 0x03D00000 0x0 0x300000>;
+ 			reg-names = "west", "east", "north", "south";
+ 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+-			gpio-ranges = <&tlmm 0 0 175>;
++			gpio-ranges = <&tlmm 0 0 176>;
+ 			gpio-controller;
  			#gpio-cells = <2>;
  			interrupt-controller;
- 			#interrupt-cells = <2>;
--			gpio-ranges = <&tlmm 0 0 150>;
-+			gpio-ranges = <&tlmm 0 0 151>;
- 			wakeup-parent = <&pdc_intc>;
- 
- 			cci0_default: cci0-default {
 -- 
 2.17.1
 
