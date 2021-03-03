@@ -2,131 +2,316 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23FA732C02E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C89232C033
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235862AbhCCSgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:36:50 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:35762 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359556AbhCCOta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 09:49:30 -0500
-Received: from [IPv6:2a01:e0a:4cb:a870:30e8:5098:73c5:2bfe] (unknown [IPv6:2a01:e0a:4cb:a870:30e8:5098:73c5:2bfe])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S236627AbhCCShJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:37:09 -0500
+Received: from z11.mailgun.us ([104.130.96.11]:64576 "EHLO z11.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242246AbhCCOzT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 09:55:19 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1614783267; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Pg9UcnXmNNJDfqbP+jEVxc2qlx2KGMB67XjQuDCqIh8=;
+ b=k07HKTAvYi8zx+vdACfsi4TMkjUavhZibw+a+Mvb/F2gi0yLnB2V7/TVc38CC9xdchmeNOU9
+ NWL0nqU+jDLbapBrfRBph2cQVWwmcSkUhGyxlchaB+brpe3M2/6VOjx8F5VVOWhedE/o0fUo
+ oyrvxVjscz3j8dqsuH3qz1DKH7A=
+X-Mailgun-Sending-Ip: 104.130.96.11
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 603fa30364e0747df9ec69ce (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 03 Mar 2021 14:53:55
+ GMT
+Sender: skakit=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9ADD9C433C6; Wed,  3 Mar 2021 14:53:54 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 5F13F1F459FA;
-        Wed,  3 Mar 2021 14:48:46 +0000 (GMT)
-Subject: Re: [PATCH v3 4/5] media: hantro: Use reset driver
-To:     Philipp Zabel <p.zabel@pengutronix.de>, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        ezequiel@collabora.com, mchehab@kernel.org,
-        gregkh@linuxfoundation.org
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com
-References: <20210301151754.104749-1-benjamin.gaignard@collabora.com>
- <20210301151754.104749-5-benjamin.gaignard@collabora.com>
- <29bf66f4b531ec701e85c23a411e40e3621b0ff8.camel@pengutronix.de>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Message-ID: <ef2b0aff-cca3-6c75-1f25-176332e3162b@collabora.com>
-Date:   Wed, 3 Mar 2021 15:48:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        (Authenticated sender: skakit)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id F090FC433CA;
+        Wed,  3 Mar 2021 14:53:53 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <29bf66f4b531ec701e85c23a411e40e3621b0ff8.camel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 03 Mar 2021 20:23:53 +0530
+From:   skakit@codeaurora.org
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kiran Gunda <kgunda@codeaurora.org>
+Subject: Re: [PATCH 1/7] dt-bindings: regulator: Convert regulator bindings to
+ YAML format
+In-Reply-To: <CAL_JsqLLM9LLUb8r2ZEKfjKxG0tfxuKHchGhG3kVOUG35jgWGg@mail.gmail.com>
+References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
+ <1614155592-14060-2-git-send-email-skakit@codeaurora.org>
+ <CAL_JsqLLM9LLUb8r2ZEKfjKxG0tfxuKHchGhG3kVOUG35jgWGg@mail.gmail.com>
+Message-ID: <6fd80f9c8d36deee7ed36f9dab5ad5c1@codeaurora.org>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-Le 03/03/2021 à 15:39, Philipp Zabel a écrit :
-> On Mon, 2021-03-01 at 16:17 +0100, Benjamin Gaignard wrote:
->> Rather use a reset like feature inside the driver use the reset
->> controller API to get the same result.
->>
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->>   drivers/staging/media/hantro/Kconfig        |  1 +
->>   drivers/staging/media/hantro/imx8m_vpu_hw.c | 61 ++++-----------------
->>   2 files changed, 12 insertions(+), 50 deletions(-)
->>
->> diff --git a/drivers/staging/media/hantro/Kconfig b/drivers/staging/media/hantro/Kconfig
->> index 5b6cf9f62b1a..dd1d4dde2658 100644
->> --- a/drivers/staging/media/hantro/Kconfig
->> +++ b/drivers/staging/media/hantro/Kconfig
->> @@ -20,6 +20,7 @@ config VIDEO_HANTRO_IMX8M
->>   	bool "Hantro VPU i.MX8M support"
->>   	depends on VIDEO_HANTRO
->>   	depends on ARCH_MXC || COMPILE_TEST
->> +	select RESET_VPU_IMX8MQ
->>   	default y
->>   	help
->>   	  Enable support for i.MX8M SoCs.
->> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
->> index c222de075ef4..d5b4312b9391 100644
->> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
->> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
->> @@ -7,49 +7,12 @@
->>   
->>   #include <linux/clk.h>
->>   #include <linux/delay.h>
->> +#include <linux/reset.h>
->>   
->>   #include "hantro.h"
->>   #include "hantro_jpeg.h"
->>   #include "hantro_g1_regs.h"
->>   
->> -#define CTRL_SOFT_RESET		0x00
->> -#define RESET_G1		BIT(1)
->> -#define RESET_G2		BIT(0)
->> -
->> -#define CTRL_CLOCK_ENABLE	0x04
->> -#define CLOCK_G1		BIT(1)
->> -#define CLOCK_G2		BIT(0)
->> -
->> -#define CTRL_G1_DEC_FUSE	0x08
->> -#define CTRL_G1_PP_FUSE		0x0c
->> -#define CTRL_G2_DEC_FUSE	0x10
->> -
->> -static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
->> -{
->> -	u32 val;
->> -
->> -	/* Assert */
->> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
->> -	val &= ~reset_bits;
->> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
->> -
->> -	udelay(2);
->> -
->> -	/* Release */
->> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
->> -	val |= reset_bits;
->> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
->> -}
->> -
->> -static void imx8m_clk_enable(struct hantro_dev *vpu, u32 clock_bits)
->> -{
->> -	u32 val;
->> -
->> -	val = readl(vpu->ctrl_base + CTRL_CLOCK_ENABLE);
->> -	val |= clock_bits;
->> -	writel(val, vpu->ctrl_base + CTRL_CLOCK_ENABLE);
-> The way it is implemented in the reset driver, the clocks are now
-> ungated between assert and deassert instead of afterwards. Is this on
-> purpose?
+Thanks for reviewing the patch!
 
-No and that could be changed on next version.
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: 
+>> http://devicetree.org/schemas/regulator/qcom,rpmh-regulator.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Technologies, Inc. RPMh Regulators
+>> +
+>> +maintainers:
+>> +  - David Collins <collinsd@codeaurora.org>
+>> +
+>> +description:
+> 
+> I assume you want the formatting here maintained, so you need a '|' at 
+> the end.
+> 
 
-Benjamin
+Ok.
 
->
-> regards
-> Philipp
->
+>> +    rpmh-regulator devices support PMIC regulator management via the 
+>> Voltage
+>> +    Regulator Manager (VRM) and Oscillator Buffer (XOB) RPMh 
+>> accelerators.  The APPS
+>> +    processor communicates with these hardware blocks via a Resource 
+>> State
+>> +    Coordinator (RSC) using command packets.  The VRM allows changing 
+>> three
+>> +    parameters for a given regulator, enable state, output voltage, 
+>> and operating
+>> +    mode.  The XOB allows changing only a single parameter for a 
+>> given regulator,
+>> +    its enable state.  Despite its name, the XOB is capable of 
+>> controlling the
+>> +    enable state of any PMIC peripheral.  It is used for clock 
+>> buffers, low-voltage
+>> +    switches, and LDO/SMPS regulators which have a fixed voltage and 
+>> mode.
+>> +
+>> +    =======================
+>> +    Required Node Structure
+>> +    =======================
+>> +
+>> +    RPMh regulators must be described in two levels of device nodes.  
+>> The first
+>> +    level describes the PMIC containing the regulators and must 
+>> reside within an
+>> +    RPMh device node.  The second level describes each regulator 
+>> within the PMIC
+>> +    which is to be used on the board.  Each of these regulators maps 
+>> to a single
+>> +    RPMh resource.
+>> +
+>> +    The names used for regulator nodes must match those supported by 
+>> a given PMIC.
+>> +    Supported regulator node names are
+>> +      For PM8005, smps1 - smps4
+>> +      For PM8009, smps1 - smps2, ldo1 - ldo7
+>> +      For PM8150, smps1 - smps10, ldo1 - ldo18
+>> +      For PM8150L, smps1 - smps8, ldo1 - ldo11, bob, flash, rgb
+> 
+> flash and rgb aren't documented.
+> 
+
+Ok will add them.
+
+>> +      For PM8350, smps1 - smps12, ldo1 - ldo10
+>> +      For PM8350C, smps1 - smps10, ldo1 - ldo13, bob
+>> +      For PM8998, smps1 - smps13, ldo1 - ldo28, lvs1 - lvs2
+>> +      For PMI8998, bob
+>> +      For PM6150, smps1 - smps5, ldo1 - ldo19
+>> +      For PM6150L, smps1 - smps8, ldo1 - ldo11, bob
+>> +      For PMX55, smps1 - smps7, ldo1 - ldo16
+>> +
+>> +properties:
+>> +    compatible:
+>> +        enum:
+>> +            - qcom,pm8005-rpmh-regulators
+>> +            - qcom,pm8009-rpmh-regulators
+>> +            - qcom,pm8009-1-rpmh-regulators
+>> +            - qcom,pm8150-rpmh-regulators
+>> +            - qcom,pm8150l-rpmh-regulators
+>> +            - qcom,pm8350-rpmh-regulators
+>> +            - qcom,pm8350c-rpmh-regulators
+>> +            - qcom,pm8998-rpmh-regulators
+>> +            - qcom,pmi8998-rpmh-regulators
+>> +            - qcom,pm6150-rpmh-regulators
+>> +            - qcom,pm6150l-rpmh-regulators
+>> +            - qcom,pmx55-rpmh-regulators
+>> +
+>> +    qcom,pmic-id:
+>> +        description: RPMh resource name suffix used for the 
+>> regulators found on
+>> +                     this PMIC.  Typical values are "a", "b", "c", 
+>> "d", "e", "f".
+> 
+> Sounds like constraints. Make the values a schema.
+> 
+
+Ok
+
+>> +        $ref: /schemas/types.yaml#/definitions/string
+>> +
+>> +    qcom,always-wait-for-ack:
+>> +        description: Boolean flag which indicates that the 
+>> application processor
+>> +                     must wait for an ACK or a NACK from RPMh for 
+>> every request
+>> +                     sent for this regulator including those which 
+>> are for a
+>> +                     strictly lower power state.
+>> +        $ref: /schemas/types.yaml#/definitions/string
+> 
+> Boolean or string?
+> 
+
+Ok, will change it to /schemas/types.yaml#/definitions/flag
+
+>> +
+>> +patternProperties:
+>> +  ".*-supply$":
+> 
+> You can drop '.*'. That's already the case without '^'.
+> 
+
+Ok.
+
+> The supply names need to be defined.
+> 
+
+you mean I should define like this "^vdd-s|l([0-9]+)-supply$": ?
+
+>> +    description: phandle of the parent supply regulator of one or 
+>> more of the
+>> +                 regulators for this PMIC.
+>> +
+>> +  "^((smps|ldo|lvs)[0-9]*)$":
+> 
+> s/*/+/ as 1 digit is always required, right?
+> 
+
+ok
+
+>> +    type: object
+>> +    allOf:
+> 
+> Don't need allOf.
+> 
+
+ok, will drop this.
+
+>> +     - $ref: "regulator.yaml#"
+>> +    description: List of regulator parent supply phandles
+> 
+> This is a node, not a list of phandles.
+> 
+
+Okay.
+
+>> +
+>> +  "bob$":
+> 
+> 'foobob' is okay as that would be allowed? If a fixed string, put
+> under 'properties'.
+> 
+
+It is fixed string, will move it to properties.
+
+>> +    type: object
+>> +    allOf:
+>> +     - $ref: "regulator.yaml#"
+>> +    description: BOB regulator parent supply phandle
+>> +
+>> +additionalProperties: false
+>> +
+>> +required:
+>> + - compatible
+>> + - qcom,pmic-id
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>> +
+>> +    pm8998-rpmh-regulators {
+>> +        compatible = "qcom,pm8998-rpmh-regulators";
+>> +        qcom,pmic-id = "a";
+>> +
+>> +        vdd-l7-l12-l14-l15-supply = <&pm8998_s5>;
+>> +
+>> +        smps2 {
+>> +            regulator-min-microvolt = <1100000>;
+>> +            regulator-max-microvolt = <1100000>;
+>> +        };
+>> +
+>> +        pm8998_s5: smps5 {
+> 
+> Drop unused labels.
+> 
+
+Okay.
+
+>> +            regulator-min-microvolt = <1904000>;
+>> +            regulator-max-microvolt = <2040000>;
+>> +        };
+>> +
+>> +        ldo7 {
+>> +            regulator-min-microvolt = <1800000>;
+>> +            regulator-max-microvolt = <1800000>;
+>> +            regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +            regulator-allowed-modes =
+>> +                <RPMH_REGULATOR_MODE_LPM
+>> +                 RPMH_REGULATOR_MODE_HPM>;
+>> +            regulator-allow-set-load;
+>> +        };
+>> +
+>> +        lvs1 {
+>> +            regulator-min-microvolt = <1800000>;
+>> +            regulator-max-microvolt = <1800000>;
+>> +        };
+>> +    };
+>> +
+>> +    pmi8998-rpmh-regulators {
+>> +        compatible = "qcom,pmi8998-rpmh-regulators";
+>> +        qcom,pmic-id = "b";
+>> +
+>> +        bob {
+>> +            regulator-min-microvolt = <3312000>;
+>> +            regulator-max-microvolt = <3600000>;
+>> +            regulator-allowed-modes =
+>> +                <RPMH_REGULATOR_MODE_AUTO
+>> +                 RPMH_REGULATOR_MODE_HPM>;
+>> +            regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
+>> +        };
+>> +    };
+>> +...
+>> --
+>> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+>> member
+>> of Code Aurora Forum, hosted by The Linux Foundation
+>> 
+
+Thanks,
+Satya Priya
