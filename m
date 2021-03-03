@@ -2,377 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7512732BF64
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ACF632BF6D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386576AbhCCS3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:29:52 -0500
-Received: from lucky1.263xmail.com ([211.157.147.132]:40972 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1582356AbhCCIC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 03:02:56 -0500
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id C4D4CF19F3;
-        Wed,  3 Mar 2021 15:48:58 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P19729T140185384916736S1614757734881043_;
-        Wed, 03 Mar 2021 15:48:58 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <9a0803e127dd50988e9ecd91592f8ddd>
-X-RL-SENDER: shawn.lin@rock-chips.com
-X-SENDER: lintao@rock-chips.com
-X-LOGIN-NAME: shawn.lin@rock-chips.com
-X-FST-TO: robh+dt@kernel.org
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Shawn Lin <shawn.lin@rock-chips.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     linux-mmc@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH 3/3] mmc: sdhci-of-dwcmshc: add rockchip platform support
-Date:   Wed,  3 Mar 2021 15:48:43 +0800
-Message-Id: <1614757723-225262-3-git-send-email-shawn.lin@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1614757723-225262-1-git-send-email-shawn.lin@rock-chips.com>
-References: <1614757723-225262-1-git-send-email-shawn.lin@rock-chips.com>
+        id S1386588AbhCCSaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:30:03 -0500
+Received: from lb1-smtp-cloud7.xs4all.net ([194.109.24.24]:43539 "EHLO
+        lb1-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1842504AbhCCIFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 03:05:52 -0500
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id HMI4lRaOXOruFHMI8lBqgK; Wed, 03 Mar 2021 08:51:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1614757892; bh=BEM3CACPJM7ofFI6RVOnnROC7C6JWyliYyP1layUNnc=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=O5JqxmWOE5bK8Bm/KWrZq+HBfY2QL4B9l4r+gLiiiudulq1myWV/k/KSfXzikqPNG
+         3WljAs0x5R0HXx4ryjqAyXF7s3xXf5inng/P9KvLmGnfN4qnlEHyG6GhQxG4I8bnF2
+         sqRQtCGIL2pnWjQ2LGHDbETHTDoHh68vmpof1negWaqBdF+iwzoh61w77CYrLSvNRz
+         SoAhQKdHffji0yG5MHEFI5xpP3ds1CJrd3KhRVjZ6OsOZwKDG6o3hZFgpqM7wreRcY
+         dI9TYANl/w8fPNUTb638e5iMVoD4FVCzrBErLCVEJQDNK+UNrCWHB/TbNwWsosgNmo
+         3EXg8YwdmccdQ==
+Subject: Re: [PATCHv2 6/6] drm/omapdrm/dss/hdmi5: add CEC support
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        linux-media@vger.kernel.org
+Cc:     Tony Lindgren <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
+        dri-devel@lists.freedesktop.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210302162403.983585-1-hverkuil-cisco@xs4all.nl>
+ <20210302162403.983585-7-hverkuil-cisco@xs4all.nl>
+ <fe8eefe2-16d0-5d15-8a88-508d71a1f505@ideasonboard.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <95ec6807-49d1-d9e0-005b-25c65e85ea9b@xs4all.nl>
+Date:   Wed, 3 Mar 2021 08:51:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.7.1
+MIME-Version: 1.0
+In-Reply-To: <fe8eefe2-16d0-5d15-8a88-508d71a1f505@ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfLUrwz930kT5vBzlfMrsNAetN3XNEhJmBylu1ob6RTqJFIHTHfIgSVEySKEAQ/1hlWi+WOHlIJudAVlm5OPj1ZDLQ3U3rs8oqHj/khWmTT7OC7OZS/Kk
+ b/a0lpf7MDdYMbD07IuSgV7t8CKYi+DaBbIHP050VPfRzacNOqL1LaLZ/DfJuqUEkvcxJXRzXqi3UgFBGVhcuGNV5BG+2+KjUsDNCS4yrEZsfwhTrnv4DnMI
+ kQqdMkh09T6a1KM6Be7GwowfkMHaLNKXfiJr62s6fjQXtm22DPV1k9IVn64YFpF0udpryh6Sm0O232O8QpTPIrKuHksr/vrRUij2QS/obQUrjR5ElfQC7hDN
+ /jNZE20YyqesmqZl4P9aEF9j+QSP3mO4tBacfdHvlmWeYdk+ioNbjAj6PuEnqBPpFhvgrnsmriEj8pqhFDO5HT9nmwZggxn0LS2XjCmJzGRhsKlAx+FcvqK5
+ Pp6o07OoLYD4ceM7
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sdhci based synopsys MMC IP is also used on some rockchip platforms,
-so add a basic support here.
+On 03/03/2021 08:47, Tomi Valkeinen wrote:
+> On 02/03/2021 18:24, Hans Verkuil wrote:
+>> Add HDMI CEC support for OMAP5.
+>>
+>> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+>> ---
+>>   drivers/gpu/drm/omapdrm/Kconfig          |   8 +
+>>   drivers/gpu/drm/omapdrm/Makefile         |   1 +
+>>   drivers/gpu/drm/omapdrm/dss/hdmi.h       |   1 +
+>>   drivers/gpu/drm/omapdrm/dss/hdmi5.c      |  63 +++++--
+>>   drivers/gpu/drm/omapdrm/dss/hdmi5_cec.c  | 209 +++++++++++++++++++++++
+>>   drivers/gpu/drm/omapdrm/dss/hdmi5_cec.h  |  42 +++++
+>>   drivers/gpu/drm/omapdrm/dss/hdmi5_core.c |  35 +++-
+>>   drivers/gpu/drm/omapdrm/dss/hdmi5_core.h |  33 +++-
+>>   8 files changed, 373 insertions(+), 19 deletions(-)
+>>   create mode 100644 drivers/gpu/drm/omapdrm/dss/hdmi5_cec.c
+>>   create mode 100644 drivers/gpu/drm/omapdrm/dss/hdmi5_cec.h
+> 
+> <snip>
+> 
+>> diff --git a/drivers/gpu/drm/omapdrm/dss/hdmi5_core.h b/drivers/gpu/drm/omapdrm/dss/hdmi5_core.h
+>> index 070cbf5fb57d..a83b634f6011 100644
+>> --- a/drivers/gpu/drm/omapdrm/dss/hdmi5_core.h
+>> +++ b/drivers/gpu/drm/omapdrm/dss/hdmi5_core.h
+>> @@ -30,8 +30,18 @@
+>>   #define HDMI_CORE_IH_PHY_STAT0			0x00410
+>>   #define HDMI_CORE_IH_I2CM_STAT0			0x00414
+>>   #define HDMI_CORE_IH_CEC_STAT0			0x00418
+>> +#define CEC_STAT_DONE				BIT(0)
+>> +#define CEC_STAT_EOM				BIT(1)
+>> +#define CEC_STAT_NACK				BIT(2)
+>> +#define CEC_STAT_ARBLOST			BIT(3)
+>> +#define CEC_STAT_ERROR_INIT			BIT(4)
+>> +#define CEC_STAT_ERROR_FOLL			BIT(5)
+>> +#define CEC_STAT_WAKEUP				BIT(6)
+>> +
+>>   #define HDMI_CORE_IH_VP_STAT0			0x0041C
+>>   #define HDMI_CORE_IH_I2CMPHY_STAT0		0x00420
+>> +#define HDMI_CORE_IH_MUTE_I2CM_STAT0            0x00614
+> 
+> The line above has indentation in spaces, but everything else uses tabs.
 
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
----
+Well spotted!
 
- drivers/mmc/host/sdhci-of-dwcmshc.c | 220 ++++++++++++++++++++++++++++++++++--
- 1 file changed, 213 insertions(+), 7 deletions(-)
+I've fixed that in my tree.
 
-diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-index 59d8d96..959084c 100644
---- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-+++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-@@ -9,9 +9,11 @@
- 
- #include <linux/clk.h>
- #include <linux/dma-mapping.h>
-+#include <linux/iopoll.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/sizes.h>
- 
- #include "sdhci-pltfm.h"
-@@ -21,11 +23,43 @@
- /* DWCMSHC specific Mode Select value */
- #define DWCMSHC_CTRL_HS400		0x7
- 
-+/* Rockchip specific Registers */
-+#define DWCMSHC_HOST_CTRL3		0x508
-+#define DWCMSHC_EMMC_CONTROL		0x52c
-+#define DWCMSHC_EMMC_ATCTRL		0x540
-+#define DWCMSHC_EMMC_DLL_CTRL		0x800
-+#define DWCMSHC_EMMC_DLL_RXCLK		0x804
-+#define DWCMSHC_EMMC_DLL_TXCLK		0x808
-+#define DWCMSHC_EMMC_DLL_STRBIN		0x80c
-+#define DWCMSHC_EMMC_DLL_STATUS0	0x840
-+#define DWCMSHC_EMMC_DLL_START		BIT(0)
-+#define DWCMSHC_EMMC_DLL_RXCLK_SRCSEL	29
-+#define DWCMSHC_EMMC_DLL_START_POINT	16
-+#define DWCMSHC_EMMC_DLL_INC		8
-+#define DWCMSHC_EMMC_DLL_DLYENA		BIT(27)
-+#define DLL_TXCLK_TAPNUM_DEFAULT	0x8
-+#define DLL_STRBIN_TAPNUM_DEFAULT	0x8
-+#define DLL_TXCLK_TAPNUM_FROM_SW	BIT(24)
-+#define DLL_STRBIN_TAPNUM_FROM_SW	BIT(24)
-+#define DWCMSHC_EMMC_DLL_LOCKED		BIT(8)
-+#define DWCMSHC_EMMC_DLL_TIMEOUT	BIT(9)
-+#define DLL_RXCLK_NO_INVERTER		1
-+#define DLL_RXCLK_INVERTER		0
-+#define DWCMSHC_ENHANCED_STROBE		BIT(8)
-+#define DLL_LOCK_WO_TMOUT(x) \
-+	((((x) & DWCMSHC_EMMC_DLL_LOCKED) == DWCMSHC_EMMC_DLL_LOCKED) && \
-+	(((x) & DWCMSHC_EMMC_DLL_TIMEOUT) == 0))
-+#define ROCKCHIP_MAX_CLKS		3
-+
- #define BOUNDARY_OK(addr, len) \
- 	((addr | (SZ_128M - 1)) == ((addr + len - 1) | (SZ_128M - 1)))
- 
- struct dwcmshc_priv {
- 	struct clk	*bus_clk;
-+
-+	/* Rockchip specified optional clocks */
-+	struct clk_bulk_data rockchip_clks[ROCKCHIP_MAX_CLKS];
-+	int txclk_tapnum;
- };
- 
- /*
-@@ -100,6 +134,97 @@ static void dwcmshc_set_uhs_signaling(struct sdhci_host *host,
- 	sdhci_writew(host, ctrl_2, SDHCI_HOST_CONTROL2);
- }
- 
-+static void dwcmshc_rk_hs400_enhanced_strobe(struct mmc_host *mmc,
-+					     struct mmc_ios *ios)
-+{
-+	u32 vendor;
-+	struct sdhci_host *host = mmc_priv(mmc);
-+
-+	vendor = sdhci_readl(host, DWCMSHC_EMMC_CONTROL);
-+	if (ios->enhanced_strobe)
-+		vendor |= DWCMSHC_ENHANCED_STROBE;
-+	else
-+		vendor &= ~DWCMSHC_ENHANCED_STROBE;
-+
-+	sdhci_writel(host, vendor, DWCMSHC_EMMC_CONTROL);
-+}
-+
-+static void dwcmshc_rk_set_clock(struct sdhci_host *host, unsigned int clock)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+	u32 txclk_tapnum = DLL_TXCLK_TAPNUM_DEFAULT, extra;
-+	int err;
-+
-+	host->mmc->actual_clock = 0;
-+
-+	/* DO NOT TOUCH THIS SETTING */
-+	extra = DWCMSHC_EMMC_DLL_DLYENA |
-+		DLL_RXCLK_NO_INVERTER << DWCMSHC_EMMC_DLL_RXCLK_SRCSEL;
-+	sdhci_writel(host, extra, DWCMSHC_EMMC_DLL_RXCLK);
-+
-+	if (clock == 0)
-+		return;
-+
-+	/* Rockchip platform only support 375KHz for identify mode */
-+	if (clock <= 400000)
-+		clock = 375000;
-+
-+	err = clk_set_rate(pltfm_host->clk, clock);
-+	if (err)
-+		dev_err(mmc_dev(host->mmc), "fail to set clock %d", clock);
-+
-+	sdhci_set_clock(host, clock);
-+
-+	/* Disable cmd conflict check */
-+	extra = sdhci_readl(host, DWCMSHC_HOST_CTRL3);
-+	extra &= ~BIT(0);
-+	sdhci_writel(host, extra, DWCMSHC_HOST_CTRL3);
-+
-+	if (clock <= 400000) {
-+		/* Disable DLL to reset sample clock */
-+		sdhci_writel(host, 0, DWCMSHC_EMMC_DLL_CTRL);
-+		return;
-+	}
-+
-+	/* Reset DLL */
-+	sdhci_writel(host, BIT(1), DWCMSHC_EMMC_DLL_CTRL);
-+	udelay(1);
-+	sdhci_writel(host, 0x0, DWCMSHC_EMMC_DLL_CTRL);
-+
-+	/* Init DLL settings */
-+	extra = 0x5 << DWCMSHC_EMMC_DLL_START_POINT |
-+		0x2 << DWCMSHC_EMMC_DLL_INC |
-+		DWCMSHC_EMMC_DLL_START;
-+	sdhci_writel(host, extra, DWCMSHC_EMMC_DLL_CTRL);
-+	err = readl_poll_timeout(host->ioaddr + DWCMSHC_EMMC_DLL_STATUS0,
-+				 extra, DLL_LOCK_WO_TMOUT(extra), 1,
-+				 500 * USEC_PER_MSEC);
-+	if (err) {
-+		dev_err(mmc_dev(host->mmc), "DLL lock timeout!\n");
-+		return;
-+	}
-+
-+	extra = 0x1 << 16 | /* tune clock stop en */
-+		0x2 << 17 | /* pre-change delay */
-+		0x3 << 19;  /* post-change delay */
-+	sdhci_writel(host, extra, DWCMSHC_EMMC_ATCTRL);
-+
-+	if (host->mmc->ios.timing == MMC_TIMING_MMC_HS200 ||
-+	    host->mmc->ios.timing == MMC_TIMING_MMC_HS400)
-+		txclk_tapnum = priv->txclk_tapnum;
-+
-+	extra = DWCMSHC_EMMC_DLL_DLYENA |
-+		DLL_TXCLK_TAPNUM_FROM_SW |
-+		txclk_tapnum;
-+	sdhci_writel(host, extra, DWCMSHC_EMMC_DLL_TXCLK);
-+
-+	extra = DWCMSHC_EMMC_DLL_DLYENA |
-+		DLL_STRBIN_TAPNUM_DEFAULT |
-+		DLL_STRBIN_TAPNUM_FROM_SW;
-+	sdhci_writel(host, extra, DWCMSHC_EMMC_DLL_STRBIN);
-+}
-+
- static const struct sdhci_ops sdhci_dwcmshc_ops = {
- 	.set_clock		= sdhci_set_clock,
- 	.set_bus_width		= sdhci_set_bus_width,
-@@ -109,21 +234,91 @@ static const struct sdhci_ops sdhci_dwcmshc_ops = {
- 	.adma_write_desc	= dwcmshc_adma_write_desc,
- };
- 
-+static const struct sdhci_ops sdhci_dwcmshc_rk_ops = {
-+	.set_clock		= dwcmshc_rk_set_clock,
-+	.set_bus_width		= sdhci_set_bus_width,
-+	.set_uhs_signaling	= dwcmshc_set_uhs_signaling,
-+	.get_max_clock		= sdhci_pltfm_clk_get_max_clock,
-+	.reset			= sdhci_reset,
-+	.adma_write_desc	= dwcmshc_adma_write_desc,
-+};
-+
- static const struct sdhci_pltfm_data sdhci_dwcmshc_pdata = {
- 	.ops = &sdhci_dwcmshc_ops,
- 	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
- 	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
- };
- 
-+static const struct sdhci_pltfm_data sdhci_dwcmshc_rk_pdata = {
-+	.ops = &sdhci_dwcmshc_rk_ops,
-+	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
-+		  SDHCI_QUIRK_BROKEN_TIMEOUT_VAL,
-+	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN |
-+		   SDHCI_QUIRK2_CLOCK_DIV_ZERO_BROKEN,
-+};
-+
-+static int rockchip_pltf_init(struct sdhci_host *host, struct dwcmshc_priv *priv)
-+{
-+	int err;
-+
-+	priv->rockchip_clks[0].id = "axi";
-+	priv->rockchip_clks[1].id = "block";
-+	priv->rockchip_clks[2].id = "timer";
-+	err = devm_clk_bulk_get_optional(mmc_dev(host->mmc), ROCKCHIP_MAX_CLKS,
-+					 priv->rockchip_clks);
-+	if (err) {
-+		dev_err(mmc_dev(host->mmc), "failed to get clocks %d\n", err);
-+		return err;
-+	}
-+
-+	err = clk_bulk_prepare_enable(ROCKCHIP_MAX_CLKS, priv->rockchip_clks);
-+	if (err) {
-+		dev_err(mmc_dev(host->mmc), "failed to enable clocks %d\n", err);
-+		return err;
-+	}
-+
-+	if (of_property_read_u32(mmc_dev(host->mmc)->of_node, "rockchip,txclk-tapnum",
-+				 &priv->txclk_tapnum))
-+		priv->txclk_tapnum = DLL_TXCLK_TAPNUM_DEFAULT;
-+
-+	/* Disable cmd conflict check */
-+	sdhci_writel(host, 0x0, DWCMSHC_HOST_CTRL3);
-+	/* Reset previous settings */
-+	sdhci_writel(host, 0, DWCMSHC_EMMC_DLL_TXCLK);
-+	sdhci_writel(host, 0, DWCMSHC_EMMC_DLL_STRBIN);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id sdhci_dwcmshc_dt_ids[] = {
-+	{
-+		.compatible = "snps,dwcmshc-sdhci",
-+		.data = &sdhci_dwcmshc_pdata,
-+	},
-+	{
-+		.compatible = "rockchip,dwcmshc-sdhci",
-+		.data = &sdhci_dwcmshc_rk_pdata,
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, sdhci_dwcmshc_dt_ids);
-+
- static int dwcmshc_probe(struct platform_device *pdev)
- {
- 	struct sdhci_pltfm_host *pltfm_host;
- 	struct sdhci_host *host;
- 	struct dwcmshc_priv *priv;
-+	const struct sdhci_pltfm_data *pltfm_data;
- 	int err;
- 	u32 extra;
- 
--	host = sdhci_pltfm_init(pdev, &sdhci_dwcmshc_pdata,
-+	pltfm_data = of_device_get_match_data(&pdev->dev);
-+	if (!pltfm_data) {
-+		dev_err(&pdev->dev, "Error: No device match data found\n");
-+		return -ENODEV;
-+	}
-+
-+	host = sdhci_pltfm_init(pdev, pltfm_data,
- 				sizeof(struct dwcmshc_priv));
- 	if (IS_ERR(host))
- 		return PTR_ERR(host);
-@@ -161,6 +356,15 @@ static int dwcmshc_probe(struct platform_device *pdev)
- 
- 	host->mmc_host_ops.request = dwcmshc_request;
- 
-+	if (pltfm_data == &sdhci_dwcmshc_rk_pdata) {
-+		host->mmc_host_ops.hs400_enhanced_strobe =
-+			dwcmshc_rk_hs400_enhanced_strobe;
-+
-+		err = rockchip_pltf_init(host, priv);
-+		if (err)
-+			goto err_clk;
-+	}
-+
- 	err = sdhci_add_host(host);
- 	if (err)
- 		goto err_clk;
-@@ -170,6 +374,7 @@ static int dwcmshc_probe(struct platform_device *pdev)
- err_clk:
- 	clk_disable_unprepare(pltfm_host->clk);
- 	clk_disable_unprepare(priv->bus_clk);
-+	clk_bulk_disable_unprepare(ROCKCHIP_MAX_CLKS, priv->rockchip_clks);
- free_pltfm:
- 	sdhci_pltfm_free(pdev);
- 	return err;
-@@ -185,6 +390,7 @@ static int dwcmshc_remove(struct platform_device *pdev)
- 
- 	clk_disable_unprepare(pltfm_host->clk);
- 	clk_disable_unprepare(priv->bus_clk);
-+	clk_bulk_disable_unprepare(ROCKCHIP_MAX_CLKS, priv->rockchip_clks);
- 
- 	sdhci_pltfm_free(pdev);
- 
-@@ -207,6 +413,8 @@ static int dwcmshc_suspend(struct device *dev)
- 	if (!IS_ERR(priv->bus_clk))
- 		clk_disable_unprepare(priv->bus_clk);
- 
-+	clk_bulk_disable_unprepare(ROCKCHIP_MAX_CLKS, priv->rockchip_clks);
-+
- 	return ret;
- }
- 
-@@ -227,18 +435,16 @@ static int dwcmshc_resume(struct device *dev)
- 			return ret;
- 	}
- 
-+	ret = clk_bulk_prepare_enable(ROCKCHIP_MAX_CLKS, priv->rockchip_clks);
-+	if (ret)
-+		return ret;
-+
- 	return sdhci_resume_host(host);
- }
- #endif
- 
- static SIMPLE_DEV_PM_OPS(dwcmshc_pmops, dwcmshc_suspend, dwcmshc_resume);
- 
--static const struct of_device_id sdhci_dwcmshc_dt_ids[] = {
--	{ .compatible = "snps,dwcmshc-sdhci" },
--	{}
--};
--MODULE_DEVICE_TABLE(of, sdhci_dwcmshc_dt_ids);
--
- static struct platform_driver sdhci_dwcmshc_driver = {
- 	.driver	= {
- 		.name	= "sdhci-dwcmshc",
--- 
-2.7.4
+> 
+> Other than that:
+> 
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
+Thanks!
 
+	Hans
+
+> 
+>   Tomi
+> 
 
