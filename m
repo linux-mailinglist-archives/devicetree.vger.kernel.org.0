@@ -2,628 +2,553 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52EF532C0E2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D50D032C04B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579765AbhCCScH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:32:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34860 "EHLO
+        id S244348AbhCCSmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:42:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381330AbhCCOar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 09:30:47 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB09C061221;
-        Wed,  3 Mar 2021 06:23:27 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id o16so6524781wmh.0;
-        Wed, 03 Mar 2021 06:23:27 -0800 (PST)
+        with ESMTP id S1383827AbhCCPfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 10:35:08 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF22C061765
+        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 07:34:26 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id t9so4360515pjl.5
+        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 07:34:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=uuk95K4eGIjgdY3ZU93vgvSDnmWADjnIPDDufhGuTTM=;
-        b=cuB2oLEN+9hzEiz+UdqqFeVAw9NMbBTsv0ZN+b1VcYeKAIdqCtM3gwDTbkZR9hfWaQ
-         kYlmfNiUrYMsdWjZkc1H7AivnqfuPqh/MamZVDhfqPdlGY7KC847JxVoH7uYia1bNwe5
-         LE7HdZC2fHsqkd371w0KPRpLJIXPUXPvjLxgbsjZwsiz3mqhfvRc91JqhiYQsrW85qEu
-         9NiwEFPoZLUBYJ5J1XCVTHmQo2uj29uJYXDrbb19nB0TkkYvP89jUKhNZNbSM2dM7IwX
-         heCYzLUNS7qMTTYEv4qd1WRaJbQjR8u+oQnqY9zSg8sddkHAy+oa34NTC1p0cJi/OUHl
-         R7Xg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3W37d8NL+JLJhVV482HENox8UGgz8AoMWF0DFz7r5hE=;
+        b=mj7Fm5z7emedl4PYbFIYbtHcasrpdVQ+CDf8fsaoZsvF2bIRDzPejJAW9254iw6QYI
+         pCNIPwP57H6cEAKyXr3KAfZTrb4tLwZyQfPykr08z3rBrHaXcIeEi6wYnxZtF2nXLNxA
+         Wy4sOyZVrRxDmgFloTMgkMT8YZVqwVzBP4mpV7RnA5T96rrobqHWAdstSAJqAFXu6Fpm
+         a2jh6zu5aNEAK1w8FHke+6B5xfSKQtNhy+QVvJV4aE4l/PTz4KTk8UWLQl91rkVgqv9t
+         zhQXpGnCDaF6rE97dseFTrAIM2wYzaydH9YWTPrgyP1Q2YVOG8foAdqb51nyOE2WFOkT
+         UwZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uuk95K4eGIjgdY3ZU93vgvSDnmWADjnIPDDufhGuTTM=;
-        b=XIv3jAfpH3QxH8g2w706yoi1hXjpgqgLxhEe8kmYa/zC5h8YxYfKG94nho0lZ5x/hW
-         vnVjxRb0g7DqyHLfOm4gZ8I39IVjvPyjuORi5H39J9MJ49+sfhqb4ATstP9qQFdf5YBB
-         zgeh2E1z80BqVsmdrSugiMrJDFvI6bKzEQJkgx40qzB/Z0hw2b1cCshZRFdY1u3Vo59c
-         O7mZuVOF4U0gceHmxFVO8VN+wZE2dKDXR/F6C0WZp6QFeyywFmMT4Ja2SYfV7ZNjuGoz
-         hfQl4sqxjyQ2V61mUvmsY8i3mXXN8Rc/z1Rvzd5QomGOQejGZ/dcGEwsDAb6C+YhnijE
-         JB4A==
-X-Gm-Message-State: AOAM533fA0aZCsR9G123OYiuljwp8FoBlVIceqAZpZ5A14XMybAFr7vs
-        DnWlHkE1tKI24igMG3uqCqY=
-X-Google-Smtp-Source: ABdhPJydqCYiiqj/NDovJFRnbXbCDLxeBNnLhlyXXXqifP1CE7/eT7p61Xg+dUGNGWYee1HA9f5Z1A==
-X-Received: by 2002:a1c:3b42:: with SMTP id i63mr9474700wma.124.1614781406104;
-        Wed, 03 Mar 2021 06:23:26 -0800 (PST)
-Received: from skynet.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
-        by smtp.gmail.com with ESMTPSA id b15sm7876219wmd.41.2021.03.03.06.23.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 06:23:25 -0800 (PST)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 14/14] pinctrl: add a pincontrol driver for BCM6318
-Date:   Wed,  3 Mar 2021 15:23:10 +0100
-Message-Id: <20210303142310.6371-15-noltari@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210303142310.6371-1-noltari@gmail.com>
-References: <20210303142310.6371-1-noltari@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3W37d8NL+JLJhVV482HENox8UGgz8AoMWF0DFz7r5hE=;
+        b=MG6uAA4V6qBrwfNbRkG51/OCu47+juApWDKfVxqCR0L8jqb8LHFXwA0uQC8UaOIB0C
+         lkBd3N4x8QIrKhXZFSC4ZLKdV37AXny8aLIcWf0p8qHLLarO2acACtSZACdeJjXbG+WL
+         q9JxT2xO+0TIAlnrSxd21Ih1f2bKo/sx2Mx71GWzBswPKwtN8U8pHekGdd4VPWKkh470
+         lck/dtKQ1GVlZFEXQ2IyZCR7mLEOdeanMZqmQbpVfjQNmGBp0TYO3E6qqzB4+8QeN9i+
+         Czl4yjtVuhf0XYYv70jdY3akFXdi2Le4AwFmLnmabN1goYyqBhOnBfX5/kzRyUalO30i
+         1rsg==
+X-Gm-Message-State: AOAM530hAXgbW+VTnGX8zZjGTMtMwXHyCqq9zjjHu8PFnnkP05yntmzd
+        XcVUTLff2DaxllayFZLHOq78IUvKefMBD7RGc3E1KA==
+X-Google-Smtp-Source: ABdhPJy4rrvpdgPyQjjpBkm5OvT2TPc3Ubzc7QE70H48ElOku/Xab4u148S/RRofrNNVX1k22bFtYtegWLswpw+q6bs=
+X-Received: by 2002:a17:902:f68a:b029:e5:b17f:9154 with SMTP id
+ l10-20020a170902f68ab02900e5b17f9154mr8825880plg.28.1614785665986; Wed, 03
+ Mar 2021 07:34:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1613619715-28785-1-git-send-email-victor.liu@nxp.com>
+ <1613619715-28785-11-git-send-email-victor.liu@nxp.com> <CAG3jFysTKXsmfx4x=XVdu3X0amE9EUOxN=bYo4eg+XjnqyFsVg@mail.gmail.com>
+ <9c437b07a47b14c47f65ac58f6cf9bc95edab169.camel@nxp.com>
+In-Reply-To: <9c437b07a47b14c47f65ac58f6cf9bc95edab169.camel@nxp.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Wed, 3 Mar 2021 16:34:14 +0100
+Message-ID: <CAG3jFysCUGWD-a4MabUz12GB3DNZQ2rCEXn60JZ7zQXH=OqDnw@mail.gmail.com>
+Subject: Re: [PATCH v4 10/14] drm/bridge: imx: Add LDB driver helper support
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>, kishon@ti.com,
+        Vinod Koul <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a pincontrol driver for BCM6318. BCM6318 allows muxing most GPIOs
-to different functions. BCM6318 is similar to BCM6328 with the addition
-of a pad register, and the GPIO meaning of the mux register changes
-based on the GPIO number.
+On Wed, 3 Mar 2021 at 08:23, Liu Ying <victor.liu@nxp.com> wrote:
+>
+> Hi Robert,
+>
+> On Tue, 2021-03-02 at 15:22 +0100, Robert Foss wrote:
+> > Hey Liu,
+> >
+> > Thanks for submitting this patch.
+>
+> Thanks for reviewing this patch.
+>
+> >
+> > On Thu, 18 Feb 2021 at 04:59, Liu Ying <victor.liu@nxp.com> wrote:
+> > > This patch adds a helper to support LDB drm bridge drivers for
+> > > i.MX SoCs.  Helper functions exported from this driver should
+> > > implement common logics for all LDB modules embedded in i.MX SoCs.
+> > >
+> > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > > ---
+> > > v3->v4:
+> > > * No change.
+> > >
+> > > v2->v3:
+> > > * Call syscon_node_to_regmap() to get regmap instead of
+> > >   syscon_regmap_lookup_by_phandle().
+> > >
+> > > v1->v2:
+> > > * No change.
+> > >
+> > >  drivers/gpu/drm/bridge/imx/Kconfig          |   8 +
+> > >  drivers/gpu/drm/bridge/imx/Makefile         |   1 +
+> > >  drivers/gpu/drm/bridge/imx/imx-ldb-helper.c | 248 ++++++++++++++++++++++++++++
+> > >  include/drm/bridge/imx_ldb_helper.h         |  98 +++++++++++
+> > >  4 files changed, 355 insertions(+)
+> > >  create mode 100644 drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
+> > >  create mode 100644 include/drm/bridge/imx_ldb_helper.h
+> > >
+> > > diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
+> > > index 1ea1ce7..23e24fd 100644
+> > > --- a/drivers/gpu/drm/bridge/imx/Kconfig
+> > > +++ b/drivers/gpu/drm/bridge/imx/Kconfig
+> > > @@ -1,3 +1,11 @@
+> > > +config DRM_IMX_LVDS_BRIDGE_HELPER
+> > > +       tristate "Freescale i.MX LVDS display bridge helper"
+> > > +       depends on OF
+> > > +       select DRM_PANEL_BRIDGE
+> > > +       help
+> > > +         Helper to support Freescale i.MX LVDS Display Bridge(LDB).
+> > > +         This bridge is embedded in a SoC.
+> > > +
+> > >  config DRM_IMX8QXP_PIXEL_COMBINER
+> > >         tristate "Freescale i.MX8QM/QXP pixel combiner"
+> > >         depends on OF
+> > > diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
+> > > index e74dd64..902b703 100644
+> > > --- a/drivers/gpu/drm/bridge/imx/Makefile
+> > > +++ b/drivers/gpu/drm/bridge/imx/Makefile
+> > > @@ -1,3 +1,4 @@
+> > > +obj-$(CONFIG_DRM_IMX_LVDS_BRIDGE_HELPER) += imx-ldb-helper.o
+> > >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
+> > >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) += imx8qxp-pixel-link.o
+> > >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) += imx8qxp-pxl2dpi.o
+> > > diff --git a/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
+> > > new file mode 100644
+> > > index 00000000..94d7f9e
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
+> > > @@ -0,0 +1,248 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Copyright (C) 2012 Sascha Hauer, Pengutronix
+> > > + * Copyright 2019,2020 NXP
+> > > + */
+> > > +
+> > > +#include <linux/mfd/syscon.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/regmap.h>
+> > > +
+> > > +#include <drm/bridge/imx_ldb_helper.h>
+> > > +#include <drm/drm_of.h>
+> > > +#include <drm/drm_panel.h>
+> > > +#include <drm/drm_print.h>
+> > > +
+> > > +bool ldb_channel_is_single_link(struct ldb_channel *ldb_ch)
+> > > +{
+> > > +       return ldb_ch->link_type == LDB_CH_SINGLE_LINK;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_channel_is_single_link);
+> > > +
+> > > +bool ldb_channel_is_split_link(struct ldb_channel *ldb_ch)
+> > > +{
+> > > +       return ldb_ch->link_type == LDB_CH_DUAL_LINK_EVEN_ODD_PIXELS ||
+> > > +              ldb_ch->link_type == LDB_CH_DUAL_LINK_ODD_EVEN_PIXELS;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_channel_is_split_link);
+> > > +
+> > > +int ldb_bridge_atomic_check_helper(struct drm_bridge *bridge,
+> > > +                                  struct drm_bridge_state *bridge_state,
+> > > +                                  struct drm_crtc_state *crtc_state,
+> > > +                                  struct drm_connector_state *conn_state)
+> > > +{
+> > > +       struct ldb_channel *ldb_ch = bridge->driver_private;
+> > > +
+> > > +       ldb_ch->in_bus_format = bridge_state->input_bus_cfg.format;
+> > > +       ldb_ch->out_bus_format = bridge_state->output_bus_cfg.format;
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_bridge_atomic_check_helper);
+> > > +
+> > > +void ldb_bridge_mode_set_helper(struct drm_bridge *bridge,
+> > > +                               const struct drm_display_mode *mode,
+> > > +                               const struct drm_display_mode *adjusted_mode)
+> > > +{
+> > > +       struct ldb_channel *ldb_ch = bridge->driver_private;
+> > > +       struct ldb *ldb = ldb_ch->ldb;
+> > > +       bool is_split = ldb_channel_is_split_link(ldb_ch);
+> > > +
+> > > +       if (is_split)
+> > > +               ldb->ldb_ctrl |= LDB_SPLIT_MODE_EN;
+> > > +
+> > > +       switch (ldb_ch->out_bus_format) {
+> > > +       case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
+> > > +               break;
+> > > +       case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
+> > > +               if (ldb_ch->chno == 0 || is_split)
+> > > +                       ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH0_24;
+> > > +               if (ldb_ch->chno == 1 || is_split)
+> > > +                       ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH1_24;
+> > > +               break;
+> > > +       case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
+> > > +               if (ldb_ch->chno == 0 || is_split)
+> > > +                       ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH0_24 |
+> > > +                                        LDB_BIT_MAP_CH0_JEIDA;
+> > > +               if (ldb_ch->chno == 1 || is_split)
+> > > +                       ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH1_24 |
+> > > +                                        LDB_BIT_MAP_CH1_JEIDA;
+> > > +               break;
+> > > +       }
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_bridge_mode_set_helper);
+> > > +
+> > > +void ldb_bridge_enable_helper(struct drm_bridge *bridge)
+> > > +{
+> > > +       struct ldb_channel *ldb_ch = bridge->driver_private;
+> > > +       struct ldb *ldb = ldb_ch->ldb;
+> > > +
+> > > +       /*
+> > > +        * Platform specific bridge drivers should set ldb_ctrl properly
+> > > +        * for the enablement, so just write the ctrl_reg here.
+> > > +        */
+> > > +       regmap_write(ldb->regmap, ldb->ctrl_reg, ldb->ldb_ctrl);
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_bridge_enable_helper);
+> > > +
+> > > +void ldb_bridge_disable_helper(struct drm_bridge *bridge)
+> > > +{
+> > > +       struct ldb_channel *ldb_ch = bridge->driver_private;
+> > > +       struct ldb *ldb = ldb_ch->ldb;
+> > > +       bool is_split = ldb_channel_is_split_link(ldb_ch);
+> > > +
+> > > +       if (ldb_ch->chno == 0 || is_split)
+> > > +               ldb->ldb_ctrl &= ~LDB_CH0_MODE_EN_MASK;
+> > > +       if (ldb_ch->chno == 1 || is_split)
+> > > +               ldb->ldb_ctrl &= ~LDB_CH1_MODE_EN_MASK;
+> > > +
+> > > +       regmap_write(ldb->regmap, ldb->ctrl_reg, ldb->ldb_ctrl);
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_bridge_disable_helper);
+> > > +
+> > > +int ldb_bridge_attach_helper(struct drm_bridge *bridge,
+> > > +                            enum drm_bridge_attach_flags flags)
+> > > +{
+> > > +       struct ldb_channel *ldb_ch = bridge->driver_private;
+> > > +       struct ldb *ldb = ldb_ch->ldb;
+> > > +
+> > > +       if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
+> > > +               DRM_DEV_ERROR(ldb->dev,
+> > > +                             "do not support creating a drm_connector\n");
+> > > +               return -EINVAL;
+> > > +       }
+> > > +
+> > > +       if (!bridge->encoder) {
+> > > +               DRM_DEV_ERROR(ldb->dev, "missing encoder\n");
+> > > +               return -ENODEV;
+> > > +       }
+> > > +
+> > > +       return drm_bridge_attach(bridge->encoder,
+> > > +                               ldb_ch->next_bridge, bridge,
+> > > +                               DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_bridge_attach_helper);
+> > > +
+> > > +int ldb_init_helper(struct ldb *ldb)
+> > > +{
+> > > +       struct device *dev = ldb->dev;
+> > > +       struct device_node *np = dev->of_node;
+> > > +       struct device_node *child;
+> > > +       int ret;
+> > > +       u32 i;
+> > > +
+> > > +       ldb->regmap = syscon_node_to_regmap(np->parent);
+> > > +       if (IS_ERR(ldb->regmap)) {
+> > > +               ret = PTR_ERR(ldb->regmap);
+> > > +               if (ret != -EPROBE_DEFER)
+> > > +                       DRM_DEV_ERROR(dev, "failed to get regmap: %d\n", ret);
+> > > +               return ret;
+> > > +       }
+> > > +
+> > > +       for_each_available_child_of_node(np, child) {
+> > > +               struct ldb_channel *ldb_ch;
+> > > +
+> > > +               ret = of_property_read_u32(child, "reg", &i);
+> > > +               if (ret || i > MAX_LDB_CHAN_NUM - 1) {
+> > > +                       ret = -EINVAL;
+> > > +                       DRM_DEV_ERROR(dev,
+> > > +                                     "invalid channel node address: %u\n", i);
+> > > +                       of_node_put(child);
+> > > +                       return ret;
+> > > +               }
+> > > +
+> > > +               ldb_ch = ldb->channel[i];
+> > > +               ldb_ch->ldb = ldb;
+> > > +               ldb_ch->chno = i;
+> > > +               ldb_ch->is_available = true;
+> > > +               ldb_ch->np = child;
+> > > +
+> > > +               ldb->available_ch_cnt++;
+> > > +       }
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_init_helper);
+> > > +
+> > > +int ldb_find_next_bridge_helper(struct ldb *ldb)
+> > > +{
+> > > +       struct device *dev = ldb->dev;
+> > > +       struct ldb_channel *ldb_ch;
+> > > +       int ret, i;
+> > > +
+> > > +       for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
+> > > +               ldb_ch = ldb->channel[i];
+> > > +
+> > > +               if (!ldb_ch->is_available)
+> > > +                       continue;
+> > > +
+> > > +               ret = drm_of_find_panel_or_bridge(ldb_ch->np, 1, 0,
+> > > +                                                 &ldb_ch->panel,
+> > > +                                                 &ldb_ch->next_bridge);
+> > > +               if (ret) {
+> > > +                       if (ret != -EPROBE_DEFER)
+> > > +                               DRM_DEV_ERROR(dev,
+> > > +                                       "failed to find panel or bridge: %d\n",
+> > > +                                                                       ret);
+> > > +                       return ret;
+> > > +               }
+> > > +
+> > > +               if (ldb_ch->panel) {
+> > > +                       ldb_ch->next_bridge = devm_drm_panel_bridge_add(dev,
+> > > +                                                               ldb_ch->panel);
+> > > +                       if (IS_ERR(ldb_ch->next_bridge)) {
+> > > +                               ret = PTR_ERR(ldb_ch->next_bridge);
+> > > +                               DRM_DEV_ERROR(dev,
+> > > +                                       "failed to add panel bridge: %d\n",
+> > > +                                                                       ret);
+> > > +                               return ret;
+> > > +                       }
+> > > +               }
+> > > +       }
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_find_next_bridge_helper);
+> > > +
+> > > +void ldb_add_bridge_helper(struct ldb *ldb,
+> > > +                          const struct drm_bridge_funcs *bridge_funcs)
+> > > +{
+> > > +       struct ldb_channel *ldb_ch;
+> > > +       int i;
+> > > +
+> > > +       for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
+> > > +               ldb_ch = ldb->channel[i];
+> > > +
+> > > +               if (!ldb_ch->is_available)
+> > > +                       continue;
+> > > +
+> > > +               ldb_ch->bridge.driver_private = ldb_ch;
+> > > +               ldb_ch->bridge.funcs = bridge_funcs;
+> > > +               ldb_ch->bridge.of_node = ldb_ch->np;
+> > > +
+> > > +               drm_bridge_add(&ldb_ch->bridge);
+> > > +       }
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_add_bridge_helper);
+> > > +
+> > > +void ldb_remove_bridge_helper(struct ldb *ldb)
+> > > +{
+> > > +       struct ldb_channel *ldb_ch;
+> > > +       int i;
+> > > +
+> > > +       for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
+> > > +               ldb_ch = ldb->channel[i];
+> > > +
+> > > +               if (!ldb_ch->is_available)
+> > > +                       continue;
+> > > +
+> > > +               drm_bridge_remove(&ldb_ch->bridge);
+> > > +       }
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(ldb_remove_bridge_helper);
+> > > +
+> > > +MODULE_DESCRIPTION("Freescale i.MX LVDS Display Bridge driver helper");
+> > > +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
+> > > +MODULE_LICENSE("GPL v2");
+> > > +MODULE_ALIAS("platform:imx-ldb-helper");
+> >
+> > I'm not entirely sure why this set of helper functions should be a
+> > module. It's not a driver, but rather a toolbox for the LDB driver,
+> > which is fine, but there is no situation I can see where this module
+> > would be unloaded and the LDB driver would be loaded.
+>
+> I can see drivers/gpu/drm/drm_mipi_dbi.c is also a module and
+> essentially provides helpers to MIPI DBI drivers, but it is not a
+> driver.  I don't see this imx-ldb-helper can be anything else other
+> than a module.
+>
+> Or, do you mean that imx-ldb-helper should be only built-in?
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
----
- v3: use new shared code
- v2: switch to GPIO_REGMAP
+My thinking was that it should just be linked together with the rest
+of the imx8qxp-ldb driver. But this ties in to my next comment.
 
- drivers/pinctrl/bcm/Kconfig           |   8 +
- drivers/pinctrl/bcm/Makefile          |   1 +
- drivers/pinctrl/bcm/pinctrl-bcm6318.c | 496 ++++++++++++++++++++++++++
- 3 files changed, 505 insertions(+)
- create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6318.c
+>
+> >
+> > > diff --git a/include/drm/bridge/imx_ldb_helper.h b/include/drm/bridge/imx_ldb_helper.h
+> > > new file mode 100644
+> > > index 00000000..2a7ba97
+> > > --- /dev/null
+> > > +++ b/include/drm/bridge/imx_ldb_helper.h
+> >
+> > This header is specific to this driver, and I would expect it to not
+> > be useful to other drivers. Additionally the filename has a different
+> > format than the .c file it corresponds to. I would change the name and
+> > path to "drivers/gpu/drm/bridge/imx/imx-ldb-helper.h".
+>
+> The i.MX53/6qdl LDB driver(drivers/gpu/drm/imx/imx-ldb.c) can
+> potentially use this header, but it's a DRM encoder driver.
+> So, maybe, it's a good idea to move this header to the 'drivers' folder
+> and rename it to 'imx-ldb-helper.h' ofc.  If no objections, I'll do as
+> what you're suggesting here in the next version.
 
-diff --git a/drivers/pinctrl/bcm/Kconfig b/drivers/pinctrl/bcm/Kconfig
-index a49b788f2b0f..592f5f0724a0 100644
---- a/drivers/pinctrl/bcm/Kconfig
-+++ b/drivers/pinctrl/bcm/Kconfig
-@@ -38,6 +38,14 @@ config PINCTRL_BCM63XX
- 	select PINCONF
- 	select PINMUX
- 
-+config PINCTRL_BCM6318
-+	bool "Broadcom BCM6318 GPIO driver"
-+	depends on (BMIPS_GENERIC || COMPILE_TEST)
-+	select PINCTRL_BCM63XX
-+	default BMIPS_GENERIC
-+	help
-+	   Say Y here to enable the Broadcom BCM6318 GPIO driver.
-+
- config PINCTRL_BCM6328
- 	bool "Broadcom BCM6328 GPIO driver"
- 	depends on (BMIPS_GENERIC || COMPILE_TEST)
-diff --git a/drivers/pinctrl/bcm/Makefile b/drivers/pinctrl/bcm/Makefile
-index 4117847fd279..00c7b7775e63 100644
---- a/drivers/pinctrl/bcm/Makefile
-+++ b/drivers/pinctrl/bcm/Makefile
-@@ -4,6 +4,7 @@
- obj-$(CONFIG_PINCTRL_BCM281XX)		+= pinctrl-bcm281xx.o
- obj-$(CONFIG_PINCTRL_BCM2835)		+= pinctrl-bcm2835.o
- obj-$(CONFIG_PINCTRL_BCM63XX)		+= pinctrl-bcm63xx.o
-+obj-$(CONFIG_PINCTRL_BCM6318)		+= pinctrl-bcm6318.o
- obj-$(CONFIG_PINCTRL_BCM6328)		+= pinctrl-bcm6328.o
- obj-$(CONFIG_PINCTRL_BCM6358)		+= pinctrl-bcm6358.o
- obj-$(CONFIG_PINCTRL_BCM6362)		+= pinctrl-bcm6362.o
-diff --git a/drivers/pinctrl/bcm/pinctrl-bcm6318.c b/drivers/pinctrl/bcm/pinctrl-bcm6318.c
-new file mode 100644
-index 000000000000..57fa64180df1
---- /dev/null
-+++ b/drivers/pinctrl/bcm/pinctrl-bcm6318.c
-@@ -0,0 +1,496 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Driver for BCM6318 GPIO unit (pinctrl + GPIO)
-+ *
-+ * Copyright (C) 2021 Álvaro Fernández Rojas <noltari@gmail.com>
-+ * Copyright (C) 2016 Jonas Gorski <jonas.gorski@gmail.com>
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/kernel.h>
-+#include <linux/of.h>
-+#include <linux/pinctrl/pinmux.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#include "../pinctrl-utils.h"
-+
-+#include "pinctrl-bcm63xx.h"
-+
-+#define BCM6318_NUM_GPIOS	50
-+#define BCM6318_NUM_MUX		48
-+
-+#define BCM6318_MODE_REG	0x18
-+#define BCM6318_MUX_REG		0x1c
-+#define BCM6318_PAD_REG		0x54
-+
-+struct bcm6318_pingroup {
-+	const char *name;
-+	const unsigned * const pins;
-+	const unsigned num_pins;
-+};
-+
-+struct bcm6318_function {
-+	const char *name;
-+	const char * const *groups;
-+	const unsigned num_groups;
-+
-+	unsigned mode_val:1;
-+	unsigned mux_val:2;
-+};
-+
-+static const struct pinctrl_pin_desc bcm6318_pins[] = {
-+	PINCTRL_PIN(0, "gpio0"),
-+	PINCTRL_PIN(1, "gpio1"),
-+	PINCTRL_PIN(2, "gpio2"),
-+	PINCTRL_PIN(3, "gpio3"),
-+	PINCTRL_PIN(4, "gpio4"),
-+	PINCTRL_PIN(5, "gpio5"),
-+	PINCTRL_PIN(6, "gpio6"),
-+	PINCTRL_PIN(7, "gpio7"),
-+	PINCTRL_PIN(8, "gpio8"),
-+	PINCTRL_PIN(9, "gpio9"),
-+	PINCTRL_PIN(10, "gpio10"),
-+	PINCTRL_PIN(11, "gpio11"),
-+	PINCTRL_PIN(12, "gpio12"),
-+	PINCTRL_PIN(13, "gpio13"),
-+	PINCTRL_PIN(14, "gpio14"),
-+	PINCTRL_PIN(15, "gpio15"),
-+	PINCTRL_PIN(16, "gpio16"),
-+	PINCTRL_PIN(17, "gpio17"),
-+	PINCTRL_PIN(18, "gpio18"),
-+	PINCTRL_PIN(19, "gpio19"),
-+	PINCTRL_PIN(20, "gpio20"),
-+	PINCTRL_PIN(21, "gpio21"),
-+	PINCTRL_PIN(22, "gpio22"),
-+	PINCTRL_PIN(23, "gpio23"),
-+	PINCTRL_PIN(24, "gpio24"),
-+	PINCTRL_PIN(25, "gpio25"),
-+	PINCTRL_PIN(26, "gpio26"),
-+	PINCTRL_PIN(27, "gpio27"),
-+	PINCTRL_PIN(28, "gpio28"),
-+	PINCTRL_PIN(29, "gpio29"),
-+	PINCTRL_PIN(30, "gpio30"),
-+	PINCTRL_PIN(31, "gpio31"),
-+	PINCTRL_PIN(32, "gpio32"),
-+	PINCTRL_PIN(33, "gpio33"),
-+	PINCTRL_PIN(34, "gpio34"),
-+	PINCTRL_PIN(35, "gpio35"),
-+	PINCTRL_PIN(36, "gpio36"),
-+	PINCTRL_PIN(37, "gpio37"),
-+	PINCTRL_PIN(38, "gpio38"),
-+	PINCTRL_PIN(39, "gpio39"),
-+	PINCTRL_PIN(40, "gpio40"),
-+	PINCTRL_PIN(41, "gpio41"),
-+	PINCTRL_PIN(42, "gpio42"),
-+	PINCTRL_PIN(43, "gpio43"),
-+	PINCTRL_PIN(44, "gpio44"),
-+	PINCTRL_PIN(45, "gpio45"),
-+	PINCTRL_PIN(46, "gpio46"),
-+	PINCTRL_PIN(47, "gpio47"),
-+	PINCTRL_PIN(48, "gpio48"),
-+	PINCTRL_PIN(49, "gpio49"),
-+};
-+
-+static unsigned gpio0_pins[] = { 0 };
-+static unsigned gpio1_pins[] = { 1 };
-+static unsigned gpio2_pins[] = { 2 };
-+static unsigned gpio3_pins[] = { 3 };
-+static unsigned gpio4_pins[] = { 4 };
-+static unsigned gpio5_pins[] = { 5 };
-+static unsigned gpio6_pins[] = { 6 };
-+static unsigned gpio7_pins[] = { 7 };
-+static unsigned gpio8_pins[] = { 8 };
-+static unsigned gpio9_pins[] = { 9 };
-+static unsigned gpio10_pins[] = { 10 };
-+static unsigned gpio11_pins[] = { 11 };
-+static unsigned gpio12_pins[] = { 12 };
-+static unsigned gpio13_pins[] = { 13 };
-+static unsigned gpio14_pins[] = { 14 };
-+static unsigned gpio15_pins[] = { 15 };
-+static unsigned gpio16_pins[] = { 16 };
-+static unsigned gpio17_pins[] = { 17 };
-+static unsigned gpio18_pins[] = { 18 };
-+static unsigned gpio19_pins[] = { 19 };
-+static unsigned gpio20_pins[] = { 20 };
-+static unsigned gpio21_pins[] = { 21 };
-+static unsigned gpio22_pins[] = { 22 };
-+static unsigned gpio23_pins[] = { 23 };
-+static unsigned gpio24_pins[] = { 24 };
-+static unsigned gpio25_pins[] = { 25 };
-+static unsigned gpio26_pins[] = { 26 };
-+static unsigned gpio27_pins[] = { 27 };
-+static unsigned gpio28_pins[] = { 28 };
-+static unsigned gpio29_pins[] = { 29 };
-+static unsigned gpio30_pins[] = { 30 };
-+static unsigned gpio31_pins[] = { 31 };
-+static unsigned gpio32_pins[] = { 32 };
-+static unsigned gpio33_pins[] = { 33 };
-+static unsigned gpio34_pins[] = { 34 };
-+static unsigned gpio35_pins[] = { 35 };
-+static unsigned gpio36_pins[] = { 36 };
-+static unsigned gpio37_pins[] = { 37 };
-+static unsigned gpio38_pins[] = { 38 };
-+static unsigned gpio39_pins[] = { 39 };
-+static unsigned gpio40_pins[] = { 40 };
-+static unsigned gpio41_pins[] = { 41 };
-+static unsigned gpio42_pins[] = { 42 };
-+static unsigned gpio43_pins[] = { 43 };
-+static unsigned gpio44_pins[] = { 44 };
-+static unsigned gpio45_pins[] = { 45 };
-+static unsigned gpio46_pins[] = { 46 };
-+static unsigned gpio47_pins[] = { 47 };
-+static unsigned gpio48_pins[] = { 48 };
-+static unsigned gpio49_pins[] = { 49 };
-+
-+#define BCM6318_GROUP(n)					\
-+	{							\
-+		.name = #n,					\
-+		.pins = n##_pins,				\
-+		.num_pins = ARRAY_SIZE(n##_pins),		\
-+	}
-+
-+static struct bcm6318_pingroup bcm6318_groups[] = {
-+	BCM6318_GROUP(gpio0),
-+	BCM6318_GROUP(gpio1),
-+	BCM6318_GROUP(gpio2),
-+	BCM6318_GROUP(gpio3),
-+	BCM6318_GROUP(gpio4),
-+	BCM6318_GROUP(gpio5),
-+	BCM6318_GROUP(gpio6),
-+	BCM6318_GROUP(gpio7),
-+	BCM6318_GROUP(gpio8),
-+	BCM6318_GROUP(gpio9),
-+	BCM6318_GROUP(gpio10),
-+	BCM6318_GROUP(gpio11),
-+	BCM6318_GROUP(gpio12),
-+	BCM6318_GROUP(gpio13),
-+	BCM6318_GROUP(gpio14),
-+	BCM6318_GROUP(gpio15),
-+	BCM6318_GROUP(gpio16),
-+	BCM6318_GROUP(gpio17),
-+	BCM6318_GROUP(gpio18),
-+	BCM6318_GROUP(gpio19),
-+	BCM6318_GROUP(gpio20),
-+	BCM6318_GROUP(gpio21),
-+	BCM6318_GROUP(gpio22),
-+	BCM6318_GROUP(gpio23),
-+	BCM6318_GROUP(gpio24),
-+	BCM6318_GROUP(gpio25),
-+	BCM6318_GROUP(gpio26),
-+	BCM6318_GROUP(gpio27),
-+	BCM6318_GROUP(gpio28),
-+	BCM6318_GROUP(gpio29),
-+	BCM6318_GROUP(gpio30),
-+	BCM6318_GROUP(gpio31),
-+	BCM6318_GROUP(gpio32),
-+	BCM6318_GROUP(gpio33),
-+	BCM6318_GROUP(gpio34),
-+	BCM6318_GROUP(gpio35),
-+	BCM6318_GROUP(gpio36),
-+	BCM6318_GROUP(gpio37),
-+	BCM6318_GROUP(gpio38),
-+	BCM6318_GROUP(gpio39),
-+	BCM6318_GROUP(gpio40),
-+	BCM6318_GROUP(gpio41),
-+	BCM6318_GROUP(gpio42),
-+	BCM6318_GROUP(gpio43),
-+	BCM6318_GROUP(gpio44),
-+	BCM6318_GROUP(gpio45),
-+	BCM6318_GROUP(gpio46),
-+	BCM6318_GROUP(gpio47),
-+	BCM6318_GROUP(gpio48),
-+	BCM6318_GROUP(gpio49),
-+};
-+
-+/* GPIO_MODE */
-+static const char * const led_groups[] = {
-+	"gpio0",
-+	"gpio1",
-+	"gpio2",
-+	"gpio3",
-+	"gpio4",
-+	"gpio5",
-+	"gpio6",
-+	"gpio7",
-+	"gpio8",
-+	"gpio9",
-+	"gpio10",
-+	"gpio11",
-+	"gpio12",
-+	"gpio13",
-+	"gpio14",
-+	"gpio15",
-+	"gpio16",
-+	"gpio17",
-+	"gpio18",
-+	"gpio19",
-+	"gpio20",
-+	"gpio21",
-+	"gpio22",
-+	"gpio23",
-+};
-+
-+/* PINMUX_SEL */
-+static const char * const ephy0_spd_led_groups[] = {
-+	"gpio0",
-+};
-+
-+static const char * const ephy1_spd_led_groups[] = {
-+	"gpio1",
-+};
-+
-+static const char * const ephy2_spd_led_groups[] = {
-+	"gpio2",
-+};
-+
-+static const char * const ephy3_spd_led_groups[] = {
-+	"gpio3",
-+};
-+
-+static const char * const ephy0_act_led_groups[] = {
-+	"gpio4",
-+};
-+
-+static const char * const ephy1_act_led_groups[] = {
-+	"gpio5",
-+};
-+
-+static const char * const ephy2_act_led_groups[] = {
-+	"gpio6",
-+};
-+
-+static const char * const ephy3_act_led_groups[] = {
-+	"gpio7",
-+};
-+
-+static const char * const serial_led_data_groups[] = {
-+	"gpio6",
-+};
-+
-+static const char * const serial_led_clk_groups[] = {
-+	"gpio7",
-+};
-+
-+static const char * const inet_act_led_groups[] = {
-+	"gpio8",
-+};
-+
-+static const char * const inet_fail_led_groups[] = {
-+	"gpio9",
-+};
-+
-+static const char * const dsl_led_groups[] = {
-+	"gpio10",
-+};
-+
-+static const char * const post_fail_led_groups[] = {
-+	"gpio11",
-+};
-+
-+static const char * const wlan_wps_led_groups[] = {
-+	"gpio12",
-+};
-+
-+static const char * const usb_pwron_groups[] = {
-+	"gpio13",
-+};
-+
-+static const char * const usb_device_led_groups[] = {
-+	"gpio13",
-+};
-+
-+static const char * const usb_active_groups[] = {
-+	"gpio40",
-+};
-+
-+#define BCM6318_MODE_FUN(n)				\
-+	{						\
-+		.name = #n,				\
-+		.groups = n##_groups,			\
-+		.num_groups = ARRAY_SIZE(n##_groups),	\
-+		.mode_val = 1,				\
-+	}
-+
-+#define BCM6318_MUX_FUN(n, mux)				\
-+	{						\
-+		.name = #n,				\
-+		.groups = n##_groups,			\
-+		.num_groups = ARRAY_SIZE(n##_groups),	\
-+		.mux_val = mux,				\
-+	}
-+
-+static const struct bcm6318_function bcm6318_funcs[] = {
-+	BCM6318_MODE_FUN(led),
-+	BCM6318_MUX_FUN(ephy0_spd_led, 1),
-+	BCM6318_MUX_FUN(ephy1_spd_led, 1),
-+	BCM6318_MUX_FUN(ephy2_spd_led, 1),
-+	BCM6318_MUX_FUN(ephy3_spd_led, 1),
-+	BCM6318_MUX_FUN(ephy0_act_led, 1),
-+	BCM6318_MUX_FUN(ephy1_act_led, 1),
-+	BCM6318_MUX_FUN(ephy2_act_led, 1),
-+	BCM6318_MUX_FUN(ephy3_act_led, 1),
-+	BCM6318_MUX_FUN(serial_led_data, 3),
-+	BCM6318_MUX_FUN(serial_led_clk, 3),
-+	BCM6318_MUX_FUN(inet_act_led, 1),
-+	BCM6318_MUX_FUN(inet_fail_led, 1),
-+	BCM6318_MUX_FUN(dsl_led, 1),
-+	BCM6318_MUX_FUN(post_fail_led, 1),
-+	BCM6318_MUX_FUN(wlan_wps_led, 1),
-+	BCM6318_MUX_FUN(usb_pwron, 1),
-+	BCM6318_MUX_FUN(usb_device_led, 2),
-+	BCM6318_MUX_FUN(usb_active, 2),
-+};
-+
-+static inline unsigned int bcm6318_mux_off(unsigned int pin)
-+{
-+	return BCM6318_MUX_REG + (pin / 16) * 4;
-+}
-+
-+static inline unsigned int bcm6318_pad_off(unsigned int pin)
-+{
-+	return BCM6318_PAD_REG + (pin / 8) * 4;
-+}
-+
-+static int bcm6318_pinctrl_get_group_count(struct pinctrl_dev *pctldev)
-+{
-+	return ARRAY_SIZE(bcm6318_groups);
-+}
-+
-+static const char *bcm6318_pinctrl_get_group_name(struct pinctrl_dev *pctldev,
-+						  unsigned group)
-+{
-+	return bcm6318_groups[group].name;
-+}
-+
-+static int bcm6318_pinctrl_get_group_pins(struct pinctrl_dev *pctldev,
-+					  unsigned group, const unsigned **pins,
-+					  unsigned *num_pins)
-+{
-+	*pins = bcm6318_groups[group].pins;
-+	*num_pins = bcm6318_groups[group].num_pins;
-+
-+	return 0;
-+}
-+
-+static int bcm6318_pinctrl_get_func_count(struct pinctrl_dev *pctldev)
-+{
-+	return ARRAY_SIZE(bcm6318_funcs);
-+}
-+
-+static const char *bcm6318_pinctrl_get_func_name(struct pinctrl_dev *pctldev,
-+						 unsigned selector)
-+{
-+	return bcm6318_funcs[selector].name;
-+}
-+
-+static int bcm6318_pinctrl_get_groups(struct pinctrl_dev *pctldev,
-+				      unsigned selector,
-+				      const char * const **groups,
-+				      unsigned * const num_groups)
-+{
-+	*groups = bcm6318_funcs[selector].groups;
-+	*num_groups = bcm6318_funcs[selector].num_groups;
-+
-+	return 0;
-+}
-+
-+static inline void bcm6318_rmw_mux(struct bcm63xx_pinctrl *pc, unsigned pin,
-+				   unsigned int mode, unsigned int mux)
-+{
-+	if (pin < BCM63XX_BANK_GPIOS)
-+		regmap_update_bits(pc->regs, BCM6318_MODE_REG, BIT(pin),
-+				   mode ? BIT(pin) : 0);
-+
-+	if (pin < BCM6318_NUM_MUX)
-+		regmap_update_bits(pc->regs,
-+				   bcm6318_mux_off(pin),
-+				   3UL << ((pin % 16) * 2),
-+				   mux << ((pin % 16) * 2));
-+}
-+
-+static inline void bcm6318_set_pad(struct bcm63xx_pinctrl *pc, unsigned pin,
-+				   uint8_t val)
-+{
-+	regmap_update_bits(pc->regs, bcm6318_pad_off(pin),
-+			   0xfUL << ((pin % 8) * 4),
-+			   val << ((pin % 8) * 4));
-+}
-+
-+static int bcm6318_pinctrl_set_mux(struct pinctrl_dev *pctldev,
-+				   unsigned selector, unsigned group)
-+{
-+	struct bcm63xx_pinctrl *pc = pinctrl_dev_get_drvdata(pctldev);
-+	const struct bcm6318_pingroup *pg = &bcm6318_groups[group];
-+	const struct bcm6318_function *f = &bcm6318_funcs[selector];
-+
-+	bcm6318_rmw_mux(pc, pg->pins[0], f->mode_val, f->mux_val);
-+
-+	return 0;
-+}
-+
-+static int bcm6318_gpio_request_enable(struct pinctrl_dev *pctldev,
-+				       struct pinctrl_gpio_range *range,
-+				       unsigned offset)
-+{
-+	struct bcm63xx_pinctrl *pc = pinctrl_dev_get_drvdata(pctldev);
-+
-+	/* disable all functions using this pin */
-+	if (offset < 13) {
-+		/* GPIOs 0-12 use mux 0 as GPIO function */
-+		bcm6318_rmw_mux(pc, offset, 0, 0);
-+	} else if (offset < 42) {
-+		/* GPIOs 13-41 use mux 3 as GPIO function */
-+		bcm6318_rmw_mux(pc, offset, 0, 3);
-+
-+		bcm6318_set_pad(pc, offset, 0);
-+	}
-+
-+	return 0;
-+}
-+
-+static struct pinctrl_ops bcm6318_pctl_ops = {
-+	.get_groups_count = bcm6318_pinctrl_get_group_count,
-+	.get_group_name = bcm6318_pinctrl_get_group_name,
-+	.get_group_pins = bcm6318_pinctrl_get_group_pins,
-+	.dt_node_to_map = pinconf_generic_dt_node_to_map_pin,
-+	.dt_free_map = pinctrl_utils_free_map,
-+};
-+
-+static struct pinmux_ops bcm6318_pmx_ops = {
-+	.get_functions_count = bcm6318_pinctrl_get_func_count,
-+	.get_function_name = bcm6318_pinctrl_get_func_name,
-+	.get_function_groups = bcm6318_pinctrl_get_groups,
-+	.set_mux = bcm6318_pinctrl_set_mux,
-+	.gpio_request_enable = bcm6318_gpio_request_enable,
-+	.strict = true,
-+};
-+
-+static const struct bcm63xx_pinctrl_soc bcm6318_soc = {
-+	.ngpios = BCM6318_NUM_GPIOS,
-+	.npins = ARRAY_SIZE(bcm6318_pins),
-+	.pctl_ops = &bcm6318_pctl_ops,
-+	.pins = bcm6318_pins,
-+	.pmx_ops = &bcm6318_pmx_ops,
-+};
-+
-+static int bcm6318_pinctrl_probe(struct platform_device *pdev)
-+{
-+	return bcm63xx_pinctrl_probe(pdev, &bcm6318_soc, NULL);
-+}
-+
-+static const struct of_device_id bcm6318_pinctrl_match[] = {
-+	{ .compatible = "brcm,bcm6318-pinctrl", },
-+	{ },
-+};
-+
-+static struct platform_driver bcm6318_pinctrl_driver = {
-+	.probe = bcm6318_pinctrl_probe,
-+	.driver = {
-+		.name = "bcm6318-pinctrl",
-+		.of_match_table = bcm6318_pinctrl_match,
-+	},
-+};
-+
-+builtin_platform_driver(bcm6318_pinctrl_driver);
--- 
-2.20.1
+Ah I see. If ldb-helper is indeed used by two drivers, making it a
+module seems reasonable.
 
+I think we have two options then.
+
+#1 Make imx-ldb-helper an object that is just linked with the
+imx8qxp-ldb driver.
+
+#2 Keep imx-ldb-helper as a module, and implement support for using it
+in the imx-ldb driver. Ideally I'd like to see the imx-ldb-helper
+module patch in the same series as as imx53/6qdl switching to using
+the module. These things have a tendency of not happening if not done
+right away :)
+
+
+>
+> Regards,
+> Liu Ying
+>
+> >
+> > > @@ -0,0 +1,98 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0+ */
+> > > +
+> > > +/*
+> > > + * Copyright 2019,2020 NXP
+> > > + */
+> > > +
+> > > +#ifndef __FSL_IMX_LDB__
+> > > +#define __FSL_IMX_LDB__
+> > > +
+> > > +#include <linux/device.h>
+> > > +#include <linux/kernel.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/regmap.h>
+> > > +
+> > > +#include <drm/drm_atomic.h>
+> > > +#include <drm/drm_bridge.h>
+> > > +#include <drm/drm_device.h>
+> > > +#include <drm/drm_encoder.h>
+> > > +#include <drm/drm_modeset_helper_vtables.h>
+> > > +#include <drm/drm_panel.h>
+> > > +
+> > > +#define LDB_CH0_MODE_EN_TO_DI0         (1 << 0)
+> > > +#define LDB_CH0_MODE_EN_TO_DI1         (3 << 0)
+> > > +#define LDB_CH0_MODE_EN_MASK           (3 << 0)
+> > > +#define LDB_CH1_MODE_EN_TO_DI0         (1 << 2)
+> > > +#define LDB_CH1_MODE_EN_TO_DI1         (3 << 2)
+> > > +#define LDB_CH1_MODE_EN_MASK           (3 << 2)
+> > > +#define LDB_SPLIT_MODE_EN              (1 << 4)
+> > > +#define LDB_DATA_WIDTH_CH0_24          (1 << 5)
+> > > +#define LDB_BIT_MAP_CH0_JEIDA          (1 << 6)
+> > > +#define LDB_DATA_WIDTH_CH1_24          (1 << 7)
+> > > +#define LDB_BIT_MAP_CH1_JEIDA          (1 << 8)
+> > > +#define LDB_DI0_VS_POL_ACT_LOW         (1 << 9)
+> > > +#define LDB_DI1_VS_POL_ACT_LOW         (1 << 10)
+> > > +
+> > > +#define MAX_LDB_CHAN_NUM               2
+> > > +
+> > > +enum ldb_channel_link_type {
+> > > +       LDB_CH_SINGLE_LINK,
+> > > +       LDB_CH_DUAL_LINK_EVEN_ODD_PIXELS,
+> > > +       LDB_CH_DUAL_LINK_ODD_EVEN_PIXELS,
+> > > +};
+> > > +
+> > > +struct ldb;
+> > > +
+> > > +struct ldb_channel {
+> > > +       struct ldb *ldb;
+> > > +       struct drm_bridge bridge;
+> > > +       struct drm_panel *panel;
+> > > +       struct drm_bridge *next_bridge;
+> > > +       struct device_node *np;
+> > > +       u32 chno;
+> > > +       bool is_available;
+> > > +       u32 in_bus_format;
+> > > +       u32 out_bus_format;
+> > > +       enum ldb_channel_link_type link_type;
+> > > +};
+> > > +
+> > > +struct ldb {
+> > > +       struct regmap *regmap;
+> > > +       struct device *dev;
+> > > +       struct ldb_channel *channel[MAX_LDB_CHAN_NUM];
+> > > +       unsigned int ctrl_reg;
+> > > +       u32 ldb_ctrl;
+> > > +       unsigned int available_ch_cnt;
+> > > +};
+> > > +
+> > > +#define bridge_to_ldb_ch(b)    container_of(b, struct ldb_channel, bridge)
+> > > +
+> > > +bool ldb_channel_is_single_link(struct ldb_channel *ldb_ch);
+> > > +bool ldb_channel_is_split_link(struct ldb_channel *ldb_ch);
+> > > +
+> > > +int ldb_bridge_atomic_check_helper(struct drm_bridge *bridge,
+> > > +                                  struct drm_bridge_state *bridge_state,
+> > > +                                  struct drm_crtc_state *crtc_state,
+> > > +                                  struct drm_connector_state *conn_state);
+> > > +
+> > > +void ldb_bridge_mode_set_helper(struct drm_bridge *bridge,
+> > > +                               const struct drm_display_mode *mode,
+> > > +                               const struct drm_display_mode *adjusted_mode);
+> > > +
+> > > +void ldb_bridge_enable_helper(struct drm_bridge *bridge);
+> > > +
+> > > +void ldb_bridge_disable_helper(struct drm_bridge *bridge);
+> > > +
+> > > +int ldb_bridge_attach_helper(struct drm_bridge *bridge,
+> > > +                            enum drm_bridge_attach_flags flags);
+> > > +
+> > > +int ldb_init_helper(struct ldb *ldb);
+> > > +
+> > > +int ldb_find_next_bridge_helper(struct ldb *ldb);
+> > > +
+> > > +void ldb_add_bridge_helper(struct ldb *ldb,
+> > > +                          const struct drm_bridge_funcs *bridge_funcs);
+> > > +
+> > > +void ldb_remove_bridge_helper(struct ldb *ldb);
+> > > +
+> > > +#endif /* __FSL_IMX_LDB__ */
+> > > --
+> > > 2.7.4
+> > >
+>
