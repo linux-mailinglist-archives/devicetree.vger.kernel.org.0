@@ -2,118 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CD9332C0A7
+	by mail.lfdr.de (Postfix) with ESMTP id 5C9DC32C0A8
 	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386646AbhCCSpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:45:10 -0500
-Received: from pegase1.c-s.fr ([93.17.236.30]:31744 "EHLO pegase1.c-s.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237847AbhCCSIl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 13:08:41 -0500
-Received: from localhost (mailhub1-int [192.168.12.234])
-        by localhost (Postfix) with ESMTP id 4DrMRT2KJHz9twsP;
-        Wed,  3 Mar 2021 19:07:49 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id Oezy_9lCxP9I; Wed,  3 Mar 2021 19:07:49 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 4DrMRT1Nrpz9twsB;
-        Wed,  3 Mar 2021 19:07:49 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 6D9A88B7E6;
-        Wed,  3 Mar 2021 19:07:49 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id mppgCCIWAOu2; Wed,  3 Mar 2021 19:07:49 +0100 (CET)
-Received: from [192.168.4.90] (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id A8E2F8B7DB;
-        Wed,  3 Mar 2021 19:07:48 +0100 (CET)
-Subject: Re: [PATCH v2 0/7] Improve boot command line handling
-To:     Daniel Walker <danielwa@cisco.com>, Rob Herring <robh@kernel.org>
-Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>, devicetree@vger.kernel.org,
-        Will Deacon <will@kernel.org>
-References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
- <20210302173523.GE109100@zorba>
- <CAL_JsqJ7U8QAbJe3zkZiFPJN4PveHz5TZoPk2S8qQWB6cm5e5Q@mail.gmail.com>
- <20210303173908.GG109100@zorba>
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-Message-ID: <59b054e8-d85b-fd87-c94d-691af748a2f5@csgroup.eu>
-Date:   Wed, 3 Mar 2021 19:07:45 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
+        id S1386649AbhCCSpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:45:11 -0500
+Received: from mail-ej1-f42.google.com ([209.85.218.42]:42673 "EHLO
+        mail-ej1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1578002AbhCCSQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 13:16:15 -0500
+Received: by mail-ej1-f42.google.com with SMTP id c10so17551901ejx.9;
+        Wed, 03 Mar 2021 10:15:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=L75O0W+60sA8PCw5vctCVfCnPFx9Df6RaLcl8AjpdUk=;
+        b=KBTT0ez2c+18fHXUZ2+UWxOeMkeMa2GQ3BSjuMARJyu2Wl3wXelvn0g37uJwWuFbxq
+         40BW3YewtWd7oWmArWmVbOKxPkG2NKtAMBkwqfhgw7N9XYmXRZOb8WNMX66cVENpWfdP
+         ZqYIZAyIShYXnsks4tiAt2fpOwVtf+N7Xap3IJql/SgE2vcSE0ReInqJ8ndpMMDi/XAw
+         fAO5bK2SWOxkxysGrjTd/6rrrcWaeozHAV+lP7rz2t7YVXmL4c+BW0B5crUM7CT3jCVB
+         ymqxqg6NAInkqjR4/AYarA87mZ1icpSQDmW6sDAKZ2VMcayx+BtHiXdGlk/QFUBy6PFl
+         Q7CQ==
+X-Gm-Message-State: AOAM533LaoJ5IwhPEcsoEtk++OT6bVKjBkR3HoFRrMt0sIcSZ5UEWaYk
+        Ysd2rkmKXOac64A9mMs8S0E=
+X-Google-Smtp-Source: ABdhPJyv9ZHoKKrSfAYG3E0t2WiB0w2EQIFOB2iy2f5mHjXqT5rXzjkL15BWUuBoI/U9Tncs2D1Ixw==
+X-Received: by 2002:a17:906:4c56:: with SMTP id d22mr110677ejw.426.1614795332589;
+        Wed, 03 Mar 2021 10:15:32 -0800 (PST)
+Received: from [192.168.1.116] (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id t15sm19739654edc.34.2021.03.03.10.15.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Mar 2021 10:15:31 -0800 (PST)
+Subject: Re: [PATCH 03/11] arm64: dts: intel: socfpga: override clocks by
+ label
+To:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+References: <20210210171823.333802-1-krzk@kernel.org>
+ <20210210171823.333802-3-krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        "Paul J. Murphy" <paul.j.murphy@intel.com>,
+        linux-kernel@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Message-ID: <e9a88bad-fb08-f028-bfe1-6d008dbfe1de@kernel.org>
+Date:   Wed, 3 Mar 2021 19:15:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210303173908.GG109100@zorba>
+In-Reply-To: <20210210171823.333802-3-krzk@kernel.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: fr
-Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-Le 03/03/2021 à 18:39, Daniel Walker a écrit :
-> On Tue, Mar 02, 2021 at 08:01:01PM -0600, Rob Herring wrote:
->> +Will D
->>
->> On Tue, Mar 2, 2021 at 11:36 AM Daniel Walker <danielwa@cisco.com> wrote:
->>>
->>> On Tue, Mar 02, 2021 at 05:25:16PM +0000, Christophe Leroy wrote:
->>>> The purpose of this series is to improve and enhance the
->>>> handling of kernel boot arguments.
->>>>
->>>> It is first focussed on powerpc but also extends the capability
->>>> for other arches.
->>>>
->>>> This is based on suggestion from Daniel Walker <danielwa@cisco.com>
->>>>
->>>
->>>
->>> I don't see a point in your changes at this time. My changes are much more
->>> mature, and you changes don't really make improvements.
->>
->> Not really a helpful comment. What we merge here will be from whomever
->> is persistent and timely in their efforts. But please, work together
->> on a common solution.
->>
->> This one meets my requirements of moving the kconfig and code out of
->> the arches, supports prepend/append, and is up to date.
+On 10/02/2021 18:18, Krzysztof Kozlowski wrote:
+> Using full paths to extend or override a device tree node is error
+> prone.  If there was a typo error, a new node will be created instead of
+> extending the existing node.  This will lead to run-time errors that
+> could be hard to detect.
 > 
+> A mistyped label on the other hand, will cause a dtc compile error
+> (during build time).
 > 
-> Maintainers are capable of merging whatever they want to merge. However, I
-> wouldn't make hasty choices. The changes I've been submitting have been deployed
-> on millions of router instances and are more feature rich.
-> 
-> I believe I worked with you on this change, or something like it,
-> 
-> https://lkml.org/lkml/2019/3/19/970
-> 
-> I don't think Christophe has even addressed this.
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>   arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts   | 12 ++++--------
+>   .../boot/dts/intel/socfpga_agilex_socdk_nand.dts     | 12 ++++--------
+>   arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts      | 12 ++++--------
+>   3 files changed, 12 insertions(+), 24 deletions(-)
 
-I thing I have, see 
-https://patchwork.ozlabs.org/project/linuxppc-dev/patch/3b4291271ce4af4941a771e5af5cbba3c8fa1b2a.1614705851.git.christophe.leroy@csgroup.eu/
+Hi Arnd and Olof,
 
-If you see something missing in that patch, can you tell me.
+There was no response from Intel SoCFPGA maintainers for the DTS 
+patches, so maybe you could take it directly? I can provide you pull 
+request with these, if that's preferred. They apply cleanly.
 
-> I've converted many
-> architectures, and Cisco uses my changes on at least 4 different
-> architecture. With products deployed and tested.
+You could also take the dt-bindings 2/11 or it could go via Rob.
 
-As far as we know, only powerpc was converted in the last series you submitted, see 
-https://patchwork.ozlabs.org/project/linuxppc-dev/list/?series=98106&state=*
+About the defconfig patch (1/11) I will work on it more and resend it 
+with your comments (you gave me review).
 
-> 
-> I will resubmit my changes as soon as I can.
-> 
-
-Christophe
+Best regards,
+Krzysztof
