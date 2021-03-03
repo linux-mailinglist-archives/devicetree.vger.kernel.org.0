@@ -2,129 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A1132C8C1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6751932C8C3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbhCDAwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 19:52:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59152 "EHLO
+        id S1344776AbhCDAwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 19:52:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1392024AbhCCXAy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 18:00:54 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12244C0613D7;
-        Wed,  3 Mar 2021 14:59:53 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 461498DE;
-        Wed,  3 Mar 2021 23:59:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1614812390;
-        bh=FY7RDvOyDuyrLYN60fJkrRyy7oaq4NoG/d+IagzZCkE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=c1prsOhxNcgaGbPAMiXowZ5sblQpnh9rqRIulCZ18EqXJ+M9skF3IW/PaNn6AIkV9
-         c3CGM+ca2xdWljuAt1sQ5ZXVdqF7rEm3yjO1py+/cd2rsKuOjMKi+wlFVsBftATpdL
-         Ri7mltwwGcvuUp7wI6Qma6zKxxXg/HodfMM+6qfo=
-Date:   Thu, 4 Mar 2021 00:59:21 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for
- Chipone ICN6211
-Message-ID: <YEAUyUsZb+4Oe0Ye@pendragon.ideasonboard.com>
-References: <20210214175211.105107-1-jagan@amarulasolutions.com>
- <YCpmZWRoiWULiANx@pendragon.ideasonboard.com>
- <CAMty3ZDt2EDB8E2nNLx_jfqE7-ActVYVoeFo2Eso+nVuUfVL+w@mail.gmail.com>
- <YDZRFeuzsamKyIJo@pendragon.ideasonboard.com>
- <CAMty3ZBHKzksbrWoWapZb9h4hmbL9Lk1baqS_Lb7WPdmRr2hGQ@mail.gmail.com>
+        with ESMTP id S234512AbhCDAAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 19:00:50 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E91DC06175F;
+        Wed,  3 Mar 2021 15:12:08 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id l7so13189751pfd.3;
+        Wed, 03 Mar 2021 15:12:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wVf1ZzqnDwgRm+R0xLH7iG9bt5jJx65TM96nbApldLk=;
+        b=lCFVWy3OsKPv0U0/aIKwkg6ICvLLETQNliPYx9Hff+VHW043qd+LMVfU2AYUcSwSfZ
+         LLdbjm4s+MzpHPhs1b6067Ot1SsHQ66IZlHd2wffv5kqtkb0o+hDz5DZe+RmKVYUHlSR
+         hwL+GwyKCtWxEhgYhzdMOhcQpkRjgOVTalw2pQ1zhsU6zJSX787dtDVxYhPLpuTaCNUm
+         A5HG0XEFwNEBQaYJ37xDQ1MO4aia1Yd2IWRoBmVLDtRsXUmTcj5kOmxSI3L0jw3pTjNC
+         nMKWYipuI9beDuhPZiGNIHHjQM6zEjVj8wxwqjwHkuqJH7klafouf/KWiFkjjv2NbEC3
+         h2iA==
+X-Gm-Message-State: AOAM530NT8CP2w9nbXtIRrGgSKQ7bbqNKNmzSiTQwefi9A4wgiP0k1TB
+        KgbHVIZngusSdLwQO5kr0j4=
+X-Google-Smtp-Source: ABdhPJypcbsrOH+c1S75BAXn+Z/NciXbC/GIVjTOGWi22I6ehV2xXikPNH2pCSGrGmYCJupDVg9GSQ==
+X-Received: by 2002:a63:e04d:: with SMTP id n13mr1074046pgj.185.1614813127492;
+        Wed, 03 Mar 2021 15:12:07 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1162:1ac0:17a6:4cc6:d1ef])
+        by smtp.gmail.com with ESMTPSA id mp19sm8656739pjb.2.2021.03.03.15.12.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Mar 2021 15:12:06 -0800 (PST)
+Date:   Wed, 3 Mar 2021 15:12:06 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Moritz Fischer <mdf@kernel.org>
+Cc:     Nava kishore Manne <nava.manne@xilinx.com>, trix@redhat.com,
+        robh+dt@kernel.org, michal.simek@xilinx.com,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        git@xilinx.com, chinnikishore369@gmail.com
+Subject: Re: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading support
+Message-ID: <YEAXxuU2J1yaAl3U@archbook>
+References: <20210118025058.10051-1-nava.manne@xilinx.com>
+ <YApf1jlEghbnDFo/@archbook>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMty3ZBHKzksbrWoWapZb9h4hmbL9Lk1baqS_Lb7WPdmRr2hGQ@mail.gmail.com>
+In-Reply-To: <YApf1jlEghbnDFo/@archbook>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
+Hi Nava,
 
-On Wed, Mar 03, 2021 at 08:08:35PM +0530, Jagan Teki wrote:
-> On Wed, Feb 24, 2021 at 6:44 PM Laurent Pinchart wrote:
-> > On Wed, Feb 24, 2021 at 06:07:43PM +0530, Jagan Teki wrote:
-> > > On Mon, Feb 15, 2021 at 5:48 PM Laurent Pinchart wrote:
-> > > > On Sun, Feb 14, 2021 at 11:22:10PM +0530, Jagan Teki wrote:
-> > > > > ICN6211 is MIPI-DSI to RGB Convertor bridge from Chipone.
-> > > > >
-> > > > > It has a flexible configuration of MIPI DSI signal input and
-> > > > > produce RGB565, RGB666, RGB888 output format.
-> > > > >
-> > > > > Add dt-bingings for it.
-> > > > >
-> > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > > > ---
-> > > > > Changes for v3:
-> > > > > - updated to new dt-bindings style
-> > > > >
-> > > > >  .../display/bridge/chipone,icn6211.yaml       | 90 +++++++++++++++++++
-> > > > >  1 file changed, 90 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..13764f13fe46
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-> > > > > @@ -0,0 +1,90 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/display/bridge/chipone,icn6211.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: Chipone ICN6211 MIPI-DSI to RGB Converter bridge
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Jagan Teki <jagan@amarulasolutions.com>
-> > > > > +
-> > > > > +description: |
-> > > > > +  ICN6211 is MIPI-DSI to RGB Convertor bridge from chipone.
-> > > > > +
-> > > > > +  It has a flexible configuration of MIPI DSI signal input and
-> > > > > +  produce RGB565, RGB666, RGB888 output format.
-> > > >
-> > > > How does one select between the output formats ? Should the output
-> > > > connection option be described in the device tree ?
-> > >
-> > > I think that is a good option to select output formats via dts. what
-> > > if it makes it a generic property like data-lanes? since it is common
-> > > across many other bridges.
-> >
-> > Describing the output connection in the device tree sounds like a good
-> > idea indeed. The bus-width property could be used for this, maybe along
-> > the lines of
-> > https://lore.kernel.org/dri-devel/20201013020619.GG3942@pendragon.ideasonboard.com/.
+On Thu, Jan 21, 2021 at 09:17:10PM -0800, Moritz Fischer wrote:
+> On Mon, Jan 18, 2021 at 08:20:57AM +0530, Nava kishore Manne wrote:
+> > This commit adds secure flags to the framework to support
+> > secure BitStream Loading.
+> > 
+> > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> > ---
+> >  drivers/fpga/of-fpga-region.c | 10 ++++++++++
+> >  include/linux/fpga/fpga-mgr.h | 12 ++++++++++++
+> >  2 files changed, 22 insertions(+)
+> > 
+> > diff --git a/drivers/fpga/of-fpga-region.c b/drivers/fpga/of-fpga-region.c
+> > index e405309baadc..3a5eb4808888 100644
+> > --- a/drivers/fpga/of-fpga-region.c
+> > +++ b/drivers/fpga/of-fpga-region.c
+> > @@ -228,6 +228,16 @@ static struct fpga_image_info *of_fpga_region_parse_ov(
+> >  	if (of_property_read_bool(overlay, "encrypted-fpga-config"))
+> >  		info->flags |= FPGA_MGR_ENCRYPTED_BITSTREAM;
+> >  
+> > +	if (of_property_read_bool(overlay, "userkey-encrypted-fpga-config"))
+> > +		info->flags |= FPGA_MGR_USERKEY_ENCRYPTED_BITSTREAM;
 > 
-> I have seen an issue by passing bus-width where the same bus-with 24
-> can use by RGB888 and RGB666 according to
-> mipi_dsi_pixel_format_to_bpp. Having a default RGB888 format now and
-> update it when it supports properly, can be a good Idea I thought of.
-> Let me know if you have any comments?
+> Can this just be encrypted-fpga-config/FPGA_MGR_ENCRYPTED?
+> > +
+> > +	if (of_property_read_bool(overlay, "ddrmem-authenticated-fpga-config"))
+> > +		info->flags |= FPGA_MGR_DDR_MEM_AUTH_BITSTREAM;
+> > +
+> > +	if (of_property_read_bool(overlay,
+> > +				  "securemem-authenticated-fpga-config"))
+> > +		info->flags |= FPGA_MGR_SECURE_MEM_AUTH_BITSTREAM;
+Shouldn't all these get binding docs? I remember Richard adding
+authentication support for an Intel platform, too and I'd like to avoid
+adding random bindings per vendor.
 
-I'm fine with hardcoding a default for now. If a given bus wiring (which
-is described in DT by bus-width) can transport different formats, that's
-something that should be configured dynamically, either by querying what
-format a sink (such as a panel) requires, or if both the source and the
-sink can support different formats, possibly by involving userspace in
-the selection.
+Would it be possible to have an 'authentication method / type' that is more
+extensible with different methods maybe?
 
--- 
-Regards,
-
-Laurent Pinchart
+> > +
+> >  	if (!of_property_read_string(overlay, "firmware-name",
+> >  				     &firmware_name)) {
+> >  		info->firmware_name = devm_kstrdup(dev, firmware_name,
+> > diff --git a/include/linux/fpga/fpga-mgr.h b/include/linux/fpga/fpga-mgr.h
+> > index 2bc3030a69e5..2f7455a60666 100644
+> > --- a/include/linux/fpga/fpga-mgr.h
+> > +++ b/include/linux/fpga/fpga-mgr.h
+> > @@ -67,12 +67,24 @@ enum fpga_mgr_states {
+> >   * %FPGA_MGR_BITSTREAM_LSB_FIRST: SPI bitstream bit order is LSB first
+> >   *
+> >   * %FPGA_MGR_COMPRESSED_BITSTREAM: FPGA bitstream is compressed
+> > + *
+> > + * %FPGA_MGR_USERKEY_ENCRYPTED_BITSTREAM: indicates bitstream is encrypted with
+> > + *                                        user key
+> > + *
+> > + * %FPGA_MGR_DDR_MEM_AUTH_BITSTREAM: do bitstream authentication using DDR
+> > + *                                   memory if supported
+> > + *
+> > + * %FPGA_MGR_SECURE_MEM_AUTH_BITSTREAM: do bitstream authentication using secure
+> > + *                                      memory if supported
+> >   */
+> >  #define FPGA_MGR_PARTIAL_RECONFIG	BIT(0)
+> >  #define FPGA_MGR_EXTERNAL_CONFIG	BIT(1)
+> >  #define FPGA_MGR_ENCRYPTED_BITSTREAM	BIT(2)
+> >  #define FPGA_MGR_BITSTREAM_LSB_FIRST	BIT(3)
+> >  #define FPGA_MGR_COMPRESSED_BITSTREAM	BIT(4)
+> > +#define FPGA_MGR_USERKEY_ENCRYPTED_BITSTREAM	BIT(5)
+> > +#define FPGA_MGR_DDR_MEM_AUTH_BITSTREAM		BIT(6)
+> > +#define FPGA_MGR_SECURE_MEM_AUTH_BITSTREAM	BIT(7)
+> >  
+> >  /**
+> >   * struct fpga_image_info - information specific to a FPGA image
+> > -- 
+> > 2.18.0
+> > 
+> 
+> Thanks,
+> Moritz
+Moritz
