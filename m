@@ -2,80 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 528E132C0A1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CED6532C090
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579646AbhCCSbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:31:46 -0500
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:43977 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359030AbhCCNUz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 08:20:55 -0500
-Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id E7FB33B4AB3;
-        Wed,  3 Mar 2021 08:56:34 +0000 (UTC)
-X-Originating-IP: 90.65.108.55
-Received: from localhost (lfbn-lyo-1-1676-55.w90-65.abo.wanadoo.fr [90.65.108.55])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 1BC33C0002;
-        Wed,  3 Mar 2021 08:56:08 +0000 (UTC)
-Date:   Wed, 3 Mar 2021 09:56:08 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Steen Hegelund <steen.hegelund@microchip.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 3/3] arm64: dts: reset: add microchip sparx5 switch
- reset driver
-Message-ID: <YD9PKB8Xw3lfHlob@piout.net>
-References: <20210303081158.684532-1-steen.hegelund@microchip.com>
- <20210303081158.684532-4-steen.hegelund@microchip.com>
+        id S1579618AbhCCSbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53902 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231510AbhCCMcp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 07:32:45 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4175A64EE7;
+        Wed,  3 Mar 2021 09:57:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614765475;
+        bh=mJdUrPvBXGzIpDLQLBgzh53mg/qR4CPh9qbZvMfmU4Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=n/tlMuePzVTgcFya7fvbvgtDXVZ1+hJz7UF+ZuMWI3q8yi18DCwTE3OtXaTyYt4Og
+         uaPNlEAr9e5VBhFaIV3C54h4hjj2+VwxNoOgbKSk914j2w+y2n3AEHihY+uNxM5gWJ
+         /GbJ+OqFoqkqUfg9VJOzp2jpQ7Uhvb/5i6k+5xPuFL8vxettXvZZc86OwbS8GlaISg
+         N/UPOhTp5fg5w5LbieerJ1DzVUr6XaHD6sT9+BW4L1tXIwkLoP4x8cEFq/3jubK5mu
+         tsyAw5I7V5vSf0w6qwmI5KKSG2AdkKIS3kGWhgCqLf4CEpG1Dc5wf/9BRA/ERNodTo
+         G8MAzN7Oo9wsw==
+Date:   Wed, 3 Mar 2021 17:57:49 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH 0/2] Add i.MX51/i.MX53 serial number support
+Message-ID: <20210303095748.GD15865@dragon>
+References: <20210127174024.170408-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210303081158.684532-4-steen.hegelund@microchip.com>
+In-Reply-To: <20210127174024.170408-1-sebastian.reichel@collabora.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/03/2021 09:11:58+0100, Steen Hegelund wrote:
-> This provides reset driver support for the Microchip Sparx5 PCB134 and
-> PCB135 reference boards.
-> 
-> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+On Wed, Jan 27, 2021 at 06:40:22PM +0100, Sebastian Reichel wrote:
+> Sebastian Reichel (2):
+>   ARM: dts: imx: Mark IIM as syscon on i.MX51/i.MX53
+>   soc: imx: add i.MX51/i.MX53 unique id support
 
-> ---
->  arch/arm64/boot/dts/microchip/sparx5.dtsi | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> index 380281f312d8..dc3ada5cf9fc 100644
-> --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> @@ -132,9 +132,12 @@ mux: mux-controller {
->  			};
->  		};
->  
-> -		reset@611010008 {
-> -			compatible = "microchip,sparx5-chip-reset";
-> +		reset: reset-controller@611010008 {
-> +			compatible = "microchip,sparx5-switch-reset";
->  			reg = <0x6 0x11010008 0x4>;
-> +			reg-names = "gcb";
-> +			#reset-cells = <1>;
-> +			cpu-syscon = <&cpu_ctrl>;
->  		};
->  
->  		uart0: serial@600100000 {
-> -- 
-> 2.30.1
-> 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Applied both, thanks.
