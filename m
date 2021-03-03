@@ -2,186 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C3CA32C041
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1B1932BF7F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239788AbhCCSkE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 Mar 2021 13:40:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46980 "EHLO
+        id S1579778AbhCCScR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:32:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231848AbhCCP0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 10:26:35 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E935C061756
-        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 06:33:42 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1lHSZE-00035P-Ab; Wed, 03 Mar 2021 15:33:36 +0100
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1lHSZ7-00008R-0c; Wed, 03 Mar 2021 15:33:29 +0100
-Message-ID: <38119c7bab7b550cff0300b596611a7d9d3b6737.camel@pengutronix.de>
-Subject: Re: [PATCH v3 3/5] reset: Add reset driver for IMX8MQ VPU block
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, ezequiel@collabora.com, mchehab@kernel.org,
-        gregkh@linuxfoundation.org
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com
-Date:   Wed, 03 Mar 2021 15:33:28 +0100
-In-Reply-To: <20210301151754.104749-4-benjamin.gaignard@collabora.com>
-References: <20210301151754.104749-1-benjamin.gaignard@collabora.com>
-         <20210301151754.104749-4-benjamin.gaignard@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S241222AbhCCOjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 09:39:47 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3900C061224
+        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 06:38:47 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id ci14so23619306ejc.7
+        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 06:38:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ck25IRRAzQRsE2FVn23n0Fb1oL1B65fMX3eO7JLfyO0=;
+        b=JeFWotm8zb2Osqdclg+G/gulOOPrJbi4JobuhZ4JCIvS/VrzS9ABhcYsQcTENmrFM3
+         nmaUhG9+fTbcDqHoykLtDuGX8AP4SicklyIt2yzHSY62OgKIyi8JC3CthKBfpJ9kf6Hi
+         ZdOB9Zv0MbkYmClDfsewJXZr16AqVTC63bOI4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ck25IRRAzQRsE2FVn23n0Fb1oL1B65fMX3eO7JLfyO0=;
+        b=ak9xHL5nzLVAAHgeqSpd3nveHBh6joKbtvYNNLAJmXXxGfXLVnYVJEPgNxzTIVPoeX
+         dHt1ufdNObi1N+YkLq3g/2RQ4Cvs8x/oGHkmDqSBcfZscDet78KOQGgPvA0GZugftle1
+         FA9yjVysntW7RIP67IPfmxaBvcYw51rH90HOomVWO6aOmycr/O5Fj7P1IGpIuk0QDoNz
+         KEq6fVeS8zZGflt7rZeMnOS98dj7iPomSZGludUIQ/jkI+N2QDMxIhEqDXx3ZUPCrRRs
+         Mua65XJyifCrB74sqYBCNNNZAoQtrHSesBIMI4q4DVL+aF0Ajj5LTjfM4BWzAYyVvKGj
+         bQwA==
+X-Gm-Message-State: AOAM5325hEyH07hkIxIL1gR70YLAO0OyYaobg4ttdnZUPtnQn/Bi8hNU
+        bEoCUDok7zT/HypX8Ji8D92OLWYxKcd9ja+c4mM/Vg==
+X-Google-Smtp-Source: ABdhPJx72bf74kr4tzQv3XgUtVxlR5d6WMRhG3LbVaZcA0Hrldpowdd4mNb8kexGQSz/vQJSrcumxbjjEfv3yoF5x8U=
+X-Received: by 2002:a17:906:b0d8:: with SMTP id bk24mr26433707ejb.252.1614782326494;
+ Wed, 03 Mar 2021 06:38:46 -0800 (PST)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210214175211.105107-1-jagan@amarulasolutions.com>
+ <YCpmZWRoiWULiANx@pendragon.ideasonboard.com> <CAMty3ZDt2EDB8E2nNLx_jfqE7-ActVYVoeFo2Eso+nVuUfVL+w@mail.gmail.com>
+ <YDZRFeuzsamKyIJo@pendragon.ideasonboard.com>
+In-Reply-To: <YDZRFeuzsamKyIJo@pendragon.ideasonboard.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 3 Mar 2021 20:08:35 +0530
+Message-ID: <CAMty3ZBHKzksbrWoWapZb9h4hmbL9Lk1baqS_Lb7WPdmRr2hGQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for
+ Chipone ICN6211
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-03-01 at 16:17 +0100, Benjamin Gaignard wrote:
-> IMX8MQ SoC got a dedicated hardware block to reset the video processor
-> units (G1 and G2).
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
->  drivers/reset/Kconfig            |   8 ++
->  drivers/reset/Makefile           |   1 +
->  drivers/reset/reset-imx8mq-vpu.c | 169 +++++++++++++++++++++++++++++++
->  3 files changed, 178 insertions(+)
->  create mode 100644 drivers/reset/reset-imx8mq-vpu.c
-> 
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 71ab75a46491..fa95380b271a 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -80,6 +80,14 @@ config RESET_IMX7
->  	help
->  	  This enables the reset controller driver for i.MX7 SoCs.
->  
-> +config RESET_VPU_IMX8MQ
-> +	tristate "i.MX8MQ VPU Reset Driver"
-> +	depends on HAS_IOMEM
-> +	depends on (ARM64 && ARCH_MXC) || COMPILE_TEST
-> +	select MFD_SYSCON
-> +	help
-> +	  This enables the VPU reset controller driver for i.MX8MQ SoCs.
-> +
->  config RESET_INTEL_GW
->  	bool "Intel Reset Controller Driver"
->  	depends on OF && HAS_IOMEM
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 1054123fd187..6007e0cdfc05 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -12,6 +12,7 @@ obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
->  obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
->  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
->  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
-> +obj-$(CONFIG_RESET_VPU_IMX8MQ) += reset-imx8mq-vpu.o
->  obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
->  obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
->  obj-$(CONFIG_RESET_LPC18XX) += reset-lpc18xx.o
-> diff --git a/drivers/reset/reset-imx8mq-vpu.c b/drivers/reset/reset-imx8mq-vpu.c
-> new file mode 100644
-> index 000000000000..14c589f19266
-> --- /dev/null
-> +++ b/drivers/reset/reset-imx8mq-vpu.c
-> @@ -0,0 +1,169 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021, Collabora
-> + *
-> + * i.MX8MQ VPU Reset Controller driver
-> + *
-> + * Author: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset-controller.h>
-> +#include <linux/regmap.h>
-> +#include <dt-bindings/reset/imx8mq-vpu-reset.h>
-> +
-> +#define CTRL_SOFT_RESET		0x00
-> +#define RESET_G1		((u32)BIT(1))
-> +#define RESET_G2		((u32)BIT(0))
-> +
-> +#define CTRL_ENABLE		0x04
-> +#define ENABLE_G1		BIT(1)
-> +#define ENABLE_G2		BIT(0)
-> +
-> +#define CTRL_G1_DEC_FUSE	0x08
-> +#define CTRL_G1_PP_FUSE		0x0c
-> +#define CTRL_G2_DEC_FUSE	0x10
-> +
-> +struct imx8mq_vpu_reset {
-> +	struct reset_controller_dev rcdev;
-> +	struct regmap *regmap;
-> +	struct clk_bulk_data *clocks;
-> +	int num_clocks;
-> +	struct device *dev;
-> +};
-> +
-> +static inline struct imx8mq_vpu_reset *to_imx8mq_vpu_reset(struct reset_controller_dev *rcdev)
-> +{
-> +	return container_of(rcdev, struct imx8mq_vpu_reset, rcdev);
-> +}
-> +
-> +static int imx8mq_vpu_reset_assert(struct reset_controller_dev *rcdev,
-> +				   unsigned long id)
-> +{
-> +	struct imx8mq_vpu_reset *reset = to_imx8mq_vpu_reset(rcdev);
-> +	int ret = -EINVAL;
-> +
-> +	ret = clk_bulk_prepare_enable(reset->num_clocks, reset->clocks);
-> +	if (ret) {
-> +		dev_err(reset->dev, "Failed to prepare clocks\n");
-> +		return ret;
-> +	}
-> +
-> +	switch (id) {
-> +	case IMX8MQ_RESET_VPU_RESET_G1:
-> +		ret = regmap_update_bits(reset->regmap, CTRL_SOFT_RESET, RESET_G1, ~RESET_G1);
-> +		ret |= regmap_update_bits(reset->regmap, CTRL_ENABLE, ENABLE_G1, ENABLE_G1);
-> +		break;
-> +	case IMX8MQ_RESET_VPU_RESET_G2:
-> +		ret = regmap_update_bits(reset->regmap, CTRL_SOFT_RESET, RESET_G2, ~RESET_G2);
-> +		ret |= regmap_update_bits(reset->regmap, CTRL_ENABLE, ENABLE_G2, ENABLE_G2);
+On Wed, Feb 24, 2021 at 6:44 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Jagan,
+>
+> On Wed, Feb 24, 2021 at 06:07:43PM +0530, Jagan Teki wrote:
+> > On Mon, Feb 15, 2021 at 5:48 PM Laurent Pinchart wrote:
+> > > On Sun, Feb 14, 2021 at 11:22:10PM +0530, Jagan Teki wrote:
+> > > > ICN6211 is MIPI-DSI to RGB Convertor bridge from Chipone.
+> > > >
+> > > > It has a flexible configuration of MIPI DSI signal input and
+> > > > produce RGB565, RGB666, RGB888 output format.
+> > > >
+> > > > Add dt-bingings for it.
+> > > >
+> > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > > ---
+> > > > Changes for v3:
+> > > > - updated to new dt-bindings style
+> > > >
+> > > >  .../display/bridge/chipone,icn6211.yaml       | 90 +++++++++++++++++++
+> > > >  1 file changed, 90 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..13764f13fe46
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> > > > @@ -0,0 +1,90 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/display/bridge/chipone,icn6211.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Chipone ICN6211 MIPI-DSI to RGB Converter bridge
+> > > > +
+> > > > +maintainers:
+> > > > +  - Jagan Teki <jagan@amarulasolutions.com>
+> > > > +
+> > > > +description: |
+> > > > +  ICN6211 is MIPI-DSI to RGB Convertor bridge from chipone.
+> > > > +
+> > > > +  It has a flexible configuration of MIPI DSI signal input and
+> > > > +  produce RGB565, RGB666, RGB888 output format.
+> > >
+> > > How does one select between the output formats ? Should the output
+> > > connection option be described in the device tree ?
+> >
+> > I think that is a good option to select output formats via dts. what
+> > if it makes it a generic property like data-lanes? since it is common
+> > across many other bridges.
+>
+> Describing the output connection in the device tree sounds like a good
+> idea indeed. The bus-width property could be used for this, maybe along
+> the lines of
+> https://lore.kernel.org/dri-devel/20201013020619.GG3942@pendragon.ideasonboard.com/.
 
-This doesn't belong in reset_assert.
+I have seen an issue by passing bus-width where the same bus-with 24
+can use by RGB888 and RGB666 according to
+mipi_dsi_pixel_format_to_bpp. Having a default RGB888 format now and
+update it when it supports properly, can be a good Idea I thought of.
+Let me know if you have any comments?
 
-> +		break;
-> +	}
-> +
-> +	/* Set values of the fuse registers */
-> +	ret |= regmap_write(reset->regmap, CTRL_G1_DEC_FUSE, 0xffffffff);
-> +	ret |= regmap_write(reset->regmap, CTRL_G1_PP_FUSE, 0xffffffff);
-> +	ret |= regmap_write(reset->regmap, CTRL_G2_DEC_FUSE, 0xffffffff);
-
-Same as above, this doesn't belong in reset_assert.
-
-> +	clk_bulk_disable_unprepare(reset->num_clocks, reset->clocks);
-
-Also I assume that only the VPU_DEC_ROOT clock is required to control
-these registers. Enabling the VPU_G1_ROOT and VPU_G2_ROOT clocks
-(presumably to make sure the resets propagate into the respective VPU
-core) would be the reset consumer's responsibility.
-
-regards
-Philipp
+Jagan.
