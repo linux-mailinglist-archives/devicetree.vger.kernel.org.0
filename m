@@ -2,146 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD5F732C088
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4180732C08B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386615AbhCCSoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:44:54 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:42740 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S233449AbhCCRZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 12:25:41 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 123HI5r2010143;
-        Wed, 3 Mar 2021 18:23:27 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=VZlYydjoa19ZfjiGy/7lae6d4RmJH4yQmK8Bw6psmbI=;
- b=Wg3ENRICMBCFHPNUtQPnFZC83FWwJbdPyPaY5UsoYMtvOIvB23fu7ukniD+S77ZcpysY
- 8tDhE1lAqGIq+/Djb1ml0SkXuXtaeYRLyGGAkErLEcxnmfeUEshPbey1k3/DXzQiOAhL
- 6VMJZrytZ85knSx6Gr6BgtBz6kT4NSGAuYPPLFuurg5Vpe2CbEVGokG53gMlplcj+Jwk
- JWA6akb4QX3MdTencFg/WWxjXSw5q5dpDF3NVAVHfLsvghFPl0VUkN7iYxQwdD+Jxsex
- mlqW6RwVUroKM3S4+pv3thNPyUeXMR0UlPQI+BlioeMq2T6FjbQQhyQS1J/M7v6odhsx FQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 36yf9qaac5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 03 Mar 2021 18:23:27 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 43B82100034;
-        Wed,  3 Mar 2021 18:23:27 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2412520CE3A;
-        Wed,  3 Mar 2021 18:23:27 +0100 (CET)
-Received: from [10.211.2.167] (10.75.127.51) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 3 Mar
- 2021 18:23:25 +0100
-Subject: Re: [PATCH v4 1/2] dt-bindings: serial: Add rx-tx-swap to stm32-usart
-To:     Martin Devera <devik@eaxlabs.cz>, <linux-kernel@vger.kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Alexandre Torgue" <alexandre.torgue@st.com>,
-        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <aeefa74e-fa19-6c31-5240-0f14fca89298@foss.st.com>
- <20210302190303.28630-1-devik@eaxlabs.cz>
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Message-ID: <86ae0975-0f6b-f121-09c4-d909f081a635@foss.st.com>
-Date:   Wed, 3 Mar 2021 18:23:25 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1386618AbhCCSo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:44:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45206 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240239AbhCCR3b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 12:29:31 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1AD96600EF;
+        Wed,  3 Mar 2021 17:28:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614792496;
+        bh=zlg3djBmpPQX9HA9Tio/KvTAc3gzFSUjPMEmR7Drzyg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nSQTrq7mqSrGIDFdtUatUCDfw1IC6EyoOVr0Uj3b1E0wymegPLztI2ED6vcxu5C85
+         UY60ZVdYnSuXJN3JzhG55Piik7aZ8B9E+K1A+FSoDiagqWM65C/fZI81O0MtFX5GkU
+         yUft1a2F5wt6kV7eIsuS4bnBkC4qpzlxDS5+/Li2Xdkmu1wtESzUphUjRgv1i2DuQP
+         L86JZ8VksAPpPB0GZMXfG7aFYiXs+x+Mlfg8tgnWmuDM5/65uHXjSYTApptiVRqnVP
+         DKdLG5OBDF3pbNQHv3Ku+COBJ56gx+Bk0mQOP6S6LMBjqA63x+sYmeaty89WZBN7Tk
+         nqvxMJ9ADAITw==
+Date:   Wed, 3 Mar 2021 17:28:10 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Michael Ellerman <mpe@ellerman.id.au>, danielwa@cisco.com,
+        robh@kernel.org, daniel@gimpelevich.san-francisco.ca.us,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-arch@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] cmdline: Add generic function to build command
+ line.
+Message-ID: <20210303172810.GA19713@willie-the-truck>
+References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
+ <d8cf7979ad986de45301b39a757c268d9df19f35.1614705851.git.christophe.leroy@csgroup.eu>
 MIME-Version: 1.0
-In-Reply-To: <20210302190303.28630-1-devik@eaxlabs.cz>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-03_05:2021-03-03,2021-03-03 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d8cf7979ad986de45301b39a757c268d9df19f35.1614705851.git.christophe.leroy@csgroup.eu>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/2/21 8:03 PM, Martin Devera wrote:
-> Add new rx-tx-swap property to allow for RX & TX pin swapping.
+On Tue, Mar 02, 2021 at 05:25:17PM +0000, Christophe Leroy wrote:
+> This code provides architectures with a way to build command line
+> based on what is built in the kernel and what is handed over by the
+> bootloader, based on selected compile-time options.
 > 
-> Signed-off-by: Martin Devera <devik@eaxlabs.cz>
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 > ---
->  .../devicetree/bindings/serial/st,stm32-uart.yaml  | 32 +++++++++++++++-------
->  1 file changed, 22 insertions(+), 10 deletions(-)
+>  include/linux/cmdline.h | 62 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 include/linux/cmdline.h
 > 
-
-Hi Martin,
-
-I'm only wondering on moving the allOf and the st,hw-flow-ctrl prop. But
-others may comment on this.
-
-Feel free to add my:
-Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-
-Thanks!
-Fabrice
-
-> diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-> index 8631678283f9..6eab2debebb5 100644
-> --- a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-> @@ -9,9 +9,6 @@ maintainers:
->  
->  title: STMicroelectronics STM32 USART bindings
->  
-> -allOf:
-> -  - $ref: rs485.yaml
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -40,6 +37,10 @@ properties:
->  
->    uart-has-rtscts: true
->  
-> +  rx-tx-swap:
-> +    type: boolean
-> +    maxItems: 1
+> diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
+> new file mode 100644
+> index 000000000000..ae3610bb0ee2
+> --- /dev/null
+> +++ b/include/linux/cmdline.h
+> @@ -0,0 +1,62 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef _LINUX_CMDLINE_H
+> +#define _LINUX_CMDLINE_H
 > +
->    dmas:
->      minItems: 1
->      maxItems: 2
-> @@ -66,13 +67,24 @@ properties:
->    linux,rs485-enabled-at-boot-time: true
->    rs485-rx-during-tx: true
->  
-> -if:
-> -  required:
-> -    - st,hw-flow-ctrl
-> -then:
-> -  properties:
-> -    cts-gpios: false
-> -    rts-gpios: false
-> +allOf:
-> +  - $ref: rs485.yaml
-> +  - if:
-> +      required:
-> +        - st,hw-flow-ctrl
-> +    then:
-> +      properties:
-> +        cts-gpios: false
-> +        rts-gpios: false
-> +  - if:
-> +      required:
-> +        - rx-tx-swap
-> +    then:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - st,stm32f7-uart
-> +            - st,stm32h7-uart
->  
->  required:
->    - compatible
-> 
+> +static __always_inline size_t cmdline_strlen(const char *s)
+> +{
+> +	const char *sc;
+> +
+> +	for (sc = s; *sc != '\0'; ++sc)
+> +		; /* nothing */
+> +	return sc - s;
+> +}
+> +
+> +static __always_inline size_t cmdline_strlcat(char *dest, const char *src, size_t count)
+> +{
+> +	size_t dsize = cmdline_strlen(dest);
+> +	size_t len = cmdline_strlen(src);
+> +	size_t res = dsize + len;
+> +
+> +	/* This would be a bug */
+> +	if (dsize >= count)
+> +		return count;
+> +
+> +	dest += dsize;
+> +	count -= dsize;
+> +	if (len >= count)
+> +		len = count - 1;
+> +	memcpy(dest, src, len);
+> +	dest[len] = 0;
+> +	return res;
+> +}
+
+Why are these needed instead of using strlen and strlcat directly?
+
+> +/*
+> + * This function will append a builtin command line to the command
+> + * line provided by the bootloader. Kconfig options can be used to alter
+> + * the behavior of this builtin command line.
+> + * @dest: The destination of the final appended/prepended string.
+> + * @src: The starting string or NULL if there isn't one. Must not equal dest.
+> + * @length: the length of dest buffer.
+> + */
+> +static __always_inline void cmdline_build(char *dest, const char *src, size_t length)
+> +{
+> +	if (length <= 0)
+> +		return;
+> +
+> +	dest[0] = 0;
+> +
+> +#ifdef CONFIG_CMDLINE
+> +	if (IS_ENABLED(CONFIG_CMDLINE_FORCE) || !src || !src[0]) {
+> +		cmdline_strlcat(dest, CONFIG_CMDLINE, length);
+> +		return;
+> +	}
+> +#endif
+
+CONFIG_CMDLINE_FORCE implies CONFIG_CMDLINE, and even if it didn't,
+CONFIG_CMDLINE is at worst an empty string. Can you drop the #ifdef?
+
+> +	if (dest != src)
+> +		cmdline_strlcat(dest, src, length);
+> +#ifdef CONFIG_CMDLINE
+> +	if (IS_ENABLED(CONFIG_CMDLINE_EXTEND) && sizeof(CONFIG_CMDLINE) > 1)
+> +		cmdline_strlcat(dest, " " CONFIG_CMDLINE, length);
+> +#endif
+
+Likewise, but also I'm not sure why the sizeof() is required.
+
+Will
