@@ -2,94 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 670B532BF8D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B102C32BF60
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579134AbhCCSaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:30:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1842739AbhCCILR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 03:11:17 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232EFC06121E;
-        Tue,  2 Mar 2021 23:51:36 -0800 (PST)
-Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 421848CA;
-        Wed,  3 Mar 2021 08:47:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1614757668;
-        bh=2eUYi8WkyCSR/IvUdJsbthJPtQ8SRxzb0VtzXPk/p90=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=dVcgqk6Fgs4I4LnyK+D2lONMjr5SFZ+SWIgq8d+XqaQVuko4jJblguOh7oAL78fjQ
-         f9VGFYaxjN/93eV1HvVHDNZlDmUyXQTFJ1DGX798vK+BH7gD2uPrR+G7vKWQjHZTwV
-         FKJjBHLWn7p/zWscwc0TJwA2bOHkGiHLs7YTPQp4=
-Subject: Re: [PATCHv2 6/6] drm/omapdrm/dss/hdmi5: add CEC support
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-media@vger.kernel.org
-Cc:     Tony Lindgren <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
-        dri-devel@lists.freedesktop.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210302162403.983585-1-hverkuil-cisco@xs4all.nl>
- <20210302162403.983585-7-hverkuil-cisco@xs4all.nl>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Message-ID: <fe8eefe2-16d0-5d15-8a88-508d71a1f505@ideasonboard.com>
-Date:   Wed, 3 Mar 2021 09:47:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-MIME-Version: 1.0
-In-Reply-To: <20210302162403.983585-7-hverkuil-cisco@xs4all.nl>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1386572AbhCCS3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:29:50 -0500
+Received: from lucky1.263xmail.com ([211.157.147.130]:47674 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1582406AbhCCIC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 03:02:56 -0500
+Received: from localhost (unknown [192.168.167.235])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 99DBAD0466;
+        Wed,  3 Mar 2021 15:48:55 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P19729T140185384916736S1614757734881043_;
+        Wed, 03 Mar 2021 15:48:55 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <55670f28143b4e4f191b9b53dc7aabaf>
+X-RL-SENDER: shawn.lin@rock-chips.com
+X-SENDER: lintao@rock-chips.com
+X-LOGIN-NAME: shawn.lin@rock-chips.com
+X-FST-TO: robh+dt@kernel.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Shawn Lin <shawn.lin@rock-chips.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     linux-mmc@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH 1/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Convert to yaml file
+Date:   Wed,  3 Mar 2021 15:48:41 +0800
+Message-Id: <1614757723-225262-1-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2021 18:24, Hans Verkuil wrote:
-> Add HDMI CEC support for OMAP5.
-> 
-> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> ---
->   drivers/gpu/drm/omapdrm/Kconfig          |   8 +
->   drivers/gpu/drm/omapdrm/Makefile         |   1 +
->   drivers/gpu/drm/omapdrm/dss/hdmi.h       |   1 +
->   drivers/gpu/drm/omapdrm/dss/hdmi5.c      |  63 +++++--
->   drivers/gpu/drm/omapdrm/dss/hdmi5_cec.c  | 209 +++++++++++++++++++++++
->   drivers/gpu/drm/omapdrm/dss/hdmi5_cec.h  |  42 +++++
->   drivers/gpu/drm/omapdrm/dss/hdmi5_core.c |  35 +++-
->   drivers/gpu/drm/omapdrm/dss/hdmi5_core.h |  33 +++-
->   8 files changed, 373 insertions(+), 19 deletions(-)
->   create mode 100644 drivers/gpu/drm/omapdrm/dss/hdmi5_cec.c
->   create mode 100644 drivers/gpu/drm/omapdrm/dss/hdmi5_cec.h
+This patch converts sdhci-of-dwcmshc.txt to sdhci-of-dwcmshc.yaml
 
-<snip>
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+---
 
-> diff --git a/drivers/gpu/drm/omapdrm/dss/hdmi5_core.h b/drivers/gpu/drm/omapdrm/dss/hdmi5_core.h
-> index 070cbf5fb57d..a83b634f6011 100644
-> --- a/drivers/gpu/drm/omapdrm/dss/hdmi5_core.h
-> +++ b/drivers/gpu/drm/omapdrm/dss/hdmi5_core.h
-> @@ -30,8 +30,18 @@
->   #define HDMI_CORE_IH_PHY_STAT0			0x00410
->   #define HDMI_CORE_IH_I2CM_STAT0			0x00414
->   #define HDMI_CORE_IH_CEC_STAT0			0x00418
-> +#define CEC_STAT_DONE				BIT(0)
-> +#define CEC_STAT_EOM				BIT(1)
-> +#define CEC_STAT_NACK				BIT(2)
-> +#define CEC_STAT_ARBLOST			BIT(3)
-> +#define CEC_STAT_ERROR_INIT			BIT(4)
-> +#define CEC_STAT_ERROR_FOLL			BIT(5)
-> +#define CEC_STAT_WAKEUP				BIT(6)
-> +
->   #define HDMI_CORE_IH_VP_STAT0			0x0041C
->   #define HDMI_CORE_IH_I2CMPHY_STAT0		0x00420
-> +#define HDMI_CORE_IH_MUTE_I2CM_STAT0            0x00614
+ .../devicetree/bindings/mmc/sdhci-of-dwcmshc.txt   | 20 -------
+ .../devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml  | 67 ++++++++++++++++++++++
+ 2 files changed, 67 insertions(+), 20 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml
 
-The line above has indentation in spaces, but everything else uses tabs.
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt b/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+deleted file mode 100644
+index ee4253b..0000000
+--- a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-* Synopsys DesignWare Cores Mobile Storage Host Controller
+-
+-Required properties:
+-- compatible: should be one of the following:
+-    "snps,dwcmshc-sdhci"
+-- reg: offset and length of the register set for the device.
+-- interrupts: a single interrupt specifier.
+-- clocks: Array of clocks required for SDHCI; requires at least one for
+-    core clock.
+-- clock-names: Array of names corresponding to clocks property; shall be
+-    "core" for core clock and "bus" for optional bus clock.
+-
+-Example:
+-	sdhci2: sdhci@aa0000 {
+-		compatible = "snps,dwcmshc-sdhci";
+-		reg = <0xaa0000 0x1000>;
+-		interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&emmcclk>;
+-		bus-width = <8>;
+-	}
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml b/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml
+new file mode 100644
+index 0000000..ff2bff1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/sdhci-of-dwcmshc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Synopsys Designware Mobile Storage Host Controller Binding
++
++maintainers:
++  - Ulf Hansson <ulf.hansson@linaro.org>
++  - Jisheng Zhang <Jisheng.Zhang@synaptics.com>
++
++allOf:
++  - $ref: mmc-controller.yaml#
++
++select:
++  properties:
++    compatible:
++      contains:
++        const: snps,dwcmshc-sdhci
++
++properties:
++  compatible:
++    enum:
++      - snps,dwcmshc-sdhci
++
++  reg:
++    minItems: 1
++    maxItems: 3
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++    description:
++      Handle to "core" for core clock and "bus" for optional bus clock.
++
++  clock-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      - const: bus
++      - const: core
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    sdhci@aa0000 {
++      compatible = "snps,dwcmshc-sdhci";
++      reg = <0xaa000 0x1000>;
++      interrupts = <0 25 0x4>;
++      bus-width = <8>;
++      clocks = <&cru 17>;
++      clock-names = "core";
++    };
++
++...
+-- 
+2.7.4
 
-Other than that:
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-  Tomi
