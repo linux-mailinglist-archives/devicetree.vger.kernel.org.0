@@ -2,92 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3E232C06D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E722632C089
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379212AbhCCSo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:44:27 -0500
-Received: from 1.mo1.mail-out.ovh.net ([178.32.127.22]:58745 "EHLO
-        1.mo1.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236016AbhCCQGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 11:06:21 -0500
-X-Greylist: delayed 15633 seconds by postgrey-1.27 at vger.kernel.org; Wed, 03 Mar 2021 11:06:19 EST
-Received: from player739.ha.ovh.net (unknown [10.110.208.22])
-        by mo1.mail-out.ovh.net (Postfix) with ESMTP id 7DB821F7086
-        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 12:44:18 +0100 (CET)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player739.ha.ovh.net (Postfix) with ESMTPSA id 4FE5D1798D8E0;
-        Wed,  3 Mar 2021 11:44:07 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-103G0058af54b4d-f3b4-44dc-ac9e-34a2a880a68e,
-                    26C1B780A21ED05C344A0C24DEC46BA2B7EA0698) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Subject: Re: [PATCH stblinux.git 2/2] firmware: bcm47xx_nvram: support
- platform device "brcm,nvram"
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Vivek Unune <npcomplete13@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org
-References: <20210302074405.18998-1-zajec5@gmail.com>
- <20210302074405.18998-2-zajec5@gmail.com>
- <8e17b978-a527-97df-3f31-1fb2123a23e9@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Message-ID: <d09c9e49-d7c7-cc71-1437-48d82e14843b@milecki.pl>
-Date:   Wed, 3 Mar 2021 12:44:06 +0100
+        id S1579612AbhCCSbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:41 -0500
+Received: from mail-mw2nam12on2081.outbound.protection.outlook.com ([40.107.244.81]:13718
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237419AbhCCM3t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 07:29:49 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YHrdR4MWed+w+G0eeHA9l4k8tob211ULFvp/ev7UcfzvIfOMxzcmYB4pkl9AwsQYRdOJRH4cS+d0N/gb4LgV8NnJpxXyRMjG+vjOhzXtQ/55wiLNJ2fesQicTMEe3Zx2+FwKHxmM8iDLvjVEKtgGDeRHAhplCb0MjiiKG8cX7QLDouFrvspUGk6xzd9P5scVBVwK9XyorJntY/wExnbRAn5W8N38vsMHOWEOARzDpHmQkDgGfdV3o4ZhAo4ePnyq4PfusZnQaGwKA7fxQJkcS7g+dfvs86yrLfIZ26y7tiWmt+Gu4Tt7uBxuXsuP77tW1nmS85Bq3AdEhRUBpc5Y9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=J99bGyfBDz+jR2exGIN0X7eRCzNgcXf1QKrmW6L4f5w=;
+ b=PPJDNye/b5MKAVMeAsmfnaoSI5Gihuo/lmoH4XijtF3vSISfua00yuunBLDiBnUeOS1GAFQdWbf9ZEwa363XpWg45op6migEOgksVAIsHQsrUPFxQFLPUAkTn7iRD40oXoh+tShqtYf7cdbpFyQhQi2Y84QFe9xAASgchO6RZ76DNwk7/DM1khJWkObD4/Gb9alanK3XGqkkDq+pgbyDTpIDcMlWJn3LCtHx5SDTeno5JH7OgW/tRtE35fTbGHe/2y7V5wIp62Cdfe1gymTh9NRqOUmwGrVS+d9hWDhMgpTOQbLI12xXH8DrD3OlITZNaLglW1SzZE059+41DK6F1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=J99bGyfBDz+jR2exGIN0X7eRCzNgcXf1QKrmW6L4f5w=;
+ b=BsPNaxHDioY/TluAra8dCgX0Rz4mxKXJoBsCu7zCSOavrekPqUTTSiegL6EL1zkxF7CiEIhtEOU9OXu4jMQxUJg259TjkVN+ZfJNhEejxSNQPiCjd3C35haN0fmxENgaHZ+f+WR0cn5njnlWCwZ4cOy6Etl9IJFYOWE2EvjCPGw=
+Received: from CY4PR01CA0003.prod.exchangelabs.com (2603:10b6:903:1f::13) by
+ CH2PR02MB6662.namprd02.prod.outlook.com (2603:10b6:610:aa::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3890.23; Wed, 3 Mar 2021 12:07:53 +0000
+Received: from CY1NAM02FT018.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:903:1f:cafe::7a) by CY4PR01CA0003.outlook.office365.com
+ (2603:10b6:903:1f::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend
+ Transport; Wed, 3 Mar 2021 12:07:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ CY1NAM02FT018.mail.protection.outlook.com (10.152.75.183) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3890.19 via Frontend Transport; Wed, 3 Mar 2021 12:07:52 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Wed, 3 Mar 2021 04:07:46 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Wed, 3 Mar 2021 04:07:46 -0800
+Envelope-to: git@xilinx.com,
+ michal.simek@xilinx.com,
+ linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-ide@vger.kernel.org,
+ robh+dt@kernel.org,
+ p.zabel@pengutronix.de,
+ axboe@kernel.dk
+Received: from [172.30.17.109] (port=43202)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1lHQI5-0001MR-7P; Wed, 03 Mar 2021 04:07:45 -0800
+To:     Piyush Mehta <piyush.mehta@xilinx.com>, <axboe@kernel.dk>,
+        <p.zabel@pengutronix.de>, <robh+dt@kernel.org>
+CC:     <linux-ide@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <git@xilinx.com>,
+        <sgoud@xilinx.com>, <michal.simek@xilinx.com>
+References: <1612807436-5238-1-git-send-email-piyush.mehta@xilinx.com>
+ <1612807436-5238-3-git-send-email-piyush.mehta@xilinx.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+Subject: Re: [PATCH V3 2/2] ata: ahci: ceva: Update the driver to support
+ xilinx GT phy
+Message-ID: <c60d9993-e16b-ef5e-ff01-c11212e0d0f8@xilinx.com>
+Date:   Wed, 3 Mar 2021 13:07:41 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-In-Reply-To: <8e17b978-a527-97df-3f31-1fb2123a23e9@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <1612807436-5238-3-git-send-email-piyush.mehta@xilinx.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 8543891444003212823
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledruddtvddgfeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepvedttefgueffvefgvdejleeivddvjefhkeffgeeugeelieefteevffdvuedvgfefnecuffhomhgrihhnpehlkhhmlhdrohhrghenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefledrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 822075dc-8084-4091-76c9-08d8de3cf90b
+X-MS-TrafficTypeDiagnostic: CH2PR02MB6662:
+X-Microsoft-Antispam-PRVS: <CH2PR02MB666229A397B092A2265B91EFC6989@CH2PR02MB6662.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ATjrUxbPG7aG2wj07fkhpto2jQfnTyZYm3gsOo35v1V0MWGEywiw6HgFj17WGtHcmX6gg+bZQSBQGxwNdBJ3aPcHsywfDVb7F6EYK1J+rIbZDLC1TIP/BDGJwZxvcI1Urgcho68JUkC/VDlCKkGRVghVECeuwg99Z33AIrKXdx41ro6lpEtzGm9LkD1R5VsXxBA+SIpJvLhOJrHNgy2An1ph6DngXeK0+dv834msD2wesRM+NqthUdvoqWzbY0k+oRHzeLFohvlge/x7BMyFAbeILsrL70PIiVjMpXs30WaDPdcLcWZChjbZqfkP/uoMT1AcVUDG4T3jY652ohnEYia0hm0KisyM071RhvDx+Uv1i96Dcl6IJYsZ4RgGONhXQKlDtRZ/Liz9ixqNxdLHRCeWtcCxNYb7nxoXv2qe6vSqyk0WaPN1tdqIRbn2Os6LQoSswV8sJcOycd0638ZHvS0wwgkvCP4V9qKzcrVBSm1I/HFwZYYMy0Fue4LTYoGcLToeh4mKrsOqdnFh6FPnmHr5vcRG/0jKq+iyBwmJtWS9EtE3wX3h3JzpVdDZWv0FFWACrH6nQTeI5LjlUqFpnUAXBLJie3SVVjMJJQ0ID11nIV+zLywRkQXEc/tg4wbDIAF72nLynd7Y6mvllOqGxU7qZCfVAfw1fUGwzBwYl9Rgj8vv40erQW69RlYHlj0ORQtU+BwfwQWGgmVhkW50XA==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(136003)(396003)(39850400004)(376002)(46966006)(36840700001)(6666004)(2616005)(478600001)(107886003)(47076005)(31686004)(44832011)(4326008)(2906002)(186003)(9786002)(356005)(7636003)(26005)(83380400001)(54906003)(110136005)(53546011)(70586007)(8676002)(70206006)(36756003)(31696002)(82740400003)(8936002)(15650500001)(36860700001)(336012)(316002)(426003)(82310400003)(36906005)(5660300002)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2021 12:07:52.9977
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 822075dc-8084-4091-76c9-08d8de3cf90b
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT018.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6662
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02.03.2021 17:59, Florian Fainelli wrote:
-> On 3/1/21 11:44 PM, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> Add support for platform device providing mapping resource. This allows
->> reading NVRAM based on DT mapping binding. It's required for devices
->> that boot depending on NVRAM stored setup and provides early access to
->> NVRAM data.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->> bcm47xx_nvram driver was originally added through MIPS tree, but this
->> change doesn't affect BCM47XX (MIPS) as it doesn't use DT. It targets
->> ARCH_BCM_5301X so I suggest this goes through the stblinux.git tree.
+
+
+On 2/8/21 7:03 PM, Piyush Mehta wrote:
+> SATA controller used in Xilinx ZynqMP platform uses xilinx GT phy
+> which has 4 GT lanes and can be used by 4 peripherals at a time.
+> SATA controller uses 1 GT phy lane among the 4 GT lanes. To configure
+> the GT lane for the SATA controller, the below sequence is expected.
 > 
-> Can you see if this change can be replaced by the nvmem-rmem work that
-> Nicolas recently did to support something similar for the Raspberry Pi 4:
+> 1. Assert the SATA controller reset.
+> 2. Configure the xilinx GT phy lane for SATA controller (phy_init).
+> 3. De-assert the SATA controller reset.
+> 4. Wait for PLL of the GT lane used by SATA to be locked (phy_power_on).
 > 
-> https://lkml.org/lkml/2021/1/29/235
+> The ahci_platform_enable_resources() by default does the phy_init()
+> and phy_power_on() but the default sequence doesn't work with Xilinx
+> platforms. Because of this reason, updated the driver to support the
+> new sequence.
+> 
+> Added cevapriv->rst check, for backward compatibility with the older
+> sequence. If the reset controller is not available, then the SATA
+> controller will configure with the older sequences.
+> 
+> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+> ---
+>  drivers/ata/ahci_ceva.c | 43 ++++++++++++++++++++++++++++++++++++++++---
+>  1 file changed, 40 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/ata/ahci_ceva.c b/drivers/ata/ahci_ceva.c
+> index b10fd4c..b980218 100644
+> --- a/drivers/ata/ahci_ceva.c
+> +++ b/drivers/ata/ahci_ceva.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reset.h>
+>  #include "ahci.h"
+>  
+>  /* Vendor Specific Register Offsets */
+> @@ -87,6 +88,7 @@ struct ceva_ahci_priv {
+>  	u32 axicc;
+>  	bool is_cci_enabled;
+>  	int flags;
+> +	struct reset_control *rst;
+>  };
+>  
+>  static unsigned int ceva_ahci_read_id(struct ata_device *dev,
+> @@ -202,13 +204,48 @@ static int ceva_ahci_probe(struct platform_device *pdev)
+>  
+>  	cevapriv->ahci_pdev = pdev;
+>  
+> +	cevapriv->rst = devm_reset_control_get_optional_exclusive(&pdev->dev,
+> +								  NULL);
+> +	if (IS_ERR(cevapriv->rst)) {
+> +		if (PTR_ERR(cevapriv->rst) != -EPROBE_DEFER)
+> +			dev_err(&pdev->dev, "failed to get reset: %ld\n",
+> +				PTR_ERR(cevapriv->rst));
+> +	}
 
-I don't think it fits my case.
+nit: This can be handled via dev_err_probe() to simplify this logic here.
+It was added by a787e5400a1c ("driver core: add device probe log
+helper") but up to Jens if he wants this to be fixed.
 
-It's a reserved memory binding/driver which refers to the system memory.
-In NVRAM case we need to do a mapping. I think it's different?
+> +
+>  	hpriv = ahci_platform_get_resources(pdev, 0);
+>  	if (IS_ERR(hpriv))
+>  		return PTR_ERR(hpriv);
+>  
+> -	rc = ahci_platform_enable_resources(hpriv);
+> -	if (rc)
+> -		return rc;
+> +	if (!cevapriv->rst) {
+> +		rc = ahci_platform_enable_resources(hpriv);
+> +		if (rc)
+> +			return rc;
+> +	} else {
+> +		int i;
+> +
+> +		rc = ahci_platform_enable_clks(hpriv);
+> +		if (rc)
+> +			return rc;
+> +		/* Assert the controller reset */
+> +		reset_control_assert(cevapriv->rst);
+> +
+> +		for (i = 0; i < hpriv->nports; i++) {
+> +			rc = phy_init(hpriv->phys[i]);
+> +			if (rc)
+> +				return rc;
+> +		}
+> +
+> +		/* De-assert the controller reset */
+> +		reset_control_deassert(cevapriv->rst);
+> +
+> +		for (i = 0; i < hpriv->nports; i++) {
+> +			rc = phy_power_on(hpriv->phys[i]);
+> +			if (rc) {
+> +				phy_exit(hpriv->phys[i]);
+> +				return rc;
+> +			}
+> +		}
+> +	}
+>  
+>  	if (of_property_read_bool(np, "ceva,broken-gen2"))
+>  		cevapriv->flags = CEVA_FLAG_BROKEN_GEN2;
+> 
 
-nvmem-rmem registers NVMEM device without providing any cells. It also
-doesn't understand NVRAM data structure. I guess nvmem-rmem only exposes
-NVMEM for user-space access. I need to access NVRAM to e.g. detect boot
-parameters in kernel code.
+Acked-by: Michal Simek <michal.simek@xilinx.com>
 
-I was thinking for a moment about treating NVRAM like a NVMEM but NVRAM
-doesn't seem to fit current design and kernel API. NVMEM assumes that
-every cell has a specific offset and size. Reading NVRAM should be
-based on string keys (nof offsets). See nvmem_reg_read_t for details.
+Jens:  Can you please take a look at this patch if you see any other issue?
 
-This won't make a huge difference I think, but for a slightly cleaner
-design I could probably have NVRAM devices without cells and make it
-setup NVRAM. Let me see if I can code that.
+Thanks,
+Michal
