@@ -2,87 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F1232C0B0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 327F932C17F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:02:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386658AbhCCSpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:45:18 -0500
-Received: from mail-wr1-f49.google.com ([209.85.221.49]:39321 "EHLO
-        mail-wr1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234010AbhCCSU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 13:20:56 -0500
-Received: by mail-wr1-f49.google.com with SMTP id b18so18272964wrn.6;
-        Wed, 03 Mar 2021 10:20:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=i+wsmGB3nPUNErG75HhRRgO2R+I8z7au1VtRNGbI3kU=;
-        b=tACU2r9Qr/yQalW1sJ/XoLgRpjQNlEjGY/Dji8fLuye4Ex1LBOBMjHiZPdtCRzLATh
-         sGtwukYrlgNtTLBnMibk0ppeW2kc7LWfP9D4uJMljMYqhbsto1Yhn5CEzdC1vmQq3duR
-         kST8AHql9cFDsu1crjrXBKgLR9qpNeluno7v6Lyp6jjSMZPSqkDI1ncovdjh+FOmbQ46
-         fNvcdqIJ8IlWf5vNIEM2sosRmWjWye2EW0Omzr0/9EJdWo3dlmGQDpcnSNm+Vpf7Fx9a
-         mWQioOxSkdYEfCugU1utKTYyDam3MOpI5caXF7dVmyp401Ge+a+/qZV39AfZauAQJebN
-         eYuA==
-X-Gm-Message-State: AOAM5309HLLO4xfjNz4kRBHXBtWlqWIykH3YNAVgsXgDQVky73CdwaM/
-        CWTefaDIe647MfrG6W6wznFBrECeEE4=
-X-Google-Smtp-Source: ABdhPJzXlIPSof8TuEU/xmd9uwKvcnqjSaqVZ9KBEX0z0xFsdcZ3JuEcemsbVzh06mpoU6nkjncGFQ==
-X-Received: by 2002:adf:c40b:: with SMTP id v11mr28144512wrf.320.1614795584154;
-        Wed, 03 Mar 2021 10:19:44 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id m14sm6511797wmi.27.2021.03.03.10.19.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 10:19:43 -0800 (PST)
-Date:   Wed, 3 Mar 2021 19:19:41 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-Cc:     Iskren Chernev <iskren.chernev@gmail.com>,
-        Matheus Castello <matheus@castello.eng.br>,
-        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-        Angus Ainslie <angus@akkea.ca>,
-        Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH 01/18] ARM: dts: exynos: correct fuel gauge interrupt
- trigger level on GT-I9100
-Message-ID: <20210303181941.yercebdxswdetf3q@kozik-lap>
-References: <20201210212534.216197-1-krzk@kernel.org>
+        id S234571AbhCCTDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 14:03:31 -0500
+Received: from rcdn-iport-9.cisco.com ([173.37.86.80]:2909 "EHLO
+        rcdn-iport-9.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1580955AbhCCS65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 13:58:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=2586; q=dns/txt; s=iport;
+  t=1614797935; x=1616007535;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=NhiyH3foSNEt6lkCV9u0ibo4udmRICreeAo5BgksPTA=;
+  b=cWROdOooLRakjip97rCirB8wN/6FzqqPcSO7bRm8TAbdmJT/SwzaRuq2
+   5JshQxeiLzwmCsx112yhzgrbPEKVzXIPN6EMvZ6juAlUOkoq6b0j7MpMh
+   oUp4urFB554BDD9Y7+9u9Hy3gjFjE0VnN8QYY33lyZycxyyodT/oHr48P
+   E=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0BOAwB12j9g/5NdJa1iHAEBAQEBAQc?=
+ =?us-ascii?q?BARIBAQQEAQFAgU+CK3ZWATkxlh6PehaMOwsBAQENAQEjEQQBAYEUgzQDAgK?=
+ =?us-ascii?q?BegIlOBMCAwEBCwEBBQEBAQIBBgRxhWENhkQBAQEDATIBRhALEgYuPA0OBhM?=
+ =?us-ascii?q?bglaCZiEPrT10gTSEPwELAYRTgT4GIoEWjUMmHIFJQoQrPoJcBBeHPASCRoE?=
+ =?us-ascii?q?7c4IBkEuCS4otm3uDBoEfiCCSUjEQgyeKT5VQoBKSGg2EOQIEBgUCFoFrI4F?=
+ =?us-ascii?q?XMxoIGxU7gjUBMxMMMRkNlyKFZiADLwIBAQEzAgYBCQEBAwmMEwEB?=
+X-IronPort-AV: E=Sophos;i="5.81,220,1610409600"; 
+   d="scan'208";a="778466374"
+Received: from rcdn-core-11.cisco.com ([173.37.93.147])
+  by rcdn-iport-9.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 03 Mar 2021 18:53:10 +0000
+Received: from zorba ([10.24.1.194])
+        by rcdn-core-11.cisco.com (8.15.2/8.15.2) with ESMTPS id 123Ir8xP021729
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Wed, 3 Mar 2021 18:53:10 GMT
+Date:   Wed, 3 Mar 2021 10:53:08 -0800
+From:   Daniel Walker <danielwa@cisco.com>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Rob Herring <robh@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>, devicetree@vger.kernel.org,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v2 0/7] Improve boot command line handling
+Message-ID: <20210303185308.GH109100@zorba>
+References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
+ <20210302173523.GE109100@zorba>
+ <CAL_JsqJ7U8QAbJe3zkZiFPJN4PveHz5TZoPk2S8qQWB6cm5e5Q@mail.gmail.com>
+ <20210303173908.GG109100@zorba>
+ <59b054e8-d85b-fd87-c94d-691af748a2f5@csgroup.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20201210212534.216197-1-krzk@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <59b054e8-d85b-fd87-c94d-691af748a2f5@csgroup.eu>
+X-Outbound-SMTP-Client: 10.24.1.194, [10.24.1.194]
+X-Outbound-Node: rcdn-core-11.cisco.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 10, 2020 at 10:25:17PM +0100, Krzysztof Kozlowski wrote:
-> The Maxim fuel gauge datasheets describe the interrupt line as active
-> low with a requirement of acknowledge from the CPU.  The falling edge
-> interrupt will mostly work but it's not correct.
+On Wed, Mar 03, 2021 at 07:07:45PM +0100, Christophe Leroy wrote:
 > 
-> Fixes: 8620cc2f99b7 ("ARM: dts: exynos: Add devicetree file for the Galaxy S2")
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  arch/arm/boot/dts/exynos4210-i9100.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+> Le 03/03/2021 à 18:39, Daniel Walker a écrit :
+> > On Tue, Mar 02, 2021 at 08:01:01PM -0600, Rob Herring wrote:
+> > > +Will D
+> > > 
+> > > On Tue, Mar 2, 2021 at 11:36 AM Daniel Walker <danielwa@cisco.com> wrote:
+> > > > 
+> > > > On Tue, Mar 02, 2021 at 05:25:16PM +0000, Christophe Leroy wrote:
+> > > > > The purpose of this series is to improve and enhance the
+> > > > > handling of kernel boot arguments.
+> > > > > 
+> > > > > It is first focussed on powerpc but also extends the capability
+> > > > > for other arches.
+> > > > > 
+> > > > > This is based on suggestion from Daniel Walker <danielwa@cisco.com>
+> > > > > 
+> > > > 
+> > > > 
+> > > > I don't see a point in your changes at this time. My changes are much more
+> > > > mature, and you changes don't really make improvements.
+> > > 
+> > > Not really a helpful comment. What we merge here will be from whomever
+> > > is persistent and timely in their efforts. But please, work together
+> > > on a common solution.
+> > > 
+> > > This one meets my requirements of moving the kconfig and code out of
+> > > the arches, supports prepend/append, and is up to date.
+> > 
+> > 
+> > Maintainers are capable of merging whatever they want to merge. However, I
+> > wouldn't make hasty choices. The changes I've been submitting have been deployed
+> > on millions of router instances and are more feature rich.
+> > 
+> > I believe I worked with you on this change, or something like it,
+> > 
+> > https://lkml.org/lkml/2019/3/19/970
+> > 
+> > I don't think Christophe has even addressed this.
+> 
+> I thing I have, see https://patchwork.ozlabs.org/project/linuxppc-dev/patch/3b4291271ce4af4941a771e5af5cbba3c8fa1b2a.1614705851.git.christophe.leroy@csgroup.eu/
+> 
+> If you see something missing in that patch, can you tell me.
+ 
+Ok, must have missed that one.
 
-Applied 1-10 (Exynos and S5P dts patches).
 
-Best regards,
-Krzysztof
+> > I've converted many
+> > architectures, and Cisco uses my changes on at least 4 different
+> > architecture. With products deployed and tested.
+> 
+> As far as we know, only powerpc was converted in the last series you
+> submitted, see
+> https://patchwork.ozlabs.org/project/linuxppc-dev/list/?series=98106&state=*
+
+
+Me and others submitted my changes many times, and other architectures have been included. The patch
+you submitted I've submitted similar at Rob's request years ago.
+
+Here a fuller submissions some time ago,
+
+https://lore.kernel.org/patchwork/cover/992768/
+
+You've only been involved in prior powerpc only submissions.
+
+Daniel
