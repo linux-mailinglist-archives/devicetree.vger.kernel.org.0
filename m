@@ -2,70 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4042532BFCC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9065E32BF42
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 00:59:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233668AbhCCSGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:06:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59428 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2360942AbhCBXIU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Mar 2021 18:08:20 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5EE5B64F2C;
-        Tue,  2 Mar 2021 23:07:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614726451;
-        bh=BERs5+nWLGWtZeXXlST+aHvroH1cPR1tvq5CIw51nMc=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=FpD/UYXOk3L757YtN8QFSyP0tmpYOo5ufZWcaq68JAdpw/SvbrlFQzEO6kThj/DjG
-         qknGKR5xbqjO6G7zfoEreHhtYqNqRgcX/MHlTBXY9hdgD9c5CiP/kFAB2KUDOQ33XR
-         dnRPMLxc7E9pBjgV5ZAESRb/+aPjLDqZ2f8qpzqqy5U/fbRCcvFstRc/4wpSUYUds6
-         SjYowLp+JQEOtEx+ak3c2gM89HfX3Utl2nNgVjUNlGMpe5hGRQhpyZLaxjhu50sFTu
-         tovFMwh9tZXieXJDV0RyhoFjtDlrSrodSVOG396vveEnvv545OvIJ62vzxIFVY8JLN
-         xacf5hTH8aEQg==
-Content-Type: text/plain; charset="utf-8"
+        id S1383878AbhCCS2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:28:54 -0500
+Received: from mail.loongson.cn ([114.242.206.163]:47210 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1353365AbhCCG0I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 01:26:08 -0500
+Received: from localhost.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9AxOdSiKz9gd7ATAA--.25147S2;
+        Wed, 03 Mar 2021 14:24:34 +0800 (CST)
+From:   Qing Zhang <zhangqing@loongson.cn>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/7] Add basic support for Loongson-2K1000
+Date:   Wed,  3 Mar 2021 14:24:27 +0800
+Message-Id: <20210303062434.22280-1-zhangqing@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAKfKVtH1rSc4d8MMZCegMNG8shNxgXfu6qTd9WxuaGGFMEJ6CA@mail.gmail.com>
-References: <1613623791-4598-1-git-send-email-shubhrajyoti.datta@xilinx.com> <1613623791-4598-2-git-send-email-shubhrajyoti.datta@xilinx.com> <20210218092804.6c78c99c@xps13> <161369785558.1254594.14662342386099652001@swboyd.mtv.corp.google.com> <CAKfKVtH1rSc4d8MMZCegMNG8shNxgXfu6qTd9WxuaGGFMEJ6CA@mail.gmail.com>
-Subject: Re: [PATCH v9 1/7] dt-bindings: add documentation of xilinx clocking wizard
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        linux-clk@vger.kernel.org, open list:
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>, ;
-Illegal-Object: Syntax error in Cc: address found on vger.kernel.org:
-        Cc:     ;
-                        ^-missing semicolon to end mail group, extraneous tokens in mailbox, missing end of mailbox
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
-Date:   Tue, 02 Mar 2021 15:07:29 -0800
-Message-ID: <161472644984.1478170.5535993198933302108@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf9AxOdSiKz9gd7ATAA--.25147S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7urykAr1DAw4DKryfXFWDJwb_yoW8Wr4kpw
+        43Cw15KF45Cry3Crn3JryUWr1rArWfJrZrWF47Xr15GasIqa4Yvr1fJFs8Jr42vrykta4j
+        9ry8WFW7GFnrC37anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUk2b7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
+        jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwV
+        C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+        0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Gr0_Cr
+        1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkIecxEwVAFwVW8AwCF04k2
+        0xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI
+        8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41l
+        IxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIx
+        AIcVCF04k26cxKx2IYs7xG6rW3Jr0E3s1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2
+        z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUxPl1DUUUU
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Shubhrajyoti Datta (2021-02-24 06:10:08)
-> On Fri, Feb 19, 2021 at 6:54 AM Stephen Boyd <sboyd@kernel.org> wrote:
-> >
-> > > > +
-> > > > +  xlnx,speed-grade:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    enum: [1, 2, 3]
-> > > > +    description:
-> > > > +      Speed grade of the device.
-> > >
-> > > A bit of explanation of what this describes would be welcome.
-> > >
-> > > Don't forget that binding are not tied to any driver implementation,
-> > > these are supposed to be hardware description properties.
-> >
-> > Would opp tables work for this?
-> This is the parameter is for speed of the fabric.
+These patches support single-core DTS boot to the serial port login
+interface, which can be operated using conventional commands.
 
-Ok. Yes or no? Is it configuring the speed of the fabric? Sounds like
-assigned-clock-rates or assigned-interconnect-bandwidth or something
-like that.
+I have successfully tested it on the Loongson 2K1000 machine.
+pmon: http://cgit.loongnix.org/cgit/pmon-loongson3/
+
+Qing Zhang (7):
+  MIPS: Loongson64: DeviceTree for 2K1000
+  MIPS: Loongson64: Distinguish firmware dependencies DTB/LEFI
+  MIPS: Loongson64: Add support for the 2K1000 to get cpu_clock_freq
+  MIPS: Loongson64: Add 2K1000 early_printk_port
+  irqchip/loongson-liointc: irqchip add 2.0 version
+  dt-bindings: interrupt-controller: Add Loongson-2K1000 LIOINTC
+  MIPS: Loongson64: Add a Loongson-2k default config file
+
+ .../loongson,liointc.yaml                     |   9 +-
+ arch/mips/boot/dts/loongson/Makefile          |   1 +
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  | 243 ++++++++++++
+ .../dts/loongson/loongson64_2core_2k1000.dts  |  10 +
+ arch/mips/configs/loongson2k_defconfig        | 353 ++++++++++++++++++
+ .../include/asm/mach-loongson64/boot_param.h  |   6 +
+ .../asm/mach-loongson64/builtin_dtbs.h        |   1 +
+ .../include/asm/mach-loongson64/loongson.h    |   3 +-
+ arch/mips/loongson64/env.c                    |  13 +-
+ arch/mips/loongson64/init.c                   |  21 +-
+ arch/mips/loongson64/time.c                   |  14 +
+ drivers/irqchip/irq-loongson-liointc.c        |  55 ++-
+ 12 files changed, 711 insertions(+), 18 deletions(-)
+ create mode 100644 arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+ create mode 100644 arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dts
+ create mode 100644 arch/mips/configs/loongson2k_defconfig
+
+-- 
+2.20.1
+
