@@ -2,145 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9CFC32C0D4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9B6232C0E9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579736AbhCCSb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:31:57 -0500
-Received: from foss.arm.com ([217.140.110.172]:48782 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1379183AbhCCOUB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 09:20:01 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 99E90D6E;
-        Wed,  3 Mar 2021 06:19:15 -0800 (PST)
-Received: from [10.57.12.223] (unknown [10.57.12.223])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4FD333F766;
-        Wed,  3 Mar 2021 06:19:13 -0800 (PST)
-Subject: Re: [PATCH 1/8] ARM: ARMv7-M: Fix register restore corrupt after svc
- call
-To:     dillon min <dillon.minfei@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux@armlinux.org.uk, afzal.mohd.ma@gmail.com
-References: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
- <1614758717-18223-2-git-send-email-dillon.minfei@gmail.com>
- <5284d390-c03a-4035-df5a-10d6cd60e47b@arm.com>
- <CAL9mu0KUhctbBzmem1ZSgEwf5CebivHOSUr9Q7VTyzib8pW=Cw@mail.gmail.com>
-From:   Vladimir Murzin <vladimir.murzin@arm.com>
-Message-ID: <5efe3d44-8045-e376-003e-3ccbff54fb23@arm.com>
-Date:   Wed, 3 Mar 2021 14:19:19 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1579768AbhCCScK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:32:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36192 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1383509AbhCCOjI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 09:39:08 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90BC9C06178A;
+        Wed,  3 Mar 2021 06:23:13 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id u187so5322868wmg.4;
+        Wed, 03 Mar 2021 06:23:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uQpzwtJdI15ee25ztpxpJETWP0dJNKVRVUGEhzQbTYI=;
+        b=tLeAOwAlFtvcX5c2nCq/k9O3FtmgphgjThDiMWdxKh4+RXRkeUGL1SGOUZskuVU7Zl
+         +FUAiqYvZsUNrX6zwKagVxSG104vOJML+pKVA51ylzCuDUPaDK1qGtbLd/PsqL0fZij0
+         yXW5Bche84TdLZg1E4DgihEHAl2dYvtwH+FznHCjriaITN23uW97Co3Pmw4GyHWNU3jZ
+         ltTXlmQNU7YURHr+XGqXN/h2vYWHqwHwqyOZtrTPF2U9YsA3VOwSCG6FNQNq7tUmfntd
+         iTicznmkW2LFuV1NwnXMpI0QFx8KnUyHOAxu+41ILjLSn3viGneTsF4t/7dWtuTEmdvi
+         A/bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uQpzwtJdI15ee25ztpxpJETWP0dJNKVRVUGEhzQbTYI=;
+        b=e/cmfNYBK6ftqw+hv6vtYWwIyGfQR87p0Y0ehm4g5FwpXP4Y2hOgjZUPzYdDiqV1vO
+         uZwmomLQEYrudloAUXVWvPw2SUwSYvHdrXzJqhKQx1jC4gfqwuGDP7lfSBBUVxG2IU+i
+         bjyUHx6ilrx77p9aGd2AAtjFk+9lHUsoUSp1loHqY3/d00fl38xpXzEy3uvqhQA2p2s0
+         MyrU0TxL2fk4jyFCyPhdAVDLxY3ekVqReXLxtG9llBecXBC/gNsiEcYM4MZ6YhZc10A1
+         gvnLlghcBAO7se1q6CfrVD0qdJidFVRMU2U0Ljydr6fQ5PQLESpXbMmC/tAsqcFkXfLX
+         YX8A==
+X-Gm-Message-State: AOAM530JhsemexwuNbtQNCFxUD4EGg3hgc3NYLyXGjHXzi2PmV8JcoD0
+        cCRX7gL8zUHCRtisBX+jxMM=
+X-Google-Smtp-Source: ABdhPJzrpjZpfCmMbWNWObjpHLr0fn9U5xaj9E7kkly1YyGsipfHMxvY/iCQ7eITQxauOzH+hNKzdQ==
+X-Received: by 2002:a1c:e041:: with SMTP id x62mr9070791wmg.95.1614781392247;
+        Wed, 03 Mar 2021 06:23:12 -0800 (PST)
+Received: from skynet.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
+        by smtp.gmail.com with ESMTPSA id b15sm7876219wmd.41.2021.03.03.06.23.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Mar 2021 06:23:11 -0800 (PST)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 00/14] pinctrl: add BCM63XX pincontrol support
+Date:   Wed,  3 Mar 2021 15:22:56 +0100
+Message-Id: <20210303142310.6371-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <CAL9mu0KUhctbBzmem1ZSgEwf5CebivHOSUr9Q7VTyzib8pW=Cw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/3/21 1:35 PM, dillon min wrote:
-> Hi Vladimir,
-> 
-> Thanks for the review.
-> 
-> On Wed, Mar 3, 2021 at 5:52 PM Vladimir Murzin <vladimir.murzin@arm.com> wrote:
->>
->> On 3/3/21 8:05 AM, dillon.minfei@gmail.com wrote:
->>> From: dillon min <dillon.minfei@gmail.com>
->>>
->>> For some case, kernel not boot by u-boot(single thread),
->>> but by rtos , as most rtos use pendsv to do context switch.
->>
->>
->> Hmm, does it mean that it starts kernel from process context?
->    Yes, kernel might be started from process context, since u-boot not
-> switch context, so kernel always startup under msp.
->>
->> I'd assume that it is not only kernel who expects MSP. So, what
->> if RTOS you mentioned want to boot other RTOS (even itself)? What
->> if you have no access to the source code for those RTOS(es) to
->> patch MSP/PSP switch?
-> 
-> My case is a little complicated.
-> stm32h7 only have 128Kbytes internal flash, can't store u-boot.bin (>200K),
-> so, set a bootloader (rt-thread rtos) to internal flash, load
-> linux/u-boot from serial port via ymodem
-> store to qspi flash(8Mbytes), then jump to u-boot.
-> 
-> qspi flash layout:
-> 0 - 512K:    u-boot
-> 512K- 8M : kernel(xip)
-> 
-> load process : rt-thread -> u-boot -> linux
-> 
-> before add psp/msp check after svc call, register restore corrupt.
-> add a printhex8 around svc call, found the sp stack is 0x24040000c0ffcff8
-> it should be 0xc0ffcdf8c0ffcff8. 0x24040000 is the sp stack address
-> assigned by u-boot
-> i've no idea how it's become to u-boot's sp.
-> 
-> I have the rtos code, and will try to fix it on the rtos side.
+First of all, I've based this on the patches sent by Jonas Gorski back in
+2016:
+https://www.spinics.net/lists/linux-gpio/msg15983.html
+http://patchwork.ozlabs.org/project/linux-gpio/patch/1471604025-21575-2-git-send-email-jonas.gorski@gmail.com/
 
-That would be great!
+I've tried to address all coments from Linus Walleij, but I know that
+this may still need some other modifications
 
-> 
-> Can you give more explanation about why linux relies on MSP ? thanks
+This patchset adds appropriate binding documentation and drivers for
+pin controller cores found in the BCM63XX MIPS SoCs currently supported.
 
-MSP is what set from boot, thus it is natural assumption that boot code
-would preserve that illusion.
+While the GPIO part is always the same, the pinmux part varies quite a
+lot between different SoCs. Sometimes they have defined groups which
+can be muxed into different functions, sometimes each function has a
+different group. Sometimes you can mux individual pins. Often it is a
+combination of single pins and groups.
 
-I'd guess that kernel is in line in such assumption across different
-(RT)OS capable to run on M-class cores (please, note that some variants
-might not have two stack pointers)
+Some core versions require the GPIO direction to be set according to the
+function, most do not. Sometimes the mux register(s) contain bits for
+unrelated other functions.
 
-Cheers
-Vladimir
+v3: introduce new files for shared code and add more changes suggested by
+ Linus Walleij. Also add a new patch needed for properly parsing gpio-ranges.
+v2: introduce changes suggested by Linus Walleij and remove interrupts
+ - In order to use GPIO_REGMAP, the need to get gpio_chip from gpio_regmap
+ and use it for pinctrl_add_gpio_range() and gpio_chip.direction_input()
+ and gpio_chip.direction_output().
 
-> 
->>
->> I'd very much prefer to keep stack switching logic outside kernel,
->> say, in some shim which RTOS/bootloader can maintain.
->>
->> Cheers
->> Vladimir
->>
->>>
->>> So, we need add an lr check after svc call, to find out should
->>> use psp or msp. else register restore after svc call might be
->>> corrupted.
->>>
->>> Fixes: b70cd406d7fe ("ARM: 8671/1: V7M: Preserve registers across switch from Thread to Handler mode")
->>> Signed-off-by: dillon min <dillon.minfei@gmail.com>
->>> ---
->>>  arch/arm/mm/proc-v7m.S | 5 ++++-
->>>  1 file changed, 4 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm/mm/proc-v7m.S b/arch/arm/mm/proc-v7m.S
->>> index 84459c1d31b8..c93d2757312d 100644
->>> --- a/arch/arm/mm/proc-v7m.S
->>> +++ b/arch/arm/mm/proc-v7m.S
->>> @@ -137,7 +137,10 @@ __v7m_setup_cont:
->>>  1:   cpsid   i
->>>       /* Calculate exc_ret */
->>>       orr     r10, lr, #EXC_RET_THREADMODE_PROCESSSTACK
->>> -     ldmia   sp, {r0-r3, r12}
->>> +     tst     lr, #EXC_RET_STACK_MASK
->>> +     mrsne   r4, psp
->>> +     moveq   r4, sp
->>> +     ldmia   r4!, {r0-r3, r12}
->>>       str     r5, [r12, #11 * 4]      @ restore the original SVC vector entry
->>>       mov     lr, r6                  @ restore LR
->>>
->>>
->>
-> 
+Álvaro Fernández Rojas (14):
+  gpio: regmap: set gpio_chip of_node
+  pinctrl: bcm: add bcm63xx base code
+  Documentation: add BCM6328 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6328
+  Documentation: add BCM6358 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6358
+  Documentation: add BCM6362 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6362
+  Documentation: add BCM6368 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6368
+  Documentation: add BCM63268 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM63268
+  Documentation: add BCM6318 pincontroller binding documentation
+  pinctrl: add a pincontrol driver for BCM6318
+
+ .../pinctrl/brcm,bcm6318-pinctrl.yaml         | 187 +++++
+ .../pinctrl/brcm,bcm63268-pinctrl.yaml        | 208 ++++++
+ .../pinctrl/brcm,bcm6328-pinctrl.yaml         | 171 +++++
+ .../pinctrl/brcm,bcm6358-pinctrl.yaml         | 137 ++++
+ .../pinctrl/brcm,bcm6362-pinctrl.yaml         | 250 +++++++
+ .../pinctrl/brcm,bcm6368-pinctrl.yaml         | 261 +++++++
+ drivers/gpio/gpio-regmap.c                    |   1 +
+ drivers/pinctrl/bcm/Kconfig                   |  57 ++
+ drivers/pinctrl/bcm/Makefile                  |   7 +
+ drivers/pinctrl/bcm/pinctrl-bcm6318.c         | 496 ++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm63268.c        | 643 ++++++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6328.c         | 403 +++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6358.c         | 369 ++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6362.c         | 617 +++++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm6368.c         | 523 ++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm63xx.c         | 113 +++
+ drivers/pinctrl/bcm/pinctrl-bcm63xx.h         |  46 ++
+ include/linux/gpio/regmap.h                   |   3 +
+ 18 files changed, 4492 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6318-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm63268-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6358-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6362-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm6368-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6318.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm63268.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6328.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6358.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6362.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm6368.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm63xx.c
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm63xx.h
+
+-- 
+2.20.1
 
