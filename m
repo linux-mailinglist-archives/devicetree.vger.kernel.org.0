@@ -2,90 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C351932BFCE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8F2732BFD4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:00:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579225AbhCCSao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:30:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42314 "EHLO
+        id S1579239AbhCCSaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:30:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237298AbhCCIS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 03:18:57 -0500
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D572DC06178B
-        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 00:18:15 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id 18so879619pfo.6
-        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 00:18:15 -0800 (PST)
+        with ESMTP id S1357212AbhCCIUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 03:20:34 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3473AC061788
+        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 00:19:53 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id i4-20020a17090a7184b02900bfb60fbc6bso2538266pjk.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 00:19:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=etDbu/Jc8DSP0ReRXwiySpUcMKSnU5m0Bp8k/7msBIg=;
-        b=U9CPs7lWRQQQzxXHEQly5XVAdgZZ6TJnyisFz3MXn7lDCtOFVnY3KGUZLNRshg/PpP
-         Mwh3HutyXg51L2IkLKpWo2+CqqiA2JlYQY7HBn95FbXnYMTn+bmBkukpGhHjGXGKmm2c
-         QghsXOFzaDFHxx9Mp7i89oue1+uIcUOO9cV2A=
+        bh=PM+ZyrAzhPWcczvghcrbAJYRu9kPAEObR9xBWMwNMDA=;
+        b=gRnwTT2D2Qv17IEktnlVuanRdrxeAmR3L3jgF5pEQ8g3B8Ysfly/z6K1ktz8MgkvxE
+         fF4sOg+7/JhW5m0V/+etu0CaKnHtWi/R5pH8rzU3DNq4pL4S//dTHI/oqCBYM6YkYjes
+         Qkwt6EPDyHW5acJEzzAUeasu71myXWxbzKaHw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=etDbu/Jc8DSP0ReRXwiySpUcMKSnU5m0Bp8k/7msBIg=;
-        b=HSQ3S/FK7CkpbKZcYT8t66XjRE2C4QNlKDnsso58b+PD8z4HNcBP0hNyCEyCbHlbcW
-         tuXYRDMJ4Hirz7laqyWzFmI6x2MCXzId7NrG3YDo+BUyT+Gy8oOOKQwB/PTg1AXSY+ZA
-         n3PywZpg6LVztNHhL+1ykrKHt5vecq/TwxcwiDRb3oq5ooyLwGdjuzlpypxdrQ787yg5
-         n9jjUwruKWbk7Dp4fYnS2aYbJsLgvPHhv0oU+J2fTPjiN2+20yreXGvuhR2DsU/jRB0y
-         8Vf+lKIhnxKHZbazZ91e5c1A7tGbve4KlONQZyCYnYpwnRsfA5N/pV/7M+dAInhipgnU
-         jJuA==
-X-Gm-Message-State: AOAM530UMkbYDn4e0prBWMFnznrSy4NcIlAcCYrR6s7HNo+c1mF3Uvdo
-        ZEcorxlxwdNVzCwEWNkQ2LIU8g==
-X-Google-Smtp-Source: ABdhPJw2GLT90aaJtF6/DsDt1GQXRlXieOUK1wJ5RHl3hlvTNwBTu9/j9qm/fX0JmtYkeBM3exGawg==
-X-Received: by 2002:a63:e150:: with SMTP id h16mr21890180pgk.308.1614759495529;
-        Wed, 03 Mar 2021 00:18:15 -0800 (PST)
+        bh=PM+ZyrAzhPWcczvghcrbAJYRu9kPAEObR9xBWMwNMDA=;
+        b=e5ET7Jcef7ei53op0lBnJG3DV5uNyiv9nPXmg3tg7QpXIO6oct66gwA7vlud3Z3Cx4
+         IFfODkg8hhg8m/z3jrF8Z5IhMoOmnEb+NS1j00TxFgF/5Q7Wo9LBtWYRPfPe5e/sMJP7
+         FkExa+DuYMA0hMa+6AK5B7hyLZRv8S1aG1hcvgGGDPoWk9DT9FS/ZTQlQHjYLyvR4NfX
+         +HORckIa7WTljCnqNsCFjbsN93LW6naFumWYvILevCikCaAQNhicpio7svq8lq0SA+1v
+         gWx5ZGR2JR0Ux/5wscoo1FT9cYziihrqBJyi0mYU2QdhlAch7PpVcytzvc14d6JTsfZQ
+         e2Xw==
+X-Gm-Message-State: AOAM533qk9KRJLjwwPOh/JVsiVwiisIH6nhsvUA9saWlzECkqaLXYmoy
+        GBsmvr0xgR7WwT36cMwzbybSaA==
+X-Google-Smtp-Source: ABdhPJyeS7RzwtOTkkPzrCKLJYFTzBrnx6Uap9DROLJFWpzrrscugtQaL+TcHwJOTW7M8aCBXfapuA==
+X-Received: by 2002:a17:90a:d0c1:: with SMTP id y1mr8359625pjw.164.1614759592795;
+        Wed, 03 Mar 2021 00:19:52 -0800 (PST)
 Received: from chromium.org ([2620:15c:202:201:2510:ab07:78a:7d78])
-        by smtp.gmail.com with ESMTPSA id t10sm5971833pjf.30.2021.03.03.00.18.14
+        by smtp.gmail.com with ESMTPSA id b188sm25272192pfg.179.2021.03.03.00.19.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 00:18:15 -0800 (PST)
+        Wed, 03 Mar 2021 00:19:52 -0800 (PST)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210301133318.v2.11.I556326b24441e22c8c429ce383cc157c7aaef44b@changeid>
-References: <20210301213437.4165775-1-dianders@chromium.org> <20210301133318.v2.11.I556326b24441e22c8c429ce383cc157c7aaef44b@changeid>
-Subject: Re: [PATCH v2 11/13] arm64: dts: qcom: Add sc7180-lazor-limozeen skus
+In-Reply-To: <20210301133318.v2.12.If93a01b30d20dccacbad4be8ddc519dc20a51a1e@changeid>
+References: <20210301213437.4165775-1-dianders@chromium.org> <20210301133318.v2.12.If93a01b30d20dccacbad4be8ddc519dc20a51a1e@changeid>
+Subject: Re: [PATCH v2 12/13] arm64: dts: qcom: Add sc7180-trogdor-pompom skus
 From:   Stephen Boyd <swboyd@chromium.org>
 Cc:     Rob Clark <robdclark@chromium.org>,
         Alexandru M Stan <amstan@chromium.org>,
         Matthias Kaehlcke <mka@chromium.org>,
         Douglas Anderson <dianders@chromium.org>,
+        Philip Chen <philipchen@google.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
         Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Douglas Anderson <dianders@chromium.org>
-Date:   Wed, 03 Mar 2021 00:18:13 -0800
-Message-ID: <161475949356.1478170.4345976627607852193@swboyd.mtv.corp.google.com>
+Date:   Wed, 03 Mar 2021 00:19:50 -0800
+Message-ID: <161475959090.1478170.938228652801288465@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2021-03-01 13:34:35)
-> This is a SKU variant of lazor.  Add it.  This squashes the downstream
-> patches to support this hardware.
+Quoting Douglas Anderson (2021-03-01 13:34:36)
+> This is a trogdor variant.  This is mostly a grab from the downstream
+> tree with notable exceptions:
+> - I skip -rev0.  This was a super early build and there's no advantage
+>   of long term support.
+> - In -rev1 I translate the handling of the USB hub like is done for
+>   similar boards.  See the difference between the downstream and
+>   upstream 'sc7180-trogdor-lazor-r0.dts' for an example.  This will
+>   need to be resolved when proper support for the USB hub is figured
+>   out upstream.
+> - I remove sound node since sound hasn't landed upstream yet.
+> - In incorporate the pending <https://crrev.com/c/2719075> for the
+>   keyboard.
 >=20
-> NOTES:
-> - The non-touch SKU actually has "innolux,n116bca-ea1" but that driver
->   is still pending in simple-panel.  The bindings have been Acked
->   though [1].  Things work well enough with the "innolux,n116bge"
->   timings for now, though.
-> - The wonky special dts just for "-rev4" arguably doesn't need to go
->   upstream since they weren't widely distributed, but since a few
->   people have them we might as well.  If it ever causes problems we
->   can delete it.
->=20
-> [1] https://lore.kernel.org/r/20210115144345.v2.4.I6889e21811df6adaff5c5b=
-8a8c80fda0669ab3a5@changeid
->=20
+> Cc: Philip Chen <philipchen@google.com>
+> Cc: Matthias Kaehlcke <mka@chromium.org>
 > Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Tzung-Bi Shih <tzungbi@chromium.org>
+> Cc: Judy Hsiao <judyhsiao@chromium.org>
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
