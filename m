@@ -2,125 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B32A632C8C4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4281B32C8C6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345634AbhCDAwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 19:52:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44264 "EHLO
+        id S1345681AbhCDAwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 19:52:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233807AbhCDAAu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 19:00:50 -0500
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05654C061761;
-        Wed,  3 Mar 2021 15:14:39 -0800 (PST)
-Received: by mail-ot1-x32d.google.com with SMTP id h10so14706929otm.1;
-        Wed, 03 Mar 2021 15:14:38 -0800 (PST)
+        with ESMTP id S1353155AbhCDAD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 19:03:28 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65DCBC061763;
+        Wed,  3 Mar 2021 15:15:10 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id u12so5391490pjr.2;
+        Wed, 03 Mar 2021 15:15:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=ENmhzzInLRPJWkMxwgyK0/yDT18Byk5Yvo+65Z6jlTs=;
-        b=S4aC0dg/eTGcI6AUL28dPnoeH9ZnIkIHVwkQGlec8ylYNqB06wBMHaJdlN+fdEUEO6
-         1ls21MJ2VKyzxLFYy5ShxIvjyUVcTTaLGRDDqudp+aca4dLAC09sMSSbWGh1TOnxBKMm
-         s1Tj7ICSPkB78c8+glrXfz3LRAmzgZAOeQOage3XSigvL77XTCaATyTDvTwkzKQ7DE/2
-         nVCgEvSwsgl/buGOJHIMlrDqrcdaEbQB6qVANc0G7bZjBej+DthM1boCf9oHxbgb6bvs
-         HbJaBMLvPa8g0AviYYwp1mkHNBwodRDNFeJpcN5JRhx4jHOZJXcdiAuJPFh+UhHkTalZ
-         EWcw==
-X-Gm-Message-State: AOAM530Z8H2ul1hwBR4uQw5Od9d+QJF/GFBv7vJBL37Ki35LOb9skHgn
-        obSgLpze8DtZ3WLGfWirnA==
-X-Google-Smtp-Source: ABdhPJyAtpnwlr08NDcw77SwcjkZcmxVRVASO6Ef5N+X62qSlHB65BqgzAomgRWarlaYBbQ9JlwXzA==
-X-Received: by 2002:a05:6830:80b:: with SMTP id r11mr1171845ots.329.1614813278255;
-        Wed, 03 Mar 2021 15:14:38 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e72sm5415766ote.26.2021.03.03.15.14.36
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mt8/q9przhRO9oiYAln8itOH0lx/lQPxaj7HDM76lXE=;
+        b=LVW0ontmptCBzchxvOuz4WAsECT3TwOjZ2yv/RDcPBLknSUvgoScXw+uhmeU4a0dW4
+         AGt8S0pBoCUOzLRIsOCPK6BwpdyEJr+tltC6NvpaLJ1hlwgE3QjC1mrJ8zAikE3Jyctl
+         y7eNjDu3yevSSHbXLGQ4cX/gx442DnAYKMFuowa3JzAj4v87IvYrX1iUjrDpu6njDyV/
+         4us56OOkaSw/2c3wuwQPZUXSOnTEFst/5No4aWrhQP00Gqbh20pzMTUOn+AAqWaSxGLD
+         Z1XK9DT4SpqkCC3O2xj70KBu5/7CSa8VxfbfQg7pwWFt6Zk6M4paONa3HdlNNuNW6NZD
+         SFeg==
+X-Gm-Message-State: AOAM5338z6Fo2GMk+Bl8W2fS7v/x7R5lAKJXDr8plSdjvq2cf5Glw43K
+        7UiSbFKekIRgh+SConJwp++AJrth0EY=
+X-Google-Smtp-Source: ABdhPJwVAU51jdeE3BpJvU5lPgtNpJaSi+tPloqGIpFcULsqq3+Z8+wzo1XXQYiPE/nlEnsyf177gw==
+X-Received: by 2002:a17:90a:4a81:: with SMTP id f1mr1391947pjh.44.1614813310297;
+        Wed, 03 Mar 2021 15:15:10 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1162:1ac0:17a6:4cc6:d1ef])
+        by smtp.gmail.com with ESMTPSA id 188sm25463092pfz.119.2021.03.03.15.15.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 15:14:37 -0800 (PST)
-Received: (nullmailer pid 846310 invoked by uid 1000);
-        Wed, 03 Mar 2021 23:14:36 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Joe Hung <joe_hung@ilitek.com>
-Cc:     luca_hsu@ilitek.com, linux-input@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com
-In-Reply-To: <20210302085130.2558297-1-joe_hung@ilitek.com>
-References: <20210302085130.2558297-1-joe_hung@ilitek.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: input: touchscreen: ilitek_ts_i2c: Add bindings
-Date:   Wed, 03 Mar 2021 17:14:36 -0600
-Message-Id: <1614813276.356288.846309.nullmailer@robh.at.kernel.org>
+        Wed, 03 Mar 2021 15:15:09 -0800 (PST)
+Date:   Wed, 3 Mar 2021 15:15:10 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Joe Perches <joe@perches.com>
+Cc:     Moritz Fischer <mdf@kernel.org>, Lizhi Hou <lizhi.hou@xilinx.com>,
+        linux-kernel@vger.kernel.org, Lizhi Hou <lizhih@xilinx.com>,
+        linux-fpga@vger.kernel.org, maxz@xilinx.com,
+        sonal.santan@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, trix@redhat.com,
+        robh@kernel.org
+Subject: Re: [PATCH V3 XRT Alveo 00/18] XRT Alveo driver overview
+Message-ID: <YEAYfvJk+iyi+G+6@archbook>
+References: <20210218064019.29189-1-lizhih@xilinx.com>
+ <YDLF2Bi3oEhP6A7Q@archbook>
+ <70f35c99165ac4dd1846ea2e30b9a1745c364903.camel@perches.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <70f35c99165ac4dd1846ea2e30b9a1745c364903.camel@perches.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 02 Mar 2021 16:51:29 +0800, Joe Hung wrote:
-> Add binding documentation for ILITEK touch devices.
+On Tue, Mar 02, 2021 at 10:49:43PM -0800, Joe Perches wrote:
+> On Sun, 2021-02-21 at 12:43 -0800, Moritz Fischer wrote:
+> > On Wed, Feb 17, 2021 at 10:40:01PM -0800, Lizhi Hou wrote:
+> > > This is V3 of patch series which adds management physical function driver for Xilinx
+> > > Alveo PCIe accelerator cards, https://www.xilinx.com/products/boards-and-kits/alveo.html
+> > > This driver is part of Xilinx Runtime (XRT) open source stack.
+> []
+> > Please fix the indents all across this patchset. Doesn't checkpatch with
+> > --strict complain about this?
 > 
-> Signed-off-by: Joe Hung <joe_hung@ilitek.com>
-> ---
-> Changes in v4:
->   - Change IRQ flag to level interrupt
->   - Add support for common touchscreen-related properties
->   - Modify reset gpio to active low
->   - Modify irq type to LEVEL_LOW
->   - Add compatible for Lego series ICs
+> I glanced at a couple bits of these patches and didn't
+> notice any of what I consider poor indentation style.
 > 
-> Changes in v3:
->   - Add include header in examples, and pass the dt binding check
-> 
-> Changes in v2:
->   - Convert to DT schema format
->   - Using interrupts instead of irq-gpios
-> 
->  .../input/touchscreen/ilitek_ts_i2c.yaml      | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
-> 
+> What indent is wrong here?
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Maybe I dreamed it, or confused it with the CamelCase issues instead?
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml:60:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+Sorry for the noise in that case,
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 53, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 60, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml:  while scanning a block scalar
-  in "<unicode string>", line 53, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 60, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
-make: *** [Makefile:1380: dt_binding_check] Error 2
-
-See https://patchwork.ozlabs.org/patch/1446274
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+- Moritz
