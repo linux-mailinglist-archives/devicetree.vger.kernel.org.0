@@ -2,93 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FF1832C0BF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2DCD32C0C8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579706AbhCCSbx convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 Mar 2021 13:31:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54724 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243169AbhCCNyZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 08:54:25 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0180C06121F
-        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 05:52:57 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1lHRvJ-0005O2-TD; Wed, 03 Mar 2021 14:52:21 +0100
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1lHRvF-0004VL-ED; Wed, 03 Mar 2021 14:52:17 +0100
-Message-ID: <cb7e29012e15ff10916374f911c74430fc3f5b32.camel@pengutronix.de>
-Subject: Re: [PATCH v4 2/2] hwrng: bcm2835: add reset support
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     =?ISO-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" 
-        <nfraprado@protonmail.com>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date:   Wed, 03 Mar 2021 14:52:17 +0100
-In-Reply-To: <20210224082230.29015-3-noltari@gmail.com>
-References: <20210223160131.29053-1-noltari@gmail.com>
-         <20210224082230.29015-1-noltari@gmail.com>
-         <20210224082230.29015-3-noltari@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S1579711AbhCCSby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:54 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55186 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236153AbhCCOHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 09:07:16 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 123E5KbK030138;
+        Wed, 3 Mar 2021 08:05:20 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1614780320;
+        bh=sny2YcpGa4DQa7cTGGJ00vnhQUe+5Yv3lyKxESu3egQ=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=qoii31p7VqP9cyjdUjx5aw4dxClyQ4Wm6uITtyWExRNAxzyOP2k3ycT9g4LKYvoz6
+         kG2SFS23dVMP++HuoQzfYwRWQwcdbz0EmrXcT+/uBzqP81IXlChq9hLsyA15WQFrC/
+         VzYIlSKAfYrBB1gVUaIyOT7zXi8l45hGAsQHCcTg=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 123E5KNx032649
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 3 Mar 2021 08:05:20 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 3 Mar
+ 2021 08:05:19 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 3 Mar 2021 08:05:19 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 123E5Jht107458;
+        Wed, 3 Mar 2021 08:05:19 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Tero Kristo <kristo@kernel.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Nishanth Menon <nm@ti.com>, Bao Cheng Su <baocheng.su@siemens.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Le Jin <le.jin@siemens.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/4] arm64: Add TI AM65x-based IOT2050 boards
+Date:   Wed, 3 Mar 2021 08:05:18 -0600
+Message-ID: <161477999018.19253.13540036146776431880.b4-ty@ti.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <cover.1613071976.git.jan.kiszka@siemens.com>
+References: <cover.1613071976.git.jan.kiszka@siemens.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Álvaro,
+On Thu, 11 Feb 2021 20:32:52 +0100, Jan Kiszka wrote:
+> Changes in v2:
+>  - address board-specific issues found by kernel_verify_patch
+>  - remove dead l2-cache node from iot2050-basic DT
+>  - add binding for Siemens vendor prefix
+>  - factor out board bindings into separate patch
+>  - add missing device_type to common ti,am654-pcie-rc nodes
+> 
+> [...]
 
-On Wed, 2021-02-24 at 09:22 +0100, Álvaro Fernández Rojas wrote:
-[...]
-> @@ -115,6 +121,8 @@ static void bcm2835_rng_cleanup(struct hwrng *rng)
->  	/* disable rng hardware */
->  	rng_writel(priv, 0, RNG_CTRL);
->  
-> +	reset_control_rearm(priv->reset);
-> +
->  	if (!IS_ERR(priv->clk))
->  		clk_disable_unprepare(priv->clk);
->  }
-> @@ -159,6 +167,10 @@ static int bcm2835_rng_probe(struct platform_device *pdev)
->  	if (PTR_ERR(priv->clk) == -EPROBE_DEFER)
->  		return -EPROBE_DEFER;
->  
-> +	priv->reset = devm_reset_control_get_optional_exclusive(dev, NULL);
-> +	if (IS_ERR(priv->reset))
-> +		return PTR_ERR(priv->reset);
-> +
->  	priv->rng.name = pdev->name;
->  	priv->rng.init = bcm2835_rng_init;
->  	priv->rng.read = bcm2835_rng_read;
+Hi Jan Kiszka,
 
-That doesn't seem right. reset_control_rearm() doesn't do anything if
-the reset control is exclusive. Either the reset control should be
-requested as shared, or the _rearm should be removed.
+I have picked patch #4 in your series to the following to branch
+ti-k3-dts-next on [1]. Thank you! Rest of the series will have to be
+reposted *after* Rob Herring Acks the bindings (monitor status in
+queue [2]).
 
-regards
-Philipp
+[4/4] arm64: dts: ti: k3-am65-main: Add device_type to pcie*_rc nodes
+      commit: 0d7571c36331aafce485fa105959b498c86615d7
+
+I have picked patch #4 for the next kernel window for now, given it is
+a trivial fix.
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+[2] https://patchwork.ozlabs.org/project/devicetree-bindings/list/?param=3&page=2
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
