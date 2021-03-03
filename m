@@ -2,483 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E63CD32C09C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 223C632C0A3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 01:01:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1579638AbhCCSbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 13:31:45 -0500
-Received: from foss.arm.com ([217.140.110.172]:47514 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241229AbhCCNJm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 08:09:42 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4CD9131B;
-        Wed,  3 Mar 2021 05:08:40 -0800 (PST)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F025C3F766;
-        Wed,  3 Mar 2021 05:08:38 -0800 (PST)
-Date:   Wed, 3 Mar 2021 13:08:34 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Ivan Uvarov <i.uvarov@cognitivepilot.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: Re: [draft2 PATCH] ARM: dts: sun8i: r40: add devicetree for
- FETA40i-C/OKA40i-C
-Message-ID: <20210303130834.401cc50c@slackpad.fritz.box>
-In-Reply-To: <c4c13d63-e319-48b5-17e6-26d9967aa66f@cognitivepilot.com>
-References: <c4c13d63-e319-48b5-17e6-26d9967aa66f@cognitivepilot.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
+        id S1579652AbhCCSbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 13:31:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51400 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242098AbhCCNh2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 08:37:28 -0500
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF7DAC061756;
+        Wed,  3 Mar 2021 05:35:59 -0800 (PST)
+Received: by mail-il1-x129.google.com with SMTP id k2so21349243ili.4;
+        Wed, 03 Mar 2021 05:35:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mV7nRo9kv0WrCbk6EB35RPWl6ztHgF0++Sk3e0IPNlQ=;
+        b=S3WIXSMd0vYgP8x2TKmJaUpzTZXqu0MLdDnHWr4/YHOuEXK3Zuvqu5I0GowTo4oqcq
+         rkKfMWGUPEOHqWa8tyzdksOwPjTSV5YEtQ/fii3MkU4fUV6YkTgIerwnnJqz7eax0s7F
+         Tqv8VVMWseQIV/s5lhS0fwd4JqLvs2QB//j+KM83pQZcTnA7fgs09a0xVRmx4qkWoZps
+         qckI6WkMBI9xnO4I8gIeWBl5mU4DB859imOARDnAPRKbCc/152L6EDGxoEvf0vBnPy3F
+         c7/W4VmachPy3DONPG5gY02GYMvSzkeoYafOceGRjUOoOIZwA2vC7j6BNwlwhZUYx5z+
+         v8nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mV7nRo9kv0WrCbk6EB35RPWl6ztHgF0++Sk3e0IPNlQ=;
+        b=AnmhNU6J/1rRIQkMxH50v1VGFb/JE7Uvx21lxyaL7jgAUQlUEe9LeprYQ+T/hSSUMv
+         dVt/QQo/7shwrJF/QT4rBfZhnm+mx0XDcxMOHfD1jk1dbJSIqdiT4R4DdKPZQN985rQf
+         4GQbKRSKDa3wDIuiyxj+mxFkDxI7PeixIU33t9jJ6vZwL1boLsxDDaS7CScO0bO6Jeet
+         tvaTa07LDbz86v7Xf1bb3xP4DOWrpvhvqg68hu/SoT5MQ9cSC8+bywJen5jJtjOPfBm7
+         0pr7vUpdqdGhFmlMRFB2xq6KmK77G/jcjGGMEkO1v6LQRSuPaDVU8v0qRy2QoePUCxuL
+         kJtg==
+X-Gm-Message-State: AOAM530SUQliJjeV7EDT1iwnkCddDWTvOvn/ZxfhgGjDlkdrWw/5RP2V
+        3uzq9nswZpv3ERZJNvNAU17W+D+anhqzQNVWX48=
+X-Google-Smtp-Source: ABdhPJyTyl/1Qw3XzoM1h1OdLOMXAzxSz+3zavg+xqvdVIZzQseXECYY8QdrHxUKbCcOkNZMBUjpd5cndWv+4sfjTn8=
+X-Received: by 2002:a05:6e02:194e:: with SMTP id x14mr22584922ilu.218.1614778559248;
+ Wed, 03 Mar 2021 05:35:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
+ <1614758717-18223-2-git-send-email-dillon.minfei@gmail.com> <5284d390-c03a-4035-df5a-10d6cd60e47b@arm.com>
+In-Reply-To: <5284d390-c03a-4035-df5a-10d6cd60e47b@arm.com>
+From:   dillon min <dillon.minfei@gmail.com>
+Date:   Wed, 3 Mar 2021 21:35:23 +0800
+Message-ID: <CAL9mu0KUhctbBzmem1ZSgEwf5CebivHOSUr9Q7VTyzib8pW=Cw@mail.gmail.com>
+Subject: Re: [PATCH 1/8] ARM: ARMv7-M: Fix register restore corrupt after svc call
+To:     Vladimir Murzin <vladimir.murzin@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux@armlinux.org.uk, afzal.mohd.ma@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2 Mar 2021 13:54:15 +0300
-Ivan Uvarov <i.uvarov@cognitivepilot.com> wrote:
+Hi Vladimir,
 
-Hi Ivan,
+Thanks for the review.
 
-many thanks for spending the time in piecing this together and caring
-about upstreaming!
+On Wed, Mar 3, 2021 at 5:52 PM Vladimir Murzin <vladimir.murzin@arm.com> wrote:
+>
+> On 3/3/21 8:05 AM, dillon.minfei@gmail.com wrote:
+> > From: dillon min <dillon.minfei@gmail.com>
+> >
+> > For some case, kernel not boot by u-boot(single thread),
+> > but by rtos , as most rtos use pendsv to do context switch.
+>
+>
+> Hmm, does it mean that it starts kernel from process context?
+   Yes, kernel might be started from process context, since u-boot not
+switch context, so kernel always startup under msp.
+>
+> I'd assume that it is not only kernel who expects MSP. So, what
+> if RTOS you mentioned want to boot other RTOS (even itself)? What
+> if you have no access to the source code for those RTOS(es) to
+> patch MSP/PSP switch?
 
-> From: Ivan Uvarov <i.uvarov@cognitivepilot.com>
-> 
-> This patch adds support for the Forlinx FETA40i-C SoM and OKA40i-C
-> devboard[1] that is based on it. The devicetree is split into a .dtsi 
-> which (hopefully) corresponds to the functions of the SoM itself and 
-> a .dts for the devboard.
-> 
-> [1]:https://linux-sunxi.org/Forlinx_OKA40i-C
-> 
-> Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
-> ---
->  arch/arm/boot/dts/Makefile               |   1 +
->  arch/arm/boot/dts/sun8i-r40-feta40i.dtsi |  68 +++++++
->  arch/arm/boot/dts/sun8i-r40-oka40i-c.dts | 238 +++++++++++++++++++++++
->  3 files changed, 307 insertions(+)
->  create mode 100644 arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
->  create mode 100644 arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 8e5d4ab4e7..88aae9de95 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1222,6 +1222,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
->  	sun8i-r16-nintendo-super-nes-classic.dtb \
->  	sun8i-r16-parrot.dtb \
->  	sun8i-r40-bananapi-m2-ultra.dtb \
-> +	sun8i-r40-oka40i-c.dtb \
->  	sun8i-s3-elimo-initium.dtb \
->  	sun8i-s3-lichee-zero-plus.dtb \
->  	sun8i-s3-pinecube.dtb \
-> diff --git a/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
-> new file mode 100644
-> index 0000000000..edfb846db1
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
-> @@ -0,0 +1,68 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +// Copyright (C) 2021 Ivan Uvarov <i.uvarov@cognitivepilot.com>
-> +// Based on the sun8i-r40-bananapi-m2-ultra.dts, which is:
-> +//  Copyright (C) 2017 Chen-Yu Tsai <wens@csie.org>
-> +//  Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-> +
-> +#include "sun8i-r40.dtsi"
-> +
-> +
-> +&i2c0 {
-> +	status =3D "okay";
-> +
-> +	axp22x: pmic@34 {
-> +		compatible =3D "x-powers,axp221";
-> +		reg =3D <0x34>;
-> +		interrupt-parent =3D <&nmi_intc>;
-> +		interrupts =3D <0 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> +#include "axp22x.dtsi"
-> +
-> +&mmc2 {
-> +	vmmc-supply =3D <&reg_dcdc1>;
-> +	vqmmc-supply =3D <&reg_aldo2>;
-> +	bus-width =3D <8>;
-> +  non-removable;
+My case is a little complicated.
+stm32h7 only have 128Kbytes internal flash, can't store u-boot.bin (>200K),
+so, set a bootloader (rt-thread rtos) to internal flash, load
+linux/u-boot from serial port via ymodem
+store to qspi flash(8Mbytes), then jump to u-boot.
 
-Should be a TAB here.
+qspi flash layout:
+0 - 512K:    u-boot
+512K- 8M : kernel(xip)
 
-And I don't know if this is just my client, but someone mangled equal
-signs into "=3D" everywhere :-(
-I am trying to ignore this for now ...
-Can you force pure text email in Thunderbird? Or use git send-email?
+load process : rt-thread -> u-boot -> linux
 
-> +	status =3D "okay";
-> +};
-> +
-> +
-> +&pio {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&clk_out_a_pin>;
-> +	vcc-pa-supply =3D <&reg_dcdc1>;
-> +	vcc-pc-supply =3D <&reg_aldo2>;
-> +	vcc-pd-supply =3D <&reg_dcdc1>;
-> +	vcc-pf-supply =3D <&reg_dldo4>;
-> +	vcc-pg-supply =3D <&reg_dldo1>;
-> +};
-> +
-> +&reg_aldo2 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt =3D <1800000>;
-> +	regulator-max-microvolt =3D <2500000>;
-> +	regulator-name =3D "vcc-pa";
-> +};//2500000uV reported by kernel
+before add psp/msp check after svc call, register restore corrupt.
+add a printhex8 around svc call, found the sp stack is 0x24040000c0ffcff8
+it should be 0xc0ffcdf8c0ffcff8. 0x24040000 is the sp stack address
+assigned by u-boot
+i've no idea how it's become to u-boot's sp.
 
-I think min and max should be the same in those cases. Do you know what
-the recommended voltage is? Does the BSP report something?
-PortA is used for Ethernet, is that using 2.5V as the signalling
-voltage?
+I have the rtos code, and will try to fix it on the rtos side.
 
-> +
-> +&reg_dcdc1 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt =3D <3300000>;
-> +	regulator-max-microvolt =3D <3300000>;
-> +	regulator-name =3D "vcc-3v3";
-> +};
-> +
-> +
-> +//I don't know whether these really belong here
+Can you give more explanation about why linux relies on MSP ? thanks
 
-Since it seems to be used above, for VCC_PG: yes.
-
-> +&reg_dldo1 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt =3D <3300000>;
-> +	regulator-max-microvolt =3D <3300000>;
-> +	regulator-name =3D "vcc-wifi-io";
-> +};
-> +
-> +&reg_dldo4 {
-> +	regulator-always-on;
-
-Does this really need to be always on? If it's just for SATA, I'd
-expect this to be enabled by the driver when needed? As you correctly do
-in the ahci node below.
-
-> +	regulator-min-microvolt =3D <2500000>;
-> +	regulator-max-microvolt =3D <2500000>;
-> +	regulator-name =3D "vdd2v5-sata";
-
-Does this end prematurely here?
-
-> diff --git a/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts b/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
-> new file mode 100644
-> index 0000000000..7e47cf633e
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
-> @@ -0,0 +1,238 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +// Copyright (C) 2021 Ivan Uvarov <i.uvarov@cognitivepilot.com>
-> +// Based on the sun8i-r40-bananapi-m2-ultra.dts, which is:
-> +//  Copyright (C) 2017 Chen-Yu Tsai <wens@csie.org>
-> +//  Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-> +
-> +/dts-v1/;
-> +#include "sun8i-r40-feta40i.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +	model =3D "Forlinx OKA40i-C";
-> +	compatible =3D "forlinx,oka40i-c", "allwinner,sun8i-r40";
-> +
-> +	aliases {
-> +		ethernet0 =3D &gmac;
-> +		serial0 =3D &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path =3D "serial0:115200n8";
-> +	};
-> +
-> +	connector {
-> +		compatible =3D "hdmi-connector";
-> +		type =3D "a";
-> +
-> +		port {
-> +			hdmi_con_in: endpoint {
-> +				remote-endpoint =3D <&hdmi_out_con>;
-> +			};
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible =3D "gpio-leds";
-> +
-> +		user-led-5 {
-> +			label =3D "oka40i:led5:user";
-
-The current binding uses different properties:
-		function = LED_FUNCTION_xxx;
-		color = <LED_COLOR_ID_RED>;
-
-> +			gpios =3D <&pio 7 26 GPIO_ACTIVE_LOW>;
-
-I think it's customary to add the GPIO pin spelled out as a comment, so
-		gpios = <&pio 7 26 GPIO_ACTIVE_LOW>; /* PH27 */
-
-> +		};
-> +
-> +		user-led-6 {
-> +			label =3D "oka40i:led6:user";
-> +			gpios =3D <&pio 8 15 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +	};
-> +
-> +	reg_vcc5v0: vcc5v0 {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "vcc5v0";
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
-> +		//gpio =3D <&pio 7 23 GPIO_ACTIVE_HIGH>; // PH23
-
-Is that regulator switchable? If not, no need for commented lines, just
-remove them. I don't see PH23 connected to a regulator on the board.
-
-> +		//enable-active-high;
-
-This is redundant anyway this the above GPIO_ACTIVE_HIGH.
-
-> +	};
-> +
-> +	wifi_pwrseq: wifi_pwrseq {
-> +		compatible =3D "mmc-pwrseq-simple";
-> +		reset-gpios =3D <&pio 1 10 GPIO_ACTIVE_LOW>; // PB10 WIFI_EN
-> +		clocks =3D <&ccu CLK_OUTA>;
-> +		clock-names =3D "ext_clock";
-> +	};
-> +};
-> +
-> +&ahci {
-> +	ahci-supply =3D <&reg_dldo4>;
-> +	phy-supply =3D <&reg_eldo2>;
-> +	status =3D "okay";
-> +};
-> +
-> +&de {
-> +	status =3D "okay";
-> +};
-> +
-> +&ehci1 {
-> +	status =3D "okay";
-> +};
-> +
-> +&ehci2 {
-> +	status =3D "okay";
-> +};
-> +
-> +&gmac {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&gmac_rgmii_pins>;
-> +	phy-handle =3D <&phy1>;
-> +	phy-mode =3D "rgmii-id";
-> +	phy-supply =3D <&reg_dcdc1>;
-> +	status =3D "okay";
-> +};
-> +
-> +&gmac_mdio {
-> +	phy1: ethernet-phy@1 {
-> +		compatible =3D "ethernet-phy-ieee802.3-c22";
-> +		reg =3D <1>;
-> +	};
-> +};
-> +
-> +&hdmi {
-> +	status =3D "okay";
-> +};
-> +
-> +&hdmi_out {
-> +	hdmi_out_con: endpoint {
-> +		remote-endpoint =3D <&hdmi_con_in>;
-> +	};
-> +};
-> +
-> +
-> +&i2c2 {
-> +	status =3D "okay";
-> +};
-> +
-> +
-> +&mmc0 {
-> +	vmmc-supply =3D <&reg_dcdc1>;
-> +	vqmmc-supply =3D <&reg_dcdc1>;
-> +	bus-width =3D <4>;
-> +	cd-gpios =3D <&pio 8 11 GPIO_ACTIVE_LOW>; // PI11
-> +	status =3D "okay";
-> +};
-> +
-> +&mmc1 {
-
-So this is the SDIO connector on the board, right? Which is just a set
-of header pins? Not sure we should have it in here, then.
-
-> +	vmmc-supply =3D <&reg_dcdc1>;
-> +	vqmmc-supply =3D <&reg_dcdc1>;
-> +	mmc-pwrseq =3D <&wifi_pwrseq>;
-> +	bus-width =3D <4>;
-> +	status =3D "okay";
-> +};
-
-What about MMC3, which is apparently connected to a microSD slot (TF
-card in the schematic)?
-
-> +
-> +&ohci1 {
-> +	status =3D "okay";
-> +};
-> +
-> +&ohci2 {
-> +	status =3D "okay";
-> +};
-> +
-> +&reg_aldo3 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt =3D <3000000>;
-> +	regulator-max-microvolt =3D <3000000>;
-> +	regulator-name =3D "avcc";
-> +};
-> +
-> +&reg_dc1sw {
-> +	regulator-min-microvolt =3D <3300000>;
-> +	regulator-max-microvolt =3D <3300000>;
-> +	regulator-name =3D "vcc-lcd";
-> +};
-> +
-> +&reg_dcdc2 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt =3D <1100000>;
-> +	regulator-max-microvolt =3D <1160000>;
-> +	regulator-name =3D "vdd-cpu";
-> +};//1100000uV reported by kernel
-
-Again, this should be the one value then, for both min and max.
-
-> +
-> +&reg_dcdc3 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt =3D <1100000>;
-> +	regulator-max-microvolt =3D <1200000>;
-> +	regulator-name =3D "vdd-sys";
-> +};//1100000uV reported by kernel
-
-Same here.
-
-> +
-> +
-> +&reg_dcdc5 {
-> +	regulator-always-on;
-> +	regulator-min-microvolt =3D <1500000>;
-> +	regulator-max-microvolt =3D <1500000>;
-> +	regulator-name =3D "vcc-dram";
-> +};
-> +
-> +&reg_dldo2 {
-> +	// regulator-always-on;
-
-Please, no commented properties.
-
-> +	regulator-min-microvolt =3D <3300000>;
-> +	regulator-max-microvolt =3D <3300000>;
-> +	regulator-name =3D "vcc-wifi";
-> +};
-> +
-> +&reg_dldo3 { // possibly unneeded
-
-If it's unneeded, you can drop it. If it turns out be needed later on,
-we can always add it. Did the board work without it?
-Did you try Wifi? We should not add untested features.
-
-> +	// regulator-always-on;
-> +	regulator-min-microvolt =3D <3300000>;
-> +	regulator-max-microvolt =3D <3300000>;
-> +	regulator-name =3D "vcc-wifi-2";
-> +};
-> +
-> +&reg_eldo2 {
-> +	regulator-always-on;
-
-This shouldn't be always on. I guess this AXP pin is connected to the
-VDD-SATA pin on the SoC, so it just drives the integrated SATA PHY.
-Which probably means that this node belong into the SoM .dtsi, as the
-connection is on the SoM. You just reference it from the ahci node here.
-
-> +	regulator-min-microvolt =3D <1200000>;
-> +	regulator-max-microvolt =3D <1200000>;
-> +	regulator-name =3D "vdd1v2-sata";
-> +};
-> +
-> +&reg_eldo3 {
-> +	regulator-always-on;
-
-Again, why always on? Do you know where this is connected to?
-If this is VCC_PE on the SoC, then I wonder if this should be moved to
-the SoM .dtsi, with a range between 1.8V and 3.3V, since those are
-valid input voltages for the VCC_PE pin. And then here you overwrite
-this with 2.8V, as this is apparently used for the CSI connector on the
-board, which seems to work on 2.8V.
-But I am not sure if this is too much, and just having this node here
-is sufficient.
-
-> +	regulator-min-microvolt =3D <2800000>;
-> +	regulator-max-microvolt =3D <2800000>;
-> +	regulator-name =3D "vcc-pe";
-> +};
-> +
-> +&tcon_tv0 {
-> +	status =3D "okay";
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&uart0_pb_pins>;
-> +	status =3D "okay";
-> +};
-> +
-> +&uart3 {
-
-Please add uart3 to the aliases section then.
-
-Cheers,
-Andre
-
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&uart3_pg_pins>, <&uart3_rts_cts_pg_pins>;
-> +	uart-has-rtscts;
-> +	status =3D "okay";
-> +
-> +	bluetooth {
-> +		compatible =3D "brcm,bcm43438-bt";
-> +		clocks =3D <&ccu CLK_OUTA>;
-> +		clock-names =3D "lpo";
-> +		vbat-supply =3D <&reg_dldo2>;
-> +		vddio-supply =3D <&reg_dldo1>;
-> +		device-wakeup-gpios =3D <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 */
-> +		/* TODO host wake line connected to PMIC GPIO pins */
-> +		shutdown-gpios =3D <&pio 7 12 GPIO_ACTIVE_HIGH>; /* PH12 */
-> +		max-speed =3D <1500000>;
-> +	};
-> +};
-> +
-> +&usbphy {
-> +	usb1_vbus-supply =3D <&reg_vcc5v0>;
-> +	usb2_vbus-supply =3D <&reg_vcc5v0>;
-> +	status =3D "okay";
-> +};
-
+>
+> I'd very much prefer to keep stack switching logic outside kernel,
+> say, in some shim which RTOS/bootloader can maintain.
+>
+> Cheers
+> Vladimir
+>
+> >
+> > So, we need add an lr check after svc call, to find out should
+> > use psp or msp. else register restore after svc call might be
+> > corrupted.
+> >
+> > Fixes: b70cd406d7fe ("ARM: 8671/1: V7M: Preserve registers across switch from Thread to Handler mode")
+> > Signed-off-by: dillon min <dillon.minfei@gmail.com>
+> > ---
+> >  arch/arm/mm/proc-v7m.S | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm/mm/proc-v7m.S b/arch/arm/mm/proc-v7m.S
+> > index 84459c1d31b8..c93d2757312d 100644
+> > --- a/arch/arm/mm/proc-v7m.S
+> > +++ b/arch/arm/mm/proc-v7m.S
+> > @@ -137,7 +137,10 @@ __v7m_setup_cont:
+> >  1:   cpsid   i
+> >       /* Calculate exc_ret */
+> >       orr     r10, lr, #EXC_RET_THREADMODE_PROCESSSTACK
+> > -     ldmia   sp, {r0-r3, r12}
+> > +     tst     lr, #EXC_RET_STACK_MASK
+> > +     mrsne   r4, psp
+> > +     moveq   r4, sp
+> > +     ldmia   r4!, {r0-r3, r12}
+> >       str     r5, [r12, #11 * 4]      @ restore the original SVC vector entry
+> >       mov     lr, r6                  @ restore LR
+> >
+> >
+>
