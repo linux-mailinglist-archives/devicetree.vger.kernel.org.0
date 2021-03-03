@@ -2,47 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A638B32C8B8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FFF432C8B9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238966AbhCDAwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 19:52:10 -0500
-Received: from relay02.th.seeweb.it ([5.144.164.163]:46619 "EHLO
-        relay02.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1388052AbhCCUlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 15:41:32 -0500
-Received: from [192.168.1.101] (abac94.neoplus.adsl.tpnet.pl [83.6.166.94])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        id S1344147AbhCDAwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 19:52:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1388061AbhCCUsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 15:48:37 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE69C061760;
+        Wed,  3 Mar 2021 12:47:56 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id A48B91FAD9;
-        Wed,  3 Mar 2021 21:40:33 +0100 (CET)
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Add usb3 interrupts
-To:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "phone-devel@vger.kernel.org" <phone-devel@vger.kernel.org>
-Cc:     "agross@kernel.org" <agross@kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <dvfyYKA9vnJdunbQ1CL-dgjXtv_1wYpRnezdc3PHoCyrgmfi5KP0Dn4MtaumQEpHIQAHL9tTdqcaCK7YJWyrdWXCrPeGd4uMh-nFeu7xQYw=@protonmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <8401b0c6-3386-9041-6f12-e56a24ec3e6e@somainline.org>
-Date:   Wed, 3 Mar 2021 21:40:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        by ssl.serverraum.org (Postfix) with ESMTPSA id BC9D12223A;
+        Wed,  3 Mar 2021 21:47:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1614804474;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=PAQHlS6gYpWsW1jh0ROjDz7dh8e7aK3uynRqpy1F1SM=;
+        b=bljYJDrLnSBP+x1H/dcbjGvZO3vB2OI3asaL5Qe/v9AggX7zBceTgjsy7owTKs/mvw9JGO
+        udqMqV3u0qsMSdwUzUZhF74sAQTBuhLW/UqUpjkJX4eqAndv1nIEnehsYNNHGZzsrkplbr
+        tuCPC9ZWr4/6IPWyPEeF+ZEEqpion0E=
 MIME-Version: 1.0
-In-Reply-To: <dvfyYKA9vnJdunbQ1CL-dgjXtv_1wYpRnezdc3PHoCyrgmfi5KP0Dn4MtaumQEpHIQAHL9tTdqcaCK7YJWyrdWXCrPeGd4uMh-nFeu7xQYw=@protonmail.com>
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Date:   Wed, 03 Mar 2021 21:47:54 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH] arm64: dts: ls1028a: add interrupt to Root Complex Event
+ Collector
+In-Reply-To: <20210209005259.29725-1-michael@walle.cc>
+References: <20210209005259.29725-1-michael@walle.cc>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <da92fd760606934b84521dcc50e75f33@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Patchwork didn't pick this up for some reason, but I guess it's only important that it hit the maintainers.
+Hi,
 
+Am 2021-02-09 01:52, schrieb Michael Walle:
+> The legacy interrupt INT_A is hardwired to the event collector. RCEC is
+> bascially supported starting with v5.11. Having a correct interrupt, 
+> will
+> make RCEC at least probe correctly.
+> 
+> There are still issues with how RCEC is implemented in the RCiEP on the
+> LS1028A. RCEC will report an error, but it cannot find the correct
+> subdevice.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
-Tested-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Any news on this?
 
+-michael
