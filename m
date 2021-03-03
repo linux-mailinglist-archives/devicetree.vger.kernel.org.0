@@ -2,80 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C559232C8C5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B32A632C8C4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234512AbhCDAwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 19:52:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44238 "EHLO
+        id S1345634AbhCDAwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 19:52:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352892AbhCDACj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 19:02:39 -0500
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F283C061762;
-        Wed,  3 Mar 2021 15:14:41 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id w3so5633134oti.8;
-        Wed, 03 Mar 2021 15:14:41 -0800 (PST)
+        with ESMTP id S233807AbhCDAAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 19:00:50 -0500
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05654C061761;
+        Wed,  3 Mar 2021 15:14:39 -0800 (PST)
+Received: by mail-ot1-x32d.google.com with SMTP id h10so14706929otm.1;
+        Wed, 03 Mar 2021 15:14:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=yXVmeSl5oOevxfQxlrfETF+M/MDbt5WdR8xryqID+Tw=;
-        b=oQU6nvWULZkiQX21JwzS3zUmIYS3Y9QNCASf3m+dbAZvX/CHjqhP8KRZfTWDfhnAWV
-         6MX6kco8J5FPyk4LsWA6XmXRHcebMLr5+0NHuNb5Izcp0v0A0PUKWk6IeA2ut87StRuk
-         DGF/o4AeGViZlsUmVatRWsWPyBSv9Aq29RiU9FDoD4LiRMtLZh4JfUy7EQB9PNUXqREK
-         a3mCEQOVPG5uVx8I+iLI1FoodnlVVWiIxQMwnlGOpYbatbXQNRJzDsEZ3fnj0gEykX2Q
-         4/e+nZu/ejmb9SoYUno4hnAvH9rw6iH8sMWUafxtzMxI+pg5hkbWd+FECszvbzOGhKfG
-         U2gw==
-X-Gm-Message-State: AOAM531N9BaDDfnXAIx7d3ZsdAN1iJqeZzhRjyjPJsWG9xu/r3UUXVJF
-        o3H7DiTLdNTA87u7jNwgVw==
-X-Google-Smtp-Source: ABdhPJwrBA/11mAg/pOkn/zbVpAwEHWyNgvNOkMVN9xeD9R31M6hU7b8jv46jT4ggUwLalDuSU1VGQ==
-X-Received: by 2002:a9d:20c3:: with SMTP id x61mr1194688ota.311.1614813280679;
-        Wed, 03 Mar 2021 15:14:40 -0800 (PST)
+        bh=ENmhzzInLRPJWkMxwgyK0/yDT18Byk5Yvo+65Z6jlTs=;
+        b=S4aC0dg/eTGcI6AUL28dPnoeH9ZnIkIHVwkQGlec8ylYNqB06wBMHaJdlN+fdEUEO6
+         1ls21MJ2VKyzxLFYy5ShxIvjyUVcTTaLGRDDqudp+aca4dLAC09sMSSbWGh1TOnxBKMm
+         s1Tj7ICSPkB78c8+glrXfz3LRAmzgZAOeQOage3XSigvL77XTCaATyTDvTwkzKQ7DE/2
+         nVCgEvSwsgl/buGOJHIMlrDqrcdaEbQB6qVANc0G7bZjBej+DthM1boCf9oHxbgb6bvs
+         HbJaBMLvPa8g0AviYYwp1mkHNBwodRDNFeJpcN5JRhx4jHOZJXcdiAuJPFh+UhHkTalZ
+         EWcw==
+X-Gm-Message-State: AOAM530Z8H2ul1hwBR4uQw5Od9d+QJF/GFBv7vJBL37Ki35LOb9skHgn
+        obSgLpze8DtZ3WLGfWirnA==
+X-Google-Smtp-Source: ABdhPJyAtpnwlr08NDcw77SwcjkZcmxVRVASO6Ef5N+X62qSlHB65BqgzAomgRWarlaYBbQ9JlwXzA==
+X-Received: by 2002:a05:6830:80b:: with SMTP id r11mr1171845ots.329.1614813278255;
+        Wed, 03 Mar 2021 15:14:38 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f193sm1879302oig.8.2021.03.03.15.14.38
+        by smtp.gmail.com with ESMTPSA id e72sm5415766ote.26.2021.03.03.15.14.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 15:14:39 -0800 (PST)
-Received: (nullmailer pid 846313 invoked by uid 1000);
+        Wed, 03 Mar 2021 15:14:37 -0800 (PST)
+Received: (nullmailer pid 846310 invoked by uid 1000);
         Wed, 03 Mar 2021 23:14:36 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Greentime Hu <greentime.hu@sifive.com>
-Cc:     bhelgaas@google.com, hes@sifive.com, p.zabel@pengutronix.de,
-        khilman@baylibre.com, vidyas@nvidia.com,
-        linux-riscv@lists.infradead.org, jh80.chung@samsung.com,
-        lorenzo.pieralisi@arm.com, alex.dewar90@gmail.com,
-        sboyd@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        zong.li@sifive.com, paul.walmsley@sifive.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        erik.danie@sifive.com, robh+dt@kernel.org, mturquette@baylibre.com,
-        hayashi.kunihiko@socionext.com
-In-Reply-To: <4e63c5515f9755d0cf4cd65ab70048554d917d89.1614681831.git.greentime.hu@sifive.com>
-References: <cover.1614681831.git.greentime.hu@sifive.com> <4e63c5515f9755d0cf4cd65ab70048554d917d89.1614681831.git.greentime.hu@sifive.com>
-Subject: Re: [RFC PATCH 4/6] dt-bindings: PCI: Add SiFive FU740 PCIe host controller
+To:     Joe Hung <joe_hung@ilitek.com>
+Cc:     luca_hsu@ilitek.com, linux-input@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        dmitry.torokhov@gmail.com
+In-Reply-To: <20210302085130.2558297-1-joe_hung@ilitek.com>
+References: <20210302085130.2558297-1-joe_hung@ilitek.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: input: touchscreen: ilitek_ts_i2c: Add bindings
 Date:   Wed, 03 Mar 2021 17:14:36 -0600
-Message-Id: <1614813276.374609.846312.nullmailer@robh.at.kernel.org>
+Message-Id: <1614813276.356288.846309.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 02 Mar 2021 18:59:15 +0800, Greentime Hu wrote:
-> Add PCIe host controller DT bindings of SiFive FU740.
+On Tue, 02 Mar 2021 16:51:29 +0800, Joe Hung wrote:
+> Add binding documentation for ILITEK touch devices.
 > 
-> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> Signed-off-by: Joe Hung <joe_hung@ilitek.com>
 > ---
->  .../bindings/pci/sifive,fu740-pcie.yaml       | 119 ++++++++++++++++++
->  1 file changed, 119 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+> Changes in v4:
+>   - Change IRQ flag to level interrupt
+>   - Add support for common touchscreen-related properties
+>   - Modify reset gpio to active low
+>   - Modify irq type to LEVEL_LOW
+>   - Add compatible for Lego series ICs
+> 
+> Changes in v3:
+>   - Add include header in examples, and pass the dt binding check
+> 
+> Changes in v2:
+>   - Convert to DT schema format
+>   - Using interrupts instead of irq-gpios
+> 
+>  .../input/touchscreen/ilitek_ts_i2c.yaml      | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml:114:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+./Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml:60:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/pci/sifive,fu740-pcie.example.dts'
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.example.dts'
 Traceback (most recent call last):
   File "/usr/local/bin/dt-extract-example", line 45, in <module>
     binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
@@ -91,20 +98,20 @@ Traceback (most recent call last):
   File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
   File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
 ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 88, column 5
+  in "<unicode string>", line 53, column 5
 found a tab character where an indentation space is expected
-  in "<unicode string>", line 114, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/pci/sifive,fu740-pcie.example.dts] Error 1
+  in "<unicode string>", line 60, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.example.dts] Error 1
 make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml:  while scanning a block scalar
-  in "<unicode string>", line 88, column 5
+./Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml:  while scanning a block scalar
+  in "<unicode string>", line 53, column 5
 found a tab character where an indentation space is expected
-  in "<unicode string>", line 114, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+  in "<unicode string>", line 60, column 1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
 make: *** [Makefile:1380: dt_binding_check] Error 2
 
-See https://patchwork.ozlabs.org/patch/1446288
+See https://patchwork.ozlabs.org/patch/1446274
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
