@@ -2,101 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADAB232C8BE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9386D32C8BD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344512AbhCDAwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1344502AbhCDAwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 3 Mar 2021 19:52:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47988 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234281AbhCCWH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 17:07:29 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8433C061765;
-        Wed,  3 Mar 2021 13:56:35 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 8B8851F45F5B
-Message-ID: <22a8ea464f4c7dcb7a90889f53d85f003b7c739a.camel@collabora.com>
-Subject: Re: [PATCH v4 03/11] media: hantro: change hantro_codec_ops run
- prototype to return errors
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, peng.fan@nxp.com,
-        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Date:   Wed, 03 Mar 2021 18:56:23 -0300
-In-Reply-To: <20210303113952.178519-4-benjamin.gaignard@collabora.com>
-References: <20210303113952.178519-1-benjamin.gaignard@collabora.com>
-         <20210303113952.178519-4-benjamin.gaignard@collabora.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        with ESMTP id S1390295AbhCCWCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 17:02:21 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D035C0613DC;
+        Wed,  3 Mar 2021 14:01:41 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id a17so30734738ljq.2;
+        Wed, 03 Mar 2021 14:01:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=j07ek4Zt9ZdE7LS3OsZtxsaFuQttw0xxqtZtfHiifAQ=;
+        b=NBvJ3Sw+FEHPVCJrhr1ERPVezGdGEH25D1eFIMyn2u6ovdDB2Uhig5ww00vZ9LDMK5
+         6T1JFGVP73hxC9XHSnFHHBC/H4WweEF5RMyyPRx5qQWXwQp6vufOvTBFpJ+erbgZFr0W
+         XL6G8EsGz4nEO2OjEW5nmggrck3PYNj8AshFnccieYet3IFFWnycjgyEFYY/QyXJUyig
+         Vf21SazyDaxGuHK/QFZwxFwW07m/d94CPmPUNYB+fzF/OSkIzp5RJgEvD9dvBFx+coif
+         4tAwtLq6xMR63iJ+tm4NhniTqZHz3/vmp3hD4EgkSSlAcKvzfNyrW0m7LgBCnSsIQwkW
+         iLvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j07ek4Zt9ZdE7LS3OsZtxsaFuQttw0xxqtZtfHiifAQ=;
+        b=uYNM05JcusPuMGSPT/sd3Q0p5MB7KACTD84BsXmSk3M6Y6Dw/np5M6Lk+qLCqXBOqQ
+         f5x4oFU2wcTiY/WDTsChrTazL5OFMYxssDe9ZRMWGb22wODW+zLkymOfJPkKVE14K4tG
+         Io2W5vAdrbI9vvFUIckXbXqL8H0zqs91T4jRejnD5zHRkyDXh+DkzReicmKL2smKPBqr
+         4uwNCCeZzeI87IBq3qzGhk+CrqxyWvC0Am4SK4Ml+6ulAH1zRbD6NZQGOnPIXj+MGoFz
+         1dflNKkemUaCMqdK8iaCTDcyqLHJeCHfc47ZZ3teCq3topT6v6FFKu/NbKwR1qyBHoYp
+         zzGg==
+X-Gm-Message-State: AOAM530VU5AT34DiAx0wy875EKNaji/w58i/QlKz2I9ZfLKqitW1W98Q
+        MOH2Lj52fz1iYsAMJGmhJed2+Olu8Z6uqWiOGGC/ZsIZ+Ts=
+X-Google-Smtp-Source: ABdhPJwWq1M7hocWIy98G8weo/IGzkmjbUuAECHqyucj33Ofrlv1wUGjzGKT8jSpMWV4YXI00uo1+dX+dy9IsNMkgec=
+X-Received: by 2002:a2e:9a4e:: with SMTP id k14mr573726ljj.116.1614808899734;
+ Wed, 03 Mar 2021 14:01:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210303211002.17650-1-heiko.thiery@gmail.com> <20210303211002.17650-3-heiko.thiery@gmail.com>
+In-Reply-To: <20210303211002.17650-3-heiko.thiery@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 3 Mar 2021 19:01:27 -0300
+Message-ID: <CAOMZO5DbWrN-VuUmjwj1DGFwXFPOdqJ-PmU9DAd+0xbO2MaBag@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: fsl: add support for Kontron
+ pitx-imx8m board
+To:     Heiko Thiery <heiko.thiery@gmail.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Walle <michael@walle.cc>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-03-03 at 12:39 +0100, Benjamin Gaignard wrote:
-> Change hantro_codec_ops run prototype from 'void' to 'int'.
-> This allow to cancel the job if an error occur while configuring
-> the hardware.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
->  drivers/staging/media/hantro/hantro_drv.c     |  4 +++-
->  .../staging/media/hantro/hantro_g1_h264_dec.c |  6 ++++--
->  .../media/hantro/hantro_g1_mpeg2_dec.c        |  4 +++-
->  .../staging/media/hantro/hantro_g1_vp8_dec.c  |  6 ++++--
->  .../staging/media/hantro/hantro_h1_jpeg_enc.c |  4 +++-
->  drivers/staging/media/hantro/hantro_hw.h      | 19 ++++++++++---------
->  .../media/hantro/rk3399_vpu_hw_jpeg_enc.c     |  4 +++-
->  .../media/hantro/rk3399_vpu_hw_mpeg2_dec.c    |  4 +++-
->  .../media/hantro/rk3399_vpu_hw_vp8_dec.c      |  6 ++++--
->  9 files changed, 37 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index e5f200e64993..ac1429f00b33 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -161,7 +161,9 @@ static void device_run(void *priv)
->  
->         v4l2_m2m_buf_copy_metadata(src, dst, true);
->  
-> -       ctx->codec_ops->run(ctx);
-> +       if (ctx->codec_ops->run(ctx))
-> +               goto err_cancel_job;
-> +
->         return;
->  
->  err_cancel_job:
-> diff --git a/drivers/staging/media/hantro/hantro_g1_h264_dec.c b/drivers/staging/media/hantro/hantro_g1_h264_dec.c
-> index 845bef73d218..fcd4db13c9fe 100644
-> --- a/drivers/staging/media/hantro/hantro_g1_h264_dec.c
-> +++ b/drivers/staging/media/hantro/hantro_g1_h264_dec.c
-> @@ -273,13 +273,13 @@ static void set_buffers(struct hantro_ctx *ctx)
->         vdpu_write_relaxed(vpu, ctx->h264_dec.priv.dma, G1_REG_ADDR_QTABLE);
->  }
->  
-> -void hantro_g1_h264_dec_run(struct hantro_ctx *ctx)
-> +int hantro_g1_h264_dec_run(struct hantro_ctx *ctx)
->  {
->         struct hantro_dev *vpu = ctx->dev;
->  
->         /* Prepare the H264 decoder context. */
->         if (hantro_h264_dec_prepare_run(ctx))
-> -               return;
-> +               return -EINVAL;
+Hi Heiko,
 
-This should be returning the value from hantro_h264_dec_prepare_run.
+On Wed, Mar 3, 2021 at 6:11 PM Heiko Thiery <heiko.thiery@gmail.com> wrote:
+>
+> The Kontron pitx-imx8m board is based on an i.MX8MQ soc.
+>
+> Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Michael Walle <michael@walle.cc>
 
-Thanks!
-Ezequiel
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
