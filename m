@@ -2,106 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A699832D1CE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 12:31:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EED3132D1E6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 12:38:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240169AbhCDLaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 06:30:55 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:50432 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240165AbhCDLat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 06:30:49 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 124BTslh127000;
-        Thu, 4 Mar 2021 05:29:54 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614857394;
-        bh=Z2xAjoDjGq+buNbjS2fjzk+qGOsbPQ/DarFukEzFYFM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=uAi4sxP3po4hCwhGVd81FwrYU8p1bgo76GWCtAF+gHmfCO7GEk4l4B8IubqaJyEkq
-         czWIaoVxeWdrilsnWSmdwpccGA+OGX68TGD28CY/v6sihX2GbNrlFVyJer1GHglFhE
-         YOeXsDMrxXye/3o6BkB/PMh1etj7xfTCq2T7GnKI=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 124BTsfn081492
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 4 Mar 2021 05:29:54 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 4 Mar
- 2021 05:29:54 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 4 Mar 2021 05:29:54 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 124BTQps094300;
-        Thu, 4 Mar 2021 05:29:47 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        id S238884AbhCDLhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 06:37:51 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46362 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238943AbhCDLhp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Mar 2021 06:37:45 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BF3CA64EDF;
+        Thu,  4 Mar 2021 11:37:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614857825;
+        bh=lCDSwJ74OmvlKz5hZIDCsA90A6//34lLgcYAEC2sM+c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NDaFwIDlQYoQkwavVKQyD+6VkWmaN2DDWWXmG0tDQv5LlZwNaNCxNSmPyqo5AJneG
+         3txPXmHiNa3pXyO53zAA3mUFC57bE7/5vxMIw9b+TZG97xdztAZ2G9oQ8Fm5z2OMY+
+         y0/RMpilXTAVTlTZVFc35MaDJUaJ8Zv2uaTbRAVn4U2bHhE/Y6+oy3ZqpQuQgt9RLa
+         AbVJ9mdSBBynXnasvXkSVhph/n9odjsnpcZ+UZNgCzzdd/b8GYsZjHtNWlo0Ymgi1p
+         luKiQOS3S6Wn3Q894qsZE5/Dj9pZyV53u2u1s5vgmfwKVmmqhClB/vq3Z4gn6jUFIy
+         k6uZRpns/vqsg==
+Date:   Thu, 4 Mar 2021 19:37:00 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-am642: reserve gpio in mcu domain for firmware usage
-Date:   Thu, 4 Mar 2021 16:59:24 +0530
-Message-ID: <20210304112924.12470-3-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210304112924.12470-1-a-govindraju@ti.com>
-References: <20210304112924.12470-1-a-govindraju@ti.com>
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH] arm64: dts: ls1028a: add interrupt to Root Complex Event
+ Collector
+Message-ID: <20210304113659.GQ15865@dragon>
+References: <20210209005259.29725-1-michael@walle.cc>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210209005259.29725-1-michael@walle.cc>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The gpio0 subsystem present in MCU domain might be used by firmware and is
-not pinned out in evm/sk. Therefore, reserve it for MCU firmware.
+On Tue, Feb 09, 2021 at 01:52:59AM +0100, Michael Walle wrote:
+> The legacy interrupt INT_A is hardwired to the event collector. RCEC is
+> bascially supported starting with v5.11. Having a correct interrupt, will
+> make RCEC at least probe correctly.
+> 
+> There are still issues with how RCEC is implemented in the RCiEP on the
+> LS1028A. RCEC will report an error, but it cannot find the correct
+> subdevice.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 262fbad8f0ec..c1f2f402ad53 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -1114,6 +1114,12 @@
+>  					full-duplex;
+>  				};
+>  			};
+> +
+> +			rcec@1f,0 {
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 5 +++++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 5 +++++
- 2 files changed, 10 insertions(+)
+Just curious how unit-address comes to '1f,0'?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 962ef807e286..982b043c5100 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -279,6 +279,11 @@
- 	};
- };
- 
-+/* mcu_gpio0 is reserved for mcu firmware usage */
-+&mcu_gpio0 {
-+	status = "reserved";
-+};
-+
- &mcu_i2c0 {
- 	status = "disabled";
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 397ed3b2e121..7ba1d6da4d9d 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -204,6 +204,11 @@
- 	status = "disabled";
- };
- 
-+/* mcu_gpio0 is reserved for mcu firmware usage */
-+&mcu_gpio0 {
-+	status = "reserved";
-+};
-+
- &sdhci1 {
- 	/* SD/MMC */
- 	vmmc-supply = <&vdd_mmc1>;
--- 
-2.17.1
+Shawn
 
+> +				reg = <0x00f800 0 0 0 0>;
+> +				/* IEP INT_A */
+> +				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+>  		};
+>  
+>  		rcpm: power-controller@1e34040 {
+> -- 
+> 2.20.1
+> 
