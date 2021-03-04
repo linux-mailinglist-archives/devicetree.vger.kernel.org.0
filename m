@@ -2,136 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB5932CBA1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 05:59:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B95532CBA6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 05:59:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233840AbhCDEsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 23:48:23 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:48130 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233857AbhCDEsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 23:48:07 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1244jp9U053936;
-        Wed, 3 Mar 2021 22:45:51 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614833151;
-        bh=u9Fq9fIcV8m7q8E+GxjFecB7Rn7qfqMQABRRfIQPQ20=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=U7AUjuUC2GePB6TOCvKlXOErPWvIBabL0u2hKgcX4tjWItsT1YShQ5PJG6BwvLFC2
-         1a0PODXcFRL9A1MxGhkd4fuLPd0aA3/bt7fBsNqfdIQqOvTjlxlOGLmnjqGFZ4APga
-         0LXrjlI+JQScEtebPVQZALC1mT58YCwqY5OfnAP4=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1244jpKF074566
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 3 Mar 2021 22:45:51 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 3 Mar
- 2021 22:45:51 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 3 Mar 2021 22:45:51 -0600
-Received: from [10.250.233.159] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1244jmBx090114;
-        Wed, 3 Mar 2021 22:45:49 -0600
-Subject: Re: [PATCH v2 1/9] dt-bindings: phy: ti,phy-j721e-wiz: Add bindings
- for AM64 SERDES Wrapper
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Swapnil Jakhade <sjakhade@cadence.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <20210222112314.10772-1-kishon@ti.com>
- <20210222112314.10772-2-kishon@ti.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <8fc3e9a0-573e-01b1-1054-55d3c19e42f6@ti.com>
-Date:   Thu, 4 Mar 2021 10:15:47 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S233918AbhCDEt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 23:49:27 -0500
+Received: from rcdn-iport-4.cisco.com ([173.37.86.75]:47892 "EHLO
+        rcdn-iport-4.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233923AbhCDEs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 23:48:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=1665; q=dns/txt; s=iport;
+  t=1614833337; x=1616042937;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=JPxIpWSiHwMYUhrJK0/YYj5eo6XXFdrmnrzClDHMFxg=;
+  b=N0ANiY6TVQLeOKcOKmFfBWhwllS0V9rYGC8wT3VuW952KBtcqupvYL+p
+   3Ba3k2ICkgfPdbS5GSY05InDnTq9CxS3GOF83rPEZwuTdTozPJoif1MJQ
+   fEe/YqwiEz4SENtEVUb8v9HQEAqghzT45lhWCxWL0AuedSDDFZxSR4d+r
+   E=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0CaBABRZkBg/40NJK1iHQEBAQEJARI?=
+ =?us-ascii?q?BBQUBgg+CK4FMATkxsmkLAQEBDzQEAQGETYF8AiU4EwIDAQELAQEFAQEBAgE?=
+ =?us-ascii?q?GBHGFboZ9AUaBPgESgnCDCK4cgiiJH4FEFIEkiFx0hBkcgUlCgRGDWIozBIJ?=
+ =?us-ascii?q?AB4EOgigSnimbe4MGgR+acg8io1aUVaJGgWsjgVczGggbFYMkUBkNnCsBXCA?=
+ =?us-ascii?q?DLzgCBgoBAQMJjBMBAQ?=
+X-IronPort-AV: E=Sophos;i="5.81,221,1610409600"; 
+   d="scan'208";a="844460945"
+Received: from alln-core-8.cisco.com ([173.36.13.141])
+  by rcdn-iport-4.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 04 Mar 2021 04:48:10 +0000
+Received: from zorba.cisco.com ([10.24.7.178])
+        by alln-core-8.cisco.com (8.15.2/8.15.2) with ESMTP id 1244m4Ww015988;
+        Thu, 4 Mar 2021 04:48:09 GMT
+From:   Daniel Walker <danielwa@cisco.com>
+To:     Will Deacon <will@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        ob Herring <robh@kernel.org>,
+        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     xe-linux-external@cisco.com,
+        Ruslan Ruslichenko <rruslich@cisco.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/5] CMDLINE: drivers: of: ifdef out cmdline section
+Date:   Wed,  3 Mar 2021 20:47:59 -0800
+Message-Id: <20210304044803.812204-2-danielwa@cisco.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210222112314.10772-2-kishon@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-Outbound-SMTP-Client: 10.24.7.178, [10.24.7.178]
+X-Outbound-Node: alln-core-8.cisco.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+It looks like there's some seepage of cmdline stuff into
+the generic device tree code. This conflicts with the
+generic cmdline implementation so I remove it in the case
+when that's enabled.
 
-On 22/02/21 4:53 pm, Kishon Vijay Abraham I wrote:
-> Add bindings for AM64 SERDES Wrapper.
+Cc: xe-linux-external@cisco.com
+Signed-off-by: Ruslan Ruslichenko <rruslich@cisco.com>
+Signed-off-by: Daniel Walker <danielwa@cisco.com>
+---
+ drivers/of/fdt.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-I've fixed all your comments provided in the previous version. Can you
-review this and give your ACKs please?
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index feb0f2d67fc5..cfe4f8d3c9f5 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -25,6 +25,7 @@
+ #include <linux/serial_core.h>
+ #include <linux/sysfs.h>
+ #include <linux/random.h>
++#include <linux/cmdline.h>
+ 
+ #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+ #include <asm/page.h>
+@@ -1048,8 +1049,18 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+ 
+ 	early_init_dt_check_for_initrd(node);
+ 
++#ifdef CONFIG_GENERIC_CMDLINE
+ 	/* Retrieve command line */
+ 	p = of_get_flat_dt_prop(node, "bootargs", &l);
++
++	/*
++	 * The builtin command line will be added here, or it can override
++	 * with the DT bootargs.
++	 */
++	cmdline_add_builtin(data,
++			    ((p != NULL && l > 0) ? p : NULL), /* This is sanity checking */
++			    COMMAND_LINE_SIZE);
++#else
+ 	if (p != NULL && l > 0)
+ 		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
+ 
+@@ -1070,6 +1081,7 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+ 		strlcpy(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+ #endif
+ #endif /* CONFIG_CMDLINE */
++#endif /* CONFIG_GENERIC_CMDLINE */
+ 
+ 	pr_debug("Command line is: %s\n", (char *)data);
+ 
+-- 
+2.25.1
 
-Best Regards,
-Kishon
-
-> 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  .../bindings/phy/ti,phy-j721e-wiz.yaml        | 10 ++++++---
->  include/dt-bindings/phy/phy-ti.h              | 21 +++++++++++++++++++
->  2 files changed, 28 insertions(+), 3 deletions(-)
->  create mode 100644 include/dt-bindings/phy/phy-ti.h
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-> index c33e9bc79521..bf431f98e6ea 100644
-> --- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-> +++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-> @@ -12,9 +12,10 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - ti,j721e-wiz-16g
-> -      - ti,j721e-wiz-10g
-> +    oneOf:
-> +      - const: ti,j721e-wiz-16g
-> +      - const: ti,j721e-wiz-10g
-> +      - const: ti,am64-wiz-10g
->  
->    power-domains:
->      maxItems: 1
-> @@ -42,6 +43,9 @@ properties:
->    "#reset-cells":
->      const: 1
->  
-> +  "#clock-cells":
-> +    const: 1
-> +
->    ranges: true
->  
->    assigned-clocks:
-> diff --git a/include/dt-bindings/phy/phy-ti.h b/include/dt-bindings/phy/phy-ti.h
-> new file mode 100644
-> index 000000000000..ad955d3a56b4
-> --- /dev/null
-> +++ b/include/dt-bindings/phy/phy-ti.h
-> @@ -0,0 +1,21 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * This header provides constants for TI SERDES.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_TI_SERDES
-> +#define _DT_BINDINGS_TI_SERDES
-> +
-> +/* Clock index for output clocks from WIZ */
-> +
-> +/* MUX Clocks */
-> +#define TI_WIZ_PLL0_REFCLK	0
-> +#define TI_WIZ_PLL1_REFCLK	1
-> +#define TI_WIZ_REFCLK_DIG	2
-> +
-> +/* Reserve index here for future additions */
-> +
-> +/* MISC Clocks */
-> +#define TI_WIZ_PHY_EN_REFCLK	16
-> +
-> +#endif /* _DT_BINDINGS_TI_SERDES */
-> 
