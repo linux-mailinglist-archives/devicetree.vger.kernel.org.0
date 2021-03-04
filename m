@@ -2,441 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E62032CF8F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:23:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B7BB32CFBC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:35:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237455AbhCDJXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 04:23:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53106 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237428AbhCDJWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 04:22:45 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC1E9C061760
-        for <devicetree@vger.kernel.org>; Thu,  4 Mar 2021 01:22:04 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id z7so15783897plk.7
-        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 01:22:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ISniL6yTBWi042ZNWJ1+Npn/xauAJIi/V3jYqtdwgms=;
-        b=cgwTfJm9mK52+v0gcGE8Xs437llkEf9MFtokm6YnBtw6Evlqnqw9e4f4IDRbEaXlyd
-         zim5wb/g84h8Og81CtnZgCOihwk6y+NVf28Edq5HR6/J0Ir602CCzOw2CrSpkp70emrz
-         FPRTGwlnmcdSqweyV+vjvzQ+1dLBbfin4e2b8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ISniL6yTBWi042ZNWJ1+Npn/xauAJIi/V3jYqtdwgms=;
-        b=SfKYQETySWsm5Mqwv39+CGuzQqPcSDzONOA8zVS0HaliuBj3xrLD1boJj1DzcuJMvc
-         kOnf537qmXGazdtVM/KvgVdVdXKfVhjdG4TU2Rw0bsdERNonCMhFtQf6RwYuy8c7xn9s
-         8YOh207IBEV4dCPjFe5cXi8XbrXOxEzbYiz6e9MZilbzrNy7sAfJGQpp/8QuGD7dt3/6
-         Ghm9gAr5lJg5ZwX/zjQU1YCo+4gjARUPrS3PdddYf3geMhmQHVPxWZNDWLZq8+L53eTP
-         SmBNUnLOwhoBjL0V73D33Ws+NhUppPV7sUXRrXqD6cj79VK2Vp2vpQLzLLWfS/txUvIZ
-         ffeQ==
-X-Gm-Message-State: AOAM532oBQnNY7ccTxPohgTdGaTD7NLJ7e1qTI4wKTsKSUC2vEaHAoFH
-        Mx8FfYJWgvJ+O8HCw2I2sEwYDA==
-X-Google-Smtp-Source: ABdhPJyJBalHeavw3BbvHVG493DvF9pJ0VvI6iMPTmD46Kq0rh7QMJwgRwKw91RPoFDVgT9K9LtOzA==
-X-Received: by 2002:a17:90a:71c3:: with SMTP id m3mr3590706pjs.186.1614849724321;
-        Thu, 04 Mar 2021 01:22:04 -0800 (PST)
-Received: from ub-XPS-13-9350.domain.name ([103.161.30.228])
-        by smtp.gmail.com with ESMTPSA id 14sm27326981pfy.55.2021.03.04.01.21.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Mar 2021 01:22:03 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Robert Foss <robert.foss@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v4 2/2] drm: bridge: Add Chipone ICN6211 MIPI-DSI to RGB bridge
-Date:   Thu,  4 Mar 2021 14:51:33 +0530
-Message-Id: <20210304092133.21717-2-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210304092133.21717-1-jagan@amarulasolutions.com>
-References: <20210304092133.21717-1-jagan@amarulasolutions.com>
+        id S237622AbhCDJdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 04:33:18 -0500
+Received: from mout.kundenserver.de ([212.227.17.10]:35387 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237553AbhCDJcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 04:32:51 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MBDrM-1lUMHm2BTC-00Cj4A; Thu, 04 Mar 2021 10:30:16 +0100
+Received: by mail-oi1-f178.google.com with SMTP id w65so5825197oie.7;
+        Thu, 04 Mar 2021 01:30:15 -0800 (PST)
+X-Gm-Message-State: AOAM533wP01QFagunv9I2PTmsnsJ2jj3qeCwgJi3uiEHeke0a3GGjwAB
+        Gj17FI6fRWtNPxn8WHpe1SSJVThJoDhMQa5SD4Y=
+X-Google-Smtp-Source: ABdhPJw9uBr6qnUdYOKxaWbXMTUVBRRhs8WjTeJMLjKfrKtwZ6pHKDu0JmaPxdme0uAqtllpnrMi8LbsIwEL/vQ9FQo=
+X-Received: by 2002:aca:4fd3:: with SMTP id d202mr2227269oib.11.1614850214795;
+ Thu, 04 Mar 2021 01:30:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-3-brad@pensando.io>
+In-Reply-To: <20210304034141.7062-3-brad@pensando.io>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 4 Mar 2021 10:29:58 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1aVfA=kp-dW+YKZ9cG=sD6+efSBYtB6GXu0X4MBjb0xg@mail.gmail.com>
+Message-ID: <CAK8P3a1aVfA=kp-dW+YKZ9cG=sD6+efSBYtB6GXu0X4MBjb0xg@mail.gmail.com>
+Subject: Re: [PATCH 2/8] spi: cadence-quadspi: Add QSPI support for Pensando
+ Elba SoC
+To:     Brad Larson <brad@pensando.io>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:zZDvOlE4nqNUUuAyZzh/usSCD0KiQ6nlGSFZT31UI2ETik+ilI4
+ IKMM9laWEXaB0mWupyr6SiXwcQandLRlTe5uc7B/09Z9Iss2AcUUILFTg5BJq24Bk9lf0Hj
+ /BbpxcG1Wj19syF42c5Fw0F4/ZhbKOc540253cxBRNUUFBvKwMSJDKFbjHwxqE08hAzOsIF
+ CQWU7RF3KIKj7S9HOZoow==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:0spHj1g4cLg=:/DrpZTpnGKr0guHu+hAKCQ
+ 6tCdSb8KPfbXYXg/dPzh80u//KkMVzb9MuL/KHFXKDj+olT/iSCh1fPcSmNVI91Cg9j4klMX9
+ NcR80sEptP0ndCSYcThS9ejKd4q2ODIjqgNBf4Qn7PjGhuddjmVi+yXNSbR7LkaJq4J+Y1Rgw
+ etl9brsnVCYdR+/9o+G4kWmXA/3G/Z87ixcaukYDgSOmorYQL8O0WErazzCX3cHWcn2w/heZv
+ BjkYb1ArrBQk9yS7swOIVlq3/INq/UDAns1l+YPn3TwqWLIXuWjYZMp1ahYe5n0oQFygezPly
+ 41xhNTUQXBXj3k2cMtg/ne5R6nnf7uLSn+0nxtaws0TA9AAqS2ijmpQYRwx6pT74iuhtAKSzv
+ hX0x0cgU2BvFTcBrlZYqQdKTQLkkwg8pyfqiQ/ijzKGLaM91Vtl5U5sABCkc2Z/COHN0iC1On
+ 8q6ouMGMroMPoejVVJD/V49w5umDSdWxP5RXie3BD1gURndjUQLHZlCaAiXhp6VgMSnJBvKEo
+ pWImVsG8sbm7WX7sK3imTisPnJmn8C3SkI56Bg6T5UoajCBcC2X0v/qSVwlXtKqcg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ICN6211 is MIPI-DSI to RGB Converter bridge from Chipone.
+On Thu, Mar 4, 2021 at 4:41 AM Brad Larson <brad@pensando.io> wrote:
+>
+> Add QSPI controller support fo Pensando Elba SoC.
+>
+> Signed-off-by: Brad Larson <brad@pensando.io>
+> ---
+>  drivers/spi/spi-cadence-quadspi.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-quadspi.c
+> index 442cc7c53a47..fb0d9b0bd596 100644
+> --- a/drivers/spi/spi-cadence-quadspi.c
+> +++ b/drivers/spi/spi-cadence-quadspi.c
+> @@ -1353,6 +1353,7 @@ static int cqspi_request_mmap_dma(struct cqspi_st *cqspi)
+>         cqspi->rx_chan = dma_request_chan_by_mask(&mask);
+>         if (IS_ERR(cqspi->rx_chan)) {
+>                 int ret = PTR_ERR(cqspi->rx_chan);
+> +
+>                 cqspi->rx_chan = NULL;
+>                 return dev_err_probe(&cqspi->pdev->dev, ret, "No Rx DMA available\n");
+>         }
 
-It has a flexible configuration of MIPI DSI signal input and
-produce RGB565, RGB666, RGB888 output format.
+Please don't mix whitespace changes with code changes.
 
-Add bridge driver for it.
+> @@ -1632,6 +1633,10 @@ static const struct cqspi_driver_platdata intel_lgm_qspi = {
+>         .quirks = CQSPI_DISABLE_DAC_MODE,
+>  };
+>
+> +static const struct cqspi_driver_platdata pen_cdns_qspi = {
+> +       .quirks = CQSPI_NEEDS_WR_DELAY | CQSPI_DISABLE_DAC_MODE,
+> +};
+> +
+>  static const struct of_device_id cqspi_dt_ids[] = {
+>         {
+>                 .compatible = "cdns,qspi-nor",
+> @@ -1649,6 +1654,10 @@ static const struct of_device_id cqspi_dt_ids[] = {
+>                 .compatible = "intel,lgm-qspi",
+>                 .data = &intel_lgm_qspi,
+>         },
+> +       {
+> +               .compatible = "pensando,cdns-qspi",
+> +               .data = &pen_cdns_qspi,
+> +       },
+>         { /* end of table */ }
 
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
-Changes for v4:
-- added regulators
-- replace reset with EN
-- fixed warnings pointed by Robert
-Changes for v3:
-- updated the driver to inline with new drm bridge style
+As mentioned in my reply to the dts file, the compatible string needs to be
+somewhat more specific.
 
- MAINTAINERS                              |   1 +
- drivers/gpu/drm/bridge/Kconfig           |  13 +
- drivers/gpu/drm/bridge/Makefile          |   1 +
- drivers/gpu/drm/bridge/chipone-icn6211.c | 293 +++++++++++++++++++++++
- 4 files changed, 308 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/chipone-icn6211.c
+I also wonder if it would be better to define separate DT properties for the
+quirks at this point, so not every new SoC using this device needs to have
+its own quirks definition.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 065cbdc889d3..9c59402e51bc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5533,6 +5533,7 @@ DRM DRIVER FOR CHIPONE ICN6211 MIPI-DSI to RGB CONVERTER BRIDGE
- M:	Jagan Teki <jagan@amarulasolutions.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-+F:	drivers/gpu/drm/bridge/chipone-icn6211.c
- 
- DRM DRIVER FOR FARADAY TVE200 TV ENCODER
- M:	Linus Walleij <linus.walleij@linaro.org>
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index e4110d6ca7b3..330ee70ed746 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -27,6 +27,19 @@ config DRM_CDNS_DSI
- 	  Support Cadence DPI to DSI bridge. This is an internal
- 	  bridge and is meant to be directly embedded in a SoC.
- 
-+config DRM_CHIPONE_ICN6211
-+	tristate "Chipone ICN6211 MIPI-DSI/RGB Converter bridge"
-+	depends on OF
-+	select DRM_MIPI_DSI
-+	select DRM_PANEL_BRIDGE
-+	help
-+	  ICN6211 is MIPI-DSI/RGB Converter bridge from chipone.
-+
-+	  It has a flexible configuration of MIPI DSI signal input
-+	  and produce RGB565, RGB666, RGB888 output format.
-+
-+	  If in doubt, say "N".
-+
- config DRM_CHRONTEL_CH7033
- 	tristate "Chrontel CH7033 Video Encoder"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index 86e7acc76f8d..3eb84b638988 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
-+obj-$(CONFIG_DRM_CHIPONE_ICN6211) += chipone-icn6211.o
- obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
- obj-$(CONFIG_DRM_DISPLAY_CONNECTOR) += display-connector.o
- obj-$(CONFIG_DRM_LONTIUM_LT9611) += lontium-lt9611.o
-diff --git a/drivers/gpu/drm/bridge/chipone-icn6211.c b/drivers/gpu/drm/bridge/chipone-icn6211.c
-new file mode 100644
-index 000000000000..a6151db95586
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/chipone-icn6211.c
-@@ -0,0 +1,293 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2020 Amarula Solutions(India)
-+ * Author: Jagan Teki <jagan@amarulasolutions.com>
-+ */
-+
-+#include <drm/drm_of.h>
-+#include <drm/drm_print.h>
-+#include <drm/drm_mipi_dsi.h>
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#define HACTIVE_LI		0x20
-+#define VACTIVE_LI		0x21
-+#define VACTIVE_HACTIVE_HI	0x22
-+#define HFP_LI			0x23
-+#define HSYNC_LI		0x24
-+#define HBP_LI			0x25
-+#define HFP_HSW_HBP_HI		0x26
-+#define VFP			0x27
-+#define VSYNC			0x28
-+#define VBP			0x29
-+
-+struct chipone {
-+	struct device *dev;
-+	struct drm_bridge bridge;
-+	struct drm_bridge *panel_bridge;
-+	struct gpio_desc *enable_gpio;
-+	struct regulator *vdd1;
-+	struct regulator *vdd2;
-+	struct regulator *vdd3;
-+};
-+
-+static inline struct chipone *bridge_to_chipone(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct chipone, bridge);
-+}
-+
-+static struct drm_display_mode *bridge_to_mode(struct drm_bridge *bridge)
-+{
-+	return &bridge->encoder->crtc->state->adjusted_mode;
-+}
-+
-+static inline int chipone_dsi_write(struct chipone *icn,  const void *seq,
-+				    size_t len)
-+{
-+	struct mipi_dsi_device *dsi = to_mipi_dsi_device(icn->dev);
-+
-+	return mipi_dsi_generic_write(dsi, seq, len);
-+}
-+
-+#define ICN6211_DSI(icn, seq...)				\
-+	{							\
-+		const u8 d[] = { seq };				\
-+		chipone_dsi_write(icn, d, ARRAY_SIZE(d));	\
-+	}
-+
-+static void chipone_enable(struct drm_bridge *bridge)
-+{
-+	struct chipone *icn = bridge_to_chipone(bridge);
-+	struct drm_display_mode *mode = bridge_to_mode(bridge);
-+
-+	ICN6211_DSI(icn, 0x7a, 0xc1);
-+
-+	ICN6211_DSI(icn, HACTIVE_LI, mode->hdisplay & 0xff);
-+
-+	ICN6211_DSI(icn, VACTIVE_LI, mode->vdisplay & 0xff);
-+
-+	/**
-+	 * lsb nibble: 2nd nibble of hdisplay
-+	 * msb nibble: 2nd nibble of vdisplay
-+	 */
-+	ICN6211_DSI(icn, VACTIVE_HACTIVE_HI,
-+		    ((mode->hdisplay >> 8) & 0xf) |
-+		    (((mode->vdisplay >> 8) & 0xf) << 4));
-+
-+	ICN6211_DSI(icn, HFP_LI, mode->hsync_start - mode->hdisplay);
-+
-+	ICN6211_DSI(icn, HSYNC_LI, mode->hsync_end - mode->hsync_start);
-+
-+	ICN6211_DSI(icn, HBP_LI, mode->htotal - mode->hsync_end);
-+
-+	ICN6211_DSI(icn, HFP_HSW_HBP_HI, 0x00);
-+
-+	ICN6211_DSI(icn, VFP, mode->vsync_start - mode->vdisplay);
-+
-+	ICN6211_DSI(icn, VSYNC, mode->vsync_end - mode->vsync_start);
-+
-+	ICN6211_DSI(icn, VBP, mode->vtotal - mode->vsync_end);
-+
-+	/* dsi specific sequence */
-+	ICN6211_DSI(icn, MIPI_DCS_SET_TEAR_OFF, 0x80);
-+	ICN6211_DSI(icn, MIPI_DCS_SET_ADDRESS_MODE, 0x28);
-+	ICN6211_DSI(icn, 0xb5, 0xa0);
-+	ICN6211_DSI(icn, 0x5c, 0xff);
-+	ICN6211_DSI(icn, MIPI_DCS_SET_COLUMN_ADDRESS, 0x01);
-+	ICN6211_DSI(icn, MIPI_DCS_GET_POWER_SAVE, 0x92);
-+	ICN6211_DSI(icn, 0x6b, 0x71);
-+	ICN6211_DSI(icn, 0x69, 0x2b);
-+	ICN6211_DSI(icn, MIPI_DCS_ENTER_SLEEP_MODE, 0x40);
-+	ICN6211_DSI(icn, MIPI_DCS_EXIT_SLEEP_MODE, 0x98);
-+
-+	/* icn6211 specific sequence */
-+	ICN6211_DSI(icn, 0xb6, 0x20);
-+	ICN6211_DSI(icn, 0x51, 0x20);
-+	ICN6211_DSI(icn, 0x09, 0x10);
-+
-+	usleep_range(10000, 11000);
-+}
-+
-+static void chipone_pre_enable(struct drm_bridge *bridge)
-+{
-+	struct chipone *icn = bridge_to_chipone(bridge);
-+	int ret;
-+
-+	if (icn->vdd1) {
-+		ret = regulator_enable(icn->vdd1);
-+		if (ret)
-+			DRM_DEV_ERROR(icn->dev,
-+				      "failed to enable VDD1 regulator: %d\n", ret);
-+	}
-+
-+	if (icn->vdd2) {
-+		ret = regulator_enable(icn->vdd2);
-+		if (ret)
-+			DRM_DEV_ERROR(icn->dev,
-+				      "failed to enable VDD2 regulator: %d\n", ret);
-+	}
-+
-+	if (icn->vdd3) {
-+		ret = regulator_enable(icn->vdd3);
-+		if (ret)
-+			DRM_DEV_ERROR(icn->dev,
-+				      "failed to enable VDD3 regulator: %d\n", ret);
-+	}
-+
-+	gpiod_set_value(icn->enable_gpio, 1);
-+
-+	usleep_range(10000, 11000);
-+}
-+
-+static void chipone_post_disable(struct drm_bridge *bridge)
-+{
-+	struct chipone *icn = bridge_to_chipone(bridge);
-+
-+	if (icn->vdd1)
-+		regulator_disable(icn->vdd1);
-+
-+	if (icn->vdd2)
-+		regulator_disable(icn->vdd2);
-+
-+	if (icn->vdd3)
-+		regulator_disable(icn->vdd3);
-+
-+	gpiod_set_value(icn->enable_gpio, 0);
-+}
-+
-+static int chipone_attach(struct drm_bridge *bridge, enum drm_bridge_attach_flags flags)
-+{
-+	struct chipone *icn = bridge_to_chipone(bridge);
-+
-+	return drm_bridge_attach(bridge->encoder, icn->panel_bridge, bridge, flags);
-+}
-+
-+static const struct drm_bridge_funcs chipone_bridge_funcs = {
-+	.attach = chipone_attach,
-+	.post_disable = chipone_post_disable,
-+	.pre_enable = chipone_pre_enable,
-+	.enable = chipone_enable,
-+};
-+
-+static int chipone_parse_dt(struct chipone *icn)
-+{
-+	struct device *dev = icn->dev;
-+	struct drm_panel *panel;
-+	int ret;
-+
-+	icn->vdd1 = devm_regulator_get_optional(dev, "vdd1");
-+	if (IS_ERR(icn->vdd1)) {
-+		ret = PTR_ERR(icn->vdd1);
-+		if (ret == -EPROBE_DEFER)
-+			return -EPROBE_DEFER;
-+		icn->vdd1 = NULL;
-+		DRM_DEV_DEBUG(dev, "failed to get VDD1 regulator: %d\n", ret);
-+	}
-+
-+	icn->vdd2 = devm_regulator_get_optional(dev, "vdd2");
-+	if (IS_ERR(icn->vdd2)) {
-+		ret = PTR_ERR(icn->vdd2);
-+		if (ret == -EPROBE_DEFER)
-+			return -EPROBE_DEFER;
-+		icn->vdd2 = NULL;
-+		DRM_DEV_DEBUG(dev, "failed to get VDD2 regulator: %d\n", ret);
-+	}
-+
-+	icn->vdd3 = devm_regulator_get_optional(dev, "vdd3");
-+	if (IS_ERR(icn->vdd3)) {
-+		ret = PTR_ERR(icn->vdd3);
-+		if (ret == -EPROBE_DEFER)
-+			return -EPROBE_DEFER;
-+		icn->vdd3 = NULL;
-+		DRM_DEV_DEBUG(dev, "failed to get VDD3 regulator: %d\n", ret);
-+	}
-+
-+	icn->enable_gpio = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-+	if (IS_ERR(icn->enable_gpio)) {
-+		DRM_DEV_ERROR(dev, "failed to get enable GPIO\n");
-+		return PTR_ERR(icn->enable_gpio);
-+	}
-+
-+	ret = drm_of_find_panel_or_bridge(dev->of_node, 1, 0, &panel, NULL);
-+	if (ret)
-+		return ret;
-+
-+	icn->panel_bridge = devm_drm_panel_bridge_add(dev, panel);
-+	if (IS_ERR(icn->panel_bridge))
-+		return PTR_ERR(icn->panel_bridge);
-+
-+	return 0;
-+}
-+
-+static int chipone_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct chipone *icn;
-+	int ret;
-+
-+	icn = devm_kzalloc(dev, sizeof(struct chipone), GFP_KERNEL);
-+	if (!icn)
-+		return -ENOMEM;
-+
-+	mipi_dsi_set_drvdata(dsi, icn);
-+	icn->dev = dev;
-+
-+	ret = chipone_parse_dt(icn);
-+	if (ret)
-+		return ret;
-+
-+	icn->bridge.funcs = &chipone_bridge_funcs;
-+	icn->bridge.type = DRM_MODE_CONNECTOR_DPI;
-+	icn->bridge.of_node = dev->of_node;
-+
-+	drm_bridge_add(&icn->bridge);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_SYNC_PULSE;
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		drm_bridge_remove(&icn->bridge);
-+		dev_err(dev, "failed to attach dsi\n");
-+	}
-+
-+	return ret;
-+}
-+
-+static int chipone_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct chipone *icn = mipi_dsi_get_drvdata(dsi);
-+
-+	mipi_dsi_detach(dsi);
-+	drm_bridge_remove(&icn->bridge);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id chipone_of_match[] = {
-+	{ .compatible = "chipone,icn6211", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, chipone_of_match);
-+
-+static struct mipi_dsi_driver chipone_driver = {
-+	.probe = chipone_probe,
-+	.remove = chipone_remove,
-+	.driver = {
-+		.name = "chipone-icn6211",
-+		.owner = THIS_MODULE,
-+		.of_match_table = chipone_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(chipone_driver);
-+
-+MODULE_AUTHOR("Jagan Teki <jagan@amarulasolutions.com>");
-+MODULE_DESCRIPTION("Chipone ICN6211 MIPI-DSI to RGB Converter Bridge");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
-
+       Arnd
