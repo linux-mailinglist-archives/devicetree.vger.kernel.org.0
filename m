@@ -2,102 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B96132CFC1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4757A32CFC8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:38:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237638AbhCDJeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 04:34:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46014 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237631AbhCDJdx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Mar 2021 04:33:53 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 59D2964F04;
-        Thu,  4 Mar 2021 09:33:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614850392;
-        bh=leFZ6+rQ3M5M41gnG29LCPTANBQM6a16TQ6x79aIuuY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J95mr2zCFdpJxGKZgvAyv6aSHQ5f/H1S/UXrY5Bw/MkJ25v9SpJGgH8zXXqmuG1rD
-         O2oM38s0sGewM4E0c/2k3gFb2LMZDDx+tjW7u59rbgKJshaUaUnlea2rWbQi5r/m6w
-         i5BIWEe3M541DR2gHB2oSfkdweaXlEnodNzPfgyIfxKzEyHYVmQJS7te3IAa0HunKj
-         nlm9FGFkQlmb857S3frvhyOPONpq/KgnunzuOCLsKAsxUIeHaaGFm1jQ1h0IYUr3dJ
-         6+faT0Y8HupdkR/koBdd1ebYlxSpupb+AF//PK/ZtfyFiZebV8X/wTAbNcgK5Arur2
-         RgpxS6j87p6FA==
-Date:   Thu, 4 Mar 2021 09:33:07 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Max Uvarov <muvarov@gmail.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Tyler Hicks <tyhicks@linux.microsoft.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: cpufeatures: Fix handling of
- CONFIG_CMDLINE for idreg overrides
-Message-ID: <20210304093306.GA20721@willie-the-truck>
-References: <20210303134927.18975-1-will@kernel.org>
- <20210303134927.18975-2-will@kernel.org>
- <CAL_JsqLengGX9S0fMUWPR=q6Ng5=JmJXENNqi8Jamv+w0E58bg@mail.gmail.com>
+        id S236638AbhCDJhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 04:37:03 -0500
+Received: from mout.kundenserver.de ([212.227.126.133]:48449 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237653AbhCDJgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 04:36:44 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]) by
+ mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1N30VJ-1llby93tLJ-013P6q; Thu, 04 Mar 2021 10:34:09 +0100
+Received: by mail-ot1-f51.google.com with SMTP id v12so25508865ott.10;
+        Thu, 04 Mar 2021 01:34:08 -0800 (PST)
+X-Gm-Message-State: AOAM531K6U4Pz/T2CG3GZQplToTbh/nZo/W2EWUFwx7iNrwMhobKsdkZ
+        +nIq13nIr7vthMybEJHBToovOmPv2S6Tj5zW9+0=
+X-Google-Smtp-Source: ABdhPJzdWUmRHp4/lKLXv6+q2Thn0Sc0nr1QD99ZxxURYeZleIgI699G+WxW+sTjwSsYr4dfIETXbVshldOB36R2nMg=
+X-Received: by 2002:a9d:6b8b:: with SMTP id b11mr2798119otq.210.1614850447259;
+ Thu, 04 Mar 2021 01:34:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqLengGX9S0fMUWPR=q6Ng5=JmJXENNqi8Jamv+w0E58bg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-5-brad@pensando.io>
+In-Reply-To: <20210304034141.7062-5-brad@pensando.io>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 4 Mar 2021 10:33:51 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0Wi5YrTFvfMopzBPdWrZi03abDhL_PanJ4HZ=Ycx8s3g@mail.gmail.com>
+Message-ID: <CAK8P3a0Wi5YrTFvfMopzBPdWrZi03abDhL_PanJ4HZ=Ycx8s3g@mail.gmail.com>
+Subject: Re: [PATCH 4/8] spidev: Add Pensando CPLD compatible
+To:     Brad Larson <brad@pensando.io>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:seRvg0yhGSVe9OKFJx/AdzC6Z6J8W7Yhhtv/pNsPzHNCOpa2R8R
+ pTnmKCxJLaq3piXSLbEnZz7mAd0jrIaqYbktGLZIaFX8EnXHi9blsl854kTWlCfaAxnCjrq
+ jmmA1KZ55lEIR4Vrmynv6H9fFTgvgj2eecHwhMXNEvpANqv9IDV2IhqodpAFs8kKNV+EmPx
+ inae/8YJeTb6T6VIgX+tQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:3JkiklS7VkA=:JoShOBsLn/zRSJOhd3kGMH
+ +W+e8xEZ/rGtTFkcsHuoCYTRpHai47x2AgPTZ4q/VFJMsgIDfJwhBGaZAI8ZqSFGfmIh+drD7
+ xQmkCMKOeMyVNELSR6vYcr9P39qsaWDQu2WsPumzan5UNnRmBCdiIK9XswCe4I5yqhhBD0KTk
+ mEauzZ7k398LG7O6CByBeUfFJEPqiRB8v2mLrkS9jkPE1dw9ZFVWw6t+nnE8RqNh9fROLcwgl
+ +J/7LsPASVnJNecoHsCLv3m3YkYcFWZldgA7BgcsQDlyv5cir77p6/qCn2ZpsFLeTlHoif32m
+ BQTbgf55gNmWDhrs0YmEatIAPtCRuMvBxQ2br6PllQWwqdMPzrIH0l5a1GJSQ3B/AILVg+6rD
+ nXmLsaNzvY2oRZIDK8trqA+GwfKoXiPLdOC9zUlouOxX8ymWOLExvXmVGiFJt6YDdPpmy+7Iu
+ LW5yk53WfbN+UbiHTyQoLZXvsGAAWmWQF6wmamqhkJNwnEinWTDoOypW0nOnyIQ/pBNRv2f/l
+ D5hYetov2nd1exf9wJR/vM1Qi3vFPgSxROGjmxoQurZSBwnS7OKR+TyRsgqXJzpwg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 03, 2021 at 04:30:21PM -0600, Rob Herring wrote:
-> On Wed, Mar 3, 2021 at 7:50 AM Will Deacon <will@kernel.org> wrote:
-> >
-> > The built-in kernel commandline (CONFIG_CMDLINE) can be configured in
-> > three different ways:
-> >
-> >   1. CMDLINE_FORCE: Use CONFIG_CMDLINE instead of any bootloader args
-> >   2. CMDLINE_EXTEND: Append the bootloader args to CONFIG_CMDLINE
-> >   3. CMDLINE_FROM_BOOTLOADER: Only use CONFIG_CMDLINE if there aren't
-> >      any bootloader args.
-> >
-> > The early cmdline parsing to detect idreg overrides gets (2) and (3)
-> > slightly wrong: in the case of (2) the bootloader args are parsed first
-> > and in the case of (3) the CMDLINE is always parsed.
-> >
-> > Fix these issues by moving the bootargs parsing out into a helper
-> > function and following the same logic as that used by the EFI stub.
-> >
-> > Reviewed-by: Marc Zyngier <maz@kernel.org>
-> > Fixes: 33200303553d ("arm64: cpufeature: Add an early command-line cpufeature override facility")
-> > Signed-off-by: Will Deacon <will@kernel.org>
-> > ---
-> >  arch/arm64/kernel/idreg-override.c | 44 +++++++++++++++++-------------
-> >  1 file changed, 25 insertions(+), 19 deletions(-)
-> 
-> It bothers me a bit having command line handling here. It means how
-> the command line is assembled in 2 places.
+On Thu, Mar 4, 2021 at 4:41 AM Brad Larson <brad@pensando.io> wrote:
+>
+> Pensando Elba SoC platforms have a SPI connected CPLD
+> for platform management.
+>
+> Signed-off-by: Brad Larson <brad@pensando.io>
+> ---
+>  drivers/spi/spidev.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
+> index 8cb4d923aeaa..8b285852ce82 100644
+> --- a/drivers/spi/spidev.c
+> +++ b/drivers/spi/spidev.c
+> @@ -683,6 +683,7 @@ static const struct of_device_id spidev_dt_ids[] = {
+>         { .compatible = "dh,dhcom-board" },
+>         { .compatible = "menlo,m53cpld" },
+>         { .compatible = "cisco,spi-petra" },
+> +       { .compatible = "pensando,cpld" },
+>         {},
+>  };
 
-It's more than 2 places, it's also done in the EFI stub; see efi_pe_entry()
-in drivers/firmware/efi/libstub/efi-stub.c. That's why I'm pushing on this,
-because at the moment the command-line reported by /proc/cmdline doesn't
-match the command-line that was parsed there because they stitch it together
-in opposite orders when CMDLINE_EXTEND is used.
+This does not seem appropriate, I think a platform management driver should
+have a proper kernel abstraction instead of a user passthrough.
 
-> I guess if we get rid of ambiguous 'extend' then it's better, but perhaps
-> a better implementation would be an api get a specific command line
-> parameter.  The main downside would be searching the DT again for each
-> parameter if we can't store any data in between calls, but there's ways
-> around that. PowerPC also needs similar functionality in
-> disabled_on_cmdline().
+As mentioned elsewhere, it also needs to be way more specific. If this
+is a programmable block, the compatible string might in fact need to
+contain both a board identifier and a revision number for the programmable
+logic, to ensure that the driver knows how to talk to it.
 
-Christophe's patches at least aim to put the assembling all in one place,
-although we'll have to see whether or not it can be used in the EFI stub
-environment.
-
-Will
+      Arnd
