@@ -2,64 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 330BC32CF36
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:03:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECE6732CF47
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:10:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233685AbhCDJCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 04:02:53 -0500
-Received: from foss.arm.com ([217.140.110.172]:35436 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237100AbhCDJCs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Mar 2021 04:02:48 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7B6CD1FB;
-        Thu,  4 Mar 2021 01:02:01 -0800 (PST)
-Received: from [10.57.17.29] (unknown [10.57.17.29])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 935153F73B;
-        Thu,  4 Mar 2021 01:01:58 -0800 (PST)
-Subject: Re: [PATCH 1/8] ARM: ARMv7-M: Fix register restore corrupt after svc
- call
-To:     dillon min <dillon.minfei@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux@armlinux.org.uk, afzal.mohd.ma@gmail.com
-References: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
- <1614758717-18223-2-git-send-email-dillon.minfei@gmail.com>
- <5284d390-c03a-4035-df5a-10d6cd60e47b@arm.com>
- <CAL9mu0KUhctbBzmem1ZSgEwf5CebivHOSUr9Q7VTyzib8pW=Cw@mail.gmail.com>
- <5efe3d44-8045-e376-003e-3ccbff54fb23@arm.com>
- <CAL9mu0JoHqo_wnpNN9ZqRnzzKjhOwEktZ5yPtO8-6WBh51g1BQ@mail.gmail.com>
-From:   Vladimir Murzin <vladimir.murzin@arm.com>
-Message-ID: <703c43f1-7b83-32ec-7c50-baab00b6bb34@arm.com>
-Date:   Thu, 4 Mar 2021 09:02:05 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S237362AbhCDJJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 04:09:17 -0500
+Received: from mout.kundenserver.de ([212.227.126.135]:55487 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230109AbhCDJJF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 04:09:05 -0500
+X-Greylist: delayed 81374 seconds by postgrey-1.27 at vger.kernel.org; Thu, 04 Mar 2021 04:09:04 EST
+Received: from mail-oi1-f172.google.com ([209.85.167.172]) by
+ mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1M1rGy-1lJwrd3HzM-002FlE; Thu, 04 Mar 2021 10:06:30 +0100
+Received: by mail-oi1-f172.google.com with SMTP id d20so29312159oiw.10;
+        Thu, 04 Mar 2021 01:06:29 -0800 (PST)
+X-Gm-Message-State: AOAM531WYSDMdrS9d9TYpfv8cSUYTwXrHkFW6HG9A5HEb3EdbMYceAcC
+        +bzY0EJmPT8kOjnKOGUYule4WfAahpUVfQAioWs=
+X-Google-Smtp-Source: ABdhPJwDjUL2GkPHOFy1Wxp/23X9Q3Z/08u3CdZWiGgYTIrus8UWpg2dWeE9I8lJdDxq+Xt35Z1HfDBqojDyxcXjvhs=
+X-Received: by 2002:aca:4fd3:: with SMTP id d202mr2178311oib.11.1614848787917;
+ Thu, 04 Mar 2021 01:06:27 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAL9mu0JoHqo_wnpNN9ZqRnzzKjhOwEktZ5yPtO8-6WBh51g1BQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-8-brad@pensando.io>
+In-Reply-To: <20210304034141.7062-8-brad@pensando.io>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 4 Mar 2021 10:06:11 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1dwtXqneyNdNNdG4f03o3a+SCUXCb5ESDap+mjyG3Ohg@mail.gmail.com>
+Message-ID: <CAK8P3a1dwtXqneyNdNNdG4f03o3a+SCUXCb5ESDap+mjyG3Ohg@mail.gmail.com>
+Subject: Re: [PATCH 7/8] arm64: dts: Add Pensando Elba SoC support
+To:     Brad Larson <brad@pensando.io>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:rI+9jRhiYZmox/XbWzWQhsNvdJ7qVdy58g5Kea9WU7IgKyco+2f
+ wIiXP7bpvHIPoYQGOKiRbA8WQYbXmk2SQaWS/tNlSAbjbaCVBSRfATl6K6HVcU/lLCSoPg/
+ a5NXOlHpiKloX//ZETM1s2EuMELQ8Tte39QU1pB5pBYl2/q4LMrJkzNnSXsOPpGf/BMFaJR
+ EDhX0+ihYfLWYSyCreNww==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:/yCyNOhUUgo=:U2/mFZ6KELPIiYzQPAxLyv
+ Nq9EIPRoTUyQf6MJ25nP36HS6wN0MjlA0nVo3dvlSILNtkNk/2xqkMvLl0YeRnVZR5LqhBgY/
+ I77FMUipCMsvx/moNToIy4x8jwzV3gIhjsDKFBx8VOnT4jmqUz8/b9URpH68wrGxOCidcAiOd
+ w5wZK6dAdLVtlm+7Ep7ym22E4quahwHmrSafvB+ehAFbcdy4TSILzrMcHIqxfm1+p/nszfxQU
+ bPtJy/9K54h+f0xhGS5gnxCavjxG6hRIvdfvUsbpiyWwU6OLig3W7dhfQQcnsa926cpBeOj94
+ ROlL2jX/ywXHiXxg9hR0OdYuj3b0sz7iac8tZbUqpdTQWX9oPfVQnHRdxRkO2VO4Aq1GQPJnP
+ qbST+XsITB+zyQX63R8FUWlBV8j0AdaM43BvKOUM1efnWZBiX5rcbNyOYoqWuHcziSAvsZU0y
+ f0bqmZJddpTXLkxARYIwBKSU0uvBJ7qx2wSvWGfKQttHh14iBQ8F7/6bMWf6eGaTo894q9Hs4
+ 9fsE4Mr0TVL3hknE4ma655Smkm6PmeDUtJaKvY8yYKN/PJVWDujzPhQlNcl2tnmi7bqCn2KpU
+ C8x1h3uvIV1na3yUOMejUs52KhiLtGuehU
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/4/21 5:42 AM, dillon min wrote:
-> Okay， got it. after adding msp/psp switch code in RTOS, now the kernel
-> can be loaded normally
-> without any modification.
+On Thu, Mar 4, 2021 at 4:41 AM Brad Larson <brad@pensando.io> wrote:
+>
+> Add Pensando common and Elba SoC specific device nodes
+> and corresponding binding documentation.
+>
+> Signed-off-by: Brad Larson <brad@pensando.io>
+> ---
+>  .../bindings/gpio/pensando,elba-spics.txt     |  24 ++
+>  .../devicetree/bindings/mmc/cdns,sdhci.yaml   |   2 +-
+>  .../bindings/spi/cadence-quadspi.txt          |   1 +
 
-Yay!
+It would be better to split each of the above out into a separate patch for
+easier review, and send them along with the driver changes.
 
-> 
-> So, just drop the changes in proc-v7m.S.
+> diff --git a/Documentation/devicetree/bindings/gpio/pensando,elba-spics.txt b/Documentation/devicetree/bindings/gpio/pensando,elba-spics.txt
+> new file mode 100644
+> index 000000000000..30f5f3275238
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/pensando,elba-spics.txt
+> @@ -0,0 +1,24 @@
+> +Pensando Elba SPI Chip Select Driver
+> +
+> +The Pensando Elba ASIC provides four SPI bus chip selects
+> +
+> +Required properties:
+> +- compatible: Should be "pensando,elba-spics"
+> +- reg: Address range of spics controller
+> +- gpio-controller: Marks the device node as gpio controller
+> +- #gpio-cells: Must be 2
 
-Glad to see they are not strictly necessary :)
+You need to document what each of the cells are for. In your
+example, the second cell is always zero, is that intentional?
 
-Thanks
-Vladimir
+> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> index af7442f73881..645ae696ba24 100644
+> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> @@ -122,7 +122,7 @@ unevaluatedProperties: false
+>  examples:
+>    - |
+>      emmc: mmc@5a000000 {
+> -        compatible = "socionext,uniphier-sd4hc", "cdns,sd4hc";
+> +        compatible = "socionext,uniphier-sd4hc", "cdns,sd4hc", "pensando,elba-emmc";
+>          reg = <0x5a000000 0x400>;
+>          interrupts = <0 78 4>;
+>          clocks = <&clk 4>;
+
+These are in the wrong order, the most generic one (cdns,sd4hc) always
+comes last.
+
+If you add the string in the example, it also has to be an option in the
+actual binding, otherwise neither the example nor your dtb would
+be valid.
+
+You also wouldn't find a controller that is compatible with both the uniphier
+variant and the elba variant, unless your 'elba' SoC is strictly derived from
+Socionext's Uniphier products and inherits all the quirks in its sdhci
+implementation that were not already part of Cadence's IP block.
+
+> diff --git a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt b/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
+> index 8ace832a2d80..dbb346b2b1d7 100644
+> --- a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
+> +++ b/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
+> @@ -6,6 +6,7 @@ Required properties:
+>         For TI 66AK2G SoC - "ti,k2g-qspi", "cdns,qspi-nor".
+>         For TI AM654 SoC  - "ti,am654-ospi", "cdns,qspi-nor".
+>         For Intel LGM SoC - "intel,lgm-qspi", "cdns,qspi-nor".
+> +       For Pensando SoC - "pensando,cdns-qspi".
+
+This does not look specific enough: There is no guarantee that this
+is the only time Pensando uses any Cadenci qspi block. If the company
+is not yet out of business, you should be prepared for future products
+and have the name of the chip in there as well.
+
+> +               cpu0: cpu@0 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a72", "arm,armv8";
+> +                       reg = <0 0x0>;
+> +                       enable-method = "spin-table";
+> +                       next-level-cache = <&l2_0>;
+
+spin-table is not really something we want to see for new machines.
+Please add proper psci support to your boot loader.
+
+> index 000000000000..9623df208131
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/pensando/elba-asic-common.dtsi
+> @@ -0,0 +1,113 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +/ {
+> +       model = "Elba ASIC Board";
+> +
+> +       aliases {
+> +               serial0 = &uart0;
+> +                spi0 = &spi0;
+> +                spi1 = &qspi;
+> +       };
+> +
+> +       chosen {
+> +               stdout-path = "serial0:19200n8";
+> +       };
+> +};
+
+These properties are usually board specific, and should be moved into the
+.dts file.
+
+> +       spi@0 {
+> +               compatible = "pensando,cpld";
+> +               #address-cells = <1>;
+> +               #size-cells = <1>;
+> +               spi-max-frequency = <12000000>;
+> +               reg = <0>;
+> +       };
+
+
+> +       spi@2 {
+> +               compatible = "pensando,cpld-rd1173";
+
+These don't seem to have a binding document, which needs to be added
+first. What is a Pensando "cpld"? Is it possible that there will be multiple
+versions of it that need to be uniquely identified?
+
+> +
+> +       /* Common UIO device for MSI drivers */
+> +       uio_penmsi {
+> +               compatible = "pensando,uio_penmsi";
+> +               name = "uio_penmsi";
+> +       };
+
+Missing binding again. Since you name this a UIO device, I assume this
+is actually tied to a particular Linux device driver and exported to user
+space. The information in the dts should however not assume a particular
+OS implementation but describe the platform.
+
+Is this for PCI MSI? If so, I would recommend just using the GICv3 that you
+also have, and leave this device completely unused.
+
+In either case, please leave out the device node until a binding has
+been agreed and a matching kernel driver was reviewed (if any)
+
+> +
+> +               /*
+> +                * Until we  know the interrupt domain following this, we
+> +                * are forced to use this is the place where interrupts from
+> +                * PCI converge. In the ideal case, we use one domain higher,
+> +                * where the PCI-ness has been shed.
+> +                */
+> +               pxc0_intr: intc@20102200 {
+> +                       compatible = "pensando,soc-ictlr-csrintr";
+> +                       interrupt-controller;
+> +                       reg = <0x0 0x20102200 0x0 0x4>;
+> +                       #interrupt-cells = <3>;
+> +                       interrupt-parent = <&gic>;
+> +                       interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "pxc0_intr";
+> +               };
+
+Leave this one out as well, this has to be reviewed in combination with the
+PCI driver.
+
+> +               pcie@307c2480 {
+> +                       compatible = "pensando,pcie";
+> +                       reg = <0x0 0x307c2480 0x0 0x4   /* MS CFG_WDT */
+> +                              0x0 0x00001400 0x0 0x10  /* WDT0 */
+> +                              0x0 0x20000000 0x0 0x00380000>; /* PXB Base */
+> +               };
+
+This does not follow the PCI host bridge binding. Leave it out for now,
+and bring it back once you have a proper PCI driver.
+
+        Arnd
