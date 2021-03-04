@@ -2,124 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5202B32DB69
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 21:50:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEDF332DB9A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 22:12:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238433AbhCDUt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 15:49:27 -0500
-Received: from rcdn-iport-7.cisco.com ([173.37.86.78]:42469 "EHLO
-        rcdn-iport-7.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238317AbhCDUtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 15:49:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=2263; q=dns/txt; s=iport;
-  t=1614890952; x=1616100552;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GjLbEy4mzc1GE+5Hnhb3oU35QJXDVH6Er8mIRNVDXJg=;
-  b=aDpcGJfqeMyD/Yj6nCt6jiMPGT+r039JkrAUN/6LkvI/ay/NFguqJigF
-   RlKVv1AlnReDfO5ZCYoxF62HFwjllXC7sXozOKUZ6/yx5MCrL0RNR4jfc
-   +r76M6bkK6dCTP3GVYz3brS1v6H6j9O+cejs121EqeFxWndosfAoaJ6QT
-   s=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0DHAABGRkFg/4wNJK1iHAEBAQEBAQc?=
- =?us-ascii?q?BARIBAQQEAQFAgT4EAQELAYIqgUwBOTGWHY96Fow7CwEBAQ0BATQEAQGETQK?=
- =?us-ascii?q?BegIlNwYOAgMBAQsBAQUBAQECAQYEcYVuhkUBBTo/EAsYLjwbBhOFeK4YdIE?=
- =?us-ascii?q?0iR+BRBQOgRYBjUImHIFJQoQrPoQVhh4EgkAHgQ57gS0Sk3sBii2be4MGgR+?=
- =?us-ascii?q?acjEQo0a2cgIEBgUCFoFqJIFXMxoIGxWDJFAZDY4qF45HIAMvOAIGCgEBAwm?=
- =?us-ascii?q?JT4JEAQE?=
-X-IronPort-AV: E=Sophos;i="5.81,223,1610409600"; 
-   d="scan'208";a="855671246"
-Received: from alln-core-7.cisco.com ([173.36.13.140])
-  by rcdn-iport-7.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 04 Mar 2021 20:48:31 +0000
-Received: from zorba ([10.24.1.42])
-        by alln-core-7.cisco.com (8.15.2/8.15.2) with ESMTPS id 124KmTRL023920
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Thu, 4 Mar 2021 20:48:30 GMT
-Date:   Thu, 4 Mar 2021 12:48:23 -0800
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Will Deacon <will@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        X86 ML <x86@kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        xe-linux-external@cisco.com,
-        Ruslan Ruslichenko <rruslich@cisco.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/5] CMDLINE: drivers: of: ifdef out cmdline section
-Message-ID: <20210304204823.GI109100@zorba>
-References: <20210304044803.812204-2-danielwa@cisco.com>
- <CAL_JsqKnAMp0bkXzU-B8b8xx5fPC1R1NdOBn9Kpk=SONJL5paQ@mail.gmail.com>
+        id S239105AbhCDVM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 16:12:26 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:46448 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239101AbhCDVMG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 16:12:06 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 124LBB1j025021;
+        Thu, 4 Mar 2021 15:11:11 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1614892271;
+        bh=ptcsnuvk3eLJtXwL4PyuA6X0wnI3Vs+wsEx/fEx5qGI=;
+        h=From:To:CC:Subject:Date;
+        b=qixeVfmjMnN0OK1jMeUSQloxvK7LgmgjXunE2ZYDkW7u0RMFfVRBlVcs3H1YcjhjL
+         SidGSpPvt08vPwVvsqzYxbrx3H0C6fbVSwItlIMgmsX2GRIxYduOMoPAaMkXksZLMt
+         cY52y4haDV1CLSilFq7eGWk7+Hg55OCAXKAxKuxM=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 124LBBFN009585
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 Mar 2021 15:11:11 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 4 Mar
+ 2021 15:11:10 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 4 Mar 2021 15:11:10 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 124LB9KY039907;
+        Thu, 4 Mar 2021 15:11:10 -0600
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: [PATCH v2 0/4] arm64: dts: ti: am642x: add CPSW3g DT nodes
+Date:   Thu, 4 Mar 2021 23:10:34 +0200
+Message-ID: <20210304211038.12511-1-grygorii.strashko@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKnAMp0bkXzU-B8b8xx5fPC1R1NdOBn9Kpk=SONJL5paQ@mail.gmail.com>
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.24.1.42, [10.24.1.42]
-X-Outbound-Node: alln-core-7.cisco.com
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 04, 2021 at 08:32:37AM -0600, Rob Herring wrote:
-> On Wed, Mar 3, 2021 at 10:48 PM Daniel Walker <danielwa@cisco.com> wrote:
-> >
-> > It looks like there's some seepage of cmdline stuff into
-> > the generic device tree code. This conflicts with the
-> > generic cmdline implementation so I remove it in the case
-> > when that's enabled.
-> >
-> > Cc: xe-linux-external@cisco.com
-> > Signed-off-by: Ruslan Ruslichenko <rruslich@cisco.com>
-> > Signed-off-by: Daniel Walker <danielwa@cisco.com>
-> > ---
-> >  drivers/of/fdt.c | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index feb0f2d67fc5..cfe4f8d3c9f5 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -25,6 +25,7 @@
-> >  #include <linux/serial_core.h>
-> >  #include <linux/sysfs.h>
-> >  #include <linux/random.h>
-> > +#include <linux/cmdline.h>
-> >
-> >  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
-> >  #include <asm/page.h>
-> > @@ -1048,8 +1049,18 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
-> >
-> >         early_init_dt_check_for_initrd(node);
-> >
-> > +#ifdef CONFIG_GENERIC_CMDLINE
-> 
-> What I like about Christophe's version is it removes the old DT
-> implementation. Who's going to convert the rest of the DT based
-> arches? That's arm, arm64, hexagon, microblaze, nios2, openrisc,
-> riscv, sh, and xtensa. Either separate the common code from the config
-> like Christophe's version or these all need converting. Though it's
-> fine to hash out patch 1 with a couple of arches first.
- 
-I'm limited in what I can test, so I can't know for sure that I have something
-which works on those architectures. Even powerpc 64 is part of this series but
-I can't really test it at this time. Also Cisco's needs out strip the
-implementation of extend or override.
+Hi
 
-I have un-tested conversions for arm32, arm64, c6x, microblaze, nios2, and
-openrisc. These could go into -next and we can see who complains. The
-implementation on these architectures isn't all uniform.
+This series adds corresponding AM642x CPSW3g nodes required to enable networking
+on TI am642-evm/sk platforms and adds required pinmux/PHY nodes in corresponding
+board files.
 
-> >         /* Retrieve command line */
-> >         p = of_get_flat_dt_prop(node, "bootargs", &l);
-> 
-> This needs to be outside the ifdef.
+Kernel Boot Log: 
+EVM: https://pastebin.ubuntu.com/p/6Qkbw35Jg3/
+SK: https://pastebin.ubuntu.com/p/Pd3xxP9J9K/
 
-Ok ..
+Changes in v2:
+- minor comment fixed
+- add Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
 
-Daniel
+v1: https://lore.kernel.org/patchwork/cover/1389305/
+
+Grygorii Strashko (1):
+  arm64: dts: ti: k3-am64-main: add main CPTS entry
+
+Vignesh Raghavendra (3):
+  arm64: dts: ti: am64-main: Add CPSW DT node
+  arm64: dts: ti: k3-am642-evm: add CPSW3g DT nodes
+  arm64: dts: ti: k3-am642-sk: Add CPSW DT nodes
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 89 +++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am64.dtsi      |  2 +
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 93 ++++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts   | 73 +++++++++++++++++++
+ 4 files changed, 257 insertions(+)
+
+-- 
+2.17.1
+
