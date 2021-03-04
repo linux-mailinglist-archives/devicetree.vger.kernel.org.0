@@ -2,107 +2,362 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CF9A32D44D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 14:41:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4184732D45E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 14:43:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241349AbhCDNjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 08:39:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241355AbhCDNjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 08:39:21 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45734C061762
-        for <devicetree@vger.kernel.org>; Thu,  4 Mar 2021 05:38:14 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id n16so26290686lfb.4
-        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 05:38:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Sy4nEQi288EJ0M7NsP9fNgE7Qbg6ZfSce++n7QC7VuE=;
-        b=HDEyZwrEB46msqvh9yZL6EIpSxJmqDcC7gwO0qmA5ppFeUZZynGA6jUe7EyfCmsk8Q
-         rcBnKK1vNt9y/wlSP7cHt9bjTpe55w38EsfRix7wkpzfpiWxwAsFdAyMlNpRS2Vvh6w3
-         fawXFbtO/97KGmx+9feW42Ya5GUueAsIb/TRpTlmNJ5s6egRp9BtUOyo0gqFaq+xdPEV
-         T1zZT8nF1Ni3+X79Dae5i7HiscmcOz6U3D2PZKXsvPFXricPI9lr/5a9b1eetyEuexsL
-         QYuoLhT95aAs2djBuEz3/JU7g7CqeaarcznXmDsFvDWyfCEJvHFKCp3bOPwouJhVFNPf
-         XRfA==
+        id S241411AbhCDNlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 08:41:39 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:28454 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241430AbhCDNlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 08:41:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1614865193;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ekOwjBVLyvG/SdJJ95XbcF+3uVLr94jDQEL8woMHUvs=;
+        b=hp5IOYKYoQyFIKYuNs6aFYKi2wQjS21aLTfUUuDtTCZthIn+5laOVBDHNbvCDW+5VHHEkC
+        NRFhjDFnIon1xiXiTbrt4sf9/22QVkqQxmKMihuFe2EL1n6rz4cujHUYlzuUbCnzJOZADE
+        A3/v3eyoqK7NzamfTZH+E6/ECh6q51s=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-180-sjrbxxvQMz2j-mTNbBr7kA-1; Thu, 04 Mar 2021 08:39:50 -0500
+X-MC-Unique: sjrbxxvQMz2j-mTNbBr7kA-1
+Received: by mail-qk1-f198.google.com with SMTP id a1so11139891qkn.11
+        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 05:39:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Sy4nEQi288EJ0M7NsP9fNgE7Qbg6ZfSce++n7QC7VuE=;
-        b=WciqciwNeIHhCGBtE9Ld4ZOggs/fjPz39ymQwaizBGK6VKhgXuhureLWRsZOiJEGp/
-         xhf2Jk+MWa72dJAyePv6YQVxW6j1yQlZ7qcfnOH7jpvgHGkgK9cQp3JRVtVp+W6eaPZI
-         BPhUX/6uG2PQ+F+KsrIi8RWSjozxlG0oRt34ygwdlyLfocUzYIsz1fYQpqoXH/3h7DXG
-         MsvdPd8eXIng6A7uZQnumVFla4AjKpfaB/G1mGuRN/izCNS9Z3kYIBb5AEUaXEFCRZ/B
-         64Weo0rVLYOlosmRwMytHAzKs/Pd/KOUqOr6hiMjvjU/kYyRR0lWgPN/O7mUmYCMZHo9
-         7v8Q==
-X-Gm-Message-State: AOAM532F2rczsZlwTzPNZzj7svGnnXdF9ebbivIyvXcQay6/9ztXbaXg
-        nYD2xoneOztcZqdC1ERQlPwUakl5YId2J9lbZClgcw==
-X-Google-Smtp-Source: ABdhPJzFb3M5KKDc0P6vzgQhF75tV/IB16cKzRo83AG6u77j3RQ1zLFiwZGnOCt2xN7WcZZR4msr6H1Iqkoxi26D0cs=
-X-Received: by 2002:a19:548:: with SMTP id 69mr2287824lff.465.1614865092582;
- Thu, 04 Mar 2021 05:38:12 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=ekOwjBVLyvG/SdJJ95XbcF+3uVLr94jDQEL8woMHUvs=;
+        b=h37htHxgGUDPDRV30J3CBzHZRYCEL+uxyg1y5ktq1YQ01bIqRd9+UixHGO7x3F1Jnj
+         3svemR/qpEoZU4d6KMlcyLMmEPSJqKweCUQNgd/irEQPBAWx14ZV0zTC6HjuUN+v3jAA
+         PNjKM59e2ukXdeA4cD+yvvjx9Z1UL63mG3Uw11Fk44AVuweiQvbKCM2MUUxWMdZqBa3F
+         WRrNgONPcANYKsLifkgrtXsKqu+Shs1LxWBP6W6fzprgjcGF/xqOExl7GPMpsGoPgeLV
+         zXGInJUD5fCwPllkKBsR1VfMEiYlRh8QPEzIRdngLJVaLz/Wt5RG/+cIy3aEY1ODzR0w
+         1j1w==
+X-Gm-Message-State: AOAM531dolnudo/vtCbUJ/E6tlaqSWMZ2PQ/L0OYSI4QCgJuMmjUx1pA
+        c6lhMGfYt6ZatJ7xgCO5FFKEmrtaGLkD597ONFGdewQmBwwkeNegbyHywWbZZ6y5YtOiC9EnnxG
+        tdIBgLjt1rOfGWa2RhqnCdA==
+X-Received: by 2002:a37:5243:: with SMTP id g64mr3889263qkb.376.1614865189435;
+        Thu, 04 Mar 2021 05:39:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz39ia44Xjc22E0lCMnwd++aFVAU2PmF9Dow8C0dnza9IdHZCG92M9XqC1aKWAXeZ+WRWNlKA==
+X-Received: by 2002:a37:5243:: with SMTP id g64mr3889235qkb.376.1614865189156;
+        Thu, 04 Mar 2021 05:39:49 -0800 (PST)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id b22sm6464402qkk.45.2021.03.04.05.39.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Mar 2021 05:39:48 -0800 (PST)
+Subject: Re: [PATCH V3 XRT Alveo 13/18] fpga: xrt: devctl platform driver
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     Lizhi Hou <lizhih@xilinx.com>, linux-fpga@vger.kernel.org,
+        maxz@xilinx.com, sonal.santan@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
+References: <20210218064019.29189-1-lizhih@xilinx.com>
+ <20210218064019.29189-14-lizhih@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <f32d06bc-1054-eb97-cce1-9b40e9c4442b@redhat.com>
+Date:   Thu, 4 Mar 2021 05:39:46 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
- <CACRpkdbQD6p7fbGtuu1c92uXfSFDCTwqjqsXHpgnD5Lg4v0Okw@mail.gmail.com> <20210304091025.ny52qjm7wbfvmjgl@mobilestation>
-In-Reply-To: <20210304091025.ny52qjm7wbfvmjgl@mobilestation>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 4 Mar 2021 14:38:01 +0100
-Message-ID: <CACRpkdZroi+_oHqipS71MAGif190y7jWU5Myf55vz=_um4w5cQ@mail.gmail.com>
-Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Brad Larson <brad@pensando.io>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210218064019.29189-14-lizhih@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 10:10 AM Serge Semin <fancer.lancer@gmail.com> wrote:
-> On Thu, Mar 04, 2021 at 09:29:33AM +0100, Linus Walleij wrote:
 
-> > > + * pin:             3            2        |       1            0
-> > > + * bit:         7------6------5------4----|---3------2------1------0
-> > > + *             cs1  cs1_ovr  cs0  cs0_ovr |  cs1  cs1_ovr  cs0  cs0_ovr
-> > > + *                        ssi1            |             ssi0
-> > > + */
-> > > +#define SPICS_PIN_SHIFT(pin)   (2 * (pin))
-> > > +#define SPICS_MASK(pin)                (0x3 << SPICS_PIN_SHIFT(pin))
-> > > +#define SPICS_SET(pin, val)    ((((val) << 1) | 0x1) << SPICS_PIN_SHIFT(pin))
-> >
+On 2/17/21 10:40 PM, Lizhi Hou wrote:
+> Add devctl driver. devctl is a type of hardware function which only has
+> few registers to read or write. They are discovered by walking firmware
+> metadata. A platform device node will be created for them.
 >
-> > So 2 bits per GPIO line in one register? (Nice doc!)
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhih@xilinx.com>
+> ---
+>  drivers/fpga/xrt/include/xleaf/devctl.h |  43 +++++
+>  drivers/fpga/xrt/lib/xleaf/devctl.c     | 206 ++++++++++++++++++++++++
+>  2 files changed, 249 insertions(+)
+>  create mode 100644 drivers/fpga/xrt/include/xleaf/devctl.h
+>  create mode 100644 drivers/fpga/xrt/lib/xleaf/devctl.c
 >
-> I suppose the first bit is the CS-pin-override flag. So when it's set
-> the output is directly driven by the second bit, otherwise the
-> corresponding DW APB SPI controller drives it. That's how the
-> multiplexing is implemented here.
+> diff --git a/drivers/fpga/xrt/include/xleaf/devctl.h b/drivers/fpga/xrt/include/xleaf/devctl.h
+> new file mode 100644
+> index 000000000000..96a40e066f83
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/include/xleaf/devctl.h
+> @@ -0,0 +1,43 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Header file for XRT DEVCTL Leaf Driver
+> + *
+> + * Copyright (C) 2020-2021 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *	Lizhi Hou <Lizhi.Hou@xilinx.com>
+> + */
+> +
+> +#ifndef _XRT_DEVCTL_H_
+> +#define _XRT_DEVCTL_H_
+> +
+> +#include "xleaf.h"
+> +
+> +/*
+> + * DEVCTL driver IOCTL calls.
+> + */
+> +enum xrt_devctl_ioctl_cmd {
+> +	XRT_DEVCTL_READ = XRT_XLEAF_CUSTOM_BASE, /* See comments in xleaf.h */
+> +	XRT_DEVCTL_WRITE,
+> +};
+> +
+> +enum xrt_devctl_id {
+> +	XRT_DEVCTL_ROM_UUID,
+Assumes 0, should make this explicit and initialize to 0
+> +	XRT_DEVCTL_DDR_CALIB,
+> +	XRT_DEVCTL_GOLDEN_VER,
+> +	XRT_DEVCTL_MAX
+> +};
+> +
+> +struct xrt_devctl_ioctl_rw {
+> +	u32	xgir_id;
+> +	void	*xgir_buf;
+> +	u32	xgir_len;
+> +	u32	xgir_offset;
+similar to other patches, the xgir_ prefix is not needed
+> +};
+> +
+> +struct xrt_devctl_ioctl_intf_uuid {
+> +	u32	xgir_uuid_num;
+> +	uuid_t	*xgir_uuids;
+> +};
+> +
+> +#endif	/* _XRT_DEVCTL_H_ */
+> diff --git a/drivers/fpga/xrt/lib/xleaf/devctl.c b/drivers/fpga/xrt/lib/xleaf/devctl.c
+> new file mode 100644
+> index 000000000000..caf8c6569f0f
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/xleaf/devctl.c
+> @@ -0,0 +1,206 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Xilinx Alveo FPGA devctl Driver
+> + *
+> + * Copyright (C) 2020-2021 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *      Lizhi Hou<Lizhi.Hou@xilinx.com>
+> + */
+> +
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include "metadata.h"
+> +#include "xleaf.h"
+> +#include "xleaf/devctl.h"
+> +
+> +#define XRT_DEVCTL "xrt_devctl"
+> +
+> +struct xrt_name_id {
+> +	char *ep_name;
+> +	int id;
+> +};
+> +
+> +static struct xrt_name_id name_id[XRT_DEVCTL_MAX] = {
+> +	{ XRT_MD_NODE_BLP_ROM, XRT_DEVCTL_ROM_UUID },
+> +	{ XRT_MD_NODE_GOLDEN_VER, XRT_DEVCTL_GOLDEN_VER },
+DDR_CALIB is unused ?
+> +};
+> +
+> +struct xrt_devctl {
+> +	struct platform_device	*pdev;
+> +	void		__iomem *base_addrs[XRT_DEVCTL_MAX];
+> +	ulong			sizes[XRT_DEVCTL_MAX];
+> +};
+similar to other patches, why not use regmap ?
+> +
+> +static int xrt_devctl_name2id(struct xrt_devctl *devctl, const char *name)
+> +{
+> +	int	i;
+> +
+> +	for (i = 0; i < XRT_DEVCTL_MAX && name_id[i].ep_name; i++) {
+> +		if (!strncmp(name_id[i].ep_name, name, strlen(name_id[i].ep_name) + 1))
+> +			return name_id[i].id;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int
+> +xrt_devctl_leaf_ioctl(struct platform_device *pdev, u32 cmd, void *arg)
+> +{
+> +	struct xrt_devctl	*devctl;
+> +	int			ret = 0;
+> +
+> +	devctl = platform_get_drvdata(pdev);
+> +
+> +	switch (cmd) {
+> +	case XRT_XLEAF_EVENT:
+> +		/* Does not handle any event. */
+> +		break;
+> +	case XRT_DEVCTL_READ: {
+> +		struct xrt_devctl_ioctl_rw	*rw_arg = arg;
+> +		u32				*p_src, *p_dst, i;
+> +
+> +		if (rw_arg->xgir_len & 0x3) {
+> +			xrt_err(pdev, "invalid len %d", rw_arg->xgir_len);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (rw_arg->xgir_id >= XRT_DEVCTL_MAX) {
+> +			xrt_err(pdev, "invalid id %d", rw_arg->xgir_id);
+> +			return -EINVAL;
+> +		}
+needs a < 0 check ?
+> +
+> +		p_src = devctl->base_addrs[rw_arg->xgir_id];
+> +		if (!p_src) {
+> +			xrt_err(pdev, "io not found, id %d",
+> +				rw_arg->xgir_id);
+> +			return -EINVAL;
+> +		}
+> +		if (rw_arg->xgir_offset + rw_arg->xgir_len >
+> +		    devctl->sizes[rw_arg->xgir_id]) {
+> +			xrt_err(pdev, "invalid argument, off %d, len %d",
+> +				rw_arg->xgir_offset, rw_arg->xgir_len);
+> +			return -EINVAL;
+> +		}
+> +		p_dst = rw_arg->xgir_buf;
+> +		for (i = 0; i < rw_arg->xgir_len / sizeof(u32); i++) {
+> +			u32 val = ioread32(p_src + rw_arg->xgir_offset + i);
+> +
+> +			memcpy(p_dst + i, &val, sizeof(u32));
+> +		}
+> +		break;
+> +	}
 
-If these output lines are so tightly coupled to the SPI block
-and will not be used for any other GPO (general purpose output)
-I think it makes more sense to bundle the handling into the
-DW SPI driver, and activate it based on the Elba compatible
-string (if of_is_compatible(...)).
+The _WRITE msg is not handled Then why have it ?
 
-I am a bit cautious because it has happened in the past that
-people repurpose CS lines who were originally for SPI CS
-to all kind of other purposes, such as a power-on LED and
-in that case it needs to be a separate GPIO driver. So the
-author needs to have a good idea about what is a realistic
-use case here.
+Tom
 
-Yours,
-Linus Walleij
+> +	default:
+> +		xrt_err(pdev, "unsupported cmd %d", cmd);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int xrt_devctl_remove(struct platform_device *pdev)
+> +{
+> +	struct xrt_devctl	*devctl;
+> +	int			i;
+> +
+> +	devctl = platform_get_drvdata(pdev);
+> +
+> +	for (i = 0; i < XRT_DEVCTL_MAX; i++) {
+> +		if (devctl->base_addrs[i])
+> +			iounmap(devctl->base_addrs[i]);
+> +	}
+> +
+> +	platform_set_drvdata(pdev, NULL);
+> +	devm_kfree(&pdev->dev, devctl);
+> +
+> +	return 0;
+> +}
+> +
+> +static int xrt_devctl_probe(struct platform_device *pdev)
+> +{
+> +	struct xrt_devctl	*devctl;
+> +	int			i, id, ret = 0;
+> +	struct resource		*res;
+> +
+> +	devctl = devm_kzalloc(&pdev->dev, sizeof(*devctl), GFP_KERNEL);
+> +	if (!devctl)
+> +		return -ENOMEM;
+> +
+> +	devctl->pdev = pdev;
+> +	platform_set_drvdata(pdev, devctl);
+> +
+> +	xrt_info(pdev, "probing...");
+> +	for (i = 0, res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	    res;
+> +	    res = platform_get_resource(pdev, IORESOURCE_MEM, ++i)) {
+> +		id = xrt_devctl_name2id(devctl, res->name);
+> +		if (id < 0) {
+> +			xrt_err(pdev, "ep %s not found", res->name);
+> +			continue;
+> +		}
+> +		devctl->base_addrs[id] = ioremap(res->start, res->end - res->start + 1);
+> +		if (!devctl->base_addrs[id]) {
+> +			xrt_err(pdev, "map base failed %pR", res);
+> +			ret = -EIO;
+> +			goto failed;
+> +		}
+> +		devctl->sizes[id] = res->end - res->start + 1;
+> +	}
+> +
+> +failed:
+> +	if (ret)
+> +		xrt_devctl_remove(pdev);
+> +
+> +	return ret;
+> +}
+> +
+> +static struct xrt_subdev_endpoints xrt_devctl_endpoints[] = {
+> +	{
+> +		.xse_names = (struct xrt_subdev_ep_names[]) {
+> +			/* add name if ep is in same partition */
+> +			{ .ep_name = XRT_MD_NODE_BLP_ROM },
+> +			{ NULL },
+> +		},
+> +		.xse_min_ep = 1,
+> +	},
+> +	{
+> +		.xse_names = (struct xrt_subdev_ep_names[]) {
+> +			{ .ep_name = XRT_MD_NODE_GOLDEN_VER },
+> +			{ NULL },
+> +		},
+> +		.xse_min_ep = 1,
+> +	},
+> +	/* adding ep bundle generates devctl device instance */
+> +	{ 0 },
+> +};
+> +
+> +static struct xrt_subdev_drvdata xrt_devctl_data = {
+> +	.xsd_dev_ops = {
+> +		.xsd_ioctl = xrt_devctl_leaf_ioctl,
+> +	},
+> +};
+> +
+> +static const struct platform_device_id xrt_devctl_table[] = {
+> +	{ XRT_DEVCTL, (kernel_ulong_t)&xrt_devctl_data },
+> +	{ },
+> +};
+> +
+> +static struct platform_driver xrt_devctl_driver = {
+> +	.driver = {
+> +		.name = XRT_DEVCTL,
+> +	},
+> +	.probe = xrt_devctl_probe,
+> +	.remove = xrt_devctl_remove,
+> +	.id_table = xrt_devctl_table,
+> +};
+> +
+> +void devctl_leaf_init_fini(bool init)
+> +{
+> +	if (init)
+> +		xleaf_register_driver(XRT_SUBDEV_DEVCTL, &xrt_devctl_driver, xrt_devctl_endpoints);
+> +	else
+> +		xleaf_unregister_driver(XRT_SUBDEV_DEVCTL);
+> +}
+
