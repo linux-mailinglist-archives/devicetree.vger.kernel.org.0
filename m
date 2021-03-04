@@ -2,113 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A998832CFEF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:45:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A80632CFEA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:44:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237820AbhCDJob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 04:44:31 -0500
-Received: from mout.kundenserver.de ([212.227.126.134]:56315 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237819AbhCDJoG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 04:44:06 -0500
-Received: from mail-ot1-f47.google.com ([209.85.210.47]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MVJZv-1lAuS41mZr-00SQD3; Thu, 04 Mar 2021 10:41:31 +0100
-Received: by mail-ot1-f47.google.com with SMTP id r19so26656853otk.2;
-        Thu, 04 Mar 2021 01:41:30 -0800 (PST)
-X-Gm-Message-State: AOAM530I+9+QJkdM89ohFeJ0bIwpDYQsdXem+VG81N1gM7Co0qdOnMtJ
-        YBmQmfR65LQ8A9DhNnZJBuJ3ldTm5VoilusPnR8=
-X-Google-Smtp-Source: ABdhPJymlN8iq4nvYqLgYJhERzarQA0luMeji7dvb8ZzGTbfCCd8Xu6l02IlEMNWS4ELx6GbB6I7LENGDKUCNA/BBK8=
-X-Received: by 2002:a05:6830:1b65:: with SMTP id d5mr2767842ote.305.1614850889650;
- Thu, 04 Mar 2021 01:41:29 -0800 (PST)
+        id S237809AbhCDJn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 04:43:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57474 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237808AbhCDJnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 04:43:13 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B0A2C061574;
+        Thu,  4 Mar 2021 01:42:32 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id q25so21881088lfc.8;
+        Thu, 04 Mar 2021 01:42:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=bEHZ/Frn9iwzx4diKW6uN1aBQ3lfmU4krVx1yJhDOA4=;
+        b=MoIboQDU+NHyjg+PGQjitOqCTdZNe7jYETiwVCov73FkhT/WyUvCnqjTZlx4A8GmF0
+         OIWew0saIIX+QnCvMdjsg7wKg+BlbKxOcfCGALVX9LG5HPd1mrb3/865f4wnWHriQ7Ez
+         0RZHySAEchv/sekCYdT1+HrvImzUFLj2art5hVnN/BL9u2qLynJd1T3aQYyFJnhMPZX1
+         wTvXT1dpo7nkiJmBhLmGmWZcuy2l5UkomZP0TqXkuu9CazCfi/IEMlqGPVCi062NE5L8
+         msK4XEFkZzFbK1yvts1H5IJAOde4tE8I9PL2qYmv9vUTOJ0sFCmIbh7lx68Jx8oqElwL
+         ROQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=bEHZ/Frn9iwzx4diKW6uN1aBQ3lfmU4krVx1yJhDOA4=;
+        b=Ma6zruhz1QMhiG/I1k8vjW0wpiqQDseYOgXqshTzhFO0aawXxyhu4+gyj37NJ69WP7
+         I1U9AnfJ5tSSBb92K0R7G11Xa2b5ljkDAVgqOyEQvTK9qBra+l3T8OHxup2NZjZwj+6S
+         3fNn3wgdsHOp8nAstQT59DE+jFijsn51SeWDpj6WY8mis//HjLUCXNX5p9+geKr59QD4
+         OjBtPJ4UgZnhoBRnvJoty8RzAsSl9bs0gPZYNsGWaMTFZmnF2m/Z2S/WbHbv4ryJsbOq
+         Pf9o4+zZZB6EdTUtdK+IbAQtn58uOGtsVMBc2SMNrqXoAbYcFh/CZzLgNki/vFwwklNn
+         kJ6A==
+X-Gm-Message-State: AOAM530XwOT/xGRkWfSqFFfsA7i9SKM+N89idW/QpBi/D4hkG+PTnTSJ
+        Z8jfCo9zaAwwI2AM4yfTDjv6nVPTdMs=
+X-Google-Smtp-Source: ABdhPJxiTZQIWODAtj6+oKhwC7rv65S7mwjUAbzllukSkqBegigEZuay9DFOE/w38bc9b6Ft8KD7PQ==
+X-Received: by 2002:ac2:4ecd:: with SMTP id p13mr1730346lfr.421.1614850950963;
+        Thu, 04 Mar 2021 01:42:30 -0800 (PST)
+Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.googlemail.com with ESMTPSA id r11sm1638373lfn.30.2021.03.04.01.42.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Mar 2021 01:42:30 -0800 (PST)
+Subject: Re: [PATCH v1 5/5] ASoC: tegra30: i2s: Add reset control
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Paul Fertser <fercerpav@gmail.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210302112123.24161-1-digetx@gmail.com>
+ <20210302112123.24161-6-digetx@gmail.com>
+ <cbb1f0d4-ddc5-733d-896d-dd76ce01ca69@gmail.com>
+ <f581865a299091371a8450349e23ffdc8abb7b37.camel@pengutronix.de>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <26e504b7-1077-d43b-07c7-abe2bcf50cc4@gmail.com>
+Date:   Thu, 4 Mar 2021 12:42:29 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-6-brad@pensando.io>
-In-Reply-To: <20210304034141.7062-6-brad@pensando.io>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 4 Mar 2021 10:41:13 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2mQ9Tk+xeL-kdpQh3oqgNQeT6c-_KwNLQQ7mEc21fDvg@mail.gmail.com>
-Message-ID: <CAK8P3a2mQ9Tk+xeL-kdpQh3oqgNQeT6c-_KwNLQQ7mEc21fDvg@mail.gmail.com>
-Subject: Re: [PATCH 5/8] mmc: sdhci-cadence: Add Pensando Elba SoC support
-To:     Brad Larson <brad@pensando.io>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:kqvBcIEbWL5RCul9WDc6fNmhHfAHrDegFoDqH6kNXYyjXpBPhVD
- 0ShsjKMCPpyaixgCdGyTrh/sUWjFUhyJsj25McS0a96ftxJGPYKTtDvbmWjRKCLRRgeQijh
- cA2I6Gu3giO5j/QCwZ9Jv+ETyLafIuZneQtw0dDrHnwAtzSJ5qPRdYayo5ZXOUdvCXZIBj5
- A7zaqpsP//rU8ExUo45AQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:fY3YxTFro3w=:MTZb1prOtD1zd5K6gp9R6G
- vr/JCs0FL3fJ1tlfCYDWU2IA5o6c/RgdeJDEYxi4rBGOuVCRTKpZUDO/4vn+Fe46kNXxbdYPz
- V1pY8BWLfJFbdre7VX5ct+qS8Zfo1LsJGVguRSmMSRGsqCJm+r95qnrGlBzj7DYDj7UeCSejt
- F/5HD12iK2QXrUJY/38xIzJ1AyMHFnXRpYg6o9RWRnVlm6092A1tLxeZN6DE2vhPkCK8pofZW
- 00c/rzsJ1mh4cYDkhEKKglxhMAJxQnim7HFq2Z3SZX+RrjAa7I6ePupTFGXNjLCABaWujyo9O
- I8Ax12eCAT1xcid1qJSXM4IUN7JC5BQEHci9j71MVHobPO4s56vt815/em6FfSJ+FHhiwo9M2
- aVK3Em+bW4G2mOXaUSMTQ4HvH56R8qUMJJF2mTcrTlGnf23AJ/VzcM1vik0FhI5mQzd5gQKHX
- K1LudIB+IzlINJhh1eJ51QOMa9mXfy6eKId6pivShYtxzvNQ+wLawmDj1N/OHH3DvouoLsboO
- ohV31rEDGyGfet9ztLhVUEi0MGut8yUWHtcDbkq/HkxZVGuUJpronDWFSgofF53Og==
+In-Reply-To: <f581865a299091371a8450349e23ffdc8abb7b37.camel@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 4:41 AM Brad Larson <brad@pensando.io> wrote:
+03.03.2021 15:09, Philipp Zabel пишет:
+> Hi Dmitry,
+> 
+> On Wed, 2021-03-03 at 11:28 +0300, Dmitry Osipenko wrote:
+>> 02.03.2021 14:21, Dmitry Osipenko пишет:
+>>> The I2S reset may be asserted at a boot time. Tegra30 I2S driver doesn't
+>>> manage the reset control and currently it happens to work because reset
+>>> is implicitly deasserted by the Tegra AHUB driver, but the reset of I2C
+>>> controller should be synchronous and I2S clock is disabled when AHUB is
+>>> reset. Add reset control to the Tegra30 I2S driver.
+>>>
+>>> Note that I2S reset was always specified in Tegra30+ device-trees, hence
+>>> DTB ABI changes aren't required. Also note that AHUB touches I2S resets,
+>>> hence AHUB resets are now requested in a released state, allowing both
+>>> drivers to control the I2S resets together.
+>>>
+>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>> ---
+>>>  sound/soc/tegra/tegra30_ahub.c | 14 ++++++++++---
+>>>  sound/soc/tegra/tegra30_i2s.c  | 36 +++++++++++++++++++++++++++++++++-
+>>>  sound/soc/tegra/tegra30_i2s.h  |  1 +
+>>>  3 files changed, 47 insertions(+), 4 deletions(-)
+>>
+>> ...
+>>> @@ -579,7 +587,7 @@ static int tegra30_ahub_probe(struct platform_device *pdev)
+>>>  	if (ret)
+>>>  		return ret;
+>>>  
+>>> -	ahub->reset = devm_reset_control_array_get_exclusive(&pdev->dev);
+>>> +	ahub->reset = devm_reset_control_array_get_exclusive_released(&pdev->dev);
+>>
+>> Thinking a bit more about this, it looks like we actually want something
+>> like:
+>>
+>> 	devm_reset_control_array_get_exclusive_released_named()
+>>
+>> that will request resets by given names and in a given order, similarly
+>> to devm_clk_bulk_get(). This will be very handy for both Tegra audio and
+>> GPU drivers. I'll prepare a v2 if there are no objections.
+> 
+> I do have an untested reset control bulk API patch that I've just never
+> finished, because I had no user. I'll send you an RFC, let me know if
+> you can build on that.
 
-> +
-> +static void elba_write_l(struct sdhci_host *host, u32 val, int reg)
-> +{
-> +       struct sdhci_cdns_priv *priv = sdhci_cdns_priv(host);
-> +       unsigned long flags;
-> +
-> +       spin_lock_irqsave(&priv->wrlock, flags);
-> +       writel(0x78, priv->ctl_addr);
-> +       writel(val, host->ioaddr + reg);
-> +       spin_unlock_irqrestore(&priv->wrlock, flags);
-> +}
-
-Please be aware that the spinlock does not actually guarantee serializing
-a series of mmio writes unless the MMIO mapping is non-posted, or
-you follow it with a readl() from the same device before the spin_unlock().
-
-> @@ -453,8 +441,14 @@ static const struct dev_pm_ops sdhci_cdns_pm_ops = {
->  static const struct of_device_id sdhci_cdns_match[] = {
->         {
->                 .compatible = "socionext,uniphier-sd4hc",
-> -               .data = &sdhci_cdns_uniphier_pltfm_data,
-> +               .data = &sdhci_cdns_uniphier_drv_data,
->         },
-> +#ifdef CONFIG_MMC_SDHCI_CADENCE_ELBA
-> +       {
-> +               .compatible = "pensando,elba-emmc",
-> +               .data = &sdhci_elba_drv_data
-> +       },
-> +#endif
->         { .compatible = "cdns,sd4hc" },
->         { /* sentinel */ }
->  };
-
-This introduces a reverse dependency between the modules, which will cause
-problems at link time depending on how you configure it. There are two ways
-to avoid this:
-
-a) the simple method is to always link every backend into the driver module,
-usually leaving them all enabled at compile time.
-
-b) once this gets out of hand because there are too many variants, or the
-differences between them are too big, you refactor the common code into
-a library module that just exports a functions but has no module_init()
-itself, plus a front-end driver for each variant, which now calls into
-the common
-code rather than being called by the common code.
-
-      Arnd
+Hello, Philipp! Thank you very much for sharing the patch, it should be
+very useful!
