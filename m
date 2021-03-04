@@ -2,107 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3959332D2AD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 13:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED7232D2BE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 13:20:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240376AbhCDMNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 07:13:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33304 "EHLO
+        id S240407AbhCDMT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 07:19:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240314AbhCDMNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 07:13:13 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B8B5C061756;
-        Thu,  4 Mar 2021 04:12:33 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id d8so5609116plg.10;
-        Thu, 04 Mar 2021 04:12:33 -0800 (PST)
+        with ESMTP id S240404AbhCDMTF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 07:19:05 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3DCDC061574;
+        Thu,  4 Mar 2021 04:18:24 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id u14so27415390wri.3;
+        Thu, 04 Mar 2021 04:18:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=XiYssDwn8aWrUUPIZ0bSaYBRfxID6/TO2DA4DbU08gw=;
-        b=Cp6p/NsItZt7stLd/mzS/+xf5wYb4MkM7EV/fHzz1DwPr6Bu3dUmmcazULu1liqRYk
-         Q7clx12lHzMR/irFaWFLoeTfARoa6W+A5Z3BjPwhvqQpUm511ujvGM1VB0RufoP1B5e/
-         811P8LGtlEJjBrwmx1fa56IXlmBznn8Vlcs2mXuiwteIizFmh15HFCTy0J9E+CbbeEe8
-         e1FvW6clLErvKs3dozck8Zt53xIMDwc260wTnL6go7jUsP4VQmj0u8S3QllMm/wnJiEL
-         XIWPzIhCKpPkMrqmq0OF4owS5/RUms50V0L9hZ+Wj9lS7U1KAtxZ54yQDqpxz67aLHXZ
-         nfQw==
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=KNlstPTDN9pTEJEKpuf+h3ME6Y8QWCswm7ow88tpM0k=;
+        b=A0ZYW4QSFB86QnM5sFtGcxGb2+OQ7FAl8POI6u8LMPpLEuhBkm6f+VOiQ3KQpFT8q+
+         sRuGfdQC8wJzeEbgWLoNbpdasSVEduD2cOXvRNDNlsSomgZQ0O2BAswao5T28W25MVF+
+         VjNg73mrzXj1eYMyIxGQW+5H+uC/E9DEY9x/bvQFLKZ1ZN7YqXGw7tOtnZDx5Ol+NRPw
+         o9PQ2B3waOvnvxTnWMANfrr1+7eLEEU5sDVrIhasyXxtDHyUGrjTr5x4Yfz3kXkGDvnH
+         YNBZciYNPLco65Xi10wifn4lq6XPhIvAexoKLg8R+i/AqPZ4Ns1e7mB6CH9F3d/fKTuf
+         Oerw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=XiYssDwn8aWrUUPIZ0bSaYBRfxID6/TO2DA4DbU08gw=;
-        b=pOCWk8R+NjLMMdwiimKvTmFLcpd4s3aNI1rOrjWDotn7wNI6MZdfcRH2UGYfzNV38M
-         K8EryyOmeSj/VK5lRHz/hrDYUqMwpLkpwafCJy0Bp3U4CNmdxclgDTQ1ewG58Uhq/tD4
-         Vr9OEq4m8ZXPXce461z3TklBfXgLt79M71QftGMoQ/mmVENoRb5I1+v1nQ8GXYkdUKM0
-         8d6zyVFhxLBedYaSTbks7l4cAoFf6JAueZqPv6TQjzG+yFtBAPqqv7NFqd2bhukt923g
-         RT9gKJyS5aqgq2nFVwincwO7c/QflfBJLQfWAcA7hPhjozBR6hLKwIPnT8wNO1GUEQ2k
-         X49g==
-X-Gm-Message-State: AOAM530LaZzxYJ3HHJzPxsiPlou2aOjUJ+ymXl3jdZi9XJXt6lYg3i7k
-        2XNnrcbfVGG7NeC0oTDYhZmL/V6GSeGAA6us7DY=
-X-Google-Smtp-Source: ABdhPJx4KAz4+0m4gMaSg6NEehkZztP+dzaqrDK5Al1ExcfXAZJ6TPQqEZbjZECIkICmep1JHoL2VUT9wsbvVUTfvY8=
-X-Received: by 2002:a17:90a:db49:: with SMTP id u9mr4363678pjx.181.1614859952809;
- Thu, 04 Mar 2021 04:12:32 -0800 (PST)
-MIME-Version: 1.0
-References: <20210304085710.7128-1-noltari@gmail.com> <20210304085710.7128-6-noltari@gmail.com>
- <CAHp75Vc8Gk0ZVjfQH71-Du1ZB1HT5qrgbT6HZgXQd-C6xE05ZQ@mail.gmail.com> <F56A2594-5E16-457F-B170-D9D14E6592FE@gmail.com>
-In-Reply-To: <F56A2594-5E16-457F-B170-D9D14E6592FE@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 4 Mar 2021 14:12:16 +0200
-Message-ID: <CAHp75VcVmzKOVn_v0iggaA3gtfYwh3CzO8rFpxA_JbebsEtWPQ@mail.gmail.com>
-Subject: Re: [PATCH v4 05/15] pinctrl: add a pincontrol driver for BCM6328
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=KNlstPTDN9pTEJEKpuf+h3ME6Y8QWCswm7ow88tpM0k=;
+        b=rgnPT0H1ZotRDaliyq9X8lJDNbcchFnO9cYxk0j+MHHHE6KzrgiE8zN5dMx1fCyCXm
+         ry3qdJfgZ5qYInEBSXT23sG9yjQXEmZ0daZC81pWNsLGXeVO+9D6XhfHUTa+3pqZlQCt
+         GFW16ctq5V/CkSj61GmyjDXPwluYzHuMsmq3SaxTxVaYbMeKNUqOYYx9vZPmR53RMmOu
+         phwvy4Ns7ZcBgfPwBlk59cGbweJdb2EJFEbqGndIMm9fd+8XF3zkykjikMqidVFQT8r2
+         1PR+slNFPrK8JRTbp9EBDcxVUVsJqU3q2MKsAFY/+UuiNhrkGGaUp/GhccdaTMDIR54/
+         zHAA==
+X-Gm-Message-State: AOAM533P3qTtI8W/umSVYfSDvOHDMvu9wSSp0R000xZ3jn1JkToKv9Ji
+        gh5mTKgUmNgFbTbl2vnKGvgD+lW3PVx3NjSI
+X-Google-Smtp-Source: ABdhPJzwpYxSmJP2GVlgTeDei3xg+qCNoyBN4f+Kv+fT5+DSZOSJclDLtTs2GQd4aD38gQiC4pgQtg==
+X-Received: by 2002:adf:ec0b:: with SMTP id x11mr3601812wrn.175.1614860303494;
+        Thu, 04 Mar 2021 04:18:23 -0800 (PST)
+Received: from macbook-pro-alvaro.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
+        by smtp.gmail.com with ESMTPSA id y205sm12232542wmc.18.2021.03.04.04.18.22
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 04 Mar 2021 04:18:23 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
+Subject: Re: [PATCH v3 1/2] dt-bindings: rng: bcm2835: document reset support
+From:   =?utf-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
+In-Reply-To: <d6e5b3be7e2add03b8d00a931b7fe254cd39077e.camel@suse.de>
+Date:   Thu, 4 Mar 2021 13:18:22 +0100
+Cc:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        =?utf-8?B?Ik7DrWNvbGFzIEYuIFIuIEEuIFByYWRvIg==?= 
+        <nfraprado@protonmail.com>,
+        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        linux-crypto@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <419CC9A9-1C14-4D44-8305-3F7DFF656C1F@gmail.com>
+References: <20210222194510.14004-1-noltari@gmail.com>
+ <20210223170006.29558-1-noltari@gmail.com>
+ <20210223170006.29558-2-noltari@gmail.com>
+ <d6e5b3be7e2add03b8d00a931b7fe254cd39077e.camel@suse.de>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+X-Mailer: Apple Mail (2.3654.60.0.2.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 1:13 PM =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gm=
-ail.com> wrote:
-> > El 4 mar 2021, a las 11:49, Andy Shevchenko <andy.shevchenko@gmail.com>=
- escribi=C3=B3:
-> > On Thu, Mar 4, 2021 at 10:57 AM =C3=81lvaro Fern=C3=A1ndez Rojas
-> > <noltari@gmail.com> wrote:
 
-...
 
-> >> +       static const unsigned int bcm6328_mux[] =3D {
-> >> +               BCM6328_MUX_LO_REG,
-> >> +               BCM6328_MUX_HI_REG,
-> >
-> >> +               BCM6328_MUX_OTHER_REG
-> >
-> > When it's not terminator add a comma, otherwise remove a comma.
+> El 4 mar 2021, a las 13:07, Nicolas Saenz Julienne =
+<nsaenzjulienne@suse.de> escribi=C3=B3:
+>=20
+> Hi Alvaro,
+>=20
+> On Tue, 2021-02-23 at 18:00 +0100, =C3=81lvaro Fern=C3=A1ndez Rojas =
+wrote:
+>> Some devices may need to perform a reset before using the RNG, such =
+as the
+>> BCM6368.
+>>=20
+>> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+>> ---
+>>  v3: make resets required if brcm,bcm6368-rng.
+>>  v2: document reset support.
+>>=20
+>>  .../devicetree/bindings/rng/brcm,bcm2835.yaml   | 17 =
++++++++++++++++++
+>>  1 file changed, 17 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml =
+b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+>> index c147900f9041..11c23e1f6988 100644
+>> --- a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+>> +++ b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+>> @@ -37,6 +37,21 @@ required:
+>> =20
+>>=20
+>>  additionalProperties: false
+>=20
+> I can't claim I fully understand all the meta stuff in shemas, so I =
+generally
+> just follow the patterns already available out there.
 
-> =E2=80=A6 so you want me to add a comma or not?
+Well, that makes two of us :).
 
-Hmm... you tell me! If this is a list which covers all possible cases
-_and_ the last one is the kinda maximum value (aka terminator), then
-comma is not needed, otherwise add it (to me feels like the latter
-should be done here).
+> That said, shoudln't this be at the end, just before the examples?
 
-> > Also, why is it inside a function? It's anyway global and constant.
->
-> Because this is only used by this function and I=E2=80=99m used to doing =
-this to comply with MISRA C 2004 at work :)
+I don=E2=80=99t know but I can move it there =C2=AF\_(=E3=83=84)_/=C2=AF
 
-It makes code a bit harder to read.
+> Maybe the cause of that odd warning
+> you got there?
 
-> >> +       };
+Which odd warning?
+I don=E2=80=99t get any warnings when running (or at least warnings =
+related to rig, because I get warnings related to other yamls):
+make dt_binding_check =
+DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/rng/brcm,bcm2835.yaml
 
---=20
-With Best Regards,
-Andy Shevchenko
+>=20
+>> +if:
+>> +  properties:
+>> +    compatible:
+>> +      enum:
+>> +        - brcm,bcm6368-rng
+>> +then:
+>> +  properties:
+>> +    resets:
+>> +      maxItems: 1
+>> +  required:
+>> +    - resets
+>=20
+> I belive you can't really make a property required when the bindings =
+for
+> 'brcm,bcm6368-rng' were already defined. This will break the schema =
+for those
+> otherwise correct devicetrees.
+
+Why not?
+Wouldn=E2=80=99t just be required for brcm,bcm6368-rng?
+
+Anyway, I can omit this, since it would be the same for clocks and those =
+aren=E2=80=99t required either.
+
+>=20
+>> +else:
+>> +  properties:
+>> +    resets: false
+>> +
+>>  examples:
+>>    - |
+>>      rng@7e104000 {
+>> @@ -58,4 +73,6 @@ examples:
+>> =20
+>>=20
+>>          clocks =3D <&periph_clk 18>;
+>>          clock-names =3D "ipsec";
+>> +
+>> +        resets =3D <&periph_rst 4>;
+>>      };
+>=20
+> Regards,
+> Nicolas
+
+Best regards,
+=C3=81lvaro.=
