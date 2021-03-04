@@ -2,111 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DB9732DCFF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 23:29:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C50F32DD58
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 23:48:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231295AbhCDW3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 17:29:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55866 "EHLO mail.kernel.org"
+        id S232040AbhCDWsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 17:48:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37466 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229580AbhCDW3X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Mar 2021 17:29:23 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A024164FF4;
-        Thu,  4 Mar 2021 22:29:22 +0000 (UTC)
+        id S231736AbhCDWsy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Mar 2021 17:48:54 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0D15E6501C;
+        Thu,  4 Mar 2021 22:48:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614896962;
-        bh=ANwgarss26fhnHtMQx6kZPDetgPDjR7bGCtYWahlg/Q=;
+        s=k20201202; t=1614898134;
+        bh=GrerDAoTAovyyWNYvvC+zs2BPxmDLs2XKLKb4mqZLDY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=XQfwlPeoowQ9soQkxXtQOpFfuiwnfosGn+xFjVB8aJ/JGgfx5BhuMvaCj9VfRg9d2
-         iIHF4gmkfIG2J0MEi1JhYjHQOFzqUadDKl40wvUBLfo+p1yFeDd1hNee5c4YdBd3Jf
-         pUgDk65LdRHx5tP6CKcQOKReQMH2xqLWjqYKhBNl/sw786tXNG3BJIqTWHgMPtcxtx
-         4XfF3xGUlx36SoifC5FZVxJscC7ODiBgtiHz9mT8mJelMlrf3tQOybZDB6tjRk94dl
-         V5wjlX3EttoInTx779Z/h59tyjyz3ulpQMJrbghFayktiBRMFkW9h225/BFgt5sqZp
-         ipSzxlBDS4eKQ==
-Received: by mail-qt1-f178.google.com with SMTP id w6so245706qti.6;
-        Thu, 04 Mar 2021 14:29:22 -0800 (PST)
-X-Gm-Message-State: AOAM531sI7O7JMoLUGjnRyat6aqdhS2B7DB2xcL4r4HeZx68cOFBOP7t
-        DMHEEISGC9TcfmS7MXX4fF0+3BxGZlbnYxG4kA==
-X-Google-Smtp-Source: ABdhPJwx4d2wXbZtiOIhYLW9N+mjHTb19kz32s7JL6vHEGvP1Uq0fZcqmIA0CUEdGaXWw2o4QMKiAj+2ULAXXb0oCsE=
-X-Received: by 2002:ac8:70d1:: with SMTP id g17mr4802329qtp.380.1614896961860;
- Thu, 04 Mar 2021 14:29:21 -0800 (PST)
+        b=fl2hoAYr4FyvTGzDjQer3murYeBpxPsKxixW9QAs3SiMjkbVs1F6FyKCasSDdBKDp
+         zms401sqEExyK82KF2BP0C5B1QnWwF8GmIE9Rht6pQkWowXTn1Xp/S3LL6Oba5r0nQ
+         fULHUIHs0N1ZDiSWS/9Zyac6uOLCmzYZvxglLV5bpA286cjBBokgvz4c8AJFxjB8+8
+         ORBXxQ3v1FqOKOS7oGjPWBs5NziUFCirD/ZmwTFS5WzWJCCMITmC37DONZR5KN48R3
+         e6ZhYA4UocjazvhXkVhggBXfwbffEMI3He5G+faTJl3AjHo03NKinnRCBxeqmKF4nP
+         Hg7CymCsevq4g==
+Received: by mail-ej1-f46.google.com with SMTP id w1so52703037ejf.11;
+        Thu, 04 Mar 2021 14:48:53 -0800 (PST)
+X-Gm-Message-State: AOAM532shjaGSfTJW3GVXYwzHU4fQjeVzgcy307Wk6xGu3GgzPg52dMO
+        B/S9rGWEGcN73G4U1+Tcoq7lauTljwHNT175ng==
+X-Google-Smtp-Source: ABdhPJwsSfTpWjPL+cZrEMvosQ1IPs0l8gQZ/vIA9NHMjVhs68GFDG/L9SRf5PtvlaFJJ8yVPqheQ48Al0kdk2WAF/c=
+X-Received: by 2002:a17:906:380b:: with SMTP id v11mr6717737ejc.183.1614898132557;
+ Thu, 04 Mar 2021 14:48:52 -0800 (PST)
 MIME-Version: 1.0
-References: <20210304044803.812204-2-danielwa@cisco.com> <2b0081aa-52af-a4ab-7481-6e125bd103d6@csgroup.eu>
- <20210304212448.GK109100@zorba>
-In-Reply-To: <20210304212448.GK109100@zorba>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 4 Mar 2021 16:29:09 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJphExyTqEejMnM07NOgPyZ5hGLJunY6yXYm16WT+PGCQ@mail.gmail.com>
-Message-ID: <CAL_JsqJphExyTqEejMnM07NOgPyZ5hGLJunY6yXYm16WT+PGCQ@mail.gmail.com>
-Subject: Re: [PATCH 2/5] CMDLINE: drivers: of: ifdef out cmdline section
-To:     Daniel Walker <danielwa@cisco.com>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Will Deacon <will@kernel.org>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        X86 ML <x86@kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        xe-linux-external@cisco.com,
-        Ruslan Ruslichenko <rruslich@cisco.com>,
+References: <1614222604-27066-1-git-send-email-peng.fan@oss.nxp.com> <1614222604-27066-5-git-send-email-peng.fan@oss.nxp.com>
+In-Reply-To: <1614222604-27066-5-git-send-email-peng.fan@oss.nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 4 Mar 2021 16:48:40 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKAOUKnVLvu-VNeDVg0ShXPy56wxhCQv38+rO2k961v+g@mail.gmail.com>
+Message-ID: <CAL_JsqKAOUKnVLvu-VNeDVg0ShXPy56wxhCQv38+rO2k961v+g@mail.gmail.com>
+Subject: Re: [PATCH V3 4/5] dt-bindings: mmc: fsl-imx-esdhc: add clock bindings
+To:     peng.fan@oss.nxp.com
+Cc:     Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
         devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 3:24 PM Daniel Walker <danielwa@cisco.com> wrote:
+On Wed, Feb 24, 2021 at 9:23 PM <peng.fan@oss.nxp.com> wrote:
 >
-> On Thu, Mar 04, 2021 at 08:09:52AM +0100, Christophe Leroy wrote:
-> >
-> >
-> > Le 04/03/2021 =C3=A0 05:47, Daniel Walker a =C3=A9crit :
-> > > It looks like there's some seepage of cmdline stuff into
-> > > the generic device tree code. This conflicts with the
-> > > generic cmdline implementation so I remove it in the case
-> > > when that's enabled.
-> > >
-> > > Cc: xe-linux-external@cisco.com
-> > > Signed-off-by: Ruslan Ruslichenko <rruslich@cisco.com>
-> > > Signed-off-by: Daniel Walker <danielwa@cisco.com>
-> > > ---
-> > >   drivers/of/fdt.c | 12 ++++++++++++
-> > >   1 file changed, 12 insertions(+)
-> > >
-> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > index feb0f2d67fc5..cfe4f8d3c9f5 100644
-> > > --- a/drivers/of/fdt.c
-> > > +++ b/drivers/of/fdt.c
-> > > @@ -25,6 +25,7 @@
-> > >   #include <linux/serial_core.h>
-> > >   #include <linux/sysfs.h>
-> > >   #include <linux/random.h>
-> > > +#include <linux/cmdline.h>
-> > >   #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
-> > >   #include <asm/page.h>
-> > > @@ -1048,8 +1049,18 @@ int __init early_init_dt_scan_chosen(unsigned =
-long node, const char *uname,
-> > >     early_init_dt_check_for_initrd(node);
-> > > +#ifdef CONFIG_GENERIC_CMDLINE
-> > >     /* Retrieve command line */
-> > >     p =3D of_get_flat_dt_prop(node, "bootargs", &l);
-> > > +
-> > > +   /*
-> > > +    * The builtin command line will be added here, or it can overrid=
-e
-> > > +    * with the DT bootargs.
-> > > +    */
-> > > +   cmdline_add_builtin(data,
-> > > +                       ((p !=3D NULL && l > 0) ? p : NULL), /* This =
-is sanity checking */
-> >
-> > Can we do more simple ? If p is NULL, p is already NULL, so (l > 0 ? p =
-: NULL) should be enough.
+> From: Peng Fan <peng.fan@nxp.com>
 >
+> Add clock bindings for fsl-imx-esdhc yaml
 >
-> I believe Rob gave me this line. Maybe he can comment on it.
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml        | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 
-It's an obvious improvement and LGTM.
+Looks like this landed in linux-next and introduces warnings:
+
+/builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.example.dt.yaml:
+mmc@5b010000: clock-names:1: 'ahb' was expected
+ From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+/builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.example.dt.yaml:
+mmc@5b010000: clock-names:2: 'per' was expected
+ From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
