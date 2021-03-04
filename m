@@ -2,268 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CA8432CD39
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 08:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65A0D32CD5E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 08:12:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232206AbhCDG7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 01:59:41 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50126 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236517AbhCDG73 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 01:59:29 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1246wNDH102724;
-        Thu, 4 Mar 2021 00:58:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614841103;
-        bh=4ud8kZ1bZeikUJSDGbMVvjTvW9JdEr9/2XJ/vMSr4dI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=NKA2DlLHddlpjapdYttVJUPapQ5C5yTqCsPa3tf52qcSM5DsSMnoIPt7NKYcrfAUm
-         b4oIbfV/RDtCMilyLYRb1VnLw+RAsHqQAVeF6gs/zmWwCOyDc7HNUzMGZARxZpTFjI
-         bWppFgFW/OmBg9KYEzXFn6TgoNCgw0+Yqy34vacg=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1246wNUP044152
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 4 Mar 2021 00:58:23 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 4 Mar
- 2021 00:58:22 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 4 Mar 2021 00:58:22 -0600
-Received: from [10.250.234.120] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1246wJBO032193;
-        Thu, 4 Mar 2021 00:58:20 -0600
-Subject: Re: [PATCH v2 3/4] arm64: dts: ti: Add support for Siemens IOT2050
- boards
-To:     Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Le Jin <le.jin@siemens.com>
-References: <cover.1613071976.git.jan.kiszka@siemens.com>
- <0c64b6ad43e7a691c1547524da4a9fd33e61c70c.1613071976.git.jan.kiszka@siemens.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <95e4231c-6bee-ba64-412f-87d257df61c4@ti.com>
-Date:   Thu, 4 Mar 2021 12:28:19 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S235948AbhCDHKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 02:10:54 -0500
+Received: from mail-mw2nam08on2048.outbound.protection.outlook.com ([40.107.101.48]:49217
+        "EHLO NAM04-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S235947AbhCDHK3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Mar 2021 02:10:29 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VNWIX+C+5pltPLvi84zUL5E7Xrr/g6hQp53taqIeQiRy0NyD2EtXXkXEFl5VyuyaPXMyloy3kx0OOGvZOG7Plux/B3KXOCJYWkhrqxsUdDnBsxk9pis4Z9C1tQo2IeMO4AatTzBnMMzmdPvqgcqqGGUixJm/2D7+9GUyVUZ8mHBGOfVcLq6enX4j83bmJEfCe5kTxgIuzc2FyZrJ1e8JJdLTo5nq/bkgql5rJrMXSruJstaP5di160Gu7XyGD7WlXAspk9O0b2FK0CaA26qNwkifbqToN8zgzJ5CkUqeBJsty0UNh8wvFfZWotIZ1KlwbTwGec/kPnGA9YnpN+Ggag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WQlVoOQJPBZ+guW1YDW8jZ2YBHnYoFKjd1sWg9MflAg=;
+ b=OffWgD+Gp/FG35OgGoyB9JgANt63i+XXyYifrplbD6shI0hyiAz/Z3/550DDvgpRmaXKzH72CgKH8YnHzlKKZqZO1djhTQy6f1MWgfvQsXO9ASuU9UeCWQ28SBzctG9wKikcm4fW9B7IOxfWUXgZbvhOAYAGC3E9HY0mw+exkkVmR9uQpgBHyDyaN3eo4av6ZqUCGcMDli62zKcXi/bqymSdcuDtQOiHwISFROy/obIsX5XgPXjB3c+ge4rcr/czsw66ODR/hY6ROad84H2s+WcvpxGppwsGR/6tm7z8q8mMZgucDriYl7UDcg21HW8vXAYkrWil56ISjfP6IMnd7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WQlVoOQJPBZ+guW1YDW8jZ2YBHnYoFKjd1sWg9MflAg=;
+ b=PCPmSBO9o2dcq5rTowKRkoi7UDoIj8SpVl+DzhmE33s5+5hYIFOJ51NAbnNi11NswCnpIyy5rC4xPq5P63o/3axVfL/+MVn6CNLoDqkI/z8rXrcvI8bdrsV1FPs+cOiIJbKDzJtpR3VR6wjj+4cBoYb4KsqsL2/uzdeVNAJaxrQ=
+Received: from MN2PR11CA0005.namprd11.prod.outlook.com (2603:10b6:208:23b::10)
+ by MN2PR02MB6301.namprd02.prod.outlook.com (2603:10b6:208:1bc::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.18; Thu, 4 Mar
+ 2021 07:09:36 +0000
+Received: from BL2NAM02FT004.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:208:23b:cafe::cc) by MN2PR11CA0005.outlook.office365.com
+ (2603:10b6:208:23b::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend
+ Transport; Thu, 4 Mar 2021 07:09:36 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ BL2NAM02FT004.mail.protection.outlook.com (10.152.76.168) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3890.19 via Frontend Transport; Thu, 4 Mar 2021 07:09:36 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Wed, 3 Mar 2021 23:09:35 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Wed, 3 Mar 2021 23:09:35 -0800
+Envelope-to: michal.simek@xilinx.com,
+ rajan.vaja@xilinx.com,
+ manish.narani@xilinx.com,
+ amit.sunil.dhamne@xilinx.com,
+ nava.manne@xilinx.com,
+ mdf@kernel.org,
+ trix@redhat.com,
+ robh+dt@kernel.org,
+ gregkh@linuxfoundation.org,
+ arnd@arndb.de,
+ linux-fpga@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ chinnikishore369@gmail.com
+Received: from [10.140.6.60] (port=51424 helo=xhdnavam40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <nava.manne@xilinx.com>)
+        id 1lHi74-0003nC-ML; Wed, 03 Mar 2021 23:09:35 -0800
+From:   Nava kishore Manne <nava.manne@xilinx.com>
+To:     <mdf@kernel.org>, <trix@redhat.com>, <robh+dt@kernel.org>,
+        <michal.simek@xilinx.com>, <gregkh@linuxfoundation.org>,
+        <jolly.shah@xilinx.com>, <rajan.vaja@xilinx.com>, <arnd@arndb.de>,
+        <manish.narani@xilinx.com>, <amit.sunil.dhamne@xilinx.com>,
+        <tejas.patel@xilinx.com>, <linux-fpga@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <chinnikishore369@gmail.com>
+CC:     Nava kishore Manne <nava.manne@xilinx.com>
+Subject: [PATCH v3 0/3] Add Bitstream configuration support for Versal
+Date:   Thu, 4 Mar 2021 12:32:21 +0530
+Message-ID: <20210304070224.22346-1-nava.manne@xilinx.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <0c64b6ad43e7a691c1547524da4a9fd33e61c70c.1613071976.git.jan.kiszka@siemens.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: beb3dc02-9fea-4705-bd3a-08d8dedc781c
+X-MS-TrafficTypeDiagnostic: MN2PR02MB6301:
+X-Microsoft-Antispam-PRVS: <MN2PR02MB6301E7AF8699F6249F75A6A5C2979@MN2PR02MB6301.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: AQH65MIh5zEjp6qxvYOy/3muFnTE9eKd1yCiNPSu1HlHEVp0JgDfwvDMcPvSutu4MbYADLunL/uh0qWADHXbXDd8ebzTje4HaSTLxp5chkjHZTX+45csR7/OH2UDNimmLZlrS5Tg/QjyZIvllQxEJFBu1atBJNwA8x+LRXNGG3HZED/26G/3sYDDEU10lgndNRLzTDB/nmsENxKPt6ZgK3WeNJ5pPacXCb+RYytfnQwyG4fVov+uYXuNtK5yCyAoYXSy6TUO5HUHJzD4ZHkRRxGEHLxTES8lYMwGResI9BA+/dJJ1BevsaosUN5q8do6AwTc5JNmECeJQqYRTDVXve4IQj1Q8N1/mHOIvRgEcl3yPM9lJ+5CnACqXcA44AjCiWS6aUZWG6MDprH+c8nn3ZPwIAgJ4bbXhWOXueFrw2hqx/iu7v4Z5ayW+q1q6UbefWAz2LD+XiBlGaiUUIro+5Be+DaYVkPYN6YXk16LZY0e/kV9DyMpc5vWv0KsnaqGMhjIw734NdzUNaTsE5FmQ6/aINuPEMYv1Vv3aBq9vUUH9d/a8rx/azAeAKt7J067Swk7ZZzvceR3778cu7dE76P1mNp1Z1PqvgpM3h79D1x7DhIS/MPyCzn/5BFQRQIUxEUFTOw0Q+F2VBQuxKH/MdStB8VDd3TGd/xiHcF9PmYB1VS8214Ah0DhDmDlCfhn8ZAF6KGHyVolTD9U8O/+zj7Smvls7txZCJ6PyEM0BVGljMrkWWM4p8OapwRHlRur
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(396003)(376002)(346002)(39860400002)(46966006)(36840700001)(426003)(4744005)(2616005)(7636003)(336012)(356005)(36906005)(186003)(110136005)(47076005)(82310400003)(26005)(316002)(8676002)(70206006)(70586007)(7416002)(2906002)(478600001)(1076003)(82740400003)(107886003)(6666004)(9786002)(921005)(8936002)(7696005)(36756003)(5660300002)(36860700001)(4326008)(102446001)(2101003)(83996005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2021 07:09:36.0856
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: beb3dc02-9fea-4705-bd3a-08d8dedc781c
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT004.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6301
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series adds FPGA Manager support for the Xilinx
+Versal chip.
 
-On 2/12/21 1:02 AM, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> Add support for two Siemens SIMATIC IOT2050 variants, Basic and
-> Advanced. They are based on the TI AM6528 GP and AM6548 SOCs HS, thus
-> differ in their number of cores and availability of security features.
-> Furthermore the Advanced version comes with more RAM, an eMMC and a few
-> internal differences.
-> 
-> Based on original version by Le Jin.
-> 
-> Link: https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-> Link: https://github.com/siemens/meta-iot2050
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+Appana Durga Kedareswara rao (1):
+  dt-bindings: fpga: Add binding doc for versal fpga manager
 
-Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
+Nava kishore Manne (2):
+  drivers: firmware: Add PDI load API support
+  fpga: versal-fpga: Add versal fpga manager driver
 
-Few minor comments below:
+ .../bindings/fpga/xlnx,versal-fpga.yaml       |  33 +++++
+ drivers/firmware/xilinx/zynqmp.c              |  17 +++
+ drivers/fpga/Kconfig                          |   9 ++
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/versal-fpga.c                    | 117 ++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |  10 ++
+ 6 files changed, 187 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
+ create mode 100644 drivers/fpga/versal-fpga.c
 
-[...]
+-- 
+2.18.0
 
-> +
-> +&mcu_i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_i2c0_pins_default>;
-> +	clock-frequency = <400000>;
-> +
-> +	psu: tps62363@60 {
-
-Please use generic node names:
-
-	psu: regulator@60 { ... };
-
-> +		compatible = "ti,tps62363";
-> +		reg =  <0x60>;
-> +		regulator-name = "tps62363-vout";
-> +		regulator-min-microvolt = <500000>;
-> +		regulator-max-microvolt = <1500000>;
-> +		regulator-boot-on;
-> +		ti,vsel0-state-high;
-> +		ti,vsel1-state-high;
-> +		ti,enable-vout-discharge;
-> +	};
-> +
-> +	/* D4200 */
-> +	pcal9535_1: gpio@20 {
-> +		compatible = "nxp,pcal9535";
-> +		reg = <0x20>;
-> +		#gpio-cells = <2>;
-> +		gpio-controller;
-> +		gpio-line-names =
-> +			"A0-pull", "A1-pull", "A2-pull", "A3-pull", "A4-pull",
-> +			"A5-pull", "", "",
-> +			"IO14-enable", "IO15-enable", "IO16-enable",
-> +			"IO17-enable", "IO18-enable", "IO19-enable";
-> +	};
-> +
-> +	/* D4201 */
-> +	pcal9535_2: gpio@21 {
-> +		compatible = "nxp,pcal9535";
-> +		reg = <0x21>;
-> +		#gpio-cells = <2>;
-> +		gpio-controller;
-> +		gpio-line-names =
-> +			"IO0-direction", "IO1-direction", "IO2-direction",
-> +			"IO3-direction", "IO4-direction", "IO5-direction",
-> +			"IO6-direction", "IO7-direction",
-> +			"IO8-direction", "IO9-direction", "IO10-direction",
-> +			"IO11-direction", "IO12-direction", "IO13-direction",
-> +			"IO19-direction";
-> +	};
-> +
-> +	/* D4202 */
-> +	pcal9535_3: gpio@25 {
-> +		compatible = "nxp,pcal9535";
-> +		reg = <0x25>;
-> +		#gpio-cells = <2>;
-> +		gpio-controller;
-> +		gpio-line-names =
-> +			"IO0-pull", "IO1-pull", "IO2-pull", "IO3-pull",
-> +			"IO4-pull", "IO5-pull", "IO6-pull", "IO7-pull",
-> +			"IO8-pull", "IO9-pull", "IO10-pull", "IO11-pull",
-> +			"IO12-pull", "IO13-pull";
-> +	};
-> +};
-
-[...]
-
-> +&dwc3_0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb0_phy {
-> +	status = "okay";
-> +};
-> +
-
-These nodes are enabled by default right? Above is redundant.
-
-> +&usb0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&usb0_pins_default>;
-> +	dr_mode = "host";
-> +};
-> +
-> +&dwc3_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb1_phy {
-> +	status = "okay";
-> +};
-> +
-
-Same here...
-
-> +&usb1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&usb1_pins_default>;
-> +	dr_mode = "host";
-> +};
-> +
-
-[...]
-
-> +&mcu_spi0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_spi0_pins_default>;
-> +
-> +	#address-cells = <1>;
-> +	#size-cells= <0>;
-> +	ti,pindir-d0-out-d1-in = <1>;
-> +
-> +	spidev@0 {
-> +		compatible = "rohm,dh2228fv";
-> +		spi-max-frequency = <20000000>;
-> +		reg = <0>;
-> +	};
-
-Is the device really dh2228fv?
-
-> +};
-> +
-> +&tscadc0 {
-> +	status = "disabled";
-> +};
-> +
-> +&tscadc1 {
-> +	adc {
-> +		ti,adc-channels = <0 1 2 3 4 5>;
-> +	};
-> +};
-> +
-> +&ospi0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-> +
-> +	flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0x0>;
-> +		spi-tx-bus-width = <1>;
-> +		spi-rx-bus-width = <1>;
-> +		spi-max-frequency = <50000000>;
-> +		cdns,tshsl-ns = <60>;
-> +		cdns,tsd2d-ns = <60>;
-> +		cdns,tchsh-ns = <60>;
-> +		cdns,tslch-ns = <60>;
-> +		cdns,read-delay = <2>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +	};
-> +};
-> +
-> +&dss {
-> +	status = "okay";
-> +
-
-Node is enabled by default. Please drop above line for consistency.
-
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&dss_vout1_pins_default>;
-> +
-> +	assigned-clocks = <&k3_clks 67 2>;
-> +	assigned-clock-parents = <&k3_clks 67 5>;
-> +};
-> +
-> +&dss_ports {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	port@1 {
-> +		reg = <1>;
-> +
-> +		dpi_out: endpoint {
-> +			remote-endpoint = <&bridge_in>;
-> +		};
-> +	};
-> +};
-> +
-
-[...]
-
-Regards
-Vignesh
