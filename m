@@ -2,147 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A6732D4AD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 14:56:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB51832D4E4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 15:07:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241729AbhCDNzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 08:55:31 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:58270 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241723AbhCDNzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 08:55:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1614866039;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=0NyEIHSiKDUNn/tCXcKmevRHZ06HwkCwpqNQZWo0MOs=;
-        b=Yw7eb/A1WwbR/WMZsThiHfgo2fOB0TwtQgyGZpSSeAzuVcE9vFG+W8A01szYZxQAwOOjsx
-        /yQkAUG7vPbC/lyL47NzdFAOxl/GfFNSM9L5yzzTReChqvUad3mZ3J5Y1E1iVpSMNtkrxw
-        VibH5AlkA8UIJPwlc/zM6wTCoUIFONE=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-5-AYigNamMOgOKdBeSxfNTrA-1; Thu, 04 Mar 2021 08:53:58 -0500
-X-MC-Unique: AYigNamMOgOKdBeSxfNTrA-1
-Received: by mail-qt1-f199.google.com with SMTP id x5so18930537qti.23
-        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 05:53:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=0NyEIHSiKDUNn/tCXcKmevRHZ06HwkCwpqNQZWo0MOs=;
-        b=Y5Vn0wnJfoxv6S8hFoYiX5/z8DcqfYkNEnD0PGfQm3CUj/QUa3v21OcD+kY847mWrs
-         CQtPHoUof0HLyp0gHLJ7mXgFZCxFyrUCCuM0I3QQoM3yRc0b3awS83loM8oL5nkndeWx
-         iupS0QE83oK9pFgSbLhY0V+oA7UTRA6oZqHgPwxq3TTf3oK4Lvq3aYwqLPkjGqBT89Zr
-         rlxJ/1d7dHmjl7wF3kExdV2wWzfhThXAW56gbAekGZM+6lOnVm7WDPQEaJPWrktGhQBt
-         9GemteHYySO/F9SETFuX824fSxoZQ4gqaY+2iT0e49jHDyiWAuuW0INBAwDfUvy4lLil
-         HSnA==
-X-Gm-Message-State: AOAM531aFVa9hwbXSuGsEW6XiaLsCKoA3UA/RpL4oKJOgx/wUnhfy97l
-        mjW6ASNREKt24/oM2RbucUGG++IvKtEXcc+M/BRV0KwEHZE7jx18u0H75q7tLGUvXtJh6yS/4NW
-        QvsDLeLYuI2uCHKxnuRapdg==
-X-Received: by 2002:a37:d82:: with SMTP id 124mr3866723qkn.311.1614866037897;
-        Thu, 04 Mar 2021 05:53:57 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxGT3yF5xUm79/kr9yt0qZJDs+VrBzXgEskqAkFZtHf49K/GDpC2+i20jQQkNyx9ISwcuGWRA==
-X-Received: by 2002:a37:d82:: with SMTP id 124mr3866701qkn.311.1614866037696;
-        Thu, 04 Mar 2021 05:53:57 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id m5sm10426198qtu.45.2021.03.04.05.53.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Mar 2021 05:53:57 -0800 (PST)
-Subject: Re: [PATCH v2 1/2] dt-bindings: fpga: Add compatible value for Xilinx
- DFX AXI shutdown manager
-To:     Nava kishore Manne <nava.manne@xilinx.com>, mdf@kernel.org,
-        robh+dt@kernel.org, michal.simek@xilinx.com,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        chinnikishore369@gmail.com
-Cc:     git@xilinx.com
-References: <20210211051148.16722-1-nava.manne@xilinx.com>
- <20210211051148.16722-2-nava.manne@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <6e4ff0b7-7f63-46f8-e713-ca07f532336d@redhat.com>
-Date:   Thu, 4 Mar 2021 05:53:55 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S238935AbhCDOGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 09:06:43 -0500
+Received: from mx2.suse.de ([195.135.220.15]:53812 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237908AbhCDOGQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Mar 2021 09:06:16 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id E1DFBAAC5;
+        Thu,  4 Mar 2021 14:05:34 +0000 (UTC)
+Message-ID: <9bc396116372de5b538d71d8f9ae9c3259f1002e.camel@suse.de>
+Subject: Re: [PATCH stable v5.10 0/7] arm64: Default to 32-bit wide ZONE_DMA
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Jing Xiangfeng <jingxiangfeng@huawei.com>
+Cc:     catalin.marinas@arm.com, will@kernel.org,
+        akpm@linux-foundation.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, rppt@kernel.org,
+        lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, lenb@kernel.org,
+        song.bao.hua@hisilicon.com, ardb@kernel.org,
+        anshuman.khandual@arm.com, bhelgaas@google.com, guro@fb.com,
+        robh+dt@kernel.org, stable@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, frowand.list@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+        wangkefeng.wang@huawei.com
+Date:   Thu, 04 Mar 2021 15:05:32 +0100
+In-Reply-To: <YEDkmj6cchMPAq2h@kroah.com>
+References: <20210303073319.2215839-1-jingxiangfeng@huawei.com>
+         <YEDkmj6cchMPAq2h@kroah.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-ahu+lDeVyw/D0YYfX8dU"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
-In-Reply-To: <20210211051148.16722-2-nava.manne@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2/10/21 9:11 PM, Nava kishore Manne wrote:
-> This patch Adds compatible value for Xilinx Dynamic Function eXchnage(DFX)
-> AXI Shutdown manager IP.
->
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> ---
-> Changes for v2:
->                 -Modified the doc and added DFX axi shutdown manager node
->                  example node as suggested by Tom Rix.
->
->  .../bindings/fpga/xilinx-pr-decoupler.txt     | 24 ++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt b/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> index 4284d293fa61..0acdfa6d62a4 100644
-> --- a/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> +++ b/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> @@ -7,13 +7,24 @@ changes from passing through the bridge.  The controller can also
->  couple / enable the bridges which allows traffic to pass through the
->  bridge normally.
->  
-> +Xilinx LogiCORE Dynamic Function eXchange(DFX) AXI shutdown manager
-> +Softcore is compatible with the Xilinx LogiCORE pr-decoupler.
-> +
-> +The Dynamic Function eXchange AXI shutdown manager prevents AXI traffic
-> +from passing through the bridge. The controller safely handles AXI4MM
-> +and AXI4-Lite interfaces on a Reconfigurable Partition when it is
-> +undergoing dynamic reconfiguration, preventing the system deadlock
-> +that can occur if AXI transactions are interrupted by DFX
-> +
->  The Driver supports only MMIO handling. A PR region can have multiple
->  PR Decouplers which can be handled independently or chained via decouple/
->  decouple_status signals.
->  
->  Required properties:
->  - compatible		: Should contain "xlnx,pr-decoupler-1.00" followed by
-> -                          "xlnx,pr-decoupler"
-> +                          "xlnx,pr-decoupler" or
-> +                          "xlnx,dfx-axi-shutdown-manager-1.00" followed by
-> +                          "xlnx,dfx-axi-shutdown-manager"
->  - regs			: base address and size for decoupler module
->  - clocks		: input clock to IP
->  - clock-names		: should contain "aclk"
-> @@ -22,6 +33,7 @@ See Documentation/devicetree/bindings/fpga/fpga-region.txt and
->  Documentation/devicetree/bindings/fpga/fpga-bridge.txt for generic bindings.
->  
->  Example:
-> +Partial Reconfig Decoupler:
->  	fpga-bridge@100000450 {
->  		compatible = "xlnx,pr-decoupler-1.00",
->  			     "xlnx-pr-decoupler";
-> @@ -30,3 +42,13 @@ Example:
->  		clock-names = "aclk";
->  		bridge-enable = <0>;
->  	};
-> +
-> +Dynamic Function eXchange AXI shutdown manager:
-> +	fpga-bridge@100000450 {
-> +		compatible = "xlnx,dfx-axi-shutdown-manager-1.00",
-> +			     "xlnx,dfx-axi-shutdown-manager";
-> +		regs = <0x10000045 0x10>;
-> +		clocks = <&clkc 15>;
-> +		clock-names = "aclk";
-> +		bridge-enable = <0>;
-> +	};
+--=-ahu+lDeVyw/D0YYfX8dU
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the example.
+Hi Greg.
 
-Reviewed-by: Tom Rix <trix@redhat.com>
+On Thu, 2021-03-04 at 14:46 +0100, Greg KH wrote:
+> On Wed, Mar 03, 2021 at 03:33:12PM +0800, Jing Xiangfeng wrote:
+> > Using two distinct DMA zones turned out to be problematic. Here's an
+> > attempt go back to a saner default.
+>=20
+> What problem does this solve?  How does this fit into the stable kernel
+> rules?
+
+We changed the way we setup memory zones in arm64 in order to cater for
+Raspberry Pi 4's weird DMA constraints: ZONE_DMA spans the lower 1GB of mem=
+ory
+and ZONE_DMA32 the rest of the 32bit address space. Since you can't allocat=
+e
+memory that crosses zone boundaries, this broke crashkernel allocations on =
+big
+machines. This series fixes all this by parsing the HW description and chec=
+king
+for DMA constrained buses. When not found, the unnecessary zone creation is
+skipped.
+
+That said, I have no clue whether this falls or not into the stable kernel
+rules.
+
+Regards,
+Nicolas
+
+
+--=-ahu+lDeVyw/D0YYfX8dU
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBA6SwACgkQlfZmHno8
+x/63Hwf/dPKsaiMfp4bHs98aLzm1BcfLltFqLOj2tjBqOYX6mUdfSKOkKZYGvyTs
+zZo2tT5ezbzEvU69CHgGmb6u3y4Q6PxDKqoL94xC+7RGwDrw4g4o0TZp67pcA/9d
+fUjl00sLvQUl6YYcajb6s0Ev97pb3XAyvAozXb3hfz36j/30mKbizfnxhn9gTZD0
+lJ6Kp8Bmm0/weVW4Kj/SOnBk0J2WF7IwSxbJMKRz8k2ejAytoILh4PZ24V9c58Jw
+qhATgehwhDXk7hyZYQAKCr3pQD9fjWVVjU4/vbWXqBFvUhdmDSkCRAfYwZLJA1Cw
+lRRAL3P3GOOnCmGp7VZpexw14txF9Q==
+=1f1V
+-----END PGP SIGNATURE-----
+
+--=-ahu+lDeVyw/D0YYfX8dU--
 
