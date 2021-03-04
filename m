@@ -2,159 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C59E32CDA5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 08:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26F2B32CE02
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 09:02:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231730AbhCDHeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 02:34:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57864 "EHLO
+        id S235126AbhCDICG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 03:02:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231636AbhCDHdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 02:33:54 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47AC9C06175F;
-        Wed,  3 Mar 2021 23:33:14 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id v15so26485454wrx.4;
-        Wed, 03 Mar 2021 23:33:14 -0800 (PST)
+        with ESMTP id S235137AbhCDIB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 03:01:56 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D23BCC061574
+        for <devicetree@vger.kernel.org>; Thu,  4 Mar 2021 00:01:15 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id m7so348824wmq.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 00:01:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=nKsLCh+6twuWj2QnD4IJjKFGoE1CDwaYbrWfJko6FQg=;
-        b=PM7DH0DCgsIy5KSnYy4NPGqpPLALl4pHepSUZZp+7gOWJK/nz8Cz3HaJfTuSI0XoDj
-         7W6ocLN/+Ck53cPaHif72uqdFR8IiKtjfe8ZzgHHNZ1zEw+4iNtm+im5JY0byoAfaanA
-         yTZSJK/DA5FsOdDzB0svKlw5k5Y4rfUPR46dUY89crhuOIdq9vSRSKke3o1tazJSV1sv
-         kP6vDEogVfnhL8SMMwesYUuAv8T1j3EyIJRwWqsT6RYdQ63KyXMi7maXcIhXTrxD7dh9
-         D9UElGzyGEqZ8eEciUuFBUautAbwuNulbr2Vh8bZVL1wnWpXLZqxoOUSwcGOJoDZ1I81
-         By0Q==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=aOAxJBlKBYcN64lRAiG4sf6vUj/R/Ju5OzGJfr7r2WM=;
+        b=gaQZC+ID7+pejJoHhflPtHEPNavxraFBogdPdNYeti1ZPmzj6NntxgPy7vsCDYP74D
+         KTNvgEdjw3VgLlm4KNcvVT/WmfBUJa2o/f3jaRTrxyEAtKsvMVOKM8qEln+CQcOoEZNY
+         Efq+5rwnKGazx0Q0aO/rNJWix7llJzyw6ZrLTatWbh3XUCk4h81xRcowcwqfPuNL0Bdc
+         b3A8lWe52D5AiWkM5vP8R74sg7rY54rd1k2SwbDJiI+r4yn54jt0WsSJMDRT07tmkzn/
+         N2YAUYcPbZ7I1BjOJfjmRM+SCX48iAfrUHszJUrRoV4hEIwoxgRG+niSWDOGmezhnR4E
+         MhwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nKsLCh+6twuWj2QnD4IJjKFGoE1CDwaYbrWfJko6FQg=;
-        b=rjPhipiA2RT73TihznkBWeSgsMLkdS6TTGYRPt1JrSUdqQqwQDNsc6gWFhpZQVvoui
-         flDo+YbG/6RcU6A9yjhgdfJC2zUBa2bhB5hd1qMcCWV4564oWG27vmw1QXbYeq0FN1UE
-         kFWRFvqbwhfjCwCdCJaZs74BkezTuyuwktWKyRPenyJ0UDuhAL8G0EqKJ41USiiGRgoU
-         cmynDfRhYIFKawGBH1rJpdBrFM1GPz8zBuiMfJU7pt4LgCMpPTOCVdC8+6l9SzyWOwV0
-         s818y0SpzhFtnNgmQpv4KEUEu0t4UHR4751yrz3+PbtuEExBJ0U8gBkVR2XFgSuS2v2O
-         nZ9Q==
-X-Gm-Message-State: AOAM530394qZCV8BoQe9/uVOnTaL6ePiK9dcS6mPtw5EtQipooBcMx0m
-        plvVmOglPe/aoKrQFsFhXdo=
-X-Google-Smtp-Source: ABdhPJwnhIZqeUh7kvfjBKqyBCUniY00joSs9fOdx+kTifv4VoGxHTeO1PV7UoAn6mVxjXF8LRcCjw==
-X-Received: by 2002:a5d:5051:: with SMTP id h17mr2538503wrt.80.1614843193036;
-        Wed, 03 Mar 2021 23:33:13 -0800 (PST)
-Received: from skynet.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
-        by smtp.gmail.com with ESMTPSA id j30sm18328811wrj.62.2021.03.03.23.33.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 23:33:12 -0800 (PST)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-Subject: [PATCH v5 2/2] hwrng: bcm2835: add reset support
-Date:   Thu,  4 Mar 2021 08:33:08 +0100
-Message-Id: <20210304073308.25906-3-noltari@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210304073308.25906-1-noltari@gmail.com>
-References: <20210304073308.25906-1-noltari@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=aOAxJBlKBYcN64lRAiG4sf6vUj/R/Ju5OzGJfr7r2WM=;
+        b=LHVTxSluvbJi9kEnUjssisSPkWHGKFzatc+TpINkSJ8lQ8/sJZk+xsTswmnA07yKXJ
+         ybFUCvAAyBHfxYqOggBJn6JxuapdEa3eH/3zSEW+VDHuMRvlhaa7NyGmTFYpMHheV4LV
+         arfoLCGUkNFsNvjFWjHD8JTpBooSh4KOdOCX9M3l20qSyLv0wZd63TxTyndNvjXr0w6W
+         A2NWMxB8BrseoZFIjh9QYqBO7rZ1pOewmtXqcNN1hIYnwJaYfwekSLYtuKRAgXCaLay/
+         GLOWyGvk4g2MdMBum/PZlK8AWmygODVqnJfJ/hl/tvkDKoZkU9O6Ze/lCcKvH8MzuwNu
+         iweQ==
+X-Gm-Message-State: AOAM533b0DfEWbRYidALTnZ4fXGQhM2k/j9wNIw3R4CUkyD/uP1bCEjO
+        OASZh2blK1IRumNPGltOAw+im12AUaI8fQ==
+X-Google-Smtp-Source: ABdhPJysNoDApSfkuB/eTC6zhtgU/zqA1iZ645P7qrkMZeZIEC2JPk7gNbQY0PYThf/UfjSryY7Z2A==
+X-Received: by 2002:a7b:c084:: with SMTP id r4mr2582042wmh.166.1614844874345;
+        Thu, 04 Mar 2021 00:01:14 -0800 (PST)
+Received: from [192.168.0.41] (lns-bzn-59-82-252-144-192.adsl.proxad.net. [82.252.144.192])
+        by smtp.googlemail.com with ESMTPSA id n6sm15567967wrt.1.2021.03.04.00.01.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Mar 2021 00:01:13 -0800 (PST)
+Subject: Re: [PATCH v1 1/5] MAINTAINERS: Add Tegra CPUIDLE driver section
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org
+Cc:     ksitaraman@nvidia.com, sanjayc@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+References: <1614838092-30398-1-git-send-email-skomatineni@nvidia.com>
+ <1614838092-30398-2-git-send-email-skomatineni@nvidia.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <f73021ed-77c4-8349-d079-e9038b4dd00b@linaro.org>
+Date:   Thu, 4 Mar 2021 09:01:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <1614838092-30398-2-git-send-email-skomatineni@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCM6368 devices need to reset the in order to generate true random numbers.
-This is what BCM6368 produces without a reset:
-root@OpenWrt:/# cat /dev/hwrng | rngtest -c 1000
-rngtest 6.10
-Copyright (c) 2004 by Henrique de Moraes Holschuh
-This is free software; see the source for copying conditions.  There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+On 04/03/2021 07:08, Sowjanya Komatineni wrote:
+> Add Tegra CPUIDLE driver section with maintainers and mailing list
+> entries.
+> 
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  MAINTAINERS | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index cac8429..277fcfd 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -4679,6 +4679,18 @@ S:	Supported
+>  F:	drivers/cpuidle/cpuidle-psci.h
+>  F:	drivers/cpuidle/cpuidle-psci-domain.c
+>  
+> +CPUIDLE DRIVER - TEGRA194
+> +M:	Thierry Reding <thierry.reding@gmail.com>
+> +M:	Jonathan Hunter <jonathanh@nvidia.com>
+> +M:	Krishna Sitaraman <ksitaraman@nvidia.com>
+> +M:	Sanjay Chandrashekara <sanjayc@nvidia.com>
+> +M:	Sowjanya Komatineni <skomatineni@nvidia.com>
 
-rngtest: starting FIPS tests...
-rngtest: bits received from input: 20000032
-rngtest: FIPS 140-2 successes: 0
-rngtest: FIPS 140-2 failures: 1000
-rngtest: FIPS 140-2(2001-10-10) Monobit: 2
-rngtest: FIPS 140-2(2001-10-10) Poker: 1000
-rngtest: FIPS 140-2(2001-10-10) Runs: 1000
-rngtest: FIPS 140-2(2001-10-10) Long run: 30
-rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
-rngtest: input channel speed: (min=37.253; avg=320.827; max=635.783)Mibits/s
-rngtest: FIPS tests speed: (min=12.141; avg=15.034; max=16.428)Mibits/s
-rngtest: Program run time: 1336176 microseconds
-cat: write error: Broken pipe
+It does not make sense to have so many maintainers for a single file.
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
----
- v5: remove reset_control_rearm().
- v4: add reset_control_rearm().
- v3: no changes.
- v2: no changes.
 
- drivers/char/hw_random/bcm2835-rng.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> +L:	linux-pm@vger.kernel.org
+> +L:	linux-tegra@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/arm/nvidia,tegra194-ccplex.yaml
+> +F:	drivers/cpuidle/cpuidle-tegra194.c
+> +
+>  CRAMFS FILESYSTEM
+>  M:	Nicolas Pitre <nico@fluxnic.net>
+>  S:	Maintained
+> 
 
-diff --git a/drivers/char/hw_random/bcm2835-rng.c b/drivers/char/hw_random/bcm2835-rng.c
-index be5be395b341..e7dd457e9b22 100644
---- a/drivers/char/hw_random/bcm2835-rng.c
-+++ b/drivers/char/hw_random/bcm2835-rng.c
-@@ -13,6 +13,7 @@
- #include <linux/platform_device.h>
- #include <linux/printk.h>
- #include <linux/clk.h>
-+#include <linux/reset.h>
- 
- #define RNG_CTRL	0x0
- #define RNG_STATUS	0x4
-@@ -32,6 +33,7 @@ struct bcm2835_rng_priv {
- 	void __iomem *base;
- 	bool mask_interrupts;
- 	struct clk *clk;
-+	struct reset_control *reset;
- };
- 
- static inline struct bcm2835_rng_priv *to_rng_priv(struct hwrng *rng)
-@@ -92,6 +94,10 @@ static int bcm2835_rng_init(struct hwrng *rng)
- 	if (ret)
- 		return ret;
- 
-+	ret = reset_control_reset(priv->reset);
-+	if (ret)
-+		return ret;
-+
- 	if (priv->mask_interrupts) {
- 		/* mask the interrupt */
- 		val = rng_readl(priv, RNG_INT_MASK);
-@@ -156,6 +162,10 @@ static int bcm2835_rng_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->clk))
- 		return PTR_ERR(priv->clk);
- 
-+	priv->reset = devm_reset_control_get_optional_exclusive(dev, NULL);
-+	if (IS_ERR(priv->reset))
-+		return PTR_ERR(priv->reset);
-+
- 	priv->rng.name = pdev->name;
- 	priv->rng.init = bcm2835_rng_init;
- 	priv->rng.read = bcm2835_rng_read;
+
 -- 
-2.20.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
