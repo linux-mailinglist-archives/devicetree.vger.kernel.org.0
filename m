@@ -2,133 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 589B532DABC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 21:01:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B2932DAC8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 21:04:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234957AbhCDT7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 14:59:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49582 "EHLO mail.kernel.org"
+        id S237185AbhCDUDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 15:03:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50376 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237162AbhCDT7Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Mar 2021 14:59:16 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 23E1064F73;
-        Thu,  4 Mar 2021 19:58:36 +0000 (UTC)
+        id S236804AbhCDUD1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Mar 2021 15:03:27 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 66CCC64F45;
+        Thu,  4 Mar 2021 20:02:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614887916;
-        bh=5eVG1QojNvi5xJz0510TStz08VpthyxwTc2HsKYiG14=;
+        s=k20201202; t=1614888166;
+        bh=bruc6SY11nBgSItW59izSH7Jt5Lb6PEf73rKiiR9gvQ=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FRzQI6ByFfv7SALpWHRZwcT0PxN9SvISIr0q2GP73qW+ZMo4nWYdj5J6KWG+6V603
-         DCOBlq+BjwjCFkKCDkLVjyZe+40VKpIfgmG+ZxGnu3YdHFSyoWeBWP+fIBDYKiUryi
-         E7XrH1hOPD2hsLW8wKuRs2rLMPkwCwlITleYeWgbUJanxe7VdfaDK6uOCaXm1UljQ7
-         zW/qW8Tne2Z464Utz4YUolea9a3KD++b74/P66ts/w7R0neAfMz9ms7wT5HAOvNGox
-         tMgf/QzsJhau867OniE3kL4IzvmQ4A0xWZUYvNhGeP+7VPEBUuTAnY0le8srzTx4sJ
-         D+mB1OcKYgEQg==
-Received: by mail-ej1-f45.google.com with SMTP id w17so3906636ejc.6;
-        Thu, 04 Mar 2021 11:58:36 -0800 (PST)
-X-Gm-Message-State: AOAM533bD06rfF2eKeJ35M5iQ/QaQWEQ0XFgeL4f2dJdN+TGv+y6lCFd
-        aCCBX0ZGm9IDk3tfru0N0GMvTIr0JIN2+prXNg==
-X-Google-Smtp-Source: ABdhPJzzk280RX8Y/hNoVgVVF7BJlQJEkkZZ8rREmHwhKb7GjB7zG9V1c/YqRPom6zwb7aD5tDoPwk42uNMvar/us/c=
-X-Received: by 2002:a17:906:c405:: with SMTP id u5mr6110312ejz.341.1614887914676;
- Thu, 04 Mar 2021 11:58:34 -0800 (PST)
+        b=YC7vXYrbKSlpqOHrmatgu1RESLRfZElZ3V56ybqaWC5SfA1KiPowSDQxgypsgc5P1
+         z2sbEMYvJ5Pd+br9iNppsr8ly6dwSMlUD4HWYfB44oWHCIJnIyRaUUxGeeRb3OwkwX
+         gjv98iBw5dwRAULA6y5q0hm1fdDBpKHYyeE3lvLFrIflYTcL+hp005jV1QBVLd2BzM
+         LHkpMP5ryg0pAw7e4XM0UVjhD5TNJSHi0A7cAwemVz68YbMNGLGzklyEBSomKWxgbe
+         jJVQ8CyAdUOpcEkAOZZa04YdR3FaC2L3c8RDpi+TB7VBfnxPpJ1CUb5mJ/fB1JjKHq
+         Dek2GogjvrvqA==
+Received: by mail-ej1-f45.google.com with SMTP id p8so25533102ejb.10;
+        Thu, 04 Mar 2021 12:02:46 -0800 (PST)
+X-Gm-Message-State: AOAM530xa6QkWIyv9KCVggQSl2slaXawQlsuoOs1ugM7VEV7itn0oJWz
+        iAMo7NQP8iA0qSkf+vjnTN2GJrQWDaJExnAk0Q==
+X-Google-Smtp-Source: ABdhPJzwjPqB5mqgjUm8IO6F5PFehRlUl9DieoKYxQUK9v3daKrCxnAREqPHnHBfcmjiHKHpDPpZeGLj6ie+eG05LAg=
+X-Received: by 2002:a17:906:25c4:: with SMTP id n4mr6218826ejb.359.1614888165006;
+ Thu, 04 Mar 2021 12:02:45 -0800 (PST)
 MIME-Version: 1.0
-References: <20210222194510.14004-1-noltari@gmail.com> <20210223170006.29558-1-noltari@gmail.com>
- <20210223170006.29558-2-noltari@gmail.com> <d6e5b3be7e2add03b8d00a931b7fe254cd39077e.camel@suse.de>
-In-Reply-To: <d6e5b3be7e2add03b8d00a931b7fe254cd39077e.camel@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 4 Mar 2021 13:58:21 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+o73atGxyj2Xpwb8rFj5m0AEQrvJWEyEU1UCXqnm5k1A@mail.gmail.com>
-Message-ID: <CAL_Jsq+o73atGxyj2Xpwb8rFj5m0AEQrvJWEyEU1UCXqnm5k1A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: rng: bcm2835: document reset support
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@protonmail.com>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>, devicetree@vger.kernel.org,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
+References: <cover.1612867682.git.michal.simek@xilinx.com> <076994fc051e9230a3fef9e3eb5ec932104ef16a.1612867682.git.michal.simek@xilinx.com>
+ <20210210222241.GA2901449@robh.at.kernel.org> <584bfee2-17a6-5935-b61c-b49824bcf857@xilinx.com>
+ <CAL_JsqJedhX6typpUKbnzV7CLK6UZVjq3CyG9iY_j5DLPqvVdw@mail.gmail.com> <2f0f4e86-cf9d-03d7-a3a6-8f2284facaaa@xilinx.com>
+In-Reply-To: <2f0f4e86-cf9d-03d7-a3a6-8f2284facaaa@xilinx.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 4 Mar 2021 14:02:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com>
+Message-ID: <CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: misc: Add binding for Microchip
+ usb5744 hub
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>,
+        Piyush Mehta <piyush.mehta@xilinx.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Wolfram Sang <wsa@the-dreams.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 6:07 AM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
+On Wed, Feb 24, 2021 at 7:38 AM Michal Simek <michal.simek@xilinx.com> wrot=
+e:
 >
-> Hi Alvaro,
+> Hi Rob,
 >
-> On Tue, 2021-02-23 at 18:00 +0100, =C3=81lvaro Fern=C3=A1ndez Rojas wrote=
-:
-> > Some devices may need to perform a reset before using the RNG, such as =
-the
-> > BCM6368.
+> On 2/11/21 3:42 PM, Rob Herring wrote:
+> > On Thu, Feb 11, 2021 at 3:35 AM Michal Simek <michal.simek@xilinx.com> =
+wrote:
+> >>
+> >> Hi Rob,
+> >>
+> >> On 2/10/21 11:22 PM, Rob Herring wrote:
+> >>> On Tue, Feb 09, 2021 at 11:48:09AM +0100, Michal Simek wrote:
+> >>>> From: Piyush Mehta <piyush.mehta@xilinx.com>
+> >>>>
+> >>>> Added dt binding for usb5744 driver.
+> >>>>
+> >>>> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+> >>>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> >>>> ---
+> >>>>
+> >>>> Changes in v2: None
+> >>>>
+> >>>>  .../bindings/usb/microchip,usb5744.yaml       | 56 ++++++++++++++++=
++++
+> >>>>  MAINTAINERS                                   |  1 +
+> >>>>  2 files changed, 57 insertions(+)
+> >>>>  create mode 100644 Documentation/devicetree/bindings/usb/microchip,=
+usb5744.yaml
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744=
+.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..fe222f6db81d
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> >>>> @@ -0,0 +1,56 @@
+> >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: "http://devicetree.org/schemas/usb/microchip,usb5744.yaml#"
+> >>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> >>>> +
+> >>>> +title: Bindings for the Microchip USB5744 4-port Hub Controller
+> >>>> +
+> >>>> +description:
+> >>>> +  Microchip=E2=80=99s USB5744 SmartHub=E2=84=A2 IC is a 4 port, Sup=
+erSpeed (SS)/Hi-Speed (HS),
+> >>>> +  low power, low pin count configurable and fully compliant with th=
+e USB 3.1
+> >>>> +  Gen 1 specification. The USB5744 also supports Full Speed (FS) an=
+d Low Speed
+> >>>> +  (LS) USB signaling, offering complete coverage of all defined USB=
+ operating
+> >>>> +  speeds. The new SuperSpeed hubs operate in parallel with the USB =
+2.0
+> >>>> +  controller, so 5 Gbps SuperSpeed data transfers are not affected =
+by slower
+> >>>> +  USB 2.0 traffic.
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Piyush Mehta <piyush.mehta@xilinx.com>
+> >>>> +  - Michal Simek <michal.simek@xilinx.com>
+> >>>> +
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    const: microchip,usb5744
+> >>>> +
+> >>>> +  reg:
+> >>>> +    maxItems: 1
+> >>>> +    description: |
+> >>>> +      Specifies the i2c slave address, it is required and should be=
+ 0x2d
+> >>>> +      if I2C is used.
+> >>>
+> >>> If I2C is not used, then this should be underneath the USB host as a =
+USB
+> >>> device. That also implies a different compatible string. I'd suggest =
+you
+> >>> just say I2C is required if that's your use.
+> >>
+> >> We can't say that i2c is required because we have both cases. One is
+> >> really usb hub connected over i2c which at least requires to send one
+> >> smbus command to start operate. But it can be extended to add more
+> >> features - limit speeds, disable ports, etc.
+> >>
+> >> And the second is really the same usb hub without i2c connected which
+> >> runs in default mode. But reset is required to ensure proper reset
+> >> sequence.
+> >> Hub also have external clock chip which is not handled now because it =
+is
+> >> just crystal on the board but if you want I can also model it via fixe=
+d
+> >> clock and call clock enable for it.
+> >>
+> >> It is the same use case as is with
+> >> Documentation/devicetree/bindings/usb/usb3503.txt
 > >
-> > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> > ---
-> >  v3: make resets required if brcm,bcm6368-rng.
-> >  v2: document reset support.
-> >
-> >  .../devicetree/bindings/rng/brcm,bcm2835.yaml   | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml b/=
-Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
-> > index c147900f9041..11c23e1f6988 100644
-> > --- a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
-> > +++ b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
-> > @@ -37,6 +37,21 @@ required:
-> >
-> >
-> >  additionalProperties: false
+> > Yes, there are examples of how we don't want to do it.
 >
-> I can't claim I fully understand all the meta stuff in shemas, so I gener=
-ally
-> just follow the patterns already available out there. That said, shoudln'=
-t this
-> be at the end, just before the examples? Maybe the cause of that odd warn=
-ing
-> you got there?
+> ok.
+>
+> >
+> >> Can you please elaborate why different compatible string should be use=
+d?
+> >> It is still the same device and not quite sure why different compatibl=
+e
+> >> string should be used.
+> >>
+> >> Do you also want to example where this node is the part of usb node?
+> >
+> > See usb/usb-device.txt. And there is this[1] under review.
+> >
+> > For these cases with I2C, I'd really rather see the hub always under
+> > the USB bus with a link to the I2C bus when connected.
+>
+> I read that thread and also looked at his device and it is very similar
+> to this one. Binding should also have information about i2c or spi. It
+> is the same case here that you can use this hub without any bus
+> connected which works in default mode. Or when i2c/smbus is connected
+> and the hub is waiting for initialization sequence. And I expect spi
+> behaves very similarly but don't have this setup here.
+>
+> Do we have any binding doc which is using suggested bus link?
 
-Yes, 'resets' needs to be defined under 'properties' as
-additionalProperties can't 'see' into if/then schemas. The top level
-needs to define everything and then if/then schema just add additional
-constraints.
-
->
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      enum:
-> > +        - brcm,bcm6368-rng
-> > +then:
-> > +  properties:
-> > +    resets:
-> > +      maxItems: 1
-> > +  required:
-> > +    - resets
->
-> I belive you can't really make a property required when the bindings for
-> 'brcm,bcm6368-rng' were already defined. This will break the schema for t=
-hose
-> otherwise correct devicetrees.
-
-Right, unless not having the property meant the device never would have wor=
-ked.
+'i2c-bus' or 'ddc-i2c-bus' properties for I2C. Don't think we have
+anything for SPI, but I'd expect it would be similar though we'd need
+a cell for the chip-select.
 
 Rob
