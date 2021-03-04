@@ -2,56 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87BB832D129
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 11:52:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E022132D19B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 12:14:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238920AbhCDKvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 05:51:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43776 "EHLO
+        id S239470AbhCDLOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 06:14:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235138AbhCDKup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 05:50:45 -0500
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015C8C061574;
-        Thu,  4 Mar 2021 02:50:05 -0800 (PST)
-Received: by mail-pf1-x42d.google.com with SMTP id x24so1407880pfn.5;
-        Thu, 04 Mar 2021 02:50:04 -0800 (PST)
+        with ESMTP id S239447AbhCDLNr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 06:13:47 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC3D5C061574;
+        Thu,  4 Mar 2021 03:13:06 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id e23so7658356wmh.3;
+        Thu, 04 Mar 2021 03:13:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=FoGsnOzXi7H9nz19W/bgb/1Kxx0meiyadtP/QvxkNiA=;
-        b=n53vzKHXuqPKNk87GMWTNa2nfV96TlDoPYmjDgzqyo8kcAWpEOU6OhiwMfLVeo/qf2
-         pyjk16yl/13dlOsHu5T3E2PzqDcGryW6gjBTdeA99cZm0dp452DOUH2E84CvTqOSJul9
-         mPFfdH0ASp/msC5XRsUr0CLBhjO0o6J7dMG8/0X1uTFZdYJX9skqHIIyjFRIteJnQa/S
-         /r5eWnNud0OqXJ3jGdt/96Th4uZDK/NPoTKSjRqVT9fCkw4IVc/eoE4HoCA+Ge37X7ED
-         aKTuI9TdwZddRXhrkVPFbNO4zmy/YPz03Dv6OnJ2mgSySDmjEh6jnHvG1cHqR2mrGvm3
-         knNw==
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=gqQ43NPGzvS91VWTv4uty0yhZhVHqU/N7pIkr8BcRwU=;
+        b=qXLVJOLFE5UVgPkDr7nB1tGhMLp6m0ZpPtU38/t+iEeEsaApx8hjdUuKKU2heHff2n
+         Y0UKWcMUsYwWpZyA+Yvmr++klU3C2AJ+OQPe/LkQsbeP8/lf8dPwSIXKIcb1+yQev7Yr
+         1DzalDgxQPIQbatiQknN82vj/suLOFYAXHWvZ55uyBRs6yXxyBA54Qvh+nTTH3FnMOOo
+         AnJU0pMnOQnpj89X8Sh+gwUqOEax+hdMsRawQRp/G38WVoWX9OKzptvv0v/RGFnYvSnd
+         Q6pk9m055WjOjEku8ptSgDJ/LWR37qzuAGWNkVMsT6ZGDfXvXlW3QA8sgiobPh5ePGCY
+         jmmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=FoGsnOzXi7H9nz19W/bgb/1Kxx0meiyadtP/QvxkNiA=;
-        b=ShtlVHSOQCsGU7NIKVfN996S3l1Qok5athbKuuxCdVZd5SjpfeHI4nCdjEeX33fs0y
-         0OuHE+Yu6EXC4LbxemzC5xKnwXNP5FpMODQcQXR1S9e1ErNYoAZfiujV5rH8UxwNS+HK
-         3KuHRnYy7yOrq04oGt+4UGSKrk8A9N1qvVepAhyklzNfTVPpxtC+F5AzT7txkSDs0PA1
-         xltWOD6gEXBZ3/bYinV0teDoLObT12vMMyQjYTIIxsbDGvpg0r5DSEBwMgpqkwQ/gyR5
-         aTXovzGyteHCZFZht/zAxpEMX9w804R7IsjbkS5zYKWT2RMrd8E4ivIGdtZsgIb6ITqI
-         hTIg==
-X-Gm-Message-State: AOAM532W+v5ZzSN9boaC9gj9koKAWkrtMZrEZNS9zgs/JxCfjEJhvhOO
-        2QcwT4MSSA5KNE9S2SNg477TSdHKZVFUOHwnVv8=
-X-Google-Smtp-Source: ABdhPJy2flX7Ea1zvFciNHtUD9op+hNlZxpNVpbA5cITJj9ODh1I6pHXRdOeEnWrzVfiJdLABTAKr4UQrRue03M70aQ=
-X-Received: by 2002:a62:7c43:0:b029:1ef:20ce:ba36 with SMTP id
- x64-20020a627c430000b02901ef20ceba36mr2144918pfc.40.1614855004451; Thu, 04
- Mar 2021 02:50:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20210304085710.7128-1-noltari@gmail.com> <20210304085710.7128-6-noltari@gmail.com>
-In-Reply-To: <20210304085710.7128-6-noltari@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 4 Mar 2021 12:49:48 +0200
-Message-ID: <CAHp75Vc8Gk0ZVjfQH71-Du1ZB1HT5qrgbT6HZgXQd-C6xE05ZQ@mail.gmail.com>
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=gqQ43NPGzvS91VWTv4uty0yhZhVHqU/N7pIkr8BcRwU=;
+        b=W2FuMCXzV9kbmPeYPmz09qA26sjKcsVywzKaKmoVnA0NVJhUnq8Yft1TE3c9OhE1UP
+         REI03+/66IZLXIVPLRsVN+k0wFOz73ggmFINIyGvRBTzTSR1EpP4KP6QuOCiYYjio6i3
+         IT/UV+/0frfel3MyQiO9esMVn4a9YG3X4CE3lV22zOqPh9XcUOzDieVmxlGxGK2SePZ7
+         yo9ANPFGCSZjjddOCEz851wRmOCJi33E2w0EDen3qfTqG9Rh2FOtHVqc7XCHS2lQ+mjl
+         QXtxiY7mBSp9XG858rPvXmG9mTohg8CvV7Zkq0uvJR1aVrfQWhUFSOUS+6HS+1Lyevip
+         ehGg==
+X-Gm-Message-State: AOAM530X7JaNOH8dQ9dRVcU4ZdFs6JaJMqXbrrJOGiKAVmu+jYl9J4MH
+        QJgI6ArCqs7haR6GbbMzwVI=
+X-Google-Smtp-Source: ABdhPJyo/cFv8xOP2UL/i4kCgxknS98LMS1tuHsEYAHxdKb33qoP4ZQjTAf2P0RU+0npg4R4TNig0w==
+X-Received: by 2002:a7b:cc1a:: with SMTP id f26mr3395814wmh.19.1614856385309;
+        Thu, 04 Mar 2021 03:13:05 -0800 (PST)
+Received: from macbook-pro-alvaro.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
+        by smtp.gmail.com with ESMTPSA id s20sm9079311wmj.36.2021.03.04.03.13.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 04 Mar 2021 03:13:05 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
 Subject: Re: [PATCH v4 05/15] pinctrl: add a pincontrol driver for BCM6328
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+From:   =?utf-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
+In-Reply-To: <CAHp75Vc8Gk0ZVjfQH71-Du1ZB1HT5qrgbT6HZgXQd-C6xE05ZQ@mail.gmail.com>
+Date:   Thu, 4 Mar 2021 12:13:04 +0100
 Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Michael Walle <michael@walle.cc>,
@@ -64,57 +66,86 @@ Cc:     Linus Walleij <linus.walleij@linaro.org>,
         devicetree <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <F56A2594-5E16-457F-B170-D9D14E6592FE@gmail.com>
+References: <20210304085710.7128-1-noltari@gmail.com>
+ <20210304085710.7128-6-noltari@gmail.com>
+ <CAHp75Vc8Gk0ZVjfQH71-Du1ZB1HT5qrgbT6HZgXQd-C6xE05ZQ@mail.gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+X-Mailer: Apple Mail (2.3654.60.0.2.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 10:57 AM =C3=81lvaro Fern=C3=A1ndez Rojas
-<noltari@gmail.com> wrote:
->
-> Add a pincontrol driver for BCM6328. BCM628 supports muxing 32 pins as
-> GPIOs, as LEDs for the integrated LED controller, or various other
-> functions. Its pincontrol mux registers also control other aspects, like
-> switching the second USB port between host and device mode.
+Hi Andy,
 
-...
+> El 4 mar 2021, a las 11:49, Andy Shevchenko =
+<andy.shevchenko@gmail.com> escribi=C3=B3:
+>=20
+> On Thu, Mar 4, 2021 at 10:57 AM =C3=81lvaro Fern=C3=A1ndez Rojas
+> <noltari@gmail.com> wrote:
+>>=20
+>> Add a pincontrol driver for BCM6328. BCM628 supports muxing 32 pins =
+as
+>> GPIOs, as LEDs for the integrated LED controller, or various other
+>> functions. Its pincontrol mux registers also control other aspects, =
+like
+>> switching the second USB port between host and device mode.
+>=20
+> ...
+>=20
+>> +static inline unsigned int bcm6328_mux_off(unsigned int pin)
+>> +{
+>> +       static const unsigned int bcm6328_mux[] =3D {
+>> +               BCM6328_MUX_LO_REG,
+>> +               BCM6328_MUX_HI_REG,
+>=20
+>> +               BCM6328_MUX_OTHER_REG
+>=20
+> When it's not terminator add a comma, otherwise remove a comma.
 
-> +static inline unsigned int bcm6328_mux_off(unsigned int pin)
-> +{
-> +       static const unsigned int bcm6328_mux[] =3D {
-> +               BCM6328_MUX_LO_REG,
-> +               BCM6328_MUX_HI_REG,
+=E2=80=A6 so you want me to add a comma or not?
 
-> +               BCM6328_MUX_OTHER_REG
+>=20
+> Also, why is it inside a function? It's anyway global and constant.
 
-When it's not terminator add a comma, otherwise remove a comma.
+Because this is only used by this function and I=E2=80=99m used to doing =
+this to comply with MISRA C 2004 at work :)
 
-Also, why is it inside a function? It's anyway global and constant.
+>=20
+>> +       };
+>=20
+> ...
+>=20
+>> +       regmap_update_bits(pc->regs, bcm6328_mux_off(pin),
+>> +                          3UL << ((pin % 16) * 2),
+>=20
+> 3UL =3D> #define BLABLA  GENMASK(1, 0)
 
-> +       };
+Ok, I will add a define for this.
 
-...
+>=20
+>> +                          mux << ((pin % 16) * 2));
+>=20
+> ...
+>=20
+>> +static const struct of_device_id bcm6328_pinctrl_match[] =3D {
+>> +       { .compatible =3D "brcm,bcm6328-pinctrl", },
+>> +       { },
+>=20
+> No comma.
 
-> +       regmap_update_bits(pc->regs, bcm6328_mux_off(pin),
-> +                          3UL << ((pin % 16) * 2),
+Ok, I will remove the comma.
 
-3UL =3D> #define BLABLA  GENMASK(1, 0)
+>=20
+>> +};
+>=20
+> Above comments to all your patches.
 
-> +                          mux << ((pin % 16) * 2));
+Ok, I will try to address all of this comments in v5.
 
-...
+>=20
+> --=20
+> With Best Regards,
+> Andy Shevchenko
 
-> +static const struct of_device_id bcm6328_pinctrl_match[] =3D {
-> +       { .compatible =3D "brcm,bcm6328-pinctrl", },
-> +       { },
-
-No comma.
-
-> +};
-
-Above comments to all your patches.
-
---=20
-With Best Regards,
-Andy Shevchenko
