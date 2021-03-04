@@ -2,39 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EC7732C9DC
+	by mail.lfdr.de (Postfix) with ESMTP id EB70032C9DD
 	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235025AbhCDBO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 20:14:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:32972 "EHLO mail.kernel.org"
+        id S235998AbhCDBO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 20:14:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33868 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1453204AbhCDA5Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Mar 2021 19:57:16 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 87A0B64E76;
-        Thu,  4 Mar 2021 00:56:35 +0000 (UTC)
+        id S235954AbhCDA6R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Mar 2021 19:58:17 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 55E4264EA4;
+        Thu,  4 Mar 2021 00:57:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614819396;
-        bh=0vSvXdGmE87HAvoAagW8EnApB1MQYaYgX3xsBx/2nKs=;
+        s=k20201202; t=1614819455;
+        bh=Pq4DTgSCjnSumX710lov1lOw0nQOtcqw+vfcG1lo/Pc=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=g9HdPDtRwG7MUHPJIO7+CZWdU7gDbUbt7eIH4NiRc46be4EHnYSUEKdhk/qeHD9YV
-         /VuyVpt4Xbf/r6NkydjrNj23OY+5Mh9MDNs5mF7YEzsULtQ2XaHkrpIqQmPjDppOfP
-         j7z4vydtAXQniO0J46iVDQtFTPMaBozUa/SxuLDKZGF6mtK9x3QVhx/KeCeY/NdbW2
-         Uv4pwwGrCvC+37VUJVTg2CNlv5t+5a+oOsCUBHWB1C0fMwm9ri416zayO98h7loGmY
-         ONuL5C3K7ICu2GVU6E7rdsEALqjnlvRTOYufFEhSgyPwntRypBpILmJoncsVuIVSr6
-         GNCC/CWlN7Jng==
+        b=Tdnob7jiXNdDi17lsuc72VMI3tt/UMDiEwW4yfC7c/TeL88U/lLgz2mfaSK6aGSQg
+         QsBYbKsprv4EUhMtlsd7weUdDXdKAy4IYlnMrlU9Q9+dg3CKBEUBGaR8sPVnnpZ1+u
+         a6C2OfxDOH3mHNG505Wr+I2Z+yQwco/0FILule0NmCqci5ODbhCRtrKIdriX5/9e89
+         lxSyWkvPbTeBvel0Rq6Y6kuibJudzPdKQlRcX9FU1dt9MeWPefAo7koIQASIUep+rp
+         z6KUBhK4p9FSJO6FjnGYCEcim29UcoRQX4hz4C18AEiQ0cruqRhkdNr9dzCY66taaQ
+         yg3MHZBy8r1sQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, nicolas.ferre@microchip.com,
-        lgirdwood@gmail.com, ludovic.desroches@microchip.com,
-        tiwai@suse.com, alexandre.belloni@bootlin.com
-In-Reply-To: <20210301170905.835091-1-codrin.ciubotariu@microchip.com>
-References: <20210301170905.835091-1-codrin.ciubotariu@microchip.com>
-Subject: Re: (subset) [PATCH v2 0/7] Add I2S-MCC support for Microchip's SAMA7G5
-Message-Id: <161481924068.9553.13493874640788116726.b4-ty@kernel.org>
-Date:   Thu, 04 Mar 2021 00:54:00 +0000
+To:     Kuldeep Singh <kuldeep.singh@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Ashish Kumar <ashish.kumar@nxp.com>
+In-Reply-To: <20210302124936.1972546-1-kuldeep.singh@nxp.com>
+References: <20210302124936.1972546-1-kuldeep.singh@nxp.com>
+Subject: Re: [Patch v2 0/4] NXP Flexspi driver patches
+Message-Id: <161481938860.10000.18184476826270231027.b4-ty@kernel.org>
+Date:   Thu, 04 Mar 2021 00:56:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -42,38 +40,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 1 Mar 2021 19:08:58 +0200, Codrin Ciubotariu wrote:
-> SAMA7G5 includes an updated version of I2S-MCC, found previously on
-> SAM9X60. This controller includes 8 data pins, 4 for playback and 4 for
-> capture. For I2S and LEFT_J formats, these pins can be used to
-> send/receive up to 8 audio channels. For DSP_A, with TDM, any pins pair
-> (DIN/DOUT) from these 4 can be selected to send/receive data. This
-> version also includes 2 FIFOs (send and receive).
-> This patch set starts by moving the driver's bindings to yaml and
-> continues with adding a new compatible for the SAMA7G5 variant, followed
-> by the changes needed for I2S/LEFT_J support, TDM pin pair selection and
-> FIFO support, exclusively for SAMA7G5.
+On Tue, 2 Mar 2021 18:19:32 +0530, Kuldeep Singh wrote:
+> This patchset involves changes in NXP Flexspi driver.
+> 
+> Patch1 adds support for disabling AHB and enabling IP read only using a
+> quirk which is later used by patch3 and patch4.
+> 
+> Patch3 and Patch4 are not related to each and are rather dependent on
+> patch1 and that's why I kept them in series. This also helps in easy
+> application of series.
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/7] dt-bindings: mchp,i2s-mcc: Add SAMA7G5 to binding
-      commit: 4423a2724e3d1d55adfb1d515a9fa0759e95451e
-[2/7] ASoC: mchp-i2s-mcc: Add compatible for SAMA7G5
-      commit: 02d212ce7c72509139ceeee46f631fdf20e4c2fb
-[3/7] ASoC: mchp-i2s-mcc: Add multi-channel support for I2S and LEFT_J formats
-      commit: 89dcd5cc4bee9f87ef597374a8d7dc0c51436fb2
-[4/7] dt-bindings: mchp, i2s-mcc: Add property to specify pin pair for TDM
-      commit: d43f821b8a0162de9e9d392a8f1907c5638f558a
-[5/7] ASoC: mchp-i2s-mcc: Add support to select TDM pins
-      commit: 1d6257bbe6e9fcaf639f313ccd4cebe1f5e46865
-[6/7] ASoC: mchp-i2s-mcc: Add FIFOs support
-      commit: cb43e3692731401d4303c378f530c43bd283716e
+[1/4] spi: spi-nxp-fspi: Add support for IP read only
+      commit: 1e1c30db2ccba3ec891e683f5e8eca2aca6238eb
+[2/4] dt-bindings: spi: spi-nxp-fspi: Add imx8dxl support
+      commit: a53a9159a6774b393bb4b620430328940fa853b8
+[3/4] spi: spi-nxp-fspi: Add imx8dxl driver support
+      commit: 99a6a399a61e95cd6639453f87d5c96a121dec07
+[4/4] spi: spi-nxp-fspi: Implement errata workaround for LS1028A
+      commit: 94f302f374b4544fa4d84526569f884ebb008f4d
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
