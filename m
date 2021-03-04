@@ -2,136 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F4C32D287
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 13:09:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B70632D29A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 13:09:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239915AbhCDMHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 07:07:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60024 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240112AbhCDMHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 07:07:07 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C192C0611A2
-        for <devicetree@vger.kernel.org>; Thu,  4 Mar 2021 04:06:09 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id mm21so48560542ejb.12
-        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 04:06:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=L6kqHVgRXcGTejXZV+UwM9uyGX3tx7DzRfC3/Q/v2WM=;
-        b=A8YAAwJbPf/mDfZEPle56kQyjHalh7PJYSM0ijYG4qQwZk5lPRSAhvvIx8CWCahSIr
-         gjPmVtDOkfy7eOaiDJfdJLdI2yhdyKVVTKAbNZLT9Mg4EyD9G6S2fXRT9zxqfwp9jpYT
-         2IXKAiwfWaucGDGv1F4q5l++eipR134GvwLn1s2Rfh0TYSFsqI0pUTDd3LSBozATZHwS
-         XfH7ThGKIG5bAQ20eFxqutHCbtBOXiCaNYezOBt/y++QHLXO440cGmL5AAajQ2xN5c+S
-         dN3UiLcXw1P4sMUEqyp7Ml1leVxPUx/YFhLYp0c8xT2cJ1gUAt6xdOlzfRLXltLeMxJg
-         NZJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=L6kqHVgRXcGTejXZV+UwM9uyGX3tx7DzRfC3/Q/v2WM=;
-        b=be/wnyIlOPXtpljfSoX1jwDlXg2yD8QmfXDJyoXHCiROdr+iDZ1CrS9ykx2tAnsJC+
-         38bvylujHxeWbvz/EviB6WWu8oJWpUN0JWIpLMmpgMkE+jIo62qBbTOMUjzva78Q91La
-         b0qIXv1CQ86ulpmQZUvH2VY3Pq/CKhnqbTHVqOAQ/L72Srio3MnfxJ/1GP4xkwNtUh/B
-         2FJVZ4RvZy0+cskKVDiMLbnLv1DoiF/leNgTwLS6RLn63tmoXwsOAyNrHr/MX+9ps/bS
-         3bVMd8x1fgzEfp5PtqpSooQaijBh2dRj5hbrXZVB1ZHMZqJCHJL76Zb9tbiAczwrp45S
-         tXPw==
-X-Gm-Message-State: AOAM532ZNfhc6MaS98fgoa8l1Nwymg/zWd/z8SAx2UM4ANEUAsVontHJ
-        lrKH2zTVx5EWqPk+yqC5g/uRwA==
-X-Google-Smtp-Source: ABdhPJxZkDF6mr/G1/aQr7MK5ipPu4ir8YUy583pJz1UQL5iuV/1jAqlQga3cHnYIh9ezZKtKH6fwA==
-X-Received: by 2002:a17:906:f9db:: with SMTP id lj27mr3881177ejb.399.1614859568051;
-        Thu, 04 Mar 2021 04:06:08 -0800 (PST)
-Received: from localhost.localdomain ([2a02:2450:102f:d6a:470a:340b:1b:29dd])
-        by smtp.gmail.com with ESMTPSA id cf6sm20464447edb.92.2021.03.04.04.06.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Mar 2021 04:06:07 -0800 (PST)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        robert.foss@linaro.org, todor.too@gmail.com, mchehab@kernel.org,
-        robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonathan Marek <jonathan@marek.ca>
-Subject: [PATCH v6 22/22] arm64: dts: sdm845-db845c: Enable ov8856 sensor and connect to ISP
-Date:   Thu,  4 Mar 2021 13:03:28 +0100
-Message-Id: <20210304120326.153966-23-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210304120326.153966-1-robert.foss@linaro.org>
-References: <20210304120326.153966-1-robert.foss@linaro.org>
+        id S240234AbhCDMIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 07:08:49 -0500
+Received: from mx2.suse.de ([195.135.220.15]:53830 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234686AbhCDMIU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Mar 2021 07:08:20 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id D80BFAAC5;
+        Thu,  4 Mar 2021 12:07:38 +0000 (UTC)
+Message-ID: <d6e5b3be7e2add03b8d00a931b7fe254cd39077e.camel@suse.de>
+Subject: Re: [PATCH v3 1/2] dt-bindings: rng: bcm2835: document reset support
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     =?ISO-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" 
+        <nfraprado@protonmail.com>,
+        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date:   Thu, 04 Mar 2021 13:07:36 +0100
+In-Reply-To: <20210223170006.29558-2-noltari@gmail.com>
+References: <20210222194510.14004-1-noltari@gmail.com>
+         <20210223170006.29558-1-noltari@gmail.com>
+         <20210223170006.29558-2-noltari@gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-ECKm3qOS91U+uJWquTGZ"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable camss & ov8856 DT nodes.
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
-Reviewed-by: Andrey Konovalov <andrey.konovalov@linaro.org>
----
+--=-ECKm3qOS91U+uJWquTGZ
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Alvaro,
+
+On Tue, 2021-02-23 at 18:00 +0100, =C3=81lvaro Fern=C3=A1ndez Rojas wrote:
+> Some devices may need to perform a reset before using the RNG, such as th=
+e
+> BCM6368.
+>=20
+> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+> ---
+> =C2=A0v3: make resets required if brcm,bcm6368-rng.
+> =C2=A0v2: document reset support.
+>=20
+> =C2=A0.../devicetree/bindings/rng/brcm,bcm2835.yaml   | 17 ++++++++++++++=
++++
+> =C2=A01 file changed, 17 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml b/Do=
+cumentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+> index c147900f9041..11c23e1f6988 100644
+> --- a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+> +++ b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+> @@ -37,6 +37,21 @@ required:
+> =C2=A0
+>=20
+> =C2=A0additionalProperties: false
+
+I can't claim I fully understand all the meta stuff in shemas, so I general=
+ly
+just follow the patterns already available out there. That said, shoudln't =
+this
+be at the end, just before the examples? Maybe the cause of that odd warnin=
+g
+you got there?
+
+> +if:
+> +  properties:
+> +    compatible:
+> +      enum:
+> +        - brcm,bcm6368-rng
+> +then:
+> +  properties:
+> +    resets:
+> +      maxItems: 1
+> +  required:
+> +    - resets
+
+I belive you can't really make a property required when the bindings for
+'brcm,bcm6368-rng' were already defined. This will break the schema for tho=
+se
+otherwise correct devicetrees.
+
+> +else:
+> +  properties:
+> +    resets: false
+> +
+> =C2=A0examples:
+> =C2=A0=C2=A0=C2=A0- |
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0rng@7e104000 {
+> @@ -58,4 +73,6 @@ examples:
+> =C2=A0
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0clocks =3D <&periph=
+_clk 18>;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0clock-names =3D "ip=
+sec";
+> +
+> +        resets =3D <&periph_rst 4>;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+
+Regards,
+Nicolas
 
 
-Changes since v5
- - Andrey: Add r-b
- - Change CSI clock & data pins
+--=-ECKm3qOS91U+uJWquTGZ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
+-----BEGIN PGP SIGNATURE-----
 
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBAzYgACgkQlfZmHno8
+x/4dVQf+JZcSZkUQMTFgFCfh820ujn+nyaM6c0hQgaTUCslzyj5MXBafaxVb8YQ9
+Nt8RP4jv+QcG50qoeIHzu25DghMGv9KvJE9IJ6DJ8ZWOA5OlLN46pq6YkuhFVhgn
+LODAnXDiAmrFA1/mB6r9sQkZWJUbsIBujImMHvC2Rh2W+/capocznMXAw6Ts1xwW
+dcxmgjOT1pmm+rFhggzluwGcbcYNPibwo16mRc1Gft7K/IrLxus+ySJ4eutSWDKt
+hU8iD92fuYKwlCJzvpLnEo2nUAA20Y9knhzyX/ah0rm3R6f8nVFU/lR2s/WCkCwF
+X6OFwW541Y94/FDEWOPXENCdl9sLVw==
+=BoaX
+-----END PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 5842ab65789c..ca00be42fe67 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -1108,6 +1108,21 @@ &cci {
- 
- &camss {
- 	vdda-supply = <&vreg_l1a_0p875>;
-+
-+	status = "ok";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		port@0 {
-+			reg = <0>;
-+			csiphy0_ep: endpoint {
-+				clock-lanes = <7>;
-+				data-lanes = <0 1 2 3>;
-+				remote-endpoint = <&ov8856_ep>;
-+			};
-+		};
-+	};
- };
- 
- &cci_i2c0 {
-@@ -1139,7 +1154,7 @@ camera@10 {
- 		avdd-supply = <&cam0_avdd_2v8>;
- 		dvdd-supply = <&cam0_dvdd_1v2>;
- 
--		status = "disable";
-+		status = "ok";
- 
- 		port {
- 			ov8856_ep: endpoint {
-@@ -1147,7 +1162,7 @@ ov8856_ep: endpoint {
- 				link-frequencies = /bits/ 64
- 					<360000000 180000000>;
- 				data-lanes = <1 2 3 4>;
--//				remote-endpoint = <&csiphy0_ep>;
-+				remote-endpoint = <&csiphy0_ep>;
- 			};
- 		};
- 	};
--- 
-2.27.0
+--=-ECKm3qOS91U+uJWquTGZ--
 
