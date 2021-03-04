@@ -2,102 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDD1D32CE73
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 09:29:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD10932CE78
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 09:31:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236473AbhCDI2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 03:28:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41364 "EHLO
+        id S235778AbhCDIax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 03:30:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233437AbhCDI2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 03:28:37 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E28C061574;
-        Thu,  4 Mar 2021 00:27:57 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id d15so11396819wrv.5;
-        Thu, 04 Mar 2021 00:27:56 -0800 (PST)
+        with ESMTP id S236832AbhCDIa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 03:30:26 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AED4CC061756
+        for <devicetree@vger.kernel.org>; Thu,  4 Mar 2021 00:29:45 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id n16so24851993lfb.4
+        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 00:29:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=eVwM5aRxs8pXI0Df4OGGCUZXISsKAq1m0sLGP/92WnI=;
-        b=FMXKEnrlbxgBgUgF0opmoYINUoxhX144sTfuVl/8kfJFXvrmlRaW58/TPkHlOzT5zu
-         B6AbGKEAZ5g0YDtgPmViEnEOfKEwDpbDGGzFIdmUz81R4F9ERymb7mLw9Q+2Rabh/IMQ
-         GXyYizeemR0N3qndjI1N2YhZ+96HYIJoVEnGPII/zoRrJ/F5VKVLz2kJA5wx6oKLEGbo
-         nsu/9g06Pioh+pkcsaS7Sjc4+YgZVCoSB5P0v+HYqFWKrag5vBuoPeb/mncC+yDrYLoP
-         HNiRKr7Ms4fViB5QAQOqbTpiYbLLAtB+8i4iGyy9DHDiYcyFHbgalvDK1wFO1/2kRFQ7
-         cn5Q==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=z/YunITDzSj54Y4k2da7IIbwcZOzFgpMcTcXrvSJIsY=;
+        b=JaUPYLR7xkZXBatHr7s2xfITNdM0H4Jctt/Fw2uA9rVTPRXS2ypGfQgeG9h77/gY5y
+         7R8yulF7mLSY0OgIKuT6J/Ojr06v7NT7A6N5Nkq6CnoaP8Yr0tttUmgXRo9RzzIK0UnP
+         UVtLZe4POq614g7G8HEaMlTlNd/edz0pZ/qrLnEd/fMjim5WibSx3ajwVPMfR0eZ2ABR
+         f02UlJEuLJBHeRh0WEyp58aIIIxQeyyyLJX8vDD1h13rv3fk1tJqBy+UArpvwCFZt+GW
+         WZgE6/MLDaJg5nIEm/9E9KW4ILP0L+viXBuImxX4kz7o8HLReWKq8Y/Pv7jUdUKfuVSr
+         3rIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=eVwM5aRxs8pXI0Df4OGGCUZXISsKAq1m0sLGP/92WnI=;
-        b=j0KUDNRYsTsp26G4bPOURO6TWobgZuhUyhmrwwyFMnCMqTCp0rwDLkbSNUXTmuyBSF
-         7spaQjYMIEa/OhDSgiOWpIRuFDdvVPUr8R+KWNT7mlvFo5aN3V7uWS6OSulREk2xQeHU
-         IQrQHQJ8207GgBj+pgyTWQjeZzRwAeQoArw/73C+KN5GG7dEr0M3vDluv9avRIbDTPBW
-         Sr/bto09yATy5sVGxKFQ7jSld3IQCtNjVp+CBxA7L7qOrjSReAyBxuXM0yYpIspp6U8w
-         LTI+A/y4Pf1bOgbCbhyuxLF5dtlHQVaBpxaPOmuEsSmdjR4EF4SEeg2cjgbrzWWEhlZS
-         cZ1w==
-X-Gm-Message-State: AOAM531vrYqfYG+42J8NI3l5+86rkvP8PS0U7IafXDloQcmLVGnQ4vgS
-        TB4XJkInJD7E0HuivoJgl7I=
-X-Google-Smtp-Source: ABdhPJwj2WtrD0P9XOm5K9QM7F1BLKzx3mqlZ1ZeRydBUIpFsYqMWc5VqaNFCOAHMxaX5asJMw3GMQ==
-X-Received: by 2002:a5d:534b:: with SMTP id t11mr2714858wrv.186.1614846475806;
-        Thu, 04 Mar 2021 00:27:55 -0800 (PST)
-Received: from macbook-pro-alvaro.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
-        by smtp.gmail.com with ESMTPSA id c26sm36518129wrb.87.2021.03.04.00.27.55
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 04 Mar 2021 00:27:55 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
-Subject: Re: [PATCH v3 01/14] gpio: regmap: set gpio_chip of_node
-From:   =?utf-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
-In-Reply-To: <CACRpkdaJ3kGj6wi7L8_0WXq_dj4tt2LEbhPUy20R-Z-Mam_pdQ@mail.gmail.com>
-Date:   Thu, 4 Mar 2021 09:27:55 +0100
-Cc:     Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=z/YunITDzSj54Y4k2da7IIbwcZOzFgpMcTcXrvSJIsY=;
+        b=OUnYaqcw/K8ztO7lWUlrYSHvxAm1JTtxKZe39A7+qdQDcC5Cptefgd6VdjYiMSvAkx
+         8fbxG0HG0ruuopMAeqgkXpRjdbQqX8hqyudONpEo2PQ+XqfZ7TKJI5JO5yUac1gDxSXo
+         Zj9ltGUhNOwJqgg8+u56Gqs/rO9cjFmJP61pC4g/ueEXp5fXwt3FPp84nyo99b16t1iE
+         sCvv1thzAfd3jmeK2A7wlKy+Ym86JoEza/LSSEDzxHRwV8/+3WPxczaiFHwG/dusuE/7
+         DNin5efsccObjCblysHYTPLO6jrqgCvp6Qq5OENhMVpB9il4FcfIYjRitna+oTnh6Wno
+         5rAQ==
+X-Gm-Message-State: AOAM5300hBj9r24BmCHQ50fNyy8xq2hORRv1vBas0uBgE7M0MET9vMmQ
+        O76GkIIobLaycRrlF2E2a5ONAZP4zoV8dZav72HCZw==
+X-Google-Smtp-Source: ABdhPJy5zH9v2taHTbOivNt/jHFRx+P8htUtEtdRjWfaZYj8ZCyXiyfzifW75rVWQfROIBOwLzH5JMbjd+5Vk4a/t7c=
+X-Received: by 2002:a05:6512:10d1:: with SMTP id k17mr1556851lfg.649.1614846584130;
+ Thu, 04 Mar 2021 00:29:44 -0800 (PST)
+MIME-Version: 1.0
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
+In-Reply-To: <20210304034141.7062-2-brad@pensando.io>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 4 Mar 2021 09:29:33 +0100
+Message-ID: <CACRpkdbQD6p7fbGtuu1c92uXfSFDCTwqjqsXHpgnD5Lg4v0Okw@mail.gmail.com>
+Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
+To:     Brad Larson <brad@pensando.io>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <005D6320-E34A-4078-8A4B-C1452B982722@gmail.com>
-References: <20210303142310.6371-1-noltari@gmail.com>
- <20210303142310.6371-2-noltari@gmail.com>
- <40403445ae34e822474e5f39be75fd0b@walle.cc>
- <E341768B-BF42-4749-8D43-8C5CB24D64C3@gmail.com>
- <CACRpkdaJ3kGj6wi7L8_0WXq_dj4tt2LEbhPUy20R-Z-Mam_pdQ@mail.gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: Apple Mail (2.3654.60.0.2.21)
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Hi Brad,
 
-> El 4 mar 2021, a las 9:13, Linus Walleij <linus.walleij@linaro.org> =
-escribi=C3=B3:
->=20
-> On Wed, Mar 3, 2021 at 5:12 PM =C3=81lvaro Fern=C3=A1ndez Rojas =
-<noltari@gmail.com> wrote:
->=20
->> Do you want me to send v4 with these changes?
->> Or maybe just this single patch?
->=20
-> It's usually better to resend the series because then the b4 tool
-> will pick it all up properly.
+thanks for your patch!
 
-Ok, I didn=E2=80=99t know that :$.
-Sorry for sending it as a separate patch.
+On Thu, Mar 4, 2021 at 4:42 AM Brad Larson <brad@pensando.io> wrote:
 
->=20
-> Yours,
-> Linus Walleij
+> This GPIO driver is for the Pensando Elba SoC which
+> provides control of four chip selects on two SPI busses.
+>
+> Signed-off-by: Brad Larson <brad@pensando.io>
+(...)
 
-Best regards,
-=C3=81lvaro.=
+> +#include <linux/gpio.h>
+
+Use this in new drivers:
+#include <linux/gpio/driver.h>
+
+> + * pin:             3            2        |       1            0
+> + * bit:         7------6------5------4----|---3------2------1------0
+> + *     cs1  cs1_ovr  cs0  cs0_ovr |  cs1  cs1_ovr  cs0  cs0_ovr
+> + *                ssi1            |             ssi0
+> + */
+> +#define SPICS_PIN_SHIFT(pin)   (2 * (pin))
+> +#define SPICS_MASK(pin)                (0x3 << SPICS_PIN_SHIFT(pin))
+> +#define SPICS_SET(pin, val)    ((((val) << 1) | 0x1) << SPICS_PIN_SHIFT(pin))
+
+So 2 bits per GPIO line in one register? (Nice doc!)
+
+> +struct elba_spics_priv {
+> +       void __iomem *base;
+> +       spinlock_t lock;
+> +       struct gpio_chip chip;
+> +};
+> +
+> +static int elba_spics_get_value(struct gpio_chip *chip, unsigned int pin)
+> +{
+> +       return -ENXIO;
+> +}
+
+Write a comment that the chip only supports output mode,
+because it repurposes SPI CS pins as generic GPIO out,
+maybe at the top of the file?
+
+I suppose these systems also actually (ab)use the SPI cs
+for things that are not really SPI CS? Because otherwise
+this could just be part of the SPI driver (native chip select).
+
+> +static const struct of_device_id ebla_spics_of_match[] = {
+> +       { .compatible = "pensando,elba-spics" },
+
+Have you documented this?
+
+Other than that this is a nice and complete driver.
+
+Yours,
+Linus Walleij
