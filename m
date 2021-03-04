@@ -2,73 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB8B932D51D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 15:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F64132D554
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 15:34:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241720AbhCDOS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 09:18:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42402 "EHLO mail.kernel.org"
+        id S229493AbhCDOd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 09:33:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52812 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241785AbhCDOSR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Mar 2021 09:18:17 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 38AC164EF6;
-        Thu,  4 Mar 2021 14:17:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1614867456;
-        bh=5SFoOpkNOISja2bka7WY1xY3Xu6DHtOUpfvK1KKO0Ho=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KmSdKQPpfL8NUZTjBgr8+DvFEaxjKTvLNf2mi07XjFMqkkhK2Wdm0PdGbpJ1Ml5uQ
-         dnNvPSaNnj9YiUrkr3hPxBKjrOs8rA1yvnUUv3ONmKgy5v87x3AASqOgqtnN02pDa2
-         z1hwXqWqpgjmYJN7O8sM35kkT/bZypmcKNvWHPqk=
-Date:   Thu, 4 Mar 2021 15:17:34 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Jing Xiangfeng <jingxiangfeng@huawei.com>, catalin.marinas@arm.com,
-        will@kernel.org, akpm@linux-foundation.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, rppt@kernel.org, lorenzo.pieralisi@arm.com,
-        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
-        lenb@kernel.org, song.bao.hua@hisilicon.com, ardb@kernel.org,
-        anshuman.khandual@arm.com, bhelgaas@google.com, guro@fb.com,
-        robh+dt@kernel.org, stable@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, frowand.list@gmail.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-        wangkefeng.wang@huawei.com
-Subject: Re: [PATCH stable v5.10 0/7] arm64: Default to 32-bit wide ZONE_DMA
-Message-ID: <YEDr/lYZHew88/Ip@kroah.com>
-References: <20210303073319.2215839-1-jingxiangfeng@huawei.com>
- <YEDkmj6cchMPAq2h@kroah.com>
- <9bc396116372de5b538d71d8f9ae9c3259f1002e.camel@suse.de>
+        id S230390AbhCDOdf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Mar 2021 09:33:35 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BFD2164F2C;
+        Thu,  4 Mar 2021 14:32:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614868375;
+        bh=tXeyflvi5gXEFLfWrEhyPYpQ9H6G+alEokJ1yiiFZAs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=SUFTMJXCghhXPTfTU7DVatK7XQYGDso/6+901ptTAr+6UkFzvVY3LMy1bIBwg4Q82
+         isDF6GXrYzW1tsDNFKNmrnfQGi9Pq81iowaq3SFhnU9RUHy15KF384r3EJ495u9xU3
+         NCq881YQgUwtaNX3jPN2E0VR267kElrANWeJxmprwDTzSzDN1p8sT8jooPzXarYvDy
+         mtBUdM42PWgJcC5evM+Re9wAYHKdY7ascu2Ek0ewIpvA8DtzgZz7SB9ab2syZ5KtWl
+         VoNwX5CEdlZXGVJHEGyKYrWFY4mx9bYABQrAxfY4zQG8EPOnKH7l5Y26oldHmtbElN
+         VJRGrvRWooQLg==
+Received: by mail-ed1-f46.google.com with SMTP id b7so21610116edz.8;
+        Thu, 04 Mar 2021 06:32:54 -0800 (PST)
+X-Gm-Message-State: AOAM532ouOycI6Al4VVty7+nROx9MFQaXnS2SEq10S8e1r/sQNZ+NUmk
+        hUrNWqVfSCerICKJTKdw8eKxm37z7v1HctTmIQ==
+X-Google-Smtp-Source: ABdhPJzabdQJ8ncT4i9Jv5kLvVwXJ4FdjdlgX7bAUmE7phJTm1J2xtfPKQoM5FboSII3Jp66Lb89kLcDHwPLvNaueFU=
+X-Received: by 2002:aa7:c403:: with SMTP id j3mr4615939edq.137.1614868373460;
+ Thu, 04 Mar 2021 06:32:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9bc396116372de5b538d71d8f9ae9c3259f1002e.camel@suse.de>
+References: <20210304044803.812204-2-danielwa@cisco.com>
+In-Reply-To: <20210304044803.812204-2-danielwa@cisco.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 4 Mar 2021 08:32:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKnAMp0bkXzU-B8b8xx5fPC1R1NdOBn9Kpk=SONJL5paQ@mail.gmail.com>
+Message-ID: <CAL_JsqKnAMp0bkXzU-B8b8xx5fPC1R1NdOBn9Kpk=SONJL5paQ@mail.gmail.com>
+Subject: Re: [PATCH 2/5] CMDLINE: drivers: of: ifdef out cmdline section
+To:     Daniel Walker <danielwa@cisco.com>
+Cc:     Will Deacon <will@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        X86 ML <x86@kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        xe-linux-external@cisco.com,
+        Ruslan Ruslichenko <rruslich@cisco.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 04, 2021 at 03:05:32PM +0100, Nicolas Saenz Julienne wrote:
-> Hi Greg.
-> 
-> On Thu, 2021-03-04 at 14:46 +0100, Greg KH wrote:
-> > On Wed, Mar 03, 2021 at 03:33:12PM +0800, Jing Xiangfeng wrote:
-> > > Using two distinct DMA zones turned out to be problematic. Here's an
-> > > attempt go back to a saner default.
-> > 
-> > What problem does this solve?  How does this fit into the stable kernel
-> > rules?
-> 
-> We changed the way we setup memory zones in arm64 in order to cater for
-> Raspberry Pi 4's weird DMA constraints: ZONE_DMA spans the lower 1GB of memory
-> and ZONE_DMA32 the rest of the 32bit address space. Since you can't allocate
-> memory that crosses zone boundaries, this broke crashkernel allocations on big
-> machines. This series fixes all this by parsing the HW description and checking
-> for DMA constrained buses. When not found, the unnecessary zone creation is
-> skipped.
+On Wed, Mar 3, 2021 at 10:48 PM Daniel Walker <danielwa@cisco.com> wrote:
+>
+> It looks like there's some seepage of cmdline stuff into
+> the generic device tree code. This conflicts with the
+> generic cmdline implementation so I remove it in the case
+> when that's enabled.
+>
+> Cc: xe-linux-external@cisco.com
+> Signed-off-by: Ruslan Ruslichenko <rruslich@cisco.com>
+> Signed-off-by: Daniel Walker <danielwa@cisco.com>
+> ---
+>  drivers/of/fdt.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index feb0f2d67fc5..cfe4f8d3c9f5 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -25,6 +25,7 @@
+>  #include <linux/serial_core.h>
+>  #include <linux/sysfs.h>
+>  #include <linux/random.h>
+> +#include <linux/cmdline.h>
+>
+>  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+>  #include <asm/page.h>
+> @@ -1048,8 +1049,18 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+>
+>         early_init_dt_check_for_initrd(node);
+>
+> +#ifdef CONFIG_GENERIC_CMDLINE
 
-What kernel/commit caused this "breakage"?
+What I like about Christophe's version is it removes the old DT
+implementation. Who's going to convert the rest of the DT based
+arches? That's arm, arm64, hexagon, microblaze, nios2, openrisc,
+riscv, sh, and xtensa. Either separate the common code from the config
+like Christophe's version or these all need converting. Though it's
+fine to hash out patch 1 with a couple of arches first.
 
-thanks,
+>         /* Retrieve command line */
+>         p = of_get_flat_dt_prop(node, "bootargs", &l);
 
-greg k-h
+This needs to be outside the ifdef.
+
+> +
+> +       /*
+> +        * The builtin command line will be added here, or it can override
+> +        * with the DT bootargs.
+> +        */
+> +       cmdline_add_builtin(data,
+> +                           ((p != NULL && l > 0) ? p : NULL), /* This is sanity checking */
+> +                           COMMAND_LINE_SIZE);
+> +#else
+>         if (p != NULL && l > 0)
+>                 strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
+>
+> @@ -1070,6 +1081,7 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+>                 strlcpy(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+>  #endif
+>  #endif /* CONFIG_CMDLINE */
+> +#endif /* CONFIG_GENERIC_CMDLINE */
+>
+>         pr_debug("Command line is: %s\n", (char *)data);
+>
+> --
+> 2.25.1
+>
